@@ -7,6 +7,7 @@
  *   k_work_init                              <= FUN_00072e50 @ 0x00072e50
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   smp_reassembly_init                      <= FUN_00080b28 @ 0x00080b28
  *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
  * address symbols (name @ address):
  *   ADDR_smp_handle_reqs_THUMB               @ 0x00080ab5
@@ -20,7 +21,7 @@
 extern void k_work_init(int a, unsigned int b);
 extern void assert_post_action(unsigned int a, unsigned int b);
 extern void printk(unsigned int a, ...);
-extern void FUN_00080b28(void);
+extern void smp_reassembly_init(void);
 #define z_impl_k_queue_init z_impl_k_queue_init
 extern void z_impl_k_queue_init(void *queue);
 
@@ -31,7 +32,7 @@ unsigned int smp_transport_init(int param_1)
         printk(((unsigned long)&rodata_f2963) /*=0xf2963*/);
         assert_post_action(((unsigned long)&rodata_f2901) /*=0xf2901*/, 0x92);
     }
-    FUN_00080b28();
+    smp_reassembly_init();
     k_work_init(param_1, ADDR_smp_handle_reqs_THUMB /*=0x80ab5*/);
     z_impl_k_queue_init((void *)(param_1 + 0x10));
     return 0;

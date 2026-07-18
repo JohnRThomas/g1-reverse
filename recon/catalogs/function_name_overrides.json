@@ -786,7 +786,7 @@
    "name": "settings_init",
    "evidence": "Relocation-masked byte-exact NCS 2.5.1 settings.c owner; initializes dynamic handlers and the settings store. Raw identity remains FUN_0004e484."
   },
- "0x00061624": {
+  "0x00061624": {
    "name": "gpio_nrfx_pin_configure",
    "evidence": "Firmware gpio_driver_api at 0x8b748 points pin_configure slot to 0x61625; body and NCS reference match."
   },
@@ -1238,6 +1238,70 @@
   "0x0007ef56": {
    "name": "audio_hw_lock_release",
    "evidence": "Exact counterpart to audio_hw_lock_acquire, atomically clearing state bit zero when the state exists. Raw identity remains FUN_0007ef56."
+  },
+  "0x00051354": {
+   "name": "mgmt_find_handler",
+   "evidence": "Relocation-normalized byte-exact NCS 2.5.1 mcumgr mgmt.c handler lookup. Raw identity remains FUN_00051354."
+  },
+  "0x0005139c": {
+   "name": "mgmt_find_error_translation_function",
+   "evidence": "Corrected exact NCS 2.5.1 mcumgr mgmt.c error-translation lookup; the former mgmt_find_group label omitted its returned callback semantics. Raw identity remains FUN_0005139c."
+  },
+  "0x0005160c": {
+   "name": "smp_add_cmd_err",
+   "evidence": "Relocation-normalized byte-exact NCS 2.5.1 mcumgr SMP command-error encoder. Raw identity remains FUN_0005160c."
+  },
+  "0x000526e4": {
+   "name": "smp_packet_alloc",
+   "evidence": "Exact NCS 2.5.1 mcumgr transport packet-pool allocator. Raw identity remains FUN_000526e4."
+  },
+  "0x000526f4": {
+   "name": "smp_transport_init",
+   "evidence": "Exact NCS 2.5.1 mcumgr transport initializer with Bluetooth reassembly enabled. Raw identity remains FUN_000526f4."
+  },
+  "0x00052744": {
+   "name": "smp_rx_req",
+   "evidence": "Exact NCS 2.5.1 mcumgr request enqueue and work-submit function. Raw identity remains FUN_00052744."
+  },
+  "0x000807f6": {
+   "name": "smp_make_rsp_hdr",
+   "evidence": "Exact translation-unit-local NCS 2.5.1 mcumgr response-header constructor. Raw identity remains FUN_000807f6."
+  },
+  "0x00080830": {
+   "name": "cbor_nb_writer_init",
+   "evidence": "Exact translation-unit-local NCS 2.5.1 mcumgr net_buf CBOR writer initializer. Raw identity remains FUN_00080830."
+  },
+  "0x00080864": {
+   "name": "smp_write_hdr",
+   "evidence": "Exact compiler-local NCS 2.5.1 mcumgr SMP header writer emitted as smp_write_hdr.isra.0. Raw identity remains FUN_00080864."
+  },
+  "0x00080ae2": {
+   "name": "smp_packet_free",
+   "evidence": "Corrected exact NCS 2.5.1 mcumgr transport packet-free veneer; historical alias thunk_FUN_0005f24c remains reversible. Raw identity remains FUN_00080ae2."
+  },
+  "0x00080ae6": {
+   "name": "smp_alloc_rsp",
+   "evidence": "Exact NCS 2.5.1 mcumgr response-buffer allocator and user-data copier. Raw identity remains FUN_00080ae6."
+  },
+  "0x00080b28": {
+   "name": "smp_reassembly_init",
+   "evidence": "Exact NCS 2.5.1 mcumgr reassembly-state initializer. Raw identity remains FUN_00080b28."
+  },
+  "0x00080b32": {
+   "name": "smp_reassembly_expected",
+   "evidence": "Exact NCS 2.5.1 mcumgr reassembly expected-byte query. Raw identity remains FUN_00080b32."
+  },
+  "0x00080b42": {
+   "name": "smp_reassembly_collect",
+   "evidence": "Exact NCS 2.5.1 mcumgr fragment collector configured for the firmware's 2475-byte transport buffer. Raw identity remains FUN_00080b42."
+  },
+  "0x00080bb2": {
+   "name": "smp_reassembly_complete",
+   "evidence": "Exact NCS 2.5.1 mcumgr reassembly completion and request-enqueue function. Raw identity remains FUN_00080bb2."
+  },
+  "0x00080bfe": {
+   "name": "smp_reassembly_get_ud",
+   "evidence": "Exact NCS 2.5.1 mcumgr reassembly buffer user-data accessor. Raw identity remains FUN_00080bfe."
   }
  },
  "net": {
@@ -1330,8 +1394,8 @@
    "evidence": "Selected when neither current nor requested radio mode is one; subtracts the complementary selected-PHY airtime term. Raw identity remains FUN_01021634."
   },
   "0x01008d00": {
-   "name": "controller_assert",
-   "evidence": "Two-argument SDC fatal endpoint: formats the module identifier, invokes the registered assertion callback, then requests SYSRESETREQ. Raw identity remains FUN_01008d00."
+   "name": "sdc_assertion_fail",
+   "evidence": "Shared noreturn SoftDevice Controller assertion boundary; callers supply module and source-line identifiers. Raw identity remains FUN_01008d00."
   },
   "0x0100a7e8": {
    "name": "sdc_ecb_run_blocking",
@@ -1420,10 +1484,6 @@
   "0x0100f69c": {
    "name": "signed_drift_clamp",
    "evidence": "Leaf clamps a signed drift value to the symmetric magnitude supplied in r1. Raw identity remains FUN_0100f69c."
-  },
-  "0x01008d00": {
-   "name": "sdc_assertion_fail",
-   "evidence": "Shared noreturn SoftDevice Controller assertion boundary; callers supply module and source-line identifiers. Raw identity remains FUN_01008d00."
   },
   "0x0101deac": {
    "name": "schedule_node_list_lock",

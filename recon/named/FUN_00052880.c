@@ -22,7 +22,7 @@ extern int mutex_unlock_syscall_handler(int,...);
 extern int FUN_00080c06(int,...);
 extern int att_get_max_payload_len(int,...);
 extern int memset_bytes(int,...);
-extern int thunk_FUN_0005f24c(int,...);
+extern int smp_packet_free(int,...);
 unsigned int FUN_00052880(int param_1)
 {
   struct {
@@ -77,6 +77,6 @@ LAB_528a8:
   uVar6 = 5;
 DONE:
   FUN_00080c06(param_1+0x18);
-  thunk_FUN_0005f24c(param_1);
+  smp_packet_free(param_1);
   return uVar6;
 }

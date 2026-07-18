@@ -1,10 +1,12 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_000807f6 @ 0x000807f6
- * public-name: FUN_000807f6
+ * public-name: smp_make_rsp_hdr
  * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   smp_make_rsp_hdr                         <= FUN_000807f6 @ 0x000807f6
  */
 /* Reconstructed FUN_000807f6 @ 0x807f6  (parity: 300/300 trials, PROVEN) */
-void FUN_000807f6(unsigned char *param_1, unsigned char *param_2, unsigned int param_3)
+void smp_make_rsp_hdr(unsigned char *param_1, unsigned char *param_2, unsigned int param_3)
 {
     unsigned short uVar1;
     unsigned short uVar2;

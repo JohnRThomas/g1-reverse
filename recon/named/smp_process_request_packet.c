@@ -3,9 +3,13 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   mgmt_find_handler                        <= FUN_00051354 @ 0x00051354
- *   mgmt_find_group                          <= FUN_0005139c @ 0x0005139c
+ *   mgmt_find_error_translation_function     <= FUN_0005139c @ 0x0005139c
  *   smp_process_request_packet               <= FUN_000513e8 @ 0x000513e8
  *   net_buf_simple_pull_5f558                <= FUN_0005f558 @ 0x0005f558
+ *   smp_make_rsp_hdr                         <= FUN_000807f6 @ 0x000807f6
+ *   cbor_nb_writer_init                      <= FUN_00080830 @ 0x00080830
+ *   smp_write_hdr                            <= FUN_00080864 @ 0x00080864
+ *   smp_alloc_rsp                            <= FUN_00080ae6 @ 0x00080ae6
  *   smp_free_buf                             <= FUN_00080b0e @ 0x00080b0e
  *   cbor_encode_int32                        <= FUN_0008630c @ 0x0008630c
  *   cbor_encode_bstr                         <= FUN_0008633e @ 0x0008633e
@@ -20,13 +24,13 @@ typedef unsigned int uint;
 typedef unsigned undefined4;
 typedef unsigned (*codef)(void *);
 extern int mgmt_find_handler(uint a, unsigned char b);
-extern uintptr_t mgmt_find_group(short a);
+extern uintptr_t mgmt_find_error_translation_function(short a);
 extern void net_buf_simple_pull_5f558(int a, unsigned b);
-extern void FUN_000807f6(void *a, void *b, int c);
-extern void FUN_00080830(int a, int b);
-extern void FUN_00080864(int a);
+extern void smp_make_rsp_hdr(void *a, void *b, int c);
+extern void cbor_nb_writer_init(int a, int b);
+extern void smp_write_hdr(int a);
 extern void smp_free_buf(int a, int b);
-extern int FUN_00080ae6(int a, int b);
+extern int smp_alloc_rsp(int a, int b);
 extern int cbor_encode_int32(int *a, uint b);
 extern int cbor_encode_bstr(int *a, void *b);
 extern int cbor_encode_map_indef_start(int *a, int b);
@@ -81,7 +85,7 @@ LAB_000515f8:
             iVar9 = 0;
             iVar4 = param_2;
 LAB_000514b2:
-            FUN_00080830(param_1[2], iVar4);
+            cbor_nb_writer_init(param_1[2], iVar4);
             piVar13 = (int *)param_1[2];
             piVar6 = piVar13 + 1;
             iVar8 = cbor_encode_map_indef_start(piVar6, 2);
@@ -95,10 +99,10 @@ LAB_000514f4:
                 if ((iVar8 == 0) || (iVar8 = cbor_encode_int32(piVar6, uVar11), iVar8 == 0)) goto LAB_000514f4;
                 iVar8 = thunk_FUN_00086354(piVar6, 2);
                 if (iVar8 != 0) {
-                    FUN_000807f6(&local_38, &error_record,
+                    smp_make_rsp_hdr(&local_38, &error_record,
                                  (piVar13[1] - *(volatile int *)(*piVar13 + 0xc)) + -8);
                     *(volatile short *)(*piVar13 + 0x10) = (short)piVar13[1] - (short)*(volatile int *)(*piVar13 + 0xc);
-                    FUN_00080864(param_1[2]);
+                    smp_write_hdr(param_1[2]);
                     pcVar12 = *(codef *)(uintptr_t)(*param_1 + 0x2c);
                     (*pcVar12)((void *)(uintptr_t)iVar4);
                     iVar4 = 0;
@@ -113,7 +117,7 @@ LAB_000514f4:
             uVar11 = 8;
             goto LAB_000515f8;
         }
-        iVar4 = FUN_00080ae6(param_2, *param_1);
+        iVar4 = smp_alloc_rsp(param_2, *param_1);
         if (iVar4 == 0) {
             uVar11 = 2;
             goto LAB_000515f8;
@@ -122,7 +126,7 @@ LAB_000514f4:
         *piVar6 = param_2;
         FUN_000861aa(piVar6 + 1, 4, *(volatile unsigned *)(param_2 + 0xc),
                      *(volatile unsigned short *)(param_2 + 0x10), 1);
-        FUN_00080830(param_1[2], iVar4);
+        cbor_nb_writer_init(param_1[2], iVar4);
         piVar6 = (int *)param_1[2];
         piVar6[0xd] = uVar11;
         iVar9 = param_2;
@@ -160,7 +164,7 @@ LAB_000515aa:
         if (uVar11 != 0) goto LAB_000514b2;
         pending = *(volatile unsigned short *)((int)piVar6 + 0x36);
         if ((pending != 0) && ((uVar3 & 0x18) == 0)) {
-            pcVar12 = (codef)mgmt_find_group((short)piVar6[0xd]);
+            pcVar12 = (codef)mgmt_find_error_translation_function((short)piVar6[0xd]);
             if (pcVar12 == (codef)0x0) {
                 uVar11 = 1;
             } else {
@@ -170,10 +174,10 @@ LAB_000515aa:
             }
             goto LAB_000514b2;
         }
-        FUN_000807f6(&local_38, &error_record,
+        smp_make_rsp_hdr(&local_38, &error_record,
                      (piVar6[1] - *(volatile int *)(*piVar6 + 0xc)) + -8);
         *(volatile short *)(*piVar6 + 0x10) = (short)piVar6[1] - (short)*(volatile int *)(*piVar6 + 0xc);
-        FUN_00080864(param_1[2]);
+        smp_write_hdr(param_1[2]);
 LAB_00051594:
         pcVar12 = *(codef *)(uintptr_t)(*param_1 + 0x2c);
         uVar11 = (*pcVar12)((void *)(uintptr_t)iVar4);

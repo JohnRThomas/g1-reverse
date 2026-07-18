@@ -1,9 +1,10 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_00080830 @ 0x00080830
- * public-name: FUN_00080830
+ * public-name: cbor_nb_writer_init
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   net_buf_reset                            <= FUN_0005ee6c @ 0x0005ee6c
+ *   cbor_nb_writer_init                      <= FUN_00080830 @ 0x00080830
  *   net_buf_simple_tailroom                  <= FUN_00083730 @ 0x00083730
  */
 /* Reconstructed FUN_00080830 @ 0x80830  (parity: 300/300 trials, PROVEN) */
@@ -12,7 +13,7 @@ extern void net_buf_reset(unsigned int);
 extern int net_buf_simple_tailroom(int *);
 extern void thunk_FUN_00085cf2(int *, int, int, int, int, int, unsigned int);
 
-void FUN_00080830(int *param_1, unsigned int param_2, unsigned int param_3)
+void cbor_nb_writer_init(int *param_1, unsigned int param_2, unsigned int param_3)
 {
   int uVar1;
   int iVar2;

@@ -37,6 +37,8 @@ DEFAULTS = {
         "recon/ownership/app_bluetooth_stock_atomic_adoption.json",
     "app_settings_stock":
         "recon/ownership/app_settings_stock_atomic_adoption.json",
+    "app_mcumgr_stock":
+        "recon/ownership/app_mcumgr_stock_atomic_adoption.json",
     "app_lseek_stream_flash":
         "recon/ownership/app_lseek_stream_flash_atomic_adoption.json",
     "app_root_stock":
@@ -530,6 +532,15 @@ def _build_from_baseline(paths, resolved, names):
     authorizations["configured_build_receipts"] = sorted(set(
         authorizations.get("configured_build_receipts", []) +
         settings.get("configured_build_receipts", [])))
+    mcumgr_path = resolved["app_mcumgr_stock"]
+    mcumgr = _load_json(mcumgr_path)
+    if (mcumgr.get("schema") != 1 or mcumgr.get("core") != "app" or
+            mcumgr.get("status") != "authorized_atomic"):
+        raise ValueError("invalid mcumgr exact5 atomic adoption catalog")
+    authorizations["authorizations"].extend(mcumgr.get("authorizations", []))
+    authorizations["configured_build_receipts"] = sorted(set(
+        authorizations.get("configured_build_receipts", []) +
+        mcumgr.get("configured_build_receipts", [])))
     lseek_stream_path = resolved["app_lseek_stream_flash"]
     lseek_stream = _load_json(lseek_stream_path)
     if (lseek_stream.get("schema") != 1 or lseek_stream.get("core") != "app" or
@@ -586,6 +597,8 @@ def _build_from_baseline(paths, resolved, names):
          "sha256": _sha256(bluetooth_path)},
         {"path": paths["app_settings_stock"],
          "sha256": _sha256(settings_path)},
+        {"path": paths["app_mcumgr_stock"],
+         "sha256": _sha256(mcumgr_path)},
         {"path": paths["app_lseek_stream_flash"],
          "sha256": _sha256(lseek_stream_path)},
         {"path": paths["app_root_stock"],

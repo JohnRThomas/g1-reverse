@@ -8518,7 +8518,7 @@
    "name": "mgmt_find_handler",
    "display_name": "mgmt_find_handler",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact NCS 2.5.1 mcumgr mgmt.c handler lookup. Raw identity remains FUN_00051354.",
    "aliases": [
     "FUN_00051354"
    ]
@@ -8526,12 +8526,13 @@
   "0x0005139c": {
    "address": "0x0005139c",
    "raw_name": "FUN_0005139c",
-   "name": "mgmt_find_group",
-   "display_name": "mgmt_find_group",
+   "name": "mgmt_find_error_translation_function",
+   "display_name": "mgmt_find_error_translation_function",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Corrected exact NCS 2.5.1 mcumgr mgmt.c error-translation lookup; the former mgmt_find_group label omitted its returned callback semantics. Raw identity remains FUN_0005139c.",
    "aliases": [
-    "FUN_0005139c"
+    "FUN_0005139c",
+    "mgmt_find_group"
    ]
   },
   "0x000513e8": {
@@ -8551,7 +8552,7 @@
    "name": "smp_add_cmd_err",
    "display_name": "smp_add_cmd_err",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact NCS 2.5.1 mcumgr SMP command-error encoder. Raw identity remains FUN_0005160c.",
    "aliases": [
     "FUN_0005160c"
    ]
@@ -8756,11 +8757,13 @@
   "0x000526e4": {
    "address": "0x000526e4",
    "raw_name": "FUN_000526e4",
-   "name": "FUN_000526e4",
-   "display_name": "FUN_000526e4",
-   "human": false,
-   "source": "recon/app/src/FUN_000526e4.c",
-   "aliases": []
+   "name": "smp_packet_alloc",
+   "display_name": "smp_packet_alloc",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 mcumgr transport packet-pool allocator. Raw identity remains FUN_000526e4.",
+   "aliases": [
+    "FUN_000526e4"
+   ]
   },
   "0x000526f4": {
    "address": "0x000526f4",
@@ -8768,7 +8771,7 @@
    "name": "smp_transport_init",
    "display_name": "smp_transport_init",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 mcumgr transport initializer with Bluetooth reassembly enabled. Raw identity remains FUN_000526f4.",
    "aliases": [
     "FUN_000526f4"
    ]
@@ -8776,11 +8779,13 @@
   "0x00052744": {
    "address": "0x00052744",
    "raw_name": "FUN_00052744",
-   "name": "FUN_00052744",
-   "display_name": "FUN_00052744",
-   "human": false,
-   "source": "recon/app/src/FUN_00052744.c",
-   "aliases": []
+   "name": "smp_rx_req",
+   "display_name": "smp_rx_req",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 mcumgr request enqueue and work-submit function. Raw identity remains FUN_00052744.",
+   "aliases": [
+    "FUN_00052744"
+   ]
   },
   "0x00052760": {
    "address": "0x00052760",
@@ -20618,29 +20623,35 @@
   "0x000807f6": {
    "address": "0x000807f6",
    "raw_name": "FUN_000807f6",
-   "name": "FUN_000807f6",
-   "display_name": "FUN_000807f6",
-   "human": false,
-   "source": "recon/app/src/FUN_000807f6.c",
-   "aliases": []
+   "name": "smp_make_rsp_hdr",
+   "display_name": "smp_make_rsp_hdr",
+   "human": true,
+   "source": "function_name_overrides.json: Exact translation-unit-local NCS 2.5.1 mcumgr response-header constructor. Raw identity remains FUN_000807f6.",
+   "aliases": [
+    "FUN_000807f6"
+   ]
   },
   "0x00080830": {
    "address": "0x00080830",
    "raw_name": "FUN_00080830",
-   "name": "FUN_00080830",
-   "display_name": "FUN_00080830",
-   "human": false,
-   "source": "recon/app/src/FUN_00080830.c",
-   "aliases": []
+   "name": "cbor_nb_writer_init",
+   "display_name": "cbor_nb_writer_init",
+   "human": true,
+   "source": "function_name_overrides.json: Exact translation-unit-local NCS 2.5.1 mcumgr net_buf CBOR writer initializer. Raw identity remains FUN_00080830.",
+   "aliases": [
+    "FUN_00080830"
+   ]
   },
   "0x00080864": {
    "address": "0x00080864",
    "raw_name": "FUN_00080864",
-   "name": "FUN_00080864",
-   "display_name": "FUN_00080864",
-   "human": false,
-   "source": "recon/app/src/FUN_00080864.c",
-   "aliases": []
+   "name": "smp_write_hdr",
+   "display_name": "smp_write_hdr",
+   "human": true,
+   "source": "function_name_overrides.json: Exact compiler-local NCS 2.5.1 mcumgr SMP header writer emitted as smp_write_hdr.isra.0. Raw identity remains FUN_00080864.",
+   "aliases": [
+    "FUN_00080864"
+   ]
   },
   "0x00080872": {
    "address": "0x00080872",
@@ -20772,20 +20783,24 @@
   "0x00080ae2": {
    "address": "0x00080ae2",
    "raw_name": "FUN_00080ae2",
-   "name": "thunk_FUN_0005f24c",
-   "display_name": "thunk_FUN_0005f24c",
+   "name": "smp_packet_free",
+   "display_name": "smp_packet_free",
    "human": true,
-   "source": "committed durable map",
-   "aliases": []
+   "source": "function_name_overrides.json: Corrected exact NCS 2.5.1 mcumgr transport packet-free veneer; historical alias thunk_FUN_0005f24c remains reversible. Raw identity remains FUN_00080ae2.",
+   "aliases": [
+    "thunk_FUN_0005f24c"
+   ]
   },
   "0x00080ae6": {
    "address": "0x00080ae6",
    "raw_name": "FUN_00080ae6",
-   "name": "FUN_00080ae6",
-   "display_name": "FUN_00080ae6",
-   "human": false,
-   "source": "recon/app/src/FUN_00080ae6.c",
-   "aliases": []
+   "name": "smp_alloc_rsp",
+   "display_name": "smp_alloc_rsp",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 mcumgr response-buffer allocator and user-data copier. Raw identity remains FUN_00080ae6.",
+   "aliases": [
+    "FUN_00080ae6"
+   ]
   },
   "0x00080b0e": {
    "address": "0x00080b0e",
@@ -20801,47 +20816,57 @@
   "0x00080b28": {
    "address": "0x00080b28",
    "raw_name": "FUN_00080b28",
-   "name": "FUN_00080b28",
-   "display_name": "FUN_00080b28",
-   "human": false,
-   "source": "recon/app/src/FUN_00080b28.c",
-   "aliases": []
+   "name": "smp_reassembly_init",
+   "display_name": "smp_reassembly_init",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 mcumgr reassembly-state initializer. Raw identity remains FUN_00080b28.",
+   "aliases": [
+    "FUN_00080b28"
+   ]
   },
   "0x00080b32": {
    "address": "0x00080b32",
    "raw_name": "FUN_00080b32",
-   "name": "FUN_00080b32",
-   "display_name": "FUN_00080b32",
-   "human": false,
-   "source": "recon/app/src/FUN_00080b32.c",
-   "aliases": []
+   "name": "smp_reassembly_expected",
+   "display_name": "smp_reassembly_expected",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 mcumgr reassembly expected-byte query. Raw identity remains FUN_00080b32.",
+   "aliases": [
+    "FUN_00080b32"
+   ]
   },
   "0x00080b42": {
    "address": "0x00080b42",
    "raw_name": "FUN_00080b42",
-   "name": "FUN_00080b42",
-   "display_name": "FUN_00080b42",
-   "human": false,
-   "source": "recon/app/src/FUN_00080b42.c",
-   "aliases": []
+   "name": "smp_reassembly_collect",
+   "display_name": "smp_reassembly_collect",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 mcumgr fragment collector configured for the firmware's 2475-byte transport buffer. Raw identity remains FUN_00080b42.",
+   "aliases": [
+    "FUN_00080b42"
+   ]
   },
   "0x00080bb2": {
    "address": "0x00080bb2",
    "raw_name": "FUN_00080bb2",
-   "name": "FUN_00080bb2",
-   "display_name": "FUN_00080bb2",
-   "human": false,
-   "source": "recon/app/src/FUN_00080bb2.c",
-   "aliases": []
+   "name": "smp_reassembly_complete",
+   "display_name": "smp_reassembly_complete",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 mcumgr reassembly completion and request-enqueue function. Raw identity remains FUN_00080bb2.",
+   "aliases": [
+    "FUN_00080bb2"
+   ]
   },
   "0x00080bfe": {
    "address": "0x00080bfe",
    "raw_name": "FUN_00080bfe",
-   "name": "FUN_00080bfe",
-   "display_name": "FUN_00080bfe",
-   "human": false,
-   "source": "recon/app/src/FUN_00080bfe.c",
-   "aliases": []
+   "name": "smp_reassembly_get_ud",
+   "display_name": "smp_reassembly_get_ud",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 mcumgr reassembly buffer user-data accessor. Raw identity remains FUN_00080bfe.",
+   "aliases": [
+    "FUN_00080bfe"
+   ]
   },
   "0x00080c06": {
    "address": "0x00080c06",
@@ -26356,8 +26381,6 @@
   "FUN_00051c68": "0x00051c68",
   "FUN_00051fe4": "0x00051fe4",
   "FUN_00052000": "0x00052000",
-  "FUN_000526e4": "0x000526e4",
-  "FUN_00052744": "0x00052744",
   "FUN_000527dc": "0x000527dc",
   "FUN_00052854": "0x00052854",
   "FUN_00052880": "0x00052880",
@@ -26697,9 +26720,6 @@
   "FUN_0007fae4": "0x0007fae4",
   "FUN_00080406": "0x00080406",
   "FUN_00080780": "0x00080780",
-  "FUN_000807f6": "0x000807f6",
-  "FUN_00080830": "0x00080830",
-  "FUN_00080864": "0x00080864",
   "FUN_00080872": "0x00080872",
   "FUN_0008096a": "0x0008096a",
   "FUN_00080970": "0x00080970",
@@ -26708,12 +26728,6 @@
   "FUN_00080a4a": "0x00080a4a",
   "FUN_00080a4e": "0x00080a4e",
   "FUN_00080a82": "0x00080a82",
-  "FUN_00080ae6": "0x00080ae6",
-  "FUN_00080b28": "0x00080b28",
-  "FUN_00080b32": "0x00080b32",
-  "FUN_00080b42": "0x00080b42",
-  "FUN_00080bb2": "0x00080bb2",
-  "FUN_00080bfe": "0x00080bfe",
   "FUN_00080c06": "0x00080c06",
   "FUN_00080c20": "0x00080c20",
   "FUN_00080c46": "0x00080c46",
@@ -27303,6 +27317,7 @@
   "cbor_encode_simple": "0x00086378",
   "cbor_encode_uint32": "0x00086320",
   "cbor_encode_uint_from_bytes": "0x000862ee",
+  "cbor_nb_writer_init": "0x00080830",
   "cbpprintf_external": "0x0007db9e",
   "cc_mbedtls_aes_crypt_ecb": "0x0007ab70",
   "cc_mbedtls_aes_init": "0x0007ab00",
@@ -27998,7 +28013,7 @@
   "metal_io_block_set": "0x0008557c",
   "metal_io_block_write": "0x00085508",
   "metal_io_init": "0x00085442",
-  "mgmt_find_group": "0x0005139c",
+  "mgmt_find_error_translation_function": "0x0005139c",
   "mgmt_find_handler": "0x00051354",
   "mobile_send_notification_to_ble_device_test": "0x00021c04",
   "mpsc_pbuf_alloc": "0x0004bc8c",
@@ -28410,6 +28425,7 @@
   "smakebuf_r": "0x00076cec",
   "smp_add_cmd_err": "0x0005160c",
   "smp_alloc_pairing_keys": "0x0005e47c",
+  "smp_alloc_rsp": "0x00080ae6",
   "smp_auth_get_pairing_method": "0x0005caec",
   "smp_c1": "0x0008323a",
   "smp_central_ident": "0x0005e080",
@@ -28422,13 +28438,23 @@
   "smp_ident_addr_info": "0x0005de70",
   "smp_init": "0x0005cc30",
   "smp_keypress_notif": "0x000830a4",
+  "smp_make_rsp_hdr": "0x000807f6",
+  "smp_packet_alloc": "0x000526e4",
+  "smp_packet_free": "0x00080ae2",
   "smp_pairing_complete": "0x0005daf0",
   "smp_process_request_packet": "0x000513e8",
   "smp_public_key_periph": "0x0005ce6c",
+  "smp_reassembly_collect": "0x00080b42",
+  "smp_reassembly_complete": "0x00080bb2",
+  "smp_reassembly_expected": "0x00080b32",
+  "smp_reassembly_get_ud": "0x00080bfe",
+  "smp_reassembly_init": "0x00080b28",
   "smp_rx_remove_invalid": "0x00052760",
+  "smp_rx_req": "0x00052744",
   "smp_timeout": "0x0005e3e0",
   "smp_transport_init": "0x000526f4",
   "smp_update_bond_flag": "0x0005e5b8",
+  "smp_write_hdr": "0x00080864",
   "snprintk": "0x0007ddbe",
   "some_module_sem_init": "0x0002953c",
   "spawn_display_thread": "0x00049638",
@@ -28524,7 +28550,6 @@
   "tc_sha256_init": "0x0004fca0",
   "tc_sha256_update": "0x00080300",
   "thunk_FUN_00043308": "0x0007d3be",
-  "thunk_FUN_0005f24c": "0x00080ae2",
   "thunk_FUN_00064134": "0x000836d4",
   "thunk_FUN_00071678": "0x000807f2",
   "thunk_FUN_00074f68": "0x0007c398",
