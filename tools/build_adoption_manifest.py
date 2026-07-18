@@ -322,6 +322,17 @@ def _app_collision_entries(data, source, names, authorizations,
             authorization.get("firmware_code_size") ==
             authorization.get("upstream_code_size") and
             authorization.get("required_config"))
+        identity_correction = (authorization or {}).get(
+            "identity_correction", {})
+        if identity_correction and not (
+                identity_correction.get("baseline_collision_symbol") ==
+                row.get("current_symbol") and
+                identity_correction.get("corrected_upstream_symbol") and
+                identity_correction.get("corrected_readable_identity") and
+                identity_correction.get("upstream_linkage") in
+                ("translation_unit_local", "public")):
+            authorization_valid = False
+            configuration_variant_override = False
         eligible = (row.get("safe_to_exclude") is True or
                     (authorization_valid and
                      ((row.get("identity_threshold_candidate") is True and
@@ -354,14 +365,20 @@ def _app_collision_entries(data, source, names, authorizations,
                 configuration_variant_exact=authorization.get(
                     "configuration_variant_exact"),
                 required_config=authorization.get("required_config"),
+                identity_correction=authorization.get("identity_correction"),
                 atomic_group=authorization.get("atomic_group"),
                 whole_unit_closure=authorization.get("whole_unit_closure")))
+        selected_symbol = (identity_correction.get(
+            "corrected_upstream_symbol") if identity_correction else
+            upstream.get("symbol"))
+        selected_unit = ((authorization or {}).get("upstream_object")
+                         if ((authorization or {}).get(
+                             "configuration_variant_exact") or
+                             identity_correction)
+                         else upstream.get("object"))
         output.append(_entry(
             "app", row["va"], names, "source", component,
-            upstream.get("symbol"),
-            ((authorization or {}).get("upstream_object")
-             if (authorization or {}).get("configuration_variant_exact")
-             else upstream.get("object")), eligible,
+            selected_symbol, selected_unit, eligible,
             ("The configured CPUAPP link selected this strong owner and its "
              "DWARF ABI plus firmware instruction signature passed every "
              "fail-closed threshold." if eligible else
@@ -429,7 +446,14 @@ def _build_from_baseline(paths, resolved, names):
         upstream = collision.get("upstream", {})
         source = upstream.get("source", {})
         configured = collision.get("configured_inclusion", {})
-        if authorization.get("configuration_variant_exact") is True:
+        identity_correction = authorization.get("identity_correction", {})
+        if identity_correction:
+            receipts = (
+                ("baseline_upstream_source_sha256", source.get("sha256")),
+                ("baseline_configured_build_sha256",
+                 configured.get("zephyr_config_sha256")),
+            )
+        elif authorization.get("configuration_variant_exact") is True:
             receipts = (
                 ("baseline_upstream_object_sha256", upstream.get("object_sha256")),
                 ("upstream_source_sha256", source.get("sha256")),
@@ -449,7 +473,9 @@ def _build_from_baseline(paths, resolved, names):
         if not object_path or _sha256(object_path) != authorization[
                 "upstream_object_sha256"]:
             raise ValueError("upstream object changed: %s" % va)
-        if authorization.get("upstream_source") != source.get("path"):
+        expected_source = (identity_correction.get("corrected_upstream_source")
+                           if identity_correction else source.get("path"))
+        if authorization.get("upstream_source") != expected_source:
             raise ValueError("upstream source identity changed: %s" % va)
         source_path = os.path.join("/Users/freedomcoder/ncs251",
                                    authorization["upstream_source"])

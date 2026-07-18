@@ -1,0 +1,60 @@
+{
+ "schema": 1,
+ "core": "app",
+ "batches": ["COLLISION-12", "COLLISION-13"],
+ "decision": "adopt_pinned_fault_c_and_fault_s_owners_atomically",
+ "required_config": {
+  "CONFIG_ASSERT": "y",
+  "CONFIG_ASSERT_LEVEL": "2",
+  "CONFIG_ASSERT_VERBOSE": "y",
+  "CONFIG_ASSERT_NO_FILE_INFO": "n",
+  "CONFIG_ASSERT_NO_COND_INFO": "n",
+  "CONFIG_ASSERT_NO_MSG_INFO": "n",
+  "CONFIG_EXTRA_EXCEPTION_INFO": "n"
+ },
+ "fault_c": {
+  "source": "zephyr/arch/arm/core/aarch32/cortex_m/fault.c",
+  "source_sha256": "553dbf92ef5e358ae0415958a476d8500a94e124a1930785a3a2eefdc2f9160c",
+  "object": "/private/tmp/g1-app-pdm-post-0718h/zephyr/arch/arch/arm/core/aarch32/cortex_m/CMakeFiles/arch__arm__core__aarch32__cortex_m.dir/fault.c.obj",
+  "object_sha256": "3168bdab6e83d8e01e2a140ede5bde621dbc607fcbdc8297a87ec33d89658b49",
+  "functions": [
+   {"va": "0x000503d8", "raw_symbol": "FUN_000503d8", "collision_symbol": "z_arm_mpu_fault", "corrected_readable_identity": "arm_mem_manage_fault_helper", "upstream_symbol": "mem_manage_fault.constprop.0", "linkage": "translation_unit_local", "section": ".text.mem_manage_fault.constprop.0", "size": 384, "normalized_sha256": "b4cbe98faf667b39aa1a90e112e59bf64c474d8dea206ad1caedfa528e567d49", "cfg_verify": {"status": "PASS", "cases": 2}},
+   {"va": "0x00050558", "raw_symbol": "FUN_00050558", "collision_symbol": "z_arm_bus_fault", "corrected_readable_identity": "arm_bus_fault_helper", "upstream_symbol": "bus_fault.constprop.0", "linkage": "translation_unit_local", "section": ".text.bus_fault.constprop.0", "size": 340, "normalized_sha256": "cec9fe9ab0b1ce0f1a0fe058d234172997d3d8f81defafffa58b75b739a56949", "cfg_verify": {"status": "PASS", "cases": 9}},
+   {"va": "0x000506ac", "raw_symbol": "FUN_000506ac", "collision_symbol": "z_arm_usage_fault", "corrected_readable_identity": "arm_usage_fault_helper", "upstream_symbol": "usage_fault.constprop.0", "linkage": "translation_unit_local", "section": ".text.usage_fault.constprop.0", "size": 296, "normalized_sha256": "a82ae29e1b3b796edd72aec30a39173925e36b039e52a704e40a54de5dc37012", "cfg_verify": {"status": "PASS", "cases": 0}},
+   {"va": "0x000507d4", "raw_symbol": "FUN_000507d4", "collision_symbol": "z_arm_fault", "corrected_readable_identity": "z_arm_fault", "upstream_symbol": "z_arm_fault", "linkage": "public", "section": ".text.z_arm_fault", "size": 640, "normalized_sha256": "83b40e081a4fc2ac284894b08bd55c648178d8f5525c3d207004fa41f5a33e1c", "cfg_verify": {"status": "PASS", "cases": 0}}
+  ],
+  "noncollision_exact_owner": {"va": "0x00050a54", "symbol": "z_arm_fault_init", "section": ".text.z_arm_fault_init", "size": 24}
+ },
+ "fault_s": {
+  "source": "zephyr/arch/arm/core/aarch32/cortex_m/fault_s.S",
+  "source_sha256": "6f429f96c4d3af65eb79dcf0e2ef5d96d99208dcc98312175b132155ea1d90a1",
+  "object": "/private/tmp/g1-app-pdm-post-0718h/zephyr/arch/arch/arm/core/aarch32/cortex_m/CMakeFiles/arch__arm__core__aarch32__cortex_m.dir/fault_s.S.obj",
+  "object_sha256": "00347abb44ef2561cae97b0965ffed49096eadafabbed1bc6487d9213fb359b0",
+  "entry_va": "0x00050a6c",
+  "section": ".text.__fault",
+  "size": 20,
+  "normalized_sha256": "c3742a02fca31d2ad3b2ec485a90172b183062edd1496811075ac6f911ae789b",
+  "public_aliases": ["z_arm_hard_fault", "z_arm_mpu_fault", "z_arm_bus_fault", "z_arm_usage_fault", "z_arm_debug_monitor", "z_arm_exc_spurious"]
+ },
+ "whole_unit_closure": {
+  "exclude_only": ["0x000503d8", "0x00050558", "0x000506ac", "0x000507d4"],
+  "partial_adoption_forbidden": true,
+  "new_undefined_symbols": []
+ },
+ "link_delta": {
+  "before_unique_collisions": 91,
+  "after_unique_collisions": 87,
+  "removed": ["z_arm_bus_fault", "z_arm_fault", "z_arm_mpu_fault", "z_arm_usage_fault"],
+  "added": [],
+  "unresolved_before": ["FUN_0005463e", "FUN_00054688"],
+  "unresolved_after": ["FUN_0005463e", "FUN_00054688"]
+ },
+ "evidence": {
+  "configured_build": "/private/tmp/g1-app-pdm-post-0718h/zephyr/.config",
+  "configured_build_sha256": "a61727317580f6fa371b5cef19fd10569b4f7133a95070d4988efcd5351706c1",
+  "pre_build_log": "/private/tmp/g1-app-pdm-post-0718h.log",
+  "post_build_log": "/private/tmp/g1-app-fault-post-0718i.log",
+  "post_fault_c_object_sha256": "43c9e2902ab665c5a8e680f1f8cf48b6250654651cfb09b8d273cdd7d072e6ba",
+  "post_fault_s_object_sha256": "102d2dd14e22ad269699a0fd3ac7148ecd4ee8ced04d6c7a7ef58d655c732f4c"
+ }
+}

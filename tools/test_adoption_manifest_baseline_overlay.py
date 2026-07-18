@@ -20,9 +20,12 @@ AUTH = ROOT / "recon/ownership/app_collision_adoption_authorizations.json"
 RETAINED = ROOT / "recon/generated/app_retained_sources.cmake"
 OVERLAY_VAS = {"0x00052fbc", "0x000680f8", "0x00070ee4", "0x00071560",
                "0x0006615c", "0x000661dc", "0x00066214", "0x00066270",
-               "0x00066300"}
+               "0x00066300", "0x000503d8", "0x00050558", "0x000506ac",
+               "0x000507d4"}
 CHANGED_BASELINE_VAS = {"0x00070ee4", "0x0006615c", "0x000661dc",
-                        "0x00066214", "0x00066270", "0x00066300"}
+                        "0x00066214", "0x00066270", "0x00066300",
+                        "0x000503d8", "0x00050558", "0x000506ac",
+                        "0x000507d4"}
 ADDED_OVERLAY_VAS = OVERLAY_VAS - CHANGED_BASELINE_VAS
 
 
@@ -50,7 +53,7 @@ class AdoptionBaselineOverlayTest(unittest.TestCase):
         self.assertEqual(baseline["cores"]["net"], current["cores"]["net"])
         self.assertEqual(260, baseline["cores"]["app"]["summary"][
             "exclude_reconstruction"])
-        self.assertEqual(269, current["cores"]["app"]["summary"][
+        self.assertEqual(273, current["cores"]["app"]["summary"][
             "exclude_reconstruction"])
         self.assertTrue(all(current_app[va]["exclude_reconstruction"]
                             for va in OVERLAY_VAS))
@@ -61,6 +64,9 @@ class AdoptionBaselineOverlayTest(unittest.TestCase):
         self.assertNotIn("/virtqueue_free.c", retained)
         for symbol in ("nrfx_pdm_init", "nrfx_pdm_uninit", "nrfx_pdm_start",
                        "nrfx_pdm_buffer_set", "nrfx_pdm_stop"):
+            self.assertNotIn("/%s.c" % symbol, retained)
+        for symbol in ("arm_mem_manage_fault_helper", "arm_bus_fault_helper",
+                       "arm_usage_fault_helper", "z_arm_fault"):
             self.assertNotIn("/%s.c" % symbol, retained)
 
     def test_production_build_is_deterministic(self):

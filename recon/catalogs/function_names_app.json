@@ -8292,34 +8292,37 @@
   "0x000503d8": {
    "address": "0x000503d8",
    "raw_name": "FUN_000503d8",
-   "name": "z_arm_mpu_fault",
-   "display_name": "z_arm_mpu_fault",
+   "name": "arm_mem_manage_fault_helper",
+   "display_name": "arm_mem_manage_fault_helper",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact pinned Zephyr fault.c translation-unit-local mem_manage_fault.constprop.0 body; this is not the public fault_s.S z_arm_mpu_fault exception alias. Raw identity remains FUN_000503d8 at 0x000503d8.",
    "aliases": [
-    "FUN_000503d8"
+    "FUN_000503d8",
+    "z_arm_mpu_fault"
    ]
   },
   "0x00050558": {
    "address": "0x00050558",
    "raw_name": "FUN_00050558",
-   "name": "z_arm_bus_fault",
-   "display_name": "z_arm_bus_fault",
+   "name": "arm_bus_fault_helper",
+   "display_name": "arm_bus_fault_helper",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact pinned Zephyr fault.c translation-unit-local bus_fault.constprop.0 body; this is not the public fault_s.S z_arm_bus_fault exception alias. Raw identity remains FUN_00050558 at 0x00050558.",
    "aliases": [
-    "FUN_00050558"
+    "FUN_00050558",
+    "z_arm_bus_fault"
    ]
   },
   "0x000506ac": {
    "address": "0x000506ac",
    "raw_name": "FUN_000506ac",
-   "name": "z_arm_usage_fault",
-   "display_name": "z_arm_usage_fault",
+   "name": "arm_usage_fault_helper",
+   "display_name": "arm_usage_fault_helper",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact pinned Zephyr fault.c translation-unit-local usage_fault.constprop.0 body; this is not the public fault_s.S z_arm_usage_fault exception alias. Raw identity remains FUN_000506ac at 0x000506ac.",
    "aliases": [
-    "FUN_000506ac"
+    "FUN_000506ac",
+    "z_arm_usage_fault"
    ]
   },
   "0x000507d4": {
@@ -8436,8 +8439,7 @@
    "human": true,
    "source": "function_name_overrides.json: Retained firmware recursive-lock acquire hook with the active libc-hooks.c null-lock assertion and K_FOREVER mutex wait; deliberately namespaced after COLLISION-21 because the configured SDK owner omits the assertion path. Raw identity remains FUN_000510fc at 0x000510fc.",
    "aliases": [
-    "FUN_000510fc",
-    "__retarget_lock_acquire_recursive"
+    "FUN_000510fc"
    ]
   },
   "0x00051134": {
@@ -8448,8 +8450,7 @@
    "human": true,
    "source": "function_name_overrides.json: Retained firmware recursive-lock release hook with the active libc-hooks.c null-lock assertion before mutex unlock; deliberately namespaced after COLLISION-21 because the configured SDK owner omits the assertion path. Raw identity remains FUN_00051134 at 0x00051134.",
    "aliases": [
-    "FUN_00051134",
-    "__retarget_lock_release_recursive"
+    "FUN_00051134"
    ]
   },
   "0x00051164": {
@@ -14324,9 +14325,7 @@
    "display_name": "g1_recon_k_heap_free_validated",
    "human": true,
    "source": "function_name_overrides.json: Retained firmware heap release built with active spinlock validation and assertion paths; deliberately namespaced because the configured SDK k_heap_free owner compiles those paths out. Raw identity remains FUN_00071b2c at 0x00071b2c.",
-   "aliases": [
-    "k_heap_free"
-   ]
+   "aliases": []
   },
   "0x00071c20": {
    "address": "0x00071c20",
@@ -15113,9 +15112,7 @@
    "display_name": "g1_recon_k_aligned_alloc_asserting",
    "human": true,
    "source": "function_name_overrides.json: Recovered firmware aligned allocator with two active assertion/logging paths; it is deliberately namespaced because the configured Zephyr k_aligned_alloc owner compiles those paths out. Raw identity remains FUN_000758cc at 0x000758cc.",
-   "aliases": [
-    "k_aligned_alloc"
-   ]
+   "aliases": []
   },
   "0x00075944": {
    "address": "0x00075944",
@@ -25123,8 +25120,7 @@
    "human": true,
    "source": "function_name_overrides.json: Retained firmware queue initializer for the 28-byte spinlock-bearing layout; deliberately namespaced after COLLISION-17 because the configured SDK owner initializes an incompatible 24-byte layout. Raw identity remains FUN_000864e8 at 0x000864e8.",
    "aliases": [
-    "FUN_000864e8",
-    "z_impl_k_queue_init"
+    "FUN_000864e8"
    ]
   },
   "0x00086502": {
@@ -26880,11 +26876,14 @@
   "arch_irq_enable": "0x000500ac",
   "arch_irq_is_enabled": "0x000500f0",
   "arch_new_thread": "0x000502c4",
+  "arm_bus_fault_helper": "0x00050558",
   "arm_cmse_mpu_region_get": "0x00080786",
   "arm_core_mpu_configure": "0x00050c54",
   "arm_fault_dump_esf_registers": "0x0004ff6c",
+  "arm_mem_manage_fault_helper": "0x000503d8",
   "arm_mpu_configure_partition_region": "0x00050b8c",
   "arm_timeout_10s": "0x00032c0c",
+  "arm_usage_fault_helper": "0x000506ac",
   "array_max_skip_nan_a": "0x0000e954",
   "array_max_skip_nan_b": "0x0000e9b4",
   "assert_post_action": "0x0007e2ec",
@@ -28502,10 +28501,7 @@
   "write_r_capture_errno": "0x00079528",
   "xfer_completeness_check": "0x00085316",
   "z_abort_thread_timeout": "0x00074274",
-  "z_arm_bus_fault": "0x00050558",
   "z_arm_fault": "0x000507d4",
-  "z_arm_mpu_fault": "0x000503d8",
-  "z_arm_usage_fault": "0x000506ac",
   "z_cbprintf_cpy": "0x0007ee48",
   "z_cbvprintf_impl": "0x000113a8",
   "z_device_is_ready": "0x0008638c",

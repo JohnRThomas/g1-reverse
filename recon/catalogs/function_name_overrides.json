@@ -57,6 +57,18 @@
    "name": "settings_invalid_index_log",
    "evidence": "Recovered settings index-validation logging helper. Raw identity remains FUN_0004e8c0 at 0x0004e8c0."
   },
+  "0x000503d8": {
+   "name": "arm_mem_manage_fault_helper",
+   "evidence": "Exact pinned Zephyr fault.c translation-unit-local mem_manage_fault.constprop.0 body; this is not the public fault_s.S z_arm_mpu_fault exception alias. Raw identity remains FUN_000503d8 at 0x000503d8."
+  },
+  "0x00050558": {
+   "name": "arm_bus_fault_helper",
+   "evidence": "Exact pinned Zephyr fault.c translation-unit-local bus_fault.constprop.0 body; this is not the public fault_s.S z_arm_bus_fault exception alias. Raw identity remains FUN_00050558 at 0x00050558."
+  },
+  "0x000506ac": {
+   "name": "arm_usage_fault_helper",
+   "evidence": "Exact pinned Zephyr fault.c translation-unit-local usage_fault.constprop.0 body; this is not the public fault_s.S z_arm_usage_fault exception alias. Raw identity remains FUN_000506ac at 0x000506ac."
+  },
   "0x0004cc50": {
    "name": "ipc_service_send",
    "evidence": "Pinned Zephyr 3.4.99 public IPC service export. The three-register ABI (struct ipc_ept *, const void *, size_t) was independently checked for this approximate signature. Raw identity remains FUN_0004cc50."

@@ -1,9 +1,9 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_000506ac @ 0x000506ac
- * public-name: z_arm_usage_fault
+ * public-name: arm_usage_fault_helper
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   z_arm_usage_fault                        <= FUN_000506ac @ 0x000506ac
+ *   arm_usage_fault_helper                   <= FUN_000506ac @ 0x000506ac
  * address symbols (name @ address):
  *   rodata_88258                             @ 0x00088258
  *   rodata_f1e81                             @ 0x000f1e81
@@ -18,7 +18,7 @@
 /* Reconstructed FUN_000506ac @ 0x506ac  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_00080780(int,...);
-unsigned int z_arm_usage_fault(void)
+unsigned int arm_usage_fault_helper(void)
 {
   unsigned int uVar1;
   unsigned int a[2];

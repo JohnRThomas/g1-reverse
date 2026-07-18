@@ -73,8 +73,8 @@
   "app": {
    "summary": {
     "entries": 357,
-    "exclude_reconstruction": 269,
-    "retain_reconstruction": 88,
+    "exclude_reconstruction": 273,
+    "retain_reconstruction": 84,
     "by_kind": {
      "source": 207,
      "archive": 107,
@@ -1432,20 +1432,20 @@
      "core": "app",
      "va": "0x000503d8",
      "raw_symbol": "FUN_000503d8",
-     "current_symbol": "z_arm_mpu_fault",
+     "current_symbol": "arm_mem_manage_fault_helper",
      "kind": "source",
      "component": "zephyr",
-     "upstream_symbol": "z_arm_mpu_fault",
-     "upstream_unit": null,
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_symbol": "mem_manage_fault.constprop.0",
+     "upstream_unit": "/private/tmp/g1-app-pdm-post-0718h/zephyr/arch/arch/arm/core/aarch32/cortex_m/CMakeFiles/arch__arm__core__aarch32__cortex_m.dir/fault.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "selected_owner_not_indexed"
        ],
@@ -1465,7 +1465,62 @@
         "owner_input": "zephyr/arch/arch/arm/core/aarch32/cortex_m/libarch__arm__core__aarch32__cortex_m.a(fault_s.S.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/cortex_m/fault_s.S:80",
         "reconstruction_input": "app/libapp.a(z_arm_mpu_fault.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/cortex_m/fault_s.S:80: multiple definition of `z_arm_mpu_fault'; app/libapp.a(z_arm_mpu_fault.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_arm_mpu_fault.c:31: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/cortex_m/fault_s.S:80: multiple definition of `z_arm_mpu_fault'; app/libapp.a(z_arm_mpu_fault.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_arm_mpu_fault.c:31: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-12/13",
+       "instruction_exact": true,
+       "normalized_code_sha256": "b4cbe98faf667b39aa1a90e112e59bf64c474d8dea206ad1caedfa528e567d49",
+       "cfg_verify_cases": 11,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_ASSERT_VERBOSE": "y",
+        "CONFIG_ASSERT_NO_FILE_INFO": "n",
+        "CONFIG_ASSERT_NO_COND_INFO": "n",
+        "CONFIG_ASSERT_NO_MSG_INFO": "n",
+        "CONFIG_EXTRA_EXCEPTION_INFO": "n"
+       },
+       "identity_correction": {
+        "baseline_collision_symbol": "z_arm_mpu_fault",
+        "corrected_readable_identity": "arm_mem_manage_fault_helper",
+        "corrected_upstream_symbol": "mem_manage_fault.constprop.0",
+        "corrected_upstream_source": "zephyr/arch/arm/core/aarch32/cortex_m/fault.c",
+        "upstream_linkage": "translation_unit_local",
+        "public_exception_owner": "zephyr/arch/arm/core/aarch32/cortex_m/fault_s.S"
+       },
+       "atomic_group": [
+        "0x000503d8",
+        "0x00050558",
+        "0x000506ac",
+        "0x000507d4"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "z_arm_mpu_fault",
+         "z_arm_bus_fault",
+         "z_arm_usage_fault",
+         "z_arm_fault"
+        ],
+        "same_source_unit_noncollision_symbols": [
+         "z_arm_fault_init"
+        ],
+        "exclude_only": [
+         "0x000503d8",
+         "0x00050558",
+         "0x000506ac",
+         "0x000507d4"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -1474,20 +1529,20 @@
      "core": "app",
      "va": "0x00050558",
      "raw_symbol": "FUN_00050558",
-     "current_symbol": "z_arm_bus_fault",
+     "current_symbol": "arm_bus_fault_helper",
      "kind": "source",
      "component": "zephyr",
-     "upstream_symbol": "z_arm_bus_fault",
-     "upstream_unit": null,
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_symbol": "bus_fault.constprop.0",
+     "upstream_unit": "/private/tmp/g1-app-pdm-post-0718h/zephyr/arch/arch/arm/core/aarch32/cortex_m/CMakeFiles/arch__arm__core__aarch32__cortex_m.dir/fault.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "selected_owner_not_indexed"
        ],
@@ -1507,7 +1562,62 @@
         "owner_input": "zephyr/arch/arch/arm/core/aarch32/cortex_m/libarch__arm__core__aarch32__cortex_m.a(fault_s.S.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/cortex_m/fault_s.S:80",
         "reconstruction_input": "app/libapp.a(z_arm_bus_fault.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/cortex_m/fault_s.S:80: multiple definition of `z_arm_bus_fault'; app/libapp.a(z_arm_bus_fault.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_arm_bus_fault.c:34: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/cortex_m/fault_s.S:80: multiple definition of `z_arm_bus_fault'; app/libapp.a(z_arm_bus_fault.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_arm_bus_fault.c:34: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-12/13",
+       "instruction_exact": true,
+       "normalized_code_sha256": "cec9fe9ab0b1ce0f1a0fe058d234172997d3d8f81defafffa58b75b739a56949",
+       "cfg_verify_cases": 11,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_ASSERT_VERBOSE": "y",
+        "CONFIG_ASSERT_NO_FILE_INFO": "n",
+        "CONFIG_ASSERT_NO_COND_INFO": "n",
+        "CONFIG_ASSERT_NO_MSG_INFO": "n",
+        "CONFIG_EXTRA_EXCEPTION_INFO": "n"
+       },
+       "identity_correction": {
+        "baseline_collision_symbol": "z_arm_bus_fault",
+        "corrected_readable_identity": "arm_bus_fault_helper",
+        "corrected_upstream_symbol": "bus_fault.constprop.0",
+        "corrected_upstream_source": "zephyr/arch/arm/core/aarch32/cortex_m/fault.c",
+        "upstream_linkage": "translation_unit_local",
+        "public_exception_owner": "zephyr/arch/arm/core/aarch32/cortex_m/fault_s.S"
+       },
+       "atomic_group": [
+        "0x000503d8",
+        "0x00050558",
+        "0x000506ac",
+        "0x000507d4"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "z_arm_mpu_fault",
+         "z_arm_bus_fault",
+         "z_arm_usage_fault",
+         "z_arm_fault"
+        ],
+        "same_source_unit_noncollision_symbols": [
+         "z_arm_fault_init"
+        ],
+        "exclude_only": [
+         "0x000503d8",
+         "0x00050558",
+         "0x000506ac",
+         "0x000507d4"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -1516,20 +1626,20 @@
      "core": "app",
      "va": "0x000506ac",
      "raw_symbol": "FUN_000506ac",
-     "current_symbol": "z_arm_usage_fault",
+     "current_symbol": "arm_usage_fault_helper",
      "kind": "source",
      "component": "zephyr",
-     "upstream_symbol": "z_arm_usage_fault",
-     "upstream_unit": null,
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_symbol": "usage_fault.constprop.0",
+     "upstream_unit": "/private/tmp/g1-app-pdm-post-0718h/zephyr/arch/arch/arm/core/aarch32/cortex_m/CMakeFiles/arch__arm__core__aarch32__cortex_m.dir/fault.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "selected_owner_not_indexed"
        ],
@@ -1549,7 +1659,62 @@
         "owner_input": "zephyr/arch/arch/arm/core/aarch32/cortex_m/libarch__arm__core__aarch32__cortex_m.a(fault_s.S.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/cortex_m/fault_s.S:80",
         "reconstruction_input": "app/libapp.a(z_arm_usage_fault.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/cortex_m/fault_s.S:80: multiple definition of `z_arm_usage_fault'; app/libapp.a(z_arm_usage_fault.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_arm_usage_fault.c:22: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/cortex_m/fault_s.S:80: multiple definition of `z_arm_usage_fault'; app/libapp.a(z_arm_usage_fault.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_arm_usage_fault.c:22: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-12/13",
+       "instruction_exact": true,
+       "normalized_code_sha256": "a82ae29e1b3b796edd72aec30a39173925e36b039e52a704e40a54de5dc37012",
+       "cfg_verify_cases": 11,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_ASSERT_VERBOSE": "y",
+        "CONFIG_ASSERT_NO_FILE_INFO": "n",
+        "CONFIG_ASSERT_NO_COND_INFO": "n",
+        "CONFIG_ASSERT_NO_MSG_INFO": "n",
+        "CONFIG_EXTRA_EXCEPTION_INFO": "n"
+       },
+       "identity_correction": {
+        "baseline_collision_symbol": "z_arm_usage_fault",
+        "corrected_readable_identity": "arm_usage_fault_helper",
+        "corrected_upstream_symbol": "usage_fault.constprop.0",
+        "corrected_upstream_source": "zephyr/arch/arm/core/aarch32/cortex_m/fault.c",
+        "upstream_linkage": "translation_unit_local",
+        "public_exception_owner": "zephyr/arch/arm/core/aarch32/cortex_m/fault_s.S"
+       },
+       "atomic_group": [
+        "0x000503d8",
+        "0x00050558",
+        "0x000506ac",
+        "0x000507d4"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "z_arm_mpu_fault",
+         "z_arm_bus_fault",
+         "z_arm_usage_fault",
+         "z_arm_fault"
+        ],
+        "same_source_unit_noncollision_symbols": [
+         "z_arm_fault_init"
+        ],
+        "exclude_only": [
+         "0x000503d8",
+         "0x00050558",
+         "0x000506ac",
+         "0x000507d4"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -1562,16 +1727,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "z_arm_fault",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/arch/arch/arm/core/aarch32/cortex_m/CMakeFiles/arch__arm__core__aarch32__cortex_m.dir/fault.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-app-pdm-post-0718h/zephyr/arch/arch/arm/core/aarch32/cortex_m/CMakeFiles/arch__arm__core__aarch32__cortex_m.dir/fault.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -1604,7 +1769,61 @@
         "owner_input": "zephyr/arch/arch/arm/core/aarch32/cortex_m/libarch__arm__core__aarch32__cortex_m.a(fault.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/cortex_m/fault.c:1094",
         "reconstruction_input": "app/libapp.a(z_arm_fault.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/cortex_m/fault.c:1094: multiple definition of `z_arm_fault'; app/libapp.a(z_arm_fault.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_arm_fault.c:53: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/cortex_m/fault.c:1094: multiple definition of `z_arm_fault'; app/libapp.a(z_arm_fault.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_arm_fault.c:53: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-12/13",
+       "instruction_exact": true,
+       "normalized_code_sha256": "83b40e081a4fc2ac284894b08bd55c648178d8f5525c3d207004fa41f5a33e1c",
+       "cfg_verify_cases": 11,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_ASSERT_VERBOSE": "y",
+        "CONFIG_ASSERT_NO_FILE_INFO": "n",
+        "CONFIG_ASSERT_NO_COND_INFO": "n",
+        "CONFIG_ASSERT_NO_MSG_INFO": "n",
+        "CONFIG_EXTRA_EXCEPTION_INFO": "n"
+       },
+       "identity_correction": {
+        "baseline_collision_symbol": "z_arm_fault",
+        "corrected_readable_identity": "z_arm_fault",
+        "corrected_upstream_symbol": "z_arm_fault",
+        "corrected_upstream_source": "zephyr/arch/arm/core/aarch32/cortex_m/fault.c",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x000503d8",
+        "0x00050558",
+        "0x000506ac",
+        "0x000507d4"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "z_arm_mpu_fault",
+         "z_arm_bus_fault",
+         "z_arm_usage_fault",
+         "z_arm_fault"
+        ],
+        "same_source_unit_noncollision_symbols": [
+         "z_arm_fault_init"
+        ],
+        "exclude_only": [
+         "0x000503d8",
+         "0x00050558",
+         "0x000506ac",
+         "0x000507d4"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -27833,7 +28052,7 @@
   },
   {
    "path": "recon/ownership/app_collision_adoption_authorizations.json",
-   "sha256": "52b18a3f362bb2dee698f674043ccb4d88d5d8f469cf8e37ae1b97fb84c49a7f"
+   "sha256": "a96b387c6ca67a6c49c8fcbc8eb14bd4886358a97aede3fd649e110f58c7aae4"
   }
  ]
 }

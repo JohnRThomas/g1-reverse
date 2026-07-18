@@ -1,9 +1,9 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_00050558 @ 0x00050558
- * public-name: z_arm_bus_fault
+ * public-name: arm_bus_fault_helper
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   z_arm_bus_fault                          <= FUN_00050558 @ 0x00050558
+ *   arm_bus_fault_helper                     <= FUN_00050558 @ 0x00050558
  * address symbols (name @ address):
  *   rodata_88258                             @ 0x00088258
  *   rodata_f1c82                             @ 0x000f1c82
@@ -30,7 +30,7 @@ struct fault_message_with_value {
     uint32_t value;
 };
 
-int z_arm_bus_fault(int param_1, unsigned char *param_2)
+int arm_bus_fault_helper(int param_1, unsigned char *param_2)
 {
     int uVar2;
     struct fault_message message;

@@ -4,9 +4,9 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   arm_fault_dump_esf_registers             <= FUN_0004ff6c @ 0x0004ff6c
- *   z_arm_mpu_fault                          <= FUN_000503d8 @ 0x000503d8
- *   z_arm_bus_fault                          <= FUN_00050558 @ 0x00050558
- *   z_arm_usage_fault                        <= FUN_000506ac @ 0x000506ac
+ *   arm_mem_manage_fault_helper              <= FUN_000503d8 @ 0x000503d8
+ *   arm_bus_fault_helper                     <= FUN_00050558 @ 0x00050558
+ *   arm_usage_fault_helper                   <= FUN_000506ac @ 0x000506ac
  *   z_arm_fault                              <= FUN_000507d4 @ 0x000507d4
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
@@ -33,9 +33,9 @@
 #include <stdint.h>
 
 extern void arm_fault_dump_esf_registers(int, void *);
-extern int z_arm_mpu_fault(int, uint8_t *);
-extern int z_arm_bus_fault(int, uint8_t *);
-extern int z_arm_usage_fault(void);
+extern int arm_mem_manage_fault_helper(int, uint8_t *);
+extern int arm_bus_fault_helper(int, uint8_t *);
+extern int arm_usage_fault_helper(void);
 extern void assert_post_action(uint32_t, uint32_t);
 extern void printk(uint32_t, ...);
 extern void FUN_00080780(uint32_t, uint32_t, void *);
@@ -129,11 +129,11 @@ void z_arm_fault(int first, int frame, uint32_t exc_return)
                 FUN_00080780(UINT32_C(0x00088258), 0x1840, &detail);
                 result = *(const int *)frame;
             } else if ((scb[0x28 / 4] & 0xffu) != 0) {
-                result = z_arm_mpu_fault(1, &handled);
+                result = arm_mem_manage_fault_helper(1, &handled);
             } else if ((scb[0x28 / 4] & 0xff00u) != 0) {
-                result = z_arm_bus_fault(1, &handled);
+                result = arm_bus_fault_helper(1, &handled);
             } else if (scb[0x28 / 4] >= ((unsigned long)&rodata_10000) /*=0x10000*/) {
-                result = z_arm_usage_fault();
+                result = arm_usage_fault_helper();
             } else {
                 printk(UINT32_C(0x00099cbd), UINT32_C(0x000f20f7),
                              UINT32_C(0x000f1d11), 0x32a);
@@ -143,13 +143,13 @@ void z_arm_fault(int first, int frame, uint32_t exc_return)
         }
         break;
     case 4:
-        result = z_arm_mpu_fault(0, &handled);
+        result = arm_mem_manage_fault_helper(0, &handled);
         break;
     case 5:
-        result = z_arm_bus_fault(0, &handled);
+        result = arm_bus_fault_helper(0, &handled);
         break;
     case 6:
-        result = z_arm_usage_fault();
+        result = arm_usage_fault_helper();
         break;
     case 12:
         log_message(UINT32_C(0x000f20f7));

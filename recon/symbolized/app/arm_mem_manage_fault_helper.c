@@ -1,9 +1,9 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_000503d8 @ 0x000503d8
- * public-name: z_arm_mpu_fault
+ * public-name: arm_mem_manage_fault_helper
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   z_arm_mpu_fault                          <= FUN_000503d8 @ 0x000503d8
+ *   arm_mem_manage_fault_helper              <= FUN_000503d8 @ 0x000503d8
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -27,7 +27,7 @@ extern int printk(int,...);
 extern int FUN_00080780(int,...);
 #define SCB28 (*(volatile int*)0xe000ed28)
 
-unsigned z_arm_mpu_fault(int param_1, unsigned char *param_2)
+unsigned arm_mem_manage_fault_helper(int param_1, unsigned char *param_2)
 {
     int iVar1; unsigned uVar2, uVar3; int bVar4;
     struct { unsigned count, format; } log2;
