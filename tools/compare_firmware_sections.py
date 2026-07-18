@@ -275,6 +275,9 @@ def compare(core, elf_path, firmware_path=None, map_path=None,
     executable = [row for row in sections if row["category"] == "executable"]
     out_of_range = [row["name"] for row in sections
                     if not row["in_original_payload"]]
+    elf_load_base = min((first for first, _last, _name in intervals),
+                        default=None)
+    load_base_matches = elf_load_base == runtime_base
     report = {
         "schema": 1,
         "generated_by": "tools/compare_firmware_sections.py",
@@ -297,6 +300,8 @@ def compare(core, elf_path, firmware_path=None, map_path=None,
             "loadable_file_backed_sections": len(sections),
             "payload_size": len(payload),
             "payload_runtime_end": "0x%08x" % (runtime_base + len(payload)),
+            "elf_load_base": (None if elf_load_base is None
+                              else "0x%08x" % elf_load_base),
             "executable_sections": len(executable),
             "non_executable_sections": len(non_text),
             "exact_sections": sum(row["byte_exact"] for row in sections),
@@ -308,7 +313,8 @@ def compare(core, elf_path, firmware_path=None, map_path=None,
             "overlaps": overlaps,
         },
         "gates": {
-            "structural_pass": not out_of_range and not overlaps,
+            "load_base_matches_runtime": load_base_matches,
+            "structural_pass": load_base_matches and not out_of_range and not overlaps,
             "non_executable_exact_pass": bool(non_text) and all(
                 row["byte_exact"] for row in non_text),
             "text_policy": "diagnostic_only_semantic_CFG_proof_remains_authoritative",

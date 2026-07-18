@@ -28,6 +28,7 @@
   "trailing_bytes": 336
  },
  "gates": {
+  "load_base_matches_runtime": true,
   "non_executable_exact_pass": false,
   "structural_pass": true,
   "text_policy": "diagnostic_only_semantic_CFG_proof_remains_authoritative"
@@ -4354,6 +4355,7 @@
  ],
  "summary": {
   "compared_bytes": 866882,
+  "elf_load_base": "0x0000c200",
   "equal_bytes": 31786,
   "exact_non_executable_sections": 4,
   "exact_sections": 4,

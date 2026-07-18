@@ -118,6 +118,17 @@ class FirmwareSectionComparisonTests(unittest.TestCase):
             self.assertFalse(report["gates"]["structural_pass"])
             self.assertIn("datas", report["summary"]["out_of_range_sections"])
 
+    def test_wrong_link_base_fails_even_if_sections_overlap_payload_window(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            elf, payload = self.make_fixture(temporary)
+            firmware = Path(temporary) / "wide.bin"
+            firmware.write_bytes(b"\0" * 0x100 + payload)
+            report = comparison.compare(
+                "net", elf, firmware, runtime_base=0x0F00,
+                analysis_base=0x0700)
+            self.assertFalse(report["gates"]["load_base_matches_runtime"])
+            self.assertFalse(report["gates"]["structural_pass"])
+
 
 if __name__ == "__main__":
     unittest.main()
