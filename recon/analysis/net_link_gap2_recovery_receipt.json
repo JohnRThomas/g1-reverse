@@ -1,0 +1,149 @@
+{
+  "schema": "g1.net.link_gap_recovery_receipt.v1",
+  "scope": "net-link-gap-2",
+  "policy": {
+    "canonical_c_only": true,
+    "blobs_used": false,
+    "archive_substitution_used": false,
+    "sdc_retained_report_only": true,
+    "shared_cfg_tool_modified": false
+  },
+  "inputs": [
+    {
+      "path": "netcore_image.bin",
+      "sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4"
+    }
+  ],
+  "summary": {
+    "function_count": 4,
+    "cfg_pass_count": 4,
+    "total_true_executable_extent": 160
+  },
+  "proofs": [
+    {
+      "analysis_address": "0x010108b8",
+      "raw_symbol": "FUN_010108b8",
+      "readable_identity": "sdc_ecb_crypt_block_ordered",
+      "raw_backmap": "FUN_010108b8@0x010108b8",
+      "source_path": "recon/net/src/FUN_010108b8.c",
+      "source_sha256": "d89caafb198b17b31d2e119d48a6b4018c132b20db829b4c03a2250ff34d5169",
+      "true_executable_extent": 70,
+      "catalog_executable_extent": 70,
+      "catalog_size_injected_at_runtime": false,
+      "firmware_extent_sha256": "c84ddba50dd10f51e8a294fdce38309840bd965a731968cd6523bee1927edf21",
+      "extent_basis": "catalog extent ends immediately after the terminal return",
+      "cfg_request": {
+        "verifier": "tools/cfg_verify.py",
+        "core": "net",
+        "name": "FUN_010108b8",
+        "trials_random": 40
+      },
+      "cfg_result": {
+        "status": "PASS",
+        "selectors": {
+          "2": [
+            0,
+            1
+          ]
+        },
+        "pointer_cases": [],
+        "callback_slots": [],
+        "data_pointer_slots": [],
+        "cover_cases": 2,
+        "checked": 42
+      }
+    },
+    {
+      "analysis_address": "0x01013d90",
+      "raw_symbol": "FUN_01013d90",
+      "readable_identity": "controller_fixed_packet_time_get",
+      "raw_backmap": "FUN_01013d90@0x01013d90",
+      "source_path": "recon/net/src/FUN_01013d90.c",
+      "source_sha256": "ec3be2e0edb17b94d7de2b849765dbeaf4e6e68b3e8ec910db6327668a6401e1",
+      "true_executable_extent": 24,
+      "catalog_executable_extent": 24,
+      "catalog_size_injected_at_runtime": false,
+      "firmware_extent_sha256": "5b883d1ec4aba826f546479632d6bcbe86f8a682b10c9f1d8882fecb120bce99",
+      "extent_basis": "catalog extent ends immediately after the terminal return",
+      "cfg_request": {
+        "verifier": "tools/cfg_verify.py",
+        "core": "net",
+        "name": "FUN_01013d90",
+        "trials_random": 40
+      },
+      "cfg_result": {
+        "status": "PASS",
+        "selectors": {},
+        "pointer_cases": [],
+        "callback_slots": [],
+        "data_pointer_slots": [],
+        "cover_cases": 4,
+        "checked": 4
+      }
+    },
+    {
+      "analysis_address": "0x01016250",
+      "raw_symbol": "FUN_01016250",
+      "readable_identity": "controller_phy_uses_coded_timing",
+      "raw_backmap": "FUN_01016250@0x01016250",
+      "source_path": "recon/net/src/FUN_01016250.c",
+      "source_sha256": "b5cb27695cf68aa1b86cb26c9915ae677c8750261b808bb8dfe780fe16b9b806",
+      "true_executable_extent": 32,
+      "catalog_executable_extent": 28,
+      "catalog_size_injected_at_runtime": true,
+      "firmware_extent_sha256": "452479f0a4696b33a38b8888511d2d7a50b7a1c5599e9c24d982d3eec7a3de33",
+      "extent_basis": "switch default owns the terminal BL at 0x0101626c; code ends 0x01016270",
+      "cfg_request": {
+        "verifier": "tools/cfg_verify.py",
+        "core": "net",
+        "name": "FUN_01016250",
+        "trials_random": 40
+      },
+      "cfg_result": {
+        "status": "PASS",
+        "selectors": {
+          "0": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "pointer_cases": [],
+        "callback_slots": [],
+        "data_pointer_slots": [],
+        "cover_cases": 5,
+        "checked": 45
+      }
+    },
+    {
+      "analysis_address": "0x0101bbc8",
+      "raw_symbol": "FUN_0101bbc8",
+      "readable_identity": "controller_margin_packet_time_get",
+      "raw_backmap": "FUN_0101bbc8@0x0101bbc8",
+      "source_path": "recon/net/src/FUN_0101bbc8.c",
+      "source_sha256": "41dd4b5189c7f41b29452cf9e99907b153a54dbcf1f53d75498bc22ad5a8446b",
+      "true_executable_extent": 34,
+      "catalog_executable_extent": 34,
+      "catalog_size_injected_at_runtime": false,
+      "firmware_extent_sha256": "e510406166e2d5f0358fcb24baa7333618062279f839ee9a9aab6b4a7d9e3196",
+      "extent_basis": "catalog extent ends immediately after the terminal return",
+      "cfg_request": {
+        "verifier": "tools/cfg_verify.py",
+        "core": "net",
+        "name": "FUN_0101bbc8",
+        "trials_random": 40
+      },
+      "cfg_result": {
+        "status": "PASS",
+        "selectors": {},
+        "pointer_cases": [],
+        "callback_slots": [],
+        "data_pointer_slots": [],
+        "cover_cases": 4,
+        "checked": 4
+      }
+    }
+  ]
+}
