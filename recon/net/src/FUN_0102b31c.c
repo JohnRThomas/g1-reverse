@@ -1,6 +1,15 @@
-/* net-core FUN_0102b31c @ 0x102b31c  (parity 300 trials PROVEN) */
+/* CPUNET ESB radio configuration @ 0x0102b31c.
+ * Raw back-map: FUN_0102b31c@0x0102b31c; true extent 0xa2.
+ * This is the private/product ESB setup called by FUN_0102b718, not an MPSL
+ * timeslot function.  The "esb_start_rx fail" diagnostic at runtime address
+ * 0x0103d14a anchors the ownership independently of proximity.
+ * (parity 300 trials PROVEN)
+ */
 
 #include <stdint.h>
+
+/* Readable source identity; preprocessing preserves the raw parity symbol. */
+#define g1_esb_radio_configure FUN_0102b31c
 
 extern int FUN_010333b4(void *);
 extern void FUN_01033af8(int);
@@ -12,7 +21,7 @@ extern int FUN_01033aac(int);
 extern int FUN_01033888(void);
 extern void FUN_01039722(int);
 
-int FUN_0102b31c(int param_1)
+int g1_esb_radio_configure(int param_1)
 {
   volatile int * const p3d0 = (volatile int *)0x210005b4;
   volatile unsigned char * const p3d4 = (volatile unsigned char *)0x21004b9e;

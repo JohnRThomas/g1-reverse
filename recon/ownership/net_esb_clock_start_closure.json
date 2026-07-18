@@ -1,0 +1,200 @@
+{
+  "schema": "g1.net.esb_clock_start_closure.v1",
+  "ownership": "Product ESB transport glue plus exact configured NCS 2.5.1 ESB public leaves; this is not an MPSL timeslot closure.",
+  "production_root": {
+    "analysis_address": "0x0102b758",
+    "raw_symbol": "FUN_0102b758",
+    "evidence_literal_analysis_address": "0x0102b660",
+    "stored_runtime_thumb_pointer": "0x0102bf59",
+    "runtime_to_analysis_delta": "0x800",
+    "registrar": "FUN_0102b5bc"
+  },
+  "policy": {
+    "canonical_c_only": true,
+    "blobs_used": false,
+    "archive_substitution_used": false,
+    "sdc_retained_report_only": true,
+    "shared_cfg_tool_modified": false,
+    "public_esb_duplicates_retained_pending_exact_source_assembly": true
+  },
+  "exact_adopted_descendants": [
+    "memset",
+    "memcpy",
+    "__memcpy_chk"
+  ],
+  "summary": {
+    "function_count": 7,
+    "cfg_pass_count": 7,
+    "total_true_executable_extent": 612
+  },
+  "inputs": [
+    {
+      "path": "netcore_image.bin",
+      "sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4"
+    }
+  ],
+  "proofs": [
+    {
+      "analysis_address": "0x0102b31c",
+      "runtime_address": "0x0102bb1c",
+      "raw_symbol": "FUN_0102b31c",
+      "readable_identity": "g1_esb_radio_configure",
+      "owner": "product_private",
+      "source": "recon/net/src/FUN_0102b31c.c",
+      "source_sha256": "ea49b90b1c537039956fec5647eaf7ce489302450af96bfc67993f246f9b5c72",
+      "true_executable_extent": 162,
+      "firmware_extent_sha256": "60d06f44d3969a3ee9f63b5712a73b3352e6946a46e83cc67a1b9d0849a86b60",
+      "cfg_result": {
+        "status": "PASS",
+        "selectors": {
+          "0": [
+            0,
+            1,
+            2
+          ]
+        },
+        "pointer_cases": [],
+        "callback_slots": [],
+        "data_pointer_slots": [],
+        "cover_cases": 3,
+        "checked": 43
+      }
+    },
+    {
+      "analysis_address": "0x0102b3f0",
+      "runtime_address": "0x0102bbf0",
+      "raw_symbol": "FUN_0102b3f0",
+      "readable_identity": "g1_esb_start_announcement",
+      "owner": "product_private",
+      "source": "recon/net/src/FUN_0102b3f0.c",
+      "source_sha256": "79b81e304b436aef5e717f5fd2c0d6a28bb6deac981ed7b39ff56561dd3e5bb6",
+      "true_executable_extent": 152,
+      "firmware_extent_sha256": "abe78a783a582213ee9a7086c22870089f6533f40c75024a577ce29aea020de4",
+      "cfg_result": {
+        "status": "PASS",
+        "selectors": {
+          "0": [
+            0,
+            1
+          ]
+        },
+        "pointer_cases": [],
+        "callback_slots": [],
+        "data_pointer_slots": [],
+        "cover_cases": 7,
+        "checked": 7
+      }
+    },
+    {
+      "analysis_address": "0x0102b664",
+      "runtime_address": "0x0102be64",
+      "raw_symbol": "FUN_0102b664",
+      "readable_identity": "g1_esb_radio_release",
+      "owner": "product_private",
+      "source": "recon/net/src/FUN_0102b664.c",
+      "source_sha256": "036d7cac3f339410c594aa38e32d6bdf98fd37943ed656887170354db477e36f",
+      "true_executable_extent": 150,
+      "firmware_extent_sha256": "014b2c23821fba3171b7cb5387ad79bc88851c4c8c58aeffcfdf35c9bf7d9f66",
+      "cfg_result": {
+        "status": "PASS",
+        "selectors": {},
+        "pointer_cases": [],
+        "callback_slots": [],
+        "data_pointer_slots": [],
+        "cover_cases": 3,
+        "checked": 3
+      }
+    },
+    {
+      "analysis_address": "0x0102b718",
+      "runtime_address": "0x0102bf18",
+      "raw_symbol": "FUN_0102b718",
+      "readable_identity": "g1_esb_transport_start",
+      "owner": "product_private",
+      "source": "recon/net/src/FUN_0102b718.c",
+      "source_sha256": "7e2312c7f052bf17bd8d37d36ee34f71d93ce329bff23519a0da10671d522067",
+      "true_executable_extent": 48,
+      "firmware_extent_sha256": "3b89ba18698caff10904480d330a24ade25a96e4f94c75876904294d4aaa972c",
+      "cfg_result": {
+        "status": "PASS",
+        "selectors": {},
+        "pointer_cases": [],
+        "callback_slots": [],
+        "data_pointer_slots": [],
+        "cover_cases": 0,
+        "checked": 40
+      }
+    },
+    {
+      "analysis_address": "0x0102b758",
+      "runtime_address": "0x0102bf58",
+      "raw_symbol": "FUN_0102b758",
+      "readable_identity": "g1_esb_clock_transition",
+      "owner": "product_private",
+      "source": "recon/net/src/FUN_0102b758.c",
+      "source_sha256": "439941b690329bcb1a0bf5d84352811733d8bd00b7845aa3a63d7b7618f04f7e",
+      "true_executable_extent": 48,
+      "firmware_extent_sha256": "75d3ccd43d4e2e86b586b1ac37762c6ddbcfe0727001c44029fd887a2a5736d1",
+      "cfg_result": {
+        "status": "PASS",
+        "selectors": {
+          "0": [
+            0,
+            1,
+            2
+          ]
+        },
+        "pointer_cases": [],
+        "callback_slots": [],
+        "data_pointer_slots": [
+          [
+            3,
+            0
+          ]
+        ],
+        "cover_cases": 3,
+        "checked": 43
+      }
+    },
+    {
+      "analysis_address": "0x01033858",
+      "runtime_address": "0x01034058",
+      "raw_symbol": "FUN_01033858",
+      "readable_identity": "esb_start_tx",
+      "owner": "ncs_2_5_1_esb_public",
+      "source": "recon/net/src/FUN_01033858.c",
+      "source_sha256": "64ba030551457fa6c5ade93bb346671ca20b9dd4e9ba71131d7c5000ecb46edd",
+      "true_executable_extent": 38,
+      "firmware_extent_sha256": "3a3c06f83db470e13da24f373a1d14ad268289a27bbe96d63e64e5875437df6c",
+      "cfg_result": {
+        "status": "PASS",
+        "selectors": {},
+        "pointer_cases": [],
+        "callback_slots": [],
+        "data_pointer_slots": [],
+        "cover_cases": 3,
+        "checked": 3
+      }
+    },
+    {
+      "analysis_address": "0x010339d0",
+      "runtime_address": "0x010341d0",
+      "raw_symbol": "FUN_010339d0",
+      "readable_identity": "esb_tx_full",
+      "owner": "ncs_2_5_1_esb_public",
+      "source": "recon/net/src/FUN_010339d0.c",
+      "source_sha256": "2c42de14b970937b2a34e91c51bb5b19b7a29005f41ea3a5d2e104ac45e75534",
+      "true_executable_extent": 14,
+      "firmware_extent_sha256": "50271e0d59ad4dc1de1cb455a705ba9627df73293e9823ffa41975dc2dbc2b78",
+      "cfg_result": {
+        "status": "PASS",
+        "selectors": {},
+        "pointer_cases": [],
+        "callback_slots": [],
+        "data_pointer_slots": [],
+        "cover_cases": 4,
+        "checked": 4
+      }
+    }
+  ]
+}

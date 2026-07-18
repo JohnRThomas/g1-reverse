@@ -86,6 +86,19 @@ set(G1_PRIVATE_REPORT_ONLY_SOURCES
   "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/sdc_byte_lock_release.c"
 )
 
+# The clock callback is a real production root: FUN_0102b5bc registers the
+# runtime Thumb pointer 0x0102bf59 stored at analysis literal 0x0102b660. Keep
+# its complete recovered private closure, plus the two exact ESB public leaves,
+# until final exact-source assembly can remove those SDK duplicates safely.
+set(G1_ESB_CLOCK_CALLBACK_CLOSURE_SOURCES
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102b3f0.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102b664.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102b718.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102b758.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_01033858.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_010339d0.c"
+)
+
 # This is only the Zephyr application entry. Firmware/controller functions are
 # selected explicitly by the generated manifest above; upstream controller and
 # crypto objects remain under their normal NCS module CMake integration.
@@ -98,6 +111,7 @@ target_sources(app PRIVATE
   src/cfg_boundary_lowerings.c
   ${G1_RETAINED_SOURCES}
   ${G1_PRIVATE_REPORT_ONLY_SOURCES}
+  ${G1_ESB_CLOCK_CALLBACK_CLOSURE_SOURCES}
   # Byte-exact literal/data pools split from CFG-inflated net functions.
   # These are reviewed reconstruction artifacts, not synthesized link stubs.
   "${CMAKE_CURRENT_LIST_DIR}/../../net/data/rodata_0x100ef04.c"

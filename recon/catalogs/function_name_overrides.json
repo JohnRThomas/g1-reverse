@@ -2390,6 +2390,34 @@
    "name": "bt_hci_driver_register",
    "evidence": "Relocation-masked byte-exact configured Zephyr subsys/bluetooth/host/hci_raw.c owner with bt_dev resolved to 0x210047f8. Raw identity remains FUN_0102fbac. See recon/ownership/net_public_zephyr_identities.json."
   },
+  "0x0102b31c": {
+   "name": "g1_esb_radio_configure",
+   "evidence": "Product ESB setup: the routine constructs struct esb_config, applies address/channel/power settings, calls the recovered esb_start_rx owner, and its only error diagnostic is the literal 'esb_start_rx fail'. Raw identity remains FUN_0102b31c."
+  },
+  "0x0102b3f0": {
+   "name": "g1_esb_start_announcement",
+   "evidence": "Product ESB startup packet builder and transmit-state service. It publishes the local identity/fallback announcement and starts TX when configured for the transmitting role. Raw identity remains FUN_0102b3f0."
+  },
+  "0x0102b664": {
+   "name": "g1_esb_radio_release",
+   "evidence": "Product ESB stop/release path covering the radio disable event, TIMER3 stop, IRQ release, ESB owner reset or suspend, and GPIO/power handoff. Raw identity remains FUN_0102b664."
+  },
+  "0x0102b718": {
+   "name": "g1_esb_transport_start",
+   "evidence": "Uncatalogued 0x30-byte product closure that gates GPIO P0.29, calls g1_esb_radio_configure with the saved mode, marks clock/transport ready, announces startup, then releases the GPIO gate. Raw identity remains FUN_0102b718."
+  },
+  "0x0102b758": {
+   "name": "g1_esb_clock_transition",
+   "evidence": "Uncatalogued 0x30-byte clock callback. Its runtime Thumb pointer 0x0102bf59 is stored at analysis literal 0x0102b660 and registered by FUN_0102b5bc; transition 0 tail-calls g1_esb_transport_start and transition 1 tail-calls the stop path. Raw identity remains FUN_0102b758."
+  },
+  "0x01033858": {
+   "name": "esb_start_tx",
+   "evidence": "Exact NCS 2.5.1 ESB public routine: non-idle state returns -EBUSY, empty tx_fifo returns -ENODATA, otherwise start_tx_transaction runs and zero is returned. Raw identity remains FUN_01033858."
+  },
+  "0x010339d0": {
+   "name": "esb_tx_full",
+   "evidence": "Exact NCS 2.5.1 ESB TX FIFO capacity predicate: tx_fifo.count >= CONFIG_ESB_TX_FIFO_SIZE with configured size 8. Raw identity remains FUN_010339d0."
+  },
   "0x0103b304": {
    "name": "sys_timepoint_calc",
    "evidence": "Relocation-masked byte-exact configured Zephyr kernel/timeout.c owner with sys_clock_tick_get resolved to 0x01038284. Raw identity remains FUN_0103b304. See recon/ownership/net_public_zephyr_identities.json."
