@@ -143,6 +143,23 @@ class GeneratedIdentityTest(unittest.TestCase):
             function_names.address_for_name(
                 "net", "controller_packet_payload_reserve"))
 
+    def test_raw_primary_drops_only_redundant_gcc_alias(self):
+        source = (
+            "/* FUN_01019ef8 @ 0x01019ef8: metadata predicate. */\n"
+            "bool sdc_buffer_metadata_matches(void) { return true; }\n"
+            "/* Raw identity/back-map: FUN_01019ef8 @ 0x01019ef8. */\n"
+            "extern __typeof(sdc_buffer_metadata_matches) FUN_01019ef8\n"
+            "  __attribute__((alias(\"sdc_buffer_metadata_matches\")));\n"
+        )
+        rendered = apply_names.render_named_body(
+            source, "net", 0x01019EF8, "FUN_01019ef8")
+        self.assertIn("bool FUN_01019ef8(void)", rendered)
+        self.assertNotIn("extern __typeof", rendered)
+        self.assertNotIn("__attribute__((alias", rendered)
+        self.assertIn(
+            "Raw identity/back-map: FUN_01019ef8 @ 0x01019ef8",
+            rendered)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -106,9 +106,36 @@ def retarget_entry_alias(original, core, entry, public_name):
     return "".join(output)
 
 
+def drop_redundant_entry_alias(original, core, entry, public_name):
+    """Remove a GCC alias when the selected primary is the raw entry itself.
+
+    Address-only functions can deliberately remain ``FUN_xxxxxxxx`` in the
+    durable map even though their parity source used a provisional readable
+    implementation name plus a raw alias.  Retargeting makes that raw symbol
+    the real definition, so retaining ``raw alias(\"raw\")`` is both redundant
+    and rejected by GCC as a redefinition.  The adjacent provenance comment is
+    intentionally outside this exact declaration match and remains intact.
+    """
+    raw = function_names.raw_name(core, entry)
+    if public_name != raw:
+        return original
+    pattern = re.compile(
+        r"(?m)^[ \t]*extern\s+__typeof\s*\(\s*" + re.escape(raw) +
+        r"\s*\)\s+" + re.escape(raw) +
+        r"\s+__attribute__\s*\(\(\s*alias\s*\(\s*\"" +
+        re.escape(raw) + r"\"\s*\)\s*\)\)\s*;[ \t]*(?:\n|$)",
+        re.DOTALL)
+    cleaned, count = pattern.subn("", original)
+    if count > 1:
+        raise RuntimeError("ambiguous redundant entry alias @ 0x%08x" % entry)
+    return cleaned
+
+
 def render_named_body(original, core, entry, public_name):
     """Apply readable names while retaining a reversible raw entry alias."""
     original = retarget_entry_alias(original, core, entry, public_name)
+    original = drop_redundant_entry_alias(
+        original, core, entry, public_name)
     protected, placeholder, raw, alias_count = protect_entry_alias(
         original, core, entry)
     body = function_names.substitute(protected, core)
