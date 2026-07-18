@@ -11,6 +11,8 @@
  * address symbols (name @ address):
  *   rodata_881b0                             @ 0x000881b0
  *   rodata_f5d81                             @ 0x000f5d81
+ *   rodata_f5d9e                             @ 0x000f5d9e
+ *   g_2000b154                               @ 0x2000b154
  */
 /* Reconstructed FUN_0006125c @ 0x6125c */
 #include <stdint.h>
@@ -38,12 +40,12 @@ unsigned int flash_nrf_erase(unsigned int unused, unsigned int address,
         return (unsigned int)-22;
     }
     if ((address % page_size) != 0 || (length % page_size) != 0) {
-        unsigned int arguments[4] = {4, 0x000f5d9e, address, length};
+        unsigned int arguments[4] = {4, ((unsigned long)&rodata_f5d9e) /*=0xf5d9e*/, address, length};
         FUN_0004d944(((unsigned long)&rodata_881b0) /*=0x881b0*/, 0x2040, arguments, 0);
         return (unsigned int)-22;
     }
     if (page_size <= length) {
-        z_impl_k_sem_take(0x2000b154, (unsigned int)(range >> 32),
+        z_impl_k_sem_take(((unsigned long)&g_2000b154) /*=0x2000b154*/, (unsigned int)(range >> 32),
                      (unsigned int)-1, (unsigned int)-1);
         page_size = FUN_000851ee();
         do {
@@ -51,7 +53,7 @@ unsigned int flash_nrf_erase(unsigned int unused, unsigned int address,
             length -= page_size;
             address += page_size;
         } while (length != 0);
-        k_sem_give(0x2000b154);
+        k_sem_give(((unsigned long)&g_2000b154) /*=0x2000b154*/);
     }
     return 0;
 }

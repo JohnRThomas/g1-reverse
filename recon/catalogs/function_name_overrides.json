@@ -138,9 +138,9 @@
    "evidence": "Pinned zcbor v0.7.0 length encoder with reviewed capacity, header, and byte-order cases. Raw identity remains FUN_000715b8 at 0x000715b8."
   },
   "0x00071b2c": {
-   "name": "g1_recon_k_heap_free_validated",
+   "name": "k_heap_free",
    "raw_name": "FUN_00071b2c",
-   "evidence": "Retained firmware heap release built with active spinlock validation and assertion paths; deliberately namespaced because the configured SDK k_heap_free owner compiles those paths out. Raw identity remains FUN_00071b2c at 0x00071b2c."
+   "evidence": "Exact pinned Zephyr k_heap_free with CONFIG_ASSERT=y, CONFIG_ASSERT_LEVEL=2 and CONFIG_SPIN_VALIDATE=y; raw identity remains FUN_00071b2c at 0x00071b2c."
   },
   "0x00074184": {
    "name": "z_thread_priority_set",
@@ -155,9 +155,9 @@
    "evidence": "Configured Zephyr aligned allocation metadata wrapper. Raw identity remains FUN_00075864 at 0x00075864."
   },
   "0x000758cc": {
-   "name": "g1_recon_k_aligned_alloc_asserting",
+   "name": "k_aligned_alloc",
    "raw_name": "FUN_000758cc",
-   "evidence": "Recovered firmware aligned allocator with two active assertion/logging paths; it is deliberately namespaced because the configured Zephyr k_aligned_alloc owner compiles those paths out. Raw identity remains FUN_000758cc at 0x000758cc."
+   "evidence": "Exact pinned Zephyr k_aligned_alloc with the recovered assertion configuration; raw identity remains FUN_000758cc at 0x000758cc."
   },
   "0x00075e14": {
    "name": "__ieee754_sqrt",
@@ -820,9 +820,9 @@
    "evidence": "Exact Zephyr 3.4.99 kernel/poll.c priority-ordered poll-event insertion helper. Raw identity remains FUN_00086778 at 0x00086778."
   },
   "0x000864e8": {
-   "name": "g1_recon_z_impl_k_queue_init",
+   "name": "z_impl_k_queue_init",
    "raw_name": "FUN_000864e8",
-   "evidence": "Retained firmware queue initializer for the 28-byte spinlock-bearing layout; deliberately namespaced after COLLISION-17 because the configured SDK owner initializes an incompatible 24-byte layout. Raw identity remains FUN_000864e8 at 0x000864e8."
+   "evidence": "Exact pinned Zephyr queue initializer under the recovered spin-validation/TLS kernel layout; raw identity remains FUN_000864e8 at 0x000864e8."
   },
   "0x000864d0": {
    "name": "g1_recon_tagged_heap_node_release",

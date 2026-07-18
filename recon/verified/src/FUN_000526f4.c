@@ -4,8 +4,8 @@ extern void FUN_00072e50(int a, unsigned int b);
 extern void FUN_0007e2ec(unsigned int a, unsigned int b);
 extern void FUN_0007e2fa(unsigned int a, ...);
 extern void FUN_00080b28(void);
-#define g1_recon_z_impl_k_queue_init FUN_000864e8
-extern void g1_recon_z_impl_k_queue_init(void *queue);
+#define z_impl_k_queue_init FUN_000864e8
+extern void z_impl_k_queue_init(void *queue);
 
 unsigned int FUN_000526f4(int param_1)
 {
@@ -16,6 +16,6 @@ unsigned int FUN_000526f4(int param_1)
     }
     FUN_00080b28();
     FUN_00072e50(param_1, 0x00080ab5UL);
-    g1_recon_z_impl_k_queue_init((void *)(param_1 + 0x10));
+    z_impl_k_queue_init((void *)(param_1 + 0x10));
     return 0;
 }

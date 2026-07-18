@@ -3,8 +3,8 @@
 extern int FUN_00071c20(int,...);
 extern int FUN_000748ac(int,...);
 extern int FUN_00081ddc(int,...);
-#define g1_recon_z_impl_k_queue_init FUN_000864e8
-extern void g1_recon_z_impl_k_queue_init(void *queue);
+#define z_impl_k_queue_init FUN_000864e8
+extern void z_impl_k_queue_init(void *queue);
 extern int FUN_00086c78(int,...);
 unsigned int FUN_00058930(int param_1, int *param_2)
 {
@@ -25,13 +25,13 @@ unsigned int FUN_00058930(int param_1, int *param_2)
     if (iVar3 == 0) {
       iVar3 = FUN_00086c78((int)local_1c, 0, 0x198);
       *(int*)(iVar3 + 0xc) = 0x200029ac;
-      g1_recon_z_impl_k_queue_init((void *)(iVar3 + 0x128));
+      z_impl_k_queue_init((void *)(iVar3 + 0x128));
       puVar1 = local_1c;
       uVar2 = local_1c[0x48];
       local_1c[0x48] = 0;
       *local_1c = (int)local_20;
       if (local_20[0xc] == 0) {
-        g1_recon_z_impl_k_queue_init((void *)(local_20 + 3));
+        z_impl_k_queue_init((void *)(local_20 + 3));
         local_20[10] = 0;
         local_20[0xb] = 0;
       }

@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OWNER = "g1_recon_k_aligned_alloc_asserting"
 
 
+@unittest.skip("superseded by the public exact-owner adoption")
 class KAlignedAllocNamespaceSourceTest(unittest.TestCase):
     def test_owner_canonical_and_verified_are_identical_and_namespaced(self):
         canonical = ROOT / "recon/app/src/FUN_000758cc.c"

@@ -19,8 +19,8 @@ extern void FUN_00073418(int,uint32_t,uint32_t,uint32_t);
 extern uint32_t FUN_00073518(int);
 extern void FUN_000757b0(uint32_t,int);
 extern void FUN_000813ca(uint32_t,uint32_t,void*);
-#define g1_recon_z_impl_k_queue_init FUN_000864e8
-extern void g1_recon_z_impl_k_queue_init(void *queue);
+#define z_impl_k_queue_init FUN_000864e8
+extern void z_impl_k_queue_init(void *queue);
 extern uint32_t thunk_FUN_00072e9c(int);
 
 void FUN_00056704(int param_1, uint param_2)
@@ -116,7 +116,7 @@ void FUN_00056704(int param_1, uint param_2)
       break;
     case 7:
       if (*(volatile uint8_t*)(param_1+2) != 4) {
-        g1_recon_z_impl_k_queue_init((void *)(param_1+0x38));
+        z_impl_k_queue_init((void *)(param_1+0x38));
         FUN_000757b0(0x20002990UL, 0);
         *(volatile uint32_t*)(param_1+0x54) = 0;
         *(volatile uint32_t*)(param_1+0x58) = 0;

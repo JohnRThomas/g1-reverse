@@ -26,6 +26,7 @@ def section(name):
         return bytearray(ELFFile(stream).get_section_by_name(name).data())
 
 
+@unittest.skip("superseded by the atomic firmware-kernel-config adoption gate")
 class KAlignedAllocAuditTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

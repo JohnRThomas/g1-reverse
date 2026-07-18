@@ -28,6 +28,8 @@ DEFAULTS = {
     "app_collisions": "recon/ownership/app_build_collision_ownership.json",
     "app_collision_authorizations":
         "recon/ownership/app_collision_adoption_authorizations.json",
+    "app_kernel_config":
+        "recon/ownership/app_kernel_config_atomic_adoption.json",
     "app_collision_retention_overrides":
         "recon/ownership/app_collision_retention_overrides.json",
     "app_sdk_public": "recon/catalogs/app_sdk_public_ownership.json",
@@ -420,6 +422,18 @@ def _build_from_baseline(paths, resolved, names):
     authorization_path = resolved["app_collision_authorizations"]
     collisions = _load_json(collision_path)
     authorizations = _load_json(authorization_path)
+    kernel_path = resolved["app_kernel_config"]
+    kernel = _load_json(kernel_path)
+    if (kernel.get("schema") != 1 or kernel.get("core") != "app" or
+            kernel.get("status") != "authorized_atomic"):
+        raise ValueError("invalid app kernel-config atomic adoption catalog")
+    collisions = copy.deepcopy(collisions)
+    collisions["functions"].extend(kernel.get("variant_collisions", []))
+    authorizations = copy.deepcopy(authorizations)
+    authorizations["authorizations"].extend(kernel.get("authorizations", []))
+    authorizations["configured_build_receipts"] = sorted(set(
+        authorizations.get("configured_build_receipts", []) +
+        kernel.get("configured_build_receipts", [])))
     retention_path = resolved["app_collision_retention_overrides"]
     retentions = _load_json(retention_path)
     if (retentions.get("schema") != 1 or
@@ -446,6 +460,8 @@ def _build_from_baseline(paths, resolved, names):
         {"path": paths["app_collisions"], "sha256": _sha256(collision_path)},
         {"path": paths["app_collision_authorizations"],
          "sha256": _sha256(authorization_path)},
+        {"path": paths["app_kernel_config"],
+         "sha256": _sha256(kernel_path)},
         {"path": paths["app_collision_retention_overrides"],
          "sha256": _sha256(retention_path)},
     ]

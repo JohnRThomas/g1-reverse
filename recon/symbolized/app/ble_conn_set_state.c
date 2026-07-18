@@ -9,7 +9,7 @@
  *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
  *   ble_conn_set_state                       <= FUN_00056704 @ 0x00056704
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
- *   g1_recon_z_impl_k_queue_init             <= FUN_000864e8 @ 0x000864e8
+ *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
  *   log_module_bt_conn                       @ 0x00088108
@@ -40,8 +40,8 @@ extern void FUN_00073418(int,uint32_t,uint32_t,uint32_t);
 extern uint32_t FUN_00073518(int);
 extern void FUN_000757b0(uint32_t,int);
 extern void FUN_000813ca(uint32_t,uint32_t,void*);
-#define g1_recon_z_impl_k_queue_init g1_recon_z_impl_k_queue_init
-extern void g1_recon_z_impl_k_queue_init(void *queue);
+#define z_impl_k_queue_init z_impl_k_queue_init
+extern void z_impl_k_queue_init(void *queue);
 extern uint32_t thunk_FUN_00072e9c(int);
 
 void ble_conn_set_state(int param_1, uint param_2)
@@ -137,7 +137,7 @@ void ble_conn_set_state(int param_1, uint param_2)
       break;
     case 7:
       if (*(volatile uint8_t*)(param_1+2) != 4) {
-        g1_recon_z_impl_k_queue_init((void *)(param_1+0x38));
+        z_impl_k_queue_init((void *)(param_1+0x38));
         FUN_000757b0(((unsigned long)&g_ble_conn_poll_signal) /*=0x20002990*/, 0);
         *(volatile uint32_t*)(param_1+0x54) = 0;
         *(volatile uint32_t*)(param_1+0x58) = 0;

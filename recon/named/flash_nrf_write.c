@@ -10,6 +10,8 @@
  * address symbols (name @ address):
  *   rodata_881b0                             @ 0x000881b0
  *   rodata_f5d81                             @ 0x000f5d81
+ *   rodata_f5dbd                             @ 0x000f5dbd
+ *   g_2000b154                               @ 0x2000b154
  *   REG_50039400                             @ 0x50039400
  */
 /* Reconstructed FUN_00061310 @ 0x61310 */

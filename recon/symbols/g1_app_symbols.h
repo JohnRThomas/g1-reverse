@@ -141,7 +141,7 @@
 #define ADDR_z_cbprintf_cpy_THUMB            0x7ee49 /* z_cbprintf_cpy */
 #define ADDR_z_impl_net_if_ipv6_addr_rm_by_index_THUMB 0x80c8d /* z_impl_net_if_ipv6_addr_rm_by_index */
 
-/* ---- RAM globals / kernel objects (736) ---- */
+/* ---- RAM globals / kernel objects (737) ---- */
 extern volatile unsigned int g_sram_base_word; /* @0x20000000 */
 extern volatile unsigned int g_20000800; /* @0x20000800 */
 extern volatile unsigned int g_ble_dev_state; /* @0x20002000 */
@@ -614,6 +614,7 @@ extern volatile unsigned int g_pdm_mic_rx_msgq; /* @0x2000b024 */
 extern volatile unsigned int g_2000b084; /* @0x2000b084 */
 extern volatile unsigned int g_2000b094; /* @0x2000b094 */
 extern volatile unsigned int g_2000b0b8; /* @0x2000b0b8 */
+extern volatile unsigned int g_2000b154; /* @0x2000b154 */
 extern volatile unsigned int g_gpio_pin_latch_mask; /* @0x2000b2d0 */
 extern volatile unsigned int nrf_rtc_timer_free_channels; /* @0x2000b2d4 */
 extern volatile unsigned int g_gpio_pin_enabled_mask; /* @0x2000b2d8 */
@@ -879,7 +880,7 @@ extern volatile unsigned char g_all_static_info_fc68; /* @0x2007fc68 */
 extern volatile unsigned char g_dashboard_default_widget0_index; /* @0x2007fc69 */
 extern volatile unsigned char g_2007fc70; /* @0x2007fc70 */
 
-/* ---- rodata table externs (2587) ---- */
+/* ---- rodata table externs (2589) ---- */
 extern const unsigned char __settings_handler_static_list_start[]; /* @0x882b0 */
 extern const unsigned char entropy_dev[]; /* @0x87b90 */
 extern const unsigned char g_default_font_glyph_table_count[]; /* @0x8ac28 */
@@ -3243,6 +3244,8 @@ extern const unsigned char rodata_f5c9c[]; /* @0xf5c9c */
 extern const unsigned char rodata_f5cba[]; /* @0xf5cba */
 extern const unsigned char rodata_f5cd8[]; /* @0xf5cd8 */
 extern const unsigned char rodata_f5d81[]; /* @0xf5d81 */
+extern const unsigned char rodata_f5d9e[]; /* @0xf5d9e */
+extern const unsigned char rodata_f5dbd[]; /* @0xf5dbd */
 extern const unsigned char rodata_f5dfc[]; /* @0xf5dfc */
 extern const unsigned char rodata_f5e38[]; /* @0xf5e38 */
 extern const unsigned char rodata_f5e41[]; /* @0xf5e41 */

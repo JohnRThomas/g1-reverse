@@ -10,8 +10,8 @@ extern int FUN_00080e6a(unsigned,int);
 extern void FUN_00080ea2(unsigned,unsigned,void*);
 extern unsigned FUN_00080ea8(int,unsigned);
 extern void FUN_00086412(unsigned,unsigned);
-#define g1_recon_z_impl_k_queue_init FUN_000864e8
-extern void g1_recon_z_impl_k_queue_init(void *queue);
+#define z_impl_k_queue_init FUN_000864e8
+extern void z_impl_k_queue_init(void *queue);
 extern void FUN_00086534(int,int);
 typedef int (*cf)(void);
 int FUN_00054a44(int param_1)
@@ -31,7 +31,7 @@ int FUN_00054a44(int param_1)
       if (iVar3 == 0) {
         *(volatile int*)0x2000ac6c = param_1;
         FUN_00086534(iVar1 + 0x128, 1);
-        g1_recon_z_impl_k_queue_init((void *)(iVar1 + 0x14c));
+        z_impl_k_queue_init((void *)(iVar1 + 0x14c));
         local_38 = 0; uStack_34 = 0; local_40 = iVar3;
         FUN_00071eac(0x20005e30, 0x2002bb80, 0x400, 0x000545f1, 0, 0, 0, 0xfffffff7);
         FUN_00086412(0x20005e30, 0x000f338f);

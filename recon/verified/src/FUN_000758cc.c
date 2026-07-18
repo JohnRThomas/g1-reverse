@@ -1,4 +1,4 @@
-/* Reconstructed g1_recon_k_aligned_alloc_asserting @ 0x000758cc.
+/* Reconstructed k_aligned_alloc @ 0x000758cc.
  * Raw backmap: FUN_000758cc@0x000758cc. */
 
 #include <stdint.h>
@@ -9,7 +9,7 @@ extern void FUN_0007e2fa(uint32_t, ...);
 extern void FUN_0007e2ec(uint32_t, uint32_t);
 
 #define z_heap_aligned_alloc FUN_00075864
-void *g1_recon_k_aligned_alloc_asserting(size_t alignment, size_t size)
+void *FUN_000758cc(size_t alignment, size_t size)
 {
     if (alignment < sizeof(void *) ||
         (alignment & (sizeof(void *) - 1u)) != 0u) {

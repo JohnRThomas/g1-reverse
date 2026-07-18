@@ -1,12 +1,12 @@
 /* Reconstructed FUN_000579d0 @ 0x579d0  (parity: 300/300 trials, PROVEN) */
 
-#define g1_recon_z_impl_k_queue_init FUN_000864e8
-extern void g1_recon_z_impl_k_queue_init(void *queue);
+#define z_impl_k_queue_init FUN_000864e8
+extern void z_impl_k_queue_init(void *queue);
 extern void FUN_00086502(int,int);
 extern void FUN_00086c78(int,int,int);
 void FUN_000579d0(void)
 {
-    g1_recon_z_impl_k_queue_init((void *)0x20003a44);
+    z_impl_k_queue_init((void *)0x20003a44);
     int uVar1 = 0x20003a44;
     int iVar3 = 0;
     int iVar2 = 0x2000ad34;

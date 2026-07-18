@@ -72,11 +72,11 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 357,
-    "exclude_reconstruction": 272,
-    "retain_reconstruction": 85,
+    "entries": 362,
+    "exclude_reconstruction": 280,
+    "retain_reconstruction": 82,
     "by_kind": {
-     "source": 207,
+     "source": 212,
      "archive": 107,
      "static_helper": 21,
      "table": 22,
@@ -6865,22 +6865,122 @@
     },
     {
      "core": "app",
+     "va": "0x00071b2c",
+     "raw_symbol": "FUN_00071b2c",
+     "current_symbol": "k_heap_free",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "k_heap_free",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/kernel/CMakeFiles/kernel.dir/kheap.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [
+        "instruction_length_score_below_threshold",
+        "opcode_score_below_threshold",
+        "operand_shape_score_below_threshold"
+       ],
+       "signature_match": {
+        "opcode": 0.477612,
+        "shape": 0.38806,
+        "length": 0.34,
+        "normalized_exact": false
+       },
+       "abi": {
+        "return": "void",
+        "params": [
+         "k_heap*",
+         "void*"
+        ],
+        "variadic": false,
+        "decl_line": 118
+       },
+       "upstream_source": {
+        "path": "zephyr/kernel/kheap.c",
+        "sha256": "8437e89784bcb0c8aa2dee29385b9b47d0bb9359fd2b20ce1bc96feebbffc86d",
+        "repository": "zephyr",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+       },
+       "link_provenance": {
+        "owner_input": "zephyr/kernel/libkernel.a(kheap.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/kernel/kheap.c:119",
+        "reconstruction_input": "app/libapp.a(k_heap_free.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/kernel/kheap.c:119: multiple definition of `k_heap_free'; app/libapp.a(k_heap_free.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/k_heap_free.c:31: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "KERNEL-CONFIG-MEMSLAB-ATOMIC",
+       "instruction_exact": true,
+       "normalized_code_sha256": "72bb475245d8aa86628d896760fd851a1fdb4ec458cfc1334a7fa15555dc7d53",
+       "cfg_verify_cases": 2,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n"
+       },
+       "atomic_group": [
+        "0x00071b2c",
+        "0x000758cc",
+        "0x000864e8",
+        "0x00071c20",
+        "0x00071cf4",
+        "0x00072040",
+        "0x0007205c",
+        "0x00072078"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "k_heap_free"
+        ],
+        "exclude_only": [
+         "0x00071b2c",
+         "0x000758cc",
+         "0x000864e8",
+         "0x00071c20",
+         "0x00071cf4",
+         "0x00072040",
+         "0x0007205c",
+         "0x00072078"
+        ],
+        "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00071c20",
      "raw_symbol": "FUN_00071c20",
      "current_symbol": "k_mem_slab_alloc",
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "k_mem_slab_alloc",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/kernel/CMakeFiles/kernel.dir/mem_slab.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/kernel/CMakeFiles/kernel.dir/mem_slab.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -6912,7 +7012,54 @@
         "owner_input": "zephyr/kernel/libkernel.a(mem_slab.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/kernel/mem_slab.c:105",
         "reconstruction_input": "app/libapp.a(k_mem_slab_alloc.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/mem_slab.c:105: multiple definition of `k_mem_slab_alloc'; app/libapp.a(k_mem_slab_alloc.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/k_mem_slab_alloc.c:30: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/kernel/mem_slab.c:105: multiple definition of `k_mem_slab_alloc'; app/libapp.a(k_mem_slab_alloc.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/k_mem_slab_alloc.c:30: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "KERNEL-CONFIG-MEMSLAB-ATOMIC",
+       "instruction_exact": true,
+       "normalized_code_sha256": "6e2bb8fd716897bca250bc0d9073c59ef0b961e7b4436e16715150c3e59a8c2a",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n"
+       },
+       "atomic_group": [
+        "0x00071b2c",
+        "0x000758cc",
+        "0x000864e8",
+        "0x00071c20",
+        "0x00071cf4",
+        "0x00072040",
+        "0x0007205c",
+        "0x00072078"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "k_mem_slab_alloc"
+        ],
+        "exclude_only": [
+         "0x00071b2c",
+         "0x000758cc",
+         "0x000864e8",
+         "0x00071c20",
+         "0x00071cf4",
+         "0x00072040",
+         "0x0007205c",
+         "0x00072078"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -6925,16 +7072,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "k_mem_slab_free",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/kernel/CMakeFiles/kernel.dir/mem_slab.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/kernel/CMakeFiles/kernel.dir/mem_slab.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -6965,7 +7112,279 @@
         "owner_input": "zephyr/kernel/libkernel.a(mem_slab.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/kernel/mem_slab.c:149",
         "reconstruction_input": "app/libapp.a(k_mem_slab_free.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/mem_slab.c:149: multiple definition of `k_mem_slab_free'; app/libapp.a(k_mem_slab_free.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/k_mem_slab_free.c:36: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/kernel/mem_slab.c:149: multiple definition of `k_mem_slab_free'; app/libapp.a(k_mem_slab_free.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/k_mem_slab_free.c:36: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "KERNEL-CONFIG-MEMSLAB-ATOMIC",
+       "instruction_exact": true,
+       "normalized_code_sha256": "4b497a36c3dc621b4c153faa033e2753fee2f6890becc2ca35c74236c376c6eb",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n"
+       },
+       "atomic_group": [
+        "0x00071b2c",
+        "0x000758cc",
+        "0x000864e8",
+        "0x00071c20",
+        "0x00071cf4",
+        "0x00072040",
+        "0x0007205c",
+        "0x00072078"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "k_mem_slab_free"
+        ],
+        "exclude_only": [
+         "0x00071b2c",
+         "0x000758cc",
+         "0x000864e8",
+         "0x00071c20",
+         "0x00071cf4",
+         "0x00072040",
+         "0x0007205c",
+         "0x00072078"
+        ],
+        "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00072040",
+     "raw_symbol": "FUN_00072040",
+     "current_symbol": "z_spin_lock_valid",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "z_spin_lock_valid",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/kernel/CMakeFiles/kernel.dir/thread.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "normalized_exact": true
+       },
+       "upstream_source": {
+        "path": "zephyr/kernel/thread.c",
+        "sha256": "3c3ed7756f4bf615ea9cc4131c519575502af7d3d44796109b8e301f82f38f0c",
+        "repository": "zephyr",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "KERNEL-CONFIG-MEMSLAB-ATOMIC",
+       "instruction_exact": true,
+       "normalized_code_sha256": "caa1bd62347289227308111f5b779d72d013aed2402c6ea2326508724f9cbd3b",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n"
+       },
+       "atomic_group": [
+        "0x00071b2c",
+        "0x000758cc",
+        "0x000864e8",
+        "0x00071c20",
+        "0x00071cf4",
+        "0x00072040",
+        "0x0007205c",
+        "0x00072078"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "z_spin_lock_valid"
+        ],
+        "exclude_only": [
+         "0x00071b2c",
+         "0x000758cc",
+         "0x000864e8",
+         "0x00071c20",
+         "0x00071cf4",
+         "0x00072040",
+         "0x0007205c",
+         "0x00072078"
+        ],
+        "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007205c",
+     "raw_symbol": "FUN_0007205c",
+     "current_symbol": "z_spin_unlock_valid",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "z_spin_unlock_valid",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/kernel/CMakeFiles/kernel.dir/thread.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "normalized_exact": true
+       },
+       "upstream_source": {
+        "path": "zephyr/kernel/thread.c",
+        "sha256": "3c3ed7756f4bf615ea9cc4131c519575502af7d3d44796109b8e301f82f38f0c",
+        "repository": "zephyr",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "KERNEL-CONFIG-MEMSLAB-ATOMIC",
+       "instruction_exact": true,
+       "normalized_code_sha256": "f4ab59a440fe4ab0cc684ce6232ee18b6ed1386ec1ee8b52ecad6695d129e469",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n"
+       },
+       "atomic_group": [
+        "0x00071b2c",
+        "0x000758cc",
+        "0x000864e8",
+        "0x00071c20",
+        "0x00071cf4",
+        "0x00072040",
+        "0x0007205c",
+        "0x00072078"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "z_spin_unlock_valid"
+        ],
+        "exclude_only": [
+         "0x00071b2c",
+         "0x000758cc",
+         "0x000864e8",
+         "0x00071c20",
+         "0x00071cf4",
+         "0x00072040",
+         "0x0007205c",
+         "0x00072078"
+        ],
+        "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00072078",
+     "raw_symbol": "FUN_00072078",
+     "current_symbol": "z_spin_lock_set_owner",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "z_spin_lock_set_owner",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/kernel/CMakeFiles/kernel.dir/thread.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "normalized_exact": true
+       },
+       "upstream_source": {
+        "path": "zephyr/kernel/thread.c",
+        "sha256": "3c3ed7756f4bf615ea9cc4131c519575502af7d3d44796109b8e301f82f38f0c",
+        "repository": "zephyr",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "KERNEL-CONFIG-MEMSLAB-ATOMIC",
+       "instruction_exact": true,
+       "normalized_code_sha256": "176248a070a7c290d568c68f3d377f58f0e3d1f62d300ab68bc192e6af80ad12",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n"
+       },
+       "atomic_group": [
+        "0x00071b2c",
+        "0x000758cc",
+        "0x000864e8",
+        "0x00071c20",
+        "0x00071cf4",
+        "0x00072040",
+        "0x0007205c",
+        "0x00072078"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "z_spin_lock_set_owner"
+        ],
+        "exclude_only": [
+         "0x00071b2c",
+         "0x000758cc",
+         "0x000864e8",
+         "0x00071c20",
+         "0x00071cf4",
+         "0x00072040",
+         "0x0007205c",
+         "0x00072078"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -7425,6 +7844,106 @@
        ],
        "safe_to_adopt": true,
        "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000758cc",
+     "raw_symbol": "FUN_000758cc",
+     "current_symbol": "k_aligned_alloc",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "k_aligned_alloc",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/kernel/CMakeFiles/kernel.dir/mempool.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [
+        "instruction_length_score_below_threshold",
+        "opcode_score_below_threshold",
+        "operand_shape_score_below_threshold"
+       ],
+       "signature_match": {
+        "opcode": 0.205128,
+        "shape": 0.153846,
+        "length": 0.21875,
+        "normalized_exact": false
+       },
+       "abi": {
+        "return": "void*",
+        "params": [
+         "size_t",
+         "size_t"
+        ],
+        "variadic": false,
+        "decl_line": 64
+       },
+       "upstream_source": {
+        "path": "zephyr/kernel/mempool.c",
+        "sha256": "710f3cc2674afd83272bf20a88298c878c04a084bfc34f6964dc9e2eb455fa13",
+        "repository": "zephyr",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+       },
+       "link_provenance": {
+        "owner_input": "zephyr/kernel/libkernel.a(mempool.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/kernel/mempool.c:65",
+        "reconstruction_input": "app/libapp.a(k_aligned_alloc.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/kernel/mempool.c:65: multiple definition of `k_aligned_alloc'; app/libapp.a(k_aligned_alloc.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/k_aligned_alloc.c:30: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "KERNEL-CONFIG-MEMSLAB-ATOMIC",
+       "instruction_exact": true,
+       "normalized_code_sha256": "03723db6346f6de5c9e8943bdc9d91929e32ea7223df0ef297d611b54408307f",
+       "cfg_verify_cases": 3,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n"
+       },
+       "atomic_group": [
+        "0x00071b2c",
+        "0x000758cc",
+        "0x000864e8",
+        "0x00071c20",
+        "0x00071cf4",
+        "0x00072040",
+        "0x0007205c",
+        "0x00072078"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "k_aligned_alloc"
+        ],
+        "exclude_only": [
+         "0x00071b2c",
+         "0x000758cc",
+         "0x000864e8",
+         "0x00071c20",
+         "0x00071cf4",
+         "0x00072040",
+         "0x0007205c",
+         "0x00072078"
+        ],
+        "new_undefined_symbols": []
+       }
       }
      ]
     },
@@ -12934,16 +13453,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "z_impl_k_queue_init",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/kernel/CMakeFiles/kernel.dir/queue.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/kernel/CMakeFiles/kernel.dir/queue.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "operand_shape_score_below_threshold"
        ],
@@ -12971,7 +13490,54 @@
         "owner_input": "zephyr/kernel/libkernel.a(queue.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/sys/sflist.h:212",
         "reconstruction_input": "app/libapp.a(z_impl_k_queue_init.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/sys/sflist.h:212: multiple definition of `z_impl_k_queue_init'; app/libapp.a(z_impl_k_queue_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_impl_k_queue_init.c:12: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/include/zephyr/sys/sflist.h:212: multiple definition of `z_impl_k_queue_init'; app/libapp.a(z_impl_k_queue_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_impl_k_queue_init.c:12: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "KERNEL-CONFIG-MEMSLAB-ATOMIC",
+       "instruction_exact": true,
+       "normalized_code_sha256": "fab989f76c801ac768f77ca860d2a76fa6c7b9e6a65f5b7c49c7a8dd8b45913a",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n"
+       },
+       "atomic_group": [
+        "0x00071b2c",
+        "0x000758cc",
+        "0x000864e8",
+        "0x00071c20",
+        "0x00071cf4",
+        "0x00072040",
+        "0x0007205c",
+        "0x00072078"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "z_impl_k_queue_init"
+        ],
+        "exclude_only": [
+         "0x00071b2c",
+         "0x000758cc",
+         "0x000864e8",
+         "0x00071c20",
+         "0x00071cf4",
+         "0x00072040",
+         "0x0007205c",
+         "0x00072078"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -28083,6 +28649,10 @@
   {
    "path": "recon/ownership/app_collision_adoption_authorizations.json",
    "sha256": "3fb9365d00b753c091fb8ea97a483dccc7ff027787bc042c4257431fceb3cebe"
+  },
+  {
+   "path": "recon/ownership/app_kernel_config_atomic_adoption.json",
+   "sha256": "97e6e5c1e2f3d6802b3975ebff935f9bec1e616853f0b8efb290f0809c9a9e41"
   },
   {
    "path": "recon/ownership/app_collision_retention_overrides.json",

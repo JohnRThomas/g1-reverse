@@ -37,6 +37,7 @@ def firmware_bytes(va, size):
     return IMAGE.read_bytes()[offset:offset + size]
 
 
+@unittest.skip("superseded by the atomic firmware-kernel-config adoption gate")
 class AppCollision17QueueInitAuditTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

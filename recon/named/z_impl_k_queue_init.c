@@ -1,17 +1,16 @@
 /* readable reconstruction; identity: FUN_000864e8 @ 0x000864e8
- * public-name: g1_recon_z_impl_k_queue_init
+ * public-name: z_impl_k_queue_init
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   g1_recon_z_impl_k_queue_init             <= FUN_000864e8 @ 0x000864e8
+ *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
  */
 /* Reconstructed firmware queue initializer @ 0x000864e8.
  * Raw/address back-map: FUN_000864e8 / 0x000864e8.
- * Readable namespace target: g1_recon_z_impl_k_queue_init.
+ * Readable public identity: z_impl_k_queue_init.
  * This 28-byte layout includes the firmware's four-byte spinlock at +8.
  */
 
-#define g1_recon_z_impl_k_queue_init g1_recon_z_impl_k_queue_init
-void g1_recon_z_impl_k_queue_init(int *param_1)
+void z_impl_k_queue_init(int *param_1)
 {
   *(volatile unsigned int *)(param_1) = 0;
   *(volatile unsigned int *)((int)param_1+4) = 0;

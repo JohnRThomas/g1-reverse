@@ -32,8 +32,8 @@ typedef struct { int64_t ticks; } k_timeout_t;
 
 extern unsigned int k_work_busy_get(const struct k_work *work); /* FUN_00072e9c */
 extern int k_work_cancel(struct k_work *work); /* FUN_00072fe8 */
-#define g1_recon_z_impl_k_queue_init FUN_000864e8
-extern void g1_recon_z_impl_k_queue_init(struct k_fifo *fifo);
+#define z_impl_k_queue_init FUN_000864e8
+extern void z_impl_k_queue_init(struct k_fifo *fifo);
 extern struct net_buf *net_buf_get(struct k_fifo *fifo,
                                    k_timeout_t timeout); /* FUN_000836e8 */
 extern void net_buf_put(struct k_fifo *fifo, struct net_buf *buf); /* FUN_0005f200 */
@@ -61,7 +61,7 @@ void smp_rx_remove_invalid(struct smp_transport *transport, void *arg)
         k_work_cancel(&transport->work);
     }
 
-    g1_recon_z_impl_k_queue_init(&retained);
+    z_impl_k_queue_init(&retained);
 
     while ((buffer = net_buf_get(&transport->fifo, K_NO_WAIT)) != 0) {
         if (!transport->functions.query_valid_check(buffer, arg)) {

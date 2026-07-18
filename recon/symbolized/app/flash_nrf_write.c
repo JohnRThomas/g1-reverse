@@ -11,6 +11,8 @@
  * address symbols (name @ address):
  *   rodata_881b0                             @ 0x000881b0
  *   rodata_f5d81                             @ 0x000f5d81
+ *   rodata_f5dbd                             @ 0x000f5dbd
+ *   g_2000b154                               @ 0x2000b154
  *   REG_50039400                             @ 0x50039400
  */
 /* Reconstructed FUN_00061310 @ 0x61310 */
@@ -37,21 +39,21 @@ unsigned int flash_nrf_write(unsigned int unused, unsigned int address,
         return (unsigned int)-22;
     }
     if (((address | length) & 3) != 0) {
-        unsigned int arguments[4] = {4, 0x000f5dbd, address, length};
+        unsigned int arguments[4] = {4, ((unsigned long)&rodata_f5dbd) /*=0xf5dbd*/, address, length};
         FUN_0004d944(((unsigned long)&rodata_881b0) /*=0x881b0*/, 0x2040, arguments, 0);
         return (unsigned int)-22;
     }
     if (length != 0) {
         unsigned int offset = 0;
         unsigned int rounded_length = length & ~3u;
-        z_impl_k_sem_take(0x2000b154, (unsigned int)(range >> 32),
+        z_impl_k_sem_take(((unsigned long)&g_2000b154) /*=0x2000b154*/, (unsigned int)(range >> 32),
                      (unsigned int)-1, (unsigned int)-1);
         while (offset != rounded_length) {
             g1_recon_nrfx_nvmc_word_write(address + offset, source[offset / 4]);
             offset += 4;
         }
         while ((*(volatile unsigned int *)REG_50039400 /*=0x50039400*/ & 1) == 0) {}
-        k_sem_give(0x2000b154);
+        k_sem_give(((unsigned long)&g_2000b154) /*=0x2000b154*/);
     }
     return 0;
 }

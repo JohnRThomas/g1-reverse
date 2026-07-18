@@ -10,6 +10,8 @@
  * address symbols (name @ address):
  *   rodata_881b0                             @ 0x000881b0
  *   rodata_f5d81                             @ 0x000f5d81
+ *   rodata_f5d9e                             @ 0x000f5d9e
+ *   g_2000b154                               @ 0x2000b154
  */
 /* Reconstructed FUN_0006125c @ 0x6125c */
 #include <stdint.h>

@@ -12720,8 +12720,7 @@
    "human": true,
    "source": "function_name_overrides.json: Recovered NCS 2.5.1 GPPI task-endpoint setup with the firmware's active NRFX_ASSERT path; deliberately namespaced after COLLISION-09. Raw identity remains FUN_00064f78.",
    "aliases": [
-    "FUN_00064f78",
-    "nrfx_gppi_task_endpoint_setup"
+    "FUN_00064f78"
    ]
   },
   "0x00064fa8": {
@@ -12743,8 +12742,7 @@
    "human": true,
    "source": "function_name_overrides.json: Recovered NCS 2.5.1 GPPI task-endpoint clear with the firmware's active NRFX_ASSERT path; deliberately namespaced after COLLISION-09. Raw identity remains FUN_00064fd4.",
    "aliases": [
-    "FUN_00064fd4",
-    "nrfx_gppi_task_endpoint_clear"
+    "FUN_00064fd4"
    ]
   },
   "0x00065000": {
@@ -14325,11 +14323,13 @@
   "0x00071b2c": {
    "address": "0x00071b2c",
    "raw_name": "FUN_00071b2c",
-   "name": "g1_recon_k_heap_free_validated",
-   "display_name": "g1_recon_k_heap_free_validated",
+   "name": "k_heap_free",
+   "display_name": "k_heap_free",
    "human": true,
-   "source": "function_name_overrides.json: Retained firmware heap release built with active spinlock validation and assertion paths; deliberately namespaced because the configured SDK k_heap_free owner compiles those paths out. Raw identity remains FUN_00071b2c at 0x00071b2c.",
-   "aliases": []
+   "source": "function_name_overrides.json: Exact pinned Zephyr k_heap_free with CONFIG_ASSERT=y, CONFIG_ASSERT_LEVEL=2 and CONFIG_SPIN_VALIDATE=y; raw identity remains FUN_00071b2c at 0x00071b2c.",
+   "aliases": [
+    "g1_recon_k_heap_free_validated"
+   ]
   },
   "0x00071c20": {
    "address": "0x00071c20",
@@ -15112,11 +15112,13 @@
   "0x000758cc": {
    "address": "0x000758cc",
    "raw_name": "FUN_000758cc",
-   "name": "g1_recon_k_aligned_alloc_asserting",
-   "display_name": "g1_recon_k_aligned_alloc_asserting",
+   "name": "k_aligned_alloc",
+   "display_name": "k_aligned_alloc",
    "human": true,
-   "source": "function_name_overrides.json: Recovered firmware aligned allocator with two active assertion/logging paths; it is deliberately namespaced because the configured Zephyr k_aligned_alloc owner compiles those paths out. Raw identity remains FUN_000758cc at 0x000758cc.",
-   "aliases": []
+   "source": "function_name_overrides.json: Exact pinned Zephyr k_aligned_alloc with the recovered assertion configuration; raw identity remains FUN_000758cc at 0x000758cc.",
+   "aliases": [
+    "g1_recon_k_aligned_alloc_asserting"
+   ]
   },
   "0x00075944": {
    "address": "0x00075944",
@@ -24021,8 +24023,7 @@
    "human": true,
    "source": "function_name_overrides.json: Corrected identity: this firmware wrapper calls the event endpoint setup at 0x00064f48 and task endpoint setup at 0x00064f78, matching nrfx_gppi_channel_endpoints_setup, not net_buf_simple_push_mem. It is namespaced to retain the active asserted closure. Raw identity remains FUN_000850dc.",
    "aliases": [
-    "FUN_000850dc",
-    "net_buf_simple_push_mem"
+    "FUN_000850dc"
    ]
   },
   "0x000850f6": {
@@ -25122,12 +25123,13 @@
   "0x000864e8": {
    "address": "0x000864e8",
    "raw_name": "FUN_000864e8",
-   "name": "g1_recon_z_impl_k_queue_init",
-   "display_name": "g1_recon_z_impl_k_queue_init",
+   "name": "z_impl_k_queue_init",
+   "display_name": "z_impl_k_queue_init",
    "human": true,
-   "source": "function_name_overrides.json: Retained firmware queue initializer for the 28-byte spinlock-bearing layout; deliberately namespaced after COLLISION-17 because the configured SDK owner initializes an incompatible 24-byte layout. Raw identity remains FUN_000864e8 at 0x000864e8.",
+   "source": "function_name_overrides.json: Exact pinned Zephyr queue initializer under the recovered spin-validation/TLS kernel layout; raw identity remains FUN_000864e8 at 0x000864e8.",
    "aliases": [
-    "FUN_000864e8"
+    "FUN_000864e8",
+    "g1_recon_z_impl_k_queue_init"
    ]
   },
   "0x00086502": {
@@ -27477,9 +27479,7 @@
   "g1_nrfx_clock_stop_lfclk": "0x00083880",
   "g1_recon_crc16_ansi_seeded": "0x0007da4a",
   "g1_recon_crc16_configurable": "0x0007d9c0",
-  "g1_recon_k_aligned_alloc_asserting": "0x000758cc",
   "g1_recon_k_free": "0x000868b4",
-  "g1_recon_k_heap_free_validated": "0x00071b2c",
   "g1_recon_nrfx_gpiote_init": "0x00065940",
   "g1_recon_nrfx_gppi_channel_endpoints_setup": "0x000850dc",
   "g1_recon_nrfx_gppi_event_endpoint_clear": "0x00064fa8",
@@ -27497,7 +27497,6 @@
   "g1_recon_retarget_lock_acquire_recursive": "0x000510fc",
   "g1_recon_retarget_lock_release_recursive": "0x00051134",
   "g1_recon_tagged_heap_node_release": "0x000864d0",
-  "g1_recon_z_impl_k_queue_init": "0x000864e8",
   "gatt_cancel_encode": "0x0008278a",
   "gatt_ccc_changed": "0x000825c0",
   "gatt_ccc_settings_set": "0x0005af8c",
@@ -27730,10 +27729,12 @@
   "jbd_panel_suspend": "0x000475f0",
   "jdb_panel_init": "0x00046fc0",
   "json_arr_encode": "0x0007c898",
+  "k_aligned_alloc": "0x000758cc",
   "k_calloc": "0x000868ca",
   "k_current_get": "0x000748ac",
   "k_fifo_peek_head_impl": "0x0008652c",
   "k_heap_alloc": "0x0008099e",
+  "k_heap_free": "0x00071b2c",
   "k_is_in_isr": "0x00086406",
   "k_mem_slab_alloc": "0x00071c20",
   "k_mem_slab_free": "0x00071cf4",
@@ -28519,6 +28520,7 @@
   "z_impl_flash_get_page_count": "0x00083a9a",
   "z_impl_k_msgq_alloc_init": "0x00086448",
   "z_impl_k_poll_signal_init": "0x000868aa",
+  "z_impl_k_queue_init": "0x000864e8",
   "z_impl_k_sem_init": "0x00086534",
   "z_impl_k_sem_take": "0x00072908",
   "z_impl_k_timer_start": "0x00075174",

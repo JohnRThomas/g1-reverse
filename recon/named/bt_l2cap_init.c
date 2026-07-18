@@ -3,7 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   bt_l2cap_init                            <= FUN_000579d0 @ 0x000579d0
- *   g1_recon_z_impl_k_queue_init             <= FUN_000864e8 @ 0x000864e8
+ *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
  *   net_pkt_skip                             <= FUN_00086502 @ 0x00086502
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -12,13 +12,13 @@
  */
 /* Reconstructed FUN_000579d0 @ 0x579d0  (parity: 300/300 trials, PROVEN) */
 
-#define g1_recon_z_impl_k_queue_init g1_recon_z_impl_k_queue_init
-extern void g1_recon_z_impl_k_queue_init(void *queue);
+#define z_impl_k_queue_init z_impl_k_queue_init
+extern void z_impl_k_queue_init(void *queue);
 extern void net_pkt_skip(int,int);
 extern void memset_bytes(int,int,int);
 void bt_l2cap_init(void)
 {
-    g1_recon_z_impl_k_queue_init((void *)0x20003a44);
+    z_impl_k_queue_init((void *)0x20003a44);
     int uVar1 = 0x20003a44;
     int iVar3 = 0;
     int iVar2 = 0x2000ad34;

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000574ec @ 0x574ec  (parity: 300/300 trials, PROVEN) */
 
-#define g1_recon_z_impl_k_queue_init FUN_000864e8
-extern void g1_recon_z_impl_k_queue_init(void *queue);
+#define z_impl_k_queue_init FUN_000864e8
+extern void z_impl_k_queue_init(void *queue);
 extern void FUN_000732d4(unsigned int a, unsigned int b);
 
 void FUN_000574ec(int param_1)
@@ -11,6 +11,6 @@ void FUN_000574ec(int param_1)
     *(volatile unsigned int*)(param_1+0x2c) = 0;
     unsigned int uVar1 = __atomic_exchange_n(
         (unsigned int *)(param_1 + 0x2c), 0, __ATOMIC_ACQ_REL);
-    g1_recon_z_impl_k_queue_init((void *)(param_1+0x30));
+    z_impl_k_queue_init((void *)(param_1+0x30));
     FUN_000732d4(param_1+0x50, 0x000818ddUL);
 }

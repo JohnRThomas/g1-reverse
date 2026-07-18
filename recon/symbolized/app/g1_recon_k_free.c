@@ -2,11 +2,14 @@
 /* readable reconstruction; identity: FUN_000868b4 @ 0x000868b4
  * public-name: g1_recon_k_free
  * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   k_heap_free                              <= FUN_00071b2c @ 0x00071b2c
  */
 /* Reconstructed g1_recon_k_free @ 0x000868b4.
  * Raw backmap: FUN_000868b4@0x000868b4. */
 
-extern void g1_recon_k_heap_free_validated(void *heap, void *memory);
+#define k_heap_free k_heap_free
+extern void k_heap_free(void *heap, void *memory);
 
 void g1_recon_k_free(void *allocation)
 {
@@ -16,5 +19,5 @@ void g1_recon_k_free(void *allocation)
         return;
     }
     header = (unsigned char *)allocation - 4;
-    g1_recon_k_heap_free_validated(*(void **)header, header);
+    k_heap_free(*(void **)header, header);
 }
