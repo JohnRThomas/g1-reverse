@@ -32,14 +32,31 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_NAMES = os.path.join(BASE, "recon/catalogs/function_names_app.json")
 DEFAULT_CLASSIFIED = os.path.join(BASE, "recon/catalogs/classified.json.gz")
 DEFAULT_OUTPUT = os.path.join(BASE, "recon/ownership/app_build_collision_ownership.json")
+DEFAULT_MARKDOWN = os.path.join(BASE, "recon/ownership/app_build_collision_ownership.md")
 NCS = "/Users/freedomcoder/ncs251"
 SOURCE_REPOS = (
     (os.path.join(NCS, "zephyr"), "zephyr"),
     (os.path.join(NCS, "nrf"), "nrf"),
     (os.path.join(NCS, "modules/hal/nordic"), "hal_nordic"),
     (os.path.join(NCS, "modules/hal/libmetal"), "libmetal"),
+    (os.path.join(NCS, "modules/lib/open-amp"), "open_amp"),
 )
 THRESHOLDS = {"opcode": 0.90, "shape": 0.70, "length": 0.80}
+ALLOWED_ACTIONS = {
+    "retain_reconstruction",
+    "adopt_sdk_whole_public_owner",
+    "caller_cohesion",
+    "blocked",
+}
+# These configured units contain reviewed local-only SDK helpers whose exact
+# semantics must stay scoped to retained callers.  A collision in one of these
+# units is never solved by inventing a public alias or duplicate helper body.
+CALLER_COHESION_SOURCE_UNITS = {
+    "zephyr/kernel/work.c",
+    "zephyr/lib/os/heap.c",
+    "zephyr/subsys/bluetooth/host/id.c",
+    "zephyr/subsys/logging/log_output.c",
+}
 COLLISION = re.compile(
     r"^(?P<definition>.*?):\s*multiple definition of [`‘](?P<symbol>[^'’]+)['’];\s*"
     r"(?P<reconstruction>.*?):(?P<recon_source>/[^:]+):(?P<recon_line>[0-9]+): "
@@ -81,7 +98,7 @@ def source_identity(path):
 
 
 def parse_collisions(text):
-    """Parse one record per strong multiple-definition diagnostic."""
+    """Parse and aggregate strong multiple-definition diagnostics by symbol."""
     lines = text.splitlines()
     rows = []
     for index, line in enumerate(lines):
@@ -112,13 +129,25 @@ def parse_collisions(text):
             "reconstruction_line": int(match.group("recon_line")),
             "diagnostic": line,
         })
-    unique = {}
+    grouped = {}
     for row in rows:
-        previous = unique.get(row["symbol"])
-        if previous and previous != row:
-            raise ValueError("non-identical duplicate collision for %s" % row["symbol"])
-        unique[row["symbol"]] = row
-    return [unique[name] for name in sorted(unique)]
+        grouped.setdefault(row["symbol"], []).append(row)
+    unique = []
+    identity_fields = (
+        "owner_input", "owner_source", "definition_location",
+        "reconstruction_input", "reconstruction_source")
+    for symbol in sorted(grouped):
+        occurrences = grouped[symbol]
+        for field in identity_fields:
+            values = {row.get(field) for row in occurrences}
+            if len(values) != 1:
+                raise ValueError("ambiguous %s collision owner %s: %s" %
+                                 (symbol, field, sorted(values)))
+        record = dict(occurrences[0])
+        record["diagnostic_occurrences"] = len(occurrences)
+        record["diagnostics"] = sorted(row["diagnostic"] for row in occurrences)
+        unique.append(record)
+    return unique
 
 
 def sequence_score(left, right):
@@ -172,6 +201,70 @@ def choose_candidate(records, collision):
             [row["id"] for row in candidates[1:]])
 
 
+def normalize_repo_path(path):
+    if not path:
+        return None
+    real = os.path.realpath(path)
+    base = os.path.realpath(BASE)
+    if real == base or real.startswith(base + os.sep):
+        return os.path.relpath(real, base)
+    ncs = os.path.realpath(NCS)
+    if real == ncs or real.startswith(ncs + os.sep):
+        return os.path.relpath(real, ncs)
+    return path
+
+
+def split_owner_input(owner_input):
+    """Return the exact selected archive/object and optional archive member."""
+    owner_input = owner_input or ""
+    match = re.match(r"^(?P<archive>.*\.a)\((?P<member>[^()]+)\)$", owner_input)
+    if match:
+        return {"archive_or_object": match.group("archive"),
+                "archive_member": match.group("member")}
+    return {"archive_or_object": owner_input or None, "archive_member": None}
+
+
+def action_for(source_unit, candidate, alternatives, safe):
+    if safe:
+        return "adopt_sdk_whole_public_owner"
+    if candidate is None or alternatives or not candidate.get("signature"):
+        return "blocked"
+    if source_unit in CALLER_COHESION_SOURCE_UNITS:
+        return "caller_cohesion"
+    return "retain_reconstruction"
+
+
+def build_batches(functions):
+    grouped = {}
+    for row in functions:
+        grouped.setdefault(row["implementation_source_unit"], []).append(row)
+    batches = []
+    for ordinal, source_unit in enumerate(sorted(grouped), 1):
+        rows = sorted(grouped[source_unit], key=lambda row: int(row["va"], 16))
+        actions = sorted({row["safe_action"] for row in rows})
+        if "blocked" in actions:
+            risk = "blocked"
+        elif "caller_cohesion" in actions or len(actions) > 1:
+            risk = "high"
+        elif actions == ["adopt_sdk_whole_public_owner"]:
+            risk = "low"
+        else:
+            risk = "medium"
+        batches.append({
+            "batch": "COLLISION-%02d" % ordinal,
+            "source_unit": source_unit,
+            "risk": risk,
+            "actions": actions,
+            "symbols": [row["current_symbol"] for row in rows],
+            "count": len(rows),
+            "diagnostic_occurrences": sum(
+                row["diagnostic_occurrences"] for row in rows),
+            "rule": ("one source unit per batch; implement only after explicit "
+                     "ownership review"),
+        })
+    return batches
+
+
 def build(args):
     names_data = load_json(args.names)
     by_name = names_data["by_name"]
@@ -220,21 +313,39 @@ def build(args):
             blockers.append("selected_owner_index_ambiguous")
         source = source_identity((candidate or {}).get("source") or
                                  collision.get("owner_source"))
+        owner = split_owner_input(collision.get("owner_input"))
+        source_unit = source.get("path") or owner["archive_or_object"] or "unknown"
+        action = action_for(source_unit, candidate, alternatives, safe)
+        object_path = (candidate or {}).get("object")
         functions.append({
             "core": "app", "va": "0x%08x" % va,
             "raw_symbol": "FUN_%08x" % va,
             "current_symbol": symbol,
+            "diagnostic_occurrences": collision["diagnostic_occurrences"],
             "firmware_extent": extent,
             "firmware_instruction_count": (firmware or {}).get("instruction_count"),
+            "retained_owner": {
+                "va": "0x%08x" % va,
+                "symbol": symbol,
+                "source": normalize_repo_path(collision["reconstruction_source"]),
+                "archive_or_object": collision["reconstruction_input"],
+                "definition_line": collision["reconstruction_line"],
+            },
             "link_provenance": {
                 "owner_input": collision.get("owner_input"),
                 "owner_source_line": collision.get("definition_location"),
                 "reconstruction_input": collision["reconstruction_input"],
-                "diagnostic": collision["diagnostic"],
+                "diagnostic_occurrences": collision["diagnostic_occurrences"],
+                "diagnostics": collision["diagnostics"],
             },
             "upstream": {
                 "symbol": symbol,
-                "object": (candidate or {}).get("object"),
+                "object": object_path,
+                "object_sha256": (sha256(object_path)
+                                   if object_path and os.path.exists(object_path)
+                                   else None),
+                "archive_or_object": owner["archive_or_object"],
+                "archive_member": owner["archive_member"],
                 "section": (candidate or {}).get("section"),
                 "symbol_size": (candidate or {}).get("symbol_size"),
                 "binding": (candidate or {}).get("binding"),
@@ -242,23 +353,44 @@ def build(args):
                 "source": source,
                 "unselected_same_symbol_candidates": alternatives,
             },
+            "configured_inclusion": {
+                "selected_by_real_link": True,
+                "indexed_object_present": bool(object_path and os.path.exists(object_path)),
+                "zephyr_config_sha256": (sha256(args.config)
+                                          if args.config and os.path.exists(args.config)
+                                          else None),
+                "proof": "strong owner named by the configured retain-all linker",
+            },
             "signature_match": scores,
             "thresholds": dict(THRESHOLDS),
-            "safe_to_exclude": safe,
+            "identity_threshold_candidate": safe,
+            # This audit recommends actions but deliberately grants no source
+            # exclusion authority.  build_adoption_manifest.py consumes only
+            # an explicit true safe_to_exclude value.
+            "safe_to_exclude": False,
             "exclusion_blockers": sorted(set(blockers)),
-            "decision": ("adopt_selected_upstream_owner" if safe else
-                         "retain_reconstruction_fail_closed"),
+            "safe_action": action,
+            "decision": action,
+            "implementation_source_unit": source_unit,
         })
     functions.sort(key=lambda row: int(row["va"], 16))
+    batches = build_batches(functions)
+    by_action = {action: sum(row["safe_action"] == action for row in functions)
+                 for action in sorted(ALLOWED_ACTIONS)}
+    by_risk = {risk: sum(batch["risk"] == risk for batch in batches)
+               for risk in ("low", "medium", "high", "blocked")}
     result = {
-        "schema": 1,
+        "schema": 2,
         "generated_by": "tools/build_app_collision_ownership.py",
         "policy": {
             "strong_collision_alone_is_insufficient": True,
             "requires_selected_global_object": True,
             "requires_dwarf_abi": True,
             "thresholds": dict(THRESHOLDS),
-            "ambiguity_action": "retain_reconstruction",
+            "ambiguity_action": "blocked",
+            "allowed_actions": sorted(ALLOWED_ACTIONS),
+            "no_implementation_mutations_authorized": True,
+            "batch_partition": "one non-overlapping batch per selected source unit",
         },
         "inputs": {
             "link_log_sha256": sha256(args.link_log),
@@ -272,10 +404,20 @@ def build(args):
         },
         "summary": {
             "collisions": len(functions),
-            "safe_to_exclude": sum(row["safe_to_exclude"] for row in functions),
-            "retained_fail_closed": sum(not row["safe_to_exclude"] for row in functions),
+            "unique_symbols": len(functions),
+            "diagnostic_occurrences": sum(
+                row["diagnostic_occurrences"] for row in functions),
+            "identity_threshold_candidates": sum(
+                row["identity_threshold_candidate"] for row in functions),
+            "safe_to_exclude": 0,
+            "retained_fail_closed": len(functions),
+            "source_units": len(batches),
+            "batches": len(batches),
+            "by_action": by_action,
+            "batches_by_risk": by_risk,
         },
         "functions": functions,
+        "implementation_batches": batches,
     }
     if args.relink_log:
         relink_text = open(args.relink_log, encoding="utf-8",
@@ -296,12 +438,67 @@ def build(args):
     return result
 
 
+def render_markdown(result):
+    summary = result["summary"]
+    lines = [
+        "# CPUAPP retain-all collision ownership",
+        "",
+        "Deterministic report-only audit of the current real retain-all link.",
+        "It does not authorize source removal, aliases, CMake changes, or weak owners.",
+        "",
+        "## Current snapshot",
+        "",
+        "| Metric | Count |",
+        "|---|---:|",
+        "| Strong duplicate symbols | %d |" % summary["unique_symbols"],
+        "| Diagnostic occurrences | %d |" % summary["diagnostic_occurrences"],
+        "| Selected source units / batches | %d |" % summary["source_units"],
+        "| Exact-threshold SDK adoption candidates | %d |" %
+        summary["identity_threshold_candidates"],
+        "| Automatically authorized exclusions | %d |" % summary["safe_to_exclude"],
+        "| Fail-closed retained/other | %d |" % summary["retained_fail_closed"],
+        "",
+        "## Safe-action partition",
+        "",
+        "| Action | Symbols |",
+        "|---|---:|",
+    ]
+    for action, count in sorted(summary["by_action"].items()):
+        lines.append("| `%s` | %d |" % (action, count))
+    lines += [
+        "",
+        "`adopt_sdk_whole_public_owner` is only a candidate when the selected",
+        "global object has DWARF ABI evidence and clears every configured shape",
+        "threshold. `caller_cohesion` keeps local SDK helpers scoped to callers;",
+        "`blocked` has missing or ambiguous indexed ownership.",
+        "",
+        "## Non-overlapping implementation batches",
+        "",
+        "| Batch | Source unit | Risk | Symbols | Actions |",
+        "|---|---|---|---:|---|",
+    ]
+    for batch in result["implementation_batches"]:
+        lines.append("| `{batch}` | `{source_unit}` | `{risk}` | {count} | {actions} |".format(
+            batch=batch["batch"], source_unit=batch["source_unit"],
+            risk=batch["risk"], count=batch["count"],
+            actions=", ".join("`%s`" % action for action in batch["actions"])))
+    lines += [
+        "",
+        "Each source unit occurs in exactly one batch. Symbols remain individually",
+        "address-keyed in the JSON with retained source/VA, exact selected archive",
+        "and object hashes, configured-link proof, ABI, and instruction-shape evidence.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
 def self_test():
     text = ("ld.bfd: zephyr/lib.a(foo.c.obj): in function `foo':\n"
             "/ncs/foo.c:7: multiple definition of `foo'; "
             "app/libapp.a(foo.c.obj):/repo/foo.c:3: first defined here\n")
     rows = parse_collisions(text)
     assert len(rows) == 1 and rows[0]["owner_input"] == "zephyr/lib.a(foo.c.obj)"
+    assert rows[0]["diagnostic_occurrences"] == 1
     candidate = {"binding": "STB_GLOBAL", "signature": {"return": "int"}}
     ok, blockers = safe_to_exclude(candidate, {"opcode": .95, "shape": .9,
                                                "length": .9})
@@ -322,6 +519,7 @@ def main():
     parser.add_argument("--relink-log",
                         help="post-exclusion link log; its collision set must equal all retains")
     parser.add_argument("--output", default=DEFAULT_OUTPUT)
+    parser.add_argument("--markdown", default=DEFAULT_MARKDOWN)
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
@@ -333,18 +531,25 @@ def main():
         parser.error("--link-log and --index are required")
     result = build(args)
     rendered = json.dumps(result, indent=1) + "\n"
+    markdown = render_markdown(result)
     if args.check:
         existing = open(args.output).read() if os.path.exists(args.output) else None
-        if existing != rendered:
+        existing_md = (open(args.markdown).read()
+                       if os.path.exists(args.markdown) else None)
+        if existing != rendered or existing_md != markdown:
             print("collision ownership catalog stale", file=sys.stderr)
             return 2
     else:
         os.makedirs(os.path.dirname(args.output), exist_ok=True)
         with open(args.output, "w") as stream:
             stream.write(rendered)
+        with open(args.markdown, "w") as stream:
+            stream.write(markdown)
     summary = result["summary"]
-    print("CPUAPP collisions: %(collisions)d; promote %(safe_to_exclude)d; "
-          "retain %(retained_fail_closed)d" % summary)
+    print("CPUAPP collisions: %(unique_symbols)d unique / "
+          "%(diagnostic_occurrences)d diagnostics; candidates "
+          "%(identity_threshold_candidates)d; "
+          "retain %(retained_fail_closed)d; batches %(batches)d" % summary)
     return 0
 
 
