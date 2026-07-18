@@ -21078,6 +21078,239 @@ REVIEWED_ORACLE_CASES[("app", 0x00074bbc)] = [
 ]
 
 
+def _app_atomic_case(value, replacement=None):
+    target = emu.SCRATCH + 0x7200
+    args = {0: target}
+    if replacement is not None:
+        args[1] = int(replacement) & 0xffffffff
+    return (args, [(target, int(value & 0xffffffff).to_bytes(4, "little"))], {})
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x0007ee2c)] = 1
+REVIEWED_ORACLE_CASES[("app", 0x0007ee2c)] = [
+    _app_atomic_case(0), _app_atomic_case(0xffffffff),
+    _app_atomic_case(0x7fffffff),
+]
+REVIEWED_NPTR_COUNTS[("app", 0x0007eb4e)] = 1
+REVIEWED_ORACLE_CASES[("app", 0x0007eb4e)] = [
+    _app_atomic_case(0, 7), _app_atomic_case(0xffffffff, 0),
+    _app_atomic_case(0x11223344, 0xa5a5a5a5),
+]
+
+
+def _app_free_chunk_case(merge_right, merge_left):
+    heap = emu.SCRATCH + 0x7300
+    oracles = {0: {0: 3}, 1: {0: 0 if merge_right else 1}}
+    ordinal = 2
+    if merge_right:
+        ordinal += 2  # free-list remove and merge have irrelevant returns
+        oracles[3] = {0: 3}
+    oracles[ordinal] = {0: 4}
+    oracles[ordinal + 1] = {0: 0 if merge_left else 1}
+    if merge_left:
+        # remove(left), left_chunk(c), merge(left,c), left_chunk(c), add(left)
+        oracles[ordinal + 3] = {0: 4}
+        oracles[ordinal + 5] = {0: 4}
+    return ({0: heap, 1: 20}, [(heap, bytes(0x100))], oracles)
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x0007e0a6)] = 1
+REVIEWED_ORACLE_CASES[("app", 0x0007e0a6)] = [
+    _app_free_chunk_case(False, False),
+    _app_free_chunk_case(True, False),
+    _app_free_chunk_case(False, True),
+    _app_free_chunk_case(True, True),
+]
+
+
+def _app_next_timeout_case(kind, elapsed=5):
+    head = 0x20002cfc
+    timeout = emu.SCRATCH + 0x7400
+    if kind == "sentinel":
+        first = head
+        dticks = 0
+    elif kind == "null":
+        first = 0
+        dticks = 0
+    elif kind == "positive":
+        first, dticks = timeout, elapsed + 17
+    elif kind == "negative":
+        first, dticks = timeout, elapsed - 3
+    else:
+        first, dticks = timeout, 0x0000000180000000
+    image = bytearray(24)
+    image[16:24] = int(dticks & 0xffffffffffffffff).to_bytes(8, "little")
+    return ({}, [(head, first.to_bytes(4, "little")),
+                 (timeout, bytes(image))], {0: {0: elapsed & 0xffffffff}})
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00074b7c)] = 4
+REVIEWED_ORACLE_CASES[("app", 0x00074b7c)] = [
+    _app_next_timeout_case("sentinel"),
+    _app_next_timeout_case("null"),
+    _app_next_timeout_case("positive"),
+    _app_next_timeout_case("negative"),
+    _app_next_timeout_case("huge"),
+]
+
+
+def _app_twim_configure_case(skip_psel, handler):
+    instance = emu.SCRATCH + 0x7500
+    config = emu.SCRATCH + 0x7600
+    peripheral = 0x50003000
+    instance_image = bytearray(8)
+    instance_image[0:4] = peripheral.to_bytes(4, "little")
+    instance_image[4] = 2
+    config_image = bytearray(16)
+    config_image[0:4] = (0x11).to_bytes(4, "little")
+    config_image[4:8] = (0x22).to_bytes(4, "little")
+    config_image[8:12] = (0x003af000).to_bytes(4, "little")
+    config_image[12] = 3
+    config_image[15] = int(skip_psel)
+    handlers = bytearray(0x80)
+    handlers[2 * 0x28:2 * 0x28 + 4] = int(handler).to_bytes(4, "little")
+    return ({0: instance, 1: config},
+            [(instance, bytes(instance_image)), (config, bytes(config_image)),
+             (peripheral, bytes(0x600)), (0x2000b3cc, bytes(handlers))], {})
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x000675c0)] = 2
+REVIEWED_ORACLE_CASES[("app", 0x000675c0)] = [
+    _app_twim_configure_case(False, 0),
+    _app_twim_configure_case(False, 0x12345678),
+    _app_twim_configure_case(True, 0),
+    _app_twim_configure_case(True, 0x12345678),
+]
+
+
+_APP_UARTE_BAUDS = (
+    300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 31250,
+    38400, 56000, 57600, 76800, 115200, 230400, 250000, 460800,
+    921600, 1000000,
+)
+
+
+def _app_uarte_configure_case(baud=115200, parity=0, stop=1,
+                              data_bits=3, flow=0):
+    device = emu.SCRATCH + 0x7700
+    dev_config = emu.SCRATCH + 0x7800
+    data = emu.SCRATCH + 0x7900
+    config = emu.SCRATCH + 0x7a00
+    peripheral = 0x50004000
+    device_image = bytearray(20)
+    device_image[4:8] = dev_config.to_bytes(4, "little")
+    device_image[16:20] = data.to_bytes(4, "little")
+    dev_config_image = peripheral.to_bytes(4, "little")
+    config_image = bytearray(8)
+    config_image[0:4] = int(baud).to_bytes(4, "little")
+    config_image[4:8] = bytes((parity, stop, data_bits, flow))
+    return ({0: device, 1: config},
+            [(device, bytes(device_image)), (dev_config, dev_config_image),
+             (data, bytes(16)), (config, bytes(config_image)),
+             (peripheral, bytes(0x600))], {})
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00062ad8)] = 2
+REVIEWED_ORACLE_CASES[("app", 0x00062ad8)] = [
+    *[_app_uarte_configure_case(baud=baud) for baud in _APP_UARTE_BAUDS],
+    _app_uarte_configure_case(baud=12345),
+    _app_uarte_configure_case(stop=2),
+    _app_uarte_configure_case(data_bits=2),
+    _app_uarte_configure_case(flow=2),
+    _app_uarte_configure_case(parity=1),
+    _app_uarte_configure_case(parity=2),
+    _app_uarte_configure_case(parity=3),
+    _app_uarte_configure_case(stop=3, flow=1, parity=1),
+]
+
+
+def _app_adc_init_case(ready, channel_result=0, log_level=0, deferred=0):
+    device = 0x00087c20
+    api = emu.SCRATCH + 0x7b00
+    callback = 0x00080001
+    device_image = bytearray(12)
+    device_image[0:4] = (0x0009f1cf).to_bytes(4, "little")
+    device_image[8:12] = api.to_bytes(4, "little")
+    api_image = callback.to_bytes(4, "little") + bytes(8)
+    oracles = {0: {0: int(ready)}}
+    if ready:
+        oracles[1] = {0: int(channel_result) & 0xffffffff}
+    return ({}, [(device, bytes(device_image)), (api, api_image),
+                 (0x2000230c, int(log_level).to_bytes(4, "little", signed=True)),
+                 (0x20007554, int(deferred).to_bytes(4, "little"))], oracles)
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00024b98)] = 0
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00024b98)] = {
+    0x0008638c: 1,
+    0x00080000: 2,
+}
+REVIEWED_CALL_ARITIES_BY_FORMAT[("app", 0x00024b98)] = {
+    (0x0007dda4, 0x0009f0b0): 3,
+    (0x00019c70, 0x0009f0b0): 3,
+    (0x0007dda4, 0x0009f0db): 2,
+    (0x00019c70, 0x0009f0db): 2,
+}
+REVIEWED_ORACLE_CASES[("app", 0x00024b98)] = [
+    _app_adc_init_case(0), _app_adc_init_case(0, log_level=1),
+    _app_adc_init_case(0, log_level=1, deferred=1),
+    _app_adc_init_case(1, 0), _app_adc_init_case(1, -5),
+    _app_adc_init_case(1, -5, log_level=1),
+    _app_adc_init_case(1, -5, log_level=1, deferred=1),
+]
+
+
+def _app_adc_run_case(read_result, sample=7, scale_result=0,
+                      scaled=0x00400000, log_level=0, deferred=0):
+    device = 0x00087c20
+    api = emu.SCRATCH + 0x7c00
+    callback = 0x00080011
+    device_image = bytearray(12)
+    device_image[8:12] = api.to_bytes(4, "little")
+    api_image = bytearray(12)
+    api_image[4:8] = callback.to_bytes(4, "little")
+    api_image[8:10] = (16).to_bytes(2, "little")
+    oracles = {0: {0: 0}, 1: {0: int(read_result) & 0xffffffff}}
+    writes = {1: [(1, -6, int(sample & 0xffff).to_bytes(2, "little"),
+                   callback & ~1)]}
+    if read_result >= 0:
+        oracles[2] = {0: int(scale_result) & 0xffffffff}
+        writes[2] = [(1, 0, int(scaled & 0xffffffff).to_bytes(4, "little"),
+                      0x0005f60c)]
+    return ({}, [(device, bytes(device_image)), (api, bytes(api_image)),
+                 (0x2000230c, int(log_level).to_bytes(4, "little", signed=True)),
+                 (0x20007554, int(deferred).to_bytes(4, "little"))],
+            oracles, writes)
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00024c14)] = 1
+REVIEWED_STACK_POINTER_CALLS[("app", 0x00024c14)] = {
+    0: {0}, 1: {1}, 2: {1},
+}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00024c14)] = {
+    0x00086c78: 3,
+    0x00080010: 2,
+    0x0005f60c: 2,
+}
+REVIEWED_CALL_ARITIES_BY_FORMAT[("app", 0x00024c14)] = {
+    (0x0007dda4, 0x0009f104): 2,
+    (0x00019c70, 0x0009f104): 2,
+    (0x0007dda4, 0x0009f120): 2,
+    (0x00019c70, 0x0009f120): 2,
+}
+REVIEWED_ORACLE_CASES[("app", 0x00024c14)] = [
+    _app_adc_run_case(-5),
+    _app_adc_run_case(-5, log_level=1),
+    _app_adc_run_case(-5, log_level=1, deferred=1),
+    _app_adc_run_case(0, scale_result=0, scaled=0),
+    _app_adc_run_case(0, scale_result=0, scaled=0x00400000),
+    _app_adc_run_case(0, scale_result=0, scaled=0x004b0000),
+    _app_adc_run_case(0, scale_result=-5, log_level=1),
+    _app_adc_run_case(0, scale_result=-5, log_level=1, deferred=1),
+    _app_adc_run_case(0, sample=20, scale_result=1),
+]
+
+
 ABSOLUTE_READ_TRANSITION_CASES[("app", 0x0002a0d8)] = [
     transitions for _case, transitions in _TOUCH_KEY_THREAD_WITH_TRANSITIONS
 ]
