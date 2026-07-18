@@ -45,9 +45,47 @@ class AppIdentityAliasTests(unittest.TestCase):
                 ROOT, "recon/catalogs/function_names_app.json")) as stream:
             manifest = json.load(stream)
         aliases = gen_function_aliases.load_link_aliases("app", manifest)
-        self.assertEqual(29, len(aliases))
+        self.assertEqual(41, len(aliases))
         self.assertEqual("0x00034808", aliases["can_begin_task_transition"])
         self.assertEqual("0x000431a8", aliases["get_display_atomic_state"])
+
+    def test_residue_spellings_have_exact_retained_identity_backmaps(self):
+        expected = {
+            "bt_att_chan_send": "0x00058a54",
+            "bucket_idx": "0x0007de82",
+            "bytes_to_chunksz": "0x0007de70",
+            "compare_int_unlock": "0x00063524",
+            "k_fifo_put": "0x00086502",
+            "k_timer_start": "0x00075174",
+            "net_buf_add": "0x0005f5d0",
+            "net_buf_alloc": "0x000836de",
+            "next_free_chunk": "0x0007ddec",
+            "set_chunk_size": "0x0007de54",
+            "svfprintf_reentrant": "0x00078d90",
+            "update_cache": "0x000737d8",
+        }
+        with open(os.path.join(
+                ROOT, "recon/catalogs/function_names_app.json")) as stream:
+            manifest = json.load(stream)
+        aliases = gen_function_aliases.load_link_aliases("app", manifest)
+        self.assertEqual(expected, {name: aliases[name] for name in expected})
+        with open(os.path.join(
+                ROOT, "recon/symbols/g1_app_function_aliases.ld")) as stream:
+            fragment = stream.read()
+        for address in expected.values():
+            owner = manifest["by_address"][address]
+            source = owner["name"] + ".c"
+            self.assertTrue(os.path.exists(os.path.join(
+                ROOT, "recon/symbolized/app", source)), source)
+        for alias, address in expected.items():
+            target = manifest["by_address"][address]["name"]
+            line = "PROVIDE(%s = %s); /* %s */" % (alias, target, address)
+            self.assertEqual(1, fragment.count(line), line)
+        with open(os.path.join(
+                ROOT, "recon/analysis/app_link_residue.json")) as stream:
+            residue = json.load(stream)
+        unresolved = {row["symbol"] for row in residue["entries"]}
+        self.assertFalse(set(expected) & unresolved)
 
     def test_display_accessor_alias_targets_the_only_retained_owner(self):
         with open(os.path.join(

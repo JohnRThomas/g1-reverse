@@ -10,7 +10,7 @@
  "inputs": [
   {
    "path": "/private/tmp/g1-app-residue-current-0718/link.log",
-   "sha256": "be51aab16ce42a6e1f3372063e80e5e573940d1c962de8662b882b17398be04b"
+   "sha256": "ff1d30a7ed34871a87637cf684889ca6ae814d881cec7d1794cdd12c0b3008ee"
   },
   {
    "path": "recon/catalogs/function_names_app.json",
@@ -30,10 +30,9 @@
   }
  ],
  "summary": {
-  "unique_symbols": 34,
+  "unique_symbols": 22,
   "by_category": {
    "interior_or_tail_alias": 9,
-   "naming_or_symbolization_defect": 12,
    "sdk_or_config_symbol": 13
   },
   "true_missing_reconstructed_entries": 0
@@ -235,53 +234,6 @@
    "sdk_source_hit": "modules/hal/nordic/nrfx/haly/nrfy_spim.h:46"
   },
   {
-   "symbol": "bt_att_chan_send",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 2,
-   "reference_sites": [
-    "chan_req_send.c:28",
-    "process_queue.c:19"
-   ],
-   "identities": [
-    {
-     "va": "0x00058a54",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00058a54",
-     "is_thunk": false,
-     "display_name": "FUN_00058a54",
-     "retained_source": "FUN_00058a54.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": "zephyr/subsys/bluetooth/host/att.c:1121"
-  },
-  {
-   "symbol": "bucket_idx",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "alloc_chunk.c:20"
-   ],
-   "identities": [
-    {
-     "va": "0x0007de82",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007de82",
-     "is_thunk": false,
-     "display_name": "FUN_0007de82",
-     "retained_source": "FUN_0007de82.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": "zephyr/lib/os/heap-validate.c:127"
-  },
-  {
    "symbol": "buffer_write",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
@@ -307,29 +259,6 @@
    "sdk_source_hit": "modules/lib/memfault-firmware-sdk/components/core/src/memfault_event_storage.c:260"
   },
   {
-   "symbol": "bytes_to_chunksz",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "sys_heap_alloc.c:32"
-   ],
-   "identities": [
-    {
-     "va": "0x0007de70",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007de70",
-     "is_thunk": false,
-     "display_name": "FUN_0007de70",
-     "retained_source": "FUN_0007de70.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": "zephyr/lib/os/heap.c:272"
-  },
-  {
    "symbol": "compare_int_lock",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
@@ -351,29 +280,6 @@
     }
    ],
    "sdk_source_hit": "nrf/modules/nrfxlib/nrf_802154/sl/platform/nrf_802154_platform_sl_lptimer_zephyr.c:282"
-  },
-  {
-   "symbol": "compare_int_unlock",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "compare_set.c:84"
-   ],
-   "identities": [
-    {
-     "va": "0x00063524",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00063524",
-     "is_thunk": false,
-     "display_name": "FUN_00063524",
-     "retained_source": "FUN_00063524.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": "nrf/modules/nrfxlib/nrf_802154/sl/platform/nrf_802154_platform_sl_lptimer_zephyr.c:349"
   },
   {
    "symbol": "event_clear",
@@ -456,59 +362,6 @@
     }
    ],
    "sdk_source_hit": "zephyr/lib/os/heap.c:238"
-  },
-  {
-   "symbol": "k_fifo_put",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "tx_notify.c:33"
-   ],
-   "identities": [
-    {
-     "va": "0x00086502",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00086502",
-     "is_thunk": false,
-     "display_name": "net_pkt_skip",
-     "retained_source": "net_pkt_skip.c",
-     "adopted_component": null,
-     "library_signature": {
-      "name": "net_pkt_skip",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": "modules/debug/TraceRecorder/kernelports/Zephyr/include/tracing_tracerecorder.h:1071"
-  },
-  {
-   "symbol": "k_timer_start",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 2,
-   "reference_sites": [
-    "main.c:167",
-    "main.c:327"
-   ],
-   "identities": [
-    {
-     "va": "0x00075174",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00075174",
-     "is_thunk": false,
-     "display_name": "z_impl_k_timer_start",
-     "retained_source": "z_impl_k_timer_start.c",
-     "adopted_component": "app_sdk_public",
-     "library_signature": {
-      "name": "z_impl_k_timer_start",
-      "ratio": 0.97
-     }
-    }
-   ],
-   "sdk_source_hit": "modules/debug/TraceRecorder/kernelports/Zephyr/include/tracing_tracerecorder.h:1242"
   },
   {
    "symbol": "k_uptime_get_0",
@@ -610,52 +463,6 @@
    "sdk_source_hit": "zephyr/lib/os/heap.c:125"
   },
   {
-   "symbol": "net_buf_add",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "att_chan_read.c:63"
-   ],
-   "identities": [
-    {
-     "va": "0x0005f5d0",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0005f5d0",
-     "is_thunk": false,
-     "display_name": "net_buf_simple_add",
-     "retained_source": "net_buf_simple_add.c",
-     "adopted_component": "zephyr",
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": "nrf/applications/nrf5340_audio/src/bluetooth/bt_stream/broadcast/broadcast_source.c:444"
-  },
-  {
-   "symbol": "net_buf_alloc",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "att_chan_read.c:43"
-   ],
-   "identities": [
-    {
-     "va": "0x000836de",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_000836de",
-     "is_thunk": false,
-     "display_name": "FUN_000836de",
-     "retained_source": "FUN_000836de.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": "nrf/applications/nrf5340_audio/src/bluetooth/bt_stream/broadcast/broadcast_source.c:124"
-  },
-  {
    "symbol": "net_buf_tailroom",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
@@ -680,53 +487,6 @@
    "sdk_source_hit": "nrf/drivers/net/eth_rtt.c:348"
   },
   {
-   "symbol": "next_free_chunk",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "alloc_chunk.c:31"
-   ],
-   "identities": [
-    {
-     "va": "0x0007ddec",
-     "catalog_entry": true,
-     "catalog_class": "LIBRARY",
-     "catalog_name": "chunk_field",
-     "is_thunk": false,
-     "display_name": "chunk_field",
-     "retained_source": "chunk_field.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": "zephyr/lib/os/heap-validate.c:134"
-  },
-  {
-   "symbol": "set_chunk_size",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 2,
-   "reference_sites": [
-    "split_chunks.c:19",
-    "split_chunks.c:20"
-   ],
-   "identities": [
-    {
-     "va": "0x0007de54",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007de54",
-     "is_thunk": false,
-     "display_name": "FUN_0007de54",
-     "retained_source": "FUN_0007de54.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": "zephyr/lib/os/heap.c:118"
-  },
-  {
    "symbol": "strtol_reentrant",
    "category": "interior_or_tail_alias",
    "reason": "referenced VA is not a catalog function entry",
@@ -743,29 +503,6 @@
      "is_thunk": false,
      "display_name": null,
      "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "svfprintf_reentrant",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "_vsprintf_r.c:30"
-   ],
-   "identities": [
-    {
-     "va": "0x00078d90",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00078d90",
-     "is_thunk": false,
-     "display_name": "FUN_00078d90",
-     "retained_source": "FUN_00078d90.c",
      "adopted_component": null,
      "library_signature": null
     }
@@ -805,29 +542,6 @@
     }
    ],
    "sdk_source_hit": null
-  },
-  {
-   "symbol": "update_cache",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "unready_thread.c:21"
-   ],
-   "identities": [
-    {
-     "va": "0x000737d8",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_000737d8",
-     "is_thunk": false,
-     "display_name": "FUN_000737d8",
-     "retained_source": "FUN_000737d8.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": "modules/lib/openthread/third_party/tcplp/bsdtcp/tcp_fastopen.c:1049"
   }
  ]
 }

@@ -8,20 +8,15 @@ change function semantics or authorize automatic source removal.
 | Category | Unique symbols | Next action |
 |---|---:|---|
 | `interior_or_tail_alias` | 9 | materialize a safe veneer/alias after overlap review |
-| `naming_or_symbolization_defect` | 12 | repair call spelling/back-map or exported alias |
 | `sdk_or_config_symbol` | 13 | enable/pin the owning NCS unit or reconcile static linkage |
 
-Total: **34** unique symbols. True missing reconstructed entries: **0**.
+Total: **22** unique symbols. True missing reconstructed entries: **0**.
 
 ## Action queues
 
 ### `interior_or_tail_alias` (9)
 
 `FUN_0004d7d8`, `FUN_0005463e`, `FUN_00054688`, `FUN_00056e24`, `FUN_0008131c`, `ext77c8c`, `strtol_reentrant`, `tail_77d30`, `thunk_FUN_0007f7d2`
-
-### `naming_or_symbolization_defect` (12)
-
-`bt_att_chan_send`, `bucket_idx`, `bytes_to_chunksz`, `compare_int_unlock`, `k_fifo_put`, `k_timer_start`, `net_buf_add`, `net_buf_alloc`, `next_free_chunk`, `set_chunk_size`, `svfprintf_reentrant`, `update_cache`
 
 ### `sdk_or_config_symbol` (13)
 
