@@ -6613,11 +6613,13 @@
   "0x010269ce": {
    "address": "0x010269ce",
    "raw_name": "FUN_010269ce",
-   "name": "FUN_010269ce",
-   "display_name": "FUN_010269ce",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_packet_payload_claim_begin",
+   "display_name": "controller_packet_payload_claim_begin",
+   "human": true,
+   "source": "function_name_overrides.json: This private helper begins a packet payload claim: it validates the requested narrow length, rejects occupied/insufficient cursor space, writes the payload length at the current cursor, sets the active-claim byte, and returns the claim header. The distinct FUN_01026e48 owner computes and reserves append capacity in packet[8]. Raw identity remains FUN_010269ce at 0x010269ce.",
+   "aliases": [
+    "FUN_010269ce"
+   ]
   },
   "0x01026a7e": {
    "address": "0x01026a7e",
@@ -12633,7 +12635,6 @@
   "FUN_010268ce": "0x010268ce",
   "FUN_01026912": "0x01026912",
   "FUN_0102693a": "0x0102693a",
-  "FUN_010269ce": "0x010269ce",
   "FUN_01026a7e": "0x01026a7e",
   "FUN_01026acc": "0x01026acc",
   "FUN_01026b58": "0x01026b58",
@@ -13156,6 +13157,7 @@
   "controller_packet_duration_lookup": "0x01012b50",
   "controller_packet_length_matches_type": "0x0100e610",
   "controller_packet_overhead_span_get": "0x01026856",
+  "controller_packet_payload_claim_begin": "0x010269ce",
   "controller_packet_payload_copy": "0x0100e65c",
   "controller_packet_payload_extract": "0x01026c94",
   "controller_packet_payload_length_set": "0x0100e8f8",

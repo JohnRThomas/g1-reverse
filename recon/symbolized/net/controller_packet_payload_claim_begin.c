@@ -1,0 +1,51 @@
+#include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_010269ce @ 0x010269ce
+ * public-name: controller_packet_payload_claim_begin
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_packet_overhead_span_get      <= FUN_01026856 @ 0x01026856
+ *   controller_packet_payload_claim_begin    <= FUN_010269ce @ 0x010269ce
+ */
+/* FUN_010269ce @ 0x010269ce: reserve payload space in a packed controller packet. */
+#include <stdint.h>
+
+extern uint32_t FUN_010268ce(uint32_t end_cursor, uint32_t begin_cursor);
+extern uint32_t controller_packet_overhead_span_get(uint32_t packet_type);
+extern void sdc_assertion_fail(uint32_t file_id, uint32_t line);
+#define controller_packet_overhead_span_get controller_packet_overhead_span_get
+#define sdc_assertion_fail sdc_assertion_fail
+
+void *controller_packet_payload_claim_begin(uint8_t *packet, uint32_t requested_length_argument)
+{
+    uint16_t requested_length = (uint16_t)requested_length_argument;
+    uint16_t begin_header = *(uint16_t *)(packet + 6);
+    uint16_t end_header = *(uint16_t *)(packet + 8);
+    uint16_t begin = begin_header & 0x7fffu;
+    uint16_t end = end_header & 0x7fffu;
+    uint32_t minimum = *(uint16_t *)packet;
+    if (minimum < 0x45u) {
+        minimum = 0x45u;
+    }
+    if (requested_length > minimum) {
+        sdc_assertion_fail(0x14u, 0xc6u);
+    }
+    if (FUN_010268ce(end_header, begin_header) != 0u) {
+        return 0;
+    }
+    if (begin < end &&
+        (int32_t)((uint32_t)(end - begin) -
+                  controller_packet_overhead_span_get(packet[0x13])) <
+            (int32_t)requested_length) {
+        packet[0x12] = 0u;
+        return 0;
+    }
+    uint8_t *payload = packet + 0x18u + begin;
+    *(uint16_t *)payload = (uint16_t)requested_length;
+    packet[0x12] = 1u;
+    return payload;
+}
+
+/* Raw identity/back-map: FUN_010269ce @ 0x010269ce, true extent 0xb0. */
+extern __typeof(controller_packet_payload_claim_begin) FUN_010269ce
+    __attribute__((alias("controller_packet_payload_claim_begin")));

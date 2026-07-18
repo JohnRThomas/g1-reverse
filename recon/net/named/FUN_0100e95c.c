@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_pdu_type_bits_set                    <= FUN_0100e5dc @ 0x0100e5dc
+ *   controller_packet_payload_claim_begin    <= FUN_010269ce @ 0x010269ce
  * address symbols (name @ address):
  *   g_sdc_max_frag_len                       @ 0x21000eae
  */
@@ -14,7 +15,7 @@ extern void sdc_assertion_fail(unsigned int, unsigned int) __attribute__((noretu
 extern int FUN_0100cfc0(unsigned short, void*);
 extern int FUN_0100a17c(unsigned short);
 extern void FUN_0100ec40(void);
-extern int FUN_010269ce(int, unsigned short);
+extern int controller_packet_payload_claim_begin(int, unsigned short);
 extern void FUN_0102709e(int, int, void*);
 extern void sdc_pdu_type_bits_set(void*, unsigned int);
 extern void FUN_01025998(void*, unsigned int, unsigned short);
@@ -46,7 +47,7 @@ int FUN_0100e95c(unsigned int *param_1)
         }
         iVar6 = FUN_0100a17c(uVar1);
         if (iVar6 == 0) sdc_assertion_fail(0x2b, 0x67);
-        iVar4 = FUN_010269ce(iVar6, uVar2);
+        iVar4 = controller_packet_payload_claim_begin(iVar6, uVar2);
         if (iVar4 == 0 || G_LEN < uVar2) { FUN_0100ec40(); return 1; }
         FUN_0102709e(iVar6, iVar4, &ptrA);
         *ptrA = 0;
@@ -81,7 +82,7 @@ int FUN_0100e95c(unsigned int *param_1)
         }
         iVar4 = FUN_0100a17c(uVar1);
         if (iVar4 == 0) sdc_assertion_fail(0x2b, 0x67);
-        iVar5 = FUN_010269ce(iVar4, uVar2);
+        iVar5 = controller_packet_payload_claim_begin(iVar4, uVar2);
         if (iVar5 == 0 || G_LEN < uVar2) { FUN_0100ec40(); return 1; }
         FUN_0102709e(iVar4, iVar5, &ptrB);
         *ptrB = 0;

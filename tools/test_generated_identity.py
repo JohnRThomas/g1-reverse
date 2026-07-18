@@ -110,6 +110,39 @@ class GeneratedIdentityTest(unittest.TestCase):
         self.assertIn("rtc_pretick_rtc1_isr_hook", rendered)
         self.assertNotIn("extern void FUN_01039e4e", rendered)
 
+    def test_distinct_public_name_retargets_raw_owner_alias(self):
+        source = (
+            "/* FUN_010269ce @ 0x010269ce: packet helper. */\n"
+            "void *controller_packet_payload_reserve(void *packet) {\n"
+            "  return packet;\n"
+            "}\n"
+            "extern __typeof(controller_packet_payload_reserve) FUN_010269ce\n"
+            "  __attribute__((alias(\"controller_packet_payload_reserve\")));\n"
+        )
+        rendered = apply_names.render_named_body(
+            source, "net", 0x010269CE,
+            "controller_packet_payload_claim_begin")
+        self.assertIn(
+            "void *controller_packet_payload_claim_begin(void *packet)",
+            rendered)
+        self.assertIn(
+            "extern __typeof(controller_packet_payload_claim_begin) "
+            "FUN_010269ce", rendered)
+        self.assertIn(
+            'alias("controller_packet_payload_claim_begin")', rendered)
+        self.assertNotIn(
+            "void *controller_packet_payload_reserve(void *packet)", rendered)
+
+    def test_packet_payload_helpers_have_distinct_address_owners(self):
+        self.assertEqual(
+            0x010269CE,
+            function_names.address_for_name(
+                "net", "controller_packet_payload_claim_begin"))
+        self.assertEqual(
+            0x01026E48,
+            function_names.address_for_name(
+                "net", "controller_packet_payload_reserve"))
+
 
 if __name__ == "__main__":
     unittest.main()

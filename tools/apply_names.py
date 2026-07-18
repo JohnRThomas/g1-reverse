@@ -56,8 +56,59 @@ def protect_entry_alias(original, core, entry):
     return protected, placeholder, raw, count
 
 
+def retarget_entry_alias(original, core, entry, public_name):
+    """Rename a readable implementation selected behind its raw entry alias.
+
+    This handles canonical sources whose leading comment is address-only, so
+    ``rename_public_owner`` cannot discover the implementation identifier.  An
+    exact raw GCC alias is sufficient identity evidence.  Its target is renamed
+    in code and in that declaration's string while comments retain provenance.
+    """
+    raw = function_names.raw_name(core, entry)
+    pattern = re.compile(
+        r"(?P<prefix>\bextern\s+__typeof\s*\(\s*)"
+        r"(?P<owner>[A-Za-z_$][A-Za-z0-9_$]*)"
+        r"(?P<middle>\s*\)\s+)" + re.escape(raw) +
+        r"(?P<alias>\s+__attribute__\s*\(\(\s*alias\s*\(\s*\")"
+        r"(?P=owner)(?P<suffix>\"\s*\)\s*\)\)\s*;)",
+        re.DOTALL)
+    matches = list(pattern.finditer(original))
+    if not matches:
+        return original
+    if len(matches) != 1:
+        raise RuntimeError("ambiguous entry alias @ 0x%08x" % entry)
+    old_name = matches[0].group("owner")
+    if old_name == public_name:
+        return original
+
+    # Retarget the one proven alias literal before the general token pass;
+    # string literals are otherwise immutable.
+    def replace_alias(match):
+        return (match.group("prefix") + public_name + match.group("middle") +
+                raw + match.group("alias") + public_name +
+                match.group("suffix"))
+    original, count = pattern.subn(replace_alias, original)
+    if count != 1:
+        raise RuntimeError("entry alias retarget drift @ 0x%08x" % entry)
+
+    # Rename code tokens but retain comments and unrelated literals exactly.
+    token = re.compile(r"\b%s\b" % re.escape(old_name))
+    skip = re.compile(
+        r'/\*.*?\*/|//[^\n]*|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'',
+        re.DOTALL)
+    output = []
+    position = 0
+    for match in skip.finditer(original):
+        output.append(token.sub(public_name, original[position:match.start()]))
+        output.append(match.group(0))
+        position = match.end()
+    output.append(token.sub(public_name, original[position:]))
+    return "".join(output)
+
+
 def render_named_body(original, core, entry, public_name):
     """Apply readable names while retaining a reversible raw entry alias."""
+    original = retarget_entry_alias(original, core, entry, public_name)
     protected, placeholder, raw, alias_count = protect_entry_alias(
         original, core, entry)
     body = function_names.substitute(protected, core)
