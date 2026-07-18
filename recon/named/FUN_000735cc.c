@@ -11,6 +11,7 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   k_is_in_isr                              <= FUN_00086406 @ 0x00086406
  *   unschedule_locked                        <= FUN_0008656a @ 0x0008656a
+ *   cancel_async_locked                      <= FUN_00086596 @ 0x00086596
  * address symbols (name @ address):
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f08c7                             @ 0x000f08c7
@@ -29,7 +30,7 @@
 #include <stdbool.h>
 #include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 extern int k_is_in_isr(void); extern int z_spin_lock_valid(uint32_t); extern void z_spin_lock_set_owner(uint32_t); extern uint64_t z_spin_unlock_valid(uint32_t);
-extern void unschedule_locked(void*); extern void FUN_00086596(void*); extern int cancel_sync_locked(void*,void*); extern void z_impl_k_sem_take(void*,uint32_t,uint32_t,uint32_t);
+extern void unschedule_locked(void*); extern void cancel_async_locked(void*); extern int cancel_sync_locked(void*,void*); extern void z_impl_k_sem_take(void*,uint32_t,uint32_t,uint32_t);
 extern void printk(uint32_t,...); extern void assert_post_action(uint32_t,uint32_t);
 bool FUN_000735cc(uint8_t *obj,uint8_t *request)
 {
@@ -39,7 +40,7 @@ bool FUN_000735cc(uint8_t *obj,uint8_t *request)
     uint32_t bp=__get_BASEPRI(); __set_BASEPRI_MAX(0x20); __ISB();
     if (!z_spin_lock_valid(0x2000b480)) { printk(0x99cbd,0xf0920,0xf08c7,0x72); printk(0xf0935,0x2000b480); assert_post_action(0xf08c7,0x72); }
     z_spin_lock_set_owner(0x2000b480); bool active=(*(uint32_t *)(obj+0xc)&0xf)!=0; int notify=0;
-    if (active) { unschedule_locked(obj); FUN_00086596(obj); notify=cancel_sync_locked(obj,request); }
+    if (active) { unschedule_locked(obj); cancel_async_locked(obj); notify=cancel_sync_locked(obj,request); }
     uint64_t unlock=z_spin_unlock_valid(0x2000b480);
     if (!(uint32_t)unlock) { printk(0x99cbd,0xf08f4,0xf08c7,0xf0); printk(0xf090b,0x2000b480); assert_post_action(0xf08c7,0xf0); }
     __set_BASEPRI(bp); __ISB();

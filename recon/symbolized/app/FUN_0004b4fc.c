@@ -6,6 +6,7 @@
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   process_recheck                          <= FUN_0007e18e @ 0x0007e18e
  *   notify_one                               <= FUN_0007e1e6 @ 0x0007e1e6
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
@@ -57,7 +58,7 @@ typedef struct transition_state {
 extern int z_spin_lock_valid(void *lock);
 extern int z_spin_unlock_valid(void *lock, ...);
 extern void z_spin_lock_set_owner(void *lock);
-extern uint64_t FUN_0007e18e(transition_state *state, ...);
+extern uint64_t process_recheck(transition_state *state, ...);
 extern void notify_one(transition_state *state, pending_node *node,
                          uint32_t mode, uint32_t operation);
 extern void printk(uintptr_t format, ...);
@@ -115,7 +116,7 @@ void FUN_0004b4fc(transition_state *state, uint32_t request,
 
 again:
     if (request == 2) {
-        uint64_t result = FUN_0007e18e(state, desired, saved_priority,
+        uint64_t result = process_recheck(state, desired, saved_priority,
                                       flags, call_context);
         uint32_t next_mode = (uint32_t)(result >> 32);
         uint32_t action = (uint32_t)result;
@@ -155,14 +156,14 @@ process_current:
                     state->flags = (uint16_t)(flags & ~7u);
                 }
                 flags = state->flags;
-                result = FUN_0007e18e(state);
+                result = process_recheck(state);
                 next_mode = (uint32_t)(result >> 32);
                 if ((uint32_t)result != 0)
                     state->flags = (uint16_t)(flags | 0x20u);
             } else if (desired == 4) {
                 state->flags = (uint16_t)(flags & ~7u);
                 flags = state->flags;
-                result = FUN_0007e18e(state);
+                result = process_recheck(state);
                 if ((uint32_t)result != 0)
                     state->flags = (uint16_t)(flags | 0x20u);
                 next_mode = (uint32_t)(result >> 32);

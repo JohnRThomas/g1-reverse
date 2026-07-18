@@ -12,6 +12,7 @@
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f6d5e                             @ 0x000f6d5e
  *   rodata_f6d9a                             @ 0x000f6d9a
+ *   rodata_f6dc6                             @ 0x000f6dc6
  *   g_sram_base_word                         @ 0x20000000
  *   g_qspi_cb                                @ 0x2000b348
  *   NRF_QSPI_BASE                            @ 0x5002b000
@@ -42,7 +43,7 @@ uint32_t qspi_xfer(uint32_t buffer0, uint32_t buffer1,
         assert_post_action(((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/, 0x7aUL);
     }
     if (buffer0 == 0U) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, 0x000f6dc6UL, ((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/, 0x7bUL);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f6dc6) /*=0xf6dc6*/, ((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/, 0x7bUL);
         assert_post_action(((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/, 0x7bUL);
     }
 

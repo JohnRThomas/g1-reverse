@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
  *   bt_dev_get                               <= FUN_00054ce0 @ 0x00054ce0
+ *   hci_set_ad                               <= FUN_00055534 @ 0x00055534
  *   le_adv_update                            <= FUN_000811ce @ 0x000811ce
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  */
@@ -12,7 +13,7 @@
 #include <stdint.h>
 extern uint8_t strlen(int);
 extern int bt_dev_get(void);
-extern int FUN_00055534(int,void*,int);
+extern int hci_set_ad(int,void*,int);
 extern void memset_bytes(void*,int,int);
 
 struct advertising_request {
@@ -63,7 +64,7 @@ int le_adv_update(uintptr_t owner, const void *records, uint32_t record_count,
 
     request.records = records;
     request.record_count = record_count;
-    int result = FUN_00055534(0x2008, &request.records, request_words);
+    int result = hci_set_ad(0x2008, &request.records, request_words);
     if (result != 0)
         return result;
 
@@ -76,7 +77,7 @@ int le_adv_update(uintptr_t owner, const void *records, uint32_t record_count,
         }
         request.records = metadata;
         request.record_count = metadata_count;
-        result = FUN_00055534(0x2009, &request.records, request_words);
+        result = hci_set_ad(0x2009, &request.records, request_words);
         if (result != 0)
             return result;
     }

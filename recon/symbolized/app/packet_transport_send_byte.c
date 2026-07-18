@@ -4,6 +4,8 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   packet_transport_send_byte               <= FUN_0003364c @ 0x0003364c
+ * address symbols (name @ address):
+ *   rodata_a7af2                             @ 0x000a7af2
  */
 /* Reconstructed FUN_0003364c @ 0x0003364c, extent 0x00000054.
  * Readable identity: packet_transport_send_byte.
@@ -25,7 +27,7 @@ int packet_transport_send_byte(void *transport, const uint8_t *value, const void
     vtable = *(uint32_t **)((uint8_t *)transport + 8);
     result = ((int (*)(uint32_t))vtable[1])(10000U);
     if (result != 0) {
-        log_message(0x000a7af2UL);
+        log_message(((unsigned long)&rodata_a7af2) /*=0xa7af2*/);
         return -2;
     }
     FUN_00074844(0x4000U, 0U);

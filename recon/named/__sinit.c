@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   __retarget_lock_release_recursive        <= FUN_00051134 @ 0x00051134
  *   env_lock_acquire                         <= FUN_00076bb4 @ 0x00076bb4
+ *   __sinit_lock_release                     <= FUN_00076bc0 @ 0x00076bc0
  *   __sinit                                  <= FUN_00076bcc @ 0x00076bcc
  * address symbols (name @ address):
  *   rodata_76b91                             @ 0x00076b91
@@ -15,10 +16,10 @@ extern void __retarget_lock_release_recursive(uint32_t);
 extern void FUN_00076b48(uint32_t,int,int);
 extern void env_lock_acquire(void);
 extern uint32_t FUN_00076c3c(int);
-extern void FUN_00076bc0(void);
+extern void __sinit_lock_release(void);
 void __sinit(int param_1){
   env_lock_acquire();
-  if(*(volatile int*)(param_1+0x18)!=0){ FUN_00076bc0(); return; }
+  if(*(volatile int*)(param_1+0x18)!=0){ __sinit_lock_release(); return; }
   *(volatile uint32_t*)(param_1+0x48)=0;
   *(volatile uint32_t*)(param_1+0x4c)=0;
   *(volatile uint32_t*)(param_1+0x50)=0;
@@ -33,5 +34,5 @@ void __sinit(int param_1){
   FUN_00076b48(*(volatile uint32_t*)(param_1+8),9,1);
   FUN_00076b48(*(volatile uint32_t*)(param_1+0xc),0x12,2);
   *(volatile uint32_t*)(param_1+0x18)=1;
-  FUN_00076bc0();
+  __sinit_lock_release();
 }

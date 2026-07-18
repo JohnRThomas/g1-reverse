@@ -9,6 +9,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   unschedule_locked                        <= FUN_0008656a @ 0x0008656a
+ *   cancel_async_locked                      <= FUN_00086596 @ 0x00086596
  * address symbols (name @ address):
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f08c7                             @ 0x000f08c7
@@ -30,7 +31,7 @@ extern int z_spin_lock_valid(u32);
 extern void z_spin_lock_set_owner(u32);
 extern int z_spin_unlock_valid(u32);
 extern void unschedule_locked(int);
-extern u32 FUN_00086596(int);
+extern u32 cancel_async_locked(int);
 u32 FUN_00073518(int param_1, u32 param_2, u32 param_3, u32 param_4){
     u32 uVar4, uVar5;
     if(param_1==0){
@@ -49,7 +50,7 @@ u32 FUN_00073518(int param_1, u32 param_2, u32 param_3, u32 param_4){
         } else {
             z_spin_lock_set_owner(((unsigned long)&timer_spinlock) /*=0x2000b480*/);
             unschedule_locked(param_1);
-            uVar4 = FUN_00086596(param_1);
+            uVar4 = cancel_async_locked(param_1);
             iVar3 = z_spin_unlock_valid(((unsigned long)&timer_spinlock) /*=0x2000b480*/);
             if(iVar3!=0){
                 __set_BASEPRI(uVar5);

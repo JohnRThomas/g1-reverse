@@ -8,6 +8,7 @@
  *   dlist_unlink_node                        <= FUN_00073cdc @ 0x00073cdc
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   z_reschedule_unlocked                    <= FUN_0008664c @ 0x0008664c
  * address symbols (name @ address):
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f08c7                             @ 0x000f08c7
@@ -29,7 +30,7 @@ extern void dlist_unlink_node(void*,void*);
 extern void FUN_00074d74(void*);
 extern void assert_post_action(unsigned,unsigned);
 extern void printk(unsigned,...);
-extern void FUN_0008664c(void);
+extern void z_reschedule_unlocked(void);
 
 void FUN_000741a4(uint8_t *param_1){
     unsigned uVar6=0;
@@ -53,7 +54,7 @@ void FUN_000741a4(uint8_t *param_1){
     iVar5 = z_spin_unlock_valid((void*)0x2000b490);
     if (iVar5 != 0){
         if (*(int*)(0x2000b448+8) != (int)(intptr_t)param_1) return;
-        FUN_0008664c();
+        z_reschedule_unlocked();
         return;
     }
     printk(0x00099cbd,0x000f08f4,0x000f08c7,0xf0);

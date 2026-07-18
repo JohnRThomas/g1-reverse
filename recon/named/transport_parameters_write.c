@@ -5,6 +5,9 @@
  *   ipc_ept_op_a_locked_retry                <= FUN_000256dc @ 0x000256dc
  *   ipc_send_len_prefixed_packet_locked_retry <= FUN_00025788 @ 0x00025788
  *   transport_parameters_write               <= FUN_00025950 @ 0x00025950
+ * address symbols (name @ address):
+ *   rodata_9f2f8                             @ 0x0009f2f8
+ *   rodata_9f396                             @ 0x0009f396
  */
 /* Reconstructed FUN_00025950 @ 0x00025950, extent 0x0000007c.
  * Readable identity: transport_parameters_write.

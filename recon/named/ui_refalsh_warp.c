@@ -4,12 +4,16 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
+ *   ui_ancs_notification_task                <= FUN_0003603c @ 0x0003603c
  *   update_demo_image_display                <= FUN_00036a18 @ 0x00036a18
+ *   ui_new_message_task                      <= FUN_00036b3c @ 0x00036b3c
  *   ui_DashBoard_task                        <= FUN_0003af78 @ 0x0003af78
  *   ui_QuickNote_task                        <= FUN_0003b824 @ 0x0003b824
  *   ui_even_ai_task                          <= FUN_0003bfe0 @ 0x0003bfe0
  *   ui_even_ai_draw_mic_status_icon          <= FUN_0003cb58 @ 0x0003cb58
  *   ui_teleprompter_task                     <= FUN_0003cf44 @ 0x0003cf44
+ *   ui_navigation_task                       <= FUN_0003f410 @ 0x0003f410
+ *   ui_translate_task                        <= FUN_0003fecc @ 0x0003fecc
  *   ui_onboarding_task                       <= FUN_00042d44 @ 0x00042d44
  *   ui_raster_height_task                    <= FUN_000430c0 @ 0x000430c0
  *   ui_set_imu_pitch_task                    <= FUN_00046b80 @ 0x00046b80
@@ -31,10 +35,10 @@ extern int is_battery_critical(void);
 extern int update_demo_image_display(int,int,int);
 extern int log_message(int,int,int,int);
 extern int debug_print(int,int,int,int);
-extern int FUN_0003603c(int,int,int);
-extern int FUN_00036b3c(int,int,int);
-extern int FUN_0003f410(int,int,int);
-extern int FUN_0003fecc(int,int,int);
+extern int ui_ancs_notification_task(int,int,int);
+extern int ui_new_message_task(int,int,int);
+extern int ui_navigation_task(int,int,int);
+extern int ui_translate_task(int,int,int);
 extern int ui_DashBoard_task(int,int,int);
 extern int ui_even_ai_draw_mic_status_icon(int,int,int);
 extern int ui_teleprompter_task(int,int,int);
@@ -71,10 +75,10 @@ int ui_refalsh_warp(int param_1,int param_2,int param_3,int param_4){
     }
     *p_a098 = param_2;
     switch(param_2){
-    case 4:  return FUN_0003603c(param_1+0xb6c,param_3,param_4);
-    case 5:  return FUN_00036b3c(param_1+0xb6c,param_3,param_4);
-    case 10: return FUN_0003f410(param_1+0xb6c,param_3,param_4);
-    case 11: return FUN_0003fecc(param_1+0xb6c,param_3,param_4);
+    case 4:  return ui_ancs_notification_task(param_1+0xb6c,param_3,param_4);
+    case 5:  return ui_new_message_task(param_1+0xb6c,param_3,param_4);
+    case 10: return ui_navigation_task(param_1+0xb6c,param_3,param_4);
+    case 11: return ui_translate_task(param_1+0xb6c,param_3,param_4);
     case 6:  NORMAL(ui_DashBoard_task, 6);
     case 7:  NORMAL(ui_even_ai_draw_mic_status_icon, 7);
     case 9:  NORMAL(ui_teleprompter_task, 9);

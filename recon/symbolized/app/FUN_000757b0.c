@@ -9,6 +9,7 @@
  *   z_reschedule                             <= FUN_000739f0 @ 0x000739f0
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   signal_poll_event                        <= FUN_000867da @ 0x000867da
  * address symbols (name @ address):
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f08c7                             @ 0x000f08c7
@@ -27,7 +28,7 @@ extern void assert_post_action(u32,u32);
 extern int z_spin_lock_valid(u32);
 extern void z_spin_lock_set_owner(u32);
 extern int z_spin_unlock_valid(u32);
-extern u32 FUN_000867da(void*,u32);
+extern u32 signal_poll_event(void*,u32);
 extern void z_reschedule(u32,u32);
 static inline u32 rd_basepri(void){return __get_BASEPRI();}
 static inline void wr_basepri_max(u32 v){__set_BASEPRI_MAX(v);}
@@ -62,7 +63,7 @@ u32 FUN_000757b0(int* param_1, int param_2){
             *(int**)(iVar3b+4) = piVar5;
             piVar4[0] = 0;
             piVar4[1] = 0;
-            uVar6 = FUN_000867da(piVar4, 1);
+            uVar6 = signal_poll_event(piVar4, 1);
             z_reschedule(((unsigned long)&poll_spinlock) /*=0x2000b4a0*/, uVar7);
         }
         return uVar6;

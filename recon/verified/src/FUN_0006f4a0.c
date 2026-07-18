@@ -93,4 +93,3 @@ void FUN_0006f4a0(int dt,int sr,int nbytes,bool pitch,const void *tns,
     side->g_idx=gint+adj+goff;
     FUN_0006f28c(dt,sr,nbytes,xq,&side->nq,budget,&side->lsb_mode);
 }
-

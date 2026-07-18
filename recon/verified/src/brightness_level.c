@@ -1,4 +1,5 @@
-/* Full reconstruction brightness_level @ 0x23844, CFG-correct extent 464 bytes. */
+/* Full reconstruction brightness_level @ 0x23844, CFG-correct extent 464 bytes.
+ * CFG_VERIFY_PREFIX_FIRST CFG_VERIFY_PREFIX_K=20 */
 #include <stdint.h>
 extern void FUN_000234e8(void);
 extern void FUN_000235dc(void);

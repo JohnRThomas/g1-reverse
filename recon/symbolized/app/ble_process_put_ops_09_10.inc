@@ -40,7 +40,7 @@ extern int update_persist_task_status();
 #define OP10_PAN_SIZE (*(volatile uint16_t *)(uintptr_t)0x2000d700)
 #define OP10_PAN_MAP ((volatile uint8_t *)(uintptr_t)((unsigned long)&g_20011d82) /*=0x20011d82*/)
 #define OP10_PAN_DATA_READY (*(volatile uint8_t *)(uintptr_t)((unsigned long)&g_20010322) /*=0x20010322*/)
-#define OP10_NAV_SYNC_COUNT (*(volatile uint32_t *)(uintptr_t)0x20007568)
+#define OP10_NAV_SYNC_COUNT (*(volatile uint32_t *)(uintptr_t)((unsigned long)&g_20007568) /*=0x20007568*/)
 #define OP9_TEXT_SIZE (*(volatile uint16_t *)(uintptr_t)0x2000d702)
 #define OP9_ASSEMBLY ((volatile uint8_t *)(uintptr_t)0x2001046b)
 #define OP9_ASSEMBLY_TEXT ((volatile uint8_t *)(uintptr_t)0x20010482)

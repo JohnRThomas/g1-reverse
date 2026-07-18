@@ -10,6 +10,7 @@
  *   rodata_87bf0                             @ 0x00087bf0
  *   rodata_9e2da                             @ 0x0009e2da
  *   rodata_9e2f1                             @ 0x0009e2f1
+ *   rodata_9e528                             @ 0x0009e528
  *   rodata_a40ec                             @ 0x000a40ec
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554

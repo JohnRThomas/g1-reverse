@@ -2,6 +2,7 @@
  * public-name: ble_conn_unref
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   legacy_advertising_connection_restart    <= FUN_00055aac @ 0x00055aac
  *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
@@ -16,7 +17,7 @@
 
 extern void printk(uint32_t module, ...);
 extern void assert_post_action(uint32_t source, uint32_t line);
-extern void FUN_00055aac(void *object);
+extern void legacy_advertising_connection_restart(void *object);
 
 void ble_conn_unref(uint8_t *object)
 {
@@ -31,5 +32,5 @@ void ble_conn_unref(uint8_t *object)
 
     if (*(volatile uint16_t *)(object + 2) == 0x101 &&
         __atomic_load_n(references, __ATOMIC_ACQUIRE) == 0)
-        FUN_00055aac(object);
+        legacy_advertising_connection_restart(object);
 }

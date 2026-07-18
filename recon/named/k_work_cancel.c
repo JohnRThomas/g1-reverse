@@ -8,6 +8,7 @@
  *   k_work_cancel                            <= FUN_00072fe8 @ 0x00072fe8
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   cancel_async_locked                      <= FUN_00086596 @ 0x00086596
  * address symbols (name @ address):
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f08c7                             @ 0x000f08c7
@@ -28,7 +29,7 @@ extern int z_spin_unlock_valid(uint32_t);
 extern void z_spin_lock_set_owner(uint32_t);
 extern void assert_post_action(uint32_t,uint32_t);
 extern void printk(uint32_t,uint32_t,...);
-extern uint32_t FUN_00086596(int);
+extern uint32_t cancel_async_locked(int);
 
 uint32_t k_work_cancel(int param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4){
   uint32_t sb, uVar4;
@@ -51,7 +52,7 @@ uint32_t k_work_cancel(int param_1, uint32_t param_2, uint32_t param_3, uint32_t
     assert_post_action(0xf08c7,0x72);
   }
   z_spin_lock_set_owner(0x2000b480);
-  uVar4 = FUN_00086596(param_1);
+  uVar4 = cancel_async_locked(param_1);
   iVar3 = z_spin_unlock_valid(0x2000b480);
   if (iVar3 == 0){
     printk(0x99cbd,0xf08f4,0xf08c7,0xf0,param_4);

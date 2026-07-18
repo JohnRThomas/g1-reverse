@@ -2,11 +2,13 @@
 /* readable reconstruction; identity: FUN_00081c22 @ 0x00081c22
  * public-name: FUN_00081c22
  * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_gatt_att_max_mtu_changed              <= FUN_0005c76c @ 0x0005c76c
  */
 /* Reconstructed FUN_00081c22 @ 0x81c22  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void FUN_0005c76c(uint32_t,uint32_t,uint32_t,uint32_t);
+extern void bt_gatt_att_max_mtu_changed(uint32_t,uint32_t,uint32_t,uint32_t);
 typedef uint32_t u32; typedef uint16_t u16;
 #define H(p,off) (*(u16*)((char*)(p)+(off)))
 void FUN_00081c22(u32* param_1){
@@ -43,5 +45,5 @@ L64:
     if(uVar4 < uVar1) uVar4 = uVar1;
     u32 uVar2 = *(u32*)*param_1;
     if(uVar3 < uVar9) uVar3 = uVar9;
-    FUN_0005c76c(uVar2, uVar3, uVar4, uVar9);
+    bt_gatt_att_max_mtu_changed(uVar2, uVar3, uVar4, uVar9);
 }

@@ -2,6 +2,7 @@
  * public-name: FUN_00074554
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   z_thread_priority_set                    <= FUN_00074184 @ 0x00074184
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -12,7 +13,7 @@
  */
 /* Reconstructed FUN_00074554 @ 0x74554  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_00074184(int,int);
+extern void z_thread_priority_set(int,int);
 extern void assert_post_action(int,int);
 extern int printk(int,...);
 void FUN_00074554(int param_1,int param_2){
@@ -21,5 +22,5 @@ void FUN_00074554(int param_1,int param_2){
     printk(0xf7fee,param_2,0xe,0xfffffff0);
     assert_post_action(0xf82f4,0x53d);
   }
-  FUN_00074184(param_1,param_2);
+  z_thread_priority_set(param_1,param_2);
 }

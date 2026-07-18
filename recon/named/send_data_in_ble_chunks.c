@@ -5,6 +5,7 @@
  *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   send_notification_app_whitelist          <= FUN_00033730 @ 0x00033730
  *   send_data_in_ble_chunks                  <= FUN_0003384c @ 0x0003384c
  *   strncmp                                  <= FUN_00087036 @ 0x00087036
  * address symbols (name @ address):
@@ -20,7 +21,7 @@ extern uint32_t log_message(uintptr_t format, ...);
 extern uint32_t strlen(uint32_t command);
 extern uintptr_t get_device_info(void);
 extern uint32_t debug_print(uintptr_t format, ...);
-extern uint32_t FUN_00033730(void *transport, const void *name,
+extern uint32_t send_notification_app_whitelist(void *transport, const void *name,
                              const void *payload, uint32_t reserved);
 extern int strncmp(uint32_t command, const void *name, uint32_t value);
 
@@ -47,6 +48,6 @@ uint32_t send_data_in_ble_chunks(const uint8_t *request)
         }
     }
 
-    return FUN_00033730((void *)(get_device_info() + 0x77c),
+    return send_notification_app_whitelist((void *)(get_device_info() + 0x77c),
                          request + 0x10, request + 0x30, 0);
 }

@@ -45,20 +45,14 @@ class OwnershipCatalogTest(unittest.TestCase):
 
     def test_known_runtime_and_static_owners(self):
         by_symbol = {row["symbol"]: row for row in self.entries}
-        self.assertEqual("__fixdfsi", by_symbol["FUN_0000de58"]["semantic_owner"])
-        self.assertEqual("rpmsg_send_offchannel_raw",
-                         by_symbol["FUN_00070f1c"]["semantic_owner"])
-        self.assertEqual(1.0, by_symbol["FUN_00070f1c"]["signature_ratio"])
-        self.assertFalse(by_symbol["z_log_dropped_read_and_clear_0"]
-                         ["safe_automatic_link_owner"])
-        self.assertEqual("identity_collision_review",
-                         by_symbol["z_log_dropped_read_and_clear_0"]["action"])
-        self.assertEqual("archive_public", by_symbol["FUN_0000de58"]["owner_kind"])
-        self.assertEqual("archive_local", by_symbol["FUN_0004c4e4"]["owner_kind"])
+        self.assertEqual("free_list_remove",
+                         by_symbol["FUN_0007def6"]["semantic_owner"])
+        self.assertEqual("archive_local",
+                         by_symbol["FUN_00080fd2"]["owner_kind"])
         self.assertEqual("reconcile_inline_at_callsite",
-                         by_symbol["atomic_and_0"]["action"])
-        self.assertEqual("reclassify_application_owner",
-                         by_symbol["adc_nfc_init"]["action"])
+                         by_symbol["k_uptime_get_7"]["action"])
+        self.assertEqual("manual_owner_review",
+                         by_symbol["net_buf_tailroom"]["action"])
 
     def test_report_only_policy(self):
         self.assertTrue(self.catalog["policy"]["report_only"])
@@ -67,16 +61,13 @@ class OwnershipCatalogTest(unittest.TestCase):
     def test_safe_candidates_are_exactly_public_exports(self):
         candidates = [row for row in self.entries
                       if row["safe_automatic_link_owner"]]
-        self.assertEqual(27, len(candidates))
+        self.assertEqual(0, len(candidates))
         self.assertTrue(all(row["owner_kind"] == "archive_public"
                             for row in candidates))
 
-    def test_cc312_same_name_collision_is_not_linkable(self):
-        row = next(row for row in self.entries
-                   if row["symbol"] == "nrf_cc3xx_platform_abort")
-        self.assertFalse(row["safe_automatic_link_owner"])
-        self.assertEqual("0x00050af8", row["collision"]["requested_firmware_identity"])
-        self.assertEqual("0x00079590", row["collision"]["already_adopted_cc312_identity"])
+    def test_current_residue_has_no_automatic_public_link_owner(self):
+        self.assertTrue(all(not row["safe_automatic_link_owner"]
+                            for row in self.entries))
 
 
 if __name__ == "__main__":

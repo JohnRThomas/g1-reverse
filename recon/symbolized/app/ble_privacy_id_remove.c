@@ -11,6 +11,7 @@
  *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   addr_res_enable                          <= FUN_00081050 @ 0x00081050
  * address symbols (name @ address):
  *   rodata_81035                             @ 0x00081035
  *   ADDR_bt_le_adv_clear_pending_flag_THUMB  @ 0x00081081
@@ -38,7 +39,7 @@ extern int printk(int,...);
 extern void assert_post_action(int,...) __attribute__((noreturn));
 extern int FUN_00080fc4(int,...);
 extern int FUN_0008104a(int,...);
-extern int FUN_00081050(int,...);
+extern int addr_res_enable(int,...);
 
 void ble_privacy_id_remove(int param_1)
 {
@@ -62,7 +63,7 @@ void ble_privacy_id_remove(int param_1)
             return;
         }
         FUN_00055710(((unsigned long)&rodata_810ab) /*=0x810ab*/,0);
-        iVar3 = FUN_00081050(0);
+        iVar3 = addr_res_enable(0);
         if(iVar3==0){
             if(*(volatile unsigned char*)(iVar2+0x120) < *(volatile unsigned char*)(iVar2+0x121)){
                 *(volatile unsigned char*)(iVar2+0x121) = *(volatile unsigned char*)(iVar2+0x121) - 1;
@@ -93,7 +94,7 @@ void ble_privacy_id_remove(int param_1)
         }
 LAB_00055142:
         if(*(char*)(iVar2+0x121) != 0){
-            FUN_00081050(1);
+            addr_res_enable(1);
         }
         FUN_00055710(ADDR_bt_le_adv_clear_pending_flag_THUMB /*=0x81081*/,0);
         return;

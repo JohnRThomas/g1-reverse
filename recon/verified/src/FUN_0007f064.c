@@ -6,4 +6,3 @@ uint32_t FUN_0007f064(struct object_7f064 *object)
 {
     return *object->vtable->get_value();
 }
-

@@ -6,6 +6,7 @@
  *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
  *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
  *   net_buf_frags_len_0                      <= FUN_00081bc0 @ 0x00081bc0
+ *   att_chan_read                            <= FUN_00081e2a @ 0x00081e2a
  *   bt_gatt_check_perm                       <= FUN_00082cba @ 0x00082cba
  * address symbols (name @ address):
  *   ADDR_attr_read_type_cb_THUMB             @ 0x00081bd1
@@ -18,7 +19,7 @@ extern int bt_uuid_cmp(uint32_t, uint32_t, void *, uint32_t);
 extern int bt_gatt_check_perm(uint32_t, void *, uint32_t);
 extern uint32_t net_buf_frag_last(uint32_t);
 extern void *net_buf_simple_add(uint32_t, uint32_t);
-extern int32_t FUN_00081e2a(void *, void *, uint32_t, uint32_t, uintptr_t, void *);
+extern int32_t att_chan_read(void *, void *, uint32_t, uint32_t, uintptr_t, void *);
 extern uint32_t net_buf_frags_len_0(uint32_t);
 
 struct request_58808 {
@@ -50,7 +51,7 @@ bool FUN_00058808(uint32_t *context, uint32_t value,
 
     request->payload = net_buf_simple_add(net_buf_frag_last(request->buffer) + 12, 2);
     *request->payload = (uint16_t)value;
-    status = FUN_00081e2a(owner, context, request->buffer, 0,
+    status = att_chan_read(owner, context, request->buffer, 0,
                           0x00081bd1u, request);
     if (status < 0) {
         request->status = status < -255 ? 14 : (uint8_t)-status;

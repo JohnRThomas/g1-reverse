@@ -3,6 +3,7 @@
  * public-name: cbor_decode_leave_container
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   zcbor_process_backup                     <= FUN_00085c86 @ 0x00085c86
  *   cbor_decode_expect_break                 <= FUN_00085dd2 @ 0x00085dd2
  *   cbor_decode_leave_container              <= FUN_00085df6 @ 0x00085df6
  */
@@ -10,7 +11,7 @@
 #include <stdint.h>
 
 extern int cbor_decode_expect_break(void *);
-extern int FUN_00085c86(void *, uint32_t, uint32_t, uint32_t);
+extern int zcbor_process_backup(void *, uint32_t, uint32_t, uint32_t);
 
 int cbor_decode_leave_container(void *decoder, uint32_t reserved_1,
                  uint32_t reserved_2, uint32_t options)
@@ -28,5 +29,5 @@ int cbor_decode_leave_container(void *decoder, uint32_t reserved_1,
     options = 0;
     *restart_pending = 0;
   }
-  return FUN_00085c86(decoder, 7, restart_value, options);
+  return zcbor_process_backup(decoder, 7, restart_value, options);
 }

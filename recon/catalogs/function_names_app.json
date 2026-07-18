@@ -7663,13 +7663,10 @@
    "address": "0x0004df34",
    "raw_name": "FUN_0004df34",
    "name": "FUN_0004df34",
-   "display_name": "log_output_dropped_process",
+   "display_name": "FUN_0004df34",
    "human": false,
-   "source": "collision-rejected",
-   "aliases": [
-    "FUN_0004df34"
-   ],
-   "rejected_name": "log_output_dropped_process"
+   "source": "recon/app/src/FUN_0004df34.c",
+   "aliases": []
   },
   "0x0004df40": {
    "address": "0x0004df40",
@@ -10443,13 +10440,10 @@
    "address": "0x00059690",
    "raw_name": "FUN_00059690",
    "name": "FUN_00059690",
-   "display_name": "bt_gatt_init",
+   "display_name": "FUN_00059690",
    "human": false,
-   "source": "collision-rejected",
-   "aliases": [
-    "FUN_00059690"
-   ],
-   "rejected_name": "bt_gatt_init"
+   "source": "recon/app/src/FUN_00059690.c",
+   "aliases": []
   },
   "0x000596c0": {
    "address": "0x000596c0",
@@ -12040,11 +12034,11 @@
   },
   "0x00061200": {
    "address": "0x00061200",
-   "raw_name": "FUN_00061200",
+   "raw_name": "tail_61200",
    "name": "flash_nrf_read_invalid_address",
    "display_name": "flash_nrf_read_invalid_address",
    "human": true,
-   "source": "function_name_overrides.json: Compiler-outlined cold invalid-address diagnostic path of Zephyr flash_nrf_read; it logs the address/length tuple and returns -EINVAL. Raw identity remains tail_61200 at 0x00061200.",
+   "source": "function_name_overrides.json: Compiler-outlined cold invalid-address diagnostic path of Zephyr flash_nrf_read; canonical tail_61200.c defines the genuine readable primary flash_nrf_read_invalid_address, logs the address/length tuple, and returns -EINVAL. Raw identity remains tail_61200 at 0x00061200.",
    "aliases": []
   },
   "0x0006125c": {
@@ -15075,13 +15069,10 @@
    "address": "0x00075944",
    "raw_name": "FUN_00075944",
    "name": "FUN_00075944",
-   "display_name": "k_aligned_alloc",
+   "display_name": "FUN_00075944",
    "human": false,
-   "source": "collision-rejected",
-   "aliases": [
-    "FUN_00075944"
-   ],
-   "rejected_name": "k_aligned_alloc"
+   "source": "recon/app/src/FUN_00075944.c",
+   "aliases": []
   },
   "0x00075980": {
    "address": "0x00075980",
@@ -21015,13 +21006,10 @@
    "address": "0x000810f2",
    "raw_name": "FUN_000810f2",
    "name": "FUN_000810f2",
-   "display_name": "set_random_address",
+   "display_name": "FUN_000810f2",
    "human": false,
-   "source": "collision-rejected",
-   "aliases": [
-    "FUN_000810f2"
-   ],
-   "rejected_name": "set_random_address"
+   "source": "recon/app/src/FUN_000810f2.c",
+   "aliases": []
   },
   "0x00081102": {
    "address": "0x00081102",
@@ -23687,13 +23675,10 @@
    "address": "0x00084e58",
    "raw_name": "FUN_00084e58",
    "name": "FUN_00084e58",
-   "display_name": "flash_write_close_ate_marker",
+   "display_name": "FUN_00084e58",
    "human": false,
-   "source": "collision-rejected",
-   "aliases": [
-    "FUN_00084e58"
-   ],
-   "rejected_name": "flash_write_close_ate_marker"
+   "source": "recon/app/src/FUN_00084e58.c",
+   "aliases": []
   },
   "0x00084e66": {
    "address": "0x00084e66",
@@ -24922,13 +24907,10 @@
    "address": "0x000863aa",
    "raw_name": "FUN_000863aa",
    "name": "FUN_000863aa",
-   "display_name": "sys_heap_init",
+   "display_name": "FUN_000863aa",
    "human": false,
-   "source": "collision-rejected",
-   "aliases": [
-    "FUN_000863aa"
-   ],
-   "rejected_name": "sys_heap_init"
+   "source": "recon/app/src/FUN_000863aa.c",
+   "aliases": []
   },
   "0x00086406": {
    "address": "0x00086406",
@@ -28444,30 +28426,6 @@
   "zcbor_str_encode": "0x00086228"
  },
  "conflicts": {
-  "bt_gatt_init": [
-   "0x00059690",
-   "0x0005a954"
-  ],
-  "flash_write_close_ate_marker": [
-   "0x00084e58",
-   "0x00084e44"
-  ],
-  "k_aligned_alloc": [
-   "0x00075944",
-   "0x000758cc"
-  ],
-  "log_output_dropped_process": [
-   "0x0004df34",
-   "0x0004de68"
-  ],
-  "set_random_address": [
-   "0x000810f2",
-   "0x00054d88"
-  ],
-  "sys_heap_init": [
-   "0x000863aa",
-   "0x0004b3c8"
-  ],
   "thunk_FUN_000723b8": [
    "0x0007c872",
    "0x0007d376"

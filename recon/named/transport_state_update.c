@@ -4,6 +4,9 @@
  * callees (readable <= raw @ address):
  *   transport_state_update                   <= FUN_0002538c @ 0x0002538c
  *   thunk_FUN_00074f68                       <= FUN_0007c398 @ 0x0007c398
+ * address symbols (name @ address):
+ *   g_20007a00                               @ 0x20007a00
+ *   g_20018c65                               @ 0x20018c65
  */
 /* Reconstructed FUN_0002538c @ 0x0002538c, extent 0x00000098.
  * Readable identity: transport_state_update.

@@ -10,6 +10,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
+ *   rodata_72dad                             @ 0x00072dad
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f08c7                             @ 0x000f08c7
  *   rodata_f08f4                             @ 0x000f08f4
@@ -68,7 +69,7 @@ int k_work_schedule_for_queue(uint32_t queue, volatile uint32_t *delayable_work,
         } else {
             delayable_work[3] = flags | 8U;
             delayable_work[10] = queue;
-            FUN_00074bf4((uintptr_t)delayable_work + 16U, 0x00072dadUL,
+            FUN_00074bf4((uintptr_t)delayable_work + 16U, ((unsigned long)&rodata_72dad) /*=0x72dad*/,
                          delay_low, delay_high);
             result = 1;
         }

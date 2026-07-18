@@ -3,6 +3,8 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   packet_transport_send_byte               <= FUN_0003364c @ 0x0003364c
+ * address symbols (name @ address):
+ *   rodata_a7af2                             @ 0x000a7af2
  */
 /* Reconstructed FUN_0003364c @ 0x0003364c, extent 0x00000054.
  * Readable identity: packet_transport_send_byte.

@@ -2,6 +2,7 @@
  * public-name: FUN_0004d6ec
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   activate_foreach_backend                 <= FUN_0004d2d0 @ 0x0004d2d0
  *   log_process                              <= FUN_0004d594 @ 0x0004d594
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
@@ -26,7 +27,7 @@
 extern void printk(uint32_t, ...);
 extern void assert_post_action(uint32_t, uint32_t) __attribute__((noreturn));
 extern uintptr_t FUN_0004d334(uint32_t, uint32_t);
-extern uintptr_t FUN_0004d2d0(uintptr_t);
+extern uintptr_t activate_foreach_backend(uintptr_t);
 extern uintptr_t k_current_get(void);
 extern void k_sem_give(uintptr_t);
 extern uint64_t log_process(void);
@@ -52,7 +53,7 @@ void FUN_0004d6ec(void)
     uint32_t previous = 0;
     for (;;) {
         if (iterator) {
-            iterator = FUN_0004d2d0(iterator);
+            iterator = activate_foreach_backend(iterator);
             if (!iterator)
                 event = status = UINT32_MAX;
         }

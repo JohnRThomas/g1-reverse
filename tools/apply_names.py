@@ -102,7 +102,12 @@ def rename_public_owner(original, entry, public_name):
 
 
 def provenance_header(core, entry, public_name, function_entries, globals_):
-    raw = function_names.raw_name(core, entry)
+    # A small number of reviewed compiler-generated entries have a historical
+    # raw identity such as ``tail_61200`` rather than a synthetic FUN token.
+    # Keep that durable back-map in generated headers without changing the
+    # address-only fallback used while rebuilding the catalog itself.
+    record = function_names.records_by_address(core).get(entry)
+    raw = record.get("raw_name") if record else function_names.raw_name(core, entry)
     lines = ["/* readable reconstruction; identity: %s @ 0x%08x" % (raw, entry),
              " * public-name: %s" % public_name,
              " * durable-map: recon/catalogs/function_names_%s.json" % core]

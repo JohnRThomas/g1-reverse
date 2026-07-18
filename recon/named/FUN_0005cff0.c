@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   bt_pub_key_is_debug                      <= FUN_00055cf0 @ 0x00055cf0
+ *   smp_public_key_periph                    <= FUN_0005ce6c @ 0x0005ce6c
  *   bt_keys_get_addr                         <= FUN_0005e6a8 @ 0x0005e6a8
  *   atomic_set_bit                           <= FUN_00083090 @ 0x00083090
  * address symbols (name @ address):
@@ -17,7 +18,7 @@ extern int  bt_pub_key_is_debug(void);
 extern void FUN_00083074(unsigned a, unsigned b, void *c);
 extern int  atomic_set_bit(unsigned a, unsigned b);
 extern unsigned bt_keys_get_addr(unsigned char a, unsigned b);
-extern int  FUN_0005ce6c(int p);
+extern int  smp_public_key_periph(int p);
 
 int FUN_0005cff0(int param_1, int param_2){
     unsigned *src, *dst, *end;
@@ -53,5 +54,5 @@ int FUN_0005cff0(int param_1, int param_2){
         atomic_set_bit((unsigned)(param_1 + 4), 6);
         return 0;
     }
-    return FUN_0005ce6c(param_1);
+    return smp_public_key_periph(param_1);
 }

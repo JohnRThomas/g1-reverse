@@ -11,6 +11,7 @@
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f6d5e                             @ 0x000f6d5e
  *   rodata_f6d9a                             @ 0x000f6d9a
+ *   rodata_f6dc6                             @ 0x000f6dc6
  *   g_sram_base_word                         @ 0x20000000
  *   g_qspi_cb                                @ 0x2000b348
  *   NRF_QSPI_BASE                            @ 0x5002b000

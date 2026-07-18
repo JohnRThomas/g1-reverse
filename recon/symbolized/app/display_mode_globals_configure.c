@@ -6,6 +6,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   display_mode_globals_configure           <= FUN_0004372c @ 0x0004372c
  * address symbols (name @ address):
+ *   rodata_aa951                             @ 0x000aa951
+ *   rodata_aad1a                             @ 0x000aad1a
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -85,9 +87,9 @@ int display_mode_globals_configure(unsigned mode, ...)
     default:
         if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ != 0)
-                debug_print(0x000aa951UL, 0x000aad1aUL);
+                debug_print(((unsigned long)&rodata_aa951) /*=0xaa951*/, ((unsigned long)&rodata_aad1a) /*=0xaad1a*/);
             else
-                log_message(0x000aa951UL, 0x000aad1aUL);
+                log_message(((unsigned long)&rodata_aa951) /*=0xaa951*/, ((unsigned long)&rodata_aad1a) /*=0xaad1a*/);
         }
         break;
     }

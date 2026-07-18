@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00076d8c @ 0x76d8c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int FUN_000785bc(void);
+extern void FUN_000785bc(void);
 extern void FUN_000785c8(void*,void*,void*,void*);
 #define U(x) ((uint32_t)(x))
 void FUN_00076d8c(int* param_1, int param_2, int param_3, int param_4){
@@ -11,7 +11,10 @@ void FUN_00076d8c(int* param_1, int param_2, int param_3, int param_4){
     piVar5 = (int*)(param_2 - 4);
     if(*(int*)(param_2-4) < 0)
         piVar5 = (int*)((int)piVar5 + *(int*)(param_2-4));
-    piVar1 = (int*)FUN_000785bc();
+    FUN_000785bc();
+    /* FUN_000785bc preserves r1; the allocator passes that value on to its
+       epilogue helper.  It is not the callee's r0 return value. */
+    piVar1 = (int*)param_2;
     piVar3 = (int*)0x2000cc20;
     piVar4 = (int*)*(volatile uint32_t*)0x2000cc20UL;
     if(piVar4 != 0){
@@ -60,4 +63,3 @@ LAB:
     FUN_000785c8(param_1, piVar1, piVar3, (void*)param_4);
     return;
 }
-

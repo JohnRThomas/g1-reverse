@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   bt_att_req_free                          <= FUN_00059708 @ 0x00059708
  *   att_handle_rsp                           <= FUN_00059730 @ 0x00059730
+ *   bt_gatt_disconnected                     <= FUN_0005c9a4 @ 0x0005c9a4
  *   net_buf_slist_get                        <= FUN_0005f148 @ 0x0005f148
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
  *   k_mem_slab_free                          <= FUN_00071cf4 @ 0x00071cf4
@@ -27,7 +28,7 @@ extern void atomic_clear_bit_0(void *, uint32_t);
 extern void *net_buf_slist_get(void *);
 extern void bt_att_req_free(void *);
 extern void k_mem_slab_free(uintptr_t, void *);
-extern void FUN_0005c9a4(void *);
+extern void bt_gatt_disconnected(void *);
 
 struct node_59834 {
     struct node_59834 *next;
@@ -87,5 +88,5 @@ void FUN_00059834(uint8_t *context, uint32_t arg1)
     }
     owner->connection = 0;
     k_mem_slab_free(((unsigned long)&g_bt_att_slab) /*=0x20003738*/, owner);
-    FUN_0005c9a4(*(void **)context);
+    bt_gatt_disconnected(*(void **)context);
 }

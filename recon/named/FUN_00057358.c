@@ -3,7 +3,6 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   bt_l2cap_init                            <= FUN_000579d0 @ 0x000579d0
- *   bt_gatt_init                             <= FUN_00059690 @ 0x00059690
  *   smp_update_bond_flag                     <= FUN_0005e5b8 @ 0x0005e5b8
  *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
  *   net_pkt_skip                             <= FUN_00086502 @ 0x00086502
@@ -15,7 +14,7 @@
 
 extern void z_impl_k_queue_init(unsigned int);
 extern void net_pkt_skip(unsigned int, unsigned int);
-extern void bt_gatt_init(void);
+extern void FUN_00059690(void);
 extern int smp_update_bond_flag(void);
 extern void bt_l2cap_init(void);
 
@@ -30,7 +29,7 @@ int FUN_00057358(void)
         net_pkt_skip(uVar1, iVar3);
         iVar3 = iVar3 + 0x10;
     } while (iVar2 != 10);
-    bt_gatt_init();
+    FUN_00059690();
     int r = smp_update_bond_flag();
     if (r == 0) {
         bt_l2cap_init();

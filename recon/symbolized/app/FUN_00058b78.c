@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   chan_req_send                            <= FUN_00082030 @ 0x00082030
  * address symbols (name @ address):
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f4388                             @ 0x000f4388
@@ -18,7 +19,7 @@
 
 extern void printk(uintptr_t, ...);
 extern void assert_post_action(uintptr_t, uint32_t) __attribute__((noreturn));
-extern void FUN_00082030(void);
+extern void chan_req_send(void);
 
 void FUN_00058b78(uint8_t *context, uint32_t *object,
                   uint32_t arg2, uint32_t arg3)
@@ -35,7 +36,7 @@ void FUN_00058b78(uint8_t *context, uint32_t *object,
     } else if (*(uint32_t *)(context + 0x124) != 0) {
         line = 0x37f; message = ((unsigned long)&rodata_f4589) /*=0xf4589*/;
     } else {
-        FUN_00082030();
+        chan_req_send();
         return;
     }
     printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, message, ((unsigned long)&rodata_f4388) /*=0xf4388*/, line, arg3);

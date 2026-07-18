@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   arch_irq_enable                          <= FUN_000500ac @ 0x000500ac
+ *   pin_init                                 <= FUN_00066e70 @ 0x00066e70
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -19,7 +20,7 @@
 typedef unsigned int uint;
 
 extern void arch_irq_enable(int);
-extern void FUN_00066e70(uint32_t,int,int,uint32_t,int);
+extern void pin_init(uint32_t,int,int,uint32_t,int);
 extern void assert_post_action(uint32_t,uint32_t) __attribute__((noreturn));
 extern void printk(uint32_t,uint32_t,uint32_t,uint32_t);
 
@@ -73,11 +74,11 @@ SWITCH_DONE:;
 
   if (*(volatile int8_t*)(p2 + 0x23) == 0) {
     uint32_t uVar15 = (*(volatile uint32_t*)(p2 + 0x14) == 0x01e84800UL) ? 3 : 0;
-    FUN_00066e70(*(volatile uint32_t*)(p2 + 0), 1, 0, uVar15, (1 < *(volatile uint8_t*)(p2 + 0x18)));
-    FUN_00066e70(*(volatile uint32_t*)(p2 + 4), 1, 0, uVar15, 0);
-    FUN_00066e70(*(volatile uint32_t*)(p2 + 8), 0, *(volatile uint8_t*)(p2 + 0x1a), uVar15, 0);
-    FUN_00066e70(*(volatile uint32_t*)(p2 + 0xc), 1, 0, uVar15, (*(volatile uint8_t*)(p2 + 0x10)) ^ 1);
-    FUN_00066e70(*(volatile uint32_t*)(p2 + 0x1c), 1, 0, uVar15, 1);
+    pin_init(*(volatile uint32_t*)(p2 + 0), 1, 0, uVar15, (1 < *(volatile uint8_t*)(p2 + 0x18)));
+    pin_init(*(volatile uint32_t*)(p2 + 4), 1, 0, uVar15, 0);
+    pin_init(*(volatile uint32_t*)(p2 + 8), 0, *(volatile uint8_t*)(p2 + 0x1a), uVar15, 0);
+    pin_init(*(volatile uint32_t*)(p2 + 0xc), 1, 0, uVar15, (*(volatile uint8_t*)(p2 + 0x10)) ^ 1);
+    pin_init(*(volatile uint32_t*)(p2 + 0x1c), 1, 0, uVar15, 1);
   }
 
   uVar9 = *(volatile uint8_t*)(p1 + 4);

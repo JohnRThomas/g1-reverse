@@ -12,7 +12,9 @@ import re
 
 IDENTITY = re.compile(
     r"readable reconstruction; identity:\s+"
-    r"(?P<raw>(?:FUN_|sub_)[0-9a-fA-F]+)\s+@\s+"
+    # Usually FUN_<address>, but reviewed compiler-generated entries may keep
+    # their historical C identifier (for example tail_61200).
+    r"(?P<raw>[A-Za-z_$][A-Za-z0-9_$]*)\s+@\s+"
     r"(?P<address>0x[0-9a-fA-F]+)")
 PUBLIC_NAME = re.compile(r"public-name:\s+(?P<name>[A-Za-z_$][\w$]*)")
 

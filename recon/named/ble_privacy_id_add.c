@@ -2,12 +2,13 @@
  * public-name: ble_privacy_id_add
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   bt_id_add                                <= FUN_00054ea8 @ 0x00054ea8
  *   ble_privacy_id_add                       <= FUN_0005505c @ 0x0005505c
  * address symbols (name @ address):
  *   g_ble_dev_state                          @ 0x20002000
  */
 /* Reconstructed FUN_0005505c @ 0x5505c  true code extent: 0x34 bytes */
-extern void FUN_00054ea8(unsigned char *identity);
+extern void bt_id_add(unsigned char *identity);
 void ble_privacy_id_add(unsigned char *param_1){
   if (param_1 == 0) return;
   volatile unsigned char *g = (volatile unsigned char*)0x20002000UL;
@@ -18,5 +19,5 @@ void ble_privacy_id_add(unsigned char *param_1){
     *(volatile unsigned char*)(param_1 + 8) = *(volatile unsigned char*)(param_1 + 8) | 4;
     return;
   }
-  FUN_00054ea8(param_1);
+  bt_id_add(param_1);
 }

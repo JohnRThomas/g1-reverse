@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   ancs_disconnected                        <= FUN_00018adc @ 0x00018adc
  *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
+ *   send_conn_le_param_update                <= FUN_00057038 @ 0x00057038
  *   ble_conn_process_complete_or_disconnect  <= FUN_000570a0 @ 0x000570a0
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
@@ -26,7 +27,7 @@
 #include <stdint.h>
 extern void ancs_disconnected(void);
 extern void ble_conn_unref(int);
-extern int FUN_00057038(int,void*);
+extern int send_conn_le_param_update(int,void*);
 extern void assert_post_action(unsigned,unsigned);
 extern void printk(unsigned,...);
 extern int atomic_and_2(volatile unsigned*,unsigned);
@@ -67,7 +68,7 @@ void ble_conn_process_complete_or_disconnect(int param_1){
   if((int)(iVar2 << 0x16) < 0){
     local_20 = *(volatile unsigned*)(param_1+0x48);
     local_1c = *(volatile unsigned*)(param_1+0x50);
-    iStack_28 = FUN_00057038(iVar5,&local_20);
+    iStack_28 = send_conn_le_param_update(iVar5,&local_20);
     local_2c = ((unsigned long)&rodata_f3dff) /*=0xf3dff*/;
     if(iStack_28 == 0){
       atomic_and_2(puVar4, 0xfffffeffU);
@@ -76,7 +77,7 @@ void ble_conn_process_complete_or_disconnect(int param_1){
   } else {
     local_20 = 0x00280018U;
     local_1c = 0x2a0000U;
-    iStack_28 = FUN_00057038(iVar5,&local_20);
+    iStack_28 = send_conn_le_param_update(iVar5,&local_20);
     local_2c = ((unsigned long)&rodata_f3e24) /*=0xf3e24*/;
     if(iStack_28 == 0){
       *puVar4 = *puVar4 | 0x100;

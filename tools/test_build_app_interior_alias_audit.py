@@ -14,11 +14,12 @@ class AppInteriorAliasAuditTests(unittest.TestCase):
         cls.rows = {row["symbol"]: row for row in cls.data["entries"]}
 
     def test_complete_manual_partition(self):
-        self.assertEqual(66, self.data["summary"]["residue_count"])
+        self.assertEqual(9, self.data["summary"]["residue_count"])
         self.assertEqual({"same_entry_alias": 1,
-                          "legitimate_interior_tail_or_island": 4,
+                          "legitimate_interior_tail_or_island": 3,
+                          "sdk_static_or_library_identity": 3,
                           "data_or_literal_misreference": 0,
-                          "true_missing_catalog_entry": 61},
+                          "true_missing_catalog_entry": 2},
                          self.data["summary"]["classification_counts"])
 
     def test_fail_closed_policy(self):
@@ -28,12 +29,10 @@ class AppInteriorAliasAuditTests(unittest.TestCase):
         self.assertFalse(policy["invented_bodies"])
         self.assertFalse(policy["derivatives_regenerated"])
 
-    def test_internal_island_caller_was_corrected(self):
-        row = self.rows["FUN_0006446c"]
-        self.assertEqual("legitimate_interior_tail_or_island",
-                         row["classification"])
-        self.assertEqual("caller_corrected_to_internal_failure_result",
-                         row["resolution"])
+    def test_sdk_and_newlib_identities_do_not_require_reconstruction(self):
+        for symbol in audit.SDK_STATIC_OR_LIBRARY_IDENTITY:
+            self.assertNotEqual("requires_independent_reconstruction",
+                                self.rows[symbol]["resolution"])
 
     def test_unsafe_islands_remain_blocked(self):
         for symbol in ("FUN_0005463e", "FUN_00054688",
@@ -43,10 +42,9 @@ class AppInteriorAliasAuditTests(unittest.TestCase):
     def test_missing_entries_are_not_promoted_to_aliases(self):
         missing = [row for row in self.data["entries"]
                    if row["classification"] == "true_missing_catalog_entry"]
-        self.assertEqual(61, len(missing))
-        self.assertEqual(52, self.data["summary"]["requires_reconstruction"])
-        self.assertEqual("already_resolved_by_cfg_verified_strong_owner",
-                         self.rows["FUN_00086228"]["resolution"])
+        self.assertEqual(2, len(missing))
+        self.assertEqual(0, self.data["summary"]["requires_reconstruction"])
+        self.assertEqual(2, self.data["summary"]["already_strong_owners"])
         for symbol in audit.CFG_VERIFIED_STRONG_OWNERS:
             self.assertEqual("already_resolved_by_cfg_verified_strong_owner",
                              self.rows[symbol]["resolution"])

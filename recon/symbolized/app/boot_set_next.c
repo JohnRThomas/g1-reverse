@@ -5,7 +5,6 @@
  * callees (readable <= raw @ address):
  *   boot_set_next                            <= FUN_000641e4 @ 0x000641e4
  *   __assert_func                            <= FUN_00076a94 @ 0x00076a94
- *   flash_write_close_ate_marker             <= FUN_00084e58 @ 0x00084e58
  * address symbols (name @ address):
  *   rodata_f68d7                             @ 0x000f68d7
  *   rodata_f692c                             @ 0x000f692c
@@ -19,7 +18,7 @@ extern int FUN_0006403c(char*, void*);
 extern int FUN_000640e8(char*, uint32_t, int);
 extern void __assert_func(uint32_t,int,uint32_t,uint32_t);
 extern void FUN_0007efd4(char*, int, uint32_t);
-extern int flash_write_close_ate_marker(char*);
+extern int FUN_00084e58(char*);
 
 int boot_set_next(char *param_1, int param_2, int param_3){
   volatile uint8_t local[12];
@@ -44,7 +43,7 @@ int boot_set_next(char *param_1, int param_2, int param_3){
       uint32_t uVar5;
       if (iVar3 == 0){ uVar5 = 2; }
       else {
-        iVar3 = flash_write_close_ate_marker(param_1);
+        iVar3 = FUN_00084e58(param_1);
         uVar5 = 3;
         if (iVar3 != 0) return iVar3;
       }
@@ -59,7 +58,7 @@ int boot_set_next(char *param_1, int param_2, int param_3){
     if (uVar4 == 1){
       if (param_2 == 0) return 0;
       if (local[3] != 3) return 0;
-      return flash_write_close_ate_marker(param_1);
+      return FUN_00084e58(param_1);
     }
     __assert_func(((unsigned long)&rodata_f68d7) /*=0xf68d7*/, 0x22e, ((unsigned long)&rodata_f692c) /*=0xf692c*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/);
   }

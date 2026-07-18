@@ -11,6 +11,7 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   unschedule_locked                        <= FUN_0008656a @ 0x0008656a
  * address symbols (name @ address):
+ *   rodata_72dad                             @ 0x00072dad
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f08c7                             @ 0x000f08c7
  *   rodata_f08f4                             @ 0x000f08f4
@@ -71,7 +72,7 @@ int k_work_reschedule_for_queue(uint32_t queue, volatile uint32_t *delayable_wor
         uint32_t flags = delayable_work[3] | 8U;
         delayable_work[3] = flags;
         delayable_work[10] = queue;
-        FUN_00074bf4((uintptr_t)delayable_work + 16U, 0x00072dadUL,
+        FUN_00074bf4((uintptr_t)delayable_work + 16U, ((unsigned long)&rodata_72dad) /*=0x72dad*/,
                      delay_low, delay_high);
         result = 1;
     }

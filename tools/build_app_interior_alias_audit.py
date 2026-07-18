@@ -37,42 +37,37 @@ LEGITIMATE_INTERIOR_TAIL_OR_ISLAND = {
     # Noreturn SVC islands embedded in FUN_000545f0.
     "FUN_0005463e",
     "FUN_00054688",
-    # Failure/cleanup label embedded in the cJSON string parser.
-    "FUN_0006446c",
     # Exact four-byte branch veneer to bt_le_adv_set_enable_legacy.
     "FUN_0008131c",
+}
+
+# These uncatalogued spellings are owned by configured SDK/newlib source
+# units or library identities. They require linkage/name reconciliation, not a
+# new firmware reconstruction or an invented interior alias.
+SDK_STATIC_OR_LIBRARY_IDENTITY = {
+    "FUN_0004d7d8",
+    "FUN_00056e24",
+    "strtol_reentrant",
 }
 
 # No current residue address lands in literal/data bytes. Keep this explicit:
 # future residue drift must be reviewed rather than silently taking a default.
 DATA_OR_LITERAL_MISREFERENCE = set()
 
-TRUE_MISSING_CATALOG_ENTRY = {
-    "FUN_000179f8", "FUN_00026100", "FUN_00033554", "FUN_00033730",
-    "FUN_0003603c", "FUN_00036b3c", "FUN_0003f410", "FUN_0003fecc",
-    "FUN_0004b3c8", "FUN_0004c254", "FUN_0004d44c", "FUN_0004d468",
-    "FUN_0004d8b8", "FUN_0004de68", "FUN_0004e3e8", "FUN_0004e474",
-    "FUN_0004e8c0", "FUN_0004f500", "FUN_000534a8", "FUN_00054ea8",
-    "FUN_00055aac", "FUN_000564cc", "FUN_000573c8", "FUN_00058568",
-    "FUN_0005a954", "FUN_0005ad38", "FUN_0005c310", "FUN_0005c76c",
-    "FUN_0005c9a4", "FUN_0005ce6c", "FUN_0006447c", "FUN_00065000",
-    "FUN_000680f8", "FUN_00068298", "FUN_00071560", "FUN_000715b8",
-    "FUN_00071b2c", "FUN_00074184", "FUN_000748b8", "FUN_00075864",
-    "FUN_000758cc", "FUN_00075e14", "FUN_00076bc0", "FUN_00077b24",
-    "FUN_00077b38", "FUN_00077c4c", "FUN_0007e12a", "FUN_0007ef56",
-    "FUN_00083a2c", "FUN_00084e44", "FUN_00084f06", "FUN_00085c86",
-    "FUN_00085ef0", "FUN_00086228", "FUN_00086360", "FUN_0008664c",
-    "ext5c6c8", "ext77c8c", "tail_54d88", "tail_61200", "tail_77d30",
-}
+TRUE_MISSING_CATALOG_ENTRY = {"ext77c8c", "tail_77d30"}
 
-CFG_VERIFIED_STRONG_OWNERS = {
-    "FUN_000179f8", "FUN_00026100", "FUN_00033554", "FUN_00033730",
-    "FUN_0003603c", "FUN_00036b3c", "FUN_0003f410", "FUN_0003fecc",
+# Both remaining raw residue spellings already have cfg_verify-accepted strong
+# owners under their readable newlib identities.
+CFG_VERIFIED_STRONG_OWNERS = set(TRUE_MISSING_CATALOG_ENTRY)
+CFG_VERIFIED_SOURCE_FILES = {
+    "ext77c8c": "__swbuf_r.c",
+    "tail_77d30": "_write_r.c",
 }
 
 CLASS_TABLE = {
     "same_entry_alias": SAME_ENTRY_ALIAS,
     "legitimate_interior_tail_or_island": LEGITIMATE_INTERIOR_TAIL_OR_ISLAND,
+    "sdk_static_or_library_identity": SDK_STATIC_OR_LIBRARY_IDENTITY,
     "data_or_literal_misreference": DATA_OR_LITERAL_MISREFERENCE,
     "true_missing_catalog_entry": TRUE_MISSING_CATALOG_ENTRY,
 }
@@ -108,8 +103,8 @@ def build():
     if actual != assigned or len(overlap) != len(set(overlap)):
         raise RuntimeError("manual classification drift: missing=%r extra=%r" %
                            (sorted(actual - assigned), sorted(assigned - actual)))
-    if len(source_rows) != 66:
-        raise RuntimeError("residue snapshot changed: expected 66")
+    if len(source_rows) != 9:
+        raise RuntimeError("residue snapshot changed: expected 9")
 
     functions = sorted(load(CLASSIFIED)["functions"],
                        key=lambda row: int(row["entry"]))
@@ -150,18 +145,19 @@ def build():
         resolution = "requires_independent_reconstruction"
         reason = "independent callable entry shape/reference, absent from catalog"
         if symbol in CFG_VERIFIED_STRONG_OWNERS:
-            source_path = os.path.join(ROOT, "recon/app/src", symbol + ".c")
-            mirror_path = os.path.join(ROOT, "recon/verified/src", symbol + ".c")
+            filename = CFG_VERIFIED_SOURCE_FILES.get(symbol, symbol + ".c")
+            source_path = os.path.join(ROOT, "recon/app/src", filename)
+            mirror_path = os.path.join(ROOT, "recon/verified/src", filename)
             if not os.path.isfile(source_path) or digest(source_path) != digest(mirror_path):
                 raise RuntimeError("CFG-verified owner/mirror drift: " + symbol)
             resolution = "already_resolved_by_cfg_verified_strong_owner"
             reason = "standalone exact-entry reconstruction accepted by cfg_verify"
-        elif symbol == "FUN_00086228":
-            resolution = "already_resolved_by_cfg_verified_strong_owner"
-            reason = "standalone zcbor string encoder recovered at its exact entry"
-        elif symbol == "FUN_0006446c":
-            resolution = "caller_corrected_to_internal_failure_result"
-            reason = "depends on parent live r4 and branches back into parent CFG"
+        elif symbol in ("FUN_0004d7d8", "FUN_00056e24"):
+            resolution = "sdk_static_source_unit_owner"
+            reason = "configured SDK static helper requires source-unit linkage reconciliation"
+        elif symbol == "strtol_reentrant":
+            resolution = "newlib_identity_reconciliation"
+            reason = "readable spelling maps to the configured newlib reentrant strtol owner"
         elif symbol in ("FUN_0005463e", "FUN_00054688"):
             resolution = "blocked_embedded_noreturn_svc_island"
             reason = "embedded SVC continuation is not an ordinary function ABI"
@@ -232,7 +228,10 @@ def build():
                     "reference_count": sum(row["reference_count"] for row in rows),
                     "classification_counts": counts,
                     "safe_caller_corrections": 1,
-                    "already_strong_owners": 1,
+                    "already_strong_owners": sum(
+                        row["resolution"] ==
+                        "already_resolved_by_cfg_verified_strong_owner"
+                        for row in rows),
                     "requires_reconstruction": sum(
                         row["resolution"] == "requires_independent_reconstruction"
                         for row in rows)},
@@ -244,11 +243,12 @@ def build():
 def markdown(data):
     counts = data["summary"]["classification_counts"]
     lines = ["# CPUAPP interior/tail alias audit", "",
-        "The current 66-entry residue snapshot was reviewed against the shipped",
+        "The current 9-entry residue snapshot was reviewed against the shipped",
         "Thumb bytes, catalog boundaries, and canonical call sites. No linker",
         "aliases, weak owners, blobs, or derivative trees are generated.", "",
         "- Same-entry aliases/identities: %d" % counts["same_entry_alias"],
         "- Legitimate interior tails/islands: %d" % counts["legitimate_interior_tail_or_island"],
+        "- SDK static/library identities: %d" % counts["sdk_static_or_library_identity"],
         "- Data/literal misreferences: %d" % counts["data_or_literal_misreference"],
         "- True missing catalog entries: %d" % counts["true_missing_catalog_entry"],
         "- Safe canonical caller corrections: 1", "",

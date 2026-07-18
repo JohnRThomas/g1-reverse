@@ -3,6 +3,7 @@
  * public-name: FUN_0004d334
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   activate_foreach_backend                 <= FUN_0004d2d0 @ 0x0004d2d0
  *   log_msg_commit                           <= FUN_0004d8f8 @ 0x0004d8f8
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
@@ -19,7 +20,7 @@
  */
 /* Reconstructed FUN_0004d334 @ 0x4d334  (parity: 300/300 trials, PROVEN) */
 extern int atomic_inc(int);
-extern unsigned FUN_0004d2d0(unsigned);
+extern unsigned activate_foreach_backend(unsigned);
 extern void log_msg_commit(int*,unsigned,int);
 extern void FUN_00074844(int,int);
 extern void printk(int,...);
@@ -36,7 +37,7 @@ unsigned FUN_0004d334(int param_1,int param_2){
       if (piVar1 <= piVar5){
         if (param_1 != 0){
           while (uVar3 != 0){
-            uVar3 = FUN_0004d2d0(uVar3);
+            uVar3 = activate_foreach_backend(uVar3);
             if (param_2 != 0) FUN_00074844(0x148,0);
           }
           return 0;

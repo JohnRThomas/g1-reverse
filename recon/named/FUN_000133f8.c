@@ -11,6 +11,7 @@
  *   __aeabi_dcmpgt                           <= FUN_0000de18 @ 0x0000de18
  *   dtoa_get_bias_const                      <= FUN_00013e50 @ 0x00013e50
  *   __ieee754_scalbn                         <= FUN_00013e60 @ 0x00013e60
+ *   __ieee754_sqrt                           <= FUN_00075e14 @ 0x00075e14
  * address symbols (name @ address):
  *   rodata_88878                             @ 0x00088878
  *   rodata_88888                             @ 0x00088888
@@ -28,7 +29,7 @@ extern u32 __aeabi_dcmpge(u32, u32, u32, u32);
 extern u32 __aeabi_dcmpgt(u32, u32, u32, u32);
 extern double dtoa_get_bias_const(void);
 extern double __ieee754_scalbn(double, int);
-extern double FUN_00075e14(double);
+extern double __ieee754_sqrt(double);
 extern double FUN_000869cc(double);
 
 double FUN_000133f8(double xd, double yd)
@@ -192,7 +193,7 @@ L135a6:
     if (r8 == 0x40000000) goto L1357e;
     r2 = 0x3fe00000;
     if (r8 != r2) goto L134a6;
-    return FUN_00075e14(X.d);
+    return __ieee754_sqrt(X.d);
 
 L135c8:
     if (r8 != 0x40000000) goto L13484;

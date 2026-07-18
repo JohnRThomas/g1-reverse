@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   bt_att_req_free                          <= FUN_00059708 @ 0x00059708
  *   att_handle_rsp                           <= FUN_00059730 @ 0x00059730
+ *   att_req_send_process                     <= FUN_000820ae @ 0x000820ae
  * address symbols (name @ address):
  *   rodata_88100                             @ 0x00088100
  *   rodata_f4680                             @ 0x000f4680
@@ -15,7 +16,7 @@
 extern int bt_att_req_free(void *);
 extern int FUN_00073518(void *, unsigned, unsigned, unsigned);
 extern int FUN_00081ddc(int,...);
-extern int FUN_000820ae(int,...);
+extern int att_req_send_process(int,...);
 typedef void (*codep)(unsigned,...);
 unsigned att_handle_rsp(unsigned *param_1, unsigned param_2, unsigned param_3, unsigned param_4){
   volatile unsigned local[2];
@@ -32,13 +33,13 @@ unsigned att_handle_rsp(unsigned *param_1, unsigned param_2, unsigned param_3, u
       unsigned uVar3 = *(volatile unsigned*)((int)param_1[0x49]+0x18);
       bt_att_req_free((void *)param_1[0x49]);
       param_1[0x49]=0;
-      FUN_000820ae((int)param_1[0]);
+      att_req_send_process((int)param_1[0]);
       if(pcVar2==0) return 0;
       (*pcVar2)(*(unsigned*)param_1[0], param_4, param_2, param_3, uVar3);
       return 0;
     }
     param_1[0x49]=0;
   }
-  FUN_000820ae((int)param_1[0]);
+  att_req_send_process((int)param_1[0]);
   return 0;
 }

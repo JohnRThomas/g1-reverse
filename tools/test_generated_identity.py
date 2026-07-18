@@ -15,6 +15,13 @@ class GeneratedIdentityTest(unittest.TestCase):
         self.assertEqual(value["address"], 0x4bfc8)
         self.assertEqual(value["public_name"], "mpsc_pbuf_free")
 
+    def test_parse_reviewed_raw_identifier(self):
+        value = generated_identity.parse(
+            "/* readable reconstruction; identity: tail_61200 @ 0x00061200\n"
+            " * public-name: flash_nrf_read_invalid_address\n */")
+        self.assertEqual(value["address"], 0x61200)
+        self.assertEqual(value["raw_name"], "tail_61200")
+
     def test_rejects_filename_collision_before_write(self):
         planned, identities = {}, {}
         generated_identity.add(planned, identities, "same.c", 0x1000, "a.c", "a")

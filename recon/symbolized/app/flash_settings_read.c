@@ -11,6 +11,7 @@
  *   rodata_87bf0                             @ 0x00087bf0
  *   rodata_9e2da                             @ 0x0009e2da
  *   rodata_9e2f1                             @ 0x0009e2f1
+ *   rodata_9e528                             @ 0x0009e528
  *   rodata_a40ec                             @ 0x000a40ec
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -59,7 +60,7 @@ int flash_settings_read(uint32_t address, void *destination, uint32_t length)
 
         if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0U) {
-                log_message(((unsigned long)&rodata_9e2f1) /*=0x9e2f1*/, 0x0009e528UL, retry);
+                log_message(((unsigned long)&rodata_9e2f1) /*=0x9e2f1*/, ((unsigned long)&rodata_9e528) /*=0x9e528*/, retry);
             } else {
                 debug_print();
             }

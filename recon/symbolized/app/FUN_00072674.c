@@ -9,7 +9,6 @@
  *   z_ready_thread_locked                    <= FUN_000738d4 @ 0x000738d4
  *   z_reschedule                             <= FUN_000739f0 @ 0x000739f0
  *   z_unpend_first_thread                    <= FUN_000744a4 @ 0x000744a4
- *   k_aligned_alloc                          <= FUN_00075944 @ 0x00075944
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   z_handle_obj_poll_events                 <= FUN_0008688e @ 0x0008688e
@@ -36,7 +35,7 @@ extern int z_spin_lock_set_owner(unsigned int*);
 extern int z_ready_thread_locked();
 extern int z_reschedule(unsigned int*,int);
 extern int z_unpend_first_thread(unsigned int*);
-extern unsigned int* k_aligned_alloc(int,int);
+extern unsigned int* FUN_00075944(int,int);
 extern int assert_post_action(int,int);
 extern int printk(int,...);
 extern int z_handle_obj_poll_events(unsigned int*,int);
@@ -83,7 +82,7 @@ LAB_726b6:
   if (param_4 == 0) {
     *param_3 = 0;
   } else {
-    puVar3 = k_aligned_alloc(0, 8);
+    puVar3 = FUN_00075944(0, 8);
     if (puVar3 == 0) {
       iVar2 = z_spin_unlock_valid(puVar5);
       if (iVar2 != 0) {

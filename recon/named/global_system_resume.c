@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   enable_ship_mode                         <= FUN_000167f4 @ 0x000167f4
  *   global_system_resume                     <= FUN_00016854 @ 0x00016854
+ *   subsystem_enable_gpio_pin_set_adapter    <= FUN_000179f8 @ 0x000179f8
  *   bt_start                                 <= FUN_00019308 @ 0x00019308
  *   global_system_suspend                    <= FUN_0002bd7c @ 0x0002bd7c
  *   active_mode_shutdown                     <= FUN_0002bdf0 @ 0x0002bdf0
@@ -26,7 +27,7 @@ extern int FUN_00016834(int,...);
 extern int FUN_00017a10(int,...);
 extern int FUN_00017a1c(int,...);
 extern int FUN_00017a04(int,...);
-extern int FUN_000179f8(int,...);
+extern int subsystem_enable_gpio_pin_set_adapter(int,...);
 extern int send_touch_click_event(int,...);
 unsigned int global_system_resume(unsigned int param_1, int param_2)
 {
@@ -43,7 +44,7 @@ unsigned int global_system_resume(unsigned int param_1, int param_2)
     if (param_2 == 0x80) return bt_start(0);
   }
   if (param_2 > 0x80) {
-    if (param_2 == 0x400) { if (param_1==0) return FUN_000179f8(0); return FUN_00017a04(0); }
+    if (param_2 == 0x400) { if (param_1==0) return subsystem_enable_gpio_pin_set_adapter(0); return FUN_00017a04(0); }
     if (param_2 == 0x800) { if (param_1==0) return enable_ship_mode(1); return param_1; }
     if (param_2 == 0x100) {
       if (is_battery_critical(0) != 0) return param_1;

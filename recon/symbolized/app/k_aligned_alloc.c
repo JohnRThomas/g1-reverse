@@ -1,26 +1,42 @@
 #include "g1_app_symbols.h"
-/* readable reconstruction; identity: FUN_00075944 @ 0x00075944
+/* readable reconstruction; identity: FUN_000758cc @ 0x000758cc
  * public-name: k_aligned_alloc
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   k_aligned_alloc                          <= FUN_00075944 @ 0x00075944
- *   k_is_in_isr                              <= FUN_00086406 @ 0x00086406
+ *   z_heap_aligned_alloc                     <= FUN_00075864 @ 0x00075864
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f075e                             @ 0x000f075e
+ *   rodata_f0779                             @ 0x000f0779
+ *   rodata_f891e                             @ 0x000f891e
+ *   rodata_f899c                             @ 0x000f899c
+ *   rodata_f89d9                             @ 0x000f89d9
  */
-/* Reconstructed FUN_00075944 @ 0x75944  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed k_aligned_alloc @ 0x000758cc from Zephyr mempool.c.
+ * Raw backmap: FUN_000758cc@0x000758cc. */
 
 #include <stdint.h>
-extern int k_is_in_isr(void);
-extern int* FUN_00075864(int,...);
-int* k_aligned_alloc(unsigned p1, unsigned p2, unsigned p3, unsigned p4){
-  int iVar2 = k_is_in_isr();
-  int iVar3;
-  if(iVar2==0){
-    iVar3 = *(volatile int*)(*(volatile int*)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/+8)+0x88);
-    if(iVar3==0) return 0;
-  } else {
-    iVar3 = 0x200037d8;
-  }
-  return FUN_00075864(iVar3, p1, p2);
+#include <stddef.h>
+
+extern void *z_heap_aligned_alloc(void *heap, size_t alignment, size_t size);
+extern void printk(uint32_t, ...);
+extern void assert_post_action(uint32_t, uint32_t);
+
+#define z_heap_aligned_alloc z_heap_aligned_alloc
+void *k_aligned_alloc(size_t alignment, size_t size)
+{
+    if (alignment < sizeof(void *) ||
+        (alignment & (sizeof(void *) - 1u)) != 0u) {
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f899c) /*=0xf899c*/, ((unsigned long)&rodata_f891e) /*=0xf891e*/, 0x42u);
+        printk(((unsigned long)&rodata_f89d9) /*=0xf89d9*/);
+        assert_post_action(((unsigned long)&rodata_f891e) /*=0xf891e*/, 0x42u);
+    }
+    if ((alignment & (alignment - 1u)) != 0u) {
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f075e) /*=0xf075e*/, ((unsigned long)&rodata_f891e) /*=0xf891e*/, 0x46u);
+        printk(((unsigned long)&rodata_f0779) /*=0xf0779*/);
+        assert_post_action(((unsigned long)&rodata_f891e) /*=0xf891e*/, 0x46u);
+    }
+    return z_heap_aligned_alloc((void *)0x200037d8u, alignment, size);
 }

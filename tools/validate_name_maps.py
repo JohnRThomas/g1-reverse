@@ -28,12 +28,18 @@ def check_function_map(core, errors):
     data = function_names.load(core)
     by_address = data["by_address"]
     by_name = data["by_name"]
+    overrides_path = BASE + "/recon/catalogs/function_name_overrides.json"
+    overrides = {}
+    if os.path.exists(overrides_path):
+        overrides = json.load(open(overrides_path)).get(core, {})
     seen = {}
     for address, record in by_address.items():
         value = int(address, 16)
         if record["address"] != address:
             errors.append("%s record address mismatch: %s" % (core, address))
-        if record["raw_name"] != function_names.raw_name(core, value):
+        override = overrides.get(address, {})
+        expected_raw = override.get("raw_name", function_names.raw_name(core, value))
+        if record["raw_name"] != expected_raw:
             errors.append("%s raw identity mismatch: %s" % (core, address))
         name = record["name"]
         if not IDENT.match(name) or name in C_KEYWORDS or keyword.iskeyword(name):
