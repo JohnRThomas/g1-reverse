@@ -6,6 +6,7 @@
  *   __extendsfdf2                            <= FUN_0000d848 @ 0x0000d848
  *   __muldf3                                 <= FUN_0000d8f8 @ 0x0000d8f8
  *   __fixunsdfsi                             <= FUN_0000dea8 @ 0x0000dea8
+ *   exp                                      <= FUN_00012c80 @ 0x00012c80
  *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
  *   dev_write_reg4                           <= FUN_00083de6 @ 0x00083de6
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
@@ -21,7 +22,7 @@ typedef unsigned char byte; typedef uint32_t undefined4; typedef unsigned int ui
 typedef unsigned long long undefined8;
 extern int __floatunsidf(int,...); extern unsigned long long __extendsfdf2(float);
 extern int __muldf3(int,...); extern int __fixunsdfsi(int,...);
-extern unsigned long long FUN_00012c80(unsigned long long); extern int dev_write_reg3(int,...);
+extern unsigned long long exp(unsigned long long); extern int dev_write_reg3(int,...);
 extern int dev_write_reg4(int,...); extern int FUN_00084602(int,...);
 extern int FUN_00084774(int,...); extern int z_device_is_ready(int,...);
 
@@ -44,7 +45,7 @@ int FUN_00062644(int param_1)
           uVar5 = __extendsfdf2((1.0f / ((float)*piVar10 / fVar1 + fVar2) - fVar3) *
                                (float)(uint)*(ushort *)((int)puVar8 + 0x2c));
           iVar7 = puVar8[10];
-          uVar11 = FUN_00012c80(uVar5);
+          uVar11 = exp(uVar5);
           uVar12 = __floatunsidf(iVar7);
           __muldf3((int)uVar12,(int)(uVar12 >> 0x20),(int)uVar11,(int)(uVar11 >> 0x20));
           iVar4 = __fixunsdfsi(0);

@@ -15,6 +15,7 @@
  *   spline_interp_3pt                        <= FUN_0000eb7c @ 0x0000eb7c
  *   expf                                     <= FUN_00075c90 @ 0x00075c90
  *   sqrtf                                    <= FUN_00075dc8 @ 0x00075dc8
+ *   fabsf                                    <= FUN_000868ee @ 0x000868ee
  *   fmaxf                                    <= FUN_00086902 @ 0x00086902
  *   fminf                                    <= FUN_0008693c @ 0x0008693c
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
@@ -60,7 +61,7 @@ extern float fmaxf(float, float);
 extern void  strtod_scan_int_prefix(undefined1 *, int *, int *);
 extern float spline_interp_3pt(float, float *, float *);
 extern void  spline_interp_pair_2out(float, float *, float *, float *);
-extern float FUN_000868ee(float);
+extern float fabsf(float);
 extern float expf(float);
 extern void  memcpy(float *, float *, int);
 extern void  memset_bytes(float *, int, int);
@@ -212,7 +213,7 @@ LAB_0000c51e:
     do {
       fVar28 = *local_27c;
       local_27c = local_27c + 1;
-      fVar28 = (float)FUN_000868ee(fVar28);
+      fVar28 = (float)fabsf(fVar28);
       iVar17 = iVar17 + 1;
       *pfVar8 = fVar28;
       pfVar8 = pfVar8 + 1;
@@ -331,8 +332,8 @@ LAB_0000c580:
     } while (aiStack_20c + local_240 != piVar12);
   }
   fVar43 = *(float *)((int)local_27c + iVar18);
-  fVar29 = (float)FUN_000868ee(param_1 - param_5[0x17]);
-  fVar30 = (float)FUN_000868ee(param_5[0x15] - param_2);
+  fVar29 = (float)fabsf(param_1 - param_5[0x17]);
+  fVar30 = (float)fabsf(param_5[0x15] - param_2);
   uVar44 = __extendsfdf2(float_bits(fVar30));
   iVar18 = __aeabi_dcmpgt((int)uVar44,(int)((ulonglong)uVar44 >> 0x20),DAT_0000cae8,DAT_0000caec);
   if (iVar18 == 0) {
@@ -810,8 +811,8 @@ LAB_0000d4ac:
     }
   }
 LAB_0000d162:
-  fVar28 = (float)FUN_000868ee(param_2);
-  fVar29 = (float)FUN_000868ee(param_5[0x4b]);
+  fVar28 = (float)fabsf(param_2);
+  fVar29 = (float)fabsf(param_5[0x4b]);
   fVar29 = fVar29 * 5.0f;
   bVar1 = fVar28 < fVar29;
   bVar2 = fVar28 == fVar29;

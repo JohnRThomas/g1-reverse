@@ -18,8 +18,8 @@ MANIFEST = ROOT / "recon/ownership/adoption_manifest.json"
 OUTPUT = ROOT / "recon/ownership/app_collision34_net_buf_atomic_adoption.json"
 REPORT = ROOT / "recon/analysis/app_collision34_net_buf_atomic_adoption.md"
 IMAGE = ROOT / "app_update.bin"
-CONFIG = Path("/tmp/g1-fwconfig-shadow/zephyr/.config")
-OBJECT = Path("/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj")
+CONFIG = Path("/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/.config")
+OBJECT = Path("/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj")
 SOURCE = Path("/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c")
 PRE_BUILD = Path("/tmp/g1-netbuf-pre")
 POST_BUILD = Path("/tmp/g1-netbuf-adopt")
@@ -108,8 +108,9 @@ def callers():
 def authorization_rows():
     required = {
         "CONFIG_ASSERT": "y", "CONFIG_ASSERT_LEVEL": "2",
-        "CONFIG_SPIN_VALIDATE": "y", "CONFIG_THREAD_LOCAL_STORAGE": "y",
-        "CONFIG_ERRNO_IN_TLS": "n", "CONFIG_NET_BUF": "y",
+        "CONFIG_SPIN_VALIDATE": "y", "CONFIG_THREAD_LOCAL_STORAGE": "n",
+        "CONFIG_THREAD_CUSTOM_DATA": "y", "CONFIG_MAIN_STACK_SIZE": "16384",
+        "CONFIG_NET_BUF": "y",
         "CONFIG_NET_BUF_LOG": "n", "CONFIG_NET_BUF_POOL_USAGE": "n",
     }
     source_sha, object_sha, config_sha = sha(SOURCE), sha(OBJECT), sha(CONFIG)

@@ -53,9 +53,11 @@ class AppFinalZeroCollisionTest(unittest.TestCase):
         app_config = (ROOT / "recon/application/app/prj.conf").read_text()
         self.assertIn("# CONFIG_TRACING is not set", app_config)
         self.assertNotIn("CONFIG_TRACING=y", app_config)
+        self.assertIn("# CONFIG_THREAD_LOCAL_STORAGE is not set", app_config)
+        self.assertNotIn("CONFIG_THREAD_LOCAL_STORAGE=y", app_config)
         self.assertEqual("781199a9c752f84e8ce938bff81e1824114badc1b7f5e301c330f1870710163b",
                          closure["source_sha256"])
-        self.assertEqual("64ac028ed9238ed6afc5fe027b6f0f9e2f6a2279d6ef6c86807c83a853df8311",
+        self.assertEqual("99d3b88e4483736a45ff22fca4a64fa124efc9dd77fe384b34902dceb25846b8",
                          closure["configured_object_sha256"])
         self.assertEqual(0, closure["final_normal_link_collisions"])
 

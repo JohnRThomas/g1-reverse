@@ -14,9 +14,9 @@ AUTH = ROOT / "recon/ownership/app_collision_adoption_authorizations.json"
 COLLISIONS = ROOT / "recon/ownership/app_build_collision_ownership.json"
 OUTPUT = ROOT / "recon/ownership/app_collision23_mpsc_atomic_adoption.json"
 IMAGE = ROOT / "app_update.bin"
-CONFIG = Path("/tmp/g1-fwconfig-shadow/zephyr/.config")
-MPSC_OBJECT = Path("/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj")
-LOG_OBJECT = Path("/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_core.c.obj")
+CONFIG = Path("/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/.config")
+MPSC_OBJECT = Path("/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj")
+LOG_OBJECT = Path("/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_core.c.obj")
 MPSC_SOURCE = Path("/Users/freedomcoder/ncs251/zephyr/lib/os/mpsc_pbuf.c")
 LOG_SOURCE = Path("/Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c")
 
@@ -42,8 +42,8 @@ VISIBLE = {va for va, values in FUNCTIONS.items() if values[4]}
 REMOVED = sorted(values[4] for values in FUNCTIONS.values() if values[4])
 REQUIRED_CONFIG = {
     "CONFIG_ASSERT": "y", "CONFIG_ASSERT_LEVEL": "2",
-    "CONFIG_SPIN_VALIDATE": "y", "CONFIG_THREAD_LOCAL_STORAGE": "y",
-    "CONFIG_ERRNO_IN_TLS": "n",
+    "CONFIG_SPIN_VALIDATE": "y", "CONFIG_THREAD_LOCAL_STORAGE": "n",
+    "CONFIG_THREAD_CUSTOM_DATA": "y", "CONFIG_MAIN_STACK_SIZE": "16384",
 }
 
 

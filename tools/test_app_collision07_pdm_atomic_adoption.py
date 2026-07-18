@@ -51,7 +51,7 @@ class PdmAtomicAdoptionTest(unittest.TestCase):
         self.assertIn("CONFIG_ASSERT=y", text)
         self.assertIn("CONFIG_ASSERT_LEVEL=2", text)
         self.assertIn("CONFIG_SPIN_VALIDATE=y", text)
-        self.assertIn("CONFIG_THREAD_LOCAL_STORAGE=y", text)
+        self.assertIn("# CONFIG_THREAD_LOCAL_STORAGE is not set", text)
         self.assertIn("# CONFIG_ERRNO_IN_TLS is not set", text)
         for row in self.rows:
             config = Path(row["configured_build"])

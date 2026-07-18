@@ -1,6 +1,102 @@
 {
  "schema": 1,
  "app": {
+  "0x00012c80": {
+   "name": "exp",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-w_exp.o(.text.exp) match. Raw identity remains FUN_00012c80."
+  },
+  "0x00012d20": {
+   "name": "log",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-w_log.o(.text.log) match. Raw identity remains FUN_00012d20."
+  },
+  "0x00012db0": {
+   "name": "__ieee754_exp",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-e_exp.o(.text.__ieee754_exp) match. Raw identity remains FUN_00012db0."
+  },
+  "0x00013090": {
+   "name": "__ieee754_log",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-e_log.o(.text.__ieee754_log) match. Raw identity remains FUN_00013090."
+  },
+  "0x000133f8": {
+   "name": "__ieee754_pow",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-e_pow.o(.text.__ieee754_pow) match. Raw identity remains FUN_000133f8."
+  },
+  "0x00013e50": {
+   "name": "nan",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-s_nan.o(.text.nan) match. Raw identity remains FUN_00013e50."
+  },
+  "0x00013e60": {
+   "name": "scalbn",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-s_scalbn.o(.text.scalbn) match. Raw identity remains FUN_00013e60."
+  },
+  "0x00075acc": {
+   "name": "pow",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-w_pow.o(.text.pow) match. Raw identity remains FUN_00075acc."
+  },
+  "0x00075c2c": {
+   "name": "asinf",
+   "evidence": "The relocation-normalized wrapper is byte-ambiguous with acosf, but its direct call at 0x00075c36 targets the exact __ieee754_asinf owner at 0x00075f88. Raw identity remains FUN_00075c2c."
+  },
+  "0x00075d0c": {
+   "name": "fmodf",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-wf_fmod.o(.text.fmodf) match. Raw identity remains FUN_00075d0c."
+  },
+  "0x00075d5c": {
+   "name": "log10f",
+   "evidence": "Corrected exact pinned newlib 3.3.0 libm_nano lib_a-wf_log10.o(.text.log10f) match; the former logf identity was stale. Raw identity remains FUN_00075d5c."
+  },
+  "0x00075f88": {
+   "name": "__ieee754_asinf",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-ef_asin.o(.text.__ieee754_asinf) match. Raw identity remains FUN_00075f88."
+  },
+  "0x00076154": {
+   "name": "__ieee754_atan2f",
+   "evidence": "Corrected exact pinned newlib 3.3.0 libm_nano lib_a-ef_atan2.o(.text.__ieee754_atan2f) match; this is the IEEE core, not the public wrapper. Raw identity remains FUN_00076154."
+  },
+  "0x00076290": {
+   "name": "__ieee754_expf",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-ef_exp.o(.text.__ieee754_expf) match. Raw identity remains FUN_00076290."
+  },
+  "0x00076430": {
+   "name": "__ieee754_fmodf",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-ef_fmod.o(.text.__ieee754_fmodf) match. Raw identity remains FUN_00076430."
+  },
+  "0x00076538": {
+   "name": "__ieee754_logf",
+   "evidence": "Corrected exact pinned newlib 3.3.0 libm_nano lib_a-ef_log.o(.text.__ieee754_logf) match; the former logf_core label was descriptive only. Raw identity remains FUN_00076538."
+  },
+  "0x00076718": {
+   "name": "__ieee754_log10f",
+   "evidence": "Corrected exact pinned newlib 3.3.0 libm_nano lib_a-ef_log10.o(.text.__ieee754_log10f) match; the former log2f identity was wrong. Raw identity remains FUN_00076718."
+  },
+  "0x000767c8": {
+   "name": "rint",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano binary64 lib_a-s_rint.o(.text.rint) match. Raw identity remains FUN_000767c8."
+  },
+  "0x000768e0": {
+   "name": "atanf",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-sf_atan.o(.text.atanf) match. Raw identity remains FUN_000768e0."
+  },
+  "0x000868ee": {
+   "name": "fabsf",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-sf_fabs.o(.text.fabsf) match. Raw identity remains FUN_000868ee."
+  },
+  "0x000869cc": {
+   "name": "fabs",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-s_fabs.o(.text.fabs) match. Raw identity remains FUN_000869cc."
+  },
+  "0x000869dc": {
+   "name": "finite",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-s_finite.o(.text.finite) match. Raw identity remains FUN_000869dc."
+  },
+  "0x000869f2": {
+   "name": "finitef",
+   "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-sf_finite.o(.text.finitef) match. Raw identity remains FUN_000869f2."
+  },
+  "0x000870ea": {
+   "name": "strtod_sulp",
+   "evidence": "Corrected exact pinned libc_nano lib_a-strtod.o(.text.sulp) translation-unit-local helper; the former scalbn label was wrong. Raw identity remains FUN_000870ea."
+  },
   "0x0000de58": {
    "name": "__fixdfsi",
    "evidence": "Pinned GCC 12.2.0 Cortex-M33 hard-float libgcc public export; firmware signature is exact. Raw identity remains FUN_0000de58."

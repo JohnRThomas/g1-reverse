@@ -1,0 +1,2356 @@
+{
+ "schema": 1,
+ "core": "app",
+ "generated_by": "tools/build_app_root_inventory.py",
+ "image": {
+  "path": "app_update.bin",
+  "sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "link_base": "0x0000c200",
+  "mcuboot_header_size": 512
+ },
+ "vectors": {
+  "start": "0x0000c200",
+  "word_count": 85,
+  "sha256": "083bb33d32bf649471c45692472192d2f767265edbb15029af58bbb42a322f6f",
+  "entries": [
+   {
+    "index": 0,
+    "name": "initial_msp",
+    "target": {
+     "raw": "0x200312f0",
+     "va": "0x200312f0",
+     "thumb": false
+    }
+   },
+   {
+    "index": 1,
+    "name": "Reset_Handler",
+    "target": {
+     "raw": "0x00050a99",
+     "va": "0x00050a98",
+     "thumb": true
+    }
+   },
+   {
+    "index": 2,
+    "name": "NMI_Handler",
+    "target": {
+     "raw": "0x0008076b",
+     "va": "0x0008076a",
+     "thumb": true
+    }
+   },
+   {
+    "index": 3,
+    "name": "HardFault_Handler",
+    "target": {
+     "raw": "0x00050a6d",
+     "va": "0x00050a6c",
+     "thumb": true
+    }
+   },
+   {
+    "index": 4,
+    "name": "MemManage_Handler",
+    "target": {
+     "raw": "0x00050a6d",
+     "va": "0x00050a6c",
+     "thumb": true
+    }
+   },
+   {
+    "index": 5,
+    "name": "BusFault_Handler",
+    "target": {
+     "raw": "0x00050a6d",
+     "va": "0x00050a6c",
+     "thumb": true
+    }
+   },
+   {
+    "index": 6,
+    "name": "UsageFault_Handler",
+    "target": {
+     "raw": "0x00050a6d",
+     "va": "0x00050a6c",
+     "thumb": true
+    }
+   },
+   {
+    "index": 7,
+    "name": null,
+    "target": {
+     "raw": "0x00050a6d",
+     "va": "0x00050a6c",
+     "thumb": true
+    }
+   },
+   {
+    "index": 8,
+    "name": null,
+    "target": {
+     "raw": "0x00000000",
+     "va": null,
+     "thumb": false
+    }
+   },
+   {
+    "index": 9,
+    "name": null,
+    "target": {
+     "raw": "0x00000000",
+     "va": null,
+     "thumb": false
+    }
+   },
+   {
+    "index": 10,
+    "name": null,
+    "target": {
+     "raw": "0x00000000",
+     "va": null,
+     "thumb": false
+    }
+   },
+   {
+    "index": 11,
+    "name": "SVC_Handler",
+    "target": {
+     "raw": "0x000502a5",
+     "va": "0x000502a4",
+     "thumb": true
+    }
+   },
+   {
+    "index": 12,
+    "name": "DebugMon_Handler",
+    "target": {
+     "raw": "0x00050a6d",
+     "va": "0x00050a6c",
+     "thumb": true
+    }
+   },
+   {
+    "index": 13,
+    "name": null,
+    "target": {
+     "raw": "0x00000000",
+     "va": null,
+     "thumb": false
+    }
+   },
+   {
+    "index": 14,
+    "name": "PendSV_Handler",
+    "target": {
+     "raw": "0x0005020d",
+     "va": "0x0005020c",
+     "thumb": true
+    }
+   },
+   {
+    "index": 15,
+    "name": "SysTick_Handler",
+    "target": {
+     "raw": "0x00050a6d",
+     "va": "0x00050a6c",
+     "thumb": true
+    }
+   },
+   {
+    "index": 16,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 17,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 18,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 19,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 20,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 21,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 22,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 23,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 24,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 25,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 26,
+    "name": "SPIM4_SPIS4_TWIM4_TWIS4_UARTE4_IRQHandler",
+    "target": {
+     "raw": "0x00067539",
+     "va": "0x00067538",
+     "thumb": true
+    }
+   },
+   {
+    "index": 27,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 28,
+    "name": "SPIM3_SPIS3_TWIM3_TWIS3_UARTE3_IRQHandler",
+    "target": {
+     "raw": "0x00067529",
+     "va": "0x00067528",
+     "thumb": true
+    }
+   },
+   {
+    "index": 29,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 30,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 31,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 32,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 33,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 34,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 35,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 36,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 37,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 38,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 39,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 40,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 41,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 42,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 43,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 44,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 45,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 46,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 47,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 48,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 49,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 50,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 51,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 52,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 53,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 54,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 55,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 56,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 57,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 58,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 59,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 60,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 61,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 62,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 63,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 64,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 65,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 66,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 67,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 68,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 69,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 70,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 71,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 72,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 73,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 74,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 75,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 76,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 77,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 78,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 79,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 80,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 81,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 82,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 83,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   },
+   {
+    "index": 84,
+    "name": "z_arm_irq_wrapper",
+    "target": {
+     "raw": "0x00050395",
+     "va": "0x00050394",
+     "thumb": true
+    }
+   }
+  ]
+ },
+ "init_levels": [
+  {
+   "level": "PRE_KERNEL_1",
+   "start": "0x000879b0",
+   "end": "0x00087a38",
+   "count": 17,
+   "sha256": "98647006cdacc7d87a623d579912864919feed269bfb49630275acaefad4f67c",
+   "entries": [
+    {
+     "entry_va": "0x000879b0",
+     "function": {
+      "raw": "0x0004c145",
+      "va": "0x0004c144",
+      "thumb": true
+     },
+     "name": "nordicsemi_nrf53_init",
+     "source": "zephyr/soc/arm/nordic_nrf/nrf53/soc.c",
+     "required_kconfig": [
+      "CONFIG_SOC_SERIES_NRF53X"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x000879b8",
+     "function": {
+      "raw": "0x00051199",
+      "va": "0x00051198",
+      "thumb": true
+     },
+     "name": "posix_barrier_pool_init",
+     "source": "zephyr/lib/posix/barrier.c",
+     "required_kconfig": [
+      "CONFIG_POSIX_API"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x000879c0",
+     "function": {
+      "raw": "0x000511f1",
+      "va": "0x000511f0",
+      "thumb": true
+     },
+     "name": "posix_cond_pool_init",
+     "source": "zephyr/lib/posix/cond.c",
+     "required_kconfig": [
+      "CONFIG_POSIX_API"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x000879c8",
+     "function": {
+      "raw": "0x00051231",
+      "va": "0x00051230",
+      "thumb": true
+     },
+     "name": "posix_mutex_pool_init",
+     "source": "zephyr/lib/posix/mutex.c",
+     "required_kconfig": [
+      "CONFIG_POSIX_API"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x000879d0",
+     "function": {
+      "raw": "0x00051275",
+      "va": "0x00051274",
+      "thumb": true
+     },
+     "name": "posix_thread_pool_init",
+     "source": "zephyr/lib/posix/pthread.c",
+     "required_kconfig": [
+      "CONFIG_POSIX_API"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x000879d8",
+     "function": {
+      "raw": "0x0004ccd5",
+      "va": "0x0004ccd4",
+      "thumb": true
+     },
+     "name": "shared_memory_prepare",
+     "source": "zephyr/subsys/ipc/ipc_service/backends/ipc_rpmsg_static_vrings.c",
+     "required_kconfig": [
+      "CONFIG_IPC_SERVICE"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x000879e0",
+     "function": {
+      "raw": "0x0006058d",
+      "va": "0x0006058c",
+      "thumb": true
+     },
+     "name": "clock_control_nrf_init",
+     "source": "zephyr/drivers/clock_control/clock_control_nrf.c",
+     "required_kconfig": [
+      "CONFIG_CLOCK_CONTROL_NRF"
+     ],
+     "device_va": "0x00087b30",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x000879e8",
+     "function": {
+      "raw": "0x000719a5",
+      "va": "0x000719a4",
+      "thumb": true
+     },
+     "name": "kheap_init",
+     "source": "zephyr/kernel/kheap.c",
+     "required_kconfig": [
+      "CONFIG_HEAP_MEM_POOL_SIZE"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x000879f0",
+     "function": {
+      "raw": "0x00071bd1",
+      "va": "0x00071bd0",
+      "thumb": true
+     },
+     "name": "init_mem_slab_module",
+     "source": "zephyr/kernel/mem_slab.c",
+     "required_kconfig": [
+      "CONFIG_MULTITHREADING"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x000879f8",
+     "function": {
+      "raw": "0x00061575",
+      "va": "0x00061574",
+      "thumb": true
+     },
+     "name": "gpio_nrfx_init",
+     "source": "zephyr/drivers/gpio/gpio_nrfx.c",
+     "required_kconfig": [
+      "CONFIG_GPIO_NRFX"
+     ],
+     "device_va": "0x00087b48",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a00",
+     "function": {
+      "raw": "0x00061575",
+      "va": "0x00061574",
+      "thumb": true
+     },
+     "name": "gpio_nrfx_init",
+     "source": "zephyr/drivers/gpio/gpio_nrfx.c",
+     "required_kconfig": [
+      "CONFIG_GPIO_NRFX"
+     ],
+     "device_va": "0x00087b60",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a08",
+     "function": {
+      "raw": "0x00084d4f",
+      "va": "0x00084d4e",
+      "thumb": true
+     },
+     "name": "nrf_cc3xx_platform_early_init",
+     "source": "nrfxlib/crypto/nrf_cc312_platform",
+     "required_kconfig": [
+      "CONFIG_NRF_CC3XX_PLATFORM"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a10",
+     "function": {
+      "raw": "0x00083893",
+      "va": "0x00083892",
+      "thumb": true
+     },
+     "name": "entropy_bt_hci_init",
+     "source": "nrf/drivers/entropy/entropy_bt_hci.c",
+     "required_kconfig": [
+      "CONFIG_ENTROPY_GENERATOR"
+     ],
+     "device_va": "0x00087b78",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a18",
+     "function": {
+      "raw": "0x000838b5",
+      "va": "0x000838b4",
+      "thumb": true
+     },
+     "name": "entropy_cc3xx_init",
+     "source": "nrf/drivers/entropy/entropy_cc3xx.c",
+     "required_kconfig": [
+      "CONFIG_ENTROPY_GENERATOR"
+     ],
+     "device_va": "0x00087b90",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a20",
+     "function": {
+      "raw": "0x00063b11",
+      "va": "0x00063b10",
+      "thumb": true
+     },
+     "name": "wdt_nrfx_init",
+     "source": "zephyr/drivers/watchdog/wdt_nrfx.c",
+     "required_kconfig": [
+      "CONFIG_WDT_NRFX"
+     ],
+     "device_va": "0x00087ba8",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a28",
+     "function": {
+      "raw": "0x00062d9d",
+      "va": "0x00062d9c",
+      "thumb": true
+     },
+     "name": "uarte_nrfx_init",
+     "source": "zephyr/drivers/serial/uart_nrfx_uarte.c",
+     "required_kconfig": [
+      "CONFIG_UART_NRFX"
+     ],
+     "device_va": "0x00087bc0",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a30",
+     "function": {
+      "raw": "0x000608c5",
+      "va": "0x000608c4",
+      "thumb": true
+     },
+     "name": "uart_console_init",
+     "source": "zephyr/drivers/console/uart_console.c",
+     "required_kconfig": [
+      "CONFIG_UART_CONSOLE"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    }
+   ]
+  },
+  {
+   "level": "PRE_KERNEL_2",
+   "start": "0x00087a38",
+   "end": "0x00087a40",
+   "count": 1,
+   "sha256": "b185afe506dac0c047d675c45eceb7d6b9395f77273bef91ce372d825b16c7ec",
+   "entries": [
+    {
+     "entry_va": "0x00087a38",
+     "function": {
+      "raw": "0x000637b9",
+      "va": "0x000637b8",
+      "thumb": true
+     },
+     "name": "sys_clock_driver_init",
+     "source": "zephyr/drivers/timer/nrf_rtc_timer.c",
+     "required_kconfig": [
+      "CONFIG_NRF_RTC_TIMER"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    }
+   ]
+  },
+  {
+   "level": "POST_KERNEL",
+   "start": "0x00087a40",
+   "end": "0x00087b20",
+   "count": 28,
+   "sha256": "26263a3f8a5242b9ba670e785aea344cfecec2c00e76fbad0c25fc660cc3d80b",
+   "entries": [
+    {
+     "entry_va": "0x00087a40",
+     "function": {
+      "raw": "0x0004c191",
+      "va": "0x0004c190",
+      "thumb": true
+     },
+     "name": "rtc_pretick_init",
+     "source": "nrf/soc/arm/nordic_nrf/nrf53/rtc_pretick.c",
+     "required_kconfig": [
+      "CONFIG_SOC_NRF53_RTC_PRETICK"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a48",
+     "function": {
+      "raw": "0x0004d275",
+      "va": "0x0004d274",
+      "thumb": true
+     },
+     "name": "log_init",
+     "source": "zephyr/subsys/logging/log_core.c",
+     "required_kconfig": [
+      "CONFIG_LOG"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a50",
+     "function": {
+      "raw": "0x00061aed",
+      "va": "0x00061aec",
+      "thumb": true
+     },
+     "name": "mbox_nrfx_init",
+     "source": "zephyr/drivers/mbox/mbox_nrfx_ipc.c",
+     "required_kconfig": [
+      "CONFIG_MBOX_NRFX_IPC"
+     ],
+     "device_va": "0x00087bd8",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a58",
+     "function": {
+      "raw": "0x00050ff5",
+      "va": "0x00050ff4",
+      "thumb": true
+     },
+     "name": "malloc_prepare",
+     "source": "zephyr/lib/libc/newlib/libc-hooks.c",
+     "required_kconfig": [
+      "CONFIG_NEWLIB_LIBC"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a60",
+     "function": {
+      "raw": "0x00084d53",
+      "va": "0x00084d52",
+      "thumb": true
+     },
+     "name": "nrf_cc3xx_platform_init",
+     "source": "nrfxlib/crypto/nrf_cc312_platform",
+     "required_kconfig": [
+      "CONFIG_NRF_CC3XX_PLATFORM"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a68",
+     "function": {
+      "raw": "0x00072a7d",
+      "va": "0x00072a7c",
+      "thumb": true
+     },
+     "name": "k_sys_work_q_init",
+     "source": "zephyr/kernel/system_work_q.c",
+     "required_kconfig": [
+      "CONFIG_SYSTEM_WORKQUEUE_PRIORITY"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a70",
+     "function": {
+      "raw": "0x00060c01",
+      "va": "0x00060c00",
+      "thumb": true
+     },
+     "name": "qspi_nor_init",
+     "source": "zephyr/drivers/flash/flash_nrf_qspi_nor.c",
+     "required_kconfig": [
+      "CONFIG_FLASH_NRF_QSPI"
+     ],
+     "device_va": "0x00087bf0",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a78",
+     "function": {
+      "raw": "0x0007eb5d",
+      "va": "0x0007eb5c",
+      "thumb": true
+     },
+     "name": "ipc_static_vrings_init",
+     "source": "zephyr/subsys/ipc/ipc_service/backends/ipc_rpmsg_static_vrings.c",
+     "required_kconfig": [
+      "CONFIG_IPC_SERVICE"
+     ],
+     "device_va": "0x00087c08",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a80",
+     "function": {
+      "raw": "0x0005f989",
+      "va": "0x0005f988",
+      "thumb": true
+     },
+     "name": "adc_nrfx_saadc_init",
+     "source": "zephyr/drivers/adc/adc_nrfx_saadc.c",
+     "required_kconfig": [
+      "CONFIG_ADC_NRFX_SAADC"
+     ],
+     "device_va": "0x00087c20",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a88",
+     "function": {
+      "raw": "0x00061235",
+      "va": "0x00061234",
+      "thumb": true
+     },
+     "name": "soc_flash_nrf_init",
+     "source": "zephyr/drivers/flash/soc_flash_nrf.c",
+     "required_kconfig": [
+      "CONFIG_SOC_FLASH_NRF"
+     ],
+     "device_va": "0x00087c38",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a90",
+     "function": {
+      "raw": "0x000617dd",
+      "va": "0x000617dc",
+      "thumb": true
+     },
+     "name": "i2c_nrfx_twim_init",
+     "source": "zephyr/drivers/i2c/i2c_nrfx_twim.c",
+     "required_kconfig": [
+      "CONFIG_I2C_NRFX"
+     ],
+     "device_va": "0x00087c68",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087a98",
+     "function": {
+      "raw": "0x000617dd",
+      "va": "0x000617dc",
+      "thumb": true
+     },
+     "name": "i2c_nrfx_twim_init",
+     "source": "zephyr/drivers/i2c/i2c_nrfx_twim.c",
+     "required_kconfig": [
+      "CONFIG_I2C_NRFX"
+     ],
+     "device_va": "0x00087c50",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087aa0",
+     "function": {
+      "raw": "0x0005129d",
+      "va": "0x0005129c",
+      "thumb": true
+     },
+     "name": "remoteproc_mgr_boot",
+     "source": "zephyr/boards/arm/nrf5340dk_nrf5340/nrf5340_cpunet_reset.c",
+     "required_kconfig": [
+      "CONFIG_BOARD_ENABLE_CPUNET"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087aa8",
+     "function": {
+      "raw": "0x00053195",
+      "va": "0x00053194",
+      "thumb": true
+     },
+     "name": "long_wq_init",
+     "source": "zephyr/subsys/bluetooth/host/long_wq.c",
+     "required_kconfig": [
+      "CONFIG_BT_LONG_WQ"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087ab0",
+     "function": {
+      "raw": "0x00060175",
+      "va": "0x00060174",
+      "thumb": true
+     },
+     "name": "bt_rpmsg_init",
+     "source": "zephyr/drivers/bluetooth/hci/rpmsg.c",
+     "required_kconfig": [
+      "CONFIG_BT_RPMSG"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087ab8",
+     "function": {
+      "raw": "0x00061d11",
+      "va": "0x00061d10",
+      "thumb": true
+     },
+     "name": "mfd_npm1300_init",
+     "source": "zephyr/drivers/mfd/mfd_npm1300.c",
+     "required_kconfig": [
+      "CONFIG_MFD_NPM1300"
+     ],
+     "device_va": "0x00087c80",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087ac0",
+     "function": {
+      "raw": "0x00083cb5",
+      "va": "0x00083cb4",
+      "thumb": true
+     },
+     "name": "gpio_npm1300_init",
+     "source": "zephyr/drivers/gpio/gpio_npm1300.c",
+     "required_kconfig": [
+      "CONFIG_GPIO_NPM1300"
+     ],
+     "device_va": "0x00087c98",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087ac8",
+     "function": {
+      "raw": "0x000639d5",
+      "va": "0x000639d4",
+      "thumb": true
+     },
+     "name": "wdt_npm1300_init",
+     "source": "zephyr/drivers/watchdog/wdt_npm1300.c",
+     "required_kconfig": [
+      "CONFIG_WDT_NPM1300"
+     ],
+     "device_va": "0x00087cc8",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087ad0",
+     "function": {
+      "raw": "0x000620cd",
+      "va": "0x000620cc",
+      "thumb": true
+     },
+     "name": "regulator_npm1300_common_init",
+     "source": "zephyr/drivers/regulator/regulator_npm1300.c",
+     "required_kconfig": [
+      "CONFIG_REGULATOR_NPM1300"
+     ],
+     "device_va": "0x00087cb0",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087ad8",
+     "function": {
+      "raw": "0x00084419",
+      "va": "0x00084418",
+      "thumb": true
+     },
+     "name": "regulator_npm1300_init",
+     "source": "zephyr/drivers/regulator/regulator_npm1300.c",
+     "required_kconfig": [
+      "CONFIG_REGULATOR_NPM1300"
+     ],
+     "device_va": "0x00087d28",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087ae0",
+     "function": {
+      "raw": "0x00084419",
+      "va": "0x00084418",
+      "thumb": true
+     },
+     "name": "regulator_npm1300_init",
+     "source": "zephyr/drivers/regulator/regulator_npm1300.c",
+     "required_kconfig": [
+      "CONFIG_REGULATOR_NPM1300"
+     ],
+     "device_va": "0x00087d10",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087ae8",
+     "function": {
+      "raw": "0x00084419",
+      "va": "0x00084418",
+      "thumb": true
+     },
+     "name": "regulator_npm1300_init",
+     "source": "zephyr/drivers/regulator/regulator_npm1300.c",
+     "required_kconfig": [
+      "CONFIG_REGULATOR_NPM1300"
+     ],
+     "device_va": "0x00087cf8",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087af0",
+     "function": {
+      "raw": "0x00084419",
+      "va": "0x00084418",
+      "thumb": true
+     },
+     "name": "regulator_npm1300_init",
+     "source": "zephyr/drivers/regulator/regulator_npm1300.c",
+     "required_kconfig": [
+      "CONFIG_REGULATOR_NPM1300"
+     ],
+     "device_va": "0x00087ce0",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087af8",
+     "function": {
+      "raw": "0x0005ff1d",
+      "va": "0x0005ff1c",
+      "thumb": true
+     },
+     "name": "pdm_nrfx_init0",
+     "source": "zephyr/drivers/audio/dmic_nrfx_pdm.c",
+     "required_kconfig": [
+      "CONFIG_AUDIO_DMIC_NRFX_PDM"
+     ],
+     "device_va": "0x00087d40",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087b00",
+     "function": {
+      "raw": "0x00062931",
+      "va": "0x00062930",
+      "thumb": true
+     },
+     "name": "opt3001_init",
+     "source": "zephyr/drivers/sensor/opt3001/opt3001.c",
+     "required_kconfig": [
+      "CONFIG_OPT3001"
+     ],
+     "device_va": "0x00087d88",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087b08",
+     "function": {
+      "raw": "0x00062645",
+      "va": "0x00062644",
+      "thumb": true
+     },
+     "name": "npm1300_charger_init",
+     "source": "zephyr/drivers/sensor/npm1300_charger/npm1300_charger.c",
+     "required_kconfig": [
+      "CONFIG_NPM1300_CHARGER"
+     ],
+     "device_va": "0x00087d70",
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087b10",
+     "function": {
+      "raw": "0x00000000",
+      "va": null,
+      "thumb": false
+     },
+     "name": null,
+     "source": null,
+     "required_kconfig": [],
+     "device_va": "0x00087d58",
+     "ownership": "null_device_entry"
+    },
+    {
+     "entry_va": "0x00087b18",
+     "function": {
+      "raw": "0x0004c2d5",
+      "va": "0x0004c2d4",
+      "thumb": true
+     },
+     "name": "sync_rtc_setup",
+     "source": "zephyr/soc/arm/nordic_nrf/nrf53/sync_rtc.c",
+     "required_kconfig": [
+      "CONFIG_NRF53_SYNC_RTC"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    }
+   ]
+  },
+  {
+   "level": "APPLICATION",
+   "start": "0x00087b20",
+   "end": "0x00087b30",
+   "count": 2,
+   "sha256": "adf44a58e59c836f603f6cdba9505bbebf462a4212a184a6d7fbe04aa1032429",
+   "entries": [
+    {
+     "entry_va": "0x00087b20",
+     "function": {
+      "raw": "0x00051305",
+      "va": "0x00051304",
+      "thumb": true
+     },
+     "name": "mcumgr_handlers_init",
+     "source": "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+     "required_kconfig": [
+      "CONFIG_MCUMGR"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    },
+    {
+     "entry_va": "0x00087b28",
+     "function": {
+      "raw": "0x000526b5",
+      "va": "0x000526b4",
+      "thumb": true
+     },
+     "name": "smp_init",
+     "source": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+     "required_kconfig": [
+      "CONFIG_MCUMGR"
+     ],
+     "device_va": null,
+     "ownership": "stock"
+    }
+   ]
+  }
+ ],
+ "devices": {
+  "start": "0x00087b30",
+  "count": 26,
+  "stride": 24,
+  "sha256": "a9d423e4b3b8dbbb9b68a4ee4582b23691b4528c9bccda7b10ae372d4e585c60",
+  "required_kconfig": [
+   "CONFIG_PM_DEVICE"
+  ],
+  "entries": [
+   {
+    "index": 0,
+    "va": "0x00087b30",
+    "name": "clock",
+    "descriptor_words": [
+     "0x000f5b3a",
+     "0x0008b608",
+     "0x0008b638",
+     "0x200035b8",
+     "0x2000b098",
+     "0x00000000"
+    ],
+    "init": "clock_control_nrf_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 1,
+    "va": "0x00087b48",
+    "name": "gpio0",
+    "descriptor_words": [
+     "0x000f5ea5",
+     "0x0008b728",
+     "0x0008b748",
+     "0x200035c2",
+     "0x2000b16c",
+     "0x00000000"
+    ],
+    "init": "gpio_nrfx_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 2,
+    "va": "0x00087b60",
+    "name": "gpio1",
+    "descriptor_words": [
+     "0x000f5eb1",
+     "0x0008b738",
+     "0x0008b748",
+     "0x200035c4",
+     "0x2000b178",
+     "0x00000000"
+    ],
+    "init": "gpio_nrfx_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 3,
+    "va": "0x00087b78",
+    "name": "entropy_bt_hci",
+    "descriptor_words": [
+     "0x000f5b74",
+     "0x00000000",
+     "0x0008b654",
+     "0x200035ba",
+     "0x00000000",
+     "0x00000000"
+    ],
+    "init": "entropy_bt_hci_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 4,
+    "va": "0x00087b90",
+    "name": "entropy_cc3xx",
+    "descriptor_words": [
+     "0x000f5bc6",
+     "0x00000000",
+     "0x0008b65c",
+     "0x200035bc",
+     "0x00000000",
+     "0x00000000"
+    ],
+    "init": "entropy_cc3xx_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 5,
+    "va": "0x00087ba8",
+    "name": "wdt0",
+    "descriptor_words": [
+     "0x000f66cd",
+     "0x0008bb6c",
+     "0x0008bb80",
+     "0x200035e4",
+     "0x2000b2e0",
+     "0x00000000"
+    ],
+    "init": "wdt_nrfx_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 6,
+    "va": "0x00087bc0",
+    "name": "uart0",
+    "descriptor_words": [
+     "0x000f663f",
+     "0x0008bad0",
+     "0x0008bb1c",
+     "0x200035e0",
+     "0x20002b8c",
+     "0x20002b7c"
+    ],
+    "init": "uarte_nrfx_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 7,
+    "va": "0x00087bd8",
+    "name": "mbox0",
+    "descriptor_words": [
+     "0x000f6119",
+     "0x20002b74",
+     "0x0008b850",
+     "0x200035cc",
+     "0x2000b188",
+     "0x00000000"
+    ],
+    "init": "mbox_nrfx_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 8,
+    "va": "0x00087bf0",
+    "name": "qspi_nor",
+    "descriptor_words": [
+     "0x000f5d6b",
+     "0x0008b66c",
+     "0x0008b6f0",
+     "0x200035be",
+     "0x20002a80",
+     "0x20002a70"
+    ],
+    "init": "qspi_nor_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 9,
+    "va": "0x00087c08",
+    "name": "ipc0",
+    "descriptor_words": [
+     "0x0009f71c",
+     "0x200027cc",
+     "0x0008ac48",
+     "0x200035b2",
+     "0x20004e00",
+     "0x00000000"
+    ],
+    "init": "ipc_static_vrings_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 10,
+    "va": "0x00087c20",
+    "name": "adc0",
+    "descriptor_words": [
+     "0x000f5648",
+     "0x00000000",
+     "0x0008b58c",
+     "0x200035b4",
+     "0x00000000",
+     "0x00000000"
+    ],
+    "init": "adc_nrfx_saadc_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 11,
+    "va": "0x00087c38",
+    "name": "soc_flash",
+    "descriptor_words": [
+     "0x000f5ddb",
+     "0x00000000",
+     "0x0008b70c",
+     "0x200035c0",
+     "0x00000000",
+     "0x00000000"
+    ],
+    "init": "soc_flash_nrf_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 12,
+    "va": "0x00087c50",
+    "name": "i2c2",
+    "descriptor_words": [
+     "0x000f601d",
+     "0x0008b798",
+     "0x0008b838",
+     "0x200035c8",
+     "0x20002af4",
+     "0x20002ae4"
+    ],
+    "init": "i2c_nrfx_twim_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 13,
+    "va": "0x00087c68",
+    "name": "i2c1",
+    "descriptor_words": [
+     "0x000f6026",
+     "0x0008b7e8",
+     "0x0008b838",
+     "0x200035ca",
+     "0x20002b3c",
+     "0x20002b2c"
+    ],
+    "init": "i2c_nrfx_twim_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 14,
+    "va": "0x00087c80",
+    "name": "npm1300_mfd",
+    "descriptor_words": [
+     "0x000f6132",
+     "0x0008b864",
+     "0x00000000",
+     "0x200035ce",
+     "0x2000b210",
+     "0x00000000"
+    ],
+    "init": "mfd_npm1300_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 15,
+    "va": "0x00087c98",
+    "name": "npm1300_gpio",
+    "descriptor_words": [
+     "0x000f5ebd",
+     "0x0008b76c",
+     "0x0008b774",
+     "0x200035c6",
+     "0x2000b184",
+     "0x00000000"
+    ],
+    "init": "gpio_npm1300_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 16,
+    "va": "0x00087cb0",
+    "name": "npm1300_regulator_parent",
+    "descriptor_words": [
+     "0x000f6160",
+     "0x0008b978",
+     "0x0008b9d0",
+     "0x200035d8",
+     "0x00000000",
+     "0x00000000"
+    ],
+    "init": "regulator_npm1300_common_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 17,
+    "va": "0x00087cc8",
+    "name": "npm1300_wdt",
+    "descriptor_words": [
+     "0x000f66c4",
+     "0x0008bb50",
+     "0x0008bb5c",
+     "0x200035e2",
+     "0x2001d560",
+     "0x00000000"
+    ],
+    "init": "wdt_npm1300_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 18,
+    "va": "0x00087ce0",
+    "name": "npm1300_ldo2",
+    "descriptor_words": [
+     "0x000f614a",
+     "0x0008b878",
+     "0x0008b9a4",
+     "0x200035d0",
+     "0x2000b24c",
+     "0x00000000"
+    ],
+    "init": "regulator_npm1300_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 19,
+    "va": "0x00087cf8",
+    "name": "npm1300_ldo1",
+    "descriptor_words": [
+     "0x000f614f",
+     "0x0008b8b8",
+     "0x0008b9a4",
+     "0x200035d2",
+     "0x2000b264",
+     "0x00000000"
+    ],
+    "init": "regulator_npm1300_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 20,
+    "va": "0x00087d10",
+    "name": "npm1300_buck2",
+    "descriptor_words": [
+     "0x000f6154",
+     "0x0008b8f8",
+     "0x0008b9a4",
+     "0x200035d4",
+     "0x2000b27c",
+     "0x00000000"
+    ],
+    "init": "regulator_npm1300_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 21,
+    "va": "0x00087d28",
+    "name": "npm1300_buck1",
+    "descriptor_words": [
+     "0x000f615a",
+     "0x0008b938",
+     "0x0008b9a4",
+     "0x200035d6",
+     "0x2000b294",
+     "0x00000000"
+    ],
+    "init": "regulator_npm1300_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 22,
+    "va": "0x00087d40",
+    "name": "pdm0",
+    "descriptor_words": [
+     "0x000f5875",
+     "0x0008b598",
+     "0x0008b5d8",
+     "0x200035b6",
+     "0x2000b008",
+     "0x00000000"
+    ],
+    "init": "pdm_nrfx_init0",
+    "pm_field_present": true
+   },
+   {
+    "index": 23,
+    "va": "0x00087d58",
+    "name": "lsm6dso",
+    "descriptor_words": [
+     "0x000f649d",
+     "0x0008b9d8",
+     "0x0008b9f8",
+     "0x200035da",
+     "0x2000b2ac",
+     "0x00000000"
+    ],
+    "init": null,
+    "pm_field_present": true
+   },
+   {
+    "index": 24,
+    "va": "0x00087d70",
+    "name": "npm1300_charger",
+    "descriptor_words": [
+     "0x000f64b0",
+     "0x0008ba14",
+     "0x0008ba48",
+     "0x200035dc",
+     "0x2000ff3e",
+     "0x00000000"
+    ],
+    "init": "npm1300_charger_init",
+    "pm_field_present": true
+   },
+   {
+    "index": 25,
+    "va": "0x00087d88",
+    "name": "opt3001",
+    "descriptor_words": [
+     "0x000f6591",
+     "0x0008baac",
+     "0x0008bab4",
+     "0x200035de",
+     "0x2000ff48",
+     "0x00000000"
+    ],
+    "init": "opt3001_init",
+    "pm_field_present": true
+   }
+  ]
+ },
+ "sw_isr_table": {
+  "start": "0x00087da0",
+  "count": 69,
+  "stride": 8,
+  "default_function": "0x00080762",
+  "sha256": "05f4710ad131d33b513c9c55623d7bba8db51bfbca4e9e2ff50f057185044535",
+  "non_default": [
+   {
+    "irq": 5,
+    "argument": {
+     "raw": "0x0006535d",
+     "va": "0x0006535c",
+     "thumb": true
+    },
+    "function": {
+     "raw": "0x000850d7",
+     "va": "0x000850d6",
+     "thumb": true
+    },
+    "name": "clock_power_isr"
+   },
+   {
+    "irq": 8,
+    "argument": {
+     "raw": "0x00087bc0",
+     "va": "0x00087bc0",
+     "thumb": false
+    },
+    "function": {
+     "raw": "0x0006312d",
+     "va": "0x0006312c",
+     "thumb": true
+    },
+    "name": "uarte_nrfx_isr"
+   },
+   {
+    "irq": 9,
+    "argument": {
+     "raw": "0x00067d65",
+     "va": "0x00067d64",
+     "thumb": true
+    },
+    "function": {
+     "raw": "0x000850d7",
+     "va": "0x000850d6",
+     "thumb": true
+    },
+    "name": "nrfx_serial_irq_9"
+   },
+   {
+    "irq": 11,
+    "argument": {
+     "raw": "0x00067d75",
+     "va": "0x00067d74",
+     "thumb": true
+    },
+    "function": {
+     "raw": "0x000850d7",
+     "va": "0x000850d6",
+     "thumb": true
+    },
+    "name": "nrfx_serial_irq_11"
+   },
+   {
+    "irq": 13,
+    "argument": {
+     "raw": "0x00065b9d",
+     "va": "0x00065b9c",
+     "thumb": true
+    },
+    "function": {
+     "raw": "0x000850d7",
+     "va": "0x000850d6",
+     "thumb": true
+    },
+    "name": "gpio_nrfx_isr"
+   },
+   {
+    "irq": 14,
+    "argument": {
+     "raw": "0x00087c20",
+     "va": "0x00087c20",
+     "thumb": false
+    },
+    "function": {
+     "raw": "0x0005f9cd",
+     "va": "0x0005f9cc",
+     "thumb": true
+    },
+    "name": "adc_nrfx_saadc_isr"
+   },
+   {
+    "irq": 21,
+    "argument": {
+     "raw": "0x00000000",
+     "va": null,
+     "thumb": false
+    },
+    "function": {
+     "raw": "0x00012809",
+     "va": "0x00012808",
+     "thumb": true
+    },
+    "name": "rtc_nrf_isr"
+   },
+   {
+    "irq": 24,
+    "argument": {
+     "raw": "0x00067f61",
+     "va": "0x00067f60",
+     "thumb": true
+    },
+    "function": {
+     "raw": "0x000850d7",
+     "va": "0x000850d6",
+     "thumb": true
+    },
+    "name": "mbox_nrfx_isr"
+   },
+   {
+    "irq": 38,
+    "argument": {
+     "raw": "0x0006636d",
+     "va": "0x0006636c",
+     "thumb": true
+    },
+    "function": {
+     "raw": "0x000850d7",
+     "va": "0x000850d6",
+     "thumb": true
+    },
+    "name": "nrfx_pdm_irq_handler"
+   },
+   {
+    "irq": 42,
+    "argument": {
+     "raw": "0x00065e89",
+     "va": "0x00065e88",
+     "thumb": true
+    },
+    "function": {
+     "raw": "0x000850d7",
+     "va": "0x000850d6",
+     "thumb": true
+    },
+    "name": "soc_flash_irq"
+   },
+   {
+    "irq": 43,
+    "argument": {
+     "raw": "0x00066c89",
+     "va": "0x00066c88",
+     "thumb": true
+    },
+    "function": {
+     "raw": "0x000850d7",
+     "va": "0x000850d6",
+     "thumb": true
+    },
+    "name": "nrfx_qspi_irq_handler"
+   }
+  ]
+ },
+ "dynamic_threads": [
+  {
+   "name": "ancs",
+   "tcb": "0x20003c50",
+   "stack": "0x2001d568",
+   "stack_size": 5120,
+   "entry_candidates": [
+    "0x00019718"
+   ],
+   "priority": -11,
+   "ownership": "application",
+   "lifecycle": "runtime_k_thread_create"
+  },
+  {
+   "name": "ble_projector",
+   "tcb": "0x20003d60",
+   "stack": "0x2001e968",
+   "stack_size": 12288,
+   "entry_candidates": [
+    "0x00021da8"
+   ],
+   "priority": -15,
+   "ownership": "application",
+   "lifecycle": "runtime_k_thread_create"
+  },
+  {
+   "name": "flash",
+   "tcb": "0x20003e38",
+   "stack": "0x20021968",
+   "stack_size": 2048,
+   "entry_candidates": [
+    "0x00023480"
+   ],
+   "priority": -12,
+   "ownership": "application",
+   "lifecycle": "runtime_k_thread_create"
+  },
+  {
+   "name": "brightness",
+   "tcb": "0x20003f10",
+   "stack": "0x20022168",
+   "stack_size": 5120,
+   "entry_candidates": [
+    "0x00023844"
+   ],
+   "priority": -11,
+   "ownership": "application",
+   "lifecycle": "runtime_k_thread_create"
+  },
+  {
+   "name": "run_main_a",
+   "tcb": "0x200046b8",
+   "stack": "0x20026a68",
+   "stack_size": 3072,
+   "entry_candidates": [
+    "0x0002a8d8",
+    "0x0002685c"
+   ],
+   "priority": -10,
+   "ownership": "application",
+   "lifecycle": "runtime_k_thread_create"
+  },
+  {
+   "name": "run_main_b",
+   "tcb": "0x200041a8",
+   "stack": "0x20024868",
+   "stack_size": 1024,
+   "entry_candidates": [
+    "0x000286f8"
+   ],
+   "priority": -10,
+   "ownership": "application",
+   "lifecycle": "runtime_k_thread_create"
+  },
+  {
+   "name": "run_main_c",
+   "tcb": "0x200040d0",
+   "stack": "0x20023c68",
+   "stack_size": 3072,
+   "entry_candidates": [
+    "0x0002a4f4"
+   ],
+   "priority": -9,
+   "ownership": "application",
+   "lifecycle": "runtime_k_thread_create"
+  },
+  {
+   "name": "run_main_d",
+   "tcb": "0x200045e0",
+   "stack": "0x20026268",
+   "stack_size": 2048,
+   "entry_candidates": [
+    "0x00028bec"
+   ],
+   "priority": -13,
+   "ownership": "application",
+   "lifecycle": "runtime_k_thread_create"
+  },
+  {
+   "name": "run_main_e",
+   "tcb": "0x20004508",
+   "stack": "0x20025a68",
+   "stack_size": 2048,
+   "entry_candidates": [
+    "0x0002692c"
+   ],
+   "priority": -12,
+   "ownership": "application",
+   "lifecycle": "runtime_k_thread_create"
+  },
+  {
+   "name": "run_main_f",
+   "tcb": "0x20004430",
+   "stack": "0x20025468",
+   "stack_size": 1536,
+   "entry_candidates": [
+    "0x00027cfc"
+   ],
+   "priority": -11,
+   "ownership": "application_conditional",
+   "lifecycle": "runtime_k_thread_create"
+  },
+  {
+   "name": "run_main_g",
+   "tcb": "0x20004358",
+   "stack": "0x20025068",
+   "stack_size": 1024,
+   "entry_candidates": [
+    "0x0002a0d8",
+    "0x00028a1c"
+   ],
+   "priority": -14,
+   "ownership": "application",
+   "lifecycle": "runtime_k_thread_create"
+  },
+  {
+   "name": "run_main_h",
+   "tcb": "0x20004280",
+   "stack": "0x20024c68",
+   "stack_size": 1024,
+   "entry_candidates": [
+    "0x0002955c"
+   ],
+   "priority": -13,
+   "ownership": "application",
+   "lifecycle": "runtime_k_thread_create"
+  },
+  {
+   "name": "aging_a",
+   "tcb": "0x20004870",
+   "stack": "0x20027a68",
+   "stack_size": 3072,
+   "entry_candidates": [
+    "0x00032420"
+   ],
+   "priority": -12,
+   "ownership": "application",
+   "lifecycle": "runtime_k_thread_create"
+  },
+  {
+   "name": "aging_b",
+   "tcb": "0x20004798",
+   "stack": "0x20027668",
+   "stack_size": 1024,
+   "entry_candidates": [
+    "0x000324bc"
+   ],
+   "priority": -12,
+   "ownership": "application",
+   "lifecycle": "runtime_k_thread_create"
+  },
+  {
+   "name": "proxy",
+   "tcb": "0x20004c08",
+   "stack": "0x20028668",
+   "stack_size": 2048,
+   "entry_candidates": [
+    "0x00047c48"
+   ],
+   "priority": -12,
+   "ownership": "application",
+   "lifecycle": "runtime_k_thread_create"
+  },
+  {
+   "name": "display",
+   "tcb": "0x20004d18",
+   "stack": "0x20028e68",
+   "stack_size": 5120,
+   "entry_candidates": [
+    "0x00049090"
+   ],
+   "priority": -14,
+   "ownership": "application",
+   "lifecycle": "runtime_k_thread_create"
+  },
+  {
+   "name": "bt_rx",
+   "tcb": "0x20005e30",
+   "stack": "0x2002bb80",
+   "stack_size": 1024,
+   "entry_candidates": [
+    "0x000545f0"
+   ],
+   "priority": -9,
+   "ownership": "stock_zephyr_bt",
+   "lifecycle": "runtime_k_thread_create"
+  }
+ ],
+ "static_msgqs": [
+  {
+   "name": "audio",
+   "object_va": "0x20003890",
+   "message_size": 204,
+   "max_messages": 18,
+   "lifecycle": "rom_static_initializer"
+  },
+  {
+   "name": "display",
+   "object_va": "0x200038c4",
+   "message_size": 24,
+   "max_messages": 30,
+   "lifecycle": "rom_static_initializer"
+  },
+  {
+   "name": "quicknote",
+   "object_va": "0x20003960",
+   "message_size": 6,
+   "max_messages": 20,
+   "lifecycle": "rom_static_initializer"
+  },
+  {
+   "name": "flash_cmd",
+   "object_va": "0x20003994",
+   "message_size": 6,
+   "max_messages": 5,
+   "lifecycle": "rom_static_initializer"
+  }
+ ],
+ "gates": {
+  "init_level_counts": [
+   17,
+   1,
+   28,
+   2
+  ],
+  "device_count": 26,
+  "vector_word_count": 85,
+  "non_default_isr_count": 11,
+  "all_verified_rodata_must_be_live": 993,
+  "numeric_function_pointers_forbidden_in_production_roots": true,
+  "retain_all_is_audit_only": true,
+  "sdc_policy": "report_only"
+ }
+}

@@ -4,7 +4,7 @@ import argparse, hashlib, json
 from pathlib import Path
 from elftools.elf.elffile import ELFFile
 
-ROOT=Path(__file__).resolve().parents[1]; BUILD=Path('/private/tmp/g1-bt-no-trace-layout')
+ROOT=Path(__file__).resolve().parents[1]; BUILD=Path('/private/tmp/g1-bt-custom-notls-main16k-evidence')
 CONFIG=BUILD/'zephyr/.config'; OBJROOT=BUILD/'zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir'
 IMAGE=ROOT/'app_update.bin'; CATALOG=ROOT/'recon/ownership/app_build_collision_ownership.json'
 OUTPUT=ROOT/'recon/ownership/app_bluetooth_stock_atomic_adoption.json'
@@ -13,7 +13,8 @@ CFG={'CONFIG_NEWLIB_LIBC':'y','CONFIG_NEWLIB_LIBC_NANO':'y','CONFIG_ASSERT':'y',
  'CONFIG_BT_PERIPHERAL':'y','CONFIG_BT_CENTRAL':'n','CONFIG_BT_GATT_CLIENT':'y','CONFIG_BT_GATT_DYNAMIC_DB':'y',
  'CONFIG_BT_SETTINGS':'y','CONFIG_BT_MAX_PAIRED':'2','CONFIG_BT_ID_MAX':'1','CONFIG_BT_PRIVACY':'n',
  'CONFIG_BT_L2CAP_DYNAMIC_CHANNEL':'y','CONFIG_BT_CONN_TX_MAX':'10','CONFIG_BT_ATT_PREPARE_COUNT':'1',
- 'CONFIG_BT_L2CAP_SEG_RECV':'n','CONFIG_TRACING':'n'}
+ 'CONFIG_BT_L2CAP_SEG_RECV':'n','CONFIG_TRACING':'n','CONFIG_THREAD_LOCAL_STORAGE':'n',
+ 'CONFIG_THREAD_CUSTOM_DATA':'y','CONFIG_MAIN_STACK_SIZE':'16384'}
 UNITS={
 'hci_core':[(0x53cb0,'bt_hci_cmd_state_set_init',30),(0x53cd4,'bt_hci_cmd_create',134),(0x54a44,'bt_enable',252)],
 'conn':[(0x564cc,'bt_conn_send_cb',222),(0x8157a,'bt_conn_le_param_update',104)],

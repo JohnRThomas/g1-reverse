@@ -32,8 +32,9 @@ the `ncs1-1` source hashes and configured objects.
 
 ## Decisive Bluetooth configuration correction
 
-`CONFIG_TRACING=n` is structurally and instruction-byte exact.  With tracing
-disabled, `struct bt_dev` has size `0x170` and these firmware offsets:
+`CONFIG_TRACING=n` and `CONFIG_THREAD_LOCAL_STORAGE=n` are structurally and
+instruction-byte exact.  With both disabled, `struct bt_dev` has size `0x170`
+and these firmware offsets:
 
 - `ncmd_sem = +0x128`
 - `sent_cmd = +0x140`
@@ -47,10 +48,12 @@ relocation normalization, including both inline assert/SVC paths and the
 literal addends.  `FUN_0005463e` and `FUN_00054688` are therefore interior
 `svc #2` continuations, not functions or missing library owners.
 
-All 33 adopted public Bluetooth owners and all 21 adopted `kernel/work.c`
-owners plus four hidden/support bodies remain exact with tracing disabled.
+All 35 audited Bluetooth bodies and all 21 adopted `kernel/work.c` owners plus
+four hidden/support bodies are exact with tracing and TLS disabled.  TLS
+enabled is specifically rejected by `bt_conn_send_cb`: it inlines
+`z_tls_current`, while the firmware calls stock `z_current_get`.
 The corrected configured `.config` SHA-256 is
-`c0d7ca757a7f944f7c8ed37c98b1c3147d19d16f4f3e7832fcddaf85af49772b`.
+`8a34969be3288fe1afd0a3fdba6fb1b54b3d92f75e8621536e857e1e41432138`.
 
 ## Scope limits
 

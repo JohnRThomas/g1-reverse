@@ -9,6 +9,14 @@ set(CONF_FILE
   CACHE STRING "G1 application configuration fragments" FORCE
 )
 
+# The recovered device inventory is board-specific.  Keep the overlay explicit
+# so a build from this directory cannot silently fall back to the DK device
+# topology (which adds a Zephyr SPI device and omits the nPM1300 children).
+set(DTC_OVERLAY_FILE
+  "${CMAKE_CURRENT_LIST_DIR}/../../board/g1_board.overlay"
+  CACHE STRING "G1 recovered CPUAPP devicetree" FORCE
+)
+
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(g1_cpuapp_reconstruction)
 

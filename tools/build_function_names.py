@@ -127,6 +127,27 @@ def durable_names(core, candidates):
                 priority, source)
 
 
+def durable_aliases(core):
+    """Retain reviewed reverse names without letting them win selection.
+
+    Feeding old aliases back through add() would let a stale human alias beat a
+    raw identity.  Keep them out of candidate ranking and merge them only after
+    the current owner has been selected.
+    """
+    relative = "recon/catalogs/function_names_%s.json" % core
+    try:
+        committed = subprocess.run(
+            ["git", "-C", BASE, "show", "HEAD:" + relative],
+            capture_output=True, text=True, check=True)
+        manifest = json.loads(committed.stdout)
+    except (subprocess.CalledProcessError, ValueError, OSError):
+        return {}
+    return {
+        int(address, 16) & ~1: set(record.get("aliases", []))
+        for address, record in manifest.get("by_address", {}).items()
+    }
+
+
 def catalog_names(core, candidates):
     path = SCR + "/%s_funcs.json" % core
     with open(path) as stream:
@@ -151,6 +172,7 @@ def catalog_names(core, candidates):
 
 def build(core):
     candidates = collections.defaultdict(list)
+    old_aliases = durable_aliases(core)
     durable_names(core, candidates)
     catalog_names(core, candidates)
     source_headers(core, candidates)
@@ -167,7 +189,8 @@ def build(core):
         best = rows[0]
         override = overrides.get("0x%08x" % address, {})
         raw = override.get("raw_name", "FUN_%08x" % address)
-        aliases = sorted({row["name"] for row in rows if row["name"] != best["name"]})
+        aliases = sorted((old_aliases.get(address, set()) |
+                          {row["name"] for row in rows}) - {best["name"]})
         chosen[address] = {
             "address": "0x%08x" % address,
             "raw_name": raw,

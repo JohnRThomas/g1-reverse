@@ -10,7 +10,7 @@
  *   lc3_spec_compute_nbits                   <= FUN_0006f28c @ 0x0006f28c
  *   lc3_spec_analyze                         <= FUN_0006f4a0 @ 0x0006f4a0
  *   lc3_tns_get_nbits                        <= FUN_000709d8 @ 0x000709d8
- *   logf                                     <= FUN_00075d5c @ 0x00075d5c
+ *   log10f                                   <= FUN_00075d5c @ 0x00075d5c
  * address symbols (name @ address):
  *   lc3_spec_iq_table                        @ 0x0008d350
  */
@@ -28,7 +28,7 @@ extern int lc3_tns_get_nbits(const void *tns);
 extern void lc3_spec_quantize(int dt,int sr,int gain,float *x,uint16_t *xq,int *nq);
 extern int lc3_spec_compute_nbits(int dt,int sr,int nbytes,const uint16_t *xq,int *nq,
                        int budget,bool *lsb_mode);
-extern float logf(float x);
+extern float log10f(float x);
 
 static inline float maxnum(float a,float b) { return __builtin_fmaxf(a,b); }
 static inline float minnum(float a,float b) { return __builtin_fminf(a,b); }
@@ -67,7 +67,7 @@ static int estimate_gain(int dt,int sr,const float *x,int budget,float off,
     int gmin;
     if(xmax==0) gmin=-goff;
     else {
-        float z=logf(__builtin_sqrtf(xmax)*(1.0f/(32768.0f-0.375f)));
+        float z=log10f(__builtin_sqrtf(xmax)*(1.0f/(32768.0f-0.375f)));
         gmin=(int)__builtin_ceilf(28.0f*z);
     }
     *reset=g<gmin||xmax==0; if(*reset)g=gmin; return g;

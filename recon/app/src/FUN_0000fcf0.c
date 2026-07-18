@@ -1,6 +1,5 @@
 /* Reconstructed FUN_0000fcf0 @ 0xfcf0 */
 #include <stdint.h>
-#include <math.h>
 extern void FUN_000254a0(void*,void*),FUN_0007c3c2(void*),FUN_00074844(int,int),FUN_000250f8(void*,void*,void*),FUN_00024d40(void);
 extern uint32_t FUN_00024d2c(void),FUN_0000d824(uint32_t); extern double FUN_00075acc(uint32_t,uint32_t),FUN_0000dee8(void);
 extern void FUN_0000d588(double,double);

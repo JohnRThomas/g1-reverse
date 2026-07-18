@@ -630,50 +630,76 @@
   "0x00012c80": {
    "address": "0x00012c80",
    "raw_name": "FUN_00012c80",
-   "name": "FUN_00012c80",
-   "display_name": "FUN_00012c80",
-   "human": false,
-   "source": "recon/app/src/FUN_00012c80.c",
+   "name": "exp",
+   "display_name": "exp",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-w_exp.o(.text.exp) match. Raw identity remains FUN_00012c80.",
+   "aliases": [
+    "FUN_00012c80"
+   ]
+  },
+  "0x00012d20": {
+   "address": "0x00012d20",
+   "raw_name": "FUN_00012d20",
+   "name": "log",
+   "display_name": "log",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-w_log.o(.text.log) match. Raw identity remains FUN_00012d20.",
    "aliases": []
   },
   "0x00012db0": {
    "address": "0x00012db0",
    "raw_name": "FUN_00012db0",
-   "name": "FUN_00012db0",
-   "display_name": "FUN_00012db0",
-   "human": false,
-   "source": "recon/app/src/FUN_00012db0.c",
+   "name": "__ieee754_exp",
+   "display_name": "__ieee754_exp",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-e_exp.o(.text.__ieee754_exp) match. Raw identity remains FUN_00012db0.",
+   "aliases": [
+    "FUN_00012db0"
+   ]
+  },
+  "0x00013090": {
+   "address": "0x00013090",
+   "raw_name": "FUN_00013090",
+   "name": "__ieee754_log",
+   "display_name": "__ieee754_log",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-e_log.o(.text.__ieee754_log) match. Raw identity remains FUN_00013090.",
    "aliases": []
   },
   "0x000133f8": {
    "address": "0x000133f8",
    "raw_name": "FUN_000133f8",
-   "name": "FUN_000133f8",
-   "display_name": "FUN_000133f8",
-   "human": false,
-   "source": "recon/app/src/FUN_000133f8.c",
-   "aliases": []
+   "name": "__ieee754_pow",
+   "display_name": "__ieee754_pow",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-e_pow.o(.text.__ieee754_pow) match. Raw identity remains FUN_000133f8.",
+   "aliases": [
+    "FUN_000133f8"
+   ]
   },
   "0x00013e50": {
    "address": "0x00013e50",
    "raw_name": "FUN_00013e50",
-   "name": "dtoa_get_bias_const",
-   "display_name": "dtoa_get_bias_const",
+   "name": "nan",
+   "display_name": "nan",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-s_nan.o(.text.nan) match. Raw identity remains FUN_00013e50.",
    "aliases": [
-    "FUN_00013e50"
+    "FUN_00013e50",
+    "dtoa_get_bias_const"
    ]
   },
   "0x00013e60": {
    "address": "0x00013e60",
    "raw_name": "FUN_00013e60",
-   "name": "__ieee754_scalbn",
-   "display_name": "__ieee754_scalbn",
+   "name": "scalbn",
+   "display_name": "scalbn",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-s_scalbn.o(.text.scalbn) match. Raw identity remains FUN_00013e60.",
    "aliases": [
-    "FUN_00013e60"
+    "FUN_00013e60",
+    "__ieee754_scalbn"
    ]
   },
   "0x00014b60": {
@@ -15204,20 +15230,24 @@
   "0x00075acc": {
    "address": "0x00075acc",
    "raw_name": "FUN_00075acc",
-   "name": "FUN_00075acc",
-   "display_name": "FUN_00075acc",
-   "human": false,
-   "source": "recon/app/src/FUN_00075acc.c",
-   "aliases": []
+   "name": "pow",
+   "display_name": "pow",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-w_pow.o(.text.pow) match. Raw identity remains FUN_00075acc.",
+   "aliases": [
+    "FUN_00075acc"
+   ]
   },
   "0x00075c2c": {
    "address": "0x00075c2c",
    "raw_name": "FUN_00075c2c",
-   "name": "FUN_00075c2c",
-   "display_name": "FUN_00075c2c",
-   "human": false,
-   "source": "recon/app/src/FUN_00075c2c.c",
-   "aliases": []
+   "name": "asinf",
+   "display_name": "asinf",
+   "human": true,
+   "source": "function_name_overrides.json: The relocation-normalized wrapper is byte-ambiguous with acosf, but its direct call at 0x00075c36 targets the exact __ieee754_asinf owner at 0x00075f88. Raw identity remains FUN_00075c2c.",
+   "aliases": [
+    "FUN_00075c2c"
+   ]
   },
   "0x00075c90": {
    "address": "0x00075c90",
@@ -15230,15 +15260,25 @@
     "FUN_00075c90"
    ]
   },
+  "0x00075d0c": {
+   "address": "0x00075d0c",
+   "raw_name": "FUN_00075d0c",
+   "name": "fmodf",
+   "display_name": "fmodf",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-wf_fmod.o(.text.fmodf) match. Raw identity remains FUN_00075d0c.",
+   "aliases": []
+  },
   "0x00075d5c": {
    "address": "0x00075d5c",
    "raw_name": "FUN_00075d5c",
-   "name": "logf",
-   "display_name": "logf",
+   "name": "log10f",
+   "display_name": "log10f",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Corrected exact pinned newlib 3.3.0 libm_nano lib_a-wf_log10.o(.text.log10f) match; the former logf identity was stale. Raw identity remains FUN_00075d5c.",
    "aliases": [
-    "FUN_00075d5c"
+    "FUN_00075d5c",
+    "logf"
    ]
   },
   "0x00075dc8": {
@@ -15264,71 +15304,91 @@
   "0x00075f88": {
    "address": "0x00075f88",
    "raw_name": "FUN_00075f88",
-   "name": "FUN_00075f88",
-   "display_name": "FUN_00075f88",
-   "human": false,
-   "source": "recon/app/src/FUN_00075f88.c",
-   "aliases": []
+   "name": "__ieee754_asinf",
+   "display_name": "__ieee754_asinf",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-ef_asin.o(.text.__ieee754_asinf) match. Raw identity remains FUN_00075f88.",
+   "aliases": [
+    "FUN_00075f88"
+   ]
   },
   "0x00076154": {
    "address": "0x00076154",
    "raw_name": "FUN_00076154",
-   "name": "atan2f",
-   "display_name": "atan2f",
+   "name": "__ieee754_atan2f",
+   "display_name": "__ieee754_atan2f",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Corrected exact pinned newlib 3.3.0 libm_nano lib_a-ef_atan2.o(.text.__ieee754_atan2f) match; this is the IEEE core, not the public wrapper. Raw identity remains FUN_00076154.",
    "aliases": [
-    "FUN_00076154"
+    "FUN_00076154",
+    "atan2f"
    ]
   },
   "0x00076290": {
    "address": "0x00076290",
    "raw_name": "FUN_00076290",
-   "name": "FUN_00076290",
-   "display_name": "FUN_00076290",
-   "human": false,
-   "source": "recon/app/src/FUN_00076290.c",
+   "name": "__ieee754_expf",
+   "display_name": "__ieee754_expf",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-ef_exp.o(.text.__ieee754_expf) match. Raw identity remains FUN_00076290.",
+   "aliases": [
+    "FUN_00076290"
+   ]
+  },
+  "0x00076430": {
+   "address": "0x00076430",
+   "raw_name": "FUN_00076430",
+   "name": "__ieee754_fmodf",
+   "display_name": "__ieee754_fmodf",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-ef_fmod.o(.text.__ieee754_fmodf) match. Raw identity remains FUN_00076430.",
    "aliases": []
   },
   "0x00076538": {
    "address": "0x00076538",
    "raw_name": "FUN_00076538",
-   "name": "logf_core",
-   "display_name": "logf_core",
+   "name": "__ieee754_logf",
+   "display_name": "__ieee754_logf",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Corrected exact pinned newlib 3.3.0 libm_nano lib_a-ef_log.o(.text.__ieee754_logf) match; the former logf_core label was descriptive only. Raw identity remains FUN_00076538.",
    "aliases": [
-    "FUN_00076538"
+    "FUN_00076538",
+    "logf_core"
    ]
   },
   "0x00076718": {
    "address": "0x00076718",
    "raw_name": "FUN_00076718",
-   "name": "log2f",
-   "display_name": "log2f",
+   "name": "__ieee754_log10f",
+   "display_name": "__ieee754_log10f",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Corrected exact pinned newlib 3.3.0 libm_nano lib_a-ef_log10.o(.text.__ieee754_log10f) match; the former log2f identity was wrong. Raw identity remains FUN_00076718.",
    "aliases": [
-    "FUN_00076718"
+    "FUN_00076718",
+    "log2f"
    ]
   },
   "0x000767c8": {
    "address": "0x000767c8",
    "raw_name": "FUN_000767c8",
-   "name": "FUN_000767c8",
-   "display_name": "FUN_000767c8",
-   "human": false,
-   "source": "recon/app/src/FUN_000767c8.c",
-   "aliases": []
+   "name": "rint",
+   "display_name": "rint",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano binary64 lib_a-s_rint.o(.text.rint) match. Raw identity remains FUN_000767c8.",
+   "aliases": [
+    "FUN_000767c8"
+   ]
   },
   "0x000768e0": {
    "address": "0x000768e0",
    "raw_name": "FUN_000768e0",
-   "name": "FUN_000768e0",
-   "display_name": "FUN_000768e0",
-   "human": false,
-   "source": "recon/app/src/FUN_000768e0.c",
-   "aliases": []
+   "name": "atanf",
+   "display_name": "atanf",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-sf_atan.o(.text.atanf) match. Raw identity remains FUN_000768e0.",
+   "aliases": [
+    "FUN_000768e0"
+   ]
   },
   "0x00076a88": {
    "address": "0x00076a88",
@@ -25494,11 +25554,13 @@
   "0x000868ee": {
    "address": "0x000868ee",
    "raw_name": "FUN_000868ee",
-   "name": "FUN_000868ee",
-   "display_name": "FUN_000868ee",
-   "human": false,
-   "source": "recon/app/src/FUN_000868ee.c",
-   "aliases": []
+   "name": "fabsf",
+   "display_name": "fabsf",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-sf_fabs.o(.text.fabsf) match. Raw identity remains FUN_000868ee.",
+   "aliases": [
+    "FUN_000868ee"
+   ]
   },
   "0x000868fc": {
    "address": "0x000868fc",
@@ -25563,30 +25625,35 @@
   "0x000869cc": {
    "address": "0x000869cc",
    "raw_name": "FUN_000869cc",
-   "name": "FUN_000869cc",
-   "display_name": "FUN_000869cc",
-   "human": false,
-   "source": "recon/app/src/FUN_000869cc.c",
-   "aliases": []
+   "name": "fabs",
+   "display_name": "fabs",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-s_fabs.o(.text.fabs) match. Raw identity remains FUN_000869cc.",
+   "aliases": [
+    "FUN_000869cc"
+   ]
   },
   "0x000869dc": {
    "address": "0x000869dc",
    "raw_name": "FUN_000869dc",
-   "name": "FUN_000869dc",
-   "display_name": "FUN_000869dc",
-   "human": false,
-   "source": "recon/app/src/FUN_000869dc.c",
-   "aliases": []
+   "name": "finite",
+   "display_name": "finite",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-s_finite.o(.text.finite) match. Raw identity remains FUN_000869dc.",
+   "aliases": [
+    "FUN_000869dc"
+   ]
   },
   "0x000869f2": {
    "address": "0x000869f2",
    "raw_name": "FUN_000869f2",
-   "name": "isfinitef",
-   "display_name": "isfinitef",
+   "name": "finitef",
+   "display_name": "finitef",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact pinned newlib 3.3.0 libm_nano lib_a-sf_finite.o(.text.finitef) match. Raw identity remains FUN_000869f2.",
    "aliases": [
-    "FUN_000869f2"
+    "FUN_000869f2",
+    "isfinitef"
    ]
   },
   "0x00086a06": {
@@ -25877,12 +25944,13 @@
   "0x000870ea": {
    "address": "0x000870ea",
    "raw_name": "FUN_000870ea",
-   "name": "scalbn",
-   "display_name": "scalbn",
+   "name": "strtod_sulp",
+   "display_name": "strtod_sulp",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Corrected exact pinned libc_nano lib_a-strtod.o(.text.sulp) translation-unit-local helper; the former scalbn label was wrong. Raw identity remains FUN_000870ea.",
    "aliases": [
-    "FUN_000870ea"
+    "FUN_000870ea",
+    "scalbn"
    ]
   },
   "0x0008712e": {
@@ -26133,9 +26201,6 @@
   "FUN_0000e53c": "0x0000e53c",
   "FUN_0000fcf0": "0x0000fcf0",
   "FUN_00010840": "0x00010840",
-  "FUN_00012c80": "0x00012c80",
-  "FUN_00012db0": "0x00012db0",
-  "FUN_000133f8": "0x000133f8",
   "FUN_00014b60": "0x00014b60",
   "FUN_00016110": "0x00016110",
   "FUN_00016574": "0x00016574",
@@ -26502,12 +26567,6 @@
   "FUN_000755f8": "0x000755f8",
   "FUN_000757b0": "0x000757b0",
   "FUN_00075944": "0x00075944",
-  "FUN_00075acc": "0x00075acc",
-  "FUN_00075c2c": "0x00075c2c",
-  "FUN_00075f88": "0x00075f88",
-  "FUN_00076290": "0x00076290",
-  "FUN_000767c8": "0x000767c8",
-  "FUN_000768e0": "0x000768e0",
   "FUN_0007712c": "0x0007712c",
   "FUN_00077914": "0x00077914",
   "FUN_00077a10": "0x00077a10",
@@ -26781,11 +26840,8 @@
   "FUN_00086338": "0x00086338",
   "FUN_00086380": "0x00086380",
   "FUN_000864b2": "0x000864b2",
-  "FUN_000868ee": "0x000868ee",
   "FUN_000868fc": "0x000868fc",
   "FUN_000869c6": "0x000869c6",
-  "FUN_000869cc": "0x000869cc",
-  "FUN_000869dc": "0x000869dc",
   "FUN_00086b40": "0x00086b40",
   "FUN_00086b7e": "0x00086b7e",
   "FUN_00086c1e": "0x00086c1e",
@@ -26841,7 +26897,15 @@
   "__floatsidf": "0x0000d824",
   "__floatunsidf": "0x0000d804",
   "__fpclassifyf": "0x00075980",
-  "__ieee754_scalbn": "0x00013e60",
+  "__ieee754_asinf": "0x00075f88",
+  "__ieee754_atan2f": "0x00076154",
+  "__ieee754_exp": "0x00012db0",
+  "__ieee754_expf": "0x00076290",
+  "__ieee754_fmodf": "0x00076430",
+  "__ieee754_log": "0x00013090",
+  "__ieee754_log10f": "0x00076718",
+  "__ieee754_logf": "0x00076538",
+  "__ieee754_pow": "0x000133f8",
   "__ieee754_sqrt": "0x00075e14",
   "__malloc_lock": "0x000785bc",
   "__malloc_unlock": "0x000785c8",
@@ -26931,8 +26995,9 @@
   "arm_usage_fault_helper": "0x000506ac",
   "array_max_skip_nan_a": "0x0000e954",
   "array_max_skip_nan_b": "0x0000e9b4",
+  "asinf": "0x00075c2c",
   "assert_post_action": "0x0007e2ec",
-  "atan2f": "0x00076154",
+  "atanf": "0x000768e0",
   "atomic_and": "0x0007c08e",
   "atomic_and_0": "0x0007f3f0",
   "atomic_and_1": "0x00081180",
@@ -27401,7 +27466,6 @@
   "drop_item_locked": "0x0007e3ce",
   "dtoa": "0x00078110",
   "dtoa_format_cvt": "0x00086cda",
-  "dtoa_get_bias_const": "0x00013e50",
   "dump_template_gyro_info": "0x00036164",
   "dump_whitelist_init": "0x00035744",
   "dynbuf_push_byte_grow": "0x0008790e",
@@ -27426,12 +27490,15 @@
   "esb_send_command_and_wait_ack": "0x00027448",
   "event_clear": "0x00084c5e",
   "exit_dashboard_burial_point": "0x0004aab0",
+  "exp": "0x00012c80",
   "expand_bytes_via_lut32": "0x0004790c",
   "expf": "0x00075c90",
   "ext_flash_api_init": "0x0002e4e8",
   "ext_flash_read": "0x0002e398",
   "ext_flash_write": "0x0002e440",
   "extract_decimal": "0x0004bb64",
+  "fabs": "0x000869cc",
+  "fabsf": "0x000868ee",
   "fast_inverse_sqrt": "0x000265e8",
   "fb_blit_rows_copy": "0x0007d53a",
   "fb_blit_rows_halved": "0x0007d5f2",
@@ -27450,6 +27517,8 @@
   "find_sc_cfg_59b94": "0x00059b94",
   "find_sc_cfg_59bcc": "0x00059bcc",
   "find_type_cb": "0x000583d0",
+  "finite": "0x000869dc",
+  "finitef": "0x000869f2",
   "flag_test_and_clear": "0x00086554",
   "flash_apply_config_table": "0x00030224",
   "flash_area_align": "0x0007f000",
@@ -27487,6 +27556,7 @@
   "flowctl_schedule_next_send": "0x00084b86",
   "fmaxf": "0x00086902",
   "fminf": "0x0008693c",
+  "fmodf": "0x00075d0c",
   "fnmatch_build_class_table": "0x0008789c",
   "font_glyph_pixel_offset": "0x0007d850",
   "format_bt_addr_str": "0x00018334",
@@ -27747,7 +27817,6 @@
   "is_regular_addr_valid": "0x000839dc",
   "is_system_idle_ready": "0x0007ce00",
   "is_tx_ready": "0x00084abe",
-  "isfinitef": "0x000869f2",
   "itoa_signed_exponent": "0x00086daa",
   "j_memset": "0x0007a3d0",
   "j_memset_0": "0x0007fec4",
@@ -27880,7 +27949,8 @@
   "local_esbs_ipc_service_recv": "0x00015960",
   "local_store_write": "0x00022168",
   "lock_device_mutex": "0x0007c8b0",
-  "log2f": "0x00076718",
+  "log": "0x00012d20",
+  "log10f": "0x00075d5c",
   "log_backend_uart_dropped": "0x0004df34",
   "log_dropped": "0x0004d4a8",
   "log_gatt_sc_store_failure": "0x0005a0e8",
@@ -27894,8 +27964,6 @@
   "log_output_process": "0x0004db04",
   "log_process": "0x0004d594",
   "log_source_name_get": "0x0004d8dc",
-  "logf": "0x00075d5c",
-  "logf_core": "0x00076538",
   "lseek": "0x0004b17c",
   "lshift": "0x000789f0",
   "lsm6dso_init_chip": "0x000622a0",
@@ -27958,6 +28026,7 @@
   "mutex_lock_wait_forever": "0x0008583a",
   "mutex_lock_wait_forever_dup": "0x000859b6",
   "mutex_unlock_syscall_handler": "0x000745c8",
+  "nan": "0x00013e50",
   "nanf": "0x00076a88",
   "navigation_direction_img_display": "0x0003dff8",
   "navigation_overview_map_display": "0x0003e05c",
@@ -28127,6 +28196,7 @@
   "post_event_tag5": "0x000848b0",
   "post_notification_cmd_process": "0x000338ec",
   "post_notification_cmd_response": "0x000340c4",
+  "pow": "0x00075acc",
   "pow5mult": "0x0007893c",
   "power_down_imu_and_mic": "0x000160b4",
   "power_down_panel": "0x00015fdc",
@@ -28228,6 +28298,7 @@
   "resource_manger_get": "0x0004588c",
   "revalidate_whitelist_json": "0x000355b4",
   "ringbuf_flush_chunk": "0x00084a24",
+  "rint": "0x000767c8",
   "rpmsg_create_ept": "0x00070fb4",
   "rpmsg_deinit_vdev": "0x00085bf6",
   "rpmsg_get_endpoint": "0x00085900",
@@ -28254,7 +28325,7 @@
   "sc_restore_rsp": "0x00082bd4",
   "sc_save": "0x0005a128",
   "sc_set": "0x00059f04",
-  "scalbn": "0x000870ea",
+  "scalbn": "0x00013e60",
   "scalbnf": "0x00075a0c",
   "sched_ready_queue_insert": "0x00073840",
   "sched_thread_ready": "0x00073a78",
@@ -28405,6 +28476,7 @@
   "strtod_has_more_digits": "0x0000ea4c",
   "strtod_match_token": "0x0008738e",
   "strtod_scan_int_prefix": "0x0000ea18",
+  "strtod_sulp": "0x000870ea",
   "strtol": "0x00077b24",
   "strtoul": "0x00077c1c",
   "subcontracing_send_data_pkcs7": "0x00021a40",

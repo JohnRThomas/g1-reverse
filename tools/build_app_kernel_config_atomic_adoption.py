@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 import build_adoption_manifest as manifest
 
-BUILD = Path("/tmp/g1-fwconfig-shadow")
+BUILD = Path("/private/tmp/g1-bt-custom-notls-main16k-evidence")
 CONFIG = BUILD / "zephyr/.config"
 COLLISIONS = ROOT / "recon/ownership/app_build_collision_ownership.json"
 OUTPUT = ROOT / "recon/ownership/app_kernel_config_atomic_adoption.json"
@@ -30,8 +30,9 @@ REQUIRED_CONFIG = {
     "CONFIG_ASSERT": "y",
     "CONFIG_ASSERT_LEVEL": "2",
     "CONFIG_SPIN_VALIDATE": "y",
-    "CONFIG_THREAD_LOCAL_STORAGE": "y",
-    "CONFIG_ERRNO_IN_TLS": "n",
+    "CONFIG_THREAD_LOCAL_STORAGE": "n",
+    "CONFIG_THREAD_CUSTOM_DATA": "y",
+    "CONFIG_MAIN_STACK_SIZE": "16384",
 }
 GROUP = ["0x%08x" % value for value in
          (0x71B2C, 0x758CC, 0x864E8, 0x71C20, 0x71CF4,

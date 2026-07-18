@@ -20,8 +20,8 @@ IMAGE = ROOT / "app_update.bin"
 SOURCE = Path("/Users/freedomcoder/ncs251/zephyr/kernel/work.c")
 PRE_BUILD = Path("/private/tmp/g1-app-residue-current-0718")
 POST_BUILD = Path("/private/tmp/g1-app-work-post-0718")
-EXACT_BUILD = Path("/private/tmp/g1-bt-no-trace-layout")
-REBUILD = Path("/private/tmp/g1-bt-no-trace-layout-2")
+EXACT_BUILD = Path("/private/tmp/g1-bt-custom-notls-main16k-evidence")
+REBUILD = Path("/private/tmp/g1-bt-custom-notls-main16k-evidence-2")
 OBJECT = EXACT_BUILD / "zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj"
 POST_OBJECT = REBUILD / "zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj"
 CONFIG = EXACT_BUILD / "zephyr/.config"
@@ -63,8 +63,9 @@ REQUIRED_CONFIG = {
     "CONFIG_ASSERT": "y",
     "CONFIG_ASSERT_LEVEL": "2",
     "CONFIG_SPIN_VALIDATE": "y",
-    "CONFIG_THREAD_LOCAL_STORAGE": "y",
-    "CONFIG_ERRNO_IN_TLS": "n",
+    "CONFIG_THREAD_LOCAL_STORAGE": "n",
+    "CONFIG_THREAD_CUSTOM_DATA": "y",
+    "CONFIG_MAIN_STACK_SIZE": "16384",
     "CONFIG_TRACING": "n",
     "CONFIG_THREAD_MONITOR": "n",
     "CONFIG_THREAD_NAME": "n",
