@@ -1,4 +1,4 @@
-/* Reconstructed z_log_msg_pending @ 0x0004d588 (6 executable bytes).
+/* Reconstructed g1_recon_z_log_msg_pending @ 0x0004d588 (6 executable bytes).
  * Raw identity/back-map: FUN_0004d588.
  * The literal at 0x0004d590 and alignment NOP at 0x0004d58e are not code.
  */
@@ -10,7 +10,7 @@ extern bool mpsc_pbuf_is_pending(struct mpsc_pbuf_buffer *buffer); /* FUN_0007e5
 #define g_log_msg_mpsc_buffer \
     (*(struct mpsc_pbuf_buffer *)0x20003648u) /* address back-map */
 
-bool z_log_msg_pending(void)
+bool g1_recon_z_log_msg_pending(void)
 {
     return mpsc_pbuf_is_pending(&g_log_msg_mpsc_buffer);
 }

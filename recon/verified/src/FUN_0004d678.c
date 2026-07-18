@@ -1,10 +1,13 @@
-/* Reconstructed FUN_0004d678 @ 0x4d678  (parity: 298/300 trials, PROVEN) */
+/* Reconstructed g1_recon_z_impl_log_panic @ 0x4d678.
+ * Raw/address back-map: g1_recon_z_impl_log_panic <= FUN_0004d678 @ 0x0004d678.
+ * Authoritative CFG verification supersedes the legacy 298/300 fuzz receipt.
+ */
 #include <stdint.h>
 extern int FUN_0004d334(int);
 extern int FUN_0004d594(void);
 extern int FUN_0007e2ec(int,int);
 extern int FUN_0007e2fa(int,...);
-void FUN_0004d678(void){
+void g1_recon_z_impl_log_panic(void){
   volatile uint8_t *pcVar1 = (volatile uint8_t*)0x2001d44cUL;
   if(*pcVar1 == 0){
     FUN_0004d334(1);
@@ -29,4 +32,3 @@ void FUN_0004d678(void){
     *pcVar1 = 1;
   }
 }
-

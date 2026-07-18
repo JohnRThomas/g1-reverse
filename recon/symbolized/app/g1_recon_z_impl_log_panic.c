@@ -1,9 +1,9 @@
+#include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_0004d678 @ 0x0004d678
- * public-name: log_init
+ * public-name: g1_recon_z_impl_log_panic
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   log_process                              <= FUN_0004d594 @ 0x0004d594
- *   log_init                                 <= FUN_0004d678 @ 0x0004d678
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -15,23 +15,26 @@
  *   rodata_f0d20                             @ 0x000f0d20
  *   g_log_initialized_flag                   @ 0x2001d44c
  */
-/* Reconstructed FUN_0004d678 @ 0x4d678  (parity: 298/300 trials, PROVEN) */
+/* Reconstructed g1_recon_z_impl_log_panic @ 0x4d678.
+ * Raw/address back-map: g1_recon_z_impl_log_panic <= FUN_0004d678 @ 0x0004d678.
+ * Authoritative CFG verification supersedes the legacy 298/300 fuzz receipt.
+ */
 #include <stdint.h>
 extern int FUN_0004d334(int);
 extern int log_process(void);
 extern int assert_post_action(int,int);
 extern int printk(int,...);
-void log_init(void){
-  volatile uint8_t *pcVar1 = (volatile uint8_t*)0x2001d44cUL;
+void g1_recon_z_impl_log_panic(void){
+  volatile uint8_t *pcVar1 = (volatile uint8_t*)((unsigned long)&g_log_initialized_flag) /*=0x2001d44c*/;
   if(*pcVar1 == 0){
     FUN_0004d334(1);
-    uint32_t piVar4 = 0x000882a0;
-    uint32_t piVar2 = 0x000882b0;
+    uint32_t piVar4 = ((unsigned long)&rodata_882a0) /*=0x882a0*/;
+    uint32_t piVar2 = ((unsigned long)&__settings_handler_static_list_start) /*=0x882b0*/;
     while(1){
       if(piVar4 > piVar2){
-        printk(0x00099cbd, 0x000f0cff, 0x000f0cae, 0x188);
-        printk(0x000f0d20);
-        assert_post_action(0x000f0cae, 0x188);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0cff) /*=0xf0cff*/, ((unsigned long)&rodata_f0cae) /*=0xf0cae*/, 0x188);
+        printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/);
+        assert_post_action(((unsigned long)&rodata_f0cae) /*=0xf0cae*/, 0x188);
       }
       if(piVar4 == piVar2) break;
       uint32_t e = *(volatile uint32_t*)(piVar4+4);

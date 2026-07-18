@@ -1,10 +1,13 @@
-/* Reconstructed FUN_0004def8 @ 0x4def8  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed g1_recon_log_backend_uart_panic @ 0x4def8.
+ * Raw/address back-map: g1_recon_log_backend_uart_panic <= FUN_0004def8 @ 0x0004def8.
+ */
 
 extern int FUN_0007ef1c(unsigned int, void*, unsigned int, unsigned int, unsigned int);
 extern void FUN_0004dfb8(unsigned int);
 extern void FUN_0007eece(unsigned int);
 
-void FUN_0004def8(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
+void g1_recon_log_backend_uart_panic(unsigned int param_1, unsigned int param_2,
+                                     unsigned int param_3, unsigned int param_4)
 {
     int iVar2;
     unsigned int uStack_c = param_2;
@@ -18,4 +21,3 @@ void FUN_0004def8(unsigned int param_1, unsigned int param_2, unsigned int param
     FUN_0007eece(uVar1);
     return;
 }
-

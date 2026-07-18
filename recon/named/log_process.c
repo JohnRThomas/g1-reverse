@@ -4,8 +4,6 @@
  * callees (readable <= raw @ address):
  *   log_dropped                              <= FUN_0004d4a8 @ 0x0004d4a8
  *   z_log_msg_local_claim                    <= FUN_0004d56c @ 0x0004d56c
- *   z_log_msg_free                           <= FUN_0004d578 @ 0x0004d578
- *   z_log_msg_pending                        <= FUN_0004d588 @ 0x0004d588
  *   log_process                              <= FUN_0004d594 @ 0x0004d594
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
@@ -25,12 +23,12 @@
 #include <stdint.h>
 
 extern uint32_t z_log_msg_local_claim(void);
-extern void z_log_msg_free(uint32_t item);
+extern void g1_recon_z_log_msg_free(uint32_t item);
 extern void printk(uintptr_t, ...);
 extern void assert_post_action(uintptr_t, uint32_t);
 extern uint64_t thunk_FUN_00074f68(void);
 extern void log_dropped(uint32_t low, uint32_t high);
-extern int z_log_msg_pending(void);
+extern int g1_recon_z_log_msg_pending(void);
 
 struct listener_entry {
     void (**vtable)(struct listener_entry *, uint32_t);
@@ -60,7 +58,7 @@ int log_process(void)
                 (*entry->vtable)(entry, item);
             ++entry;
         }
-        z_log_msg_free(item);
+        g1_recon_z_log_msg_free(item);
     }
 
     volatile uint64_t *deadline = (volatile uint64_t *)0x200056a0u;
@@ -72,5 +70,5 @@ int log_process(void)
     }
     *deadline += UINT64_C(1000);
 
-    return z_log_msg_pending();
+    return g1_recon_z_log_msg_pending();
 }

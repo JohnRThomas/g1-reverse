@@ -15,9 +15,10 @@ sys.path.insert(0, str(ROOT / "tools"))
 import extract  # noqa: E402
 
 NCS = Path("/Users/freedomcoder/ncs251")
-BUILD = Path("/private/tmp/g1-app-residue-current-0718")
-CONFIG = BUILD / "zephyr/.config"
-OBJROOT = BUILD / "zephyr/CMakeFiles/zephyr.dir/subsys/settings/src"
+# Keep receipts on immutable analysis builds.  The normal-link probe is
+# deliberately reconfigured often and must never be an ownership authority.
+CONFIG = Path("/private/tmp/g1-app-fault-post-0718i/zephyr/.config")
+OBJROOT = Path("/private/tmp/g1-config-impact/assert/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src")
 COLLISIONS = ROOT / "recon/ownership/app_build_collision_ownership.json"
 OUTPUT = ROOT / "recon/ownership/app_settings_stock_atomic_adoption.json"
 

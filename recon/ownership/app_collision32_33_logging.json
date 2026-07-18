@@ -1,0 +1,468 @@
+{
+ "atomic_group": [
+  "0x0004da6c",
+  "0x0004da90",
+  "0x0004db04",
+  "0x0004de68",
+  "0x0004df34"
+ ],
+ "authorizations": [
+  {
+   "atomic_group": [
+    "0x0004da6c",
+    "0x0004da90",
+    "0x0004db04",
+    "0x0004de68",
+    "0x0004df34"
+   ],
+   "batch": "COLLISION-32-33",
+   "cfg_verify_cases": 1,
+   "configuration_variant_exact": true,
+   "configured_build": "/tmp/g1-fwconfig-shadow/zephyr/.config",
+   "configured_build_sha256": "2068822481d4548d8bed810b4a95217dfee280557088eff1fbad387646a5270e",
+   "firmware_code_size": 36,
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": "print_formatted",
+    "corrected_readable_identity": "print_formatted",
+    "corrected_upstream_source": "zephyr/subsys/logging/log_output.c",
+    "corrected_upstream_symbol": "print_formatted",
+    "upstream_linkage": "translation_unit_local"
+   },
+   "instruction_exact": true,
+   "normalized_code_sha256": "4691ea007af4bef2b8609694e00342d7fcfa79a09cb944edda9b5352da46b397",
+   "owner_cfg_verify": {
+    "cases": 1,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0004da6c",
+   "reconstruction_source": "recon/symbolized/app/print_formatted.c",
+   "reconstruction_source_sha256": "a6f9529e67cba81ad401d531e9fae27110d9b67719714957cba1f1a8d6cba4b6",
+   "relocation_offsets": [
+    16,
+    32
+   ],
+   "required_config": {
+    "CONFIG_ASSERT": "y",
+    "CONFIG_ASSERT_LEVEL": "2",
+    "CONFIG_LOG_BACKEND_UART": "y",
+    "CONFIG_LOG_MODE_DEFERRED": "y",
+    "CONFIG_LOG_MULTIDOMAIN": "n",
+    "CONFIG_LOG_OUTPUT": "y",
+    "CONFIG_LOG_RUNTIME_FILTERING": "n"
+   },
+   "status": "authorized",
+   "symbol": "print_formatted",
+   "upstream_code_size": 36,
+   "upstream_object": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_output.c.obj",
+   "upstream_object_sha256": "c98eaffe8b28e7dbd353df91048f236f6aa5e056f10efa6f54a6fc56d298b50a",
+   "upstream_source": "zephyr/subsys/logging/log_output.c",
+   "upstream_source_sha256": "c6f068f2d48923c8def7fb1d7b1dbea1012e84ced2549155fb486ea8396d7683",
+   "upstream_symbol_size": 36,
+   "va": "0x0004da6c",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004da6c",
+     "0x0004da90",
+     "0x0004db04",
+     "0x0004de68",
+     "0x0004df34"
+    ],
+    "new_undefined_symbols": [],
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "log_output_dropped_process",
+     "log_output_process"
+    ]
+   }
+  },
+  {
+   "atomic_group": [
+    "0x0004da6c",
+    "0x0004da90",
+    "0x0004db04",
+    "0x0004de68",
+    "0x0004df34"
+   ],
+   "batch": "COLLISION-32-33",
+   "cfg_verify_cases": 1,
+   "configuration_variant_exact": true,
+   "configured_build": "/tmp/g1-fwconfig-shadow/zephyr/.config",
+   "configured_build_sha256": "2068822481d4548d8bed810b4a95217dfee280557088eff1fbad387646a5270e",
+   "firmware_code_size": 28,
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": "newline_print",
+    "corrected_readable_identity": "newline_print",
+    "corrected_upstream_source": "zephyr/subsys/logging/log_output.c",
+    "corrected_upstream_symbol": "newline_print",
+    "upstream_linkage": "translation_unit_local"
+   },
+   "instruction_exact": true,
+   "normalized_code_sha256": "349dc7d73497d900669204eff51bb5cc56fc05a8cb4d0dc341c5fa294ffa7357",
+   "owner_cfg_verify": {
+    "cases": 1,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0004da90",
+   "reconstruction_source_sha256": "945c286f48ef31fd761a02cf014cba617e99c83e7a66278bfeac807d3a0ad09e",
+   "relocation_offsets": [
+    20,
+    24,
+    12
+   ],
+   "required_config": {
+    "CONFIG_ASSERT": "y",
+    "CONFIG_ASSERT_LEVEL": "2",
+    "CONFIG_LOG_BACKEND_UART": "y",
+    "CONFIG_LOG_MODE_DEFERRED": "y",
+    "CONFIG_LOG_MULTIDOMAIN": "n",
+    "CONFIG_LOG_OUTPUT": "y",
+    "CONFIG_LOG_RUNTIME_FILTERING": "n"
+   },
+   "status": "authorized",
+   "symbol": "newline_print",
+   "upstream_code_size": 28,
+   "upstream_object": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_output.c.obj",
+   "upstream_object_sha256": "c98eaffe8b28e7dbd353df91048f236f6aa5e056f10efa6f54a6fc56d298b50a",
+   "upstream_source": "zephyr/subsys/logging/log_output.c",
+   "upstream_source_sha256": "c6f068f2d48923c8def7fb1d7b1dbea1012e84ced2549155fb486ea8396d7683",
+   "upstream_symbol_size": 28,
+   "va": "0x0004da90",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004da6c",
+     "0x0004da90",
+     "0x0004db04",
+     "0x0004de68",
+     "0x0004df34"
+    ],
+    "new_undefined_symbols": [],
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "log_output_dropped_process",
+     "log_output_process"
+    ]
+   }
+  },
+  {
+   "atomic_group": [
+    "0x0004da6c",
+    "0x0004da90",
+    "0x0004db04",
+    "0x0004de68",
+    "0x0004df34"
+   ],
+   "batch": "COLLISION-32-33",
+   "cfg_verify_cases": 5,
+   "configuration_variant_exact": true,
+   "configured_build": "/tmp/g1-fwconfig-shadow/zephyr/.config",
+   "configured_build_sha256": "2068822481d4548d8bed810b4a95217dfee280557088eff1fbad387646a5270e",
+   "firmware_code_size": 756,
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": "log_output_process",
+    "corrected_readable_identity": "log_output_process",
+    "corrected_upstream_source": "zephyr/subsys/logging/log_output.c",
+    "corrected_upstream_symbol": "log_output_process",
+    "upstream_linkage": "public"
+   },
+   "instruction_exact": true,
+   "normalized_code_sha256": "6f26ab952ee2476983fb1157673268306506c52d08d09a246915185170f522e0",
+   "owner_cfg_verify": {
+    "cases": 5,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0004db04",
+   "reconstruction_source_sha256": "780080b0ae7c2639274a0622efb72c4df1dc9d9a76193a947450285c66b68e57",
+   "relocation_offsets": [
+    50,
+    60,
+    76,
+    94,
+    118,
+    146,
+    166,
+    182,
+    200,
+    230,
+    322,
+    374,
+    392,
+    440,
+    456,
+    474,
+    492,
+    514,
+    540,
+    564,
+    578,
+    588,
+    602,
+    648,
+    656,
+    660,
+    664,
+    668,
+    672,
+    676,
+    680,
+    684,
+    688,
+    692,
+    696,
+    700,
+    704,
+    708,
+    712,
+    716,
+    720,
+    724,
+    728,
+    732,
+    736,
+    740,
+    744,
+    748,
+    752,
+    638
+   ],
+   "required_config": {
+    "CONFIG_ASSERT": "y",
+    "CONFIG_ASSERT_LEVEL": "2",
+    "CONFIG_LOG_BACKEND_UART": "y",
+    "CONFIG_LOG_MODE_DEFERRED": "y",
+    "CONFIG_LOG_MULTIDOMAIN": "n",
+    "CONFIG_LOG_OUTPUT": "y",
+    "CONFIG_LOG_RUNTIME_FILTERING": "n"
+   },
+   "status": "authorized",
+   "symbol": "log_output_process",
+   "upstream_code_size": 756,
+   "upstream_object": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_output.c.obj",
+   "upstream_object_sha256": "c98eaffe8b28e7dbd353df91048f236f6aa5e056f10efa6f54a6fc56d298b50a",
+   "upstream_source": "zephyr/subsys/logging/log_output.c",
+   "upstream_source_sha256": "c6f068f2d48923c8def7fb1d7b1dbea1012e84ced2549155fb486ea8396d7683",
+   "upstream_symbol_size": 756,
+   "va": "0x0004db04",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004da6c",
+     "0x0004da90",
+     "0x0004db04",
+     "0x0004de68",
+     "0x0004df34"
+    ],
+    "new_undefined_symbols": [],
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "log_output_dropped_process",
+     "log_output_process"
+    ]
+   }
+  },
+  {
+   "atomic_group": [
+    "0x0004da6c",
+    "0x0004da90",
+    "0x0004db04",
+    "0x0004de68",
+    "0x0004df34"
+   ],
+   "baseline_configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "baseline_upstream_object_sha256": "c196e3833e94bcbac99a2998d791e4a71252c65c87d7421252fd1cdc2f27b705",
+   "baseline_upstream_source_sha256": "c6f068f2d48923c8def7fb1d7b1dbea1012e84ced2549155fb486ea8396d7683",
+   "batch": "COLLISION-32-33",
+   "cfg_verify_cases": 1,
+   "collision_receipt_sha256": "65b2b2d8a3f0ea4e69cb75ba3de2011914754f1b719f4f07a980fd9d8cee0fd0",
+   "configuration_variant_exact": true,
+   "configured_build": "/tmp/g1-fwconfig-shadow/zephyr/.config",
+   "configured_build_sha256": "2068822481d4548d8bed810b4a95217dfee280557088eff1fbad387646a5270e",
+   "firmware_code_size": 88,
+   "instruction_exact": true,
+   "normalized_code_sha256": "e3821f092c9685146c70eafce04a1ca6f18032d128da116ba084ceaac7adbccf",
+   "owner_cfg_verify": {
+    "cases": 1,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0004de68",
+   "reconstruction_source_sha256": "d62e10ecfe7a348670bb1375561d3a5f8af99b4c8c8b81d163203cccc89f7a2e",
+   "relocation_offsets": [
+    22,
+    38,
+    52,
+    66,
+    76,
+    80,
+    84
+   ],
+   "required_config": {
+    "CONFIG_ASSERT": "y",
+    "CONFIG_ASSERT_LEVEL": "2",
+    "CONFIG_LOG_BACKEND_UART": "y",
+    "CONFIG_LOG_MODE_DEFERRED": "y",
+    "CONFIG_LOG_MULTIDOMAIN": "n",
+    "CONFIG_LOG_OUTPUT": "y",
+    "CONFIG_LOG_RUNTIME_FILTERING": "n"
+   },
+   "status": "authorized",
+   "symbol": "log_output_dropped_process",
+   "upstream_code_size": 88,
+   "upstream_object": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_output.c.obj",
+   "upstream_object_sha256": "c98eaffe8b28e7dbd353df91048f236f6aa5e056f10efa6f54a6fc56d298b50a",
+   "upstream_source": "zephyr/subsys/logging/log_output.c",
+   "upstream_source_sha256": "c6f068f2d48923c8def7fb1d7b1dbea1012e84ced2549155fb486ea8396d7683",
+   "upstream_symbol_size": 88,
+   "va": "0x0004de68",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004da6c",
+     "0x0004da90",
+     "0x0004db04",
+     "0x0004de68",
+     "0x0004df34"
+    ],
+    "new_undefined_symbols": [],
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "log_output_dropped_process",
+     "log_output_process"
+    ]
+   }
+  },
+  {
+   "atomic_group": [
+    "0x0004da6c",
+    "0x0004da90",
+    "0x0004db04",
+    "0x0004de68",
+    "0x0004df34"
+   ],
+   "batch": "COLLISION-32-33",
+   "cfg_verify_cases": 1,
+   "configuration_variant_exact": true,
+   "configured_build": "/tmp/g1-fwconfig-shadow/zephyr/.config",
+   "configured_build_sha256": "2068822481d4548d8bed810b4a95217dfee280557088eff1fbad387646a5270e",
+   "firmware_code_size": 12,
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": "log_backend_uart_dropped",
+    "corrected_readable_identity": "log_backend_uart_dropped",
+    "corrected_upstream_source": "zephyr/subsys/logging/backends/log_backend_uart.c",
+    "corrected_upstream_symbol": "dropped",
+    "upstream_linkage": "translation_unit_local"
+   },
+   "instruction_exact": true,
+   "normalized_code_sha256": "2968f47d25b465ead553d46a3b6fbb93ae815c2e509819579d5659b4c9592ef3",
+   "owner_cfg_verify": {
+    "cases": 1,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0004df34",
+   "reconstruction_source_sha256": "b472338ef7cb23a61f6be57309dc9c85438e133fe39318c9d8edccaf7268a233",
+   "relocation_offsets": [
+    8,
+    2
+   ],
+   "required_config": {
+    "CONFIG_ASSERT": "y",
+    "CONFIG_ASSERT_LEVEL": "2",
+    "CONFIG_LOG_BACKEND_UART": "y",
+    "CONFIG_LOG_MODE_DEFERRED": "y",
+    "CONFIG_LOG_MULTIDOMAIN": "n",
+    "CONFIG_LOG_OUTPUT": "y",
+    "CONFIG_LOG_RUNTIME_FILTERING": "n"
+   },
+   "status": "authorized",
+   "symbol": "dropped",
+   "upstream_code_size": 12,
+   "upstream_object": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/subsys/logging/backends/log_backend_uart.c.obj",
+   "upstream_object_sha256": "1e5f76abe139a38f0b8fe090762c7268f3ca1e712eff04ae332296b1e12f5b32",
+   "upstream_source": "zephyr/subsys/logging/backends/log_backend_uart.c",
+   "upstream_source_sha256": "d7684f5a24ef63d91307b4213f567797dc46677d6f4ffc20ffd9efabb1c13357",
+   "upstream_symbol_size": 12,
+   "va": "0x0004df34",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004da6c",
+     "0x0004da90",
+     "0x0004db04",
+     "0x0004de68",
+     "0x0004df34"
+    ],
+    "new_undefined_symbols": [],
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "log_output_dropped_process",
+     "log_output_process"
+    ]
+   }
+  }
+ ],
+ "batch": "COLLISION-32-33",
+ "core": "app",
+ "decision": "adopt_exact_log_output_and_namespace_firmware_log_core",
+ "expected_link_delta": {
+  "added": [],
+  "after": 10,
+  "before": 15,
+  "removed": [
+   "log_init",
+   "log_output_dropped_process",
+   "log_output_process",
+   "z_log_msg_free",
+   "z_log_msg_pending"
+  ],
+  "unresolved": [
+   "FUN_0005463e",
+   "FUN_00054688"
+  ]
+ },
+ "retained_namespaces": {
+  "0x0004d578": "g1_recon_z_log_msg_free",
+  "0x0004d588": "g1_recon_z_log_msg_pending",
+  "0x0004d678": "g1_recon_z_impl_log_panic",
+  "0x0004def8": "g1_recon_log_backend_uart_panic"
+ },
+ "schema": 1,
+ "sdc_policy": "report_only_unchanged",
+ "selected_source_units": [
+  "zephyr/subsys/logging/log_output.c",
+  "zephyr/subsys/logging/backends/log_backend_uart.c:dropped"
+ ],
+ "status": "authorized_atomic",
+ "verified_normal_link": {
+  "added": [],
+  "after": 10,
+  "before": 15,
+  "build": "/private/tmp/g1-app-residue-current-0718",
+  "collisions": [
+   "bt_id_add",
+   "k_work_busy_get",
+   "k_work_cancel",
+   "k_work_init",
+   "k_work_queue_init",
+   "k_work_queue_start",
+   "k_work_reschedule_for_queue",
+   "k_work_schedule_for_queue",
+   "sys_heap_alloc",
+   "sys_heap_init"
+  ],
+  "removed": [
+   "log_init",
+   "log_output_dropped_process",
+   "log_output_process",
+   "z_log_msg_free",
+   "z_log_msg_pending"
+  ],
+  "unresolved": [
+   "FUN_0005463e",
+   "FUN_00054688"
+  ]
+ }
+}

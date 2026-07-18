@@ -7509,29 +7509,31 @@
    "human": true,
    "source": "function_name_overrides.json: Corrected exact NCS 2.5.1 Zephyr subsys/logging/log_core.c identity: this 12-byte wrapper loads the fixed log buffer at 0x20003648 and tail-calls the true mpsc_pbuf_claim at 0x0004beb8. The former mpsc_pbuf_claim label incorrectly assigned the callee's identity to its logging wrapper. Raw identity remains FUN_0004d56c.",
    "aliases": [
-    "FUN_0004d56c",
-    "mpsc_pbuf_claim"
+    "FUN_0004d56c"
    ]
   },
   "0x0004d578": {
    "address": "0x0004d578",
    "raw_name": "FUN_0004d578",
-   "name": "z_log_msg_free",
-   "display_name": "z_log_msg_free",
+   "name": "g1_recon_z_log_msg_free",
+   "display_name": "g1_recon_z_log_msg_free",
    "human": true,
-   "source": "function_name_overrides.json: Exact NCS 2.5.1 logging wrapper: loads curr_log_buffer from 0x2000a0cc and tail-calls mpsc_pbuf_free(buffer, msg). The former mpsc_pbuf_free assignment belongs to 0x0004bfc8. Raw identity remains FUN_0004d578.",
+   "source": "function_name_overrides.json: Namespaced retained logging wrapper: loads curr_log_buffer from 0x2000a0cc and tail-calls the adopted mpsc_pbuf_free(buffer, msg). The namespace preserves firmware log_core private state without colliding with stock z_log_msg_free. Raw identity remains FUN_0004d578.",
    "aliases": [
-    "FUN_0004d578"
+    "FUN_0004d578",
+    "z_log_msg_free"
    ]
   },
   "0x0004d588": {
    "address": "0x0004d588",
    "raw_name": "FUN_0004d588",
-   "name": "z_log_msg_pending",
-   "display_name": "z_log_msg_pending",
+   "name": "g1_recon_z_log_msg_pending",
+   "display_name": "g1_recon_z_log_msg_pending",
    "human": true,
-   "source": "function_name_overrides.json: Exact NCS 2.5.1 Zephyr subsys/logging/log_core.c wrapper for the single CONFIG_MPSC_PBUF log_buffer: the six-byte body loads the fixed log buffer at 0x20003648 and tail-branches to mpsc_pbuf_is_pending at 0x0007e50c. Raw identity remains FUN_0004d588.",
-   "aliases": []
+   "source": "function_name_overrides.json: Namespaced retained NCS 2.5.1 Zephyr log_core wrapper for the single CONFIG_MPSC_PBUF log buffer. It tail-branches to the adopted mpsc_pbuf_is_pending owner without colliding with the selected stock z_log_msg_pending. Raw identity remains FUN_0004d588.",
+   "aliases": [
+    "z_log_msg_pending"
+   ]
   },
   "0x0004d594": {
    "address": "0x0004d594",
@@ -7547,12 +7549,13 @@
   "0x0004d678": {
    "address": "0x0004d678",
    "raw_name": "FUN_0004d678",
-   "name": "log_init",
-   "display_name": "log_init",
+   "name": "g1_recon_z_impl_log_panic",
+   "display_name": "g1_recon_z_impl_log_panic",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Corrected retained configured Zephyr panic implementation. The prior log_init label was ABI and behavior incompatible; this body initializes logging, invokes backend panic hooks, drains deferred messages and sets panic mode. Raw identity remains FUN_0004d678.",
    "aliases": [
-    "FUN_0004d678"
+    "FUN_0004d678",
+    "log_init"
    ]
   },
   "0x0004d6ec": {
@@ -7629,20 +7632,24 @@
   "0x0004da90": {
    "address": "0x0004da90",
    "raw_name": "FUN_0004da90",
-   "name": "FUN_0004da90",
-   "display_name": "FUN_0004da90",
-   "human": false,
-   "source": "recon/app/src/FUN_0004da90.c",
-   "aliases": []
+   "name": "newline_print",
+   "display_name": "newline_print",
+   "human": true,
+   "source": "function_name_overrides.json: Byte-exact translation-unit-local Zephyr log_output.c newline helper; raw identity remains FUN_0004da90 at 0x0004da90.",
+   "aliases": [
+    "FUN_0004da90"
+   ]
   },
   "0x0004db04": {
    "address": "0x0004db04",
    "raw_name": "FUN_0004db04",
-   "name": "FUN_0004db04",
-   "display_name": "FUN_0004db04",
-   "human": false,
-   "source": "recon/app/src/FUN_0004db04.c",
-   "aliases": []
+   "name": "log_output_process",
+   "display_name": "log_output_process",
+   "human": true,
+   "source": "function_name_overrides.json: Corrected byte-exact configured Zephyr log_output_process owner. The former assignment at 0x0004def8 was the UART backend panic hook. Raw identity remains FUN_0004db04 at 0x0004db04.",
+   "aliases": [
+    "FUN_0004db04"
+   ]
   },
   "0x0004ddf8": {
    "address": "0x0004ddf8",
@@ -7661,7 +7668,7 @@
    "name": "log_output_dropped_process",
    "display_name": "log_output_dropped_process",
    "human": true,
-   "source": "function_name_overrides.json: Recovered configured Zephyr logging dropped-message output helper. Raw identity remains FUN_0004de68 at 0x0004de68.",
+   "source": "function_name_overrides.json: Byte-exact configured Zephyr log_output_dropped_process owner: the 88-byte SDK section has zero non-relocation differences from firmware. Raw identity remains FUN_0004de68 at 0x0004de68.",
    "aliases": [
     "FUN_0004de68"
    ]
@@ -7669,22 +7676,25 @@
   "0x0004def8": {
    "address": "0x0004def8",
    "raw_name": "FUN_0004def8",
-   "name": "log_output_process",
-   "display_name": "log_output_process",
+   "name": "g1_recon_log_backend_uart_panic",
+   "display_name": "g1_recon_log_backend_uart_panic",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Corrected retained firmware UART logging-backend panic hook with PM-device resume behavior absent from the selected stock object. Raw identity remains FUN_0004def8 at 0x0004def8.",
    "aliases": [
-    "FUN_0004def8"
+    "FUN_0004def8",
+    "log_output_process"
    ]
   },
   "0x0004df34": {
    "address": "0x0004df34",
    "raw_name": "FUN_0004df34",
-   "name": "FUN_0004df34",
-   "display_name": "FUN_0004df34",
-   "human": false,
-   "source": "recon/app/src/FUN_0004df34.c",
-   "aliases": []
+   "name": "log_backend_uart_dropped",
+   "display_name": "log_backend_uart_dropped",
+   "human": true,
+   "source": "function_name_overrides.json: Byte-exact translation-unit-local UART backend dropped callback that loads log_output_uart and tail-calls log_output_dropped_process. Raw identity remains FUN_0004df34 at 0x0004df34.",
+   "aliases": [
+    "FUN_0004df34"
+   ]
   },
   "0x0004df40": {
    "address": "0x0004df40",
@@ -26226,9 +26236,6 @@
   "FUN_0004d6ec": "0x0004d6ec",
   "FUN_0004d7d8": "0x0004d7d8",
   "FUN_0004d944": "0x0004d944",
-  "FUN_0004da90": "0x0004da90",
-  "FUN_0004db04": "0x0004db04",
-  "FUN_0004df34": "0x0004df34",
   "FUN_0004df88": "0x0004df88",
   "FUN_0004dfb8": "0x0004dfb8",
   "FUN_0004e124": "0x0004e124",
@@ -27497,13 +27504,17 @@
   "g1_recon_crc16_ansi_seeded": "0x0007da4a",
   "g1_recon_crc16_configurable": "0x0007d9c0",
   "g1_recon_k_free": "0x000868b4",
+  "g1_recon_log_backend_uart_panic": "0x0004def8",
   "g1_recon_nrfx_gpiote_init": "0x00065940",
   "g1_recon_nrfx_wdt_channel_alloc": "0x00067e8c",
   "g1_recon_retarget_lock_acquire_recursive": "0x000510fc",
   "g1_recon_retarget_lock_release_recursive": "0x00051134",
   "g1_recon_tagged_heap_node_release": "0x000864d0",
+  "g1_recon_z_impl_log_panic": "0x0004d678",
   "g1_recon_z_log_msg_alloc": "0x0004d55c",
   "g1_recon_z_log_msg_commit": "0x0004d8b8",
+  "g1_recon_z_log_msg_free": "0x0004d578",
+  "g1_recon_z_log_msg_pending": "0x0004d588",
   "gatt_cancel_encode": "0x0008278a",
   "gatt_ccc_changed": "0x000825c0",
   "gatt_ccc_settings_set": "0x0005af8c",
@@ -27849,9 +27860,9 @@
   "local_store_write": "0x00022168",
   "lock_device_mutex": "0x0007c8b0",
   "log2f": "0x00076718",
+  "log_backend_uart_dropped": "0x0004df34",
   "log_dropped": "0x0004d4a8",
   "log_gatt_sc_store_failure": "0x0005a0e8",
-  "log_init": "0x0004d678",
   "log_message": "0x0007dda4",
   "log_msg_commit": "0x0004d8f8",
   "log_msg_pool_init": "0x0004d508",
@@ -27859,7 +27870,7 @@
   "log_output_dropped_process": "0x0004de68",
   "log_output_flush": "0x0007eece",
   "log_output_msg_process": "0x0004ddf8",
-  "log_output_process": "0x0004def8",
+  "log_output_process": "0x0004db04",
   "log_process": "0x0004d594",
   "log_source_name_get": "0x0004d8dc",
   "logf": "0x00075d5c",
@@ -27964,6 +27975,7 @@
   "net_pkt_skip": "0x00086502",
   "net_pkt_write_be16": "0x0007d696",
   "newlib_stdio_init_stream": "0x00076b48",
+  "newline_print": "0x0004da90",
   "next_timeout": "0x00074b7c",
   "nfc_eeprom_comm_lock": "0x00030cb8",
   "nfc_eeprom_comm_unlock": "0x00030cc4",
@@ -28551,9 +28563,7 @@
   "z_impl_net_if_ipv6_addr_rm_by_index": "0x00080c8c",
   "z_log_dropped_read_and_clear": "0x0002f928",
   "z_log_dropped_read_and_clear_0": "0x0004d490",
-  "z_log_msg_free": "0x0004d578",
   "z_log_msg_local_claim": "0x0004d56c",
-  "z_log_msg_pending": "0x0004d588",
   "z_ready_thread_locked": "0x000738d4",
   "z_reschedule": "0x000739f0",
   "z_reschedule_irqlock": "0x00086634",

@@ -47,7 +47,27 @@
   },
   "0x0004de68": {
    "name": "log_output_dropped_process",
-   "evidence": "Recovered configured Zephyr logging dropped-message output helper. Raw identity remains FUN_0004de68 at 0x0004de68."
+   "evidence": "Byte-exact configured Zephyr log_output_dropped_process owner: the 88-byte SDK section has zero non-relocation differences from firmware. Raw identity remains FUN_0004de68 at 0x0004de68."
+  },
+  "0x0004da90": {
+   "name": "newline_print",
+   "evidence": "Byte-exact translation-unit-local Zephyr log_output.c newline helper; raw identity remains FUN_0004da90 at 0x0004da90."
+  },
+  "0x0004db04": {
+   "name": "log_output_process",
+   "evidence": "Corrected byte-exact configured Zephyr log_output_process owner. The former assignment at 0x0004def8 was the UART backend panic hook. Raw identity remains FUN_0004db04 at 0x0004db04."
+  },
+  "0x0004def8": {
+   "name": "g1_recon_log_backend_uart_panic",
+   "evidence": "Corrected retained firmware UART logging-backend panic hook with PM-device resume behavior absent from the selected stock object. Raw identity remains FUN_0004def8 at 0x0004def8."
+  },
+  "0x0004df34": {
+   "name": "log_backend_uart_dropped",
+   "evidence": "Byte-exact translation-unit-local UART backend dropped callback that loads log_output_uart and tail-calls log_output_dropped_process. Raw identity remains FUN_0004df34 at 0x0004df34."
+  },
+  "0x0004d678": {
+   "name": "g1_recon_z_impl_log_panic",
+   "evidence": "Corrected retained configured Zephyr panic implementation. The prior log_init label was ABI and behavior incompatible; this body initializes logging, invokes backend panic hooks, drains deferred messages and sets panic mode. Raw identity remains FUN_0004d678."
   },
   "0x0004e3e8": {
    "name": "settings_load_subtree",
@@ -435,8 +455,8 @@
    "evidence": "Exact Zephyr work cancellation API and ABI used by smp_rx_remove_invalid. Raw identity remains FUN_00072fe8."
   },
   "0x0004d588": {
-   "name": "z_log_msg_pending",
-   "evidence": "Exact NCS 2.5.1 Zephyr subsys/logging/log_core.c wrapper for the single CONFIG_MPSC_PBUF log_buffer: the six-byte body loads the fixed log buffer at 0x20003648 and tail-branches to mpsc_pbuf_is_pending at 0x0007e50c. Raw identity remains FUN_0004d588."
+   "name": "g1_recon_z_log_msg_pending",
+   "evidence": "Namespaced retained NCS 2.5.1 Zephyr log_core wrapper for the single CONFIG_MPSC_PBUF log buffer. It tail-branches to the adopted mpsc_pbuf_is_pending owner without colliding with the selected stock z_log_msg_pending. Raw identity remains FUN_0004d588."
   },
   "0x0004d55c": {
    "name": "g1_recon_z_log_msg_alloc",
@@ -467,8 +487,8 @@
    "evidence": "Exact NCS 2.5.1 Zephyr lib/os/mpsc_pbuf.c implementation and ABI: clears valid, either clears busy and advances read indices or publishes a skip record in overwrite mode, unlocks, then gives the buffer semaphore. Raw identity remains FUN_0004bfc8."
   },
   "0x0004d578": {
-   "name": "z_log_msg_free",
-   "evidence": "Exact NCS 2.5.1 logging wrapper: loads curr_log_buffer from 0x2000a0cc and tail-calls mpsc_pbuf_free(buffer, msg). The former mpsc_pbuf_free assignment belongs to 0x0004bfc8. Raw identity remains FUN_0004d578."
+   "name": "g1_recon_z_log_msg_free",
+   "evidence": "Namespaced retained logging wrapper: loads curr_log_buffer from 0x2000a0cc and tail-calls the adopted mpsc_pbuf_free(buffer, msg). The namespace preserves firmware log_core private state without colliding with stock z_log_msg_free. Raw identity remains FUN_0004d578."
   },
   "0x00072880": {
    "name": "k_sem_give",

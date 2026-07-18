@@ -2,12 +2,12 @@
 #include <stdint.h>
 
 extern uint32_t FUN_0004d56c(void);
-extern void FUN_0004d578(uint32_t item);
+extern void g1_recon_z_log_msg_free(uint32_t item);
 extern void FUN_0007e2fa(uintptr_t, ...);
 extern void FUN_0007e2ec(uintptr_t, uint32_t);
 extern uint64_t thunk_FUN_00074f68(void);
 extern void FUN_0004d4a8(uint32_t low, uint32_t high);
-extern int FUN_0004d588(void);
+extern int g1_recon_z_log_msg_pending(void);
 
 struct listener_entry {
     void (**vtable)(struct listener_entry *, uint32_t);
@@ -37,7 +37,7 @@ int FUN_0004d594(void)
                 (*entry->vtable)(entry, item);
             ++entry;
         }
-        FUN_0004d578(item);
+        g1_recon_z_log_msg_free(item);
     }
 
     volatile uint64_t *deadline = (volatile uint64_t *)0x200056a0u;
@@ -49,5 +49,5 @@ int FUN_0004d594(void)
     }
     *deadline += UINT64_C(1000);
 
-    return FUN_0004d588();
+    return g1_recon_z_log_msg_pending();
 }
