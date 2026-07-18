@@ -431,6 +431,14 @@ TRUE_SIZE_OVERRIDES = {
     # Pinned zcbor_encode.c:str_encode.  Both direct references are typed
     # tail veneers (bstr/tstr), and the next independent entry is 0x8629e.
     ("app", 0x00086228): 0x76,
+    ("app", 0x0004c254): 0x18,  # delay_scaled_busy_wait
+    ("app", 0x0004d44c): 0x14,  # z_log_notify_backend_enabled
+    ("app", 0x0004d468): 0x1e,  # z_log_dropped
+    ("app", 0x0004d8b8): 0x1c,  # z_log_msg_commit
+    ("app", 0x0004e474): 0x0a,  # settings_store_init
+    ("app", 0x0004f500): 0x14,  # fixed three-word configuration setter
+    ("app", 0x000573c8): 0x24,  # allocation-failure logging helper
+    ("app", 0x00068298): 0x0c,  # libmetal Zephyr metal_sys_init
     # lc3_tns_analyze owns the complete floating-point analysis/filter body
     # through 0x709c6; trailing threshold literals begin at 0x709c8.
     ("app", 0x0006ffd8): 0x9ee,
@@ -1600,6 +1608,11 @@ REVIEWED_STACK_POINTER_CALLS = {
     ("app", 0x000417f8): {
         0: {0}, **{i: {3} for i in range(1, 200)}},
 }
+
+# The compact allocation-failure helper passes a compiler-local three-word
+# logging package in r2.  Compare its contents and scalar metadata while
+# normalizing only the translation-unit-specific frame address.
+REVIEWED_STACK_POINTER_CALLS[("app", 0x000573c8)] = {0: {2}}
 
 # Narrow identities for uninitialized compiler-local words whose concrete
 # entry-SP offsets differ across code generation.  Each pair is

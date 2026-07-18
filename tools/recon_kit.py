@@ -43,6 +43,14 @@ TRUE_SIZE_OVERRIDES = {
     # exported function catalog.  It starts at its full callee-saved prologue
     # and returns at 0x8629e, where zcbor_int_encode begins independently.
     0x00086228: 0x76,
+    0x0004c254: 0x18,  # delay_scaled_busy_wait; literals at 0x4c26c
+    0x0004d44c: 0x14,  # z_log_notify_backend_enabled; literals at 0x4d460
+    0x0004d468: 0x1e,  # z_log_dropped; alignment at 0x4d486
+    0x0004d8b8: 0x1c,  # z_log_msg_commit; literals at 0x4d8d4
+    0x0004e474: 0x0a,  # settings_store_init; alignment at 0x4e47e
+    0x0004f500: 0x14,  # fixed three-word configuration setter
+    0x000573c8: 0x24,  # allocation-failure logging helper
+    0x00068298: 0x0c,  # libmetal Zephyr metal_sys_init
     0x00016574: 0x06,  # fixed-word setter
     0x00016834: 0x1a,  # state-normalizing tail adapter
     0x00017a04: 0x08,  # GPIO descriptor tail adapters
