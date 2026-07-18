@@ -1457,6 +1457,10 @@
   }
  },
  "net": {
+  "0x0102a720": {
+   "name": "g1_cpunet_main",
+   "evidence": "Recovered product network-core main reached by the instruction-exact Zephyr bg_thread_main root at 0x01035b20. The corrected 0x3e8-byte CFG covers cpunet-hw-id endpoint registration, role/address publication, ESB startup, and the perpetual link-state monitor. Raw identity remains FUN_0102a720; see net_esb_boot_root.json."
+  },
   "0x0101b4f4": {
    "name": "sdc_event_publish",
    "evidence": "Catalog-missing 88-byte SDC event-publication bridge; publishes a prepared timing frame or performs the controller event cleanup. Raw identity remains FUN_0101b4f4."

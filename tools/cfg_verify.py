@@ -33,6 +33,13 @@ _CACHE = {}
 # loops, never a capability supplied by candidate source text.  Values are the
 # exact ordered-event prefix lengths compared for each reviewed entry point.
 REVIEWED_PREFIX_PROOFS = {
+    # The custom CPUNET main deliberately becomes the perpetual ESB
+    # link-state monitor.  Five production-shaped fixtures below cover all
+    # boot roles plus periodic and hysteresis publication.  A 512-event prefix
+    # crosses initialization, all bounded retries, the selected publication,
+    # and many following steady-loop iterations without making acceptance
+    # depend on compiler-specific instructions-per-iteration at the cap.
+    ("net", 0x0102a720): 512,
     # Main display dispatcher is a deliberate nonreturning worker.  The
     # concrete display/buffer graphs below cover every mode selector; forty
     # ordered events include the selected arm and cross its iteration tail.
@@ -770,6 +777,10 @@ TRUE_SIZE_OVERRIDES = {
     # Final copy loop and misalignment return end at 0x0102bfdc; literals
     # follow before the next independent function at 0x0102bfe4.
     ("net", 0x0102bbec): 0x3f0,
+    # Custom network-core main continues through its late link-state and
+    # hysteresis arms.  Code ends at the backedge at 0x0102ab06; the literal
+    # pool starts at 0x0102ab08 and FUN_0102ab14 is independent.
+    ("net", 0x0102a720): 0x3e8,
     # The serializer catalog stops at 0x0102c402 inside the deferred-string
     # callback loop.  Its reachable backedge/error joins end at 0x0102c420;
     # the literal pool begins there.
@@ -19153,6 +19164,108 @@ ABSOLUTE_READ_TRANSITION_CASES[("net", 0x01034328)] = [
     [(_NET_RESOURCE_FREE_MASK, 2, 0x00000000)],
 ]
 REVIEWED_NPTR_COUNTS[("net", 0x01034328)] = 2
+
+
+_NET_G1_MAIN_STATE = emu.SCRATCH + 0x5000
+
+
+def _net_g1_main_case(role, mode=0, identity=0xff, oracle_returns=None):
+    """Production-shaped custom CPUNET main state and callback graph.
+
+    The heap allocator is call one when logging is disabled.  Its opaque
+    memset oracle cannot manufacture the firmware's endpoint function table,
+    so each case owns the complete 0xd0-byte service object and three concrete
+    external Thumb callback targets.  Later oracle results are supplied only
+    by explicit call ordinal to select initialization/steady-state arms.
+    """
+    state = bytearray(0xd0)
+    state[0:4] = int(role).to_bytes(4, "little")
+    state[4:8] = int(mode).to_bytes(4, "little")
+    state[8:12] = int(identity).to_bytes(4, "little")
+    state[0xa8:0xac] = (0x0103ff01).to_bytes(4, "little")
+    state[0xac:0xb0] = (0x0103ff05).to_bytes(4, "little")
+    state[0xb0:0xb4] = (0x0103ff09).to_bytes(4, "little")
+    # Role-specific address reads shift the first endpoint-send ordinal by
+    # one.  Bind both possible ordinals to successful submission; an override
+    # on the preceding void address reader is semantically inert.
+    oracles = {1: {0: _NET_G1_MAIN_STATE}, 7: {0: 0}, 8: {0: 0}}
+    oracles.update(oracle_returns or {})
+    return (
+        {},
+        [(0x21000580, (0).to_bytes(4, "little")),
+         (_NET_G1_MAIN_STATE, bytes(state))],
+        oracles,
+    )
+
+
+def _net_g1_main_success_case(previous_ms, ticks, stable, observed,
+                              publish_result=1):
+    # With role one and an immediately successful refresh, ESB init is call
+    # 15.  Calls 16..19 publish the build record and enter the steady loop;
+    # link-state, uptime, and optional publication are calls 20..22.
+    case = _net_g1_main_case(
+        1,
+        oracle_returns={
+            9: {0: 0},
+            15: {0: 0},
+            18: {0: 0},
+            20: {0: 0},
+            21: {0: int(ticks) & 0xffffffff,
+                 1: (int(ticks) >> 32) & 0xffffffff},
+            22: {0: int(publish_result) & 0xffffffff},
+        },
+    )
+    case[1].extend([
+        (0x21001ce8, int(previous_ms).to_bytes(8, "little")),
+        (0x21004c9e, bytes((int(stable) & 0xff, int(observed) & 0xff))),
+    ])
+    return case
+
+
+# Role one and two select the distinct FICR-address destinations; role three
+# proves the no-address/no-worker arm.  The default deterministic ESB-init
+# result is nonzero, so these cases terminate at the production error return.
+REVIEWED_ORACLE_CASES[("net", 0x0102a720)] = [
+    _net_g1_main_case(1),
+    _net_g1_main_case(2, identity=3),
+    _net_g1_main_case(3),
+    # 20 seconds since boot exceeds the 10-second periodic publication gate.
+    _net_g1_main_success_case(0, 20 * 32768, 60, 60),
+    # A high transition from the stable low band takes the immediate
+    # hysteresis arm (counter=3), publishes, and commits the observed state.
+    _net_g1_main_success_case(1000, 5 * 32768, 20, 60),
+]
+# The generic callback-slot scanner conservatively associates state+0xac with
+# r0 even though this function has no arguments and obtains the object from
+# the allocator.  Retain one inert scratch pointer to satisfy that fail-closed
+# scanner; the production object is still selected by call-one's oracle.
+REVIEWED_NPTR_COUNTS[("net", 0x0102a720)] = 1
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102a720)] = {
+    0x0102a258: 2,  # copy_c_string(dst, src)
+    0x0102a394: 0,  # publication helper consumes fixed globals, no arguments
+    0x0102a620: 0,  # refresh_shared_role()
+    0x0102ac0c: 0,  # net_global_init()
+    0x0102acb4: 1,  # hw_id_endpoint_bind(state)
+    0x0102afbc: 0,  # start_esb_worker_threads()
+    0x0102b094: 1,  # read_device_address(dst)
+    0x0102b2ac: 1,  # prepare_esb_workers(state)
+    0x0102b5bc: 2,  # esb_service_init(primary_role, event_handler)
+    0x0102b7b8: 0,  # esb_link_state_get()
+    0x0102cfbc: 1,  # select_fallback_role(role)
+    0x01033acc: 1,  # select_bt_identity(identity)
+    0x0103961c: 1,  # net_sleep_ms(delay)
+    0x0103b224: 3,  # net_sem_init(sem, initial, limit)
+    0x0103b300: 0,  # net_uptime_ticks()
+    0x0103b530: 1,  # net_heap_alloc(size)
+    0x0103b62e: 3,  # net_memset(dst, value, size)
+    0x0103ff00: 2,  # IPC endpoint send(message, size)
+    0x0103ff04: 1,  # IPC endpoint register(configuration)
+    0x0103ff08: 0,  # endpoint ready notification
+}
+REVIEWED_STACK_POINTER_CALLS[("net", 0x0102a720)] = {
+    7: {0}, 8: {0},  # role-dependent address-message send ordinal
+    18: {0},          # successful-path build-message send
+}
 
 
 # run_main_dispatch_thread has several calls whose argument registers are

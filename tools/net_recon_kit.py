@@ -127,6 +127,10 @@ TRUE_SIZE_OVERRIDES = {
     0x0101e2cc: 0x30,
     0x0101fc14: 0x16,
     0x0102bbec: 0x3f0,  # late copy loop and aligned-error return precede literals
+    # Custom network-core main has a late link-state/hysteresis island after
+    # the catalog end.  Its final backedge is at 0x0102ab06; literals start at
+    # 0x0102ab08 and the next independent prologue is at 0x0102ab14.
+    0x0102a720: 0x3e8,
     # Deferred-string callback loop and its error joins end immediately
     # before the literal pool at 0x0102c420.
     0x0102bfe4: 0x43c,

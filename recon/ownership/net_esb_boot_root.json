@@ -1,0 +1,66 @@
+{
+ "core": "net",
+ "custom_main": {
+  "analysis_va": "0x0102a720",
+  "catalog_extent": 902,
+  "cfg_status": "PASS",
+  "directed_cases": 5,
+  "families": [
+   "role-1",
+   "role-2",
+   "other/fallback",
+   "periodic-10s-publication",
+   "hysteresis-publication"
+  ],
+  "prefix_events": 512,
+  "production_identity": "main",
+  "raw_backmap_preserved": true,
+  "raw_identity": "FUN_0102a720",
+  "readable_identity": "g1_cpunet_main",
+  "reviewed_true_extent": 1000,
+  "source": "recon/net/src/FUN_0102a720.c",
+  "source_sha256": "98639e8e9ebf1f48c0b8dae11463f3ef758e0261d236e419a15f82247e9b1c6f"
+ },
+ "production_topology": {
+  "edge": "bg_thread_main +0x1c BL -> g1_cpunet_main",
+  "proven": true,
+  "reason": "the exact configured kernel root directly invokes the recovered product main"
+ },
+ "result": "production root and custom main proven",
+ "schema_version": 1,
+ "sdc_policy": "report-only; no SDC source removal or archive substitution",
+ "stock_root": {
+  "analysis_va": "0x01035b20",
+  "call_targets": [
+   "0x01035ad8",
+   "0x01038a28",
+   "0x01035ad8",
+   "0x0103601c",
+   "0x0102a720"
+  ],
+  "catalog_status": "Ghidra-missed standalone static root",
+  "extent": 52,
+  "firmware_sha256": "f2cc444912447e05b3a617f279498f787f27a52c95e6c368cf9d29e4453501cb",
+  "identity": "bg_thread_main",
+  "normalized_instruction_exact": true,
+  "object": "/private/tmp/g1-net-heap-auto-0718/zephyr/kernel/CMakeFiles/kernel.dir/init.c.obj",
+  "object_sha256": "2676f41c99962c9a4fb15d6bfd0266c949d42c03a180136d7ae07574234ee683",
+  "relocation_offsets": [
+   10,
+   14,
+   20,
+   24,
+   28,
+   44,
+   48
+  ],
+  "retained_body": "normal configured Zephyr kernel/init.c owner",
+  "section": ".text.bg_thread_main",
+  "source": "/Users/freedomcoder/ncs251/zephyr/kernel/init.c",
+  "source_sha256": "715c304407711d8b73233ea622a6ae729b53c8cea411605da15264234700131a",
+  "state_literals": [
+   "0x21006461",
+   "0x21004440"
+  ]
+ }
+}
