@@ -33,7 +33,7 @@ TRUE_SIZE_OVERRIDES = {
     0x0005c9a4: 0xf6,  # bt_gatt_disconnected; literals follow at 0x5ca9c
     # Catalog-missing configured OpenAMP, zcbor, kernel, allocator and libm
     # entries. Keep this registry exactly mirrored in cfg_verify.py.
-    0x00071560: 0x26,  # rpmsg_init_vdev
+    0x00071560: 0x28,  # rpmsg_init_vdev (includes final pop {..,pc})
     0x000715b8: 0x76,  # zcbor value_encode_len
     0x00071b2c: 0x8c,  # k_heap_free
     0x00074184: 0x1a,  # z_thread_priority_set

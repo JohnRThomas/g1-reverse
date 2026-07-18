@@ -16,7 +16,6 @@ extern int FUN_0007205c(void *lock);
 #define z_reschedule FUN_000739f0
 #define z_spin_unlock_valid FUN_0007205c
 
-#define k_heap_free FUN_00071b2c
 void k_heap_free(void *heap_arg, void *memory)
 {
     uint8_t *heap = (uint8_t *)heap_arg;

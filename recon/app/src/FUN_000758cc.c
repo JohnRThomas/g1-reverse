@@ -8,7 +8,6 @@ extern void *FUN_00075864(void *heap, size_t alignment, size_t size);
 extern void FUN_0007e2fa(uint32_t, ...);
 extern void FUN_0007e2ec(uint32_t, uint32_t);
 
-#define k_aligned_alloc FUN_000758cc
 #define z_heap_aligned_alloc FUN_00075864
 void *k_aligned_alloc(size_t alignment, size_t size)
 {

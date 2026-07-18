@@ -8,7 +8,6 @@ union ieee_double_words {
     struct { uint32_t low, high; } words;
 };
 
-#define __ieee754_sqrt FUN_00075e14
 double __ieee754_sqrt(double x)
 {
     static const double one = 1.0;

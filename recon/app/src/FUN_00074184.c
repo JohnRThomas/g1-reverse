@@ -9,7 +9,6 @@ extern void FUN_0008664c(void);
 #define z_set_prio FUN_00074060
 #define z_reschedule_unlocked FUN_0008664c
 
-#define z_thread_priority_set FUN_00074184
 void z_thread_priority_set(void *thread, int32_t priority)
 {
     bool reschedule_needed = z_set_prio(thread, priority);

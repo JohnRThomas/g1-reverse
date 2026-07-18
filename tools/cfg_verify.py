@@ -396,7 +396,7 @@ TRUE_SIZE_OVERRIDES = {
     # Catalog-missing configured OpenAMP, zcbor, kernel, allocator and libm
     # entries.  Each extent ends at its reachable return/tail boundary; the
     # following aligned words are literals or independent functions.
-    ("app", 0x00071560): 0x26,  # rpmsg_init_vdev
+    ("app", 0x00071560): 0x28,  # rpmsg_init_vdev (includes final pop {..,pc})
     ("app", 0x000715b8): 0x76,  # zcbor value_encode_len
     ("app", 0x00071b2c): 0x8c,  # k_heap_free
     ("app", 0x00074184): 0x1a,  # z_thread_priority_set

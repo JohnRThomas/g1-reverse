@@ -9,13 +9,11 @@ struct rpmsg_virtio_config {
     uint32_t split_shared_pool;
 };
 
-extern int FUN_00071358(
+extern int rpmsg_init_vdev_with_config(
     void *rpmsg_device, void *virtio_device, void *name_service_callback,
     void *shared_memory_io, void *shared_pool,
-    const struct rpmsg_virtio_config *config);
+    const struct rpmsg_virtio_config *config) __asm__("FUN_00071358");
 
-#define rpmsg_init_vdev FUN_00071560
-#define rpmsg_init_vdev_with_config FUN_00071358
 int rpmsg_init_vdev(void *rpmsg_device, void *virtio_device,
                     void *name_service_callback, void *shared_memory_io,
                     void *shared_pool)

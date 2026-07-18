@@ -34,8 +34,6 @@ extern void FUN_0007e2ec(uint32_t, uint32_t);
 #define assert_log FUN_0007e2fa
 #define assert_panic FUN_0007e2ec
 
-#define z_thread_abort FUN_000748b8
-
 static inline __attribute__((always_inline)) int unlock_scheduler(void)
 {
     return z_spin_unlock_valid((void *)0x2000b490u);

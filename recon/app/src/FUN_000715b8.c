@@ -33,7 +33,6 @@ uint8_t value_length_log2_ceil(size_t length)
     return 0u;
 }
 
-#define value_encode_len FUN_000715b8
 bool value_encode_len(struct zcbor_state_prefix *state, uint32_t major_type,
                       const void *result_arg, size_t result_length)
 {
