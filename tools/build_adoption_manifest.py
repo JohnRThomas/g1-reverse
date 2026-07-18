@@ -49,6 +49,12 @@ DEFAULTS = {
         "recon/ownership/app_img_mgmt_stock_atomic_adoption.json",
     "app_collision_retention_overrides":
         "recon/ownership/app_collision_retention_overrides.json",
+    "app_mmio_falseproof_repairs":
+        "recon/analysis/app_mmio_falseproof_repairs.json",
+    "cfg_target_rechecks":
+        "recon/analysis/cfg_sweep_target_rechecks.json",
+    "net_cfg_recheck_overlay":
+        "recon/analysis/cfg_sweep_net_recheck_overlay.json",
     "library_provenance":
         "recon/catalogs/upstream_library_provenance.json",
     "app_sdk_public": "recon/catalogs/app_sdk_public_ownership.json",
@@ -139,6 +145,154 @@ def _json_sha256(value):
     encoded = json.dumps(value, sort_keys=True,
                          separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
+
+
+def _verified_source_overlays(paths, resolved):
+    """Return fail-closed, exact-hash reconstruction proof overlays.
+
+    Adoption receipts intentionally pin the reconstructed C that was present
+    when an upstream owner was authorized.  A later semantic repair may change
+    that evidence body without changing its upstream ownership decision.  Such
+    drift is accepted only when the current canonical source is named by a
+    durable targeted recheck, its exact hash is current, the authoritative
+    result is PASS with at least one executed case, and every verifier-tool
+    hash in the receipt is still exact.
+
+    The APP ordered-MMIO repairs carry an additional scoped repair receipt.
+    Every row in that receipt must agree with the targeted recheck and with the
+    verified mirror before it can authorize a newer source hash.
+    """
+    recheck_path = resolved["cfg_target_rechecks"]
+    rechecks = _load_json(recheck_path)
+    if (rechecks.get("kind") != "cfg_sweep_target_rechecks" or
+            not isinstance(rechecks.get("rechecks"), dict)):
+        raise ValueError("invalid targeted CFG recheck overlay")
+    target_rows = rechecks["rechecks"]
+    overlays = {}
+    repair_path = resolved["app_mmio_falseproof_repairs"]
+    repairs = _load_json(repair_path)
+    policy = repairs.get("policy", {})
+    if (repairs.get("schema") != "g1.app-mmio-falseproof-repairs.v1" or
+            not all(policy.get(key) is True for key in (
+                "ordered_mmio_reads_are_observable",
+                "source_drift_is_failure",
+                "canonical_verified_mirror_must_match",
+                "sequence_regression_must_be_rejected"))):
+        raise ValueError("invalid APP MMIO repair receipt")
+    repair_vas = set()
+    for row in repairs.get("repairs", []):
+        va = _hex(row.get("va"))
+        key = ("app", va)
+        raw = _raw("app", va)
+        canonical = _path(row.get("canonical_source", ""))
+        mirror = _path(row.get("verified_mirror", ""))
+        digest = row.get("source_sha256")
+        recheck_key = "app:%s" % raw
+        recheck = target_rows.get(recheck_key, {})
+        result = recheck.get("result", {})
+        if (va in repair_vas or row.get("core") != "app" or
+                row.get("raw_symbol") != raw or
+                row.get("cfg_verify", {}).get("status") != "PASS" or
+                not isinstance(digest, str) or len(digest) != 64 or
+                _sha256(canonical) != digest or _sha256(mirror) != digest or
+                recheck.get("core") != "app" or
+                recheck.get("name") != raw or
+                recheck.get("status") != "PASS" or
+                result.get("status") != "PASS" or
+                int(result.get("checked", 0)) <= 0 or
+                recheck.get("source_sha256") != digest):
+            raise ValueError("APP MMIO repair proof changed: %s" % va)
+        tool_hashes = recheck.get("tool_hashes")
+        if not isinstance(tool_hashes, dict) or not tool_hashes:
+            raise ValueError("APP MMIO recheck lacks tool hashes: %s" % va)
+        for tool, expected in tool_hashes.items():
+            if _sha256(_path(tool)) != expected:
+                raise ValueError("APP MMIO recheck tool changed: %s" % tool)
+        repair_vas.add(va)
+        overlays[key] = {
+            "path": paths["cfg_target_rechecks"],
+            "key": recheck_key,
+            "source_sha256": digest,
+            "checked": result["checked"],
+            "cover_cases": result.get("cover_cases", 0),
+            "status": "PASS",
+            "repair_receipt": paths["app_mmio_falseproof_repairs"],
+        }
+    if repair_vas != {"0x00050558", "0x00066050"}:
+        raise ValueError("incomplete APP MMIO repair proof closure")
+
+    net_overlay_path = resolved["net_cfg_recheck_overlay"]
+    net_overlay = _load_json(net_overlay_path)
+    counts = net_overlay.get("overlay_counts", {})
+    if (net_overlay.get("schema") != 1 or
+            net_overlay.get("kind") !=
+            "authoritative_cfg_sweep_recheck_overlay" or
+            net_overlay.get("core") != "net" or
+            net_overlay.get("current_source_tree_fully_covered") is not True or
+            net_overlay.get("unresolved_count") != 0 or
+            counts.get("PASS") != net_overlay.get("current_inventory_count") or
+            any(counts.get(key) != 0 for key in (
+                "FAIL", "compile_error", "other", "source_changed", "timeout"))):
+        raise ValueError("invalid authoritative NET CFG recheck overlay")
+    raw_receipt = net_overlay.get("raw_rechecks", {})
+    raw_path = _path(raw_receipt.get("path", ""))
+    if (_sha256(raw_path) != raw_receipt.get("sha256")):
+        raise ValueError("NET CFG raw recheck receipt changed")
+    baseline_receipt = net_overlay.get("baseline", {})
+    if (_sha256(_path(baseline_receipt.get("path", ""))) !=
+            baseline_receipt.get("sha256")):
+        raise ValueError("NET CFG baseline receipt changed")
+    raw = _load_json(raw_path)
+    if (raw.get("schema") != 1 or
+            raw.get("kind") != "cfg_sweep_target_rechecks" or
+            raw.get("core") != "net"):
+        raise ValueError("invalid NET CFG raw recheck receipt")
+    tool_hashes = net_overlay.get("tool_hashes")
+    if (not isinstance(tool_hashes, dict) or not tool_hashes or
+            raw.get("tool_hashes") != tool_hashes):
+        raise ValueError("NET CFG recheck tool receipt mismatch")
+    for tool, expected in tool_hashes.items():
+        if _sha256(_path(tool)) != expected:
+            raise ValueError("NET CFG recheck tool changed: %s" % tool)
+    raw_rows = {row.get("name"): row for row in raw.get("rechecks", [])}
+    resolved_names = set()
+    for row in net_overlay.get("resolved_fail", []):
+        name = row.get("name")
+        match = re.fullmatch(r"FUN_([0-9a-fA-F]{8})", str(name))
+        digest = row.get("source_sha256")
+        raw_row = raw_rows.get(name)
+        if (not match or name in resolved_names or row.get("status") != "PASS" or
+                row.get("exit_code") != 0 or not isinstance(digest, str) or
+                len(digest) != 64 or raw_row != row or
+                _sha256(os.path.join(BASE, "recon/net/src", name + ".c")) !=
+                digest):
+            raise ValueError("NET CFG repaired source proof changed: %s" % name)
+        va = _hex(int(match.group(1), 16))
+        overlays[("net", va)] = {
+            "path": paths["net_cfg_recheck_overlay"],
+            "key": "net:%s" % name,
+            "source_sha256": digest,
+            "checked": None,
+            "cover_cases": row.get("cases", 0),
+            "status": "PASS",
+            "raw_receipt": raw_receipt["path"],
+        }
+        resolved_names.add(name)
+    if not set(net_overlay.get("post_baseline_source_drift", [])).issubset(
+            resolved_names):
+        raise ValueError("incomplete NET post-baseline repair proof closure")
+    return overlays
+
+
+def _accept_reverified_source(canonical, pinned_digest, core, va, overlays):
+    """Accept an exact pinned hash or an exact authoritative PASS overlay."""
+    actual = _sha256(canonical)
+    if actual == pinned_digest:
+        return None
+    proof = overlays.get((core, _hex(va)))
+    if proof is None or proof.get("source_sha256") != actual:
+        raise ValueError("reconstruction source changed: %s" % _hex(va))
+    return proof
 
 
 def _kconfig_values(path):
@@ -513,6 +667,7 @@ def _build_from_baseline(paths, resolved, names):
                          baseline_digest)
     baseline = _load_json(baseline_path)
     validate_manifest(baseline)
+    source_overlays = _verified_source_overlays(paths, resolved)
 
     lc3_stock_path = resolved["app_lc3_stock"]
     lc3_stock = _load_json(lc3_stock_path)
@@ -923,6 +1078,12 @@ def _build_from_baseline(paths, resolved, names):
          "sha256": _sha256(net_public_zephyr_path)},
         {"path": paths["app_collision_retention_overrides"],
          "sha256": _sha256(retention_path)},
+        {"path": paths["app_mmio_falseproof_repairs"],
+         "sha256": _sha256(resolved["app_mmio_falseproof_repairs"])},
+        {"path": paths["cfg_target_rechecks"],
+         "sha256": _sha256(resolved["cfg_target_rechecks"])},
+        {"path": paths["net_cfg_recheck_overlay"],
+         "sha256": _sha256(resolved["net_cfg_recheck_overlay"])},
         {"path": paths["library_provenance"],
          "sha256": _sha256(resolved["library_provenance"])},
     ]
@@ -1068,9 +1229,9 @@ def _build_from_baseline(paths, resolved, names):
         canonical = (_path(canonical) if canonical else
                      os.path.join(BASE, "recon", "app", "src",
                                   authorization.get("raw_symbol", "") + ".c"))
-        if (_sha256(canonical) !=
-                authorization.get("reconstruction_source_sha256")):
-            raise ValueError("reconstruction source changed: %s" % va)
+        source_proof = _accept_reverified_source(
+            canonical, authorization.get("reconstruction_source_sha256"),
+            "app", va, source_overlays)
         overlay = generated.get(va)
         if overlay is None:
             raise ValueError("authorization did not pass exclusion gates: %s" % va)
@@ -1078,6 +1239,16 @@ def _build_from_baseline(paths, resolved, names):
         if previous is not None and previous.get("raw_symbol") != overlay[
                 "raw_symbol"]:
             raise ValueError("baseline identity mismatch: %s" % va)
+        if source_proof is not None:
+            overlay.setdefault("evidence", []).append(_evidence(
+                source_proof["path"],
+                "authoritative_reconstruction_reverify_overlay",
+                key=source_proof["key"],
+                source_sha256=source_proof["source_sha256"],
+                status=source_proof["status"],
+                checked=source_proof["checked"],
+                cover_cases=source_proof["cover_cases"],
+                repair_receipt=source_proof.get("repair_receipt")))
         app_rows[va] = overlay
 
     # Retention overrides are deliberately one-way and fail closed.  They can
