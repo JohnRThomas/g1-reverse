@@ -2,13 +2,21 @@
 
 Date: 2026-07-18
 
-This sweep separates three claims which must not be conflated:
+This sweep separates seven claims which must not be conflated:
 
-1. **manifest pin**: the revision selected by the NCS 2.5.1 west manifest;
-2. **binary family proof**: the narrowest revision family distinguishable from
-   firmware code or archive bytes;
-3. **configured-object proof**: a function or complete source unit is exact
-   after masking only link relocations.
+1. **firmware-reported identity**: the revision string embedded in the shipped
+   manifest, including its `-dirty` qualification;
+2. **public manifest baseline**: the stock revision selected by the public NCS
+   release manifest used for configured comparisons;
+3. **archive blob identity**: the SHA-256 of one complete prebuilt archive;
+4. **selected member/section proof**: exact firmware ownership for the pieces
+   actually linked from that archive or source unit;
+5. **binary-equivalence family**: all sampled releases carrying identical
+   archive bytes or indistinguishable selected bodies;
+6. **source-body interval**: the inclusive/exclusive history interval over
+   which a matched source body is unchanged; and
+7. **configuration/ABI proof**: Kconfig, compiler and multilib choices required
+   to reproduce the body.
 
 The firmware is consistent with stock libraries.  Some stock units are
 unchanged across several releases, so their precise patch revision cannot be
@@ -20,9 +28,9 @@ exact checkout while the bytes prove only the stated family.
 | Component | Manifest pin | What firmware evidence proves |
 |---|---|---|
 | NCS/nrf | `87355af5914e498f449b7a68bb5641031a7b8885` (`v2.5.1`) | CPUAPP/CPUNET composition and exact configured owners select the NCS 2.5 generation; the manifest fixes 2.5.1. |
-| Zephyr | `83980fe1679441be9b0e1db556a353f6118fe14f` (`v3.4.99-ncs1-1`) | Bluetooth ATT/HCI changes reject `ncs1-3`; many kernel/log/settings units are identical throughout the 2.5 patch family. NCS 2.6 is rejected by changed work, scheduler, slab, and logging bodies. |
-| hal_nordic/nrfx | `9784731461018d3e983604698fbbed6af2bea801` | QSPI distinguishes this from NCS 2.5.0's `427ee1a...`; NCS 2.6's `5470822...` changes all six audited units. Only the PDM source-unit closure is currently configured-object exact; other nrfx units remain retained pending a wider historical/config search. |
-| nrfxlib | `ab72f33c86db7252dbf9a3ffec86c6b7fc6a9da7` (`v2.5.1`) | CPUNET MPSL and SDC archives are byte-identical in nrfxlib 2.5.0 and 2.5.1, and differ in 2.4.2, 2.5.2, and 2.6.0. Bytes prove the 2.5.0/2.5.1 family; manifest fixes 2.5.1. |
+| Zephyr | Firmware reports unavailable private `1b8581519f7aaeef086c6a3d3df59479b2a337d2-dirty`; public NCS 2.5.1 baseline is `83980fe1679441be9b0e1db556a353f6118fe14f` (`v3.4.99-ncs1-1`) | Exact configured public owners prove extensive body/configuration equivalence to the public baseline, not equality to the unavailable private dirty tree. Many bodies are identical through the 2.5 patch family; changed bodies reject sampled NCS 2.4 and 2.6 families. |
+| hal_nordic/nrfx | Public NCS 2.5.1 pin `9784731461018d3e983604698fbbed6af2bea801` | A historical configured-object sweep found QSPI to be the strongest adjacent-revision discriminator. The later fail-closed receipt `app_nrfx_stock_atomic_adoption.json` supersedes the old “PDM-only” status: 31 exact owners are now atomically authorized across QSPI (19), clock (5), NVMC (2), and GPPI (5), with their exact assertion/configuration receipts. This proves those configured source-unit closures, not blanket equivalence of all hal_nordic code. |
+| nrfxlib | Public manifest pin `ab72f33c86db7252dbf9a3ffec86c6b7fc6a9da7` (`v2.5.1`) | Complete MPSL and multirole-SDC archive hashes are identical only in sampled nrfxlib 2.5.0/2.5.1 and differ in 2.4.2, 2.5.2 and 2.6.0. Selected firmware bodies connect the archive family to the image; the public manifest chooses 2.5.1. SDC remains report-only. |
 | OpenAMP | `42b7c577714b8f22ce82a901e19c1814af4609a8` | Exact public owner rejects the 2022.10 line and proves the 2023.04 lineage. Several commits in that lineage have identical matched source, so the patch is manifest-derived. |
 | libmetal | `b91611a6f47dd29fb24c46e5621e797557f80ec6` | Matched device/I/O sources are unchanged across sampled releases; exact patch is manifest-derived. |
 | liblc3 | `448f3de31f49a838988a162ef1e23a89ddf2d2ed` | This same revision is selected by NCS 2.5.0, 2.5.1, and 2.6.0; LC3 cannot distinguish those NCS releases. |
@@ -30,8 +38,8 @@ exact checkout while the bytes prove only the stated family.
 | zcbor | `67fd8bb88d3136738661fa8bb5f9989103f4599e` | With `ZCBOR_STOP_ON_ERROR`, NCS 2.5.x yields 20 meaningful exact opcode-stream matches versus 15 for NCS 2.6's `d3093b5...`; five bodies uniquely reject 2.6. |
 | MCUboot | `edfe1e1465dbc698bf9a195816247913490ab391` (`v1.10.99-ncs1-1` manifest revision) | Nine bootutil bodies are exact, but the relevant source is identical across the sampled 2.5.0, 2.5.1, and 2.6 manifests, so this unit does not identify the patch. |
 | Mbed TLS | `acea48fc8a5eb227033b55e6ec012731218e257f` (`v3.3.0-ncs2-1` manifest revision) | Public wrappers and selected archive owners must be proven per member; private CC312 state is not bulk-adopted from a version label. |
-| CPUAPP libc/libm | Zephyr SDK 0.16.5-1, GCC 12.2.0, newlib 3.3.0 nano | SDK 0.16.3, 0.16.4, 0.16.5, and 0.16.5-1 pin the same GCC/newlib commits and identical ARM config, so ARM firmware bytes prove the common 0.16.x toolchain family, not the host-package suffix. `nano.specs` selects `libm_nano.a`, not regular `libm.a`. |
-| CPUNET libc | Zephyr SDK 0.16.5-1, GCC 12.2.0, picolibc | Exact public bodies use Cortex-M33+nodsp, soft-float, `-Os`; CPUAPP's hard-float/newlib-nano assumption must not be applied to CPUNET. |
+| CPUAPP libc/libm | Configured package Zephyr SDK 0.16.5-1, GCC 12.2.0, newlib-nano 3.3.0 | Exact selected members come from `thumb/v8-m.main+fp/hard/libc_nano.a` SHA-256 `c6a3f8bf...` and `libm_nano.a` SHA-256 `9a5f5ed0...`. This is hard-float archive/member proof; the exact SDK packaging suffix remains environment provenance. |
+| CPUNET libc | Configured reference uses Zephyr SDK 0.16.5-1 Picolibc 1.8.6 | Exact normalized public bodies and link-map members use `thumb/v8-m.main/nofp/libc.a` SHA-256 `1aab30f2...`. This proves compatibility with those selected Picolibc bodies and the soft-float/no-DSP ABI, not whole-firmware archive identity. CPUAPP's newlib-nano proof must not be generalized to CPUNET. |
 
 ## Source-history discrimination
 
@@ -57,7 +65,9 @@ commits that have an identical owner body:
   ranges and carry essentially no patch-version information.
 
 Consequently, the firmware evidence selects the NCS 2.5 / Zephyr 3.4.99
-component family, while exact `v3.4.99-ncs1-1` is manifest provenance.  The
+component family, while exact public `v3.4.99-ncs1-1` is comparison-baseline
+provenance. The firmware itself reports a distinct unavailable private dirty
+commit. The
 scoped owner bodies do not distinguish `ncs1`, `ncs1-1`, `ncs1-2`, and
 `ncs1-3`; receipts must not claim otherwise.
 
@@ -85,12 +95,12 @@ Crypto/codec precision:
   3.0.13 remains a manifest pin, not a body-unique inference.
 
 A 13-commit hal_nordic history sweep compiled 62 configured nrfx objects from
-NRFX 2.11 through 3.3.  No historical or mixed revision improves on the pinned
-commit.  QSPI uniquely ranks `9784731` first; NVMC, GPIOTE, clock, and GPPI are
-ties/plateaus containing that commit.  None of the ten currently retained
-targets becomes normalized-exact under another stock revision.  Their residue
-therefore points to state/storage integration or code-generation context, not
-to a better adjacent nrfx release; the reconstructed owners remain in place.
+NRFX 2.11 through 3.3. No historical or mixed revision improved on the pinned
+commit; QSPI ranked `9784731` first while several smaller units lay on broader
+body-equivalence plateaus. That sweep is version-discrimination evidence only.
+The subsequent configured closure receipt is the adoption authority: it now
+authorizes 31 owners from QSPI, clock, NVMC and GPPI. Any hal_nordic owner not
+listed in that receipt remains subject to its own source-unit proof.
 
 ## Decisive configuration fingerprints
 

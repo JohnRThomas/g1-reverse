@@ -1,0 +1,336 @@
+{
+ "schema": 1,
+ "claim_model": [
+  "firmware_reported_identity",
+  "public_manifest_baseline",
+  "archive_blob_identity",
+  "selected_member_or_section_identity",
+  "binary_equivalence_family",
+  "source_body_interval",
+  "configuration_and_abi"
+ ],
+ "firmware_identity": {
+  "nrf_reported_revision": "87355af5914e498f449b7a68bb5641031a7b8885-dirty",
+  "zephyr_reported_revision": "1b8581519f7aaeef086c6a3d3df59479b2a337d2-dirty",
+  "zephyr_reported_commit_available_locally": false,
+  "public_ncs_2_5_1_zephyr_baseline": "83980fe1679441be9b0e1db556a353f6118fe14f",
+  "interpretation": "The private dirty Zephyr identity is firmware-reported. The public NCS 2.5.1 Zephyr checkout is a configured comparison baseline, not the firmware manifest pin."
+ },
+ "adjacent_ncs_manifests": [
+  {
+   "ncs_release": "v2.4.2",
+   "nrf_commit": "75adfe8909fbac1c2e0ede465448d1ce2821dfa9",
+   "zephyr_revision": "v3.3.99-ncs1-1",
+   "zephyr_commit": "28a3fca7da5cfb3b72f1a874b3b7fa62f713ab3d",
+   "nrfxlib_revision": "v2.4.2",
+   "nrfxlib_commit": "30841c2ad6d3b022406b167ab0ebaf46e8901c56",
+   "zephyr_imported_modules": {
+    "hal_nordic": {
+     "revision": "140140ea047f441fe076d26f79eb54dc9a38bcb6",
+     "commit": "140140ea047f441fe076d26f79eb54dc9a38bcb6"
+    },
+    "liblc3": {
+     "revision": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+     "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed"
+    },
+    "libmetal": {
+     "revision": "efa2ace6028290ddee494a78ade772a0b112ab83",
+     "commit": "efa2ace6028290ddee494a78ade772a0b112ab83"
+    },
+    "open-amp": {
+     "revision": "aedcc262f93bbb1b0c2f58026911575729b7465c",
+     "commit": "aedcc262f93bbb1b0c2f58026911575729b7465c"
+    },
+    "tinycrypt": {
+     "revision": "3e9a49d2672ec01435ffbf0d788db6d95ef28de0",
+     "commit": "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+    },
+    "zcbor": {
+     "revision": "0.6.0",
+     "commit": "0556edac504d1f34699aa8a22fcd507c14756c9e"
+    }
+   }
+  },
+  {
+   "ncs_release": "v2.5.0",
+   "nrf_commit": "1fae141fc6713dd331b797fc96c90dc84552242d",
+   "zephyr_revision": "v3.4.99-ncs1",
+   "zephyr_commit": "2e2523efe52a7ac89f0567b8798fd857b1e71ae3",
+   "nrfxlib_revision": "v2.5.0",
+   "nrfxlib_commit": "78cc07ed7c9f168c3d6316db5af969ac5f7c977a",
+   "zephyr_imported_modules": {
+    "hal_nordic": {
+     "revision": "427ee1a519e8a0844d0f78f7cbc8cdfc134ef00d",
+     "commit": "427ee1a519e8a0844d0f78f7cbc8cdfc134ef00d"
+    },
+    "liblc3": {
+     "revision": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+     "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed"
+    },
+    "libmetal": {
+     "revision": "b91611a6f47dd29fb24c46e5621e797557f80ec6",
+     "commit": "b91611a6f47dd29fb24c46e5621e797557f80ec6"
+    },
+    "open-amp": {
+     "revision": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+     "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8"
+    },
+    "tinycrypt": {
+     "revision": "3e9a49d2672ec01435ffbf0d788db6d95ef28de0",
+     "commit": "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+    },
+    "zcbor": {
+     "revision": "67fd8bb88d3136738661fa8bb5f9989103f4599e",
+     "commit": "67fd8bb88d3136738661fa8bb5f9989103f4599e"
+    }
+   }
+  },
+  {
+   "ncs_release": "v2.5.1",
+   "nrf_commit": "87355af5914e498f449b7a68bb5641031a7b8885",
+   "zephyr_revision": "v3.4.99-ncs1-1",
+   "zephyr_commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+   "nrfxlib_revision": "v2.5.1",
+   "nrfxlib_commit": "ab72f33c86db7252dbf9a3ffec86c6b7fc6a9da7",
+   "zephyr_imported_modules": {
+    "hal_nordic": {
+     "revision": "9784731461018d3e983604698fbbed6af2bea801",
+     "commit": "9784731461018d3e983604698fbbed6af2bea801"
+    },
+    "liblc3": {
+     "revision": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+     "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed"
+    },
+    "libmetal": {
+     "revision": "b91611a6f47dd29fb24c46e5621e797557f80ec6",
+     "commit": "b91611a6f47dd29fb24c46e5621e797557f80ec6"
+    },
+    "open-amp": {
+     "revision": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+     "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8"
+    },
+    "tinycrypt": {
+     "revision": "3e9a49d2672ec01435ffbf0d788db6d95ef28de0",
+     "commit": "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+    },
+    "zcbor": {
+     "revision": "67fd8bb88d3136738661fa8bb5f9989103f4599e",
+     "commit": "67fd8bb88d3136738661fa8bb5f9989103f4599e"
+    }
+   }
+  },
+  {
+   "ncs_release": "v2.5.2",
+   "nrf_commit": "750a0eab914e23669ffa93982578afbaff2af254",
+   "zephyr_revision": "v3.4.99-ncs1-2",
+   "zephyr_commit": "4b5ef270413a968c3efe826aad4412a89731753f",
+   "nrfxlib_revision": "v2.5.2",
+   "nrfxlib_commit": "a7ef13f977653fc0b4cb2a336a3c1054763fb755",
+   "zephyr_imported_modules": {
+    "hal_nordic": {
+     "revision": "9784731461018d3e983604698fbbed6af2bea801",
+     "commit": "9784731461018d3e983604698fbbed6af2bea801"
+    },
+    "liblc3": {
+     "revision": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+     "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed"
+    },
+    "libmetal": {
+     "revision": "b91611a6f47dd29fb24c46e5621e797557f80ec6",
+     "commit": "b91611a6f47dd29fb24c46e5621e797557f80ec6"
+    },
+    "open-amp": {
+     "revision": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+     "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8"
+    },
+    "tinycrypt": {
+     "revision": "3e9a49d2672ec01435ffbf0d788db6d95ef28de0",
+     "commit": "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+    },
+    "zcbor": {
+     "revision": "67fd8bb88d3136738661fa8bb5f9989103f4599e",
+     "commit": "67fd8bb88d3136738661fa8bb5f9989103f4599e"
+    }
+   }
+  },
+  {
+   "ncs_release": "v2.6.0",
+   "nrf_commit": "3190fa573ff67bfb745028f203e9d0ea4144a1ce",
+   "zephyr_revision": "v3.5.99-ncs1",
+   "zephyr_commit": "d96769facecaba386b642d2c76c92c7694c81da0",
+   "nrfxlib_revision": "v2.6.0",
+   "nrfxlib_commit": "13cd978b22d192447537a60f7fae5fe092930dc4",
+   "zephyr_imported_modules": {
+    "hal_nordic": {
+     "revision": "5470822384781624efb2fda28cbc6a895a227677",
+     "commit": "5470822384781624efb2fda28cbc6a895a227677"
+    },
+    "liblc3": {
+     "revision": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+     "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed"
+    },
+    "libmetal": {
+     "revision": "03140d7f4bd9ba474ebfbb6256e84a9089248e67",
+     "commit": "03140d7f4bd9ba474ebfbb6256e84a9089248e67"
+    },
+    "open-amp": {
+     "revision": "214f9fc1539f8e5937c0474cb6ee29b6dcb2d4b8",
+     "commit": "214f9fc1539f8e5937c0474cb6ee29b6dcb2d4b8"
+    },
+    "tinycrypt": {
+     "revision": "3e9a49d2672ec01435ffbf0d788db6d95ef28de0",
+     "commit": "3e9a49d2672ec01435ffbf0d788db6d95ef28de0"
+    },
+    "zcbor": {
+     "revision": "d3093b5684f62268c7f27f8a5079f166772619de",
+     "commit": "d3093b5684f62268c7f27f8a5079f166772619de"
+    }
+   }
+  }
+ ],
+ "nrfxlib_archive_matrix": [
+  {
+   "ncs_release": "v2.4.2",
+   "nrfxlib_revision": "v2.4.2",
+   "archives": {
+    "mpsl_net": "9e6bb3b60552418ea715e001bd89390a8fe8dcab9b3dc8ba354eafd687872e8e",
+    "sdc_multirole_net": "9014ecbad8dd54c870b83793318ae8ad261c093caa1fea01d95e1fed0f3e54d4",
+    "oberon_3_0_13_net": "466f575748e64a8a170ed796a4edcd8a489517b5dd108b0f4295eea8ebb082f6"
+   }
+  },
+  {
+   "ncs_release": "v2.5.0",
+   "nrfxlib_revision": "v2.5.0",
+   "archives": {
+    "mpsl_net": "127d76d156af342f8cb0e0bea7f6cc2712368f8219e6c9d3d24fe972a327e8af",
+    "sdc_multirole_net": "f218b3dc4badd8f534f4aa00db678f54a1d4795d7d39721f28401fb49e880e81",
+    "oberon_3_0_13_net": "466f575748e64a8a170ed796a4edcd8a489517b5dd108b0f4295eea8ebb082f6",
+    "cc312_0_9_18_app": "80a253291ae78f26b2d38cdccac20c8420f1545b85a476c3029eb92286d9159e"
+   }
+  },
+  {
+   "ncs_release": "v2.5.1",
+   "nrfxlib_revision": "v2.5.1",
+   "archives": {
+    "mpsl_net": "127d76d156af342f8cb0e0bea7f6cc2712368f8219e6c9d3d24fe972a327e8af",
+    "sdc_multirole_net": "f218b3dc4badd8f534f4aa00db678f54a1d4795d7d39721f28401fb49e880e81",
+    "oberon_3_0_13_net": "466f575748e64a8a170ed796a4edcd8a489517b5dd108b0f4295eea8ebb082f6",
+    "cc312_0_9_18_app": "80a253291ae78f26b2d38cdccac20c8420f1545b85a476c3029eb92286d9159e"
+   }
+  },
+  {
+   "ncs_release": "v2.5.2",
+   "nrfxlib_revision": "v2.5.2",
+   "archives": {
+    "mpsl_net": "42992dfab1afc67d4f4e0f65c30229e66b670c8d1be1663923c89d34a7c5b329",
+    "sdc_multirole_net": "19961519785446307f3ccad97d8a7ecc33fb4a3c4b684b4ed56aa81a6b4ddf8f",
+    "oberon_3_0_13_net": "466f575748e64a8a170ed796a4edcd8a489517b5dd108b0f4295eea8ebb082f6",
+    "cc312_0_9_18_app": "80a253291ae78f26b2d38cdccac20c8420f1545b85a476c3029eb92286d9159e"
+   }
+  },
+  {
+   "ncs_release": "v2.6.0",
+   "nrfxlib_revision": "v2.6.0",
+   "archives": {
+    "mpsl_net": "8011250ec9ff860e7864486629b672761126fd9de0b5b0ccf3603c2e8769642d",
+    "sdc_multirole_net": "80e2f1501810fc44622523299e823d83b12c386999fd6db64615bd67032c64b2",
+    "oberon_3_0_14_net": "cf6e1e786ddf9fa22d13aeccbf89a9f672ff5ad35c281546cdeee04548229bd7",
+    "cc312_0_9_19_app": "55775ae01422ea33cc010f6a1c96288e6ace391fce516bb9c88b27252568e2e1"
+   }
+  }
+ ],
+ "binary_equivalence_families": {
+  "mpsl_net_exact_archive": {
+   "sha256": "127d76d156af342f8cb0e0bea7f6cc2712368f8219e6c9d3d24fe972a327e8af",
+   "ncs_releases": [
+    "v2.5.0",
+    "v2.5.1"
+   ],
+   "excludes_sampled": [
+    "v2.4.2",
+    "v2.5.2",
+    "v2.6.0"
+   ]
+  },
+  "sdc_multirole_net_exact_archive": {
+   "sha256": "f218b3dc4badd8f534f4aa00db678f54a1d4795d7d39721f28401fb49e880e81",
+   "ncs_releases": [
+    "v2.5.0",
+    "v2.5.1"
+   ],
+   "excludes_sampled": [
+    "v2.4.2",
+    "v2.5.2",
+    "v2.6.0"
+   ],
+   "adoption_authority": "report_only_private_sdc"
+  },
+  "oberon_3_0_13_archive": {
+   "sha256": "466f575748e64a8a170ed796a4edcd8a489517b5dd108b0f4295eea8ebb082f6",
+   "ncs_releases": [
+    "v2.4.2",
+    "v2.5.0",
+    "v2.5.1",
+    "v2.5.2"
+   ],
+   "firmware_proof": "nine selected P-256 bodies; not whole-archive identity"
+  },
+  "cc312_0_9_18_archive": {
+   "sha256": "80a253291ae78f26b2d38cdccac20c8420f1545b85a476c3029eb92286d9159e",
+   "ncs_releases": [
+    "v2.5.0",
+    "v2.5.1",
+    "v2.5.2"
+   ],
+   "firmware_proof": "89 selected sections across 31 members"
+  }
+ },
+ "toolchain_by_core": {
+  "app": {
+   "sdk_package": "Zephyr SDK 0.16.5-1",
+   "compiler": "GCC 12.2.0",
+   "libc": "newlib-nano 3.3.0",
+   "abi": "Cortex-M33, hard-float, -Os",
+   "libc_archive": "arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+   "libc_archive_sha256": "c6a3f8bf0d33e395061c64e8f523e7fb11aaf7fb679c25ff0124e5cd77eaa5cc",
+   "libm_archive": "arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libm_nano.a",
+   "libm_archive_sha256": "9a5f5ed0de96d00ad1b0a4b3ad04ac9734484ebd3b4baa2c6f4db78f53745ffd",
+   "proof": "exact archive members and selected sections"
+  },
+  "net": {
+   "sdk_package": "Zephyr SDK 0.16.5-1",
+   "compiler": "GCC 12.2.0",
+   "libc": "picolibc 1.8.6",
+   "abi": "Cortex-M33+nodsp, soft-float, -Os",
+   "reference_libc_archive": "arm-zephyr-eabi/picolibc/arm-zephyr-eabi/lib/thumb/v8-m.main/nofp/libc.a",
+   "reference_libc_archive_sha256": "1aab30f2d746ad97b271efdfb98a8b62996b7ad82263897edede2b0504e2832e",
+   "proof": "configured-reference link members plus exact normalized function bodies; no firmware whole-archive proof"
+  }
+ },
+ "source_body_intervals": {
+  "zcbor_process_backup": {
+   "repository": "modules/lib/zcbor",
+   "first_identical_commit_inclusive": "e01ea4efa176398ab180230567dadba9df30c011",
+   "first_changed_commit_exclusive": "c9d2c8d29dff31d52be8157b7156766b968612b2",
+   "manifest_commit": "67fd8bb88d3136738661fa8bb5f9989103f4599e",
+   "interpretation": "body interval contains the manifest commit but does not uniquely identify it"
+  },
+  "zephyr_img_mgmt_c": {
+   "repository": "zephyr",
+   "git_blob": "305cad41c4459b1e5fea46b9ce06383a535a20dc",
+   "identical_tags": [
+    "v3.4.99-ncs1-1",
+    "v3.4.99-ncs1-2",
+    "v3.4.99-ncs1-3"
+   ],
+   "interpretation": "exact configured bodies cannot select one of these public patch tags"
+  }
+ },
+ "policy": {
+  "manifest_pin_is_not_binary_unique": true,
+  "public_zephyr_baseline_is_not_private_dirty_identity": true,
+  "archive_hash_is_not_selected_member_proof": true,
+  "body_match_is_not_whole_archive_identity": true,
+  "private_sdc_report_only": true
+ }
+}

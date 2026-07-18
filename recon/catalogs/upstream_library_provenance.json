@@ -58,41 +58,41 @@
       "revision": "v2.5.1",
       "tag_object": "fd77d02ef285522c2361207d500b0758f423ca04",
       "commit": "ab72f33c86db7252dbf9a3ffec86c6b7fc6a9da7",
-      "evidence": "Parent revision for the hash-pinned proprietary archives below."
+      "evidence": "Public NCS 2.5.1 manifest pin. Archive-level release discrimination is recorded separately in stock_version_precision_matrix.json; a parent revision alone is not firmware ownership proof."
     }
   },
   "prebuilt_archives": {
     "cc312_platform": {
       "core": "app",
       "path": "nrfxlib/crypto/nrf_cc312_platform/lib/cortex-m33/hard-float/no-interrupts/libnrf_cc312_platform_0.9.18.a",
-      "version": "0.9.18",
+      "version": "0.9.18; archive blob is identical in sampled nrfxlib v2.5.0, v2.5.1, and v2.5.2",
       "sha256": "80a253291ae78f26b2d38cdccac20c8420f1545b85a476c3029eb92286d9159e",
       "abi": "cortex-m33 hard-float no-interrupts",
-      "evidence": "Firmware 0x0007954c..0x0007c00c: 89 sections, 31 members and all 9564 unmasked bytes exact after 345 relocation normalizations."
+      "evidence": "Firmware 0x0007954c..0x0007c00c: 89 selected sections across 31 members and all 9564 unmasked bytes exact after 345 relocation normalizations. This proves the 0.9.18 member family and rejects sampled 0.9.19, but does not distinguish NCS 2.5.0/2.5.1/2.5.2."
     },
     "oberon_net": {
       "core": "net",
       "path": "nrfxlib/crypto/nrf_oberon/lib/cortex-m33+nodsp/soft-float/liboberon_3.0.13.a",
-      "version": "3.0.13",
+      "version": "3.0.13 manifest archive; selected bodies do not distinguish 3.0.13 from 3.0.14",
       "sha256": "466f575748e64a8a170ed796a4edcd8a489517b5dd108b0f4295eea8ebb082f6",
       "abi": "cortex-m33 no-DSP soft-float",
-      "evidence": "Nine P-256 matches in the CPUNET ownership ledger; seven normalized exact and two above 0.97."
+      "evidence": "Nine P-256 matches in the CPUNET ownership ledger; seven normalized exact and two above 0.97. This is selected-body evidence, not whole-archive identity. The exact 3.0.13 archive blob is unchanged from sampled nrfxlib v2.4.2 through v2.5.2."
     },
     "mpsl_net": {
       "core": "net",
       "path": "nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a",
-      "version": "nrfxlib v2.5.1",
+      "version": "exact archive family shared by nrfxlib v2.5.0 and v2.5.1; public manifest pin v2.5.1",
       "sha256": "127d76d156af342f8cb0e0bea7f6cc2712368f8219e6c9d3d24fe972a327e8af",
       "abi": "cortex-m33 no-DSP soft-float; one obfuscated ELF",
-      "evidence": "31 CPUNET signature matches against the configured NCS reference image."
+      "evidence": "The complete archive SHA-256 is identical in sampled nrfxlib v2.5.0/v2.5.1 and differs in v2.4.2, v2.5.2, and v2.6.0. Firmware ownership evidence remains the selected CPUNET signature/member matches, not the archive hash by itself."
     },
     "softdevice_controller": {
       "core": "net",
       "path": "nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a",
-      "version": "nrfxlib v2.5.1 multirole",
+      "version": "exact archive family shared by nrfxlib v2.5.0 and v2.5.1; public manifest pin v2.5.1 multirole",
       "sha256": "f218b3dc4badd8f534f4aa00db678f54a1d4795d7d39721f28401fb49e880e81",
       "abi": "cortex-m33 no-DSP soft-float; one obfuscated ELF",
-      "evidence": "325 archive-family firmware matches. Private SDC identities remain report-only and are never authorized here."
+      "evidence": "The complete archive SHA-256 is identical in sampled nrfxlib v2.5.0/v2.5.1 and differs in v2.4.2, v2.5.2, and v2.6.0. There are 325 archive-family firmware matches. Private SDC identities remain report-only and are never authorized here."
     }
   },
   "toolchain": {
@@ -101,11 +101,26 @@
     "gcc_version": "12.2.0",
     "gcc_path": "arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc",
     "gcc_sha256": "02e918545c3140228310548946b09f89f691e86234a42df6198cc2903e1b0adb",
-    "libc": "newlib-nano",
+    "libc": "per-core; legacy fields below describe CPUAPP newlib-nano",
     "newlib_version": "3.3.0",
-    "libc_nano_path": "arm-zephyr-eabi/arm-zephyr-eabi/lib/libc_nano.a",
-    "libc_nano_sha256": "2e4e2fd53e37dcbd3b97b2ef3d52135297e9092af9be1b5696a5d898279a3e92",
-    "firmware_evidence": "Firmware includes newlib-nano source paths; Picolibc reference builds are not libc ownership evidence."
+    "libc_nano_path": "arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+    "libc_nano_sha256": "c6a3f8bf0d33e395061c64e8f523e7fb11aaf7fb679c25ff0124e5cd77eaa5cc",
+    "firmware_evidence": "CPUAPP has exact selected archive-member proof for hard-float newlib-nano. CPUNET separately has exact normalized public bodies and configured-reference link ownership from Picolibc; that does not prove the whole firmware archive.",
+    "cores": {
+      "app": {
+        "libc": "newlib-nano 3.3.0",
+        "abi": "Cortex-M33 hard-float, -Os",
+        "archive_proof": "exact selected members/sections",
+        "archive_sha256": "c6a3f8bf0d33e395061c64e8f523e7fb11aaf7fb679c25ff0124e5cd77eaa5cc"
+      },
+      "net": {
+        "libc": "Picolibc 1.8.6 in the configured Zephyr SDK reference",
+        "abi": "Cortex-M33+nodsp soft-float, -Os",
+        "reference_archive_path": "arm-zephyr-eabi/picolibc/arm-zephyr-eabi/lib/thumb/v8-m.main/nofp/libc.a",
+        "reference_archive_sha256": "1aab30f2d746ad97b271efdfb98a8b62996b7ad82263897edede2b0504e2832e",
+        "archive_proof": "exact normalized function bodies plus configured-reference selected members; no whole-firmware archive identity proof"
+      }
+    }
   },
   "provenance_corrections": [
     {
