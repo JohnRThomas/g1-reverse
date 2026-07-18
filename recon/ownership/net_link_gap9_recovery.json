@@ -1,0 +1,42 @@
+{
+  "functions": [
+    {
+      "analysis_address": "0x0100f6b0",
+      "archive_family": "softdevice_controller",
+      "archive_identity_is_provenance_only": true,
+      "boundary_evidence": "BX LR at 0x0100f6e6; next entry begins at 0x0100f6e8",
+      "callees": [],
+      "caller": "0x01028112",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 11,
+        "cover_cases": 11,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "firmware_extent_sha256": "782ed387d2303e20c431abb56c3410715a9d4d14892d1fdfba9a8b8d8908f745",
+      "raw_symbol": "FUN_0100f6b0",
+      "readable_identity": "controller_word_popcount",
+      "source": "recon/net/src/FUN_0100f6b0.c",
+      "source_sha256": "049470fe82f07764c42df62d0c5ea33d3bb5c9d29c8a21862ae337790fc6bcba",
+      "true_executable_extent": 56
+    }
+  ],
+  "policy": {
+    "archive_substitution_used": false,
+    "blobs_used": false,
+    "canonical_readable_c_only": true,
+    "private_sdc_retained_report_only": true,
+    "shared_cfg_tool_modified": false
+  },
+  "schema": "g1.net.link_gap9_recovery.v1",
+  "summary": {
+    "cfg_checked_trials": 11,
+    "cfg_directed_cover_cases": 11,
+    "cfg_pass_count": 1,
+    "function_count": 1,
+    "total_true_executable_extent": 56
+  }
+}
