@@ -1,0 +1,371 @@
+{
+  "inputs": [
+    {
+      "path": "recon/catalogs/net_private_recovery_worklist.json",
+      "sha256": "46eb1470a40beb97dddf6c3542c8ef89e73726fa03ebb1d1f67c17c6158e16b9"
+    }
+  ],
+  "policy": {
+    "archive_substitution_used": false,
+    "blobs_used": false,
+    "canonical_c_only": true,
+    "shared_cfg_tool_modified": false
+  },
+  "proofs": [
+    {
+      "analysis_address": "0x01012ad4",
+      "catalog_size_injected_at_runtime": false,
+      "cfg_request": {
+        "core": "net",
+        "name": "FUN_01012ad4",
+        "trials_random": 40,
+        "verifier": "tools/cfg_verify.py"
+      },
+      "cfg_result": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01012ad4",
+      "raw_backmap": "FUN_01012ad4@0x01012ad4",
+      "runtime_address": "0x010132d4",
+      "source_path": "recon/net/src/FUN_01012ad4.c",
+      "source_sha256": "36ad106893398f67d5bd5e6196f3b35d69c844084ae9898e8938b7c63f0fb501",
+      "true_executable_extent": 78
+    },
+    {
+      "analysis_address": "0x01016170",
+      "catalog_size_injected_at_runtime": false,
+      "cfg_request": {
+        "core": "net",
+        "name": "FUN_01016170",
+        "trials_random": 40,
+        "verifier": "tools/cfg_verify.py"
+      },
+      "cfg_result": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01016170",
+      "raw_backmap": "FUN_01016170@0x01016170",
+      "runtime_address": "0x01016970",
+      "source_path": "recon/net/src/FUN_01016170.c",
+      "source_sha256": "49616158b8f80d79bbd0effe1b8d459dc94b70c8f0aea7ab9de8a2d8f9685ad4",
+      "true_executable_extent": 28
+    },
+    {
+      "analysis_address": "0x0101d890",
+      "catalog_size_injected_at_runtime": true,
+      "cfg_request": {
+        "core": "net",
+        "name": "FUN_0101d890",
+        "trials_random": 40,
+        "verifier": "tools/cfg_verify.py"
+      },
+      "cfg_result": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [
+          [
+            3,
+            4
+          ]
+        ],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "reviewed_catalog_missed_boundary",
+      "primary_symbol": "FUN_0101d890",
+      "raw_backmap": "FUN_0101d890@0x0101d890",
+      "runtime_address": "0x0101e090",
+      "source_path": "recon/net/src/FUN_0101d890.c",
+      "source_sha256": "0400ae6110793821b0cc235434886565511d017b1c75da9ff1e43f3712d85ad1",
+      "true_executable_extent": 82
+    },
+    {
+      "analysis_address": "0x0101f624",
+      "catalog_size_injected_at_runtime": false,
+      "cfg_request": {
+        "core": "net",
+        "name": "FUN_0101f624",
+        "trials_random": 40,
+        "verifier": "tools/cfg_verify.py"
+      },
+      "cfg_result": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_0101f624",
+      "raw_backmap": "FUN_0101f624@0x0101f624",
+      "runtime_address": "0x0101fe24",
+      "source_path": "recon/net/src/FUN_0101f624.c",
+      "source_sha256": "fae68bce26bbee6906f186392ed85f2a73ca2cbfcaf687dc7c858d1e4d216e24",
+      "true_executable_extent": 40
+    },
+    {
+      "analysis_address": "0x01023ac4",
+      "catalog_size_injected_at_runtime": false,
+      "cfg_request": {
+        "core": "net",
+        "name": "FUN_01023ac4",
+        "trials_random": 40,
+        "verifier": "tools/cfg_verify.py"
+      },
+      "cfg_result": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01023ac4",
+      "raw_backmap": "FUN_01023ac4@0x01023ac4",
+      "runtime_address": "0x010242c4",
+      "source_path": "recon/net/src/FUN_01023ac4.c",
+      "source_sha256": "9a6a78a0dadd80925c1fd460df0384f3d95df9f56210f3465f43082796fb10fa",
+      "true_executable_extent": 18
+    },
+    {
+      "analysis_address": "0x01025a84",
+      "catalog_size_injected_at_runtime": false,
+      "cfg_request": {
+        "core": "net",
+        "name": "FUN_01025a84",
+        "trials_random": 40,
+        "verifier": "tools/cfg_verify.py"
+      },
+      "cfg_result": {
+        "callback_slots": [],
+        "checked": 18,
+        "cover_cases": 2,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {
+          "2": [
+            0,
+            1
+          ]
+        },
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01025a84",
+      "raw_backmap": "FUN_01025a84@0x01025a84",
+      "runtime_address": "0x01026284",
+      "source_path": "recon/net/src/FUN_01025a84.c",
+      "source_sha256": "b48cafb7e0f73c60df43e0d86c6f682471ac05ea8c142dade959e398e79352d2",
+      "true_executable_extent": 214
+    },
+    {
+      "analysis_address": "0x01025cc8",
+      "catalog_size_injected_at_runtime": false,
+      "cfg_request": {
+        "core": "net",
+        "name": "FUN_01025cc8",
+        "trials_random": 40,
+        "verifier": "tools/cfg_verify.py"
+      },
+      "cfg_result": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01025cc8",
+      "raw_backmap": "FUN_01025cc8@0x01025cc8",
+      "runtime_address": "0x010264c8",
+      "source_path": "recon/net/src/FUN_01025cc8.c",
+      "source_sha256": "b31afe8df2c2e1bdae53f80372766f2457ba2b850d818e7fb9d274b42dd54869",
+      "true_executable_extent": 36
+    },
+    {
+      "analysis_address": "0x01025cf0",
+      "catalog_size_injected_at_runtime": false,
+      "cfg_request": {
+        "core": "net",
+        "name": "controller_transition_pending_check",
+        "trials_random": 40,
+        "verifier": "tools/cfg_verify.py"
+      },
+      "cfg_result": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "controller_transition_pending_check",
+      "raw_backmap": "FUN_01025cf0@0x01025cf0",
+      "runtime_address": "0x010264f0",
+      "source_path": "recon/net/src/FUN_01025cf0.c",
+      "source_sha256": "b2b98f5249149fcd823795080a7dd0ebd212431ca960629e5fba914c71c6a3a9",
+      "true_executable_extent": 24
+    },
+    {
+      "analysis_address": "0x0102693a",
+      "catalog_size_injected_at_runtime": false,
+      "cfg_request": {
+        "core": "net",
+        "name": "FUN_0102693a",
+        "trials_random": 40,
+        "verifier": "tools/cfg_verify.py"
+      },
+      "cfg_result": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_0102693a",
+      "raw_backmap": "FUN_0102693a@0x0102693a",
+      "runtime_address": "0x0102713a",
+      "source_path": "recon/net/src/FUN_0102693a.c",
+      "source_sha256": "23df7c23ac9d6f8c1f020a98247494372a82d9318bc1d11791c53aece1cff49e",
+      "true_executable_extent": 148
+    },
+    {
+      "analysis_address": "0x01026a7e",
+      "catalog_size_injected_at_runtime": false,
+      "cfg_request": {
+        "core": "net",
+        "name": "FUN_01026a7e",
+        "trials_random": 40,
+        "verifier": "tools/cfg_verify.py"
+      },
+      "cfg_result": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01026a7e",
+      "raw_backmap": "FUN_01026a7e@0x01026a7e",
+      "runtime_address": "0x0102727e",
+      "source_path": "recon/net/src/FUN_01026a7e.c",
+      "source_sha256": "271a9a61ed1bdbbf8c1d5ac1d2d184e1598e231159abe7f026592e0026f5f2b7",
+      "true_executable_extent": 78
+    },
+    {
+      "analysis_address": "0x01026acc",
+      "catalog_size_injected_at_runtime": false,
+      "cfg_request": {
+        "core": "net",
+        "name": "FUN_01026acc",
+        "trials_random": 40,
+        "verifier": "tools/cfg_verify.py"
+      },
+      "cfg_result": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01026acc",
+      "raw_backmap": "FUN_01026acc@0x01026acc",
+      "runtime_address": "0x010272cc",
+      "source_path": "recon/net/src/FUN_01026acc.c",
+      "source_sha256": "ad9e6837b1992fe2484d2ae05cfed8e76433c1a29d86e28625f62f1906535e60",
+      "true_executable_extent": 140
+    },
+    {
+      "analysis_address": "0x010273c6",
+      "catalog_size_injected_at_runtime": false,
+      "cfg_request": {
+        "core": "net",
+        "name": "FUN_010273c6",
+        "trials_random": 40,
+        "verifier": "tools/cfg_verify.py"
+      },
+      "cfg_result": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_010273c6",
+      "raw_backmap": "FUN_010273c6@0x010273c6",
+      "runtime_address": "0x01027bc6",
+      "source_path": "recon/net/src/FUN_010273c6.c",
+      "source_sha256": "99207c1aa088ca03c0351f0a7f63a607221440c6ef629ac6fb47982be6af7510",
+      "true_executable_extent": 50
+    },
+    {
+      "analysis_address": "0x01028256",
+      "catalog_size_injected_at_runtime": false,
+      "cfg_request": {
+        "core": "net",
+        "name": "FUN_01028256",
+        "trials_random": 40,
+        "verifier": "tools/cfg_verify.py"
+      },
+      "cfg_result": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01028256",
+      "raw_backmap": "FUN_01028256@0x01028256",
+      "runtime_address": "0x01028a56",
+      "source_path": "recon/net/src/FUN_01028256.c",
+      "source_sha256": "ffd69c384db3229f883ed7329205388555db7b8287d3c32909eae4d69ed11526",
+      "true_executable_extent": 64
+    }
+  ],
+  "schema": "g1.net.private_recovery_receipt.v1",
+  "shard": "net-private-3",
+  "summary": {
+    "cfg_pass_count": 13,
+    "function_count": 13,
+    "total_true_executable_extent": 1000
+  }
+}
