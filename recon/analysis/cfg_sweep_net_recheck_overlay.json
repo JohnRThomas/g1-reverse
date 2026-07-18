@@ -1,0 +1,224 @@
+{
+ "baseline": {
+  "counts": {
+   "FAIL": 8,
+   "PASS": 1073,
+   "compile_error": 0,
+   "other": 8,
+   "source_changed": 0,
+   "timeout": 1
+  },
+  "inventory_count": 1090,
+  "path": "recon/analysis/cfg_sweep_authoritative_net.json",
+  "sha256": "fea47af658122b8fc4dd3364bbc6e94ec348611b1168ee175e6d84e727275db4",
+  "unresolved_count": 17
+ },
+ "core": "net",
+ "current_inventory_count": 1090,
+ "current_source_inventory_digest": "c9af933cf0686249bd28cffa3176b87d040a5368d9795a9b962a638747a0978a",
+ "current_source_tree_fully_covered": true,
+ "execution_head": "373b844b31dce52edb9c9bfffee8200822c75b0e",
+ "kind": "authoritative_cfg_sweep_recheck_overlay",
+ "overlay_counts": {
+  "FAIL": 0,
+  "PASS": 1090,
+  "compile_error": 0,
+  "other": 0,
+  "source_changed": 0,
+  "timeout": 0
+ },
+ "post_baseline_source_drift": [
+  "FUN_01009bc4",
+  "FUN_01009c68",
+  "FUN_010313ec",
+  "FUN_01033888",
+  "FUN_01033b18",
+  "FUN_0103499c"
+ ],
+ "raw_rechecks": {
+  "path": "recon/analysis/cfg_sweep_net_recheck_receipts.json",
+  "sha256": "3c0e8b0b8f330113e16785d2d010ad131207a260c4da5d45e7e2d978d86c8e3d"
+ },
+ "resolved_catalog_missed": [
+  {
+   "checked": 40,
+   "name": "FUN_0100ef08",
+   "receipt": "recon/ownership/net_private_shard8_recovery.json",
+   "receipt_sha256": "59bf3ba40e3e4e46f7f3e0720692ab3e460563e69fe24f82f1b69465387f0c3f",
+   "source_sha256": "8686430535efc4878ba4d863720714116bf8e53dba521d975faefca27e5f179c",
+   "status": "PASS"
+  },
+  {
+   "checked": 80,
+   "name": "FUN_01011664",
+   "receipt": "recon/ownership/net_private_7_recovery.json",
+   "receipt_sha256": "9083490d4e3ac0e9d22168f617a099416f2c7f6649814fc74b249ea7c1163aa7",
+   "source_sha256": "ac3ce6b8bb69d82d67430d8c3e124967df4b8e74dceab973aafa564024cc03c0",
+   "status": "PASS"
+  },
+  {
+   "checked": 121,
+   "name": "FUN_01014b18",
+   "receipt": "recon/ownership/net_private_shard1.json",
+   "receipt_sha256": "dbfa96f9626da5aa0a6eb6fa7aa3f020e146a5ce41ee580ece77e67f1b9146ef",
+   "source_sha256": "57610ac78b12df132c8ae2c14e6ee587d02b4c236d3287e9bd52e446191ecaf2",
+   "status": "PASS"
+  },
+  {
+   "checked": 80,
+   "name": "FUN_01018df8",
+   "receipt": "recon/ownership/net_private_7_recovery.json",
+   "receipt_sha256": "9083490d4e3ac0e9d22168f617a099416f2c7f6649814fc74b249ea7c1163aa7",
+   "source_sha256": "71ab98c5d7462370a2a071a11dd79adbf7f1141cbd67c9dedff26cc0a52daec3",
+   "status": "PASS"
+  },
+  {
+   "checked": 40,
+   "name": "FUN_0101d890",
+   "receipt": "recon/analysis/net_private3_recovery_receipt.json",
+   "receipt_sha256": "c5acba815ff724d755df729aff55dc3f3df652ed6e5e742f969a4e9fdcba073d",
+   "source_sha256": "0400ae6110793821b0cc235434886565511d017b1c75da9ff1e43f3712d85ad1",
+   "status": "PASS"
+  },
+  {
+   "checked": 44,
+   "name": "FUN_0102665c",
+   "receipt": "recon/ownership/net_private_shard8_recovery.json",
+   "receipt_sha256": "59bf3ba40e3e4e46f7f3e0720692ab3e460563e69fe24f82f1b69465387f0c3f",
+   "source_sha256": "e149c68bf805f62667dc9b8445108a2755b0da29f3204e51a7f883eab389d9eb",
+   "status": "PASS"
+  },
+  {
+   "checked": 40,
+   "name": "FUN_010292ec",
+   "receipt": "recon/ownership/net_private_shard8_recovery.json",
+   "receipt_sha256": "59bf3ba40e3e4e46f7f3e0720692ab3e460563e69fe24f82f1b69465387f0c3f",
+   "source_sha256": "d3dee6c076123b33316a5d50b8889b1c81eded6788fa651a6127e3112e5a1540",
+   "status": "PASS"
+  },
+  {
+   "checked": 40,
+   "name": "FUN_0102a1e0",
+   "receipt": "recon/ownership/net_private_shard8_recovery.json",
+   "receipt_sha256": "59bf3ba40e3e4e46f7f3e0720692ab3e460563e69fe24f82f1b69465387f0c3f",
+   "source_sha256": "6b621f59f5b147fcb0244c2f1b6706ba04ddcfd0329c44ff2b2006a35f2c9dc0",
+   "status": "PASS"
+  }
+ ],
+ "resolved_fail": [
+  {
+   "cases": 6,
+   "exit_code": 0,
+   "name": "FUN_01008d00",
+   "selectors": {},
+   "source_sha256": "570ed51e6a48ea1db5bbe988dde3d12c0799894fda61e29e37faafeeea7e9f02",
+   "status": "PASS",
+   "stdout": "FUN_01008d00 PASS cases=6 sel={}\nmismatches=None\ndetail=None\n"
+  },
+  {
+   "cases": 0,
+   "exit_code": 0,
+   "name": "FUN_01009bc4",
+   "selectors": {},
+   "source_sha256": "ac1e46df77b542bd94ca835264993969c9b5403b4efc282a8d437b0c2d4181bf",
+   "status": "PASS",
+   "stdout": "FUN_01009bc4 PASS cases=0 sel={}\nmismatches=None\ndetail=None\n"
+  },
+  {
+   "cases": 0,
+   "exit_code": 0,
+   "name": "FUN_01009c68",
+   "selectors": {},
+   "source_sha256": "db7a5a269574540131b9ac0c850f4251f99ca1c2a4894612323c7b0f52af7556",
+   "status": "PASS",
+   "stdout": "FUN_01009c68 PASS cases=0 sel={}\nmismatches=None\ndetail=None\n"
+  },
+  {
+   "cases": 18,
+   "exit_code": 0,
+   "name": "FUN_0101ab20",
+   "selectors": {
+    "1": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17
+    ]
+   },
+   "source_sha256": "b6e95fa4b284c754e3c0327490542a2522e2d15b11ca7055ff014e22bcbb282c",
+   "status": "PASS",
+   "stdout": "FUN_0101ab20 PASS cases=18 sel={1: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]}\nmismatches=None\ndetail=None\n"
+  },
+  {
+   "cases": 1,
+   "exit_code": 0,
+   "name": "FUN_010313ec",
+   "selectors": {},
+   "source_sha256": "604e7914b0d31c10cd0be2ad09f2673a5c3f955ee3526973635b02120142e947",
+   "status": "PASS",
+   "stdout": "FUN_010313ec PASS cases=1 sel={}\nmismatches=None\ndetail=None\n"
+  },
+  {
+   "cases": 0,
+   "exit_code": 0,
+   "name": "FUN_01033888",
+   "selectors": {},
+   "source_sha256": "b60bd5d9182914fb56b37f8302c24b669c52dd83ac213f88afbc598e3665b23e",
+   "status": "PASS",
+   "stdout": "FUN_01033888 PASS cases=0 sel={}\nmismatches=None\ndetail=None\n"
+  },
+  {
+   "cases": 0,
+   "exit_code": 0,
+   "name": "FUN_01033b18",
+   "selectors": {},
+   "source_sha256": "25a90642d480097ce0746918b8455cdfc0d2783d462c77a3b86f9e3bb963cd2a",
+   "status": "PASS",
+   "stdout": "FUN_01033b18 PASS cases=0 sel={}\nmismatches=None\ndetail=None\n"
+  },
+  {
+   "cases": 0,
+   "exit_code": 0,
+   "name": "FUN_0103499c",
+   "selectors": {},
+   "source_sha256": "63b09e427d47bab0a2062d172004eb74b5f2d68b955764a919dc68d57a86d2e0",
+   "status": "PASS",
+   "stdout": "FUN_0103499c PASS cases=0 sel={}\nmismatches=None\ndetail=None\n"
+  }
+ ],
+ "resolved_timeout": [
+  {
+   "cases": 0,
+   "exit_code": 0,
+   "name": "FUN_010089f8",
+   "selectors": {},
+   "source_sha256": "f2ab92f927685068bfead047c3e357467d1060bc9737712a48b03b75acf0a7d7",
+   "status": "PASS",
+   "stdout": "FUN_010089f8 PASS cases=0 sel={}\nmismatches=None\ndetail=None\n"
+  }
+ ],
+ "schema": 1,
+ "timeout_seconds": 300,
+ "tool_hashes": {
+  "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+  "tools/net_extract.py": "ec80c6ed622adce759db81b78a874dc70d9338215800e1d25c023ca08403a6d9",
+  "tools/net_recon_kit.py": "2ad1be0dfd9ffd53492fcfd8df8597e07942bb788c324457f2be169a4b7ec4ae",
+  "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+  "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+ },
+ "unresolved_count": 0
+}
