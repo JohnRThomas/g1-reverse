@@ -1449,6 +1449,22 @@
   }
  },
  "net": {
+  "0x0102d25c": {
+   "name": "arch_busy_wait",
+   "evidence": "Relocation-masked byte-exact configured Zephyr nRF53 soc.c owner. The literal 0x0103c8a0 is a runtime-space address mapping to analysis 0x0103c0a0, where the six-byte nrfx delay_machine_code executes SUBS/BHI/BX; it is not IPC string data. Raw identity remains FUN_0102d25c."
+  },
+  "0x0103b0e8": {
+   "name": "z_impl_k_busy_wait",
+   "evidence": "Relocation-masked byte-exact configured Zephyr busy_wait.c owner, with its only nonzero path tail-branching to arch_busy_wait at 0x0102d25c. CFG verification passes two directed cases. Raw identity remains FUN_0103b0e8."
+  },
+  "0x0102fa84": {
+   "name": "__chk_fail",
+   "evidence": "Relocation-masked byte-exact configured Zephyr Picolibc libc-hooks.c owner. Its runtime-space literal 0x0103dd15 maps to analysis 0x0103d515 ('* buffer overflow detected *'), followed by exact ARMv8-M ARCH_EXCEPT(K_ERR_STACK_CHK_FAIL): clear BASEPRI, r0=2, SVC 2. Raw identity remains FUN_0102fa84."
+  },
+  "0x0103b53a": {
+   "name": "__memcpy_chk",
+   "evidence": "Relocation-masked byte-exact CPUNET soft-float Picolibc libc_ssp_memcpy_chk.c.o owner. Its failure edge calls __chk_fail at 0x0102fa84 and its success edge tail-calls memcpy at 0x0103b614. CFG verification passes. Raw identity remains FUN_0103b53a."
+  },
   "0x01008810": {
    "name": "ocrypto_constant_time_equal",
    "evidence": "Byte-exact pinned nrfxlib Oberon 3.0.13 owner: liboberon_3.0.13.a(ocrypto_constant_time.s.obj) offset 0x00. The only firmware caller compares two 32-byte P-256 field encodings. Raw identity remains FUN_01008810."

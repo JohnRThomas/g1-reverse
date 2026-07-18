@@ -1,0 +1,246 @@
+{
+ "schema": 1,
+ "core": "net",
+ "component": "zephyr_picolibc_runtime_stock",
+ "status": "authorized_atomic",
+ "safe": true,
+ "supersedes": [
+  "recon/catalogs/net_fun_0102d25c_identity_audit.json",
+  "the blocked_c_unexpressible classification for FUN_0102fa84"
+ ],
+ "policy": {
+  "sdc_policy": "report_only_unchanged",
+  "analysis_base": "0x01008000",
+  "runtime_base": "0x01008800",
+  "runtime_minus_analysis": "0x800",
+  "no_blob_or_stub": true
+ },
+ "inputs": {
+  "image": "/Users/freedomcoder/Projects/G1disasm2/netcore_image.bin",
+  "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+  "configured_build": "/Users/freedomcoder/ncs251/netref_build",
+  "config": "/Users/freedomcoder/ncs251/netref_build/zephyr/.config",
+  "config_sha256": "d0daed19268cbfb87a7e457e158e813fd0f8b32c61b1f5a0d757b06d85f91c54",
+  "soc_object": "/Users/freedomcoder/ncs251/netref_build/zephyr/CMakeFiles/zephyr.dir/soc/arm/nordic_nrf/nrf53/soc.c.obj",
+  "soc_object_sha256": "604423ee5aa1ac56301950d56edfc3f2c92303a1b288de9104bce113b7f26c30",
+  "busy_wait_object": "/Users/freedomcoder/ncs251/netref_build/zephyr/kernel/CMakeFiles/kernel.dir/busy_wait.c.obj",
+  "busy_wait_object_sha256": "fb9ab34c4ee4fd70d817d32d12e820f5528908caac919117af52b08dcaf57953",
+  "picolibc_hooks_object": "/Users/freedomcoder/ncs251/netref_build/zephyr/lib/libc/picolibc/CMakeFiles/lib__libc__picolibc.dir/libc-hooks.c.obj",
+  "picolibc_hooks_object_sha256": "c2416e540d88a03516bf5b936d05b4abc7968c6f94491f43a741429055b584a6",
+  "picolibc_archive": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/picolibc/arm-zephyr-eabi/lib/thumb/v8-m.main/nofp/libc.a",
+  "picolibc_archive_sha256": "1aab30f2d746ad97b271efdfb98a8b62996b7ad82263897edede2b0504e2832e",
+  "picolibc_member": "libc_ssp_memcpy_chk.c.o",
+  "picolibc_member_sha256": "6b578b03a1fafec3038f1aa9383d174e2e9a42a21da6780db0e97de9402c596d"
+ },
+ "coordinate_proof": {
+  "arch_literal_address": "0x0102d26c",
+  "arch_literal_runtime_value": "0x0103c8a0",
+  "arch_literal_analysis_target": "0x0103c0a0",
+  "arch_delay_machine_code_hex": "0338fdd87047",
+  "arch_delay_semantics": "SUBS r0,#3; BHI self; BX lr",
+  "chk_literal_address": "0x0102fa98",
+  "chk_literal_runtime_value": "0x0103dd15",
+  "chk_literal_analysis_target": "0x0103d515",
+  "chk_literal_ascii": "* buffer overflow detected *\n",
+  "chk_svc_semantics": "BASEPRI=0; r0=K_ERR_STACK_CHK_FAIL(2); svc #2"
+ },
+ "call_graph_proof": {
+  "FUN_0103b0e8": "z_impl_k_busy_wait -> arch_busy_wait",
+  "FUN_0103b53a": "__memcpy_chk -> __chk_fail or memcpy",
+  "cfg_verify": {
+   "FUN_0103b0e8": "PASS cases=2",
+   "FUN_0103b53a": "PASS cases=0"
+  }
+ },
+ "atomic_group": [
+  "0x0102d25c",
+  "0x0103b0e8",
+  "0x0102fa84",
+  "0x0103b53a"
+ ],
+ "manifest_functions": [
+  {
+   "va": "0x0102d25c",
+   "raw_symbol": "FUN_0102d25c",
+   "upstream_symbol": "arch_busy_wait",
+   "upstream_unit": "zephyr/soc/arm/nordic_nrf/nrf53/soc.c",
+   "upstream_section": ".text.arch_busy_wait",
+   "firmware_size": 20,
+   "true_code_size": 16,
+   "literal_size": 4,
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "9f383bf0c2f88a9f283bab4914b4444d75400424670e771aa4b2fd4256a39436",
+   "relocation_masks": [
+    [
+     16,
+     20
+    ]
+   ],
+   "relocations": [
+    {
+     "offset": 16,
+     "type": 2,
+     "target": ".rodata.delay_machine_code.0"
+    }
+   ],
+   "firmware_branch_targets": [],
+   "source": "/Users/freedomcoder/ncs251/zephyr/soc/arm/nordic_nrf/nrf53/soc.c",
+   "source_sha256": "1554a18684a24bfaa61c14fff158fcb734f297a3b0e30ed54213d26636d21330",
+   "reconstruction_present": false,
+   "whole_atomic_group_selected": true,
+   "safe_to_adopt": true,
+   "exclude_reconstruction": true,
+   "raw_mapping_preserved": true
+  },
+  {
+   "va": "0x0103b0e8",
+   "raw_symbol": "FUN_0103b0e8",
+   "upstream_symbol": "z_impl_k_busy_wait",
+   "upstream_unit": "zephyr/kernel/busy_wait.c",
+   "upstream_section": ".text.z_impl_k_busy_wait",
+   "firmware_size": 8,
+   "true_code_size": 8,
+   "literal_size": 0,
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "f17ca8c983d05682e0ee23527cda3398a0fd5f0f2c4cf8f6c375dbd874e983e8",
+   "relocation_masks": [
+    [
+     2,
+     6
+    ]
+   ],
+   "relocations": [
+    {
+     "offset": 2,
+     "type": 30,
+     "target": "arch_busy_wait"
+    }
+   ],
+   "firmware_branch_targets": [
+    {
+     "instruction": "0x0103b0ea",
+     "mnemonic": "b.w",
+     "target": "0x0102d25c"
+    }
+   ],
+   "source": "/Users/freedomcoder/ncs251/zephyr/kernel/busy_wait.c",
+   "source_sha256": "3faee2199bab640f2e23fed6d941e958b8476ede603d787491ad8bb866965500",
+   "reconstruction_present": true,
+   "whole_atomic_group_selected": true,
+   "safe_to_adopt": true,
+   "exclude_reconstruction": true,
+   "raw_mapping_preserved": true,
+   "reconstruction_source": "recon/net/src/FUN_0103b0e8.c",
+   "reconstruction_source_sha256": "65141e55419df4717c9ab81119885a3f0e16d20bceab17500b6254c81c9f1d6f"
+  },
+  {
+   "va": "0x0102fa84",
+   "raw_symbol": "FUN_0102fa84",
+   "upstream_symbol": "__chk_fail",
+   "upstream_unit": "zephyr/lib/libc/picolibc/libc-hooks.c",
+   "upstream_section": ".text.__chk_fail",
+   "firmware_size": 24,
+   "true_code_size": 20,
+   "literal_size": 4,
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "5c495c282cf4bbc268403ee9e4a9602168a3f5d64aac1865dd71aa8dd952da78",
+   "relocation_masks": [
+    [
+     4,
+     8
+    ],
+    [
+     20,
+     24
+    ]
+   ],
+   "relocations": [
+    {
+     "offset": 4,
+     "type": 10,
+     "target": "printk"
+    },
+    {
+     "offset": 20,
+     "type": 2,
+     "target": ".rodata.__chk_fail.str1.1"
+    }
+   ],
+   "firmware_branch_targets": [
+    {
+     "instruction": "0x0102fa88",
+     "mnemonic": "bl",
+     "target": "0x01039722"
+    }
+   ],
+   "source": "/Users/freedomcoder/ncs251/zephyr/lib/libc/picolibc/libc-hooks.c",
+   "source_sha256": "238f2d340b7758e6c71da630bc1c5185a99c9b3f457c7242998287fb18fa128b",
+   "reconstruction_present": false,
+   "whole_atomic_group_selected": true,
+   "safe_to_adopt": true,
+   "exclude_reconstruction": true,
+   "raw_mapping_preserved": true
+  },
+  {
+   "va": "0x0103b53a",
+   "raw_symbol": "FUN_0103b53a",
+   "upstream_symbol": "__memcpy_chk",
+   "upstream_unit": "picolibc:libc_ssp_memcpy_chk.c.o",
+   "upstream_section": ".text.__memcpy_chk",
+   "firmware_size": 38,
+   "true_code_size": 38,
+   "literal_size": 0,
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "1553c58b692a1b0248598e818de30c62eb26bf7a2f187ca6c814c3295b3de9ff",
+   "relocation_masks": [
+    [
+     6,
+     10
+    ],
+    [
+     34,
+     38
+    ]
+   ],
+   "relocations": [
+    {
+     "offset": 6,
+     "type": 10,
+     "target": "__chk_fail"
+    },
+    {
+     "offset": 34,
+     "type": 30,
+     "target": "memcpy"
+    }
+   ],
+   "firmware_branch_targets": [
+    {
+     "instruction": "0x0103b540",
+     "mnemonic": "bl",
+     "target": "0x0102fa84"
+    },
+    {
+     "instruction": "0x0103b55c",
+     "mnemonic": "b.w",
+     "target": "0x0103b614"
+    }
+   ],
+   "source": "/Users/freedomcoder/ncs251/modules/lib/picolibc/newlib/libc/ssp/memcpy_chk.c",
+   "source_sha256": "06d421d649626522c475052c398980ebb8635d7e39992b5388be3db689bd3fee",
+   "reconstruction_present": true,
+   "whole_atomic_group_selected": true,
+   "safe_to_adopt": true,
+   "exclude_reconstruction": true,
+   "raw_mapping_preserved": true,
+   "reconstruction_source": "recon/net/src/FUN_0103b53a.c",
+   "reconstruction_source_sha256": "4615f274a0cd1821c35fe4c840b42b975f6590817bbc19a91b79d2fe8f75a044"
+  }
+ ],
+ "summary": {
+  "owners": 4,
+  "newly_identified_catalog_missing_entries": 2,
+  "recovered_sources_replaced": 2,
+  "unresolved_anomalies": 0
+ }
+}
