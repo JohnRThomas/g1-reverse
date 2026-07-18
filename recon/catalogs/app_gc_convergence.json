@@ -1,0 +1,102 @@
+{
+ "builds": {
+  "normal_gc": {
+   "elf_sha256": "8038eb833610618c844c7ef761a1b8ba9b7a53e4519e8e9b42db9fd787a03e82",
+   "path": "/private/tmp/g1-cohesive-app-gc"
+  },
+  "retain_all": {
+   "elf_sha256": "73f8a2c4a9e1e61ac47623774302439ee0abd9352762cb4c74a4ad1c4c74d5ab",
+   "path": "/private/tmp/g1-cohesive-app-final"
+  }
+ },
+ "comparison": {
+  "normal_gc_bin_bytes": 520040,
+  "normal_gc_text_delta_from_original_pre_init_span": -85032,
+  "original_pre_init_span_bytes": 505432,
+  "original_unsigned_payload_bytes": 977293,
+  "retain_all_bin_bytes": 866900,
+  "section_sizes": {
+   ".ARM.exidx": {
+    "delta": 0,
+    "normal_gc": 8,
+    "retain_all": 8
+   },
+   "bss": {
+    "delta": -2458,
+    "normal_gc": 14518,
+    "retain_all": 16976
+   },
+   "datas": {
+    "delta": -1048,
+    "normal_gc": 2534,
+    "retain_all": 3582
+   },
+   "device_area": {
+    "delta": 0,
+    "normal_gc": 624,
+    "retain_all": 624
+   },
+   "initlevel": {
+    "delta": 0,
+    "normal_gc": 384,
+    "retain_all": 384
+   },
+   "noinit": {
+    "delta": -3664,
+    "normal_gc": 56797,
+    "retain_all": 60461
+   },
+   "rodata": {
+    "delta": -66560,
+    "normal_gc": 93372,
+    "retain_all": 159932
+   },
+   "rom_start": {
+    "delta": 0,
+    "normal_gc": 340,
+    "retain_all": 340
+   },
+   "sw_isr_table": {
+    "delta": 0,
+    "normal_gc": 552,
+    "retain_all": 552
+   },
+   "text": {
+    "delta": -278948,
+    "normal_gc": 420400,
+    "retain_all": 699348
+   }
+  }
+ },
+ "core": "app",
+ "policy": "named evidence roots and byte-verified rodata KEEP; SDC report-only",
+ "roots": {
+  "all_present": true,
+  "complete": false,
+  "named": 16,
+  "unresolved_candidates": [
+   "0x0002692c",
+   "0x00027cfc",
+   "0x00032420"
+  ]
+ },
+ "schema": 1,
+ "status": "normal_gc_partial_roots",
+ "topology": {
+  "device_count": 26,
+  "init_counts": {
+   "APPLICATION": 2,
+   "POST_KERNEL": 28,
+   "PRE_KERNEL_1": 17,
+   "PRE_KERNEL_2": 1
+  }
+ },
+ "undefined_symbols": 0,
+ "verified_rodata": {
+  "all_in_rodata": true,
+  "all_present": true,
+  "emitted_symbol_bytes": 50598,
+  "symbols": 993,
+  "verified_payload_bytes": 50583
+ }
+}

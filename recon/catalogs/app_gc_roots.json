@@ -1,0 +1,191 @@
+{
+ "core": "app",
+ "inventory": "recon/catalogs/app_root_inventory.json",
+ "inventory_sha256": "6cded8e1488dd67c9bd77e8511fd6c468fceffc629e5fe1ac53290e268ba2adf",
+ "policy": "named roots only; numeric addresses forbidden; SDC report-only",
+ "roots": [
+  {
+   "address": "0x00016eb8",
+   "kind": "zephyr_application_main",
+   "resolved": true,
+   "source": "recon/symbolized/app/main.c",
+   "symbol": "main",
+   "thread": "main"
+  },
+  {
+   "address": "0x00019718",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": true,
+   "source": "recon/symbolized/app/FUN_00019718.c",
+   "symbol": "FUN_00019718",
+   "thread": "ancs"
+  },
+  {
+   "address": "0x00021da8",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": true,
+   "source": "recon/symbolized/app/FUN_00021da8.c",
+   "symbol": "ble_work_thread",
+   "thread": "ble_projector"
+  },
+  {
+   "address": "0x00023480",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": true,
+   "source": "recon/symbolized/app/flash_ops_thread.c",
+   "symbol": "flash_ops_thread",
+   "thread": "flash"
+  },
+  {
+   "address": "0x00023844",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": true,
+   "source": "recon/symbolized/app/FUN_00023844.c",
+   "symbol": "brightness_level",
+   "thread": "brightness"
+  },
+  {
+   "address": "0x0002a8d8",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": true,
+   "source": "recon/symbolized/app/FUN_0002a8d8.c",
+   "symbol": "low_speed_peripheral_dispatch_thread",
+   "thread": "run_main_a"
+  },
+  {
+   "address": "0x0002685c",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": true,
+   "source": "recon/symbolized/app/FUN_0002685c.c",
+   "symbol": "FUN_0002685c",
+   "thread": "run_main_a"
+  },
+  {
+   "address": "0x000286f8",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": true,
+   "source": "recon/symbolized/app/process_task_sync_event.c",
+   "symbol": "process_task_sync_event",
+   "thread": "run_main_b"
+  },
+  {
+   "address": "0x0002a4f4",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": true,
+   "source": "recon/symbolized/app/FUN_0002a4f4.c",
+   "symbol": "FUN_0002a4f4",
+   "thread": "run_main_c"
+  },
+  {
+   "address": "0x00028bec",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": true,
+   "source": "recon/symbolized/app/display_dispatch_thread.c",
+   "symbol": "display_dispatch_thread",
+   "thread": "run_main_d"
+  },
+  {
+   "address": "0x0002692c",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": false,
+   "source": null,
+   "symbol": null,
+   "thread": "run_main_e"
+  },
+  {
+   "address": "0x00027cfc",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application_conditional",
+   "resolved": false,
+   "source": null,
+   "symbol": null,
+   "thread": "run_main_f"
+  },
+  {
+   "address": "0x0002a0d8",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": true,
+   "source": "recon/symbolized/app/touch_key_thread.c",
+   "symbol": "touch_key_thread",
+   "thread": "run_main_g"
+  },
+  {
+   "address": "0x00028a1c",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": true,
+   "source": "recon/symbolized/app/click_event_dispatch_loop.c",
+   "symbol": "click_event_dispatch_loop",
+   "thread": "run_main_g"
+  },
+  {
+   "address": "0x0002955c",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": true,
+   "source": "recon/symbolized/app/key_event_thread.c",
+   "symbol": "key_event_thread",
+   "thread": "run_main_h"
+  },
+  {
+   "address": "0x00032420",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": false,
+   "source": null,
+   "symbol": null,
+   "thread": "aging_a"
+  },
+  {
+   "address": "0x000324bc",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": true,
+   "source": "recon/symbolized/app/FUN_000324bc.c",
+   "symbol": "FUN_000324bc",
+   "thread": "aging_b"
+  },
+  {
+   "address": "0x00047c48",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": true,
+   "source": "recon/symbolized/app/proxy_thread_handler.c",
+   "symbol": "proxy_thread_handler",
+   "thread": "proxy"
+  },
+  {
+   "address": "0x00049090",
+   "kind": "dynamic_thread_entry_candidate",
+   "ownership": "application",
+   "resolved": true,
+   "source": "recon/symbolized/app/display_thread_handler.c",
+   "symbol": "display_thread_handler",
+   "thread": "display"
+  }
+ ],
+ "schema": 1,
+ "status": "partial_fail_closed",
+ "summary": {
+  "complete_root_graph": false,
+  "named_roots": 16,
+  "resolved_dynamic_candidates": 15,
+  "unresolved_dynamic_candidates": 3
+ },
+ "unresolved_addresses": [
+  "0x0002692c",
+  "0x00027cfc",
+  "0x00032420"
+ ]
+}

@@ -42,15 +42,21 @@ so CMake enables GNU C99 for that file only.  The canonical proven source is not
 rewritten and every other recovered source remains under Zephyr's default
 dialect and flags.
 
-This shell defaults `G1_INTEGRATION_PROBE_RETAIN_ALL=ON`.  Its temporary entry
-point does not yet reach every reconstructed function, so the mode adds the
-linker's `--no-gc-sections` option and keeps every recovered section visible to
-undefined-symbol and duplicate-definition checks.  It does not allow multiple
-definitions, weaken symbols, or hide unresolved references.  Disable it only
-after the cohesive application has real initialization roots:
+This shell defaults to normal Zephyr section garbage collection.  The generated
+`app_gc_roots.cmake` adds only the named application/thread candidates proven by
+`app_root_inventory.json`; candidates without a named definition remain visible
+in the receipt and are not converted to numeric linker roots.  The 993
+byte-verified standalone tables are retained by an object-and-section-limited
+RODATA `KEEP`, because absolute-address back-maps do not create ELF relocations
+that the garbage collector can follow.
+
+Retain-all remains available as an ownership diagnostic.  It adds
+`--no-gc-sections` and keeps every recovered section visible to undefined-symbol
+and duplicate-definition checks; it does not allow multiple definitions,
+weaken symbols, or hide unresolved references:
 
 ```sh
-west build -- -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF
+west build -- -DG1_INTEGRATION_PROBE_RETAIN_ALL=ON
 ```
 
 Configure a clean build with the pinned NCS v2.5.1 environment through the
@@ -60,7 +66,8 @@ repository wrapper (which also supplies Partition Manager's Python imports):
 recon/application/build_cohesive.sh app /private/tmp/g1-cohesive-app
 ```
 
-The first milestone is configuration and source-ownership validation.  A
-successful final link still requires the recovered objects, linker pins, data
-inputs, and board overlay to be reconciled; do not work around unresolved or
-duplicate symbols with weak definitions or `--allow-multiple-definition`.
+The normal-GC shell now compiles, links, and packages without undefined or
+duplicate symbols.  It is still a convergence build, not a byte-identical final
+image: three runtime thread-entry candidates lack named definitions, and final
+whole-image ordering/placement remains outstanding.  Do not hide those gaps
+with weak definitions, numeric roots, or `--allow-multiple-definition`.

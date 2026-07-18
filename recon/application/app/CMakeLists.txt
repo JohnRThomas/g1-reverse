@@ -59,12 +59,27 @@ set_source_files_properties(
 # fully enabled.  A later cohesive application can turn this off once its real
 # roots and initialization graph are wired.
 option(G1_INTEGRATION_PROBE_RETAIN_ALL
-  "Retain all recovered sections while validating ownership and linkage" ON)
+  "Retain all recovered sections while validating ownership and linkage" OFF)
 if(G1_INTEGRATION_PROBE_RETAIN_ALL)
   # Zephyr 3.4.99 places its default --gc-sections in the link-library list,
   # after normal target_link_options.  Append the inverse through the same
   # interface so GNU ld sees --no-gc-sections last.
   zephyr_link_libraries(-Wl,--no-gc-sections)
+else()
+  # Binary-derived runtime thread candidates are not all visible through the
+  # reconstructed C call graph (several are passed through recovered tables).
+  # Admit only candidates that resolve to named, retained definitions.  The
+  # generated receipt keeps unmapped addresses visible but never turns them
+  # into numeric linker roots.
+  include(${CMAKE_CURRENT_LIST_DIR}/../../generated/app_gc_roots.cmake)
+  foreach(_g1_root IN LISTS G1_RECOVERED_GC_ROOTS)
+    zephyr_ld_options("-Wl,--undefined=${_g1_root}")
+  endforeach()
+  if(G1_UNRESOLVED_GC_ROOT_ADDRESSES)
+    message(STATUS
+      "CPUAPP root graph remains partial; unresolved firmware candidates: "
+      "${G1_UNRESOLVED_GC_ROOT_ADDRESSES}")
+  endif()
 endif()
 
 # Zephyr 3.4.99's liblc3 module exports both its public include directory and
@@ -154,4 +169,13 @@ zephyr_linker_sources(SECTIONS
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_veneer_aliases.ld"
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_public_sdk_aliases.ld"
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_readable_aliases.ld"
+)
+
+# Every source selected by app_verified_data_sources.cmake has been compiled
+# independently and byte-compared with app_update.bin.  Their standalone
+# tables are firmware-owned roots even when a reconstructed reader still uses
+# an absolute back-map alias, so retain only those object/section patterns in
+# the normal rodata output section.
+zephyr_linker_sources(RODATA
+  "${CMAKE_CURRENT_LIST_DIR}/g1_verified_rodata_keep.ld"
 )
