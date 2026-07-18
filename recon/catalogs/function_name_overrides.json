@@ -21,6 +21,14 @@
    "name": "close",
    "evidence": "Relocation-normalized byte-exact pinned Zephyr 3.4.99 fdtable.c POSIX close owner. This function had no standalone recovered C file; the selected stock source supplies the missing owner. Raw identity remains FUN_0004b130."
   },
+  "0x0004ea28": {
+   "name": "uuid_store",
+   "evidence": "Control flow, UUID-size dispatch, user-data allocation, and the size-bounded memcpy exactly identify the static uuid_store owner in pinned NCS 2.5.1 nrf/subsys/bluetooth/gatt_dm.c. Raw identity remains FUN_0004ea28."
+  },
+  "0x0004ea78": {
+   "name": "discovery_callback",
+   "evidence": "The bt_gatt_discover_params.type dispatch, singleton bt_gatt_dm instance, and PRIMARY/SECONDARY/ATTRIBUTE/CHARACTERISTIC handlers exactly identify the static discovery_callback owner in pinned NCS 2.5.1 nrf/subsys/bluetooth/gatt_dm.c. Raw identity remains FUN_0004ea78."
+  },
   "0x00012c80": {
    "name": "exp",
    "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-w_exp.o(.text.exp) match. Raw identity remains FUN_00012c80."
@@ -2132,6 +2140,10 @@
   "0x01026c94": {
    "name": "controller_packet_payload_extract",
    "evidence": "Recovered helper decodes the packet header, resolves its payload offset, copies the payload into the destination, and returns the narrow payload length. Raw identity remains FUN_01026c94 at 0x01026c94."
+  },
+  "0x010269ce": {
+   "name": "controller_packet_payload_claim_begin",
+   "evidence": "This private helper begins a packet payload claim: it validates the requested narrow length, rejects occupied/insufficient cursor space, writes the payload length at the current cursor, sets the active-claim byte, and returns the claim header. The distinct FUN_01026e48 owner computes and reserves append capacity in packet[8]. Raw identity remains FUN_010269ce at 0x010269ce."
   },
   "0x01026856": {
    "name": "controller_packet_overhead_span_get",

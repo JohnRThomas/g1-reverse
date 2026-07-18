@@ -8013,22 +8013,25 @@
   "0x0004ea28": {
    "address": "0x0004ea28",
    "raw_name": "FUN_0004ea28",
-   "name": "gatt_dm_data_add_uuid",
-   "display_name": "gatt_dm_data_add_uuid",
+   "name": "uuid_store",
+   "display_name": "uuid_store",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Control flow, UUID-size dispatch, user-data allocation, and the size-bounded memcpy exactly identify the static uuid_store owner in pinned NCS 2.5.1 nrf/subsys/bluetooth/gatt_dm.c. Raw identity remains FUN_0004ea28.",
    "aliases": [
-    "FUN_0004ea28"
+    "FUN_0004ea28",
+    "gatt_dm_data_add_uuid"
    ]
   },
   "0x0004ea78": {
    "address": "0x0004ea78",
    "raw_name": "FUN_0004ea78",
-   "name": "FUN_0004ea78",
-   "display_name": "FUN_0004ea78",
-   "human": false,
-   "source": "recon/app/src/FUN_0004ea78.c",
-   "aliases": []
+   "name": "discovery_callback",
+   "display_name": "discovery_callback",
+   "human": true,
+   "source": "function_name_overrides.json: The bt_gatt_discover_params.type dispatch, singleton bt_gatt_dm instance, and PRIMARY/SECONDARY/ATTRIBUTE/CHARACTERISTIC handlers exactly identify the static discovery_callback owner in pinned NCS 2.5.1 nrf/subsys/bluetooth/gatt_dm.c. Raw identity remains FUN_0004ea78.",
+   "aliases": [
+    "FUN_0004ea78"
+   ]
   },
   "0x0004ed3c": {
    "address": "0x0004ed3c",
@@ -9181,7 +9184,7 @@
    "name": "bt_hci_core_recv_event",
    "display_name": "bt_hci_core_recv_event",
    "human": true,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_000536b8.c",
    "aliases": [
     "FUN_000536b8"
    ]
@@ -26422,7 +26425,6 @@
   "FUN_0004e124": "0x0004e124",
   "FUN_0004e964": "0x0004e964",
   "FUN_0004e98c": "0x0004e98c",
-  "FUN_0004ea78": "0x0004ea78",
   "FUN_0004ed3c": "0x0004ed3c",
   "FUN_0004ee68": "0x0004ee68",
   "FUN_0004f040": "0x0004f040",
@@ -27500,6 +27502,7 @@
   "device_info_text_height_get_clamped": "0x0007d446",
   "device_info_text_width_get": "0x0007d3ee",
   "disable_watchdog": "0x0002aeb4",
+  "discovery_callback": "0x0004ea78",
   "discovery_complete_error": "0x0007f40c",
   "discovery_complete_not_found": "0x0007f438",
   "discovery_completed_cb_ancs": "0x000188d8",
@@ -27680,7 +27683,6 @@
   "gatt_discover_next": "0x00082d2e",
   "gatt_dm_attr_alloc": "0x0004e8e8",
   "gatt_dm_data_add_attribute": "0x0004e9a0",
-  "gatt_dm_data_add_uuid": "0x0004ea28",
   "gatt_dm_start": "0x0004ed8c",
   "gatt_exec_encode": "0x0008279c",
   "gatt_find_info_encode": "0x00082772",
@@ -28695,6 +28697,7 @@
   "utf8_decode_to_utf16_buffer": "0x00047844",
   "utf8_string_to_utf16": "0x000478d8",
   "utf8_to_unicode": "0x000477a0",
+  "uuid_store": "0x0004ea28",
   "validate_args": "0x0007e1c6",
   "value_encode_len": "0x000715b8",
   "vdprintf_to_fd": "0x00086f00",
