@@ -27453,7 +27453,7 @@
   },
   "0x20002548": {
    "address": "0x20002548",
-   "name": "g_posix_fd_table",
+   "name": "g_fdtable_entries",
    "base_address": "0x20002548",
    "offset": 0,
    "evidence": [
@@ -27463,7 +27463,7 @@
   },
   "0x20002550": {
    "address": "0x20002550",
-   "name": "g_fd_table",
+   "name": "g_fdtable_refcount_field",
    "base_address": "0x20002550",
    "offset": 0,
    "evidence": [
@@ -29123,7 +29123,7 @@
   },
   "0x20006418": {
    "address": "0x20006418",
-   "name": "g_20006418",
+   "name": "g_bt_gatt_sc_work",
    "base_address": "0x20006418",
    "offset": 0,
    "evidence": [
@@ -34680,7 +34680,6 @@
   "g_20004be5": "0x20004be5",
   "g_20004be8": "0x20004be8",
   "g_20006390": "0x20006390",
-  "g_20006418": "0x20006418",
   "g_20006690": "0x20006690",
   "g_200069ec": "0x200069ec",
   "g_200069f0": "0x200069f0",
@@ -34941,6 +34940,7 @@
   "g_bt_gatt_sc_cfg2_flags": "0x20006348",
   "g_bt_gatt_sc_cfg_addr": "0x20006329",
   "g_bt_gatt_sc_cfg_addr_ff19": "0x2000ff19",
+  "g_bt_gatt_sc_work": "0x20006418",
   "g_bt_hci_acl_frag_conn_handle": "0x2000ff08",
   "g_bt_hci_pending_opcode": "0x2000ff06",
   "g_bt_hci_recv_fifo": "0x20002144",
@@ -35046,7 +35046,8 @@
   "g_even_ai_saved_page_index": "0x200024ec",
   "g_ext_flash_dev": "0x20007b68",
   "g_ext_flash_mutex": "0x20007b54",
-  "g_fd_table": "0x20002550",
+  "g_fdtable_entries": "0x20002548",
+  "g_fdtable_refcount_field": "0x20002550",
   "g_file_msg_pipe": "0x200079a0",
   "g_flag32_channel_alloc_mask": "0x20002bbc",
   "g_flash_crc_active_flag": "0x2000302c",
@@ -35213,7 +35214,6 @@
   "g_pkcs7_rx_cmd_id": "0x2001031f",
   "g_pkcs7_rx_msg_id": "0x2000d6f0",
   "g_pkcs7_rx_offset": "0x2000d6f2",
-  "g_posix_fd_table": "0x20002548",
   "g_product_code_buf": "0x20002fe3",
   "g_progress_tick_ms": "0x2000a0a0",
   "g_projector_bus_lock": "0x2000a060",

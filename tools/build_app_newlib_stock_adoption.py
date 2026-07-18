@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Authorize the exact Newlib-nano stdio, allocator, and strtoul closures."""
+"""Authorize exact Newlib-nano stdio, allocator, strtoul, and string closures."""
 
 import argparse
 import hashlib
@@ -41,6 +41,8 @@ MEMBERS = [
     (0x87996, "_malloc_usable_size_r", "lib_a-nano-msizer.o", ".text._malloc_usable_size_r", "allocator"),
     (0x77b38, "_strtoul_r", "lib_a-strtoul.o", ".text._strtoul_l.constprop.0", "strtoul"),
     (0x77c1c, "strtoul", "lib_a-strtoul.o", ".text.strtoul", "strtoul"),
+    (0x0eefe, "strcmp", "lib_a-strcmp.o", ".text", "strings"),
+    (0x0ef12, "strlen", "lib_a-strlen.o", ".text", "strings"),
 ]
 COLLISIONS = {"__sinit", "__sinit_lock_release", "_malloc_r", "_strtoul_r", "malloc"}
 
@@ -108,7 +110,13 @@ def rows():
             "configuration_variant_exact": True, "cfg_verify_cases": 1,
             "archive_member_exact": True,
             "atomic_group": group, "hidden_owner_closure": hidden,
-            "upstream_source": "newlib/%s" % ({"findfp": "libc/stdio/findfp.c", "allocator": "libc/stdlib/nano allocator", "strtoul": "libc/stdlib/strtoul.c"}[closure]),
+            "upstream_source": "newlib/%s" % ({
+                "findfp": "libc/stdio/findfp.c",
+                "allocator": "libc/stdlib/nano allocator",
+                "strtoul": "libc/stdlib/strtoul.c",
+                "strings": ("libc/string/strcmp.c" if symbol == "strcmp" else
+                            "libc/string/strlen.c"),
+            }[closure]),
             "upstream_object": str(ARCHIVE), "archive_member": member,
             "upstream_object_sha256": ARCHIVE_SHA256,
             "upstream_archive_sha256": ARCHIVE_SHA256,
@@ -121,6 +129,14 @@ def rows():
             "reconstruction_source": str(canonical(va)),
             "reconstruction_source_sha256": sha(canonical(va)),
             "newlib_release": "3.3.0", "newlib_commit": NEWLIB_COMMIT,
+            "version_identity": {
+                "manifest_provenance": "Zephyr SDK 0.16.5-1",
+                "archive_release": "newlib 3.3.0",
+                "archive_commit": NEWLIB_COMMIT,
+                "body_discrimination": (
+                    "exact for the pinned archive member; the short generic "
+                    "string body alone is not a unique patch-level fingerprint"),
+            },
             "whole_unit_closure": {
                 "safe": True, "archive_member_already_selected": True,
                 "same_source_unit_collision_symbols": sorted(COLLISIONS),
@@ -171,7 +187,7 @@ def main():
                    "fdlibm_prebuilt_archive_adoption": False,
                    "sdc_remains_report_only": True},
         "closures": {name: ["0x%08x" % va for va, _, _, _, group in MEMBERS if group == name]
-                     for name in ("findfp", "allocator", "strtoul")},
+                     for name in ("findfp", "allocator", "strtoul", "strings")},
         "authorizations": selected,
         "expected_link_delta": {"before": 66, "after": 61,
                                 "removed": sorted(COLLISIONS), "added": [],

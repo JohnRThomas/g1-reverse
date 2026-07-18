@@ -39,7 +39,7 @@ class AppNewlibStockAtomicAdoptionTest(unittest.TestCase):
             self.receipt["policy"]["retain_recovered_c_as_evidence"])
 
     def test_every_archive_member_is_normalized_instruction_exact(self):
-        self.assertEqual(17, len(self.rows))
+        self.assertEqual(19, len(self.rows))
         for va, symbol, member, section, _ in builder.MEMBERS:
             row = self.rows["0x%08x" % va]
             self.assertEqual(symbol, row["symbol"])
@@ -53,6 +53,19 @@ class AppNewlibStockAtomicAdoptionTest(unittest.TestCase):
                              actual["normalized_code_sha256"])
             self.assertEqual(row["archive_member_sha256"],
                              actual["archive_member_sha256"])
+
+    def test_string_members_are_exact_but_not_overclaimed_as_version_fingerprints(self):
+        self.assertEqual(["0x0000eefe", "0x0000ef12"],
+                         self.receipt["closures"]["strings"])
+        for va, member in (("0x0000eefe", "lib_a-strcmp.o"),
+                           ("0x0000ef12", "lib_a-strlen.o")):
+            row = self.rows[va]
+            self.assertEqual(member, row["archive_member"])
+            identity = row["version_identity"]
+            self.assertEqual("Zephyr SDK 0.16.5-1",
+                             identity["manifest_provenance"])
+            self.assertIn("not a unique patch-level fingerprint",
+                          identity["body_discrimination"])
 
     def test_atomic_closure_excludes_generated_build_inputs_not_evidence(self):
         group = sorted(self.rows)
