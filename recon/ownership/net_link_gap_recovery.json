@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "core": "cpunet",
+  "scope": "retained private controller link gaps",
+  "policy": {
+    "canonical_readable_c_only": true,
+    "archive_or_blob_substitution_forbidden": true,
+    "private_sdc_mpsl": "report_only_unchanged",
+    "shared_cfg_and_generated_trees_untouched": true
+  },
+  "summary": {
+    "function_count": 4,
+    "total_true_executable_extent": 386,
+    "ordinary_cfg_pass_count": 4,
+    "directed_case_count": 26,
+    "directed_cfg_pass_count": 4
+  },
+  "functions": [
+    {
+      "raw_symbol": "FUN_01009224",
+      "analysis_address": "0x01009224",
+      "source": "recon/net/src/FUN_01009224.c",
+      "source_sha256": "ef7699c393d693a728e7637bfe3d5626fae634c97bd8d10e4b645a3c25765880",
+      "true_executable_extent": 188,
+      "extent_basis": "terminal branch ends at 0x010092e0; the global-address literal begins there",
+      "readable_role": "iterate and validate a packed controller packet",
+      "ordinary_cfg_checked": 40,
+      "directed_cases": 6
+    },
+    {
+      "raw_symbol": "FUN_0100f110",
+      "analysis_address": "0x0100f110",
+      "source": "recon/net/src/FUN_0100f110.c",
+      "source_sha256": "116944ac4505149110d128074ec824c0c94a3ad375d609519e13ea59447d90f2",
+      "true_executable_extent": 136,
+      "extent_basis": "final branch ends at 0x0100f198, the next independent entry",
+      "readable_role": "copy a connection timing snapshot with PHY timing floors",
+      "ordinary_cfg_checked": 42,
+      "directed_cases": 4
+    },
+    {
+      "raw_symbol": "FUN_0100f7e0",
+      "analysis_address": "0x0100f7e0",
+      "source": "recon/net/src/FUN_0100f7e0.c",
+      "source_sha256": "ea2334eeb6e33535e63219f5b245c177d44a0d8154927dc95c479cea7fdfdd69",
+      "true_executable_extent": 30,
+      "extent_basis": "both return arms end at 0x0100f7fe",
+      "readable_role": "classify LL-control opcodes used by connection-event timing",
+      "ordinary_cfg_checked": 43,
+      "directed_cases": 13
+    },
+    {
+      "raw_symbol": "FUN_0100fae4",
+      "analysis_address": "0x0100fae4",
+      "source": "recon/net/src/FUN_0100fae4.c",
+      "source_sha256": "d6b61ec5ef90df76f13346926d3070280ae94ff17e7516f06f1b43fe5ec64e05",
+      "true_executable_extent": 32,
+      "extent_basis": "terminal tail branch ends at 0x0100fb04",
+      "readable_role": "finish or enqueue a controller timing state",
+      "ordinary_cfg_checked": 40,
+      "directed_cases": 3
+    }
+  ]
+}
