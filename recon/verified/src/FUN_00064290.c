@@ -1,6 +1,5 @@
 /* Reconstructed FUN_00064290 @ 0x64290  (parity: 300/300 trials, PROVEN) */
 extern unsigned int FUN_00084e9a(void *a0);
-extern int FUN_0006446c(void);
 
 int FUN_00064290(int param_1, int *param_2)
 {
@@ -120,6 +119,7 @@ store_common:
         }
     }
 LAB_end:
-    return FUN_0006446c();
+    /* Raw 0x0006446c is this function's internal failure/cleanup island,
+     * not a separately callable owner. All paths reaching LAB_end fail. */
+    return 0;
 }
-
