@@ -1,0 +1,216 @@
+{
+ "baseline": {
+  "bin_bytes": 622256,
+  "build": "/private/tmp/g1-cohesive-app-address-baseline",
+  "config": {
+   "address_taken_roots": false,
+   "fixed_verified_rodata": false,
+   "normal_gc": true
+  },
+  "elf_sha256": "2f17ecbae171bc5b4a833408aa1a08f4aa590a20e96c5750648aa2194211ac9b",
+  "function_symbol_bytes": 477234,
+  "function_symbol_entries": 2949,
+  "section_addresses": {
+   "datas": "0x20002000",
+   "rodata": "0x0007f9d0",
+   "text": "0x0000c358"
+  },
+  "sections": {
+   "bss": 14518,
+   "datas": 2682,
+   "noinit": 56797,
+   "rodata": 145392,
+   "text": 470436
+  },
+  "undefined_symbols": []
+ },
+ "comparator": {
+  "baseline": {
+   "path": "/private/tmp/app-address-baseline-comparison.json",
+   "sha256": "d339c84a9c0db47bb1a142c9d3067d7e644cdfb395e0077d76e183251df0994d",
+   "summary": {
+    "compared_bytes": 622238,
+    "elf_load_base": "0x0000c200",
+    "equal_bytes": 16271,
+    "exact_non_executable_sections": 0,
+    "exact_sections": 0,
+    "executable_sections": 1,
+    "loadable_file_backed_sections": 26,
+    "non_executable_sections": 25,
+    "out_of_range_sections": [],
+    "overlaps": [],
+    "payload_runtime_end": "0x000faa3d",
+    "payload_size": 976957
+   }
+  },
+  "equal_bytes_delta": 2019,
+  "rooted": {
+   "path": "/private/tmp/app-address-roots-comparison.json",
+   "sha256": "351e70cec799852135ab564f95b6d2c160d5014e9a1f19b4c32f6e236e91f110",
+   "summary": {
+    "compared_bytes": 657774,
+    "elf_load_base": "0x0000c200",
+    "equal_bytes": 18290,
+    "exact_non_executable_sections": 0,
+    "exact_sections": 0,
+    "executable_sections": 1,
+    "loadable_file_backed_sections": 26,
+    "non_executable_sections": 25,
+    "out_of_range_sections": [],
+    "overlaps": [],
+    "payload_runtime_end": "0x000faa3d",
+    "payload_size": 976957
+   }
+  }
+ },
+ "core": "app",
+ "delta": {
+  "bin_bytes": 35536,
+  "function_symbol_bytes": 35424,
+  "function_symbol_entries": 276,
+  "new_unique_function_bytes": 32558,
+  "new_unique_function_names": 244,
+  "sections": {
+   "bss": 0,
+   "datas": 0,
+   "noinit": 0,
+   "rodata": 112,
+   "text": 35424
+  }
+ },
+ "fixed_placement_gate": {
+  "action": "keep roots opt-in; final section layout must move ordinary rodata without overlap",
+  "baseline_already_overlaps_after_dmic_lc3_edge": true,
+  "baseline_ordinary_rodata_lma": [
+   "0x0007f9d0",
+   "0x000a31c0"
+  ],
+  "first_fixed_table_lma": [
+   "0x0008b264",
+   "0x0008b2c0"
+  ],
+  "rooted_ordinary_rodata_lma": [
+   "0x00088430",
+   "0x000abc90"
+  ],
+  "rooted_overlaps": true,
+  "status": "blocked_overlap"
+ },
+ "policy": "isolated named-root closure; fixed verified placement disabled only for layout audit",
+ "rooted": {
+  "bin_bytes": 657792,
+  "build": "/private/tmp/g1-cohesive-app-address-roots",
+  "config": {
+   "address_taken_roots": true,
+   "fixed_verified_rodata": false,
+   "normal_gc": true
+  },
+  "elf_sha256": "7d5260f2a66c74ebc63fa3f82e2cfdf51a163f83c880f52b9e3a87956faa7ae9",
+  "function_symbol_bytes": 512658,
+  "function_symbol_entries": 3225,
+  "section_addresses": {
+   "datas": "0x20002000",
+   "rodata": "0x00088430",
+   "text": "0x0000c358"
+  },
+  "sections": {
+   "bss": 14518,
+   "datas": 2682,
+   "noinit": 56797,
+   "rodata": 145504,
+   "text": 505860
+  },
+  "undefined_symbols": []
+ },
+ "roots": {
+  "all_present": true,
+  "requested": 83,
+  "symbols": [
+   "ancs_connected",
+   "ancs_disconnected",
+   "ancs_security_changed",
+   "att_send_with_retry",
+   "auth_cancel",
+   "ble_conn_process_complete_or_disconnect",
+   "ble_whitelist_app",
+   "bond_deleted_cb",
+   "bt_ancs_data_source_handler",
+   "bt_conn_encrypt_change_handle_generic",
+   "bt_conn_encrypt_change_handle_le",
+   "bt_hci_core_recv_event",
+   "bt_le_adv_clear_pending_flag",
+   "bt_send_enabled",
+   "bt_smp_distribute_keys",
+   "cbor_decode_bool",
+   "cbor_decode_tstr",
+   "check_bonded_addr",
+   "dev_read_bits5",
+   "dev_update_bits5",
+   "dev_write_bits5_diff",
+   "dev_write_config_word",
+   "discovery_callback",
+   "discovery_completed_cb_ancs",
+   "discovery_completed_cb_gatt",
+   "discovery_error_found_cb_ancs",
+   "discovery_error_found_cb_gatt",
+   "discovery_service_not_found_cb_ancs",
+   "discovery_service_not_found_cb_gatt",
+   "draw_template_translate_screen",
+   "driver_register_callback_locked",
+   "driver_stop_active_timer",
+   "dump_template_gyro_info",
+   "ext_flash_read",
+   "ext_flash_write",
+   "flowctl_schedule_next_send",
+   "gatt_ccc_settings_set",
+   "gatt_ccc_write",
+   "gatt_cf_settings_set",
+   "gatt_cf_write",
+   "gatt_db_hash_process",
+   "gatt_disconnected",
+   "gatt_hash_settings_set",
+   "gatt_parse_find_by_type_rsp",
+   "gatt_parse_find_info_rsp",
+   "gatt_parse_read_by_type_rsp",
+   "gatt_parse_read_by_type_rsp_128",
+   "gatt_remove_peer_from_attr",
+   "gatt_send_ccc_update",
+   "get_assign_channel_info",
+   "get_flash_info",
+   "get_lux_info",
+   "gpio_manage_callback",
+   "imu_fusion_thread",
+   "indicate_sc_cb",
+   "init_ble_work_thread",
+   "ipc0_ept_recv",
+   "jdb_panel_init",
+   "l2cap_reassemble_frag",
+   "libc_stream_write_syscall",
+   "local_store_write",
+   "notify_config_change_if_connected",
+   "nvs_timer_arm_and_mark_dirty",
+   "opt3007_chip_init",
+   "out",
+   "pairing_complete",
+   "pairing_failed",
+   "panel_off",
+   "panel_on",
+   "random",
+   "regulator_set_voltage_dispatch",
+   "reset_state_and_stop_timer",
+   "sc_restore",
+   "set_brightness_lum_base",
+   "set_device_sn_info",
+   "set_display_brightness",
+   "set_glasses_sn_info",
+   "spi_master_init",
+   "spi_master_trans_data_tx_rx",
+   "stdio_reset_ungetc_buffer",
+   "storage_read_with_word_cache",
+   "uart_callback",
+   "z_impl_net_if_ipv6_addr_rm_by_index"
+  ]
+ },
+ "schema": 1,
+ "status": "linked_normal_gc_audit"
+}

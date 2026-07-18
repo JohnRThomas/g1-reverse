@@ -1,0 +1,6853 @@
+{
+ "core": "app",
+ "entries": [
+  {
+   "blockers": [],
+   "capped_size": 2268,
+   "catalog_size": 2268,
+   "current_symbol": "imu_fusion_thread",
+   "discovery_candidates": [
+    "FUN_0000fe88",
+    "handle_attitude_trigger",
+    "imu_fusion_thread"
+   ],
+   "emitted_root": true,
+   "link_symbol": "imu_fusion_thread",
+   "live_candidate_owners": {},
+   "original_name": "handle_attitude_trigger",
+   "original_va": "0x0000fe88",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_00025ecc",
+     "pointer_va": "0x000260f4",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/imu_fusion_thread.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/imu_fusion_thread.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 218,
+   "catalog_size": 218,
+   "current_symbol": "get_lux_info",
+   "discovery_candidates": [
+    "FUN_00010fc8",
+    "get_lux_info"
+   ],
+   "emitted_root": true,
+   "link_symbol": "get_lux_info",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00010fc8",
+   "original_va": "0x00010fc8",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008a2b4",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/get_lux_info.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/get_lux_info.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 52,
+   "catalog_size": 52,
+   "current_symbol": "bt_send_enabled",
+   "discovery_candidates": [
+    "FUN_00017e3c",
+    "bt_send_enabled"
+   ],
+   "emitted_root": true,
+   "link_symbol": "bt_send_enabled",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00017e3c",
+   "original_va": "0x00017e3c",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f907c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/bt_send_enabled.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/bt_send_enabled.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 96,
+   "catalog_size": 96,
+   "current_symbol": "notify_config_change_if_connected",
+   "discovery_candidates": [
+    "FUN_00017e84",
+    "notify_config_change_if_connected"
+   ],
+   "emitted_root": true,
+   "link_symbol": "notify_config_change_if_connected",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00017e84",
+   "original_va": "0x00017e84",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_00018208",
+     "pointer_va": "0x00018274",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/notify_config_change_if_connected.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/notify_config_change_if_connected.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 524,
+   "catalog_size": 524,
+   "current_symbol": "random",
+   "discovery_candidates": [
+    "FUN_00017f70",
+    "random"
+   ],
+   "emitted_root": true,
+   "link_symbol": "random",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00017f70",
+   "original_va": "0x00017f70",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f9074",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/random.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/random.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 44,
+   "catalog_size": 44,
+   "current_symbol": "FUN_00018300",
+   "discovery_candidates": [
+    "FUN_00018300"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00018300",
+   "original_va": "0x00018300",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f9084",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00018300.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 44,
+   "catalog_size": 44,
+   "current_symbol": "bond_deleted_cb",
+   "discovery_candidates": [
+    "FUN_000183ac",
+    "bond_deleted_cb"
+   ],
+   "emitted_root": true,
+   "link_symbol": "bond_deleted_cb",
+   "live_candidate_owners": {},
+   "original_name": "FUN_000183ac",
+   "original_va": "0x000183ac",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f9094",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/bond_deleted_cb.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/bond_deleted_cb.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 70,
+   "catalog_size": 70,
+   "current_symbol": "check_bonded_addr",
+   "discovery_candidates": [
+    "FUN_000183e4",
+    "check_bonded_addr"
+   ],
+   "emitted_root": true,
+   "link_symbol": "check_bonded_addr",
+   "live_candidate_owners": {},
+   "original_name": "check_bonded_addr",
+   "original_va": "0x000183e4",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_19a74",
+     "pointer_va": "0x00019a88",
+     "source": "recon/data/rodata_19a74.c",
+     "table": "0x00019a74"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/check_bonded_addr.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/check_bonded_addr.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 68,
+   "catalog_size": 68,
+   "current_symbol": "pairing_failed",
+   "discovery_candidates": [
+    "FUN_00018444",
+    "pairing_failed"
+   ],
+   "emitted_root": true,
+   "link_symbol": "pairing_failed",
+   "live_candidate_owners": {},
+   "original_name": "pairing_failed",
+   "original_va": "0x00018444",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f9090",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/pairing_failed.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/pairing_failed.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 64,
+   "catalog_size": 64,
+   "current_symbol": "auth_cancel",
+   "discovery_candidates": [
+    "FUN_0001849c",
+    "auth_cancel"
+   ],
+   "emitted_root": true,
+   "link_symbol": "auth_cancel",
+   "live_candidate_owners": {},
+   "original_name": "auth_cancel",
+   "original_va": "0x0001849c",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f90ac",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/auth_cancel.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/auth_cancel.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 264,
+   "catalog_size": 264,
+   "current_symbol": "ancs_security_changed",
+   "discovery_candidates": [
+    "FUN_000184f0",
+    "ancs_security_changed"
+   ],
+   "emitted_root": true,
+   "link_symbol": "ancs_security_changed",
+   "live_candidate_owners": {},
+   "original_name": "FUN_000184f0",
+   "original_va": "0x000184f0",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x87fc8",
+     "pointer_va": "0x00088000",
+     "source": "recon/data/rodata_0x87fc8.c",
+     "table": "0x00087fc8"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/ancs_security_changed.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/ancs_security_changed.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 238,
+   "catalog_size": 238,
+   "current_symbol": "ancs_connected",
+   "discovery_candidates": [
+    "FUN_0001861c",
+    "ancs_connected"
+   ],
+   "emitted_root": true,
+   "link_symbol": "ancs_connected",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0001861c",
+   "original_va": "0x0001861c",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x87fc8",
+     "pointer_va": "0x00087fec",
+     "source": "recon/data/rodata_0x87fc8.c",
+     "table": "0x00087fc8"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/ancs_connected.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/ancs_connected.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 172,
+   "catalog_size": 172,
+   "current_symbol": "pairing_complete",
+   "discovery_candidates": [
+    "FUN_00018730",
+    "pairing_complete"
+   ],
+   "emitted_root": true,
+   "link_symbol": "pairing_complete",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00018730",
+   "original_va": "0x00018730",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f908c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/pairing_complete.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/pairing_complete.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 22,
+   "catalog_size": 22,
+   "current_symbol": "discovery_error_found_cb_gatt",
+   "discovery_candidates": [
+    "FUN_00018894",
+    "discovery_error_found_cb_gatt"
+   ],
+   "emitted_root": true,
+   "link_symbol": "discovery_error_found_cb_gatt",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00018894",
+   "original_va": "0x00018894",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x889d0",
+     "pointer_va": "0x00088a08",
+     "source": "recon/data/rodata_0x889d0.c",
+     "table": "0x000889d0"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/discovery_error_found_cb_gatt.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/discovery_error_found_cb_gatt.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 32,
+   "catalog_size": 32,
+   "current_symbol": "discovery_error_found_cb_ancs",
+   "discovery_candidates": [
+    "FUN_000188b0",
+    "discovery_error_found_cb_ancs"
+   ],
+   "emitted_root": true,
+   "link_symbol": "discovery_error_found_cb_ancs",
+   "live_candidate_owners": {},
+   "original_name": "FUN_000188b0",
+   "original_va": "0x000188b0",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x889d0",
+     "pointer_va": "0x00088a14",
+     "source": "recon/data/rodata_0x889d0.c",
+     "table": "0x000889d0"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/discovery_error_found_cb_ancs.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/discovery_error_found_cb_ancs.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 128,
+   "catalog_size": 128,
+   "current_symbol": "discovery_completed_cb_ancs",
+   "discovery_candidates": [
+    "FUN_000188d8",
+    "discovery_completed_cb_ancs"
+   ],
+   "emitted_root": true,
+   "link_symbol": "discovery_completed_cb_ancs",
+   "live_candidate_owners": {},
+   "original_name": "FUN_000188d8",
+   "original_va": "0x000188d8",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x889d0",
+     "pointer_va": "0x00088a0c",
+     "source": "recon/data/rodata_0x889d0.c",
+     "table": "0x000889d0"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/discovery_completed_cb_ancs.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/discovery_completed_cb_ancs.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 32,
+   "catalog_size": 32,
+   "current_symbol": "discovery_service_not_found_cb_ancs",
+   "discovery_candidates": [
+    "FUN_00018978",
+    "discovery_service_not_found_cb_ancs"
+   ],
+   "emitted_root": true,
+   "link_symbol": "discovery_service_not_found_cb_ancs",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00018978",
+   "original_va": "0x00018978",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x889d0",
+     "pointer_va": "0x00088a10",
+     "source": "recon/data/rodata_0x889d0.c",
+     "table": "0x000889d0"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/discovery_service_not_found_cb_ancs.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/discovery_service_not_found_cb_ancs.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 100,
+   "catalog_size": 100,
+   "current_symbol": "discovery_completed_cb_gatt",
+   "discovery_candidates": [
+    "FUN_000189a0",
+    "discovery_completed_cb_gatt"
+   ],
+   "emitted_root": true,
+   "link_symbol": "discovery_completed_cb_gatt",
+   "live_candidate_owners": {},
+   "original_name": "FUN_000189a0",
+   "original_va": "0x000189a0",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x889d0",
+     "pointer_va": "0x00088a00",
+     "source": "recon/data/rodata_0x889d0.c",
+     "table": "0x000889d0"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/discovery_completed_cb_gatt.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/discovery_completed_cb_gatt.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 22,
+   "catalog_size": 22,
+   "current_symbol": "discovery_service_not_found_cb_gatt",
+   "discovery_candidates": [
+    "FUN_00018a1c",
+    "discovery_service_not_found_cb_gatt"
+   ],
+   "emitted_root": true,
+   "link_symbol": "discovery_service_not_found_cb_gatt",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00018a1c",
+   "original_va": "0x00018a1c",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x889d0",
+     "pointer_va": "0x00088a04",
+     "source": "recon/data/rodata_0x889d0.c",
+     "table": "0x000889d0"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/discovery_service_not_found_cb_gatt.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/discovery_service_not_found_cb_gatt.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 94,
+   "catalog_size": 94,
+   "current_symbol": "indicate_sc_cb",
+   "discovery_candidates": [
+    "FUN_00018a38",
+    "indicate_sc_cb"
+   ],
+   "emitted_root": true,
+   "link_symbol": "indicate_sc_cb",
+   "live_candidate_owners": {},
+   "original_name": "indicate_sc_cb",
+   "original_va": "0x00018a38",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_000189a0",
+     "pointer_va": "0x00018a10",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/indicate_sc_cb.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/indicate_sc_cb.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 118,
+   "catalog_size": 118,
+   "current_symbol": "ancs_disconnected",
+   "discovery_candidates": [
+    "FUN_00018adc",
+    "ancs_disconnected"
+   ],
+   "emitted_root": true,
+   "link_symbol": "ancs_disconnected",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00018adc",
+   "original_va": "0x00018adc",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x87fc8",
+     "pointer_va": "0x00087ff0",
+     "source": "recon/data/rodata_0x87fc8.c",
+     "table": "0x00087fc8"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/ancs_disconnected.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/ancs_disconnected.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 294,
+   "catalog_size": 294,
+   "current_symbol": "bt_ancs_data_source_handler",
+   "discovery_candidates": [
+    "FUN_00018c48",
+    "bt_ancs_data_source_handler"
+   ],
+   "emitted_root": true,
+   "link_symbol": "bt_ancs_data_source_handler",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00018c48",
+   "original_va": "0x00018c48",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_000188d8",
+     "pointer_va": "0x00018970",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/bt_ancs_data_source_handler.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/bt_ancs_data_source_handler.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 578,
+   "catalog_size": 578,
+   "current_symbol": "FUN_00021da8",
+   "discovery_candidates": [
+    "FUN_00021da8"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00021da8",
+   "original_va": "0x00021da8",
+   "pointer_occurrences": [
+    {
+     "class": "dynamic_thread_reference",
+     "owner": "application",
+     "pointer_va": "0x0002206c",
+     "source": "recon/catalogs/app_root_inventory.json",
+     "table": "ble_projector"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00021da8.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 66,
+   "catalog_size": 66,
+   "current_symbol": "init_ble_work_thread",
+   "discovery_candidates": [
+    "FUN_0002201c",
+    "init_ble_work_thread"
+   ],
+   "emitted_root": true,
+   "link_symbol": "init_ble_work_thread",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0002201c",
+   "original_va": "0x0002201c",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_00018208",
+     "pointer_va": "0x0001826c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/init_ble_work_thread.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/init_ble_work_thread.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 152,
+   "catalog_size": 152,
+   "current_symbol": "local_store_write",
+   "discovery_candidates": [
+    "FUN_00022168",
+    "local_store_write"
+   ],
+   "emitted_root": true,
+   "link_symbol": "local_store_write",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00022168",
+   "original_va": "0x00022168",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_2258c",
+     "pointer_va": "0x0002259c",
+     "source": "recon/data/rodata_2258c.c",
+     "table": "0x0002258c"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/local_store_write.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/local_store_write.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 698,
+   "catalog_size": 698,
+   "current_symbol": "ble_whitelist_app",
+   "discovery_candidates": [
+    "FUN_00022218",
+    "ble_whitelist_app"
+   ],
+   "emitted_root": true,
+   "link_symbol": "ble_whitelist_app",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00022218",
+   "original_va": "0x00022218",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f90d4",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/ble_whitelist_app.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/ble_whitelist_app.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 436,
+   "catalog_size": 436,
+   "current_symbol": "FUN_00023844",
+   "discovery_candidates": [
+    "FUN_00023844"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00023844",
+   "original_va": "0x00023844",
+   "pointer_occurrences": [
+    {
+     "class": "dynamic_thread_reference",
+     "owner": "application",
+     "pointer_va": "0x00023ac0",
+     "source": "recon/catalogs/app_root_inventory.json",
+     "table": "brightness"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00023844.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 138,
+   "catalog_size": 138,
+   "current_symbol": "ipc0_ept_recv",
+   "discovery_candidates": [
+    "FUN_00025a48",
+    "ipc0_ept_recv"
+   ],
+   "emitted_root": true,
+   "link_symbol": "ipc0_ept_recv",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00025a48",
+   "original_va": "0x00025a48",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f914c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/ipc0_ept_recv.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/ipc0_ept_recv.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 114,
+   "catalog_size": 114,
+   "current_symbol": "spi_master_trans_data_tx_rx",
+   "discovery_candidates": [
+    "FUN_000262ac",
+    "spi_master_trans_data_tx_rx"
+   ],
+   "emitted_root": true,
+   "link_symbol": "spi_master_trans_data_tx_rx",
+   "live_candidate_owners": {},
+   "original_name": "spi_master_trans_data_tx_rx",
+   "original_va": "0x000262ac",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_0002659c",
+     "pointer_va": "0x000265b0",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/spi_master_trans_data_tx_rx.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/spi_master_trans_data_tx_rx.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 190,
+   "catalog_size": 190,
+   "current_symbol": "FUN_00026338",
+   "discovery_candidates": [
+    "FUN_00026338"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00026338",
+   "original_va": "0x00026338",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_0002659c",
+     "pointer_va": "0x000265b4",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00026338.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 320,
+   "catalog_size": 320,
+   "current_symbol": "spi_master_init",
+   "discovery_candidates": [
+    "FUN_00026418",
+    "spi_master_init"
+   ],
+   "emitted_root": true,
+   "link_symbol": "spi_master_init",
+   "live_candidate_owners": {},
+   "original_name": "spi_master_init",
+   "original_va": "0x00026418",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_0002659c",
+     "pointer_va": "0x000265ac",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/spi_master_init.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/spi_master_init.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 972,
+   "catalog_size": 972,
+   "current_symbol": "FUN_0002a8d8",
+   "discovery_candidates": [
+    "FUN_0002a8d8"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0002a8d8",
+   "original_va": "0x0002a8d8",
+   "pointer_occurrences": [
+    {
+     "class": "dynamic_thread_reference",
+     "owner": "application",
+     "pointer_va": "0x0002a800",
+     "source": "recon/catalogs/app_root_inventory.json",
+     "table": "run_main_a"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0002a8d8.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 142,
+   "catalog_size": 142,
+   "current_symbol": "ext_flash_read",
+   "discovery_candidates": [
+    "FUN_0002e398",
+    "ext_flash_read"
+   ],
+   "emitted_root": true,
+   "link_symbol": "ext_flash_read",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0002e398",
+   "original_va": "0x0002e398",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x2e568",
+     "pointer_va": "0x0002e574",
+     "source": "recon/data/rodata_0x2e568.c",
+     "table": "0x0002e568"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/ext_flash_read.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/ext_flash_read.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 142,
+   "catalog_size": 142,
+   "current_symbol": "ext_flash_write",
+   "discovery_candidates": [
+    "FUN_0002e440",
+    "ext_flash_write"
+   ],
+   "emitted_root": true,
+   "link_symbol": "ext_flash_write",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0002e440",
+   "original_va": "0x0002e440",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x2e568",
+     "pointer_va": "0x0002e578",
+     "source": "recon/data/rodata_0x2e568.c",
+     "table": "0x0002e568"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/ext_flash_write.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/ext_flash_write.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 496,
+   "catalog_size": 496,
+   "current_symbol": "opt3007_chip_init",
+   "discovery_candidates": [
+    "FUN_0002e67c",
+    "opt3007_chip_init"
+   ],
+   "emitted_root": true,
+   "link_symbol": "opt3007_chip_init",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0002e67c",
+   "original_va": "0x0002e67c",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_0002e8fc",
+     "pointer_va": "0x0002e90c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/opt3007_chip_init.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/opt3007_chip_init.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 54,
+   "catalog_size": 54,
+   "current_symbol": "FUN_00030c24",
+   "discovery_candidates": [
+    "FUN_00030c24"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00030c24",
+   "original_va": "0x00030c24",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f916c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00030c24.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 108,
+   "catalog_size": 108,
+   "current_symbol": "FUN_00031b60",
+   "discovery_candidates": [
+    "FUN_00031b60"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00031b60",
+   "original_va": "0x00031b60",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8a208",
+     "pointer_va": "0x0008a20c",
+     "source": "recon/data/rodata_0x8a208.c",
+     "table": "0x0008a208"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00031b60.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 98,
+   "catalog_size": 98,
+   "current_symbol": "FUN_00031bd8",
+   "discovery_candidates": [
+    "FUN_00031bd8"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00031bd8",
+   "original_va": "0x00031bd8",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008a234",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00031bd8.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 250,
+   "catalog_size": 250,
+   "current_symbol": "set_brightness_lum_base",
+   "discovery_candidates": [
+    "FUN_00031cbc",
+    "set_brightness_lum_base"
+   ],
+   "emitted_root": true,
+   "link_symbol": "set_brightness_lum_base",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00031cbc",
+   "original_va": "0x00031cbc",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008a33c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/set_brightness_lum_base.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/set_brightness_lum_base.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 240,
+   "catalog_size": 240,
+   "current_symbol": "FUN_00031dd8",
+   "discovery_candidates": [
+    "FUN_00031dd8"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00031dd8",
+   "original_va": "0x00031dd8",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008a2fc",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00031dd8.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 200,
+   "catalog_size": 200,
+   "current_symbol": "set_glasses_sn_info",
+   "discovery_candidates": [
+    "FUN_00031ee8",
+    "set_glasses_sn_info"
+   ],
+   "emitted_root": true,
+   "link_symbol": "set_glasses_sn_info",
+   "live_candidate_owners": {},
+   "original_name": "set_glasses_sn_info",
+   "original_va": "0x00031ee8",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008a2dc",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/set_glasses_sn_info.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/set_glasses_sn_info.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 354,
+   "catalog_size": 354,
+   "current_symbol": "get_assign_channel_info",
+   "discovery_candidates": [
+    "FUN_00031fd8",
+    "get_assign_channel_info"
+   ],
+   "emitted_root": true,
+   "link_symbol": "get_assign_channel_info",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00031fd8",
+   "original_va": "0x00031fd8",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008a2a4",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/get_assign_channel_info.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/get_assign_channel_info.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 200,
+   "catalog_size": 200,
+   "current_symbol": "set_device_sn_info",
+   "discovery_candidates": [
+    "FUN_00032164",
+    "set_device_sn_info"
+   ],
+   "emitted_root": true,
+   "link_symbol": "set_device_sn_info",
+   "live_candidate_owners": {},
+   "original_name": "set_device_sn_info",
+   "original_va": "0x00032164",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008a29c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/set_device_sn_info.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/set_device_sn_info.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 170,
+   "catalog_size": 170,
+   "current_symbol": "set_display_brightness",
+   "discovery_candidates": [
+    "FUN_00032254",
+    "set_display_brightness"
+   ],
+   "emitted_root": true,
+   "link_symbol": "set_display_brightness",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00032254",
+   "original_va": "0x00032254",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008a25c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/set_display_brightness.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/set_display_brightness.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 180,
+   "catalog_size": 180,
+   "current_symbol": "FUN_00032308",
+   "discovery_candidates": [
+    "FUN_00032308"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00032308",
+   "original_va": "0x00032308",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008a254",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00032308.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 200,
+   "catalog_size": 200,
+   "current_symbol": "get_flash_info",
+   "discovery_candidates": [
+    "FUN_00032628",
+    "get_flash_info"
+   ],
+   "emitted_root": true,
+   "link_symbol": "get_flash_info",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00032628",
+   "original_va": "0x00032628",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008a2ac",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/get_flash_info.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/get_flash_info.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 386,
+   "catalog_size": 386,
+   "current_symbol": "uart_callback",
+   "discovery_candidates": [
+    "FUN_00033384",
+    "uart_callback"
+   ],
+   "emitted_root": true,
+   "link_symbol": "uart_callback",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00033384",
+   "original_va": "0x00033384",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x33704",
+     "pointer_va": "0x00033710",
+     "source": "recon/data/rodata_0x33704.c",
+     "table": "0x00033704"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/uart_callback.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/uart_callback.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 98,
+   "catalog_size": 98,
+   "current_symbol": "dump_template_gyro_info",
+   "discovery_candidates": [
+    "FUN_00036164",
+    "dump_template_gyro_info"
+   ],
+   "emitted_root": true,
+   "link_symbol": "dump_template_gyro_info",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00036164",
+   "original_va": "0x00036164",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f91a0",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/dump_template_gyro_info.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/dump_template_gyro_info.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 190,
+   "catalog_size": 190,
+   "current_symbol": "FUN_000361d8",
+   "discovery_candidates": [
+    "FUN_000361d8"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_000361d8",
+   "original_va": "0x000361d8",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f919c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_000361d8.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 614,
+   "catalog_size": 614,
+   "current_symbol": "FUN_000362e8",
+   "discovery_candidates": [
+    "FUN_000362e8"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_000362e8",
+   "original_va": "0x000362e8",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f91ac",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_000362e8.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 368,
+   "catalog_size": 368,
+   "current_symbol": "draw_template_translate_screen",
+   "discovery_candidates": [
+    "FUN_0003fd44",
+    "draw_template_translate_screen"
+   ],
+   "emitted_root": true,
+   "link_symbol": "draw_template_translate_screen",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0003fd44",
+   "original_va": "0x0003fd44",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f923c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/draw_template_translate_screen.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/draw_template_translate_screen.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 80,
+   "catalog_size": 80,
+   "current_symbol": "panel_off",
+   "discovery_candidates": [
+    "FUN_00046d2c",
+    "panel_off"
+   ],
+   "emitted_root": true,
+   "link_symbol": "panel_off",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00046d2c",
+   "original_va": "0x00046d2c",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x471a4",
+     "pointer_va": "0x000471b4",
+     "source": "recon/data/rodata_0x471a4.c",
+     "table": "0x000471a4"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/panel_off.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/panel_off.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 84,
+   "catalog_size": 84,
+   "current_symbol": "panel_on",
+   "discovery_candidates": [
+    "FUN_00046dd8",
+    "panel_on"
+   ],
+   "emitted_root": true,
+   "link_symbol": "panel_on",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00046dd8",
+   "original_va": "0x00046dd8",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x471a4",
+     "pointer_va": "0x000471b8",
+     "source": "recon/data/rodata_0x471a4.c",
+     "table": "0x000471a4"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/panel_on.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/panel_on.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 84,
+   "catalog_size": 84,
+   "current_symbol": "jdb_panel_init",
+   "discovery_candidates": [
+    "FUN_00046fc0",
+    "jdb_panel_init"
+   ],
+   "emitted_root": true,
+   "link_symbol": "jdb_panel_init",
+   "live_candidate_owners": {},
+   "original_name": "jdb_panel_init",
+   "original_va": "0x00046fc0",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x471a4",
+     "pointer_va": "0x000471a8",
+     "source": "recon/data/rodata_0x471a4.c",
+     "table": "0x000471a4"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/jdb_panel_init.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/jdb_panel_init.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 162,
+   "catalog_size": 162,
+   "current_symbol": "nrf53_sync_rtc_init",
+   "discovery_candidates": [
+    "FUN_0004c2d4",
+    "nrf53_sync_rtc_init"
+   ],
+   "emitted_root": false,
+   "link_symbol": "sync_rtc_setup",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0004c2d4",
+   "original_va": "0x0004c2d4",
+   "pointer_occurrences": [
+    {
+     "class": "init_entry",
+     "owner": "sync_rtc_setup",
+     "pointer_va": "0x00087b18",
+     "source": "zephyr/soc/arm/nordic_nrf/nrf53/sync_rtc.c",
+     "table": "POST_KERNEL"
+    }
+   ],
+   "resolution": "resolved_existing_stock_alias",
+   "source_ownership": {
+    "exact_source": "zephyr/soc/arm/nordic_nrf/nrf53/sync_rtc.c",
+    "kind": "stock_alias",
+    "retained_identity_sources": [
+     "recon/symbolized/app/nrf53_sync_rtc_init.c"
+    ]
+   },
+   "upstream_alias": "sync_rtc_setup"
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 152,
+   "catalog_size": 152,
+   "current_symbol": "FUN_0004c418",
+   "discovery_candidates": [
+    "FUN_0004c418"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0004c418",
+   "original_va": "0x0004c418",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x4c378",
+     "pointer_va": "0x0004c388",
+     "source": "recon/data/rodata_0x4c378.c",
+     "table": "0x0004c378"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0004c418.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 404,
+   "catalog_size": 404,
+   "current_symbol": "FUN_0004cd4c",
+   "discovery_candidates": [
+    "FUN_0004cd4c"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0004cd4c",
+   "original_va": "0x0004cd4c",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8ac20",
+     "pointer_va": "0x0008ac48",
+     "source": "recon/data/rodata_0x8ac20.c",
+     "table": "0x0008ac20"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0004cd4c.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 220,
+   "catalog_size": 220,
+   "current_symbol": "FUN_0004cf78",
+   "discovery_candidates": [
+    "FUN_0004cf78"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0004cf78",
+   "original_va": "0x0004cf78",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8ac20",
+     "pointer_va": "0x0008ac54",
+     "source": "recon/data/rodata_0x8ac20.c",
+     "table": "0x0008ac20"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 194,
+   "catalog_size": 194,
+   "current_symbol": "FUN_0004d6ec",
+   "discovery_candidates": [
+    "FUN_0004d6ec"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0004d6ec",
+   "original_va": "0x0004d6ec",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "ipc_static_vrings_init",
+     "pointer_va": "0x0004d2c4",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0004d6ec.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 32,
+   "catalog_size": 32,
+   "current_symbol": "FUN_0004df88",
+   "discovery_candidates": [
+    "FUN_0004df88"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0004df88",
+   "original_va": "0x0004df88",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8ac20",
+     "pointer_va": "0x0008acf8",
+     "source": "recon/data/rodata_0x8ac20.c",
+     "table": "0x0008ac20"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0004df88.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 640,
+   "catalog_size": 640,
+   "current_symbol": "discovery_callback",
+   "discovery_candidates": [
+    "FUN_0004ea78",
+    "discovery_callback"
+   ],
+   "emitted_root": true,
+   "link_symbol": "discovery_callback",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0004ea78",
+   "original_va": "0x0004ea78",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x4ee54",
+     "pointer_va": "0x0004ee58",
+     "source": "recon/data/rodata_0x4ee54.c",
+     "table": "0x0004ee54"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/discovery_callback.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/discovery_callback.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 366,
+   "catalog_size": 366,
+   "current_symbol": "FUN_0004f5b0",
+   "discovery_candidates": [
+    "FUN_0004f5b0"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0004f5b0",
+   "original_va": "0x0004f5b0",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f95a0",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0004f5b0.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 156,
+   "catalog_size": 156,
+   "current_symbol": "FUN_0004f860",
+   "discovery_candidates": [
+    "FUN_0004f860"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0004f860",
+   "original_va": "0x0004f860",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000fa9c0",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0004f860.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 182,
+   "catalog_size": 182,
+   "current_symbol": "FUN_0004f92c",
+   "discovery_candidates": [
+    "FUN_0004f92c"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0004f92c",
+   "original_va": "0x0004f92c",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000fa9f0",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0004f92c.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 44,
+   "catalog_size": 66,
+   "current_symbol": "FUN_00052854",
+   "discovery_candidates": [
+    "FUN_00052854"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00052854",
+   "original_va": "0x00052854",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f9684",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00052854.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 258,
+   "catalog_size": 258,
+   "current_symbol": "FUN_00052d58",
+   "discovery_candidates": [
+    "FUN_00052d58"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00052d58",
+   "original_va": "0x00052d58",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x880d8",
+     "pointer_va": "0x000882b8",
+     "source": "recon/data/rodata_0x880d8.c",
+     "table": "0x000880d8"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00052d58.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 66,
+   "catalog_size": 66,
+   "current_symbol": "FUN_00052f68",
+   "discovery_candidates": [
+    "FUN_00052f68"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00052f68",
+   "original_va": "0x00052f68",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f969c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00052f68.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 148,
+   "catalog_size": 148,
+   "current_symbol": "FUN_000530c4",
+   "discovery_candidates": [
+    "FUN_000530c4"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_000530c4",
+   "original_va": "0x000530c4",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x880d8",
+     "pointer_va": "0x000882bc",
+     "source": "recon/data/rodata_0x880d8.c",
+     "table": "0x000880d8"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_000530c4.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 378,
+   "catalog_size": 378,
+   "current_symbol": "bt_hci_core_recv_event",
+   "discovery_candidates": [
+    "FUN_000536b8",
+    "bt_hci_core_recv_event"
+   ],
+   "emitted_root": true,
+   "link_symbol": "bt_hci_core_recv_event",
+   "live_candidate_owners": {},
+   "original_name": "FUN_000536b8",
+   "original_va": "0x000536b8",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f96e8",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/bt_hci_core_recv_event.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/bt_hci_core_recv_event.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 206,
+   "catalog_size": 206,
+   "current_symbol": "FUN_00053bd8",
+   "discovery_candidates": [
+    "FUN_00053bd8"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00053bd8",
+   "original_va": "0x00053bd8",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b1d4",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00053bd8.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 156,
+   "catalog_size": 156,
+   "current_symbol": "bt_conn_encrypt_change_handle_le",
+   "discovery_candidates": [
+    "FUN_00054260",
+    "bt_conn_encrypt_change_handle_le"
+   ],
+   "emitted_root": true,
+   "link_symbol": "bt_conn_encrypt_change_handle_le",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00054260",
+   "original_va": "0x00054260",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b1b4",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/bt_conn_encrypt_change_handle_le.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/bt_conn_encrypt_change_handle_le.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 178,
+   "catalog_size": 178,
+   "current_symbol": "bt_conn_encrypt_change_handle_generic",
+   "discovery_candidates": [
+    "FUN_00054308",
+    "bt_conn_encrypt_change_handle_generic"
+   ],
+   "emitted_root": true,
+   "link_symbol": "bt_conn_encrypt_change_handle_generic",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00054308",
+   "original_va": "0x00054308",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b1ac",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/bt_conn_encrypt_change_handle_generic.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/bt_conn_encrypt_change_handle_generic.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 214,
+   "catalog_size": 214,
+   "current_symbol": "FUN_00054444",
+   "discovery_candidates": [
+    "FUN_00054444"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00054444",
+   "original_va": "0x00054444",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b1fc",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00054444.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 192,
+   "catalog_size": 192,
+   "current_symbol": "FUN_00054528",
+   "discovery_candidates": [
+    "FUN_00054528"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00054528",
+   "original_va": "0x00054528",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b1e4",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00054528.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "retained definition owner count is 0"
+   ],
+   "capped_size": 348,
+   "catalog_size": 348,
+   "current_symbol": "hci_tx_thread",
+   "discovery_candidates": [
+    "FUN_000545f0",
+    "hci_tx_thread"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_000545f0",
+   "original_va": "0x000545f0",
+   "pointer_occurrences": [
+    {
+     "class": "dynamic_thread_reference",
+     "owner": "stock_zephyr_bt",
+     "pointer_va": "0x00054b50",
+     "source": "recon/catalogs/app_root_inventory.json",
+     "table": "bt_rx"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
+    "kind": "reviewed_upstream_owner",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": "hci_tx_thread"
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 182,
+   "catalog_size": 182,
+   "current_symbol": "FUN_00054dd8",
+   "discovery_candidates": [
+    "FUN_00054dd8"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00054dd8",
+   "original_va": "0x00054dd8",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x55058",
+     "pointer_va": "0x00055058",
+     "source": "recon/data/rodata_0x55058.c",
+     "table": "0x00055058"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00054dd8.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 272,
+   "catalog_size": 272,
+   "current_symbol": "ble_conn_process_complete_or_disconnect",
+   "discovery_candidates": [
+    "FUN_000570a0",
+    "ble_conn_process_complete_or_disconnect"
+   ],
+   "emitted_root": true,
+   "link_symbol": "ble_conn_process_complete_or_disconnect",
+   "live_candidate_owners": {},
+   "original_name": "FUN_000570a0",
+   "original_va": "0x000570a0",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x562f8",
+     "pointer_va": "0x000562f8",
+     "source": "recon/data/rodata_0x562f8.c",
+     "table": "0x000562f8"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/ble_conn_process_complete_or_disconnect.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/ble_conn_process_complete_or_disconnect.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 166,
+   "catalog_size": 166,
+   "current_symbol": "FUN_00058808",
+   "discovery_candidates": [
+    "FUN_00058808"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00058808",
+   "original_va": "0x00058808",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "att_read_type_req",
+     "pointer_va": "0x0005954c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00058808.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 56,
+   "catalog_size": 194,
+   "current_symbol": "FUN_00058bfc",
+   "discovery_candidates": [
+    "FUN_00058bfc"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00058bfc",
+   "original_va": "0x00058bfc",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f9710",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00058bfc.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 310,
+   "catalog_size": 310,
+   "current_symbol": "FUN_00058f80",
+   "discovery_candidates": [
+    "FUN_00058f80"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00058f80",
+   "original_va": "0x00058f80",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b310",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00058f80.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 222,
+   "catalog_size": 222,
+   "current_symbol": "FUN_000590bc",
+   "discovery_candidates": [
+    "FUN_000590bc"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_000590bc",
+   "original_va": "0x000590bc",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b308",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_000590bc.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 164,
+   "catalog_size": 164,
+   "current_symbol": "FUN_0005929c",
+   "discovery_candidates": [
+    "FUN_0005929c"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005929c",
+   "original_va": "0x0005929c",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b2f0",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 164,
+   "catalog_size": 164,
+   "current_symbol": "FUN_00059344",
+   "discovery_candidates": [
+    "FUN_00059344"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00059344",
+   "original_va": "0x00059344",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b2e8",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 236,
+   "catalog_size": 478,
+   "current_symbol": "FUN_00059834",
+   "discovery_candidates": [
+    "FUN_00059834"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00059834",
+   "original_va": "0x00059834",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f9714",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00059834.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 132,
+   "catalog_size": 132,
+   "current_symbol": "FUN_00059dec",
+   "discovery_candidates": [
+    "FUN_00059dec"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00059dec",
+   "original_va": "0x00059dec",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5b098",
+     "pointer_va": "0x0005b0b4",
+     "source": "recon/data/rodata_0x5b098.c",
+     "table": "0x0005b098"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00059dec.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 58,
+   "catalog_size": 58,
+   "current_symbol": "gatt_hash_settings_set",
+   "discovery_candidates": [
+    "FUN_0005a28c",
+    "gatt_hash_settings_set"
+   ],
+   "emitted_root": true,
+   "link_symbol": "gatt_hash_settings_set",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005a28c",
+   "original_va": "0x0005a28c",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000882f4",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/gatt_hash_settings_set.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/gatt_hash_settings_set.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 148,
+   "catalog_size": 148,
+   "current_symbol": "gatt_remove_peer_from_attr",
+   "discovery_candidates": [
+    "FUN_0005a3c4",
+    "gatt_remove_peer_from_attr"
+   ],
+   "emitted_root": true,
+   "link_symbol": "gatt_remove_peer_from_attr",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005a3c4",
+   "original_va": "0x0005a3c4",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5ca9c",
+     "pointer_va": "0x0005ca9c",
+     "source": "recon/data/rodata_0x5ca9c.c",
+     "table": "0x0005ca9c"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/gatt_remove_peer_from_attr.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/gatt_remove_peer_from_attr.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 206,
+   "catalog_size": 206,
+   "current_symbol": "gatt_ccc_write",
+   "discovery_candidates": [
+    "FUN_0005a464",
+    "gatt_ccc_write"
+   ],
+   "emitted_root": true,
+   "link_symbol": "gatt_ccc_write",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005a464",
+   "original_va": "0x0005a464",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x59e70",
+     "pointer_va": "0x00059e70",
+     "source": "recon/data/rodata_0x59e70.c",
+     "table": "0x00059e70"
+    },
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5a248",
+     "pointer_va": "0x0005a2f8",
+     "source": "recon/data/rodata_0x5a248.c",
+     "table": "0x0005a248"
+    },
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5a248",
+     "pointer_va": "0x0005a324",
+     "source": "recon/data/rodata_0x5a248.c",
+     "table": "0x0005a248"
+    },
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_0005a28c",
+     "pointer_va": "0x0005a35c",
+     "source": null,
+     "table": null
+    },
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5a458",
+     "pointer_va": "0x0005a458",
+     "source": "recon/data/rodata_0x5a458.c",
+     "table": "0x0005a458"
+    },
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5b65c",
+     "pointer_va": "0x0005b65c",
+     "source": "recon/data/rodata_0x5b65c.c",
+     "table": "0x0005b65c"
+    },
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5b9b4",
+     "pointer_va": "0x0005b9b4",
+     "source": "recon/data/rodata_0x5b9b4.c",
+     "table": "0x0005b9b4"
+    },
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008ad5c",
+     "source": null,
+     "table": null
+    },
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b3f8",
+     "source": null,
+     "table": null
+    },
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f966c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/gatt_ccc_write.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/gatt_ccc_write.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 158,
+   "catalog_size": 158,
+   "current_symbol": "gatt_cf_write",
+   "discovery_candidates": [
+    "FUN_0005a5bc",
+    "gatt_cf_write"
+   ],
+   "emitted_root": true,
+   "link_symbol": "gatt_cf_write",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005a5bc",
+   "original_va": "0x0005a5bc",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b420",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/gatt_cf_write.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/gatt_cf_write.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 372,
+   "catalog_size": 372,
+   "current_symbol": "gatt_cf_settings_set",
+   "discovery_candidates": [
+    "FUN_0005a724",
+    "gatt_cf_settings_set"
+   ],
+   "emitted_root": true,
+   "link_symbol": "gatt_cf_settings_set",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005a724",
+   "original_va": "0x0005a724",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000882e0",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/gatt_cf_settings_set.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/gatt_cf_settings_set.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 102,
+   "catalog_size": 102,
+   "current_symbol": "gatt_db_hash_process",
+   "discovery_candidates": [
+    "FUN_0005ac30",
+    "gatt_db_hash_process"
+   ],
+   "emitted_root": true,
+   "link_symbol": "gatt_db_hash_process",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005ac30",
+   "original_va": "0x0005ac30",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b444",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/gatt_db_hash_process.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/gatt_db_hash_process.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 268,
+   "catalog_size": 268,
+   "current_symbol": "gatt_ccc_settings_set",
+   "discovery_candidates": [
+    "FUN_0005af8c",
+    "gatt_ccc_settings_set"
+   ],
+   "emitted_root": true,
+   "link_symbol": "gatt_ccc_settings_set",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005af8c",
+   "original_va": "0x0005af8c",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5c758",
+     "pointer_va": "0x0005c75c",
+     "source": "recon/data/rodata_0x5c758.c",
+     "table": "0x0005c758"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/gatt_ccc_settings_set.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/gatt_ccc_settings_set.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 264,
+   "catalog_size": 264,
+   "current_symbol": "sc_restore",
+   "discovery_candidates": [
+    "FUN_0005b554",
+    "sc_restore"
+   ],
+   "emitted_root": true,
+   "link_symbol": "sc_restore",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005b554",
+   "original_va": "0x0005b554",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5c758",
+     "pointer_va": "0x0005c760",
+     "source": "recon/data/rodata_0x5c758.c",
+     "table": "0x0005c758"
+    },
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_0005c5f0",
+     "pointer_va": "0x0005c808",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/sc_restore.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/sc_restore.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 292,
+   "catalog_size": 292,
+   "current_symbol": "gatt_send_ccc_update",
+   "discovery_candidates": [
+    "FUN_0005b890",
+    "gatt_send_ccc_update"
+   ],
+   "emitted_root": true,
+   "link_symbol": "gatt_send_ccc_update",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005b890",
+   "original_va": "0x0005b890",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5b49c",
+     "pointer_va": "0x0005b4b8",
+     "source": "recon/data/rodata_0x5b49c.c",
+     "table": "0x0005b49c"
+    },
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5b870",
+     "pointer_va": "0x0005b88c",
+     "source": "recon/data/rodata_0x5b870.c",
+     "table": "0x0005b870"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/gatt_send_ccc_update.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/gatt_send_ccc_update.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 282,
+   "catalog_size": 282,
+   "current_symbol": "gatt_parse_find_by_type_rsp",
+   "discovery_candidates": [
+    "FUN_0005bbf4",
+    "gatt_parse_find_by_type_rsp"
+   ],
+   "emitted_root": true,
+   "link_symbol": "gatt_parse_find_by_type_rsp",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005bbf4",
+   "original_va": "0x0005bbf4",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5bbac",
+     "pointer_va": "0x0005bbdc",
+     "source": "recon/data/rodata_0x5bbac.c",
+     "table": "0x0005bbac"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/gatt_parse_find_by_type_rsp.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/gatt_parse_find_by_type_rsp.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 710,
+   "catalog_size": 710,
+   "current_symbol": "gatt_parse_read_by_type_rsp",
+   "discovery_candidates": [
+    "FUN_0005bd18",
+    "gatt_parse_read_by_type_rsp"
+   ],
+   "emitted_root": true,
+   "link_symbol": "gatt_parse_read_by_type_rsp",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005bd18",
+   "original_va": "0x0005bd18",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5bbac",
+     "pointer_va": "0x0005bbe0",
+     "source": "recon/data/rodata_0x5bbac.c",
+     "table": "0x0005bbac"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/gatt_parse_read_by_type_rsp.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/gatt_parse_read_by_type_rsp.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 174,
+   "catalog_size": 174,
+   "current_symbol": "gatt_parse_read_by_type_rsp_128",
+   "discovery_candidates": [
+    "FUN_0005c004",
+    "gatt_parse_read_by_type_rsp_128"
+   ],
+   "emitted_root": true,
+   "link_symbol": "gatt_parse_read_by_type_rsp_128",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005c004",
+   "original_va": "0x0005c004",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5bff4",
+     "pointer_va": "0x0005c000",
+     "source": "recon/data/rodata_0x5bff4.c",
+     "table": "0x0005bff4"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/gatt_parse_read_by_type_rsp_128.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/gatt_parse_read_by_type_rsp_128.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 358,
+   "catalog_size": 358,
+   "current_symbol": "gatt_parse_find_info_rsp",
+   "discovery_candidates": [
+    "FUN_0005c0bc",
+    "gatt_parse_find_info_rsp"
+   ],
+   "emitted_root": true,
+   "link_symbol": "gatt_parse_find_info_rsp",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005c0bc",
+   "original_va": "0x0005c0bc",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5bbac",
+     "pointer_va": "0x0005bbe8",
+     "source": "recon/data/rodata_0x5bbac.c",
+     "table": "0x0005bbac"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/gatt_parse_find_info_rsp.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/gatt_parse_find_info_rsp.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 86,
+   "catalog_size": 86,
+   "current_symbol": "gatt_disconnected",
+   "discovery_candidates": [
+    "FUN_0005c87c",
+    "gatt_disconnected"
+   ],
+   "emitted_root": true,
+   "link_symbol": "gatt_disconnected",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005c87c",
+   "original_va": "0x0005c87c",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f9748",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/gatt_disconnected.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/gatt_disconnected.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 188,
+   "catalog_size": 536,
+   "current_symbol": "FUN_0005cff0",
+   "discovery_candidates": [
+    "FUN_0005cff0"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005cff0",
+   "original_va": "0x0005cff0",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b568",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0005cff0.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 890,
+   "catalog_size": 890,
+   "current_symbol": "FUN_0005d5c0",
+   "discovery_candidates": [
+    "FUN_0005d5c0"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005d5c0",
+   "original_va": "0x0005d5c0",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b510",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0005d5c0.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 112,
+   "catalog_size": 112,
+   "current_symbol": "FUN_0005e130",
+   "discovery_candidates": [
+    "FUN_0005e130"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005e130",
+   "original_va": "0x0005e130",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b530",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 536,
+   "catalog_size": 536,
+   "current_symbol": "bt_smp_distribute_keys",
+   "discovery_candidates": [
+    "FUN_0005e1a8",
+    "bt_smp_distribute_keys"
+   ],
+   "emitted_root": true,
+   "link_symbol": "bt_smp_distribute_keys",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005e1a8",
+   "original_va": "0x0005e1a8",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b4e8",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/bt_smp_distribute_keys.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/bt_smp_distribute_keys.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 400,
+   "catalog_size": 400,
+   "current_symbol": "FUN_0005ea64",
+   "discovery_candidates": [
+    "FUN_0005ea64"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005ea64",
+   "original_va": "0x0005ea64",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x00088308",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 234,
+   "catalog_size": 234,
+   "current_symbol": "FUN_0005f654",
+   "discovery_candidates": [
+    "FUN_0005f654"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005f654",
+   "original_va": "0x0005f654",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8b58c",
+     "pointer_va": "0x0008b58c",
+     "source": "recon/data/rodata_0x8b58c.c",
+     "table": "0x0008b58c"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0005f654.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 488,
+   "catalog_size": 488,
+   "current_symbol": "FUN_0005f760",
+   "discovery_candidates": [
+    "FUN_0005f760"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005f760",
+   "original_va": "0x0005f760",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8b58c",
+     "pointer_va": "0x0008b590",
+     "source": "recon/data/rodata_0x8b58c.c",
+     "table": "0x0008b58c"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0005f760.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 142,
+   "catalog_size": 142,
+   "current_symbol": "FUN_0005fa94",
+   "discovery_candidates": [
+    "FUN_0005fa94"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005fa94",
+   "original_va": "0x0005fa94",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8b5d8",
+     "pointer_va": "0x0008b5e0",
+     "source": "recon/data/rodata_0x8b5d8.c",
+     "table": "0x0008b5d8"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0005fa94.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 214,
+   "catalog_size": 214,
+   "current_symbol": "FUN_0005fb8c",
+   "discovery_candidates": [
+    "FUN_0005fb8c"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005fb8c",
+   "original_va": "0x0005fb8c",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8b5d8",
+     "pointer_va": "0x0008b5dc",
+     "source": "recon/data/rodata_0x8b5d8.c",
+     "table": "0x0008b5d8"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0005fb8c.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 626,
+   "catalog_size": 626,
+   "current_symbol": "FUN_0005fc7c",
+   "discovery_candidates": [
+    "FUN_0005fc7c"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005fc7c",
+   "original_va": "0x0005fc7c",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8b5d8",
+     "pointer_va": "0x0008b5d8",
+     "source": "recon/data/rodata_0x8b5d8.c",
+     "table": "0x0008b5d8"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0005fc7c.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 316,
+   "catalog_size": 316,
+   "current_symbol": "FUN_0005ffa4",
+   "discovery_candidates": [
+    "FUN_0005ffa4"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0005ffa4",
+   "original_va": "0x0005ffa4",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b598",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0005ffa4.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 32,
+   "catalog_size": 32,
+   "current_symbol": "FUN_00060564",
+   "discovery_candidates": [
+    "FUN_00060564"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00060564",
+   "original_va": "0x00060564",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b600",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00060564.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 98,
+   "catalog_size": 98,
+   "current_symbol": "FUN_0006058c",
+   "discovery_candidates": [
+    "FUN_0006058c"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0006058c",
+   "original_va": "0x0006058c",
+   "pointer_occurrences": [
+    {
+     "class": "init_entry",
+     "owner": "clock_control_nrf_init",
+     "pointer_va": "0x000879e0",
+     "source": "zephyr/drivers/clock_control/clock_control_nrf.c",
+     "table": "PRE_KERNEL_1"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0006058c.c"
+    ]
+   },
+   "upstream_alias": "clock_control_nrf_init"
+  },
+  {
+   "blockers": [],
+   "capped_size": 432,
+   "catalog_size": 432,
+   "current_symbol": "qspi_nor_configure",
+   "discovery_candidates": [
+    "FUN_00060c00",
+    "qspi_nor_configure"
+   ],
+   "emitted_root": false,
+   "link_symbol": "qspi_nor_init",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00060c00",
+   "original_va": "0x00060c00",
+   "pointer_occurrences": [
+    {
+     "class": "init_entry",
+     "owner": "qspi_nor_init",
+     "pointer_va": "0x00087a70",
+     "source": "zephyr/drivers/flash/flash_nrf_qspi_nor.c",
+     "table": "POST_KERNEL"
+    }
+   ],
+   "resolution": "resolved_existing_stock_alias",
+   "source_ownership": {
+    "exact_source": "zephyr/drivers/flash/flash_nrf_qspi_nor.c",
+    "kind": "stock_alias",
+    "retained_identity_sources": [
+     "recon/symbolized/app/qspi_nor_configure.c"
+    ]
+   },
+   "upstream_alias": "qspi_nor_init"
+  },
+  {
+   "blockers": [],
+   "capped_size": 364,
+   "catalog_size": 364,
+   "current_symbol": "storage_read_with_word_cache",
+   "discovery_candidates": [
+    "FUN_00061070",
+    "storage_read_with_word_cache"
+   ],
+   "emitted_root": true,
+   "link_symbol": "storage_read_with_word_cache",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00061070",
+   "original_va": "0x00061070",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b6f0",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/storage_read_with_word_cache.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/storage_read_with_word_cache.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 136,
+   "catalog_size": 136,
+   "current_symbol": "gpio_manage_callback",
+   "discovery_candidates": [
+    "FUN_000613c4",
+    "gpio_manage_callback"
+   ],
+   "emitted_root": true,
+   "link_symbol": "gpio_manage_callback",
+   "live_candidate_owners": {},
+   "original_name": "FUN_000613c4",
+   "original_va": "0x000613c4",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8b6f4",
+     "pointer_va": "0x0008b764",
+     "source": "recon/data/rodata_0x8b6f4.c",
+     "table": "0x0008b6f4"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/gpio_manage_callback.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/gpio_manage_callback.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 152,
+   "catalog_size": 152,
+   "current_symbol": "FUN_00061ba0",
+   "discovery_candidates": [
+    "FUN_00061ba0"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00061ba0",
+   "original_va": "0x00061ba0",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8b854",
+     "pointer_va": "0x0008b860",
+     "source": "recon/data/rodata_0x8b854.c",
+     "table": "0x0008b854"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 74,
+   "catalog_size": 74,
+   "current_symbol": "FUN_00061c40",
+   "discovery_candidates": [
+    "FUN_00061c40"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00061c40",
+   "original_va": "0x00061c40",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b850",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00061c40.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 78,
+   "catalog_size": 78,
+   "current_symbol": "FUN_00062070",
+   "discovery_candidates": [
+    "FUN_00062070"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00062070",
+   "original_va": "0x00062070",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x00098c28",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00062070.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 200,
+   "catalog_size": 200,
+   "current_symbol": "FUN_000620cc",
+   "discovery_candidates": [
+    "FUN_000620cc"
+   ],
+   "emitted_root": false,
+   "link_symbol": "regulator_npm1300_common_init",
+   "live_candidate_owners": {},
+   "original_name": "FUN_000620cc",
+   "original_va": "0x000620cc",
+   "pointer_occurrences": [
+    {
+     "class": "init_entry",
+     "owner": "regulator_npm1300_common_init",
+     "pointer_va": "0x00087ad0",
+     "source": "zephyr/drivers/regulator/regulator_npm1300.c",
+     "table": "POST_KERNEL"
+    }
+   ],
+   "resolution": "resolved_existing_stock_alias",
+   "source_ownership": {
+    "exact_source": "zephyr/drivers/regulator/regulator_npm1300.c",
+    "kind": "stock_alias",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_000620cc.c"
+    ]
+   },
+   "upstream_alias": "regulator_npm1300_common_init"
+  },
+  {
+   "blockers": [],
+   "capped_size": 222,
+   "catalog_size": 222,
+   "current_symbol": "FUN_00062930",
+   "discovery_candidates": [
+    "FUN_00062930"
+   ],
+   "emitted_root": false,
+   "link_symbol": "opt3001_init",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00062930",
+   "original_va": "0x00062930",
+   "pointer_occurrences": [
+    {
+     "class": "init_entry",
+     "owner": "opt3001_init",
+     "pointer_va": "0x00087b00",
+     "source": "zephyr/drivers/sensor/opt3001/opt3001.c",
+     "table": "POST_KERNEL"
+    }
+   ],
+   "resolution": "resolved_existing_stock_alias",
+   "source_ownership": {
+    "exact_source": "zephyr/drivers/sensor/opt3001/opt3001.c",
+    "kind": "stock_alias",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00062930.c"
+    ]
+   },
+   "upstream_alias": "opt3001_init"
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 310,
+   "catalog_size": 310,
+   "current_symbol": "FUN_00062c54",
+   "discovery_candidates": [
+    "FUN_00062c54"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00062c54",
+   "original_va": "0x00062c54",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f98ec",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00062c54.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 370,
+   "catalog_size": 370,
+   "current_symbol": "FUN_00062d9c",
+   "discovery_candidates": [
+    "FUN_00062d9c"
+   ],
+   "emitted_root": false,
+   "link_symbol": "uarte_0_init",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00062d9c",
+   "original_va": "0x00062d9c",
+   "pointer_occurrences": [
+    {
+     "class": "init_entry",
+     "owner": "uarte_nrfx_init",
+     "pointer_va": "0x00087a28",
+     "source": "zephyr/drivers/serial/uart_nrfx_uarte.c",
+     "table": "PRE_KERNEL_1"
+    }
+   ],
+   "resolution": "resolved_existing_stock_alias",
+   "source_ownership": {
+    "exact_source": "zephyr/drivers/serial/uart_nrfx_uarte.c",
+    "kind": "stock_alias",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00062d9c.c"
+    ]
+   },
+   "upstream_alias": "uarte_0_init"
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 186,
+   "catalog_size": 186,
+   "current_symbol": "FUN_00062f28",
+   "discovery_candidates": [
+    "FUN_00062f28"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00062f28",
+   "original_va": "0x00062f28",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008bb38",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00062f28.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 306,
+   "catalog_size": 306,
+   "current_symbol": "FUN_00062fe8",
+   "discovery_candidates": [
+    "FUN_00062fe8"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00062fe8",
+   "original_va": "0x00062fe8",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008bb28",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00062fe8.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 870,
+   "catalog_size": 870,
+   "current_symbol": "uarte_nrfx_isr",
+   "discovery_candidates": [
+    "FUN_0006312c",
+    "uarte_nrfx_isr"
+   ],
+   "emitted_root": false,
+   "link_symbol": "uarte_nrfx_isr_int",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0006312c",
+   "original_va": "0x0006312c",
+   "pointer_occurrences": [
+    {
+     "class": "sw_isr_entry",
+     "owner": "uarte_nrfx_isr",
+     "pointer_va": "0x00087de4",
+     "source": "recon/catalogs/app_root_inventory.json",
+     "table": "irq_8"
+    }
+   ],
+   "resolution": "resolved_existing_stock_alias",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "stock_alias",
+    "retained_identity_sources": [
+     "recon/symbolized/app/uarte_nrfx_isr.c"
+    ]
+   },
+   "upstream_alias": "uarte_nrfx_isr_int"
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 76,
+   "catalog_size": 76,
+   "current_symbol": "FUN_00063984",
+   "discovery_candidates": [
+    "FUN_00063984"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00063984",
+   "original_va": "0x00063984",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8bb5c",
+     "pointer_va": "0x0008bb64",
+     "source": "recon/data/rodata_0x8bb5c.c",
+     "table": "0x0008bb5c"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00063984.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 174,
+   "catalog_size": 174,
+   "current_symbol": "FUN_000639d4",
+   "discovery_candidates": [
+    "FUN_000639d4"
+   ],
+   "emitted_root": false,
+   "link_symbol": "wdt_npm1300_init",
+   "live_candidate_owners": {},
+   "original_name": "FUN_000639d4",
+   "original_va": "0x000639d4",
+   "pointer_occurrences": [
+    {
+     "class": "init_entry",
+     "owner": "wdt_npm1300_init",
+     "pointer_va": "0x00087ac8",
+     "source": "zephyr/drivers/watchdog/wdt_npm1300.c",
+     "table": "POST_KERNEL"
+    }
+   ],
+   "resolution": "resolved_existing_stock_alias",
+   "source_ownership": {
+    "exact_source": "zephyr/drivers/watchdog/wdt_npm1300.c",
+    "kind": "stock_alias",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_000639d4.c"
+    ]
+   },
+   "upstream_alias": "wdt_npm1300_init"
+  },
+  {
+   "blockers": [
+    "retained definition owner count is 0"
+   ],
+   "capped_size": 50,
+   "catalog_size": 50,
+   "current_symbol": "wdt_event_handler",
+   "discovery_candidates": [
+    "FUN_00063b40",
+    "wdt_event_handler"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "wdt_event_handler",
+   "original_va": "0x00063b40",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x63b38",
+     "pointer_va": "0x00063b38",
+     "source": "recon/data/rodata_0x63b38.c",
+     "table": "0x00063b38"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 394,
+   "catalog_size": 394,
+   "current_symbol": "gpiote_irq_handler",
+   "discovery_candidates": [
+    "FUN_00065b9c",
+    "gpiote_irq_handler"
+   ],
+   "emitted_root": false,
+   "link_symbol": "nrfx_gpiote_irq_handler",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00065b9c",
+   "original_va": "0x00065b9c",
+   "pointer_occurrences": [
+    {
+     "class": "sw_isr_entry",
+     "owner": "gpio_nrfx_isr",
+     "pointer_va": "0x00087e08",
+     "source": "recon/catalogs/app_root_inventory.json",
+     "table": "irq_13"
+    }
+   ],
+   "resolution": "resolved_existing_stock_alias",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "stock_alias",
+    "retained_identity_sources": [
+     "recon/symbolized/app/gpiote_irq_handler.c"
+    ]
+   },
+   "upstream_alias": "nrfx_gpiote_irq_handler"
+  },
+  {
+   "blockers": [
+    "retained definition owner count is 0"
+   ],
+   "capped_size": 98,
+   "catalog_size": 98,
+   "current_symbol": "lc3_load_s24_3le",
+   "discovery_candidates": [
+    "FUN_00068d2c",
+    "lc3_load_s24_3le",
+    "load_s24_3le"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00068d2c",
+   "original_va": "0x00068d2c",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8bc60",
+     "pointer_va": "0x0008bc90",
+     "source": "recon/data/rodata_0x8bc60.c",
+     "table": "0x0008bc60"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
+    "kind": "reviewed_upstream_owner",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": "load_s24_3le"
+  },
+  {
+   "blockers": [
+    "retained definition owner count is 0"
+   ],
+   "capped_size": 88,
+   "catalog_size": 88,
+   "current_symbol": "lc3_load_s24",
+   "discovery_candidates": [
+    "FUN_00068d90",
+    "lc3_load_s24",
+    "load_s24"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00068d90",
+   "original_va": "0x00068d90",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8bc60",
+     "pointer_va": "0x0008bc8c",
+     "source": "recon/data/rodata_0x8bc60.c",
+     "table": "0x0008bc60"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
+    "kind": "reviewed_upstream_owner",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": "load_s24"
+  },
+  {
+   "blockers": [
+    "retained definition owner count is 0"
+   ],
+   "capped_size": 86,
+   "catalog_size": 86,
+   "current_symbol": "lc3_load_float",
+   "discovery_candidates": [
+    "FUN_00068de8",
+    "lc3_load_float",
+    "load_float"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00068de8",
+   "original_va": "0x00068de8",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8bc60",
+     "pointer_va": "0x0008bc94",
+     "source": "recon/data/rodata_0x8bc60.c",
+     "table": "0x0008bc60"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
+    "kind": "reviewed_upstream_owner",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": "load_float"
+  },
+  {
+   "blockers": [
+    "retained definition owner count is 0"
+   ],
+   "capped_size": 282,
+   "catalog_size": 282,
+   "current_symbol": "lc3_ltpf_arm_resample_24k_12k8",
+   "discovery_candidates": [
+    "FUN_0006a700",
+    "arm_resample_24k_12k8",
+    "lc3_ltpf_arm_resample_24k_12k8"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0006a700",
+   "original_va": "0x0006a700",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8c938",
+     "pointer_va": "0x0008c940",
+     "source": "recon/data/rodata_0x8c938.c",
+     "table": "0x0008c938"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
+    "kind": "reviewed_upstream_owner",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": "arm_resample_24k_12k8"
+  },
+  {
+   "blockers": [
+    "retained definition owner count is 0"
+   ],
+   "capped_size": 214,
+   "catalog_size": 214,
+   "current_symbol": "lc3_ltpf_arm_resample_8k_12k8",
+   "discovery_candidates": [
+    "FUN_0006aa98",
+    "arm_resample_8k_12k8",
+    "lc3_ltpf_arm_resample_48k_12k8",
+    "lc3_ltpf_arm_resample_8k_12k8"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0006aa98",
+   "original_va": "0x0006aa98",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8c938",
+     "pointer_va": "0x0008c938",
+     "source": "recon/data/rodata_0x8c938.c",
+     "table": "0x0008c938"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
+    "kind": "reviewed_upstream_owner",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": "arm_resample_8k_12k8"
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 200,
+   "catalog_size": 200,
+   "current_symbol": "FUN_000710b4",
+   "discovery_candidates": [
+    "FUN_000710b4"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_000710b4",
+   "original_va": "0x000710b4",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_00071358",
+     "pointer_va": "0x0007153c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_000710b4.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 252,
+   "catalog_size": 252,
+   "current_symbol": "FUN_0007118c",
+   "discovery_candidates": [
+    "FUN_0007118c"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0007118c",
+   "original_va": "0x0007118c",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_00071358",
+     "pointer_va": "0x0007154c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0007118c.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 112,
+   "catalog_size": 112,
+   "current_symbol": "FUN_00071294",
+   "discovery_candidates": [
+    "FUN_00071294"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00071294",
+   "original_va": "0x00071294",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_00071358",
+     "pointer_va": "0x0007152c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00071294.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "candidate alias has multiple live ELF owners"
+   ],
+   "capped_size": 24,
+   "catalog_size": 24,
+   "current_symbol": "mutex_init",
+   "discovery_candidates": [
+    "FUN_00079760",
+    "mutex_init"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {
+    "mutex_init": [
+     {
+      "binding": "STB_LOCAL",
+      "type": "STT_FUNC",
+      "value": "0x000678d9"
+     },
+     {
+      "binding": "STB_GLOBAL",
+      "type": "STT_FUNC",
+      "value": "0x00068661"
+     }
+    ]
+   },
+   "original_name": "mutex_init",
+   "original_va": "0x00079760",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f9c70",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "ambiguous_live_owner_rejected",
+   "source_ownership": {
+    "exact_source": "nrf_cc3xx_platform_mutex.c.obj",
+    "kind": "reviewed_upstream_owner",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": "mutex_init"
+  },
+  {
+   "blockers": [],
+   "capped_size": 38,
+   "catalog_size": 38,
+   "current_symbol": "out",
+   "discovery_candidates": [
+    "FUN_0007dd7e",
+    "out"
+   ],
+   "emitted_root": true,
+   "link_symbol": "out",
+   "live_candidate_owners": {},
+   "original_name": "out",
+   "original_va": "0x0007dd7e",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "vsnprintk",
+     "pointer_va": "0x0004b210",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/out.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/out.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 124,
+   "catalog_size": 124,
+   "current_symbol": "FUN_0007ea64",
+   "discovery_candidates": [
+    "FUN_0007ea64"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0007ea64",
+   "original_va": "0x0007ea64",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8ac20",
+     "pointer_va": "0x0008ac60",
+     "source": "recon/data/rodata_0x8ac20.c",
+     "table": "0x0008ac20"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 34,
+   "catalog_size": 34,
+   "current_symbol": "FUN_0007eb5c",
+   "discovery_candidates": [
+    "FUN_0007eb5c"
+   ],
+   "emitted_root": false,
+   "link_symbol": "ipc_static_vrings_init",
+   "live_candidate_owners": {},
+   "original_name": "FUN_0007eb5c",
+   "original_va": "0x0007eb5c",
+   "pointer_occurrences": [
+    {
+     "class": "init_entry",
+     "owner": "ipc_static_vrings_init",
+     "pointer_va": "0x00087a78",
+     "source": "zephyr/subsys/ipc/ipc_service/backends/ipc_rpmsg_static_vrings.c",
+     "table": "POST_KERNEL"
+    }
+   ],
+   "resolution": "resolved_existing_stock_alias",
+   "source_ownership": {
+    "exact_source": "zephyr/subsys/ipc/ipc_service/backends/ipc_rpmsg_static_vrings.c",
+    "kind": "stock_alias",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": "ipc_static_vrings_init"
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 112,
+   "catalog_size": 112,
+   "current_symbol": "FUN_0007eb7e",
+   "discovery_candidates": [
+    "FUN_0007eb7e"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0007eb7e",
+   "original_va": "0x0007eb7e",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_0004cd4c",
+     "pointer_va": "0x0004cef8",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 182,
+   "catalog_size": 182,
+   "current_symbol": "FUN_0007ec0e",
+   "discovery_candidates": [
+    "FUN_0007ec0e"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0007ec0e",
+   "original_va": "0x0007ec0e",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8ac20",
+     "pointer_va": "0x0008ac4c",
+     "source": "recon/data/rodata_0x8ac20.c",
+     "table": "0x0008ac20"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 52,
+   "catalog_size": 52,
+   "current_symbol": "FUN_0007ecf2",
+   "discovery_candidates": [
+    "FUN_0007ecf2"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0007ecf2",
+   "original_va": "0x0007ecf2",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8ac20",
+     "pointer_va": "0x0008ac58",
+     "source": "recon/data/rodata_0x8ac20.c",
+     "table": "0x0008ac20"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 14,
+   "catalog_size": 14,
+   "current_symbol": "FUN_0007eec0",
+   "discovery_candidates": [
+    "FUN_0007eec0"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0007eec0",
+   "original_va": "0x0007eec0",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x4dd94",
+     "pointer_va": "0x0004ddd8",
+     "source": "recon/data/rodata_0x4dd94.c",
+     "table": "0x0004dd94"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0007eec0.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 284,
+   "catalog_size": 284,
+   "current_symbol": "FUN_0007f228",
+   "discovery_candidates": [
+    "FUN_0007f228"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0007f228",
+   "original_va": "0x0007f228",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f9568",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 106,
+   "catalog_size": 106,
+   "current_symbol": "FUN_0007f634",
+   "discovery_candidates": [
+    "FUN_0007f634"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0007f634",
+   "original_va": "0x0007f634",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x4f0e0",
+     "pointer_va": "0x0004f0e0",
+     "source": "recon/data/rodata_0x4f0e0.c",
+     "table": "0x0004f0e0"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 50,
+   "catalog_size": 50,
+   "current_symbol": "FUN_0007f894",
+   "discovery_candidates": [
+    "FUN_0007f894"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0007f894",
+   "original_va": "0x0007f894",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x4f4b8",
+     "pointer_va": "0x0004f4b8",
+     "source": "recon/data/rodata_0x4f4b8.c",
+     "table": "0x0004f4b8"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0007f894.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 20,
+   "catalog_size": 20,
+   "current_symbol": "z_impl_net_if_ipv6_addr_rm_by_index",
+   "discovery_candidates": [
+    "FUN_00080c8c",
+    "z_impl_net_if_ipv6_addr_rm_by_index"
+   ],
+   "emitted_root": true,
+   "link_symbol": "z_impl_net_if_ipv6_addr_rm_by_index",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00080c8c",
+   "original_va": "0x00080c8c",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x52980",
+     "pointer_va": "0x00052984",
+     "source": "recon/data/rodata_0x52980.c",
+     "table": "0x00052980"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/z_impl_net_if_ipv6_addr_rm_by_index.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/z_impl_net_if_ipv6_addr_rm_by_index.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 46,
+   "catalog_size": 46,
+   "current_symbol": "bt_le_adv_clear_pending_flag",
+   "discovery_candidates": [
+    "FUN_00081080",
+    "bt_le_adv_clear_pending_flag"
+   ],
+   "emitted_root": true,
+   "link_symbol": "bt_le_adv_clear_pending_flag",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00081080",
+   "original_va": "0x00081080",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x54fe4",
+     "pointer_va": "0x00055000",
+     "source": "recon/data/rodata_0x54fe4.c",
+     "table": "0x00054fe4"
+    },
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x551dc",
+     "pointer_va": "0x000551f8",
+     "source": "recon/data/rodata_0x551dc.c",
+     "table": "0x000551dc"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/bt_le_adv_clear_pending_flag.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/bt_le_adv_clear_pending_flag.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 30,
+   "catalog_size": 30,
+   "current_symbol": "FUN_0008142c",
+   "discovery_candidates": [
+    "FUN_0008142c"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0008142c",
+   "original_va": "0x0008142c",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x56954",
+     "pointer_va": "0x0005699c",
+     "source": "recon/data/rodata_0x56954.c",
+     "table": "0x00056954"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 100,
+   "catalog_size": 100,
+   "current_symbol": "att_send_with_retry",
+   "discovery_candidates": [
+    "FUN_000818dc",
+    "att_send_with_retry"
+   ],
+   "emitted_root": true,
+   "link_symbol": "att_send_with_retry",
+   "live_candidate_owners": {},
+   "original_name": "FUN_000818dc",
+   "original_va": "0x000818dc",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x574e4",
+     "pointer_va": "0x00057520",
+     "source": "recon/data/rodata_0x574e4.c",
+     "table": "0x000574e4"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/att_send_with_retry.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/att_send_with_retry.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 22,
+   "catalog_size": 22,
+   "current_symbol": "FUN_00081a60",
+   "discovery_candidates": [
+    "FUN_00081a60"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00081a60",
+   "original_va": "0x00081a60",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x57738",
+     "pointer_va": "0x00057748",
+     "source": "recon/data/rodata_0x57738.c",
+     "table": "0x00057738"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00081a60.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 84,
+   "catalog_size": 84,
+   "current_symbol": "FUN_00081a76",
+   "discovery_candidates": [
+    "FUN_00081a76"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00081a76",
+   "original_va": "0x00081a76",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x57738",
+     "pointer_va": "0x00057744",
+     "source": "recon/data/rodata_0x57738.c",
+     "table": "0x00057738"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00081a76.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 98,
+   "catalog_size": 98,
+   "current_symbol": "FUN_00081c8c",
+   "discovery_candidates": [
+    "FUN_00081c8c"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00081c8c",
+   "original_va": "0x00081c8c",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_00058c34",
+     "pointer_va": "0x00058cf8",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 114,
+   "catalog_size": 114,
+   "current_symbol": "FUN_00081fbe",
+   "discovery_candidates": [
+    "FUN_00081fbe"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00081fbe",
+   "original_va": "0x00081fbe",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_0005929c",
+     "pointer_va": "0x00059340",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 44,
+   "catalog_size": 44,
+   "current_symbol": "FUN_00082282",
+   "discovery_candidates": [
+    "FUN_00082282"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00082282",
+   "original_va": "0x00082282",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b300",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00082282.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 64,
+   "catalog_size": 64,
+   "current_symbol": "FUN_000822bc",
+   "discovery_candidates": [
+    "FUN_000822bc"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_000822bc",
+   "original_va": "0x000822bc",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8b264",
+     "pointer_va": "0x0008b29c",
+     "source": "recon/data/rodata_0x8b264.c",
+     "table": "0x0008b264"
+    },
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8b264",
+     "pointer_va": "0x0008b2a8",
+     "source": "recon/data/rodata_0x8b264.c",
+     "table": "0x0008b264"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 32,
+   "catalog_size": 32,
+   "current_symbol": "FUN_00082326",
+   "discovery_candidates": [
+    "FUN_00082326"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00082326",
+   "original_va": "0x00082326",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8b264",
+     "pointer_va": "0x0008b2ac",
+     "source": "recon/data/rodata_0x8b264.c",
+     "table": "0x0008b264"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00082326.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 100,
+   "catalog_size": 100,
+   "current_symbol": "FUN_00082396",
+   "discovery_candidates": [
+    "FUN_00082396"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00082396",
+   "original_va": "0x00082396",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8b264",
+     "pointer_va": "0x0008b2b8",
+     "source": "recon/data/rodata_0x8b264.c",
+     "table": "0x0008b264"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00082396.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 84,
+   "catalog_size": 84,
+   "current_symbol": "FUN_00082c48",
+   "discovery_candidates": [
+    "FUN_00082c48"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00082c48",
+   "original_va": "0x00082c48",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8ac20",
+     "pointer_va": "0x0008ad30",
+     "source": "recon/data/rodata_0x8ac20.c",
+     "table": "0x0008ac20"
+    },
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008ad6c",
+     "source": null,
+     "table": null
+    },
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8b3b4",
+     "pointer_va": "0x0008b3cc",
+     "source": "recon/data/rodata_0x8b3b4.c",
+     "table": "0x0008b3b4"
+    },
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b408",
+     "source": null,
+     "table": null
+    },
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b430",
+     "source": null,
+     "table": null
+    },
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b46c",
+     "source": null,
+     "table": null
+    },
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b494",
+     "source": null,
+     "table": null
+    },
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b4bc",
+     "source": null,
+     "table": null
+    },
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f9640",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 154,
+   "catalog_size": 154,
+   "current_symbol": "FUN_00082d6a",
+   "discovery_candidates": [
+    "FUN_00082d6a"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00082d6a",
+   "original_va": "0x00082d6a",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5bbac",
+     "pointer_va": "0x0005bbd0",
+     "source": "recon/data/rodata_0x5bbac.c",
+     "table": "0x0005bbac"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 32,
+   "catalog_size": 188,
+   "current_symbol": "l2cap_reassemble_frag",
+   "discovery_candidates": [
+    "FUN_00082e04",
+    "l2cap_reassemble_frag"
+   ],
+   "emitted_root": true,
+   "link_symbol": "l2cap_reassemble_frag",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00082e04",
+   "original_va": "0x00082e04",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5c2e8",
+     "pointer_va": "0x0005c300",
+     "source": "recon/data/rodata_0x5c2e8.c",
+     "table": "0x0005c2e8"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/l2cap_reassemble_frag.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/l2cap_reassemble_frag.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 44,
+   "catalog_size": 44,
+   "current_symbol": "FUN_00082fa6",
+   "discovery_candidates": [
+    "FUN_00082fa6"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00082fa6",
+   "original_va": "0x00082fa6",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5a9ac",
+     "pointer_va": "0x0005a9c8",
+     "source": "recon/data/rodata_0x5a9ac.c",
+     "table": "0x0005a9ac"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00082fa6.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "candidate alias has multiple live ELF owners"
+   ],
+   "capped_size": 34,
+   "catalog_size": 34,
+   "current_symbol": "convert_to_id_on_match",
+   "discovery_candidates": [
+    "FUN_000831e2",
+    "convert_to_id_on_match"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {
+    "convert_to_id_on_match": [
+     {
+      "binding": "STB_LOCAL",
+      "type": "STT_FUNC",
+      "value": "0x00055cb5"
+     },
+     {
+      "binding": "STB_LOCAL",
+      "type": "STT_FUNC",
+      "value": "0x000720bf"
+     }
+    ]
+   },
+   "original_name": "FUN_000831e2",
+   "original_va": "0x000831e2",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5e054",
+     "pointer_va": "0x0005e068",
+     "source": "recon/data/rodata_0x5e054.c",
+     "table": "0x0005e054"
+    }
+   ],
+   "resolution": "ambiguous_live_owner_rejected",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/convert_to_id_on_match.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 144,
+   "catalog_size": 144,
+   "current_symbol": "FUN_0008349c",
+   "discovery_candidates": [
+    "FUN_0008349c"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0008349c",
+   "original_va": "0x0008349c",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x5cca8",
+     "pointer_va": "0x0005cca8",
+     "source": "recon/data/rodata_0x5cca8.c",
+     "table": "0x0005cca8"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0008349c.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 102,
+   "catalog_size": 102,
+   "current_symbol": "FUN_0008352c",
+   "discovery_candidates": [
+    "FUN_0008352c"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0008352c",
+   "original_va": "0x0008352c",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b4e4",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 42,
+   "catalog_size": 42,
+   "current_symbol": "FUN_00083778",
+   "discovery_candidates": [
+    "FUN_00083778"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00083778",
+   "original_va": "0x00083778",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f8f1c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00083778.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 88,
+   "catalog_size": 88,
+   "current_symbol": "FUN_000839fe",
+   "discovery_candidates": [
+    "FUN_000839fe"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_000839fe",
+   "original_va": "0x000839fe",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8b6f4",
+     "pointer_va": "0x0008b70c",
+     "source": "recon/data/rodata_0x8b6f4.c",
+     "table": "0x0008b6f4"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_000839fe.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 56,
+   "catalog_size": 56,
+   "current_symbol": "dev_write_bits5_diff",
+   "discovery_candidates": [
+    "FUN_00083b62",
+    "dev_write_bits5_diff"
+   ],
+   "emitted_root": true,
+   "link_symbol": "dev_write_bits5_diff",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00083b62",
+   "original_va": "0x00083b62",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b77c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/dev_write_bits5_diff.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/dev_write_bits5_diff.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 36,
+   "catalog_size": 36,
+   "current_symbol": "dev_read_bits5",
+   "discovery_candidates": [
+    "FUN_00083ba6",
+    "dev_read_bits5"
+   ],
+   "emitted_root": true,
+   "link_symbol": "dev_read_bits5",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00083ba6",
+   "original_va": "0x00083ba6",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b778",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/dev_read_bits5.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/dev_read_bits5.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 38,
+   "catalog_size": 38,
+   "current_symbol": "dev_update_bits5",
+   "discovery_candidates": [
+    "FUN_00083bca",
+    "dev_update_bits5"
+   ],
+   "emitted_root": true,
+   "link_symbol": "dev_update_bits5",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00083bca",
+   "original_va": "0x00083bca",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b788",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/dev_update_bits5.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/dev_update_bits5.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 196,
+   "catalog_size": 196,
+   "current_symbol": "dev_write_config_word",
+   "discovery_candidates": [
+    "FUN_00083bf0",
+    "dev_write_config_word"
+   ],
+   "emitted_root": true,
+   "link_symbol": "dev_write_config_word",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00083bf0",
+   "original_va": "0x00083bf0",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b774",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/dev_write_config_word.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/dev_write_config_word.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 22,
+   "catalog_size": 22,
+   "current_symbol": "flash_area_has_driver",
+   "discovery_candidates": [
+    "FUN_00083cb4",
+    "flash_area_has_driver"
+   ],
+   "emitted_root": false,
+   "link_symbol": "gpio_npm1300_init",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00083cb4",
+   "original_va": "0x00083cb4",
+   "pointer_occurrences": [
+    {
+     "class": "init_entry",
+     "owner": "gpio_npm1300_init",
+     "pointer_va": "0x00087ac0",
+     "source": "zephyr/drivers/gpio/gpio_npm1300.c",
+     "table": "POST_KERNEL"
+    }
+   ],
+   "resolution": "resolved_existing_stock_alias",
+   "source_ownership": {
+    "exact_source": "zephyr/drivers/gpio/gpio_npm1300.c",
+    "kind": "stock_alias",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": "gpio_npm1300_init"
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 56,
+   "catalog_size": 56,
+   "current_symbol": "FUN_00083cfc",
+   "discovery_candidates": [
+    "FUN_00083cfc"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00083cfc",
+   "original_va": "0x00083cfc",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f9854",
+     "source": null,
+     "table": null
+    },
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x000f989c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00083cfc.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 64,
+   "catalog_size": 64,
+   "current_symbol": "regulator_set_voltage_dispatch",
+   "discovery_candidates": [
+    "FUN_00084348",
+    "regulator_set_voltage_dispatch"
+   ],
+   "emitted_root": true,
+   "link_symbol": "regulator_set_voltage_dispatch",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00084348",
+   "original_va": "0x00084348",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b9b4",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/regulator_set_voltage_dispatch.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/regulator_set_voltage_dispatch.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 144,
+   "catalog_size": 144,
+   "current_symbol": "dev_configure_channel",
+   "discovery_candidates": [
+    "FUN_00084418",
+    "dev_configure_channel"
+   ],
+   "emitted_root": false,
+   "link_symbol": "regulator_npm1300_init",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00084418",
+   "original_va": "0x00084418",
+   "pointer_occurrences": [
+    {
+     "class": "init_entry",
+     "owner": "regulator_npm1300_init",
+     "pointer_va": "0x00087ad8",
+     "source": "zephyr/drivers/regulator/regulator_npm1300.c",
+     "table": "POST_KERNEL"
+    },
+    {
+     "class": "init_entry",
+     "owner": "regulator_npm1300_init",
+     "pointer_va": "0x00087ae0",
+     "source": "zephyr/drivers/regulator/regulator_npm1300.c",
+     "table": "POST_KERNEL"
+    },
+    {
+     "class": "init_entry",
+     "owner": "regulator_npm1300_init",
+     "pointer_va": "0x00087ae8",
+     "source": "zephyr/drivers/regulator/regulator_npm1300.c",
+     "table": "POST_KERNEL"
+    },
+    {
+     "class": "init_entry",
+     "owner": "regulator_npm1300_init",
+     "pointer_va": "0x00087af0",
+     "source": "zephyr/drivers/regulator/regulator_npm1300.c",
+     "table": "POST_KERNEL"
+    }
+   ],
+   "resolution": "resolved_existing_stock_alias",
+   "source_ownership": {
+    "exact_source": "zephyr/drivers/regulator/regulator_npm1300.c",
+    "kind": "stock_alias",
+    "retained_identity_sources": [
+     "recon/symbolized/app/dev_configure_channel.c"
+    ]
+   },
+   "upstream_alias": "regulator_npm1300_init"
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 56,
+   "catalog_size": 56,
+   "current_symbol": "FUN_000844a8",
+   "discovery_candidates": [
+    "FUN_000844a8"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_000844a8",
+   "original_va": "0x000844a8",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b9dc",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_000844a8.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 54,
+   "catalog_size": 54,
+   "current_symbol": "FUN_000844e0",
+   "discovery_candidates": [
+    "FUN_000844e0"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_000844e0",
+   "original_va": "0x000844e0",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008b9d8",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_000844e0.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 156,
+   "catalog_size": 156,
+   "current_symbol": "FUN_00084516",
+   "discovery_candidates": [
+    "FUN_00084516"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00084516",
+   "original_va": "0x00084516",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008ba08",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00084516.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 82,
+   "catalog_size": 82,
+   "current_symbol": "driver_register_callback_locked",
+   "discovery_candidates": [
+    "FUN_000848d2",
+    "driver_register_callback_locked"
+   ],
+   "emitted_root": true,
+   "link_symbol": "driver_register_callback_locked",
+   "live_candidate_owners": {},
+   "original_name": "FUN_000848d2",
+   "original_va": "0x000848d2",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008bb2c",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/driver_register_callback_locked.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/driver_register_callback_locked.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 50,
+   "catalog_size": 50,
+   "current_symbol": "FUN_0008493a",
+   "discovery_candidates": [
+    "FUN_0008493a"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_0008493a",
+   "original_va": "0x0008493a",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008bb34",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_0008493a.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 74,
+   "catalog_size": 74,
+   "current_symbol": "nvs_timer_arm_and_mark_dirty",
+   "discovery_candidates": [
+    "FUN_000849da",
+    "nvs_timer_arm_and_mark_dirty"
+   ],
+   "emitted_root": true,
+   "link_symbol": "nvs_timer_arm_and_mark_dirty",
+   "live_candidate_owners": {},
+   "original_name": "FUN_000849da",
+   "original_va": "0x000849da",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008bb30",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/nvs_timer_arm_and_mark_dirty.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/nvs_timer_arm_and_mark_dirty.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 166,
+   "catalog_size": 166,
+   "current_symbol": "flowctl_schedule_next_send",
+   "discovery_candidates": [
+    "FUN_00084b86",
+    "flowctl_schedule_next_send"
+   ],
+   "emitted_root": true,
+   "link_symbol": "flowctl_schedule_next_send",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00084b86",
+   "original_va": "0x00084b86",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x62f10",
+     "pointer_va": "0x00062f20",
+     "source": "recon/data/rodata_0x62f10.c",
+     "table": "0x00062f10"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/flowctl_schedule_next_send.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/flowctl_schedule_next_send.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 42,
+   "catalog_size": 42,
+   "current_symbol": "driver_stop_active_timer",
+   "discovery_candidates": [
+    "FUN_00084c2c",
+    "driver_stop_active_timer"
+   ],
+   "emitted_root": true,
+   "link_symbol": "driver_stop_active_timer",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00084c2c",
+   "original_va": "0x00084c2c",
+   "pointer_occurrences": [
+    {
+     "class": "post_init_gap",
+     "owner": "FUN_00087996",
+     "pointer_va": "0x0008bb24",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/driver_stop_active_timer.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/driver_stop_active_timer.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 22,
+   "catalog_size": 22,
+   "current_symbol": "FUN_00084c7e",
+   "discovery_candidates": [
+    "FUN_00084c7e"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00084c7e",
+   "original_va": "0x00084c7e",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8bb5c",
+     "pointer_va": "0x0008bb68",
+     "source": "recon/data/rodata_0x8bb5c.c",
+     "table": "0x0008bb5c"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00084c7e.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 28,
+   "catalog_size": 28,
+   "current_symbol": "FUN_00084c94",
+   "discovery_candidates": [
+    "FUN_00084c94"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00084c94",
+   "original_va": "0x00084c94",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8bb5c",
+     "pointer_va": "0x0008bb60",
+     "source": "recon/data/rodata_0x8bb5c.c",
+     "table": "0x0008bb5c"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00084c94.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 36,
+   "catalog_size": 36,
+   "current_symbol": "FUN_00084cb0",
+   "discovery_candidates": [
+    "FUN_00084cb0"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00084cb0",
+   "original_va": "0x00084cb0",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x8bb5c",
+     "pointer_va": "0x0008bb5c",
+     "source": "recon/data/rodata_0x8bb5c.c",
+     "table": "0x0008bb5c"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00084cb0.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 24,
+   "catalog_size": 24,
+   "current_symbol": "reset_state_and_stop_timer",
+   "discovery_candidates": [
+    "FUN_00084d36",
+    "reset_state_and_stop_timer"
+   ],
+   "emitted_root": true,
+   "link_symbol": "reset_state_and_stop_timer",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00084d36",
+   "original_va": "0x00084d36",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_00063c3c",
+     "pointer_va": "0x00063fec",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/reset_state_and_stop_timer.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/reset_state_and_stop_timer.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 66,
+   "catalog_size": 66,
+   "current_symbol": "FUN_000859c2",
+   "discovery_candidates": [
+    "FUN_000859c2"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_000859c2",
+   "original_va": "0x000859c2",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_00071358",
+     "pointer_va": "0x00071540",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 152,
+   "catalog_size": 152,
+   "current_symbol": "FUN_00085a04",
+   "discovery_candidates": [
+    "FUN_00085a04"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00085a04",
+   "original_va": "0x00085a04",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_00071358",
+     "pointer_va": "0x00071558",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": []
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 82,
+   "catalog_size": 82,
+   "current_symbol": "FUN_00085a9c",
+   "discovery_candidates": [
+    "FUN_00085a9c"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00085a9c",
+   "original_va": "0x00085a9c",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_00071358",
+     "pointer_va": "0x00071534",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00085a9c.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 220,
+   "catalog_size": 220,
+   "current_symbol": "FUN_00085b0c",
+   "discovery_candidates": [
+    "FUN_00085b0c"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00085b0c",
+   "original_va": "0x00085b0c",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_00071358",
+     "pointer_va": "0x00071538",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00085b0c.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 6,
+   "catalog_size": 28,
+   "current_symbol": "cbor_decode_tstr",
+   "discovery_candidates": [
+    "FUN_00085f9c",
+    "cbor_decode_tstr"
+   ],
+   "emitted_root": true,
+   "link_symbol": "cbor_decode_tstr",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00085f9c",
+   "original_va": "0x00085f9c",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_000521fc",
+     "pointer_va": "0x00052530",
+     "source": null,
+     "table": null
+    },
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_000521fc",
+     "pointer_va": "0x000525e4",
+     "source": null,
+     "table": null
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/cbor_decode_tstr.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/cbor_decode_tstr.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 54,
+   "catalog_size": 54,
+   "current_symbol": "cbor_decode_bool",
+   "discovery_candidates": [
+    "FUN_00086006",
+    "cbor_decode_bool"
+   ],
+   "emitted_root": true,
+   "link_symbol": "cbor_decode_bool",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00086006",
+   "original_va": "0x00086006",
+   "pointer_occurrences": [
+    {
+     "class": "pre_init_gap",
+     "owner": "FUN_00051e9c",
+     "pointer_va": "0x00051f84",
+     "source": null,
+     "table": null
+    },
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x52404",
+     "pointer_va": "0x00052420",
+     "source": "recon/data/rodata_0x52404.c",
+     "table": "0x00052404"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/cbor_decode_bool.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/cbor_decode_bool.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 56,
+   "catalog_size": 88,
+   "current_symbol": "libc_stream_write_syscall",
+   "discovery_candidates": [
+    "FUN_00086f5a",
+    "libc_stream_write_syscall"
+   ],
+   "emitted_root": true,
+   "link_symbol": "libc_stream_write_syscall",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00086f5a",
+   "original_va": "0x00086f5a",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x76b3c",
+     "pointer_va": "0x00076b84",
+     "source": "recon/data/rodata_0x76b3c.c",
+     "table": "0x00076b3c"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/libc_stream_write_syscall.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/libc_stream_write_syscall.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [
+    "no reviewed human-readable symbol"
+   ],
+   "capped_size": 36,
+   "catalog_size": 36,
+   "current_symbol": "FUN_00086f92",
+   "discovery_candidates": [
+    "FUN_00086f92"
+   ],
+   "emitted_root": false,
+   "link_symbol": null,
+   "live_candidate_owners": {},
+   "original_name": "FUN_00086f92",
+   "original_va": "0x00086f92",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x76b3c",
+     "pointer_va": "0x00076b88",
+     "source": "recon/data/rodata_0x76b3c.c",
+     "table": "0x00076b3c"
+    }
+   ],
+   "resolution": "unresolved_report_only",
+   "source_ownership": {
+    "exact_source": null,
+    "kind": "catalog_only",
+    "retained_identity_sources": [
+     "recon/symbolized/app/FUN_00086f92.c"
+    ]
+   },
+   "upstream_alias": null
+  },
+  {
+   "blockers": [],
+   "capped_size": 58,
+   "catalog_size": 58,
+   "current_symbol": "stdio_reset_ungetc_buffer",
+   "discovery_candidates": [
+    "FUN_00087862",
+    "stdio_reset_ungetc_buffer"
+   ],
+   "emitted_root": true,
+   "link_symbol": "stdio_reset_ungetc_buffer",
+   "live_candidate_owners": {},
+   "original_name": "FUN_00087862",
+   "original_va": "0x00087862",
+   "pointer_occurrences": [
+    {
+     "class": "verified_pointer_table",
+     "owner": "rodata_0x79238",
+     "pointer_va": "0x00079240",
+     "source": "recon/data/rodata_0x79238.c",
+     "table": "0x00079238"
+    }
+   ],
+   "resolution": "emitted_unique_recovered_root",
+   "source_ownership": {
+    "exact_source": "recon/symbolized/app/stdio_reset_ungetc_buffer.c",
+    "kind": "retained_reconstruction",
+    "retained_identity_sources": [
+     "recon/symbolized/app/stdio_reset_ungetc_buffer.c"
+    ]
+   },
+   "upstream_alias": null
+  }
+ ],
+ "gates": {
+  "address_taken_identities": 303,
+  "post_init_or_collision_review_identities": 130,
+  "pre_init_only_identities": 69,
+  "unmaterialized_capped_bytes": 38076,
+  "unmaterialized_identities": 198
+ },
+ "inputs": {
+  "adoption_manifest": {
+   "path": "recon/ownership/adoption_manifest.json",
+   "sha256": "5122cb4d4dbf12cc48f974e8f77e7513269400bb17dba7f5c80e21986147128c"
+  },
+  "classified": {
+   "path": "recon/catalogs/classified.json.gz",
+   "sha256": "14a0dd8d0f18a33266e26cfa661cd1587608c94417ee6424840c133d5b29e8ee"
+  },
+  "function_names": {
+   "path": "recon/catalogs/function_names_app.json",
+   "sha256": "4086f8ebb2cd988e233dc4bdd79e42a3835b2743b2349783803f2436683034dc"
+  },
+  "image": {
+   "path": "app_update.bin",
+   "sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b"
+  },
+  "normal_gc_elf": {
+   "path": "/private/tmp/g1-cohesive-app-head-f49a3b86/zephyr/zephyr.elf",
+   "sha256": "6d22cc6d49d50e5174245bd0834759b50c6f4598000e74bbc1c914d40722456b"
+  }
+ },
+ "policy": "aligned Thumb pointers outside capped functions; named unique owners only; SDC report-only",
+ "schema": 1,
+ "status": "fail_closed",
+ "summary": {
+  "address_taken_identities": 303,
+  "ambiguous_rejected": 2,
+  "emitted_named_roots": 83,
+  "materialized_identities": 105,
+  "post_init_or_collision_review_identities": 130,
+  "post_init_pointer_identities": 129,
+  "pre_init_only_identities": 69,
+  "resolved_existing_stock_aliases": 11,
+  "union_call_closure_capped_bytes": 228062,
+  "union_call_closure_identities": 1608,
+  "unmaterialized_capped_bytes": 38076,
+  "unmaterialized_identities": 198
+ }
+}

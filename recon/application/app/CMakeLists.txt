@@ -75,6 +75,19 @@ else()
   foreach(_g1_root IN LISTS G1_RECOVERED_GC_ROOTS)
     zephyr_ld_options("-Wl,--undefined=${_g1_root}")
   endforeach()
+  # Original function pointers in callback/config tables are not necessarily
+  # represented by relocations in the recovered C tree.  This second ledger is
+  # generated from aligned Thumb words outside capped original function spans.
+  # Keep admission opt-in until final section placement has room for the added
+  # live closure; the generated inventory itself is always available to audit.
+  option(G1_ENABLE_ADDRESS_TAKEN_ROOTS
+    "Retain uniquely-owned recovered address-taken functions" OFF)
+  include(${CMAKE_CURRENT_LIST_DIR}/../../generated/app_address_taken_roots.cmake)
+  if(G1_ENABLE_ADDRESS_TAKEN_ROOTS)
+    foreach(_g1_root IN LISTS G1_ADDRESS_TAKEN_RECOVERED_ROOTS)
+      zephyr_ld_options("-Wl,--undefined=${_g1_root}")
+    endforeach()
+  endif()
   if(G1_UNRESOLVED_GC_ROOT_ADDRESSES)
     message(STATUS
       "CPUAPP root graph remains partial; unresolved firmware candidates: "
@@ -108,12 +121,22 @@ include(${CMAKE_CURRENT_LIST_DIR}/../../generated/app_retained_sources.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/../../generated/app_verified_data_sources.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/../../generated/app_fixed_verified_rodata.cmake)
 
+option(G1_ENABLE_FIXED_VERIFIED_RODATA
+  "Place the collision-free verified suffix at original firmware addresses" ON)
+
 # Only complete, byte-exact tables above the recorded normal-GC ROM end are
 # emitted by the fixed-address assembly.  Remove those C owners before adding
 # the generated owner so every symbol remains unique.  Tables that collide with
 # the current executable/SDK layout stay in ordinary garbage-collected rodata.
-list(REMOVE_ITEM G1_VERIFIED_DATA_SOURCES
-  ${G1_FIXED_VERIFIED_DATA_C_SOURCES})
+if(G1_ENABLE_FIXED_VERIFIED_RODATA)
+  list(REMOVE_ITEM G1_VERIFIED_DATA_SOURCES
+    ${G1_FIXED_VERIFIED_DATA_C_SOURCES})
+else()
+  # The ordinary byte-verified C owners stay live; only their fixed-address
+  # placement is disabled for closure/layout audits.
+  set(G1_FIXED_VERIFIED_DATA_ASM "")
+  set(G1_FIXED_VERIFIED_DATA_LINKER "")
+endif()
 
 # One retained, parity-proven translation unit records the original r9-bound
 # local with GCC's ``register ... asm("r9")`` spelling.  Zephyr's application
@@ -181,8 +204,10 @@ zephyr_linker_sources(SECTIONS
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_veneer_aliases.ld"
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_public_sdk_aliases.ld"
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_readable_aliases.ld"
-  "${G1_FIXED_VERIFIED_DATA_LINKER}"
 )
+if(G1_ENABLE_FIXED_VERIFIED_RODATA)
+  zephyr_linker_sources(SECTIONS "${G1_FIXED_VERIFIED_DATA_LINKER}")
+endif()
 
 # Every source selected by app_verified_data_sources.cmake has been compiled
 # independently and byte-compared with app_update.bin.  Their standalone

@@ -50,6 +50,13 @@ byte-verified standalone tables are retained by an object-and-section-limited
 RODATA `KEEP`, because absolute-address back-maps do not create ELF relocations
 that the garbage collector can follow.
 
+The complementary `app_address_taken_roots.cmake` covers function identities
+stored in the shipped callback/config tables.  Its generator scans aligned odd
+Thumb pointers only outside capped original function intervals, records every
+pointer VA and table owner, and emits a root only when a readable symbol has
+exactly one retained definition.  Stock aliases, duplicate owners, and unnamed
+identities stay explicit in the JSON receipt; no address is passed to the linker.
+
 Retain-all remains available as an ownership diagnostic.  It adds
 `--no-gc-sections` and keeps every recovered section visible to undefined-symbol
 and duplicate-definition checks; it does not allow multiple definitions,
