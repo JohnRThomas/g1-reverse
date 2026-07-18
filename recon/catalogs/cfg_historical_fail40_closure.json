@@ -1,0 +1,382 @@
+{
+  "schema": 1,
+  "description": "Current-source authoritative closure of the 40 confirmed failures in the historical partial discovery snapshot.",
+  "historical_source": "cfg_sweep_fails.json",
+  "verifier": "tools/cfg_verify.py",
+  "verifier_repairs": [
+    "683117cd",
+    "0d6b68ab"
+  ],
+  "policy": "Receipt is source-hash bound. Any digest change requires cfg_verify rerun before carrying PASS forward.",
+  "summary": {
+    "function_count": 40,
+    "cfg_pass": 40,
+    "cfg_fail": 0,
+    "app": 24,
+    "net": 16,
+    "cover_cases": 298
+  },
+  "entries": [
+    {
+      "core": "app",
+      "raw_identity": "FUN_00018334",
+      "va": "0x00018334",
+      "canonical_source": "recon/app/src/format_bt_addr_str.c",
+      "source_sha256": "1396276f5dc8d4a5922863fe0bec61571f1f91c23d259a6ed082a876a66df0f2",
+      "status": "PASS",
+      "cover_cases": 6
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_00030cd0",
+      "va": "0x00030cd0",
+      "canonical_source": "recon/app/src/FUN_00030cd0.c",
+      "source_sha256": "1fb5a8c220c7fe9413a712a6955d9a4283aa560f91a815d257639756795cbdc9",
+      "status": "PASS",
+      "cover_cases": 10
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_000456fc",
+      "va": "0x000456fc",
+      "canonical_source": "recon/app/src/FUN_000456fc.c",
+      "source_sha256": "6e2e61568d78543854c2f1155abfe6b0be041ec3e15e42d4e3a9675763dd93aa",
+      "status": "PASS",
+      "cover_cases": 19
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_0004d8f8",
+      "va": "0x0004d8f8",
+      "canonical_source": "recon/app/src/FUN_0004d8f8.c",
+      "source_sha256": "f1b659e6d57d6385fc461ffd6bee9441036dcc3a5cafa7c996c3d9afb26603eb",
+      "status": "PASS",
+      "cover_cases": 2
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_0004f1d0",
+      "va": "0x0004f1d0",
+      "canonical_source": "recon/app/src/FUN_0004f1d0.c",
+      "source_sha256": "164ad3cca1faf568e78dccd8bb31ea74875e5250b463475685fd08664551908b",
+      "status": "PASS",
+      "cover_cases": 0
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_00056654",
+      "va": "0x00056654",
+      "canonical_source": "recon/app/src/FUN_00056654.c",
+      "source_sha256": "d33d600efed218918a1fc6c6ede37d5669e71c4fa6b53af4484699d3807c9fa0",
+      "status": "PASS",
+      "cover_cases": 2
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_00056704",
+      "va": "0x00056704",
+      "canonical_source": "recon/app/src/FUN_00056704.c",
+      "source_sha256": "4d780a4af8659867ea2aa9837923787c8c22097d1bde82afaf9d1b970fb4b7df",
+      "status": "PASS",
+      "cover_cases": 9
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_000574ec",
+      "va": "0x000574ec",
+      "canonical_source": "recon/app/src/FUN_000574ec.c",
+      "source_sha256": "1f2a01c0ae66fab44f9c3a0d1a57ea18b7431a46730043358aca077dfabb03a3",
+      "status": "PASS",
+      "cover_cases": 0
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_00058bfc",
+      "va": "0x00058bfc",
+      "canonical_source": "recon/app/src/FUN_00058bfc.c",
+      "source_sha256": "627e2ea017db5cde6c179c6adb2e9b9643c1f501a8f9edeaad46782a2b4bd781",
+      "status": "PASS",
+      "cover_cases": 0
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_0005d568",
+      "va": "0x0005d568",
+      "canonical_source": "recon/app/src/FUN_0005d568.c",
+      "source_sha256": "a9d6412e9a12f7dbff3769df94e7784f243edcc670ac3921a635ba9859c57c22",
+      "status": "PASS",
+      "cover_cases": 0
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_0005e938",
+      "va": "0x0005e938",
+      "canonical_source": "recon/app/src/FUN_0005e938.c",
+      "source_sha256": "2de7ba650a4acb08746818f8649f66c44474ce6b7d467f7a390a0a2fe4393100",
+      "status": "PASS",
+      "cover_cases": 2
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_0005eeb4",
+      "va": "0x0005eeb4",
+      "canonical_source": "recon/app/src/FUN_0005eeb4.c",
+      "source_sha256": "96210af43c53821d177beac7648689a1183537b457ae342850a27a1180be4b5e",
+      "status": "PASS",
+      "cover_cases": 3
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_0005f074",
+      "va": "0x0005f074",
+      "canonical_source": "recon/app/src/FUN_0005f074.c",
+      "source_sha256": "7a335b4b5a9af77e99140c4b0ea0c61cbec6f1feb9f85aa4be99e6de741a6f1f",
+      "status": "PASS",
+      "cover_cases": 2
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_0005f304",
+      "va": "0x0005f304",
+      "canonical_source": "recon/app/src/FUN_0005f304.c",
+      "source_sha256": "a7932203bd60d66fd4057e3ec67ad557bf76a0ab62f8af39ee553873d6bfb9f2",
+      "status": "PASS",
+      "cover_cases": 2
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_00064f48",
+      "va": "0x00064f48",
+      "canonical_source": "recon/app/src/FUN_00064f48.c",
+      "source_sha256": "36ebaf92d6cf26c6066ecfa0f6117ff2529ba8a18f1f6f792a69867e34a3bee8",
+      "status": "PASS",
+      "cover_cases": 2
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_00064f78",
+      "va": "0x00064f78",
+      "canonical_source": "recon/app/src/FUN_00064f78.c",
+      "source_sha256": "aedb2eb1495ae94fda3de1a0002c01f3a304a0115e0d9f9fc70615694bd9567b",
+      "status": "PASS",
+      "cover_cases": 2
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_00065d3c",
+      "va": "0x00065d3c",
+      "canonical_source": "recon/app/src/FUN_00065d3c.c",
+      "source_sha256": "e73b6394970ff8b282358984bac4398246b8f0f1aa98f7a81e0eb9d46293c0dd",
+      "status": "PASS",
+      "cover_cases": 2
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_00066994",
+      "va": "0x00066994",
+      "canonical_source": "recon/app/src/FUN_00066994.c",
+      "source_sha256": "b44c5bca67b03b1d5bcda8882fb303d7c26118742b412c4db0fac09264ae6f0b",
+      "status": "PASS",
+      "cover_cases": 2
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_00072f28",
+      "va": "0x00072f28",
+      "canonical_source": "recon/app/src/FUN_00072f28.c",
+      "source_sha256": "2384c4856eeabaceb45556d8a75e574309466b66074389c8ccf2d417dccf6453",
+      "status": "PASS",
+      "cover_cases": 2
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_00073518",
+      "va": "0x00073518",
+      "canonical_source": "recon/app/src/FUN_00073518.c",
+      "source_sha256": "989061a71aa12ec25471e8ed087b732e260290fd2215cb88befd296f94d5d8d9",
+      "status": "PASS",
+      "cover_cases": 2
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_000751d0",
+      "va": "0x000751d0",
+      "canonical_source": "recon/app/src/register_events.c",
+      "source_sha256": "9d7cf97a243d34648fcefdde5d0fb592c3d29b83cb894222f566fbe734217074",
+      "status": "PASS",
+      "cover_cases": 18
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_0007f772",
+      "va": "0x0007f772",
+      "canonical_source": "recon/app/src/FUN_0007f772.c",
+      "source_sha256": "50e967105afef816c9323bb8110c00d65d44197be5398e92b8874e96f4659fda",
+      "status": "PASS",
+      "cover_cases": 7
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_0008174c",
+      "va": "0x0008174c",
+      "canonical_source": "recon/app/src/FUN_0008174c.c",
+      "source_sha256": "4359e7762e8c45bb7c9f055e2ee9fd6bbb3d9d4d429de55f550ee2eaba35c150",
+      "status": "PASS",
+      "cover_cases": 0
+    },
+    {
+      "core": "app",
+      "raw_identity": "FUN_000818dc",
+      "va": "0x000818dc",
+      "canonical_source": "recon/app/src/FUN_000818dc.c",
+      "source_sha256": "89a9733c7f42acb1380c041a3299c8b00a41710be79771866c5d1dcce9ebc6f7",
+      "status": "PASS",
+      "cover_cases": 4
+    },
+    {
+      "core": "net",
+      "raw_identity": "FUN_01008e74",
+      "va": "0x01008e74",
+      "canonical_source": "recon/net/src/FUN_01008e74.c",
+      "source_sha256": "6ffcf759fb068e4d703af33723cdd41c38c45037fcf9937bffaccad33ae8dae5",
+      "status": "PASS",
+      "cover_cases": 6
+    },
+    {
+      "core": "net",
+      "raw_identity": "FUN_0100dfbc",
+      "va": "0x0100dfbc",
+      "canonical_source": "recon/net/src/FUN_0100dfbc.c",
+      "source_sha256": "89328fb678717df4482066a7e85bd3ad46e9703f692025175d222fbcb314a284",
+      "status": "PASS",
+      "cover_cases": 10
+    },
+    {
+      "core": "net",
+      "raw_identity": "FUN_01012c84",
+      "va": "0x01012c84",
+      "canonical_source": "recon/net/src/FUN_01012c84.c",
+      "source_sha256": "c5226d7d77049837cb68ca60578cb269ca8b92f6c8ee8999048b6b50610731ac",
+      "status": "PASS",
+      "cover_cases": 24
+    },
+    {
+      "core": "net",
+      "raw_identity": "FUN_01013650",
+      "va": "0x01013650",
+      "canonical_source": "recon/net/src/FUN_01013650.c",
+      "source_sha256": "9d9ee8a004f8d88e240467a774341e46808afc38bdd5a20c789d6c518c456e31",
+      "status": "PASS",
+      "cover_cases": 20
+    },
+    {
+      "core": "net",
+      "raw_identity": "FUN_01016430",
+      "va": "0x01016430",
+      "canonical_source": "recon/net/src/FUN_01016430.c",
+      "source_sha256": "91941156839fc877b60ac2c29dba16ae8987d209fa5136a37508127cf0fc02d8",
+      "status": "PASS",
+      "cover_cases": 11
+    },
+    {
+      "core": "net",
+      "raw_identity": "FUN_01019f34",
+      "va": "0x01019f34",
+      "canonical_source": "recon/net/src/FUN_01019f34.c",
+      "source_sha256": "95a314576b40946671451ae3ad939e920786bc11d881a705ef4bb19604d3a913",
+      "status": "PASS",
+      "cover_cases": 8
+    },
+    {
+      "core": "net",
+      "raw_identity": "FUN_0101a070",
+      "va": "0x0101a070",
+      "canonical_source": "recon/net/src/FUN_0101a070.c",
+      "source_sha256": "cb06756e74ab20008d90f6c615cb0a9a84e26292d9661d54170801119b27cfa3",
+      "status": "PASS",
+      "cover_cases": 7
+    },
+    {
+      "core": "net",
+      "raw_identity": "FUN_0101a38c",
+      "va": "0x0101a38c",
+      "canonical_source": "recon/net/src/FUN_0101a38c.c",
+      "source_sha256": "f38e28e1c59a0f0a1525a0a3baf6c8068861c225294101e7cbc42bbc432199d2",
+      "status": "PASS",
+      "cover_cases": 19
+    },
+    {
+      "core": "net",
+      "raw_identity": "FUN_0101aee0",
+      "va": "0x0101aee0",
+      "canonical_source": "recon/net/src/FUN_0101aee0.c",
+      "source_sha256": "fbed2c3366f0154d7b57b4b90d7d4fb8ddff30aad0ee87868033b8080723044b",
+      "status": "PASS",
+      "cover_cases": 0
+    },
+    {
+      "core": "net",
+      "raw_identity": "FUN_0101ba58",
+      "va": "0x0101ba58",
+      "canonical_source": "recon/net/src/FUN_0101ba58.c",
+      "source_sha256": "9b90669c4d985fd5756c544766ca43e769a89763d6817776e29ba96814f8c9ca",
+      "status": "PASS",
+      "cover_cases": 12
+    },
+    {
+      "core": "net",
+      "raw_identity": "FUN_0101c6d0",
+      "va": "0x0101c6d0",
+      "canonical_source": "recon/net/src/FUN_0101c6d0.c",
+      "source_sha256": "17fa86ed8fe89c12949ecff74ce2272619ea2ca7b3095ea20e297d168437d5c3",
+      "status": "PASS",
+      "cover_cases": 5
+    },
+    {
+      "core": "net",
+      "raw_identity": "FUN_01020368",
+      "va": "0x01020368",
+      "canonical_source": "recon/net/src/FUN_01020368.c",
+      "source_sha256": "312e081afca45a41ef9cc10c7e8f12ec604c38fa9cd8a69a843b39bf44e1488f",
+      "status": "PASS",
+      "cover_cases": 3
+    },
+    {
+      "core": "net",
+      "raw_identity": "FUN_01023ad8",
+      "va": "0x01023ad8",
+      "canonical_source": "recon/net/src/FUN_01023ad8.c",
+      "source_sha256": "0426724ee7b41be69d158d8e7060eeb8ca7611c186090b43299064d2c0ca376d",
+      "status": "PASS",
+      "cover_cases": 8
+    },
+    {
+      "core": "net",
+      "raw_identity": "FUN_01026122",
+      "va": "0x01026122",
+      "canonical_source": "recon/net/src/FUN_01026122.c",
+      "source_sha256": "a1181bc3e66b09cf6fe0c479f9778a8acc56ac9d1ea05c53808f879bdf4fe7ed",
+      "status": "PASS",
+      "cover_cases": 50
+    },
+    {
+      "core": "net",
+      "raw_identity": "FUN_0102d1c0",
+      "va": "0x0102d1c0",
+      "canonical_source": "recon/net/src/FUN_0102d1c0.c",
+      "source_sha256": "30ce8c744da03903b3371801856b8877e610a0a06244dda22655ccd87e321c0c",
+      "status": "PASS",
+      "cover_cases": 5
+    },
+    {
+      "core": "net",
+      "raw_identity": "FUN_010359b8",
+      "va": "0x010359b8",
+      "canonical_source": "recon/net/src/FUN_010359b8.c",
+      "source_sha256": "43af1488ed2d7943072ccd167f8fedb99562c038c7993761d49b9cc4051c8146",
+      "status": "PASS",
+      "cover_cases": 12
+    }
+  ]
+}
+
