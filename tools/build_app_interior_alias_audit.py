@@ -56,12 +56,32 @@ DATA_OR_LITERAL_MISREFERENCE = set()
 
 TRUE_MISSING_CATALOG_ENTRY = {"ext77c8c", "tail_77d30"}
 
-# Both remaining raw residue spellings already have cfg_verify-accepted strong
-# owners under their readable newlib identities.
-CFG_VERIFIED_STRONG_OWNERS = set(TRUE_MISSING_CATALOG_ENTRY)
+# Seven residues now have cfg_verify-accepted strong owners.  For the two
+# veneers this is the exact four-byte entry, preserving the original call
+# target while giving the linker a real owner rather than an alias.
+CFG_VERIFIED_STRONG_OWNERS = {
+    "FUN_0004d7d8",
+    "FUN_00056e24",
+    "strtol_reentrant",
+    "thunk_FUN_0007f7d2",
+    "FUN_0008131c",
+    "ext77c8c",
+    "tail_77d30",
+}
 CFG_VERIFIED_SOURCE_FILES = {
+    "FUN_0004d7d8": "FUN_0004d7d8.c",
+    "FUN_00056e24": "FUN_00056e24.c",
+    "strtol_reentrant": "FUN_00077a28.c",
+    "thunk_FUN_0007f7d2": "FUN_0007f7c4.c",
+    "FUN_0008131c": "FUN_0008131c.c",
     "ext77c8c": "__swbuf_r.c",
     "tail_77d30": "_write_r.c",
+}
+
+SAFE_CALLER_CORRECTIONS = {
+    "strtol.c": "strtol_reentrant",
+    "FUN_00086c88.c": "ext77c8c",
+    "FUN_00086f5a.c": "tail_77d30",
 }
 
 CLASS_TABLE = {
@@ -151,22 +171,10 @@ def build():
             if not os.path.isfile(source_path) or digest(source_path) != digest(mirror_path):
                 raise RuntimeError("CFG-verified owner/mirror drift: " + symbol)
             resolution = "already_resolved_by_cfg_verified_strong_owner"
-            reason = "standalone exact-entry reconstruction accepted by cfg_verify"
-        elif symbol in ("FUN_0004d7d8", "FUN_00056e24"):
-            resolution = "sdk_static_source_unit_owner"
-            reason = "configured SDK static helper requires source-unit linkage reconciliation"
-        elif symbol == "strtol_reentrant":
-            resolution = "newlib_identity_reconciliation"
-            reason = "readable spelling maps to the configured newlib reentrant strtol owner"
+            reason = "exact-entry strong owner accepted by cfg_verify"
         elif symbol in ("FUN_0005463e", "FUN_00054688"):
             resolution = "blocked_embedded_noreturn_svc_island"
             reason = "embedded SVC continuation is not an ordinary function ABI"
-        elif symbol == "FUN_0008131c":
-            resolution = "blocked_tail_target_has_no_strong_owner"
-            reason = "exact branch to 0x000812d2, but target is not retained"
-        elif symbol == "thunk_FUN_0007f7d2":
-            resolution = "blocked_same_entry_identity_without_target_owner"
-            reason = "catalog entry 0x0007f7c4 branches to ownerless 0x0007f7d2"
         rows.append({
             "symbol": symbol,
             "va": "0x%08x" % va,
@@ -208,6 +216,15 @@ def build():
     if "FUN_0006446c" in parser_text or "return 0;" not in parser_text:
         raise RuntimeError("internal island re-externalized")
 
+    for filename, stale_symbol in SAFE_CALLER_CORRECTIONS.items():
+        source_path = os.path.join(ROOT, "recon/app/src", filename)
+        mirror_path = os.path.join(ROOT, "recon/verified/src", filename)
+        if digest(source_path) != digest(mirror_path):
+            raise RuntimeError("corrected caller/mirror drift: " + filename)
+        with open(source_path, encoding="utf-8") as stream:
+            if stale_symbol in stream.read():
+                raise RuntimeError("stale residue caller identity: " + stale_symbol)
+
     counts = {name: sum(row["classification"] == name for row in rows)
               for name in CLASS_TABLE}
     return {
@@ -227,7 +244,7 @@ def build():
         "summary": {"residue_count": len(rows),
                     "reference_count": sum(row["reference_count"] for row in rows),
                     "classification_counts": counts,
-                    "safe_caller_corrections": 1,
+                    "safe_caller_corrections": len(SAFE_CALLER_CORRECTIONS),
                     "already_strong_owners": sum(
                         row["resolution"] ==
                         "already_resolved_by_cfg_verified_strong_owner"
@@ -251,7 +268,8 @@ def markdown(data):
         "- SDK static/library identities: %d" % counts["sdk_static_or_library_identity"],
         "- Data/literal misreferences: %d" % counts["data_or_literal_misreference"],
         "- True missing catalog entries: %d" % counts["true_missing_catalog_entry"],
-        "- Safe canonical caller corrections: 1", "",
+        "- Safe canonical caller corrections: %d" %
+        data["summary"]["safe_caller_corrections"], "",
         "| VA | Symbol | Classification | Resolution | Evidence |",
         "|---|---|---|---|---|"]
     for row in data["entries"]:

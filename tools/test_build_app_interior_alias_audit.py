@@ -35,17 +35,22 @@ class AppInteriorAliasAuditTests(unittest.TestCase):
                                 self.rows[symbol]["resolution"])
 
     def test_unsafe_islands_remain_blocked(self):
-        for symbol in ("FUN_0005463e", "FUN_00054688",
-                       "FUN_0008131c", "thunk_FUN_0007f7d2"):
+        for symbol in ("FUN_0005463e", "FUN_00054688"):
             self.assertTrue(self.rows[symbol]["resolution"].startswith("blocked_"))
+
+    def test_safe_entries_have_cfg_verified_strong_owners(self):
+        self.assertEqual(7, self.data["summary"]["already_strong_owners"])
+        self.assertEqual(3, self.data["summary"]["safe_caller_corrections"])
+        for symbol in audit.CFG_VERIFIED_STRONG_OWNERS:
+            self.assertEqual("already_resolved_by_cfg_verified_strong_owner",
+                             self.rows[symbol]["resolution"])
 
     def test_missing_entries_are_not_promoted_to_aliases(self):
         missing = [row for row in self.data["entries"]
                    if row["classification"] == "true_missing_catalog_entry"]
         self.assertEqual(2, len(missing))
         self.assertEqual(0, self.data["summary"]["requires_reconstruction"])
-        self.assertEqual(2, self.data["summary"]["already_strong_owners"])
-        for symbol in audit.CFG_VERIFIED_STRONG_OWNERS:
+        for symbol in audit.TRUE_MISSING_CATALOG_ENTRY:
             self.assertEqual("already_resolved_by_cfg_verified_strong_owner",
                              self.rows[symbol]["resolution"])
         self.assertTrue(all(row["evidence"]["decode"] for row in missing))

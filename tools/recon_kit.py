@@ -23,6 +23,12 @@ from capstone import *
 SCRATCH = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
 RECON_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/app/src"
 TRUE_SIZE_OVERRIDES = {
+    0x0004d7d8: 0xb0,  # z_log_msg_post_finalize; literals begin at 0x4d888
+    0x00056e24: 0x0a,  # bt_conn_cb_register; alignment/literal follows
+    0x00077a28: 0xf8,  # _strtol_r; trailing ctype literal begins at 0x77b20
+    0x0007f7c4: 0x04,  # exact veneer to bt_ancs_app_attr_request
+    0x0007f7d2: 0xc2,  # bt_ancs_app_attr_request; next entry at 0x7f894
+    0x0008131c: 0x04,  # exact veneer to bt_le_adv_set_enable_legacy
     0x000564cc: 0xde,  # bt_conn_send_cb; literals follow at 0x565ac
     0x00058568: 0x1c,  # send_err_rsp allocation-failure log helper
     0x0005a954: 0x58,  # bt_gatt_init; literals follow at 0x5a9ac

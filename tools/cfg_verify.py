@@ -385,6 +385,12 @@ def _decompiled_arity(func):
 # Ghidra/classification under-reports these resolved jump-table bodies. Values
 # are CFG-confirmed executable extents, not trailing data-table inflation.
 TRUE_SIZE_OVERRIDES = {
+    ("app", 0x0004d7d8): 0xb0,  # z_log_msg_post_finalize
+    ("app", 0x00056e24): 0x0a,  # bt_conn_cb_register
+    ("app", 0x00077a28): 0xf8,  # _strtol_r
+    ("app", 0x0007f7c4): 0x04,  # exact veneer to bt_ancs_app_attr_request
+    ("app", 0x0007f7d2): 0xc2,  # bt_ancs_app_attr_request
+    ("app", 0x0008131c): 0x04,  # exact veneer to bt_le_adv_set_enable_legacy
     ("app", 0x000564cc): 0xde,  # bt_conn_send_cb
     ("app", 0x00058568): 0x1c,  # send_err_rsp allocation-failure log helper
     ("app", 0x0005a954): 0x58,  # bt_gatt_init
@@ -22253,6 +22259,9 @@ REVIEWED_NPTR_COUNTS[("app", 0x0005c310)] = 4
 REVIEWED_TARGET_CALL_ARITIES[("app", 0x0005c310)] = {
     0x00082a42: 3, 0x00082aee: 4, 0x00086be4: 3,
     0x0005c22c: 2,
+}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x0007f7d2)] = {
+    0x0004f198: 3,
 }
 REVIEWED_STACK_POINTER_CALLS[("app", 0x0005c310)] = {0: {2}, 1: {2}}
 REVIEWED_ORACLE_CASES[("app", 0x0005c310)] = [
