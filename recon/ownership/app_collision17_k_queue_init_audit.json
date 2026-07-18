@@ -1,0 +1,89 @@
+{
+ "schema": 1,
+ "batch": "COLLISION-17",
+ "core": "app",
+ "status": "audited_report_only",
+ "decision": "namespaced_reconstruction_retain",
+ "safe_for_sdk_adoption": false,
+ "inputs": {
+  "collision_catalog": "recon/ownership/app_build_collision_ownership.json",
+  "configured_object": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/queue.c.obj",
+  "configured_object_sha256": "d84895a733e819797d9d5e6d0eae49e0a639fef5be69cbab1809b15dfdd2cbe6",
+  "configured_source": "zephyr/kernel/queue.c",
+  "configured_source_sha256": "1aa785e4891ec8243576e467a6d39542355780ff7f0ad5afead0cb7696ea7706",
+  "configured_source_commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+  "zephyr_config_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+  "configured_options": {
+   "CONFIG_POLL": true,
+   "CONFIG_WAITQ_DUMB": true,
+   "CONFIG_SMP": false,
+   "CONFIG_SPIN_VALIDATE": false
+  }
+ },
+ "function": {
+  "va": "0x000864e8",
+  "raw_symbol": "FUN_000864e8",
+  "current_symbol": "z_impl_k_queue_init",
+  "link_alias": "k_fifo_init",
+  "abi": "void z_impl_k_queue_init(struct k_queue *queue)",
+  "collision_receipt_sha256": "6e3266383d759b772266275eaee5303dee5e33e8adf977c76e4ea810151b2cfb",
+  "reconstruction_source_sha256": "dd0c63f25634746e93ebf0c0dcf5ed6bfc13ecd2b8239f9af1459408bc49b00f",
+  "firmware_extent": 26,
+  "firmware_instruction_count": 8,
+  "firmware_sha256": "fab989f76c801ac768f77ca860d2a76fa6c7b9e6a65f5b7c49c7a8dd8b45913a",
+  "configured_section": ".text.z_impl_k_queue_init",
+  "configured_size": 24,
+  "configured_instruction_count": 7,
+  "configured_sha256": "29877cd152be625f35cd424ca35bd84eda9f49eaff3a307a507a486835205a66",
+  "configured_relocations": [],
+  "comparison": {
+   "relocation_aware_opcode_score": 0.933333,
+   "operand_shape_score": 0.4,
+   "instruction_length_score": 0.875,
+   "relocation_masked_exact": false,
+   "threshold_blocker": "operand_shape_score_below_threshold",
+   "semantic_relationship": "same queue-init operation under an incompatible k_spinlock layout"
+  },
+  "firmware_writes": [
+   {"offset": 0, "width": 8, "value": 0, "role": "data_q"},
+   {"offset": 8, "width": 4, "value": 0, "role": "explicit_spinlock"},
+   {"offset": 12, "width": 8, "value": "queue+12", "role": "wait_q_dlist"},
+   {"offset": 20, "width": 8, "value": "queue+20", "role": "poll_events_dlist"}
+  ],
+  "configured_writes": [
+   {"offset": 0, "width": 8, "value": 0, "role": "data_q"},
+   {"offset": 8, "width": 8, "value": "queue+8", "role": "wait_q_dlist"},
+   {"offset": 16, "width": 8, "value": "queue+16", "role": "poll_events_dlist"}
+  ],
+  "layout_finding": "Firmware has a four-byte k_spinlock at +8 and initializes 28 bytes. The selected configured object has a zero-sized k_spinlock and initializes 24 bytes; adopting it would shift both embedded lists by four bytes and leave the firmware lock uncleared.",
+  "cfg_verify": {"status": "PASS", "cases": 0, "selectors": {}},
+  "recommendation": "Retain the firmware body under a non-colliding name and retarget the complete firmware caller closure; do not exclude it in favor of the configured queue.c owner."
+ },
+ "caller_closure": [
+  {"entry": "0x000526f4", "name": "smp_transport_init", "sites": ["0x00052726"], "cfg_verify": "PASS cases=2"},
+  {"entry": "0x00052760", "name": "smp_rx_remove_invalid", "sites": ["0x0005277e"], "cfg_verify": "PASS cases=6"},
+  {"entry": "0x00054a44", "name": "bt_send", "sites": ["0x00054aaa"], "cfg_verify": "PASS cases=2"},
+  {"entry": "0x00056704", "name": "ble_conn_set_state", "sites": ["0x000567b6"], "cfg_verify": "PASS cases=9"},
+  {"entry": "0x00057358", "name": "FUN_00057358", "sites": ["0x0005735c"], "cfg_verify": "PASS cases=0"},
+  {"entry": "0x000574ec", "name": "l2cap_chan_tx_init", "sites": ["0x0005750c"], "cfg_verify": "PASS cases=0"},
+  {"entry": "0x00057874", "name": "l2cap_chan_add", "sites": ["0x000578fe"], "cfg_verify": "PASS cases=0"},
+  {"entry": "0x000579d0", "name": "bt_l2cap_init", "sites": ["0x000579d4"], "cfg_verify": "PASS cases=0"},
+  {"entry": "0x00058930", "name": "bt_att_accept", "sites": ["0x000589e8", "0x00058a0e"], "cfg_verify": "PASS cases=0"},
+  {"entry": "0x00059690", "name": "FUN_00059690", "sites": ["0x00059694"], "cfg_verify": "PASS cases=0"}
+ ],
+ "extent_and_closure": {
+  "firmware_entry": "0x000864e8",
+  "firmware_end_exclusive": "0x00086502",
+  "next_function": "0x00086502",
+  "caller_count": 10,
+  "call_site_count": 11,
+  "complete_call_sites": ["0x00052726", "0x0005277e", "0x00054aaa", "0x000567b6", "0x0005735c", "0x0005750c", "0x000578fe", "0x000579d4", "0x000589e8", "0x00058a0e", "0x00059694"]
+ },
+ "implementation_closure": {
+  "action": "rename_reconstructed_firmware_owner_and_retarget_all_firmware_callers",
+  "exclude_reconstruction_vas": [],
+  "adopt_configured_sdk_symbols": [],
+  "required_firmware_vas": ["0x000864e8"],
+  "do_not": ["do not authorize SDK adoption", "do not bind firmware queue objects to the configured 24-byte initializer", "do not change naming, manifest, or retained sources from this audit"]
+ }
+}
