@@ -170,7 +170,11 @@ TRUE_SIZE_OVERRIDES = {
     # live handlers end with the branch at 0x286c0..0x286c3; literals occupy
     # 0x286c4..0x286f7
     # and the next independent thread prologue is FUN_000286f8.
-    0x00027cfe: 0x9fa,
+    # Runtime thread pointers prove the full entries one halfword before
+    # Ghidra's exported slave worker, plus two entirely omitted workers.
+    0x0002692c: 0xb2,  # master_display_thread; alignment/literals at 0x269de/0x269e0
+    0x00027cfc: 0x9fc, # slave_display_thread; live MOVS r3,#1 precedes catalog entry
+    0x00032420: 0x82,  # aging_mode_thread; alignment/literals at 0x324a2/0x324a4
     # proxy_thread_handler's catalog stops at 0x486f8 inside the language/
     # work-mode switch.  Live retry and atomic-flag tails continue through the
     # branch at 0x48812..0x48815; literals occupy 0x48818..0x4883f and the

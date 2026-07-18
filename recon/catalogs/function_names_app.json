@@ -3001,6 +3001,15 @@
    "source": "recon/app/src/FUN_0002685c.c",
    "aliases": []
   },
+  "0x0002692c": {
+   "address": "0x0002692c",
+   "raw_name": "FUN_0002692c",
+   "name": "master_display_thread",
+   "display_name": "master_display_thread",
+   "human": true,
+   "source": "recon/app/src/master_display_thread.c",
+   "aliases": []
+  },
   "0x000269fc": {
    "address": "0x000269fc",
    "raw_name": "FUN_000269fc",
@@ -3105,14 +3114,24 @@
    "source": "recon/app/src/check_work_mode.c",
    "aliases": []
   },
-  "0x00027cfe": {
-   "address": "0x00027cfe",
-   "raw_name": "FUN_00027cfe",
+  "0x00027cfc": {
+   "address": "0x00027cfc",
+   "raw_name": "FUN_00027cfc",
    "name": "slave_display_thread",
    "display_name": "slave_display_thread",
    "human": true,
-   "source": "committed durable map",
+   "source": "recon/app/src/slave_display_thread.c",
    "aliases": []
+  },
+  "0x00027cfe": {
+   "address": "0x00027cfe",
+   "raw_name": "FUN_00027cfe",
+   "name": "FUN_00027cfe",
+   "display_name": "slave_display_thread",
+   "human": false,
+   "source": "collision-rejected",
+   "aliases": [],
+   "rejected_name": "slave_display_thread"
   },
   "0x000286f8": {
    "address": "0x000286f8",
@@ -4301,6 +4320,15 @@
    "display_name": "FUN_00032308",
    "human": false,
    "source": "recon/app/src/FUN_00032308.c",
+   "aliases": []
+  },
+  "0x00032420": {
+   "address": "0x00032420",
+   "raw_name": "FUN_00032420",
+   "name": "aging_mode_thread",
+   "display_name": "aging_mode_thread",
+   "human": true,
+   "source": "recon/app/src/aging_mode_thread.c",
    "aliases": []
   },
   "0x000324bc": {
@@ -26341,6 +26369,7 @@
   "FUN_00026850": "0x00026850",
   "FUN_0002685c": "0x0002685c",
   "FUN_000269fc": "0x000269fc",
+  "FUN_00027cfe": "0x00027cfe",
   "FUN_0002893c": "0x0002893c",
   "FUN_0002a4c0": "0x0002a4c0",
   "FUN_0002a4f4": "0x0002a4f4",
@@ -27034,6 +27063,7 @@
   "addr_res_enable": "0x00081050",
   "adv_is_directed": "0x00055698",
   "advance_display_page_index": "0x000369f8",
+  "aging_mode_thread": "0x00032420",
   "alloc_chunk": "0x0007df24",
   "alloc_zeroed_node": "0x00084fd4",
   "ancs_c_init": "0x0001905c",
@@ -28055,6 +28085,7 @@
   "malloc": "0x00076d6c",
   "malloc_impl": "0x000868c2",
   "mark_master_or_low_battery_flag": "0x0002efc0",
+  "master_display_thread": "0x0002692c",
   "master_process_audio_fw_load_req": "0x0002af4c",
   "max_utilization_update": "0x0007e4f2",
   "mbedtls_ctr_drbg_reseed_internal": "0x00079b60",
@@ -28484,7 +28515,7 @@
   "shm_size": "0x0007ebee",
   "signal_poll_event": "0x000867da",
   "simulator_ancs_calendar_schedule_trigger": "0x00021cd8",
-  "slave_display_thread": "0x00027cfe",
+  "slave_display_thread": "0x00027cfc",
   "sleep_fixed_33_ticks": "0x0007c87a",
   "sllist_count_nodes": "0x00085020",
   "sllist_find_by_name_ci": "0x0008503c",
@@ -28777,6 +28808,10 @@
   "zcbor_tstr_encode_ptr": "0x0008099e"
  },
  "conflicts": {
+  "slave_display_thread": [
+   "0x00027cfe",
+   "0x00027cfc"
+  ],
   "thunk_FUN_000723b8": [
    "0x0007c872",
    "0x0007d376"

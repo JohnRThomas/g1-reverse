@@ -15,6 +15,10 @@ LEDGER = os.environ.get("RECON_LEDGER", SCR + "/net_recon_ledger.json")
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
 _fw = None
 TRUE_SIZE_OVERRIDES = {
+    # Catalog-missing SDC event-publication bridge.  Its cleanup return is at
+    # 0x0101b51a and its aligned state-base literal occupies b548..b54b;
+    # 0x0101b54c is the next independent entry.
+    0x0101b4f4: 0x58,
     # Pure packet-duration CFG crosses the dc0/dc4 literal island; the catalog
     # truncates its final remainder arm at f20.  Code ends at the branch at
     # 0x01010f28; alignment/literals begin at 0x01010f2a/0x01010f2c.

@@ -11,15 +11,15 @@ set(G1_RECOVERED_GC_ROOTS
   process_task_sync_event
   FUN_0002a4f4
   display_dispatch_thread
+  master_display_thread
+  slave_display_thread
   touch_key_thread
   click_event_dispatch_loop
   key_event_thread
+  aging_mode_thread
   FUN_000324bc
   proxy_thread_handler
   display_thread_handler
 )
 set(G1_UNRESOLVED_GC_ROOT_ADDRESSES
-  "0x0002692c"
-  "0x00027cfc"
-  "0x00032420"
 )

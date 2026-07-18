@@ -1,5 +1,6 @@
-/* Recovered slave_display_thread <= FUN_00027cfe @ 0x00027cfe.
- * Reviewed image span: 0x9fa bytes through 0x286f7.  The final branch occupies
+/* Reconstructed slave_display_thread @ 0x00027cfc; raw Ghidra identity FUN_00027cfe.
+ * Ghidra omitted the live `movs r3,#1` at the thread entry and treated r3 as
+ * a fourth argument. Reviewed image span: 0x9fc bytes through 0x286f7. The final branch occupies
  * 0x286c0..0x286c3; its literal pool is 0x286c4..0x286f7, immediately before
  * the independent FUN_000286f8 entry.
  * Durable name/back mapping: recon/catalogs/function_names_app.json.
@@ -148,13 +149,13 @@ static volatile uint8_t *const g_do_not_disturb_value =
 } while (0)
 
 void slave_display_thread(slave_display_context_t *context, uint32_t param_2,
-                          uint32_t param_3, uint8_t param_4)
+                          uint32_t param_3)
 {
   int32_t p;
   int8_t cv;
   uint8_t b2, b15;
 
-  context->thread_argument = param_4;
+  context->thread_argument = 1;
   context->work_mode = 0;
   LOG_IF(1, 0x00099969, param_3, 0, context, param_2, param_3);
   if (context->lifecycle_mode == 0xb) change_work_mode_to(2);
@@ -500,5 +501,5 @@ while_cond:
 Ldefault:
   process_sync_buffer((uint8_t *)context + 0x38);
   goto top;
-  (void)p; (void)param_2; (void)param_3; (void)param_4;
+  (void)p; (void)param_2; (void)param_3;
 }

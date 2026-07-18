@@ -60,6 +60,20 @@ class AppRootInventoryTest(unittest.TestCase):
         self.assertTrue(all(row["lifecycle"] == "rom_static_initializer"
                             for row in msgqs.values()))
 
+    def test_catalog_missing_thread_entries_are_exact_code_roots(self):
+        threads = {row["name"]: row for row in self.data["dynamic_threads"]}
+        self.assertEqual(["0x0002692c"], threads["run_main_e"]["entry_candidates"])
+        self.assertEqual(["0x00027cfc"], threads["run_main_f"]["entry_candidates"])
+        self.assertEqual(["0x00032420"], threads["aging_a"]["entry_candidates"])
+        names = json.loads((ROOT / "recon/catalogs/function_names_app.json").read_text())
+        expected = {
+            "0x0002692c": "master_display_thread",
+            "0x00027cfc": "slave_display_thread",
+            "0x00032420": "aging_mode_thread",
+        }
+        self.assertEqual(expected, {address: names["by_address"][address]["name"]
+                                    for address in expected})
+
 
 if __name__ == "__main__":
     unittest.main()

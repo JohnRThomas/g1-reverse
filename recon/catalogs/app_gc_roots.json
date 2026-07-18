@@ -97,18 +97,18 @@
    "address": "0x0002692c",
    "kind": "dynamic_thread_entry_candidate",
    "ownership": "application",
-   "resolved": false,
-   "source": null,
-   "symbol": null,
+   "resolved": true,
+   "source": "recon/symbolized/app/master_display_thread.c",
+   "symbol": "master_display_thread",
    "thread": "run_main_e"
   },
   {
    "address": "0x00027cfc",
    "kind": "dynamic_thread_entry_candidate",
    "ownership": "application_conditional",
-   "resolved": false,
-   "source": null,
-   "symbol": null,
+   "resolved": true,
+   "source": "recon/symbolized/app/slave_display_thread.c",
+   "symbol": "slave_display_thread",
    "thread": "run_main_f"
   },
   {
@@ -142,9 +142,9 @@
    "address": "0x00032420",
    "kind": "dynamic_thread_entry_candidate",
    "ownership": "application",
-   "resolved": false,
-   "source": null,
-   "symbol": null,
+   "resolved": true,
+   "source": "recon/symbolized/app/aging_mode_thread.c",
+   "symbol": "aging_mode_thread",
    "thread": "aging_a"
   },
   {
@@ -176,16 +176,12 @@
   }
  ],
  "schema": 1,
- "status": "partial_fail_closed",
+ "status": "complete_fail_closed",
  "summary": {
-  "complete_root_graph": false,
-  "named_roots": 16,
-  "resolved_dynamic_candidates": 15,
-  "unresolved_dynamic_candidates": 3
+  "complete_root_graph": true,
+  "named_roots": 19,
+  "resolved_dynamic_candidates": 18,
+  "unresolved_dynamic_candidates": 0
  },
- "unresolved_addresses": [
-  "0x0002692c",
-  "0x00027cfc",
-  "0x00032420"
- ]
+ "unresolved_addresses": []
 }

@@ -1,0 +1,60 @@
+{
+ "schema": 1,
+ "core": "app",
+ "status": "complete",
+ "policy": "binary-derived named roots only; numeric production roots forbidden; SDC report-only",
+ "evidence": {
+  "inventory": "recon/catalogs/app_root_inventory.json",
+  "refgraph": "scratchpad/refgraph_app.json",
+  "creator_refgraph_entry": "0x0002a65c",
+  "aging_creator_refgraph_entry": "0x00032fe8"
+ },
+ "entries": [
+  {
+   "address": "0x0002692c",
+   "thumb_pointer": "0x0002692d",
+   "name": "master_display_thread",
+   "classification": "real_catalog_missing_function_entry",
+   "extent": 178,
+   "next_noncode": "0x000269de alignment; literal pool begins 0x000269e0",
+   "firmware_sha256": "7868bc337a83852079693136090830e8584da41f79cee2dcc67905e63e4787d5",
+   "entry_bytes": "f8b52c4b04461b68",
+   "source": "recon/app/src/master_display_thread.c",
+   "proof": "cfg_verify PASS; one reviewed complete pointer-graph case; 50 ordered prefix events"
+  },
+  {
+   "address": "0x00027cfc",
+   "thumb_pointer": "0x00027cfd",
+   "name": "slave_display_thread",
+   "classification": "real_function_entry_shifted_two_bytes_before_ghidra_entry",
+   "ghidra_entry": "0x00027cfe",
+   "omitted_instruction": "movs r3,#1",
+   "extent": 2556,
+   "next_entry": "0x000286f8",
+   "firmware_sha256": "2076a83214837d5ff42a25964f907896f4c82063e189f1c13f292cbc3b05579f",
+   "entry_bytes": "01232de9f74380f8",
+   "source": "recon/app/src/slave_display_thread.c",
+   "proof": "cfg_verify PASS; 38 directed production cases; 50 ordered prefix events"
+  },
+  {
+   "address": "0x00032420",
+   "thumb_pointer": "0x00032421",
+   "name": "aging_mode_thread",
+   "classification": "real_catalog_missing_function_entry",
+   "extent": 130,
+   "next_noncode": "0x000324a2 alignment; literal pool begins 0x000324a4",
+   "firmware_sha256": "0a9a18291a641dcbaa22d1f6c55f2c5702fcff3a81f141fbfd0e12f6c3a92992",
+   "entry_bytes": "70b5204c204e2378",
+   "source": "recon/app/src/aging_mode_thread.c",
+   "proof": "cfg_verify PASS; 50 ordered prefix events"
+  }
+ ],
+ "summary": {
+  "candidates": 3,
+  "real_entries": 3,
+  "interior_labels": 0,
+  "data_or_false_roots": 0,
+  "named_and_proven": 3,
+  "complete_root_graph": true
+ }
+}

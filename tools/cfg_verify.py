@@ -51,7 +51,9 @@ REVIEWED_PREFIX_PROOFS = {
     # device/record fixtures below compare complete dispatch iterations; the
     # following iteration supplies a stable boundary beyond every handler's
     # writes and calls without pretending the production thread returns.
-    ("app", 0x00027cfe): 50,
+    ("app", 0x0002692c): 50,
+    ("app", 0x00027cfc): 50,
+    ("app", 0x00032420): 50,
     # The key-event worker is likewise a deliberate nonreturning queue loop.
     # Each reviewed fixture drives one complete state dispatch, then supplies
     # quiescent polls; fifty ordered events cross the selected arm's writes
@@ -388,6 +390,10 @@ def _decompiled_arity(func):
 # Ghidra/classification under-reports these resolved jump-table bodies. Values
 # are CFG-confirmed executable extents, not trailing data-table inflation.
 TRUE_SIZE_OVERRIDES = {
+    # Catalog-missing SDC event-publication bridge.  The body owns its
+    # state-base literal at 0x0101b548 and ends before the independent entry
+    # at 0x0101b54c.
+    ("net", 0x0101b4f4): 0x58,
     ("app", 0x0004d7d8): 0xb0,  # z_log_msg_post_finalize
     ("app", 0x00056e24): 0x0a,  # bt_conn_cb_register
     ("app", 0x00077a28): 0xf8,  # _strtol_r
@@ -585,7 +591,11 @@ TRUE_SIZE_OVERRIDES = {
     # The catalog stops at 0x285e4 inside the final inner switch.  Its four
     # live handlers end with the branch at 0x286c0..0x286c3; literals occupy
     # 0x286c4..0x286f7 and FUN_000286f8 has an independent push prologue.
-    ("app", 0x00027cfe): 0x9fa,
+    # Binary-derived k_thread_create targets expose three entries omitted or
+    # shifted by Ghidra.  These extents stop before alignment/literal data.
+    ("app", 0x0002692c): 0xb2,
+    ("app", 0x00027cfc): 0x9fc,
+    ("app", 0x00032420): 0x82,
     # Catalog truncates the proxy switch inside case seven.  Include every
     # live retry/default/atomic tail plus its final literal pool up to the
     # independent requestAudioInfoToApp entry at 0x48840.
@@ -4706,9 +4716,38 @@ def _tx_notify_case(entries):
     return ({0: connection}, memory)
 
 
+def _master_display_thread_case():
+    """Complete pointer graph for the binary-only 0x2692c thread entry."""
+    context = emu.SCRATCH + 0x1000
+    image = bytearray(0x1060)
+    image[1] = 1
+    targets = {
+        0x0ff8: emu.SCRATCH + 0x3000,
+        0x0ffc: emu.SCRATCH + 0x4000,
+        0x1000: emu.SCRATCH + 0x5000,
+        0x1004: emu.SCRATCH + 0x6000,
+        0x1008: emu.SCRATCH + 0x7000,
+        0x100c: emu.SCRATCH + 0x8000,
+        0x1054: emu.SCRATCH + 0x9000,
+    }
+    for offset, target in targets.items():
+        image[offset:offset + 4] = target.to_bytes(4, "little")
+    image[0x105c:0x105e] = (0x80).to_bytes(2, "little")
+    memory = [(context, bytes(image)),
+              (emu.SCRATCH + 0x3000, bytes(0x0af)),
+              (emu.SCRATCH + 0x4000, bytes(0x217)),
+              (emu.SCRATCH + 0x5000, bytes(0x0f5)),
+              (emu.SCRATCH + 0x6000, bytes(0x198)),
+              (emu.SCRATCH + 0x7000, bytes(0x198)),
+              (emu.SCRATCH + 0x8000, bytes(0x199)),
+              (emu.SCRATCH + 0x9000, bytes(8))]
+    return ({0: context, 1: 0, 2: 0}, memory)
+
+
 _controller_info_two_addresses = bytearray(0x78)
 _controller_info_two_addresses[7] = 2
 REVIEWED_STATE_CASES = {
+    ("app", 0x0002692c): [_master_display_thread_case()],
     ("app", 0x000548b8): [
         ({}, [(0x20002000, bytes(_controller_info_two_addresses))]),
     ],
@@ -19646,7 +19685,7 @@ def _slave_display_case(event, command=0, value=0, work_mode=0,
             memory, oracles)
 
 
-REVIEWED_ORACLE_CASES[("app", 0x00027cfe)] = [
+REVIEWED_ORACLE_CASES[("app", 0x00027cfc)] = [
     _slave_display_case(0, work_mode=6),
     _slave_display_case(1, ready=0),
     _slave_display_case(1, ready=1),
@@ -19688,7 +19727,7 @@ REVIEWED_ORACLE_CASES[("app", 0x00027cfe)] = [
     _slave_display_case(8, command=1, work_mode=4),
     _slave_display_case(8, command=0, work_mode=5),
 ]
-REVIEWED_TARGET_CALL_ARITIES[("app", 0x00027cfe)] = {
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00027cfc)] = {
     0x000167a8: 0,  # get_device_info()
     0x0001694c: 1,  # change_work_mode_to(mode)
     0x00019c70: 2,  # debug_print(format, tag, ...); logs disabled in fixtures
@@ -19732,7 +19771,7 @@ REVIEWED_TARGET_CALL_ARITIES[("app", 0x00027cfe)] = {
     0x0007d224: 0,  # get_timestamp()
     0x0007d3be: 0,  # reset_onboarding_bitmap_state()
 }
-REVIEWED_CALL_ARGUMENT_INDICES_BY_TARGET[("app", 0x00027cfe)] = {
+REVIEWED_CALL_ARGUMENT_INDICES_BY_TARGET[("app", 0x00027cfc)] = {
     # The 64-bit timeout follows AAPCS even-register alignment: r1 is an
     # unused hole and the complete UINT64_MAX value occupies r2:r3.
     0x0007cb48: (0, 2, 3),
@@ -21227,6 +21266,54 @@ REVIEWED_TARGET_CALL_ARITIES[("net", 0x0101b7e4)] = {
     0x010209f0: 1,
 }
 REVIEWED_NPTR_COUNTS[("net", 0x0101b7e4)] = 2
+
+
+def _net_sdc_event_publish_case(*, pending, active=0,
+                                snapshot_result=0, admit_result=1):
+    """One complete finite path through the event-publication bridge."""
+    state = bytearray(0x20)
+    state[1] = int(active) & 0xff
+    state[20] = int(pending) & 0xff
+    state[21] = 0x5a
+    radio = emu.SCRATCH + 0x7000
+    memory = [
+        (0x210010a0, bytes(state)),
+        (radio, bytes((0x37,)) + bytes(31)),
+    ]
+    oracles = {}
+    if pending and not active:
+        oracles[0] = {0: int(snapshot_result) & 0xffffffff}
+        if snapshot_result:
+            oracles[1] = {0: radio}
+            oracles[2] = {0: int(admit_result) & 0xffffffff}
+    return ({}, memory, oracles)
+
+
+# The absolute state flags, rather than incoming arguments, select every path:
+# empty, already-active cleanup, snapshot-success publication, admitted timing
+# frame, and the rejected-frame assertion boundary.
+REVIEWED_ORACLE_CASES[("net", 0x0101b4f4)] = [
+    _net_sdc_event_publish_case(pending=0),
+    _net_sdc_event_publish_case(pending=1, active=1),
+    _net_sdc_event_publish_case(pending=1, snapshot_result=0),
+    _net_sdc_event_publish_case(pending=1, snapshot_result=1,
+                                admit_result=1),
+    _net_sdc_event_publish_case(pending=1, snapshot_result=1,
+                                admit_result=0),
+]
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0101b4f4)] = {
+    0x0101a38c: 4,
+    0x01019204: 0,
+    0x010231c8: 2,
+    0x01020634: 0,
+    0x01022a84: 0,
+    0x01008d00: 2,
+}
+REVIEWED_NPTR_COUNTS[("net", 0x0101b4f4)] = 0
+REVIEWED_PAIRED_STACK_OBJECTS[("net", 0x0101b4f4)] = [
+    ("timing-frame", -32, -32, 24, None, None,
+     (0x0101a38c, 0x010231c8)),
+]
 
 
 def _net_radio_owner_case(mode=0, initialized=False,

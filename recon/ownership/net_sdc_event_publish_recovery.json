@@ -1,0 +1,50 @@
+{
+  "schema": "g1.net.sdc_event_publish_recovery.v1",
+  "function": {
+    "analysis_address": "0x0101b4f4",
+    "runtime_address": "0x0101bcf4",
+    "raw_symbol": "FUN_0101b4f4",
+    "primary_symbol": "sdc_event_publish",
+    "source": "recon/net/src/FUN_0101b4f4.c",
+    "source_sha256": "9aef41538769aca5e3715fd52eee3e80669110008bcf6febeb9a869b69113778",
+    "true_executable_extent": 88,
+    "boundary_evidence": "Literal at 0x0101b548 supplies state base 0x210010a0; final literal halfword ends at 0x0101b54c, where the next independent entry begins.",
+    "firmware_extent_sha256": "f7241d5cfb136938d958c83bf5f52a211d36203b5b0e365090053689b80597ed",
+    "cfg_verify": {
+      "status": "PASS",
+      "cover_cases": 5,
+      "checked": 5,
+      "case_families": [
+        "no pending event",
+        "active event cleanup",
+        "snapshot publication",
+        "admitted timing frame",
+        "rejected timing frame assertion"
+      ]
+    },
+    "mutation_negative": {
+      "mutation": "state[2] = 1u -> state[2] = 0u",
+      "status": "FAIL",
+      "checked": 5,
+      "mismatches": 1
+    }
+  },
+  "cohesive_link_probe": {
+    "build_directory": "/private/tmp/g1-cohesive-net-sdc-event",
+    "flash_origin": "0x01008800",
+    "compiled_reconstruction_objects": "1130/1130",
+    "sdc_event_publish_strong_owners": 1,
+    "sdc_event_publish_unresolved_after_archive_resolution": 0,
+    "undefined_reference_diagnostics": 0,
+    "terminal_status": "FLASH overflow only",
+    "flash_overflow_bytes": 267616,
+    "full_link_unknown_symbols": 0
+  },
+  "policy": {
+    "archive_substitution_used": false,
+    "blobs_used": false,
+    "canonical_readable_c_only": true,
+    "sdc_ownership_report_only": true,
+    "automatic_sdc_removal": false
+  }
+}

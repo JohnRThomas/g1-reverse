@@ -4088,6 +4088,15 @@
    "source": "recon/net/src/FUN_0101b230.c",
    "aliases": []
   },
+  "0x0101b4f4": {
+   "address": "0x0101b4f4",
+   "raw_name": "FUN_0101b4f4",
+   "name": "sdc_event_publish",
+   "display_name": "sdc_event_publish",
+   "human": true,
+   "source": "function_name_overrides.json: Catalog-missing 88-byte SDC event-publication bridge; publishes a prepared timing frame or performs the controller event cleanup. Raw identity remains FUN_0101b4f4.",
+   "aliases": []
+  },
   "0x0101b54c": {
    "address": "0x0101b54c",
    "raw_name": "FUN_0101b54c",
@@ -13419,6 +13428,7 @@
   "sdc_cpu_relax": "0x0102a21e",
   "sdc_default_tx_power_set": "0x010091cc",
   "sdc_ecb_run_blocking": "0x0100a7e8",
+  "sdc_event_publish": "0x0101b4f4",
   "sdc_ext_adv_event_complete": "0x010127f8",
   "sdc_ext_adv_reschedule": "0x010140ec",
   "sdc_hci_event_suppressed": "0x0101f888",
