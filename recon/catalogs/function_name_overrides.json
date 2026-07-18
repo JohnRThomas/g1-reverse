@@ -605,6 +605,26 @@
    "name": "smp_c1",
    "evidence": "Exact NCS 2.5.1 Bluetooth SMP c1 confirm-value helper from subsys/bluetooth/host/smp.c. Raw identity remains FUN_0008323a at 0x0008323a."
   },
+  "0x0005ce6c": {
+   "name": "smp_public_key_periph",
+   "evidence": "Exact configured NCS 2.5.1 Bluetooth SMP peripheral public-key handler, including all six pairing methods, passkey paths, and DHKey generation. Raw identity remains FUN_0005ce6c at 0x0005ce6c."
+  },
+  "0x00061200": {
+   "name": "flash_nrf_read_invalid_address",
+   "evidence": "Compiler-outlined cold invalid-address diagnostic path of Zephyr flash_nrf_read; it logs the address/length tuple and returns -EINVAL. Raw identity remains tail_61200 at 0x00061200."
+  },
+  "0x0006447c": {
+   "name": "cjson_get_object_item",
+   "evidence": "Exact cJSON 1.7.14 get_object_item implementation with sensitive and inlined ASCII case-insensitive traversal. Raw identity remains FUN_0006447c at 0x0006447c."
+  },
+  "0x00065000": {
+   "name": "nrfx_clock_stop",
+   "evidence": "Exact configured NCS 2.5.1 nrfx clock_stop helper for LFCLK, HFCLK, HFCLK192M, and HFCLKAUDIO domains. Raw identity remains FUN_00065000 at 0x00065000."
+  },
+  "0x000680f8": {
+   "name": "metal_bus_unregister",
+   "evidence": "Exact libmetal metal_bus_unregister implementation, including list removal, optional bus_close callback, and debug logging. Raw identity remains FUN_000680f8 at 0x000680f8."
+  },
   "0x00086778": {
    "name": "add_event",
    "evidence": "Exact Zephyr 3.4.99 kernel/poll.c priority-ordered poll-event insertion helper. Raw identity remains FUN_00086778 at 0x00086778."

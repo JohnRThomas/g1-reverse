@@ -112,6 +112,7 @@ CALL_ARITY_OVERRIDES = {
     ("app", 0x0005e9a0): 2,  # pairing record plus bit mask
     ("app", 0x00055cf0): 0,  # global connection-mode query
     ("app", 0x0005ce6c): 1,  # connection object
+    ("app", 0x00061200): 2,  # invalid flash address and requested length
     # State-reset continuation takes no arguments; r0-r3 are merely residual
     # values after the two stores in FUN_0004e484.
     ("app", 0x0004e474): 0,
@@ -182,7 +183,9 @@ CALL_ARITY_OVERRIDES = {
     ("app", 0x0008669c): 1,  # output-window initializer consumes its pointer
     ("app", 0x00084602): 1,  # lookup consumes one selector
     ("app", 0x0004f770): 0,  # state query has no arguments
-    ("app", 0x0006447c): 0,  # controller query has no arguments
+    ("app", 0x0006447c): 3,  # cJSON object, name, case-sensitive flag
+    ("app", 0x00065000): 1,  # nrf_clock_domain_t
+    ("app", 0x000680f8): 1,  # libmetal bus object
     ("app", 0x000851ca): 2,  # pin-mode selector consumes pin and mode only
     ("app", 0x000850d8): 1,  # one-tick busy-wait; r1-r3 are stale caller scratch
     # Four-byte veneer forwards the request object to its unary cleanup body.
@@ -379,6 +382,17 @@ def _decompiled_arity(func):
     if "..." in params:
         return 4  # varargs: r0-r3 may all be semantically live
     return min(4, len([p for p in params.split(",") if p.strip()]))
+    # Catalog-missing configured OpenAMP, zcbor, kernel, allocator and libm
+    # entries.  Each extent ends at its reachable return/tail boundary; the
+    # following aligned words are literals or independent functions.
+    ("app", 0x00071560): 0x26,  # rpmsg_init_vdev
+    ("app", 0x000715b8): 0x76,  # zcbor value_encode_len
+    ("app", 0x00071b2c): 0x8c,  # k_heap_free
+    ("app", 0x00074184): 0x1a,  # z_thread_priority_set
+    ("app", 0x000748b8): 0x166,  # z_thread_abort
+    ("app", 0x00075864): 0x58,  # z_heap_aligned_alloc
+    ("app", 0x000758cc): 0x4e,  # k_aligned_alloc
+    ("app", 0x00075e14): 0x170,  # __ieee754_sqrt
 # Ghidra/classification under-reports these resolved jump-table bodies. Values
 # are CFG-confirmed executable extents, not trailing data-table inflation.
 TRUE_SIZE_OVERRIDES = {
@@ -682,6 +696,11 @@ TRUE_SIZE_OVERRIDES = {
     # Two-argument context wrapper ends at its tail branch at 0x778de.  The
     # catalog's remaining bytes are distinct wrappers/functions.
     ("app", 0x000778d4): 0x0a,
+    ("app", 0x0005ce6c): 0x170,  # smp_public_key_periph
+    ("app", 0x00061200): 0x2a,  # flash_nrf_read invalid-address cold path
+    ("app", 0x0006447c): 0x78,  # cJSON get_object_item
+    ("app", 0x00065000): 0x180,  # nrfx clock_stop
+    ("app", 0x000680f8): 0x34,  # libmetal metal_bus_unregister
     # Independently audited catalog-missing SDK/static entries. Each bound
     # ends at its return/tail and excludes the following independent entry.
     ("app", 0x00083a2c): 0x66,
@@ -21773,6 +21792,246 @@ REVIEWED_ORACLE_CASES[("app", 0x00024c14)] = [
     _app_adc_run_case(0, scale_result=-5, log_level=1),
     _app_adc_run_case(0, scale_result=-5, log_level=1, deferred=1),
     _app_adc_run_case(0, sample=20, scale_result=1),
+]
+
+
+def _app_smp_public_key_case(kind, method=0, confirm_result=0,
+                             random_result=0, display_callback=False,
+                             find_result=1, generate_result=0):
+    smp = emu.SCRATCH + 0x5000
+    auth = emu.SCRATCH + 0x5300
+    public_key = emu.SCRATCH + 0x5400
+    connection = emu.SCRATCH + 0x5500
+    buffer = emu.SCRATCH + 0x5600
+    request = emu.SCRATCH + 0x5700
+    display = 0x00080021
+    entry = 0x00080041
+    smp_image = bytearray(0x110)
+    smp_image[8] = int(method) & 0xff
+    smp_image[0x57:0x77] = bytes(range(0x20))
+    smp_image[0xf0:0xf4] = connection.to_bytes(4, "little")
+    auth_image = bytearray(8)
+    auth_image[0:4] = (display if display_callback else 0).to_bytes(4, "little")
+    auth_image[4:8] = entry.to_bytes(4, "little")
+    key_image = bytes((0x80 + i) & 0xff for i in range(64))
+    memory = [(smp, bytes(smp_image)), (auth, bytes(auth_image)),
+              (public_key, key_image), (connection, bytes(16)),
+              (buffer, bytes(0x80)), (request, bytes(0x80)),
+              (0x2000af48, public_key.to_bytes(4, "little"))]
+
+    if kind == "reject":
+        smp_image[0x57:0x77] = key_image[:32]
+        memory[0] = (smp, bytes(smp_image))
+        return ({0: smp}, memory,
+                {0: {0: auth}, 1: {0: 0}, 2: {0: 0}})
+
+    pdu_result = 0 if kind == "no-pdu" else buffer
+    oracles = {0: {0: auth}, 1: {0: 1}, 2: {0: pdu_result}}
+    writes = {}
+    if kind == "no-pdu":
+        return ({0: smp}, memory, oracles)
+
+    oracles[3] = {0: request}
+    if method in (0, 3):
+        oracles[5] = {0: smp}
+        oracles[6] = {0: int(confirm_result)}
+        if confirm_result:
+            return ({0: smp}, memory, oracles)
+        common = 7
+    elif method == 1:
+        oracles[5] = {0: smp}
+        oracles[6] = {0: smp}
+        common = 9
+    elif method == 2:
+        oracles[5] = {0: auth}
+        oracles[6] = {0: int(random_result)}
+        if random_result:
+            return ({0: smp}, memory, oracles)
+        writes = {6: [(0, 0, (1234567).to_bytes(4, "little"), 0x00055cb4)]}
+        if display_callback:
+            oracles[7] = {0: smp + 4}
+            oracles[9] = {0: smp}
+            common = 11
+        else:
+            oracles[7] = {0: smp}
+            common = 9
+    elif method == 5:
+        common = 6
+    else:
+        return ({0: smp}, memory, oracles)
+
+    oracles[common + 1] = {0: int(find_result)}
+    if not find_result:
+        oracles[common + 2] = {0: int(generate_result)}
+    case = ({0: smp}, memory, oracles)
+    if writes:
+        case = ({0: smp}, memory, oracles, writes)
+    return case
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x0005ce6c)] = 4
+REVIEWED_STACK_POINTER_CALLS[("app", 0x0005ce6c)] = {3: {2}, 5: {2}}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x0005ce6c)] = {
+    0x0005cac0: 1, 0x00082ff6: 2, 0x00086be4: 3,
+    0x00083074: 3, 0x000830b0: 2, 0x0005f5d0: 2,
+    0x0005cb38: 3, 0x00083090: 2, 0x0005cdc4: 1,
+    0x00055cb4: 2, 0x0005caa4: 1, 0x0005cc68: 1,
+    0x00080020: 2, 0x00080040: 1,
+}
+REVIEWED_ORACLE_CASES[("app", 0x0005ce6c)] = [
+    _app_smp_public_key_case("reject"),
+    _app_smp_public_key_case("no-pdu"),
+    _app_smp_public_key_case("normal", method=0, confirm_result=5),
+    _app_smp_public_key_case("normal", method=3, find_result=1),
+    _app_smp_public_key_case("normal", method=1, find_result=0,
+                             generate_result=7),
+    _app_smp_public_key_case("normal", method=2, random_result=-1),
+    _app_smp_public_key_case("normal", method=2, find_result=1),
+    _app_smp_public_key_case("normal", method=2, display_callback=True,
+                             find_result=0, generate_result=3),
+    _app_smp_public_key_case("normal", method=4),
+    _app_smp_public_key_case("normal", method=5, find_result=1),
+    _app_smp_public_key_case("normal", method=6),
+]
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00061200)] = 0
+REVIEWED_STACK_POINTER_CALLS[("app", 0x00061200)] = {0: {2}}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00061200)] = {0x0004d944: 4}
+REVIEWED_ORACLE_CASES[("app", 0x00061200)] = [
+    ({0: 0, 1: 0}, [], {}),
+    ({0: 0x12345678, 1: 0x400}, [], {}),
+]
+
+
+def _app_cjson_item_case(kind, case_sensitive):
+    owner = emu.SCRATCH + 0x7000
+    first = emu.SCRATCH + 0x7100
+    second = emu.SCRATCH + 0x7140
+    wanted = emu.SCRATCH + 0x7200
+    first_name = wanted if kind == "same-pointer" else emu.SCRATCH + 0x7240
+    second_name = emu.SCRATCH + 0x7280
+    owner_image = bytearray(0x24)
+    first_image = bytearray(0x24)
+    second_image = bytearray(0x24)
+    if kind != "empty":
+        owner_image[8:12] = first.to_bytes(4, "little")
+    if kind in ("two-sensitive", "two-insensitive"):
+        first_image[0:4] = second.to_bytes(4, "little")
+    if kind != "null-string":
+        first_image[0x20:0x24] = first_name.to_bytes(4, "little")
+    second_image[0x20:0x24] = second_name.to_bytes(4, "little")
+    wanted_bytes = b"aBc\0"
+    first_bytes = b"AbC\0" if kind in ("insensitive", "same-pointer") else b"wrong\0"
+    second_bytes = b"aBc\0"
+    memory = [(owner, bytes(owner_image)), (first, bytes(first_image)),
+              (second, bytes(second_image)), (wanted, wanted_bytes),
+              (first_name, first_bytes), (second_name, second_bytes)]
+    oracles = {}
+    if case_sensitive and kind == "sensitive-match":
+        oracles = {0: {0: 0}}
+    elif case_sensitive and kind == "sensitive-miss":
+        oracles = {0: {0: 1}}
+    elif case_sensitive and kind == "two-sensitive":
+        oracles = {0: {0: 1}, 1: {0: 0}}
+    return ({0: owner, 1: wanted, 2: int(case_sensitive)}, memory, oracles)
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x0006447c)] = 2
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x0006447c)] = {0x0000eefe: 2}
+REVIEWED_ORACLE_CASES[("app", 0x0006447c)] = [
+    ({0: 0, 1: emu.SCRATCH + 0x7200, 2: 0},
+     [(emu.SCRATCH + 0x7200, b"x\0")], {}),
+    ({0: emu.SCRATCH + 0x7000, 1: 0, 2: 0},
+     [(emu.SCRATCH + 0x7000, bytes(0x24))], {}),
+    _app_cjson_item_case("empty", False),
+    _app_cjson_item_case("null-string", True),
+    _app_cjson_item_case("sensitive-match", True),
+    _app_cjson_item_case("sensitive-miss", True),
+    _app_cjson_item_case("two-sensitive", True),
+    _app_cjson_item_case("same-pointer", False),
+    _app_cjson_item_case("insensitive", False),
+    _app_cjson_item_case("two-insensitive", False),
+]
+
+
+def _app_clock_stop_case(domain, running=False):
+    clock = bytearray(0x480)
+    state_offsets = {0: 0x418, 1: 0x40c, 2: 0x45c, 3: 0x454}
+    transitions = []
+    if running:
+        address = 0x50005000 + state_offsets[domain]
+        if domain == 1:
+            transitions = [(address, 1, 0x10001),
+                           (address, 2, 0x10001),
+                           (address, 3, 0)]
+        else:
+            transitions = [(address, 1, 0x10000), (address, 2, 0)]
+    return ({0: domain}, [(0x50005000, bytes(clock))], {}, transitions)
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00065000)] = 0
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00065000)] = {
+    0x000850d8: 1, 0x0007e2fa: 4, 0x0007e2ec: 2,
+}
+_CLOCK_STOP_CASES = [
+    _app_clock_stop_case(0),
+    _app_clock_stop_case(1),
+    _app_clock_stop_case(2),
+    _app_clock_stop_case(3),
+    _app_clock_stop_case(0, running=True),
+    _app_clock_stop_case(1, running=True),
+    _app_clock_stop_case(2, running=True),
+    _app_clock_stop_case(3, running=True),
+    ({0: 4}, [(0x50005000, bytes(0x480))], {} , []),
+]
+REVIEWED_ORACLE_CASES[("app", 0x00065000)] = [
+    (args, memory, oracles) for args, memory, oracles, _ in _CLOCK_STOP_CASES
+]
+ABSOLUTE_READ_TRANSITION_CASES[("app", 0x00065000)] = [
+    transitions for _, _, _, transitions in _CLOCK_STOP_CASES
+]
+
+
+def _app_metal_bus_unregister_case(with_close, log_level, with_handler):
+    bus = emu.SCRATCH + 0x7600
+    previous = emu.SCRATCH + 0x7700
+    following = emu.SCRATCH + 0x7800
+    close_callback = 0x00080021
+    log_handler = 0x00080041
+    bus_image = bytearray(0x2c)
+    bus_image[0:4] = (emu.SCRATCH + 0x7900).to_bytes(4, "little")
+    bus_image[4:8] = (close_callback if with_close else 0).to_bytes(4, "little")
+    bus_image[0x24:0x28] = following.to_bytes(4, "little")
+    bus_image[0x28:0x2c] = previous.to_bytes(4, "little")
+    previous_image = bytearray(8)
+    previous_image[0:4] = (bus + 0x24).to_bytes(4, "little")
+    following_image = bytearray(8)
+    following_image[4:8] = (bus + 0x24).to_bytes(4, "little")
+    log_image = bytearray(8)
+    log_image[0] = int(log_level)
+    log_image[4:8] = (log_handler if with_handler else 0).to_bytes(4, "little")
+    return (
+        {0: bus},
+        [(bus, bytes(bus_image)), (previous, bytes(previous_image)),
+         (following, bytes(following_image)),
+         (emu.SCRATCH + 0x7900, b"zephyr\0"),
+         (0x2000b424, bytes(log_image))],
+        {},
+    )
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x000680f8)] = 1
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x000680f8)] = {
+    0x00080020: 1,
+    0x00080040: 3,
+}
+REVIEWED_ORACLE_CASES[("app", 0x000680f8)] = [
+    _app_metal_bus_unregister_case(False, 6, False),
+    _app_metal_bus_unregister_case(True, 6, False),
+    _app_metal_bus_unregister_case(False, 7, False),
+    _app_metal_bus_unregister_case(False, 7, True),
+    _app_metal_bus_unregister_case(True, 7, True),
 ]
 
 

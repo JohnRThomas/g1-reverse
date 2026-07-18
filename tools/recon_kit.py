@@ -23,6 +23,16 @@ from capstone import *
 SCRATCH = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
 RECON_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/app/src"
 TRUE_SIZE_OVERRIDES = {
+    # Catalog-missing configured OpenAMP, zcbor, kernel, allocator and libm
+    # entries. Keep this registry exactly mirrored in cfg_verify.py.
+    0x00071560: 0x26,  # rpmsg_init_vdev
+    0x000715b8: 0x76,  # zcbor value_encode_len
+    0x00071b2c: 0x8c,  # k_heap_free
+    0x00074184: 0x1a,  # z_thread_priority_set
+    0x000748b8: 0x166,  # z_thread_abort
+    0x00075864: 0x58,  # z_heap_aligned_alloc
+    0x000758cc: 0x4e,  # k_aligned_alloc
+    0x00075e14: 0x170,  # __ieee754_sqrt
     0x00076bc0: 0x06,  # __sinit_lock_release; literal starts at 0x76bc8
     0x00077b24: 0x0e,  # strtol tail wrapper; literal starts at 0x77b34
     0x00077b38: 0xe0,  # _strtoul_r; ctype literal starts at 0x77c18
@@ -280,6 +290,11 @@ TRUE_SIZE_OVERRIDES = {
     0x0007d1d6: 0x40,
     0x0007d3dc: 0x12,
     0x0007ee74: 0x32,
+    0x0005ce6c: 0x170,  # Zephyr Bluetooth smp_public_key_periph
+    0x00061200: 0x2a,  # flash_nrf_read invalid-address cold path
+    0x0006447c: 0x78,  # cJSON get_object_item; ctype literal follows
+    0x00065000: 0x180,  # nrfx_clock clock_stop; literal pool follows
+    0x000680f8: 0x34,  # libmetal metal_bus_unregister; literals follow
     # Independently audited catalog-missing SDK/static entries.
     0x00083a2c: 0x66,
     0x00084e44: 0x14,
