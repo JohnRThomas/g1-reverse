@@ -1,0 +1,354 @@
+{
+ "cfg_verify": {
+  "0x0103547c": "PASS cases=2",
+  "0x010354bc": "PASS cases=4",
+  "0x0103ad4a": "PASS cases=0",
+  "0x0103ad56": "PASS cases=0"
+ },
+ "component": "openamp_rpmsg",
+ "core": "net",
+ "discarded_sections": [
+  {
+   "reason": "present in archive member but discarded by section GC",
+   "section": ".text.rpmsg_release_tx_buffer",
+   "size": 32,
+   "symbol": "rpmsg_release_tx_buffer"
+  }
+ ],
+ "identity_correction": {
+  "corrected_symbol": "rpmsg_send_offchannel_raw",
+  "decisive_operand": "ldr r4,[rdev,#0x78] (raw) versus #0x88 (nocopy)",
+  "incorrect_old_symbol": "rpmsg_send_offchannel_nocopy",
+  "nocopy_owner_va": "0x01035450",
+  "va": "0x01035424"
+ },
+ "manifest_functions": [
+  {
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01035424",
+   "reconstruction_present": false,
+   "relocation_masked_byte_exact": true,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_section": ".text.rpmsg_send_offchannel_raw",
+   "upstream_source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+   "upstream_symbol": "rpmsg_send_offchannel_raw",
+   "va": "0x01035424",
+   "whole_source_unit_selected": true
+  },
+  {
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103547c",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_0103547c.c",
+   "reconstruction_source_sha256": "8ee70a230c03fe7f5344da3e3281a99e57e9f27bf66ace509d6e4822d050e5b9",
+   "relocation_masked_byte_exact": true,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_section": ".text.rpmsg_register_endpoint",
+   "upstream_source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+   "upstream_symbol": "rpmsg_register_endpoint",
+   "va": "0x0103547c",
+   "whole_source_unit_selected": true
+  },
+  {
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_010354bc",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_010354bc.c",
+   "reconstruction_source_sha256": "b1eb0f04cbf86a6d962de6c34a578b10724a123676d760468a613049d8e86203",
+   "relocation_masked_byte_exact": true,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_section": ".text.rpmsg_create_ept",
+   "upstream_source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+   "upstream_symbol": "rpmsg_create_ept",
+   "va": "0x010354bc",
+   "whole_source_unit_selected": true
+  },
+  {
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103ad4a",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_0103ad4a.c",
+   "reconstruction_source_sha256": "4ef30e40925e65975d12a974adacb43fa74ed6bce187ba1282b7f39981dd4860",
+   "relocation_masked_byte_exact": true,
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_section": ".text.__metal_mutex_acquire",
+   "upstream_source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+   "upstream_symbol": "__metal_mutex_acquire",
+   "va": "0x0103ad4a",
+   "whole_source_unit_selected": true
+  },
+  {
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103ad56",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_0103ad56.c",
+   "reconstruction_source_sha256": "f80400af529a720897fc27e469874d12debcd97dad83b7a74ff49380c583c83e",
+   "relocation_masked_byte_exact": true,
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_section": ".text.rpmsg_unregister_endpoint",
+   "upstream_source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+   "upstream_symbol": "rpmsg_unregister_endpoint",
+   "va": "0x0103ad56",
+   "whole_source_unit_selected": true
+  },
+  {
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103ada8",
+   "reconstruction_present": false,
+   "relocation_masked_byte_exact": true,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_section": ".text.rpmsg_send_ns_message",
+   "upstream_source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+   "upstream_symbol": "rpmsg_send_ns_message",
+   "va": "0x0103ada8",
+   "whole_source_unit_selected": true
+  },
+  {
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103ae10",
+   "reconstruction_present": false,
+   "relocation_masked_byte_exact": true,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_section": ".text.rpmsg_get_endpoint",
+   "upstream_source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+   "upstream_symbol": "rpmsg_get_endpoint",
+   "va": "0x0103ae10",
+   "whole_source_unit_selected": true
+  },
+  {
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103ae84",
+   "reconstruction_present": false,
+   "relocation_masked_byte_exact": true,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_section": ".text.rpmsg_destroy_ept",
+   "upstream_source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+   "upstream_symbol": "rpmsg_destroy_ept",
+   "va": "0x0103ae84",
+   "whole_source_unit_selected": true
+  }
+ ],
+ "mutable_state_sections": [],
+ "policy": {
+  "adoption_unit": "complete selected source-unit section closure",
+  "mnemonic_only_identity_authority": false,
+  "sdc_policy": "report_only_unchanged"
+ },
+ "recovered_atomic_group": [
+  "0x0103547c",
+  "0x010354bc",
+  "0x0103ad4a",
+  "0x0103ad56"
+ ],
+ "safe": true,
+ "schema": 1,
+ "section_matches": [
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "827a43b03adc23409c397d23cc0cb9ae7fb182804a0a585fe871e7fe5f4a521c",
+   "relocations": [
+    {
+     "offset": 8,
+     "type": 30
+    }
+   ],
+   "section": ".text.__metal_mutex_acquire",
+   "size": 12,
+   "symbol": "__metal_mutex_acquire",
+   "va": "0x0103ad4a"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "bc80b1569bee335e5df9aec5308111d182dc15109fc2f6fe37255953e80fb8d6",
+   "relocations": [
+    {
+     "offset": 12,
+     "type": 10
+    },
+    {
+     "offset": 78,
+     "type": 30
+    }
+   ],
+   "section": ".text.rpmsg_unregister_endpoint",
+   "size": 82,
+   "symbol": "rpmsg_unregister_endpoint",
+   "va": "0x0103ad56"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "5c42574924642c395648491865d94e73bf1d3fb7610dbefe4ef9cb32d99fe89f",
+   "relocations": [],
+   "section": ".text.rpmsg_send_offchannel_raw",
+   "size": 44,
+   "symbol": "rpmsg_send_offchannel_raw",
+   "va": "0x01035424"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "000c6adb1168f1ae2dc4d655645df9606506b53c8995bef0a093db92b02f8b62",
+   "relocations": [
+    {
+     "offset": 18,
+     "type": 10
+    },
+    {
+     "offset": 38,
+     "type": 10
+    }
+   ],
+   "section": ".text.rpmsg_send_ns_message",
+   "size": 50,
+   "symbol": "rpmsg_send_ns_message",
+   "va": "0x0103ada8"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "5380ec54b50b72ce6d2f3e41d64bf6be8168290ae615b247ae719b5ce5ec62fb",
+   "relocations": [],
+   "section": ".text.rpmsg_hold_rx_buffer",
+   "size": 16,
+   "symbol": "rpmsg_hold_rx_buffer",
+   "va": "0x0103adda"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "b5bfd15034429744162e0e101d0121b8b80cd378ee8a1491a515cf59a6ba5fbe",
+   "relocations": [],
+   "section": ".text.rpmsg_release_rx_buffer",
+   "size": 18,
+   "symbol": "rpmsg_release_rx_buffer",
+   "va": "0x0103adea"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "22e8438a184e4e77899feabcd3e1a58d1054594048b381ccc6d07dd5dd0bd426",
+   "relocations": [],
+   "section": ".text.rpmsg_get_tx_payload_buffer",
+   "size": 20,
+   "symbol": "rpmsg_get_tx_payload_buffer",
+   "va": "0x0103adfc"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "395cdc93819e4952f734992e578f8a9175dce7c7ddc192349e8dc70a4de1e31e",
+   "relocations": [],
+   "section": ".text.rpmsg_send_offchannel_nocopy",
+   "size": 44,
+   "symbol": "rpmsg_send_offchannel_nocopy",
+   "va": "0x01035450"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "93d63df810adff251f64a12742acb946d0b9681e31c94f3a1c843e926ca30595",
+   "relocations": [
+    {
+     "offset": 48,
+     "type": 10
+    }
+   ],
+   "section": ".text.rpmsg_get_endpoint",
+   "size": 116,
+   "symbol": "rpmsg_get_endpoint",
+   "va": "0x0103ae10"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "9f8d4ab3ccaf2e28c5a20835b25083cc94298e389ebb62977ef3fa5792f3ad8b",
+   "relocations": [
+    {
+     "offset": 22,
+     "type": 10
+    },
+    {
+     "offset": 60,
+     "type": 2
+    }
+   ],
+   "section": ".text.rpmsg_register_endpoint",
+   "size": 64,
+   "symbol": "rpmsg_register_endpoint",
+   "va": "0x0103547c"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "c92b843e1c39c51d25b5afe2263c4ff917e81cbc245ea31e304d967b02c0b2bf",
+   "relocations": [
+    {
+     "offset": 36,
+     "type": 10
+    },
+    {
+     "offset": 122,
+     "type": 10
+    },
+    {
+     "offset": 128,
+     "type": 10
+    },
+    {
+     "offset": 152,
+     "type": 10
+    },
+    {
+     "offset": 162,
+     "type": 10
+    },
+    {
+     "offset": 228,
+     "type": 10
+    }
+   ],
+   "section": ".text.rpmsg_create_ept",
+   "size": 256,
+   "symbol": "rpmsg_create_ept",
+   "va": "0x010354bc"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "450c227b9e1fd6dd28ebff87a7b01adfbb79737197d300305bdc5cd3bc8a4368",
+   "relocations": [
+    {
+     "offset": 30,
+     "type": 10
+    },
+    {
+     "offset": 40,
+     "type": 30
+    }
+   ],
+   "section": ".text.rpmsg_destroy_ept",
+   "size": 46,
+   "symbol": "rpmsg_destroy_ept",
+   "va": "0x0103ae84"
+  }
+ ],
+ "upstream": {
+  "abi": "Cortex-M33, Thumb-2, soft-float, -Os",
+  "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+  "configured_build": "/private/tmp/g1-net-spin-ref-0718/zephyr/.config",
+  "configured_build_sha256": "5ef3cd51147eb19eca0aa948feb92790b243ecfe9f4623dd5eea8d27f6852c15",
+  "linker_map": "/private/tmp/g1-net-spin-ref-0718/zephyr/zephyr.map",
+  "object": "/private/tmp/g1-net-spin-ref-0718/modules/open-amp/open-amp/lib/CMakeFiles/open_amp.dir/rpmsg/rpmsg.c.obj",
+  "object_sha256": "824b9ef0b6f75c337f78040c99ac6f2cc1d3c9f4adfa8ddb3b678d7d87b85b1f",
+  "repository": "open-amp",
+  "required_config": {
+   "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
+   "CONFIG_OPENAMP": "y",
+   "CONFIG_OPENAMP_MASTER": "n",
+   "CONFIG_OPENAMP_SLAVE": "y",
+   "CONFIG_SMP": "n",
+   "CONFIG_SPIN_VALIDATE": "y"
+  },
+  "source": "/Users/freedomcoder/ncs251/modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+  "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5"
+ }
+}

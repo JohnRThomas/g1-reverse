@@ -11,7 +11,7 @@
  *
  * Raw/address provenance:
  *   g_net_ccm_op_status @ 0x210014d8
- *   NRF_CCM_NS          @ 0x4100e000
+ *   REG_4100e000        @ 0x4100e000
  *   code [0x0101fd8c, 0x0101fdb8), literals [0x0101fdb8, 0x0101fdc0)
  *   sole code owner: FUN_0100cb10 tail branch @ 0x0100cb20
  */

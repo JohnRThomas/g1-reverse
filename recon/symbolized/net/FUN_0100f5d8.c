@@ -9,7 +9,7 @@
  * Readable role: finalize the network core's four-word random state.
  * Address back-map:
  *   sys_rand_get @ 0x01009204 (FUN_01009204 veneer)
- *   random_state @ 0x21000ef4
+ *   g_net_prng_state @ 0x21000ef4
  */
 #include <stdint.h>
 

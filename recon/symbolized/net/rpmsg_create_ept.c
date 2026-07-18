@@ -1,21 +1,25 @@
 #include "g1_net_symbols.h"
 /* readable reconstruction; identity: FUN_010354bc @ 0x010354bc
- * public-name: FUN_010354bc
+ * public-name: rpmsg_create_ept
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   rpmsg_register_endpoint                  <= FUN_0103547c @ 0x0103547c
+ *   rpmsg_create_ept                         <= FUN_010354bc @ 0x010354bc
+ *   __metal_mutex_acquire                    <= FUN_0103ad4a @ 0x0103ad4a
+ *   rpmsg_unregister_endpoint                <= FUN_0103ad56 @ 0x0103ad56
+ *   rpmsg_send_ns_message                    <= FUN_0103ada8 @ 0x0103ada8
  */
 /* net-core FUN_010354bc @ 0x10354bc  (parity 300 trials PROVEN) */
 extern void rpmsg_register_endpoint(int, unsigned char *, unsigned int, unsigned int, unsigned int, int, unsigned int, unsigned int);
 extern void FUN_01036824(int);
-extern void FUN_0103ad4a(int);
-extern void FUN_0103ad56(unsigned char *);
-extern unsigned int FUN_0103ada8(unsigned char *, int);
+extern void __metal_mutex_acquire(int);
+extern void rpmsg_unregister_endpoint(unsigned char *);
+extern unsigned int rpmsg_send_ns_message(unsigned char *, int);
 
 #define DAT_010355b4 0xfffff82du
 #define DAT_010355b8 0xfffff829u
 
-unsigned int FUN_010354bc(unsigned char *param_1, int param_2, unsigned int param_3,
+unsigned int rpmsg_create_ept(unsigned char *param_1, int param_2, unsigned int param_3,
                            unsigned int param_4, unsigned int param_5, int param_6,
                            unsigned int param_7)
 {
@@ -37,7 +41,7 @@ unsigned int FUN_010354bc(unsigned char *param_1, int param_2, unsigned int para
   }
   iVar6 = param_2 + 0x58;
   uVar3 = param_4;
-  FUN_0103ad4a(iVar6);
+  __metal_mutex_acquire(iVar6);
   if (param_4 == 0xffffffffu) {
     iVar1 = param_2 + 0x48;
     uVar2 = *(unsigned int *)(long)iVar1 & 1;
@@ -73,9 +77,9 @@ LAB_01035524:
   uVar3 = (unsigned int)*param_1;
   if ((uVar3 != 0) && (uVar3 = (unsigned int)*(unsigned char *)(long)(param_2 + 0x90), uVar3 != 0)) {
     if (*(int *)(param_1 + 0x28) == -1) {
-      uVar3 = FUN_0103ada8(param_1, 0);
+      uVar3 = rpmsg_send_ns_message(param_1, 0);
       if (uVar3 != 0) {
-        FUN_0103ad56(param_1);
+        rpmsg_unregister_endpoint(param_1);
       }
     } else {
       uVar3 = 0;

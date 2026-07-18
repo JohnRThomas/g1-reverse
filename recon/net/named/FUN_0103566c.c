@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
+ *   rpmsg_get_endpoint                       <= FUN_0103ae10 @ 0x0103ae10
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103e889                           @ 0x0103e889
@@ -15,7 +16,7 @@ extern void assert_print(unsigned int, unsigned int, unsigned int);
 
 extern int *FUN_0103ac50(unsigned int, uint16_t *, uint32_t *);
 extern void FUN_0103acca(unsigned int);
-extern int FUN_0103ae10(int, int, int, unsigned int);
+extern int rpmsg_get_endpoint(int, int, int, unsigned int);
 extern void FUN_0103aec6(int);
 extern void thunk_FUN_01036824(int);
 
@@ -55,7 +56,7 @@ void FUN_0103566c(int *param_1, unsigned int param_2, unsigned int param_3, unsi
   do {
     piVar1[2] = (int)selector.half[1];
     FUN_0103aec6(iVar5);
-    iVar2 = FUN_0103ae10(iVar4, 0, piVar1[1], 0xffffffffu);
+    iVar2 = rpmsg_get_endpoint(iVar4, 0, piVar1[1], 0xffffffffu);
     thunk_FUN_01036824(iVar5);
     if (iVar2 != 0) {
       uint32_t next_state =

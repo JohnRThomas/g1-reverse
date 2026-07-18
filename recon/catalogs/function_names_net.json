@@ -9846,11 +9846,13 @@
   "0x01035424": {
    "address": "0x01035424",
    "raw_name": "FUN_01035424",
-   "name": "FUN_01035424",
-   "display_name": "FUN_01035424",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "rpmsg_send_offchannel_raw",
+   "display_name": "rpmsg_send_offchannel_raw",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact match to pinned OpenAMP rpmsg.c. Operand-level comparison corrects the old mnemonic-only nocopy misidentification: this body loads rdev->ops at +0x78; nocopy is the adjacent hidden owner at 0x01035450 and loads +0x88. Raw identity remains FUN_01035424.",
+   "aliases": [
+    "FUN_01035424"
+   ]
   },
   "0x0103547c": {
    "address": "0x0103547c",
@@ -9866,11 +9868,13 @@
   "0x010354bc": {
    "address": "0x010354bc",
    "raw_name": "FUN_010354bc",
-   "name": "FUN_010354bc",
-   "display_name": "FUN_010354bc",
-   "human": false,
-   "source": "recon/net/src/FUN_010354bc.c",
-   "aliases": []
+   "name": "rpmsg_create_ept",
+   "display_name": "rpmsg_create_ept",
+   "human": true,
+   "source": "function_name_overrides.json: Complete 0x100-byte pinned OpenAMP rpmsg.c section is relocation-masked byte-exact to firmware, including address allocation, endpoint registration, semaphore handling, and name-service dispatch. Raw identity remains FUN_010354bc.",
+   "aliases": [
+    "FUN_010354bc"
+   ]
   },
   "0x010355bc": {
    "address": "0x010355bc",
@@ -11441,47 +11445,57 @@
   "0x0103ad4a": {
    "address": "0x0103ad4a",
    "raw_name": "FUN_0103ad4a",
-   "name": "FUN_0103ad4a",
-   "display_name": "FUN_0103ad4a",
-   "human": false,
-   "source": "recon/net/src/FUN_0103ad4a.c",
-   "aliases": []
+   "name": "__metal_mutex_acquire",
+   "display_name": "__metal_mutex_acquire",
+   "human": true,
+   "source": "function_name_overrides.json: File-static helper emitted by pinned OpenAMP rpmsg.c; its complete selected section is relocation-masked byte-exact. Raw identity remains FUN_0103ad4a.",
+   "aliases": [
+    "FUN_0103ad4a"
+   ]
   },
   "0x0103ad56": {
    "address": "0x0103ad56",
    "raw_name": "FUN_0103ad56",
-   "name": "FUN_0103ad56",
-   "display_name": "FUN_0103ad56",
-   "human": false,
-   "source": "recon/net/src/FUN_0103ad56.c",
-   "aliases": []
+   "name": "rpmsg_unregister_endpoint",
+   "display_name": "rpmsg_unregister_endpoint",
+   "human": true,
+   "source": "function_name_overrides.json: File-static endpoint removal helper from pinned OpenAMP rpmsg.c; complete selected section is relocation-masked byte-exact. Raw identity remains FUN_0103ad56.",
+   "aliases": [
+    "FUN_0103ad56"
+   ]
   },
   "0x0103ada8": {
    "address": "0x0103ada8",
    "raw_name": "FUN_0103ada8",
-   "name": "FUN_0103ada8",
-   "display_name": "FUN_0103ada8",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "rpmsg_send_ns_message",
+   "display_name": "rpmsg_send_ns_message",
+   "human": true,
+   "source": "function_name_overrides.json: Pinned OpenAMP rpmsg.c name-service sender is relocation-masked byte-exact and calls the corrected raw sender at 0x01035424. Raw identity remains FUN_0103ada8.",
+   "aliases": [
+    "FUN_0103ada8"
+   ]
   },
   "0x0103ae10": {
    "address": "0x0103ae10",
    "raw_name": "FUN_0103ae10",
-   "name": "FUN_0103ae10",
-   "display_name": "FUN_0103ae10",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "rpmsg_get_endpoint",
+   "display_name": "rpmsg_get_endpoint",
+   "human": true,
+   "source": "function_name_overrides.json: Pinned OpenAMP rpmsg.c endpoint lookup is relocation-masked byte-exact across address, name, and destination matching. Raw identity remains FUN_0103ae10.",
+   "aliases": [
+    "FUN_0103ae10"
+   ]
   },
   "0x0103ae84": {
    "address": "0x0103ae84",
    "raw_name": "FUN_0103ae84",
-   "name": "FUN_0103ae84",
-   "display_name": "FUN_0103ae84",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "rpmsg_destroy_ept",
+   "display_name": "rpmsg_destroy_ept",
+   "human": true,
+   "source": "function_name_overrides.json: Pinned OpenAMP rpmsg.c endpoint destruction owner is relocation-masked byte-exact, including name-service removal and file-static unregister tail. Raw identity remains FUN_0103ae84.",
+   "aliases": [
+    "FUN_0103ae84"
+   ]
   },
   "0x0103aec2": {
    "address": "0x0103aec2",
@@ -12807,8 +12821,6 @@
   "FUN_0103533c": "0x0103533c",
   "FUN_010353b4": "0x010353b4",
   "FUN_010353ec": "0x010353ec",
-  "FUN_01035424": "0x01035424",
-  "FUN_010354bc": "0x010354bc",
   "FUN_010355bc": "0x010355bc",
   "FUN_0103566c": "0x0103566c",
   "FUN_0103576c": "0x0103576c",
@@ -12965,11 +12977,6 @@
   "FUN_0103ac98": "0x0103ac98",
   "FUN_0103acca": "0x0103acca",
   "FUN_0103ad1a": "0x0103ad1a",
-  "FUN_0103ad4a": "0x0103ad4a",
-  "FUN_0103ad56": "0x0103ad56",
-  "FUN_0103ada8": "0x0103ada8",
-  "FUN_0103ae10": "0x0103ae10",
-  "FUN_0103ae84": "0x0103ae84",
   "FUN_0103aec6": "0x0103aec6",
   "FUN_0103aed2": "0x0103aed2",
   "FUN_0103af14": "0x0103af14",
@@ -13013,6 +13020,7 @@
   "FUN_0103b614": "0x0103b614",
   "FUN_0103b62e": "0x0103b62e",
   "FUN_0103b650": "0x0103b650",
+  "__metal_mutex_acquire": "0x0103ad4a",
   "arch_cpu_atomic_idle": "0x0102ea00",
   "assert_print": "0x01039bbe",
   "atomic_set": "0x01039fb6",
@@ -13131,7 +13139,13 @@
   "radio_phy_airtime_tail_get": "0x010209e0",
   "radio_slot_margin_get": "0x0101a130",
   "radio_transition_overhead_get": "0x0101a0e8",
+  "rpmsg_create_ept": "0x010354bc",
+  "rpmsg_destroy_ept": "0x0103ae84",
+  "rpmsg_get_endpoint": "0x0103ae10",
   "rpmsg_register_endpoint": "0x0103547c",
+  "rpmsg_send_ns_message": "0x0103ada8",
+  "rpmsg_send_offchannel_raw": "0x01035424",
+  "rpmsg_unregister_endpoint": "0x0103ad56",
   "rpmsg_virtio_get_buffer_size": "0x010357ec",
   "rtc_compare_event_clear": "0x0103a6ae",
   "rtc_nrf_isr": "0x010315f0",

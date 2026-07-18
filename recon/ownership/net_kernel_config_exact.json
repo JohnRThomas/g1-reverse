@@ -1,0 +1,146 @@
+{
+ "authorizes_source_exclusion": false,
+ "configured_build": "/private/tmp/g1-net-spin-ref-0718",
+ "configured_build_sha256": "5ef3cd51147eb19eca0aa948feb92790b243ecfe9f4623dd5eea8d27f6852c15",
+ "core": "net",
+ "layout_discriminators": {
+  "k_msgq_init_size": 40,
+  "onoff_manager_size": 32,
+  "onoff_manager_size_if_smp": 36
+ },
+ "object_sha256": {
+  "zephyr/CMakeFiles/zephyr.dir/lib/os/onoff.c.obj": "8f9769f0ab74df2f5d69354098b379d2dfb7b4115c1417b42e5c0a37070e0546",
+  "zephyr/kernel/CMakeFiles/kernel.dir/msg_q.c.obj": "341999d0ca60bf30085bd27805659ecc479559261c5bb20e4dcd746a9371d414",
+  "zephyr/kernel/CMakeFiles/kernel.dir/thread.c.obj": "f46d64cdb62946af99dd877d4354085c648e67bcb950187552de171982743c81"
+ },
+ "required_config": {
+  "CONFIG_SMP": "n",
+  "CONFIG_SPIN_VALIDATE": "y"
+ },
+ "schema": 1,
+ "sdc_policy": "report_only_unchanged",
+ "section_matches": [
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "925a9aaa9932718c0910a603ef231c251f6221346f280ef6f4067a873449b5b7",
+   "object": "zephyr/CMakeFiles/zephyr.dir/lib/os/onoff.c.obj",
+   "relocations": [],
+   "size": 56,
+   "symbol": "process_recheck",
+   "va": "0x01039ade"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "2e048ff1e46f9937b172da142bff2ec06a180c70bfdbb28cc22b20c54f061ef0",
+   "object": "zephyr/CMakeFiles/zephyr.dir/lib/os/onoff.c.obj",
+   "relocations": [
+    {
+     "offset": 16,
+     "type": 10
+    }
+   ],
+   "size": 32,
+   "symbol": "validate_args",
+   "va": "0x01039b16"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "fb42f3afbe118989799cd1c090b370e47cac8faade0a7844d0db05578143bc2f",
+   "object": "zephyr/CMakeFiles/zephyr.dir/lib/os/onoff.c.obj",
+   "relocations": [
+    {
+     "offset": 16,
+     "type": 10
+    }
+   ],
+   "size": 44,
+   "symbol": "notify_one",
+   "va": "0x01039b36"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "ac30ad8abbf306d031d2f301ea062bba139949ec599b3fc8f677c9f4b900e94e",
+   "object": "zephyr/CMakeFiles/zephyr.dir/lib/os/onoff.c.obj",
+   "relocations": [
+    {
+     "offset": 22,
+     "type": 10
+    }
+   ],
+   "size": 38,
+   "symbol": "onoff_manager_init",
+   "va": "0x01039b62"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "caa1bd62347289227308111f5b779d72d013aed2402c6ea2326508724f9cbd3b",
+   "object": "zephyr/kernel/CMakeFiles/kernel.dir/thread.c.obj",
+   "relocations": [
+    {
+     "offset": 24,
+     "type": 2
+    }
+   ],
+   "size": 28,
+   "symbol": "z_spin_lock_valid",
+   "va": "0x0103610c"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "f4ab59a440fe4ab0cc684ce6232ee18b6ed1386ec1ee8b52ecad6695d129e469",
+   "object": "zephyr/kernel/CMakeFiles/kernel.dir/thread.c.obj",
+   "relocations": [
+    {
+     "offset": 24,
+     "type": 2
+    }
+   ],
+   "size": 28,
+   "symbol": "z_spin_unlock_valid",
+   "va": "0x01036128"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "176248a070a7c290d568c68f3d377f58f0e3d1f62d300ab68bc192e6af80ad12",
+   "object": "zephyr/kernel/CMakeFiles/kernel.dir/thread.c.obj",
+   "relocations": [
+    {
+     "offset": 12,
+     "type": 2
+    }
+   ],
+   "size": 16,
+   "symbol": "z_spin_lock_set_owner",
+   "va": "0x01036144"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "77efd7147e725fccf9473fe0c5809acd6ea03bc975d18ae86a10a667d947e339",
+   "object": "zephyr/kernel/CMakeFiles/kernel.dir/msg_q.c.obj",
+   "relocations": [],
+   "size": 40,
+   "symbol": "k_msgq_init",
+   "va": "0x0103b164"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "87e18169e9b3b22a4627dd2205c8f95a2dd8891c6a314ef4f15ef020d0fe8d7a",
+   "object": "zephyr/kernel/CMakeFiles/kernel.dir/msg_q.c.obj",
+   "relocations": [
+    {
+     "offset": 16,
+     "type": 10
+    },
+    {
+     "offset": 42,
+     "type": 10
+    }
+   ],
+   "size": 56,
+   "symbol": "z_impl_k_msgq_alloc_init",
+   "va": "0x0103b18c"
+  }
+ ],
+ "status": "configuration_exact_no_adoption_authority",
+ "zephyr_commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+}
