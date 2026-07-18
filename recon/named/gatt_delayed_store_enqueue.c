@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   find_sc_cfg_59b94                        <= FUN_00059b94 @ 0x00059b94
  *   gatt_delayed_store_enqueue               <= FUN_00059d24 @ 0x00059d24
+ *   k_work_reschedule                        <= FUN_0007350c @ 0x0007350c
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   bt_addr_le_is_bonded                     <= FUN_00080f92 @ 0x00080f92
@@ -23,7 +24,7 @@
 
 #include <stdint.h>
 extern int find_sc_cfg_59b94(uint32_t,uint32_t);
-extern void FUN_0007350c(uint32_t,uint32_t,int,int);
+extern void k_work_reschedule(uint32_t,uint32_t,int,int);
 extern void assert_post_action(uint32_t,int);
 extern void printk(uint32_t,...);
 extern int bt_addr_le_is_bonded(void);
@@ -58,5 +59,5 @@ void gatt_delayed_store_enqueue(uint32_t param_1, uint32_t param_2, uint32_t par
     *(volatile char*)(iVar1 + iVar4*0xc) = (char)param_1;
   }
   uint64_t pending = atomic_or_0(iVar3 + 8, 1 << (param_3 & 0xff));
-  FUN_0007350c(0x20006350, (uint32_t)(pending >> 32), 0x8000, 0);
+  k_work_reschedule(0x20006350, (uint32_t)(pending >> 32), 0x8000, 0);
 }

@@ -8,6 +8,8 @@
  *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
  *   ble_conn_set_state                       <= FUN_00056704 @ 0x00056704
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
+ *   k_work_schedule                          <= FUN_00073418 @ 0x00073418
+ *   k_work_cancel_delayable                  <= FUN_00073518 @ 0x00073518
  *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
@@ -35,13 +37,13 @@ extern void net_buf_destroy(int,void*,uint32_t,uint32_t);
 extern void ble_conn_ref(void);
 extern uint32_t ble_conn_unref(int);
 extern void k_sem_give(int);
-extern void FUN_00073418(int,uint32_t,uint32_t,uint32_t);
-extern uint32_t FUN_00073518(int);
+extern void k_work_schedule(int,uint32_t,uint32_t,uint32_t);
+extern uint32_t k_work_cancel_delayable(int);
 extern void FUN_000757b0(uint32_t,int);
 extern void FUN_000813ca(uint32_t,uint32_t,void*);
 #define z_impl_k_queue_init z_impl_k_queue_init
 extern void z_impl_k_queue_init(void *queue);
-extern uint32_t thunk_FUN_00072e9c(int);
+extern uint32_t k_work_delayable_busy_get(int);
 
 void ble_conn_set_state(int param_1, uint param_2)
 {
@@ -75,8 +77,8 @@ void ble_conn_set_state(int param_1, uint param_2)
         case 1: {
           tx_notify(param_1);
           if (*(volatile uint8_t*)(param_1+2) == 1) {
-            uint32_t r = thunk_FUN_00072e9c(param_1 + 0x60);
-            if ((r & 0xc) != 0) FUN_00073518(param_1 + 0x60);
+            uint32_t r = k_work_delayable_busy_get(param_1 + 0x60);
+            if ((r & 0xc) != 0) k_work_cancel_delayable(param_1 + 0x60);
           }
           volatile uint32_t *p = (volatile uint32_t*)(param_1+4);
           uint32_t v;
@@ -145,7 +147,7 @@ void ble_conn_set_state(int param_1, uint param_2)
           int isOne = (c == 1);
           if (isOne) c = 3;
           if (isOne) *(volatile uint8_t*)(param_1+0xb4) = c;
-          FUN_00073418(param_1+0x60, 0, 0x28000, 0);
+          k_work_schedule(param_1+0x60, 0, 0x28000, 0);
         }
       }
       break;

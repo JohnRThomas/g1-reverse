@@ -1,8 +1,9 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_000732d4 @ 0x000732d4
- * public-name: FUN_000732d4
+ * public-name: k_work_init_delayable
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   k_work_init_delayable                    <= FUN_000732d4 @ 0x000732d4
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -18,7 +19,7 @@ extern void assert_post_action(void*, int);
 extern void printk(void*, void*, void*, int);
 extern void memset_bytes(int, int, int, unsigned int, unsigned int);
 
-void FUN_000732d4(int param_1, int param_2, unsigned int param_3, unsigned int param_4)
+void k_work_init_delayable(int param_1, int param_2, unsigned int param_3, unsigned int param_4)
 {
   unsigned int uVar1;
 

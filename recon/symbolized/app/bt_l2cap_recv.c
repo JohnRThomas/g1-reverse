@@ -7,6 +7,7 @@
  *   net_buf_put                              <= FUN_0005f200 @ 0x0005f200
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
  *   net_buf_simple_pull_5f594                <= FUN_0005f594 @ 0x0005f594
+ *   k_work_submit                            <= FUN_00072fdc @ 0x00072fdc
  *   bt_l2cap_le_lookup_rx_cid                <= FUN_00081aca @ 0x00081aca
  *   gatt_send_service_changed_ind            <= FUN_00081b30 @ 0x00081b30
  * address symbols (name @ address):
@@ -19,7 +20,7 @@ extern void FUN_00057b60(int);
 extern void net_buf_put(int,int);
 extern void net_buf_unref(int);
 extern int  net_buf_simple_pull_5f594(int,int);
-extern void FUN_00072fdc(int);
+extern void k_work_submit(int);
 extern int  FUN_000816a2(int);
 extern void FUN_00081746(int,int,void*);
 extern int  bt_l2cap_le_lookup_rx_cid(uint32_t,uint16_t);
@@ -50,7 +51,7 @@ void bt_l2cap_recv(uint32_t param_1, int param_2, int param_3){
         if ((iVar2 << 0x1e) >= 0){
             if ((uint16_t)(*(volatile uint16_t*)(iVar1+0xb6) - 0x80) <= 0x7f){
                 net_buf_put(iVar1+0x98, param_2);
-                FUN_00072fdc(iVar1+0x88); return;
+                k_work_submit(iVar1+0x88); return;
             }
             FUN_00057b60(iVar1);
             net_buf_unref(param_2); return;

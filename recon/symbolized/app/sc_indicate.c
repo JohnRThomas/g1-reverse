@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   sc_indicate                              <= FUN_0005a570 @ 0x0005a570
+ *   k_work_reschedule                        <= FUN_0007350c @ 0x0007350c
  *   atomic_or_0                              <= FUN_000826e0 @ 0x000826e0
  * address symbols (name @ address):
  *   g_service_changed_range                  @ 0x200063f8
@@ -13,7 +14,7 @@
 
 extern int atomic_or_0(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 extern long long FUN_0008270c(unsigned int a);
-extern void FUN_0007350c(unsigned int a, int b, unsigned int c, unsigned int d);
+extern void k_work_reschedule(unsigned int a, int b, unsigned int c, unsigned int d);
 
 void sc_indicate(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -41,5 +42,5 @@ LAB:
   if ((int)((int)uVar4 << 0x1e) < 0) {
     return;
   }
-  FUN_0007350c(0, (int)(uVar4 >> 32), 0x148, 0);
+  k_work_reschedule(0, (int)(uVar4 >> 32), 0x148, 0);
 }

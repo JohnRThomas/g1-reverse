@@ -5,6 +5,7 @@
  *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
  *   ble_conn_lookup_masked                   <= FUN_00056908 @ 0x00056908
  *   ble_notify_le_param_updated              <= FUN_00056ae0 @ 0x00056ae0
+ *   k_work_schedule                          <= FUN_00073418 @ 0x00073418
  *   atomic_or                                <= FUN_00080e6a @ 0x00080e6a
  *   atomic_and_3                             <= FUN_00080ea8 @ 0x00080ea8
  * address symbols (name @ address):
@@ -18,7 +19,7 @@
 extern void ble_conn_unref(int);
 extern uint64_t ble_conn_lookup_masked(uint32_t,int);
 extern void ble_notify_le_param_updated(int);
-extern void FUN_00073418(int,uint32_t,int,int);
+extern void k_work_schedule(int,uint32_t,int,int);
 extern uint64_t atomic_or(void*,int);
 extern void FUN_00080ea2(uint32_t,int,void*);
 extern void atomic_and_3(void*,uint32_t);
@@ -67,7 +68,7 @@ void FUN_00053bd8(int param_1){
     /* The original uses LDA then tests bit 8 via LSLS #23/BPL. */
     if (((*piVar5 & 0x100u) == 0) || (*pcVar4 != 0x20) || (*(volatile char*)(iVar2+0xb4) == 0)) goto L_c68;
     *(volatile char*)(iVar2+0xb4) = *(volatile char*)(iVar2+0xb4) - 1;
-    FUN_00073418(iVar2+0x60, uVar3, 0x28000, 0);
+    k_work_schedule(iVar2+0x60, uVar3, 0x28000, 0);
     ble_notify_le_param_updated(iVar2);
     goto L_c44;
     (void)local_2c; (void)uStack_28; (void)local_1c;

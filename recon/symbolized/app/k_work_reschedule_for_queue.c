@@ -6,6 +6,7 @@
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   submit_to_queue_locked                   <= FUN_00072cd4 @ 0x00072cd4
  *   k_work_reschedule_for_queue              <= FUN_00073424 @ 0x00073424
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
@@ -36,7 +37,7 @@ extern int z_spin_lock_valid(uint32_t lock);
 extern void z_spin_lock_set_owner(uint32_t lock);
 extern int z_spin_unlock_valid(uint32_t lock);
 extern void unschedule_locked(volatile uint32_t *delayable_work);
-extern int FUN_00072cd4(volatile uint32_t *work, uint32_t *queue,
+extern int submit_to_queue_locked(volatile uint32_t *work, uint32_t *queue,
                         uint32_t diagnostic0, uint32_t diagnostic1);
 extern void FUN_00074bf4(uintptr_t timeout, uintptr_t handler,
                          uint32_t delay_low, uint32_t delay_high);
@@ -66,7 +67,7 @@ int k_work_reschedule_for_queue(uint32_t queue, volatile uint32_t *delayable_wor
 
     unschedule_locked(delayable_work);
     if ((delay_low | delay_high) == 0U) {
-        result = FUN_00072cd4(delayable_work, &queue, 0U,
+        result = submit_to_queue_locked(delayable_work, &queue, 0U,
                               delayable_work[3]);
     } else {
         uint32_t flags = delayable_work[3] | 8U;

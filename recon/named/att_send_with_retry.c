@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   k_work_schedule                          <= FUN_00073418 @ 0x00073418
  *   att_send_with_retry                      <= FUN_000818dc @ 0x000818dc
  */
 /* Reconstructed FUN_000818dc @ 0x818dc  (parity: 300/300 trials, PROVEN) */
@@ -10,7 +11,7 @@
 #include <stdint.h>
 
 extern void net_buf_unref(uintptr_t);
-extern void FUN_00073418(uintptr_t, unsigned, unsigned, unsigned);
+extern void k_work_schedule(uintptr_t, unsigned, unsigned, unsigned);
 extern uint64_t FUN_00081852(uintptr_t, int *, unsigned);
 extern int net_buf_get(uintptr_t, unsigned, unsigned, unsigned);
 
@@ -36,7 +37,7 @@ void att_send_with_retry(uintptr_t owner, unsigned inherited_wait, unsigned unus
             continue;
         if (result == -11) {
             *(volatile int *)(owner - 4) = item;
-            FUN_00073418(owner, (unsigned)(result_pair >> 32), 0x8000, 0);
+            k_work_schedule(owner, (unsigned)(result_pair >> 32), 0x8000, 0);
             return;
         }
         net_buf_unref((uintptr_t)item);

@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   bt_smp_send_pdu                          <= FUN_0005cb38 @ 0x0005cb38
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   k_work_reschedule                        <= FUN_0007350c @ 0x0007350c
  *   bt_conn_create_pdu                       <= FUN_00081820 @ 0x00081820
  * address symbols (name @ address):
  *   rodata_88180                             @ 0x00088180
@@ -15,7 +16,7 @@
 extern long long bt_conn_create_pdu(unsigned,int,unsigned,unsigned,int);
 extern void net_buf_unref(unsigned);
 extern void FUN_00083074(unsigned,unsigned,void*);
-extern void FUN_0007350c(int,int,unsigned,int);
+extern void k_work_reschedule(int,int,unsigned,int);
 
 void bt_smp_send_pdu(int param_1, unsigned param_2, unsigned param_3){
   long long uVar1 = bt_conn_create_pdu(*(volatile unsigned*)(param_1+0xf0), 6, param_2, param_3, 0);
@@ -30,5 +31,5 @@ void bt_smp_send_pdu(int param_1, unsigned param_2, unsigned param_3){
     net_buf_unref(param_2);
     return;
   }
-  FUN_0007350c(param_1+0x208, (int)((unsigned long long)uVar1 >> 0x20), 0xf0000, 0);
+  k_work_reschedule(param_1+0x208, (int)((unsigned long long)uVar1 >> 0x20), 0xf0000, 0);
 }

@@ -7,6 +7,7 @@
  *   bt_conn_auth_info_cb_register            <= FUN_00057330 @ 0x00057330
  *   bt_gatt_service_init                     <= FUN_00059cb4 @ 0x00059cb4
  *   bt_gatt_init                             <= FUN_0005a954 @ 0x0005a954
+ *   k_work_init_delayable                    <= FUN_000732d4 @ 0x000732d4
  *   atomic_or_0                              <= FUN_000826e0 @ 0x000826e0
  * address symbols (name @ address):
  *   rodata_82cb3                             @ 0x00082cb3
@@ -25,7 +26,7 @@
 #include <stdint.h>
 extern uint32_t atomic_or_0(volatile uint32_t *, uint32_t); /* atomic_or */
 extern void bt_gatt_service_init(void);                              /* bt_gatt_service_init */
-extern void FUN_000732d4(void *, void *);                    /* k_work_init_delayable */
+extern void k_work_init_delayable(void *, void *);                    /* k_work_init_delayable */
 extern void k_work_schedule_at_ticks(void *, uint32_t, uint32_t);        /* memset */
 extern void bt_conn_auth_info_cb_register(void *);                            /* bt_conn_auth_info_cb_register */
 extern void FUN_00056e24(void *);                            /* bt_conn_cb_register */
@@ -37,11 +38,11 @@ void bt_gatt_init(void)
     bt_gatt_service_init();
     *(volatile uint32_t *)((unsigned long)&g_bt_gatt_callback_list_head) /*=0x2000af10*/ = 0;
     *(volatile uint32_t *)((unsigned long)&g_2000af14) /*=0x2000af14*/ = 0;
-    FUN_000732d4((void *)((unsigned long)&g_20006418) /*=0x20006418*/, (void *)((unsigned long)&rodata_82cb3) /*=0x82cb3*/);
+    k_work_init_delayable((void *)((unsigned long)&g_20006418) /*=0x20006418*/, (void *)((unsigned long)&rodata_82cb3) /*=0x82cb3*/);
     k_work_schedule_at_ticks((void *)((unsigned long)&g_bt_gatt_db_hash_work) /*=0x200063a0*/, 0U, 0x148U);
-    FUN_000732d4((void *)((unsigned long)&g_bt_gatt_flags) /*=0x20006448*/, (void *)0x00082fb5U);
+    k_work_init_delayable((void *)((unsigned long)&g_bt_gatt_flags) /*=0x20006448*/, (void *)0x00082fb5U);
     (void)atomic_or_0((volatile uint32_t *)((unsigned long)&g_bt_gatt_flags) /*=0x20006448*/, 2U);
-    FUN_000732d4((void *)0x200064b8U, (void *)0x00082ff9U);
+    k_work_init_delayable((void *)0x200064b8U, (void *)0x00082ff9U);
     bt_conn_auth_info_cb_register((void *)((unsigned long)&g_200029f8) /*=0x200029f8*/);
     FUN_00056e24((void *)((unsigned long)&g_200029d4) /*=0x200029d4*/);
 }

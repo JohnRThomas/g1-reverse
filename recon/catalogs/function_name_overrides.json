@@ -826,9 +826,49 @@
    "name": "k_work_schedule_for_queue",
    "evidence": "Recovered body implements Zephyr's queue-specific delayable-work scheduling path, including validation, work lock, submission and timeout programming. Raw identity remains FUN_0007332c at 0x0007332c."
   },
+  "0x00072cd4": {
+   "name": "submit_to_queue_locked",
+   "evidence": "Exact configured Zephyr kernel/work.c translation-unit helper. Raw identity remains FUN_00072cd4 at 0x00072cd4."
+  },
+  "0x00072f28": {
+   "name": "z_work_submit_to_queue",
+   "evidence": "Exact configured Zephyr kernel/work.c internal public submission implementation. Raw identity remains FUN_00072f28 at 0x00072f28."
+  },
+  "0x00072fdc": {
+   "name": "k_work_submit",
+   "evidence": "Exact configured Zephyr kernel/work.c system-workqueue submission wrapper. Raw identity remains FUN_00072fdc at 0x00072fdc."
+  },
+  "0x000731b8": {
+   "name": "k_work_queue_drain",
+   "evidence": "Exact configured Zephyr kernel/work.c queue drain API. Raw identity remains FUN_000731b8 at 0x000731b8."
+  },
+  "0x000732d4": {
+   "name": "k_work_init_delayable",
+   "evidence": "Exact configured Zephyr kernel/work.c delayable-work initializer. Raw identity remains FUN_000732d4 at 0x000732d4."
+  },
+  "0x00073418": {
+   "name": "k_work_schedule",
+   "evidence": "Exact configured Zephyr kernel/work.c system-workqueue scheduling wrapper. Raw identity remains FUN_00073418 at 0x00073418."
+  },
   "0x00073424": {
    "name": "k_work_reschedule_for_queue",
    "evidence": "Recovered body implements Zephyr's queue-specific delayable-work rescheduling path, including cancellation of an existing timeout before submission and reprogramming. Raw identity remains FUN_00073424 at 0x00073424."
+  },
+  "0x0007350c": {
+   "name": "k_work_reschedule",
+   "evidence": "Exact configured Zephyr kernel/work.c system-workqueue rescheduling wrapper. Raw identity remains FUN_0007350c at 0x0007350c."
+  },
+  "0x00073518": {
+   "name": "k_work_cancel_delayable",
+   "evidence": "Exact configured Zephyr kernel/work.c asynchronous delayable-work cancellation API. Raw identity remains FUN_00073518 at 0x00073518."
+  },
+  "0x000735cc": {
+   "name": "k_work_cancel_delayable_sync",
+   "evidence": "Exact configured Zephyr kernel/work.c synchronous delayable-work cancellation API. Raw identity remains FUN_000735cc at 0x000735cc."
+  },
+  "0x00086588": {
+   "name": "notify_queue_locked",
+   "evidence": "Exact configured Zephyr kernel/work.c translation-unit queue notification helper. Raw identity remains FUN_00086588 at 0x00086588."
   },
   "0x00076a88": {
    "name": "nanf",
@@ -857,6 +897,10 @@
   "0x00086596": {
    "name": "cancel_async_locked",
    "evidence": "Pinned Zephyr 3.4.99 kernel/work.c static helper. It dequeues queued work, sets the canceling flag when activity remains, and returns the resulting busy-state mask. Raw identity remains FUN_00086596@0x00086596."
+  },
+  "0x0008661e": {
+   "name": "k_work_delayable_busy_get",
+   "evidence": "Exact configured Zephyr kernel/work.c delayable-work busy-state tail wrapper to k_work_busy_get. Raw identity remains FUN_0008661e at 0x0008661e."
   },
   "0x00057038": {
    "name": "send_conn_le_param_update",

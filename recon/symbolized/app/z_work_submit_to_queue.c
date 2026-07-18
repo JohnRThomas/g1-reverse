@@ -1,11 +1,13 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_00072f28 @ 0x00072f28
- * public-name: FUN_00072f28
+ * public-name: z_work_submit_to_queue
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   submit_to_queue_locked                   <= FUN_00072cd4 @ 0x00072cd4
+ *   z_work_submit_to_queue                   <= FUN_00072f28 @ 0x00072f28
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -28,12 +30,12 @@ extern void assert_post_action(u32,u32);
 extern int z_spin_lock_valid(u32);
 extern void z_spin_lock_set_owner(u32);
 extern int z_spin_unlock_valid(u32);
-extern u32 FUN_00072cd4(int,void*);
+extern u32 submit_to_queue_locked(int,void*);
 static inline u32 rd_basepri(void){return __get_BASEPRI();}
 static inline void wr_basepri_max(u32 v){__set_BASEPRI_MAX(v);}
 static inline void wr_basepri(u32 v){__set_BASEPRI(v);}
 static inline void isb_(void){__ISB();}
-u32 FUN_00072f28(u32 param_1, int param_2, u32 param_3){
+u32 z_work_submit_to_queue(u32 param_1, int param_2, u32 param_3){
     struct lookup_key {
         u32 value;
         u32 qualifier;
@@ -57,7 +59,7 @@ retry:
             goto retry;
         }
         z_spin_lock_set_owner(((unsigned long)&timer_spinlock) /*=0x2000b480*/);
-        uVar4 = FUN_00072cd4(param_2, &key);
+        uVar4 = submit_to_queue_locked(param_2, &key);
         iVar3 = z_spin_unlock_valid(((unsigned long)&timer_spinlock) /*=0x2000b480*/);
         if(iVar3!=0){
             wr_basepri(uVar5);

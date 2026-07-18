@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   net_buf_destroy                          <= FUN_00056080 @ 0x00056080
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   k_work_reschedule                        <= FUN_0007350c @ 0x0007350c
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   bt_conn_reset_rx_state                   <= FUN_000813d6 @ 0x000813d6
@@ -23,7 +24,7 @@ extern void net_buf_destroy(void *, void *);
 extern void printk(uintptr_t, ...);
 extern void assert_post_action(uintptr_t, uint32_t) __attribute__((noreturn));
 extern uint64_t bt_conn_reset_rx_state(void *);
-extern void FUN_0007350c(void *, uint32_t, uint32_t, uint32_t);
+extern void k_work_reschedule(void *, uint32_t, uint32_t, uint32_t);
 
 void FUN_00056300(void *context, uint32_t inherited_r1)
 {
@@ -41,7 +42,7 @@ void FUN_00056300(void *context, uint32_t inherited_r1)
                 assert_post_action(0x000f3a5du, 0x314u);
             }
             uint64_t released = bt_conn_reset_rx_state(context);
-            FUN_0007350c(base + 0x60, (uint32_t)(released >> 32), 0, 0);
+            k_work_reschedule(base + 0x60, (uint32_t)(released >> 32), 0, 0);
             return;
         }
         void *fragment = *(void **)((uint8_t *)item + 0x18);

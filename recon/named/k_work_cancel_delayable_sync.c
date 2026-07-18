@@ -1,5 +1,5 @@
 /* readable reconstruction; identity: FUN_000735cc @ 0x000735cc
- * public-name: FUN_000735cc
+ * public-name: k_work_cancel_delayable_sync
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
@@ -7,6 +7,7 @@
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
  *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   cancel_sync_locked                       <= FUN_00072c98 @ 0x00072c98
+ *   k_work_cancel_delayable_sync             <= FUN_000735cc @ 0x000735cc
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   k_is_in_isr                              <= FUN_00086406 @ 0x00086406
@@ -32,7 +33,7 @@
 extern int k_is_in_isr(void); extern int z_spin_lock_valid(uint32_t); extern void z_spin_lock_set_owner(uint32_t); extern uint64_t z_spin_unlock_valid(uint32_t);
 extern void unschedule_locked(void*); extern void cancel_async_locked(void*); extern int cancel_sync_locked(void*,void*); extern void z_impl_k_sem_take(void*,uint32_t,uint32_t,uint32_t);
 extern void printk(uint32_t,...); extern void assert_post_action(uint32_t,uint32_t);
-bool FUN_000735cc(uint8_t *obj,uint8_t *request)
+bool k_work_cancel_delayable_sync(uint8_t *obj,uint8_t *request)
 {
     if (!obj) { printk(0x99cbd,0xf82df,0xf820f,0x411); assert_post_action(0xf820f,0x411); }
     if (!request) { printk(0x99cbd,0xf8291,0xf820f,0x412); assert_post_action(0xf820f,0x412); }

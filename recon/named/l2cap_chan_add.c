@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   l2cap_chan_add                           <= FUN_00057874 @ 0x00057874
  *   k_work_init                              <= FUN_00072e50 @ 0x00072e50
+ *   k_work_init_delayable                    <= FUN_000732d4 @ 0x000732d4
  *   bt_l2cap_le_lookup_rx_cid                <= FUN_00081aca @ 0x00081aca
  *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
  * address symbols (name @ address):
@@ -16,7 +17,7 @@
 typedef uint32_t u32; typedef uint8_t u8; typedef uint16_t u16;
 extern uint64_t bt_l2cap_le_lookup_rx_cid(int,unsigned);
 extern void FUN_00081746(u32,int,void*);
-extern void FUN_000732d4(int,u32);
+extern void k_work_init_delayable(int,u32);
 extern void k_work_init(int,u32);
 #define z_impl_k_queue_init z_impl_k_queue_init
 extern void z_impl_k_queue_init(void *queue);
@@ -50,7 +51,7 @@ LAB: ;
     }
     *(volatile int*)param_2 = param_1;
     *(volatile int*)(param_2+0xc) = param_3;
-    FUN_000732d4(param_2 + 0xc0, 0x00057525);
+    k_work_init_delayable(param_2 + 0xc0, 0x00057525);
     if((u16)((u16)(*(volatile u16*)(param_2+0x14)) - 0x40) <= 0x3f){
         k_work_init(param_2 + 0x88, 0x00081b83);
         z_impl_k_queue_init((void *)(param_2 + 0x98));

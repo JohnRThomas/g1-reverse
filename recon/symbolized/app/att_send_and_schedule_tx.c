@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   k_work_reschedule                        <= FUN_0007350c @ 0x0007350c
  *   bt_conn_create_pdu                       <= FUN_00081820 @ 0x00081820
  *   att_send_and_schedule_tx                 <= FUN_00081962 @ 0x00081962
  */
@@ -11,7 +12,7 @@
 
 extern unsigned long long bt_conn_create_pdu(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e, unsigned int f, unsigned int g);
 extern void net_buf_unref(unsigned int a);
-extern void FUN_0007350c(unsigned int *a, unsigned int b, unsigned int c, unsigned int d);
+extern void k_work_reschedule(unsigned int *a, unsigned int b, unsigned int c, unsigned int d);
 
 void att_send_and_schedule_tx(unsigned int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -21,5 +22,5 @@ void att_send_and_schedule_tx(unsigned int *param_1, unsigned int param_2, unsig
         net_buf_unref(param_2);
         return;
     }
-    FUN_0007350c(param_1 + 0x30, (unsigned int)(uVar1 >> 32), param_3, param_4);
+    k_work_reschedule(param_1 + 0x30, (unsigned int)(uVar1 >> 32), param_3, param_4);
 }

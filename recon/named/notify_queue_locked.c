@@ -1,12 +1,14 @@
 /* readable reconstruction; identity: FUN_00086588 @ 0x00086588
- * public-name: FUN_00086588
+ * public-name: notify_queue_locked
  * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   notify_queue_locked                      <= FUN_00086588 @ 0x00086588
  */
 /* Reconstructed FUN_00086588 @ 0x86588  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_00074a54(int *, unsigned int, unsigned int, unsigned int);
 
-void FUN_00086588(unsigned char *param_1, unsigned int unused_r1,
+void notify_queue_locked(unsigned char *param_1, unsigned int unused_r1,
                   unsigned int unused_r2, unsigned int r3) {
   (void)unused_r1;
   (void)unused_r2;

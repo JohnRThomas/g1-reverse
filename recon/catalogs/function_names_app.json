@@ -7520,8 +7520,7 @@
    "human": true,
    "source": "function_name_overrides.json: Namespaced retained logging wrapper: loads curr_log_buffer from 0x2000a0cc and tail-calls the adopted mpsc_pbuf_free(buffer, msg). The namespace preserves firmware log_core private state without colliding with stock z_log_msg_free. Raw identity remains FUN_0004d578.",
    "aliases": [
-    "FUN_0004d578",
-    "z_log_msg_free"
+    "FUN_0004d578"
    ]
   },
   "0x0004d588": {
@@ -7531,9 +7530,7 @@
    "display_name": "g1_recon_z_log_msg_pending",
    "human": true,
    "source": "function_name_overrides.json: Namespaced retained NCS 2.5.1 Zephyr log_core wrapper for the single CONFIG_MPSC_PBUF log buffer. It tail-branches to the adopted mpsc_pbuf_is_pending owner without colliding with the selected stock z_log_msg_pending. Raw identity remains FUN_0004d588.",
-   "aliases": [
-    "z_log_msg_pending"
-   ]
+   "aliases": []
   },
   "0x0004d594": {
    "address": "0x0004d594",
@@ -7554,8 +7551,7 @@
    "human": true,
    "source": "function_name_overrides.json: Corrected retained configured Zephyr panic implementation. The prior log_init label was ABI and behavior incompatible; this body initializes logging, invokes backend panic hooks, drains deferred messages and sets panic mode. Raw identity remains FUN_0004d678.",
    "aliases": [
-    "FUN_0004d678",
-    "log_init"
+    "FUN_0004d678"
    ]
   },
   "0x0004d6ec": {
@@ -7681,8 +7677,7 @@
    "human": true,
    "source": "function_name_overrides.json: Corrected retained firmware UART logging-backend panic hook with PM-device resume behavior absent from the selected stock object. Raw identity remains FUN_0004def8 at 0x0004def8.",
    "aliases": [
-    "FUN_0004def8",
-    "log_output_process"
+    "FUN_0004def8"
    ]
   },
   "0x0004df34": {
@@ -14546,11 +14541,13 @@
   "0x00072cd4": {
    "address": "0x00072cd4",
    "raw_name": "FUN_00072cd4",
-   "name": "FUN_00072cd4",
-   "display_name": "FUN_00072cd4",
-   "human": false,
-   "source": "recon/app/src/FUN_00072cd4.c",
-   "aliases": []
+   "name": "submit_to_queue_locked",
+   "display_name": "submit_to_queue_locked",
+   "human": true,
+   "source": "function_name_overrides.json: Exact configured Zephyr kernel/work.c translation-unit helper. Raw identity remains FUN_00072cd4 at 0x00072cd4.",
+   "aliases": [
+    "FUN_00072cd4"
+   ]
   },
   "0x00072e50": {
    "address": "0x00072e50",
@@ -14577,20 +14574,24 @@
   "0x00072f28": {
    "address": "0x00072f28",
    "raw_name": "FUN_00072f28",
-   "name": "FUN_00072f28",
-   "display_name": "FUN_00072f28",
-   "human": false,
-   "source": "recon/app/src/FUN_00072f28.c",
-   "aliases": []
+   "name": "z_work_submit_to_queue",
+   "display_name": "z_work_submit_to_queue",
+   "human": true,
+   "source": "function_name_overrides.json: Exact configured Zephyr kernel/work.c internal public submission implementation. Raw identity remains FUN_00072f28 at 0x00072f28.",
+   "aliases": [
+    "FUN_00072f28"
+   ]
   },
   "0x00072fdc": {
    "address": "0x00072fdc",
    "raw_name": "FUN_00072fdc",
-   "name": "FUN_00072fdc",
-   "display_name": "FUN_00072fdc",
-   "human": false,
-   "source": "recon/app/src/FUN_00072fdc.c",
-   "aliases": []
+   "name": "k_work_submit",
+   "display_name": "k_work_submit",
+   "human": true,
+   "source": "function_name_overrides.json: Exact configured Zephyr kernel/work.c system-workqueue submission wrapper. Raw identity remains FUN_00072fdc at 0x00072fdc.",
+   "aliases": [
+    "FUN_00072fdc"
+   ]
   },
   "0x00072fe8": {
    "address": "0x00072fe8",
@@ -14628,20 +14629,24 @@
   "0x000731b8": {
    "address": "0x000731b8",
    "raw_name": "FUN_000731b8",
-   "name": "FUN_000731b8",
-   "display_name": "FUN_000731b8",
-   "human": false,
-   "source": "recon/app/src/FUN_000731b8.c",
-   "aliases": []
+   "name": "k_work_queue_drain",
+   "display_name": "k_work_queue_drain",
+   "human": true,
+   "source": "function_name_overrides.json: Exact configured Zephyr kernel/work.c queue drain API. Raw identity remains FUN_000731b8 at 0x000731b8.",
+   "aliases": [
+    "FUN_000731b8"
+   ]
   },
   "0x000732d4": {
    "address": "0x000732d4",
    "raw_name": "FUN_000732d4",
-   "name": "FUN_000732d4",
-   "display_name": "FUN_000732d4",
-   "human": false,
-   "source": "recon/app/src/FUN_000732d4.c",
-   "aliases": []
+   "name": "k_work_init_delayable",
+   "display_name": "k_work_init_delayable",
+   "human": true,
+   "source": "function_name_overrides.json: Exact configured Zephyr kernel/work.c delayable-work initializer. Raw identity remains FUN_000732d4 at 0x000732d4.",
+   "aliases": [
+    "FUN_000732d4"
+   ]
   },
   "0x0007332c": {
    "address": "0x0007332c",
@@ -14657,11 +14662,13 @@
   "0x00073418": {
    "address": "0x00073418",
    "raw_name": "FUN_00073418",
-   "name": "FUN_00073418",
-   "display_name": "FUN_00073418",
-   "human": false,
-   "source": "recon/app/src/FUN_00073418.c",
-   "aliases": []
+   "name": "k_work_schedule",
+   "display_name": "k_work_schedule",
+   "human": true,
+   "source": "function_name_overrides.json: Exact configured Zephyr kernel/work.c system-workqueue scheduling wrapper. Raw identity remains FUN_00073418 at 0x00073418.",
+   "aliases": [
+    "FUN_00073418"
+   ]
   },
   "0x00073424": {
    "address": "0x00073424",
@@ -14677,29 +14684,35 @@
   "0x0007350c": {
    "address": "0x0007350c",
    "raw_name": "FUN_0007350c",
-   "name": "FUN_0007350c",
-   "display_name": "FUN_0007350c",
-   "human": false,
-   "source": "recon/app/src/FUN_0007350c.c",
-   "aliases": []
+   "name": "k_work_reschedule",
+   "display_name": "k_work_reschedule",
+   "human": true,
+   "source": "function_name_overrides.json: Exact configured Zephyr kernel/work.c system-workqueue rescheduling wrapper. Raw identity remains FUN_0007350c at 0x0007350c.",
+   "aliases": [
+    "FUN_0007350c"
+   ]
   },
   "0x00073518": {
    "address": "0x00073518",
    "raw_name": "FUN_00073518",
-   "name": "FUN_00073518",
-   "display_name": "FUN_00073518",
-   "human": false,
-   "source": "recon/app/src/FUN_00073518.c",
-   "aliases": []
+   "name": "k_work_cancel_delayable",
+   "display_name": "k_work_cancel_delayable",
+   "human": true,
+   "source": "function_name_overrides.json: Exact configured Zephyr kernel/work.c asynchronous delayable-work cancellation API. Raw identity remains FUN_00073518 at 0x00073518.",
+   "aliases": [
+    "FUN_00073518"
+   ]
   },
   "0x000735cc": {
    "address": "0x000735cc",
    "raw_name": "FUN_000735cc",
-   "name": "FUN_000735cc",
-   "display_name": "FUN_000735cc",
-   "human": false,
-   "source": "recon/app/src/FUN_000735cc.c",
-   "aliases": []
+   "name": "k_work_cancel_delayable_sync",
+   "display_name": "k_work_cancel_delayable_sync",
+   "human": true,
+   "source": "function_name_overrides.json: Exact configured Zephyr kernel/work.c synchronous delayable-work cancellation API. Raw identity remains FUN_000735cc at 0x000735cc.",
+   "aliases": [
+    "FUN_000735cc"
+   ]
   },
   "0x000736ec": {
    "address": "0x000736ec",
@@ -25233,11 +25246,13 @@
   "0x00086588": {
    "address": "0x00086588",
    "raw_name": "FUN_00086588",
-   "name": "FUN_00086588",
-   "display_name": "FUN_00086588",
-   "human": false,
-   "source": "recon/app/src/FUN_00086588.c",
-   "aliases": []
+   "name": "notify_queue_locked",
+   "display_name": "notify_queue_locked",
+   "human": true,
+   "source": "function_name_overrides.json: Exact configured Zephyr kernel/work.c translation-unit queue notification helper. Raw identity remains FUN_00086588 at 0x00086588.",
+   "aliases": [
+    "FUN_00086588"
+   ]
   },
   "0x00086596": {
    "address": "0x00086596",
@@ -25264,11 +25279,13 @@
   "0x0008661e": {
    "address": "0x0008661e",
    "raw_name": "FUN_0008661e",
-   "name": "thunk_FUN_00072e9c",
-   "display_name": "thunk_FUN_00072e9c",
+   "name": "k_work_delayable_busy_get",
+   "display_name": "k_work_delayable_busy_get",
    "human": true,
-   "source": "committed durable map",
-   "aliases": []
+   "source": "function_name_overrides.json: Exact configured Zephyr kernel/work.c delayable-work busy-state tail wrapper to k_work_busy_get. Raw identity remains FUN_0008661e at 0x0008661e.",
+   "aliases": [
+    "thunk_FUN_00072e9c"
+   ]
   },
   "0x00086622": {
    "address": "0x00086622",
@@ -26456,15 +26473,6 @@
   "FUN_00072674": "0x00072674",
   "FUN_000727ac": "0x000727ac",
   "FUN_000729fc": "0x000729fc",
-  "FUN_00072cd4": "0x00072cd4",
-  "FUN_00072f28": "0x00072f28",
-  "FUN_00072fdc": "0x00072fdc",
-  "FUN_000731b8": "0x000731b8",
-  "FUN_000732d4": "0x000732d4",
-  "FUN_00073418": "0x00073418",
-  "FUN_0007350c": "0x0007350c",
-  "FUN_00073518": "0x00073518",
-  "FUN_000735cc": "0x000735cc",
   "FUN_000736ec": "0x000736ec",
   "FUN_00073788": "0x00073788",
   "FUN_000737d8": "0x000737d8",
@@ -26769,7 +26777,6 @@
   "FUN_00086380": "0x00086380",
   "FUN_000863aa": "0x000863aa",
   "FUN_000864b2": "0x000864b2",
-  "FUN_00086588": "0x00086588",
   "FUN_000868ee": "0x000868ee",
   "FUN_000868fc": "0x000868fc",
   "FUN_000869c6": "0x000869c6",
@@ -27780,12 +27787,20 @@
   "k_uptime_ticks_impl": "0x00074f68",
   "k_work_busy_get": "0x00072e9c",
   "k_work_cancel": "0x00072fe8",
+  "k_work_cancel_delayable": "0x00073518",
+  "k_work_cancel_delayable_sync": "0x000735cc",
+  "k_work_delayable_busy_get": "0x0008661e",
   "k_work_init": "0x00072e50",
+  "k_work_init_delayable": "0x000732d4",
+  "k_work_queue_drain": "0x000731b8",
   "k_work_queue_init": "0x000730b4",
   "k_work_queue_start": "0x000730e8",
+  "k_work_reschedule": "0x0007350c",
   "k_work_reschedule_for_queue": "0x00073424",
+  "k_work_schedule": "0x00073418",
   "k_work_schedule_at_ticks": "0x000531cc",
   "k_work_schedule_for_queue": "0x0007332c",
+  "k_work_submit": "0x00072fdc",
   "k_work_submit_to_queue": "0x000865fc",
   "key_event_thread": "0x0002955c",
   "kmu_derive_cmac": "0x0007be24",
@@ -27985,6 +28000,7 @@
   "notification_system_init": "0x00034944",
   "notify_config_change_if_connected": "0x00017e84",
   "notify_one": "0x0007e1e6",
+  "notify_queue_locked": "0x00086588",
   "now_has_persist_task": "0x0002be64",
   "nrf53_ipc_channel_configure": "0x0004c278",
   "nrf53_sync_rtc_init": "0x0004c2d4",
@@ -28387,6 +28403,7 @@
   "strtoul": "0x00077c1c",
   "subcontracing_send_data_pkcs7": "0x00021a40",
   "submit_display_reflash_work": "0x0004904c",
+  "submit_to_queue_locked": "0x00072cd4",
   "subsystem_enable_gpio_pin_set_adapter": "0x000179f8",
   "svc_attr_memory_release": "0x0007f3c2",
   "switch_to_dfu_mode": "0x000158bc",
@@ -28432,7 +28449,6 @@
   "thunk_FUN_0005f24c": "0x00080ae2",
   "thunk_FUN_00064134": "0x000836d4",
   "thunk_FUN_00071678": "0x000807f2",
-  "thunk_FUN_00072e9c": "0x0008661e",
   "thunk_FUN_00074f68": "0x0007c398",
   "thunk_FUN_00076154": "0x000869c2",
   "thunk_FUN_0007d77c": "0x0007d63e",
@@ -28577,6 +28593,7 @@
   "z_thread_priority_set": "0x00074184",
   "z_unpend_all": "0x00086668",
   "z_unpend_first_thread": "0x000744a4",
+  "z_work_submit_to_queue": "0x00072f28",
   "zcbor_process_backup": "0x00085c86",
   "zcbor_simple_put": "0x00086360",
   "zcbor_str_decode": "0x00085ef0",

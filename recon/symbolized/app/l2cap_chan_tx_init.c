@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   l2cap_chan_tx_init                       <= FUN_000574ec @ 0x000574ec
+ *   k_work_init_delayable                    <= FUN_000732d4 @ 0x000732d4
  *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
  * address symbols (name @ address):
  *   ADDR_att_send_with_retry_THUMB           @ 0x000818dd
@@ -12,7 +13,7 @@
 
 #define z_impl_k_queue_init z_impl_k_queue_init
 extern void z_impl_k_queue_init(void *queue);
-extern void FUN_000732d4(unsigned int a, unsigned int b);
+extern void k_work_init_delayable(unsigned int a, unsigned int b);
 
 void l2cap_chan_tx_init(int param_1)
 {
@@ -22,5 +23,5 @@ void l2cap_chan_tx_init(int param_1)
     unsigned int uVar1 = __atomic_exchange_n(
         (unsigned int *)(param_1 + 0x2c), 0, __ATOMIC_ACQ_REL);
     z_impl_k_queue_init((void *)(param_1+0x30));
-    FUN_000732d4(param_1+0x50, ADDR_att_send_with_retry_THUMB /*=0x818dd*/);
+    k_work_init_delayable(param_1+0x50, ADDR_att_send_with_retry_THUMB /*=0x818dd*/);
 }

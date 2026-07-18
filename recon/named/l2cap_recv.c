@@ -9,6 +9,7 @@
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
  *   net_buf_simple_pull_5f594                <= FUN_0005f594 @ 0x0005f594
  *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   k_work_cancel_delayable                  <= FUN_00073518 @ 0x00073518
  *   bt_conn_ltk_present                      <= FUN_0008145c @ 0x0008145c
  *   g1_recon_bt_conn_set_security            <= FUN_0008149a @ 0x0008149a
  *   ctx_list_unlink_by_key16                 <= FUN_00081660 @ 0x00081660
@@ -117,7 +118,7 @@ extern long long FUN_000579b4(int, ...);
 extern long long net_buf_unref(int, ...);
 extern long long net_buf_simple_pull_5f594(int, ...);
 extern long long net_buf_simple_add(int, ...);
-extern long long FUN_00073518(int, ...);
+extern long long k_work_cancel_delayable(int, ...);
 extern long long bt_conn_ltk_present(int, ...);
 extern long long g1_recon_bt_conn_set_security(int, ...);
 extern long long FUN_00081626(int, ...);
@@ -394,7 +395,7 @@ LAB_00057ed6:
         if (((uVar2 & 0xfff7) == 0) || (uVar2 == 5)) {
           piVar10 = (int *)FUN_00081626(iVar21,uVar18,0);
           if (piVar10 == (int *)0x0) goto LAB_00058032;
-          FUN_00073518(piVar10 + 0x30);
+          k_work_cancel_delayable(piVar10 + 0x30);
           *(undefined1 *)(piVar10 + 0x2e) = 0;
           if (uVar2 != 5) goto LAB_0005809c;
           puVar19 = (uint *)(piVar10 + 4);
@@ -423,7 +424,7 @@ LAB_00058032:
             FUN_00081746(DAT_00058058,0x1840,&log3);
             return 0;
           }
-          FUN_00073518(piVar10 + 0x30);
+          k_work_cancel_delayable(piVar10 + 0x30);
           *(undefined1 *)(piVar10 + 0x2e) = 0;
 LAB_0005809c:
           if (uVar2 != 8) {

@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   hci_vs_init                              <= FUN_00012080 @ 0x00012080
  *   bt_enable                                <= FUN_00054a44 @ 0x00054a44
+ *   k_work_submit                            <= FUN_00072fdc @ 0x00072fdc
  *   k_work_queue_init                        <= FUN_000730b4 @ 0x000730b4
  *   k_work_queue_start                       <= FUN_000730e8 @ 0x000730e8
  *   atomic_or                                <= FUN_00080e6a @ 0x00080e6a
@@ -30,7 +31,7 @@
 extern int hci_vs_init(void);
 extern int FUN_00052edc(void);
 extern void FUN_00071eac(unsigned,unsigned,int,unsigned,int,int,int,int);
-extern void FUN_00072fdc(int);
+extern void k_work_submit(int);
 extern void k_work_queue_init(unsigned);
 extern void k_work_queue_start(unsigned,unsigned,int,int,int);
 extern int atomic_or(unsigned,int);
@@ -68,7 +69,7 @@ int bt_enable(int param_1)
         iVar3 = (*(cf*)(*(int*)(iVar1 + 0x168) + 0xc))();
         if (iVar3 == 0) {
           if (param_1 == 0) iVar3 = hci_vs_init();
-          else FUN_00072fdc(iVar1 + 0xc4);
+          else k_work_submit(iVar1 + 0xc4);
         } else {
           local_3c = 0x000f339b; local_40 = 3; local_38 = iVar3;
           FUN_00080ea2(0x00088138, 0x1840, &local_40);

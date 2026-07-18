@@ -6,6 +6,7 @@
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   k_work_submit                            <= FUN_00072fdc @ 0x00072fdc
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -31,7 +32,7 @@
 extern int z_spin_lock_valid(uintptr_t lock);
 extern int z_spin_unlock_valid(uintptr_t lock);
 extern void z_spin_lock_set_owner(uintptr_t lock);
-extern void FUN_00072fdc(uintptr_t object);
+extern void k_work_submit(uintptr_t object);
 extern void printk(uintptr_t domain, uintptr_t message, ...);
 extern void assert_post_action(uintptr_t file, uint32_t line) __attribute__((noreturn));
 
@@ -75,5 +76,5 @@ void FUN_0004f770(uint32_t *item)
 
     __set_BASEPRI(saved_basepri);
     __ISB();
-    FUN_00072fdc(((unsigned long)&g_20002838) /*=0x20002838*/);
+    k_work_submit(((unsigned long)&g_20002838) /*=0x20002838*/);
 }
