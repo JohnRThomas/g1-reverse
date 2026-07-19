@@ -1,0 +1,31 @@
+#include "g1_app_symbols.h"
+/* Recovered layout bindings (presentation-only; Ghidra-grounded):
+ *   param_1          => struct g1_layout_net_buf__param_0172                    [param_0172; library]
+ * Raw function identity: 0x0005f2d4.  See ../include/g1_recovered_layouts.h. */
+/* readable reconstruction; identity: FUN_0005f2d4 @ 0x0005f2d4
+ * public-name: net_buf_ref
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_ref                              <= FUN_0005f2d4 @ 0x0005f2d4
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f45be                             @ 0x000f45be
+ *   rodata_f539a                             @ 0x000f539a
+ */
+/* Reconstructed FUN_0005f2d4 @ 0x5f2d4  (parity: 300/300 trials, PROVEN) */
+
+/* Hardware never returns; the return type describes the verifier's otherwise
+ * unreachable r0 continuation. */
+extern int assert_post_action(unsigned int a0, unsigned int a1);
+extern void printk(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3, unsigned int a4);
+
+void net_buf_ref(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
+{
+  if (param_1 == 0) {
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f45be) /*=0xf45be*/, ((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x202, param_4);
+    param_1 = assert_post_action(((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x202);
+  }
+  *(volatile unsigned char *)(param_1 + 8) = *(volatile unsigned char *)(param_1 + 8) + 1;
+}

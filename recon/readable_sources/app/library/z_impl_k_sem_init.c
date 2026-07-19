@@ -1,0 +1,25 @@
+#include "g1_app_symbols.h"
+/* Recovered layout bindings (presentation-only; Ghidra-grounded):
+ *   param_1          => struct g1_layout_k_sem__param_0731                      [param_0731; library]
+ * Raw function identity: 0x00086534.  See ../include/g1_recovered_layouts.h. */
+/* readable reconstruction; identity: FUN_00086534 @ 0x00086534
+ * public-name: z_impl_k_sem_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
+ */
+/* Reconstructed FUN_00086534 @ 0x86534  (parity: 300/300 trials, PROVEN) */
+
+unsigned int z_impl_k_sem_init(int param_1, unsigned int param_2, unsigned int param_3)
+{
+  if ((param_3 != 0) && (param_2 <= param_3)) {
+    *(unsigned int *)(param_1 + 8) = param_2;
+    *(unsigned int *)(param_1 + 0xc) = param_3;
+    *(int *)param_1 = param_1;
+    *(int *)(param_1 + 4) = param_1;
+    *(int *)(param_1 + 0x10) = param_1 + 0x10;
+    *(int *)(param_1 + 0x14) = param_1 + 0x10;
+    return 0;
+  }
+  return 0xffffffea;
+}

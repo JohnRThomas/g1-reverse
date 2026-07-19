@@ -1,0 +1,28 @@
+#include "g1_app_symbols.h"
+/* Recovered layout bindings (presentation-only; Ghidra-grounded):
+ *   param_1          => struct g1_layout_virtqueue__param_0395                  [param_0395; library]
+ * Raw function identity: 0x00070ee4.  See ../include/g1_recovered_layouts.h. */
+/* readable reconstruction; identity: FUN_00070ee4 @ 0x00070ee4
+ * public-name: virtqueue_free
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   virtqueue_free                           <= FUN_00070ee4 @ 0x00070ee4
+ * address symbols (name @ address):
+ *   rodata_f7b84                             @ 0x000f7b84
+ *   g_metal_generic_bus                      @ 0x2000b424
+ *   metal_log_handler                        @ 0x2000b428
+ */
+/* Reconstructed FUN_00070ee4 @ 0x70ee4  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
+extern void g1_recon_k_free(void *allocation);
+
+void virtqueue_free(int param_1){
+    if (param_1 != 0){
+        if (*(short*)(param_1+0x24) != *(short*)(param_1+0xa)
+            && 3 < *(unsigned char*)((unsigned long)&g_metal_generic_bus) /*=0x2000b424*/
+            && *(void**)((unsigned long)&metal_log_handler) /*=0x2000b428*/ != 0){
+            ((void(*)(int,unsigned,int))*(void**)((unsigned long)&metal_log_handler) /*=0x2000b428*/)(4, ((unsigned long)&rodata_f7b84) /*=0xf7b84*/, *(int*)(param_1+4));
+        }
+        g1_recon_k_free((void *)(uintptr_t)(unsigned)param_1);
+    }
+}

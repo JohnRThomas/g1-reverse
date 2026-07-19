@@ -1,0 +1,30 @@
+#include "g1_app_symbols.h"
+/* Recovered layout bindings (presentation-only; Ghidra-grounded):
+ *   param_1          => struct g1_layout_k_msgq__param_0726                     [param_0726; library]
+ * Raw function identity: 0x00086480.  See ../include/g1_recovered_layouts.h. */
+/* readable reconstruction; identity: FUN_00086480 @ 0x00086480
+ * public-name: k_msgq_cleanup
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   k_msgq_cleanup                           <= FUN_00086480 @ 0x00086480
+ */
+/* Reconstructed FUN_00086480 @ 0x86480  (parity: 300/300 trials, PROVEN) */
+
+extern void g1_recon_k_free(void *allocation);
+
+int k_msgq_cleanup(int *param_1)
+{
+    int v0 = *(volatile int*)param_1;
+    if (param_1 == (int*)v0 || v0 == 0) {
+        unsigned char flag = *(volatile unsigned char*)((char*)param_1 + 0x30);
+        if ((int)((unsigned int)flag << 31) < 0) {
+            int arg = *(volatile int*)((char*)param_1 + 0x14);
+            g1_recon_k_free((void *)(unsigned)arg);
+            unsigned char flag2 = *(volatile unsigned char*)((char*)param_1 + 0x30);
+            *(volatile unsigned char*)((char*)param_1 + 0x30) = flag2 & 0xfe;
+        }
+        return 0;
+    } else {
+        return (int)0xfffffff0;
+    }
+}

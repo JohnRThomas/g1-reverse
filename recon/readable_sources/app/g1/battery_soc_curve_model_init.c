@@ -1,0 +1,177 @@
+#include "g1_app_symbols.h"
+/* Recovered layout bindings (presentation-only; Ghidra-grounded):
+ *   param_7          => struct g1_layout_app_shared_ctx_blob__param_0007        [param_0007; G1-original]
+ *   param_8          => struct g1_layout_battery_soc_curve_model__param_0008    [param_0008; G1-original]
+ *   local_48         => struct g1_layout_soc_curve_point_local__stack_0776      [stack_0776; G1-original]
+ * Raw function identity: 0x0000e53c.  See ../include/g1_recovered_layouts.h. */
+/* readable reconstruction; identity: FUN_0000e53c @ 0x0000e53c
+ * public-name: battery_soc_curve_model_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   battery_soc_curve_model_init             <= FUN_0000e53c @ 0x0000e53c
+ *   float_is_nan                             <= FUN_0000e938 @ 0x0000e938
+ *   array_max_skip_nan_a                     <= FUN_0000e954 @ 0x0000e954
+ *   array_max_skip_nan_b                     <= FUN_0000e9b4 @ 0x0000e9b4
+ *   strtod_scan_int_prefix                   <= FUN_0000ea18 @ 0x0000ea18
+ *   spline_interp_3pt                        <= FUN_0000eb7c @ 0x0000eb7c
+ *   floorf                                   <= FUN_000868fc @ 0x000868fc
+ *   fmaxf                                    <= FUN_00086902 @ 0x00086902
+ *   fminf                                    <= FUN_0008693c @ 0x0008693c
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   g_spline_nan_sentinel                    @ 0x20002d1c
+ */
+/* Reconstructed FUN_0000e53c @ 0x0000e53c, exact extent 1020 bytes. */
+#include <stdint.h>
+
+extern void memcpy(void *destination, const void *source, uint32_t size);
+extern int float_is_nan(float value);
+extern float array_max_skip_nan_a(float *values);
+extern float array_max_skip_nan_b(float *values);
+extern float strtod_scan_int_prefix(const uint8_t *matches, int32_t *indices,
+                          uint32_t *result);
+extern float spline_interp_3pt(float value, float *points, float *samples);
+extern float floorf(float value);
+extern float fmaxf(float first, float second);
+extern float fminf(float first, float second);
+
+static float interpolate_segment(float x, float x0, float span,
+                                 float y0, float y1)
+{
+    return (x - x0) * (y1 - y0) / span + y0;
+}
+
+void battery_soc_curve_model_init(float base, float scale, float limit,
+                  float charge_high, float charge_low,
+                  const void *table, const float *source,
+                  volatile float *workspace, float *result)
+{
+    uint8_t matches[3];
+    int32_t indices[3];
+    float found_values[3];
+    uint32_t find_result[2];
+    float lower;
+    float upper;
+    float selected;
+    float curve;
+    int base_is_special;
+    uint8_t selected_index;
+    int32_t i;
+
+    workspace[1] = 2.0f;
+    workspace[0] = 1.0f;
+    memcpy((void *)(workspace + 2), table, 0x40);
+    workspace[0x12] = charge_high;
+    workspace[0x13] = charge_low;
+    workspace[0x15] = 0.0f;
+    workspace[0x14] = 5.0f;
+    workspace[0x16] = 0.0f;
+    workspace[0x17] = 0.0f;
+
+    for (i = 0; i != 25; ++i) {
+        workspace[0x18 + i] = *(volatile float *)((unsigned long)&g_spline_nan_sentinel) /*=0x20002d1c*/;
+        workspace[0x31 + i] = *(volatile float *)((unsigned long)&g_spline_nan_sentinel) /*=0x20002d1c*/;
+    }
+    workspace[0x4b] = *(volatile float *)((unsigned long)&g_spline_nan_sentinel) /*=0x20002d1c*/;
+    workspace[0x4c] = *(volatile float *)((unsigned long)&g_spline_nan_sentinel) /*=0x20002d1c*/;
+    workspace[0x4d] = *(volatile float *)((unsigned long)&g_spline_nan_sentinel) /*=0x20002d1c*/;
+    workspace[0x50] = *(volatile float *)((unsigned long)&g_spline_nan_sentinel) /*=0x20002d1c*/;
+    workspace[0x4a] = 1.0f;
+    workspace[0x4e] = 0.0f;
+    workspace[0x4f] = 0.0f;
+    memcpy((void *)(workspace + 0x51), source, 0x1600);
+
+    lower = source[0x324 / 4];
+    upper = source[0x328 / 4];
+    if (lower >= upper) {
+        selected_index = 1;
+        selected = lower;
+        upper = lower;
+    } else {
+        selected = lower;
+        if (lower > upper)
+            upper = lower;
+
+        if (upper >= source[0x32c / 4]) {
+            selected_index = 2;
+        } else {
+            float third = source[0x32c / 4];
+            if (selected < third) {
+                selected = third;
+            } else if (upper <= third) {
+                upper = third;
+            }
+            selected_index = 3;
+        }
+
+        if (charge_low < upper)
+            upper = charge_low;
+        else if (charge_low > selected)
+            charge_low = selected;
+    }
+
+    workspace[0x5d1] = selected;
+    workspace[0x5d2] = upper;
+    ((uint8_t *)workspace)[0x5d3 * 4] = selected_index;
+
+    curve = array_max_skip_nan_a((float *)(source + 0x324 / 4));
+    curve = fminf(charge_low, curve);
+    curve = fmaxf(curve, array_max_skip_nan_b((float *)(source + 0x324 / 4)));
+
+    matches[0] = source[0x324 / 4] == curve;
+    matches[1] = source[0x328 / 4] == curve;
+    matches[2] = source[0x32c / 4] == curve;
+    strtod_scan_int_prefix(matches, indices, find_result);
+    if (find_result[1] == 0) {
+        curve = spline_interp_3pt(curve, (float *)(source + 0x324 / 4),
+                            (float *)(source + 0x1578 / 4));
+    } else {
+        for (i = 0; i < (int32_t)find_result[1]; ++i)
+            found_values[i] = source[indices[i] + 0x55d];
+        curve = found_values[0];
+    }
+
+    workspace[0x5d4] = 3.0f;
+    base += scale * curve;
+    lower = source[0x330 / 4];
+    upper = source[0x514 / 4];
+    {
+        float span = source[0x334 / 4] - lower;
+
+        if (base >= lower && base <= upper) {
+            float y0 = source[0x1390 / 4] + source[0x11a8 / 4] * charge_low;
+            float y1 = source[0x1394 / 4] + source[0x11ac / 4] * charge_low;
+            selected = interpolate_segment(base, lower, span, y0, y1);
+        } else if (base >= upper) {
+            float y0 = source[0x1574 / 4] + source[0x138c / 4] * charge_low;
+            float y1 = source[0x1570 / 4] + source[5000 / 4] * charge_low;
+            selected = interpolate_segment(base, upper, span, y0, y1);
+        } else {
+            selected = 0.0f;
+        }
+
+        if (base >= lower && base <= upper) {
+            float whole = floorf((base - lower) / span);
+            int32_t left = (int32_t)(whole + 1.0f);
+            int32_t right = (int32_t)(whole + 2.0f);
+            float fraction = (base - lower) / span - whole;
+            float inverse = 1.0f - fraction;
+            selected = fraction * source[right + 0x38c] +
+                       inverse * source[left + 0x38c] +
+                       charge_low * (fraction * source[right + 0x1a4] +
+                                inverse * source[left + 0x1a4]);
+        }
+    }
+
+    base_is_special = float_is_nan(base);
+    workspace[0x5d5] = 4.0f;
+    workspace[0x5d6] = 0.0f;
+    workspace[0x5d7] = 0.0f;
+    workspace[0x5d8] = 0.0f;
+    workspace[0x5d9] = base_is_special == 0 ? selected : 0.0f;
+    workspace[0x5da] = curve;
+    workspace[0x5db] = curve;
+    workspace[0x5dc] = curve;
+    workspace[0x5dd] = curve;
+    *result = base;
+}

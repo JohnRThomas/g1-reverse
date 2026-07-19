@@ -1,0 +1,32 @@
+#include "g1_app_symbols.h"
+/* Recovered layout bindings (presentation-only; Ghidra-grounded):
+ *   param_2          => struct g1_layout_FILE__param_0749                       [param_0749; library]
+ * Raw function identity: 0x00087862.  See ../include/g1_recovered_layouts.h. */
+/* readable reconstruction; identity: FUN_00087862 @ 0x00087862
+ * public-name: stdio_reset_ungetc_buffer
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   _free_r                                  <= FUN_00076d8c @ 0x00076d8c
+ *   stdio_reset_ungetc_buffer                <= FUN_00087862 @ 0x00087862
+ */
+/* Reconstructed FUN_00087862 @ 0x87862  (parity: 300/300 trials, PROVEN) */
+
+extern void _free_r(void);
+int stdio_reset_ungetc_buffer(int param_1, unsigned int *param_2)
+{
+  if (param_2[0xd] != 0) {
+    if (param_2[0xd] != (unsigned int)(param_2 + 0x11)) {
+      _free_r();
+    }
+    param_2[0xd] = 0;
+    param_2[1] = param_2[0x10];
+    if (param_2[0x10] != 0) {
+      *param_2 = param_2[0xf];
+      return 0;
+    }
+  }
+  *param_2 = param_2[4];
+  param_2[1] = 0;
+  *(unsigned short *)((char*)param_2 + 0xc) |= 0x20;
+  return -1;
+}

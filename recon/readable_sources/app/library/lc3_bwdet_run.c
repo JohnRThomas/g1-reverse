@@ -1,0 +1,56 @@
+#include "g1_app_symbols.h"
+/* Recovered layout bindings (presentation-only; Ghidra-grounded):
+ *   0x00068b0c       => struct g1_layout_lc3_bwdet_table__global_1360           [global_1360; library]
+ *   afStack_30       => struct g1_layout_lc3_bwdet_energy_array__stack_1359     [stack_1359; G1-original]
+ * Raw function identity: 0x00068a10.  See ../include/g1_recovered_layouts.h. */
+/* readable reconstruction; identity: FUN_00068a10 @ 0x00068a10
+ * public-name: lc3_bwdet_run
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lc3_bwdet_run                            <= FUN_00068a10 @ 0x00068a10
+ * address symbols (name @ address):
+ *   lc3_bwdet_thresholds                     @ 0x000884f0
+ *   lc3_bwdet_l_table                        @ 0x0008bbc0
+ *   lc3_bwdet_bws_table                      @ 0x0008bbe0
+ */
+/* Full reconstruction FUN_00068a10 @ 0x00068a10 (246-byte exact extent). */
+#include <stdint.h>
+
+uint32_t lc3_bwdet_run(int32_t profile, uint32_t count, const float *samples)
+{
+    if (count == 0) return 0;
+
+    uint32_t selected = 0;
+    uint32_t lane = 0;
+    const int8_t *ranges = (const int8_t *)((unsigned long)&lc3_bwdet_bws_table) /*=0x8bbe0*/
+        + (((count - 1u) + (uint32_t)profile * 4u) * 16u);
+
+    do {
+        int32_t first = ranges[lane * 4u];
+        int32_t last = ranges[lane * 4u + 1u];
+        float sum = samples[first];
+        for (int32_t i = first + 1; i < last; ++i) sum += samples[i];
+        int32_t scale = lane == 0 ? 20 : 10;
+        lane = (lane + 1u) & 0xffu;
+        if ((float)((int64_t)(last - first) * scale) <= sum) selected = lane;
+    } while (lane < count);
+
+    if (count <= selected) return selected;
+
+    int32_t last = ranges[selected * 4u];
+    int32_t width = *(const int32_t *)(((unsigned long)&lc3_bwdet_l_table) /*=0x8bbc0*/
+        + (((uint32_t)profile * 4u + selected) * 4u));
+    float factor = *(const float *)(((unsigned long)&lc3_bwdet_thresholds) /*=0x884f0*/ + selected * 4u);
+    int32_t cursor = last - width;
+    if (width >= 0) {
+        const float *older = samples + ((cursor + 1) - width);
+        const float *newer = samples + cursor + 1;
+        do {
+            float new_value = *newer++;
+            float old_value = *older++;
+            ++cursor;
+            if (new_value * factor < old_value) return selected;
+        } while (cursor <= last);
+    }
+    return count;
+}

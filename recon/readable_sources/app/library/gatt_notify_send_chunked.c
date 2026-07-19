@@ -1,0 +1,91 @@
+#include "g1_app_symbols.h"
+/* Recovered layout bindings (presentation-only; Ghidra-grounded):
+ *   param_1          => struct g1_layout_bt_att_chan_view__param_0182           [param_0182; library]
+ * Raw function identity: 0x00052880.  See ../include/g1_recovered_layouts.h. */
+/* readable reconstruction; identity: FUN_00052880 @ 0x00052880
+ * public-name: gatt_notify_send_chunked
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   active_transfer_conn_match               <= FUN_000527dc @ 0x000527dc
+ *   gatt_notify_send_chunked                 <= FUN_00052880 @ 0x00052880
+ *   bt_conn_get_info                         <= FUN_00056f4c @ 0x00056f4c
+ *   bt_gatt_notify_cb                        <= FUN_0005b754 @ 0x0005b754
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
+ *   queue_cancel_wait_locked                 <= FUN_000729fc @ 0x000729fc
+ *   mutex_unlock_syscall_handler             <= FUN_000745c8 @ 0x000745c8
+ *   clear_transfer_conn_slot                 <= FUN_00080c06 @ 0x00080c06
+ *   att_get_max_payload_len                  <= FUN_00080c7c @ 0x00080c7c
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   ADDR_z_impl_net_if_ipv6_addr_rm_by_index_THUMB @ 0x00080c8d
+ *   g_200028ec                               @ 0x200028ec
+ */
+/* Reconstructed FUN_00052880 @ 0x52880  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
+extern int active_transfer_conn_match(int,...);
+extern int bt_conn_get_info(int,...);
+extern int bt_gatt_notify_cb(int,...);
+extern int z_impl_k_sem_take(int,...);
+extern int queue_cancel_wait_locked(int,...);
+extern int mutex_unlock_syscall_handler(int,...);
+extern int clear_transfer_conn_slot(int,...);
+extern int att_get_max_payload_len(int,...);
+extern int memset_bytes(int,...);
+extern int smp_packet_free(int,...);
+unsigned int gatt_notify_send_chunked(int param_1)
+{
+  struct {
+    uint32_t reserved0;
+    uint32_t endpoint;
+    uint32_t cursor;
+    uint16_t chunk_length;
+    uint16_t reserved_e;
+    uint32_t completion;
+    uint32_t reserved14;
+  } request;
+  unsigned char buf50[0x28];
+  unsigned int uVar6, uVar4;
+  memset_bytes((int)&request, 0, sizeof(request));
+  request.endpoint = ((unsigned long)&g_200028ec) /*=0x200028ec*/;
+  int iVar8 = *(int*)(param_1+0x18);
+  request.cursor = *(uint32_t*)(param_1+0xc);
+  request.completion = ADDR_z_impl_net_if_ipv6_addr_rm_by_index_THUMB /*=0x80c8d*/;
+  if ((iVar8 != 0) && (bt_conn_get_info(iVar8, (int)buf50) == 0) && (buf50[0x24] == 2)) {
+    uVar4 = (unsigned int)att_get_max_payload_len(param_1);
+    if (uVar4 == 0) { uVar6 = 1; goto DONE; }
+    int iVar3 = active_transfer_conn_match(iVar8);
+    if ((iVar3 != 0) && (*(unsigned char*)(iVar3+0x69) != 0) &&
+        (*(unsigned char*)(param_1+0x1c) == *(unsigned char*)(iVar3+0x69))) {
+      queue_cancel_wait_locked(iVar3+0x6c);
+      unsigned int uVar7 = 0; int bVar2 = 0; unsigned int uVar5;
+      while ((uVar6 = 0), (uVar5 = *(unsigned short*)(param_1+0x10)), (uVar7 < uVar5)) {
+        if ((*(unsigned char*)(iVar3+0x69) == 0) ||
+            (*(unsigned char*)(param_1+0x1c) != *(unsigned char*)(iVar3+0x69))) goto control_label_528a8;
+        if ((int)uVar5 < (int)(uVar7 + uVar4)) uVar4 = (uVar5 - uVar7) & 0xffff;
+        request.chunk_length = (uint16_t)uVar4;
+        int r9 = bt_gatt_notify_cb(iVar8, (int)&request);
+        if (r9 == -0xc) {
+          if (!bVar2) {
+            if (uVar4 < 0x14) { uVar6 = 2; break; }
+            uVar4 = (uVar4 << 0xf) >> 0x10;
+          }
+          mutex_unlock_syscall_handler(0);
+        } else {
+          if (r9 != 0) { uVar6 = 1; goto DONE; }
+          unsigned short uVar1 = (unsigned short)((short)uVar7 + (short)uVar4);
+          uVar7 = uVar1;
+          request.cursor = *(uint32_t*)(param_1+0xc) + uVar1;
+          z_impl_k_sem_take(iVar3+0x6c, 0, 0xffffffff, 0xffffffff);
+          bVar2 = 1;
+        }
+      }
+      goto DONE;
+    }
+  }
+control_label_528a8:
+  uVar6 = 5;
+DONE:
+  clear_transfer_conn_slot(param_1+0x18);
+  smp_packet_free(param_1);
+  return uVar6;
+}

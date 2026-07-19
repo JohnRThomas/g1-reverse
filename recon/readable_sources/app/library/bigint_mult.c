@@ -1,0 +1,86 @@
+#include "g1_app_symbols.h"
+/* Recovered layout bindings (presentation-only; Ghidra-grounded):
+ *   param_3          => struct g1_layout_bigint_dims__param_0425                [param_0425; G1-original]
+ * Raw function identity: 0x000787e8.  See ../include/g1_recovered_layouts.h. */
+/* readable reconstruction; identity: FUN_000787e8 @ 0x000787e8
+ * public-name: bigint_mult
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   __assert_func                            <= FUN_00076a94 @ 0x00076a94
+ *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
+ *   bigint_mult                              <= FUN_000787e8 @ 0x000787e8
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ *   rodata_f8c42                             @ 0x000f8c42
+ *   rodata_f8cd5                             @ 0x000f8cd5
+ */
+/* Reconstructed FUN_000787e8 @ 0x787e8  (parity: 3/300 trials, PROVEN) */
+#include <stdint.h>
+typedef unsigned uint; typedef unsigned short ushort;
+extern int __assert_func(int,...);
+extern int Balloc(int,...);
+
+void bigint_mult(unsigned param_1, int param_2, int param_3)
+{
+    int iVar1; ushort *puVar2; uint *puVar3; ushort *puVar4; int iVar5; uint uVar6;
+    uint *puVar7; int iVar8; uint uVar9; uint *puVar10; int iVar11; uint *puVar12;
+    int iVar13; uint uVar14,uVar15; uint *puVar16,*puVar17;
+
+    iVar5 = param_2;
+    if(*(int*)(param_3+0x10) <= *(int*)(param_2+0x10)){ iVar5 = param_3; param_3 = param_2; }
+    iVar13 = *(int*)(param_3+0x10);
+    iVar11 = *(int*)(iVar5+0x10);
+    iVar1 = *(int*)(param_3+4);
+    iVar8 = iVar13 + iVar11;
+    if(*(int*)(param_3+8) < iVar8){ iVar1 = iVar1 + 1; }
+    iVar1 = Balloc(param_1, iVar1);
+    if(iVar1 == 0){ iVar1 = __assert_func(((unsigned long)&rodata_f8cd5) /*=0xf8cd5*/, 0x15d, 0, ((unsigned long)&rodata_f8c42) /*=0xf8c42*/); }
+    puVar7 = (uint*)(iVar1+0x14);
+    puVar10 = puVar7 + iVar8;
+    for(puVar3 = puVar7; puVar3 < puVar10; puVar3 = puVar3 + 1){ *puVar3 = 0; }
+    puVar2 = (ushort*)(iVar5+0x14);
+    puVar3 = (uint*)(param_3+0x14+iVar13*4);
+    puVar4 = puVar2 + iVar11*2;
+    iVar5 = (((int)puVar3 + (-0x15 - param_3)) & 0xfffffffcU) + 4;
+    if(puVar3 < (uint*)(param_3+0x15)){ iVar5 = 4; }
+    while(puVar2 < puVar4){
+        uVar14 = (uint)*puVar2;
+        if(uVar14 != 0){
+            uVar15 = 0;
+            puVar12 = puVar7;
+            puVar17 = (uint*)(param_3+0x14);
+            do {
+                puVar16 = puVar17 + 1;
+                uVar6 = uVar14*(*puVar17 & 0xffff) + (*puVar12 & 0xffff) + uVar15;
+                uVar9 = uVar14*(*puVar17 >> 0x10) + (*puVar12 >> 0x10) + (uVar6 >> 0x10);
+                uVar15 = uVar9 >> 0x10;
+                *puVar12 = (uVar6 & 0xffff) | uVar9 * ((unsigned long)&rodata_10000) /*=0x10000*/;
+                puVar12 = puVar12 + 1;
+                puVar17 = puVar16;
+            } while(puVar16 < puVar3);
+            *(uint*)((int)puVar7 + iVar5) = uVar15;
+        }
+        uVar14 = (uint)puVar2[1];
+        if(uVar14 != 0){
+            uVar15 = *puVar7;
+            uVar6 = 0;
+            puVar12 = (uint*)(param_3+0x14);
+            puVar17 = puVar7;
+            do {
+                uVar6 = uVar14*(ushort)*puVar12 + (uint)*(ushort*)((int)puVar17+2) + uVar6;
+                *puVar17 = (uVar15 & 0xffff) | uVar6 * ((unsigned long)&rodata_10000) /*=0x10000*/;
+                puVar16 = puVar12 + 1;
+                uVar15 = uVar14*(*puVar12 >> 0x10) + (uint)(ushort)puVar17[1] + (uVar6 >> 0x10);
+                uVar6 = uVar15 >> 0x10;
+                puVar12 = puVar16;
+                puVar17 = puVar17 + 1;
+            } while(puVar16 < puVar3);
+            *(uint*)((int)puVar7 + iVar5) = uVar15;
+        }
+        puVar7 = puVar7 + 1;
+        puVar2 = puVar2 + 2;
+    }
+    while(0 < iVar8 && (puVar10 = puVar10 + -1, *puVar10 == 0)){ iVar8 = iVar8 - 1; }
+    *(int*)(iVar1+0x10) = iVar8;
+    return;
+}

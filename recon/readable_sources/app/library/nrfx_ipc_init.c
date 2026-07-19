@@ -1,0 +1,43 @@
+#include "g1_app_symbols.h"
+/* readable reconstruction; identity: FUN_00065d3c @ 0x00065d3c
+ * public-name: nrfx_ipc_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   arch_irq_enable                          <= FUN_000500ac @ 0x000500ac
+ *   nrfx_ipc_init                            <= FUN_00065d3c @ 0x00065d3c
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6bc5                             @ 0x000f6bc5
+ *   rodata_f6e32                             @ 0x000f6e32
+ *   g_nrfx_hal_init_flag                     @ 0x2000b324
+ *   g_nrfx_gpiote_init_flag                  @ 0x2000b328
+ *   g_nrfx_gpiote_init_ctx                   @ 0x2000b32c
+ */
+/* Reconstructed FUN_00065d3c @ 0x65d3c  (parity: 300/300 trials, PROVEN) */
+
+extern void arch_irq_enable(int);
+extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
+extern unsigned int assert_post_action(unsigned int, unsigned int);
+
+unsigned int nrfx_ipc_init(unsigned int param_1, int param_2, int param_3)
+{
+  unsigned int uVar2;
+  if (param_2 == 0) {
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f6e32) /*=0xf6e32*/, ((unsigned long)&rodata_f6bc5) /*=0xf6bc5*/, 0x34U);
+    (void)assert_post_action(((unsigned long)&rodata_f6bc5) /*=0xf6bc5*/, 0x34U);
+  }
+  {
+    if (*(volatile unsigned char*)((unsigned long)&g_nrfx_gpiote_init_flag) /*=0x2000b328*/ == 0) {
+      arch_irq_enable(0x2a);
+      uVar2 = 0x0bad0000;
+      *(volatile unsigned char*)((unsigned long)&g_nrfx_gpiote_init_flag) /*=0x2000b328*/ = 1;
+      *(volatile int*)((unsigned long)&g_nrfx_hal_init_flag) /*=0x2000b324*/ = param_2;
+      *(volatile int*)((unsigned long)&g_nrfx_gpiote_init_ctx) /*=0x2000b32c*/ = param_3;
+    } else {
+      uVar2 = 0x0bad000c;
+    }
+    return uVar2;
+  }
+}

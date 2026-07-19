@@ -1,0 +1,62 @@
+#include "g1_app_symbols.h"
+/* readable reconstruction; identity: FUN_00085130 @ 0x00085130
+ * public-name: gpio_pin_cnf_build_fields
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gpio_port_base_from_pin                  <= FUN_00065584 @ 0x00065584
+ *   gpio_pin_cnf_build_fields                <= FUN_00085130 @ 0x00085130
+ * address symbols (name @ address):
+ *   rodata_30000                             @ 0x00030000
+ */
+/* Reconstructed FUN_00085130 @ 0x85130 */
+#include <stdint.h>
+
+extern uintptr_t gpio_port_base_from_pin(uint32_t *);
+
+void gpio_pin_cnf_build_fields(uint32_t channel,
+                  const uint8_t *enable,
+                  const uint8_t *polarity,
+                  const uint8_t *drive,
+                  const uint8_t *pull,
+                  const uint8_t *sense)
+{
+  uint32_t index = channel;
+  uintptr_t table = gpio_port_base_from_pin(&index);
+  volatile uint32_t *configuration =
+      (volatile uint32_t *)(table + index * 4 + 0x200);
+
+  uint32_t clear_mask = 0;
+  if (enable != 0) {
+    clear_mask |= 1;
+  }
+  if (polarity != 0) {
+    clear_mask |= 2;
+  }
+  if (drive != 0) {
+    clear_mask |= 0x0c;
+  }
+  if (pull != 0) {
+    clear_mask |= 0x0f00;
+  }
+  if (sense != 0) {
+    clear_mask |= ((unsigned long)&rodata_30000) /*=0x30000*/;
+  }
+
+  uint32_t value = *configuration & ~clear_mask;
+  if (enable != 0) {
+    value |= *enable;
+  }
+  if (polarity != 0) {
+    value |= (uint32_t)*polarity << 1;
+  }
+  if (drive != 0) {
+    value |= (uint32_t)*drive << 2;
+  }
+  if (pull != 0) {
+    value |= (uint32_t)*pull << 8;
+  }
+  if (sense != 0) {
+    value |= (uint32_t)*sense << 16;
+  }
+  *configuration = value;
+}

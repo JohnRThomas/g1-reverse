@@ -1,0 +1,27 @@
+#include "g1_app_symbols.h"
+/* Recovered layout bindings (presentation-only; Ghidra-grounded):
+ *   param_1          => struct g1_layout_lc3_encoder_state__param_0369          [param_0369; library]
+ *   param_2          => struct g1_layout_lc3_pcm_buf_desc__param_0370           [param_0370; library]
+ * Raw function identity: 0x00068d2c.  See ../include/g1_recovered_layouts.h. */
+/* readable reconstruction; identity: FUN_00068d2c @ 0x00068d2c
+ * public-name: lc3_load_s24_3le
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lc3_load_s24_3le                         <= FUN_00068d2c @ 0x00068d2c
+ *   ldexpf                                   <= FUN_00086976 @ 0x00086976
+ */
+/* Full reconstruction FUN_00068d2c @ 0x68d2c, exact extent 98 bytes. */
+#include <stdint.h>
+extern float ldexpf(float,int32_t);
+void lc3_load_s24_3le(uint8_t *state,const uint8_t *input,int stride){
+ unsigned lanes=state[2]+1u;if(state[2]==4)lanes=6;
+ int16_t *pcm=(int16_t*)(uintptr_t)(*(uint32_t*)(state+0x4a0));
+ float *scaled=(float*)(uintptr_t)(*(uint32_t*)(state+0x4a4));
+ int16_t *end=pcm+(state[0]+3u)*lanes*20u;
+ do{
+  int32_t sample=(int32_t)(((uint32_t)input[1]<<16)|((uint32_t)input[0]<<8)|((uint32_t)input[2]<<24));
+  *pcm++=(int16_t)(sample>>16);
+  *scaled++=ldexpf((float)sample,-16);
+  input+=stride*3;
+ }while(pcm!=end);
+}

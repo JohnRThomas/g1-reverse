@@ -1,0 +1,22 @@
+#include "g1_app_symbols.h"
+/* Recovered layout bindings (presentation-only; Ghidra-grounded):
+ *   param_1          => struct g1_layout_cbor_value__param_0718                 [param_0718; library]
+ * Raw function identity: 0x00085d36.  See ../include/g1_recovered_layouts.h. */
+/* readable reconstruction; identity: FUN_00085d36 @ 0x00085d36
+ * public-name: cbor_decode_is_break
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_decode_is_break                     <= FUN_00085d36 @ 0x00085d36
+ */
+/* Reconstructed FUN_00085d36 @ 0x85d36  (parity: 300/300 trials, PROVEN) */
+
+int cbor_decode_is_break(unsigned int *param_1)
+{
+  if (*((unsigned char*)param_1 + 0x10) == 0) {
+    return param_1[2] == 0;
+  }
+  if (param_1[0] < param_1[3]) {
+    return *(unsigned char*)(param_1[0]) == 0xff;
+  }
+  return 0;
+}

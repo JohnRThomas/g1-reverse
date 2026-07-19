@@ -1,0 +1,53 @@
+#include "g1_app_symbols.h"
+/* Recovered layout bindings (presentation-only; Ghidra-grounded):
+ *   local_28         => struct g1_layout_display_power_event_locals__stack_1053 [stack_1053; G1-original]
+ * Raw function identity: 0x00049a28.  See ../include/g1_recovered_layouts.h. */
+/* readable reconstruction; identity: FUN_00049a28 @ 0x00049a28
+ * public-name: display_powerEvent
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_ef058                             @ 0x000ef058
+ *   rodata_f00ea                             @ 0x000f00ea
+ *   rodata_f0126                             @ 0x000f0126
+ *   g_log_level                              @ 0x2000230c
+ *   g_display_msgq                           @ 0x200038c4
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Reconstructed display_powerEvent @ 0x49a28. */
+
+#include <stdint.h>
+
+extern void log_message(uint32_t format, uint32_t name, ...);
+extern void debug_print(uint32_t format, uint32_t name, ...);
+extern int k_msgq_put(void *owner, const void *packet,
+                        int option_a, int option_b);
+extern void memset_bytes(void *destination, int value,
+                         unsigned int length);
+
+int display_powerEvent(int powered_on)
+{
+    uint8_t packet[24];
+    int result;
+
+    memset_bytes(packet, 0, sizeof(packet));
+    packet[0] = powered_on == 1 ? 7 : 8;
+
+    result = k_msgq_put((void *)((unsigned long)&g_display_msgq) /*=0x200038c4*/, packet, 0, 0);
+    if (result != 0) {
+        log_message(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_f0126) /*=0xf0126*/);
+        return -1;
+    }
+
+    if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
+        if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+            log_message(((unsigned long)&rodata_f00ea) /*=0xf00ea*/, ((unsigned long)&rodata_f0126) /*=0xf0126*/, powered_on);
+        } else {
+            debug_print(((unsigned long)&rodata_f00ea) /*=0xf00ea*/, ((unsigned long)&rodata_f0126) /*=0xf0126*/, powered_on);
+        }
+    }
+    return 0;
+}

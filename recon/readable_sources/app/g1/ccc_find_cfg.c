@@ -1,0 +1,27 @@
+#include "g1_app_symbols.h"
+/* readable reconstruction; identity: FUN_000826c2 @ 0x000826c2
+ * public-name: ccc_find_cfg
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_addr_le_eq_0                          <= FUN_000826b2 @ 0x000826b2
+ *   ccc_find_cfg                             <= FUN_000826c2 @ 0x000826c2
+ */
+/* Reconstructed FUN_000826c2 @ 0x826c2  (parity: 300/300 trials, PROVEN) */
+
+extern int bt_addr_le_eq_0(unsigned char *);
+
+unsigned char * ccc_find_cfg(unsigned char *param_1, unsigned int param_2, unsigned int param_3)
+{
+  int iVar1;
+
+  if (*param_1 == param_3) {
+    iVar1 = bt_addr_le_eq_0(param_1 + 1);
+    if (iVar1 == 0) {
+      param_1 = (unsigned char *)0x0;
+    }
+  }
+  else {
+    param_1 = (unsigned char *)0x0;
+  }
+  return param_1;
+}

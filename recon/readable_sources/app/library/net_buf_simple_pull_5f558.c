@@ -1,0 +1,37 @@
+#include "g1_app_symbols.h"
+/* readable reconstruction; identity: FUN_0005f558 @ 0x0005f558
+ * public-name: net_buf_simple_pull_5f558
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_simple_pull_5f558                <= FUN_0005f558 @ 0x0005f558
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f543a                             @ 0x000f543a
+ *   rodata_f5474                             @ 0x000f5474
+ */
+/* Reconstructed FUN_0005f558 @ 0x5f558  (parity: 300/300 trials, PROVEN) */
+
+extern void printk(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
+extern unsigned long long assert_post_action(unsigned int, unsigned int);
+
+void net_buf_simple_pull_5f558(int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
+{
+    unsigned short ushort_val = *(unsigned short*)((char*)param_1 + 4);
+    if (ushort_val < param_2) {
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f5474) /*=0xf5474*/, ((unsigned long)&rodata_f543a) /*=0xf543a*/, 0x18dU, param_4);
+        unsigned long long rv = assert_post_action(((unsigned long)&rodata_f543a) /*=0xf543a*/, 0x18dU);
+        unsigned int r0v = (unsigned int)rv;
+        unsigned int r1v = (unsigned int)(rv >> 32);
+        unsigned int r2v = ((unsigned long)&rodata_f543a) /*=0xf543a*/ - r1v;
+        *(volatile unsigned short*)(r0v + 4) = (unsigned short)r2v;
+        unsigned int memv = *(volatile unsigned int*)r0v;
+        unsigned int finalv = memv + r1v;
+        *(volatile unsigned int*)0x18dUL = finalv;
+        return;
+    }
+    *(unsigned short*)((char*)param_1 + 4) = (unsigned short)(ushort_val - param_2);
+    *param_1 = *param_1 + param_2;
+    return;
+}

@@ -1,0 +1,43 @@
+#include "g1_app_symbols.h"
+/* Recovered layout bindings (presentation-only; Ghidra-grounded):
+ *   param_1          => struct g1_layout_device__param_0029                     [param_0029; library]
+ * Raw function identity: 0x00017768.  See ../include/g1_recovered_layouts.h. */
+/* readable reconstruction; identity: FUN_00017768 @ 0x00017768
+ * public-name: gpio_pin_set_checked
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gpio_pin_set_checked                     <= FUN_00017768 @ 0x00017768
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99c53                             @ 0x00099c53
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99de0                             @ 0x00099de0
+ *   rodata_99e1e                             @ 0x00099e1e
+ */
+/* Reconstructed FUN_00017768 @ 0x17768  (parity: 300/300 trials, PROVEN) */
+
+extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
+extern void assert_post_action(unsigned int a, unsigned int b);
+typedef void (*jfn847)(void);
+void gpio_pin_set_checked(int param_1, unsigned int param_2, unsigned int param_3)
+{
+  unsigned int uVar1;
+  jfn847 UNRECOVERED_JUMPTABLE;
+
+  uVar1 = 1u << (param_2 & 0xff);
+  if ((uVar1 & **(volatile unsigned int **)(param_1 + 4)) == 0) {
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_99de0) /*=0x99de0*/, ((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x64f);
+    printk(((unsigned long)&rodata_99e1e) /*=0x99e1e*/, 0, 0, 0);
+    assert_post_action(((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x64f);
+  }
+  if ((uVar1 & **(volatile unsigned int **)(param_1 + 0x10)) != 0) {
+    param_3 = param_3 ^ 1;
+  }
+  if (param_3 == 0) {
+    UNRECOVERED_JUMPTABLE = *(jfn847 *)(*(int *)(param_1 + 8) + 0x10);
+  } else {
+    UNRECOVERED_JUMPTABLE = *(jfn847 *)(*(int *)(param_1 + 8) + 0xc);
+  }
+  (*UNRECOVERED_JUMPTABLE)();
+}

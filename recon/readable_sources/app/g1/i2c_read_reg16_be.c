@@ -1,0 +1,42 @@
+#include "g1_app_symbols.h"
+/* Recovered layout bindings (presentation-only; Ghidra-grounded):
+ *   local_2c         => struct g1_layout_i2c_reg16_xfer__stack_1555             [stack_1555; G1-original]
+ * Raw function identity: 0x000847d8.  See ../include/g1_recovered_layouts.h. */
+/* readable reconstruction; identity: FUN_000847d8 @ 0x000847d8
+ * public-name: i2c_read_reg16_be
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   i2c_read_reg16_be                        <= FUN_000847d8 @ 0x000847d8
+ */
+/* Reconstructed FUN_000847d8 @ 0x847d8  (parity: 300/300 trials, PROVEN) */
+
+typedef int (*vfn847d8)(int, void*, int, short);
+int i2c_read_reg16_be(int *param_1, unsigned char param_2, unsigned short *param_3)
+{
+  int iVar1;
+  int uVar2;
+  unsigned char local_2d;
+  unsigned short local_2c[2];
+  unsigned char *local_28;
+  unsigned int local_24;
+  unsigned char local_20;
+  unsigned short *local_1c;
+  unsigned int local_18;
+  unsigned char local_14;
+
+  local_28 = &local_2d;
+  local_24 = 1;
+  local_20 = 0;
+  local_1c = local_2c;
+  local_18 = 2;
+  local_14 = 7;
+  local_2d = param_2;
+  iVar1 = ((vfn847d8)(*(int *)(*(int *)(*param_1 + 8) + 8)))(*param_1, &local_28, 2, (short)param_1[1]);
+  if (iVar1 == 0) {
+    *param_3 = (unsigned short)(((local_2c[0] & 0xff) << 8) | (local_2c[0] >> 8));
+    uVar2 = 0;
+  } else {
+    uVar2 = 0xfffffffb;
+  }
+  return uVar2;
+}
