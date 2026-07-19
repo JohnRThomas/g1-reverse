@@ -267,7 +267,7 @@ function renderSymbolList() {
       const active = state.current?.id === item.id;
       button.classList.toggle("active", active);
       button.setAttribute("aria-selected", String(active));
-      const glyphs = {visual: "◫", strings: "Aa", constants: "#", tables: "⌁", protocols: "⇄", data: "◇"};
+      const glyphs = {visual: "◫", fonts: "Ag", strings: "Aa", constants: "#", tables: "⌁", protocols: "⇄", data: "◇"};
       button.innerHTML = `<span class="symbol-glyph">${glyphs[item.family] || "◇"}</span><span class="symbol-copy"><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.address)} · ${escapeHtml(item.subsystem)}</span></span><span class="asset-confidence ${escapeHtml(item.confidence)}">${escapeHtml(item.confidence)}</span>`;
       button.addEventListener("click", () => navigateAsset(item.id));
       fragment.append(button);

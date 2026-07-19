@@ -246,6 +246,25 @@
   .av-root *, .av-root *::before, .av-root *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
 
+.av-data-table .av-table-wrap { max-height: 560px; }
+.av-data-table td { max-width: 360px; white-space: normal; overflow-wrap: anywhere; }
+.av-font-summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.av-font-summary span { padding: 8px 10px; border: 1px solid var(--line, rgba(181,225,211,.105)); border-radius: 9px; color: var(--muted, #8ba49c); background: rgba(255,255,255,.025); font-size: 10px; }
+.av-font-summary b { color: var(--text, #edf8f3); }
+.av-glyph-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; max-height: 720px; overflow: auto; padding: 3px; }
+.av-glyph-card { display: grid; grid-template-rows: 82px auto; min-width: 0; overflow: hidden; border: 1px solid var(--line, rgba(181,225,211,.105)); border-radius: 11px; background: rgba(3,12,10,.42); transition: transform .18s ease, border-color .18s ease, background .18s ease; }
+.av-glyph-card:hover { z-index: 1; transform: translateY(-2px); border-color: rgba(99,245,189,.32); background: rgba(99,245,189,.035); }
+.av-glyph-card svg { width: 100%; height: 100%; padding: 12px; color: var(--accent, #63f5bd); fill: currentColor; background: radial-gradient(circle at 50% 55%, rgba(99,245,189,.07), transparent 68%); }
+.av-glyph-card footer { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 2px 7px; min-width: 0; padding: 7px 8px; border-top: 1px solid var(--line, rgba(181,225,211,.105)); }
+.av-glyph-card footer strong { grid-row: span 2; min-width: 20px; color: var(--text, #edf8f3); font-size: 17px; text-align: center; }
+.av-glyph-card footer code { min-width: 0; overflow: hidden; color: var(--muted, #8ba49c); font: 8px var(--mono); text-overflow: ellipsis; }
+.av-glyph-card footer small { color: var(--dim, #5d756e); font-size: 8px; }
+
+@media (max-width: 620px) {
+  .av-glyph-grid { grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); max-height: 580px; }
+  .av-glyph-card { grid-template-rows: 70px auto; }
+}
+
 @media (forced-colors: active) {
   .av-badge, .av-viewer-shell, .av-context-card, .av-ref, .av-header { border-color: CanvasText; }
   .av-format-token { color: Canvas; background: CanvasText; }

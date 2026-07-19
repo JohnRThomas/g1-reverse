@@ -10,6 +10,7 @@ import json
 import mimetypes
 import os
 import re
+import struct
 import subprocess
 import tempfile
 import threading
@@ -462,7 +463,9 @@ class RepositoryIndex:
     @staticmethod
     def _asset_family(record: dict) -> str:
         kind = str(record.get("asset_type", "")).lower()
-        if any(word in kind for word in ("bitmap", "glyph", "font", "image", "animation", "framebuffer", "atlas")):
+        if "font" in kind:
+            return "fonts"
+        if any(word in kind for word in ("bitmap", "icon", "glyph", "image", "animation", "framebuffer", "atlas", "mask")):
             return "visual"
         if "string" in kind:
             return "strings"
@@ -480,13 +483,18 @@ class RepositoryIndex:
         meaning = record.get("meaning", {})
         confidence = record.get("confidence", {})
         size = record.get("address", {}).get("size")
+        end = record.get("address", {}).get("end")
+        ranges = record.get("context", {}).get("address_ranges", [])
+        if "font" in str(record.get("asset_type", "")).lower() and ranges:
+            size = sum(int(item.get("size_bytes") or 0) for item in ranges)
+            end = ranges[-1].get("address_end_exclusive") or end
         if RepositoryIndex._asset_family(record) == "protocols":
             layout_size = record.get("context", {}).get("layout", {}).get("size") if isinstance(record.get("context", {}).get("layout"), dict) else None
             size = layout_size if isinstance(layout_size, int) else None
         return {
             "id": record.get("id"), "core": record.get("core", "app"),
             "address": record.get("address", {}).get("start"),
-            "end": record.get("address", {}).get("end"),
+            "end": end,
             "size": size,
             "asset_type": record.get("asset_type", "data"),
             "family": RepositoryIndex._asset_family(record),
@@ -513,6 +521,37 @@ class RepositoryIndex:
         start = max(page - 1, 0) * limit
         return {"items": rows[start:start + limit], "total": total, "page": page, "limit": limit}
 
+    @staticmethod
+    def _read_app_bytes(address: int | str, size: int, limit: int = 65_536) -> bytes:
+        if not APP_IMAGE.exists() or size <= 0:
+            return b""
+        start = int(address, 16) if isinstance(address, str) else address
+        # app_update.bin retains the 512-byte MCUboot header; CPUAPP's linked
+        # address 0xC200 begins at file offset 0x200.
+        offset = start - 0xC200 + 0x200
+        if offset < 0 or offset >= APP_IMAGE.stat().st_size:
+            return b""
+        with APP_IMAGE.open("rb") as stream:
+            stream.seek(offset)
+            return stream.read(min(size, limit))
+
+    @staticmethod
+    def _decode_table_values(payload: bytes, type_name: str, count: int | None = None) -> list:
+        formats = {
+            "uint8_t": ("B", 1), "int8_t": ("b", 1), "char": ("B", 1),
+            "uint16_t": ("H", 2), "uint16": ("H", 2), "int16_t": ("h", 2), "int16": ("h", 2),
+            "uint32_t": ("I", 4), "uint32": ("I", 4), "int32_t": ("i", 4), "int32": ("i", 4),
+            "float": ("f", 4), "float32": ("f", 4), "double": ("d", 8),
+        }
+        normalized = str(type_name or "").strip().lower().replace("const ", "")
+        fmt_size = formats.get(normalized)
+        if not fmt_size:
+            return []
+        fmt, size = fmt_size
+        available = len(payload) // size
+        total = min(available, int(count) if count is not None else available, 8192)
+        return [struct.unpack_from("<" + fmt, payload, index * size)[0] for index in range(total)]
+
     def _asset_detail_record(self, record: dict) -> dict:
         row = RepositoryIndex._public_asset(record)
         context = record.get("context", {})
@@ -524,6 +563,7 @@ class RepositoryIndex:
         encoding = context.get("encoding", {}) if isinstance(context.get("encoding"), dict) else {}
         layout = context.get("layout", {}) if isinstance(context.get("layout"), dict) else {}
         renderer = context.get("renderer", {}) if isinstance(context.get("renderer"), dict) else {}
+        storage = context.get("storage", {}) if isinstance(context.get("storage"), dict) else {}
         joined_ids = record.get("references", {}).get("decoded_usage_ids", []) if isinstance(record.get("references"), dict) else []
         joined = []
         for edge_id in joined_ids[:240]:
@@ -537,16 +577,43 @@ class RepositoryIndex:
                     "meaning": edge.get("meaning", {}).get("summary"), "role": "consumer",
                 })
         raw_hex = value.get("raw_preview_hex") or context.get("raw_preview_hex") or context.get("bytes_hex") or context.get("raw_bytes") or (context.get("decoded", {}).get("byte_hex") if isinstance(context.get("decoded"), dict) else None)
-        if not raw_hex and self._asset_family(record) == "visual" and APP_IMAGE.exists():
-            start = int(row["address"], 16)
-            size = int(row.get("size") or 0)
-            # app_update.bin retains the 512-byte MCUboot header; CPUAPP's
-            # linked address 0xC200 begins at file offset 0x200.
-            offset = start - 0xC200 + 0x200
-            if 0 <= offset < APP_IMAGE.stat().st_size and size > 0:
-                with APP_IMAGE.open("rb") as stream:
-                    stream.seek(offset)
-                    raw_hex = stream.read(min(size, 16384)).hex()
+        family = self._asset_family(record)
+        firmware_payload = self._read_app_bytes(row["address"], int(row.get("size") or 0)) if family in {"visual", "tables"} else b""
+        if not raw_hex and family == "visual":
+            raw_hex = firmware_payload.hex()
+
+        asset_type = str(record.get("asset_type", ""))
+        if asset_type == "compressed_icon" and firmware_payload:
+            lut = self._read_app_bytes(0x000D753A, 1024)
+            if len(lut) == 1024:
+                firmware_payload = b"".join(lut[value * 4:value * 4 + 4] for value in firmware_payload)
+                raw_hex = firmware_payload.hex()
+                encoding = {**encoding, "bits_per_pixel_rendered": 4, "decoded_via_lut": "0x000d753a"}
+
+        glyph_payload = b""
+        if asset_type == "font_bank":
+            pixel_range = next((item for item in context.get("address_ranges", []) if str(item.get("public_name", "")).endswith("_pixels")), None)
+            if pixel_range:
+                glyph_payload = self._read_app_bytes(pixel_range["address_start"], int(pixel_range.get("size_bytes") or 0), 131_072)
+
+        explicit_values = context.get("decoded", {}).get("values") if isinstance(context.get("decoded"), dict) else None
+        explicit_values = explicit_values or context.get("decoded_values") or context.get("values") or encoding.get("values")
+        type_rows = value.get("type") if isinstance(value.get("type"), list) else []
+        type_row = type_rows[0] if type_rows else {}
+        element_type = storage.get("element_type") or type_row.get("type")
+        element_count = storage.get("count") or type_row.get("count")
+        decoded_table_values = explicit_values or self._decode_table_values(firmware_payload, element_type, element_count)
+        pointer_targets = decoded.get("pointer_targets", []) if isinstance(decoded, dict) else []
+        table_rows = context.get("rows") or []
+        if pointer_targets:
+            table_rows = [{
+                "index": index, "offset": target.get("offset"), "value": target.get("value"),
+                "kind": target.get("kind"), "target": (target.get("target") or {}).get("name") or (target.get("target") or {}).get("address") or "—",
+            } for index, target in enumerate(pointer_targets)]
+        elif asset_type == "string_pool":
+            table_rows = [{"index": index, "text": text_value} for index, text_value in enumerate(decoded.get("strings", []))]
+        elif decoded_table_values:
+            table_rows = [{"index": index, "value": item} for index, item in enumerate(decoded_table_values)]
 
         def function_refs(values):
             normalized = []
@@ -583,7 +650,13 @@ class RepositoryIndex:
             "related_structs": context.get("related_structs") or context.get("related_structures") or context.get("structures") or related.get("structs") or [],
             "references": asset_refs(context.get("references") or context.get("related_assets") or related.get("assets") or joined),
             "bytes": raw_hex or context.get("bytes") or context.get("data") or [],
-            "values": context.get("values") or context.get("decoded_values") or decoded.get("values") or encoding.get("values") or context.get("chart_samples") or [],
+            "values": decoded_table_values or decoded.get("values") or context.get("chart_samples") or [],
+            "table_rows": table_rows,
+            "entries": context.get("entries") or [],
+            "glyph_payload_hex": glyph_payload.hex(),
+            "shape": storage.get("shape") or context.get("shape"),
+            "scale": storage.get("scale") or context.get("scale"),
+            "unit": storage.get("units") or context.get("unit"),
             "value": context.get("constant_value") or value.get("decoded"),
             "text": context.get("text") or context.get("decoded", {}).get("value"),
             "frame_fields": context.get("frame_fields") or context.get("packet_fields") or layout.get("fields") or [],
@@ -591,6 +664,9 @@ class RepositoryIndex:
             "width": context.get("width") or encoding.get("width_pixels"),
             "height": context.get("height") or encoding.get("height_pixels"),
             "bits_per_pixel": context.get("bits_per_pixel") or encoding.get("bits_per_pixel_rendered") or encoding.get("bits_per_pixel_stored"),
+            "pixel_order": context.get("pixel_order") or encoding.get("pixel_order"),
+            "frame_count": context.get("frame_count") or encoding.get("frame_count"),
+            "frame_stride_bytes": context.get("frame_stride_bytes") or encoding.get("frame_stride_bytes"),
             "encoding": context.get("encoding_name") or (context.get("decoded", {}).get("encoding") if isinstance(context.get("decoded"), dict) else None) or encoding.get("format"),
             "endianness": context.get("endianness") or value.get("endianness") or encoding.get("endianness") or layout.get("endian"),
             "interpretations": [part for value in (context.get("visual_description"), context.get("behavior"), context.get("caveats")) for part in (value if isinstance(value, list) else [value]) if part],

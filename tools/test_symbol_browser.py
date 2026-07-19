@@ -104,13 +104,33 @@ class SymbolBrowserTests(unittest.TestCase):
         self.assertEqual(meta["context_coverage"]["with_context"], meta["assets"])
         self.assertEqual(meta["context_coverage"]["with_relationships"], meta["assets"])
         result = self.index.list_assets("", "visual", 1, 10)
-        self.assertGreaterEqual(result["total"], 100)
+        self.assertGreaterEqual(result["total"], 130)
+        self.assertEqual(self.index.list_assets("", "fonts", 1, 10)["total"], 5)
+        self.assertEqual(self.index.list_assets("", "tables", 1, 10)["total"], 1578)
         detail = self.index.asset_detail(result["items"][0]["id"])
         self.assertTrue(detail["meaning"])
         self.assertIn(detail["confidence"], {"high", "medium", "low"})
         self.assertTrue(detail["provenance"])
         by_address = self.index.asset_detail(detail["address"])
         self.assertEqual(by_address["address"], detail["address"])
+
+    def test_visual_and_table_payloads_use_firmware_formats(self):
+        compressed = self.index.asset_detail("builtin_icon_00")
+        self.assertEqual(compressed["family"], "visual")
+        self.assertEqual(len(compressed["bytes"]), 288 * 2)
+        self.assertEqual(compressed["bits_per_pixel"], 4)
+
+        font = self.index.asset_detail("default_font")
+        self.assertEqual(len(font["entries"]), 332)
+        self.assertEqual(len(font["glyph_payload_hex"]), 37050 * 2)
+
+        numeric = self.index.asset_detail("data:0000cad0")
+        self.assertEqual(len(numeric["values"]), 10)
+        self.assertEqual(len(numeric["table_rows"]), 10)
+        pointers = self.index.asset_detail("data:0000d578")
+        self.assertEqual(len(pointers["table_rows"]), 2)
+        lc3 = self.index.asset_detail("lc3-ltpf-resampler-8k")
+        self.assertEqual(len(lc3["values"]), 192)
 
     def test_function_detail_includes_decoded_reference_semantics(self):
         detail = self.index.detail("app", "battery_model_state_update")

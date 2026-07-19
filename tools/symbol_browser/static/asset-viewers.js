@@ -16,8 +16,10 @@
   const TYPE_ALIASES = new Map([
     ["string", "string"], ["format", "string"], ["format_string", "string"],
     ["constant", "constant"], ["enum", "constant"], ["bitfield", "constant"],
-    ["table", "numeric"], ["numeric_table", "numeric"], ["curve", "numeric"], ["chart", "numeric"],
+    ["table", "table"], ["pointer_table", "table"], ["string_pool", "table"], ["dispatch_table", "table"],
+    ["numeric_table", "numeric"], ["algorithm_table", "numeric"], ["curve", "numeric"], ["chart", "numeric"],
     ["bitmap", "bitmap"], ["glyph", "bitmap"], ["image", "bitmap"], ["font", "bitmap"],
+    ["font_bank", "font"], ["external_font_bank", "font"],
     ["protocol", "protocol"], ["frame", "protocol"], ["packet", "protocol"], ["uuid", "protocol"],
     ["bytes", "hex"], ["blob", "hex"], ["hex", "hex"], ["unknown", "hex"],
   ]);
@@ -109,13 +111,19 @@
 
   function detectKind(raw) {
     const asset = raw || {};
-    const declared = text(asset.viewer || asset.visualization || asset.asset_type || asset.kind || asset.type).toLowerCase();
+    const declared = text(asset.asset_type || asset.kind || asset.type || asset.viewer || asset.visualization).toLowerCase();
     if (TYPE_ALIASES.has(declared)) return TYPE_ALIASES.get(declared);
+    if (declared.includes("font")) return "font";
+    if (declared.includes("string_pool")) return "table";
     if (declared.includes("string") || typeof asset.text === "string" || typeof asset.string === "string") return "string";
     if (declared.includes("enum") || declared.includes("constant") || asset.enum_members || asset.flags || asset.bitfield) return "constant";
     if (asset.width && asset.height && (asset.pixels || asset.bytes || asset.data)) return "bitmap";
     if (asset.uuid || asset.protocol || asArray(asset.packet_fields).length || asArray(asset.frame_fields).length) return "protocol";
-    if (asset.values || asset.series || asset.rows) return "numeric";
+    if (asArray(asset.table_rows).length) {
+      const tabularOnly = /pointer|dispatch|string.pool|schema|layout/.test(declared);
+      return asArray(asset.values).length && !tabularOnly ? "numeric" : "table";
+    }
+    if (asArray(asset.values).length || asArray(asset.series).length || asArray(asset.rows).length) return "numeric";
     return "hex";
   }
 
@@ -265,6 +273,25 @@
     </section>`;
   }
 
+  function cellValue(value) {
+    if (value == null) return "—";
+    if (typeof value === "object") return value.name || value.display_name || value.address || JSON.stringify(value);
+    return String(value);
+  }
+
+  function renderTable(asset) {
+    const rows = asArray(asset.table_rows || asset.rows || asset.entries);
+    if (!rows.length) return `<section class="av-visual av-data-table">${empty("No decoded table rows are attached to this object.")}</section>`;
+    const objects = rows.map((row, index) => row && typeof row === "object" && !Array.isArray(row) ? row : {index, value: row});
+    const columns = [...new Set(objects.flatMap(row => Object.keys(row)))].filter(key => !["source", "evidence", "viewer_route"].includes(key)).slice(0, 9);
+    const shown = objects.slice(0, 1024);
+    return `<section class="av-visual av-data-table" aria-label="Decoded data table">
+      <div class="av-subheading"><span>Decoded rows</span><small>${objects.length.toLocaleString()} total</small></div>
+      <div class="av-table-wrap" tabindex="0"><table><thead><tr>${columns.map(column => `<th>${html(titleCase(column))}</th>`).join("")}</tr></thead><tbody>${shown.map(row => `<tr>${columns.map(column => `<td>${html(cellValue(row[column]))}</td>`).join("")}</tr>`).join("")}</tbody></table></div>
+      ${objects.length > shown.length ? `<p class="av-truncation">Showing the first ${shown.length.toLocaleString()} of ${objects.length.toLocaleString()} rows.</p>` : ""}
+    </section>`;
+  }
+
   function bitmapPixels(asset) {
     const width = Math.max(1, Number(asset.width || asset.columns || 8));
     const height = Math.max(1, Number(asset.height || asset.rows_count || Math.ceil((asset.bytes.length * 8) / width) || 1));
@@ -272,9 +299,15 @@
     const bpp = Math.max(1, Number(asset.bits_per_pixel || asset.bpp || 1));
     const mask = (1 << Math.min(bpp, 8)) - 1;
     const pixels = [];
+    const lowFirst = /low nibble (?:then|first)/i.test(text(asset.pixel_order || asset.pixelOrder));
     asset.bytes.forEach(byte => {
       if (bpp === 8) pixels.push(byte);
-      else for (let shift = 8 - bpp; shift >= 0; shift -= bpp) pixels.push((byte >> shift) & mask);
+      else {
+        const shifts = [];
+        for (let shift = 8 - bpp; shift >= 0; shift -= bpp) shifts.push(shift);
+        if (lowFirst) shifts.reverse();
+        shifts.forEach(shift => pixels.push((byte >> shift) & mask));
+      }
     });
     return {width, height, pixels};
   }
@@ -290,8 +323,32 @@
     }).join("");
     return `<section class="av-visual av-bitmap-view" aria-label="Bitmap or glyph visualization">
       <div class="av-bitmap-stage"><svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${width} by ${height} pixel recovered bitmap" shape-rendering="crispEdges"><rect class="av-pixel-bg" width="${width}" height="${height}"/>${cells}</svg></div>
-      <div class="av-bitmap-stats"><span><b>${width} × ${height}</b> pixels</span><span><b>${html(asset.bits_per_pixel || asset.bpp || 1)}</b> bits/pixel</span><span><b>${asset.bytes.length.toLocaleString()}</b> source bytes</span>${asset.glyph || asset.character ? `<span>Glyph <b>${html(asset.glyph || asset.character)}</b></span>` : ""}</div>
+      <div class="av-bitmap-stats"><span><b>${width} × ${height}</b> pixels</span><span><b>${html(asset.bits_per_pixel || asset.bpp || 1)}</b> bits/pixel</span><span><b>${asset.bytes.length.toLocaleString()}</b> render bytes</span>${asset.glyph || asset.character ? `<span>Glyph <b>${html(asset.glyph || asset.character)}</b></span>` : ""}</div>
       ${shown < width * height ? `<p class="av-truncation">Preview limited to ${shown.toLocaleString()} decoded pixels.</p>` : ""}
+    </section>`;
+  }
+
+  function glyphSvg(entry, payload, asset) {
+    const width = Number(entry.width_pixels || entry.width || 1);
+    const height = Number(entry.height_pixels || asset.height || 1);
+    const offset = Number(entry.payload_offset || 0);
+    const size = Number(entry.size_bytes || Math.ceil(width / 2) * height);
+    const glyph = {...asset, width, height, bytes: payload.slice(offset, offset + size), bits_per_pixel: 4};
+    const decoded = bitmapPixels(glyph);
+    const max = decoded.pixels.reduce((result, value) => Math.max(result, value), 1);
+    const cells = decoded.pixels.slice(0, width * height).map((value, index) => value ? `<rect x="${index % width}" y="${Math.floor(index / width)}" width="1" height="1" opacity="${Math.max(.1, value / max).toFixed(3)}"/>` : "").join("");
+    return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Glyph ${html(entry.codepoint || entry.character || entry.index)}" shape-rendering="crispEdges"><rect class="av-pixel-bg" width="${width}" height="${height}"/>${cells}</svg>`;
+  }
+
+  function renderFont(asset) {
+    const entries = asArray(asset.entries);
+    const payload = bytesOf(asset.glyph_payload_hex || asset.glyph_payload);
+    if (!entries.length || !payload.length) return `<section class="av-visual av-font-view">${empty("This font bank is external or its glyph payload is not embedded in the CPUAPP image.")}${entries.length ? renderTable({...asset, table_rows: entries}) : ""}</section>`;
+    const shown = entries.slice(0, 450);
+    return `<section class="av-visual av-font-view" aria-label="Recovered font glyph table">
+      <div class="av-font-summary"><span><b>${entries.length.toLocaleString()}</b> glyphs</span><span><b>${payload.length.toLocaleString()} B</b> pixel payload</span><span><b>${html(asset.encoding || "packed 4-bit")}</b></span></div>
+      <div class="av-glyph-grid">${shown.map(entry => `<article class="av-glyph-card" title="${html(entry.codepoint || "")}">${glyphSvg(entry, payload, asset)}<footer><strong>${html(entry.character || "·")}</strong><code>${html(entry.codepoint || `#${entry.index}`)}</code><small>${html(entry.width_pixels)}×${html(entry.height_pixels)}</small></footer></article>`).join("")}</div>
+      ${entries.length > shown.length ? `<p class="av-truncation">Showing ${shown.length} of ${entries.length.toLocaleString()} glyphs.</p>` : ""}
     </section>`;
   }
 
@@ -382,13 +439,16 @@
   function renderHeader(asset, kind) {
     const tags = asArray(asset.tags || asset.labels);
     const confidenceTone = asset.confidence === "high" || asset.confidence === "verified" ? "good" : asset.confidence === "medium" ? "warn" : asset.confidence === "low" ? "bad" : "neutral";
-    return `<header class="av-header"><div class="av-title-block"><nav aria-label="Asset location"><span>${html((asset.core || "app").toUpperCase())}</span><b>›</b><span>DATA</span>${asset.address ? `<b>›</b><code>${html(asset.address)}</code>` : ""}</nav><div class="av-badges">${badge(titleCase(kind), "type")}${asset.confidence ? badge(`${titleCase(asset.confidence)} confidence`, confidenceTone) : ""}${tags.map(tag => badge(tag)).join("")}</div><h2>${html(asset.name)}</h2>${asset.symbol && asset.symbol !== asset.name ? `<p><code>${html(asset.symbol)}</code></p>` : ""}</div><div class="av-header-metrics"><div><span>Size</span><strong>${asset.bytes.length ? `${asset.bytes.length.toLocaleString()} B` : html(asset.size || "—")}</strong></div><div><span>Identity</span><strong>${html(asset.id)}</strong></div></div></header>`;
+    const sizeLabel = asset.bytes.length ? `${asset.bytes.length.toLocaleString()} B` : typeof asset.size === "number" ? `${asset.size.toLocaleString()} B` : asset.size || "—";
+    return `<header class="av-header"><div class="av-title-block"><nav aria-label="Asset location"><span>${html((asset.core || "app").toUpperCase())}</span><b>›</b><span>DATA</span>${asset.address ? `<b>›</b><code>${html(asset.address)}</code>` : ""}</nav><div class="av-badges">${badge(titleCase(kind), "type")}${asset.confidence ? badge(`${titleCase(asset.confidence)} confidence`, confidenceTone) : ""}${tags.map(tag => badge(tag)).join("")}</div><h2>${html(asset.name)}</h2>${asset.symbol && asset.symbol !== asset.name ? `<p><code>${html(asset.symbol)}</code></p>` : ""}</div><div class="av-header-metrics"><div><span>Size</span><strong>${html(sizeLabel)}</strong></div><div><span>Identity</span><strong>${html(asset.id)}</strong></div></div></header>`;
   }
 
   function viewerFor(kind, asset) {
     if (kind === "string") return renderString(asset);
     if (kind === "constant") return renderConstant(asset);
     if (kind === "numeric") return renderNumeric(asset);
+    if (kind === "table") return renderTable(asset);
+    if (kind === "font") return renderFont(asset);
     if (kind === "bitmap") return renderBitmap(asset);
     if (kind === "protocol") return renderProtocol(asset);
     return renderHex(asset);
