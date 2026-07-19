@@ -25,6 +25,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 
 html, body { min-height: 100%; }
 
@@ -252,7 +253,7 @@ kbd {
 .symbol-copy strong { display: block; overflow: hidden; color: #dcebe5; font: 11.5px var(--mono); text-overflow: ellipsis; white-space: nowrap; }
 .symbol-copy span { display: block; margin-top: 4px; color: var(--dim); font: 9px var(--mono); }
 .symbol-size { color: var(--dim); font: 9px var(--mono); }
-.proposal-dot { display: inline-block; width: 5px; height: 5px; margin-right: 5px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 8px var(--violet); }
+.edit-dot { display: inline-block; width: 5px; height: 5px; margin-right: 5px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 8px var(--violet); }
 .load-more { margin: 0 12px 12px; height: 34px; border: 1px solid var(--line); border-radius: 9px; color: var(--muted); background: rgba(255,255,255,.02); cursor: pointer; }
 .load-more:hover { border-color: var(--line-strong); color: var(--text); }
 .sidebar-footer { display: flex; align-items: center; gap: 8px; padding: 12px 18px; border-top: 1px solid var(--line); color: var(--dim); font-size: 10px; }
@@ -290,7 +291,7 @@ kbd {
 .title-badges { display: flex; gap: 5px; min-height: 18px; }
 .badge { padding: 3px 7px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: rgba(255,255,255,.02); font-size: 8px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .badge.unnamed { color: var(--orange); border-color: rgba(255,191,105,.2); background: rgba(255,191,105,.07); }
-.badge.proposed { color: var(--violet); border-color: rgba(170,156,255,.22); background: rgba(170,156,255,.08); }
+.badge.edited { color: var(--violet); border-color: rgba(170,156,255,.22); background: rgba(170,156,255,.08); }
 .badge.verified { color: var(--accent); border-color: rgba(99,245,189,.2); background: var(--accent-soft); }
 .primary-button { min-height: 38px; padding: 0 15px; white-space: nowrap; }
 .primary-button span { margin-right: 4px; }

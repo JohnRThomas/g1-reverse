@@ -50,7 +50,7 @@
       <div class="filter-tabs" role="tablist" aria-label="Symbol status">
         <button class="active" role="tab" aria-selected="true" data-state="all">All</button>
         <button role="tab" aria-selected="false" data-state="unnamed">Unnamed</button>
-        <button role="tab" aria-selected="false" data-state="proposed">Proposed</button>
+        <button role="tab" aria-selected="false" data-state="edited">Edited</button>
       </div>
       <div class="symbol-list" id="symbol-list" role="listbox" aria-label="Functions"></div>
       <button class="load-more" id="load-more" type="button" hidden>Load more</button>
@@ -65,7 +65,7 @@
         <div class="empty-orbit" aria-hidden="true"><span></span><i></i></div>
         <span class="eyebrow">Ready to trace</span>
         <h2>Select a function or use GoToRef</h2>
-        <p>Inspect recovered source, follow callers and callees, jump through raw references, and queue a better name without losing its firmware identity.</p>
+        <p>Inspect recovered source, follow callers and callees, jump through raw references, and apply a better name without losing its firmware identity.</p>
         <div class="empty-shortcuts"><span><kbd>G</kbd> Go to reference</span><span><kbd>/</kbd> Filter</span><span><kbd>R</kbd> Rename</span></div>
       </section>
 
@@ -126,15 +126,15 @@
   <dialog class="rename-dialog" id="rename-dialog">
     <form method="dialog" id="rename-form">
       <div class="dialog-glow" aria-hidden="true"></div>
-      <header><div><span class="eyebrow">User proposal</span><h2>Rename symbol</h2></div><button class="dialog-close" value="cancel" aria-label="Close">×</button></header>
+      <header><div><span class="eyebrow">Canonical rename</span><h2>Rename symbol</h2></div><button class="dialog-close" id="close-rename" type="button" aria-label="Close">×</button></header>
       <div class="identity-lock"><span>Permanent identity</span><strong id="rename-identity">FUN_… · 0x…</strong></div>
       <label for="rename-name">New C identifier</label>
       <div class="rename-input-wrap"><span aria-hidden="true">ƒ</span><input id="rename-name" required pattern="[A-Za-z_][A-Za-z0-9_]*" autocomplete="off" spellcheck="false"></div>
       <label for="rename-evidence">Evidence or rationale <small>optional, recommended</small></label>
       <textarea id="rename-evidence" rows="4" placeholder="Callers, strings, side effects, SDK match…"></textarea>
-      <p class="coordination-note" id="coordination-note"><span aria-hidden="true">↻</span><span>The naming sweep is active. This saves to an isolated proposal overlay and does not modify its files.</span></p>
+      <p class="coordination-note" id="coordination-note"><span aria-hidden="true">↻</span><span>The naming sweep still holds canonical files. Rename will unlock automatically after its coordination marker is released.</span></p>
       <p class="form-error" id="rename-error" role="alert"></p>
-      <footer><button class="ghost-button" value="cancel">Cancel</button><button class="primary-button" id="save-rename" value="default"><span aria-hidden="true">✓</span> Save proposal</button></footer>
+      <footer><button class="ghost-button" id="cancel-rename" type="button">Cancel</button><button class="primary-button" id="save-rename" type="submit" value="default"><span aria-hidden="true">✓</span> Apply rename</button></footer>
     </form>
   </dialog>
 

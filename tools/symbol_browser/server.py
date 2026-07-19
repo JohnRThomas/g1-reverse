@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local G1 symbol browser and concurrent-safe rename proposal server."""
+"""Local G1 symbol browser and concurrent-safe canonical rename server."""
 
 from __future__ import annotations
 
@@ -10,6 +10,7 @@ import json
 import mimetypes
 import os
 import re
+import subprocess
 import tempfile
 import threading
 import time
@@ -22,12 +23,12 @@ from urllib.parse import parse_qs, unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[2]
 STATIC = Path(__file__).resolve().parent / "static"
-PROPOSAL_DIR = ROOT / "recon" / "symbol_browser"
-PROPOSALS = PROPOSAL_DIR / "user_renames.json"
-PROPOSAL_LOCK = PROPOSAL_DIR / ".user_renames.lock"
+OVERRIDES = ROOT / "recon" / "catalogs" / "function_name_overrides.json"
+RENAME_LOCK = ROOT / ".git" / "g1-symbol-browser.rename.lock"
 COORDINATION = ROOT / "recon" / "SESSION_COORDINATION.md"
 IDENTIFIER = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 ADDRESS_TOKEN = re.compile(r"^(?:0x)?([0-9a-fA-F]{4,8})$")
+C_KEYWORDS = set("auto break case char const continue default do double else enum extern float for goto if inline int long register restrict return short signed sizeof static struct switch typedef union unsigned void volatile while _Bool _Complex _Imaginary".split())
 
 
 def canonical_address(value: int | str) -> str:
@@ -89,21 +90,38 @@ class RepositoryIndex:
         self.refresh(force=True)
 
     def _signature(self) -> tuple:
-        paths = [PROPOSALS, COORDINATION]
+        paths = [OVERRIDES, COORDINATION]
         for paths_by_kind in self.CATALOGS.values():
             paths.extend(paths_by_kind.values())
         return tuple((str(path), path.stat().st_mtime_ns if path.exists() else 0) for path in paths)
 
     @staticmethod
-    def _proposal_map() -> dict[str, dict]:
-        if not PROPOSALS.exists():
-            return {}
-        payload = read_json_retry(PROPOSALS)
-        return {f"{item['core']}:{item['address'].lower()}": item for item in payload.get("proposals", [])}
-
-    @staticmethod
     def _source_inventory(directory: Path) -> dict[str, Path]:
         return {path.stem: path for path in directory.glob("*.c")}
+
+    @staticmethod
+    def _source_address_inventory(inventory: dict[str, Path], names: dict) -> dict[str, tuple[Path, str]]:
+        result = {}
+        for stem, path in inventory.items():
+            header = path.read_text(errors="replace")[:2048]
+            leading_comment = "\n".join(header.splitlines()[:8])
+            raw_match = re.fullmatch(r"FUN_([0-9a-fA-F]{8})", stem)
+            address_match = re.search(r"@\s*(0x[0-9a-fA-F]+)", leading_comment)
+            mapped = names.get("by_name", {}).get(stem)
+            if raw_match:
+                address = canonical_address(int(raw_match.group(1), 16) & ~1)
+                raw_name = raw_match.group(0)
+            elif address_match:
+                address = canonical_address(int(address_match.group(1), 16) & ~1)
+                owner = re.search(r"(FUN_[0-9a-fA-F]+)", leading_comment[:address_match.start()])
+                raw_name = owner.group(1) if owner else f"FUN_{address[2:]}"
+            elif mapped:
+                address = canonical_address(int(mapped, 16) & ~1)
+                raw_name = f"FUN_{address[2:]}"
+            else:
+                continue
+            result[address] = (path, raw_name)
+        return result
 
     def refresh(self, *, force: bool = False) -> None:
         signature = self._signature()
@@ -113,7 +131,7 @@ class RepositoryIndex:
             signature = self._signature()
             if not force and signature == self.signature:
                 return
-            proposals = self._proposal_map()
+            overrides = read_json_retry(OVERRIDES) if OVERRIDES.exists() else {"app": {}, "net": {}}
             cores = {}
             for core, paths in self.CATALOGS.items():
                 names = read_json_retry(paths["names"])
@@ -123,6 +141,7 @@ class RepositoryIndex:
                 functions = {canonical_address(item["entry"]): item for item in functions_payload["functions"]}
                 refs = {canonical_address(key): value for key, value in refs_payload["functions"].items()}
                 source_inventory = self._source_inventory(paths["source"])
+                source_by_address = self._source_address_inventory(source_inventory, names)
                 if core == "app":
                     readable_inventory = self._source_inventory(ROOT / "recon/named")
                 else:
@@ -131,26 +150,22 @@ class RepositoryIndex:
                 by_name = {}
                 for address, identity in names["by_address"].items():
                     address = canonical_address(address)
-                    proposal = proposals.get(f"{core}:{address}")
-                    display_name = proposal["name"] if proposal else identity["display_name"]
+                    override = overrides.get(core, {}).get(address)
+                    display_name = identity["display_name"]
                     raw_name = identity["raw_name"]
                     function = functions.get(address, {})
                     ref = refs.get(address, {})
-                    source_path = (
-                        readable_inventory.get(identity["display_name"])
-                        or source_inventory.get(identity["display_name"])
-                        or source_inventory.get(identity["name"])
-                        or source_inventory.get(raw_name)
-                    )
+                    canonical_path = source_by_address.get(address, (None, None))[0]
+                    source_path = readable_inventory.get(identity["display_name"]) or canonical_path
                     record = {
                         "core": core,
                         "address": address,
                         "raw_name": raw_name,
                         "canonical_name": identity["display_name"],
                         "display_name": display_name,
-                        "human": not identity["display_name"].startswith("FUN_") or bool(proposal),
-                        "proposed": bool(proposal),
-                        "proposal": proposal,
+                        "human": not identity["display_name"].startswith("FUN_"),
+                        "edited": bool(override and str(override.get("evidence", "")).startswith("[symbol-browser")),
+                        "override": override,
                         "name_source": identity.get("source"),
                         "aliases": identity.get("aliases", []),
                         "size": ref.get("size", function.get("size")),
@@ -158,6 +173,7 @@ class RepositoryIndex:
                         "calling_convention": function.get("calling_convention"),
                         "is_thunk": bool(function.get("is_thunk")),
                         "has_source": source_path is not None,
+                        "canonical_corpus": canonical_path is not None,
                         "source_path": source_path,
                         "calls": ref.get("calls", []),
                         "callers": ref.get("callers", []),
@@ -168,13 +184,42 @@ class RepositoryIndex:
                     for name in {display_name, identity["display_name"], identity["name"], raw_name, *identity.get("aliases", [])}:
                         if name:
                             by_name.setdefault(name.lower(), address)
+                # Newly recovered functions can land before the naming catalogs
+                # regenerate. Keep them browsable by deriving their durable VA.
+                for address, (source_path, derived_raw_name) in source_by_address.items():
+                    stem = source_path.stem
+                    if address in records:
+                        records[address]["canonical_corpus"] = True
+                        records[address]["has_source"] = True
+                        records[address]["source_path"] = readable_inventory.get(records[address]["canonical_name"]) or source_path
+                        continue
+                    raw_name = derived_raw_name
+                    function = functions.get(address, {})
+                    ref = refs.get(address, {})
+                    override = overrides.get(core, {}).get(address)
+                    display_name = stem
+                    records[address] = {
+                        "core": core, "address": address, "raw_name": raw_name,
+                        "canonical_name": stem, "display_name": display_name,
+                        "human": not stem.startswith("FUN_"),
+                        "edited": bool(override and str(override.get("evidence", "")).startswith("[symbol-browser")),
+                        "override": override,
+                        "name_source": "canonical source pending catalog refresh", "aliases": [],
+                        "size": ref.get("size", function.get("size")), "signature": function.get("signature"),
+                        "calling_convention": function.get("calling_convention"), "is_thunk": bool(function.get("is_thunk")),
+                        "has_source": True, "canonical_corpus": True, "source_path": source_path,
+                        "calls": ref.get("calls", []), "callers": ref.get("callers", []),
+                        "data_refs": ref.get("data_refs", []), "decompiled": function.get("decompiled", ""),
+                    }
+                    for name in {stem, display_name, raw_name}:
+                        by_name.setdefault(name.lower(), address)
                 cores[core] = {
                     "records": records,
                     "by_name": by_name,
                     "address_names": address_names,
                     "sorted": sorted(records, key=lambda value: int(value, 16)),
                 }
-            self.data = {"cores": cores, "proposals": proposals}
+            self.data = {"cores": cores}
             self.signature = signature
 
     def _core(self, core: str) -> dict:
@@ -209,7 +254,7 @@ class RepositoryIndex:
             size = int(record.get("size") or 0)
             if size and start <= value < start + size:
                 candidate = (address, value - start)
-        return candidate or (None, 0)
+        return candidate or (exact, 0)
 
     @staticmethod
     def _public_record(record: dict) -> dict:
@@ -221,13 +266,13 @@ class RepositoryIndex:
         rows = []
         for address in data["sorted"]:
             record = data["records"][address]
-            if not record["has_source"]:
+            if not record["canonical_corpus"]:
                 continue
             if state == "unnamed" and record["human"]:
                 continue
             if state == "named" and not record["human"]:
                 continue
-            if state == "proposed" and not record["proposed"]:
+            if state == "edited" and not record["edited"]:
                 continue
             haystack = " ".join((address, record["raw_name"], record["display_name"], record["canonical_name"])).lower()
             if query and query not in haystack:
@@ -248,7 +293,7 @@ class RepositoryIndex:
         except (ValueError, TypeError):
             return {"kind": kind, "address": value, "display_name": value, "resolvable": False}
         owner, offset = self.resolve(core, address)
-        if owner:
+        if owner and owner in self._core(core)["records"]:
             record = self._core(core)["records"][owner]
             return {
                 "kind": kind,
@@ -308,6 +353,7 @@ class RepositoryIndex:
         result = self._public_record(record)
         result.update(
             {
+                "kind": "function",
                 "goto_offset": offset,
                 "source": source,
                 "source_kind": source_kind,
@@ -360,8 +406,8 @@ class RepositoryIndex:
             "canonical_name": named.get("name", address),
             "display_name": named.get("name", address),
             "human": bool(named.get("name")),
-            "proposed": False,
-            "proposal": None,
+            "edited": False,
+            "override": None,
             "name_source": ", ".join(named.get("evidence", [])) or "reference graph",
             "aliases": [],
             "size": None,
@@ -384,12 +430,12 @@ class RepositoryIndex:
         self.refresh()
         cores = {}
         for core, data in self.data["cores"].items():
-            records = [item for item in data["records"].values() if item["has_source"]]
+            records = [item for item in data["records"].values() if item["canonical_corpus"]]
             cores[core] = {
                 "total": len(records),
                 "named": sum(item["human"] for item in records),
                 "unnamed": sum(not item["human"] for item in records),
-                "proposed": sum(item["proposed"] for item in records),
+                "edited": sum(item["edited"] for item in records),
                 "with_source": sum(item["has_source"] for item in records),
             }
         coordination = COORDINATION.read_text(errors="replace") if COORDINATION.exists() else ""
@@ -397,50 +443,83 @@ class RepositoryIndex:
             "cores": cores,
             "coordination_active": "**HELD" in coordination,
             "coordination_path": str(COORDINATION.relative_to(ROOT)),
-            "rename_mode": "proposal_overlay",
-            "proposal_path": str(PROPOSALS.relative_to(ROOT)),
+            "rename_mode": "canonical_pipeline",
+            "override_path": str(OVERRIDES.relative_to(ROOT)),
         }
 
-    def save_proposal(self, core: str, address_token: str, name: str, evidence: str) -> dict:
+    def apply_rename(self, core: str, address_token: str, name: str, evidence: str) -> dict:
         address, offset = self.resolve(core, address_token)
         if not address or offset:
             raise ValueError("renames require an exact function entry address")
         name = name.strip()
-        if not IDENTIFIER.match(name):
+        if not IDENTIFIER.match(name) or name in C_KEYWORDS:
             raise ValueError("name must be a valid C identifier")
         data = self._core(core)
         collision = data["by_name"].get(name.lower())
         if collision and collision != address:
             raise ValueError(f"name already belongs to {collision}")
+        coordination = COORDINATION.read_text(errors="replace") if COORDINATION.exists() else ""
+        if "**HELD" in coordination:
+            raise ValueError("canonical naming files are still HELD by the active sweep; apply after it lands")
         record = data["records"][address]
-        proposal = {
-            "core": core,
-            "address": address,
-            "raw_name": record["raw_name"],
-            "previous_name": record["canonical_name"],
-            "name": name,
-            "evidence": evidence.strip(),
-            "status": "pending_user_proposal",
-            "updated_at": datetime.now(timezone.utc).isoformat(),
-        }
-        PROPOSAL_DIR.mkdir(parents=True, exist_ok=True)
-        with open(PROPOSAL_LOCK, "a+") as lock_file:
+        RENAME_LOCK.parent.mkdir(parents=True, exist_ok=True)
+        with open(RENAME_LOCK, "a+") as lock_file:
             fcntl.flock(lock_file, fcntl.LOCK_EX)
-            payload = read_json_retry(PROPOSALS) if PROPOSALS.exists() else {"schema": 1, "proposals": []}
-            proposals = [
-                item for item in payload.get("proposals", [])
-                if not (item.get("core") == core and item.get("address", "").lower() == address)
+            original = OVERRIDES.read_bytes() if OVERRIDES.exists() else None
+            payload = read_json_retry(OVERRIDES) if OVERRIDES.exists() else {"schema": 1, "app": {}, "net": {}}
+            payload.setdefault(core, {})
+            previous = payload[core].get(address, {})
+            entry = dict(previous)
+            entry["name"] = name
+            entry["evidence"] = (
+                f"[symbol-browser user {datetime.now(timezone.utc).isoformat()}] "
+                f"{evidence.strip() or 'Interactive reviewed rename.'} "
+                f"Raw identity remains {record['raw_name']}."
+            )
+            payload[core][address] = entry
+            atomic_json_write(OVERRIDES, payload)
+            commands = [
+                [str(ROOT / ".venv/bin/python"), str(ROOT / "tools/build_function_names.py"), core],
+                [str(ROOT / ".venv/bin/python"), str(ROOT / "tools/apply_names.py"), core],
+                [str(ROOT / ".venv/bin/python"), str(ROOT / "tools/symbolize.py"), core, "--write"],
+                [str(ROOT / ".venv/bin/python"), str(ROOT / "tools/validate_name_maps.py")],
             ]
-            proposals.append(proposal)
-            payload = {
-                "schema": 1,
-                "purpose": "Concurrent-safe user rename overlay; merge into canonical overrides only after SESSION_COORDINATION lock is released.",
-                "proposals": sorted(proposals, key=lambda item: (item["core"], item["address"])),
-            }
-            atomic_json_write(PROPOSALS, payload)
-            fcntl.flock(lock_file, fcntl.LOCK_UN)
+            output = []
+            environment = dict(os.environ, PYTHONSAFEPATH="1")
+            try:
+                for command in commands:
+                    result = subprocess.run(command, cwd="/tmp", env=environment, capture_output=True, text=True, timeout=180, check=True)
+                    output.append(result.stdout.strip())
+            except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as exc:
+                if original is None:
+                    OVERRIDES.unlink(missing_ok=True)
+                else:
+                    fd, temporary = tempfile.mkstemp(prefix=".function_name_overrides.rollback.", dir=OVERRIDES.parent)
+                    with os.fdopen(fd, "wb") as stream:
+                        stream.write(original)
+                        stream.flush()
+                        os.fsync(stream.fileno())
+                    os.replace(temporary, OVERRIDES)
+                detail = (getattr(exc, "stderr", "") or getattr(exc, "stdout", "") or str(exc)).strip()
+                rollback_detail = ""
+                try:
+                    # The derived maps/trees may already have changed before a
+                    # later pipeline stage failed. Rebuild them from the
+                    # restored override so rollback covers the whole pipeline.
+                    for command in commands:
+                        subprocess.run(command, cwd="/tmp", env=environment, capture_output=True, text=True, timeout=180, check=True)
+                except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as rollback_exc:
+                    rollback_detail = (getattr(rollback_exc, "stderr", "") or getattr(rollback_exc, "stdout", "") or str(rollback_exc)).strip()
+                suffix = f"; rollback rebuild also failed: {rollback_detail[-600:]}" if rollback_detail else ""
+                raise RuntimeError(f"rename pipeline failed; canonical state rolled back: {detail[-1200:]}{suffix}") from exc
+            finally:
+                fcntl.flock(lock_file, fcntl.LOCK_UN)
         self.refresh(force=True)
-        return proposal
+        return {
+            "core": core, "address": address, "raw_name": record["raw_name"],
+            "previous_name": record["canonical_name"], "name": name,
+            "status": "applied_canonical", "pipeline_output": output,
+        }
 
 
 INDEX = RepositoryIndex()
@@ -499,13 +578,13 @@ class Handler(BaseHTTPRequestHandler):
             if length > 32_768:
                 return self._error("request too large", 413)
             payload = json.loads(self.rfile.read(length))
-            proposal = INDEX.save_proposal(
+            applied = INDEX.apply_rename(
                 payload.get("core", ""),
                 payload.get("address", ""),
                 payload.get("name", ""),
                 payload.get("evidence", ""),
             )
-            return self._json({"ok": True, "proposal": proposal}, HTTPStatus.CREATED)
+            return self._json({"ok": True, "applied": applied}, HTTPStatus.CREATED)
         except (json.JSONDecodeError, KeyError, ValueError, RuntimeError) as exc:
             return self._error(str(exc), 400)
 
@@ -532,7 +611,7 @@ def main() -> None:
     args = parser.parse_args()
     server = ThreadingHTTPServer((args.host, args.port), Handler)
     print(f"G1 Symbol Browser: http://{args.host}:{args.port}")
-    print(f"Rename proposals: {PROPOSALS.relative_to(ROOT)}")
+    print(f"Canonical overrides: {OVERRIDES.relative_to(ROOT)}")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
