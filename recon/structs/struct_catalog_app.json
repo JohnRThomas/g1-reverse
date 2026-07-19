@@ -121,14 +121,14 @@
    "fields": [
     {
      "offset": "0x10",
-     "type": "uint32_t",
-     "name": "field_0x10",
+     "type": "void *",
+     "name": "buffer_start",
      "note": "read; likely queue cursor/count"
     },
     {
      "offset": "0x24",
      "type": "uint32_t",
-     "name": "field_0x24",
+     "name": "used_msgs",
      "note": "read; likely queue cursor/count"
     }
    ],
@@ -165,13 +165,13 @@
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10",
+     "name": "buffer_start",
      "note": "possibly next-uid or queue depth"
     },
     {
      "offset": "0x24",
      "type": "uint32_t",
-     "name": "field_0x24",
+     "name": "used_msgs",
      "note": "possibly tail index or checksum"
     }
    ],
@@ -182,7 +182,7 @@
   },
   {
    "cid": "global_0840",
-   "struct_name": "bt_start_init_table",
+   "struct_name": "bt_le_adv_param_defaults",
    "kind": "global",
    "purpose": "Small 4-word table at fixed addr 0x19650 read (index/idx4) by bt_start(); a BT controller init parameter/index table.",
    "is_library": false,
@@ -208,22 +208,22 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "options"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "interval_min"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "interval_max"
     },
     {
      "offset": "0x10",
-     "type": "uint32_t",
-     "name": "field_0x10"
+     "type": "const void *",
+     "name": "peer"
     }
    ],
    "review_note": "Split out of the global_0840 footprint group: this is only a 4-consecutive-uint32 shape shared coincidentally with 7 unrelated pointer params. Kept as its own struct; corrected sonnet's is_library=true (bt_start reads it but the table itself is G1 data).",
@@ -466,17 +466,17 @@
     {
      "offset": "0x115",
      "type": "uint8_t",
-     "name": "field_0x115"
+     "name": "retry_count"
     },
     {
      "offset": "0x116",
      "type": "uint8_t",
-     "name": "field_0x116"
+     "name": "tx_in_progress"
     },
     {
      "offset": "0x118",
      "type": "uint8_t",
-     "name": "field_0x118"
+     "name": "resend_pending"
     }
    ],
    "review_note": "Grouped with global_0969 by footprint but they are DISTINCT global addresses (0x33bbc vs 0x33bec) in different functions; coincidental 4-field shape. SEPARATE, not merged.",
@@ -518,17 +518,17 @@
     {
      "offset": "0x115",
      "type": "uint8_t",
-     "name": "field_0x115"
+     "name": "used_count"
     },
     {
      "offset": "0x116",
      "type": "uint8_t",
-     "name": "field_0x116"
+     "name": "busy"
     },
     {
      "offset": "0x118",
      "type": "uint8_t",
-     "name": "field_0x118"
+     "name": "active"
     }
    ],
    "review_note": "Distinct global address from global_0968; only shares footprint. SEPARATE.",
@@ -1110,8 +1110,8 @@
     },
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "const void *",
+     "name": "event_type"
     }
    ],
    "review_note": "Only two words observed; app_event_header real layout (const struct event_type* type_id + optional tracking id) is plausible but not offset-verifiable from 2 fields, so library_verified=false.",
@@ -1298,7 +1298,7 @@
   },
   {
    "cid": "global_1152",
-   "struct_name": "fw_version_info_table",
+   "struct_name": "fw_version_string_table",
    "kind": "global",
    "purpose": "Fixed global at 0x53378 consumed by ver_str: a 13-word version/build-info record concatenated into a version string.",
    "is_library": false,
@@ -1323,68 +1323,68 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "const char *",
+     "name": "version_str_ptr_1"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "const char *",
+     "name": "version_str_ptr_2"
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc"
+     "type": "const char *",
+     "name": "version_str_ptr_3"
     },
     {
      "offset": "0x10",
-     "type": "uint32_t",
-     "name": "field_0x10"
+     "type": "const char *",
+     "name": "version_str_ptr_4"
     },
     {
      "offset": "0x14",
-     "type": "uint32_t",
-     "name": "field_0x14"
+     "type": "const char *",
+     "name": "version_str_ptr_5"
     },
     {
      "offset": "0x18",
-     "type": "uint32_t",
-     "name": "field_0x18"
+     "type": "const char *",
+     "name": "version_str_ptr_6"
     },
     {
      "offset": "0x1c",
-     "type": "uint32_t",
-     "name": "field_0x1c"
+     "type": "const char *",
+     "name": "version_str_ptr_7"
     },
     {
      "offset": "0x20",
-     "type": "uint32_t",
-     "name": "field_0x20"
+     "type": "const char *",
+     "name": "version_str_ptr_8"
     },
     {
      "offset": "0x24",
-     "type": "uint32_t",
-     "name": "field_0x24"
+     "type": "const char *",
+     "name": "version_str_ptr_9"
     },
     {
      "offset": "0x28",
-     "type": "uint32_t",
-     "name": "field_0x28"
+     "type": "const char *",
+     "name": "version_str_ptr_10"
     },
     {
      "offset": "0x2c",
-     "type": "uint32_t",
-     "name": "field_0x2c"
+     "type": "const char *",
+     "name": "version_str_ptr_11"
     },
     {
      "offset": "0x30",
-     "type": "uint32_t",
-     "name": "field_0x30"
+     "type": "const char *",
+     "name": "version_str_ptr_12"
     },
     {
      "offset": "0x34",
-     "type": "uint32_t",
-     "name": "field_0x34"
+     "type": "const char *",
+     "name": "version_str_ptr_13"
     }
    ],
    "review_note": "Split from param_0692: the 13-word footprint is a coincidental collision. This is a G1 version data blob (ver_str), NOT the libmetal io region that shares the shape. Corrected sonnet is_library=true.",
@@ -1463,13 +1463,13 @@
     {
      "offset": "0x120",
      "type": "uint8_t",
-     "name": "field_0x120",
+     "name": "rl_entries_max",
      "note": "read"
     },
     {
      "offset": "0x121",
      "type": "uint8_t",
-     "name": "field_0x121",
+     "name": "rl_entries_count",
      "note": "read/write, status/refcount"
     }
    ],
@@ -1633,14 +1633,14 @@
    "fields": [
     {
      "offset": "0x1",
-     "type": "uint32_t",
-     "name": "field_0x1",
+     "type": "bt_addr_le_t",
+     "name": "addr_le",
      "note": "unaligned"
     },
     {
      "offset": "0xe",
      "type": "uint16_t",
-     "name": "field_0xe"
+     "name": "keys"
     }
    ],
    "review_note": "Unaligned reads (0x1 4-byte, 0xe 2-byte) are only a partial view; too little observed to verify against bt_keys header.",
@@ -1676,17 +1676,17 @@
     {
      "offset": "0xe",
      "type": "uint16_t",
-     "name": "field_0xe"
+     "name": "entry0_keys"
     },
     {
      "offset": "0x6a",
      "type": "uint16_t",
-     "name": "field_0x6a"
+     "name": "entry1_keys"
     },
     {
      "offset": "0x170",
      "type": "uint32_t",
-     "name": "field_0x170"
+     "name": "entry4_id"
     }
    ],
    "review_note": "Sparse accesses (0xe, 0x6a, 0x170) land inside different bt_keys array elements; cannot pin exact members without full element stride, so library_verified=false.",
@@ -1765,7 +1765,7 @@
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14"
+     "name": "rx_mem_slab"
     },
     {
      "offset": "0x52",
@@ -1892,13 +1892,13 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4",
+     "name": "buffer_addr_next",
      "note": "read, index/handle"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10",
+     "name": "drv_state",
      "note": "read, index/handle"
     }
    ],
@@ -2037,7 +2037,7 @@
   },
   {
    "cid": "global_1330",
-   "struct_name": "pdm_capture_buffer_state",
+   "struct_name": "nrfx_pdm_regs",
    "kind": "global",
    "purpose": "Static PDM mic capture buffer/state around nrfx_pdm_stop (global 0x66360): status/count word at each end bracketing a ~0x4f8-byte buffer.",
    "is_library": false,
@@ -2063,13 +2063,13 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4",
+     "name": "tasks_stop",
      "note": "write-only, counter/flag"
     },
     {
      "offset": "0x500",
      "type": "uint32_t",
-     "name": "field_0x500",
+     "name": "enable",
      "note": "write-only, completion flag after buffer"
     }
    ],
@@ -2237,32 +2237,32 @@
     {
      "offset": "0x524",
      "type": "uint32_t",
-     "name": "field_0x524"
+     "name": "psel_sck"
     },
     {
      "offset": "0x528",
      "type": "uint32_t",
-     "name": "field_0x528"
+     "name": "psel_csn"
     },
     {
      "offset": "0x530",
      "type": "uint32_t",
-     "name": "field_0x530"
+     "name": "psel_io0"
     },
     {
      "offset": "0x534",
      "type": "uint32_t",
-     "name": "field_0x534"
+     "name": "psel_io1"
     },
     {
      "offset": "0x538",
      "type": "uint32_t",
-     "name": "field_0x538"
+     "name": "psel_io2"
     },
     {
      "offset": "0x53c",
      "type": "uint32_t",
-     "name": "field_0x53c"
+     "name": "psel_io3"
     }
    ],
    "review_note": "MERGED global_1340 (qspi_workaround_apply @0x6684c) + global_1347 (nrfx_qspi_uninit @0x66bc0): identical tail footprint (0x524..0x53c inside a >=0x540 object), both QSPI-driver internal state = same type. nrfx_qspi's control block is a private static struct with no pinned public header, so library_verified=false. Note the two global addresses differ (0x6684c vs 0x66bc0).",
@@ -2354,13 +2354,13 @@
     {
      "offset": "0x30",
      "type": "uint8_t",
-     "name": "field_0x30",
+     "name": "state",
      "note": "r"
     },
     {
      "offset": "0x38",
-     "type": "uint8_t",
-     "name": "field_0x38",
+     "type": "bool",
+     "name": "activated",
      "note": "r"
     }
    ],
@@ -2551,14 +2551,14 @@
    "fields": [
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8",
+     "type": "void *",
+     "name": "current_thread",
      "note": "lock owner id or count"
     },
     {
      "offset": "0x10",
      "type": "uint8_t",
-     "name": "field_0x10",
+     "name": "spin_owner_cpu",
      "note": "validity/locked flag byte"
     }
    ],
@@ -2595,13 +2595,13 @@
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8",
+     "name": "current_thread",
      "note": "read source word"
     },
     {
      "offset": "0x10",
      "type": "uint8_t",
-     "name": "field_0x10",
+     "name": "cpu_id",
      "note": "read byte"
     }
    ],
@@ -2683,13 +2683,13 @@
    "fields": [
     {
      "offset": "0x8",
-     "type": "int32_t",
-     "name": "field_0x8"
+     "type": "void *",
+     "name": "current"
     },
     {
      "offset": "0x18",
-     "type": "int32_t",
-     "name": "field_0x18"
+     "type": "void *",
+     "name": "ready_q_cache"
     }
    ],
    "review_note": "Only two ints observed at 0x8/0x18; insufficient to pin against struct _kernel/_ready_q offsets.",
@@ -2725,12 +2725,12 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "base"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "width"
     }
    ],
    "review_note": "G1-original custom scanf helper state.",
@@ -2944,13 +2944,13 @@
     {
      "offset": "0x130",
      "type": "uint32_t",
-     "name": "field_0x130",
+     "name": "entropy_word_count",
      "note": "read"
     },
     {
      "offset": "0x138",
      "type": "uint32_t",
-     "name": "field_0x138",
+     "name": "state_status",
      "note": "read"
     }
    ],
@@ -2992,27 +2992,27 @@
     {
      "offset": "0x65c",
      "type": "int32_t",
-     "name": "field_0x65c"
+     "name": "prev_data_size"
     },
     {
      "offset": "0x7c8",
      "type": "uint32_t",
-     "name": "field_0x7c8"
+     "name": "hash_state"
     },
     {
      "offset": "0x7cc",
      "type": "int32_t",
-     "name": "field_0x7cc"
+     "name": "hash_mode"
     },
     {
      "offset": "0x910",
      "type": "int32_t",
-     "name": "field_0x910"
+     "name": "block_len"
     },
     {
      "offset": "0xb0c",
      "type": "uint32_t",
-     "name": "field_0xb0c"
+     "name": "context_valid_flag"
     }
    ],
    "review_note": "ProcessHashDrv is a LIBRARY member (CryptoCell runtime); the exact HashContext struct is proprietary/unavailable in the pinned tree, so offsets cannot be verified. Kept sonnet field guesses.",
@@ -3090,37 +3090,37 @@
     {
      "offset": "0x400",
      "type": "uint32_t",
-     "name": "field_0x400",
+     "name": "aes_ctrl",
      "note": "w, control/mode"
     },
     {
      "offset": "0x440",
      "type": "uint32_t",
-     "name": "field_0x440",
+     "name": "aes_status0",
      "note": "r, status"
     },
     {
      "offset": "0x460",
      "type": "uint32_t",
-     "name": "field_0x460",
+     "name": "aes_status1",
      "note": "r"
     },
     {
      "offset": "0x810",
      "type": "uint32_t",
-     "name": "field_0x810",
+     "name": "dma_config",
      "note": "w"
     },
     {
      "offset": "0xb0c",
      "type": "uint32_t",
-     "name": "field_0xb0c",
+     "name": "aes_config",
      "note": "w"
     },
     {
      "offset": "0xc28",
      "type": "uint32_t",
-     "name": "field_0xc28",
+     "name": "done_flag",
      "note": "w"
     }
    ],
@@ -3157,25 +3157,25 @@
     {
      "offset": "0x440",
      "type": "uint32_t",
-     "name": "field_0x440",
+     "name": "hw_status",
      "note": "read status/config"
     },
     {
      "offset": "0x460",
      "type": "uint32_t",
-     "name": "field_0x460",
+     "name": "config_word",
      "note": "read"
     },
     {
      "offset": "0x47c",
      "type": "uint32_t",
-     "name": "field_0x47c",
+     "name": "result_word",
      "note": "write completion"
     },
     {
      "offset": "0x810",
      "type": "uint32_t",
-     "name": "field_0x810",
+     "name": "done_flag",
      "note": "write completion"
     }
    ],
@@ -3186,7 +3186,7 @@
   },
   {
    "cid": "global_1561",
-   "struct_name": "nrfx_qspi_write_region",
+   "struct_name": "nrf_qspi_regs",
    "kind": "global",
    "purpose": "QSPI write region / register+EasyDMA block (global 0x66630) written by nrfx_qspi_write: task/trigger word at 0x100 and config/status words at 0x504/0x510.",
    "is_library": true,
@@ -3212,19 +3212,19 @@
     {
      "offset": "0x100",
      "type": "uint32_t",
-     "name": "field_0x100",
+     "name": "events_ready",
      "note": "write-only task/trigger"
     },
     {
      "offset": "0x504",
      "type": "uint32_t",
-     "name": "field_0x504",
+     "name": "read_cnt",
      "note": "write-only config"
     },
     {
      "offset": "0x510",
      "type": "uint32_t",
-     "name": "field_0x510",
+     "name": "write_cnt",
      "note": "write-only config"
     }
    ],
@@ -3260,23 +3260,26 @@
    "fields": [
     {
      "offset": "0x30",
-     "type": "uint32_t",
-     "name": "field_0x30"
+     "type": "uint8_t",
+     "name": "state"
     },
     {
      "offset": "0x38",
-     "type": "uint32_t",
-     "name": "field_0x38"
+     "type": "uint8_t",
+     "name": "keep_activated"
     }
    ],
    "review_note": "nrfx driver internal state; only two fields observed, insufficient to pin against a named nrfx struct. verified=false.",
    "verified": true,
    "verify_errors": [],
-   "verify_warnings": []
+   "verify_warnings": [
+    "union@0x30: field width 1 < observed access 4",
+    "union@0x38: field width 1 < observed access 4"
+   ]
   },
   {
    "cid": "param_0000",
-   "struct_name": "battery_model_state",
+   "struct_name": "battery_soc_ekf_state",
    "kind": "param",
    "purpose": "Large battery model/state structure (>=0x1778 bytes) passed to battery_model_state_update, holding voltage/current/capacity coefficients and history across several sub-regions.",
    "is_library": false,
@@ -3301,188 +3304,188 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "float",
+     "name": "state_idx_1"
     },
     {
      "offset": "0x48",
-     "type": "uint32_t",
-     "name": "field_0x48"
+     "type": "float",
+     "name": "denom_bias"
     },
     {
      "offset": "0x4c",
-     "type": "uint32_t",
-     "name": "field_0x4c"
+     "type": "float",
+     "name": "obs_noise_scale"
     },
     {
      "offset": "0x50",
-     "type": "uint32_t",
-     "name": "field_0x50"
+     "type": "float",
+     "name": "forget_factor"
     },
     {
      "offset": "0x54",
-     "type": "uint32_t",
-     "name": "field_0x54"
+     "type": "float",
+     "name": "last_current"
     },
     {
      "offset": "0x5c",
-     "type": "uint32_t",
-     "name": "field_0x5c"
+     "type": "float",
+     "name": "last_voltage"
     },
     {
      "offset": "0x128",
-     "type": "uint32_t",
-     "name": "field_0x128"
+     "type": "float",
+     "name": "history_counter"
     },
     {
      "offset": "0x12c",
-     "type": "uint32_t",
-     "name": "field_0x12c"
+     "type": "float",
+     "name": "prev_current"
     },
     {
      "offset": "0x130",
-     "type": "uint32_t",
-     "name": "field_0x130"
+     "type": "float",
+     "name": "prev_temperature"
     },
     {
      "offset": "0x134",
-     "type": "uint32_t",
-     "name": "field_0x134"
+     "type": "float",
+     "name": "prev_soc"
     },
     {
      "offset": "0x138",
-     "type": "uint32_t",
-     "name": "field_0x138"
+     "type": "float",
+     "name": "accum_soc_delta"
     },
     {
      "offset": "0x13c",
-     "type": "uint32_t",
-     "name": "field_0x13c"
+     "type": "float",
+     "name": "elapsed_time"
     },
     {
      "offset": "0x140",
-     "type": "uint32_t",
-     "name": "field_0x140"
+     "type": "float",
+     "name": "soc_output_hold"
     },
     {
      "offset": "0x144",
-     "type": "uint32_t",
-     "name": "field_0x144"
+     "type": "float",
+     "name": "soc_grid_min"
     },
     {
      "offset": "0x148",
-     "type": "uint32_t",
-     "name": "field_0x148"
+     "type": "float",
+     "name": "soc_grid_step"
     },
     {
      "offset": "0x464",
-     "type": "uint32_t",
-     "name": "field_0x464"
+     "type": "float",
+     "name": "soc_grid_max"
     },
     {
      "offset": "0x5d3",
      "type": "uint8_t",
-     "name": "field_0x5d3"
+     "name": "temp_clamp_override"
     },
     {
      "offset": "0x65c",
-     "type": "uint32_t",
-     "name": "field_0x65c"
+     "type": "float",
+     "name": "ocv_tempco_a"
     },
     {
      "offset": "0x660",
-     "type": "uint32_t",
-     "name": "field_0x660"
+     "type": "float",
+     "name": "ocv_tempco_b"
     },
     {
      "offset": "0x978",
-     "type": "uint32_t",
-     "name": "field_0x978"
+     "type": "float",
+     "name": "vcurve_tempco_a"
     },
     {
      "offset": "0x97c",
-     "type": "uint32_t",
-     "name": "field_0x97c"
+     "type": "float",
+     "name": "vcurve_tempco_b"
     },
     {
      "offset": "0x980",
-     "type": "uint32_t",
-     "name": "field_0x980"
+     "type": "float",
+     "name": "vcurve_base_a"
     },
     {
      "offset": "0x984",
-     "type": "uint32_t",
-     "name": "field_0x984"
+     "type": "float",
+     "name": "vcurve_base_b"
     },
     {
      "offset": "0xc9c",
-     "type": "uint32_t",
-     "name": "field_0xc9c"
+     "type": "float",
+     "name": "ocv_base_a"
     },
     {
      "offset": "0xca0",
-     "type": "uint32_t",
-     "name": "field_0xca0"
+     "type": "float",
+     "name": "ocv_base_b"
     },
     {
      "offset": "0x1744",
-     "type": "uint32_t",
-     "name": "field_0x1744"
+     "type": "float",
+     "name": "temp_min"
     },
     {
      "offset": "0x1748",
-     "type": "uint32_t",
-     "name": "field_0x1748"
+     "type": "float",
+     "name": "temp_max"
     },
     {
      "offset": "0x1750",
-     "type": "uint32_t",
-     "name": "field_0x1750"
+     "type": "float",
+     "name": "state_idx_a"
     },
     {
      "offset": "0x1754",
-     "type": "uint32_t",
-     "name": "field_0x1754"
+     "type": "float",
+     "name": "soc_state_idx"
     },
     {
      "offset": "0x1758",
-     "type": "uint32_t",
-     "name": "field_0x1758"
+     "type": "float",
+     "name": "cov_p00"
     },
     {
      "offset": "0x175c",
-     "type": "uint32_t",
-     "name": "field_0x175c"
+     "type": "float",
+     "name": "cov_p01"
     },
     {
      "offset": "0x1760",
-     "type": "uint32_t",
-     "name": "field_0x1760"
+     "type": "float",
+     "name": "cov_p10"
     },
     {
      "offset": "0x1764",
-     "type": "uint32_t",
-     "name": "field_0x1764"
+     "type": "float",
+     "name": "cov_p11"
     },
     {
      "offset": "0x1768",
-     "type": "uint32_t",
-     "name": "field_0x1768"
+     "type": "float",
+     "name": "resistance_est"
     },
     {
      "offset": "0x176c",
-     "type": "uint32_t",
-     "name": "field_0x176c"
+     "type": "float",
+     "name": "model_coeff"
     },
     {
      "offset": "0x1770",
-     "type": "uint32_t",
-     "name": "field_0x1770"
+     "type": "float",
+     "name": "lpf_state_2"
     },
     {
      "offset": "0x1774",
-     "type": "uint32_t",
-     "name": "field_0x1774"
+     "type": "float",
+     "name": "lpf_state_1"
     }
    ],
    "review_note": "G1-original; sparse sampled offsets kept exactly. Only representative accessed words captured; large struct.",
@@ -3747,13 +3750,13 @@
     },
     {
      "offset": "0x31c",
-     "type": "uint32_t",
-     "name": "field_0x31c"
+     "type": "float",
+     "name": "coeff_199"
     },
     {
      "offset": "0x320",
-     "type": "uint32_t",
-     "name": "field_0x320"
+     "type": "float",
+     "name": "coeff_200"
     }
    ],
    "review_note": "",
@@ -3823,46 +3826,46 @@
    "fields": [
     {
      "offset": "0x1",
-     "type": "uint16_t",
-     "name": "field_0x1",
+     "type": "uint8_t",
+     "name": "cmd_selector",
      "note": "1/2-byte overlap"
     },
     {
      "offset": "0x3",
      "type": "uint8_t",
-     "name": "field_0x3"
+     "name": "chunk_seq"
     },
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4",
+     "name": "source_id",
      "note": "1/4-byte overlap"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "message_id"
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc",
+     "type": "uint8_t",
+     "name": "slot_index",
      "note": "rw, 1/4-byte overlap"
     },
     {
      "offset": "0x10",
-     "type": "uint32_t",
-     "name": "field_0x10"
+     "type": "void *",
+     "name": "rx_buf_ptr"
     },
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14"
+     "name": "rx_len"
     },
     {
      "offset": "0x1b0",
      "type": "int32_t",
-     "name": "field_0x1b0"
+     "name": "dedup_key"
     },
     {
      "offset": "0x324",
@@ -3892,53 +3895,56 @@
     {
      "offset": "0x514",
      "type": "float",
-     "name": "field_0x514"
+     "name": "curve_x_upper"
     },
     {
      "offset": "0x11a8",
      "type": "float",
-     "name": "field_0x11a8"
+     "name": "seg1_y0_slope"
     },
     {
      "offset": "0x11ac",
      "type": "float",
-     "name": "field_0x11ac"
+     "name": "seg1_y1_slope"
     },
     {
      "offset": "0x1388",
      "type": "float",
-     "name": "field_0x1388"
+     "name": "seg2_y1_slope"
     },
     {
      "offset": "0x138c",
      "type": "float",
-     "name": "field_0x138c"
+     "name": "seg2_y0_slope"
     },
     {
      "offset": "0x1390",
      "type": "float",
-     "name": "field_0x1390"
+     "name": "seg1_y0_intercept"
     },
     {
      "offset": "0x1394",
      "type": "float",
-     "name": "field_0x1394"
+     "name": "seg1_y1_intercept"
     },
     {
      "offset": "0x1570",
      "type": "float",
-     "name": "field_0x1570"
+     "name": "seg2_y1_intercept"
     },
     {
      "offset": "0x1574",
      "type": "float",
-     "name": "field_0x1574"
+     "name": "seg2_y0_intercept"
     }
    ],
    "review_note": "Kept as one record per shard coverage rules, but flagged as a likely pointer-unification artifact. Overlapping widths at 0x1/0x4/0xc set is_union. The float clusters (0x324-0x334, 0x11a8, 0x1388-0x1394, 0x1570) look like battery SOC calibration table fragments belonging to battery_soc_curve_model_init, not the other members.",
    "verified": true,
    "verify_errors": [],
-   "verify_warnings": []
+   "verify_warnings": [
+    "union@0x1: field width 1 < observed access 2",
+    "union@0xc: field width 1 < observed access 4"
+   ]
   },
   {
    "cid": "param_0008",
@@ -4109,7 +4115,7 @@
   },
   {
    "cid": "param_0009",
-   "struct_name": "array_scan_bounds",
+   "struct_name": "float_scan_window",
    "kind": "param",
    "purpose": "Pointer arg to array_max_skip_nan_a; two index/length fields describing an array scan (bounds or accumulator).",
    "is_library": false,
@@ -4134,13 +4140,13 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "float",
+     "name": "value1"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "float",
+     "name": "value2"
     }
    ],
    "review_note": "Single-cid G1 helper. Offsets kept.",
@@ -4685,90 +4691,90 @@
     {
      "offset": "0xc9",
      "type": "uint8_t",
-     "name": "field_0xc9",
+     "name": "last_rx_header",
      "note": "rw flag"
     },
     {
      "offset": "0xca",
      "type": "uint8_t",
-     "name": "field_0xca",
+     "name": "last_rx_arg1",
      "note": "rw flag"
     },
     {
      "offset": "0xcb",
      "type": "uint8_t",
-     "name": "field_0xcb",
+     "name": "last_rx_arg2",
      "note": "w flag"
     },
     {
      "offset": "0xcc",
      "type": "uint8_t",
-     "name": "field_0xcc",
+     "name": "bound_id_a",
      "note": "r flag"
     },
     {
      "offset": "0xcd",
      "type": "uint8_t",
-     "name": "field_0xcd"
+     "name": "bound_id_b"
     },
     {
      "offset": "0xce",
      "type": "uint8_t",
-     "name": "field_0xce"
+     "name": "block_master_dir"
     },
     {
      "offset": "0xcf",
      "type": "uint8_t",
-     "name": "field_0xcf"
+     "name": "block_slave_dir"
     },
     {
      "offset": "0xd5",
      "type": "uint8_t",
-     "name": "field_0xd5"
+     "name": "work_state"
     },
     {
      "offset": "0xda",
      "type": "uint8_t",
-     "name": "field_0xda",
+     "name": "rx_seq",
      "note": "rw"
     },
     {
      "offset": "0xe4",
      "type": "uint8_t",
-     "name": "field_0xe4",
+     "name": "flags",
      "note": "rw flag"
     },
     {
      "offset": "0xe9",
      "type": "uint8_t",
-     "name": "field_0xe9",
+     "name": "rx_id_a",
      "note": "w"
     },
     {
      "offset": "0xea",
      "type": "uint8_t",
-     "name": "field_0xea"
+     "name": "rx_id_b"
     },
     {
      "offset": "0xeb",
      "type": "uint8_t",
-     "name": "field_0xeb"
+     "name": "rx_dir_bits"
     },
     {
      "offset": "0xec",
      "type": "uint8_t",
-     "name": "field_0xec"
+     "name": "last_work_state"
     },
     {
      "offset": "0xee4",
      "type": "uint8_t",
-     "name": "field_0xee4",
+     "name": "hdr_dir_bits",
      "note": "w, end of payload region"
     },
     {
      "offset": "0xfe6",
      "type": "uint8_t",
-     "name": "field_0xfe6"
+     "name": "role_is_master"
     },
     {
      "offset": "0xfec",
@@ -4778,19 +4784,19 @@
     },
     {
      "offset": "0xff4",
-     "type": "uint32_t",
-     "name": "field_0xff4",
+     "type": "void *",
+     "name": "mirror_ctx_ptr",
      "note": "length/size"
     },
     {
      "offset": "0x1024",
-     "type": "uint32_t",
-     "name": "field_0x1024"
+     "type": "void *",
+     "name": "peer_ctx_a"
     },
     {
      "offset": "0x1028",
-     "type": "uint32_t",
-     "name": "field_0x1028"
+     "type": "void *",
+     "name": "peer_ctx_b"
     }
    ],
    "review_note": "Single-cid; kept sonnet layout.",
@@ -4826,28 +4832,28 @@
     {
      "offset": "0x4",
      "type": "uint8_t[3]",
-     "name": "field_0x4"
+     "name": "addr_ids"
     },
     {
      "offset": "0x7",
      "type": "uint32_t",
-     "name": "field_0x7",
+     "name": "timestamp",
      "note": "wide read overlapping 0x4"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "payload_word0"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "payload_word1"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "payload_word2"
     }
    ],
    "review_note": "G1-original. is_union=true: Ghidra notes width-4 read at 0x4 overlaps the 3-byte field then the 0x7 word (bytes accessed both narrow and wide).",
@@ -5001,12 +5007,12 @@
     {
      "offset": "0x1",
      "type": "uint8_t",
-     "name": "field_0x1"
+     "name": "system_run_state"
     },
     {
      "offset": "0x2",
      "type": "uint8_t",
-     "name": "field_0x2"
+     "name": "device_id_byte"
     },
     {
      "offset": "0x3",
@@ -5016,54 +5022,54 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "uptime_snapshot_lo"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "uptime_snapshot_hi"
     },
     {
      "offset": "0x40",
      "type": "uint32_t",
-     "name": "field_0x40"
+     "name": "disp_sem_count"
     },
     {
      "offset": "0x58",
      "type": "uint32_t",
-     "name": "field_0x58"
+     "name": "screen_sem_count"
     },
     {
      "offset": "0xc9",
      "type": "uint32_t",
-     "name": "field_0xc9",
+     "name": "sync_frame_ctrl",
      "note": "union: 4-byte access overlapping 0xcb/0xcd"
     },
     {
      "offset": "0xcd",
      "type": "uint32_t",
-     "name": "field_0xcd",
+     "name": "sync_frame_state",
      "note": "union overlap"
     },
     {
      "offset": "0xd1",
      "type": "uint16_t",
-     "name": "field_0xd1"
+     "name": "sync_frame_half"
     },
     {
      "offset": "0xd4",
      "type": "uint8_t",
-     "name": "field_0xd4"
+     "name": "sync_frame_cmd"
     },
     {
      "offset": "0xd5",
      "type": "uint8_t",
-     "name": "field_0xd5"
+     "name": "active_task_id"
     },
     {
      "offset": "0xd6",
      "type": "uint16_t",
-     "name": "field_0xd6"
+     "name": "disp_x_origin"
     },
     {
      "offset": "0xd8",
@@ -5074,23 +5080,23 @@
     {
      "offset": "0xdf",
      "type": "uint32_t",
-     "name": "field_0xdf"
+     "name": "bcast_task_id"
     },
     {
      "offset": "0xe5",
      "type": "uint32_t",
-     "name": "field_0xe5",
+     "name": "bcast_payload",
      "note": "union: sz 1 and 4"
     },
     {
      "offset": "0xec",
      "type": "uint8_t",
-     "name": "field_0xec"
+     "name": "prev_task_id"
     },
     {
      "offset": "0xed",
      "type": "uint16_t",
-     "name": "field_0xed"
+     "name": "disp_content_len"
     },
     {
      "offset": "0x6cc",
@@ -5101,12 +5107,12 @@
     {
      "offset": "0x6d8",
      "type": "uint32_t",
-     "name": "field_0x6d8"
+     "name": "esb_cmd_word"
     },
     {
      "offset": "0x6dc",
      "type": "uint16_t",
-     "name": "field_0x6dc"
+     "name": "esb_cmd_half"
     },
     {
      "offset": "0x6e1",
@@ -5117,93 +5123,93 @@
     {
      "offset": "0x774",
      "type": "void *",
-     "name": "field_0x774"
+     "name": "transport_send_fn"
     },
     {
      "offset": "0x9b4",
      "type": "uint32_t",
-     "name": "field_0x9b4"
+     "name": "ancs_conn_ready"
     },
     {
      "offset": "0xae4",
      "type": "uint32_t",
-     "name": "field_0xae4"
+     "name": "last_conn_activity_ms"
     },
     {
      "offset": "0xb0c",
      "type": "uint8_t",
-     "name": "field_0xb0c"
+     "name": "imu_wake_gate"
     },
     {
      "offset": "0xb0d",
      "type": "uint8_t",
-     "name": "field_0xb0d"
+     "name": "new_msg_pending"
     },
     {
      "offset": "0xb8c",
      "type": "void *",
-     "name": "field_0xb8c"
+     "name": "setting_apply_fn"
     },
     {
      "offset": "0xeb4",
      "type": "uint32_t",
-     "name": "field_0xeb4"
+     "name": "canvas_x"
     },
     {
      "offset": "0xeb8",
      "type": "uint32_t",
-     "name": "field_0xeb8"
+     "name": "canvas_y"
     },
     {
      "offset": "0xec0",
      "type": "uint16_t",
-     "name": "field_0xec0",
+     "name": "primary_index",
      "note": "union: sz 1 and 2"
     },
     {
      "offset": "0xec8",
      "type": "uint32_t",
-     "name": "field_0xec8"
+     "name": "ambient_light_ready"
     },
     {
      "offset": "0xee8",
      "type": "uint32_t",
-     "name": "field_0xee8"
+     "name": "imu_trigger_status"
     },
     {
      "offset": "0xf68",
      "type": "uint32_t",
-     "name": "field_0xf68"
+     "name": "settings_counter"
     },
     {
      "offset": "0xf6c",
      "type": "uint32_t",
-     "name": "field_0xf6c"
+     "name": "display_timeout"
     },
     {
      "offset": "0xf90",
      "type": "uint32_t",
-     "name": "field_0xf90"
+     "name": "brightness_auto_gate"
     },
     {
      "offset": "0x1040",
      "type": "void *",
-     "name": "field_0x1040"
+     "name": "render_callback"
     },
     {
      "offset": "0x104c",
      "type": "uint32_t",
-     "name": "field_0x104c"
+     "name": "pending_screen_cmd"
     },
     {
      "offset": "0x1054",
      "type": "void *",
-     "name": "field_0x1054"
+     "name": "task_record_ptr"
     },
     {
      "offset": "0x1060",
      "type": "uint64_t",
-     "name": "field_0x1060",
+     "name": "last_sync_ms",
      "note": "union: 8-byte access, likely timestamp"
     },
     {
@@ -5294,13 +5300,13 @@
     },
     {
      "offset": "0x1078",
-     "type": "uint32_t",
-     "name": "field_0x1078"
+     "type": "int32_t",
+     "name": "click_timestamp_ms"
     },
     {
      "offset": "0x1090",
      "type": "uint16_t",
-     "name": "field_0x1090",
+     "name": "brightness_option_a",
      "note": "union: sz 1 and 2"
     },
     {
@@ -5735,7 +5741,7 @@
     {
      "offset": "0x3",
      "type": "uint8_t",
-     "name": "field_0x3"
+     "name": "role"
     },
     {
      "offset": "0x4",
@@ -5751,29 +5757,29 @@
     {
      "offset": "0x8",
      "type": "uint8_t",
-     "name": "field_0x8"
+     "name": "id"
     },
     {
      "offset": "0x9",
      "type": "uint8_t",
-     "name": "field_0x9"
+     "name": "sec_level"
     },
     {
      "offset": "0xa",
-     "type": "void *",
-     "name": "field_0xa",
+     "type": "uint8_t",
+     "name": "required_sec_level",
      "note": "byte/ptr union, likely addr region start"
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc",
+     "type": "uint8_t",
+     "name": "err",
      "note": "byte/ptr union"
     },
     {
      "offset": "0xd",
      "type": "uint8_t",
-     "name": "field_0xd"
+     "name": "state"
     },
     {
      "offset": "0xe",
@@ -5783,8 +5789,8 @@
     },
     {
      "offset": "0x10",
-     "type": "uint32_t",
-     "name": "field_0x10"
+     "type": "void *",
+     "name": "rx_buf"
     },
     {
      "offset": "0x14",
@@ -5815,12 +5821,12 @@
     {
      "offset": "0x54",
      "type": "void *",
-     "name": "field_0x54"
+     "name": "channels_head"
     },
     {
      "offset": "0x58",
      "type": "void *",
-     "name": "field_0x58"
+     "name": "channels_tail"
     },
     {
      "offset": "0xa6",
@@ -5869,18 +5875,18 @@
     },
     {
      "offset": "0xc0",
-     "type": "uint32_t",
-     "name": "field_0xc0"
+     "type": "void *",
+     "name": "keys"
     }
    ],
    "review_note": "Confidently bt_conn (21 members incl. bt_conn_*/l2cap/att/smp). bt_conn is defined in the private host header subsys/bluetooth/host/conn_internal.h, not in the pinned include tree, so exact member offsets can't be checked (library_verified=false). is_union=true: several early fields (0x2,0x4,0xa,0xc,0xe) are accessed both wide and byte-wise per the layout notes (handle/addr union region).",
    "verified": true,
    "verify_errors": [],
    "verify_warnings": [
+    "union@0xa: field width 1 < observed access 4",
+    "union@0xc: field width 1 < observed access 4",
     "D2:0x2: type uint16_t (2B) wider than 1B slot -> union/overlap",
     "D2:0x4: type uint32_t (4B) wider than 2B slot -> union/overlap",
-    "D2:0xa: type void * (4B) wider than 2B slot -> union/overlap",
-    "D2:0xc: type uint32_t (4B) wider than 1B slot -> union/overlap",
     "D2:0xe: type uint32_t (4B) wider than 2B slot -> union/overlap"
    ]
   },
@@ -5988,7 +5994,7 @@
     {
      "offset": "0xc",
      "type": "void*",
-     "name": "field_0xc"
+     "name": "packet_sink_fn"
     },
     {
      "offset": "0x10",
@@ -6035,17 +6041,17 @@
     {
      "offset": "0x759",
      "type": "uint8_t",
-     "name": "field_0x759"
+     "name": "brightness_level"
     },
     {
      "offset": "0x844",
      "type": "uint8_t",
-     "name": "field_0x844"
+     "name": "box_state"
     },
     {
      "offset": "0x846",
      "type": "uint8_t",
-     "name": "field_0x846"
+     "name": "box_state_variant"
     }
    ],
    "review_note": "Unified across 7 functions; G1-original aggregate. Kept all sparse offsets verbatim.",
@@ -6055,7 +6061,7 @@
   },
   {
    "cid": "param_0039",
-   "struct_name": "audio_fw_load_msg",
+   "struct_name": "audio_fw_load_resp_buf",
    "kind": "param",
    "purpose": "Wire-format command/message context threaded through audio firmware-load handling, UART callback, notification response building, and uint32_to_little_endian serialization.",
    "is_library": false,
@@ -6101,94 +6107,94 @@
     {
      "offset": "0x0",
      "type": "uint32_t",
-     "name": "field_0x0",
+     "name": "resp_header",
      "note": "w header/opcode; 4-byte over gap-1"
     },
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4",
+     "name": "payload_04",
      "note": "rw, 2/4-byte overlap"
     },
     {
      "offset": "0x6",
      "type": "uint16_t",
-     "name": "field_0x6"
+     "name": "payload_06"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "payload_08"
     },
     {
      "offset": "0xa",
      "type": "uint16_t",
-     "name": "field_0xa"
+     "name": "payload_0a"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "payload_0c"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "payload_10"
     },
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14"
+     "name": "payload_14"
     },
     {
      "offset": "0x18",
      "type": "uint32_t",
-     "name": "field_0x18"
+     "name": "payload_18"
     },
     {
      "offset": "0x1c",
      "type": "uint32_t",
-     "name": "field_0x1c"
+     "name": "payload_1c"
     },
     {
      "offset": "0x20",
      "type": "uint32_t",
-     "name": "field_0x20"
+     "name": "payload_20"
     },
     {
      "offset": "0x24",
      "type": "uint32_t",
-     "name": "field_0x24"
+     "name": "payload_24"
     },
     {
      "offset": "0x28",
      "type": "uint32_t",
-     "name": "field_0x28"
+     "name": "payload_28"
     },
     {
      "offset": "0x2c",
      "type": "uint32_t",
-     "name": "field_0x2c"
+     "name": "payload_2c"
     },
     {
      "offset": "0x30",
      "type": "uint32_t",
-     "name": "field_0x30"
+     "name": "payload_30"
     },
     {
      "offset": "0x34",
      "type": "uint32_t",
-     "name": "field_0x34"
+     "name": "payload_34"
     },
     {
      "offset": "0x38",
      "type": "uint32_t",
-     "name": "field_0x38"
+     "name": "payload_38"
     },
     {
      "offset": "0x3c",
      "type": "uint32_t",
-     "name": "field_0x3c"
+     "name": "payload_3c"
     }
    ],
    "review_note": "Single-cid, 5 members. Overlapping 16/32-bit access at 0x0/0x4/0x6/0x8 -> union. Corrected sonnet is_array=true (this is a heterogeneous message record, not an array).",
@@ -6275,7 +6281,7 @@
   },
   {
    "cid": "param_0041",
-   "struct_name": "sett_init_params",
+   "struct_name": "sett_init_result",
    "kind": "param",
    "purpose": "Initialization parameter block consumed by sett_init to configure a settings entry (three read words).",
    "is_library": false,
@@ -6300,18 +6306,18 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "void *",
+     "name": "store_write_fn"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "const char *",
+     "name": "name_ptr"
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc"
+     "type": "const char *",
+     "name": "fmt_ptr"
     }
    ],
    "review_note": "Single-cid G1 settings init params. Offsets kept.",
@@ -6321,7 +6327,7 @@
   },
   {
    "cid": "param_0042",
-   "struct_name": "device_settings_blob",
+   "struct_name": "device_persisted_settings",
    "kind": "param",
    "purpose": "Large shared settings/status blob (>=0x1078 bytes) read by load_sys_setting and build_and_send_device_status_report; many scalar config fields across a big buffer.",
    "is_library": false,
@@ -6352,94 +6358,94 @@
     {
      "offset": "0x2",
      "type": "uint8_t",
-     "name": "field_0x2"
+     "name": "mode"
     },
     {
      "offset": "0x3",
      "type": "uint8_t",
-     "name": "field_0x3"
+     "name": "option_a"
     },
     {
      "offset": "0x4",
      "type": "uint8_t",
-     "name": "field_0x4"
+     "name": "option_b"
     },
     {
      "offset": "0xed4",
      "type": "uint8_t",
-     "name": "field_0xed4"
+     "name": "feature_enabled"
     },
     {
      "offset": "0xeda",
      "type": "uint16_t",
-     "name": "field_0xeda"
+     "name": "brightness_ch0"
     },
     {
      "offset": "0xedc",
      "type": "uint32_t",
-     "name": "field_0xedc",
+     "name": "brightness_ch1",
      "note": "accessed as u16 and u32 (union/overlap)"
     },
     {
      "offset": "0xede",
      "type": "uint16_t",
-     "name": "field_0xede"
+     "name": "brightness_ch2"
     },
     {
      "offset": "0xf64",
      "type": "uint32_t",
-     "name": "field_0xf64"
+     "name": "sample_interval"
     },
     {
      "offset": "0xf94",
      "type": "uint32_t",
-     "name": "field_0xf94"
+     "name": "sleep_timeout_ms"
     },
     {
      "offset": "0xfa0",
      "type": "uint32_t",
-     "name": "field_0xfa0"
+     "name": "lux_calib_a"
     },
     {
      "offset": "0xfa4",
      "type": "uint32_t",
-     "name": "field_0xfa4"
+     "name": "lux_calib_b"
     },
     {
      "offset": "0xfa8",
      "type": "uint32_t",
-     "name": "field_0xfa8"
+     "name": "lux_calib_c"
     },
     {
      "offset": "0xfac",
      "type": "uint32_t",
-     "name": "field_0xfac"
+     "name": "lux_calib_d"
     },
     {
      "offset": "0xfb0",
      "type": "int32_t",
-     "name": "field_0xfb0"
+     "name": "lux_scale_factor"
     },
     {
      "offset": "0xfb4",
      "type": "uint32_t",
-     "name": "field_0xfb4"
+     "name": "lux_calib_e"
     },
     {
      "offset": "0x1050",
-     "type": "int32_t",
-     "name": "field_0x1050",
+     "type": "uint32_t",
+     "name": "settings_version",
      "note": "w"
     },
     {
      "offset": "0x1072",
      "type": "uint16_t",
-     "name": "field_0x1072"
+     "name": "text_width"
     },
     {
      "offset": "0x1074",
      "type": "uint16_t",
-     "name": "field_0x1074"
+     "name": "text_height"
     }
    ],
    "review_note": "G1-original. is_union=true: 0xedc accessed both 2-wide and 4-wide (overlaps 0xede). Offsets unchanged.",
@@ -6826,37 +6832,37 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4",
+     "name": "str_ptr_0",
      "note": "w"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8",
+     "name": "str_ptr_1",
      "note": "w"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc",
+     "name": "str_ptr_2",
      "note": "w"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10",
+     "name": "value_0",
      "note": "w"
     },
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14",
+     "name": "value_1",
      "note": "w"
     },
     {
      "offset": "0x60",
      "type": "uint32_t",
-     "name": "field_0x60",
+     "name": "index",
      "note": "r index"
     }
    ],
@@ -6893,12 +6899,12 @@
     {
      "offset": "0x2",
      "type": "uint8_t",
-     "name": "field_0x2"
+     "name": "type"
     },
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "value"
     }
    ],
    "review_note": "G1-original.",
@@ -6934,12 +6940,12 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "ident_bytes_4_7"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "ident_bytes_8_9"
     },
     {
      "offset": "0xc",
@@ -7005,42 +7011,42 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "record_spec_0"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "record_spec_1"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "record_spec_2"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "record_spec_3"
     },
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14"
+     "name": "record_spec_4"
     },
     {
      "offset": "0x18",
      "type": "uint32_t",
-     "name": "field_0x18"
+     "name": "record_spec_5"
     },
     {
      "offset": "0x1c",
      "type": "uint32_t",
-     "name": "field_0x1c"
+     "name": "record_spec_6"
     },
     {
      "offset": "0x20",
      "type": "uint32_t",
-     "name": "field_0x20"
+     "name": "record_spec_7"
     }
    ],
    "review_note": "Split from footprint-collision group global_0965. Distinct from param_0053 (which is param_1 of the same function) \u2014 different argument slot, kept separate. Offsets unchanged.",
@@ -7076,12 +7082,12 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "data_ptr"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "length"
     }
    ],
    "review_note": "G1-original; likely array of {word,word} record descriptors. Offsets unchanged.",
@@ -7250,8 +7256,8 @@
     },
     {
      "offset": "0x10",
-     "type": "uint32_t",
-     "name": "field_0x10"
+     "type": "void *",
+     "name": "lock"
     }
    ],
    "review_note": "3 members agree on layout; kept offsets. G1 wrapper around ipc_service usage.",
@@ -7333,37 +7339,37 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "payload_word_0"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "payload_word_1"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "payload_word_2"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "payload_word_3"
     },
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14"
+     "name": "payload_word_4"
     },
     {
      "offset": "0x18",
      "type": "uint32_t",
-     "name": "field_0x18"
+     "name": "payload_word_5"
     },
     {
      "offset": "0x1c",
      "type": "uint32_t",
-     "name": "field_0x1c"
+     "name": "payload_word_6"
     }
    ],
    "review_note": "SPLIT from collision group global_1358 (coincidental 7-word footprint). G1-original IPC endpoint receive payload; not the same type as the other collision members.",
@@ -7612,13 +7618,13 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "void *",
+     "name": "select_instance_fn"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "void *",
+     "name": "transfer_fn"
     }
    ],
    "review_note": "G1-original.",
@@ -7665,7 +7671,7 @@
     {
      "offset": "0xa",
      "type": "uint8_t",
-     "name": "field_0xa",
+     "name": "state_flags",
      "note": "write; overlaps 0x8 wide read"
     },
     {
@@ -8041,7 +8047,7 @@
   },
   {
    "cid": "param_0076",
-   "struct_name": "audio_fw_load_notify_ctx",
+   "struct_name": "cmd_notify_msg_buf",
    "kind": "param",
    "purpose": "Request/response context shared by master_process_audio_fw_load_req and post_notification_cmd_response: command header (type/len) + firmware-load params + trailing status word.",
    "is_library": false,
@@ -8087,57 +8093,57 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "fw_load_flags"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "fw_load_addr"
     },
     {
      "offset": "0xc",
      "type": "int32_t",
-     "name": "field_0xc"
+     "name": "fw_load_len"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "payload_word_10"
     },
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14"
+     "name": "identifier"
     },
     {
      "offset": "0x18",
      "type": "uint32_t",
-     "name": "field_0x18"
+     "name": "payload_word_18"
     },
     {
      "offset": "0x1c",
      "type": "uint32_t",
-     "name": "field_0x1c"
+     "name": "payload_word_1c"
     },
     {
      "offset": "0x20",
      "type": "uint32_t",
-     "name": "field_0x20"
+     "name": "payload_word_20"
     },
     {
      "offset": "0x24",
      "type": "uint32_t",
-     "name": "field_0x24"
+     "name": "payload_word_24"
     },
     {
      "offset": "0x28",
      "type": "uint32_t",
-     "name": "field_0x28"
+     "name": "payload_word_28"
     },
     {
      "offset": "0x2c",
      "type": "uint32_t",
-     "name": "field_0x2c"
+     "name": "payload_word_2c"
     },
     {
      "offset": "0x1b4",
@@ -8178,12 +8184,12 @@
     {
      "offset": "0xb70",
      "type": "void *",
-     "name": "field_0xb70"
+     "name": "suspend_cb"
     },
     {
      "offset": "0xfe6",
      "type": "uint8_t",
-     "name": "field_0xfe6"
+     "name": "suspend_state"
     }
    ],
    "review_note": "G1-original.",
@@ -8319,7 +8325,7 @@
     {
      "offset": "0x9",
      "type": "uint8_t",
-     "name": "field_0x9",
+     "name": "substate",
      "note": "r"
     },
     {
@@ -8331,7 +8337,7 @@
     {
      "offset": "0xf",
      "type": "uint8_t",
-     "name": "field_0xf",
+     "name": "aux_flag",
      "note": "r"
     }
    ],
@@ -8814,8 +8820,8 @@
     },
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "void *",
+     "name": "work_handler"
     },
     {
      "offset": "0x8",
@@ -8825,32 +8831,32 @@
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "dwork_timeout_flags"
     },
     {
      "offset": "0x10",
-     "type": "void *",
-     "name": "field_0x10"
+     "type": "uint32_t",
+     "name": "mpsc_config_flags"
     },
     {
      "offset": "0x18",
      "type": "uint32_t",
-     "name": "field_0x18"
+     "name": "mpsc_wsize"
     },
     {
      "offset": "0x1c",
      "type": "uint32_t",
-     "name": "field_0x1c"
+     "name": "mpsc_size"
     },
     {
      "offset": "0x20",
-     "type": "uint32_t",
-     "name": "field_0x20"
+     "type": "void *",
+     "name": "mpsc_buf_ptr"
     },
     {
      "offset": "0x24",
      "type": "uint32_t",
-     "name": "field_0x24"
+     "name": "mpsc_buf_words"
     },
     {
      "offset": "0x28",
@@ -9191,12 +9197,12 @@
     {
      "offset": "0x1",
      "type": "uint8_t",
-     "name": "field_0x1"
+     "name": "direction_icon"
     },
     {
      "offset": "0xb1",
      "type": "uint32_t",
-     "name": "field_0xb1"
+     "name": "map_data_len"
     }
    ],
    "review_note": "Two sparse fields on a ~0xb5 object; kept offsets.",
@@ -9364,13 +9370,13 @@
     {
      "offset": "0x35c",
      "type": "uint32_t",
-     "name": "field_0x35c",
+     "name": "is_powered",
      "note": "w power/init state"
     },
     {
      "offset": "0x374",
      "type": "uint32_t",
-     "name": "field_0x374",
+     "name": "power_fn_arg",
      "note": "rw status/counter"
     }
    ],
@@ -9429,7 +9435,7 @@
   },
   {
    "cid": "param_0119",
-   "struct_name": "quicknote_buffer_pool",
+   "struct_name": "projector_panel_context",
    "kind": "param",
    "purpose": "Quicknote subsystem buffer-pool descriptor initialized by quicknote_buffer_pool_init: pool metadata (8 leading words) plus a large buffer region and two tail fields.",
    "is_library": false,
@@ -9454,53 +9460,53 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "void *",
+     "name": "init_cmd_table"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "void *",
+     "name": "config_cmd_table"
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc"
+     "type": "void *",
+     "name": "panel_off_fn"
     },
     {
      "offset": "0x10",
-     "type": "uint32_t",
-     "name": "field_0x10"
+     "type": "void *",
+     "name": "panel_on_fn"
     },
     {
      "offset": "0x14",
-     "type": "uint32_t",
-     "name": "field_0x14"
+     "type": "void *",
+     "name": "cmd_table_3"
     },
     {
      "offset": "0x18",
-     "type": "uint32_t",
-     "name": "field_0x18"
+     "type": "void *",
+     "name": "cmd_table_4"
     },
     {
      "offset": "0x1c",
-     "type": "uint32_t",
-     "name": "field_0x1c"
+     "type": "void *",
+     "name": "cmd_table_5"
     },
     {
      "offset": "0x20",
-     "type": "uint32_t",
-     "name": "field_0x20"
+     "type": "void *",
+     "name": "cmd_table_6"
     },
     {
      "offset": "0x344",
-     "type": "uint32_t",
-     "name": "field_0x344"
+     "type": "void *",
+     "name": "framebuffer_base"
     },
     {
      "offset": "0x350",
      "type": "uint32_t",
-     "name": "field_0x350"
+     "name": "buffer_capacity"
     }
    ],
    "review_note": "Single-cid G1 pool descriptor. Offsets kept.",
@@ -9811,7 +9817,7 @@
   },
   {
    "cid": "param_0128",
-   "struct_name": "cbprintf_package_hdr",
+   "struct_name": "cbprintf_log_desc",
    "kind": "param",
    "purpose": "cbprintf/log message package descriptor: three consecutive index words describing a formatted-argument package, shared by cbprintf_package_convert, z_log_msg_runtime_create, and arm_fault_forward_handler.",
    "is_library": true,
@@ -9852,12 +9858,12 @@
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "arg0"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "arg1"
     }
    ],
    "review_note": "cbprintf package layout is macro/byte-encoded rather than a named header struct with fixed offsets; only 0x4/0x8/0xc observed. library_verified=false.",
@@ -10042,7 +10048,7 @@
   },
   {
    "cid": "param_0132",
-   "struct_name": "mpsc_pbuf_buffer",
+   "struct_name": "mpsc_pbuf_buffer_config",
    "kind": "param",
    "purpose": "param_2 of mpsc_pbuf_init - Zephyr multi-producer/single-consumer packet buffer instance (buffer ptr/size + wr/rd index bookkeeping).",
    "is_library": true,
@@ -10068,22 +10074,22 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "size"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "void*",
+     "name": "get_wlen"
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc"
+     "type": "void*",
+     "name": "notify_drop"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "flags"
     }
    ],
    "review_note": "Separated from global_0840 collision group. Named for the mpsc_pbuf_init call site, but only a generic 4-word footprint is observed; real mpsc_pbuf_buffer is much larger so offsets could not be verified against the header.",
@@ -10393,12 +10399,12 @@
     {
      "offset": "0x1a8",
      "type": "void *",
-     "name": "field_0x1a8"
+     "name": "ctx_ptr"
     },
     {
      "offset": "0x1ac",
      "type": "uint32_t",
-     "name": "field_0x1ac"
+     "name": "ctx_value"
     }
    ],
    "review_note": "Low naming signal; offsets unchanged.",
@@ -10608,127 +10614,127 @@
     {
      "offset": "0x18",
      "type": "uint32_t",
-     "name": "field_0x18"
+     "name": "vring0_desc_addr"
     },
     {
      "offset": "0x20",
      "type": "uint32_t",
-     "name": "field_0x20"
+     "name": "vring0_used_addr"
     },
     {
      "offset": "0x28",
      "type": "uint32_t",
-     "name": "field_0x28"
+     "name": "vring1_desc_addr"
     },
     {
      "offset": "0x2c",
      "type": "uint32_t",
-     "name": "field_0x2c"
+     "name": "vring1_used_addr"
     },
     {
      "offset": "0x30",
      "type": "uint32_t",
-     "name": "field_0x30"
+     "name": "vring_num"
     },
     {
      "offset": "0x34",
      "type": "uint32_t",
-     "name": "field_0x34"
+     "name": "vring_align"
     },
     {
      "offset": "0x3c",
      "type": "uint32_t",
-     "name": "field_0x3c"
+     "name": "notify_id"
     },
     {
      "offset": "0x8c",
      "type": "uint32_t",
-     "name": "field_0x8c"
+     "name": "shm_addr"
     },
     {
      "offset": "0x90",
      "type": "uint32_t",
-     "name": "field_0x90"
+     "name": "shm_size"
     },
     {
      "offset": "0x94",
      "type": "uint32_t",
-     "name": "field_0x94"
+     "name": "vring_size"
     },
     {
      "offset": "0x98",
      "type": "uint32_t",
-     "name": "field_0x98"
+     "name": "shm_io"
     },
     {
      "offset": "0x9c",
      "type": "uint32_t",
-     "name": "field_0x9c"
+     "name": "notify_cb"
     },
     {
      "offset": "0xa0",
      "type": "uint32_t",
-     "name": "field_0xa0"
+     "name": "vdev_status"
     },
     {
      "offset": "0xa4",
      "type": "uint32_t",
-     "name": "field_0xa4"
+     "name": "vdev_field_a4"
     },
     {
      "offset": "0xa8",
      "type": "uint32_t",
-     "name": "field_0xa8"
+     "name": "vdev_field_a8"
     },
     {
      "offset": "0xac",
      "type": "uint32_t",
-     "name": "field_0xac"
+     "name": "vdev_field_ac"
     },
     {
      "offset": "0xb0",
      "type": "uint16_t",
-     "name": "field_0xb0"
+     "name": "vdev_field_b0"
     },
     {
      "offset": "0xb8",
      "type": "uint32_t",
-     "name": "field_0xb8"
+     "name": "vdev_field_b8"
     },
     {
      "offset": "0xbc",
      "type": "uint32_t",
-     "name": "field_0xbc"
+     "name": "vdev_field_bc"
     },
     {
      "offset": "0xc0",
      "type": "uint32_t",
-     "name": "field_0xc0"
+     "name": "vdev_field_c0"
     },
     {
      "offset": "0xc4",
      "type": "uint32_t",
-     "name": "field_0xc4"
+     "name": "vdev_field_c4"
     },
     {
      "offset": "0xc8",
      "type": "uint16_t",
-     "name": "field_0xc8"
+     "name": "vdev_field_c8"
     },
     {
      "offset": "0xd0",
      "type": "uint32_t",
-     "name": "field_0xd0"
+     "name": "vdev_field_d0"
     },
     {
      "offset": "0xd4",
      "type": "uint32_t",
-     "name": "field_0xd4"
+     "name": "vdev_field_d4"
     },
     {
      "offset": "0xd8",
      "type": "uint32_t",
-     "name": "field_0xd8"
+     "name": "vdev_field_d8"
     }
    ],
    "review_note": "Strong name match (function + [LIBRARY] tag). 25 sparse fields could not be mapped one-by-one to the header within scope; verified=false. All offsets kept as ground truth.",
@@ -10775,8 +10781,8 @@
     },
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4",
+     "type": "void *",
+     "name": "source",
      "note": "data length or timestamp"
     }
    ],
@@ -11011,7 +11017,7 @@
   },
   {
    "cid": "param_0155",
-   "struct_name": "bt_gatt_dm_attr_ctx",
+   "struct_name": "bt_gatt_attr",
    "kind": "param",
    "purpose": "GATT discovery-manager attribute-add context (bt_gatt_dm) used by gatt_dm_data_add_attribute / discovery_callback.",
    "is_library": true,
@@ -11041,24 +11047,26 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint16_t",
-     "name": "field_0x4"
+     "type": "void *",
+     "name": "read"
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc"
+     "type": "void *",
+     "name": "user_data"
     },
     {
      "offset": "0x12",
-     "type": "uint16_t",
-     "name": "field_0x12"
+     "type": "uint8_t",
+     "name": "perm"
     }
    ],
    "review_note": "gatt_dm internal struct is in nrf gatt_dm.c, not a public header; 0x4/0xc/0x12 unverifiable. verified=false.",
    "verified": true,
    "verify_errors": [],
-   "verify_warnings": []
+   "verify_warnings": [
+    "union@0x12: field width 1 < observed access 2"
+   ]
   },
   {
    "cid": "param_0157",
@@ -11103,79 +11111,82 @@
     },
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4",
+     "type": "atomic_t",
+     "name": "subscribe_flags",
      "note": "rw, 2/4 overlap"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "uint16_t",
+     "name": "control_point_handle"
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc"
+     "type": "uint16_t",
+     "name": "notif_source_ccc_handle"
     },
     {
      "offset": "0x20d",
      "type": "uint16_t",
-     "name": "field_0x20d",
+     "name": "ns_value_handle",
      "note": "w gatt handle"
     },
     {
      "offset": "0x215",
      "type": "uint16_t",
-     "name": "field_0x215",
+     "name": "ds_value_handle",
      "note": "w gatt handle"
     },
     {
      "offset": "0x828",
-     "type": "uint32_t",
-     "name": "field_0x828"
+     "type": "void *",
+     "name": "ns_notify_cb"
     },
     {
      "offset": "0x836",
      "type": "uint16_t",
-     "name": "field_0x836",
+     "name": "ns_ccc_handle",
      "note": "w gatt handle"
     },
     {
      "offset": "0x83c",
-     "type": "uint32_t",
-     "name": "field_0x83c"
+     "type": "atomic_t",
+     "name": "ns_subscribe_flags"
     },
     {
      "offset": "0x844",
-     "type": "uint32_t",
-     "name": "field_0x844"
+     "type": "void *",
+     "name": "ns_user_arg"
     },
     {
      "offset": "0x848",
-     "type": "uint32_t",
-     "name": "field_0x848"
+     "type": "void *",
+     "name": "ds_notify_cb"
     },
     {
      "offset": "0x856",
      "type": "uint16_t",
-     "name": "field_0x856",
+     "name": "ds_ccc_handle",
      "note": "w gatt handle"
     },
     {
      "offset": "0x85c",
-     "type": "uint32_t",
-     "name": "field_0x85c"
+     "type": "atomic_t",
+     "name": "ds_subscribe_flags"
     },
     {
      "offset": "0x864",
-     "type": "uint32_t",
-     "name": "field_0x864"
+     "type": "void *",
+     "name": "ds_user_arg"
     }
    ],
    "review_note": "3 members. Multiple 2-over-1 and 4-over-2 overlaps -> union. Corrected sonnet is_library=true: this is the G1 ANCS client instance, not verifiable against a stock header at these offsets.",
    "verified": true,
    "verify_errors": [],
-   "verify_warnings": []
+   "verify_warnings": [
+    "union@0x8: field width 2 < observed access 4",
+    "union@0xc: field width 2 < observed access 4"
+   ]
   },
   {
    "cid": "param_0158",
@@ -11215,7 +11226,7 @@
     {
      "offset": "0x2",
      "type": "uint16_t",
-     "name": "field_0x2"
+     "name": "ns_handle"
     },
     {
      "offset": "0x4",
@@ -11226,7 +11237,7 @@
     {
      "offset": "0x6",
      "type": "uint16_t",
-     "name": "field_0x6"
+     "name": "ds_ccc_handle"
     },
     {
      "offset": "0x8",
@@ -11353,62 +11364,62 @@
     {
      "offset": "0x8fc",
      "type": "int32_t",
-     "name": "field_0x8fc"
+     "name": "obj_table"
     },
     {
      "offset": "0x900",
      "type": "uint32_t",
-     "name": "field_0x900"
+     "name": "obj_count"
     },
     {
      "offset": "0x904",
      "type": "int32_t",
-     "name": "field_0x904"
+     "name": "remaining"
     },
     {
      "offset": "0x908",
      "type": "uint8_t",
-     "name": "field_0x908"
+     "name": "state"
     },
     {
      "offset": "0x909",
      "type": "uint8_t",
-     "name": "field_0x909"
+     "name": "record_type"
     },
     {
      "offset": "0x910",
      "type": "uint16_t",
-     "name": "field_0x910"
+     "name": "value_pos"
     },
     {
      "offset": "0x914",
      "type": "uint32_t",
-     "name": "field_0x914"
+     "name": "name_len"
     },
     {
      "offset": "0x918",
      "type": "uint8_t",
-     "name": "field_0x918"
+     "name": "object_kind"
     },
     {
      "offset": "0x91c",
      "type": "int16_t",
-     "name": "field_0x91c"
+     "name": "value_len"
     },
     {
      "offset": "0x920",
      "type": "int32_t",
-     "name": "field_0x920"
+     "name": "field_index"
     },
     {
      "offset": "0x924",
-     "type": "int32_t",
-     "name": "field_0x924"
+     "type": "uint32_t",
+     "name": "dest_ptr"
     },
     {
      "offset": "0x928",
      "type": "uint32_t",
-     "name": "field_0x928"
+     "name": "config_word"
     }
    ],
    "review_note": "Single-cid G1 context; two functions share it. Offsets kept.",
@@ -11418,7 +11429,7 @@
   },
   {
    "cid": "param_0160",
-   "struct_name": "gatt_subscribe_ctx",
+   "struct_name": "bt_gatt_subscribe_params",
    "kind": "param",
    "purpose": "G1 reimplementation of a GATT subscription context (value/CCC handles, callback/conn pointers), shared between gatt_subscribe_service_changed and gatt_service_changed_c_discovery_completed.",
    "is_library": false,
@@ -11461,7 +11472,7 @@
     {
      "offset": "0x6",
      "type": "uint16_t",
-     "name": "field_0x6",
+     "name": "cccd_handle",
      "note": "w"
     },
     {
@@ -11481,13 +11492,13 @@
     },
     {
      "offset": "0x24",
-     "type": "uint32_t",
-     "name": "field_0x24"
+     "type": "void *",
+     "name": "subscribe_cb"
     },
     {
      "offset": "0x28",
      "type": "uint32_t",
-     "name": "field_0x28"
+     "name": "atomic_flags"
     }
    ],
    "review_note": "Two APPLICATION members share this object; treated as G1-original (not stock bt_gatt_subscribe_params). is_union=true: 0x4 accessed 4-wide over 2-byte gap to 0x6. Offsets unchanged.",
@@ -11530,8 +11541,8 @@
     },
     {
      "offset": "0x8",
-     "type": "void*",
-     "name": "field_0x8",
+     "type": "const void *",
+     "name": "value",
      "note": "ptr r"
     },
     {
@@ -11953,59 +11964,59 @@
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8",
+     "name": "count",
      "note": "waitq/list node"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc",
+     "name": "msg_size",
      "note": "union: byte+word overlap"
     },
     {
      "offset": "0xd",
      "type": "uint8_t",
-     "name": "field_0xd"
+     "name": "thread_state"
     },
     {
      "offset": "0xe",
      "type": "uint8_t",
-     "name": "field_0xe"
+     "name": "thread_prio"
     },
     {
      "offset": "0xf",
      "type": "uint8_t",
-     "name": "field_0xf"
+     "name": "sched_flags"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "max_msgs"
     },
     {
      "offset": "0x14",
-     "type": "uint32_t",
-     "name": "field_0x14"
+     "type": "void *",
+     "name": "buffer_start"
     },
     {
      "offset": "0x18",
      "type": "void *",
-     "name": "field_0x18"
+     "name": "buffer_end"
     },
     {
      "offset": "0x1c",
-     "type": "uint32_t",
-     "name": "field_0x1c"
+     "type": "void *",
+     "name": "read_ptr"
     },
     {
      "offset": "0x20",
-     "type": "uint32_t",
-     "name": "field_0x20"
+     "type": "void *",
+     "name": "write_ptr"
     },
     {
      "offset": "0x24",
      "type": "uint32_t",
-     "name": "field_0x24"
+     "name": "used_msgs"
     },
     {
      "offset": "0x50",
@@ -12179,8 +12190,8 @@
     },
     {
      "offset": "0x58",
-     "type": "uint32_t",
-     "name": "field_0x58",
+     "type": "void *",
+     "name": "join_queue",
      "note": "arch/callee-saved region; not in _thread_base"
     }
    ],
@@ -12456,7 +12467,7 @@
   },
   {
    "cid": "param_0173",
-   "struct_name": "smp_pkt_ctx",
+   "struct_name": "smp_streamer",
    "kind": "param",
    "purpose": "MCUmgr SMP request-packet processing context (length/data pair) passed to smp_process_request_packet.",
    "is_library": true,
@@ -12481,13 +12492,13 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "void *",
+     "name": "reader"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "void *",
+     "name": "writer"
     }
    ],
    "review_note": "Only two idx4 fields observed; likely a net_buf-style packet handle but insufficient signal to verify against a header. Offsets unchanged.",
@@ -12558,19 +12569,19 @@
     },
     {
      "offset": "0x14",
-     "type": "uint32_t",
-     "name": "field_0x14"
+     "type": "void *",
+     "name": "constant_state"
     },
     {
      "offset": "0x30",
      "type": "uint16_t",
-     "name": "field_0x30",
+     "name": "err_rc_scratch",
      "note": "w"
     },
     {
      "offset": "0x32",
      "type": "uint16_t",
-     "name": "field_0x32",
+     "name": "err_group_scratch",
      "note": "w"
     }
    ],
@@ -12622,32 +12633,34 @@
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "img_data_len"
     },
     {
      "offset": "0x14",
-     "type": "uint32_t",
-     "name": "field_0x14"
+     "type": "const uint8_t*",
+     "name": "data_sha"
     },
     {
      "offset": "0x18",
      "type": "uint32_t",
-     "name": "field_0x18"
+     "name": "data_sha_len"
     },
     {
      "offset": "0x1c",
-     "type": "uint32_t",
-     "name": "field_0x1c"
+     "type": "uint8_t",
+     "name": "upgrade"
     }
    ],
    "review_note": "SPLIT from collision group global_1358 (coincidental 7-word footprint). Real mcumgr img_mgmt_upload_req has mixed bool/size_t/ptr members that do not line up with the generic idx4 words Ghidra recovered, so library_verified=false.",
    "verified": true,
    "verify_errors": [],
-   "verify_warnings": []
+   "verify_warnings": [
+    "union@0x1c: field width 1 < observed access 4"
+   ]
   },
   {
    "cid": "param_0176",
-   "struct_name": "img_mgmt_req_ctx",
+   "struct_name": "smp_streamer",
    "kind": "param",
    "purpose": "Parameter passed to img_mgmt_state_read/write (mcumgr image-management handlers); two int fields, likely a decode/encode context.",
    "is_library": false,
@@ -12677,13 +12690,13 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "int32_t",
-     "name": "field_0x4"
+     "type": "void *",
+     "name": "reader"
     },
     {
      "offset": "0x8",
-     "type": "int32_t",
-     "name": "field_0x8"
+     "type": "void *",
+     "name": "writer"
     }
    ],
    "review_note": "Downgraded sonnet's is_library=True: param is likely an mcumgr mgmt/zcbor context but only two generic int fields observed, not enough to name a stock struct. is_library=false.",
@@ -12736,7 +12749,7 @@
   },
   {
    "cid": "param_0178",
-   "struct_name": "img_mgmt_erase_ctx",
+   "struct_name": "smp_streamer",
    "kind": "param",
    "purpose": "Context object for img_mgmt_erase (mcumgr image-management erase op); two int fields.",
    "is_library": false,
@@ -12761,13 +12774,13 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "int32_t",
-     "name": "field_0x4"
+     "type": "void *",
+     "name": "reader"
     },
     {
      "offset": "0x8",
-     "type": "int32_t",
-     "name": "field_0x8"
+     "type": "void *",
+     "name": "writer"
     }
    ],
    "review_note": "Ground-truth hint is G1-original and only 2 generic int fields observed; corrected sonnet is_library=True to False (not a distinct stock mcumgr struct).",
@@ -12906,25 +12919,25 @@
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10",
+     "name": "timeout_node",
      "note": "start of embedded _timeout"
     },
     {
      "offset": "0x28",
      "type": "uint32_t",
-     "name": "field_0x28",
+     "name": "fifo_wait_q",
      "note": "beyond std k_work_delayable; param-flow contamination"
     },
     {
      "offset": "0x38",
      "type": "void*",
-     "name": "field_0x38",
+     "name": "ud_free",
      "note": "contamination"
     },
     {
      "offset": "0x3c",
-     "type": "void*",
-     "name": "field_0x3c",
+     "type": "void *",
+     "name": "query_valid_check",
      "note": "contamination"
     }
    ],
@@ -13052,7 +13065,7 @@
   },
   {
    "cid": "param_0184",
-   "struct_name": "bt_settings_encode_key_arg",
+   "struct_name": "bt_addr_le_key",
    "kind": "param",
    "purpose": "Identity/key descriptor passed to bt_settings_encode_key (param_4) when building a settings storage key.",
    "is_library": false,
@@ -13149,7 +13162,7 @@
     {
      "offset": "0x2",
      "type": "uint16_t",
-     "name": "field_0x2",
+     "name": "uuid16_val",
      "note": "mid-word access"
     },
     {
@@ -13292,8 +13305,8 @@
    "fields": [
     {
      "offset": "0x2",
-     "type": "uint8_t",
-     "name": "field_0x2",
+     "type": "bool",
+     "name": "val",
      "note": "w"
     },
     {
@@ -13306,7 +13319,9 @@
    "review_note": "Identity from callee name. Real layout is {atomic_t *target; int bit; bool val}; observed 0x2(w u8)/0x4(u32) do not cleanly line up to that, so verified=false.",
    "verified": true,
    "verify_errors": [],
-   "verify_warnings": []
+   "verify_warnings": [
+    "D2:0x2: type bool (4B) wider than 2B slot -> union/overlap"
+   ]
   },
   {
    "cid": "param_0200",
@@ -13336,17 +13351,17 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "conn_param_flags"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "interval_min"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "interval_max"
     },
     {
      "offset": "0x10",
@@ -13411,7 +13426,7 @@
   },
   {
    "cid": "param_0205",
-   "struct_name": "conn_tx_saadc_ctx",
+   "struct_name": "adc_sequence",
    "kind": "param",
    "purpose": "Context shared by conn_tx_send_to_driver and saadc_start_read: header word plus data words; +0x10 accessed both as a word and as a byte.",
    "is_library": false,
@@ -13442,36 +13457,36 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4",
+     "name": "channels",
      "note": "read as byte and word"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "void*",
+     "name": "buffer"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "buffer_size"
     },
     {
      "offset": "0x10",
-     "type": "uint32_t",
-     "name": "field_0x10",
+     "type": "uint8_t",
+     "name": "resolution",
      "note": "width-4 read overlaps 0x11"
     },
     {
      "offset": "0x11",
      "type": "uint8_t",
-     "name": "field_0x11"
+     "name": "oversampling"
     }
    ],
    "review_note": "is_union=true: 0x10 read as width 4 overlapping the 0x11 byte (Ghidra flagged overlap); 0x4 read as both byte and word. Kept offsets.",
    "verified": true,
    "verify_errors": [],
    "verify_warnings": [
-    "D2:0x10: type uint32_t (4B) wider than 1B slot -> union/overlap"
+    "union@0x10: field width 1 < observed access 4"
    ]
   },
   {
@@ -13502,12 +13517,12 @@
     {
      "offset": "0x10",
      "type": "uint16_t",
-     "name": "field_0x10"
+     "name": "len"
     },
     {
      "offset": "0x18",
      "type": "void *",
-     "name": "field_0x18"
+     "name": "frag"
     }
    ],
    "review_note": "G1-original; kept sonnet naming.",
@@ -13566,7 +13581,7 @@
     {
      "offset": "0x20",
      "type": "uint8_t",
-     "name": "field_0x20",
+     "name": "event1_tag",
      "note": "from merged bt_conn member, not k_poll_event"
     }
    ],
@@ -13623,18 +13638,18 @@
     {
      "offset": "0xac",
      "type": "uint16_t",
-     "name": "field_0xac",
+     "name": "latency",
      "note": "also read as 4 bytes (union with 0xae)"
     },
     {
      "offset": "0xae",
      "type": "uint16_t",
-     "name": "field_0xae"
+     "name": "timeout"
     },
     {
      "offset": "0xb0",
      "type": "uint32_t",
-     "name": "field_0xb0"
+     "name": "pending_latency"
     }
    ],
    "review_note": "bt_conn internal layout is in host/conn_internal.h (version-specific); observed 0xa6/0xa8/0xaa look like le.interval/latency/timeout but offsets unverifiable. 0xac is accessed both width 2 and width 4 (overlaps 0xae) => is_union=true.",
@@ -13677,17 +13692,17 @@
     {
      "offset": "0x8",
      "type": "uint8_t",
-     "name": "field_0x8"
+     "name": "sec_flags"
     },
     {
      "offset": "0x9",
      "type": "uint8_t",
-     "name": "field_0x9"
+     "name": "remote_info_flags"
     },
     {
      "offset": "0xa",
      "type": "uint8_t",
-     "name": "field_0xa",
+     "name": "remote_info_notified",
      "note": "w"
     },
     {
@@ -13704,7 +13719,7 @@
   },
   {
    "cid": "param_0211",
-   "struct_name": "ble_conn_le_alloc_param",
+   "struct_name": "bt_conn_le_alloc_addr",
    "kind": "param",
    "purpose": "G1-original LE connection-allocation parameter block used by ble_conn_le_alloc (interval/handle field plus a role/state byte).",
    "is_library": false,
@@ -13730,12 +13745,12 @@
     {
      "offset": "0x1",
      "type": "uint16_t",
-     "name": "field_0x1"
+     "name": "peer_addr"
     },
     {
      "offset": "0x6",
      "type": "uint8_t",
-     "name": "field_0x6"
+     "name": "addr_type"
     }
    ],
    "review_note": "G1-original.",
@@ -13854,30 +13869,34 @@
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "const void *",
+     "name": "le_dst"
     },
     {
      "offset": "0x90",
-     "type": "uint32_t",
-     "name": "field_0x90",
+     "type": "uint8_t",
+     "name": "peer_addr",
      "note": "does not match real bt_conn_info layout"
     },
     {
      "offset": "0x94",
-     "type": "uint32_t",
-     "name": "field_0x94"
+     "type": "uint8_t",
+     "name": "peer_addr_word1"
     },
     {
      "offset": "0x9c",
-     "type": "uint32_t",
-     "name": "field_0x9c"
+     "type": "uint8_t",
+     "name": "id_addr"
     }
    ],
    "review_note": "Checked bt_conn_info/bt_conn_le_info in conn.h: real le.interval/latency/timeout sit at 0x18/0x1a/0x1c (union starts at 0x8, struct ~0x30 bytes). The observed trailing offsets 0x90/0x94/0x9c and size>=0xa0 do NOT match \u2014 Ghidra's unified param_2 footprint appears conflated/pointer-followed. Only 0x4 plausibly maps to role. Library id kept but library_verified=false; offsets left as ground truth without asserting member names for the mismatched high offsets.",
    "verified": true,
    "verify_errors": [],
-   "verify_warnings": []
+   "verify_warnings": [
+    "union@0x90: field width 1 < observed access 4",
+    "union@0x94: field width 1 < observed access 4",
+    "union@0x9c: field width 1 < observed access 4"
+   ]
   },
   {
    "cid": "param_0214",
@@ -13917,19 +13936,19 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4",
+     "name": "interval_max",
      "note": "idx4"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8",
+     "name": "latency",
      "note": "idx4"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc",
+     "name": "timeout",
      "note": "idx4"
     }
    ],
@@ -13966,12 +13985,12 @@
     {
      "offset": "0x48",
      "type": "uint32_t",
-     "name": "field_0x48"
+     "name": "conn_interval"
     },
     {
      "offset": "0x50",
      "type": "uint32_t",
-     "name": "field_0x50"
+     "name": "conn_latency_timeout"
     }
    ],
    "review_note": "Kept naming; offsets unchanged.",
@@ -14176,13 +14195,13 @@
     {
      "offset": "0x9",
      "type": "uint16_t",
-     "name": "field_0x9",
+     "name": "mtu",
      "note": "union/overlap with 0xa"
     },
     {
      "offset": "0xa",
      "type": "uint16_t",
-     "name": "field_0xa"
+     "name": "mps"
     },
     {
      "offset": "0x10",
@@ -14204,7 +14223,7 @@
   },
   {
    "cid": "param_0221",
-   "struct_name": "bt_conn_l2cap_view",
+   "struct_name": "bt_l2cap_le_chan_view",
    "kind": "param",
    "purpose": "Large BT connection/channel object shared across l2cap_chan_send_disconnect, l2cap_chan_le_recv_seg, l2cap_le_recv_pdu, gatt_notify_send, gatt_send_service_changed_ind.",
    "is_library": true,
@@ -14249,8 +14268,8 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4",
+     "type": "void *",
+     "name": "ops",
      "note": "4-over-1 overlap"
     },
     {
@@ -14262,17 +14281,17 @@
     {
      "offset": "0x16",
      "type": "uint16_t",
-     "name": "field_0x16"
+     "name": "rx_mtu"
     },
     {
      "offset": "0x18",
      "type": "uint16_t",
-     "name": "field_0x18"
+     "name": "rx_mps"
     },
     {
      "offset": "0x1c",
      "type": "uint32_t",
-     "name": "field_0x1c"
+     "name": "credits"
     },
     {
      "offset": "0x21",
@@ -14299,8 +14318,8 @@
     },
     {
      "offset": "0x4c",
-     "type": "uint32_t",
-     "name": "field_0x4c"
+     "type": "void *",
+     "name": "tx_buf"
     },
     {
      "offset": "0x80",
@@ -14317,7 +14336,7 @@
     {
      "offset": "0xb4",
      "type": "uint8_t",
-     "name": "field_0xb4"
+     "name": "chan_state"
     },
     {
      "offset": "0xb6",
@@ -14327,7 +14346,7 @@
     {
      "offset": "0xb8",
      "type": "uint8_t",
-     "name": "field_0xb8",
+     "name": "att_ident",
      "note": "w"
     }
    ],
@@ -14614,24 +14633,24 @@
     {
      "offset": "0x1e",
      "type": "uint16_t",
-     "name": "field_0x1e",
+     "name": "tx_mtu",
      "note": "likely rx/tx mtu"
     },
     {
      "offset": "0x2e",
      "type": "uint16_t",
-     "name": "field_0x2e",
+     "name": "rx_mtu",
      "note": "likely tx mtu"
     },
     {
      "offset": "0x144",
-     "type": "uint32_t",
-     "name": "field_0x144"
+     "type": "void *",
+     "name": "req"
     },
     {
      "offset": "0x148",
-     "type": "uint32_t",
-     "name": "field_0x148"
+     "type": "void *",
+     "name": "rsp_buf"
     }
    ],
    "review_note": "bt_att_chan is defined in Zephyr's private att_internal.h (not a public header in the pinned tree browsed); offsets not verified. Kept ground truth.",
@@ -14641,7 +14660,7 @@
   },
   {
    "cid": "param_0228",
-   "struct_name": "bt_att_read_group_data",
+   "struct_name": "bt_att_read_type_data",
    "kind": "param",
    "purpose": "ATT Read-By-Type/Group iteration context shared by read_group_cb and att_read_type_iter_cb during ATT response building.",
    "is_library": true,
@@ -14671,41 +14690,41 @@
    "fields": [
     {
      "offset": "0x0",
-     "type": "uint8_t",
-     "name": "field_0x0"
+     "type": "void*",
+     "name": "chan"
     },
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4",
+     "type": "void*",
+     "name": "uuid",
      "note": "width 4 over gap 1 to 0x5 (overlap)"
     },
     {
      "offset": "0x5",
      "type": "uint8_t",
-     "name": "field_0x5"
+     "name": "err"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "void*",
+     "name": "buf"
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc"
+     "type": "uint8_t*",
+     "name": "rsp"
     },
     {
      "offset": "0x10",
-     "type": "uint32_t",
-     "name": "field_0x10"
+     "type": "uint16_t*",
+     "name": "item"
     }
    ],
    "review_note": "File-local iterator struct in subsys/bluetooth/host/att.c \u2014 no public header. is_union=true: 0x4 is read width 4 over a gap of 1 (overlaps 0x5). library_verified=false.",
    "verified": true,
    "verify_errors": [],
    "verify_warnings": [
-    "D2:0x4: type uint32_t (4B) wider than 1B slot -> union/overlap"
+    "D2:0x4: type void* (4B) wider than 1B slot -> union/overlap"
    ]
   },
   {
@@ -14845,13 +14864,13 @@
    "fields": [
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc"
+     "type": "uint8_t *",
+     "name": "data"
     },
     {
      "offset": "0x10",
      "type": "uint16_t",
-     "name": "field_0x10"
+     "name": "len"
     }
    ],
    "review_note": "Only 2 fields; possibly a net_buf view but not verifiable.",
@@ -14861,7 +14880,7 @@
   },
   {
    "cid": "param_0241",
-   "struct_name": "bt_att_find_type_req",
+   "struct_name": "net_buf",
    "kind": "param",
    "purpose": "Zephyr ATT Find-By-Type-Value request PDU fields parsed by att_find_type_req.",
    "is_library": true,
@@ -14886,13 +14905,13 @@
    "fields": [
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc"
+     "type": "uint8_t *",
+     "name": "data"
     },
     {
      "offset": "0x10",
-     "type": "uint8_t",
-     "name": "field_0x10"
+     "type": "uint16_t",
+     "name": "len"
     }
    ],
    "review_note": "Only two sparse fields (0xc,0x10) recovered; not enough to confirm the packed ATT PDU layout, so library_verified=false.",
@@ -14975,17 +14994,17 @@
     {
      "offset": "0x1",
      "type": "uint8_t",
-     "name": "field_0x1"
+     "name": "cfg_id"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "void *",
+     "name": "cfg_cursor"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "entries_remaining"
     }
    ],
    "review_note": "Library id kept but not verified against gatt header. is_union=true: 0x0 accessed 2-wide over 1-byte gap to 0x1. Offsets unchanged.",
@@ -15111,13 +15130,13 @@
     {
      "offset": "0x3",
      "type": "uint8_t",
-     "name": "field_0x3",
+     "name": "role",
      "note": "char flag"
     },
     {
      "offset": "0x8",
      "type": "uint8_t",
-     "name": "field_0x8"
+     "name": "id"
     },
     {
      "offset": "0xb",
@@ -15128,12 +15147,12 @@
     {
      "offset": "0xd",
      "type": "uint8_t",
-     "name": "field_0xd"
+     "name": "state"
     },
     {
      "offset": "0xc0",
-     "type": "int32_t",
-     "name": "field_0xc0"
+     "type": "void *",
+     "name": "keys"
     }
    ],
    "review_note": "Strongly confirmed as bt_conn (9 accessors incl. library bt_conn_ltk_present/is_peer_addr_le/bt_gatt_check_perm). bt_conn layout is config-dependent (SMP/BR/etc.) so exact member offsets can't be pinned from the header without the matching build config; library_verified=false. Offsets unchanged; field 0xc0 matches param_0585's 0xc0.",
@@ -15143,7 +15162,7 @@
   },
   {
    "cid": "param_0249",
-   "struct_name": "gatt_ccc_list_node",
+   "struct_name": "bt_gatt_subscribe_params",
    "kind": "param",
    "purpose": "Internal GATT CCC/list node shared by gatt_write_ccc_rsp and list_unlink_and_release (handle + value + link fields).",
    "is_library": true,
@@ -15180,12 +15199,12 @@
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "subscribe_cb"
     },
     {
      "offset": "0x18",
-     "type": "uint32_t",
-     "name": "field_0x18"
+     "type": "void *",
+     "name": "node_next"
     }
    ],
    "review_note": "Internal (non-public) GATT structure; cannot verify offsets. 0x4 read as short and word. Kept offsets.",
@@ -15553,23 +15572,23 @@
     {
      "offset": "0x4",
      "type": "uint16_t",
-     "name": "field_0x4"
+     "name": "handle"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8",
+     "type": "int32_t",
+     "name": "err",
      "note": "w"
     },
     {
      "offset": "0xc",
      "type": "uint16_t",
-     "name": "field_0xc"
+     "name": "ccc_value"
     },
     {
      "offset": "0x10",
-     "type": "uint32_t",
-     "name": "field_0x10"
+     "type": "void*",
+     "name": "params"
     }
    ],
    "review_note": "Exact stock type not identifiable; kept as GATT CCC-related, unverified. Offsets unchanged.",
@@ -15714,8 +15733,8 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint16_t",
-     "name": "field_0x4",
+     "type": "void *",
+     "name": "subscribe_cb",
      "note": "rw ushort; does not match fn-ptr subscribe@0x4"
     },
     {
@@ -15733,14 +15752,14 @@
     },
     {
      "offset": "0x10",
-     "type": "uint32_t",
-     "name": "field_0x10",
+     "type": "uint16_t",
+     "name": "value",
      "note": "end_handle/disc_params region"
     },
     {
      "offset": "0x18",
-     "type": "uint32_t",
-     "name": "field_0x18",
+     "type": "void *",
+     "name": "node",
      "note": "value/node region"
     }
    ],
@@ -15748,12 +15767,13 @@
    "verified": true,
    "verify_errors": [],
    "verify_warnings": [
-    "union@0xc: field width 2 < observed access 4"
+    "union@0xc: field width 2 < observed access 4",
+    "union@0x10: field width 2 < observed access 4"
    ]
   },
   {
    "cid": "param_0263",
-   "struct_name": "bt_gatt_subscribe_params",
+   "struct_name": "bt_conn",
    "kind": "param",
    "purpose": "Zephyr GATT subscription parameters used by gatt_subscribe_add / bt_gatt_unsubscribe / gatt_mult_notify_dispatch.",
    "is_library": true,
@@ -15794,19 +15814,19 @@
     {
      "offset": "0x8",
      "type": "uint8_t",
-     "name": "field_0x8",
+     "name": "id",
      "note": "byte within write callback ptr"
     },
     {
      "offset": "0x9",
      "type": "uint8_t",
-     "name": "field_0x9",
+     "name": "sec_level",
      "note": "byte within write callback ptr"
     },
     {
      "offset": "0xd",
      "type": "uint8_t",
-     "name": "field_0xd",
+     "name": "state",
      "note": "high byte of value_handle"
     }
    ],
@@ -15919,38 +15939,38 @@
     {
      "offset": "0x8",
      "type": "uint8_t",
-     "name": "field_0x8"
+     "name": "method_8"
     },
     {
      "offset": "0x9",
      "type": "uint8_t",
-     "name": "field_0x9"
+     "name": "req_code"
     },
     {
      "offset": "0xa",
      "type": "uint32_t",
-     "name": "field_0xa",
+     "name": "remote_io_cap",
      "note": "width 4 over gap 1 (overlap)"
     },
     {
      "offset": "0xb",
      "type": "uint8_t",
-     "name": "field_0xb"
+     "name": "remote_oob_flag"
     },
     {
      "offset": "0xc",
      "type": "uint8_t",
-     "name": "field_0xc"
+     "name": "remote_auth_req"
     },
     {
      "offset": "0xd",
      "type": "uint8_t",
-     "name": "field_0xd"
+     "name": "remote_max_key_size"
     },
     {
      "offset": "0xe",
      "type": "uint16_t",
-     "name": "field_0xe"
+     "name": "remote_key_dist"
     },
     {
      "offset": "0x10",
@@ -15960,35 +15980,35 @@
     },
     {
      "offset": "0x11",
-     "type": "uint32_t",
-     "name": "field_0x11",
+     "type": "uint8_t",
+     "name": "local_io_cap",
      "note": "accessed 1 and 4 (overlap)"
     },
     {
      "offset": "0x12",
      "type": "uint8_t",
-     "name": "field_0x12"
+     "name": "local_oob_flag"
     },
     {
      "offset": "0x13",
      "type": "uint8_t",
-     "name": "field_0x13"
+     "name": "local_auth_req"
     },
     {
      "offset": "0x14",
      "type": "uint8_t",
-     "name": "field_0x14"
+     "name": "local_max_key_size"
     },
     {
      "offset": "0x15",
-     "type": "uint16_t",
-     "name": "field_0x15",
+     "type": "uint8_t",
+     "name": "local_init_key_dist",
      "note": "accessed 1 and 2 (overlap)"
     },
     {
      "offset": "0x16",
      "type": "uint8_t",
-     "name": "field_0x16"
+     "name": "local_resp_key_dist"
     },
     {
      "offset": "0x47",
@@ -16014,48 +16034,48 @@
     {
      "offset": "0xd8",
      "type": "uint32_t",
-     "name": "field_0xd8"
+     "name": "passkey"
     },
     {
      "offset": "0xdc",
      "type": "uint8_t",
-     "name": "field_0xdc"
+     "name": "passkey_round"
     },
     {
      "offset": "0xe0",
      "type": "void *",
-     "name": "field_0xe0"
+     "name": "oob_local"
     },
     {
      "offset": "0xe4",
      "type": "void *",
-     "name": "field_0xe4"
+     "name": "oob_remote"
     },
     {
      "offset": "0xe8",
-     "type": "uint16_t",
-     "name": "field_0xe8",
+     "type": "uint8_t",
+     "name": "local_dist",
      "note": "accessed 1 and 2 (overlap)"
     },
     {
      "offset": "0xe9",
      "type": "uint8_t",
-     "name": "field_0xe9"
+     "name": "remote_dist"
     },
     {
      "offset": "0xf0",
-     "type": "uint32_t",
-     "name": "field_0xf0"
+     "type": "void *",
+     "name": "conn"
     }
    ],
    "review_note": "Confidently bt_smp (14 smp_* members). Defined file-local in subsys/bluetooth/host/smp.c, so offsets can't be checked against a header (library_verified=false). is_union=true: layout notes flag overlapping wide/narrow accesses at 0xa, 0x11, 0x15, 0xe8.",
    "verified": true,
    "verify_errors": [],
    "verify_warnings": [
-    "D2:0xa: type uint32_t (4B) wider than 1B slot -> union/overlap",
-    "D2:0x11: type uint32_t (4B) wider than 1B slot -> union/overlap",
-    "D2:0x15: type uint16_t (2B) wider than 1B slot -> union/overlap",
-    "D2:0xe8: type uint16_t (2B) wider than 1B slot -> union/overlap"
+    "union@0x11: field width 1 < observed access 4",
+    "union@0x15: field width 1 < observed access 2",
+    "union@0xe8: field width 1 < observed access 2",
+    "D2:0xa: type uint32_t (4B) wider than 1B slot -> union/overlap"
    ]
   },
   {
@@ -16169,13 +16189,13 @@
     {
      "offset": "0x1",
      "type": "uint32_t",
-     "name": "field_0x1",
+     "name": "bdaddr_lo",
      "note": "unaligned"
     },
     {
      "offset": "0x5",
      "type": "uint16_t",
-     "name": "field_0x5"
+     "name": "bdaddr_hi"
     },
     {
      "offset": "0x18",
@@ -16512,21 +16532,23 @@
     },
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4",
+     "type": "uint16_t",
+     "name": "len",
      "note": "read; overlaps len(0x4)/size(0x6)"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8",
+     "type": "uint8_t *",
+     "name": "buf_start",
      "library_member": "__buf"
     }
    ],
    "review_note": "Real layout (buf.h): data@0x0(ptr), len@0x4(u16), size@0x6(u16), __buf@0x8(ptr). Observed offsets (0x1 sz2 write, 0x4 word read, 0x8 word read) do NOT line up cleanly with these members (esp. the 0x1 write), so verified=false. Corrected sonnet's len@0x1 label. Offsets kept.",
    "verified": true,
    "verify_errors": [],
-   "verify_warnings": []
+   "verify_warnings": [
+    "union@0x4: field width 2 < observed access 4"
+   ]
   },
   {
    "cid": "param_0290",
@@ -16562,7 +16584,7 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4",
+     "name": "channel_and_input_cfg",
      "note": "likely channel_id/differential bitfield byte read wide"
     },
     {
@@ -16736,18 +16758,18 @@
     {
      "offset": "0x25",
      "type": "uint8_t",
-     "name": "field_0x25",
+     "name": "channel_count",
      "note": "w"
     },
     {
      "offset": "0x26",
      "type": "uint8_t",
-     "name": "field_0x26"
+     "name": "format_valid"
     },
     {
      "offset": "0x27",
      "type": "uint8_t",
-     "name": "field_0x27",
+     "name": "mode_ready",
      "note": "w"
     }
    ],
@@ -16871,8 +16893,8 @@
     },
     {
      "offset": "0x10",
-     "type": "int32_t",
-     "name": "field_0x10"
+     "type": "void *",
+     "name": "bus_ctx"
     },
     {
      "offset": "0x14",
@@ -17075,7 +17097,7 @@
   },
   {
    "cid": "param_0312",
-   "struct_name": "uarte_nrfx_data",
+   "struct_name": "device",
    "kind": "param",
    "purpose": "nrfx UARTE driver instance data used by uarte_nrfx_configure and uarte_nrfx_init; two pointer fields observed.",
    "is_library": true,
@@ -17105,13 +17127,13 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "void *",
-     "name": "field_0x4"
+     "type": "const void *",
+     "name": "config"
     },
     {
      "offset": "0x10",
      "type": "void *",
-     "name": "field_0x10"
+     "name": "data"
     }
    ],
    "review_note": "UARTE Zephyr driver data is a file-local struct; only two pointers observed, offsets unverified.",
@@ -17283,8 +17305,8 @@
     },
     {
      "offset": "0x10",
-     "type": "void *",
-     "name": "field_0x10"
+     "type": "volatile uint8_t *",
+     "name": "install_flag_ptr"
     }
    ],
    "review_note": "Only two pointers observed; struct wdt_timeout_cfg has window/callback/flags - not fully verifiable.",
@@ -17454,19 +17476,21 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "uint8_t",
+     "name": "move_id"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "swap_ate_meta"
     }
    ],
    "review_note": "G1-original; offsets unchanged.",
    "verified": true,
    "verify_errors": [],
-   "verify_warnings": []
+   "verify_warnings": [
+    "union@0x4: field width 1 < observed access 4"
+   ]
   },
   {
    "cid": "param_0321",
@@ -17807,37 +17831,37 @@
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "clk_ctrl"
     },
     {
      "offset": "0x40",
      "type": "uint32_t",
-     "name": "field_0x40"
+     "name": "reserved_40"
     },
     {
      "offset": "0x44",
      "type": "uint32_t",
-     "name": "field_0x44"
+     "name": "reserved_44"
     },
     {
      "offset": "0x4c",
      "type": "uint32_t",
-     "name": "field_0x4c"
+     "name": "reserved_4c"
     },
     {
      "offset": "0x50",
      "type": "uint32_t",
-     "name": "field_0x50"
+     "name": "state_word_50"
     },
     {
      "offset": "0x54",
      "type": "uint32_t",
-     "name": "field_0x54"
+     "name": "reserved_54"
     },
     {
      "offset": "0x58",
      "type": "uint32_t",
-     "name": "field_0x58"
+     "name": "reserved_58"
     }
    ],
    "review_note": "G1-original config struct; kept all 9 observed offsets.",
@@ -17986,27 +18010,27 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "csn"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "io0"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "io1"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "io2"
     },
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14"
+     "name": "io3"
     }
    ],
    "review_note": "Split from footprint-collision group global_1341. The real nrf_qspi_pins_t is six packed uint8 pin numbers (6 bytes); Ghidra's 5x uint32 idx4 footprint is an over-extended approximation. Offsets kept as ground truth but do not literally map to the 6-byte struct.",
@@ -18042,7 +18066,7 @@
     {
      "offset": "0x7",
      "type": "uint8_t",
-     "name": "field_0x7"
+     "name": "pin_sck_hi"
     },
     {
      "offset": "0x8",
@@ -18148,27 +18172,27 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "length"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "io2_level"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "io3_level"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "wipwait"
     },
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14"
+     "name": "wren"
     }
    ],
    "review_note": "Split from footprint-collision group global_1341. Real nrfx_qspi_cinstr_config_t is byte-packed (~6 bytes: opcode,length,io2/io3/wren/wipwait); the 5x uint32 shape is a Ghidra idx4 approximation. Offsets unchanged.",
@@ -18178,7 +18202,7 @@
   },
   {
    "cid": "param_0340",
-   "struct_name": "nrfx_pin_freq_cfg",
+   "struct_name": "nrfx_qspi_pin_freq_cfg",
    "kind": "param",
    "purpose": "Pin/frequency validation configuration (param_2) passed to nrfx_pin_freq_config_validate (QSPI pin config).",
    "is_library": true,
@@ -18203,49 +18227,51 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "int32_t",
+     "name": "io1_pin"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "int32_t",
+     "name": "io2_pin"
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc"
+     "type": "int32_t",
+     "name": "io3_pin"
     },
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14"
+     "name": "frequency_hz"
     },
     {
      "offset": "0x1c",
-     "type": "uint32_t",
-     "name": "field_0x1c"
+     "type": "int32_t",
+     "name": "sck_pin"
     },
     {
      "offset": "0x21",
      "type": "uint8_t",
-     "name": "field_0x21"
+     "name": "quad_enable"
     },
     {
      "offset": "0x23",
      "type": "uint8_t",
-     "name": "field_0x23"
+     "name": "config_mode"
     },
     {
      "offset": "0x24",
-     "type": "uint32_t",
-     "name": "field_0x24"
+     "type": "uint8_t",
+     "name": "skip_pin_check"
     }
    ],
    "review_note": "nrfx-adjacent config struct; not matched to a specific pinned header, so library_verified=false.",
    "verified": true,
    "verify_errors": [],
-   "verify_warnings": []
+   "verify_warnings": [
+    "union@0x24: field width 1 < observed access 4"
+   ]
   },
   {
    "cid": "param_0342",
@@ -18285,7 +18311,7 @@
     {
      "offset": "0x4",
      "type": "uint8_t",
-     "name": "field_0x4"
+     "name": "drv_inst_idx"
     }
    ],
    "review_note": "Only two sub-word byte reads (0x1, 0x4) observed; insufficient to verify against nrfx_spim_t ({p_reg; drv_inst_idx}). library_verified=false. Offsets kept.",
@@ -18327,7 +18353,7 @@
     {
      "offset": "0x6",
      "type": "uint8_t",
-     "name": "field_0x6"
+     "name": "sck_pin_port"
     },
     {
      "offset": "0x8",
@@ -18338,7 +18364,7 @@
     {
      "offset": "0x9",
      "type": "uint8_t",
-     "name": "field_0x9"
+     "name": "mosi_pin_port"
     },
     {
      "offset": "0xc",
@@ -18645,37 +18671,37 @@
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14"
+     "name": "task_stop"
     },
     {
      "offset": "0x20",
      "type": "uint32_t",
-     "name": "field_0x20"
+     "name": "task_resume"
     },
     {
      "offset": "0x104",
      "type": "uint32_t",
-     "name": "field_0x104"
+     "name": "events_stopped"
     },
     {
      "offset": "0x124",
      "type": "uint32_t",
-     "name": "field_0x124"
+     "name": "events_error"
     },
     {
      "offset": "0x148",
      "type": "uint32_t",
-     "name": "field_0x148"
+     "name": "events_suspended"
     },
     {
      "offset": "0x15c",
      "type": "uint32_t",
-     "name": "field_0x15c"
+     "name": "events_lastrx"
     },
     {
      "offset": "0x160",
      "type": "uint32_t",
-     "name": "field_0x160"
+     "name": "events_lasttx"
     },
     {
      "offset": "0x200",
@@ -18685,67 +18711,67 @@
     {
      "offset": "0x304",
      "type": "uint32_t",
-     "name": "field_0x304"
+     "name": "intenset"
     },
     {
      "offset": "0x308",
      "type": "uint32_t",
-     "name": "field_0x308"
+     "name": "intenclr"
     },
     {
      "offset": "0x4c4",
      "type": "uint32_t",
-     "name": "field_0x4c4"
+     "name": "errorsrc"
     },
     {
      "offset": "0x500",
      "type": "uint32_t",
-     "name": "field_0x500"
+     "name": "enable"
     },
     {
      "offset": "0x534",
      "type": "uint32_t",
-     "name": "field_0x534"
+     "name": "rxd_ptr"
     },
     {
      "offset": "0x538",
      "type": "uint32_t",
-     "name": "field_0x538"
+     "name": "rxd_maxcnt"
     },
     {
      "offset": "0x53c",
      "type": "uint32_t",
-     "name": "field_0x53c"
+     "name": "rxd_amount"
     },
     {
      "offset": "0x540",
      "type": "uint32_t",
-     "name": "field_0x540"
+     "name": "rxd_list"
     },
     {
      "offset": "0x544",
      "type": "uint32_t",
-     "name": "field_0x544"
+     "name": "txd_ptr"
     },
     {
      "offset": "0x548",
      "type": "uint32_t",
-     "name": "field_0x548"
+     "name": "txd_maxcnt"
     },
     {
      "offset": "0x54c",
      "type": "uint32_t",
-     "name": "field_0x54c"
+     "name": "txd_amount"
     },
     {
      "offset": "0x550",
      "type": "uint32_t",
-     "name": "field_0x550"
+     "name": "txd_list"
     },
     {
      "offset": "0x588",
      "type": "uint32_t",
-     "name": "field_0x588"
+     "name": "address"
     }
    ],
    "review_note": "~0x58c object; this is the file-static per-instance control block inside nrfx_twim.c, not the small public nrfx_twim_t handle, and its layout is not in a public header, so unverified. Kept all 23 offsets.",
@@ -18791,19 +18817,19 @@
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8",
+     "name": "flags",
      "note": "overlaps 0x9 (union)"
     },
     {
      "offset": "0x9",
      "type": "uint8_t",
-     "name": "field_0x9",
+     "name": "state",
      "note": "w"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "xfer_type"
     },
     {
      "offset": "0x10",
@@ -18834,7 +18860,7 @@
     {
      "offset": "0x23",
      "type": "uint8_t",
-     "name": "field_0x23",
+     "name": "busy",
      "note": "rw"
     },
     {
@@ -18879,22 +18905,22 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "primary_length"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "secondary_length"
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc"
+     "type": "uint8_t *",
+     "name": "p_primary_buf"
     },
     {
      "offset": "0x10",
-     "type": "uint32_t",
-     "name": "field_0x10"
+     "type": "uint8_t *",
+     "name": "p_secondary_buf"
     }
    ],
    "review_note": "Separated from global_0840 collision group. Corrected sonnet's high-confidence nrfx_twim_xfer_desc_t claim: real nrfx_twim_xfer_desc_t leads with type/address bytes, not four aligned uint32; observed 4-word shape does NOT match, so is_library=false.",
@@ -18930,22 +18956,22 @@
     {
      "offset": "0x1c",
      "type": "uint32_t",
-     "name": "field_0x1c"
+     "name": "region_list_next"
     },
     {
      "offset": "0x20",
      "type": "uint32_t",
-     "name": "field_0x20"
+     "name": "region_list_prev"
     },
     {
      "offset": "0x24",
      "type": "uint32_t",
-     "name": "field_0x24"
+     "name": "bus_node_next"
     },
     {
      "offset": "0x28",
      "type": "uint32_t",
-     "name": "field_0x28"
+     "name": "bus_node_prev"
     }
    ],
    "review_note": "metal_register_generic_device is an app wrapper; only four words at 0x1c-0x28 observed, insufficient to pin against struct metal_device.",
@@ -19032,12 +19058,12 @@
     {
      "offset": "0x4",
      "type": "int32_t",
-     "name": "field_0x4"
+     "name": "an1"
     },
     {
      "offset": "0x8",
      "type": "int32_t",
-     "name": "field_0x8"
+     "name": "p_att"
     }
    ],
    "review_note": "LC3 codec internal; no public named struct to verify offsets against. library_verified=false. Offsets kept.",
@@ -19160,38 +19186,38 @@
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc",
+     "type": "int32_t",
+     "name": "ac_cache",
      "note": "rw"
     },
     {
      "offset": "0x10",
-     "type": "uint32_t",
-     "name": "field_0x10",
+     "type": "int32_t",
+     "name": "ac_carry",
      "note": "rw"
     },
     {
      "offset": "0x14",
-     "type": "uint32_t",
-     "name": "field_0x14",
+     "type": "int32_t",
+     "name": "ac_carry_count",
      "note": "rw"
     },
     {
      "offset": "0x1c",
      "type": "uint32_t",
-     "name": "field_0x1c",
+     "name": "accu_v",
      "note": "rw"
     },
     {
      "offset": "0x20",
-     "type": "uint32_t",
-     "name": "field_0x20",
+     "type": "int32_t",
+     "name": "accu_n",
      "note": "rw"
     },
     {
      "offset": "0x24",
-     "type": "uint32_t",
-     "name": "field_0x24",
+     "type": "int32_t",
+     "name": "accu_nover",
      "note": "r"
     },
     {
@@ -19208,8 +19234,8 @@
     },
     {
      "offset": "0x34",
-     "type": "uint32_t",
-     "name": "field_0x34",
+     "type": "uint8_t *",
+     "name": "buf_p_bw",
      "note": "rw"
     }
    ],
@@ -19378,7 +19404,7 @@
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "frame_config"
     },
     {
      "offset": "0x4a0",
@@ -19511,17 +19537,17 @@
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "frame_count"
     },
     {
      "offset": "0x4a0",
-     "type": "int32_t",
-     "name": "field_0x4a0"
+     "type": "int16_t *",
+     "name": "pcm_out_ptr"
     },
     {
      "offset": "0x4a4",
-     "type": "void *",
-     "name": "field_0x4a4"
+     "type": "float *",
+     "name": "float_scratch_ptr"
     }
    ],
    "review_note": "liblc3 internal state; sparse observation, unverified.",
@@ -19557,27 +19583,27 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "iframe"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "xt_off"
     },
     {
      "offset": "0x4a0",
-     "type": "uint32_t",
-     "name": "field_0x4a0"
+     "type": "void *",
+     "name": "xs"
     },
     {
      "offset": "0x4a4",
-     "type": "uint32_t",
-     "name": "field_0x4a4"
+     "type": "void *",
+     "name": "xt"
     },
     {
      "offset": "0x4a8",
-     "type": "uint32_t",
-     "name": "field_0x4a8"
+     "type": "void *",
+     "name": "xd"
     }
    ],
    "review_note": "liblc3 encoder state; internal layout not in pinned headers, so library_verified=false.",
@@ -19789,7 +19815,7 @@
   },
   {
    "cid": "param_0384",
-   "struct_name": "lc3_sns_state",
+   "struct_name": "lc3_sns_data",
    "kind": "param",
    "purpose": "LC3 codec SNS (spectral noise shaping) analysis state shared by lc3_sns_analyze (param_5) and lc3_sns_put_data (param_2).",
    "is_library": false,
@@ -19815,34 +19841,34 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint16_t",
-     "name": "field_0x4",
+     "type": "int32_t",
+     "name": "hfcb",
      "note": "accessed 4-wide (union/overlap with 0x6)"
     },
     {
      "offset": "0x6",
-     "type": "uint8_t",
-     "name": "field_0x6"
+     "type": "uint16_t",
+     "name": "hfcb_hi"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "int32_t",
+     "name": "shape"
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc"
+     "type": "int32_t",
+     "name": "gain"
     },
     {
      "offset": "0x10",
-     "type": "uint32_t",
-     "name": "field_0x10"
+     "type": "int32_t",
+     "name": "idx_a"
     },
     {
      "offset": "0x14",
-     "type": "uint32_t",
-     "name": "field_0x14"
+     "type": "int32_t",
+     "name": "idx_b"
     },
     {
      "offset": "0x19",
@@ -19854,7 +19880,7 @@
    "verified": true,
    "verify_errors": [],
    "verify_warnings": [
-    "union@0x4: field width 2 < observed access 4"
+    "D2:0x4: type int32_t (4B) wider than 2B slot -> union/overlap"
    ]
   },
   {
@@ -19891,7 +19917,7 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4",
+     "name": "level",
      "note": "idx4"
     }
    ],
@@ -19928,7 +19954,7 @@
     {
      "offset": "0x4",
      "type": "int32_t",
-     "name": "field_0x4"
+     "name": "nq"
     },
     {
      "offset": "0x8",
@@ -20325,7 +20351,7 @@
   },
   {
    "cid": "param_0399",
-   "struct_name": "rpmsg_vqueue_channel_cfg",
+   "struct_name": "virtio_device",
    "kind": "param",
    "purpose": "Configuration (param_2) passed to rpmsg_virtqueue_channel_init: descriptor count/align words at 0x10/0x14, a count/int at 0x24, and a vring/callback pointer at 0x2c.",
    "is_library": false,
@@ -20351,19 +20377,19 @@
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10",
+     "name": "features",
      "note": "write-only"
     },
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14",
+     "name": "features_hi",
      "note": "write-only"
     },
     {
      "offset": "0x24",
-     "type": "int32_t",
-     "name": "field_0x24"
+     "type": "void *",
+     "name": "priv"
     },
     {
      "offset": "0x2c",
@@ -20409,12 +20435,12 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "vq_num_desc"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "direction_flag"
     }
    ],
    "review_note": "OpenAMP/rpmsg usage but treated as G1-original arg block; not verified. Offsets unchanged.",
@@ -20455,13 +20481,13 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4",
+     "name": "avail",
      "note": "idx4"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8",
+     "name": "size",
      "note": "idx4"
     }
    ],
@@ -20509,12 +20535,12 @@
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "size"
     },
     {
      "offset": "0x28",
-     "type": "uint32_t",
-     "name": "field_0x28"
+     "type": "void*",
+     "name": "ops_block_set"
     }
    ],
    "review_note": "metal_io_block_set(struct metal_io_region*, ...) confirms the type, but only 3 sparse fields (a code/fn-ptr word at 0x0, and idx4 at 0x8/0x28) observed; libmetal metal_io_region layout not pinned. library_verified=false.",
@@ -20793,26 +20819,26 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4",
+     "type": "void *",
+     "name": "qnode_prev",
      "note": "waitq linkage/priority"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8",
+     "type": "void *",
+     "name": "pended_on",
      "note": "waitq linkage"
     },
     {
      "offset": "0xd",
      "type": "uint8_t",
-     "name": "field_0xd",
+     "name": "thread_state",
      "note": "rw thread state/flags"
     },
     {
      "offset": "0xe",
-     "type": "uint8_t",
-     "name": "field_0xe",
+     "type": "int8_t",
+     "name": "prio",
      "note": "base priority"
     }
    ],
@@ -20957,7 +20983,7 @@
     {
      "offset": "0xd",
      "type": "uint8_t",
-     "name": "field_0xd",
+     "name": "poll_type",
      "note": "overlaps 0xc wide access"
     },
     {
@@ -21180,7 +21206,7 @@
   },
   {
    "cid": "param_0418",
-   "struct_name": "libc_FILE",
+   "struct_name": "libc_reent",
    "kind": "param",
    "purpose": "C library FILE stream object used by _fflush_r/smakebuf_r/_vfprintf_r/libc_putc_buffered: buffer pointers, cookie, and flags.",
    "is_library": true,
@@ -21243,8 +21269,8 @@
     },
     {
      "offset": "0x28",
-     "type": "uint32_t",
-     "name": "field_0x28",
+     "type": "void *",
+     "name": "cleanup_fn",
      "note": "write-only"
     }
    ],
@@ -21287,7 +21313,7 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "_w"
     },
     {
      "offset": "0x8",
@@ -21381,43 +21407,43 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "void *",
+     "name": "stdin"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "void *",
+     "name": "stdout"
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc"
+     "type": "void *",
+     "name": "stderr"
     },
     {
      "offset": "0x18",
      "type": "int32_t",
-     "name": "field_0x18"
+     "name": "sdidinit"
     },
     {
      "offset": "0x28",
-     "type": "uint32_t",
-     "name": "field_0x28"
+     "type": "void *",
+     "name": "cleanup"
     },
     {
      "offset": "0x48",
-     "type": "uint32_t",
-     "name": "field_0x48"
+     "type": "void *",
+     "name": "glue_next"
     },
     {
      "offset": "0x4c",
      "type": "uint32_t",
-     "name": "field_0x4c"
+     "name": "glue_niobs"
     },
     {
      "offset": "0x50",
-     "type": "uint32_t",
-     "name": "field_0x50"
+     "type": "void *",
+     "name": "glue_iobs"
     }
    ],
    "review_note": "__sinit strongly implies struct _reent, but the pinned tree doesn't ship the newlib reent.h used at build time and _reent has heavy #ifdef variation; sparse observed offsets not verified.",
@@ -21473,22 +21499,22 @@
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "width"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "body_len"
     },
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14"
+     "name": "chars_written"
     },
     {
      "offset": "0x18",
-     "type": "uint32_t",
-     "name": "field_0x18"
+     "type": "uint8_t",
+     "name": "conv_char"
     },
     {
      "offset": "0x42",
@@ -21504,7 +21530,7 @@
     {
      "offset": "0x45",
      "type": "uint8_t",
-     "name": "field_0x45"
+     "name": "radix_prefix_char"
     },
     {
      "offset": "0x48",
@@ -21519,17 +21545,19 @@
     {
      "offset": "0x58",
      "type": "uint32_t",
-     "name": "field_0x58"
+     "name": "int_digit_count"
     }
    ],
    "review_note": "Ground-truth marks this G1-original (an internal printf-engine scratch), not a named public struct; kept all 12 offsets.",
    "verified": true,
    "verify_errors": [],
-   "verify_warnings": []
+   "verify_warnings": [
+    "union@0x18: field width 1 < observed access 4"
+   ]
   },
   {
    "cid": "param_0423",
-   "struct_name": "dtoa_scratch",
+   "struct_name": "gdtoa_fpi",
    "kind": "param",
    "purpose": "Third parameter scratch state in dtoa (double-to-ASCII): three index words.",
    "is_library": false,
@@ -21555,17 +21583,17 @@
     {
      "offset": "0x4",
      "type": "int32_t",
-     "name": "field_0x4"
+     "name": "emin"
     },
     {
      "offset": "0x8",
      "type": "int32_t",
-     "name": "field_0x8"
+     "name": "emax"
     },
     {
      "offset": "0xc",
      "type": "int32_t",
-     "name": "field_0xc"
+     "name": "rounding"
     }
    ],
    "review_note": "libc dtoa internal scratch; treated as G1/newlib-vendored, no header to verify. Kept is_library=false (generic scratch).",
@@ -21772,8 +21800,8 @@
     },
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "int32_t",
+     "name": "input_remaining"
     }
    ],
    "review_note": "picolibc/newlib-internal but treated as G1-original scratch (3 APPLICATION members). is_union=true: 0x3 accessed 2-wide over 1-byte gap to 0x4. Offsets unchanged.",
@@ -21816,29 +21844,29 @@
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8",
+     "type": "int32_t",
+     "name": "width",
      "note": "idx4"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "match_count"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "total_chars"
     },
     {
      "offset": "0x14",
-     "type": "uint32_t",
-     "name": "field_0x14"
+     "type": "void *",
+     "name": "scanset"
     },
     {
      "offset": "0x18",
      "type": "uint32_t",
-     "name": "field_0x18"
+     "name": "conv_type"
     },
     {
      "offset": "0x180",
@@ -21886,42 +21914,42 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "base"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "width"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "nassigned"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "nchars_consumed"
     },
     {
      "offset": "0x14",
-     "type": "uint32_t",
-     "name": "field_0x14"
+     "type": "void *",
+     "name": "class_table"
     },
     {
      "offset": "0x18",
      "type": "uint32_t",
-     "name": "field_0x18"
+     "name": "conv_type"
     },
     {
      "offset": "0x17c",
-     "type": "uint32_t",
-     "name": "field_0x17c"
+     "type": "void *",
+     "name": "pushback_fn"
     },
     {
      "offset": "0x180",
-     "type": "uint32_t",
-     "name": "field_0x180"
+     "type": "void *",
+     "name": "refill_fn"
     }
    ],
    "review_note": "Kept naming; offsets unchanged. Likely a picolibc vfscanf state but not pinnable.",
@@ -21957,17 +21985,17 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "call_arg0"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "call_arg1"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "call_arg2"
     }
    ],
    "review_note": "G1-original; kept offsets.",
@@ -22305,24 +22333,24 @@
     },
     {
      "offset": "0x100",
-     "type": "uint32_t",
-     "name": "field_0x100"
+     "type": "void *",
+     "name": "source_p_ctx"
     },
     {
      "offset": "0x104",
      "type": "uint32_t",
-     "name": "field_0x104",
+     "name": "source_size",
      "note": "rw"
     },
     {
      "offset": "0x108",
      "type": "uint32_t",
-     "name": "field_0x108"
+     "name": "source_threshold"
     },
     {
      "offset": "0x10c",
      "type": "uint32_t",
-     "name": "field_0x10c"
+     "name": "source_strong"
     }
    ],
    "review_note": "mbedtls entropy.h not present under the pinned trees (CC3xx uses a vendored mbedtls); the 0xf8+ offsets depend on MBEDTLS config (accumulator size, MAX_SOURCES) so cannot be verified. Both members are LIBRARY-class, identification confident but verified=false.",
@@ -22503,7 +22531,7 @@
   },
   {
    "cid": "param_0446",
-   "struct_name": "aes_drv_ctx",
+   "struct_name": "mbedtls_aes_context",
    "kind": "param",
    "purpose": "AES driver/CryptoCell context shared by cc_mbedtls_aes_crypt_ecb, InitAes, ProcessAesDrv and FinishAesDrv (key schedule + state words).",
    "is_library": true,
@@ -22544,99 +22572,99 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "rk_offset"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "rk_word_0"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc",
+     "name": "rk_word_1",
      "note": "accessed 4-wide over gap (union with 0xf)"
     },
     {
      "offset": "0xf",
      "type": "uint8_t",
-     "name": "field_0xf"
+     "name": "rk_word_1_byte"
     },
     {
      "offset": "0x30",
      "type": "uint32_t",
-     "name": "field_0x30"
+     "name": "rk_word_10"
     },
     {
      "offset": "0x34",
      "type": "uint32_t",
-     "name": "field_0x34",
+     "name": "rk_word_11",
      "note": "rw"
     },
     {
      "offset": "0x38",
      "type": "uint32_t",
-     "name": "field_0x38"
+     "name": "rk_word_12"
     },
     {
      "offset": "0x40",
      "type": "uint32_t",
-     "name": "field_0x40"
+     "name": "rk_word_14"
     },
     {
      "offset": "0x44",
      "type": "uint32_t",
-     "name": "field_0x44"
+     "name": "rk_word_15"
     },
     {
      "offset": "0x48",
      "type": "uint32_t",
-     "name": "field_0x48"
+     "name": "rk_word_16"
     },
     {
      "offset": "0x4c",
      "type": "uint32_t",
-     "name": "field_0x4c"
+     "name": "rk_word_17"
     },
     {
      "offset": "0x50",
      "type": "uint32_t",
-     "name": "field_0x50"
+     "name": "rk_word_18"
     },
     {
      "offset": "0x58",
      "type": "uint32_t",
-     "name": "field_0x58"
+     "name": "rk_word_20"
     },
     {
      "offset": "0x5c",
      "type": "uint32_t",
-     "name": "field_0x5c"
+     "name": "rk_word_21"
     },
     {
      "offset": "0x60",
      "type": "uint32_t",
-     "name": "field_0x60"
+     "name": "rk_word_22"
     },
     {
      "offset": "0x64",
      "type": "uint32_t",
-     "name": "field_0x64"
+     "name": "rk_word_23"
     },
     {
      "offset": "0x68",
      "type": "uint32_t",
-     "name": "field_0x68"
+     "name": "rk_word_24"
     },
     {
      "offset": "0x6c",
      "type": "uint32_t",
-     "name": "field_0x6c"
+     "name": "rk_word_25"
     },
     {
      "offset": "0x70",
      "type": "uint32_t",
-     "name": "field_0x70"
+     "name": "rk_word_26"
     }
    ],
    "review_note": "All four members LIBRARY-class AES routines; mbedtls_aes_context plausible but the CryptoCell alt driver layout differs from stock mbedtls, so not verified. is_union=true: 0xc accessed 4-wide over 3-byte gap (0xf). Offsets unchanged.",
@@ -22886,17 +22914,17 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "valid_tag"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "rosc_length"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "startup_sample_cnt"
     },
     {
      "offset": "0x24",
@@ -23134,12 +23162,12 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "len_a"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "len_b"
     }
    ],
    "review_note": "",
@@ -23449,7 +23477,7 @@
   },
   {
    "cid": "param_0466",
-   "struct_name": "opt_record",
+   "struct_name": "opt_ndef_record",
    "kind": "param",
    "purpose": "Option record value-binding structure passed to opt_record_bind_value (param_2).",
    "is_library": false,
@@ -23474,20 +23502,20 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "int32_t",
-     "name": "field_0x4",
+     "type": "const void *",
+     "name": "type_ptr",
      "note": "r"
     },
     {
      "offset": "0x8",
-     "type": "int32_t",
-     "name": "field_0x8",
+     "type": "const void *",
+     "name": "id_ptr",
      "note": "r"
     },
     {
      "offset": "0xc",
-     "type": "int32_t",
-     "name": "field_0xc",
+     "type": "const void *",
+     "name": "payload_ptr",
      "note": "r"
     }
    ],
@@ -23844,7 +23872,7 @@
   },
   {
    "cid": "param_0492",
-   "struct_name": "out_pair",
+   "struct_name": "printf_out_ctx",
    "kind": "param",
    "purpose": "Small two-word output struct written by callee 'out'.",
    "is_library": false,
@@ -23870,12 +23898,12 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "capacity"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "count"
     }
    ],
    "review_note": "Single-cid.",
@@ -23977,13 +24005,13 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4",
+     "name": "flags",
      "note": "observed base does not align to sys_notify.method@0x0"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "int32_t",
+     "name": "result"
     }
    ],
    "review_note": "Header check MISMATCH: sys_notify is {union method@0x0; uint32_t flags@0x4} (8 bytes), but observed reads are at 0x4 and 0x8 with size>=0xc \u2014 shifted +4 from the header. Likely a containing struct (e.g. onoff_client) with sys_notify embedded at +0x4, or a base-offset artifact. library_verified=false. Offsets kept.",
@@ -24208,12 +24236,12 @@
     {
      "offset": "0x4",
      "type": "void *",
-     "name": "field_0x4"
+     "name": "handle"
     },
     {
      "offset": "0x10",
      "type": "int32_t",
-     "name": "field_0x10"
+     "name": "value"
     }
    ],
    "review_note": "G1-original; unnamed caller, kept generic naming.",
@@ -24269,12 +24297,12 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "bus_handle"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "lock"
     },
     {
      "offset": "0xb0",
@@ -24356,19 +24384,19 @@
     {
      "offset": "0x19c",
      "type": "uint32_t",
-     "name": "field_0x19c",
+     "name": "state",
      "note": "w"
     },
     {
      "offset": "0x1a0",
      "type": "uint32_t",
-     "name": "field_0x1a0",
+     "name": "endpoint_count",
      "note": "w"
     },
     {
      "offset": "0x1a4",
      "type": "uint32_t",
-     "name": "field_0x1a4",
+     "name": "is_initialized",
      "note": "w"
     }
    ],
@@ -24405,12 +24433,12 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "length"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "reserved"
     }
    ],
    "review_note": "Internal cbprintf helper state; not in a pinned public header, so library_verified=false.",
@@ -24446,12 +24474,12 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "desc"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "void*",
+     "name": "source"
     }
    ],
    "review_note": "Only two words observed; log_msg/mpsc_pbuf header uses bitfields, not verifiable from these two reads. library_verified=false. Offsets kept.",
@@ -24532,29 +24560,34 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "uint8_t",
+     "name": "status_id"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "uint8_t",
+     "name": "status_flags"
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc"
+     "type": "uint8_t",
+     "name": "status_flags_copy"
     },
     {
      "offset": "0x10",
-     "type": "uint32_t",
-     "name": "field_0x10"
+     "type": "uint8_t",
+     "name": "status_id_copy"
     }
    ],
    "review_note": "Separated from global_0840 collision group; last of the eight distinct objects that shared the 4-word footprint.",
    "verified": true,
    "verify_errors": [],
-   "verify_warnings": []
+   "verify_warnings": [
+    "union@0x4: field width 1 < observed access 4",
+    "union@0x8: field width 1 < observed access 4",
+    "union@0xc: field width 1 < observed access 4",
+    "union@0x10: field width 1 < observed access 4"
+   ]
   },
   {
    "cid": "param_0519",
@@ -24718,7 +24751,7 @@
     {
      "offset": "0x158",
      "type": "uint32_t",
-     "name": "field_0x158",
+     "name": "alloc_count",
      "note": "write-only"
     }
    ],
@@ -24754,13 +24787,13 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "void *",
+     "name": "context"
     },
     {
      "offset": "0x15c",
-     "type": "uint32_t",
-     "name": "field_0x15c"
+     "type": "void *",
+     "name": "callback"
     }
    ],
    "review_note": "Only 2 sparse offsets (0x4, 0x15c) on a ~0x160 object; too sparse to verify member mapping. Kept offsets.",
@@ -24968,19 +25001,19 @@
     {
      "offset": "0x8e8",
      "type": "uint8_t",
-     "name": "field_0x8e8",
+     "name": "app_attr_enabled",
      "note": "write-only flag"
     },
     {
      "offset": "0x8f0",
      "type": "uint16_t",
-     "name": "field_0x8f0",
+     "name": "app_attr_len",
      "note": "write-only count/length"
     },
     {
      "offset": "0x8f4",
-     "type": "int32_t",
-     "name": "field_0x8f4",
+     "type": "void *",
+     "name": "app_attr_data",
      "note": "write-only status"
     }
    ],
@@ -25483,42 +25516,42 @@
    "fields": [
     {
      "offset": "0x0",
-     "type": "uint16_t",
-     "name": "field_0x0",
+     "type": "uint8_t",
+     "name": "nh_op",
      "note": "also accessed as 4 bytes (union)"
     },
     {
      "offset": "0x2",
      "type": "uint16_t",
-     "name": "field_0x2"
+     "name": "nh_len"
     },
     {
      "offset": "0x4",
      "type": "uint16_t",
-     "name": "field_0x4",
+     "name": "nh_group",
      "note": "also accessed as 4 bytes (union)"
     },
     {
      "offset": "0x6",
      "type": "uint16_t",
-     "name": "field_0x6"
+     "name": "nh_seq_id"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "payload_word0"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "payload_word1"
     }
    ],
    "review_note": "mcumgr smp header; Ghidra shows width-4 accesses over 2-byte fields at 0x0 and 0x4 (byte-swapped u16 stores) => is_union=true. Offsets kept verbatim; not verified against header.",
    "verified": true,
    "verify_errors": [],
    "verify_warnings": [
-    "union@0x0: field width 2 < observed access 4",
+    "union@0x0: field width 1 < observed access 4",
     "union@0x4: field width 2 < observed access 4"
    ]
   },
@@ -25684,7 +25717,7 @@
     {
      "offset": "0x44",
      "type": "uint16_t",
-     "name": "field_0x44"
+     "name": "expected"
     }
    ],
    "review_note": "smp_transport id kept; reassembly field offset not verified against smp.h. Offsets unchanged.",
@@ -25901,8 +25934,8 @@
     },
     {
      "offset": "0xc0",
-     "type": "int32_t",
-     "name": "field_0xc0"
+     "type": "void *",
+     "name": "keys"
     }
    ],
    "review_note": "LIBRARY-class member (update_sec_level); bt_conn is a large host struct, only 3 offsets touched, not header-verified.",
@@ -26276,8 +26309,8 @@
     },
     {
      "offset": "0xc0",
-     "type": "uint32_t",
-     "name": "field_0xc0"
+     "type": "void *",
+     "name": "keys"
     }
    ],
    "review_note": "Same bt_conn type as param_0248 (kept separate as it is its own footprint group / different accessor). Confirmed by library accessor bt_conn_enc_key_size; 0xb and 0xc0 match param_0248's fields. Config-dependent layout means member offsets are not header-verifiable; library_verified=false.",
@@ -26313,18 +26346,18 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4",
+     "name": "interval_max",
      "note": "does not match u16 conn-param layout"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "latency"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "supervision_timeout"
     }
    ],
    "review_note": "Real bt_le_conn_param is 8 bytes of uint16 (interval_min@0x0, interval_max@0x2, latency@0x4, timeout@0x6). Observed word reads at 0x4/0x8/0xc extend past the struct and don't align, so verified=false \u2014 the param may be a wrapper/different object. Kept offsets.",
@@ -26411,24 +26444,24 @@
     },
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "void *",
+     "name": "ops"
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc"
+     "type": "void *",
+     "name": "notify_cb"
     },
     {
      "offset": "0x2d",
      "type": "uint8_t",
-     "name": "field_0x2d",
+     "name": "notify_flag",
      "note": "write"
     },
     {
      "offset": "0xb6",
      "type": "uint16_t",
-     "name": "field_0xb6",
+     "name": "notify_count",
      "note": "write"
     }
    ],
@@ -26439,7 +26472,7 @@
   },
   {
    "cid": "param_0597",
-   "struct_name": "bt_l2cap_chan_ctx",
+   "struct_name": "bt_l2cap_tx_meta",
    "kind": "param",
    "purpose": "L2CAP channel context passed to l2cap_chan_disconnected_cb (state u16 + ptr + word).",
    "is_library": true,
@@ -26465,17 +26498,17 @@
     {
      "offset": "0x4",
      "type": "uint16_t",
-     "name": "field_0x4"
+     "name": "cid"
     },
     {
      "offset": "0x8",
      "type": "void *",
-     "name": "field_0x8"
+     "name": "cb"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "user_data"
     }
    ],
    "review_note": "bt_l2cap_chan internal (host/l2cap_internal.h, version-specific); 0x4/0x8/0xc unverifiable. verified=false.",
@@ -26649,7 +26682,7 @@
     {
      "offset": "0x5",
      "type": "uint8_t",
-     "name": "field_0x5",
+     "name": "state_flags",
      "note": "w"
     },
     {
@@ -26781,8 +26814,8 @@
    "fields": [
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "void*",
+     "name": "conn"
     },
     {
      "offset": "0x1e",
@@ -26922,8 +26955,8 @@
    "fields": [
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc"
+     "type": "void *",
+     "name": "data"
     },
     {
      "offset": "0x10",
@@ -27005,7 +27038,7 @@
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "req_buf"
     },
     {
      "offset": "0x10",
@@ -27097,7 +27130,7 @@
     {
      "offset": "0xa",
      "type": "uint16_t",
-     "name": "field_0xa"
+     "name": "last_value"
     },
     {
      "offset": "0xc",
@@ -27228,12 +27261,12 @@
     {
      "offset": "0x8",
      "type": "uint16_t",
-     "name": "field_0x8"
+     "name": "handle"
     },
     {
      "offset": "0xe",
      "type": "uint16_t",
-     "name": "field_0xe"
+     "name": "uuid16"
     }
    ],
    "review_note": "Kept naming; offsets unchanged. Exact ATT find-info struct unresolved.",
@@ -27401,19 +27434,22 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "uint16_t",
+     "name": "start_handle"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "uint16_t",
+     "name": "end_handle"
     }
    ],
    "review_note": "Service-Changed state lives in host/gatt.c (private static); 0x4/0x8 unverifiable. verified=false.",
    "verified": true,
    "verify_errors": [],
-   "verify_warnings": []
+   "verify_warnings": [
+    "union@0x4: field width 2 < observed access 4",
+    "union@0x8: field width 2 < observed access 4"
+   ]
   },
   {
    "cid": "param_0635",
@@ -27597,7 +27633,7 @@
   },
   {
    "cid": "param_0640",
-   "struct_name": "param_0640_mechanical",
+   "struct_name": "smp_pairing_features",
    "kind": "param",
    "purpose": "Agent output missing for this cluster; mechanical Ghidra layout retained.",
    "is_library": false,
@@ -27622,21 +27658,23 @@
    "fields": [
     {
      "offset": "0x1",
-     "type": "uint16_t",
-     "name": "field_0x1",
+     "type": "uint8_t",
+     "name": "io_capability",
      "note": "mechanical (agent-dropped)"
     },
     {
      "offset": "0x6",
      "type": "uint8_t",
-     "name": "field_0x6",
+     "name": "resp_key_dist",
      "note": "mechanical (agent-dropped)"
     }
    ],
    "review_note": "MECHANICAL FALLBACK (no agent proposal)",
    "verified": true,
    "verify_errors": [],
-   "verify_warnings": []
+   "verify_warnings": [
+    "union@0x1: field width 1 < observed access 2"
+   ]
   },
   {
    "cid": "param_0641",
@@ -27666,13 +27704,13 @@
     {
      "offset": "0x1",
      "type": "uint32_t",
-     "name": "field_0x1",
+     "name": "addr_lo",
      "note": "unaligned read"
     },
     {
      "offset": "0x5",
      "type": "uint16_t",
-     "name": "field_0x5"
+     "name": "addr_hi"
     }
    ],
    "review_note": "Kept naming; offsets unchanged. Two fields at odd (unaligned) offsets 0x1/0x5, likely a packed pairing-data buffer; not header-verifiable.",
@@ -27725,7 +27763,7 @@
   },
   {
    "cid": "param_0643",
-   "struct_name": "smp_f6_input_buf",
+   "struct_name": "bt_addr_le_input",
    "kind": "param",
    "purpose": "Byte buffer carrying key/material fragments passed as param_6 to bt_crypto_f6 (SM crypto f6 confirm-value function).",
    "is_library": true,
@@ -27751,13 +27789,13 @@
     {
      "offset": "0x1",
      "type": "uint32_t",
-     "name": "field_0x1",
+     "name": "addr",
      "note": "unaligned buffer read"
     },
     {
      "offset": "0x5",
      "type": "uint16_t",
-     "name": "field_0x5"
+     "name": "addr_hi"
     }
    ],
    "review_note": "Raw byte buffer argument to bt_crypto_f6 (not a named struct); unaligned undefined4/undefined2 reads at 0x1/0x5 are just buffer accesses. library_verified=false.",
@@ -27896,7 +27934,7 @@
     {
      "offset": "0x1",
      "type": "uint16_t",
-     "name": "field_0x1",
+     "name": "len",
      "note": "anomalous unaligned read; header has len@0x4, not 0x1"
     }
    ],
@@ -27974,13 +28012,13 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4",
+     "name": "size",
      "note": "observed base +4 vs flash_pages_info.start_offset@0x0"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "index"
     }
    ],
    "review_note": "Header MISMATCH on base: flash_pages_info is {start_offset@0x0, size@0x4, index@0x8}, but observed writes are at 0x4 and 0x8 (with 0x0 unused) \u2014 shifted +4. Function name matches the Zephyr API so the type is likely right, but the observed access base does not align to the header; library_verified=false. Offsets kept.",
@@ -28292,7 +28330,7 @@
     {
      "offset": "0x6",
      "type": "uint16_t",
-     "name": "field_0x6"
+     "name": "flags"
     }
    ],
    "review_note": "G1-original. is_union=true: the 0x4 field is read as width 4 over a gap of 2 to the 0x6 field (overlapping access). Offsets kept as ground truth.",
@@ -28304,7 +28342,7 @@
   },
   {
    "cid": "param_0673",
-   "struct_name": "flash_layout_region",
+   "struct_name": "flash_region_map",
    "kind": "param",
    "purpose": "Flash layout/region descriptor scanned by flash_page_index_lookup and layout_select_region.",
    "is_library": false,
@@ -28335,39 +28373,39 @@
     {
      "offset": "0x2",
      "type": "uint16_t",
-     "name": "field_0x2"
+     "name": "region0_base_hi"
     },
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4",
+     "name": "region0_page_size",
      "note": "union: overlaps ushort at 0x5"
     },
     {
      "offset": "0x5",
      "type": "uint16_t",
-     "name": "field_0x5",
+     "name": "region0_page_size_alt",
      "note": "overlaps 0x4"
     },
     {
      "offset": "0xa",
      "type": "uint16_t",
-     "name": "field_0xa"
+     "name": "region0_end_page"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "region1_base"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "region1_page_size"
     },
     {
      "offset": "0x16",
      "type": "uint16_t",
-     "name": "field_0x16"
+     "name": "region1_end_page"
     }
    ],
    "review_note": "G1-original. 0x4 is accessed both 4-byte-wide and as an overlapping ushort at 0x5 -> union. Kept all observed offsets.",
@@ -28409,8 +28447,8 @@
     },
     {
      "offset": "0x10",
-     "type": "uint32_t",
-     "name": "field_0x10"
+     "type": "void *",
+     "name": "device"
     }
    ],
    "review_note": "",
@@ -28527,13 +28565,13 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "void *",
-     "name": "field_0x4"
+     "type": "unsigned int *",
+     "name": "value"
     },
     {
      "offset": "0x10",
-     "type": "void *",
-     "name": "field_0x10"
+     "type": "unsigned char *",
+     "name": "completion"
     }
    ],
    "review_note": "Single-cid G1 work ctx. Offsets kept.",
@@ -29114,7 +29152,7 @@
     {
      "offset": "0xa",
      "type": "uint16_t",
-     "name": "field_0xa"
+     "name": "vq_flags"
     },
     {
      "offset": "0xc",
@@ -29227,13 +29265,13 @@
     },
     {
      "offset": "0x18",
-     "type": "int32_t",
-     "name": "field_0x18"
+     "type": "void *",
+     "name": "vring_desc"
     },
     {
      "offset": "0x1c",
-     "type": "int32_t",
-     "name": "field_0x1c"
+     "type": "void *",
+     "name": "vring_avail"
     },
     {
      "offset": "0x24",
@@ -29253,7 +29291,7 @@
     {
      "offset": "0x2c",
      "type": "uint16_t",
-     "name": "field_0x2c"
+     "name": "avail_idx"
     }
    ],
    "review_note": "struct virtqueue (OpenAMP) id kept; member offsets not verified against openamp headers. Offsets unchanged.",
@@ -29417,27 +29455,27 @@
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "complete_cb"
     },
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14"
+     "name": "slot_index"
     },
     {
      "offset": "0x1c",
-     "type": "uint32_t",
-     "name": "field_0x1c"
+     "type": "void *",
+     "name": "ring_ptr"
     },
     {
      "offset": "0x20",
-     "type": "uint32_t",
-     "name": "field_0x20"
+     "type": "void *",
+     "name": "entries_ptr"
     },
     {
      "offset": "0x26",
      "type": "uint16_t",
-     "name": "field_0x26",
+     "name": "pending_flags",
      "note": "read/write"
     }
    ],
@@ -29596,13 +29634,13 @@
    "fields": [
     {
      "offset": "0xa4",
-     "type": "uint32_t",
-     "name": "field_0xa4"
+     "type": "void *",
+     "name": "rvq"
     },
     {
      "offset": "0xa8",
-     "type": "uint32_t",
-     "name": "field_0xa8"
+     "type": "void *",
+     "name": "svq"
     }
    ],
    "review_note": "Same OpenAMP type family as param_0397 but a different, non-overlapping partial view (0xa4/0xa8 vs 0x94-0xb4) and a different function; kept SEPARATE since neither can be offset-verified to confirm identity.",
@@ -29643,7 +29681,7 @@
     {
      "offset": "0x10",
      "type": "uint8_t",
-     "name": "field_0x10"
+     "name": "type"
     }
    ],
    "review_note": "CBOR decoder state plausible; not matched to a specific pinned header, so library_verified=false.",
@@ -29816,12 +29854,12 @@
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "region_end"
     },
     {
      "offset": "0x14",
-     "type": "uint32_t",
-     "name": "field_0x14"
+     "type": "void *",
+     "name": "free_tail"
     }
    ],
    "review_note": "G1-original; offsets unchanged.",
@@ -30143,7 +30181,7 @@
     {
      "offset": "0xc",
      "type": "uint8_t",
-     "name": "field_0xc",
+     "name": "flags",
      "library_member": "max_msgs",
      "note": "byte access into uint32 max_msgs; inconsistent"
     },
@@ -30560,7 +30598,7 @@
   },
   {
    "cid": "param_0741",
-   "struct_name": "itoa_ctx",
+   "struct_name": "itoa_exp_buf",
    "kind": "param",
    "purpose": "itoa-with-signed-exponent formatting context/buffer used by itoa_signed_exponent (param_1).",
    "is_library": false,
@@ -30585,27 +30623,31 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4",
+     "type": "uint8_t",
+     "name": "out_byte_4",
      "note": "idx4"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8",
+     "type": "uint8_t",
+     "name": "out_byte_8",
      "note": "idx4"
     },
     {
      "offset": "0xc",
-     "type": "uint32_t",
-     "name": "field_0xc",
+     "type": "uint8_t",
+     "name": "out_byte_c",
      "note": "idx4"
     }
    ],
    "review_note": "G1-original formatting helper; three idx4 words.",
    "verified": true,
    "verify_errors": [],
-   "verify_warnings": []
+   "verify_warnings": [
+    "union@0x4: field width 1 < observed access 4",
+    "union@0x8: field width 1 < observed access 4",
+    "union@0xc: field width 1 < observed access 4"
+   ]
   },
   {
    "cid": "param_0742",
@@ -30772,8 +30814,8 @@
     },
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "int32_t",
+     "name": "read_count"
     },
     {
      "offset": "0x10",
@@ -30782,18 +30824,18 @@
     },
     {
      "offset": "0x34",
-     "type": "uint32_t",
-     "name": "field_0x34"
+     "type": "void*",
+     "name": "ungetc_base"
     },
     {
      "offset": "0x3c",
-     "type": "uint32_t",
-     "name": "field_0x3c"
+     "type": "void*",
+     "name": "saved_read_ptr"
     },
     {
      "offset": "0x40",
-     "type": "uint32_t",
-     "name": "field_0x40"
+     "type": "int32_t",
+     "name": "saved_read_count"
     }
    ],
    "review_note": "picolibc FILE; 0x3 is a 2-byte flags access overlapping the prior byte region (union/bitfield). Offsets not verified against the picolibc header. is_union for the 0x3 overlap.",
@@ -30847,12 +30889,12 @@
     {
      "offset": "0x45",
      "type": "uint8_t",
-     "name": "field_0x45"
+     "name": "inline_buf_b1"
     },
     {
      "offset": "0x46",
      "type": "uint8_t",
-     "name": "field_0x46"
+     "name": "inline_buf_b2"
     }
    ],
    "review_note": "0x44 accessed width 4 into gap 1 (overlaps 0x45/0x46) => is_union=true. Kept offsets verbatim.",
@@ -30890,22 +30932,22 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0"
+     "name": "is_max_pt0"
     },
     {
      "offset": "0x1",
      "type": "uint8_t",
-     "name": "field_0x1"
+     "name": "is_max_pt1"
     },
     {
      "offset": "0x2",
      "type": "uint8_t",
-     "name": "field_0x2"
+     "name": "is_max_pt2"
     },
     {
      "offset": "0x4",
      "type": "uint8_t",
-     "name": "field_0x4"
+     "name": "flag_pt3"
     }
    ],
    "review_note": "Single-cid stack local.",
@@ -30940,13 +30982,13 @@
    "fields": [
     {
      "offset": "0x0",
-     "type": "uint32_t",
-     "name": "field_0x0"
+     "type": "float",
+     "name": "interp_out_0"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "float",
+     "name": "interp_out_1"
     }
    ],
    "review_note": "G1-original function-local scratch (local_254); not a named library type.",
@@ -31592,8 +31634,8 @@
    "fields": [
     {
      "offset": "0x0",
-     "type": "uint32_t",
-     "name": "field_0x0"
+     "type": "float",
+     "name": "temperature"
     },
     {
      "offset": "0x8",
@@ -31650,7 +31692,7 @@
   },
   {
    "cid": "stack_0785",
-   "struct_name": "cbvprintf_scratch",
+   "struct_name": "cbprintf_conv_buf",
    "kind": "stack",
    "purpose": "Stack local (local_44) in z_cbvprintf_impl: internal scratch while walking a cbprintf package/varargs stream.",
    "is_library": true,
@@ -31675,23 +31717,23 @@
    "fields": [
     {
      "offset": "0x0",
-     "type": "uint8_t",
-     "name": "field_0x0"
+     "type": "char",
+     "name": "conv_buf0"
     },
     {
      "offset": "0x1",
-     "type": "uint8_t",
-     "name": "field_0x1"
+     "type": "char",
+     "name": "conv_buf1"
     },
     {
      "offset": "0x2",
-     "type": "uint8_t",
-     "name": "field_0x2"
+     "type": "char",
+     "name": "conv_buf2"
     },
     {
      "offset": "0x19",
-     "type": "uint8_t",
-     "name": "field_0x19"
+     "type": "char",
+     "name": "conv_buf_end"
     }
    ],
    "review_note": "Compiler-generated stack frame of a Zephyr fn; not a named public struct, unverified.",
@@ -31726,13 +31768,13 @@
    "fields": [
     {
      "offset": "0x0",
-     "type": "uint32_t",
-     "name": "field_0x0"
+     "type": "void *",
+     "name": "rsp_buf"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "scratch_word"
     }
    ],
    "review_note": "Function-local scratch (local_30); the aggregate itself is not a stock struct, so is_library=false.",
@@ -31767,13 +31809,13 @@
    "fields": [
     {
      "offset": "0x0",
-     "type": "uint32_t",
-     "name": "field_0x0"
+     "type": "int32_t",
+     "name": "bin_exp"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "int32_t",
+     "name": "bit_count"
     }
    ],
    "review_note": "Anonymous local frame of newlib dtoa_r; not a named library struct, so is_library=false. Offsets kept.",
@@ -31934,17 +31976,17 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0"
+     "name": "command"
     },
     {
      "offset": "0x1",
      "type": "uint8_t",
-     "name": "field_0x1"
+     "name": "sub_id"
     },
     {
      "offset": "0x6",
      "type": "uint8_t",
-     "name": "field_0x6"
+     "name": "flag"
     }
    ],
    "review_note": "Local scratch; kept offsets.",
@@ -32160,12 +32202,12 @@
     {
      "offset": "0x0",
      "type": "int32_t",
-     "name": "field_0x0"
+     "name": "setting_id"
     },
     {
      "offset": "0x8",
      "type": "int32_t",
-     "name": "field_0x8"
+     "name": "setting_value"
     }
    ],
    "review_note": "G1-original function-local scratch (local_9c).",
@@ -32201,12 +32243,12 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0"
+     "name": "key"
     },
     {
      "offset": "0x10",
      "type": "uint8_t",
-     "name": "field_0x10"
+     "name": "value"
     }
    ],
    "review_note": "Single-cid stack local. Offsets kept.",
@@ -32479,7 +32521,7 @@
   },
   {
    "cid": "stack_0897",
-   "struct_name": "ndef_record_scratch",
+   "struct_name": "ndef_encoded_record_buf",
    "kind": "stack",
    "purpose": "Stack scratch buffer in st25dv_build_and_write_ndef_records used to assemble NFC NDEF record fields before writing to the ST25DV tag.",
    "is_library": false,
@@ -32505,42 +32547,42 @@
     {
      "offset": "0x0",
      "type": "uint32_t",
-     "name": "field_0x0"
+     "name": "rec0_header"
     },
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "rec0_word1"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "rec0_word2"
     },
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "rec0_word3"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "rec0_word4"
     },
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14"
+     "name": "rec0_word5"
     },
     {
      "offset": "0x18",
      "type": "uint32_t",
-     "name": "field_0x18"
+     "name": "rec0_word6"
     },
     {
      "offset": "0x54",
      "type": "uint32_t",
-     "name": "field_0x54"
+     "name": "rec3_word0"
     }
    ],
    "review_note": "G1-original local; contiguous idx4 words -> array-like.",
@@ -32617,12 +32659,12 @@
     {
      "offset": "0x0",
      "type": "uint32_t",
-     "name": "field_0x0"
+     "name": "next_screen_ctx"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "callee_out"
     }
    ],
    "review_note": "Single-cid stack local.",
@@ -32781,12 +32823,12 @@
     {
      "offset": "0x0",
      "type": "uint16_t",
-     "name": "field_0x0"
+     "name": "status_code"
     },
     {
      "offset": "0x4",
      "type": "uint16_t",
-     "name": "field_0x4"
+     "name": "audio_cmd"
     }
    ],
    "review_note": "Stack local; two idx2 halfwords.",
@@ -33195,7 +33237,7 @@
   },
   {
    "cid": "stack_1001",
-   "struct_name": "dashboard_reflash_locals",
+   "struct_name": "dashboard_render_scratch",
    "kind": "stack",
    "purpose": "Stack-local state used while rebuilding the dashboard display buffer in DashBoard_Reflash: three leading index words and one trailing word.",
    "is_library": false,
@@ -33221,22 +33263,22 @@
     {
      "offset": "0x0",
      "type": "uint32_t",
-     "name": "field_0x0"
+     "name": "str_buf"
     },
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "str_buf_w1"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "str_buf_w2"
     },
     {
      "offset": "0x58",
      "type": "uint32_t",
-     "name": "field_0x58"
+     "name": "str_buf_tail"
     }
    ],
    "review_note": "Single-cid stack local. Offsets kept.",
@@ -33272,12 +33314,12 @@
     {
      "offset": "0x0",
      "type": "uint32_t",
-     "name": "field_0x0"
+     "name": "depth"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "height"
     }
    ],
    "review_note": "Function-local; offsets unchanged.",
@@ -33313,13 +33355,13 @@
     {
      "offset": "0x0",
      "type": "uint32_t",
-     "name": "field_0x0",
+     "name": "packed_pixels",
      "note": "idx4"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8",
+     "name": "reserved",
      "note": "idx4"
     }
    ],
@@ -33594,17 +33636,17 @@
     {
      "offset": "0x0",
      "type": "uint32_t",
-     "name": "field_0x0"
+     "name": "glyph_width"
     },
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "glyph_height"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "void *",
+     "name": "glyph_data_ptr"
     }
    ],
    "review_note": "G1-original local.",
@@ -33681,12 +33723,12 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0"
+     "name": "xfer_status"
     },
     {
      "offset": "0x4",
      "type": "uint8_t",
-     "name": "field_0x4"
+     "name": "packed_col_addr"
     }
    ],
    "review_note": "Single-cid stack local.",
@@ -33737,7 +33779,7 @@
   },
   {
    "cid": "stack_1042",
-   "struct_name": "proxy_thread_locals",
+   "struct_name": "proxy_msg_hdr",
    "kind": "stack",
    "purpose": "Stack-local struct in proxy_thread_handler holding two state/flag bytes.",
    "is_library": false,
@@ -33763,12 +33805,12 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0"
+     "name": "opcode"
     },
     {
      "offset": "0x2",
-     "type": "uint8_t",
-     "name": "field_0x2"
+     "type": "uint16_t",
+     "name": "payload_length"
     }
    ],
    "review_note": "Single-cid stack local. Offsets kept.",
@@ -33804,12 +33846,12 @@
     {
      "offset": "0xe",
      "type": "uint8_t",
-     "name": "field_0xe"
+     "name": "flag0"
     },
     {
      "offset": "0xf",
      "type": "uint8_t",
-     "name": "field_0xf"
+     "name": "flag1"
     }
    ],
    "review_note": "Function-local; offsets unchanged.",
@@ -34108,23 +34150,23 @@
     {
      "offset": "0x19",
      "type": "uint8_t",
-     "name": "field_0x19",
+     "name": "status",
      "note": "w"
     },
     {
      "offset": "0x3c",
      "type": "int32_t",
-     "name": "field_0x3c"
+     "name": "in_word0"
     },
     {
      "offset": "0x68",
      "type": "int32_t",
-     "name": "field_0x68"
+     "name": "pair_lo"
     },
     {
      "offset": "0x6c",
      "type": "int32_t",
-     "name": "field_0x6c"
+     "name": "pair_hi"
     }
    ],
    "review_note": "",
@@ -34160,12 +34202,12 @@
     {
      "offset": "0x0",
      "type": "uint32_t",
-     "name": "field_0x0"
+     "name": "package_len"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "data_len"
     }
    ],
    "review_note": "Corrected sonnet is_library flagging (it left false); a local frame, not a public struct.",
@@ -34357,7 +34399,7 @@
   },
   {
    "cid": "stack_1080",
-   "struct_name": "ancs_handle_pair",
+   "struct_name": "bt_uuid_16_sel",
    "kind": "stack",
    "purpose": "Stack-local byte pair used while assigning ANCS GATT discovery-manager handles (ancs_gatt_dm_assign_handles local_a0).",
    "is_library": false,
@@ -34383,13 +34425,13 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0",
+     "name": "uuid_type",
      "note": "idx1"
     },
     {
      "offset": "0x2",
-     "type": "uint8_t",
-     "name": "field_0x2",
+     "type": "uint16_t",
+     "name": "uuid_val",
      "note": "idx1"
     }
    ],
@@ -34497,7 +34539,7 @@
   },
   {
    "cid": "stack_1112",
-   "struct_name": "arm_mpu_configure_locals",
+   "struct_name": "mpu_diagnostic_record",
    "kind": "stack",
    "purpose": "Stack-local MPU region-config temporaries (local_38) in arm_core_mpu_configure.",
    "is_library": false,
@@ -34523,12 +34565,12 @@
     {
      "offset": "0x0",
      "type": "uint32_t",
-     "name": "field_0x0"
+     "name": "severity"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "value"
     }
    ],
    "review_note": "Local scratch; kept offsets.",
@@ -34605,18 +34647,20 @@
     {
      "offset": "0x0",
      "type": "uint32_t",
-     "name": "field_0x0"
+     "name": "image_magic"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "uint16_t",
+     "name": "hdr_size"
     }
    ],
    "review_note": "G1-original local frame.",
    "verified": true,
    "verify_errors": [],
-   "verify_warnings": []
+   "verify_warnings": [
+    "union@0x8: field width 2 < observed access 4"
+   ]
   },
   {
    "cid": "stack_1126",
@@ -34737,13 +34781,13 @@
    "fields": [
     {
      "offset": "0x0",
-     "type": "uint32_t",
-     "name": "field_0x0"
+     "type": "void *",
+     "name": "flash_area_ptr"
     },
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14"
+     "name": "log_arg_scratch"
     }
    ],
    "review_note": "Single-cid stack local.",
@@ -34898,13 +34942,13 @@
     {
      "offset": "0x0",
      "type": "uint32_t",
-     "name": "field_0x0",
+     "name": "rsp",
      "note": "idx4"
     },
     {
      "offset": "0x14",
      "type": "uint32_t",
-     "name": "field_0x14",
+     "name": "log_pkg_word",
      "note": "idx4"
     }
    ],
@@ -34956,7 +35000,7 @@
   },
   {
    "cid": "stack_1191",
-   "struct_name": "l2cap_connected_locals",
+   "struct_name": "bt_l2cap_le_chan",
    "kind": "stack",
    "purpose": "Stack-local L2CAP LE channel setup values (local_14) in bt_l2cap_connected (channel pointer, MTU word, two 16-bit fields).",
    "is_library": false,
@@ -34993,13 +35037,13 @@
     {
      "offset": "0x14",
      "type": "uint16_t",
-     "name": "field_0x14",
+     "name": "rx_cid",
      "note": "write"
     },
     {
      "offset": "0x24",
      "type": "uint16_t",
-     "name": "field_0x24",
+     "name": "tx_cid",
      "note": "write"
     }
    ],
@@ -35143,19 +35187,19 @@
     {
      "offset": "0x1e",
      "type": "uint16_t",
-     "name": "field_0x1e",
+     "name": "rx_mtu",
      "note": "w"
     },
     {
      "offset": "0x2e",
      "type": "uint16_t",
-     "name": "field_0x2e",
+     "name": "tx_mtu",
      "note": "w"
     },
     {
      "offset": "0x120",
      "type": "uint32_t",
-     "name": "field_0x120"
+     "name": "req"
     }
    ],
    "review_note": "Function-local stack frame, not a nameable stock struct; is_library corrected to false.",
@@ -35190,33 +35234,33 @@
    "fields": [
     {
      "offset": "0x4",
-     "type": "uint32_t",
-     "name": "field_0x4"
+     "type": "void *",
+     "name": "reqs_head"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "void *",
+     "name": "reqs_tail"
     },
     {
      "offset": "0x28",
-     "type": "uint32_t",
-     "name": "field_0x28"
+     "type": "void *",
+     "name": "pending_head"
     },
     {
      "offset": "0x2c",
-     "type": "uint32_t",
-     "name": "field_0x2c"
+     "type": "void *",
+     "name": "pending_tail"
     },
     {
      "offset": "0x30",
-     "type": "uint32_t",
-     "name": "field_0x30"
+     "type": "void *",
+     "name": "chans_head"
     },
     {
      "offset": "0x34",
-     "type": "uint32_t",
-     "name": "field_0x34"
+     "type": "void *",
+     "name": "chans_tail"
     }
    ],
    "review_note": "Stack frame consistent with an on-stack ATT channel init; layout config-dependent, unverified.",
@@ -35252,12 +35296,12 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0"
+     "name": "opcode"
     },
     {
      "offset": "0x2",
      "type": "uint8_t",
-     "name": "field_0x2"
+     "name": "start_handle_msb"
     }
    ],
    "review_note": "Function-local PDU scratch (local_44); not a distinct library struct, so is_library=false.",
@@ -35293,12 +35337,12 @@
     {
      "offset": "0x0",
      "type": "uint32_t",
-     "name": "field_0x0"
+     "name": "index_a"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "index_b"
     }
    ],
    "review_note": "Single-cid stack local in an unnamed function. Offsets kept.",
@@ -35375,13 +35419,13 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0",
+     "name": "attr_type",
      "note": "idx1"
     },
     {
      "offset": "0x2",
      "type": "uint8_t",
-     "name": "field_0x2",
+     "name": "attr_uuid_val",
      "note": "idx1"
     }
    ],
@@ -35433,7 +35477,7 @@
   },
   {
    "cid": "stack_1224",
-   "struct_name": "bt_gatt_indicate_locals",
+   "struct_name": "bt_uuid_16_scratch",
    "kind": "stack",
    "purpose": "Stack-local flag bytes (local_28) in bt_gatt_indicate.",
    "is_library": false,
@@ -35459,12 +35503,12 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0"
+     "name": "uuid_type"
     },
     {
      "offset": "0x2",
-     "type": "uint8_t",
-     "name": "field_0x2"
+     "type": "uint16_t",
+     "name": "uuid_val"
     }
    ],
    "review_note": "Local scratch, not a stock struct (corrected sonnet is_library=true). Kept offsets.",
@@ -35556,7 +35600,7 @@
   },
   {
    "cid": "stack_1229",
-   "struct_name": "gatt_discover_locals",
+   "struct_name": "bt_uuid_16",
    "kind": "stack",
    "purpose": "Local scratch in bt_gatt_discover holding two byte fields (state/type).",
    "is_library": false,
@@ -35582,12 +35626,12 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0"
+     "name": "uuid_type"
     },
     {
      "offset": "0x2",
-     "type": "uint8_t",
-     "name": "field_0x2"
+     "type": "uint16_t",
+     "name": "uuid_val"
     }
    ],
    "review_note": "Function-local frame, not a stock struct; is_library corrected to false.",
@@ -35597,7 +35641,7 @@
   },
   {
    "cid": "stack_1230",
-   "struct_name": "bt_gatt_discover_tmp",
+   "struct_name": "bt_uuid_16",
    "kind": "stack",
    "purpose": "Stack local (local_20) in bt_gatt_discover: small parameter/state bytes for the discovery request.",
    "is_library": true,
@@ -35623,12 +35667,12 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0"
+     "name": "uuid_type"
     },
     {
      "offset": "0x2",
-     "type": "uint8_t",
-     "name": "field_0x2"
+     "type": "uint16_t",
+     "name": "uuid_val"
     }
    ],
    "review_note": "Compiler stack frame; not a public struct, unverified.",
@@ -35704,13 +35748,13 @@
    "fields": [
     {
      "offset": "0x0",
-     "type": "uint8_t",
-     "name": "field_0x0"
+     "type": "uint16_t",
+     "name": "start_handle"
     },
     {
      "offset": "0x2",
-     "type": "uint8_t",
-     "name": "field_0x2"
+     "type": "uint16_t",
+     "name": "end_handle"
     }
    ],
    "review_note": "Anonymous local frame in a GATT parser; not a named library struct \u2192 is_library=false. Offsets kept.",
@@ -35845,7 +35889,7 @@
   },
   {
    "cid": "stack_1237",
-   "struct_name": "gatt_rbt_rsp_cursor",
+   "struct_name": "gatt_uuid16_cursor",
    "kind": "stack",
    "purpose": "Stack-local parse cursor (local_4c) in gatt_parse_read_by_type_rsp_128 (type-length byte + following byte).",
    "is_library": false,
@@ -35871,12 +35915,12 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0"
+     "name": "uuid_type"
     },
     {
      "offset": "0x2",
-     "type": "uint8_t",
-     "name": "field_0x2"
+     "type": "uint16_t",
+     "name": "uuid_val"
     }
    ],
    "review_note": "Local scratch, not a stock struct (corrected sonnet is_library=true). Kept offsets.",
@@ -35912,12 +35956,12 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0"
+     "name": "uuid_type"
     },
     {
      "offset": "0x2",
-     "type": "uint8_t",
-     "name": "field_0x2"
+     "type": "uint16_t",
+     "name": "uuid_val"
     }
    ],
    "review_note": "Local parse scratch inside a host GATT function; not a header struct, library_verified=false.",
@@ -35995,12 +36039,12 @@
     {
      "offset": "0x0",
      "type": "uint32_t",
-     "name": "field_0x0"
+     "name": "check_val"
     },
     {
      "offset": "0x20",
      "type": "uint32_t",
-     "name": "field_0x20"
+     "name": "scratch_tail"
     }
    ],
    "review_note": "Stack buffer local, not a stock struct; is_library corrected to false.",
@@ -36041,7 +36085,7 @@
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "key_dist"
     }
    ],
    "review_note": "On-stack SMP PDU fragment; too sparse to verify against bt_smp_pairing.",
@@ -36078,13 +36122,13 @@
    "fields": [
     {
      "offset": "0x0",
-     "type": "uint32_t",
-     "name": "field_0x0"
+     "type": "void *",
+     "name": "buffer_ptr"
     },
     {
      "offset": "0x10",
      "type": "uint32_t",
-     "name": "field_0x10"
+     "name": "status"
     }
    ],
    "review_note": "G1-original function-local scratch (local_30).",
@@ -36120,7 +36164,7 @@
     {
      "offset": "0x0",
      "type": "uint16_t",
-     "name": "field_0x0"
+     "name": "lookup_value"
     },
     {
      "offset": "0x6",
@@ -36161,12 +36205,12 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0"
+     "name": "event_type"
     },
     {
      "offset": "0x4",
      "type": "uint8_t",
-     "name": "field_0x4"
+     "name": "status_flags"
     }
    ],
    "review_note": "Function-local; offsets unchanged.",
@@ -36296,7 +36340,7 @@
     {
      "offset": "0xc",
      "type": "uint32_t",
-     "name": "field_0xc"
+     "name": "aux_word"
     }
    ],
    "review_note": "Local scratch; kept offsets.",
@@ -36332,12 +36376,12 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0"
+     "name": "event"
     },
     {
      "offset": "0x4",
      "type": "uint8_t",
-     "name": "field_0x4"
+     "name": "status"
     }
    ],
    "review_note": "Function-local scratch, not a named struct; corrected sonnet is_library=True to False.",
@@ -36586,13 +36630,13 @@
    "fields": [
     {
      "offset": "0x0",
-     "type": "uint32_t",
-     "name": "field_0x0"
+     "type": "float",
+     "name": "correlation"
     },
     {
      "offset": "0x18c",
-     "type": "uint32_t",
-     "name": "field_0x18c"
+     "type": "float",
+     "name": "corr_max"
     }
    ],
    "review_note": "Working buffer within a liblc3 routine; array-like, unverified.",
@@ -37242,13 +37286,13 @@
    "fields": [
     {
      "offset": "0x0",
-     "type": "uint32_t",
-     "name": "field_0x0"
+     "type": "uint8_t *",
+     "name": "cursor"
     },
     {
      "offset": "0x8",
-     "type": "uint32_t",
-     "name": "field_0x8"
+     "type": "int32_t",
+     "name": "remaining"
     }
    ],
    "review_note": "Ground-truth marks G1-original; function-local frame, is_library=false.",
@@ -37325,18 +37369,18 @@
     {
      "offset": "0xc",
      "type": "int32_t",
-     "name": "field_0xc",
+     "name": "exp_accum",
      "note": "rw accumulator"
     },
     {
      "offset": "0x10",
      "type": "int32_t",
-     "name": "field_0x10"
+     "name": "digit_count"
     },
     {
      "offset": "0x14",
      "type": "int32_t",
-     "name": "field_0x14"
+     "name": "scale_exp"
     }
    ],
    "review_note": "Compiler-generated locals of libc strtod; not a public struct, unverified.",
@@ -37413,12 +37457,12 @@
     {
      "offset": "0x4",
      "type": "uint32_t",
-     "name": "field_0x4"
+     "name": "mantissa"
     },
     {
      "offset": "0x8",
      "type": "uint32_t",
-     "name": "field_0x8"
+     "name": "exponent"
     }
    ],
    "review_note": "Anonymous newlib strtod local frame, not a named struct \u2192 is_library=false. Offsets kept.",
@@ -37714,12 +37758,12 @@
     {
      "offset": "0x0",
      "type": "uint16_t",
-     "name": "field_0x0"
+     "name": "idx_start"
     },
     {
      "offset": "0x8",
      "type": "uint16_t",
-     "name": "field_0x8"
+     "name": "idx_end"
     }
    ],
    "review_note": "",
@@ -37837,7 +37881,7 @@
     {
      "offset": "0x0",
      "type": "uint16_t",
-     "name": "field_0x0"
+     "name": "ccc_value"
     },
     {
      "offset": "0x6",
@@ -37925,7 +37969,7 @@
     {
      "offset": "0x6",
      "type": "uint16_t",
-     "name": "field_0x6",
+     "name": "reserved",
      "note": "idx2"
     }
    ],
@@ -37977,7 +38021,7 @@
   },
   {
    "cid": "stack_1536",
-   "struct_name": "unk_stack_1536",
+   "struct_name": "bt_uuid_16_scratch",
    "kind": "stack",
    "purpose": "Stack-local byte-pair scratch (local_48) in unnamed FUN_00082d6a.",
    "is_library": false,
@@ -38003,12 +38047,12 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0"
+     "name": "uuid_type"
     },
     {
      "offset": "0x2",
-     "type": "uint8_t",
-     "name": "field_0x2"
+     "type": "uint16_t",
+     "name": "uuid_val"
     }
    ],
    "review_note": "Unidentified local scratch; kept offsets.",
@@ -38172,13 +38216,13 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0",
+     "name": "reg_selector",
      "note": "min/index"
     },
     {
      "offset": "0x6",
      "type": "uint8_t",
-     "name": "field_0x6",
+     "name": "max_selector",
      "note": "max/index"
     }
    ],
@@ -38271,7 +38315,7 @@
   },
   {
    "cid": "stack_1557",
-   "struct_name": "event_tag4_clear_tmp",
+   "struct_name": "event_tag4_notify",
    "kind": "stack",
    "purpose": "Stack-local tag/flag pair (local_24) inside post_event_tag4_and_clear.",
    "is_library": false,
@@ -38297,12 +38341,12 @@
     {
      "offset": "0x0",
      "type": "uint8_t",
-     "name": "field_0x0"
+     "name": "tag"
     },
     {
      "offset": "0x4",
-     "type": "uint8_t",
-     "name": "field_0x4"
+     "type": "int32_t",
+     "name": "event_value"
     }
    ],
    "review_note": "Function-local; offsets unchanged.",

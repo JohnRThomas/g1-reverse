@@ -3,41 +3,6 @@
  "fail": 0,
  "results": [
   {
-   "cid": "param_0033",
-   "struct_name": "bt_addr_fmt_arg",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0183",
-   "struct_name": "bt_addr_le_str_arg",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0184",
-   "struct_name": "bt_settings_encode_key_arg",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0519",
-   "struct_name": "flash_sector_enum_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0730",
-   "struct_name": "k_queue",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
    "cid": "global_0793",
    "struct_name": "dtoa_r_scratch",
    "pass": true,
@@ -45,521 +10,57 @@
    "warnings": []
   },
   {
-   "cid": "global_1000",
-   "struct_name": "dashboard_reflash_state",
+   "cid": "global_0809",
+   "struct_name": "gpio_pin_get_checked_ctx",
    "pass": true,
    "errors": [],
    "warnings": []
   },
   {
-   "cid": "global_1117",
-   "struct_name": "img_mgmt_upload_state",
+   "cid": "global_0832",
+   "struct_name": "ancs_enqueue_state",
    "pass": true,
    "errors": [],
    "warnings": []
   },
   {
-   "cid": "global_1293",
-   "struct_name": "cJSON_internal_hooks",
+   "cid": "global_0836",
+   "struct_name": "uid_enqueue_state",
    "pass": true,
    "errors": [],
    "warnings": []
   },
   {
-   "cid": "global_1344",
-   "struct_name": "nrfx_qspi_cb",
+   "cid": "global_0840",
+   "struct_name": "bt_le_adv_param_defaults",
    "pass": true,
    "errors": [],
    "warnings": []
   },
   {
-   "cid": "global_1453",
-   "struct_name": "cc_rnd_hal_state",
+   "cid": "global_0886",
+   "struct_name": "setting_store_handler_state",
    "pass": true,
    "errors": [],
    "warnings": []
   },
   {
-   "cid": "param_0001",
-   "struct_name": "battery_model_state",
+   "cid": "global_0943",
+   "struct_name": "default_config_record",
    "pass": true,
    "errors": [],
    "warnings": []
   },
   {
-   "cid": "param_0013",
-   "struct_name": "interp_pair_out",
+   "cid": "global_0961",
+   "struct_name": "pt_data_indices",
    "pass": true,
    "errors": [],
    "warnings": []
   },
   {
-   "cid": "param_0029",
-   "struct_name": "device",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0043",
-   "struct_name": "burial_point_record",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0057",
-   "struct_name": "box_event",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0070",
-   "struct_name": "orientation_filter_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0080",
-   "struct_name": "msg_show_item",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0106",
-   "struct_name": "draw_message_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0122",
-   "struct_name": "proxy_thread_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0140",
-   "struct_name": "rpmsg_endpoint",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0162",
-   "struct_name": "module_state_event",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0174",
-   "struct_name": "zcbor_state_t",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0189",
-   "struct_name": "bt_hci_cmd_state_set",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0214",
-   "struct_name": "bt_le_conn_param",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0225",
-   "struct_name": "find_type_cb_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0247",
-   "struct_name": "refcounted_list_node",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0261",
-   "struct_name": "bt_att_pdu_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "union@0x8: field width 2 < observed access 4",
-    "union@0xc: field width 2 < observed access 4",
-    "union@0x10: field width 1 < observed access 4"
-   ]
-  },
-  {
-   "cid": "param_0280",
-   "struct_name": "net_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0305",
-   "struct_name": "unk_ctx_305",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0322",
-   "struct_name": "cJSON",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0344",
-   "struct_name": "nrfx_spim_t",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0366",
-   "struct_name": "lc3_bits_t",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0388",
-   "struct_name": "lc3_side_data",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0401",
-   "struct_name": "rpmsg_virtio_shm_pool",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0417",
-   "struct_name": "__sFILE",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "union@0xc: field width 2 < observed access 4"
-   ]
-  },
-  {
-   "cid": "param_0432",
-   "struct_name": "vfprintf_scan_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0447",
-   "struct_name": "mbedtls_sha256_context",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0466",
-   "struct_name": "opt_record",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0501",
-   "struct_name": "fs_usage_stats",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0526",
-   "struct_name": "settings_nvs_backend_cfg",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0544",
-   "struct_name": "settings_read_result",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0560",
-   "struct_name": "bt_smp_reassembly_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0581",
-   "struct_name": "bt_addr_le_t",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0604",
-   "struct_name": "net_buf_simple",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "union@0x4: field width 2 < observed access 4",
-    "union@0xc: field width 2 < observed access 4"
-   ]
-  },
-  {
-   "cid": "param_0620",
-   "struct_name": "hash_algo_desc",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0662",
-   "struct_name": "nrf_periph_publish_regs",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0684",
-   "struct_name": "wdt_nrf_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0702",
-   "struct_name": "virtqueue",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0718",
-   "struct_name": "cbor_value",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0741",
-   "struct_name": "itoa_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0759",
-   "struct_name": "batt_sample_pair",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0842",
-   "struct_name": "ancs_notify_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0870",
-   "struct_name": "flash_addr_len_tmp",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0934",
-   "struct_name": "audio_stream_params",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1015",
-   "struct_name": "gui_bitmap_draw_args",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1048",
-   "struct_name": "display_thread_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1080",
-   "struct_name": "ancs_handle_pair",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1173",
-   "struct_name": "hci_static_addr_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1212",
-   "struct_name": "att_find_type_req_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1234",
-   "struct_name": "gatt_read_by_type_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1292",
-   "struct_name": "cjson_print_value_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1380",
-   "struct_name": "lc3_sns_analyze_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1430",
-   "struct_name": "scanf_int_convert_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1534",
-   "struct_name": "ble_appearance_rsp",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1558",
-   "struct_name": "post_event_tag5_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0757",
-   "struct_name": "batt_model_calc_scratch5",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0760",
-   "struct_name": "batt_model_calc_scratch5_b",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0761",
-   "struct_name": "batt_model_calc_scratch5_c",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0778",
-   "struct_name": "spline_interp_scratch5",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0896",
-   "struct_name": "ndef_build_scratch5",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0964",
-   "struct_name": "ble_chunk_scratch5",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1097",
-   "struct_name": "aes_key_setup_scratch5",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1356",
-   "struct_name": "lc3_attdet_scratch5",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1357",
-   "struct_name": "lc3_attdet_scratch5_b",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1378",
-   "struct_name": "lc3_sns_scratch5",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1379",
-   "struct_name": "lc3_sns_scratch5_b",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1385",
-   "struct_name": "lc3_spec_scratch5",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1388",
-   "struct_name": "lc3_tns_scratch5",
+   "cid": "global_0965",
+   "struct_name": "ble_chunk_param_table",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -579,8 +80,64 @@
    "warnings": []
   },
   {
-   "cid": "global_0943",
-   "struct_name": "default_config_record",
+   "cid": "global_0972",
+   "struct_name": "confirm_message_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_0997",
+   "struct_name": "dashboard_reflash_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_0998",
+   "struct_name": "dashboard_reflash_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1000",
+   "struct_name": "dashboard_reflash_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1019",
+   "struct_name": "scroll_text_frame_idx_table",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1026",
+   "struct_name": "gui_wordwrap_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1046",
+   "struct_name": "ui_refresh_warp_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1068",
+   "struct_name": "log_process_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1071",
+   "struct_name": "settings_store",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -593,8 +150,141 @@
    "warnings": []
   },
   {
+   "cid": "global_1077",
+   "struct_name": "ble_discovery_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1096",
+   "struct_name": "app_event_header",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1098",
+   "struct_name": "tc_aes_key_sched_struct",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1102",
+   "struct_name": "memmanage_fault_record",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1117",
+   "struct_name": "img_mgmt_upload_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1152",
+   "struct_name": "fw_version_string_table",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1166",
+   "struct_name": "bt_dev",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1168",
+   "struct_name": "ble_privacy_id_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1185",
+   "struct_name": "bt_conn",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1189",
+   "struct_name": "bt_conn_auth_info_cb",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "global_1218",
    "struct_name": "bt_gatt_cb",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1253",
+   "struct_name": "bt_bond_iter_scratch",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1256",
+   "struct_name": "bt_keys_pool",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1271",
+   "struct_name": "saadc_read_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1272",
+   "struct_name": "pdm_mic_event_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1293",
+   "struct_name": "cJSON_internal_hooks",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1323",
+   "struct_name": "pdm_pin_config_block",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1324",
+   "struct_name": "nrfx_pdm_cb",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1326",
+   "struct_name": "nrfx_pdm_drv_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1328",
+   "struct_name": "nrfx_pdm_cb",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -607,8 +297,155 @@
    "warnings": []
   },
   {
+   "cid": "global_1330",
+   "struct_name": "nrfx_pdm_regs",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1336",
+   "struct_name": "nrfx_qspi_control_block",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1337",
+   "struct_name": "NRF_QSPI_Type",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1338",
+   "struct_name": "qspi_cinstrdat_regs",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1340",
+   "struct_name": "nrfx_qspi_control_block",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1341",
+   "struct_name": "qspi_workaround_regs",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1344",
+   "struct_name": "nrfx_qspi_cb",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1355",
+   "struct_name": "metal_generic_bus",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1358",
+   "struct_name": "lc3_attdet_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1360",
+   "struct_name": "lc3_bwdet_table",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1394",
+   "struct_name": "spinlock_validate_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1395",
+   "struct_name": "spinlock_owner_source",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "global_1403",
    "struct_name": "sched_update_cache",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1405",
+   "struct_name": "z_kernel_sched_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1431",
+   "struct_name": "scanf_field_parse_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1450",
+   "struct_name": "cc3xx_hal_reg_block",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1452",
+   "struct_name": "cc_crypto_workspace",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1453",
+   "struct_name": "cc_rnd_hal_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1464",
+   "struct_name": "trng_hw_context",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1465",
+   "struct_name": "cc_trng_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1479",
+   "struct_name": "hash_drv_context",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1480",
+   "struct_name": "aes_context_tables",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -621,8 +458,140 @@
    "warnings": []
   },
   {
+   "cid": "global_1484",
+   "struct_name": "aes_drv_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1561",
+   "struct_name": "nrf_qspi_regs",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "global_1562",
+   "struct_name": "nrfx_qspi_cb",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x30: field width 1 < observed access 4",
+    "union@0x38: field width 1 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0000",
+   "struct_name": "battery_soc_ekf_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0001",
+   "struct_name": "battery_model_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0002",
+   "struct_name": "batt_soc_curve_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0003",
+   "struct_name": "battery_soc_curve_point",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0004",
+   "struct_name": "curve_table_201pt",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0005",
+   "struct_name": "curve_interp_table_201pt",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0006",
    "struct_name": "curve_table_201pt",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0007",
+   "struct_name": "app_shared_ctx_blob",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x1: field width 1 < observed access 2",
+    "union@0xc: field width 1 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0008",
+   "struct_name": "battery_soc_curve_model",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0009",
+   "struct_name": "float_scan_window",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0010",
+   "struct_name": "array_len_desc",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0013",
+   "struct_name": "interp_pair_out",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0015",
+   "struct_name": "spline_point2d",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0016",
+   "struct_name": "spline_3pt_points",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0018",
+   "struct_name": "g1_ui_box_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0019",
+   "struct_name": "imu_fusion_state",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -635,8 +604,163 @@
    "warnings": []
   },
   {
+   "cid": "param_0023",
+   "struct_name": "cjson_parse_buffer",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0025",
+   "struct_name": "esbs_ipc_recv_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0026",
+   "struct_name": "esbs_ipc_msg",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x4: type uint8_t[3] (4B) wider than 3B slot -> union/overlap",
+    "D2:0x7: type uint32_t (4B) wider than 1B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0027",
+   "struct_name": "g1_device_runtime_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0028",
+   "struct_name": "gpio_pin_desc",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0029",
+   "struct_name": "device",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0030",
+   "struct_name": "gpio_pin_get_raw_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0032",
+   "struct_name": "ancs_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0033",
+   "struct_name": "bt_addr_fmt_arg",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0034",
+   "struct_name": "bt_conn",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0xa: field width 1 < observed access 4",
+    "union@0xc: field width 1 < observed access 4",
+    "D2:0x2: type uint16_t (2B) wider than 1B slot -> union/overlap",
+    "D2:0x4: type uint32_t (4B) wider than 2B slot -> union/overlap",
+    "D2:0xe: type uint32_t (4B) wider than 2B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0035",
+   "struct_name": "bt_ancs_attr_data",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0038",
    "struct_name": "app_ble_ctx_block",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0039",
+   "struct_name": "audio_fw_load_resp_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x6: field width 2 < observed access 4",
+    "D2:0x4: type uint32_t (4B) wider than 2B slot -> union/overlap",
+    "D2:0x8: type uint32_t (4B) wider than 2B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0040",
+   "struct_name": "ble_work_thread_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0041",
+   "struct_name": "sett_init_result",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0042",
+   "struct_name": "device_persisted_settings",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0xedc: type uint32_t (4B) wider than 2B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0043",
+   "struct_name": "burial_point_record",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0044",
+   "struct_name": "device_info_persist_store",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0045",
+   "struct_name": "sys_settings_record",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0046",
+   "struct_name": "usr_settings_record",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0049",
+   "struct_name": "event_record",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -649,8 +773,157 @@
    "warnings": []
   },
   {
+   "cid": "param_0051",
+   "struct_name": "record_type8",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0052",
+   "struct_name": "record_type8_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0053",
+   "struct_name": "st25dv_ndef_build_ctx_p1",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0054",
+   "struct_name": "st25dv_ndef_build_ctx_p2",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0055",
+   "struct_name": "ndef_record_desc",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0057",
+   "struct_name": "box_event",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0058",
+   "struct_name": "box_event_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0059",
+   "struct_name": "ipc_ept_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0060",
+   "struct_name": "ipc_ept_locked_retry_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0061",
+   "struct_name": "ipc0_ept_recv_msg",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0062",
+   "struct_name": "ipc_service_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0063",
    "struct_name": "imu_fusion_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0064",
+   "struct_name": "spi_trans_desc",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0065",
+   "struct_name": "spi_bus_config",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0067",
+   "struct_name": "spi_master_ops",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0068",
+   "struct_name": "imu_fusion_calib_params",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x8: type uint32_t (4B) wider than 2B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0069",
+   "struct_name": "imu_ahrs_quaternion",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0070",
+   "struct_name": "orientation_filter_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0071",
+   "struct_name": "orientation_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0072",
+   "struct_name": "orientation_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0073",
+   "struct_name": "orientation_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0074",
+   "struct_name": "peripheral_dispatch_buf",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -663,8 +936,141 @@
    "warnings": []
   },
   {
+   "cid": "param_0076",
+   "struct_name": "cmd_notify_msg_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0077",
+   "struct_name": "system_suspend_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0078",
+   "struct_name": "persist_task_ctx_view",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0079",
+   "struct_name": "new_message_evt",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0080",
+   "struct_name": "msg_show_item",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0084",
+   "struct_name": "opt3007_init_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0086",
+   "struct_name": "flash_blob_write_req",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0087",
+   "struct_name": "nfc_eeprom_link_cfg",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0090",
+   "struct_name": "brightness_lum_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0091",
+   "struct_name": "channel_assign_info",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0092",
    "struct_name": "display_brightness_cmd",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0095",
+   "struct_name": "uart_event_data",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0098",
+   "struct_name": "notif_count_out",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0101",
+   "struct_name": "param_0101_false_union",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0102",
+   "struct_name": "whitelist_chunk_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0106",
+   "struct_name": "draw_message_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0109",
+   "struct_name": "dashboard_reflash_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0111",
+   "struct_name": "nav_overview_map_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0112",
+   "struct_name": "panoramic_map_view_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0114",
+   "struct_name": "onboarding_ble_ctx",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -677,6 +1083,85 @@
    "warnings": []
   },
   {
+   "cid": "param_0117",
+   "struct_name": "panel_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0118",
+   "struct_name": "jdb_panel_cfg",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0119",
+   "struct_name": "projector_panel_context",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0121",
+   "struct_name": "utf8_decode_cursor",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0122",
+   "struct_name": "proxy_thread_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0123",
+   "struct_name": "display_thread_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0124",
+   "struct_name": "md5_context",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0125",
+   "struct_name": "md5_digest_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0126",
+   "struct_name": "datetime_fields",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0128",
+   "struct_name": "cbprintf_log_desc",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0129",
+   "struct_name": "onoff_manager",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x7: type uint16_t (2B) wider than 1B slot -> union/overlap"
+   ]
+  },
+  {
    "cid": "param_0130",
    "struct_name": "sys_notify",
    "pass": true,
@@ -684,11 +1169,174 @@
    "warnings": []
   },
   {
-   "cid": "param_0155",
-   "struct_name": "bt_gatt_dm_attr_ctx",
+   "cid": "param_0131",
+   "struct_name": "zcbor_encode_cursor",
    "pass": true,
    "errors": [],
    "warnings": []
+  },
+  {
+   "cid": "param_0132",
+   "struct_name": "mpsc_pbuf_buffer_config",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0133",
+   "struct_name": "mpsc_pbuf_buffer",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0135",
+   "struct_name": "nvs_fs",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0xc: field width 2 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0139",
+   "struct_name": "unk_ctx_0139",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0140",
+   "struct_name": "rpmsg_endpoint",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0141",
+   "struct_name": "ipc_rpmsg_backend_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0145",
+   "struct_name": "ipc_static_vrings",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0148",
+   "struct_name": "log_msg_hdr",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x2: field width 2 < observed access 4",
+    "D2:0x0: type uint32_t (4B) wider than 2B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0150",
+   "struct_name": "stream_flash_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0151",
+   "struct_name": "stream_flash_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0153",
+   "struct_name": "settings_set_handler_args",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0155",
+   "struct_name": "bt_gatt_attr",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x12: field width 1 < observed access 2"
+   ]
+  },
+  {
+   "cid": "param_0157",
+   "struct_name": "ancs_notif_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x8: field width 2 < observed access 4",
+    "union@0xc: field width 2 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0158",
+   "struct_name": "bt_ancs_client_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x4: type uint32_t (4B) wider than 2B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0159",
+   "struct_name": "app_id_config_stream_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0160",
+   "struct_name": "bt_gatt_subscribe_params",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x4: field width 2 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0162",
+   "struct_name": "module_state_event",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0163",
+   "struct_name": "power_restrict_event_entry",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0164",
+   "struct_name": "tc_sha256_state_struct",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0166",
+   "struct_name": "arch_esf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0167",
+   "struct_name": "kernel_obj_shared_param",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0xc: type uint32_t (4B) wider than 1B slot -> union/overlap"
+   ]
   },
   {
    "cid": "param_0168",
@@ -698,8 +1346,172 @@
    "warnings": []
   },
   {
+   "cid": "param_0169",
+   "struct_name": "mem_region_desc",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0170",
+   "struct_name": "arm_mpu_region",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x8: type uint32_t (4B) wider than 2B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0172",
+   "struct_name": "net_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x18: field width 1 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0173",
+   "struct_name": "smp_streamer",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0174",
+   "struct_name": "zcbor_state_t",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0175",
+   "struct_name": "img_mgmt_upload_req",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x1c: field width 1 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0176",
+   "struct_name": "smp_streamer",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0177",
+   "struct_name": "image_version",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0178",
+   "struct_name": "smp_streamer",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0179",
+   "struct_name": "img_mgmt_upload_action",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0181",
    "struct_name": "k_work_delayable",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0182",
+   "struct_name": "bt_att_chan_view",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0183",
+   "struct_name": "bt_addr_le_str_arg",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0184",
+   "struct_name": "bt_addr_le_key",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0185",
+   "struct_name": "bt_uuid_32",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0186",
+   "struct_name": "bt_uuid_128",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0187",
+   "struct_name": "net_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0189",
+   "struct_name": "bt_hci_cmd_state_set",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x2: type bool (4B) wider than 2B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0200",
+   "struct_name": "ble_conn_addr_params",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0204",
+   "struct_name": "net_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0205",
+   "struct_name": "adc_sequence",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x10: field width 1 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0206",
+   "struct_name": "conn_tx_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0207",
+   "struct_name": "k_poll_event",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -714,6 +1526,77 @@
    ]
   },
   {
+   "cid": "param_0210",
+   "struct_name": "bt_conn_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0211",
+   "struct_name": "bt_conn_le_alloc_addr",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0212",
+   "struct_name": "bt_conn_info",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0213",
+   "struct_name": "bt_conn_info",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x90: field width 1 < observed access 4",
+    "union@0x94: field width 1 < observed access 4",
+    "union@0x9c: field width 1 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0214",
+   "struct_name": "bt_le_conn_param",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0215",
+   "struct_name": "ble_conn_complete_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0216",
+   "struct_name": "bt_conn_auth_cb",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0218",
+   "struct_name": "bt_l2cap_le_chan",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0219",
+   "struct_name": "bt_l2cap_le_chan_tx",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x24: field width 2 < observed access 4",
+    "union@0x28: field width 2 < observed access 4",
+    "union@0x2c: field width 2 < observed access 4"
+   ]
+  },
+  {
    "cid": "param_0220",
    "struct_name": "att_l2cap_frag_ctx",
    "pass": true,
@@ -723,8 +1606,140 @@
    ]
   },
   {
+   "cid": "param_0221",
+   "struct_name": "bt_l2cap_le_chan_view",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x14: type uint32_t (4B) wider than 2B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0222",
+   "struct_name": "bt_l2cap_le_chan",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0223",
+   "struct_name": "net_buf_l2cap_view",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0224",
+   "struct_name": "net_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0225",
+   "struct_name": "find_type_cb_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0226",
+   "struct_name": "find_type_cb_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0227",
+   "struct_name": "bt_att_chan",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0228",
+   "struct_name": "bt_att_read_type_data",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x4: type void* (4B) wider than 1B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0229",
+   "struct_name": "bt_att_chan",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0234",
    "struct_name": "bt_att_chan",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0236",
+   "struct_name": "att_pdu_buf_view",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0241",
+   "struct_name": "net_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0245",
+   "struct_name": "gatt_ccc_store_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0246",
+   "struct_name": "gatt_ccc_cfg",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x0: type uint16_t (2B) wider than 1B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0247",
+   "struct_name": "refcounted_list_node",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0248",
+   "struct_name": "bt_conn",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0249",
+   "struct_name": "bt_gatt_subscribe_params",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0250",
+   "struct_name": "bt_gatt_cf_cfg",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0251",
+   "struct_name": "gatt_attr_record",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -737,8 +1752,150 @@
    "warnings": []
   },
   {
+   "cid": "param_0255",
+   "struct_name": "bt_gatt_attr",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0257",
+   "struct_name": "bt_gatt_indicate_params",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0259",
+   "struct_name": "bt_gatt_notify_params",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0260",
+   "struct_name": "gatt_ccc_update_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0261",
+   "struct_name": "bt_att_pdu_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x8: field width 2 < observed access 4",
+    "union@0xc: field width 2 < observed access 4",
+    "union@0x10: field width 1 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0262",
+   "struct_name": "bt_gatt_subscribe_params",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0xc: field width 2 < observed access 4",
+    "union@0x10: field width 2 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0263",
+   "struct_name": "bt_conn",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0265",
+   "struct_name": "bt_smp",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x11: field width 1 < observed access 4",
+    "union@0x15: field width 1 < observed access 2",
+    "union@0xe8: field width 1 < observed access 2",
+    "D2:0xa: type uint32_t (4B) wider than 1B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0272",
+   "struct_name": "bt_smp",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0273",
    "struct_name": "bt_conn_keys_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0274",
+   "struct_name": "bt_keys_irk_lookup_view",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0276",
+   "struct_name": "net_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0277",
+   "struct_name": "net_buf_pool",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0278",
+   "struct_name": "sys_slist",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0280",
+   "struct_name": "net_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0284",
+   "struct_name": "net_buf_simple",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x4: field width 2 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0285",
+   "struct_name": "net_buf_simple",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x4: field width 2 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0290",
+   "struct_name": "adc_channel_cfg",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0292",
+   "struct_name": "pdm_start_state",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -751,6 +1908,73 @@
    "warnings": []
   },
   {
+   "cid": "param_0295",
+   "struct_name": "pdm_config_g1",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x24: type uint32_t (4B) wider than 1B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0297",
+   "struct_name": "clock_control_on_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0299",
+   "struct_name": "param_0299_driver_data_collision",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0300",
+   "struct_name": "qspi_cinstr_req",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0305",
+   "struct_name": "unk_ctx_305",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0308",
+   "struct_name": "lsm6dso_dev_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0311",
+   "struct_name": "uart_config",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x4: type uint32_t (4B) wider than 1B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0312",
+   "struct_name": "device",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0313",
+   "struct_name": "uarte_nrfx_data",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0314",
    "struct_name": "uarte_driver_ctx",
    "pass": true,
@@ -758,8 +1982,169 @@
    "warnings": []
   },
   {
+   "cid": "param_0315",
+   "struct_name": "wdt_timeout_cfg_view",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0316",
+   "struct_name": "wdt_timeout_cfg",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0319",
+   "struct_name": "flash_area",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0320",
+   "struct_name": "flash_boot_swap_ate",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x4: field width 1 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0321",
+   "struct_name": "cjson_printbuffer",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0322",
+   "struct_name": "cJSON",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0323",
+   "struct_name": "cjson_printbuffer",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0324",
+   "struct_name": "cJSON",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0331",
+   "struct_name": "gpiote_trigger_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0333",
+   "struct_name": "pdm_pin_config",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0334",
    "struct_name": "nrfx_pdm_config",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0335",
+   "struct_name": "nrf_qspi_cinstr_data",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0337",
+   "struct_name": "qspi_pins_config",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0338",
+   "struct_name": "qspi_config_g1",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0339",
+   "struct_name": "nrfx_qspi_cinstr_config",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0340",
+   "struct_name": "nrfx_qspi_pin_freq_cfg",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x24: field width 1 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0342",
+   "struct_name": "nrfx_spim_t",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0343",
+   "struct_name": "nrfx_spim_config",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x8: field width 1 < observed access 4",
+    "D2:0x4: type uint32_t (4B) wider than 2B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0344",
+   "struct_name": "nrfx_spim_t",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0346",
+   "struct_name": "nrfx_spim_xfer_desc_t",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0347",
+   "struct_name": "nrfx_twim_config_t",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0348",
+   "struct_name": "nrfx_twim_config",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0349",
+   "struct_name": "nrfx_twim_control_block",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -775,504 +2160,8 @@
    ]
   },
   {
-   "cid": "param_0371",
-   "struct_name": "lc3_load_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0395",
-   "struct_name": "virtqueue",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0411",
-   "struct_name": "k_thread",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0423",
-   "struct_name": "dtoa_scratch",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0440",
-   "struct_name": "mbedtls_entropy_context",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0458",
-   "struct_name": "opt_node_header",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0489",
-   "struct_name": "cbprintf_out_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0507",
-   "struct_name": "unk_ctx_7ec0e",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0537",
-   "struct_name": "bt_ancs_attr_request",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0553",
-   "struct_name": "smp_hdr",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "union@0x0: field width 2 < observed access 4",
-    "union@0x4: field width 2 < observed access 4"
-   ]
-  },
-  {
-   "cid": "param_0572",
-   "struct_name": "bt_addr_le_t",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0597",
-   "struct_name": "bt_l2cap_chan_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0612",
-   "struct_name": "bt_att_chan_view2",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0627",
-   "struct_name": "gatt_sc_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0645",
-   "struct_name": "net_buf_simple",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0675",
-   "struct_name": "driver_cb_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0697",
-   "struct_name": "metal_io_region",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0713",
-   "struct_name": "rpmsg_virtio_shm_pool",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0726",
-   "struct_name": "k_msgq",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0750",
-   "struct_name": "dynbuf_t",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x44: type uint32_t (4B) wider than 1B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "stack_0784",
-   "struct_name": "cbvprintf_ptr_counter",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0852",
-   "struct_name": "ble_req_dispatch_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0900",
-   "struct_name": "len_prefixed_pkt_hdr",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0960",
-   "struct_name": "pt_data_pair",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1033",
-   "struct_name": "gui_draw_point",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1062",
-   "struct_name": "scratch_ctx_0004cf78",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1126",
-   "struct_name": "img_upload_chunk",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1196",
-   "struct_name": "bt_att_accept_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1229",
-   "struct_name": "gatt_discover_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1248",
-   "struct_name": "smp_dhkey_check_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1361",
-   "struct_name": "lc3_energy_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1424",
-   "struct_name": "fmt_buf_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1505",
-   "struct_name": "scratch_pair_0007e83a",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1553",
-   "struct_name": "dppi_channel_cfg_entry",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_0840",
-   "struct_name": "bt_start_init_table",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0086",
-   "struct_name": "flash_blob_write_req",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0132",
-   "struct_name": "mpsc_pbuf_buffer",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0200",
-   "struct_name": "ble_conn_addr_params",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
    "cid": "param_0353",
    "struct_name": "twim_xfer_desc",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0437",
-   "struct_name": "deferred_call_pair",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0485",
-   "struct_name": "countdown_timer_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0513",
-   "struct_name": "status_byte_packet_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1152",
-   "struct_name": "fw_version_info_table",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0692",
-   "struct_name": "metal_io_region",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_0961",
-   "struct_name": "pt_data_indices",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1077",
-   "struct_name": "ble_discovery_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1253",
-   "struct_name": "bt_bond_iter_scratch",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1330",
-   "struct_name": "pdm_capture_buffer_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1405",
-   "struct_name": "z_kernel_sched_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1484",
-   "struct_name": "aes_drv_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0007",
-   "struct_name": "app_shared_ctx_blob",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0025",
-   "struct_name": "esbs_ipc_recv_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0039",
-   "struct_name": "audio_fw_load_msg",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "union@0x6: field width 2 < observed access 4",
-    "D2:0x4: type uint32_t (4B) wider than 2B slot -> union/overlap",
-    "D2:0x8: type uint32_t (4B) wider than 2B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0051",
-   "struct_name": "record_type8",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0064",
-   "struct_name": "spi_trans_desc",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0076",
-   "struct_name": "audio_fw_load_notify_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0095",
-   "struct_name": "uart_event_data",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0117",
-   "struct_name": "panel_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0131",
-   "struct_name": "zcbor_encode_cursor",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0157",
-   "struct_name": "ancs_notif_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0169",
-   "struct_name": "mem_region_desc",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0182",
-   "struct_name": "bt_att_chan_view",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0210",
-   "struct_name": "bt_conn_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0221",
-   "struct_name": "bt_conn_l2cap_view",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x14: type uint32_t (4B) wider than 2B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0236",
-   "struct_name": "att_pdu_buf_view",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0255",
-   "struct_name": "bt_gatt_attr",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0274",
-   "struct_name": "bt_keys_irk_lookup_view",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0295",
-   "struct_name": "pdm_config_g1",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x24: type uint32_t (4B) wider than 1B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0315",
-   "struct_name": "wdt_timeout_cfg_view",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0338",
-   "struct_name": "qspi_config_g1",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -1285,448 +2174,29 @@
    "warnings": []
   },
   {
-   "cid": "param_0372",
-   "struct_name": "lc3_bitstream_ctx",
+   "cid": "param_0362",
+   "struct_name": "metal_bus",
    "pass": true,
    "errors": [],
    "warnings": []
   },
   {
-   "cid": "param_0397",
-   "struct_name": "rpmsg_virtio_device",
+   "cid": "param_0364",
+   "struct_name": "lc3_attdet_state",
    "pass": true,
    "errors": [],
    "warnings": []
   },
   {
-   "cid": "param_0412",
-   "struct_name": "k_thread_waitq_view",
+   "cid": "param_0365",
+   "struct_name": "lc3_bit_budget_ctx",
    "pass": true,
    "errors": [],
    "warnings": []
   },
   {
-   "cid": "param_0424",
-   "struct_name": "dtoa_bigint",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0442",
-   "struct_name": "cc_trng_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0459",
-   "struct_name": "opt_node_t",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0492",
-   "struct_name": "out_pair",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0509",
-   "struct_name": "ipc_rpmsg_instance",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0538",
-   "struct_name": "ancs_attr_registry",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0555",
-   "struct_name": "image_version",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0573",
-   "struct_name": "bt_addr_le_t",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0599",
-   "struct_name": "att_read_type_acc",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0613",
-   "struct_name": "att_write_req_view",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0635",
-   "struct_name": "bt_conn_sec_view",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0647",
-   "struct_name": "net_buf_simple",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0676",
-   "struct_name": "byte_channel_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0698",
-   "struct_name": "task_ctx_generic",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0714",
-   "struct_name": "rpmsg_virtio_device",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0734",
-   "struct_name": "sys_dlist_t",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0751",
-   "struct_name": "battery_model_sample",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0785",
-   "struct_name": "cbvprintf_scratch",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0860",
-   "struct_name": "crc_scratch_buffer",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0910",
-   "struct_name": "new_task_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0979",
-   "struct_name": "float_render_params",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1036",
-   "struct_name": "lcd_fb_xfer_local",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1066",
-   "struct_name": "log_msg_desc_local",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1131",
-   "struct_name": "storage_erase_range_tmp",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1197",
-   "struct_name": "bt_att_accept_local",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1230",
-   "struct_name": "bt_gatt_discover_tmp",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1249",
-   "struct_name": "smp_pairing_req_local",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "union@0x0: field width 1 < observed access 4"
-   ]
-  },
-  {
-   "cid": "stack_1370",
-   "struct_name": "lc3_ltpf_pitch_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1425",
-   "struct_name": "strtod_bigint_scratch",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1521",
-   "struct_name": "mpu_region_cfg_local",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1554",
-   "struct_name": "regulator_volt_range_local",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0381",
-   "struct_name": "lc3_sns_coeff_buffer",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0546",
-   "struct_name": "aes_cipher_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_0809",
-   "struct_name": "gpio_pin_get_checked_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1026",
-   "struct_name": "gui_wordwrap_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1166",
-   "struct_name": "bt_dev",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1323",
-   "struct_name": "pdm_pin_config_block",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1355",
-   "struct_name": "metal_generic_bus",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1464",
-   "struct_name": "trng_hw_context",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0002",
-   "struct_name": "batt_soc_curve_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0015",
-   "struct_name": "spline_point2d",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0030",
-   "struct_name": "gpio_pin_get_raw_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0044",
-   "struct_name": "device_info_persist_store",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0058",
-   "struct_name": "box_event_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0071",
-   "struct_name": "orientation_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0084",
-   "struct_name": "opt3007_init_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0109",
-   "struct_name": "dashboard_reflash_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0123",
-   "struct_name": "display_thread_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0141",
-   "struct_name": "ipc_rpmsg_backend_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0163",
-   "struct_name": "power_restrict_event_entry",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0176",
-   "struct_name": "img_mgmt_req_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0204",
-   "struct_name": "net_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0215",
-   "struct_name": "ble_conn_complete_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0226",
-   "struct_name": "find_type_cb_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0248",
-   "struct_name": "bt_conn",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0262",
-   "struct_name": "bt_gatt_subscribe_params",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "union@0xc: field width 2 < observed access 4"
-   ]
-  },
-  {
-   "cid": "param_0284",
-   "struct_name": "net_buf_simple",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "union@0x4: field width 2 < observed access 4"
-   ]
-  },
-  {
-   "cid": "param_0308",
-   "struct_name": "lsm6dso_dev_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0323",
-   "struct_name": "cjson_printbuffer",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0346",
-   "struct_name": "nrfx_spim_xfer_desc_t",
+   "cid": "param_0366",
+   "struct_name": "lc3_bits_t",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -1739,8 +2209,150 @@
    "warnings": []
   },
   {
+   "cid": "param_0368",
+   "struct_name": "lc3_bwdet_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0369",
+   "struct_name": "lc3_encoder_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0370",
+   "struct_name": "lc3_pcm_buf_desc",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0371",
+   "struct_name": "lc3_load_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0372",
+   "struct_name": "lc3_bitstream_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0373",
+   "struct_name": "lc3_encoder_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0374",
+   "struct_name": "lc3_ltpf_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0375",
+   "struct_name": "lc3_ltpf_pitch_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0381",
+   "struct_name": "lc3_sns_coeff_buffer",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0384",
+   "struct_name": "lc3_sns_data",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x4: type int32_t (4B) wider than 2B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0388",
+   "struct_name": "lc3_side_data",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0389",
    "struct_name": "lc3_spec_encode_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0391",
+   "struct_name": "lc3_tns_params",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0392",
+   "struct_name": "lc3_tns_nbits_table",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0394",
+   "struct_name": "virtio_device",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0395",
+   "struct_name": "virtqueue",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0397",
+   "struct_name": "rpmsg_virtio_device",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0398",
+   "struct_name": "audio_sync_ringbuf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0399",
+   "struct_name": "virtio_device",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0400",
+   "struct_name": "rpmsg_vq_alloc_info",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0401",
+   "struct_name": "rpmsg_virtio_shm_pool",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -1753,8 +2365,144 @@
    "warnings": []
   },
   {
+   "cid": "param_0403",
+   "struct_name": "k_mem_slab",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0408",
+   "struct_name": "k_thread",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0410",
+   "struct_name": "k_work_q",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0411",
+   "struct_name": "k_thread",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0412",
+   "struct_name": "k_thread_waitq_view",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0414",
+   "struct_name": "k_timer",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0415",
+   "struct_name": "event_registration",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0xc: type uint32_t (4B) wider than 1B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0416",
+   "struct_name": "k_poll_signal",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0417",
+   "struct_name": "__sFILE",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0xc: field width 2 < observed access 4"
+   ]
+  },
+  {
    "cid": "param_0418",
-   "struct_name": "libc_FILE",
+   "struct_name": "libc_reent",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0419",
+   "struct_name": "newlib_FILE",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x3: type uint16_t (2B) wider than 1B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0420",
+   "struct_name": "_reent",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0421",
+   "struct_name": "vfprintf_conv_state",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x18: field width 1 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0423",
+   "struct_name": "gdtoa_fpi",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0424",
+   "struct_name": "dtoa_bigint",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0425",
+   "struct_name": "bigint_dims",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0427",
+   "struct_name": "bignum_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0430",
+   "struct_name": "fmt_conv_spec",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x3: type uint16_t (2B) wider than 1B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0432",
+   "struct_name": "vfprintf_scan_ctx",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -1767,8 +2515,143 @@
    "warnings": []
   },
   {
+   "cid": "param_0436",
+   "struct_name": "deferred_call_pair_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0437",
+   "struct_name": "deferred_call_pair",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0438",
+   "struct_name": "mbedtls_ctr_drbg_context",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0439",
+   "struct_name": "ctr_drbg_work_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0440",
+   "struct_name": "mbedtls_entropy_context",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0442",
+   "struct_name": "cc_trng_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0444",
+   "struct_name": "mbedtls_aes_context",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0445",
+   "struct_name": "mbedtls_aes_context",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0446",
+   "struct_name": "mbedtls_aes_context",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0xc: type uint32_t (4B) wider than 3B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0447",
+   "struct_name": "mbedtls_sha256_context",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0448",
    "struct_name": "mbedtls_sha256_context",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0449",
+   "struct_name": "llf_rnd_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0453",
+   "struct_name": "hash_drv_context",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0454",
+   "struct_name": "aes_key_context",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0458",
+   "struct_name": "opt_node_header",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0459",
+   "struct_name": "opt_node_t",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0460",
+   "struct_name": "opt_field1_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0461",
+   "struct_name": "opt_record",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0463",
+   "struct_name": "opt_field3_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0466",
+   "struct_name": "opt_ndef_record",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -1781,6 +2664,78 @@
    "warnings": []
   },
   {
+   "cid": "param_0482",
+   "struct_name": "log_timestamp_fields",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0483",
+   "struct_name": "quaternion_euler_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0485",
+   "struct_name": "countdown_timer_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0486",
+   "struct_name": "u32le_array",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0489",
+   "struct_name": "cbprintf_out_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0492",
+   "struct_name": "printf_out_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0493",
+   "struct_name": "sys_heap_chunk",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0498",
+   "struct_name": "sys_notify",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0499",
+   "struct_name": "ldiv5_result",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x0: type uint64_t (8B) wider than 4B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0501",
+   "struct_name": "fs_usage_stats",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0502",
    "struct_name": "nvs_ate",
    "pass": true,
@@ -1788,8 +2743,153 @@
    "warnings": []
   },
   {
+   "cid": "param_0503",
+   "struct_name": "pair_ctx_0503",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0505",
+   "struct_name": "generic_handle_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0506",
+   "struct_name": "reg_dev_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0507",
+   "struct_name": "unk_ctx_7ec0e",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0509",
+   "struct_name": "ipc_rpmsg_instance",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0510",
+   "struct_name": "cbprintf_cpy_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0511",
+   "struct_name": "log_msg_generic_hdr",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0512",
+   "struct_name": "log_output_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0513",
+   "struct_name": "status_byte_packet_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x4: field width 1 < observed access 4",
+    "union@0x8: field width 1 < observed access 4",
+    "union@0xc: field width 1 < observed access 4",
+    "union@0x10: field width 1 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0519",
+   "struct_name": "flash_sector_enum_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0526",
+   "struct_name": "settings_nvs_backend_cfg",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0528",
    "struct_name": "svc_attr_memory_pool",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0529",
+   "struct_name": "bt_gatt_discover_params",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0530",
+   "struct_name": "ble_discovery_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0536",
+   "struct_name": "flag_index_pair",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0537",
+   "struct_name": "bt_ancs_attr_request",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0538",
+   "struct_name": "ancs_attr_registry",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0539",
+   "struct_name": "bt_ancs_client_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0542",
+   "struct_name": "audio_codec_bus_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0543",
+   "struct_name": "id_words_pair",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0544",
+   "struct_name": "settings_read_result",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -1810,469 +2910,8 @@
    ]
   },
   {
-   "cid": "param_0562",
-   "struct_name": "smp_reassembly_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0585",
-   "struct_name": "bt_conn",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0606",
-   "struct_name": "bt_att_chan",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0623",
-   "struct_name": "gatt_find_info_entry",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0641",
-   "struct_name": "smp_c1_param",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0663",
-   "struct_name": "dev_channel_desc",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0685",
-   "struct_name": "wdt_nrf_config",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0704",
-   "struct_name": "vring_layout",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0719",
-   "struct_name": "zcbor_state_t",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0742",
-   "struct_name": "libc_FILE_stream",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0763",
-   "struct_name": "batt_calc_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0846",
-   "struct_name": "debug_print_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0871",
-   "struct_name": "sys_setting_scan_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0939",
-   "struct_name": "audio_file_mgr_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1016",
-   "struct_name": "bitmap_merge_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1050",
-   "struct_name": "display_close_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1081",
-   "struct_name": "ancs_handle_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1186",
-   "struct_name": "conn_unref_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1219",
-   "struct_name": "gatt_foreach_attr_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1235",
-   "struct_name": "read_by_type_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1302",
-   "struct_name": "gpiote_trigger_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1382",
-   "struct_name": "lc3_sns_analysis_buffer",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1469",
-   "struct_name": "mbedtls_hw_poll_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1535",
-   "struct_name": "local_pair_82c48",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1568",
-   "struct_name": "cbor_skip_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0728",
-   "struct_name": "kmutex_dlist_node",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0980",
-   "struct_name": "device_info_float_layout",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1074",
-   "struct_name": "nvs_mount_scratch",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1128",
-   "struct_name": "img_mgmt_upload_scratch",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1560",
-   "struct_name": "flash_padded_entry_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_0832",
-   "struct_name": "ancs_enqueue_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1046",
-   "struct_name": "ui_refresh_warp_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1168",
-   "struct_name": "ble_privacy_id_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1324",
-   "struct_name": "nrfx_pdm_cb",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1360",
-   "struct_name": "lc3_bwdet_table",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1465",
-   "struct_name": "cc_trng_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0003",
-   "struct_name": "battery_soc_curve_point",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0016",
-   "struct_name": "spline_3pt_points",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0032",
-   "struct_name": "ancs_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0045",
-   "struct_name": "sys_settings_record",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0059",
-   "struct_name": "ipc_ept_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0072",
-   "struct_name": "orientation_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0087",
-   "struct_name": "nfc_eeprom_link_cfg",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0111",
-   "struct_name": "nav_overview_map_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0125",
-   "struct_name": "md5_digest_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0145",
-   "struct_name": "ipc_static_vrings",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0164",
-   "struct_name": "tc_sha256_state_struct",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0177",
-   "struct_name": "image_version",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0205",
-   "struct_name": "conn_tx_saadc_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x10: type uint32_t (4B) wider than 1B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0216",
-   "struct_name": "bt_conn_auth_cb",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0227",
-   "struct_name": "bt_att_chan",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0249",
-   "struct_name": "gatt_ccc_list_node",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0263",
-   "struct_name": "bt_gatt_subscribe_params",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0285",
-   "struct_name": "net_buf_simple",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0311",
-   "struct_name": "uart_config",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x4: type uint32_t (4B) wider than 1B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0324",
-   "struct_name": "cJSON",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0347",
-   "struct_name": "nrfx_twim_config_t",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0368",
-   "struct_name": "lc3_bwdet_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0391",
-   "struct_name": "lc3_tns_params",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0403",
-   "struct_name": "k_mem_slab",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0419",
-   "struct_name": "newlib_FILE",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x3: type uint16_t (2B) wider than 1B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0436",
-   "struct_name": "deferred_call_pair_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0449",
-   "struct_name": "llf_rnd_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0482",
-   "struct_name": "log_timestamp_fields",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0503",
-   "struct_name": "pair_ctx_0503",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0529",
-   "struct_name": "bt_gatt_discover_params",
+   "cid": "param_0546",
+   "struct_name": "aes_cipher_state",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -2285,972 +2924,32 @@
    "warnings": []
   },
   {
-   "cid": "param_0565",
-   "struct_name": "conn_id_addr",
+   "cid": "param_0549",
+   "struct_name": "matrix_row_desc",
    "pass": true,
    "errors": [],
    "warnings": []
   },
   {
-   "cid": "param_0586",
-   "struct_name": "bt_le_conn_param",
+   "cid": "param_0552",
+   "struct_name": "smp_hdr",
    "pass": true,
    "errors": [],
    "warnings": []
   },
   {
-   "cid": "param_0607",
-   "struct_name": "cmd_ctx_0607",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0624",
-   "struct_name": "gatt_write_encode_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0642",
-   "struct_name": "bt_addr_le_t",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0664",
-   "struct_name": "dev_channel_dispatch_entry",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0688",
-   "struct_name": "sllist_named_node",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0705",
-   "struct_name": "dma_xfer_desc",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0721",
-   "struct_name": "cbor_encode_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0743",
-   "struct_name": "bt_gatt_subscribe_params",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0776",
-   "struct_name": "soc_curve_point_local",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0848",
-   "struct_name": "ble_get_req_hdr_tmp",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0873",
-   "struct_name": "flash_setting_record_local",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0940",
-   "struct_name": "audio_file_mgr_flags",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1018",
-   "struct_name": "scroll_text_frame_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1053",
-   "struct_name": "display_power_event_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1112",
-   "struct_name": "arm_mpu_configure_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1191",
-   "struct_name": "l2cap_connected_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1224",
-   "struct_name": "bt_gatt_indicate_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1237",
-   "struct_name": "gatt_rbt_rsp_cursor",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1312",
-   "struct_name": "gpiote_evt_info",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1387",
-   "struct_name": "lc3_tns_analyze_local",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1496",
-   "struct_name": "projector_cmd_local",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1536",
-   "struct_name": "unk_stack_1536",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1571",
-   "struct_name": "dtoa_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1341",
-   "struct_name": "qspi_workaround_regs",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0124",
-   "struct_name": "md5_context",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0126",
-   "struct_name": "datetime_fields",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0337",
-   "struct_name": "qspi_pins_config",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0339",
-   "struct_name": "nrfx_qspi_cinstr_config",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0384",
-   "struct_name": "lc3_sns_state",
+   "cid": "param_0553",
+   "struct_name": "smp_hdr",
    "pass": true,
    "errors": [],
    "warnings": [
+    "union@0x0: field width 1 < observed access 4",
     "union@0x4: field width 2 < observed access 4"
    ]
   },
   {
-   "cid": "global_0998",
-   "struct_name": "dashboard_reflash_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1102",
-   "struct_name": "memmanage_fault_record",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1272",
-   "struct_name": "pdm_mic_event_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1338",
-   "struct_name": "qspi_cinstrdat_regs",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1452",
-   "struct_name": "cc_crypto_workspace",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0000",
-   "struct_name": "battery_model_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0010",
-   "struct_name": "array_len_desc",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0028",
-   "struct_name": "gpio_pin_desc",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0042",
-   "struct_name": "device_settings_blob",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0xedc: type uint32_t (4B) wider than 2B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0055",
-   "struct_name": "ndef_record_desc",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0069",
-   "struct_name": "imu_ahrs_quaternion",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0079",
-   "struct_name": "new_message_evt",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0102",
-   "struct_name": "whitelist_chunk_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0121",
-   "struct_name": "utf8_decode_cursor",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0139",
-   "struct_name": "unk_ctx_0139",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0160",
-   "struct_name": "gatt_subscribe_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "union@0x4: field width 2 < observed access 4"
-   ]
-  },
-  {
-   "cid": "param_0173",
-   "struct_name": "smp_pkt_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0187",
-   "struct_name": "net_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0213",
-   "struct_name": "bt_conn_info",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0224",
-   "struct_name": "net_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0246",
-   "struct_name": "gatt_ccc_cfg",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x0: type uint16_t (2B) wider than 1B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0260",
-   "struct_name": "gatt_ccc_update_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0278",
-   "struct_name": "sys_slist",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0300",
-   "struct_name": "qspi_cinstr_req",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0320",
-   "struct_name": "flash_boot_swap_ate",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0343",
-   "struct_name": "nrfx_spim_config",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "union@0x8: field width 1 < observed access 4",
-    "D2:0x4: type uint32_t (4B) wider than 2B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0365",
-   "struct_name": "lc3_bit_budget_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0375",
-   "struct_name": "lc3_ltpf_pitch_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0400",
-   "struct_name": "rpmsg_vq_alloc_info",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0416",
-   "struct_name": "k_poll_signal",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0430",
-   "struct_name": "fmt_conv_spec",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x3: type uint16_t (2B) wider than 1B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0446",
-   "struct_name": "aes_drv_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0xc: type uint32_t (4B) wider than 3B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0463",
-   "struct_name": "opt_field3_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0499",
-   "struct_name": "ldiv5_result",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x0: type uint64_t (8B) wider than 4B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0512",
-   "struct_name": "log_output_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0543",
-   "struct_name": "id_words_pair",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0559",
-   "struct_name": "smp_transport_reassembly",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0580",
-   "struct_name": "bt_addr_le",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0603",
-   "struct_name": "box_render_desc",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x4: type uint16_t (2B) wider than 1B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0619",
-   "struct_name": "bt_gatt_indicate_params",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0639",
-   "struct_name": "bt_addr_le",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0661",
-   "struct_name": "pinctrl_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0683",
-   "struct_name": "pmic_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0701",
-   "struct_name": "virtqueue",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0717",
-   "struct_name": "buffer_pool_freelist",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0740",
-   "struct_name": "k_poll_signal",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0758",
-   "struct_name": "battery_calc_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0841",
-   "struct_name": "ancs_notify_frame",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0867",
-   "struct_name": "sys_setting_read_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0931",
-   "struct_name": "audio_stream_cache_flags",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1014",
-   "struct_name": "bmp_draw_desc",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1044",
-   "struct_name": "ui_warp_flags_tmp",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1079",
-   "struct_name": "discovery_result_flags",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1170",
-   "struct_name": "ble_rpa_gen_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1207",
-   "struct_name": "unk_stack_1207",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1233",
-   "struct_name": "gatt_handle_range",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1278",
-   "struct_name": "uarte_isr_scratch",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1375",
-   "struct_name": "lc3_mdct_fft_workspace",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1428",
-   "struct_name": "vsprintf_fmt_state_tmp",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1533",
-   "struct_name": "cf_read_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1557",
-   "struct_name": "event_tag4_clear_tmp",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1358",
-   "struct_name": "lc3_attdet_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0061",
-   "struct_name": "ipc0_ept_recv_msg",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0175",
-   "struct_name": "img_mgmt_upload_req",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0335",
-   "struct_name": "nrf_qspi_cinstr_data",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0574",
-   "struct_name": "le_serialize_buffer",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0693",
-   "struct_name": "metal_io_ops",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1340",
-   "struct_name": "nrfx_qspi_control_block",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_0972",
-   "struct_name": "confirm_message_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1096",
-   "struct_name": "app_event_header",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1256",
-   "struct_name": "bt_keys_pool",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1336",
-   "struct_name": "nrfx_qspi_control_block",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1431",
-   "struct_name": "scanf_field_parse_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1561",
-   "struct_name": "nrfx_qspi_write_region",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0008",
-   "struct_name": "battery_soc_curve_model",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0026",
-   "struct_name": "esbs_ipc_msg",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x4: type uint8_t[3] (4B) wider than 3B slot -> union/overlap",
-    "D2:0x7: type uint32_t (4B) wider than 1B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0040",
-   "struct_name": "ble_work_thread_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0052",
-   "struct_name": "record_type8_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0067",
-   "struct_name": "spi_master_ops",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0077",
-   "struct_name": "system_suspend_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0098",
-   "struct_name": "notif_count_out",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0118",
-   "struct_name": "jdb_panel_cfg",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0133",
-   "struct_name": "mpsc_pbuf_buffer",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0158",
-   "struct_name": "bt_ancs_client_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x4: type uint32_t (4B) wider than 2B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0170",
-   "struct_name": "arm_mpu_region",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x8: type uint32_t (4B) wider than 2B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0185",
-   "struct_name": "bt_uuid_32",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0211",
-   "struct_name": "ble_conn_le_alloc_param",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0222",
-   "struct_name": "bt_l2cap_le_chan",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0241",
-   "struct_name": "bt_att_find_type_req",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0257",
-   "struct_name": "bt_gatt_indicate_params",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0276",
-   "struct_name": "net_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0297",
-   "struct_name": "clock_control_on_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0316",
-   "struct_name": "wdt_timeout_cfg",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0340",
-   "struct_name": "nrfx_pin_freq_cfg",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0362",
-   "struct_name": "metal_bus",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0373",
-   "struct_name": "lc3_encoder_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0398",
-   "struct_name": "audio_sync_ringbuf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0414",
-   "struct_name": "k_timer",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0425",
-   "struct_name": "bigint_dims",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0444",
-   "struct_name": "mbedtls_aes_context",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0460",
-   "struct_name": "opt_field1_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0493",
-   "struct_name": "sys_heap_chunk",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0510",
-   "struct_name": "cbprintf_cpy_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0539",
-   "struct_name": "bt_ancs_client_ctx",
+   "cid": "param_0555",
+   "struct_name": "image_version",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -3263,473 +2962,78 @@
    "warnings": []
   },
   {
-   "cid": "param_0577",
-   "struct_name": "bt_addr_le_t",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0601",
-   "struct_name": "att_notify_mult_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0614",
-   "struct_name": "generic_kv_entry",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0636",
-   "struct_name": "bt_addr_le_t",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0649",
-   "struct_name": "generic_range_pair",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0680",
-   "struct_name": "driver_active_timer_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0699",
-   "struct_name": "virtqueue",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x9: type uint16_t (2B) wider than 1B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0715",
-   "struct_name": "cbor_decoder_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0736",
-   "struct_name": "k_timer",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0752",
-   "struct_name": "batt_soc_calc_tmp",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0790",
-   "struct_name": "hci_vs_init_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0864",
-   "struct_name": "settings_read_stage",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0911",
-   "struct_name": "opt3001_i2c_xfer_bytes",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0981",
-   "struct_name": "timer_hms_draw_tmp",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1037",
-   "struct_name": "lcd_reflash_local_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1070",
-   "struct_name": "flash_sector",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1136",
-   "struct_name": "gatt_register_service_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1202",
-   "struct_name": "att_read_group_req_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1231",
-   "struct_name": "bt_gatt_discover_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1273",
-   "struct_name": "pdm_mic_event_data",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1373",
-   "struct_name": "lc3_ltpf_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1426",
-   "struct_name": "strtod_scratch",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1525",
-   "struct_name": "smp_ah_output_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1555",
-   "struct_name": "i2c_reg16_xfer",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_0965",
-   "struct_name": "ble_chunk_param_table",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1019",
-   "struct_name": "scroll_text_frame_idx_table",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0054",
-   "struct_name": "st25dv_ndef_build_ctx_p2",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0151",
-   "struct_name": "stream_flash_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0065",
-   "struct_name": "spi_bus_config",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_0997",
-   "struct_name": "dashboard_reflash_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1098",
-   "struct_name": "tc_aes_key_sched_struct",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1271",
-   "struct_name": "saadc_read_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1337",
-   "struct_name": "NRF_QSPI_Type",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1450",
-   "struct_name": "cc3xx_hal_reg_block",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1562",
-   "struct_name": "nrfx_qspi_cb",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0009",
-   "struct_name": "array_scan_bounds",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0027",
-   "struct_name": "g1_device_runtime_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0041",
-   "struct_name": "sett_init_params",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0053",
-   "struct_name": "st25dv_ndef_build_ctx_p1",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0068",
-   "struct_name": "imu_fusion_calib_params",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x8: type uint32_t (4B) wider than 2B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0078",
-   "struct_name": "persist_task_ctx_view",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0101",
-   "struct_name": "param_0101_false_union",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0119",
-   "struct_name": "quicknote_buffer_pool",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0135",
-   "struct_name": "nvs_fs",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "union@0xc: field width 2 < observed access 4"
-   ]
-  },
-  {
-   "cid": "param_0159",
-   "struct_name": "app_id_config_stream_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0172",
-   "struct_name": "net_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "union@0x18: field width 1 < observed access 4"
-   ]
-  },
-  {
-   "cid": "param_0186",
-   "struct_name": "bt_uuid_128",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0212",
-   "struct_name": "bt_conn_info",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0223",
-   "struct_name": "net_buf_l2cap_view",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0245",
-   "struct_name": "gatt_ccc_store_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0259",
-   "struct_name": "bt_gatt_notify_params",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0277",
-   "struct_name": "net_buf_pool",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0299",
-   "struct_name": "param_0299_driver_data_collision",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0319",
-   "struct_name": "flash_area",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0342",
-   "struct_name": "nrfx_spim_t",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0364",
-   "struct_name": "lc3_attdet_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0374",
-   "struct_name": "lc3_ltpf_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0399",
-   "struct_name": "rpmsg_vqueue_channel_cfg",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0415",
-   "struct_name": "event_registration",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0xc: type uint32_t (4B) wider than 1B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0427",
-   "struct_name": "bignum_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0445",
-   "struct_name": "mbedtls_aes_context",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0461",
-   "struct_name": "opt_record",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0498",
-   "struct_name": "sys_notify",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0511",
-   "struct_name": "log_msg_generic_hdr",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0542",
-   "struct_name": "audio_codec_bus_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
    "cid": "param_0558",
    "struct_name": "smp_reassembly_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0559",
+   "struct_name": "smp_transport_reassembly",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0560",
+   "struct_name": "bt_smp_reassembly_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0562",
+   "struct_name": "smp_reassembly_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0565",
+   "struct_name": "conn_id_addr",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0568",
+   "struct_name": "bt_uuid",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0571",
+   "struct_name": "bt_conn",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0572",
+   "struct_name": "bt_addr_le_t",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0573",
+   "struct_name": "bt_addr_le_t",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0574",
+   "struct_name": "le_serialize_buffer",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0577",
+   "struct_name": "bt_addr_le_t",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -3744,6 +3048,69 @@
    ]
   },
   {
+   "cid": "param_0580",
+   "struct_name": "bt_addr_le",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0581",
+   "struct_name": "bt_addr_le_t",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0585",
+   "struct_name": "bt_conn",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0586",
+   "struct_name": "bt_le_conn_param",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0590",
+   "struct_name": "atomic_signal_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0592",
+   "struct_name": "context_release_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0597",
+   "struct_name": "bt_l2cap_tx_meta",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0599",
+   "struct_name": "att_read_type_acc",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0601",
+   "struct_name": "att_notify_mult_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0602",
    "struct_name": "net_buf_att_view",
    "pass": true,
@@ -3751,8 +3118,142 @@
    "warnings": []
   },
   {
+   "cid": "param_0603",
+   "struct_name": "box_render_desc",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x4: type uint16_t (2B) wider than 1B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0604",
+   "struct_name": "net_buf_simple",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x4: field width 2 < observed access 4",
+    "union@0xc: field width 2 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0606",
+   "struct_name": "bt_att_chan",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0607",
+   "struct_name": "cmd_ctx_0607",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0610",
+   "struct_name": "bt_att_req",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0611",
+   "struct_name": "bt_gatt_indicate_params",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0612",
+   "struct_name": "bt_att_chan_view2",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0613",
+   "struct_name": "att_write_req_view",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0614",
+   "struct_name": "generic_kv_entry",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0618",
    "struct_name": "bt_gatt_ccc_managed_user_data",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0619",
+   "struct_name": "bt_gatt_indicate_params",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0620",
+   "struct_name": "hash_algo_desc",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0623",
+   "struct_name": "gatt_find_info_entry",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0624",
+   "struct_name": "gatt_write_encode_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0625",
+   "struct_name": "bt_addr_le_t",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0626",
+   "struct_name": "bt_addr_le_t",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0627",
+   "struct_name": "gatt_sc_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x4: field width 2 < observed access 4",
+    "union@0x8: field width 2 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0635",
+   "struct_name": "bt_conn_sec_view",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0636",
+   "struct_name": "bt_addr_le_t",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -3767,464 +3268,30 @@
    ]
   },
   {
-   "cid": "param_0651",
-   "struct_name": "flash_pages_info",
+   "cid": "param_0639",
+   "struct_name": "bt_addr_le",
    "pass": true,
    "errors": [],
    "warnings": []
   },
   {
-   "cid": "param_0682",
-   "struct_name": "watchdog_disable_work_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0700",
-   "struct_name": "virtqueue_desc_info",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0716",
-   "struct_name": "zcbor_state_t",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0739",
-   "struct_name": "k_poll_event",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0754",
-   "struct_name": "battery_model_update_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0792",
-   "struct_name": "dtoa_r_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0865",
-   "struct_name": "load_sys_setting_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0912",
-   "struct_name": "opt3001_reg_read_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1001",
-   "struct_name": "dashboard_reflash_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1042",
-   "struct_name": "proxy_thread_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1078",
-   "struct_name": "discovery_callback_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1151",
-   "struct_name": "ver_str_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1205",
-   "struct_name": "fun_0005929c_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1232",
-   "struct_name": "gatt_find_by_type_rsp_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1277",
-   "struct_name": "panel_temp_calibration_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1374",
-   "struct_name": "lc3_ltpf_analyse_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1427",
-   "struct_name": "strtod_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1532",
-   "struct_name": "bt_gatt_attr_read_ccc_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1556",
-   "struct_name": "post_event_tag2_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0023",
-   "struct_name": "cjson_parse_buffer",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0731",
-   "struct_name": "k_sem",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1377",
-   "struct_name": "lc3_sns_shaping_coeffs",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_0836",
-   "struct_name": "uid_enqueue_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1068",
-   "struct_name": "log_process_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1185",
-   "struct_name": "bt_conn",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1326",
-   "struct_name": "nrfx_pdm_drv_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1394",
-   "struct_name": "spinlock_validate_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1479",
-   "struct_name": "hash_drv_context",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0004",
-   "struct_name": "curve_table_201pt",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0018",
-   "struct_name": "g1_ui_box_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0034",
-   "struct_name": "bt_conn",
+   "cid": "param_0640",
+   "struct_name": "smp_pairing_features",
    "pass": true,
    "errors": [],
    "warnings": [
-    "D2:0x2: type uint16_t (2B) wider than 1B slot -> union/overlap",
-    "D2:0x4: type uint32_t (4B) wider than 2B slot -> union/overlap",
-    "D2:0xa: type void * (4B) wider than 2B slot -> union/overlap",
-    "D2:0xc: type uint32_t (4B) wider than 1B slot -> union/overlap",
-    "D2:0xe: type uint32_t (4B) wider than 2B slot -> union/overlap"
+    "union@0x1: field width 1 < observed access 2"
    ]
   },
   {
-   "cid": "param_0046",
-   "struct_name": "usr_settings_record",
+   "cid": "param_0641",
+   "struct_name": "smp_c1_param",
    "pass": true,
    "errors": [],
    "warnings": []
   },
   {
-   "cid": "param_0060",
-   "struct_name": "ipc_ept_locked_retry_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0073",
-   "struct_name": "orientation_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0090",
-   "struct_name": "brightness_lum_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0112",
-   "struct_name": "panoramic_map_view_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0128",
-   "struct_name": "cbprintf_package_hdr",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0148",
-   "struct_name": "log_msg_hdr",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "union@0x2: field width 2 < observed access 4",
-    "D2:0x0: type uint32_t (4B) wider than 2B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0166",
-   "struct_name": "arch_esf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0178",
-   "struct_name": "img_mgmt_erase_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0206",
-   "struct_name": "conn_tx_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0218",
-   "struct_name": "bt_l2cap_le_chan",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0228",
-   "struct_name": "bt_att_read_group_data",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x4: type uint32_t (4B) wider than 1B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0250",
-   "struct_name": "bt_gatt_cf_cfg",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0265",
-   "struct_name": "bt_smp",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0xa: type uint32_t (4B) wider than 1B slot -> union/overlap",
-    "D2:0x11: type uint32_t (4B) wider than 1B slot -> union/overlap",
-    "D2:0x15: type uint16_t (2B) wider than 1B slot -> union/overlap",
-    "D2:0xe8: type uint16_t (2B) wider than 1B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0290",
-   "struct_name": "adc_channel_cfg",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0312",
-   "struct_name": "uarte_nrfx_data",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0331",
-   "struct_name": "gpiote_trigger_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0348",
-   "struct_name": "nrfx_twim_config",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0369",
-   "struct_name": "lc3_encoder_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0392",
-   "struct_name": "lc3_tns_nbits_table",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0408",
-   "struct_name": "k_thread",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0420",
-   "struct_name": "_reent",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0438",
-   "struct_name": "mbedtls_ctr_drbg_context",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0453",
-   "struct_name": "hash_drv_context",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0483",
-   "struct_name": "quaternion_euler_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0505",
-   "struct_name": "generic_handle_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0530",
-   "struct_name": "ble_discovery_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0549",
-   "struct_name": "matrix_row_desc",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0568",
-   "struct_name": "bt_uuid",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0590",
-   "struct_name": "atomic_signal_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0610",
-   "struct_name": "bt_att_req",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0625",
+   "cid": "param_0642",
    "struct_name": "bt_addr_le_t",
    "pass": true,
    "errors": [],
@@ -4232,7 +3299,70 @@
   },
   {
    "cid": "param_0643",
-   "struct_name": "smp_f6_input_buf",
+   "struct_name": "bt_addr_le_input",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0644",
+   "struct_name": "bt_crypto_f6_input",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0645",
+   "struct_name": "net_buf_simple",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0647",
+   "struct_name": "net_buf_simple",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0649",
+   "struct_name": "generic_range_pair",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0651",
+   "struct_name": "flash_pages_info",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0661",
+   "struct_name": "pinctrl_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0662",
+   "struct_name": "nrf_periph_publish_regs",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0663",
+   "struct_name": "dev_channel_desc",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0664",
+   "struct_name": "dev_channel_dispatch_entry",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -4247,8 +3377,152 @@
    ]
   },
   {
+   "cid": "param_0673",
+   "struct_name": "flash_region_map",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x4: type uint32_t (4B) wider than 1B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0675",
+   "struct_name": "driver_cb_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0676",
+   "struct_name": "byte_channel_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0680",
+   "struct_name": "driver_active_timer_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0682",
+   "struct_name": "watchdog_disable_work_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0683",
+   "struct_name": "pmic_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0684",
+   "struct_name": "wdt_nrf_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0685",
+   "struct_name": "wdt_nrf_config",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0688",
+   "struct_name": "sllist_named_node",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0690",
    "struct_name": "nrfx_spim_cb",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0692",
+   "struct_name": "metal_io_region",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0693",
+   "struct_name": "metal_io_ops",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0695",
+   "struct_name": "metal_io_region",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0697",
+   "struct_name": "metal_io_region",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0698",
+   "struct_name": "task_ctx_generic",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0699",
+   "struct_name": "virtqueue",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x9: type uint16_t (2B) wider than 1B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "param_0700",
+   "struct_name": "virtqueue_desc_info",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0701",
+   "struct_name": "virtqueue",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0702",
+   "struct_name": "virtqueue",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0704",
+   "struct_name": "vring_layout",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0705",
+   "struct_name": "dma_xfer_desc",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -4261,464 +3535,6 @@
    "warnings": []
   },
   {
-   "cid": "param_0724",
-   "struct_name": "k_heap_init_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0745",
-   "struct_name": "mbedtls_mpi_limbs",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0782",
-   "struct_name": "imu_fusion_state_vector",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0850",
-   "struct_name": "ble_get_req_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0887",
-   "struct_name": "setting_store_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0941",
-   "struct_name": "audio_stream_file_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1021",
-   "struct_name": "clock_digit_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1055",
-   "struct_name": "ascii_digit_buffer",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1118",
-   "struct_name": "flash_area_info",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1192",
-   "struct_name": "bt_l2cap_le_chan_rx_local",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1226",
-   "struct_name": "gatt_notify_cb_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1240",
-   "struct_name": "gatt_find_info_elem",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1351",
-   "struct_name": "nrfx_twim_irq_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1422",
-   "struct_name": "float_render_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1497",
-   "struct_name": "proj_cmd_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1538",
-   "struct_name": "smp_c1_locals",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_1572",
-   "struct_name": "snprintf_bounds",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0150",
-   "struct_name": "stream_flash_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0321",
-   "struct_name": "cjson_printbuffer",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "stack_0756",
-   "struct_name": "battery_model_sample_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_0886",
-   "struct_name": "setting_store_handler_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1071",
-   "struct_name": "settings_store",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1189",
-   "struct_name": "bt_conn_auth_info_cb",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1328",
-   "struct_name": "nrfx_pdm_cb",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1395",
-   "struct_name": "spinlock_owner_source",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "global_1480",
-   "struct_name": "aes_context_tables",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0005",
-   "struct_name": "curve_interp_table_201pt",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0019",
-   "struct_name": "imu_fusion_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0035",
-   "struct_name": "bt_ancs_attr_data",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0049",
-   "struct_name": "event_record",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0062",
-   "struct_name": "ipc_service_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0074",
-   "struct_name": "peripheral_dispatch_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0091",
-   "struct_name": "channel_assign_info",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0114",
-   "struct_name": "onboarding_ble_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0129",
-   "struct_name": "onoff_manager",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x7: type uint16_t (2B) wider than 1B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0153",
-   "struct_name": "settings_set_handler_args",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0167",
-   "struct_name": "kernel_obj_shared_param",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0xc: type uint32_t (4B) wider than 1B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0179",
-   "struct_name": "img_mgmt_upload_action",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0207",
-   "struct_name": "k_poll_event",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0219",
-   "struct_name": "bt_l2cap_le_chan_tx",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "union@0x24: field width 2 < observed access 4",
-    "union@0x28: field width 2 < observed access 4",
-    "union@0x2c: field width 2 < observed access 4"
-   ]
-  },
-  {
-   "cid": "param_0229",
-   "struct_name": "bt_att_chan",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0251",
-   "struct_name": "gatt_attr_record",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0272",
-   "struct_name": "bt_smp",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0292",
-   "struct_name": "pdm_start_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0313",
-   "struct_name": "uarte_nrfx_data",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0333",
-   "struct_name": "pdm_pin_config",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0349",
-   "struct_name": "nrfx_twim_control_block",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0370",
-   "struct_name": "lc3_pcm_buf_desc",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0394",
-   "struct_name": "virtio_device",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0410",
-   "struct_name": "k_work_q",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0421",
-   "struct_name": "vfprintf_conv_state",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0439",
-   "struct_name": "ctr_drbg_work_buf",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0454",
-   "struct_name": "aes_key_context",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0486",
-   "struct_name": "u32le_array",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0506",
-   "struct_name": "reg_dev_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0536",
-   "struct_name": "flag_index_pair",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0552",
-   "struct_name": "smp_hdr",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0571",
-   "struct_name": "bt_conn",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0592",
-   "struct_name": "context_release_ctx",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0611",
-   "struct_name": "bt_gatt_indicate_params",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0626",
-   "struct_name": "bt_addr_le_t",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0644",
-   "struct_name": "bt_crypto_f6_input",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
-   "cid": "param_0673",
-   "struct_name": "flash_layout_region",
-   "pass": true,
-   "errors": [],
-   "warnings": [
-    "D2:0x4: type uint32_t (4B) wider than 1B slot -> union/overlap"
-   ]
-  },
-  {
-   "cid": "param_0695",
-   "struct_name": "metal_io_region",
-   "pass": true,
-   "errors": [],
-   "warnings": []
-  },
-  {
    "cid": "param_0712",
    "struct_name": "virtqueue",
    "pass": true,
@@ -4726,8 +3542,159 @@
    "warnings": []
   },
   {
+   "cid": "param_0713",
+   "struct_name": "rpmsg_virtio_shm_pool",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0714",
+   "struct_name": "rpmsg_virtio_device",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0715",
+   "struct_name": "cbor_decoder_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0716",
+   "struct_name": "zcbor_state_t",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0717",
+   "struct_name": "buffer_pool_freelist",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0718",
+   "struct_name": "cbor_value",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0719",
+   "struct_name": "zcbor_state_t",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0721",
+   "struct_name": "cbor_encode_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0724",
+   "struct_name": "k_heap_init_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "param_0725",
    "struct_name": "k_msgq",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0726",
+   "struct_name": "k_msgq",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0728",
+   "struct_name": "kmutex_dlist_node",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0730",
+   "struct_name": "k_queue",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0731",
+   "struct_name": "k_sem",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0734",
+   "struct_name": "sys_dlist_t",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0736",
+   "struct_name": "k_timer",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0739",
+   "struct_name": "k_poll_event",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0740",
+   "struct_name": "k_poll_signal",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0741",
+   "struct_name": "itoa_exp_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x4: field width 1 < observed access 4",
+    "union@0x8: field width 1 < observed access 4",
+    "union@0xc: field width 1 < observed access 4"
+   ]
+  },
+  {
+   "cid": "param_0742",
+   "struct_name": "libc_FILE_stream",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0743",
+   "struct_name": "bt_gatt_subscribe_params",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "param_0745",
+   "struct_name": "mbedtls_mpi_limbs",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -4742,8 +3709,171 @@
    ]
   },
   {
+   "cid": "param_0750",
+   "struct_name": "dynbuf_t",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "D2:0x44: type uint32_t (4B) wider than 1B slot -> union/overlap"
+   ]
+  },
+  {
+   "cid": "stack_0751",
+   "struct_name": "battery_model_sample",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0752",
+   "struct_name": "batt_soc_calc_tmp",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0754",
+   "struct_name": "battery_model_update_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0756",
+   "struct_name": "battery_model_sample_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0757",
+   "struct_name": "batt_model_calc_scratch5",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0758",
+   "struct_name": "battery_calc_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0759",
+   "struct_name": "batt_sample_pair",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0760",
+   "struct_name": "batt_model_calc_scratch5_b",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0761",
+   "struct_name": "batt_model_calc_scratch5_c",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0763",
+   "struct_name": "batt_calc_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0776",
+   "struct_name": "soc_curve_point_local",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0778",
+   "struct_name": "spline_interp_scratch5",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0782",
+   "struct_name": "imu_fusion_state_vector",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "stack_0783",
    "struct_name": "fuel_gauge_reading",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0784",
+   "struct_name": "cbvprintf_ptr_counter",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0785",
+   "struct_name": "cbprintf_conv_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0790",
+   "struct_name": "hci_vs_init_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0792",
+   "struct_name": "dtoa_r_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0841",
+   "struct_name": "ancs_notify_frame",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0842",
+   "struct_name": "ancs_notify_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0846",
+   "struct_name": "debug_print_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0848",
+   "struct_name": "ble_get_req_hdr_tmp",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0850",
+   "struct_name": "ble_get_req_locals",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -4756,8 +3886,141 @@
    "warnings": []
   },
   {
+   "cid": "stack_0852",
+   "struct_name": "ble_req_dispatch_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0860",
+   "struct_name": "crc_scratch_buffer",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0864",
+   "struct_name": "settings_read_stage",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0865",
+   "struct_name": "load_sys_setting_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0867",
+   "struct_name": "sys_setting_read_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0870",
+   "struct_name": "flash_addr_len_tmp",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0871",
+   "struct_name": "sys_setting_scan_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0873",
+   "struct_name": "flash_setting_record_local",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0887",
+   "struct_name": "setting_store_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0896",
+   "struct_name": "ndef_build_scratch5",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "stack_0897",
-   "struct_name": "ndef_record_scratch",
+   "struct_name": "ndef_encoded_record_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0900",
+   "struct_name": "len_prefixed_pkt_hdr",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0910",
+   "struct_name": "new_task_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0911",
+   "struct_name": "opt3001_i2c_xfer_bytes",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0912",
+   "struct_name": "opt3001_reg_read_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0931",
+   "struct_name": "audio_stream_cache_flags",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0934",
+   "struct_name": "audio_stream_params",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0939",
+   "struct_name": "audio_file_mgr_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0940",
+   "struct_name": "audio_file_mgr_flags",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0941",
+   "struct_name": "audio_stream_file_locals",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -4770,8 +4033,148 @@
    "warnings": []
   },
   {
+   "cid": "stack_0960",
+   "struct_name": "pt_data_pair",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0964",
+   "struct_name": "ble_chunk_scratch5",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0979",
+   "struct_name": "float_render_params",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0980",
+   "struct_name": "device_info_float_layout",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_0981",
+   "struct_name": "timer_hms_draw_tmp",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1001",
+   "struct_name": "dashboard_render_scratch",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1014",
+   "struct_name": "bmp_draw_desc",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1015",
+   "struct_name": "gui_bitmap_draw_args",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1016",
+   "struct_name": "bitmap_merge_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1018",
+   "struct_name": "scroll_text_frame_ctx",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1021",
+   "struct_name": "clock_digit_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "stack_1027",
    "struct_name": "utf_wordwrap_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1033",
+   "struct_name": "gui_draw_point",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1036",
+   "struct_name": "lcd_fb_xfer_local",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1037",
+   "struct_name": "lcd_reflash_local_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1042",
+   "struct_name": "proxy_msg_hdr",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1044",
+   "struct_name": "ui_warp_flags_tmp",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1048",
+   "struct_name": "display_thread_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1050",
+   "struct_name": "display_close_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1053",
+   "struct_name": "display_power_event_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1055",
+   "struct_name": "ascii_digit_buffer",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -4784,8 +4187,157 @@
    "warnings": []
   },
   {
+   "cid": "stack_1062",
+   "struct_name": "scratch_ctx_0004cf78",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1066",
+   "struct_name": "log_msg_desc_local",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1070",
+   "struct_name": "flash_sector",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1074",
+   "struct_name": "nvs_mount_scratch",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1078",
+   "struct_name": "discovery_callback_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1079",
+   "struct_name": "discovery_result_flags",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1080",
+   "struct_name": "bt_uuid_16_sel",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1081",
+   "struct_name": "ancs_handle_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1097",
+   "struct_name": "aes_key_setup_scratch5",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1112",
+   "struct_name": "mpu_diagnostic_record",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1118",
+   "struct_name": "flash_area_info",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "stack_1124",
    "struct_name": "img_mgmt_info_local",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x8: field width 2 < observed access 4"
+   ]
+  },
+  {
+   "cid": "stack_1126",
+   "struct_name": "img_upload_chunk",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1128",
+   "struct_name": "img_mgmt_upload_scratch",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1131",
+   "struct_name": "storage_erase_range_tmp",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1136",
+   "struct_name": "gatt_register_service_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1151",
+   "struct_name": "ver_str_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1170",
+   "struct_name": "ble_rpa_gen_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1173",
+   "struct_name": "hci_static_addr_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1186",
+   "struct_name": "conn_unref_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1191",
+   "struct_name": "bt_l2cap_le_chan",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1192",
+   "struct_name": "bt_l2cap_le_chan_rx_local",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -4798,8 +4350,134 @@
    "warnings": []
   },
   {
+   "cid": "stack_1196",
+   "struct_name": "bt_att_accept_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1197",
+   "struct_name": "bt_att_accept_local",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1202",
+   "struct_name": "att_read_group_req_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1205",
+   "struct_name": "fun_0005929c_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1207",
+   "struct_name": "unk_stack_1207",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1212",
+   "struct_name": "att_find_type_req_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1219",
+   "struct_name": "gatt_foreach_attr_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1224",
+   "struct_name": "bt_uuid_16_scratch",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1226",
+   "struct_name": "gatt_notify_cb_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "stack_1228",
    "struct_name": "gatt_discover_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1229",
+   "struct_name": "bt_uuid_16",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1230",
+   "struct_name": "bt_uuid_16",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1231",
+   "struct_name": "bt_gatt_discover_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1232",
+   "struct_name": "gatt_find_by_type_rsp_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1233",
+   "struct_name": "gatt_handle_range",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1234",
+   "struct_name": "gatt_read_by_type_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1235",
+   "struct_name": "read_by_type_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1237",
+   "struct_name": "gatt_uuid16_cursor",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1240",
+   "struct_name": "gatt_find_info_elem",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -4812,8 +4490,185 @@
    "warnings": []
   },
   {
+   "cid": "stack_1248",
+   "struct_name": "smp_dhkey_check_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1249",
+   "struct_name": "smp_pairing_req_local",
+   "pass": true,
+   "errors": [],
+   "warnings": [
+    "union@0x0: field width 1 < observed access 4"
+   ]
+  },
+  {
+   "cid": "stack_1273",
+   "struct_name": "pdm_mic_event_data",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1277",
+   "struct_name": "panel_temp_calibration_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1278",
+   "struct_name": "uarte_isr_scratch",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1292",
+   "struct_name": "cjson_print_value_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1302",
+   "struct_name": "gpiote_trigger_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1312",
+   "struct_name": "gpiote_evt_info",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1351",
+   "struct_name": "nrfx_twim_irq_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1356",
+   "struct_name": "lc3_attdet_scratch5",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1357",
+   "struct_name": "lc3_attdet_scratch5_b",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "stack_1359",
    "struct_name": "lc3_bwdet_energy_array",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1361",
+   "struct_name": "lc3_energy_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1370",
+   "struct_name": "lc3_ltpf_pitch_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1373",
+   "struct_name": "lc3_ltpf_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1374",
+   "struct_name": "lc3_ltpf_analyse_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1375",
+   "struct_name": "lc3_mdct_fft_workspace",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1377",
+   "struct_name": "lc3_sns_shaping_coeffs",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1378",
+   "struct_name": "lc3_sns_scratch5",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1379",
+   "struct_name": "lc3_sns_scratch5_b",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1380",
+   "struct_name": "lc3_sns_analyze_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1382",
+   "struct_name": "lc3_sns_analysis_buffer",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1385",
+   "struct_name": "lc3_spec_scratch5",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1387",
+   "struct_name": "lc3_tns_analyze_local",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1388",
+   "struct_name": "lc3_tns_scratch5",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1422",
+   "struct_name": "float_render_locals",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -4826,8 +4681,134 @@
    "warnings": []
   },
   {
+   "cid": "stack_1424",
+   "struct_name": "fmt_buf_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1425",
+   "struct_name": "strtod_bigint_scratch",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1426",
+   "struct_name": "strtod_scratch",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1427",
+   "struct_name": "strtod_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1428",
+   "struct_name": "vsprintf_fmt_state_tmp",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1430",
+   "struct_name": "scanf_int_convert_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1469",
+   "struct_name": "mbedtls_hw_poll_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1496",
+   "struct_name": "projector_cmd_local",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1497",
+   "struct_name": "proj_cmd_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
    "cid": "stack_1498",
    "struct_name": "spi_chunk_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1505",
+   "struct_name": "scratch_pair_0007e83a",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1521",
+   "struct_name": "mpu_region_cfg_local",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1525",
+   "struct_name": "smp_ah_output_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1532",
+   "struct_name": "bt_gatt_attr_read_ccc_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1533",
+   "struct_name": "cf_read_state",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1534",
+   "struct_name": "ble_appearance_rsp",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1535",
+   "struct_name": "local_pair_82c48",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1536",
+   "struct_name": "bt_uuid_16_scratch",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1538",
+   "struct_name": "smp_c1_locals",
    "pass": true,
    "errors": [],
    "warnings": []
@@ -4840,15 +4821,78 @@
    "warnings": []
   },
   {
-   "cid": "stack_1573",
-   "struct_name": "bignum_estimate_ints",
+   "cid": "stack_1553",
+   "struct_name": "dppi_channel_cfg_entry",
    "pass": true,
    "errors": [],
    "warnings": []
   },
   {
-   "cid": "param_0640",
-   "struct_name": "param_0640_mechanical",
+   "cid": "stack_1554",
+   "struct_name": "regulator_volt_range_local",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1555",
+   "struct_name": "i2c_reg16_xfer",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1556",
+   "struct_name": "post_event_tag2_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1557",
+   "struct_name": "event_tag4_notify",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1558",
+   "struct_name": "post_event_tag5_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1560",
+   "struct_name": "flash_padded_entry_buf",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1568",
+   "struct_name": "cbor_skip_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1571",
+   "struct_name": "dtoa_locals",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1572",
+   "struct_name": "snprintf_bounds",
+   "pass": true,
+   "errors": [],
+   "warnings": []
+  },
+  {
+   "cid": "stack_1573",
+   "struct_name": "bignum_estimate_ints",
    "pass": true,
    "errors": [],
    "warnings": []
