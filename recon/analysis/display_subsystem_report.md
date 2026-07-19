@@ -11,12 +11,17 @@ driven over SPI.
 
 - `jdb_panel_init` reads the panel SPI ID and only accepts **`0x4010`** (else logs
   `"JBD PANEL init failure!"`), storing it in `g_panel_spi_id`.
-- **640×200, 4 bits/pixel.** Framebuffer (`projector_fill_framebuffer`) is **64000
-  bytes** = 640·200·4/8. Width is pinned by the transport: `projector_write_pixel_data`
-  moves `0xf000` (61440) bytes per `0xc0` (192) rows → 320 bytes/row → **640 px/row**
-  (two 4-bit pixels per byte). Pixel address packing in `projector_transfer_pixel_chunk`
-  is **10-bit X, 9-bit Y** (`(x & 0x3ff) | (y << 10)`); the panel address space is
-  larger than the 640×200 active image (clear path blits 192-row bands up to row 480).
+- **640×200 active canvas inside a ~640×480 physical panel.** The rendered framebuffer
+  (`projector_fill_framebuffer`) is **64000 bytes** = 640·200·4/8. Width/height are
+  hard-clamped in the blit `reflash_fb_data_to_lcd` (`param_5→0x280`=640, `param_6→200`),
+  and it writes **one SPI transfer per row** (row stride `0x140`=320 B = 640 px @ 4 bpp)
+  to panel address `X = canvas_x + col`, `Y = canvas_y + row` (`projector_transfer_pixel_chunk`
+  packs 10-bit X, 9-bit Y). The panel is physically taller than the image: the clear
+  path blits 192-row bands up to row 480, and the height offset (below) reaches 280, so
+  **280 (max offset) + 200 (canvas) = 480 = full panel height**. Only the 640×200 window
+  is written each refresh (partial dirty-rectangle updates are supported); everything
+  outside it is never lit and stays transparent. Drawing is gated on the panel-ready
+  flag `controller+0x35c` (set when `jdb_panel_init` sees SPI ID `0x4010`).
 - **Monochrome green, 16 luminance levels** (4 bpp). No color channel.
 - **Dual, one per temple/eye**: `master_display_thread` / `slave_display_thread`,
   `display_panel_is_secondary`. The master temple syncs state to the slave over the
@@ -88,7 +93,9 @@ raster_y = (8 - gear) * 35            # pixels, applied equally to BOTH eyes
 
 So each height step moves the whole canvas **35 px** vertically (gear 8 = top, gear 0 =
 lowest) — this is how high/low the floating HUD sits in the field of view. Same offset
-on both eyes.
+on both eyes. Because the canvas is only 200 rows tall and the offset spans 0–280, the
+setting **slides the 640×200 content window through the 640×480 physical panel**
+(280 + 200 = 480); the unused rows stay dark/transparent.
 
 ### Distance → per-eye horizontal shift = binocular convergence (`canvas_distance_gear`)
 
