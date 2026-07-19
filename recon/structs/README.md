@@ -34,6 +34,11 @@ verified. **JSON-only** — no reconstructed source was edited.
   fallback where an agent dropped a cluster).
 - **299 library** (60 with offsets verified against real headers) / **377 G1-original**.
 - 56 unions/overlaps flagged, 70 arrays.
+- **Fields named**: a follow-up 20-opus deep code sweep over
+  `recon/readable_sources/app` named the `field_0x*` placeholders from real usage
+  — **1008 → 96 remaining** (912 named, 280 retyped, 53 struct renames). The 96
+  left are agent-marked undeterminable. Machinery: `build_field_bundles.py`,
+  `field_name.wf.js`, `merge_field_names.py`.
 
 ## Files
 
