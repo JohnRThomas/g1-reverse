@@ -1,0 +1,1544 @@
+[
+ {
+  "cid": "global_0832",
+  "struct_name": "ancs_enqueue_state",
+  "n_placeholders": 2,
+  "shard": 0
+ },
+ {
+  "cid": "global_0836",
+  "struct_name": "uid_enqueue_state",
+  "n_placeholders": 2,
+  "shard": 1
+ },
+ {
+  "cid": "global_0840",
+  "struct_name": "bt_start_init_table",
+  "n_placeholders": 4,
+  "shard": 2
+ },
+ {
+  "cid": "global_0968",
+  "struct_name": "resend_pending_msg_state",
+  "n_placeholders": 3,
+  "shard": 3
+ },
+ {
+  "cid": "global_0969",
+  "struct_name": "pt_queue_free_slot_state",
+  "n_placeholders": 3,
+  "shard": 4
+ },
+ {
+  "cid": "global_1046",
+  "struct_name": "ui_refresh_warp_state",
+  "n_placeholders": 2,
+  "shard": 5
+ },
+ {
+  "cid": "global_1068",
+  "struct_name": "log_process_state",
+  "n_placeholders": 4,
+  "shard": 6
+ },
+ {
+  "cid": "global_1096",
+  "struct_name": "app_event_header",
+  "n_placeholders": 1,
+  "shard": 7
+ },
+ {
+  "cid": "global_1152",
+  "struct_name": "fw_version_info_table",
+  "n_placeholders": 13,
+  "shard": 8
+ },
+ {
+  "cid": "global_1168",
+  "struct_name": "ble_privacy_id_state",
+  "n_placeholders": 2,
+  "shard": 9
+ },
+ {
+  "cid": "global_1185",
+  "struct_name": "bt_conn",
+  "n_placeholders": 2,
+  "shard": 10
+ },
+ {
+  "cid": "global_1253",
+  "struct_name": "bt_bond_iter_scratch",
+  "n_placeholders": 2,
+  "shard": 11
+ },
+ {
+  "cid": "global_1256",
+  "struct_name": "bt_keys_pool",
+  "n_placeholders": 3,
+  "shard": 12
+ },
+ {
+  "cid": "global_1272",
+  "struct_name": "pdm_mic_event_ctx",
+  "n_placeholders": 1,
+  "shard": 13
+ },
+ {
+  "cid": "global_1324",
+  "struct_name": "nrfx_pdm_cb",
+  "n_placeholders": 2,
+  "shard": 14
+ },
+ {
+  "cid": "global_1330",
+  "struct_name": "pdm_capture_buffer_state",
+  "n_placeholders": 2,
+  "shard": 15
+ },
+ {
+  "cid": "global_1340",
+  "struct_name": "nrfx_qspi_control_block",
+  "n_placeholders": 6,
+  "shard": 16
+ },
+ {
+  "cid": "global_1344",
+  "struct_name": "nrfx_qspi_cb",
+  "n_placeholders": 2,
+  "shard": 17
+ },
+ {
+  "cid": "global_1394",
+  "struct_name": "spinlock_validate_state",
+  "n_placeholders": 2,
+  "shard": 18
+ },
+ {
+  "cid": "global_1395",
+  "struct_name": "spinlock_owner_source",
+  "n_placeholders": 2,
+  "shard": 19
+ },
+ {
+  "cid": "global_1405",
+  "struct_name": "z_kernel_sched_state",
+  "n_placeholders": 2,
+  "shard": 0
+ },
+ {
+  "cid": "global_1431",
+  "struct_name": "scanf_field_parse_ctx",
+  "n_placeholders": 2,
+  "shard": 1
+ },
+ {
+  "cid": "global_1465",
+  "struct_name": "cc_trng_state",
+  "n_placeholders": 2,
+  "shard": 2
+ },
+ {
+  "cid": "global_1479",
+  "struct_name": "hash_drv_context",
+  "n_placeholders": 5,
+  "shard": 3
+ },
+ {
+  "cid": "global_1483",
+  "struct_name": "cc3xx_aes_drv_ctx",
+  "n_placeholders": 6,
+  "shard": 4
+ },
+ {
+  "cid": "global_1484",
+  "struct_name": "aes_drv_ctx",
+  "n_placeholders": 4,
+  "shard": 5
+ },
+ {
+  "cid": "global_1561",
+  "struct_name": "nrfx_qspi_write_region",
+  "n_placeholders": 3,
+  "shard": 6
+ },
+ {
+  "cid": "global_1562",
+  "struct_name": "nrfx_qspi_cb",
+  "n_placeholders": 2,
+  "shard": 7
+ },
+ {
+  "cid": "param_0000",
+  "struct_name": "battery_model_state",
+  "n_placeholders": 37,
+  "shard": 8
+ },
+ {
+  "cid": "param_0006",
+  "struct_name": "curve_table_201pt",
+  "n_placeholders": 2,
+  "shard": 9
+ },
+ {
+  "cid": "param_0007",
+  "struct_name": "app_shared_ctx_blob",
+  "n_placeholders": 17,
+  "shard": 10
+ },
+ {
+  "cid": "param_0009",
+  "struct_name": "array_scan_bounds",
+  "n_placeholders": 2,
+  "shard": 11
+ },
+ {
+  "cid": "param_0025",
+  "struct_name": "esbs_ipc_recv_ctx",
+  "n_placeholders": 19,
+  "shard": 12
+ },
+ {
+  "cid": "param_0026",
+  "struct_name": "esbs_ipc_msg",
+  "n_placeholders": 5,
+  "shard": 13
+ },
+ {
+  "cid": "param_0027",
+  "struct_name": "g1_device_runtime_state",
+  "n_placeholders": 44,
+  "shard": 14
+ },
+ {
+  "cid": "param_0034",
+  "struct_name": "bt_conn",
+  "n_placeholders": 12,
+  "shard": 15
+ },
+ {
+  "cid": "param_0038",
+  "struct_name": "app_ble_ctx_block",
+  "n_placeholders": 4,
+  "shard": 16
+ },
+ {
+  "cid": "param_0039",
+  "struct_name": "audio_fw_load_msg",
+  "n_placeholders": 18,
+  "shard": 17
+ },
+ {
+  "cid": "param_0041",
+  "struct_name": "sett_init_params",
+  "n_placeholders": 3,
+  "shard": 18
+ },
+ {
+  "cid": "param_0042",
+  "struct_name": "device_settings_blob",
+  "n_placeholders": 18,
+  "shard": 19
+ },
+ {
+  "cid": "param_0051",
+  "struct_name": "record_type8",
+  "n_placeholders": 6,
+  "shard": 0
+ },
+ {
+  "cid": "param_0052",
+  "struct_name": "record_type8_ctx",
+  "n_placeholders": 2,
+  "shard": 1
+ },
+ {
+  "cid": "param_0053",
+  "struct_name": "st25dv_ndef_build_ctx_p1",
+  "n_placeholders": 8,
+  "shard": 2
+ },
+ {
+  "cid": "param_0054",
+  "struct_name": "st25dv_ndef_build_ctx_p2",
+  "n_placeholders": 8,
+  "shard": 3
+ },
+ {
+  "cid": "param_0055",
+  "struct_name": "ndef_record_desc",
+  "n_placeholders": 2,
+  "shard": 4
+ },
+ {
+  "cid": "param_0059",
+  "struct_name": "ipc_ept_ctx",
+  "n_placeholders": 1,
+  "shard": 5
+ },
+ {
+  "cid": "param_0061",
+  "struct_name": "ipc0_ept_recv_msg",
+  "n_placeholders": 7,
+  "shard": 6
+ },
+ {
+  "cid": "param_0067",
+  "struct_name": "spi_master_ops",
+  "n_placeholders": 2,
+  "shard": 7
+ },
+ {
+  "cid": "param_0068",
+  "struct_name": "imu_fusion_calib_params",
+  "n_placeholders": 1,
+  "shard": 8
+ },
+ {
+  "cid": "param_0076",
+  "struct_name": "audio_fw_load_notify_ctx",
+  "n_placeholders": 11,
+  "shard": 9
+ },
+ {
+  "cid": "param_0077",
+  "struct_name": "system_suspend_ctx",
+  "n_placeholders": 2,
+  "shard": 10
+ },
+ {
+  "cid": "param_0080",
+  "struct_name": "msg_show_item",
+  "n_placeholders": 2,
+  "shard": 11
+ },
+ {
+  "cid": "param_0101",
+  "struct_name": "param_0101_false_union",
+  "n_placeholders": 34,
+  "shard": 12
+ },
+ {
+  "cid": "param_0111",
+  "struct_name": "nav_overview_map_ctx",
+  "n_placeholders": 2,
+  "shard": 13
+ },
+ {
+  "cid": "param_0117",
+  "struct_name": "panel_ctx",
+  "n_placeholders": 2,
+  "shard": 14
+ },
+ {
+  "cid": "param_0119",
+  "struct_name": "quicknote_buffer_pool",
+  "n_placeholders": 10,
+  "shard": 15
+ },
+ {
+  "cid": "param_0128",
+  "struct_name": "cbprintf_package_hdr",
+  "n_placeholders": 2,
+  "shard": 16
+ },
+ {
+  "cid": "param_0132",
+  "struct_name": "mpsc_pbuf_buffer",
+  "n_placeholders": 4,
+  "shard": 17
+ },
+ {
+  "cid": "param_0139",
+  "struct_name": "unk_ctx_0139",
+  "n_placeholders": 2,
+  "shard": 18
+ },
+ {
+  "cid": "param_0145",
+  "struct_name": "ipc_static_vrings",
+  "n_placeholders": 25,
+  "shard": 19
+ },
+ {
+  "cid": "param_0148",
+  "struct_name": "log_msg_hdr",
+  "n_placeholders": 1,
+  "shard": 0
+ },
+ {
+  "cid": "param_0155",
+  "struct_name": "bt_gatt_dm_attr_ctx",
+  "n_placeholders": 3,
+  "shard": 1
+ },
+ {
+  "cid": "param_0157",
+  "struct_name": "ancs_notif_ctx",
+  "n_placeholders": 14,
+  "shard": 2
+ },
+ {
+  "cid": "param_0158",
+  "struct_name": "bt_ancs_client_ctx",
+  "n_placeholders": 2,
+  "shard": 3
+ },
+ {
+  "cid": "param_0159",
+  "struct_name": "app_id_config_stream_ctx",
+  "n_placeholders": 12,
+  "shard": 4
+ },
+ {
+  "cid": "param_0160",
+  "struct_name": "gatt_subscribe_ctx",
+  "n_placeholders": 3,
+  "shard": 5
+ },
+ {
+  "cid": "param_0162",
+  "struct_name": "module_state_event",
+  "n_placeholders": 1,
+  "shard": 6
+ },
+ {
+  "cid": "param_0167",
+  "struct_name": "kernel_obj_shared_param",
+  "n_placeholders": 11,
+  "shard": 7
+ },
+ {
+  "cid": "param_0168",
+  "struct_name": "k_thread",
+  "n_placeholders": 1,
+  "shard": 8
+ },
+ {
+  "cid": "param_0173",
+  "struct_name": "smp_pkt_ctx",
+  "n_placeholders": 2,
+  "shard": 9
+ },
+ {
+  "cid": "param_0174",
+  "struct_name": "zcbor_state_t",
+  "n_placeholders": 3,
+  "shard": 10
+ },
+ {
+  "cid": "param_0175",
+  "struct_name": "img_mgmt_upload_req",
+  "n_placeholders": 4,
+  "shard": 11
+ },
+ {
+  "cid": "param_0176",
+  "struct_name": "img_mgmt_req_ctx",
+  "n_placeholders": 2,
+  "shard": 12
+ },
+ {
+  "cid": "param_0178",
+  "struct_name": "img_mgmt_erase_ctx",
+  "n_placeholders": 2,
+  "shard": 13
+ },
+ {
+  "cid": "param_0181",
+  "struct_name": "k_work_delayable",
+  "n_placeholders": 4,
+  "shard": 14
+ },
+ {
+  "cid": "param_0184",
+  "struct_name": "bt_settings_encode_key_arg",
+  "n_placeholders": 6,
+  "shard": 15
+ },
+ {
+  "cid": "param_0185",
+  "struct_name": "bt_uuid_32",
+  "n_placeholders": 1,
+  "shard": 16
+ },
+ {
+  "cid": "param_0189",
+  "struct_name": "bt_hci_cmd_state_set",
+  "n_placeholders": 1,
+  "shard": 17
+ },
+ {
+  "cid": "param_0200",
+  "struct_name": "ble_conn_addr_params",
+  "n_placeholders": 3,
+  "shard": 18
+ },
+ {
+  "cid": "param_0205",
+  "struct_name": "conn_tx_saadc_ctx",
+  "n_placeholders": 5,
+  "shard": 19
+ },
+ {
+  "cid": "param_0206",
+  "struct_name": "conn_tx_ctx",
+  "n_placeholders": 2,
+  "shard": 0
+ },
+ {
+  "cid": "param_0207",
+  "struct_name": "k_poll_event",
+  "n_placeholders": 1,
+  "shard": 1
+ },
+ {
+  "cid": "param_0208",
+  "struct_name": "bt_conn_le_ctx",
+  "n_placeholders": 3,
+  "shard": 2
+ },
+ {
+  "cid": "param_0210",
+  "struct_name": "bt_conn_ctx",
+  "n_placeholders": 4,
+  "shard": 3
+ },
+ {
+  "cid": "param_0211",
+  "struct_name": "ble_conn_le_alloc_param",
+  "n_placeholders": 2,
+  "shard": 4
+ },
+ {
+  "cid": "param_0213",
+  "struct_name": "bt_conn_info",
+  "n_placeholders": 4,
+  "shard": 5
+ },
+ {
+  "cid": "param_0214",
+  "struct_name": "bt_le_conn_param",
+  "n_placeholders": 3,
+  "shard": 6
+ },
+ {
+  "cid": "param_0215",
+  "struct_name": "ble_conn_complete_ctx",
+  "n_placeholders": 2,
+  "shard": 7
+ },
+ {
+  "cid": "param_0220",
+  "struct_name": "att_l2cap_frag_ctx",
+  "n_placeholders": 2,
+  "shard": 8
+ },
+ {
+  "cid": "param_0221",
+  "struct_name": "bt_conn_l2cap_view",
+  "n_placeholders": 7,
+  "shard": 9
+ },
+ {
+  "cid": "param_0227",
+  "struct_name": "bt_att_chan",
+  "n_placeholders": 4,
+  "shard": 10
+ },
+ {
+  "cid": "param_0228",
+  "struct_name": "bt_att_read_group_data",
+  "n_placeholders": 6,
+  "shard": 11
+ },
+ {
+  "cid": "param_0236",
+  "struct_name": "att_pdu_buf_view",
+  "n_placeholders": 2,
+  "shard": 12
+ },
+ {
+  "cid": "param_0241",
+  "struct_name": "bt_att_find_type_req",
+  "n_placeholders": 2,
+  "shard": 13
+ },
+ {
+  "cid": "param_0246",
+  "struct_name": "gatt_ccc_cfg",
+  "n_placeholders": 3,
+  "shard": 14
+ },
+ {
+  "cid": "param_0248",
+  "struct_name": "bt_conn",
+  "n_placeholders": 5,
+  "shard": 15
+ },
+ {
+  "cid": "param_0249",
+  "struct_name": "gatt_ccc_list_node",
+  "n_placeholders": 2,
+  "shard": 16
+ },
+ {
+  "cid": "param_0260",
+  "struct_name": "gatt_ccc_update_ctx",
+  "n_placeholders": 4,
+  "shard": 17
+ },
+ {
+  "cid": "param_0262",
+  "struct_name": "bt_gatt_subscribe_params",
+  "n_placeholders": 3,
+  "shard": 18
+ },
+ {
+  "cid": "param_0263",
+  "struct_name": "bt_gatt_subscribe_params",
+  "n_placeholders": 3,
+  "shard": 19
+ },
+ {
+  "cid": "param_0265",
+  "struct_name": "bt_smp",
+  "n_placeholders": 21,
+  "shard": 0
+ },
+ {
+  "cid": "param_0274",
+  "struct_name": "bt_keys_irk_lookup_view",
+  "n_placeholders": 3,
+  "shard": 1
+ },
+ {
+  "cid": "param_0285",
+  "struct_name": "net_buf_simple",
+  "n_placeholders": 3,
+  "shard": 2
+ },
+ {
+  "cid": "param_0290",
+  "struct_name": "adc_channel_cfg",
+  "n_placeholders": 4,
+  "shard": 3
+ },
+ {
+  "cid": "param_0295",
+  "struct_name": "pdm_config_g1",
+  "n_placeholders": 3,
+  "shard": 4
+ },
+ {
+  "cid": "param_0299",
+  "struct_name": "param_0299_driver_data_collision",
+  "n_placeholders": 2,
+  "shard": 5
+ },
+ {
+  "cid": "param_0312",
+  "struct_name": "uarte_nrfx_data",
+  "n_placeholders": 2,
+  "shard": 6
+ },
+ {
+  "cid": "param_0315",
+  "struct_name": "wdt_timeout_cfg_view",
+  "n_placeholders": 1,
+  "shard": 7
+ },
+ {
+  "cid": "param_0320",
+  "struct_name": "flash_boot_swap_ate",
+  "n_placeholders": 2,
+  "shard": 8
+ },
+ {
+  "cid": "param_0333",
+  "struct_name": "pdm_pin_config",
+  "n_placeholders": 7,
+  "shard": 9
+ },
+ {
+  "cid": "param_0337",
+  "struct_name": "qspi_pins_config",
+  "n_placeholders": 5,
+  "shard": 10
+ },
+ {
+  "cid": "param_0338",
+  "struct_name": "qspi_config_g1",
+  "n_placeholders": 1,
+  "shard": 11
+ },
+ {
+  "cid": "param_0339",
+  "struct_name": "nrfx_qspi_cinstr_config",
+  "n_placeholders": 5,
+  "shard": 12
+ },
+ {
+  "cid": "param_0340",
+  "struct_name": "nrfx_pin_freq_cfg",
+  "n_placeholders": 8,
+  "shard": 13
+ },
+ {
+  "cid": "param_0342",
+  "struct_name": "nrfx_spim_t",
+  "n_placeholders": 2,
+  "shard": 14
+ },
+ {
+  "cid": "param_0343",
+  "struct_name": "nrfx_spim_config",
+  "n_placeholders": 2,
+  "shard": 15
+ },
+ {
+  "cid": "param_0349",
+  "struct_name": "nrfx_twim_control_block",
+  "n_placeholders": 20,
+  "shard": 16
+ },
+ {
+  "cid": "param_0350",
+  "struct_name": "nrfx_twim_cb",
+  "n_placeholders": 4,
+  "shard": 17
+ },
+ {
+  "cid": "param_0353",
+  "struct_name": "twim_xfer_desc",
+  "n_placeholders": 4,
+  "shard": 18
+ },
+ {
+  "cid": "param_0360",
+  "struct_name": "metal_device_region_view",
+  "n_placeholders": 4,
+  "shard": 19
+ },
+ {
+  "cid": "param_0364",
+  "struct_name": "lc3_attdet_state",
+  "n_placeholders": 2,
+  "shard": 0
+ },
+ {
+  "cid": "param_0366",
+  "struct_name": "lc3_bits_t",
+  "n_placeholders": 7,
+  "shard": 1
+ },
+ {
+  "cid": "param_0369",
+  "struct_name": "lc3_encoder_state",
+  "n_placeholders": 1,
+  "shard": 2
+ },
+ {
+  "cid": "param_0372",
+  "struct_name": "lc3_bitstream_ctx",
+  "n_placeholders": 3,
+  "shard": 3
+ },
+ {
+  "cid": "param_0373",
+  "struct_name": "lc3_encoder_ctx",
+  "n_placeholders": 5,
+  "shard": 4
+ },
+ {
+  "cid": "param_0384",
+  "struct_name": "lc3_sns_state",
+  "n_placeholders": 6,
+  "shard": 5
+ },
+ {
+  "cid": "param_0388",
+  "struct_name": "lc3_side_data",
+  "n_placeholders": 2,
+  "shard": 6
+ },
+ {
+  "cid": "param_0389",
+  "struct_name": "lc3_spec_encode_ctx",
+  "n_placeholders": 1,
+  "shard": 7
+ },
+ {
+  "cid": "param_0399",
+  "struct_name": "rpmsg_vqueue_channel_cfg",
+  "n_placeholders": 3,
+  "shard": 8
+ },
+ {
+  "cid": "param_0400",
+  "struct_name": "rpmsg_vq_alloc_info",
+  "n_placeholders": 2,
+  "shard": 9
+ },
+ {
+  "cid": "param_0401",
+  "struct_name": "rpmsg_virtio_shm_pool",
+  "n_placeholders": 2,
+  "shard": 10
+ },
+ {
+  "cid": "param_0402",
+  "struct_name": "metal_io_region",
+  "n_placeholders": 2,
+  "shard": 11
+ },
+ {
+  "cid": "param_0412",
+  "struct_name": "k_thread_waitq_view",
+  "n_placeholders": 4,
+  "shard": 12
+ },
+ {
+  "cid": "param_0415",
+  "struct_name": "event_registration",
+  "n_placeholders": 1,
+  "shard": 13
+ },
+ {
+  "cid": "param_0418",
+  "struct_name": "libc_FILE",
+  "n_placeholders": 1,
+  "shard": 14
+ },
+ {
+  "cid": "param_0419",
+  "struct_name": "newlib_FILE",
+  "n_placeholders": 1,
+  "shard": 15
+ },
+ {
+  "cid": "param_0420",
+  "struct_name": "_reent",
+  "n_placeholders": 8,
+  "shard": 16
+ },
+ {
+  "cid": "param_0421",
+  "struct_name": "vfprintf_conv_state",
+  "n_placeholders": 6,
+  "shard": 17
+ },
+ {
+  "cid": "param_0423",
+  "struct_name": "dtoa_scratch",
+  "n_placeholders": 3,
+  "shard": 18
+ },
+ {
+  "cid": "param_0430",
+  "struct_name": "fmt_conv_spec",
+  "n_placeholders": 1,
+  "shard": 19
+ },
+ {
+  "cid": "param_0432",
+  "struct_name": "vfprintf_scan_ctx",
+  "n_placeholders": 5,
+  "shard": 0
+ },
+ {
+  "cid": "param_0433",
+  "struct_name": "scanf_convert_ctx",
+  "n_placeholders": 8,
+  "shard": 1
+ },
+ {
+  "cid": "param_0436",
+  "struct_name": "deferred_call_pair_ctx",
+  "n_placeholders": 3,
+  "shard": 2
+ },
+ {
+  "cid": "param_0440",
+  "struct_name": "mbedtls_entropy_context",
+  "n_placeholders": 4,
+  "shard": 3
+ },
+ {
+  "cid": "param_0446",
+  "struct_name": "aes_drv_ctx",
+  "n_placeholders": 19,
+  "shard": 4
+ },
+ {
+  "cid": "param_0449",
+  "struct_name": "llf_rnd_state",
+  "n_placeholders": 3,
+  "shard": 5
+ },
+ {
+  "cid": "param_0454",
+  "struct_name": "aes_key_context",
+  "n_placeholders": 1,
+  "shard": 6
+ },
+ {
+  "cid": "param_0458",
+  "struct_name": "opt_node_header",
+  "n_placeholders": 2,
+  "shard": 7
+ },
+ {
+  "cid": "param_0466",
+  "struct_name": "opt_record",
+  "n_placeholders": 3,
+  "shard": 8
+ },
+ {
+  "cid": "param_0485",
+  "struct_name": "countdown_timer_state",
+  "n_placeholders": 4,
+  "shard": 9
+ },
+ {
+  "cid": "param_0492",
+  "struct_name": "out_pair",
+  "n_placeholders": 2,
+  "shard": 10
+ },
+ {
+  "cid": "param_0498",
+  "struct_name": "sys_notify",
+  "n_placeholders": 2,
+  "shard": 11
+ },
+ {
+  "cid": "param_0503",
+  "struct_name": "pair_ctx_0503",
+  "n_placeholders": 2,
+  "shard": 12
+ },
+ {
+  "cid": "param_0505",
+  "struct_name": "generic_handle_ctx",
+  "n_placeholders": 2,
+  "shard": 13
+ },
+ {
+  "cid": "param_0506",
+  "struct_name": "reg_dev_ctx",
+  "n_placeholders": 2,
+  "shard": 14
+ },
+ {
+  "cid": "param_0509",
+  "struct_name": "ipc_rpmsg_instance",
+  "n_placeholders": 3,
+  "shard": 15
+ },
+ {
+  "cid": "param_0510",
+  "struct_name": "cbprintf_cpy_ctx",
+  "n_placeholders": 2,
+  "shard": 16
+ },
+ {
+  "cid": "param_0511",
+  "struct_name": "log_msg_generic_hdr",
+  "n_placeholders": 2,
+  "shard": 17
+ },
+ {
+  "cid": "param_0512",
+  "struct_name": "log_output_ctx",
+  "n_placeholders": 3,
+  "shard": 18
+ },
+ {
+  "cid": "param_0513",
+  "struct_name": "status_byte_packet_ctx",
+  "n_placeholders": 4,
+  "shard": 19
+ },
+ {
+  "cid": "param_0528",
+  "struct_name": "svc_attr_memory_pool",
+  "n_placeholders": 1,
+  "shard": 0
+ },
+ {
+  "cid": "param_0529",
+  "struct_name": "bt_gatt_discover_params",
+  "n_placeholders": 2,
+  "shard": 1
+ },
+ {
+  "cid": "param_0539",
+  "struct_name": "bt_ancs_client_ctx",
+  "n_placeholders": 3,
+  "shard": 2
+ },
+ {
+  "cid": "param_0553",
+  "struct_name": "smp_hdr",
+  "n_placeholders": 6,
+  "shard": 3
+ },
+ {
+  "cid": "param_0559",
+  "struct_name": "smp_transport_reassembly",
+  "n_placeholders": 1,
+  "shard": 4
+ },
+ {
+  "cid": "param_0571",
+  "struct_name": "bt_conn",
+  "n_placeholders": 1,
+  "shard": 5
+ },
+ {
+  "cid": "param_0585",
+  "struct_name": "bt_conn",
+  "n_placeholders": 1,
+  "shard": 6
+ },
+ {
+  "cid": "param_0586",
+  "struct_name": "bt_le_conn_param",
+  "n_placeholders": 3,
+  "shard": 7
+ },
+ {
+  "cid": "param_0592",
+  "struct_name": "context_release_ctx",
+  "n_placeholders": 4,
+  "shard": 8
+ },
+ {
+  "cid": "param_0597",
+  "struct_name": "bt_l2cap_chan_ctx",
+  "n_placeholders": 3,
+  "shard": 9
+ },
+ {
+  "cid": "param_0603",
+  "struct_name": "box_render_desc",
+  "n_placeholders": 1,
+  "shard": 10
+ },
+ {
+  "cid": "param_0606",
+  "struct_name": "bt_att_chan",
+  "n_placeholders": 1,
+  "shard": 11
+ },
+ {
+  "cid": "param_0607",
+  "struct_name": "cmd_ctx_0607",
+  "n_placeholders": 3,
+  "shard": 12
+ },
+ {
+  "cid": "param_0611",
+  "struct_name": "bt_gatt_indicate_params",
+  "n_placeholders": 1,
+  "shard": 13
+ },
+ {
+  "cid": "param_0613",
+  "struct_name": "att_write_req_view",
+  "n_placeholders": 1,
+  "shard": 14
+ },
+ {
+  "cid": "param_0618",
+  "struct_name": "bt_gatt_ccc_managed_user_data",
+  "n_placeholders": 1,
+  "shard": 15
+ },
+ {
+  "cid": "param_0623",
+  "struct_name": "gatt_find_info_entry",
+  "n_placeholders": 2,
+  "shard": 16
+ },
+ {
+  "cid": "param_0627",
+  "struct_name": "gatt_sc_ctx",
+  "n_placeholders": 2,
+  "shard": 17
+ },
+ {
+  "cid": "param_0640",
+  "struct_name": "param_0640_mechanical",
+  "n_placeholders": 2,
+  "shard": 18
+ },
+ {
+  "cid": "param_0641",
+  "struct_name": "smp_c1_param",
+  "n_placeholders": 2,
+  "shard": 19
+ },
+ {
+  "cid": "param_0643",
+  "struct_name": "smp_f6_input_buf",
+  "n_placeholders": 2,
+  "shard": 0
+ },
+ {
+  "cid": "param_0647",
+  "struct_name": "net_buf_simple",
+  "n_placeholders": 1,
+  "shard": 1
+ },
+ {
+  "cid": "param_0651",
+  "struct_name": "flash_pages_info",
+  "n_placeholders": 2,
+  "shard": 2
+ },
+ {
+  "cid": "param_0669",
+  "struct_name": "dev_channel_mode",
+  "n_placeholders": 1,
+  "shard": 3
+ },
+ {
+  "cid": "param_0673",
+  "struct_name": "flash_layout_region",
+  "n_placeholders": 7,
+  "shard": 4
+ },
+ {
+  "cid": "param_0675",
+  "struct_name": "driver_cb_ctx",
+  "n_placeholders": 1,
+  "shard": 5
+ },
+ {
+  "cid": "param_0682",
+  "struct_name": "watchdog_disable_work_ctx",
+  "n_placeholders": 2,
+  "shard": 6
+ },
+ {
+  "cid": "param_0698",
+  "struct_name": "task_ctx_generic",
+  "n_placeholders": 5,
+  "shard": 7
+ },
+ {
+  "cid": "param_0699",
+  "struct_name": "virtqueue",
+  "n_placeholders": 1,
+  "shard": 8
+ },
+ {
+  "cid": "param_0701",
+  "struct_name": "virtqueue",
+  "n_placeholders": 3,
+  "shard": 9
+ },
+ {
+  "cid": "param_0705",
+  "struct_name": "dma_xfer_desc",
+  "n_placeholders": 5,
+  "shard": 10
+ },
+ {
+  "cid": "param_0711",
+  "struct_name": "unk_ctx_0711",
+  "n_placeholders": 2,
+  "shard": 11
+ },
+ {
+  "cid": "param_0714",
+  "struct_name": "rpmsg_virtio_device",
+  "n_placeholders": 2,
+  "shard": 12
+ },
+ {
+  "cid": "param_0715",
+  "struct_name": "cbor_decoder_state",
+  "n_placeholders": 1,
+  "shard": 13
+ },
+ {
+  "cid": "param_0717",
+  "struct_name": "buffer_pool_freelist",
+  "n_placeholders": 2,
+  "shard": 14
+ },
+ {
+  "cid": "param_0726",
+  "struct_name": "k_msgq",
+  "n_placeholders": 1,
+  "shard": 15
+ },
+ {
+  "cid": "param_0741",
+  "struct_name": "itoa_ctx",
+  "n_placeholders": 3,
+  "shard": 16
+ },
+ {
+  "cid": "param_0749",
+  "struct_name": "FILE",
+  "n_placeholders": 4,
+  "shard": 17
+ },
+ {
+  "cid": "param_0750",
+  "struct_name": "dynbuf_t",
+  "n_placeholders": 2,
+  "shard": 18
+ },
+ {
+  "cid": "stack_0751",
+  "struct_name": "battery_model_sample",
+  "n_placeholders": 4,
+  "shard": 19
+ },
+ {
+  "cid": "stack_0752",
+  "struct_name": "batt_soc_calc_tmp",
+  "n_placeholders": 2,
+  "shard": 0
+ },
+ {
+  "cid": "stack_0783",
+  "struct_name": "fuel_gauge_reading",
+  "n_placeholders": 2,
+  "shard": 1
+ },
+ {
+  "cid": "stack_0785",
+  "struct_name": "cbvprintf_scratch",
+  "n_placeholders": 4,
+  "shard": 2
+ },
+ {
+  "cid": "stack_0790",
+  "struct_name": "hci_vs_init_locals",
+  "n_placeholders": 2,
+  "shard": 3
+ },
+ {
+  "cid": "stack_0792",
+  "struct_name": "dtoa_r_locals",
+  "n_placeholders": 2,
+  "shard": 4
+ },
+ {
+  "cid": "stack_0848",
+  "struct_name": "ble_get_req_hdr_tmp",
+  "n_placeholders": 3,
+  "shard": 5
+ },
+ {
+  "cid": "stack_0864",
+  "struct_name": "settings_read_stage",
+  "n_placeholders": 2,
+  "shard": 6
+ },
+ {
+  "cid": "stack_0865",
+  "struct_name": "load_sys_setting_locals",
+  "n_placeholders": 2,
+  "shard": 7
+ },
+ {
+  "cid": "stack_0897",
+  "struct_name": "ndef_record_scratch",
+  "n_placeholders": 8,
+  "shard": 8
+ },
+ {
+  "cid": "stack_0910",
+  "struct_name": "new_task_locals",
+  "n_placeholders": 2,
+  "shard": 9
+ },
+ {
+  "cid": "stack_0934",
+  "struct_name": "audio_stream_params",
+  "n_placeholders": 2,
+  "shard": 10
+ },
+ {
+  "cid": "stack_1001",
+  "struct_name": "dashboard_reflash_locals",
+  "n_placeholders": 4,
+  "shard": 11
+ },
+ {
+  "cid": "stack_1014",
+  "struct_name": "bmp_draw_desc",
+  "n_placeholders": 2,
+  "shard": 12
+ },
+ {
+  "cid": "stack_1015",
+  "struct_name": "gui_bitmap_draw_args",
+  "n_placeholders": 2,
+  "shard": 13
+ },
+ {
+  "cid": "stack_1027",
+  "struct_name": "utf_wordwrap_locals",
+  "n_placeholders": 3,
+  "shard": 14
+ },
+ {
+  "cid": "stack_1036",
+  "struct_name": "lcd_fb_xfer_local",
+  "n_placeholders": 2,
+  "shard": 15
+ },
+ {
+  "cid": "stack_1042",
+  "struct_name": "proxy_thread_locals",
+  "n_placeholders": 2,
+  "shard": 16
+ },
+ {
+  "cid": "stack_1044",
+  "struct_name": "ui_warp_flags_tmp",
+  "n_placeholders": 2,
+  "shard": 17
+ },
+ {
+  "cid": "stack_1062",
+  "struct_name": "scratch_ctx_0004cf78",
+  "n_placeholders": 4,
+  "shard": 18
+ },
+ {
+  "cid": "stack_1066",
+  "struct_name": "log_msg_desc_local",
+  "n_placeholders": 2,
+  "shard": 19
+ },
+ {
+  "cid": "stack_1080",
+  "struct_name": "ancs_handle_pair",
+  "n_placeholders": 2,
+  "shard": 0
+ },
+ {
+  "cid": "stack_1112",
+  "struct_name": "arm_mpu_configure_locals",
+  "n_placeholders": 2,
+  "shard": 1
+ },
+ {
+  "cid": "stack_1124",
+  "struct_name": "img_mgmt_info_local",
+  "n_placeholders": 2,
+  "shard": 2
+ },
+ {
+  "cid": "stack_1131",
+  "struct_name": "storage_erase_range_tmp",
+  "n_placeholders": 2,
+  "shard": 3
+ },
+ {
+  "cid": "stack_1173",
+  "struct_name": "hci_static_addr_locals",
+  "n_placeholders": 2,
+  "shard": 4
+ },
+ {
+  "cid": "stack_1191",
+  "struct_name": "l2cap_connected_locals",
+  "n_placeholders": 2,
+  "shard": 5
+ },
+ {
+  "cid": "stack_1196",
+  "struct_name": "bt_att_accept_locals",
+  "n_placeholders": 3,
+  "shard": 6
+ },
+ {
+  "cid": "stack_1197",
+  "struct_name": "bt_att_accept_local",
+  "n_placeholders": 6,
+  "shard": 7
+ },
+ {
+  "cid": "stack_1202",
+  "struct_name": "att_read_group_req_locals",
+  "n_placeholders": 2,
+  "shard": 8
+ },
+ {
+  "cid": "stack_1205",
+  "struct_name": "fun_0005929c_locals",
+  "n_placeholders": 2,
+  "shard": 9
+ },
+ {
+  "cid": "stack_1207",
+  "struct_name": "unk_stack_1207",
+  "n_placeholders": 2,
+  "shard": 10
+ },
+ {
+  "cid": "stack_1212",
+  "struct_name": "att_find_type_req_locals",
+  "n_placeholders": 2,
+  "shard": 11
+ },
+ {
+  "cid": "stack_1224",
+  "struct_name": "bt_gatt_indicate_locals",
+  "n_placeholders": 2,
+  "shard": 12
+ },
+ {
+  "cid": "stack_1229",
+  "struct_name": "gatt_discover_locals",
+  "n_placeholders": 2,
+  "shard": 13
+ },
+ {
+  "cid": "stack_1230",
+  "struct_name": "bt_gatt_discover_tmp",
+  "n_placeholders": 2,
+  "shard": 14
+ },
+ {
+  "cid": "stack_1232",
+  "struct_name": "gatt_find_by_type_rsp_locals",
+  "n_placeholders": 2,
+  "shard": 15
+ },
+ {
+  "cid": "stack_1237",
+  "struct_name": "gatt_rbt_rsp_cursor",
+  "n_placeholders": 2,
+  "shard": 16
+ },
+ {
+  "cid": "stack_1240",
+  "struct_name": "gatt_find_info_elem",
+  "n_placeholders": 2,
+  "shard": 17
+ },
+ {
+  "cid": "stack_1248",
+  "struct_name": "smp_dhkey_check_buf",
+  "n_placeholders": 2,
+  "shard": 18
+ },
+ {
+  "cid": "stack_1249",
+  "struct_name": "smp_pairing_req_local",
+  "n_placeholders": 1,
+  "shard": 19
+ },
+ {
+  "cid": "stack_1273",
+  "struct_name": "pdm_mic_event_data",
+  "n_placeholders": 2,
+  "shard": 0
+ },
+ {
+  "cid": "stack_1277",
+  "struct_name": "panel_temp_calibration_locals",
+  "n_placeholders": 2,
+  "shard": 1
+ },
+ {
+  "cid": "stack_1278",
+  "struct_name": "uarte_isr_scratch",
+  "n_placeholders": 2,
+  "shard": 2
+ },
+ {
+  "cid": "stack_1312",
+  "struct_name": "gpiote_evt_info",
+  "n_placeholders": 1,
+  "shard": 3
+ },
+ {
+  "cid": "stack_1351",
+  "struct_name": "nrfx_twim_irq_locals",
+  "n_placeholders": 2,
+  "shard": 4
+ },
+ {
+  "cid": "stack_1370",
+  "struct_name": "lc3_ltpf_pitch_buf",
+  "n_placeholders": 2,
+  "shard": 5
+ },
+ {
+  "cid": "stack_1380",
+  "struct_name": "lc3_sns_analyze_buf",
+  "n_placeholders": 2,
+  "shard": 6
+ },
+ {
+  "cid": "stack_1423",
+  "struct_name": "snprintf_locals",
+  "n_placeholders": 2,
+  "shard": 7
+ },
+ {
+  "cid": "stack_1425",
+  "struct_name": "strtod_bigint_scratch",
+  "n_placeholders": 3,
+  "shard": 8
+ },
+ {
+  "cid": "stack_1427",
+  "struct_name": "strtod_locals",
+  "n_placeholders": 2,
+  "shard": 9
+ },
+ {
+  "cid": "stack_1428",
+  "struct_name": "vsprintf_fmt_state_tmp",
+  "n_placeholders": 2,
+  "shard": 10
+ },
+ {
+  "cid": "stack_1505",
+  "struct_name": "scratch_pair_0007e83a",
+  "n_placeholders": 2,
+  "shard": 11
+ },
+ {
+  "cid": "stack_1532",
+  "struct_name": "bt_gatt_attr_read_ccc_locals",
+  "n_placeholders": 2,
+  "shard": 12
+ },
+ {
+  "cid": "stack_1534",
+  "struct_name": "ble_appearance_rsp",
+  "n_placeholders": 1,
+  "shard": 13
+ },
+ {
+  "cid": "stack_1536",
+  "struct_name": "unk_stack_1536",
+  "n_placeholders": 2,
+  "shard": 14
+ },
+ {
+  "cid": "stack_1554",
+  "struct_name": "regulator_volt_range_local",
+  "n_placeholders": 2,
+  "shard": 15
+ },
+ {
+  "cid": "stack_1557",
+  "struct_name": "event_tag4_clear_tmp",
+  "n_placeholders": 2,
+  "shard": 16
+ }
+]

@@ -3,6 +3,15 @@
 > Purpose: two Claude sessions work this repo in the same dir. Before editing a
 > path listed here as **HELD**, ping the other session or pick different files.
 
+## HELD by session A (struct field-naming wave) — 2026-07-19, in progress
+
+Naming the 1008 `field_0x*` placeholders across 257 recovered structs via 20 opus
+agents that sweep `recon/readable_sources/app`. Holds `recon/structs/**` and
+`tools/{build_field_bundles,merge_field_names}.py`, `tools/field_name.wf.js`.
+JSON-only; no source/net edits. Result folds back into `struct_catalog_app.json`.
+
+---
+
 ## DONE by session A (struct-recovery wave) — 2026-07-19 (landed, committed)
 
 **Task:** recovered CPUAPP in-memory struct layouts from Ghidra footprints,
