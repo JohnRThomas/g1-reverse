@@ -1,0 +1,1 @@
+../../named/sensor_channel_get_trampoline.c

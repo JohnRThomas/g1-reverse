@@ -1,0 +1,1 @@
+../../named/get_assign_channel_info.c

@@ -1,0 +1,1 @@
+../../named/check_bonded_addr.c

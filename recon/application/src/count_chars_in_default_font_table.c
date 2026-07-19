@@ -1,0 +1,1 @@
+../../named/count_chars_in_default_font_table.c

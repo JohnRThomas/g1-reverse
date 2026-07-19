@@ -1,0 +1,1 @@
+../../named/gui_bitmap_draw.c

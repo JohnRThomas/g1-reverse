@@ -1,0 +1,1 @@
+../../named/check_is_release_mode.c

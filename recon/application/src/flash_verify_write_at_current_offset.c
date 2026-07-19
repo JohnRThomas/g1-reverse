@@ -1,0 +1,1 @@
+../../named/flash_verify_write_at_current_offset.c

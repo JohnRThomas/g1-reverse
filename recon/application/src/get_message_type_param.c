@@ -1,0 +1,1 @@
+../../named/get_message_type_param.c

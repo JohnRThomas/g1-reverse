@@ -1,0 +1,1 @@
+../../named/set_brightness_to_panel_reg_in_running.c

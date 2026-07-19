@@ -1,0 +1,1 @@
+../../named/get_current_burial_point_type.c

@@ -1,0 +1,1 @@
+../../named/reset_usr_setting.c

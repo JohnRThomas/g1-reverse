@@ -1,0 +1,1 @@
+../../named/get_localized_string_ptr.c

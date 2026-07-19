@@ -1,0 +1,1 @@
+../../named/dev_write_config_word.c

@@ -1,0 +1,1 @@
+../../named/set_device_sync_timestamp.c

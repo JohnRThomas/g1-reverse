@@ -1,0 +1,1 @@
+../../named/burial_point_record_info_init.c

@@ -1,0 +1,1 @@
+../../named/commit_default_config_record.c

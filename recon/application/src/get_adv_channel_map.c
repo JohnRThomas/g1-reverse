@@ -1,0 +1,1 @@
+../../named/get_adv_channel_map.c

@@ -1,0 +1,1 @@
+../../named/get_ambient_light_sensor_ready_flag.c

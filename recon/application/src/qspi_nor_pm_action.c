@@ -1,0 +1,1 @@
+../../named/qspi_nor_pm_action.c

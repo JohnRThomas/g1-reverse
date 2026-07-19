@@ -1,0 +1,1 @@
+../../named/fnmatch_build_class_table.c

@@ -1,0 +1,1 @@
+../../named/qspi_nor_configure.c

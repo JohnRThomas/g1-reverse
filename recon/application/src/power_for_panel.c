@@ -1,0 +1,1 @@
+../../named/power_for_panel.c

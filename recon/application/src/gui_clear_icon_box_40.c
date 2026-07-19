@@ -1,0 +1,1 @@
+../../named/gui_clear_icon_box_40.c

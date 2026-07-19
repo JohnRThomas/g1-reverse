@@ -1,0 +1,1 @@
+../../named/driver_register_callback_locked.c

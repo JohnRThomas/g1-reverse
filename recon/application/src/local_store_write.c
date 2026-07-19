@@ -1,0 +1,1 @@
+../../named/local_store_write.c

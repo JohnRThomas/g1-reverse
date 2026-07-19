@@ -1,0 +1,1 @@
+../../named/reset_all_usr_data.c

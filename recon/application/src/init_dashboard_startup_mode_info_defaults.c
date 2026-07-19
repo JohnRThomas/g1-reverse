@@ -1,0 +1,1 @@
+../../named/init_dashboard_startup_mode_info_defaults.c

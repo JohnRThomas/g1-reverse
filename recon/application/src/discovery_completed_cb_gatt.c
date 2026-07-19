@@ -1,0 +1,1 @@
+../../named/discovery_completed_cb_gatt.c

@@ -1,0 +1,1 @@
+../../named/flash_get_ready_status_bit.c

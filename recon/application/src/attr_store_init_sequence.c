@@ -1,0 +1,1 @@
+../../named/attr_store_init_sequence.c

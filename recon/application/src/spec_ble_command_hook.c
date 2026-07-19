@@ -1,0 +1,1 @@
+../../named/spec_ble_command_hook.c

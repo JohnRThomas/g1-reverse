@@ -1,0 +1,1 @@
+../../named/getQuickNoteDataFromFlash.c

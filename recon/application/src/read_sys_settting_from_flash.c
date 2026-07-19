@@ -1,0 +1,1 @@
+../../named/read_sys_settting_from_flash.c

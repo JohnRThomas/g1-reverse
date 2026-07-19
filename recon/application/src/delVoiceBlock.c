@@ -1,0 +1,1 @@
+../../named/delVoiceBlock.c

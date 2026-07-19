@@ -1,0 +1,1 @@
+../../named/gui_reset_dynamic_bitmap_frame_state.c

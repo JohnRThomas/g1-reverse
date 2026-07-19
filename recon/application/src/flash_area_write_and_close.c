@@ -1,0 +1,1 @@
+../../named/flash_area_write_and_close.c

@@ -1,0 +1,1 @@
+../../named/set_dashboard_close_pending_flag.c

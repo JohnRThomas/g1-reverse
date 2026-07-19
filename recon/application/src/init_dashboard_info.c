@@ -1,0 +1,1 @@
+../../named/init_dashboard_info.c

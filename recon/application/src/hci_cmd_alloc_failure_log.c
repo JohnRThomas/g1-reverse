@@ -1,0 +1,1 @@
+../../named/hci_cmd_alloc_failure_log.c

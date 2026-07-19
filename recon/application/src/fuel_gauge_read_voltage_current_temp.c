@@ -1,0 +1,1 @@
+../../named/fuel_gauge_read_voltage_current_temp.c

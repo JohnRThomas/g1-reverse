@@ -1,0 +1,1 @@
+../../named/projector_reset_sequence.c

@@ -1,0 +1,1 @@
+../../named/power_for_imu_and_mic.c

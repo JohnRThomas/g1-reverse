@@ -1,0 +1,1 @@
+../../named/pdm_configure_pins.c

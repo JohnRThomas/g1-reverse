@@ -1,0 +1,1 @@
+../../named/check_sw0_status.c

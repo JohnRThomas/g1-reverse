@@ -1,0 +1,1 @@
+../../named/clear_event_registrations.c

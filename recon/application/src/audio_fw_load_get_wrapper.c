@@ -1,0 +1,1 @@
+../../named/audio_fw_load_get_wrapper.c

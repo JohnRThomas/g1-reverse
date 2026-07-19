@@ -1,0 +1,1 @@
+../../named/gui_area_clear.c

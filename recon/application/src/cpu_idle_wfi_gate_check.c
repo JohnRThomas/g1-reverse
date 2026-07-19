@@ -1,0 +1,1 @@
+../../named/cpu_idle_wfi_gate_check.c

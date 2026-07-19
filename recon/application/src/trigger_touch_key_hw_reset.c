@@ -1,0 +1,1 @@
+../../named/trigger_touch_key_hw_reset.c

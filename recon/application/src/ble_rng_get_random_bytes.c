@@ -1,0 +1,1 @@
+../../named/ble_rng_get_random_bytes.c

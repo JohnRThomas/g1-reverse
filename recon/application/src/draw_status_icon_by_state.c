@@ -1,0 +1,1 @@
+../../named/draw_status_icon_by_state.c

@@ -1,0 +1,1 @@
+../../named/load_icon_bitmap_expanded.c

@@ -1,0 +1,1 @@
+../../named/cursor_advance_past_cstring.c

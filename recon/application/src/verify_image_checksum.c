@@ -1,0 +1,1 @@
+../../named/verify_image_checksum.c

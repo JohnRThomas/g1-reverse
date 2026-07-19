@@ -1,0 +1,1 @@
+../../named/check_work_mode.c

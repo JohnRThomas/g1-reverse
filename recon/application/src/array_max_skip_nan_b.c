@@ -1,0 +1,1 @@
+../../named/array_max_skip_nan_b.c

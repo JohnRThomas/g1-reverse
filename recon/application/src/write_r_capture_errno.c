@@ -1,0 +1,1 @@
+../../named/write_r_capture_errno.c

@@ -1,0 +1,1 @@
+../../named/bt_ancs_cp_write_callback.c

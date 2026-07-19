@@ -1,0 +1,1 @@
+../../named/draw_locale_adjusted_label.c

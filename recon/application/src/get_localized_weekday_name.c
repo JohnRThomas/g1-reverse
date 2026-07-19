@@ -1,0 +1,1 @@
+../../named/get_localized_weekday_name.c

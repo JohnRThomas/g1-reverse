@@ -1,0 +1,1 @@
+../../named/reset_all_static_info.c

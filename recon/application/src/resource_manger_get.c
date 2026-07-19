@@ -1,0 +1,1 @@
+../../named/resource_manger_get.c

@@ -1,0 +1,1 @@
+../../named/find_sc_cfg_59b94.c

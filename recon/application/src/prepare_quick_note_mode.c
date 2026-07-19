@@ -1,0 +1,1 @@
+../../named/prepare_quick_note_mode.c

@@ -1,0 +1,1 @@
+../../named/flash_write_and_verify_blob.c

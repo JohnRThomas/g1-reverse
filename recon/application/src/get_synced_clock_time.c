@@ -1,0 +1,1 @@
+../../named/get_synced_clock_time.c

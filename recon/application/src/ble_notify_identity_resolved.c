@@ -1,0 +1,1 @@
+../../named/ble_notify_identity_resolved.c

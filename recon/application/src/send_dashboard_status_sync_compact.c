@@ -1,0 +1,1 @@
+../../named/send_dashboard_status_sync_compact.c

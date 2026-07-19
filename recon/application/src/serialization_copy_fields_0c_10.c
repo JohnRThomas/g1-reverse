@@ -1,0 +1,1 @@
+../../named/serialization_copy_fields_0c_10.c

@@ -1,0 +1,1 @@
+../../named/ble_rng_seed_from_uptime.c

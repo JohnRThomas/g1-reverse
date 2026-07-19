@@ -1,0 +1,1 @@
+../../named/get_device_info.c

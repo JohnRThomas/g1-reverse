@@ -1,0 +1,1 @@
+../../named/sc_restore.c

@@ -1,0 +1,1 @@
+../../named/ccc_set_direct.c

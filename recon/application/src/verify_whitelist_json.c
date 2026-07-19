@@ -1,0 +1,1 @@
+../../named/verify_whitelist_json.c

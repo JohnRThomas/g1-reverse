@@ -1,0 +1,1 @@
+../../named/get_current_work_mode.c

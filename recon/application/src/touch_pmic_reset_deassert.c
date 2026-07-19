@@ -1,0 +1,1 @@
+../../named/touch_pmic_reset_deassert.c

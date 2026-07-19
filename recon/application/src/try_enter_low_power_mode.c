@@ -1,0 +1,1 @@
+../../named/try_enter_low_power_mode.c

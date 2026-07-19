@@ -1,0 +1,1 @@
+../../named/flash_driver_reset_sequence.c

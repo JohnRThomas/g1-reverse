@@ -1,0 +1,1 @@
+../../named/ble_notify_remote_info_available.c

@@ -1,0 +1,1 @@
+../../named/ble_whitelist_app.c

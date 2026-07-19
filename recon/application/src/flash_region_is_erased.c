@@ -1,0 +1,1 @@
+../../named/flash_region_is_erased.c

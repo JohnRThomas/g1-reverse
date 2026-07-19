@@ -1,0 +1,1 @@
+../../named/svc_attr_memory_release.c

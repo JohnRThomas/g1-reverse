@@ -1,0 +1,1 @@
+../../named/mpu_partition_sanity_check_assert.c

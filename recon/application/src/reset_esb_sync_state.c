@@ -1,0 +1,1 @@
+../../named/reset_esb_sync_state.c

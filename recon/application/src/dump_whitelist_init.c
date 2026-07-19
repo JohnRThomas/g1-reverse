@@ -1,0 +1,1 @@
+../../named/dump_whitelist_init.c

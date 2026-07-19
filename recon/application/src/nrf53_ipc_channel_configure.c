@@ -1,0 +1,1 @@
+../../named/nrf53_ipc_channel_configure.c

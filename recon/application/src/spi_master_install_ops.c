@@ -1,0 +1,1 @@
+../../named/spi_master_install_ops.c

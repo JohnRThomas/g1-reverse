@@ -1,0 +1,1 @@
+../../named/check_bind_status.c

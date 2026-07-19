@@ -1,0 +1,1 @@
+../../named/ui_QuickNote_task.c

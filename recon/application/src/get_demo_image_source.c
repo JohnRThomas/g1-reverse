@@ -1,0 +1,1 @@
+../../named/get_demo_image_source.c

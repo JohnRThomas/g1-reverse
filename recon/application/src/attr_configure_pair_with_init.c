@@ -1,0 +1,1 @@
+../../named/attr_configure_pair_with_init.c

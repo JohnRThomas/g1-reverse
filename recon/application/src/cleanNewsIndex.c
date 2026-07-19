@@ -1,0 +1,1 @@
+../../named/cleanNewsIndex.c

@@ -1,0 +1,1 @@
+../../named/read_usr_settting_from_flash.c

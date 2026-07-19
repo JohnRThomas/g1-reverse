@@ -1,0 +1,1 @@
+../../named/find_chinese_bitmap_by_unicode.c

@@ -1,0 +1,1 @@
+../../named/notification_icon_type_from_package.c

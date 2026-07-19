@@ -1,0 +1,1 @@
+../../named/some_module_sem_init.c

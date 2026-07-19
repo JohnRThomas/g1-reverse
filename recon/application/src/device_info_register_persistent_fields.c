@@ -1,0 +1,1 @@
+../../named/device_info_register_persistent_fields.c

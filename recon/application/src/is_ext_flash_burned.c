@@ -1,0 +1,1 @@
+../../named/is_ext_flash_burned.c

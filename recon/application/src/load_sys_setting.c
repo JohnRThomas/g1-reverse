@@ -1,0 +1,1 @@
+../../named/load_sys_setting.c

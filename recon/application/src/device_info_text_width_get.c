@@ -1,0 +1,1 @@
+../../named/device_info_text_width_get.c

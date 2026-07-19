@@ -1,0 +1,1 @@
+../../named/SendSystemLanguageInfoToSlave.c

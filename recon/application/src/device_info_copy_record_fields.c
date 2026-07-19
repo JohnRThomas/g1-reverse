@@ -1,0 +1,1 @@
+../../named/device_info_copy_record_fields.c

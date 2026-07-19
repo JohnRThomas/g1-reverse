@@ -1,0 +1,1 @@
+../../named/check_device_readiness.c

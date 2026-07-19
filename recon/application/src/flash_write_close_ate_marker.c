@@ -1,0 +1,1 @@
+../../named/flash_write_close_ate_marker.c

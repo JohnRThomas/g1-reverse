@@ -1,0 +1,1 @@
+../../named/read_bool_attr_0x2004.c

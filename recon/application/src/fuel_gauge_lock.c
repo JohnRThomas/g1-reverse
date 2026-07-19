@@ -1,0 +1,1 @@
+../../named/fuel_gauge_lock.c

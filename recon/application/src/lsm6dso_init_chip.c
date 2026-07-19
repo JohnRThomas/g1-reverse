@@ -1,0 +1,1 @@
+../../named/lsm6dso_init_chip.c

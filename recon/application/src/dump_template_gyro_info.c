@@ -1,0 +1,1 @@
+../../named/dump_template_gyro_info.c

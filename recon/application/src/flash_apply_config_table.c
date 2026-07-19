@@ -1,0 +1,1 @@
+../../named/flash_apply_config_table.c

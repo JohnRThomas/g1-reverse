@@ -1,0 +1,1 @@
+../../named/fuel_gauge_sample_init_timestamp.c

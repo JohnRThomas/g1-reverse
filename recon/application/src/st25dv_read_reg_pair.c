@@ -1,0 +1,1 @@
+../../named/st25dv_read_reg_pair.c

@@ -1,0 +1,1 @@
+../../named/draw_template_translate_screen.c

@@ -1,0 +1,1 @@
+../../named/log_notification_fields_debug.c

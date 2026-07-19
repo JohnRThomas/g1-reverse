@@ -1,0 +1,1 @@
+../../named/bond_deleted_cb.c

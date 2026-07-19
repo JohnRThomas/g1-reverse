@@ -1,0 +1,1 @@
+../../named/log_gatt_sc_store_failure.c

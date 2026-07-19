@@ -1,0 +1,1 @@
+../../named/uarte_nrfx_irq_rx_ready.c

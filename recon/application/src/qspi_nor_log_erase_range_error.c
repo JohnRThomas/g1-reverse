@@ -1,0 +1,1 @@
+../../named/qspi_nor_log_erase_range_error.c

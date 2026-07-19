@@ -1,0 +1,1 @@
+../../named/g1_nrfx_clock_stop_hfclk192m.c

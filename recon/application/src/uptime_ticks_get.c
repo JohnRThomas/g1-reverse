@@ -1,0 +1,1 @@
+../../named/uptime_ticks_get.c

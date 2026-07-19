@@ -1,0 +1,1 @@
+../../named/flash_erase_settings_record.c

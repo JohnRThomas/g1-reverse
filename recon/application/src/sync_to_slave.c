@@ -1,0 +1,1 @@
+../../named/sync_to_slave.c

@@ -1,0 +1,1 @@
+../../named/sync_message_signal_to_slave.c

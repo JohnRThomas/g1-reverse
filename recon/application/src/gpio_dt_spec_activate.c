@@ -1,0 +1,1 @@
+../../named/gpio_dt_spec_activate.c
