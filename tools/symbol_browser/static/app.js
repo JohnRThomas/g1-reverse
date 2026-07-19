@@ -9,6 +9,7 @@ const state = {
   structScope: "all",
   structFeature: "all",
   assetFamily: "all",
+  assetDisplay: "list",
   query: "",
   page: 1,
   limit: 60,
@@ -19,6 +20,7 @@ const state = {
   meta: null,
   request: 0,
 };
+const assetPreviewCache = new Map();
 
 const els = {
   gotoForm: $("#goto-form"),
@@ -242,6 +244,7 @@ async function loadSymbols(append = false) {
 function renderSymbolList() {
   els.symbolCount.textContent = state.total.toLocaleString();
   els.symbolList.innerHTML = "";
+  els.symbolList.classList.toggle("asset-grid-mode", state.view === "assets" && state.assetDisplay === "grid");
   const fragment = document.createDocumentFragment();
   state.items.forEach((item, index) => {
     if (state.view === "structs") {
@@ -261,14 +264,17 @@ function renderSymbolList() {
     if (state.view === "assets") {
       const button = document.createElement("button");
       button.type = "button";
-      button.className = `symbol-item asset-item family-${escapeHtml(item.family)}`;
+      button.className = `symbol-item asset-item family-${escapeHtml(item.family)}${state.assetDisplay === "grid" ? " asset-grid-card" : ""}`;
+      button.dataset.assetId = item.id;
       button.style.setProperty("--i", index % state.limit);
       button.setAttribute("role", "option");
       const active = state.current?.id === item.id;
       button.classList.toggle("active", active);
       button.setAttribute("aria-selected", String(active));
       const glyphs = {visual: "◫", fonts: "Ag", strings: "Aa", constants: "#", tables: "⌁", protocols: "⇄", data: "◇"};
-      button.innerHTML = `<span class="symbol-glyph">${glyphs[item.family] || "◇"}</span><span class="symbol-copy"><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.address)} · ${escapeHtml(item.subsystem)}</span></span><span class="asset-confidence ${escapeHtml(item.confidence)}">${escapeHtml(item.confidence)}</span>`;
+      button.innerHTML = state.assetDisplay === "grid"
+        ? `<span class="asset-thumb" aria-hidden="true"><i></i></span><span class="symbol-copy"><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.address)}</span></span><span class="asset-confidence ${escapeHtml(item.confidence)}">${escapeHtml(item.confidence)}</span>`
+        : `<span class="symbol-glyph">${glyphs[item.family] || "◇"}</span><span class="symbol-copy"><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.address)} · ${escapeHtml(item.subsystem)}</span></span><span class="asset-confidence ${escapeHtml(item.confidence)}">${escapeHtml(item.confidence)}</span>`;
       button.addEventListener("click", () => navigateAsset(item.id));
       fragment.append(button);
       return;
@@ -292,6 +298,24 @@ function renderSymbolList() {
   });
   els.symbolList.append(fragment);
   els.loadMore.hidden = state.items.length >= state.total;
+  if (state.view === "assets" && state.assetDisplay === "grid") hydrateAssetPreviews(state.request);
+}
+
+async function hydrateAssetPreviews(request) {
+  const cards = [...els.symbolList.querySelectorAll("[data-asset-id]")];
+  await Promise.all(cards.map(async card => {
+    const id = card.dataset.assetId;
+    try {
+      let detail = assetPreviewCache.get(id);
+      if (!detail) {
+        detail = await api(`/api/asset/${encodeURIComponent(id)}`);
+        assetPreviewCache.set(id, detail);
+      }
+      if (request !== state.request || state.assetDisplay !== "grid" || !card.isConnected) return;
+      const slot = card.querySelector(".asset-thumb");
+      if (slot) slot.innerHTML = AssetViewers.thumbnail(detail);
+    } catch (_) { /* Keep the neutral placeholder when an external asset has no payload. */ }
+  }));
 }
 
 async function goToReference(token) {
@@ -674,6 +698,15 @@ function bindEvents() {
     state.assetFamily = button.dataset.family;
     $$("#asset-filters [data-family]").forEach(chip => chip.classList.toggle("active", chip === button));
     loadSymbols();
+  }));
+  $$("#asset-filters [data-asset-display]").forEach(button => button.addEventListener("click", () => {
+    state.assetDisplay = button.dataset.assetDisplay;
+    $$("#asset-filters [data-asset-display]").forEach(option => {
+      const active = option === button;
+      option.classList.toggle("active", active);
+      option.setAttribute("aria-pressed", String(active));
+    });
+    renderSymbolList();
   }));
   $$(".inspector-tabs button").forEach(button => button.addEventListener("click", () => {
     $$(".inspector-tabs button").forEach(tab => {

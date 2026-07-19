@@ -122,10 +122,18 @@ class SymbolBrowserTests(unittest.TestCase):
         self.assertEqual(compressed["family"], "visual")
         self.assertEqual(len(compressed["bytes"]), 288 * 2)
         self.assertEqual(compressed["bits_per_pixel"], 4)
+        self.assertIn("low nibble then high nibble", compressed["pixel_order"])
 
         animation = self.index.asset_detail("dynamic_bitmap_01")
         self.assertEqual(animation["bits_per_pixel"], 4)
         self.assertEqual(len(animation["bytes"]), animation["frame_count"] * animation["frame_stride_bytes"] * 2)
+
+        curve = self.index.asset_detail("scroll_text_forward_curve")
+        self.assertEqual(curve["values"], [3, 6, 9, 12, 15, 18, 21, 24, 27])
+
+        atlas = self.index.asset_detail("display_fade_mask_atlas")
+        self.assertEqual(len(atlas["bytes"]), 66560 * 2)
+        self.assertEqual(atlas["atlas"]["phase_rows"], 26)
 
         font = self.index.asset_detail("default_font")
         self.assertEqual(len(font["entries"]), 332)
@@ -183,11 +191,18 @@ class SymbolBrowserTests(unittest.TestCase):
     def test_visual_renderer_preserves_firmware_intensity_and_frames(self):
         viewer = (ROOT / "tools/symbol_browser/static/asset-viewers.js").read_text()
         self.assertIn('["frame_animation", "animation"]', viewer)
+        self.assertIn('["animation_curve", "numeric"]', viewer)
+        self.assertIn('["transition_mask_atlas", "atlas"]', viewer)
         self.assertIn("data-av-frame-slider", viewer)
+        self.assertIn("data-av-atlas-slider", viewer)
         self.assertIn("Array.isArray(asset.pixels) && asset.pixels.length", viewer)
         self.assertIn("value / max", viewer)
         self.assertNotIn("pixels.reduce((result, value) => Math.max(result, value)", viewer)
         self.assertNotIn("Math.max(.12, value / max)", viewer)
+        app = (ROOT / "tools/symbol_browser/static/app.js").read_text()
+        html = (ROOT / "tools/symbol_browser/static/index.html").read_text()
+        self.assertIn("hydrateAssetPreviews", app)
+        self.assertIn('data-asset-display="grid"', html)
 
 
 if __name__ == "__main__":

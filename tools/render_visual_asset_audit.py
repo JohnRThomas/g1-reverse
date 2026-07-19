@@ -123,7 +123,7 @@ def main() -> None:
         data = payload(asset)
         if len(data) != math.ceil(width / 2) * height:
             errors.append(f"{asset['id']}: expanded icon size mismatch")
-        icon_tiles.append(tile(decode_4bpp(data, width, height), asset["id"], (170, 150)))
+        icon_tiles.append(tile(decode_4bpp(data, width, height, low_first=asset.get("kind") == "compressed_icon"), asset["id"], (170, 150)))
     save(sheet(icon_tiles, columns=5), args.output / "builtin_icons.png", artifacts)
 
     animation_tiles = []
@@ -163,16 +163,22 @@ def main() -> None:
         data = payload(asset)
         compare_tiles.append(tile(decode_4bpp(data, width, height), f"{asset['id']} high-first", (190, 140)))
         compare_tiles.append(tile(decode_4bpp(data, width, height, low_first=True), f"{asset['id']} low-first", (190, 140)))
+    bleed_probe = next(asset for asset in builtins if asset["id"] == "builtin_icon_11")
+    probe_width, probe_height = bitmap_dimensions(bleed_probe)
+    probe_data = payload(bleed_probe)
+    compare_tiles.append(tile(decode_4bpp(probe_data, probe_width, probe_height), "icon_11 WRONG high-first", (190, 140)))
+    compare_tiles.append(tile(decode_4bpp(probe_data, probe_width, probe_height, low_first=True), "icon_11 LUT low-first", (190, 140)))
     save(sheet(compare_tiles, columns=6), args.output / "nibble_order_comparison.png", artifacts)
 
     report = {
         "schema": "g1-visual-decode-audit-v1",
         "status": "PASS" if not errors else "FAIL",
         "decoder": {
-            "pixel_order": "high nibble then low nibble, left-to-right",
+            "native_pixel_order": "high nibble then low nibble, left-to-right",
+            "lut_icon_pixel_order": "low nibble then high nibble after little-endian LUT expansion",
             "intensity": "absolute unsigned 4-bit grayscale; display level = value * 17",
             "normalization": "none",
-            "builtin_icons": "firmware 256-entry LUT at 0x000d753a expanded to packed 4-bpp before rendering",
+            "builtin_icons": "stored 1-bpp; firmware 256-entry LUT at 0x000d753a expands each source byte to four output bytes",
             "animation_frames": "ascending-address frames using catalogued frame_stride_bytes",
             "fonts": "per-glyph cumulative payload offsets and row strides from the recovered glyph index",
         },

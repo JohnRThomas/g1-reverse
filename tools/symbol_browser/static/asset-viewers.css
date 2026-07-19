@@ -116,7 +116,7 @@
 .av-chart { display: block; width: 100%; min-width: 420px; height: 220px; overflow: visible; }
 .av-chart-grid line { stroke: var(--line, rgba(181,225,211,.105)); stroke-width: 1; }
 .av-chart-grid text { fill: var(--dim, #5d756e); font: 8px var(--mono, monospace); text-anchor: end; }
-.av-chart polyline { fill: none; stroke: var(--series); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 5px color-mix(in srgb, var(--series) 22%, transparent)); }
+.av-chart polyline { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 5px rgba(99,245,189,.22)); }
 .av-legend { display: flex; flex-wrap: wrap; gap: 12px; padding: 12px 0; color: var(--muted, #8ba49c); font-size: 10px; }
 .av-legend span { display: inline-flex; align-items: center; gap: 6px; }
 .av-legend i { width: 14px; height: 2px; background: var(--accent, #63f5bd); }
@@ -143,6 +143,11 @@
 .av-animation-controls input { width: 100%; accent-color: var(--accent, #63f5bd); }
 .av-animation-controls output { min-width: 92px; color: var(--muted, #8ba49c); font: 10px var(--mono, monospace); text-align: right; }
 .av-animation-controls output b { color: var(--text, #edf8f3); }
+.av-atlas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.av-atlas-grid figure { min-width: 0; margin: 0; }
+.av-atlas-grid figure > div { overflow: hidden; border: 1px solid var(--line, rgba(181,225,211,.105)); border-radius: 11px; background: #081310; }
+.av-atlas-grid canvas { display: block; width: 100%; height: auto; image-rendering: pixelated; }
+.av-atlas-grid figcaption { padding: 8px 3px 0; color: var(--muted, #8ba49c); font-size: 9px; }
 
 /* Protocol frames and UUIDs */
 .av-uuid, .av-protocol-name { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding: 12px 14px; border: 1px solid var(--line, rgba(181,225,211,.105)); border-radius: 10px; background: rgba(255,255,255,.023); }
@@ -223,6 +228,7 @@
 .av-collection { display: grid; gap: 22px; }
 
 @media (max-width: 850px) {
+  .av-atlas-grid { grid-template-columns: 1fr; }
   .av-context-grid { grid-template-columns: 1fr; }
   .av-header { align-items: stretch; flex-direction: column; }
   .av-header-metrics { justify-content: flex-start; }

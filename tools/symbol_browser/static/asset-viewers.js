@@ -20,6 +20,7 @@
     ["numeric_table", "numeric"], ["algorithm_table", "numeric"], ["curve", "numeric"], ["chart", "numeric"],
     ["bitmap", "bitmap"], ["glyph", "bitmap"], ["image", "bitmap"], ["font", "bitmap"],
     ["frame_animation", "animation"], ["animation", "animation"],
+    ["animation_curve", "numeric"], ["transition_mask_atlas", "atlas"],
     ["font_bank", "font"], ["external_font_bank", "font"],
     ["protocol", "protocol"], ["frame", "protocol"], ["packet", "protocol"], ["uuid", "protocol"],
     ["bytes", "hex"], ["blob", "hex"], ["hex", "hex"], ["unknown", "hex"],
@@ -244,14 +245,15 @@
     const max = all.reduce((result, value) => Math.max(result, value), -Infinity);
     const span = max - min || 1;
     const longest = Math.max(...series.map(item => item.values.length), 1);
-    const palette = ["var(--accent)", "var(--violet)", "var(--orange)", "#68b8ff"];
+    const palette = ["#63f5bd", "#aa9cff", "#ffbf69", "#68b8ff"];
     const lines = series.map((item, seriesIndex) => {
       const points = item.values.map((value, index) => {
         const x = left + (index / Math.max(longest - 1, 1)) * (width - left - right);
         const y = top + (1 - (value - min) / span) * (height - top - bottom);
         return `${x.toFixed(2)},${y.toFixed(2)}`;
       }).join(" ");
-      return `<polyline points="${points}" vector-effect="non-scaling-stroke" style="--series:${palette[seriesIndex % palette.length]}"/>`;
+      const color = palette[seriesIndex % palette.length];
+      return `<polyline points="${points}" vector-effect="non-scaling-stroke" stroke="${color}"/>`;
     }).join("");
     const grid = [0, .25, .5, .75, 1].map(step => {
       const y = top + step * (height - top - bottom);
@@ -351,6 +353,56 @@
       <div class="av-animation-controls"><button type="button" data-av-frame-step="-1" aria-label="Previous frame">←</button><input type="range" min="0" max="${count - 1}" value="0" step="1" data-av-frame-slider aria-label="Animation frame"><button type="button" data-av-frame-step="1" aria-label="Next frame">→</button><output data-av-frame-label>Frame <b>1</b> / ${count}</output></div>
       <div class="av-bitmap-stats"><span><b>${width} × ${height}</b> pixels</span><span><b>${html(asset.bits_per_pixel || asset.bpp || 4)}</b> bits/pixel</span><span><b>${stride.toLocaleString()}</b> bytes/frame</span><span><b>${count}</b> frames</span></div>
     </section>`;
+  }
+
+  function renderAtlas(asset) {
+    const meta = asset.atlas || {};
+    const width = Number(meta.logical_width_pixels || 640);
+    const height = Number(meta.display_height_pixels || 199);
+    const count = Number(asset.frame_count || 8);
+    return `<section class="av-visual av-atlas-view" aria-label="Transition mask atlas visualization" data-av-atlas>
+      <div class="av-atlas-grid">
+        <figure><div><canvas width="${width}" height="${height}" data-av-atlas-mask></canvas></div><figcaption>Raw AND mask · tiled over ${height} display rows</figcaption></figure>
+        <figure><div><canvas width="${width}" height="${height}" data-av-atlas-applied></canvas></div><figcaption>Mask applied to a grayscale test card</figcaption></figure>
+      </div>
+      <div class="av-animation-controls"><button type="button" data-av-atlas-step="-1" aria-label="Previous mask frame">←</button><input type="range" min="0" max="${count - 1}" value="0" step="1" data-av-atlas-slider aria-label="Mask frame"><button type="button" data-av-atlas-step="1" aria-label="Next mask frame">→</button><output data-av-atlas-label>Mask <b>1</b> / ${count}</output></div>
+      <div class="av-bitmap-stats"><span><b>${width} × ${height}</b> expanded preview</span><span><b>${html(meta.phase_rows || 26)}</b> repeating row phases</span><span><b>${count}</b> masks</span><span><b>${asset.bytes.length.toLocaleString()}</b> atlas bytes</span></div>
+    </section>`;
+  }
+
+  function drawAtlas(asset, root, frame) {
+    const meta = asset.atlas || {};
+    const width = Number(meta.logical_width_pixels || 640);
+    const height = Number(meta.display_height_pixels || 199);
+    const rowBytes = Number(meta.bytes_per_mask_row || Math.ceil(width / 2));
+    const phaseRows = Number(meta.phase_rows || 26);
+    const phaseStride = Number(meta.phase_block_stride_bytes || rowBytes * 8);
+    const frameZero = Number(meta.frame_zero_row_offset_bytes || rowBytes * 7);
+    const canvases = [root.querySelector("[data-av-atlas-mask]"), root.querySelector("[data-av-atlas-applied]")];
+    const images = canvases.map(canvas => canvas.getContext("2d").createImageData(width, height));
+    const write = (image, pixelIndex, value) => {
+      const level = clamp(value / 15, 0, 1);
+      const offset = pixelIndex * 4;
+      image.data[offset] = Math.round(8 + 91 * level);
+      image.data[offset + 1] = Math.round(19 + 226 * level);
+      image.data[offset + 2] = Math.round(16 + 173 * level);
+      image.data[offset + 3] = 255;
+    };
+    for (let y = 0; y < height; y += 1) {
+      const rowOffset = (y % phaseRows) * phaseStride + frameZero - frame * rowBytes;
+      for (let byteX = 0; byteX < rowBytes; byteX += 1) {
+        const maskByte = asset.bytes[rowOffset + byteX] || 0;
+        const x = byteX * 2;
+        const baseHigh = clamp(2 + Math.floor((x / Math.max(width - 1, 1)) * 13) + ((y % 40) < 3 ? 3 : 0), 0, 15);
+        const baseLow = clamp(2 + Math.floor(((x + 1) / Math.max(width - 1, 1)) * 13) + ((y % 40) < 3 ? 3 : 0), 0, 15);
+        const applied = ((baseHigh << 4) | baseLow) & maskByte;
+        write(images[0], y * width + x, maskByte >> 4);
+        write(images[0], y * width + x + 1, maskByte & 15);
+        write(images[1], y * width + x, applied >> 4);
+        write(images[1], y * width + x + 1, applied & 15);
+      }
+    }
+    canvases.forEach((canvas, index) => canvas.getContext("2d").putImageData(images[index], 0, 0));
   }
 
   function glyphSvg(entry, payload, asset) {
@@ -476,8 +528,27 @@
     if (kind === "font") return renderFont(asset);
     if (kind === "bitmap") return renderBitmap(asset);
     if (kind === "animation") return renderAnimation(asset);
+    if (kind === "atlas") return renderAtlas(asset);
     if (kind === "protocol") return renderProtocol(asset);
     return renderHex(asset);
+  }
+
+  function thumbnail(rawAsset) {
+    const asset = normalizeAsset(rawAsset);
+    const kind = detectKind(asset);
+    if (kind === "bitmap") return bitmapSvg(asset, asset.bytes, asset.name);
+    if (kind === "animation") {
+      const stride = Number(asset.frame_stride_bytes || Math.ceil(Number(asset.width) * Number(asset.height) * Number(asset.bits_per_pixel || 4) / 8));
+      const count = Math.max(1, Number(asset.frame_count || Math.floor(asset.bytes.length / stride)));
+      const index = Math.floor(count / 2);
+      return bitmapSvg(asset, asset.bytes.slice(index * stride, (index + 1) * stride), `${asset.name}, frame ${index + 1}`);
+    }
+    if (kind === "numeric") {
+      const series = numericSeries(asset);
+      return `<div class="av-thumbnail-chart">${chartSvg(series)}</div>`;
+    }
+    if (kind === "atlas") return `<span class="av-thumbnail-atlas"><i></i><i></i><i></i><i></i></span>`;
+    return `<span class="av-thumbnail-fallback">${html(titleCase(kind))}</span>`;
   }
 
   function bindInteractions(root, asset, options) {
@@ -496,6 +567,21 @@
       };
       slider.addEventListener("input", () => showFrame(slider.value));
       animation.querySelectorAll("[data-av-frame-step]").forEach(button => button.addEventListener("click", () => showFrame(Number(slider.value) + Number(button.dataset.avFrameStep))));
+    }
+    const atlas = root.querySelector("[data-av-atlas]");
+    if (atlas) {
+      const slider = atlas.querySelector("[data-av-atlas-slider]");
+      const label = atlas.querySelector("[data-av-atlas-label]");
+      const count = Number(asset.frame_count || 8);
+      const showFrame = value => {
+        const index = clamp(Number(value) || 0, 0, count - 1);
+        slider.value = index;
+        label.innerHTML = `Mask <b>${index + 1}</b> / ${count}`;
+        drawAtlas(asset, atlas, index);
+      };
+      slider.addEventListener("input", () => showFrame(slider.value));
+      atlas.querySelectorAll("[data-av-atlas-step]").forEach(button => button.addEventListener("click", () => showFrame(Number(slider.value) + Number(button.dataset.avAtlasStep))));
+      showFrame(0);
     }
     root.addEventListener("click", event => {
       const copy = event.target.closest("[data-av-copy]");
@@ -545,5 +631,5 @@
     return grid;
   }
 
-  global.AssetViewers = Object.freeze({VERSION, create, render, renderCollection, detectKind, normalizeAsset, contextCoverage});
+  global.AssetViewers = Object.freeze({VERSION, create, render, renderCollection, thumbnail, detectKind, normalizeAsset, contextCoverage});
 })(window);

@@ -283,7 +283,9 @@ def main() -> None:
         })
 
     # Twenty 24x24 icons use a byte->uint32 LUT expansion.  ID 4 has a special
-    # already-expanded copy at 0x88697; the other slices are 72-byte 2-bpp data.
+    # already-expanded copy at 0x88697; the other slices are 72-byte 1-bpp data.
+    # The LUT's little-endian output bytes must then be decoded low-nibble first:
+    # input bit 7 maps to LUT byte 0's low nibble (logical leftmost pixel).
     builtin_names = {
         0: "empty battery", 1: "one-bar battery", 2: "two-bar battery",
         3: "three-bar/full battery", 4: "notification bell", 5: "Bluetooth",
@@ -314,14 +316,14 @@ def main() -> None:
             "subsystem": "system status / quick UI",
             "address_ranges": [data_range(blob, address, size, raw, f"builtin_icon_{asset_id:02x}")],
             "encoding": {
-                "format": "2-bit packed with LUT expansion to packed 4-bit grayscale" if compressed else "packed 4-bit grayscale",
-                "bits_per_pixel_stored": 2 if compressed else 4,
+                "format": "1-bit packed with LUT expansion to packed 4-bit grayscale" if compressed else "packed 4-bit grayscale",
+                "bits_per_pixel_stored": 1 if compressed else 4,
                 "bits_per_pixel_rendered": 4,
                 "width_pixels": 24,
                 "height_pixels": 24,
                 "stored_size_bytes": size,
                 "rendered_stride_bytes": 12,
-                "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion" if compressed else "high nibble then low nibble",
+                "pixel_order": "low nibble then high nibble after LUT expansion" if compressed else "high nibble then low nibble",
                 "endianness": "LUT entries are little-endian uint32 words" if compressed else "byte-addressed",
             },
             "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -345,7 +347,11 @@ def main() -> None:
             "related_strings": [],
             "renderer": {
                 "viewer": "grayscale icon",
-                "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+                "strategy": (
+                    "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels."
+                    if compressed else
+                    "Decode the already-expanded packed 4-bit bitmap high-nibble first."
+                ),
                 "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT.",
             },
             "confidence": "high",
@@ -505,6 +511,7 @@ def main() -> None:
             "bits_per_pixel": 4, "logical_width_pixels": 640,
             "phase_rows": 26, "frame_count": 8, "bytes_per_mask_row": 320,
             "phase_block_stride_bytes": 2560,
+            "frame_zero_row_offset_bytes": 0x8C0,
             "frame_row_offset_rule": "phase*0xA00 + 0x8C0 - frame*0x140",
             "display_expansion": "tile phase row y % 26 over 199 visible rows",
         },

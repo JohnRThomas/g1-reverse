@@ -578,7 +578,7 @@ class RepositoryIndex:
                 })
         raw_hex = value.get("raw_preview_hex") or context.get("raw_preview_hex") or context.get("bytes_hex") or context.get("raw_bytes") or (context.get("decoded", {}).get("byte_hex") if isinstance(context.get("decoded"), dict) else None)
         family = self._asset_family(record)
-        firmware_payload = self._read_app_bytes(row["address"], int(row.get("size") or 0)) if family in {"visual", "tables"} else b""
+        firmware_payload = self._read_app_bytes(row["address"], int(row.get("size") or 0), 131_072) if family in {"visual", "tables"} else b""
         if not raw_hex and family == "visual":
             raw_hex = firmware_payload.hex()
 
@@ -588,7 +588,12 @@ class RepositoryIndex:
             if len(lut) == 1024:
                 firmware_payload = b"".join(lut[value * 4:value * 4 + 4] for value in firmware_payload)
                 raw_hex = firmware_payload.hex()
-                encoding = {**encoding, "bits_per_pixel_rendered": 4, "decoded_via_lut": "0x000d753a"}
+                encoding = {
+                    **encoding,
+                    "bits_per_pixel_rendered": 4,
+                    "decoded_via_lut": "0x000d753a",
+                    "pixel_order": "low nibble then high nibble after LUT expansion",
+                }
 
         glyph_payload = b""
         if asset_type == "font_bank":
@@ -667,6 +672,15 @@ class RepositoryIndex:
             "pixel_order": context.get("pixel_order") or encoding.get("pixel_order"),
             "frame_count": context.get("frame_count") or encoding.get("frame_count"),
             "frame_stride_bytes": context.get("frame_stride_bytes") or encoding.get("frame_stride_bytes"),
+            "atlas": {
+                "logical_width_pixels": encoding.get("logical_width_pixels"),
+                "phase_rows": encoding.get("phase_rows"),
+                "bytes_per_mask_row": encoding.get("bytes_per_mask_row"),
+                "phase_block_stride_bytes": encoding.get("phase_block_stride_bytes"),
+                "frame_zero_row_offset_bytes": encoding.get("frame_zero_row_offset_bytes"),
+                "frame_row_offset_rule": encoding.get("frame_row_offset_rule"),
+                "display_height_pixels": 199,
+            } if asset_type == "transition_mask_atlas" else None,
             "encoding": context.get("encoding_name") or (context.get("decoded", {}).get("encoding") if isinstance(context.get("decoded"), dict) else None) or encoding.get("format"),
             "endianness": context.get("endianness") or value.get("endianness") or encoding.get("endianness") or layout.get("endian"),
             "interpretations": [part for value in (context.get("visual_description"), context.get("behavior"), context.get("caveats")) for part in (value if isinstance(value, list) else [value]) if part],

@@ -216,10 +216,32 @@ kbd {
 .asset-filters { padding: 0 14px 10px; }
 .asset-filters .feature-chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
 .asset-filters .feature-chips button { min-width: 0; padding: 7px 5px; }
+.asset-display-toggle { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 5px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+.asset-display-toggle > span { color: var(--dim); font-size: 8px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.asset-display-toggle button { padding: 5px 7px; border: 1px solid transparent; border-radius: 7px; color: var(--dim); background: transparent; font-size: 9px; cursor: pointer; transition: .18s ease; }
+.asset-display-toggle button:hover { color: var(--text); background: rgba(255,255,255,.035); }
+.asset-display-toggle button.active { color: var(--accent); border-color: rgba(99,245,189,.18); background: var(--accent-soft); }
 .asset-item .symbol-glyph { font-size: 11px; letter-spacing: -.05em; }
 .asset-confidence { align-self: center; padding: 3px 6px; border: 1px solid var(--line); border-radius: 999px; color: var(--dim); font-size: 8px; font-weight: 800; text-transform: uppercase; }
 .asset-confidence.high { color: var(--accent); border-color: rgba(99,245,189,.25); background: rgba(99,245,189,.06); }
 .asset-confidence.medium { color: #f1c979; border-color: rgba(241,201,121,.25); }
+.symbol-list.asset-grid-mode { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; gap: 7px; padding: 5px 9px 12px; }
+.symbol-list.asset-grid-mode .asset-grid-card { display: grid; grid-template-columns: 1fr auto; grid-template-rows: 104px auto; gap: 7px; min-height: 154px; margin: 0; padding: 8px; overflow: hidden; }
+.symbol-list.asset-grid-mode .asset-grid-card:hover { transform: translateY(-2px); }
+.asset-grid-card .asset-thumb { grid-column: 1 / -1; display: grid; min-width: 0; height: 104px; place-items: center; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: #081310; }
+.asset-grid-card .asset-thumb > i { width: 24px; height: 24px; border: 2px solid var(--line-strong); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.asset-grid-card .asset-thumb svg { width: 82%; height: 82%; color: var(--accent); fill: currentColor; filter: drop-shadow(0 0 8px rgba(99,245,189,.14)); }
+.asset-grid-card .asset-thumb .av-pixel-bg { fill: #081310; }
+.asset-grid-card .asset-thumb .av-chart { min-width: 0; width: 100%; height: 100%; }
+.asset-grid-card .asset-thumb .av-chart-grid text { display: none; }
+.asset-grid-card .asset-thumb .av-thumbnail-chart { width: 100%; height: 100%; }
+.asset-grid-card .symbol-copy strong { white-space: normal; line-height: 1.25; max-height: 2.5em; }
+.asset-grid-card .symbol-copy span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.asset-grid-card .asset-confidence { align-self: end; padding: 2px 5px; font-size: 7px; }
+.av-thumbnail-atlas { display: grid; grid-template-columns: repeat(4, 18px); gap: 4px; transform: rotate(-8deg); }
+.av-thumbnail-atlas i { height: 58px; border-radius: 3px; background: repeating-linear-gradient(0deg, var(--accent) 0 3px, transparent 3px 7px); opacity: calc(.25 + var(--i, 1) * .12); }
+.av-thumbnail-fallback { color: var(--dim); font: 9px var(--mono); text-transform: uppercase; }
 .asset-layout { min-width: 0; height: 100%; overflow: auto; padding: 22px; scroll-behavior: smooth; }
 .asset-layout > div { width: min(1240px, 100%); margin: 0 auto; animation: asset-enter .42s cubic-bezier(.2,.8,.2,1) both; }
 @keyframes asset-enter { from { opacity: 0; transform: translateY(10px) scale(.995); } to { opacity: 1; transform: none; } }

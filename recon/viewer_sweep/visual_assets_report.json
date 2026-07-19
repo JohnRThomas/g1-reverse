@@ -9945,14 +9945,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -10021,7 +10021,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -10047,14 +10047,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -10123,7 +10123,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -10149,14 +10149,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -10225,7 +10225,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -10251,14 +10251,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -10327,7 +10327,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -10429,7 +10429,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "Decode the already-expanded packed 4-bit bitmap high-nibble first.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -10455,14 +10455,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -10531,7 +10531,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -10557,14 +10557,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -10633,7 +10633,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -10659,14 +10659,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -10735,7 +10735,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -10761,14 +10761,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -10837,7 +10837,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -10863,14 +10863,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -10939,7 +10939,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -10965,14 +10965,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -11041,7 +11041,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -11067,14 +11067,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -11143,7 +11143,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -11169,14 +11169,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -11245,7 +11245,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -11271,14 +11271,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -11347,7 +11347,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -11373,14 +11373,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -11449,7 +11449,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -11475,14 +11475,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -11551,7 +11551,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -11577,14 +11577,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -11653,7 +11653,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -11679,14 +11679,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -11755,7 +11755,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -11781,14 +11781,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -11857,7 +11857,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -11883,14 +11883,14 @@
         }
       ],
       "encoding": {
-        "format": "2-bit packed with LUT expansion to packed 4-bit grayscale",
-        "bits_per_pixel_stored": 2,
+        "format": "1-bit packed with LUT expansion to packed 4-bit grayscale",
+        "bits_per_pixel_stored": 1,
         "bits_per_pixel_rendered": 4,
         "width_pixels": 24,
         "height_pixels": 24,
         "stored_size_bytes": 72,
         "rendered_stride_bytes": 12,
-        "pixel_order": "firmware LUT at 0x000d753a defines the exact byte expansion",
+        "pixel_order": "low nibble then high nibble after LUT expansion",
         "endianness": "LUT entries are little-endian uint32 words"
       },
       "behavior": "load_icon_bitmap_expanded expands this icon into g_icon_bitmap_buf before a 24×24 framebuffer blit.",
@@ -11959,7 +11959,7 @@
       "related_strings": [],
       "renderer": {
         "viewer": "grayscale icon",
-        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte as two 4-bit pixels.",
+        "strategy": "For each stored byte b, copy the four little-endian bytes of LUT[b] from 0x000d753a; then decode each output byte low-nibble first as two 4-bit pixels.",
         "safe_bounds": "Use exactly 72 source bytes (or 288 bytes for special ID 4) and a fixed 256-entry LUT."
       },
       "confidence": "high",
@@ -19481,6 +19481,7 @@
         "frame_count": 8,
         "bytes_per_mask_row": 320,
         "phase_block_stride_bytes": 2560,
+        "frame_zero_row_offset_bytes": 2240,
         "frame_row_offset_rule": "phase*0xA00 + 0x8C0 - frame*0x140",
         "display_expansion": "tile phase row y % 26 over 199 visible rows"
       },
