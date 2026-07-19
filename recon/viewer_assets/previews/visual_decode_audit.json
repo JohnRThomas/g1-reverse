@@ -1,0 +1,48 @@
+{
+  "schema": "g1-visual-decode-audit-v1",
+  "status": "PASS",
+  "decoder": {
+    "pixel_order": "high nibble then low nibble, left-to-right",
+    "intensity": "absolute unsigned 4-bit grayscale; display level = value * 17",
+    "normalization": "none",
+    "builtin_icons": "firmware 256-entry LUT at 0x000d753a expanded to packed 4-bpp before rendering",
+    "animation_frames": "ascending-address frames using catalogued frame_stride_bytes",
+    "fonts": "per-glyph cumulative payload offsets and row strides from the recovered glyph index"
+  },
+  "coverage": {
+    "static_bitmaps": 98,
+    "builtin_icons": 20,
+    "animations": 12,
+    "animation_frames_checked": 252,
+    "font_banks": 4,
+    "glyphs_checked": 450
+  },
+  "errors": [],
+  "artifacts": {
+    "static_bitmaps.png": {
+      "width": 1352,
+      "height": 1750,
+      "sha256": "945640f76eb41b1a9a2c088c253b13c0c2ba03b9e3c447d063305a92f027426c"
+    },
+    "builtin_icons.png": {
+      "width": 898,
+      "height": 640,
+      "sha256": "24788f77a1be89d282724e0988af4f89af4f3869f33bf8b07e22f83c953c3ef2"
+    },
+    "animation_triplets.png": {
+      "width": 1016,
+      "height": 812,
+      "sha256": "29a5452e7cf111ffb439d0fcbbb2b37a14e3d3d971d02ee45154962d6ed087d0"
+    },
+    "font_glyphs.png": {
+      "width": 1430,
+      "height": 6208,
+      "sha256": "7f820cdbd72bb590a039b326ad0e0e0388aec36c687eed9bd8524f4e8175a2f0"
+    },
+    "nibble_order_comparison.png": {
+      "width": 1196,
+      "height": 600,
+      "sha256": "1baf06333c8f585f7ec169593f740e21baec2b122106b42b6c84a09e578a3e50"
+    }
+  }
+}

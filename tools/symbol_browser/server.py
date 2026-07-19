@@ -663,7 +663,7 @@ class RepositoryIndex:
             "protocol": context.get("protocol") or context.get("protocol_layer"),
             "width": context.get("width") or encoding.get("width_pixels"),
             "height": context.get("height") or encoding.get("height_pixels"),
-            "bits_per_pixel": context.get("bits_per_pixel") or encoding.get("bits_per_pixel_rendered") or encoding.get("bits_per_pixel_stored"),
+            "bits_per_pixel": context.get("bits_per_pixel") or encoding.get("bits_per_pixel") or encoding.get("bits_per_pixel_rendered") or encoding.get("bits_per_pixel_stored"),
             "pixel_order": context.get("pixel_order") or encoding.get("pixel_order"),
             "frame_count": context.get("frame_count") or encoding.get("frame_count"),
             "frame_stride_bytes": context.get("frame_stride_bytes") or encoding.get("frame_stride_bytes"),

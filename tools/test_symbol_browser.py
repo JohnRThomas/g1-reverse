@@ -115,10 +115,17 @@ class SymbolBrowserTests(unittest.TestCase):
         self.assertEqual(by_address["address"], detail["address"])
 
     def test_visual_and_table_payloads_use_firmware_formats(self):
+        native = self.index.asset_detail("static_bitmap_16")
+        self.assertEqual(native["bits_per_pixel"], 4)
+
         compressed = self.index.asset_detail("builtin_icon_00")
         self.assertEqual(compressed["family"], "visual")
         self.assertEqual(len(compressed["bytes"]), 288 * 2)
         self.assertEqual(compressed["bits_per_pixel"], 4)
+
+        animation = self.index.asset_detail("dynamic_bitmap_01")
+        self.assertEqual(animation["bits_per_pixel"], 4)
+        self.assertEqual(len(animation["bytes"]), animation["frame_count"] * animation["frame_stride_bytes"] * 2)
 
         font = self.index.asset_detail("default_font")
         self.assertEqual(len(font["entries"]), 332)
@@ -172,6 +179,15 @@ class SymbolBrowserTests(unittest.TestCase):
         self.assertIn("data-goto", js)
         self.assertIn("/api/struct/", js)
         self.assertIn("/api/asset/", js)
+
+    def test_visual_renderer_preserves_firmware_intensity_and_frames(self):
+        viewer = (ROOT / "tools/symbol_browser/static/asset-viewers.js").read_text()
+        self.assertIn('["frame_animation", "animation"]', viewer)
+        self.assertIn("data-av-frame-slider", viewer)
+        self.assertIn("Array.isArray(asset.pixels) && asset.pixels.length", viewer)
+        self.assertIn("value / max", viewer)
+        self.assertNotIn("pixels.reduce((result, value) => Math.max(result, value)", viewer)
+        self.assertNotIn("Math.max(.12, value / max)", viewer)
 
 
 if __name__ == "__main__":

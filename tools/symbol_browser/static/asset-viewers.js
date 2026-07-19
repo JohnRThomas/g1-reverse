@@ -19,6 +19,7 @@
     ["table", "table"], ["pointer_table", "table"], ["string_pool", "table"], ["dispatch_table", "table"],
     ["numeric_table", "numeric"], ["algorithm_table", "numeric"], ["curve", "numeric"], ["chart", "numeric"],
     ["bitmap", "bitmap"], ["glyph", "bitmap"], ["image", "bitmap"], ["font", "bitmap"],
+    ["frame_animation", "animation"], ["animation", "animation"],
     ["font_bank", "font"], ["external_font_bank", "font"],
     ["protocol", "protocol"], ["frame", "protocol"], ["packet", "protocol"], ["uuid", "protocol"],
     ["bytes", "hex"], ["blob", "hex"], ["hex", "hex"], ["unknown", "hex"],
@@ -295,7 +296,7 @@
   function bitmapPixels(asset) {
     const width = Math.max(1, Number(asset.width || asset.columns || 8));
     const height = Math.max(1, Number(asset.height || asset.rows_count || Math.ceil((asset.bytes.length * 8) / width) || 1));
-    if (Array.isArray(asset.pixels)) return {width, height, pixels: asset.pixels.flat().map(Number)};
+    if (Array.isArray(asset.pixels) && asset.pixels.length) return {width, height, pixels: asset.pixels.flat().map(Number)};
     const bpp = Math.max(1, Number(asset.bits_per_pixel || asset.bpp || 1));
     const mask = (1 << Math.min(bpp, 8)) - 1;
     const pixels = [];
@@ -314,17 +315,41 @@
 
   function renderBitmap(asset) {
     const {width, height, pixels} = bitmapPixels(asset);
-    const max = pixels.reduce((result, value) => Math.max(result, value), 1);
+    const max = (1 << Math.min(Number(asset.bits_per_pixel || asset.bpp || 1), 8)) - 1;
     const shown = Math.min(width * height, pixels.length, 16384);
     const cells = Array.from({length: shown}, (_, index) => {
       const value = pixels[index] || 0;
       if (!value) return "";
-      return `<rect x="${index % width}" y="${Math.floor(index / width)}" width="1" height="1" opacity="${Math.max(.12, value / max).toFixed(3)}"/>`;
+      return `<rect x="${index % width}" y="${Math.floor(index / width)}" width="1" height="1" opacity="${clamp(value / max, 0, 1).toFixed(3)}"/>`;
     }).join("");
     return `<section class="av-visual av-bitmap-view" aria-label="Bitmap or glyph visualization">
       <div class="av-bitmap-stage"><svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${width} by ${height} pixel recovered bitmap" shape-rendering="crispEdges"><rect class="av-pixel-bg" width="${width}" height="${height}"/>${cells}</svg></div>
       <div class="av-bitmap-stats"><span><b>${width} × ${height}</b> pixels</span><span><b>${html(asset.bits_per_pixel || asset.bpp || 1)}</b> bits/pixel</span><span><b>${asset.bytes.length.toLocaleString()}</b> render bytes</span>${asset.glyph || asset.character ? `<span>Glyph <b>${html(asset.glyph || asset.character)}</b></span>` : ""}</div>
       ${shown < width * height ? `<p class="av-truncation">Preview limited to ${shown.toLocaleString()} decoded pixels.</p>` : ""}
+    </section>`;
+  }
+
+  function bitmapSvg(asset, bytes = asset.bytes, label = "Recovered bitmap") {
+    const decoded = bitmapPixels({...asset, bytes});
+    const {width, height, pixels} = decoded;
+    const max = (1 << Math.min(Number(asset.bits_per_pixel || asset.bpp || 1), 8)) - 1;
+    const cells = pixels.slice(0, Math.min(width * height, 16384)).map((value, index) => value
+      ? `<rect x="${index % width}" y="${Math.floor(index / width)}" width="1" height="1" opacity="${clamp(value / max, 0, 1).toFixed(3)}"/>`
+      : "").join("");
+    return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${html(label)}" shape-rendering="crispEdges"><rect class="av-pixel-bg" width="${width}" height="${height}"/>${cells}</svg>`;
+  }
+
+  function renderAnimation(asset) {
+    const width = Math.max(1, Number(asset.width || 1));
+    const height = Math.max(1, Number(asset.height || 1));
+    const stride = Math.max(1, Number(asset.frame_stride_bytes || Math.ceil(width * height * Number(asset.bits_per_pixel || 4) / 8)));
+    const available = Math.floor(asset.bytes.length / stride);
+    const count = Math.max(1, Math.min(Number(asset.frame_count || available || 1), available || 1));
+    const frame = asset.bytes.slice(0, stride);
+    return `<section class="av-visual av-bitmap-view av-animation-view" aria-label="Frame animation visualization" data-av-animation data-frame-stride="${stride}" data-frame-count="${count}">
+      <div class="av-bitmap-stage" data-av-frame-stage>${bitmapSvg(asset, frame, `Animation frame 1 of ${count}`)}</div>
+      <div class="av-animation-controls"><button type="button" data-av-frame-step="-1" aria-label="Previous frame">←</button><input type="range" min="0" max="${count - 1}" value="0" step="1" data-av-frame-slider aria-label="Animation frame"><button type="button" data-av-frame-step="1" aria-label="Next frame">→</button><output data-av-frame-label>Frame <b>1</b> / ${count}</output></div>
+      <div class="av-bitmap-stats"><span><b>${width} × ${height}</b> pixels</span><span><b>${html(asset.bits_per_pixel || asset.bpp || 4)}</b> bits/pixel</span><span><b>${stride.toLocaleString()}</b> bytes/frame</span><span><b>${count}</b> frames</span></div>
     </section>`;
   }
 
@@ -335,8 +360,8 @@
     const size = Number(entry.size_bytes || Math.ceil(width / 2) * height);
     const glyph = {...asset, width, height, bytes: payload.slice(offset, offset + size), bits_per_pixel: 4};
     const decoded = bitmapPixels(glyph);
-    const max = decoded.pixels.reduce((result, value) => Math.max(result, value), 1);
-    const cells = decoded.pixels.slice(0, width * height).map((value, index) => value ? `<rect x="${index % width}" y="${Math.floor(index / width)}" width="1" height="1" opacity="${Math.max(.1, value / max).toFixed(3)}"/>` : "").join("");
+    const max = 15;
+    const cells = decoded.pixels.slice(0, width * height).map((value, index) => value ? `<rect x="${index % width}" y="${Math.floor(index / width)}" width="1" height="1" opacity="${clamp(value / max, 0, 1).toFixed(3)}"/>` : "").join("");
     return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Glyph ${html(entry.codepoint || entry.character || entry.index)}" shape-rendering="crispEdges"><rect class="av-pixel-bg" width="${width}" height="${height}"/>${cells}</svg>`;
   }
 
@@ -450,11 +475,28 @@
     if (kind === "table") return renderTable(asset);
     if (kind === "font") return renderFont(asset);
     if (kind === "bitmap") return renderBitmap(asset);
+    if (kind === "animation") return renderAnimation(asset);
     if (kind === "protocol") return renderProtocol(asset);
     return renderHex(asset);
   }
 
   function bindInteractions(root, asset, options) {
+    const animation = root.querySelector("[data-av-animation]");
+    if (animation) {
+      const slider = animation.querySelector("[data-av-frame-slider]");
+      const stage = animation.querySelector("[data-av-frame-stage]");
+      const label = animation.querySelector("[data-av-frame-label]");
+      const stride = Number(animation.dataset.frameStride);
+      const count = Number(animation.dataset.frameCount);
+      const showFrame = value => {
+        const index = clamp(Number(value) || 0, 0, count - 1);
+        slider.value = index;
+        stage.innerHTML = bitmapSvg(asset, asset.bytes.slice(index * stride, (index + 1) * stride), `Animation frame ${index + 1} of ${count}`);
+        label.innerHTML = `Frame <b>${index + 1}</b> / ${count}`;
+      };
+      slider.addEventListener("input", () => showFrame(slider.value));
+      animation.querySelectorAll("[data-av-frame-step]").forEach(button => button.addEventListener("click", () => showFrame(Number(slider.value) + Number(button.dataset.avFrameStep))));
+    }
     root.addEventListener("click", event => {
       const copy = event.target.closest("[data-av-copy]");
       if (copy) {
