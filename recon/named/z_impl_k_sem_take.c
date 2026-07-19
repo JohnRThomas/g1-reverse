@@ -6,6 +6,7 @@
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
  *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
+ *   z_pend_curr                              <= FUN_00073f6c @ 0x00073f6c
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -26,7 +27,7 @@
 extern int z_spin_lock_valid(uint32_t);
 extern int z_spin_unlock_valid(uint32_t);
 extern void z_spin_lock_set_owner(uint32_t);
-extern int FUN_00073f6c(uint32_t,uint32_t,int,uint32_t,uint32_t,uint32_t);
+extern int z_pend_curr(uint32_t,uint32_t,int,uint32_t,uint32_t,uint32_t);
 extern void assert_post_action(uint32_t,uint32_t);
 extern void printk(uint32_t,...);
 
@@ -55,7 +56,7 @@ int z_impl_k_sem_take(int param_1, uint32_t param_2, uint32_t param_3, uint32_t 
     r3 = *(volatile int*)(param_1+8);
     if (r3 == 0){
         if ((param_3 | param_4) != 0){
-            return FUN_00073f6c(0x2000b474, bp, param_1, param_3|param_4, param_3, param_4);
+            return z_pend_curr(0x2000b474, bp, param_1, param_3|param_4, param_3, param_4);
         }
         iVar2 = z_spin_unlock_valid(0x2000b474);
         if (iVar2 != 0){

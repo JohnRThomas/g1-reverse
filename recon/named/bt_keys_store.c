@@ -2,6 +2,8 @@
  * public-name: bt_keys_store
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   z_log_msg_runtime_create                 <= FUN_0004d944 @ 0x0004d944
+ *   bt_keys_settings_store                   <= FUN_00053168 @ 0x00053168
  *   bt_keys_store                            <= FUN_0005ec18 @ 0x0005ec18
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
@@ -16,8 +18,8 @@
 #include <stdint.h>
 extern void printk(unsigned int,unsigned int,unsigned int,int);
 extern void assert_post_action(unsigned int,int);
-extern int FUN_00053168(unsigned int,void*,void*,int);
-extern void FUN_0004d944(unsigned int,unsigned int,void*,int);
+extern int bt_keys_settings_store(unsigned int,void*,void*,int);
+extern void z_log_msg_runtime_create(unsigned int,unsigned int,void*,int);
 int bt_keys_store(unsigned char* param_1){
   int iVar1;
   struct{unsigned int a,b; int c;} log;
@@ -25,10 +27,10 @@ int bt_keys_store(unsigned char* param_1){
     printk(0x00099cbd,0x000f5298,0x000f5268,0x146);
     assert_post_action(0x000f5268,0x146);
   }
-  iVar1=FUN_00053168(*param_1,param_1+1,param_1+0xc,0x50);
+  iVar1=bt_keys_settings_store(*param_1,param_1+1,param_1+0xc,0x50);
   if(iVar1!=0){
     log.b=0x000f5353; log.a=3; log.c=iVar1;
-    FUN_0004d944(0x00088158,0x1840,&log,0);
+    z_log_msg_runtime_create(0x00088158,0x1840,&log,0);
   }
   return iVar1;
 }

@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   audio_fw_load_trigger_passthrough        <= FUN_0007c1fe @ 0x0007c1fe
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  * address symbols (name @ address):
  *   rodata_9b74b                             @ 0x0009b74b
@@ -14,12 +15,12 @@
 typedef void (*response_fn)(unsigned char *response, unsigned int length);
 extern void log_message(unsigned int message, unsigned int function);
 extern void debug_print(void);
-extern void FUN_0007c1fe(unsigned char *request, unsigned char *payload,
+extern void audio_fw_load_trigger_passthrough(unsigned char *request, unsigned char *payload,
                          unsigned int count, unsigned int capacity);
 
 void get_notification_counts_cmd_process(unsigned char *param_1, unsigned char *param_2, unsigned char *param_3)
 {
-    FUN_0007c1fe(param_1, param_2, 1, 0x1e);
+    audio_fw_load_trigger_passthrough(param_1, param_2, 1, 0x1e);
     param_3[1] = 0xc9;
     unsigned char v = param_2[0];
     param_3[2] = v;

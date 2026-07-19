@@ -5,6 +5,7 @@
  *   __aeabi_ldivmod                          <= FUN_0000e1a4 @ 0x0000e1a4
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_ui_mode_flag_byte1                   <= FUN_00023ee0 @ 0x00023ee0
  *   sync_to_slave                            <= FUN_00026f74 @ 0x00026f74
  *   mark_master_or_low_battery_flag          <= FUN_0002efc0 @ 0x0002efc0
  *   gui_set_active_canvas                    <= FUN_000431b4 @ 0x000431b4
@@ -14,14 +15,18 @@
  *   gui_reset_dynamic_bitmap_frame_state     <= FUN_00043308 @ 0x00043308
  *   gui_bmp_dynamic_bitmap_draw              <= FUN_0004334c @ 0x0004334c
  *   gui_bmp_bitmap_draw                      <= FUN_00043484 @ 0x00043484
+ *   gui_screen_fade_out_transition           <= FUN_0004382c @ 0x0004382c
  *   gui_verticalLine_process_bar             <= FUN_0004396c @ 0x0004396c
  *   gui_utf_draw                             <= FUN_00043e90 @ 0x00043e90
+ *   ui_render_scroll_text_frame              <= FUN_000440ec @ 0x000440ec
  *   gui_clock_draw                           <= FUN_000442bc @ 0x000442bc
  *   clean_fb_data                            <= FUN_000471cc @ 0x000471cc
  *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
  *   send_response_data_to_ble                <= FUN_00047ba8 @ 0x00047ba8
  *   k_mutex_lock                             <= FUN_000723b8 @ 0x000723b8
  *   k_mutex_unlock                           <= FUN_00072558 @ 0x00072558
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
+ *   snprintf                                 <= FUN_00077914 @ 0x00077914
  *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
  *   k_uptime_get_6                           <= FUN_0007d33a @ 0x0007d33a
  *   u64_sub                                  <= FUN_0007d3c2 @ 0x0007d3c2
@@ -85,8 +90,8 @@ extern long long __aeabi_ldivmod(unsigned,unsigned,unsigned,unsigned);
 extern unsigned device_info_text_width_get(void);
 extern unsigned device_info_text_height_get_clamped(void);
 extern unsigned get_timestamp(void);
-extern int      FUN_00023ee0(void);
-extern int      FUN_00077914(unsigned,unsigned,unsigned,unsigned);
+extern int      get_ui_mode_flag_byte1(void);
+extern int      snprintf(unsigned,unsigned,unsigned,unsigned);
 extern int      sync_to_slave(unsigned,unsigned,unsigned);
 extern void     send_response_data_to_ble(void);
 extern void     mark_master_or_low_battery_flag(void);
@@ -98,12 +103,12 @@ extern void     gui_verticalLine_process_bar(unsigned,unsigned,unsigned,unsigned
 extern void     gui_bmp_bitmap_draw(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
 extern void     clean_fb_data(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
 extern void     reflash_fb_data_to_lcd(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
-extern void     FUN_00074844(unsigned,unsigned);
+extern void     k_sleep(unsigned,unsigned);
 extern void     gui_reset_dynamic_bitmap_frame_state(void);
-extern void     FUN_0004382c(void);
+extern void     gui_screen_fade_out_transition(void);
 extern void     gui_canvas_flags_clear_bit1(void);
 extern void     gui_bmp_dynamic_bitmap_draw(unsigned,unsigned,unsigned,unsigned,unsigned);
-extern void     FUN_000440ec(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
+extern void     ui_render_scroll_text_frame(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
 
 /* debug gate: if(loglevel>thr){ [LP]? FUN_19c70 : FUN_7dda4 } */
 __attribute__((always_inline)) static inline void dbg(int thr){
@@ -196,7 +201,7 @@ unsigned ui_teleprompter_task(unsigned a0, unsigned a1, unsigned a2, unsigned a3
             }
         }
         gui_canvas_flags_set_bit1();
-        FUN_00074844(0x1334,0);
+        k_sleep(0x1334,0);
         gui_reset_dynamic_bitmap_frame_state();
         return 0;
     L_cf98:
@@ -279,7 +284,7 @@ unsigned ui_teleprompter_task(unsigned a0, unsigned a1, unsigned a2, unsigned a3
         return 0;
     L1_fmt:
         /* 3d524 -> 77914 -> gate -> 43e90 */
-        FUN_00077914(0,0,0,0);
+        snprintf(0,0,0,0);
         dbg(2);
         device_info_text_width_get(); device_info_text_height_get_clamped();
         gui_utf_draw(0,0,0,0,0,0,0,0,0,0);
@@ -309,7 +314,7 @@ unsigned ui_teleprompter_task(unsigned a0, unsigned a1, unsigned a2, unsigned a3
         dbg(1);                                    /* 3dc7e */
         c = get_device_info();
         memset_bytes(U32(c+0xffc),0,0x217);
-        FUN_0004382c();
+        gui_screen_fade_out_transition();
         c = get_device_info();
         U8(U32(c+0xffc)+1) = 0;
         memset_bytes(G,0,0x230);
@@ -325,7 +330,7 @@ unsigned ui_teleprompter_task(unsigned a0, unsigned a1, unsigned a2, unsigned a3
 
 /* ===== shared: state2 sel==2 / state3 sel==2 tail (3d67e) ===== */
 L_67e:
-    FUN_0004382c();
+    gui_screen_fade_out_transition();
     memset_bytes(G,0,0x230);
 /* L_68e */
     c = get_device_info();
@@ -388,7 +393,7 @@ L2_tick:
         U8(FLAG046a)=0;
         device_info_text_width_get(); device_info_text_height_get_clamped();
         device_info_text_width_get(); device_info_text_height_get_clamped();
-        FUN_000440ec(0,0,0,0,0,0,0,0);
+        ui_render_scroll_text_frame(0,0,0,0,0,0,0,0);
     } else {
         /* 3d6de */
         device_info_text_width_get();
@@ -477,7 +482,7 @@ L2_after:
     {
         unsigned hr=U32(HR), mn=U32(MN), sc=U32(SC);
         memset_bytes(0,0,0x38);
-        FUN_00077914(0, (hr>9)?0x000a8b58u:0x000a9c15u, 0x40, 0);
+        snprintf(0, (hr>9)?0x000a8b58u:0x000a9c15u, 0x40, 0);
         if (!(hr==U32(CHR) && mn==U32(CMN) && sc==U32(CSC))){
             /* 3d892 */
             device_info_text_width_get(); device_info_text_height_get_clamped();
@@ -514,7 +519,7 @@ L2_after:
     gui_screen_clear();
     device_info_text_width_get(); device_info_text_height_get_clamped();
     gui_bmp_bitmap_draw(0x3f,0,0,0,0,0);
-    if (FUN_00023ee0() == 6){
+    if (get_ui_mode_flag_byte1() == 6){
         device_info_text_width_get(); device_info_text_height_get_clamped();
         device_info_text_width_get(); device_info_text_height_get_clamped();
         gui_utf_draw(0,0,0,0,0,0,0,0,0,0);
@@ -535,7 +540,7 @@ L_db48:
     gui_screen_clear();
     device_info_text_width_get(); device_info_text_height_get_clamped();
     gui_bmp_bitmap_draw(0x3f,0,0,0,0,0);
-    if (FUN_00023ee0() == 6){
+    if (get_ui_mode_flag_byte1() == 6){
         device_info_text_width_get(); device_info_text_height_get_clamped();
         device_info_text_width_get(); device_info_text_height_get_clamped();
         gui_utf_draw(0,0,0,0,0,0,0,0,0,0);

@@ -2,11 +2,13 @@
  * public-name: bt_gatt_unsubscribe
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   gatt_find_conn_in_known_table            <= FUN_00059c70 @ 0x00059c70
  *   gatt_sub_free                            <= FUN_00059e78 @ 0x00059e78
  *   gatt_write_ccc                           <= FUN_0005a540 @ 0x0005a540
  *   bt_gatt_unsubscribe                      <= FUN_0005c4f0 @ 0x0005c4f0
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   read_struct_first_word                   <= FUN_0008270c @ 0x0008270c
  *   sys_slist_find_and_remove_0              <= FUN_00082ab8 @ 0x00082ab8
  *   bt_gatt_cancel                           <= FUN_00082e24 @ 0x00082e24
  * address symbols (name @ address):
@@ -20,10 +22,10 @@
 #include <stdint.h>
 extern void printk(unsigned,unsigned,unsigned,unsigned,unsigned);
 extern void assert_post_action(unsigned,unsigned);
-extern int FUN_00059c70(void);
+extern int gatt_find_conn_in_known_table(void);
 extern int gatt_sub_free(int);
 extern int gatt_write_ccc(int,int*);
-extern int FUN_0008270c(int*);
+extern int read_struct_first_word(int*);
 extern void sys_slist_find_and_remove_0(int,int*);
 extern void bt_gatt_cancel(int,int*);
 typedef int (*codef)(int,int*,int);
@@ -41,7 +43,7 @@ int bt_gatt_unsubscribe(int param_1, int *param_2, unsigned param_3, unsigned pa
     assert_post_action(0x000f46b8,0x14dd);
   }
   if (*(char*)(param_1+0xd) != 7) return -0x80;
-  iVar1 = FUN_00059c70();
+  iVar1 = gatt_find_conn_in_known_table();
   if ((iVar1 != 0) && (piVar5 = *(int**)(iVar1+8), piVar5 != 0)) {
     bVar4 = 0; bVar6 = 0;
     do {
@@ -50,7 +52,7 @@ int bt_gatt_unsubscribe(int param_1, int *param_2, unsigned param_3, unsigned pa
       piVar5 = (int*)*piVar5;
     } while (piVar5 != 0);
     if (bVar4) {
-      iVar2 = FUN_0008270c(param_2 + 5);
+      iVar2 = read_struct_first_word(param_2 + 5);
       if (iVar2 << 0x1d < 0) bt_gatt_cancel(param_1, param_2);
       if (bVar6) {
         sys_slist_find_and_remove_0(iVar1+8, param_2+6);

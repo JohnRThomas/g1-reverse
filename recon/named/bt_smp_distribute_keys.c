@@ -11,6 +11,7 @@
  *   bt_keys_add_type                         <= FUN_0005e9a0 @ 0x0005e9a0
  *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
  *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ *   smp_log_message                          <= FUN_00083074 @ 0x00083074
  *   atomic_set_bit                           <= FUN_00083090 @ 0x00083090
  *   smp_create_pdu                           <= FUN_000830b0 @ 0x000830b0
  *   atomic_test_and_clear_bit                <= FUN_000831be @ 0x000831be
@@ -39,7 +40,7 @@ extern void smp_pairing_complete(int *a, unsigned char b);
 extern void bt_keys_add_type(int a, int b);
 extern int net_buf_simple_add(int a, int b);
 extern int atomic_test_bit(int *a, int b);
-extern void FUN_00083074(unsigned a, int b, void *c);
+extern void smp_log_message(unsigned a, int b, void *c);
 extern unsigned atomic_set_bit(int a, unsigned b);
 extern int smp_create_pdu(int *a, int b);
 extern int atomic_test_and_clear_bit(int *a, int b);
@@ -114,7 +115,7 @@ LAB_0005e264:
         local_6c = 0xf516d;
         local_64 = 0x200;
         local_70 = 0x01000003;
-        FUN_00083074(0x88180, 0x1c40, &local_70);
+        smp_log_message(0x88180, 0x1c40, &local_70);
         return;
     }
     iVar1 = atomic_test_bit((int *)uVar5, 5);
@@ -160,7 +161,7 @@ LAB_0005e264:
         }
         local_50 = 2;
         local_4c = uVar5;
-        FUN_00083074(0x88180, 0x1040, &local_50);
+        smp_log_message(0x88180, 0x1040, &local_50);
     }
 LAB_0005e2f2:
     if ((short)param_1[-2] != 0) return;

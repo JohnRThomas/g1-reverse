@@ -4,6 +4,8 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   spi_master_init                          <= FUN_00026418 @ 0x00026418
+ *   arch_irq_priority_set                    <= FUN_0005010c @ 0x0005010c
+ *   nrfx_spim_init                           <= FUN_000671d8 @ 0x000671d8
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -27,8 +29,8 @@
 #include <stdint.h>
 extern void log_message(uintptr_t,...);
 extern void debug_print(uintptr_t,...);
-extern void FUN_0005010c(uint32_t,uint32_t);
-extern uint32_t FUN_000671d8(void*,void*,uintptr_t,uintptr_t);
+extern void arch_irq_priority_set(uint32_t,uint32_t);
+extern uint32_t nrfx_spim_init(void*,void*,uintptr_t,uintptr_t);
 extern void printk(uintptr_t,uintptr_t,uintptr_t,uint32_t);
 extern void assert_post_action(uintptr_t,uint32_t);
 extern void memset_bytes(void*,int,uint32_t);
@@ -65,12 +67,12 @@ unsigned spi_master_init(uintptr_t event)
     }
     uintptr_t callback=mode==3?0x0007ca77u:0;
     uintptr_t callback_context=mode==3?event:0;
-    if(FUN_000671d8((void*)(event+0xc),&cfg,callback,callback_context)!=0x0bad0000u){
+    if(nrfx_spim_init((void*)(event+0xc),&cfg,callback,callback_context)!=0x0bad0000u){
         printk(0x99cbdu,0x9fc15u,0x9fbfdu,0x68);
         assert_post_action(0x9fbfdu,0x68);
     }
     volatile uint8_t *once=(volatile uint8_t*)(mode==3?0x20018c6cu:0x20018c6du);
-    if(!*once){*once=1;FUN_0005010c(mode==3?12:10,6);}
+    if(!*once){*once=1;arch_irq_priority_set(mode==3?12:10,6);}
     if(*(volatile int*)0x2000230cu>2){if(*(volatile int*)0x20007554u)debug_print(0x9fc2cu,0x9fc4du,mode);else log_message(0x9fc2cu,0x9fc4du,mode);}
     *(volatile uint32_t*)(event+0x14)=1;
     return 0;

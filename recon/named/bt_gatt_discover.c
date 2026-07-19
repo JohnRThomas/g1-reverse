@@ -6,6 +6,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
+ *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  *   gatt_req_send                            <= FUN_00082aee @ 0x00082aee
  * address symbols (name @ address):
  *   ADDR_gatt_parse_find_by_type_rsp_THUMB   @ 0x0005bbf5
@@ -38,7 +39,7 @@ struct attr_value {
 extern __attribute__((noreturn)) void assert_post_action(uint32_t,uint32_t);
 extern void printk(uint32_t,...);
 extern int bt_uuid_cmp(void*,void*);
-extern void FUN_00082a42(uint32_t,uint32_t,void*);
+extern void log_msg_create_3arg(uint32_t,uint32_t,void*);
 extern uint32_t gatt_req_send(int,uint32_t,int*,uint32_t,uint32_t,uint32_t);
 
 int bt_gatt_discover(int param_1, int *param_2)
@@ -87,7 +88,7 @@ int bt_gatt_discover(int param_1, int *param_2)
           uVar4arg=0x00082d6bUL; uVar5arg=0x00082a67UL;
         } else {
           uint32_t local_38 = 3;
-          FUN_00082a42(0x00088128UL, 0x1840, &local_38);
+          log_msg_create_3arg(0x00088128UL, 0x1840, &local_38);
           return 0xffffffea;
         }
       }
@@ -131,7 +132,7 @@ int bt_gatt_discover(int param_1, int *param_2)
       break;
     default: {
       uint32_t local_38 = 3;
-      FUN_00082a42(0x00088128UL, 0x1840, &local_38);
+      log_msg_create_3arg(0x00088128UL, 0x1840, &local_38);
       return 0xffffffea;
     }
   }

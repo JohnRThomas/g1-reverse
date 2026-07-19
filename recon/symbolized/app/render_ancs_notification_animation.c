@@ -9,6 +9,7 @@
  *   gui_canvas_flags_set_bit1                <= FUN_000432d0 @ 0x000432d0
  *   gui_canvas_flags_clear_bit1              <= FUN_000432ec @ 0x000432ec
  *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  * address symbols (name @ address):
  *   rodata_a8bcd                             @ 0x000a8bcd
  *   rodata_a8c57                             @ 0x000a8c57
@@ -37,7 +38,7 @@ extern void debug_print(uintptr_t, ...);
 extern void gui_canvas_flags_clear_bit1(void);
 extern void gui_canvas_flags_set_bit1(void);
 extern void draw_message(uint32_t, int);
-extern void FUN_00074844(uint32_t, uint32_t);
+extern void k_sleep(uint32_t, uint32_t);
 extern uint8_t *get_device_info(void);
 extern void reflash_fb_data_to_lcd(uint32_t, uint32_t, uint32_t, uint32_t,
                                    uint32_t, uint32_t);
@@ -70,7 +71,7 @@ void render_ancs_notification_animation(uint8_t **framebuffer_rows,
             for (uint32_t column = 0; column < 0x140; ++column)
                 if (pixels[column]) pixels[column] &= mask[column];
         }
-        FUN_00074844(0xa4, 0);
+        k_sleep(0xa4, 0);
         uint8_t *state = get_device_info();
         uint32_t first = *(uint32_t *)(state + 0xeb4);
         state = get_device_info();

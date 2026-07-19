@@ -2,6 +2,7 @@
  * public-name: gatt_service_changed_c_discovery_completed
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   gatt_dm_char_by_uuid                     <= FUN_0004ed3c @ 0x0004ed3c
  *   bt_gatt_dm_attr_service_val              <= FUN_0007f460 @ 0x0007f460
  *   bt_gatt_dm_conn_get                      <= FUN_0007f4c8 @ 0x0007f4c8
  *   bt_gatt_dm_service_get                   <= FUN_0007f4d2 @ 0x0007f4d2
@@ -11,7 +12,7 @@
  */
 /* Reconstructed FUN_0007f8dc @ 0x7f8dc  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_0004ed3c(unsigned a, void*b);
+extern int gatt_dm_char_by_uuid(unsigned a, void*b);
 extern unsigned bt_gatt_dm_attr_service_val(void);
 extern unsigned bt_gatt_dm_conn_get(unsigned a);
 extern void bt_gatt_dm_service_get(void);
@@ -30,7 +31,7 @@ unsigned gatt_service_changed_c_discovery_completed(unsigned param_1, unsigned *
     p2[0] = 0; p2[1] = 0; p2[10] = 0;
     local_24[0] = 0;
     *(volatile unsigned short*)(local_24 + 2) = 0x2a05;
-    int h = FUN_0004ed3c(param_1, local_24);
+    int h = gatt_dm_char_by_uuid(param_1, local_24);
     if (h == 0) return 0xffffffeau;
     local_20[0] = 0;
     *(volatile unsigned short*)(local_20 + 2) = 0x2a05;

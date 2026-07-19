@@ -8,7 +8,9 @@
  *   __aeabi_dcmple                           <= FUN_0000ddf0 @ 0x0000ddf0
  *   double_is_unordered                      <= FUN_0000de2c @ 0x0000de2c
  *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
+ *   cjson_print_string                       <= FUN_000644f8 @ 0x000644f8
  *   cjson_print_value                        <= FUN_000646c0 @ 0x000646c0
+ *   snprintf                                 <= FUN_00077914 @ 0x00077914
  *   vsnprintf_setup                          <= FUN_000779bc @ 0x000779bc
  *   cursor_advance_past_cstring              <= FUN_00084f16 @ 0x00084f16
  *   growbuf_ensure_capacity                  <= FUN_00084f58 @ 0x00084f58
@@ -86,8 +88,8 @@ extern long long __aeabi_dcmplt(int,int,int,int,int,int);
 extern long long __aeabi_dcmple(int,int,int,int);
 extern long long double_is_unordered(int,int,int,int);
 extern long long strlen(void);
-extern long long FUN_000644f8(int, ...);
-extern long long FUN_00077914(int,int,int);
+extern long long cjson_print_string(int, ...);
+extern long long snprintf(int,int,int);
 extern long long vsnprintf_setup(int,int,int);
 extern long long cursor_advance_past_cstring(int);
 extern long long growbuf_ensure_capacity(int,int);
@@ -134,7 +136,7 @@ uint cjson_print_value(int param_1,int param_2)
   bVar1 = *(byte *)(param_1 + 0xc);
   uVar9 = (uint)bVar1;
   if (uVar9 == 0x10) {
-    uVar9 = FUN_000644f8(*(undefined4 *)(param_1 + 0x10));
+    uVar9 = cjson_print_string(*(undefined4 *)(param_1 + 0x10));
     return uVar9;
   }
   if (0x10 < uVar9) {
@@ -165,7 +167,7 @@ uint cjson_print_value(int param_1,int param_2)
             }
             *(uint *)(param_2 + 8) = *(int *)(param_2 + 8) + *(uint *)(param_2 + 0xc);
           }
-          iVar6 = FUN_000644f8(piVar10[8],param_2);
+          iVar6 = cjson_print_string(piVar10[8],param_2);
           if (iVar6 == 0) goto switchD_000646e2_caseD_3;
           cursor_advance_past_cstring(param_2);
           if (*(int *)(param_2 + 0x14) == 0) {
@@ -324,7 +326,7 @@ LAB_00064728:
       goto LAB_000647a8;
       uVar13 = uVar12;
       uVar17 = uVar9;
-      iVar6 = FUN_00077914(&local_44,0x1a,DAT_0006499c);
+      iVar6 = snprintf(&local_44,0x1a,DAT_0006499c);
       iVar4 = vsnprintf_setup(&local_44,DAT_000649a0,&local_50);
       uVar3 = uStack_4c;
       uVar2 = local_50;
@@ -344,7 +346,7 @@ LAB_00064728:
       }
       else {
 LAB_00064840:
-        iVar6 = FUN_00077914(&local_44,0x1a,DAT_000649a8);
+        iVar6 = snprintf(&local_44,0x1a,DAT_000649a8);
       }
       if (0x19 < iVar6) goto switchD_000646e2_caseD_3;
     }

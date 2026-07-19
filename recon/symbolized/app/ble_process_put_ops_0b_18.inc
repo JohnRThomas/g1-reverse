@@ -4,11 +4,11 @@
 
 #include "ble_process_put_common.h"
 
-extern int FUN_0001658c();
+extern int set_dashboard_startup_mode_field63();
 extern int enqueue_file();
 extern int mark_master_or_low_battery_flag();
 extern int process_sync_buffer();
-extern int FUN_0007c176();
+extern int device_info_set_bytes_cc_ce();
 #ifdef G1_APP_SDK_INLINE_COHESION
 extern int64_t z_impl_k_uptime_ticks(void);
 /* Exact configured kernel.h/time_units.h owner: floor(ticks * 1000 / 32768). */
@@ -20,8 +20,8 @@ static __attribute__((always_inline)) inline uint64_t g1_sdk_uptime_get_0(void)
 extern uint64_t k_uptime_get_0(void); /* k_uptime_get_0 @ 0x0007c18e */
 #define g1_sdk_uptime_get_0() k_uptime_get_0()
 #endif
-extern int FUN_0007c1aa();
-extern int FUN_0007c1dc();
+extern int device_info_store_chunk();
+extern int store_device_info_bytes_cd_cf();
 extern int set_shutdown_flag();
 extern int update_display_status();
 extern int is_system_idle_ready();
@@ -76,14 +76,14 @@ ble_put_op0d_0f(struct ble_put_context *ctx, const uint8_t *packet,
         if (last) {
             response[1] = 0xc9;
         } else {
-            FUN_0007c1aa(object, 0x198, base[right ? -0x6b0 : -0x6af], right);
+            device_info_store_chunk(object, 0x198, base[right ? -0x6b0 : -0x6af], right);
             if (right)
-                FUN_0007c176(request[1], 1);
+                device_info_set_bytes_cc_ce(request[1], 1);
             else
-                FUN_0007c1dc(request[1], 1, 0);
+                store_device_info_bytes_cd_cf(request[1], 1, 0);
             response[1] = 0xcb;
         }
-        FUN_00086c1e(OP0B18_STAGE, request + 7, fragment_length, 0x158);
+        safe_memcpy_checked(OP0B18_STAGE, request + 7, fragment_length, 0x158);
     }
     if ((int8_t)index == 0) {
         memset_bytes(object + 6, 0, 400);
@@ -110,18 +110,18 @@ ble_put_op0d_0f(struct ble_put_context *ctx, const uint8_t *packet,
             OP0B18_LAST_INDEX = index;
             OP0B18_LAST_COUNT = count;
             if (right)
-                FUN_0007c176(request[1], 0);
+                device_info_set_bytes_cc_ce(request[1], 0);
             else
-                FUN_0007c1dc(request[1], 0);
+                store_device_info_bytes_cd_cf(request[1], 0);
         } else {
             ctx->post_to_host(response, 20);
         }
     } else {
         if (last) {
             if (right)
-                FUN_0007c176(request[1], 0);
+                device_info_set_bytes_cc_ce(request[1], 0);
             else
-                FUN_0007c1dc(request[1], 0);
+                store_device_info_bytes_cd_cf(request[1], 0);
         }
         ctx->post_to_host(response, 20);
     }
@@ -305,7 +305,7 @@ ble_put_op17(struct ble_put_context *ctx, const uint8_t *packet,
              uint8_t response[20])
 {
     uint8_t *base = (uint8_t *)ctx;
-    FUN_0001658c(1);
+    set_dashboard_startup_mode_field63(1);
     *(uint64_t *)(void *)(base + 0x8e4) = g1_sdk_uptime_get_0();
     *(uint32_t *)(void *)(base + 0x8d0) = packet[0];
     process_sync_buffer(base - 0x6fc);

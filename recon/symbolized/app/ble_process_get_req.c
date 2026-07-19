@@ -13,6 +13,7 @@
  *   debug_print_hex_dump                     <= FUN_0004a424 @ 0x0004a424
  *   is_system_idle_ready                     <= FUN_0007ce00 @ 0x0007ce00
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   strcpy                                   <= FUN_00086fee @ 0x00086fee
  * address symbols (name @ address):
@@ -36,7 +37,7 @@ extern void SendSystemLanguageInfoToSlave(uint32_t);
 extern void debug_print_hex_dump(void *, void *, uint32_t);
 extern int  is_system_idle_ready(void);
 extern void memcpy(void *, uintptr_t, uint32_t);
-extern void FUN_00086c1e(void *, const void *, uint32_t, uint32_t);
+extern void safe_memcpy_checked(void *, const void *, uint32_t, uint32_t);
 extern void memset_bytes(void *, uint32_t, uint32_t);
 extern void strcpy(void *, const void *);
 
@@ -205,7 +206,7 @@ void ble_process_get_req(uint8_t *context, const uint8_t *packet,
         }
         uint8_t load_status = request_data[5];
         memset_bytes(response, 0, 0x15);
-        FUN_00086c1e(response, request_data, request_id, 0x15);
+        safe_memcpy_checked(response, request_data, request_id, 0x15);
         int accepted = get_device_type();
         AUDIO_LOAD_STATUS = load_status;
         if (accepted == 1)

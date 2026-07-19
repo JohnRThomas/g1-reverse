@@ -1,0 +1,19 @@
+/* readable reconstruction; identity: FUN_00065418 @ 0x00065418
+ * public-name: dppi_channel_disable_and_free
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nrfx_flag32_free                         <= FUN_00064ef8 @ 0x00064ef8
+ *   dppi_channel_disable_and_free            <= FUN_00065418 @ 0x00065418
+ * address symbols (name @ address):
+ *   g_flag32_channel_alloc_mask              @ 0x20002bbc
+ *   REG_50017508                             @ 0x50017508
+ */
+/* Reconstructed FUN_00065418 @ 0x65418  (parity: 300/300 trials, PROVEN) */
+
+extern void nrfx_flag32_free(unsigned int a, unsigned int b);
+
+void dppi_channel_disable_and_free(unsigned int param_1)
+{
+    *(volatile unsigned int*)0x50017508UL = 1u << (param_1 & 0xff);
+    nrfx_flag32_free(0x20002bbcUL, param_1);
+}

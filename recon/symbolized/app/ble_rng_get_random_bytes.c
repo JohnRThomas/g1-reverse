@@ -3,6 +3,7 @@
  * public-name: ble_rng_get_random_bytes
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   z_log_msg_runtime_create                 <= FUN_0004d944 @ 0x0004d944
  *   bt_hci_le_rand                           <= FUN_00053e74 @ 0x00053e74
  *   ble_rng_seed_from_uptime                 <= FUN_00055bf8 @ 0x00055bf8
  *   ble_rng_get_random_bytes                 <= FUN_00055c64 @ 0x00055c64
@@ -14,7 +15,7 @@
  */
 /* Reconstructed FUN_00055c64 @ 0x55c64  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_0004d944(int,int,void*,int);
+extern int z_log_msg_runtime_create(int,int,void*,int);
 extern int bt_hci_le_rand(void*,int);
 extern int ble_rng_seed_from_uptime(void);
 extern int tc_hmac_prng_init(int,void*,int);
@@ -30,7 +31,7 @@ int ble_rng_get_random_bytes(void)
             s.f0 = 2;
             s.f4 = ((unsigned long)&rodata_f3966) /*=0xf3966*/;
             iVar1 = -5;
-            FUN_0004d944(((unsigned long)&rodata_88148) /*=0x88148*/, 0x1040, &s, 0);
+            z_log_msg_runtime_create(((unsigned long)&rodata_88148) /*=0x88148*/, 0x1040, &s, 0);
         } else {
             iVar1 = ble_rng_seed_from_uptime();
         }

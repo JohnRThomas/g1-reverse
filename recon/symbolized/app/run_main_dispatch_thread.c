@@ -8,11 +8,14 @@
  *   run_main_dispatch_thread                 <= FUN_0002a65c @ 0x0002a65c
  *   init_watchdog                            <= FUN_0002ace0 @ 0x0002ace0
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
+ *   start_aging_mode_thread                  <= FUN_00032fe8 @ 0x00032fe8
+ *   spawn_aging_mode_aux_thread              <= FUN_0003304c @ 0x0003304c
  *   spawn_proxy_thread                       <= FUN_00047ad0 @ 0x00047ad0
  *   spawn_display_thread                     <= FUN_00049638 @ 0x00049638
+ *   main_dispatch_thread_tick                <= FUN_0007cb66 @ 0x0007cb66
  *   kmutex_dlist_init                        <= FUN_000864c2 @ 0x000864c2
  * address symbols (name @ address):
- *   ADDR_FUN_0002685c_THUMB                  @ 0x0002685d
+ *   ADDR_low_speed_peripheral_dispatch_thread_for_test_THUMB @ 0x0002685d
  *   rodata_2692d                             @ 0x0002692d
  *   rodata_27cfd                             @ 0x00027cfd
  *   ADDR_process_task_sync_event_THUMB       @ 0x000286f9
@@ -20,7 +23,7 @@
  *   ADDR_display_dispatch_thread_THUMB       @ 0x00028bed
  *   ADDR_key_event_thread_THUMB              @ 0x0002955d
  *   ADDR_touch_key_thread_THUMB              @ 0x0002a0d9
- *   ADDR_FUN_0002a4f4_THUMB                  @ 0x0002a4f5
+ *   ADDR_transport_dispatch_thread_THUMB     @ 0x0002a4f5
  *   ADDR_FUN_0002a8d8_THUMB                  @ 0x0002a8d9
  *   rodata_a18bf                             @ 0x000a18bf
  *   rodata_a1a98                             @ 0x000a1a98
@@ -52,16 +55,16 @@ extern void debug_print(uint32_t, uint32_t);
 extern void spawn_flash_ops_and_brightness_threads(void *);
 extern void init_watchdog(void);
 extern int is_battery_critical(void);
-extern void FUN_00032fe8(void);
-extern void FUN_0003304c(void);
+extern void start_aging_mode_thread(void);
+extern void spawn_aging_mode_aux_thread(void);
 extern void spawn_proxy_thread(void *);
 extern void spawn_display_thread(void *);
-extern void FUN_0007cb66(uint32_t, uint32_t, uint32_t, uint32_t,
+extern void main_dispatch_thread_tick(uint32_t, uint32_t, uint32_t, uint32_t,
                          void *, int32_t, uint32_t, uint32_t);
 extern void kmutex_dlist_init(uint32_t);
 
 #define CREATE_DISPATCH_THREAD(control, stack, stack_size, entry, context, priority) \
-    FUN_0007cb66((control), (stack), (stack_size), (entry), \
+    main_dispatch_thread_tick((control), (stack), (stack_size), (entry), \
                  (context), (priority), 0, 0)
 
 void run_main_dispatch_thread(char *dispatch_mode)
@@ -88,13 +91,13 @@ void run_main_dispatch_thread(char *dispatch_mode)
                                ADDR_process_task_sync_event_THUMB /*=0x286f9*/, dispatch_mode, -10);
     } else {
         CREATE_DISPATCH_THREAD(((unsigned long)&g_200046b8) /*=0x200046b8*/, ((unsigned long)&g_20026a68) /*=0x20026a68*/, 0xc00,
-                               ADDR_FUN_0002685c_THUMB /*=0x2685d*/, dispatch_mode, -10);
-        FUN_00032fe8();
-        FUN_0003304c();
+                               ADDR_low_speed_peripheral_dispatch_thread_for_test_THUMB /*=0x2685d*/, dispatch_mode, -10);
+        start_aging_mode_thread();
+        spawn_aging_mode_aux_thread();
     }
 
     CREATE_DISPATCH_THREAD(((unsigned long)&g_200040d0) /*=0x200040d0*/, ((unsigned long)&g_20023c68) /*=0x20023c68*/, 0xc00,
-                           ADDR_FUN_0002a4f4_THUMB /*=0x2a4f5*/, 0, -9);
+                           ADDR_transport_dispatch_thread_THUMB /*=0x2a4f5*/, 0, -9);
 
     if ((uint8_t)dispatch_mode[0] == 1 || (uint8_t)dispatch_mode[0] == 2) {
         CREATE_DISPATCH_THREAD(((unsigned long)&g_200045e0) /*=0x200045e0*/, ((unsigned long)&g_20026268) /*=0x20026268*/, 0x800,

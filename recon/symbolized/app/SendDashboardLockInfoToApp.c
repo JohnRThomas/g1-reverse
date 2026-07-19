@@ -6,6 +6,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   send_response_data_to_msgqueue           <= FUN_00047b1c @ 0x00047b1c
  *   send_response_data_to_ble                <= FUN_00047ba8 @ 0x00047ba8
+ *   read_volatile_u32_a                      <= FUN_0007ca4e @ 0x0007ca4e
  * address symbols (name @ address):
  *   rodata_9f73d                             @ 0x0009f73d
  *   rodata_9fa9c                             @ 0x0009fa9c
@@ -22,18 +23,18 @@ extern int log_message(int,...);
 extern int debug_print(void);
 extern int send_response_data_to_msgqueue(void*,...);
 extern int send_response_data_to_ble(void);
-extern int FUN_0007ca4e(int,...);
+extern int read_volatile_u32_a(int,...);
 void SendDashboardLockInfoToApp(unsigned p1, unsigned p2, unsigned p3){
   volatile unsigned buf[3];
   buf[0]=p1; buf[1]=p2; buf[2]=p3;
-  int iVar1 = FUN_0007ca4e(((unsigned long)&g_dashboard_lock_ready_flags) /*=0x20007570*/);
+  int iVar1 = read_volatile_u32_a(((unsigned long)&g_dashboard_lock_ready_flags) /*=0x20007570*/);
   if((iVar1<<0x1e)<0){
-    iVar1 = FUN_0007ca4e(((unsigned long)&g_dashboard_reset_pending_flags) /*=0x20007aa0*/);
+    iVar1 = read_volatile_u32_a(((unsigned long)&g_dashboard_reset_pending_flags) /*=0x20007aa0*/);
     if(-1 < (iVar1<<0x1e)){
-      iVar1 = FUN_0007ca4e(((unsigned long)&g_dashboard_lock_sent_flags) /*=0x2000756c*/);
+      iVar1 = read_volatile_u32_a(((unsigned long)&g_dashboard_lock_sent_flags) /*=0x2000756c*/);
       unsigned bit = (unsigned)(iVar1>>1)&1u;
       if(-1 < (iVar1<<0x1e)){
-        iVar1 = FUN_0007ca4e(((unsigned long)&g_dashboard_lock_ready_flags) /*=0x20007570*/);
+        iVar1 = read_volatile_u32_a(((unsigned long)&g_dashboard_lock_ready_flags) /*=0x20007570*/);
         if((iVar1<<0x1e)<0){
           buf[0]=bit;
           *(volatile uint16_t*)&buf[0] = 0x650;

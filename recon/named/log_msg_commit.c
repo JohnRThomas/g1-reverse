@@ -2,6 +2,7 @@
  * public-name: log_msg_commit
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   z_log_notify_backend_enabled             <= FUN_0004d44c @ 0x0004d44c
  *   log_msg_commit                           <= FUN_0004d8f8 @ 0x0004d8f8
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
@@ -16,7 +17,7 @@
 
 extern void printk(int a, int b, int c, int d);
 extern uint64_t assert_post_action(int a, int b);
-extern void FUN_0004d44c(void);
+extern void z_log_notify_backend_enabled(void);
 
 void log_msg_commit(int param_1, unsigned int param_2, unsigned char param_3)
 {
@@ -38,5 +39,5 @@ void log_msg_commit(int param_1, unsigned int param_2, unsigned char param_3)
     *(unsigned char *)(*(int *)(param_1 + 4) + 6) = param_3;
     **(unsigned int **)(param_1 + 4) = param_2;
     *(unsigned char *)(*(int *)(param_1 + 4) + 5) = 1;
-    FUN_0004d44c();
+    z_log_notify_backend_enabled();
 }

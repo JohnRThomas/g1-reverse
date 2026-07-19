@@ -3,13 +3,14 @@
  * public-name: audio_codec_read_gain_step_mode
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   audio_codec_reg_op_dispatch              <= FUN_0007f97c @ 0x0007f97c
  *   audio_codec_select_page                  <= FUN_0007fb20 @ 0x0007fb20
  *   audio_codec_read_gain_step_mode          <= FUN_0007fc2c @ 0x0007fc2c
  */
 /* Reconstructed FUN_0007fc2c @ 0x7fc2c  (parity: 300/300 trials, PROVEN) */
 
 extern int audio_codec_select_page(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
-extern int FUN_0007f97c(unsigned int, unsigned int, void*, unsigned int);
+extern int audio_codec_reg_op_dispatch(unsigned int, unsigned int, void*, unsigned int);
 
 int audio_codec_read_gain_step_mode(unsigned int param_1, unsigned char *param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -20,7 +21,7 @@ int audio_codec_read_gain_step_mode(unsigned int param_1, unsigned char *param_2
 
   iVar1 = audio_codec_select_page(param_1, 2, param_3, param_4, param_1);
   if (iVar1 == 0) {
-    iVar2 = FUN_0007f97c(param_1, 0x5f, &local_14, 1);
+    iVar2 = audio_codec_reg_op_dispatch(param_1, 0x5f, &local_14, 1);
     if (iVar2 == 0) {
       uVar3 = (local_14 >> 3) & 3;
       if (uVar3==2 || uVar3==3 || uVar3==1) {

@@ -6,6 +6,7 @@
  *   arm_mem_manage_fault_helper              <= FUN_000503d8 @ 0x000503d8
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   arm_fault_forward_handler                <= FUN_00080780 @ 0x00080780
  * address symbols (name @ address):
  *   rodata_88258                             @ 0x00088258
  *   rodata_99cbd                             @ 0x00099cbd
@@ -24,7 +25,7 @@
 #include <stdint.h>
 extern int assert_post_action(int,...) __attribute__((noreturn));
 extern int printk(int,...);
-extern int FUN_00080780(int,...);
+extern int arm_fault_forward_handler(int,...);
 #define SCB28 (*(volatile int*)0xe000ed28)
 
 unsigned arm_mem_manage_fault_helper(int param_1, unsigned char *param_2)
@@ -34,25 +35,25 @@ unsigned arm_mem_manage_fault_helper(int param_1, unsigned char *param_2)
     struct { unsigned count, format, value; } log3;
     log2.count = 2;
     log2.format = ((unsigned long)&rodata_f1c39) /*=0xf1c39*/;
-    FUN_00080780(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &log2);
+    arm_fault_forward_handler(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &log2);
     if(SCB28 << 0x1b < 0){
         log2.count = 2; log2.format = ((unsigned long)&rodata_f1c4f) /*=0xf1c4f*/;
-        FUN_00080780(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &log2);
+        arm_fault_forward_handler(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &log2);
         uVar2 = 0x11;
     } else { uVar2 = 0x10; }
     if(SCB28 << 0x1c < 0){
         log2.format = ((unsigned long)&rodata_f1c82) /*=0xf1c82*/; log2.count = 2;
-        FUN_00080780(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &log2);
+        arm_fault_forward_handler(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &log2);
         uVar2 = 0x12;
     }
     iVar1 = 0xe000ed00;
     if(SCB28 << 0x1e < 0){
         log2.format = ((unsigned long)&rodata_f1c95) /*=0xf1c95*/; log2.count = 2;
-        FUN_00080780(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &log2);
+        arm_fault_forward_handler(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &log2);
         if(*(volatile int*)(iVar1+0x28) << 0x18 < 0){
             log3.count = 3; log3.format = ((unsigned long)&rodata_f1cad) /*=0xf1cad*/;
             log3.value = *(volatile unsigned*)(iVar1+0x34);
-            FUN_00080780(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1840, &log3);
+            arm_fault_forward_handler(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1840, &log3);
             if(param_1 != 0){
                 *(volatile unsigned*)(iVar1+0x28) = *(volatile unsigned*)(iVar1+0x28) & 0xffffff7f;
             }
@@ -61,12 +62,12 @@ unsigned arm_mem_manage_fault_helper(int param_1, unsigned char *param_2)
     }
     if(SCB28 << 0x1f < 0){
         log2.format = ((unsigned long)&rodata_f1cc3) /*=0xf1cc3*/; log2.count = 2;
-        FUN_00080780(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &log2);
+        arm_fault_forward_handler(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &log2);
         uVar2 = 0x14;
     }
     if(SCB28 << 0x1a < 0){
         log2.format = ((unsigned long)&rodata_f1ce2) /*=0xf1ce2*/; log2.count = 2;
-        FUN_00080780(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &log2);
+        arm_fault_forward_handler(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &log2);
         uVar2 = 0x15;
     }
     iVar1 = 0xe000ed00;

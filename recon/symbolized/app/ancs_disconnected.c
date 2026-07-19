@@ -8,6 +8,7 @@
  *   ancs_cancel_timers                       <= FUN_00018ab0 @ 0x00018ab0
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
+ *   bt_conn_get_field_0x90                   <= FUN_00081526 @ 0x00081526
  * address symbols (name @ address):
  *   rodata_9a92a                             @ 0x0009a92a
  *   rodata_9b1c8                             @ 0x0009b1c8
@@ -26,7 +27,7 @@ extern void ancs_cancel_timers(void);
 extern void debug_print(uintptr_t format, ...);
 extern void z_impl_k_sem_take(uint32_t object_low, uint32_t object_high,
                         uint32_t timeout_low, uint32_t timeout_high);
-extern uintptr_t FUN_00081526(uint32_t connection);
+extern uintptr_t bt_conn_get_field_0x90(uint32_t connection);
 
 void ancs_disconnected(uint32_t connection, uint32_t reason)
 {
@@ -36,7 +37,7 @@ void ancs_disconnected(uint32_t connection, uint32_t reason)
     *(volatile uint8_t *)(device_state + 0x365u) = 0;
     *(volatile uint32_t *)((unsigned long)&g_ancs_conn) /*=0x20007518*/ = 0;
 
-    uintptr_t active_connection = FUN_00081526(connection);
+    uintptr_t active_connection = bt_conn_get_field_0x90(connection);
     format_bt_addr_str((const void *)active_connection, description);
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)

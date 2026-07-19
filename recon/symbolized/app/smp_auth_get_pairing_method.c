@@ -3,16 +3,17 @@
  * public-name: smp_auth_get_pairing_method
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   conn_auth_cb_get_or_init                 <= FUN_0005cac0 @ 0x0005cac0
  *   smp_auth_get_pairing_method              <= FUN_0005caec @ 0x0005caec
  * address symbols (name @ address):
  *   g_bt_settings_load_done                  @ 0x2001d532
  */
 /* Reconstructed FUN_0005caec @ 0x5caec  (parity: 300/300 trials, PROVEN) */
-extern int FUN_0005cac0(void);
+extern int conn_auth_cb_get_or_init(void);
 
 int smp_auth_get_pairing_method(void)
 {
-    int *piVar1 = (int *)(long)FUN_0005cac0();
+    int *piVar1 = (int *)(long)conn_auth_cb_get_or_init();
     if (piVar1 == 0) return 3;
     int iVar2 = piVar1[1];
     if (piVar1[0] == 0) {

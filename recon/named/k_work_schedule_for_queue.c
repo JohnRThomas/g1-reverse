@@ -7,6 +7,7 @@
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
  *   submit_to_queue_locked                   <= FUN_00072cd4 @ 0x00072cd4
  *   k_work_schedule_for_queue                <= FUN_0007332c @ 0x0007332c
+ *   z_add_timeout                            <= FUN_00074bf4 @ 0x00074bf4
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -36,7 +37,7 @@ extern void z_spin_lock_set_owner(uint32_t lock);
 extern int z_spin_unlock_valid(uint32_t lock);
 extern int submit_to_queue_locked(volatile uint32_t *work, uint32_t *queue,
                         uint32_t diagnostic0, uint32_t diagnostic1);
-extern void FUN_00074bf4(uintptr_t timeout, uintptr_t handler,
+extern void z_add_timeout(uintptr_t timeout, uintptr_t handler,
                          uint32_t delay_low, uint32_t delay_high);
 
 int k_work_schedule_for_queue(uint32_t queue, volatile uint32_t *delayable_work,
@@ -69,7 +70,7 @@ int k_work_schedule_for_queue(uint32_t queue, volatile uint32_t *delayable_work,
         } else {
             delayable_work[3] = flags | 8U;
             delayable_work[10] = queue;
-            FUN_00074bf4((uintptr_t)delayable_work + 16U, 0x00072dadUL,
+            z_add_timeout((uintptr_t)delayable_work + 16U, 0x00072dadUL,
                          delay_low, delay_high);
             result = 1;
         }

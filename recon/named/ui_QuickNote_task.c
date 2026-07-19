@@ -1,6 +1,9 @@
 /* readable reconstruction; identity: FUN_0003b824 @ 0x0003b824
  * public-name: ui_QuickNote_task
  * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_ui_mode_flag_byte1                   <= FUN_00023ee0 @ 0x00023ee0
+ *   gui_screen_fade_out_transition           <= FUN_0004382c @ 0x0004382c
  * address symbols (name @ address):
  *   rodata_a8c57                             @ 0x000a8c57
  *   rodata_a960d                             @ 0x000a960d
@@ -57,7 +60,7 @@
 extern uintptr_t get_device_info(void);
 extern void debug_print(uintptr_t format, uintptr_t function_name, ...);
 extern void log_message(uintptr_t format, uintptr_t function_name, ...);
-extern unsigned int FUN_00023ee0(void);
+extern unsigned int get_ui_mode_flag_byte1(void);
 extern void dmic_record_start(void);
 extern void consume_pending_event_and_refresh_flag(void);
 extern void gui_set_active_canvas(void *canvas_rows);
@@ -71,7 +74,7 @@ extern void gui_bmp_dynamic_bitmap_draw(unsigned int bitmap_id,
                                         int arg5, int arg6);
 extern void gui_bmp_bitmap_draw(unsigned int bitmap_id, int x, int y,
                                 int arg3, int arg4, int arg5);
-extern void FUN_0004382c(void);
+extern void gui_screen_fade_out_transition(void);
 extern void gui_utf_draw(int background, uintptr_t text, int style,
                          int x, int y, int right, int bottom,
                          int line_count, int arg8, int arg9,
@@ -85,8 +88,8 @@ extern int device_info_text_height_get_clamped(void);
 extern uint64_t uptime_ticks_get(void); /* FUN_00086698 @ 0x00086698 */
 extern void memset_bytes(void *destination, int value, unsigned int length);
 
-#define ui_language_get          FUN_00023ee0
-#define quicknote_exit_animation FUN_0004382c
+#define ui_language_get          get_ui_mode_flag_byte1
+#define quicknote_exit_animation gui_screen_fade_out_transition
 #define g_log_level              (*(volatile int32_t *)0x2000230cUL)
 #define g_quicknote_warn_offset_ms (*(volatile int32_t *)0x200024e8UL)
 #define g_quicknote_hint_shown   (*(volatile uint8_t *)0x2001b817UL)

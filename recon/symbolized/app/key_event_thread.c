@@ -3,16 +3,21 @@
  * public-name: key_event_thread
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   get_ui_mode_flag2                        <= FUN_00023eec @ 0x00023eec
  *   check_charging_and_touch_flags           <= FUN_00026c28 @ 0x00026c28
  *   esb_send_command_and_wait_ack            <= FUN_00027448 @ 0x00027448
  *   some_module_sem_init                     <= FUN_0002953c @ 0x0002953c
  *   handle_touch_key_press_event             <= FUN_0002c3dc @ 0x0002c3dc
  *   msg_content_used_count                   <= FUN_00033cdc @ 0x00033cdc
  *   msg_content_decrement_timer              <= FUN_0003441c @ 0x0003441c
+ *   set_message_pending_state                <= FUN_0003443c @ 0x0003443c
  *   sync_dashboard_default_language          <= FUN_00037060 @ 0x00037060
+ *   get_dashboard_disp_mode                  <= FUN_000370b0 @ 0x000370b0
+ *   atomic_or_bit1                           <= FUN_0007cb54 @ 0x0007cb54
  *   k_msleep                                 <= FUN_0007cb8e @ 0x0007cb8e
  *   is_system_idle_ready                     <= FUN_0007ce00 @ 0x0007ce00
  *   reset_esb_sync_state                     <= FUN_0007ce60 @ 0x0007ce60
+ *   device_info_set_mode                     <= FUN_0007d2f8 @ 0x0007d2f8
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
  *   g_log_level                              @ 0x2000230c
@@ -37,7 +42,7 @@ extern void debug_print(void);
 extern void log_message(void);
 extern void send_event(unsigned int event);
 extern int  onboarding_sync_data(void);
-extern int  FUN_000370b0(void);
+extern int  get_dashboard_disp_mode(void);
 extern void sync_dashboard_default_language(void);
 extern void getStocksIndex(void);
 extern void getNewsIndex(void);
@@ -47,16 +52,16 @@ extern void process_touch_event(void);
 extern int  msg_content_used_count(void);
 extern void k_msleep(void);
 extern int  handle_touch_key_press_event(void);
-extern int  FUN_00023eec(void);
+extern int  get_ui_mode_flag2(void);
 extern void change_work_mode_to(void);
 extern int  esb_send_command_and_wait_ack(void);
 extern void msg_content_decrement_timer(void);
-extern void FUN_0003443c(void);
-extern void FUN_0007cb54(void);
+extern void set_message_pending_state(void);
+extern void atomic_or_bit1(void);
 extern void set_shutdown_flag(void);
 extern void update_persist_task_status_to_idle(void);
 extern void display_DelayClose(void);
-extern void FUN_0007d2f8(void);
+extern void device_info_set_mode(void);
 extern void process_sync_buffer(void);
 extern int  check_charging_and_touch_flags(void);
 extern int  is_system_idle_ready(void);
@@ -145,7 +150,7 @@ L29578:
     if (*(volatile u8*)p != 1) goto L29796;
     if (*(volatile u8*)(p+0xd5) != 6) goto L297ea;
     if (DBG > 2) LOG();
-    d = FUN_000370b0();
+    d = get_dashboard_disp_mode();
     if (d == 0) { if (DBG > 3) LOG(); sync_dashboard_default_language(); goto L296c8; }
     if (d == 1) { if (DBG > 3) LOG(); getStocksIndex(); goto L296c8; }
     if (d == 2) { if (DBG > 3) LOG(); getNewsIndex(); goto L296c8; }
@@ -204,7 +209,7 @@ L29578:
  L29834:
     if (*(volatile u8*)(*(u8**)(p+0x1014)) != 0) { send_event(1); goto L2956e; }
     if (*(volatile u8*)(p+0xd5) == 7) goto L2956e;
-    if (FUN_00023eec() != 1) goto L29912;
+    if (get_ui_mode_flag2() != 1) goto L29912;
     if (*(volatile u8*)(p+0xd5) != 0) goto L29912;
     if (*(volatile u8*)p != 1) goto L298dc;
     A = (u8*)get_device_info(); *(volatile u8*)(A+0xfe6) = 5;
@@ -228,7 +233,7 @@ L29578:
     }
  L29a02:
     if (DBG > 0) LOG();
-    FUN_0007cb54();
+    atomic_or_bit1();
     goto L2956e;
 
  L298dc:
@@ -242,7 +247,7 @@ L29578:
     }
 
  L29912:
-    if (FUN_00023eec() == 1 && *(volatile u8*)(p+0xd5) == 6) goto L299b8;
+    if (get_ui_mode_flag2() == 1 && *(volatile u8*)(p+0xd5) == 6) goto L299b8;
  L29922:
     {
         int cnt = 0x65;
@@ -260,11 +265,11 @@ L29578:
         msg_content_decrement_timer();
         A = (u8*)get_device_info();
         (void)(*(volatile u8*)(A+0xdd));
-        FUN_0003443c();
+        set_message_pending_state();
     }
  L2996a:
     if (*(volatile u8*)(p+0xd5) == 6) goto L29a8e;
-    FUN_0007cb54();
+    atomic_or_bit1();
     {
         int r6 = 1;
         for (;;) {
@@ -308,13 +313,13 @@ L29578:
 
  L29a8e:
     {
-        int e = FUN_00023eec();
+        int e = get_ui_mode_flag2();
         if (e == 0 && *(volatile u8*)(p+0xd5) == 6) {
             sync_to_slave();
             goto L29aac;
         }
     }
-    if (FUN_00023eec() != 2) goto L29a76;
+    if (get_ui_mode_flag2() != 2) goto L29a76;
     if (*(volatile u8*)(p+0xd5) != 6) goto L29a76;
     {
         int r6 = 1;
@@ -328,7 +333,7 @@ L29578:
     }
  L29b10:
     if (DBG > 2) LOG();
-    FUN_0007cb54();
+    atomic_or_bit1();
     goto L29a76;
 
  L29aac:
@@ -344,12 +349,12 @@ L29578:
     msg_content_decrement_timer();
     B = (u8*)get_device_info();
     (void)(*(volatile u8*)(B+0xdd));
-    FUN_0003443c();
+    set_message_pending_state();
     goto L29a6e;
 
  L29b90:
     {
-        int e = FUN_00023eec();
+        int e = get_ui_mode_flag2();
         if (e == 0 && *(volatile u8*)(p+0xd5) == 6) {
             esb_send_command_and_wait_ack();
             A = (u8*)get_device_info();
@@ -357,12 +362,12 @@ L29578:
                 msg_content_decrement_timer();
                 B = (u8*)get_device_info();
                 (void)(*(volatile u8*)(B+0xdd));
-                FUN_0003443c();
+                set_message_pending_state();
             }
             goto L29aac;
         }
     }
-    if (FUN_00023eec() != 2) goto L29a76;
+    if (get_ui_mode_flag2() != 2) goto L29a76;
     if (*(volatile u8*)(p+0xd5) != 6) goto L29a76;
     {
         int r6 = 4;
@@ -407,7 +412,7 @@ L29578:
     else esb_send_command_and_wait_ack();
  L29cde:
     *(volatile u8*)(p+0xfea) = 0xa;
-    FUN_0007d2f8();
+    device_info_set_mode();
     if (DBG > 0) LOG();
  L29cfe:
     *(volatile int*)(p+0x104c) = 3;
@@ -425,7 +430,7 @@ L29578:
  L29d38:
     *(volatile u8*)(p+0xfea) = 0xc;
     set_shutdown_flag();
-    FUN_0007d2f8();
+    device_info_set_mode();
     if (DBG > 0) LOG();
     goto L29cfe;
 

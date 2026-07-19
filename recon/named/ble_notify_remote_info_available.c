@@ -5,6 +5,7 @@
  *   ble_notify_remote_info_available         <= FUN_00056da8 @ 0x00056da8
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   gatt_process_listener_notifications      <= FUN_000819ea @ 0x000819ea
  * address symbols (name @ address):
  *   rodata_87fec                             @ 0x00087fec
  *   rodata_88058                             @ 0x00088058
@@ -16,13 +17,13 @@
  */
 /* Reconstructed FUN_00056da8 @ 0x56da8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void FUN_000819ea(void);
+extern void gatt_process_listener_notifications(void);
 extern void printk(unsigned,...);
 extern void assert_post_action(unsigned,unsigned);
 typedef void (*fp)(int,...);
 void ble_notify_remote_info_available(int param_1, unsigned param_2, unsigned param_3, unsigned param_4){
     *(unsigned char*)(param_1 + 10) = *(unsigned char*)(param_1 + 9);
-    FUN_000819ea();
+    gatt_process_listener_notifications();
     int iVar3 = *(volatile int*)0x2000ad1cUL;
     while (iVar3 != 0){
         fp pcVar2 = *(fp*)(iVar3 + 0x14);

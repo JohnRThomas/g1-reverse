@@ -5,12 +5,13 @@
  *   find_sc_cfg_59bcc                        <= FUN_00059bcc @ 0x00059bcc
  *   find_cf_cfg                              <= FUN_00059c04 @ 0x00059c04
  *   log_gatt_sc_store_failure                <= FUN_0005a0e8 @ 0x0005a0e8
+ *   const_return_one                         <= FUN_0008256e @ 0x0008256e
  *   set_change_aware                         <= FUN_00082bb8 @ 0x00082bb8
  *   sc_restore_rsp                           <= FUN_00082bd4 @ 0x00082bd4
  */
 /* Reconstructed FUN_00082bd4 @ 0x82bd4  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_0008256e(void);
+extern int const_return_one(void);
 extern void *find_cf_cfg(int a);
 extern void set_change_aware(void *a, int b);
 extern void *find_sc_cfg_59bcc(unsigned char a, int b);
@@ -21,7 +22,7 @@ void sc_restore_rsp(int param_1, unsigned int param_2, int param_3, unsigned int
     int iVar1;
     unsigned char *puVar2;
 
-    iVar1 = FUN_0008256e();
+    iVar1 = const_return_one();
     if (iVar1 != 0) {
         void *r = find_cf_cfg(param_1);
         if (r != 0) {

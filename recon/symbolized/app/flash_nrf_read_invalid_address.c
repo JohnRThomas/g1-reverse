@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: tail_61200 @ 0x00061200
  * public-name: flash_nrf_read_invalid_address
  * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_log_msg_runtime_create                 <= FUN_0004d944 @ 0x0004d944
  * address symbols (name @ address):
  *   rodata_881b0                             @ 0x000881b0
  *   rodata_f5d81                             @ 0x000f5d81
@@ -19,10 +21,10 @@ struct flash_address_log_record_raw {
     size_t length;
 };
 
-extern void FUN_0004d944(uintptr_t source, uint32_t level,
+extern void z_log_msg_runtime_create(uintptr_t source, uint32_t level,
                          const void *record, uint32_t reserved);
 
-#define log_output_record               FUN_0004d944 /* 0x0004d944 */
+#define log_output_record               z_log_msg_runtime_create /* 0x0004d944 */
 int flash_nrf_read_invalid_address(int32_t address, size_t length)
 {
     const struct flash_address_log_record_raw diagnostic = {

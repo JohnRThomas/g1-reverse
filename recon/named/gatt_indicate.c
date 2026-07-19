@@ -6,9 +6,11 @@
  *   bt_att_req_alloc                         <= FUN_000596c0 @ 0x000596c0
  *   bt_att_req_free                          <= FUN_00059708 @ 0x00059708
  *   bt_att_req_send                          <= FUN_00059a90 @ 0x00059a90
+ *   gatt_find_ccc_for_conn                   <= FUN_0005b0dc @ 0x0005b0dc
  *   gatt_indicate                            <= FUN_0005b270 @ 0x0005b270
  *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
  *   bt_att_set_tx_meta_data                  <= FUN_000825ac @ 0x000825ac
+ *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  *   bt_gatt_check_perm                       <= FUN_00082cba @ 0x00082cba
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
@@ -25,10 +27,10 @@ extern int bt_att_create_pdu(unsigned,int,int);
 extern int bt_att_req_alloc(int,int);
 extern void bt_att_req_free(int);
 extern int bt_att_req_send(unsigned,int);
-extern int FUN_0005b0dc(unsigned,unsigned,int);
+extern int gatt_find_ccc_for_conn(unsigned,unsigned,int);
 extern unsigned net_buf_simple_add(int,int);
 extern void bt_att_set_tx_meta_data(int,int,int,int);
-extern void FUN_00082a42(unsigned,int,void*);
+extern void log_msg_create_3arg(unsigned,int,void*);
 extern int bt_gatt_check_perm(unsigned,unsigned,int);
 extern void memcpy(void*,unsigned,unsigned);
 int gatt_indicate(unsigned param_1, unsigned short param_2, int param_3)
@@ -37,10 +39,10 @@ int gatt_indicate(unsigned param_1, unsigned short param_2, int param_3)
   unsigned local_28, local_24;
   iVar3 = bt_gatt_check_perm(param_1, *(unsigned*)(param_3+4), 0x94);
   if (iVar3 == 0) {
-    iVar3 = FUN_0005b0dc(param_1, *(unsigned*)(param_3+4), 2);
+    iVar3 = gatt_find_ccc_for_conn(param_1, *(unsigned*)(param_3+4), 2);
     if (iVar3 == 0) {
       local_24 = 0x000f4aeb; local_28 = 2; iVar3 = -0x16;
-      FUN_00082a42(0x00088128, 0x1080, &local_28);
+      log_msg_create_3arg(0x00088128, 0x1080, &local_28);
     } else {
       uVar1 = *(unsigned short*)(param_3+0x14);
       iVar3 = bt_att_req_alloc(0xf0000, 0);
@@ -66,7 +68,7 @@ int gatt_indicate(unsigned param_1, unsigned short param_2, int param_3)
           return iVar5;
         }
         local_24 = 0x000f4b16; local_28 = 2;
-        FUN_00082a42(0x00088128, 0x1080, &local_28);
+        log_msg_create_3arg(0x00088128, 0x1080, &local_28);
         bt_att_req_free(iVar3);
       }
       iVar3 = -0xc;
@@ -74,7 +76,7 @@ int gatt_indicate(unsigned param_1, unsigned short param_2, int param_3)
   } else {
     iVar3 = -1;
     local_24 = 0x000f4ad5; local_28 = 2;
-    FUN_00082a42(0x00088128, 0x1080, &local_28);
+    log_msg_create_3arg(0x00088128, 0x1080, &local_28);
   }
   return iVar3;
 }

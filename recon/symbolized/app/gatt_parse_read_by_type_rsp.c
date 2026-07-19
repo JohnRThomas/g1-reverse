@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   gatt_parse_read_by_type_rsp              <= FUN_0005bd18 @ 0x0005bd18
  *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
+ *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  *   gatt_req_send                            <= FUN_00082aee @ 0x00082aee
  *   gatt_discover_next                       <= FUN_00082d2e @ 0x00082d2e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -18,7 +19,7 @@
 #include <stdint.h>
 
 extern int  bt_uuid_cmp(void *packet);
-extern void FUN_00082a42(uint32_t module, uint32_t event, void *detail);
+extern void log_msg_create_3arg(uint32_t module, uint32_t event, void *detail);
 extern int  gatt_req_send(uint32_t, uint32_t, void *, uint32_t,
                          uint32_t, uint32_t);
 extern void gatt_discover_next(uint32_t context, uint32_t last_id, void *consumer);
@@ -80,7 +81,7 @@ void gatt_parse_read_by_type_rsp(uint32_t context, int status, const uint8_t *da
         else {
             struct { uint32_t type, message, value; } detail =
                 { 3, UINT32_C(0x000f4ca8), stride };
-            FUN_00082a42(UINT32_C(0x00088128), 0x1840, &detail);
+            log_msg_create_3arg(UINT32_C(0x00088128), 0x1840, &detail);
             goto malformed;
         }
 
@@ -130,7 +131,7 @@ void gatt_parse_read_by_type_rsp(uint32_t context, int status, const uint8_t *da
         else {
             struct { uint32_t type, message, value; } detail =
                 { 3, UINT32_C(0x000f4ca8), stride };
-            FUN_00082a42(UINT32_C(0x00088128), 0x1840, &detail);
+            log_msg_create_3arg(UINT32_C(0x00088128), 0x1840, &detail);
             goto malformed;
         }
 

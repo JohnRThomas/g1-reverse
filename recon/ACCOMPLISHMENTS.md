@@ -22,8 +22,8 @@ This is not yet the final byte-layout-equivalent firmware build. CPUAPP links fa
 | CPUNET reconstructed functions | 1,142 / 1,142 |
 | CPUNET authoritative CFG parity | 1,142 PASS, 0 FAIL, 0 unresolved |
 | Total semantically verified functions | 3,257 |
-| CPUAPP readable-name files | 1,546 |
-| CPUAPP names still represented as `FUN_*` | 569 |
+| CPUAPP readable-name files | 2,438 |
+| CPUAPP names still represented as `FUN_*` | 70 (thunks/aliases without a reconstructed body) |
 | Recovered CPUAPP data source objects | 993 |
 | Current fixed byte-exact CPUAPP rodata sections | 81 sections / 15,694 bytes |
 | MMIO-referencing functions inventoried | 212 |
@@ -90,12 +90,12 @@ Evidence:
 ### 5. Readable naming with durable back-mapping
 
 - Created human-readable CPUAPP sources in `recon/named/`.
-- Assigned readable filenames to 1,546 of 2,115 CPUAPP functions.
+- Assigned readable filenames to 2,438 CPUAPP functions (a 20-agent evidence-driven naming wave named the last 563 reconstructed `FUN_*` bodies from callers, callees, self-name log strings, and referenced strings).
 - Preserved the raw name and address in every readable source header.
 - Created address-to-function, function-to-address, global-name, alias, and linker symbol catalogs.
 - Replaced raw absolute references with readable symbols in generated symbolized trees while retaining `/*=0xADDRESS*/` provenance.
 - Built comment/string-aware symbol substitution to avoid corrupting source literals and annotations.
-- Kept 569 unresolved names as `FUN_*`; their semantics are recovered, but their best human names are not yet proven.
+- Kept 70 unresolved names as `FUN_*`; these are thunks/aliases without a standalone reconstructed body, so no evidence bundle exists to name them.
 
 Key catalogs:
 

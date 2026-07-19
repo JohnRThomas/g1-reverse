@@ -7,6 +7,9 @@
  *   subcontracing_send_data_pkcs7            <= FUN_00021a40 @ 0x00021a40
  *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
  *   cjson_create_object                      <= FUN_00064ca4 @ 0x00064ca4
+ *   cjson_print_pretty                       <= FUN_00085014 @ 0x00085014
+ *   cjson_add_item_to_object_thunk           <= FUN_00085046 @ 0x00085046
+ *   cjson_add_string_to_object               <= FUN_0008509e @ 0x0008509e
  * address symbols (name @ address):
  *   rodata_9b257                             @ 0x0009b257
  *   rodata_9d749                             @ 0x0009d749
@@ -29,9 +32,9 @@
 typedef unsigned int uint32_t;
 
 extern uint32_t cjson_create_object(void);
-extern void FUN_0008509e(uint32_t a, uint32_t b, uint32_t c);
-extern void FUN_00085046(uint32_t a, uint32_t b, uint32_t c);
-extern uint32_t FUN_00085014(uint32_t a);
+extern void cjson_add_string_to_object(uint32_t a, uint32_t b, uint32_t c);
+extern void cjson_add_item_to_object_thunk(uint32_t a, uint32_t b, uint32_t c);
+extern uint32_t cjson_print_pretty(uint32_t a);
 extern void log_message(uint32_t a, uint32_t b, uint32_t c);
 extern void debug_print(uint32_t a, uint32_t b, ...);
 extern uint32_t strlen(uint32_t a);
@@ -45,15 +48,15 @@ uint32_t mobile_send_notification_to_ble_device_test(uint32_t param_1, uint32_t 
     uint32_t uVar3;
 
     uVar1 = cjson_create_object();
-    FUN_0008509e(uVar1, 0x9d759UL, 0x9d749UL);
-    FUN_0008509e(uVar1, 0x9b257UL, param_1);
-    FUN_0008509e(uVar1, 0x9d76cUL, 0x9d768UL);
-    FUN_0008509e(uVar1, 0x9d775UL, param_2);
-    FUN_0008509e(uVar1, 0xf3fdeUL, 0x9d77dUL);
-    FUN_0008509e(uVar1, 0x9d790UL, 0x9d789UL);
+    cjson_add_string_to_object(uVar1, 0x9d759UL, 0x9d749UL);
+    cjson_add_string_to_object(uVar1, 0x9b257UL, param_1);
+    cjson_add_string_to_object(uVar1, 0x9d76cUL, 0x9d768UL);
+    cjson_add_string_to_object(uVar1, 0x9d775UL, param_2);
+    cjson_add_string_to_object(uVar1, 0xf3fdeUL, 0x9d77dUL);
+    cjson_add_string_to_object(uVar1, 0x9d790UL, 0x9d789UL);
     uVar2 = cjson_create_object();
-    FUN_00085046(uVar2, 0x9d79dUL, uVar1);
-    uVar1 = FUN_00085014(uVar2);
+    cjson_add_item_to_object_thunk(uVar2, 0x9d79dUL, uVar1);
+    uVar1 = cjson_print_pretty(uVar2);
     if (*(volatile int*)0x2000230cUL > 2) {
         if (*(volatile uint32_t*)0x20007554UL == 0) {
             log_message(0x9d7aeUL, 0x9dfe8UL, uVar1);

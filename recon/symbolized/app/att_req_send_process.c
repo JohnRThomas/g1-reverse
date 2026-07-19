@@ -3,6 +3,7 @@
  * public-name: att_req_send_process
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   att_chan_req_send_checked                <= FUN_00058b78 @ 0x00058b78
  *   att_req_send_process                     <= FUN_000820ae @ 0x000820ae
  */
 /* Reconstructed att_req_send_process @ 0x000820ae from NCS 2.5.1 att.c.
@@ -11,7 +12,7 @@
 #include <stdint.h>
 #define att_req_send_process att_req_send_process
 extern void *sys_slist_get(void *list);
-extern int FUN_00058b78(void *channel,void *request); /* bt_att_chan_req_send */
+extern int att_chan_req_send_checked(void *channel,void *request); /* bt_att_chan_req_send */
 void att_req_send_process(void *att_arg)
 {
  uint8_t *att=(uint8_t*)att_arg;
@@ -26,7 +27,7 @@ void att_req_send_process(void *att_arg)
    if(request!=0 || previous==0){
     request=sys_slist_get(att+4u); previous=channel;
     if(request!=0){
-     if(FUN_00058b78(channel,request)>=0)return;
+     if(att_chan_req_send_checked(channel,request)>=0)return;
      *(uintptr_t*)request=*(volatile uintptr_t*)(att+4u);
      *(volatile uintptr_t*)(att+4u)=(uintptr_t)request;
      if(*(volatile uintptr_t*)(att+8u)==0u)*(volatile uintptr_t*)(att+8u)=(uintptr_t)request;

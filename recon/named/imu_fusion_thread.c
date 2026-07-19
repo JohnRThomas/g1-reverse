@@ -12,10 +12,15 @@
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   get_current_work_mode                    <= FUN_00016940 @ 0x00016940
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_ui_mode_flag2                        <= FUN_00023eec @ 0x00023eec
  *   SendDashboardLockInfoToApp               <= FUN_00025e2c @ 0x00025e2c
+ *   panel_level_calc_cached                  <= FUN_00025ecc @ 0x00025ecc
+ *   imu_fusion_state_init                    <= FUN_000265b8 @ 0x000265b8
+ *   imu_mahony_ahrs_update                   <= FUN_00026624 @ 0x00026624
  *   orientation_filter_update_dt             <= FUN_000267ac @ 0x000267ac
  *   orientation_get_yaw_deg                  <= FUN_000267e8 @ 0x000267e8
  *   orientation_get_pitch_deg                <= FUN_00026808 @ 0x00026808
+ *   orientation_get_heading_deg              <= FUN_00026828 @ 0x00026828
  *   send_event                               <= FUN_000276ec @ 0x000276ec
  *   now_has_persist_task                     <= FUN_0002be64 @ 0x0002be64
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
@@ -23,6 +28,7 @@
  *   cal_panel_canvas_coord                   <= FUN_00042fb0 @ 0x00042fb0
  *   send_response_data_to_msgqueue           <= FUN_00047b1c @ 0x00047b1c
  *   send_response_data_to_ble                <= FUN_00047ba8 @ 0x00047ba8
+ *   read_volatile_u32_a                      <= FUN_0007ca4e @ 0x0007ca4e
  *   set_shutdown_flag                        <= FUN_0007cbfe @ 0x0007cbfe
  *   prepare_quick_note_mode                  <= FUN_0007cdb6 @ 0x0007cdb6
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -83,19 +89,19 @@ extern int set_shutdown_flag(void*,int);
 extern int sync_to_slave(void*,int,int,int);
 extern int get_current_work_mode(void);
 extern int change_work_mode_to(int);
-extern int FUN_000265b8(void*);
+extern int imu_fusion_state_init(void*);
 typedef int  (*qfn_t)(int,int);
 typedef void (*ffn_t)(int,int,void*);
 extern u64 __floatsidf(int); extern u64 __divdf3(u32,u32,u32,u32); extern u64 __aeabi_dadd(u32,u32,u32,u32);
 extern u64 __muldf3(u32,u32,u32,u32); extern u64 __extendsfdf2(u32); extern u64 dcmp_negate_rhs(u32,u32,u32,u32);
 extern u32 __truncdfsf2(u32,u32);
 extern float orientation_filter_update_dt(void*);
-extern void FUN_00026624(float,float,float,float,float,float,float,void*);
-extern float FUN_00026828(void*); extern float orientation_get_pitch_deg(void*); extern float orientation_get_yaw_deg(void*);
-extern int FUN_00025ecc(void*); extern int SendDashboardLockInfoToApp(void);
-extern int now_has_persist_task(void*,int); extern int is_msg_expiration(void); extern int FUN_00023eec(void);
+extern void imu_mahony_ahrs_update(float,float,float,float,float,float,float,void*);
+extern float orientation_get_heading_deg(void*); extern float orientation_get_pitch_deg(void*); extern float orientation_get_yaw_deg(void*);
+extern int panel_level_calc_cached(void*); extern int SendDashboardLockInfoToApp(void);
+extern int now_has_persist_task(void*,int); extern int is_msg_expiration(void); extern int get_ui_mode_flag2(void);
 extern int prepare_quick_note_mode(void*,int); extern int send_event(int);
-extern int get_device_info(void); extern int FUN_0007ca4e(void*);
+extern int get_device_info(void); extern int read_volatile_u32_a(void*);
 extern int send_response_data_to_msgqueue(int,int); extern int send_response_data_to_ble(void);
 extern int cal_panel_canvas_coord(void*,void*);
 
@@ -135,7 +141,7 @@ void imu_fusion_thread(char *p)
                 if ((int)((unsigned)(u16)(*(u16*)(p+0x178)) << 0x1a) < 0) {
                     i64 v = thunk_FUN_00074f68();
                     local_a4 = (unsigned)(((u64)v * 1000ULL) >> 15);
-                    if (1000u < (unsigned)(local_a4 - U(0x20007a94))) FUN_000265b8(p+0x28);
+                    if (1000u < (unsigned)(local_a4 - U(0x20007a94))) imu_fusion_state_init(p+0x28);
                     goto Lffb4;
                 }
                 p[0] = 1; uVar7 = 0xccd; goto Lff38;
@@ -219,9 +225,9 @@ void imu_fusion_thread(char *p)
         d6 = __truncdfsf2(LO64(dv),HI64(dv));
 
         dt = orientation_filter_update_dt(p+0x28);
-        FUN_00026624(as_f(d4),as_f(d5),as_f(d6),
+        imu_mahony_ahrs_update(as_f(d4),as_f(d5),as_f(d6),
                      as_f(d1),as_f(d2),as_f(d3),dt,p+0x28);
-        roll = FUN_00026828(p+0x28);
+        roll = orientation_get_heading_deg(p+0x28);
         pitch = orientation_get_pitch_deg(p+0x28);
         yaw = orientation_get_yaw_deg(p+0x28);
 
@@ -241,7 +247,7 @@ void imu_fusion_thread(char *p)
             B(0x20007ab0) = 1;
             F(0x20007acc) = roll; F(0x20007ad0) = pitch; F(0x20007ad4) = yaw;
         }
-        FUN_00025ecc(p);
+        panel_level_calc_cached(p);
 
         if (p[-0xe0f] == 0) {
             d = I(0x20007a90);
@@ -284,10 +290,10 @@ void imu_fusion_thread(char *p)
             p[-0xe19] = p[-0xf];
             if (p[-0xe0f] == 1) {
                 sync_to_slave(q8,8,0,0);
-            } else if (((p[0x1ab]==0) || is_msg_expiration()!=1) && FUN_00023eec()==0) {
+            } else if (((p[0x1ab]==0) || is_msg_expiration()!=1) && get_ui_mode_flag2()==0) {
                 sync_to_slave(q8,1,0,0);
             }
-            if (p[0x1ab]==0 && FUN_00023eec()==0) prepare_quick_note_mode(q8,0);
+            if (p[0x1ab]==0 && get_ui_mode_flag2()==0) prepare_quick_note_mode(q8,0);
             goto L10544;
         }
 
@@ -318,14 +324,14 @@ void imu_fusion_thread(char *p)
                 p[0] = 2; B(0x20018d96)=0; goto L103ea;
             }
         }
-        if (FUN_00023eec() == 0) {
-            iVar6 = FUN_0007ca4e((void*)0x20007570);
+        if (get_ui_mode_flag2() == 0) {
+            iVar6 = read_volatile_u32_a((void*)0x20007570);
             if ((iVar6 << 0x1e) < 0) {
                 /* bit1 set: DAT_00010580/00010584 path */
-                iVar6 = FUN_0007ca4e((void*)0x20007aa0);
+                iVar6 = read_volatile_u32_a((void*)0x20007aa0);
                 if (-1 < (iVar6 << 0x1e)) {
-                    iVar6 = FUN_0007ca4e((void*)0x2000756c);
-                    if (-1 < (iVar6 << 0x1e) && (FUN_0007ca4e((void*)0x20007570) << 0x1e) < 0) {
+                    iVar6 = read_volatile_u32_a((void*)0x2000756c);
+                    if (-1 < (iVar6 << 0x1e) && (read_volatile_u32_a((void*)0x20007570) << 0x1e) < 0) {
                         if (2 < I(0x2000230c)) { if (I(0x20007554)==0) log_message(); else debug_print(); }
                         send_response_data_to_msgqueue(0,6);
                         send_response_data_to_ble();
@@ -341,7 +347,7 @@ void imu_fusion_thread(char *p)
                     cal_panel_canvas_coord(p-0x20, p-0x2c);
                 }
                 change_work_mode_to(2);
-                iVar6 = FUN_0007ca4e((void*)0x20007aa0);
+                iVar6 = read_volatile_u32_a((void*)0x20007aa0);
                 if (-1 < (iVar6 << 0x1e)) I(0x20007aa0) |= 2;
             }
         } else {

@@ -11,6 +11,8 @@
  *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
  *   bt_uuid_create                           <= FUN_00080d9a @ 0x00080d9a
  *   net_buf_frags_len_0                      <= FUN_00081bc0 @ 0x00081bc0
+ *   att_log_emit_3arg                        <= FUN_00081ddc @ 0x00081ddc
+ *   bt_conn_alloc_pdu_buf                    <= FUN_000836de @ 0x000836de
  *   net_buf_simple_tailroom                  <= FUN_00083730 @ 0x00083730
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
@@ -27,8 +29,8 @@ extern int net_buf_simple_add(int, int);
 extern int bt_uuid_cmp(int, int);
 extern int bt_uuid_create(int, int, int);
 extern uint64_t net_buf_frags_len_0(int);
-extern void FUN_00081ddc(int, int, int);
-extern int FUN_000836de(int, int, int, int);
+extern void att_log_emit_3arg(int, int, int);
+extern int bt_conn_alloc_pdu_buf(int, int, int, int);
 extern int net_buf_simple_tailroom(int);
 extern int memcmp(int, int);
 
@@ -82,7 +84,7 @@ uint32_t find_type_cb(uint32_t *param_1, unsigned param_2, int *param_3)
     }
     if (iVar3 == 0) {
         uVar7 = net_buf_pool_get(*(volatile uint8_t*)(param_3[1] + 10));
-        iVar1 = FUN_000836de((int)uVar7, (int)(uVar7 >> 0x20), 0, 0);
+        iVar1 = bt_conn_alloc_pdu_buf((int)uVar7, (int)(uVar7 >> 0x20), 0, 0);
         if (iVar1 == 0) return 0;
         net_buf_frag_add(param_3[1], iVar1);
     }
@@ -117,7 +119,7 @@ LAB_58420:
             local_70 = uVar2;
         }
         local_78 = 3;
-        FUN_00081ddc(((unsigned long)&rodata_88100) /*=0x88100*/, 0x1880, (int)(intptr_t)&local_78);
+        att_log_emit_3arg(((unsigned long)&rodata_88100) /*=0x88100*/, 0x1880, (int)(intptr_t)&local_78);
     }
 LAB_584fc:
     param_3[2] = 0;

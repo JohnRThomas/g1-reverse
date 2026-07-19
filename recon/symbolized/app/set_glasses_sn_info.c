@@ -6,6 +6,8 @@
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   build_and_send_device_status_report      <= FUN_00022b00 @ 0x00022b00
+ *   get_product_code_buf                     <= FUN_000232b8 @ 0x000232b8
+ *   store_product_code_info                  <= FUN_000232dc @ 0x000232dc
  *   read_sys_settting_from_flash             <= FUN_000232f8 @ 0x000232f8
  *   printf                                   <= FUN_000777f0 @ 0x000777f0
  *   k_msleep_ticks32768_b                    <= FUN_0007d14a @ 0x0007d14a
@@ -29,8 +31,8 @@ extern int log_message(int,...);
 extern int get_device_info(void);
 extern int debug_print(int,...);
 extern int build_and_send_device_status_report(int,int);
-extern int FUN_000232b8(void);
-extern int FUN_000232dc(int);
+extern int get_product_code_buf(void);
+extern int store_product_code_info(int);
 extern int read_sys_settting_from_flash(void*);
 extern int printf(int,int);
 extern int k_msleep_ticks32768_b(int);
@@ -48,13 +50,13 @@ uint32_t set_glasses_sn_info(int param_1, uint32_t param_2, uint32_t *param_3, u
     else if (*(volatile uint8_t*)((unsigned long)&g_test_mode_flag) /*=0x20019ef3*/ == 1){
         param_1 = param_1 + 4;
         puVar4 = (uint8_t*)*param_3;
-        FUN_000232dc(param_1);
+        store_product_code_info(param_1);
         printf(((unsigned long)&rodata_a71cd) /*=0xa71cd*/, param_1);
         uVar1 = get_device_info();
         build_and_send_device_status_report(uVar1,0);
         if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/){
-            if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){ uVar1=FUN_000232b8(); log_message(((unsigned long)&rodata_a71e0) /*=0xa71e0*/,((unsigned long)&rodata_a769d) /*=0xa769d*/,uVar1); }
-            else { uVar1=FUN_000232b8(); debug_print(((unsigned long)&rodata_a71e0) /*=0xa71e0*/,((unsigned long)&rodata_a769d) /*=0xa769d*/,uVar1); }
+            if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){ uVar1=get_product_code_buf(); log_message(((unsigned long)&rodata_a71e0) /*=0xa71e0*/,((unsigned long)&rodata_a769d) /*=0xa769d*/,uVar1); }
+            else { uVar1=get_product_code_buf(); debug_print(((unsigned long)&rodata_a71e0) /*=0xa71e0*/,((unsigned long)&rodata_a769d) /*=0xa769d*/,uVar1); }
         }
         *puVar4=0x29; puVar4[1]=1; puVar4[3]=1; cVar3=5; puVar4[2]=3; puVar4[4]=0; *param_4=5;
         do {

@@ -1,0 +1,31 @@
+/* readable reconstruction; identity: FUN_000681cc @ 0x000681cc
+ * public-name: metal_device_close
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   metal_device_close                       <= FUN_000681cc @ 0x000681cc
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f7a9f                             @ 0x000f7a9f
+ *   rodata_f7ad6                             @ 0x000f7ad6
+ */
+/* Reconstructed FUN_000681cc @ 0x681cc  (parity: 300/300 trials, PROVEN) */
+
+extern void assert_post_action(int,int);
+extern void printk(int,int,int,int);
+typedef void (*fn2_t)(int,int);
+void metal_device_close(int param_1)
+{
+    int iVar1;
+    if ((param_1 != 0) && ((iVar1 = *(volatile int*)(param_1 + 4)) != 0)) {
+        fn2_t f = *(volatile fn2_t*)(iVar1 + 0xc);
+        if (f != 0) {
+            f(iVar1, param_1);
+            return;
+        }
+        return;
+    }
+    printk(0x00099cbd, 0x000f7ad6, 0x000f7a9f, 0x51);
+    assert_post_action(0x000f7a9f, 0x51);
+}

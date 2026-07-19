@@ -2,9 +2,11 @@
  * public-name: mutex_unlock_syscall_handler
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   arch_swap                                <= FUN_000501d4 @ 0x000501d4
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   sched_update_cache                       <= FUN_000737d8 @ 0x000737d8
  *   dlist_unlink_node                        <= FUN_00073cdc @ 0x00073cdc
  *   mutex_unlock_syscall_handler             <= FUN_000745c8 @ 0x000745c8
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
@@ -26,11 +28,11 @@
 /* Reconstructed FUN_000745c8 @ 0x745c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
-extern int FUN_000501d4(int,...);
+extern int arch_swap(int,...);
 extern int z_spin_lock_valid(int,...);
 extern int z_spin_unlock_valid(int,...);
 extern int z_spin_lock_set_owner(int,...);
-extern int FUN_000737d8(int,...);
+extern int sched_update_cache(int,...);
 extern int dlist_unlink_node(int,...);
 extern int assert_post_action(int,...);
 extern int printk(int,...);
@@ -78,9 +80,9 @@ void mutex_unlock_syscall_handler(void)
   }
   *piVar8 = (int)puVar9; piVar8[1]=(int)puVar5; *puVar5=(int)piVar8; *(int**)(iVar3+0x20)=piVar8;
 L:
-  FUN_000737d8(1);
+  sched_update_cache(1);
   int r = z_spin_unlock_valid(0x2000b490);
-  if (r != 0) { FUN_000501d4(key); return; }
+  if (r != 0) { arch_swap(key); return; }
   printk(0x99cbd,0xf08f4,0xf08c7,0x111);
   printk(0xf090b,0x2000b490);
   assert_post_action(0xf08c7,0x111);

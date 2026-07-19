@@ -4,10 +4,11 @@
  * callees (readable <= raw @ address):
  *   curve_table_interp_201pt                 <= FUN_0000e3a0 @ 0x0000e3a0
  *   float_is_nan                             <= FUN_0000e938 @ 0x0000e938
+ *   floorf                                   <= FUN_000868fc @ 0x000868fc
  */
 /* Reconstructed FUN_0000e3a0 @ 0xe3a0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern float FUN_000868fc(float);
+extern float floorf(float);
 extern int float_is_nan(float);
 
 float curve_table_interp_201pt(float param_1, float param_2, float *param_3, float *param_4, float *param_5, int param_6)
@@ -50,7 +51,7 @@ E3DE:
     goto INTERP;
 INTERP:
     {
-        float ft = FUN_000868fc((param_1 - fVar4) / fVar7);
+        float ft = floorf((param_1 - fVar4) / fVar7);
         int iVar2 = (int)(ft + 2.0f) + 0x3fffffff;
         int iVar1 = (int)(ft + 1.0f) + 0x3fffffff;
         float f = (param_1 - param_3[0]) / fVar7 - ft;

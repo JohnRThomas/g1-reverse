@@ -6,6 +6,7 @@
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   z_pend_curr                              <= FUN_00073f6c @ 0x00073f6c
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -22,7 +23,7 @@
 extern int z_spin_lock_valid(int);
 extern int z_spin_unlock_valid(int);
 extern void z_spin_lock_set_owner(int);
-extern int FUN_00073f6c(int,unsigned,int,int,int,int,int);
+extern int z_pend_curr(int,unsigned,int,int,int,int,int);
 extern void assert_post_action(unsigned,unsigned);
 extern void printk(unsigned,...);
 
@@ -42,7 +43,7 @@ int k_mem_slab_alloc(int param_1, int *param_2, int param_3, int param_4){
     int ret;
     if (puVar4 == 0){
         if (param_3 != 0 || param_4 != 0){
-            int r = FUN_00073f6c(iVar6, uVar7, param_1, 0, param_3, param_4, param_3);
+            int r = z_pend_curr(iVar6, uVar7, param_1, 0, param_3, param_4, param_3);
             if (r != 0) return r;
             *param_2 = *(int*)(*(int*)(0x2000b448+8)+0x14);
             return 0;

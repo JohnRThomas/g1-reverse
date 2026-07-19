@@ -2,13 +2,14 @@
  * public-name: bt_att_status
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   att_chan_req_send_checked                <= FUN_00058b78 @ 0x00058b78
  *   sys_slist_get                            <= FUN_00081bac @ 0x00081bac
  *   bt_att_status                            <= FUN_0008206c @ 0x0008206c
  */
 /* Reconstructed FUN_0008206c @ 0x8206c  (parity: 300/300 trials, PROVEN) */
 
 extern void* sys_slist_get(int);
-extern int FUN_00058b78(int, void*);
+extern int att_chan_req_send_checked(int, void*);
 
 void bt_att_status(char *param_1, int *param_2)
 {
@@ -18,7 +19,7 @@ void bt_att_status(char *param_1, int *param_2)
       if (*(int*)(param_1 + 0x11c) == 0) {
         unsigned int *puVar1 = (unsigned int*)sys_slist_get(base + 4);
         if (puVar1 != 0) {
-          int iVar2 = FUN_00058b78((int)(param_1-8), puVar1);
+          int iVar2 = att_chan_req_send_checked((int)(param_1-8), puVar1);
           if (iVar2 < 0) {
             int iVar2b = *(int*)(param_1 - 8);
             *puVar1 = *(unsigned int*)(iVar2b + 4);

@@ -6,6 +6,7 @@
  *   g1_recon_retarget_lock_release_recursive <= FUN_00051134 @ 0x00051134
  *   __sinit                                  <= FUN_00076bcc @ 0x00076bcc
  *   _vfprintf_r                              <= FUN_00076ed4 @ 0x00076ed4
+ *   printf_render_float                      <= FUN_0007712c @ 0x0007712c
  *   vfprintf_format_engine                   <= FUN_00077594 @ 0x00077594
  *   stdio_fclose                             <= FUN_00077d54 @ 0x00077d54
  *   mem_find_byte                            <= FUN_00086bc8 @ 0x00086bc8
@@ -27,7 +28,7 @@ typedef unsigned char undefined1;
 extern void g1_recon_retarget_lock_acquire_recursive(unsigned lock); /* FUN_000510fc@0x000510fc */
 extern void g1_recon_retarget_lock_release_recursive(unsigned lock); /* FUN_00051134@0x00051134 */
 extern void __sinit(void);
-extern int FUN_0007712c(int a, void *b, int c, unsigned d, void *e);
+extern int printf_render_float(int a, void *b, int c, unsigned d, void *e);
 extern int vfprintf_format_engine(int a, void *b, int c, unsigned d, void *e);
 extern int stdio_fclose(int a, int b);
 extern int mem_find_byte(unsigned a, unsigned b, ...);
@@ -167,7 +168,7 @@ LAB_000770da:
             local_8c = (uint *)(((int)local_8c + 7U & 0xfffffff8) + 8);
             goto LAB_00077088;
         }
-        unaff_r7 = FUN_0007712c(param_1, &local_88, param_2, 0x86cb7, &local_8c);
+        unaff_r7 = printf_render_float(param_1, &local_88, param_2, 0x86cb7, &local_8c);
     }
     if (unaff_r7 == -1) goto LAB_000770da;
 LAB_00077088:

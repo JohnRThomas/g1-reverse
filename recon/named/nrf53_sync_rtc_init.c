@@ -4,7 +4,11 @@
  * callees (readable <= raw @ address):
  *   nrf53_ipc_channel_configure              <= FUN_0004c278 @ 0x0004c278
  *   nrf53_sync_rtc_init                      <= FUN_0004c2d4 @ 0x0004c2d4
+ *   z_log_msg_runtime_create                 <= FUN_0004d944 @ 0x0004d944
+ *   rtc_timer_channel_alloc                  <= FUN_0006385c @ 0x0006385c
  *   nrfx_gppi_channels_enable                <= FUN_00064f30 @ 0x00064f30
+ *   flag32_channel_alloc_wrapper             <= FUN_0006540c @ 0x0006540c
+ *   dppi_channel_disable_and_free            <= FUN_00065418 @ 0x00065418
  * address symbols (name @ address):
  *   ADDR_FUN_0004c418_THUMB                  @ 0x0004c419
  *   rodata_87bd8                             @ 0x00087bd8
@@ -15,11 +19,11 @@
 
 #include <stdint.h>
 extern void nrf53_ipc_channel_configure(uint32_t,uint32_t,uint32_t,int);
-extern void FUN_0004d944(uint32_t,int,void*,...);
-extern int FUN_0006385c(void);
+extern void z_log_msg_runtime_create(uint32_t,int,void*,...);
+extern int rtc_timer_channel_alloc(void);
 extern void nrfx_gppi_channels_enable(uint32_t);
-extern int FUN_0006540c(void*);
-extern void FUN_00065418(uint32_t);
+extern int flag32_channel_alloc_wrapper(void*);
+extern void dppi_channel_disable_and_free(uint32_t);
 
 typedef int (*rtc_setup_callback_t)(void *, uint32_t, uintptr_t, uint32_t);
 typedef int (*rtc_enable_callback_t)(void *, uint32_t, uint32_t);
@@ -42,12 +46,12 @@ int nrf53_sync_rtc_init(void){
   uint8_t *puVar1;
   int iVar2;
   volatile uint32_t local_1c;
-  iVar2 = FUN_0006540c((void*)&local_1c);
+  iVar2 = flag32_channel_alloc_wrapper((void*)&local_1c);
   if (iVar2 == 0x0bad0000){
-    iVar2 = FUN_0006385c();
+    iVar2 = rtc_timer_channel_alloc();
     puVar1 = (uint8_t*)0x87bd8UL;
     if (iVar2 < 0){
-      FUN_00065418(local_1c & 0xff);
+      dppi_channel_disable_and_free(local_1c & 0xff);
     } else {
       const struct rtc_sync_driver_api *api =
           *(const struct rtc_sync_driver_api **)(0x87bd8UL + 8);
@@ -76,7 +80,7 @@ LAB:
     struct rtc_sync_error_record diagnostic = {
       3, (const void *)0xf0a68, iVar2
     };
-    FUN_0004d944(0x88288, 0x1840, (void *)&diagnostic, 0);
+    z_log_msg_runtime_create(0x88288, 0x1840, (void *)&diagnostic, 0);
   }
   return iVar2;
 }

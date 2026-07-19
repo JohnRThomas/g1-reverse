@@ -4,13 +4,14 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   ipc_send_len_prefixed_packet             <= FUN_00025740 @ 0x00025740
+ *   ipc_transport_ops_dispatch               <= FUN_0007c85e @ 0x0007c85e
  *   sleep_fixed_33_ticks                     <= FUN_0007c87a @ 0x0007c87a
  * address symbols (name @ address):
  *   rodata_9f239                             @ 0x0009f239
  */
 /* Reconstructed FUN_00025740 @ 0x25740  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_0007c85e(int, void*, int, int);
+extern int ipc_transport_ops_dispatch(int, void*, int, int);
 extern void sleep_fixed_33_ticks(void);
 extern void log_message(unsigned int, int);
 
@@ -24,7 +25,7 @@ int ipc_send_len_prefixed_packet(int param_1, int param_2, unsigned int param_3,
   local_20.c = param_4;
   local_20.d = param_5;
   local_20.e = 7;
-  int iVar1 = FUN_0007c85e(param_1, &local_20, 2, param_2);
+  int iVar1 = ipc_transport_ops_dispatch(param_1, &local_20, 2, param_2);
   sleep_fixed_33_ticks();
   if (iVar1 < 0) {
     log_message(((unsigned long)&rodata_9f239) /*=0x9f239*/, iVar1);

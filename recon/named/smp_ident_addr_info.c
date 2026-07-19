@@ -14,6 +14,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ *   bt_conn_security_sufficient              <= FUN_00083002 @ 0x00083002
+ *   bt_addr_le_copy_83062                    <= FUN_00083062 @ 0x00083062
+ *   smp_log_message                          <= FUN_00083074 @ 0x00083074
  *   atomic_set_bit                           <= FUN_00083090 @ 0x00083090
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
@@ -42,9 +45,9 @@ extern void bt_keys_clear(int a);
 extern void assert_post_action(u32 a, u32 b);
 extern void printk(u32 a, u32 b, u32 c, u32 d);
 extern int atomic_test_bit(void *a, int b);
-extern int FUN_00083002(int a, int b);
-extern void FUN_00083062(int a, void *b);
-extern void FUN_00083074(u32 a, u32 b, void *c);
+extern int bt_conn_security_sufficient(int a, int b);
+extern void bt_addr_le_copy_83062(int a, void *b);
+extern void smp_log_message(u32 a, u32 b, void *c);
 extern void atomic_set_bit(int a, int b);
 extern int memcmp(int a, void *b, int c);
 
@@ -62,9 +65,9 @@ undefined4 smp_ident_addr_info(int param_1, int param_2)
 
   if ((*pcVar6 != 0) && ((pcVar6[6] & 0xc0) != 0xc0)) {
     bt_addr_le_str((int)(long)pcVar6);
-    FUN_00083074(0x00088180u, 0x1c40u, 0);
+    smp_log_message(0x00088180u, 0x1c40u, 0);
     bt_addr_le_str(iVar7);
-    FUN_00083074(0x00088180u, 0x1c40u, 0);
+    smp_log_message(0x00088180u, 0x1c40u, 0);
     return 10;
   }
 
@@ -76,7 +79,7 @@ LAB_df2c:
       iVar1 = bt_keys_get_type(2, *(u8*)(long)(iVar5+8), iVar7);
       if (iVar1 == 0) {
         bt_addr_le_str(iVar7);
-        FUN_00083074(0x00088180u, 0x1c40u, 0);
+        smp_log_message(0x00088180u, 0x1c40u, 0);
         goto LAB_df70;
       }
       if (*(char*)(long)(iVar5+3) == 0) {
@@ -89,7 +92,7 @@ LAB_df2c:
         *(u16*)(long)(iVar1+0x3e) = *(u16*)((long)pcVar4+5);
         if ((*(char*)(long)(iVar5+0x90) != 0) && ((*(u8*)(long)(iVar5+0x96) & 0xc0) != 0xc0)) {
           ble_conn_visit_by_fixed_index(1, 0x000831e3u, 0);
-          FUN_00083062(iVar1+1, pcVar6);
+          bt_addr_le_copy_83062(iVar1+1, pcVar6);
           ble_notify_identity_resolved(iVar5);
         }
       }
@@ -100,7 +103,7 @@ LAB_df2c:
       }
       iVar5 = bt_id_find_conflict(iVar1);
       if (iVar5 != 0) {
-        FUN_00083074(0x00088180u, 0x1080u, 0);
+        smp_log_message(0x00088180u, 0x1080u, 0);
         return 3;
       }
       iVar5 = bt_id_find_conflict(iVar1);
@@ -119,7 +122,7 @@ LAB_df2c:
     }
     uVar3 = 0;
   } else {
-    iVar2 = FUN_00083002(param_1, iVar1);
+    iVar2 = bt_conn_security_sufficient(param_1, iVar1);
     if (iVar2 != 0) {
       bt_keys_clear(iVar1);
       goto LAB_df2c;

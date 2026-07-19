@@ -2,6 +2,8 @@
  * public-name: cbor_decode_skip_value
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   cbor_decode_is_break                     <= FUN_00085d36 @ 0x00085d36
+ *   zcbor_backup_store_count                 <= FUN_00085d70 @ 0x00085d70
  *   cbor_decode_precheck                     <= FUN_00085d82 @ 0x00085d82
  *   cbor_decode_expect_break                 <= FUN_00085dd2 @ 0x00085dd2
  *   cbor_decode_extract_value                <= FUN_00085e1a @ 0x00085e1a
@@ -10,8 +12,8 @@
  */
 /* Reconstructed FUN_00086064 @ 0x86064  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int FUN_00085d36(int,...);
-extern int FUN_00085d70(int,...);
+extern int cbor_decode_is_break(int,...);
+extern int zcbor_backup_store_count(int,...);
 extern int cbor_decode_precheck(void);
 extern int cbor_decode_expect_break(int,...);
 extern int cbor_decode_extract_value(void *, void *, unsigned int);
@@ -75,7 +77,7 @@ LAB_00086146:
             local_34 = 0;
 LAB_00086162:
             local_30[2] = (unsigned char*)(uintptr_t)local_38;
-            while(iVar4 = FUN_00085d36((int)local_30), iVar4 == 0){
+            while(iVar4 = cbor_decode_is_break((int)local_30), iVar4 == 0){
                 iVar4 = cbor_decode_skip_value((unsigned*)local_30, 0);
                 if(iVar4 == 0) return 0;
             }
@@ -109,7 +111,7 @@ LAB_00086162:
 LAB_0008610e:
             uVar5 = 8;
 LAB_0008606e:
-            FUN_00085d70((int)param_1, uVar5);
+            zcbor_backup_store_count((int)param_1, uVar5);
             return 0;
         }
         local_30[0] = local_30[0] + local_38;

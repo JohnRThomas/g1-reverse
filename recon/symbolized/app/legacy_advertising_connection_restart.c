@@ -3,11 +3,14 @@
  * public-name: legacy_advertising_connection_restart
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   z_log_msg_runtime_create                 <= FUN_0004d944 @ 0x0004d944
+ *   bt_id_set_adv_random_addr                <= FUN_00055454 @ 0x00055454
  *   adv_is_directed                          <= FUN_00055698 @ 0x00055698
  *   ble_conn_addr_resolve_or_create          <= FUN_000556b0 @ 0x000556b0
  *   legacy_advertising_connection_restart    <= FUN_00055aac @ 0x00055aac
  *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
  *   ble_conn_set_state                       <= FUN_00056704 @ 0x00056704
+ *   deref_conn_field0                        <= FUN_0008117a @ 0x0008117a
  *   atomic_and_1                             <= FUN_00081180 @ 0x00081180
  *   bt_le_adv_set_enable_legacy              <= FUN_000812d2 @ 0x000812d2
  * address symbols (name @ address):
@@ -22,11 +25,11 @@
  */
 #include <stdint.h>
 
-extern uint32_t FUN_0008117a(volatile uint32_t *); /* atomic_get */
+extern uint32_t deref_conn_field0(volatile uint32_t *); /* atomic_get */
 extern int ble_conn_addr_resolve_or_create(void *, void *); /* connection lookup/create */
 extern uint32_t adv_is_directed(void *); /* adv_is_directed */
-extern int FUN_00055454(void *, uint32_t, uint32_t, void *); /* legacy advertising configure */
-extern void FUN_0004d944(uint32_t, uint32_t, const void *, uint32_t);
+extern int bt_id_set_adv_random_addr(void *, uint32_t, uint32_t, void *); /* legacy advertising configure */
+extern void z_log_msg_runtime_create(uint32_t, uint32_t, const void *, uint32_t);
 extern int bt_le_adv_set_enable_legacy(void *, uint32_t); /* bt_le_adv_set_enable_legacy */
 extern void ble_conn_unref(void *); /* bt_conn_unref */
 extern void ble_conn_set_state(void *, uint32_t); /* bt_conn_set_state */
@@ -38,23 +41,23 @@ void legacy_advertising_connection_restart(void)
     void *connection = 0;
     uint8_t option = 0;
 
-    if ((FUN_0008117a(flags) & 0x4000U) == 0U) return;
-    if ((FUN_0008117a(flags) & 0x80U) != 0U) return;
-    if ((FUN_0008117a(flags) & 0x400U) == 0U) return;
+    if ((deref_conn_field0(flags) & 0x4000U) == 0U) return;
+    if ((deref_conn_field0(flags) & 0x80U) != 0U) return;
+    if ((deref_conn_field0(flags) & 0x400U) == 0U) return;
 
     if (ble_conn_addr_resolve_or_create((void *)((unsigned long)g_bt_le_legacy_adv) /*=0x20002018*/, &connection) != 0) return;
     {
         uint32_t directed = adv_is_directed((void *)((unsigned long)g_bt_le_legacy_adv) /*=0x20002018*/);
-        uint32_t mode = ((((FUN_0008117a(flags) >> 14) & 1U) ^ 1U) << 1);
-        if ((FUN_0008117a(flags) & 0x400U) != 0U) mode |= 1U;
-        if ((FUN_0008117a(flags) & 0x2000U) != 0U) mode |= 4U;
+        uint32_t mode = ((((deref_conn_field0(flags) >> 14) & 1U) ^ 1U) << 1);
+        if ((deref_conn_field0(flags) & 0x400U) != 0U) mode |= 1U;
+        if ((deref_conn_field0(flags) & 0x2000U) != 0U) mode |= 4U;
 
         {
-            int error = FUN_00055454((void *)((unsigned long)g_bt_le_legacy_adv) /*=0x20002018*/, mode,
+            int error = bt_id_set_adv_random_addr((void *)((unsigned long)g_bt_le_legacy_adv) /*=0x20002018*/, mode,
                                       directed, &option);
             if (error != 0) {
                 uint32_t package[3] = { 3U, ((unsigned long)&rodata_f3857) /*=0xf3857*/, (uint32_t)error };
-                FUN_0004d944(((unsigned long)&rodata_880f8) /*=0x880f8*/, 0x1840U, package, 0U);
+                z_log_msg_runtime_create(((unsigned long)&rodata_880f8) /*=0x880f8*/, 0x1840U, package, 0U);
                 return;
             }
         }

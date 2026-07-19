@@ -6,6 +6,7 @@
  *   tc_cmac_setup                            <= FUN_0008016a @ 0x0008016a
  *   tc_cmac_final                            <= FUN_00080294 @ 0x00080294
  *   atomic_or_0                              <= FUN_000826e0 @ 0x000826e0
+ *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  *   bt_gatt_foreach_attr_0                   <= FUN_00082c9c @ 0x00082c9c
  * address symbols (name @ address):
  *   ADDR_gen_hash_m_THUMB                    @ 0x0008260d
@@ -21,7 +22,7 @@ extern int tc_cmac_setup(void*,void*,void*);
 extern void tc_cmac_final(void); /*unused decl replaced*/
 extern int FUN_00080294_i(uint32_t,void*);
 extern void atomic_or_0(uint32_t);
-extern void FUN_00082a42(uint32_t,int,void*);
+extern void log_msg_create_3arg(uint32_t,int,void*);
 extern void bt_gatt_foreach_attr_0(int,int,uint32_t,void*);
 void gatt_db_hash_gen(void){
   struct {
@@ -54,5 +55,5 @@ void gatt_db_hash_gen(void){
   }
   frame.log.level=2;
   frame.log.message=(iVar2==0) ? 0x000f49d4 : 0x000f49ed;
-  FUN_00082a42(0x88128,0x1040,&frame.log);
+  log_msg_create_3arg(0x88128,0x1040,&frame.log);
 }

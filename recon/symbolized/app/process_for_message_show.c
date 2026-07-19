@@ -9,6 +9,9 @@
  *   update_persist_task_status_to_idle       <= FUN_0002c0e8 @ 0x0002c0e8
  *   get_message_type_param                   <= FUN_0002c30c @ 0x0002c30c
  *   process_for_message_show                 <= FUN_0002c714 @ 0x0002c714
+ *   message_pool_read_byte_0xd               <= FUN_00033c04 @ 0x00033c04
+ *   get_message_pending_state                <= FUN_00034410 @ 0x00034410
+ *   set_message_pending_state                <= FUN_0003443c @ 0x0003443c
  *   is_msg_expiration                        <= FUN_0003444c @ 0x0003444c
  * address symbols (name @ address):
  *   rodata_a28ee                             @ 0x000a28ee
@@ -30,9 +33,9 @@ extern int debug_print(int,...);
 extern int update_temp_task_status(int,...);
 extern int update_persist_task_status_to_idle(void*,...);
 extern int get_message_type_param(int,...);
-extern int FUN_00033c04(int,...);
-extern int FUN_00034410(void);
-extern int FUN_0003443c(int,...);
+extern int message_pool_read_byte_0xd(int,...);
+extern int get_message_pending_state(void);
+extern int set_message_pending_state(int,...);
 extern int is_msg_expiration(void);
 extern int sync_to_slave(void*,...);
 extern int wait_for_event(int,...);
@@ -54,14 +57,14 @@ undefined4 process_for_message_show(char *param_1,int param_2,byte *param_3,unde
     iVar4 = get_device_info();
     if (*(char *)(iVar4 + 0xdd) == '\0') break;
     iVar4 = get_device_info();
-    iVar4 = FUN_00033c04(*(byte *)(iVar4 + 0xdd) - 1);
+    iVar4 = message_pool_read_byte_0xd(*(byte *)(iVar4 + 0xdd) - 1);
     if (iVar4 == 4) break;
     sVar8 = sVar8 + -1;
     wait_for_event(0x21,0);
   } while (sVar8 != 0);
   uVar9 = 0;
   *(undefined1 *)(param_2 + 8) = 0;
-  FUN_0003443c(4);
+  set_message_pending_state(4);
   state_raw = get_message_type_param(param_1[0xfea],0xf);
   uVar3 = (undefined1)state_raw;
   piVar2 = (volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/;
@@ -80,7 +83,7 @@ undefined4 process_for_message_show(char *param_1,int param_2,byte *param_3,unde
         }
         update_persist_task_status_to_idle(param_1);
         *param_4 = ((unsigned long)&rodata_a3311) /*=0xa3311*/;
-        FUN_0003443c(5);
+        set_message_pending_state(5);
         return 10;
       }
       if (*(char *)(param_2 + 1) != '\x04') {
@@ -141,9 +144,9 @@ LAB_0002c894:
     sync_to_slave(param_1,8,0,0);
     if (*param_1 == '\x01') { update_persist_task_status_to_idle(param_1); }
     else if (*(char *)(param_2 + 1) == '\x04') goto LAB_0002c894;
-    FUN_0003443c(5);
+    set_message_pending_state(5);
     if (*param_1 == '\x01') { wait_for_event(0x4000,0); }
-    iVar4 = FUN_00034410();
+    iVar4 = get_message_pending_state();
   } while (iVar4 == 4);
   if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {

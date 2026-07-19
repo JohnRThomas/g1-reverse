@@ -2,9 +2,12 @@
  * public-name: gatt_ccc_write
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   ccc_match_conn_cfg                       <= FUN_00059c48 @ 0x00059c48
  *   gatt_delayed_store_enqueue               <= FUN_00059d24 @ 0x00059d24
  *   gatt_ccc_write                           <= FUN_0005a464 @ 0x0005a464
  *   gatt_ccc_changed                         <= FUN_000825c0 @ 0x000825c0
+ *   bt_addr_le_copy_828da                    <= FUN_000828da @ 0x000828da
+ *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  * address symbols (name @ address):
  *   rodata_88128                             @ 0x00088128
  *   rodata_f2b3a                             @ 0x000f2b3a
@@ -12,11 +15,11 @@
  */
 /* Reconstructed FUN_0005a464 @ 0x5a464  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int FUN_00059c48(int,int);
+extern int ccc_match_conn_cfg(int,int);
 extern void gatt_delayed_store_enqueue(int,int,int);
 extern void gatt_ccc_changed(int,int);
-extern void FUN_000828da(void*,int);
-extern void FUN_00082a42(uint32_t,int,void*);
+extern void bt_addr_le_copy_828da(void*,int);
+extern void log_msg_create_3arg(uint32_t,int,void*);
 
 int gatt_ccc_write(int param_1, int param_2, uint16_t *param_3, int param_4, short param_5){
     int iVar5 = *(volatile int*)(param_2+0xc);
@@ -25,16 +28,16 @@ int gatt_ccc_write(int param_1, int param_2, uint16_t *param_3, int param_4, sho
         if ((uint32_t)(param_4 - 1) < 2){
             uint16_t uVar4 = (uint16_t)(uint8_t)*(volatile uint8_t*)param_3;
             if (param_4 != 1) uVar4 = *(volatile uint16_t*)param_3;
-            volatile uint8_t *puVar2 = (volatile uint8_t*)FUN_00059c48(param_1, iVar5);
+            volatile uint8_t *puVar2 = (volatile uint8_t*)ccc_match_conn_cfg(param_1, iVar5);
             if (puVar2 == 0){
                 if (uVar4 == 0) return param_4;
-                puVar2 = (volatile uint8_t*)FUN_00059c48(0, iVar5);
+                puVar2 = (volatile uint8_t*)ccc_match_conn_cfg(0, iVar5);
                 if (puVar2 == 0){
                     local_24 = 0x000f486f; local_28 = 2;
-                    FUN_00082a42(0x00088128, 0x1080, &local_28);
+                    log_msg_create_3arg(0x00088128, 0x1080, &local_28);
                     return -0x11;
                 }
-                FUN_000828da((void*)(puVar2+1), param_1+0x90);
+                bt_addr_le_copy_828da((void*)(puVar2+1), param_1+0x90);
                 *puVar2 = *(volatile uint8_t*)(param_1+8);
             }
             {
@@ -50,7 +53,7 @@ int gatt_ccc_write(int param_1, int param_2, uint16_t *param_3, int param_4, sho
             if (*(volatile uint16_t*)(iVar5+10) != uVar4) gatt_ccc_changed(param_2, iVar5);
             if (uVar1 != uVar4) gatt_delayed_store_enqueue(*(volatile uint8_t*)(param_1+8), param_1+0x90, 0);
             if (uVar4 == 0){
-                FUN_000828da((void*)(puVar2+1), 0x000f2b3a);
+                bt_addr_le_copy_828da((void*)(puVar2+1), 0x000f2b3a);
                 *puVar2 = 0;
                 *(volatile uint16_t*)(puVar2+8) = 0;
             }

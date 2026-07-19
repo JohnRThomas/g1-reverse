@@ -2,6 +2,7 @@
  * public-name: k_work_queue_start
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   z_impl_k_thread_create                   <= FUN_00071eac @ 0x00071eac
  *   k_work_queue_start                       <= FUN_000730e8 @ 0x000730e8
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
@@ -17,7 +18,7 @@
 /* Reconstructed FUN_000730e8 @ 0x730e8  (parity: 300/300 trials, PROVEN) */
 extern void printk(int,...);
 extern void assert_post_action(int,...);
-extern void FUN_00071eac(int,int,unsigned,int,int,int,int,unsigned,int);
+extern void z_impl_k_thread_create(int,int,unsigned,int,int,int,int,unsigned,int);
 extern void posix_stub_enosys(int);
 extern void FUN_0008641c(int);
 void k_work_queue_start(int param_1,int param_2,unsigned param_3,unsigned param_4,int *param_5){
@@ -42,7 +43,7 @@ void k_work_queue_start(int param_1,int param_2,unsigned param_3,unsigned param_
     if(param_5==0) uVar1=1;
     else { uVar1=0x101; if((char)param_5[1]==0) uVar1=1; }
     *(volatile unsigned*)(param_1+0xf0)=uVar1;
-    FUN_00071eac(param_1,param_2,param_3,0x00072ab1,param_1,0,0,param_4,0);
+    z_impl_k_thread_create(param_1,param_2,param_3,0x00072ab1,param_1,0,0,param_4,0);
     if(param_5!=0 && *param_5!=0) posix_stub_enosys(param_1);
     FUN_0008641c(param_1); return;
   }

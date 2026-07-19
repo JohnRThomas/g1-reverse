@@ -8,6 +8,7 @@
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
  *   free                                     <= FUN_00076d7c @ 0x00076d7c
  *   printf                                   <= FUN_000777f0 @ 0x000777f0
+ *   ptr_load_u32                             <= FUN_0007d1c8 @ 0x0007d1c8
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   strncmp                                  <= FUN_00087036 @ 0x00087036
@@ -32,7 +33,7 @@ extern void pixelto4bithex(unsigned int inverted_byte, int glyph_width);
 extern void *malloc(unsigned int size);
 extern void free(void *allocation);
 extern void printf(uint32_t message);
-extern int FUN_0007d1c8(const void *field);
+extern int ptr_load_u32(const void *field);
 extern void memcpy(uintptr_t destination, int source, unsigned int size);
 extern void memset_bytes(void *destination, int value, unsigned int size);
 extern int strncmp(const void *header, uint32_t descriptor, unsigned int count);
@@ -87,9 +88,9 @@ void get_demo_image_source(unsigned int mode)
     for (unsigned int i = 0; i < sizeof(metadata); ++i)
         metadata[i] = buffer[14u + i];
 
-    int first_offset = FUN_0007d1c8(header + 10);
-    int glyph_width = FUN_0007d1c8(metadata + 4);
-    int row_count = FUN_0007d1c8(metadata + 8);
+    int first_offset = ptr_load_u32(header + 10);
+    int glyph_width = ptr_load_u32(metadata + 4);
+    int row_count = ptr_load_u32(metadata + 8);
     uint16_t format = (uint16_t)metadata[14] |
                       (uint16_t)((uint16_t)metadata[15] << 8);
 

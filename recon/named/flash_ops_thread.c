@@ -2,7 +2,10 @@
  * public-name: flash_ops_thread
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   flash_store_cmd_msgq_used_count          <= FUN_00023ef8 @ 0x00023ef8
+ *   quicknote_flash_msgq_read_field24        <= FUN_00024678 @ 0x00024678
  *   getQuickNoteBKPQueueCacheData            <= FUN_00024684 @ 0x00024684
+ *   get_audio_msgq_used_count                <= FUN_0002f758 @ 0x0002f758
  *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  * address symbols (name @ address):
  *   rodata_9e7da                             @ 0x0009e7da
@@ -26,18 +29,18 @@ extern void debug_print(uintptr_t format, ...); /* FUN_00019c70 @ 0x19c70 */
 #define wait_for_flash_work z_impl_k_sem_take
 extern int z_impl_k_sem_take(void *object, uint64_t timeout); /* @ 0x72908 */
 
-#define audio_flash_queue_pending FUN_0002f758
-extern unsigned int FUN_0002f758(void); /* @ 0x2f758 */
+#define audio_flash_queue_pending get_audio_msgq_used_count
+extern unsigned int get_audio_msgq_used_count(void); /* @ 0x2f758 */
 #define process_audio_flash_request audioStreamFileManagerHandler
 extern void audioStreamFileManagerHandler(void); /* FUN_0002f94c @ 0x2f94c */
 
-#define quicknote_flash_queue_pending FUN_00024678
-extern unsigned int FUN_00024678(void); /* @ 0x24678 */
+#define quicknote_flash_queue_pending quicknote_flash_msgq_read_field24
+extern unsigned int quicknote_flash_msgq_read_field24(void); /* @ 0x24678 */
 #define process_quicknote_flash_request getQuickNoteBKPQueueCacheData
 extern void getQuickNoteBKPQueueCacheData(void); /* @ 0x24684; incoming registers are unused */
 
-#define settings_flash_queue_pending FUN_00023ef8
-extern unsigned int FUN_00023ef8(void); /* @ 0x23ef8 */
+#define settings_flash_queue_pending flash_store_cmd_msgq_used_count
+extern unsigned int flash_store_cmd_msgq_used_count(void); /* @ 0x23ef8 */
 #define process_settings_flash_request SettingStoreHandler
 extern void SettingStoreHandler(void); /* FUN_00023f04 @ 0x23f04 */
 

@@ -13,6 +13,7 @@
  *   utf8_string_to_utf16                     <= FUN_000478d8 @ 0x000478d8
  *   fb_blit_rows_copy                        <= FUN_0007d53a @ 0x0007d53a
  *   index_in_range32_mask                    <= FUN_0007d860 @ 0x0007d860
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
  *   rodata_88434                             @ 0x00088434
  *   rodata_8843e                             @ 0x0008843e
@@ -46,7 +47,7 @@ typedef int i32;
 #define decode_utf16_text utf8_string_to_utf16
 #define draw_glyph_bitmap fb_blit_rows_copy
 #define classify_text_character index_in_range32_mask
-#define copy_glyph_bitmap FUN_00086c1e
+#define copy_glyph_bitmap safe_memcpy_checked
 
 extern void log_message();
 extern u32 get_device_info(void);

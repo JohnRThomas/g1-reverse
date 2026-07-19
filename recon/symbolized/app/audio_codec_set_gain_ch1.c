@@ -3,14 +3,16 @@
  * public-name: audio_codec_set_gain_ch1
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   audio_codec_reg_op_dispatch              <= FUN_0007f97c @ 0x0007f97c
+ *   audio_codec_bus_write                    <= FUN_0007f98a @ 0x0007f98a
  *   audio_codec_read_trim_word               <= FUN_0007fc04 @ 0x0007fc04
  *   audio_codec_read_gain_step_mode          <= FUN_0007fc2c @ 0x0007fc2c
  *   audio_codec_set_gain_ch1                 <= FUN_0007fd4e @ 0x0007fd4e
  */
 /* Reconstructed FUN_0007fd4e @ 0x7fd4e  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int FUN_0007f97c(uint32_t,int,void*,int);
-extern int FUN_0007f98a(uint32_t,int,void*,int);
+extern int audio_codec_reg_op_dispatch(uint32_t,int,void*,int);
+extern int audio_codec_bus_write(uint32_t,int,void*,int);
 extern int audio_codec_read_trim_word(uint32_t,void*);
 extern int audio_codec_read_gain_step_mode(uint32_t,void*);
 int audio_codec_set_gain_ch1(uint32_t param_1, uint32_t param_2){
@@ -28,9 +30,9 @@ int audio_codec_set_gain_ch1(uint32_t param_1, uint32_t param_2){
             case 3: if(param_2<4) param_2=4; break;
             }
         }
-        int iVar2 = FUN_0007f97c(param_1, 0x11, &local_18, 1);
+        int iVar2 = audio_codec_reg_op_dispatch(param_1, 0x11, &local_18, 1);
         local_18 = (local_18 & ~0xffu) | ((local_18 & 0xf) | ((param_2 & 0xf)<<4));
-        iVar1 = FUN_0007f98a(param_1, 0x11, &local_18, 1);
+        iVar1 = audio_codec_bus_write(param_1, 0x11, &local_18, 1);
         iVar1 = iVar1 + iVar2;
     }
     return iVar1;

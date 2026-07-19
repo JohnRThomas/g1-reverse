@@ -4,10 +4,15 @@
  * callees (readable <= raw @ address):
  *   bt_gatt_service_init                     <= FUN_00059cb4 @ 0x00059cb4
  *   sc_indicate                              <= FUN_0005a570 @ 0x0005a570
+ *   gatt_reset_cf_and_change_aware           <= FUN_0005a6b0 @ 0x0005a6b0
  *   bt_gatt_service_register                 <= FUN_0005ad38 @ 0x0005ad38
+ *   k_sched_unlock                           <= FUN_00073b1c @ 0x00073b1c
+ *   k_sched_lock                             <= FUN_00073bf4 @ 0x00073bf4
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
+ *   read_struct_first_word                   <= FUN_0008270c @ 0x0008270c
+ *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  *   bt_gatt_foreach_attr_0                   <= FUN_00082c9c @ 0x00082c9c
  * address symbols (name @ address):
  *   rodata_825bb                             @ 0x000825bb
@@ -32,15 +37,15 @@
 #include <stdint.h>
 extern void printk(const char *, ...); /* printk */
 extern void assert_post_action(const char *, uint32_t); /* assert_post_action */
-extern uint32_t FUN_0008270c(volatile uint32_t *); /* atomic_get */
+extern uint32_t read_struct_first_word(volatile uint32_t *); /* atomic_get */
 extern void bt_gatt_service_init(void); /* bt_gatt_service_init */
 extern int bt_uuid_cmp(const void *, const void *); /* bt_uuid_cmp */
-extern void FUN_00073b1c(void); /* k_sched_lock */
-extern void FUN_00073bf4(void); /* k_sched_unlock */
+extern void k_sched_unlock(void); /* k_sched_lock */
+extern void k_sched_lock(void); /* k_sched_unlock */
 extern void bt_gatt_foreach_attr_0(uint16_t, uint16_t, void *, void *); /* foreach attr */
-extern void FUN_00082a42(uint32_t, uint32_t, const void *); /* logger */
+extern void log_msg_create_3arg(uint32_t, uint32_t, const void *); /* logger */
 extern void sc_indicate(uint16_t, uint16_t); /* sc_indicate */
-extern void FUN_0005a6b0(void); /* db_changed */
+extern void gatt_reset_cf_and_change_aware(void); /* db_changed */
 
 struct gatt_attr_recovered {
     const void *uuid;
@@ -81,10 +86,10 @@ int bt_gatt_service_register(struct gatt_service_recovered *service)
     }
 
     volatile uint32_t *const flags = (volatile uint32_t *)0x2000af04U;
-    if ((FUN_0008270c(flags) & 1U) != 0U &&
-        (FUN_0008270c((volatile uint32_t *)0x20006448U) & 4U) == 0U) {
+    if ((read_struct_first_word(flags) & 1U) != 0U &&
+        (read_struct_first_word((volatile uint32_t *)0x20006448U) & 4U) == 0U) {
         const uint32_t package[2] = { 2U, 0x000f4a3bU };
-        FUN_00082a42(0x00088128U, 0x1040U, package);
+        log_msg_create_3arg(0x00088128U, 0x1040U, package);
         return -22;
     }
 
@@ -95,7 +100,7 @@ int bt_gatt_service_register(struct gatt_service_recovered *service)
         bt_uuid_cmp(service->attrs[0].uuid, &gatt) == 0)
         return -120;
 
-    FUN_00073b1c();
+    k_sched_unlock();
     volatile uintptr_t *const db_head = (volatile uintptr_t *)0x2000af08U;
     volatile uintptr_t *const db_tail = (volatile uintptr_t *)0x2000af0cU;
     uint16_t handle;
@@ -124,8 +129,8 @@ int bt_gatt_service_register(struct gatt_service_recovered *service)
                 const uint32_t package[3] = {
                     3U, 0x000f4a7dU, attr->handle,
                 };
-                FUN_00082a42(0x00088128U, 0x1840U, package);
-                FUN_00073bf4();
+                log_msg_create_3arg(0x00088128U, 0x1840U, package);
+                k_sched_lock();
                 return -22;
             }
         }
@@ -161,13 +166,13 @@ int bt_gatt_service_register(struct gatt_service_recovered *service)
             *db_tail = service_node;
     }
 
-    if ((FUN_0008270c(flags) & 1U) == 0U) {
-        FUN_00073bf4();
+    if ((read_struct_first_word(flags) & 1U) == 0U) {
+        k_sched_lock();
         return 0;
     }
     sc_indicate(service->attrs[0].handle,
                  service->attrs[service->attr_count - 1U].handle);
-    FUN_0005a6b0();
-    FUN_00073bf4();
+    gatt_reset_cf_and_change_aware();
+    k_sched_lock();
     return 0;
 }

@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   get_pin_idx                              <= FUN_00065434 @ 0x00065434
  *   gpiote_pin_event_dispatch                <= FUN_000654c4 @ 0x000654c4
+ *   gpio_port_base_from_pin                  <= FUN_00065584 @ 0x00065584
  *   gpiote_read_and_clear_pending_events     <= FUN_00065620 @ 0x00065620
  *   gpiote_irq_handler                       <= FUN_00065b9c @ 0x00065b9c
  *   nrf_gpio_cfg_sense_set                   <= FUN_000851ca @ 0x000851ca
@@ -17,7 +18,7 @@
 
 extern uint64_t get_pin_idx(uint32_t);
 extern void gpiote_pin_event_dispatch(uint32_t, uint32_t);
-extern uintptr_t FUN_00065584(uint32_t *);
+extern uintptr_t gpio_port_base_from_pin(uint32_t *);
 extern uint32_t gpiote_read_and_clear_pending_events(uint32_t);
 extern void nrf_gpio_cfg_sense_set(uint32_t, uint32_t);
 
@@ -57,14 +58,14 @@ void gpiote_irq_handler(void)
               (uint8_t)~(1u << (pending_bit & 7));
 
           uint32_t lookup_channel = channel;
-          uintptr_t table = FUN_00065584(&lookup_channel);
+          uintptr_t table = gpio_port_base_from_pin(&lookup_channel);
           uint32_t requested_mode = (settings >> 2) & 7;
           uint32_t old_mode = configured_mode(table, lookup_channel);
 
           if ((settings & 0x10) != 0) {
             gpiote_pin_event_dispatch(channel, requested_mode);
             lookup_channel = channel;
-            table = FUN_00065584(&lookup_channel);
+            table = gpio_port_base_from_pin(&lookup_channel);
             if (old_mode == configured_mode(table, lookup_channel)) {
               nrf_gpio_cfg_sense_set(channel, 0);
               nrf_gpio_cfg_sense_set(channel, old_mode);
@@ -83,7 +84,7 @@ void gpiote_irq_handler(void)
           }
 
           lookup_channel = channel;
-          table = FUN_00065584(&lookup_channel);
+          table = gpio_port_base_from_pin(&lookup_channel);
           *(volatile uint32_t *)(table + 0x20) =
               lookup_channel < 32 ? 1u << lookup_channel : 0;
         }

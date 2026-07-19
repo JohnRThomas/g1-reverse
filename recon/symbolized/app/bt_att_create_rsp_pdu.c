@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   bt_att_chan_create_pdu                   <= FUN_000585f0 @ 0x000585f0
  *   bt_att_create_rsp_pdu                    <= FUN_00058f34 @ 0x00058f34
+ *   att_log_emit_3arg                        <= FUN_00081ddc @ 0x00081ddc
  * address symbols (name @ address):
  *   rodata_88100                             @ 0x00088100
  *   rodata_f4651                             @ 0x000f4651
@@ -12,7 +13,7 @@
 /* Reconstructed FUN_00058f34 @ 0x58f34  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_att_chan_create_pdu(void);
-extern void FUN_00081ddc(int,int,void*);
+extern void att_log_emit_3arg(int,int,void*);
 
 int bt_att_create_rsp_pdu(int param_1, int param_2, int param_3, int param_4)
 {
@@ -28,7 +29,7 @@ int bt_att_create_rsp_pdu(int param_1, int param_2, int param_3, int param_4)
         s.f8 = param_1;
         s.fc = local_24;
         s.f10 = uStack_20;
-        FUN_00081ddc(((unsigned long)&rodata_88100) /*=0x88100*/, 0x2880, &s);
+        att_log_emit_3arg(((unsigned long)&rodata_88100) /*=0x88100*/, 0x2880, &s);
         return 0;
     } else {
         return bt_att_chan_create_pdu();

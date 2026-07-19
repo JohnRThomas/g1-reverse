@@ -2,8 +2,11 @@
  * public-name: click_event_dispatch_loop
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   log_and_dispatch_click_event2            <= FUN_0002893c @ 0x0002893c
  *   enter_active_click_mode                  <= FUN_00028964 @ 0x00028964
  *   click_event_dispatch_loop                <= FUN_00028a1c @ 0x00028a1c
+ *   set_click_dispatch_flag                  <= FUN_00032fd0 @ 0x00032fd0
+ *   get_click_dispatch_flag                  <= FUN_00032fdc @ 0x00032fdc
  * address symbols (name @ address):
  *   g_log_level                              @ 0x2000230c
  *   g_touch_key_irq_pending                  @ 0x20006a00
@@ -18,15 +21,15 @@
 extern void log_message(uint32_t a, ...);
 extern uintptr_t get_device_info(void);
 extern void handle_touch_key_irq(void);
-extern void FUN_00032fd0(int32_t);
-extern int64_t FUN_00032fdc(void);
+extern void set_click_dispatch_flag(int32_t);
+extern int64_t get_click_dispatch_flag(void);
 extern void k_msleep(int32_t milliseconds); /* FUN_0007cb8e@0x0007cb8e */
 #define k_msleep_ticks32768_a k_msleep
 extern void read_rtc_counter_ms(void *a);
 extern int32_t get_uptime_ms(void);
 extern void k_sem_take(void *queue, int32_t key, int32_t timeout,
                                int32_t flags);
-extern void FUN_0002893c(void);
+extern void log_and_dispatch_click_event2(void);
 extern void on_triple_click(void);
 extern void enter_active_click_mode(void);
 extern uint32_t sys_reboot(int32_t a);
@@ -54,7 +57,7 @@ void click_event_dispatch_loop(char *param_1, int32_t param_2, uint32_t param_3)
 LAB_00028a32:
   do {
     while (1) {
-      uVar10 = FUN_00032fdc();
+      uVar10 = get_click_dispatch_flag();
       if ((int32_t)uVar10 == 1) {
         return;
       }
@@ -130,7 +133,7 @@ code_r0x00028b4a:
       }
       goto code_r0x00028b4a;
     case 2:
-      FUN_0002893c();
+      log_and_dispatch_click_event2();
       break;
     case 3:
       on_triple_click();
@@ -149,7 +152,7 @@ code_r0x00028b4a:
       } while (1);
     default:
       enter_active_click_mode();
-      FUN_00032fd0(1);
+      set_click_dispatch_flag(1);
     }
   }
 LAB_00028b4e:

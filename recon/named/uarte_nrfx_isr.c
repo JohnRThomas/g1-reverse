@@ -5,11 +5,14 @@
  *   __aeabi_uldivmod                         <= FUN_0000e244 @ 0x0000e244
  *   uarte_nrfx_isr                           <= FUN_0006312c @ 0x0006312c
  *   z_impl_k_timer_start                     <= FUN_00075174 @ 0x00075174
+ *   transport_notify_callback                <= FUN_00084840 @ 0x00084840
  *   post_event_tag2_from_node                <= FUN_0008484e @ 0x0008484e
  *   post_event_tag4_and_clear                <= FUN_00084880 @ 0x00084880
  *   post_event_tag5                          <= FUN_000848b0 @ 0x000848b0
  *   nvs_timer_arm_and_mark_dirty             <= FUN_000849da @ 0x000849da
  *   ringbuf_flush_chunk                      <= FUN_00084a24 @ 0x00084a24
+ *   uarte_blocking_transfer                  <= FUN_00084a54 @ 0x00084a54
+ *   uarte_nrfx_tx_complete                   <= FUN_00084ade @ 0x00084ade
  *   flowctl_release_credit_and_kick          <= FUN_00084b32 @ 0x00084b32
  *   z_impl_k_timer_stop                      <= FUN_0008673e @ 0x0008673e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -80,14 +83,14 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 
 extern uint64_t __aeabi_uldivmod(uint32_t, uint32_t, uint32_t, uint32_t);
 extern uint64_t z_impl_k_timer_start(uint32_t, uint32_t, uint32_t, uint32_t, uint64_t);
-extern uint64_t FUN_00084840(uint32_t, const void *);
+extern uint64_t transport_notify_callback(uint32_t, const void *);
 extern uint64_t post_event_tag2_from_node(uint32_t);
 extern uint64_t post_event_tag4_and_clear(uint32_t, uint32_t);
 extern uint64_t post_event_tag5(uint32_t);
 extern uint64_t nvs_timer_arm_and_mark_dirty(uint32_t);
 extern int32_t ringbuf_flush_chunk(uint32_t);
-extern uint64_t FUN_00084a54(uint32_t, uint32_t, uint32_t);
-extern uint64_t FUN_00084ade(uint32_t, uint32_t);
+extern uint64_t uarte_blocking_transfer(uint32_t, uint32_t, uint32_t);
+extern uint64_t uarte_nrfx_tx_complete(uint32_t, uint32_t);
 extern uint64_t flowctl_release_credit_and_kick(uint32_t, uint32_t);
 extern uint64_t z_impl_k_timer_stop(uint32_t);
 extern uint64_t memset_bytes(void *, uint32_t, uint32_t, ...);
@@ -140,7 +143,7 @@ void uarte_nrfx_isr(int param_1)
       bVar7 = (byte)iVar4 & 8;
     }
     local_28 = CONCAT31(((unsigned long long)(local_28)>>8 & 0xffffffULL),bVar7);
-    FUN_00084840(param_1,local_2c);
+    transport_notify_callback(param_1,local_2c);
     nvs_timer_arm_and_mark_dirty(param_1);
   }
   if ((*(int *)(iVar6 + 0x110) != 0) && (*(int *)(iVar6 + 0x304) << 0x1b < 0)) {
@@ -203,7 +206,7 @@ void uarte_nrfx_isr(int param_1)
     iVar8 = *(int *)(param_1 + 0x10);
     memset_bytes(local_2c,0,0x14,*(undefined4 *)(iVar6 + 0x14c));
     local_2c[0] = 3;
-    FUN_00084840(param_1,local_2c);
+    transport_notify_callback(param_1,local_2c);
     iVar2 = *(int *)(iVar8 + 0xc);
     iVar4 = *(int *)(iVar2 + 0x74);
     if (iVar4 != -1) {
@@ -225,7 +228,7 @@ void uarte_nrfx_isr(int param_1)
     *(undefined1 *)(*(int *)(iVar4 + 0xc) + 0xca) = 0;
     if (*(char *)(*(int *)(iVar4 + 0xc) + 0xcb) != '\0') {
       *(undefined1 *)(*(int *)(iVar4 + 0xc) + 0xcb) = 0;
-      FUN_00084a54(*(undefined4 *)(param_1 + 4),0,0);
+      uarte_blocking_transfer(*(undefined4 *)(param_1 + 4),0,0);
     }
     if (*(int *)(iVar2 + 4) << 0x1b < 0) {
       flowctl_release_credit_and_kick(param_1,2);
@@ -312,7 +315,7 @@ void uarte_nrfx_isr(int param_1)
     *(undefined4 *)(iVar6 + 0x308) = 0x400000;
     *(undefined4 *)(*(int *)(iVar4 + 0xc) + 8) = 0;
     *(undefined4 *)(*(int *)(iVar4 + 0xc) + 0xc) = 0;
-    FUN_00084840(param_1,local_2c);
+    transport_notify_callback(param_1,local_2c);
   }
   else {
 LAB_00063380:
@@ -326,7 +329,7 @@ LAB_00063380:
       setBasePriority(0x20);
     }
     InstructionSynchronizationBarrier(0xf);
-    FUN_00084ade(param_1,iVar4);
+    uarte_nrfx_tx_complete(param_1,iVar4);
     bVar10 = (bool)isCurrentModePrivileged();
     if (bVar10) {
       setBasePriority(uVar3);

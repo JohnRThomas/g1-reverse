@@ -2,6 +2,7 @@
  * public-name: packet_transport_write_frame
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   st25dv_read_area_size                    <= FUN_00024d50 @ 0x00024d50
  *   st25dv_mailbox_poll_message              <= FUN_00024dac @ 0x00024dac
  *   packet_transport_write_frame             <= FUN_00024e60 @ 0x00024e60
  *   ipc_ept_op_a_locked_retry                <= FUN_000256dc @ 0x000256dc
@@ -16,7 +17,7 @@
  */
 #include <stdint.h>
 
-extern uint32_t FUN_00024d50(uint32_t type);
+extern uint32_t st25dv_read_area_size(uint32_t type);
 extern int st25dv_mailbox_poll_message(uint32_t cursor);
 extern int ipc_ept_op_a_locked_retry(void *transport, uint32_t offset,
                         const void *data, uint32_t length);
@@ -27,7 +28,7 @@ int packet_transport_write_frame(uint32_t type, uint32_t length, const void *pay
     void *transport = *(void * volatile *)0x20007a44UL;
     uint8_t header[4];
     uint8_t delimiter = 0xfe;
-    uint32_t cursor = FUN_00024d50(type);
+    uint32_t cursor = st25dv_read_area_size(type);
     uint32_t header_length = length > 0xfeU ? 4U : 2U;
 
     if (length > cursor - state[3] - 1U - header_length)

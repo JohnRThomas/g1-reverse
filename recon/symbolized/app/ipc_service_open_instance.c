@@ -4,13 +4,14 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   ipc_service_open_instance                <= FUN_0004cb90 @ 0x0004cb90
+ *   ipc_log_forward                          <= FUN_0007e9ea @ 0x0007e9ea
  * address symbols (name @ address):
  *   rodata_881d8                             @ 0x000881d8
  */
 /* Reconstructed FUN_0004cb90 @ 0x4cb90  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned int (*fn_t)(int,unsigned int,unsigned int,unsigned int);
-extern void FUN_0007e9ea(int a,int b,void *c,int d,int e,unsigned int f,unsigned int g,unsigned int h);
+extern void ipc_log_forward(int a,int b,void *c,int d,int e,unsigned int f,unsigned int g,unsigned int h);
 
 unsigned int ipc_service_open_instance(int param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4)
 {
@@ -18,10 +19,10 @@ unsigned int ipc_service_open_instance(int param_1,unsigned int param_2,unsigned
     fn_t UNRECOVERED_JUMPTABLE;
 
     if (param_1 == 0) {
-        FUN_0007e9ea(((unsigned long)&rodata_881d8) /*=0x881d8*/,0x1040,0,2,0,param_2,param_3,param_4);
+        ipc_log_forward(((unsigned long)&rodata_881d8) /*=0x881d8*/,0x1040,0,2,0,param_2,param_3,param_4);
         uVar1 = 0xffffffea;
     } else if (*(int **)(param_1 + 8) == (int *)0) {
-        FUN_0007e9ea(((unsigned long)&rodata_881d8) /*=0x881d8*/,0x1040,0,2,param_1,param_2,param_3,param_4);
+        ipc_log_forward(((unsigned long)&rodata_881d8) /*=0x881d8*/,0x1040,0,2,param_1,param_2,param_3,param_4);
         uVar1 = 0xfffffffb;
     } else {
         UNRECOVERED_JUMPTABLE = (fn_t)(**(int **)(param_1 + 8));

@@ -2,6 +2,7 @@
  * public-name: settings_call_set_handler
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   z_log_msg_runtime_create                 <= FUN_0004d944 @ 0x0004d944
  *   settings_parse_and_lookup                <= FUN_0004e540 @ 0x0004e540
  *   settings_call_set_handler                <= FUN_0004e604 @ 0x0004e604
  *   settings_name_steq                       <= FUN_0007f1a0 @ 0x0007f1a0
@@ -16,7 +17,7 @@ typedef u32 (*fp4)(u32,u32,u32,u32);
 typedef u32 (*fp5)(u32,u32,u32,u32,u32);
 extern int settings_name_steq(u32,int,void*);
 extern int settings_parse_and_lookup(u32,void*);
-extern void FUN_0004d944(u32,int,void*,int);
+extern void z_log_msg_runtime_create(u32,int,void*,int);
 u32 settings_call_set_handler(u32 param_1,u32 param_2,u32 param_3,u32 param_4,int* param_5){
     u32 local_24 = param_1;
     if(param_5 != 0){
@@ -48,7 +49,7 @@ u32 settings_call_set_handler(u32 param_1,u32 param_2,u32 param_3,u32 param_4,in
             record->argument = param_1;
             record->error = local_34;
             record->flags = 0x200;
-            FUN_0004d944(0x00088278, 0x2440, record, 0);
+            z_log_msg_runtime_create(0x00088278, 0x2440, record, 0);
         }
     }
     return 0;

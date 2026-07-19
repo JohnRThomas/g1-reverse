@@ -4,6 +4,8 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   vfprintf_core                            <= FUN_00078f88 @ 0x00078f88
+ *   vfprintf_field_scan_match                <= FUN_00079278 @ 0x00079278
+ *   scanf_convert_integer_field              <= FUN_0007932c @ 0x0007932c
  *   mem_find_byte                            <= FUN_00086bc8 @ 0x00086bc8
  *   stdio_reset_ungetc_buffer                <= FUN_00087862 @ 0x00087862
  *   fnmatch_build_class_table                <= FUN_0008789c @ 0x0008789c
@@ -19,8 +21,8 @@
 typedef unsigned char byte;
 typedef unsigned int uint;
 
-extern int FUN_00079278(int, void*, void*, void*);
-extern int FUN_0007932c(int, void*, void*, void*);
+extern int vfprintf_field_scan_match(int, void*, void*, void*);
+extern int scanf_convert_integer_field(int, void*, void*, void*);
 extern int mem_find_byte(int, int, int);
 extern void *stdio_reset_ungetc_buffer(void*, void*);
 extern void *fnmatch_build_class_table(void*, void*);
@@ -183,9 +185,9 @@ LAB_00079156:
     }
   }
   if (state.kind < 3) {
-    iVar2 = FUN_00079278(param_1, &state, param_2, &local_2a8);
+    iVar2 = vfprintf_field_scan_match(param_1, &state, param_2, &local_2a8);
   } else if (state.kind < 5) {
-    iVar2 = FUN_0007932c(param_1, &state, param_2, &local_2a8);
+    iVar2 = scanf_convert_integer_field(param_1, &state, param_2, &local_2a8);
   } else {
     iVar2 = param_1;
     if (*(volatile unsigned*)((unsigned long)&rodata_79274) /*=0x79274*/ == 0) goto LAB_00078fae;

@@ -2,11 +2,15 @@
  * public-name: qspi_nor_configure
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   arch_irq_priority_set                    <= FUN_0005010c @ 0x0005010c
  *   qspi_get_zephyr_ret_code                 <= FUN_00060990 @ 0x00060990
  *   qspi_nor_acquire                         <= FUN_00060a10 @ 0x00060a10
+ *   qspi_nor_suspend_bus                     <= FUN_00060a5c @ 0x00060a5c
  *   qspi_nor_send_cinstr                     <= FUN_00060ab0 @ 0x00060ab0
  *   qspi_nor_configure                       <= FUN_00060c00 @ 0x00060c00
  *   nrfx_qspi_init                           <= FUN_00066994 @ 0x00066994
+ *   qspi_log_forward                         <= FUN_000838d6 @ 0x000838d6
+ *   qspi_pinctrl_apply_state                 <= FUN_000838dc @ 0x000838dc
  *   audio_apply_config_cmd_0xab              <= FUN_0008397e @ 0x0008397e
  *   qspi_rdsr                                <= FUN_000839a6 @ 0x000839a6
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
@@ -21,16 +25,16 @@
 /* Reconstructed FUN_00060c00 @ 0x00060c00 (432-byte executable extent). */
 #include <stdint.h>
 
-extern void FUN_0005010c(uint32_t irq, int priority, int flags);
+extern void arch_irq_priority_set(uint32_t irq, int priority, int flags);
 extern int qspi_get_zephyr_ret_code(int registration_result);
 extern int qspi_nor_acquire(void *context);
-extern void FUN_00060a5c(void *context);
+extern void qspi_nor_suspend_bus(void *context);
 extern int qspi_nor_send_cinstr(void *context, uint8_t *command, uint8_t mode);
 #define g1_recon_nrfx_qspi_init nrfx_qspi_init
 extern int g1_recon_nrfx_qspi_init(void *device, uintptr_t callback,
                                    void *callback_context);
-extern void FUN_000838d6(uintptr_t source, uint32_t level, const void *record);
-extern int FUN_000838dc(uintptr_t transport, void *result,
+extern void qspi_log_forward(uintptr_t source, uint32_t level, const void *record);
+extern int qspi_pinctrl_apply_state(uintptr_t transport, void *result,
                         uintptr_t unused, void *owner);
 extern int audio_apply_config_cmd_0xab(void *context);
 extern int qspi_rdsr(void *context);
@@ -86,7 +90,7 @@ log_transition_error(int error, uint32_t expected_state)
         error,
         0x0200u,
     };
-    FUN_000838d6(0x00088270u, 0x2440u, &record);
+    qspi_log_forward(0x00088270u, 0x2440u, &record);
 }
 
 int qspi_nor_configure(struct driver_context *context)
@@ -95,12 +99,12 @@ int qspi_nor_configure(struct driver_context *context)
 
     /* The transport wrapper's third register is unused; the fourth carries
      * the owning configuration object in the shipped call sequence. */
-    int result = FUN_000838dc(*(uintptr_t *)(configuration + 0x34),
+    int result = qspi_pinctrl_apply_state(*(uintptr_t *)(configuration + 0x34),
                               0, 0, configuration);
     if (result < 0)
         return result;
 
-    FUN_0005010c(0x2bu, 1, 0);
+    arch_irq_priority_set(0x2bu, 1, 0);
     *(volatile uint32_t *)0x500055b8u = 0;
     int registration = g1_recon_nrfx_qspi_init(configuration, 0x000838cbu,
                                                context->callback_context);
@@ -121,7 +125,7 @@ int qspi_nor_configure(struct driver_context *context)
     result = qspi_rdsr(context);
     if (result < 0) {
         const struct log3 record = {3, 0x000f5c49u, result};
-        FUN_000838d6(0x00088270u, 0x1840u, &record);
+        qspi_log_forward(0x00088270u, 0x1840u, &record);
         return result;
     }
 
@@ -152,7 +156,7 @@ int qspi_nor_configure(struct driver_context *context)
         } while ((result & 1) != 0);
     }
 
-    FUN_00060a5c(context);
+    qspi_nor_suspend_bus(context);
     frame.payload = frame.response;
     frame.payload_length = 3;
     frame.opcode = 0x9f;
@@ -162,7 +166,7 @@ int qspi_nor_configure(struct driver_context *context)
     result = qspi_nor_acquire(context);
     if (result == 0) {
         result = qspi_nor_send_cinstr(context, (uint8_t *)&frame.opcode, 0);
-        FUN_00060a5c(context);
+        qspi_nor_suspend_bus(context);
         if (result == 0) {
             result = memcmp(configuration + 0x30, frame.response, 3);
             if (result == 0)
@@ -174,10 +178,10 @@ int qspi_nor_configure(struct driver_context *context)
                 {frame.response[0], frame.response[1], frame.response[2]},
                 {configuration[0x30], configuration[0x31], configuration[0x32]},
             };
-            FUN_000838d6(0x00088270u, 0x4040u, &record);
+            qspi_log_forward(0x00088270u, 0x4040u, &record);
         }
     } else {
-        FUN_00060a5c(context);
+        qspi_nor_suspend_bus(context);
     }
     return -0x13;
 }

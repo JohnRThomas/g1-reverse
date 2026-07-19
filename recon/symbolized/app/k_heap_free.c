@@ -3,6 +3,7 @@
  * public-name: k_heap_free
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   sys_heap_free                            <= FUN_0004b214 @ 0x0004b214
  *   k_heap_free                              <= FUN_00071b2c @ 0x00071b2c
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
@@ -17,13 +18,13 @@
 
 extern int z_spin_lock_valid(void *lock);
 extern void z_spin_lock_set_owner(void *lock);
-extern void FUN_0004b214(void *heap, void *memory);
+extern void sys_heap_free(void *heap, void *memory);
 extern int z_unpend_all(void *wait_queue);
 extern void z_reschedule(void *lock, uint32_t key);
 extern int z_spin_unlock_valid(void *lock);
 #define z_spin_lock_valid z_spin_lock_valid
 #define z_spin_lock_set_owner z_spin_lock_set_owner
-#define sys_heap_free FUN_0004b214
+#define sys_heap_free sys_heap_free
 #define z_unpend_all z_unpend_all
 #define z_reschedule z_reschedule
 #define z_spin_unlock_valid z_spin_unlock_valid

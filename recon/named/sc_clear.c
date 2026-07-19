@@ -6,6 +6,8 @@
  *   bt_gatt_clear_sc                         <= FUN_0005a044 @ 0x0005a044
  *   sc_clear                                 <= FUN_0005a090 @ 0x0005a090
  *   bt_addr_le_is_bonded                     <= FUN_00080f92 @ 0x00080f92
+ *   gatt_sc_ctx_clear                        <= FUN_00082928 @ 0x00082928
+ *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  * address symbols (name @ address):
  *   rodata_88128                             @ 0x00088128
  *   rodata_f47c1                             @ 0x000f47c1
@@ -14,9 +16,9 @@
 
 extern int bt_addr_le_is_bonded(unsigned char a, int b);
 extern int find_sc_cfg_59bcc(unsigned char a, int b);
-extern void FUN_00082928(void);
+extern void gatt_sc_ctx_clear(void);
 extern int bt_gatt_clear_sc(void);
-extern void FUN_00082a42(int a, int b, void *c);
+extern void log_msg_create_3arg(int a, int b, void *c);
 
 void sc_clear(int param_1)
 {
@@ -26,7 +28,7 @@ void sc_clear(int param_1)
     if (iVar1 == 0) {
         iVar1 = find_sc_cfg_59bcc(*(unsigned char *)(param_1 + 8), param_1 + 0x90);
         if (iVar1 != 0) {
-            FUN_00082928();
+            gatt_sc_ctx_clear();
         }
     } else {
         int iStack_18 = bt_gatt_clear_sc();
@@ -34,7 +36,7 @@ void sc_clear(int param_1)
             int local_20 = 3;
             int local_1c = 0xf47c1;
             (void)local_1c;
-            FUN_00082a42(0x88128, 0x1840, &local_20);
+            log_msg_create_3arg(0x88128, 0x1840, &local_20);
         }
     }
 }

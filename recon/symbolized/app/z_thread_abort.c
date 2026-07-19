@@ -3,13 +3,16 @@
  * public-name: z_thread_abort
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   arch_swap                                <= FUN_000501d4 @ 0x000501d4
  *   mpu_region_index_lookup                  <= FUN_00050304 @ 0x00050304
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   sched_update_cache                       <= FUN_000737d8 @ 0x000737d8
  *   sched_ready_queue_insert                 <= FUN_00073840 @ 0x00073840
  *   dlist_unlink_node                        <= FUN_00073cdc @ 0x00073cdc
  *   z_abort_thread_timeout                   <= FUN_00074274 @ 0x00074274
+ *   z_abort_timeout                          <= FUN_00074d74 @ 0x00074d74
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -42,12 +45,12 @@ extern int z_spin_lock_valid(void *lock);
 extern void z_spin_lock_set_owner(void *lock);
 extern int z_spin_unlock_valid(void *lock);
 extern void z_abort_thread_timeout(void *thread);
-extern void FUN_00074d74(void *timeout);
+extern void z_abort_timeout(void *timeout);
 extern void dlist_unlink_node(void *runq, void *thread);
 extern void sched_ready_queue_insert(void *thread);
-extern void FUN_000737d8(int reschedule);
+extern void sched_update_cache(int reschedule);
 extern void mpu_region_index_lookup(void *thread);
-extern void FUN_000501d4(uint32_t key);
+extern void arch_swap(uint32_t key);
 extern void printk(uint32_t, ...);
 extern void assert_post_action(uint32_t, uint32_t);
 
@@ -55,12 +58,12 @@ extern void assert_post_action(uint32_t, uint32_t);
 #define z_spin_lock_set_owner z_spin_lock_set_owner
 #define z_spin_unlock_valid z_spin_unlock_valid
 #define z_unpend_thread_no_timeout z_abort_thread_timeout
-#define z_abort_thread_timeout FUN_00074d74
+#define z_abort_thread_timeout z_abort_timeout
 #define runq_remove dlist_unlink_node
 #define ready_thread sched_ready_queue_insert
-#define update_cache FUN_000737d8
+#define update_cache sched_update_cache
 #define arch_float_disable mpu_region_index_lookup
-#define z_swap FUN_000501d4
+#define z_swap arch_swap
 #define assert_log printk
 #define assert_panic assert_post_action
 

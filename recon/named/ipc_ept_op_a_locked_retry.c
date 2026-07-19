@@ -2,6 +2,7 @@
  * public-name: ipc_ept_op_a_locked_retry
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   dev_send_cmd16_payload                   <= FUN_00025670 @ 0x00025670
  *   ipc_ept_op_a_locked_retry                <= FUN_000256dc @ 0x000256dc
  *   sleep_fixed_33_ticks                     <= FUN_0007c87a @ 0x0007c87a
  * address symbols (name @ address):
@@ -9,7 +10,7 @@
  */
 /* Reconstructed FUN_000256dc @ 0x256dc  (parity: 300/300 trials, PROVEN) */
 extern void thunk_FUN_000723b8(unsigned,unsigned,unsigned,unsigned,int,unsigned);
-extern int FUN_00025670(int,unsigned,unsigned,unsigned,int);
+extern int dev_send_cmd16_payload(int,unsigned,unsigned,unsigned,int);
 extern void thunk_FUN_00072558(unsigned);
 extern unsigned long long sleep_fixed_33_ticks(void);
 extern void log_message(unsigned,unsigned,unsigned,int);
@@ -23,7 +24,7 @@ int ipc_ept_op_a_locked_retry(int param_1, unsigned param_2, unsigned param_3, i
         unsigned lock_arg = param_2;
         while (1){
             thunk_FUN_000723b8(uVar5, lock_arg, 0xffffffff, 0xffffffff, param_1, param_2);
-            iVar1 = FUN_00025670(iVar3, *(unsigned short*)(iVar3 + 8), param_2, param_3, param_4);
+            iVar1 = dev_send_cmd16_payload(iVar3, *(unsigned short*)(iVar3 + 8), param_2, param_3, param_4);
             thunk_FUN_00072558(uVar5);
             if (iVar1 == 0) break;
             iVar4 = iVar4 - 1;

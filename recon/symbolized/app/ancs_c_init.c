@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   ancs_c_init                              <= FUN_0001905c @ 0x0001905c
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   ancs_service_ctx_clear                   <= FUN_0007f69e @ 0x0007f69e
  *   bt_ancs_register_attr                    <= FUN_0007f772 @ 0x0007f772
  *   bt_ancs_register_app_attr                <= FUN_0007f79e @ 0x0007f79e
  * address symbols (name @ address):
@@ -18,7 +19,7 @@
 #include <stdint.h>
 extern int log_message(int,...);
 extern int debug_print(int,...);
-extern int FUN_0007f69e(int,...);
+extern int ancs_service_ctx_clear(int,...);
 extern int bt_ancs_register_attr(int,...);
 extern int bt_ancs_register_app_attr(int,...);
 #define C8 (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)
@@ -27,7 +28,7 @@ extern int bt_ancs_register_app_attr(int,...);
 int ancs_c_init(int param_1, unsigned param_2, unsigned param_3, unsigned param_4)
 {
     int iVar1; unsigned uVar2;
-    iVar1 = FUN_0007f69e(((unsigned long)&g_ancs_client) /*=0x20006ae8*/);
+    iVar1 = ancs_service_ctx_clear(((unsigned long)&g_ancs_client) /*=0x20006ae8*/);
     if(iVar1 == 0){
         iVar1 = bt_ancs_register_attr(((unsigned long)&g_ancs_client) /*=0x20006ae8*/, 0, param_1+0x10, 0x20, param_4);
         if(iVar1 == 0){

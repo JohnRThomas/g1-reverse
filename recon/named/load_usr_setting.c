@@ -7,6 +7,7 @@
  *   reset_usr_setting                        <= FUN_00022ddc @ 0x00022ddc
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
  *   set_test_mode                            <= FUN_00032ef0 @ 0x00032ef0
+ *   save_usr_setting                         <= FUN_0007c28e @ 0x0007c28e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_9e60c                             @ 0x0009e60c
@@ -48,7 +49,7 @@ extern int flash_settings_read(uint32_t address, void *destination, uint32_t len
 extern void reset_usr_setting(void *settings);
 extern int is_battery_critical(void);
 extern void set_test_mode(uint32_t mode);
-extern void FUN_0007c28e(void *settings, uint32_t value);
+extern void save_usr_setting(void *settings, uint32_t value);
 extern void memset_bytes(void *destination, int value, uint32_t length);
 
 int load_usr_setting(uint8_t *settings)
@@ -106,7 +107,7 @@ int load_usr_setting(uint8_t *settings)
     }
     if ((int8_t)settings[0xfea] == 11) {
         settings[0xfea] = 10;
-        FUN_0007c28e(settings, 0);
+        save_usr_setting(settings, 0);
     }
 
     set_test_mode(record.critical_mode < 2 ? record.critical_mode : 0);

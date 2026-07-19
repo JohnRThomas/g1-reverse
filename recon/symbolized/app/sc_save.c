@@ -7,6 +7,8 @@
  *   log_gatt_sc_store_failure                <= FUN_0005a0e8 @ 0x0005a0e8
  *   sc_save                                  <= FUN_0005a128 @ 0x0005a128
  *   bt_addr_le_is_bonded                     <= FUN_00080f92 @ 0x00080f92
+ *   bt_addr_le_copy_828da                    <= FUN_000828da @ 0x000828da
+ *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  * address symbols (name @ address):
  *   rodata_88128                             @ 0x00088128
  *   rodata_f2b3a                             @ 0x000f2b3a
@@ -15,8 +17,8 @@
 /* Reconstructed FUN_0005a128 @ 0x5a128  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void* find_sc_cfg_59bcc(int,int);
-extern void FUN_000828da(void*,unsigned);
-extern void FUN_00082a42(int,int,void*);
+extern void bt_addr_le_copy_828da(void*,unsigned);
+extern void log_msg_create_3arg(int,int,void*);
 extern int bt_addr_le_is_bonded(int,void*);
 extern void log_gatt_sc_store_failure(void *entry);
 
@@ -27,11 +29,11 @@ void sc_save(unsigned char param_1, unsigned param_2, unsigned param_3, unsigned
         puVar1 = (unsigned char*)find_sc_cfg_59bcc(0, ((unsigned long)&rodata_f2b3a) /*=0xf2b3a*/);
         if (puVar1 == 0){
             loc[0]=2; loc[1]=((unsigned long)&rodata_f47f3) /*=0xf47f3*/;
-            FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1040, (void*)&loc[0]);
+            log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1040, (void*)&loc[0]);
             return;
         }
         *puVar1 = param_1;
-        FUN_000828da(puVar1+1, param_2);
+        bt_addr_le_copy_828da(puVar1+1, param_2);
     }
     unsigned a = *(unsigned short*)(puVar1+8);
     unsigned uVar3 = *(unsigned short*)(puVar1+0xa);

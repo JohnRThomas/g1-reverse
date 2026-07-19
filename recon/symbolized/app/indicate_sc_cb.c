@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   gatt_discover                            <= FUN_000187e8 @ 0x000187e8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   bt_conn_disconnect_by_state              <= FUN_00056a68 @ 0x00056a68
  * address symbols (name @ address):
  *   rodata_9a8f9                             @ 0x0009a8f9
  *   rodata_9b1da                             @ 0x0009b1da
@@ -18,7 +19,7 @@
 
 extern void gatt_discover(uint32_t connection, uint32_t enabled);
 extern void debug_print(uintptr_t format, ...);
-extern void FUN_00056a68(uint32_t connection, uint32_t reason);
+extern void bt_conn_disconnect_by_state(uint32_t connection, uint32_t reason);
 extern void log_message(uintptr_t format, ...);
 
 void indicate_sc_cb(const uint32_t *connection_ref, uint32_t security_level,
@@ -46,5 +47,5 @@ void indicate_sc_cb(const uint32_t *connection_ref, uint32_t security_level,
             debug_print(((unsigned long)&rodata_9a8f9) /*=0x9a8f9*/, ((unsigned long)&rodata_9b1da) /*=0x9b1da*/);
     }
 
-    FUN_00056a68(*connection_ref, 0x13u);
+    bt_conn_disconnect_by_state(*connection_ref, 0x13u);
 }

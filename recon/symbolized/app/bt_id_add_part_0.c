@@ -4,12 +4,17 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   bt_hci_cmd_create                        <= FUN_00053cd4 @ 0x00053cd4
+ *   bt_hci_cmd_send_sync                     <= FUN_00053d70 @ 0x00053d70
  *   bt_id_add_part_0                         <= FUN_00054ea8 @ 0x00054ea8
+ *   bt_le_adv_legacy_invoke                  <= FUN_00055710 @ 0x00055710
  *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
  *   bt_conn_lookup_state_le                  <= FUN_00056f08 @ 0x00056f08
  *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   bt_addr_le_copy_80fc4                    <= FUN_00080fc4 @ 0x00080fc4
  *   hci_id_add                               <= FUN_00080fd2 @ 0x00080fd2
+ *   bt_id_addr_update_thunk                  <= FUN_0008104a @ 0x0008104a
  *   addr_res_enable                          <= FUN_00081050 @ 0x00081050
+ *   net_buf_simple_add_mem                   <= FUN_00083740 @ 0x00083740
  * address symbols (name @ address):
  *   ADDR_bt_le_adv_clear_pending_flag_THUMB  @ 0x00081081
  *   rodata_810ab                             @ 0x000810ab
@@ -31,11 +36,11 @@
 
 extern void *bt_conn_lookup_state_le(uint32_t, const void *, uint32_t); /* bt_conn_lookup_state_le */
 extern void ble_conn_unref(void *); /* bt_conn_unref */
-extern void FUN_00055710(void *, void *); /* bt_le_ext_adv_foreach */
+extern void bt_le_adv_legacy_invoke(void *, void *); /* bt_le_ext_adv_foreach */
 extern int addr_res_enable(uint32_t); /* addr_res_enable */
-extern void FUN_0008104a(uint32_t, uint32_t, const void *); /* log frontend */
-extern int FUN_00053d70(uint32_t, void *, void *); /* bt_hci_cmd_send_sync */
-extern void *FUN_00080fc4(void *, const void *); /* bt_addr_le_copy */
+extern void bt_id_addr_update_thunk(uint32_t, uint32_t, const void *); /* log frontend */
+extern int bt_hci_cmd_send_sync(uint32_t, void *, void *); /* bt_hci_cmd_send_sync */
+extern void *bt_addr_le_copy_80fc4(void *, const void *); /* bt_addr_le_copy */
 extern uint8_t *bt_hci_cmd_create(uint32_t, uint32_t); /* bt_hci_cmd_create */
 #ifdef G1_APP_SDK_INLINE_COHESION
 extern uintptr_t net_buf_simple_add(void *, uint32_t); /* net_buf_simple_add */
@@ -53,20 +58,20 @@ g1_hci_id_add_inline(uint8_t id, const void *address, const void *peer_irk)
     if (packet == 0)
         return -105;
     command = (uint8_t *)net_buf_simple_add(packet + 12, 0x27U);
-    FUN_00080fc4(command, address);
+    bt_addr_le_copy_80fc4(command, address);
     __builtin_memcpy(command + 7, peer_irk, 16U);
     __builtin_memset(command + 0x17, 0, 16U);
-    return FUN_00053d70(0x2027U, packet, 0);
+    return bt_hci_cmd_send_sync(0x2027U, packet, 0);
 }
 #define hci_id_add g1_hci_id_add_inline
 #else
 extern int hci_id_add(uint8_t, const void *, const void *); /* hci_id_add */
 #endif
-extern void *FUN_00083740(void *, const void *, uint32_t); /* memcpy */
+extern void *net_buf_simple_add_mem(void *, const void *, uint32_t); /* memcpy */
 
 #define ID_LOG(mode_, text_) do {                                      \
     uint32_t package_[2] = { 2U, (text_) };                            \
-    FUN_0008104a(((unsigned long)&rodata_88150) /*=0x88150*/, (mode_), package_);                     \
+    bt_id_addr_update_thunk(((unsigned long)&rodata_88150) /*=0x88150*/, (mode_), package_);                     \
 } while (0)
 
 void bt_id_add_part_0(uint8_t *keys)
@@ -82,7 +87,7 @@ void bt_id_add_part_0(uint8_t *keys)
         return;
     }
 
-    FUN_00055710((void *)((unsigned long)&rodata_810ab) /*=0x810ab*/, 0);
+    bt_le_adv_legacy_invoke((void *)((unsigned long)&rodata_810ab) /*=0x810ab*/, 0);
     if (bt_dev[0x121] != 0U && addr_res_enable(0U) != 0) {
         ID_LOG(0x1080U, ((unsigned long)&rodata_f35bf) /*=0xf35bf*/);
         goto resume;
@@ -91,7 +96,7 @@ void bt_id_add_part_0(uint8_t *keys)
     if (bt_dev[0x121] == bt_dev[0x120]) {
         int error;
         ID_LOG(0x1080U, ((unsigned long)&rodata_f35e4) /*=0xf35e4*/);
-        error = FUN_00053d70(0x2029U, 0, 0);
+        error = bt_hci_cmd_send_sync(0x2029U, 0, 0);
         if (error != 0) {
             ID_LOG(0x1040U, ((unsigned long)&rodata_f3615) /*=0xf3615*/);
             goto resume;
@@ -116,15 +121,15 @@ void bt_id_add_part_0(uint8_t *keys)
         {
             uint8_t command[8];
             uint8_t *packet;
-            FUN_00080fc4(command, keys + 1);
+            bt_addr_le_copy_80fc4(command, keys + 1);
             command[7] = 1U;
             packet = bt_hci_cmd_create(0x204eU, 8U);
             if (packet == 0) {
                 ID_LOG(0x1040U, ((unsigned long)&rodata_f367f) /*=0xf367f*/);
                 goto resume;
             }
-            FUN_00083740(packet + 12, command, 8U);
-            if (FUN_00053d70(0x204eU, packet, 0) != 0) {
+            net_buf_simple_add_mem(packet + 12, command, 8U);
+            if (bt_hci_cmd_send_sync(0x204eU, packet, 0) != 0) {
                 ID_LOG(0x1040U, ((unsigned long)&rodata_f367f) /*=0xf367f*/);
                 goto resume;
             }
@@ -133,5 +138,5 @@ void bt_id_add_part_0(uint8_t *keys)
 
 resume:
     (void)addr_res_enable(1U);
-    FUN_00055710((void *)ADDR_bt_le_adv_clear_pending_flag_THUMB /*=0x81081*/, 0);
+    bt_le_adv_legacy_invoke((void *)ADDR_bt_le_adv_clear_pending_flag_THUMB /*=0x81081*/, 0);
 }

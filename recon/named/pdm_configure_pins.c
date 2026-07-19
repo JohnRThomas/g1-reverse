@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   arch_irq_enable                          <= FUN_000500ac @ 0x000500ac
+ *   nrf_gpio_pin_port_decode_65ff4           <= FUN_00065ff4 @ 0x00065ff4
  *   pdm_configure_pins                       <= FUN_00066050 @ 0x00066050
  * address symbols (name @ address):
  *   NRF_PDM_BASE                             @ 0x50026000
@@ -10,7 +11,7 @@
 /* Reconstructed FUN_00066050 @ 0x66050  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int arch_irq_enable(int,uint32_t,uint32_t,uint32_t,void*);
-extern int FUN_00065ff4(uint32_t*);
+extern int nrf_gpio_pin_port_decode_65ff4(uint32_t*);
 void pdm_configure_pins(uint8_t* param_1, uint32_t param_2){
     volatile uint32_t *const pdm_events_started =
         (volatile uint32_t *)0x50026100; /* PDM EVENTS_STARTED; raw: 0x50026000 + 0x100 */
@@ -20,14 +21,14 @@ void pdm_configure_pins(uint8_t* param_1, uint32_t param_2){
     uint32_t local_1c; int iVar8;
     if(param_1[0x15]==0){
         local_1c = *(volatile uint32_t*)(param_1+4);
-        iVar8 = FUN_00065ff4(&local_1c);
+        iVar8 = nrf_gpio_pin_port_decode_65ff4(&local_1c);
         *(volatile uint32_t*)(iVar8+0xc) = 1u << (local_1c & 0xff);
         local_1c = *(volatile uint32_t*)(param_1+4);
-        iVar8 = FUN_00065ff4(&local_1c);
+        iVar8 = nrf_gpio_pin_port_decode_65ff4(&local_1c);
         iVar8 = iVar8 + local_1c*4;
         *(volatile uint32_t*)(iVar8+0x200) = (*(volatile uint32_t*)(iVar8+0x200) & 0xfffcf0f0u) | 3;
         local_1c = *(volatile uint32_t*)(param_1+8);
-        iVar8 = FUN_00065ff4(&local_1c);
+        iVar8 = nrf_gpio_pin_port_decode_65ff4(&local_1c);
         iVar8 = iVar8 + local_1c*4;
         *(volatile uint32_t*)(iVar8+0x200) = *(volatile uint32_t*)(iVar8+0x200) & 0xfffcf0f0u;
     }

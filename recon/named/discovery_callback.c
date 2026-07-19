@@ -2,12 +2,14 @@
  * public-name: discovery_callback
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   gatt_dm_notify_discovery_complete        <= FUN_0004e964 @ 0x0004e964
  *   gatt_dm_data_add_attribute               <= FUN_0004e9a0 @ 0x0004e9a0
  *   uuid_store                               <= FUN_0004ea28 @ 0x0004ea28
  *   bt_gatt_discover                         <= FUN_0005b9cc @ 0x0005b9cc
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   attr_find_by_handle                      <= FUN_0007f386 @ 0x0007f386
+ *   gatt_dm_log_helper                       <= FUN_0007f406 @ 0x0007f406
  *   discovery_complete_error                 <= FUN_0007f40c @ 0x0007f40c
  *   discovery_complete_not_found             <= FUN_0007f438 @ 0x0007f438
  *   bt_gatt_dm_attr_service_val              <= FUN_0007f460 @ 0x0007f460
@@ -35,13 +37,13 @@
 /* Reconstructed FUN_0004ea78 @ 0x4ea78  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char byte; typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort;
-extern void FUN_0004e964(void); extern int gatt_dm_data_add_attribute(int,int); extern int uuid_store(int);
+extern void gatt_dm_notify_discovery_complete(void); extern int gatt_dm_data_add_attribute(int,int); extern int uuid_store(int);
 extern int bt_gatt_discover(int,int); extern void assert_post_action(int,int); extern int printk(int,...);
-extern int attr_find_by_handle(int,int); extern int FUN_0007f406(int,int,int); extern int discovery_complete_error(int,int);
+extern int attr_find_by_handle(int,int); extern int gatt_dm_log_helper(int,int,int); extern int discovery_complete_error(int,int);
 extern int discovery_complete_not_found(int); extern int bt_gatt_dm_attr_service_val(int); extern int bt_gatt_dm_attr_chrc_val(int);
 extern int bt_uuid_cmp(int,int);
 
-#define discovery_complete FUN_0004e964
+#define discovery_complete gatt_dm_notify_discovery_complete
 #define attr_store gatt_dm_data_add_attribute
 #define uuid_store uuid_store
 #define bt_gatt_discover bt_gatt_discover
@@ -58,7 +60,7 @@ extern int bt_uuid_cmp(int,int);
   record_[0] = 3;                                                     \
   record_[1] = (uint32_t)(message_);                                  \
   record_[2] = (uint32_t)(value_);                                    \
-  FUN_0007f406(0x88130, 0x1840, (int)record_);                         \
+  gatt_dm_log_helper(0x88130, 0x1840, (int)record_);                         \
 } while (0)
 
 undefined4 discovery_callback(int param_1,undefined4 *param_2,int param_3)
@@ -82,7 +84,7 @@ undefined4 discovery_callback(int param_1,undefined4 *param_2,int param_3)
   piVar2 = (int*)0x2000a154;
   if (*(volatile int*)piVar2 != param_1) {
     local_24 = 0xf1299; local_28 = 2;
-    FUN_0007f406(0x88130,0x1040,(int)frame.log);
+    gatt_dm_log_helper(0x88130,0x1040,(int)frame.log);
     uVar8 = 0xfffffff2;
     goto LAB_eaa6;
   }
@@ -122,7 +124,7 @@ LAB_eaa6:
       if (iVar3 == 0) {
 LAB_eb88:
         local_28 = 2; local_24 = uVar9;
-        FUN_0007f406(0x88130,0x1040,(int)&local_28);
+        gatt_dm_log_helper(0x88130,0x1040,(int)&local_28);
       } else {
         piVar5 = (int*)bt_gatt_dm_attr_service_val(iVar3);
         if (piVar5 == 0) { printk(0x99cbd,0xf13e5,0xf11bc,0x13b); uVar9 = 0x13b; goto LAB_eb7e; }

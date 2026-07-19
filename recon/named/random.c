@@ -9,6 +9,7 @@
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   set_shutdown_flag                        <= FUN_0007cbfe @ 0x0007cbfe
  *   snprintk                                 <= FUN_0007ddbe @ 0x0007ddbe
+ *   bt_conn_get_field_0x90                   <= FUN_00081526 @ 0x00081526
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   strcpy                                   <= FUN_00086fee @ 0x00086fee
@@ -41,7 +42,7 @@ extern void k_sem_give(int a);
 extern void set_shutdown_flag(unsigned a, int b);
 extern void snprintk(void *a, int b, unsigned c, ...);
 extern void FUN_00081526_dummy(void);
-extern unsigned char *FUN_00081526(unsigned a);
+extern unsigned char *bt_conn_get_field_0x90(unsigned a);
 extern void memcpy(void *a, void *b, uint c);
 extern void memset_bytes(void *a, int b, int c);
 extern void strcpy(void *a, unsigned b);
@@ -80,7 +81,7 @@ void random(unsigned param_1, unsigned char *param_2, uint param_3)
     log_record.header = 0;
     memset_bytes(log_record.text, 0, sizeof(log_record.text));
     memset_bytes(&forwarding, 0, sizeof(forwarding));
-    puVar3 = FUN_00081526(param_1);
+    puVar3 = bt_conn_get_field_0x90(param_1);
     switch (*puVar3) {
     case 0: uVar4 = 0x9a1c8; break;
     case 1: uVar4 = 0x9a1cf; break;

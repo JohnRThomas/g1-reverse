@@ -8,6 +8,10 @@
  *   cjson_create_array                       <= FUN_00064c8c @ 0x00064c8c
  *   cjson_create_object                      <= FUN_00064ca4 @ 0x00064ca4
  *   free                                     <= FUN_00076d7c @ 0x00076d7c
+ *   cjson_print_unformatted                  <= FUN_0008501a @ 0x0008501a
+ *   cjson_add_item_to_object_thunk           <= FUN_00085046 @ 0x00085046
+ *   cjson_add_bool_to_object                 <= FUN_0008504c @ 0x0008504c
+ *   cjson_add_string_to_object               <= FUN_0008509e @ 0x0008509e
  *   strcpy                                   <= FUN_00086fee @ 0x00086fee
  * address symbols (name @ address):
  *   rodata_9a1dd                             @ 0x0009a1dd
@@ -35,10 +39,10 @@ extern int  cjson_delete(int);
 extern int  cjson_create_array(void);
 extern int  cjson_create_object(void);
 extern void free(int);
-extern int  FUN_0008501a(int);
-extern void FUN_00085046(int,int,int);
-extern void FUN_0008504c(int,int,int);
-extern void FUN_0008509e(int,int,void*);
+extern int  cjson_print_unformatted(int);
+extern void cjson_add_item_to_object_thunk(int,int,int);
+extern void cjson_add_bool_to_object(int,int,int);
+extern void cjson_add_string_to_object(int,int,void*);
 extern void strcpy(int,int);
 extern void thunk_FUN_00084f2e(int,int,const void *,unsigned int);
 
@@ -50,22 +54,22 @@ int convert_app_whitelist_to_json(int param_1,int param_2,int param_3){
   if (param_1 == 0) { uVar6=0x1f1; iVar9=*g50; uVar7=0x000a88a9; goto final; }
   iVar9 = cjson_create_object();
   if (iVar9 == 0) { uVar6=0x1fa; iVar9=*g50; uVar7=0x000a88be; goto final; }
-  FUN_0008504c(iVar9,0x000a862c,(*pbVar1)&1);
-  FUN_0008504c(iVar9,0x000a864e,((unsigned int)*pbVar1<<0x1e)>>0x1f);
-  FUN_0008504c(iVar9,0x000a869b,((unsigned int)*pbVar1<<0x1d)>>0x1f);
-  FUN_0008504c(iVar9,0x000a866e,((unsigned int)*pbVar1<<0x1c)>>0x1f);
+  cjson_add_bool_to_object(iVar9,0x000a862c,(*pbVar1)&1);
+  cjson_add_bool_to_object(iVar9,0x000a864e,((unsigned int)*pbVar1<<0x1e)>>0x1f);
+  cjson_add_bool_to_object(iVar9,0x000a869b,((unsigned int)*pbVar1<<0x1d)>>0x1f);
+  cjson_add_bool_to_object(iVar9,0x000a866e,((unsigned int)*pbVar1<<0x1c)>>0x1f);
   iVar3 = cjson_create_object();
   if (iVar3 == 0) { uVar7=0x206; iVar3=*g50; uVar6=0x000a88d8; goto inner; }
-  FUN_0008504c(iVar3,0x0009e235,((unsigned int)*pbVar1<<0x1b)>>0x1f);
+  cjson_add_bool_to_object(iVar3,0x0009e235,((unsigned int)*pbVar1<<0x1b)>>0x1f);
   iVar4 = cjson_create_array();
   if (iVar4 == 0) { uVar7=0x20e; iVar3=*g50; uVar6=0x000a88f1; goto inner; }
   uVar10 = 0;
   for(;;){
     uVar8 = uVar10 & 0xff;
     if (pbVar1[1] <= uVar8) {
-      FUN_00085046(iVar3,0x000f3630,iVar4);
-      FUN_00085046(iVar9,0x0009e1b6,iVar3);
-      uVar6 = FUN_0008501a(iVar9);
+      cjson_add_item_to_object_thunk(iVar3,0x000f3630,iVar4);
+      cjson_add_item_to_object_thunk(iVar9,0x0009e1b6,iVar3);
+      uVar6 = cjson_print_unformatted(iVar9);
       if (*g50==0) log_message(0x000a892b,uVar6); else debug_print(0x000a892b,uVar6);
       strcpy(param_1,uVar6);
       uVar2 = strlen(uVar6);
@@ -76,8 +80,8 @@ int convert_app_whitelist_to_json(int param_1,int param_2,int param_3){
     iVar5 = cjson_create_object();
     uVar10 = uVar10 + 1;
     if (iVar5 == 0) break;
-    FUN_0008509e(iVar5,0x0009a1dd,(void*)(pbVar1 + uVar8*0x38 + 2));
-    FUN_0008509e(iVar5,0x000f33e4,(void*)(pbVar1 + uVar8*0x38 + 0x2a));
+    cjson_add_string_to_object(iVar5,0x0009a1dd,(void*)(pbVar1 + uVar8*0x38 + 2));
+    cjson_add_string_to_object(iVar5,0x000f33e4,(void*)(pbVar1 + uVar8*0x38 + 0x2a));
     thunk_FUN_00084f2e(iVar4,iVar5,
                        (const void *)(pbVar1 + uVar8*0x38 + 0x2a),uVar10);
   }

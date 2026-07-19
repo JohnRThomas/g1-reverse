@@ -11,21 +11,29 @@
  *   subcontracing_send_data_pkcs7            <= FUN_00021a40 @ 0x00021a40
  *   mobile_send_notification_to_ble_device_test <= FUN_00021c04 @ 0x00021c04
  *   simulator_ancs_calendar_schedule_trigger <= FUN_00021cd8 @ 0x00021cd8
+ *   refresh_and_read_box_field_timer         <= FUN_00025448 @ 0x00025448
  *   mark_master_or_low_battery_flag          <= FUN_0002efc0 @ 0x0002efc0
  *   debug_print_hex_dump                     <= FUN_0004a424 @ 0x0004a424
  *   sys_reboot                               <= FUN_0004c0a8 @ 0x0004c0a8
  *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
  *   cjson_create_object                      <= FUN_00064ca4 @ 0x00064ca4
  *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  *   k_uptime_get_0                           <= FUN_0007c18e @ 0x0007c18e
  *   ble_requeue_command_via_dispatch         <= FUN_0007c244 @ 0x0007c244
+ *   cjson_print_pretty                       <= FUN_00085014 @ 0x00085014
+ *   cjson_add_item_to_object_thunk           <= FUN_00085046 @ 0x00085046
+ *   cjson_object_add_number                  <= FUN_00085076 @ 0x00085076
+ *   cjson_add_string_to_object               <= FUN_0008509e @ 0x0008509e
  *   check_is_release_mode                    <= FUN_00086a06 @ 0x00086a06
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   vdprintf_to_fd                           <= FUN_00086f00 @ 0x00086f00
  *   strcpy                                   <= FUN_00086fee @ 0x00086fee
  *   __strcpy_chk                             <= FUN_00086ffe @ 0x00086ffe
  *   strncmp                                  <= FUN_00087036 @ 0x00087036
+ *   checked_strncpy_zero_pad                 <= FUN_00087080 @ 0x00087080
  *   strstr                                   <= FUN_000870be @ 0x000870be
  * address symbols (name @ address):
  *   ADDR_ble_requeue_command_via_dispatch_THUMB @ 0x0007c245
@@ -235,14 +243,14 @@ extern uint32_t debug_print(uintptr_t,...);
 extern uint32_t subcontracing_send_data_pkcs7(uintptr_t,...);
 extern uint32_t mobile_send_notification_to_ble_device_test(uintptr_t,...);
 extern uint32_t simulator_ancs_calendar_schedule_trigger(uintptr_t,...);
-extern uint32_t FUN_00025448(uintptr_t,...);
+extern uint32_t refresh_and_read_box_field_timer(uintptr_t,...);
 extern uint32_t mark_master_or_low_battery_flag(uintptr_t,...);
 extern uint32_t debug_print_hex_dump(uintptr_t,...);
 extern uint32_t sys_reboot(uintptr_t,...);
 extern uint32_t cjson_delete(uintptr_t,...);
 extern uint32_t cjson_create_object(uintptr_t,...);
 extern uint32_t z_impl_k_sem_take(uintptr_t,...);
-extern uint32_t FUN_00074844(uintptr_t,...);
+extern uint32_t k_sleep(uintptr_t,...);
 #ifdef G1_APP_SDK_INLINE_COHESION
 extern int64_t z_impl_k_uptime_ticks(void);
 /* Exact configured kernel.h/time_units.h owner: floor(ticks * 1000 / 32768). */
@@ -257,19 +265,19 @@ extern uint32_t k_uptime_get_0(uintptr_t,...); /* k_uptime_get_0 @ 0x0007c18e */
 #define g1_sdk_uptime_get_0(ignored) k_uptime_get_0(ignored)
 #endif
 extern uint32_t ble_requeue_command_via_dispatch(uintptr_t,...);
-extern uint32_t FUN_00085014(uintptr_t,...);
-extern uint32_t FUN_00085046(uintptr_t,...);
-extern uint32_t FUN_00085076(uintptr_t,...);
-extern uint32_t FUN_0008509e(uintptr_t,...);
+extern uint32_t cjson_print_pretty(uintptr_t,...);
+extern uint32_t cjson_add_item_to_object_thunk(uintptr_t,...);
+extern uint32_t cjson_object_add_number(uintptr_t,...);
+extern uint32_t cjson_add_string_to_object(uintptr_t,...);
 extern uint32_t check_is_release_mode(uintptr_t,...);
 extern uint32_t memcpy(uintptr_t,...);
-extern uint32_t FUN_00086c1e(uintptr_t,...);
+extern uint32_t safe_memcpy_checked(uintptr_t,...);
 extern uint32_t memset_bytes(uintptr_t,...);
 extern uint32_t vdprintf_to_fd(uintptr_t,...);
 extern uint32_t strcpy(uintptr_t,...);
 extern uint32_t __strcpy_chk(uintptr_t,...);
 extern uint32_t strncmp(uintptr_t,...);
-extern uint32_t FUN_00087080(uintptr_t,...);
+extern uint32_t checked_strncpy_zero_pad(uintptr_t,...);
 extern uint32_t strstr(uintptr_t,...);
 extern uint32_t change_work_mode_to(uintptr_t,...);
 extern uint32_t process_sync_buffer(uintptr_t,...);
@@ -319,7 +327,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
   cStack_51e = '\0';
   uStack_51d = 0;
   memset_bytes((uintptr_t)&uStack_51c,0,0xfc);
-  FUN_00086c1e((uintptr_t)&local_520,param_1,param_2,0x100);
+  safe_memcpy_checked((uintptr_t)&local_520,param_1,param_2,0x100);
   iVar5 = strcmp((uintptr_t)&local_520,DAT_0000f1e4);
   if (iVar5 == 0) {
     if (2 < *DAT_0000f1e8) {
@@ -346,7 +354,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
       pcVar18 = pcVar14;
       pcVar14 = pcVar18 + 1;
     } while (*pcVar18 != '@');
-    FUN_00087080((uintptr_t)&local_5a0,pcVar13,(int)pcVar18 - (int)pcVar13,0x20);
+    checked_strncpy_zero_pad((uintptr_t)&local_5a0,pcVar13,(int)pcVar18 - (int)pcVar13,0x20);
     __strcpy_chk((uintptr_t)&local_420,pcVar18 + 1,0x80);
     if (2 < *DAT_0000f1e8) {
       if (*DAT_0000f1ec == 0) {
@@ -388,7 +396,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
             pcVar14 = pcVar13;
           } while (*pcVar13 != '@');
           local_5c0 = 0;
-          FUN_00086c1e((uintptr_t)&local_5c0,&local_420,(int)pcVar14 - (int)&local_420,4);
+          safe_memcpy_checked((uintptr_t)&local_5c0,&local_420,(int)pcVar14 - (int)&local_420,4);
           if (2 < *piVar6) {
             if (*DAT_0000f1ec == 0) {
               log_message(PTR_s__s____cmd__s_0000f224,DAT_0000f1f0,&local_5c0);
@@ -404,7 +412,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
             pcVar18 = pcVar13;
             pcVar13 = pcVar18 + 1;
           } while (*pcVar18 != '\0');
-          FUN_00086c1e((uintptr_t)&local_5a0,pcVar14,(int)pcVar18 - (int)pcVar14,4);
+          safe_memcpy_checked((uintptr_t)&local_5a0,pcVar14,(int)pcVar18 - (int)pcVar14,4);
           if (2 < *piVar6) {
             if (*DAT_0000f1ec == 0) {
               log_message(PTR_s__s____en__s_0000f228,DAT_0000f1f0,&local_5a0);
@@ -464,7 +472,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
               debug_print(0);
             }
           }
-          FUN_00086c1e((uintptr_t)&local_5c4,pcVar14,(int)pcVar18 - (int)pcVar14,4);
+          safe_memcpy_checked((uintptr_t)&local_5c4,pcVar14,(int)pcVar18 - (int)pcVar14,4);
           iVar4 = check_is_release_mode((uintptr_t)&local_5c4);
           piVar1 = DAT_0000f470;
           if (*piVar6 < 3) {
@@ -520,12 +528,12 @@ LAB_0000fc12:
                   }
                 }
                 uVar8 = cjson_create_object(0);
-                FUN_00085076((int)DAT_0000fca0,uVar8,PTR_s_enable_0000fcd4);
-                FUN_00085076((int)DAT_0000fca8,uVar8,PTR_s_direction_0000fcd8);
-                FUN_0008509e(uVar8,DAT_0000fce0,PTR_DAT_0000fcdc);
+                cjson_object_add_number((int)DAT_0000fca0,uVar8,PTR_s_enable_0000fcd4);
+                cjson_object_add_number((int)DAT_0000fca8,uVar8,PTR_s_direction_0000fcd8);
+                cjson_add_string_to_object(uVar8,DAT_0000fce0,PTR_DAT_0000fcdc);
                 uVar12 = cjson_create_object(0);
-                FUN_00085046(uVar12,PTR_s_navigation_info_0000fce4,uVar8);
-                uVar8 = FUN_00085014(uVar12);
+                cjson_add_item_to_object_thunk(uVar12,PTR_s_navigation_info_0000fce4,uVar8);
+                uVar8 = cjson_print_pretty(uVar12);
                 uVar9 = strlen(0);
                 if (2 < *piVar6) {
                   if (*DAT_0000fcc8 == 0) {
@@ -570,13 +578,13 @@ LAB_0000fc12:
                     debug_print(0);
                   }
                 }
-                FUN_00086c1e((uintptr_t)&local_5a0,pcVar18,(int)pcVar13 - (int)pcVar18,0x80);
+                safe_memcpy_checked((uintptr_t)&local_5a0,pcVar18,(int)pcVar13 - (int)pcVar18,0x80);
                 pcVar14 = (char *)&local_5a0;
                 do {
                   pcVar13 = pcVar14;
                   pcVar14 = pcVar13 + 1;
                 } while (*pcVar13 != '#');
-                FUN_00087080((uintptr_t)&local_5c0,&local_5a0,(int)pcVar13 - (int)&local_5a0,0x20);
+                checked_strncpy_zero_pad((uintptr_t)&local_5c0,&local_5a0,(int)pcVar13 - (int)&local_5a0,0x20);
                 __strcpy_chk((uintptr_t)&local_420,pcVar13 + 1,0x80);
                 if (2 < *piVar6) {
                   if (*DAT_0000f76c == 0) {
@@ -620,11 +628,11 @@ LAB_0000effe:
             }
           }
           uVar8 = cjson_create_object(0);
-          FUN_00085076((int)DAT_0000f458,uVar8,PTR_s_enable_0000f498);
-          FUN_0008509e(uVar8,DAT_0000f4a0,PTR_DAT_0000f49c);
+          cjson_object_add_number((int)DAT_0000f458,uVar8,PTR_s_enable_0000f498);
+          cjson_add_string_to_object(uVar8,DAT_0000f4a0,PTR_DAT_0000f49c);
           uVar12 = cjson_create_object(0);
-          FUN_00085046(uVar12,DAT_0000f4a4,uVar8);
-          uVar8 = FUN_00085014(uVar12);
+          cjson_add_item_to_object_thunk(uVar12,DAT_0000f4a4,uVar8);
+          uVar8 = cjson_print_pretty(uVar12);
           uVar9 = strlen(0);
           if (2 < *piVar6) {
             if (*DAT_0000f470 == 0) {
@@ -672,7 +680,7 @@ LAB_0000f3f4:
                 memcpy((int)&local_5a0 + 3,pcVar14,0x68);
                 while (iVar10 = (**(code **)(iVar4 + 0xc))((uintptr_t)&local_5a0,0x6b), iVar10 != 0) {
                   uVar19 = uVar19 + 1 & 0xffff;
-                  FUN_00074844(0x148,0);
+                  k_sleep(0x148,0);
                   if ((*(char *)(iVar4 + 0x365) == '\0') || (*(char *)(iVar4 + 0x366) == '\0')) {
                     if (*DAT_0000f794 < 1) {
                       return 0;
@@ -691,7 +699,7 @@ LAB_0000f3f4:
                 }
               } while( true );
             }
-            FUN_00074844(0x148,0);
+            k_sleep(0x148,0);
           } while ((*(char *)(iVar4 + 0x365) != '\0') && (*(char *)(iVar4 + 0x366) != '\0'));
           if (*DAT_0000f794 < 1) {
             return 0;
@@ -751,7 +759,7 @@ LAB_0000f9d4:
                     debug_print(PTR_s__s____sys_reboot_because_reboot_c_0000fa78,DAT_0000fa74);
                   }
                   do {
-                    FUN_00074844(0x4000,0);
+                    k_sleep(0x4000,0);
                     puVar11 = (undefined *)sys_reboot(1);
 LAB_0000f82a:
                     log_message((uintptr_t)puVar11);
@@ -844,7 +852,7 @@ LAB_0000f932:
                   local_420 = strncmp((uintptr_t)&local_520,PTR_DAT_0000fac4,2);
                   if (local_420 == 0) {
                     memset_bytes((uintptr_t)&local_41c,0,0x3c);
-                    uVar12 = FUN_00025448(0);
+                    uVar12 = refresh_and_read_box_field_timer(0);
                     vdprintf_to_fd((uintptr_t)&local_420,0,0x40,PTR_s_VADC__d_TMR__d_0000fac8,uVar12,0);
 LAB_0000fa4a:
                     uVar12 = 0x40;

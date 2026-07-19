@@ -3,6 +3,7 @@
  * public-name: draw_locale_adjusted_label_pair
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   get_ui_mode_flag_byte1                   <= FUN_00023ee0 @ 0x00023ee0
  *   draw_locale_adjusted_label_pair          <= FUN_0003f2a8 @ 0x0003f2a8
  *   gui_utf_draw                             <= FUN_00043e90 @ 0x00043e90
  *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
@@ -15,7 +16,7 @@
 /* Reconstructed FUN_0003f2a8 @ 0x3f2a8  full 0xca-byte body */
 #include <stdint.h>
 
-extern int FUN_00023ee0(void);
+extern int get_ui_mode_flag_byte1(void);
 extern int device_info_text_width_get(void);
 extern int device_info_text_height_get_clamped(void);
 extern void gui_utf_draw(int, uint32_t, int, int, int, int, int,
@@ -26,7 +27,7 @@ void draw_locale_adjusted_label_pair(void)
     int a, b, c, d;
     uint32_t format;
 
-    if (FUN_00023ee0() == 6) {
+    if (get_ui_mode_flag_byte1() == 6) {
         a = device_info_text_width_get();
         b = device_info_text_height_get_clamped();
         c = device_info_text_width_get();

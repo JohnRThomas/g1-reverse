@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   get_device_type                          <= FUN_00016568 @ 0x00016568
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   dev_api_call_slot0                       <= FUN_0007ca54 @ 0x0007ca54
  * address symbols (name @ address):
  *   rodata_87d58                             @ 0x00087d58
  *   g_log_level                              @ 0x2000230c
@@ -14,7 +15,7 @@
 #include <stdint.h>
 
 extern int32_t get_device_type(void);
-extern int32_t FUN_0007ca54(uintptr_t device, uint32_t attribute,
+extern int32_t dev_api_call_slot0(uintptr_t device, uint32_t attribute,
                             void *configuration);
 extern void wait_for_event(uint32_t ticks, uint32_t unused);
 extern void log_message(uintptr_t format, ...);
@@ -59,7 +60,7 @@ uint32_t update_imu_mode(uint8_t *fusion, uint32_t mode,
     *(volatile uint32_t *)(fusion + 0x24) = 0u;
 
     for (attempt = 1u; attempt != 0x15u; ++attempt) {
-        result = FUN_0007ca54(*(volatile uint32_t *)(fusion + 0x1c),
+        result = dev_api_call_slot0(*(volatile uint32_t *)(fusion + 0x1c),
                               3u, fusion + 0x20);
         if (result >= 0)
             break;
@@ -75,7 +76,7 @@ uint32_t update_imu_mode(uint8_t *fusion, uint32_t mode,
         *(volatile uint32_t *)(fusion + 0x24) = 0u;
     }
     for (attempt = 1u; attempt != 0x15u; ++attempt) {
-        result = FUN_0007ca54(*(volatile uint32_t *)(fusion + 0x1c),
+        result = dev_api_call_slot0(*(volatile uint32_t *)(fusion + 0x1c),
                               7u, fusion + 0x20);
         if (result >= 0)
             break;

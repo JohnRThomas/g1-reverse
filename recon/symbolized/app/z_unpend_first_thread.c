@@ -8,6 +8,7 @@
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
  *   z_abort_thread_timeout                   <= FUN_00074274 @ 0x00074274
  *   z_unpend_first_thread                    <= FUN_000744a4 @ 0x000744a4
+ *   z_abort_timeout                          <= FUN_00074d74 @ 0x00074d74
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -25,7 +26,7 @@ extern int z_spin_lock_valid(int);
 extern int z_spin_unlock_valid(int);
 extern void z_spin_lock_set_owner(int);
 extern void z_abort_thread_timeout(int);
-extern void FUN_00074d74(int);
+extern void z_abort_timeout(int);
 extern void assert_post_action(int,int);
 extern int printk(int,...);
 int z_unpend_first_thread(int *param_1){
@@ -34,7 +35,7 @@ int z_unpend_first_thread(int *param_1){
   z_spin_lock_set_owner(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
   int *piVar4=(int*)*param_1;
   if(param_1==piVar4) piVar4=0;
-  else if(piVar4!=0){ z_abort_thread_timeout((int)piVar4); FUN_00074d74((int)piVar4+0x18); }
+  else if(piVar4!=0){ z_abort_thread_timeout((int)piVar4); z_abort_timeout((int)piVar4+0x18); }
   r=z_spin_unlock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
   if(r!=0) return (int)piVar4;
   printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0); printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,((unsigned long)&sched_spinlock) /*=0x2000b490*/); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);

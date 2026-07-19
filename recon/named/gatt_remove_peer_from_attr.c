@@ -8,6 +8,7 @@
  *   gatt_remove_peer_from_attr               <= FUN_0005a3c4 @ 0x0005a3c4
  *   bt_addr_le_is_bonded                     <= FUN_00080f92 @ 0x00080f92
  *   bt_conn_is_peer_addr_le                  <= FUN_000814e6 @ 0x000814e6
+ *   bt_addr_le_copy_828da                    <= FUN_000828da @ 0x000828da
  * address symbols (name @ address):
  *   ADDR_gatt_ccc_write_THUMB                @ 0x0005a465
  *   rodata_f2b3a                             @ 0x000f2b3a
@@ -22,7 +23,7 @@ extern int bt_conn_lookup_addr_le(int,void*);
 extern void sc_clear(int);
 extern int bt_addr_le_is_bonded(int,int);
 extern int bt_conn_is_peer_addr_le(int,int,void*);
-extern void FUN_000828da(void*,u32);
+extern void bt_addr_le_copy_828da(void*,u32);
 u32 gatt_remove_peer_from_attr(int param_1, u32 param_2, int param_3){
     if( (*(int*)(param_1+8) == 0x0005a465)
         && (({u8* puVar2 = *(u8**)(param_1+0xc); *(short*)(puVar2+10) != 0;})) ){
@@ -40,11 +41,11 @@ u32 gatt_remove_peer_from_attr(int param_1, u32 param_2, int param_3){
                 iVar1 = bt_addr_le_is_bonded(*(u8*)(param_3+8), param_3+0x90);
                 if(iVar1 == 0){
                     if(puVar2 == (u8*)0x20002a20UL) sc_clear(param_3);
-                    FUN_000828da(puVar3, 0x000f2b3a);
+                    bt_addr_le_copy_828da(puVar3, 0x000f2b3a);
                     *puVar2 = 0;
                     *(u16*)(puVar2+8) = 0;
                 } else {
-                    FUN_000828da(puVar3, param_3+0x90);
+                    bt_addr_le_copy_828da(puVar3, param_3+0x90);
                 }
             }
         }

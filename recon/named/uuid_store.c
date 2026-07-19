@@ -3,6 +3,8 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   gatt_dm_attr_alloc                       <= FUN_0004e8e8 @ 0x0004e8e8
+ *   uuid_len_from_type                       <= FUN_0004e98c @ 0x0004e98c
+ *   gatt_dm_log_helper                       <= FUN_0007f406 @ 0x0007f406
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
  *   rodata_88130                             @ 0x00088130
@@ -13,10 +15,10 @@
 
 extern void memcpy(int,void*,int);
 extern int gatt_dm_attr_alloc(int);
-extern int FUN_0004e98c(int);
-extern void FUN_0007f406(int,int,void*);
+extern int uuid_len_from_type(int);
+extern void gatt_dm_log_helper(int,int,void*);
 
-#define get_uuid_size FUN_0004e98c
+#define get_uuid_size uuid_len_from_type
 #define user_data_alloc gatt_dm_attr_alloc
 #define memcpy memcpy
 
@@ -39,6 +41,6 @@ int uuid_store(unsigned char *param_1)
         log_args[1] = 0x000f1284;
     }
     log_args[0] = 2;
-    FUN_0007f406(0x00088130, 0x1040, log_args);
+    gatt_dm_log_helper(0x00088130, 0x1040, log_args);
     return 0;
 }

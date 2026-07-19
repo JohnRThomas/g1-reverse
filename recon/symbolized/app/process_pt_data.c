@@ -5,13 +5,16 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   set_delay_deadline                       <= FUN_0002a4d8 @ 0x0002a4d8
+ *   display_dev_reg_config                   <= FUN_0002eaa8 @ 0x0002eaa8
  *   set_pending_state_flag                   <= FUN_0002eb28 @ 0x0002eb28
  *   erase_audio_buffer                       <= FUN_0002f008 @ 0x0002f008
  *   nfc_eeprom_comm_lock                     <= FUN_00030cb8 @ 0x00030cb8
  *   nfc_eeprom_comm_unlock                   <= FUN_00030cc4 @ 0x00030cc4
  *   pt_comm_transport_write                  <= FUN_00030cd0 @ 0x00030cd0
+ *   pt_cmd_dispatch_and_encode_response      <= FUN_00032b24 @ 0x00032b24
  *   process_pt_data                          <= FUN_000330ec @ 0x000330ec
  *   sys_reboot                               <= FUN_0004c0a8 @ 0x0004c0a8
+ *   serial_data_read_dispatch                <= FUN_0007d0e8 @ 0x0007d0e8
  *   k_msleep_ticks32768_c                    <= FUN_0007d194 @ 0x0007d194
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  * address symbols (name @ address):
@@ -35,15 +38,15 @@
 extern int log_message(int,...);
 extern int debug_print(int,...);
 extern int set_delay_deadline(int,...);
-extern int FUN_0002eaa8(void);
+extern int display_dev_reg_config(void);
 extern int set_pending_state_flag(int,...);
 extern int erase_audio_buffer(void);
 extern int nfc_eeprom_comm_lock(void);
 extern int nfc_eeprom_comm_unlock(void);
 extern int pt_comm_transport_write(int,...);
-extern int FUN_00032b24(int,...);
+extern int pt_cmd_dispatch_and_encode_response(int,...);
 extern int sys_reboot(int,...);
-extern int FUN_0007d0e8(int,...);
+extern int serial_data_read_dispatch(int,...);
 extern int k_msleep_ticks32768_c(int,...);
 extern int change_work_mode_to(int,...);
 
@@ -72,10 +75,10 @@ unsigned process_pt_data(unsigned param_1)
     channel = *(volatile int *)((unsigned long)&g_fuel_gauge_dev) /*=0x20002424*/;
     if (mode != 0)
         channel = *(volatile int *)((unsigned long)&g_pt_comm_dev) /*=0x20002428*/;
-    iVar3 = FUN_0007d0e8(mode, channel, &local_20, &local_24);
+    iVar3 = serial_data_read_dispatch(mode, channel, &local_20, &local_24);
     if (iVar3 != 0) { nfc_eeprom_comm_unlock(); return 0xfffffffe; }
 
-    iVar3 = FUN_00032b24(mode, uVar6, local_24 & 0xff,
+    iVar3 = pt_cmd_dispatch_and_encode_response(mode, uVar6, local_24 & 0xff,
                          &local_1c, &local_28, param_1);
     if (iVar3 != 0) { log_message(((unsigned long)&rodata_a7780) /*=0xa7780*/); nfc_eeprom_comm_unlock(); return 0xfffffffd; }
 
@@ -102,7 +105,7 @@ unsigned process_pt_data(unsigned param_1)
     if (uVar4 == 0x1b) {
         if (pbVar5[8] != 0) erase_audio_buffer();
     } else if (uVar4 == 0x13) {
-        if (((pbVar5[4] & 0xfb) == 0) && (iVar3 = FUN_0002eaa8(), iVar3 != 0)) uVar6 = 0xfffffffb;
+        if (((pbVar5[4] & 0xfb) == 0) && (iVar3 = display_dev_reg_config(), iVar3 != 0)) uVar6 = 0xfffffffb;
     } else {
         if (uVar4 != 6) {
             if (uVar4 != 0xb) goto LAB_0003325a;

@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   vfprintf_format_engine                   <= FUN_00077594 @ 0x00077594
  *   mem_find_byte                            <= FUN_00086bc8 @ 0x00086bc8
+ *   vfprintf_emit_padded_field               <= FUN_00086e1c @ 0x00086e1c
  * address symbols (name @ address):
  *   rodata_f8b88                             @ 0x000f8b88
  */
@@ -12,7 +13,7 @@
 #include <stdint.h>
 typedef uint32_t u32; typedef unsigned char byte;
 extern int mem_find_byte(u32,...);
-extern int FUN_00086e1c(u32,void*,void*,u32,u32);
+extern int vfprintf_emit_padded_field(u32,void*,void*,u32,u32);
 extern u32 TAIL(void);
 
 u32 vfprintf_format_engine(u32 param_1, u32 *param_2, u32 param_3, u32 param_4, int *param_5){
@@ -115,7 +116,7 @@ L77674:
     param_2[4] = (int)(uintptr_t)puVar6 - (int)(uintptr_t)puVar11;
     puVar6 = puVar11;
 AA:
-    iVar2 = FUN_00086e1c(param_1,param_2,&local_24,param_3,param_4);
+    iVar2 = vfprintf_emit_padded_field(param_1,param_2,&local_24,param_3,param_4);
     if (iVar2 == -1) return 0xffffffffUL;
     iVar2 = ((int (*)(u32,u32,const void*,u32))(uintptr_t)param_4)
         (param_1,param_3,puVar6,param_2[4]);

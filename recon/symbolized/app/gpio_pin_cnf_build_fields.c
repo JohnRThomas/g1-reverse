@@ -3,6 +3,7 @@
  * public-name: gpio_pin_cnf_build_fields
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   gpio_port_base_from_pin                  <= FUN_00065584 @ 0x00065584
  *   gpio_pin_cnf_build_fields                <= FUN_00085130 @ 0x00085130
  * address symbols (name @ address):
  *   rodata_30000                             @ 0x00030000
@@ -10,7 +11,7 @@
 /* Reconstructed FUN_00085130 @ 0x85130 */
 #include <stdint.h>
 
-extern uintptr_t FUN_00065584(uint32_t *);
+extern uintptr_t gpio_port_base_from_pin(uint32_t *);
 
 void gpio_pin_cnf_build_fields(uint32_t channel,
                   const uint8_t *enable,
@@ -20,7 +21,7 @@ void gpio_pin_cnf_build_fields(uint32_t channel,
                   const uint8_t *sense)
 {
   uint32_t index = channel;
-  uintptr_t table = FUN_00065584(&index);
+  uintptr_t table = gpio_port_base_from_pin(&index);
   volatile uint32_t *configuration =
       (volatile uint32_t *)(table + index * 4 + 0x200);
 

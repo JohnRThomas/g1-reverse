@@ -3,11 +3,14 @@
  * public-name: gatt_dm_start
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   uuid_len_from_type                       <= FUN_0004e98c @ 0x0004e98c
  *   gatt_dm_start                            <= FUN_0004ed8c @ 0x0004ed8c
  *   bt_gatt_discover                         <= FUN_0005b9cc @ 0x0005b9cc
  *   atomic_and_0                             <= FUN_0007f3f0 @ 0x0007f3f0
+ *   gatt_dm_log_helper                       <= FUN_0007f406 @ 0x0007f406
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
- *   ADDR_FUN_0004ea78_THUMB                  @ 0x0004ea79
+ *   ADDR_discovery_callback_THUMB            @ 0x0004ea79
  *   rodata_88130                             @ 0x00088130
  *   rodata_f1574                             @ 0x000f1574
  *   cur_service_val                          @ 0x2000a154
@@ -29,11 +32,11 @@
 /* Reconstructed FUN_0004ed8c @ 0x4ed8c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int FUN_0004e98c(int);
+extern int uuid_len_from_type(int);
 extern int bt_gatt_discover(uint32_t,uint32_t);
 extern int atomic_and_0(uint32_t,uint32_t);
-extern int FUN_0007f406(uint32_t,uint32_t,void*);
-extern int FUN_00086c1e(void*,void*,uint32_t,int);
+extern int gatt_dm_log_helper(uint32_t,uint32_t,void*);
+extern int safe_memcpy_checked(void*,void*,uint32_t,int);
 
 int gatt_dm_start(uint32_t param_1, uint32_t *param_2, uint32_t param_3, uint32_t param_4){
     int iVar3;
@@ -51,11 +54,11 @@ int gatt_dm_start(uint32_t param_1, uint32_t *param_2, uint32_t param_3, uint32_
             *(volatile uint32_t*)((unsigned long)&g_gatt_dm_attr_count) /*=0x2000a288*/ = one;
             *(volatile uint32_t*)((unsigned long)&g_gatt_dm_chunk_used_len) /*=0x2000a2ac*/ = one;
             if (param_2 != 0) {
-                uint32_t uVar2 = FUN_0004e98c((uint8_t)*param_2);
-                FUN_00086c1e((void*)((unsigned long)&g_gatt_dm_svc_uuid_buf) /*=0x2000a290*/, (void*)param_2, uVar2, 0x28);
+                uint32_t uVar2 = uuid_len_from_type((uint8_t)*param_2);
+                safe_memcpy_checked((void*)((unsigned long)&g_gatt_dm_svc_uuid_buf) /*=0x2000a290*/, (void*)param_2, uVar2, 0x28);
                 param_2 = (uint32_t*)((unsigned long)&g_gatt_dm_svc_uuid_buf) /*=0x2000a290*/;
             }
-            *(volatile uint32_t*)((unsigned long)&g_gatt_dm_discover_params_func) /*=0x2000a160*/ = ADDR_FUN_0004ea78_THUMB /*=0x4ea79*/;
+            *(volatile uint32_t*)((unsigned long)&g_gatt_dm_discover_params_func) /*=0x2000a160*/ = ADDR_discovery_callback_THUMB /*=0x4ea79*/;
             *(volatile uint16_t*)((unsigned long)&g_gatt_dm_discover_params_start_handle) /*=0x2000a164*/ = 1;
             *(volatile uint16_t*)((unsigned long)&g_gatt_dm_discover_params_end_handle) /*=0x2000a16a*/ = 0xffff;
             *(volatile uint32_t*)((unsigned long)&g_gatt_dm_discover_params_uuid) /*=0x2000a15c*/ = (uint32_t)param_2;
@@ -65,7 +68,7 @@ int gatt_dm_start(uint32_t param_1, uint32_t *param_2, uint32_t param_3, uint32_
                 struct { uint32_t level, message; int error; } log = {
                     3, ((unsigned long)&rodata_f1574) /*=0xf1574*/, iVar3
                 };
-                FUN_0007f406(((unsigned long)&rodata_88130) /*=0x88130*/, 0x1840, &log);
+                gatt_dm_log_helper(((unsigned long)&rodata_88130) /*=0x88130*/, 0x1840, &log);
                 atomic_and_0(((unsigned long)&g_gatt_dm_in_progress_flag) /*=0x2000a28c*/, 0xfffffffe);
             }
         } else { iVar3 = -0x78; }

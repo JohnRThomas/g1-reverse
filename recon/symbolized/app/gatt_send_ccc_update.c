@@ -11,6 +11,7 @@
  *   gatt_notify                              <= FUN_0005b680 @ 0x0005b680
  *   gatt_send_ccc_update                     <= FUN_0005b890 @ 0x0005b890
  *   bt_addr_le_eq_0                          <= FUN_000826b2 @ 0x000826b2
+ *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  *   bt_gatt_check_perm                       <= FUN_00082cba @ 0x00082cba
  * address symbols (name @ address):
  *   ADDR_gatt_ccc_write_THUMB                @ 0x0005a465
@@ -29,7 +30,7 @@ extern int sc_save(int,int,int,int);
 extern int gatt_indicate(int,int,int);
 extern int gatt_notify(int,int,int);
 extern int bt_addr_le_eq_0(int,int);
-extern int FUN_00082a42(int,int,void*);
+extern int log_msg_create_3arg(int,int,void*);
 extern int bt_gatt_check_perm(int,int,int);
 
 int gatt_send_ccc_update(int param_1, int param_2, int param_3)
@@ -114,7 +115,7 @@ LAB_0005b9a4:
         }
         local_24 = ((unsigned long)&rodata_f4ad5) /*=0xf4ad5*/;
         local_28 = 2;
-        FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1080, &local_28);
+        log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1080, &local_28);
     }
     ble_conn_unref(iVar2);
     return 1;

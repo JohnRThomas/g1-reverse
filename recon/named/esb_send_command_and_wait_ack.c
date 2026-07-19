@@ -7,6 +7,7 @@
  *   k_msleep                                 <= FUN_0007cb8e @ 0x0007cb8e
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   g_esb_seg_tx_frame_opcode                @ 0x20018c6f
@@ -21,7 +22,7 @@ extern int32_t is_battery_critical(void);
 extern void k_msleep(int32_t);
 extern int32_t memcmp(void *a, void *b, uint32_t n);
 extern void memcpy(void *dst, void *src, uint32_t n);
-extern void FUN_00086c1e(void *a, void *b, uint32_t c, uint32_t d);
+extern void safe_memcpy_checked(void *a, void *b, uint32_t c, uint32_t d);
 extern void memset_bytes(void *dst, int32_t val, uint32_t n);
 
 typedef void (*fp774_t)(void *, uint32_t);
@@ -71,7 +72,7 @@ uint32_t esb_send_command_and_wait_ack(char *param_1, uint32_t param_2, uint32_t
         puVar6 = puVar8;
       } while (puVar4 != (uint32_t *)(param_1 + 0x6e0));
       *(volatile uint16_t *)puVar8 = *(uint16_t *)puVar4;
-      FUN_00086c1e((void *)0x20018c71UL, param_3, param_4, 0xfa);
+      safe_memcpy_checked((void *)0x20018c71UL, param_3, param_4, 0xfa);
       uVar3 = 0xdc;
       *(uint8_t *)(param_1 + 0x105a) = 1;
       pcVar7 = *(fp774_t *)(param_1 + 0x774);

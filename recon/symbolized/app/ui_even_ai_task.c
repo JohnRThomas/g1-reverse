@@ -3,16 +3,21 @@
  * public-name: ui_even_ai_task
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   get_ui_mode_flag_byte1                   <= FUN_00023ee0 @ 0x00023ee0
  *   draw_status_icon_by_state                <= FUN_0003be18 @ 0x0003be18
  *   gui_set_active_canvas                    <= FUN_000431b4 @ 0x000431b4
  *   gui_canvas_flags_set_bit1                <= FUN_000432d0 @ 0x000432d0
  *   gui_canvas_flags_clear_bit1              <= FUN_000432ec @ 0x000432ec
  *   gui_reset_dynamic_bitmap_frame_state     <= FUN_00043308 @ 0x00043308
  *   imu_pitch_task_reset_render_state        <= FUN_000436f8 @ 0x000436f8
+ *   gui_screen_fade_out_transition           <= FUN_0004382c @ 0x0004382c
+ *   ui_render_scroll_text_frame              <= FUN_000440ec @ 0x000440ec
  *   k_mutex_lock                             <= FUN_000723b8 @ 0x000723b8
  *   k_mutex_unlock                           <= FUN_00072558 @ 0x00072558
+ *   gui_utf_adv_draw_configure               <= FUN_0007d3dc @ 0x0007d3dc
  *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
  *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
  *   rodata_a8e98                             @ 0x000a8e98
  *   rodata_a9855                             @ 0x000a9855
@@ -44,7 +49,7 @@
 extern uintptr_t get_device_info(void);                         /* FUN_000167a8 @ 0x000167a8 */
 extern int log_message(uintptr_t, uintptr_t, int, int);         /* FUN_0007dda4 @ 0x0007dda4 */
 extern int debug_print(uintptr_t, uintptr_t, int, int);         /* FUN_00019c70 @ 0x00019c70 */
-extern int FUN_00023ee0(void);                                  /* @ 0x00023ee0 */
+extern int get_ui_mode_flag_byte1(void);                                  /* @ 0x00023ee0 */
 extern uintptr_t draw_status_icon_by_state(void *, ...);                     /* @ 0x0003be18 */
 extern uintptr_t gui_set_active_canvas(uintptr_t);                       /* @ 0x000431b4 */
 extern uintptr_t gui_screen_clear(void);                        /* FUN_000431c0 @ 0x000431c0 */
@@ -53,36 +58,36 @@ extern uintptr_t gui_canvas_flags_clear_bit1(void);                            /
 extern uintptr_t gui_reset_dynamic_bitmap_frame_state(void);                            /* @ 0x00043308 */
 extern uintptr_t gui_bmp_bitmap_draw(int, ...);                 /* FUN_00043484 @ 0x00043484 */
 extern uintptr_t imu_pitch_task_reset_render_state(void);                            /* @ 0x000436f8 */
-extern uintptr_t FUN_0004382c(void);                            /* @ 0x0004382c */
+extern uintptr_t gui_screen_fade_out_transition(void);                            /* @ 0x0004382c */
 extern uintptr_t gui_verticalLine_process_bar(int, ...);        /* FUN_0004396c @ 0x0004396c */
 extern uintptr_t gui_utf_draw(int, ...);                        /* FUN_00043e90 @ 0x00043e90 */
-extern uintptr_t FUN_000440ec(int, ...);                        /* @ 0x000440ec */
+extern uintptr_t ui_render_scroll_text_frame(int, ...);                        /* @ 0x000440ec */
 extern uintptr_t gui_utf_draw_middle(int, ...);                 /* FUN_00044bd8 @ 0x00044bd8 */
 extern uintptr_t clean_fb_data(int, ...);                       /* FUN_000471cc @ 0x000471cc */
 extern uintptr_t reflash_fb_data_to_lcd(int, ...);              /* FUN_00047260 @ 0x00047260 */
 extern int k_mutex_lock(void *, int64_t);                       /* @ 0x000723b8 */
 extern uintptr_t k_mutex_unlock(void *);                          /* @ 0x00072558 */
-extern uintptr_t FUN_0007d3dc(void);                            /* @ 0x0007d3dc */
+extern uintptr_t gui_utf_adv_draw_configure(void);                            /* @ 0x0007d3dc */
 extern int device_info_text_width_get(void);                                  /* @ 0x0007d3ee */
 extern int device_info_text_height_get_clamped(void);                                  /* @ 0x0007d446 */
-extern uintptr_t FUN_00086c1e(void *, const void *, unsigned, unsigned); /* @ 0x00086c1e */
+extern uintptr_t safe_memcpy_checked(void *, const void *, unsigned, unsigned); /* @ 0x00086c1e */
 extern uintptr_t memset_bytes(void *, int, unsigned);           /* FUN_00086c78 @ 0x00086c78 */
 
-#define ui_language_get                    FUN_00023ee0
+#define ui_language_get                    get_ui_mode_flag_byte1
 #define even_ai_status_icon_render         draw_status_icon_by_state
 #define gui_set_active_canvas              gui_set_active_canvas
 #define gui_canvas_flags_set_bit1          gui_canvas_flags_set_bit1
 #define gui_canvas_flags_clear_bit1        gui_canvas_flags_clear_bit1
 #define gui_reset_dynamic_bitmap_state     gui_reset_dynamic_bitmap_frame_state
 #define gui_reset_render_offsets           imu_pitch_task_reset_render_state
-#define even_ai_exit_animation             FUN_0004382c
-#define gui_utf_draw_scrolling             FUN_000440ec
+#define even_ai_exit_animation             gui_screen_fade_out_transition
+#define gui_utf_draw_scrolling             ui_render_scroll_text_frame
 #define k_mutex_lock_forever               k_mutex_lock
 #define k_mutex_unlock                     k_mutex_unlock
-#define gui_text_metrics_reset              FUN_0007d3dc
+#define gui_text_metrics_reset              gui_utf_adv_draw_configure
 #define gui_text_left                       device_info_text_width_get
 #define gui_text_top                        device_info_text_height_get_clamped
-#define memcpy_s                            FUN_00086c1e
+#define memcpy_s                            safe_memcpy_checked
 
 #define G_LOG_LEVEL             (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define G_LOGGER_MODE           (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)

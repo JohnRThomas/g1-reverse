@@ -3,7 +3,9 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   gatt_dm_attr_alloc                       <= FUN_0004e8e8 @ 0x0004e8e8
+ *   uuid_len_from_type                       <= FUN_0004e98c @ 0x0004e98c
  *   gatt_dm_data_add_attribute               <= FUN_0004e9a0 @ 0x0004e9a0
+ *   gatt_dm_log_helper                       <= FUN_0007f406 @ 0x0007f406
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
  *   rodata_88130                             @ 0x00088130
@@ -14,15 +16,15 @@
 /* Reconstructed FUN_0004e9a0 @ 0x4e9a0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int gatt_dm_attr_alloc(int);
-extern int FUN_0004e98c(int);
-extern void FUN_0007f406(unsigned int,unsigned int,void*);
+extern int uuid_len_from_type(int);
+extern void gatt_dm_log_helper(unsigned int,unsigned int,void*);
 extern void memcpy(int,unsigned int,int);
 int gatt_dm_data_add_attribute(unsigned int* param_1,int param_2){
   int iVar2=0x2000a154; int iVar3,iVar4,iVar5,iVar6; short uVar1;
   struct{unsigned int a,b;} s;
   s.b=0x000f1237;
   if(*(volatile unsigned int*)(iVar2+0x134)<0x23){
-    iVar3=FUN_0004e98c(*(unsigned char*)(*param_1));
+    iVar3=uuid_len_from_type(*(unsigned char*)(*param_1));
     iVar4=gatt_dm_attr_alloc(iVar3+param_2);
     s.b=0x000f1253;
     if(iVar4!=0){
@@ -38,6 +40,6 @@ int gatt_dm_data_add_attribute(unsigned int* param_1,int param_2){
     }
   }
   s.a=2;
-  FUN_0007f406(0x00088130,0x1040,&s);
+  gatt_dm_log_helper(0x00088130,0x1040,&s);
   return 0;
 }

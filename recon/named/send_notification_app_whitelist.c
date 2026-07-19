@@ -3,6 +3,8 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   vdprintf_to_fd                           <= FUN_00086f00 @ 0x00086f00
  * address symbols (name @ address):
@@ -18,11 +20,11 @@
 #include <stdint.h>
 
 extern void memset_bytes(void *destination, uint32_t value, uint32_t size);
-extern void FUN_00086c1e(void *destination, const void *source,
+extern void safe_memcpy_checked(void *destination, const void *source,
                          uint32_t size, uint32_t destination_size);
 extern uint32_t vdprintf_to_fd(void *destination, uint32_t append,
                              uint32_t capacity, uintptr_t format, ...);
-extern void FUN_00074844(uint32_t ticks, uint32_t unused);
+extern void k_sleep(uint32_t ticks, uint32_t unused);
 extern void log_message(uintptr_t format, ...);
 extern void debug_print(uintptr_t format, ...);
 
@@ -65,7 +67,7 @@ uint32_t send_notification_app_whitelist(uint8_t *transport,
         packet[0] = 0xf6u;
         packet[1] = chunk_count;
         packet[2] = chunk_index;
-        FUN_00086c1e(packet + 3, text + (uint32_t)chunk_index * 0x11u,
+        safe_memcpy_checked(packet + 3, text + (uint32_t)chunk_index * 0x11u,
                      chunk_size, 0x12u);
         result = ((int32_t (*)(const void *, uint32_t))
                   *(volatile uintptr_t *)(transport + 0x0c))
@@ -83,7 +85,7 @@ uint32_t send_notification_app_whitelist(uint8_t *transport,
                 return 0u;
             }
         }
-        FUN_00074844(0xa4u, 0u);
+        k_sleep(0xa4u, 0u);
     }
     return 0u;
 }

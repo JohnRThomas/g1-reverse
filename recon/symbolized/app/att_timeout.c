@@ -3,8 +3,11 @@
  * public-name: att_timeout
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   bt_att_disconnected                      <= FUN_00059834 @ 0x00059834
  *   att_timeout                              <= FUN_00059920 @ 0x00059920
  *   snprintk                                 <= FUN_0007ddbe @ 0x0007ddbe
+ *   bt_conn_get_field_0x90                   <= FUN_00081526 @ 0x00081526
+ *   att_log_emit_3arg                        <= FUN_00081ddc @ 0x00081ddc
  *   strcpy                                   <= FUN_00086fee @ 0x00086fee
  * address symbols (name @ address):
  *   rodata_88100                             @ 0x00088100
@@ -19,11 +22,11 @@
 /* Reconstructed FUN_00059920 @ 0x59920  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern uint8_t* FUN_00081526(uint32_t);
+extern uint8_t* bt_conn_get_field_0x90(uint32_t);
 extern void snprintk(void*, int, uint32_t, ...);
 extern void strcpy(void*, uint32_t);
-extern void FUN_00081ddc(uint32_t, int, void*);
-extern void FUN_00059834(int);
+extern void att_log_emit_3arg(uint32_t, int, void*);
+extern void bt_att_disconnected(int);
 
 void att_timeout(int param_1){
   uint8_t *puVar1;
@@ -36,7 +39,7 @@ void att_timeout(int param_1){
   } record;
   uint8_t auStack_44[12];
   uint8_t auStack_38[32];
-  puVar1 = FUN_00081526(**(uint32_t**)(param_1 - 0x160));
+  puVar1 = bt_conn_get_field_0x90(**(uint32_t**)(param_1 - 0x160));
   switch(puVar1[0]){
     case 0: uVar2 = ((unsigned long)&rodata_9a1c8) /*=0x9a1c8*/; break;
     case 1: uVar2 = ((unsigned long)&rodata_9a1cf) /*=0x9a1cf*/; break;
@@ -53,6 +56,6 @@ LAB:
   record.format = ((unsigned long)&rodata_f4697) /*=0xf4697*/;
   record.text = auStack_38;
   record.style = ((uintptr_t)auStack_44 & 0xffff0000) | 0x200;
-  FUN_00081ddc(((unsigned long)&rodata_88100) /*=0x88100*/, 0x1c40, &record);
-  FUN_00059834(param_1 - 0x158);
+  att_log_emit_3arg(((unsigned long)&rodata_88100) /*=0x88100*/, 0x1c40, &record);
+  bt_att_disconnected(param_1 - 0x158);
 }

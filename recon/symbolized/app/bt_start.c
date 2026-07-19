@@ -7,9 +7,11 @@
  *   get_device_type                          <= FUN_00016568 @ 0x00016568
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_device_serial_buf                    <= FUN_000232b0 @ 0x000232b0
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
  *   bt_set_name_internal                     <= FUN_00054c74 @ 0x00054c74
  *   bt_le_adv_start                          <= FUN_00055998 @ 0x00055998
+ *   k_msleep_ticks32768_d                    <= FUN_0007c0a8 @ 0x0007c0a8
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   uptime_ticks_get                         <= FUN_00086698 @ 0x00086698
  *   vdprintf_to_fd                           <= FUN_00086f00 @ 0x00086f00
@@ -41,10 +43,10 @@
 /* Firmware application Bluetooth-start owner; prior LIBRARY class was incorrect. */
 #include <stdint.h>
 #include <stddef.h>
-extern void FUN_0007c0a8(uint32_t);
+extern void k_msleep_ticks32768_d(uint32_t);
 extern uintptr_t get_device_info(void);
 extern int get_device_type(void);
-extern uintptr_t FUN_000232b0(void);
+extern uintptr_t get_device_serial_buf(void);
 extern void __strcpy_chk(void *, const void *, uint32_t);
 extern void log_message(uintptr_t, ...);
 extern void debug_print(void);
@@ -60,7 +62,7 @@ extern uint64_t uptime_ticks_get(void);
 int bt_start(void)
 {
     volatile uint8_t *busy = (volatile uint8_t *)(uintptr_t)((unsigned long)&g_2000ff72) /*=0x2000ff72*/;
-    while (*busy != 0u) FUN_0007c0a8(1u);
+    while (*busy != 0u) k_msleep_ticks32768_d(1u);
     *busy = 1u;
     int result;
     uintptr_t info = get_device_info();
@@ -75,7 +77,7 @@ int bt_start(void)
     uint32_t device_kind = get_device_type() == 1 ? 1u : 2u;
     *(volatile uintptr_t *)(adv + 0x0cu) = (uintptr_t)name_data;
     *name_data = (uint8_t)device_kind;
-    __strcpy_chk((void *)(name_data + 1u), (const void *)FUN_000232b0(), 0x13u);
+    __strcpy_chk((void *)(name_data + 1u), (const void *)get_device_serial_buf(), 0x13u);
     log_message(((unsigned long)&rodata_9ac4c) /*=0x9ac4c*/, INFO_BYTE(2u), 19u, device_kind);
 
     int left = get_device_type() == 1;

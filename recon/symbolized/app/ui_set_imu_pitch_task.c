@@ -11,9 +11,11 @@
  *   gui_canvas_flags_clear_bit1              <= FUN_000432ec @ 0x000432ec
  *   gui_reset_dynamic_bitmap_frame_state     <= FUN_00043308 @ 0x00043308
  *   imu_pitch_task_reset_render_state        <= FUN_000436f8 @ 0x000436f8
+ *   gui_screen_fade_out_transition           <= FUN_0004382c @ 0x0004382c
  *   set_imu_pitch_reflash                    <= FUN_000469bc @ 0x000469bc
  *   ui_set_imu_pitch_task                    <= FUN_00046b80 @ 0x00046b80
  *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ *   gui_utf_adv_draw_configure               <= FUN_0007d3dc @ 0x0007d3dc
  * address symbols (name @ address):
  *   rodata_a8e98                             @ 0x000a8e98
  *   rodata_aae20                             @ 0x000aae20
@@ -34,10 +36,10 @@ extern int gui_canvas_flags_set_bit1(int,...);
 extern int gui_canvas_flags_clear_bit1(int,...);
 extern int gui_reset_dynamic_bitmap_frame_state(int,...);
 extern int imu_pitch_task_reset_render_state(int,...);
-extern int FUN_0004382c(int,...);
+extern int gui_screen_fade_out_transition(int,...);
 extern int set_imu_pitch_reflash(int,...);
 extern int reflash_fb_data_to_lcd(int,...);
-extern int FUN_0007d3dc(int,...);
+extern int gui_utf_adv_draw_configure(int,...);
 
 unsigned ui_set_imu_pitch_task(int param_1, unsigned param_2, int param_3)
 {
@@ -54,7 +56,7 @@ unsigned ui_set_imu_pitch_task(int param_1, unsigned param_2, int param_3)
     if(*pcVar3 == 0){
         if(param_3 == 1){
             if(pcVar3[1] != 0) return 0;
-            FUN_0007d3dc(0);
+            gui_utf_adv_draw_configure(0);
             gui_screen_clear(0);
             imu_pitch_task_reset_render_state(0);
             pcVar3[0]=0; pcVar3[1]=0; pcVar3[2]=0;
@@ -110,9 +112,9 @@ unsigned ui_set_imu_pitch_task(int param_1, unsigned param_2, int param_3)
             if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)&rodata_d71ad) /*=0xd71ad*/,((unsigned long)&rodata_d71e3) /*=0xd71e3*/);
             else debug_print(0);
         }
-        FUN_0004382c(0);
+        gui_screen_fade_out_transition(0);
     }
-    FUN_0007d3dc(0);
+    gui_utf_adv_draw_configure(0);
     pcVar3[0]=0; pcVar3[1]=0; pcVar3[2]=0;
     return 0;
 }

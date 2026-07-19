@@ -8,6 +8,7 @@
  *   pin_in_use_by_te                         <= FUN_00065460 @ 0x00065460
  *   pin_te_get                               <= FUN_000654ac @ 0x000654ac
  *   gpiote_channel_release_if_unshared       <= FUN_00065504 @ 0x00065504
+ *   gpio_port_base_from_pin                  <= FUN_00065584 @ 0x00065584
  *   nrfx_gpiote_trigger_disable              <= FUN_00065acc @ 0x00065acc
  *   gpiote_in_uninit                         <= FUN_00065b18 @ 0x00065b18
  * address symbols (name @ address):
@@ -20,7 +21,7 @@ extern int gpiote_pin_is_used(void);
 extern int pin_in_use_by_te(int);
 extern int pin_te_get(int);
 extern void gpiote_channel_release_if_unshared(int);
-extern int FUN_00065584(int*);
+extern int gpio_port_base_from_pin(int*);
 extern void nrfx_gpiote_trigger_disable(int);
 uint32_t gpiote_in_uninit(int param_1,int param_2){
   int local_c=param_2;
@@ -38,7 +39,7 @@ uint32_t gpiote_in_uninit(int param_1,int param_2){
     iVar2=get_pin_idx(param_1);
     *(volatile uint16_t*)(((unsigned long)g_gpiote_cb) /*=0x20002bc0*/+(iVar2+8)*2)=0;
     local_c=param_1;
-    iVar2=FUN_00065584(&local_c);
+    iVar2=gpio_port_base_from_pin(&local_c);
     iVar2=iVar2+local_c*4;
     *(volatile uint32_t*)(iVar2+0x200)=(0xfffcf0f0 & *(volatile uint32_t*)(iVar2+0x200))|2;
     uVar3=0x0bad0000;

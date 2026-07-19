@@ -10,6 +10,7 @@
  *   get_lux_info                             <= FUN_00010fc8 @ 0x00010fc8
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   opt3001_read_lux_raw                     <= FUN_0002e648 @ 0x0002e648
  * address symbols (name @ address):
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -25,7 +26,7 @@ extern uint64_t __divdf3(uint32_t, uint32_t, uint32_t, uint32_t);
 extern uint32_t __fixunsdfsi(void);
 extern uintptr_t get_device_info(void);
 extern void debug_print(uint32_t, uint32_t, uint32_t, uint32_t);
-extern uint32_t FUN_0002e648(uint32_t);
+extern uint32_t opt3001_read_lux_raw(uint32_t);
 
 uint32_t get_lux_info(uint32_t request, uint32_t context,
                       uint32_t *buffer_slot, uint8_t *encoded_size)
@@ -46,7 +47,7 @@ uint32_t get_lux_info(uint32_t request, uint32_t context,
     *(volatile uint8_t *)(out + 2) = 3;
     *(volatile uint8_t *)(out + 3) = 0x20;
 
-    uint32_t ticks = FUN_0002e648(0);
+    uint32_t ticks = opt3001_read_lux_raw(0);
     *(uint32_t *)(out + 4) = ticks;
     *(uint32_t *)(out + 8)  = *(volatile uint32_t *)(get_device_info() + 0xfa0);
     *(uint32_t *)(out + 12) = *(volatile uint32_t *)(get_device_info() + 0xfa4);

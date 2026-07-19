@@ -3,6 +3,7 @@
  * public-name: z_heap_aligned_alloc
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   k_heap_alloc                             <= FUN_000719f4 @ 0x000719f4
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -17,12 +18,12 @@
 #include <stdint.h>
 #include <stddef.h>
 
-extern void *FUN_000719f4(void *heap, size_t alignment, size_t size,
+extern void *k_heap_alloc(void *heap, size_t alignment, size_t size,
                           uint64_t timeout);
 extern void printk(uint32_t, ...);
 extern void assert_post_action(uint32_t, uint32_t);
 
-#define k_heap_aligned_alloc FUN_000719f4
+#define k_heap_aligned_alloc k_heap_alloc
 void *z_heap_aligned_alloc(void *heap, size_t alignment, size_t size)
 {
     size_t adjusted_size = size + sizeof(void *);

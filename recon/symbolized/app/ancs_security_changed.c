@@ -10,8 +10,10 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
  *   sys_reboot                               <= FUN_0004c0a8 @ 0x0004c0a8
+ *   k_msleep_ticks32768_d                    <= FUN_0007c0a8 @ 0x0007c0a8
  *   g1_recon_bt_conn_set_security            <= FUN_0008149a @ 0x0008149a
  *   bt_conn_get_security                     <= FUN_000814e2 @ 0x000814e2
+ *   bt_conn_get_field_0x90                   <= FUN_00081526 @ 0x00081526
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
  *   rodata_9a52b                             @ 0x0009a52b
@@ -34,16 +36,16 @@ extern void format_bt_addr_str(const void *connection, char *description);
 extern void debug_print(uintptr_t format, ...);
 extern int32_t is_battery_critical(void);
 extern void sys_reboot(uint32_t enabled);
-extern void FUN_0007c0a8(uint32_t milliseconds);
+extern void k_msleep_ticks32768_d(uint32_t milliseconds);
 extern void g1_recon_bt_conn_set_security(uint32_t connection, uint32_t state);
 extern uint32_t bt_conn_get_security(uint32_t connection);
-extern uintptr_t FUN_00081526(uint32_t connection);
+extern uintptr_t bt_conn_get_field_0x90(uint32_t connection);
 extern int32_t memcmp(void *destination, uintptr_t source, uint32_t length);
 
 void ancs_security_changed(uint32_t connection, uint32_t level, int32_t error)
 {
     char description[32];
-    uintptr_t active_connection = FUN_00081526(connection);
+    uintptr_t active_connection = bt_conn_get_field_0x90(connection);
 
     format_bt_addr_str((const void *)active_connection, description);
     if (error == 0) {
@@ -56,7 +58,7 @@ void ancs_security_changed(uint32_t connection, uint32_t level, int32_t error)
 
         if (bt_conn_get_security(connection) > 1u) {
             *(volatile uint32_t *)((unsigned long)&g_gatt_discovery_flags) /*=0x20006ab4*/ = 0;
-            active_connection = FUN_00081526(connection);
+            active_connection = bt_conn_get_field_0x90(connection);
             if (is_battery_critical() == 0) {
                 uintptr_t device = get_device_info();
                 if (*(volatile uint8_t *)(device + 0x1070u) == 1u) {
@@ -92,7 +94,7 @@ void ancs_security_changed(uint32_t connection, uint32_t level, int32_t error)
             else
                 debug_print(((unsigned long)&rodata_9a56b) /*=0x9a56b*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/);
         }
-        FUN_0007c0a8(500u);
+        k_msleep_ticks32768_d(500u);
         sys_reboot(1u);
         log_message(((unsigned long)&rodata_9a53f) /*=0x9a53f*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/, description, level, error);
     }

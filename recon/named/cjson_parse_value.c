@@ -8,6 +8,8 @@
  *   cjson_parse_value                        <= FUN_00012910 @ 0x00012910
  *   cjson_parse_string                       <= FUN_00064290 @ 0x00064290
  *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
+ *   strtod                                   <= FUN_00077a10 @ 0x00077a10
+ *   cjson_skip_whitespace                    <= FUN_00084ed8 @ 0x00084ed8
  *   alloc_zeroed_node                        <= FUN_00084fd4 @ 0x00084fd4
  *   strncmp                                  <= FUN_00087036 @ 0x00087036
  * address symbols (name @ address):
@@ -19,8 +21,8 @@
 #include <stdint.h>
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned char byte; typedef unsigned long long undefined8;
 extern int __aeabi_dcmple(int,...); extern int __aeabi_dcmpge(int,...); extern int __fixdfsi(int,...);
-extern int cjson_parse_string(int,...); extern int cjson_delete(int,...); extern unsigned long long FUN_00077a10(int,...);
-extern int FUN_00084ed8(int,...); extern int alloc_zeroed_node(int,...); extern int strncmp(int,...);
+extern int cjson_parse_string(int,...); extern int cjson_delete(int,...); extern unsigned long long strtod(int,...);
+extern int cjson_skip_whitespace(int,...); extern int alloc_zeroed_node(int,...); extern int strncmp(int,...);
 
 undefined4 cjson_parse_value(int param_1,int *param_2)
 {
@@ -63,7 +65,7 @@ LAB_ea:
       if (999 < uVar7) return 0;
       param_2[3] = uVar7 + 1;
       if (*(char *)(iVar10 + uVar8) != '[') return 0;
-      param_2[2] = uVar8 + 1; FUN_00084ed8((int)param_2); uVar8 = param_2[2];
+      param_2[2] = uVar8 + 1; cjson_skip_whitespace((int)param_2); uVar8 = param_2[2];
       if (uVar13 <= uVar8) { LAB_a9a: param_2[2] = uVar8 - 1; return 0; }
       if (*(char *)(iVar10 + uVar8) == ']') { piVar11 = (int *)0x0; param_2[3] = uVar7; }
       else {
@@ -73,10 +75,10 @@ LAB_ea:
           if (piVar5 == 0) goto LAB_c08;
           piVar11 = piVar5;
           if (piVar12 != 0) { *piVar9 = (int)piVar5; piVar5[1] = (int)piVar9; piVar11 = piVar12; }
-          param_2[2] = param_2[2] + 1; FUN_00084ed8((int)param_2);
+          param_2[2] = param_2[2] + 1; cjson_skip_whitespace((int)param_2);
           iVar10 = cjson_parse_value((int)piVar5,param_2);
           if (iVar10 == 0) goto LAB_c08;
-          FUN_00084ed8((int)param_2);
+          cjson_skip_whitespace((int)param_2);
           if ((uint)param_2[1] <= (uint)param_2[2]) goto LAB_c0e;
           cVar1 = *(char *)(*param_2 + param_2[2]); piVar9 = piVar5; piVar12 = piVar11;
         } while (cVar1 == ',');
@@ -90,7 +92,7 @@ LAB_ea:
       if (999 < uVar7) return 0;
       param_2[3] = uVar7 + 1;
       if (*(char *)(iVar10 + uVar8) != '{') return 0;
-      param_2[2] = uVar8 + 1; FUN_00084ed8((int)param_2); uVar8 = param_2[2];
+      param_2[2] = uVar8 + 1; cjson_skip_whitespace((int)param_2); uVar8 = param_2[2];
       if (uVar13 <= uVar8) goto LAB_a9a;
       if (*(char *)(iVar10 + uVar8) == '}') { piVar11 = (int *)0x0; param_2[3] = uVar7; }
       else {
@@ -100,16 +102,16 @@ LAB_ea:
           if (piVar5 == 0) goto LAB_c08;
           piVar11 = piVar5;
           if (piVar12 != 0) { *piVar9 = (int)piVar5; piVar5[1] = (int)piVar9; piVar11 = piVar12; }
-          param_2[2] = param_2[2] + 1; FUN_00084ed8((int)param_2);
+          param_2[2] = param_2[2] + 1; cjson_skip_whitespace((int)param_2);
           iVar10 = cjson_parse_string((int)piVar5,param_2);
           if (iVar10 == 0) goto LAB_c08;
-          FUN_00084ed8((int)param_2);
+          cjson_skip_whitespace((int)param_2);
           iVar10 = piVar5[4]; piVar5[4] = 0; piVar5[8] = iVar10; uVar8 = param_2[2];
           if (((uint)param_2[1] <= uVar8) || (*(char *)(*param_2 + uVar8) != ':')) goto LAB_c08;
-          param_2[2] = uVar8 + 1; FUN_00084ed8((int)param_2);
+          param_2[2] = uVar8 + 1; cjson_skip_whitespace((int)param_2);
           iVar10 = cjson_parse_value((int)piVar5,param_2);
           if (iVar10 == 0) goto LAB_c08;
-          FUN_00084ed8((int)param_2);
+          cjson_skip_whitespace((int)param_2);
           if ((uint)param_2[1] <= (uint)param_2[2]) goto LAB_c0e;
           cVar1 = *(char *)(*param_2 + param_2[2]); piVar9 = piVar5; piVar12 = piVar11;
         } while (cVar1 == ',');
@@ -138,7 +140,7 @@ LAB_88:
   return 1;
 LAB_fa:
   abStack_60[iVar3] = 0;
-  uVar16 = FUN_00077a10((int)abStack_60,(int)&local_64);
+  uVar16 = strtod((int)abStack_60,(int)&local_64);
   pbVar6 = local_64;
   uVar17 = (undefined4)(uVar16 >> 0x20); uVar4 = (undefined4)uVar16;
   if (local_64 == abStack_60) return 0;

@@ -2,6 +2,9 @@
 /* readable reconstruction; identity: FUN_00085c86 @ 0x00085c86
  * public-name: zcbor_process_backup
  * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_decoder_at_end                      <= FUN_00085c12 @ 0x00085c12
+ *   cbor_finalize_backup_count               <= FUN_00085c26 @ 0x00085c26
  */
 /* Reconstructed zcbor_process_backup @ 0x00085c86.
  * Raw/address back-map: FUN_00085c86 / 0x00085c86.
@@ -26,8 +29,8 @@ struct zcbor_constant_state_raw {
     uint32_t error;
 };
 
-#define zcbor_check_error FUN_00085c12
-#define zcbor_error FUN_00085c26
+#define zcbor_check_error cbor_decoder_at_end
+#define zcbor_error cbor_finalize_backup_count
 extern int zcbor_check_error(struct zcbor_constant_state_raw *constant_state);
 extern void zcbor_error(struct zcbor_state_raw *state, uint32_t error);
 

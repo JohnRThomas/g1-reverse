@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   send_conn_le_param_update                <= FUN_00057038 @ 0x00057038
+ *   l2cap_send_conn_param_req                <= FUN_00081adc @ 0x00081adc
  * address symbols (name @ address):
  *   g_ble_dev_le_features                    @ 0x200020d8
  */
@@ -19,7 +20,7 @@ struct bt_le_conn_param_view {
 };
 extern int bt_le_conn_params_valid(const struct bt_le_conn_param_view *param);
 extern int bt_conn_le_conn_update(void *conn, const struct bt_le_conn_param_view *param);
-extern int FUN_00081adc(void *conn, const struct bt_le_conn_param_view *param); /* bt_l2cap_update_conn_param */
+extern int l2cap_send_conn_param_req(void *conn, const struct bt_le_conn_param_view *param); /* bt_l2cap_update_conn_param */
 int send_conn_le_param_update(void *conn_arg, const struct bt_le_conn_param_view *param)
 {
     volatile uint8_t *conn = (volatile uint8_t *)conn_arg;
@@ -40,5 +41,5 @@ int send_conn_le_param_update(void *conn_arg, const struct bt_le_conn_param_view
         }
         return rc;
     }
-    return FUN_00081adc(conn_arg, param);
+    return l2cap_send_conn_param_req(conn_arg, param);
 }

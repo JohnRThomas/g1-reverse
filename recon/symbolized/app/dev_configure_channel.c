@@ -3,6 +3,7 @@
  * public-name: dev_configure_channel
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   regulator_uv_to_reg_selector             <= FUN_00062070 @ 0x00062070
  *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
  *   dev_channel_validate_and_set             <= FUN_000840cc @ 0x000840cc
  *   dev_write_channel_mode                   <= FUN_000843ba @ 0x000843ba
@@ -12,7 +13,7 @@
 /* Reconstructed FUN_00084418 @ 0x84418  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8;
-extern int FUN_00062070(int,int,void*);
+extern int regulator_uv_to_reg_selector(int,int,void*);
 extern int dev_write_reg3(u32,int,int,int,int);
 extern int dev_channel_validate_and_set(int,int);
 extern int dev_write_channel_mode(int,int,int);
@@ -31,7 +32,7 @@ int dev_configure_channel(int param_1, u32 param_2, u32 param_3){
             int iVar5 = *(int*)(param_1+4);
             u8 cVar1 = *(u8*)(iVar5+0x20);
             if(cVar1 != 0 && cVar1 != 1) return -0x86;
-            iVar2 = FUN_00062070(r1, r1, &u_1c.b[2]);
+            iVar2 = regulator_uv_to_reg_selector(r1, r1, &u_1c.b[2]);
             if(iVar2 == -0x16) return -0x16;
             int r2 = (u8)(((unsigned)cVar1<<1)+9);
             u8 r3 = u_1c.b[2];

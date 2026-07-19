@@ -4,6 +4,8 @@
  * callees (readable <= raw @ address):
  *   find_cf_cfg                              <= FUN_00059c04 @ 0x00059c04
  *   gatt_cf_write                            <= FUN_0005a5bc @ 0x0005a5bc
+ *   bt_addr_le_copy_828da                    <= FUN_000828da @ 0x000828da
+ *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  *   set_change_aware                         <= FUN_00082bb8 @ 0x00082bb8
  * address symbols (name @ address):
  *   rodata_88128                             @ 0x00088128
@@ -13,8 +15,8 @@
 
 #include <stdint.h>
 extern uint8_t* find_cf_cfg(void);
-extern void FUN_000828da(void*, int);
-extern void FUN_00082a42(uint32_t, int, void*);
+extern void bt_addr_le_copy_828da(void*, int);
+extern void log_msg_create_3arg(uint32_t, int, void*);
 extern void set_change_aware(void*, int);
 
 int gatt_cf_write(int param_1, uint32_t param_2, uint8_t *param_3, int param_4, uint16_t param_5){
@@ -28,7 +30,7 @@ int gatt_cf_write(int param_1, uint32_t param_2, uint8_t *param_3, int param_4, 
         param_4 = -0x11;
         local_1c = 0xf4889;
         local_20 = 2;
-        FUN_00082a42(0x88128, 0x1080, (void*)&local_20);
+        log_msg_create_3arg(0x88128, 0x1080, (void*)&local_20);
       } else {
         if (param_4 != 0){
           uVar2 = 0;
@@ -41,7 +43,7 @@ int gatt_cf_write(int param_1, uint32_t param_2, uint8_t *param_3, int param_4, 
           } while (uVar2 != 3);
           puVar1[8] = puVar1[8] | (*param_3 & 7);
         }
-        FUN_000828da((void*)(puVar1+1), param_1 + 0x90);
+        bt_addr_le_copy_828da((void*)(puVar1+1), param_1 + 0x90);
         *puVar1 = *(uint8_t*)(param_1 + 8);
         set_change_aware((void*)puVar1, 1);
       }

@@ -7,6 +7,7 @@
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   net_buf_pool_get_727ac                   <= FUN_000727ac @ 0x000727ac
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   k_queue_prepend                          <= FUN_00086518 @ 0x00086518
@@ -30,7 +31,7 @@
 extern int z_spin_lock_valid(int);
 extern int z_spin_unlock_valid(int);
 extern void z_spin_lock_set_owner(int);
-extern int FUN_000727ac(int,int,int,int);
+extern int net_buf_pool_get_727ac(int,int,int,int);
 extern void assert_post_action(uint32_t,uint32_t);
 extern void printk(uint32_t,...);
 extern void k_queue_prepend(int,int);
@@ -66,13 +67,13 @@ CONTINUE_AFTER_FATAL:
     if (uVar_h == 0) {
         int t = z_spin_unlock_valid(param_1 + 0x1c);
         if (t == 0) goto EF40;
-        r4 = FUN_000727ac(param_1,0,param_3,param_4);
+        r4 = net_buf_pool_get_727ac(param_1,0,param_3,param_4);
         if (r4 != 0) goto EF60;
         return 0;
     } else {
         uVar2 = *(volatile uint16_t*)(param_1 + 0x20);
         if (uVar2 <= uVar_h) goto EFA0;
-        r4 = FUN_000727ac(param_1,0,0,0);
+        r4 = net_buf_pool_get_727ac(param_1,0,0,0);
         if (r4 == 0) goto EFA0;
         {
             int t = z_spin_unlock_valid(param_1 + 0x1c);

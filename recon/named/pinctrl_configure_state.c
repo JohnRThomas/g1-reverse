@@ -1,0 +1,25 @@
+/* readable reconstruction; identity: FUN_00083cde @ 0x00083cde
+ * public-name: pinctrl_configure_state
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   pinctrl_configure_state                  <= FUN_00083cde @ 0x00083cde
+ *   pinctrl_lookup_state                     <= FUN_00083eb8 @ 0x00083eb8
+ *   dppi_apply_channel_config_table          <= FUN_00083ede @ 0x00083ede
+ */
+/* Reconstructed FUN_00083cde @ 0x83cde  (parity: 300/300 trials, PROVEN) */
+
+extern int pinctrl_lookup_state(unsigned int *, unsigned int *, unsigned int **, unsigned int, unsigned int *);
+extern void dppi_apply_channel_config_table(unsigned int, unsigned char, unsigned int);
+
+void pinctrl_configure_state(unsigned int *param_1, unsigned int *param_2, unsigned int param_3, unsigned int param_4)
+{
+  int iVar1;
+  unsigned int *local_c;
+
+  local_c = param_2;
+  iVar1 = pinctrl_lookup_state(param_1,param_2,&local_c,param_4,param_1);
+  if (-1 < iVar1) {
+    dppi_apply_channel_config_table(*local_c,*(unsigned char *)(local_c + 1),*param_1);
+  }
+  return;
+}

@@ -2,6 +2,7 @@
  * public-name: img_mgmt_set_next_boot_slot
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   z_log_msg_runtime_create                 <= FUN_0004d944 @ 0x0004d944
  *   flash_area_open                          <= FUN_0004e048 @ 0x0004e048
  *   img_mgmt_flash_area_id                   <= FUN_0005169c @ 0x0005169c
  *   img_mgmt_slot_to_image                   <= FUN_00051c68 @ 0x00051c68
@@ -18,7 +19,7 @@
 /* Reconstructed FUN_00051d8c @ 0x51d8c. */
 #include <stdint.h>
 
-extern void FUN_0004d944(uint32_t channel, uint32_t flags,
+extern void z_log_msg_runtime_create(uint32_t channel, uint32_t flags,
                          const void *record, int context);
 extern int flash_area_open(unsigned int selector, uint32_t *handle);
 extern unsigned int img_mgmt_flash_area_id(unsigned int request);
@@ -88,7 +89,7 @@ int img_mgmt_set_next_boot_slot(unsigned int request, int mode)
         struct failure_record failure = {
             6, 0x000f2772, status, request, primary, mode
         };
-        FUN_0004d944(0x00088208, 0x3040, &failure, 0);
+        z_log_msg_runtime_create(0x00088208, 0x3040, &failure, 0);
         if (status == 1)
             status = 0x0c;
         else if (status == 4)

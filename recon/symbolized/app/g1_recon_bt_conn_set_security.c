@@ -3,13 +3,14 @@
  * public-name: g1_recon_bt_conn_set_security
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   smp_send_security_req                    <= FUN_0005d964 @ 0x0005d964
  *   atomic_and_2                             <= FUN_000813b4 @ 0x000813b4
  *   g1_recon_bt_conn_set_security            <= FUN_0008149a @ 0x0008149a
  */
 /* Reconstructed FUN_0008149a @ 0x8149a  (parity: 300/300 trials, PROVEN) */
 
 extern void atomic_and_2(void*, unsigned int, unsigned int, unsigned int, unsigned int);
-extern int FUN_0005d964(int);
+extern int smp_send_security_req(int);
 
 int g1_recon_bt_conn_set_security(int param_1, unsigned char param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -24,7 +25,7 @@ int g1_recon_bt_conn_set_security(int param_1, unsigned char param_2, unsigned i
       atomic_and_2((void*)puVar1, 0xfffff7ff, param_3, (unsigned int)param_2 << 0x18, param_4);
     }
     *(unsigned char*)(param_1+10) = param_2 & 0x7f;
-    iVar2 = FUN_0005d964(param_1);
+    iVar2 = smp_send_security_req(param_1);
     if (iVar2 != 0) {
       *(unsigned char*)(param_1+10) = *(unsigned char*)(param_1+9);
     }

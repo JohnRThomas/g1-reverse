@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  * address symbols (name @ address):
  *   g_watchdog_device                        @ 0x00087cc8
  *   rodata_a1c4e                             @ 0x000a1c4e
@@ -14,7 +15,7 @@
  */
 /* Reconstructed disable_watchdog @ 0x2aeb4  (parity: 151/300 trials, PROVEN) */
 
-extern void FUN_00074844(unsigned int, unsigned int);
+extern void k_sleep(unsigned int, unsigned int);
 extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, ...);
 
@@ -53,7 +54,7 @@ int disable_watchdog(void)
                 iVar5 = 0;
                 break;
             }
-            FUN_00074844(0x667, 0);
+            k_sleep(0x667, 0);
             iVar6 = iVar6 - 1;
         } while (iVar6 != 0);
     }

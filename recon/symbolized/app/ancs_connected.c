@@ -7,7 +7,9 @@
  *   format_bt_addr_str                       <= FUN_00018334 @ 0x00018334
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
+ *   bt_conn_disconnect_by_state              <= FUN_00056a68 @ 0x00056a68
  *   k_uptime_get_32                          <= FUN_0007c0c8 @ 0x0007c0c8
+ *   bt_conn_get_field_0x90                   <= FUN_00081526 @ 0x00081526
  *   bt_conn_le_param_update                  <= FUN_0008157a @ 0x0008157a
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
@@ -28,9 +30,9 @@ extern int get_device_info(void);
 extern void format_bt_addr_str(unsigned, void*);
 extern void debug_print(uintptr_t,...);
 extern int is_battery_critical(void);
-extern void FUN_00056a68(int,int);
+extern void bt_conn_disconnect_by_state(int,int);
 extern unsigned k_uptime_get_32(void);
-extern int FUN_00081526(int);
+extern int bt_conn_get_field_0x90(int);
 extern void bt_conn_le_param_update(int,unsigned);
 extern int memcmp(int,unsigned,int);
 void ancs_connected(int param_1, int param_2)
@@ -38,7 +40,7 @@ void ancs_connected(int param_1, int param_2)
   unsigned char bVar1, bVar2;
   int *piVar3; unsigned uVar4; int iVar5; unsigned uVar6;
   unsigned char auStack_38[32];
-  uVar4 = FUN_00081526(param_1);
+  uVar4 = bt_conn_get_field_0x90(param_1);
   format_bt_addr_str(uVar4, auStack_38);
   bVar1 = *(unsigned char*)(param_1+2);
   bVar2 = *(unsigned char*)(param_1+3);
@@ -60,7 +62,7 @@ void ancs_connected(int param_1, int param_2)
                          (unsigned)*(unsigned char*)(param_1+2),
                          (unsigned)*(unsigned char*)(param_1+3));
         }
-        FUN_00056a68(param_1, 5);
+        bt_conn_disconnect_by_state(param_1, 5);
         return;
       }
     }

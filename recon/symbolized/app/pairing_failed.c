@@ -5,6 +5,8 @@
  * callees (readable <= raw @ address):
  *   format_bt_addr_str                       <= FUN_00018334 @ 0x00018334
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   bt_conn_disconnect_by_state              <= FUN_00056a68 @ 0x00056a68
+ *   bt_conn_get_field_0x90                   <= FUN_00081526 @ 0x00081526
  * address symbols (name @ address):
  *   rodata_9a48b                             @ 0x0009a48b
  *   rodata_9a4af                             @ 0x0009a4af
@@ -15,16 +17,16 @@
 /* Full ABI-faithful reconstruction pairing_failed @ 0x18444. */
 #include <stdint.h>
 
-extern uintptr_t FUN_00081526(void);
+extern uintptr_t bt_conn_get_field_0x90(void);
 extern void format_bt_addr_str(const void *connection, char description[36]);
 extern void log_message(uintptr_t format, ...);
 extern void debug_print(uintptr_t format, ...);
-extern void FUN_00056a68(uint32_t connection, uint32_t reason);
+extern void bt_conn_disconnect_by_state(uint32_t connection, uint32_t reason);
 
 void pairing_failed(uint32_t connection, uint32_t error)
 {
     char description[36];
-    uintptr_t active_connection = FUN_00081526();
+    uintptr_t active_connection = bt_conn_get_field_0x90();
 
     format_bt_addr_str((const void *)active_connection, description);
     log_message(((unsigned long)&rodata_9a48b) /*=0x9a48b*/, description, error);
@@ -36,5 +38,5 @@ void pairing_failed(uint32_t connection, uint32_t error)
             debug_print(((unsigned long)&rodata_9a4af) /*=0x9a4af*/, ((unsigned long)&rodata_9b126) /*=0x9b126*/);
     }
 
-    FUN_00056a68(connection, 0x13);
+    bt_conn_disconnect_by_state(connection, 0x13);
 }

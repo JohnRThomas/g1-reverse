@@ -2,6 +2,7 @@
  * public-name: cbor_decode_extract_value
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   zcbor_backup_store_count                 <= FUN_00085d70 @ 0x00085d70
  *   cbor_decode_precheck                     <= FUN_00085d82 @ 0x00085d82
  *   cbor_decode_extract_value                <= FUN_00085e1a @ 0x00085e1a
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -9,7 +10,7 @@
 /* Reconstructed FUN_00085e1a @ 0x85e1a  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void FUN_00085d70(int*, uint32_t);
+extern void zcbor_backup_store_count(int*, uint32_t);
 extern int cbor_decode_precheck(void);
 extern void memset_bytes(uint8_t*, int, uint32_t);
 
@@ -63,6 +64,6 @@ int cbor_decode_extract_value(int *param_1, uint8_t *param_2, uint32_t param_3){
       }
     }
   }
-  FUN_00085d70(param_1, uVar2);
+  zcbor_backup_store_count(param_1, uVar2);
   return 0;
 }

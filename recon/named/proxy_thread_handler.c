@@ -6,14 +6,18 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   upgradeAppLanguageInfoToFlash            <= FUN_00023af0 @ 0x00023af0
  *   upgradeDashboardStartupModeInfoToFlash   <= FUN_00023bfc @ 0x00023bfc
+ *   get_ui_mode_flag2                        <= FUN_00023eec @ 0x00023eec
+ *   atomic_exchange_proxy_scratch            <= FUN_0002f910 @ 0x0002f910
  *   z_log_dropped_read_and_clear             <= FUN_0002f928 @ 0x0002f928
  *   sendAudioStreamFileToApp                 <= FUN_00047bf8 @ 0x00047bf8
  *   display_powerEvent                       <= FUN_00049a28 @ 0x00049a28
  *   get_synced_clock_time                    <= FUN_0004a4d0 @ 0x0004a4d0
  *   k_msgq_get                               <= FUN_00072240 @ 0x00072240
  *   mutex_unlock_syscall_handler             <= FUN_000745c8 @ 0x000745c8
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
@@ -109,18 +113,18 @@ typedef struct {
 #define debug_print debug_print
 #define upgrade_language_setting upgradeAppLanguageInfoToFlash
 #define upgrade_dashboard_start_mode upgradeDashboardStartupModeInfoToFlash
-#define get_pending_language_code FUN_00023eec
-#define set_current_audio_segment FUN_0002f910
+#define get_pending_language_code get_ui_mode_flag2
+#define set_current_audio_segment atomic_exchange_proxy_scratch
 #define finish_audio_proxy_transfer z_log_dropped_read_and_clear
 #define enqueue_proxy_progress sendAudioStreamFileToApp
 #define display_power_event display_powerEvent
 #define get_proxy_timestamp get_synced_clock_time
 #define receive_proxy_message k_msgq_get
 #define reschedule_after_power_event mutex_unlock_syscall_handler
-#define wait_for_proxy_event FUN_00074844
+#define wait_for_proxy_event k_sleep
 #define device_is_ready z_device_is_ready
 #define copy_bytes memcpy
-#define checked_copy_bytes FUN_00086c1e
+#define checked_copy_bytes safe_memcpy_checked
 #define clear_bytes memset_bytes
 
 /* K&R prototypes are retained only at variadic/decompiler boundaries. */

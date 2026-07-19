@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   packet_transport_send_byte               <= FUN_0003364c @ 0x0003364c
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  * address symbols (name @ address):
  *   rodata_a7af2                             @ 0x000a7af2
  */
@@ -14,7 +15,7 @@
 #include <stdint.h>
 
 extern int log_message(uintptr_t format, ...);
-extern void FUN_00074844(uint32_t delay, uint32_t flags);
+extern void k_sleep(uint32_t delay, uint32_t flags);
 
 int packet_transport_send_byte(void *transport, const uint8_t *value, const void *required)
 {
@@ -29,8 +30,8 @@ int packet_transport_send_byte(void *transport, const uint8_t *value, const void
         log_message(0x000a7af2UL);
         return -2;
     }
-    FUN_00074844(0x4000U, 0U);
+    k_sleep(0x4000U, 0U);
     ((void (*)(void *, uint32_t))vtable[7])(transport, *value);
-    FUN_00074844(3277U, 0U);
+    k_sleep(3277U, 0U);
     return 0;
 }

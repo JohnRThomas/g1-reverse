@@ -3,6 +3,7 @@
  * public-name: arm_core_mpu_configure
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   z_log_msg_runtime_create                 <= FUN_0004d944 @ 0x0004d944
  *   region_init                              <= FUN_00050bf0 @ 0x00050bf0
  *   mpu_region_alloc_fail_log                <= FUN_00050c24 @ 0x00050c24
  *   arm_core_mpu_configure                   <= FUN_00050c54 @ 0x00050c54
@@ -18,7 +19,7 @@
 #define S98 (*(volatile uint32_t*)0xe000ed98UL)
 #define S9c (*(volatile uint32_t*)0xe000ed9cUL)
 #define Sa0 (*(volatile uint32_t*)0xe000eda0UL)
-extern void FUN_0004d944(uint32_t, uint32_t, const void *, uint32_t);
+extern void z_log_msg_runtime_create(uint32_t, uint32_t, const void *, uint32_t);
 extern int region_init(unsigned, int);
 extern int mpu_region_alloc_fail_log(unsigned);
 extern unsigned arm_cmse_mpu_region_get(unsigned);
@@ -112,6 +113,6 @@ REGION_ERROR:
     diagnostic.value = uVar2;
 DO_LOG:
     diagnostic.severity = 3;
-    FUN_0004d944(((unsigned long)&rodata_88228) /*=0x88228*/, 0x1840, &diagnostic, 0);
+    z_log_msg_runtime_create(((unsigned long)&rodata_88228) /*=0x88228*/, 0x1840, &diagnostic, 0);
     return 0xffffffea;
 }

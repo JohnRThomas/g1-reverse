@@ -10,6 +10,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   atomic_and_2                             <= FUN_000813b4 @ 0x000813b4
+ *   bt_conn_call_4arg_zero                   <= FUN_000813ca @ 0x000813ca
  *   bt_l2cap_disconnected                    <= FUN_000817ea @ 0x000817ea
  * address symbols (name @ address):
  *   rodata_87fec                             @ 0x00087fec
@@ -31,7 +32,7 @@ extern int send_conn_le_param_update(int,void*);
 extern void assert_post_action(unsigned,unsigned);
 extern void printk(unsigned,...);
 extern int atomic_and_2(volatile unsigned*,unsigned);
-extern void FUN_000813ca(unsigned,unsigned,void*);
+extern void bt_conn_call_4arg_zero(unsigned,unsigned,void*);
 extern void bt_l2cap_disconnected(int);
 
 void ble_conn_process_complete_or_disconnect(int param_1){
@@ -85,7 +86,7 @@ void ble_conn_process_complete_or_disconnect(int param_1){
     }
   }
   local_30 = 3;
-  FUN_000813ca(((unsigned long)&log_module_bt_conn) /*=0x88108*/, 0x1880, &local_30);
+  bt_conn_call_4arg_zero(((unsigned long)&log_module_bt_conn) /*=0x88108*/, 0x1880, &local_30);
 LAB:
   *puVar4 = *puVar4 | 0x80;
   (void)local_2c; (void)local_1c;

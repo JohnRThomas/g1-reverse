@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   gatt_parse_find_info_rsp                 <= FUN_0005c0bc @ 0x0005c0bc
  *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
+ *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  *   gatt_discover_next                       <= FUN_00082d2e @ 0x00082d2e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -15,7 +16,7 @@
 #include <stdint.h>
 
 extern int  bt_uuid_cmp(void *packet, ...);
-extern void FUN_00082a42(uint32_t module, uint32_t event, void *detail);
+extern void log_msg_create_3arg(uint32_t module, uint32_t event, void *detail);
 extern void gatt_discover_next(uint32_t context, uint32_t last_id, void *consumer);
 extern void memset_bytes(void *destination, int value, uint32_t size);
 
@@ -54,7 +55,7 @@ void gatt_parse_find_info_rsp(uint32_t context, int status, const uint8_t *data,
             uint32_t message;
             uint32_t value;
         } detail = { 3, UINT32_C(0x000f4cbc), data[0] };
-        FUN_00082a42(UINT32_C(0x00088128), 0x1840, &detail);
+        log_msg_create_3arg(UINT32_C(0x00088128), 0x1840, &detail);
         goto malformed;
     }
 

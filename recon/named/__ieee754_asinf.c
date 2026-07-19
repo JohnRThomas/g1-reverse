@@ -4,11 +4,12 @@
  * callees (readable <= raw @ address):
  *   __ieee754_asinf                          <= FUN_00075f88 @ 0x00075f88
  *   fabsf                                    <= FUN_000868ee @ 0x000868ee
+ *   sqrtf_hw                                 <= FUN_000869c6 @ 0x000869c6
  */
 /* Reconstructed FUN_00075f88 @ 0x75f88  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern float fabsf(void);
-extern float FUN_000869c6(float);
+extern float sqrtf_hw(float);
 
 static inline float F(uint32_t b){ union{float f;uint32_t u;}x; x.u=b; return x.f; }
 static inline uint32_t B(float f){ union{float f;uint32_t u;}x; x.f=f; return x.u; }
@@ -62,7 +63,7 @@ float __ieee754_asinf(float param_1)
     s14 = __builtin_fmaf(s15b, s16, F(0x4001572d));
     s15b = __builtin_fmaf(s14, s16, F(0xc019d139));
     s17 = __builtin_fmaf(s15b, s16, s17);
-    float ret2 = FUN_000869c6(s16);
+    float ret2 = sqrtf_hw(s16);
     float s12 = s18 / s17;
 
     if (r4 > 0x3f799999) {

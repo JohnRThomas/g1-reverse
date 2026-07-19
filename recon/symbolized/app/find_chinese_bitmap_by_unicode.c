@@ -7,6 +7,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   expand_bytes_via_lut32                   <= FUN_0004790c @ 0x0004790c
  *   find_chinese_bitmap_by_unicode           <= FUN_0004792c @ 0x0004792c
+ *   find_chinese_bitmap_stub_zero            <= FUN_0007d84c @ 0x0007d84c
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_a1ce0                             @ 0x000a1ce0
@@ -24,7 +25,7 @@ extern void log_message(unsigned int, ...);
 extern void debug_print(unsigned int, ...);
 extern void *get_device_info(void);
 extern unsigned int expand_bytes_via_lut32(void *, unsigned int, unsigned int);
-extern unsigned int FUN_0007d84c(unsigned int, unsigned int);
+extern unsigned int find_chinese_bitmap_stub_zero(unsigned int, unsigned int);
 extern void memset_bytes(void *, int, unsigned int);
 
 typedef int (*storage_callback)();
@@ -40,7 +41,7 @@ unsigned int find_chinese_bitmap_by_unicode(unsigned int codepoint, int16_t widt
     int status;
 
     if (codepoint - 0x20 < 0x60)
-        return FUN_0007d84c(codepoint & 0xff, bitmap_size);
+        return find_chinese_bitmap_stub_zero(codepoint & 0xff, bitmap_size);
 
     context = get_device_info();
     callback = *(storage_callback *)((unsigned char *)context + 0x1030);

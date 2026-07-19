@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   write_font_to_flash_with_verify          <= FUN_00022834 @ 0x00022834
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -21,7 +22,7 @@
 typedef int (*codeptr)(int,...);
 extern int log_message(int,...);
 extern int get_device_info(void);
-extern int FUN_00074844(int,int);
+extern int k_sleep(int,int);
 extern int z_device_is_ready(int);
 extern int memcmp(int,int,int);
 extern int memset_bytes(void*,int,int);
@@ -96,6 +97,6 @@ LAB_874:
     if (iVar6 == 0xb) {
       return iVar3;
     }
-    FUN_00074844(0xccd, 0);
+    k_sleep(0xccd, 0);
   } while (1);
 }

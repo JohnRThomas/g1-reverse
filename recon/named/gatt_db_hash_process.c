@@ -9,6 +9,8 @@
  *   gatt_db_hash_process                     <= FUN_0005ac30 @ 0x0005ac30
  *   k_work_cancel_delayable_sync             <= FUN_000735cc @ 0x000735cc
  *   atomic_or_0                              <= FUN_000826e0 @ 0x000826e0
+ *   read_struct_first_word                   <= FUN_0008270c @ 0x0008270c
+ *   bt_gatt_attr_read                        <= FUN_00082932 @ 0x00082932
  * address symbols (name @ address):
  *   g_bt_gatt_db_hash                        @ 0x20006380
  *   g_bt_gatt_db_hash_work_63d0              @ 0x200063d0
@@ -22,20 +24,20 @@ extern int gatt_cf_store_all(void);
 extern int gatt_db_hash_gen(void);
 extern int k_work_cancel_delayable_sync(int);
 extern int atomic_or_0(int,int);
-extern int FUN_0008270c(int);
-extern int FUN_00082932(unsigned,unsigned,unsigned,unsigned);
+extern int read_struct_first_word(int);
+extern int bt_gatt_attr_read(unsigned,unsigned,unsigned,unsigned);
 void gatt_db_hash_process(unsigned p1,unsigned p2,unsigned p3,unsigned p4,unsigned short p5){
   int iVar1,iVar2;
   k_work_cancel_delayable_sync(0x200063d0 - 0x30);
-  iVar1 = FUN_0008270c(0x20006448);
+  iVar1 = read_struct_first_word(0x20006448);
   if((iVar1<<0x1c) >= 0){ gatt_db_hash_gen(); gatt_cf_store_all(); bt_gatt_store_hash(); }
   iVar1 = find_cf_cfg(p1);
   if(iVar1!=0){
     if((int)((unsigned)*(unsigned char*)(iVar1+8)<<0x1f) < 0){
-      iVar2 = FUN_0008270c(iVar1+0xc);
+      iVar2 = read_struct_first_word(iVar1+0xc);
       if((iVar2<<0x1f) >= 0){ atomic_or_0(iVar1+0xc, 2); }
     }
   }
-  FUN_00082932(p3,p4,p5,0x20006380);
+  bt_gatt_attr_read(p3,p4,p5,0x20006380);
   return;
 }

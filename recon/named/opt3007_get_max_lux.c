@@ -7,6 +7,7 @@
  *   __fixdfsi                                <= FUN_0000de58 @ 0x0000de58
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   opt3001_read_lux_raw                     <= FUN_0002e648 @ 0x0002e648
  * address symbols (name @ address):
  *   rodata_a3c82                             @ 0x000a3c82
  *   rodata_a3d12                             @ 0x000a3d12
@@ -22,7 +23,7 @@ extern unsigned long long __divdf3(unsigned int lo, unsigned int hi, unsigned in
 extern int __fixdfsi(unsigned int lo, unsigned int hi);
 extern unsigned int get_device_info(void);
 extern void debug_print(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned long long e, unsigned int f);
-extern int FUN_0002e648(unsigned int a);
+extern int opt3001_read_lux_raw(unsigned int a);
 
 int opt3007_get_max_lux(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -31,7 +32,7 @@ int opt3007_get_max_lux(unsigned int param_1, unsigned int param_2, unsigned int
     if (*(volatile unsigned char *)0x20018da1UL == 0) {
         iVar2 = -1;
     } else {
-        iVar2 = FUN_0002e648(0);
+        iVar2 = opt3001_read_lux_raw(0);
         if (1 < (unsigned int)(iVar2 + 1)) {
             unsigned int iVar3 = get_device_info();
             long long lVar1 = (long long)iVar2 * (long long)*(volatile int *)(iVar3 + 0xfb0);

@@ -4,10 +4,15 @@
  * callees (readable <= raw @ address):
  *   hci_vs_init                              <= FUN_00012080 @ 0x00012080
  *   bt_hci_cmd_create                        <= FUN_00053cd4 @ 0x00053cd4
+ *   bt_hci_cmd_send_sync                     <= FUN_00053d70 @ 0x00053d70
+ *   bt_id_addr_check_and_enable              <= FUN_000549ec @ 0x000549ec
  *   ble_rng_get_random_bytes                 <= FUN_00055c64 @ 0x00055c64
+ *   bt_conn_init                             <= FUN_00057358 @ 0x00057358
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
  *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   bt_log_forward_3arg                      <= FUN_00080ea2 @ 0x00080ea2
  *   sys_put_le64                             <= FUN_00080eb8 @ 0x00080eb8
+ *   hci_vs_setup_stub                        <= FUN_00081158 @ 0x00081158
  *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
  * address symbols (name @ address):
  *   rodata_1253c                             @ 0x0001253c
@@ -94,15 +99,15 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
 extern long long bt_hci_cmd_create(int, int);
-extern long long FUN_00053d70(int, int, ...);
-extern long long FUN_000549ec(void);
+extern long long bt_hci_cmd_send_sync(int, int, ...);
+extern long long bt_id_addr_check_and_enable(void);
 extern long long ble_rng_get_random_bytes(void);
-extern long long FUN_00057358(void);
+extern long long bt_conn_init(void);
 extern long long net_buf_unref(int, ...);
 extern long long net_buf_simple_add(int, int);
-extern long long FUN_00080ea2(int, int, ...);
+extern long long bt_log_forward_3arg(int, int, ...);
 extern long long sys_put_le64(int, int, int);
-extern long long FUN_00081158(void);
+extern long long hci_vs_setup_stub(void);
 extern long long z_impl_k_sem_init(void *, int);
 #define DAT_00012388 0x20002000UL
 #define DAT_0001238c ((volatile int*)0x20002078UL)
@@ -167,7 +172,7 @@ int hci_vs_init(void)
 
   iVar5 = DAT_00012388;
   if ((*(uint *)(*(int *)(DAT_00012388 + 0x168) + 8) & 1) == 0) {
-    uVar16 = FUN_00053d70(0xc03,0,local_30);
+    uVar16 = bt_hci_cmd_send_sync(0xc03,0,local_30);
     uVar6 = (uint)((ulonglong)uVar16 >> 0x20);
     if ((int)uVar16 != 0) {
       return (int)uVar16;
@@ -179,7 +184,7 @@ int hci_vs_init(void)
     }
     net_buf_unref(local_30[0],uVar6);
   }
-  iVar1 = FUN_00053d70(0x1003,0,local_30);
+  iVar1 = bt_hci_cmd_send_sync(0x1003,0,local_30);
   puVar15 = DAT_0001238c;
   if (iVar1 != 0) {
     return iVar1;
@@ -188,7 +193,7 @@ int hci_vs_init(void)
   *DAT_0001238c = *(undefined4 *)(*(int *)(local_30[0] + 0xc) + 1);
   puVar15[1] = uVar7;
   net_buf_unref(local_30[0]);
-  iVar1 = FUN_00053d70(0x1001,0,local_30);
+  iVar1 = bt_hci_cmd_send_sync(0x1001,0,local_30);
   if (iVar1 != 0) {
     return iVar1;
   }
@@ -199,7 +204,7 @@ int hci_vs_init(void)
   *(undefined2 *)(iVar5 + 0x74) = *(undefined2 *)(iVar1 + 7);
   *(undefined2 *)(iVar5 + 0x76) = *(undefined2 *)(iVar1 + 5);
   net_buf_unref(local_30[0]);
-  iVar1 = FUN_00053d70(0x1002,0,local_30);
+  iVar1 = bt_hci_cmd_send_sync(0x1002,0,local_30);
   if (iVar1 != 0) {
     return iVar1;
   }
@@ -221,10 +226,10 @@ int hci_vs_init(void)
   if (-1 < (int)((uint)*(byte *)(iVar5 + 0x7c) << 0x19)) {
     local_1c = (undefined *)DAT_00012390;
     local_20 = 2;
-    FUN_00080ea2(DAT_00012394,0x1040,&local_20);
+    bt_log_forward_3arg(DAT_00012394,0x1040,&local_20);
     return -0x13;
   }
-  iVar1 = FUN_00053d70(0x2003,0,local_30);
+  iVar1 = bt_hci_cmd_send_sync(0x2003,0,local_30);
   puVar15 = DAT_00012398;
   if (iVar1 != 0) {
     return iVar1;
@@ -233,7 +238,7 @@ int hci_vs_init(void)
   *DAT_00012398 = *(undefined4 *)(*(int *)(local_30[0] + 0xc) + 1);
   puVar15[1] = uVar7;
   net_buf_unref(local_30[0]);
-  iVar2 = FUN_00053d70(0x2002,0,local_30);
+  iVar2 = bt_hci_cmd_send_sync(0x2002,0,local_30);
   iVar1 = local_30[0];
   if (iVar2 != 0) {
     return iVar2;
@@ -253,13 +258,13 @@ int hci_vs_init(void)
     puVar3 = (undefined1 *)net_buf_simple_add(iVar1 + 0xc,2);
     *puVar3 = 1;
     puVar3[1] = bVar14;
-    iVar1 = FUN_00053d70(0xc6d,iVar1,bVar14);
+    iVar1 = bt_hci_cmd_send_sync(0xc6d,iVar1,bVar14);
     if (iVar1 != 0) {
       return iVar1;
     }
   }
   if ((int)((uint)*(byte *)(iVar5 + 0x9c) << 0x1c) < 0) {
-    iVar1 = FUN_00053d70(0x201c,0,local_30);
+    iVar1 = bt_hci_cmd_send_sync(0x201c,0,local_30);
     if (iVar1 != 0) {
       return iVar1;
     }
@@ -269,7 +274,7 @@ int hci_vs_init(void)
     net_buf_unref(local_30[0]);
   }
   if ((int)((uint)*(byte *)(iVar5 + 0xd8) << 0x19) < 0) {
-    iVar1 = FUN_00053d70(0x202a,0,local_30);
+    iVar1 = bt_hci_cmd_send_sync(0x202a,0,local_30);
     if (iVar1 != 0) {
       return iVar1;
     }
@@ -305,7 +310,7 @@ int hci_vs_init(void)
     uVar6 = uVar6 | 0x180;
   }
   sys_put_le64(uVar6,0,uVar7);
-  iVar1 = FUN_00053d70(0x2001,iVar1,0);
+  iVar1 = bt_hci_cmd_send_sync(0x2001,iVar1,0);
   if (iVar1 != 0) {
     return iVar1;
   }
@@ -313,12 +318,12 @@ int hci_vs_init(void)
     if (*(short *)(iVar5 + 0x104) == 0) {
       local_1c = (undefined *)DAT_000123a0;
       local_20 = 2;
-      FUN_00080ea2(DAT_00012394,0x1040,&local_20);
+      bt_log_forward_3arg(DAT_00012394,0x1040,&local_20);
       return -5;
     }
   }
   else if (*(short *)(iVar5 + 0x104) == 0) {
-    iVar1 = FUN_00053d70(0x1005,0,local_30);
+    iVar1 = bt_hci_cmd_send_sync(0x1005,0,local_30);
     if (iVar1 != 0) {
       return iVar1;
     }
@@ -341,11 +346,11 @@ int hci_vs_init(void)
     uVar7 = 0x20000000;
   }
   sys_put_le64(uVar8,uVar7,uVar4);
-  iVar5 = FUN_00053d70(0xc01,iVar1,0);
+  iVar5 = bt_hci_cmd_send_sync(0xc01,iVar1,0);
   if (iVar5 != 0) {
     return iVar5;
   }
-  iVar5 = FUN_00053d70(0xfc01,0,&local_34);
+  iVar5 = bt_hci_cmd_send_sync(0xfc01,0,&local_34);
   puVar13 = PTR_s_Vendor_HCI_extensions_not_availa_0001253c;
   if (iVar5 == 0) {
     iVar5 = *(int *)(local_34 + 0xc);
@@ -357,7 +362,7 @@ int hci_vs_init(void)
     local_40 = (local_40 & ~(0xffffULL<<0)) | (((unsigned long long)(0x200) & 0xffffULL)<<0);
     local_4c = PTR_s_HW_Platform___s__0x_04x__0001254c;
     local_50 = DAT_00012550;
-    FUN_00080ea2(PTR_DAT_00012540,0x24c0,&local_50);
+    bt_log_forward_3arg(PTR_DAT_00012540,0x24c0,&local_50);
     local_44 = (uint)*(ushort *)(iVar5 + 3);
     puStack_48 = PTR_s_unknown_00012548;
     if ((*(short *)(iVar5 + 1) == 2) && (local_44 < 4)) {
@@ -367,7 +372,7 @@ int hci_vs_init(void)
     local_4c = PTR_s_HW_Variant___s__0x_04x__00012558;
     ppuVar10 = &local_50;
     local_50 = DAT_00012550;
-    FUN_00080ea2(PTR_DAT_00012540,0x24c0,&local_50);
+    bt_log_forward_3arg(PTR_DAT_00012540,0x24c0,&local_50);
     local_4c = (undefined *)(uint)*(byte *)(iVar5 + 5);
     puStack_48 = (undefined *)(uint)*(byte *)(iVar5 + 6);
     if (local_4c < 4) {
@@ -382,16 +387,16 @@ int hci_vs_init(void)
     local_3c = 0x200;
     local_54 = DAT_00012578;
     local_58 = DAT_00012560;
-    FUN_00080ea2(PTR_DAT_00012540,0x3cc0,&local_58);
+    bt_log_forward_3arg(PTR_DAT_00012540,0x3cc0,&local_58);
     net_buf_unref(local_34);
-    iVar1 = FUN_00053d70(0xfc02,0,&local_34);
+    iVar1 = bt_hci_cmd_send_sync(0xfc02,0,&local_34);
     iVar5 = DAT_00012568;
     puVar13 = DAT_00012564;
     if (iVar1 == 0) {
       *(undefined2 *)(DAT_00012568 + 0xc1) = *(undefined2 *)(*(int *)(local_34 + 0xc) + 1);
       net_buf_unref(local_34);
       if (-1 < (int)((uint)*(byte *)(iVar5 + 0xc1) << 0x1d)) goto LAB_000123fe;
-      iVar1 = FUN_00053d70(0xfc03,0,&local_34);
+      iVar1 = bt_hci_cmd_send_sync(0xfc03,0,&local_34);
       puVar13 = DAT_0001256c;
       if (iVar1 == 0) {
         *(undefined1 *)(iVar5 + 0xc0) = *(undefined1 *)(*(int *)(local_34 + 0xc) + 1);
@@ -402,15 +407,15 @@ int hci_vs_init(void)
   }
   local_20 = 2;
   local_1c = puVar13;
-  FUN_00080ea2(PTR_DAT_00012540,0x1080,&local_20);
+  bt_log_forward_3arg(PTR_DAT_00012540,0x1080,&local_20);
 LAB_000123fe:
-  iVar5 = FUN_00081158();
+  iVar5 = hci_vs_setup_stub();
   if (iVar5 != 0) {
     return iVar5;
   }
-  iVar5 = FUN_00057358();
+  iVar5 = bt_conn_init();
   if (iVar5 == 0) {
-    iVar5 = FUN_000549ec();
+    iVar5 = bt_id_addr_check_and_enable();
     return iVar5;
   }
   return iVar5;

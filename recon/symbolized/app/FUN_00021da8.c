@@ -11,7 +11,9 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   ble_packet_receive_dispatch              <= FUN_00021d78 @ 0x00021d78
  *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
+ *   device_resume_state_advance              <= FUN_0007c108 @ 0x0007c108
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -35,11 +37,11 @@ extern int ancs_main(uintptr_t);
 extern void debug_log_queue_init(void);
 extern uintptr_t malloc(uint32_t);
 extern uintptr_t get_device_info(void);
-extern void FUN_00074844(uint32_t,uint32_t);
+extern void k_sleep(uint32_t,uint32_t);
 extern uint64_t dequeue_bt_data(void*);
 extern void z_impl_k_sem_take(uintptr_t,uint32_t,uint32_t,uint32_t);
 extern void ble_packet_receive_dispatch(void*,uint32_t,uint32_t);
-extern int FUN_0007c108(void);
+extern int device_resume_state_advance(void);
 extern int bt_start(void);
 extern void memcpy(void*,const void*,uint32_t);
 extern void memset_bytes(void*,int,uint32_t);
@@ -75,7 +77,7 @@ void ble_work_thread(uintptr_t context, uintptr_t unused_p2, uint32_t p3)
         do {
             owner=get_device_info();
             if ((int32_t)((uint32_t)*(volatile uint16_t*)(owner+0x105c)<<24)>=0)
-                FUN_00074844(0x8000,0);
+                k_sleep(0x8000,0);
             else break;
         } while(1);
 
@@ -135,7 +137,7 @@ void ble_work_thread(uintptr_t context, uintptr_t unused_p2, uint32_t p3)
             *(volatile uint32_t*)(context+0x358)=0;
             *(volatile uint32_t*)(context+0x35c)=0;
         } else {
-            int state=FUN_0007c108();
+            int state=device_resume_state_advance();
             if(state==0) {
                 ble_log(((unsigned long)&rodata_9df28) /*=0x9df28*/,0,2);
                 int error=bt_start();

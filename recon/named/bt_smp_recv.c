@@ -6,6 +6,7 @@
  *   bt_smp_recv                              <= FUN_0005dce0 @ 0x0005dce0
  *   net_buf_simple_pull_5f594                <= FUN_0005f594 @ 0x0005f594
  *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ *   smp_log_message                          <= FUN_00083074 @ 0x00083074
  *   atomic_test_and_clear_bit                <= FUN_000831be @ 0x000831be
  * address symbols (name @ address):
  *   rodata_88180                             @ 0x00088180
@@ -23,7 +24,7 @@ typedef int (* volatile codeptr)(int,int);
 extern int smp_error(int,int);
 extern int net_buf_simple_pull_5f594(int,int);
 extern int atomic_test_bit(int,int);
-extern int FUN_00083074(int,int,void*);
+extern int smp_log_message(int,int,void*);
 extern int atomic_test_and_clear_bit(int);
 
 int bt_smp_recv(int param_1, int param_2)
@@ -41,7 +42,7 @@ int bt_smp_recv(int param_1, int param_2)
     if (*(short *)(param_2 + 0x10) == 0) {
         local_24 = 0x000f4ff0;
         local_28 = 2;
-        FUN_00083074(0x00088180, 0x1040, &local_28);
+        smp_log_message(0x00088180, 0x1040, &local_28);
     } else {
         pbVar1 = (unsigned char *)net_buf_simple_pull_5f594(param_2 + 0xc, 1);
         iVar6 = param_1 + -0xf0;
@@ -54,7 +55,7 @@ int bt_smp_recv(int param_1, int param_2)
                 local_44 = 0x000f505e;
                 local_48 = 3;
                 uStack_40 = uVar3;
-                FUN_00083074(0x00088180, 0x1880, &local_48);
+                smp_log_message(0x00088180, 0x1880, &local_48);
                 iVar4 = 7;
             } else {
                 iVar2 = atomic_test_and_clear_bit(iVar6);
@@ -63,7 +64,7 @@ int bt_smp_recv(int param_1, int param_2)
                     local_44 = 0x000f5078;
                     local_48 = 3;
                     uStack_40 = uVar3;
-                    FUN_00083074(0x00088180, 0x1880, &local_48);
+                    smp_log_message(0x00088180, 0x1880, &local_48);
                     iVar4 = atomic_test_bit(param_1 + -0xec, 3);
                     if (iVar4 == 0) {
                         return 0;
@@ -79,7 +80,7 @@ int bt_smp_recv(int param_1, int param_2)
                     local_48 = 4;
                     uStack_40 = (unsigned int)*(unsigned short *)(param_2 + 0x10);
                     local_3c = uVar3;
-                    FUN_00083074(0x00088180, 0x2040, &local_48);
+                    smp_log_message(0x00088180, 0x2040, &local_48);
                     iVar4 = 10;
                 }
             }
@@ -88,7 +89,7 @@ int bt_smp_recv(int param_1, int param_2)
             local_48 = 3;
             local_44 = uVar5;
             uStack_40 = uVar3;
-            FUN_00083074(0x00088180, 0x1880, &local_48);
+            smp_log_message(0x00088180, 0x1880, &local_48);
         }
     }
     return 0;

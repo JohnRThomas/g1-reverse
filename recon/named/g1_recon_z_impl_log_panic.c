@@ -2,6 +2,7 @@
  * public-name: g1_recon_z_impl_log_panic
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   log_msg_process                          <= FUN_0004d334 @ 0x0004d334
  *   log_process                              <= FUN_0004d594 @ 0x0004d594
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
@@ -19,14 +20,14 @@
  * Authoritative CFG verification supersedes the legacy 298/300 fuzz receipt.
  */
 #include <stdint.h>
-extern int FUN_0004d334(int);
+extern int log_msg_process(int);
 extern int log_process(void);
 extern int assert_post_action(int,int);
 extern int printk(int,...);
 void g1_recon_z_impl_log_panic(void){
   volatile uint8_t *pcVar1 = (volatile uint8_t*)0x2001d44cUL;
   if(*pcVar1 == 0){
-    FUN_0004d334(1);
+    log_msg_process(1);
     uint32_t piVar4 = 0x000882a0;
     uint32_t piVar2 = 0x000882b0;
     while(1){

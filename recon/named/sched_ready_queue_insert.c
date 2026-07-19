@@ -2,6 +2,7 @@
  * public-name: sched_ready_queue_insert
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   sched_update_cache                       <= FUN_000737d8 @ 0x000737d8
  *   sched_ready_queue_insert                 <= FUN_00073840 @ 0x00073840
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
@@ -14,7 +15,7 @@
 /* Reconstructed FUN_00073840 @ 0x73840  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void FUN_000737d8(int,...);
+extern void sched_update_cache(int,...);
 extern void assert_post_action(int,...);
 extern void printk(int,...);
 void sched_ready_queue_insert(int *param_1){
@@ -48,5 +49,5 @@ void sched_ready_queue_insert(int *param_1){
   *puVar4 = (unsigned)param_1;
   *(int**)(iVar1+0x20) = param_1;
 LAB:
-  FUN_000737d8(0);
+  sched_update_cache(0);
 }

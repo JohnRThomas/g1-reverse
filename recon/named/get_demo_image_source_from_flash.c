@@ -8,6 +8,7 @@
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
  *   free                                     <= FUN_00076d7c @ 0x00076d7c
  *   printf                                   <= FUN_000777f0 @ 0x000777f0
+ *   ptr_load_u32                             <= FUN_0007d1c8 @ 0x0007d1c8
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   strncmp                                  <= FUN_00087036 @ 0x00087036
@@ -29,7 +30,7 @@ extern void pixelto4bithex_for_flash(int,int);
 extern int  malloc(int);
 extern void free(int);
 extern void printf(int);
-extern int  FUN_0007d1c8(void*);
+extern int  ptr_load_u32(void*);
 extern void memcpy(int,int,int);
 extern void memset_bytes(void*,int,int);
 extern int  strncmp(void*,int,int);
@@ -56,9 +57,9 @@ void get_demo_image_source_from_flash(void){
   if (iVar3 != 0) { log_message(0x000a8da8); goto END; }
   { int s=puVar2+0xe; int d=0;
     do { local_50[d]=VI(s); local_50[d+1]=VI(s+4); s+=8; d+=2; } while (s != puVar2+0x36); }
-  iVar3 = FUN_0007d1c8((void*)((int)&local_60[0]+ ( (int)&local_60[2] - (int)&local_60[0]) +2)); /* uStack_58+2 */
-  iVar5 = FUN_0007d1c8(&local_50[1]);
-  iVar6 = FUN_0007d1c8(auStack_48);
+  iVar3 = ptr_load_u32((void*)((int)&local_60[0]+ ( (int)&local_60[2] - (int)&local_60[0]) +2)); /* uStack_58+2 */
+  iVar5 = ptr_load_u32(&local_50[1]);
+  iVar6 = ptr_load_u32(auStack_48);
   if (local_42 == 1) {
     iVar10 = iVar5 + 7;
     VI(0x20009fc4) = 0;

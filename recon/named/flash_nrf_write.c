@@ -2,6 +2,7 @@
  * public-name: flash_nrf_write
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   z_log_msg_runtime_create                 <= FUN_0004d944 @ 0x0004d944
  *   flash_nrf_write                          <= FUN_00061310 @ 0x00061310
  *   nrfx_nvmc_word_write                     <= FUN_00065f80 @ 0x00065f80
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
@@ -19,7 +20,7 @@
 
 extern unsigned long long is_regular_addr_valid(unsigned int address,
                                        unsigned int length);
-extern void FUN_0004d944(unsigned int source, unsigned int level,
+extern void z_log_msg_runtime_create(unsigned int source, unsigned int level,
                          const unsigned int *arguments, unsigned int flags);
 extern void z_impl_k_sem_take(unsigned int lock, unsigned int context,
                          unsigned int timeout_low,
@@ -34,12 +35,12 @@ unsigned int flash_nrf_write(unsigned int unused, unsigned int address,
 
     if ((unsigned int)range == 0) {
         unsigned int arguments[4] = {4, 0x000f5d81, address, length};
-        FUN_0004d944(0x000881b0, 0x2040, arguments, 0);
+        z_log_msg_runtime_create(0x000881b0, 0x2040, arguments, 0);
         return (unsigned int)-22;
     }
     if (((address | length) & 3) != 0) {
         unsigned int arguments[4] = {4, 0x000f5dbd, address, length};
-        FUN_0004d944(0x000881b0, 0x2040, arguments, 0);
+        z_log_msg_runtime_create(0x000881b0, 0x2040, arguments, 0);
         return (unsigned int)-22;
     }
     if (length != 0) {

@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   nrfx_spim_xfer                           <= FUN_00067304 @ 0x00067304
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  * address symbols (name @ address):
  *   rodata_9fb42                             @ 0x0009fb42
@@ -13,7 +14,7 @@
  */
 /* Reconstructed spi_master_trans_data_tx_rx @ 0x262ac  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_00067304(void*, void*, int);
+extern int nrfx_spim_xfer(void*, void*, int);
 extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, ...);
 
@@ -35,7 +36,7 @@ unsigned int spi_master_trans_data_tx_rx(int param_1, unsigned int param_2, unsi
             }
         }
     } else {
-        iVar1 = FUN_00067304((void*)(param_1+0xc), &transfer, 0);
+        iVar1 = nrfx_spim_xfer((void*)(param_1+0xc), &transfer, 0);
         if ((unsigned int)iVar1 == 0x0bad0000) {
             return 0;
         }

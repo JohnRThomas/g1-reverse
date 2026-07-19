@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_ui_mode_flag2                        <= FUN_00023eec @ 0x00023eec
  *   check_charging_and_touch_flags           <= FUN_00026c28 @ 0x00026c28
  *   trigger_screen_state_change              <= FUN_0002bc2c @ 0x0002bc2c
  *   now_has_persist_task                     <= FUN_0002be64 @ 0x0002be64
@@ -11,6 +12,7 @@
  *   update_persist_task_status_to_idle       <= FUN_0002c0e8 @ 0x0002c0e8
  *   update_persist_task_status_to_wait_blow_head <= FUN_0002c180 @ 0x0002c180
  *   check_pending_messages_flag              <= FUN_0002c1fc @ 0x0002c1fc
+ *   clear_pending_message_flag               <= FUN_0002c214 @ 0x0002c214
  *   sync_message_signal_to_slave             <= FUN_0002c224 @ 0x0002c224
  *   wait_touch_key_release_or_timeout        <= FUN_0002c2b0 @ 0x0002c2b0
  *   process_for_new_message_come_on          <= FUN_0002c498 @ 0x0002c498
@@ -22,10 +24,14 @@
  *   msg_content_recalc_unread                <= FUN_00033cf8 @ 0x00033cf8
  *   clear_timeout_message                    <= FUN_00033d58 @ 0x00033d58
  *   push_message_3439c                       <= FUN_0003439c @ 0x0003439c
+ *   get_message_pending_state                <= FUN_00034410 @ 0x00034410
+ *   set_message_pending_state                <= FUN_0003443c @ 0x0003443c
  *   is_msg_expiration                        <= FUN_0003444c @ 0x0003444c
+ *   check_message_expired_or_timeout         <= FUN_00034808 @ 0x00034808
  *   set_new_message_pending_flag             <= FUN_00036030 @ 0x00036030
  *   clear_notification_display_buffer        <= FUN_0003cf34 @ 0x0003cf34
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
+ *   device_addr_is_default                   <= FUN_0007c132 @ 0x0007c132
  *   reset_esb_sync_state                     <= FUN_0007ce60 @ 0x0007ce60
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -181,7 +187,7 @@ extern int update_persist_task_status(char *, u32, int);  /* FUN_0002bef4 */
 #define log_message log_message
 #define get_device_info get_device_info
 #define debug_print debug_print
-#define FUN_00023eec get_task_signal_mode
+#define get_ui_mode_flag2 get_task_signal_mode
 #define check_charging_and_touch_flags is_task_transport_blocked
 #define trigger_screen_state_change trigger_screen_state_change
 #define now_has_persist_task now_has_persist_task
@@ -189,7 +195,7 @@ extern int update_persist_task_status(char *, u32, int);  /* FUN_0002bef4 */
 #define update_persist_task_status_to_idle update_persist_task_status_to_idle
 #define update_persist_task_status_to_wait_blow_head update_persist_task_status_to_wait_blow_head
 #define check_pending_messages_flag reset_task_transition_state
-#define FUN_0002c214 publish_task_transition
+#define clear_pending_message_flag publish_task_transition
 #define sync_message_signal_to_slave sync_message_signal_to_slave
 #define wait_touch_key_release_or_timeout prepare_new_task
 #define process_for_new_message_come_on process_task_state_five
@@ -201,14 +207,14 @@ extern int update_persist_task_status(char *, u32, int);  /* FUN_0002bef4 */
 #define msg_content_recalc_unread read_task_mode
 #define clear_timeout_message clear_timeout_message
 #define push_message_3439c finalize_task_transition
-#define FUN_00034410 is_task_transition_ready
-#define FUN_0003443c set_task_display_mode
+#define get_message_pending_state is_task_transition_ready
+#define set_message_pending_state set_task_display_mode
 #define is_msg_expiration is_msg_expiration
-#define FUN_00034808 can_begin_task_transition
+#define check_message_expired_or_timeout can_begin_task_transition
 #define set_new_message_pending_flag clear_active_task
 #define clear_notification_display_buffer finish_task_audio
 #define k_sem_give submit_task_work
-#define FUN_0007c132 peer_address_is_uninitialized
+#define device_addr_is_default peer_address_is_uninitialized
 #define reset_esb_sync_state set_task_wake_state
 #define memset_bytes memset_bytes
 #define wait_for_event FUN_0007ce5c

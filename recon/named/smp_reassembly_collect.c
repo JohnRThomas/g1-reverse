@@ -4,12 +4,13 @@
  * callees (readable <= raw @ address):
  *   smp_packet_alloc                         <= FUN_000526e4 @ 0x000526e4
  *   smp_reassembly_collect                   <= FUN_00080b42 @ 0x00080b42
+ *   net_buf_simple_add_mem                   <= FUN_00083740 @ 0x00083740
  */
 /* Reconstructed FUN_00080b42 @ 0x80b42  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 extern int smp_packet_alloc(void);
-extern void FUN_00083740(int,int,uint);
+extern void net_buf_simple_add_mem(int,int,uint);
 uint smp_reassembly_collect(int param_1,int param_2,uint param_3){
   int iVar1;
   if(*(volatile int*)(param_1+0x40)==0){
@@ -26,7 +27,7 @@ uint smp_reassembly_collect(int param_1,int param_2,uint param_3){
   } else if(*(volatile uint16_t*)(param_1+0x44)<param_3){
     return 0xffffff75;
   }
-  FUN_00083740(*(volatile int*)(param_1+0x40)+0xc,param_2,param_3);
+  net_buf_simple_add_mem(*(volatile int*)(param_1+0x40)+0xc,param_2,param_3);
   param_3=*(volatile uint16_t*)(param_1+0x44)-param_3;
   *(volatile int16_t*)(param_1+0x44)=(int16_t)param_3;
   return param_3&0xffff;

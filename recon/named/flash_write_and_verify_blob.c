@@ -5,6 +5,7 @@
  *   attr_store_set                           <= FUN_00030178 @ 0x00030178
  *   attr_store_init_sequence                 <= FUN_00030288 @ 0x00030288
  *   flash_write_and_verify_blob              <= FUN_00030528 @ 0x00030528
+ *   flash_data_checksum_neg_sum              <= FUN_0007cf34 @ 0x0007cf34
  *   wait_attr_0x4714_clear                   <= FUN_0007cfac @ 0x0007cfac
  *   attr_configure_pair                      <= FUN_0007cfdc @ 0x0007cfdc
  *   attr_configure_pair_with_init            <= FUN_0007d02a @ 0x0007d02a
@@ -16,7 +17,7 @@
 /* Reconstructed FUN_00030528 @ 0x30528  (parity: 300/300 trials, PROVEN) */
 extern int attr_store_set(int a0,int a1,int a2,int a3,int a4);
 extern int attr_store_init_sequence(int a0);
-extern int FUN_0007cf34(int a0,int a1,int a2);
+extern int flash_data_checksum_neg_sum(int a0,int a1,int a2);
 extern int wait_attr_0x4714_clear(void);
 extern int attr_configure_pair(int a0,int a1);
 extern int attr_configure_pair_with_init(int a0,int a1,int a2);
@@ -88,7 +89,7 @@ int flash_write_and_verify_blob(char *param_1, unsigned int param_2, int param_3
                             iVar6 = attr_configure_pair_with_init(*(unsigned short*)(*(int*)(param_1 + 0x10) + 8), 0x20222022, (unsigned char)*param_1);
                             if (iVar6 == 0) {
                                 puVar10 = *(int**)(param_1 + 0x10);
-                                uVar8 = FUN_0007cf34(*(int*)(param_1 + 4), *(int*)(param_1 + 8), *puVar10);
+                                uVar8 = flash_data_checksum_neg_sum(*(int*)(param_1 + 4), *(int*)(param_1 + 8), *puVar10);
                                 iVar6 = attr_configure_pair_with_init(*(unsigned short*)(puVar10 + 3), uVar8, (unsigned char)*param_1);
                                 if (iVar6 == 0) {
                                     if (*param_1 != 1) return 0;

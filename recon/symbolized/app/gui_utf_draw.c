@@ -14,6 +14,7 @@
  *   utf8_string_to_utf16                     <= FUN_000478d8 @ 0x000478d8
  *   fb_blit_rows_copy                        <= FUN_0007d53a @ 0x0007d53a
  *   index_in_range32_mask                    <= FUN_0007d860 @ 0x0007d860
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
  *   rodata_aaa58                             @ 0x000aaa58
  *   rodata_aaa7f                             @ 0x000aaa7f
@@ -33,7 +34,7 @@ extern int atomic_get_3_0(void);
 extern int index_in_range32_mask(uint16_t character);
 extern int resource_manger_get(int font, uint16_t character, int *width,
                         int *height, uintptr_t *bitmap, int flags);
-extern void FUN_00086c1e(void *dst, uintptr_t src, int bytes, int limit);
+extern void safe_memcpy_checked(void *dst, uintptr_t src, int bytes, int limit);
 extern int count_chars_in_default_font_table(uint16_t current, uint16_t next);
 extern void fb_blit_rows_copy(uintptr_t display, const void *bitmap, int half_width,
                          int height, int x, int y);
@@ -95,7 +96,7 @@ invoke_callback:
 
             int half_width = (glyph_width + (glyph_width < 0)) / 2;
             int bytes = glyph_height * half_width;
-            FUN_00086c1e(pixels, glyph_bitmap, bytes, 0x2a4);
+            safe_memcpy_checked(pixels, glyph_bitmap, bytes, 0x2a4);
             if (index < mask_before) {
                 for (int i = 0; i < bytes; ++i)
                     pixels[i] &= *(volatile uint8_t *)((unsigned long)&g_gui_dark_light_dither_mask) /*=0x200034f6*/;

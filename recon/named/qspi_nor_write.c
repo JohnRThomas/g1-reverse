@@ -3,9 +3,12 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   qspi_get_zephyr_ret_code                 <= FUN_00060990 @ 0x00060990
+ *   qspi_nor_lock_if_magic                   <= FUN_000609f4 @ 0x000609f4
  *   qspi_nor_acquire                         <= FUN_00060a10 @ 0x00060a10
+ *   qspi_nor_suspend_bus                     <= FUN_00060a5c @ 0x00060a5c
  *   qspi_nor_write                           <= FUN_00060f20 @ 0x00060f20
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
+ *   qspi_log_forward                         <= FUN_000838d6 @ 0x000838d6
  *   audio_stream_stop_and_wait               <= FUN_000838fa @ 0x000838fa
  *   audio_i2s_stop_and_reset_channels        <= FUN_00083906 @ 0x00083906
  *   audio_i2s_start_channels                 <= FUN_0008392e @ 0x0008392e
@@ -21,11 +24,11 @@
 /* Reconstructed FUN_00060f20 @ 0x60f20  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int qspi_get_zephyr_ret_code(int,...);
-extern int FUN_000609f4(int,...);
+extern int qspi_nor_lock_if_magic(int,...);
 extern int qspi_nor_acquire(int,...);
-extern int FUN_00060a5c(int,...);
+extern int qspi_nor_suspend_bus(int,...);
 extern int k_sem_give(int,...);
-extern int FUN_000838d6(int,...);
+extern int qspi_log_forward(int,...);
 extern int audio_stream_stop_and_wait(int,...);
 extern int audio_i2s_stop_and_reset_channels(int,...);
 extern int audio_i2s_start_channels(int,...);
@@ -48,7 +51,7 @@ int qspi_nor_write(int param_1, unsigned param_2, unsigned char *param_3, unsign
         local_48 = 4;
         uStack_40 = param_2;
         local_3c = param_4;
-        FUN_000838d6(0x00088270, 0x2040, &local_48);
+        qspi_log_forward(0x00088270, 0x2040, &local_48);
         return -0x16;
     }
     iVar1 = qspi_nor_acquire(param_1);
@@ -60,14 +63,14 @@ int qspi_nor_write(int param_1, unsigned param_2, unsigned char *param_3, unsign
     if (iVar2 == 0) {
         if (param_4 < 4) {
             iVar2 = nrfx_qspi_read((int)auStack_38, 4, param_2);
-            FUN_000609f4(*(unsigned*)(param_1+0x10), iVar2);
+            qspi_nor_lock_if_magic(*(unsigned*)(param_1+0x10), iVar2);
             if (iVar2 == 0x0bad0000) {
                 memcpy((int)auStack_38, param_3, param_4);
                 param_4 = 4;
                 param_3 = auStack_38;
 LAB_00060fd6:
                 iVar2 = nrfx_qspi_write((int)param_3, param_4, param_2);
-                FUN_000609f4(*(unsigned*)(param_1+0x10), iVar2);
+                qspi_nor_lock_if_magic(*(unsigned*)(param_1+0x10), iVar2);
             }
         } else {
             if (((unsigned)param_3 & 0xe0000000) == 0x20000000 && ((unsigned)param_3 & 3) == 0)
@@ -77,7 +80,7 @@ LAB_00060fd6:
                 if (0xf < param_4) uVar3 = 0x10;
                 memcpy((int)auStack_38, param_3, uVar3);
                 iVar2 = nrfx_qspi_write((int)auStack_38, uVar3, param_2);
-                FUN_000609f4(*(unsigned*)(param_1+0x10), iVar2);
+                qspi_nor_lock_if_magic(*(unsigned*)(param_1+0x10), iVar2);
                 if (iVar2 != iVar1) break;
                 param_4 -= uVar3;
                 param_3 += uVar3;
@@ -91,6 +94,6 @@ LAB_00060fd6:
     if (iVar2 == 0) iVar2 = iVar1;
     iVar1 = qspi_get_zephyr_ret_code(iVar2);
 LAB_00061054:
-    FUN_00060a5c(param_1);
+    qspi_nor_suspend_bus(param_1);
     return iVar1;
 }

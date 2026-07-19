@@ -8,6 +8,7 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   z_ready_thread_locked                    <= FUN_000738d4 @ 0x000738d4
  *   z_reschedule                             <= FUN_000739f0 @ 0x000739f0
+ *   z_pend_curr                              <= FUN_00073f6c @ 0x00073f6c
  *   z_unpend_first_thread                    <= FUN_000744a4 @ 0x000744a4
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
@@ -35,7 +36,7 @@ extern int z_spin_unlock_valid(int,...);
 extern int z_spin_lock_set_owner(int,...);
 extern int z_ready_thread_locked(int,...);
 extern int z_reschedule(int,...);
-extern int FUN_00073f6c(int,...);
+extern int z_pend_curr(int,...);
 extern int z_unpend_first_thread(int,...);
 extern int assert_post_action(int,...) __attribute__((noreturn));
 extern int printk(int,...);
@@ -105,7 +106,7 @@ unsigned k_msgq_put(int param_1, unsigned param_2, int param_3, int param_4)
                 if(param_3 != 0 || param_4 != 0){
                     iVar4 = *(volatile int*)(0x2000b448 + 8);
                     *(unsigned*)(iVar4+0x14) = param_2;
-                    uVar7 = FUN_00073f6c(iVar6, uVar7, param_1, iVar4, param_3, param_4);
+                    uVar7 = z_pend_curr(iVar6, uVar7, param_1, iVar4, param_3, param_4);
                     return uVar7;
                 }
                 uVar5 = 0xffffffdd;

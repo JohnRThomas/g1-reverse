@@ -8,7 +8,7 @@
  * address symbols (name @ address):
  *   rodata_86f35                             @ 0x00086f35
  *   ADDR_libc_stream_write_syscall_THUMB     @ 0x00086f5b
- *   ADDR_FUN_00086f92_THUMB                  @ 0x00086f93
+ *   ADDR_gatt_sub_resolve_handle_THUMB       @ 0x00086f93
  *   rodata_86fb7                             @ 0x00086fb7
  */
 /* Reconstructed FUN_00076b48 @ 0x76b48  (parity: 300/300 trials, PROVEN) */
@@ -31,6 +31,6 @@ void newlib_stdio_init_stream(unsigned int *param_1, unsigned int param_2, unsig
   vp[8] = (unsigned int)param_1;
   vp[9] = ((unsigned long)&rodata_86f35) /*=0x86f35*/;
   vp[10] = ADDR_libc_stream_write_syscall_THUMB /*=0x86f5b*/;
-  vp[0xb] = ADDR_FUN_00086f92_THUMB /*=0x86f93*/;
+  vp[0xb] = ADDR_gatt_sub_resolve_handle_THUMB /*=0x86f93*/;
   vp[0xc] = ((unsigned long)&rodata_86fb7) /*=0x86fb7*/;
 }

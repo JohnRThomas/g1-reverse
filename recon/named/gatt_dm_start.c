@@ -2,9 +2,12 @@
  * public-name: gatt_dm_start
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   uuid_len_from_type                       <= FUN_0004e98c @ 0x0004e98c
  *   gatt_dm_start                            <= FUN_0004ed8c @ 0x0004ed8c
  *   bt_gatt_discover                         <= FUN_0005b9cc @ 0x0005b9cc
  *   atomic_and_0                             <= FUN_0007f3f0 @ 0x0007f3f0
+ *   gatt_dm_log_helper                       <= FUN_0007f406 @ 0x0007f406
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
  *   ADDR_FUN_0004ea78_THUMB                  @ 0x0004ea79
  *   rodata_88130                             @ 0x00088130
@@ -28,11 +31,11 @@
 /* Reconstructed FUN_0004ed8c @ 0x4ed8c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int FUN_0004e98c(int);
+extern int uuid_len_from_type(int);
 extern int bt_gatt_discover(uint32_t,uint32_t);
 extern int atomic_and_0(uint32_t,uint32_t);
-extern int FUN_0007f406(uint32_t,uint32_t,void*);
-extern int FUN_00086c1e(void*,void*,uint32_t,int);
+extern int gatt_dm_log_helper(uint32_t,uint32_t,void*);
+extern int safe_memcpy_checked(void*,void*,uint32_t,int);
 
 int gatt_dm_start(uint32_t param_1, uint32_t *param_2, uint32_t param_3, uint32_t param_4){
     int iVar3;
@@ -50,8 +53,8 @@ int gatt_dm_start(uint32_t param_1, uint32_t *param_2, uint32_t param_3, uint32_
             *(volatile uint32_t*)0x2000a288UL = one;
             *(volatile uint32_t*)0x2000a2acUL = one;
             if (param_2 != 0) {
-                uint32_t uVar2 = FUN_0004e98c((uint8_t)*param_2);
-                FUN_00086c1e((void*)0x2000a290UL, (void*)param_2, uVar2, 0x28);
+                uint32_t uVar2 = uuid_len_from_type((uint8_t)*param_2);
+                safe_memcpy_checked((void*)0x2000a290UL, (void*)param_2, uVar2, 0x28);
                 param_2 = (uint32_t*)0x2000a290UL;
             }
             *(volatile uint32_t*)0x2000a160UL = 0x0004ea79UL;
@@ -64,7 +67,7 @@ int gatt_dm_start(uint32_t param_1, uint32_t *param_2, uint32_t param_3, uint32_
                 struct { uint32_t level, message; int error; } log = {
                     3, 0x000f1574, iVar3
                 };
-                FUN_0007f406(0x00088130UL, 0x1840, &log);
+                gatt_dm_log_helper(0x00088130UL, 0x1840, &log);
                 atomic_and_0(0x2000a28cUL, 0xfffffffe);
             }
         } else { iVar3 = -0x78; }

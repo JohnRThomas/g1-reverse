@@ -5,11 +5,13 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   msg_content_recalc_unread                <= FUN_00033cf8 @ 0x00033cf8
  *   pull_message                             <= FUN_000342e0 @ 0x000342e0
+ *   get_message_pool_index                   <= FUN_00034390 @ 0x00034390
  *   draw_message                             <= FUN_00035afc @ 0x00035afc
  *   render_ancs_notification_animation       <= FUN_00035f28 @ 0x00035f28
  *   gui_set_active_canvas                    <= FUN_000431b4 @ 0x000431b4
  *   gui_screen_clear                         <= FUN_000431c0 @ 0x000431c0
  *   gui_canvas_flags_set_bit1                <= FUN_000432d0 @ 0x000432d0
+ *   display_fade_out_mask_bands              <= FUN_000438d0 @ 0x000438d0
  * address symbols (name @ address):
  *   rodata_a8c60                             @ 0x000a8c60
  *   rodata_a8c80                             @ 0x000a8c80
@@ -26,10 +28,10 @@
 #include <stdint.h>
 
 extern void gui_screen_clear(void);
-extern void FUN_000438d0(void);
+extern void display_fade_out_mask_bands(void);
 extern void gui_set_active_canvas(void *framebuffer);
 extern void gui_canvas_flags_set_bit1(void);
-extern uint32_t FUN_00034390(void);
+extern uint32_t get_message_pool_index(void);
 extern uint32_t msg_content_recalc_unread(void);
 extern uint32_t pull_message(uintptr_t *message);
 extern void render_ancs_notification_animation(void *framebuffer, uint32_t message_index);
@@ -64,7 +66,7 @@ uint32_t ui_ancs_notification_task(uint8_t *canvas, uint32_t unused,
         if (MESSAGE_ACTIVE == 0u)
             gui_screen_clear();
         else {
-            FUN_000438d0();
+            display_fade_out_mask_bands();
             MESSAGE_ACTIVE = 0u;
         }
         DISPLAY_DIRTY = 0u;
@@ -78,7 +80,7 @@ uint32_t ui_ancs_notification_task(uint8_t *canvas, uint32_t unused,
         gui_canvas_flags_set_bit1();
         gui_screen_clear();
     }
-    group = FUN_00034390();
+    group = get_message_pool_index();
     index = msg_content_recalc_unread();
     if (LAST_GROUP == (uint8_t)group && LAST_INDEX == (uint8_t)index)
         return 0u;

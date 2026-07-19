@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   display_close_screen                     <= FUN_00049858 @ 0x00049858
+ *   signal_persist_task_event                <= FUN_0007cdf8 @ 0x0007cdf8
  * address symbols (name @ address):
  *   rodata_a25d9                             @ 0x000a25d9
  *   rodata_a25f8                             @ 0x000a25f8
@@ -15,7 +16,7 @@
 
 extern void debug_print(void);
 extern void display_close_screen(unsigned char);
-extern void FUN_0007cdf8(void);
+extern void signal_persist_task_event(void);
 extern int log_message(int, ...);
 
 unsigned int update_persist_task_status_to_wait_blow_head(unsigned char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
@@ -25,7 +26,7 @@ unsigned int update_persist_task_status_to_wait_blow_head(unsigned char *param_1
   unsigned char *iVar3;
 
   while (*pcVar1 != 0) {
-    FUN_0007cdf8();
+    signal_persist_task_event();
   }
   *pcVar1 = 1;
   if (param_1[0xd5] != 0 && param_1[0xd5] != 1) {

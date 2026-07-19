@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_message_pending_state                <= FUN_00034410 @ 0x00034410
  *   notification_icon_type_from_package      <= FUN_0003483c @ 0x0003483c
  *   gui_set_active_canvas                    <= FUN_000431b4 @ 0x000431b4
  *   gui_screen_clear                         <= FUN_000431c0 @ 0x000431c0
@@ -27,7 +28,7 @@
 #include <stdint.h>
 
 extern uintptr_t get_device_info(void);
-extern uint32_t FUN_00034410(void);
+extern uint32_t get_message_pending_state(void);
 extern uint32_t notification_icon_type_from_package(uint32_t index);
 extern void gui_screen_clear(void);
 extern void gui_set_active_canvas(void *framebuffer);
@@ -56,7 +57,7 @@ extern void debug_print(uintptr_t format, ...);
 uint32_t ui_new_message_task(uint8_t *canvas, uint32_t unused, uint32_t phase)
 {
     uintptr_t state = get_device_info();
-    uint32_t mode = FUN_00034410();
+    uint32_t mode = get_message_pending_state();
     uint8_t was_active = MESSAGE_TASK_ACTIVE;
 
     (void)unused;

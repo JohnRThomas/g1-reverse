@@ -2,8 +2,10 @@
  * public-name: button_init
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   gpio_pin_configure_17688                 <= FUN_00017688 @ 0x00017688
  *   gpio_pin_set_checked                     <= FUN_00017768 @ 0x00017768
  *   gpio_pin_get_raw_checked                 <= FUN_000177c4 @ 0x000177c4
+ *   gpio_pin_configure                       <= FUN_00017858 @ 0x00017858
  *   gpio_pin_get_checked                     <= FUN_00017980 @ 0x00017980
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   get_board_rev_flag                       <= FUN_00025284 @ 0x00025284
@@ -39,10 +41,10 @@
 /* Reconstructed button_init @ 0x17a40  (parity: 200/200 trials, PROVEN) */
 #include <stdint.h>
 extern int log_message(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
-extern int FUN_00017688(unsigned int, unsigned int);
+extern int gpio_pin_configure_17688(unsigned int, unsigned int);
 extern void gpio_pin_set_checked(unsigned int, unsigned int, unsigned int);
 extern unsigned int gpio_pin_get_raw_checked(unsigned int, unsigned int);
-extern void FUN_00017858(unsigned int, unsigned int);
+extern void gpio_pin_configure(unsigned int, unsigned int);
 extern unsigned int gpio_pin_get_checked(unsigned int);
 extern void debug_print(void);
 extern int get_board_rev_flag(void);
@@ -66,19 +68,19 @@ unsigned char button_init(void)
         gpio_specs[spec][1] = spec_data[spec * 2 + 1];
     }
 
-    FUN_00017688((uintptr_t)gpio_specs[0], 0x10000);
-    FUN_00017688((uintptr_t)gpio_specs[1], 0x10000);
-    FUN_00017688((uintptr_t)gpio_specs[2], 0x10000);
-    FUN_00017688((uintptr_t)gpio_specs[3], 0x10000);
-    FUN_00017688((uintptr_t)gpio_specs[4], 0x30000);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[0], 0x10000);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[1], 0x10000);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[2], 0x10000);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[3], 0x10000);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[4], 0x30000);
     gpio_pin_set_checked(0x00087b60UL, 0x18, 1);
-    FUN_00017688((uintptr_t)gpio_specs[5], 0x30000);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[5], 0x30000);
     gpio_pin_set_checked(0x00087b60UL, 0x13, 0);
-    FUN_00017688((uintptr_t)gpio_specs[6], 0x30000);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[6], 0x30000);
     gpio_pin_set_checked(0x00087b60UL, 0x15, 0);
-    FUN_00017688((uintptr_t)gpio_specs[7], 0x30000);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[7], 0x30000);
     gpio_pin_set_checked(0x00087b60UL, 0x1e, 1);
-    FUN_00017688((uintptr_t)gpio_specs[8], 0x30000);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[8], 0x30000);
     gpio_pin_set_checked(0x00087b60UL, 0x17, 0);
 
     iVar16 = 0x00087b48;
@@ -95,7 +97,7 @@ LAB_b48_1:
             }
         }
     } else {
-        iVar6 = FUN_00017688(0x000889d0UL, 0x10000);
+        iVar6 = gpio_pin_configure_17688(0x000889d0UL, 0x10000);
         iVar5 = 0x20006a10;
         if (-1 < iVar6) {
             *(volatile unsigned int *)0x20006a14UL = 0x0001793dUL;
@@ -116,7 +118,7 @@ LAB_b48_1:
                         goto LAB_b48_1;
                     }
                 } else {
-                    FUN_00017858(0x000889d0UL, 0x5c00000);
+                    gpio_pin_configure(0x000889d0UL, 0x5c00000);
                     if (1 < *piVar2) {
                         if (*(volatile int *)0x20007554UL == 0) {
                             log_message(0x00099fd2UL, 0x0009a126UL, 9,0,0,0);
@@ -136,7 +138,7 @@ LAB_b48_1:
         uVar15 = 0x00099f81UL;
         uVar14 = 0x0009a119UL;
     } else {
-        iVar6 = FUN_00017688(0x000889e0UL, 0x10000);
+        iVar6 = gpio_pin_configure_17688(0x000889e0UL, 0x10000);
         iVar5 = 0x20006a04;
         if (iVar6 < 0) goto LAB_c40;
         *(volatile unsigned int *)0x20006a08UL = 0x00017819UL;
@@ -151,7 +153,7 @@ LAB_b48_1:
                 } else {
                     uVar15 = 0x3c00000;
                 }
-                FUN_00017858(0x000889e0UL, uVar15);
+                gpio_pin_configure(0x000889e0UL, uVar15);
                 if (1 < *piVar2) {
                     if (*(volatile int *)0x20007554UL == 0) {
                         log_message(0x0009a0c6UL, 0x0009a119UL, 10,0,0,0);

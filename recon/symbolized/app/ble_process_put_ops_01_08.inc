@@ -113,7 +113,7 @@ ble_put_op06_01_02(struct ble_put_context *ctx,
                              (const void *)0x0009e077, word0, word1);
         }
         device_info_copy_record_fields();
-        FUN_000165a4();
+        dashboard_startup_info_write_magic();
         memset_bytes(response + 5, 0, 15);
         *(uint32_t *)(void *)response = *(const uint32_t *)(const void *)request;
         response[4] = request[4];
@@ -137,7 +137,7 @@ ble_put_op06_01_02(struct ble_put_context *ctx,
                              (const void *)0x0009e077);
         }
         device_info_copy_record_fields();
-        FUN_000165a4();
+        dashboard_startup_info_write_magic();
         memset_bytes(response + 5, 0, 15);
         *(uint32_t *)(void *)response = *(const uint32_t *)(const void *)request;
         response[4] = request[4];
@@ -207,7 +207,7 @@ ble_put_op06_03(struct ble_put_context *ctx,
         uint8_t *assembled = (uint8_t *)(uintptr_t)0x20011559;
         *accepted = 0; *expected = 0; *length = 0;
         memset_bytes(assembled, 0, 0x420);
-        FUN_00086c1e(assembled, request + 9, request_length - 9u, 0x420);
+        safe_memcpy_checked(assembled, request + 9, request_length - 9u, 0x420);
         *length = (uint16_t)(request_length - 9u);
         *accepted = 1; *expected = (uint16_t)total;
         BLE_PUT_NOTE_ACK(0);
@@ -264,7 +264,7 @@ ble_put_op06_03(struct ble_put_context *ctx,
         if (*assembled_slot < 5 && *assembled_slot != 0) {
             title_length = request[11];
             title_copy = title_length > 0x28u ? 0x29u : title_length;
-            FUN_00086c1e(assembled_title, request + 12, title_copy, 0x29);
+            safe_memcpy_checked(assembled_title, request + 12, title_copy, 0x29);
             remaining = (uint16_t)(request_length - 14u - title_length);
             text_copy = remaining < 0x11au ? remaining : 0x119u;
             memcpy(assembled_text, request + title_length + 14, text_copy);
@@ -435,7 +435,7 @@ BLE_PUT_ALWAYS_INLINE void ble_put_op08(struct ble_put_context *ctx,
                 SendDashBoardStartupModeInfoToSlave(request[5]);
             } else {
                 memset_bytes(response, 0, 20);
-                FUN_00086c1e(response, request, actual, 20);
+                safe_memcpy_checked(response, request, actual, 20);
                 ctx->post_to_host(response, actual);
             }
         } else if (BLE_LOG_LEVEL > 0) {
@@ -446,8 +446,8 @@ BLE_PUT_ALWAYS_INLINE void ble_put_op08(struct ble_put_context *ctx,
         }
     } else if (request[4] == 4) {
         memset_bytes(response, 0, 20);
-        FUN_00086c1e(response, request, actual, 20);
-        response[5] = (uint8_t)FUN_00023eec();
+        safe_memcpy_checked(response, request, actual, 20);
+        response[5] = (uint8_t)get_ui_mode_flag2();
         ctx->post_to_host(response, actual);
     }
 }
@@ -891,7 +891,7 @@ ble_put_op06_04_multipart_assemble(struct ble_put_context *ctx,
         *expected_total = 0;
         *assembled_length = 0;
         memset_bytes(assembled, 0, 0x812);
-        FUN_00086c1e(assembled, request + 9, request_length - 9u, 0x812);
+        safe_memcpy_checked(assembled, request + 9, request_length - 9u, 0x812);
         *assembled_length = (uint16_t)(*assembled_length + request_length - 9u);
         *accepted_count = (uint16_t)(*accepted_count + 1u);
         *expected_total = (uint16_t)total;
@@ -1318,7 +1318,7 @@ ble_put_op06_05_multipart_assemble(struct ble_put_context *ctx,
         *expected_total = 0;
         *assembled_length = 0;
         memset_bytes(assembled, 0, 0x161);
-        FUN_00086c1e(assembled, request + 9, request_length - 9u, 0x161);
+        safe_memcpy_checked(assembled, request + 9, request_length - 9u, 0x161);
         *assembled_length = (uint16_t)(*assembled_length + request_length - 9u);
         *accepted_count = (uint16_t)(*accepted_count + 1u);
         *expected_total = (uint16_t)total;

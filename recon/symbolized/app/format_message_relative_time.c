@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_ui_mode_flag_byte1                   <= FUN_00023ee0 @ 0x00023ee0
  *   format_message_relative_time             <= FUN_000357dc @ 0x000357dc
  *   gui_utf_draw_align_right                 <= FUN_00044ec4 @ 0x00044ec4
  *   clean_fb_data                            <= FUN_000471cc @ 0x000471cc
@@ -46,7 +47,7 @@ typedef uint8_t byte;
 extern void log_message(uintptr_t format, ...);
 extern uintptr_t get_device_info(void);
 extern void debug_print(uintptr_t format, ...);
-extern int FUN_00023ee0(void);
+extern int get_ui_mode_flag_byte1(void);
 extern void gui_utf_draw_align_right(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t,
                         uint32_t, uint32_t, uint32_t, uint32_t, uint32_t,
                         uint32_t, uint32_t);
@@ -74,7 +75,7 @@ void format_message_relative_time(undefined4 param_1,int param_2)
   uVar9 = uVar10 & ~((int)uVar10 >> 0x1f);
   if (*(volatile int*)piVar2 == 0) log_message(((unsigned long)&rodata_a8ac7) /*=0xa8ac7*/,iVar4,param_2,uVar9);
   else debug_print(((unsigned long)&rodata_a8ac7) /*=0xa8ac7*/,iVar4,param_2,uVar9);
-  iVar4 = FUN_00023ee0();
+  iVar4 = get_ui_mode_flag_byte1();
   if (iVar4 == 6) {
     uVar5 = ((unsigned long)&rodata_a8afb) /*=0xa8afb*/;
     if (uVar10 - 0x3c <= 0x7fffffc3u) {

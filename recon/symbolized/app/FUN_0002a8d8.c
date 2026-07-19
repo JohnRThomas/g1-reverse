@@ -4,8 +4,11 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   runtime_info_sync                        <= FUN_00016268 @ 0x00016268
+ *   get_dashboard_startup_mode_field63       <= FUN_00016580 @ 0x00016580
+ *   set_dashboard_startup_mode_field63       <= FUN_0001658c @ 0x0001658c
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   check_device_readiness                   <= FUN_000167b4 @ 0x000167b4
+ *   get_ancs_conn_handle                     <= FUN_00019b2c @ 0x00019b2c
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   reset_all_usr_data                       <= FUN_0002316c @ 0x0002316c
  *   handle_box_placement_event               <= FUN_00025528 @ 0x00025528
@@ -22,9 +25,12 @@
  *   debounce_read_pending_flag_1             <= FUN_0002eb78 @ 0x0002eb78
  *   msg_queue_init                           <= FUN_00033c5c @ 0x00033c5c
  *   sys_reboot                               <= FUN_0004c0a8 @ 0x0004c0a8
+ *   bt_conn_disconnect_by_state              <= FUN_00056a68 @ 0x00056a68
  *   k_uptime_get_1                           <= FUN_0007cb2c @ 0x0007cb2c
  *   k_msleep                                 <= FUN_0007cb8e @ 0x0007cb8e
+ *   resolve_not_disturb_context              <= FUN_0007cbae @ 0x0007cbae
  *   set_shutdown_flag                        <= FUN_0007cbfe @ 0x0007cbfe
+ *   errno_wrapped_tick_call                  <= FUN_0007d1d6 @ 0x0007d1d6
  *   g1_recon_bt_conn_set_security            <= FUN_0008149a @ 0x0008149a
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
@@ -51,7 +57,7 @@ extern void update_persist_task_status_to_idle(uint8_t *);
 extern void log_message(uintptr_t, ...);
 extern void debug_print(uintptr_t, ...);
 extern int sync_to_slave(uint8_t *, uint32_t, uint32_t);
-extern int FUN_00019b2c(void);
+extern int get_ancs_conn_handle(void);
 extern int g1_recon_bt_conn_set_security(int, uint32_t);
 extern void fuel_gauge_update(uintptr_t, uint32_t);
 extern uint32_t check_ancs_inbox_flag_change(void);
@@ -63,24 +69,24 @@ extern void msg_queue_init(void);
 extern void handle_box_placement_event(void);
 extern void disable_watchdog(void);
 extern void watchdog_feed_retry(void);
-extern void FUN_0007d1d6(uint8_t *, uint32_t);
+extern void errno_wrapped_tick_call(uint8_t *, uint32_t);
 extern uint64_t k_uptime_get_1(void);
 extern void k_msleep(uint32_t);
 extern uint32_t sys_reboot(uint32_t);
 extern void wait_for_event(uint32_t, uint32_t);
-extern int FUN_00016580(void);
+extern int get_dashboard_startup_mode_field63(void);
 extern void check_device_readiness(void);
-extern void FUN_0001658c(uint32_t);
+extern void set_dashboard_startup_mode_field63(uint32_t);
 extern uint32_t check_charging_and_touch_flags(void);
 extern void try_enter_low_power_mode(void);
 extern void check_work_mode(uint32_t, uint32_t, uint32_t);
 extern void check_disp_onboarding(uint32_t);
-extern void FUN_00056a68(int, uint32_t);
+extern void bt_conn_disconnect_by_state(int, uint32_t);
 extern uintptr_t get_device_info(void);
 extern void set_shutdown_flag(uintptr_t, uint32_t);
 extern void reset_all_usr_data(uint8_t *, uint32_t);
 extern void check_sw0_status(void);
-extern void FUN_0007cbae(void);
+extern void resolve_not_disturb_context(void);
 
 static inline uint8_t rd8(uint8_t *p, unsigned o) { return *(volatile uint8_t *)(p + o); }
 static inline void wr8(uint8_t *p, unsigned o, uint8_t v) { *(volatile uint8_t *)(p + o) = v; }
@@ -110,7 +116,7 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
     for (;;) {
         tick = (uint8_t)(tick + 1);
         if (tick % 5 == 0) {
-            int connection = FUN_00019b2c();
+            int connection = get_ancs_conn_handle();
             if (connection == 0 || rd8(ctx, 0xae2) == 0 ||
                 rd8(ctx, 0xae3) == 0 || rd32(ctx, 0x9b4) == 0) {
                 connected_runs = 0;
@@ -174,7 +180,7 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
             while (rd8(ctx, 1) == 1) {
                 disable_watchdog();
                 if (rd8(ctx, 0) == 1)
-                    FUN_0007d1d6(ctx, rd32(ctx, 0xfec));
+                    errno_wrapped_tick_call(ctx, rd32(ctx, 0xfec));
                 if ((int64_t)(k_uptime_get_1() -
                               *(volatile uint64_t *)(ctx + 0x1060)) > 0x927bf) {
                     if (*log_level > 0) {
@@ -196,10 +202,10 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
             else if (*(volatile uint8_t *)((unsigned long)&g_flash_crc_skip_watchdog_flag) /*=0x20018d90*/ == 0)
                 watchdog_feed_retry();
             if (rd8(ctx, 0) == 1)
-                FUN_0007d1d6(ctx, rd32(ctx, 0xfec));
-            if (FUN_00016580() != 0 && (int64_t)k_uptime_get_1() >= 60000) {
+                errno_wrapped_tick_call(ctx, rd32(ctx, 0xfec));
+            if (get_dashboard_startup_mode_field63() != 0 && (int64_t)k_uptime_get_1() >= 60000) {
                 check_device_readiness();
-                FUN_0001658c(0);
+                set_dashboard_startup_mode_field63(0);
             }
             if (*log_level > 1) {
                 uint32_t mode = rd8(ctx, 0xfea);
@@ -215,7 +221,7 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
             if (connection != 0 && rd8(ctx, 0x1068) == 0 &&
                 (uint32_t)k_uptime_get_1() - rd32(ctx, 0xae4) > 30000 && rd8(ctx, 1) != 1) {
                 wr32(ctx, 0xae4, (uint32_t)k_uptime_get_1());
-                FUN_00056a68(connection, 0x13);
+                bt_conn_disconnect_by_state(connection, 0x13);
             }
             if (rd8(ctx, 0x108e) != 0) {
                 wr8(ctx, 0x108e, 0);
@@ -225,7 +231,7 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
             check_sw0_status();
             tick = 0;
         }
-        FUN_0007cbae();
+        resolve_not_disturb_context();
         if (*(volatile uint8_t *)((unsigned long)&g_flash_crc_skip_watchdog_flag) /*=0x20018d90*/ == 0)
             watchdog_feed_retry();
         wait_for_event(0x199a, 0);

@@ -9,10 +9,11 @@
  *   cbpprintf_external                       <= FUN_0007db9e @ 0x0007db9e
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   log_output_flush_noop                    <= FUN_0007ee44 @ 0x0007ee44
  *   log_output_flush                         <= FUN_0007eece @ 0x0007eece
  * address symbols (name @ address):
  *   rodata_4daad                             @ 0x0004daad
- *   ADDR_FUN_0007eec0_THUMB                  @ 0x0007eec1
+ *   ADDR_cbvprintf_wrapper_THUMB             @ 0x0007eec1
  *   rodata_8acc4                             @ 0x0008acc4
  *   rodata_8acd8                             @ 0x0008acd8
  *   rodata_99cbd                             @ 0x00099cbd
@@ -44,7 +45,7 @@ extern int newline_print(unsigned,unsigned);
 extern int cbpprintf_external(unsigned,unsigned,unsigned,int);
 extern int assert_post_action(unsigned,unsigned);
 extern int printk(unsigned,unsigned,unsigned,int);
-extern int FUN_0007ee44(void);
+extern int log_output_flush_noop(void);
 extern int log_output_flush(unsigned);
 #define U8(a)  (*(volatile uint8_t*)(uintptr_t)(a))
 #define U32(a) (*(volatile uint32_t*)(uintptr_t)(a))
@@ -74,7 +75,7 @@ void log_output_process(uint param_1,uint param_2,int param_3,int param_4,uint p
     }
     iVar2 = 0;
 LAB_dc74:
-    iVar3 = cbpprintf_external(uVar6,ADDR_FUN_0007eec0_THUMB /*=0x7eec1*/,param_1,param_7);
+    iVar3 = cbpprintf_external(uVar6,ADDR_cbvprintf_wrapper_THUMB /*=0x7eec1*/,param_1,param_7);
     if (iVar3 < 0) {
       printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0f1b) /*=0xf0f1b*/,((unsigned long)&rodata_f0e73) /*=0xf0e73*/,0x219);
       uVar6 = 0x219;
@@ -127,7 +128,7 @@ LAB_dd74:
       uVar6 = 0x1bf;
       goto LAB_db3e;
     }
-    iVar2 = FUN_0007ee44();
+    iVar2 = log_output_flush_noop();
     if (iVar2 == 0) iVar3 = 0;
     else iVar3 = print_formatted(param_1,((unsigned long)&rodata_f0ee3) /*=0xf0ee3*/,iVar2);
     if ((param_10 & 2) != 0) {

@@ -18,8 +18,8 @@ extern int ble_work_queue_unlock();
 extern int audio_fw_load_get_wrapper();
 extern int send_response_data_to_msgqueue();
 extern int get_synced_clock_time();
-extern int FUN_0007c1dc();
-extern int FUN_00086c1e();
+extern int store_device_info_bytes_cd_cf();
+extern int safe_memcpy_checked();
 extern int memcpy();
 extern int memset_bytes();
 extern int log_message();
@@ -275,7 +275,7 @@ int ble_put_op10_subcmd_2(struct ble_put_context_09_10 *ctx,
         OP10_MAP_READY = 0;
         ble_work_queue_lock(0xffffffffU, 0xffffffffU);
         memset_bytes((void *)(uintptr_t)OP10_OVERVIEW_MAP, 0, 0x1210);
-        FUN_00086c1e((void *)(uintptr_t)OP10_OVERVIEW_MAP, request + 9,
+        safe_memcpy_checked((void *)(uintptr_t)OP10_OVERVIEW_MAP, request + 9,
                      (uint32_t)(advertised - 9U), 0x1210);
         ble_work_queue_unlock();
         OP10_OVERVIEW_SIZE = data_length;
@@ -476,7 +476,7 @@ int ble_put_op10_subcmd_3(struct ble_put_context_09_10 *ctx,
         nav = *(uint8_t **)(void *)(root + 0x1000);
         nav[0xad] = request[9];
         memset_bytes((void *)(uintptr_t)OP10_PAN_MAP, 0, 0x40d0);
-        FUN_00086c1e((void *)(uintptr_t)OP10_PAN_MAP, request + 10,
+        safe_memcpy_checked((void *)(uintptr_t)OP10_PAN_MAP, request + 10,
                      first_length, 0x40d0);
         OP10_PAN_SIZE = (uint16_t)first_length;
         if (OP10_LOG_LEVEL > 2) {
@@ -804,7 +804,7 @@ int ble_put_op9_action5_exit(struct ble_put_context_09_10 *ctx,
     }
     if (get_device_type() == 1) {
         *((uint8_t *)(void *)ctx - 0x6af) = request[3];
-        FUN_0007c1dc(request[3], 0);
+        store_device_info_bytes_cd_cf(request[3], 0);
         memset_bytes(ctx->rx + 4, 0, 0x217);
         ctx->frame_length = (uint32_t)ble_put_rd16(ctx->rx + 2) + 4U;
         audio_fw_load_get_wrapper(ctx, completion, 8);
@@ -840,7 +840,7 @@ int ble_put_op9_action2_mark(struct ble_put_context_09_10 *ctx,
     if (request[4] != 2U)
         return 0;
     *((uint8_t *)(void *)ctx - 0x6af) = request[3];
-    FUN_0007c1dc(request[3], 0);
+    store_device_info_bytes_cd_cf(request[3], 0);
     ctx->frame_length = (uint32_t)ble_put_rd16(ctx->rx + 2) + 4U;
     teleprompter = ctx->teleprompter;
     *(uint16_t *)(void *)(teleprompter + 0x0e) = ble_put_rd16(request + 6);
@@ -912,7 +912,7 @@ int ble_put_op9_action1_single(struct ble_put_context_09_10 *ctx,
             debug_print();
     }
     *((uint8_t *)(void *)ctx - 0x6af) = request[3];
-    FUN_0007c1dc(request[3], 0);
+    store_device_info_bytes_cd_cf(request[3], 0);
     tele[0x0e] = 1;
     tele[0x05] = 1;
     tele[0x04] = request[10] & 0x0fU;
@@ -981,7 +981,7 @@ int ble_put_op9_action1_single(struct ble_put_context_09_10 *ctx,
         OP9_ASSEMBLY[0x0f] = 0;
         for (unsigned i = 2; i < 10; ++i)
             OP9_ASSEMBLY[i] = 0;
-        FUN_00086c1e((void *)(uintptr_t)OP9_ASSEMBLY_TEXT, request + 12,
+        safe_memcpy_checked((void *)(uintptr_t)OP9_ASSEMBLY_TEXT, request + 12,
                      (uint32_t)(advertised - 12U), 0x200);
         OP9_TEXT_SIZE = (uint16_t)(advertised - 12U);
         OP10_OVERVIEW_PACKET = (uint16_t)(OP10_OVERVIEW_PACKET + 1U);
@@ -1053,7 +1053,7 @@ int ble_put_op9_action1_single(struct ble_put_context_09_10 *ctx,
             uint8_t *root;
             uint32_t system_final[2] = { 0, 0 };
             *((uint8_t *)(void *)ctx - 0x6af) = request[3];
-            FUN_0007c1dc(request[3], 0);
+            store_device_info_bytes_cd_cf(request[3], 0);
             memcpy((void *)(uintptr_t)(0x20010482U + OP9_TEXT_SIZE),
                          request + 12, (uint32_t)(advertised - 20U));
             OP9_TEXT_SIZE = (uint16_t)((uint32_t)OP9_TEXT_SIZE - 20U + advertised);
@@ -1208,7 +1208,7 @@ int ble_put_op9_action3_7(struct ble_put_context_09_10 *ctx,
                 debug_print();
         }
         *((uint8_t *)(void *)ctx - 0x6af) = request[3];
-        FUN_0007c1dc(request[3], 0);
+        store_device_info_bytes_cd_cf(request[3], 0);
         tele[0x0a] = 3;
         tele[1] = 1;
         tele[0x0d] = request[9];
@@ -1264,7 +1264,7 @@ int ble_put_op9_action3_7(struct ble_put_context_09_10 *ctx,
         OP10_OVERVIEW_PACKET = 0;
         OP10_OVERVIEW_SIZE = 0;
         memset_bytes((void *)(uintptr_t)OP9_ASSEMBLY, 0, 0x217);
-        FUN_00086c1e((void *)(uintptr_t)OP9_ASSEMBLY, request + 12,
+        safe_memcpy_checked((void *)(uintptr_t)OP9_ASSEMBLY, request + 12,
                      (uint32_t)(advertised - 12U), 0x217);
         OP10_OVERVIEW_SIZE = (uint16_t)(advertised - 12U);
         OP10_OVERVIEW_PACKET = (uint16_t)(OP10_OVERVIEW_PACKET + 1U);
@@ -1298,7 +1298,7 @@ int ble_put_op9_action3_7(struct ble_put_context_09_10 *ctx,
         if ((uint32_t)OP10_OVERVIEW_PACKET == (uint32_t)total - 1U &&
             OP10_OVERVIEW_TOTAL == total) {
             *((uint8_t *)(void *)ctx - 0x6af) = request[3];
-            FUN_0007c1dc(request[3], 0);
+            store_device_info_bytes_cd_cf(request[3], 0);
             memcpy((void *)(uintptr_t)(0x2001046bU + OP10_OVERVIEW_SIZE),
                          request + 12, (uint32_t)(advertised - 20U));
             OP10_OVERVIEW_SIZE =

@@ -6,6 +6,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   onboarding_retry_watchdog_update         <= FUN_00040708 @ 0x00040708
  *   onboarding_sync_data                     <= FUN_00042c8c @ 0x00042c8c
+ *   device_addr_is_default                   <= FUN_0007c132 @ 0x0007c132
  *   k_uptime_get_1                           <= FUN_0007cb2c @ 0x0007cb2c
  *   onboarding_clear_active_flag             <= FUN_0007d39e @ 0x0007d39e
  * address symbols (name @ address):
@@ -24,7 +25,7 @@ extern int get_device_info(void);
 extern void debug_print(void);
 extern void onboarding_retry_watchdog_update(void);
 extern int onboarding_sync_data(void*,int);
-extern int FUN_0007c132(void);
+extern int device_addr_is_default(void);
 extern unsigned long long k_uptime_get_1(void);
 extern void onboarding_clear_active_flag(void);
 extern void update_persist_task_status(int,int,int);
@@ -39,7 +40,7 @@ void check_disp_onboarding(int param_1, unsigned int param_2, unsigned int param
   int iVar3, iVar5; unsigned long long uVar6;
   (void)param_2;(void)param_3;
   if ((param_1 != 0) || (*pg70 == 0) ||
-      (FUN_0007c132() != 0 && (iVar3=get_device_info(), VB(VI(iVar3+0x1014)+2) == 0))) {
+      (device_addr_is_default() != 0 && (iVar3=get_device_info(), VB(VI(iVar3+0x1014)+2) == 0))) {
     if (VB(get_device_info()) != 1) return;
     onboarding_clear_active_flag();
     return;
@@ -50,8 +51,8 @@ void check_disp_onboarding(int param_1, unsigned int param_2, unsigned int param
   iVar3 = get_device_info();
   if (VB(iVar3+0xd5) != 0) return;
   if (VB(get_device_info()) != 1) return;
-  if (FUN_0007c132() != 0) { iVar3=get_device_info(); if (VB(VI(iVar3+0x1014)+1)==0) return; }
-  if (FUN_0007c132() == 0) { iVar3=get_device_info(); VB(VI(iVar3+0x1014)+2)=0; }
+  if (device_addr_is_default() != 0) { iVar3=get_device_info(); if (VB(VI(iVar3+0x1014)+1)==0) return; }
+  if (device_addr_is_default() == 0) { iVar3=get_device_info(); VB(VI(iVar3+0x1014)+2)=0; }
   iVar3=get_device_info(); VB(VI(iVar3+0x1014)+3)=0;
   iVar3=get_device_info(); *pg74 = VB(VI(iVar3+0x1014)+3);
   iVar3=get_device_info(); (void)VB(VI(iVar3+0x1014)+2); (void)(*pg74);

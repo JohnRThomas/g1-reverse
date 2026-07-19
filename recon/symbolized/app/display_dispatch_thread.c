@@ -4,14 +4,19 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   __aeabi_uldivmod                         <= FUN_0000e244 @ 0x0000e244
+ *   compute_lux_brightness_bucket            <= FUN_00010840 @ 0x00010840
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   get_current_work_mode                    <= FUN_00016940 @ 0x00016940
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   ui_state_mutex_unlock                    <= FUN_00026850 @ 0x00026850
  *   send_event                               <= FUN_000276ec @ 0x000276ec
  *   prepare_system_suspend_state             <= FUN_000289b0 @ 0x000289b0
  *   display_panel_is_secondary               <= FUN_0002bed0 @ 0x0002bed0
+ *   clear_pending_message_flag               <= FUN_0002c214 @ 0x0002c214
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
  *   get_message_entry                        <= FUN_00033c4c @ 0x00033c4c
+ *   get_message_pool_index                   <= FUN_00034390 @ 0x00034390
+ *   display_idle_countdown_tick              <= FUN_0003629c @ 0x0003629c
  *   cal_panel_canvas_coord                   <= FUN_00042fb0 @ 0x00042fb0
  *   set_brightness_to_panel_reg_in_running   <= FUN_00047058 @ 0x00047058
  *   k_mutex_lock                             <= FUN_000723b8 @ 0x000723b8
@@ -93,17 +98,17 @@ typedef unsigned short u16; typedef short s16;
 typedef unsigned int u32; typedef int s32;
 typedef long long s64;
 
-#define display_target_level_get       FUN_00010840
+#define display_target_level_get       compute_lux_brightness_bucket
 #define get_device_info                get_device_info
 #define get_current_work_mode          get_current_work_mode
-#define display_mutex_unlock           FUN_00026850
+#define display_mutex_unlock           ui_state_mutex_unlock
 #define enter_critical_battery_display prepare_system_suspend_state
 #define display_panel_is_secondary     display_panel_is_secondary
-#define clear_display_refresh_request  FUN_0002c214
+#define clear_display_refresh_request  clear_pending_message_flag
 #define is_battery_critical            is_battery_critical
 #define display_language_buffer_get    get_message_entry
-#define display_language_get           FUN_00034390
-#define display_mode_two_update_timer  FUN_0003629c
+#define display_language_get           get_message_pool_index
+#define display_mode_two_update_timer  display_idle_countdown_tick
 #define cal_panel_canvas_coord         cal_panel_canvas_coord
 #define set_brightness_to_panel_reg_in_running set_brightness_to_panel_reg_in_running
 #define display_mutex_lock             k_mutex_lock

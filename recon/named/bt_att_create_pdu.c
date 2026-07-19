@@ -5,6 +5,7 @@
  *   att_get                                  <= FUN_0005858c @ 0x0005858c
  *   bt_att_chan_create_pdu                   <= FUN_000585f0 @ 0x000585f0
  *   bt_att_create_pdu                        <= FUN_00058eb0 @ 0x00058eb0
+ *   att_log_emit_3arg                        <= FUN_00081ddc @ 0x00081ddc
  * address symbols (name @ address):
  *   rodata_88100                             @ 0x00088100
  *   rodata_f4636                             @ 0x000f4636
@@ -14,7 +15,7 @@
 #include <stdint.h>
 extern int att_get(void);
 extern int bt_att_chan_create_pdu(void*,int,int);
-extern void FUN_00081ddc(int,int,void*);
+extern void att_log_emit_3arg(int,int,void*);
 int bt_att_create_pdu(int param_1,int param_2,int param_3){
   int iVar1=att_get();
   if(iVar1==0) return 0;
@@ -36,6 +37,6 @@ int bt_att_create_pdu(int param_1,int param_2,int param_3){
   }
   int local_28[4];
   local_28[0]=3; local_28[1]=0xf4636; local_28[2]=uStack_20;
-  FUN_00081ddc(0x88100,0x1880,local_28);
+  att_log_emit_3arg(0x88100,0x1880,local_28);
   return 0;
 }

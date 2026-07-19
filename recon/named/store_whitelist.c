@@ -5,6 +5,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   flash_write_paged                        <= FUN_000227d0 @ 0x000227d0
  *   revalidate_whitelist_json                <= FUN_000355b4 @ 0x000355b4
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  * address symbols (name @ address):
  *   rodata_a896c                             @ 0x000a896c
  *   rodata_a8994                             @ 0x000a8994
@@ -15,7 +16,7 @@
 /* Reconstructed store_whitelist @ 0x35608  (parity: 300/300 trials, PROVEN) */
 extern int flash_write_paged(unsigned int a0, unsigned int a1, unsigned int a2);
 extern void revalidate_whitelist_json(void);
-extern void FUN_00074844(unsigned int a0, unsigned int a1);
+extern void k_sleep(unsigned int a0, unsigned int a1);
 extern void log_message(unsigned int a0, ...);
 extern void debug_print(unsigned int a0, ...);
 
@@ -29,7 +30,7 @@ int store_whitelist(void)
             revalidate_whitelist_json();
             break;
         }
-        FUN_00074844(0xa4UL, 0UL);
+        k_sleep(0xa4UL, 0UL);
         if (*(volatile int*)0x20007554UL == 0)
             log_message(0xa896cUL);
         else

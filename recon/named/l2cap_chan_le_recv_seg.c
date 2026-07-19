@@ -2,12 +2,15 @@
  * public-name: l2cap_chan_le_recv_seg
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   l2cap_chan_send_disconnect               <= FUN_0005774c @ 0x0005774c
  *   l2cap_chan_le_recv_seg                   <= FUN_00057a04 @ 0x00057a04
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
  *   net_buf_append_bytes                     <= FUN_0005f450 @ 0x0005f450
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   net_buf_frags_len                        <= FUN_00081616 @ 0x00081616
+ *   atomic_get_word                          <= FUN_000816a2 @ 0x000816a2
+ *   log_msg_3arg_thunk                       <= FUN_00081746 @ 0x00081746
  *   gatt_send_service_changed_ind            <= FUN_00081b30 @ 0x00081b30
  * address symbols (name @ address):
  *   rodata_81699                             @ 0x00081699
@@ -16,14 +19,14 @@
  */
 /* Reconstructed FUN_00057a04 @ 0x57a04  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int FUN_0005774c(int,int);
+extern int l2cap_chan_send_disconnect(int,int);
 extern int net_buf_unref(int);
 extern short net_buf_append_bytes(int,int,int);
 extern int assert_post_action(int,int);
 extern int printk(int,int,int,int);
 extern long long net_buf_frags_len(int);
-extern int FUN_000816a2(int);
-extern int FUN_00081746(int,int,void*);
+extern int atomic_get_word(int);
+extern int log_msg_3arg_thunk(int,int,void*);
 extern int gatt_send_service_changed_ind(int);
 
 void l2cap_chan_le_recv_seg(int param_1, int param_2)
@@ -64,7 +67,7 @@ void l2cap_chan_le_recv_seg(int param_1, int param_2)
                 *(unsigned int *)(param_1 + 0x80) = 0;
                 *(unsigned short *)(param_1 + 0x84) = 0;
                 if (bVar1 == 3) {
-                    iVar5 = FUN_000816a2(param_1 + 0x1c);
+                    iVar5 = atomic_get_word(param_1 + 0x1c);
                     if (iVar5 == 0) {
                         iVar5 = (**(int (**)(int,int))(*(int *)(param_1 + 4) + 0x14))(param_1, uVar7);
                         if (iVar5 < 0) {
@@ -74,10 +77,10 @@ void l2cap_chan_le_recv_seg(int param_1, int param_2)
                             local_44 = 0x000f4079;
                             local_48 = (unsigned int)bVar1;
                             local_40 = iVar5;
-                            FUN_00081746(0x00088160, 0x1840, &local_48);
+                            log_msg_3arg_thunk(0x00088160, 0x1840, &local_48);
                             gatt_send_service_changed_ind(param_1);
                         } else if (*(char *)(param_1 + 0xb4) == '\x03') {
-                            FUN_0005774c(param_1, 1);
+                            l2cap_chan_send_disconnect(param_1, 1);
                         }
                         net_buf_unref(uVar7);
                         return;
@@ -90,16 +93,16 @@ void l2cap_chan_le_recv_seg(int param_1, int param_2)
                 }
                 assert_post_action(0, uVar7);
             }
-            iVar5 = FUN_000816a2(param_1 + 0x1c);
+            iVar5 = atomic_get_word(param_1 + 0x1c);
             if (iVar5 != 0) {
                 return;
             }
-            FUN_0005774c(param_1, 1);
+            l2cap_chan_send_disconnect(param_1, 1);
             return;
         }
     }
     local_28 = 2;
-    FUN_00081746(0x00088160, 0x1040, &local_28);
+    log_msg_3arg_thunk(0x00088160, 0x1040, &local_28);
     gatt_send_service_changed_ind(param_1);
     return;
 }

@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_ui_mode_flag_byte1                   <= FUN_00023ee0 @ 0x00023ee0
  *   gui_canvas_flags_set_bit1                <= FUN_000432d0 @ 0x000432d0
  *   gui_canvas_flags_clear_bit1              <= FUN_000432ec @ 0x000432ec
  *   gui_bitmps_merge_draw                    <= FUN_00043bd8 @ 0x00043bd8
@@ -64,7 +65,7 @@ extern long long device_info_text_height_get_clamped(int, ...);
 extern long long gui_bitmps_merge_draw(int, ...);
 extern long long gui_4bit_bitmap_override(int, ...);
 extern long long gui_utf_draw(int, ...);
-extern long long FUN_00023ee0(int, ...);
+extern long long get_ui_mode_flag_byte1(int, ...);
 extern long long get_timestamp(int, ...);
 extern long long gui_clock_draw(int, ...);
 extern long long gui_canvas_flags_set_bit1(int, ...);
@@ -223,7 +224,7 @@ void navigation_panoramic_map_display(undefined4 param_1,int param_2)
         *puVar5 = 1;
       }
       else {
-        iVar8 = ((long long (*)(void))FUN_00023ee0)();
+        iVar8 = ((long long (*)(void))get_ui_mode_flag_byte1)();
         if (iVar8 == 6) {
           iVar8 = ((long long (*)(void))device_info_text_width_get)();
           iVar12 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -381,7 +382,7 @@ void navigation_panoramic_map_display(undefined4 param_1,int param_2)
       iVar8 = ((long long (*)(void))device_info_text_width_get)();
       iVar7 = ((long long (*)(void))device_info_text_height_get_clamped)();
       reflash_fb_data_to_lcd(uVar9,uVar17,iVar15 + 0x58,uVar14,iVar8 + 0x240,iVar7 + 0x88);
-      iVar15 = ((long long (*)(void))FUN_00023ee0)();
+      iVar15 = ((long long (*)(void))get_ui_mode_flag_byte1)();
       if (iVar15 == 6) {
         iVar15 = ((long long (*)(void))device_info_text_width_get)();
         iVar8 = ((long long (*)(void))device_info_text_height_get_clamped)();

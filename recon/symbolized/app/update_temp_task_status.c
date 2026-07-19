@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   display_close_screen                     <= FUN_00049858 @ 0x00049858
+ *   signal_persist_task_event                <= FUN_0007cdf8 @ 0x0007cdf8
  * address symbols (name @ address):
  *   rodata_a2597                             @ 0x000a2597
  *   rodata_a25b9                             @ 0x000a25b9
@@ -19,7 +20,7 @@
 extern void log_message(uint32_t, ...);
 extern void debug_print(uint32_t, ...);
 extern void display_close_screen(unsigned char);
-extern void FUN_0007cdf8(void);
+extern void signal_persist_task_event(void);
 
 unsigned int update_temp_task_status(int param_1, unsigned int param_2, unsigned int param_3)
 {
@@ -30,7 +31,7 @@ unsigned int update_temp_task_status(int param_1, unsigned int param_2, unsigned
     int iVar4;
 
     while (*pcVar1 != 0) {
-        FUN_0007cdf8();
+        signal_persist_task_event();
     }
     *pcVar1 = 1;
 

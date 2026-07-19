@@ -6,9 +6,11 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   parse_whitelist_json                     <= FUN_00034dbc @ 0x00034dbc
  *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
+ *   cbor_decode_start_default                <= FUN_0008500c @ 0x0008500c
  *   sllist_count_nodes                       <= FUN_00085020 @ 0x00085020
  *   sllist_node_at_index                     <= FUN_00085030 @ 0x00085030
  *   sllist_find_by_name_ci                   <= FUN_0008503c @ 0x0008503c
+ *   cjson_is_array                           <= FUN_000850c8 @ 0x000850c8
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   strncpy_zero_pad                         <= FUN_0008705a @ 0x0008705a
  * address symbols (name @ address):
@@ -33,11 +35,11 @@
 extern void log_message(uint32_t format, ...);
 extern void debug_print(uint32_t format, ...);
 extern void cjson_delete(int object);
-extern int FUN_0008500c(void);
+extern int cbor_decode_start_default(void);
 extern unsigned int sllist_count_nodes(int object);
 extern int sllist_node_at_index(int object);
 extern int sllist_find_by_name_ci(int object, uint32_t key);
-extern int FUN_000850c8(void);
+extern int cjson_is_array(void);
 extern void memset_bytes(void *destination, int value, unsigned int count);
 extern void strncpy_zero_pad(void *destination, const void *source,
                          unsigned int limit);
@@ -53,7 +55,7 @@ uint32_t parse_whitelist_json(uint32_t request, uint32_t unused_2,
                       uint32_t unused_3)
 {
     volatile uint8_t *const output = (volatile uint8_t *)((unsigned long)g_app_whitelist_buffer) /*=0x2001a22c*/;
-    int root = FUN_0008500c();
+    int root = cbor_decode_start_default();
     int object;
     uint32_t error_format;
     uint8_t item_count;
@@ -102,7 +104,7 @@ uint32_t parse_whitelist_json(uint32_t request, uint32_t unused_2,
     object = sllist_find_by_name_ci(object, ((unsigned long)&rodata_f3630) /*=0xf3630*/);
     if (object == 0) { error_format = 0x000a86f4; goto fail; }
 
-    if (FUN_000850c8() != 0) {
+    if (cjson_is_array() != 0) {
         item_count = (uint8_t)sllist_count_nodes(object);
         if (item_count > 99)
             item_count = 100;

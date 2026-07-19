@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   gatt_discover                            <= FUN_000187e8 @ 0x000187e8
  *   discovery_completed_cb_gatt              <= FUN_000189a0 @ 0x000189a0
+ *   gatt_subscribe_service_changed           <= FUN_0004f418 @ 0x0004f418
  *   bt_gatt_dm_conn_get                      <= FUN_0007f4c8 @ 0x0007f4c8
  *   bt_gatt_dm_attr_cnt                      <= FUN_0007f4cc @ 0x0007f4cc
  *   bt_gatt_dm_data_release                  <= FUN_0007f594 @ 0x0007f594
@@ -23,7 +24,7 @@ extern void log_message(int,...);
 extern unsigned bt_gatt_dm_conn_get(unsigned callback_object);
 extern unsigned bt_gatt_dm_attr_cnt(unsigned);
 extern int gatt_service_changed_c_discovery_completed(unsigned,unsigned);
-extern int FUN_0004f418(unsigned,unsigned);
+extern int gatt_subscribe_service_changed(unsigned,unsigned);
 extern int bt_gatt_dm_data_release(unsigned);
 extern void gatt_discover(unsigned,int);
 void discovery_completed_cb_gatt(unsigned param_1, unsigned param_2){
@@ -35,7 +36,7 @@ void discovery_completed_cb_gatt(unsigned param_1, unsigned param_2){
     log_message(((unsigned long)&rodata_9a820) /*=0x9a820*/);
     iVar3 = gatt_service_changed_c_discovery_completed(param_1,param_2);
     fmt = ((unsigned long)&rodata_9a854) /*=0x9a854*/;
-    if(iVar3!=0 || (iVar3=FUN_0004f418(param_2,ADDR_indicate_sc_cb_THUMB /*=0x18a39*/), fmt=((unsigned long)&rodata_9a88a) /*=0x9a88a*/, iVar3!=0)){
+    if(iVar3!=0 || (iVar3=gatt_subscribe_service_changed(param_2,ADDR_indicate_sc_cb_THUMB /*=0x18a39*/), fmt=((unsigned long)&rodata_9a88a) /*=0x9a88a*/, iVar3!=0)){
       log_message(fmt,iVar3);
     }
   }

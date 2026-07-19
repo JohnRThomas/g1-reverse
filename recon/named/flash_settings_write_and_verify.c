@@ -9,6 +9,7 @@
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_87bf0                             @ 0x00087bf0
@@ -32,7 +33,7 @@ extern void free(void *);
 extern int z_device_is_ready(const void *);
 extern void memset_bytes(void *, int, size_t);
 extern int memcmp(const void *, const void *, size_t);
-extern void FUN_00086c1e(void *, const void *, size_t, size_t);
+extern void safe_memcpy_checked(void *, const void *, size_t, size_t);
 extern uintptr_t get_device_info(void);
 extern void log_message(uintptr_t, ...);
 extern void debug_print(void);
@@ -88,7 +89,7 @@ int flash_settings_write_and_verify(uint32_t address, const void *source,
     }
 
     memset_bytes(buffer, 0, 0x1000u);
-    FUN_00086c1e(buffer, source, length, 0x1000u);
+    safe_memcpy_checked(buffer, source, length, 0x1000u);
     info = get_device_info();
     flash_write_t write = *(flash_write_t *)(info + 0x1034u);
     info = get_device_info();

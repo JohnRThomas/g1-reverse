@@ -5,6 +5,8 @@
  *   chunk_field                              <= FUN_0007ddec @ 0x0007ddec
  *   chunk_set                                <= FUN_0007de02 @ 0x0007de02
  *   chunk_size                               <= FUN_0007de18 @ 0x0007de18
+ *   chunk_set_used_flag                      <= FUN_0007de54 @ 0x0007de54
+ *   heap_bucket_index                        <= FUN_0007de82 @ 0x0007de82
  *   merge_chunks                             <= FUN_0007dfe6 @ 0x0007dfe6
  *   free_list_add                            <= FUN_0007e022 @ 0x0007e022
  */
@@ -16,10 +18,10 @@
 extern uint32_t chunk_size(void *heap, uint32_t chunk);
 extern uint32_t chunk_field(void *heap, uint32_t chunk, uint32_t side);
 #ifdef G1_APP_SDK_INLINE_COHESION
-extern int FUN_0007de82(uint32_t end_chunk, uint32_t size);
+extern int heap_bucket_index(uint32_t end_chunk, uint32_t size);
 extern void chunk_set(void *heap, uint32_t chunk, uint32_t field,
                          uint32_t value);
-extern void FUN_0007de54(void *heap, uint32_t chunk, uint32_t size);
+extern void chunk_set_used_flag(void *heap, uint32_t chunk, uint32_t size);
 
 /* Exact Zephyr 3.4.99 heap.c locals.  They are always-inline and TU-local so
  * the cohesive build exports no duplicate helper owner; parity mode keeps the
@@ -51,7 +53,7 @@ static __attribute__((always_inline)) inline void free_list_remove(
     if (*(uint32_t *)(heap + 8u) >= 0x8000u && size == 1u)
         return;
     free_list_remove_bidx(heap, chunk,
-                          FUN_0007de82(*(uint32_t *)(heap + 8u), size));
+                          heap_bucket_index(*(uint32_t *)(heap + 8u), size));
 }
 
 static __attribute__((always_inline)) inline void merge_chunks(
@@ -59,7 +61,7 @@ static __attribute__((always_inline)) inline void merge_chunks(
 {
     uint32_t merged = chunk_size(heap, left) +
                       chunk_size(heap, right);
-    FUN_0007de54(heap, left, merged);
+    chunk_set_used_flag(heap, left, merged);
     chunk_set(heap, right + chunk_size(heap, right), 0u, merged);
 }
 #else

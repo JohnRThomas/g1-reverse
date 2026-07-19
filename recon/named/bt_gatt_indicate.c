@@ -9,6 +9,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
+ *   read_struct_first_word                   <= FUN_0008270c @ 0x0008270c
  *   bt_gatt_attr_value_handle                <= FUN_00082c0e @ 0x00082c0e
  * address symbols (name @ address):
  *   ADDR_gatt_send_ccc_update_THUMB          @ 0x0005b891
@@ -27,7 +28,7 @@ extern int gatt_indicate(int a0,int a1,int *a2);
 extern void assert_post_action(int a0,int a1);
 extern void printk(int a0,int a1,int a2,int a3);
 extern int bt_uuid_cmp(int a0,void *a1);
-extern int FUN_0008270c(int a0);
+extern int read_struct_first_word(int a0);
 extern int bt_gatt_attr_value_handle(void);
 
 int bt_gatt_indicate(int param_1,int *param_2)
@@ -50,7 +51,7 @@ int bt_gatt_indicate(int param_1,int *param_2)
         return 0;
     } else {
         if ((param_2[1] != 0) || (param_2[0] != 0)) {
-            iVar1 = FUN_0008270c(0x200020d4);
+            iVar1 = read_struct_first_word(0x200020d4);
             if (-1 < (int)((unsigned int)iVar1 << 0x1d)) {
                 return 0xfffffff5;
             }

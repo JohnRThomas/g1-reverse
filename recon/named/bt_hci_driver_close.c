@@ -4,9 +4,12 @@
  * callees (readable <= raw @ address):
  *   arm_mpu_configure_partition_region       <= FUN_00050b8c @ 0x00050b8c
  *   bt_hci_driver_close                      <= FUN_00054b70 @ 0x00054b70
+ *   clear_legacy_adv_state                   <= FUN_0005571c @ 0x0005571c
  *   bt_pub_key_hci_disrupted                 <= FUN_00055e1c @ 0x00055e1c
  *   bt_conn_cleanup_all                      <= FUN_00056990 @ 0x00056990
  *   atomic_or                                <= FUN_00080e6a @ 0x00080e6a
+ *   bt_addr_le_copy_80e94                    <= FUN_00080e94 @ 0x00080e94
+ *   bt_log_forward_3arg                      <= FUN_00080ea2 @ 0x00080ea2
  *   atomic_and_3                             <= FUN_00080ea8 @ 0x00080ea8
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -23,12 +26,12 @@
 
 #include <stdint.h>
 extern int arm_mpu_configure_partition_region(int);
-extern int FUN_0005571c(void);
+extern int clear_legacy_adv_state(void);
 extern int bt_pub_key_hci_disrupted(void);
 extern int bt_conn_cleanup_all(void);
 extern int atomic_or(int,int);
-extern int FUN_00080e94(int,int);
-extern int FUN_00080ea2(int,int,void*);
+extern int bt_addr_le_copy_80e94(int,int);
+extern int bt_log_forward_3arg(int,int,void*);
 extern int atomic_and_3(int,int);
 extern int memset_bytes(int,int,int);
 
@@ -41,7 +44,7 @@ int bt_hci_driver_close(void)
         iVar2 = -0x13;
         local_1c = 0x000f3376;
         local_20 = 2;
-        FUN_00080ea2(0x00088138, 0x1040, &local_20);
+        bt_log_forward_3arg(0x00088138, 0x1040, &local_20);
     } else if (*(volatile int*)(*(volatile int*)(base + 0x168) + 0x10) == 0) {
         iVar2 = -0x86;
     } else {
@@ -53,8 +56,8 @@ int bt_hci_driver_close(void)
             iVar2 = (*(int(**)(void))(*(volatile int*)(base + 0x168) + 0x10))();
             if (iVar2 == 0) {
                 memset_bytes(base + 0x80, 0, 0x40);
-                FUN_00080e94(base + 0x68, 0x000f2b3a);
-                FUN_0005571c();
+                bt_addr_le_copy_80e94(base + 0x68, 0x000f2b3a);
+                clear_legacy_adv_state();
                 bt_pub_key_hci_disrupted();
                 bt_conn_cleanup_all();
                 *(volatile uint16_t*)0x2000ff06UL = 0;
@@ -66,7 +69,7 @@ int bt_hci_driver_close(void)
                 local_3c = 0x000f33b7;
                 local_40 = 3;
                 iStack_38 = iVar2;
-                FUN_00080ea2(0x00088138, 0x1840, &local_40);
+                bt_log_forward_3arg(0x00088138, 0x1840, &local_40);
                 atomic_or(base + 0xd4, 4);
             }
         }

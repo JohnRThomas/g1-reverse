@@ -4,7 +4,9 @@
  * callees (readable <= raw @ address):
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_ui_mode_flag_byte1                   <= FUN_00023ee0 @ 0x00023ee0
  *   sync_to_slave                            <= FUN_00026f74 @ 0x00026f74
+ *   reset_ipc_evt_ctx                        <= FUN_0003dfe4 @ 0x0003dfe4
  *   navigation_overview_map_display          <= FUN_0003e05c @ 0x0003e05c
  *   navigation_panoramic_map_display         <= FUN_0003e7f8 @ 0x0003e7f8
  *   draw_locale_adjusted_label_pair          <= FUN_0003f2a8 @ 0x0003f2a8
@@ -15,6 +17,7 @@
  *   gui_reset_dynamic_bitmap_frame_state     <= FUN_00043308 @ 0x00043308
  *   gui_bmp_dynamic_bitmap_draw              <= FUN_0004334c @ 0x0004334c
  *   gui_bmp_bitmap_draw                      <= FUN_00043484 @ 0x00043484
+ *   gui_screen_fade_out_transition           <= FUN_0004382c @ 0x0004382c
  *   gui_bitmps_merge_draw                    <= FUN_00043bd8 @ 0x00043bd8
  *   gui_utf_draw                             <= FUN_00043e90 @ 0x00043e90
  *   gui_clock_draw                           <= FUN_000442bc @ 0x000442bc
@@ -90,17 +93,17 @@ extern void gui_screen_clear(void);                              /* ui_clear_scr
 extern void gui_reset_dynamic_bitmap_frame_state(void);
 extern void gui_bmp_dynamic_bitmap_draw(int, ...);
 extern void gui_bmp_bitmap_draw(int, ...);
-extern void FUN_0004382c(void);                              /* navigation_stop */
+extern void gui_screen_fade_out_transition(void);                              /* navigation_stop */
 extern void gui_bitmps_merge_draw(int, ...);
 extern void gui_utf_draw(int, ...);
 extern void gui_clock_draw(int, ...);
 extern void send_response_data_to_ble(void);
-extern void FUN_0003dfe4(void);                              /* navigation_reset */
+extern void reset_ipc_evt_ctx(void);                              /* navigation_reset */
 extern void navigation_overview_map_display(uintptr_t, uintptr_t);              /* overview display */
 extern void navigation_panoramic_map_display(uintptr_t, uintptr_t);              /* panoramic display */
 extern void draw_locale_adjusted_label_pair(void);
 extern void draw_locale_adjusted_label(void);
-extern int FUN_00023ee0(void);
+extern int get_ui_mode_flag_byte1(void);
 extern int sync_to_slave(uintptr_t, int, const void *, int);  /* sync_to_slave */
 extern int FUN_0007d376(uintptr_t, uint32_t, int, int);      /* semaphore_take */
 extern int FUN_0007d37a(uintptr_t);                          /* semaphore_give */
@@ -191,7 +194,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
         if (V8(shared) == 1u) {
           if (LOG_LEVEL > 2)
             LOG_CALL(0x000aa112u, 0x000aa412u);
-          FUN_0003dfe4();
+          reset_ipc_evt_ctx();
           NAVIGATION_ACTIVE = 1u;
           LAST_SYNC_TIME = g1_sdk_uptime_get_7();
           SYNC_RETRIES = 10u;
@@ -274,7 +277,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
           LOG_CALL(0x000aa23du, 0x000aa412u);
         NAV_STATE = 3u;
         gui_screen_clear();
-        xoff = (FUN_00023ee0() == 6) ? 0xaa : 0xc4;
+        xoff = (get_ui_mode_flag_byte1() == 6) ? 0xaa : 0xc4;
         a = device_info_text_width_get(); b = device_info_text_height_get_clamped();
         c = device_info_text_width_get(); d = device_info_text_height_get_clamped();
         gui_utf_draw(0, nav_root + 0x1a4u, 0, a + xoff, b + 0x3c,
@@ -308,7 +311,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
           gui_bitmps_merge_draw(a + 0x1b6, b, c + 0x240, d + 0x88,
                        (void *)(uintptr_t)0x2001ba2eu,
                        (void *)(uintptr_t)0x2001c336u, 2, 0xf);
-          xoff = (FUN_00023ee0() == 6) ? 0xe8 : 0xc4;
+          xoff = (get_ui_mode_flag_byte1() == 6) ? 0xe8 : 0xc4;
           a = device_info_text_width_get(); b = device_info_text_height_get_clamped();
           c = device_info_text_width_get(); d = device_info_text_height_get_clamped();
           gui_utf_draw(0, nav_root + 0x1a4u, 0, a + xoff, b + 0x3c,
@@ -379,7 +382,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
     if ((int64_t)u64_sub(now, LAST_SYNC_TIME) >= 8001) {
       if (LOG_LEVEL > 1)
         LOG_CALL(0x000aa3a8u, 0x000aa412u);
-      FUN_0004382c();
+      gui_screen_fade_out_transition();
       memset_bytes((void *)(uintptr_t)0x20004bb8u, 0, 0x38u);
       memset_bytes((void *)(uintptr_t)0x2001ba2eu, 0, 0x1210u);
       NAV_BUFFER_VALID = 0u;
@@ -403,7 +406,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
         LOG_CALL(0x000aa3edu, 0x000aa412u);
       app = get_device_info();
       V8(*(volatile uintptr_t *)(app + 0x1000u)) = 0u;
-      FUN_0004382c();
+      gui_screen_fade_out_transition();
       memset_bytes((void *)(uintptr_t)0x20004bb8u, 0, 0x38u);
     }
     return 0;
@@ -458,7 +461,7 @@ exit_navigation:
   return 0;
 
 exit_and_clear:
-  FUN_0004382c();
+  gui_screen_fade_out_transition();
 clear_navigation:
   memset_bytes((void *)(uintptr_t)0x20004bb8u, 0, 0x38u);
   memset_bytes((void *)(uintptr_t)0x2001ba2eu, 0, 0x1210u);

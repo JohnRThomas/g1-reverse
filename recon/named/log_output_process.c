@@ -8,6 +8,7 @@
  *   cbpprintf_external                       <= FUN_0007db9e @ 0x0007db9e
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   log_output_flush_noop                    <= FUN_0007ee44 @ 0x0007ee44
  *   log_output_flush                         <= FUN_0007eece @ 0x0007eece
  * address symbols (name @ address):
  *   rodata_4daad                             @ 0x0004daad
@@ -43,7 +44,7 @@ extern int newline_print(unsigned,unsigned);
 extern int cbpprintf_external(unsigned,unsigned,unsigned,int);
 extern int assert_post_action(unsigned,unsigned);
 extern int printk(unsigned,unsigned,unsigned,int);
-extern int FUN_0007ee44(void);
+extern int log_output_flush_noop(void);
 extern int log_output_flush(unsigned);
 #define U8(a)  (*(volatile uint8_t*)(uintptr_t)(a))
 #define U32(a) (*(volatile uint32_t*)(uintptr_t)(a))
@@ -126,7 +127,7 @@ LAB_dd74:
       uVar6 = 0x1bf;
       goto LAB_db3e;
     }
-    iVar2 = FUN_0007ee44();
+    iVar2 = log_output_flush_noop();
     if (iVar2 == 0) iVar3 = 0;
     else iVar3 = print_formatted(param_1,0x000f0ee3,iVar2);
     if ((param_10 & 2) != 0) {

@@ -4,10 +4,13 @@
  * callees (readable <= raw @ address):
  *   qspi_get_zephyr_ret_code                 <= FUN_00060990 @ 0x00060990
  *   qspi_nor_log_erase_range_error           <= FUN_000609c4 @ 0x000609c4
+ *   qspi_nor_lock_if_magic                   <= FUN_000609f4 @ 0x000609f4
  *   qspi_nor_acquire                         <= FUN_00060a10 @ 0x00060a10
+ *   qspi_nor_suspend_bus                     <= FUN_00060a5c @ 0x00060a5c
  *   qspi_nor_erase                           <= FUN_00060dd0 @ 0x00060dd0
  *   nrfx_qspi_erase                          <= FUN_00066bc4 @ 0x00066bc4
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
+ *   qspi_log_forward                         <= FUN_000838d6 @ 0x000838d6
  *   audio_stream_stop_and_wait               <= FUN_000838fa @ 0x000838fa
  *   audio_i2s_stop_and_reset_channels        <= FUN_00083906 @ 0x00083906
  *   audio_i2s_start_channels                 <= FUN_0008392e @ 0x0008392e
@@ -23,13 +26,13 @@
 #include <stdint.h>
 extern int qspi_get_zephyr_ret_code(int);
 extern int qspi_nor_log_erase_range_error(int,int);
-extern int FUN_000609f4(int,int);
+extern int qspi_nor_lock_if_magic(int,int);
 extern int qspi_nor_acquire(void);
-extern int FUN_00060a5c(int);
+extern int qspi_nor_suspend_bus(int);
 #define g1_recon_nrfx_qspi_erase nrfx_qspi_erase
 extern int g1_recon_nrfx_qspi_erase(int,int);
 extern int k_sem_give(int);
-extern int FUN_000838d6(int,int,void*);
+extern int qspi_log_forward(int,int,void*);
 extern int audio_stream_stop_and_wait(int);
 extern int audio_i2s_stop_and_reset_channels(int);
 extern int audio_i2s_start_channels(int);
@@ -81,22 +84,22 @@ LAB_00060e9a:
                     local_38 = 4;
                     uStack_30 = param_2;
                     local_2c = param_3;
-                    FUN_000838d6(0x00088270, 0x2040, &local_38);
-                    FUN_000609f4(*(int *)(param_1 + 0x10), 0x0bad0004);
+                    qspi_log_forward(0x00088270, 0x2040, &local_38);
+                    qspi_nor_lock_if_magic(*(int *)(param_1 + 0x10), 0x0bad0004);
                     iVar2 = 0x0bad0004;
 LAB_00060eda:
                     local_34 = 0x000f5cba;
                     local_38 = 4;
                     uStack_30 = param_2;
                     local_2c = param_3;
-                    FUN_000838d6(0x00088270, 0x2040, &local_38);
+                    qspi_log_forward(0x00088270, 0x2040, &local_38);
                     iVar1 = qspi_get_zephyr_ret_code(iVar2);
                     break;
                 }
                 iVar2 = g1_recon_nrfx_qspi_chip_erase();
                 uVar4 = param_3;
 LAB_00060e40:
-                FUN_000609f4(*(int *)(param_1 + 0x10), iVar2);
+                qspi_nor_lock_if_magic(*(int *)(param_1 + 0x10), iVar2);
                 if (iVar2 != 0x0bad0000) goto LAB_00060eda;
                 param_3 = param_3 - uVar4;
                 param_2 = param_2 + uVar4;
@@ -109,6 +112,6 @@ LAB_00060e40:
         }
         k_sem_give(*(int *)(param_1 + 0x10));
     }
-    FUN_00060a5c(param_1);
+    qspi_nor_suspend_bus(param_1);
     return iVar1;
 }

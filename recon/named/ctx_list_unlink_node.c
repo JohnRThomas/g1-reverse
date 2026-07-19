@@ -2,11 +2,12 @@
  * public-name: ctx_list_unlink_node
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   slist_unlink_after                       <= FUN_000815f6 @ 0x000815f6
  *   ctx_list_unlink_node                     <= FUN_00081788 @ 0x00081788
  */
 /* Reconstructed FUN_00081788 @ 0x81788  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_000815f6(int, int*);
+extern void slist_unlink_after(int, int*);
 
 void ctx_list_unlink_node(int param_1, int *param_2)
 {
@@ -18,7 +19,7 @@ void ctx_list_unlink_node(int param_1, int *param_2)
     piVar2 = *(int**)(param_1+0x54);
     do {
       if (param_2 == piVar2 - 2) {
-        FUN_000815f6(param_1+0x54, piVar1);
+        slist_unlink_after(param_1+0x54, piVar1);
         return;
       }
       piVar3 = (int*)*piVar2;

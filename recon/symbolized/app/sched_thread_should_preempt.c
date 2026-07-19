@@ -1,0 +1,34 @@
+#include "g1_app_symbols.h"
+/* readable reconstruction; identity: FUN_000736ec @ 0x000736ec
+ * public-name: sched_thread_should_preempt
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   sched_thread_should_preempt              <= FUN_000736ec @ 0x000736ec
+ * address symbols (name @ address):
+ *   g_sched_ready_runq_prio_cache            @ 0x2000b488
+ *   g_sched_ready_runq_nonempty_flag         @ 0x2000b48c
+ */
+/* Reconstructed FUN_000736ec @ 0x736ec  (parity: 300/300 trials, PROVEN) */
+
+unsigned int sched_thread_should_preempt(unsigned int param_1)
+{
+    unsigned int uVar1;
+    if (*(volatile unsigned short*)(param_1+0xe) < 0x80) {
+        uVar1 = *(volatile unsigned int*)((unsigned long)&g_sched_ready_runq_nonempty_flag) /*=0x2000b48c*/;
+        if (uVar1 == 0) goto LAB;
+        {
+            int b = *(volatile signed char*)(param_1+0xe);
+            int t = *(volatile int*)((unsigned long)&g_sched_ready_runq_prio_cache) /*=0x2000b488*/;
+            if (b >= t) {
+                if ((*(volatile unsigned char*)(param_1+0xd) & 0x1f) == 0) {
+                    uVar1 = param_1 - 0x20006720UL;
+                    if (uVar1 != 0) uVar1 = 1;
+                    goto LAB;
+                }
+            }
+        }
+    }
+    uVar1 = 0;
+LAB:
+    return uVar1 & 1;
+}

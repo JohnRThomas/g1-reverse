@@ -8,6 +8,7 @@
  *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   bt_conn_alloc_pdu_buf                    <= FUN_000836de @ 0x000836de
  * address symbols (name @ address):
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f2e84                             @ 0x000f2e84
@@ -17,14 +18,14 @@
  */
 /* Reconstructed FUN_00053cd4 @ 0x53cd4  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_000836de(int,int,int,int);
+extern int bt_conn_alloc_pdu_buf(int,int,int,int);
 extern void net_buf_simple_reserve(int,int);
 extern int net_buf_id(int);
 extern int net_buf_simple_add(int,int);
 extern void assert_post_action(int,int);
 extern int printk(int,...);
 int bt_hci_cmd_create(short param_1,int param_2){
-  int iVar2=FUN_000836de(0x20003b4c,param_2,-1,-1);
+  int iVar2=bt_conn_alloc_pdu_buf(0x20003b4c,param_2,-1,-1);
   if(iVar2==0){ printk(0x99cbd,0xf45be,0xf2e84,0x10a); assert_post_action(0xf2e84,0x10a); }
   net_buf_simple_reserve(iVar2+0xc,1);
   *(volatile char*)(iVar2+0x18)=0;

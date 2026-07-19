@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Trace — G1 Symbol Workbench</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#source-view">Skip to source</a>
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Trace home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span><strong>Trace</strong><small>G1 Symbol Workbench</small></span>
+      </a>
+
+      <form class="goto-form" id="goto-form" role="search">
+        <label class="sr-only" for="goto-input">Go to any symbol, raw name, or address</label>
+        <span class="goto-icon" aria-hidden="true">⌁</span>
+        <input id="goto-input" name="reference" autocomplete="off" spellcheck="false"
+          placeholder="Go to symbol, FUN_*, or 0x address…">
+        <kbd>G</kbd>
+        <button type="submit">GoToRef</button>
+      </form>
+
+      <div class="top-actions">
+        <div class="core-switch" role="group" aria-label="Processor core">
+          <button class="active" data-core="app" type="button">APP</button>
+          <button data-core="net" type="button">NET</button>
+        </div>
+        <button class="icon-button" id="shortcuts-button" type="button" aria-label="Keyboard shortcuts" title="Keyboard shortcuts">?</button>
+      </div>
+    </header>
+
+    <aside class="sidebar" aria-label="Symbol explorer">
+      <div class="sidebar-heading">
+        <div><span class="eyebrow">Inventory</span><h1>Symbols</h1></div>
+        <span class="count-pill" id="symbol-count">—</span>
+      </div>
+      <label class="search-box" for="symbol-search">
+        <span aria-hidden="true">⌕</span>
+        <input id="symbol-search" type="search" placeholder="Filter symbols" autocomplete="off">
+        <kbd>/</kbd>
+      </label>
+      <div class="filter-tabs" role="tablist" aria-label="Symbol status">
+        <button class="active" role="tab" aria-selected="true" data-state="all">All</button>
+        <button role="tab" aria-selected="false" data-state="unnamed">Unnamed</button>
+        <button role="tab" aria-selected="false" data-state="proposed">Proposed</button>
+      </div>
+      <div class="symbol-list" id="symbol-list" role="listbox" aria-label="Functions"></div>
+      <button class="load-more" id="load-more" type="button" hidden>Load more</button>
+      <div class="sidebar-footer">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span id="catalog-status">Watching catalogs</span>
+      </div>
+    </aside>
+
+    <main class="workspace" id="workspace">
+      <section class="empty-state" id="empty-state">
+        <div class="empty-orbit" aria-hidden="true"><span></span><i></i></div>
+        <span class="eyebrow">Ready to trace</span>
+        <h2>Select a function or use GoToRef</h2>
+        <p>Inspect recovered source, follow callers and callees, jump through raw references, and queue a better name without losing its firmware identity.</p>
+        <div class="empty-shortcuts"><span><kbd>G</kbd> Go to reference</span><span><kbd>/</kbd> Filter</span><span><kbd>R</kbd> Rename</span></div>
+      </section>
+
+      <div class="detail-layout" id="detail-layout" hidden>
+        <section class="source-column">
+          <header class="symbol-header">
+            <nav class="crumbs" aria-label="Breadcrumb">
+              <span id="crumb-core">CPUAPP</span><b>›</b><span id="crumb-address">0x—</span>
+            </nav>
+            <div class="title-row">
+              <div class="title-copy">
+                <div class="title-badges" id="title-badges"></div>
+                <h2 id="symbol-title">—</h2>
+                <p><code id="raw-name">—</code><button class="copy-inline" id="copy-raw" type="button" aria-label="Copy raw symbol">Copy</button></p>
+              </div>
+              <button class="primary-button" id="rename-button" type="button"><span aria-hidden="true">✦</span> Rename symbol</button>
+            </div>
+            <div class="metric-strip" id="metric-strip"></div>
+          </header>
+
+          <div class="source-card" id="source-view">
+            <div class="source-toolbar">
+              <div class="file-identity"><span class="file-icon" aria-hidden="true">C</span><span id="source-path">No source</span></div>
+              <div class="source-actions">
+                <span class="source-kind" id="source-kind"></span>
+                <button class="ghost-button" id="copy-source" type="button">Copy source</button>
+              </div>
+            </div>
+            <div class="code-scroll" id="code-scroll" tabindex="0" aria-label="Recovered C source">
+              <ol class="code-lines" id="code-lines"></ol>
+              <div class="no-source" id="no-source" hidden><span>◇</span><h3>No function body</h3><p>This reference is data or lies outside the recovered source corpus. Its incoming usages are still available.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="inspector" aria-label="Symbol inspector">
+          <div class="inspector-tabs" role="tablist" aria-label="Inspector view">
+            <button class="active" role="tab" aria-selected="true" data-panel="references">References</button>
+            <button role="tab" aria-selected="false" data-panel="usages">Usages</button>
+            <button role="tab" aria-selected="false" data-panel="info">Info</button>
+          </div>
+          <div class="inspector-content">
+            <section class="inspector-panel active" id="panel-references" aria-label="References">
+              <div id="reference-groups"></div>
+            </section>
+            <section class="inspector-panel" id="panel-usages" aria-label="Usages">
+              <div id="usage-list"></div>
+            </section>
+            <section class="inspector-panel" id="panel-info" aria-label="Information">
+              <dl class="info-list" id="info-list"></dl>
+            </section>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <dialog class="rename-dialog" id="rename-dialog">
+    <form method="dialog" id="rename-form">
+      <div class="dialog-glow" aria-hidden="true"></div>
+      <header><div><span class="eyebrow">User proposal</span><h2>Rename symbol</h2></div><button class="dialog-close" value="cancel" aria-label="Close">×</button></header>
+      <div class="identity-lock"><span>Permanent identity</span><strong id="rename-identity">FUN_… · 0x…</strong></div>
+      <label for="rename-name">New C identifier</label>
+      <div class="rename-input-wrap"><span aria-hidden="true">ƒ</span><input id="rename-name" required pattern="[A-Za-z_][A-Za-z0-9_]*" autocomplete="off" spellcheck="false"></div>
+      <label for="rename-evidence">Evidence or rationale <small>optional, recommended</small></label>
+      <textarea id="rename-evidence" rows="4" placeholder="Callers, strings, side effects, SDK match…"></textarea>
+      <p class="coordination-note" id="coordination-note"><span aria-hidden="true">↻</span><span>The naming sweep is active. This saves to an isolated proposal overlay and does not modify its files.</span></p>
+      <p class="form-error" id="rename-error" role="alert"></p>
+      <footer><button class="ghost-button" value="cancel">Cancel</button><button class="primary-button" id="save-rename" value="default"><span aria-hidden="true">✓</span> Save proposal</button></footer>
+    </form>
+  </dialog>
+
+  <dialog class="shortcut-dialog" id="shortcut-dialog">
+    <form method="dialog"><header><h2>Keyboard shortcuts</h2><button class="dialog-close" value="cancel" aria-label="Close">×</button></header>
+      <dl><div><dt><kbd>G</kbd></dt><dd>Focus GoToRef</dd></div><div><dt><kbd>/</kbd></dt><dd>Filter symbols</dd></div><div><dt><kbd>R</kbd></dt><dd>Rename current symbol</dd></div><div><dt><kbd>Esc</kbd></dt><dd>Close dialog or clear focus</dd></div></dl>
+    </form>
+  </dialog>
+
+  <div class="toast-region" id="toast-region" aria-live="polite"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

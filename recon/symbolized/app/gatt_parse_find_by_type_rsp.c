@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   gatt_parse_find_by_type_rsp              <= FUN_0005bbf4 @ 0x0005bbf4
+ *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  *   gatt_discover_next                       <= FUN_00082d2e @ 0x00082d2e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -12,7 +13,7 @@
  */
 /* Reconstructed FUN_0005bbf4 @ 0x5bbf4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void FUN_00082a42(unsigned,unsigned,void*);
+extern void log_msg_create_3arg(unsigned,unsigned,void*);
 extern void gatt_discover_next(unsigned,unsigned,void*);
 extern void memset_bytes(void*,int,int);
 typedef int (*fp_t)(unsigned,void*,void*);
@@ -31,7 +32,7 @@ void gatt_parse_find_by_type_rsp(unsigned param_1, int param_2, unsigned char *p
     else {
       unsigned st[8];
       st[0]=3; st[5]=((unsigned long)&rodata_f4ca8) /*=0xf4ca8*/; st[6]=uVar3;
-      FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1840, st);
+      log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1840, st);
       goto LAB_bc40;
     }
   }

@@ -7,6 +7,7 @@
  *   smp_central_ident                        <= FUN_0005e080 @ 0x0005e080
  *   bt_keys_get_type                         <= FUN_0005e9d0 @ 0x0005e9d0
  *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ *   smp_log_message                          <= FUN_00083074 @ 0x00083074
  *   atomic_set_bit                           <= FUN_00083090 @ 0x00083090
  * address symbols (name @ address):
  *   rodata_88180                             @ 0x00088180
@@ -18,7 +19,7 @@
 extern int atomic_test_bit(int,int);
 extern int bt_keys_get_type(int,int,int,int);
 extern uint32_t bt_addr_le_str(int);
-extern void FUN_00083074(uint32_t,int,void*);
+extern void smp_log_message(uint32_t,int,void*);
 extern void atomic_set_bit(int,uint32_t);
 extern void smp_pairing_complete(int);
 
@@ -40,7 +41,7 @@ uint32_t smp_central_ident(int param_1, int param_2){
       local_24 = 0xf4e60;
       local_1c = 0x200;
       local_28 = 0x1000003;
-      FUN_00083074(0x88180, 0x1c40, (void*)&local_28);
+      smp_log_message(0x88180, 0x1c40, (void*)&local_28);
       return 8;
     }
     *(uint16_t*)(iVar2+0x18) = *puVar4;

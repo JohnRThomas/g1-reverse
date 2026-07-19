@@ -8,6 +8,7 @@
  *   img_mgmt_reset_upload                    <= FUN_00051fe4 @ 0x00051fe4
  *   img_mgmt_read_info                       <= FUN_00052038 @ 0x00052038
  *   img_mgmt_erase                           <= FUN_00052180 @ 0x00052180
+ *   cbor_map_decode_fields                   <= FUN_00080872 @ 0x00080872
  *   img_mgmt_slot_in_use                     <= FUN_000809f6 @ 0x000809f6
  * address symbols (name @ address):
  *   rodata_85f8d                             @ 0x00085f8d
@@ -16,7 +17,7 @@
 /* Reconstructed FUN_00052180 @ 0x52180. */
 #include <stdint.h>
 
-extern int FUN_00080872(int source, void *descriptor, unsigned int count,
+extern int cbor_map_decode_fields(int source, void *descriptor, unsigned int count,
                         uint32_t *auxiliary);
 extern int img_mgmt_read_info(uint32_t handle, void *scratch,
                         uint32_t option, uint32_t context);
@@ -48,7 +49,7 @@ uint32_t img_mgmt_erase(const uint8_t *request)
         ((unsigned long)&rodata_f272f) /*=0xf272f*/, 4, ((unsigned long)&rodata_85f8d) /*=0x85f8d*/, &result, 0
     };
 
-    int status = FUN_00080872(*(const int *)(request + 4) + 4,
+    int status = cbor_map_decode_fields(*(const int *)(request + 4) + 4,
                               &descriptor, 1, &result.auxiliary);
     if (status != 0)
         return 3;

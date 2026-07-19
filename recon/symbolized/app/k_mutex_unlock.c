@@ -12,6 +12,7 @@
  *   z_unpend_first_thread                    <= FUN_000744a4 @ 0x000744a4
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   k_mutex_owner_prio_check                 <= FUN_000864b2 @ 0x000864b2
  * address symbols (name @ address):
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f08c7                             @ 0x000f08c7
@@ -37,7 +38,7 @@ extern void z_spin_lock_set_owner(unsigned);
 extern void z_ready_thread_locked(void);
 extern void z_reschedule(unsigned,unsigned);
 extern int z_unpend_first_thread(int);
-extern void FUN_000864b2(unsigned,unsigned);
+extern void k_mutex_owner_prio_check(unsigned,unsigned);
 unsigned k_mutex_unlock(int param_1)
 {
   unsigned ipsr, basepri; int iVar4, r3;
@@ -69,7 +70,7 @@ unsigned k_mutex_unlock(int param_1)
     assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
   }
   z_spin_lock_set_owner(((unsigned long)&mutex_spinlock_b470) /*=0x2000b470*/);
-  FUN_000864b2(*(unsigned*)(param_1+8), *(unsigned*)(param_1+0x10));
+  k_mutex_owner_prio_check(*(unsigned*)(param_1+8), *(unsigned*)(param_1+0x10));
   iVar4 = z_unpend_first_thread(param_1);
   *(volatile int*)(param_1+8) = iVar4;
   if (iVar4 == 0) {

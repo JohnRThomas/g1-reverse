@@ -2,6 +2,7 @@
  * public-name: z_reschedule
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   arch_swap                                <= FUN_000501d4 @ 0x000501d4
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
  *   z_reschedule                             <= FUN_000739f0 @ 0x000739f0
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
@@ -16,7 +17,7 @@
 /* Reconstructed FUN_000739f0 @ 0x739f0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int z_spin_unlock_valid(int);
-extern void FUN_000501d4(int);
+extern void arch_swap(int);
 extern void assert_post_action(int,int);
 extern void printk(int,...);
 void z_reschedule(int param_1, int param_2){
@@ -28,7 +29,7 @@ void z_reschedule(int param_1, int param_2){
       volatile int *g = (volatile int*)0x2000b448UL;
       if(g[6] != g[2]){
         r0v = z_spin_unlock_valid(param_1);
-        if(r0v != 0){ FUN_000501d4(r6); return; }
+        if(r0v != 0){ arch_swap(r6); return; }
         printk(0x99cbd, 0xf08f4, 0xf08c7, 0x111);
         printk(0xf090b, param_1);
         assert_post_action(0xf08c7, 0x111);

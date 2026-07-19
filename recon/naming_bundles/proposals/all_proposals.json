@@ -1,0 +1,3950 @@
+[
+ {
+  "address": "0x00014b60",
+  "name": "dtoa_r",
+  "confidence": "high",
+  "evidence": "David Gay dtoa engine called only by dtoa_format_cvt; uses Balloc/Bfree/bigint_mult/pow5mult/lshift/bignum_div_trial_subtract big-integer routines and emits 'Infinity' string, the classic _dtoa_r double-to-ASCII conversion.",
+  "batch": 0
+ },
+ {
+  "address": "0x000232b8",
+  "name": "get_product_code_buf",
+  "confidence": "high",
+  "evidence": "Returns constant 0x20002fe3 which the bundle maps to symbol g_product_code_buf; callers include product_code_is_supported_egp_family and set_glasses_sn_info.",
+  "batch": 0
+ },
+ {
+  "address": "0x000269fc",
+  "name": "get_last_standby_event_id",
+  "confidence": "high",
+  "evidence": "Reads and returns the single byte at 0x2000302d mapped to g_last_standby_event_id.",
+  "batch": 0
+ },
+ {
+  "address": "0x00032808",
+  "name": "set_glassbox_charge_percent",
+  "confidence": "high",
+  "evidence": "Writes low 7 bits of param into g_glassbox_charge_status_byte (0x20019ef4) preserving bit7, returning the clamped percent; paired with existing get_glassbox_charge_percent.",
+  "batch": 0
+ },
+ {
+  "address": "0x000406e4",
+  "name": "arm_onboarding_watchdog",
+  "confidence": "medium",
+  "evidence": "Zeroes a 0x21-byte buffer at device_info+0x1014 then sets onboarding_watchdog_active_flag (0x2001cdd3)=1; called from main to arm onboarding watchdog state.",
+  "batch": 0
+ },
+ {
+  "address": "0x0004bb0c",
+  "name": "sys_notify_finalize",
+  "confidence": "high",
+  "evidence": "From notify.c and called by notify_one; masks state field &3 to dispatch the stored callback and clear the notify state, the sys_notify completion finalizer.",
+  "batch": 0
+ },
+ {
+  "address": "0x0004ed3c",
+  "name": "gatt_dm_char_by_uuid",
+  "confidence": "high",
+  "evidence": "gatt_dm.c helper iterating bt_gatt_dm_char_next and comparing bt_gatt_dm_attr_chrc_val UUID with bt_uuid_cmp, returning the matching characteristic; asserts 'chrc != NULL'.",
+  "batch": 0
+ },
+ {
+  "address": "0x000527dc",
+  "name": "active_transfer_conn_match",
+  "confidence": "medium",
+  "evidence": "Returns pointer to g_active_transfer_conn (0x20005cb0) only if its value equals param, else NULL \u2014 a conn-handle match/lookup.",
+  "batch": 0
+ },
+ {
+  "address": "0x00053580",
+  "name": "log_unhandled_hci_event",
+  "confidence": "high",
+  "evidence": "Builds a log record with format 'Unhandled event 0x%02x len %u: %s' (opcode 0x0402) using bt_hex over the packet payload and calls log_message.",
+  "batch": 0
+ },
+ {
+  "address": "0x000559fc",
+  "name": "legacy_adv_stop_cleanup",
+  "confidence": "high",
+  "evidence": "Clears g_bt_le_legacy_adv flag 0x4000, resolves directed vs undirected peer, tears down the associated connection state, and calls bt_le_adv_set_enable_legacy(...,0) to stop legacy advertising.",
+  "batch": 0
+ },
+ {
+  "address": "0x000573c8",
+  "name": "log_bt_buf_alloc_failure",
+  "confidence": "high",
+  "evidence": "Bundle identifies it as a Bluetooth buffer-allocation failure logger; packs buffer_type into a 3-word log package and forwards to the log_message shim FUN_00081746.",
+  "batch": 0
+ },
+ {
+  "address": "0x0005a6b0",
+  "name": "gatt_reset_cf_and_change_aware",
+  "confidence": "medium",
+  "evidence": "Clears bit3 in g_bt_gatt_flags, resets g_bt_gatt_db_hash_work, then walks the 3-entry g_bt_gatt_cf_cfg table clearing out-of-sync and calling set_change_aware(...,0).",
+  "batch": 0
+ },
+ {
+  "address": "0x000604e4",
+  "name": "clock_control_nrf_on",
+  "confidence": "high",
+  "evidence": "clock_control_nrf.c routine asserting 'type < CLOCK_CONTROL_NRF_TYPE_COUNT', claims per-type ownership under BASEPRI, sets state=1 and invokes the type's start callback (on-request).",
+  "batch": 0
+ },
+ {
+  "address": "0x000635d8",
+  "name": "rtc_channel_cc_read",
+  "confidence": "high",
+  "evidence": "nrf_rtc_timer.c helper asserting 'chan >= 0 && chan < 2' then reading the RTC CC register at 0x50015000+(chan+0x150)*4.",
+  "batch": 0
+ },
+ {
+  "address": "0x000658dc",
+  "name": "set_ancs_notify_sync_fields",
+  "confidence": "high",
+  "evidence": "Stores its two arguments into g_ancs_notify_sync_field0_2bc8 and g_ancs_notify_sync_field1_2bcc.",
+  "batch": 0
+ },
+ {
+  "address": "0x00068204",
+  "name": "metal_bus_register_device",
+  "confidence": "high",
+  "evidence": "Called from ipc_static_vrings_init; validates a device name and links the node into the g_metal_generic_bus device list via g_module_registry_node, the libmetal bus device registration.",
+  "batch": 0
+ },
+ {
+  "address": "0x00073960",
+  "name": "abort_thread_timeout_locked",
+  "confidence": "high",
+  "evidence": "Takes sched_spinlock (spinlock.h asserts), calls z_abort_thread_timeout when the thread has an active timeout, then releases the lock.",
+  "batch": 0
+ },
+ {
+  "address": "0x0007712c",
+  "name": "printf_render_float",
+  "confidence": "high",
+  "evidence": "Called from _vfprintf_r; handles %e/%f/%g/inf/nan formatting via dtoa_format_cvt and itoa_signed_exponent, emitting digits through the output callback.",
+  "batch": 0
+ },
+ {
+  "address": "0x0007c030",
+  "name": "sem_init_zero",
+  "confidence": "high",
+  "evidence": "Thin wrapper calling z_impl_k_sem_init with initial count 0 and the caller-supplied limit; invoked from main.",
+  "batch": 0
+ },
+ {
+  "address": "0x0007c830",
+  "name": "read_nfc_adc_scaled",
+  "confidence": "high",
+  "evidence": "Calls adc_nfc_run and stores result*10 into the output pointer, returning 1; called by box-field timer/event handlers.",
+  "batch": 0
+ },
+ {
+  "address": "0x0007cdf8",
+  "name": "signal_persist_task_event",
+  "confidence": "low",
+  "evidence": "Fixed call FUN_00074844(0x21,0); invoked by persist/temp task-status setters, suggesting it posts a task-status event, but the callee is unresolved.",
+  "batch": 0
+ },
+ {
+  "address": "0x0007eec0",
+  "name": "cbvprintf_wrapper",
+  "confidence": "low",
+  "evidence": "Trivial wrapper around z_cbvprintf_impl, called by print_formatted.",
+  "batch": 0
+ },
+ {
+  "address": "0x00080c06",
+  "name": "clear_transfer_conn_slot",
+  "confidence": "medium",
+  "evidence": "If the int slot is non-zero, zeroes the word and the following byte, clearing a small conn/transfer descriptor; paired usage with FUN_00052880/active_transfer conn.",
+  "batch": 0
+ },
+ {
+  "address": "0x00081526",
+  "name": "bt_conn_get_field_0x90",
+  "confidence": "low",
+  "evidence": "Returns param+0x90; called by many BLE/ANCS/SMP handlers (pairing, auth_cancel, att_timeout) to obtain a fixed sub-structure pointer within a connection object.",
+  "batch": 0
+ },
+ {
+  "address": "0x000828da",
+  "name": "bt_addr_le_copy",
+  "confidence": "high",
+  "evidence": "Copies exactly 7 bytes (u32+u16+u8) = a bt_addr_le_t (1-byte type + 6-byte address); called from GATT sc_set/sc_save/ccc/cf handlers.",
+  "batch": 0
+ },
+ {
+  "address": "0x00083cde",
+  "name": "pinctrl_configure_state",
+  "confidence": "high",
+  "evidence": "Resolves a pinctrl state with pinctrl_lookup_state then applies the returned pin config entry via FUN_00083ede.",
+  "batch": 0
+ },
+ {
+  "address": "0x00084fec",
+  "name": "enqueue_string_with_len",
+  "confidence": "low",
+  "evidence": "When ptr is non-null, computes strlen and forwards ptr with len+1 to FUN_00064b64, a length-prefixed string enqueue/send helper.",
+  "batch": 0
+ },
+ {
+  "address": "0x00085c26",
+  "name": "cbor_finalize_backup_count",
+  "confidence": "low",
+  "evidence": "Called by cbor_decode_leave_container; reads context+0x14 and via FUN_00085c12 writes an updated element count into the backup at +0xc, finalizing a zcbor backup.",
+  "batch": 0
+ },
+ {
+  "address": "0x00016574",
+  "name": "store_dashboard_startup_mode_defaults",
+  "confidence": "medium",
+  "evidence": "Leaf that writes its argument to g_dashboard_startup_mode_info_defaults (0x2007fc00) and returns it \u2014 a setter for the dashboard startup-mode defaults global.",
+  "batch": 1
+ },
+ {
+  "address": "0x000232dc",
+  "name": "store_product_code_info",
+  "confidence": "medium",
+  "evidence": "Called only by set_glasses_sn_info; copies 0x10 bytes from rodata_a8c37 into g_product_code_buf (0x20002fe3) via FUN_00077914, staging the product-code field.",
+  "batch": 1
+ },
+ {
+  "address": "0x0002a4c0",
+  "name": "dispatch_sync_buffer_if_pending",
+  "confidence": "medium",
+  "evidence": "Checks g_misc_dispatch_pending_flag (0x20018d88) and, if set, calls process_sync_buffer on g_misc_dispatch_ctx (0x20007b00).",
+  "batch": 1
+ },
+ {
+  "address": "0x00032fd0",
+  "name": "set_click_dispatch_flag",
+  "confidence": "medium",
+  "evidence": "Six-byte leaf that stores its byte argument into g_click_dispatch_flag (0x20019ef2); called by click_event_dispatch_loop.",
+  "batch": 1
+ },
+ {
+  "address": "0x000417f8",
+  "name": "render_onboarding_screen",
+  "confidence": "high",
+  "evidence": "Sole caller is ui_onboarding_task; large state-machine over device_info[+0x1014] onboarding stage that draws bitmaps/localized text via gui_bmp_*/gui_utf_draw and drives onboarding_retry/attempt counters.",
+  "batch": 1
+ },
+ {
+  "address": "0x0004c418",
+  "name": "nrf53_sync_rtc_ipc_channel_setup",
+  "confidence": "medium",
+  "evidence": "References nrf53/sync_rtc.c and nrf_ipc.h assert strings; invokes an object vtable prepare fn then nrf53_ipc_channel_configure plus nrfx_gppi_event_endpoint_setup and writes the IPC SEND config register (0x5002a080).",
+  "batch": 1
+ },
+ {
+  "address": "0x0004f040",
+  "name": "ancs_subscribe_notification_source",
+  "confidence": "high",
+  "evidence": "Called by discovery_completed_cb_ancs; sets up subscription params and calls gatt subscribe (FUN_0005c3c4), logging 'Subscribe Notification Source failed (err %d)' on error.",
+  "batch": 1
+ },
+ {
+  "address": "0x00052880",
+  "name": "gatt_notify_send_chunked",
+  "confidence": "medium",
+  "evidence": "Builds an ATT notify request, queries att_get_max_payload_len, then loops sending payload chunks via bt_gatt_notify_cb with -ENOMEM back-pressure (k_sem_take/mutex), freeing the packet with smp_packet_free.",
+  "batch": 1
+ },
+ {
+  "address": "0x000538f8",
+  "name": "hci_cmd_complete_handle",
+  "confidence": "high",
+  "evidence": "Called by hci_tx_thread; validates the completed opcode against bt_hci_cmd_data pool entry, gives the ncmd sem and logs 'OpCode 0x%04x completed instead of expected 0x%04x'.",
+  "batch": 1
+ },
+ {
+  "address": "0x00055e74",
+  "name": "hci_le_generate_dhkey",
+  "confidence": "high",
+  "evidence": "Called by smp_dhkey_generate; builds HCI command 0x2026 (LE Generate DHKey) with the 0x40-byte public key, stores g_bt_dh_key_cb, and logs 'Failed to generate DHKey (err %d)'.",
+  "batch": 1
+ },
+ {
+  "address": "0x0005757c",
+  "name": "l2cap_chan_le_send_seg",
+  "confidence": "medium",
+  "evidence": "l2cap.c function that consumes a per-channel credit, builds/segments a PDU (net_buf reserve/push_le16, tailroom copy) and sends it via bt_conn_create_pdu, restoring length on -EAGAIN.",
+  "batch": 1
+ },
+ {
+  "address": "0x0005c3c4",
+  "name": "gatt_subscribe_add",
+  "confidence": "high",
+  "evidence": "gatt.c routine asserting params->notify/params->value/params->ccc_handle; finds-or-allocates the connection subscription context and links the subscribe params after issuing gatt_write_ccc.",
+  "batch": 1
+ },
+ {
+  "address": "0x0006058c",
+  "name": "clock_control_nrf_init",
+  "confidence": "medium",
+  "evidence": "Calls nrfx_clock_init/nrfx_clock_enable, writes the clock unlock key 0x9ba5 to 0x5000555c, and runs onoff_manager_init four times over the driver's onoff-manager array.",
+  "batch": 1
+ },
+ {
+  "address": "0x0006385c",
+  "name": "rtc_timer_channel_alloc",
+  "confidence": "high",
+  "evidence": "Atomically clears the lowest set bit of nrf_rtc_timer_free_channels (0x2000b2d4) and returns the acquired channel index, or 0xfffffff4 (-ENOMEM) when none are free.",
+  "batch": 1
+ },
+ {
+  "address": "0x00065d3c",
+  "name": "nrfx_ipc_init",
+  "confidence": "high",
+  "evidence": "nrfx_ipc.c function asserting non-null 'handler'; enables IRQ 0x2a and records the handler/context in g_nrfx_gpiote_init_ctx while setting the init flag, returning NRFX_SUCCESS/ALREADY_INITIALIZED codes.",
+  "batch": 1
+ },
+ {
+  "address": "0x00068280",
+  "name": "metal_generic_bus_deinit",
+  "confidence": "medium",
+  "evidence": "Called by ipc_static_vrings_deinit; runs FUN_000682a8 then zeroes the 0x20-byte g_metal_generic_bus (0x2000b424) structure.",
+  "batch": 1
+ },
+ {
+  "address": "0x00073bf4",
+  "name": "k_sched_lock",
+  "confidence": "high",
+  "evidence": "Takes sched_spinlock, increments the current thread's base.sched_locked (asserts it is non-zero per sched.c string), then reschedules under irqlock \u2014 the Zephyr scheduler-lock primitive.",
+  "batch": 1
+ },
+ {
+  "address": "0x00077a10",
+  "name": "strtod",
+  "confidence": "high",
+  "evidence": "Newlib-nano wrapper passing the libc heap reent (0x20002d20) and locale (0x20002d84) to _strtod_l; called by cjson_parse_value to parse floating-point numbers.",
+  "batch": 1
+ },
+ {
+  "address": "0x0007c082",
+  "name": "ext_flash_bus_lock_stub",
+  "confidence": "low",
+  "evidence": "Two-byte empty function called by both ext_flash_read and ext_flash_write, most consistent with a no-op bus lock/unlock hook; thin evidence.",
+  "batch": 1
+ },
+ {
+  "address": "0x0007c85e",
+  "name": "ipc_transport_ops_dispatch",
+  "confidence": "medium",
+  "evidence": "Loads the ops vtable at object+8 and tail-calls the function pointer at vtable+8 with (object,parts,count,operation); used by ipc_send_len_prefixed_packet as the transport write trampoline.",
+  "batch": 1
+ },
+ {
+  "address": "0x0007d0e8",
+  "name": "serial_data_read_dispatch",
+  "confidence": "medium",
+  "evidence": "Called by process_pt_data ('use read_serial_data:'); dispatches mode 0 to transport_parameters_read and mode 1 to framed_serial_receive_parser, rejecting mode 2 and null args.",
+  "batch": 1
+ },
+ {
+  "address": "0x0007efd4",
+  "name": "flash_area_erase",
+  "confidence": "high",
+  "evidence": "Called by img_mgmt_erase_slot, storage_erase_handler and boot_set_next; bounds-checks offset+len against the flash-area size then invokes the backing flash driver's erase op via its vtable with the area base offset.",
+  "batch": 1
+ },
+ {
+  "address": "0x00080c46",
+  "name": "conn_le_param_update_submit",
+  "confidence": "medium",
+  "evidence": "Address-taken worker that resolves the connection (FUN_000527dc), calls bt_conn_le_param_update and either reschedules or cancels the delayable param-update work at conn+0x38 based on the result.",
+  "batch": 1
+ },
+ {
+  "address": "0x00081626",
+  "name": "l2cap_lookup_chan_by_ident",
+  "confidence": "medium",
+  "evidence": "Called by l2cap_recv; walks the channel list at conn+0x54 matching byte field +0xb8 (identifier) against param_2, optionally unlinking the node (FUN_000815f6) and returning the channel.",
+  "batch": 1
+ },
+ {
+  "address": "0x00082932",
+  "name": "bt_gatt_attr_read",
+  "confidence": "high",
+  "evidence": "Shared read helper for bt_gatt_attr_read_ccc/_service, cf_read, read_name, read_appearance; clamps length by offset against buffer size and memcpy's the attribute value, returning bytes copied or -EINVAL(0xfffffff9).",
+  "batch": 1
+ },
+ {
+  "address": "0x00083ede",
+  "name": "dppi_apply_channel_config_table",
+  "confidence": "medium",
+  "evidence": "Iterates encoded channel records writing per-kind channel numbers into device registers (0x508..0x56c), sets subscribe/publish endpoint masks via FUN_00061f64, and programs the per-channel config word (submode/option/enable bits).",
+  "batch": 1
+ },
+ {
+  "address": "0x00085014",
+  "name": "cjson_print_pretty",
+  "confidence": "medium",
+  "evidence": "Thin wrapper calling cjson_print(root, 1) i.e. cJSON_Print with formatting enabled; used by spec_ble_command_hook and the notification test path.",
+  "batch": 1
+ },
+ {
+  "address": "0x00085cf2",
+  "name": "buffer_pool_freelist_init",
+  "confidence": "medium",
+  "evidence": "Initializes a buffer descriptor (base=param_3, end=base+len, cursor fields) and, for count>=2, chains param_2 fixed 24-byte nodes into a free list rooted at param_1+0x14.",
+  "batch": 1
+ },
+ {
+  "address": "0x0000fcf0",
+  "name": "box_placement_animation_step",
+  "confidence": "medium",
+  "evidence": "Sole caller handle_box_placement_event; runs a switch state machine on s[5] using set_time_mark/get_elapsed_ms_since_mark deadlines and update_box_presence_flag to drive a box-field placement/animation sequence.",
+  "batch": 2
+ },
+ {
+  "address": "0x00019b2c",
+  "name": "get_ancs_conn_handle",
+  "confidence": "high",
+  "evidence": "6-byte leaf that returns the volatile word at 0x20007518 which is symbolized g_ancs_conn; pure getter for the ANCS connection object.",
+  "batch": 2
+ },
+ {
+  "address": "0x00026850",
+  "name": "ui_state_mutex_unlock",
+  "confidence": "high",
+  "evidence": "Calls k_mutex_unlock on 0x20007b3c symbolized g_ui_state_mutex; called by display_dispatch_thread.",
+  "batch": 2
+ },
+ {
+  "address": "0x000324bc",
+  "name": "mic_transm_thread",
+  "confidence": "high",
+  "evidence": "Referenced string 'mic_transm_thread' is the bare thread name; loops taking a semaphore, reads 200-byte flash pages from mx25r6435f and dispatches them via the device_info+0x788 IPC send pointer.",
+  "batch": 2
+ },
+ {
+  "address": "0x000370b0",
+  "name": "get_dashboard_disp_mode",
+  "confidence": "high",
+  "evidence": "6-byte leaf returning the volatile byte at 0x2000496a symbolized g_dashboard_disp_mode; pure getter called by key_event_thread.",
+  "batch": 2
+ },
+ {
+  "address": "0x0004b908",
+  "name": "onoff_request_enqueue",
+  "confidence": "medium",
+  "evidence": "Strings reference zephyr/lib/os/onoff.c and 'state == (1UL << (0))'; validates args, takes onoff spinlock, appends the client to the manager's client list and calls notify_one on transition.",
+  "batch": 2
+ },
+ {
+  "address": "0x0004e964",
+  "name": "gatt_dm_notify_discovery_complete",
+  "confidence": "medium",
+  "evidence": "Sets bit1 in g_gatt_dm_in_progress_flag then invokes the notify callback stored at g_gatt_dm_svc_range_end with cur_service_val/g_gatt_dm_context; called from discovery_callback.",
+  "batch": 2
+ },
+ {
+  "address": "0x0005109c",
+  "name": "retarget_lock_init",
+  "confidence": "medium",
+  "evidence": "From zephyr/lib/libc/newlib/libc-hooks.c with assert '*lock != NULL'; mallocs a 0x14-byte lock and kmutex_dlist_init()s it, storing the pointer; called by __sfp \u2014 the newlib retarget lock initializer.",
+  "batch": 2
+ },
+ {
+  "address": "0x000531e4",
+  "name": "bt_uuid_expand_to_128",
+  "confidence": "medium",
+  "evidence": "Sole caller bt_uuid_cmp; copies a 16-byte base-UUID template (rodata_f2cc8) then splices a 16-bit or 32-bit short UUID into it based on the type byte, producing a full 128-bit UUID.",
+  "batch": 2
+ },
+ {
+  "address": "0x00055710",
+  "name": "bt_le_adv_legacy_invoke",
+  "confidence": "low",
+  "evidence": "6-byte tail-call that invokes the passed function pointer with g_bt_le_legacy_adv (0x20002018); called by bt_id_add and ble_privacy_id_remove to operate on the legacy advertising set.",
+  "batch": 2
+ },
+ {
+  "address": "0x00057394",
+  "name": "smp_pairing_event_cnt_inc",
+  "confidence": "high",
+  "evidence": "Increments the byte g_smp_pairing_event_cnt at 0x2001d531 with saturation-to-1 on wrap; called by gatt_notify_send and gatt_send_service_changed_ind.",
+  "batch": 2
+ },
+ {
+  "address": "0x00059dec",
+  "name": "gatt_ccc_write_store_cb",
+  "confidence": "medium",
+  "evidence": "Matches attribute handle against gatt_ccc_write THUMB address 0x5a465, uses ccc_find_cfg to locate/allocate the CCC config for the peer and updates its stored value; a foreach store callback for CCC writes.",
+  "batch": 2
+ },
+ {
+  "address": "0x0005fc7c",
+  "name": "pdm_configure_clock_and_init",
+  "confidence": "high",
+  "evidence": "Sole caller dmic_stream_start; strings 'PDM clock frequency: %u, actual PCM rate: %u' and 'Cannot find suitable PDM clock configuration'; searches the PDM clock divider table and calls nrfx_pdm_init/uninit.",
+  "batch": 2
+ },
+ {
+  "address": "0x00063570",
+  "name": "rtc_cc_reg_addr_get",
+  "confidence": "high",
+  "evidence": "From nrf_rtc_timer.c with assert 'chan >= 0 && chan < (1 + 1)'; returns 0x50015140 + idx*4, the RTC compare-channel register address for the given channel.",
+  "batch": 2
+ },
+ {
+  "address": "0x00065418",
+  "name": "dppi_channel_disable_and_free",
+  "confidence": "medium",
+  "evidence": "Writes 1<<chan to DPPIC register 0x50017508 (CHENCLR) then nrfx_flag32_free on the channel-alloc mask g_flag32_channel_alloc_mask; called by nrf53_sync_rtc_init.",
+  "batch": 2
+ },
+ {
+  "address": "0x00068170",
+  "name": "metal_register_generic_device",
+  "confidence": "medium",
+  "evidence": "Validates a device, calls metal_bus_find, then links the device into the g_metal_generic_bus device list and invokes the bus log callback; a libmetal device registration.",
+  "batch": 2
+ },
+ {
+  "address": "0x00073788",
+  "name": "sched_switch_handle_timeout",
+  "confidence": "low",
+  "evidence": "Reads current-CPU index from _kernel, aborts that CPU's pending timeout (FUN_00074d74) and clears g_percpu_timeout_abort_flag, then conditionally updates the ready-runq nonempty count; scheduler switch/timeout helper.",
+  "batch": 2
+ },
+ {
+  "address": "0x000757b0",
+  "name": "poll_signal_event_locked",
+  "confidence": "medium",
+  "evidence": "Takes poll_spinlock, unlinks the poll node from its list and calls signal_poll_event then z_reschedule; raises a k_poll signal; called by ble_conn_set_state.",
+  "batch": 2
+ },
+ {
+  "address": "0x0007abe8",
+  "name": "mbedtls_entropy_context_free",
+  "confidence": "medium",
+  "evidence": "Null-guarded wrapper calling mbedtls_zeroize_internal(ctx, 0xf4) to wipe a 244-byte context; called by cc_mbedtls_entropy_func and cc_mbedtls_sha256.",
+  "batch": 2
+ },
+ {
+  "address": "0x0007c6a0",
+  "name": "opt_node_serialize",
+  "confidence": "high",
+  "evidence": "Uses opt_node_value_len/opt_node_total_len and memcpy to write an option node's header and value fields into the output buffer with length checks; encode counterpart to existing opt_record_decode.",
+  "batch": 2
+ },
+ {
+  "address": "0x0007cb66",
+  "name": "main_dispatch_thread_tick",
+  "confidence": "low",
+  "evidence": "Thin wrapper that tail-calls FUN_00071eac; sole caller run_main_dispatch_thread, so it performs one dispatch-loop step.",
+  "batch": 2
+ },
+ {
+  "address": "0x0007ee44",
+  "name": "log_output_flush_noop",
+  "confidence": "low",
+  "evidence": "4-byte stub returning 0, used as the flush/output callback invoked by log_output_process.",
+  "batch": 2
+ },
+ {
+  "address": "0x00080780",
+  "name": "arm_fault_forward_handler",
+  "confidence": "low",
+  "evidence": "6-byte trampoline forwarding (r0,r1,r2,0) to FUN_0004d944; shared tail by arm_mem_manage_fault_helper, arm_bus_fault_helper, arm_usage_fault_helper and z_arm_fault.",
+  "batch": 2
+ },
+ {
+  "address": "0x00081320",
+  "name": "cancel_delayable_work_field18",
+  "confidence": "low",
+  "evidence": "Calls k_work_cancel_delayable on param+0x18, cancelling a delayable-work field embedded at offset 0x18 of the caller's struct (FUN_000559fc).",
+  "batch": 2
+ },
+ {
+  "address": "0x00082594",
+  "name": "att_chan_get_change_unaware_flag",
+  "confidence": "medium",
+  "evidence": "Called by bt_gatt_change_aware; looks up the ATT channel via bt_l2cap_le_lookup_rx_cid(cid=4) and returns bit5 of the atomic flags at object+0x118.",
+  "batch": 2
+ },
+ {
+  "address": "0x000838dc",
+  "name": "qspi_pinctrl_apply_state",
+  "confidence": "high",
+  "evidence": "Calls pinctrl_lookup_state and applies the resolved pin config via FUN_00083ede; called by qspi_nor_pm_action and qspi_nor_configure to set QSPI pin state.",
+  "batch": 2
+ },
+ {
+  "address": "0x00084e58",
+  "name": "nvs_flush_close_ate",
+  "confidence": "medium",
+  "evidence": "Computes ((peripheral+8 value - 0x18) & ~7) offset and calls flash_write_close_ate_marker; called by boot_set_next to close an NVS ATE at the aligned offset.",
+  "batch": 2
+ },
+ {
+  "address": "0x00085b0c",
+  "name": "rpmsg_virtio_get_tx_buffer_wait",
+  "confidence": "high",
+  "evidence": "Acquires the virtio device mutex, retrieves a TX buffer via virtqueue_get_buffer or rpmsg_virtio_shm_pool_get_buffer, retrying with FUN_00074844 sleeps under a timeout; internal rpmsg TX payload allocator.",
+  "batch": 2
+ },
+ {
+  "address": "0x00010840",
+  "name": "compute_lux_brightness_bucket",
+  "confidence": "medium",
+  "evidence": "Gated by g_opt3007_chip_ready, reads a lux value via FUN_0002e648 and quantizes it into a 0-0x2a bucket (with float-scaled and hysteresis paths keyed off get_device_info+0xfb0), storing the result in g_battery_level_bucket.",
+  "batch": 3
+ },
+ {
+  "address": "0x000232b0",
+  "name": "get_device_serial_buf",
+  "confidence": "high",
+  "evidence": "Four-byte function returning the constant 0x20003003, which the symbol map identifies as g_device_serial_buf; a plain getter.",
+  "batch": 3
+ },
+ {
+  "address": "0x0002685c",
+  "name": "low_speed_peripheral_dispatch_thread_for_test",
+  "confidence": "high",
+  "evidence": "Bundle references the bare identifier string \"low_speed_peripheral_dispatch_thread_for_test\" and the body is an infinite thread loop feeding the watchdog, updating fuel_gauge and rebooting on stuck box-placement state.",
+  "batch": 3
+ },
+ {
+  "address": "0x0003271c",
+  "name": "periodic_check_run",
+  "confidence": "medium",
+  "evidence": "Retries FUN_0002ead8/FUN_0002eaa8 up to 10 times, and on the 999ms-gated interval updates g_periodic_check_last_uptime_ms, increments g_periodic_check_fail_cnt and sets g_periodic_check_ok_flag.",
+  "batch": 3
+ },
+ {
+  "address": "0x0003dfe4",
+  "name": "reset_ipc_evt_ctx",
+  "confidence": "medium",
+  "evidence": "Zeroes 0x38 bytes at g_ipc_or_evt_ctx (0x20004bb8) via memset_bytes; called from ui_refalsh_warp to reset that context block.",
+  "batch": 3
+ },
+ {
+  "address": "0x0004ba38",
+  "name": "onoff_release",
+  "confidence": "high",
+  "evidence": "Asserts against onoff.c with message \"mgr->refs > 0\", spinlock-protects a manager at param+0x14, decrements the ref count at +0x1e and transitions state, matching Zephyr onoff_release.",
+  "batch": 3
+ },
+ {
+  "address": "0x0004e98c",
+  "name": "uuid_len_from_type",
+  "confidence": "high",
+  "evidence": "Indexes a 3-entry table at 0xf1590 by UUID type (0..2) to return a byte length, and logs \"Unsupported UUID type.\" for out-of-range indices; called by gatt_dm attribute handlers.",
+  "batch": 3
+ },
+ {
+  "address": "0x00051164",
+  "name": "fortify_chk_fail",
+  "confidence": "high",
+  "evidence": "Called from __strcat_chk/__strcpy_chk/vdprintf_to_fd; writes a fixed 0x1d-byte message to fd 2 then executes the ARCH_EXCEPT(3) fault sequence, the fortify buffer-overflow abort handler.",
+  "batch": 3
+ },
+ {
+  "address": "0x00053530",
+  "name": "bt_hci_rx_work_submit",
+  "confidence": "high",
+  "evidence": "Called by bt_hci_core_recv_dispatch; enqueues a buf onto g_bt_hci_recv_fifo and submits g_bt_hci_rx_work to bt_workqueue, logging \"Could not submit rx_work: %d\" on failure.",
+  "batch": 3
+ },
+ {
+  "address": "0x0005571c",
+  "name": "clear_legacy_adv_state",
+  "confidence": "medium",
+  "evidence": "Zeroes 0x50 bytes at g_bt_le_legacy_adv (0x20002018) via memset_bytes; called from bt_hci_driver_close to reset the legacy advertising state block.",
+  "batch": 3
+ },
+ {
+  "address": "0x000573ac",
+  "name": "l2cap_tx_meta_free",
+  "confidence": "medium",
+  "evidence": "Zeroes 0x10 bytes of the passed meta buffer then returns it to the free_l2cap_tx_meta_data slab via net_pkt_skip; frees an L2CAP TX metadata record.",
+  "batch": 3
+ },
+ {
+  "address": "0x0005a39c",
+  "name": "gatt_cf_cfg_clear",
+  "confidence": "low",
+  "evidence": "Called from gatt_cf_settings_set and gatt_connected; initializes a client-feature config object (copies default at 0xf2b3a into object+1, zeroes byte at +8 and atomically clears the word at +0xc).",
+  "batch": 3
+ },
+ {
+  "address": "0x0005ffa4",
+  "name": "pdm_mic_event_handler",
+  "confidence": "high",
+  "evidence": "Operates on g_pdm_mic_ctrl_blk/g_pdm_mic_rx_msgq using nrfx_pdm_buffer_set/nrfx_pdm_stop with k_mem_slab double-buffering, logging \"Failed to allocate buffer\", \"Failed to set buffer\" and \"No room in RX queue\".",
+  "batch": 3
+ },
+ {
+  "address": "0x000635a4",
+  "name": "rtc_timer_cc_reg_get",
+  "confidence": "medium",
+  "evidence": "Asserts \"chan >= 0 && chan < (1 + 1)\" against nrf_rtc_timer.c and returns an RTC compare register address (0x50015044 for chan 1, 0 for chan 0); called by nrf53_ipc_channel_configure.",
+  "batch": 3
+ },
+ {
+  "address": "0x00065584",
+  "name": "gpio_port_base_from_pin",
+  "confidence": "high",
+  "evidence": "Asserts \"nrf_gpio_pin_present_check(*p_pin)\" against nrf_gpio.h and returns GPIO port base 0x50842500 (port 0) or 0x50842800 (port 1) selected by the pin's high bits; used by gpiote helpers.",
+  "batch": 3
+ },
+ {
+  "address": "0x000681cc",
+  "name": "metal_device_close",
+  "confidence": "medium",
+  "evidence": "Asserts \"device && device->bus\" against libmetal device.c, then invokes the bus op function pointer at bus+0xc; called from ipc_static_vrings_deinit to close a metal device.",
+  "batch": 3
+ },
+ {
+  "address": "0x000737d8",
+  "name": "sched_update_cache",
+  "confidence": "medium",
+  "evidence": "Asserts \"_kernel.cpus[0].current != NULL\" against sched.c, picks the highest-priority ready thread from the _kernel ready queue and writes it to the scheduler cache at _kernel+0x18.",
+  "batch": 3
+ },
+ {
+  "address": "0x00075944",
+  "name": "resource_pool_aligned_alloc",
+  "confidence": "medium",
+  "evidence": "Asserts the mempool.c alignment invariant and dispatches z_heap_aligned_alloc against either the current thread's resource pool (_kernel current+0x88) or a fixed ISR pool; called by z_impl_k_msgq_alloc_init.",
+  "batch": 3
+ },
+ {
+  "address": "0x0007c004",
+  "name": "clear_status_byte_cb",
+  "confidence": "low",
+  "evidence": "Six-byte leaf called only by SetDataBuffersInfo that writes 0 to the byte pointed to by its fourth argument; a small clear/reset callback.",
+  "batch": 3
+ },
+ {
+  "address": "0x0007c77e",
+  "name": "opt_list_encode",
+  "confidence": "medium",
+  "evidence": "Validates the destination via opt_list_total_len, then walks the option-list nodes (link at node+0x18) encoding each with FUN_0007c6a0 into the output buffer while tracking remaining space.",
+  "batch": 3
+ },
+ {
+  "address": "0x0007cbae",
+  "name": "resolve_not_disturb_context",
+  "confidence": "medium",
+  "evidence": "Reads device state via get_device_info, and depending on mode 1/2 and is_system_idle_ready returns either an in-struct context (iv+0x1000) or defers to not_disturb_disable_pending.",
+  "batch": 3
+ },
+ {
+  "address": "0x0007ee74",
+  "name": "log_msg_finalize_commit",
+  "confidence": "high",
+  "evidence": "On null object routes to FUN_0004d468 fallback; otherwise memcpys the tag payload into the log message body at object+16, writes the packed length words and calls g1_recon_z_log_msg_commit.",
+  "batch": 3
+ },
+ {
+  "address": "0x00080872",
+  "name": "cbor_map_decode_fields",
+  "confidence": "high",
+  "evidence": "Called by img_mgmt_state_write/erase/upload; opens a CBOR map, matches each text key against a field-descriptor table (identifier/kind/decode/destination) rejecting duplicates (-112) and returning -77/-35 on structure errors.",
+  "batch": 3
+ },
+ {
+  "address": "0x000813ca",
+  "name": "bt_conn_call_4arg_zero",
+  "confidence": "low",
+  "evidence": "Six-byte thunk called from many ble_conn helpers that forwards its three args plus a zero fourth arg to FUN_0004d944; a fixed-argument tail-call adapter.",
+  "batch": 3
+ },
+ {
+  "address": "0x0008270c",
+  "name": "read_struct_first_word",
+  "confidence": "low",
+  "evidence": "Two-instruction leaf returning *param_1, called from eleven gatt helpers to read the first word (handle/pointer) of a passed structure.",
+  "batch": 3
+ },
+ {
+  "address": "0x000839fe",
+  "name": "mem_read_validated",
+  "confidence": "medium",
+  "evidence": "Checks the source range with is_regular_addr_valid and, if valid and non-empty, memcpys param_4 bytes to the destination; otherwise defers to a fallback that logs \"invalid address: 0x%08lx:%zu\".",
+  "batch": 3
+ },
+ {
+  "address": "0x00084ed8",
+  "name": "cjson_skip_whitespace",
+  "confidence": "high",
+  "evidence": "Called by cjson_parse_value; advances a text cursor past bytes <= 0x20 (whitespace) until a printable char or end of buffer, clamping position at length-1.",
+  "batch": 3
+ },
+ {
+  "address": "0x00085c12",
+  "name": "cbor_decoder_at_end",
+  "confidence": "medium",
+  "evidence": "Called by cbor_decode_leave_container; returns true when the decoder state is null/inactive (flag at +0x10 clear) or when the remaining-count word at +0xc is zero.",
+  "batch": 3
+ },
+ {
+  "address": "0x0000e53c",
+  "name": "battery_soc_curve_model_init",
+  "confidence": "medium",
+  "evidence": "Called only by FUN_0000e2b4; builds a large float workspace model from a 0x40 table and 0x1600 curve-source block, running spline_interp_3pt / array_max_skip_nan over charge_high/charge_low points \u2014 battery SOC/OCV curve model setup.",
+  "batch": 4
+ },
+ {
+  "address": "0x00019ac0",
+  "name": "ancs_set_notification_enabled",
+  "confidence": "medium",
+  "evidence": "Toggles device_info byte at +0x1070 based on param, calling ancs_cancel_timers then ancs_discover_start(g_ancs_conn) on enable and k_sem_give at +0x80 to signal completion.",
+  "batch": 4
+ },
+ {
+  "address": "0x00026828",
+  "name": "orientation_get_heading_deg",
+  "confidence": "medium",
+  "evidence": "Called by imu_fusion_thread; returns 180.0f + state[0x34]*57.295 (radians\u2192degrees with a 180\u00b0 offset), a heading/yaw angle read from the fusion state.",
+  "batch": 4
+ },
+ {
+  "address": "0x00032308",
+  "name": "set_panel_voltage",
+  "confidence": "high",
+  "evidence": "Bundle references the bare identifier string \"set_panel_voltage\"; builds a 0x3c status record, updates device_info panel-voltage byte at +0xed4 and polls read_sys_settting_from_flash to confirm.",
+  "batch": 4
+ },
+ {
+  "address": "0x00036d38",
+  "name": "draw_quicknote_hint_on_dashboard",
+  "confidence": "high",
+  "evidence": "Called by DashBoard_Reflash; on language change clears/reflashes a framebuffer region and gui_utf_draw renders the strings \"Hold Right TouchBar\" / \"to Add QuickNote\".",
+  "batch": 4
+ },
+ {
+  "address": "0x0004b4fc",
+  "name": "onoff_process_event",
+  "confidence": "high",
+  "evidence": "Asserts reference WEST_TOPDIR/zephyr/lib/os/onoff.c with onoff state constants; drives the on-off manager transition state machine via process_recheck/notify_one and start/drain/stop ops callbacks.",
+  "batch": 4
+ },
+ {
+  "address": "0x0004e124",
+  "name": "stream_flash_erase_page",
+  "confidence": "high",
+  "evidence": "Called by stream_flash_flush_buffer; looks up page via flash_get_page_info_by_offs then invokes the flash-area erase op, logging \"Error %d while getting page info\" / \"Error %d while erasing page\".",
+  "batch": 4
+ },
+ {
+  "address": "0x00051038",
+  "name": "set_misc_286c_value",
+  "confidence": "low",
+  "evidence": "6-byte leaf that stores its argument into the global g_misc_286c_val at 0x2000286c; no other context.",
+  "batch": 4
+ },
+ {
+  "address": "0x000531d8",
+  "name": "reschedule_on_sys_work_q",
+  "confidence": "medium",
+  "evidence": "Thin wrapper that calls k_work_reschedule_for_queue with the system work queue g_sys_work_q (0x20005d38) and the passed delayable work item.",
+  "batch": 4
+ },
+ {
+  "address": "0x00055614",
+  "name": "ble_conn_addr_and_params_valid",
+  "confidence": "medium",
+  "evidence": "Called by ble_conn_le_prepare_and_connect; validates a connection descriptor's flag bits, memcmp's the peer address against g_ble_dev_state table, and range-checks interval fields (0x1f..0x4001).",
+  "batch": 4
+ },
+ {
+  "address": "0x00057358",
+  "name": "bt_conn_init",
+  "confidence": "high",
+  "evidence": "Called by hci_vs_init; k_queue_init's g_bt_conn_tx_pending_cnt, iterates all 10 g_bt_conn_pool entries, then runs smp_update_bond_flag and bt_l2cap_init \u2014 the connection subsystem init.",
+  "batch": 4
+ },
+ {
+  "address": "0x00059c70",
+  "name": "gatt_find_conn_in_known_table",
+  "confidence": "medium",
+  "evidence": "Called by gatt CCC/unsubscribe paths; scans the 3-entry g_known_device_table (stride 0x10) matching by bt_conn_is_peer_addr_le or bt_addr_le_eq, returning the matching per-connection record.",
+  "batch": 4
+ },
+ {
+  "address": "0x0005fb8c",
+  "name": "pdm_trigger_command",
+  "confidence": "high",
+  "evidence": "Called by dmic_stream_start; switch on command: cases 0/2 stop via nrfx_pdm_stop, 1/3 start (requesting clock), logging \"Device is not configured\" / \"Failed to request clock\" / \"Invalid command\".",
+  "batch": 4
+ },
+ {
+  "address": "0x00063524",
+  "name": "gpio_arm_pin_interrupt",
+  "confidence": "medium",
+  "evidence": "Uses g_gpio_pin_enabled_mask/g_gpio_pin_latch_mask; on enable sets the pin's bit, writes an event to REG_50015304 and pends the GPIO IRQ via NVIC ISPR (0xe000e200)=0x200000 when latched.",
+  "batch": 4
+ },
+ {
+  "address": "0x0006540c",
+  "name": "flag32_channel_alloc_wrapper",
+  "confidence": "medium",
+  "evidence": "Called by nrf53_sync_rtc_init; forwards to nrfx_flag32_alloc bound to the g_flag32_channel_alloc_mask global at 0x20002bbc.",
+  "batch": 4
+ },
+ {
+  "address": "0x00067e30",
+  "name": "nrfx_wdt_channel_enable",
+  "confidence": "medium",
+  "evidence": "Called by wdt_nrf_setup; asserts on nrfx_wdt.c with NRFX_DRV_STATE_INITIALIZED, transitions a per-channel state from 1\u21922 and writes 1 to the channel's task register to enable it.",
+  "batch": 4
+ },
+ {
+  "address": "0x000736ec",
+  "name": "sched_thread_should_preempt",
+  "confidence": "medium",
+  "evidence": "Reads g_sched_ready_runq_prio_cache/nonempty_flag; compares the given thread's priority byte (<0x80) against the ready-queue top priority to decide preemption eligibility.",
+  "batch": 4
+ },
+ {
+  "address": "0x000755f8",
+  "name": "z_impl_k_poll",
+  "confidence": "high",
+  "evidence": "Called by hci_tx_thread; asserts reference zephyr/kernel/poll.c with \"events != NULL\"/\"num_events >= 0\", registers events under poll_spinlock and blocks the current thread \u2014 the k_poll implementation.",
+  "batch": 4
+ },
+ {
+  "address": "0x0007ab20",
+  "name": "clear_block_cipher_ctx",
+  "confidence": "low",
+  "evidence": "Called only by block_cipher_df; if pointer non-null, memsets 0x74 bytes to zero via j_memset \u2014 clears a cipher context/keyed buffer.",
+  "batch": 4
+ },
+ {
+  "address": "0x0007c670",
+  "name": "serialization_read_or_copy",
+  "confidence": "medium",
+  "evidence": "Zeroes a 2-word out struct, then either invokes an object's vtable read fn at +8 or falls back to serialization_copy_fields_0c_10, returning the produced pointer.",
+  "batch": 4
+ },
+ {
+  "address": "0x0007cb54",
+  "name": "atomic_or_bit1",
+  "confidence": "low",
+  "evidence": "Two-instruction leaf performing __atomic_fetch_or(flags, 2) (relaxed); called by key_event_thread to raise an event flag bit.",
+  "batch": 4
+ },
+ {
+  "address": "0x0007e9ea",
+  "name": "ipc_log_forward",
+  "confidence": "low",
+  "evidence": "3-arg tail-call to the logging routine FUN_0004d944 with trailing 0; called from ipc_service_open_instance/ipc_service_send as a log shim.",
+  "batch": 4
+ },
+ {
+  "address": "0x0007fae4",
+  "name": "settings_read_6byte_id28",
+  "confidence": "low",
+  "evidence": "Calls FUN_0007f97c(param,0x28,&local,6) to fetch a 6-byte record, then unpacks it into three u16 output fields at param_2.",
+  "batch": 4
+ },
+ {
+  "address": "0x0008131c",
+  "name": "bt_le_adv_set_enable_legacy_veneer",
+  "confidence": "high",
+  "evidence": "Bundle notes it is an exact branch veneer to bt_le_adv_set_enable_legacy @ 0x812d2, forwarding both arguments unchanged.",
+  "batch": 4
+ },
+ {
+  "address": "0x0008256e",
+  "name": "const_return_one",
+  "confidence": "medium",
+  "evidence": "4-byte leaf that unconditionally returns 1; used as a constant/stub predicate by sc_restore_rsp and bt_gatt_change_aware.",
+  "batch": 4
+ },
+ {
+  "address": "0x00084cb0",
+  "name": "pmic_write_reg7_enable",
+  "confidence": "low",
+  "evidence": "Called by init_watchdog; if a config byte is set, writes register 7 via dev_write_reg3(base,7,0,1), else returns -EINVAL (0xffffffea).",
+  "batch": 4
+ },
+ {
+  "address": "0x00085a9c",
+  "name": "virtqueue_return_rx_buffer",
+  "confidence": "medium",
+  "evidence": "Under a mutex, computes a used-buffer tag, calls virtqueue_get_buffer_length and virtqueue_add_buffer to hand an rpmsg rx buffer back to the virtqueue, then releases the lock.",
+  "batch": 4
+ },
+ {
+  "address": "0x00087838",
+  "name": "placeholder",
+  "confidence": "low",
+  "evidence": "placeholder",
+  "batch": 4
+ },
+ {
+  "address": "0x000838d6",
+  "name": "qspi_log_forward",
+  "confidence": "low",
+  "evidence": "3-arg tail-call to logging routine FUN_0004d944 with trailing 0; shared shim called from qspi_nor_* paths and storage_read_with_word_cache.",
+  "batch": 4
+ },
+ {
+  "address": "0x0008712e",
+  "name": "snprintf_engine_bounded",
+  "confidence": "medium",
+  "evidence": "Called by vsnprintf_impl; sets up a format_descriptor (flags 0x0208, limit 0xffff) over a bounded buffer, invokes format engine FUN_00078d90, and NUL-terminates \u2014 the bounded snprintf core.",
+  "batch": 4
+ },
+ {
+  "address": "0x0000e2b4",
+  "name": "batt_soc_curve_estimate",
+  "confidence": "high",
+  "evidence": "Only caller is fuel_gauge_sample_init_timestamp; validates a 3-sample request, zeroes g_batt_soc_curve_interp_buf, loads the SOC curve table and charge hi/lo (g_batt_soc_curve_charge_hi/lo) and calls the interpolation kernel FUN_0000e53c returning a float SOC.",
+  "batch": 5
+ },
+ {
+  "address": "0x00019718",
+  "name": "ble_ancs_data_req_thread",
+  "confidence": "high",
+  "evidence": "Function contains its own self-name log string \"ble_ancs_data_req_thread\"; it is a forever loop that inits ANCS/UID msgqs, dequeues UIDs and calls request_ancs_attr_ext, matching an ANCS data-request thread.",
+  "batch": 5
+ },
+ {
+  "address": "0x00026624",
+  "name": "imu_mahony_ahrs_update",
+  "confidence": "high",
+  "evidence": "Called by imu_fusion_thread; performs a Mahony AHRS quaternion update using proportional/integral gains, gyro+accel inputs, fast_inverse_sqrt normalization and dt integration writing back q0..q3.",
+  "batch": 5
+ },
+ {
+  "address": "0x00031dd8",
+  "name": "test_mode_apply_base_status_cmd",
+  "confidence": "low",
+  "evidence": "Logs \"base: %d\"; gated on g_test_mode_flag==1 (else returns -2), checks app/dashboard/ble switch pending flags, builds a status record (0x2d,3,5,1), calls build_and_send_device_status_report and polls read_sys_settting_from_flash up to 5 times.",
+  "batch": 5
+ },
+ {
+  "address": "0x000362e8",
+  "name": "gui_draw_timer_hms",
+  "confidence": "medium",
+  "evidence": "Decomposes a seconds counter at get_device_info+0xef via /0xe10,%0x18,%0x3c (hours/min/sec) and blits digit glyphs and colon separators via font_glyph_pixel_offset/fb_blit_rows_wrap320, rendering an HH:MM:SS timer on the framebuffer.",
+  "batch": 5
+ },
+ {
+  "address": "0x0004b2b0",
+  "name": "sys_heap_aligned_alloc",
+  "confidence": "high",
+  "evidence": "References zephyr/lib/os/heap.c and assert \"(align & (align - 1)) == 0\"; computes alignment mask, calls alloc_chunk/split_chunks/free_list_add/set_chunk_used to satisfy an aligned heap allocation.",
+  "batch": 5
+ },
+ {
+  "address": "0x0004dfb8",
+  "name": "onoff_transition_invoke",
+  "confidence": "low",
+  "evidence": "Called by g1_recon_log_backend_uart_panic; validates a service object, compares a stored state byte against a target from a state table, then invokes the transition function pointer at obj+0xc and updates flag bits per mode (2/3), an onoff-style state transition.",
+  "batch": 5
+ },
+ {
+  "address": "0x000501d4",
+  "name": "arch_swap",
+  "confidence": "high",
+  "evidence": "Stores swap return arg and key into _kernel current thread (+0x8c/+0x90), sets SCB ICSR PENDSVSET (0x10000000), lowers BASEPRI to 0 with ISB and returns the swap retval; this is the ARM Cortex-M arch_swap context-switch trigger, called by z_reschedule/mutex_unlock paths.",
+  "batch": 5
+ },
+ {
+  "address": "0x00053168",
+  "name": "bt_keys_settings_store",
+  "confidence": "high",
+  "evidence": "Only caller is bt_keys_store; passes the \"keys\" string (rodata 0xf5373) to bt_settings_store, i.e. persists bond keys under the settings \"keys\" subtree.",
+  "batch": 5
+ },
+ {
+  "address": "0x00055454",
+  "name": "bt_id_set_adv_random_addr",
+  "confidence": "medium",
+  "evidence": "Contains error string \"Can't set both IDENTITY & NRPA\"; dispatches on advertising option bits over g_ble_dev_state identity table and calls bt_id_set_adv_private_addr to program the advertising random/private address.",
+  "batch": 5
+ },
+ {
+  "address": "0x000572fc",
+  "name": "bt_conn_auth_cb_register",
+  "confidence": "high",
+  "evidence": "Called from ancs_main; validates a callback struct then stores its pointer into g_bt_conn_auth_cb (returns -0x78 if already set, -0x16 on invalid combo), the standard bt_conn_auth_cb_register semantics.",
+  "batch": 5
+ },
+ {
+  "address": "0x00059c48",
+  "name": "ccc_match_conn_cfg",
+  "confidence": "medium",
+  "evidence": "Called by gatt_ccc_write and bt_gatt_attr_read_ccc; matches a CCC cfg entry against the connection via bt_conn_is_peer_addr_le / bt_addr_le_eq_0, returning the cfg pointer or NULL on mismatch.",
+  "batch": 5
+ },
+ {
+  "address": "0x0005fb30",
+  "name": "pdm_start_and_check",
+  "confidence": "high",
+  "evidence": "Calls nrfx_pdm_start and logs \"Failed to start PDM: 0x%08x\" on non-0x0bad0000 result, tearing down on the flag at obj+0x50 and clearing the running byte at obj+0x51.",
+  "batch": 5
+ },
+ {
+  "address": "0x00062fe8",
+  "name": "uarte_nrfx_tx_start",
+  "confidence": "medium",
+  "evidence": "References zephyr/drivers/serial/uart_nrfx_uarte.c; sets up a TX transfer (length, timeout via /5 or 0x5c floor, buffer/len fields, TX-busy flag 0xca) and posts driver events, an nRF UARTE async TX start.",
+  "batch": 5
+ },
+ {
+  "address": "0x00064b64",
+  "name": "cjson_parse_with_opts",
+  "confidence": "high",
+  "evidence": "Calls cjson_parse_value/cjson_delete/alloc_zeroed_node with (input,length,end,require_end) args, skips a 3-byte BOM prefix, and reports parse error offset into g_2000b314 \u2014 the cJSON_ParseWithOpts routine.",
+  "batch": 5
+ },
+ {
+  "address": "0x00067d84",
+  "name": "nrfx_wdt_reload_value_set",
+  "confidence": "medium",
+  "evidence": "References nrfx_wdt.c with assert \"ticks <= 0xffffffff\"; converts ticks to the CRV reload value via __aeabi_uldivmod(/1000), writes WDT CRV (+0x504) and RREN/config and enables the IRQ, configuring a watchdog channel timeout.",
+  "batch": 5
+ },
+ {
+  "address": "0x000729fc",
+  "name": "queue_cancel_wait_locked",
+  "confidence": "medium",
+  "evidence": "Takes g_mutex_lock_spinlock (asserts z_spin_lock_valid), unpends every waiting thread setting swap retval -11 (EAGAIN) and z_ready_thread_locked, clears queue+8 and signals poll events then reschedules \u2014 a k_queue cancel-wait drain.",
+  "batch": 5
+ },
+ {
+  "address": "0x00075574",
+  "name": "k_poll_event_init",
+  "confidence": "high",
+  "evidence": "References zephyr/kernel/poll.c and asserts \"mode == K_POLL_MODE_NOTIFY_ONLY\", \"type < (1<<_POLL_NUM_TYPES)\", \"obj != NULL\", then stores obj, type/mode and state into the poll-event struct \u2014 k_poll_event_init.",
+  "batch": 5
+ },
+ {
+  "address": "0x0007a3d4",
+  "name": "buffer_zeroize",
+  "confidence": "medium",
+  "evidence": "Tiny wrapper called by many crypto init routines (cc_mbedtls_sha256_init/update, ProcessHashDrv/AesDrv, kmu_derive_cmac) that calls memset_bytes(ptr,0,len) to zero a buffer.",
+  "batch": 5
+ },
+ {
+  "address": "0x0007c61e",
+  "name": "opt_record_bind_value",
+  "confidence": "medium",
+  "evidence": "Calls opt_node_value_len; validates a descriptor (type byte 1..0x16, three non-zero fields), stores it at obj+0x14 and sets the short-length flag bit4 when value length < 0x100 \u2014 binds a value into an option record.",
+  "batch": 5
+ },
+ {
+  "address": "0x0007cab4",
+  "name": "quaternion_to_euler",
+  "confidence": "high",
+  "evidence": "Called by orientation_get_yaw_deg/orientation_get_pitch_deg; reads quaternion q0..q3 and computes yaw/pitch/roll via atan2 (thunk_FUN_00076154) and asinf, storing three Euler angles and a ready byte.",
+  "batch": 5
+ },
+ {
+  "address": "0x0007e526",
+  "name": "thread_entry_no_return",
+  "confidence": "low",
+  "evidence": "24-byte terminal wrapper that calls FUN_0004c4d0 once at a scheduler boundary (BASEPRI_MAX/ISB per comment) and then spins forever, a no-return thread/entry trampoline.",
+  "batch": 5
+ },
+ {
+  "address": "0x0007faa8",
+  "name": "read_6byte_id_words",
+  "confidence": "low",
+  "evidence": "Calls FUN_0007f97c(param_1,0x22,&buf,6) to fetch a 6-byte value then splits it into three little-endian 16-bit words in the caller's output array; thin evidence, structural name.",
+  "batch": 5
+ },
+ {
+  "address": "0x000811a4",
+  "name": "atomic_assign_bit",
+  "confidence": "high",
+  "evidence": "Computes bit mask 1<<n and either atomic-clears it (atomic_and_1 with ~mask) when the value arg is 0 or atomic-ORs it otherwise \u2014 an atomic set-or-clear-bit helper.",
+  "batch": 5
+ },
+ {
+  "address": "0x00082396",
+  "name": "att_exchange_mtu_req",
+  "confidence": "high",
+  "evidence": "Called by bt_att_recv; rejects client MTU < 23 (0x17), builds an ATT opcode-3 (Exchange MTU Response) PDU advertising server MTU 0x1f2, records negotiated MTU at conn+0x1e/+0x2e and sets a pending flag \u2014 ATT exchange-MTU request handler.",
+  "batch": 5
+ },
+ {
+  "address": "0x000837a2",
+  "name": "log_forward_zero_arg",
+  "confidence": "low",
+  "evidence": "6-byte shim called from PDM error paths (FUN_0005fb30 etc.) that forwards its (a,b,c) args to logger FUN_0004d944 with a trailing 0, a logging wrapper.",
+  "batch": 5
+ },
+ {
+  "address": "0x00084c94",
+  "name": "watchdog_disable_write_work",
+  "confidence": "medium",
+  "evidence": "Only caller is disable_watchdog; a work handler that calls dev_write_reg3(value,7,1,1) to write a device (PMIC) register and clears the completion byte on success.",
+  "batch": 5
+ },
+ {
+  "address": "0x000858ca",
+  "name": "invoke_optional_callback_7c",
+  "confidence": "low",
+  "evidence": "Generic dispatch: if obj and obj+0x20 and a second arg are non-null and the function pointer at *(obj+0x20)+0x7c is set, it calls it; structural name for an optional-callback invoker.",
+  "batch": 5
+ },
+ {
+  "address": "0x00087080",
+  "name": "checked_strncpy_zero_pad",
+  "confidence": "medium",
+  "evidence": "A __strncpy_chk-style guard: aborts via FUN_00051164 when length exceeds destination_size or source/destination ranges overlap, otherwise delegates to strncpy_zero_pad.",
+  "batch": 5
+ },
+ {
+  "address": "0x00016110",
+  "name": "dev_page3_config_and_readback_dump",
+  "confidence": "medium",
+  "evidence": "Called from main; writes device page-3 registers 0x10-0x17 with fixed init values via dev_write_reg3 then reads each back with dev_ctrl_read1 and log_messages the value, i.e. a config-and-dump of an 8-register bank.",
+  "batch": 6
+ },
+ {
+  "address": "0x000232c0",
+  "name": "format_device_serial_to_buf",
+  "confidence": "medium",
+  "evidence": "Called by set_device_sn_info; thin wrapper that snprintf-formats (via FUN_00077914) into g_device_serial_buf (0x20003003, len 0x10) using rodata format at 0xa8c37.",
+  "batch": 6
+ },
+ {
+  "address": "0x0002893c",
+  "name": "log_and_dispatch_click_event2",
+  "confidence": "low",
+  "evidence": "Bundle marks it a click-event entry; logs one message (via debug_print or log_message depending on g_log_use_alt_sink) then tail-calls FUN_00032fd0(2) to dispatch event id 2.",
+  "batch": 6
+ },
+ {
+  "address": "0x00032b24",
+  "name": "pt_cmd_dispatch_and_encode_response",
+  "confidence": "medium",
+  "evidence": "Called by process_pt_data; matches first payload byte against a 45-entry 8-byte handler table at 0x8a208 (tag+fn ptr), invokes the handler or builds an error frame, then packs the response with magic header 0x00ffa55a and length into g_pt_msg_encode_buf and sends via FUN_0007d16a.",
+  "batch": 6
+ },
+ {
+  "address": "0x00040794",
+  "name": "onboarding_render_step_screen",
+  "confidence": "medium",
+  "evidence": "Called by ui_onboarding_task; gated on onboarding_watchdog_active_flag, switches over the device onboarding-state byte at *(dev+0x1014)+2 and draws step bitmaps/localized text/weekday labels, applying alpha-mask blits and reflash_fb_data_to_lcd.",
+  "batch": 6
+ },
+ {
+  "address": "0x0004c254",
+  "name": "delay_busy_wait_usec",
+  "confidence": "high",
+  "evidence": "Bundle identity is a microsecond busy-wait: when usec!=0 it calls the busy-wait fn at 0x88841 with usec*(cycles_per_second@0x20002bb8/1000000); named distinctly to avoid colliding with existing delay_scaled_busy_wait.",
+  "batch": 6
+ },
+ {
+  "address": "0x0004ee68",
+  "name": "ancs_gatt_dm_assign_handles",
+  "confidence": "high",
+  "evidence": "Called by discovery_completed_cb_ancs; verifies the ANCS service UUID via bt_gatt_dm_attr_service_val/bt_uuid_cmp then looks up notification-source/control-point/data-source characteristic and 0x2902 CCC handles with bt_gatt_dm_desc_by_uuid, filling the handle struct param_2.",
+  "batch": 6
+ },
+ {
+  "address": "0x00052854",
+  "name": "smp_reassembly_finalize_zero",
+  "confidence": "low",
+  "evidence": "Operates on SMP reassembly object 0x2000abac: calls smp_reassembly_expected, and when param_2==0 stores zero into the user-data slot from smp_reassembly_get_ud and smp_packet_free()s it.",
+  "batch": 6
+ },
+ {
+  "address": "0x00053658",
+  "name": "hci_event_dispatch_handler",
+  "confidence": "high",
+  "evidence": "Called by bt_hci_core_recv_event and hci_event_prio; scans an 8-byte-entry handler table (event id, min length, fn ptr at +4), logs \"Too small (%u bytes) event 0x%02x\" if buffer available-len < min, else invokes the handler; falls through to FUN_00053580 for unknown events.",
+  "batch": 6
+ },
+ {
+  "address": "0x00055d08",
+  "name": "bt_pub_key_gen",
+  "confidence": "high",
+  "evidence": "Called by smp_update_bond_flag; checks ECC-ready bits in g_ble_dev_state, appends the callback to g_bt_pub_key_cb_slist (logs \"Callback already registered\"), and issues the LE P256 Public Key HCI command 0x2025 (logs \"ECC HCI commands not available\"/\"Sending LE P256 Public Key command failed\").",
+  "batch": 6
+ },
+ {
+  "address": "0x000573f4",
+  "name": "att_alloc_pdu_with_hdr",
+  "confidence": "medium",
+  "evidence": "Called by l2cap_recv, gatt_notify_send and gatt_send_service_changed_ind; allocates an ATT buffer (pool chosen by param_1==6) via FUN_000569ec, logging \"Unable to allocate buffer for op 0x%02x\" on failure, then net_buf_simple_add's a 4-byte header (op, param_2, param_3).",
+  "batch": 6
+ },
+ {
+  "address": "0x0005b0dc",
+  "name": "gatt_find_ccc_for_conn",
+  "confidence": "medium",
+  "evidence": "Called by gatt_indicate and gatt_notify (gatt.c strings); walks attributes with bt_gatt_attr_next comparing UUIDs, then for the matching CCC checks the peer via bt_conn_is_peer_addr_le and returns whether param_3 intersects the stored CCC value bits.",
+  "batch": 6
+ },
+ {
+  "address": "0x00060564",
+  "name": "dispatch_via_object_index",
+  "confidence": "low",
+  "evidence": "Computes an object index ((param_1-0x2000b098)>>5), passes it with table 0x87b30 and stride 0x40 to FUN_000604e4, then tail-calls the supplied jumptable callback with (param_1, result).",
+  "batch": 6
+ },
+ {
+  "address": "0x00063778",
+  "name": "nrf_rtc_set_alarm_channel",
+  "confidence": "medium",
+  "evidence": "nrf_rtc_timer.c function asserting \"chan > 0 && chan < (1 + 1)\" (channel must be 1) then programming an RTC compare via compare_set.",
+  "batch": 6
+ },
+ {
+  "address": "0x000659d8",
+  "name": "gpiote_channel_flag_alloc",
+  "confidence": "medium",
+  "evidence": "Called by gpio_nrfx_pin_interrupt_configure; forwards to nrfx_flag32_alloc on the g_gpiote_lock flag pool (0x20002c30) to reserve a GPIOTE channel flag.",
+  "batch": 6
+ },
+ {
+  "address": "0x00068240",
+  "name": "metal_generic_bus_init",
+  "confidence": "medium",
+  "evidence": "Called by ipc_static_vrings_init; memsets g_metal_generic_bus (0x2000b424, 0x20 bytes), initializes three embedded doubly-linked list heads (self-referential prev/next) and stores param fields, then registers via FUN_00068298.",
+  "batch": 6
+ },
+ {
+  "address": "0x00073b1c",
+  "name": "k_sched_unlock",
+  "confidence": "medium",
+  "evidence": "Takes sched_spinlock (0x2000b490) with BASEPRI masking, asserts not-in-ISR and _kernel.current->base.sched_locked != 1, decrements that sched_locked counter, then releases the spinlock; classic scheduler-unlock body.",
+  "batch": 6
+ },
+ {
+  "address": "0x00077914",
+  "name": "snprintf",
+  "confidence": "high",
+  "evidence": "Bounded string formatter: sets errno via reent (g_libc_heap_ctrl), builds a memory-stream descriptor over (buffer,length) with flags 0x208 and NUL-terminates; called as (buf,0x10,fmt,args) by many formatters (cjson_print_value, img_mgmt_ver_str, draw_message).",
+  "batch": 6
+ },
+ {
+  "address": "0x0007c080",
+  "name": "ext_flash_sync_noop",
+  "confidence": "low",
+  "evidence": "Two-byte empty function returning immediately, invoked by ext_flash_read and ext_flash_write as a no-op hook.",
+  "batch": 6
+ },
+ {
+  "address": "0x0007c842",
+  "name": "box_field_state_to_display_code",
+  "confidence": "medium",
+  "evidence": "Called by process_box_event; reads get_box_field_state and maps 1->4, 0->1, else->2 into *(param_1+2), i.e. translates box field state to a display code byte.",
+  "batch": 6
+ },
+ {
+  "address": "0x0007cf34",
+  "name": "flash_data_checksum_neg_sum",
+  "confidence": "medium",
+  "evidence": "Called by flash_write_and_verify_blob and flash_firmware_update_transfer; sums big-endian 32-bit words over padded_length (padding shortfall words with 0xFFFFFFFF) and returns the two's-complement negation of the sum.",
+  "batch": 6
+ },
+ {
+  "address": "0x0007ef04",
+  "name": "build_status_byte_packet",
+  "confidence": "low",
+  "evidence": "Called by FUN_00064134; when param_1==1 it populates a small byte packet (param_2[0..4] with the mode byte and value 3) and returns 0, otherwise returns 1 leaving the buffer untouched.",
+  "batch": 6
+ },
+ {
+  "address": "0x00080c20",
+  "name": "conn_match_id_and_addr",
+  "confidence": "low",
+  "evidence": "Resolves a connection id param_2 via FUN_000527dc (u64 ptr+tag) and returns whether the stored index *(param_1+0x18) and address byte *(ptr+0x69)==*(param_1+0x1c) match the reference record.",
+  "batch": 6
+ },
+ {
+  "address": "0x000815f6",
+  "name": "slist_unlink_after",
+  "confidence": "medium",
+  "evidence": "Called by ctx_list_unlink_by_key16 and ctx_list_unlink_node; removes node param_3 from a singly-linked list by relinking prev(param_2)->next (or head param_1) to node->next and updating the tail pointer param_1[1], then NULs the node's next.",
+  "batch": 6
+ },
+ {
+  "address": "0x00082928",
+  "name": "gatt_sc_ctx_clear",
+  "confidence": "medium",
+  "evidence": "Called by bt_gatt_clear_sc and sc_clear; zeroes the first three words of the service-changed context structure.",
+  "batch": 6
+ },
+ {
+  "address": "0x00083cfc",
+  "name": "chan_connect_disconnect_dispatch",
+  "confidence": "low",
+  "evidence": "State op on a channel object: param_2==0 runs FUN_000678d0 then FUN_00083cde(...,1) (connect-like), param_2==1 runs FUN_00083cde(...,0) then FUN_00067884 on success (disconnect-like), other values return -0x86 (unsupported).",
+  "batch": 6
+ },
+ {
+  "address": "0x0008500c",
+  "name": "cbor_decode_start_default",
+  "confidence": "low",
+  "evidence": "Tail wrapper called by parse_ncs_notification, parse_whitelist_json and verify_whitelist_json that invokes cbor/JSON decoder FUN_00084fec(param_1,0,0), zeroing the two optional arguments.",
+  "batch": 6
+ },
+ {
+  "address": "0x00085c38",
+  "name": "zcbor_entry_backup_and_advance",
+  "confidence": "low",
+  "evidence": "Called by cbor_decode_container_start; reads an element via FUN_00085c12 and, when input offset < end, snapshots the six-word decoder state into the last backup slot, advances the cursor and stores the returned value, else marks error via FUN_00085c26.",
+  "batch": 6
+ },
+ {
+  "address": "0x0000c358",
+  "name": "battery_model_state_update",
+  "confidence": "medium",
+  "evidence": "Sole caller battery_soc_from_curve; large float routine doing spline_interp/curve_table_interp_201pt, exp/sqrt matrix state propagation and clamping into a battery param block (param_5 offsets 0x5d*).",
+  "batch": 7
+ },
+ {
+  "address": "0x0001965c",
+  "name": "ancs_notification_forward",
+  "confidence": "medium",
+  "evidence": "Dequeues ANCS record, checks whitelist, tags command opcode 0x4b and dispatches via ble_process_req_dispatch/send_data_in_ble_chunks with strings 'FROM:ancs' and phone-missed identifier.",
+  "batch": 7
+ },
+ {
+  "address": "0x000265b8",
+  "name": "imu_fusion_state_init",
+  "confidence": "medium",
+  "evidence": "Called by imu_fusion_thread; writes float constants (0.1f,4.0f,1.0f) and zeros the rest of a fusion state struct.",
+  "batch": 7
+ },
+ {
+  "address": "0x00031bd8",
+  "name": "build_device_info_response",
+  "confidence": "medium",
+  "evidence": "Builds a response packet header {5,1,3,6}, copies MAC/id fields from get_device_info() based on a selector byte, returns 0/err via log_message.",
+  "batch": 7
+ },
+ {
+  "address": "0x0003629c",
+  "name": "display_idle_countdown_tick",
+  "confidence": "low",
+  "evidence": "Called by display_dispatch_thread; uses uptime ticks and g_misc_last_uptime_ms to decrement a per-second countdown counter in param_2.",
+  "batch": 7
+ },
+ {
+  "address": "0x0004b214",
+  "name": "sys_heap_free",
+  "confidence": "high",
+  "evidence": "heap.c code freeing a chunk: mem_to_chunkid, chunk_used/left_chunk assertions, set_chunk_used then free_chunk; caller virtqueue_free.",
+  "batch": 7
+ },
+ {
+  "address": "0x0004df88",
+  "name": "log_backend_uart_check_ready",
+  "confidence": "low",
+  "evidence": "log_backend_uart.c asserts z_device_is_ready(uart_dev) with 'device_is_ready(uart_dev)' string before proceeding.",
+  "batch": 7
+ },
+ {
+  "address": "0x00050170",
+  "name": "wfi_idle_loop",
+  "confidence": "high",
+  "evidence": "6-byte function that loops forever executing __WFI() (cmsis_gcc.h include, intentional idle loop per CFG note).",
+  "batch": 7
+ },
+ {
+  "address": "0x000530c4",
+  "name": "bt_dev_settings_commit",
+  "confidence": "medium",
+  "evidence": "Called by settings_commit_subtree; sets default name 'Even G1' via bt_set_name_internal, runs bt_setup_public_id_addr, logs 'Unable to setup an identity address'.",
+  "batch": 7
+ },
+ {
+  "address": "0x000553f8",
+  "name": "bt_setup_identities",
+  "confidence": "medium",
+  "evidence": "Called by bt_dev_settings_commit; iterates stored identity entries into g_ble_dev_state and registers each, returns error/status.",
+  "batch": 7
+ },
+ {
+  "address": "0x000571e8",
+  "name": "bt_conn_tx_process",
+  "confidence": "medium",
+  "evidence": "Called by hci_tx_thread (conn.c); peeks conn tx queue, fragments net_bufs by MTU (g_bt_dev_hci_buf_ready) and submits via FUN_000560cc, refs/unrefs bufs.",
+  "batch": 7
+ },
+ {
+  "address": "0x00059834",
+  "name": "bt_att_disconnected",
+  "confidence": "medium",
+  "evidence": "ATT channel teardown: drains req/tx queues, frees pending net_bufs, invokes per-node callbacks with 0xe, k_mem_slab_free(g_bt_att_slab) then bt_gatt_disconnected.",
+  "batch": 7
+ },
+ {
+  "address": "0x0005fa94",
+  "name": "dmic_read_block",
+  "confidence": "high",
+  "evidence": "Called by dmic_stream_start; k_msgq_get of an audio block with timeout, errors 'Device is not configured' and 'No audio data to be read'.",
+  "batch": 7
+ },
+ {
+  "address": "0x00062f28",
+  "name": "uart_poll_out",
+  "confidence": "medium",
+  "evidence": "Busy-waits on is_tx_ready (with ISR/yield branches, k_is_in_isr, g_tx_yield_allowed_flag) then writes a single byte to the TX register.",
+  "batch": 7
+ },
+ {
+  "address": "0x000644f8",
+  "name": "cjson_print_string",
+  "confidence": "high",
+  "evidence": "Called by cjson_print_value; escapes a string into a growbuf with quotes and \\uXXXX ('u%04x') encoding for control chars.",
+  "batch": 7
+ },
+ {
+  "address": "0x00067938",
+  "name": "nrfx_twim_xfer",
+  "confidence": "high",
+  "evidence": "nrfx_twim.c transfer setup: validates xfer descriptor per TWIM asserts, programs EasyDMA TX/RX registers and drives the transfer state machine.",
+  "batch": 7
+ },
+ {
+  "address": "0x000727ac",
+  "name": "net_buf_pool_get",
+  "confidence": "low",
+  "evidence": "Called by bt_att/bt_conn create_pdu and net_buf_alloc_len; under spinlock pops a node from a free list or allocates via FUN_00073f6c.",
+  "batch": 7
+ },
+ {
+  "address": "0x00074d74",
+  "name": "z_abort_timeout",
+  "confidence": "high",
+  "evidence": "Called by k_timer_start/stop and unschedule paths; under g_timeout_list_spinlock returns -EINVAL if not queued else calls remove_timeout.",
+  "batch": 7
+ },
+ {
+  "address": "0x0007a360",
+  "name": "cc_pal_stub_return_zero",
+  "confidence": "low",
+  "evidence": "4-byte stub returning 0, invoked from CC_PalInit (CryptoCell PAL init).",
+  "batch": 7
+ },
+ {
+  "address": "0x0007c5ba",
+  "name": "opt_node_serialize",
+  "confidence": "medium",
+  "evidence": "Serializes an option/TLV node: writes type bytes, 1- or 4-byte length from opt_node_value_len, optional value byte; returns 7 on bad args.",
+  "batch": 7
+ },
+ {
+  "address": "0x0007ca54",
+  "name": "dev_api_call_slot0",
+  "confidence": "low",
+  "evidence": "Dispatches through a vtable at (obj+8): calls slot0 fn(obj,p2,0,p3) or returns -88 if null.",
+  "batch": 7
+ },
+ {
+  "address": "0x0007de82",
+  "name": "heap_bucket_index",
+  "confidence": "medium",
+  "evidence": "Called by alloc_chunk/free_list_add/k_heap_init; computes 0x1f - clz(size delta) i.e. log2 free-list bucket index for the heap.",
+  "batch": 7
+ },
+ {
+  "address": "0x0007f98a",
+  "name": "audio_codec_bus_write",
+  "confidence": "medium",
+  "evidence": "Called only by audio_codec_set_* helpers; dispatches obj[0] as a write callback with obj[3] handle plus register/value args.",
+  "batch": 7
+ },
+ {
+  "address": "0x00081196",
+  "name": "bt_addr_le_copy",
+  "confidence": "high",
+  "evidence": "Called by ble_conn_le_prepare_and_connect; copies a 7-byte bt_addr_le_t (4+2+1 bytes = type + 6-byte address).",
+  "batch": 7
+ },
+ {
+  "address": "0x00082326",
+  "name": "att_chan_tx_complete",
+  "confidence": "low",
+  "evidence": "Clears bit 1 at chan+0x120 and runs FUN_0005833c buffer-free helper, optionally FUN_000822ae when arg is zero.",
+  "batch": 7
+ },
+ {
+  "address": "0x00083778",
+  "name": "adc_context_request_sampling",
+  "confidence": "low",
+  "evidence": "Atomically increments a refcount and only calls adc_context_start_sampling when it was zero, else sets -EBUSY.",
+  "batch": 7
+ },
+ {
+  "address": "0x00084c7e",
+  "name": "wdt_feed",
+  "confidence": "medium",
+  "evidence": "Called by init_watchdog and watchdog_feed_retry; for channel 0 issues dev_write_reg3(reg,7,4,1), else returns -EINVAL.",
+  "batch": 7
+ },
+ {
+  "address": "0x000857e0",
+  "name": "dma_xfer_end_handler",
+  "confidence": "low",
+  "evidence": "DMB then inspects a peripheral base's flags/count fields (RAM 0x20000000 check) and invokes a completion callback param_1[4], resetting a u16 counter.",
+  "batch": 7
+ },
+ {
+  "address": "0x00086f92",
+  "name": "gatt_sub_resolve_handle",
+  "confidence": "low",
+  "evidence": "Looks up a handle via FUN_00078598 from a 16-bit key at record+0x0e, stores it at record+0x54 and toggles flag 0x1000 in record+0x0c.",
+  "batch": 7
+ },
+ {
+  "address": "0x0001658c",
+  "name": "set_dashboard_startup_mode_field63",
+  "confidence": "low",
+  "evidence": "Single store of param_1 to g_dashboard_startup_mode_info_defaults+0x63; called by ble_process_put_req as a setter for a dashboard startup-mode byte field.",
+  "batch": 8
+ },
+ {
+  "address": "0x00023eec",
+  "name": "get_ui_mode_flag2",
+  "confidence": "low",
+  "evidence": "Returns the volatile byte at g_ui_mode_flag+2; polled by imu_fusion_thread, key_event_thread, proxy_thread_handler as a UI-mode status getter.",
+  "batch": 8
+ },
+ {
+  "address": "0x0002c214",
+  "name": "clear_pending_message_flag",
+  "confidence": "medium",
+  "evidence": "Reads g_pending_message_flag and zeroes it if set; called by display_dispatch_thread and process_for_new_task.",
+  "batch": 8
+ },
+ {
+  "address": "0x00032fe8",
+  "name": "start_aging_mode_thread",
+  "confidence": "high",
+  "evidence": "Bundle string 'start_aging_mode_thread' is the self-name; spawns g_aging_mode_thread on g_aging_mode_thread_stack via FUN_00071eac and sets g_aging_mode_thread_started_flag.",
+  "batch": 8
+ },
+ {
+  "address": "0x0004382c",
+  "name": "gui_screen_fade_out_transition",
+  "confidence": "medium",
+  "evidence": "Loops ANDing a mask LUT over 200 framebuffer rows while shifting the mask row, reflashing to the LCD each step (reflash_fb_data_to_lcd) then gui_screen_clear; called by many ui_*_task functions as a screen wipe/fade transition.",
+  "batch": 8
+ },
+ {
+  "address": "0x0004cbec",
+  "name": "serialization_register_endpoint",
+  "confidence": "medium",
+  "evidence": "Called by serialization_init; validates instance/backend/config (logs 'Invalid instance, endpoint or configuration' / 'Invalid backend configuration') then dispatches to the backend vtable open at offset +0xc.",
+  "batch": 8
+ },
+ {
+  "address": "0x0004f1d0",
+  "name": "parse_app_id_config_stream",
+  "confidence": "medium",
+  "evidence": "Byte-oriented 0-8 state machine that consumes a byte stream filling per-app-id fields; error string 'App ID cannot be stored in response buffer.' ties it to app-id/whitelist parsing.",
+  "batch": 8
+ },
+ {
+  "address": "0x00052d58",
+  "name": "bt_settings_set_name_identity",
+  "confidence": "medium",
+  "evidence": "Settings 'set' handler matching keys 'name' and identity (settings_name_next/strncmp); strings 'Failed to read device name from storage', 'Ignoring identities stored in flash' identify it as the BT name/id settings loader.",
+  "batch": 8
+ },
+ {
+  "address": "0x00053d70",
+  "name": "bt_hci_cmd_send_sync",
+  "confidence": "high",
+  "evidence": "Creates an HCI command via bt_hci_cmd_create if none passed, queues it on hci_cmd_pool, waits on a completion semaphore, and logs 'opcode 0x%04x status 0x%02x'; called by ~16 HCI callers as the synchronous send.",
+  "batch": 8
+ },
+ {
+  "address": "0x000560cc",
+  "name": "conn_tx_send_to_driver",
+  "confidence": "medium",
+  "evidence": "conn.c function that pushes a net_buf header, sets fragment length, calls the driver send and logs 'Unable to send to driver (err %d)' with '*pending_no_cb > 0' assertion; a connection TX-to-driver path.",
+  "batch": 8
+ },
+ {
+  "address": "0x000579b4",
+  "name": "l2cap_find_chan_by_id",
+  "confidence": "low",
+  "evidence": "Called by l2cap_recv; walks the linked list at g_2000ad2c comparing the u16 at node-8 against param_1 to locate a channel/id.",
+  "batch": 8
+ },
+ {
+  "address": "0x0005caa4",
+  "name": "kobj_test_bit_get_ptr",
+  "confidence": "low",
+  "evidence": "Calls atomic_test_bit on g_misc_kobj_6454 and returns the object pointer (base-4) when the bit is set, else 0.",
+  "batch": 8
+ },
+ {
+  "address": "0x00060788",
+  "name": "clock_control_nrf_on_blocking",
+  "confidence": "medium",
+  "evidence": "clock_control_nrf.c routine that latches a once-flag, requests the clock (FUN_0004b908) and busy-waits on the HFCLK MMIO STAT registers at 0x50005000 until running, with mode 0/1/2 handling.",
+  "batch": 8
+ },
+ {
+  "address": "0x00063984",
+  "name": "wdt_install_timeout",
+  "confidence": "medium",
+  "evidence": "Called by init_watchdog; guards an already-armed flag then programs a watchdog channel via dev_set_threshold_and_arm and dev_write_reg3, returning -EBUSY/-EINVAL.",
+  "batch": 8
+ },
+ {
+  "address": "0x00065ff4",
+  "name": "nrf_gpio_pin_port_decode",
+  "confidence": "medium",
+  "evidence": "Asserts 'nrf_gpio_pin_present_check(*p_pin)' (nrf_gpio.h) and returns the GPIO port base (0x50842500 P0 / 0x50842800 P1) for the pin descriptor; called by pdm_configure_pins/pdm_release_pin.",
+  "batch": 8
+ },
+ {
+  "address": "0x000682a8",
+  "name": "metal_generic_bus_unregister",
+  "confidence": "low",
+  "evidence": "Tail-calls metal_bus_unregister on g_module_registry_node, unregistering the generic/default libmetal bus.",
+  "batch": 8
+ },
+ {
+  "address": "0x00073ec0",
+  "name": "add_thread_to_wait_queue",
+  "confidence": "medium",
+  "evidence": "sched.c helper called by pend_locked; calls unready_thread, sets the pending bit, and priority-inserts the thread into a wait queue with the '!z_is_idle_thread_object(thread)' assertion.",
+  "batch": 8
+ },
+ {
+  "address": "0x00078590",
+  "name": "get_static_ctx_ptr",
+  "confidence": "low",
+  "evidence": "Returns the constant address of g_misc_static_ctx_ptr (0x20002e74).",
+  "batch": 8
+ },
+ {
+  "address": "0x0007c0e2",
+  "name": "post_uid_event_mode2",
+  "confidence": "low",
+  "evidence": "Builds an {value, mode|2, context} event record, enqueue_uid's it, and k_sem_give's the ancs conn ctx sem+0x200; called by master_process_audio_fw_load_req.",
+  "batch": 8
+ },
+ {
+  "address": "0x0007c8e8",
+  "name": "ipc_ept_op_b_guarded",
+  "confidence": "low",
+  "evidence": "Called by st25dv_write_control_and_ack; forwards to ipc_ept_op_b_locked_retry(param,1,param2) only when the pointer arg is non-null, else returns -EINVAL.",
+  "batch": 8
+ },
+ {
+  "address": "0x0007d16a",
+  "name": "buffer_append_sum_checksum",
+  "confidence": "medium",
+  "evidence": "Sums the first *len bytes of *buf, appends the running checksum byte at index len, and increments *len; null-guards both pointers.",
+  "batch": 8
+ },
+ {
+  "address": "0x0007f064",
+  "name": "stream_flash_vtable_get_value",
+  "confidence": "low",
+  "evidence": "Called by stream_flash_flush_buffer/stream_flash_init; dereferences the object's vtable slot get_value() and returns *result.",
+  "batch": 8
+ },
+ {
+  "address": "0x00080e94",
+  "name": "bt_addr_le_copy",
+  "confidence": "medium",
+  "evidence": "Copies a 7-byte bt_addr_le_t (u32 + u16 + u8) from src to dst; called by bt_hci_driver_close.",
+  "batch": 8
+ },
+ {
+  "address": "0x00081746",
+  "name": "log_msg_3arg_thunk",
+  "confidence": "low",
+  "evidence": "Thin thunk that forwards its three args to the log helper FUN_0004d944 with a trailing 0; shared by nine l2cap callers.",
+  "batch": 8
+ },
+ {
+  "address": "0x00082fa6",
+  "name": "gatt_store_ccc_cf_triple",
+  "confidence": "low",
+  "evidence": "Calls gatt_store_ccc_cf three times over three CCC/CF config records at fixed negative offsets from param_1.",
+  "batch": 8
+ },
+ {
+  "address": "0x000844a8",
+  "name": "emit_u8_value_via_vtable",
+  "confidence": "low",
+  "evidence": "Packs a one-byte value plus length/handle metadata into a local record and invokes the object's nested vtable function (offset +8) with type 2.",
+  "batch": 8
+ },
+ {
+  "address": "0x00085046",
+  "name": "cjson_add_item_to_object_thunk",
+  "confidence": "low",
+  "evidence": "Thin thunk forwarding three args to cjson_add_item_to_object with a trailing 0; shared by whitelist/notification JSON builders.",
+  "batch": 8
+ },
+ {
+  "address": "0x00085d5c",
+  "name": "cbor_decode_is_exhausted",
+  "confidence": "medium",
+  "evidence": "Called by cbor_decode_precheck; returns 1 unless the decoder object is valid (byte at +0x10 set) and its remaining count at +0xc is zero.",
+  "batch": 8
+ },
+ {
+  "address": "0x000165a4",
+  "name": "dashboard_startup_info_write_magic",
+  "confidence": "medium",
+  "evidence": "Called by ble_process_put_req; writes the sentinel 0x12345678 into g_dashboard_startup_mode_info_defaults at offset 0x64, marking the startup-mode defaults record valid.",
+  "batch": 9
+ },
+ {
+  "address": "0x00023ef8",
+  "name": "flash_store_cmd_msgq_used_count",
+  "confidence": "medium",
+  "evidence": "Called by flash_ops_thread; returns the word at g_flash_store_cmd_msgq+0x24, which is the used_msgs count field of a Zephyr k_msgq for the flash-store command queue.",
+  "batch": 9
+ },
+ {
+  "address": "0x0002e648",
+  "name": "opt3001_read_lux_raw",
+  "confidence": "high",
+  "evidence": "Calls opt3001_reg_read gated on g_opt3007_chip_ready, then decodes the 16-bit result as (mantissa & 0xfff) << (exponent>>12); feeds opt3007_get_max_lux and get_lux_info.",
+  "batch": 9
+ },
+ {
+  "address": "0x0003304c",
+  "name": "spawn_aging_mode_aux_thread",
+  "confidence": "high",
+  "evidence": "Called by run_main_dispatch_thread; invokes the thread-create helper FUN_00071eac with g_aging_mode_aux_thread control block, its stack, size 0x400 and entry 0x324bd.",
+  "batch": 9
+ },
+ {
+  "address": "0x000438d0",
+  "name": "display_fade_out_mask_bands",
+  "confidence": "medium",
+  "evidence": "Called by ui_refalsh_warp; ANDs the 320x199 framebuffer rows against successive rodata mask bands (8 bands stepping -0x140) reflashing the LCD each pass, then gui_screen_clear \u2014 a fade-out sweep.",
+  "batch": 9
+ },
+ {
+  "address": "0x0004cd4c",
+  "name": "ipc_rpmsg_backend_register",
+  "confidence": "medium",
+  "evidence": "Address-taken init that CAS-locks a busy flag, sizes shared memory via shm_size, runs ipc_static_vrings_init, starts a work queue, opens/enables the backend device and installs bound_cb/ept_cb \u2014 an rpmsg-over-IPC backend registration.",
+  "batch": 9
+ },
+ {
+  "address": "0x0004f418",
+  "name": "gatt_subscribe_service_changed",
+  "confidence": "high",
+  "evidence": "Called by discovery_completed_cb_gatt; sets up subscription params and calls the subscribe/write helper, logging \"Subscribe Service Changed failed (err %d)\" on failure.",
+  "batch": 9
+ },
+ {
+  "address": "0x00052edc",
+  "name": "bt_settings_subsys_init_check",
+  "confidence": "high",
+  "evidence": "Called by bt_enable; wraps settings_subsys_init and emits the log \"settings_subsys_init failed (err %d)\" on nonzero return.",
+  "batch": 9
+ },
+ {
+  "address": "0x0005420c",
+  "name": "bt_unpair_all_or_addr",
+  "confidence": "high",
+  "evidence": "Called by pairing_complete and reset_all_usr_data; if the target address is the all-zero BT_ADDR_ANY (memcmp vs the 7-byte zero constant) it bt_foreach_bond-unpairs every bond, otherwise unpairs the one address.",
+  "batch": 9
+ },
+ {
+  "address": "0x00056300",
+  "name": "bt_conn_tx_drain_and_reset",
+  "confidence": "high",
+  "evidence": "conn.c function that loops net_buf_get draining the tx queue, unref/destroys fragments, asserts tx_pending empty and pending_no_cb==0, then bt_conn_reset_rx_state and reschedules the tx work.",
+  "batch": 9
+ },
+ {
+  "address": "0x00057b60",
+  "name": "l2cap_le_recv_pdu",
+  "confidence": "high",
+  "evidence": "Called by bt_l2cap_recv; performs LE credit-based flow control (\"No credits to receive packet\"), checks PDU size vs MPS, parses SDU length and allocates the reassembly buffer, dispatching to l2cap_chan_le_recv_seg.",
+  "batch": 9
+ },
+ {
+  "address": "0x0005cac0",
+  "name": "conn_auth_cb_get_or_init",
+  "confidence": "medium",
+  "evidence": "Called by smp_auth_get_pairing_method and other SMP paths; lazily CAS-initializes the auth-callback slot at object+0x238 from g_bt_conn_auth_cb and returns it.",
+  "batch": 9
+ },
+ {
+  "address": "0x000609f4",
+  "name": "qspi_nor_lock_if_magic",
+  "confidence": "low",
+  "evidence": "Called by qspi_nor_erase/write and storage_read_with_word_cache; only when the guard argument equals sentinel 0x0bad0000 does it k_sem_take the semaphore at base+0x30 (conditional device lock).",
+  "batch": 9
+ },
+ {
+  "address": "0x000639d4",
+  "name": "gpio_pin_configure_dt",
+  "confidence": "medium",
+  "evidence": "gpio.h-asserting routine that checks two z_device_is_ready ports, validates the OUTPUT_INIT and INPUT/OUTPUT flag combinations and port_pin_mask, then drives the pin via the port ops with flags|0x400 \u2014 a gpio_pin_configure_dt equivalent.",
+  "batch": 9
+ },
+ {
+  "address": "0x00066d1c",
+  "name": "nrf_gpio_pin_port_base_get",
+  "confidence": "high",
+  "evidence": "Called by pin_init/nrf_gpio_pin_set; from an absolute pin number selects GPIO port base 0x50842500 (port0) or 0x50842800 (port1), asserting nrf_gpio_pin_present_check.",
+  "batch": 9
+ },
+ {
+  "address": "0x000710b4",
+  "name": "rpmsg_virtio_tx_enqueue",
+  "confidence": "medium",
+  "evidence": "rpmsg_virtio.c function that writes a 16-byte rp_hdr (src,dst,reserved,len) via metal_io_block_write asserting \"status == sizeof(rp_hdr)\", then virtqueue_add_buffer under a mutex to enqueue the tx buffer.",
+  "batch": 9
+ },
+ {
+  "address": "0x00073f6c",
+  "name": "z_pend_curr",
+  "confidence": "high",
+  "evidence": "sched.c function taking sched_spinlock (asserting lock!=&sched_spinlock), pend_locked on the current thread (_kernel+8), unlocking with z_spin_unlock_valid then rescheduling; called by k_sem_take, k_mutex_lock, k_msgq_get/put, z_sched_wait.",
+  "batch": 9
+ },
+ {
+  "address": "0x00078598",
+  "name": "lseek_r_capture_errno",
+  "confidence": "high",
+  "evidence": "Called by libc_stream_write_syscall; clears g_errno, calls lseek, and on -1 copies the captured errno into the reentrancy struct \u2014 a reentrant lseek wrapper.",
+  "batch": 9
+ },
+ {
+  "address": "0x0007c108",
+  "name": "device_resume_state_advance",
+  "confidence": "low",
+  "evidence": "Called by global_system_resume; reads device-info byte at +0x1058, and if it equals 2 runs FUN_000559fc and advances the state byte to 3 (a resume-sequence state machine).",
+  "batch": 9
+ },
+ {
+  "address": "0x0007c8fa",
+  "name": "st25dv_reg_modify_low5",
+  "confidence": "medium",
+  "evidence": "Called by st25dv_write_control_and_ack; reads one register byte via ipc_ept_op_b_locked_retry then writes back with the low 5 bits replaced by the argument via ipc_ept_op_c_locked_retry.",
+  "batch": 9
+ },
+ {
+  "address": "0x0007d1c8",
+  "name": "ptr_load_u32",
+  "confidence": "low",
+  "evidence": "Two-byte thunk returning *param_1; called by get_demo_image_source and get_demo_image_source_from_flash to dereference the first u32 of the image-source record.",
+  "batch": 9
+ },
+ {
+  "address": "0x0007f088",
+  "name": "stream_flash_buffered_write",
+  "confidence": "high",
+  "evidence": "Called by FUN_0007f110; copies input into the stream-flash context buffer, flushing full blocks via stream_flash_flush_buffer and honoring a final-flush flag \u2014 the buffered stream_flash write body.",
+  "batch": 9
+ },
+ {
+  "address": "0x00080ea2",
+  "name": "bt_log_forward_3arg",
+  "confidence": "low",
+  "evidence": "Six-byte tail-thunk called by 21 HCI/BT functions (hci_tx_thread, bt_enable, bt_hci_core_recv_event...) that forwards three args to the logging primitive FUN_0004d944 with a zero fourth arg.",
+  "batch": 9
+ },
+ {
+  "address": "0x0008181a",
+  "name": "att_create_pdu_reserve4",
+  "confidence": "low",
+  "evidence": "Six-byte thunk called by bt_att_chan_create_pdu and smp_create_pdu that forwards to FUN_000569ec with the length argument incremented by 4 (header reservation).",
+  "batch": 9
+ },
+ {
+  "address": "0x00083002",
+  "name": "bt_conn_security_sufficient",
+  "confidence": "medium",
+  "evidence": "Called by smp_ident_addr_info and FUN_0005d5c0; compares the connection's encryption key size/security-level fields against required minimums using atomic_test_bit, returning whether current security is adequate.",
+  "batch": 9
+ },
+ {
+  "address": "0x000844e0",
+  "name": "transport_send_type2_via_ops",
+  "confidence": "low",
+  "evidence": "Address-taken; builds a small on-stack descriptor {buf,len=1,val,type=2} from a single byte and dispatches it through the ops function pointer at (*param_1)->[8]+8 \u2014 a one-byte typed transport send.",
+  "batch": 9
+ },
+ {
+  "address": "0x0008504c",
+  "name": "cjson_add_bool_to_object",
+  "confidence": "high",
+  "evidence": "Called by convert_app_whitelist_to_json; creates a cJSON bool with cjson_create_bool, attaches it via cjson_add_item_to_object, and cjson_delete-frees it if attachment fails.",
+  "batch": 9
+ },
+ {
+  "address": "0x00085d70",
+  "name": "zcbor_backup_store_count",
+  "confidence": "low",
+  "evidence": "Shared by eight cbor_decode_* callers; reads the state pointer at +0x14, and when helper FUN_00085d5c returns nonzero stores its high word into element field +0xc \u2014 a decoder backup/count update.",
+  "batch": 9
+ },
+ {
+  "address": "0x00016580",
+  "name": "get_dashboard_startup_mode_field63",
+  "confidence": "low",
+  "evidence": "Single volatile read of byte at g_dashboard_startup_mode_info_defaults+0x63; pure leaf getter called once by FUN_0002a8d8.",
+  "batch": 10
+ },
+ {
+  "address": "0x00023ee0",
+  "name": "get_ui_mode_flag_byte1",
+  "confidence": "low",
+  "evidence": "Returns the byte at g_ui_mode_flag+1 (0x20018463); called by 14 UI draw/task functions (DashBoard_Reflash, ui_QuickNote_task, ui_teleprompter_task, etc.) as a shared display-mode selector.",
+  "batch": 10
+ },
+ {
+  "address": "0x0002a4f4",
+  "name": "transport_dispatch_thread",
+  "confidence": "medium",
+  "evidence": "Root thread that inits a 10-count semaphore, loops on get_device_info state, drives init_nfc_comm/init_serial_comm and ipc_service_send_with_retry with wait_for_event and is_battery_critical gating.",
+  "batch": 10
+ },
+ {
+  "address": "0x00032fdc",
+  "name": "get_click_dispatch_flag",
+  "confidence": "high",
+  "evidence": "Leaf that returns the single volatile byte at g_click_dispatch_flag (0x20019ef2).",
+  "batch": 10
+ },
+ {
+  "address": "0x000429f8",
+  "name": "onboarding_mark_retry_if_reset",
+  "confidence": "medium",
+  "evidence": "Called by ui_onboarding_task; when device state byte at get_device_info+0x1014[2] is one of 5/0x13/0x14/0x15 and onboarding_secondary_reset_flag==2 and sub-state==1, it sets onboarding_retry_counter=1.",
+  "batch": 10
+ },
+ {
+  "address": "0x0004c4d0",
+  "name": "hw_reset_and_halt",
+  "confidence": "medium",
+  "evidence": "Writes 1 to MMIO REG_50004500, executes __DSB() then spins in __WFE() forever \u2014 a reset/poweroff request followed by an idle halt loop (cmsis_gcc.h referenced).",
+  "batch": 10
+ },
+ {
+  "address": "0x0004f0ec",
+  "name": "ancs_subscribe_data_source",
+  "confidence": "high",
+  "evidence": "Called by discovery_completed_cb_ancs; sets up a subscribe request (atomic_test_and_set_bit busy flag, fills request struct, calls FUN_0005c3c4) and logs \"Subscribe Data Source failed (err %d)\" on error.",
+  "batch": 10
+ },
+ {
+  "address": "0x00052b48",
+  "name": "gatt_register_service_200028b8",
+  "confidence": "medium",
+  "evidence": "Thin wrapper that calls bt_gatt_service_register on the static service object at 0x200028b8 (gatt.c strings, svc->attrs/attr_count).",
+  "batch": 10
+ },
+ {
+  "address": "0x00053bd8",
+  "name": "le_conn_param_update_handle",
+  "confidence": "medium",
+  "evidence": "Looks up conn by handle via ble_conn_lookup_masked (logs \"Unable to lookup conn for handle %u\"), branches on L2CAP signal opcode (0x1a/0x20), updates conn param fields and calls ble_notify_le_param_updated.",
+  "batch": 10
+ },
+ {
+  "address": "0x00055fb4",
+  "name": "bt_conn_notify_connected",
+  "confidence": "medium",
+  "evidence": "Called by ble_conn_set_state and bt_conn_connected; walks g_ble_conn_cb_list_head invoking each callback's first function pointer with (conn, state_byte); conn.c assert \"cb <= _bt_conn_cb_list_end\".",
+  "batch": 10
+ },
+ {
+  "address": "0x0005774c",
+  "name": "l2cap_chan_send_disconnect",
+  "confidence": "medium",
+  "evidence": "l2cap.c function requiring state==CONNECTED(3); allocates a net_buf, writes {channel,reason} record and att_send_simple, else frees all queued packets and invokes ops->stopped; logs \"Unable to send credits update\".",
+  "batch": 10
+ },
+ {
+  "address": "0x0005c5f0",
+  "name": "gatt_mult_notify_dispatch",
+  "confidence": "medium",
+  "evidence": "Called by att_notify_mult; iterates handle/length-prefixed records over the buffer, matches subscribed handlers by type and invokes them, unsubscribing on zero return; logs \"Invalid data len %u > %u\".",
+  "batch": 10
+ },
+ {
+  "address": "0x00060778",
+  "name": "array_slot_ptr_b098",
+  "confidence": "low",
+  "evidence": "Computes 0x2000b098 + ((index & 0xff) << 5), a pointer into a 32-byte-stride table indexed by the low byte; no callers/strings to identify the table.",
+  "batch": 10
+ },
+ {
+  "address": "0x00063898",
+  "name": "nrf_rtc_timer_chan_free",
+  "confidence": "medium",
+  "evidence": "nrf_rtc_timer.c; asserts channel==1 (\"chan > 0 && chan < (1 + 1)\") then atomically sets bit 2 in nrf_rtc_timer_free_channels, marking the RTC compare channel free.",
+  "batch": 10
+ },
+ {
+  "address": "0x00065d8c",
+  "name": "nrfx_ipc_config_load",
+  "confidence": "medium",
+  "evidence": "nrfx_ipc.c; asserts driver INITIALIZED, then copies 16 SEND config words and 16 RECEIVE config words plus a channel-enable word from a config struct into the IPC peripheral at 0x5002a000.",
+  "batch": 10
+ },
+ {
+  "address": "0x00068298",
+  "name": "metal_sys_init",
+  "confidence": "high",
+  "evidence": "Header comment identifies it as libmetal Zephyr metal_sys_init; registers the metal bus node at g_module_registry_node (0x20002c3c) via metal_bus_register and returns 0.",
+  "batch": 10
+ },
+ {
+  "address": "0x00073d1c",
+  "name": "sched_requeue_by_prio",
+  "confidence": "medium",
+  "evidence": "sched.c (\"!z_is_idle_thread_object\"); unlinks a thread from the ready dlist if queued, then reinserts it into g_sched_ready_runq at the position ordered by its priority byte and calls a reschedule helper.",
+  "batch": 10
+ },
+ {
+  "address": "0x00077a28",
+  "name": "strtol_r",
+  "confidence": "high",
+  "evidence": "Header comment marks it _strtol_r; classic newlib signed strtol reentrant impl (base validation, sign, 0x prefix, cutoff/cutlim overflow clamp to LONG_MIN/MAX, errno=ERANGE).",
+  "batch": 10
+ },
+ {
+  "address": "0x0007c0a8",
+  "name": "k_msleep_ticks32768_d",
+  "confidence": "medium",
+  "evidence": "Converts a millisecond arg to 32768 Hz ticks ((ms*0x8000+999)/1000) via __aeabi_uldivmod then calls wait_for_event \u2014 a millisecond sleep wrapper, sibling to k_msleep_ticks32768_b/c.",
+  "batch": 10
+ },
+ {
+  "address": "0x0007c8d0",
+  "name": "st25dv_ipc_send_byte",
+  "confidence": "medium",
+  "evidence": "Called by st25dv_write_control_and_ack; copies param to a 1-byte local and forwards it through ipc_ept_op_c_locked_retry with length 1.",
+  "batch": 10
+ },
+ {
+  "address": "0x0007d120",
+  "name": "device_api_call_slot0",
+  "confidence": "low",
+  "evidence": "Loads a function pointer from the first entry of the API vtable at object+8 and tail-calls it with the object; used by get_flash_info as a device-driver API dispatch.",
+  "batch": 10
+ },
+ {
+  "address": "0x0007f00e",
+  "name": "storage_ctx_get_field0c",
+  "confidence": "low",
+  "evidence": "Leaf returning the 32-bit field at offset 0xc of its argument; called by storage_erase_handler and FUN_0007f150.",
+  "batch": 10
+ },
+ {
+  "address": "0x00080d3a",
+  "name": "const_return_zero_80d3a",
+  "confidence": "low",
+  "evidence": "Four-byte leaf that unconditionally returns 0; single caller FUN_00054d18, no distinguishing context.",
+  "batch": 10
+ },
+ {
+  "address": "0x000816a2",
+  "name": "atomic_get_word",
+  "confidence": "medium",
+  "evidence": "Six-byte leaf returning *param (a relaxed atomic load); called by l2cap paths (FUN_0005774c reads pending_owner, bt_l2cap_recv, l2cap_recv) as atomic_get.",
+  "batch": 10
+ },
+ {
+  "address": "0x00082a42",
+  "name": "log_msg_create_3arg",
+  "confidence": "low",
+  "evidence": "Tail-thunk forwarding three args to log helper FUN_0004d944 with a zeroed 4th arg; called by 28 GATT functions as their static log-message create shim.",
+  "batch": 10
+ },
+ {
+  "address": "0x000842cc",
+  "name": "regulator_write_voltage_reg",
+  "confidence": "medium",
+  "evidence": "Called by regulator_set_voltage_dispatch; computes a value via FUN_00062070 and, unless it returns -EINVAL, writes it through dev_write_reg3 to register at device+0x1c.",
+  "batch": 10
+ },
+ {
+  "address": "0x0008501a",
+  "name": "cjson_print_unformatted",
+  "confidence": "high",
+  "evidence": "Called by convert_app_whitelist_to_json; wraps cjson_print(obj, 0) to render JSON with the pretty/format flag disabled.",
+  "batch": 10
+ },
+ {
+  "address": "0x00085d36",
+  "name": "cbor_decode_is_break",
+  "confidence": "medium",
+  "evidence": "Called by cbor_decode_skip_value; returns whether the decoder is at the end of an indefinite-length item \u2014 either exhausted count, or the current byte equals the CBOR break marker 0xff.",
+  "batch": 10
+ },
+ {
+  "address": "0x00017858",
+  "name": "gpio_pin_configure",
+  "confidence": "high",
+  "evidence": "Asserts from gpio.h on flag combinations (input/output/pull), dereferences a GPIO device to fetch the pin-config function pointer at +0x18 and invokes it with masked flags; called by button_init - this is Zephyr gpio_pin_configure.",
+  "batch": 11
+ },
+ {
+  "address": "0x00025090",
+  "name": "event_record_init",
+  "confidence": "low",
+  "evidence": "Given two output/param pointers it stamps a fixed type byte 7 plus three rodata-string addresses (0x7c38b/0x24a41/0x25021) and copies caller-supplied fields, i.e. initializes a tagged descriptor record; only caller is FUN_000250f8.",
+  "batch": 11
+ },
+ {
+  "address": "0x0002eaa8",
+  "name": "display_dev_reg_config",
+  "confidence": "medium",
+  "evidence": "Reads a device base (0x87ce0+4), calls dev_write_reg3(handle+0x1c, 3,4,1) and logs an error on failure; called by main, set_display_brightness and process_pt_data - a display controller register-config write.",
+  "batch": 11
+ },
+ {
+  "address": "0x00033bc4",
+  "name": "pt_queue_get_free_slot",
+  "confidence": "low",
+  "evidence": "Reads flag bytes in a fixed SRAM struct at 0x20008dac (+0x115/+0x116/+0x118), and when a counter is <4 stamps +0x114=10 and returns pointer +0x108, i.e. hands out a free ring/queue entry.",
+  "batch": 11
+ },
+ {
+  "address": "0x00047a84",
+  "name": "demo_image_get_position",
+  "confidence": "medium",
+  "evidence": "Only caller update_demo_image_display; writes X/Y placement outputs (0x27e/199 vs 0x240/0x88) branching on g_display_page_dirty_flag and returns a value from table 0x8ac20 indexed by param.",
+  "batch": 11
+ },
+ {
+  "address": "0x0004d334",
+  "name": "log_msg_process",
+  "confidence": "high",
+  "evidence": "From log_core.c: guards with z_log_process_guard atomic, iterates the _log_backend_list, invokes each backend's process fn and log_msg_commit, asserting log_backend_count_get()<32/3; core log-message processing routine.",
+  "batch": 11
+ },
+ {
+  "address": "0x0004f564",
+  "name": "app_event_alloc",
+  "confidence": "high",
+  "evidence": "From app_event_manager.c: allocates via malloc_impl and asserts on NULL; called by main and the power-event submitter FUN_00063bcc - App Event Manager event allocation.",
+  "batch": 11
+ },
+ {
+  "address": "0x00053024",
+  "name": "gatt_sc_settings_delete",
+  "confidence": "medium",
+  "evidence": "Thin wrapper calling bt_settings_delete with a fixed key string (0xf4de3); sole caller is bt_gatt_clear_sc, so it deletes the GATT service-changed settings entry.",
+  "batch": 11
+ },
+ {
+  "address": "0x00054528",
+  "name": "le_remote_conn_param_req",
+  "confidence": "high",
+  "evidence": "From conn.c: parses handle+interval/latency/timeout fields, looks up the connection ('Unable to lookup conn for handle %u'), calls ble_notify_disconnected and either le_conn_param_neg_reply or builds an HCI accept command - LE remote connection parameter request handler.",
+  "batch": 11
+ },
+ {
+  "address": "0x000569a0",
+  "name": "bt_conn_index",
+  "confidence": "high",
+  "evidence": "From conn.c: computes (conn - g_ble_conn_pool)/8 with an index bounds assert and returns the low byte; classic bt_conn_index array-index helper.",
+  "batch": 11
+ },
+ {
+  "address": "0x00058a54",
+  "name": "att_chan_send",
+  "confidence": "high",
+  "evidence": "From att.c with strings 'ATT channel not connected'/'Error signing data'/'Ran out of TX buffers'; checks channel-connected bit, gets ATT op type, creates a conn PDU via bt_conn_create_pdu and restores buffer state on error - ATT channel PDU send.",
+  "batch": 11
+ },
+ {
+  "address": "0x0005d568",
+  "name": "smp_build_auth_flags",
+  "confidence": "medium",
+  "evidence": "Builds an SMP authentication/bondable flag mask (MITM/SC bits gated by g_bt_settings_load_done, smp_auth_get_pairing_method==3, and bondable default g_smp_bondable_default) stored at conn+0x23c; called from SMP pairing setup.",
+  "batch": 11
+ },
+ {
+  "address": "0x00061f64",
+  "name": "nrf_gpio_pin_port_decode",
+  "confidence": "high",
+  "evidence": "From nrf_gpio.h with assert 'nrf_gpio_pin_present_check(*p_pin)'; splits an absolute pin number into bank (>>5) selecting P0 base 0x50842500 or P1 base 0x50842800, validates presence and rewrites the pin to its port-relative value.",
+  "batch": 11
+ },
+ {
+  "address": "0x00063bcc",
+  "name": "app_event_submit_power",
+  "confidence": "medium",
+  "evidence": "Allocates a 0xc-byte event via app_event_alloc(FUN_0004f564) and stamps its type pointer (0xfa9cc); called by power_manager_system_off and reset_state_and_stop_timer to submit a power/shutdown event.",
+  "batch": 11
+ },
+ {
+  "address": "0x000671d8",
+  "name": "nrfx_spim_init",
+  "confidence": "high",
+  "evidence": "From nrfx_spim.c ('p_config'), indexes the nRFx SPIM control-block array g_nrfx_spim_cb by instance id, checks the initialized flag (returns 0x0bad0005 if set), stores config/handler and finishes init via FUN_00066d78 - nrfx_spim_init.",
+  "batch": 11
+ },
+ {
+  "address": "0x00071314",
+  "name": "sync_buffer_available_space",
+  "confidence": "low",
+  "evidence": "Under a mutex (mutex_lock_wait_forever_dup on obj+0x58) checks a state field and returns remaining space (obj+0x94 minus 0x10) or negative error codes; sole caller FUN_0004cd4c.",
+  "batch": 11
+ },
+ {
+  "address": "0x000742b4",
+  "name": "unpend_thread",
+  "confidence": "high",
+  "evidence": "Takes sched_spinlock (spinlock.h asserts), aborts the thread's timeout (z_abort_thread_timeout) when armed and dequeues it (FUN_00074d74 on thread+0x18); called by z_unpend_all and signal_poll_event.",
+  "batch": 11
+ },
+ {
+  "address": "0x00078d90",
+  "name": "printf_parse_format",
+  "confidence": "medium",
+  "evidence": "Core printf conversion loop over flags '#-0+ ', width/precision and length modifiers, dispatching integer vs float ('efgEFG') to FUN_0007712c or vfprintf_format_engine and appending via iobuf_ensure_capacity_and_append; called by vsprintf_impl/format_string_to_buffer.",
+  "batch": 11
+ },
+ {
+  "address": "0x0007c1aa",
+  "name": "device_info_store_chunk",
+  "confidence": "medium",
+  "evidence": "memcpy's caller data into a device_info buffer (get_device_info +0x1024/+0x1028 selected by param_4) then sets a flag byte at +0x200; called by ble_process_put_req and ble_process_req_dispatch.",
+  "batch": 11
+ },
+ {
+  "address": "0x0007c956",
+  "name": "st25dv_ipc_request",
+  "confidence": "medium",
+  "evidence": "Rejects null arg (0xffffffea) then forwards to ipc_ept_op_b_locked_retry with op 0x17; sole caller st25dv_read_chip_ids, so it issues the ST25DV chip-id IPC request.",
+  "batch": 11
+ },
+ {
+  "address": "0x0007d2f8",
+  "name": "device_info_set_mode",
+  "confidence": "medium",
+  "evidence": "For param<=2 compares device_info fields (buffer at +0x1010 byte+2, and +0xd5==7) and on mismatch writes the new mode byte and a dirty flag; called by key_event_thread and master_process_audio_fw_load_req.",
+  "batch": 11
+ },
+ {
+  "address": "0x0007f406",
+  "name": "gatt_dm_log_helper",
+  "confidence": "low",
+  "evidence": "Six-byte tail-call wrapper appending a fourth zero argument to FUN_0004d944; all callers are gatt_dm_* discovery-manager routines (gatt_dm_start, discovery_callback, uuid_store), a shared thin helper.",
+  "batch": 11
+ },
+ {
+  "address": "0x00080fba",
+  "name": "bt_addr_copy",
+  "confidence": "high",
+  "evidence": "Copies 6 bytes (4-byte word plus 2-byte halfword) from one struct to another; called by ble_privacy_request_random_address and address-handling paths - a Bluetooth device-address copy.",
+  "batch": 11
+ },
+ {
+  "address": "0x00081a60",
+  "name": "l2cap_disconnect_tx_chan",
+  "confidence": "medium",
+  "evidence": "On success path looks up an L2CAP channel by TX CID (bt_l2cap_le_lookup_tx_cid using field at param+4) and runs conn_ctx_cleanup_if_pending to tear it down; address-taken handler.",
+  "batch": 11
+ },
+ {
+  "address": "0x0008307a",
+  "name": "smp_chan_lookup",
+  "confidence": "high",
+  "evidence": "Looks up the fixed SMP L2CAP channel via bt_l2cap_le_lookup_rx_cid(conn, 6) (string 'Unable to find SMP channel'); called by bt_smp_request_ltk and smp_alloc_pairing_keys.",
+  "batch": 11
+ },
+ {
+  "address": "0x00084774",
+  "name": "layout_select_region",
+  "confidence": "low",
+  "evidence": "Computes size metrics from struct width/height fields (offsets 8/10 and 0x14/0x16 with scale/offset words) versus a threshold param, advancing to a sub-region or returning 0xffffffea before delegating to FUN_00084602; sole caller FUN_00062644.",
+  "batch": 11
+ },
+ {
+  "address": "0x000850c8",
+  "name": "cjson_is_array",
+  "confidence": "medium",
+  "evidence": "Null-guarded check returning whether a node's type byte at +0xc equals 0x20 (cJSON_Array); called by parse_whitelist_json and verify_whitelist_json to test for a JSON array.",
+  "batch": 11
+ },
+ {
+  "address": "0x000864b2",
+  "name": "k_mutex_owner_prio_check",
+  "confidence": "low",
+  "evidence": "Called from k_mutex_lock and k_mutex_unlock: compares a signed byte at obj+0xe (owner/priority) against param and invokes FUN_00074060 (scheduler priority update) on mismatch, else returns 0.",
+  "batch": 11
+ },
+ {
+  "address": "0x00016834",
+  "name": "imu_apply_normalized_mode",
+  "confidence": "medium",
+  "evidence": "Normalizes state (1->1,2->2,else 0) and forwards to update_imu_mode with device_info(0x200069fc)+3812 as the IMU context.",
+  "batch": 12
+ },
+ {
+  "address": "0x00024678",
+  "name": "quicknote_flash_msgq_read_field24",
+  "confidence": "low",
+  "evidence": "Called by flash_ops_thread; returns the word at g_quicknote_flash_msgq+0x24, a single-field accessor into the quicknote flash message queue.",
+  "batch": 12
+ },
+ {
+  "address": "0x0002e8fc",
+  "name": "opt3007_init_ctx_setup",
+  "confidence": "medium",
+  "evidence": "Called by main; populates a struct with thunk addresses opt3007_chip_init (0x2e67d) and FUN_0002e648, plus self-relative back-pointer, setting up the OPT3007 init context.",
+  "batch": 12
+ },
+ {
+  "address": "0x00033088",
+  "name": "fuel_gauge_dev_register",
+  "confidence": "medium",
+  "evidence": "Called by init_serial_comm; stores the device handle into g_fuel_gauge_dev+4 and sets the ready flag at +8, returning -1 when null.",
+  "batch": 12
+ },
+ {
+  "address": "0x000440ec",
+  "name": "ui_render_scroll_text_frame",
+  "confidence": "medium",
+  "evidence": "Called by ui_even_ai_task and ui_teleprompter_task; draws UTF text via gui_utf_draw and scrolls/blits framebuffer rows to the LCD (reflash_fb_data_to_lcd_ex, fb_blit_rows_halved).",
+  "batch": 12
+ },
+ {
+  "address": "0x0004d0c4",
+  "name": "rpmsg_create_ept_bound",
+  "confidence": "medium",
+  "evidence": "Wraps rpmsg_create_ept for the param_2==1 case, deriving name/queue pointers from the endpoint struct and returning -EINVAL on null args.",
+  "batch": 12
+ },
+ {
+  "address": "0x0004f500",
+  "name": "ancs_gatt_client_cb_set",
+  "confidence": "medium",
+  "evidence": "Bundle identifies it as ANCS GATT client callback config setter; copies 3 words of configuration into g_2000a2b8 when non-null.",
+  "batch": 12
+ },
+ {
+  "address": "0x00052f68",
+  "name": "bt_id_save",
+  "confidence": "high",
+  "evidence": "Calls bt_settings_store and logs \"Failed to save ID (err %d)\" on failure, reading identity count from g_ble_dev_state+7.",
+  "batch": 12
+ },
+ {
+  "address": "0x000543c8",
+  "name": "bt_hci_driver_send",
+  "confidence": "low",
+  "evidence": "Called by bt_hci_cmd_send_or_create and hci_tx_thread; dereferences the HCI driver object at g_20002168 and invokes its op at vtable+0x14.",
+  "batch": 12
+ },
+ {
+  "address": "0x00056394",
+  "name": "bt_acl_data_recv",
+  "confidence": "high",
+  "evidence": "Called by bt_hci_core_recv_event; reassembles ACL fragments into L2CAP frames with strings \"Unexpected first L2CAP frame\", \"ACL len mismatch\", forwarding complete PDUs to bt_l2cap_recv.",
+  "batch": 12
+ },
+ {
+  "address": "0x0005833c",
+  "name": "att_chan_req_free",
+  "confidence": "medium",
+  "evidence": "Located in att.c; frees/zeroes a 0x14-byte ATT request, returning it to g_bt_att_pool via net_pkt_skip, with alloc_from_global assertions.",
+  "batch": 12
+ },
+ {
+  "address": "0x0005cff0",
+  "name": "smp_public_key_central",
+  "confidence": "medium",
+  "evidence": "Copies the 64-byte remote public key into the SMP context, logs \"Remote is using Debug Public key\" and rejects debug keys; falls through to smp_public_key_periph.",
+  "batch": 12
+ },
+ {
+  "address": "0x00060a5c",
+  "name": "qspi_nor_suspend_bus",
+  "confidence": "medium",
+  "evidence": "Called by qspi_nor_pm_action/erase/write/read; takes the driver semaphore, waits for nrfx_qspi_mem_busy_check, calls nrfx_qspi_uninit and clears g_qspi_nor_initialized.",
+  "batch": 12
+ },
+ {
+  "address": "0x00063b7c",
+  "name": "fatal_log_and_reset",
+  "confidence": "high",
+  "evidence": "Called by z_fatal_error; logs \"Resetting system\" via log_panic and calls nrf_cc3xx_platform_abort to reset.",
+  "batch": 12
+ },
+ {
+  "address": "0x00066d78",
+  "name": "nrfx_pin_freq_config_validate",
+  "confidence": "low",
+  "evidence": "Validates a config: switches on clock frequency values (0x1e8480=2M .. 0x1e84800=32M) and GPIO pins against 0x5000a000, returning nrfx 0x0bad000x error codes.",
+  "batch": 12
+ },
+ {
+  "address": "0x0007118c",
+  "name": "rpmsg_virtio_rx_notify",
+  "confidence": "high",
+  "evidence": "From rpmsg_virtio.c; drains the RX virtqueue via virtqueue_get_buffer, dispatches to endpoint callbacks (rpmsg_get_endpoint), asserts \"status >= 0\" and returns buffers with virtqueue_add_buffer.",
+  "batch": 12
+ },
+ {
+  "address": "0x00074060",
+  "name": "z_sched_set_prio_and_requeue",
+  "confidence": "high",
+  "evidence": "From sched.c under sched_spinlock; unlinks the thread, sets its priority (param_2) and reinserts sorted into g_sched_ready_runq, asserting \"!z_is_idle_thread_object\".",
+  "batch": 12
+ },
+ {
+  "address": "0x00078bf8",
+  "name": "double_ulp_from_exp",
+  "confidence": "medium",
+  "evidence": "Called by strtod_sulp; extracts the biased exponent of a double and constructs the power-of-two ulp/magnitude value via right shifts of the mantissa mask.",
+  "batch": 12
+ },
+ {
+  "address": "0x0007c132",
+  "name": "device_addr_is_default",
+  "confidence": "medium",
+  "evidence": "Called by check_disp_onboarding/process_for_new_task; memcmps the 7-byte field at device_info+0x1069 against all-zero then all-0xff to detect an unprovisioned/default address.",
+  "batch": 12
+ },
+ {
+  "address": "0x0007c932",
+  "name": "st25dv_ipc_request_chip_ids",
+  "confidence": "medium",
+  "evidence": "Called only by st25dv_read_chip_ids; wraps ipc_ept_op_b_locked_retry with op 0x18 / length 8, returning -EINVAL when the buffer is null.",
+  "batch": 12
+ },
+ {
+  "address": "0x0007d1d0",
+  "name": "dashboard_read_word",
+  "confidence": "low",
+  "evidence": "Trivial dereference returning *p; called by DashBoard_Reflash and ui_DashBoard_task to read a dashboard state word.",
+  "batch": 12
+ },
+ {
+  "address": "0x0007f110",
+  "name": "img_mgmt_flash_write_chunk",
+  "confidence": "medium",
+  "evidence": "Called by img_mgmt_write_image_data; writes an image data chunk to flash via FUN_0004e124 using offset FUN_000836d8, closing the flash context on completion.",
+  "batch": 12
+ },
+ {
+  "address": "0x00080f8c",
+  "name": "ble_appearance_value",
+  "confidence": "medium",
+  "evidence": "Called by read_appearance; returns the constant GAP appearance value 0x341.",
+  "batch": 12
+ },
+ {
+  "address": "0x00081852",
+  "name": "att_send_data_frags",
+  "confidence": "medium",
+  "evidence": "Called by att_send_with_retry; sends net_buf fragments (FUN_0005757c) up to the MTU at +0x26, handling the -0xb retry/backpressure and unref-ing on completion.",
+  "batch": 12
+ },
+ {
+  "address": "0x00083062",
+  "name": "bt_addr_le_copy",
+  "confidence": "medium",
+  "evidence": "Called by smp_ident_addr_info and convert_to_id_on_match; copies a 7-byte bt address (4+2+1 bytes) from src to dst.",
+  "batch": 12
+ },
+ {
+  "address": "0x00084516",
+  "name": "timing_channel_dispatch",
+  "confidence": "low",
+  "evidence": "Dispatches on a 0-7 selector, reading short parameters from a table at ctx+0x10 and forwarding them to us_to_ticks_scaled / us_to_ticks_scaled_v2; returns -EINVAL for out-of-range.",
+  "batch": 12
+ },
+ {
+  "address": "0x00085076",
+  "name": "cjson_object_add_number",
+  "confidence": "high",
+  "evidence": "Called by spec_ble_command_hook; cjson_create_number then cjson_add_item_to_object, deleting the number on failure.",
+  "batch": 12
+ },
+ {
+  "address": "0x00085f6c",
+  "name": "cbor_decode_uint",
+  "confidence": "high",
+  "evidence": "Checks major type 0 (unsigned int) via cbor_decode_check_major_type then extracts the value via cbor_decode_extract_value.",
+  "batch": 12
+ },
+ {
+  "address": "0x0001793c",
+  "name": "nfc_field_event_signal_sem",
+  "confidence": "low",
+  "evidence": "Address-taken callback: on event param_3==0x200 with g_pt_nfc_link_ready set, sets g_touch_key_irq_pending and k_sem_give(device_info+0xb0), wrapped by an MMIO config toggle (FUN_00017858 with 0x889d0).",
+  "batch": 13
+ },
+ {
+  "address": "0x000250c4",
+  "name": "fill_record_type8",
+  "confidence": "low",
+  "evidence": "Fills a 0x19-byte descriptor with tag byte 8, three fixed rodata pointers (0x7c39d/0x24ad9/0x25059) and 9 bytes copied from param_2; returns 0 on success, 7 (EINVAL) on null args.",
+  "batch": 13
+ },
+ {
+  "address": "0x0002ead8",
+  "name": "dev_read_status_bit_reg34",
+  "confidence": "low",
+  "evidence": "Reads device register 0x34 via dev_ctrl_read1, logs on error, then folds bits 2-4 of the byte into a single 0/1 status flag; called by FUN_0003271c.",
+  "batch": 13
+ },
+ {
+  "address": "0x00033c04",
+  "name": "message_pool_read_byte_0xd",
+  "confidence": "low",
+  "evidence": "Returns the byte at offset 0xd of g_message_pool entry param_1 (entry stride 0x1b4); called by process_for_message_show.",
+  "batch": 13
+ },
+ {
+  "address": "0x00047ab8",
+  "name": "free_pixel4bit_row_buf",
+  "confidence": "medium",
+  "evidence": "Frees g_pixel4bit_row_buf (0x20009fcc) if non-null and clears the pointer; called by prepare_system_suspend_state.",
+  "batch": 13
+ },
+ {
+  "address": "0x0004d420",
+  "name": "lookup_word_table_8acb4",
+  "confidence": "low",
+  "evidence": "Returns *(uint32_t*)(0x8acb4 + param_1*4), a fixed rodata word-table lookup; called by process.",
+  "batch": 13
+ },
+ {
+  "address": "0x0004f5b0",
+  "name": "app_event_manager_process_events",
+  "confidence": "high",
+  "evidence": "Under g_notify_pending_lock drains g_notify_pending_slist and dispatches each app_event_manager event to its notification listeners; strings reference app_event_manager.c and its type_id/notification assertions.",
+  "batch": 13
+ },
+ {
+  "address": "0x00053034",
+  "name": "bt_settings_store_cf",
+  "confidence": "medium",
+  "evidence": "Called only by bt_gatt_store_cf; forwards to bt_settings_store with the fixed 'cf' key format (0xf4ddd) plus the addr/id args, persisting GATT client-features.",
+  "batch": 13
+ },
+ {
+  "address": "0x000548b8",
+  "name": "bt_dev_show_info",
+  "confidence": "high",
+  "evidence": "Logs the controller identity addresses (Identity/Identity[%d]) and HCI/LMP version strings from g_ble_dev_state, then atomic_or on g_ble_dev_ncmd_sem flags \u2014 the Zephyr bt_dev_show_info startup dump.",
+  "batch": 13
+ },
+ {
+  "address": "0x000569ec",
+  "name": "bt_conn_create_pdu_timeout",
+  "confidence": "high",
+  "evidence": "Allocates an ACL tx buffer from acl_tx_pool with a timeout and reserves headroom; asserts !k_is_in_isr and logs 'Unable to allocate buffer within timeout' from conn.c.",
+  "batch": 13
+ },
+ {
+  "address": "0x00058b78",
+  "name": "att_chan_req_send_checked",
+  "confidence": "medium",
+  "evidence": "Asserts chan, req, req->func and !chan->req (att.c) then calls chan_req_send; called by bt_att_status and att_req_send_process.",
+  "batch": 13
+ },
+ {
+  "address": "0x0005d5c0",
+  "name": "smp_pairing_req",
+  "confidence": "high",
+  "evidence": "Peripheral SMP pairing-request handler: parses peer pairing feature bytes, sets auth/io/key fields, computes pairing method (smp_auth_get_pairing_method), and calls send_pairing_rsp; logs 'Unknown pairing method (%u)' and 'JustWorks failed, authenticated keys present'.",
+  "batch": 13
+ },
+ {
+  "address": "0x00062070",
+  "name": "regulator_uv_to_reg_selector",
+  "confidence": "medium",
+  "evidence": "Callers regulator_set_voltage_range/dev_configure_channel: validates a microvolt range and computes selector=(uv-0xdbba1)/100000 with 0.1V steps from 1.0V up to 3.3V, writing it to *param_3.",
+  "batch": 13
+ },
+ {
+  "address": "0x00063be0",
+  "name": "caf_power_manager_restart_timer",
+  "confidence": "medium",
+  "evidence": "When g_caf_power_manager_system_off_flag is clear, resets g_caf_power_manager_wake_evt_cnt and k_work_reschedule's g_caf_power_manager_timer.",
+  "batch": 13
+ },
+ {
+  "address": "0x00067248",
+  "name": "nrfx_spim_uninit",
+  "confidence": "high",
+  "evidence": "nrfx_spim.c driver deinit: asserts state != UNINITIALIZED on g_nrfx_spim_cb, disables IRQ, aborts active transfer (spim_abort) and releases SPIM pins (spim_pin_uninit).",
+  "batch": 13
+ },
+ {
+  "address": "0x0007158c",
+  "name": "cbor_min_encoded_size",
+  "confidence": "medium",
+  "evidence": "Called by cbor_encode_length_header and cbor_encode_bstr: trims trailing zero bytes of a value then maps the significant length to a power-of-two encoding size via LUT at 0xf7c37.",
+  "batch": 13
+ },
+ {
+  "address": "0x0007440c",
+  "name": "z_timer_stop_unpend",
+  "confidence": "medium",
+  "evidence": "Called by z_impl_k_timer_stop: under sched_spinlock aborts the timer's thread timeout via z_abort_thread_timeout and returns the pending waiter thread.",
+  "batch": 13
+ },
+ {
+  "address": "0x00079278",
+  "name": "vfprintf_field_scan_match",
+  "confidence": "low",
+  "evidence": "Inner loop of vfprintf_core using a character-class table (0xf8a6b) and a refill callback at state[0x60] to copy/filter input characters against modes 1/2.",
+  "batch": 13
+ },
+ {
+  "address": "0x0007c1dc",
+  "name": "store_device_info_bytes_cd_cf",
+  "confidence": "low",
+  "evidence": "Called by ble_process_put_req: when param_3==0 stores param_2 and param_1 into device_info offsets 0xcf and 0xcd, else calls FUN_0007c176.",
+  "batch": 13
+ },
+ {
+  "address": "0x0007c968",
+  "name": "ipc_read_u16_field",
+  "confidence": "low",
+  "evidence": "Reads a 16-bit value over IPC (ipc_ept_op_b_locked_retry regs 0x14/0x16) into param_2 offset 2; returns -EINVAL on null buffer.",
+  "batch": 13
+ },
+ {
+  "address": "0x0007d3dc",
+  "name": "gui_utf_adv_draw_configure",
+  "confidence": "high",
+  "evidence": "Self-name log string 'gui_utf_adv_draw_configure' present; tail-calls display_mode_globals_configure(8); called by ui_even_ai_task, ui_set_imu_pitch_task, ui_refalsh_warp.",
+  "batch": 13
+ },
+ {
+  "address": "0x0007f69e",
+  "name": "ancs_service_ctx_clear",
+  "confidence": "medium",
+  "evidence": "Called by ancs_c_init: returns -EINVAL on null, otherwise memset_bytes-zeroes a 0xa2c-byte ANCS client context structure.",
+  "batch": 13
+ },
+ {
+  "address": "0x00080fc4",
+  "name": "bt_addr_le_copy",
+  "confidence": "medium",
+  "evidence": "Copies a 7-byte bt_addr_le_t (4+2+1 bytes) from param_2 to param_1; called by bt_id_add, ble_privacy_id_remove and hci_id_add.",
+  "batch": 13
+ },
+ {
+  "address": "0x00081a76",
+  "name": "l2cap_chan_disconnected_cb",
+  "confidence": "medium",
+  "evidence": "Address-taken L2CAP channel disconnect handler: looks up tx CID (bt_l2cap_le_lookup_tx_cid), invokes the channel's disconnect ops callbacks and conn_ctx_cleanup_if_pending.",
+  "batch": 13
+ },
+ {
+  "address": "0x000832f0",
+  "name": "smp_pairing_confirm_send",
+  "confidence": "medium",
+  "evidence": "Builds an SMP Pairing Confirm PDU (smp_create_pdu type 3), computes the confirm value via smp_c1 over the pairing fields, and sends with bt_smp_send_pdu; gated on atomic bit 10.",
+  "batch": 13
+ },
+ {
+  "address": "0x00084840",
+  "name": "transport_notify_callback",
+  "confidence": "medium",
+  "evidence": "Invokes the callback at object->0x10->0x0c with (object, event, ctx=transport+4); called by uarte_nrfx_isr and the post_event_tag* dispatchers.",
+  "batch": 13
+ },
+ {
+  "address": "0x000850f6",
+  "name": "value_in_bitmap_0_47",
+  "confidence": "low",
+  "evidence": "Tests bit param_1 in a two-word constant bitmap (word0=0xffffffff, word1=0xffff), returning membership for values 0..47; called by FUN_00065584.",
+  "batch": 13
+ },
+ {
+  "address": "0x000868fc",
+  "name": "floorf",
+  "confidence": "high",
+  "evidence": "Single-expression float floor helper (__builtin_floorf); called by battery/curve code (FUN_0000c358, curve_table_interp_201pt, FUN_0000e53c).",
+  "batch": 13
+ },
+ {
+  "address": "0x00017a04",
+  "name": "gpio_set_fixed_output_889f0",
+  "confidence": "low",
+  "evidence": "Tail wrapper that calls gpio_pin_set_dt with a fixed gpio_dt_spec at 0x000889f0 and port 0, ignoring its first two args.",
+  "batch": 14
+ },
+ {
+  "address": "0x000250f8",
+  "name": "st25dv_build_and_write_ndef_records",
+  "confidence": "high",
+  "evidence": "Assembles primary/secondary/suffix records via opt_record_decode and opt_list_append_node, serializes them (touching g_ndef_build_status_flag), and pushes the buffer through st25dv_mailbox_write_with_retry.",
+  "batch": 14
+ },
+ {
+  "address": "0x0002f758",
+  "name": "get_audio_msgq_used_count",
+  "confidence": "low",
+  "evidence": "Reads the word at g_audio_msgq+0x24 (k_msgq used_msgs field) for flash_ops_thread.",
+  "batch": 14
+ },
+ {
+  "address": "0x00034390",
+  "name": "get_message_pool_index",
+  "confidence": "high",
+  "evidence": "Returns the byte at g_message_pool_index (0x2001a22a); called by display_dispatch_thread, draw_message and ui_refalsh_warp.",
+  "batch": 14
+ },
+ {
+  "address": "0x00048b44",
+  "name": "set_dashboard_display_level_clamped",
+  "confidence": "high",
+  "evidence": "Clamps its argument to [0x21,0x7d] and stores it into g_dashboard_display_level (0x20002544); called from ui_DashBoard_task.",
+  "batch": 14
+ },
+ {
+  "address": "0x0004d44c",
+  "name": "z_log_notify_backend_enabled",
+  "confidence": "high",
+  "evidence": "Bundle's readable identity: gives k_sem_give on the log semaphore at 0x200039f8 when the backend-attached flag at 0x2001d44b is clear, then sets it.",
+  "batch": 14
+ },
+ {
+  "address": "0x0004f770",
+  "name": "app_event_manager_submit",
+  "confidence": "high",
+  "evidence": "app_event_manager.c function that validates event type_id range, links the event onto g_notify_pending_slist under g_notify_pending_lock spinlock, and k_work_submits the processing work at 0x20002838.",
+  "batch": 14
+ },
+ {
+  "address": "0x00053050",
+  "name": "gatt_ccc_bt_settings_store",
+  "confidence": "medium",
+  "evidence": "Called by bt_gatt_store_ccc; forwards a fixed settings key (rodata_f4aa1) plus its args to bt_settings_store.",
+  "batch": 14
+ },
+ {
+  "address": "0x000549ec",
+  "name": "bt_id_addr_check_and_enable",
+  "confidence": "medium",
+  "evidence": "Called from hci_vs_init; warns \"No ID address. App must call settings_load()\" when g_ble_dev_state has no ID, otherwise atomic_or-sets a device-ready flag bit.",
+  "batch": 14
+ },
+ {
+  "address": "0x00056a68",
+  "name": "bt_conn_disconnect_by_state",
+  "confidence": "high",
+  "evidence": "conn.c helper dispatching on the connection state byte at offset 0xd to set disconnect reason and call bt_hci_disconnect / ble_conn_set_state; invoked from many disconnect paths (pairing_failed, auth_cancel, unpair, smp_error).",
+  "batch": 14
+ },
+ {
+  "address": "0x00058bfc",
+  "name": "att_fixed_chan_connected",
+  "confidence": "medium",
+  "evidence": "ATT fixed-channel connect callback: atomically ORs bit 2 into flags at +0x118, inits the att_timeout delayable work (att_timeout thumb addr) at +0x158, and calls bt_gatt_connected on the connection.",
+  "batch": 14
+ },
+ {
+  "address": "0x0005d964",
+  "name": "smp_send_security_req",
+  "confidence": "high",
+  "evidence": "SMP security-request path called by smp_pairing_complete/bt_conn_set_security: creates SMP PDU opcode 0xb, fills auth-req byte, sends via bt_conn_create_pdu and sets pairing-in-progress bits.",
+  "batch": 14
+ },
+ {
+  "address": "0x000620cc",
+  "name": "gpio_nrfx_configure_pin_list",
+  "confidence": "medium",
+  "evidence": "Iterates a table of gpio_dt_spec entries validating gpio.h flag asserts and driving port DIR/OUT registers through the device's op vector.",
+  "batch": 14
+ },
+ {
+  "address": "0x00063c14",
+  "name": "power_manager_set_system_off_flag",
+  "confidence": "medium",
+  "evidence": "Toggles g_caf_power_manager_system_off_flag, cancelling g_caf_power_manager_timer or restarting it via FUN_00063be0; called from power_manager_system_off.",
+  "batch": 14
+ },
+ {
+  "address": "0x00067304",
+  "name": "nrfx_spim_xfer",
+  "confidence": "high",
+  "evidence": "nrfx_spim.c transfer routine (matching all p_xfer_desc/tx_length/easydma asserts) that programs SPIM EasyDMA descriptors and drives CS; sole caller spi_master_trans_data_tx_rx.",
+  "batch": 14
+ },
+ {
+  "address": "0x000719f4",
+  "name": "k_heap_alloc",
+  "confidence": "high",
+  "evidence": "kheap.c allocator: computes a timepoint, spins retrying the inner heap alloc (FUN_0004b2b0) under the heap spinlock and pending via sys_timepoint_timeout until success or timeout.",
+  "batch": 14
+ },
+ {
+  "address": "0x00074554",
+  "name": "k_thread_priority_set",
+  "confidence": "high",
+  "evidence": "sched.c wrapper that asserts the priority is in valid range then calls z_thread_priority_set.",
+  "batch": 14
+ },
+ {
+  "address": "0x0007932c",
+  "name": "scanf_convert_integer_field",
+  "confidence": "low",
+  "evidence": "vfprintf/scanf engine helper using octal digit sets (\"01234567]\") and fnmatch_build_class_table to scan a signed integer field from an input stream and store the converted value via *param_4.",
+  "batch": 14
+ },
+ {
+  "address": "0x0007c1fe",
+  "name": "audio_fw_load_trigger_passthrough",
+  "confidence": "low",
+  "evidence": "Calls audio_fw_load_get_wrapper and returns its third argument unchanged; invoked from get_notification_counts_cmd_process.",
+  "batch": 14
+ },
+ {
+  "address": "0x0007c99e",
+  "name": "st25dv_mailbox_send_id_pair",
+  "confidence": "medium",
+  "evidence": "Called by st25dv_mailbox_set_enabled; packs two u32 args big-endian (duplicated) into a 0x11-byte message with tag 9 and sends via ipc_ept_op_c_locked_retry command 0x900.",
+  "batch": 14
+ },
+ {
+  "address": "0x0007d84c",
+  "name": "find_chinese_bitmap_stub_zero",
+  "confidence": "low",
+  "evidence": "Four-byte stub returning 0, called only by find_chinese_bitmap_by_unicode.",
+  "batch": 14
+ },
+ {
+  "address": "0x0007f7c8",
+  "name": "invoke_object_callback_864",
+  "confidence": "low",
+  "evidence": "Invokes the function pointer stored at object+0x864 with object as argument when it is non-null.",
+  "batch": 14
+ },
+ {
+  "address": "0x0008104a",
+  "name": "bt_id_addr_update_thunk",
+  "confidence": "low",
+  "evidence": "Three-arg thunk appending a zero fourth argument to FUN_0004d944; called by bt_id_add and the BLE privacy address functions.",
+  "batch": 14
+ },
+ {
+  "address": "0x00081adc",
+  "name": "l2cap_send_conn_param_req",
+  "confidence": "medium",
+  "evidence": "Called by send_conn_le_param_update: builds an 8-byte L2CAP signalling PDU (opcode 0x12) copying the 4 conn-param u16s and transmits via bt_conn_create_pdu type 5.",
+  "batch": 14
+ },
+ {
+  "address": "0x00083496",
+  "name": "return_neg_notsup_stub",
+  "confidence": "low",
+  "evidence": "Six-byte stub returning constant 0xffffff7a (-134); sole caller FUN_00058a54.",
+  "batch": 14
+ },
+ {
+  "address": "0x0008493a",
+  "name": "channel_pull_one_byte",
+  "confidence": "low",
+  "evidence": "Reads a single byte from a channel/fifo structure into *param_2, clears the pending flag at +0x110 and signals ready; returns 0xffffff7a when busy or -1 when empty.",
+  "batch": 14
+ },
+ {
+  "address": "0x000851e8",
+  "name": "get_addr_space_limit_1m",
+  "confidence": "low",
+  "evidence": "Returns constant 0x100000 (1 MiB) used by is_regular_addr_valid as an address-range bound.",
+  "batch": 14
+ },
+ {
+  "address": "0x000869c6",
+  "name": "sqrtf_hw",
+  "confidence": "high",
+  "evidence": "Six-byte function returning __builtin_sqrtf(value); called by sqrtf and __ieee754_asinf.",
+  "batch": 14
+ },
+ {
+  "address": "0x00017688",
+  "name": "gpio_pin_configure",
+  "confidence": "medium",
+  "evidence": "Called by button_init; asserts Zephyr gpio.h flag-combination invariants (INPUT/OUTPUT bits 0x30, INIT_HIGH/LOW 0x30002, bidir) then sets the port OUT bit for the pin based on flag bit0 and calls the driver pin_configure api pointer.",
+  "batch": 15
+ },
+ {
+  "address": "0x00024d50",
+  "name": "st25dv_read_area_size",
+  "confidence": "low",
+  "evidence": "Uses g_st25dv_dev and an i2c read (FUN_0007c968) then computes ((val&0xff)*(hi+1)+(hi+1)) from the returned config word, i.e. a memory/area size from ST25DV register bytes.",
+  "batch": 15
+ },
+ {
+  "address": "0x0002ea78",
+  "name": "device_reg3_init_config",
+  "confidence": "low",
+  "evidence": "Called once from main; reads a device base from 0x87ce0+4 and issues dev_write_reg3(reg0x1c,3,0xc,8), logging an error string on negative return \u2014 a one-shot peripheral register init.",
+  "batch": 15
+ },
+ {
+  "address": "0x000330a8",
+  "name": "pt_comm_bind_device",
+  "confidence": "medium",
+  "evidence": "Called by init_nfc_comm; rejects null arg with -1, stores the device pointer into g_fuel_gauge_dev slot and clears the g_pt_comm_state byte \u2014 binds/initializes the point-to-point comm device state.",
+  "batch": 15
+ },
+ {
+  "address": "0x000469a8",
+  "name": "dashboard_reflash_index_lookup",
+  "confidence": "low",
+  "evidence": "Called only by DashBoard_Reflash; maps input 1..16 to a signed byte read from a 16-entry ROM table at 0xbc073, returning -1 for out-of-range.",
+  "batch": 15
+ },
+ {
+  "address": "0x0004d100",
+  "name": "rpmsg_virtio_init_vdev",
+  "confidence": "medium",
+  "evidence": "Returns -EINVAL on bad args, and either calls rpmsg_init_vdev (name-only path) or initializes the shm pool (rpmsg_virtio_init_shm_pool) plus the virtqueue channel (rpmsg_virtqueue_channel_init) at struct offsets 0xe0/0x19c \u2014 the OpenAMP rpmsg_virtio vdev init entry.",
+  "batch": 15
+ },
+ {
+  "address": "0x0004f518",
+  "name": "gatt_notify_config_change",
+  "confidence": "medium",
+  "evidence": "Called by notify_config_change_if_connected; builds a 24-byte bt_gatt_notify_params (attr 0x8ad40, value=param_2, len=param_3, callback 0x4f4f1) and forwards to bt_gatt_notify_cb after a permission check.",
+  "batch": 15
+ },
+ {
+  "address": "0x00053008",
+  "name": "sc_store_to_settings",
+  "confidence": "medium",
+  "evidence": "Called by sc_save; forwards the service-changed key string 0xf4de3 and its parameters to bt_settings_store to persist service-changed state.",
+  "batch": 15
+ },
+ {
+  "address": "0x00054444",
+  "name": "bt_hci_le_ltk_request",
+  "confidence": "high",
+  "evidence": "Address-taken HCI event handler: looks up conn by handle (logs \"Unable to lookup conn for handle %u\"), calls bt_smp_request_ltk, then builds and sends HCI opcode 0x201a (LE LTK Request Reply) or 0x201b (Negative Reply).",
+  "batch": 15
+ },
+ {
+  "address": "0x000565c4",
+  "name": "bt_conn_prepare_tx_events",
+  "confidence": "medium",
+  "evidence": "Called by hci_tx_thread; inits a k_poll_signal for a connection, walks g_ble_conn_pool, and arms poll events on either the le_pkts_sem or the ext-mode signal buffer to schedule connection TX.",
+  "batch": 15
+ },
+ {
+  "address": "0x00058808",
+  "name": "att_read_type_iter_cb",
+  "confidence": "medium",
+  "evidence": "GATT read-by-type iteration callback: compares attr UUID (bt_uuid_cmp), checks 0x95 permission (bt_gatt_check_perm), appends the 2-byte handle to the response buffer and invokes att_chan_read, computing remaining MTU room to decide continuation.",
+  "batch": 15
+ },
+ {
+  "address": "0x0005d0ac",
+  "name": "smp_dhkey_check_generate",
+  "confidence": "high",
+  "evidence": "LE Secure Connections DHKey-check path: dispatches on pairing method, derives LTK via bt_crypto_f5 and local/remote checks via bt_crypto_f6, memcmp-verifies remote check, then sends SMP PDU 0xd; strings \"Calculate LTK failed\"/\"Calculate local/remote DHKey check failed\"/\"Unknown pairing method (%u)\".",
+  "batch": 15
+ },
+ {
+  "address": "0x00061c40",
+  "name": "mbox_nrf_send",
+  "confidence": "medium",
+  "evidence": "Rejects a non-null data payload with \"Sending data not supported\", validates channel<16 against the SEND_CNF enable bits, then writes 1 to the nRF5340 IPC TASKS_SEND register at 0x5002a000+channel*4 \u2014 the Zephyr nRF IPC mbox send.",
+  "batch": 15
+ },
+ {
+  "address": "0x00063ba8",
+  "name": "ancs_notify_table_is_idle",
+  "confidence": "medium",
+  "evidence": "Called by power_manager_system_off; scans g_ancs_notify_slot_table entries up to index param_1 and returns 0 if any slot is nonzero, 1 if all are empty.",
+  "batch": 15
+ },
+ {
+  "address": "0x00066ec0",
+  "name": "nrfx_spim_configure",
+  "confidence": "high",
+  "evidence": "nrfx_spim.c driver init: maps a frequency-in-Hz value to the SPIM FREQUENCY register code via a lookup ladder, calls pin_init for SCK/MOSI/MISO/CS pins, programs PSEL/CONFIG/FREQUENCY registers in the peripheral block and enables the IRQ.",
+  "batch": 15
+ },
+ {
+  "address": "0x00071294",
+  "name": "rpmsg_virtio_send_copy",
+  "confidence": "medium",
+  "evidence": "rpmsg_virtio.c send path: acquires a TX payload buffer (FUN_00085b0c), copies the message into shared memory via metal_io_block_write asserting \"status == len\", then enqueues it (FUN_000710b4), returning an RPMSG error on failure.",
+  "batch": 15
+ },
+ {
+  "address": "0x000741a4",
+  "name": "z_thread_suspend",
+  "confidence": "medium",
+  "evidence": "Under sched_spinlock (asserts z_spin_lock_valid/z_spin_unlock_valid), unlinks the thread from g_sched_ready_runq clearing its queued bit and sets thread-state bit 0x10 (_THREAD_SUSPENDED), then z_reschedule_unlocked if it was the current thread.",
+  "batch": 15
+ },
+ {
+  "address": "0x00078ce0",
+  "name": "d2b_decompose",
+  "confidence": "medium",
+  "evidence": "dtoa helper (string \"Balloc succeeded\"): Balloc's a Bigint then decomposes an IEEE-754 double's mantissa into normalized limbs via ctz32_normalize_inplace/clz32, writing exponent and bit-count outputs \u2014 a d2b variant distinct from the existing d2b.",
+  "batch": 15
+ },
+ {
+  "address": "0x0007c176",
+  "name": "device_info_set_bytes_cc_ce",
+  "confidence": "low",
+  "evidence": "Called from BLE put/dispatch paths; writes param_2 to device_info+0xce and param_1 to device_info+0xcc via get_device_info().",
+  "batch": 15
+ },
+ {
+  "address": "0x0007c944",
+  "name": "nfc_ipc_send_op20",
+  "confidence": "low",
+  "evidence": "Called by st25dv_read_chip_ids; on non-null arg forwards an IPC endpoint request with opcode 0x20 and length flag via ipc_ept_op_b_locked_retry, else returns -EINVAL.",
+  "batch": 15
+ },
+ {
+  "address": "0x0007d1d6",
+  "name": "errno_wrapped_tick_call",
+  "confidence": "low",
+  "evidence": "Saves the per-thread errno field (thread at base+0xff4, offset 0x164) into base+0xfec, calls rate_limited_elapsed_seconds_tick and FUN_00016574, then restores errno around the call.",
+  "batch": 15
+ },
+ {
+  "address": "0x0007f150",
+  "name": "img_mgmt_stream_flash_init",
+  "confidence": "high",
+  "evidence": "Called by img_mgmt_write_image_data; opens the target flash_area and initializes the stream_flash context (buffer at +0x200/+0x204) with the area's size and offset for image upload.",
+  "batch": 15
+ },
+ {
+  "address": "0x00080fb4",
+  "name": "ptr_read_u32",
+  "confidence": "low",
+  "evidence": "6-byte leaf returning *param_1 (a single 32-bit dereference); used as a field accessor by two HCI/conn callers.",
+  "batch": 15
+ },
+ {
+  "address": "0x000819ea",
+  "name": "gatt_process_listener_notifications",
+  "confidence": "medium",
+  "evidence": "Called by ble_notify_remote_info_available; walks a listener list, atomically clears flag bit 4, and for pending entries calls gatt_notify_send then ctx_list_unlink_node/context_release_and_notify, finally invoking each listener's ops->notify callback.",
+  "batch": 15
+ },
+ {
+  "address": "0x00083074",
+  "name": "smp_log_message",
+  "confidence": "low",
+  "evidence": "6-byte shim called by 17 bt_smp_* functions; drops its 4th argument and forwards to the log backend FUN_0004d944 \u2014 the SMP module's log-message wrapper.",
+  "batch": 15
+ },
+ {
+  "address": "0x00084602",
+  "name": "flash_page_index_lookup",
+  "confidence": "medium",
+  "evidence": "Given a flash-region descriptor {base,page_size,start_page,end_page} and an address range, computes and returns the page index into *param_4, returning -EINVAL/-EAGAIN(0xffffffde) for out-of-range offsets.",
+  "batch": 15
+ },
+ {
+  "address": "0x0008509e",
+  "name": "cjson_add_string_to_object",
+  "confidence": "high",
+  "evidence": "Creates a cJSON string (cjson_create_string), adds it to the object (cjson_add_item_to_object), and cjson_delete's it on failure \u2014 the standard cJSON_AddStringToObject helper.",
+  "batch": 15
+ },
+ {
+  "address": "0x00086338",
+  "name": "zcbor_bstr_encode",
+  "confidence": "medium",
+  "evidence": "6-byte wrapper called by img_mgmt_state_encode_slot that calls zcbor_str_encode with a fixed type argument of 2 (byte-string encoding).",
+  "batch": 15
+ },
+ {
+  "address": "0x00017a10",
+  "name": "gpio_set_pin1_dt_wrapper",
+  "confidence": "low",
+  "evidence": "Sole body calls gpio_pin_set_dt(&spec@0x889e8, pin=1, arg2, arg3); a thin wrapper that drives a fixed GPIO dt-spec pin.",
+  "batch": 16
+ },
+ {
+  "address": "0x00025448",
+  "name": "refresh_and_read_box_field_timer",
+  "confidence": "medium",
+  "evidence": "Calls refresh_box_field_timer() then returns the volatile g_box_field_timer at 0x20007a24; callers spec_ble_command_hook and try_enter_low_power_mode.",
+  "batch": 16
+ },
+ {
+  "address": "0x0002f910",
+  "name": "atomic_exchange_proxy_scratch",
+  "confidence": "medium",
+  "evidence": "Reads old value of g_atomic_scratch_20007bb0, stores param_1, returns old \u2014 an atomic exchange on the proxy_thread_handler scratch word.",
+  "batch": 16
+ },
+ {
+  "address": "0x00034410",
+  "name": "get_message_pending_state",
+  "confidence": "high",
+  "evidence": "Returns the volatile byte g_message_pending_state@0x2001a229; called by message/touch handlers like process_for_message_show and ui_refalsh_warp.",
+  "batch": 16
+ },
+ {
+  "address": "0x0004906c",
+  "name": "wake_display_thread_on_reflash",
+  "confidence": "high",
+  "evidence": "If g_display_reflash_pending==1 it wakes g_display_thread_id with 0xfffffff2 and clears the flag; called by display_thread_handler.",
+  "batch": 16
+ },
+ {
+  "address": "0x0004d468",
+  "name": "z_log_dropped",
+  "confidence": "high",
+  "evidence": "Bundle states readable identity z_log_dropped; atomic_inc(log_backend_count) and conditional decrement of log_buffered_cnt matches Zephyr z_log_dropped.",
+  "batch": 16
+ },
+ {
+  "address": "0x0004f860",
+  "name": "module_state_event_log_handler",
+  "confidence": "high",
+  "evidence": "Strings module_state_event.c and format 'e:%s module:%s state:%s'; validates event owner/operation index and builds a log dispatch record for a CAF module-state event.",
+  "batch": 16
+ },
+ {
+  "address": "0x0005306c",
+  "name": "gatt_settings_delete_key",
+  "confidence": "low",
+  "evidence": "Wraps bt_settings_delete with fixed key string rodata_f4aa1; invoked from gatt_connected to remove a persisted GATT setting.",
+  "batch": 16
+ },
+ {
+  "address": "0x00054d18",
+  "name": "bt_id_set_static_random_addr",
+  "confidence": "medium",
+  "evidence": "Loops bt_addr_le_create_static/id_find to obtain a unique static address, stores it into the bt_dev id_addr array at 0x20002000+index*7; called by bt_setup_public_id_addr.",
+  "batch": 16
+ },
+ {
+  "address": "0x00056e24",
+  "name": "bt_conn_cb_register",
+  "confidence": "high",
+  "evidence": "Bundle names it bt_conn_cb_register; prepends callback to g_ble_conn_cb_list_head linking prior head at callback+0x20.",
+  "batch": 16
+ },
+ {
+  "address": "0x00058c34",
+  "name": "gatt_notify_or_indicate",
+  "confidence": "medium",
+  "evidence": "Checks bt_gatt_change_aware, creates ATT PDU, iterates bt_gatt_foreach_attr over a handle range and sends response or att_send_error_rsp; the shared GATT notify/indicate dispatcher (callers att_write_cmd).",
+  "batch": 16
+ },
+ {
+  "address": "0x0005ec84",
+  "name": "sys_memcpy_swap",
+  "confidence": "high",
+  "evidence": "byteorder.h overlap assertion then reverse byte copy (dst[i]=src[len-1-i]); matches Zephyr sys_memcpy_swap, called by bt_crypto_f4/f5/f6.",
+  "batch": 16
+ },
+ {
+  "address": "0x00062644",
+  "name": "panel_temp_calibration_init",
+  "confidence": "low",
+  "evidence": "Called from main after z_device_is_ready; computes an exp() temperature/current curve and writes paged device registers via dev_write_reg3/reg4, a display panel calibration init.",
+  "batch": 16
+ },
+ {
+  "address": "0x00063ff8",
+  "name": "boot_write_image_trailer_magic",
+  "confidence": "high",
+  "evidence": "Called by boot_set_next; copies a fixed 16-byte pattern from rodata_9907c and flash_area_writes it near the area end (aligned trailer offset) \u2014 the MCUboot image magic trailer.",
+  "batch": 16
+ },
+ {
+  "address": "0x00067600",
+  "name": "nrfx_twim_irq_handler",
+  "confidence": "high",
+  "evidence": "nrfx_twim.c string and 'p_cb->handler' assert; processes TWIM events, manipulates peripheral registers/NVIC and dispatches callback->handler with an event payload.",
+  "batch": 16
+ },
+ {
+  "address": "0x00071df8",
+  "name": "z_setup_new_thread",
+  "confidence": "high",
+  "evidence": "thread.c string with idle-thread priority assertion; initializes a thread object (stack, lists, prio, options) and calls arch_new_thread \u2014 Zephyr z_setup_new_thread.",
+  "batch": 16
+ },
+ {
+  "address": "0x000746fc",
+  "name": "z_tick_sleep",
+  "confidence": "high",
+  "evidence": "sched.c; asserts not-in-ISR, computes wake timeout, unready_threads current, pends with FUN_00074bf4 under sched_spinlock, reschedules and returns remaining ticks \u2014 Zephyr z_tick_sleep.",
+  "batch": 16
+ },
+ {
+  "address": "0x00079668",
+  "name": "nrf_cc3xx_platform_ctr_drbg_get",
+  "confidence": "medium",
+  "evidence": "Called by CC_LibInit; defaults context to 0x2000cc30, checks magic 0x5ac9bca5, then cc_mbedtls_ctr_drbg_random_with_add to produce random bytes.",
+  "batch": 16
+ },
+ {
+  "address": "0x0007c28e",
+  "name": "save_usr_setting",
+  "confidence": "high",
+  "evidence": "Packs ~20 user-config context fields (incl. is_battery_critical) into a 32-byte record and flash_settings_write_and_verify to 0x134000; called by reset_usr_setting/load_usr_setting/set_display_brightness.",
+  "batch": 16
+ },
+ {
+  "address": "0x0007c9f2",
+  "name": "send_box_event_ipc",
+  "confidence": "medium",
+  "evidence": "Called by handle_box_placement_event; forwards param via ipc_send_len_prefixed_packet_locked_retry with fixed message tag 0x2002.",
+  "batch": 16
+ },
+ {
+  "address": "0x0007d8f4",
+  "name": "md5_update",
+  "confidence": "high",
+  "evidence": "Called by md5_final; maintains a 64-bit bit counter and buffers input into a 64-byte block, invoking the block transform FUN_00049acc \u2014 MD5 update.",
+  "batch": 16
+ },
+ {
+  "address": "0x0007f7d2",
+  "name": "bt_ancs_app_attr_request",
+  "confidence": "high",
+  "evidence": "Bundle names it bt_ancs_app_attr_request; builds a control-point buffer (cmd 1 + app_id + optional attr) and calls bt_ancs_cp_write.",
+  "batch": 16
+ },
+ {
+  "address": "0x000810f2",
+  "name": "bt_id_set_random_addr_checked",
+  "confidence": "medium",
+  "evidence": "Validates two non-null params then delegates to set_random_address; called by bt_id_set_adv_private_addr.",
+  "batch": 16
+ },
+ {
+  "address": "0x00081c22",
+  "name": "gatt_recompute_max_mtu",
+  "confidence": "medium",
+  "evidence": "Walks a GATT attribute/channel linked list taking max of two u16 MTU fields (offsets 0x2e/0x1e) and calls bt_gatt_att_max_mtu_changed.",
+  "batch": 16
+ },
+ {
+  "address": "0x0008349c",
+  "name": "smp_dhkey_ready_cb",
+  "confidence": "medium",
+  "evidence": "Copies an 8-word (32-byte) DHKey into the SMP context, clears/sets DHKey atomic bits, and iterates pending contexts calling smp_dhkey_generate/smp_error \u2014 the DHKey-ready callback.",
+  "batch": 16
+ },
+ {
+  "address": "0x0008496c",
+  "name": "audio_dma_start_transfer",
+  "confidence": "low",
+  "evidence": "After audio_hw_lock_get_status_byte succeeds, programs buffer pointers into regs 0x544/0x548 and triggers a DMA/start via reg 0x500=8, 0x304=0x400000 and enable bit at +8.",
+  "batch": 16
+ },
+ {
+  "address": "0x000851ee",
+  "name": "flash_nrf_get_page_size",
+  "confidence": "high",
+  "evidence": "Returns constant 0x1000 (4096-byte page size); called by flash_nrf_erase.",
+  "batch": 16
+ },
+ {
+  "address": "0x00086b40",
+  "name": "foreach_attr_entry_invoke_callback",
+  "confidence": "low",
+  "evidence": "Walks a linked list at param_1+0x48 iterating fixed-stride (0x68) entries, and for entries with u16@0xc>1 invokes the callback param_2, OR-folding the results.",
+  "batch": 16
+ },
+ {
+  "address": "0x00017a1c",
+  "name": "gpio_set_fixed_pin_dt",
+  "confidence": "low",
+  "evidence": "Tail-calls gpio_pin_set_dt with a fixed device-tree spec pointer 0x889e8 and passes through the value/arg, so it drives one specific GPIO output pin.",
+  "batch": 17
+ },
+ {
+  "address": "0x00025670",
+  "name": "dev_send_cmd16_payload",
+  "confidence": "medium",
+  "evidence": "Builds a byte buffer with a 2-byte big-endian command header plus memcpy'd payload, transmits via FUN_0007c85e transport, sleeps 33 ticks and logs on negative return; called by ipc_ept_op_a_locked_retry and set_uart_line_ctrl_dtr.",
+  "batch": 17
+ },
+ {
+  "address": "0x00030340",
+  "name": "pt_nfc_link_transfer_fw_packet",
+  "confidence": "high",
+  "evidence": "Called by flash_firmware_update_transfer; builds a checksummed packet (0x02000008 header, one's-complement sum), sends it through g_pt_nfc_link_cfg driver, then drives attr_store_set 0x1c10/0x4408 and polls attr_store_get 0x4410 for the NFC EEPROM firmware exchange.",
+  "batch": 17
+ },
+ {
+  "address": "0x0003443c",
+  "name": "set_message_pending_state",
+  "confidence": "high",
+  "evidence": "Writes param to g_message_pending_state at 0x2001a229 and, when zero, calls msg_content_decrement_timer; invoked from key_event_thread and the process_for_* message handlers.",
+  "batch": 17
+ },
+ {
+  "address": "0x00049acc",
+  "name": "md5_process_block",
+  "confidence": "high",
+  "evidence": "Implements the four-round MD5 compression using the exact MD5 sine constants (0xd76aa478, 0xe8c7b756, ...) over a 64-byte block loaded by bytes_to_u32le_array, updating the four state words in param_1.",
+  "batch": 17
+ },
+ {
+  "address": "0x0004d6ec",
+  "name": "log_process_thread",
+  "confidence": "high",
+  "evidence": "Root logging thread from log_core.c (asserts 'backend <= _log_backend_list_end'); loops calling activate_foreach_backend and log_process, gives/takes semaphore 0x200039f8, and iterates the settings/backend list running per-backend callbacks.",
+  "batch": 17
+ },
+ {
+  "address": "0x0004f92c",
+  "name": "power_manager_restrict_event_log",
+  "confidence": "high",
+  "evidence": "CAF power_manager_event.c handler; asserts module_idx<module_count and level bounds, then formats 'e:%s module \"%s\" restricts to %s' into a dispatch_record and emits it via FUN_0004d944 (log).",
+  "batch": 17
+ },
+ {
+  "address": "0x0005307c",
+  "name": "store_gatt_db_hash_setting",
+  "confidence": "high",
+  "evidence": "Called by bt_gatt_store_hash; forwards the 'hash' key string (0xf4a01) and the passed value to bt_settings_store to persist the GATT database hash.",
+  "batch": 17
+ },
+ {
+  "address": "0x00054dd8",
+  "name": "bt_id_conflict_resolve_cb",
+  "confidence": "medium",
+  "evidence": "id.c foreach callback (asserts on conflict/conflict->candidate/resident and BT_KEYS_ID_ADDED); compares LE addresses and IRK bytes via bt_addr_le_eq/memcmp to select a resident key into the conflict candidate slot param_2[1].",
+  "batch": 17
+ },
+ {
+  "address": "0x00056ea8",
+  "name": "bt_conn_lookup_and_log_valid",
+  "confidence": "medium",
+  "evidence": "Called by ble_conn_addr_resolve_or_create; looks up an existing connection via bt_conn_lookup_addr_le, logs 'Found valid connection in %s state' with the state-name table, unrefs it and returns 1 if found.",
+  "batch": 17
+ },
+ {
+  "address": "0x00058f80",
+  "name": "att_exec_write_process",
+  "confidence": "high",
+  "evidence": "Walks the ATT prepare-write queue (net_buf_slist_get on +0x28), reassembles fragments into att_prep_write_rsp_buf, validates handle/offset (error codes 0x07/0x0d), and emits the Execute Write Response opcode 0x19 via bt_att_create_rsp_pdu/bt_att_chan_send_rsp.",
+  "batch": 17
+ },
+ {
+  "address": "0x0005edac",
+  "name": "bt_crypto_g2",
+  "confidence": "high",
+  "evidence": "Assembles a 0x50-byte AES-CMAC input from four inputs, runs bt_crypto_aes_cmac, then takes the big-endian low word modulo 0xf4240 (1000000) into *param_5 \u2014 the SMP g2 passkey-comparison function beside bt_crypto_f4/f5/f6.",
+  "batch": 17
+ },
+ {
+  "address": "0x00062930",
+  "name": "opt3001_chip_init",
+  "confidence": "medium",
+  "evidence": "Ambient-light sensor init: checks manufacturer id 0x5449 ('TI') at reg 0x7e and device id 0x3001 at reg 0x7f via i2c_read_reg16_be, logs 'Bad manufacturer id'/'Bad device id', then writes config for continuous conversion ('Failed to set mode to continuous conversion').",
+  "batch": 17
+ },
+ {
+  "address": "0x0006403c",
+  "name": "flash_read_boot_swap_ate",
+  "confidence": "medium",
+  "evidence": "Called by boot_set_next and flash_area_write_and_close; reads the trailer region, compares a 16-byte magic (0x9907c) to classify swap status 1/2/3 into param_2, reads the previous ATE via flash_calc_prev_ate_offset, and finalizes it with flash_write_byte_and_verify.",
+  "batch": 17
+ },
+ {
+  "address": "0x00067794",
+  "name": "nrfx_twim_init",
+  "confidence": "high",
+  "evidence": "nrfx_twim.c init (asserts 'p_config' and 'scl_pin != sda_pin'); populates the g_nrfx_twim_cb control block, reconfigures SCL/SDA pins via nrf_gpio_pin_reconfigure and calls twim_configure, returning NRFX 0x0bad00xx codes.",
+  "batch": 17
+ },
+ {
+  "address": "0x00071eac",
+  "name": "z_impl_k_thread_create",
+  "confidence": "high",
+  "evidence": "thread.c thread creator asserting '!arch_is_in_isr()'; called by every spawn_*_thread / bt_enable / k_work_queue_start; runs thread setup FUN_00071df8 then either sched_thread_ready or schedules a delayed start, returning the thread handle.",
+  "batch": 17
+ },
+ {
+  "address": "0x00074844",
+  "name": "k_sleep",
+  "confidence": "high",
+  "evidence": "sched.c routine asserting '!arch_is_in_isr()'; when timeout is K_FOREVER (-1,-1) parks the current thread via _kernel, otherwise returns remaining time as ticks*1000>>15 milliseconds; invoked by 34 callers across threads and drivers.",
+  "batch": 17
+ },
+ {
+  "address": "0x00079780",
+  "name": "setup_deferred_call_pair",
+  "confidence": "low",
+  "evidence": "Copies two 4-word call descriptors into g_misc_deferred_call_desc/g_misc_deferred_req_params, and when a peripheral status register (0x2000cc30+0x118, mask 0x3a000000) is set, arms magic 0xa95c5f2c and invokes both stored callbacks.",
+  "batch": 17
+ },
+ {
+  "address": "0x0007c3c2",
+  "name": "init_config_fields_default9",
+  "confidence": "low",
+  "evidence": "Writes constant 9 to bytes at param+0xb and param+0xc and 0x0909 to the halfword at param+0x30, initializing a small struct's default values; sole caller FUN_0000fcf0.",
+  "batch": 17
+ },
+ {
+  "address": "0x0007c9fe",
+  "name": "ipc_send_byte_cmd2002",
+  "confidence": "medium",
+  "evidence": "Called by handle_box_placement_event; packs the low byte of param_2 and sends it as a 1-byte IPC message with command 0x2002 through ipc_ept_op_a_locked_retry.",
+  "batch": 17
+ },
+ {
+  "address": "0x0007d968",
+  "name": "md5_compute_digest",
+  "confidence": "high",
+  "evidence": "Called by master_process_audio_fw_load_req; runs md5_init, a transform step (FUN_0007d8f4) and md5_final, then copies the resulting 16-byte digest into out.",
+  "batch": 17
+ },
+ {
+  "address": "0x0007f894",
+  "name": "clock_event_notify_u16pair",
+  "confidence": "medium",
+  "evidence": "Reads a callback pointer at object+0x1c and, if set, packs a 4-element u16 payload into two words (or sets error -22 for other lengths) and invokes callback(object-8, &packed, error, len, event) \u2014 an event/clock notification dispatcher.",
+  "batch": 17
+ },
+ {
+  "address": "0x00081130",
+  "name": "normalize_to_bool",
+  "confidence": "low",
+  "evidence": "Collapses any nonzero argument to 1 and returns it unchanged when zero; called by ble_conn_le_prepare_and_connect to canonicalize a flag.",
+  "batch": 17
+ },
+ {
+  "address": "0x00081ddc",
+  "name": "att_log_emit_3arg",
+  "confidence": "medium",
+  "evidence": "Six-byte thunk forwarding three arguments to the logging routine FUN_0004d944 with a zero fourth argument; used by many bt_att_* functions to emit log records.",
+  "batch": 17
+ },
+ {
+  "address": "0x000836d8",
+  "name": "subtract_32",
+  "confidence": "low",
+  "evidence": "Returns param_1 minus 0x20; a 4-byte arithmetic helper called only by FUN_0007f110.",
+  "batch": 17
+ },
+ {
+  "address": "0x00084a54",
+  "name": "uarte_blocking_transfer",
+  "confidence": "medium",
+  "evidence": "Programs a UARTE state block (buffer ptr +0x534, length +0x538), starts the transfer (+0x2c=1) and busy-waits on the completion flag +0x110, validating the returned buffer against the generation counter +0x53c; called from uarte_nrfx_isr and flowctl_release_credit_and_kick.",
+  "batch": 17
+ },
+ {
+  "address": "0x000851f4",
+  "name": "get_const_256",
+  "confidence": "low",
+  "evidence": "Leaf function that unconditionally returns 0x100 (256); no callers recorded, likely an address-taken size/limit accessor.",
+  "batch": 17
+ },
+ {
+  "address": "0x00086b7e",
+  "name": "swhatbuf_r",
+  "confidence": "high",
+  "evidence": "newlib __swhatbuf_r: fstats the FILE's fd, tests S_IFCHR (mode & 0xf000 == 0x2000) to set the line-buffer flag, and returns buffer size 0x400 (or 0x40 for unbuffered), called by smakebuf_r.",
+  "batch": 17
+ },
+ {
+  "address": "0x00018300",
+  "name": "ancs_conn_event_signal_and_mode",
+  "confidence": "low",
+  "evidence": "Logs then, for param_2>99, gives the semaphore at g_ancs_active_conn+0x230 and on event code 0x1f2 calls change_work_mode_to(1).",
+  "batch": 18
+ },
+ {
+  "address": "0x00026338",
+  "name": "spim_select_instance_by_mode",
+  "confidence": "medium",
+  "evidence": "Maps mode 3->SPIM base 0x5000c000 and mode 4->0x5000a000 into event fields then applies via FUN_00067248; references 'spi_master_deinit' string.",
+  "batch": 18
+ },
+ {
+  "address": "0x00031b60",
+  "name": "build_str_response_frame",
+  "confidence": "low",
+  "evidence": "Builds a frame with header 0x22, type byte 3, formats a value from FUN_000232b0 via vdprintf_to_fd, then memcpy's the string payload and sets the length byte.",
+  "batch": 18
+ },
+ {
+  "address": "0x000361d8",
+  "name": "render_device_info_float_screen",
+  "confidence": "medium",
+  "evidence": "Renders a fixed UTF label then reads three float groups from get_device_info()+0xef/+0xf3/+0xf7, formats each via float_to_ascii_signed_2dp and blits to the framebuffer in rows.",
+  "batch": 18
+ },
+ {
+  "address": "0x0004b1c0",
+  "name": "set_g_misc_val_27c8",
+  "confidence": "low",
+  "evidence": "Single store of the argument to global g_misc_val_27c8 at 0x200027c8; pure setter.",
+  "batch": 18
+ },
+ {
+  "address": "0x0004d944",
+  "name": "z_log_msg_runtime_create",
+  "confidence": "high",
+  "evidence": "Zephyr log_msg.c creator: cbprintf-formats args, allocates via g1_recon_z_log_msg_alloc, self-logs the 'Message dropped because it exceeds size limitation' overflow, and finalizes the log message.",
+  "batch": 18
+ },
+ {
+  "address": "0x0005010c",
+  "name": "arch_irq_priority_set",
+  "confidence": "high",
+  "evidence": "irq_manage.c assert 'prio <= ((1UL<<3)-1)'; clamps priority and writes the shifted value into the NVIC/SCB priority register (0xe000e300 / 0xe000ed14).",
+  "batch": 18
+ },
+ {
+  "address": "0x000530b4",
+  "name": "submit_ancs_notify_work",
+  "confidence": "high",
+  "evidence": "Single call to k_work_submit on g_ancs_notify_work at 0x20002934.",
+  "batch": 18
+ },
+ {
+  "address": "0x00055350",
+  "name": "hci_read_static_addresses",
+  "confidence": "high",
+  "evidence": "Issues HCI vendor command 0xfc09 and copies static address entries; strings 'Read Static Addresses command not available' / 'No static addresses stored in controller'.",
+  "batch": 18
+ },
+ {
+  "address": "0x000571dc",
+  "name": "bt_conn_frag_buf_destroy",
+  "confidence": "medium",
+  "evidence": "Thin wrapper calling FUN_000569ec with the g_bt_conn_frag_pool pointer (0x20003b18) and the buffer argument; a net_buf destroy callback for the fragment pool.",
+  "batch": 18
+ },
+ {
+  "address": "0x00059690",
+  "name": "bt_att_init",
+  "confidence": "medium",
+  "evidence": "Inits the g_bt_att_pool queue, seeds 10 g_bt_gatt_indicate_ctx_pool entries (0x14 stride) via net_pkt_skip, then calls bt_gatt_init.",
+  "batch": 18
+ },
+ {
+  "address": "0x0005f760",
+  "name": "saadc_start_read",
+  "confidence": "high",
+  "evidence": "Configures SAADC channels at 0x5000e000, validates resolution/oversampling/buffer size (strings 'Invalid selection of channels','ADC resolution value %d is not valid','Provided buffer is too small'), then starts sampling under the adc context lock.",
+  "batch": 18
+ },
+ {
+  "address": "0x00062d9c",
+  "name": "uarte_nrfx_init",
+  "confidence": "high",
+  "evidence": "Enables IRQ 8, calls uarte_nrfx_configure and pinctrl apply, allocates/sets up GPPI channels ('Failed to allocate PPI Channel') and inits RX/timeout timers for the UARTE instance.",
+  "batch": 18
+ },
+ {
+  "address": "0x00064134",
+  "name": "resolve_dual_slot_state_code",
+  "confidence": "low",
+  "evidence": "Reads two flash records (FUN_0007ef04 + flash_area_write_and_close) and matches their id/state bytes against a 3-entry table at 0xf694f to return a combined state code.",
+  "batch": 18
+ },
+ {
+  "address": "0x000678d0",
+  "name": "nrfx_twim_disable",
+  "confidence": "medium",
+  "evidence": "nrfx_twim.c with assert 'p_cb->state != NRFX_DRV_STATE_UNINITIALIZED'; clears TWIM interrupts (0x308), disables the peripheral (0x500=0) and resets the g_nrfx_twim_cb state fields.",
+  "batch": 18
+ },
+ {
+  "address": "0x00072674",
+  "name": "k_queue_insert_and_wake",
+  "confidence": "medium",
+  "evidence": "Under a spinlock, unpends the first waiting thread or inserts the item into the k_queue list by priority, then reschedules and handles poll events; called by k_queue_prepend and net_pkt_skip.",
+  "batch": 18
+ },
+ {
+  "address": "0x00074bf4",
+  "name": "z_add_timeout",
+  "confidence": "high",
+  "evidence": "timeout.c: inserts a timeout node into the delta-sorted timeout list under g_timeout_list_spinlock (assert '!sys_dnode_is_linked(&to->node)') and reprograms sys_clock_set_timeout via next_timeout.",
+  "batch": 18
+ },
+ {
+  "address": "0x0007a2b8",
+  "name": "cc_crypto_dispatch_or_error",
+  "confidence": "low",
+  "evidence": "Returns error 0xf50000 when the arg is null else tail-calls FUN_0007a3a4; called from CryptoCell ProcessHashDrv/ProcessAesDrv/FinishAesDrv.",
+  "batch": 18
+ },
+ {
+  "address": "0x0007c3da",
+  "name": "invoke_optional_op_offset12",
+  "confidence": "low",
+  "evidence": "Returns 7 for a null object, else invokes the callback at object+12 (or returns 15 if absent); optional object-method dispatch.",
+  "batch": 18
+ },
+ {
+  "address": "0x0007ca4e",
+  "name": "read_volatile_u32_a",
+  "confidence": "low",
+  "evidence": "Six-byte function returning a dereferenced volatile u32 pointer; used by imu_fusion_thread and SendDashboardLockInfoToApp.",
+  "batch": 18
+ },
+ {
+  "address": "0x0007de70",
+  "name": "log_msg_compute_wlen",
+  "confidence": "medium",
+  "evidence": "Computes (payload+7+ (arg<0x8000?4:8))>>3 \u2014 the 8-byte-aligned word length of a log message with a 4- or 8-byte header; used by log-msg alloc paths.",
+  "batch": 18
+ },
+ {
+  "address": "0x0007f97c",
+  "name": "audio_codec_reg_op_dispatch",
+  "confidence": "medium",
+  "evidence": "Indirect tail-dispatch through the object's +4 callback slot with object+12 as first arg; shared helper for the audio_codec_set_/read_reg* register accessors.",
+  "batch": 18
+ },
+ {
+  "address": "0x0008117a",
+  "name": "deref_conn_field0",
+  "confidence": "low",
+  "evidence": "Returns *param_1 (first word of the object); called by ble_conn_le_prepare_and_connect and ble_conn_unref to read a conn field.",
+  "batch": 18
+ },
+ {
+  "address": "0x000822ae",
+  "name": "att_optional_sent_cb_dispatch",
+  "confidence": "medium",
+  "evidence": "Loads object from *holder, and if the callback at (*(object+0x0c))+0x18 is set, invokes it with object+8; used by att_req_sent and att_cfm_sent.",
+  "batch": 18
+ },
+ {
+  "address": "0x00083740",
+  "name": "net_buf_simple_add_mem",
+  "confidence": "high",
+  "evidence": "Calls net_buf_simple_add(buf,len) then memcpy's len bytes from the source into the returned tail pointer.",
+  "batch": 18
+ },
+ {
+  "address": "0x00084b14",
+  "name": "pinctrl_apply_state",
+  "confidence": "high",
+  "evidence": "Calls pinctrl_lookup_state and, on success, applies the pin configuration via FUN_00083ede.",
+  "batch": 18
+ },
+ {
+  "address": "0x000857b2",
+  "name": "virtqueue_ring_setup_flags",
+  "confidence": "low",
+  "evidence": "On a virtqueue struct (from rpmsg_virtqueue_channel_init) conditionally sets the avail-ring flags/index based on the used-ring pointer and direction bit.",
+  "batch": 18
+ },
+ {
+  "address": "0x00086e1c",
+  "name": "vfprintf_emit_padded_field",
+  "confidence": "medium",
+  "evidence": "Called by vfprintf_format_engine; emits sign/'0x' prefix, zero-padding and field-width fill for a formatted numeric conversion via the supplied output callback.",
+  "batch": 18
+ },
+ {
+  "address": "0x000181f0",
+  "name": "ancs_notify_sync_init",
+  "confidence": "low",
+  "evidence": "Thin wrapper called only by ancs_main that forwards g_ancs_notify_sync_obj (0x20002310) to FUN_0004f500, i.e. initializing/arming the ANCS notify sync object.",
+  "batch": 19
+ },
+ {
+  "address": "0x00025ecc",
+  "name": "panel_level_calc_cached",
+  "confidence": "medium",
+  "evidence": "Called by imu_fusion_thread; caches inputs in g_level_calc_input_* and g_panel_calib_* and recomputes g_level_calc_result_cache (panel divisor/offset math with get_device_type) only when any cached field changes.",
+  "batch": 19
+ },
+ {
+  "address": "0x00030c24",
+  "name": "misc_dev_api_transfer_op12",
+  "confidence": "low",
+  "evidence": "Packs 4 words plus flags into a stack descriptor and invokes a device-API function pointer at *(g_misc_dev_handle_2418)->[8]->[8] with count 2 and op 0x12, returning negated boolean status.",
+  "batch": 19
+ },
+ {
+  "address": "0x00034808",
+  "name": "check_message_expired_or_timeout",
+  "confidence": "medium",
+  "evidence": "Called by process_for_new_task; when g_message_pending_state==5 returns is_msg_expiration(), when ==3 returns msg_content_check_timeout_state(), gated on msg_content_used_count.",
+  "batch": 19
+ },
+ {
+  "address": "0x0004abc0",
+  "name": "cbprintf_package_convert",
+  "confidence": "high",
+  "evidence": "References cbprintf_packaged.c asserts (in_packaged, cpy_str_pos, keep_str_pos) and walks a cbprintf packaged arg block copying/appending string args via a callback; classic z_cbprintf_package_convert.",
+  "batch": 19
+ },
+ {
+  "address": "0x0004d7d8",
+  "name": "z_log_msg_post_finalize",
+  "confidence": "high",
+  "evidence": "Reconstruction comment identifies it as Zephyr log_core.c static owner; atomically increments log_buffered_cnt and either runs log_process under the log spinlock or arms/stops the flush timer (0x200056a8) and gives the semaphore.",
+  "batch": 19
+ },
+ {
+  "address": "0x0004fa1c",
+  "name": "aes_sub_bytes",
+  "confidence": "high",
+  "evidence": "Called by tc_aes_encrypt; substitutes each of 16 state bytes through an S-box table at 0xf1968, i.e. the AES SubBytes step.",
+  "batch": 19
+ },
+ {
+  "address": "0x00053098",
+  "name": "bt_settings_store_name",
+  "confidence": "high",
+  "evidence": "Called by bt_set_name_internal; passes the \"name\" key string (0xf33e4) to bt_settings_store to persist the BLE device name.",
+  "batch": 19
+ },
+ {
+  "address": "0x00055204",
+  "name": "bt_id_create",
+  "confidence": "high",
+  "evidence": "Validates a static-random identity address (\"Only static random identity address supported\"), checks for duplicates via id_find, then allocates a new identity slot incrementing g_ble_dev_state id count and calls the address setup FUN_00054d18.",
+  "batch": 19
+ },
+ {
+  "address": "0x00056f4c",
+  "name": "bt_conn_get_info",
+  "confidence": "medium",
+  "evidence": "conn.c-tagged; copies connection type/role/id and encryption key size (bt_conn_enc_key_size) plus LE address pointers and interval/latency/timeout fields into an output info struct.",
+  "batch": 19
+ },
+ {
+  "address": "0x000590bc",
+  "name": "att_prepare_write_req",
+  "confidence": "medium",
+  "evidence": "Pulls a 4-byte handle+offset, checks bt_gatt_change_aware/out-of-sync, runs bt_gatt_foreach_attr for the handle and issues att_send_error_rsp with ATT opcode 0x16 (Prepare Write Request).",
+  "batch": 19
+ },
+ {
+  "address": "0x0005f654",
+  "name": "adc_channel_config",
+  "confidence": "high",
+  "evidence": "Called by adc_nfc_init; validates gain/reference/acquisition-time (\"Selected ADC gain/reference/acquisition time is not valid\") and programs per-channel SAADC config registers at 0x5000e5xx.",
+  "batch": 19
+ },
+ {
+  "address": "0x00062c54",
+  "name": "uarte_nrfx_pm_action",
+  "confidence": "high",
+  "evidence": "uart_nrfx_uarte.c-tagged power action: param_2 selects suspend vs resume, asserts on active async rx/tx, spins on TX-ready, toggles UARTE ENABLE/STOPTX registers and pin state.",
+  "batch": 19
+ },
+ {
+  "address": "0x000640e8",
+  "name": "boot_write_swap_info",
+  "confidence": "high",
+  "evidence": "Contains its own name string \"boot_write_swap_info\" plus MCUboot bootutil_public.c asserts (image_num<0xF, swap_type<0xF); packs image_num|swap_type<<4 and writes it via flash_write_padded_entry.",
+  "batch": 19
+ },
+ {
+  "address": "0x00067884",
+  "name": "nrfx_twim_enable",
+  "confidence": "medium",
+  "evidence": "nrfx_twim.c-tagged; asserts per-channel control block state==INITIALIZED then writes 6 to the peripheral ENABLE register (base+0x500) and sets state to 2 (powered).",
+  "batch": 19
+ },
+ {
+  "address": "0x00071f38",
+  "name": "z_init_static_threads",
+  "confidence": "high",
+  "evidence": "thread.c-tagged with \"thread_data <= __static_thread_data_list_end\"; iterates the static thread data list (11-word stride) initializing each thread and either readying it now or scheduling a delayed start.",
+  "batch": 19
+ },
+ {
+  "address": "0x00074a54",
+  "name": "z_sched_wake",
+  "confidence": "high",
+  "evidence": "Under sched_spinlock, takes the head thread of the wait-queue param_1, stores swap-return param_2 at [0x24] and swap-data param_3 at [5], aborts its timeout and inserts it into the ready queue - matching z_sched_wake(wait_q, swap_retval, swap_data).",
+  "batch": 19
+ },
+ {
+  "address": "0x0007a28c",
+  "name": "cc_pal_init_stub",
+  "confidence": "low",
+  "evidence": "4-byte function called by CC_LibInit that just returns 0, a CryptoCell PAL init stub.",
+  "batch": 19
+ },
+ {
+  "address": "0x0007c3d0",
+  "name": "pt_write_frame_type3",
+  "confidence": "medium",
+  "evidence": "Called by st25dv_mailbox_write_with_retry; tail-wrapper that invokes packet_transport_write_frame with a fixed frame type 3.",
+  "batch": 19
+ },
+ {
+  "address": "0x0007ca18",
+  "name": "ipc_send_packet_ch2005",
+  "confidence": "medium",
+  "evidence": "Called by ipc_service_send_with_retry; forwards to ipc_send_len_prefixed_packet_locked_retry with fixed channel/endpoint id 0x2005 and retry flag 1.",
+  "batch": 19
+ },
+ {
+  "address": "0x0007de54",
+  "name": "chunk_set_used_flag",
+  "confidence": "low",
+  "evidence": "Called by split_chunks/merge_chunks/k_heap_init; wraps chunk_set fixing the used field to 1 and encoding the prev/left-size as param<<1 for a sys_heap chunk header.",
+  "batch": 19
+ },
+ {
+  "address": "0x0007f8c6",
+  "name": "ancs_discover_ctx_clear",
+  "confidence": "medium",
+  "evidence": "Called by ancs_discover_params_reset; returns -EINVAL for a null pointer otherwise memset-zeroes a 0x2c-byte ANCS discovery context structure.",
+  "batch": 19
+ },
+ {
+  "address": "0x00081158",
+  "name": "hci_vs_setup_stub",
+  "confidence": "low",
+  "evidence": "4-byte function called by hci_vs_init that returns 0, a vendor-specific HCI setup stub.",
+  "batch": 19
+ },
+ {
+  "address": "0x00082282",
+  "name": "att_write_req_recv",
+  "confidence": "medium",
+  "evidence": "Pulls an le16 handle from the PDU and dispatches to FUN_00058c34 with ATT opcodes 0x12/0x13 (Write Request / Write Response), handing off the write value and length.",
+  "batch": 19
+ },
+ {
+  "address": "0x000836de",
+  "name": "bt_conn_alloc_pdu_buf",
+  "confidence": "medium",
+  "evidence": "Shared allocator (smp_packet_alloc, bt_hci_cmd_create, att_chan_read, ...) that dereferences the conn/device tx-queue chain at +0x2c and calls net_buf_alloc_len to obtain a PDU buffer from its pool.",
+  "batch": 19
+ },
+ {
+  "address": "0x00084ade",
+  "name": "uarte_nrfx_tx_complete",
+  "confidence": "medium",
+  "evidence": "Called by uarte_nrfx_isr; on is_tx_ready sets/clears the TX-done flag at data+0xcd, resets tx length +0xbc to -1 and restarts transmission via FUN_0008496c.",
+  "batch": 19
+ },
+ {
+  "address": "0x000852e6",
+  "name": "nrf_gpio_pin_outset",
+  "confidence": "medium",
+  "evidence": "Called by pin_init; resolves the GPIO port base via FUN_00066d1c and writes (1<<pin) to the port OUTSET register at base+8.",
+  "batch": 19
+ },
+ {
+  "address": "0x00086c1e",
+  "name": "safe_memcpy_checked",
+  "confidence": "high",
+  "evidence": "Called by 24 sites; asserts (noreturn FUN_00051164) when length exceeds dest size or the src/dst ranges overlap, otherwise performs memcpy - a bounds/overlap-checked memcpy wrapper.",
+  "batch": 19
+ }
+]

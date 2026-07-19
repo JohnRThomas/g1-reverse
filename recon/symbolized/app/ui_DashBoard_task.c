@@ -17,12 +17,15 @@
  *   gui_screen_clear                         <= FUN_000431c0 @ 0x000431c0
  *   gui_canvas_flags_set_bit1                <= FUN_000432d0 @ 0x000432d0
  *   gui_canvas_flags_clear_bit1              <= FUN_000432ec @ 0x000432ec
+ *   gui_screen_fade_out_transition           <= FUN_0004382c @ 0x0004382c
  *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
  *   send_response_data_to_msgqueue           <= FUN_00047b1c @ 0x00047b1c
  *   send_response_data_to_ble                <= FUN_00047ba8 @ 0x00047ba8
  *   SendPowerInfoToSlave                     <= FUN_000488bc @ 0x000488bc
+ *   set_dashboard_display_level_clamped      <= FUN_00048b44 @ 0x00048b44
  *   enter_dashboard_burial_point             <= FUN_0004a9ec @ 0x0004a9ec
  *   exit_dashboard_burial_point              <= FUN_0004aab0 @ 0x0004aab0
+ *   dashboard_read_word                      <= FUN_0007d1d0 @ 0x0007d1d0
  *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
  *   check_dashboard_device_status_range      <= FUN_0007d248 @ 0x0007d248
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -114,15 +117,15 @@ extern int gui_set_active_canvas(uintptr_t);
 extern int gui_screen_clear(void);
 extern int gui_canvas_flags_set_bit1(void);
 extern int gui_canvas_flags_clear_bit1(void);
-extern int FUN_0004382c(void);
+extern int gui_screen_fade_out_transition(void);
 extern int reflash_fb_data_to_lcd(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
 extern int send_response_data_to_msgqueue(const void *, uint32_t);
 extern int send_response_data_to_ble(void);
 extern int SendPowerInfoToSlave(uint32_t);
-extern int FUN_00048b44(uint32_t);
+extern int set_dashboard_display_level_clamped(uint32_t);
 extern int enter_dashboard_burial_point(void);
 extern int exit_dashboard_burial_point(void);
-extern uint32_t FUN_0007d1d0(uintptr_t);
+extern uint32_t dashboard_read_word(uintptr_t);
 extern uint32_t get_timestamp(void);
 extern uint32_t check_dashboard_device_status_range(void);
 extern void *memset_bytes(void *, int, uint32_t);
@@ -405,14 +408,14 @@ LAB_0003b116:
     *(uint *)(pcVar4 + 0x10) = (uint)(lVar23 * 1000) >> 0xf | uVar13 * 0x20000;
     *(uint *)(pcVar4 + 0x14) = uVar13 >> 0xf;
     *pcVar4 = '\x01';
-    FUN_00048b44(0x42);
+    set_dashboard_display_level_clamped(0x42);
     send_dashboard_status_sync();
 LAB_0003b198:
-    iVar12 = FUN_0007d1d0(DAT_0003b29c);
+    iVar12 = dashboard_read_word(DAT_0003b29c);
     if (-1 < iVar12 << 0x1e) {
       return 0;
     }
-    iVar12 = FUN_0007d1d0(DAT_0003b2a0);
+    iVar12 = dashboard_read_word(DAT_0003b2a0);
     if (iVar12 << 0x1e < 0) {
       return 0;
     }
@@ -434,9 +437,9 @@ LAB_0003b198:
   if (*pcVar4 != '\x01') {
     return 0;
   }
-  uVar13 = FUN_0007d1d0(DAT_0003b598);
+  uVar13 = dashboard_read_word(DAT_0003b598);
   piVar5 = DAT_0003b59c;
-  if (((uVar13 & 2) != 0) && (iVar14 = FUN_0007d1d0(DAT_0003b5a0), -1 < iVar14 << 0x1e)) {
+  if (((uVar13 & 2) != 0) && (iVar14 = dashboard_read_word(DAT_0003b5a0), -1 < iVar14 << 0x1e)) {
     local_30 = 0x650;
     local_2c = CONCAT22((*(volatile uint16_t*)((char*)&local_2c + 2)),0x201);
     if (2 < *piVar5) {
@@ -644,7 +647,7 @@ LAB_0003b512:
     }
   }
   send_event(0x1f);
-  FUN_0004382c();
+  gui_screen_fade_out_transition();
   memset_bytes(DAT_0003b5b4,0,0x28);
   *DAT_0003b5b8 = *DAT_0003b5b8 & 0xfffffffd;
 LAB_0003affc:

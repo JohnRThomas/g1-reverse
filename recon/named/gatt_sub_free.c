@@ -5,6 +5,7 @@
  *   gatt_sub_free                            <= FUN_00059e78 @ 0x00059e78
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   bt_addr_le_copy_828da                    <= FUN_000828da @ 0x000828da
  * address symbols (name @ address):
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f2b3a                             @ 0x000f2b3a
@@ -15,7 +16,7 @@
 
 extern void assert_post_action(unsigned int a, unsigned int b);
 extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
-extern void FUN_000828da(void *a, unsigned int b, unsigned int c, unsigned int d);
+extern void bt_addr_le_copy_828da(void *a, unsigned int b, unsigned int c, unsigned int d);
 
 void gatt_sub_free(char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -23,5 +24,5 @@ void gatt_sub_free(char *param_1, unsigned int param_2, unsigned int param_3, un
         printk(0x00099cbdUL, 0x000f4707UL, 0x000f46b8UL, 0xd5c);
         assert_post_action(0x000f46b8UL, 0xd5c);
     }
-    FUN_000828da(param_1 + 1, 0x000f2b3aUL, param_3, param_4);
+    bt_addr_le_copy_828da(param_1 + 1, 0x000f2b3aUL, param_3, param_4);
 }

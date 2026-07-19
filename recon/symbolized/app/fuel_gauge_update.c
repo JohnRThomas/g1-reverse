@@ -11,11 +11,13 @@
  *   battery_soc_from_curve                   <= FUN_0000e340 @ 0x0000e340
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_product_code_buf                     <= FUN_000232b8 @ 0x000232b8
  *   esb_send_command_and_wait_ack            <= FUN_00027448 @ 0x00027448
  *   fuel_gauge_read_voltage_current_temp     <= FUN_0002e988 @ 0x0002e988
  *   fuel_gauge_poll_should_stop              <= FUN_00030cac @ 0x00030cac
  *   fuel_gauge_lock                          <= FUN_000330c4 @ 0x000330c4
  *   fuel_gauge_unlock                        <= FUN_000330d8 @ 0x000330d8
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  *   set_shutdown_flag                        <= FUN_0007cbfe @ 0x0007cbfe
  *   k_uptime_get_3                           <= FUN_0007ceda @ 0x0007ceda
  *   product_code_is_supported_egp_family     <= FUN_0007cefc @ 0x0007cefc
@@ -76,10 +78,10 @@ extern uint64_t __aeabi_dadd(uint32_t,...); extern uint64_t __extendsfdf2(float)
 extern uint64_t __muldf3(uint32_t,...); extern uint8_t __fixunsdfsi(uint32_t,...);
 extern float __floatdisf(void); extern float battery_soc_from_curve(float,float,float,float,uint32_t);
 extern uint32_t get_device_info(void); extern uint32_t debug_print(uintptr_t,...);
-extern uint32_t FUN_000232b8(void); extern uint32_t esb_send_command_and_wait_ack(uintptr_t,...);
+extern uint32_t get_product_code_buf(void); extern uint32_t esb_send_command_and_wait_ack(uintptr_t,...);
 extern int fuel_gauge_read_voltage_current_temp(uint32_t,float*,float*,float*); extern int fuel_gauge_poll_should_stop(void);
 extern void fuel_gauge_lock(void); extern void fuel_gauge_unlock(void);
-extern uint32_t FUN_00074844(uintptr_t,...); extern uint32_t set_shutdown_flag(uintptr_t,...);
+extern uint32_t k_sleep(uintptr_t,...); extern uint32_t set_shutdown_flag(uintptr_t,...);
 extern int64_t k_uptime_get_3(void); extern uint32_t product_code_is_supported_egp_family(void);
 extern uint32_t send_event(uintptr_t,...); extern uint32_t sync_to_slave(uintptr_t,...);
 
@@ -136,7 +138,7 @@ int fuel_gauge_update(undefined4 param_1)
       *plVar4 = lVar16;
       goto LAB_00010c00;
     }
-    FUN_00074844(0xa4,0);
+    k_sleep(0xa4,0);
   }
   if (fVar15 == 0.0 || fVar15 < 0.0 != NAN(fVar15)) {
     return 0;
@@ -178,12 +180,12 @@ LAB_00010c00:
     uVar11 = (undefined4)((ulonglong)uVar17 >> 0x20);
     uVar18 = __extendsfdf2(fVar14);
     if (*DAT_00010f4c == 0) {
-      uVar9 = FUN_000232b8();
+      uVar9 = get_product_code_buf();
       log_message(DAT_00010f64,DAT_00010f50,(int)uVar17,uVar11,(int)uVar18,
                   (int)((ulonglong)uVar18 >> 0x20),uVar9);
     }
     else {
-      uVar9 = FUN_000232b8();
+      uVar9 = get_product_code_buf();
       debug_print(DAT_00010f64,DAT_00010f50,(int)uVar17,uVar11,uVar18,uVar9);
     }
   }

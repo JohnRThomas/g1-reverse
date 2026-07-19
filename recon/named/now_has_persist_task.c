@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   signal_persist_task_event                <= FUN_0007cdf8 @ 0x0007cdf8
  * address symbols (name @ address):
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -10,7 +11,7 @@
  */
 /* Reconstructed now_has_persist_task @ 0x2be64  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0007cdf8(void);
+extern void signal_persist_task_event(void);
 extern void log_message(void);
 extern void debug_print(void);
 
@@ -18,7 +19,7 @@ unsigned char now_has_persist_task(unsigned char *param_1, unsigned int param_2)
 {
     volatile unsigned char *pcVar1 = (volatile unsigned char*)0x20018d9cUL;
     while (*pcVar1 != 0) {
-        FUN_0007cdf8();
+        signal_persist_task_event();
     }
     int *p = *(int**)(param_1 + 0x1054);
     unsigned int uVar3 = *((unsigned char*)p + 4);

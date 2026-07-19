@@ -3,7 +3,10 @@
  * public-name: stream_flash_flush_buffer
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   z_log_msg_runtime_create                 <= FUN_0004d944 @ 0x0004d944
+ *   stream_flash_erase_page                  <= FUN_0004e124 @ 0x0004e124
  *   stream_flash_flush_buffer                <= FUN_0004e1ac @ 0x0004e1ac
+ *   stream_flash_vtable_get_value            <= FUN_0007f064 @ 0x0007f064
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_880d8                             @ 0x000880d8
@@ -47,10 +50,10 @@ struct diagnostic_record {
     uint32_t context;
 };
 
-extern int FUN_0004e124(struct buffered_writer *writer, uint32_t last_offset);
-extern uint32_t FUN_0007f064(void *device);
+extern int stream_flash_erase_page(struct buffered_writer *writer, uint32_t last_offset);
+extern uint32_t stream_flash_vtable_get_value(void *device);
 extern void memset_bytes(void *destination, uint8_t value, uint32_t length);
-extern void FUN_0004d944(uintptr_t source, uint32_t event,
+extern void z_log_msg_runtime_create(uintptr_t source, uint32_t event,
                          const struct diagnostic_record *record,
                          uint32_t reserved);
 
@@ -70,9 +73,9 @@ int stream_flash_flush_buffer(struct buffered_writer *writer, uint32_t unused_2,
         return 0;
 
     offset = writer->base + writer->committed;
-    status = FUN_0004e124(writer, offset + writer->count - 1u);
+    status = stream_flash_erase_page(writer, offset + writer->count - 1u);
     if (status >= 0) {
-        uint32_t unit = FUN_0007f064(writer->device);
+        uint32_t unit = stream_flash_vtable_get_value(writer->device);
         uint32_t remainder = writer->count % unit;
 
         if (remainder != 0) {
@@ -117,7 +120,7 @@ int stream_flash_flush_buffer(struct buffered_writer *writer, uint32_t unused_2,
                     .status = status,
                     .context = 0,
                 };
-                FUN_0004d944(((unsigned long)&rodata_880d8) /*=0x880d8*/, 0x1840u, &diagnostic, 0);
+                z_log_msg_runtime_create(((unsigned long)&rodata_880d8) /*=0x880d8*/, 0x1840u, &diagnostic, 0);
             }
             return status;
         }
@@ -130,7 +133,7 @@ int stream_flash_flush_buffer(struct buffered_writer *writer, uint32_t unused_2,
             .status = status,
             .context = offset,
         };
-        FUN_0004d944(((unsigned long)&rodata_880d8) /*=0x880d8*/, 0x2040u, &diagnostic, 0);
+        z_log_msg_runtime_create(((unsigned long)&rodata_880d8) /*=0x880d8*/, 0x2040u, &diagnostic, 0);
     }
     return status;
 

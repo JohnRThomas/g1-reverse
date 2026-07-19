@@ -6,9 +6,11 @@
  *   attr_store_set                           <= FUN_00030178 @ 0x00030178
  *   verify_image_checksum                    <= FUN_000302cc @ 0x000302cc
  *   attr_store_get                           <= FUN_000302f8 @ 0x000302f8
+ *   pt_nfc_link_transfer_fw_packet           <= FUN_00030340 @ 0x00030340
  *   flash_firmware_update_transfer           <= FUN_00030754 @ 0x00030754
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
  *   free                                     <= FUN_00076d7c @ 0x00076d7c
+ *   flash_data_checksum_neg_sum              <= FUN_0007cf34 @ 0x0007cf34
  *   attr_configure_mode3_readback            <= FUN_0007d05e @ 0x0007d05e
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -26,10 +28,10 @@ extern int attr_store_retry_delay(uint32_t);
 extern int attr_store_set(uint32_t, uint32_t);
 extern int verify_image_checksum(void);
 extern int attr_store_get(uint32_t, void *);
-extern int FUN_00030340(uint32_t, uint32_t, void *, uint32_t);
+extern int pt_nfc_link_transfer_fw_packet(uint32_t, uint32_t, void *, uint32_t);
 extern void *malloc(uint32_t);
 extern void free(void *);
-extern uint32_t FUN_0007cf34(uint32_t, uint32_t, uint32_t);
+extern uint32_t flash_data_checksum_neg_sum(uint32_t, uint32_t, uint32_t);
 extern int attr_configure_mode3_readback(void *, uint32_t);
 extern void memcpy(void *, const void *, uint32_t);
 extern void memset_bytes(void *, int, uint32_t);
@@ -75,14 +77,14 @@ uint32_t flash_firmware_update_transfer(int mode)
                     attr_store_set(0xff20, UINT32_C(0x3c00f091)) == 0 &&
                     attr_store_set(0x4820, 4) == 0 &&
                     attr_configure_mode3_readback(&scratch, 0x7fc) == 0) {
-                    uint32_t identity = FUN_0007cf34(UINT32_C(0x000a49ed),
+                    uint32_t identity = flash_data_checksum_neg_sum(UINT32_C(0x000a49ed),
                                                      0x1b9c, 0x37f8);
                     device_word = __builtin_bswap32(identity);
                     PHASE = 1;
-                    if (FUN_00030340(1, 1, 0, 0) == 0) {
+                    if (pt_nfc_link_transfer_fw_packet(1, 1, 0, 0) == 0) {
                         scratch = UINT32_C(0x803f0010);
                         PHASE = 2;
-                        if (FUN_00030340(2, 2, &scratch, 4) == 0) {
+                        if (pt_nfc_link_transfer_fw_packet(2, 2, &scratch, 4) == 0) {
                             PHASE = 4;
                             uint32_t command[4] = {
                                 0, UINT32_C(0xf83f0010),
@@ -90,7 +92,7 @@ uint32_t flash_firmware_update_transfer(int mode)
                             };
                             range_start = 0;
                             range_end = 0;
-                            if (FUN_00030340(1, 2, command, 0x10) == 0 &&
+                            if (pt_nfc_link_transfer_fw_packet(1, 2, command, 0x10) == 0 &&
                                 attr_configure_mode3_readback(&range_start, 0x3ff8) == 0 &&
                                 attr_configure_mode3_readback(&range_end, 0x3ffc) == 0 &&
                                 range_start == UINT32_C(0x20222022) &&
@@ -116,7 +118,7 @@ program_ranges:
         scratch = ((((address & 0xffu) << 8) | ((address >> 8) & 0xffu)) << 16) |
                   UINT32_C(0x10);
         PHASE = 2;
-        rc = FUN_00030340(2, 2, &scratch, 4);
+        rc = pt_nfc_link_transfer_fw_packet(2, 2, &scratch, 4);
         if (rc != 0)
             goto cleanup;
         address += 0x80;
@@ -140,7 +142,7 @@ program_ranges:
             memcpy(packet + 8,
                          (const void *)(uintptr_t)(UINT32_C(0xf00a29ed) + address),
                          0x100);
-            rc = FUN_00030340(1, 2, packet, 0x108);
+            rc = pt_nfc_link_transfer_fw_packet(1, 2, packet, 0x108);
             if (rc != 0) {
                 free(packet);
                 goto cleanup;
@@ -159,7 +161,7 @@ program_ranges:
                 packet[3] = sequence;
                 *(uint32_t *)(packet + 4) = UINT32_C(0x003b0010);
                 memcpy(packet + 8, (const void *)UINT32_C(0x000a64ed), 0x9c);
-                rc = FUN_00030340(1, 2, packet, 0xa4);
+                rc = pt_nfc_link_transfer_fw_packet(1, 2, packet, 0xa4);
                 if (rc != 0) {
                     free(packet);
                     goto cleanup;

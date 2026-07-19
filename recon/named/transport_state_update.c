@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   transport_state_update                   <= FUN_0002538c @ 0x0002538c
  *   thunk_FUN_00074f68                       <= FUN_0007c398 @ 0x0007c398
+ *   box_field_state_to_display_code          <= FUN_0007c842 @ 0x0007c842
  * address symbols (name @ address):
  *   g_20007a00                               @ 0x20007a00
  *   g_20018c65                               @ 0x20018c65
@@ -14,7 +15,7 @@
  */
 #include <stdint.h>
 
-extern void FUN_0007c842(void *context);
+extern void box_field_state_to_display_code(void *context);
 extern uint64_t thunk_FUN_00074f68(void);
 
 void transport_state_update(uint8_t *context, uint8_t *state)
@@ -24,7 +25,7 @@ void transport_state_update(uint8_t *context, uint8_t *state)
     uint8_t phase;
 
     context[2] = 3U;
-    FUN_0007c842(context);
+    box_field_state_to_display_code(context);
     phase = context[2];
 
     if (phase == 1U) {

@@ -3,6 +3,7 @@
  * public-name: check_work_mode
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   compute_lux_brightness_bucket            <= FUN_00010840 @ 0x00010840
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   get_current_work_mode                    <= FUN_00016940 @ 0x00016940
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
@@ -113,7 +114,7 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
 extern long long log_message(long long format, ...);
-extern long long FUN_00010840(long long);
+extern long long compute_lux_brightness_bucket(long long);
 extern long long get_device_info(void);
 extern long long get_current_work_mode(void);
 extern long long debug_print(void);
@@ -543,7 +544,7 @@ LAB_00027b72:
   pcVar6 = (char *)get_device_info();
   if ((*pcVar6 == '\x01') && (iVar5 = get_device_info(), *(int *)(iVar5 + 0xf90) != 0)) {
     iVar5 = get_device_info();
-    iVar5 = FUN_00010840(iVar5 + 0xf80);
+    iVar5 = compute_lux_brightness_bucket(iVar5 + 0xf80);
     if ((iVar5 != 0xff) &&
        (iVar5 = get_device_info(), pcVar6 = DAT_00027ce8, *(char *)(iVar5 + 0xed5) != *DAT_00027ce8)) {
       iVar5 = get_device_info();

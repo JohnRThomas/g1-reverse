@@ -9,6 +9,8 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   bt_addr_le_is_bonded                     <= FUN_00080f92 @ 0x00080f92
  *   atomic_or_0                              <= FUN_000826e0 @ 0x000826e0
+ *   read_struct_first_word                   <= FUN_0008270c @ 0x0008270c
+ *   bt_addr_le_copy_828da                    <= FUN_000828da @ 0x000828da
  * address symbols (name @ address):
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f1722                             @ 0x000f1722
@@ -29,8 +31,8 @@ extern void assert_post_action(uint32_t,int);
 extern void printk(uint32_t,...);
 extern int bt_addr_le_is_bonded(void);
 extern uint64_t atomic_or_0(int,uint32_t);
-extern int FUN_0008270c(uint32_t);
-extern void FUN_000828da(int,uint32_t,int);
+extern int read_struct_first_word(uint32_t);
+extern void bt_addr_le_copy_828da(int,uint32_t,int);
 
 void gatt_delayed_store_enqueue(uint32_t param_1, uint32_t param_2, uint32_t param_3){
   int iVar2 = bt_addr_le_is_bonded();
@@ -38,13 +40,13 @@ void gatt_delayed_store_enqueue(uint32_t param_1, uint32_t param_2, uint32_t par
   if (iVar2 == 0) return;
   if (iVar3 == 0){
     int iVar4;
-    int t = FUN_0008270c(0x20006330);
+    int t = read_struct_first_word(0x20006330);
     if (t == 0){ iVar2 = 0; iVar4 = 0; }
     else {
-      t = FUN_0008270c(0x2000633c);
+      t = read_struct_first_word(0x2000633c);
       if (t == 0){ iVar4 = 1; iVar2 = 0xc; }
       else {
-        t = FUN_0008270c(0x20006348);
+        t = read_struct_first_word(0x20006348);
         if (t != 0){
           printk(0x99cbd,0xf1722,0xf46b8,0x577);
           printk(0xf46e8);
@@ -55,7 +57,7 @@ void gatt_delayed_store_enqueue(uint32_t param_1, uint32_t param_2, uint32_t par
     }
     int iVar1 = 0x20006328;
     iVar3 = iVar2 + 0x20006328;
-    FUN_000828da(0x20006328 + iVar2 + 1, param_2, iVar3);
+    bt_addr_le_copy_828da(0x20006328 + iVar2 + 1, param_2, iVar3);
     *(volatile char*)(iVar1 + iVar4*0xc) = (char)param_1;
   }
   uint64_t pending = atomic_or_0(iVar3 + 8, 1 << (param_3 & 0xff));

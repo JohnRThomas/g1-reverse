@@ -13,6 +13,7 @@
  *   gui_clock_draw                           <= FUN_000442bc @ 0x000442bc
  *   clean_fb_data                            <= FUN_000471cc @ 0x000471cc
  *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ *   snprintf                                 <= FUN_00077914 @ 0x00077914
  *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
  *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
  *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
@@ -59,7 +60,7 @@ extern int  get_timestamp(void);
 extern void gui_bitmps_merge_draw(int a, int b, int c, int d, int e, int f, int g, int h);
 extern void memset_bytes(unsigned a, int b, int c);
 extern void memcpy(unsigned a, unsigned b, int c);
-extern void FUN_00077914(unsigned a, int b, unsigned c, int d, int e);
+extern void snprintf(unsigned a, int b, unsigned c, int d, int e);
 extern void gui_utf_draw(int a, unsigned b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l);
 extern void gui_clock_draw(int a, int b, int c, int d, int e, int f, int g);
 extern void navigation_direction_img_display(unsigned char a);
@@ -150,7 +151,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
                              ((unsigned long)&g_2001c336) /*=0x2001c336*/ - 0x908, ((unsigned long)&g_2001c336) /*=0x2001c336*/, 2, 0xf);
             }
             memset_bytes(((unsigned long)g_buf_2001b9ac) /*=0x2001b9ac*/, 0, 0x80);
-            FUN_00077914(((unsigned long)g_buf_2001b9ac) /*=0x2001b9ac*/, 0x80, ((unsigned long)&rodata_a9f2a) /*=0xa9f2a*/, param_2 + 0xd, param_2 + 0x25);
+            snprintf(((unsigned long)g_buf_2001b9ac) /*=0x2001b9ac*/, 0x80, ((unsigned long)&rodata_a9f2a) /*=0xa9f2a*/, param_2 + 0xd, param_2 + 0x25);
             {
                 int a1 = device_info_text_width_get();
                 int a2 = device_info_text_height_get_clamped();
@@ -293,7 +294,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
                 debug_print();
         }
         memset_bytes(((unsigned long)g_buf_2001b9ac) /*=0x2001b9ac*/, 0, 0x80);
-        FUN_00077914(((unsigned long)g_buf_2001b9ac) /*=0x2001b9ac*/, 0x80, ((unsigned long)&rodata_a9f2a) /*=0xa9f2a*/, param_2 + 0xd, param_2 + 0x25);
+        snprintf(((unsigned long)g_buf_2001b9ac) /*=0x2001b9ac*/, 0x80, ((unsigned long)&rodata_a9f2a) /*=0xa9f2a*/, param_2 + 0xd, param_2 + 0x25);
         {
             int a1 = device_info_text_width_get();
             int a2 = device_info_text_height_get_clamped();

@@ -8,6 +8,9 @@
  *   subcontracing_send_data_pkcs7            <= FUN_00021a40 @ 0x00021a40
  *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
  *   cjson_create_object                      <= FUN_00064ca4 @ 0x00064ca4
+ *   cjson_print_pretty                       <= FUN_00085014 @ 0x00085014
+ *   cjson_add_item_to_object_thunk           <= FUN_00085046 @ 0x00085046
+ *   cjson_add_string_to_object               <= FUN_0008509e @ 0x0008509e
  * address symbols (name @ address):
  *   rodata_9b257                             @ 0x0009b257
  *   rodata_9d749                             @ 0x0009d749
@@ -30,9 +33,9 @@
 typedef unsigned int uint32_t;
 
 extern uint32_t cjson_create_object(void);
-extern void FUN_0008509e(uint32_t a, uint32_t b, uint32_t c);
-extern void FUN_00085046(uint32_t a, uint32_t b, uint32_t c);
-extern uint32_t FUN_00085014(uint32_t a);
+extern void cjson_add_string_to_object(uint32_t a, uint32_t b, uint32_t c);
+extern void cjson_add_item_to_object_thunk(uint32_t a, uint32_t b, uint32_t c);
+extern uint32_t cjson_print_pretty(uint32_t a);
 extern void log_message(uint32_t a, uint32_t b, uint32_t c);
 extern void debug_print(uint32_t a, uint32_t b, ...);
 extern uint32_t strlen(uint32_t a);
@@ -46,15 +49,15 @@ uint32_t mobile_send_notification_to_ble_device_test(uint32_t param_1, uint32_t 
     uint32_t uVar3;
 
     uVar1 = cjson_create_object();
-    FUN_0008509e(uVar1, ((unsigned long)&rodata_9d759) /*=0x9d759*/, ((unsigned long)&rodata_9d749) /*=0x9d749*/);
-    FUN_0008509e(uVar1, ((unsigned long)&rodata_9b257) /*=0x9b257*/, param_1);
-    FUN_0008509e(uVar1, ((unsigned long)&rodata_9d76c) /*=0x9d76c*/, ((unsigned long)&rodata_9d768) /*=0x9d768*/);
-    FUN_0008509e(uVar1, ((unsigned long)&rodata_9d775) /*=0x9d775*/, param_2);
-    FUN_0008509e(uVar1, ((unsigned long)&rodata_f3fde) /*=0xf3fde*/, ((unsigned long)&rodata_9d77d) /*=0x9d77d*/);
-    FUN_0008509e(uVar1, ((unsigned long)&rodata_9d790) /*=0x9d790*/, ((unsigned long)&rodata_9d789) /*=0x9d789*/);
+    cjson_add_string_to_object(uVar1, ((unsigned long)&rodata_9d759) /*=0x9d759*/, ((unsigned long)&rodata_9d749) /*=0x9d749*/);
+    cjson_add_string_to_object(uVar1, ((unsigned long)&rodata_9b257) /*=0x9b257*/, param_1);
+    cjson_add_string_to_object(uVar1, ((unsigned long)&rodata_9d76c) /*=0x9d76c*/, ((unsigned long)&rodata_9d768) /*=0x9d768*/);
+    cjson_add_string_to_object(uVar1, ((unsigned long)&rodata_9d775) /*=0x9d775*/, param_2);
+    cjson_add_string_to_object(uVar1, ((unsigned long)&rodata_f3fde) /*=0xf3fde*/, ((unsigned long)&rodata_9d77d) /*=0x9d77d*/);
+    cjson_add_string_to_object(uVar1, ((unsigned long)&rodata_9d790) /*=0x9d790*/, ((unsigned long)&rodata_9d789) /*=0x9d789*/);
     uVar2 = cjson_create_object();
-    FUN_00085046(uVar2, ((unsigned long)&rodata_9d79d) /*=0x9d79d*/, uVar1);
-    uVar1 = FUN_00085014(uVar2);
+    cjson_add_item_to_object_thunk(uVar2, ((unsigned long)&rodata_9d79d) /*=0x9d79d*/, uVar1);
+    uVar1 = cjson_print_pretty(uVar2);
     if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile uint32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
             log_message(((unsigned long)&rodata_9d7ae) /*=0x9d7ae*/, ((unsigned long)&rodata_9dfe8) /*=0x9dfe8*/, uVar1);

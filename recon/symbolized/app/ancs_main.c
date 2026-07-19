@@ -2,6 +2,10 @@
 /* readable reconstruction; identity: FUN_00019950 @ 0x00019950
  * public-name: ancs_main
  * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ancs_notify_sync_init                    <= FUN_000181f0 @ 0x000181f0
+ *   bt_conn_auth_cb_register                 <= FUN_000572fc @ 0x000572fc
+ *   k_msleep_ticks32768_d                    <= FUN_0007c0a8 @ 0x0007c0a8
  * address symbols (name @ address):
  *   ADDR_check_bonded_addr_THUMB             @ 0x000183e5
  *   rodata_9af3b                             @ 0x0009af3b
@@ -43,13 +47,13 @@ extern void bt_foreach_bond(unsigned int, const void *);/* FUN_0005e6d4 @ 0x0005
 extern int settings_load(void);                         /* FUN_0007f192 @ 0x0007f192 */
 extern int log_message(const char *format, ...);        /* FUN_0007dda4 @ 0x0007dda4 */
 
-extern void FUN_0007c0a8(unsigned int milliseconds);
-extern int FUN_000572fc(const void *callbacks);
-extern int FUN_000181f0(void);
+extern void k_msleep_ticks32768_d(unsigned int milliseconds);
+extern int bt_conn_auth_cb_register(const void *callbacks);
+extern int ancs_notify_sync_init(void);
 
-#define ancs_sleep_ms                 FUN_0007c0a8 /* k_msleep adapter @ 0x0007c0a8 */
-#define bt_conn_auth_cb_register      FUN_000572fc /* FUN_000572fc @ 0x000572fc */
-#define ancs_notify_sync_init         FUN_000181f0 /* FUN_000181f0 @ 0x000181f0 */
+#define ancs_sleep_ms                 k_msleep_ticks32768_d /* k_msleep adapter @ 0x0007c0a8 */
+#define bt_conn_auth_cb_register      bt_conn_auth_cb_register /* FUN_000572fc @ 0x000572fc */
+#define ancs_notify_sync_init         ancs_notify_sync_init /* FUN_000181f0 @ 0x000181f0 */
 
 /* Absolute object and string identities are intentionally retained.  Their
  * names describe use here; the address is the durable back-map. */

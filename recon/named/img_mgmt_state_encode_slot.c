@@ -8,6 +8,7 @@
  *   img_mgmt_read_info                       <= FUN_00052038 @ 0x00052038
  *   zcbor_tstr_encode_ptr                    <= FUN_0008099e @ 0x0008099e
  *   cbor_encode_uint32                       <= FUN_00086320 @ 0x00086320
+ *   zcbor_bstr_encode                        <= FUN_00086338 @ 0x00086338
  *   cbor_encode_map_indef_start              <= FUN_0008634c @ 0x0008634c
  *   cbor_encode_simple                       <= FUN_00086378 @ 0x00086378
  * address symbols (name @ address):
@@ -30,7 +31,7 @@ extern int img_mgmt_ver_str(void*,void*);
 extern int img_mgmt_read_info(unsigned,void*,void*,void*);
 extern int zcbor_tstr_encode_ptr(unsigned,void*,int);
 extern int cbor_encode_uint32(unsigned,unsigned);
-extern int FUN_00086338(unsigned,void*);
+extern int zcbor_bstr_encode(unsigned,void*);
 extern int cbor_encode_map_indef_start(unsigned,int);
 extern int cbor_encode_simple(unsigned,unsigned);
 extern int thunk_FUN_00086354(unsigned,int);
@@ -52,7 +53,7 @@ unsigned img_mgmt_state_encode_slot(unsigned param_1,unsigned param_2,unsigned p
       else { l3c=0; buf54[0]=l3c; uVar4=strlen(buf54); puVar3=buf54; }
       iVar1 = zcbor_tstr_encode_ptr(param_1,puVar3,uVar4);
       if (iVar1!=0 && (iVar1=zcbor_tstr_encode_ptr(param_1,(void*)0xf4a01,4))!=0 &&
-          (iVar1=FUN_00086338(param_1,&local_64))!=0 &&
+          (iVar1=zcbor_bstr_encode(param_1,&local_64))!=0 &&
           (iVar1=zcbor_tstr_encode_ptr(param_1,(void*)0xf273a,8))!=0 &&
           (iVar1=cbor_encode_simple(param_1,((local_68^0x10)>>4)&1))!=0 &&
           (iVar1=zcbor_tstr_encode_ptr(param_1,(void*)0xf2743,7))!=0 &&

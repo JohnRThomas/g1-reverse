@@ -7,8 +7,10 @@
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
  *   k_mutex_lock                             <= FUN_000723b8 @ 0x000723b8
  *   z_reschedule                             <= FUN_000739f0 @ 0x000739f0
+ *   z_pend_curr                              <= FUN_00073f6c @ 0x00073f6c
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   k_mutex_owner_prio_check                 <= FUN_000864b2 @ 0x000864b2
  * address symbols (name @ address):
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f08c7                             @ 0x000f08c7
@@ -30,11 +32,11 @@ extern int z_spin_lock_valid(uint32_t);
 extern int z_spin_unlock_valid(uint32_t);
 extern void z_spin_lock_set_owner(uint32_t);
 extern void z_reschedule(uint32_t, uint32_t);
-extern int FUN_00073f6c(uint32_t, uint32_t, void *, uint32_t,
+extern int z_pend_curr(uint32_t, uint32_t, void *, uint32_t,
                        void *, uint32_t);
 extern void printk(uint32_t, ...);
 extern void assert_post_action(uint32_t, uint32_t);
-extern int FUN_000864b2(void *, int);
+extern int k_mutex_owner_prio_check(void *, int);
 
 struct queue_entry {
   struct queue_entry *next;
@@ -117,12 +119,12 @@ int k_mutex_lock(struct queue_entry *entry, uint32_t reserved,
 
   int previous_update = 0;
   if (current_priority > target_priority) {
-    previous_update = FUN_000864b2(entry->item, target_priority);
+    previous_update = k_mutex_owner_prio_check(entry->item, target_priority);
   }
 
   /* The fourth formal is unused by FUN_00073f6c; the two successor fields
      are its stacked fifth and sixth arguments. */
-  if (FUN_00073f6c(lock, previous_priority, entry, 0,
+  if (z_pend_curr(lock, previous_priority, entry, 0,
                    successor, successor_value) == 0) {
     return 0;
   }
@@ -147,7 +149,7 @@ int k_mutex_lock(struct queue_entry *entry, uint32_t reserved,
         priority = -127;
       }
     }
-    if (FUN_000864b2(entry->item, priority) != 0) {
+    if (k_mutex_owner_prio_check(entry->item, priority) != 0) {
       z_reschedule(lock, reacquire_priority);
       return -11;
     }

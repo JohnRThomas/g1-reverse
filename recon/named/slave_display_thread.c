@@ -1,6 +1,12 @@
 /* readable reconstruction; identity: FUN_00027cfc @ 0x00027cfc
  * public-name: slave_display_thread
  * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_ui_mode_flag2                        <= FUN_00023eec @ 0x00023eec
+ *   set_message_pending_state                <= FUN_0003443c @ 0x0003443c
+ *   onboarding_mark_retry_if_reset           <= FUN_000429f8 @ 0x000429f8
+ *   device_addr_is_default                   <= FUN_0007c132 @ 0x0007c132
+ *   atomic_or_bit1                           <= FUN_0007cb54 @ 0x0007cb54
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
  *   rodata_99969                             @ 0x00099969
@@ -96,18 +102,18 @@ extern void update_persist_task_status_to_idle(void *context);
 extern void update_not_disturb_settings(void);
 
 /* Readable aliases for still-unnamed raw identities. */
-#define refresh_onboarding_retry_state FUN_000429f8
-extern void FUN_000429f8(void); /* @ 0x429f8 */
-#define peer_address_is_uninitialized FUN_0007c132
-extern int FUN_0007c132(uint32_t low, uint32_t high); /* @ 0x7c132 */
+#define refresh_onboarding_retry_state onboarding_mark_retry_if_reset
+extern void onboarding_mark_retry_if_reset(void); /* @ 0x429f8 */
+#define peer_address_is_uninitialized device_addr_is_default
+extern int device_addr_is_default(uint32_t low, uint32_t high); /* @ 0x7c132 */
 #define reset_onboarding_bitmap_state thunk_FUN_00043308
 extern void thunk_FUN_00043308(void); /* @ 0x7d3be */
-#define set_message_indicator FUN_0003443c
-extern void FUN_0003443c(uint32_t value); /* @ 0x3443c */
-#define get_pending_language_code FUN_00023eec
-extern uint8_t FUN_00023eec(void); /* @ 0x23eec */
-#define set_atomic_flag_bits FUN_0007cb54
-extern void FUN_0007cb54(volatile uint32_t *flags); /* @ 0x7cb54 */
+#define set_message_indicator set_message_pending_state
+extern void set_message_pending_state(uint32_t value); /* @ 0x3443c */
+#define get_pending_language_code get_ui_mode_flag2
+extern uint8_t get_ui_mode_flag2(void); /* @ 0x23eec */
+#define set_atomic_flag_bits atomic_or_bit1
+extern void atomic_or_bit1(volatile uint32_t *flags); /* @ 0x7cb54 */
 
 typedef struct {
     uint8_t device_side;

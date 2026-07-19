@@ -6,8 +6,10 @@
  *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_ui_mode_flag_byte1                   <= FUN_00023ee0 @ 0x00023ee0
  *   check_charging_and_touch_flags           <= FUN_00026c28 @ 0x00026c28
  *   msg_content_recalc_unread                <= FUN_00033cf8 @ 0x00033cf8
+ *   draw_quicknote_hint_on_dashboard         <= FUN_00036d38 @ 0x00036d38
  *   reset_touch_selection_state              <= FUN_00037098 @ 0x00037098
  *   cleanStocksIndex                         <= FUN_00037154 @ 0x00037154
  *   cleanNewsIndex                           <= FUN_00037234 @ 0x00037234
@@ -20,15 +22,19 @@
  *   gui_utf_draw_dark_light_split            <= FUN_00044544 @ 0x00044544
  *   gui_utf_draw_align_right                 <= FUN_00044ec4 @ 0x00044ec4
  *   gui_string_draw                          <= FUN_000455cc @ 0x000455cc
+ *   dashboard_reflash_index_lookup           <= FUN_000469a8 @ 0x000469a8
  *   clean_fb_data                            <= FUN_000471cc @ 0x000471cc
  *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
  *   unix_timestamp_to_datetime               <= FUN_0004a1b8 @ 0x0004a1b8
+ *   snprintf                                 <= FUN_00077914 @ 0x00077914
+ *   dashboard_read_word                      <= FUN_0007d1d0 @ 0x0007d1d0
  *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
  *   compute_day_of_week                      <= FUN_0007d280 @ 0x0007d280
  *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
  *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
  *   get_localized_weekday_name               <= FUN_0007d4b2 @ 0x0007d4b2
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   vdprintf_to_fd                           <= FUN_00086f00 @ 0x00086f00
  * address symbols (name @ address):
@@ -96,10 +102,10 @@ extern long long log_message(int, ...);
 extern long long strlen(int, ...);
 extern long long get_device_info(int, ...);
 extern long long debug_print(int, ...);
-extern long long FUN_00023ee0(int, ...);
+extern long long get_ui_mode_flag_byte1(int, ...);
 extern long long check_charging_and_touch_flags(int, ...);
 extern long long msg_content_recalc_unread(int, ...);
-extern long long FUN_00036d38(int, ...);
+extern long long draw_quicknote_hint_on_dashboard(int, ...);
 extern long long reset_touch_selection_state(int, ...);
 extern long long cleanStocksIndex(int, ...);
 extern long long cleanNewsIndex(int, ...);
@@ -112,19 +118,19 @@ extern long long gui_clock_draw(int, ...);
 extern long long gui_utf_draw_dark_light_split(int, ...);
 extern long long gui_utf_draw_align_right(int, ...);
 extern long long gui_string_draw(int, ...);
-extern long long FUN_000469a8(int, ...);
+extern long long dashboard_reflash_index_lookup(int, ...);
 extern long long clean_fb_data(int, ...);
 extern long long reflash_fb_data_to_lcd(int, ...);
 extern long long unix_timestamp_to_datetime(int, ...);
-extern long long FUN_00077914(int, ...);
-extern long long FUN_0007d1d0(int, ...);
+extern long long snprintf(int, ...);
+extern long long dashboard_read_word(int, ...);
 extern long long get_timestamp(int, ...);
 extern long long compute_day_of_week(int, ...);
 extern long long device_info_text_width_get(int, ...);
 extern long long device_info_text_height_get_clamped(int, ...);
 extern long long get_localized_weekday_name(int, ...);
 extern long long memcpy(int, ...);
-extern long long FUN_00086c1e(int, ...);
+extern long long safe_memcpy_checked(int, ...);
 extern long long memset_bytes(int, ...);
 extern long long vdprintf_to_fd(int, ...);
 #define DAT_000374c0 ((volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)
@@ -400,7 +406,7 @@ void DashBoard_Reflash(int param_1,int param_2,int param_3,int param_4)
         uStack_9f = 0;
         uStack_9e = 0;
         if ((byte)(*(char *)(param_1 + 4) - 1U) < 0xfe) {
-          uVar5 = ((long long (*)(void))FUN_000469a8)();
+          uVar5 = ((long long (*)(void))dashboard_reflash_index_lookup)();
           iVar4 = ((long long (*)(void))device_info_text_width_get)();
           iVar9 = ((long long (*)(void))device_info_text_height_get_clamped)();
           gui_bmp_bitmap_draw(uVar5,iVar4 + 0x11e,iVar9 + 0x1c,0,0,0);
@@ -421,7 +427,7 @@ void DashBoard_Reflash(int param_1,int param_2,int param_3,int param_4)
                 ((long long (*)(void))debug_print)();
               }
             }
-            FUN_00077914(&local_a4,8,DAT_0003abc8,iVar9);
+            snprintf(&local_a4,8,DAT_0003abc8,iVar9);
             local_b0 = 0;
             iVar4 = ((long long (*)(void))device_info_text_width_get)();
             iVar9 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -447,7 +453,7 @@ void DashBoard_Reflash(int param_1,int param_2,int param_3,int param_4)
                 ((long long (*)(void))debug_print)();
               }
             }
-            FUN_00077914(&local_a4,8,DAT_0003ae64,iVar4);
+            snprintf(&local_a4,8,DAT_0003ae64,iVar4);
             local_b0 = 0;
             iVar4 = ((long long (*)(void))device_info_text_width_get)();
             iVar9 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -480,7 +486,7 @@ void DashBoard_Reflash(int param_1,int param_2,int param_3,int param_4)
         local_a0 = 0;
         uStack_9f = 0;
         uStack_9e = 0;
-        FUN_00077914(&local_a4,8);
+        snprintf(&local_a4,8);
         iVar4 = ((long long (*)(void))device_info_text_width_get)();
         iVar9 = ((long long (*)(void))device_info_text_height_get_clamped)();
         iVar14 = ((long long (*)(void))device_info_text_width_get)();
@@ -660,7 +666,7 @@ LAB_0003acba:
         local_b8 = 0;
         local_b4 = 0;
         if ((byte)(*(char *)(param_1 + 4) - 1U) < 0xfe) {
-          uVar5 = ((long long (*)(void))FUN_000469a8)();
+          uVar5 = ((long long (*)(void))dashboard_reflash_index_lookup)();
           iVar4 = ((long long (*)(void))device_info_text_width_get)();
           iVar14 = ((long long (*)(void))device_info_text_height_get_clamped)();
           gui_bmp_bitmap_draw(uVar5,iVar4 + 0xa0,iVar14 + 1,0,0,0);
@@ -677,7 +683,7 @@ LAB_0003acba:
                 ((long long (*)(void))debug_print)();
               }
             }
-            FUN_00077914(&local_b8,8,DAT_00037930,iVar14);
+            snprintf(&local_b8,8,DAT_00037930,iVar14);
             local_80 = 0;
             iVar4 = ((long long (*)(void))device_info_text_width_get)();
             iVar14 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -698,7 +704,7 @@ LAB_0003acba:
                 ((long long (*)(void))debug_print)();
               }
             }
-            FUN_00077914(&local_b8,8,DAT_00037c18,iVar4);
+            snprintf(&local_b8,8,DAT_00037c18,iVar4);
             local_80 = 0;
             iVar4 = ((long long (*)(void))device_info_text_width_get)();
             iVar14 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -723,7 +729,7 @@ LAB_0003acba:
         ((long long (*)(void))msg_content_recalc_unread)();
         local_b8 = 0;
         local_b4 = 0;
-        FUN_00077914(&local_b8,8);
+        snprintf(&local_b8,8);
         iVar4 = ((long long (*)(void))device_info_text_width_get)();
         iVar14 = ((long long (*)(void))device_info_text_height_get_clamped)();
         iVar7 = ((long long (*)(void))device_info_text_width_get)();
@@ -769,7 +775,7 @@ LAB_0003acba:
         }
         cVar3 = *(char *)(iVar9 + 0x20);
         if (cVar3 == '\0') {
-          iVar4 = ((long long (*)(void))FUN_00023ee0)();
+          iVar4 = ((long long (*)(void))get_ui_mode_flag_byte1)();
           local_80 = *DAT_00037938;
           local_7c[0] = DAT_00037938[1];
           local_94 = *DAT_0003793c;
@@ -793,7 +799,7 @@ LAB_0003acba:
         }
         else {
           if (cVar3 == '\x01') {
-            iVar4 = ((long long (*)(void))FUN_00023ee0)();
+            iVar4 = ((long long (*)(void))get_ui_mode_flag_byte1)();
             puVar10 = &local_94;
             puVar15 = DAT_00037c1c;
             do {
@@ -828,7 +834,7 @@ LAB_0003acba:
               local_80 = 0;
               memset_bytes(local_7c,0,0x54);
               uVar5 = strlen(DAT_00037c30);
-              FUN_00086c1e(&local_80,DAT_00037c30,uVar5,0x58);
+              safe_memcpy_checked(&local_80,DAT_00037c30,uVar5,0x58);
               iVar4 = strlen(DAT_00037c30);
               *(undefined1 *)((int)local_7c + iVar4 + -4) = 0x20;
               uVar5 = strlen(DAT_00037c34);
@@ -843,7 +849,7 @@ LAB_0003acba:
               puVar10 = &local_80;
               goto LAB_00037904;
             }
-            iVar4 = ((long long (*)(void))FUN_00023ee0)();
+            iVar4 = ((long long (*)(void))get_ui_mode_flag_byte1)();
             puVar10 = &local_94;
             puVar15 = DAT_00037c24;
             do {
@@ -990,7 +996,7 @@ LAB_0003803a:
             else {
               local_80 = 0;
               memset_bytes(local_7c,0,0x1c);
-              FUN_00077914(&local_80,0x20,DAT_0003827c,uVar17 + 1,iVar7);
+              snprintf(&local_80,0x20,DAT_0003827c,uVar17 + 1,iVar7);
               iVar9 = ((long long (*)(void))device_info_text_width_get)();
               iVar14 = ((long long (*)(void))device_info_text_height_get_clamped)();
               iVar7 = ((long long (*)(void))device_info_text_width_get)();
@@ -1060,7 +1066,7 @@ LAB_0003803a:
           iVar4 = ((long long (*)(void))device_info_text_width_get)();
           iVar9 = ((long long (*)(void))device_info_text_height_get_clamped)();
           gui_bmp_bitmap_draw(0x43,iVar4 + 0x10a,iVar9 + 2,0,0,0);
-          iVar4 = ((long long (*)(void))FUN_00023ee0)();
+          iVar4 = ((long long (*)(void))get_ui_mode_flag_byte1)();
           if (iVar4 == 6) {
             iVar9 = ((long long (*)(void))device_info_text_width_get)();
             iVar4 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -1126,7 +1132,7 @@ LAB_0003803a:
               if (iVar7 != 0) {
                 *(undefined1 *)(iVar9 + 8) = 1;
                 memset_bytes(&local_80,0,0x20);
-                FUN_00077914(&local_80,0x20,DAT_00038748,*(byte *)(iVar9 + 5) + 1,iVar7);
+                snprintf(&local_80,0x20,DAT_00038748,*(byte *)(iVar9 + 5) + 1,iVar7);
                 iVar9 = (uint)*(byte *)(iVar9 + 5) * 0x159;
                 iVar14 = ((long long (*)(void))device_info_text_width_get)();
                 iVar8 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -1158,7 +1164,7 @@ LAB_0003803a:
                 iVar14 = iVar14 + 0x10a;
                 goto LAB_00038708;
               }
-              iVar4 = FUN_0007d1d0(DAT_00038618);
+              iVar4 = dashboard_read_word(DAT_00038618);
               if ((-1 < iVar4 << 0x1e) || (*(char *)(iVar9 + 8) != '\x01')) goto LAB_000385f0;
               *(char *)(iVar9 + 8) = (char)iVar7;
               iVar4 = ((long long (*)(void))get_device_info)();
@@ -1210,7 +1216,7 @@ LAB_0003803a:
             uVar5 = 0x47;
 LAB_00037f2e:
             gui_bmp_bitmap_draw(uVar5,iVar9 + 0x10a,iVar4 + 2,0,0,0);
-            iVar4 = ((long long (*)(void))FUN_00023ee0)();
+            iVar4 = ((long long (*)(void))get_ui_mode_flag_byte1)();
             if (iVar4 == 6) {
               iVar4 = ((long long (*)(void))device_info_text_width_get)();
               iVar9 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -1257,7 +1263,7 @@ LAB_0003846c:
           iVar4 = ((long long (*)(void))device_info_text_width_get)();
           iVar9 = ((long long (*)(void))device_info_text_height_get_clamped)();
           gui_bmp_bitmap_draw(0x47,iVar4 + 0x10a,iVar9 + 2,0,0,0);
-          iVar4 = ((long long (*)(void))FUN_00023ee0)();
+          iVar4 = ((long long (*)(void))get_ui_mode_flag_byte1)();
           if (iVar4 == 6) {
             iVar9 = ((long long (*)(void))device_info_text_width_get)();
             iVar4 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -1309,7 +1315,7 @@ LAB_0003846c:
       iVar7 = ((long long (*)(void))device_info_text_height_get_clamped)();
       gui_bmp_bitmap_draw(0x3b,iVar4 + 0x10a,iVar7 + 2,0,0,0);
       if (iVar14 == 0) {
-        iVar4 = FUN_0007d1d0(DAT_000374f0);
+        iVar4 = dashboard_read_word(DAT_000374f0);
         if ((iVar4 << 0x1e < 0) && (*(char *)(iVar9 + 7) == '\x01')) {
           *(char *)(iVar9 + 7) = (char)iVar14;
           iVar4 = ((long long (*)(void))get_device_info)();
@@ -1344,12 +1350,12 @@ LAB_0003846c:
           reflash_fb_data_to_lcd(uVar5,uVar6,iVar4 + 0x10a,iVar9 + 0x1c,iVar14 + 0x232,iVar7 + 0x88);
         }
         ((long long (*)(void))reset_touch_selection_state)();
-        ((long long (*)(void))FUN_00036d38)();
+        ((long long (*)(void))draw_quicknote_hint_on_dashboard)();
         return;
       }
       *(undefined1 *)(iVar9 + 7) = 1;
       memset_bytes(&local_80,0,0x20);
-      FUN_00077914(&local_80,0x20,DAT_00037e9c,*(byte *)(iVar9 + 1) + 1,iVar14);
+      snprintf(&local_80,0x20,DAT_00037e9c,*(byte *)(iVar9 + 1) + 1,iVar14);
       iVar12 = *(int *)(param_2 + 0x1020);
       iVar16 = (uint)*(byte *)(iVar9 + 1) * 0x143;
       iVar4 = ((long long (*)(void))device_info_text_width_get)();
@@ -1457,7 +1463,7 @@ LAB_0003846c:
           iVar4 = ((long long (*)(void))device_info_text_width_get)();
           iVar9 = ((long long (*)(void))device_info_text_height_get_clamped)();
           gui_bmp_bitmap_draw(0x43,iVar4 + 0x10a,iVar9 + 2,0,0,0);
-          iVar4 = ((long long (*)(void))FUN_00023ee0)();
+          iVar4 = ((long long (*)(void))get_ui_mode_flag_byte1)();
           if (iVar4 != 6) {
             iVar9 = ((long long (*)(void))device_info_text_width_get)();
             iVar4 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -1488,7 +1494,7 @@ LAB_0003846c:
           iVar4 = ((long long (*)(void))device_info_text_width_get)();
           iVar9 = ((long long (*)(void))device_info_text_height_get_clamped)();
           gui_bmp_bitmap_draw(0x47,iVar4 + 0x10a,iVar9 + 2,0,0,0);
-          iVar4 = ((long long (*)(void))FUN_00023ee0)();
+          iVar4 = ((long long (*)(void))get_ui_mode_flag_byte1)();
           if (iVar4 != 6) {
             iVar9 = ((long long (*)(void))device_info_text_width_get)();
             iVar4 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -1547,7 +1553,7 @@ LAB_0003846c:
       iVar7 = ((long long (*)(void))device_info_text_height_get_clamped)();
       gui_bmp_bitmap_draw(0x3b,iVar4 + 0xe0,iVar7 + 2,0,0,0);
       if (iVar14 == 0) {
-        iVar4 = FUN_0007d1d0(DAT_00038af0);
+        iVar4 = dashboard_read_word(DAT_00038af0);
         if ((iVar4 << 0x1e < 0) && (*(char *)(iVar9 + 7) == '\x01')) {
           *(char *)(iVar9 + 7) = (char)iVar14;
           iVar4 = ((long long (*)(void))get_device_info)();
@@ -1582,7 +1588,7 @@ LAB_0003846c:
           reflash_fb_data_to_lcd(uVar5,uVar6,iVar4 + 0x10a,iVar14 + 0x1c,iVar7 + 0x208,iVar8 + 0x88);
         }
         ((long long (*)(void))reset_touch_selection_state)();
-        uVar17 = ((long long (*)(void))FUN_00023ee0)();
+        uVar17 = ((long long (*)(void))get_ui_mode_flag_byte1)();
         if (*(byte *)(iVar9 + 0x18) != uVar17) {
           *(char *)(iVar9 + 0x18) = (char)uVar17;
           iVar4 = ((long long (*)(void))get_device_info)();
@@ -1635,7 +1641,7 @@ LAB_00038ad4:
       }
       *(undefined1 *)(iVar9 + 7) = 1;
       memset_bytes(&local_80,0,0x20);
-      FUN_00077914(&local_80,0x20,DAT_00038f50,*(byte *)(iVar9 + 1) + 1,iVar14);
+      snprintf(&local_80,0x20,DAT_00038f50,*(byte *)(iVar9 + 1) + 1,iVar14);
       iVar12 = *(int *)(param_2 + 0x1020);
       iVar16 = (uint)*(byte *)(iVar9 + 1) * 0x143;
       iVar4 = ((long long (*)(void))device_info_text_width_get)();
@@ -1760,7 +1766,7 @@ LAB_00037d2a:
       local_80 = 0;
       local_7c[0] = 0;
       if ((byte)(*(char *)(param_1 + 4) - 1U) < 0xfe) {
-        uVar5 = ((long long (*)(void))FUN_000469a8)();
+        uVar5 = ((long long (*)(void))dashboard_reflash_index_lookup)();
         uVar6 = ((long long (*)(void))device_info_text_width_get)();
         iVar4 = ((long long (*)(void))device_info_text_height_get_clamped)();
         gui_bmp_bitmap_draw(uVar5,uVar6,iVar4 + 0x6d,0,0,0);
@@ -1777,7 +1783,7 @@ LAB_00037d2a:
               ((long long (*)(void))debug_print)();
             }
           }
-          FUN_00077914(&local_80,8,DAT_00039630,iVar14);
+          snprintf(&local_80,8,DAT_00039630,iVar14);
           local_b0 = 0;
           iVar4 = ((long long (*)(void))device_info_text_width_get)();
           iVar14 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -1798,7 +1804,7 @@ LAB_00037d2a:
               ((long long (*)(void))debug_print)();
             }
           }
-          FUN_00077914(&local_80,8,DAT_00039630,iVar4);
+          snprintf(&local_80,8,DAT_00039630,iVar4);
           local_b0 = 0;
           iVar4 = ((long long (*)(void))device_info_text_width_get)();
           iVar14 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -1823,7 +1829,7 @@ LAB_00037d2a:
       ((long long (*)(void))msg_content_recalc_unread)();
       local_80 = 0;
       local_7c[0] = 0;
-      FUN_00077914(&local_80,8);
+      snprintf(&local_80,8);
       iVar4 = ((long long (*)(void))device_info_text_width_get)();
       iVar14 = ((long long (*)(void))device_info_text_height_get_clamped)();
       iVar7 = ((long long (*)(void))device_info_text_width_get)();
@@ -1955,7 +1961,7 @@ LAB_00039ab6:
           else {
             local_80 = 0;
             memset_bytes(local_7c,0,0x1c);
-            FUN_00077914(&local_80,0x20,DAT_00039df4,uVar17 + 1,iVar7);
+            snprintf(&local_80,0x20,DAT_00039df4,uVar17 + 1,iVar7);
             iVar9 = ((long long (*)(void))device_info_text_width_get)();
             iVar14 = ((long long (*)(void))device_info_text_height_get_clamped)();
             iVar7 = ((long long (*)(void))device_info_text_width_get)();
@@ -2080,7 +2086,7 @@ LAB_00038220:
             if (iVar7 != 0) {
               *(undefined1 *)(iVar9 + 8) = 1;
               memset_bytes(&local_80,0,0x20);
-              FUN_00077914(&local_80,0x20,DAT_0003a198,*(byte *)(iVar9 + 5) + 1,iVar7);
+              snprintf(&local_80,0x20,DAT_0003a198,*(byte *)(iVar9 + 5) + 1,iVar7);
               iVar9 = (uint)*(byte *)(iVar9 + 5) * 0x159;
               iVar14 = ((long long (*)(void))device_info_text_width_get)();
               iVar8 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -2116,7 +2122,7 @@ LAB_00038708:
               iVar4 = iVar9 + 0x41 + iVar4;
               goto LAB_00037d2a;
             }
-            iVar4 = FUN_0007d1d0(DAT_0003a194);
+            iVar4 = dashboard_read_word(DAT_0003a194);
             if ((-1 < iVar4 << 0x1e) || (*(char *)(iVar9 + 8) != '\x01')) goto LAB_000385f0;
             *(char *)(iVar9 + 8) = (char)iVar7;
             iVar4 = ((long long (*)(void))get_device_info)();
@@ -2172,7 +2178,7 @@ LAB_000385f0:
           uVar5 = 0x47;
 LAB_0003998c:
           gui_bmp_bitmap_draw(uVar5,iVar4 + 0xba,iVar9 + 2,0,0,0);
-          iVar4 = ((long long (*)(void))FUN_00023ee0)();
+          iVar4 = ((long long (*)(void))get_ui_mode_flag_byte1)();
           if (iVar4 == 6) {
             iVar4 = ((long long (*)(void))device_info_text_width_get)();
             iVar9 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -2221,7 +2227,7 @@ LAB_00037fac:
         uVar5 = 0x47;
       }
       gui_bmp_bitmap_draw(uVar5,iVar4 + 0xba,iVar9 + 2,0,0,0);
-      iVar4 = ((long long (*)(void))FUN_00023ee0)();
+      iVar4 = ((long long (*)(void))get_ui_mode_flag_byte1)();
       if (iVar4 == 6) {
         iVar9 = ((long long (*)(void))device_info_text_width_get)();
         iVar4 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -2279,7 +2285,7 @@ LAB_00037e4a:
     if (iVar14 != 0) {
       *(undefined1 *)(iVar9 + 7) = 1;
       memset_bytes(&local_80,0,0x20);
-      FUN_00077914(&local_80,0x20,DAT_00039a1c,*(byte *)(iVar9 + 1) + 1,iVar14);
+      snprintf(&local_80,0x20,DAT_00039a1c,*(byte *)(iVar9 + 1) + 1,iVar14);
       iVar12 = (uint)*(byte *)(iVar9 + 1) * 0x143;
       local_c8 = *(int *)(param_2 + 0x1020) + iVar12 + 4;
       iVar8 = ((long long (*)(void))device_info_text_width_get)();
@@ -2314,7 +2320,7 @@ LAB_000397a0:
       iVar14 = iVar14 + 0xba;
       goto LAB_00037d2a;
     }
-    iVar4 = FUN_0007d1d0(DAT_00039284);
+    iVar4 = dashboard_read_word(DAT_00039284);
     if ((iVar4 << 0x1e < 0) && (*(char *)(iVar9 + 7) == '\x01')) {
       *(char *)(iVar9 + 7) = (char)iVar14;
       iVar4 = ((long long (*)(void))get_device_info)();
@@ -2349,7 +2355,7 @@ LAB_000397a0:
       reflash_fb_data_to_lcd(uVar5,uVar6,iVar4 + 0xba,iVar14 + 0x1c,iVar7 + 0x238,iVar8 + 0x88);
     }
     ((long long (*)(void))reset_touch_selection_state)();
-    uVar17 = ((long long (*)(void))FUN_00023ee0)();
+    uVar17 = ((long long (*)(void))get_ui_mode_flag_byte1)();
     if (*(byte *)(iVar9 + 0x18) != uVar17) {
       *(char *)(iVar9 + 0x18) = (char)uVar17;
       iVar4 = ((long long (*)(void))get_device_info)();
@@ -2465,7 +2471,7 @@ LAB_00039318:
         iVar4 = ((long long (*)(void))device_info_text_width_get)();
         iVar9 = ((long long (*)(void))device_info_text_height_get_clamped)();
         gui_bmp_bitmap_draw(0x43,iVar4 + 0xba,iVar9 + 2,0,0,0);
-        iVar4 = ((long long (*)(void))FUN_00023ee0)();
+        iVar4 = ((long long (*)(void))get_ui_mode_flag_byte1)();
         if (iVar4 != 6) {
           iVar9 = ((long long (*)(void))device_info_text_width_get)();
           iVar4 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -2496,7 +2502,7 @@ LAB_00039318:
         iVar4 = ((long long (*)(void))device_info_text_width_get)();
         iVar9 = ((long long (*)(void))device_info_text_height_get_clamped)();
         gui_bmp_bitmap_draw(0x47,iVar4 + 0xba,iVar9 + 2,0,0,0);
-        iVar4 = ((long long (*)(void))FUN_00023ee0)();
+        iVar4 = ((long long (*)(void))get_ui_mode_flag_byte1)();
         if (iVar4 != 6) {
           iVar9 = ((long long (*)(void))device_info_text_width_get)();
           iVar4 = ((long long (*)(void))device_info_text_height_get_clamped)();
@@ -2561,7 +2567,7 @@ LAB_00038e72:
     if (iVar14 != 0) {
       *(undefined1 *)(iVar9 + 7) = 1;
       memset_bytes(&local_80,0,0x20);
-      FUN_00077914(&local_80,0x20,DAT_0003a874,*(byte *)(iVar9 + 1) + 1,iVar14);
+      snprintf(&local_80,0x20,DAT_0003a874,*(byte *)(iVar9 + 1) + 1,iVar14);
       iVar12 = (uint)*(byte *)(iVar9 + 1) * 0x143;
       local_c8 = *(int *)(param_2 + 0x1020) + iVar12 + 4;
       iVar8 = ((long long (*)(void))device_info_text_width_get)();
@@ -2570,7 +2576,7 @@ LAB_00038e72:
       iVar7 = ((long long (*)(void))device_info_text_height_get_clamped)();
       goto LAB_000397a0;
     }
-    iVar4 = FUN_0007d1d0(DAT_0003a528);
+    iVar4 = dashboard_read_word(DAT_0003a528);
     if ((iVar4 << 0x1e < 0) && (*(char *)(iVar9 + 7) == '\x01')) {
       *(char *)(iVar9 + 7) = (char)iVar14;
       iVar4 = ((long long (*)(void))get_device_info)();
@@ -2605,7 +2611,7 @@ LAB_00038e72:
       reflash_fb_data_to_lcd(uVar5,uVar6,iVar4 + 0xba,iVar14 + 0x1c,iVar7 + 0x238,iVar8 + 0x88);
     }
     ((long long (*)(void))reset_touch_selection_state)();
-    uVar17 = ((long long (*)(void))FUN_00023ee0)();
+    uVar17 = ((long long (*)(void))get_ui_mode_flag_byte1)();
     if (*(byte *)(iVar9 + 0x18) != uVar17) {
       *(char *)(iVar9 + 0x18) = (char)uVar17;
       iVar4 = ((long long (*)(void))get_device_info)();

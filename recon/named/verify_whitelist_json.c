@@ -6,9 +6,11 @@
  *   whitelist_contains_app                   <= FUN_00034ff0 @ 0x00034ff0
  *   verify_whitelist_json                    <= FUN_00035050 @ 0x00035050
  *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
+ *   cbor_decode_start_default                <= FUN_0008500c @ 0x0008500c
  *   sllist_count_nodes                       <= FUN_00085020 @ 0x00085020
  *   sllist_node_at_index                     <= FUN_00085030 @ 0x00085030
  *   sllist_find_by_name_ci                   <= FUN_0008503c @ 0x0008503c
+ *   cjson_is_array                           <= FUN_000850c8 @ 0x000850c8
  *   strncpy_zero_pad                         <= FUN_0008705a @ 0x0008705a
  * address symbols (name @ address):
  *   rodata_9a1dd                             @ 0x0009a1dd
@@ -36,11 +38,11 @@ extern void log_message(unsigned, ...);
 extern void debug_print(unsigned, ...);
 extern int whitelist_contains_app(void *a, void *b);
 extern void cjson_delete(int a);
-extern int FUN_0008500c(void);
+extern int cbor_decode_start_default(void);
 extern int sllist_count_nodes(int a);
 extern int sllist_node_at_index(int a, uint b);
 extern int sllist_find_by_name_ci(int a, unsigned b);
-extern int FUN_000850c8(void);
+extern int cjson_is_array(void);
 extern void strncpy_zero_pad(void *a, unsigned b, int c);
 
 undefined4 verify_whitelist_json(void)
@@ -54,7 +56,7 @@ undefined4 verify_whitelist_json(void)
     uint uVar9, uVar10, uVar11;
     unsigned char auStack_60[15], local_51, auStack_50[39], local_29;
 
-    iVar4 = FUN_0008500c();
+    iVar4 = cbor_decode_start_default();
     if (iVar4 == 0) {
         if (*dbgp == 0) log_message(0xa8762);
         else debug_print(0xa8762);
@@ -129,7 +131,7 @@ LAB_00035088:
             uVar8 = 0xa86f4;
             goto LAB_00035088;
         }
-        iVar6 = FUN_000850c8();
+        iVar6 = cjson_is_array();
         if (iVar6 != 0) {
             bVar3 = sllist_count_nodes(iVar5);
             piVar1 = (int *)0x20007554;

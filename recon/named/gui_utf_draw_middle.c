@@ -13,6 +13,7 @@
  *   utf8_string_to_utf16                     <= FUN_000478d8 @ 0x000478d8
  *   fb_blit_rows_copy                        <= FUN_0007d53a @ 0x0007d53a
  *   index_in_range32_mask                    <= FUN_0007d860 @ 0x0007d860
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
  *   rodata_aaa58                             @ 0x000aaa58
  *   rodata_aaa7f                             @ 0x000aaa7f
@@ -28,7 +29,7 @@ typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short u
 extern int log_message(int,...); extern int get_device_info(int,...); extern int debug_print(int,...);
 extern int atomic_get_3_0(int,...); extern int count_chars_in_default_font_table(int,...); extern int resource_manger_get(int,...);
 extern int clean_fb_data(int,...); extern int reflash_fb_data_to_lcd(int,...); extern int utf8_string_to_utf16(int,...);
-extern int fb_blit_rows_copy(int,...); extern int index_in_range32_mask(int,...); extern int FUN_00086c1e(int,...);
+extern int fb_blit_rows_copy(int,...); extern int index_in_range32_mask(int,...); extern int safe_memcpy_checked(int,...);
 typedef undefined4 (*codeptr)(int,...);
 
 undefined4 gui_utf_draw_middle(undefined4 param_1,undefined4 param_2,int param_3,int param_4,int param_5,int param_6,
@@ -78,7 +79,7 @@ LAB_e7c:
             if (1 < *(volatile int*)0x2000230c) { if (*(volatile int*)0x20007554 == 0) log_message(0xaaa58,0xaad64,uVar14); else debug_print(0xaaa58,0xaad64,uVar14); }
           } else {
             iVar4 = local_2d4 / 2; iVar5 = local_2d0 * iVar4;
-            FUN_00086c1e((int)local_2cc,local_2d8,iVar5,0x2a4);
+            safe_memcpy_checked((int)local_2cc,local_2d8,iVar5,0x2a4);
             if (local_2f4 < param_9) { pbVar7 = local_2cc; for (iVar13 = 0; iVar13 < iVar5; iVar13 = iVar13 + 1) { *pbVar7 = *pbVar7 & *(volatile byte*)0x200034f6; pbVar7 = pbVar7 + 1; } }
             iVar5 = count_chars_in_default_font_table(*puVar16,*puVar17);
             uVar18 = uVar18 + iVar3 + iVar5;

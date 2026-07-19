@@ -3,6 +3,7 @@
  * public-name: ble_rng_seed_from_uptime
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   z_log_msg_runtime_create                 <= FUN_0004d944 @ 0x0004d944
  *   bt_hci_le_rand                           <= FUN_00053e74 @ 0x00053e74
  *   ble_rng_seed_from_uptime                 <= FUN_00055bf8 @ 0x00055bf8
  *   tc_hmac_prng_reseed                      <= FUN_00080692 @ 0x00080692
@@ -15,7 +16,7 @@
 extern int bt_hci_le_rand(void*, int);
 extern long long thunk_FUN_00074f68(void);
 extern int tc_hmac_prng_reseed(unsigned, void*, int, void*, int);
-extern void FUN_0004d944(unsigned, int, void*, int);
+extern void z_log_msg_runtime_create(unsigned, int, void*, int);
 int ble_rng_seed_from_uptime(void){
     unsigned char auStack_30[36];
     unsigned local_50, uStack_4c, local_38, local_34;
@@ -31,7 +32,7 @@ int ble_rng_seed_from_uptime(void){
             local_34 = ((unsigned long)&rodata_f394f) /*=0xf394f*/;
             local_38 = 2;
             iVar1 = -5;
-            FUN_0004d944(((unsigned long)&rodata_88148) /*=0x88148*/, 0x1040, &local_38, 0);
+            z_log_msg_runtime_create(((unsigned long)&rodata_88148) /*=0x88148*/, 0x1040, &local_38, 0);
         }
     }
     (void)uStack_4c; (void)local_34;

@@ -5,6 +5,9 @@
  *   sys_heap_init                            <= FUN_0004b3c8 @ 0x0004b3c8
  *   chunk_set                                <= FUN_0007de02 @ 0x0007de02
  *   set_chunk_used                           <= FUN_0007de24 @ 0x0007de24
+ *   chunk_set_used_flag                      <= FUN_0007de54 @ 0x0007de54
+ *   log_msg_compute_wlen                     <= FUN_0007de70 @ 0x0007de70
+ *   heap_bucket_index                        <= FUN_0007de82 @ 0x0007de82
  *   free_list_add                            <= FUN_0007e022 @ 0x0007e022
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
@@ -26,10 +29,10 @@
 
 extern void printk(uint32_t, ...); /* printk */
 extern void assert_post_action(uint32_t, uint32_t); /* assert_post_action */
-extern uint32_t FUN_0007de82(uint32_t, uint32_t, uint32_t, uint32_t); /* bucket_idx */
-extern uint32_t FUN_0007de70(uint32_t, uint32_t); /* chunksz */
+extern uint32_t heap_bucket_index(uint32_t, uint32_t, uint32_t, uint32_t); /* bucket_idx */
+extern uint32_t log_msg_compute_wlen(uint32_t, uint32_t); /* chunksz */
 extern void *memset_bytes(void *, uint32_t, uint32_t); /* memset */
-extern void FUN_0007de54(void *, uint32_t, uint32_t); /* set_left_chunk_size */
+extern void chunk_set_used_flag(void *, uint32_t, uint32_t); /* set_left_chunk_size */
 extern void chunk_set(void *, uint32_t, uint32_t, uint32_t); /* chunk_set */
 extern void set_chunk_used(void *, uint32_t, uint32_t); /* set_chunk_used */
 extern void free_list_add(void *, uint32_t); /* free_list_add */
@@ -70,9 +73,9 @@ void sys_heap_init(uint32_t *heap, void *memory, uint32_t bytes)
 
     /* The leaf helper only consumes r0, but the shipped call preserves the
      * allocator geometry in r1-r3.  Keep that ABI-visible oracle state. */
-    bucket_index = FUN_0007de82(heap_size, heap_size, bytes, footer);
+    bucket_index = heap_bucket_index(heap_size, heap_size, bytes, footer);
     bucket_bytes = (bucket_index + 5U) * 4U;
-    min_size = FUN_0007de70(heap_size, 1U);
+    min_size = log_msg_compute_wlen(heap_size, 1U);
     chunk0_size = (bucket_bytes + 7U) >> 3;
 
     if (chunk0_size + min_size > heap_size) {
@@ -84,14 +87,14 @@ void sys_heap_init(uint32_t *heap, void *memory, uint32_t bytes)
     memset_bytes((void *)(start + 16U), 0U,
                   bucket_index == UINT32_MAX ? 0U : bucket_bytes - 16U);
 
-    FUN_0007de54((void *)state, 0U, chunk0_size);
+    chunk_set_used_flag((void *)state, 0U, chunk0_size);
     chunk_set((void *)state, 0U, 0U, 0U);
     set_chunk_used((void *)state, 0U, 1U);
 
-    FUN_0007de54((void *)state, chunk0_size, heap_size - chunk0_size);
+    chunk_set_used_flag((void *)state, chunk0_size, heap_size - chunk0_size);
     chunk_set((void *)state, chunk0_size, 0U, chunk0_size);
 
-    FUN_0007de54((void *)state, heap_size, 0U);
+    chunk_set_used_flag((void *)state, heap_size, 0U);
     chunk_set((void *)state, heap_size, 0U, heap_size - chunk0_size);
     set_chunk_used((void *)state, heap_size, 1U);
     free_list_add((void *)state, chunk0_size);

@@ -1,0 +1,22 @@
+### FUN_0003dfe4  @ 0x0003dfe4  (size=16)
+
+callers (1): ui_refalsh_warp
+callees (1): memset_bytes
+
+```c
+/* readable reconstruction; identity: FUN_0003dfe4 @ 0x0003dfe4
+ * public-name: FUN_0003dfe4
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   g_ipc_or_evt_ctx                         @ 0x20004bb8
+ */
+/* Reconstructed FUN_0003dfe4 @ 0x3dfe4  (parity: 300/300 trials, PROVEN) */
+
+extern void memset_bytes(unsigned int a, unsigned int b, unsigned int c);
+unsigned int FUN_0003dfe4(void) {
+  memset_bytes(0x20004bb8UL, 0, 0x38);
+  return 0;
+}
+```

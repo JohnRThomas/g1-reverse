@@ -8,6 +8,7 @@
  *   gui_bmp_bitmap_draw                      <= FUN_00043484 @ 0x00043484
  *   gui_utf_draw                             <= FUN_00043e90 @ 0x00043e90
  *   gui_clock_draw                           <= FUN_000442bc @ 0x000442bc
+ *   snprintf                                 <= FUN_00077914 @ 0x00077914
  *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
  *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
  *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
@@ -27,7 +28,7 @@ extern void gui_set_active_canvas(int);
 extern void gui_bmp_bitmap_draw(int,int,int,int,int,int);
 extern void gui_utf_draw(int,int,int,int,int,int,int,int,int,int,int,int);
 extern void gui_clock_draw(int,int,int,int,int,int,int);
-extern void FUN_00077914(int*,int,int,int,int);
+extern void snprintf(int*,int,int,int,int);
 extern int  get_timestamp(void);
 extern int  device_info_text_width_get(void);
 extern int  device_info_text_height_get_clamped(void);
@@ -45,7 +46,7 @@ int draw_template_translate_screen(int param_1){
   uVar9 = (unsigned int)(*(volatile unsigned char*)(iVar1+0xef) - 1);
   if (uVar8 < 9 && (uVar9 & 0xff) < 8 && uVar8 != 0) {
     local_24[0]=0; local_24[1]=0; local_24[2]=0;
-    FUN_00077914(local_24, 10, 0x000aa4ea,
+    snprintf(local_24, 10, 0x000aa4ea,
                  VI(0x200024f4 + (uVar8-1)*4), VI(0x200024f4 + uVar9*4));
     uVar2 = device_info_text_width_get();
     iVar4 = device_info_text_height_get_clamped();

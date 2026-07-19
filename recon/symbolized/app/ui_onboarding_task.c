@@ -6,6 +6,9 @@
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   onboarding_retry_watchdog_update         <= FUN_00040708 @ 0x00040708
+ *   onboarding_render_step_screen            <= FUN_00040794 @ 0x00040794
+ *   render_onboarding_screen                 <= FUN_000417f8 @ 0x000417f8
+ *   onboarding_mark_retry_if_reset           <= FUN_000429f8 @ 0x000429f8
  *   onboarding_sync_data                     <= FUN_00042c8c @ 0x00042c8c
  *   ui_onboarding_task                       <= FUN_00042d44 @ 0x00042d44
  *   gui_set_active_canvas                    <= FUN_000431b4 @ 0x000431b4
@@ -31,9 +34,9 @@ extern void log_message(unsigned, ...);
 extern int get_device_info(void);
 extern void debug_print(unsigned, ...);
 extern void onboarding_retry_watchdog_update(void);
-extern void FUN_00040794(int a);
-extern void FUN_000417f8(int a);
-extern void FUN_000429f8(void);
+extern void onboarding_render_step_screen(int a);
+extern void render_onboarding_screen(int a);
+extern void onboarding_mark_retry_if_reset(void);
 extern int onboarding_sync_data(void *a, int b);
 extern void gui_set_active_canvas(int a);
 extern void gui_screen_clear(void);
@@ -104,13 +107,13 @@ undefined4 ui_onboarding_task(int param_1, undefined4 param_2, int param_3)
         iVar4 = get_device_info();
         if (((uint)*(volatile byte *)(*(volatile int *)(iVar4 + 0x1014) + 2) == (int)*(volatile char *)((unsigned long)&onboarding_last_step_cache) /*=0x200034f5*/) &&
             (iVar4 = get_device_info(), *(volatile char *)(*(volatile int *)(iVar4 + 0x1014) + 3) == *(volatile char *)((unsigned long)&onboarding_secondary_reset_flag) /*=0x2001cdce*/)) {
-            FUN_00040794(param_3);
-            FUN_000417f8(param_3);
+            onboarding_render_step_screen(param_3);
+            render_onboarding_screen(param_3);
             return 0;
         }
         pcVar5 = (char *)get_device_info();
         if (*pcVar5 == '\x01') {
-            FUN_000429f8();
+            onboarding_mark_retry_if_reset();
             iVar4 = get_device_info();
             *(volatile char *)((unsigned long)&onboarding_secondary_reset_flag) /*=0x2001cdce*/ = *(volatile char *)(*(volatile int *)(iVar4 + 0x1014) + 3);
             iVar4 = get_device_info();

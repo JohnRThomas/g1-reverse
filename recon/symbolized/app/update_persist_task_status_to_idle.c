@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   display_close_screen                     <= FUN_00049858 @ 0x00049858
+ *   signal_persist_task_event                <= FUN_0007cdf8 @ 0x0007cdf8
  * address symbols (name @ address):
  *   rodata_a25d9                             @ 0x000a25d9
  *   rodata_a2625                             @ 0x000a2625
@@ -19,13 +20,13 @@ typedef unsigned char u8;
 extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, unsigned int);
 extern void display_close_screen(unsigned int);
-extern void FUN_0007cdf8(void);
+extern void signal_persist_task_event(void);
 
 int update_persist_task_status_to_idle(int param_1)
 {
     volatile u8 *lock = (volatile u8*)((unsigned long)&g_persist_task_status_lock) /*=0x20018d9c*/;
     while (*lock != 0) {
-        FUN_0007cdf8();
+        signal_persist_task_event();
     }
     *lock = 1;
     if ((*(char*)(param_1+0xd5) != 0) || (*(char*)(*(int*)(param_1+0x1054)+4) != 1)) {

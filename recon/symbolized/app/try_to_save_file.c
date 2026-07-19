@@ -9,6 +9,7 @@
  *   dequeue_file                             <= FUN_000235a4 @ 0x000235a4
  *   crc32_update                             <= FUN_0002360c @ 0x0002360c
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
  *   rodata_9e873                             @ 0x0009e873
  *   rodata_9e88b                             @ 0x0009e88b
@@ -32,7 +33,7 @@ extern void write_font_to_flash_with_verify(uint32_t address, uint32_t buffer, .
 extern void dequeue_file(void *packet);
 extern uint32_t crc32_update(uint32_t checksum, uint32_t buffer, uint32_t length);
 extern void memcpy(void *destination, const void *source, uint32_t length);
-extern void FUN_00086c1e(void *destination, const void *source,
+extern void safe_memcpy_checked(void *destination, const void *source,
                          uint32_t length, uint32_t capacity);
 extern void update_persist_task_status(uint32_t context, int type, int status);
 
@@ -123,7 +124,7 @@ save_block:
     }
     FILE_ADDRESS += 0x1000;
     buffered = BUFFERED_LENGTH;
-    FUN_00086c1e(FILE_BUFFER, FILE_BUFFER + 0x1000,
+    safe_memcpy_checked(FILE_BUFFER, FILE_BUFFER + 0x1000,
                  buffered - 0x1000, 0x1400);
     BUFFERED_LENGTH = buffered - 0x1000;
 }

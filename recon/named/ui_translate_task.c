@@ -12,6 +12,7 @@
  *   gui_bmp_dynamic_bitmap_draw              <= FUN_0004334c @ 0x0004334c
  *   gui_bmp_bitmap_draw                      <= FUN_00043484 @ 0x00043484
  *   imu_pitch_task_reset_render_state        <= FUN_000436f8 @ 0x000436f8
+ *   gui_screen_fade_out_transition           <= FUN_0004382c @ 0x0004382c
  *   gui_utf_draw                             <= FUN_00043e90 @ 0x00043e90
  *   gui_clock_draw                           <= FUN_000442bc @ 0x000442bc
  *   clean_fb_data                            <= FUN_000471cc @ 0x000471cc
@@ -19,7 +20,9 @@
  *   unix_timestamp_to_datetime               <= FUN_0004a1b8 @ 0x0004a1b8
  *   k_mutex_lock                             <= FUN_000723b8 @ 0x000723b8
  *   k_mutex_unlock                           <= FUN_00072558 @ 0x00072558
+ *   snprintf                                 <= FUN_00077914 @ 0x00077914
  *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
+ *   gui_utf_adv_draw_configure               <= FUN_0007d3dc @ 0x0007d3dc
  *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
  *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
@@ -52,7 +55,7 @@ extern void gui_set_active_canvas(void *framebuffer);
 extern void gui_canvas_flags_set_bit1(void);
 extern void gui_screen_clear(void);
 extern void imu_pitch_task_reset_render_state(void);
-extern void FUN_0007d3dc(void);
+extern void gui_utf_adv_draw_configure(void);
 extern void gui_reset_dynamic_bitmap_frame_state(void);
 extern void gui_canvas_flags_clear_bit1(void);
 extern uint64_t memset_bytes(void *destination, uint32_t value, uint32_t length);
@@ -60,7 +63,7 @@ extern void *memcpy(void *destination, const void *source, uint32_t length);
 extern uint32_t k_mutex_lock(void *lock, uint32_t key, uint32_t timeout_low,
                             uint32_t timeout_high);
 extern uint32_t k_mutex_unlock(void *lock);
-extern int FUN_00077914(void *destination, uint32_t length,
+extern int snprintf(void *destination, uint32_t length,
                        const char *format, ...);
 extern uint32_t get_timestamp(void);
 extern uint32_t device_info_text_width_get(void);
@@ -82,7 +85,7 @@ extern void clean_fb_data(void *rows, uint32_t a1, uint32_t x0, uint32_t y0,
 extern void reflash_fb_data_to_lcd(uintptr_t left, uintptr_t right, uint32_t x0,
                          uint32_t y0, uint32_t x1, uint32_t y1);
 extern void unix_timestamp_to_datetime(uint32_t content, void *metrics);
-extern void FUN_0004382c(void);
+extern void gui_screen_fade_out_transition(void);
 extern void debug_print(uintptr_t format, ...);
 extern void log_message(uintptr_t format, ...);
 
@@ -115,7 +118,7 @@ extern void log_message(uintptr_t format, ...);
     (task_label)[4] = '\0'; (task_label)[5] = '\0'; \
     (task_label)[6] = '\0'; (task_label)[7] = '\0'; \
     (task_label)[8] = '\0'; (task_label)[9] = '\0'; \
-    FUN_00077914((task_label), 10u, (const char *)0x000aa4eau, \
+    snprintf((task_label), 10u, (const char *)0x000aa4eau, \
                  LANGUAGE_NAMES[_dlp_original - 1u], \
                  LANGUAGE_NAMES[_dlp_translated - 1u]); \
     if (LOG_LEVEL > 3) TASK_LOG(0x000aa517u, 0x000aa599u); \
@@ -156,7 +159,7 @@ uint32_t ui_translate_task(uint8_t *canvas, uint32_t unused, uint32_t phase)
                 return 0u;
             if (LOG_LEVEL > 2)
                 TASK_LOG(0x000aa4f0u, 0x000aa599u);
-            FUN_0007d3dc();
+            gui_utf_adv_draw_configure();
             gui_screen_clear();
             imu_pitch_task_reset_render_state();
             memset_bytes((void *)(TRANSLATE_STATE + 2), 0u, 0x10u);
@@ -205,7 +208,7 @@ uint32_t ui_translate_task(uint8_t *canvas, uint32_t unused, uint32_t phase)
         if (LOG_LEVEL > 2)
             TASK_LOG(0x000aa56cu, 0x000aa599u);
         gui_screen_clear();
-        FUN_0007d3dc();
+        gui_utf_adv_draw_configure();
         clear_translate_ui_state();
         memset_bytes((void *)TRANSLATE_STATE, 0u, 0x12u);
         return 0u;
@@ -233,8 +236,8 @@ uint32_t ui_translate_task(uint8_t *canvas, uint32_t unused, uint32_t phase)
     if (phase == 2u) {
         if (LOG_LEVEL > 2)
             TASK_LOG(0x000aa56cu, 0x000aa599u);
-        FUN_0004382c();
-        FUN_0007d3dc();
+        gui_screen_fade_out_transition();
+        gui_utf_adv_draw_configure();
         clear_translate_ui_state();
         memset_bytes((void *)TRANSLATE_STATE, 0u, 0x12u);
         return 0u;

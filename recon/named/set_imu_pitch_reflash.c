@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_ui_mode_flag_byte1                   <= FUN_00023ee0 @ 0x00023ee0
  *   gui_screen_clear                         <= FUN_000431c0 @ 0x000431c0
  *   gui_bmp_bitmap_draw                      <= FUN_00043484 @ 0x00043484
  *   gui_utf_draw                             <= FUN_00043e90 @ 0x00043e90
@@ -25,7 +26,7 @@
 
 extern uintptr_t get_device_info(void);
 extern void gui_screen_clear(void);
-extern int FUN_00023ee0(void);
+extern int get_ui_mode_flag_byte1(void);
 extern int device_info_text_width_get(void);
 extern int device_info_text_height_get_clamped(void);
 extern uintptr_t get_localized_weekday_name(unsigned id);
@@ -44,7 +45,7 @@ static __attribute__((always_inline)) inline void draw_pair(uintptr_t text, int 
     gui_utf_draw(0, text, 0, x + y0, x0 + 0x3c, y1 + 0x240,
                  x1 + 0x57, 1, 0, 0, 0, 0);
 
-    x = (FUN_00023ee0() == 6)
+    x = (get_ui_mode_flag_byte1() == 6)
         ? (second_id == 5 ? 0x78 : 0x22)
         : (second_id == 5 ? 0x9e : 0x6e);
     text = get_localized_weekday_name(second_id);
@@ -79,10 +80,10 @@ unsigned set_imu_pitch_reflash(void)
     gui_bmp_bitmap_draw(0x7c, y + 0x52, x + 0x65, 0, 0, 0);
 
     if (*(volatile int8_t *)(state + 0xf0) == 1) {
-        int first_x = (FUN_00023ee0() == 6) ? 0xb6 : 0xba;
+        int first_x = (get_ui_mode_flag_byte1() == 6) ? 0xb6 : 0xba;
         draw_pair(get_localized_weekday_name(4), first_x, 5);
     } else {
-        int first_x = (FUN_00023ee0() == 6) ? 0xd0 : 0xc0;
+        int first_x = (get_ui_mode_flag_byte1() == 6) ? 0xd0 : 0xc0;
         draw_pair(get_localized_weekday_name(2), first_x, 3);
     }
     return 0;

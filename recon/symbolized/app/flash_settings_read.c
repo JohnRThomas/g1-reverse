@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  * address symbols (name @ address):
@@ -23,7 +24,7 @@
 extern int z_device_is_ready(const void *device);
 extern uintptr_t get_device_info(void);
 extern void log_message(uintptr_t format, ...);
-extern void FUN_00074844(uint32_t ticks, uint32_t unused);
+extern void k_sleep(uint32_t ticks, uint32_t unused);
 extern void debug_print(void);
 
 typedef int (*flash_read_api_t)(uintptr_t device, uint32_t address,
@@ -55,7 +56,7 @@ int flash_settings_read(uint32_t address, void *destination, uint32_t length)
         if (retry == 10U) {
             return result;
         }
-        FUN_00074844(0x0ccdU, 0U);
+        k_sleep(0x0ccdU, 0U);
         ++retry;
 
         if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {

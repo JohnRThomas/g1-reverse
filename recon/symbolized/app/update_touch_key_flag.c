@@ -11,6 +11,8 @@
  *   clear_timeout_message                    <= FUN_00033d58 @ 0x00033d58
  *   msg_count_dec                            <= FUN_00034274 @ 0x00034274
  *   push_message_3439c                       <= FUN_0003439c @ 0x0003439c
+ *   get_message_pending_state                <= FUN_00034410 @ 0x00034410
+ *   set_message_pending_state                <= FUN_0003443c @ 0x0003443c
  *   k_uptime_get_2                           <= FUN_0007ce40 @ 0x0007ce40
  * address symbols (name @ address):
  *   rodata_a26f7                             @ 0x000a26f7
@@ -28,20 +30,20 @@ extern unsigned get_message_type_param(unsigned a, int b);
 extern int clear_timeout_message(int a);
 extern int msg_count_dec(void);
 extern void push_message_3439c(void);
-extern int FUN_00034410(void);
-extern void FUN_0003443c(int a);
+extern int get_message_pending_state(void);
+extern void set_message_pending_state(int a);
 extern void k_uptime_get_2(void);
 void update_touch_key_flag(void){
     k_uptime_get_2();
     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
-        unsigned u = FUN_00034410();
+        unsigned u = get_message_pending_state();
         log_message(((unsigned long)&rodata_a26f7) /*=0xa26f7*/, u);
     } else {
-        unsigned u = FUN_00034410();
+        unsigned u = get_message_pending_state();
         debug_print(((unsigned long)&rodata_a26f7) /*=0xa26f7*/, u);
     }
-    int iVar3 = FUN_00034410();
-    if (iVar3 == 2 || FUN_00034410() == 4){
+    int iVar3 = get_message_pending_state();
+    if (iVar3 == 2 || get_message_pending_state() == 4){
         msg_count_dec();
         int t = get_device_info();
         unsigned uVar1 = get_message_type_param(*(volatile unsigned char*)(t + 0xfea), 0xf);
@@ -56,7 +58,7 @@ void update_touch_key_flag(void){
         *(volatile unsigned char*)((unsigned long)&g_pending_message_flag) /*=0x20018d9e*/ = 1;
         return;
     }
-    FUN_0003443c(0);
+    set_message_pending_state(0);
     t = get_device_info();
     if (*(volatile unsigned char*)(t + 0xd5) == 1) return;
     t = get_device_info();

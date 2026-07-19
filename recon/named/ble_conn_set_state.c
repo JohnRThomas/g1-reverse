@@ -2,6 +2,7 @@
  * public-name: ble_conn_set_state
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   bt_conn_notify_connected                 <= FUN_00055fb4 @ 0x00055fb4
  *   tx_notify                                <= FUN_00056020 @ 0x00056020
  *   net_buf_destroy                          <= FUN_00056080 @ 0x00056080
  *   ble_conn_ref                             <= FUN_00056654 @ 0x00056654
@@ -10,6 +11,8 @@
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   k_work_schedule                          <= FUN_00073418 @ 0x00073418
  *   k_work_cancel_delayable                  <= FUN_00073518 @ 0x00073518
+ *   poll_signal_event_locked                 <= FUN_000757b0 @ 0x000757b0
+ *   bt_conn_call_4arg_zero                   <= FUN_000813ca @ 0x000813ca
  *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
@@ -31,7 +34,7 @@ static inline void setBasePriority(int p){ __set_BASEPRI((uint32_t)p); }
 static inline void raiseBasePriority(int p){ __set_BASEPRI_MAX((uint32_t)p); }
 static inline void InstructionSynchronizationBarrier(int x){ (void)x; __ISB(); }
 
-extern void FUN_00055fb4(int);
+extern void bt_conn_notify_connected(int);
 extern void tx_notify(int);
 extern void net_buf_destroy(int,void*,uint32_t,uint32_t);
 extern void ble_conn_ref(void);
@@ -39,8 +42,8 @@ extern uint32_t ble_conn_unref(int);
 extern void k_sem_give(int);
 extern void k_work_schedule(int,uint32_t,uint32_t,uint32_t);
 extern uint32_t k_work_cancel_delayable(int);
-extern void FUN_000757b0(uint32_t,int);
-extern void FUN_000813ca(uint32_t,uint32_t,void*);
+extern void poll_signal_event_locked(uint32_t,int);
+extern void bt_conn_call_4arg_zero(uint32_t,uint32_t,void*);
 #define z_impl_k_queue_init z_impl_k_queue_init
 extern void z_impl_k_queue_init(void *queue);
 extern uint32_t k_work_delayable_busy_get(int);
@@ -54,7 +57,7 @@ void ble_conn_set_state(int param_1, uint param_2)
     uint32_t uStack_20 = (uVar7 < 9) ? *(volatile uint32_t*)(0x0008b220UL + uVar7*4) : 0x000f3c2dUL;
     uint16_t local_1c = 0x200;
     struct { uint32_t a,b,c; uint16_t d; } s = { local_28, local_24, uStack_20, local_1c };
-    FUN_000813ca(0x00088108UL, 0x1c80, &s);
+    bt_conn_call_4arg_zero(0x00088108UL, 0x1c80, &s);
     return;
   }
   *(volatile uint8_t*)(param_1 + 0xd) = (uint8_t)param_2;
@@ -71,7 +74,7 @@ void ble_conn_set_state(int param_1, uint param_2)
       switch (uVar7) {
         case 0: case 7: case 8: {
           struct { uint32_t a,b,c; } s = { 3, 0x000f3c48UL, param_2 };
-          FUN_000813ca(0x00088108UL, 0x1880, &s);
+          bt_conn_call_4arg_zero(0x00088108UL, 0x1880, &s);
           return;
         }
         case 1: {
@@ -83,11 +86,11 @@ void ble_conn_set_state(int param_1, uint param_2)
           volatile uint32_t *p = (volatile uint32_t*)(param_1+4);
           uint32_t v;
           do { v = *p; } while (!__sync_bool_compare_and_swap((uint32_t*)p, v, v | 0x40));
-          FUN_000757b0(0x20002990UL, 0);
+          poll_signal_event_locked(0x20002990UL, 0);
           break;
         }
         case 2: case 5: case 6:
-          if (*(volatile uint8_t*)(param_1+0xc) != 0) FUN_00055fb4(param_1);
+          if (*(volatile uint8_t*)(param_1+0xc) != 0) bt_conn_notify_connected(param_1);
           /* fallthrough */
         case 3: case 4:
           ble_conn_unref(param_1);
@@ -139,7 +142,7 @@ void ble_conn_set_state(int param_1, uint param_2)
     case 7:
       if (*(volatile uint8_t*)(param_1+2) != 4) {
         z_impl_k_queue_init((void *)(param_1+0x38));
-        FUN_000757b0(0x20002990UL, 0);
+        poll_signal_event_locked(0x20002990UL, 0);
         *(volatile uint32_t*)(param_1+0x54) = 0;
         *(volatile uint32_t*)(param_1+0x58) = 0;
         if (*(volatile uint8_t*)(param_1+3) == 1) {
@@ -153,7 +156,7 @@ void ble_conn_set_state(int param_1, uint param_2)
       break;
     default: {
       struct { uint32_t a,b,c; } s = { 3, 0x000f3c5fUL, param_2 };
-      FUN_000813ca(0x00088108UL, 0x1880, &s);
+      bt_conn_call_4arg_zero(0x00088108UL, 0x1880, &s);
       return;
     }
   }

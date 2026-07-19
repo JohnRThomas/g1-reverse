@@ -3,6 +3,7 @@
  * public-name: battery_soc_from_curve
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   battery_model_state_update               <= FUN_0000c358 @ 0x0000c358
  *   battery_soc_from_curve                   <= FUN_0000e340 @ 0x0000e340
  * address symbols (name @ address):
  *   g_batt_soc_curve_charge_lo               @ 0x20002d14
@@ -13,7 +14,7 @@
  */
 /* Reconstructed FUN_0000e340 @ 0xe340  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0000c358(void*, void*, void*, void*);
+extern void battery_model_state_update(void*, void*, void*, void*);
 
 float battery_soc_from_curve(unsigned int *out_struct, float unused_s0, float cmpval)
 {
@@ -37,7 +38,7 @@ float battery_soc_from_curve(unsigned int *out_struct, float unused_s0, float cm
   *(volatile unsigned int*)((unsigned long)&g_batt_soc_curve_val_lo) /*=0x2000b4f0*/ = val1;
   *(volatile unsigned int*)((unsigned long)&g_batt_soc_curve_val_hi) /*=0x2000b4ec*/ = val2;
 
-  FUN_0000c358((void*)((unsigned long)&g_batt_soc_curve_interp_buf) /*=0x2000b4a4*/, p_local_20, p_aux, p_local_18);
+  battery_model_state_update((void*)((unsigned long)&g_batt_soc_curve_interp_buf) /*=0x2000b4a4*/, p_local_20, p_aux, p_local_18);
 
   *p_local_20 = *p_local_20 * 100.0f;
 

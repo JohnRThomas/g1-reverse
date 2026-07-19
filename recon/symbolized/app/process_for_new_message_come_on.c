@@ -16,6 +16,7 @@
  *   get_message_entry                        <= FUN_00033c4c @ 0x00033c4c
  *   clear_timeout_message                    <= FUN_00033d58 @ 0x00033d58
  *   push_message_3439c                       <= FUN_0003439c @ 0x0003439c
+ *   set_message_pending_state                <= FUN_0003443c @ 0x0003443c
  *   set_new_message_pending_flag             <= FUN_00036030 @ 0x00036030
  * address symbols (name @ address):
  *   rodata_a0a7b                             @ 0x000a0a7b
@@ -45,7 +46,7 @@ extern unsigned char get_message_type_param(byte a, int b);
 extern void clear_timeout_message(int a);
 extern int get_message_entry(int a);
 extern void push_message_3439c(void);
-extern void FUN_0003443c(int a);
+extern void set_message_pending_state(int a);
 extern void set_new_message_pending_flag(void);
 extern void sync_to_slave(byte *a, int b, int c);
 extern void FUN_0007ce5c(int a, int b);
@@ -63,7 +64,7 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
 
     uVar3 = get_message_type_param(param_1[0xfea], 0xf);
     *(volatile undefined1 *)(param_2 + 7) = uVar3;
-    FUN_0003443c(2);
+    set_message_pending_state(2);
     iVar4 = get_device_info();
     uVar9 = 0;
     piVar5 = (int *)get_message_entry(*(volatile byte *)(iVar4 + 0xdd) - 1);
@@ -101,7 +102,7 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
             if (2 < *piVar1) { if (*piVar2 == 0) log_message(0, 0); else debug_print(0); }
             if (param_1[0xb0d] == 1) {
                 update_temp_task_status(param_1, 8, 2);
-                FUN_0003443c(4);
+                set_message_pending_state(4);
                 return 0xb;
             }
             if ((*(volatile char *)(param_2 + 1) == '\x05') && (uVar8 = (uint)*param_1, uVar8 == 1)) {
@@ -141,7 +142,7 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
         sync_to_slave(param_1, 8, 0);
         if (*param_3 == '\x02') update_persist_task_status_to_wait_blow_head();
         else update_persist_task_status_to_idle(param_1);
-        FUN_0003443c(6);
+        set_message_pending_state(6);
 LAB_0002c4ec:
         uVar3 = 10;
     }

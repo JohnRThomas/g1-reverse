@@ -13,6 +13,7 @@
  *   utf8_string_to_utf16                     <= FUN_000478d8 @ 0x000478d8
  *   fb_blit_rows_copy                        <= FUN_0007d53a @ 0x0007d53a
  *   index_in_range32_mask                    <= FUN_0007d860 @ 0x0007d860
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
  *   rodata_aaa58                             @ 0x000aaa58
  *   rodata_aaa7f                             @ 0x000aaa7f
@@ -31,7 +32,7 @@ typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short u
 extern int log_message(int,...); extern int get_device_info(int,...); extern int debug_print(int,...);
 extern int atomic_get_3_0(int,...); extern int count_chars_in_default_font_table(int,...); extern int resource_manger_get(int,...);
 extern int clean_fb_data(int,...); extern int reflash_fb_data_to_lcd(int,...); extern int utf8_string_to_utf16(int,...);
-extern int fb_blit_rows_copy(int,...); extern int index_in_range32_mask(int,...); extern int FUN_00086c1e(int,...);
+extern int fb_blit_rows_copy(int,...); extern int index_in_range32_mask(int,...); extern int safe_memcpy_checked(int,...);
 typedef undefined4 (*codeptr)(int,...);
 
 undefined4 gui_utf_draw_dark_light_split(undefined4 param_1,undefined4 param_2,int param_3,int param_4,int param_5,int param_6,
@@ -77,7 +78,7 @@ LAB_2c: if (iVar3 == 0) log_message(uVar9,0xaad8e,uVar13); else debug_print(uVar
             if (iVar4 < 0) { if (1 < *(volatile int*)0x2000230c) { iVar3 = *(volatile int*)0x20007554; uVar9 = 0xaaa58; goto LAB_2c; } }
             else {
               iVar4 = local_2d4 / 2; iVar5 = local_2d0 * iVar4;
-              FUN_00086c1e((int)local_2cc,local_2d8,iVar5,0x2a4);
+              safe_memcpy_checked((int)local_2cc,local_2d8,iVar5,0x2a4);
               if (*(volatile char*)0x2001cdd4 == 1) {
                 pbVar7 = local_2cc;
                 for (iVar12 = 0; iVar12 < iVar5; iVar12 = iVar12 + 1) { *pbVar7 = *pbVar7 & *(volatile byte*)0x200034f6; pbVar7 = pbVar7 + 1; }

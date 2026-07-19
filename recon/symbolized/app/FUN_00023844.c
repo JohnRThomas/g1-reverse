@@ -11,6 +11,7 @@
  *   try_to_save_file                         <= FUN_00023634 @ 0x00023634
  *   get_demo_image_source_from_flash         <= FUN_000365ec @ 0x000365ec
  *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  *   rproc_virtio_negotiate_features          <= FUN_0007c34a @ 0x0007c34a
  *   set_shutdown_flag                        <= FUN_0007cbfe @ 0x0007cbfe
  * address symbols (name @ address):
@@ -42,7 +43,7 @@ extern void z_impl_k_sem_take(uintptr_t,uintptr_t,uint32_t,uint32_t);
 extern uintptr_t get_device_info(void);
 extern void update_burial_point_to_flash(void);
 extern void get_demo_image_source_from_flash(void);
-extern void FUN_00074844(uint32_t,uint32_t);
+extern void k_sleep(uint32_t,uint32_t);
 extern void change_work_mode_to(uint32_t);
 extern void set_shutdown_flag(uintptr_t,uint32_t);
 extern void rproc_virtio_negotiate_features(uintptr_t,uint32_t);
@@ -94,7 +95,7 @@ void brightness_level(uintptr_t context)
         case 0xb:
             text=((unsigned long)&rodata_9e259) /*=0x9e259*/; value=context+0xef4; style=1; invoke=1; break;
         case 0x11:
-            FUN_00074844(0x50000,0);
+            k_sleep(0x50000,0);
             change_work_mode_to(7);
             break;
         case 0x16:

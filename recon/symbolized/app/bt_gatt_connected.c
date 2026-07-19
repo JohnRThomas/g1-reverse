@@ -9,6 +9,7 @@
  *   bt_addr_le_is_bonded                     <= FUN_00080f92 @ 0x00080f92
  *   g1_recon_bt_conn_set_security            <= FUN_0008149a @ 0x0008149a
  *   bt_conn_get_security                     <= FUN_000814e2 @ 0x000814e2
+ *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  *   bt_gatt_foreach_attr_0                   <= FUN_00082c9c @ 0x00082c9c
  * address symbols (name @ address):
  *   ADDR_gatt_ccc_settings_set_THUMB         @ 0x0005af8d
@@ -28,7 +29,7 @@ extern int settings_load_subtree_direct(const char *, void *, void *); /* settin
 extern void bt_gatt_foreach_attr_0(uint16_t, uint16_t, void *, void *); /* bt_gatt_foreach_attr */
 extern uint8_t bt_conn_get_security(void *); /* bt_conn_get_security */
 extern int g1_recon_bt_conn_set_security(void *, uint8_t); /* bt_conn_set_security */
-extern void FUN_00082a42(uint32_t, uint32_t, const void *); /* logger */
+extern void log_msg_create_3arg(uint32_t, uint32_t, const void *); /* logger */
 
 struct conn_data_recovered { void *connection; uint8_t security; };
 
@@ -53,7 +54,7 @@ void bt_gatt_connected(uint8_t *connection)
         int error = g1_recon_bt_conn_set_security(connection, data.security);
         if (error != 0) {
             const uint32_t package[3] = { 3U, ((unsigned long)&rodata_f4d88) /*=0xf4d88*/, (uint32_t)error };
-            FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1880U, package);
+            log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1880U, package);
         }
     }
 }

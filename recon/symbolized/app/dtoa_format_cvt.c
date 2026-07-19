@@ -4,11 +4,12 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   __aeabi_dcmpeq                           <= FUN_0000ddc8 @ 0x0000ddc8
+ *   dtoa_r                                   <= FUN_00014b60 @ 0x00014b60
  *   dtoa_format_cvt                          <= FUN_00086cda @ 0x00086cda
  */
 /* Reconstructed FUN_00086cda @ 0x86cda  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern char* FUN_00014b60(double, uint32_t, int, int, int*, void*, void*);
+extern char* dtoa_r(double, uint32_t, int, int, int*, void*, void*);
 extern int __aeabi_dcmpeq(uint32_t,int,int,int);
 
 char* dtoa_format_cvt(double in_d0, uint32_t param_1, int param_2, uint32_t param_3,
@@ -30,7 +31,7 @@ char* dtoa_format_cvt(double in_d0, uint32_t param_1, int param_2, uint32_t para
     if (uVar8 == 0x46) uVar2 = 3;
     else { if (uVar8 == 0x45) param_2 = param_2 + 1; uVar2 = 2; }
     uint32_t auStack_30; char* local_2c[2];
-    char* pcVar1 = FUN_00014b60(dabs, param_1, uVar2, param_2, param_5, &auStack_30, local_2c);
+    char* pcVar1 = dtoa_r(dabs, param_1, uVar2, param_2, param_5, &auStack_30, local_2c);
     char* pcVar7;
     if (param_6 == 0x67 || param_6 == 0x47){
         if ((param_3 & 1) == 0) goto L_d5e;

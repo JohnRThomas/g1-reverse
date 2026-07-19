@@ -10,7 +10,9 @@
  *   display_reflash_handler                  <= FUN_00048e28 @ 0x00048e28
  *   stop_some_timer                          <= FUN_00048ff4 @ 0x00048ff4
  *   setDelayExitValue                        <= FUN_00049000 @ 0x00049000
+ *   wake_display_thread_on_reflash           <= FUN_0004906c @ 0x0004906c
  *   k_msgq_get                               <= FUN_00072240 @ 0x00072240
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  *   projector_fill_and_sync                  <= FUN_0007d6f4 @ 0x0007d6f4
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   k_timer_init                             <= FUN_00086726 @ 0x00086726
@@ -78,9 +80,9 @@
 #define display_reflash_handler      display_reflash_handler
 #define display_timer_stop           stop_some_timer
 #define display_delay_set            setDelayExitValue
-#define display_thread_service_abort FUN_0004906c
+#define display_thread_service_abort wake_display_thread_on_reflash
 #define k_msgq_get                    k_msgq_get
-#define k_sleep_ticks                 FUN_00074844
+#define k_sleep_ticks                 k_sleep
 #define display_power_set            projector_fill_and_sync
 #define k_timer_init                  k_timer_init
 #define memset_bytes                 memset_bytes

@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   bt_gatt_write                            <= FUN_0005c22c @ 0x0005c22c
  *   gatt_prepare_write_rsp                   <= FUN_0005c310 @ 0x0005c310
+ *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  *   gatt_req_send                            <= FUN_00082aee @ 0x00082aee
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
@@ -19,7 +20,7 @@
  * Raw/address backmap: FUN_0005c310 @ 0x0005c310, extent 0x0000009c.
  */
 #include <stdint.h>
-extern void FUN_00082a42(uint32_t, uint32_t, const void *); /* logger */
+extern void log_msg_create_3arg(uint32_t, uint32_t, const void *); /* logger */
 extern int gatt_req_send(void *, void *, void *, void *, uint32_t, uint32_t);
 extern int memcmp(const void *, const void *, uint32_t); /* memcmp */
 extern int bt_gatt_write(void *, void *); /* bt_gatt_write */
@@ -38,7 +39,7 @@ void gatt_prepare_write_rsp(void *connection, const uint8_t *response,
     uint16_t payload_length = (uint16_t)(response_length - 4U);
     if (payload_length > params->length) {
         uint32_t package[2] = { 2U, ((unsigned long)&rodata_f4cdd) /*=0xf4cdd*/ };
-        FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1040U, package);
+        log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1040U, package);
         if (gatt_req_send(connection, (void *)((unsigned long)&rodata_82603) /*=0x82603*/, params,
                          (void *)ADDR_gatt_cancel_encode_THUMB /*=0x8278b*/, 0x18U, 1U) != 0)
             params->callback(connection, 0x0eU, params);
@@ -48,7 +49,7 @@ void gatt_prepare_write_rsp(void *connection, const uint8_t *response,
                                   payload_length) == 0;
     if (params->offset != *(const uint16_t *)(response + 2) || !data_valid) {
         uint32_t package[2] = { 2U, ((unsigned long)&rodata_f4cff) /*=0xf4cff*/ };
-        FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1040U, package);
+        log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1040U, package);
         if (gatt_req_send(connection, (void *)((unsigned long)&rodata_82603) /*=0x82603*/, params,
                          (void *)ADDR_gatt_cancel_encode_THUMB /*=0x8278b*/, 0x18U, 1U) != 0)
             params->callback(connection, 0x0eU, params);

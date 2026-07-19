@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   init_watchdog                            <= FUN_0002ace0 @ 0x0002ace0
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -25,7 +26,7 @@
 #include <stdint.h>
 extern void log_message(int,...);
 extern void debug_print(void);
-extern int  FUN_00074844(int,int);
+extern int  k_sleep(int,int);
 extern int  z_device_is_ready(int);
 extern void memset_bytes(void*,int,int);
 struct watchdog_window {
@@ -95,7 +96,7 @@ int init_watchdog(int param_1,int param_2,int param_3,int param_4){
         iVar7 = puVar3[2];
         if (((feed_watchdog_fn)(*(volatile int*)(iVar7+0xc)))(
                 (void *)((unsigned long)&g_watchdog_device) /*=0x87cc8*/, *piVar4) == 0) break;
-        FUN_00074844(0x667,0);
+        k_sleep(0x667,0);
         iVar5 = iVar5 - 1;
       } while (iVar5 != 0);
       if (*piVar1 < 4) return 0;

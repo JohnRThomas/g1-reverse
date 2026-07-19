@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   settings_commit_subtree                  <= FUN_0004e6a8 @ 0x0004e6a8
+ *   bt_dev_settings_commit                   <= FUN_000530c4 @ 0x000530c4
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   settings_name_steq                       <= FUN_0007f1a0 @ 0x0007f1a0
@@ -18,7 +19,7 @@
 /* Reconstructed FUN_0004e6a8 @ 0x4e6a8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int FUN_000530c4(int,...);
+extern int bt_dev_settings_commit(int,...);
 extern void assert_post_action(int,...);
 extern void printk(int,...);
 extern int settings_name_steq(int,...);

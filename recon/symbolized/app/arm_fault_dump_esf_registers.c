@@ -3,6 +3,7 @@
  * public-name: arm_fault_dump_esf_registers
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   z_log_msg_runtime_create                 <= FUN_0004d944 @ 0x0004d944
  *   arm_fault_dump_esf_registers             <= FUN_0004ff6c @ 0x0004ff6c
  *   z_fatal_error                            <= FUN_00071684 @ 0x00071684
  * address symbols (name @ address):
@@ -16,7 +17,7 @@
  */
 /* Reconstructed FUN_0004ff6c @ 0x4ff6c  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_0004d944(int,int,void*,int);
+extern int z_log_msg_runtime_create(int,int,void*,int);
 extern int z_fatal_error(int,int*);
 
 void arm_fault_dump_esf_registers(int param_1, int *param_2, int param_3, int param_4)
@@ -40,16 +41,16 @@ void arm_fault_dump_esf_registers(int param_1, int *param_2, int param_3, int pa
     log5.value0 = param_2[0];
     log5.value1 = param_2[1];
     log5.value2 = param_2[2];
-    FUN_0004d944(((unsigned long)&rodata_88258) /*=0x88258*/, 0x2840, &log5, 0);
+    z_log_msg_runtime_create(((unsigned long)&rodata_88258) /*=0x88258*/, 0x2840, &log5, 0);
     log5.format = ((unsigned long)&rodata_f1aea) /*=0xf1aea*/;
     log5.value0 = param_2[3];
     log5.value1 = param_2[4];
     log5.value2 = param_2[5];
-    FUN_0004d944(((unsigned long)&rodata_88258) /*=0x88258*/, 0x2840, &log5, 0);
+    z_log_msg_runtime_create(((unsigned long)&rodata_88258) /*=0x88258*/, 0x2840, &log5, 0);
     log3.count = 3;
     log3.format = ((unsigned long)&rodata_f1b19) /*=0xf1b19*/;
     log3.value = param_2[7];
-    FUN_0004d944(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1840, &log3, 0);
+    z_log_msg_runtime_create(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1840, &log3, 0);
     uVar1 = ((unsigned long)&rodata_f1b28) /*=0xf1b28*/;
     iVar2 = 0;
     piVar4 = param_2;
@@ -65,16 +66,16 @@ void arm_fault_dump_esf_registers(int param_1, int *param_2, int param_3, int pa
       log10.index3 = iVar2 + 3;
       log10.value3 = piVar4[11];
       iVar3 = iVar2 + 4;
-      FUN_0004d944(((unsigned long)&rodata_88258) /*=0x88258*/, 0x5040, &log10, 0);
+      z_log_msg_runtime_create(((unsigned long)&rodata_88258) /*=0x88258*/, 0x5040, &log10, 0);
       piVar4 = piVar4 + 4;
       iVar2 = iVar3;
     } while (iVar3 != 0x10);
     log3.format = ((unsigned long)&rodata_f1b6b) /*=0xf1b6b*/;
     log3.value = param_2[0x18];
-    FUN_0004d944(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1840, &log3, 0);
+    z_log_msg_runtime_create(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1840, &log3, 0);
     log3.format = ((unsigned long)&rodata_f1b7a) /*=0xf1b7a*/;
     log3.value = param_2[6];
-    FUN_0004d944(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1840, &log3, 0);
+    z_log_msg_runtime_create(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1840, &log3, 0);
   }
   z_fatal_error(param_1, param_2);
 }

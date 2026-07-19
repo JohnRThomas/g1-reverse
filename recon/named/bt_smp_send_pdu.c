@@ -6,6 +6,7 @@
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
  *   k_work_reschedule                        <= FUN_0007350c @ 0x0007350c
  *   bt_conn_create_pdu                       <= FUN_00081820 @ 0x00081820
+ *   smp_log_message                          <= FUN_00083074 @ 0x00083074
  * address symbols (name @ address):
  *   rodata_88180                             @ 0x00088180
  *   rodata_f0000                             @ 0x000f0000
@@ -15,7 +16,7 @@
 #include <stdint.h>
 extern long long bt_conn_create_pdu(unsigned,int,unsigned,unsigned,int);
 extern void net_buf_unref(unsigned);
-extern void FUN_00083074(unsigned,unsigned,void*);
+extern void smp_log_message(unsigned,unsigned,void*);
 extern void k_work_reschedule(int,int,unsigned,int);
 
 void bt_smp_send_pdu(int param_1, unsigned param_2, unsigned param_3){
@@ -25,7 +26,7 @@ void bt_smp_send_pdu(int param_1, unsigned param_2, unsigned param_3){
       unsigned local_18, local_14;
       local_14 = 0x000f4557;
       local_18 = 2;
-      FUN_00083074(0x00088180, 0x1040, &local_18);
+      smp_log_message(0x00088180, 0x1040, &local_18);
       (void)local_14;
     }
     net_buf_unref(param_2);

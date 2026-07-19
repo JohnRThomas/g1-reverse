@@ -10,8 +10,10 @@
  *   net_buf_simple_pull_5f594                <= FUN_0005f594 @ 0x0005f594
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   att_log_emit_3arg                        <= FUN_00081ddc @ 0x00081ddc
  *   att_send_error_rsp                       <= FUN_000821f4 @ 0x000821f4
  *   atomic_test_and_set_bit_0                <= FUN_00082236 @ 0x00082236
+ *   att_exchange_mtu_req                     <= FUN_00082396 @ 0x00082396
  * address symbols (name @ address):
  *   rodata_88100                             @ 0x00088100
  *   rodata_8b2b4                             @ 0x0008b2b4
@@ -27,10 +29,10 @@ extern int net_buf_ref(int);
 extern int net_buf_simple_pull_5f594(int, int);
 extern void assert_post_action(int, int);
 extern void printk(int, int, int, int);
-extern void FUN_00081ddc(int, int, int);
+extern void att_log_emit_3arg(int, int, int);
 extern void att_send_error_rsp(int, int, int, int);
 extern int atomic_test_and_set_bit_0(int, int);
-extern int FUN_00082396(int);
+extern int att_exchange_mtu_req(int);
 
 int bt_att_recv(int param_1, int param_2)
 {
@@ -43,7 +45,7 @@ int bt_att_recv(int param_1, int param_2)
     volatile int logbuf[8];
 
     if (*(volatile int16_t*)(param_2 + 0x10) == 0) {
-        FUN_00081ddc(((unsigned long)&rodata_88100) /*=0x88100*/, 0x1040, (int)(intptr_t)logbuf);
+        att_log_emit_3arg(((unsigned long)&rodata_88100) /*=0x88100*/, 0x1040, (int)(intptr_t)logbuf);
         return 0;
     }
     pbVar3 = (volatile uint8_t*)(intptr_t)net_buf_simple_pull_5f594(param_2 + 0xc, 1);
@@ -67,13 +69,13 @@ int bt_att_recv(int param_1, int param_2)
                 iVar7 = atomic_test_and_set_bit_0(param_1 + 0x118, 1);
             joined:
                 if (iVar7 != 0) {
-                    FUN_00081ddc(((unsigned long)&rodata_88100) /*=0x88100*/, 0x1080, (int)(intptr_t)logbuf);
+                    att_log_emit_3arg(((unsigned long)&rodata_88100) /*=0x88100*/, 0x1080, (int)(intptr_t)logbuf);
                     goto LAB_d9c;
                 }
             }
             iVar8 = iVar8 + iVar6 * 8;
             if ((unsigned)*(volatile uint16_t*)(param_2 + 0x10) < (unsigned)*(volatile uint8_t*)(iVar8 + 1)) {
-                FUN_00081ddc(((unsigned long)&rodata_88100) /*=0x88100*/, 0x2040, (int)(intptr_t)logbuf);
+                att_log_emit_3arg(((unsigned long)&rodata_88100) /*=0x88100*/, 0x2040, (int)(intptr_t)logbuf);
                 if (*(volatile int8_t*)(iVar8 + 2) != 1) goto LAB_d9c;
                 iVar8 = 4;
             } else {
@@ -94,7 +96,7 @@ int bt_att_recv(int param_1, int param_2)
         int t = net_buf_ref(param_2);
         *(volatile int*)(param_1 + 0x13c) = t;
     }
-    FUN_00081ddc(((unsigned long)&rodata_88100) /*=0x88100*/, 0x1880, (int)(intptr_t)logbuf);
+    att_log_emit_3arg(((unsigned long)&rodata_88100) /*=0x88100*/, 0x1880, (int)(intptr_t)logbuf);
     uVar9 = att_op_get_type(*pbVar3);
     uVar5 = (unsigned)(uVar9 >> 0x20);
     if ((int)uVar9 != 0 && (int)uVar9 != 5) {

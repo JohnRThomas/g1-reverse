@@ -6,6 +6,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   sys_reboot                               <= FUN_0004c0a8 @ 0x0004c0a8
  *   ipc_service_send                         <= FUN_0004cc50 @ 0x0004cc50
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  * address symbols (name @ address):
  *   rodata_9f576                             @ 0x0009f576
  *   rodata_9f5a9                             @ 0x0009f5a9
@@ -24,7 +25,7 @@ extern void *get_device_info(void);
 extern void debug_print(uint32_t, ...);
 extern int sys_reboot(int);
 extern int ipc_service_send(uint32_t, uint32_t, uint32_t);
-extern void FUN_00074844(int, int);
+extern void k_sleep(int, int);
 
 int global_ipc_service_send(unsigned int param_1, unsigned int param_2)
 {
@@ -56,7 +57,7 @@ int global_ipc_service_send(unsigned int param_1, unsigned int param_2)
                                 debug_print(0x0009f5a9UL, 0x0009f704UL);
                             }
                         }
-                        FUN_00074844(0x4000, 0);
+                        k_sleep(0x4000, 0);
                         sys_reboot(1);
 lab_debug_1:
                         log_message(0x0009f576UL, 0x0009f704UL, iVar3);

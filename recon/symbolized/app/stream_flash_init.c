@@ -3,7 +3,9 @@
  * public-name: stream_flash_init
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   z_log_msg_runtime_create                 <= FUN_0004d944 @ 0x0004d944
  *   stream_flash_init                        <= FUN_0004e2b4 @ 0x0004e2b4
+ *   stream_flash_vtable_get_value            <= FUN_0007f064 @ 0x0007f064
  *   flash_page_foreach                       <= FUN_00083ac2 @ 0x00083ac2
  * address symbols (name @ address):
  *   rodata_7f071                             @ 0x0007f071
@@ -37,10 +39,10 @@ struct diagnostic_record {
     uintptr_t message;
 };
 
-extern uint32_t FUN_0007f064(void *device);
+extern uint32_t stream_flash_vtable_get_value(void *device);
 extern void flash_page_foreach(void *device, uintptr_t query,
                          struct device_geometry *geometry);
-extern void FUN_0004d944(uintptr_t source, uint32_t event,
+extern void z_log_msg_runtime_create(uintptr_t source, uint32_t event,
                          const struct diagnostic_record *record,
                          uint32_t reserved);
 
@@ -59,7 +61,7 @@ int stream_flash_init(struct buffered_writer *writer, void *device,
     if (writer == 0 || device == 0 || buffer == 0)
         return -14;
 
-    unit = FUN_0007f064(device);
+    unit = stream_flash_vtable_get_value(device);
     if (capacity % unit != 0) {
         message = ((unsigned long)&rodata_f10ce) /*=0xf10ce*/;
         goto invalid;
@@ -70,7 +72,7 @@ int stream_flash_init(struct buffered_writer *writer, void *device,
         return -14;
 
     if (geometry.available < base + limit ||
-        (unit = FUN_0007f064(device), base % unit != 0)) {
+        (unit = stream_flash_vtable_get_value(device), base % unit != 0)) {
         message = ((unsigned long)&rodata_f1105) /*=0xf1105*/;
         goto invalid;
     }
@@ -92,7 +94,7 @@ invalid:
             .severity = 2,
             .message = message,
         };
-        FUN_0004d944(((unsigned long)&rodata_880d8) /*=0x880d8*/, 0x1040u, &diagnostic, 0);
+        z_log_msg_runtime_create(((unsigned long)&rodata_880d8) /*=0x880d8*/, 0x1040u, &diagnostic, 0);
     }
     return -14;
 }

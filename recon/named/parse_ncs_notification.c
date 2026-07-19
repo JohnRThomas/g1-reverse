@@ -7,6 +7,7 @@
  *   log_notification_fields_debug            <= FUN_0004a3d0 @ 0x0004a3d0
  *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
  *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
+ *   cbor_decode_start_default                <= FUN_0008500c @ 0x0008500c
  *   sllist_find_by_name_ci                   <= FUN_0008503c @ 0x0008503c
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   strncpy_zero_pad                         <= FUN_0008705a @ 0x0008705a
@@ -35,7 +36,7 @@ extern int  strcmp(int,int);
 extern int  log_notification_fields_debug(int,int*);
 extern int  cjson_delete(int);
 extern int  get_timestamp(void);
-extern int  FUN_0008500c(void);
+extern int  cbor_decode_start_default(void);
 extern int  sllist_find_by_name_ci(int,int);
 extern void memset_bytes(int*,int,int);
 extern void strncpy_zero_pad(int,int,int);
@@ -46,7 +47,7 @@ void parse_ncs_notification(int param_1, int *param_2){
   volatile int *g8=(volatile int*)0x20007554UL;
   int iVar1,iVar2,iVar3,iVar4,iVar5,iVar6,iVar7,iVar8,iVar9;
   (void)param_1;
-  iVar1 = FUN_0008500c();
+  iVar1 = cbor_decode_start_default();
   if (iVar1 == 0) {
     if (0 < *lvl) {
       if (*g8 != 0) { debug_print(); return; }

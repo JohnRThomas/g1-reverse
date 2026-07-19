@@ -55,7 +55,7 @@ extern void *memset_bytes(void *dst, int value, u32 size);/* FUN_00086c78 */
 
 #define PDM_DEVICE               ((unsigned long)&rodata_87d40) /*=0x87d40*/
 #define QSPI_DEVICE              ((unsigned long)&rodata_87bf0) /*=0x87bf0*/
-#define DMIC_SLAB                0x20003778U
+#define DMIC_SLAB                ((unsigned long)&g_20003778) /*=0x20003778*/
 
 static __attribute__((always_inline)) inline device_call
 device_method(u32 device, u32 slot)
@@ -93,7 +93,7 @@ u32 dmic_stream_start(void)
             goto stop_stream;
         }
 
-        dmic_log(2, 0x000a4062U, ((unsigned long)&rodata_a41b0) /*=0xa41b0*/,
+        dmic_log(2, ((unsigned long)&rodata_a4062) /*=0xa4062*/, ((unsigned long)&rodata_a41b0) /*=0xa41b0*/,
                  *(volatile u32 *)PDM_DEVICE, 1);
         if (init_dmic_msgq() != 0) {
             result = 1;
@@ -120,7 +120,7 @@ u32 dmic_stream_start(void)
         if (is_battery_critical() == 1) {
             int erase_status = erase_audio_buffer();
             if (erase_status < 0) {
-                dmic_log(0, 0x000a4075U, ((unsigned long)&rodata_a41b0) /*=0xa41b0*/,
+                dmic_log(0, ((unsigned long)&rodata_a4075) /*=0xa4075*/, ((unsigned long)&rodata_a41b0) /*=0xa41b0*/,
                          (u32)erase_status, 1);
                 result = (u32)-1;
                 goto stop_stream;
@@ -149,10 +149,10 @@ u32 dmic_stream_start(void)
             if (is_battery_critical() == 1 &&
                 *(volatile u8 *)(get_device_info() + 0x108c) == 1U &&
                 z_device_is_ready(QSPI_DEVICE) == 0) {
-                dmic_log(0, ((unsigned long)&rodata_a40e6) /*=0xa40e6*/, 0x000a41a0U,
+                dmic_log(0, ((unsigned long)&rodata_a40e6) /*=0xa40e6*/, ((unsigned long)&rodata_a41a0) /*=0xa41a0*/,
                          *(volatile u32 *)QSPI_DEVICE, 1);
                 if (block != 0U) k_mem_slab_free(DMIC_SLAB, block);
-                dmic_log(0, 0x000a4120U, ((unsigned long)&rodata_a41b0) /*=0xa41b0*/, 0, 0);
+                dmic_log(0, ((unsigned long)&rodata_a4120) /*=0xa4120*/, ((unsigned long)&rodata_a41b0) /*=0xa41b0*/, 0, 0);
                 result = (u32)-1;
                 goto stop_stream;
             }
@@ -160,10 +160,10 @@ u32 dmic_stream_start(void)
             status = device_method(PDM_DEVICE, 2)(PDM_DEVICE, 0,
                                                    &block, &bytes, 1000);
             if (status != 0) {
-                dmic_log(0, 0x000a4105U, 0x000a41a0U,
+                dmic_log(0, 0x000a4105U, ((unsigned long)&rodata_a41a0) /*=0xa41a0*/,
                          (u32)status, 1);
                 if (block != 0U) k_mem_slab_free(DMIC_SLAB, block);
-                dmic_log(0, 0x000a4120U, ((unsigned long)&rodata_a41b0) /*=0xa41b0*/, 0, 0);
+                dmic_log(0, ((unsigned long)&rodata_a4120) /*=0xa4120*/, ((unsigned long)&rodata_a41b0) /*=0xa41b0*/, 0, 0);
                 result = (u32)-1;
                 goto stop_stream;
             }
@@ -173,14 +173,14 @@ u32 dmic_stream_start(void)
                 if (g_audio_flash_offset < 0x410000U - bytes) {
                     status = device_method(QSPI_DEVICE, 1)(QSPI_DEVICE);
                     if (status != 0) {
-                        dmic_log(0, ((unsigned long)&rodata_9ebc6) /*=0x9ebc6*/, 0x000a41a0U,
+                        dmic_log(0, ((unsigned long)&rodata_9ebc6) /*=0x9ebc6*/, ((unsigned long)&rodata_a41a0) /*=0xa41a0*/,
                                  (u32)status, 1);
                         if (block != 0U) k_mem_slab_free(DMIC_SLAB, block);
-                        dmic_log(0, 0x000a4120U, ((unsigned long)&rodata_a41b0) /*=0xa41b0*/, 0, 0);
+                        dmic_log(0, ((unsigned long)&rodata_a4120) /*=0xa4120*/, ((unsigned long)&rodata_a41b0) /*=0xa41b0*/, 0, 0);
                         result = (u32)-1;
                         goto stop_stream;
                     }
-                    dmic_log(0, ((unsigned long)&rodata_a3fbe) /*=0xa3fbe*/, 0x000a41a0U,
+                    dmic_log(0, ((unsigned long)&rodata_a3fbe) /*=0xa3fbe*/, ((unsigned long)&rodata_a41a0) /*=0xa41a0*/,
                              g_audio_flash_offset, 1);
                     g_audio_flash_offset += bytes;
                 }
@@ -200,7 +200,7 @@ u32 dmic_stream_start(void)
                     k_sem_give((u32)connection + 0x218U);
                 } else {
                     u8 event[3];
-                    u16 event_id = *(volatile u16 *)0x00088694U;
+                    u16 event_id = *(volatile u16 *)((unsigned long)&rodata_88694) /*=0x88694*/;
                     event[0] = 0xf1;
                     event[1] = (u8)(event_id >> 8);
                     event[2] = 0xcc;
@@ -214,13 +214,13 @@ stop_stream:
     {
         int status = device_method(PDM_DEVICE, 1)(PDM_DEVICE, 0);
         if (status < 0) {
-            dmic_log(0, 0x000a4147U, ((unsigned long)&rodata_a41b0) /*=0xa41b0*/, (u32)status, 1);
+            dmic_log(0, ((unsigned long)&rodata_a4147) /*=0xa4147*/, ((unsigned long)&rodata_a41b0) /*=0xa41b0*/, (u32)status, 1);
         } else {
             dmic_log(0, 0x000a4162U, ((unsigned long)&rodata_a41b0) /*=0xa41b0*/, 0, 0);
         }
     }
     clean_dmic_msgq();
     g_audio_flash_offset = 0x400000U;
-    dmic_log(2, 0x000a417eU, ((unsigned long)&rodata_a41b0) /*=0xa41b0*/, 0, 0);
+    dmic_log(2, ((unsigned long)&rodata_a417e) /*=0xa417e*/, ((unsigned long)&rodata_a41b0) /*=0xa41b0*/, 0, 0);
     return result;
 }

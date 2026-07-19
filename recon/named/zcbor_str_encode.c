@@ -2,6 +2,7 @@
  * public-name: zcbor_str_encode
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   cbor_min_encoded_size                    <= FUN_0007158c @ 0x0007158c
  *   cbor_encode_set_error                    <= FUN_000861c2 @ 0x000861c2
  *   cbor_encode_length_header                <= FUN_00086208 @ 0x00086208
  *   zcbor_str_encode                         <= FUN_00086228 @ 0x00086228
@@ -24,7 +25,7 @@ typedef struct {
 } zcbor_string_t;
 
 extern void cbor_encode_set_error(zcbor_state_prefix_t *state, int error);
-extern size_t FUN_0007158c(const void *input, size_t max_result_len);
+extern size_t cbor_min_encoded_size(const void *input, size_t max_result_len);
 extern int cbor_encode_length_header(zcbor_state_prefix_t *state, unsigned int major_type,
                        const void *result, size_t max_result_len);
 extern void *memmove(void *destination, const void *source, size_t size);
@@ -42,7 +43,7 @@ int zcbor_str_encode(zcbor_state_prefix_t *state, const zcbor_string_t *input,
     }
 
     if (input->value != NULL) {
-        encoded_length_size = FUN_0007158c(&input->len, sizeof(input->len));
+        encoded_length_size = cbor_min_encoded_size(&input->len, sizeof(input->len));
         if ((size_t)state->payload + encoded_length_size + 1U + input->len >
             (size_t)state->payload_end) {
             cbor_encode_set_error(state, 8);

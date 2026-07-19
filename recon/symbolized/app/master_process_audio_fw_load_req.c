@@ -4,7 +4,11 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   ancs_set_notification_enabled            <= FUN_00019ac0 @ 0x00019ac0
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_device_serial_buf                    <= FUN_000232b0 @ 0x000232b0
+ *   get_product_code_buf                     <= FUN_000232b8 @ 0x000232b8
+ *   get_last_standby_event_id                <= FUN_000269fc @ 0x000269fc
  *   imu_set_enabled                          <= FUN_0002bd4c @ 0x0002bd4c
  *   get_low_battery_flag_if_master           <= FUN_0002efa8 @ 0x0002efa8
  *   get_notification_counts_cmd_response     <= FUN_00033a5c @ 0x00033a5c
@@ -13,7 +17,10 @@
  *   rate_limited_elapsed_seconds_tick        <= FUN_0004a46c @ 0x0004a46c
  *   get_boot_seconds                         <= FUN_0004a51c @ 0x0004a51c
  *   uint32_to_little_endian                  <= FUN_0004a568 @ 0x0004a568
+ *   post_uid_event_mode2                     <= FUN_0007c0e2 @ 0x0007c0e2
  *   is_system_idle_ready                     <= FUN_0007ce00 @ 0x0007ce00
+ *   device_info_set_mode                     <= FUN_0007d2f8 @ 0x0007d2f8
+ *   md5_compute_digest                       <= FUN_0007d968 @ 0x0007d968
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -79,10 +86,10 @@ typedef void code;
 extern int log_message(const char*, const char*, ...);
 extern int debug_print(const char*, const char*, ...);
 extern int get_device_info(void);
-extern int FUN_00019ac0(uint);
-extern int FUN_000232b0(void);
-extern int FUN_000232b8(void);
-extern int FUN_000269fc(void);
+extern int ancs_set_notification_enabled(uint);
+extern int get_device_serial_buf(void);
+extern int get_product_code_buf(void);
+extern int get_last_standby_event_id(void);
 extern int imu_set_enabled(int, char*, uint);
 extern int get_low_battery_flag_if_master(void);
 extern int post_notification_cmd_response(char*, byte*, char*, byte*, byte*, byte*, undefined4);
@@ -90,10 +97,10 @@ extern int debug_print_hex_dump(int, byte*, int);
 extern int rate_limited_elapsed_seconds_tick(int, int, int);
 extern int get_boot_seconds(void);
 extern int uint32_to_little_endian(byte*, int);
-extern int FUN_0007c0e2(uint);
+extern int post_uid_event_mode2(uint);
 extern int is_system_idle_ready(void);
-extern int FUN_0007d2f8(int);
-extern int FUN_0007d968(byte*, int, byte*);
+extern int device_info_set_mode(int);
+extern int md5_compute_digest(byte*, int, byte*);
 extern int memcpy(int, byte*, int);
 extern int memset_bytes(void*, int, int);
 extern int process_sync_buffer(void*);
@@ -242,7 +249,7 @@ int master_process_audio_fw_load_req(char *param_1, byte *param_2, byte *param_3
         if (iVar26 == iVar11) {
           *param_3 = 0x6f;
           param_3[1] = 0x6b;
-          FUN_0007d968(param_3 + 0x12,iVar26,param_3 + 2);
+          md5_compute_digest(param_3 + 0x12,iVar26,param_3 + 2);
           debug_print_hex_dump(DAT_0002b21c,param_3 + 2,0x10);
           return iVar24;
         }
@@ -309,7 +316,7 @@ int master_process_audio_fw_load_req(char *param_1, byte *param_2, byte *param_3
         return iVar24;
       case 0x4c:
         uVar20 = *(uint *)(param_2 + 4);
-        FUN_0007c0e2(uVar20 << 0x18 | (uVar20 >> 8 & 0xff) << 0x10 | (uVar20 >> 0x10 & 0xff) << 8 |
+        post_uid_event_mode2(uVar20 << 0x18 | (uVar20 >> 8 & 0xff) << 0x10 | (uVar20 >> 0x10 & 0xff) << 8 |
                      uVar20 >> 0x18);
         break;
       case 0x4d:
@@ -368,7 +375,7 @@ int master_process_audio_fw_load_req(char *param_1, byte *param_2, byte *param_3
       return 1;
     case 2:
       *param_3 = param_1[0xfea];
-      uVar28 = FUN_000269fc();
+      uVar28 = get_last_standby_event_id();
       piVar4 = DAT_0002b7a8;
       param_3[1] = (byte)uVar28;
       if (*piVar4 < 3) {
@@ -523,7 +530,7 @@ LAB_0002b7fe:
       uVar12 = (undefined4)DAT_0002bab8;
       break;
     case 10:
-      puVar16 = (undefined4 *)FUN_000232b8();
+      puVar16 = (undefined4 *)get_product_code_buf();
       puVar18 = puVar16;
       pbVar23 = param_3;
       do {
@@ -539,7 +546,7 @@ LAB_0002b7fe:
       uVar28 = (undefined4)DAT_0002bac0;
       goto LAB_0002b9d8;
     case 0xb:
-      puVar16 = (undefined4 *)FUN_000232b0();
+      puVar16 = (undefined4 *)get_device_serial_buf();
       puVar18 = puVar16;
       pbVar23 = param_3;
       do {
@@ -688,7 +695,7 @@ LAB_0002b1a0:
         else if (uVar20 == 0xc) {
           uVar10 = 0;
 LAB_0002b1f2:
-          FUN_0007d2f8(uVar10);
+          device_info_set_mode(uVar10);
         }
       }
       param_1[0xfea] = bVar21;
@@ -925,7 +932,7 @@ LAB_0002b404:
         debug_print(DAT_0002b7c4,DAT_0002b7b0,(uint)bVar21);
       }
     }
-    FUN_00019ac0((uint)bVar21);
+    ancs_set_notification_enabled((uint)bVar21);
     goto LAB_0002b1ac;
   case 0x25:
     if (2 < *DAT_0002b7a8) {

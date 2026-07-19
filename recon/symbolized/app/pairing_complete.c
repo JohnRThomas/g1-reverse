@@ -7,7 +7,9 @@
  *   format_bt_addr_str                       <= FUN_00018334 @ 0x00018334
  *   pairing_complete                         <= FUN_00018730 @ 0x00018730
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
+ *   bt_unpair_all_or_addr                    <= FUN_0005420c @ 0x0005420c
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
+ *   bt_conn_get_field_0x90                   <= FUN_00081526 @ 0x00081526
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
  *   rodata_9a638                             @ 0x0009a638
@@ -16,18 +18,18 @@
  */
 /* Reconstructed FUN_00018730 @ 0x18730  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern uint32_t FUN_00081526(void);
+extern uint32_t bt_conn_get_field_0x90(void);
 extern void format_bt_addr_str(void*,void*);
 extern int get_device_info(void);
 extern int is_battery_critical(void);
 extern int memcmp(int,void*,int);
-extern void FUN_0005420c(int,int);
+extern void bt_unpair_all_or_addr(int,int);
 extern void k_sem_give(int);
 extern void log_message(unsigned, ...);
 
 void pairing_complete(unsigned param_1, unsigned param_2){
     unsigned char auStack_38[32];
-    uint32_t *puVar1 = (uint32_t*)FUN_00081526();
+    uint32_t *puVar1 = (uint32_t*)bt_conn_get_field_0x90();
     format_bt_addr_str(puVar1, auStack_38);
     int iVar2 = get_device_info();
     if (*(char*)(iVar2+0x1071) != 0){
@@ -40,7 +42,7 @@ void pairing_complete(unsigned param_1, unsigned param_2){
         iVar2 = memcmp(iVar2+0x1069, puVar1, 7);
         if (iVar2 != 0){
             iVar2 = get_device_info();
-            FUN_0005420c(iVar5, iVar2+0x1069);
+            bt_unpair_all_or_addr(iVar5, iVar2+0x1069);
             iVar2 = get_device_info();
             *(unsigned char*)(iVar2+0x1070) = (unsigned char)iVar5;
             iVar2 = get_device_info();

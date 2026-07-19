@@ -10,6 +10,8 @@
  *   bt_keys_add_type                         <= FUN_0005e9a0 @ 0x0005e9a0
  *   bt_keys_clear                            <= FUN_0005ea18 @ 0x0005ea18
  *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ *   smp_log_message                          <= FUN_00083074 @ 0x00083074
+ *   smp_chan_lookup                          <= FUN_0008307a @ 0x0008307a
  * address symbols (name @ address):
  *   rodata_88180                             @ 0x00088180
  *   rodata_f4e60                             @ 0x000f4e60
@@ -22,8 +24,8 @@ extern int bt_keys_get_addr(int,int);
 extern int bt_keys_add_type(int,int);
 extern void bt_keys_clear(int record);
 extern int atomic_test_bit(int,int);
-extern int FUN_00083074(int,int,void*);
-extern int FUN_0008307a(void);
+extern int smp_log_message(int,int,void*);
+extern int smp_chan_lookup(void);
 
 void smp_alloc_pairing_keys(int param_1)
 {
@@ -39,7 +41,7 @@ void smp_alloc_pairing_keys(int param_1)
     short local_1c;
     uint32_t *puVar5;
 
-    iVar1 = FUN_0008307a();
+    iVar1 = smp_chan_lookup();
     if (iVar1 == 0) return;
     iVar9 = iVar1 + 4;
     iVar2 = atomic_test_bit(iVar9, 3);
@@ -54,7 +56,7 @@ void smp_alloc_pairing_keys(int param_1)
         local_24 = ((unsigned long)&rodata_f4e60) /*=0xf4e60*/;
         local_1c = 0x200;
         local_28 = 0x01000003;
-        FUN_00083074(((unsigned long)&rodata_88180) /*=0x88180*/, 0x1c40, &local_28);
+        smp_log_message(((unsigned long)&rodata_88180) /*=0x88180*/, 0x1c40, &local_28);
         smp_error(iVar1, 8);
         return;
     }

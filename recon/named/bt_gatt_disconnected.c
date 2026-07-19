@@ -3,9 +3,13 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   find_cf_cfg                              <= FUN_00059c04 @ 0x00059c04
+ *   gatt_find_conn_in_known_table            <= FUN_00059c70 @ 0x00059c70
+ *   gatt_cf_cfg_clear                        <= FUN_0005a39c @ 0x0005a39c
  *   bt_gatt_disconnected                     <= FUN_0005c9a4 @ 0x0005c9a4
  *   bt_addr_le_is_bonded                     <= FUN_00080f92 @ 0x00080f92
  *   atomic_and_4                             <= FUN_000826f6 @ 0x000826f6
+ *   read_struct_first_word                   <= FUN_0008270c @ 0x0008270c
+ *   bt_addr_le_copy_828da                    <= FUN_000828da @ 0x000828da
  *   list_unlink_and_release                  <= FUN_000828e8 @ 0x000828e8
  *   bt_gatt_foreach_attr_0                   <= FUN_00082c9c @ 0x00082c9c
  *   gatt_store_ccc_cf                        <= FUN_00082f3a @ 0x00082f3a
@@ -20,13 +24,13 @@
 extern void bt_gatt_foreach_attr_0(uint16_t, uint16_t, void *, void *); /* foreach attr */
 extern void gatt_store_ccc_cf(uint8_t, const void *); /* gatt_store_ccc_cf */
 extern int bt_addr_le_is_bonded(uint8_t, const void *); /* bt_addr_le_is_bonded */
-extern void *FUN_00059c70(void *); /* gatt_sub_find */
+extern void *gatt_find_conn_in_known_table(void *); /* gatt_sub_find */
 extern uint32_t atomic_and_4(volatile uint32_t *, uint32_t); /* atomic_and */
-extern uint32_t FUN_0008270c(volatile uint32_t *); /* atomic_get */
+extern uint32_t read_struct_first_word(volatile uint32_t *); /* atomic_get */
 extern void list_unlink_and_release(void *, void *, void *, void *); /* gatt_sub_remove */
-extern void FUN_000828da(void *, const void *); /* bt_addr_le_copy */
+extern void bt_addr_le_copy_828da(void *, const void *); /* bt_addr_le_copy */
 extern void *find_cf_cfg(void *); /* find_cf_cfg */
-extern void FUN_0005a39c(void *); /* reset cf cfg */
+extern void gatt_cf_cfg_clear(void *); /* reset cf cfg */
 
 struct gatt_subscription_recovered {
     uint8_t identity;
@@ -57,7 +61,7 @@ void bt_gatt_disconnected(uint8_t *connection)
                      &address_with_id);
     }
 
-    struct gatt_subscription_recovered *subscription = FUN_00059c70(connection);
+    struct gatt_subscription_recovered *subscription = gatt_find_conn_in_known_table(connection);
     if (subscription != 0) {
         uintptr_t previous_link = 0;
         uintptr_t link = subscription->head_node_link;
@@ -66,13 +70,13 @@ void bt_gatt_disconnected(uint8_t *connection)
                 (struct gatt_sub_node_recovered *)(link - 0x18U);
             uintptr_t next_link = node->next_node_link;
             (void)atomic_and_4(&node->flags, ~8U);
-            if (!bonded || (FUN_0008270c(&node->flags) & 1U) != 0U) {
+            if (!bonded || (read_struct_first_word(&node->flags) & 1U) != 0U) {
                 node->value = 0;
                 list_unlink_and_release(connection, subscription,
                              (void *)previous_link, node);
             } else {
                 if (subscription->peer[0] == 0U)
-                    FUN_000828da(subscription->peer, peer);
+                    bt_addr_le_copy_828da(subscription->peer, peer);
                 previous_link = (uintptr_t)&node->next_node_link;
             }
             link = next_link;
@@ -83,7 +87,7 @@ void bt_gatt_disconnected(uint8_t *connection)
     if (cf == 0)
         return;
     if (!bt_addr_le_is_bonded(connection[8], peer))
-        FUN_0005a39c(cf);
+        gatt_cf_cfg_clear(cf);
     else
-        FUN_000828da(cf + 1, peer);
+        bt_addr_le_copy_828da(cf + 1, peer);
 }

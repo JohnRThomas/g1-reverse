@@ -3,8 +3,10 @@
  * public-name: button_init
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   gpio_pin_configure_17688                 <= FUN_00017688 @ 0x00017688
  *   gpio_pin_set_checked                     <= FUN_00017768 @ 0x00017768
  *   gpio_pin_get_raw_checked                 <= FUN_000177c4 @ 0x000177c4
+ *   gpio_pin_configure                       <= FUN_00017858 @ 0x00017858
  *   gpio_pin_get_checked                     <= FUN_00017980 @ 0x00017980
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   get_board_rev_flag                       <= FUN_00025284 @ 0x00025284
@@ -12,7 +14,7 @@
  * address symbols (name @ address):
  *   rodata_10000                             @ 0x00010000
  *   rodata_17819                             @ 0x00017819
- *   ADDR_FUN_0001793c_THUMB                  @ 0x0001793d
+ *   ADDR_nfc_field_event_signal_sem_THUMB    @ 0x0001793d
  *   rodata_30000                             @ 0x00030000
  *   g_gpio1_dev                              @ 0x00087b48
  *   g_gpio0_dev                              @ 0x00087b60
@@ -40,10 +42,10 @@
 /* Reconstructed button_init @ 0x17a40  (parity: 200/200 trials, PROVEN) */
 #include <stdint.h>
 extern int log_message(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
-extern int FUN_00017688(unsigned int, unsigned int);
+extern int gpio_pin_configure_17688(unsigned int, unsigned int);
 extern void gpio_pin_set_checked(unsigned int, unsigned int, unsigned int);
 extern unsigned int gpio_pin_get_raw_checked(unsigned int, unsigned int);
-extern void FUN_00017858(unsigned int, unsigned int);
+extern void gpio_pin_configure(unsigned int, unsigned int);
 extern unsigned int gpio_pin_get_checked(unsigned int);
 extern void debug_print(void);
 extern int get_board_rev_flag(void);
@@ -67,19 +69,19 @@ unsigned char button_init(void)
         gpio_specs[spec][1] = spec_data[spec * 2 + 1];
     }
 
-    FUN_00017688((uintptr_t)gpio_specs[0], ((unsigned long)&rodata_10000) /*=0x10000*/);
-    FUN_00017688((uintptr_t)gpio_specs[1], ((unsigned long)&rodata_10000) /*=0x10000*/);
-    FUN_00017688((uintptr_t)gpio_specs[2], ((unsigned long)&rodata_10000) /*=0x10000*/);
-    FUN_00017688((uintptr_t)gpio_specs[3], ((unsigned long)&rodata_10000) /*=0x10000*/);
-    FUN_00017688((uintptr_t)gpio_specs[4], ((unsigned long)&rodata_30000) /*=0x30000*/);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[0], ((unsigned long)&rodata_10000) /*=0x10000*/);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[1], ((unsigned long)&rodata_10000) /*=0x10000*/);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[2], ((unsigned long)&rodata_10000) /*=0x10000*/);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[3], ((unsigned long)&rodata_10000) /*=0x10000*/);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[4], ((unsigned long)&rodata_30000) /*=0x30000*/);
     gpio_pin_set_checked(((unsigned long)&g_gpio0_dev) /*=0x87b60*/, 0x18, 1);
-    FUN_00017688((uintptr_t)gpio_specs[5], ((unsigned long)&rodata_30000) /*=0x30000*/);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[5], ((unsigned long)&rodata_30000) /*=0x30000*/);
     gpio_pin_set_checked(((unsigned long)&g_gpio0_dev) /*=0x87b60*/, 0x13, 0);
-    FUN_00017688((uintptr_t)gpio_specs[6], ((unsigned long)&rodata_30000) /*=0x30000*/);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[6], ((unsigned long)&rodata_30000) /*=0x30000*/);
     gpio_pin_set_checked(((unsigned long)&g_gpio0_dev) /*=0x87b60*/, 0x15, 0);
-    FUN_00017688((uintptr_t)gpio_specs[7], ((unsigned long)&rodata_30000) /*=0x30000*/);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[7], ((unsigned long)&rodata_30000) /*=0x30000*/);
     gpio_pin_set_checked(((unsigned long)&g_gpio0_dev) /*=0x87b60*/, 0x1e, 1);
-    FUN_00017688((uintptr_t)gpio_specs[8], ((unsigned long)&rodata_30000) /*=0x30000*/);
+    gpio_pin_configure_17688((uintptr_t)gpio_specs[8], ((unsigned long)&rodata_30000) /*=0x30000*/);
     gpio_pin_set_checked(((unsigned long)&g_gpio0_dev) /*=0x87b60*/, 0x17, 0);
 
     iVar16 = ((unsigned long)&g_gpio1_dev) /*=0x87b48*/;
@@ -96,10 +98,10 @@ LAB_b48_1:
             }
         }
     } else {
-        iVar6 = FUN_00017688(((unsigned long)&rodata_889d0) /*=0x889d0*/, ((unsigned long)&rodata_10000) /*=0x10000*/);
+        iVar6 = gpio_pin_configure_17688(((unsigned long)&rodata_889d0) /*=0x889d0*/, ((unsigned long)&rodata_10000) /*=0x10000*/);
         iVar5 = ((unsigned long)&g_button_irq_cb1) /*=0x20006a10*/;
         if (-1 < iVar6) {
-            *(volatile unsigned int *)((unsigned long)&g_button_irq_cb1_handler) /*=0x20006a14*/ = ADDR_FUN_0001793c_THUMB /*=0x1793d*/;
+            *(volatile unsigned int *)((unsigned long)&g_button_irq_cb1_handler) /*=0x20006a14*/ = ADDR_nfc_field_event_signal_sem_THUMB /*=0x1793d*/;
             *(volatile unsigned int *)(iVar5+8) = 0x200;
             pcVar17 = *(void **)(*(int *)(iVar16 + 8) + 0x1c);
             if (pcVar17 == 0) {
@@ -117,7 +119,7 @@ LAB_b48_1:
                         goto LAB_b48_1;
                     }
                 } else {
-                    FUN_00017858(((unsigned long)&rodata_889d0) /*=0x889d0*/, 0x5c00000);
+                    gpio_pin_configure(((unsigned long)&rodata_889d0) /*=0x889d0*/, 0x5c00000);
                     if (1 < *piVar2) {
                         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                             log_message(((unsigned long)&rodata_99fd2) /*=0x99fd2*/, ((unsigned long)&rodata_9a126) /*=0x9a126*/, 9,0,0,0);
@@ -137,7 +139,7 @@ LAB_b48_1:
         uVar15 = ((unsigned long)&rodata_99f81) /*=0x99f81*/;
         uVar14 = ((unsigned long)&rodata_9a119) /*=0x9a119*/;
     } else {
-        iVar6 = FUN_00017688(((unsigned long)&rodata_889e0) /*=0x889e0*/, ((unsigned long)&rodata_10000) /*=0x10000*/);
+        iVar6 = gpio_pin_configure_17688(((unsigned long)&rodata_889e0) /*=0x889e0*/, ((unsigned long)&rodata_10000) /*=0x10000*/);
         iVar5 = ((unsigned long)&g_button_irq_cb2) /*=0x20006a04*/;
         if (iVar6 < 0) goto LAB_c40;
         *(volatile unsigned int *)((unsigned long)&g_button_irq_cb2_handler) /*=0x20006a08*/ = ((unsigned long)&rodata_17819) /*=0x17819*/;
@@ -152,7 +154,7 @@ LAB_b48_1:
                 } else {
                     uVar15 = 0x3c00000;
                 }
-                FUN_00017858(((unsigned long)&rodata_889e0) /*=0x889e0*/, uVar15);
+                gpio_pin_configure(((unsigned long)&rodata_889e0) /*=0x889e0*/, uVar15);
                 if (1 < *piVar2) {
                     if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                         log_message(((unsigned long)&rodata_9a0c6) /*=0x9a0c6*/, ((unsigned long)&rodata_9a119) /*=0x9a119*/, 10,0,0,0);

@@ -6,6 +6,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   subcontracing_send_data_pkcs7            <= FUN_00021a40 @ 0x00021a40
  *   debug_print_hex_dump                     <= FUN_0004a424 @ 0x0004a424
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_9d6a1                             @ 0x0009d6a1
@@ -26,7 +27,7 @@ extern void log_message(uint32_t format, ...);
 extern void debug_print(uint32_t format, ...);
 extern void debug_print_hex_dump(uint32_t format, const void *record,
                          unsigned int record_size);
-extern void FUN_00086c1e(void *destination, const void *source,
+extern void safe_memcpy_checked(void *destination, const void *source,
                          unsigned int count, unsigned int record_size);
 extern void memset_bytes(void *destination, int value, unsigned int count);
 
@@ -91,7 +92,7 @@ uint32_t subcontracing_send_data_pkcs7(const uint8_t *source, int byte_count,
     } else {
         memset_bytes(record + 3 + remainder, 17 - remainder,
                      17 - remainder);
-        FUN_00086c1e(record + 3, source + full_records * 17,
+        safe_memcpy_checked(record + 3, source + full_records * 17,
                      (unsigned int)remainder, 17);
         if (level > 2) {
             if (*alternate_log == 0)

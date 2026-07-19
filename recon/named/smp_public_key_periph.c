@@ -3,11 +3,14 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   bt_rand                                  <= FUN_00055cb4 @ 0x00055cb4
+ *   kobj_test_bit_get_ptr                    <= FUN_0005caa4 @ 0x0005caa4
+ *   conn_auth_cb_get_or_init                 <= FUN_0005cac0 @ 0x0005cac0
  *   bt_smp_send_pdu                          <= FUN_0005cb38 @ 0x0005cb38
  *   smp_dhkey_generate                       <= FUN_0005cc68 @ 0x0005cc68
  *   bt_smp_send_pairing_confirm              <= FUN_0005cdc4 @ 0x0005cdc4
  *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
  *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ *   smp_log_message                          <= FUN_00083074 @ 0x00083074
  *   atomic_set_bit                           <= FUN_00083090 @ 0x00083090
  *   smp_create_pdu                           <= FUN_000830b0 @ 0x000830b0
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
@@ -43,10 +46,10 @@ struct log_record_three_raw {
     uint32_t value;
 };
 
-extern struct bt_conn_auth_cb_raw *FUN_0005cac0(void *smp);
+extern struct bt_conn_auth_cb_raw *conn_auth_cb_get_or_init(void *smp);
 extern int atomic_test_bit(void *bits, uint32_t bit);
 extern int memcmp(const void *left, const void *right, size_t size);
-extern void FUN_00083074(uintptr_t source, uint32_t level,
+extern void smp_log_message(uintptr_t source, uint32_t level,
                          const void *record);
 extern void *smp_create_pdu(void *smp, uint32_t command);
 extern void *net_buf_simple_add(void *buffer_data, size_t size);
@@ -54,20 +57,20 @@ extern void bt_smp_send_pdu(void *smp, void *buffer, void *user_data);
 extern void atomic_set_bit(void *bits, uint32_t bit);
 extern int bt_smp_send_pairing_confirm(void *smp);
 extern int bt_rand(void *destination, size_t size);
-extern void *FUN_0005caa4(uint32_t flag);
+extern void *kobj_test_bit_get_ptr(uint32_t flag);
 extern int smp_dhkey_generate(void *smp);
 
-#define latch_auth_cb                 FUN_0005cac0 /* 0x0005cac0 */
+#define latch_auth_cb                 conn_auth_cb_get_or_init /* 0x0005cac0 */
 #define atomic_test_bit_raw           atomic_test_bit /* 0x00082ff6 */
 #define memory_compare                memcmp /* 0x00086be4 */
-#define log_process_record            FUN_00083074 /* 0x00083074 */
+#define log_process_record            smp_log_message /* 0x00083074 */
 #define smp_create_pdu_raw            smp_create_pdu /* 0x000830b0 */
 #define net_buf_add_raw               net_buf_simple_add /* 0x0005f5d0 */
 #define smp_send_raw                  bt_smp_send_pdu /* 0x0005cb38 */
 #define atomic_set_bit_raw            atomic_set_bit /* 0x00083090 */
 #define smp_send_pairing_confirm_raw  bt_smp_send_pairing_confirm /* 0x0005cdc4 */
 #define random_bytes                  bt_rand /* 0x00055cb4 */
-#define smp_find_raw                  FUN_0005caa4 /* 0x0005caa4 */
+#define smp_find_raw                  kobj_test_bit_get_ptr /* 0x0005caa4 */
 #define smp_dhkey_generate_raw        smp_dhkey_generate /* 0x0005cc68 */
 
 #define SC_PUBLIC_KEY_SLOT ((uint8_t *volatile *)UINT32_C(0x2000af48))

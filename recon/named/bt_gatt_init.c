@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   k_work_schedule_at_ticks                 <= FUN_000531cc @ 0x000531cc
+ *   bt_conn_cb_register                      <= FUN_00056e24 @ 0x00056e24
  *   bt_conn_auth_info_cb_register            <= FUN_00057330 @ 0x00057330
  *   bt_gatt_service_init                     <= FUN_00059cb4 @ 0x00059cb4
  *   bt_gatt_init                             <= FUN_0005a954 @ 0x0005a954
@@ -33,7 +34,7 @@ extern void k_work_init_delayable(void *, void *);                    /* k_work_
  * r2/r3 by AAPCS, so retain the otherwise-unused r1 slot explicitly. */
 extern void k_work_schedule_at_ticks(void *, uint32_t, uint64_t);         /* k_work_schedule */
 extern void bt_conn_auth_info_cb_register(void *);                            /* bt_conn_auth_info_cb_register */
-extern void FUN_00056e24(void *);                            /* bt_conn_cb_register */
+extern void bt_conn_cb_register(void *);                            /* bt_conn_cb_register */
 
 void bt_gatt_init(void)
 {
@@ -52,5 +53,5 @@ void bt_gatt_init(void)
     /* gatt_delayed_store.work @ gatt_delayed_store+0x28. */
     k_work_init_delayable((void *)0x20006350U, (void *)0x00082fa7U);
     bt_conn_auth_info_cb_register((void *)0x200029f8U);
-    FUN_00056e24((void *)0x200029d4U);
+    bt_conn_cb_register((void *)0x200029d4U);
 }

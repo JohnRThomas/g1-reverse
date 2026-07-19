@@ -3,6 +3,7 @@
  * public-name: __sfp
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   retarget_lock_init                       <= FUN_0005109c @ 0x0005109c
  *   __sfp_lock_acquire                       <= FUN_00076b9c @ 0x00076b9c
  *   __sfp_lock_release                       <= FUN_00076ba8 @ 0x00076ba8
  *   __sinit                                  <= FUN_00076bcc @ 0x00076bcc
@@ -18,7 +19,7 @@
 extern void __sfp_lock_acquire(void);
 extern void __sfp_lock_release(void);
 extern void __sinit(void *);
-extern void FUN_0005109c(void *);
+extern void retarget_lock_init(void *);
 extern void *__sfmoreglue(void *, uint32_t);
 extern void *memset_bytes(void *, int, size_t);
 
@@ -35,7 +36,7 @@ void *__sfp(uint32_t *error)
             if (*(volatile int16_t *)(slot + 0x0c) == 0) {
                 *(volatile uint32_t *)(slot + 0x64) = 0;
                 *(volatile uint32_t *)(slot + 0x0c) = 0xffff0001;
-                FUN_0005109c((void *)(slot + 0x58));
+                retarget_lock_init((void *)(slot + 0x58));
                 __sfp_lock_release();
                 *(volatile uint32_t *)(slot + 0x00) = 0;
                 *(volatile uint32_t *)(slot + 0x18) = 0;

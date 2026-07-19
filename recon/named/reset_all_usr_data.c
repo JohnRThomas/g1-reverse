@@ -14,6 +14,7 @@
  *   delAudioStreamRecord                     <= FUN_0002f878 @ 0x0002f878
  *   reset_touch_selection_state              <= FUN_00037098 @ 0x00037098
  *   sys_reboot                               <= FUN_0004c0a8 @ 0x0004c0a8
+ *   bt_unpair_all_or_addr                    <= FUN_0005420c @ 0x0005420c
  *   app_msleep_thunk_b                       <= FUN_0007c26e @ 0x0007c26e
  * address symbols (name @ address):
  *   rodata_9e6d7                             @ 0x0009e6d7
@@ -33,7 +34,7 @@ extern void cleanDashBoardStartUpModeInfo(void);
 extern void reset_usr_setting(void *);
 extern void flash_erase_settings_record(void *);
 extern void reset_all_static_info(void);
-extern void FUN_0005420c(uint32_t, uint32_t);
+extern void bt_unpair_all_or_addr(uint32_t, uint32_t);
 extern void enable_ship_mode(uint32_t);
 extern uint32_t sys_reboot(uint32_t);
 extern void log_message(uint32_t, ...);
@@ -63,7 +64,7 @@ void reset_all_usr_data(uint8_t *user_data, int reset_radio)
     app_msleep_thunk_b(500);
     reset_all_static_info();
     app_msleep_thunk_b(500);
-    FUN_0005420c(0, 0);
+    bt_unpair_all_or_addr(0, 0);
 
     if (!reset_radio)
         return;

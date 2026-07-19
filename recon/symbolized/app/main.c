@@ -2,6 +2,17 @@
 /* readable reconstruction; identity: FUN_00016eb8 @ 0x00016eb8
  * public-name: main
  * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dev_page3_config_and_readback_dump       <= FUN_00016110 @ 0x00016110
+ *   opt3007_init_ctx_setup                   <= FUN_0002e8fc @ 0x0002e8fc
+ *   device_reg3_init_config                  <= FUN_0002ea78 @ 0x0002ea78
+ *   display_dev_reg_config                   <= FUN_0002eaa8 @ 0x0002eaa8
+ *   set_glassbox_charge_percent              <= FUN_00032808 @ 0x00032808
+ *   arm_onboarding_watchdog                  <= FUN_000406e4 @ 0x000406e4
+ *   app_event_alloc                          <= FUN_0004f564 @ 0x0004f564
+ *   app_event_manager_submit                 <= FUN_0004f770 @ 0x0004f770
+ *   panel_temp_calibration_init              <= FUN_00062644 @ 0x00062644
+ *   sem_init_zero                            <= FUN_0007c030 @ 0x0007c030
  * address symbols (name @ address):
  *   ADDR_local_esbs_ipc_service_recv_THUMB   @ 0x00015961
  *   rodata_162ed                             @ 0x000162ed
@@ -61,18 +72,18 @@
 
 /* Readable callee <- raw identity @ address. */
 extern uintptr_t boot_uptime_seconds_capture(void);             /* FUN_0004a500 @ 0x4a500 */
-extern uintptr_t FUN_0004f564(unsigned, ...);                    /* @ 0x4f564 */
-extern uintptr_t FUN_0004f770(void *, ...);                      /* @ 0x4f770 */
+extern uintptr_t app_event_alloc(unsigned, ...);                    /* @ 0x4f564 */
+extern uintptr_t app_event_manager_submit(void *, ...);                      /* @ 0x4f770 */
 extern uintptr_t log_message(uintptr_t, ...);                    /* DEBUG_PRINT/FUN_0007dda4 */
 extern uintptr_t debug_print(uintptr_t, ...);                    /* FUN_00019c70 @ 0x19c70 */
 extern uintptr_t k_timer_start(void *, uint64_t, uint64_t);      /* FUN_00075174 @ 0x75174 */
 extern uintptr_t serialization_init(void);                       /* FUN_00025c54 @ 0x25c54 */
 extern void *malloc(unsigned);                                   /* FUN_00076d6c @ 0x76d6c */
 extern uintptr_t memset_bytes(void *, int, unsigned);            /* FUN_00086c78 @ 0x86c78 */
-extern uintptr_t FUN_0007c030(void *, unsigned);                 /* @ 0x7c030 */
+extern uintptr_t sem_init_zero(void *, unsigned);                 /* @ 0x7c030 */
 extern uintptr_t change_work_mode_to(unsigned);                  /* @ mapped raw target */
 extern uintptr_t set_device_sync_timestamp(uint32_t);            /* FUN_0007d230 @ 0x7d230 */
-extern uintptr_t FUN_000406e4(void);                             /* @ 0x406e4 */
+extern uintptr_t arm_onboarding_watchdog(void);                             /* @ 0x406e4 */
 extern uintptr_t register_ipc_service_context(void *);           /* FUN_00025d40 @ 0x25d40 */
 extern uintptr_t spi_master_install_ops(void *);                 /* FUN_0002659c @ 0x2659c */
 extern int button_init(void);                                    /* FUN_00017a40 @ 0x17a40 */
@@ -87,7 +98,7 @@ extern uintptr_t burial_point_record_info_init(void);            /* FUN_0004ab3c
 extern uintptr_t power_for_imu_and_mic(void);                    /* FUN_00015f80 @ 0x15f80 */
 extern uintptr_t lsm6dso_init_chip(uintptr_t);                   /* FUN_000622a0 @ 0x622a0 */
 extern uintptr_t register_imu_funsion_context(void *);           /* FUN_00026250 @ 0x26250 */
-extern uintptr_t FUN_0002e8fc(void *);                           /* @ 0x2e8fc */
+extern uintptr_t opt3007_init_ctx_setup(void *);                           /* @ 0x2e8fc */
 extern uintptr_t quicknote_buffer_pool_init(void *);             /* FUN_00047148 @ 0x47148 */
 extern uintptr_t st25dv_read_chip_ids(void);                     /* FUN_00025290 @ 0x25290 */
 extern uintptr_t init_dashboard_info(void *);                   /* FUN_00036ed8 @ 0x36ed8 */
@@ -98,32 +109,32 @@ extern uintptr_t drain_quick_note_data_queue(void);              /* FUN_000243fc
 extern uintptr_t device_info_register_persistent_fields(void *); /* FUN_00023230 @ 0x23230 */
 extern int z_device_is_ready(const void *);                      /* FUN_0008638c @ 0x8638c */
 extern int fuel_gauge_sample_init_timestamp(const void *);       /* FUN_0002ea28 @ 0x2ea28 */
-extern int FUN_00062644(const void *);                           /* @ 0x62644 */
-extern uintptr_t FUN_00016110(void);                             /* @ 0x16110 */
+extern int panel_temp_calibration_init(const void *);                           /* @ 0x62644 */
+extern uintptr_t dev_page3_config_and_readback_dump(void);                             /* @ 0x16110 */
 extern int product_code_is_supported_egp_family(void);           /* FUN_0007cefc @ 0x7cefc */
-extern uintptr_t FUN_0002ea78(void);                             /* @ 0x2ea78 */
+extern uintptr_t device_reg3_init_config(void);                             /* @ 0x2ea78 */
 extern uintptr_t pt_nfc_eeprom_link_start(void);                 /* FUN_00030c90 @ 0x30c90 */
 extern uintptr_t notification_system_init(void);                 /* FUN_00034944 @ 0x34944 */
 extern uintptr_t read_rtc_counter_ms(void *);                    /* FUN_0007d0aa @ 0x7d0aa */
-extern uintptr_t FUN_00032808(unsigned);                         /* @ 0x32808 */
+extern uintptr_t set_glassbox_charge_percent(unsigned);                         /* @ 0x32808 */
 extern uintptr_t run_main_dispatch_thread(void *);               /* FUN_0002a65c @ 0x2a65c */
-extern uint64_t FUN_0002eaa8(void);                              /* @ 0x2eaa8 */
+extern uint64_t display_dev_reg_config(void);                              /* @ 0x2eaa8 */
 extern uintptr_t switch_to_dfu_mode(void *);                     /* FUN_000158bc @ 0x158bc */
 extern uint64_t app_msleep_thunk_a(unsigned);                    /* FUN_0007c038 @ 0x7c038 */
 extern uintptr_t rproc_virtio_negotiate_features(void *, unsigned); /* FUN_0007c34a @ 0x7c34a */
 extern uintptr_t dmic_stream_start(void);                        /* FUN_0002f080 @ 0x2f080 */
 extern uintptr_t check_device_readiness(void);                   /* FUN_000167b4 @ 0x167b4 */
 
-#define log_record_alloc                  FUN_0004f564
-#define log_record_submit                 FUN_0004f770
-#define semaphore_init                    FUN_0007c030
-#define clear_even_ai_line_state          FUN_000406e4
-#define imu_fusion_context_init           FUN_0002e8fc
-#define fuel_gauge_configure              FUN_00062644
-#define fuel_gauge_program_defaults       FUN_00016110
-#define fuel_gauge_enable_measurements    FUN_0002ea78
-#define dashboard_mode_publish            FUN_00032808
-#define fuel_gauge_enable_current         FUN_0002eaa8
+#define log_record_alloc                  app_event_alloc
+#define log_record_submit                 app_event_manager_submit
+#define semaphore_init                    sem_init_zero
+#define clear_even_ai_line_state          arm_onboarding_watchdog
+#define imu_fusion_context_init           opt3007_init_ctx_setup
+#define fuel_gauge_configure              panel_temp_calibration_init
+#define fuel_gauge_program_defaults       dev_page3_config_and_readback_dump
+#define fuel_gauge_enable_measurements    device_reg3_init_config
+#define dashboard_mode_publish            set_glassbox_charge_percent
+#define fuel_gauge_enable_current         display_dev_reg_config
 
 #define g_log_level                    (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define g_log_use_alt_sink             (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)

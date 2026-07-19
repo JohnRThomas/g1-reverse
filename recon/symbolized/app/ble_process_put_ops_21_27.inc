@@ -11,7 +11,7 @@ extern int debug_print();
 extern int is_battery_critical();
 extern int sync_dashboard_default_language();
 extern int send_response_data_to_msgqueue();
-extern int FUN_0007c1dc();
+extern int store_device_info_bytes_cd_cf();
 extern int memcpy();
 extern int memset_bytes();
 extern int strcpy();
@@ -127,7 +127,7 @@ int ble_put_ops_21_27(struct ble_put_context_21_27 *ctx, uint8_t command,
                 debug_print();
         }
         *((uint8_t *)(void *)ctx - 0x6af) = payload[3];
-        FUN_0007c1dc(payload[3], 0);
+        store_device_info_bytes_cd_cf(payload[3], 0);
         tele = ctx->teleprompter;
         tele[0x10] = payload[5] == 1U ? 1U : 0U;
         *(uint32_t *)(void *)(tele + 2) =

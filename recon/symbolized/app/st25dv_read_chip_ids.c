@@ -7,6 +7,10 @@
  *   st25dv_read_chip_ids                     <= FUN_00025290 @ 0x00025290
  *   serialization_ipc_ept_register           <= FUN_000259d4 @ 0x000259d4
  *   clear_pending_state_flags                <= FUN_0002ebc8 @ 0x0002ebc8
+ *   k_sleep                                  <= FUN_00074844 @ 0x00074844
+ *   st25dv_ipc_request_chip_ids              <= FUN_0007c932 @ 0x0007c932
+ *   nfc_ipc_send_op20                        <= FUN_0007c944 @ 0x0007c944
+ *   st25dv_ipc_request                       <= FUN_0007c956 @ 0x0007c956
  * address symbols (name @ address):
  *   rodata_9f145                             @ 0x0009f145
  *   rodata_9f176                             @ 0x0009f176
@@ -16,11 +20,11 @@
  */
 /* Reconstructed FUN_00025290 @ 0x25290  (parity: 300/300 trials, PROVEN) */
 extern int serialization_ipc_ept_register(void);
-extern void FUN_00074844(int,int);
-extern void FUN_0007c932(int,void*);
+extern void k_sleep(int,int);
+extern void st25dv_ipc_request_chip_ids(int,void*);
 extern void log_message(int,...);
-extern void FUN_0007c944(int,void*);
-extern void FUN_0007c956(int,void*);
+extern void nfc_ipc_send_op20(int,void*);
+extern void st25dv_ipc_request(int,void*);
 extern void adc_nfc_init(void);
 extern void clear_pending_state_flags(void);
 int st25dv_read_chip_ids(void){
@@ -32,9 +36,9 @@ int st25dv_read_chip_ids(void){
   *piVar1 = iVar2;
   if (iVar2!=0 && *(volatile int*)(iVar2+4)!=0 && *(volatile int*)(iVar2+0x10)!=0 && *(volatile int*)(iVar2+8)!=0){
     unsigned uVar4; unsigned char uVar3; unsigned puVar5; unsigned char *puVar6;
-    FUN_00074844(0x290,0);
+    k_sleep(0x290,0);
     (*(void(**)(void))((*(volatile int*)((*piVar1)+8))+8))();
-    FUN_0007c932(*piVar1,&local_10);
+    st25dv_ipc_request_chip_ids(*piVar1,&local_10);
     uVar4 = (local_10>>8)&0xff;
     log_message(((unsigned long)&rodata_9f145) /*=0x9f145*/, local_10&0xff, uVar4, (local_10>>0x10)&0xff, local_10>>0x18, local_c&0xff, (local_c>>8)&0xff, (local_c>>0x10)&0xff, local_c>>0x18);
     uVar3 = (unsigned char)uVar4;
@@ -43,9 +47,9 @@ int st25dv_read_chip_ids(void){
     if (puVar5 < 2){ uVar3=1; puVar6=(unsigned char*)((unsigned long)&g_board_rev_flag) /*=0x20018c69*/; }
     iVar2 = *piVar1;
     if (puVar5 < 2){ *(volatile unsigned char*)puVar6 = uVar3; }
-    FUN_0007c944(iVar2,&local_12);
+    nfc_ipc_send_op20(iVar2,&local_12);
     log_message(((unsigned long)&rodata_9f176) /*=0x9f176*/,(unsigned)local_12);
-    FUN_0007c956(*piVar1,&local_11);
+    st25dv_ipc_request(*piVar1,&local_11);
     log_message(((unsigned long)&rodata_9f186) /*=0x9f186*/,(unsigned)local_11);
     adc_nfc_init();
     clear_pending_state_flags();

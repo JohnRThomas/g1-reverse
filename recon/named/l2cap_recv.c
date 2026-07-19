@@ -2,9 +2,11 @@
  * public-name: l2cap_recv
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   att_alloc_pdu_with_hdr                   <= FUN_000573f4 @ 0x000573f4
  *   l2cap_chan_rx_init                       <= FUN_00057484 @ 0x00057484
  *   l2cap_chan_tx_init                       <= FUN_000574ec @ 0x000574ec
  *   l2cap_chan_add                           <= FUN_00057874 @ 0x00057874
+ *   l2cap_find_chan_by_id                    <= FUN_000579b4 @ 0x000579b4
  *   l2cap_recv                               <= FUN_00057db0 @ 0x00057db0
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
  *   net_buf_simple_pull_5f594                <= FUN_0005f594 @ 0x0005f594
@@ -12,8 +14,11 @@
  *   k_work_cancel_delayable                  <= FUN_00073518 @ 0x00073518
  *   bt_conn_ltk_present                      <= FUN_0008145c @ 0x0008145c
  *   g1_recon_bt_conn_set_security            <= FUN_0008149a @ 0x0008149a
+ *   l2cap_lookup_chan_by_ident               <= FUN_00081626 @ 0x00081626
  *   ctx_list_unlink_by_key16                 <= FUN_00081660 @ 0x00081660
+ *   atomic_get_word                          <= FUN_000816a2 @ 0x000816a2
  *   conn_ctx_cleanup_if_pending              <= FUN_00081720 @ 0x00081720
+ *   log_msg_3arg_thunk                       <= FUN_00081746 @ 0x00081746
  *   atomic_counter_add_and_signal            <= FUN_0008174c @ 0x0008174c
  *   ctx_list_unlink_node                     <= FUN_00081788 @ 0x00081788
  *   context_release_and_notify               <= FUN_000817b6 @ 0x000817b6
@@ -21,6 +26,7 @@
  *   att_send_simple                          <= FUN_00081940 @ 0x00081940
  *   bt_l2cap_le_lookup_tx_cid                <= FUN_00081a4e @ 0x00081a4e
  *   gatt_send_service_changed_ind            <= FUN_00081b30 @ 0x00081b30
+ *   net_buf_simple_add_mem                   <= FUN_00083740 @ 0x00083740
  * address symbols (name @ address):
  *   rodata_582b4                             @ 0x000582b4
  *   rodata_816af                             @ 0x000816af
@@ -110,22 +116,22 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long FUN_000573f4(int, ...);
+extern long long att_alloc_pdu_with_hdr(int, ...);
 extern long long l2cap_chan_rx_init(int, ...);
 extern long long l2cap_chan_tx_init(int, ...);
 extern long long l2cap_chan_add(int, ...);
-extern long long FUN_000579b4(int, ...);
+extern long long l2cap_find_chan_by_id(int, ...);
 extern long long net_buf_unref(int, ...);
 extern long long net_buf_simple_pull_5f594(int, ...);
 extern long long net_buf_simple_add(int, ...);
 extern long long k_work_cancel_delayable(int, ...);
 extern long long bt_conn_ltk_present(int, ...);
 extern long long g1_recon_bt_conn_set_security(int, ...);
-extern long long FUN_00081626(int, ...);
+extern long long l2cap_lookup_chan_by_ident(int, ...);
 extern long long ctx_list_unlink_by_key16(int, ...);
-extern long long FUN_000816a2(int, ...);
+extern long long atomic_get_word(int, ...);
 extern long long conn_ctx_cleanup_if_pending(int, ...);
-extern long long FUN_00081746(int, ...);
+extern long long log_msg_3arg_thunk(int, ...);
 extern long long atomic_counter_add_and_signal(int, ...);
 extern long long ctx_list_unlink_node(int, ...);
 extern long long context_release_and_notify(int, ...);
@@ -133,7 +139,7 @@ extern long long bt_conn_create_pdu(int, ...);
 extern long long att_send_simple(int, ...);
 extern long long bt_l2cap_le_lookup_tx_cid(int, ...);
 extern long long gatt_send_service_changed_ind(int, ...);
-extern long long FUN_00083740(int, ...);
+extern long long net_buf_simple_add_mem(int, ...);
 #define DAT_00058054 0xf41a7UL
 #define DAT_00058058 0x88160UL
 #define DAT_0005805c 0xf41c5UL
@@ -206,7 +212,7 @@ LAB_00057e04:
     log4.format = local_5c;
     log4.value0 = local_58;
     log4.value1 = local_54;
-    FUN_00081746(DAT_00058058,0x2040,&log4);
+    log_msg_3arg_thunk(DAT_00058058,0x2040,&log4);
     return 0;
   }
   uVar18 = (uint)pbVar7[1];
@@ -214,7 +220,7 @@ LAB_00057e04:
   if (uVar18 == 0) goto LAB_00057dc4;
   uVar14 = (uint)*pbVar7;
   if (uVar14 == 1) {
-    piVar10 = (int *)FUN_00081626(*param_1,uVar18);
+    piVar10 = (int *)l2cap_lookup_chan_by_ident(*param_1,uVar18);
 LAB_000581ee:
     if (piVar10 == (int *)0x0) {
       return 0;
@@ -232,17 +238,17 @@ LAB_000581ee:
       if (iVar16 == 0) {
         local_40 = puVar15[1];
         local_3e = *puVar15;
-        iVar11 = FUN_000573f4(1,uVar18,6);
+        iVar11 = att_alloc_pdu_with_hdr(1,uVar18,6);
         if (iVar11 == 0) {
           return 0;
         }
         puVar12 = (undefined1 *)net_buf_simple_add(iVar11 + 0xc,2);
         puVar12[1] = 0;
         *puVar12 = 2;
-        FUN_00083740(iVar11 + 0xc,&local_40,4);
+        net_buf_simple_add_mem(iVar11 + 0xc,&local_40,4);
       }
       else {
-        iVar11 = FUN_000573f4(7,uVar18,4);
+        iVar11 = att_alloc_pdu_with_hdr(7,uVar18,4);
         if (iVar11 == 0) {
           return 0;
         }
@@ -282,7 +288,7 @@ LAB_000581ee:
           local_5c = DAT_0005806c;
           goto LAB_00057e04;
         }
-        iVar11 = FUN_000573f4(0x15,uVar18,10);
+        iVar11 = att_alloc_pdu_with_hdr(0x15,uVar18,10);
         if (iVar11 == 0) {
           return 0;
         }
@@ -290,7 +296,7 @@ LAB_000581ee:
         *puVar8 = 0;
         puVar8[1] = 0;
         *(undefined2 *)(puVar8 + 2) = 0;
-        puVar15 = (undefined2 *)FUN_000579b4(uVar4);
+        puVar15 = (undefined2 *)l2cap_find_chan_by_id(uVar4);
         if (puVar15 == (undefined2 *)0x0) {
 LAB_00057ed4:
           sVar20 = 2;
@@ -361,7 +367,7 @@ LAB_00057f58:
           }
           local_2c = DAT_00058070;
           local_30 = 2;
-          FUN_00081746(DAT_00058058,0x1040,&local_30);
+          log_msg_3arg_thunk(DAT_00058058,0x1040,&local_30);
         }
         sVar20 = 0xb;
 LAB_00057ed6:
@@ -393,14 +399,14 @@ LAB_00057ed6:
         uVar2 = puVar15[4];
         uVar6 = *puVar15;
         if (((uVar2 & 0xfff7) == 0) || (uVar2 == 5)) {
-          piVar10 = (int *)FUN_00081626(iVar21,uVar18,0);
+          piVar10 = (int *)l2cap_lookup_chan_by_ident(iVar21,uVar18,0);
           if (piVar10 == (int *)0x0) goto LAB_00058032;
           k_work_cancel_delayable(piVar10 + 0x30);
           *(undefined1 *)(piVar10 + 0x2e) = 0;
           if (uVar2 != 5) goto LAB_0005809c;
           puVar19 = (uint *)(piVar10 + 4);
           iVar16 = *piVar10;
-          iVar11 = FUN_000816a2(puVar19);
+          iVar11 = atomic_get_word(puVar19);
           if (-1 < iVar11 << 0x1d) {
             bVar1 = *(byte *)(iVar16 + 9);
             if (bVar1 < 2) goto LAB_00058142;
@@ -415,13 +421,13 @@ LAB_00057ed6:
           }
         }
         else {
-          piVar10 = (int *)FUN_00081626(iVar21,uVar18,1);
+          piVar10 = (int *)l2cap_lookup_chan_by_ident(iVar21,uVar18,1);
           if (piVar10 == (int *)0x0) {
 LAB_00058032:
             log3.count = 3;
             log3.format = DAT_0005807c;
             log3.value = uVar18;
-            FUN_00081746(DAT_00058058,0x1840,&log3);
+            log_msg_3arg_thunk(DAT_00058058,0x1840,&log3);
             return 0;
           }
           k_work_cancel_delayable(piVar10 + 0x30);
@@ -443,7 +449,7 @@ LAB_0005809c:
           }
           puVar19 = (uint *)(piVar10 + 4);
           iVar16 = *piVar10;
-          iVar11 = FUN_000816a2(puVar19);
+          iVar11 = atomic_get_word(puVar19);
           if ((-1 < iVar11 << 0x1d) && (*(byte *)(iVar16 + 9) < 2)) {
 LAB_00058142:
             uVar13 = 2;
@@ -469,11 +475,11 @@ LAB_00058136:
         iVar21 = bt_l2cap_le_lookup_tx_cid(*param_1,**(undefined2 **)(param_2 + 0xc));
         uVar13 = DAT_000582a8;
         if (iVar21 != 0) {
-          iVar11 = FUN_000816a2(iVar21 + 0x2c);
+          iVar11 = atomic_get_word(iVar21 + 0x2c);
           if (0xffff < (int)(iVar11 + uVar17)) {
             local_2c = DAT_000582ac;
             local_30 = 2;
-            FUN_00081746(DAT_000582b0,0x1040,&local_30);
+            log_msg_3arg_thunk(DAT_000582b0,0x1040,&local_30);
             gatt_send_service_changed_ind(iVar21);
             return 0;
           }
@@ -486,16 +492,16 @@ LAB_00058136:
 LAB_00057dc4:
     local_30 = 2;
     local_2c = uVar13;
-    FUN_00081746(DAT_00058058,0x1040,&local_30);
+    log_msg_3arg_thunk(DAT_00058058,0x1040,&local_30);
   }
   else {
 switchD_00057e38_caseD_2:
     log3.count = 3;
     log3.format = DAT_000582b4;
     log3.value = uVar14;
-    FUN_00081746(DAT_000582b0,0x1880,&log3);
+    log_msg_3arg_thunk(DAT_000582b0,0x1880,&log3);
     iVar21 = *param_1;
-    iVar11 = FUN_000573f4(1,pbVar7[1],2);
+    iVar11 = att_alloc_pdu_with_hdr(1,pbVar7[1],2);
     if (iVar11 == 0) {
       return 0;
     }

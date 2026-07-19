@@ -5,6 +5,8 @@
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   build_and_send_device_status_report      <= FUN_00022b00 @ 0x00022b00
+ *   get_device_serial_buf                    <= FUN_000232b0 @ 0x000232b0
+ *   format_device_serial_to_buf              <= FUN_000232c0 @ 0x000232c0
  *   read_sys_settting_from_flash             <= FUN_000232f8 @ 0x000232f8
  *   printf                                   <= FUN_000777f0 @ 0x000777f0
  *   k_msleep_ticks32768_b                    <= FUN_0007d14a @ 0x0007d14a
@@ -28,8 +30,8 @@ extern int log_message(int,...);
 extern int get_device_info(void);
 extern int debug_print(int,...);
 extern int build_and_send_device_status_report(int,int);
-extern int FUN_000232b0(void);
-extern int FUN_000232c0(int);
+extern int get_device_serial_buf(void);
+extern int format_device_serial_to_buf(int);
 extern int read_sys_settting_from_flash(void*);
 extern int printf(int,int);
 extern int k_msleep_ticks32768_b(int);
@@ -47,13 +49,13 @@ uint32_t set_device_sn_info(int param_1, uint32_t param_2, uint32_t *param_3, ui
     else if (*(volatile uint8_t*)0x20019ef3UL == 1){
         param_1 = param_1 + 4;
         puVar4 = (uint8_t*)*param_3;
-        FUN_000232c0(param_1);
+        format_device_serial_to_buf(param_1);
         printf(0x000a71cd, param_1);
         uVar1 = get_device_info();
         build_and_send_device_status_report(uVar1,0);
         if (2 < *(volatile int*)0x2000230cUL){
-            if (*(volatile int*)0x20007554UL == 0){ uVar1=FUN_000232b0(); log_message(0x000a71e0,0x000a76f2,uVar1); }
-            else { uVar1=FUN_000232b0(); debug_print(0x000a71e0,0x000a76f2,uVar1); }
+            if (*(volatile int*)0x20007554UL == 0){ uVar1=get_device_serial_buf(); log_message(0x000a71e0,0x000a76f2,uVar1); }
+            else { uVar1=get_device_serial_buf(); debug_print(0x000a71e0,0x000a76f2,uVar1); }
         }
         *puVar4=0x1c; puVar4[1]=1; puVar4[3]=1; cVar3=5; puVar4[2]=3; puVar4[4]=0; *param_4=5;
         do {

@@ -4,15 +4,20 @@
  * callees (readable <= raw @ address):
  *   get_device_type                          <= FUN_00016568 @ 0x00016568
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   get_ancs_conn_handle                     <= FUN_00019b2c @ 0x00019b2c
  *   audio_fw_load_get_wrapper                <= FUN_00019b54 @ 0x00019b54
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   send_dmic_msg                            <= FUN_00019ed4 @ 0x00019ed4
  *   build_status_notify_packet               <= FUN_00021334 @ 0x00021334
  *   mark_master_or_low_battery_flag          <= FUN_0002efc0 @ 0x0002efc0
  *   post_notification_cmd_process            <= FUN_000338ec @ 0x000338ec
+ *   bt_conn_disconnect_by_state              <= FUN_00056a68 @ 0x00056a68
  *   z_impl_k_timer_start                     <= FUN_00075174 @ 0x00075174
+ *   device_info_set_bytes_cc_ce              <= FUN_0007c176 @ 0x0007c176
+ *   device_info_store_chunk                  <= FUN_0007c1aa @ 0x0007c1aa
  *   ble_flush_queued_indications             <= FUN_0007c20a @ 0x0007c20a
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   strcpy                                   <= FUN_00086fee @ 0x00086fee
  * address symbols (name @ address):
@@ -46,21 +51,21 @@
 extern void log_message(uint32_t, uint32_t, ...);
 extern int  get_device_type(void);
 extern uintptr_t get_device_info(void);
-extern int  FUN_00019b2c(void);
+extern int  get_ancs_conn_handle(void);
 extern void audio_fw_load_get_wrapper(void *, void *, uint32_t);
 extern void debug_print(uint32_t, uint32_t, ...);
 extern void send_dmic_msg(void *);
 extern void build_status_notify_packet(void *, void *);
 extern void mark_master_or_low_battery_flag(void);
 extern void post_notification_cmd_process(void *, void *, void *);
-extern void FUN_00056a68(int, uint32_t);
+extern void bt_conn_disconnect_by_state(int, uint32_t);
 extern void z_impl_k_timer_start(uint32_t, uint32_t, uint32_t, uint32_t,
                          uint32_t, uint32_t);
-extern void FUN_0007c176(uint32_t, uint32_t);
-extern void FUN_0007c1aa(uintptr_t, uint32_t, uint32_t, uint32_t);
+extern void device_info_set_bytes_cc_ce(uint32_t, uint32_t);
+extern void device_info_store_chunk(uintptr_t, uint32_t, uint32_t, uint32_t);
 extern void ble_flush_queued_indications(void *);
 extern void memcpy(void *, const void *, uint32_t);
-extern void FUN_00086c1e(void *, const void *, uint32_t, uint32_t);
+extern void safe_memcpy_checked(void *, const void *, uint32_t, uint32_t);
 extern void memset_bytes(void *, int, uint32_t);
 extern void strcpy(char *, const char *);
 extern void ble_process_get_req(uint8_t *context, uint8_t *packet,
@@ -199,7 +204,7 @@ unsigned int ble_process_req_dispatch(uint8_t *param_1, uint8_t *packet, uint8_t
             response[1] = 0xc9;
             pc(response, sizeof(response));
         }
-        iVar13 = FUN_00019b2c();
+        iVar13 = get_ancs_conn_handle();
         if (iVar13 == 0) { return 0; }
         if (0 < LVL_A) {
             if (LVL_B == 0)
@@ -207,7 +212,7 @@ unsigned int ble_process_req_dispatch(uint8_t *param_1, uint8_t *packet, uint8_t
             else
                 debug_print(0x0009d518u, 0x0009e04eu);
         }
-        FUN_00056a68(iVar13, 0x13);
+        bt_conn_disconnect_by_state(iVar13, 0x13);
         return 0;
     }
     default:
@@ -256,12 +261,12 @@ switchD_caseD_49:
                 iVar13 = get_device_info();
                 iVar14 = *(volatile int32_t *)(iVar13 + 0x100c);
                 iVar13 = get_device_info();
-                FUN_0007c1aa(iVar14, 0x199,
+                device_info_store_chunk(iVar14, 0x199,
                              *(volatile uint8_t *)(iVar13 + 0xcc), 1);
-                FUN_0007c176(*(volatile uint8_t *)(param_3 + 1), 1);
+                device_info_set_bytes_cc_ce(*(volatile uint8_t *)(param_3 + 1), 1);
                 returnStatus = 0xcb;
             }
-            FUN_00086c1e((void *)0x2000ffa7u, param_3 + 9,
+            safe_memcpy_checked((void *)0x2000ffa7u, param_3 + 9,
                          (uint32_t)load_u16(packet + 2) - 9,
                          0x158);
             response[1] = returnStatus;
@@ -372,11 +377,11 @@ LAB_000216b4:
                 G_20018d9b = 0x4e;
                 G_20018d9a = bVar3;
                 G_20018d99 = bVar10;
-                FUN_0007c176(*(volatile uint8_t *)(param_3 + 1), 0);
+                device_info_set_bytes_cc_ce(*(volatile uint8_t *)(param_3 + 1), 0);
                 return 0;
             }
         } else if ((uint32_t)bVar10 == (uint32_t)(uint8_t)(bVar3 - 1)) {
-            FUN_0007c176(*(volatile uint8_t *)(param_3 + 1), 0);
+            device_info_set_bytes_cc_ce(*(volatile uint8_t *)(param_3 + 1), 0);
         }
         break;
     case 0x4f:

@@ -7,6 +7,7 @@
  *   gpiote_pin_sense_is_enabled              <= FUN_00065478 @ 0x00065478
  *   pin_is_output                            <= FUN_00065494 @ 0x00065494
  *   pin_te_get                               <= FUN_000654ac @ 0x000654ac
+ *   gpio_port_base_from_pin                  <= FUN_00065584 @ 0x00065584
  *   gpiote_in_event_reg_offset               <= FUN_000655ec @ 0x000655ec
  *   gpiote_in_event_enable                   <= FUN_000659e4 @ 0x000659e4
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
@@ -26,7 +27,7 @@ extern int pin_in_use_by_te(uint32_t);
 extern int gpiote_pin_sense_is_enabled(void);
 extern int pin_is_output(uint32_t);
 extern int pin_te_get(uint32_t);
-extern int FUN_00065584(void*);
+extern int gpio_port_base_from_pin(void*);
 extern int gpiote_in_event_reg_offset(void);
 extern __attribute__((noreturn)) void assert_post_action(uint32_t,uint32_t);
 extern void printk(uint32_t,...);
@@ -61,7 +62,7 @@ void gpiote_in_event_enable(uint32_t param_1, uint32_t param_2){
         else if (s == 5) iv = 2;
         else {
             uint32_t local_14 = param_1;
-            int q = FUN_00065584(&local_14);
+            int q = gpio_port_base_from_pin(&local_14);
             iv = (int)((*(volatile uint32_t*)(q + 0x10) >> (local_14 & 0xff)) & 1) + 2;
         }
         nrf_gpio_cfg_sense_set(param_1, iv);

@@ -3,10 +3,12 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   ble_notify_remote_info_available         <= FUN_00056da8 @ 0x00056da8
+ *   smp_send_security_req                    <= FUN_0005d964 @ 0x0005d964
  *   smp_pairing_complete                     <= FUN_0005daf0 @ 0x0005daf0
  *   bt_keys_clear                            <= FUN_0005ea18 @ 0x0005ea18
  *   bt_keys_store                            <= FUN_0005ec18 @ 0x0005ec18
  *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ *   smp_log_message                          <= FUN_00083074 @ 0x00083074
  *   att_chan_reset                           <= FUN_00083204 @ 0x00083204
  * address symbols (name @ address):
  *   rodata_88180                             @ 0x00088180
@@ -18,11 +20,11 @@
 /* Reconstructed FUN_0005daf0 @ 0x5daf0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int ble_notify_remote_info_available(int,int,int);
-extern int FUN_0005d964(int);
+extern int smp_send_security_req(int);
 extern int bt_keys_clear(int);
 extern int bt_keys_store(int);
 extern int atomic_test_bit(int,int);
-extern int FUN_00083074(int,int,void*);
+extern int smp_log_message(int,int,void*);
 extern int att_chan_reset(int);
 
 void smp_pairing_complete(int param_1, int param_2)
@@ -77,7 +79,7 @@ LAB_0005dba4:
     } else {
         local_1c = 0x000f4f89;
         local_20 = 2;
-        FUN_00083074(0x00088180, 0x1080, &local_20);
+        smp_log_message(0x00088180, 0x1080, &local_20);
         uVar3 = 7;
 LAB_0005db1a:
         uVar3 = (unsigned int)*(volatile unsigned char *)(0x000f5220 + uVar3);
@@ -122,7 +124,7 @@ LAB_0005dbf8:
 LAB_0005dbba:
     att_chan_reset(param_1);
     if ((*(char *)(iVar7 + 0xd) == '\a') && (*(char *)(iVar7 + 9) != *(char *)(iVar7 + 10))) {
-        FUN_0005d964(iVar7);
+        smp_send_security_req(iVar7);
         return;
     }
     return;

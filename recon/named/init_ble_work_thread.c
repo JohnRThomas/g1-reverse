@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   init_ble_work_thread                     <= FUN_0002201c @ 0x0002201c
+ *   z_impl_k_thread_create                   <= FUN_00071eac @ 0x00071eac
  *   kmutex_dlist_init                        <= FUN_000864c2 @ 0x000864c2
  *   k_timer_init                             <= FUN_00086726 @ 0x00086726
  * address symbols (name @ address):
@@ -15,7 +16,7 @@
  */
 /* Reconstructed FUN_0002201c @ 0x2201c  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_00071eac(int,int,int,int,int,int,int,int,int);
+extern int z_impl_k_thread_create(int,int,int,int,int,int,int,int,int);
 extern void kmutex_dlist_init(int);
 extern void k_timer_init(int,int,int);
 
@@ -23,6 +24,6 @@ int init_ble_work_thread(int param_1)
 {
     kmutex_dlist_init(0x20007574);
     k_timer_init(0x20003d28, 0x00019ff1, 0);
-    FUN_00071eac(0x20003d60, 0x2001e968, 0x3000, 0x21da9, param_1, 0, 0, (int)0xfffffff1, 0);
+    z_impl_k_thread_create(0x20003d60, 0x2001e968, 0x3000, 0x21da9, param_1, 0, 0, (int)0xfffffff1, 0);
     return 0;
 }

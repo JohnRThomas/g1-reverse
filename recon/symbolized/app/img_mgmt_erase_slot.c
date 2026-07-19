@@ -9,6 +9,7 @@
  *   __assert_func                            <= FUN_00076a94 @ 0x00076a94
  *   nullsub_3                                <= FUN_0007ef7e @ 0x0007ef7e
  *   flash_area_read                          <= FUN_0007ef80 @ 0x0007ef80
+ *   flash_area_erase                         <= FUN_0007efd4 @ 0x0007efd4
  *   flash_area_erased_val                    <= FUN_0007f012 @ 0x0007f012
  *   z_log_msg_static_create_img_mgmt         <= FUN_0008096a @ 0x0008096a
  * address symbols (name @ address):
@@ -24,7 +25,7 @@ extern int img_mgmt_flash_area_id(int);
 extern int __assert_func(int,...);
 extern int nullsub_3(int,...);
 extern int flash_area_read(int,...);
-extern int FUN_0007efd4(int,...);
+extern int flash_area_erase(int,...);
 extern int flash_area_erased_val(int,...);
 extern int z_log_msg_static_create_img_mgmt(int,...);
 int img_mgmt_erase_slot(int param_1)
@@ -60,7 +61,7 @@ int img_mgmt_erase_slot(int param_1)
         int *piVar4 = aiStack_60;
         for (iVar3 = 0; iVar3 != iVar6 >> 2; iVar3 = iVar3 + 1) {
           if (*piVar4 != iVar2 * 0x1010101) {
-            iVar5 = FUN_0007efd4(local_64, 0, *(volatile int*)(local_64 + 8));
+            iVar5 = flash_area_erase(local_64, 0, *(volatile int*)(local_64 + 8));
             if (iVar5 != 0) {
               z_log_msg_static_create_img_mgmt(((unsigned long)&rodata_88208) /*=0x88208*/, 0x1840, dummy);
               iVar5 = 0xd;

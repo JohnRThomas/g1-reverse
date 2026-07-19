@@ -89,7 +89,7 @@ void bt_hci_core_recv_event(void)
         uint16_t actual_length = *(uint16_t *)((uint8_t *)buffer + 0x10);
         if (advertised_length != actual_length) {
             struct log_record4 mismatch = {
-                4, 0x000f2ed1u, actual_length, advertised_length,
+                4, ((unsigned long)&rodata_f2ed1) /*=0xf2ed1*/, actual_length, advertised_length,
             };
             log_message(((unsigned long)&rodata_88138) /*=0x88138*/, 0x2040u, &mismatch);
             net_buf_unref(buffer);

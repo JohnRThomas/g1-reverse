@@ -9,9 +9,10 @@
  *   settings_name_steq                       <= FUN_0007f1a0 @ 0x0007f1a0
  *   settings_name_next                       <= FUN_0007f1e8 @ 0x0007f1e8
  *   bt_settings_decode_key                   <= FUN_00080cf2 @ 0x00080cf2
+ *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  *   bt_gatt_foreach_attr_0                   <= FUN_00082c9c @ 0x00082c9c
  * address symbols (name @ address):
- *   ADDR_FUN_00059dec_THUMB                  @ 0x00059ded
+ *   ADDR_gatt_ccc_write_store_cb_THUMB       @ 0x00059ded
  *   rodata_88128                             @ 0x00088128
  *   rodata_f2b65                             @ 0x000f2b65
  *   rodata_f472a                             @ 0x000f472a
@@ -26,7 +27,7 @@ extern int strtoul(int,...);
 extern int settings_name_steq(int,...);
 extern int settings_name_next(int,...);
 extern int bt_settings_decode_key(int,...);
-extern int FUN_00082a42(int,...);
+extern int log_msg_create_3arg(int,...);
 extern int bt_gatt_foreach_attr_0(int,...);
 typedef int (*codeptr)(int,...);
 unsigned int gatt_ccc_settings_set(int param_1,int param_2,codeptr param_3,int param_4,int param_5)
@@ -53,7 +54,7 @@ unsigned int gatt_ccc_settings_set(int param_1,int param_2,codeptr param_3,int p
     settings_name_next(frame.object, &frame.identity);
     if (frame.object == 0) {
       struct { unsigned level, message; } log = { 2, ((unsigned long)&rodata_f2b65) /*=0xf2b65*/ };
-      FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1040, &log);
+      log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1040, &log);
     } else {
       if ((frame.identity == 0) ||
           (lookup_result = strtoul(frame.identity,0,10), lookup_result == 0)) {
@@ -70,24 +71,24 @@ unsigned int gatt_ccc_settings_set(int param_1,int param_2,codeptr param_3,int p
               struct { unsigned level, message; int error; } log = {
                 3, ((unsigned long)&rodata_f4783) /*=0xf4783*/, payload_bytes
               };
-              FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1840, &log);
+              log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1840, &log);
               return (unsigned int)payload_bytes;
             }
             frame.payload_words = (unsigned int)payload_bytes >> 2;
             frame.payload_ptr = frame.payload;
           }
-          bt_gatt_foreach_attr_0(1, 0xffff, ADDR_FUN_00059dec_THUMB /*=0x59ded*/, &frame.address_ptr);
+          bt_gatt_foreach_attr_0(1, 0xffff, ADDR_gatt_ccc_write_store_cb_THUMB /*=0x59ded*/, &frame.address_ptr);
           return 0;
         }
         struct { unsigned type, message; int value; unsigned short flags; } log = {
           0x01000003, ((unsigned long)&rodata_f472a) /*=0xf472a*/, frame.object, 0x200
         };
-        FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1c40, &log);
+        log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1c40, &log);
       } else {
         struct { unsigned level, message; int error; } log = {
           3, ((unsigned long)&rodata_f4746) /*=0xf4746*/, (int)lookup_result
         };
-        FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1840, &log);
+        log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1840, &log);
       }
     }
     uVar2 = 0xffffffea;

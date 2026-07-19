@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   arm_bus_fault_helper                     <= FUN_00050558 @ 0x00050558
+ *   arm_fault_forward_handler                <= FUN_00080780 @ 0x00080780
  * address symbols (name @ address):
  *   rodata_88258                             @ 0x00088258
  *   rodata_f1c82                             @ 0x000f1c82
@@ -16,7 +17,7 @@
  */
 /* Reconstructed FUN_00050558 @ 0x50558  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void FUN_00080780(uint32_t sink, uint32_t format, const void *record);
+extern void arm_fault_forward_handler(uint32_t sink, uint32_t format, const void *record);
 
 struct fault_message {
     uint32_t severity;
@@ -40,11 +41,11 @@ int arm_bus_fault_helper(int param_1, unsigned char *param_2)
 
     message.severity = 2;
     message.message = 0x000f1df9;
-    FUN_00080780(0x00088258, 0x1040, &message);
+    arm_fault_forward_handler(0x00088258, 0x1040, &message);
     if ((int32_t)(*scb_cfsr << 0x13) < 0) {
         message.severity = 2;
         message.message = 0x000f1e0f;
-        FUN_00080780(0x00088258, 0x1040, &message);
+        arm_fault_forward_handler(0x00088258, 0x1040, &message);
         uVar2 = 0x17;
     } else {
         uVar2 = 0x16;
@@ -52,7 +53,7 @@ int arm_bus_fault_helper(int param_1, unsigned char *param_2)
     if ((int32_t)(*scb_cfsr << 0x14) < 0) {
         message.severity = 2;
         message.message = 0x000f1c82;
-        FUN_00080780(0x00088258, 0x1040, &message);
+        arm_fault_forward_handler(0x00088258, 0x1040, &message);
         uVar2 = 0x18;
     }
     if ((int32_t)(*scb_cfsr << 0x16) < 0) {
@@ -60,7 +61,7 @@ int arm_bus_fault_helper(int param_1, unsigned char *param_2)
 
         message.severity = 2;
         message.message = 0x000f1e20;
-        FUN_00080780(0x00088258, 0x1040, &message);
+        arm_fault_forward_handler(0x00088258, 0x1040, &message);
 
         /*
          * The firmware samples BFAR before re-reading CFSR.BFARVALID.  BFAR
@@ -73,7 +74,7 @@ int arm_bus_fault_helper(int param_1, unsigned char *param_2)
             detail.severity = 3;
             detail.message = 0x000f1e39;
             detail.value = fault_address;
-            FUN_00080780(0x00088258, 0x1840, &detail);
+            arm_fault_forward_handler(0x00088258, 0x1840, &detail);
             if (param_1 != 0) {
                 *scb_cfsr = *scb_cfsr & 0xffff7fff;
             }
@@ -83,18 +84,18 @@ int arm_bus_fault_helper(int param_1, unsigned char *param_2)
     if ((int32_t)(*scb_cfsr << 0x15) < 0) {
         message.severity = 2;
         message.message = 0x000f1e4e;
-        FUN_00080780(0x00088258, 0x1040, &message);
+        arm_fault_forward_handler(0x00088258, 0x1040, &message);
         uVar2 = 0x1a;
     }
     if ((int32_t)(*scb_cfsr << 0x17) < 0) {
         message.severity = 2;
         message.message = 0x000f1e69;
-        FUN_00080780(0x00088258, 0x1040, &message);
+        arm_fault_forward_handler(0x00088258, 0x1040, &message);
         uVar2 = 0x1b;
     } else if ((int32_t)(*scb_cfsr << 0x12) < 0) {
         message.severity = 2;
         message.message = 0x000f1ce2;
-        FUN_00080780(0x00088258, 0x1040, &message);
+        arm_fault_forward_handler(0x00088258, 0x1040, &message);
         uVar2 = 0x1c;
     }
     *scb_cfsr = *scb_cfsr | 0xff00;

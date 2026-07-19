@@ -2,6 +2,8 @@
  * public-name: hci_set_ad
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   z_log_msg_runtime_create                 <= FUN_0004d944 @ 0x0004d944
+ *   bt_hci_cmd_send_sync                     <= FUN_00053d70 @ 0x00053d70
  *   hci_set_ad                               <= FUN_00055534 @ 0x00055534
  * address symbols (name @ address):
  *   rodata_880f8                             @ 0x000880f8
@@ -30,11 +32,11 @@ extern uint8_t *net_buf_simple_add(void *simple, uint32_t length); /* FUN_0005f5
 extern void memset_bytes(void *destination, uint32_t value, uint32_t length); /* FUN_00086c78 */
 extern void *memcpy(void *destination, const void *source, size_t length); /* FUN_00086c04 */
 extern void net_buf_unref(void *buffer); /* FUN_0005f24c */
-extern int FUN_00053d70(uint16_t opcode, void *buffer, void *response);
-extern void FUN_0004d944(const void *domain, uint32_t level,
+extern int bt_hci_cmd_send_sync(uint16_t opcode, void *buffer, void *response);
+extern void z_log_msg_runtime_create(const void *domain, uint32_t level,
                          const struct log_record *record, uint32_t flags);
-#define bt_hci_cmd_send_sync FUN_00053d70
-#define log_message FUN_0004d944
+#define bt_hci_cmd_send_sync bt_hci_cmd_send_sync
+#define log_message z_log_msg_runtime_create
 #define hci_set_ad hci_set_ad
 
 int hci_set_ad(uint16_t opcode, const struct bt_ad *ad, size_t ad_len)
