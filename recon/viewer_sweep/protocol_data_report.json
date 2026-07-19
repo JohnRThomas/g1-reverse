@@ -1,0 +1,551 @@
+{
+  "schema_version": "g1.viewer.protocol-data.v1",
+  "core": "CPUAPP",
+  "generated_from": [
+    "recon/readable_sources/app/g1",
+    "recon/readable_sources/app/include",
+    "recon/data/ble_process_put_req_ownership.md",
+    "recon/catalogs/app_funcs.json.gz",
+    "app_update.bin"
+  ],
+  "summary": {
+    "record_count": 15,
+    "high_confidence": 13,
+    "medium_confidence": 2,
+    "families": {
+      "private_ble_protocol": 7,
+      "structured_payload_schema": 2,
+      "bluetooth_uuid_or_setting": 3,
+      "nfc_or_ipc_protocol": 3
+    },
+    "important_constants": {
+      "put_opcode_range": "0x01..0x27",
+      "get_opcode_range": "0x29..0x45",
+      "extended_opcode_range": "0x47..0x50",
+      "control_opcodes": ["0xf1", "0xf4", "0xf5"],
+      "success": "0xc9",
+      "failure": "0xca",
+      "sequence_resync": "0xcb"
+    }
+  },
+  "records": [
+    {
+      "id": "ble-put-opcode-dispatch-table",
+      "asset_type": "dispatch_table",
+      "name": "Private BLE PUT opcode table",
+      "address": {"start": "0x0001a7a4", "end": "0x0001a7f2", "size": 78, "space": "flash"},
+      "symbol": {"raw": "FUN_0001a75c+0x48", "readable": "ble_process_put_req.opcode_tbh", "back_map": "FUN_0001a75c @ 0x0001a75c"},
+      "subsystem": "ble_proto",
+      "protocol_layer": "private G1 application command dispatcher",
+      "direction": "phone-to-glasses request",
+      "identifiers": [
+        {"kind": "opcode_range", "value": "0x01..0x27", "name": "PUT commands"},
+        {"kind": "opcode", "value": "0x09", "name": "teleprompter"},
+        {"kind": "opcode", "value": "0x0a", "name": "navigation"},
+        {"kind": "opcode", "value": "0x1e", "name": "audio and quick-note operations"},
+        {"kind": "opcode", "value": "0x1f", "name": "onboarding"},
+        {"kind": "opcode", "value": "0x20", "name": "font upgrade"},
+        {"kind": "opcode", "value": "0x26", "name": "device controls"}
+      ],
+      "layout": {
+        "size": 78,
+        "endian": "little-endian Thumb TBH halfword offsets",
+        "fields": [{"offset": 0, "size": 2, "repeat": 39, "name": "target_offset_halfwords", "meaning": "PC-relative handler target for opcode index 1..39"}]
+      },
+      "dispatch_functions": [{"name": "ble_process_put_req", "address": "0x0001a75c"}],
+      "producers": [],
+      "consumers": [{"name": "ble_process_put_req", "address": "0x0001a75c"}],
+      "related": {"structs": ["ble_put_context"], "constants": ["BLE_PUT_HANDLER_BREAK", "BLE_PUT_HANDLER_RETURN", "BLE_PUT_HANDLER_UNHANDLED"], "strings": ["error put req."], "records": ["ble-private-frame-and-status"]},
+      "behavior": "Maps all 39 private PUT command bytes to handlers. Several invalid/reserved opcodes deliberately share the error handler; opcode 0x0a routes to navigation and 0x09 to teleprompter.",
+      "confidence": "high",
+      "caveats": ["The owner is a non-contiguous Ghidra function with embedded data islands; do not present its declared 25,616-byte size as one continuous code block."],
+      "evidence": [
+        {"path": "recon/data/ble_process_put_req_ownership.md", "line_start": 1, "line_end": 29, "excerpt": "39-entry TBH dispatch table at 0x0001a7a4; opcode target map 01..27", "basis": "binary CFG and table decoding"},
+        {"path": "recon/readable_sources/app/g1/ble_process_put_req.c", "line_start": 34, "line_end": 134, "excerpt": "switch (command) with cases 0x01 through 0x27", "basis": "reconstructed dispatcher"}
+      ]
+    },
+    {
+      "id": "ble-private-frame-and-status",
+      "asset_type": "wire_layout",
+      "name": "Private BLE request/response frame and status values",
+      "address": {"start": "0x0001a75c", "end": "0x0002130a", "size": 25616, "span_size": 27566, "space": "44 non-contiguous flash code ranges", "note": "size is executable bytes; span_size includes embedded dispatch/rodata islands"},
+      "symbol": {"raw": "FUN_0001a75c", "readable": "ble_process_put_req", "back_map": "recon/catalogs/function_names_app.json"},
+      "subsystem": "ble_proto",
+      "protocol_layer": "private G1 framing and acknowledgement",
+      "direction": "bidirectional",
+      "identifiers": [
+        {"kind": "status", "value": "0xc9", "name": "success/accepted"},
+        {"kind": "status", "value": "0xca", "name": "failure/unsupported"},
+        {"kind": "status", "value": "0xcb", "name": "multipart sequence mismatch/resync"},
+        {"kind": "status", "value": "0xcc", "name": "special DMIC response in control path"}
+      ],
+      "layout": {
+        "size": "variable; common acknowledgements are 6, 10, 11, or 20 bytes",
+        "endian": "u16/u32 payload integers are normally little-endian; isolated fields explicitly assemble big-endian tokens",
+        "fields": [
+          {"offset": 0, "size": 1, "name": "opcode"},
+          {"offset": 1, "size": 2, "name": "payload_length", "endian": "little"},
+          {"offset": 3, "size": 1, "name": "transaction_or_sync_id"},
+          {"offset": 4, "size": 1, "name": "subcommand", "optional": true},
+          {"offset": 5, "size": 1, "name": "subcommand_status_or_value", "optional": true}
+        ]
+      },
+      "dispatch_functions": [{"name": "ble_process_req_dispatch", "address": "0x00021460"}, {"name": "ble_process_put_req", "address": "0x0001a75c"}],
+      "producers": [{"name": "ble_process_put_req", "address": "0x0001a75c"}],
+      "consumers": [{"name": "ble_process_req_dispatch", "address": "0x00021460"}],
+      "related": {"structs": ["ble_put_context", "ble_put_ack20"], "constants": ["0xc9", "0xca", "0xcb", "0xcc"], "strings": ["error put req."], "records": ["ble-put-opcode-dispatch-table"]},
+      "behavior": "The outer byte selects PUT (0x01..0x27), GET (0x29..0x45), extended (0x47..0x50), or control requests. PUT payloads duplicate their little-endian length at request offsets 1..2 and commonly echo the request header in acknowledgements.",
+      "confidence": "high",
+      "caveats": ["Names for 0xcb and 0xcc are behavioral descriptions, not recovered source enum spellings.", "Not every opcode uses every common header field."],
+      "evidence": [
+        {"path": "recon/readable_sources/app/g1/ble_process_req_dispatch.c", "line_start": 121, "line_end": 198, "excerpt": "range dispatch; control opcodes f1/f4/f5; response status ca", "basis": "reconstructed control flow"},
+        {"path": "recon/readable_sources/app/include/ble_process_put_common.h", "line_start": 14, "line_end": 43, "excerpt": "ble_put_context and little-endian readers", "basis": "reviewed helper definitions"}
+      ]
+    },
+    {
+      "id": "ble-navigation-command",
+      "asset_type": "protocol_schema",
+      "name": "Navigation transfer protocol",
+      "address": {"start": "0x0001fa42", "end": "0x00020b5c", "size": 4378, "space": "flash code ranges within FUN_0001a75c"},
+      "symbol": {"raw": "FUN_0001a75c opcode 0x0a", "readable": "ble_put_op10_dispatch", "back_map": "ble_process_put_req @ 0x0001a75c"},
+      "subsystem": "navigation",
+      "protocol_layer": "private BLE PUT opcode 0x0a",
+      "direction": "phone-to-glasses with acknowledgements",
+      "identifiers": [
+        {"kind": "opcode", "value": "0x0a", "name": "navigation"},
+        {"kind": "subcommand", "value": 0, "name": "start"},
+        {"kind": "subcommand", "value": 1, "name": "navigation data/details"},
+        {"kind": "subcommand", "value": 2, "name": "overview map multipart"},
+        {"kind": "subcommand", "value": 3, "name": "panoramic map multipart"},
+        {"kind": "subcommand", "value": 4, "name": "sync"},
+        {"kind": "subcommand", "value": 5, "name": "exit"},
+        {"kind": "subcommand", "value": 6, "name": "arrival status and prompt"}
+      ],
+      "layout": {
+        "size": "variable",
+        "endian": "little",
+        "fields": [
+          {"offset": 0, "size": 1, "name": "opcode", "value": "0x0a"},
+          {"offset": 1, "size": 2, "name": "advertised_length"},
+          {"offset": 3, "size": 1, "name": "sync_id"},
+          {"offset": 4, "size": 1, "name": "subcommand"},
+          {"offset": 5, "size": 2, "name": "total_packets", "for": "subcommands 2/3"},
+          {"offset": 7, "size": 2, "name": "sequence", "for": "subcommands 2/3"},
+          {"offset": 9, "size": "remaining", "name": "overview_map_data", "for": "subcommand 2"},
+          {"offset": 9, "size": 1, "name": "panoramic_metadata", "for": "subcommand 3"},
+          {"offset": 10, "size": "remaining", "name": "panoramic_map_data", "for": "subcommand 3"}
+        ]
+      },
+      "dispatch_functions": [{"name": "ble_process_put_req", "address": "0x0001a75c"}, {"name": "ble_put_op10_dispatch", "address": "inline"}],
+      "producers": [],
+      "consumers": [{"name": "ui_navigation_task", "address": "0x0003f410"}, {"name": "navigation_overview_map_display", "address": "0x0003e05c"}, {"name": "navigation_panoramic_map_display", "address": "0x0003e7f8"}],
+      "related": {"structs": ["ble_put_context_09_10", "ble_put_ack20"], "constants": ["OP10_OVERVIEW_MAP=0x20015e52", "OP10_OVERVIEW_CAPACITY=0x1210", "OP10_PAN_MAP=0x20011d82", "OP10_PAN_CAPACITY=0x40d0"], "strings": ["received navigation panoramic map data packet", "received arrived status packet"], "records": []},
+      "behavior": "Receives navigation state and two independently assembled map streams. Packet counters enforce ordering; completion publishes ready flags and byte counts to the UI task. Arrival prompts are capped at 63 bytes plus terminator storage.",
+      "confidence": "high",
+      "caveats": ["Consumer addresses are derived from current readable function map; their internal structure bindings should be shown separately."],
+      "evidence": [
+        {"path": "recon/readable_sources/app/include/ble_process_put_ops_09_10.inc", "line_start": 246, "line_end": 303, "excerpt": "overview total/sequence, 0x1210 map buffer, 10-byte ack", "basis": "reconstructed field accesses"},
+        {"path": "recon/readable_sources/app/include/ble_process_put_ops_09_10.inc", "line_start": 448, "line_end": 495, "excerpt": "panoramic total/sequence, metadata byte and 0x40d0 map buffer", "basis": "reconstructed field accesses"},
+        {"path": "recon/readable_sources/app/include/ble_process_put_ops_09_10.inc", "line_start": 630, "line_end": 735, "excerpt": "sync, exit and arrival subcommands", "basis": "reconstructed control flow"}
+      ]
+    },
+    {
+      "id": "ble-teleprompter-command",
+      "asset_type": "protocol_schema",
+      "name": "Teleprompter transfer protocol",
+      "address": {"start": "0x0001e06a", "end": "0x0001f2d0", "size": 4710, "space": "flash code ranges within FUN_0001a75c"},
+      "symbol": {"raw": "FUN_0001a75c opcode 0x09", "readable": "ble_put_op9_dispatch", "back_map": "ble_process_put_req @ 0x0001a75c"},
+      "subsystem": "teleprompt",
+      "protocol_layer": "private BLE PUT opcode 0x09",
+      "direction": "phone-to-glasses with acknowledgements",
+      "identifiers": [
+        {"kind": "opcode", "value": "0x09", "name": "teleprompter"},
+        {"kind": "action", "value": 1, "name": "text init/chunk"},
+        {"kind": "action", "value": 2, "name": "mark position"},
+        {"kind": "action", "value": 3, "name": "text multipart"},
+        {"kind": "action", "value": 5, "name": "exit"},
+        {"kind": "action", "value": 7, "name": "alternate multipart action"}
+      ],
+      "layout": {
+        "size": "variable",
+        "endian": "little, except high timestamp word is copied as native u32",
+        "fields": [
+          {"offset": 0, "size": 1, "name": "opcode", "value": "0x09"},
+          {"offset": 1, "size": 2, "name": "advertised_length"},
+          {"offset": 3, "size": 1, "name": "sync_id"},
+          {"offset": 4, "size": 1, "name": "action"},
+          {"offset": 5, "size": 2, "name": "total_packets"},
+          {"offset": 7, "size": 2, "name": "sequence"},
+          {"offset": 9, "size": 1, "name": "presentation_index"},
+          {"offset": 10, "size": 1, "name": "style_flags", "bits": {"0..3": "style", "7": "flag"}},
+          {"offset": 11, "size": 1, "name": "auxiliary_value"},
+          {"offset": 12, "size": "length-20", "name": "UTF-8 text bytes"},
+          {"offset": "length-8", "size": 8, "name": "app_timestamp"}
+        ]
+      },
+      "dispatch_functions": [{"name": "ble_process_put_req", "address": "0x0001a75c"}, {"name": "ble_put_op9_dispatch", "address": "inline"}],
+      "producers": [],
+      "consumers": [{"name": "ui_teleprompter_task", "address": "0x0003cf44"}],
+      "related": {"structs": ["ble_put_context_09_10"], "constants": ["OP9_ASSEMBLY=0x2001046b", "OP9_ASSEMBLY_TEXT=0x20010482"], "strings": ["received teleprompter init packet", "received teleprompter func exit packet"], "records": []},
+      "behavior": "Starts, updates, marks, and exits teleprompter presentation. Text supports single or ordered multipart transfer and carries an application timestamp for synchronization.",
+      "confidence": "high",
+      "caveats": ["Action 7 is behaviorally related to multipart text but its product-facing name is not recovered."],
+      "evidence": [
+        {"path": "recon/readable_sources/app/include/ble_process_put_ops_09_10.inc", "line_start": 879, "line_end": 949, "excerpt": "single packet fields, text and trailing timestamp", "basis": "reconstructed field accesses"},
+        {"path": "recon/readable_sources/app/include/ble_process_put_ops_09_10.inc", "line_start": 1396, "line_end": 1434, "excerpt": "action switch 1,2,3,5,7", "basis": "reconstructed dispatcher"}
+      ]
+    },
+    {
+      "id": "ble-quick-note-command",
+      "asset_type": "protocol_schema",
+      "name": "Quick Note record transfer",
+      "address": {"start": "0x0001f2d0", "end": "0x0001fa42", "size": 1906, "space": "flash code range within FUN_0001a75c"},
+      "symbol": {"raw": "FUN_0001a75c opcode 0x1e/subcommand 3", "readable": "ble_put_op1e_note", "back_map": "ble_process_put_req @ 0x0001a75c"},
+      "subsystem": "quicknote",
+      "protocol_layer": "private BLE PUT opcode 0x1e, subcommand 3",
+      "direction": "phone-to-glasses persistent record write",
+      "identifiers": [{"kind": "opcode", "value": "0x1e", "name": "audio/quick-note"}, {"kind": "subcommand", "value": 3, "name": "quick note"}],
+      "layout": {
+        "size": "variable transfer; persistent record stride 0x143",
+        "endian": "little",
+        "fields": [
+          {"offset": 5, "size": 2, "name": "total_packets"},
+          {"offset": 7, "size": 2, "name": "sequence"},
+          {"offset": 9, "size": 1, "name": "slot", "range": "1..4"},
+          {"offset": 10, "size": 1, "name": "present_or_empty", "for": "single packet"},
+          {"offset": 11, "size": 1, "name": "title_length", "maximum_copied": 41},
+          {"offset": 12, "size": "title_length", "name": "title"},
+          {"offset": "12+title_length", "size": 2, "name": "text_length"},
+          {"offset": "14+title_length", "size": "text_length", "name": "text", "maximum_copied": 281}
+        ],
+        "persistent_record": [
+          {"offset": 3, "size": 1, "name": "valid"},
+          {"offset": 4, "size": 41, "name": "title"},
+          {"offset": 45, "size": 281, "name": "text"}
+        ]
+      },
+      "dispatch_functions": [{"name": "ble_process_put_req", "address": "0x0001a75c"}],
+      "producers": [],
+      "consumers": [{"name": "upgradeQuickNoteDataToFlash", "address": "0x00024420"}, {"name": "deleteQuickNoteData", "address": "0x000244a8"}],
+      "related": {"structs": ["quick-note record (0x143 bytes)"], "constants": ["OP19_NOTE_TEXT=0x20010328", "OP19_NOTE_TITLE=0x20010441"], "strings": ["Quick Note Title", "received empty quick note data"], "records": []},
+      "behavior": "Writes or deletes one of four quick-note slots. Multipart transfers assemble the title and text in RAM, require monotonically ordered sequence numbers, then persist the completed record.",
+      "confidence": "high",
+      "caveats": ["The original C type name for the 0x143-byte persistent record is not recovered."],
+      "evidence": [{"path": "recon/readable_sources/app/include/ble_process_put_ops_19_20.inc", "line_start": 88, "line_end": 259, "excerpt": "slot, title/text lengths, multipart counters and 0x143 record stride", "basis": "reconstructed field and storage accesses"}]
+    },
+    {
+      "id": "ble-font-upgrade-command",
+      "asset_type": "protocol_schema",
+      "name": "Font update enqueue command",
+      "address": {"start": "0x00020fae", "end": "0x0002103a", "size": 140, "space": "flash code range within FUN_0001a75c"},
+      "symbol": {"raw": "FUN_0001a75c opcode 0x20", "readable": "ble_put_op20", "back_map": "ble_process_put_req @ 0x0001a75c"},
+      "subsystem": "gui_text",
+      "protocol_layer": "private BLE PUT opcode 0x20",
+      "direction": "phone-to-glasses file/update enqueue",
+      "identifiers": [{"kind": "opcode", "value": "0x20", "name": "font upgrade"}, {"kind": "magic", "value": "0x0d 0x0e", "name": "valid font payload prefix"}],
+      "layout": {"size": "payload shorter than 0x15 bytes", "endian": "byte sequence", "fields": [{"offset": 1, "size": 2, "name": "magic", "value": "0d 0e"}, {"offset": 3, "size": "length-3", "name": "enqueue payload"}]},
+      "dispatch_functions": [{"name": "ble_process_put_req", "address": "0x0001a75c"}],
+      "producers": [],
+      "consumers": [{"name": "enqueue_file", "address": "0x00023514"}, {"name": "process_sync_buffer", "address": "0x0007cb4c"}],
+      "related": {"structs": [], "constants": ["OP20_PACKET_ID=0x20002fe2"], "strings": ["recv upgrade font success", "recv upgrade font failed"], "records": []},
+      "behavior": "Accepts a short payload only when it begins with 0x0d,0x0e, queues it as a file/update record, signals the peer-side sync worker, and returns 0xc9; otherwise returns 0xca.",
+      "confidence": "high",
+      "caveats": ["The exact file container represented by the remaining bytes is not decoded here."],
+      "evidence": [{"path": "recon/readable_sources/app/include/ble_process_put_ops_19_20.inc", "line_start": 389, "line_end": 416, "excerpt": "length < 0x15 and request[1:3] == 0d 0e", "basis": "reconstructed validator"}]
+    },
+    {
+      "id": "ble-device-control-command",
+      "asset_type": "protocol_schema",
+      "name": "Device control command family",
+      "address": {"start": "0x000211be", "end": "0x000212ca", "size": 268, "space": "flash code range within FUN_0001a75c"},
+      "symbol": {"raw": "FUN_0001a75c opcode 0x26", "readable": "ble_put_ops_21_27 command 0x26", "back_map": "ble_process_put_req @ 0x0001a75c"},
+      "subsystem": "system",
+      "protocol_layer": "private BLE PUT opcode 0x26",
+      "direction": "phone-to-glasses control with acknowledgement",
+      "identifiers": [
+        {"kind": "opcode", "value": "0x26", "name": "device controls"},
+        {"kind": "subcommand", "value": 1, "name": "set context flag"},
+        {"kind": "subcommand", "value": 2, "name": "audio firmware/load request"},
+        {"kind": "subcommand", "value": 3, "name": "release microphone transfer semaphore when battery-critical predicate matches"},
+        {"kind": "subcommand", "value": 4, "name": "set luminance gear"}
+      ],
+      "layout": {"size": "variable", "endian": "little", "fields": [{"offset": 1, "size": 2, "name": "advertised_length"}, {"offset": 3, "size": 1, "name": "sync_id"}, {"offset": 4, "size": 1, "name": "subcommand"}, {"offset": 5, "size": 1, "name": "gear_or_value"}, {"offset": 6, "size": 2, "name": "audio selectors", "for": "subcommand 2"}]},
+      "dispatch_functions": [{"name": "ble_process_put_req", "address": "0x0001a75c"}],
+      "producers": [],
+      "consumers": [{"name": "audio_fw_load_get_wrapper", "address": "0x00019b54"}, {"name": "process_sync_buffer", "address": "0x0007cb4c"}],
+      "related": {"structs": ["ble_put_context_21_27"], "constants": ["luminance gear < 0x40", "status 0xc9/0xca"], "strings": ["ble set lum gear", "give mic_transm_sem"], "records": []},
+      "behavior": "Validates the duplicated length and a subcommand below five, acknowledges immediately, then performs flag, audio, semaphore, or luminance operations.",
+      "confidence": "medium",
+      "caveats": ["Subcommands 1 and 3 have grounded effects but their product-facing names remain inferred."],
+      "evidence": [{"path": "recon/readable_sources/app/include/ble_process_put_ops_21_27.inc", "line_start": 196, "line_end": 270, "excerpt": "subcommand validation and four action branches", "basis": "reconstructed control flow and writes"}]
+    },
+    {
+      "id": "app-whitelist-json-schema",
+      "asset_type": "structured_schema",
+      "name": "Application whitelist JSON schema and packed cache",
+      "address": {"start": "0x00034dbc", "end": "0x00034f98", "size": 476, "space": "flash code"},
+      "symbol": {"raw": "FUN_00034dbc", "readable": "parse_whitelist_json", "back_map": "FUN_00034dbc @ 0x00034dbc"},
+      "subsystem": "ancs_notify",
+      "protocol_layer": "phone-supplied JSON configuration to RAM cache",
+      "direction": "phone/storage-to-glasses",
+      "identifiers": [
+        {"kind": "json_key", "value": "call_enable", "name": "call whitelist switch"},
+        {"kind": "json_key", "value": "msg_enable", "name": "message whitelist switch"},
+        {"kind": "json_key", "value": "calendar_enable", "name": "calendar whitelist switch"},
+        {"kind": "json_key", "value": "ios_mail_enable", "name": "mail whitelist switch"},
+        {"kind": "json_key", "value": "app", "name": "application object"},
+        {"kind": "json_key", "value": "enable", "name": "application object enable"},
+        {"kind": "json_key", "value": "list", "name": "application list"},
+        {"kind": "json_key", "value": "name", "name": "application display/name field"}
+      ],
+      "layout": {
+        "size": 5602,
+        "endian": "byte fields and UTF-8/NUL-terminated strings",
+        "fields": [
+          {"offset": 0, "size": 1, "name": "enable_flags", "bits": {"0": "call", "1": "message", "2": "iOS mail", "3": "calendar", "4": "app.enable"}},
+          {"offset": 1, "size": 1, "name": "app_count", "maximum": 100},
+          {"offset": 2, "size": 56, "repeat": 100, "name": "apps", "children": [{"offset": 0, "size": 40, "name": "name"}, {"offset": 40, "size": 16, "name": "identifier_or_value"}]}
+        ]
+      },
+      "dispatch_functions": [{"name": "put_whitelist_app_from_app", "address": "0x00035688"}],
+      "producers": [{"name": "parse_whitelist_json", "address": "0x00034dbc"}],
+      "consumers": [{"name": "is_on_whitelist_by_identifier", "address": "0x00034bd4"}, {"name": "convert_app_whitelist_to_json", "address": "0x000352e8"}],
+      "related": {"structs": ["g_app_whitelist_buffer"], "constants": ["max_apps=100", "record_stride=0x38"], "strings": ["call_enable", "msg_enable", "calendar_enable", "ios_mail_enable", "app", "enable", "list", "name"], "records": ["ncs-notification-json-schema"]},
+      "behavior": "Parses whitelist switches plus up to 100 application records into a compact RAM cache. Each application stores a 40-byte name and 16-byte secondary identifier/value.",
+      "confidence": "high",
+      "caveats": ["The helper currently named cbor_decode_start_default behaves as the tree parser entry but its exact upstream identity/prototype remains imperfectly named.", "The key at 0xf33e4 decodes to 'name'; the semantic label of the second 16-byte field is inferred from whitelist usage."],
+      "evidence": [
+        {"path": "recon/readable_sources/app/g1/parse_whitelist_json.c", "line_start": 54, "line_end": 141, "excerpt": "five switches, list cap 100, 0x38 records with 0x28+0x10 strings", "basis": "reconstructed parser"},
+        {"path": "app_update.bin", "line_start": null, "line_end": null, "excerpt": "C strings at 0xa862c,0xa864e,0xa866e,0xa869b,0x9e1b6,0x9e235,0xf3630,0xf33e4", "basis": "direct firmware byte extraction"}
+      ]
+    },
+    {
+      "id": "ncs-notification-json-schema",
+      "asset_type": "structured_schema",
+      "name": "ANCS notification JSON/tree payload",
+      "address": {"start": "0x00034980", "end": "0x00034af2", "size": 370, "space": "flash code"},
+      "symbol": {"raw": "FUN_00034980", "readable": "parse_ncs_notification", "back_map": "FUN_00034980 @ 0x00034980"},
+      "subsystem": "ancs_notify",
+      "protocol_layer": "decoded notification payload",
+      "direction": "phone/ANCS-to-glasses UI",
+      "identifiers": [
+        {"kind": "json_key", "value": "ncs_notification", "name": "root object"},
+        {"kind": "json_key", "value": "app_identifier", "name": "source app identifier"},
+        {"kind": "json_key", "value": "title", "name": "title"},
+        {"kind": "json_key", "value": "subtitle", "name": "subtitle"},
+        {"kind": "json_key", "value": "message", "name": "message body"},
+        {"kind": "json_key", "value": "display_name", "name": "display name"},
+        {"kind": "json_key", "value": "date", "name": "date text"},
+        {"kind": "json_key", "value": "msg_id", "name": "message id"},
+        {"kind": "json_key", "value": "action", "name": "action code"}
+      ],
+      "layout": {
+        "size": 436,
+        "endian": "native u32 plus UTF-8/NUL-terminated strings",
+        "fields": [
+          {"offset": 0, "size": 4, "name": "received_timestamp"},
+          {"offset": 4, "size": 4, "name": "source_timestamp_if_calendar"},
+          {"offset": 8, "size": 4, "name": "msg_id"},
+          {"offset": 12, "size": 4, "name": "reserved_or_unrecovered"},
+          {"offset": 16, "size": 32, "name": "app_identifier"},
+          {"offset": 48, "size": 32, "name": "display_name"},
+          {"offset": 80, "size": 32, "name": "title"},
+          {"offset": 112, "size": 32, "name": "subtitle"},
+          {"offset": 144, "size": 256, "name": "message"},
+          {"offset": 400, "size": 32, "name": "date"},
+          {"offset": 432, "size": 4, "name": "action"}
+        ]
+      },
+      "dispatch_functions": [{"name": "post_notification_cmd_process", "address": "0x000338ec"}],
+      "producers": [{"name": "parse_ncs_notification", "address": "0x00034980"}],
+      "consumers": [{"name": "log_notification_fields_debug", "address": "0x0004a3d0"}, {"name": "post_notification_cmd_response", "address": "0x000340c4"}],
+      "related": {"structs": ["param_0101 recovered notification layout"], "constants": [], "strings": ["ncs_notification", "app_identifier", "title", "subtitle", "message", "display_name", "date", "msg_id", "action"], "records": ["app-whitelist-json-schema", "ancs-uuid-set"]},
+      "behavior": "Extracts an ANCS-derived notification object into a fixed 436-byte UI record, truncating each textual field to its destination capacity and stamping receive time.",
+      "confidence": "high",
+      "caveats": ["Several offsets are expressed through int-pointer arithmetic in the reconstruction; sizes above follow the actual byte destinations.", "The 32-byte field sourced by rodata_f3fde is likely date; exact product label should be confirmed in caller UI."],
+      "evidence": [
+        {"path": "recon/readable_sources/app/g1/parse_ncs_notification.c", "line_start": 50, "line_end": 91, "excerpt": "nine key lookups and fixed-size copies into 0x1b4 bytes", "basis": "reconstructed parser"},
+        {"path": "app_update.bin", "line_start": null, "line_end": null, "excerpt": "keys at 0x9d79d,0x9d759,0x9b257,0x9d76c,0x9d775,0xf3fde,0x9d790,0xa83ca,0xa83d1", "basis": "direct firmware string extraction"}
+      ]
+    },
+    {
+      "id": "ancs-uuid-set",
+      "asset_type": "uuid_table",
+      "name": "Apple Notification Center Service UUID set",
+      "address": {"start": "0x000887b7", "end": "0x000887fb", "size": 68, "space": "flash rodata"},
+      "symbol": {"raw": "rodata_887b7..rodata_887ea", "readable": "ANCS service/characteristic UUIDs", "back_map": "ancs_gatt_dm_assign_handles references"},
+      "subsystem": "ancs_notify",
+      "protocol_layer": "Bluetooth GATT/ANCS",
+      "direction": "glasses-as-GATT-client discovery",
+      "identifiers": [
+        {"kind": "uuid128", "value": "7905F431-B5CE-4E99-A40F-4B1E122D00D0", "name": "ANCS Service", "address": "0x000887b7"},
+        {"kind": "uuid128", "value": "69D1D8F3-45E1-49A8-9821-9BBDFDAAD9D9", "name": "Control Point", "address": "0x000887c8"},
+        {"kind": "uuid128", "value": "9FBF120D-6301-42D9-8C58-25E699A21DBD", "name": "Notification Source", "address": "0x000887d9"},
+        {"kind": "uuid128", "value": "22EAC6E9-24D6-4BB5-BE44-B36ACE7BFB20", "name": "Data Source", "address": "0x000887ea"},
+        {"kind": "uuid16", "value": "0x2902", "name": "Client Characteristic Configuration"}
+      ],
+      "layout": {"size": 17, "repeat": 4, "endian": "Zephyr bt_uuid_128 internal little-endian byte order", "fields": [{"offset": 0, "size": 1, "name": "type", "value": "0x02 (128-bit)"}, {"offset": 1, "size": 16, "name": "uuid_le"}]},
+      "dispatch_functions": [{"name": "ancs_gatt_dm_assign_handles", "address": "0x0004ee68"}],
+      "producers": [],
+      "consumers": [{"name": "ancs_gatt_dm_assign_handles", "address": "0x0004ee68"}, {"name": "discovery_completed_cb_ancs", "address": "0x000188d8"}],
+      "related": {"structs": ["ancs_notif_ctx", "ancs_handle_pair"], "constants": ["BT_UUID_GATT_CCC=0x2902"], "strings": [], "records": ["ncs-notification-json-schema"]},
+      "behavior": "Validates the discovered ANCS service, resolves Control Point, Notification Source and Data Source handles, then resolves CCC descriptors for the two notification streams.",
+      "confidence": "high",
+      "caveats": ["The firmware stores UUID bytes least-significant byte first; the displayed canonical UUID text reverses the full 16-byte storage order as required by Zephyr's representation."],
+      "evidence": [
+        {"path": "recon/readable_sources/app/g1/ancs_gatt_dm_assign_handles.c", "line_start": 49, "line_end": 111, "excerpt": "four 17-byte UUID copies and CCC 0x2902 lookups", "basis": "reconstructed GATT discovery"},
+        {"path": "app_update.bin", "line_start": null, "line_end": null, "excerpt": "02 d0002d121e4b0fa4994eceb531f40579 ... 02 fb7b7cce6ab344beb54bd624e9c6ea22", "basis": "direct 68-byte firmware extraction"}
+      ]
+    },
+    {
+      "id": "bluetooth-base-uuid-template",
+      "asset_type": "constant_blob",
+      "name": "Bluetooth SIG base UUID template",
+      "address": {"start": "0x000f2cc8", "end": "0x000f2cd8", "size": 16, "space": "flash rodata"},
+      "symbol": {"raw": "rodata_f2cc8", "readable": "bluetooth_base_uuid_le", "back_map": "bt_uuid_expand_to_128 input"},
+      "subsystem": "ble_proto",
+      "protocol_layer": "Bluetooth UUID normalization",
+      "direction": "internal",
+      "identifiers": [{"kind": "uuid128", "value": "00000000-0000-1000-8000-00805F9B34FB", "name": "Bluetooth Base UUID"}],
+      "layout": {"size": 16, "endian": "Zephyr internal little-endian UUID byte order", "fields": [{"offset": 0, "size": 16, "name": "template", "bytes": "fb349b5f800000800010000000000000"}]},
+      "dispatch_functions": [],
+      "producers": [],
+      "consumers": [{"name": "bt_uuid_expand_to_128", "address": "0x000531e4"}, {"name": "bt_uuid_cmp", "address": "0x00080d3e"}],
+      "related": {"structs": ["bt_uuid_128"], "constants": [], "strings": [], "records": ["ancs-uuid-set"]},
+      "behavior": "Provides the fixed 128-bit base used when expanding 16-bit and 32-bit Bluetooth UUIDs before comparison.",
+      "confidence": "high",
+      "caveats": [],
+      "evidence": [
+        {"path": "recon/catalogs/function_names_app.json", "line_start": 9477, "line_end": 9480, "excerpt": "copies 16-byte base-UUID template rodata_f2cc8 and splices short UUID", "basis": "function identity evidence"},
+        {"path": "app_update.bin", "line_start": null, "line_end": null, "excerpt": "fb349b5f800000800010000000000000", "basis": "direct firmware bytes"}
+      ]
+    },
+    {
+      "id": "gatt-ccc-settings-key",
+      "asset_type": "settings_key",
+      "name": "Bluetooth GATT CCC settings namespace",
+      "address": {"start": "0x000f4aa1", "end": "0x000f4aa5", "size": 4, "space": "flash rodata"},
+      "symbol": {"raw": "rodata_f4aa1", "readable": "settings_key_ccc", "back_map": "gatt_ccc_bt_settings_store @ 0x00053050"},
+      "subsystem": "ble_proto",
+      "protocol_layer": "Zephyr settings persistence",
+      "direction": "runtime-to-flash settings storage",
+      "identifiers": [{"kind": "settings_key", "value": "ccc", "name": "Client Characteristic Configuration namespace"}],
+      "layout": {"size": 4, "endian": "ASCII", "fields": [{"offset": 0, "size": 4, "name": "key", "bytes": "63 63 63 00"}]},
+      "dispatch_functions": [],
+      "producers": [{"name": "gatt_ccc_bt_settings_store", "address": "0x00053050"}],
+      "consumers": [{"name": "bt_settings_store", "address": "0x00052f18"}],
+      "related": {"structs": ["bt_gatt_ccc_cfg"], "constants": [], "strings": ["ccc"], "records": ["ancs-uuid-set"]},
+      "behavior": "Prefixes persisted bonded-peer GATT notification/indication configuration in Zephyr's Bluetooth settings tree.",
+      "confidence": "high",
+      "caveats": ["This is stock Zephyr library data, not a G1-original setting."],
+      "evidence": [
+        {"path": "recon/readable_sources/app/library/gatt_ccc_bt_settings_store.c", "line_start": 1, "line_end": 17, "excerpt": "bt_settings_store(rodata_f4aa1, ...)", "basis": "reconstructed library wrapper"},
+        {"path": "app_update.bin", "line_start": null, "line_end": null, "excerpt": "63 63 63 00", "basis": "direct firmware string extraction"}
+      ]
+    },
+    {
+      "id": "nfc-attribute-store-wire-format",
+      "asset_type": "wire_layout",
+      "name": "NFC/PT attribute store request",
+      "address": {"start": "0x00030178", "end": "0x000301b8", "size": 64, "space": "flash code"},
+      "symbol": {"raw": "FUN_00030178", "readable": "attr_store_set", "back_map": "FUN_00030178 @ 0x00030178"},
+      "subsystem": "onboarding",
+      "protocol_layer": "ST25DV/PT attribute transport",
+      "direction": "CPUAPP-to-NFC/PT controller",
+      "identifiers": [{"kind": "operation", "value": "set", "name": "attribute write"}, {"kind": "retry_count", "value": 3, "name": "transport attempts"}],
+      "layout": {"size": 12, "transmitted_size": 6, "endian": "network/big-endian for attribute id and 32-bit value", "fields": [{"offset": 0, "size": 2, "name": "attribute_id", "endian": "big"}, {"offset": 2, "size": 4, "name": "value", "endian": "big"}, {"offset": 8, "size": 4, "name": "caller_context", "note": "prepared locally but not included in the observed 6-byte transport call"}]},
+      "dispatch_functions": [],
+      "producers": [{"name": "attr_store_set", "address": "0x00030178"}],
+      "consumers": [{"name": "g_pt_nfc_link_cfg callback +4", "address": "indirect"}],
+      "related": {"structs": ["g_pt_nfc_link_cfg"], "constants": ["attempts=3", "wire_length=6"], "strings": [], "records": []},
+      "behavior": "Serializes a 16-bit attribute id and 32-bit value in big-endian order, then invokes the configured transport callback up to three times with a delay between failures.",
+      "confidence": "high",
+      "caveats": ["The local context word at offset 8 is grounded, but the callback is called with length six, so it is not on the observed wire."],
+      "evidence": [{"path": "recon/readable_sources/app/g1/attr_store_set.c", "line_start": 20, "line_end": 37, "excerpt": "byte-swapped id/value, callback(buf,6), three retries", "basis": "reconstructed serializer"}]
+    },
+    {
+      "id": "ipc-runtime-sync-packet",
+      "asset_type": "wire_layout",
+      "name": "Runtime information IPC packet",
+      "address": {"start": "0x00016268", "end": "0x000162d8", "size": 112, "space": "flash code"},
+      "symbol": {"raw": "FUN_00016268", "readable": "runtime_info_sync", "back_map": "FUN_00016268 @ 0x00016268"},
+      "subsystem": "ipc_core",
+      "protocol_layer": "CPUAPP-to-CPUNET/shared IPC service",
+      "direction": "app-core-to-net-core",
+      "identifiers": [{"kind": "message_marker", "value": 1, "name": "runtime info"}],
+      "layout": {"size": 8, "endian": "little", "fields": [{"offset": 0, "size": 2, "name": "marker", "value": 1}, {"offset": 2, "size": 5, "name": "runtime"}, {"offset": 7, "size": 1, "name": "reserved", "value": 0}]},
+      "dispatch_functions": [],
+      "producers": [{"name": "runtime_info_sync", "address": "0x00016268"}],
+      "consumers": [{"name": "global_ipc_service_send", "address": "0x00025b78"}],
+      "related": {"structs": ["runtime_sync_packet", "g1_device_runtime_state"], "constants": ["marker=1"], "strings": [], "records": ["ipc-byte-command-2002"]},
+      "behavior": "Packages five runtime state bytes behind marker 1 and sends the exact eight-byte packed record to the cross-core IPC service.",
+      "confidence": "high",
+      "caveats": ["The five runtime bytes need field-by-field names from the producer state machine."],
+      "evidence": [{"path": "recon/readable_sources/app/g1/runtime_info_sync.c", "line_start": 22, "line_end": 45, "excerpt": "packed marker, five runtime bytes, reserved byte and sizeof(packet) send", "basis": "reconstructed typed packet"}]
+    },
+    {
+      "id": "ipc-byte-command-2002",
+      "asset_type": "protocol_command",
+      "name": "IPC one-byte command 0x2002",
+      "address": {"start": "0x0007c9fe", "end": "0x0007ca18", "size": 26, "space": "flash code"},
+      "symbol": {"raw": "FUN_0007c9fe", "readable": "ipc_send_byte_cmd2002", "back_map": "FUN_0007c9fe @ 0x0007c9fe"},
+      "subsystem": "ipc_core",
+      "protocol_layer": "endpoint operation A command",
+      "direction": "CPUAPP-to-peer endpoint",
+      "identifiers": [{"kind": "command", "value": "0x2002", "name": "one-byte IPC command"}],
+      "layout": {"size": 1, "endian": "not applicable", "fields": [{"offset": 0, "size": 1, "name": "value"}]},
+      "dispatch_functions": [],
+      "producers": [{"name": "ipc_send_byte_cmd2002", "address": "0x0007c9fe"}],
+      "consumers": [{"name": "ipc_ept_op_a_locked_retry", "address": "0x000256dc"}],
+      "related": {"structs": [], "constants": ["command=0x2002", "payload_length=1"], "strings": [], "records": ["ipc-runtime-sync-packet"]},
+      "behavior": "Truncates the caller's value to one byte and sends it under endpoint command 0x2002 using the locked retry transport.",
+      "confidence": "medium",
+      "caveats": ["The peer-side meaning of command 0x2002 is not recoverable from this CPUAPP wrapper alone."],
+      "evidence": [{"path": "recon/readable_sources/app/g1/ipc_send_byte_cmd2002.c", "line_start": 11, "line_end": 16, "excerpt": "ipc_ept_op_a_locked_retry(param_1,0x2002,&b,1,...)", "basis": "reconstructed wrapper"}]
+    }
+  ],
+  "viewer_pieces": [
+    {
+      "id": "opcode-matrix",
+      "title": "Opcode Matrix",
+      "applies_to": ["ble-put-opcode-dispatch-table", "ble-private-frame-and-status"],
+      "visualization": "39-cell animated grid grouped by dashboard, teleprompter, navigation, quick-note/audio, onboarding, update and device-control; reserved/error-sharing cells are visibly linked.",
+      "interactions": ["click opcode to open handler source", "toggle request/ack byte layouts", "highlight shared target collisions", "GoToRef for table slot and handler"]
+    },
+    {
+      "id": "packet-byte-ruler",
+      "title": "Packet Byte Ruler",
+      "applies_to": ["ble-navigation-command", "ble-teleprompter-command", "ble-quick-note-command", "ble-font-upgrade-command", "ble-device-control-command", "nfc-attribute-store-wire-format", "ipc-runtime-sync-packet"],
+      "visualization": "Horizontal offset ruler with selectable subcommand variants, explicit endian labels, conditional fields, capacity bars and ACK overlay.",
+      "interactions": ["choose subcommand", "enter or paste hex bytes", "decode fields live", "jump from a field to every code access"]
+    },
+    {
+      "id": "multipart-transfer-timeline",
+      "title": "Multipart Transfer State Machine",
+      "applies_to": ["ble-navigation-command", "ble-teleprompter-command", "ble-quick-note-command"],
+      "visualization": "First/middle/final packet timeline showing total, sequence, accumulated size, ready flags and order-error reset paths.",
+      "interactions": ["scrub sequence", "show RAM assembly range", "compare overview vs panoramic limits", "open producer/consumer"]
+    },
+    {
+      "id": "json-schema-tree",
+      "title": "Recovered Payload Schema",
+      "applies_to": ["app-whitelist-json-schema", "ncs-notification-json-schema"],
+      "visualization": "JSON tree paired with fixed-output memory map; selecting a key highlights its string literal, lookup call and destination range.",
+      "interactions": ["copy example JSON", "toggle optional/missing keys", "show truncation limits", "jump to parser and consumers"]
+    },
+    {
+      "id": "uuid-card-stack",
+      "title": "GATT UUID Explorer",
+      "applies_to": ["ancs-uuid-set", "bluetooth-base-uuid-template"],
+      "visualization": "Canonical UUID cards paired with exact firmware byte order and discovery role, connected as Service -> Characteristics -> CCC.",
+      "interactions": ["toggle canonical/internal byte order", "copy UUID", "jump to rodata", "jump to handle assignment"]
+    },
+    {
+      "id": "protocol-reference-graph",
+      "title": "Protocol Meaning Graph",
+      "applies_to": ["*"],
+      "visualization": "Layered graph from constant/table/string through dispatcher, producer, consumer, recovered struct and persistent/RAM destination.",
+      "interactions": ["filter by direction or subsystem", "distinguish direct evidence from inference", "GoToRef on every node", "show caveats inline"]
+    }
+  ]
+}

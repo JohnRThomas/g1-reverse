@@ -1,0 +1,155 @@
+{
+  "schema": "g1.viewer.constants-report.v1",
+  "core": "app",
+  "catalog": "recon/viewer_sweep/constants_catalog_app.json",
+  "catalog_files": [
+    "recon/viewer_sweep/constants_catalog_app.json"
+  ],
+  "source_files": [
+    "recon/symbols/g1_app_symbols.h",
+    "recon/data",
+    "recon/structs/struct_catalog_app.json",
+    "recon/catalogs/refgraph_app.json.gz",
+    "recon/readable_sources/app/manifest.json"
+  ],
+  "collector": "tools/collect_viewer_constants.py",
+  "summary": {
+    "records": 1816,
+    "by_category": {
+      "mmio_constant": 30,
+      "runtime_global": 737,
+      "builtin_data": 993,
+      "enum_constant": 56
+    },
+    "by_asset_type": {
+      "register": 30,
+      "mutable_state": 737,
+      "pointer_table": 773,
+      "signal_coefficients": 5,
+      "byte_blob": 126,
+      "numeric_table": 27,
+      "algorithm_table": 14,
+      "string_pool": 45,
+      "dispatch_table": 3,
+      "symbolic_constant": 56
+    },
+    "by_subsystem": {
+      "audio_codec": 179,
+      "storage_settings": 63,
+      "cross_cutting_or_unknown": 325,
+      "bluetooth": 756,
+      "kernel_runtime": 162,
+      "g1_protocol": 40,
+      "display_ui": 197,
+      "sensors_motion": 41,
+      "radio_nfc": 12,
+      "power": 19,
+      "crypto": 5,
+      "input": 17
+    },
+    "by_confidence": {
+      "high": 1599,
+      "medium": 26,
+      "low": 191
+    }
+  },
+  "coverage": {
+    "verified_data_sources_seen": 993,
+    "generated_ram_globals_seen": 737,
+    "generated_mmio_definitions_seen": 30,
+    "function_sources_indexed": 2115,
+    "ghidra_refgraph_functions": 2391,
+    "recovered_structs_available": 676
+  },
+  "record_contract": {
+    "identity": [
+      "id",
+      "category",
+      "asset_type",
+      "symbol",
+      "range"
+    ],
+    "meaning": [
+      "subsystem",
+      "semantic_meaning",
+      "confidence"
+    ],
+    "behavior": [
+      "producers",
+      "consumers",
+      "access_pattern"
+    ],
+    "decode": [
+      "value.type",
+      "value.endianness",
+      "value.decoded",
+      "value.raw_preview_hex"
+    ],
+    "connections": [
+      "related.structs",
+      "related.protocols",
+      "related.assets"
+    ],
+    "provenance": [
+      "defining_source",
+      "evidence"
+    ]
+  },
+  "viewer_recommendations": {
+    "string_pool": "NUL-separated searchable string table with offset, format-token highlighting, and consumer jumps.",
+    "coefficient_plot": "Signed/float line plot plus table; permit width/channel reshaping but label it user-selected.",
+    "pointer_graph": "Decode little-endian words into function, flash, SRAM, or MMIO targets and make each target GoToRef-enabled.",
+    "bitmap_or_glyph": "Offer 1/2/4/8-bpp width controls, stride/endian toggles, and preserve an adjacent hex view because geometry is inferred.",
+    "hex_ascii": "Synchronized address, hex, ASCII, integer, and float lanes with range selection.",
+    "runtime_state": "Show read/write producers separately, related recovered layout, and every concrete source access excerpt."
+  },
+  "decoding_policy": [
+    "Never present inferred geometry, enum labels, units, or protocol fields as proven; attach confidence and evidence.",
+    "Use recon/data as the byte-verified built-in data source and the linked firmware only for exact preview bytes.",
+    "Use refgraph_app plus readable-source provenance for consumers; use C assignment context for producer/read/write classification.",
+    "Treat address-only globals and REG_* MMIO names as unresolved even when their addresses are exact."
+  ],
+  "examples": {
+    "mmio_constant": [
+      "mmio:REG_50004500",
+      "mmio:REG_50005114",
+      "mmio:REG_50005514",
+      "mmio:REG_50005518",
+      "mmio:REG_5000555c",
+      "mmio:REG_50005580",
+      "mmio:NRF_I2S0_CONFIG_CHANNELS",
+      "mmio:REG_5000d304"
+    ],
+    "runtime_global": [
+      "global:g_sram_base_word",
+      "global:g_20000800",
+      "global:g_ble_dev_state",
+      "global:g_bt_le_legacy_adv",
+      "global:g_ble_adv_ctx_peer_addr",
+      "global:g_ble_adv_ctx_flags",
+      "global:g_20002069",
+      "global:g_2000206f"
+    ],
+    "builtin_data": [
+      "data:0000cad0",
+      "data:0000d230",
+      "data:0000d578",
+      "data:0000e2a8",
+      "data:0000e330",
+      "data:0000e388",
+      "data:0000e8f4",
+      "data:0000f1e4"
+    ],
+    "enum_constant": [
+      "constant:BLE_PUT_HANDLER_BREAK:recon/readable_sources/app/include/ble_process_put_common.h:71",
+      "constant:BLE_PUT_HANDLER_RETURN:recon/readable_sources/app/include/ble_process_put_common.h:72",
+      "constant:BLE_PUT_HANDLER_UNHANDLED:recon/readable_sources/app/include/ble_process_put_common.h:73",
+      "constant:STATUS_BOX_STATE_OFFSET:recon/readable_sources/app/g1/build_status_notify_packet.c:35",
+      "constant:STATUS_BOX_STATE_VARIANT_OFFSET:recon/readable_sources/app/g1/build_status_notify_packet.c:36",
+      "constant:STATUS_BRIGHTNESS_LEVEL_OFFSET:recon/readable_sources/app/g1/build_status_notify_packet.c:34",
+      "constant:STATUS_LEFT_TRANSFER_ID_OFFSET:recon/readable_sources/app/g1/build_status_notify_packet.c:33",
+      "constant:STATUS_QUERY_BOX_CHARGE_PERCENT:recon/readable_sources/app/g1/build_status_notify_packet.c:43"
+    ],
+    "macro_constant": []
+  }
+}

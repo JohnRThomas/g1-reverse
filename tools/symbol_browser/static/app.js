@@ -8,6 +8,7 @@ const state = {
   filter: "all",
   structScope: "all",
   structFeature: "all",
+  assetFamily: "all",
   query: "",
   page: 1,
   limit: 60,
@@ -27,6 +28,7 @@ const els = {
   ownershipToggle: $("#ownership-toggle"),
   functionFilters: $("#function-filters"),
   structFilters: $("#struct-filters"),
+  assetFilters: $("#asset-filters"),
   inventoryTitle: $("#inventory-title"),
   symbolList: $("#symbol-list"),
   symbolCount: $("#symbol-count"),
@@ -35,6 +37,8 @@ const els = {
   emptyState: $("#empty-state"),
   detailLayout: $("#detail-layout"),
   structLayout: $("#struct-layout"),
+  assetLayout: $("#asset-layout"),
+  assetViewer: $("#asset-viewer"),
   structCid: $("#struct-cid"),
   structBadges: $("#struct-badges"),
   structTitle: $("#struct-title"),
@@ -116,11 +120,23 @@ function structRouteFor(token) {
   return `#/struct/${encodeURIComponent(token)}`;
 }
 
+function assetRouteFor(token) {
+  return `#/asset/${encodeURIComponent(token)}`;
+}
+
 function parseRoute() {
   const structMatch = location.hash.match(/^#\/struct\/([^?]+)$/);
   if (structMatch) return {view: "structs", token: decodeURIComponent(structMatch[1])};
+  const assetMatch = location.hash.match(/^#\/asset\/([^?]+)$/);
+  if (assetMatch) return {view: "assets", token: decodeURIComponent(assetMatch[1])};
   const match = location.hash.match(/^#\/(app|net)\/([^?]+)(?:\?line=(\d+))?$/);
   return match ? {view: "functions", core: match[1], token: decodeURIComponent(match[2]), line: Number(match[3] || 0)} : null;
+}
+
+function navigateAsset(token) {
+  const route = assetRouteFor(token);
+  if (location.hash === route) loadAssetDetail(token);
+  else location.hash = route;
 }
 
 function navigateStruct(token) {
@@ -135,24 +151,34 @@ function navigate(core, token, line = 0) {
   else location.hash = route;
 }
 
+function navigateFirst() {
+  if (!state.items[0]) return;
+  if (state.view === "structs") navigateStruct(state.items[0].cid);
+  else if (state.view === "assets") navigateAsset(state.items[0].id);
+  else navigate(state.core, state.items[0].address);
+}
+
 function updateCoreUI() {
   $$(".core-switch button").forEach(button => button.classList.toggle("active", button.dataset.core === state.core));
-  $$('.core-switch button[data-core="net"]').forEach(button => button.disabled = state.view === "structs");
+  $$('.core-switch button[data-core="net"]').forEach(button => button.disabled = state.view !== "functions");
   $$(".view-switch button").forEach(button => button.classList.toggle("active", button.dataset.view === state.view));
   els.crumbCore.textContent = state.core === "app" ? "CPUAPP" : "CPUNET";
 }
 
 function updateViewUI() {
   const structures = state.view === "structs";
-  els.inventoryTitle.textContent = structures ? "Structures" : "Symbols";
-  els.symbolSearch.placeholder = structures ? "Filter structures" : "Filter symbols";
-  els.symbolList.setAttribute("aria-label", structures ? "Structures" : "Functions");
-  els.gotoInput.placeholder = structures ? "Go to struct, CID, symbol, or address…" : "Go to symbol, FUN_*, or 0x address…";
-  els.ownershipToggle.hidden = structures;
-  els.functionFilters.hidden = structures;
+  const assets = state.view === "assets";
+  els.inventoryTitle.textContent = structures ? "Structures" : assets ? "Built-in data" : "Symbols";
+  els.symbolSearch.placeholder = structures ? "Filter structures" : assets ? "Filter data and assets" : "Filter symbols";
+  els.symbolList.setAttribute("aria-label", structures ? "Structures" : assets ? "Data assets" : "Functions");
+  els.gotoInput.placeholder = structures ? "Go to struct, CID, symbol, or address…" : assets ? "Go to asset, symbol, or 0x address…" : "Go to symbol, FUN_*, or 0x address…";
+  els.ownershipToggle.hidden = structures || assets;
+  els.functionFilters.hidden = structures || assets;
   els.structFilters.hidden = !structures;
-  els.detailLayout.hidden = structures || !state.current;
+  els.assetFilters.hidden = !assets;
+  els.detailLayout.hidden = structures || assets || !state.current;
   els.structLayout.hidden = !structures || !state.current;
+  els.assetLayout.hidden = !assets || !state.current;
   updateCoreUI();
 }
 
@@ -162,6 +188,11 @@ async function loadMeta() {
     if (state.view === "structs") {
       const info = state.meta.structs;
       els.catalogStatus.textContent = `${info.total.toLocaleString()} verified layouts · ${info.clusters_covered}/${info.clusters_target} clusters`;
+      return;
+    }
+    if (state.view === "assets") {
+      const info = state.meta.assets || {};
+      els.catalogStatus.textContent = `${(info.assets || 0).toLocaleString()} evidence-gated assets · ${(info.reference_semantics || 0).toLocaleString()} decoded references`;
       return;
     }
     const info = state.meta.cores[state.core];
@@ -183,8 +214,12 @@ async function loadSymbols(append = false) {
     els.symbolList.setAttribute("aria-busy", "true");
   }
   const structures = state.view === "structs";
+  const assets = state.view === "assets";
   const params = new URLSearchParams(structures ? {
     scope: state.structScope, feature: state.structFeature, q: state.query,
+    page: String(state.page), limit: String(state.limit),
+  } : assets ? {
+    family: state.assetFamily, q: state.query,
     page: String(state.page), limit: String(state.limit),
   } : {
     core: state.core, state: state.filter, q: state.query,
@@ -192,7 +227,7 @@ async function loadSymbols(append = false) {
     application_only: state.applicationOnly ? "1" : "0",
   });
   try {
-    const result = await api(`${structures ? "/api/structs" : "/api/symbols"}?${params}`);
+    const result = await api(`${structures ? "/api/structs" : assets ? "/api/assets" : "/api/symbols"}?${params}`);
     if (request !== state.request) return;
     state.total = result.total;
     state.items = append ? [...state.items, ...result.items] : result.items;
@@ -223,6 +258,21 @@ function renderSymbolList() {
       fragment.append(button);
       return;
     }
+    if (state.view === "assets") {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `symbol-item asset-item family-${escapeHtml(item.family)}`;
+      button.style.setProperty("--i", index % state.limit);
+      button.setAttribute("role", "option");
+      const active = state.current?.id === item.id;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-selected", String(active));
+      const glyphs = {visual: "◫", strings: "Aa", constants: "#", tables: "⌁", protocols: "⇄", data: "◇"};
+      button.innerHTML = `<span class="symbol-glyph">${glyphs[item.family] || "◇"}</span><span class="symbol-copy"><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.address)} · ${escapeHtml(item.subsystem)}</span></span><span class="asset-confidence ${escapeHtml(item.confidence)}">${escapeHtml(item.confidence)}</span>`;
+      button.addEventListener("click", () => navigateAsset(item.id));
+      fragment.append(button);
+      return;
+    }
     const button = document.createElement("button");
     button.type = "button";
     button.className = "symbol-item";
@@ -248,7 +298,12 @@ async function goToReference(token) {
   token = token.trim();
   if (!token) return;
   try {
-    if (state.view === "structs") {
+    if (state.view === "assets") {
+      try { await loadAssetDetail(token, true); return; }
+      catch (_) { /* Fall through to symbols and structures. */ }
+      try { await loadDetail("app", token, 0, true); return; }
+      catch (_) { await loadStructDetail(token, true); }
+    } else if (state.view === "structs") {
       try { await loadStructDetail(token, true); return; }
       catch (_) { /* Fall through so GoToRef still reaches a function. */ }
       await loadDetail(state.core, token, 0, true);
@@ -261,6 +316,30 @@ async function goToReference(token) {
     toast(`Reference not found: ${token}`, true);
     els.gotoInput.select();
   }
+}
+
+async function loadAssetDetail(token, updateRoute = false) {
+  const detail = await api(`/api/asset/${encodeURIComponent(token)}`);
+  const changedView = state.view !== "assets";
+  state.core = "app";
+  state.view = "assets";
+  state.current = detail;
+  if (changedView) {
+    state.query = "";
+    els.symbolSearch.value = "";
+  }
+  els.emptyState.hidden = true;
+  updateViewUI();
+  AssetViewers.render(els.assetViewer, detail, {onGoToRef: ref => {
+    if (ref.cid || ref.role === "structure") navigateStruct(ref.cid || ref.token);
+    else if (ref.role === "asset" || ref.id || String(ref.token).startsWith("data:") || String(ref.token).startsWith("app:string:")) navigateAsset(ref.id || ref.token);
+    else navigate("app", ref.address || ref.token);
+  }});
+  if (changedView) await loadSymbols();
+  renderSymbolList();
+  if (updateRoute) history.pushState(null, "", assetRouteFor(detail.id));
+  document.title = `${detail.name} — Trace`;
+  return detail;
 }
 
 async function loadDetail(core, token, line = 0, updateRoute = false) {
@@ -306,6 +385,7 @@ function renderStructDetail(item) {
   els.emptyState.hidden = true;
   els.detailLayout.hidden = true;
   els.structLayout.hidden = false;
+  els.assetLayout.hidden = true;
   els.structCid.textContent = item.cid;
   els.structTitle.textContent = item.struct_name;
   els.structPurpose.textContent = item.purpose || "Recovered memory object";
@@ -336,6 +416,7 @@ function renderStructDetail(item) {
 function renderDetail(item, targetLine = 0) {
   els.emptyState.hidden = true;
   els.detailLayout.hidden = false;
+  els.assetLayout.hidden = true;
   els.symbolTitle.textContent = item.display_name;
   els.rawName.textContent = item.raw_name;
   els.crumbAddress.textContent = item.goto_offset ? `${item.address} + 0x${item.goto_offset.toString(16)}` : item.address;
@@ -452,9 +533,13 @@ function renderReferences(item) {
     </section>`).join("") + (item.structs?.length ? `
     <section class="ref-group"><div class="ref-heading"><h3>Recovered structures</h3><span>${item.structs.length}</span></div>
       ${item.structs.map(row => `<button class="ref-item" type="button" data-struct-ref="${escapeHtml(row.cid)}"><span class="ref-kind data">{ }</span><span class="ref-copy"><strong>${escapeHtml(row.struct_name)}</strong><small>${escapeHtml(row.cid)} · ${row.n_members} usage${row.n_members === 1 ? "" : "s"}</small></span><span class="ref-arrow">→</span></button>`).join("")}
+    </section>` : "") + (item.semantic_references?.length ? `
+    <section class="ref-group semantic-group"><div class="ref-heading"><h3>Decoded meaning</h3><span>${item.semantic_references.length}</span></div>
+      ${item.semantic_references.slice(0, 160).map(ref => `<button class="ref-item semantic-ref" type="button" data-semantic-ref="${escapeHtml(ref.asset?.id || ref.target?.address || "")}" data-semantic-kind="${ref.asset ? "asset" : "symbol"}"><span class="ref-kind data">⌁</span><span class="ref-copy"><strong>${escapeHtml(ref.target?.human_name || ref.target?.raw_name || ref.target?.address || ref.role)}</strong><small>${escapeHtml(ref.access_mode || "reference")} · ${escapeHtml(ref.meaning)}</small></span><span class="confidence-dot ${escapeHtml(ref.confidence)}"></span></button>`).join("")}
     </section>` : "");
   $$('[data-ref]', els.referenceGroups).forEach(button => button.addEventListener("click", () => navigate(state.core, button.dataset.ref)));
   $$('[data-struct-ref]', els.referenceGroups).forEach(button => button.addEventListener("click", () => navigateStruct(button.dataset.structRef)));
+  $$('[data-semantic-ref]', els.referenceGroups).forEach(button => button.addEventListener("click", () => button.dataset.semanticKind === "asset" ? navigateAsset(button.dataset.semanticRef) : navigate(state.core, button.dataset.semanticRef)));
 }
 
 function renderUsages(item) {
@@ -550,13 +635,13 @@ function bindEvents() {
   $$(".view-switch button").forEach(button => button.addEventListener("click", async () => {
     if (state.view === button.dataset.view) return;
     state.view = button.dataset.view;
-    if (state.view === "structs") state.core = "app";
+    if (state.view !== "functions") state.core = "app";
     state.current = null;
     state.query = "";
     els.symbolSearch.value = "";
     updateViewUI();
     await Promise.all([loadSymbols(), loadMeta()]);
-    if (state.items[0]) state.view === "structs" ? navigateStruct(state.items[0].cid) : navigate(state.core, state.items[0].address);
+    navigateFirst();
   }));
 
   $$(".core-switch button").forEach(button => button.addEventListener("click", async () => {
@@ -580,9 +665,14 @@ function bindEvents() {
     $$(".struct-scope button").forEach(tab => { const active = tab === button; tab.classList.toggle("active", active); tab.setAttribute("aria-selected", String(active)); });
     loadSymbols();
   }));
-  $$(".feature-chips button").forEach(button => button.addEventListener("click", () => {
+  $$("#struct-filters [data-feature]").forEach(button => button.addEventListener("click", () => {
     state.structFeature = button.dataset.feature;
-    $$(".feature-chips button").forEach(chip => chip.classList.toggle("active", chip === button));
+    $$("#struct-filters [data-feature]").forEach(chip => chip.classList.toggle("active", chip === button));
+    loadSymbols();
+  }));
+  $$("#asset-filters [data-family]").forEach(button => button.addEventListener("click", () => {
+    state.assetFamily = button.dataset.family;
+    $$("#asset-filters [data-family]").forEach(chip => chip.classList.toggle("active", chip === button));
     loadSymbols();
   }));
   $$(".inspector-tabs button").forEach(button => button.addEventListener("click", () => {
@@ -597,7 +687,11 @@ function bindEvents() {
   window.addEventListener("hashchange", async () => {
     const route = parseRoute();
     if (!route) return;
-    try { route.view === "structs" ? await loadStructDetail(route.token) : await loadDetail(route.core, route.token, route.line); }
+    try {
+      if (route.view === "structs") await loadStructDetail(route.token);
+      else if (route.view === "assets") await loadAssetDetail(route.token);
+      else await loadDetail(route.core, route.token, route.line);
+    }
     catch (error) { toast(error.message, true); }
   });
 
@@ -620,10 +714,14 @@ async function init() {
   updateViewUI();
   await Promise.all([loadMeta(), loadSymbols()]);
   if (route) {
-    try { route.view === "structs" ? await loadStructDetail(route.token) : await loadDetail(route.core, route.token, route.line); }
+    try {
+      if (route.view === "structs") await loadStructDetail(route.token);
+      else if (route.view === "assets") await loadAssetDetail(route.token);
+      else await loadDetail(route.core, route.token, route.line);
+    }
     catch (error) { toast(error.message, true); }
   } else if (state.items[0]) {
-    state.view === "structs" ? navigateStruct(state.items[0].cid) : navigate(state.core, state.items[0].address);
+    navigateFirst();
   }
   setInterval(loadMeta, 7000);
 }

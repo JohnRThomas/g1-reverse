@@ -32,6 +32,8 @@ NET_OWNERSHIP = ROOT / "recon" / "ownership" / "net_function_ownership.json"
 STRUCT_CATALOG = ROOT / "recon" / "structs" / "struct_catalog_app.json"
 STRUCT_COVERAGE = ROOT / "recon" / "structs" / "struct_coverage_app.json"
 STRUCT_VERIFICATION = ROOT / "recon" / "structs" / "struct_verification_report.json"
+ASSET_CATALOG = ROOT / "recon" / "viewer_assets" / "catalog.json"
+APP_IMAGE = ROOT / "app_update.bin"
 IDENTIFIER = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 ADDRESS_TOKEN = re.compile(r"^(?:0x)?([0-9a-fA-F]{4,8})$")
 C_KEYWORDS = set("auto break case char const continue default do double else enum extern float for goto if inline int long register restrict return short signed sizeof static struct switch typedef union unsigned void volatile while _Bool _Complex _Imaginary".split())
@@ -108,7 +110,7 @@ class RepositoryIndex:
 
     def _signature(self) -> tuple:
         paths = [OVERRIDES, COORDINATION, APP_SOURCE_MANIFEST, ADOPTION_MANIFEST, NET_OWNERSHIP,
-                 STRUCT_CATALOG, STRUCT_COVERAGE, STRUCT_VERIFICATION]
+                 STRUCT_CATALOG, STRUCT_COVERAGE, STRUCT_VERIFICATION, ASSET_CATALOG]
         for paths_by_kind in self.CATALOGS.values():
             paths.extend(paths_by_kind.values())
         return tuple((str(path), path.stat().st_mtime_ns if path.exists() else 0) for path in paths)
@@ -320,6 +322,28 @@ class RepositoryIndex:
                     if token:
                         struct_by_token.setdefault(str(token).lower(), row)
             structs.sort(key=lambda row: (row.get("is_library", False), row.get("struct_name", "").lower()))
+            asset_payload = read_json_retry(ASSET_CATALOG) if ASSET_CATALOG.exists() else {"assets": [], "reference_semantics": [], "summary": {}}
+            assets = asset_payload.get("assets", [])
+            asset_by_token = {}
+            assets_by_address = {}
+            for asset in assets:
+                start = asset.get("address", {}).get("start")
+                if not start:
+                    continue
+                start = canonical_address(start)
+                assets_by_address.setdefault(start, []).append(asset)
+                symbol = asset.get("symbol", {})
+                for token in (asset.get("id"), start, symbol.get("readable"), symbol.get("name"), symbol.get("raw")):
+                    if token:
+                        asset_by_token.setdefault(str(token).lower(), asset)
+            semantics_by_source = {}
+            semantic_by_id = {}
+            for edge in asset_payload.get("reference_semantics", []):
+                semantic_by_id[edge.get("id")] = edge
+                source = edge.get("context", {}).get("source", {})
+                address = source.get("address") if isinstance(source, dict) else None
+                if address:
+                    semantics_by_source.setdefault(canonical_address(address), []).append(edge)
             self.data = {
                 "cores": cores,
                 "structs": structs,
@@ -327,6 +351,12 @@ class RepositoryIndex:
                 "structs_by_function": structs_by_function,
                 "struct_coverage": coverage,
                 "struct_verification": verification,
+                "assets": assets,
+                "asset_by_token": asset_by_token,
+                "assets_by_address": assets_by_address,
+                "asset_summary": asset_payload.get("summary", {}),
+                "semantics_by_source": semantics_by_source,
+                "semantic_by_id": semantic_by_id,
             }
             self.signature = signature
 
@@ -429,6 +459,162 @@ class RepositoryIndex:
             return None
         return {key: value for key, value in record.items() if key != "search"}
 
+    @staticmethod
+    def _asset_family(record: dict) -> str:
+        kind = str(record.get("asset_type", "")).lower()
+        if any(word in kind for word in ("bitmap", "glyph", "font", "image", "animation", "framebuffer", "atlas")):
+            return "visual"
+        if "string" in kind:
+            return "strings"
+        if any(word in kind for word in ("protocol", "uuid", "packet", "schema", "ipc", "nfc")):
+            return "protocols"
+        if any(word in kind for word in ("table", "matrix", "vector", "curve", "tensor", "codebook", "coefficient", "quantization", "lookup", "fir", "timeline")):
+            return "tables"
+        if any(word in kind for word in ("constant", "register", "state", "enum", "bitfield")):
+            return "constants"
+        return "data"
+
+    @staticmethod
+    def _public_asset(record: dict) -> dict:
+        symbol = record.get("symbol", {})
+        meaning = record.get("meaning", {})
+        confidence = record.get("confidence", {})
+        size = record.get("address", {}).get("size")
+        if RepositoryIndex._asset_family(record) == "protocols":
+            layout_size = record.get("context", {}).get("layout", {}).get("size") if isinstance(record.get("context", {}).get("layout"), dict) else None
+            size = layout_size if isinstance(layout_size, int) else None
+        return {
+            "id": record.get("id"), "core": record.get("core", "app"),
+            "address": record.get("address", {}).get("start"),
+            "end": record.get("address", {}).get("end"),
+            "size": size,
+            "asset_type": record.get("asset_type", "data"),
+            "family": RepositoryIndex._asset_family(record),
+            "name": record.get("context", {}).get("title") or symbol.get("readable") or symbol.get("name") or symbol.get("raw") or record.get("id"),
+            "raw_name": symbol.get("raw"),
+            "meaning": meaning.get("summary") if isinstance(meaning, dict) else meaning,
+            "subsystem": (meaning.get("subsystem") if isinstance(meaning, dict) else None) or record.get("context", {}).get("subsystem") or "unclassified",
+            "confidence": confidence.get("level") if isinstance(confidence, dict) else confidence,
+        }
+
+    def list_assets(self, query: str, family: str, page: int, limit: int) -> dict:
+        self.refresh()
+        query = query.strip().lower()
+        rows = []
+        for record in self.data["assets"]:
+            row = self._public_asset(record)
+            if family != "all" and row["family"] != family:
+                continue
+            haystack = " ".join(str(row.get(key) or "") for key in ("id", "address", "name", "raw_name", "asset_type", "meaning", "subsystem")).lower()
+            if query and query not in haystack:
+                continue
+            rows.append(row)
+        total = len(rows)
+        start = max(page - 1, 0) * limit
+        return {"items": rows[start:start + limit], "total": total, "page": page, "limit": limit}
+
+    def _asset_detail_record(self, record: dict) -> dict:
+        row = RepositoryIndex._public_asset(record)
+        context = record.get("context", {})
+        evidence = record.get("evidence", [])
+        value = context.get("value", {}) if isinstance(context.get("value"), dict) else {}
+        related = context.get("related", {}) if isinstance(context.get("related"), dict) else {}
+        access = context.get("access_pattern", {}) if isinstance(context.get("access_pattern"), dict) else {}
+        decoded = value.get("decoded", {}) if isinstance(value.get("decoded"), dict) else {}
+        encoding = context.get("encoding", {}) if isinstance(context.get("encoding"), dict) else {}
+        layout = context.get("layout", {}) if isinstance(context.get("layout"), dict) else {}
+        renderer = context.get("renderer", {}) if isinstance(context.get("renderer"), dict) else {}
+        joined_ids = record.get("references", {}).get("decoded_usage_ids", []) if isinstance(record.get("references"), dict) else []
+        joined = []
+        for edge_id in joined_ids[:240]:
+            edge = self.data["semantic_by_id"].get(edge_id, {})
+            source = edge.get("context", {}).get("source", {})
+            if source.get("address"):
+                joined.append({
+                    "label": source.get("human_name") or source.get("raw_name") or source["address"],
+                    "name": source.get("human_name"), "raw_name": source.get("raw_name"),
+                    "address": source["address"], "token": source["address"],
+                    "meaning": edge.get("meaning", {}).get("summary"), "role": "consumer",
+                })
+        raw_hex = value.get("raw_preview_hex") or context.get("raw_preview_hex") or context.get("bytes_hex") or context.get("raw_bytes") or (context.get("decoded", {}).get("byte_hex") if isinstance(context.get("decoded"), dict) else None)
+        if not raw_hex and self._asset_family(record) == "visual" and APP_IMAGE.exists():
+            start = int(row["address"], 16)
+            size = int(row.get("size") or 0)
+            # app_update.bin retains the 512-byte MCUboot header; CPUAPP's
+            # linked address 0xC200 begins at file offset 0x200.
+            offset = start - 0xC200 + 0x200
+            if 0 <= offset < APP_IMAGE.stat().st_size and size > 0:
+                with APP_IMAGE.open("rb") as stream:
+                    stream.seek(offset)
+                    raw_hex = stream.read(min(size, 16384)).hex()
+
+        def function_refs(values):
+            normalized = []
+            for item in values or []:
+                if not isinstance(item, dict):
+                    normalized.append(item)
+                    continue
+                ref = item.get("function", item)
+                if isinstance(ref, dict):
+                    normalized.append({**item, **ref, "display_name": ref.get("display_name") or ref.get("public_name") or ref.get("name"), "raw_name": ref.get("raw_name") or ref.get("raw_symbol"), "token": ref.get("address")})
+            return normalized
+
+        def asset_refs(values):
+            normalized = []
+            for item in values or []:
+                if isinstance(item, dict) and item.get("id"):
+                    normalized.append({**item, "token": item["id"], "role": "asset"})
+                else:
+                    normalized.append(item)
+            return normalized
+
+        meaning_parts = [row["meaning"], context.get("plain_language")]
+        meaning_text = " ".join(str(part).strip() for part in meaning_parts if part and str(part).strip())
+        result = dict(context)
+        result.update(row)
+        result.update({
+            "kind": record.get("asset_type", "data"),
+            "viewer": context.get("viewer") or access.get("viewer") or context.get("visualization") or renderer.get("viewer"),
+            "symbol": row["name"], "meaning": meaning_text, "confidence": row["confidence"],
+            "evidence": {"rationale": record.get("confidence", {}).get("rationale") or record.get("confidence", {}).get("basis"), "claims": evidence},
+            "provenance": evidence + record.get("sources", []),
+            "producers": function_refs(context.get("producers") or context.get("writers") or context.get("functions", {}).get("producers") or []),
+            "consumers": function_refs(context.get("consumers") or context.get("readers") or context.get("used_by") or context.get("functions", {}).get("consumers") or []),
+            "related_structs": context.get("related_structs") or context.get("related_structures") or context.get("structures") or related.get("structs") or [],
+            "references": asset_refs(context.get("references") or context.get("related_assets") or related.get("assets") or joined),
+            "bytes": raw_hex or context.get("bytes") or context.get("data") or [],
+            "values": context.get("values") or context.get("decoded_values") or decoded.get("values") or encoding.get("values") or context.get("chart_samples") or [],
+            "value": context.get("constant_value") or value.get("decoded"),
+            "text": context.get("text") or context.get("decoded", {}).get("value"),
+            "frame_fields": context.get("frame_fields") or context.get("packet_fields") or layout.get("fields") or [],
+            "protocol": context.get("protocol") or context.get("protocol_layer"),
+            "width": context.get("width") or encoding.get("width_pixels"),
+            "height": context.get("height") or encoding.get("height_pixels"),
+            "bits_per_pixel": context.get("bits_per_pixel") or encoding.get("bits_per_pixel_rendered") or encoding.get("bits_per_pixel_stored"),
+            "encoding": context.get("encoding_name") or (context.get("decoded", {}).get("encoding") if isinstance(context.get("decoded"), dict) else None) or encoding.get("format"),
+            "endianness": context.get("endianness") or value.get("endianness") or encoding.get("endianness") or layout.get("endian"),
+            "interpretations": [part for value in (context.get("visual_description"), context.get("behavior"), context.get("caveats")) for part in (value if isinstance(value, list) else [value]) if part],
+        })
+        return result
+
+    def asset_detail(self, token: str) -> dict | None:
+        self.refresh()
+        token = unquote(token).strip().lower()
+        record = self.data["asset_by_token"].get(token)
+        if record is None:
+            match = ADDRESS_TOKEN.match(token)
+            if match:
+                value = int(match.group(1), 16)
+                for item in self.data["assets"]:
+                    address = item.get("address", {})
+                    start = int(address.get("start", "0"), 16)
+                    end_value = address.get("end")
+                    end = int(end_value, 16) if isinstance(end_value, str) else start + int(address.get("size") or 1)
+                    if start <= value < max(end, start + 1):
+                        record = item
+                        break
+        return self._asset_detail_record(record) if record else None
+
     def _reference(self, core: str, value: str, kind: str) -> dict:
         raw_value = value
         try:
@@ -507,6 +693,19 @@ class RepositoryIndex:
                 "stack_refs": [value for value in record["data_refs"] if str(value).startswith("0x-")],
                 "usages": self._usages(core, record),
                 "structs": [self._public_struct(row) for row in self.data["structs_by_function"].get(address, [])],
+                "semantic_references": [
+                    {
+                        "id": edge.get("id"),
+                        "target": edge.get("context", {}).get("target", {}),
+                        "source_location": edge.get("context", {}).get("source_location", {}),
+                        "access_mode": edge.get("context", {}).get("access_mode"),
+                        "role": edge.get("context", {}).get("inferred_role"),
+                        "meaning": edge.get("meaning", {}).get("summary"),
+                        "confidence": edge.get("confidence", {}).get("level"),
+                        "asset": self._public_asset(self.data["assets_by_address"][edge["address"]["start"]][0]) if edge.get("address", {}).get("start") in self.data["assets_by_address"] else None,
+                    }
+                    for edge in self.data["semantics_by_source"].get(address, [])
+                ],
             }
         )
         return result
@@ -572,6 +771,7 @@ class RepositoryIndex:
             "stack_refs": [],
             "usages": usages,
             "structs": [],
+            "semantic_references": [],
         }
 
     def meta(self) -> dict:
@@ -606,6 +806,7 @@ class RepositoryIndex:
                 "verification_pass": verification.get("pass", 0),
                 "verification_fail": verification.get("fail", 0),
             },
+            "assets": self.data["asset_summary"],
             "coordination_active": coordination_active(),
             "coordination_path": str(COORDINATION.relative_to(ROOT)),
             "rename_mode": "canonical_pipeline",
@@ -731,6 +932,16 @@ class Handler(BaseHTTPRequestHandler):
                 page = max(1, int(query.get("page", ["1"])[0]))
                 limit = min(100, max(10, int(query.get("limit", ["60"])[0])))
                 return self._json(INDEX.list_structs(search, scope, feature, page, limit))
+            if parsed.path == "/api/assets":
+                search = query.get("q", [""])[0]
+                family = query.get("family", ["all"])[0]
+                page = max(1, int(query.get("page", ["1"])[0]))
+                limit = min(100, max(10, int(query.get("limit", ["60"])[0])))
+                return self._json(INDEX.list_assets(search, family, page, limit))
+            if parsed.path.startswith("/api/asset/"):
+                token = parsed.path.removeprefix("/api/asset/")
+                detail = INDEX.asset_detail(token)
+                return self._json(detail) if detail else self._error("asset not found", 404)
             if parsed.path.startswith("/api/struct/"):
                 token = parsed.path.removeprefix("/api/struct/")
                 detail = INDEX.struct_detail(token)
@@ -768,7 +979,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def _static(self, request_path: str) -> None:
         relative = "index.html" if request_path in {"", "/"} else unquote(request_path.lstrip("/"))
-        if relative not in {"index.html", "app.js", "styles.css"}:
+        if relative not in {"index.html", "app.js", "styles.css", "asset-viewers.js", "asset-viewers.css"}:
             return self._error("not found", 404)
         path = STATIC / relative
         body = path.read_bytes()

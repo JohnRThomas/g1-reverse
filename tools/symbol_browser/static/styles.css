@@ -212,6 +212,21 @@ kbd {
 .view-switch button { min-width: 76px; }
 .core-switch button:hover, .view-switch button:hover { color: var(--text); }
 .core-switch button.active, .view-switch button.active { color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px rgba(99,245,189,.11); }
+
+.asset-filters { padding: 0 14px 10px; }
+.asset-filters .feature-chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.asset-filters .feature-chips button { min-width: 0; padding: 7px 5px; }
+.asset-item .symbol-glyph { font-size: 11px; letter-spacing: -.05em; }
+.asset-confidence { align-self: center; padding: 3px 6px; border: 1px solid var(--line); border-radius: 999px; color: var(--dim); font-size: 8px; font-weight: 800; text-transform: uppercase; }
+.asset-confidence.high { color: var(--accent); border-color: rgba(99,245,189,.25); background: rgba(99,245,189,.06); }
+.asset-confidence.medium { color: #f1c979; border-color: rgba(241,201,121,.25); }
+.asset-layout { min-width: 0; height: 100%; overflow: auto; padding: 22px; scroll-behavior: smooth; }
+.asset-layout > div { width: min(1240px, 100%); margin: 0 auto; animation: asset-enter .42s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes asset-enter { from { opacity: 0; transform: translateY(10px) scale(.995); } to { opacity: 1; transform: none; } }
+.semantic-ref .ref-copy small { white-space: normal; line-height: 1.35; }
+.confidence-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--dim); box-shadow: 0 0 0 3px rgba(255,255,255,.03); }
+.confidence-dot.high { background: var(--accent); box-shadow: 0 0 10px rgba(99,245,189,.45); }
+.confidence-dot.medium { background: #f1c979; }
 .core-switch button:disabled { opacity: .32; cursor: not-allowed; }
 .icon-button { display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); background: rgba(255,255,255,.025); cursor: pointer; transition: .2s ease; }
 .icon-button:hover { color: var(--text); border-color: var(--line-strong); background: rgba(255,255,255,.05); transform: rotate(4deg); }
@@ -487,6 +502,8 @@ dialog::backdrop { background: rgba(1,7,6,.72); backdrop-filter: blur(10px); ani
   .brand-mark { width: 32px; height: 32px; }
   .core-switch button { min-width: 38px; }
   .view-switch button { min-width: 36px; padding: 0 6px; font-size: 8px; }
+  .asset-layout { padding: 10px; }
+  .asset-filters { padding-bottom: 6px; }
   .sidebar { grid-column: 1; grid-row: 2; height: 265px; border-right: 0; border-bottom: 1px solid var(--line); }
   .sidebar-heading { padding: 13px 15px 9px; }
   .sidebar h1 { font-size: 18px; }

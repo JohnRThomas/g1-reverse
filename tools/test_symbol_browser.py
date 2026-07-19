@@ -97,6 +97,28 @@ class SymbolBrowserTests(unittest.TestCase):
         function = self.index.detail("app", member["address"])
         self.assertIn("global_1071", {row["cid"] for row in function["structs"]})
 
+    def test_rich_asset_catalog_is_searchable_and_navigable(self):
+        meta = self.index.meta()["assets"]
+        self.assertEqual(meta["assets"], 4409)
+        self.assertEqual(meta["reference_semantics"], 24985)
+        self.assertEqual(meta["context_coverage"]["with_context"], meta["assets"])
+        self.assertEqual(meta["context_coverage"]["with_relationships"], meta["assets"])
+        result = self.index.list_assets("", "visual", 1, 10)
+        self.assertGreaterEqual(result["total"], 100)
+        detail = self.index.asset_detail(result["items"][0]["id"])
+        self.assertTrue(detail["meaning"])
+        self.assertIn(detail["confidence"], {"high", "medium", "low"})
+        self.assertTrue(detail["provenance"])
+        by_address = self.index.asset_detail(detail["address"])
+        self.assertEqual(by_address["address"], detail["address"])
+
+    def test_function_detail_includes_decoded_reference_semantics(self):
+        detail = self.index.detail("app", "battery_model_state_update")
+        self.assertTrue(detail["semantic_references"])
+        edge = detail["semantic_references"][0]
+        self.assertTrue(edge["meaning"])
+        self.assertIn(edge["confidence"], {"high", "medium", "low"})
+
     def test_active_coordination_lock_refuses_writes(self):
         if not self.index.meta()["coordination_active"]:
             self.skipTest("naming sweep lock already released")
@@ -118,6 +140,9 @@ class SymbolBrowserTests(unittest.TestCase):
         js = (ROOT / "tools/symbol_browser/static/app.js").read_text()
         self.assertIn("GoToRef", html)
         self.assertIn("Structures", html)
+        self.assertIn('data-view="assets"', html)
+        self.assertIn('id="asset-layout"', html)
+        self.assertIn("asset-viewers.js", html)
         self.assertIn('id="struct-layout"', html)
         self.assertIn("Rename symbol", html)
         self.assertIn('id="application-only" type="checkbox" checked', html)
@@ -126,6 +151,7 @@ class SymbolBrowserTests(unittest.TestCase):
         self.assertIn("prefers-reduced-motion", css)
         self.assertIn("data-goto", js)
         self.assertIn("/api/struct/", js)
+        self.assertIn("/api/asset/", js)
 
 
 if __name__ == "__main__":
