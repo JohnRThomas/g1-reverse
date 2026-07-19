@@ -21,8 +21,8 @@
  *   net_buf_simple_add_mem                   <= FUN_00083740 @ 0x00083740
  *   net_buf_push_le16                        <= FUN_00083766 @ 0x00083766
  * address symbols (name @ address):
- *   ADDR_FUN_00081a60_THUMB                  @ 0x00081a61
- *   ADDR_FUN_00081a76_THUMB                  @ 0x00081a77
+ *   ADDR_l2cap_disconnect_tx_chan_THUMB      @ 0x00081a61
+ *   ADDR_l2cap_chan_disconnected_cb_THUMB    @ 0x00081a77
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f3f55                             @ 0x000f3f55
  *   rodata_f3f86                             @ 0x000f3f86

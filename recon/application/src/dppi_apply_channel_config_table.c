@@ -1,0 +1,1 @@
+../../named/dppi_apply_channel_config_table.c

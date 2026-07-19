@@ -1,0 +1,1 @@
+../../named/array_slot_ptr_b098.c

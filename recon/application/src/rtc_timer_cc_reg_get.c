@@ -1,0 +1,1 @@
+../../named/rtc_timer_cc_reg_get.c

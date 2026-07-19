@@ -10,7 +10,7 @@
  *   flag32_channel_alloc_wrapper             <= FUN_0006540c @ 0x0006540c
  *   dppi_channel_disable_and_free            <= FUN_00065418 @ 0x00065418
  * address symbols (name @ address):
- *   ADDR_FUN_0004c418_THUMB                  @ 0x0004c419
+ *   ADDR_nrf53_sync_rtc_ipc_channel_setup_THUMB @ 0x0004c419
  *   rodata_87bd8                             @ 0x00087bd8
  *   rodata_88288                             @ 0x00088288
  *   rodata_f0a68                             @ 0x000f0a68

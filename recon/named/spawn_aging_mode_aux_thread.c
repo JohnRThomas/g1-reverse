@@ -5,7 +5,7 @@
  *   spawn_aging_mode_aux_thread              <= FUN_0003304c @ 0x0003304c
  *   z_impl_k_thread_create                   <= FUN_00071eac @ 0x00071eac
  * address symbols (name @ address):
- *   ADDR_FUN_000324bc_THUMB                  @ 0x000324bd
+ *   ADDR_mic_transm_thread_THUMB             @ 0x000324bd
  *   g_aging_mode_aux_thread                  @ 0x20004798
  *   g_aging_mode_aux_thread_stack            @ 0x20027668
  */

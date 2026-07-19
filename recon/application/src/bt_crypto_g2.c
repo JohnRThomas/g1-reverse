@@ -1,0 +1,1 @@
+../../named/bt_crypto_g2.c

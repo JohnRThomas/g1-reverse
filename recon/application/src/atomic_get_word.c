@@ -1,0 +1,1 @@
+../../named/atomic_get_word.c

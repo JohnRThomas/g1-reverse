@@ -8,6 +8,8 @@
  *   pdm_configure_pins                       <= FUN_00066050 @ 0x00066050
  * address symbols (name @ address):
  *   NRF_PDM_BASE                             @ 0x50026000
+ *   REG_50026100                             @ 0x50026100
+ *   REG_50026104                             @ 0x50026104
  */
 /* Reconstructed FUN_00066050 @ 0x66050  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>

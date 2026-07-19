@@ -1,0 +1,1 @@
+../../named/bt_id_set_adv_random_addr.c

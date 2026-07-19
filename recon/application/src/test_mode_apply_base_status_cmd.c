@@ -1,0 +1,1 @@
+../../named/test_mode_apply_base_status_cmd.c

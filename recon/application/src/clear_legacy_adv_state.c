@@ -1,0 +1,1 @@
+../../named/clear_legacy_adv_state.c

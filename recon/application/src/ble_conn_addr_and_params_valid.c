@@ -1,0 +1,1 @@
+../../named/ble_conn_addr_and_params_valid.c

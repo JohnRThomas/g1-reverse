@@ -1,0 +1,1 @@
+../../named/adc_channel_config.c

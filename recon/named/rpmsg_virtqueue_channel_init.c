@@ -12,15 +12,15 @@
  *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   ADDR_FUN_000710b4_THUMB                  @ 0x000710b5
- *   ADDR_FUN_0007118c_THUMB                  @ 0x0007118d
- *   ADDR_FUN_00071294_THUMB                  @ 0x00071295
+ *   ADDR_rpmsg_virtio_tx_enqueue_THUMB       @ 0x000710b5
+ *   ADDR_rpmsg_virtio_rx_notify_THUMB        @ 0x0007118d
+ *   ADDR_rpmsg_virtio_send_copy_THUMB        @ 0x00071295
  *   rodata_859a3                             @ 0x000859a3
  *   rodata_859b1                             @ 0x000859b1
  *   ADDR_FUN_000859c2_THUMB                  @ 0x000859c3
  *   ADDR_FUN_00085a04_THUMB                  @ 0x00085a05
- *   ADDR_FUN_00085a9c_THUMB                  @ 0x00085a9d
- *   ADDR_FUN_00085b0c_THUMB                  @ 0x00085b0d
+ *   ADDR_virtqueue_return_rx_buffer_THUMB    @ 0x00085a9d
+ *   ADDR_rpmsg_virtio_get_tx_buffer_wait_THUMB @ 0x00085b0d
  *   rodata_f7c28                             @ 0x000f7c28
  *   rodata_f7c2e                             @ 0x000f7c2e
  *   rodata_f7c34                             @ 0x000f7c34

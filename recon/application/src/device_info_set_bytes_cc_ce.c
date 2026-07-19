@@ -1,0 +1,1 @@
+../../named/device_info_set_bytes_cc_ce.c

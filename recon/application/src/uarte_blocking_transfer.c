@@ -1,0 +1,1 @@
+../../named/uarte_blocking_transfer.c

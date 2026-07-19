@@ -12,7 +12,7 @@
  *   log_output_flush                         <= FUN_0007eece @ 0x0007eece
  * address symbols (name @ address):
  *   rodata_4daad                             @ 0x0004daad
- *   ADDR_FUN_0007eec0_THUMB                  @ 0x0007eec1
+ *   ADDR_cbvprintf_wrapper_THUMB             @ 0x0007eec1
  *   rodata_8acc4                             @ 0x0008acc4
  *   rodata_8acd8                             @ 0x0008acd8
  *   rodata_99cbd                             @ 0x00099cbd

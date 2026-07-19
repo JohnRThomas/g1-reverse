@@ -1,6 +1,18 @@
 {
  "schema": 1,
  "app": {
+  "0x00021da8": {
+   "name": "ble_work_thread",
+   "evidence": "Reviewed canonical reconstruction recon/app/src/ble_work_thread.c declares the full function body at 0x00021da8. This repairs the missing durable source-to-address back-map after the CPUAPP naming wave. Raw identity remains FUN_00021da8."
+  },
+  "0x00023844": {
+   "name": "brightness_level",
+   "evidence": "Reviewed canonical reconstruction recon/app/src/brightness_level.c declares the full function body at 0x00023844. This repairs the missing durable source-to-address back-map after the CPUAPP naming wave. Raw identity remains FUN_00023844."
+  },
+  "0x0002a8d8": {
+   "name": "low_speed_peripheral_dispatch_thread",
+   "evidence": "Reviewed canonical reconstruction recon/app/src/low_speed_peripheral_dispatch_thread.c declares the full function body at 0x0002a8d8. This repairs the missing durable source-to-address back-map after the CPUAPP naming wave. Raw identity remains FUN_0002a8d8."
+  },
   "0x0004b01c": {
    "name": "_check_fd",
    "evidence": "Relocation-normalized byte-exact pinned Zephyr 3.4.99 fdtable.c private descriptor validator; CONFIG_POSIX_MAX_FDS=16 and the refcount load identifies fdtable+8. Raw identity remains FUN_0004b01c."

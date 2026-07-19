@@ -1,0 +1,1 @@
+../../named/display_fade_out_mask_bands.c

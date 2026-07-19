@@ -1,0 +1,1 @@
+../../named/device_reg3_init_config.c

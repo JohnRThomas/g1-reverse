@@ -1,0 +1,1 @@
+../../named/uarte_nrfx_pm_action.c

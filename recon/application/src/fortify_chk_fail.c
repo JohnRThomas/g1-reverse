@@ -1,0 +1,1 @@
+../../named/fortify_chk_fail.c

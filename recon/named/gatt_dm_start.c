@@ -9,7 +9,7 @@
  *   gatt_dm_log_helper                       <= FUN_0007f406 @ 0x0007f406
  *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
- *   ADDR_FUN_0004ea78_THUMB                  @ 0x0004ea79
+ *   ADDR_discovery_callback_THUMB            @ 0x0004ea79
  *   rodata_88130                             @ 0x00088130
  *   rodata_f1574                             @ 0x000f1574
  *   cur_service_val                          @ 0x2000a154

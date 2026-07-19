@@ -1,0 +1,1 @@
+../../named/nfc_field_event_signal_sem.c

@@ -1,0 +1,1 @@
+../../named/store_device_info_bytes_cd_cf.c

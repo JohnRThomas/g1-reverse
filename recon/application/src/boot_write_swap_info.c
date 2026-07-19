@@ -1,0 +1,1 @@
+../../named/boot_write_swap_info.c

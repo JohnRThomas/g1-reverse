@@ -1888,11 +1888,13 @@
   "0x00021da8": {
    "address": "0x00021da8",
    "raw_name": "FUN_00021da8",
-   "name": "FUN_00021da8",
-   "display_name": "FUN_00021da8",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "ble_work_thread",
+   "display_name": "ble_work_thread",
+   "human": true,
+   "source": "function_name_overrides.json: Reviewed canonical reconstruction recon/app/src/ble_work_thread.c declares the full function body at 0x00021da8. This repairs the missing durable source-to-address back-map after the CPUAPP naming wave. Raw identity remains FUN_00021da8.",
+   "aliases": [
+    "FUN_00021da8"
+   ]
   },
   "0x0002201c": {
    "address": "0x0002201c",
@@ -2238,11 +2240,13 @@
   "0x00023844": {
    "address": "0x00023844",
    "raw_name": "FUN_00023844",
-   "name": "FUN_00023844",
-   "display_name": "FUN_00023844",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "brightness_level",
+   "display_name": "brightness_level",
+   "human": true,
+   "source": "function_name_overrides.json: Reviewed canonical reconstruction recon/app/src/brightness_level.c declares the full function body at 0x00023844. This repairs the missing durable source-to-address back-map after the CPUAPP naming wave. Raw identity remains FUN_00023844.",
+   "aliases": [
+    "FUN_00023844"
+   ]
   },
   "0x00023a54": {
    "address": "0x00023a54",
@@ -3400,11 +3404,13 @@
   "0x0002a8d8": {
    "address": "0x0002a8d8",
    "raw_name": "FUN_0002a8d8",
-   "name": "FUN_0002a8d8",
-   "display_name": "FUN_0002a8d8",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "low_speed_peripheral_dispatch_thread",
+   "display_name": "low_speed_peripheral_dispatch_thread",
+   "human": true,
+   "source": "function_name_overrides.json: Reviewed canonical reconstruction recon/app/src/low_speed_peripheral_dispatch_thread.c declares the full function body at 0x0002a8d8. This repairs the missing durable source-to-address back-map after the CPUAPP naming wave. Raw identity remains FUN_0002a8d8.",
+   "aliases": [
+    "FUN_0002a8d8"
+   ]
   },
   "0x0002ace0": {
    "address": "0x0002ace0",
@@ -27449,10 +27455,7 @@
   "FUN_00000072": "0x00000072",
   "FUN_0000dad4": "0x0000dad4",
   "FUN_0000dcba": "0x0000dcba",
-  "FUN_00021da8": "0x00021da8",
-  "FUN_00023844": "0x00023844",
   "FUN_00027cfe": "0x00027cfe",
-  "FUN_0002a8d8": "0x0002a8d8",
   "FUN_0004c4e4": "0x0004c4e4",
   "FUN_0004cce0": "0x0004cce0",
   "FUN_0004cf78": "0x0004cf78",
@@ -27838,6 +27841,7 @@
   "ble_whitelist_app": "0x00022218",
   "ble_work_queue_lock": "0x00019b38",
   "ble_work_queue_unlock": "0x00019b48",
+  "ble_work_thread": "0x00021da8",
   "block_cipher_df": "0x0007981c",
   "bond_deleted_cb": "0x000183ac",
   "boot_set_next": "0x000641e4",
@@ -27847,6 +27851,7 @@
   "bound_cb": "0x0004cefc",
   "box_field_state_to_display_code": "0x0007c842",
   "box_placement_animation_step": "0x0000fcf0",
+  "brightness_level": "0x00023844",
   "bt_acl_data_recv": "0x00056394",
   "bt_addr_copy": "0x00080fba",
   "bt_addr_le_copy": "0x00081196",
@@ -28973,6 +28978,7 @@
   "log_source_name_get": "0x0004d8dc",
   "log_unhandled_hci_event": "0x00053580",
   "lookup_word_table_8acb4": "0x0004d420",
+  "low_speed_peripheral_dispatch_thread": "0x0002a8d8",
   "low_speed_peripheral_dispatch_thread_for_test": "0x0002685c",
   "lseek": "0x0004b17c",
   "lseek_r_capture_errno": "0x00078598",

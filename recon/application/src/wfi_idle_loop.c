@@ -1,0 +1,1 @@
+../../named/wfi_idle_loop.c

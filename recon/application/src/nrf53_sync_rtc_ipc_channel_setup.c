@@ -1,0 +1,1 @@
+../../named/nrf53_sync_rtc_ipc_channel_setup.c

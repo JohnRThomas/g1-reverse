@@ -56,6 +56,17 @@ class SymbolBrowserTests(unittest.TestCase):
         self.assertEqual(by_entry["address"], interior["address"])
         self.assertEqual(interior["goto_offset"], 2)
 
+    def test_post_sweep_source_backmaps_resolve(self):
+        expected = {
+            "ble_work_thread": ("FUN_00021da8", "0x00021da8"),
+            "brightness_level": ("FUN_00023844", "0x00023844"),
+            "low_speed_peripheral_dispatch_thread": ("FUN_0002a8d8", "0x0002a8d8"),
+        }
+        for readable, (raw, address) in expected.items():
+            self.assertEqual(self.index.detail("app", readable)["address"], address)
+            self.assertEqual(self.index.detail("app", raw)["display_name"], readable)
+        self.assertEqual(self.index.meta()["cores"]["app"]["unnamed"], 0)
+
     def test_source_references_are_navigable(self):
         result = self.index.list_symbols("app", "", "all", 1, 100)
         detail = next(self.index.detail("app", row["address"]) for row in result["items"] if self.index.detail("app", row["address"])["data_refs"])
@@ -72,6 +83,12 @@ class SymbolBrowserTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "HELD"):
             self.index.apply_rename("app", record["address"], "symbol_browser_test_name", "test")
         self.assertEqual(self.module.OVERRIDES.read_bytes(), before)
+
+    def test_completed_coordination_note_does_not_hold_lock(self):
+        coordination = self.module.COORDINATION.read_text()
+        if "no locks remain" not in coordination:
+            self.skipTest("coordination file currently describes active work")
+        self.assertFalse(self.module.coordination_active())
 
     def test_static_ui_exposes_required_controls(self):
         html = (ROOT / "tools/symbol_browser/static/index.html").read_text()

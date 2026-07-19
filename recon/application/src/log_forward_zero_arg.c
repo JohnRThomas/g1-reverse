@@ -1,0 +1,1 @@
+../../named/log_forward_zero_arg.c

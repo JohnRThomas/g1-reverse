@@ -1,0 +1,1 @@
+../../named/nrf_rtc_set_alarm_channel.c

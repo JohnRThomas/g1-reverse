@@ -11,7 +11,7 @@
  *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  *   bt_gatt_foreach_attr_0                   <= FUN_00082c9c @ 0x00082c9c
  * address symbols (name @ address):
- *   ADDR_FUN_00059dec_THUMB                  @ 0x00059ded
+ *   ADDR_gatt_ccc_write_store_cb_THUMB       @ 0x00059ded
  *   rodata_88128                             @ 0x00088128
  *   rodata_f2b65                             @ 0x000f2b65
  *   rodata_f472a                             @ 0x000f472a

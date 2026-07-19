@@ -7,7 +7,7 @@
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
  *   z_impl_k_thread_create                   <= FUN_00071eac @ 0x00071eac
  * address symbols (name @ address):
- *   ADDR_FUN_00019718_THUMB                  @ 0x00019719
+ *   ADDR_ble_ancs_data_req_thread_THUMB      @ 0x00019719
  *   rodata_9af2e                             @ 0x0009af2e
  *   rodata_9b0f1                             @ 0x0009b0f1
  *   g_log_level                              @ 0x2000230c

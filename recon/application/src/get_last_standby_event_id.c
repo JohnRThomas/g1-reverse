@@ -1,0 +1,1 @@
+../../named/get_last_standby_event_id.c

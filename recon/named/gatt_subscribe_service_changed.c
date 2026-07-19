@@ -6,7 +6,7 @@
  *   gatt_subscribe_service_changed           <= FUN_0004f418 @ 0x0004f418
  *   gatt_subscribe_add                       <= FUN_0005c3c4 @ 0x0005c3c4
  * address symbols (name @ address):
- *   ADDR_FUN_0007f894_THUMB                  @ 0x0007f895
+ *   ADDR_clock_event_notify_u16pair_THUMB    @ 0x0007f895
  *   rodata_881c0                             @ 0x000881c0
  *   rodata_f1625                             @ 0x000f1625
  */

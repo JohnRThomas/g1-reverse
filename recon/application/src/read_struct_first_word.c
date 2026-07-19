@@ -1,0 +1,1 @@
+../../named/read_struct_first_word.c

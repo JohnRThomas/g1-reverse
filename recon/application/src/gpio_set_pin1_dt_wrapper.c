@@ -1,0 +1,1 @@
+../../named/gpio_set_pin1_dt_wrapper.c

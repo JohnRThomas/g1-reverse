@@ -4,15 +4,23 @@
  * address symbols (name @ address):
  *   rodata_87bf0                             @ 0x00087bf0
  *   rodata_87d40                             @ 0x00087d40
+ *   rodata_88694                             @ 0x00088694
  *   rodata_9ebc6                             @ 0x0009ebc6
  *   rodata_a3fbe                             @ 0x000a3fbe
  *   rodata_a4038                             @ 0x000a4038
  *   rodata_a404b                             @ 0x000a404b
+ *   rodata_a4062                             @ 0x000a4062
+ *   rodata_a4075                             @ 0x000a4075
  *   rodata_a40e6                             @ 0x000a40e6
+ *   rodata_a4120                             @ 0x000a4120
+ *   rodata_a4147                             @ 0x000a4147
+ *   rodata_a417e                             @ 0x000a417e
+ *   rodata_a41a0                             @ 0x000a41a0
  *   rodata_a41b0                             @ 0x000a41b0
  *   g_log_level                              @ 0x2000230c
  *   g_audio_flash_write_offset               @ 0x20002404
  *   g_low_battery_sync_flag                  @ 0x2000302f
+ *   g_20003778                               @ 0x20003778
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_dmic_msgq                              @ 0x20007b7c
  *   g_20018da9                               @ 0x20018da9

@@ -11,6 +11,7 @@
  *   rodata_f2ddb                             @ 0x000f2ddb
  *   rodata_f2e84                             @ 0x000f2e84
  *   rodata_f2eb8                             @ 0x000f2eb8
+ *   rodata_f2ed1                             @ 0x000f2ed1
  *   rodata_f2ef5                             @ 0x000f2ef5
  *   rodata_f2f17                             @ 0x000f2f17
  *   rodata_f2f45                             @ 0x000f2f45

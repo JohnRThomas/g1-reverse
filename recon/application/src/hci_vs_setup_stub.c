@@ -1,0 +1,1 @@
+../../named/hci_vs_setup_stub.c

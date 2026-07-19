@@ -1,0 +1,1 @@
+../../named/store_gatt_db_hash_setting.c

@@ -4,7 +4,7 @@
  * callees (readable <= raw @ address):
  *   opt3007_init_ctx_setup                   <= FUN_0002e8fc @ 0x0002e8fc
  * address symbols (name @ address):
- *   ADDR_FUN_0002e648_THUMB                  @ 0x0002e649
+ *   ADDR_opt3001_read_lux_raw_THUMB          @ 0x0002e649
  *   ADDR_opt3007_chip_init_THUMB             @ 0x0002e67d
  */
 /* Reconstructed FUN_0002e8fc @ 0x2e8fc  (parity: 300/300 trials, PROVEN) */

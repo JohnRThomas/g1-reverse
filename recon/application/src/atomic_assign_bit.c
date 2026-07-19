@@ -1,0 +1,1 @@
+../../named/atomic_assign_bit.c

@@ -7,7 +7,7 @@
  * address symbols (name @ address):
  *   rodata_86f35                             @ 0x00086f35
  *   ADDR_libc_stream_write_syscall_THUMB     @ 0x00086f5b
- *   ADDR_FUN_00086f92_THUMB                  @ 0x00086f93
+ *   ADDR_gatt_sub_resolve_handle_THUMB       @ 0x00086f93
  *   rodata_86fb7                             @ 0x00086fb7
  */
 /* Reconstructed FUN_00076b48 @ 0x76b48  (parity: 300/300 trials, PROVEN) */

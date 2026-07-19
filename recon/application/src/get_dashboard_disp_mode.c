@@ -1,0 +1,1 @@
+../../named/get_dashboard_disp_mode.c

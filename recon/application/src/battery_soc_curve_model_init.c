@@ -1,0 +1,1 @@
+../../named/battery_soc_curve_model_init.c

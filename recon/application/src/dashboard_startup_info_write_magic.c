@@ -1,0 +1,1 @@
+../../named/dashboard_startup_info_write_magic.c

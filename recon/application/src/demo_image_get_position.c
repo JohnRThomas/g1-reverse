@@ -1,0 +1,1 @@
+../../named/demo_image_get_position.c

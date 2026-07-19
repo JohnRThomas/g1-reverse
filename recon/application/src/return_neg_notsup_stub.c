@@ -1,0 +1,1 @@
+../../named/return_neg_notsup_stub.c

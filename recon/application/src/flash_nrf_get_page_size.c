@@ -1,0 +1,1 @@
+../../named/flash_nrf_get_page_size.c

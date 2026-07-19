@@ -1,0 +1,1 @@
+../../named/value_in_bitmap_0_47.c

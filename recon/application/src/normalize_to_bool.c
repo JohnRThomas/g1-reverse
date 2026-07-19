@@ -1,0 +1,1 @@
+../../named/normalize_to_bool.c

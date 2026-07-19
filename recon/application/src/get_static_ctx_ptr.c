@@ -1,0 +1,1 @@
+../../named/get_static_ctx_ptr.c

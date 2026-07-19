@@ -1,0 +1,1 @@
+../../named/device_info_store_chunk.c

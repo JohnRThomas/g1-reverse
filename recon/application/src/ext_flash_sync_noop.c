@@ -1,0 +1,1 @@
+../../named/ext_flash_sync_noop.c

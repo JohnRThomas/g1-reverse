@@ -1,0 +1,1 @@
+../../named/draw_quicknote_hint_on_dashboard.c

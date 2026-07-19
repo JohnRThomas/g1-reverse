@@ -1,0 +1,1 @@
+../../named/flash_area_erase.c

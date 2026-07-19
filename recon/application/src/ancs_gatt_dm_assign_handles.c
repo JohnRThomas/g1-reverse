@@ -1,0 +1,1 @@
+../../named/ancs_gatt_dm_assign_handles.c

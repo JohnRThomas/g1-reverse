@@ -12,7 +12,7 @@
  * address symbols (name @ address):
  *   rodata_5b4bd                             @ 0x0005b4bd
  *   rodata_82cb3                             @ 0x00082cb3
- *   ADDR_FUN_00082fa6_THUMB                  @ 0x00082fa7
+ *   ADDR_gatt_store_ccc_cf_triple_THUMB      @ 0x00082fa7
  *   g_200029d4                               @ 0x200029d4
  *   g_200029f8                               @ 0x200029f8
  *   g_bt_gatt_delayed_store_work             @ 0x20006350

@@ -1,0 +1,1 @@
+../../named/bt_setup_identities.c

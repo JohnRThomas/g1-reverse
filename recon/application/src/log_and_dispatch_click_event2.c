@@ -1,0 +1,1 @@
+../../named/log_and_dispatch_click_event2.c

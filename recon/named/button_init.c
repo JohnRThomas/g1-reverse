@@ -13,7 +13,7 @@
  * address symbols (name @ address):
  *   rodata_10000                             @ 0x00010000
  *   rodata_17819                             @ 0x00017819
- *   ADDR_FUN_0001793c_THUMB                  @ 0x0001793d
+ *   ADDR_nfc_field_event_signal_sem_THUMB    @ 0x0001793d
  *   rodata_30000                             @ 0x00030000
  *   g_gpio1_dev                              @ 0x00087b48
  *   g_gpio0_dev                              @ 0x00087b60

@@ -1,0 +1,1 @@
+../../named/qspi_nor_lock_if_magic.c

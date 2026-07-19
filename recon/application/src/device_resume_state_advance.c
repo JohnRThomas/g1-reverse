@@ -1,0 +1,1 @@
+../../named/device_resume_state_advance.c

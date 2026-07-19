@@ -1,0 +1,1 @@
+../../named/pt_comm_bind_device.c

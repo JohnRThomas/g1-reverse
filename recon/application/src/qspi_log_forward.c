@@ -1,0 +1,1 @@
+../../named/qspi_log_forward.c

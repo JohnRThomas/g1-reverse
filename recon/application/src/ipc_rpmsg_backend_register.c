@@ -1,0 +1,1 @@
+../../named/ipc_rpmsg_backend_register.c

@@ -68,6 +68,17 @@ def atomic_json_write(path: Path, payload: dict) -> None:
             os.unlink(temporary)
 
 
+def coordination_active() -> bool:
+    if not COORDINATION.exists():
+        return False
+    for line in COORDINATION.read_text(errors="replace").splitlines():
+        if line.lstrip().startswith(">"):
+            continue
+        if "**HELD**" in line:
+            return True
+    return False
+
+
 class RepositoryIndex:
     CATALOGS = {
         "app": {
@@ -493,10 +504,9 @@ class RepositoryIndex:
                 "edited": sum(item["edited"] for item in records),
                 "with_source": sum(item["has_source"] for item in records),
             }
-        coordination = COORDINATION.read_text(errors="replace") if COORDINATION.exists() else ""
         return {
             "cores": cores,
-            "coordination_active": "**HELD" in coordination,
+            "coordination_active": coordination_active(),
             "coordination_path": str(COORDINATION.relative_to(ROOT)),
             "rename_mode": "canonical_pipeline",
             "override_path": str(OVERRIDES.relative_to(ROOT)),
@@ -513,8 +523,7 @@ class RepositoryIndex:
         collision = data["by_name"].get(name.lower())
         if collision and collision != address:
             raise ValueError(f"name already belongs to {collision}")
-        coordination = COORDINATION.read_text(errors="replace") if COORDINATION.exists() else ""
-        if "**HELD" in coordination:
+        if coordination_active():
             raise ValueError("canonical naming files are still HELD by the active sweep; apply after it lands")
         record = data["records"][address]
         RENAME_LOCK.parent.mkdir(parents=True, exist_ok=True)
@@ -537,8 +546,10 @@ class RepositoryIndex:
                 [str(ROOT / ".venv/bin/python"), str(ROOT / "tools/build_function_names.py"), core],
                 [str(ROOT / ".venv/bin/python"), str(ROOT / "tools/apply_names.py"), core],
                 [str(ROOT / ".venv/bin/python"), str(ROOT / "tools/symbolize.py"), core, "--write"],
-                [str(ROOT / ".venv/bin/python"), str(ROOT / "tools/validate_name_maps.py")],
             ]
+            if core == "app":
+                commands.append([str(ROOT / ".venv/bin/python"), str(ROOT / "tools/build_app_source_view.py")])
+            commands.append([str(ROOT / ".venv/bin/python"), str(ROOT / "tools/validate_name_maps.py"), core])
             output = []
             environment = dict(os.environ, PYTHONSAFEPATH="1")
             try:

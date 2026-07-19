@@ -1,0 +1,1 @@
+../../named/power_manager_restrict_event_log.c

@@ -1,0 +1,1 @@
+../../named/kobj_test_bit_get_ptr.c

@@ -1,0 +1,1 @@
+../../named/atomic_exchange_proxy_scratch.c

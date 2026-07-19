@@ -12,7 +12,7 @@
  *   mem_find_byte                            <= FUN_00086bc8 @ 0x00086bc8
  *   libc_write_buffer_via_putc               <= FUN_00086cb6 @ 0x00086cb6
  * address symbols (name @ address):
- *   ADDR_FUN_0007712c_THUMB                  @ 0x0007712d
+ *   ADDR_printf_render_float_THUMB           @ 0x0007712d
  *   ADDR_libc_write_buffer_via_putc_THUMB    @ 0x00086cb7
  *   rodata_f8b6b                             @ 0x000f8b6b
  *   rodata_f8b71                             @ 0x000f8b71

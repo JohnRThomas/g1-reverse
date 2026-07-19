@@ -1,0 +1,1 @@
+../../named/atomic_or_bit1.c

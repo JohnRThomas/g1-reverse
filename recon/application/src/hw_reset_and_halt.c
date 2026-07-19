@@ -1,0 +1,1 @@
+../../named/hw_reset_and_halt.c

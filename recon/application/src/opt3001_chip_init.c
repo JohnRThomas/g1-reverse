@@ -1,0 +1,1 @@
+../../named/opt3001_chip_init.c

@@ -1,0 +1,1 @@
+../../named/sem_init_zero.c

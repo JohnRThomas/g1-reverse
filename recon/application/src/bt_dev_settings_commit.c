@@ -1,0 +1,1 @@
+../../named/bt_dev_settings_commit.c

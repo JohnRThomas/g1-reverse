@@ -1,0 +1,1 @@
+../../named/gpio_set_fixed_pin_dt.c

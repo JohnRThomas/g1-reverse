@@ -14,7 +14,7 @@
  *   main_dispatch_thread_tick                <= FUN_0007cb66 @ 0x0007cb66
  *   kmutex_dlist_init                        <= FUN_000864c2 @ 0x000864c2
  * address symbols (name @ address):
- *   ADDR_FUN_0002685c_THUMB                  @ 0x0002685d
+ *   ADDR_low_speed_peripheral_dispatch_thread_for_test_THUMB @ 0x0002685d
  *   rodata_2692d                             @ 0x0002692d
  *   rodata_27cfd                             @ 0x00027cfd
  *   ADDR_process_task_sync_event_THUMB       @ 0x000286f9
@@ -22,7 +22,7 @@
  *   ADDR_display_dispatch_thread_THUMB       @ 0x00028bed
  *   ADDR_key_event_thread_THUMB              @ 0x0002955d
  *   ADDR_touch_key_thread_THUMB              @ 0x0002a0d9
- *   ADDR_FUN_0002a4f4_THUMB                  @ 0x0002a4f5
+ *   ADDR_transport_dispatch_thread_THUMB     @ 0x0002a4f5
  *   ADDR_FUN_0002a8d8_THUMB                  @ 0x0002a8d9
  *   rodata_a18bf                             @ 0x000a18bf
  *   rodata_a1a98                             @ 0x000a1a98

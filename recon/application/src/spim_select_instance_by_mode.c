@@ -1,0 +1,1 @@
+../../named/spim_select_instance_by_mode.c

@@ -1,0 +1,1 @@
+../../named/log_backend_uart_check_ready.c

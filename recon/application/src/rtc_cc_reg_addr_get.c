@@ -1,0 +1,1 @@
+../../named/rtc_cc_reg_addr_get.c

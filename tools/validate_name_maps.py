@@ -154,8 +154,11 @@ def check_lexer(errors):
 
 
 def main():
+    cores = sys.argv[1:] or ["app", "net"]
+    if any(core not in {"app", "net"} for core in cores):
+        raise SystemExit("usage: validate_name_maps.py [app] [net]")
     errors = []
-    for core in ("app", "net"):
+    for core in cores:
         check_function_map(core, errors)
         check_address_map(core, errors)
     check_lexer(errors)
@@ -163,7 +166,7 @@ def main():
         for error in errors:
             print("ERROR:", error)
         raise SystemExit(2)
-    print("name maps valid: function/address round-trip, source identity, lexer")
+    print("name maps valid (%s): function/address round-trip, source identity, lexer" % ",".join(cores))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,1 @@
+../../named/sc_store_to_settings.c

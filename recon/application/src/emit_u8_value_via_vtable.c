@@ -1,0 +1,1 @@
+../../named/emit_u8_value_via_vtable.c

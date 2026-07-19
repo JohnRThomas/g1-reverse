@@ -40,7 +40,8 @@ rename acquires a repository-local lock, updates
 1. `tools/build_function_names.py <core>`
 2. `tools/apply_names.py <core>`
 3. `tools/symbolize.py <core> --write`
-4. `tools/validate_name_maps.py`
+4. `tools/build_app_source_view.py` (CPUAPP only)
+5. `tools/validate_name_maps.py <core>`
 
 If the pipeline fails, the override file is restored and the error is shown in
 the dialog. While `recon/SESSION_COORDINATION.md` contains an active `HELD`

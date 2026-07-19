@@ -8,7 +8,7 @@
  *   smp_log_message                          <= FUN_00083074 @ 0x00083074
  *   atomic_set_bit                           <= FUN_00083090 @ 0x00083090
  * address symbols (name @ address):
- *   ADDR_FUN_0008349c_THUMB                  @ 0x0008349d
+ *   ADDR_smp_dhkey_ready_cb_THUMB            @ 0x0008349d
  *   rodata_88180                             @ 0x00088180
  *   rodata_f4e47                             @ 0x000f4e47
  */

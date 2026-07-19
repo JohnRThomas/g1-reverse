@@ -1,0 +1,1 @@
+../../named/fatal_log_and_reset.c

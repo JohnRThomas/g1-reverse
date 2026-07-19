@@ -1,0 +1,1 @@
+../../named/ext_flash_bus_lock_stub.c
