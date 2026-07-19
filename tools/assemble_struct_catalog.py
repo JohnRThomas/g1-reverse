@@ -61,7 +61,21 @@ def main():
     json.dump({"schema": 1, "core": "app", "structs": orig},
               open(OUT + "/struct_original_app.json", "w"), indent=1)
 
+    # coverage: every cluster with >=2 offsets must be covered exactly once
+    target = {cid for cid, c in clusters.items() if c["n_offsets"] >= 2}
+    covered = {}
+    for r in catalog:
+        for cid in set(r["merged_cids"]) | {r["cid"]}:
+            covered.setdefault(cid, []).append(r["struct_name"])
+    missing = sorted(target - set(covered))
+    dup = {cid: names for cid, names in covered.items() if len(names) > 1 and cid in target}
+    json.dump({"target": len(target), "covered": len(set(covered) & target),
+               "missing": missing, "double_covered": dup},
+              open(OUT + "/struct_coverage_app.json", "w"), indent=1)
+
     npass = sum(1 for r in catalog if r["verified"])
+    print("coverage: %d/%d clusters covered | missing: %d | double-covered: %d" %
+          (len(set(covered) & target), len(target), len(missing), len(dup)))
     print("catalog structs:", len(catalog))
     print("  mechanistically verified (D1+D2):", npass, "| rejected:", len(catalog) - npass)
     print("  library:", len(lib), "(offset-verified:",
