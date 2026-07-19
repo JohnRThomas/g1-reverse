@@ -3,6 +3,23 @@
 > Purpose: two Claude sessions work this repo in the same dir. Before editing a
 > path listed here as **HELD**, ping the other session or pick different files.
 
+## HELD by session A (struct-recovery wave) — 2026-07-19, in progress
+
+**Task:** recover in-memory struct layouts across CPUAPP from Ghidra footprints,
+name them via a 20-sonnet + 10-opus agent flow, mechanistically verify, emit JSON.
+
+Files this session holds (do NOT touch):
+
+- `recon/structs/**` — footprints, clusters, bundles, proposals, catalogs (this session owns the whole dir)
+- `tools/struct_extract.py`, `tools/struct_cluster.py`, `tools/build_struct_bundles.py`,
+  `tools/struct_collect.wf.js`, `tools/struct_merge.wf.js`, `tools/verify_structs.py`,
+  `tools/merge_struct_proposals.py` (new)
+
+JSON-only output — this task does NOT edit any reconstructed source, name maps, or
+net files. CPUNET, parity/CFG tooling, ownership manifests remain free.
+
+---
+
 ## DONE by session A (naming wave) — 2026-07-19 (landed, committed)
 
 **Task:** named the 563 unnamed CPUAPP `FUN_*` functions via a 20-agent resumable

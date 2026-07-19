@@ -20,33 +20,43 @@ CTYPE = {1: "uint8_t", 2: "uint16_t", 4: "uint32_t", 8: "uint64_t"}
 
 
 def rep_type(types, size):
-    # prefer a meaningful token over undefinedN
-    for t in types:
-        if t == "ptr":
-            return "void *"
-        if t in ("float",):
-            return "float"
-        if t in ("double",):
-            return "double"
-    return CTYPE.get(size, "uint32_t")
+    """Return (c_type, array_len). array_len is None for a scalar field, or a
+    byte count when the (clamped) width isn't a natural scalar size."""
+    if size == 4:
+        if "ptr" in types:
+            return "void *", None
+        if "float" in types:
+            return "float", None
+    if size == 8 and "double" in types:
+        return "double", None
+    if size in CTYPE:
+        return CTYPE[size], None
+    return "uint8_t", size  # odd width -> byte array
 
 
 def candidate_layout(acc, total):
+    """Delimit each field by the NEXT observed offset so fields never overlap:
+    a field's width is min(widest observed access, gap to next field). When the
+    observed access is wider than the gap, the object is being read at a coarser
+    granularity than its sub-field boundaries (union/overlap) -- we keep the
+    non-overlapping decomposition and flag it."""
     offs = sorted(int(o, 16) for o in acc)
     fields = []
     notes = []
     prev_end = 0
     for i, off in enumerate(offs):
         a = acc["0x%x" % off]
-        size = max(a["sizes"])
-        if off < prev_end:
-            notes.append("overlap at 0x%x (prev field ends 0x%x)" % (off, prev_end))
-            continue
+        obs = max(a["sizes"])
+        nxt = offs[i + 1] if i + 1 < len(offs) else off + obs
+        gap = nxt - off
+        size = min(obs, gap) if gap > 0 else obs
+        if obs > gap and gap > 0:
+            notes.append("0x%x: access width %d exceeds gap %d to next field (overlap/union)" %
+                         (off, obs, gap))
         if off > prev_end:
             fields.append(("_pad_0x%x" % prev_end, "uint8_t", off - prev_end, prev_end, None))
-        typ = rep_type(a["types"], size)
-        arr = None
-        fields.append(("field_0x%x" % off, typ, None, off, a))
+        typ, arrlen = rep_type(a["types"], size)
+        fields.append(("field_0x%x" % off, typ, arrlen, off, a))
         prev_end = off + size
     if total > prev_end:
         fields.append(("_pad_0x%x" % prev_end, "uint8_t", total - prev_end, prev_end, None))
