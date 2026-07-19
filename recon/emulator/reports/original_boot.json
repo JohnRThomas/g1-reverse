@@ -1,0 +1,559 @@
+{
+ "image": {
+  "path": "/Users/freedomcoder/Projects/G1disasm2/app_update.bin",
+  "sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b"
+ },
+ "profile": "strict",
+ "instruction_count": 3000000,
+ "initial_sp": "0x200312f0",
+ "reset_handler": "0x00050a99",
+ "stop_reason": "instruction_budget",
+ "stop_pc": "0x0007a56e",
+ "stop_function": null,
+ "milestones": [
+  {
+   "name": "nordicsemi_nrf53_init",
+   "first_i": 449283,
+   "last_i": 449283
+  },
+  {
+   "name": "clock_control_nrf_init",
+   "first_i": 449682,
+   "last_i": 449682
+  }
+ ],
+ "unique_functions_entered": 45,
+ "function_trace_first64": [
+  {
+   "name": "memset_bytes",
+   "first_i": 375,
+   "calls": 5
+  },
+  {
+   "name": "memcpy",
+   "first_i": 419301,
+   "calls": 2
+  },
+  {
+   "name": "region_init",
+   "first_i": 448730,
+   "calls": 2
+  },
+  {
+   "name": "arm_core_mpu_configure",
+   "first_i": 448802,
+   "calls": 1
+  },
+  {
+   "name": "mpu_partition_sanity_check_assert",
+   "first_i": 448839,
+   "calls": 1
+  },
+  {
+   "name": "log_msg_pool_init",
+   "first_i": 448944,
+   "calls": 1
+  },
+  {
+   "name": "mpsc_pbuf_init",
+   "first_i": 448949,
+   "calls": 1
+  },
+  {
+   "name": "z_impl_k_sem_init",
+   "first_i": 449109,
+   "calls": 1
+  },
+  {
+   "name": "kmutex_dlist_init",
+   "first_i": 449384,
+   "calls": 10
+  },
+  {
+   "name": "sys_dlist_init",
+   "first_i": 449392,
+   "calls": 10
+  },
+  {
+   "name": "clock_control_nrf_init",
+   "first_i": 449682,
+   "calls": 1
+  },
+  {
+   "name": "arch_irq_priority_set",
+   "first_i": 449688,
+   "calls": 2
+  },
+  {
+   "name": "g1_recon_k_heap_init",
+   "first_i": 449739,
+   "calls": 1
+  },
+  {
+   "name": "sys_heap_init",
+   "first_i": 449744,
+   "calls": 1
+  },
+  {
+   "name": "heap_bucket_index",
+   "first_i": 449767,
+   "calls": 2
+  },
+  {
+   "name": "log_msg_compute_wlen",
+   "first_i": 449771,
+   "calls": 3
+  },
+  {
+   "name": "chunk_set_used_flag",
+   "first_i": 450024,
+   "calls": 3
+  },
+  {
+   "name": "chunk_set",
+   "first_i": 450027,
+   "calls": 8
+  },
+  {
+   "name": "set_chunk_used",
+   "first_i": 450049,
+   "calls": 2
+  },
+  {
+   "name": "free_list_add",
+   "first_i": 450120,
+   "calls": 1
+  },
+  {
+   "name": "chunk_size",
+   "first_i": 450125,
+   "calls": 1
+  },
+  {
+   "name": "chunk_field",
+   "first_i": 450128,
+   "calls": 1
+  },
+  {
+   "name": "nrfx_gpiote_is_init",
+   "first_i": 450548,
+   "calls": 2
+  },
+  {
+   "name": "g1_recon_nrfx_gpiote_init",
+   "first_i": 450556,
+   "calls": 1
+  },
+  {
+   "name": "gpiote_in_event_reg_offset",
+   "first_i": 450956,
+   "calls": 8
+  },
+  {
+   "name": "arch_irq_enable",
+   "first_i": 451088,
+   "calls": 1
+  },
+  {
+   "name": "set_ancs_notify_sync_fields",
+   "first_i": 451111,
+   "calls": 1
+  },
+  {
+   "name": "nrf_cc3xx_platform_init",
+   "first_i": 451184,
+   "calls": 1
+  },
+  {
+   "name": "CC_LibInit",
+   "first_i": 451189,
+   "calls": 1
+  },
+  {
+   "name": "cc_pal_init_stub",
+   "first_i": 451192,
+   "calls": 1
+  },
+  {
+   "name": "CC_PalInit",
+   "first_i": 451196,
+   "calls": 1
+  },
+  {
+   "name": "CC_PalMutexCreate",
+   "first_i": 451199,
+   "calls": 4
+  },
+  {
+   "name": "mutex_init",
+   "first_i": 451205,
+   "calls": 4
+  },
+  {
+   "name": "cc_pal_stub_return_zero",
+   "first_i": 451281,
+   "calls": 1
+  },
+  {
+   "name": "CC_PalPowerSaveModeInit",
+   "first_i": 451286,
+   "calls": 1
+  },
+  {
+   "name": "RndStartupTest_constprop_0",
+   "first_i": 451338,
+   "calls": 1
+  },
+  {
+   "name": "RNG_PLAT_SetUserRngParameters",
+   "first_i": 451512,
+   "calls": 1
+  },
+  {
+   "name": "CC_PalTrngParamGet",
+   "first_i": 451519,
+   "calls": 1
+  },
+  {
+   "name": "CC_PalMutexLock",
+   "first_i": 451602,
+   "calls": 1
+  },
+  {
+   "name": "CC_PalPowerSaveModeSelect",
+   "first_i": 451631,
+   "calls": 1
+  },
+  {
+   "name": "LLF_RND_RunTrngStartupTest",
+   "first_i": 451693,
+   "calls": 1
+  },
+  {
+   "name": "getTrngSource",
+   "first_i": 451703,
+   "calls": 1
+  },
+  {
+   "name": "startTrngHW",
+   "first_i": 451729,
+   "calls": 1
+  },
+  {
+   "name": "LLF_RND_GetFastestRosc",
+   "first_i": 451750,
+   "calls": 1
+  },
+  {
+   "name": "LLF_RND_GetRoscSampleCnt",
+   "first_i": 451764,
+   "calls": 1
+  }
+ ],
+ "exceptions": [],
+ "svc_count": 0,
+ "wfi_count": 0,
+ "qspi_events": [],
+ "unexpected_access": null,
+ "hot_pcs": [
+  [
+   "0x0007a56e",
+   424703
+  ],
+  [
+   "0x0007a572",
+   424702
+  ],
+  [
+   "0x0007a574",
+   424702
+  ],
+  [
+   "0x0007a578",
+   424702
+  ],
+  [
+   "0x0007a57c",
+   424702
+  ],
+  [
+   "0x0007a57e",
+   424702
+  ],
+  [
+   "0x00086c7c",
+   104953
+  ],
+  [
+   "0x00086c7e",
+   104953
+  ],
+  [
+   "0x00086c82",
+   104948
+  ],
+  [
+   "0x00086c86",
+   104948
+  ],
+  [
+   "0x00086c10",
+   7248
+  ],
+  [
+   "0x00086c14",
+   7248
+  ],
+  [
+   "0x00086c16",
+   7248
+  ],
+  [
+   "0x00086c1a",
+   7248
+  ],
+  [
+   "0x00050a86",
+   69
+  ],
+  [
+   "0x00050a88",
+   69
+  ],
+  [
+   "0x00050a8a",
+   69
+  ],
+  [
+   "0x00050a8c",
+   69
+  ],
+  [
+   "0x00050a90",
+   69
+  ],
+  [
+   "0x000863ca",
+   28
+  ]
+ ],
+ "recent_pcs": [
+  "0x0007a578",
+  "0x0007a57c",
+  "0x0007a57e",
+  "0x0007a56e",
+  "0x0007a572",
+  "0x0007a574",
+  "0x0007a578",
+  "0x0007a57c",
+  "0x0007a57e",
+  "0x0007a56e",
+  "0x0007a572",
+  "0x0007a574",
+  "0x0007a578",
+  "0x0007a57c",
+  "0x0007a57e",
+  "0x0007a56e",
+  "0x0007a572",
+  "0x0007a574",
+  "0x0007a578",
+  "0x0007a57c",
+  "0x0007a57e",
+  "0x0007a56e",
+  "0x0007a572",
+  "0x0007a574",
+  "0x0007a578",
+  "0x0007a57c",
+  "0x0007a57e",
+  "0x0007a56e",
+  "0x0007a572",
+  "0x0007a574",
+  "0x0007a578",
+  "0x0007a57c",
+  "0x0007a57e",
+  "0x0007a56e",
+  "0x0007a572",
+  "0x0007a574",
+  "0x0007a578",
+  "0x0007a57c",
+  "0x0007a57e",
+  "0x0007a56e",
+  "0x0007a572",
+  "0x0007a574",
+  "0x0007a578",
+  "0x0007a57c",
+  "0x0007a57e",
+  "0x0007a56e",
+  "0x0007a572",
+  "0x0007a574",
+  "0x0007a578",
+  "0x0007a57c",
+  "0x0007a57e",
+  "0x0007a56e",
+  "0x0007a572",
+  "0x0007a574",
+  "0x0007a578",
+  "0x0007a57c",
+  "0x0007a57e",
+  "0x0007a56e",
+  "0x0007a572",
+  "0x0007a574",
+  "0x0007a578",
+  "0x0007a57c",
+  "0x0007a57e",
+  "0x0007a56e"
+ ],
+ "mmio_reads_top": [
+  [
+   "0x50845130",
+   424702
+  ],
+  [
+   "0xe000ed88",
+   3
+  ],
+  [
+   "0xe000ed90",
+   2
+  ],
+  [
+   "0xe000ed14",
+   2
+  ],
+  [
+   "0xe000ed9c",
+   2
+  ],
+  [
+   "0xe000eda0",
+   2
+  ],
+  [
+   "0xe000ed8c",
+   1
+  ],
+  [
+   "0xe000ed24",
+   1
+  ],
+  [
+   "0x50842700",
+   1
+  ],
+  [
+   "0x50842704",
+   1
+  ],
+  [
+   "0x50842a04",
+   1
+  ],
+  [
+   "0x50842a00",
+   1
+  ],
+  [
+   "0x5000d17c",
+   1
+  ],
+  [
+   "0x50846e34",
+   1
+  ],
+  [
+   "0x50845910",
+   1
+  ]
+ ],
+ "mmio_writes_top": [
+  [
+   "0x508451c4",
+   424703
+  ],
+  [
+   "0x50845130",
+   424702
+  ],
+  [
+   "0xe000ed98",
+   12
+  ],
+  [
+   "0xe000eda0",
+   10
+  ],
+  [
+   "0xe000ed88",
+   3
+  ],
+  [
+   "0xe000ed94",
+   3
+  ],
+  [
+   "0xe000e405",
+   2
+  ],
+  [
+   "0xe000e40d",
+   2
+  ],
+  [
+   "0xe000ed14",
+   2
+  ],
+  [
+   "0xe000ed9c",
+   2
+  ],
+  [
+   "0xe000ed8c",
+   1
+  ],
+  [
+   "0x50006544",
+   1
+  ],
+  [
+   "0x5000654c",
+   1
+  ],
+  [
+   "0xe000e180",
+   1
+  ],
+  [
+   "0xe000e184",
+   1
+  ],
+  [
+   "0xe000e188",
+   1
+  ],
+  [
+   "0xe000e18c",
+   1
+  ],
+  [
+   "0xe000e190",
+   1
+  ],
+  [
+   "0xe000e194",
+   1
+  ],
+  [
+   "0xe000e198",
+   1
+  ]
+ ],
+ "model_assumptions": [
+  "intrinsic:TT emulated vs modeled MPU (arm_cmse_mpu_region_get)",
+  "unmodeled_read@0x5000d170=0",
+  "unmodeled_read@0x50842700=0",
+  "unmodeled_read@0x50842a00=0",
+  "unmodeled_read@0x50845130=0",
+  "unmodeled_read@0x50845910=0",
+  "unmodeled_read@0x50846e30=0"
+ ]
+}
