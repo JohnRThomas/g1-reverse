@@ -1,1 +1,0 @@
-../../named/finite.c

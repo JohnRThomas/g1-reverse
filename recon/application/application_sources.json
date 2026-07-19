@@ -81,14 +81,24 @@
       "dtoa_format_cvt",
       "exp",
       "expf",
+      "fabs",
       "fabsf",
+      "finite",
+      "finitef",
       "fmaxf",
       "fminf",
+      "fnmatch_build_class_table",
+      "fprintf_stream",
       "free",
+      "frexpf",
+      "i2b",
+      "ldexpf",
+      "log10f",
       "log_dropped",
       "log_msg_commit",
       "log_msg_pool_init",
       "log_process",
+      "lshift",
       "malloc",
       "malloc_impl",
       "memcmp",
@@ -99,24 +109,35 @@
       "mutex_lock_wait_forever_dup",
       "mutex_unlock_syscall_handler",
       "nan",
+      "nanf",
       "posix_stub_enosys",
       "posix_stub_zero",
+      "pow",
+      "pow5mult",
       "printf",
+      "puts",
       "rand",
       "random",
       "realloc",
+      "rint",
+      "s2b",
+      "sbrk_impl",
       "scalbn",
+      "scalbnf",
       "settings_invalid_index_log",
+      "smakebuf_r",
       "sqrtf",
       "strcpy",
       "strlen",
       "strncmp",
       "strncpy",
+      "strncpy_zero_pad",
       "strtol",
       "strtoul",
       "sys_dlist_init",
       "sys_rand32_get",
-      "vprintf"
+      "vprintf",
+      "write_r_capture_errno"
     ]
   },
   "inputs": [
@@ -135,8 +156,8 @@
   ],
   "summary": {
     "total_cpuapp_functions": 2115,
-    "included_g1_application": 1359,
-    "excluded_library": 756
+    "included_g1_application": 1338,
+    "excluded_library": 777
   },
   "functions": [
     {
@@ -9486,8 +9507,10 @@
       "raw_symbol": "FUN_000869cc",
       "readable_name": "fabs",
       "source": "recon/named/fabs.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x000868ee",
@@ -9608,16 +9631,20 @@
       "raw_symbol": "FUN_000869dc",
       "readable_name": "finite",
       "source": "recon/named/finite.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x000869f2",
       "raw_symbol": "FUN_000869f2",
       "readable_name": "finitef",
       "source": "recon/named/finitef.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x00030224",
@@ -9866,8 +9893,10 @@
       "raw_symbol": "FUN_0008789c",
       "readable_name": "fnmatch_build_class_table",
       "source": "recon/named/fnmatch_build_class_table.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x0007d850",
@@ -9914,8 +9943,10 @@
       "raw_symbol": "FUN_00076cc8",
       "readable_name": "fprintf_stream",
       "source": "recon/named/fprintf_stream.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x00033554",
@@ -9969,8 +10000,10 @@
       "raw_symbol": "FUN_000759b8",
       "readable_name": "frexpf",
       "source": "recon/named/frexpf.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x000330c4",
@@ -11476,8 +11509,10 @@
       "raw_symbol": "FUN_000787bc",
       "readable_name": "i2b",
       "source": "recon/named/i2b.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x000847d8",
@@ -13106,8 +13141,10 @@
       "raw_symbol": "FUN_00086976",
       "readable_name": "ldexpf",
       "source": "recon/named/ldexpf.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x000811ce",
@@ -13248,8 +13285,10 @@
       "raw_symbol": "FUN_00075d5c",
       "readable_name": "log10f",
       "source": "recon/named/log10f.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x0004df34",
@@ -13362,8 +13401,10 @@
       "raw_symbol": "FUN_000789f0",
       "readable_name": "lshift",
       "source": "recon/named/lshift.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x000622a0",
@@ -13751,8 +13792,10 @@
       "raw_symbol": "FUN_00076a88",
       "readable_name": "nanf",
       "source": "recon/named/nanf.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x0003dff8",
@@ -15112,16 +15155,20 @@
       "raw_symbol": "FUN_00075acc",
       "readable_name": "pow",
       "source": "recon/named/pow.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x0007893c",
       "raw_symbol": "FUN_0007893c",
       "readable_name": "pow5mult",
       "source": "recon/named/pow5mult.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x000160b4",
@@ -15465,8 +15512,10 @@
       "raw_symbol": "FUN_000778d4",
       "readable_name": "puts",
       "source": "recon/named/puts.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x000664f0",
@@ -15921,8 +15970,10 @@
       "raw_symbol": "FUN_000767c8",
       "readable_name": "rint",
       "source": "recon/named/rint.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x000858ec",
@@ -16023,8 +16074,10 @@
       "raw_symbol": "FUN_00078728",
       "readable_name": "s2b",
       "source": "recon/named/s2b.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x00055ba0",
@@ -16039,8 +16092,10 @@
       "raw_symbol": "FUN_00051074",
       "readable_name": "sbrk_impl",
       "source": "recon/named/sbrk_impl.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x0005a090",
@@ -16105,8 +16160,10 @@
       "raw_symbol": "FUN_00075a0c",
       "readable_name": "scalbnf",
       "source": "recon/named/scalbnf.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x00073840",
@@ -16760,8 +16817,10 @@
       "raw_symbol": "FUN_00076cec",
       "readable_name": "smakebuf_r",
       "source": "recon/named/smakebuf_r.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x0005160c",
@@ -17433,8 +17492,10 @@
       "raw_symbol": "FUN_0008705a",
       "readable_name": "strncpy_zero_pad",
       "source": "recon/named/strncpy_zero_pad.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x0000ea4c",
@@ -18467,8 +18528,10 @@
       "raw_symbol": "FUN_00079528",
       "readable_name": "write_r_capture_errno",
       "source": "recon/named/write_r_capture_errno.c",
-      "status": "included_g1_application",
-      "reasons": []
+      "status": "excluded_library",
+      "reasons": [
+        "known_stock_symbol"
+      ]
     },
     {
       "address": "0x00085316",

@@ -1,1 +1,0 @@
-../../named/smakebuf_r.c

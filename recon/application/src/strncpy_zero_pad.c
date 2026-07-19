@@ -1,1 +1,0 @@
-../../named/strncpy_zero_pad.c

@@ -1,1 +1,0 @@
-../../named/fprintf_stream.c
