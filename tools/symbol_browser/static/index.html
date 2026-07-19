@@ -47,6 +47,11 @@
         <input id="symbol-search" type="search" placeholder="Filter symbols" autocomplete="off">
         <kbd>/</kbd>
       </label>
+      <label class="ownership-toggle" title="Hide functions proven to belong to the SDK, toolchain, or bundled libraries">
+        <input id="application-only" type="checkbox" checked>
+        <span class="toggle-track" aria-hidden="true"><i></i></span>
+        <span><strong>G1 application only</strong><small>Hide proven library code</small></span>
+      </label>
       <div class="filter-tabs" role="tablist" aria-label="Symbol status">
         <button class="active" role="tab" aria-selected="true" data-state="all">All</button>
         <button role="tab" aria-selected="false" data-state="unnamed">Unnamed</button>

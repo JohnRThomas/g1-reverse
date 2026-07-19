@@ -26,6 +26,9 @@ STATIC = Path(__file__).resolve().parent / "static"
 OVERRIDES = ROOT / "recon" / "catalogs" / "function_name_overrides.json"
 RENAME_LOCK = ROOT / ".git" / "g1-symbol-browser.rename.lock"
 COORDINATION = ROOT / "recon" / "SESSION_COORDINATION.md"
+APP_SOURCE_MANIFEST = ROOT / "recon" / "application" / "application_sources.json"
+ADOPTION_MANIFEST = ROOT / "recon" / "ownership" / "adoption_manifest.json"
+NET_OWNERSHIP = ROOT / "recon" / "ownership" / "net_function_ownership.json"
 IDENTIFIER = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 ADDRESS_TOKEN = re.compile(r"^(?:0x)?([0-9a-fA-F]{4,8})$")
 C_KEYWORDS = set("auto break case char const continue default do double else enum extern float for goto if inline int long register restrict return short signed sizeof static struct switch typedef union unsigned void volatile while _Bool _Complex _Imaginary".split())
@@ -90,10 +93,42 @@ class RepositoryIndex:
         self.refresh(force=True)
 
     def _signature(self) -> tuple:
-        paths = [OVERRIDES, COORDINATION]
+        paths = [OVERRIDES, COORDINATION, APP_SOURCE_MANIFEST, ADOPTION_MANIFEST, NET_OWNERSHIP]
         for paths_by_kind in self.CATALOGS.values():
             paths.extend(paths_by_kind.values())
         return tuple((str(path), path.stat().st_mtime_ns if path.exists() else 0) for path in paths)
+
+    @staticmethod
+    def _ownership_maps() -> dict[str, dict[str, dict]]:
+        app_manifest = read_json_retry(APP_SOURCE_MANIFEST)
+        adoption = read_json_retry(ADOPTION_MANIFEST)
+        net_audit = read_json_retry(NET_OWNERSHIP)
+        app = {}
+        for row in app_manifest.get("functions", []):
+            address = canonical_address(row["address"])
+            library = row.get("status") == "excluded_library"
+            app[address] = {
+                "ownership": "library" if library else "g1_application",
+                "ownership_status": row.get("status", "application_candidate"),
+                "ownership_evidence": row.get("reasons", []),
+            }
+        net = {}
+        for address, row in net_audit.get("entries", {}).items():
+            if row.get("status") != "sdk_library":
+                continue
+            net[canonical_address(address)] = {
+                "ownership": "library",
+                "ownership_status": "proven_sdk_library",
+                "ownership_evidence": [f"net_function_ownership:{row.get('confidence', 'reviewed')}"]
+            }
+        for row in adoption.get("cores", {}).get("net", {}).get("entries", []):
+            address = canonical_address(row["va"])
+            net.setdefault(address, {
+                "ownership": "library",
+                "ownership_status": "upstream_owned",
+                "ownership_evidence": [f"adoption_manifest:{row.get('component', 'upstream')}"]
+            })
+        return {"app": app, "net": net}
 
     @staticmethod
     def _source_inventory(directory: Path) -> dict[str, Path]:
@@ -132,6 +167,7 @@ class RepositoryIndex:
             if not force and signature == self.signature:
                 return
             overrides = read_json_retry(OVERRIDES) if OVERRIDES.exists() else {"app": {}, "net": {}}
+            ownership_maps = self._ownership_maps()
             cores = {}
             for core, paths in self.CATALOGS.items():
                 names = read_json_retry(paths["names"])
@@ -155,6 +191,11 @@ class RepositoryIndex:
                     raw_name = identity["raw_name"]
                     function = functions.get(address, {})
                     ref = refs.get(address, {})
+                    ownership = ownership_maps[core].get(address, {
+                        "ownership": "g1_application_candidate",
+                        "ownership_status": "unclassified_application_candidate",
+                        "ownership_evidence": [],
+                    })
                     canonical_path = source_by_address.get(address, (None, None))[0]
                     source_path = readable_inventory.get(identity["display_name"]) or canonical_path
                     record = {
@@ -174,6 +215,7 @@ class RepositoryIndex:
                         "is_thunk": bool(function.get("is_thunk")),
                         "has_source": source_path is not None,
                         "canonical_corpus": canonical_path is not None,
+                        **ownership,
                         "source_path": source_path,
                         "calls": ref.get("calls", []),
                         "callers": ref.get("callers", []),
@@ -198,6 +240,11 @@ class RepositoryIndex:
                     ref = refs.get(address, {})
                     override = overrides.get(core, {}).get(address)
                     display_name = stem
+                    ownership = ownership_maps[core].get(address, {
+                        "ownership": "g1_application_candidate",
+                        "ownership_status": "unclassified_application_candidate",
+                        "ownership_evidence": [],
+                    })
                     records[address] = {
                         "core": core, "address": address, "raw_name": raw_name,
                         "canonical_name": stem, "display_name": display_name,
@@ -208,6 +255,7 @@ class RepositoryIndex:
                         "size": ref.get("size", function.get("size")), "signature": function.get("signature"),
                         "calling_convention": function.get("calling_convention"), "is_thunk": bool(function.get("is_thunk")),
                         "has_source": True, "canonical_corpus": True, "source_path": source_path,
+                        **ownership,
                         "calls": ref.get("calls", []), "callers": ref.get("callers", []),
                         "data_refs": ref.get("data_refs", []), "decompiled": function.get("decompiled", ""),
                     }
@@ -260,13 +308,15 @@ class RepositoryIndex:
     def _public_record(record: dict) -> dict:
         return {key: value for key, value in record.items() if key not in {"source_path", "decompiled", "calls", "callers", "data_refs"}}
 
-    def list_symbols(self, core: str, query: str, state: str, page: int, limit: int) -> dict:
+    def list_symbols(self, core: str, query: str, state: str, page: int, limit: int, application_only: bool = True) -> dict:
         data = self._core(core)
         query = query.strip().lower()
         rows = []
         for address in data["sorted"]:
             record = data["records"][address]
             if not record["canonical_corpus"]:
+                continue
+            if application_only and record["ownership"] == "library":
                 continue
             if state == "unnamed" and record["human"]:
                 continue
@@ -408,6 +458,9 @@ class RepositoryIndex:
             "human": bool(named.get("name")),
             "edited": False,
             "override": None,
+            "ownership": "data",
+            "ownership_status": "non_function_reference",
+            "ownership_evidence": [],
             "name_source": ", ".join(named.get("evidence", [])) or "reference graph",
             "aliases": [],
             "size": None,
@@ -433,6 +486,8 @@ class RepositoryIndex:
             records = [item for item in data["records"].values() if item["canonical_corpus"]]
             cores[core] = {
                 "total": len(records),
+                "application": sum(item["ownership"] != "library" for item in records),
+                "library": sum(item["ownership"] == "library" for item in records),
                 "named": sum(item["human"] for item in records),
                 "unnamed": sum(not item["human"] for item in records),
                 "edited": sum(item["edited"] for item in records),
@@ -556,7 +611,8 @@ class Handler(BaseHTTPRequestHandler):
                 search = query.get("q", [""])[0]
                 page = max(1, int(query.get("page", ["1"])[0]))
                 limit = min(100, max(10, int(query.get("limit", ["60"])[0])))
-                return self._json(INDEX.list_symbols(core, search, state, page, limit))
+                application_only = query.get("application_only", ["1"])[0].lower() not in {"0", "false", "no"}
+                return self._json(INDEX.list_symbols(core, search, state, page, limit, application_only))
             if parsed.path.startswith("/api/symbol/"):
                 parts = parsed.path.split("/", 4)
                 if len(parts) != 5:

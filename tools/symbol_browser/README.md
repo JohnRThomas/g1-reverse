@@ -19,7 +19,9 @@ tools/symbol_browser/run.sh --port 8877
 
 ## Capabilities
 
-- Search and filter the complete canonical CPUAPP or CPUNET corpus.
+- Search the G1 application corpus by default. The **G1 application only**
+  checkbox exposes or hides catalog-proven SDK, toolchain, and bundled-library
+  bodies without affecting direct GoToRef navigation.
 - Inspect reconstructed C with linked function and address references.
 - Review callers, callees, data references, source usages, aliases, ABI details,
   raw identities, addresses, and naming evidence.
@@ -44,6 +46,17 @@ If the pipeline fails, the override file is restored and the error is shown in
 the dialog. While `recon/SESSION_COORDINATION.md` contains an active `HELD`
 marker, canonical writes are refused; browsing and GoToRef remain fully usable.
 The app does not use a shadow proposal catalog.
+
+## Ownership filter
+
+CPUAPP ownership comes from
+`recon/application/application_sources.json`, including its explicit product
+overrides and library evidence. CPUNET hides every upstream-owned function in
+the adoption manifest plus the independently proven SDK functions in
+`net_function_ownership.json`. Unclassified functions remain visible so the
+filter cannot silently discard unresolved product code. Unchecking the box
+restores the complete canonical corpus; GoToRef always resolves hidden library
+functions directly.
 
 ## Design and accessibility
 

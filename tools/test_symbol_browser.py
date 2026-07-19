@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import unittest
 from pathlib import Path
 
@@ -30,6 +31,19 @@ class SymbolBrowserTests(unittest.TestCase):
         for core in ("app", "net"):
             expected = len(list((ROOT / f"recon/{core}/src").glob("*.c")))
             self.assertEqual(meta["cores"][core]["total"], expected)
+
+    def test_application_filter_hides_catalogued_libraries(self):
+        manifest = json.loads((ROOT / "recon/application/application_sources.json").read_text())
+        summary = manifest["summary"]
+        meta = self.index.meta()["cores"]["app"]
+        self.assertEqual(meta["application"], summary["included_g1_application"])
+        self.assertEqual(meta["library"], summary["excluded_library"])
+        visible = self.index.list_symbols("app", "", "all", 1, 10)
+        complete = self.index.list_symbols("app", "", "all", 1, 10, False)
+        self.assertEqual(visible["total"], summary["included_g1_application"])
+        self.assertEqual(complete["total"], summary["total_cpuapp_functions"])
+        self.assertEqual(self.index.list_symbols("app", "lc3_encode", "all", 1, 10)["total"], 0)
+        self.assertGreater(self.index.list_symbols("app", "lc3_encode", "all", 1, 10, False)["total"], 0)
 
     def test_goto_by_name_raw_entry_and_interior_address(self):
         result = self.index.list_symbols("app", "", "all", 1, 10)
@@ -65,6 +79,7 @@ class SymbolBrowserTests(unittest.TestCase):
         js = (ROOT / "tools/symbol_browser/static/app.js").read_text()
         self.assertIn("GoToRef", html)
         self.assertIn("Rename symbol", html)
+        self.assertIn('id="application-only" type="checkbox" checked', html)
         self.assertIn('id="close-rename" type="button"', html)
         self.assertIn('id="cancel-rename" type="button"', html)
         self.assertIn("prefers-reduced-motion", css)

@@ -8,6 +8,7 @@ const state = {
   query: "",
   page: 1,
   limit: 60,
+  applicationOnly: true,
   total: 0,
   items: [],
   current: null,
@@ -19,6 +20,7 @@ const els = {
   gotoForm: $("#goto-form"),
   gotoInput: $("#goto-input"),
   symbolSearch: $("#symbol-search"),
+  applicationOnly: $("#application-only"),
   symbolList: $("#symbol-list"),
   symbolCount: $("#symbol-count"),
   loadMore: $("#load-more"),
@@ -113,9 +115,10 @@ async function loadMeta() {
   try {
     state.meta = await api("/api/meta");
     const info = state.meta.cores[state.core];
-    els.catalogStatus.textContent = state.meta.coordination_active
-      ? `Live sweep · ${info.unnamed} unnamed`
-      : `Catalogs live · ${info.unnamed} unnamed`;
+    const ownershipStatus = state.applicationOnly
+      ? `${info.application.toLocaleString()} G1 · ${info.library.toLocaleString()} libraries hidden`
+      : `${info.total.toLocaleString()} functions · libraries visible`;
+    els.catalogStatus.textContent = state.meta.coordination_active ? `Live sweep · ${ownershipStatus}` : ownershipStatus;
     els.coordinationNote.hidden = !state.meta.coordination_active;
   } catch (error) {
     els.catalogStatus.textContent = "Catalog read delayed";
@@ -135,6 +138,7 @@ async function loadSymbols(append = false) {
     q: state.query,
     page: String(state.page),
     limit: String(state.limit),
+    application_only: state.applicationOnly ? "1" : "0",
   });
   try {
     const result = await api(`/api/symbols?${params}`);
@@ -157,6 +161,7 @@ function renderSymbolList() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "symbol-item";
+    button.classList.toggle("library", item.ownership === "library");
     button.style.setProperty("--i", index % state.limit);
     button.dataset.address = item.address;
     button.setAttribute("role", "option");
@@ -209,6 +214,8 @@ function renderDetail(item, targetLine = 0) {
 
   const badges = [];
   badges.push(item.kind === "data" ? ["Data", ""] : [item.human ? "Named" : "Unnamed", item.human ? "verified" : "unnamed"]);
+  if (item.ownership === "library") badges.push(["Library", "library"]);
+  else if (item.ownership === "g1_application_candidate") badges.push(["G1 candidate", "candidate"]);
   if (item.edited) badges.push(["User edit", "edited"]);
   if (item.is_thunk) badges.push(["Thunk", ""]);
   els.titleBadges.innerHTML = badges.map(([text, cls]) => `<span class="badge ${cls}">${text}</span>`).join("");
@@ -334,6 +341,8 @@ function renderInfo(item) {
     ["Entry address", item.address],
     ["Raw identity", item.raw_name],
     ["Canonical name", item.canonical_name],
+    ["Ownership", item.kind === "data" ? "Data reference" : item.ownership === "library" ? "Library / SDK" : item.ownership === "g1_application" ? "G1 application" : "G1 application candidate"],
+    ["Ownership evidence", item.ownership_evidence?.join(", ") || item.ownership_status || "Not classified as library"],
     ["Signature", item.signature || "Unknown / data"],
     ["Calling convention", item.calling_convention || "Unknown"],
     ["Name evidence", item.name_source || "Not yet recorded"],
@@ -387,6 +396,13 @@ async function saveRename(event) {
 function bindEvents() {
   els.gotoForm.addEventListener("submit", event => { event.preventDefault(); goToReference(els.gotoInput.value); });
   els.symbolSearch.addEventListener("input", debounce(() => { state.query = els.symbolSearch.value; loadSymbols(); }));
+  els.applicationOnly.addEventListener("change", async () => {
+    state.applicationOnly = els.applicationOnly.checked;
+    await Promise.all([loadSymbols(), loadMeta()]);
+    if (state.applicationOnly && state.current?.ownership === "library" && state.items[0]) {
+      navigate(state.core, state.items[0].address);
+    }
+  });
   els.loadMore.addEventListener("click", () => { state.page += 1; loadSymbols(true); });
   els.renameButton.addEventListener("click", openRename);
   els.renameForm.addEventListener("submit", saveRename);
