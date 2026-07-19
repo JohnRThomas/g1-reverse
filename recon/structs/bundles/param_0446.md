@@ -10,7 +10,7 @@ members (4 shown of 4):
   - ProcessAesDrv @ 0x7b694  as param_1  [LIBRARY]
   - FinishAesDrv @ 0x7b9cc  as param_1  [LIBRARY]
 
-layout notes: overlap at 0xf (prev field ends 0x10)
+layout notes: 0xc: access width 4 exceeds gap 3 to next field (overlap/union)
 
 candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
 ```c
@@ -18,7 +18,8 @@ struct param_0446 {
     uint8_t    _pad_0x0[0x4];   /* +0x0 pad */
     uint32_t   field_0x4;   /* +0x4  sz=4 rw=r types=idx4 */
     uint32_t   field_0x8;   /* +0x8  sz=4 rw=r types=idx4 */
-    uint32_t   field_0xc;   /* +0xc  sz=4 rw=r types=idx4 */
+    uint8_t    field_0xc[0x3];   /* +0xc pad */
+    uint8_t    field_0xf;   /* +0xf  sz=1 rw=rw types=char,undefined1 */
     uint8_t    _pad_0x10[0x20];   /* +0x10 pad */
     uint32_t   field_0x30;   /* +0x30  sz=4 rw=r types=idx4,uint */
     uint32_t   field_0x34;   /* +0x34  sz=4 rw=rw types=idx4,int,uint,undefined4 */

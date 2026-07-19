@@ -7,14 +7,15 @@ library hint: likely G1-original
 members (1 shown of 1):
   - stdio_reset_ungetc_buffer @ 0x87862  as param_2  [APPLICATION]
 
-layout notes: overlap at 0x4 (prev field ends 0x5)
+layout notes: 0x3: access width 2 exceeds gap 1 to next field (overlap/union)
 
 candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
 ```c
 struct param_0749 {
     uint8_t    _pad_0x0[0x3];   /* +0x0 pad */
-    uint16_t   field_0x3;   /* +0x3  sz=2 rw=rw types=ushort */
-    uint8_t    _pad_0x5[0xb];   /* +0x5 pad */
+    uint8_t    field_0x3;   /* +0x3  sz=2 rw=rw types=ushort */
+    uint32_t   field_0x4;   /* +0x4  sz=4 rw=r types=idx4 */
+    uint8_t    _pad_0x8[0x8];   /* +0x8 pad */
     uint32_t   field_0x10;   /* +0x10  sz=4 rw=r types=idx4 */
     uint8_t    _pad_0x14[0x20];   /* +0x14 pad */
     uint32_t   field_0x34;   /* +0x34  sz=4 rw=r types=idx4 */

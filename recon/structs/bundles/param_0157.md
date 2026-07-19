@@ -9,21 +9,26 @@ members (3 shown of 3):
   - ancs_subscribe_notification_source @ 0x4f040  as param_1  [APPLICATION]
   - ancs_subscribe_data_source @ 0x4f0ec  as param_1  [APPLICATION]
 
-layout notes: overlap at 0x3 (prev field ends 0x4); overlap at 0xa (prev field ends 0xc); overlap at 0xe (prev field ends 0x10); overlap at 0x20e (prev field ends 0x20f); overlap at 0x216 (prev field ends 0x217)
+layout notes: 0x2: access width 2 exceeds gap 1 to next field (overlap/union); 0x3: access width 2 exceeds gap 1 to next field (overlap/union); 0x8: access width 4 exceeds gap 2 to next field (overlap/union); 0xc: access width 4 exceeds gap 2 to next field (overlap/union); 0x20d: access width 2 exceeds gap 1 to next field (overlap/union); 0x215: access width 2 exceeds gap 1 to next field (overlap/union)
 
 candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
 ```c
 struct param_0157 {
     uint8_t    _pad_0x0[0x2];   /* +0x0 pad */
-    uint16_t   field_0x2;   /* +0x2  sz=2 rw=w types=undefined2 */
+    uint8_t    field_0x2;   /* +0x2  sz=2 rw=w types=undefined2 */
+    uint8_t    field_0x3;   /* +0x3  sz=2 rw=rw types=undefined2 */
     uint32_t   field_0x4;   /* +0x4  sz=2,4 rw=rw types=idx4,undefined2 */
-    uint32_t   field_0x8;   /* +0x8  sz=4 rw=r types=idx4 */
-    uint32_t   field_0xc;   /* +0xc  sz=4 rw=r types=idx4 */
+    uint16_t   field_0x8;   /* +0x8  sz=4 rw=r types=idx4 */
+    uint16_t   field_0xa;   /* +0xa  sz=2 rw=rw types=undefined2 */
+    uint16_t   field_0xc;   /* +0xc  sz=4 rw=r types=idx4 */
+    uint16_t   field_0xe;   /* +0xe  sz=2 rw=rw types=undefined2 */
     uint8_t    _pad_0x10[0x1fd];   /* +0x10 pad */
-    uint16_t   field_0x20d;   /* +0x20d  sz=2 rw=w types=undefined2 */
-    uint8_t    _pad_0x20f[0x6];   /* +0x20f pad */
-    uint16_t   field_0x215;   /* +0x215  sz=2 rw=w types=undefined2 */
-    uint8_t    _pad_0x217[0x611];   /* +0x217 pad */
+    uint8_t    field_0x20d;   /* +0x20d  sz=2 rw=w types=undefined2 */
+    uint16_t   field_0x20e;   /* +0x20e  sz=2 rw=w types=undefined2 */
+    uint8_t    _pad_0x210[0x5];   /* +0x210 pad */
+    uint8_t    field_0x215;   /* +0x215  sz=2 rw=w types=undefined2 */
+    uint16_t   field_0x216;   /* +0x216  sz=2 rw=w types=undefined2 */
+    uint8_t    _pad_0x218[0x610];   /* +0x218 pad */
     uint32_t   field_0x828;   /* +0x828  sz=4 rw=r types=idx4 */
     uint8_t    _pad_0x82c[0xa];   /* +0x82c pad */
     uint16_t   field_0x836;   /* +0x836  sz=2 rw=w types=undefined2 */

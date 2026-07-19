@@ -8,7 +8,7 @@ members (2 shown of 2):
   - build_and_send_device_status_report @ 0x22b00  as param_1  [APPLICATION]
   - load_sys_setting @ 0x22bd0  as param_1  [APPLICATION]
 
-layout notes: overlap at 0xede (prev field ends 0xee0)
+layout notes: 0xedc: access width 4 exceeds gap 2 to next field (overlap/union)
 
 candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
 ```c
@@ -21,7 +21,8 @@ struct param_0042 {
     uint8_t    field_0xed4;   /* +0xed4  sz=1 rw=rw types=char,undefined1 */
     uint8_t    _pad_0xed5[0x5];   /* +0xed5 pad */
     uint16_t   field_0xeda;   /* +0xeda  sz=2 rw=rw types=undefined2 */
-    uint32_t   field_0xedc;   /* +0xedc  sz=2,4 rw=rw types=undefined2,undefined4 */
+    uint16_t   field_0xedc;   /* +0xedc  sz=2,4 rw=rw types=undefined2,undefined4 */
+    uint16_t   field_0xede;   /* +0xede  sz=2 rw=rw types=short,undefined2 */
     uint8_t    _pad_0xee0[0x84];   /* +0xee0 pad */
     uint32_t   field_0xf64;   /* +0xf64  sz=4 rw=rw types=undefined4 */
     uint8_t    _pad_0xf68[0x2c];   /* +0xf68 pad */

@@ -15,15 +15,20 @@ members (9 shown of 9):
   - FUN_00082d6a @ 0x82d6a  as param_5  [APPLICATION]
   - l2cap_reassemble_frag @ 0x82e04  as param_5  [APPLICATION]
 
-layout notes: overlap at 0x2 (prev field ends 0x4); overlap at 0x3 (prev field ends 0x4); overlap at 0x6 (prev field ends 0x8); overlap at 0xa (prev field ends 0xc); overlap at 0xe (prev field ends 0x10)
+layout notes: 0x0: access width 4 exceeds gap 2 to next field (overlap/union); 0x2: access width 2 exceeds gap 1 to next field (overlap/union); 0x3: access width 2 exceeds gap 1 to next field (overlap/union); 0x4: access width 4 exceeds gap 2 to next field (overlap/union); 0x8: access width 4 exceeds gap 2 to next field (overlap/union); 0xc: access width 4 exceeds gap 2 to next field (overlap/union)
 
 candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
 ```c
 struct param_0261 {
-    uint32_t   field_0x0;   /* +0x0  sz=4 rw=r types=code */
-    void *     field_0x4;   /* +0x4  sz=1,4 rw=r types=byte,char,idx4,ptr */
-    uint32_t   field_0x8;   /* +0x8  sz=2,4 rw=rw types=idx4,short,undefined2 */
-    uint32_t   field_0xc;   /* +0xc  sz=4 rw=r types=idx4 */
+    uint16_t   field_0x0;   /* +0x0  sz=4 rw=r types=code */
+    uint8_t    field_0x2;   /* +0x2  sz=2 rw=rw types=short,ushort */
+    uint8_t    field_0x3;   /* +0x3  sz=2 rw=rw types=short,undefined2,ushort */
+    uint16_t   field_0x4;   /* +0x4  sz=1,4 rw=r types=byte,char,idx4,ptr */
+    uint16_t   field_0x6;   /* +0x6  sz=2 rw=rw types=short */
+    uint16_t   field_0x8;   /* +0x8  sz=2,4 rw=rw types=idx4,short,undefined2 */
+    uint16_t   field_0xa;   /* +0xa  sz=2 rw=rw types=undefined2 */
+    uint16_t   field_0xc;   /* +0xc  sz=4 rw=r types=idx4 */
+    uint16_t   field_0xe;   /* +0xe  sz=2 rw=r types=ushort */
     uint32_t   field_0x10;   /* +0x10  sz=1,4 rw=r types=char,idx4 */
 };
 ```

@@ -1,0 +1,79 @@
+## review group param_0164  (1 cluster(s), kinds=param)
+
+### proposal for param_0164
+struct_name: tc_hash_mac_state | is_library: True | library_name: tc_hmac_prng_struct | is_array: None | confidence: low
+purpose: Conflated TinyCrypt hashing/MAC context — cluster merges tc_sha256_state_struct, tc_cmac_struct and tc_hmac_prng_struct because they share the same call-argument position; treat offsets as approximate/mixed
+fields:
+  0x4  uint32_t     iv0  sha256 iv word 0
+  0x8  uint32_t     iv1  sha256 iv word 1
+  0xc  uint32_t     iv2  sha256 iv word 2
+  0x10  uint32_t     iv3  sha256 iv word 3
+  0x14  uint32_t     iv4  sha256 iv word 4
+  0x18  uint32_t     iv5  sha256 iv word 5
+  0x1c  uint32_t     iv6  sha256 iv word 6
+  0x20  uint32_t     bits_hashed_hi  rw
+  0x24  uint32_t     bits_hashed_lo  rw
+  0x44  uint32_t     leftover0  rw, cmac/leftover buffer word
+  0x48  uint32_t     leftover1  rw
+  0x50  uint32_t     leftover2  rw
+  0x54  uint32_t     leftover3  rw
+  0x58  uint32_t     leftover_offset  w
+  0x60  uint8_t      key_byte0  w
+  0x61  uint8_t      key_byte1  w
+  0x62  uint8_t      key_byte2  w
+  0x63  uint8_t      key_byte3  w
+  0x64  uint32_t     countdown  w
+  0x68  uint32_t     iv_offset  rw
+  0x130  uint32_t     prng_extra  rw, tail field beyond sha256/cmac state — likely part of tc_hmac_prng_struct
+
+<ground-truth bundle for param_0164>
+### cluster param_0164  (param, 11 members, 21 fields, size>=0x134)
+
+Shared pointer-parameter object unified across call-argument flow.
+
+library hint: LIKELY LIBRARY (prefixes: tc; 10/11 members are LIBRARY-class)
+
+members (11 shown of 11):
+  - tc_sha256_compress_block @ 0x4fadc  as param_1  [APPLICATION]
+  - tc_sha256_init @ 0x4fca0  as param_1  [LIBRARY]
+  - tc_cmac_init @ 0x8013e  as param_1  [LIBRARY]
+  - tc_cmac_setup @ 0x8016a  as param_1  [LIBRARY]
+  - tc_cmac_update @ 0x801c0  as param_1  [LIBRARY]
+  - tc_cmac_final @ 0x80294  as param_2  [LIBRARY]
+  - tc_sha256_update @ 0x80300  as param_1  [LIBRARY]
+  - tc_sha256_final @ 0x8034c  as param_2  [LIBRARY]
+  - tc_hmac_prng_init @ 0x80652  as param_1  [LIBRARY]
+  - tc_hmac_prng_generate @ 0x806c4  as param_3  [LIBRARY]
+  - gen_hash_m @ 0x8260c  as param_3  [LIBRARY]
+
+candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
+```c
+struct param_0164 {
+    uint8_t    _pad_0x0[0x4];   /* +0x0 pad */
+    uint32_t   field_0x4;   /* +0x4  sz=4 rw=r types=idx4 */
+    uint32_t   field_0x8;   /* +0x8  sz=4 rw=r types=idx4 */
+    uint32_t   field_0xc;   /* +0xc  sz=4 rw=r types=idx4 */
+    uint32_t   field_0x10;   /* +0x10  sz=4 rw=r types=idx4 */
+    uint32_t   field_0x14;   /* +0x14  sz=4 rw=r types=idx4 */
+    uint32_t   field_0x18;   /* +0x18  sz=4 rw=r types=idx4 */
+    uint32_t   field_0x1c;   /* +0x1c  sz=4 rw=r types=idx4 */
+    uint32_t   field_0x20;   /* +0x20  sz=4 rw=rw types=uint */
+    uint32_t   field_0x24;   /* +0x24  sz=4 rw=rw types=int,uint,undefined4 */
+    uint8_t    _pad_0x28[0x1c];   /* +0x28 pad */
+    uint32_t   field_0x44;   /* +0x44  sz=4 rw=rw types=int,uint,undefined4 */
+    uint32_t   field_0x48;   /* +0x48  sz=4 rw=rw types=undefined4 */
+    uint8_t    _pad_0x4c[0x4];   /* +0x4c pad */
+    uint32_t   field_0x50;   /* +0x50  sz=4 rw=rw types=int,undefined4 */
+    uint32_t   field_0x54;   /* +0x54  sz=4 rw=rw types=int,uint,undefined4 */
+    uint32_t   field_0x58;   /* +0x58  sz=4 rw=w types=int */
+    uint8_t    _pad_0x5c[0x4];   /* +0x5c pad */
+    uint8_t    field_0x60;   /* +0x60  sz=1 rw=w types=char */
+    uint8_t    field_0x61;   /* +0x61  sz=1 rw=w types=char */
+    uint8_t    field_0x62;   /* +0x62  sz=1 rw=w types=char */
+    uint8_t    field_0x63;   /* +0x63  sz=1 rw=w types=char */
+    uint32_t   field_0x64;   /* +0x64  sz=4 rw=w types=uint */
+    uint32_t   field_0x68;   /* +0x68  sz=4 rw=rw types=int,uint,undefined4 */
+    uint8_t    _pad_0x6c[0xc4];   /* +0x6c pad */
+    uint32_t   field_0x130;   /* +0x130  sz=4 rw=rw types=int,undefined4 */
+};
+```

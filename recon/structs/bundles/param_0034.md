@@ -27,20 +27,25 @@ members (21 shown of 21):
   - bt_conn_create_pdu @ 0x81820  as param_1  [APPLICATION]
   - bt_l2cap_le_lookup_rx_cid @ 0x81aca  as param_1  [APPLICATION]
 
-layout notes: overlap at 0x3 (prev field ends 0x4); overlap at 0x6 (prev field ends 0x8); overlap at 0xc (prev field ends 0xe); overlap at 0xd (prev field ends 0xe); overlap at 0x10 (prev field ends 0x12)
+layout notes: 0x2: access width 2 exceeds gap 1 to next field (overlap/union); 0x4: access width 4 exceeds gap 2 to next field (overlap/union); 0xa: access width 4 exceeds gap 2 to next field (overlap/union); 0xc: access width 4 exceeds gap 1 to next field (overlap/union); 0xe: access width 4 exceeds gap 2 to next field (overlap/union)
 
 candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
 ```c
 struct param_0034 {
     uint8_t    _pad_0x0[0x1];   /* +0x0 pad */
     uint8_t    field_0x1;   /* +0x1  sz=1 rw=r types=char,undefined1 */
-    uint16_t   field_0x2;   /* +0x2  sz=1,2 rw=r types=byte,char,short */
-    uint32_t   field_0x4;   /* +0x4  sz=4 rw=rw types=int,uint */
+    uint8_t    field_0x2;   /* +0x2  sz=1,2 rw=r types=byte,char,short */
+    uint8_t    field_0x3;   /* +0x3  sz=1 rw=r types=byte,char */
+    uint16_t   field_0x4;   /* +0x4  sz=4 rw=rw types=int,uint */
+    uint8_t    field_0x6;   /* +0x6  sz=1 rw=w types=undefined1 */
+    uint8_t    _pad_0x7[0x1];   /* +0x7 pad */
     uint8_t    field_0x8;   /* +0x8  sz=1 rw=r types=undefined1 */
     uint8_t    field_0x9;   /* +0x9  sz=1 rw=r types=undefined1 */
-    void *     field_0xa;   /* +0xa  sz=1,4 rw=rw types=byte,ptr,undefined1 */
-    uint32_t   field_0xe;   /* +0xe  sz=4 rw=r types=int */
-    uint8_t    _pad_0x12[0x2];   /* +0x12 pad */
+    uint16_t   field_0xa;   /* +0xa  sz=1,4 rw=rw types=byte,ptr,undefined1 */
+    uint8_t    field_0xc;   /* +0xc  sz=1,4 rw=rw types=char,int,ptr,undefined1 */
+    uint8_t    field_0xd;   /* +0xd  sz=1 rw=rw types=byte,char,undefined1 */
+    uint16_t   field_0xe;   /* +0xe  sz=4 rw=r types=int */
+    uint32_t   field_0x10;   /* +0x10  sz=4 rw=rw types=int,undefined4 */
     void *     field_0x14;   /* +0x14  sz=4 rw=rw types=int,ptr,undefined4 */
     void *     field_0x18;   /* +0x18  sz=4 rw=rw types=ptr,undefined4 */
     uint32_t   field_0x1c;   /* +0x1c  sz=4 rw=rw types=int,undefined4 */

@@ -20,7 +20,7 @@ members (14 shown of 14):
   - att_chan_reset @ 0x83204  as param_1  [APPLICATION]
   - smp_pairing_confirm_send @ 0x832f0  as param_1  [APPLICATION]
 
-layout notes: overlap at 0xb (prev field ends 0xe); overlap at 0xc (prev field ends 0xe); overlap at 0xd (prev field ends 0xe); overlap at 0x12 (prev field ends 0x15); overlap at 0x13 (prev field ends 0x15); overlap at 0x14 (prev field ends 0x15); overlap at 0x16 (prev field ends 0x17); overlap at 0xe9 (prev field ends 0xea)
+layout notes: 0xa: access width 4 exceeds gap 1 to next field (overlap/union); 0x11: access width 4 exceeds gap 1 to next field (overlap/union); 0x15: access width 2 exceeds gap 1 to next field (overlap/union); 0xe8: access width 2 exceeds gap 1 to next field (overlap/union)
 
 candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
 ```c
@@ -31,11 +31,18 @@ struct param_0265 {
     uint32_t   field_0x4;   /* +0x4  sz=4 rw=r types=idx4 */
     uint8_t    field_0x8;   /* +0x8  sz=1 rw=rw types=byte,char */
     uint8_t    field_0x9;   /* +0x9  sz=1 rw=w types=undefined1 */
-    uint32_t   field_0xa;   /* +0xa  sz=4 rw=w types=undefined4 */
+    uint8_t    field_0xa;   /* +0xa  sz=4 rw=w types=undefined4 */
+    uint8_t    field_0xb;   /* +0xb  sz=1 rw=r types=byte */
+    uint8_t    field_0xc;   /* +0xc  sz=1 rw=r types=byte */
+    uint8_t    field_0xd;   /* +0xd  sz=1 rw=r types=byte */
     uint16_t   field_0xe;   /* +0xe  sz=2 rw=w types=undefined2 */
     uint8_t    field_0x10;   /* +0x10  sz=1 rw=w types=undefined1 */
-    uint32_t   field_0x11;   /* +0x11  sz=1,4 rw=rw types=undefined1,undefined4 */
-    uint16_t   field_0x15;   /* +0x15  sz=1,2 rw=rw types=byte,undefined1,undefined2 */
+    uint8_t    field_0x11;   /* +0x11  sz=1,4 rw=rw types=undefined1,undefined4 */
+    uint8_t    field_0x12;   /* +0x12  sz=1 rw=rw types=byte,undefined1 */
+    uint8_t    field_0x13;   /* +0x13  sz=1 rw=rw types=byte,undefined1 */
+    uint8_t    field_0x14;   /* +0x14  sz=1 rw=rw types=byte,undefined1 */
+    uint8_t    field_0x15;   /* +0x15  sz=1,2 rw=rw types=byte,undefined1,undefined2 */
+    uint8_t    field_0x16;   /* +0x16  sz=1 rw=rw types=byte,undefined1 */
     uint8_t    _pad_0x17[0x30];   /* +0x17 pad */
     uint8_t    field_0x47;   /* +0x47  sz=1 rw=w types=char */
     uint8_t    field_0x48;   /* +0x48  sz=1 rw=w types=char */
@@ -47,7 +54,8 @@ struct param_0265 {
     uint8_t    _pad_0xdd[0x3];   /* +0xdd pad */
     void *     field_0xe0;   /* +0xe0  sz=4 rw=r types=ptr */
     void *     field_0xe4;   /* +0xe4  sz=4 rw=r types=ptr */
-    uint16_t   field_0xe8;   /* +0xe8  sz=1,2 rw=rw types=short,undefined1 */
+    uint8_t    field_0xe8;   /* +0xe8  sz=1,2 rw=rw types=short,undefined1 */
+    uint8_t    field_0xe9;   /* +0xe9  sz=1 rw=rw types=byte,undefined1 */
     uint8_t    _pad_0xea[0x6];   /* +0xea pad */
     uint32_t   field_0xf0;   /* +0xf0  sz=4 rw=r types=int,undefined4 */
 };

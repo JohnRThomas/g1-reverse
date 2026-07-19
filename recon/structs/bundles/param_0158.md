@@ -9,14 +9,15 @@ members (3 shown of 3):
   - bt_ancs_request_attrs @ 0x7f6b6  as param_1  [APPLICATION]
   - bt_ancs_app_attr_request @ 0x7f7d2  as param_1  [APPLICATION]
 
-layout notes: overlap at 0x6 (prev field ends 0x8)
+layout notes: 0x4: access width 4 exceeds gap 2 to next field (overlap/union)
 
 candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
 ```c
 struct param_0158 {
     uint8_t    _pad_0x0[0x2];   /* +0x0 pad */
     uint16_t   field_0x2;   /* +0x2  sz=2 rw=r types=undefined2 */
-    uint32_t   field_0x4;   /* +0x4  sz=4 rw=rw types=uint */
+    uint16_t   field_0x4;   /* +0x4  sz=4 rw=rw types=uint */
+    uint16_t   field_0x6;   /* +0x6  sz=2 rw=w types=undefined2 */
     uint16_t   field_0x8;   /* +0x8  sz=2 rw=w types=undefined2 */
     uint8_t    _pad_0xa[0xa];   /* +0xa pad */
     uint32_t   field_0x14;   /* +0x14  sz=4 rw=r types=idx4 */

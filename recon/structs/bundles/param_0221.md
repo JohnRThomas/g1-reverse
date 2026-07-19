@@ -11,15 +11,17 @@ members (5 shown of 5):
   - gatt_notify_send @ 0x8199a  as param_1  [APPLICATION]
   - gatt_send_service_changed_ind @ 0x81b30  as param_1  [APPLICATION]
 
-layout notes: overlap at 0x5 (prev field ends 0x8); overlap at 0x16 (prev field ends 0x18)
+layout notes: 0x4: access width 4 exceeds gap 1 to next field (overlap/union); 0x14: access width 4 exceeds gap 2 to next field (overlap/union)
 
 candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
 ```c
 struct param_0221 {
     uint8_t    _pad_0x0[0x4];   /* +0x0 pad */
-    uint32_t   field_0x4;   /* +0x4  sz=4 rw=r types=idx4,int */
-    uint8_t    _pad_0x8[0xc];   /* +0x8 pad */
-    uint32_t   field_0x14;   /* +0x14  sz=2,4 rw=r types=idx4,undefined2 */
+    uint8_t    field_0x4;   /* +0x4  sz=4 rw=r types=idx4,int */
+    uint16_t   field_0x5;   /* +0x5  sz=2 rw=r types=undefined2 */
+    uint8_t    _pad_0x7[0xd];   /* +0x7 pad */
+    uint16_t   field_0x14;   /* +0x14  sz=2,4 rw=r types=idx4,undefined2 */
+    uint16_t   field_0x16;   /* +0x16  sz=2 rw=r types=undefined2,ushort */
     uint16_t   field_0x18;   /* +0x18  sz=2 rw=r types=undefined2,ushort */
     uint8_t    _pad_0x1a[0x2];   /* +0x1a pad */
     uint32_t   field_0x1c;   /* +0x1c  sz=4 rw=r types=undefined4 */

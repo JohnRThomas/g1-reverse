@@ -8,7 +8,7 @@ members (2 shown of 2):
   - l2cap_chan_le_send_seg @ 0x5757c  as param_1  [APPLICATION]
   - att_send_data_frags @ 0x81852  as param_1  [APPLICATION]
 
-layout notes: overlap at 0xa (prev field ends 0xb)
+layout notes: 0x9: access width 2 exceeds gap 1 to next field (overlap/union)
 
 candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
 ```c
@@ -16,8 +16,9 @@ struct param_0220 {
     uint8_t    _pad_0x0[0x4];   /* +0x0 pad */
     uint32_t   field_0x4;   /* +0x4  sz=4 rw=r types=idx4 */
     uint8_t    _pad_0x8[0x1];   /* +0x8 pad */
-    uint16_t   field_0x9;   /* +0x9  sz=2 rw=r types=undefined2 */
-    uint8_t    _pad_0xb[0x5];   /* +0xb pad */
+    uint8_t    field_0x9;   /* +0x9  sz=2 rw=r types=undefined2 */
+    uint16_t   field_0xa;   /* +0xa  sz=2 rw=r types=ushort */
+    uint8_t    _pad_0xc[0x4];   /* +0xc pad */
     uint32_t   field_0x10;   /* +0x10  sz=4 rw=r types=idx4 */
     uint8_t    _pad_0x14[0x12];   /* +0x14 pad */
     uint16_t   field_0x26;   /* +0x26  sz=2 rw=r types=ushort */

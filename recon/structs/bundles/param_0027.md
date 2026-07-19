@@ -30,7 +30,7 @@ members (31 shown of 31):
   - process_for_message_show @ 0x2c714  as param_1  [APPLICATION]
   - process_for_new_task @ 0x2c99c  as param_1  [APPLICATION]
 
-layout notes: overlap at 0xcb (prev field ends 0xcd); overlap at 0xd0 (prev field ends 0xd1); overlap at 0xe6 (prev field ends 0xe9); overlap at 0xe7 (prev field ends 0xe9); overlap at 0xe8 (prev field ends 0xe9); overlap at 0xec1 (prev field ends 0xec2); overlap at 0xef5 (prev field ends 0xef6); overlap at 0x1064 (prev field ends 0x1068); overlap at 0x106c (prev field ends 0x106d); overlap at 0x1091 (prev field ends 0x1092)
+layout notes: 0xc9: access width 4 exceeds gap 2 to next field (overlap/union); 0xcd: access width 4 exceeds gap 3 to next field (overlap/union); 0xd0: access width 4 exceeds gap 1 to next field (overlap/union); 0xe5: access width 4 exceeds gap 1 to next field (overlap/union); 0xec0: access width 2 exceeds gap 1 to next field (overlap/union); 0xef4: access width 2 exceeds gap 1 to next field (overlap/union); 0x1060: access width 8 exceeds gap 4 to next field (overlap/union); 0x1069: access width 4 exceeds gap 3 to next field (overlap/union); 0x106c: access width 4 exceeds gap 1 to next field (overlap/union); 0x1090: access width 2 exceeds gap 1 to next field (overlap/union)
 
 candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
 ```c
@@ -46,8 +46,11 @@ struct param_0027 {
     uint8_t    _pad_0x44[0x14];   /* +0x44 pad */
     uint32_t   field_0x58;   /* +0x58  sz=4 rw=r types=int */
     uint8_t    _pad_0x5c[0x6d];   /* +0x5c pad */
-    uint32_t   field_0xc9;   /* +0xc9  sz=4 rw=r types=undefined4 */
-    uint32_t   field_0xcd;   /* +0xcd  sz=1,4 rw=rw types=undefined1,undefined4 */
+    uint16_t   field_0xc9;   /* +0xc9  sz=4 rw=r types=undefined4 */
+    uint8_t    field_0xcb;   /* +0xcb  sz=1 rw=rw types=char,undefined1 */
+    uint8_t    _pad_0xcc[0x1];   /* +0xcc pad */
+    uint8_t    field_0xcd[0x3];   /* +0xcd pad */
+    uint8_t    field_0xd0;   /* +0xd0  sz=4 rw=rw types=undefined4 */
     uint16_t   field_0xd1;   /* +0xd1  sz=2 rw=r types=undefined2 */
     uint8_t    _pad_0xd3[0x1];   /* +0xd3 pad */
     uint8_t    field_0xd4;   /* +0xd4  sz=1 rw=rw types=byte */
@@ -57,7 +60,10 @@ struct param_0027 {
     uint8_t    _pad_0xda[0x5];   /* +0xda pad */
     uint32_t   field_0xdf;   /* +0xdf  sz=4 rw=rw types=uint,undefined4 */
     uint8_t    _pad_0xe3[0x2];   /* +0xe3 pad */
-    uint32_t   field_0xe5;   /* +0xe5  sz=1,4 rw=rw types=char,undefined1,undefined4 */
+    uint8_t    field_0xe5;   /* +0xe5  sz=1,4 rw=rw types=char,undefined1,undefined4 */
+    uint8_t    field_0xe6;   /* +0xe6  sz=1 rw=r types=byte,char,undefined1 */
+    uint8_t    field_0xe7;   /* +0xe7  sz=1 rw=r types=byte,char,undefined1 */
+    uint8_t    field_0xe8;   /* +0xe8  sz=1 rw=r types=byte,char */
     uint8_t    _pad_0xe9[0x3];   /* +0xe9 pad */
     uint8_t    field_0xec;   /* +0xec  sz=1 rw=w types=undefined1 */
     uint16_t   field_0xed;   /* +0xed  sz=2 rw=w types=short */
@@ -115,7 +121,8 @@ struct param_0027 {
     uint32_t   field_0xeb4;   /* +0xeb4  sz=4 rw=r types=undefined4 */
     uint32_t   field_0xeb8;   /* +0xeb8  sz=4 rw=r types=undefined4 */
     uint8_t    _pad_0xebc[0x4];   /* +0xebc pad */
-    uint16_t   field_0xec0;   /* +0xec0  sz=1,2 rw=rw types=byte,undefined1,undefined2 */
+    uint8_t    field_0xec0;   /* +0xec0  sz=1,2 rw=rw types=byte,undefined1,undefined2 */
+    uint8_t    field_0xec1;   /* +0xec1  sz=1 rw=rw types=byte,undefined1 */
     uint8_t    _pad_0xec2[0x6];   /* +0xec2 pad */
     uint32_t   field_0xec8;   /* +0xec8  sz=4 rw=r types=int */
     uint8_t    _pad_0xecc[0x9];   /* +0xecc pad */
@@ -127,7 +134,8 @@ struct param_0027 {
     uint8_t    _pad_0xee5[0x3];   /* +0xee5 pad */
     uint32_t   field_0xee8;   /* +0xee8  sz=4 rw=rw types=int */
     uint8_t    _pad_0xeec[0x8];   /* +0xeec pad */
-    uint16_t   field_0xef4;   /* +0xef4  sz=1,2 rw=rw types=undefined1,undefined2 */
+    uint8_t    field_0xef4;   /* +0xef4  sz=1,2 rw=rw types=undefined1,undefined2 */
+    uint8_t    field_0xef5;   /* +0xef5  sz=1 rw=rw types=undefined1 */
     uint8_t    _pad_0xef6[0x6a];   /* +0xef6 pad */
     uint8_t    field_0xf60;   /* +0xf60  sz=1 rw=rw types=byte,undefined1 */
     uint8_t    _pad_0xf61[0x7];   /* +0xf61 pad */
@@ -182,9 +190,11 @@ struct param_0027 {
     uint8_t    _pad_0x105b[0x1];   /* +0x105b pad */
     uint16_t   field_0x105c;   /* +0x105c  sz=2 rw=r types=ushort */
     uint8_t    _pad_0x105e[0x2];   /* +0x105e pad */
-    uint64_t   field_0x1060;   /* +0x1060  sz=8 rw=rw types=longlong */
+    uint32_t   field_0x1060;   /* +0x1060  sz=8 rw=rw types=longlong */
+    uint32_t   field_0x1064;   /* +0x1064  sz=4 rw=r types=int */
     uint8_t    _pad_0x1068[0x1];   /* +0x1068 pad */
-    uint32_t   field_0x1069;   /* +0x1069  sz=4 rw=rw types=undefined4 */
+    uint8_t    field_0x1069[0x3];   /* +0x1069 pad */
+    uint8_t    field_0x106c;   /* +0x106c  sz=4 rw=w types=undefined4 */
     uint16_t   field_0x106d;   /* +0x106d  sz=2 rw=rw types=undefined2 */
     uint8_t    field_0x106f;   /* +0x106f  sz=1 rw=rw types=undefined1 */
     uint8_t    field_0x1070;   /* +0x1070  sz=1 rw=rw types=undefined1 */
@@ -197,7 +207,8 @@ struct param_0027 {
     uint8_t    field_0x108d;   /* +0x108d  sz=1 rw=rw types=undefined1 */
     uint8_t    _pad_0x108e[0x1];   /* +0x108e pad */
     uint8_t    field_0x108f;   /* +0x108f  sz=1 rw=rw types=byte,undefined1 */
-    uint16_t   field_0x1090;   /* +0x1090  sz=1,2 rw=rw types=undefined1,undefined2 */
+    uint8_t    field_0x1090;   /* +0x1090  sz=1,2 rw=rw types=undefined1,undefined2 */
+    uint8_t    field_0x1091;   /* +0x1091  sz=1 rw=rw types=undefined1 */
     uint8_t    _pad_0x1092[0xae6];   /* +0x1092 pad */
     uint32_t   field_0x1b78;   /* +0x1b78  sz=4 rw=r types=idx4 */
     uint32_t   field_0x1b7c;   /* +0x1b7c  sz=4 rw=r types=idx4 */

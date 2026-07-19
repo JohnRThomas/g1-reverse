@@ -7,7 +7,7 @@ library hint: likely G1-original
 members (1 shown of 1):
   - pdm_configure_clock_and_init @ 0x5fc7c  as param_2  [APPLICATION]
 
-layout notes: overlap at 0x25 (prev field ends 0x28); overlap at 0x26 (prev field ends 0x28); overlap at 0x27 (prev field ends 0x28)
+layout notes: 0x24: access width 4 exceeds gap 1 to next field (overlap/union)
 
 candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
 ```c
@@ -20,7 +20,10 @@ struct param_0295 {
     uint32_t   field_0x18;   /* +0x18  sz=4 rw=r types=idx4 */
     uint32_t   field_0x1c;   /* +0x1c  sz=4 rw=r types=idx4 */
     uint32_t   field_0x20;   /* +0x20  sz=4 rw=r types=idx4 */
-    uint32_t   field_0x24;   /* +0x24  sz=4 rw=r types=idx4 */
+    uint8_t    field_0x24;   /* +0x24  sz=4 rw=r types=idx4 */
+    uint8_t    field_0x25;   /* +0x25  sz=1 rw=w types=byte,undefined1 */
+    uint8_t    field_0x26;   /* +0x26  sz=1 rw=r types=char */
+    uint8_t    field_0x27;   /* +0x27  sz=1 rw=w types=byte,undefined1 */
     uint8_t    _pad_0x28[0x3];   /* +0x28 pad */
 };
 ```

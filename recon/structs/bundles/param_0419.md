@@ -7,14 +7,14 @@ library hint: likely G1-original
 members (1 shown of 1):
   - newlib_stdio_init_stream @ 0x76b48  as param_1  [APPLICATION]
 
-layout notes: overlap at 0x4 (prev field ends 0x5)
+layout notes: 0x3: access width 2 exceeds gap 1 to next field (overlap/union)
 
 candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
 ```c
 struct param_0419 {
     uint8_t    _pad_0x0[0x3];   /* +0x0 pad */
-    uint16_t   field_0x3;   /* +0x3  sz=2 rw=w types=undefined2 */
-    uint8_t    _pad_0x5[0x3];   /* +0x5 pad */
+    uint8_t    field_0x3;   /* +0x3  sz=2 rw=w types=undefined2 */
+    uint32_t   field_0x4;   /* +0x4  sz=4 rw=r types=idx4 */
     uint32_t   field_0x8;   /* +0x8  sz=4 rw=r types=idx4 */
     uint8_t    _pad_0xc[0x2];   /* +0xc pad */
     uint16_t   field_0xe;   /* +0xe  sz=2 rw=w types=undefined2 */

@@ -3,12 +3,18 @@
 > Purpose: two Claude sessions work this repo in the same dir. Before editing a
 > path listed here as **HELD**, ping the other session or pick different files.
 
-## HELD by session A (struct-recovery wave) — 2026-07-19, in progress
+## DONE by session A (struct-recovery wave) — 2026-07-19 (landed, committed)
 
-**Task:** recover in-memory struct layouts across CPUAPP from Ghidra footprints,
-name them via a 20-sonnet + 10-opus agent flow, mechanistically verify, emit JSON.
+**Task:** recovered CPUAPP in-memory struct layouts from Ghidra footprints,
+named via 20-sonnet + 10-opus flow, mechanistically verified, emitted JSON.
+**Complete — no locks remain.**
 
-Files this session holds (do NOT touch):
+Result: 676 structs (all D1+D2 verified), 684/684 clusters covered; 299 library
+(60 offset-verified vs pinned headers) / 377 G1-original. Deliverables in
+`recon/structs/` (final: `struct_catalog_app.json`). JSON-only — no source,
+name-map, or net files touched.
+
+Files this session owns (now committed):
 
 - `recon/structs/**` — footprints, clusters, bundles, proposals, catalogs (this session owns the whole dir)
 - `tools/struct_extract.py`, `tools/struct_cluster.py`, `tools/build_struct_bundles.py`,

@@ -1,0 +1,28 @@
+## review group param_0079  (1 cluster(s), kinds=param)
+
+### proposal for param_0079
+struct_name: new_message_evt | is_library: False | library_name:  | is_array: None | confidence: low
+purpose: Small event/message struct with two byte flags passed to process_for_new_message_come_on
+fields:
+  0x1  uint8_t      msg_type  
+  0x7  uint8_t      status_flag  
+
+<ground-truth bundle for param_0079>
+### cluster param_0079  (param, 1 members, 2 fields, size>=0x8)
+
+Shared pointer-parameter object unified across call-argument flow.
+
+library hint: likely G1-original
+
+members (1 shown of 1):
+  - process_for_new_message_come_on @ 0x2c498  as param_2  [APPLICATION]
+
+candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
+```c
+struct param_0079 {
+    uint8_t    _pad_0x0[0x1];   /* +0x0 pad */
+    uint8_t    field_0x1;   /* +0x1  sz=1 rw=r types=byte,char */
+    uint8_t    _pad_0x2[0x5];   /* +0x2 pad */
+    uint8_t    field_0x7;   /* +0x7  sz=1 rw=rw types=byte,char,undefined1 */
+};
+```

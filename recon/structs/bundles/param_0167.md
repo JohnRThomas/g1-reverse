@@ -17,14 +17,17 @@ members (11 shown of 11):
   - k_sem_give @ 0x72880  as param_1  [APPLICATION]
   - z_impl_k_sem_take @ 0x72908  as param_1  [APPLICATION]
 
-layout notes: overlap at 0xd (prev field ends 0x10); overlap at 0xe (prev field ends 0x10); overlap at 0xf (prev field ends 0x10)
+layout notes: 0xc: access width 4 exceeds gap 1 to next field (overlap/union)
 
 candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
 ```c
 struct param_0167 {
     uint8_t    _pad_0x0[0x8];   /* +0x0 pad */
     uint32_t   field_0x8;   /* +0x8  sz=4 rw=rw types=idx4,int,undefined4 */
-    uint32_t   field_0xc;   /* +0xc  sz=1,4 rw=rw types=idx4,int,undefined1,undefined4 */
+    uint8_t    field_0xc;   /* +0xc  sz=1,4 rw=rw types=idx4,int,undefined1,undefined4 */
+    uint8_t    field_0xd;   /* +0xd  sz=1 rw=rw types=char,undefined1 */
+    uint8_t    field_0xe;   /* +0xe  sz=1 rw=w types=char */
+    uint8_t    field_0xf;   /* +0xf  sz=1 rw=w types=undefined1 */
     uint32_t   field_0x10;   /* +0x10  sz=4 rw=rw types=idx4,int,uint,undefined4 */
     uint32_t   field_0x14;   /* +0x14  sz=4 rw=r types=int,uint */
     void *     field_0x18;   /* +0x18  sz=4 rw=rw types=int,ptr,uint,undefined4 */

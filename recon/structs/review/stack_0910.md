@@ -1,0 +1,27 @@
+## review group stack_0910  (1 cluster(s), kinds=stack)
+
+### proposal for stack_0910
+struct_name: process_for_new_task_locals | is_library: False | library_name:  | is_array: None | confidence: low
+purpose: Local scratch struct in process_for_new_task holding two related index/id words
+fields:
+  0x0  uint32_t     field_0x0  
+  0x8  uint32_t     field_0x8  
+
+<ground-truth bundle for stack_0910>
+### cluster stack_0910  (stack, 1 members, 2 fields, size>=0xc)
+
+Stack-frame local local_2c in process_for_new_task (not shared across functions).
+
+library hint: likely G1-original
+
+members (1 shown of 1):
+  - process_for_new_task @ 0x2c99c  as local_2c  [APPLICATION]
+
+candidate layout (offsets/sizes are GROUND TRUTH from Ghidra — do not change them; name the struct + fields, refine types, judge cohesion):
+```c
+struct stack_0910 {
+    uint32_t   field_0x0;   /* +0x0  sz=4 rw=r types=idx4 */
+    uint8_t    _pad_0x4[0x4];   /* +0x4 pad */
+    uint32_t   field_0x8;   /* +0x8  sz=4 rw=r types=idx4 */
+};
+```
