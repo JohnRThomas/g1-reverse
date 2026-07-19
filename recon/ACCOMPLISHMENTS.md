@@ -1,8 +1,10 @@
 # G1 Firmware Reconstruction — Accomplishments and Current State
 
-**Status date:** 2026-07-19  
-**Repository checkpoint:** `119584cc` (`main`)  
-**Target:** Even Realities G1 firmware, Nordic nRF5340 CPUAPP + CPUNET  
+**Status date:** 2026-07-19
+
+**Repository checkpoint:** `119584cc` (`main`)
+
+**Target:** Even Realities G1 firmware, Nordic nRF5340 CPUAPP + CPUNET
 **Pinned build environment:** NCS 2.5.1, Zephyr 3.4.99, GCC 12.2, newlib-nano, Cortex-M33 hard-float, `-Os`
 
 ## Executive summary
