@@ -29,6 +29,9 @@ COORDINATION = ROOT / "recon" / "SESSION_COORDINATION.md"
 APP_SOURCE_MANIFEST = ROOT / "recon" / "application" / "application_sources.json"
 ADOPTION_MANIFEST = ROOT / "recon" / "ownership" / "adoption_manifest.json"
 NET_OWNERSHIP = ROOT / "recon" / "ownership" / "net_function_ownership.json"
+STRUCT_CATALOG = ROOT / "recon" / "structs" / "struct_catalog_app.json"
+STRUCT_COVERAGE = ROOT / "recon" / "structs" / "struct_coverage_app.json"
+STRUCT_VERIFICATION = ROOT / "recon" / "structs" / "struct_verification_report.json"
 IDENTIFIER = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 ADDRESS_TOKEN = re.compile(r"^(?:0x)?([0-9a-fA-F]{4,8})$")
 C_KEYWORDS = set("auto break case char const continue default do double else enum extern float for goto if inline int long register restrict return short signed sizeof static struct switch typedef union unsigned void volatile while _Bool _Complex _Imaginary".split())
@@ -104,7 +107,8 @@ class RepositoryIndex:
         self.refresh(force=True)
 
     def _signature(self) -> tuple:
-        paths = [OVERRIDES, COORDINATION, APP_SOURCE_MANIFEST, ADOPTION_MANIFEST, NET_OWNERSHIP]
+        paths = [OVERRIDES, COORDINATION, APP_SOURCE_MANIFEST, ADOPTION_MANIFEST, NET_OWNERSHIP,
+                 STRUCT_CATALOG, STRUCT_COVERAGE, STRUCT_VERIFICATION]
         for paths_by_kind in self.CATALOGS.values():
             paths.extend(paths_by_kind.values())
         return tuple((str(path), path.stat().st_mtime_ns if path.exists() else 0) for path in paths)
@@ -278,7 +282,52 @@ class RepositoryIndex:
                     "address_names": address_names,
                     "sorted": sorted(records, key=lambda value: int(value, 16)),
                 }
-            self.data = {"cores": cores}
+            struct_payload = read_json_retry(STRUCT_CATALOG)
+            coverage = read_json_retry(STRUCT_COVERAGE)
+            verification = read_json_retry(STRUCT_VERIFICATION)
+            structs = []
+            struct_by_token = {}
+            structs_by_function = {}
+            for source in struct_payload.get("structs", []):
+                row = dict(source)
+                row["members"] = [dict(member) for member in source.get("members", [])]
+                row["fields"] = [dict(field) for field in source.get("fields", [])]
+                search_parts = [row.get("cid"), row.get("struct_name"), row.get("purpose"),
+                                row.get("library_name"), row.get("library_header")]
+                search_parts.extend(row.get("merged_cids", []))
+                for field in row["fields"]:
+                    search_parts.extend((field.get("name"), field.get("type"), field.get("library_member")))
+                for member in row["members"]:
+                    search_parts.extend((member.get("func"), member.get("entry"), member.get("base")))
+                    try:
+                        address = canonical_address(member["entry"])
+                    except (KeyError, TypeError, ValueError):
+                        continue
+                    member["address"] = address
+                    function = cores["app"]["records"].get(address)
+                    if function:
+                        member.update({
+                            "display_name": function["display_name"],
+                            "raw_name": function["raw_name"],
+                            "resolvable": True,
+                        })
+                    else:
+                        member.update({"display_name": member.get("func", address), "resolvable": False})
+                    structs_by_function.setdefault(address, []).append(row)
+                row["search"] = " ".join(str(part) for part in search_parts if part).lower()
+                structs.append(row)
+                for token in [row.get("cid"), row.get("struct_name"), *row.get("merged_cids", [])]:
+                    if token:
+                        struct_by_token.setdefault(str(token).lower(), row)
+            structs.sort(key=lambda row: (row.get("is_library", False), row.get("struct_name", "").lower()))
+            self.data = {
+                "cores": cores,
+                "structs": structs,
+                "struct_by_token": struct_by_token,
+                "structs_by_function": structs_by_function,
+                "struct_coverage": coverage,
+                "struct_verification": verification,
+            }
             self.signature = signature
 
     def _core(self, core: str) -> dict:
@@ -346,6 +395,39 @@ class RepositoryIndex:
         total = len(rows)
         start = max(page - 1, 0) * limit
         return {"items": rows[start : start + limit], "total": total, "page": page, "limit": limit}
+
+    @staticmethod
+    def _public_struct(row: dict) -> dict:
+        return {key: value for key, value in row.items() if key not in {"search", "fields", "members", "verify_errors", "verify_warnings"}}
+
+    def list_structs(self, query: str, scope: str, feature: str, page: int, limit: int) -> dict:
+        self.refresh()
+        query = query.strip().lower()
+        rows = []
+        for record in self.data["structs"]:
+            if scope == "g1" and record.get("is_library"):
+                continue
+            if scope == "library" and not record.get("is_library"):
+                continue
+            if feature == "union" and not record.get("is_union"):
+                continue
+            if feature == "array" and not record.get("is_array"):
+                continue
+            if feature == "header" and not record.get("library_verified"):
+                continue
+            if query and query not in record["search"]:
+                continue
+            rows.append(self._public_struct(record))
+        total = len(rows)
+        start = max(page - 1, 0) * limit
+        return {"items": rows[start:start + limit], "total": total, "page": page, "limit": limit}
+
+    def struct_detail(self, token: str) -> dict | None:
+        self.refresh()
+        record = self.data["struct_by_token"].get(unquote(token).strip().lower())
+        if not record:
+            return None
+        return {key: value for key, value in record.items() if key != "search"}
 
     def _reference(self, core: str, value: str, kind: str) -> dict:
         raw_value = value
@@ -424,6 +506,7 @@ class RepositoryIndex:
                 "data_refs": [self._reference(core, value, "data") for value in record["data_refs"] if not str(value).startswith("0x-")],
                 "stack_refs": [value for value in record["data_refs"] if str(value).startswith("0x-")],
                 "usages": self._usages(core, record),
+                "structs": [self._public_struct(row) for row in self.data["structs_by_function"].get(address, [])],
             }
         )
         return result
@@ -488,6 +571,7 @@ class RepositoryIndex:
             "data_refs": [],
             "stack_refs": [],
             "usages": usages,
+            "structs": [],
         }
 
     def meta(self) -> dict:
@@ -504,8 +588,24 @@ class RepositoryIndex:
                 "edited": sum(item["edited"] for item in records),
                 "with_source": sum(item["has_source"] for item in records),
             }
+        struct_rows = self.data["structs"]
+        coverage = self.data["struct_coverage"]
+        verification = self.data["struct_verification"]
         return {
             "cores": cores,
+            "structs": {
+                "total": len(struct_rows),
+                "g1": sum(not row.get("is_library") for row in struct_rows),
+                "library": sum(bool(row.get("is_library")) for row in struct_rows),
+                "verified": sum(bool(row.get("verified")) for row in struct_rows),
+                "library_verified": sum(bool(row.get("library_verified")) for row in struct_rows),
+                "unions": sum(bool(row.get("is_union")) for row in struct_rows),
+                "arrays": sum(bool(row.get("is_array")) for row in struct_rows),
+                "clusters_target": coverage.get("target_clusters", coverage.get("target", 0)),
+                "clusters_covered": coverage.get("covered_clusters", coverage.get("covered", 0)),
+                "verification_pass": verification.get("pass", 0),
+                "verification_fail": verification.get("fail", 0),
+            },
             "coordination_active": coordination_active(),
             "coordination_path": str(COORDINATION.relative_to(ROOT)),
             "rename_mode": "canonical_pipeline",
@@ -624,6 +724,17 @@ class Handler(BaseHTTPRequestHandler):
                 limit = min(100, max(10, int(query.get("limit", ["60"])[0])))
                 application_only = query.get("application_only", ["1"])[0].lower() not in {"0", "false", "no"}
                 return self._json(INDEX.list_symbols(core, search, state, page, limit, application_only))
+            if parsed.path == "/api/structs":
+                search = query.get("q", [""])[0]
+                scope = query.get("scope", ["all"])[0]
+                feature = query.get("feature", ["all"])[0]
+                page = max(1, int(query.get("page", ["1"])[0]))
+                limit = min(100, max(10, int(query.get("limit", ["60"])[0])))
+                return self._json(INDEX.list_structs(search, scope, feature, page, limit))
+            if parsed.path.startswith("/api/struct/"):
+                token = parsed.path.removeprefix("/api/struct/")
+                detail = INDEX.struct_detail(token)
+                return self._json(detail) if detail else self._error("structure not found", 404)
             if parsed.path.startswith("/api/symbol/"):
                 parts = parsed.path.split("/", 4)
                 if len(parts) != 5:

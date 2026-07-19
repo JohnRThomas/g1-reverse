@@ -29,6 +29,10 @@
       </form>
 
       <div class="top-actions">
+        <div class="view-switch" role="group" aria-label="Workspace view">
+          <button class="active" data-view="functions" type="button">Functions</button>
+          <button data-view="structs" type="button">Structures</button>
+        </div>
         <div class="core-switch" role="group" aria-label="Processor core">
           <button class="active" data-core="app" type="button">APP</button>
           <button data-core="net" type="button">NET</button>
@@ -39,7 +43,7 @@
 
     <aside class="sidebar" aria-label="Symbol explorer">
       <div class="sidebar-heading">
-        <div><span class="eyebrow">Inventory</span><h1>Symbols</h1></div>
+        <div><span class="eyebrow">Inventory</span><h1 id="inventory-title">Symbols</h1></div>
         <span class="count-pill" id="symbol-count">—</span>
       </div>
       <label class="search-box" for="symbol-search">
@@ -47,15 +51,28 @@
         <input id="symbol-search" type="search" placeholder="Filter symbols" autocomplete="off">
         <kbd>/</kbd>
       </label>
-      <label class="ownership-toggle" title="Hide functions proven to belong to the SDK, toolchain, or bundled libraries">
+      <label class="ownership-toggle" id="ownership-toggle" title="Hide functions proven to belong to the SDK, toolchain, or bundled libraries">
         <input id="application-only" type="checkbox" checked>
         <span class="toggle-track" aria-hidden="true"><i></i></span>
         <span><strong>G1 application only</strong><small>Hide proven library code</small></span>
       </label>
-      <div class="filter-tabs" role="tablist" aria-label="Symbol status">
+      <div class="filter-tabs" id="function-filters" role="tablist" aria-label="Symbol status">
         <button class="active" role="tab" aria-selected="true" data-state="all">All</button>
         <button role="tab" aria-selected="false" data-state="unnamed">Unnamed</button>
         <button role="tab" aria-selected="false" data-state="edited">Edited</button>
+      </div>
+      <div class="struct-filters" id="struct-filters" hidden>
+        <div class="filter-tabs struct-scope" role="tablist" aria-label="Structure ownership">
+          <button class="active" role="tab" aria-selected="true" data-scope="all">All</button>
+          <button role="tab" aria-selected="false" data-scope="g1">G1</button>
+          <button role="tab" aria-selected="false" data-scope="library">Library</button>
+        </div>
+        <div class="feature-chips" role="group" aria-label="Structure features">
+          <button class="active" type="button" data-feature="all">Any</button>
+          <button type="button" data-feature="union">Unions</button>
+          <button type="button" data-feature="array">Arrays</button>
+          <button type="button" data-feature="header">SDK verified</button>
+        </div>
       </div>
       <div class="symbol-list" id="symbol-list" role="listbox" aria-label="Functions"></div>
       <button class="load-more" id="load-more" type="button" hidden>Load more</button>
@@ -123,6 +140,30 @@
               <dl class="info-list" id="info-list"></dl>
             </section>
           </div>
+        </aside>
+      </div>
+
+      <div class="struct-layout" id="struct-layout" hidden>
+        <section class="struct-main">
+          <header class="symbol-header struct-header">
+            <nav class="crumbs" aria-label="Breadcrumb"><span>CPUAPP</span><b>›</b><span>STRUCTURES</span><b>›</b><span id="struct-cid">—</span></nav>
+            <div class="title-row">
+              <div class="title-copy">
+                <div class="title-badges" id="struct-badges"></div>
+                <h2 id="struct-title">—</h2>
+                <p class="struct-purpose" id="struct-purpose">—</p>
+              </div>
+            </div>
+            <div class="metric-strip" id="struct-metrics"></div>
+          </header>
+          <div class="layout-card">
+            <div class="layout-toolbar"><div><span class="file-icon">{ }</span><span>Verified memory layout</span></div><span id="layout-proof">D1 + D2</span></div>
+            <div class="field-list" id="field-list"></div>
+          </div>
+        </section>
+        <aside class="struct-inspector" aria-label="Structure inspector">
+          <section><span class="eyebrow">Observed in firmware</span><h3>Members & usages</h3><div id="struct-members"></div></section>
+          <section><span class="eyebrow">Recovery evidence</span><h3>Details</h3><dl class="info-list" id="struct-info"></dl></section>
         </aside>
       </div>
     </main>

@@ -75,6 +75,28 @@ class SymbolBrowserTests(unittest.TestCase):
         self.assertIsNotNone(target)
         self.assertEqual(target["address"], reference.get("owner_address") or reference["address"])
 
+    def test_verified_struct_catalog_is_searchable_and_linked(self):
+        meta = self.index.meta()["structs"]
+        self.assertEqual(meta["total"], 676)
+        self.assertEqual(meta["g1"], 377)
+        self.assertEqual(meta["library"], 299)
+        self.assertEqual(meta["verified"], 676)
+        self.assertEqual(meta["verification_fail"], 0)
+        self.assertEqual((meta["clusters_target"], meta["clusters_covered"]), (684, 684))
+        self.assertEqual(self.index.list_structs("", "all", "all", 1, 10)["total"], 676)
+        self.assertEqual(self.index.list_structs("", "g1", "all", 1, 10)["total"], 377)
+        self.assertEqual(self.index.list_structs("", "library", "header", 1, 100)["total"], 60)
+
+        detail = self.index.struct_detail("settings_store")
+        self.assertEqual(detail["cid"], "global_1071")
+        self.assertTrue(detail["library_verified"])
+        self.assertTrue(detail["verified"])
+        self.assertTrue(detail["fields"])
+        member = detail["members"][0]
+        self.assertTrue(member["resolvable"])
+        function = self.index.detail("app", member["address"])
+        self.assertIn("global_1071", {row["cid"] for row in function["structs"]})
+
     def test_active_coordination_lock_refuses_writes(self):
         if not self.index.meta()["coordination_active"]:
             self.skipTest("naming sweep lock already released")
@@ -95,12 +117,15 @@ class SymbolBrowserTests(unittest.TestCase):
         css = (ROOT / "tools/symbol_browser/static/styles.css").read_text()
         js = (ROOT / "tools/symbol_browser/static/app.js").read_text()
         self.assertIn("GoToRef", html)
+        self.assertIn("Structures", html)
+        self.assertIn('id="struct-layout"', html)
         self.assertIn("Rename symbol", html)
         self.assertIn('id="application-only" type="checkbox" checked', html)
         self.assertIn('id="close-rename" type="button"', html)
         self.assertIn('id="cancel-rename" type="button"', html)
         self.assertIn("prefers-reduced-motion", css)
         self.assertIn("data-goto", js)
+        self.assertIn("/api/struct/", js)
 
 
 if __name__ == "__main__":

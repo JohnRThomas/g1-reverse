@@ -1,7 +1,7 @@
 # Trace — G1 Symbol Workbench
 
-Trace is a local, dependency-free web application for reviewing and correcting
-CPUAPP and CPUNET function names. It reads the persistent naming catalogs,
+Trace is a local, dependency-free web application for exploring recovered
+CPUAPP structures and reviewing or correcting CPUAPP/CPUNET function names. It reads the persistent naming catalogs,
 canonical recovered C, Ghidra function inventories, reference graphs, and
 address-name catalogs directly from the repository.
 
@@ -28,6 +28,12 @@ tools/symbol_browser/run.sh --port 8877
 - Use **GoToRef** with a readable name, `FUN_*` identity, function entry,
   interior code address, global/data address, or still-unnamed reference.
 - Follow any reference in-app without losing the original address context.
+- Browse all 676 D1+D2-verified CPUAPP structures, including exact recovered
+  field offsets, types, ownership, confidence, review notes, unions/arrays, and
+  pinned SDK-header matches.
+- Filter structures by G1-original versus library ownership and jump from any
+  observed structure member to its human-named recovered function. Function
+  reference panels link back to every recovered structure they use.
 - Apply a canonical rename while permanently retaining the raw identity.
 - Use `G`, `/`, and `R` for GoToRef, filtering, and rename respectively.
 
@@ -47,6 +53,16 @@ If the pipeline fails, the override file is restored and the error is shown in
 the dialog. While `recon/SESSION_COORDINATION.md` contains an active `HELD`
 marker, canonical writes are refused; browsing and GoToRef remain fully usable.
 The app does not use a shadow proposal catalog.
+
+## Structure catalog
+
+The Structures workspace reads `recon/structs/struct_catalog_app.json` directly;
+it does not copy or rewrite recovery results. The summary combines that catalog
+with `struct_coverage_app.json` and `struct_verification_report.json`, exposing
+the 684/684 cluster coverage and zero-failure verification gate. Struct routes
+use `#/struct/<cid>` and GoToRef accepts either a struct name or cluster ID.
+CPUNET is disabled in this workspace because the completed recovery catalog is
+CPUAPP-only.
 
 ## Ownership filter
 
