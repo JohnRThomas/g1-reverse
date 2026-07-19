@@ -1,0 +1,8937 @@
+[
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0xc:4|0x10:4",
+  "cids": [
+   "stack_0757",
+   "stack_0760",
+   "stack_0761",
+   "stack_0778",
+   "stack_0896",
+   "stack_0964",
+   "stack_1097",
+   "stack_1356",
+   "stack_1357",
+   "stack_1378",
+   "stack_1379",
+   "stack_1385",
+   "stack_1388"
+  ],
+  "n": 13,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "batt_model_calc_locals",
+   "batt_model_calc_tmp",
+   "battery_model_locals",
+   "ble_chunk_scratch",
+   "lc3_attdet_energy",
+   "lc3_attdet_local",
+   "lc3_sns_analysis_buf",
+   "lc3_sns_energy_buf",
+   "lc3_spec_analysis_state",
+   "lc3_tns_analyze_scratch",
+   "ndef_record_local",
+   "spline_interp_points",
+   "tc_aes_key_sched_words"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4",
+  "cids": [
+   "global_0840",
+   "param_0086",
+   "param_0132",
+   "param_0200",
+   "param_0353",
+   "param_0437",
+   "param_0485",
+   "param_0513"
+  ],
+  "n": 8,
+  "kinds": [
+   "global",
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "ble_conn_addr_params",
+   "bt_start_ctx_table",
+   "countdown_timer_state",
+   "deferred_call_pair",
+   "flash_blob_write_req",
+   "mpsc_pbuf_buffer",
+   "nrfx_twim_xfer_desc",
+   "status_byte_packet_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4",
+  "cids": [
+   "global_1358",
+   "param_0061",
+   "param_0175",
+   "param_0335",
+   "param_0336",
+   "param_0574",
+   "param_0693"
+  ],
+  "n": 7,
+  "kinds": [
+   "global",
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "img_mgmt_upload_req",
+   "ipc0_ept_recv_ctx",
+   "lc3_attdet_state",
+   "le_serialize_buffer",
+   "metal_io_region",
+   "nrf_qspi_cinstr_conf",
+   "nrf_qspi_regs_partial"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4",
+  "cids": [
+   "global_0965",
+   "global_1019",
+   "global_1020",
+   "param_0054",
+   "param_0151"
+  ],
+  "n": 5,
+  "kinds": [
+   "global",
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "ble_chunk_send_table",
+   "ndef_record_build_ctx",
+   "scroll_text_frame_idx_table",
+   "scroll_text_render_ctx",
+   "stream_flash_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4",
+  "cids": [
+   "global_1341",
+   "param_0124",
+   "param_0126",
+   "param_0337",
+   "param_0339"
+  ],
+  "n": 5,
+  "kinds": [
+   "global",
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "md5_context",
+   "nrf_qspi_pins_t",
+   "nrf_qspi_regs",
+   "nrfx_qspi_cinstr_config_t",
+   "unix_datetime_fields"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4",
+  "cids": [
+   "param_0033",
+   "param_0183",
+   "param_0184",
+   "param_0519",
+   "param_0730"
+  ],
+  "n": 5,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_addr_format_ctx",
+   "bt_addr_str_scratch",
+   "bt_settings_key_ctx",
+   "k_queue",
+   "sector_cb_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4|0x2c:4|0x30:4|0x34:4|0x38:4|0x3c:4",
+  "cids": [
+   "param_0381",
+   "param_0382",
+   "param_0383",
+   "param_0546",
+   "param_0547"
+  ],
+  "n": 5,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "aes_state_words",
+   "lc3_sns_scale_table",
+   "lc3_sns_scratch_array",
+   "lc3_sns_shaping_state",
+   "tc_aes_key_sched_struct"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0xc:4",
+  "cids": [
+   "param_0728",
+   "stack_0980",
+   "stack_1074",
+   "stack_1128",
+   "stack_1560"
+  ],
+  "n": 5,
+  "kinds": [
+   "param",
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "device_info_float_layout",
+   "flash_padded_entry_buf",
+   "img_mgmt_upload_local",
+   "kmutex_dlist_node",
+   "nvs_fs_local"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0xc:4|0x10:4|0x14:4",
+  "cids": [
+   "param_0023",
+   "param_0731",
+   "stack_1377"
+  ],
+  "n": 3,
+  "kinds": [
+   "param",
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "cjson_parse_buffer",
+   "k_sem",
+   "lc3_sns_shaping_coeffs"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4",
+  "cids": [
+   "param_0150",
+   "param_0321",
+   "stack_0756"
+  ],
+  "n": 3,
+  "kinds": [
+   "param",
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "battery_model_state_locals",
+   "cjson_printbuffer",
+   "stream_flash_ctx"
+  ]
+ },
+ {
+  "signature": "0x114:1|0x115:1|0x116:1|0x118:1",
+  "cids": [
+   "global_0968",
+   "global_0969"
+  ],
+  "n": 2,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "pt_queue_state",
+   "resend_pending_msg_state"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4|0x2c:4|0x30:4|0x34:4",
+  "cids": [
+   "global_1152",
+   "param_0692"
+  ],
+  "n": 2,
+  "kinds": [
+   "global",
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "fw_version_info_table",
+   "metal_io_region"
+  ]
+ },
+ {
+  "signature": "0x524:4|0x528:4|0x530:4|0x534:4|0x538:4|0x53c:4",
+  "cids": [
+   "global_1340",
+   "global_1347"
+  ],
+  "n": 2,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_qspi_cb",
+   "qspi_workaround_state"
+  ]
+ },
+ {
+  "signature": "0xc:4|0x10:4|0x14:4|0x18:1|0x19:1|0x1a:1|0x1b:1|0x1c:1|0x1d:1",
+  "cids": [
+   "param_0065",
+   "param_0066"
+  ],
+  "n": 2,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "spi_master_config",
+   "spim_instance_config"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x6:1|0x8:4|0xc:4|0x10:4|0x14:4|0x19:1",
+  "cids": [
+   "param_0384",
+   "param_0385"
+  ],
+  "n": 2,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_sns_state"
+  ]
+ },
+ {
+  "signature": "solo::global_0793",
+  "cids": [
+   "global_0793"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "dtoa_r_scratch"
+  ]
+ },
+ {
+  "signature": "solo::global_0809",
+  "cids": [
+   "global_0809"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "gpio_pin_get_checked_ctx"
+  ]
+ },
+ {
+  "signature": "solo::global_0832",
+  "cids": [
+   "global_0832"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "ancs_queue_state"
+  ]
+ },
+ {
+  "signature": "solo::global_0836",
+  "cids": [
+   "global_0836"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "uid_enqueue_state"
+  ]
+ },
+ {
+  "signature": "solo::global_0886",
+  "cids": [
+   "global_0886"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "setting_store_handler_state"
+  ]
+ },
+ {
+  "signature": "solo::global_0943",
+  "cids": [
+   "global_0943"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "default_config_record"
+  ]
+ },
+ {
+  "signature": "solo::global_0961",
+  "cids": [
+   "global_0961"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "pt_data_indices"
+  ]
+ },
+ {
+  "signature": "0x110:4|0x115:1|0x118:1|0x2b8:1",
+  "cids": [
+   "global_0972"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "confirm_message_state"
+  ]
+ },
+ {
+  "signature": "solo::global_0997",
+  "cids": [
+   "global_0997"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "dashboard_reflash_state"
+  ]
+ },
+ {
+  "signature": "solo::global_0998",
+  "cids": [
+   "global_0998"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "dashboard_reflash_state"
+  ]
+ },
+ {
+  "signature": "solo::global_1000",
+  "cids": [
+   "global_1000"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "dashboard_reflash_state"
+  ]
+ },
+ {
+  "signature": "solo::global_1026",
+  "cids": [
+   "global_1026"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "gui_wordwrap_state"
+  ]
+ },
+ {
+  "signature": "solo::global_1046",
+  "cids": [
+   "global_1046"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "ui_refresh_warp_state"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0x10:4|0x24:4",
+  "cids": [
+   "global_1068"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "log_process_state"
+  ]
+ },
+ {
+  "signature": "solo::global_1071",
+  "cids": [
+   "global_1071"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "settings_handler_static"
+  ]
+ },
+ {
+  "signature": "solo::global_1075",
+  "cids": [
+   "global_1075"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_dm_attr_pool"
+  ]
+ },
+ {
+  "signature": "solo::global_1077",
+  "cids": [
+   "global_1077"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "ble_discovery_state"
+  ]
+ },
+ {
+  "signature": "solo::global_1096",
+  "cids": [
+   "global_1096"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "app_event_header"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4",
+  "cids": [
+   "global_1098"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "tc_aes_key_sched_struct"
+  ]
+ },
+ {
+  "signature": "solo::global_1102",
+  "cids": [
+   "global_1102"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "mem_fault_ctx"
+  ]
+ },
+ {
+  "signature": "solo::global_1117",
+  "cids": [
+   "global_1117"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "img_mgmt_upload_state"
+  ]
+ },
+ {
+  "signature": "solo::global_1166",
+  "cids": [
+   "global_1166"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_dev"
+  ]
+ },
+ {
+  "signature": "solo::global_1168",
+  "cids": [
+   "global_1168"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "ble_privacy_id_state"
+  ]
+ },
+ {
+  "signature": "solo::global_1185",
+  "cids": [
+   "global_1185"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_conn"
+  ]
+ },
+ {
+  "signature": "solo::global_1189",
+  "cids": [
+   "global_1189"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_conn_auth_info_cb_reg"
+  ]
+ },
+ {
+  "signature": "solo::global_1218",
+  "cids": [
+   "global_1218"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_cb"
+  ]
+ },
+ {
+  "signature": "solo::global_1253",
+  "cids": [
+   "global_1253"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_bond_iter_ctx"
+  ]
+ },
+ {
+  "signature": "solo::global_1256",
+  "cids": [
+   "global_1256"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_keys_pool"
+  ]
+ },
+ {
+  "signature": "solo::global_1271",
+  "cids": [
+   "global_1271"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "saadc_read_state"
+  ]
+ },
+ {
+  "signature": "solo::global_1272",
+  "cids": [
+   "global_1272"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "pdm_mic_event_ctx"
+  ]
+ },
+ {
+  "signature": "solo::global_1293",
+  "cids": [
+   "global_1293"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "cjson_hooks_or_error"
+  ]
+ },
+ {
+  "signature": "solo::global_1323",
+  "cids": [
+   "global_1323"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "pdm_pin_state_table"
+  ]
+ },
+ {
+  "signature": "solo::global_1324",
+  "cids": [
+   "global_1324"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "pdm_init_state"
+  ]
+ },
+ {
+  "signature": "solo::global_1326",
+  "cids": [
+   "global_1326"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_pdm_drv_state"
+  ]
+ },
+ {
+  "signature": "solo::global_1328",
+  "cids": [
+   "global_1328"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_pdm_cb_state"
+  ]
+ },
+ {
+  "signature": "solo::global_1329",
+  "cids": [
+   "global_1329"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_pdm_driver_state"
+  ]
+ },
+ {
+  "signature": "solo::global_1330",
+  "cids": [
+   "global_1330"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "pdm_capture_buffer_state"
+  ]
+ },
+ {
+  "signature": "solo::global_1336",
+  "cids": [
+   "global_1336"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_qspi_cb"
+  ]
+ },
+ {
+  "signature": "solo::global_1337",
+  "cids": [
+   "global_1337"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "nrf_qspi_regs"
+  ]
+ },
+ {
+  "signature": "solo::global_1338",
+  "cids": [
+   "global_1338"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "NRF_QSPI_Type_cinstrdat"
+  ]
+ },
+ {
+  "signature": "solo::global_1344",
+  "cids": [
+   "global_1344"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_qspi_cinstr_ctx"
+  ]
+ },
+ {
+  "signature": "solo::global_1355",
+  "cids": [
+   "global_1355"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "metal_bus_registration"
+  ]
+ },
+ {
+  "signature": "solo::global_1360",
+  "cids": [
+   "global_1360"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_bwdet_tables"
+  ]
+ },
+ {
+  "signature": "solo::global_1394",
+  "cids": [
+   "global_1394"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "spinlock_validate_table"
+  ]
+ },
+ {
+  "signature": "solo::global_1395",
+  "cids": [
+   "global_1395"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "k_spinlock"
+  ]
+ },
+ {
+  "signature": "solo::global_1403",
+  "cids": [
+   "global_1403"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "sched_update_cache"
+  ]
+ },
+ {
+  "signature": "solo::global_1405",
+  "cids": [
+   "global_1405"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "z_kernel_sched_state"
+  ]
+ },
+ {
+  "signature": "solo::global_1431",
+  "cids": [
+   "global_1431"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "scanf_field_parse_ctx"
+  ]
+ },
+ {
+  "signature": "solo::global_1450",
+  "cids": [
+   "global_1450"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "cc_hal_interrupt_regs"
+  ]
+ },
+ {
+  "signature": "solo::global_1452",
+  "cids": [
+   "global_1452"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": false,
+  "names": [
+   "cc_crypto_workspace"
+  ]
+ },
+ {
+  "signature": "solo::global_1453",
+  "cids": [
+   "global_1453"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "cc_rnd_hal_state"
+  ]
+ },
+ {
+  "signature": "solo::global_1464",
+  "cids": [
+   "global_1464"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "trng_hw_context"
+  ]
+ },
+ {
+  "signature": "solo::global_1465",
+  "cids": [
+   "global_1465"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "trng_source_state"
+  ]
+ },
+ {
+  "signature": "0x650:4|0x65c:4|0x7c8:4|0x7cc:4|0x910:4|0xb0c:4",
+  "cids": [
+   "global_1479"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "hash_drv_ctx"
+  ]
+ },
+ {
+  "signature": "solo::global_1480",
+  "cids": [
+   "global_1480"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "aes_init_tables"
+  ]
+ },
+ {
+  "signature": "0x400:4|0x440:4|0x460:4|0x810:4|0xb0c:4|0xc28:4",
+  "cids": [
+   "global_1483"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "cc3xx_aes_drv_ctx"
+  ]
+ },
+ {
+  "signature": "0x440:4|0x460:4|0x47c:4|0x810:4",
+  "cids": [
+   "global_1484"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "aes_drv_ctx"
+  ]
+ },
+ {
+  "signature": "solo::global_1561",
+  "cids": [
+   "global_1561"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "nrf_qspi_regs_ext"
+  ]
+ },
+ {
+  "signature": "solo::global_1562",
+  "cids": [
+   "global_1562"
+  ],
+  "n": 1,
+  "kinds": [
+   "global"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_qspi_write_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x48:4|0x4c:4|0x50:4|0x54:4|0x5c:4|0x128:4|0x12c:4|0x130:4|0x134:4|0x138:4|0x13c:4|0x140:4|0x144:4|0x148:4|0x464:4",
+  "cids": [
+   "param_0000"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "battery_model_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0001",
+  "cids": [
+   "param_0001"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "battery_model_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0002",
+  "cids": [
+   "param_0002"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "batt_soc_curve_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0003",
+  "cids": [
+   "param_0003"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "battery_soc_curve_point"
+  ]
+ },
+ {
+  "signature": "solo::param_0004",
+  "cids": [
+   "param_0004"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "curve_table_201pt"
+  ]
+ },
+ {
+  "signature": "solo::param_0005",
+  "cids": [
+   "param_0005"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "curve_table_201pt"
+  ]
+ },
+ {
+  "signature": "solo::param_0006",
+  "cids": [
+   "param_0006"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "curve_table_201pt"
+  ]
+ },
+ {
+  "signature": "0x1:2|0x2:1|0x3:1|0x4:4|0x5:1|0x6:1|0x7:1|0x8:4|0xc:4|0xd:1|0xe:1|0xf:1|0x10:4|0x14:4|0x1b0:4|0x324:4|0x328:4|0x32c:4|0x",
+  "cids": [
+   "param_0007"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "app_shared_ctx_blob"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x48:4|0x4c:4|0x50:4|0x54:4|0x58:4|0x5c:4|0x128:4|0x12c:4|0x130:4|0x134:4|0x138:4|0x13c:4|0x140:4|0x5d3:1|0x1744:4",
+  "cids": [
+   "param_0008"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "battery_soc_curve_model"
+  ]
+ },
+ {
+  "signature": "solo::param_0009",
+  "cids": [
+   "param_0009"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "array_max_skip_nan_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0010",
+  "cids": [
+   "param_0010"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "array_span32"
+  ]
+ },
+ {
+  "signature": "solo::param_0013",
+  "cids": [
+   "param_0013"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "spline_interp_pair_out"
+  ]
+ },
+ {
+  "signature": "solo::param_0015",
+  "cids": [
+   "param_0015"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "spline_point2d"
+  ]
+ },
+ {
+  "signature": "solo::param_0016",
+  "cids": [
+   "param_0016"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "spline_3pt_points"
+  ]
+ },
+ {
+  "signature": "0x1:1|0x2:1|0x5:1|0x7:1|0xb:1|0xc:1|0x13:1|0x30:2",
+  "cids": [
+   "param_0018"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "g1_ui_box_state"
+  ]
+ },
+ {
+  "signature": "0x8:4|0xc:4|0x1c:4|0x40:4|0x44:4|0x50:4|0x54:4|0x80:4|0x84:4|0x88:4|0x178:2|0x198:4|0x19c:4|0x1a0:4|0x408:4|0x418:4|0x6a",
+  "cids": [
+   "param_0019"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "imu_fusion_shared_state"
+  ]
+ },
+ {
+  "signature": "0x8:4|0xc:4|0x10:4|0x14:4|0x18:8",
+  "cids": [
+   "param_0022"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "cJSON"
+  ]
+ },
+ {
+  "signature": "0xc9:1|0xca:1|0xcb:1|0xcc:1|0xcd:1|0xce:1|0xcf:1|0xd5:1|0xda:1|0xe4:1|0xe9:1|0xea:1|0xeb:1|0xec:1|0xee4:1|0xfe6:1|0xfec:",
+  "cids": [
+   "param_0025"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "esbs_ipc_recv_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x7:4|0x8:4|0xc:4|0x10:4",
+  "cids": [
+   "param_0026"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "esbs_ipc_msg"
+  ]
+ },
+ {
+  "signature": "0x1:1|0x2:1|0x3:1|0x4:4|0x8:4|0x40:4|0x58:4|0xc9:4|0xcb:1|0xcd:4|0xd0:4|0xd1:2|0xd4:1|0xd5:1|0xd6:2|0xd8:2|0xdf:4|0xe5:4",
+  "cids": [
+   "param_0027"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "g1_system_runtime_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0028",
+  "cids": [
+   "param_0028"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "gpio_pin_desc"
+  ]
+ },
+ {
+  "signature": "solo::param_0029",
+  "cids": [
+   "param_0029"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "gpio_pin_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0030",
+  "cids": [
+   "param_0030"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "gpio_dev_ctx"
+  ]
+ },
+ {
+  "signature": "0xc:4|0xd9:1|0x24c:4|0x250:4|0x254:4|0x365:1|0x366:1",
+  "cids": [
+   "param_0032"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "ancs_ctx"
+  ]
+ },
+ {
+  "signature": "0x1:1|0x2:2|0x3:1|0x4:4|0x6:1|0x8:1|0x9:1|0xa:4|0xc:4|0xd:1|0xe:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x54:4|0x58:",
+  "cids": [
+   "param_0034"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_conn"
+  ]
+ },
+ {
+  "signature": "solo::param_0035",
+  "cids": [
+   "param_0035"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_ancs_attr_data"
+  ]
+ },
+ {
+  "signature": "0xc:4|0x10:4|0x14:4|0x3c:4|0x41:1|0x42:1|0x44:1|0x64:1|0x1e4:4|0x759:1|0x844:1|0x846:1",
+  "cids": [
+   "param_0038"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "app_shared_system_ctx"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x1:1|0x4:4|0x6:4|0x8:4|0xa:2|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4|0x2c:4|0x30:4|0x34:4|0x38:4|0",
+  "cids": [
+   "param_0039"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "audio_fw_load_msg"
+  ]
+ },
+ {
+  "signature": "0x10:4|0x18:1|0x248:1|0x254:4|0x358:4|0x35c:4|0x360:4|0x364:1",
+  "cids": [
+   "param_0040"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "ble_work_thread_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0041",
+  "cids": [
+   "param_0041"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "settings_init_params"
+  ]
+ },
+ {
+  "signature": "0x2:1|0x3:1|0x4:1|0xed4:1|0xeda:2|0xedc:4|0xede:2|0xf64:4|0xf94:4|0xfa0:4|0xfa4:4|0xfa8:4|0xfac:4|0xfb0:4|0xfb4:4|0x1050",
+  "cids": [
+   "param_0042"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "device_settings_blob"
+  ]
+ },
+ {
+  "signature": "solo::param_0043",
+  "cids": [
+   "param_0043"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "burial_point_record"
+  ]
+ },
+ {
+  "signature": "solo::param_0044",
+  "cids": [
+   "param_0044"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "device_info_persist_store"
+  ]
+ },
+ {
+  "signature": "0x2:1|0x5:1|0xc:4|0x10:4|0x1e:2|0x55:1|0x56:1|0x60:4|0x64:4|0x68:4|0x6c:4|0x70:4|0x74:4|0x7c:4|0x80:4",
+  "cids": [
+   "param_0045"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "sys_settings_record"
+  ]
+ },
+ {
+  "signature": "solo::param_0046",
+  "cids": [
+   "param_0046"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "usr_settings_record"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:2",
+  "cids": [
+   "param_0049"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "event_record"
+  ]
+ },
+ {
+  "signature": "solo::param_0050",
+  "cids": [
+   "param_0050"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "event_record_desc"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x60:4",
+  "cids": [
+   "param_0051"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "record_type8"
+  ]
+ },
+ {
+  "signature": "solo::param_0052",
+  "cids": [
+   "param_0052"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "record_type8_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x18:4|0x1c:4|0x20:4|0x24:4",
+  "cids": [
+   "param_0053"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "ndef_record_builder_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0055",
+  "cids": [
+   "param_0055"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "st25dv_ndef_record_desc"
+  ]
+ },
+ {
+  "signature": "solo::param_0057",
+  "cids": [
+   "param_0057"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "box_event"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x14:4|0x30:4|0x4c:4|0x54:4|0xd0:4",
+  "cids": [
+   "param_0058"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "box_event_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0059",
+  "cids": [
+   "param_0059"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "ipc_ept_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0060",
+  "cids": [
+   "param_0060"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "ipc_ept_locked_retry_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0062",
+  "cids": [
+   "param_0062"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "ipc_service_ctx"
+  ]
+ },
+ {
+  "signature": "0x8c:4|0x90:4|0x94:4|0x98:4",
+  "cids": [
+   "param_0063"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "imu_fusion_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0064",
+  "cids": [
+   "param_0064"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "spi_trans_desc"
+  ]
+ },
+ {
+  "signature": "solo::param_0067",
+  "cids": [
+   "param_0067"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "spi_master_ops"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xa:1|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x38:4|0x3c:4",
+  "cids": [
+   "param_0068"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "imu_fusion_calib_params"
+  ]
+ },
+ {
+  "signature": "0xc:4|0x10:4|0x14:4|0x18:4",
+  "cids": [
+   "param_0069"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "imu_ahrs_quaternion"
+  ]
+ },
+ {
+  "signature": "solo::param_0070",
+  "cids": [
+   "param_0070"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "orientation_filter_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0071",
+  "cids": [
+   "param_0071"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "orientation_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0072",
+  "cids": [
+   "param_0072"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "orientation_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0073",
+  "cids": [
+   "param_0073"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "orientation_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0074",
+  "cids": [
+   "param_0074"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "peripheral_dispatch_buf"
+  ]
+ },
+ {
+  "signature": "solo::param_0075",
+  "cids": [
+   "param_0075"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "click_event_dispatch_ctx"
+  ]
+ },
+ {
+  "signature": "0x1:1|0x2:2|0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4|0x2c:4|0x1b4:4",
+  "cids": [
+   "param_0076"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "audio_fw_load_notify_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0077",
+  "cids": [
+   "param_0077"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "system_suspend_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0078",
+  "cids": [
+   "param_0078"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "persist_task_status_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0079",
+  "cids": [
+   "param_0079"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "new_message_evt"
+  ]
+ },
+ {
+  "signature": "0x1:1|0x7:1|0x8:1|0x9:1|0xb:4|0xf:1",
+  "cids": [
+   "param_0080"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "msg_show_item"
+  ]
+ },
+ {
+  "signature": "solo::param_0084",
+  "cids": [
+   "param_0084"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "opt3007_init_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0087",
+  "cids": [
+   "param_0087"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "nfc_eeprom_link_cfg"
+  ]
+ },
+ {
+  "signature": "solo::param_0090",
+  "cids": [
+   "param_0090"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "brightness_lum_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0091",
+  "cids": [
+   "param_0091"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "channel_assign_info"
+  ]
+ },
+ {
+  "signature": "solo::param_0092",
+  "cids": [
+   "param_0092"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "display_brightness_cmd"
+  ]
+ },
+ {
+  "signature": "solo::param_0095",
+  "cids": [
+   "param_0095"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "uart_event_data"
+  ]
+ },
+ {
+  "signature": "solo::param_0098",
+  "cids": [
+   "param_0098"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "notif_count_out"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0xc:4|0x10:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4|0x2c:4|0x30:4|0x34:4|0x48:4|0x6c:4|0x70:4|0x78:4|0x7c:",
+  "cids": [
+   "param_0101"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "generic_ctx_merge_ambiguous"
+  ]
+ },
+ {
+  "signature": "solo::param_0102",
+  "cids": [
+   "param_0102"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "whitelist_chunk_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0106",
+  "cids": [
+   "param_0106"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "draw_message_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:1|0x5:1|0x5f:1|0x64:1|0x65:1|0x66:1|0x68:1|0x69:1",
+  "cids": [
+   "param_0109"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "dashboard_reflash_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0111",
+  "cids": [
+   "param_0111"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "nav_overview_map_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0112",
+  "cids": [
+   "param_0112"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "panoramic_map_view_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0114",
+  "cids": [
+   "param_0114"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "onboarding_ble_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0116",
+  "cids": [
+   "param_0116"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "panel_drv_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0117",
+  "cids": [
+   "param_0117"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "panel_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0118",
+  "cids": [
+   "param_0118"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "jdb_panel_cfg"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x344:4|0x350:4",
+  "cids": [
+   "param_0119"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "quicknote_buffer_pool"
+  ]
+ },
+ {
+  "signature": "solo::param_0121",
+  "cids": [
+   "param_0121"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "utf8_decode_cursor"
+  ]
+ },
+ {
+  "signature": "solo::param_0122",
+  "cids": [
+   "param_0122"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "proxy_thread_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0123",
+  "cids": [
+   "param_0123"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "display_thread_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0125",
+  "cids": [
+   "param_0125"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "md5_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0128",
+  "cids": [
+   "param_0128"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "cbprintf_package_hdr"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x7:2|0x8:4|0x10:4|0x18:4|0x1c:2|0x1e:2",
+  "cids": [
+   "param_0129"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "onoff_manager"
+  ]
+ },
+ {
+  "signature": "solo::param_0130",
+  "cids": [
+   "param_0130"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "sys_notify"
+  ]
+ },
+ {
+  "signature": "solo::param_0131",
+  "cids": [
+   "param_0131"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "cbor_encode_cursor"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0xc:4|0x10:4|0x1c:4|0x20:4|0x24:4|0x28:4",
+  "cids": [
+   "param_0133"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "mpsc_pbuf_buffer"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x1:2|0x3:2|0x4:4|0x8:4|0xc:4|0xe:2|0x10:1|0x28:4|0x2c:4",
+  "cids": [
+   "param_0135"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "nvs_fs"
+  ]
+ },
+ {
+  "signature": "solo::param_0139",
+  "cids": [
+   "param_0139"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "unk_ctx_0139"
+  ]
+ },
+ {
+  "signature": "0x20:4|0x24:4|0x28:4|0x2c:4|0x30:4|0x34:4|0x38:4|0x64:1|0x68:4|0x6c:4",
+  "cids": [
+   "param_0140"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "rpmsg_endpoint"
+  ]
+ },
+ {
+  "signature": "solo::param_0141",
+  "cids": [
+   "param_0141"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "ipc_rpmsg_backend_ctx"
+  ]
+ },
+ {
+  "signature": "0x18:4|0x20:4|0x28:4|0x2c:4|0x30:4|0x34:4|0x3c:4|0x8c:4|0x90:4|0x94:4|0x98:4|0x9c:4|0xa0:4|0xa4:4|0xa8:4|0xac:4|0xb0:2|0",
+  "cids": [
+   "param_0145"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "ipc_static_vrings"
+  ]
+ },
+ {
+  "signature": "solo::param_0148",
+  "cids": [
+   "param_0148"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "log_msg_hdr"
+  ]
+ },
+ {
+  "signature": "solo::param_0153",
+  "cids": [
+   "param_0153"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "settings_set_handler_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0155",
+  "cids": [
+   "param_0155"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_dm_data"
+  ]
+ },
+ {
+  "signature": "0x2:2|0x3:2|0x4:4|0x8:4|0xa:2|0xc:4|0xe:2|0x20d:2|0x20e:2|0x215:2|0x216:2|0x828:4|0x836:2|0x83c:4|0x844:4|0x848:4|0x856:",
+  "cids": [
+   "param_0157"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "ancs_notif_ctx"
+  ]
+ },
+ {
+  "signature": "0x2:2|0x4:4|0x6:2|0x8:2|0x14:4|0x1a:2|0x1c:4|0x24:4|0x28:1|0x29:1|0x2a:1|0x2b:1|0x2c:1|0x8e8:1|0x8f8:4|0x904:4|0x908:1",
+  "cids": [
+   "param_0158"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "bt_ancs_client_ctx"
+  ]
+ },
+ {
+  "signature": "0x864:4|0x8fc:4|0x900:4|0x904:4|0x908:1|0x909:1|0x910:2|0x914:4|0x918:1|0x91c:2|0x920:4|0x924:4|0x928:4",
+  "cids": [
+   "param_0159"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "app_stream_ctx"
+  ]
+ },
+ {
+  "signature": "0x1:2|0x4:4|0x6:2|0x8:4|0x14:4|0x1c:4|0x24:4|0x28:4",
+  "cids": [
+   "param_0160"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "gatt_subscribe_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0162",
+  "cids": [
+   "param_0162"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "module_state_event"
+  ]
+ },
+ {
+  "signature": "solo::param_0163",
+  "cids": [
+   "param_0163"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "power_restrict_event_entry"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x44:4|0x48:4|0x50:4|0x54:4|0x58:4|0x60:1|0x61:1|0x62:1|0x63",
+  "cids": [
+   "param_0164"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "tc_hash_mac_state"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x60:4",
+  "cids": [
+   "param_0166"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "z_arch_esf_regs"
+  ]
+ },
+ {
+  "signature": "0x8:4|0xc:4|0xd:1|0xe:1|0xf:1|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x50:4|0x54:4|0x58:4|0x5c:4|0x70:1|0x74:4|0x7c:4",
+  "cids": [
+   "param_0167"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "kernel_obj_or_thread_merged"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:1|0xd:1|0xe:1|0x18:4|0x58:4",
+  "cids": [
+   "param_0168"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "k_thread"
+  ]
+ },
+ {
+  "signature": "solo::param_0169",
+  "cids": [
+   "param_0169"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "mem_region"
+  ]
+ },
+ {
+  "signature": "solo::param_0170",
+  "cids": [
+   "param_0170"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "arm_mpu_region"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:1|0x9:1|0xa:1|0xb:1|0xc:4|0x10:2|0x14:4|0x18:4|0x1c:1",
+  "cids": [
+   "param_0172"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "net_buf"
+  ]
+ },
+ {
+  "signature": "solo::param_0173",
+  "cids": [
+   "param_0173"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "smp_pkt_ctx"
+  ]
+ },
+ {
+  "signature": "0x8:4|0xc:4|0x14:4|0x30:2|0x32:2",
+  "cids": [
+   "param_0174"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "zcbor_state_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0176",
+  "cids": [
+   "param_0176"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "img_mgmt_state_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0177",
+  "cids": [
+   "param_0177"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "img_mgmt_ver_info"
+  ]
+ },
+ {
+  "signature": "solo::param_0178",
+  "cids": [
+   "param_0178"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "img_mgmt_erase_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0179",
+  "cids": [
+   "param_0179"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "img_mgmt_upload_ctx"
+  ]
+ },
+ {
+  "signature": "0x8:4|0xc:4|0x10:4|0x28:4|0x38:4|0x3c:4",
+  "cids": [
+   "param_0181"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "k_work_delayable"
+  ]
+ },
+ {
+  "signature": "0xc:4|0x10:2|0x18:4|0x1c:1",
+  "cids": [
+   "param_0182"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_att_chan_view"
+  ]
+ },
+ {
+  "signature": "solo::param_0185",
+  "cids": [
+   "param_0185"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_uuid_32"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x34:4|0x38:4|0x3c:4|0x40:4",
+  "cids": [
+   "param_0186"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_uuid_128_buf"
+  ]
+ },
+ {
+  "signature": "solo::param_0187",
+  "cids": [
+   "param_0187"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "net_buf_hdr"
+  ]
+ },
+ {
+  "signature": "solo::param_0189",
+  "cids": [
+   "param_0189"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_hci_cmd_state_set"
+  ]
+ },
+ {
+  "signature": "solo::param_0204",
+  "cids": [
+   "param_0204"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "net_buf"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x11:1",
+  "cids": [
+   "param_0205"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "conn_tx_saadc_shared_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0206",
+  "cids": [
+   "param_0206"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "conn_tx_ctx"
+  ]
+ },
+ {
+  "signature": "0x8:4|0xc:4|0x10:4|0x20:1",
+  "cids": [
+   "param_0207"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "k_poll_event"
+  ]
+ },
+ {
+  "signature": "0x4:4|0xa6:2|0xa8:2|0xaa:2|0xac:4|0xae:2|0xb0:4",
+  "cids": [
+   "param_0208"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "ble_conn_le_param_ctx"
+  ]
+ },
+ {
+  "signature": "0x8:1|0x9:1|0xa:1|0xc0:4",
+  "cids": [
+   "param_0210"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_conn_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0211",
+  "cids": [
+   "param_0211"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "ble_conn_alloc_param"
+  ]
+ },
+ {
+  "signature": "0x2:1|0x3:1|0x8:1|0x9:1|0xd:1|0xa6:2|0xac:2|0xae:2|0xc0:4",
+  "cids": [
+   "param_0212"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_conn_info"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0x90:4|0x94:4|0x9c:4",
+  "cids": [
+   "param_0213"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_conn_info"
+  ]
+ },
+ {
+  "signature": "solo::param_0214",
+  "cids": [
+   "param_0214"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_le_conn_param"
+  ]
+ },
+ {
+  "signature": "solo::param_0215",
+  "cids": [
+   "param_0215"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "ble_conn_complete_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0x10:4|0x14:4",
+  "cids": [
+   "param_0216"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_conn_auth_cb"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x16:2|0x18:2|0x1c:4",
+  "cids": [
+   "param_0218"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_l2cap_le_chan_rx"
+  ]
+ },
+ {
+  "signature": "solo::param_0219",
+  "cids": [
+   "param_0219"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "l2cap_chan_tx_credit"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x9:2|0xa:2|0x10:4|0x26:2",
+  "cids": [
+   "param_0220"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "bt_att_l2cap_frag_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x5:2|0x14:4|0x16:2|0x18:2|0x1c:4|0x21:2|0x24:4|0x2d:1|0x2e:1|0x4c:4|0x80:4|0x84:2|0xb4:1|0xb6:2|0xb8:1",
+  "cids": [
+   "param_0221"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_conn_or_l2cap_chan"
+  ]
+ },
+ {
+  "signature": "0x5:2|0x8:4|0xc:4|0x10:4|0x14:4|0x2d:1",
+  "cids": [
+   "param_0222"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_l2cap_le_chan"
+  ]
+ },
+ {
+  "signature": "solo::param_0223",
+  "cids": [
+   "param_0223"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "net_buf_hdr"
+  ]
+ },
+ {
+  "signature": "solo::param_0224",
+  "cids": [
+   "param_0224"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "net_buf"
+  ]
+ },
+ {
+  "signature": "solo::param_0225",
+  "cids": [
+   "param_0225"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "find_type_cb_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x11:1",
+  "cids": [
+   "param_0226"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "find_type_ctx"
+  ]
+ },
+ {
+  "signature": "0x1e:2|0x2e:2|0x144:4|0x148:4",
+  "cids": [
+   "param_0227"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_att_chan"
+  ]
+ },
+ {
+  "signature": "0x0:1|0x4:4|0x5:1|0x8:4|0xc:4|0x10:4",
+  "cids": [
+   "param_0228"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_att_read_type_data"
+  ]
+ },
+ {
+  "signature": "0x1e:2|0x2e:2|0x120:4|0x124:4",
+  "cids": [
+   "param_0229"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_att_chan"
+  ]
+ },
+ {
+  "signature": "solo::param_0234",
+  "cids": [
+   "param_0234"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_att_chan_mtu"
+  ]
+ },
+ {
+  "signature": "solo::param_0236",
+  "cids": [
+   "param_0236"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "att_pdu_buf_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0241",
+  "cids": [
+   "param_0241"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_att_find_type_req"
+  ]
+ },
+ {
+  "signature": "solo::param_0245",
+  "cids": [
+   "param_0245"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_ccc_store_ctx"
+  ]
+ },
+ {
+  "signature": "0x0:2|0x1:1|0x8:4|0xc:4",
+  "cids": [
+   "param_0246"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_ccc_cfg"
+  ]
+ },
+ {
+  "signature": "solo::param_0247",
+  "cids": [
+   "param_0247"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "sllist_node_refcounted"
+  ]
+ },
+ {
+  "signature": "0x3:1|0x8:1|0xb:1|0xd:1|0xc0:4",
+  "cids": [
+   "param_0248"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_conn"
+  ]
+ },
+ {
+  "signature": "solo::param_0249",
+  "cids": [
+   "param_0249"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_ccc_write_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0250",
+  "cids": [
+   "param_0250"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_cf_cfg"
+  ]
+ },
+ {
+  "signature": "solo::param_0251",
+  "cids": [
+   "param_0251"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_attr_ref"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x12:2",
+  "cids": [
+   "param_0252"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_attr"
+  ]
+ },
+ {
+  "signature": "solo::param_0255",
+  "cids": [
+   "param_0255"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_attr"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x10:4|0x14:2|0x16:1",
+  "cids": [
+   "param_0257"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_indicate_params"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:2|0x10:4|0x14:4",
+  "cids": [
+   "param_0259"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_notify_params"
+  ]
+ },
+ {
+  "signature": "0x4:2|0x8:4|0xc:2|0x10:4",
+  "cids": [
+   "param_0260"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_ccc_update_ctx"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x2:2|0x3:2|0x4:4|0x6:2|0x8:4|0xa:2|0xc:4|0xe:2|0x10:4",
+  "cids": [
+   "param_0261"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_att_buf"
+  ]
+ },
+ {
+  "signature": "0x4:2|0xc:4|0xe:2|0x10:4|0x18:4",
+  "cids": [
+   "param_0262"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_subscribe_params"
+  ]
+ },
+ {
+  "signature": "solo::param_0263",
+  "cids": [
+   "param_0263"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_subscribe_params"
+  ]
+ },
+ {
+  "signature": "0x2:1|0x4:4|0x8:1|0x9:1|0xa:4|0xb:1|0xc:1|0xd:1|0xe:2|0x10:1|0x11:4|0x12:1|0x13:1|0x14:1|0x15:2|0x16:1|0x47:1|0x48:1|0x4",
+  "cids": [
+   "param_0265"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_smp"
+  ]
+ },
+ {
+  "signature": "solo::param_0272",
+  "cids": [
+   "param_0272"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_smp_pairing_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0273",
+  "cids": [
+   "param_0273"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_conn_id_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0274",
+  "cids": [
+   "param_0274"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_keys_irk_lookup_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x9:1|0xc:4|0x10:2|0x14:4",
+  "cids": [
+   "param_0276"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "net_buf"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x20:2|0x22:2|0x24:1|0x2c:4|0x30:4",
+  "cids": [
+   "param_0277"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "net_buf_pool"
+  ]
+ },
+ {
+  "signature": "solo::param_0278",
+  "cids": [
+   "param_0278"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "net_buf_slist_node"
+  ]
+ },
+ {
+  "signature": "solo::param_0280",
+  "cids": [
+   "param_0280"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "net_buf"
+  ]
+ },
+ {
+  "signature": "solo::param_0284",
+  "cids": [
+   "param_0284"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "net_buf_simple"
+  ]
+ },
+ {
+  "signature": "solo::param_0285",
+  "cids": [
+   "param_0285"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "net_buf_simple"
+  ]
+ },
+ {
+  "signature": "0x2:2|0x4:4|0x10:4|0x14:4|0x18:4",
+  "cids": [
+   "param_0290"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "adc_channel_cfg"
+  ]
+ },
+ {
+  "signature": "solo::param_0292",
+  "cids": [
+   "param_0292"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "pdm_start_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0294",
+  "cids": [
+   "param_0294"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "pdm_clock_config"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x25:1|0x26:1|0x27:1",
+  "cids": [
+   "param_0295"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_pdm_config"
+  ]
+ },
+ {
+  "signature": "solo::param_0297",
+  "cids": [
+   "param_0297"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "clock_control_async_data"
+  ]
+ },
+ {
+  "signature": "solo::param_0299",
+  "cids": [
+   "param_0299"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "periph_drv_data"
+  ]
+ },
+ {
+  "signature": "solo::param_0300",
+  "cids": [
+   "param_0300"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "qspi_cinstr_req"
+  ]
+ },
+ {
+  "signature": "solo::param_0305",
+  "cids": [
+   "param_0305"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "unk_ctx_305"
+  ]
+ },
+ {
+  "signature": "solo::param_0308",
+  "cids": [
+   "param_0308"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "lsm6dso_dev_ctx"
+  ]
+ },
+ {
+  "signature": "0x1:1|0x4:4|0x5:1|0x6:1|0x7:1",
+  "cids": [
+   "param_0311"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "uarte_nrfx_config"
+  ]
+ },
+ {
+  "signature": "solo::param_0312",
+  "cids": [
+   "param_0312"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_uarte_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0313",
+  "cids": [
+   "param_0313"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "uarte_nrfx_data"
+  ]
+ },
+ {
+  "signature": "solo::param_0314",
+  "cids": [
+   "param_0314"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "uarte_driver_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0315",
+  "cids": [
+   "param_0315"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "wdt_timeout_cfg_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0316",
+  "cids": [
+   "param_0316"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "wdt_timeout_cfg"
+  ]
+ },
+ {
+  "signature": "solo::param_0319",
+  "cids": [
+   "param_0319"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "flash_area"
+  ]
+ },
+ {
+  "signature": "solo::param_0320",
+  "cids": [
+   "param_0320"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "flash_boot_swap_ate"
+  ]
+ },
+ {
+  "signature": "solo::param_0322",
+  "cids": [
+   "param_0322"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "cJSON"
+  ]
+ },
+ {
+  "signature": "0x8:4|0xc:1|0x10:4|0x18:4|0x1c:4",
+  "cids": [
+   "param_0323"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "cjson_print_ctx"
+  ]
+ },
+ {
+  "signature": "0x8:4|0xc:4|0x10:4|0x20:4",
+  "cids": [
+   "param_0324"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "cJSON"
+  ]
+ },
+ {
+  "signature": "solo::param_0331",
+  "cids": [
+   "param_0331"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "gpiote_trigger_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x40:4|0x44:4|0x4c:4|0x50:4|0x54:4|0x58:4",
+  "cids": [
+   "param_0333"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "pdm_pin_config"
+  ]
+ },
+ {
+  "signature": "solo::param_0334",
+  "cids": [
+   "param_0334"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_pdm_config_small"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x7:1|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1d:1|0x1e:1|0x1f:1|0x21:1|0x22:1|0x23:1|0x24:4|0x29:1|0x2a:1",
+  "cids": [
+   "param_0338"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_qspi_config"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x14:4|0x1c:4|0x21:1|0x23:1|0x24:4",
+  "cids": [
+   "param_0340"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_pin_freq_cfg"
+  ]
+ },
+ {
+  "signature": "solo::param_0342",
+  "cids": [
+   "param_0342"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_spim_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x6:1|0x8:4|0x9:1|0xc:4|0x12:1|0x14:4|0x19:1|0x1a:1|0x1c:4|0x21:1|0x22:1|0x23:1",
+  "cids": [
+   "param_0343"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_spim_config_t"
+  ]
+ },
+ {
+  "signature": "solo::param_0344",
+  "cids": [
+   "param_0344"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_spim_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0346",
+  "cids": [
+   "param_0346"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_spim_xfer_desc"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xd:1|0xe:1|0xf:1",
+  "cids": [
+   "param_0347"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_twim_config"
+  ]
+ },
+ {
+  "signature": "solo::param_0348",
+  "cids": [
+   "param_0348"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_twim_config_t"
+  ]
+ },
+ {
+  "signature": "0x1:1|0x8:4|0x14:4|0x20:4|0x104:4|0x124:4|0x148:4|0x15c:4|0x160:4|0x200:4|0x304:4|0x308:4|0x4c4:4|0x500:4|0x534:4|0x538:",
+  "cids": [
+   "param_0349"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_twim_t"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0x9:1|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x23:1|0x25:1",
+  "cids": [
+   "param_0350"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_twim_cb"
+  ]
+ },
+ {
+  "signature": "0x1c:4|0x20:4|0x24:4|0x28:4",
+  "cids": [
+   "param_0360"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "metal_device_region"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0x44:4|0x48:4",
+  "cids": [
+   "param_0362"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "metal_bus"
+  ]
+ },
+ {
+  "signature": "solo::param_0364",
+  "cids": [
+   "param_0364"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_attdet_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0365",
+  "cids": [
+   "param_0365"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_bit_budget_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x1c:4|0x20:4|0x24:4|0x2c:4|0x30:4|0x34:4",
+  "cids": [
+   "param_0366"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_bits_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x1c:4|0x20:4|0x2c:4|0x30:4|0x34:4",
+  "cids": [
+   "param_0367"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_bits_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0368",
+  "cids": [
+   "param_0368"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_bwdet_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0369",
+  "cids": [
+   "param_0369"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_pcm_load_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0370",
+  "cids": [
+   "param_0370"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_pcm_buf_desc"
+  ]
+ },
+ {
+  "signature": "solo::param_0371",
+  "cids": [
+   "param_0371"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_bitstream"
+  ]
+ },
+ {
+  "signature": "solo::param_0372",
+  "cids": [
+   "param_0372"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_bitstream"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0x4a0:4|0x4a4:4|0x4a8:4",
+  "cids": [
+   "param_0373"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_encoder_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x484:4",
+  "cids": [
+   "param_0374"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_ltpf_data"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4|0x2c:4|0x30:4|0x34:4|0x38:4|0x3c:4|0x40:4|0x44:4|0x48",
+  "cids": [
+   "param_0375"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_ltpf_pitch_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0388",
+  "cids": [
+   "param_0388"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_side_info"
+  ]
+ },
+ {
+  "signature": "solo::param_0389",
+  "cids": [
+   "param_0389"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_spec_encode_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0391",
+  "cids": [
+   "param_0391"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_tns_state"
+  ]
+ },
+ {
+  "signature": "0x1:1|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4|0x2c:4|0x30:4|0x34:4|0x38:4|0x3c:4|0x40:4|0x44:4|0x48",
+  "cids": [
+   "param_0392"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_tns_nbits_table"
+  ]
+ },
+ {
+  "signature": "0x18:4|0x20:4|0x28:4|0x2c:4",
+  "cids": [
+   "param_0394"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "virtio_device_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0395",
+  "cids": [
+   "param_0395"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "virtqueue"
+  ]
+ },
+ {
+  "signature": "0x94:4|0xa0:4|0xa8:4|0xac:4|0xb0:4|0xb4:4",
+  "cids": [
+   "param_0397"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "rpmsg_virtio_device"
+  ]
+ },
+ {
+  "signature": "solo::param_0398",
+  "cids": [
+   "param_0398"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "audio_sync_ringbuf"
+  ]
+ },
+ {
+  "signature": "0x10:4|0x14:4|0x24:4|0x2c:4",
+  "cids": [
+   "param_0399"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "rpmsg_vring_channel_cfg"
+  ]
+ },
+ {
+  "signature": "solo::param_0400",
+  "cids": [
+   "param_0400"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "rpmsg_vq_alloc_info"
+  ]
+ },
+ {
+  "signature": "solo::param_0401",
+  "cids": [
+   "param_0401"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "rpmsg_virtio_shm_pool"
+  ]
+ },
+ {
+  "signature": "solo::param_0402",
+  "cids": [
+   "param_0402"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "metal_io_region"
+  ]
+ },
+ {
+  "signature": "0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4",
+  "cids": [
+   "param_0403"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "k_mem_slab"
+  ]
+ },
+ {
+  "signature": "0x4:4|0xd:1|0xe:1|0x18:4|0xd8:4|0xdc:4|0xe0:4|0xe4:4|0xe8:4|0xec:4|0xf0:4",
+  "cids": [
+   "param_0408"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "k_thread_frag"
+  ]
+ },
+ {
+  "signature": "solo::param_0410",
+  "cids": [
+   "param_0410"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "k_work_q"
+  ]
+ },
+ {
+  "signature": "solo::param_0411",
+  "cids": [
+   "param_0411"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "sched_thread_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xd:1|0xe:1",
+  "cids": [
+   "param_0412"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "k_thread_waitq_view"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0x10:4|0x14:4|0x28:4|0x2c:4|0x30:4",
+  "cids": [
+   "param_0414"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "k_timer"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0xd:1|0x10:4",
+  "cids": [
+   "param_0415"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "event_registration"
+  ]
+ },
+ {
+  "signature": "solo::param_0416",
+  "cids": [
+   "param_0416"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "k_poll_signal"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x3:2|0x4:4|0x8:4|0xc:4|0xe:2|0x10:4|0x14:4|0x18:4|0x20:4|0x28:4|0x2c:4|0x34:4|0x40:4|0x54:4|0x58:4|0x64:4",
+  "cids": [
+   "param_0417"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "FILE"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x18:4|0x28:4",
+  "cids": [
+   "param_0418"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "newlib_file_impl"
+  ]
+ },
+ {
+  "signature": "0x3:2|0x4:4|0x8:4|0xe:2|0x10:4|0x14:4|0x18:4|0x20:4|0x24:4|0x28:4|0x2c:4|0x30:4|0x64:4",
+  "cids": [
+   "param_0419"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "newlib_file_stream"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x18:4|0x28:4|0x48:4|0x4c:4|0x50:4",
+  "cids": [
+   "param_0420"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "reent_stdio_state"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x42:1|0x43:1|0x45:1|0x48:4|0x4c:4|0x58:4",
+  "cids": [
+   "param_0421"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "printf_conv_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0423",
+  "cids": [
+   "param_0423"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "dtoa_scratch"
+  ]
+ },
+ {
+  "signature": "solo::param_0424",
+  "cids": [
+   "param_0424"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bigint"
+  ]
+ },
+ {
+  "signature": "solo::param_0425",
+  "cids": [
+   "param_0425"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "bigint_dims"
+  ]
+ },
+ {
+  "signature": "solo::param_0427",
+  "cids": [
+   "param_0427"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "bignum_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0430",
+  "cids": [
+   "param_0430"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "fmt_conv_spec"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x180:4",
+  "cids": [
+   "param_0432"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "vfprintf_scan_ctx"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x17c:4|0x180:4",
+  "cids": [
+   "param_0433"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "scanf_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0436",
+  "cids": [
+   "param_0436"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "deferred_call_pair_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4|0x2c:4|0x30:4|0x34:4|0x38:4|0x3c:4|0x94:4|0x98:4",
+  "cids": [
+   "param_0438"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "mbedtls_ctr_drbg_context"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4|0x2c:4",
+  "cids": [
+   "param_0439"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "ctr_drbg_seed_material"
+  ]
+ },
+ {
+  "signature": "0xf8:4|0xfc:4|0x100:4|0x104:4|0x108:4|0x10c:4",
+  "cids": [
+   "param_0440"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "mbedtls_entropy_context"
+  ]
+ },
+ {
+  "signature": "0x10:4|0x14:4|0x18:4|0x20:4|0x24:4",
+  "cids": [
+   "param_0442"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "cc_trng_ctx"
+  ]
+ },
+ {
+  "signature": "0x54:4|0x58:4|0x5c:4|0x60:4",
+  "cids": [
+   "param_0444"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "mbedtls_aes_context"
+  ]
+ },
+ {
+  "signature": "solo::param_0445",
+  "cids": [
+   "param_0445"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "mbedtls_aes_context_cc"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0xf:1|0x30:4|0x34:4|0x38:4|0x40:4|0x44:4|0x48:4|0x4c:4|0x50:4|0x58:4|0x5c:4|0x60:4|0x64:4|0x68:4|0x6c:",
+  "cids": [
+   "param_0446"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "aes_drv_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x5c:4",
+  "cids": [
+   "param_0447"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "mbedtls_sha_context"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x48:4|0x4c:4|0x5c:4|0x60:4",
+  "cids": [
+   "param_0448"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "sha_hash_context"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x24:4",
+  "cids": [
+   "param_0449"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "llf_rnd_sample_state"
+  ]
+ },
+ {
+  "signature": "0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4|0x2c:4|0x30:4|0x34:4|0x38:4|0x3c:4|0x40:4|0x44:4",
+  "cids": [
+   "param_0453"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "hash_drv_context"
+  ]
+ },
+ {
+  "signature": "0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4|0x2c:4|0x30:4|0x3c:1|0x40:4",
+  "cids": [
+   "param_0454"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "aes_key_context"
+  ]
+ },
+ {
+  "signature": "solo::param_0458",
+  "cids": [
+   "param_0458"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "opt_node_header"
+  ]
+ },
+ {
+  "signature": "0x1:1|0x2:1|0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x60:4|0x64:4|0x68:4|0x6c:4",
+  "cids": [
+   "param_0459"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "opt_node_t"
+  ]
+ },
+ {
+  "signature": "solo::param_0460",
+  "cids": [
+   "param_0460"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "opt_field1_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x60:4|0x64:4|0x68:4|0x6c:4",
+  "cids": [
+   "param_0461"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "opt_record"
+  ]
+ },
+ {
+  "signature": "solo::param_0463",
+  "cids": [
+   "param_0463"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "opt_field3_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0466",
+  "cids": [
+   "param_0466"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "opt_record"
+  ]
+ },
+ {
+  "signature": "solo::param_0472",
+  "cids": [
+   "param_0472"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "opt_list_node"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4|0x2c:4|0x30:4",
+  "cids": [
+   "param_0482"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "log_timestamp_fields"
+  ]
+ },
+ {
+  "signature": "0xc:4|0x10:4|0x14:4|0x18:4|0x28:1|0x2c:4|0x30:4|0x34:4",
+  "cids": [
+   "param_0483"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "quaternion_euler_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0486",
+  "cids": [
+   "param_0486"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "u32le_array"
+  ]
+ },
+ {
+  "signature": "solo::param_0489",
+  "cids": [
+   "param_0489"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "cbprintf_out_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0492",
+  "cids": [
+   "param_0492"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "out_pair"
+  ]
+ },
+ {
+  "signature": "solo::param_0493",
+  "cids": [
+   "param_0493"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "heap_chunk_hdr"
+  ]
+ },
+ {
+  "signature": "solo::param_0498",
+  "cids": [
+   "param_0498"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "sys_notify"
+  ]
+ },
+ {
+  "signature": "solo::param_0499",
+  "cids": [
+   "param_0499"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "ldiv5_result"
+  ]
+ },
+ {
+  "signature": "solo::param_0501",
+  "cids": [
+   "param_0501"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "fs_usage_stats"
+  ]
+ },
+ {
+  "signature": "solo::param_0502",
+  "cids": [
+   "param_0502"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "nvs_ate_record"
+  ]
+ },
+ {
+  "signature": "solo::param_0503",
+  "cids": [
+   "param_0503"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "generic_uint32_pair"
+  ]
+ },
+ {
+  "signature": "solo::param_0505",
+  "cids": [
+   "param_0505"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "generic_handle_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0506",
+  "cids": [
+   "param_0506"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "reg_dev_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0507",
+  "cids": [
+   "param_0507"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "unk_ctx_7ec0e"
+  ]
+ },
+ {
+  "signature": "solo::param_0509",
+  "cids": [
+   "param_0509"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "ipc_rpmsg_instance"
+  ]
+ },
+ {
+  "signature": "solo::param_0510",
+  "cids": [
+   "param_0510"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "cbprintf_cpy_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0511",
+  "cids": [
+   "param_0511"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "log_msg_generic_hdr"
+  ]
+ },
+ {
+  "signature": "solo::param_0512",
+  "cids": [
+   "param_0512"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "log_output_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0526",
+  "cids": [
+   "param_0526"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "settings_nvs_backend_cfg"
+  ]
+ },
+ {
+  "signature": "0x134:4|0x150:4|0x154:4|0x158:4",
+  "cids": [
+   "param_0528"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "svc_attr_memory_pool"
+  ]
+ },
+ {
+  "signature": "solo::param_0529",
+  "cids": [
+   "param_0529"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_discover_params"
+  ]
+ },
+ {
+  "signature": "solo::param_0530",
+  "cids": [
+   "param_0530"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "ble_discovery_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0536",
+  "cids": [
+   "param_0536"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "small_flag_idx"
+  ]
+ },
+ {
+  "signature": "solo::param_0537",
+  "cids": [
+   "param_0537"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_ancs_attr_request"
+  ]
+ },
+ {
+  "signature": "solo::param_0538",
+  "cids": [
+   "param_0538"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "ancs_attr_registry"
+  ]
+ },
+ {
+  "signature": "solo::param_0539",
+  "cids": [
+   "param_0539"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_ancs_app_attr_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0542",
+  "cids": [
+   "param_0542"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "audio_codec_bus_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0543",
+  "cids": [
+   "param_0543"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "id_words_pair"
+  ]
+ },
+ {
+  "signature": "solo::param_0544",
+  "cids": [
+   "param_0544"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "settings_read_result"
+  ]
+ },
+ {
+  "signature": "0x2:2|0x3:1|0x4:4|0x6:2|0x7:1|0x8:4|0xa:2|0xb:1|0xc:4|0xe:2|0xf:1",
+  "cids": [
+   "param_0545"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "aes_state_matrix"
+  ]
+ },
+ {
+  "signature": "solo::param_0548",
+  "cids": [
+   "param_0548"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "mat3_row_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0549",
+  "cids": [
+   "param_0549"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "matrix_row_desc"
+  ]
+ },
+ {
+  "signature": "solo::param_0552",
+  "cids": [
+   "param_0552"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "smp_hdr"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x2:2|0x4:4|0x6:2|0x8:4|0xc:4",
+  "cids": [
+   "param_0553"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "smp_hdr"
+  ]
+ },
+ {
+  "signature": "solo::param_0555",
+  "cids": [
+   "param_0555"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "image_version"
+  ]
+ },
+ {
+  "signature": "solo::param_0556",
+  "cids": [
+   "param_0556"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "image_version"
+  ]
+ },
+ {
+  "signature": "solo::param_0558",
+  "cids": [
+   "param_0558"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "smp_reassembly_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0559",
+  "cids": [
+   "param_0559"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "smp_transport_reassembly_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0560",
+  "cids": [
+   "param_0560"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_smp_reassembly_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0562",
+  "cids": [
+   "param_0562"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "smp_transport_reassembly"
+  ]
+ },
+ {
+  "signature": "solo::param_0565",
+  "cids": [
+   "param_0565"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "conn_id_addr"
+  ]
+ },
+ {
+  "signature": "solo::param_0568",
+  "cids": [
+   "param_0568"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_uuid_generic"
+  ]
+ },
+ {
+  "signature": "solo::param_0571",
+  "cids": [
+   "param_0571"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_conn_security"
+  ]
+ },
+ {
+  "signature": "solo::param_0572",
+  "cids": [
+   "param_0572"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_addr_le_t"
+  ]
+ },
+ {
+  "signature": "solo::param_0573",
+  "cids": [
+   "param_0573"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_addr_le_t"
+  ]
+ },
+ {
+  "signature": "solo::param_0577",
+  "cids": [
+   "param_0577"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_addr_le"
+  ]
+ },
+ {
+  "signature": "solo::param_0578",
+  "cids": [
+   "param_0578"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_addr_le"
+  ]
+ },
+ {
+  "signature": "solo::param_0580",
+  "cids": [
+   "param_0580"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_addr_le"
+  ]
+ },
+ {
+  "signature": "solo::param_0581",
+  "cids": [
+   "param_0581"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_addr_le_t"
+  ]
+ },
+ {
+  "signature": "solo::param_0585",
+  "cids": [
+   "param_0585"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_conn"
+  ]
+ },
+ {
+  "signature": "solo::param_0586",
+  "cids": [
+   "param_0586"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_le_conn_param"
+  ]
+ },
+ {
+  "signature": "solo::param_0590",
+  "cids": [
+   "param_0590"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "atomic_signal_ctx"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0xc:4|0x2d:1|0xb6:2",
+  "cids": [
+   "param_0592"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "context_release_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0597",
+  "cids": [
+   "param_0597"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_l2cap_chan"
+  ]
+ },
+ {
+  "signature": "solo::param_0599",
+  "cids": [
+   "param_0599"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_att_read_type_data"
+  ]
+ },
+ {
+  "signature": "solo::param_0601",
+  "cids": [
+   "param_0601"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "att_notify_mult_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0602",
+  "cids": [
+   "param_0602"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "att_notify_buf_ctx"
+  ]
+ },
+ {
+  "signature": "0x2:1|0x4:2|0x5:1|0xc:4|0x12:2",
+  "cids": [
+   "param_0603"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "box_render_desc"
+  ]
+ },
+ {
+  "signature": "0x0:1|0x4:4|0x6:2|0x8:4|0xc:4|0xe:2|0x10:4",
+  "cids": [
+   "param_0604"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "net_buf_simple_view"
+  ]
+ },
+ {
+  "signature": "solo::param_0606",
+  "cids": [
+   "param_0606"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "att_chan_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0607",
+  "cids": [
+   "param_0607"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "generic_cmd_ctx_0607"
+  ]
+ },
+ {
+  "signature": "solo::param_0610",
+  "cids": [
+   "param_0610"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_att_req"
+  ]
+ },
+ {
+  "signature": "solo::param_0611",
+  "cids": [
+   "param_0611"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "att_indicate_params"
+  ]
+ },
+ {
+  "signature": "solo::param_0612",
+  "cids": [
+   "param_0612"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_att_chan_view2"
+  ]
+ },
+ {
+  "signature": "solo::param_0613",
+  "cids": [
+   "param_0613"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "att_write_req_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0614",
+  "cids": [
+   "param_0614"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "generic_kv_entry"
+  ]
+ },
+ {
+  "signature": "solo::param_0618",
+  "cids": [
+   "param_0618"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_ccc_cfg"
+  ]
+ },
+ {
+  "signature": "solo::param_0619",
+  "cids": [
+   "param_0619"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_indicate_params"
+  ]
+ },
+ {
+  "signature": "solo::param_0620",
+  "cids": [
+   "param_0620"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "hash_algo_desc"
+  ]
+ },
+ {
+  "signature": "solo::param_0623",
+  "cids": [
+   "param_0623"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_find_info_rsp_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0624",
+  "cids": [
+   "param_0624"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_attr_write_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0625",
+  "cids": [
+   "param_0625"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_addr_le_t"
+  ]
+ },
+ {
+  "signature": "solo::param_0626",
+  "cids": [
+   "param_0626"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_addr_le_copy_arg"
+  ]
+ },
+ {
+  "signature": "solo::param_0627",
+  "cids": [
+   "param_0627"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_sc_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0635",
+  "cids": [
+   "param_0635"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_conn_sec_info"
+  ]
+ },
+ {
+  "signature": "solo::param_0636",
+  "cids": [
+   "param_0636"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_addr_le_t"
+  ]
+ },
+ {
+  "signature": "solo::param_0637",
+  "cids": [
+   "param_0637"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_addr_le_view"
+  ]
+ },
+ {
+  "signature": "solo::param_0639",
+  "cids": [
+   "param_0639"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_addr_le"
+  ]
+ },
+ {
+  "signature": "solo::param_0640",
+  "cids": [
+   "param_0640"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_addr_le_arg"
+  ]
+ },
+ {
+  "signature": "solo::param_0641",
+  "cids": [
+   "param_0641"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "smp_c1_param"
+  ]
+ },
+ {
+  "signature": "solo::param_0642",
+  "cids": [
+   "param_0642"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_addr_le"
+  ]
+ },
+ {
+  "signature": "solo::param_0643",
+  "cids": [
+   "param_0643"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "smp_f6_key_buf"
+  ]
+ },
+ {
+  "signature": "solo::param_0644",
+  "cids": [
+   "param_0644"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_crypto_f6_input"
+  ]
+ },
+ {
+  "signature": "solo::param_0645",
+  "cids": [
+   "param_0645"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "net_buf_simple"
+  ]
+ },
+ {
+  "signature": "solo::param_0647",
+  "cids": [
+   "param_0647"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "net_buf_simple_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0649",
+  "cids": [
+   "param_0649"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "generic_range_pair"
+  ]
+ },
+ {
+  "signature": "solo::param_0651",
+  "cids": [
+   "param_0651"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "flash_pages_info"
+  ]
+ },
+ {
+  "signature": "solo::param_0661",
+  "cids": [
+   "param_0661"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "pinctrl_state"
+  ]
+ },
+ {
+  "signature": "0x508:4|0x50c:4|0x510:4|0x514:4|0x524:4|0x528:4|0x530:4|0x534:4|0x538:4|0x53c:4|0x540:4|0x544:4|0x560:4|0x564:4|0x568:4|",
+  "cids": [
+   "param_0662"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "dppi_periph_publish_regs"
+  ]
+ },
+ {
+  "signature": "solo::param_0663",
+  "cids": [
+   "param_0663"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "dev_channel_desc"
+  ]
+ },
+ {
+  "signature": "solo::param_0664",
+  "cids": [
+   "param_0664"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "dev_channel_dispatch_entry"
+  ]
+ },
+ {
+  "signature": "solo::param_0669",
+  "cids": [
+   "param_0669"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "dev_channel_mode"
+  ]
+ },
+ {
+  "signature": "0x2:2|0x4:4|0x5:2|0xa:2|0xc:4|0x10:4|0x16:2",
+  "cids": [
+   "param_0673"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "flash_layout_region"
+  ]
+ },
+ {
+  "signature": "solo::param_0675",
+  "cids": [
+   "param_0675"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "driver_cb_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0676",
+  "cids": [
+   "param_0676"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "byte_channel_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0680",
+  "cids": [
+   "param_0680"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "driver_active_timer_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0682",
+  "cids": [
+   "param_0682"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "watchdog_disable_work_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0683",
+  "cids": [
+   "param_0683"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "pmic_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0684",
+  "cids": [
+   "param_0684"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "wdt_channel_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0685",
+  "cids": [
+   "param_0685"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "wdt_nrf_config"
+  ]
+ },
+ {
+  "signature": "solo::param_0688",
+  "cids": [
+   "param_0688"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "sllist_named_node"
+  ]
+ },
+ {
+  "signature": "solo::param_0690",
+  "cids": [
+   "param_0690"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_spim_cb"
+  ]
+ },
+ {
+  "signature": "solo::param_0695",
+  "cids": [
+   "param_0695"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "metal_io_region_view"
+  ]
+ },
+ {
+  "signature": "solo::param_0697",
+  "cids": [
+   "param_0697"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "metal_io_region"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0xc:4|0x10:4|0x30:4",
+  "cids": [
+   "param_0698"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "task_ctx_generic"
+  ]
+ },
+ {
+  "signature": "0x2:2|0x4:4|0x9:2|0xa:2|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4",
+  "cids": [
+   "param_0699"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "virtqueue"
+  ]
+ },
+ {
+  "signature": "solo::param_0700",
+  "cids": [
+   "param_0700"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "virtqueue_desc_info"
+  ]
+ },
+ {
+  "signature": "0xa:2|0x18:4|0x1c:4|0x24:2|0x26:2|0x28:4|0x2c:2",
+  "cids": [
+   "param_0701"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "virtqueue"
+  ]
+ },
+ {
+  "signature": "0xa:2|0x18:4|0x20:4|0x24:2|0x2c:2|0x2e:2",
+  "cids": [
+   "param_0702"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "virtqueue"
+  ]
+ },
+ {
+  "signature": "0x0:2|0xa:2|0x14:4|0x1c:4|0x2e:2",
+  "cids": [
+   "param_0704"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "vring"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x10:4|0x14:4|0x1c:4|0x20:4|0x26:2",
+  "cids": [
+   "param_0705"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "dma_xfer_desc"
+  ]
+ },
+ {
+  "signature": "solo::param_0711",
+  "cids": [
+   "param_0711"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "unk_ctx_0711"
+  ]
+ },
+ {
+  "signature": "solo::param_0712",
+  "cids": [
+   "param_0712"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "virtqueue"
+  ]
+ },
+ {
+  "signature": "solo::param_0713",
+  "cids": [
+   "param_0713"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "rpmsg_virtio_shm_pool"
+  ]
+ },
+ {
+  "signature": "solo::param_0714",
+  "cids": [
+   "param_0714"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "rpmsg_virtio_device_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0715",
+  "cids": [
+   "param_0715"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "cbor_decoder_state"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0xc:4|0x10:1|0x11:1|0x14:4",
+  "cids": [
+   "param_0716"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "zcbor_state_t"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:2|0x8:4|0xc:4|0x14:4",
+  "cids": [
+   "param_0717"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "buffer_pool_freelist"
+  ]
+ },
+ {
+  "signature": "solo::param_0718",
+  "cids": [
+   "param_0718"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "cbor_value"
+  ]
+ },
+ {
+  "signature": "solo::param_0719",
+  "cids": [
+   "param_0719"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "zcbor_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0721",
+  "cids": [
+   "param_0721"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "cbor_encoder_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0724",
+  "cids": [
+   "param_0724"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "k_heap_init_ctx"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4|0x2c:4|0x30:1",
+  "cids": [
+   "param_0725"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "k_msgq_state"
+  ]
+ },
+ {
+  "signature": "solo::param_0726",
+  "cids": [
+   "param_0726"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "k_msgq"
+  ]
+ },
+ {
+  "signature": "solo::param_0734",
+  "cids": [
+   "param_0734"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "sys_dlist_t"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x30:4|0x34:4",
+  "cids": [
+   "param_0736"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "k_timer"
+  ]
+ },
+ {
+  "signature": "solo::param_0739",
+  "cids": [
+   "param_0739"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "k_poll_event"
+  ]
+ },
+ {
+  "signature": "solo::param_0740",
+  "cids": [
+   "param_0740"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "k_poll_signal"
+  ]
+ },
+ {
+  "signature": "solo::param_0741",
+  "cids": [
+   "param_0741"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "itoa_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0742",
+  "cids": [
+   "param_0742"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "libc_file_stream"
+  ]
+ },
+ {
+  "signature": "solo::param_0743",
+  "cids": [
+   "param_0743"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_sub_handle_ctx"
+  ]
+ },
+ {
+  "signature": "solo::param_0745",
+  "cids": [
+   "param_0745"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "mbedtls_mpi_limb_view"
+  ]
+ },
+ {
+  "signature": "0x3:2|0x4:4|0x10:4|0x34:4|0x3c:4|0x40:4",
+  "cids": [
+   "param_0749"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": true,
+  "names": [
+   "newlib_FILE"
+  ]
+ },
+ {
+  "signature": "0x34:4|0x38:4|0x44:4|0x45:1|0x46:1",
+  "cids": [
+   "param_0750"
+  ],
+  "n": 1,
+  "kinds": [
+   "param"
+  ],
+  "any_library": false,
+  "names": [
+   "dynbuf_t"
+  ]
+ },
+ {
+  "signature": "0x0:1|0x1:1|0x2:1|0x4:1",
+  "cids": [
+   "stack_0751"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "battery_model_sample"
+  ]
+ },
+ {
+  "signature": "solo::stack_0752",
+  "cids": [
+   "stack_0752"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "batt_soc_calc_tmp"
+  ]
+ },
+ {
+  "signature": "0x0:4|0xc:4|0x18:4|0x30:4",
+  "cids": [
+   "stack_0754"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "battery_model_update_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_0758",
+  "cids": [
+   "stack_0758"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "battery_calc_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_0759",
+  "cids": [
+   "stack_0759"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "batt_sample_pair"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0xc:4|0x1c:4",
+  "cids": [
+   "stack_0763"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "batt_calc_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_0776",
+  "cids": [
+   "stack_0776"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "soc_curve_point"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4",
+  "cids": [
+   "stack_0782"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "imu_fusion_state_vector"
+  ]
+ },
+ {
+  "signature": "solo::stack_0783",
+  "cids": [
+   "stack_0783"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "fuel_gauge_reading"
+  ]
+ },
+ {
+  "signature": "solo::stack_0784",
+  "cids": [
+   "stack_0784"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "cbvprintf_state"
+  ]
+ },
+ {
+  "signature": "0x0:1|0x1:1|0x2:1|0x19:1",
+  "cids": [
+   "stack_0785"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "cbvprintf_local_state"
+  ]
+ },
+ {
+  "signature": "solo::stack_0790",
+  "cids": [
+   "stack_0790"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "hci_vs_init_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_0792",
+  "cids": [
+   "stack_0792"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "dtoa_result_info"
+  ]
+ },
+ {
+  "signature": "solo::stack_0841",
+  "cids": [
+   "stack_0841"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "ancs_notify_frame"
+  ]
+ },
+ {
+  "signature": "solo::stack_0842",
+  "cids": [
+   "stack_0842"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "ancs_notify_buf"
+  ]
+ },
+ {
+  "signature": "solo::stack_0846",
+  "cids": [
+   "stack_0846"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "debug_print_buf"
+  ]
+ },
+ {
+  "signature": "solo::stack_0848",
+  "cids": [
+   "stack_0848"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "ble_get_req_hdr_tmp"
+  ]
+ },
+ {
+  "signature": "solo::stack_0850",
+  "cids": [
+   "stack_0850"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "ble_get_req_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_0851",
+  "cids": [
+   "stack_0851"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "status_notify_packet_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_0852",
+  "cids": [
+   "stack_0852"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "ble_req_dispatch_locals"
+  ]
+ },
+ {
+  "signature": "0x0:1|0x1:1|0x2:1|0x3:1|0x404:1",
+  "cids": [
+   "stack_0860"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "crc_scratch_buffer"
+  ]
+ },
+ {
+  "signature": "solo::stack_0864",
+  "cids": [
+   "stack_0864"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "settings_read_stage"
+  ]
+ },
+ {
+  "signature": "solo::stack_0865",
+  "cids": [
+   "stack_0865"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "sys_setting_kv_local"
+  ]
+ },
+ {
+  "signature": "solo::stack_0867",
+  "cids": [
+   "stack_0867"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "sys_setting_read_buf"
+  ]
+ },
+ {
+  "signature": "solo::stack_0870",
+  "cids": [
+   "stack_0870"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "flash_read_tmp"
+  ]
+ },
+ {
+  "signature": "solo::stack_0871",
+  "cids": [
+   "stack_0871"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "sys_setting_scan_ctx"
+  ]
+ },
+ {
+  "signature": "solo::stack_0873",
+  "cids": [
+   "stack_0873"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "flash_setting_record"
+  ]
+ },
+ {
+  "signature": "solo::stack_0887",
+  "cids": [
+   "stack_0887"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "setting_store_ctx"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x54:4",
+  "cids": [
+   "stack_0897"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "ndef_record_build_scratch"
+  ]
+ },
+ {
+  "signature": "solo::stack_0900",
+  "cids": [
+   "stack_0900"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "len_prefixed_pkt_hdr"
+  ]
+ },
+ {
+  "signature": "solo::stack_0910",
+  "cids": [
+   "stack_0910"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "process_for_new_task_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_0911",
+  "cids": [
+   "stack_0911"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "opt3001_i2c_xfer_bytes"
+  ]
+ },
+ {
+  "signature": "solo::stack_0912",
+  "cids": [
+   "stack_0912"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "opt3001_reg_pair"
+  ]
+ },
+ {
+  "signature": "solo::stack_0931",
+  "cids": [
+   "stack_0931"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "audio_stream_cache_flags"
+  ]
+ },
+ {
+  "signature": "solo::stack_0934",
+  "cids": [
+   "stack_0934"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "audio_stream_record_params"
+  ]
+ },
+ {
+  "signature": "solo::stack_0939",
+  "cids": [
+   "stack_0939"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "audio_file_mgr_tmp"
+  ]
+ },
+ {
+  "signature": "solo::stack_0940",
+  "cids": [
+   "stack_0940"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "audio_file_mgr_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_0941",
+  "cids": [
+   "stack_0941"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "audio_stream_file_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_0942",
+  "cids": [
+   "stack_0942"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "config_record_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_0960",
+  "cids": [
+   "stack_0960"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "pt_data_pair"
+  ]
+ },
+ {
+  "signature": "solo::stack_0979",
+  "cids": [
+   "stack_0979"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "float_screen_render_params"
+  ]
+ },
+ {
+  "signature": "solo::stack_0981",
+  "cids": [
+   "stack_0981"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "timer_hms_draw_tmp"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0x58:4",
+  "cids": [
+   "stack_1001"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "dashboard_reflash_ctx"
+  ]
+ },
+ {
+  "signature": "solo::stack_1014",
+  "cids": [
+   "stack_1014"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "bmp_draw_desc"
+  ]
+ },
+ {
+  "signature": "solo::stack_1015",
+  "cids": [
+   "stack_1015"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "gui_bitmap_draw_args"
+  ]
+ },
+ {
+  "signature": "solo::stack_1016",
+  "cids": [
+   "stack_1016"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "bitmap_merge_local"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x28:4",
+  "cids": [
+   "stack_1018"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "scroll_text_frame_ctx"
+  ]
+ },
+ {
+  "signature": "0x0:1|0x1:1|0x2:1|0x3:1|0x4:1|0x5:1|0x6:1|0x7:1|0x8:1|0x9:1|0xa:1|0xb:1|0xc:1|0xd:1|0xe:1|0xf:1|0x14:1",
+  "cids": [
+   "stack_1021"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "clock_digit_buf"
+  ]
+ },
+ {
+  "signature": "solo::stack_1027",
+  "cids": [
+   "stack_1027"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "utf_wordwrap_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1033",
+  "cids": [
+   "stack_1033"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "gui_draw_point"
+  ]
+ },
+ {
+  "signature": "solo::stack_1036",
+  "cids": [
+   "stack_1036"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "lcd_fb_xfer_local"
+  ]
+ },
+ {
+  "signature": "solo::stack_1037",
+  "cids": [
+   "stack_1037"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "lcd_reflash_local_state"
+  ]
+ },
+ {
+  "signature": "solo::stack_1042",
+  "cids": [
+   "stack_1042"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "proxy_thread_local"
+  ]
+ },
+ {
+  "signature": "solo::stack_1044",
+  "cids": [
+   "stack_1044"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "ui_warp_flags_tmp"
+  ]
+ },
+ {
+  "signature": "solo::stack_1048",
+  "cids": [
+   "stack_1048"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "display_thread_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1050",
+  "cids": [
+   "stack_1050"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "display_close_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1053",
+  "cids": [
+   "stack_1053"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "display_power_event_locals"
+  ]
+ },
+ {
+  "signature": "0x1:1|0x2:1|0x3:1|0x4:1|0x5:1|0x6:1|0x7:1|0x8:1|0x9:1|0xa:1|0xb:1|0xc:1|0x11:1",
+  "cids": [
+   "stack_1055"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "ascii_digit_buffer"
+  ]
+ },
+ {
+  "signature": "solo::stack_1060",
+  "cids": [
+   "stack_1060"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "nvs_ate_stub"
+  ]
+ },
+ {
+  "signature": "0x19:1|0x3c:4|0x68:4|0x6c:4",
+  "cids": [
+   "stack_1062"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "scratch_ctx_0004cf78"
+  ]
+ },
+ {
+  "signature": "solo::stack_1066",
+  "cids": [
+   "stack_1066"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "log_msg_desc"
+  ]
+ },
+ {
+  "signature": "solo::stack_1070",
+  "cids": [
+   "stack_1070"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "flash_sector_tmp"
+  ]
+ },
+ {
+  "signature": "solo::stack_1078",
+  "cids": [
+   "stack_1078"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "discovery_result_flags"
+  ]
+ },
+ {
+  "signature": "solo::stack_1079",
+  "cids": [
+   "stack_1079"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "discovery_result_flags"
+  ]
+ },
+ {
+  "signature": "solo::stack_1080",
+  "cids": [
+   "stack_1080"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "ancs_handle_pair"
+  ]
+ },
+ {
+  "signature": "solo::stack_1081",
+  "cids": [
+   "stack_1081"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "ancs_handle_scratch"
+  ]
+ },
+ {
+  "signature": "solo::stack_1112",
+  "cids": [
+   "stack_1112"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "arm_mpu_configure_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1118",
+  "cids": [
+   "stack_1118"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "img_mgmt_flash_area_info"
+  ]
+ },
+ {
+  "signature": "solo::stack_1124",
+  "cids": [
+   "stack_1124"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "img_mgmt_info_local"
+  ]
+ },
+ {
+  "signature": "solo::stack_1126",
+  "cids": [
+   "stack_1126"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "img_upload_chunk"
+  ]
+ },
+ {
+  "signature": "solo::stack_1131",
+  "cids": [
+   "stack_1131"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "storage_erase_range_tmp"
+  ]
+ },
+ {
+  "signature": "solo::stack_1136",
+  "cids": [
+   "stack_1136"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_register_service_locals"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4|0x2c:4|0x30:4|0x34:4|0x38:4",
+  "cids": [
+   "stack_1151"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "ver_str_buf"
+  ]
+ },
+ {
+  "signature": "solo::stack_1170",
+  "cids": [
+   "stack_1170"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "ble_rpa_gen_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1173",
+  "cids": [
+   "stack_1173"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "hci_static_addr_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1186",
+  "cids": [
+   "stack_1186"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "conn_unref_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x10:4|0x14:2|0x24:2",
+  "cids": [
+   "stack_1191"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "l2cap_le_chan_init_locals"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x14:2|0x16:2|0x18:2|0x1c:4|0xb4:1|0xb9:1",
+  "cids": [
+   "stack_1192"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_l2cap_le_chan_rx"
+  ]
+ },
+ {
+  "signature": "solo::stack_1195",
+  "cids": [
+   "stack_1195"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "ad_type_match_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1196",
+  "cids": [
+   "stack_1196"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_att_accept_local_ctx"
+  ]
+ },
+ {
+  "signature": "0x4:4|0x8:4|0x28:4|0x2c:4|0x30:4|0x34:4",
+  "cids": [
+   "stack_1197"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_att_chan_local"
+  ]
+ },
+ {
+  "signature": "solo::stack_1202",
+  "cids": [
+   "stack_1202"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "att_read_group_type_req"
+  ]
+ },
+ {
+  "signature": "solo::stack_1205",
+  "cids": [
+   "stack_1205"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "local_pair_5929c"
+  ]
+ },
+ {
+  "signature": "solo::stack_1207",
+  "cids": [
+   "stack_1207"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "unk_stack_1207"
+  ]
+ },
+ {
+  "signature": "solo::stack_1212",
+  "cids": [
+   "stack_1212"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "att_find_type_req_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1219",
+  "cids": [
+   "stack_1219"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_foreach_attr_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1224",
+  "cids": [
+   "stack_1224"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_indicate_local_flags"
+  ]
+ },
+ {
+  "signature": "solo::stack_1226",
+  "cids": [
+   "stack_1226"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_notify_cb_local"
+  ]
+ },
+ {
+  "signature": "solo::stack_1228",
+  "cids": [
+   "stack_1228"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_discover_local"
+  ]
+ },
+ {
+  "signature": "solo::stack_1229",
+  "cids": [
+   "stack_1229"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_discover_local"
+  ]
+ },
+ {
+  "signature": "solo::stack_1230",
+  "cids": [
+   "stack_1230"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_discover_tmp"
+  ]
+ },
+ {
+  "signature": "solo::stack_1231",
+  "cids": [
+   "stack_1231"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "bt_gatt_discover_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1232",
+  "cids": [
+   "stack_1232"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_find_by_type_rsp_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1233",
+  "cids": [
+   "stack_1233"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_handle_range"
+  ]
+ },
+ {
+  "signature": "solo::stack_1234",
+  "cids": [
+   "stack_1234"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_read_by_type_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1235",
+  "cids": [
+   "stack_1235"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "read_by_type_entry_hdr"
+  ]
+ },
+ {
+  "signature": "solo::stack_1237",
+  "cids": [
+   "stack_1237"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_read_by_type_rsp_cursor"
+  ]
+ },
+ {
+  "signature": "solo::stack_1240",
+  "cids": [
+   "stack_1240"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_find_info_elem"
+  ]
+ },
+ {
+  "signature": "solo::stack_1241",
+  "cids": [
+   "stack_1241"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "find_info_rsp_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1248",
+  "cids": [
+   "stack_1248"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "smp_dhkey_check_buf"
+  ]
+ },
+ {
+  "signature": "solo::stack_1249",
+  "cids": [
+   "stack_1249"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "smp_pairing_pdu_local"
+  ]
+ },
+ {
+  "signature": "solo::stack_1273",
+  "cids": [
+   "stack_1273"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "pdm_mic_event_data"
+  ]
+ },
+ {
+  "signature": "solo::stack_1277",
+  "cids": [
+   "stack_1277"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "panel_temp_calib_local"
+  ]
+ },
+ {
+  "signature": "solo::stack_1278",
+  "cids": [
+   "stack_1278"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "uarte_isr_scratch"
+  ]
+ },
+ {
+  "signature": "solo::stack_1292",
+  "cids": [
+   "stack_1292"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "cjson_printbuffer_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1302",
+  "cids": [
+   "stack_1302"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "gpiote_trigger_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1312",
+  "cids": [
+   "stack_1312"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "gpiote_evt_info"
+  ]
+ },
+ {
+  "signature": "solo::stack_1351",
+  "cids": [
+   "stack_1351"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "nrfx_twim_irq_local"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0xc:4|0x14:4",
+  "cids": [
+   "stack_1359"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_bwdet_energy_array"
+  ]
+ },
+ {
+  "signature": "solo::stack_1361",
+  "cids": [
+   "stack_1361"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_energy_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1370",
+  "cids": [
+   "stack_1370"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_ltpf_pitch_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1373",
+  "cids": [
+   "stack_1373"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_ltpf_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1374",
+  "cids": [
+   "stack_1374"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "ltpf_analyse_buffer"
+  ]
+ },
+ {
+  "signature": "solo::stack_1375",
+  "cids": [
+   "stack_1375"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_mdct_fft_workspace"
+  ]
+ },
+ {
+  "signature": "solo::stack_1380",
+  "cids": [
+   "stack_1380"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_sns_analyze_buf"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0xc:4|0x10:4|0x14:4|0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4|0x2c:4|0x30:4|0x34:4|0x38:4|0x3c:4|0x40:4|0x44:",
+  "cids": [
+   "stack_1382"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_sns_analysis_buffer"
+  ]
+ },
+ {
+  "signature": "0x18:4|0x1c:4|0x20:4|0x24:4|0x28:4",
+  "cids": [
+   "stack_1387"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "lc3_tns_analyze_local"
+  ]
+ },
+ {
+  "signature": "solo::stack_1422",
+  "cids": [
+   "stack_1422"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "float_render_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1423",
+  "cids": [
+   "stack_1423"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "snprintf_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1424",
+  "cids": [
+   "stack_1424"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "fmt_buf_state"
+  ]
+ },
+ {
+  "signature": "solo::stack_1425",
+  "cids": [
+   "stack_1425"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "strtod_bigint_scratch"
+  ]
+ },
+ {
+  "signature": "solo::stack_1426",
+  "cids": [
+   "stack_1426"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "strtod_scratch"
+  ]
+ },
+ {
+  "signature": "solo::stack_1427",
+  "cids": [
+   "stack_1427"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "strtod_local"
+  ]
+ },
+ {
+  "signature": "solo::stack_1428",
+  "cids": [
+   "stack_1428"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "vsprintf_fmt_state_tmp"
+  ]
+ },
+ {
+  "signature": "0x0:4|0x4:4|0x8:4|0x10:4",
+  "cids": [
+   "stack_1430"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "scanf_int_convert_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1469",
+  "cids": [
+   "stack_1469"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "mbedtls_hw_poll_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1496",
+  "cids": [
+   "stack_1496"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "projector_cmd_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1497",
+  "cids": [
+   "stack_1497"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "proj_cmd_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1498",
+  "cids": [
+   "stack_1498"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "spi_chunk_state"
+  ]
+ },
+ {
+  "signature": "solo::stack_1505",
+  "cids": [
+   "stack_1505"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "scratch_pair_0007e83a"
+  ]
+ },
+ {
+  "signature": "solo::stack_1521",
+  "cids": [
+   "stack_1521"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "mpu_region_cfg"
+  ]
+ },
+ {
+  "signature": "solo::stack_1525",
+  "cids": [
+   "stack_1525"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "smp_ah_output_buf"
+  ]
+ },
+ {
+  "signature": "solo::stack_1532",
+  "cids": [
+   "stack_1532"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "gatt_ccc_local_value"
+  ]
+ },
+ {
+  "signature": "solo::stack_1533",
+  "cids": [
+   "stack_1533"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "cf_read_state"
+  ]
+ },
+ {
+  "signature": "solo::stack_1534",
+  "cids": [
+   "stack_1534"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "ble_appearance_rsp"
+  ]
+ },
+ {
+  "signature": "solo::stack_1535",
+  "cids": [
+   "stack_1535"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "local_pair_82c48"
+  ]
+ },
+ {
+  "signature": "solo::stack_1536",
+  "cids": [
+   "stack_1536"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "unk_stack_1536"
+  ]
+ },
+ {
+  "signature": "solo::stack_1538",
+  "cids": [
+   "stack_1538"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "smp_c1_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1552",
+  "cids": [
+   "stack_1552"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "dev_write_reg4_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1553",
+  "cids": [
+   "stack_1553"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "dppi_channel_cfg_entry"
+  ]
+ },
+ {
+  "signature": "solo::stack_1554",
+  "cids": [
+   "stack_1554"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "regulator_voltage_range_local"
+  ]
+ },
+ {
+  "signature": "solo::stack_1555",
+  "cids": [
+   "stack_1555"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "i2c_reg16_xfer"
+  ]
+ },
+ {
+  "signature": "solo::stack_1556",
+  "cids": [
+   "stack_1556"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "post_event_tag2_local"
+  ]
+ },
+ {
+  "signature": "solo::stack_1557",
+  "cids": [
+   "stack_1557"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "event_tag4_clear_tmp"
+  ]
+ },
+ {
+  "signature": "solo::stack_1558",
+  "cids": [
+   "stack_1558"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "post_event_tag5_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1568",
+  "cids": [
+   "stack_1568"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "cbor_skip_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1571",
+  "cids": [
+   "stack_1571"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "dtoa_locals"
+  ]
+ },
+ {
+  "signature": "solo::stack_1572",
+  "cids": [
+   "stack_1572"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": false,
+  "names": [
+   "snprintf_bounds"
+  ]
+ },
+ {
+  "signature": "solo::stack_1573",
+  "cids": [
+   "stack_1573"
+  ],
+  "n": 1,
+  "kinds": [
+   "stack"
+  ],
+  "any_library": true,
+  "names": [
+   "bignum_compare_estimate_ints"
+  ]
+ }
+]
