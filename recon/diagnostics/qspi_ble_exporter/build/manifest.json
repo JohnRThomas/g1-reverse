@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "source_image": "/Users/freedomcoder/Projects/G1disasm2/app_update.bin",
+  "source_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "output_image": "/Users/freedomcoder/Projects/G1disasm2/recon/diagnostics/qspi_ble_exporter/build/app_update_qspi_exporter.signed.bin",
+  "output_sha256": "deb9f2abfa13bd295a22b79fa70dc6d28faa00d5379be0457e941e9543bd18de",
+  "signature_verification": "Verified OK",
+  "signing_key": "/Users/freedomcoder/ncs251/bootloader/mcuboot/root-rsa-2048.pem",
+  "public_key_sha256": "fc5701dc6135e1323847bdc40f04d2e5bee5833b23c29f93593d00018cfa9994",
+  "old_img_size": 976957,
+  "new_img_size": 977108,
+  "handler": {
+    "address": "0x000faa40",
+    "file_offset": "0xeea40",
+    "size": 148,
+    "sha256": "674092f8ab6052470a928a7213aa23c18f48883a99b1287cccf1df7ef2d2892f"
+  },
+  "in_place_patch": {
+    "address": "0x0001a710",
+    "file_offset": "0xe710",
+    "before": "0d 4b 1b 68",
+    "after": "e0 f0 96 b9",
+    "meaning": "b.w 0x000faa40"
+  },
+  "signed_digest_sha256_tlv": "50edf8cb8b8d47b07a5804fa6119d1b923a7b96ed1d14ca7728865eb6371315d",
+  "slot_end_file_offset": "0xf0000",
+  "remaining_slot_bytes_after_signed_image": 5084,
+  "read_only_call_target": "flash_settings_read@0x000225b4",
+  "protocol": {
+    "command": "0x2f",
+    "offset_field": "request[5:9] little-endian",
+    "length_field": "request[9]",
+    "maximum_chunk": 180,
+    "qspi_bounds": "[0x00000000,0x02000000)"
+  }
+}
