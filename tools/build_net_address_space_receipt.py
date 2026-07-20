@@ -106,6 +106,23 @@ def build():
     reset_vector = int.from_bytes(image[4:8], "little")
     reset_runtime = RuntimeAddress(reset_vector & ~1)
     reset_analysis = reset_runtime.to_analysis()
+
+    # Independent base proof (self-checking): the SVCall exception vector must
+    # resolve to the canonical Cortex-M SVC handler prologue (z_arm_svc). We
+    # locate that prologue by its exact bytes and derive the runtime base from
+    # the vector value; it must equal RUNTIME_BASE. This resolves cleanly ONLY
+    # at 0x01008800 (at 0x01008000 the vector lands 0x800 into the handler; at
+    # 0x01000000 it lands on an unrelated `pop {..,pc}`).
+    svcall_vector = int.from_bytes(image[0x2c:0x30], "little")
+    SVC_PROLOGUE = bytes.fromhex("1ef0040f0cbfeff30880eff30980")
+    svc_offset = image.find(SVC_PROLOGUE)
+    svc_derived_base = (svcall_vector & ~1) - svc_offset if svc_offset >= 0 else -1
+    if svc_derived_base != RUNTIME_BASE:
+        raise AssertionError(
+            "SVCall base proof failed: derived 0x%08x != runtime base 0x%08x"
+            % (svc_derived_base, RUNTIME_BASE))
+    svcall_runtime = RuntimeAddress(svcall_vector & ~1)
+
     receipt = {
         "schema": 1,
         "core": "net",
@@ -128,6 +145,17 @@ def build():
                 "stored_runtime_thumb_address": _hex(reset_vector),
                 "runtime_address": _hex(reset_runtime.value),
                 "analysis_address": _hex(reset_analysis.value),
+            },
+            "svcall_handler": {
+                "stored_runtime_thumb_address": _hex(svcall_vector),
+                "runtime_address": _hex(svcall_runtime.value),
+                "analysis_address": _hex(svcall_runtime.to_analysis().value),
+                "handler_file_offset": _hex(svc_offset),
+                "prologue_bytes": SVC_PROLOGUE.hex(),
+                "prologue_disasm": "tst.w lr,#4; ite eq; mrseq r0,MSP; mrsne r0,PSP",
+                "derived_runtime_base": _hex(svc_derived_base),
+                "note": ("canonical z_arm_svc prologue; the SVCall vector resolves to a "
+                         "clean handler entry only at runtime base 0x01008800"),
             },
             "assertion_string": {
                 "runtime_address": "0x0103d2a7",

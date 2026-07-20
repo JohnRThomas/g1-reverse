@@ -8,7 +8,7 @@ legitimate recovery of the owner's own device firmware (sources were lost).
 The device = smart glasses with 2 projectors (L/R), each on a control board, both BLE
 devices synchronising via Nordic's protocol (ESB). Two CPUs:
 - **app core** (CPUAPP, Cortex-M33) — application logic. Image `app_update.bin`, link base **0xC200**.
-- **net core** (CPUNET) — BLE controller + ESB radio + glue. Image `netcore_image.bin`, link base **0x01008000**.
+- **net core** (CPUNET) — BLE controller + ESB radio + glue. Image `netcore_image.bin`. **Two coordinate spaces** (see `tools/net_address_space.py`, `recon/catalogs/net_address_spaces.json`): **analysis base 0x01008000** (Ghidra import — function identities, CFG positions, `off = va - 0x01008000` for image bytes) vs **true runtime/link base 0x01008800** (linked execution addresses + stored absolute flash pointers). Delta **0x800**. The image is position-DEPENDENT: it only runs loaded at 0x01008800. Proven by two oracles — the reset vector and the SVCall handler (its vector 0x0102f4c1 lands on the canonical `z_arm_svc` prologue at file offset 0x26cc0 only at base 0x01008800). Net Zephyr build pins this with `CONFIG_FLASH_LOAD_OFFSET=0x8800`; never fall back to the board default 0x01000000.
 Separate CPUs/flash/RAM; they share only `sram0_shared` (OpenAMP/rpmsg IPC). **Net core cannot
 share structs/functions with app core.**
 

@@ -21,6 +21,16 @@
       "runtime_address": "0x0102fc8c",
       "analysis_address": "0x0102f48c"
     },
+    "svcall_handler": {
+      "stored_runtime_thumb_address": "0x0102f4c1",
+      "runtime_address": "0x0102f4c0",
+      "analysis_address": "0x0102ecc0",
+      "handler_file_offset": "0x00026cc0",
+      "prologue_bytes": "1ef0040f0cbfeff30880eff30980",
+      "prologue_disasm": "tst.w lr,#4; ite eq; mrseq r0,MSP; mrsne r0,PSP",
+      "derived_runtime_base": "0x01008800",
+      "note": "canonical z_arm_svc prologue; the SVCall vector resolves to a clean handler entry only at runtime base 0x01008800"
+    },
     "assertion_string": {
       "runtime_address": "0x0103d2a7",
       "prefix": "ASSERTION FAIL @"
@@ -32,7 +42,7 @@
     }
   },
   "summary": {
-    "function_identities": 1303,
+    "function_identities": 1304,
     "analysis_runtime_numeric_overlaps": 31,
     "runtime_function_pointer_references": 64
   },
@@ -2646,6 +2656,12 @@
       "runtime_address": "0x0101ba30",
       "raw_name": "FUN_0101b230",
       "name": "FUN_0101b230"
+    },
+    {
+      "analysis_address": "0x0101b4f4",
+      "runtime_address": "0x0101bcf4",
+      "raw_name": "FUN_0101b4f4",
+      "name": "sdc_event_publish"
     },
     {
       "analysis_address": "0x0101b54c",

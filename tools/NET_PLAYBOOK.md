@@ -8,7 +8,7 @@ anything under tools/.
 ## Env
 - Run: `PYTHONSAFEPATH=1 /Users/freedomcoder/Projects/G1disasm2/.venv/bin/python ...`
 - workdir /Users/freedomcoder/Projects/G1disasm2 ; use the RECON_LEDGER given.
-- Net core links at base 0x01008000 (this is handled for you).
+- Net core: **analysis base 0x01008000** (Ghidra identities/CFG), **true runtime/link base 0x01008800** (delta 0x800; `CONFIG_FLASH_LOAD_OFFSET=0x8800`). Use `tools/net_address_space.py` typed conversions — never treat a bare integer as either space (they overlap). This is handled for you.
 
 ## Per function
 1. Inspect: `PYTHONSAFEPATH=1 .venv/bin/python tools/net_recon_kit.py info 0xADDR`

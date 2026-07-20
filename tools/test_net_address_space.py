@@ -79,7 +79,13 @@ class NetAddressSpaceTests(unittest.TestCase):
         self.assertEqual("0x01008000", first["coordinate_spaces"]["analysis"]["base"])
         self.assertEqual("0x01008800", first["coordinate_spaces"]["runtime"]["base"])
         self.assertEqual("0x800", first["coordinate_spaces"]["analysis_to_runtime_delta"])
-        self.assertEqual(1303, first["summary"]["function_identities"])
+        self.assertEqual(1304, first["summary"]["function_identities"])
+        # SVCall handler independently derives the true runtime base from the
+        # vector + canonical z_arm_svc prologue bytes.
+        svc = first["oracles"]["svcall_handler"]
+        self.assertEqual("0x01008800", svc["derived_runtime_base"])
+        self.assertEqual("0x00026cc0", svc["handler_file_offset"])
+        self.assertEqual("0x0102f4c1", svc["stored_runtime_thumb_address"])
         self.assertEqual(31, first["summary"]["analysis_runtime_numeric_overlaps"])
         self.assertEqual(64, first["summary"]["runtime_function_pointer_references"])
         self.assertGreaterEqual(
