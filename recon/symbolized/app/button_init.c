@@ -45,7 +45,7 @@
 /* BRING-UP WIRING FIX (P4 iteration 5) — the three `struct gpio_dt_spec`
  * tables this function used to read from the unrelocated absolute pins
  * rodata_88340 / rodata_889d0 / rodata_889e0 are now emitted by the build in
- * recon/symbolized/app/g1_gpio_dt_specs.c (that file carries the full
+ * recon/application/app/src/g1_gpio_dt_specs.c (that file carries the full
  * rationale + the original bytes).  Declared here without pulling in the
  * Zephyr GPIO headers, whose static inlines collide with the recovered
  * gpio_pin_configure / z_device_is_ready externs below. */

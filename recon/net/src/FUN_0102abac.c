@@ -4,6 +4,30 @@
  */
 #include <stdint.h>
 
+#ifdef G1_COHESIVE_BUILD
+/* P4 iteration 7 — relocated net-core IPC objects.  See
+ * recon/application/net/src/g1_product_endpoints.c for the decode of the two
+ * K_SEM_DEFINE(...,0,1) bind semaphores (original 0x21000914 / 0x2100092c) and
+ * of the `struct ipc_ept` + ready flag (original 0x210045f8 / 0x21004600),
+ * plus the measured sched.c:722 kernel panic they caused.  Parity builds keep
+ * the original literals. */
+#include <zephyr/kernel.h>
+#include <zephyr/ipc/ipc_service.h>
+extern struct k_sem g1_ipc0_bound_sem;
+extern struct k_sem g1_hci_bound_sem;
+extern struct ipc_ept g1_ipc0_ept;
+extern volatile uint32_t g1_ipc0_ept_ready;
+#define G1_IPC0_BOUND_SEM ((void *)&g1_ipc0_bound_sem)
+#define G1_HCI_BOUND_SEM  ((void *)&g1_hci_bound_sem)
+#define G1_IPC0_EPT       ((void *)&g1_ipc0_ept)
+#define G1_IPC0_EPT_READY (g1_ipc0_ept_ready)
+#else
+#define G1_IPC0_BOUND_SEM ((void *)UINT32_C(0x21000914))
+#define G1_HCI_BOUND_SEM  ((void *)UINT32_C(0x2100092c))
+#define G1_IPC0_EPT       ((void *)UINT32_C(0x210045f8))
+#define G1_IPC0_EPT_READY (*(volatile uint32_t *)UINT32_C(0x21004600))
+#endif
+
 #define g1_ipc_endpoint_send FUN_0102abac
 
 #ifdef G1_COHESIVE_BUILD
@@ -17,8 +41,8 @@ extern void FUN_01039722(const char *format, ...);
 
 int g1_ipc_endpoint_send(const void *data, uint32_t size)
 {
-    if (*(volatile uint32_t *)0x21004600u == 1) {
-        int status = FUN_0102d618((void *)0x210045f8u, data, size);
+    if (G1_IPC0_EPT_READY == 1) {
+        int status = FUN_0102d618(G1_IPC0_EPT, data, size);
         if (status < 0 && *(volatile int32_t *)0x21000580u > 0)
             FUN_01039722((const char *)0x0103ce65u, status);
         return status;

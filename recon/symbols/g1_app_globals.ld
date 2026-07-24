@@ -218,8 +218,22 @@ PROVIDE(rodata_87bf8 = 0x00087bf8);
  * TOGETHER WITH emitting a relocated ipc_ept_cfg for 0x00089748 (contents
  * embed a name pointer + callback pointers, so it must be emitted like the
  * gpio_dt_spec tables of iteration 5 §2, not merely rebound).
- * Evidence: recon/emulator/reports/our_boot_bringup.md §Iteration 6. */
-PROVIDE(rodata_87c08 = 0x00087c08);
+ * Evidence: recon/emulator/reports/our_boot_bringup.md §Iteration 6.
+ *
+ * CORRECTION + RE-APPLIED (iteration 7).  Iteration 6's diagnosis of the
+ * *third* pin was wrong in its address: 0x00089748 is NOT an ipc_ept_cfg in
+ * the shipped image at all (those bytes are LC3 float tables), it was simply
+ * the stale r2 our codegen happened to leave at the call.  The real cause was
+ * a DROPPED ARGUMENT: `serialization_register_endpoint` (0x4cbec) tail-calls
+ * backend->register_endpoint(instance, &ept->token, cfg) with r2 untouched
+ * since entry (image bytes 0x4cc34..0x4cc40), but Ghidra's
+ * "treating indirect jump as call" heuristic emitted a 2-argument call, so
+ * `cfg` was never passed.  The real cfg is `g_serialization_ipc_ept_ctx`
+ * (0x200023dc), a .data `struct ipc_ept_cfg` that our build neither relocated
+ * nor initialised.  Both are fixed in iteration 7 (see the rebind comments on
+ * g_serialization_ipc_ept_ctx / g_serialization_ipc_mutex below), so this pin
+ * is re-applied.  Evidence: our_boot_bringup.md §Iteration 7 Step A. */
+PROVIDE(rodata_87c08 = __device_dts_ord_29);
 PROVIDE(rodata_87c20 = 0x00087c20);
 /* DATA-POINTER REBIND (iteration 5 sweep) — `struct device` "regulators"
  * (nPM1300 regulators node; original 0x87cb0, name string 0xf6160).
@@ -2776,7 +2790,15 @@ PROVIDE(g_20002358 = 0x20002358);
 PROVIDE(g_t_init = 0x20002368);
 PROVIDE(g_box_event_state_buf = 0x20002380);
 PROVIDE(g_st25dv_i2c_dev = 0x200023cc);
-PROVIDE(g_serialization_ipc_ept_ctx = 0x200023dc);
+/* RAM-PIN REBIND + EMISSION (iteration 7) — the app's `struct ipc_ept_cfg`.
+ * 0x200023dc is .data in the original (load image at flash 0xf9140) and holds
+ * { .name = "ipc0" (0x9f71c), .prio = 0, .cb.bound = 0x25b6d,
+ *   .cb.received = 0x25a49 (ipc0_ept_recv), .cb.error = NULL, .priv = NULL }.
+ * Nothing in the recovered corpus writes it, so pinning it left cfg->name
+ * pointing at whatever our build placed there (in OUR build 0x200023dc is
+ * inside `fdtable`).  Emitted, initialiser and all, by
+ * recon/application/app/src/g1_ipc_serialization_objects.c. */
+PROVIDE(g_serialization_ipc_ept_ctx = g1_serialization_ipc_ept_cfg);
 PROVIDE(g_level_calc_result_cache = 0x200023f4);
 PROVIDE(g_panel_calib_last_divisor = 0x200023f8);
 PROVIDE(g_opt3007_bus_dev = 0x200023fc);
@@ -2801,7 +2823,14 @@ PROVIDE(g_fdtable_refcount_field = 0x20002550);
 PROVIDE(g_misc_val_27c8 = 0x200027c8);
 PROVIDE(g_200027f8 = 0x200027f8);
 PROVIDE(g_settings_nvs_backend_list_next = 0x200027fc);
-PROVIDE(g_20002838 = 0x20002838);
+/* RAM-PIN REBIND + EMISSION (iteration 7) — the Application Event Manager's
+ * `struct k_work`.  .data in the shipped image (load image flash 0xf959c):
+ * { .node.next = 0, .handler = 0x0004f5b1 = app_event_manager_process_events,
+ *   .queue = 0, .flags = 0 }.  The pin lands inside nrfx_gpiote's `.data.m_cb`
+ * in our build, so the handler word read gpiote state; measured to fire
+ * work_queue_main's __ASSERT(handler != NULL) once the RAM layout shifted.
+ * Storage + initialiser: recon/application/app/src/g1_app_ram_relocs.c. */
+PROVIDE(g_20002838 = g1_app_event_processor_work);
 PROVIDE(g_misc_286c_val = 0x2000286c);
 PROVIDE(g_200028b8 = 0x200028b8);
 PROVIDE(g_200028ec = 0x200028ec);
@@ -2887,7 +2916,14 @@ PROVIDE(g_bt_data_pipe = 0x200038f8);
 PROVIDE(g_dashboard_response_msgq = 0x2000392c);
 PROVIDE(g_quicknote_flash_msgq = 0x20003960);
 PROVIDE(g_flash_store_cmd_msgq = 0x20003994);
-PROVIDE(g_serialization_ipc_mutex = 0x200039c8);
+/* RAM-PIN REBIND + EMISSION (iteration 7) — the endpoint-bind semaphore.
+ * 0x200039c8 is .data in the original; its load image (flash 0xfa72c) is a
+ * `struct k_sem` with self-referential wait_q/poll_events, count 0, limit 1 —
+ * i.e. K_SEM_DEFINE(g_serialization_ipc_mutex, 0, 1).  Nothing in the
+ * recovered corpus initialises it, and in OUR build the pin lands inside
+ * `posix_thread_pool`.  Emitted by
+ * recon/application/app/src/g1_ipc_serialization_objects.c. */
+PROVIDE(g_serialization_ipc_mutex = g1_serialization_ipc_sem);
 PROVIDE(g_200039f8 = 0x200039f8);
 PROVIDE(g_bt_att_pool = 0x20003a28);
 PROVIDE(free_l2cap_tx_meta_data = 0x20003a44);
@@ -3004,7 +3040,7 @@ PROVIDE(g_ancs_client = 0x20006ae8);
  * stacked-PC slot, so the next switch to the log thread resumed at PC=1 and
  * usage-faulted (Renode watchpoint + z_arm_pendsv hook; see
  * recon/emulator/reports/our_boot_bringup.md Iteration 6 §3).
- * Real storage is defined in recon/symbolized/app/g1_app_ram_relocs.c. */
+ * Real storage is defined in recon/application/app/src/g1_app_ram_relocs.c. */
 PROVIDE(g_bonded_count = g1_bonded_count);
 PROVIDE(g_ancs_conn = g1_ancs_conn);
 PROVIDE(g_debug_msg_pipe = g1_debug_msg_pipe);
@@ -3038,10 +3074,18 @@ PROVIDE(g_box_field_raw_timestamp = 0x20007a34);
 PROVIDE(g_st25dv_dev = 0x20007a44);
 PROVIDE(g_st25dv_i2c_cfg = 0x20007a48);
 PROVIDE(g_eeprom_comm_mutex = 0x20007a60);
-PROVIDE(g_ipc_send_fail_cnt = 0x20007a74);
-PROVIDE(g_serialization_ipc_ept = 0x20007a78);
-PROVIDE(g_serialization_ipc_ready = 0x20007a80);
-PROVIDE(g_ipc0_endpoint = 0x20007a84);
+/* RAM-PIN REBIND (iteration 7) — the four .bss companions of the ipc0
+ * endpoint registration.  In OUR build 0x20007a74..0x20007a88 is inside
+ * `smp_work_queue_stack` (0x200075a0, 2048 B), a live thread stack; the
+ * recovered code writes all four (serialization_init sets _ready,
+ * serialization_register_endpoint writes ept->instance, and
+ * register_ipc_service_context stores the endpoint pointer), so they were
+ * corrupting that stack.  Storage in
+ * recon/application/app/src/g1_ipc_serialization_objects.c. */
+PROVIDE(g_ipc_send_fail_cnt = g1_ipc_send_fail_cnt);
+PROVIDE(g_serialization_ipc_ept = g1_serialization_ipc_ept);
+PROVIDE(g_serialization_ipc_ready = g1_serialization_ipc_ready);
+PROVIDE(g_ipc0_endpoint = g1_ipc0_endpoint);
 PROVIDE(g_20007a88 = 0x20007a88);
 PROVIDE(g_20007a8c = 0x20007a8c);
 PROVIDE(g_20007a90 = 0x20007a90);
@@ -3171,9 +3215,13 @@ PROVIDE(g_gatt_dm_chunk_used_len = 0x2000a2ac);
 PROVIDE(g_gatt_dm_svc_range_end = 0x2000a2b0);
 PROVIDE(g_gatt_dm_has_uuid_flag = 0x2000a2b4);
 PROVIDE(g_2000a2b8 = 0x2000a2b8);
-PROVIDE(g_notify_pending_lock = 0x2000a2c4);
-PROVIDE(g_notify_pending_slist = 0x2000a2c8);
-PROVIDE(g_notify_pending_flags_bitmap = 0x2000a2d0);
+/* RAM-PIN REBIND (iteration 7) — Application Event Manager state.  These two
+ * pins land inside `z_main_stack` in our build, and the k_work they go with
+ * (g_20002838, rebound below) lands inside nrfx_gpiote's `.data.m_cb`.
+ * Storage: recon/application/app/src/g1_app_ram_relocs.c (group 2). */
+PROVIDE(g_notify_pending_lock = g1_notify_pending_lock);
+PROVIDE(g_notify_pending_slist = g1_notify_pending_slist);
+PROVIDE(g_notify_pending_flags_bitmap = g1_notify_pending_flags_bitmap);
 PROVIDE(g_arm_mpu_dynamic_regions_tbl = 0x2000a7f4);
 PROVIDE(g_heap_brk = 0x2000a808);
 PROVIDE(g_mgmt_group_list_head = 0x2000a94c);

@@ -13,7 +13,11 @@ uint32_t FUN_0004cbec(int param_1, int *param_2, int param_3){
   if(iVar2 != 0 && *(volatile int*)(iVar2+0xc) != 0){
     *param_2 = param_1;
     uint32_t fp = *(volatile uint32_t*)(iVar2+0xc);
-    return ((uint32_t(*)(int,int*))(uintptr_t)fp)(param_1, param_2+1);
+    /* DEFECT FIX (P4 iteration 7): the third argument was dropped.  The
+     * original tail-calls with r2 untouched since entry (0x4cc34..0x4cc40:
+     * str.w r0,[r1],#4 / ldr r3,[r4,#12] / bx r3), i.e.
+     * register_endpoint(instance, &ept->token, cfg). */
+    return ((uint32_t(*)(int,int*,int))(uintptr_t)fp)(param_1, param_2+1, param_3);
   }
   local[1] = 0x000f0c14;
   local[0] = 2;

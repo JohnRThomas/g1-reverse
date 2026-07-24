@@ -53,3 +53,42 @@ volatile unsigned int g1_ancs_conn;
 struct k_msgq         g1_debug_msg_pipe;
 volatile unsigned int g1_ring_log_pending;
 volatile unsigned int g1_log_use_alt_sink;
+
+/* --- group 2 (P4 iteration 7): the Application Event Manager state ------
+ *
+ * `app_event_manager_submit` (original 0x4f770) submits the k_work pinned at
+ * 0x20002838 after linking the event onto the slist at 0x2000a2c8 under the
+ * spinlock at 0x2000a2c4.  In OUR build:
+ *   0x20002838 lands inside nrfx_gpiote's `.data.m_cb` (0x200027ec, 0x7c B)
+ *   0x2000a2c4/0x2000a2c8 land inside `z_main_stack` (0x20008dd0, 16 KiB)
+ *
+ * The k_work is `.data` in the shipped image: its load image (flash
+ * 0xf6d64 + 0x2838 = 0xf959c) reads
+ *     { .node.next = 0, .handler = 0x0004f5b1, .queue = 0, .flags = 0 }
+ * and 0x4f5b0 is the durable-map identity `app_event_manager_process_events`.
+ * Nothing in the recovered corpus writes that handler, so with the pin the
+ * work item's handler word was simply whatever nrfx_gpiote had at that offset.
+ *
+ * MEASURED (iteration 7 Step A, first build /private/tmp/g1-i7a-app): the
+ * 64 bytes of RAM this iteration added shifted every object by 0x30-0x40, so
+ * 0x20002838 moved from m_cb+0x30 to m_cb+0x4c.  The handler word stopped
+ * reading a nonzero value, `work_queue_main` hit its
+ * `__ASSERT(handler != NULL)` at instruction 4,669,670 and the boot took an
+ * _oops -> z_fatal_error -> SYSRESETREQ.  The collision itself is NOT new; it
+ * was latent in iterations 5-6 only because the garbage flags word happened to
+ * make k_work_submit believe the item was already queued.
+ *
+ * Emitting the work item also relocates the handler, which pulls the (until
+ * now garbage-collected) recovered `app_event_manager_process_events` into the
+ * link — i.e. the event manager actually runs for the first time. */
+extern void app_event_manager_process_events(void);
+
+K_WORK_DEFINE(g1_app_event_processor_work, app_event_manager_process_events);
+
+struct k_spinlock g1_notify_pending_lock;
+sys_slist_t       g1_notify_pending_slist;
+/* Bitmap indexed by (event_type_index >> 5); the shipped event-type section
+ * 0xfa9b4..0xfaa14 holds (0x60 / 24) = 4 descriptors, so one word is enough.
+ * Four are allocated so the index cannot leave the object if the section
+ * bounds are ever relocated. */
+volatile unsigned int g1_notify_pending_flags_bitmap[4];

@@ -194,6 +194,64 @@ callers.even_owned == 0`, then split by component.
 Small, self-contained, on the boot path, and the only candidates with a *proven* defect. Doing
 them first also validates the "re-inline from the header" mechanic that Batch 5 depends on.
 
+> ### Batch 0 APPLIED — 2026-07-25 (P4 iteration 7 Step B)
+>
+> **Status: applied, clean, no regression.** Full record:
+> `recon/emulator/reports/our_boot_bringup.md` §Iteration 7 Step B.
+>
+> * Four `exclude_reconstruction: true` rows added to
+>   `recon/ownership/adoption_manifest.json` (`cores.app.entries`): `0x00017688`,
+>   `0x000177c4`, `0x00017858`, `0x00017980`. App manifest 567 → 571 entries,
+>   553 → 557 exclusions. `recon/generated/app_retained_sources.cmake`
+>   regenerated with `tools/gen_retained_sources.py` (retained 1707 → 1704,
+>   matched sources 408 → 412); `--check` passes.
+> * **Two prerequisites had to be fixed first**, because the sanctioned
+>   generator could not run at all: iterations 4–6 had hand-edited the
+>   *generated* cmake. (i) the hand-written wiring TUs `g1_gpio_dt_specs.c` and
+>   `g1_app_ram_relocs.c` were moved out of `recon/symbolized/app` into
+>   `recon/application/app/src/` and listed explicitly in the app CMakeLists
+>   (they are not recovered functions and have no VA); (ii) the iteration-4
+>   reconstruction `register_ipc_service_recv_callback` (0x25ae8) was added to
+>   `recon/catalogs/function_names_app.json` — Ghidra never catalogued that gap,
+>   and `tools/validate_name_maps.py` had been flagging it. No `tools/` change.
+> * **The callers did need wiring, as predicted.** A header `static inline` has
+>   no external symbol, so excluding the four TUs left `button_init`,
+>   `read_sw0_pin` and `nfc_field_event_signal_sem` with undefined references.
+>   New bridge TU `recon/application/app/src/g1_gpio_header_bridges.c` includes
+>   `<zephyr/drivers/gpio.h>` and re-expresses each historical identity as a
+>   one-line call into the genuine inline (`gpio_pin_configure_dt`,
+>   `gpio_pin_interrupt_configure_dt`, `gpio_pin_get_raw`, `gpio_pin_get`).
+>   **No recovered caller source was edited** — their loose `unsigned int`
+>   prototypes are ABI-compatible on AAPCS. The `gpio_pin_configure` identity
+>   collides with gpio.h's own inline of that name and is therefore attached
+>   with an `__asm__` label (the `pointer_rebind.md` mechanism).
+> * **Correction to the candidate record for `0x00017858`:** its
+>   `upstream_symbol` is recorded as `gpio_pin_configure`, but the recovered
+>   body dispatches `api + 0x18` (`pin_interrupt_configure`), masks `0x1600000`
+>   (`GPIO_INT_{DISABLE,ENABLE,EDGE}`) and `0x6000000`
+>   (`GPIO_INT_{LOW_0,HIGH_1}`), and flips the trigger on
+>   `GPIO_INT_LEVELS_LOGICAL` vs `data->invert`. The real identity is
+>   **`gpio_pin_interrupt_configure_dt`**. The manifest row records the
+>   corrected mapping.
+> * **Measured:** rebuild `/private/tmp/g1-i7e-app` exit 0, 0 undefined,
+>   0 duplicate; FLASH 627,368 → 628,380 B (+1,012 B, the real inlines carry
+>   more `__ASSERT` text); RAM unchanged (75,757 B), so no RAM-pin re-shuffle.
+>   Boot: 5,045,044 instructions / **681** unique functions vs 5,044,404 / 672
+>   before the batch — **no regression**, and all four identities still execute
+>   at the same points on the `button_init` path in golden's order.
+> * **Behaviour change, and it is the payoff.** The boot's first divergence (an
+>   unrelocated IPC-handler code pointer, `rodata_162ed`) is unchanged in cause,
+>   but with the real gpio.h body in place its `__ASSERT` now catches the bogus
+>   arguments and the kernel takes a clean `_oops`, where the reconstruction had
+>   silently accepted them and produced a `z_arm_usage_fault`. The upstream body
+>   detects corruption the reconstruction did not — exactly the argument for
+>   goal G2.
+> * **Not yet done:** the four reconstruction TUs remain on disk in
+>   `recon/symbolized/app/` (the manifest is the only exclusion authority, per
+>   policy); the local `struct g1_gpio_dt_spec` in `g1_gpio_dt_specs.c` /
+>   `button_init.c` was left in place rather than switched to the real
+>   `struct gpio_dt_spec` (layout-identical; a typing cleanup for G3).
+
 **Batch 1 — leaf libc / lib-os / zcbor / arch primitives (52 functions, 8 186 B).**
 `libc_newlib_nano` 25, `zcbor` 9, `zephyr_lib_os` 7, `zephyr_arch` 7, `zephyr_soc` 2,
 `zephyr_libc` 2. No Even callers, no pin/alias references, upstream unit already linked. Pure

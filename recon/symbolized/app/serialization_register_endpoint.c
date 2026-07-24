@@ -25,7 +25,21 @@ uint32_t serialization_register_endpoint(int param_1, int *param_2, int param_3)
   if(iVar2 != 0 && *(volatile int*)(iVar2+0xc) != 0){
     *param_2 = param_1;
     uint32_t fp = *(volatile uint32_t*)(iVar2+0xc);
-    return ((uint32_t(*)(int,int*))(uintptr_t)fp)(param_1, param_2+1);
+    /* DEFECT FIX (P4 iteration 7) — the third argument was dropped.
+     * This is `ipc_service_register_endpoint(instance, ept, cfg)`; the backend
+     * vtable slot at +0xc is `register_endpoint(instance, &ept->token, cfg)`.
+     * ORIGINAL bytes (app_update.bin @0x4cc34, r2 never written since entry):
+     *     4cc34: str.w r0,[r1],#4          ; ept->instance = instance
+     *     4cc38: ldr   r3,[r4,#12]         ; backend->register_endpoint
+     *     4cc3a: add   sp,#28
+     *     4cc3c: ldmia.w sp!,{r4,r5,lr}
+     *     4cc40: bx    r3                  ; r0=instance r1=&ept->token r2=cfg
+     * The recovered form called it with two arguments, so r2 carried whatever
+     * the caller happened to leave there and `cfg` was garbage.  tools/parity
+     * and cfg_verify cannot see this class (callees are order-keyed oracles
+     * that ignore arguments) — same family as iteration 5 §3(b) and the net
+     * core's FUN_0102d558 in iteration 6 §4. */
+    return ((uint32_t(*)(int,int*,int))(uintptr_t)fp)(param_1, param_2+1, param_3);
   }
   local[1] = ((unsigned long)&rodata_f0c14) /*=0xf0c14*/;
   local[0] = 2;

@@ -1988,3 +1988,504 @@ re-apply-then-revert record),
 (dropped-argument defect fix, proven against the original bytes).
 No `recon/app/src` change, no `tools/` change, no Kconfig/`prj.conf` change,
 `armemul` additive only. Nothing committed.
+
+---
+
+## Iteration 7 — the app's `ipc_ept_cfg` (Step A) + library-displacement Batch 0 (Step B)
+
+**Headline.** The rpmsg endpoint **binds**. `bound_cb` fires on both cores, the
+app's `main()` unblocks, and for the first time the app **sends and receives**
+over IPC: `runtime_info_sync → global_ipc_service_send → ipc_service_send →`
+(net replies) `→ ept_cb → ipc0_ept_recv`. App unique functions **612 → 681**;
+the CPUNET core stops busy-polling (10,375,000 → 255,064 instructions) and
+gains **91** unique functions.
+
+Milestone tier: **E1–E3 complete, E4 advanced but NOT completed.** The app-side
+E4 marker `ipc_service_send` is reached (5,034,609); `spi_read_id`,
+`bt_enable`/`bt_start` and ADV_IND are still not.
+
+Final artifacts: app `/private/tmp/g1-i7e-app`, net `/private/tmp/g1-i7c-net`,
+trace `/tmp/g1_i7e/`. (Step-A-only app build: `/private/tmp/g1-i7b-app`, trace
+`/tmp/g1_i7d/`.)
+
+| metric | iteration 6 | **iteration 7 (Step A)** | **iteration 7 (Step A+B, final)** |
+|---|---:|---:|---:|
+| app instructions (0.15 s budget) | 5,042,715 | 5,044,404 | **5,045,044** |
+| app unique functions | 612 | 672 | **681** |
+| net instructions | 10,375,000 | 255,064 | **255,064** |
+| net unique functions | 332 | 423 | **423** |
+| app FLASH | 626,680 B (63.78 %) | 627,368 B (63.85 %) | **628,380 B (63.96 %)** |
+| app RAM | 75,645 B (16.79 %) | 75,757 B (16.81 %) | **75,757 B (16.81 %)** |
+| net FLASH / RAM | 227,961 B / 54,076 B | 228,009 B / 54,140 B | **228,009 B / 54,140 B** |
+
+All builds: `nm -u` = **0** undefined, **0** duplicate globals. No
+`--allow-multiple-definition`, no weak symbols, no numeric-root hacks, no
+`tools/` change, no Kconfig/`prj.conf` change; `armemul` used additively only
+(an extra `.resc` under `/tmp`; `g1-ours.resc` and the models untouched).
+
+---
+
+### Step A — the app's `ipc_ept_cfg`, and why iteration 6's diagnosis was wrong
+
+#### A.1 Correction: there is no `ipc_ept_cfg` at 0x00089748
+
+Iteration 6 §7 concluded that the app's `struct ipc_ept_cfg` sits at the
+unrelocated pin **0x00089748**. That is **wrong**, and it was checked this
+iteration before acting on it. The bytes at VA 0x89748 in `app_update.bin`
+(file offset 0x7d748, VA→offset delta 0xC000, the same delta that reproduces
+iteration 6's own QSPI-config table at 0x8b66c) are
+
+```
+89748: 89 7a 09 3b  3b 80 14 3b  17 04 28 3b  81 e5 3a 3b   ...
+```
+
+i.e. a run of small IEEE-754 floats — part of the **LC3 SNS analysis tables**
+(`recon/symbolized/app/lc3_sns_analyze.c`). No `rodata_89748` pin exists in
+`g1_app_globals.ld` and no recovered source references that address. 0x89748
+was simply the stale value our codegen happened to leave in **r2** at the call.
+
+#### A.2 The real defect: a dropped argument in `serialization_register_endpoint`
+
+`serialization_init` (0x25c54) calls
+
+```c
+serialization_register_endpoint(&rodata_87c08,             /* instance */
+                                &g_serialization_ipc_ept,  /* ept      */
+                                &g_serialization_ipc_ept_ctx); /* cfg  */
+```
+
+which is Zephyr's `ipc_service_register_endpoint(instance, ept, cfg)`.
+The ORIGINAL tail call (`app_update.bin`, VA 0x4cbec) keeps **r2 untouched
+since entry**:
+
+```
+4cc34: str.w r0, [r1], #4        ; ept->instance = instance; r1 = &ept->token
+4cc38: ldr   r3, [r4, #12]       ; backend->register_endpoint
+4cc3a: add   sp, #28
+4cc3c: ldmia.w sp!, {r4, r5, lr}
+4cc40: bx    r3                  ; r0=instance  r1=&ept->token  r2=cfg
+```
+
+Ghidra's decompilation carries the marker
+`/* WARNING: Could not recover jumptable at 0x0004cc40. Too many branches */
+/* WARNING: Treating indirect jump as call */` and emits
+`(**(code **)(iVar2 + 0xc))(param_1, param_2 + 1)` — **two** arguments. The
+reconstruction transcribed that faithfully, so `cfg` was never passed and the
+callee read whatever was in r2.
+
+Fixed in `recon/symbolized/app/serialization_register_endpoint.c` (the build
+input) and mirrored into the canonical `recon/app/src/FUN_0004cbec.c` +
+`recon/verified/src/FUN_0004cbec.c`.
+**Re-verified:** `cfg_verify.py app FUN_0004cbec` → `PASS cases=6`;
+`recon_kit.prove(0x4cbec, 86, 'FUN_0004cbec', …, trials=300)` →
+`pass=True, checked=306`. Note that both the before and after versions pass —
+`tools/parity`/`cfg_verify` model callees as order-keyed oracles that ignore
+arguments, exactly the blind spot recorded in iteration 5 §3(b) and iteration 6
+§4 (net `FUN_0102d558`).
+
+#### A.3 The real `ipc_ept_cfg`: `g_serialization_ipc_ept_ctx` @ 0x200023dc
+
+The third argument is the RAM pin `g_serialization_ipc_ept_ctx` (0x200023dc),
+a `.data` object that no recovered code ever writes.
+
+**The app `.data` load base was derived and then PROVEN.** Hypothesis
+L = 0xf6d64 → RAM 0x20000000 (image ends at 0xfab8d, so `.data` length 0x3e29).
+Proof: at L + 0x39c8 = flash **0xfa72c** the bytes are
+
+```
++0x00 0x200039c8   wait_q.head      -> itself
++0x04 0x200039c8   wait_q.tail      -> itself
++0x08 0x00000000   count = 0
++0x0c 0x00000001   limit = 1
++0x10 0x200039d8   poll_events.head -> itself   (CONFIG_POLL=y)
++0x14 0x200039d8   poll_events.tail -> itself
+```
+
+— a self-consistent `struct k_sem` whose two self-referential list heads can
+only be correct if the load base is exactly 0xf6d64. That object is
+`g_serialization_ipc_mutex` (0x200039c8), i.e.
+`K_SEM_DEFINE(g_serialization_ipc_mutex, 0, 1)`.
+
+With that mapping, `g_serialization_ipc_ept_ctx` loads from flash **0xf9140**:
+
+| off | field | value | decode |
+|---|---|---|---|
+| +0x00 | `.name` | `0x0009f71c` | the C string **`"ipc0"`** |
+| +0x04 | `.prio` | `0x00000000` | 0 |
+| +0x08 | `.cb.bound` | `0x00025b6d` | function @0x25b6c |
+| +0x0c | `.cb.received` | `0x00025a49` | **`ipc0_ept_recv`** @0x25a48 (durable map) |
+| +0x10 | `.cb.error` | `0x00000000` | NULL |
+| +0x14 | `.priv` | `0x00000000` | NULL |
+
+Corroboration for each field:
+
+* 0x9f71c is the **only** `"ipc0"` string in `app_update.bin`, and the only
+  other pointer to it is the `struct device` at 0x87c08 (= the `ipc0` device,
+  our `__device_dts_ord_29`) — so this record announces exactly the name the
+  CPUNET core sends in its rpmsg name-service message.
+* 0x25a48 is the catalogued `ipc0_ept_recv`.
+* 0x25b6c is an **8-byte uncatalogued function** in the Ghidra gap
+  0x25b6c..0x25b78. Disassembled from the image it is
+  `ldr r0,[pc,#4] ; literal 0x200039c8` + `b.w 0x72880` (= `k_sem_give`), i.e.
+  `bound(priv) { k_sem_give(&g_serialization_ipc_mutex); }` — precisely the
+  semaphore `serialization_init` then `k_sem_take`s.
+
+#### A.4 Every operand of the call was also mis-placed (RAM-pin collisions)
+
+Measured with `readelf -sW` on the iteration-6 ELF:
+
+| pin | original VA | our build's object at that VA |
+|---|---|---|
+| `g_serialization_ipc_ept_ctx` | 0x200023dc | `fdtable` (0x20002218, 640 B) |
+| `g_serialization_ipc_mutex` | 0x200039c8 | `posix_thread_pool` (0x20003938, 1240 B) |
+| `g_ipc_send_fail_cnt` | 0x20007a74 | `smp_work_queue_stack` (0x200075a0, 2048 B) |
+| `g_serialization_ipc_ept` | 0x20007a78 | `smp_work_queue_stack` |
+| `g_serialization_ipc_ready` | 0x20007a80 | `smp_work_queue_stack` |
+| `g_ipc0_endpoint` | 0x20007a84 | `smp_work_queue_stack` |
+
+All six are now **emitted** by a new wiring TU
+`recon/application/app/src/g1_ipc_serialization_objects.c` (real
+`struct ipc_ept_cfg` with `.name = "ipc0"`, a `K_SEM_DEFINE(…,0,1)`, a
+`struct ipc_ept`, and three scalars), and `g1_app_globals.ld` rebinds the six
+pin names onto them. The `bound` callback is re-emitted as
+`g1_ipc0_ept_bound` (the 8-byte original had to be re-emitted, not pinned,
+because its literal must relocate with the semaphore); `received` goes through
+a one-line adapter onto the recovered `ipc0_ept_recv`. Verified in the linked
+ELF: `.name → "ipc0"`, `bound = 0x000496e5`, `received = 0x00077557`, and the
+semaphore's `.data` image is `{self, self, 0, 1, self+0x10, self+0x10}` —
+field-for-field the shipped shape.
+
+`PROVIDE(rodata_87c08 = __device_dts_ord_29)` was then **re-applied**.
+
+#### A.5 First measurement: a REGRESSION, root-caused and fixed
+
+Build `/private/tmp/g1-i7a-app` (trace `/tmp/g1_i7a/`) **regressed**:
+**4,675,530** instructions / **444** unique fns, kernel `_oops` at 4,669,670 →
+`z_fatal_error` → SYSRESETREQ. The assert is `work_queue_main`'s
+`__ASSERT(handler != NULL)`.
+
+Cause: **the 64 bytes of RAM this iteration added shifted every object by
+0x30–0x40**, and a *latent* RAM-pin collision became fatal.
+`app_event_manager_submit` (0x4f770) submits the `k_work` pinned at
+**0x20002838**, which lands inside nrfx_gpiote's `.data.m_cb` (0x200027ec,
+0x7c B). It moved from `m_cb+0x30` to `m_cb+0x4c`, and the handler word
+stopped reading a nonzero value. In iterations 5–6 the same collision was
+invisible only because the garbage flags word made `k_work_submit` believe the
+item was already queued.
+
+The shipped image has that `k_work` in `.data` (load image flash 0xf959c):
+`{ .node.next = 0, .handler = 0x0004f5b1, .queue = 0, .flags = 0 }`, and
+0x4f5b0 is the catalogued `app_event_manager_process_events`. It is now emitted
+by `g1_app_ram_relocs.c` (group 2) together with `g_notify_pending_lock` /
+`g_notify_pending_slist` (both of which land inside `z_main_stack`) and
+`g_notify_pending_flags_bitmap`. Emitting the handler also pulls the
+previously garbage-collected `app_event_manager_process_events` into the link —
+the event manager runs for the first time.
+
+**Structural note (important for later iterations): any change to the app's RAM
+footprint re-shuffles which absolute RAM pins collide with which objects.** The
+561-pin collision set measured in iteration 6 §3 is not stable across builds;
+each iteration has to re-measure.
+
+#### A.6 The endpoint binds
+
+Build `/private/tmp/g1-i7b-app` + the iteration-6 net (`/private/tmp/g1-i6d-net`),
+trace `/tmp/g1_i7b/`:
+
+| app function | ours | iteration 6 |
+|---|---:|---:|
+| `serialization_init` | 4,670,170 | 4,668,211 |
+| `open` (rpmsg backend) | 4,670,186 | — |
+| `ipc_static_vrings_init` | 4,671,350 | — |
+| `ipc_rpmsg_init` | 4,676,781 | — |
+| `serialization_register_endpoint` | 4,706,874 | 4,668,237 |
+| `register_ept` → `get_ept_slot_with_name` | 4,706,887 / 4,706,973 | — |
+| `ns_bind_cb` | 4,717,667 | — |
+| `rpmsg_create_ept` | 4,717,930 | — |
+| **`bound_cb`** | **4,718,338** | — |
+| **`g1_ipc0_ept_bound`** (k_sem_give) | **4,719,132** | — |
+| `register_ipc_service_context` | 4,753,574 | 4,701,683 |
+| `button_init` | 4,753,717 | 4,701,826 |
+| `settings_subsys_init` | 4,758,567 | 4,706,676 |
+
+`bound_cb` fires and `main()` unblocks — the Step A goal. The run was still
+truncated, because the **CPUNET** core now reached code it had never executed
+and took a kernel panic that reset the whole emulated machine.
+
+#### A.7 Two CPUNET defects, both the same class, both fixed
+
+**(a) The net's two endpoint bind semaphores were pins into a live pool.**
+The net UART printed
+`ASSERTION FAIL @ WEST_TOPDIR/zephyr/kernel/sched.c:722` (that is
+`__ASSERT_NO_MSG(thread->base.pended_on)` in `pended_on_thread`), with
+`lr = unpend_thread_no_timeout+0x1e`, reached from
+`bound_cb → FUN_0102ac00 → FUN_01036824` (the recovered `k_sem_give`) on the
+semaphore pinned at **0x21000914**, which in our net build is inside
+`hci_cmd_pool` (0x210008fc, 52 B).
+
+The net `.data` load base was derived the same way and is
+**flash 0x0103ed24 → RAM 0x21000000**, length 0xc3c, ending exactly at the
+image end 0x0103f960. The two records read
+
+```
+0x21000914 -> { 0x21000914, 0x21000914, 0, 1, 0x21000924, 0x21000924 }
+0x2100092c -> { 0x2100092c, 0x2100092c, 0, 1, 0x2100093c, 0x2100093c }
+```
+
+i.e. `K_SEM_DEFINE(…, 0, 1)` for the `ipc0` and the `nrf_bt_hci` endpoints.
+Both are now emitted in `recon/application/net/src/g1_product_endpoints.c`,
+together with the endpoint handle `0x210045f8` and its ready flag `0x21004600`
+(both of which land inside **`sdc_mempool`**, the SoftDevice Controller heap).
+The five recovered TUs that used those literals switch to them through the
+file-local `G1_COHESIVE_BUILD` guard already established in that tree, so the
+parity path is byte-identical.
+
+**(b) The CPUNET `_kernel` pin — the actual blocker.** With a *correct*
+semaphore the take really blocked, and the next assert was
+`spinlock.h:273` (`k_spin_release`'s `__ASSERT(z_spin_unlock_valid(l),
+"Not my spinlock")`) at `lr = z_pend_curr+0x36`.
+
+Root cause: the recovered spinlock validators `FUN_0103610c`
+(`z_spin_lock_valid`), `FUN_01036144` (`z_spin_lock_set_owner`),
+`FUN_01036128` (`z_spin_unlock_valid`) and `FUN_01037130` read the kernel
+structure at the hard-coded address **0x21004b28** — `_kernel` in the *shipped*
+image. Our net build puts `_kernel` at 0x210083d0, and 0x21004b28 is inside
+`sdc_mempool`. The recovered validators therefore stamped a garbage
+`thread_cpu` owner into every spinlock they took, and the SDK's own
+`k_spin_release` (reached through `z_pend_curr`) compared it against the real
+`_current`. Both read `+8` (`cpus[0].current`) and `+0x10` (`cpus[0].id`) —
+verified identical in our build's `z_spin_lock_set_owner`
+(`ldrb r2,[r3,#16]; ldr r3,[r3,#8]; orrs r3,r2; str r3,[r0]`).
+
+Those four TUs now resolve the base to `&_kernel` under `G1_COHESIVE_BUILD`
+(literal preserved otherwise). `cfg_verify.py net` re-run on all four:
+`FUN_01036144 PASS`, `FUN_0103610c PASS`, `FUN_01036128 PASS`,
+`FUN_01037130 PASS cases=4`.
+
+**This is a bounded fix, not the whole class.** `0x21004b28` still appears in
+**20 further** `recon/symbolized/net` TUs (and its neighbours 0x21004b30 /
+0x21004b40 / 0x21004b4c / 0x21004b5c / 0x21004b68 / 0x21004b70 … appear ~130
+times in total). Only the four ownership validators were converted, because
+they are the ones that must agree with SDK code. The rest is the natural
+scope of iteration 8.
+
+#### A.8 Step A result — no machine reset, full IPC round trip
+
+Build `/private/tmp/g1-i7b-app` + `/private/tmp/g1-i7c-net`, trace `/tmp/g1_i7d/`:
+app **5,044,404** instructions / **672** unique (baseline 5,042,715 / 612).
+The whole OpenAMP/libmetal/rpmsg stack now executes on the app core
+(`open`, `ipc_static_vrings_init`, `metal_*`, `virtqueue_*`, `rpmsg_*`,
+`register_ept`, `ns_bind_cb`, `bound_cb`, `advertise_ept`, `ipc_virtio_notify`,
+`mbox_nrf_send`), and so does the reply path:
+
+| app function | ours | iteration 6 |
+|---|---:|---:|
+| `flash_settings_read` | 5,026,495 | 4,973,924 |
+| `load_usr_setting` / `set_test_mode` / `load_burial_point` | 5,028,443 / 5,030,513 / 5,030,576 | 4,975,864 / 4,977,934 / 4,977,997 |
+| `sys_rand32_get` | 5,033,722 | 4,981,143 |
+| `runtime_info_sync` | 5,034,564 | 4,981,993 |
+| `global_ipc_service_send` | 5,034,584 | 4,982,013 |
+| **`ipc_service_send`** (E4 marker) | **5,034,609** | — |
+| `ept_cb` → `g1_ipc0_ept_received` → `ipc0_ept_recv` | 5,036,942 … 5,036,954 | — |
+
+#### A.9 New first divergence (precise) + classification
+
+At **5,036,946** `ipc0_ept_recv` dispatches the reply to the handler stored in
+the IPC-service table and jumps to raw **0x162ec** — the unrelocated pin
+`rodata_162ed`, installed by `main()`:
+
+```c
+B8 (context, 0x6e4) = 1;
+W32(context, 0x6e8) = &rodata_998da;      /* service name string   */
+W32(context, 0x6ec) = &rodata_162ed;      /* handler, UNRELOCATED  */
+...
+W32(context, 0x6f8) = &rodata_16bf1;      /* handler, UNRELOCATED  */
+W32(context, 0x704) = ADDR_local_esbs_ipc_service_recv_THUMB;  /* already fixed */
+W32(context, 0x710) = &rodata_7c00d;      /* handler, UNRELOCATED  */
+```
+
+**Classification: the iteration-3/4 code-pointer-pin class.** Three of the four
+registered IPC service handlers are still original-image Thumb literals
+(0x162ed, 0x16bf1, 0x7c00d); only 0x15961 was rebound (iteration 4). None of
+the three has a catalogued entry — 0x162ec and 0x16bf0 sit in uncatalogued
+Ghidra gaps, and 0x7c00c is a 4-byte `movs r0,#0; bx lr` stub between
+`clear_status_byte_cb` (0x7c004) and `FUN_0007c010`. **Next fix: reconstruct
+those three and rebind them, exactly as iteration 4 did for 0x25ae8.**
+
+Honest accounting of the 28 functions the baseline reached and this run does
+not: they are all log-formatting/`log_dropped` machinery (`print_formatted`,
+`encode_uint`, `snprintk`, `vsnprintk`, `dropped_notify`, …) and RTC/DPPI
+teardown (`rtc_nrf_isr`, `sys_clock_announce`, `z_time_slice`,
+`nrfx_dppi_channel_free`, …) that ran during the baseline's long idle tail.
+This run spends the same instruction budget doing the IPC round trip instead.
+97 functions are new.
+
+---
+
+### Step B — library-displacement Batch 0 (goal G2, first batch)
+
+#### B.1 Prerequisite: the sanctioned generator could not run
+
+`tools/gen_retained_sources.py --check` failed before any Batch-0 work:
+
+```
+error: missing symbolized identity header for .../recon/symbolized/app/g1_app_ram_relocs.c
+error: symbolized filename absent from name catalog: .../recon/symbolized/app/register_ipc_service_recv_callback.c
+```
+
+Iterations 4–6 had hand-edited the *generated* `app_retained_sources.cmake`.
+Two structural fixes, no `tools/` change:
+
+1. The two hand-written wiring TUs (`g1_gpio_dt_specs.c`, `g1_app_ram_relocs.c`)
+   are **not** recovered functions and have no VA, so they were moved out of
+   `recon/symbolized/app` into `recon/application/app/src/` (the sanctioned
+   place, alongside `g1_lsm6dso_device.c` / `g1_sdk_inline_bridges.c`) and are
+   listed explicitly in `recon/application/app/CMakeLists.txt`.
+2. `register_ipc_service_recv_callback` (0x25ae8, reconstructed in iteration 4)
+   was missing from `recon/catalogs/function_names_app.json` because Ghidra
+   never catalogued that gap. The durable entry was added (with its
+   `recon/named/` readable mirror). `tools/validate_name_maps.py` previously
+   reported this as `app unexpected generated identity 0x00025ae8` + `app …
+   has 1 extra identities`; both errors are now gone (the two remaining errors
+   are pre-existing net-side ones for 0x0102a720).
+
+`gen_retained_sources.py --check` now reports `retained source lists are
+current`, and the generated file is authored solely by the generator again.
+
+#### B.2 Rows added
+
+Four `exclude_reconstruction: true` rows were added to
+`recon/ownership/adoption_manifest.json` (`cores.app.entries`, schema-conform,
+each carrying the candidate's three evidence records plus a
+`library_displacement_candidate` record):
+
+| va | raw_symbol | current_symbol | upstream identity |
+|---|---|---|---|
+| `0x00017688` | `FUN_00017688` | `gpio_pin_configure_17688` | `gpio_pin_configure_dt` |
+| `0x000177c4` | `FUN_000177c4` | `gpio_pin_get_raw_checked` | `gpio_pin_get_raw` |
+| `0x00017858` | `FUN_00017858` | `gpio_pin_configure` | **`gpio_pin_interrupt_configure_dt`** |
+| `0x00017980` | `FUN_00017980` | `gpio_pin_get_checked` | `gpio_pin_get` (gpio0) |
+
+App manifest summary 567 → **571** entries, 553 → **557** exclusions.
+Regenerated list: retained 1707 → **1704**, exclusions 553 → **557**, matched
+sources 408 → **412**.
+
+**Correction to the candidate record for 0x17858.** The JSON maps it to
+`gpio_pin_configure`; the recovered body dispatches `api + 0x18`
+(`pin_interrupt_configure`, not `pin_configure` at `api + 0`), masks
+`0x1600000` = `GPIO_INT_{DISABLE,ENABLE,EDGE}` and `0x6000000` =
+`GPIO_INT_{LOW_0,HIGH_1}`, and flips the trigger when
+`GPIO_INT_LEVELS_LOGICAL` (0x800000) disagrees with `data->invert`. That is
+`gpio_pin_interrupt_configure_dt`.
+
+#### B.3 What happened to the callers
+
+As the report predicted, a header `static inline` has **no external symbol to
+bind**, so excluding the four TUs left the recovered callers (`button_init`,
+`read_sw0_pin`, `nfc_field_event_signal_sem`) with undefined references. They
+were wired to the real Zephyr API through a new bridge TU
+**`recon/application/app/src/g1_gpio_header_bridges.c`**, which includes
+`<zephyr/drivers/gpio.h>` and re-expresses each historical identity as a
+one-line call into the genuine inline:
+
+```c
+int gpio_pin_configure_17688(const struct gpio_dt_spec *s, gpio_flags_t f)
+{ return gpio_pin_configure_dt(s, f); }
+
+int g1_gpio_pin_interrupt_configure_bridge(const struct gpio_dt_spec *s,
+                                           gpio_flags_t f)
+        __asm__("gpio_pin_configure");          /* pointer_rebind.md mechanism */
+
+int gpio_pin_get_raw_checked(const struct device *p, gpio_pin_t pin)
+{ return gpio_pin_get_raw(p, pin); }
+
+int gpio_pin_get_checked(gpio_pin_t pin)
+{ return gpio_pin_get(DEVICE_DT_GET(DT_NODELABEL(gpio0)), pin); }
+```
+
+The `gpio_pin_configure` identity collides with gpio.h's own inline of that
+name, so it is attached with an `__asm__` label — the same conflict-free
+mechanism `pointer_rebind.md` uses for function-pointer aliases. **No recovered
+caller was edited**: their loose `unsigned int` prototypes are ABI-compatible
+on AAPCS. `gpio_pin_get_checked`'s reconstruction carried two extra junk
+arguments that the original never used; `button_init` already calls it with one.
+
+#### B.4 Verification and boot result
+
+Rebuild `/private/tmp/g1-i7e-app`: **exit 0, 0 undefined, 0 duplicate**;
+FLASH 628,380 B (63.96 %, +1,012 B — the real inlines carry more `__ASSERT`
+text), RAM unchanged at 75,757 B, so **no RAM re-shuffle**. `nm` confirms all
+four identities are defined and now backed by the header bodies.
+
+Boot (trace `/tmp/g1_i7e/`, same net build): **5,045,044** instructions /
+**681** unique functions — **no regression** vs Step A (5,044,404 / 672), and
+the four displaced identities execute at the same points on the `button_init`
+path, in golden's order:
+
+| function | Step B | Step A | iteration 6 |
+|---|---:|---:|---:|
+| `button_init` | 4,753,856 | 4,753,856 | 4,701,826 |
+| `gpio_pin_configure_17688` | 4,753,945 | 4,753,945 | 4,701,915 |
+| `gpio_pin_set_checked` (not displaced) | 4,755,464 | 4,755,444 | 4,703,414 |
+| `gpio_pin_configure` (→ interrupt cfg) | 4,757,335 | 4,757,295 | 4,705,265 |
+| `gpio_pin_get_checked` | 4,758,352 | 4,758,304 | 4,706,274 |
+| `gpio_pin_get_raw_checked` | 4,758,481 | 4,758,461 | 4,706,431 |
+
+**Behaviour change, and it is the payoff.** The A.9 divergence is unchanged in
+cause but its *symptom* improved. `ipc0_ept_recv` still jumps to the
+unrelocated 0x162ec; in the Step-B layout that address lands inside
+`button_init`, which falls through into `gpio_pin_set_checked` and then
+`gpio_pin_configure_17688`. With the **real** gpio.h body in place the
+`__ASSERT` catches the bogus arguments and the kernel takes a clean
+`assert_print` → `assert_post_action` → `_oops` at 5,038,881, instead of Step
+A's silent `z_arm_usage_fault` at 5,036,983. `z_arm_usage_fault` /
+`z_arm_fault` / `usage_fault.constprop.0` disappear from the trace and nine
+logging/fatal functions appear. That is exactly the "library stability +
+correct typing" the displacement goal exists to buy: the upstream body detects
+the corruption the reconstruction silently accepted.
+
+---
+
+### Regenerate (iteration 7)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check
+recon/application/build_cohesive.sh app /private/tmp/g1-i7e-app
+recon/application/build_cohesive.sh net /private/tmp/g1-i7c-net -- \
+  -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF
+cd /Users/freedomcoder/Projects/armemul
+~/tools/Renode.app/Contents/MacOS/renode --disable-xwt --console --plain \
+  -e 'i @/tmp/g1_i7e/trace.resc' > /tmp/g1_i7e/run.out 2>&1
+# trace.resc = $app_elf/$net_elf override + 'i @g1-ours.resc' + tracing macro
+# + `sysbus.uart_net CreateFileBackend` + `sysbus.uart0 CreateFileBackend`
+# (additive; g1-ours.resc untouched).
+# analyze: <scratchpad>/analyze.py <nm.txt> <trace.log> <out.json>
+```
+
+Files changed:
+`recon/symbolized/app/serialization_register_endpoint.c`,
+`recon/app/src/FUN_0004cbec.c`, `recon/verified/src/FUN_0004cbec.c`
+(dropped-argument fix, proven against the original bytes),
+`recon/application/app/src/g1_ipc_serialization_objects.c` (new),
+`recon/application/app/src/g1_gpio_header_bridges.c` (new),
+`recon/application/app/src/g1_app_ram_relocs.c` (moved from
+`recon/symbolized/app/`, + group 2),
+`recon/application/app/src/g1_gpio_dt_specs.c` (moved from
+`recon/symbolized/app/`),
+`recon/application/app/CMakeLists.txt` (4 wiring TUs listed explicitly),
+`recon/symbols/g1_app_globals.ld` (`rodata_87c08` re-applied + 10 RAM-pin
+rebinds with evidence),
+`recon/symbolized/app/button_init.c` (comment path only),
+`recon/application/net/src/g1_product_endpoints.c` (2 semaphores + ept + flag),
+`recon/net/src/FUN_0102ac00.c`, `FUN_0102ac0c.c`, `FUN_0102ace8.c`,
+`FUN_0102abac.c`, `FUN_0102acf4.c` (guarded relocation of the net IPC objects),
+`recon/{symbolized/net,net/src}/FUN_0103610c.c`, `FUN_01036128.c`,
+`FUN_01036144.c`, `FUN_01037130.c` (guarded `_kernel` base),
+`recon/catalogs/function_names_app.json` + `recon/named/register_ipc_service_recv_callback.c`
+(0x25ae8 durable entry),
+`recon/ownership/adoption_manifest.json` (4 Batch-0 exclusions),
+`recon/generated/app_retained_sources.cmake` (regenerated by the sanctioned
+generator only).
+No `tools/` change, no Kconfig/`prj.conf`/devicetree change, `armemul` additive
+only. Nothing committed.

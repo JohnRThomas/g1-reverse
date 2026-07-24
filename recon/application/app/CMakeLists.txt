@@ -158,6 +158,22 @@ target_sources(app PRIVATE
   # Compiler-outlined Zephyr header identities still called by newly recovered
   # roots.  Integration-only: canonical parity bodies remain unchanged.
   src/g1_sdk_inline_bridges.c
+  # Bring-up wiring TUs (P4 iterations 5-7).  Recovered code addresses these
+  # objects through absolute pins in recon/symbols/g1_app_globals.ld; where the
+  # object's CONTENTS embed pointers (or an initialiser the recovered code
+  # never writes) a linker rebind cannot express it, so the build emits the
+  # object and the pin name is bound onto it.  Integration-only: no canonical
+  # parity body changes.  These are hand-written wiring, not recovered
+  # functions, so they live here rather than in the generated retained list.
+  src/g1_gpio_dt_specs.c
+  src/g1_app_ram_relocs.c
+  src/g1_ipc_serialization_objects.c
+  # Library displacement Batch 0 (goal G2): the four out-lined
+  # zephyr/include/zephyr/drivers/gpio.h static inlines are excluded in
+  # adoption_manifest.json; a header `static inline` has no external symbol to
+  # bind, so their historical identities are re-expressed here as thin bridges
+  # over the real gpio.h API.
+  src/g1_gpio_header_bridges.c
   ${ZEPHYR_BASE}/drivers/sensor/stmemsc/stmemsc_i2c.c
   ${ZEPHYR_ST_MODULE_DIR}/sensor/stmemsc/lsm6dso_STdC/driver/lsm6dso_reg.c
   # Generated only after compiling every recovered table and comparing its

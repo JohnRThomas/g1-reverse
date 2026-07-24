@@ -72,13 +72,13 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 567,
-    "exclude_reconstruction": 553,
+    "entries": 571,
+    "exclude_reconstruction": 557,
     "retain_reconstruction": 14,
     "by_kind": {
      "source": 417,
      "archive": 107,
-     "static_helper": 21,
+     "static_helper": 25,
      "table": 22,
      "glue": 0
     }
@@ -369,6 +369,190 @@
         "reconstruction_input": "app/libapp.a(z_cbvprintf_impl.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/cbprintf_complete.c:1340: multiple definition of `z_cbvprintf_impl'; app/libapp.a(z_cbvprintf_impl.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_cbvprintf_impl.c:1195: first defined here"
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00017688",
+     "raw_symbol": "FUN_00017688",
+     "current_symbol": "gpio_pin_configure_17688",
+     "kind": "static_helper",
+     "component": "zephyr_drivers",
+     "upstream_symbol": "gpio_pin_configure_dt",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/drivers/gpio.h",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 0 (recon/ownership/library_displacement_report.md \u00a74). Out-lined `zephyr/include/zephyr/drivers/gpio.h` static inline: the literal pool carries the gpio.h __ASSERT file string, which exists only inside those inline bodies. The reconstruction is defective (our_boot_bringup.md iteration 5 \u00a73: extra pointer indirection and dropped call arguments) while still passing tools/parity and cfg_verify, so the reconstruction is displaced onto the real header inline. Because a header `static inline` has no external symbol to bind, the historical identity is re-expressed as a thin bridge over the real API in recon/application/app/src/g1_gpio_header_bridges.c.",
+     "evidence": [
+      {
+       "signal": "assert_literal_source_path",
+       "detail": "literal pool contains the __ASSERT file string \"WEST_TOPDIR/zephyr/include/zephyr/drivers/gpio.h\" \u2014 the assertion text lives only inside the gpio.h `static inline` bodies, so this out-lined function IS that header inline"
+      },
+      {
+       "signal": "no_byte_comparand",
+       "detail": "our pinned build inlines these helpers, so no separate .text.<sym> section exists to byte-compare against; identity rests on the literal + call-shape"
+      },
+      {
+       "signal": "known_reconstruction_defect",
+       "detail": "our_boot_bringup.md iteration 5 \u00a73 proved these exact bodies carry an extra pointer-indirection level and dropped call arguments while still passing tools/parity and cfg_verify \u2014 the precise failure mode this displacement exercise exists to eliminate"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00017688",
+       "upstream_symbol": "gpio_pin_configure_dt",
+       "callers": {
+        "total": 1,
+        "library_owned": 0,
+        "even_owned": 1
+       },
+       "on_golden_boot_path": true
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000177c4",
+     "raw_symbol": "FUN_000177c4",
+     "current_symbol": "gpio_pin_get_raw_checked",
+     "kind": "static_helper",
+     "component": "zephyr_drivers",
+     "upstream_symbol": "gpio_pin_get_raw",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/drivers/gpio.h",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 0 (recon/ownership/library_displacement_report.md \u00a74). Out-lined `zephyr/include/zephyr/drivers/gpio.h` static inline: the literal pool carries the gpio.h __ASSERT file string, which exists only inside those inline bodies. The reconstruction is defective (our_boot_bringup.md iteration 5 \u00a73: extra pointer indirection and dropped call arguments) while still passing tools/parity and cfg_verify, so the reconstruction is displaced onto the real header inline. Because a header `static inline` has no external symbol to bind, the historical identity is re-expressed as a thin bridge over the real API in recon/application/app/src/g1_gpio_header_bridges.c.",
+     "evidence": [
+      {
+       "signal": "assert_literal_source_path",
+       "detail": "literal pool contains the __ASSERT file string \"WEST_TOPDIR/zephyr/include/zephyr/drivers/gpio.h\" \u2014 the assertion text lives only inside the gpio.h `static inline` bodies, so this out-lined function IS that header inline"
+      },
+      {
+       "signal": "no_byte_comparand",
+       "detail": "our pinned build inlines these helpers, so no separate .text.<sym> section exists to byte-compare against; identity rests on the literal + call-shape"
+      },
+      {
+       "signal": "known_reconstruction_defect",
+       "detail": "our_boot_bringup.md iteration 5 \u00a73 proved these exact bodies carry an extra pointer-indirection level and dropped call arguments while still passing tools/parity and cfg_verify \u2014 the precise failure mode this displacement exercise exists to eliminate"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000177c4",
+       "upstream_symbol": "gpio_pin_get_raw",
+       "callers": {
+        "total": 2,
+        "library_owned": 0,
+        "even_owned": 2
+       },
+       "on_golden_boot_path": true
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00017858",
+     "raw_symbol": "FUN_00017858",
+     "current_symbol": "gpio_pin_configure",
+     "kind": "static_helper",
+     "component": "zephyr_drivers",
+     "upstream_symbol": "gpio_pin_interrupt_configure_dt",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/drivers/gpio.h",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 0 (recon/ownership/library_displacement_report.md \u00a74). Out-lined `zephyr/include/zephyr/drivers/gpio.h` static inline: the literal pool carries the gpio.h __ASSERT file string, which exists only inside those inline bodies. The reconstruction is defective (our_boot_bringup.md iteration 5 \u00a73: extra pointer indirection and dropped call arguments) while still passing tools/parity and cfg_verify, so the reconstruction is displaced onto the real header inline. Because a header `static inline` has no external symbol to bind, the historical identity is re-expressed as a thin bridge over the real API in recon/application/app/src/g1_gpio_header_bridges.c.",
+     "evidence": [
+      {
+       "signal": "assert_literal_source_path",
+       "detail": "literal pool contains the __ASSERT file string \"WEST_TOPDIR/zephyr/include/zephyr/drivers/gpio.h\" \u2014 the assertion text lives only inside the gpio.h `static inline` bodies, so this out-lined function IS that header inline"
+      },
+      {
+       "signal": "no_byte_comparand",
+       "detail": "our pinned build inlines these helpers, so no separate .text.<sym> section exists to byte-compare against; identity rests on the literal + call-shape"
+      },
+      {
+       "signal": "known_reconstruction_defect",
+       "detail": "our_boot_bringup.md iteration 5 \u00a73 proved these exact bodies carry an extra pointer-indirection level and dropped call arguments while still passing tools/parity and cfg_verify \u2014 the precise failure mode this displacement exercise exists to eliminate"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00017858",
+       "upstream_symbol": "gpio_pin_interrupt_configure_dt",
+       "callers": {
+        "total": 2,
+        "library_owned": 0,
+        "even_owned": 2
+       },
+       "on_golden_boot_path": true
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00017980",
+     "raw_symbol": "FUN_00017980",
+     "current_symbol": "gpio_pin_get_checked",
+     "kind": "static_helper",
+     "component": "zephyr_drivers",
+     "upstream_symbol": "gpio_pin_get",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/drivers/gpio.h",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 0 (recon/ownership/library_displacement_report.md \u00a74). Out-lined `zephyr/include/zephyr/drivers/gpio.h` static inline: the literal pool carries the gpio.h __ASSERT file string, which exists only inside those inline bodies. The reconstruction is defective (our_boot_bringup.md iteration 5 \u00a73: extra pointer indirection and dropped call arguments) while still passing tools/parity and cfg_verify, so the reconstruction is displaced onto the real header inline. Because a header `static inline` has no external symbol to bind, the historical identity is re-expressed as a thin bridge over the real API in recon/application/app/src/g1_gpio_header_bridges.c.",
+     "evidence": [
+      {
+       "signal": "assert_literal_source_path",
+       "detail": "literal pool contains the __ASSERT file string \"WEST_TOPDIR/zephyr/include/zephyr/drivers/gpio.h\" \u2014 the assertion text lives only inside the gpio.h `static inline` bodies, so this out-lined function IS that header inline"
+      },
+      {
+       "signal": "no_byte_comparand",
+       "detail": "our pinned build inlines these helpers, so no separate .text.<sym> section exists to byte-compare against; identity rests on the literal + call-shape"
+      },
+      {
+       "signal": "known_reconstruction_defect",
+       "detail": "our_boot_bringup.md iteration 5 \u00a73 proved these exact bodies carry an extra pointer-indirection level and dropped call arguments while still passing tools/parity and cfg_verify \u2014 the precise failure mode this displacement exercise exists to eliminate"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00017980",
+       "upstream_symbol": "gpio_pin_get",
+       "callers": {
+        "total": 1,
+        "library_owned": 0,
+        "even_owned": 1
+       },
+       "on_golden_boot_path": true
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004abc0",
+     "raw_symbol": "FUN_0004abc0",
+     "current_symbol": "cbprintf_package_convert",
+     "kind": "source",
+     "component": "zephyr_os_stock",
+     "upstream_symbol": "cbprintf_package_convert",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/cbprintf_packaged.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock os symbol 'cbprintf_package_convert'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/lib/os/cbprintf_packaged.c. The CPUAPP core links the standard os, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "cbprintf_package_convert",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/cbprintf_packaged.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/cbprintf_packaged.c:915: multiple definition of `cbprintf_package_convert'; app/libapp.a(cbprintf_package_convert.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/cbprintf_package_convert.c:37: first defined here",
+       "cpunet_precedent": false
       }
      ]
     },
@@ -674,6 +858,54 @@
     },
     {
      "core": "app",
+     "va": "0x0004b214",
+     "raw_symbol": "FUN_0004b214",
+     "current_symbol": "sys_heap_free",
+     "kind": "source",
+     "component": "zephyr_os_stock",
+     "upstream_symbol": "sys_heap_free",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock os symbol 'sys_heap_free'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/lib/os/heap.c. The CPUAPP core links the standard os, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "sys_heap_free",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c:164: multiple definition of `sys_heap_free'; app/libapp.a(sys_heap_free.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/sys_heap_free.c:35: first defined here",
+       "cpunet_precedent": true
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004b2b0",
+     "raw_symbol": "FUN_0004b2b0",
+     "current_symbol": "sys_heap_aligned_alloc",
+     "kind": "source",
+     "component": "zephyr_os_stock",
+     "upstream_symbol": "sys_heap_aligned_alloc",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock os symbol 'sys_heap_aligned_alloc'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/lib/os/heap.c. The CPUAPP core links the standard os, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "sys_heap_aligned_alloc",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c:302: multiple definition of `sys_heap_aligned_alloc'; app/libapp.a(sys_heap_aligned_alloc.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/sys_heap_aligned_alloc.c:36: first defined here",
+       "cpunet_precedent": true
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x0004b3c8",
      "raw_symbol": "FUN_0004b3c8",
      "current_symbol": "sys_heap_init",
@@ -762,6 +994,54 @@
          "sys_heap_aligned_realloc"
         ]
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004ba38",
+     "raw_symbol": "FUN_0004ba38",
+     "current_symbol": "onoff_release",
+     "kind": "source",
+     "component": "zephyr_os_stock",
+     "upstream_symbol": "onoff_release",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock os symbol 'onoff_release'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c. The CPUAPP core links the standard os, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "onoff_release",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c:479: multiple definition of `onoff_release'; app/libapp.a(onoff_release.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/onoff_release.c:32: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004bb0c",
+     "raw_symbol": "FUN_0004bb0c",
+     "current_symbol": "sys_notify_finalize",
+     "kind": "source",
+     "component": "zephyr_os_stock",
+     "upstream_symbol": "sys_notify_finalize",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/notify.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock os symbol 'sys_notify_finalize'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/lib/os/notify.c. The CPUAPP core links the standard os, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "sys_notify_finalize",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/notify.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/notify.c:50: multiple definition of `sys_notify_finalize'; app/libapp.a(sys_notify_finalize.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/sys_notify_finalize.c:21: first defined here",
+       "cpunet_precedent": false
       }
      ]
     },
@@ -1485,6 +1765,54 @@
        ],
        "safe_to_adopt": true,
        "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004d44c",
+     "raw_symbol": "FUN_0004d44c",
+     "current_symbol": "z_log_notify_backend_enabled",
+     "kind": "source",
+     "component": "zephyr_logging_stock",
+     "upstream_symbol": "z_log_notify_backend_enabled",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock logging symbol 'z_log_notify_backend_enabled'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c. The CPUAPP core links the standard logging, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "z_log_notify_backend_enabled",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c:480: multiple definition of `z_log_notify_backend_enabled'; app/libapp.a(z_log_notify_backend_enabled.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_log_notify_backend_enabled.c:23: first defined here",
+       "cpunet_precedent": true
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004d468",
+     "raw_symbol": "FUN_0004d468",
+     "current_symbol": "z_log_dropped",
+     "kind": "source",
+     "component": "zephyr_logging_stock",
+     "upstream_symbol": "z_log_dropped",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock logging symbol 'z_log_dropped'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c. The CPUAPP core links the standard logging, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "z_log_dropped",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c:568: multiple definition of `z_log_dropped'; app/libapp.a(z_log_dropped.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_log_dropped.c:23: first defined here",
+       "cpunet_precedent": true
       }
      ]
     },
@@ -3530,6 +3858,30 @@
        "ownership": "source",
        "confidence": "high",
        "evidence": "Exact symbol and object attribution."
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000501d4",
+     "raw_symbol": "FUN_000501d4",
+     "current_symbol": "arch_swap",
+     "kind": "source",
+     "component": "zephyr_kernel_private_stock",
+     "upstream_symbol": "arch_swap",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/swap.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'arch_swap'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/swap.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "arch_swap",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/swap.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/swap.c:36: multiple definition of `arch_swap'; app/libapp.a(arch_swap.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/arch_swap.c:16: first defined here",
+       "cpunet_precedent": false
       }
      ]
     },
@@ -7152,6 +7504,64 @@
     },
     {
      "core": "app",
+     "va": "0x00053034",
+     "raw_symbol": "FUN_00053034",
+     "current_symbol": "bt_settings_store_cf",
+     "kind": "source",
+     "component": "zephyr_bt_host_stock",
+     "upstream_symbol": "bt_settings_store_cf",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_settings_store_cf'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "bt_settings_store_cf",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c:357: multiple definition of `bt_settings_store_cf'; app/libapp.a(bt_settings_store_cf.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_settings_store_cf.c:16: first defined here",
+       "cpunet_precedent": false
+      },
+      {
+       "source": "recon vs ~/ncs251 SDK source comparison",
+       "type": "bt_host_stock_manual_verification",
+       "verdict": "stock"
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00053098",
+     "raw_symbol": "FUN_00053098",
+     "current_symbol": "bt_settings_store_name",
+     "kind": "source",
+     "component": "zephyr_bt_host_stock",
+     "upstream_symbol": "bt_settings_store_name",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_settings_store_name'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "bt_settings_store_name",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c:387: multiple definition of `bt_settings_store_name'; app/libapp.a(bt_settings_store_name.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_settings_store_name.c:16: first defined here",
+       "cpunet_precedent": false
+      },
+      {
+       "source": "recon vs ~/ncs251 SDK source comparison",
+       "type": "bt_host_stock_manual_verification",
+       "verdict": "stock"
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00053cb0",
      "raw_symbol": "FUN_00053cb0",
      "current_symbol": "bt_hci_cmd_state_set_init",
@@ -7367,6 +7777,35 @@
          "bt_send"
         ]
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00053d70",
+     "raw_symbol": "FUN_00053d70",
+     "current_symbol": "bt_hci_cmd_send_sync",
+     "kind": "source",
+     "component": "zephyr_bt_host_stock",
+     "upstream_symbol": "bt_hci_cmd_send_sync",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_hci_cmd_send_sync'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "bt_hci_cmd_send_sync",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c:318: multiple definition of `bt_hci_cmd_send_sync'; app/libapp.a(bt_hci_cmd_send_sync.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_hci_cmd_send_sync.c:44: first defined here",
+       "cpunet_precedent": false
+      },
+      {
+       "source": "recon vs ~/ncs251 SDK source comparison",
+       "type": "bt_host_stock_manual_verification",
+       "verdict": "stock"
       }
      ]
     },
@@ -7698,6 +8137,64 @@
     },
     {
      "core": "app",
+     "va": "0x00055204",
+     "raw_symbol": "FUN_00055204",
+     "current_symbol": "bt_id_create",
+     "kind": "source",
+     "component": "zephyr_bt_host_stock",
+     "upstream_symbol": "bt_id_create",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_id_create'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "bt_id_create",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c:1250: multiple definition of `bt_id_create'; app/libapp.a(bt_id_create.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_id_create.c:26: first defined here",
+       "cpunet_precedent": false
+      },
+      {
+       "source": "recon vs ~/ncs251 SDK source comparison",
+       "type": "bt_host_stock_manual_verification",
+       "verdict": "stock"
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00055454",
+     "raw_symbol": "FUN_00055454",
+     "current_symbol": "bt_id_set_adv_random_addr",
+     "kind": "source",
+     "component": "zephyr_bt_host_stock",
+     "upstream_symbol": "bt_id_set_adv_random_addr",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_id_set_adv_random_addr'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "bt_id_set_adv_random_addr",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c:159: multiple definition of `bt_id_set_adv_random_addr'; app/libapp.a(bt_id_set_adv_random_addr.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_id_set_adv_random_addr.c:21: first defined here",
+       "cpunet_precedent": false
+      },
+      {
+       "source": "recon vs ~/ncs251 SDK source comparison",
+       "type": "bt_host_stock_manual_verification",
+       "verdict": "stock"
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00055cb4",
      "raw_symbol": "FUN_00055cb4",
      "current_symbol": "bt_rand",
@@ -7716,6 +8213,35 @@
        "ownership": "source",
        "confidence": "high",
        "evidence": "App-side call context and pinned host signature int bt_rand(void *, size_t)."
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00055d08",
+     "raw_symbol": "FUN_00055d08",
+     "current_symbol": "bt_pub_key_gen",
+     "kind": "source",
+     "component": "zephyr_bt_host_stock",
+     "upstream_symbol": "bt_pub_key_gen",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/ecc.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_pub_key_gen'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/ecc.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "bt_pub_key_gen",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/ecc.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/ecc.c:43: multiple definition of `bt_pub_key_gen'; app/libapp.a(bt_pub_key_gen.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_pub_key_gen.c:23: first defined here",
+       "cpunet_precedent": false
+      },
+      {
+       "source": "recon vs ~/ncs251 SDK source comparison",
+       "type": "bt_host_stock_manual_verification",
+       "verdict": "stock"
       }
      ]
     },
@@ -7824,6 +8350,151 @@
     },
     {
      "core": "app",
+     "va": "0x000569a0",
+     "raw_symbol": "FUN_000569a0",
+     "current_symbol": "bt_conn_index",
+     "kind": "source",
+     "component": "zephyr_bt_host_stock",
+     "upstream_symbol": "bt_conn_index",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_conn_index'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "bt_conn_index",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:1346: multiple definition of `bt_conn_index'; app/libapp.a(bt_conn_index.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_conn_index.c:22: first defined here",
+       "cpunet_precedent": false
+      },
+      {
+       "source": "recon vs ~/ncs251 SDK source comparison",
+       "type": "bt_host_stock_manual_verification",
+       "verdict": "stock"
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000569ec",
+     "raw_symbol": "FUN_000569ec",
+     "current_symbol": "bt_conn_create_pdu_timeout",
+     "kind": "source",
+     "component": "zephyr_bt_host_stock",
+     "upstream_symbol": "bt_conn_create_pdu_timeout",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_conn_create_pdu_timeout'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "bt_conn_create_pdu_timeout",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:1368: multiple definition of `bt_conn_create_pdu_timeout'; app/libapp.a(bt_conn_create_pdu_timeout.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_conn_create_pdu_timeout.c:29: first defined here",
+       "cpunet_precedent": false
+      },
+      {
+       "source": "recon vs ~/ncs251 SDK source comparison",
+       "type": "bt_host_stock_manual_verification",
+       "verdict": "stock"
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00056e24",
+     "raw_symbol": "FUN_00056e24",
+     "current_symbol": "bt_conn_cb_register",
+     "kind": "source",
+     "component": "zephyr_bt_host_stock",
+     "upstream_symbol": "bt_conn_cb_register",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_conn_cb_register'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "bt_conn_cb_register",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:2333: multiple definition of `bt_conn_cb_register'; app/libapp.a(bt_conn_cb_register.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_conn_cb_register.c:16: first defined here",
+       "cpunet_precedent": false
+      },
+      {
+       "source": "recon vs ~/ncs251 SDK source comparison",
+       "type": "bt_host_stock_manual_verification",
+       "verdict": "stock"
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00056f4c",
+     "raw_symbol": "FUN_00056f4c",
+     "current_symbol": "bt_conn_get_info",
+     "kind": "source",
+     "component": "zephyr_bt_host_stock",
+     "upstream_symbol": "bt_conn_get_info",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_conn_get_info'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "bt_conn_get_info",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:2486: multiple definition of `bt_conn_get_info'; app/libapp.a(bt_conn_get_info.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_conn_get_info.c:24: first defined here",
+       "cpunet_precedent": false
+      },
+      {
+       "source": "recon vs ~/ncs251 SDK source comparison",
+       "type": "bt_host_stock_manual_verification",
+       "verdict": "stock"
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000572fc",
+     "raw_symbol": "FUN_000572fc",
+     "current_symbol": "bt_conn_auth_cb_register",
+     "kind": "source",
+     "component": "zephyr_bt_host_stock",
+     "upstream_symbol": "bt_conn_auth_cb_register",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_conn_auth_cb_register'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "bt_conn_auth_cb_register",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:3128: multiple definition of `bt_conn_auth_cb_register'; app/libapp.a(bt_conn_auth_cb_register.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_conn_auth_cb_register.c:14: first defined here",
+       "cpunet_precedent": false
+      },
+      {
+       "source": "recon vs ~/ncs251 SDK source comparison",
+       "type": "bt_host_stock_manual_verification",
+       "verdict": "stock"
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00057330",
      "raw_symbol": "FUN_00057330",
      "current_symbol": "bt_conn_auth_info_cb_register",
@@ -7867,6 +8538,35 @@
         "reconstruction_input": "app/libapp.a(bt_conn_auth_info_cb_register.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:3179: multiple definition of `bt_conn_auth_info_cb_register'; app/libapp.a(bt_conn_auth_info_cb_register.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_conn_auth_info_cb_register.c:15: first defined here"
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00057358",
+     "raw_symbol": "FUN_00057358",
+     "current_symbol": "bt_conn_init",
+     "kind": "source",
+     "component": "zephyr_bt_host_stock",
+     "upstream_symbol": "bt_conn_init",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_conn_init'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "bt_conn_init",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:3293: multiple definition of `bt_conn_init'; app/libapp.a(bt_conn_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_conn_init.c:26: first defined here",
+       "cpunet_precedent": false
+      },
+      {
+       "source": "recon vs ~/ncs251 SDK source comparison",
+       "type": "bt_host_stock_manual_verification",
+       "verdict": "stock"
       }
      ]
     },
@@ -11605,6 +12305,35 @@
     },
     {
      "core": "app",
+     "va": "0x0005edac",
+     "raw_symbol": "FUN_0005edac",
+     "current_symbol": "bt_crypto_g2",
+     "kind": "source",
+     "component": "zephyr_bt_host_stock",
+     "upstream_symbol": "bt_crypto_g2",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/crypto/bt_crypto.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_crypto_g2'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/crypto/bt_crypto.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "bt_crypto_g2",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/crypto/bt_crypto.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/crypto/bt_crypto.c:184: multiple definition of `bt_crypto_g2'; app/libapp.a(bt_crypto_g2.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_crypto_g2.c:16: first defined here",
+       "cpunet_precedent": false
+      },
+      {
+       "source": "recon vs ~/ncs251 SDK source comparison",
+       "type": "bt_host_stock_manual_verification",
+       "verdict": "stock"
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x0005ee6c",
      "raw_symbol": "FUN_0005ee6c",
      "current_symbol": "net_buf_reset",
@@ -13714,6 +14443,30 @@
     },
     {
      "core": "app",
+     "va": "0x000640e8",
+     "raw_symbol": "FUN_000640e8",
+     "current_symbol": "boot_write_swap_info",
+     "kind": "source",
+     "component": "mcuboot_flash_stock",
+     "upstream_symbol": "boot_write_swap_info",
+     "upstream_unit": "/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock mcuboot/flash symbol 'boot_write_swap_info'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c. The CPUAPP core links the standard mcuboot/flash, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "boot_write_swap_info",
+       "upstream_unit": "/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c:386: multiple definition of `boot_write_swap_info'; app/libapp.a(boot_write_swap_info.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/boot_write_swap_info.c:21: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x000641e4",
      "raw_symbol": "FUN_000641e4",
      "current_symbol": "boot_set_next",
@@ -14504,6 +15257,54 @@
         "reconstruction_input": "app/libapp.a(nrfx_gpiote_init.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c:640: multiple definition of `nrfx_gpiote_init'; app/libapp.a(nrfx_gpiote_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_gpiote_init.c:19: first defined here"
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00065d3c",
+     "raw_symbol": "FUN_00065d3c",
+     "current_symbol": "nrfx_ipc_init",
+     "kind": "source",
+     "component": "nrfx_stock",
+     "upstream_symbol": "nrfx_ipc_init",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_ipc_init'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "nrfx_ipc_init",
+       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c:51: multiple definition of `nrfx_ipc_init'; app/libapp.a(nrfx_ipc_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_ipc_init.c:25: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00065d8c",
+     "raw_symbol": "FUN_00065d8c",
+     "current_symbol": "nrfx_ipc_config_load",
+     "kind": "source",
+     "component": "nrfx_stock",
+     "upstream_symbol": "nrfx_ipc_config_load",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_ipc_config_load'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "nrfx_ipc_config_load",
+       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c:69: multiple definition of `nrfx_ipc_config_load'; app/libapp.a(nrfx_ipc_config_load.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_ipc_config_load.c:20: first defined here",
+       "cpunet_precedent": false
       }
      ]
     },
@@ -16612,6 +17413,174 @@
     },
     {
      "core": "app",
+     "va": "0x000671d8",
+     "raw_symbol": "FUN_000671d8",
+     "current_symbol": "nrfx_spim_init",
+     "kind": "source",
+     "component": "nrfx_stock",
+     "upstream_symbol": "nrfx_spim_init",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_spim_init'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "nrfx_spim_init",
+       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c:510: multiple definition of `nrfx_spim_init'; app/libapp.a(nrfx_spim_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_spim_init.c:23: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00067248",
+     "raw_symbol": "FUN_00067248",
+     "current_symbol": "nrfx_spim_uninit",
+     "kind": "source",
+     "component": "nrfx_stock",
+     "upstream_symbol": "nrfx_spim_uninit",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_spim_uninit'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "nrfx_spim_uninit",
+       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c:595: multiple definition of `nrfx_spim_uninit'; app/libapp.a(nrfx_spim_uninit.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_spim_uninit.c:30: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00067304",
+     "raw_symbol": "FUN_00067304",
+     "current_symbol": "nrfx_spim_xfer",
+     "kind": "source",
+     "component": "nrfx_stock",
+     "upstream_symbol": "nrfx_spim_xfer",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_spim_xfer'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "nrfx_spim_xfer",
+       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c:786: multiple definition of `nrfx_spim_xfer'; app/libapp.a(nrfx_spim_xfer.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_spim_xfer.c:43: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00067794",
+     "raw_symbol": "FUN_00067794",
+     "current_symbol": "nrfx_twim_init",
+     "kind": "source",
+     "component": "nrfx_stock",
+     "upstream_symbol": "nrfx_twim_init",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_twim_init'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "nrfx_twim_init",
+       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c:257: multiple definition of `nrfx_twim_init'; app/libapp.a(nrfx_twim_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_twim_init.c:25: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00067884",
+     "raw_symbol": "FUN_00067884",
+     "current_symbol": "nrfx_twim_enable",
+     "kind": "source",
+     "component": "nrfx_stock",
+     "upstream_symbol": "nrfx_twim_enable",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_twim_enable'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "nrfx_twim_enable",
+       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c:363: multiple definition of `nrfx_twim_enable'; app/libapp.a(nrfx_twim_enable.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_twim_enable.c:19: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000678d0",
+     "raw_symbol": "FUN_000678d0",
+     "current_symbol": "nrfx_twim_disable",
+     "kind": "source",
+     "component": "nrfx_stock",
+     "upstream_symbol": "nrfx_twim_disable",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_twim_disable'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "nrfx_twim_disable",
+       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c:374: multiple definition of `nrfx_twim_disable'; app/libapp.a(nrfx_twim_disable.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_twim_disable.c:21: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00067938",
+     "raw_symbol": "FUN_00067938",
+     "current_symbol": "nrfx_twim_xfer",
+     "kind": "source",
+     "component": "nrfx_stock",
+     "upstream_symbol": "nrfx_twim_xfer",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_twim_xfer'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "nrfx_twim_xfer",
+       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c:592: multiple definition of `nrfx_twim_xfer'; app/libapp.a(nrfx_twim_xfer.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_twim_xfer.c:39: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00067e8c",
      "raw_symbol": "FUN_00067e8c",
      "current_symbol": "nrfx_dppi_channel_alloc",
@@ -16736,6 +17705,78 @@
         ],
         "new_undefined_symbols": []
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00068170",
+     "raw_symbol": "FUN_00068170",
+     "current_symbol": "metal_register_generic_device",
+     "kind": "source",
+     "component": "libmetal_stock",
+     "upstream_symbol": "metal_register_generic_device",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock metal symbol 'metal_register_generic_device'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c. The CPUAPP core links the standard metal, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "metal_register_generic_device",
+       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c:87: multiple definition of `metal_register_generic_device'; app/libapp.a(metal_register_generic_device.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/metal_register_generic_device.c:15: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000681cc",
+     "raw_symbol": "FUN_000681cc",
+     "current_symbol": "metal_device_close",
+     "kind": "source",
+     "component": "libmetal_stock",
+     "upstream_symbol": "metal_device_close",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock metal symbol 'metal_device_close'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c. The CPUAPP core links the standard metal, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "metal_device_close",
+       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c:81: multiple definition of `metal_device_close'; app/libapp.a(metal_device_close.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/metal_device_close.c:22: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00068298",
+     "raw_symbol": "FUN_00068298",
+     "current_symbol": "metal_sys_init",
+     "kind": "source",
+     "component": "libmetal_stock",
+     "upstream_symbol": "metal_sys_init",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/system/zephyr/init.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock metal symbol 'metal_sys_init'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/system/zephyr/init.c. The CPUAPP core links the standard metal, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "metal_sys_init",
+       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/system/zephyr/init.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/system/zephyr/init.c:19: multiple definition of `metal_sys_init'; app/libapp.a(metal_sys_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/metal_sys_init.c:22: first defined here",
+       "cpunet_precedent": false
       }
      ]
     },
@@ -18295,6 +19336,30 @@
     },
     {
      "core": "app",
+     "va": "0x000719f4",
+     "raw_symbol": "FUN_000719f4",
+     "current_symbol": "k_heap_alloc",
+     "kind": "source",
+     "component": "zephyr_kernel_private_stock",
+     "upstream_symbol": "k_heap_alloc",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/kheap.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'k_heap_alloc'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/kheap.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "k_heap_alloc",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/kheap.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/kheap.c:108: multiple definition of `k_heap_alloc'; app/libapp.a(k_heap_alloc.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/k_heap_alloc.c:45: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00071b2c",
      "raw_symbol": "FUN_00071b2c",
      "current_symbol": "k_heap_free",
@@ -18591,6 +19656,78 @@
         ],
         "new_undefined_symbols": []
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00071df8",
+     "raw_symbol": "FUN_00071df8",
+     "current_symbol": "z_setup_new_thread",
+     "kind": "source",
+     "component": "zephyr_kernel_private_stock",
+     "upstream_symbol": "z_setup_new_thread",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'z_setup_new_thread'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/thread.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "z_setup_new_thread",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c:535: multiple definition of `z_setup_new_thread'; app/libapp.a(z_setup_new_thread.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_setup_new_thread.c:28: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00071eac",
+     "raw_symbol": "FUN_00071eac",
+     "current_symbol": "z_impl_k_thread_create",
+     "kind": "source",
+     "component": "zephyr_kernel_private_stock",
+     "upstream_symbol": "z_impl_k_thread_create",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'z_impl_k_thread_create'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/thread.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "z_impl_k_thread_create",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c:651: multiple definition of `z_impl_k_thread_create'; app/libapp.a(z_impl_k_thread_create.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_impl_k_thread_create.c:27: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00071f38",
+     "raw_symbol": "FUN_00071f38",
+     "current_symbol": "z_init_static_threads",
+     "kind": "source",
+     "component": "zephyr_kernel_private_stock",
+     "upstream_symbol": "z_init_static_threads",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'z_init_static_threads'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/thread.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "z_init_static_threads",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c:754: multiple definition of `z_init_static_threads'; app/libapp.a(z_init_static_threads.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_init_static_threads.c:35: first defined here",
+       "cpunet_precedent": false
       }
      ]
     },
@@ -20823,6 +21960,78 @@
     },
     {
      "core": "app",
+     "va": "0x00073b1c",
+     "raw_symbol": "FUN_00073b1c",
+     "current_symbol": "k_sched_unlock",
+     "kind": "source",
+     "component": "zephyr_kernel_private_stock",
+     "upstream_symbol": "k_sched_unlock",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'k_sched_unlock'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/sched.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "k_sched_unlock",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c:1014: multiple definition of `k_sched_unlock'; app/libapp.a(k_sched_unlock.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/k_sched_unlock.c:35: first defined here",
+       "cpunet_precedent": true
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00073bf4",
+     "raw_symbol": "FUN_00073bf4",
+     "current_symbol": "k_sched_lock",
+     "kind": "source",
+     "component": "zephyr_kernel_private_stock",
+     "upstream_symbol": "k_sched_lock",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'k_sched_lock'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/sched.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "k_sched_lock",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c:1005: multiple definition of `k_sched_lock'; app/libapp.a(k_sched_lock.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/k_sched_lock.c:37: first defined here",
+       "cpunet_precedent": true
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00073f6c",
+     "raw_symbol": "FUN_00073f6c",
+     "current_symbol": "z_pend_curr",
+     "kind": "source",
+     "component": "zephyr_kernel_private_stock",
+     "upstream_symbol": "z_pend_curr",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'z_pend_curr'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/sched.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "z_pend_curr",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c:859: multiple definition of `z_pend_curr'; app/libapp.a(z_pend_curr.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_pend_curr.c:35: first defined here",
+       "cpunet_precedent": true
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00074184",
      "raw_symbol": "FUN_00074184",
      "current_symbol": "z_thread_priority_set",
@@ -21117,6 +22326,78 @@
     },
     {
      "core": "app",
+     "va": "0x00074a54",
+     "raw_symbol": "FUN_00074a54",
+     "current_symbol": "z_sched_wake",
+     "kind": "source",
+     "component": "zephyr_kernel_private_stock",
+     "upstream_symbol": "z_sched_wake",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'z_sched_wake'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/sched.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "z_sched_wake",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c:1911: multiple definition of `z_sched_wake'; app/libapp.a(z_sched_wake.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_sched_wake.c:36: first defined here",
+       "cpunet_precedent": true
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00074bf4",
+     "raw_symbol": "FUN_00074bf4",
+     "current_symbol": "z_add_timeout",
+     "kind": "source",
+     "component": "zephyr_kernel_private_stock",
+     "upstream_symbol": "z_add_timeout",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/timeout.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'z_add_timeout'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/timeout.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "z_add_timeout",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/timeout.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/timeout.c:102: multiple definition of `z_add_timeout'; app/libapp.a(z_add_timeout.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_add_timeout.c:45: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00074d74",
+     "raw_symbol": "FUN_00074d74",
+     "current_symbol": "z_abort_timeout",
+     "kind": "source",
+     "component": "zephyr_kernel_private_stock",
+     "upstream_symbol": "z_abort_timeout",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/timeout.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'z_abort_timeout'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/timeout.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "z_abort_timeout",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/timeout.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/timeout.c:145: multiple definition of `z_abort_timeout'; app/libapp.a(z_abort_timeout.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_abort_timeout.c:30: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00075174",
      "raw_symbol": "FUN_00075174",
      "current_symbol": "z_impl_k_timer_start",
@@ -21147,6 +22428,54 @@
        ],
        "safe_to_adopt": true,
        "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00075574",
+     "raw_symbol": "FUN_00075574",
+     "current_symbol": "k_poll_event_init",
+     "kind": "source",
+     "component": "zephyr_kernel_private_stock",
+     "upstream_symbol": "k_poll_event_init",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'k_poll_event_init'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/poll.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "k_poll_event_init",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c:44: multiple definition of `k_poll_event_init'; app/libapp.a(k_poll_event_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/k_poll_event_init.c:27: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000755f8",
+     "raw_symbol": "FUN_000755f8",
+     "current_symbol": "z_impl_k_poll",
+     "kind": "source",
+     "component": "zephyr_kernel_private_stock",
+     "upstream_symbol": "z_impl_k_poll",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'z_impl_k_poll'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/poll.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "z_impl_k_poll",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c:293: multiple definition of `z_impl_k_poll'; app/libapp.a(z_impl_k_poll.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_impl_k_poll.c:46: first defined here",
+       "cpunet_precedent": true
       }
      ]
     },
@@ -22380,6 +23709,30 @@
          "__malloc_sbrk_start"
         ]
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00077a10",
+     "raw_symbol": "FUN_00077a10",
+     "current_symbol": "strtod",
+     "kind": "source",
+     "component": "libc_stock",
+     "upstream_symbol": "strtod",
+     "upstream_unit": "strtod.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock libc symbol 'strtod'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit strtod.c. The CPUAPP core links the standard libc, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "strtod",
+       "upstream_unit": "strtod.c",
+       "link_diagnostic": "strtod.c:(.text.strtod+0x0): multiple definition of `strtod'; app/libapp.a(strtod.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/strtod.c:18: first defined here",
+       "cpunet_precedent": false
       }
      ]
     },
@@ -25491,6 +26844,30 @@
     },
     {
      "core": "app",
+     "va": "0x0007efd4",
+     "raw_symbol": "FUN_0007efd4",
+     "current_symbol": "flash_area_erase",
+     "kind": "source",
+     "component": "mcuboot_flash_stock",
+     "upstream_symbol": "flash_area_erase",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/storage/flash_map/flash_map_priv.h",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock mcuboot/flash symbol 'flash_area_erase'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/storage/flash_map/flash_map_priv.h. The CPUAPP core links the standard mcuboot/flash, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "flash_area_erase",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/storage/flash_map/flash_map_priv.h",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/storage/flash_map/flash_map_priv.h:36: multiple definition of `flash_area_erase'; app/libapp.a(flash_area_erase.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/flash_area_erase.c:13: first defined here",
+       "cpunet_precedent": false
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x0007f064",
      "raw_symbol": "FUN_0007f064",
      "current_symbol": "FUN_0007f064",
@@ -26572,6 +27949,35 @@
         "reconstruction_input": "app/libapp.a(bt_ancs_register_app_attr.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/nrf/subsys/bluetooth/services/ancs_client.c:497: multiple definition of `bt_ancs_register_app_attr'; app/libapp.a(bt_ancs_register_app_attr.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_ancs_register_app_attr.c:11: first defined here"
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007f7d2",
+     "raw_symbol": "FUN_0007f7d2",
+     "current_symbol": "bt_ancs_app_attr_request",
+     "kind": "source",
+     "component": "nrf_bt_service_stock",
+     "upstream_symbol": "bt_ancs_app_attr_request",
+     "upstream_unit": "/Users/freedomcoder/ncs251/nrf/subsys/bluetooth/services/ancs_app_attr_get.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock nrf BT service (ANCS) symbol 'bt_ancs_app_attr_request'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/nrf/subsys/bluetooth/services/ancs_app_attr_get.c. The CPUAPP core links the standard nrf BT service (ANCS), so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "bt_ancs_app_attr_request",
+       "upstream_unit": "/Users/freedomcoder/ncs251/nrf/subsys/bluetooth/services/ancs_app_attr_get.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/nrf/subsys/bluetooth/services/ancs_app_attr_get.c:183: multiple definition of `bt_ancs_app_attr_request'; app/libapp.a(bt_ancs_app_attr_request.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_ancs_app_attr_request.c:32: first defined here",
+       "cpunet_precedent": false
+      },
+      {
+       "source": "recon vs ~/ncs251 SDK source comparison",
+       "type": "bt_host_stock_manual_verification",
+       "verdict": "stock"
       }
      ]
     },
@@ -30371,6 +31777,35 @@
     },
     {
      "core": "app",
+     "va": "0x00082932",
+     "raw_symbol": "FUN_00082932",
+     "current_symbol": "bt_gatt_attr_read",
+     "kind": "source",
+     "component": "zephyr_bt_host_stock",
+     "upstream_symbol": "bt_gatt_attr_read",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_gatt_attr_read'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "bt_gatt_attr_read",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:1744: multiple definition of `bt_gatt_attr_read'; app/libapp.a(bt_gatt_attr_read.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_attr_read.c:15: first defined here",
+       "cpunet_precedent": false
+      },
+      {
+       "source": "recon vs ~/ncs251 SDK source comparison",
+       "type": "bt_host_stock_manual_verification",
+       "verdict": "stock"
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x0008295a",
      "raw_symbol": "FUN_0008295a",
      "current_symbol": "bt_gatt_attr_read_ccc",
@@ -30699,6 +32134,30 @@
         "reconstruction_input": "app/libapp.a(net_buf_get.c.obj)",
         "diagnostic": "/tmp/g1_cpuapp_shell_build_0717j/zephyr/include/generated/syscalls/kernel.h:694: multiple definition of `net_buf_get'; app/libapp.a(net_buf_get.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_get.c:13: first defined here"
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00083740",
+     "raw_symbol": "FUN_00083740",
+     "current_symbol": "net_buf_simple_add_mem",
+     "kind": "source",
+     "component": "zephyr_net_buf_stock",
+     "upstream_symbol": "net_buf_simple_add_mem",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock net_buf symbol 'net_buf_simple_add_mem'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c. The CPUAPP core links the standard net_buf, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "net_buf_simple_add_mem",
+       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c:70: multiple definition of `net_buf_simple_add_mem'; app/libapp.a(net_buf_simple_add_mem.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_simple_add_mem.c:14: first defined here",
+       "cpunet_precedent": true
       }
      ]
     },
@@ -31594,6 +33053,30 @@
         "selected_exact_section": ".text.zcbor_process_backup",
         "source_unit": "modules/lib/zcbor/src/zcbor_common.c"
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00086338",
+     "raw_symbol": "FUN_00086338",
+     "current_symbol": "zcbor_bstr_encode",
+     "kind": "source",
+     "component": "zcbor_stock",
+     "upstream_symbol": "zcbor_bstr_encode",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction identity matches the stock zcbor symbol 'zcbor_bstr_encode'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c. The CPUAPP core links the standard zcbor, so the stock owner is adopted and the reconstruction displaced.",
+     "evidence": [
+      {
+       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
+       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
+       "symbol": "zcbor_bstr_encode",
+       "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c",
+       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c:345: multiple definition of `zcbor_bstr_encode'; app/libapp.a(zcbor_bstr_encode.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/zcbor_bstr_encode.c:10: first defined here",
+       "cpunet_precedent": false
       }
      ]
     },
@@ -33600,1329 +35083,6 @@
        "source": "recon/catalogs/lc3_ownership_app.json",
        "type": "lc3_table_identity",
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed"
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x000501d4",
-     "raw_symbol": "FUN_000501d4",
-     "current_symbol": "arch_swap",
-     "kind": "source",
-     "component": "zephyr_kernel_private_stock",
-     "upstream_symbol": "arch_swap",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/swap.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'arch_swap'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/swap.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "arch_swap",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/swap.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/swap.c:36: multiple definition of `arch_swap'; app/libapp.a(arch_swap.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/arch_swap.c:16: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x000640e8",
-     "raw_symbol": "FUN_000640e8",
-     "current_symbol": "boot_write_swap_info",
-     "kind": "source",
-     "component": "mcuboot_flash_stock",
-     "upstream_symbol": "boot_write_swap_info",
-     "upstream_unit": "/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock mcuboot/flash symbol 'boot_write_swap_info'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c. The CPUAPP core links the standard mcuboot/flash, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "boot_write_swap_info",
-       "upstream_unit": "/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c:386: multiple definition of `boot_write_swap_info'; app/libapp.a(boot_write_swap_info.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/boot_write_swap_info.c:21: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x0007f7d2",
-     "raw_symbol": "FUN_0007f7d2",
-     "current_symbol": "bt_ancs_app_attr_request",
-     "kind": "source",
-     "component": "nrf_bt_service_stock",
-     "upstream_symbol": "bt_ancs_app_attr_request",
-     "upstream_unit": "/Users/freedomcoder/ncs251/nrf/subsys/bluetooth/services/ancs_app_attr_get.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock nrf BT service (ANCS) symbol 'bt_ancs_app_attr_request'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/nrf/subsys/bluetooth/services/ancs_app_attr_get.c. The CPUAPP core links the standard nrf BT service (ANCS), so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "bt_ancs_app_attr_request",
-       "upstream_unit": "/Users/freedomcoder/ncs251/nrf/subsys/bluetooth/services/ancs_app_attr_get.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/nrf/subsys/bluetooth/services/ancs_app_attr_get.c:183: multiple definition of `bt_ancs_app_attr_request'; app/libapp.a(bt_ancs_app_attr_request.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_ancs_app_attr_request.c:32: first defined here",
-       "cpunet_precedent": false
-      },
-      {
-       "source": "recon vs ~/ncs251 SDK source comparison",
-       "type": "bt_host_stock_manual_verification",
-       "verdict": "stock"
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x000572fc",
-     "raw_symbol": "FUN_000572fc",
-     "current_symbol": "bt_conn_auth_cb_register",
-     "kind": "source",
-     "component": "zephyr_bt_host_stock",
-     "upstream_symbol": "bt_conn_auth_cb_register",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_conn_auth_cb_register'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "bt_conn_auth_cb_register",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:3128: multiple definition of `bt_conn_auth_cb_register'; app/libapp.a(bt_conn_auth_cb_register.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_conn_auth_cb_register.c:14: first defined here",
-       "cpunet_precedent": false
-      },
-      {
-       "source": "recon vs ~/ncs251 SDK source comparison",
-       "type": "bt_host_stock_manual_verification",
-       "verdict": "stock"
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00056e24",
-     "raw_symbol": "FUN_00056e24",
-     "current_symbol": "bt_conn_cb_register",
-     "kind": "source",
-     "component": "zephyr_bt_host_stock",
-     "upstream_symbol": "bt_conn_cb_register",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_conn_cb_register'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "bt_conn_cb_register",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:2333: multiple definition of `bt_conn_cb_register'; app/libapp.a(bt_conn_cb_register.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_conn_cb_register.c:16: first defined here",
-       "cpunet_precedent": false
-      },
-      {
-       "source": "recon vs ~/ncs251 SDK source comparison",
-       "type": "bt_host_stock_manual_verification",
-       "verdict": "stock"
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x000569ec",
-     "raw_symbol": "FUN_000569ec",
-     "current_symbol": "bt_conn_create_pdu_timeout",
-     "kind": "source",
-     "component": "zephyr_bt_host_stock",
-     "upstream_symbol": "bt_conn_create_pdu_timeout",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_conn_create_pdu_timeout'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "bt_conn_create_pdu_timeout",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:1368: multiple definition of `bt_conn_create_pdu_timeout'; app/libapp.a(bt_conn_create_pdu_timeout.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_conn_create_pdu_timeout.c:29: first defined here",
-       "cpunet_precedent": false
-      },
-      {
-       "source": "recon vs ~/ncs251 SDK source comparison",
-       "type": "bt_host_stock_manual_verification",
-       "verdict": "stock"
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00056f4c",
-     "raw_symbol": "FUN_00056f4c",
-     "current_symbol": "bt_conn_get_info",
-     "kind": "source",
-     "component": "zephyr_bt_host_stock",
-     "upstream_symbol": "bt_conn_get_info",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_conn_get_info'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "bt_conn_get_info",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:2486: multiple definition of `bt_conn_get_info'; app/libapp.a(bt_conn_get_info.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_conn_get_info.c:24: first defined here",
-       "cpunet_precedent": false
-      },
-      {
-       "source": "recon vs ~/ncs251 SDK source comparison",
-       "type": "bt_host_stock_manual_verification",
-       "verdict": "stock"
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x000569a0",
-     "raw_symbol": "FUN_000569a0",
-     "current_symbol": "bt_conn_index",
-     "kind": "source",
-     "component": "zephyr_bt_host_stock",
-     "upstream_symbol": "bt_conn_index",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_conn_index'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "bt_conn_index",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:1346: multiple definition of `bt_conn_index'; app/libapp.a(bt_conn_index.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_conn_index.c:22: first defined here",
-       "cpunet_precedent": false
-      },
-      {
-       "source": "recon vs ~/ncs251 SDK source comparison",
-       "type": "bt_host_stock_manual_verification",
-       "verdict": "stock"
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00057358",
-     "raw_symbol": "FUN_00057358",
-     "current_symbol": "bt_conn_init",
-     "kind": "source",
-     "component": "zephyr_bt_host_stock",
-     "upstream_symbol": "bt_conn_init",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_conn_init'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "bt_conn_init",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:3293: multiple definition of `bt_conn_init'; app/libapp.a(bt_conn_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_conn_init.c:26: first defined here",
-       "cpunet_precedent": false
-      },
-      {
-       "source": "recon vs ~/ncs251 SDK source comparison",
-       "type": "bt_host_stock_manual_verification",
-       "verdict": "stock"
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x0005edac",
-     "raw_symbol": "FUN_0005edac",
-     "current_symbol": "bt_crypto_g2",
-     "kind": "source",
-     "component": "zephyr_bt_host_stock",
-     "upstream_symbol": "bt_crypto_g2",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/crypto/bt_crypto.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_crypto_g2'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/crypto/bt_crypto.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "bt_crypto_g2",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/crypto/bt_crypto.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/crypto/bt_crypto.c:184: multiple definition of `bt_crypto_g2'; app/libapp.a(bt_crypto_g2.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_crypto_g2.c:16: first defined here",
-       "cpunet_precedent": false
-      },
-      {
-       "source": "recon vs ~/ncs251 SDK source comparison",
-       "type": "bt_host_stock_manual_verification",
-       "verdict": "stock"
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00082932",
-     "raw_symbol": "FUN_00082932",
-     "current_symbol": "bt_gatt_attr_read",
-     "kind": "source",
-     "component": "zephyr_bt_host_stock",
-     "upstream_symbol": "bt_gatt_attr_read",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_gatt_attr_read'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "bt_gatt_attr_read",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:1744: multiple definition of `bt_gatt_attr_read'; app/libapp.a(bt_gatt_attr_read.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_attr_read.c:15: first defined here",
-       "cpunet_precedent": false
-      },
-      {
-       "source": "recon vs ~/ncs251 SDK source comparison",
-       "type": "bt_host_stock_manual_verification",
-       "verdict": "stock"
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00053d70",
-     "raw_symbol": "FUN_00053d70",
-     "current_symbol": "bt_hci_cmd_send_sync",
-     "kind": "source",
-     "component": "zephyr_bt_host_stock",
-     "upstream_symbol": "bt_hci_cmd_send_sync",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_hci_cmd_send_sync'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "bt_hci_cmd_send_sync",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c:318: multiple definition of `bt_hci_cmd_send_sync'; app/libapp.a(bt_hci_cmd_send_sync.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_hci_cmd_send_sync.c:44: first defined here",
-       "cpunet_precedent": false
-      },
-      {
-       "source": "recon vs ~/ncs251 SDK source comparison",
-       "type": "bt_host_stock_manual_verification",
-       "verdict": "stock"
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00055204",
-     "raw_symbol": "FUN_00055204",
-     "current_symbol": "bt_id_create",
-     "kind": "source",
-     "component": "zephyr_bt_host_stock",
-     "upstream_symbol": "bt_id_create",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_id_create'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "bt_id_create",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c:1250: multiple definition of `bt_id_create'; app/libapp.a(bt_id_create.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_id_create.c:26: first defined here",
-       "cpunet_precedent": false
-      },
-      {
-       "source": "recon vs ~/ncs251 SDK source comparison",
-       "type": "bt_host_stock_manual_verification",
-       "verdict": "stock"
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00055454",
-     "raw_symbol": "FUN_00055454",
-     "current_symbol": "bt_id_set_adv_random_addr",
-     "kind": "source",
-     "component": "zephyr_bt_host_stock",
-     "upstream_symbol": "bt_id_set_adv_random_addr",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_id_set_adv_random_addr'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "bt_id_set_adv_random_addr",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c:159: multiple definition of `bt_id_set_adv_random_addr'; app/libapp.a(bt_id_set_adv_random_addr.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_id_set_adv_random_addr.c:21: first defined here",
-       "cpunet_precedent": false
-      },
-      {
-       "source": "recon vs ~/ncs251 SDK source comparison",
-       "type": "bt_host_stock_manual_verification",
-       "verdict": "stock"
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00055d08",
-     "raw_symbol": "FUN_00055d08",
-     "current_symbol": "bt_pub_key_gen",
-     "kind": "source",
-     "component": "zephyr_bt_host_stock",
-     "upstream_symbol": "bt_pub_key_gen",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/ecc.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_pub_key_gen'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/ecc.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "bt_pub_key_gen",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/ecc.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/ecc.c:43: multiple definition of `bt_pub_key_gen'; app/libapp.a(bt_pub_key_gen.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_pub_key_gen.c:23: first defined here",
-       "cpunet_precedent": false
-      },
-      {
-       "source": "recon vs ~/ncs251 SDK source comparison",
-       "type": "bt_host_stock_manual_verification",
-       "verdict": "stock"
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00053034",
-     "raw_symbol": "FUN_00053034",
-     "current_symbol": "bt_settings_store_cf",
-     "kind": "source",
-     "component": "zephyr_bt_host_stock",
-     "upstream_symbol": "bt_settings_store_cf",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_settings_store_cf'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "bt_settings_store_cf",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c:357: multiple definition of `bt_settings_store_cf'; app/libapp.a(bt_settings_store_cf.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_settings_store_cf.c:16: first defined here",
-       "cpunet_precedent": false
-      },
-      {
-       "source": "recon vs ~/ncs251 SDK source comparison",
-       "type": "bt_host_stock_manual_verification",
-       "verdict": "stock"
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00053098",
-     "raw_symbol": "FUN_00053098",
-     "current_symbol": "bt_settings_store_name",
-     "kind": "source",
-     "component": "zephyr_bt_host_stock",
-     "upstream_symbol": "bt_settings_store_name",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock Zephyr BT host symbol 'bt_settings_store_name'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c. The CPUAPP core links the standard Zephyr BT host, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "bt_settings_store_name",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c:387: multiple definition of `bt_settings_store_name'; app/libapp.a(bt_settings_store_name.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_settings_store_name.c:16: first defined here",
-       "cpunet_precedent": false
-      },
-      {
-       "source": "recon vs ~/ncs251 SDK source comparison",
-       "type": "bt_host_stock_manual_verification",
-       "verdict": "stock"
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x0004abc0",
-     "raw_symbol": "FUN_0004abc0",
-     "current_symbol": "cbprintf_package_convert",
-     "kind": "source",
-     "component": "zephyr_os_stock",
-     "upstream_symbol": "cbprintf_package_convert",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/cbprintf_packaged.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock os symbol 'cbprintf_package_convert'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/lib/os/cbprintf_packaged.c. The CPUAPP core links the standard os, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "cbprintf_package_convert",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/cbprintf_packaged.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/cbprintf_packaged.c:915: multiple definition of `cbprintf_package_convert'; app/libapp.a(cbprintf_package_convert.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/cbprintf_package_convert.c:37: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x0007efd4",
-     "raw_symbol": "FUN_0007efd4",
-     "current_symbol": "flash_area_erase",
-     "kind": "source",
-     "component": "mcuboot_flash_stock",
-     "upstream_symbol": "flash_area_erase",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/storage/flash_map/flash_map_priv.h",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock mcuboot/flash symbol 'flash_area_erase'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/storage/flash_map/flash_map_priv.h. The CPUAPP core links the standard mcuboot/flash, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "flash_area_erase",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/storage/flash_map/flash_map_priv.h",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/storage/flash_map/flash_map_priv.h:36: multiple definition of `flash_area_erase'; app/libapp.a(flash_area_erase.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/flash_area_erase.c:13: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x000719f4",
-     "raw_symbol": "FUN_000719f4",
-     "current_symbol": "k_heap_alloc",
-     "kind": "source",
-     "component": "zephyr_kernel_private_stock",
-     "upstream_symbol": "k_heap_alloc",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/kheap.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'k_heap_alloc'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/kheap.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "k_heap_alloc",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/kheap.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/kheap.c:108: multiple definition of `k_heap_alloc'; app/libapp.a(k_heap_alloc.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/k_heap_alloc.c:45: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00075574",
-     "raw_symbol": "FUN_00075574",
-     "current_symbol": "k_poll_event_init",
-     "kind": "source",
-     "component": "zephyr_kernel_private_stock",
-     "upstream_symbol": "k_poll_event_init",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'k_poll_event_init'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/poll.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "k_poll_event_init",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c:44: multiple definition of `k_poll_event_init'; app/libapp.a(k_poll_event_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/k_poll_event_init.c:27: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00073bf4",
-     "raw_symbol": "FUN_00073bf4",
-     "current_symbol": "k_sched_lock",
-     "kind": "source",
-     "component": "zephyr_kernel_private_stock",
-     "upstream_symbol": "k_sched_lock",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'k_sched_lock'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/sched.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "k_sched_lock",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c:1005: multiple definition of `k_sched_lock'; app/libapp.a(k_sched_lock.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/k_sched_lock.c:37: first defined here",
-       "cpunet_precedent": true
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00073b1c",
-     "raw_symbol": "FUN_00073b1c",
-     "current_symbol": "k_sched_unlock",
-     "kind": "source",
-     "component": "zephyr_kernel_private_stock",
-     "upstream_symbol": "k_sched_unlock",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'k_sched_unlock'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/sched.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "k_sched_unlock",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c:1014: multiple definition of `k_sched_unlock'; app/libapp.a(k_sched_unlock.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/k_sched_unlock.c:35: first defined here",
-       "cpunet_precedent": true
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x000681cc",
-     "raw_symbol": "FUN_000681cc",
-     "current_symbol": "metal_device_close",
-     "kind": "source",
-     "component": "libmetal_stock",
-     "upstream_symbol": "metal_device_close",
-     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock metal symbol 'metal_device_close'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c. The CPUAPP core links the standard metal, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "metal_device_close",
-       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c:81: multiple definition of `metal_device_close'; app/libapp.a(metal_device_close.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/metal_device_close.c:22: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00068170",
-     "raw_symbol": "FUN_00068170",
-     "current_symbol": "metal_register_generic_device",
-     "kind": "source",
-     "component": "libmetal_stock",
-     "upstream_symbol": "metal_register_generic_device",
-     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock metal symbol 'metal_register_generic_device'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c. The CPUAPP core links the standard metal, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "metal_register_generic_device",
-       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c:87: multiple definition of `metal_register_generic_device'; app/libapp.a(metal_register_generic_device.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/metal_register_generic_device.c:15: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00068298",
-     "raw_symbol": "FUN_00068298",
-     "current_symbol": "metal_sys_init",
-     "kind": "source",
-     "component": "libmetal_stock",
-     "upstream_symbol": "metal_sys_init",
-     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/system/zephyr/init.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock metal symbol 'metal_sys_init'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/system/zephyr/init.c. The CPUAPP core links the standard metal, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "metal_sys_init",
-       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/system/zephyr/init.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/system/zephyr/init.c:19: multiple definition of `metal_sys_init'; app/libapp.a(metal_sys_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/metal_sys_init.c:22: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00083740",
-     "raw_symbol": "FUN_00083740",
-     "current_symbol": "net_buf_simple_add_mem",
-     "kind": "source",
-     "component": "zephyr_net_buf_stock",
-     "upstream_symbol": "net_buf_simple_add_mem",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock net_buf symbol 'net_buf_simple_add_mem'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c. The CPUAPP core links the standard net_buf, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "net_buf_simple_add_mem",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c:70: multiple definition of `net_buf_simple_add_mem'; app/libapp.a(net_buf_simple_add_mem.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_simple_add_mem.c:14: first defined here",
-       "cpunet_precedent": true
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00065d8c",
-     "raw_symbol": "FUN_00065d8c",
-     "current_symbol": "nrfx_ipc_config_load",
-     "kind": "source",
-     "component": "nrfx_stock",
-     "upstream_symbol": "nrfx_ipc_config_load",
-     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_ipc_config_load'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "nrfx_ipc_config_load",
-       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c:69: multiple definition of `nrfx_ipc_config_load'; app/libapp.a(nrfx_ipc_config_load.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_ipc_config_load.c:20: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00065d3c",
-     "raw_symbol": "FUN_00065d3c",
-     "current_symbol": "nrfx_ipc_init",
-     "kind": "source",
-     "component": "nrfx_stock",
-     "upstream_symbol": "nrfx_ipc_init",
-     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_ipc_init'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "nrfx_ipc_init",
-       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c:51: multiple definition of `nrfx_ipc_init'; app/libapp.a(nrfx_ipc_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_ipc_init.c:25: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x000671d8",
-     "raw_symbol": "FUN_000671d8",
-     "current_symbol": "nrfx_spim_init",
-     "kind": "source",
-     "component": "nrfx_stock",
-     "upstream_symbol": "nrfx_spim_init",
-     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_spim_init'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "nrfx_spim_init",
-       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c:510: multiple definition of `nrfx_spim_init'; app/libapp.a(nrfx_spim_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_spim_init.c:23: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00067248",
-     "raw_symbol": "FUN_00067248",
-     "current_symbol": "nrfx_spim_uninit",
-     "kind": "source",
-     "component": "nrfx_stock",
-     "upstream_symbol": "nrfx_spim_uninit",
-     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_spim_uninit'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "nrfx_spim_uninit",
-       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c:595: multiple definition of `nrfx_spim_uninit'; app/libapp.a(nrfx_spim_uninit.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_spim_uninit.c:30: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00067304",
-     "raw_symbol": "FUN_00067304",
-     "current_symbol": "nrfx_spim_xfer",
-     "kind": "source",
-     "component": "nrfx_stock",
-     "upstream_symbol": "nrfx_spim_xfer",
-     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_spim_xfer'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "nrfx_spim_xfer",
-       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c:786: multiple definition of `nrfx_spim_xfer'; app/libapp.a(nrfx_spim_xfer.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_spim_xfer.c:43: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x000678d0",
-     "raw_symbol": "FUN_000678d0",
-     "current_symbol": "nrfx_twim_disable",
-     "kind": "source",
-     "component": "nrfx_stock",
-     "upstream_symbol": "nrfx_twim_disable",
-     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_twim_disable'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "nrfx_twim_disable",
-       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c:374: multiple definition of `nrfx_twim_disable'; app/libapp.a(nrfx_twim_disable.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_twim_disable.c:21: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00067884",
-     "raw_symbol": "FUN_00067884",
-     "current_symbol": "nrfx_twim_enable",
-     "kind": "source",
-     "component": "nrfx_stock",
-     "upstream_symbol": "nrfx_twim_enable",
-     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_twim_enable'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "nrfx_twim_enable",
-       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c:363: multiple definition of `nrfx_twim_enable'; app/libapp.a(nrfx_twim_enable.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_twim_enable.c:19: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00067794",
-     "raw_symbol": "FUN_00067794",
-     "current_symbol": "nrfx_twim_init",
-     "kind": "source",
-     "component": "nrfx_stock",
-     "upstream_symbol": "nrfx_twim_init",
-     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_twim_init'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "nrfx_twim_init",
-       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c:257: multiple definition of `nrfx_twim_init'; app/libapp.a(nrfx_twim_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_twim_init.c:25: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00067938",
-     "raw_symbol": "FUN_00067938",
-     "current_symbol": "nrfx_twim_xfer",
-     "kind": "source",
-     "component": "nrfx_stock",
-     "upstream_symbol": "nrfx_twim_xfer",
-     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock nrfx symbol 'nrfx_twim_xfer'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c. The CPUAPP core links the standard nrfx, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "nrfx_twim_xfer",
-       "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c:592: multiple definition of `nrfx_twim_xfer'; app/libapp.a(nrfx_twim_xfer.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_twim_xfer.c:39: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x0004ba38",
-     "raw_symbol": "FUN_0004ba38",
-     "current_symbol": "onoff_release",
-     "kind": "source",
-     "component": "zephyr_os_stock",
-     "upstream_symbol": "onoff_release",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock os symbol 'onoff_release'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c. The CPUAPP core links the standard os, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "onoff_release",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c:479: multiple definition of `onoff_release'; app/libapp.a(onoff_release.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/onoff_release.c:32: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00077a10",
-     "raw_symbol": "FUN_00077a10",
-     "current_symbol": "strtod",
-     "kind": "source",
-     "component": "libc_stock",
-     "upstream_symbol": "strtod",
-     "upstream_unit": "strtod.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock libc symbol 'strtod'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit strtod.c. The CPUAPP core links the standard libc, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "strtod",
-       "upstream_unit": "strtod.c",
-       "link_diagnostic": "strtod.c:(.text.strtod+0x0): multiple definition of `strtod'; app/libapp.a(strtod.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/strtod.c:18: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x0004b2b0",
-     "raw_symbol": "FUN_0004b2b0",
-     "current_symbol": "sys_heap_aligned_alloc",
-     "kind": "source",
-     "component": "zephyr_os_stock",
-     "upstream_symbol": "sys_heap_aligned_alloc",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock os symbol 'sys_heap_aligned_alloc'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/lib/os/heap.c. The CPUAPP core links the standard os, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "sys_heap_aligned_alloc",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c:302: multiple definition of `sys_heap_aligned_alloc'; app/libapp.a(sys_heap_aligned_alloc.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/sys_heap_aligned_alloc.c:36: first defined here",
-       "cpunet_precedent": true
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x0004b214",
-     "raw_symbol": "FUN_0004b214",
-     "current_symbol": "sys_heap_free",
-     "kind": "source",
-     "component": "zephyr_os_stock",
-     "upstream_symbol": "sys_heap_free",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock os symbol 'sys_heap_free'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/lib/os/heap.c. The CPUAPP core links the standard os, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "sys_heap_free",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c:164: multiple definition of `sys_heap_free'; app/libapp.a(sys_heap_free.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/sys_heap_free.c:35: first defined here",
-       "cpunet_precedent": true
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x0004bb0c",
-     "raw_symbol": "FUN_0004bb0c",
-     "current_symbol": "sys_notify_finalize",
-     "kind": "source",
-     "component": "zephyr_os_stock",
-     "upstream_symbol": "sys_notify_finalize",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/notify.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock os symbol 'sys_notify_finalize'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/lib/os/notify.c. The CPUAPP core links the standard os, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "sys_notify_finalize",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/notify.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/notify.c:50: multiple definition of `sys_notify_finalize'; app/libapp.a(sys_notify_finalize.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/sys_notify_finalize.c:21: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00074d74",
-     "raw_symbol": "FUN_00074d74",
-     "current_symbol": "z_abort_timeout",
-     "kind": "source",
-     "component": "zephyr_kernel_private_stock",
-     "upstream_symbol": "z_abort_timeout",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/timeout.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'z_abort_timeout'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/timeout.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "z_abort_timeout",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/timeout.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/timeout.c:145: multiple definition of `z_abort_timeout'; app/libapp.a(z_abort_timeout.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_abort_timeout.c:30: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00074bf4",
-     "raw_symbol": "FUN_00074bf4",
-     "current_symbol": "z_add_timeout",
-     "kind": "source",
-     "component": "zephyr_kernel_private_stock",
-     "upstream_symbol": "z_add_timeout",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/timeout.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'z_add_timeout'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/timeout.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "z_add_timeout",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/timeout.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/timeout.c:102: multiple definition of `z_add_timeout'; app/libapp.a(z_add_timeout.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_add_timeout.c:45: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x000755f8",
-     "raw_symbol": "FUN_000755f8",
-     "current_symbol": "z_impl_k_poll",
-     "kind": "source",
-     "component": "zephyr_kernel_private_stock",
-     "upstream_symbol": "z_impl_k_poll",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'z_impl_k_poll'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/poll.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "z_impl_k_poll",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c:293: multiple definition of `z_impl_k_poll'; app/libapp.a(z_impl_k_poll.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_impl_k_poll.c:46: first defined here",
-       "cpunet_precedent": true
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00071eac",
-     "raw_symbol": "FUN_00071eac",
-     "current_symbol": "z_impl_k_thread_create",
-     "kind": "source",
-     "component": "zephyr_kernel_private_stock",
-     "upstream_symbol": "z_impl_k_thread_create",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'z_impl_k_thread_create'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/thread.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "z_impl_k_thread_create",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c:651: multiple definition of `z_impl_k_thread_create'; app/libapp.a(z_impl_k_thread_create.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_impl_k_thread_create.c:27: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00071f38",
-     "raw_symbol": "FUN_00071f38",
-     "current_symbol": "z_init_static_threads",
-     "kind": "source",
-     "component": "zephyr_kernel_private_stock",
-     "upstream_symbol": "z_init_static_threads",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'z_init_static_threads'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/thread.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "z_init_static_threads",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c:754: multiple definition of `z_init_static_threads'; app/libapp.a(z_init_static_threads.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_init_static_threads.c:35: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x0004d468",
-     "raw_symbol": "FUN_0004d468",
-     "current_symbol": "z_log_dropped",
-     "kind": "source",
-     "component": "zephyr_logging_stock",
-     "upstream_symbol": "z_log_dropped",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock logging symbol 'z_log_dropped'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c. The CPUAPP core links the standard logging, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "z_log_dropped",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c:568: multiple definition of `z_log_dropped'; app/libapp.a(z_log_dropped.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_log_dropped.c:23: first defined here",
-       "cpunet_precedent": true
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x0004d44c",
-     "raw_symbol": "FUN_0004d44c",
-     "current_symbol": "z_log_notify_backend_enabled",
-     "kind": "source",
-     "component": "zephyr_logging_stock",
-     "upstream_symbol": "z_log_notify_backend_enabled",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock logging symbol 'z_log_notify_backend_enabled'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c. The CPUAPP core links the standard logging, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "z_log_notify_backend_enabled",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/logging/log_core.c:480: multiple definition of `z_log_notify_backend_enabled'; app/libapp.a(z_log_notify_backend_enabled.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_log_notify_backend_enabled.c:23: first defined here",
-       "cpunet_precedent": true
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00073f6c",
-     "raw_symbol": "FUN_00073f6c",
-     "current_symbol": "z_pend_curr",
-     "kind": "source",
-     "component": "zephyr_kernel_private_stock",
-     "upstream_symbol": "z_pend_curr",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'z_pend_curr'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/sched.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "z_pend_curr",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c:859: multiple definition of `z_pend_curr'; app/libapp.a(z_pend_curr.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_pend_curr.c:35: first defined here",
-       "cpunet_precedent": true
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00074a54",
-     "raw_symbol": "FUN_00074a54",
-     "current_symbol": "z_sched_wake",
-     "kind": "source",
-     "component": "zephyr_kernel_private_stock",
-     "upstream_symbol": "z_sched_wake",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'z_sched_wake'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/sched.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "z_sched_wake",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c:1911: multiple definition of `z_sched_wake'; app/libapp.a(z_sched_wake.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_sched_wake.c:36: first defined here",
-       "cpunet_precedent": true
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00071df8",
-     "raw_symbol": "FUN_00071df8",
-     "current_symbol": "z_setup_new_thread",
-     "kind": "source",
-     "component": "zephyr_kernel_private_stock",
-     "upstream_symbol": "z_setup_new_thread",
-     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock kernel symbol 'z_setup_new_thread'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/zephyr/kernel/thread.c. The CPUAPP core links the standard kernel, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "z_setup_new_thread",
-       "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/thread.c:535: multiple definition of `z_setup_new_thread'; app/libapp.a(z_setup_new_thread.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_setup_new_thread.c:28: first defined here",
-       "cpunet_precedent": false
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00086338",
-     "raw_symbol": "FUN_00086338",
-     "current_symbol": "zcbor_bstr_encode",
-     "kind": "source",
-     "component": "zcbor_stock",
-     "upstream_symbol": "zcbor_bstr_encode",
-     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction identity matches the stock zcbor symbol 'zcbor_bstr_encode'; the cohesive link raises a duplicate-definition collision with the pinned NCS 2.5.1 unit /Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c. The CPUAPP core links the standard zcbor, so the stock owner is adopted and the reconstruction displaced.",
-     "evidence": [
-      {
-       "source": "cohesive CPUAPP link (build_cohesive.sh app)",
-       "type": "duplicate_definition_collision_with_pinned_sdk_unit",
-       "symbol": "zcbor_bstr_encode",
-       "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c",
-       "link_diagnostic": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c:345: multiple definition of `zcbor_bstr_encode'; app/libapp.a(zcbor_bstr_encode.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/zcbor_bstr_encode.c:10: first defined here",
-       "cpunet_precedent": false
       }
      ]
     }
