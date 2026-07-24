@@ -890,3 +890,311 @@ cd /Users/freedomcoder/Projects/armemul
 
 Only `recon/symbols/g1_app_globals.ld` was changed (9 `PROVIDE` rebinds +
 their evidence comments). Nothing committed.
+
+---
+
+## Iteration 4 — reconstruct the IPC-service registrar (original 0x25AE8) and rebind its pin
+
+The sweep's §7.1 blocker is **fixed**. The registrar was reconstructed from the
+original image bytes, parity-proven, wired into the build and bound to the pin.
+The boot **advances onto golden's own call sequence** (four IPC-service
+registrations → `spi_master_install_ops` → `button_init`) and then hits a
+**new, different first divergence**: a Zephyr `gpio_pin_configure`
+"Unsupported pin" `__ASSERT` inside `button_init`, caused by an **unrelocated
+absolute rodata DATA table** (`rodata_88340`, a 9-entry `gpio_dt_spec` array).
+Milestone tier is unchanged (**E1–E3 complete, E4 entered, not completed**).
+
+### 1. The function: `register_ipc_service_recv_callback` @ original 0x25AE8
+
+**Extent derived from the image** (it is uncatalogued — Ghidra gap
+0x25AD2..0x25B78). 0x25AD4..0x25AE7 is the *preceding* function's literal pool;
+the function proper is:
+
+| region | bytes | content |
+|---|---|---|
+| code | `0x25AE8..0x25B53` | **0x6C = 108 B**, `push {r0,r1,r4,lr}` … `pop {r4,pc}` |
+| literal pool | `0x25B54..0x25B6B` | 6 words (0x20007a84, 0x2000230c, 0x20007554, 0x9f6a3, 0x9f512, 0x9f540) |
+| (separate) | `0x25B6C..0x25B77` | a 12-B `ldr r0,[pc,#4]; b.w` stub — **not** part of this function |
+| (separate) | `0x25B78` | `global_ipc_service_send` (already reconstructed, size 182) |
+
+**The name is self-evidenced**, not guessed: the function passes its own name as
+the `%s()` argument of its log lines — the literal 0x9f6a3 is the string
+`"register_ipc_service_recv_callback"`, used with the two formats
+`"%s(): ipc_service_register(%d,%s) %d,SUCCESS\n"` (0x9f512) and
+`"%s(): ipc_service_register(%d,%s) %d,total must < %d\n"` (0x9f540).
+
+**What it does.** `tbl = *g_ipc0_endpoint` (0x20007a84 — the context pointer that
+`register_ipc_service_context` stores there); `n = tbl[1]`. If `n <= 21` it
+appends: `tbl[n+2] = record; tbl[1] = n+1;` and returns 0 (logging at
+`g_log_level > 2`). If `n > 21` it returns −1 and logs the overflow at
+`g_log_level > 0` (max 22 entries). Both log sites pick `log_message`
+(0x7dda4) or `debug_print` (0x19c70) on `g_log_use_alt_sink` (0x20007554) — the
+identical sink-selection shape as its sibling `global_ipc_service_send`.
+
+**Proof status — what was actually run:**
+
+- `recon_kit.prove(0x25ae8, 0x6c, 'register_ipc_service_recv_callback', …, trials=300)`
+  → **`pass: true`, `cfg_status: PASS`, `checked: 300`, `mismatches: null`**.
+  Source auto-saved to `recon/app/src/register_ipc_service_recv_callback.c`
+  (mirrored into `recon/verified/src/`).
+- `tools/cfg_verify.py app register_ipc_service_recv_callback` →
+  **`PASS cases=0 sel={}`**.
+- **Catalog note (disclosed):** `recon_kit.info`/`cfg_verify` resolve a function's
+  identity and size from the scratchpad catalogs, and this function was never
+  catalogued. One record was therefore appended to
+  `<scratchpad>/app_funcs.json` and `<scratchpad>/classified.json`
+  (entry 0x25ae8, size 0x6c, class APPLICATION); originals backed up as
+  `*.json.i4bak`. **No `tools/` logic was changed.**
+- **Honest coverage caveat + what was done about it.** `cases=0` means
+  cfg_verify found **no argument-derived selectors**: every branch in this
+  function keys off *absolute globals* (`tbl[1]`, `g_log_level`,
+  `g_log_use_alt_sink`), which the generic fixture leaves as PRNG garbage.
+  Mutation probes confirmed the 300-trial fixture reaches only the
+  success/no-log arm (mutating the store index, the count update or the return
+  value FAILs; mutating the overflow bound, the log thresholds, the sinks or the
+  log arguments still PASSes). A **directed fixture harness** was therefore run
+  on top (`emu.compare` with `absolute_memory_overrides` seeding the table
+  pointer, `count ∈ {0,1,20,21,22,23,100,−1}`, `g_log_level ∈ {−1,0,1,2,3,7}`,
+  `g_log_use_alt_sink ∈ {0,1}` — 96 cases, `candidate_direct_target_map` +
+  `call_stack_arity_by_target` enabled so call targets and stack varargs are
+  compared): **96/96 PASS**, with the original observed taking all four arms
+  (r0=0 no-log ×40, r0=0 +1 log call ×20, r0=−1 no-log ×12, r0=−1 +1 log call
+  ×24). Under that harness **every** mutant above FAILs (bound, both log
+  thresholds, both sink selections, both format strings, the name argument, the
+  `%d` count argument, the trailing `22` stack argument) while the unmutated
+  control PASSes. Driver: `<scratchpad>/directed.py`.
+
+### 2. Pin rebound
+
+| pin | was | now |
+|---|---|---|
+| `rodata_25ae9` (`g1_app_globals.ld:42`) | `0x00025ae9` (raw original address) | `register_ipc_service_recv_callback \| 1` |
+
+Because a `PROVIDE` expression is **not** a `--gc-sections` root, the ld rebind
+alone linked but left `rodata_25ae9 = 0x00000001` (target discarded — verified in
+the first build attempt). The binding was therefore additionally expressed
+through the `pointer_rebind.md` `__asm__`-alias mechanism so the reference is a
+real `R_ARM_ABS32`:
+
+```c
+/* recon/symbols/g1_app_symbols.h */
+extern const unsigned char __g1_fp_register_ipc_service_recv_callback[]
+    __asm__("register_ipc_service_recv_callback");
+#define ADDR_register_ipc_service_recv_callback_THUMB \
+    (((unsigned long)&__g1_fp_register_ipc_service_recv_callback) | 1u)
+```
+
+and `recon/symbolized/app/register_ipc_service_context.c` now stores
+`ADDR_register_ipc_service_recv_callback_THUMB` into `ctx[0x64]` instead of
+`&rodata_25ae9` (the sibling slot `ctx[0x60]` already used this mechanism). The
+`g1_app_globals.ld` rebind is kept as the documented binding for any other
+consumer of `rodata_25ae9`.
+
+Three absolute-rodata string pins used by the new function were added
+(`rodata_9f512`, `rodata_9f540`, `rodata_9f6a3`) in `g1_app_globals.ld` +
+`g1_app_symbols.h`, following the same convention every other reconstructed log
+site uses (this is the still-open interior-rodata-pin class of iteration 2 §2;
+harmless here because `g_log_level <= 1` on this boot path, so neither log fires
+— confirmed in the trace, the registrar runs 17 instructions per call).
+
+Build visibility: `recon/symbolized/app/register_ipc_service_recv_callback.c`
+added to `recon/generated/app_retained_sources.cmake` next to
+`global_ipc_service_send.c`.
+
+### 3. Rebuild status
+
+`recon/application/build_cohesive.sh app /private/tmp/g1-i4-app` → **exit 0,
+`nm -u` = 0 undefined, 0 duplicate global definitions.**
+FLASH **626576 / 982528 B = 63.77 %** (iteration 3 / sweep: 626432 B = 63.76 %;
++144 B = the new 0x94-byte function). Relocation-correctness in the linked ELF:
+
+```
+nm:      0002196c T register_ipc_service_recv_callback
+         00021ae8 T register_ipc_service_context
+objdump: 21af4: ldr r3,[pc,#52]; 21af6: orr.w r3,r3,#1; 21afa: str r3,[r0,#0x64]
+         21b2c: .word 0x0002196d      <- register_ipc_service_recv_callback|1
+```
+
+(the old raw literal `0x00025ae9` no longer appears), and the compiled body is
+shape-for-shape the original: `push {r0,r1,r4,lr}; ldr…; cmp r1,#21; bgt;
+adds r4,r1,#2; str.w r0,[r3,r4,lsl #2]; str r1,[r3,#4]; …; pop {r4,pc}`.
+
+### 4. Boot result — advance, with no regression
+
+Re-booted the **unmodified** `armemul/g1-ours.resc` through an additive
+`/tmp/g1_i4/trace_i4.resc` (only `$app_elf` overridden), same
+0.15 s / 10 µs-quantum / seeded-RNG / serial-scheduling environment; both cores
+traced; PCs resolved through our own ELF's `nm`.
+
+**No regression — the whole earlier prefix is instruction-identical:**
+
+| marker | iter 1–3 / sweep | iteration 4 |
+|---|---:|---:|
+| `region_init` | 80,111 | **80,111** |
+| `z_impl_k_sem_init` | 80,492 | **80,492** |
+| `nrfx_clock_init` | 81,126 | **81,126** |
+| `nrf_cc3xx_platform_init` | 83,071 | **83,071** |
+| `z_impl_k_thread_create` | 613,974 | **613,974** |
+| `main` | 4,667,207 | **4,667,207** |
+| `ipc_service_open_instance` (E4 entry) | 4,668,358 | **4,668,358** |
+
+**New forward progress (all of it new code, and all of it on golden's path):**
+
+| our instr | function | golden instr | note |
+|---:|---|---:|---|
+| 4,701,823 | `register_ipc_service_context` ×1 | 5,176,674 | now stores a **valid** ctx[0x64] |
+| 4,701,849 / 890 / 910 / 930 | **`register_ipc_service_recv_callback` ×4** | (folded into a neighbour in golden's catalog) | the four IPC-service registrations; 17 instr each = success arm, returns 0 |
+| 4,701,955 | **`spi_master_install_ops`** | 5,181,308 | never reached before |
+| 4,701,966 | **`button_init`** | 5,181,325 | never reached before |
+| 4,702,055 | **`gpio_pin_configure_17688`** | 5,181,325+ | never reached before |
+
+Golden's ordering `register_ipc_service_context → spi_master_install_ops →
+button_init → gpio_pin_configure` is now reproduced exactly. Unique app
+functions 465 → **472**. Iteration 3's `check_sw0_status` /
+`pt_nfc_eeprom_link_start` / `pt_nfc_eeprom_link_init` / `z_arm_usage_fault` /
+`z_arm_fault` are **all gone** — that whole garbage-execution chain was the
+symptom of the unrelocated pin and no longer exists.
+
+**Honest note on the numbers.** The raw "first divergence" index moved *earlier*
+(4,703,842 → **4,703,517**) and total executed app instructions fell
+(14,999,144 → **4,709,377**). Neither is a regression:
+
+- iteration 3 burned ~2,000 instructions executing garbage inside
+  `check_sw0_status` (a full console-log flush golden never runs there) before
+  faulting, so its index was inflated by work that was never legitimate;
+- iteration 3's 14.999 M was the 0.15 s budget spent **spinning in the fatal
+  handler** (`drop_item_locked`), not boot progress. This run's fatal path
+  completes and issues `SYSRESETREQ` (`fatal_log_and_reset` →
+  `nrf_cc3xx_platform_abort`, instr 4,709,370), after which both cores halt, so
+  the run simply ends earlier.
+- Net core consequently got less virtual time: **86,000** instr (sweep: 248,823).
+  This is an artifact of the app resetting instead of spinning, not a net
+  regression — the net core was released and executing normally in both runs.
+
+**Milestone tier: unchanged — E1–E3 complete, E4 entered, not completed.**
+Still NOT reached: `ipc_service_send`, `settings_subsys_init`, `spi_read_id`
+(display), `bt_enable`, `bt_start`, first ADV_IND.
+
+### 5. New first divergence (precise) + classification
+
+**Kernel OOPS from a Zephyr `gpio_pin_configure` `__ASSERT`, at instr 4,703,517.**
+
+```
+4,701,966  button_init+0x0
+4,702,055  gpio_pin_configure_17688+0x0      ; gpio_pin_configure_dt(&spec[0], flags)
+           ... 31 instr, takes the "Unsupported pin" arm ...
+4,702,086  printk  (assert banner)  -> z_log_vprintk -> z_impl_z_log_msg_runtime_vcreate
+4,702,834  gpio_pin_configure_17688+0x58     ; second printk of the same assert
+4,703,514  gpio_pin_configure_17688+0x5e
+4,703,517  assert_post_action  -> z_arm_svc -> _oops -> z_do_kernel_oops
+           -> z_arm_fatal_error -> z_fatal_error -> fatal_log_and_reset
+           -> nrf_cc3xx_platform_abort -> SYSRESETREQ -> cores halt
+```
+
+The failing check is the second `__ASSERT` in `gpio_pin_configure`
+(`ldr r3,[r5,#4]; ldr r3,[r3]; ldr r3,[r3]; lsl.w r5,#1,pin; tst r3,r5; bne`),
+i.e. `(cfg->port_pin_mask & BIT(pin)) != 0` — **"Unsupported pin"**.
+
+**Root cause (proved by reading both images).** `button_init` copies a 9-entry
+`struct gpio_dt_spec` table out of the **absolute pin `rodata_88340`**
+(`PROVIDE(rodata_88340 = 0x00088340)`) and feeds each entry to
+`gpio_pin_configure_dt`. In the **original** image 0x88340 is exactly that table:
+
+```
+spec[0..8] port=0x00087b60 (= g_gpio0_dev) pin = 26,25,28,27,24,19,21,23,30  flags=0
+```
+
+In **our relocated** ELF the same address is occupied by a *different* verified
+rodata table (`nm`: `00088340 R rodata_15f40`), so `button_init` reads:
+
+```
+spec[0] port=0x00087cf8 pin=12  flags=0x0023
+spec[1] port=0x20007554 pin=62  flags=0x099c     <- a RAM global as a device*
+spec[2] port=0x00099329 pin=69  flags=0x0993
+spec[3] port=0x00087d10 pin=252 flags=0x0069
+...
+```
+
+Pins 62/69/252/165 are outside any 32-bit port mask, and the `port` words are
+not devices — hence the assert.
+
+**Classification: absolute DATA pin not relocated — the *data-table* sibling of
+the code-pointer class fixed in iterations 3–4.** Not a recon-logic defect
+(`button_init` is parity-proven and its algorithm is right), not a Kconfig/DT
+mismatch (our overlay's gpio0 is present and fine), not an emulator gap. Two
+coupled pins are involved and **both** were already flagged and left unfixed by
+the sweep (§3: "the four `*_dev` pins are a separate unrelocated-**data**-pointer
+residue, noted not fixed") — they are now boot-critical:
+
+| pin | pinned to (original) | correct symbol in our build |
+|---|---|---|
+| `rodata_88340` | 0x00088340 (gpio_dt_spec[9] table) | *no linker symbol exists* — table must be emitted from source |
+| `g_gpio0_dev` | 0x00087b60 | `__device_dts_ord_12` @ **0x00080080** (gpio@842500) |
+| `g_gpio1_dev` | 0x00087b48 | `__device_dts_ord_22` @ **0x00080068** (gpio@842800) |
+
+Golden comparison (the proof it is a divergence): in the golden app trace
+(1117 functions, E1–E5), `button_init` @5,181,316 and `gpio_pin_configure_17688`
+@5,181,325 run with **no** `assert_post_action`, **no** `printk`, **no** `_oops`,
+and boot continues to `spi_read_id` @7,273,380 and `bt_start` @7,641,560.
+
+### 6. Status of the sweep's §7.2 cluster (the three sibling IPC handlers)
+
+`rodata_162ed`, `rodata_16bf1`, `rodata_7c00d` are still unrelocated raw pins
+stored by `main` into the four service records (`main.c:274/278/284`). They did
+**not** block this boot and were therefore **not** reconstructed, per scope:
+the registrar only *stores the record pointer* into the table
+(`tbl[n+2] = record`) — it never calls the handler. All four registrations
+returned 0 and the handlers are only dispatched on an actual IPC receive, which
+the boot does not reach. They remain the correct follow-up once IPC traffic
+starts (they are `DEFERRED`/unreconstructed targets in the same Ghidra gaps).
+
+### 7. Recommended next fix (drives iteration 5)
+
+1. **Rebind the two GPIO device pins** in `g1_app_globals.ld`:
+   `PROVIDE(g_gpio0_dev = __device_dts_ord_12);`
+   `PROVIDE(g_gpio1_dev = __device_dts_ord_22);`
+   (verified addresses 0x80080 / 0x80068 in this build; ords come from
+   `zephyr/include/generated/devicetree_generated.h`,
+   gpio@842500 → 12, gpio@842800 → 22).
+2. **`rodata_88340` cannot be rebound** — it is an *interior data table* whose
+   own first words are device pointers. Emit it from the wiring TU
+   (`recon/symbolized/app/button_init.c`) as a real
+   `static const struct gpio_dt_spec g1_button_gpios[9]` built from
+   `DEVICE_DT_GET(DT_NODELABEL(gpio0))` with the recovered pins
+   `26,25,28,27,24,19,21,23,30` (flags 0) — the iteration-3
+   `g1_vprintf_char_out` pattern. Keep the parity-proven
+   `recon/app/src/button_init.c` untouched.
+3. **Sweep the same class systematically**: enumerate every *even* flash pin in
+   `g1_app_globals.ld` that a reconstructed source dereferences as a **struct /
+   table / device pointer** (the sweep's §3 dismissed the 34 even code-region
+   pins as "data, left alone" — correct as code pointers, but this iteration
+   shows the data ones are equally fatal). `rodata_88340`, the four `*_dev`
+   pins, and `g_pt_nfc_link_cfg_static` (0x20002408, still-unpopulated `.data`)
+   are the known members.
+4. Then re-run and expect the next stop to be further into `button_init` /
+   `nfc_gpo_init` or at the display `spi_read_id` bring-up.
+
+Acceptance target unchanged: reach E4 completion (`bt_start` / first ADV_IND /
+display init).
+
+### Regenerate (iteration 4)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+recon/application/build_cohesive.sh app /private/tmp/g1-i4-app
+cd /Users/freedomcoder/Projects/armemul
+~/tools/Renode.app/Contents/MacOS/renode --disable-xwt --console --plain \
+  -e 'i @/tmp/g1_i4/trace_i4.resc' > /tmp/g1_i4/run.out 2>&1
+# trace_i4.resc = $app_elf/$net_elf override + 'i @g1-ours.resc' + the iteration-1
+# tracing macro (additive; g1-ours.resc itself untouched).
+# analyze: <scratchpad>/analyze.py <nm> <trace> <out.json>
+```
+
+Files changed: `recon/app/src/register_ipc_service_recv_callback.c` (new, proven)
++ its `recon/verified/src/` mirror, `recon/symbolized/app/register_ipc_service_recv_callback.c`
+(new), `recon/symbolized/app/register_ipc_service_context.c` (one store),
+`recon/symbols/g1_app_globals.ld` (1 rebind + 3 string pins),
+`recon/symbols/g1_app_symbols.h` (1 alias + 1 macro + 3 externs),
+`recon/generated/app_retained_sources.cmake` (1 entry).
+Scratchpad catalogs gained one record each (backed up). No `tools/` change, no
+`prj.conf`/Kconfig change, `armemul` additive only. Nothing committed.

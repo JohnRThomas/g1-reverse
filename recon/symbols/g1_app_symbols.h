@@ -82,6 +82,7 @@ extern const unsigned char __g1_fp_gatt_store_ccc_cf_triple[] __asm__("gatt_stor
 extern const unsigned char __g1_fp_gatt_sub_resolve_handle[] __asm__("gatt_sub_resolve_handle");
 extern const unsigned char __g1_fp_gatt_write_ccc_rsp[] __asm__("gatt_write_ccc_rsp");
 extern const unsigned char __g1_fp_global_ipc_service_send[] __asm__("global_ipc_service_send");
+extern const unsigned char __g1_fp_register_ipc_service_recv_callback[] __asm__("register_ipc_service_recv_callback");
 extern const unsigned char __g1_fp_indicate_sc_cb[] __asm__("indicate_sc_cb");
 extern const unsigned char __g1_fp_init_ble_work_thread[] __asm__("init_ble_work_thread");
 extern const unsigned char __g1_fp_iobuf_ensure_capacity_and_append[] __asm__("iobuf_ensure_capacity_and_append");
@@ -201,6 +202,9 @@ extern const unsigned char __g1_fp_z_impl_net_if_ipv6_addr_rm_by_index[] __asm__
 /* UNRESOLVED (no defined symbol for 0x8260c) -- kept as original literal */
 #define ADDR_gen_hash_m_THUMB                0x8260d /* gen_hash_m */
 #define ADDR_global_ipc_service_send_THUMB (((unsigned long)&__g1_fp_global_ipc_service_send) | 1u) /* global_ipc_service_send -> &global_ipc_service_send; was 0x25b79 */
+/* iteration 4: the sibling slot ctx[0x64].  Was the raw pin rodata_25ae9
+ * (original 0x25ae9); now reloc-backed to the reconstructed registrar. */
+#define ADDR_register_ipc_service_recv_callback_THUMB (((unsigned long)&__g1_fp_register_ipc_service_recv_callback) | 1u) /* register_ipc_service_recv_callback -> &register_ipc_service_recv_callback; was 0x25ae9 */
 /* UNRESOLVED (no defined symbol for 0x545f0) -- kept as original literal */
 #define ADDR_hci_tx_thread_THUMB             0x545f1 /* hci_tx_thread */
 #define ADDR_indicate_sc_cb_THUMB (((unsigned long)&__g1_fp_indicate_sc_cb) | 1u) /* indicate_sc_cb -> &indicate_sc_cb; was 0x18a39 */
@@ -1754,6 +1758,8 @@ extern const unsigned char rodata_9f418[]; /* @0x9f418 */
 extern const unsigned char rodata_9f433[]; /* @0x9f433 */
 extern const unsigned char rodata_9f487[]; /* @0x9f487 */
 extern const unsigned char rodata_9f4a1[]; /* @0x9f4a1 */
+extern const unsigned char rodata_9f512[]; /* @0x9f512 */
+extern const unsigned char rodata_9f540[]; /* @0x9f540 */
 extern const unsigned char rodata_9f576[]; /* @0x9f576 */
 extern const unsigned char rodata_9f5a9[]; /* @0x9f5a9 */
 extern const unsigned char rodata_9f5ce[]; /* @0x9f5ce */
@@ -1761,6 +1767,7 @@ extern const unsigned char rodata_9f5ec[]; /* @0x9f5ec */
 extern const unsigned char rodata_9f611[]; /* @0x9f611 */
 extern const unsigned char rodata_9f63c[]; /* @0x9f63c */
 extern const unsigned char rodata_9f67e[]; /* @0x9f67e */
+extern const unsigned char rodata_9f6a3[]; /* @0x9f6a3 */
 extern const unsigned char rodata_9f6c6[]; /* @0x9f6c6 */
 extern const unsigned char rodata_9f6e3[]; /* @0x9f6e3 */
 extern const unsigned char rodata_9f6f1[]; /* @0x9f6f1 */

@@ -230,6 +230,9 @@ set(G1_RETAINED_SOURCES
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/serialization_ipc_ept_register.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/ipc0_ept_recv.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/global_ipc_service_send.c"
+  # iteration 4: newly reconstructed IPC-service registrar (original 0x25ae8),
+  # the rebind target of PROVIDE(rodata_25ae9 = register_ipc_service_recv_callback | 1).
+  "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/register_ipc_service_recv_callback.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/serialization_init.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/register_ipc_service_context.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/SendDashboardLockInfoToApp.c"

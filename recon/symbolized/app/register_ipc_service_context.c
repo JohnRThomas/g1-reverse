@@ -19,7 +19,13 @@ extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int,unsi
 extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 unsigned int register_ipc_service_context(int param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4){
     *(unsigned int*)(param_1+0x60) = ADDR_global_ipc_service_send_THUMB /*=0x25b79*/;
-    *(unsigned int*)(param_1+0x64) = ((unsigned long)&rodata_25ae9) /*=0x25ae9*/;
+    /* iteration 4: was ((unsigned long)&rodata_25ae9), the pinned 0x25ae9 --
+     * an unrelocated original-image code pointer.  0x25ae8 is the IPC-service
+     * registrar, now reconstructed as register_ipc_service_recv_callback and
+     * bound through the pointer_rebind.md __asm__-alias so the reference is a
+     * real R_ARM_ABS32 (gc-retention is relocation-backed, like the sibling
+     * slot above). */
+    *(unsigned int*)(param_1+0x64) = ADDR_register_ipc_service_recv_callback_THUMB /*=0x25ae9*/;
     *(volatile unsigned int*)((unsigned long)&g_ipc0_endpoint) /*=0x20007a84*/ = (unsigned int)param_1;
     if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1){
         unsigned int sink=*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;

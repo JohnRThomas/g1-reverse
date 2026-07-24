@@ -39,7 +39,16 @@ PROVIDE(rodata_24a41 = 0x00024a41);
 PROVIDE(rodata_24ad9 = 0x00024ad9);
 PROVIDE(rodata_25021 = 0x00025021);
 PROVIDE(rodata_25059 = 0x00025059);
-PROVIDE(rodata_25ae9 = 0x00025ae9);
+/* CODE-POINTER REBIND (iteration 4): odd (Thumb) flash pin was the
+ * original-image entry 0x25ae8 of the IPC-service registrar, stored raw into
+ * ctx[0x64] by register_ipc_service_context and later called by main through
+ * ldr r2,[r4,#0x778]; blx r2.  Unrelocated in our build it landed inside
+ * check_sw0_status, which aborted the boot with a usage fault.
+ * Evidence: bytes at 0x25ae8 are a complete function (push {r0,r1,r4,lr} ...
+ * pop {r4,pc}) in the uncatalogued Ghidra gap 0x25ad2..0x25b78, reconstructed
+ * and parity-proven as register_ipc_service_recv_callback (its own %s()
+ * log argument at 0x9f6a3 names it). */
+PROVIDE(rodata_25ae9 = register_ipc_service_recv_callback | 1);
 PROVIDE(rodata_25d8d = 0x00025d8d);
 PROVIDE(rodata_25dc5 = 0x00025dc5);
 PROVIDE(rodata_25df9 = 0x00025df9);
@@ -819,6 +828,14 @@ PROVIDE(rodata_9f418 = 0x0009f418);
 PROVIDE(rodata_9f433 = 0x0009f433);
 PROVIDE(rodata_9f487 = 0x0009f487);
 PROVIDE(rodata_9f4a1 = 0x0009f4a1);
+/* iteration 4: format/name strings consumed by register_ipc_service_recv_callback
+ * (0x9f512 "%s(): ipc_service_register(%d,%s) %d,SUCCESS\n",
+ *  0x9f540 "%s(): ipc_service_register(%d,%s) %d,total must < %d\n",
+ *  0x9f6a3 "register_ipc_service_recv_callback"). Same absolute-rodata pin
+ * convention as every other reconstructed log site (see iteration 2 §2 for the
+ * still-open interior-rodata-pin class). */
+PROVIDE(rodata_9f512 = 0x0009f512);
+PROVIDE(rodata_9f540 = 0x0009f540);
 PROVIDE(rodata_9f576 = 0x0009f576);
 PROVIDE(rodata_9f5a9 = 0x0009f5a9);
 PROVIDE(rodata_9f5ce = 0x0009f5ce);
@@ -826,6 +843,7 @@ PROVIDE(rodata_9f5ec = 0x0009f5ec);
 PROVIDE(rodata_9f611 = 0x0009f611);
 PROVIDE(rodata_9f63c = 0x0009f63c);
 PROVIDE(rodata_9f67e = 0x0009f67e);
+PROVIDE(rodata_9f6a3 = 0x0009f6a3);   /* iteration 4: "register_ipc_service_recv_callback" */
 PROVIDE(rodata_9f6c6 = 0x0009f6c6);
 PROVIDE(rodata_9f6e3 = 0x0009f6e3);
 PROVIDE(rodata_9f6f1 = 0x0009f6f1);
