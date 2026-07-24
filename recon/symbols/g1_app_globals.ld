@@ -3339,3 +3339,18 @@ PROVIDE(g_all_static_info_fc62 = 0x2007fc62);
 PROVIDE(g_all_static_info_fc68 = 0x2007fc68);
 PROVIDE(g_dashboard_default_widget0_index = 0x2007fc69);
 PROVIDE(g_2007fc70 = 0x2007fc70);
+
+/* Absolute-address back-map pins omitted by the symbol_map that seeded this
+ * generated file (a symbol_map coverage gap, not a rename artifact). Each is a
+ * non-owning PROVIDE identical in kind to the entries above, declared extern in
+ * g1_app_symbols.h and referenced by dmic_stream_start (FUN_0002f080). Addresses
+ * are the literal VAs encoded in each symbol name and confirmed by the source
+ * identity headers. Completes the closure so the cohesive link resolves. */
+PROVIDE(rodata_88694 = 0x00088694);
+PROVIDE(rodata_a4062 = 0x000a4062);
+PROVIDE(rodata_a4075 = 0x000a4075);
+PROVIDE(rodata_a4120 = 0x000a4120);
+PROVIDE(rodata_a4147 = 0x000a4147);
+PROVIDE(rodata_a417e = 0x000a417e);
+PROVIDE(rodata_a41a0 = 0x000a41a0);
+PROVIDE(g_20003778 = 0x20003778);

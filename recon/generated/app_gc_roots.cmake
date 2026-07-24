@@ -2,14 +2,14 @@
 # Numeric firmware addresses are intentionally never linker roots.
 set(G1_RECOVERED_GC_ROOTS
   main
-  FUN_00019718
+  ble_ancs_data_req_thread
   ble_work_thread
   flash_ops_thread
   brightness_level
   low_speed_peripheral_dispatch_thread
-  FUN_0002685c
+  low_speed_peripheral_dispatch_thread_for_test
   process_task_sync_event
-  FUN_0002a4f4
+  transport_dispatch_thread
   display_dispatch_thread
   master_display_thread
   slave_display_thread
@@ -17,7 +17,7 @@ set(G1_RECOVERED_GC_ROOTS
   click_event_dispatch_loop
   key_event_thread
   aging_mode_thread
-  FUN_000324bc
+  mic_transm_thread
   proxy_thread_handler
   display_thread_handler
 )
