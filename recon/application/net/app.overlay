@@ -1,0 +1,31 @@
+/*
+ * CPUNET emulator boot-parity FLASH enlargement.
+ *
+ * DO NOT read this as the real device flash map. The physical nRF5340 network
+ * core has 256 KiB of FLASH (0x01000000 + 256K) and the shipped netcore image
+ * (225,632 B, loaded at runtime base 0x01008800) fits it with 1,696 B spare.
+ *
+ * Our cohesive recovered build is ~2.3 KiB larger than the shipped image
+ * because it links lean recovered code alongside separately-compiled SDK
+ * archives (a recovered<->SDK duplication residual). The physical link is
+ * symbol-clean (0 undefined, 0 duplicate) but its image span (~227,961 B)
+ * overflows the real usable region (256K - 0x8800 = 227,328 B) by 633 B.
+ *
+ * The linker derives the FLASH region as
+ *   ORIGIN = CONFIG_FLASH_BASE_ADDRESS + CONFIG_FLASH_LOAD_OFFSET  (0x01008800)
+ *   LENGTH = CONFIG_FLASH_SIZE*1K - CONFIG_FLASH_LOAD_OFFSET
+ * and CONFIG_FLASH_SIZE is derived from this flash1 reg size. Modeling a
+ * slightly larger net flash therefore grows LENGTH WITHOUT moving the load
+ * base 0x01008800 (which is mandatory: the net image is position-DEPENDENT).
+ *
+ * 256K -> 260K adds 4 KiB (two 2048 B erase blocks) of usable FLASH:
+ *   usable = 260*1024 - 0x8800 = 231,424 B  (was 227,328 B)
+ * which fits the cohesive image with headroom. This is a deliberate
+ * emulator-vs-device divergence to unblock emulator bring-up. Real-device fit
+ * requires eliminating the recovered<->SDK duplication (byte-match endgame),
+ * tracked separately, NOT done here. See FLASH_DIVERGENCE.md.
+ */
+
+&flash1 {
+	reg = <0x01000000 DT_SIZE_K(260)>;
+};
