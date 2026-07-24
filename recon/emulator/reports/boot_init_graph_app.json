@@ -1,0 +1,802 @@
+{
+ "schema": 1,
+ "core": "app",
+ "image": {
+  "path": "app_update.bin",
+  "sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "link_base": "0x0000c200",
+  "mcuboot_header_size": 512
+ },
+ "method": "init_entry arrays read from app_update.bin; names/ownership from tools/build_app_root_inventory.py (hand-curated, cross-checked vs NCS2.5.1 refapp). All entries verified 'stock'.",
+ "init_level_bounds": {
+  "PRE_KERNEL_1": {
+   "start": "0x000879b0",
+   "end": "0x00087a38",
+   "count": 17
+  },
+  "PRE_KERNEL_2": {
+   "start": "0x00087a38",
+   "end": "0x00087a40",
+   "count": 1
+  },
+  "POST_KERNEL": {
+   "start": "0x00087a40",
+   "end": "0x00087b20",
+   "count": 28
+  },
+  "APPLICATION": {
+   "start": "0x00087b20",
+   "end": "0x00087b30",
+   "count": 2
+  }
+ },
+ "init_entries": [
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 0,
+   "global_order": 0,
+   "entry_va": "0x000879b0",
+   "init_fn_addr": "0x0004c144",
+   "init_fn_name": "nordicsemi_nrf53_init",
+   "dev_ptr": null,
+   "source": "zephyr/soc/arm/nordic_nrf/nrf53/soc.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 1,
+   "global_order": 1,
+   "entry_va": "0x000879b8",
+   "init_fn_addr": "0x00051198",
+   "init_fn_name": "posix_barrier_pool_init",
+   "dev_ptr": null,
+   "source": "zephyr/lib/posix/barrier.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 2,
+   "global_order": 2,
+   "entry_va": "0x000879c0",
+   "init_fn_addr": "0x000511f0",
+   "init_fn_name": "posix_cond_pool_init",
+   "dev_ptr": null,
+   "source": "zephyr/lib/posix/cond.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 3,
+   "global_order": 3,
+   "entry_va": "0x000879c8",
+   "init_fn_addr": "0x00051230",
+   "init_fn_name": "posix_mutex_pool_init",
+   "dev_ptr": null,
+   "source": "zephyr/lib/posix/mutex.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 4,
+   "global_order": 4,
+   "entry_va": "0x000879d0",
+   "init_fn_addr": "0x00051274",
+   "init_fn_name": "posix_thread_pool_init",
+   "dev_ptr": null,
+   "source": "zephyr/lib/posix/pthread.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 5,
+   "global_order": 5,
+   "entry_va": "0x000879d8",
+   "init_fn_addr": "0x0004ccd4",
+   "init_fn_name": "shared_memory_prepare",
+   "dev_ptr": null,
+   "source": "zephyr/subsys/ipc/ipc_service/backends/ipc_rpmsg_static_vrings.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 6,
+   "global_order": 6,
+   "entry_va": "0x000879e0",
+   "init_fn_addr": "0x0006058c",
+   "init_fn_name": "clock_control_nrf_init",
+   "dev_ptr": "0x00087b30",
+   "source": "zephyr/drivers/clock_control/clock_control_nrf.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 7,
+   "global_order": 7,
+   "entry_va": "0x000879e8",
+   "init_fn_addr": "0x000719a4",
+   "init_fn_name": "kheap_init",
+   "dev_ptr": null,
+   "source": "zephyr/kernel/kheap.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 8,
+   "global_order": 8,
+   "entry_va": "0x000879f0",
+   "init_fn_addr": "0x00071bd0",
+   "init_fn_name": "init_mem_slab_module",
+   "dev_ptr": null,
+   "source": "zephyr/kernel/mem_slab.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 9,
+   "global_order": 9,
+   "entry_va": "0x000879f8",
+   "init_fn_addr": "0x00061574",
+   "init_fn_name": "gpio_nrfx_init",
+   "dev_ptr": "0x00087b48",
+   "source": "zephyr/drivers/gpio/gpio_nrfx.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 10,
+   "global_order": 10,
+   "entry_va": "0x00087a00",
+   "init_fn_addr": "0x00061574",
+   "init_fn_name": "gpio_nrfx_init",
+   "dev_ptr": "0x00087b60",
+   "source": "zephyr/drivers/gpio/gpio_nrfx.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 11,
+   "global_order": 11,
+   "entry_va": "0x00087a08",
+   "init_fn_addr": "0x00084d4e",
+   "init_fn_name": "nrf_cc3xx_platform_early_init",
+   "dev_ptr": null,
+   "source": "nrfxlib/crypto/nrf_cc312_platform",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 12,
+   "global_order": 12,
+   "entry_va": "0x00087a10",
+   "init_fn_addr": "0x00083892",
+   "init_fn_name": "entropy_bt_hci_init",
+   "dev_ptr": "0x00087b78",
+   "source": "nrf/drivers/entropy/entropy_bt_hci.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 13,
+   "global_order": 13,
+   "entry_va": "0x00087a18",
+   "init_fn_addr": "0x000838b4",
+   "init_fn_name": "entropy_cc3xx_init",
+   "dev_ptr": "0x00087b90",
+   "source": "nrf/drivers/entropy/entropy_cc3xx.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 14,
+   "global_order": 14,
+   "entry_va": "0x00087a20",
+   "init_fn_addr": "0x00063b10",
+   "init_fn_name": "wdt_nrfx_init",
+   "dev_ptr": "0x00087ba8",
+   "source": "zephyr/drivers/watchdog/wdt_nrfx.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 15,
+   "global_order": 15,
+   "entry_va": "0x00087a28",
+   "init_fn_addr": "0x00062d9c",
+   "init_fn_name": "uarte_nrfx_init",
+   "dev_ptr": "0x00087bc0",
+   "source": "zephyr/drivers/serial/uart_nrfx_uarte.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_1",
+   "priority_order": 16,
+   "global_order": 16,
+   "entry_va": "0x00087a30",
+   "init_fn_addr": "0x000608c4",
+   "init_fn_name": "uart_console_init",
+   "dev_ptr": null,
+   "source": "zephyr/drivers/console/uart_console.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "PRE_KERNEL_2",
+   "priority_order": 0,
+   "global_order": 17,
+   "entry_va": "0x00087a38",
+   "init_fn_addr": "0x000637b8",
+   "init_fn_name": "sys_clock_driver_init",
+   "dev_ptr": null,
+   "source": "zephyr/drivers/timer/nrf_rtc_timer.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 0,
+   "global_order": 18,
+   "entry_va": "0x00087a40",
+   "init_fn_addr": "0x0004c190",
+   "init_fn_name": "rtc_pretick_init",
+   "dev_ptr": null,
+   "source": "nrf/soc/arm/nordic_nrf/nrf53/rtc_pretick.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 1,
+   "global_order": 19,
+   "entry_va": "0x00087a48",
+   "init_fn_addr": "0x0004d274",
+   "init_fn_name": "log_init",
+   "dev_ptr": null,
+   "source": "zephyr/subsys/logging/log_core.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 2,
+   "global_order": 20,
+   "entry_va": "0x00087a50",
+   "init_fn_addr": "0x00061aec",
+   "init_fn_name": "mbox_nrfx_init",
+   "dev_ptr": "0x00087bd8",
+   "source": "zephyr/drivers/mbox/mbox_nrfx_ipc.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 3,
+   "global_order": 21,
+   "entry_va": "0x00087a58",
+   "init_fn_addr": "0x00050ff4",
+   "init_fn_name": "malloc_prepare",
+   "dev_ptr": null,
+   "source": "zephyr/lib/libc/newlib/libc-hooks.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 4,
+   "global_order": 22,
+   "entry_va": "0x00087a60",
+   "init_fn_addr": "0x00084d52",
+   "init_fn_name": "nrf_cc3xx_platform_init",
+   "dev_ptr": null,
+   "source": "nrfxlib/crypto/nrf_cc312_platform",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 5,
+   "global_order": 23,
+   "entry_va": "0x00087a68",
+   "init_fn_addr": "0x00072a7c",
+   "init_fn_name": "k_sys_work_q_init",
+   "dev_ptr": null,
+   "source": "zephyr/kernel/system_work_q.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 6,
+   "global_order": 24,
+   "entry_va": "0x00087a70",
+   "init_fn_addr": "0x00060c00",
+   "init_fn_name": "qspi_nor_init",
+   "dev_ptr": "0x00087bf0",
+   "source": "zephyr/drivers/flash/flash_nrf_qspi_nor.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 7,
+   "global_order": 25,
+   "entry_va": "0x00087a78",
+   "init_fn_addr": "0x0007eb5c",
+   "init_fn_name": "ipc_static_vrings_init",
+   "dev_ptr": "0x00087c08",
+   "source": "zephyr/subsys/ipc/ipc_service/backends/ipc_rpmsg_static_vrings.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 8,
+   "global_order": 26,
+   "entry_va": "0x00087a80",
+   "init_fn_addr": "0x0005f988",
+   "init_fn_name": "adc_nrfx_saadc_init",
+   "dev_ptr": "0x00087c20",
+   "source": "zephyr/drivers/adc/adc_nrfx_saadc.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 9,
+   "global_order": 27,
+   "entry_va": "0x00087a88",
+   "init_fn_addr": "0x00061234",
+   "init_fn_name": "soc_flash_nrf_init",
+   "dev_ptr": "0x00087c38",
+   "source": "zephyr/drivers/flash/soc_flash_nrf.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 10,
+   "global_order": 28,
+   "entry_va": "0x00087a90",
+   "init_fn_addr": "0x000617dc",
+   "init_fn_name": "i2c_nrfx_twim_init",
+   "dev_ptr": "0x00087c68",
+   "source": "zephyr/drivers/i2c/i2c_nrfx_twim.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 11,
+   "global_order": 29,
+   "entry_va": "0x00087a98",
+   "init_fn_addr": "0x000617dc",
+   "init_fn_name": "i2c_nrfx_twim_init",
+   "dev_ptr": "0x00087c50",
+   "source": "zephyr/drivers/i2c/i2c_nrfx_twim.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 12,
+   "global_order": 30,
+   "entry_va": "0x00087aa0",
+   "init_fn_addr": "0x0005129c",
+   "init_fn_name": "remoteproc_mgr_boot",
+   "dev_ptr": null,
+   "source": "zephyr/boards/arm/nrf5340dk_nrf5340/nrf5340_cpunet_reset.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 13,
+   "global_order": 31,
+   "entry_va": "0x00087aa8",
+   "init_fn_addr": "0x00053194",
+   "init_fn_name": "long_wq_init",
+   "dev_ptr": null,
+   "source": "zephyr/subsys/bluetooth/host/long_wq.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 14,
+   "global_order": 32,
+   "entry_va": "0x00087ab0",
+   "init_fn_addr": "0x00060174",
+   "init_fn_name": "bt_rpmsg_init",
+   "dev_ptr": null,
+   "source": "zephyr/drivers/bluetooth/hci/rpmsg.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 15,
+   "global_order": 33,
+   "entry_va": "0x00087ab8",
+   "init_fn_addr": "0x00061d10",
+   "init_fn_name": "mfd_npm1300_init",
+   "dev_ptr": "0x00087c80",
+   "source": "zephyr/drivers/mfd/mfd_npm1300.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 16,
+   "global_order": 34,
+   "entry_va": "0x00087ac0",
+   "init_fn_addr": "0x00083cb4",
+   "init_fn_name": "gpio_npm1300_init",
+   "dev_ptr": "0x00087c98",
+   "source": "zephyr/drivers/gpio/gpio_npm1300.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 17,
+   "global_order": 35,
+   "entry_va": "0x00087ac8",
+   "init_fn_addr": "0x000639d4",
+   "init_fn_name": "wdt_npm1300_init",
+   "dev_ptr": "0x00087cc8",
+   "source": "zephyr/drivers/watchdog/wdt_npm1300.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 18,
+   "global_order": 36,
+   "entry_va": "0x00087ad0",
+   "init_fn_addr": "0x000620cc",
+   "init_fn_name": "regulator_npm1300_common_init",
+   "dev_ptr": "0x00087cb0",
+   "source": "zephyr/drivers/regulator/regulator_npm1300.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 19,
+   "global_order": 37,
+   "entry_va": "0x00087ad8",
+   "init_fn_addr": "0x00084418",
+   "init_fn_name": "regulator_npm1300_init",
+   "dev_ptr": "0x00087d28",
+   "source": "zephyr/drivers/regulator/regulator_npm1300.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 20,
+   "global_order": 38,
+   "entry_va": "0x00087ae0",
+   "init_fn_addr": "0x00084418",
+   "init_fn_name": "regulator_npm1300_init",
+   "dev_ptr": "0x00087d10",
+   "source": "zephyr/drivers/regulator/regulator_npm1300.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 21,
+   "global_order": 39,
+   "entry_va": "0x00087ae8",
+   "init_fn_addr": "0x00084418",
+   "init_fn_name": "regulator_npm1300_init",
+   "dev_ptr": "0x00087cf8",
+   "source": "zephyr/drivers/regulator/regulator_npm1300.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 22,
+   "global_order": 40,
+   "entry_va": "0x00087af0",
+   "init_fn_addr": "0x00084418",
+   "init_fn_name": "regulator_npm1300_init",
+   "dev_ptr": "0x00087ce0",
+   "source": "zephyr/drivers/regulator/regulator_npm1300.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 23,
+   "global_order": 41,
+   "entry_va": "0x00087af8",
+   "init_fn_addr": "0x0005ff1c",
+   "init_fn_name": "pdm_nrfx_init0",
+   "dev_ptr": "0x00087d40",
+   "source": "zephyr/drivers/audio/dmic_nrfx_pdm.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 24,
+   "global_order": 42,
+   "entry_va": "0x00087b00",
+   "init_fn_addr": "0x00062930",
+   "init_fn_name": "opt3001_init",
+   "dev_ptr": "0x00087d88",
+   "source": "zephyr/drivers/sensor/opt3001/opt3001.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 25,
+   "global_order": 43,
+   "entry_va": "0x00087b08",
+   "init_fn_addr": "0x00062644",
+   "init_fn_name": "npm1300_charger_init",
+   "dev_ptr": "0x00087d70",
+   "source": "zephyr/drivers/sensor/npm1300_charger/npm1300_charger.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 26,
+   "global_order": 44,
+   "entry_va": "0x00087b10",
+   "init_fn_addr": null,
+   "init_fn_name": null,
+   "dev_ptr": "0x00087d58",
+   "source": null,
+   "owner_class": "null_device_entry"
+  },
+  {
+   "level": "POST_KERNEL",
+   "priority_order": 27,
+   "global_order": 45,
+   "entry_va": "0x00087b18",
+   "init_fn_addr": "0x0004c2d4",
+   "init_fn_name": "sync_rtc_setup",
+   "dev_ptr": null,
+   "source": "zephyr/soc/arm/nordic_nrf/nrf53/sync_rtc.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "APPLICATION",
+   "priority_order": 0,
+   "global_order": 46,
+   "entry_va": "0x00087b20",
+   "init_fn_addr": "0x00051304",
+   "init_fn_name": "mcumgr_handlers_init",
+   "dev_ptr": null,
+   "source": "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+   "owner_class": "sdk_stock"
+  },
+  {
+   "level": "APPLICATION",
+   "priority_order": 1,
+   "global_order": 47,
+   "entry_va": "0x00087b28",
+   "init_fn_addr": "0x000526b4",
+   "init_fn_name": "smp_init",
+   "dev_ptr": null,
+   "source": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+   "owner_class": "sdk_stock"
+  }
+ ],
+ "app_owned_init_entries": [],
+ "device_count": 26,
+ "threads": [
+  {
+   "name": "ancs",
+   "entry_addr": "0x00019718",
+   "entry_candidates": [
+    "0x00019718"
+   ],
+   "prio": -11,
+   "stack": 5120,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "application",
+   "tcb": "0x20003c50"
+  },
+  {
+   "name": "ble_projector",
+   "entry_addr": "0x00021da8",
+   "entry_candidates": [
+    "0x00021da8"
+   ],
+   "prio": -15,
+   "stack": 12288,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "application",
+   "tcb": "0x20003d60"
+  },
+  {
+   "name": "flash",
+   "entry_addr": "0x00023480",
+   "entry_candidates": [
+    "0x00023480"
+   ],
+   "prio": -12,
+   "stack": 2048,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "application",
+   "tcb": "0x20003e38"
+  },
+  {
+   "name": "brightness",
+   "entry_addr": "0x00023844",
+   "entry_candidates": [
+    "0x00023844"
+   ],
+   "prio": -11,
+   "stack": 5120,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "application",
+   "tcb": "0x20003f10"
+  },
+  {
+   "name": "run_main_a",
+   "entry_addr": "0x0002a8d8",
+   "entry_candidates": [
+    "0x0002a8d8",
+    "0x0002685c"
+   ],
+   "prio": -10,
+   "stack": 3072,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "application",
+   "tcb": "0x200046b8"
+  },
+  {
+   "name": "run_main_b",
+   "entry_addr": "0x000286f8",
+   "entry_candidates": [
+    "0x000286f8"
+   ],
+   "prio": -10,
+   "stack": 1024,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "application",
+   "tcb": "0x200041a8"
+  },
+  {
+   "name": "run_main_c",
+   "entry_addr": "0x0002a4f4",
+   "entry_candidates": [
+    "0x0002a4f4"
+   ],
+   "prio": -9,
+   "stack": 3072,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "application",
+   "tcb": "0x200040d0"
+  },
+  {
+   "name": "run_main_d",
+   "entry_addr": "0x00028bec",
+   "entry_candidates": [
+    "0x00028bec"
+   ],
+   "prio": -13,
+   "stack": 2048,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "application",
+   "tcb": "0x200045e0"
+  },
+  {
+   "name": "run_main_e",
+   "entry_addr": "0x0002692c",
+   "entry_candidates": [
+    "0x0002692c"
+   ],
+   "prio": -12,
+   "stack": 2048,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "application",
+   "tcb": "0x20004508"
+  },
+  {
+   "name": "run_main_f",
+   "entry_addr": "0x00027cfc",
+   "entry_candidates": [
+    "0x00027cfc"
+   ],
+   "prio": -11,
+   "stack": 1536,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "application_conditional",
+   "tcb": "0x20004430"
+  },
+  {
+   "name": "run_main_g",
+   "entry_addr": "0x0002a0d8",
+   "entry_candidates": [
+    "0x0002a0d8",
+    "0x00028a1c"
+   ],
+   "prio": -14,
+   "stack": 1024,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "application",
+   "tcb": "0x20004358"
+  },
+  {
+   "name": "run_main_h",
+   "entry_addr": "0x0002955c",
+   "entry_candidates": [
+    "0x0002955c"
+   ],
+   "prio": -13,
+   "stack": 1024,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "application",
+   "tcb": "0x20004280"
+  },
+  {
+   "name": "aging_a",
+   "entry_addr": "0x00032420",
+   "entry_candidates": [
+    "0x00032420"
+   ],
+   "prio": -12,
+   "stack": 3072,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "application",
+   "tcb": "0x20004870"
+  },
+  {
+   "name": "aging_b",
+   "entry_addr": "0x000324bc",
+   "entry_candidates": [
+    "0x000324bc"
+   ],
+   "prio": -12,
+   "stack": 1024,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "application",
+   "tcb": "0x20004798"
+  },
+  {
+   "name": "proxy",
+   "entry_addr": "0x00047c48",
+   "entry_candidates": [
+    "0x00047c48"
+   ],
+   "prio": -12,
+   "stack": 2048,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "application",
+   "tcb": "0x20004c08"
+  },
+  {
+   "name": "display",
+   "entry_addr": "0x00049090",
+   "entry_candidates": [
+    "0x00049090"
+   ],
+   "prio": -14,
+   "stack": 5120,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "application",
+   "tcb": "0x20004d18"
+  },
+  {
+   "name": "bt_rx",
+   "entry_addr": "0x000545f0",
+   "entry_candidates": [
+    "0x000545f0"
+   ],
+   "prio": -9,
+   "stack": 1024,
+   "sched_class": "coop",
+   "source": "runtime_k_thread_create",
+   "owner_class": "stock_zephyr_bt",
+   "tcb": "0x20005e30"
+  }
+ ],
+ "real_main": {
+  "addr": "0x00016eb8",
+  "name": "main",
+  "note": "app main() the kernel main thread runs; must replace the temporary main. run_main_dispatch_thread 0x0002a65c (reached from main) performs the k_thread_create pool."
+ },
+ "counts": {
+  "init_total": 48,
+  "app_owned": 0,
+  "sdk_stock": 47,
+  "threads_total": 17,
+  "threads_app_owned": 16
+ }
+}

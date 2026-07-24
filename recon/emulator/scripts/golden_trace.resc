@@ -1,0 +1,43 @@
+# Golden boot trace generator for the SHIPPED G1 images (autonomous boot).
+# Produces per-core PC execution traces consumed by analyze_trace.py.
+# Run from the armemul repo:  renode --disable-xwt --console --plain -e 'i @<this>'
+# Traces are written to /tmp/g1_golden/{trace_app,trace_net}.log and the run
+# log (checkpoints) must be captured from stdout.
+i @g1.resc
+# ================= DETERMINISM KNOBS =================
+emulation SetGlobalQuantum "0.000010"
+sysbus.cc3xx_rng Seed 0x5340CC3105340CC3
+# core scheduling is serial (ExecuteInSerial=True, set inside g1.resc)
+# ====================================================
+cpuapp CreateExecutionTracing "traceApp" @/tmp/g1_golden/trace_app.log PC
+cpunet CreateExecutionTracing "traceNet" @/tmp/g1_golden/trace_net.log PC
+macro ckpt
+"""
+    echo "CKPT_RTX:"
+    radio TransmittedFrames
+    echo "CKPT_APP:"
+    cpuapp ExecutedInstructions
+    echo "CKPT_NET:"
+    cpunet ExecutedInstructions
+"""
+emulation RunFor "0.5"
+echo "=== t=0.5 ==="
+runMacro $ckpt
+emulation RunFor "0.5"
+echo "=== t=1.0 ==="
+runMacro $ckpt
+emulation RunFor "0.5"
+echo "=== t=1.5 ==="
+runMacro $ckpt
+emulation RunFor "0.5"
+echo "=== t=2.0 ==="
+runMacro $ckpt
+emulation RunFor "0.5"
+echo "=== t=2.5 ==="
+runMacro $ckpt
+emulation RunFor "0.5"
+echo "=== t=3.0 ==="
+runMacro $ckpt
+traceApp Stop
+traceNet Stop
+quit

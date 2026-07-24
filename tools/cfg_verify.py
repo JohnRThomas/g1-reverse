@@ -5959,6 +5959,74 @@ REVIEWED_STATE_CASES[("app", 0x0004e3e8)] = [
 ]
 
 
+# --- Boot-path persist-task helpers (verified 2026-07-24) --------------------
+# now_has_persist_task@0x2be64 and update_persist_task_status_to_idle@0x2c0e8
+# both open with `while (*(volatile u8 *)0x20018d9c) signal_persist_task_event();`.
+# The harness seeds RAM randomly, so the lock byte was almost never 0 and the
+# body never ran -- the historical 300/300 proof was vacuous (a fresh instance
+# of the biased-fuzz false-proof class). Seed the lock free (0) and cover both
+# the log_message(@0x7dda4) and debug_print(@0x19c70) branches so CFG
+# side-effect comparison exercises the real code.
+def _persist_le(v):
+    return int(v & 0xffffffff).to_bytes(4, "little")
+
+
+def _persist_base():
+    p1 = emu.SCRATCH + 0x1000
+    pp = emu.SCRATCH + 0x3000
+    # lock byte free; the +0x1054 field points the local struct at pp
+    return p1, pp, [(0x20018d9c, b"\x00"), (p1 + 0x1054, _persist_le(pp))]
+
+
+REVIEWED_STATE_CASES[("app", 0x0002be64)] = [
+    ({0: _persist_base()[0], 1: 0},
+     _persist_base()[2] + [(_persist_base()[1] + 4, b"\x01")]),
+    ({0: _persist_base()[0], 1: 0x77},
+     _persist_base()[2] + [(_persist_base()[1] + 4, b"\x02"),
+                           (0x2000230c, _persist_le(0))]),
+    ({0: _persist_base()[0], 1: 0x55},
+     _persist_base()[2] + [(_persist_base()[1] + 4, b"\x02"),
+                           (0x2000230c, _persist_le(4)),
+                           (0x20007554, _persist_le(0)),
+                           (_persist_base()[0] + 0xd5, b"\x9a")]),
+    ({0: _persist_base()[0], 1: 0x33},
+     _persist_base()[2] + [(_persist_base()[1] + 4, b"\x04"),
+                           (0x2000230c, _persist_le(9)),
+                           (0x20007554, _persist_le(1)),
+                           (_persist_base()[0] + 0xd5, b"\xbc")]),
+]
+
+REVIEWED_STATE_CASES[("app", 0x0002c0e8)] = [
+    ({0: _persist_base()[0]},
+     _persist_base()[2] + [(_persist_base()[0] + 0xd5, b"\x00"),
+                           (_persist_base()[1] + 4, b"\x01")]),
+    ({0: _persist_base()[0]},
+     _persist_base()[2] + [(_persist_base()[0] + 0xd5, b"\x00"),
+                           (_persist_base()[1] + 4, b"\x02"),
+                           (0x2000230c, _persist_le(5)),
+                           (0x20007554, _persist_le(0))]),
+    ({0: _persist_base()[0]},
+     _persist_base()[2] + [(_persist_base()[0] + 0xd5, b"\x05"),
+                           (_persist_base()[1] + 4, b"\x01"),
+                           (0x2000230c, _persist_le(5)),
+                           (0x20007554, _persist_le(1))]),
+    ({0: _persist_base()[0]},
+     _persist_base()[2] + [(_persist_base()[0] + 0xd5, b"\x10"),
+                           (_persist_base()[1] + 4, b"\x02"),
+                           (0x2000230c, _persist_le(0)),
+                           (0x20018d9d, b"\x7a")]),
+    ({0: _persist_base()[0]},
+     _persist_base()[2] + [(_persist_base()[0] + 0xd5, b"\x01"),
+                           (_persist_base()[1] + 4, b"\x01"),
+                           (0x2000230c, _persist_le(0))]),
+]
+
+REVIEWED_CALL_ARITIES_BY_FORMAT[("app", 0x0002c0e8)] = {
+    (0x0007dda4, 0x000a25d9): 2,
+    (0x00019c70, 0x000a25d9): 3,
+}
+
+
 def _cbprintf_complete_case(fmt, argv=b"", *, flags=0,
                             text=b"precision-string\0"):
     """Complete z_cbvprintf_impl ABI with bounded va-list storage."""
