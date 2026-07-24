@@ -404,3 +404,201 @@ Acceptance target unchanged: reach E4 (`bt_start` / first ADV_IND / display init
 Same commands as above; the app ELF is rebuilt in place at
 `/private/tmp/g1-ours-app`. The two rebound pins are the only source change
 (`recon/symbols/g1_app_globals.ld`). Nothing committed.
+
+---
+
+# Iteration 3 — console char-out callback (NOT a logging-config divergence)
+
+Applied a fix, rebuilt (0 undefined / 0 duplicate), re-booted via the unmodified
+`g1-ours.resc` / `trace_ours.resc`, re-traced. **The kernel OOPS / runtime
+deferred-log packaging path is gone.** The app now advances *past* the old
+assert (instr 4,702,339) and executes the console-log path correctly; a **new,
+later first divergence** appears — a **usage fault** on the `pt_nfc_eeprom_link`
+path (instr **4,703,842**).
+
+## 1. Verdict: config vs reconstruction
+
+**It was a RECONSTRUCTION / WIRING defect, not a logging-configuration
+divergence. Iteration 2's leading hypothesis (§6.1 "LOG mode mismatch") is
+FALSIFIED, with proof.** No `prj.conf` change was made or needed.
+
+The reconstructed log path never routes through Zephyr runtime packaging on its
+own. Disassembly of *our* build:
+
+- `log_message` / `DEBUG_PRINT` (@0x75e3c) → `vprintf` (@0x4291c) → `z_cbvprintf_impl`.
+  It does **not** reference `z_log_vprintk` / `z_impl_z_log_msg_runtime_vcreate` /
+  `cbvprintf_package`. (`recon/named/log_message.c`, `recon/symbolized/app/vprintf.c`.)
+- The runtime-packaging path (`z_log_vprintk`→`runtime_vcreate`→`cbvprintf_package`)
+  is only reachable from `printk` (@0x77992, via `CONFIG_LOG_PRINTK=y`) — **not**
+  from `vprintf`.
+
+So our build did not "enter the runtime path because of a LOG Kconfig". It
+**executed garbage** that happened to wander through `vprintk`/`z_log_vprintk`.
+
+### The real mechanism (confirmed by disasm + image bytes)
+
+`recon/symbolized/app/vprintf.c` passed the pinned symbol `rodata_4b1b5`
+(`PROVIDE(rodata_4b1b5 = 0x0004b1b5)` in `g1_app_globals.ld`) as the **per-char
+output callback** to `z_cbvprintf_impl`. In the *shipped* image, `0x4b1b4` is a
+tiny **char-out trampoline** (verified by reading original image bytes):
+
+```
+4b1b4:  ldr r3,[pc,#4]   ; = 0x200027c8   (firmware stdout-hook global)
+4b1b6:  ldr r3,[r3,#0]   ; = installed worker (console_out @0x608ec)
+4b1b8:  bx  r3
+4b1bc:  .word 0x200027c8
+```
+
+i.e. `vprintf → z_cbvprintf_impl → trampoline → *(0x200027c8) = console_out`
+(`'\n'→"\r\n"`, `uart_poll_out` on the chosen console UART). Golden confirms the
+exact shape: app `log_message` x198 → `vprintf` x198 → `z_cbvprintf_impl` →
+`lseek` x4168 (the trampoline, folded into the `lseek` symbol) → `uart_poll_out`
+x28767. **Golden never runs runtime packaging from this path — it just prints to
+UART.**
+
+In *our relocated* build the literal `0x4b1b5` is **not relocated** (it is the
+original absolute), and `0x4b1b4` now lands **inside an unrelated function
+(`rtc_cb`)**. So `z_cbvprintf_impl` calls through garbage → the code there
+stumbles into `vprintk`/`z_log_vprintk`/`z_impl_z_log_msg_runtime_vcreate` →
+`cbvprintf_package(strlen 0x29287325="%s()")` → `assert_post_action` → `_oops`
+→ `z_arm_fatal_error`. **The "%s()" and the whole runtime-packaging chain were a
+red herring: symptoms of executing `rtc_cb` bytes, not a LOG config.**
+
+Second, coupled defect: the trampoline (@0x4b1b4), its char-out worker
+(`console_out` @0x608ec) and its installer (the UART-console `SYS_INIT` @0x608c4)
+are **all folded inside `clock_control_nrf_on_blocking` (0x60788)** in the
+catalog and were never split out / reconstructed. So even a correct trampoline
+would read `0x200027c8` = **NULL** (its setter `set_g_misc_val_27c8` is
+dead-code-eliminated; a whole-image scan finds only 2 references to `0x200027c8`
+— the trampoline read and that DCE'd setter, whose single caller @0x608c4 is
+unreconstructed).
+
+## 2. The change (one file, relocatable, DT-correct)
+
+`recon/symbolized/app/vprintf.c` — replaced the unrelocated absolute callback
+`rodata_4b1b5` with a relocatable char-out bound to the chosen console UART,
+reproducing the shipped image's observable output path (`console_out →
+uart_poll_out`) without the runtime-swappable hook indirection:
+
+```c
+static int g1_vprintf_char_out(int c, void *ctx) {
+    const struct device *dev = DEVICE_DT_GET(DT_CHOSEN(zephyr_console));
+    if (c == '\n') uart_poll_out(dev, '\r');
+    uart_poll_out(dev, (unsigned char)c);
+    return c;
+}
+/* vprintf: z_cbvprintf_impl(&g1_vprintf_char_out, 0, fmt, ap, ...) */
+```
+
+The compiled `g1_vprintf_char_out` (@0x428f4) is byte-for-byte the same shape as
+Zephyr's own `console_out` (dev→api→`poll_out`, `'\n'→"\r\n"`). Only the
+**build/wiring TU** (`symbolized/app/vprintf.c`, the file actually in
+`recon/generated/app_retained_sources.cmake`) was touched; the byte-parity
+reconstruction in `recon/app/src/FUN_0004b1cc.c` and the pinned `rodata_4b1b5`
+in `g1_app_globals.ld` are left as-is (documented, not deleted). **No `prj.conf`
+/ Kconfig change.**
+
+## 3. Rebuild status
+
+`build_cohesive.sh app /private/tmp/g1-ours-app` → **exit 0, 0 undefined, 0
+duplicate**. FLASH **626432 / 982528 B = 63.76%**. `nm`: `vprintf` @0x4291c now
+loads callback `0x000428f5` = `g1_vprintf_char_out` (valid Thumb function ptr),
+no absolute pin.
+
+## 4. OOPS resolved (confirmed on the hardware-model)
+
+Re-boot via the unmodified `g1-ours.resc`. The log path now runs cleanly:
+
+```
+check_sw0_status → log_message → vprintf → z_cbvprintf_impl
+  → g1_vprintf_char_out → uarte_nrfx_poll_out (→ k_is_in_isr, is_tx_ready,
+    pm_device_state_get)   [~2000 instr of real per-char console output]
+```
+
+No `assert_post_action`, no `_oops`, no `z_log_vprintk` / `runtime_vcreate` /
+`cbvprintf_package`, no QSPI-XIP abort. The console UART output path is now
+identical in behavior to golden (`… → uart_poll_out`).
+
+## 5. New milestone tier + instruction counts
+
+**Milestone tier: still E4 *entered*, not completed** — but qualitatively
+further than iter-1/2:
+
+- **Console/UART logging now works end-to-end** (golden-equivalent) — a real E4
+  capability that was previously fatal.
+- **Net core advanced 85k → ~248k instr** (released, running its RTC/timer ISR
+  loop; alive, no fault).
+- App reaches **new code never executed before**: `pt_nfc_eeprom_link_start` /
+  `pt_nfc_eeprom_link_init` (@4,703,825/4,703,828).
+- **Still NOT reached:** `ipc_service_send`, display `spi_read_id`, `bt_enable`,
+  `bt_start`, first ADV_IND.
+
+Honest note on instruction counts: the trace ran to the 0.15 s budget
+(**14,999,144** app instr) but real forward progress is **~1,500 app
+instructions past iter-2's assert** — after the usage fault (§6) the app spins in
+the fatal handler `drop_item_locked` for ~10.3M instr (log-mpsc drop loop, i.e.
+panic spin, **not** boot progress). Golden app total is 12,629,795 instr and
+reaches E1–E5 with **no** `z_arm_usage_fault` / `_oops`.
+
+## 6. New first divergence (precise) + classification
+
+**Usage fault (Cortex-M) at instr 4,703,842.** Chain (relocated addrs, our-ELF nm):
+
+```
+main → register_ipc_service_context → check_sw0_status  (log path completes OK)
+check_sw0_status tail-calls (ldmia sp!,{r3,r4,r5,lr}; b.w) →
+  pt_nfc_eeprom_link_start (0x2be9c) → pt_nfc_eeprom_link_init (0x2bdb4)
+    [runs only 8 instr, early-returns -1] → back to link_start @0x2bea4
+  0x2beae: pop {r3,pc}   → z_arm_usage_fault (0x4e7b0)   ← FAULT
+    → z_arm_fault → usage_fault.constprop.0 → z_arm_fatal_error → z_fatal_error
+    → spins in drop_item_locked
+```
+
+- **Faulting instruction:** `pop {r3,pc}` at 0x2beae (return from
+  `pt_nfc_eeprom_link_start`). The popped return PC triggers a usage fault —
+  overwhelmingly **INVSTATE** (return address with the Thumb bit clear), the
+  natural cause for a `pop {…,pc}` fault. *To confirm in iter-4: read the stacked
+  return word at the fault.*
+- **Expected (golden):** golden runs `pt_nfc_eeprom_link_start` (x2, 9 instr) and
+  `pt_nfc_eeprom_link_init` (x2, **33 instr**) with **no fault**, and reaches E5.
+- **Key data divergence:** our `pt_nfc_eeprom_link_init` runs only **8 instr** and
+  early-returns `-1` because its config struct **`g_pt_nfc_link_cfg_static`
+  @0x20002408** (an absolute RAM pin) is **all-zero / unpopulated** — its first
+  word is 0, so the first `if (cfg->fn == NULL) return -1;` check trips. Golden's
+  33-instr run means the struct's 4 function pointers are populated there.
+- **Fault classification:** **reconstruction / wiring defect**, same meta-class as
+  this iteration's fix (unrelocated pointer *or* an unreconstructed installer /
+  ordering) — **not** a Kconfig/DT mismatch, **not** a recon-logic defect (the
+  functions are parity-proven), **not** an emulator gap. Two candidate root causes
+  (iter-4 to disambiguate): (a) the NFC-eeprom-link vtable installer /`SYS_INIT`
+  that populates `g_pt_nfc_link_cfg_static` is unreconstructed or ordered *after*
+  `link_start` (the exact "folded/DCE'd installer" pattern just fixed for the
+  console hook), and/or (b) a corrupted / non-Thumb stacked return address in the
+  `register_ipc_service_context → check_sw0_status → link_start` tail-call chain
+  (note our `register_ipc_service_context` runs 1× here vs golden's 59× / broader
+  interleaving — the early-main control flow may itself be arriving on a divergent
+  path).
+
+## 7. Recommended next fix (drives iteration 4)
+
+1. **Confirm the fault mode:** at instr 4,703,842 read SP + the stacked return
+   word popped by `0x2beae`; verify bit0 == 0 (INVSTATE) and identify the bad
+   return target.
+2. **Ground-truth `g_pt_nfc_link_cfg_static` (0x20002408):** find who writes its
+   4 function pointers in the original image (BL/store scan), check whether that
+   installer is reconstructed and registered, and whether it runs **before**
+   `pt_nfc_eeprom_link_start` — same technique that found the missing console-hook
+   installer this iteration.
+3. **Check the early-`main()` control flow** vs golden around
+   `register_ipc_service_context` / `check_sw0_status` (ours reaches this cluster
+   ~4.70M in one pass; golden interleaves `register_ipc_service_context` 59× across
+   5–12M) to ensure `link_start` is not being reached on a divergent path.
+
+Acceptance target unchanged: reach E4 completion (`bt_start` / first ADV_IND /
+display init) on our build.
+
+## Regenerate (iteration 3)
+
+Same commands as iterations 1–2 (build `app`, boot `g1-ours.resc` via
+`/tmp/g1_ours/trace_ours.resc`, analyze with `analyze_ours.py` + `app_nm.txt`).
+The only source change is `recon/symbolized/app/vprintf.c`. Nothing committed.
