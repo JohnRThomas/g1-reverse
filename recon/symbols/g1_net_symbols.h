@@ -34,9 +34,15 @@
 #define REG_41016348     0x41016348UL
 
 /* ---- function addresses ---- */
-#define ADDR_FUN_01012438_THUMB              0x1012439 /* FUN_01012438 */
-#define ADDR_FUN_010333e4_THUMB              0x10333e5 /* FUN_010333e4 */
+/* Relocation-correct rebind: function pointers now resolve to the
+ * linker-placed symbol address (bit0=Thumb preserved), not the
+ * original-image literal.  Aliased via __asm__ so the extern never
+ * conflicts with the real definition's signature. */
+extern const unsigned char __g1_fp_FUN_01012438[] __asm__("FUN_01012438");
 
+#define ADDR_FUN_01012438_THUMB (((unsigned long)&__g1_fp_FUN_01012438) | 1u) /* FUN_01012438 -> &FUN_01012438; was 0x1012439 */
+/* UNRESOLVED (no defined symbol for 0x10333e4) -- kept as original literal */
+#define ADDR_FUN_010333e4_THUMB              0x10333e5 /* FUN_010333e4 */
 /* ---- RAM globals / kernel objects (232) ---- */
 extern volatile unsigned int g_net_fault_canary_flag; /* @0x20070000 */
 extern volatile unsigned int g_net_esb_own_addr; /* @0x21000010 */

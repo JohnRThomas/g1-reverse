@@ -41,109 +41,215 @@
 #define REG_50039400     0x50039400UL
 
 /* ---- function addresses ---- */
-#define ADDR_FUN_00021da8_THUMB              0x21da9 /* FUN_00021da8 */
-#define ADDR_FUN_00023844_THUMB              0x23845 /* FUN_00023844 */
-#define ADDR_FUN_0002a8d8_THUMB              0x2a8d9 /* FUN_0002a8d8 */
-#define ADDR_FUN_0004d058_THUMB              0x4d059 /* FUN_0004d058 */
-#define ADDR_FUN_0007eb7e_THUMB              0x7eb7f /* FUN_0007eb7e */
-#define ADDR_FUN_0007f634_THUMB              0x7f635 /* FUN_0007f634 */
-#define ADDR_FUN_00081c8c_THUMB              0x81c8d /* FUN_00081c8c */
-#define ADDR_FUN_00082d6a_THUMB              0x82d6b /* FUN_00082d6a */
-#define ADDR_FUN_000859c2_THUMB              0x859c3 /* FUN_000859c2 */
-#define ADDR_FUN_00085a04_THUMB              0x85a05 /* FUN_00085a04 */
-#define ADDR_att_send_with_retry_THUMB       0x818dd /* att_send_with_retry */
-#define ADDR_att_timeout_THUMB               0x59921 /* att_timeout */
-#define ADDR_attr_read_type_cb_THUMB         0x81bd1 /* attr_read_type_cb */
-#define ADDR_ble_ancs_data_req_thread_THUMB  0x19719 /* ble_ancs_data_req_thread */
-#define ADDR_ble_conn_process_complete_or_disconnect_THUMB 0x570a1 /* ble_conn_process_complete_or_disconnect */
-#define ADDR_ble_requeue_command_via_dispatch_THUMB 0x7c245 /* ble_requeue_command_via_dispatch */
-#define ADDR_bound_cb_THUMB                  0x4cefd /* bound_cb */
-#define ADDR_bt_ancs_cp_write_callback_THUMB 0x7f5ef /* bt_ancs_cp_write_callback */
-#define ADDR_bt_ancs_data_source_handler_THUMB 0x18c49 /* bt_ancs_data_source_handler */
-#define ADDR_bt_le_adv_clear_pending_flag_THUMB 0x81081 /* bt_le_adv_clear_pending_flag */
-#define ADDR_cbor_decode_bool_THUMB          0x86007 /* cbor_decode_bool */
-#define ADDR_cbvprintf_wrapper_THUMB         0x7eec1 /* cbvprintf_wrapper */
-#define ADDR_check_bonded_addr_THUMB         0x183e5 /* check_bonded_addr */
-#define ADDR_click_event_dispatch_loop_THUMB 0x28a1d /* click_event_dispatch_loop */
-#define ADDR_clock_event_notify_u16pair_THUMB 0x7f895 /* clock_event_notify_u16pair */
-#define ADDR_convert_to_id_on_match_THUMB    0x831e3 /* convert_to_id_on_match */
-#define ADDR_discovery_callback_THUMB        0x4ea79 /* discovery_callback */
-#define ADDR_display_dispatch_thread_THUMB   0x28bed /* display_dispatch_thread */
-#define ADDR_display_thread_handler_THUMB    0x49091 /* display_thread_handler */
-#define ADDR_ept_cb_THUMB                    0x7ecc5 /* ept_cb */
-#define ADDR_ext_flash_read_THUMB            0x2e399 /* ext_flash_read */
-#define ADDR_ext_flash_write_THUMB           0x2e441 /* ext_flash_write */
-#define ADDR_flash_ops_thread_THUMB          0x23481 /* flash_ops_thread */
-#define ADDR_flowctl_schedule_next_send_THUMB 0x84b87 /* flowctl_schedule_next_send */
-#define ADDR_gatt_cancel_encode_THUMB        0x8278b /* gatt_cancel_encode */
-#define ADDR_gatt_ccc_settings_set_THUMB     0x5af8d /* gatt_ccc_settings_set */
-#define ADDR_gatt_ccc_write_THUMB            0x5a465 /* gatt_ccc_write */
-#define ADDR_gatt_ccc_write_store_cb_THUMB   0x59ded /* gatt_ccc_write_store_cb */
-#define ADDR_gatt_exec_encode_THUMB          0x8279d /* gatt_exec_encode */
-#define ADDR_gatt_find_info_encode_THUMB     0x82773 /* gatt_find_info_encode */
-#define ADDR_gatt_indicate_rsp_THUMB         0x825d5 /* gatt_indicate_rsp */
-#define ADDR_gatt_parse_find_by_type_rsp_THUMB 0x5bbf5 /* gatt_parse_find_by_type_rsp */
-#define ADDR_gatt_parse_find_info_rsp_THUMB  0x5c0bd /* gatt_parse_find_info_rsp */
-#define ADDR_gatt_parse_read_by_type_rsp_128_THUMB 0x5c005 /* gatt_parse_read_by_type_rsp_128 */
-#define ADDR_gatt_parse_read_by_type_rsp_THUMB 0x5bd19 /* gatt_parse_read_by_type_rsp */
-#define ADDR_gatt_prepare_write_encode_THUMB 0x82857 /* gatt_prepare_write_encode */
-#define ADDR_gatt_read_group_encode_THUMB    0x827af /* gatt_read_group_encode */
-#define ADDR_gatt_read_type_encode_THUMB     0x827df /* gatt_read_type_encode */
-#define ADDR_gatt_remove_peer_from_attr_THUMB 0x5a3c5 /* gatt_remove_peer_from_attr */
-#define ADDR_gatt_send_ccc_update_THUMB      0x5b891 /* gatt_send_ccc_update */
-#define ADDR_gatt_store_ccc_cf_triple_THUMB  0x82fa7 /* gatt_store_ccc_cf_triple */
-#define ADDR_gatt_sub_resolve_handle_THUMB   0x86f93 /* gatt_sub_resolve_handle */
-#define ADDR_gatt_write_ccc_buf_THUMB        0x82b6f /* gatt_write_ccc_buf */
-#define ADDR_gatt_write_ccc_rsp_THUMB        0x5a1b1 /* gatt_write_ccc_rsp */
-#define ADDR_gatt_write_encode_THUMB         0x8281b /* gatt_write_encode */
-#define ADDR_gen_hash_m_THUMB                0x8260d /* gen_hash_m */
-#define ADDR_global_ipc_service_send_THUMB   0x25b79 /* global_ipc_service_send */
-#define ADDR_hci_tx_thread_THUMB             0x545f1 /* hci_tx_thread */
-#define ADDR_indicate_sc_cb_THUMB            0x18a39 /* indicate_sc_cb */
-#define ADDR_init_ble_work_thread_THUMB      0x2201d /* init_ble_work_thread */
-#define ADDR_iobuf_ensure_capacity_and_append_THUMB 0x87737 /* iobuf_ensure_capacity_and_append */
-#define ADDR_jdb_panel_init_THUMB            0x46fc1 /* jdb_panel_init */
-#define ADDR_key_event_thread_THUMB          0x2955d /* key_event_thread */
-#define ADDR_l2cap_chan_disconnected_cb_THUMB 0x81a77 /* l2cap_chan_disconnected_cb */
-#define ADDR_l2cap_disconnect_tx_chan_THUMB  0x81a61 /* l2cap_disconnect_tx_chan */
-#define ADDR_l2cap_reassemble_frag_THUMB     0x82e05 /* l2cap_reassemble_frag */
-#define ADDR_libc_stream_write_syscall_THUMB 0x86f5b /* libc_stream_write_syscall */
-#define ADDR_libc_write_buffer_via_putc_THUMB 0x86cb7 /* libc_write_buffer_via_putc */
-#define ADDR_local_esbs_ipc_service_recv_THUMB 0x15961 /* local_esbs_ipc_service_recv */
-#define ADDR_local_store_write_THUMB         0x22169 /* local_store_write */
-#define ADDR_low_speed_peripheral_dispatch_thread_for_test_THUMB 0x2685d /* low_speed_peripheral_dispatch_thread_for_test */
-#define ADDR_mic_transm_thread_THUMB         0x324bd /* mic_transm_thread */
-#define ADDR_nfc_field_event_signal_sem_THUMB 0x1793d /* nfc_field_event_signal_sem */
-#define ADDR_notify_config_change_if_connected_THUMB 0x17e85 /* notify_config_change_if_connected */
-#define ADDR_nrf53_sync_rtc_ipc_channel_setup_THUMB 0x4c419 /* nrf53_sync_rtc_ipc_channel_setup */
-#define ADDR_opt3001_read_lux_raw_THUMB      0x2e649 /* opt3001_read_lux_raw */
-#define ADDR_opt3007_chip_init_THUMB         0x2e67d /* opt3007_chip_init */
-#define ADDR_panel_off_THUMB                 0x46d2d /* panel_off */
-#define ADDR_panel_on_THUMB                  0x46dd9 /* panel_on */
-#define ADDR_printf_render_float_THUMB       0x7712d /* printf_render_float */
-#define ADDR_process_task_sync_event_THUMB   0x286f9 /* process_task_sync_event */
-#define ADDR_proxy_thread_handler_THUMB      0x47c49 /* proxy_thread_handler */
-#define ADDR_read_included_uuid_encode_THUMB 0x8275f /* read_included_uuid_encode */
-#define ADDR_rpmsg_virtio_get_tx_buffer_wait_THUMB 0x85b0d /* rpmsg_virtio_get_tx_buffer_wait */
-#define ADDR_rpmsg_virtio_rx_notify_THUMB    0x7118d /* rpmsg_virtio_rx_notify */
-#define ADDR_rpmsg_virtio_send_copy_THUMB    0x71295 /* rpmsg_virtio_send_copy */
-#define ADDR_rpmsg_virtio_tx_enqueue_THUMB   0x710b5 /* rpmsg_virtio_tx_enqueue */
-#define ADDR_sc_restore_THUMB                0x5b555 /* sc_restore */
-#define ADDR_sc_restore_rsp_THUMB            0x82bd5 /* sc_restore_rsp */
-#define ADDR_settings_nvs_read_fn_THUMB      0x7f211 /* settings_nvs_read_fn */
-#define ADDR_smp_dhkey_ready_cb_THUMB        0x8349d /* smp_dhkey_ready_cb */
-#define ADDR_smp_handle_reqs_THUMB           0x80ab5 /* smp_handle_reqs */
-#define ADDR_spi_master_init_THUMB           0x26419 /* spi_master_init */
-#define ADDR_spi_master_trans_data_tx_rx_THUMB 0x262ad /* spi_master_trans_data_tx_rx */
-#define ADDR_spim_select_instance_by_mode_THUMB 0x26339 /* spim_select_instance_by_mode */
-#define ADDR_stdio_reset_ungetc_buffer_THUMB 0x87863 /* stdio_reset_ungetc_buffer */
-#define ADDR_touch_key_thread_THUMB          0x2a0d9 /* touch_key_thread */
-#define ADDR_transport_dispatch_thread_THUMB 0x2a4f5 /* transport_dispatch_thread */
-#define ADDR_uart_callback_THUMB             0x33385 /* uart_callback */
-#define ADDR_virtqueue_return_rx_buffer_THUMB 0x85a9d /* virtqueue_return_rx_buffer */
-#define ADDR_z_cbprintf_cpy_THUMB            0x7ee49 /* z_cbprintf_cpy */
-#define ADDR_z_impl_net_if_ipv6_addr_rm_by_index_THUMB 0x80c8d /* z_impl_net_if_ipv6_addr_rm_by_index */
+/* Relocation-correct rebind: function pointers now resolve to the
+ * linker-placed symbol address (bit0=Thumb preserved), not the
+ * original-image literal.  Aliased via __asm__ so the extern never
+ * conflicts with the real definition's signature. */
+extern const unsigned char __g1_fp_FUN_00021da8[] __asm__("ble_work_thread");
+extern const unsigned char __g1_fp_FUN_00023844[] __asm__("brightness_level");
+extern const unsigned char __g1_fp_FUN_0002a8d8[] __asm__("low_speed_peripheral_dispatch_thread");
+extern const unsigned char __g1_fp_att_send_with_retry[] __asm__("att_send_with_retry");
+extern const unsigned char __g1_fp_att_timeout[] __asm__("att_timeout");
+extern const unsigned char __g1_fp_ble_ancs_data_req_thread[] __asm__("ble_ancs_data_req_thread");
+extern const unsigned char __g1_fp_ble_conn_process_complete_or_disconnect[] __asm__("ble_conn_process_complete_or_disconnect");
+extern const unsigned char __g1_fp_ble_requeue_command_via_dispatch[] __asm__("ble_requeue_command_via_dispatch");
+extern const unsigned char __g1_fp_bt_ancs_cp_write_callback[] __asm__("bt_ancs_cp_write_callback");
+extern const unsigned char __g1_fp_bt_ancs_data_source_handler[] __asm__("bt_ancs_data_source_handler");
+extern const unsigned char __g1_fp_bt_le_adv_clear_pending_flag[] __asm__("bt_le_adv_clear_pending_flag");
+extern const unsigned char __g1_fp_cbor_decode_bool[] __asm__("cbor_decode_bool");
+extern const unsigned char __g1_fp_cbvprintf_wrapper[] __asm__("cbvprintf_wrapper");
+extern const unsigned char __g1_fp_check_bonded_addr[] __asm__("check_bonded_addr");
+extern const unsigned char __g1_fp_click_event_dispatch_loop[] __asm__("click_event_dispatch_loop");
+extern const unsigned char __g1_fp_clock_event_notify_u16pair[] __asm__("clock_event_notify_u16pair");
+extern const unsigned char __g1_fp_convert_to_id_on_match[] __asm__("convert_to_id_on_match");
+extern const unsigned char __g1_fp_discovery_callback[] __asm__("discovery_callback");
+extern const unsigned char __g1_fp_display_dispatch_thread[] __asm__("display_dispatch_thread");
+extern const unsigned char __g1_fp_display_thread_handler[] __asm__("display_thread_handler");
+extern const unsigned char __g1_fp_ext_flash_read[] __asm__("ext_flash_read");
+extern const unsigned char __g1_fp_ext_flash_write[] __asm__("ext_flash_write");
+extern const unsigned char __g1_fp_flash_ops_thread[] __asm__("flash_ops_thread");
+extern const unsigned char __g1_fp_flowctl_schedule_next_send[] __asm__("flowctl_schedule_next_send");
+extern const unsigned char __g1_fp_gatt_ccc_settings_set[] __asm__("gatt_ccc_settings_set");
+extern const unsigned char __g1_fp_gatt_ccc_write[] __asm__("gatt_ccc_write");
+extern const unsigned char __g1_fp_gatt_ccc_write_store_cb[] __asm__("gatt_ccc_write_store_cb");
+extern const unsigned char __g1_fp_gatt_parse_find_by_type_rsp[] __asm__("gatt_parse_find_by_type_rsp");
+extern const unsigned char __g1_fp_gatt_parse_find_info_rsp[] __asm__("gatt_parse_find_info_rsp");
+extern const unsigned char __g1_fp_gatt_parse_read_by_type_rsp[] __asm__("gatt_parse_read_by_type_rsp");
+extern const unsigned char __g1_fp_gatt_parse_read_by_type_rsp_128[] __asm__("gatt_parse_read_by_type_rsp_128");
+extern const unsigned char __g1_fp_gatt_remove_peer_from_attr[] __asm__("gatt_remove_peer_from_attr");
+extern const unsigned char __g1_fp_gatt_send_ccc_update[] __asm__("gatt_send_ccc_update");
+extern const unsigned char __g1_fp_gatt_store_ccc_cf_triple[] __asm__("gatt_store_ccc_cf_triple");
+extern const unsigned char __g1_fp_gatt_sub_resolve_handle[] __asm__("gatt_sub_resolve_handle");
+extern const unsigned char __g1_fp_gatt_write_ccc_rsp[] __asm__("gatt_write_ccc_rsp");
+extern const unsigned char __g1_fp_global_ipc_service_send[] __asm__("global_ipc_service_send");
+extern const unsigned char __g1_fp_indicate_sc_cb[] __asm__("indicate_sc_cb");
+extern const unsigned char __g1_fp_init_ble_work_thread[] __asm__("init_ble_work_thread");
+extern const unsigned char __g1_fp_iobuf_ensure_capacity_and_append[] __asm__("iobuf_ensure_capacity_and_append");
+extern const unsigned char __g1_fp_jdb_panel_init[] __asm__("jdb_panel_init");
+extern const unsigned char __g1_fp_key_event_thread[] __asm__("key_event_thread");
+extern const unsigned char __g1_fp_l2cap_chan_disconnected_cb[] __asm__("l2cap_chan_disconnected_cb");
+extern const unsigned char __g1_fp_l2cap_disconnect_tx_chan[] __asm__("l2cap_disconnect_tx_chan");
+extern const unsigned char __g1_fp_l2cap_reassemble_frag[] __asm__("l2cap_reassemble_frag");
+extern const unsigned char __g1_fp_libc_stream_write_syscall[] __asm__("libc_stream_write_syscall");
+extern const unsigned char __g1_fp_libc_write_buffer_via_putc[] __asm__("libc_write_buffer_via_putc");
+extern const unsigned char __g1_fp_local_esbs_ipc_service_recv[] __asm__("local_esbs_ipc_service_recv");
+extern const unsigned char __g1_fp_local_store_write[] __asm__("local_store_write");
+extern const unsigned char __g1_fp_low_speed_peripheral_dispatch_thread_for_test[] __asm__("low_speed_peripheral_dispatch_thread_for_test");
+extern const unsigned char __g1_fp_mic_transm_thread[] __asm__("mic_transm_thread");
+extern const unsigned char __g1_fp_nfc_field_event_signal_sem[] __asm__("nfc_field_event_signal_sem");
+extern const unsigned char __g1_fp_notify_config_change_if_connected[] __asm__("notify_config_change_if_connected");
+extern const unsigned char __g1_fp_nrf53_sync_rtc_ipc_channel_setup[] __asm__("nrf53_sync_rtc_ipc_channel_setup");
+extern const unsigned char __g1_fp_opt3001_read_lux_raw[] __asm__("opt3001_read_lux_raw");
+extern const unsigned char __g1_fp_opt3007_chip_init[] __asm__("opt3007_chip_init");
+extern const unsigned char __g1_fp_panel_off[] __asm__("panel_off");
+extern const unsigned char __g1_fp_panel_on[] __asm__("panel_on");
+extern const unsigned char __g1_fp_printf_render_float[] __asm__("printf_render_float");
+extern const unsigned char __g1_fp_process_task_sync_event[] __asm__("process_task_sync_event");
+extern const unsigned char __g1_fp_proxy_thread_handler[] __asm__("proxy_thread_handler");
+extern const unsigned char __g1_fp_rpmsg_virtio_get_tx_buffer_wait[] __asm__("rpmsg_virtio_get_tx_buffer_wait");
+extern const unsigned char __g1_fp_rpmsg_virtio_rx_notify[] __asm__("rpmsg_virtio_rx_notify");
+extern const unsigned char __g1_fp_rpmsg_virtio_send_copy[] __asm__("rpmsg_virtio_send_copy");
+extern const unsigned char __g1_fp_rpmsg_virtio_tx_enqueue[] __asm__("rpmsg_virtio_tx_enqueue");
+extern const unsigned char __g1_fp_sc_restore[] __asm__("sc_restore");
+extern const unsigned char __g1_fp_sc_restore_rsp[] __asm__("sc_restore_rsp");
+extern const unsigned char __g1_fp_settings_nvs_read_fn[] __asm__("settings_nvs_read_fn");
+extern const unsigned char __g1_fp_smp_dhkey_ready_cb[] __asm__("smp_dhkey_ready_cb");
+extern const unsigned char __g1_fp_spi_master_init[] __asm__("spi_master_init");
+extern const unsigned char __g1_fp_spi_master_trans_data_tx_rx[] __asm__("spi_master_trans_data_tx_rx");
+extern const unsigned char __g1_fp_spim_select_instance_by_mode[] __asm__("spim_select_instance_by_mode");
+extern const unsigned char __g1_fp_stdio_reset_ungetc_buffer[] __asm__("stdio_reset_ungetc_buffer");
+extern const unsigned char __g1_fp_touch_key_thread[] __asm__("touch_key_thread");
+extern const unsigned char __g1_fp_transport_dispatch_thread[] __asm__("transport_dispatch_thread");
+extern const unsigned char __g1_fp_uart_callback[] __asm__("uart_callback");
+extern const unsigned char __g1_fp_virtqueue_return_rx_buffer[] __asm__("virtqueue_return_rx_buffer");
+extern const unsigned char __g1_fp_z_impl_net_if_ipv6_addr_rm_by_index[] __asm__("z_impl_net_if_ipv6_addr_rm_by_index");
 
+#define ADDR_FUN_00021da8_THUMB (((unsigned long)&__g1_fp_FUN_00021da8) | 1u) /* FUN_00021da8 -> &ble_work_thread; was 0x21da9 */
+#define ADDR_FUN_00023844_THUMB (((unsigned long)&__g1_fp_FUN_00023844) | 1u) /* FUN_00023844 -> &brightness_level; was 0x23845 */
+#define ADDR_FUN_0002a8d8_THUMB (((unsigned long)&__g1_fp_FUN_0002a8d8) | 1u) /* FUN_0002a8d8 -> &low_speed_peripheral_dispatch_thread; was 0x2a8d9 */
+/* UNRESOLVED (no defined symbol for 0x4d058) -- kept as original literal */
+#define ADDR_FUN_0004d058_THUMB              0x4d059 /* FUN_0004d058 */
+/* UNRESOLVED (no defined symbol for 0x7eb7e) -- kept as original literal */
+#define ADDR_FUN_0007eb7e_THUMB              0x7eb7f /* FUN_0007eb7e */
+/* UNRESOLVED (no defined symbol for 0x7f634) -- kept as original literal */
+#define ADDR_FUN_0007f634_THUMB              0x7f635 /* FUN_0007f634 */
+/* UNRESOLVED (no defined symbol for 0x81c8c) -- kept as original literal */
+#define ADDR_FUN_00081c8c_THUMB              0x81c8d /* FUN_00081c8c */
+/* UNRESOLVED (no defined symbol for 0x82d6a) -- kept as original literal */
+#define ADDR_FUN_00082d6a_THUMB              0x82d6b /* FUN_00082d6a */
+/* UNRESOLVED (no defined symbol for 0x859c2) -- kept as original literal */
+#define ADDR_FUN_000859c2_THUMB              0x859c3 /* FUN_000859c2 */
+/* UNRESOLVED (no defined symbol for 0x85a04) -- kept as original literal */
+#define ADDR_FUN_00085a04_THUMB              0x85a05 /* FUN_00085a04 */
+#define ADDR_att_send_with_retry_THUMB (((unsigned long)&__g1_fp_att_send_with_retry) | 1u) /* att_send_with_retry -> &att_send_with_retry; was 0x818dd */
+#define ADDR_att_timeout_THUMB (((unsigned long)&__g1_fp_att_timeout) | 1u) /* att_timeout -> &att_timeout; was 0x59921 */
+/* UNRESOLVED (no defined symbol for 0x81bd0) -- kept as original literal */
+#define ADDR_attr_read_type_cb_THUMB         0x81bd1 /* attr_read_type_cb */
+#define ADDR_ble_ancs_data_req_thread_THUMB (((unsigned long)&__g1_fp_ble_ancs_data_req_thread) | 1u) /* ble_ancs_data_req_thread -> &ble_ancs_data_req_thread; was 0x19719 */
+#define ADDR_ble_conn_process_complete_or_disconnect_THUMB (((unsigned long)&__g1_fp_ble_conn_process_complete_or_disconnect) | 1u) /* ble_conn_process_complete_or_disconnect -> &ble_conn_process_complete_or_disconnect; was 0x570a1 */
+#define ADDR_ble_requeue_command_via_dispatch_THUMB (((unsigned long)&__g1_fp_ble_requeue_command_via_dispatch) | 1u) /* ble_requeue_command_via_dispatch -> &ble_requeue_command_via_dispatch; was 0x7c245 */
+/* UNRESOLVED (no defined symbol for 0x4cefc) -- kept as original literal */
+#define ADDR_bound_cb_THUMB                  0x4cefd /* bound_cb */
+#define ADDR_bt_ancs_cp_write_callback_THUMB (((unsigned long)&__g1_fp_bt_ancs_cp_write_callback) | 1u) /* bt_ancs_cp_write_callback -> &bt_ancs_cp_write_callback; was 0x7f5ef */
+#define ADDR_bt_ancs_data_source_handler_THUMB (((unsigned long)&__g1_fp_bt_ancs_data_source_handler) | 1u) /* bt_ancs_data_source_handler -> &bt_ancs_data_source_handler; was 0x18c49 */
+#define ADDR_bt_le_adv_clear_pending_flag_THUMB (((unsigned long)&__g1_fp_bt_le_adv_clear_pending_flag) | 1u) /* bt_le_adv_clear_pending_flag -> &bt_le_adv_clear_pending_flag; was 0x81081 */
+#define ADDR_cbor_decode_bool_THUMB (((unsigned long)&__g1_fp_cbor_decode_bool) | 1u) /* cbor_decode_bool -> &cbor_decode_bool; was 0x86007 */
+#define ADDR_cbvprintf_wrapper_THUMB (((unsigned long)&__g1_fp_cbvprintf_wrapper) | 1u) /* cbvprintf_wrapper -> &cbvprintf_wrapper; was 0x7eec1 */
+#define ADDR_check_bonded_addr_THUMB (((unsigned long)&__g1_fp_check_bonded_addr) | 1u) /* check_bonded_addr -> &check_bonded_addr; was 0x183e5 */
+#define ADDR_click_event_dispatch_loop_THUMB (((unsigned long)&__g1_fp_click_event_dispatch_loop) | 1u) /* click_event_dispatch_loop -> &click_event_dispatch_loop; was 0x28a1d */
+#define ADDR_clock_event_notify_u16pair_THUMB (((unsigned long)&__g1_fp_clock_event_notify_u16pair) | 1u) /* clock_event_notify_u16pair -> &clock_event_notify_u16pair; was 0x7f895 */
+#define ADDR_convert_to_id_on_match_THUMB (((unsigned long)&__g1_fp_convert_to_id_on_match) | 1u) /* convert_to_id_on_match -> &convert_to_id_on_match; was 0x831e3 */
+#define ADDR_discovery_callback_THUMB (((unsigned long)&__g1_fp_discovery_callback) | 1u) /* discovery_callback -> &discovery_callback; was 0x4ea79 */
+#define ADDR_display_dispatch_thread_THUMB (((unsigned long)&__g1_fp_display_dispatch_thread) | 1u) /* display_dispatch_thread -> &display_dispatch_thread; was 0x28bed */
+#define ADDR_display_thread_handler_THUMB (((unsigned long)&__g1_fp_display_thread_handler) | 1u) /* display_thread_handler -> &display_thread_handler; was 0x49091 */
+/* UNRESOLVED (no defined symbol for 0x7ecc4) -- kept as original literal */
+#define ADDR_ept_cb_THUMB                    0x7ecc5 /* ept_cb */
+#define ADDR_ext_flash_read_THUMB (((unsigned long)&__g1_fp_ext_flash_read) | 1u) /* ext_flash_read -> &ext_flash_read; was 0x2e399 */
+#define ADDR_ext_flash_write_THUMB (((unsigned long)&__g1_fp_ext_flash_write) | 1u) /* ext_flash_write -> &ext_flash_write; was 0x2e441 */
+#define ADDR_flash_ops_thread_THUMB (((unsigned long)&__g1_fp_flash_ops_thread) | 1u) /* flash_ops_thread -> &flash_ops_thread; was 0x23481 */
+#define ADDR_flowctl_schedule_next_send_THUMB (((unsigned long)&__g1_fp_flowctl_schedule_next_send) | 1u) /* flowctl_schedule_next_send -> &flowctl_schedule_next_send; was 0x84b87 */
+/* UNRESOLVED (no defined symbol for 0x8278a) -- kept as original literal */
+#define ADDR_gatt_cancel_encode_THUMB        0x8278b /* gatt_cancel_encode */
+#define ADDR_gatt_ccc_settings_set_THUMB (((unsigned long)&__g1_fp_gatt_ccc_settings_set) | 1u) /* gatt_ccc_settings_set -> &gatt_ccc_settings_set; was 0x5af8d */
+#define ADDR_gatt_ccc_write_THUMB (((unsigned long)&__g1_fp_gatt_ccc_write) | 1u) /* gatt_ccc_write -> &gatt_ccc_write; was 0x5a465 */
+#define ADDR_gatt_ccc_write_store_cb_THUMB (((unsigned long)&__g1_fp_gatt_ccc_write_store_cb) | 1u) /* gatt_ccc_write_store_cb -> &gatt_ccc_write_store_cb; was 0x59ded */
+/* UNRESOLVED (no defined symbol for 0x8279c) -- kept as original literal */
+#define ADDR_gatt_exec_encode_THUMB          0x8279d /* gatt_exec_encode */
+/* UNRESOLVED (no defined symbol for 0x82772) -- kept as original literal */
+#define ADDR_gatt_find_info_encode_THUMB     0x82773 /* gatt_find_info_encode */
+/* UNRESOLVED (no defined symbol for 0x825d4) -- kept as original literal */
+#define ADDR_gatt_indicate_rsp_THUMB         0x825d5 /* gatt_indicate_rsp */
+#define ADDR_gatt_parse_find_by_type_rsp_THUMB (((unsigned long)&__g1_fp_gatt_parse_find_by_type_rsp) | 1u) /* gatt_parse_find_by_type_rsp -> &gatt_parse_find_by_type_rsp; was 0x5bbf5 */
+#define ADDR_gatt_parse_find_info_rsp_THUMB (((unsigned long)&__g1_fp_gatt_parse_find_info_rsp) | 1u) /* gatt_parse_find_info_rsp -> &gatt_parse_find_info_rsp; was 0x5c0bd */
+#define ADDR_gatt_parse_read_by_type_rsp_128_THUMB (((unsigned long)&__g1_fp_gatt_parse_read_by_type_rsp_128) | 1u) /* gatt_parse_read_by_type_rsp_128 -> &gatt_parse_read_by_type_rsp_128; was 0x5c005 */
+#define ADDR_gatt_parse_read_by_type_rsp_THUMB (((unsigned long)&__g1_fp_gatt_parse_read_by_type_rsp) | 1u) /* gatt_parse_read_by_type_rsp -> &gatt_parse_read_by_type_rsp; was 0x5bd19 */
+/* UNRESOLVED (no defined symbol for 0x82856) -- kept as original literal */
+#define ADDR_gatt_prepare_write_encode_THUMB 0x82857 /* gatt_prepare_write_encode */
+/* UNRESOLVED (no defined symbol for 0x827ae) -- kept as original literal */
+#define ADDR_gatt_read_group_encode_THUMB    0x827af /* gatt_read_group_encode */
+/* UNRESOLVED (no defined symbol for 0x827de) -- kept as original literal */
+#define ADDR_gatt_read_type_encode_THUMB     0x827df /* gatt_read_type_encode */
+#define ADDR_gatt_remove_peer_from_attr_THUMB (((unsigned long)&__g1_fp_gatt_remove_peer_from_attr) | 1u) /* gatt_remove_peer_from_attr -> &gatt_remove_peer_from_attr; was 0x5a3c5 */
+#define ADDR_gatt_send_ccc_update_THUMB (((unsigned long)&__g1_fp_gatt_send_ccc_update) | 1u) /* gatt_send_ccc_update -> &gatt_send_ccc_update; was 0x5b891 */
+#define ADDR_gatt_store_ccc_cf_triple_THUMB (((unsigned long)&__g1_fp_gatt_store_ccc_cf_triple) | 1u) /* gatt_store_ccc_cf_triple -> &gatt_store_ccc_cf_triple; was 0x82fa7 */
+#define ADDR_gatt_sub_resolve_handle_THUMB (((unsigned long)&__g1_fp_gatt_sub_resolve_handle) | 1u) /* gatt_sub_resolve_handle -> &gatt_sub_resolve_handle; was 0x86f93 */
+/* UNRESOLVED (no defined symbol for 0x82b6e) -- kept as original literal */
+#define ADDR_gatt_write_ccc_buf_THUMB        0x82b6f /* gatt_write_ccc_buf */
+#define ADDR_gatt_write_ccc_rsp_THUMB (((unsigned long)&__g1_fp_gatt_write_ccc_rsp) | 1u) /* gatt_write_ccc_rsp -> &gatt_write_ccc_rsp; was 0x5a1b1 */
+/* UNRESOLVED (no defined symbol for 0x8281a) -- kept as original literal */
+#define ADDR_gatt_write_encode_THUMB         0x8281b /* gatt_write_encode */
+/* UNRESOLVED (no defined symbol for 0x8260c) -- kept as original literal */
+#define ADDR_gen_hash_m_THUMB                0x8260d /* gen_hash_m */
+#define ADDR_global_ipc_service_send_THUMB (((unsigned long)&__g1_fp_global_ipc_service_send) | 1u) /* global_ipc_service_send -> &global_ipc_service_send; was 0x25b79 */
+/* UNRESOLVED (no defined symbol for 0x545f0) -- kept as original literal */
+#define ADDR_hci_tx_thread_THUMB             0x545f1 /* hci_tx_thread */
+#define ADDR_indicate_sc_cb_THUMB (((unsigned long)&__g1_fp_indicate_sc_cb) | 1u) /* indicate_sc_cb -> &indicate_sc_cb; was 0x18a39 */
+#define ADDR_init_ble_work_thread_THUMB (((unsigned long)&__g1_fp_init_ble_work_thread) | 1u) /* init_ble_work_thread -> &init_ble_work_thread; was 0x2201d */
+#define ADDR_iobuf_ensure_capacity_and_append_THUMB (((unsigned long)&__g1_fp_iobuf_ensure_capacity_and_append) | 1u) /* iobuf_ensure_capacity_and_append -> &iobuf_ensure_capacity_and_append; was 0x87737 */
+#define ADDR_jdb_panel_init_THUMB (((unsigned long)&__g1_fp_jdb_panel_init) | 1u) /* jdb_panel_init -> &jdb_panel_init; was 0x46fc1 */
+#define ADDR_key_event_thread_THUMB (((unsigned long)&__g1_fp_key_event_thread) | 1u) /* key_event_thread -> &key_event_thread; was 0x2955d */
+#define ADDR_l2cap_chan_disconnected_cb_THUMB (((unsigned long)&__g1_fp_l2cap_chan_disconnected_cb) | 1u) /* l2cap_chan_disconnected_cb -> &l2cap_chan_disconnected_cb; was 0x81a77 */
+#define ADDR_l2cap_disconnect_tx_chan_THUMB (((unsigned long)&__g1_fp_l2cap_disconnect_tx_chan) | 1u) /* l2cap_disconnect_tx_chan -> &l2cap_disconnect_tx_chan; was 0x81a61 */
+#define ADDR_l2cap_reassemble_frag_THUMB (((unsigned long)&__g1_fp_l2cap_reassemble_frag) | 1u) /* l2cap_reassemble_frag -> &l2cap_reassemble_frag; was 0x82e05 */
+#define ADDR_libc_stream_write_syscall_THUMB (((unsigned long)&__g1_fp_libc_stream_write_syscall) | 1u) /* libc_stream_write_syscall -> &libc_stream_write_syscall; was 0x86f5b */
+#define ADDR_libc_write_buffer_via_putc_THUMB (((unsigned long)&__g1_fp_libc_write_buffer_via_putc) | 1u) /* libc_write_buffer_via_putc -> &libc_write_buffer_via_putc; was 0x86cb7 */
+#define ADDR_local_esbs_ipc_service_recv_THUMB (((unsigned long)&__g1_fp_local_esbs_ipc_service_recv) | 1u) /* local_esbs_ipc_service_recv -> &local_esbs_ipc_service_recv; was 0x15961 */
+#define ADDR_local_store_write_THUMB (((unsigned long)&__g1_fp_local_store_write) | 1u) /* local_store_write -> &local_store_write; was 0x22169 */
+#define ADDR_low_speed_peripheral_dispatch_thread_for_test_THUMB (((unsigned long)&__g1_fp_low_speed_peripheral_dispatch_thread_for_test) | 1u) /* low_speed_peripheral_dispatch_thread_for_test -> &low_speed_peripheral_dispatch_thread_for_test; was 0x2685d */
+#define ADDR_mic_transm_thread_THUMB (((unsigned long)&__g1_fp_mic_transm_thread) | 1u) /* mic_transm_thread -> &mic_transm_thread; was 0x324bd */
+#define ADDR_nfc_field_event_signal_sem_THUMB (((unsigned long)&__g1_fp_nfc_field_event_signal_sem) | 1u) /* nfc_field_event_signal_sem -> &nfc_field_event_signal_sem; was 0x1793d */
+#define ADDR_notify_config_change_if_connected_THUMB (((unsigned long)&__g1_fp_notify_config_change_if_connected) | 1u) /* notify_config_change_if_connected -> &notify_config_change_if_connected; was 0x17e85 */
+#define ADDR_nrf53_sync_rtc_ipc_channel_setup_THUMB (((unsigned long)&__g1_fp_nrf53_sync_rtc_ipc_channel_setup) | 1u) /* nrf53_sync_rtc_ipc_channel_setup -> &nrf53_sync_rtc_ipc_channel_setup; was 0x4c419 */
+#define ADDR_opt3001_read_lux_raw_THUMB (((unsigned long)&__g1_fp_opt3001_read_lux_raw) | 1u) /* opt3001_read_lux_raw -> &opt3001_read_lux_raw; was 0x2e649 */
+#define ADDR_opt3007_chip_init_THUMB (((unsigned long)&__g1_fp_opt3007_chip_init) | 1u) /* opt3007_chip_init -> &opt3007_chip_init; was 0x2e67d */
+#define ADDR_panel_off_THUMB (((unsigned long)&__g1_fp_panel_off) | 1u) /* panel_off -> &panel_off; was 0x46d2d */
+#define ADDR_panel_on_THUMB (((unsigned long)&__g1_fp_panel_on) | 1u) /* panel_on -> &panel_on; was 0x46dd9 */
+#define ADDR_printf_render_float_THUMB (((unsigned long)&__g1_fp_printf_render_float) | 1u) /* printf_render_float -> &printf_render_float; was 0x7712d */
+#define ADDR_process_task_sync_event_THUMB (((unsigned long)&__g1_fp_process_task_sync_event) | 1u) /* process_task_sync_event -> &process_task_sync_event; was 0x286f9 */
+#define ADDR_proxy_thread_handler_THUMB (((unsigned long)&__g1_fp_proxy_thread_handler) | 1u) /* proxy_thread_handler -> &proxy_thread_handler; was 0x47c49 */
+/* UNRESOLVED (no defined symbol for 0x8275e) -- kept as original literal */
+#define ADDR_read_included_uuid_encode_THUMB 0x8275f /* read_included_uuid_encode */
+#define ADDR_rpmsg_virtio_get_tx_buffer_wait_THUMB (((unsigned long)&__g1_fp_rpmsg_virtio_get_tx_buffer_wait) | 1u) /* rpmsg_virtio_get_tx_buffer_wait -> &rpmsg_virtio_get_tx_buffer_wait; was 0x85b0d */
+#define ADDR_rpmsg_virtio_rx_notify_THUMB (((unsigned long)&__g1_fp_rpmsg_virtio_rx_notify) | 1u) /* rpmsg_virtio_rx_notify -> &rpmsg_virtio_rx_notify; was 0x7118d */
+#define ADDR_rpmsg_virtio_send_copy_THUMB (((unsigned long)&__g1_fp_rpmsg_virtio_send_copy) | 1u) /* rpmsg_virtio_send_copy -> &rpmsg_virtio_send_copy; was 0x71295 */
+#define ADDR_rpmsg_virtio_tx_enqueue_THUMB (((unsigned long)&__g1_fp_rpmsg_virtio_tx_enqueue) | 1u) /* rpmsg_virtio_tx_enqueue -> &rpmsg_virtio_tx_enqueue; was 0x710b5 */
+#define ADDR_sc_restore_THUMB (((unsigned long)&__g1_fp_sc_restore) | 1u) /* sc_restore -> &sc_restore; was 0x5b555 */
+#define ADDR_sc_restore_rsp_THUMB (((unsigned long)&__g1_fp_sc_restore_rsp) | 1u) /* sc_restore_rsp -> &sc_restore_rsp; was 0x82bd5 */
+#define ADDR_settings_nvs_read_fn_THUMB (((unsigned long)&__g1_fp_settings_nvs_read_fn) | 1u) /* settings_nvs_read_fn -> &settings_nvs_read_fn; was 0x7f211 */
+#define ADDR_smp_dhkey_ready_cb_THUMB (((unsigned long)&__g1_fp_smp_dhkey_ready_cb) | 1u) /* smp_dhkey_ready_cb -> &smp_dhkey_ready_cb; was 0x8349d */
+/* UNRESOLVED (no defined symbol for 0x80ab4) -- kept as original literal */
+#define ADDR_smp_handle_reqs_THUMB           0x80ab5 /* smp_handle_reqs */
+#define ADDR_spi_master_init_THUMB (((unsigned long)&__g1_fp_spi_master_init) | 1u) /* spi_master_init -> &spi_master_init; was 0x26419 */
+#define ADDR_spi_master_trans_data_tx_rx_THUMB (((unsigned long)&__g1_fp_spi_master_trans_data_tx_rx) | 1u) /* spi_master_trans_data_tx_rx -> &spi_master_trans_data_tx_rx; was 0x262ad */
+#define ADDR_spim_select_instance_by_mode_THUMB (((unsigned long)&__g1_fp_spim_select_instance_by_mode) | 1u) /* spim_select_instance_by_mode -> &spim_select_instance_by_mode; was 0x26339 */
+#define ADDR_stdio_reset_ungetc_buffer_THUMB (((unsigned long)&__g1_fp_stdio_reset_ungetc_buffer) | 1u) /* stdio_reset_ungetc_buffer -> &stdio_reset_ungetc_buffer; was 0x87863 */
+#define ADDR_touch_key_thread_THUMB (((unsigned long)&__g1_fp_touch_key_thread) | 1u) /* touch_key_thread -> &touch_key_thread; was 0x2a0d9 */
+#define ADDR_transport_dispatch_thread_THUMB (((unsigned long)&__g1_fp_transport_dispatch_thread) | 1u) /* transport_dispatch_thread -> &transport_dispatch_thread; was 0x2a4f5 */
+#define ADDR_uart_callback_THUMB (((unsigned long)&__g1_fp_uart_callback) | 1u) /* uart_callback -> &uart_callback; was 0x33385 */
+#define ADDR_virtqueue_return_rx_buffer_THUMB (((unsigned long)&__g1_fp_virtqueue_return_rx_buffer) | 1u) /* virtqueue_return_rx_buffer -> &virtqueue_return_rx_buffer; was 0x85a9d */
+/* UNRESOLVED (no defined symbol for 0x7ee48) -- kept as original literal */
+#define ADDR_z_cbprintf_cpy_THUMB            0x7ee49 /* z_cbprintf_cpy */
+#define ADDR_z_impl_net_if_ipv6_addr_rm_by_index_THUMB (((unsigned long)&__g1_fp_z_impl_net_if_ipv6_addr_rm_by_index) | 1u) /* z_impl_net_if_ipv6_addr_rm_by_index -> &z_impl_net_if_ipv6_addr_rm_by_index; was 0x80c8d */
 /* ---- RAM globals / kernel objects (738) ---- */
 extern volatile unsigned int g_sram_base_word; /* @0x20000000 */
 extern volatile unsigned int g_20000800; /* @0x20000800 */
