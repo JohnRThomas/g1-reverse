@@ -1,5 +1,33 @@
 # Build-from-sources → Emulator boot-parity plan
 
+## OWNER GOAL (set 2026-07-24, supersedes scope below where they conflict)
+1. **Compile the firmware and achieve FUNCTIONAL PARITY** — proven by testing and
+   comparison against the actual original firmware. **The parity bar (owner-set):
+   the firmware must RENDER THE IMAGE and OPERATE ALL SENSORS correctly, with
+   graphics working as in the original firmware.** E4 "it lives" is only an
+   intermediate gate; the acceptance target is **E6 = graphics + sensor parity**:
+   - **Graphics**: our build's display output must match the original's — the same
+     JBD panel init/command sequence, the same framebuffer/pixel payloads over SPI,
+     the same brightness/gear handling. Diffed pixel-exact against the original
+     (see `recon/emulator/reports/display_sensor_parity.md` + the captured oracle).
+   - **Sensors**: every sensor the original drives must be driven identically —
+     IMU (LSM6DSO), ambient light (OPT3001/OPT3007), touch/capacitive keys, battery/
+     charger (nPM1300), microphone (PDM), and the ESB L/R sync path — same bus
+     transactions, same interpretation of readings.
+   The golden Renode function-entry trace remains the boot oracle; graphics/sensor
+   parity adds a **peripheral-transaction oracle** (SPI/I2C/PDM/radio traffic).
+2. **Rely on library functions — drop their recovered versions.** Displace every
+   recovered reconstruction of SDK/Zephyr/nrfxlib/newlib/etc. code to the real
+   library, gaining stability and correct typing for free. Rationale hardened by
+   iteration 5: hand-reconstructions of stock code carry defects the parity harness
+   CANNOT see (it emulates at original addresses, where wrong-but-accidentally-
+   working codegen still passes). Tracked as task G2;
+   see `recon/ownership/library_displacement_{candidates.json,report.md}`.
+3. **Then refactor into a well-structured production-grade project** (task G3):
+   cohesive modules, real headers/types replacing absolute-address pins, proper
+   naming and build organization.
+
+
 **Goal (scoped 2026-07-24):** Build the CPUAPP+CPUNET firmware from the
 reconstructed sources and make it boot on the Renode emulator (`../armemul`)
 the same way the shipped images do — to acceptance tier **E4 ("it lives")**,
