@@ -240,6 +240,23 @@ PROVIDE(rodata_87c20 = 0x00087c20);
  * main() does z_device_is_ready() + api dispatch on it.  ord 149. */
 PROVIDE(rodata_87cb0 = __device_dts_ord_149);
 PROVIDE(g_watchdog_device = __device_dts_ord_148);   /* "watchdog" (npm1300) — see note above */
+/* DATA-POINTER REBIND (iteration 9) — the two nPM1300 regulator `struct
+ * device` instances used by the display power sequence.  Identified by the
+ * name string stored in word0 of the original object:
+ *   0x87cf8 name 0x000f614f "LDO1"  -> DT .../pmic@6b/regulators/LDO1  ord 152
+ *   0x87d10 name 0x000f6154 "BUCK2" -> DT .../pmic@6b/regulators/BUCK2 ord 151
+ * power_for_panel/power_down_panel/enable_ship_mode dereference
+ * dev->config->mfd (config + 0x1c) and call the nPM1300 register API on it.
+ * Verified in THIS build: config(ord 152) + 0x1c == config(ord 151) + 0x1c ==
+ * __device_dts_ord_145, the pmic@6b mfd parent, exactly as the shipped image's
+ * 0x8b8b8 + 0x1c == 0x8b8f8 + 0x1c == 0x87c80.  Left absolute, dev->config
+ * read unrelated rodata and dev_ctrl_write1 called through a NULL API. */
+PROVIDE(rodata_87cf8 = __device_dts_ord_152);
+PROVIDE(rodata_87d10 = __device_dts_ord_151);
+/* Same class, same block: 0x87ce0 name 0x000f614a "LDO2" -> ord 153.
+ * power_for_imu_and_mic() dereferences it exactly like power_for_panel()
+ * does LDO1, and was the next fault once LDO1/BUCK2 were relocated. */
+PROVIDE(rodata_87ce0 = __device_dts_ord_153);
 PROVIDE(rodata_87d40 = 0x00087d40);
 /* DATA-POINTER REBIND (iteration 5 sweep) — `struct device` "lsm6dso@6b"
  * (original 0x87d58, name string 0xf649d); main() -> lsm6dso_init_chip(dev).

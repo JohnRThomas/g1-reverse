@@ -24,7 +24,7 @@ unsigned int enable_ship_mode(void)
     power_down_panel();
     power_down_imu_and_mic();
     app_msleep_thunk_a(2000);
-    int base = *(volatile int*)(0x00087d10UL + 4);
+    int base = *(volatile int*)((unsigned long)&rodata_87d10 + 4) /*=0x87d10*/;
     unsigned int arg0 = *(volatile unsigned int*)(base + 0x1c);
     int status = dev_write_reg3(arg0, 0xb, 2, 1);
     if (status < 0) {

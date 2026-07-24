@@ -50,8 +50,17 @@ extern void copy_c_string(char *dst, const char *src);
 #ifdef G1_COHESIVE_BUILD
 extern void FUN_0102a4c8(const void *event);
 #define G1_ESB_EVENT_HANDLER ((const void *)(uintptr_t)&FUN_0102a4c8) /*=0x0102acc9*/
+/* The "cpunet-hw-id" service handler.  The shipped literal 0x0102aa79 is the
+ * runtime Thumb address of the reconstruction at analysis VA 0x0102a278
+ * (runtime = analysis + 0x800); FUN_0102ab14 loads it back out of the
+ * registered endpoint descriptor and calls it.  Left as a raw literal it lands
+ * on whatever this build's layout happens to place there. */
+extern int FUN_0102a278(uint8_t *state, const uint8_t *packet, uint32_t size);
+#define G1_HW_ID_SERVICE_HANDLER \
+    ((const void *)(uintptr_t)&FUN_0102a278) /*=0x0102aa79*/
 #else
 #define G1_ESB_EVENT_HANDLER ((const void *)UINT32_C(0x0102acc9))
+#define G1_HW_ID_SERVICE_HANDLER ((const void *)UINT32_C(0x0102aa79))
 #endif
 
 typedef int (*ipc_send_fn)(const void *message, uint32_t size);
@@ -126,7 +135,7 @@ int main(void)
     struct ipc_endpoint_cfg *cfg = (struct ipc_endpoint_cfg *)state->endpoint_cfg;
     cfg->id = 1;
     cfg->name = (const char *)0x0103cd79u;       /* "cpunet-hw-id" */
-    cfg->callback = (const void *)0x0102aa79u;   /* raw callback back-map */
+    cfg->callback = G1_HW_ID_SERVICE_HANDLER;    /* raw back-map 0x0102aa79 */
     state->register_ep(cfg);
     if (*net_log_level > 1) {
         net_printk((const char *)0x0103cd86u);

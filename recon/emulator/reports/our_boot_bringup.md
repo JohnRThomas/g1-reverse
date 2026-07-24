@@ -2935,3 +2935,420 @@ generator only).
 Scratchpad catalogs gained three records each (backed up as `*.json.i8bak`).
 No `tools/` change, no Kconfig/`prj.conf`/devicetree change, `armemul`
 additive only. Nothing committed.
+
+---
+
+## Iteration 9 — the CPUNET "cpunet-hw-id" handler pin (Step A) + library-displacement Batch 2 (Step B)
+
+**Headline.** Iteration 8's LFCLK diagnosis was **wrong**, and this iteration
+corrects it with measurements. The CPUNET was never legitimately inside MPSL's
+timeslot path: the net's product `main` registers its IPC service handler as a
+**raw, unrelocated image literal `0x0102aa79`**, and `FUN_0102ab14` was calling
+straight into whatever our layout happened to place at that address. In the
+iteration-8 layout that was `FUN_01021a38` — which really is
+`mpsl_timeslot_session_open`, whose documented first action is to wait for the
+LFCLK — so the "LFCLK divergence" was an *accident of the link map*, not a
+clock bug. The LFCLK was running the whole time.
+
+With the handler reconstructed (`FUN_0102a278`, CFG-proven, 13/13 tbb arms) and
+the pointer relocated, IPC sub-commands **1/3 now arrive**, the app's `main`
+unblocks from `k_sem_take`, and the boot advances from 672 to **762 unique app
+functions**: display power-on, the audio codec, LSM6DSO, OPT3007, ST25DV, NVS
+settings writes, the fuel gauge and the BLE work thread all run for the first
+time. **E4 is still NOT complete** — `spi_read_id`, `bt_enable`/`bt_start` and
+ADV_IND are still unreached — and the new blocker is a context switch into a
+thread whose saved PC is `0x00000000`.
+
+Step B displaced **16** `zephyr_kernel` sched/poll reconstructions with
+**FLASH −1,264 B** and no boot regression; the 39-row `zephyr_drivers`
+sub-batch was tried, **regressed the boot, and was reverted**.
+
+Final artifacts: app `/private/tmp/g1-i9g-app` (Step A only:
+`/private/tmp/g1-i9e-app`), net `/private/tmp/g1-i9c-net`. Traces
+`/tmp/g1_i9a/` (iteration-8 baseline reproduced), `/tmp/g1_i9b/`, `/tmp/g1_i9c/`,
+`/tmp/g1_i9d/`, `/tmp/g1_i9e/`, `/tmp/g1_i9f/` (reverted), `/tmp/g1_i9g/`.
+
+### Measurements (all at the same 0.15 s budget, same `.resc`, same RNG seed)
+
+| metric | iteration 8 (reproduced) | **iter 9 Step A** | **iter 9 Step A+B (final)** |
+|---|---:|---:|---:|
+| app instructions executed | 5,041,553 (full 0.15 s, no fault) | **5,647,329** (fatal at 0.048 s) | **5,612,329** (fatal at 0.048 s) |
+| app unique functions | 672 | **762** | **760** |
+| net instructions executed | 10,091,064 (3.08 M of them the LFCLK spin) | **289,451** | **289,451** |
+| net unique functions | 435 | 420 | 420 |
+| `local_ipc_service_recv` entries | 3 | **9** | 9 |
+| app FLASH | 627,680 B (63.88 %) | 627,680 B (63.88 %) | **626,416 B (63.76 %)** |
+| app RAM | 75,757 B (16.81 %) | 75,757 B (16.81 %) | **75,757 B (16.81 %)** |
+| net FLASH | 228,009 B (98.52 %) | **229,161 B (99.02 %)** | 229,161 B (99.02 %) |
+| net RAM | 54,140 B (82.61 %) | 54,140 B (82.61 %) | 54,140 B (82.61 %) |
+
+Both links: `nm -u` = **0** undefined, 0 duplicate globals. No
+`--allow-multiple-definition`, no weak symbols, no numeric-root hacks, no
+`tools/` change, no Kconfig/`prj.conf`/devicetree change; `armemul` untouched
+(only extra `.resc` files under `/tmp`). Nothing committed.
+
+**Honest note on the fixed-checkpoint counters.** The 0.15 s checkpoint now
+reads **0/0/0** for both cores, because the app raises a usage fault at
+0.048 s and `fatal_error` issues SYSRESETREQ, which resets the whole machine
+and zeroes Renode's `ExecutedInstructions`. The numbers in the table are the
+instructions actually executed *before* that reset, recovered from the
+execution-trace logs. On every progress metric the boot advances (+90 unique
+app functions, 103 new ones, 13 lost — see §A.7); it advances into a fault that
+was previously unreachable because `main` never got past `k_sem_take`.
+
+**Honest note on the net counters.** The net's 10,091,064 → 289,451 drop is not
+a loss: 3,076,471 of the iteration-8 instructions were the `FUN_010248d0`
+spin-loop (615,296 iterations) and the rest is simply the shorter wall-clock
+window before the reset. The 15 "lost" net functions are the four displaced /
+garbage-collected MPSL bodies plus RTC-teardown and logging paths that only run
+later in the 0.15 s window.
+
+---
+
+### Step A — the real root cause: an unrelocated CPUNET service-handler pointer
+
+#### A.1 Iteration 8's diagnosis was wrong, and here is the evidence
+
+Iteration 8 §A.7 asserted that "golden's net never executes any of those four
+functions" and that "nothing on our CPUNET ever issues LFCLKSTART". Both
+statements are false. Read straight out of
+`recon/emulator/reports/golden_boot_trace.json`:
+
+| function | golden `first_i` | entries | instructions |
+|---|---:|---:|---:|
+| `FUN_0103038c` | 104,910 | 203 | 6,716 |
+| `FUN_010248d0` (the "spinner") | 106,047 | 10 | **131** |
+| `FUN_01024b20` | 106,142 | 5 | 110 |
+| `FUN_01021a38` | 387,868 | 5 | 37 |
+| `FUN_01022e34` | 387,916 | 4 | 53 |
+
+Golden runs all of them, and its `FUN_010248d0` returns immediately
+(131 instructions across 10 entries — 8 instructions is one pass of the loop).
+Only `FUN_0102ab14` is genuinely absent from golden.
+
+And our net *does* start the LFCLK. Its own trace shows
+`sys_clock_driver_init → z_nrf_clock_control_lf_on → onoff_request →
+onoff_start → lfclk_start → nrfx_clock_start → clock_event_handler →
+clkstarted_handle → onoff_started_callback` at net instructions
+140,864 … 141,315. A Renode diagnostic read of the **iteration-8 net image**
+at t = 0.15 s confirms the hardware state:
+
+```
+LFCLKSTAT    = 0x00010002     (STATE = 1 running, SRC = 2 = LFXO)
+LFCLKRUN     = 0x00000001
+LFCLKSRC     = 0x00000002
+LFCLKSRCCOPY = 0x00000002
+mem[0x21001bd0] = 0 ; mem[0x21001bf0] = 0
+cpunet PC    = 0x0102b8ac   (inside FUN_010248d0)
+```
+
+So `FUN_01024b20` read `LFCLKSTAT & 3 == 2` and compared it against
+`*(0x21001bd0 + 0x20) & 3 == 0` — MPSL's private *expected-source* word, which
+this build never initialises because the genuine `libmpsl.a` owns that state at
+its own address. Renode's `NRF5340_ClockPowerReset` model is **not** the gap;
+it implements TASKS_LFCLKSTART / LFCLKSTAT / LFCLKSRC fully
+(`models/NRF5340_ClockPowerReset.cs:85-93, 219-235`) and golden exercises them.
+No armemul change is needed, and none was made.
+
+#### A.2 Why the CPUNET was in that code at all — the actual defect
+
+Reading the trace one transition finer exposes it. Baseline
+(`/tmp/g1_i9a/trace_net.log`), with our ELF's `nm`:
+
+```
+245,106  ept_cb                @ 0x103bf78
+245,117  FUN_0102ab14          @ 0x102e954    (function entry)
+245,137  FUN_01021a38          @ 0x102aa78    <-- FUN_01021a38 starts at 0x102aa30
+```
+
+The dispatch did **not** enter `FUN_01021a38`; it jumped to the absolute
+address `0x0102aa78`, which merely *happened* to be 0x48 bytes inside it. Relink
+the image (§A.6 tried displacing `FUN_01021a38` first) and the very same pointer
+lands 0x100 bytes inside `main` instead, faulting on `blx` through a garbage
+`state->send`.
+
+The pointer's origin is in the shipped source itself,
+`recon/net/src/FUN_0102a720.c`:
+
+```c
+cfg->id = 1;
+cfg->name = (const char *)0x0103cd79u;       /* "cpunet-hw-id" */
+cfg->callback = (const void *)0x0102aa79u;   /* raw callback back-map */
+state->register_ep(cfg);
+```
+
+`0x0102aa79` is a **runtime** Thumb address; net runtime = net analysis +
+0x800, so it denotes the function at **analysis VA 0x0102a278** — a Ghidra
+function-catalog gap. This is exactly the class iteration 8 fixed on the app
+core (its four `{id, name, handler}` service records), one core later.
+
+#### A.3 `FUN_0102a278` — the CPUNET "cpunet-hw-id" service handler
+
+Extents derived from the image: code **0x0102a278 .. 0x0102a368 (0xF0 = 240 B)**,
+literal pool 0x0102a368 .. 0x0102a394 (44 B), next catalogued function
+`FUN_0102a394`. Its literal pool resolves to `0x21000761/63/67` (the ESB
+address mirror), `0x21000760` (a reply-pending flag), `0x21000580` (the net log
+level), `0x210045f4` (the service-state slot) and five format strings, read out
+of the image at analysis = runtime − 0x800:
+
+| runtime literal | string |
+|---|---|
+| `0x0103ccda` | `"L %d, R %d, M %d C %d\n"` |
+| `0x0103ccf1` | `"M %d\n"` |
+| `0x0103ccf7` / `0x0103ccfa` / `0x0103ccfd` | `"H\n"` / `"L\n"` / `"P\n"` |
+
+It is a 13-entry `tbb` switch on `packet[0]` with live arms for sub-commands
+**0, 8, 10, 11, 12** (1..7, 9 and the >12 default return 0):
+
+* **0** — role/mode/BT-identity sync: stores `packet[1..3]` into the service
+  state at +0/+4/+8, mirrors the ESB primary/secondary addresses when
+  `packet[4] != 0xff`, `packet[4] != 0` and `packet[5]` is in `1..0xfe`, then
+  sends a fixed 16-byte reply whose first halfword is `0x0101` through
+  `state->send`, and clears the pending flag at `0x21000760`.
+* **8** — sets `(*0x210045f4)->mode = 1` and calls `FUN_0102bbc4`.
+* **10 / 11 / 12** — `FUN_0102b794` / `FUN_0102b7a0` / `FUN_0102b7ac`, three
+  4-instruction setters that write 2 / 1 / 3 to the ESB radio-state word at
+  `0x210005b4` ("H" high-power, "L" low-power, "P" pairing).
+
+`FUN_0102bbc4` (0x16 B) sets the flag at `0x21004fa5`, calls
+`FUN_0102b758(1)` and tail-calls `FUN_0102b900(3)`.
+
+**Five functions were reconstructed**, all Ghidra-catalog gaps:
+`FUN_0102a278`, `FUN_0102bbc4`, `FUN_0102b794`, `FUN_0102b7a0`, `FUN_0102b7ac`.
+
+#### A.4 Proof status — what was actually run
+
+`net_recon_kit.prove(...)` (auto-saves to `recon/net/src/`) then the CLI
+verifier:
+
+| function | `net_recon_kit.prove` | `cfg_verify.py net <name>` |
+|---|---|---|
+| `FUN_0102a278` | `pass=True cfg_status=PASS checked=313` | **`PASS cases=13`** |
+| `FUN_0102bbc4` | `pass=True cfg_status=PASS checked=300` | `PASS` |
+| `FUN_0102b794` | `pass=True cfg_status=PASS checked=300` | `PASS` |
+| `FUN_0102b7a0` | `pass=True cfg_status=PASS checked=300` | `PASS` |
+| `FUN_0102b7ac` | `pass=True cfg_status=PASS checked=300` | `PASS` |
+
+`cases=13` is exactly the `tbb` table size: cfg_verify drove **every** switch
+arm from the original's own jump table.
+
+Two reviewed-ABI declarations were needed and are recorded in the sources
+themselves (the sanctioned `CFG_VERIFY_CALL_ARITIES=` header directive, no
+`tools/` change): `FUN_0102a278` declares arity **2** for its single indirect
+call (`state->send(message, 16)`, whose scratch r2 is not an argument), and
+`FUN_0102bbc4` declares **1,1** for its two one-argument callees.
+
+**Catalog note (disclosed).** None of the five was in the Ghidra catalog. One
+record per function was appended to `<net scratchpad>/net_funcs.json`
+(original backed up as `net_funcs.json.i9bak`) and five durable entries were
+added to `recon/catalogs/function_names_net.json` (1304 → 1309), exactly as
+iteration 4/8 did for the app core. **No `tools/` logic was changed.**
+
+#### A.5 Heeding the harness blind spot — directed fixtures + mutation controls
+
+**First mutation run (16 deliberate defects, cfg_verify fixtures only):
+11 rejected, 5 survived.** The survivors were real fixture gaps:
+
+| surviving mutant | why it survived |
+|---|---|
+| reply opcode `0x101 → 0x100` | the 16-byte reply buffer is a stack object; only the pointer and the length were compared |
+| secondary bound `0xfd → 0xfe` | pseudorandom packets never produce `packet[5] == 0xff` together with a live `packet[4]` |
+| primary sentinel `0xff → 0xfe` | same, for `packet[4] == 0xfe` |
+| dropped `*0x21000760 = 0` | the pseudorandom flag byte was never non-zero |
+| log guard `>1 → >0` | the pseudorandom log level was never exactly 1 |
+
+A directed harness (`<scratchpad>/directed9.py`, calling `parity.emu.compare`
+directly — the iteration-8 `directed8.py` pattern) closes all five:
+
+* `arg_overrides` + `absolute_memory_overrides` drive a crafted 16-byte packet,
+  a fully seeded 0xd0-byte service state, the log level (0,1,2,3) and the
+  pending flag (0,1);
+* `call_arities=[2]` keeps the reviewed `send` ABI;
+* `candidate_direct_target_map` compares the resolved call **target**;
+* **`paired_stack_objects`** pairs the shipped body's reply buffer at
+  entry-SP−32 with the candidate's (offset recovered from the compiled
+  prologue) and compares all **16 bytes** of content.
+
+Results: **case-0 grid 128 fixtures PASS**, **sub-command grid 32 fixtures
+PASS**. Re-running the five survivors under those fixtures: **all 5 REJECTED**,
+both unmutated controls PASS. Net: **16 of 16 mutants rejected.**
+
+#### A.6 What was changed, and one displacement that came out of the diagnosis
+
+1. **`recon/net/src/FUN_0102a720.c`** — the raw literal is replaced, under the
+   existing `#ifdef G1_COHESIVE_BUILD` relocation pattern already used in the
+   same file for `G1_ESB_EVENT_HANDLER`, by `&FUN_0102a278`. The canonical
+   (non-cohesive) path keeps `0x0102aa79`, and `cfg_verify.py net FUN_0102a720`
+   still reports **`PASS cases=5`**. Verified in the linked ELF: the literal
+   word is now `0x0102be91` (= `FUN_0102a278 | 1`) and the raw value
+   `0x0102aa79` no longer appears anywhere in the image.
+2. **`FUN_01021a38` → `mpsl_timeslot_session_open`** (net manifest row +
+   `PROVIDE` in `recon/application/net/src/stock_call_aliases.ld`, next to the
+   existing `FUN_0102a0e6 = mpsl_timeslot_session_close`). Identity established
+   three independent ways: the shipped call site at 0x0102b84a..0x0102b850
+   passes the signal callback in r0 and a one-byte session-id out-parameter in
+   r1; the reconstruction returns −22/−12 and `mpsl_timeslot.h` documents
+   `-NRF_ENOMEM`; and that header documents "*If the low frequency clock is not
+   running when this function is called, the function will wait until the low
+   frequency clock has started*" — precisely the `FUN_01022e34 → FUN_010248d0`
+   LFCLK spin. The reconstruction reads MPSL's private clock state through
+   original-image absolute RAM that this build never initialises, so displacing
+   it onto the archive body is the correct fix regardless of the handler pin.
+   `FUN_01022e34`, `FUN_010248d0` and `FUN_01024b20` lose their only caller and
+   are garbage-collected. Cost: net FLASH +1,152 B total (98.52 % → 99.02 %).
+3. **Three app device pins** (§A.7).
+
+#### A.7 Boot result — `main` unblocks and the whole peripheral bring-up runs
+
+With only the net handler rebound (`/tmp/g1_i9c/`), `ept_cb → FUN_0102ab14 →`
+**`FUN_0102a278`**, `local_ipc_service_recv` is entered **9** times instead of 3,
+`main` is re-entered, and the app immediately reaches `ancs_ctx_init` and
+`power_for_panel`. It then faulted in `dev_ctrl_write1` on a NULL device
+pointer — the iteration-5 absolute-DATA-pin class again, now reachable for the
+first time. Three pins close it (`recon/symbols/g1_app_globals.ld` +
+`g1_app_symbols.h`, identified by the name string in word 0 of the original
+object, ordinals re-verified against this build's `devicetree_generated.h`):
+
+| original | name string | name | our device |
+|---|---|---|---|
+| `0x00087cf8` | `0x000f614f` | `"LDO1"` | `__device_dts_ord_152` |
+| `0x00087d10` | `0x000f6154` | `"BUCK2"` | `__device_dts_ord_151` |
+| `0x00087ce0` | `0x000f614a` | `"LDO2"` | `__device_dts_ord_153` |
+
+Cross-checked structurally, not just by name: in the shipped image
+`*(0x8b8b8+0x1c) == *(0x8b8f8+0x1c) == 0x87c80` (the pmic@6b parent), and in
+our build `config(ord 152)+0x1c == config(ord 151)+0x1c == __device_dts_ord_145`
+— the same `mfd` slot at the same offset. Eight symbolized sources that spelled
+those addresses as literals now spell them as `&rodata_87cf8 / _87d10 / _87ce0`
+(`power_for_panel`, `power_down_panel`, `enable_ship_mode`,
+`power_for_imu_and_mic`, `power_down_imu_and_mic`, `display_dev_reg_config`,
+`device_reg3_init_config`, `dev_read_status_bit_reg34`,
+`dev_page3_config_and_readback_dump`). App FLASH and RAM are unchanged
+(627,680 B / 75,757 B), so **no RAM re-shuffle**.
+
+**103 new app functions** appear, 13 are lost (all of them RTC/timer-teardown
+paths that only run later in the 0.15 s window). A representative slice of what
+now runs for the first time:
+
+`power_for_panel`, `dev_write_reg3`, `dev_ctrl_write1`,
+**`i2c_nrfx_twim_transfer`** (the real Zephyr I2C driver, completing the LDO1
+write end to end), `power_for_imu_and_mic`, `lsm6dso_init_chip`,
+`stmemsc_i2c_write`/`_read`, `audio_codec_select_page`/`_bus_write`/
+`_read_reg0x0f`, `opt3007_init_ctx_setup`, `st25dv_read_chip_ids`,
+`register_imu_funsion_context`, `burial_point_record_info_init`,
+`quicknote_buffer_pool_init`, `getQuickNoteDataFromFlash`,
+`getDashboardStartUpModeInfofromFlash`, `getAppLanguageInfofromFlash`,
+`settings_save_one`, `settings_nvs_save`, `nvs_write`, `local_store_write`,
+`device_info_register_persistent_fields`, `init_dashboard_info`,
+`init_ble_work_thread`, `low_speed_peripheral_dispatch_thread`,
+`fuel_gauge_update`, `npm1300_charger_sample_fetch`/`_channel_get`,
+`msg_queue_init`, `handle_box_placement_event`, `periodic_check_run`,
+`display_dev_reg_config`, `serialization_ipc_ept_register`.
+
+**E4 completion markers — NOT reached.** `spi_read_id` (display probe),
+`panel_on`, `bt_enable`, `bt_start` and `radio TransmittedFrames` are all still
+zero/absent. **E4 is not completed.**
+
+#### A.8 New first divergence — a context switch into PC = 0
+
+```
+5,294,060  wait_for_event
+5,294,069  z_tick_sleep
+5,294,229  sched_switch_handle_timeout
+           ... add_to_waitq_locked -> pend_locked -> z_pend_curr -> arch_swap
+           -> z_arm_pendsv -> in_fp_endif -> configure_builtin_stack_guard
+5,296,253  PC = 0x00000000
+5,296,254  z_arm_usage_fault   ("Attempt to execute undefined instruction",
+                                every register 0, xpsr 0)
+```
+
+`z_arm_pendsv` restored a thread whose saved PC is `0x00000000`: one of the
+threads created just before (`init_ble_work_thread` /
+`low_speed_peripheral_dispatch_thread` and their siblings) has an **unrelocated
+entry-point pointer** — the same relocation class as this iteration's handler
+pin and iteration 8's three app handlers, applied to the thread graph rather
+than to an IPC service table. `recon/emulator/reports/thread_wiring_check.md`
+is the natural starting point for iteration 10.
+
+---
+
+### Step B — library-displacement Batch 2 (goal G2)
+
+See `recon/ownership/library_displacement_report.md` §"Batch 2 applied" for the
+row-level ledger. Summary:
+
+* **B2a `zephyr_drivers` (39 rows) — TRIED, REGRESSED, REVERTED.** The link
+  needed five bridges; two (`dev_write_reg4 → mfd_npm1300_reg_write2`,
+  `rtc_read_extended_cycle_count → z_nrf_rtc_timer_read`) were written, and
+  three rows whose upstream body is `static inline` / `.constprop` with no
+  linkable symbol (`dev_ctrl_write1 → i2c_write_dt`,
+  `flash_page_index_lookup → linear_range_get_win_index`,
+  `layout_select_region → linear_range_group_get_win_index.constprop.0`) were
+  dropped. The resulting build linked clean (FLASH −96 B) but the boot
+  **regressed 762 → 690 unique functions** and died on
+  `ASSERTION FAIL ... nrfx_twim.c:593` (`drv_inst_idx` / transfer-length check)
+  inside the displaced TWIM path, losing `power_for_imu_and_mic`,
+  `lsm6dso_init_chip` and the entire peripheral bring-up. Per the
+  no-regression gate the whole sub-batch, its bridge TU and its CMake line were
+  reverted.
+* **B2b `zephyr_kernel` (16 rows) — APPLIED, CLEAN.** 18 candidates, 2 reverted
+  (`z_tick_sleep`, `unready_thread`: both file-static in `sched.c`, no linkable
+  symbol). Five referenced identities are bridged in the new
+  `recon/application/app/src/g1_kernel_sched_bridges.c`
+  (`sched_switch_handle_timeout → z_reset_time_slice`,
+  `z_ready_thread_locked → z_ready_thread`,
+  `z_sched_set_prio_and_requeue → z_set_prio`,
+  `z_thread_suspend → z_impl_k_thread_suspend`,
+  `poll_signal_event_locked → z_impl_k_poll_signal_raise`).
+  Build: exit 0, **0 undefined, 0 duplicate**. FLASH 627,680 →
+  **626,416 B (−1,264 B)**; RAM unchanged, so **no RAM re-shuffle**.
+  Boot: **760 unique functions vs Step A's 762**, ending at the identical
+  divergence (PC = 0 out of `z_arm_pendsv`, same `display_dev_reg_config →
+  wait_for_event` predecessor). The two absent names are
+  `sched_thread_should_preempt` (itself displaced onto `sliceable`) and
+  `sched_ready_queue_insert` (whose only caller was the displaced
+  `z_ready_thread_locked`, so it is now garbage-collected); both are direct
+  consequences of the displacement, and **zero** behaviour was lost.
+
+BT-host candidates (102 eligible app rows) and every net-core candidate were
+explicitly excluded, as were `keep_reconstructed` and
+`conflicts_with_manifest_retain_row` rows.
+
+---
+
+### Regenerate (iteration 9)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python tools/cfg_verify.py net FUN_0102a278     # PASS cases=13
+PYTHONSAFEPATH=1 .venv/bin/python tools/cfg_verify.py net FUN_0102bbc4
+PYTHONSAFEPATH=1 .venv/bin/python tools/cfg_verify.py net FUN_0102b794     # + b7a0, b7ac
+PYTHONSAFEPATH=1 .venv/bin/python tools/cfg_verify.py net FUN_0102a720     # PASS cases=5
+PYTHONSAFEPATH=1 .venv/bin/python <scratchpad>/directed9.py                # 128 + 32 fixtures
+PYTHONSAFEPATH=1 .venv/bin/python -c 'import sys;sys.path.insert(0,"<scratchpad>");import directed9;directed9.mutate()'
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check
+recon/application/build_cohesive.sh net /private/tmp/g1-i9c-net -- -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF
+recon/application/build_cohesive.sh app /private/tmp/g1-i9g-app
+cd /Users/freedomcoder/Projects/armemul
+~/tools/Renode.app/Contents/MacOS/renode --disable-xwt --console --plain \
+  -e 'i @/tmp/g1_i9g/trace.resc' > /tmp/g1_i9g/run.out 2>&1
+# analyze: <scratchpad>/analyze.py <nm.txt> <trace.log> <out.json>
+```
+
+Files changed:
+`recon/net/src/{FUN_0102a278,FUN_0102bbc4,FUN_0102b794,FUN_0102b7a0,FUN_0102b7ac}.c`
+(new, proven) + their `recon/symbolized/net/` mirrors,
+`recon/net/src/FUN_0102a720.c` (cohesive-build handler relocation only),
+`recon/application/net/src/stock_call_aliases.ld` (1 PROVIDE),
+`recon/catalogs/function_names_net.json` (5 durable entries, 1304 → 1309),
+`recon/symbols/g1_app_globals.ld` + `recon/symbols/g1_app_symbols.h`
+(3 device pins), nine `recon/symbolized/app/*.c` device-address rewrites,
+`recon/ownership/adoption_manifest.json` (net +1 row, app +16 rows),
+`recon/generated/{net,app}_retained_sources.cmake` (regenerated by the
+sanctioned generator only),
+`recon/application/app/src/g1_kernel_sched_bridges.c` (new),
+`recon/application/app/CMakeLists.txt` (1 TU listed),
+`recon/ownership/library_displacement_report.md`.
+The net scratchpad catalog gained five records (backed up as
+`net_funcs.json.i9bak`). No `tools/` change, no Kconfig/`prj.conf`/devicetree
+change, `armemul` untouched. Nothing committed.

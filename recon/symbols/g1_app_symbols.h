@@ -1144,6 +1144,9 @@ extern const unsigned char rodata_87bf8[]; /* @0x87bf8 */
 extern const unsigned char rodata_87c08[]; /* @0x87c08 */
 extern const unsigned char rodata_87c20[]; /* @0x87c20 */
 extern const unsigned char rodata_87cb0[]; /* @0x87cb0 */
+extern const unsigned char rodata_87ce0[]; /* @0x87ce0 "LDO2" device (iteration 9) */
+extern const unsigned char rodata_87cf8[]; /* @0x87cf8 "LDO1" device (iteration 9) */
+extern const unsigned char rodata_87d10[]; /* @0x87d10 "BUCK2" device (iteration 9) */
 extern const unsigned char rodata_87d40[]; /* @0x87d40 */
 extern const unsigned char rodata_87d58[]; /* @0x87d58 */
 extern const unsigned char rodata_87d70[]; /* @0x87d70 */

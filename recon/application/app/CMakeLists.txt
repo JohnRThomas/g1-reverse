@@ -179,6 +179,11 @@ target_sources(app PRIVATE
   # name from recovered newlib TUs outside the batch, so their historical
   # identities forward onto the genuine newlib entry points here.
   src/g1_newlib_mprec_bridges.c
+  # Library displacement Batch 2b (goal G2): five zephyr_kernel sched/poll
+  # primitives are excluded in adoption_manifest.json but are still called by
+  # name from recovered TUs outside the sub-batch, so their historical
+  # identities forward onto the genuine Zephyr kernel entry points here.
+  src/g1_kernel_sched_bridges.c
   ${ZEPHYR_BASE}/drivers/sensor/stmemsc/stmemsc_i2c.c
   ${ZEPHYR_ST_MODULE_DIR}/sensor/stmemsc/lsm6dso_STdC/driver/lsm6dso_reg.c
   # Generated only after compiling every recovered table and comparing its

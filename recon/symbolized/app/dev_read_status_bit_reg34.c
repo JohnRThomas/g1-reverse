@@ -16,7 +16,7 @@ extern int dev_ctrl_read1(int,int,int,void*,int);
 unsigned int dev_read_status_bit_reg34(int param_1, unsigned int param_2)
 {
     unsigned char byte7 = 0;
-    int base = *(volatile int*)(0x00087ce0UL + 4);
+    int base = *(volatile int*)((unsigned long)&rodata_87ce0 + 4) /*=0x87ce0*/;
     int arg0 = *(volatile int*)(base + 0x1c);
     int iVar1 = dev_ctrl_read1(arg0, 3, 0x34, &byte7, param_1);
     unsigned int uVar2;

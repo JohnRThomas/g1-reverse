@@ -17,7 +17,7 @@ unsigned int device_reg3_init_config(void)
 {
   int iVar1;
   unsigned int uVar2;
-  unsigned int base = *(volatile unsigned int*)(0x00087ce0UL + 4);
+  unsigned int base = *(volatile unsigned int*)((unsigned long)&rodata_87ce0 + 4) /*=0x87ce0*/;
   iVar1 = dev_write_reg3(*(volatile unsigned int*)(base + 0x1c), 3, 0xc, 8);
   if (iVar1 < 0) {
     log_message(((unsigned long)&rodata_a3e1a) /*=0xa3e1a*/);

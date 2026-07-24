@@ -28,7 +28,7 @@ int dev_page3_config_and_readback_dump(int param_1, unsigned int param_2, int pa
     unsigned int uStack_14;
     unsigned int uStack_10;
 
-    iVar1 = *(volatile int *)(0x00087ce0 + 4);
+    iVar1 = *(volatile int *)((unsigned long)&rodata_87ce0 + 4) /*=0x87ce0*/;
     uStack_14 = param_2;
     uStack_10 = param_3;
     *((unsigned char *)&uStack_14 + 3) = 0;

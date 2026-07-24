@@ -20,7 +20,7 @@ extern void debug_print(unsigned int,...);
 unsigned int power_for_imu_and_mic(void)
 {
     int iVar1 = dev_write_reg3(
-        *(volatile unsigned int *)(*(volatile unsigned int *)(0x00087ce0 + 4) + 0x1c),
+        *(volatile unsigned int *)(*(volatile unsigned int *)((unsigned long)&rodata_87ce0 + 4) /*=0x87ce0*/ + 0x1c),
         8, 2, 1);
     if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ < 1) {
         return 0;

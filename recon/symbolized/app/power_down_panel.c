@@ -40,7 +40,7 @@ unsigned int power_down_panel(void)
         }
     }
     app_msleep_thunk_a(0x10);
-    iVar2 = dev_write_reg3(*(volatile uint32_t*)(*(volatile uint32_t*)(0x00087d10UL + 4) + 0x1c), 4, 3, 1);
+    iVar2 = dev_write_reg3(*(volatile uint32_t*)(*(volatile uint32_t*)((unsigned long)&rodata_87d10 + 4) /*=0x87d10*/ + 0x1c), 4, 3, 1);
     if (iVar2 < 0) {
         if (*piVar1 < 1) {
             return 0;
@@ -56,7 +56,7 @@ unsigned int power_down_panel(void)
             }
         }
         app_msleep_thunk_a(5);
-        iVar2 = dev_write_reg3(*(volatile uint32_t*)(*(volatile uint32_t*)(0x00087cf8UL + 4) + 0x1c), 8, 1, 1);
+        iVar2 = dev_write_reg3(*(volatile uint32_t*)(*(volatile uint32_t*)((unsigned long)&rodata_87cf8 + 4) /*=0x87cf8*/ + 0x1c), 8, 1, 1);
         if (iVar2 < 0) {
             if (*piVar1 < 1) {
                 return 0;

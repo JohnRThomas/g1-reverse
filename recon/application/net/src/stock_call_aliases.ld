@@ -16,6 +16,14 @@ PROVIDE(FUN_01039722 = printk);
 PROVIDE(FUN_01036198 = z_impl_k_msgq_put);
 PROVIDE(FUN_010362d0 = z_impl_k_msgq_get);
 PROVIDE(FUN_0102a0e6 = mpsl_timeslot_session_close);
+/* Iteration 9: the product timeslot worker's session-open call.  The shipped
+ * call site (0x0102b84a..0x0102b850) passes the signal callback in r0 and a
+ * one-byte session-id out parameter in r1, and the reconstruction's return set
+ * (-22 / -12) matches mpsl_timeslot.h.  The reconstruction additionally waited
+ * on MPSL's private clock state through original-image absolute RAM addresses
+ * that this build never initialises, so it spun forever on CLOCK.LFCLKSTAT even
+ * though the low-frequency clock was running. */
+PROVIDE(FUN_01021a38 = mpsl_timeslot_session_open);
 PROVIDE(FUN_0103b300 = thunk_FUN_01038284);
 PROVIDE(FUN_0103b224 = z_impl_k_sem_init);
 PROVIDE(FUN_01036fcc = z_ready_thread);

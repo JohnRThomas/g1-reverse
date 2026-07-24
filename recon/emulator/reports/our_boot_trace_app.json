@@ -1,6 +1,6 @@
 {
- "total_instr": 14999144,
- "unique_functions": 465,
+ "total_instr": 5612329,
+ "unique_functions": 760,
  "events": [
   {
    "name": "z_arm_reset",
@@ -59,2738 +59,4508 @@
   {
    "name": "memset",
    "first_i": 374,
-   "entries": 79,
-   "instr": 114167
+   "entries": 404,
+   "instr": 215433
   },
   {
    "name": "z_data_copy",
-   "first_i": 58749,
+   "first_i": 59229,
    "entries": 2,
    "instr": 11
   },
   {
    "name": "z_early_memcpy",
-   "first_i": 58755,
+   "first_i": 59235,
    "entries": 2,
    "instr": 2
   },
   {
    "name": "memcpy",
-   "first_i": 58756,
-   "entries": 33,
-   "instr": 24664
+   "first_i": 59236,
+   "entries": 1244,
+   "instr": 112813
   },
   {
    "name": "z_arm_interrupt_init",
-   "first_i": 79692,
+   "first_i": 80492,
    "entries": 1,
    "instr": 349
   },
   {
    "name": "z_cstart",
-   "first_i": 80042,
+   "first_i": 80842,
    "entries": 15,
    "instr": 69
   },
   {
    "name": "z_sys_init_run_level",
-   "first_i": 80046,
+   "first_i": 80846,
    "entries": 52,
-   "instr": 585
+   "instr": 577
   },
   {
    "name": "z_arm_fault_init",
-   "first_i": 80074,
+   "first_i": 80874,
    "entries": 1,
    "instr": 8
   },
   {
    "name": "z_arm_cpu_idle_init",
-   "first_i": 80083,
+   "first_i": 80883,
    "entries": 1,
    "instr": 4
   },
   {
    "name": "z_arm_mpu_init",
-   "first_i": 80091,
+   "first_i": 80891,
    "entries": 5,
    "instr": 36
   },
   {
    "name": "arm_core_mpu_disable",
-   "first_i": 80098,
+   "first_i": 80898,
    "entries": 1,
    "instr": 5
   },
   {
    "name": "region_init",
-   "first_i": 80111,
+   "first_i": 80911,
    "entries": 2,
    "instr": 32
   },
   {
    "name": "arm_core_mpu_enable",
-   "first_i": 80157,
+   "first_i": 80957,
    "entries": 1,
    "instr": 6
   },
   {
    "name": "z_arm_configure_static_mpu_regions",
-   "first_i": 80171,
+   "first_i": 80971,
    "entries": 3,
    "instr": 18
   },
   {
    "name": "arm_core_mpu_configure_static_mpu_regions",
-   "first_i": 80178,
+   "first_i": 80978,
    "entries": 2,
    "instr": 9
   },
   {
    "name": "mpu_configure_regions_and_partition.constprop.0",
-   "first_i": 80183,
+   "first_i": 80983,
    "entries": 1,
    "instr": 24
   },
   {
    "name": "arm_core_mpu_mark_areas_for_dynamic_regions",
-   "first_i": 80220,
+   "first_i": 81020,
    "entries": 3,
    "instr": 58
   },
   {
    "name": "arm_cmse_mpu_region_get",
-   "first_i": 80236,
+   "first_i": 81036,
    "entries": 2,
    "instr": 12
   },
   {
    "name": "log_core_init",
-   "first_i": 80293,
+   "first_i": 81093,
    "entries": 2,
    "instr": 13
   },
   {
    "name": "log_set_timestamp_func",
-   "first_i": 80304,
+   "first_i": 81104,
    "entries": 2,
    "instr": 9
   },
   {
    "name": "log_output_timestamp_freq_set",
-   "first_i": 80311,
+   "first_i": 81111,
    "entries": 1,
    "instr": 12
   },
   {
    "name": "z_log_msg_init",
-   "first_i": 80327,
+   "first_i": 81127,
    "entries": 2,
    "instr": 8
   },
   {
    "name": "mpsc_pbuf_init",
-   "first_i": 80332,
+   "first_i": 81132,
    "entries": 3,
    "instr": 29
   },
   {
    "name": "z_impl_k_sem_init",
-   "first_i": 80492,
-   "entries": 12,
-   "instr": 108
+   "first_i": 81292,
+   "entries": 15,
+   "instr": 135
   },
   {
    "name": "k_thread_system_pool_assign",
-   "first_i": 80512,
+   "first_i": 81312,
    "entries": 1,
    "instr": 3
   },
   {
    "name": "z_device_state_init",
-   "first_i": 80517,
+   "first_i": 81317,
    "entries": 1,
    "instr": 137
   },
   {
    "name": "nordicsemi_nrf53_init",
-   "first_i": 80666,
+   "first_i": 81466,
    "entries": 7,
    "instr": 30
   },
   {
    "name": "nrf_gpio_pin_control_select",
-   "first_i": 80676,
+   "first_i": 81476,
    "entries": 6,
    "instr": 92
   },
   {
    "name": "pthread_barrier_pool_init",
-   "first_i": 80796,
+   "first_i": 81596,
    "entries": 11,
    "instr": 54
   },
   {
    "name": "z_impl_k_mutex_init",
-   "first_i": 80801,
-   "entries": 14,
-   "instr": 70
+   "first_i": 81601,
+   "entries": 15,
+   "instr": 75
   },
   {
    "name": "z_impl_k_condvar_init",
-   "first_i": 80809,
+   "first_i": 81609,
    "entries": 10,
    "instr": 30
   },
   {
    "name": "pthread_cond_pool_init",
-   "first_i": 80898,
+   "first_i": 81698,
    "entries": 6,
    "instr": 39
   },
   {
    "name": "pthread_mutex_pool_init",
-   "first_i": 80960,
+   "first_i": 81760,
    "entries": 6,
    "instr": 39
   },
   {
    "name": "posix_thread_pool_init",
-   "first_i": 81032,
+   "first_i": 81832,
    "entries": 1,
    "instr": 45
   },
   {
    "name": "shared_memory_prepare",
-   "first_i": 81085,
+   "first_i": 81885,
    "entries": 1,
    "instr": 4
   },
   {
    "name": "clk_init",
-   "first_i": 81099,
+   "first_i": 81899,
    "entries": 8,
    "instr": 62
   },
   {
    "name": "z_arm_irq_priority_set",
-   "first_i": 81105,
+   "first_i": 81905,
    "entries": 11,
    "instr": 209
   },
   {
    "name": "nrfx_clock_init",
-   "first_i": 81126,
+   "first_i": 81926,
    "entries": 1,
    "instr": 10
   },
   {
    "name": "nrfx_clock_enable",
-   "first_i": 81140,
+   "first_i": 81940,
    "entries": 3,
    "instr": 15
   },
   {
    "name": "arch_irq_is_enabled",
-   "first_i": 81146,
+   "first_i": 81946,
    "entries": 1,
    "instr": 8
   },
   {
    "name": "arch_irq_enable",
-   "first_i": 81157,
-   "entries": 12,
-   "instr": 120
+   "first_i": 81957,
+   "entries": 21,
+   "instr": 210
   },
   {
    "name": "onoff_manager_init",
-   "first_i": 81181,
+   "first_i": 81981,
    "entries": 8,
    "instr": 60
   },
   {
    "name": "statics_init",
-   "first_i": 81827,
+   "first_i": 82627,
    "entries": 2,
    "instr": 16
   },
   {
    "name": "k_heap_init",
-   "first_i": 81836,
+   "first_i": 82636,
    "entries": 1,
    "instr": 5
   },
   {
    "name": "sys_heap_init",
-   "first_i": 81841,
+   "first_i": 82641,
    "entries": 12,
    "instr": 78
   },
   {
    "name": "bucket_idx.isra.0",
-   "first_i": 81864,
-   "entries": 8,
-   "instr": 36
+   "first_i": 82664,
+   "entries": 20,
+   "instr": 90
   },
   {
    "name": "bytes_to_chunksz.isra.0",
-   "first_i": 81868,
-   "entries": 6,
-   "instr": 48
+   "first_i": 82668,
+   "entries": 14,
+   "instr": 112
   },
   {
    "name": "set_chunk_size",
-   "first_i": 82092,
-   "entries": 5,
-   "instr": 15
+   "first_i": 82892,
+   "entries": 10,
+   "instr": 30
   },
   {
    "name": "chunk_set",
-   "first_i": 82095,
-   "entries": 14,
-   "instr": 98
+   "first_i": 82895,
+   "entries": 30,
+   "instr": 210
   },
   {
    "name": "set_chunk_used",
-   "first_i": 82119,
-   "entries": 3,
-   "instr": 27
+   "first_i": 82919,
+   "entries": 6,
+   "instr": 55
   },
   {
    "name": "free_list_add",
-   "first_i": 82194,
-   "entries": 8,
-   "instr": 58
+   "first_i": 82994,
+   "entries": 20,
+   "instr": 145
   },
   {
    "name": "chunk_size",
-   "first_i": 82199,
-   "entries": 10,
-   "instr": 25
+   "first_i": 82999,
+   "entries": 42,
+   "instr": 105
   },
   {
    "name": "chunk_field",
-   "first_i": 82202,
-   "entries": 6,
-   "instr": 42
+   "first_i": 83002,
+   "entries": 30,
+   "instr": 210
   },
   {
    "name": "init_mem_slab_module",
-   "first_i": 82281,
+   "first_i": 83081,
    "entries": 4,
    "instr": 35
   },
   {
    "name": "create_free_list",
-   "first_i": 82290,
+   "first_i": 83090,
    "entries": 4,
    "instr": 730
   },
   {
    "name": "gpio_nrfx_init",
-   "first_i": 82406,
+   "first_i": 83206,
    "entries": 7,
    "instr": 23
   },
   {
    "name": "nrfx_gpiote_is_init",
-   "first_i": 82408,
+   "first_i": 83208,
    "entries": 2,
    "instr": 12
   },
   {
    "name": "nrfx_gpiote_init",
-   "first_i": 82417,
+   "first_i": 83217,
    "entries": 11,
    "instr": 134
   },
   {
    "name": "nrf_gpiote_in_event_get",
-   "first_i": 82817,
-   "entries": 8,
-   "instr": 48
+   "first_i": 83617,
+   "entries": 10,
+   "instr": 60
   },
   {
    "name": "nrfx_gpiote_global_callback_set",
-   "first_i": 83004,
+   "first_i": 83804,
    "entries": 1,
    "instr": 3
   },
   {
    "name": "hw_cc3xx_init_internal",
-   "first_i": 83070,
+   "first_i": 83870,
    "entries": 1,
    "instr": 1
   },
   {
    "name": "nrf_cc3xx_platform_init",
-   "first_i": 83071,
+   "first_i": 83871,
    "entries": 3,
    "instr": 24
   },
   {
    "name": "CC_LibInit",
-   "first_i": 83076,
+   "first_i": 83876,
    "entries": 6,
    "instr": 28
   },
   {
    "name": "CC_HalInit",
-   "first_i": 83079,
+   "first_i": 83879,
    "entries": 1,
    "instr": 2
   },
   {
    "name": "CC_PalInit",
-   "first_i": 83083,
+   "first_i": 83883,
    "entries": 7,
    "instr": 27
   },
   {
    "name": "CC_PalMutexCreate",
-   "first_i": 83086,
+   "first_i": 83886,
    "entries": 8,
    "instr": 32
   },
   {
    "name": "mutex_init",
-   "first_i": 83092,
+   "first_i": 83892,
    "entries": 6,
    "instr": 54
   },
   {
    "name": "CC_PalDmaInit",
-   "first_i": 83168,
+   "first_i": 83968,
    "entries": 1,
    "instr": 2
   },
   {
    "name": "CC_PalPowerSaveModeInit",
-   "first_i": 83173,
+   "first_i": 83973,
    "entries": 2,
    "instr": 14
   },
   {
    "name": "mutex_lock",
-   "first_i": 83179,
+   "first_i": 83979,
    "entries": 135,
    "instr": 2445
   },
   {
    "name": "mutex_unlock",
-   "first_i": 83205,
+   "first_i": 84005,
    "entries": 135,
    "instr": 1770
   },
   {
    "name": "RndStartupTest.constprop.0",
-   "first_i": 83225,
+   "first_i": 84025,
    "entries": 8,
    "instr": 37
   },
   {
    "name": "RNG_PLAT_SetUserRngParameters",
-   "first_i": 83399,
+   "first_i": 84199,
    "entries": 6,
    "instr": 102
   },
   {
    "name": "CC_PalTrngParamGet",
-   "first_i": 83406,
+   "first_i": 84206,
    "entries": 3,
    "instr": 171
   },
   {
    "name": "CC_PalMutexLock",
-   "first_i": 83496,
+   "first_i": 84296,
    "entries": 43,
    "instr": 215
   },
   {
    "name": "CC_PalPowerSaveModeSelect",
-   "first_i": 83525,
+   "first_i": 84325,
    "entries": 301,
    "instr": 2451
   },
   {
    "name": "LLF_RND_RunTrngStartupTest",
-   "first_i": 83587,
+   "first_i": 84387,
    "entries": 2,
    "instr": 12
   },
   {
    "name": "getTrngSource",
-   "first_i": 83597,
+   "first_i": 84397,
    "entries": 411,
    "instr": 6399
   },
   {
    "name": "startTrngHW",
-   "first_i": 83624,
+   "first_i": 84424,
    "entries": 12,
    "instr": 260
   },
   {
    "name": "LLF_RND_GetFastestRosc",
-   "first_i": 83645,
+   "first_i": 84445,
    "entries": 69,
    "instr": 552
   },
   {
    "name": "LLF_RND_GetRoscSampleCnt",
-   "first_i": 83659,
+   "first_i": 84459,
    "entries": 69,
    "instr": 621
   },
   {
    "name": "CC_HalMaskInterrupt",
-   "first_i": 83699,
+   "first_i": 84499,
    "entries": 152,
    "instr": 456
   },
   {
    "name": "LLF_RND_TurnOffTrng",
-   "first_i": 83752,
+   "first_i": 84552,
    "entries": 138,
    "instr": 690
   },
   {
    "name": "CC_HalClearInterruptBit",
-   "first_i": 83759,
+   "first_i": 84559,
    "entries": 109,
    "instr": 872
   },
   {
    "name": "LLF_RND_WaitRngInterrupt",
-   "first_i": 83858,
+   "first_i": 84658,
    "entries": 132,
    "instr": 594
   },
   {
    "name": "CC_HalWaitInterruptRND",
-   "first_i": 83862,
+   "first_i": 84662,
    "entries": 66,
    "instr": 132
   },
   {
    "name": "CC_PalWaitInterruptRND",
-   "first_i": 83864,
+   "first_i": 84664,
    "entries": 66,
    "instr": 1188
   },
   {
    "name": "CC_PalMemCopyPlat",
-   "first_i": 83912,
+   "first_i": 84712,
    "entries": 104,
    "instr": 104
   },
   {
    "name": "memmove",
-   "first_i": 83913,
-   "entries": 104,
-   "instr": 15264
+   "first_i": 84713,
+   "entries": 109,
+   "instr": 57124
   },
   {
    "name": "LLF_RND_RepetitionCounterTest",
-   "first_i": 90140,
+   "first_i": 90940,
    "entries": 3,
    "instr": 195777
   },
   {
    "name": "LLF_RND_AdaptiveProportionTest",
-   "first_i": 155405,
+   "first_i": 156205,
    "entries": 3,
    "instr": 240015
   },
   {
    "name": "CC_PalMutexUnlock",
-   "first_i": 235509,
+   "first_i": 236309,
    "entries": 86,
    "instr": 344
   },
   {
    "name": "nrf_cc3xx_platform_ctr_drbg_init",
-   "first_i": 235543,
+   "first_i": 236343,
    "entries": 6,
    "instr": 47
   },
   {
    "name": "mbedtls_platform_zeroize",
-   "first_i": 235560,
+   "first_i": 236360,
    "entries": 16,
    "instr": 9680
   },
   {
    "name": "cc_mbedtls_entropy_init",
-   "first_i": 237808,
+   "first_i": 238608,
    "entries": 6,
    "instr": 43
   },
   {
    "name": "cc_mbedtls_sha256_init",
-   "first_i": 237961,
+   "first_i": 238761,
    "entries": 7,
    "instr": 49
   },
   {
    "name": "CC_PalMemSetZeroPlat",
-   "first_i": 237968,
+   "first_i": 238768,
    "entries": 14,
    "instr": 42
   },
   {
    "name": "cc_mbedtls_ctr_drbg_init",
-   "first_i": 239014,
+   "first_i": 239814,
    "entries": 2,
    "instr": 14
   },
   {
    "name": "cc_mbedtls_ctr_drbg_seed",
-   "first_i": 239706,
+   "first_i": 240506,
    "entries": 7,
    "instr": 52
   },
   {
    "name": "cc_mbedtls_aes_init",
-   "first_i": 239880,
+   "first_i": 240680,
    "entries": 2,
    "instr": 20
   },
   {
    "name": "cc_mbedtls_aes_setkey_enc",
-   "first_i": 239904,
+   "first_i": 240704,
    "entries": 10,
    "instr": 85
   },
   {
    "name": "mbedtls_ctr_drbg_reseed_internal",
-   "first_i": 240097,
+   "first_i": 240897,
    "entries": 7,
    "instr": 56
   },
   {
    "name": "cc_mbedtls_entropy_func",
-   "first_i": 241663,
+   "first_i": 242463,
    "entries": 26,
    "instr": 188
   },
   {
    "name": "entropy_gather_internal.part.0",
-   "first_i": 241704,
+   "first_i": 242504,
    "entries": 8,
    "instr": 84
   },
   {
    "name": "mbedtls_hardware_poll",
-   "first_i": 241724,
+   "first_i": 242524,
    "entries": 22,
    "instr": 144
   },
   {
    "name": "LLF_RND_GetTrngSource",
-   "first_i": 241934,
+   "first_i": 242734,
    "entries": 2,
    "instr": 16
   },
   {
    "name": "mbedtls_zeroize_internal",
-   "first_i": 394591,
+   "first_i": 395391,
    "entries": 12,
    "instr": 13260
   },
   {
    "name": "entropy_update",
-   "first_i": 397588,
+   "first_i": 398388,
    "entries": 11,
    "instr": 96
   },
   {
    "name": "cc_mbedtls_sha256",
-   "first_i": 397602,
+   "first_i": 398402,
    "entries": 24,
    "instr": 108
   },
   {
    "name": "cc_mbedtls_sha256_starts",
-   "first_i": 398603,
+   "first_i": 399403,
    "entries": 14,
    "instr": 49
   },
   {
    "name": "mbedtls_sha_starts_internal",
-   "first_i": 398607,
+   "first_i": 399407,
    "entries": 21,
    "instr": 105
   },
   {
    "name": "InitHashDrv",
-   "first_i": 399586,
+   "first_i": 400386,
    "entries": 14,
    "instr": 77
   },
   {
    "name": "cc_mbedtls_sha256_update",
-   "first_i": 399782,
+   "first_i": 400582,
    "entries": 20,
    "instr": 190
   },
   {
    "name": "mbedtls_sha_update_internal",
-   "first_i": 399796,
+   "first_i": 400596,
    "entries": 28,
    "instr": 503
   },
   {
    "name": "SetDataBuffersInfo",
-   "first_i": 399830,
+   "first_i": 400630,
    "entries": 111,
    "instr": 1150
   },
   {
    "name": "CC_PalDataBufferAttrGet",
-   "first_i": 399841,
+   "first_i": 400641,
    "entries": 71,
    "instr": 213
   },
   {
    "name": "ProcessHashDrv",
-   "first_i": 399860,
+   "first_i": 400660,
    "entries": 72,
    "instr": 1170
   },
   {
    "name": "CC_HalWaitInterrupt",
-   "first_i": 400036,
+   "first_i": 400836,
    "entries": 40,
    "instr": 80
   },
   {
    "name": "CC_PalWaitInterrupt",
-   "first_i": 400038,
+   "first_i": 400838,
    "entries": 40,
    "instr": 440
   },
   {
    "name": "cc_mbedtls_sha256_finish",
-   "first_i": 400300,
+   "first_i": 401100,
    "entries": 18,
    "instr": 102
   },
   {
    "name": "mbedtls_sha_finish_internal",
-   "first_i": 400306,
+   "first_i": 401106,
    "entries": 30,
    "instr": 228
   },
   {
    "name": "FinishHashDrv",
-   "first_i": 400775,
+   "first_i": 401575,
    "entries": 6,
    "instr": 246
   },
   {
    "name": "cc_mbedtls_sha256_free",
-   "first_i": 401007,
+   "first_i": 401807,
    "entries": 6,
    "instr": 18
   },
   {
    "name": "block_cipher_df",
-   "first_i": 585789,
+   "first_i": 586589,
    "entries": 38,
    "instr": 717
   },
   {
    "name": "cc_mbedtls_aes_crypt_ecb",
-   "first_i": 588170,
+   "first_i": 588970,
    "entries": 93,
    "instr": 961
   },
   {
    "name": "ProcessAesDrv",
-   "first_i": 588235,
+   "first_i": 589035,
    "entries": 248,
    "instr": 3596
   },
   {
    "name": "InitAes",
-   "first_i": 588353,
+   "first_i": 589153,
    "entries": 93,
    "instr": 1612
   },
   {
    "name": "LoadAesKey",
-   "first_i": 588420,
+   "first_i": 589220,
    "entries": 31,
    "instr": 1054
   },
   {
    "name": "cc_mbedtls_aes_free",
-   "first_i": 597790,
+   "first_i": 598590,
    "entries": 1,
    "instr": 4
   },
   {
    "name": "CC_PalMemSetPlat",
-   "first_i": 597794,
+   "first_i": 598594,
    "entries": 1,
    "instr": 1
   },
   {
    "name": "ctr_drbg_update_internal",
-   "first_i": 600864,
+   "first_i": 601664,
    "entries": 16,
    "instr": 254
   },
   {
    "name": "nrf_cc3xx_platform_ctr_drbg_get",
-   "first_i": 605057,
+   "first_i": 605857,
    "entries": 2,
    "instr": 24
   },
   {
    "name": "cc_mbedtls_ctr_drbg_random_with_add",
-   "first_i": 605075,
+   "first_i": 605875,
    "entries": 21,
    "instr": 240
   },
   {
    "name": "entropy_bt_init",
-   "first_i": 611904,
+   "first_i": 612704,
    "entries": 1,
    "instr": 2
   },
   {
    "name": "entropy_cc3xx_rng_init",
-   "first_i": 611920,
+   "first_i": 612720,
    "entries": 2,
    "instr": 9
   },
   {
    "name": "wdt_0_init",
-   "first_i": 611957,
+   "first_i": 612757,
    "entries": 3,
    "instr": 16
   },
   {
    "name": "nrfx_wdt_init",
-   "first_i": 611986,
+   "first_i": 612786,
    "entries": 2,
    "instr": 14
   },
   {
    "name": "wdt_configure",
-   "first_i": 611997,
+   "first_i": 612797,
    "entries": 3,
    "instr": 30
   },
   {
    "name": "__aeabi_uldivmod",
-   "first_i": 612007,
-   "entries": 2,
-   "instr": 9
+   "first_i": 612807,
+   "entries": 390,
+   "instr": 1755
   },
   {
    "name": "__udivmoddi4",
-   "first_i": 612012,
-   "entries": 2,
-   "instr": 98
+   "first_i": 612812,
+   "entries": 196,
+   "instr": 9604
   },
   {
    "name": "uarte_0_init",
-   "first_i": 612118,
+   "first_i": 612918,
    "entries": 8,
    "instr": 72
   },
   {
    "name": "pinctrl_apply_state",
-   "first_i": 612164,
+   "first_i": 612964,
    "entries": 12,
    "instr": 52
   },
   {
    "name": "pinctrl_lookup_state",
-   "first_i": 612168,
+   "first_i": 612968,
    "entries": 5,
    "instr": 70
   },
   {
    "name": "pinctrl_configure_pins",
-   "first_i": 612189,
+   "first_i": 612989,
    "entries": 22,
    "instr": 722
   },
   {
    "name": "nrf_gpio_pin_port_decode",
-   "first_i": 612213,
-   "entries": 17,
-   "instr": 231
+   "first_i": 613013,
+   "entries": 39,
+   "instr": 369
   },
   {
    "name": "uarte_nrfx_configure",
-   "first_i": 612344,
+   "first_i": 613144,
    "entries": 1,
    "instr": 47
   },
   {
    "name": "nrfx_dppi_channel_alloc",
-   "first_i": 612398,
+   "first_i": 613198,
    "entries": 3,
    "instr": 9
   },
   {
    "name": "nrfx_flag32_alloc",
-   "first_i": 612401,
-   "entries": 3,
-   "instr": 57
+   "first_i": 613201,
+   "entries": 5,
+   "instr": 95
   },
   {
    "name": "nrfx_gppi_channel_endpoints_setup",
-   "first_i": 612427,
+   "first_i": 613227,
    "entries": 2,
    "instr": 8
   },
   {
    "name": "nrfx_gppi_event_endpoint_setup",
-   "first_i": 612431,
-   "entries": 2,
-   "instr": 10
+   "first_i": 613231,
+   "entries": 3,
+   "instr": 15
   },
   {
    "name": "nrfx_gppi_task_endpoint_setup",
-   "first_i": 612440,
+   "first_i": 613240,
    "entries": 3,
    "instr": 15
   },
   {
    "name": "nrfx_gppi_channels_enable",
-   "first_i": 612449,
+   "first_i": 613249,
    "entries": 3,
    "instr": 9
   },
   {
    "name": "uart_console_init",
-   "first_i": 612496,
+   "first_i": 613296,
    "entries": 4,
    "instr": 10
   },
   {
    "name": "z_device_is_ready",
-   "first_i": 612499,
-   "entries": 10,
-   "instr": 90
+   "first_i": 613299,
+   "entries": 28,
+   "instr": 238
   },
   {
    "name": "__stdout_hook_install",
-   "first_i": 612511,
+   "first_i": 613311,
    "entries": 1,
    "instr": 3
   },
   {
    "name": "__printk_hook_install",
-   "first_i": 612516,
+   "first_i": 613316,
    "entries": 1,
    "instr": 3
   },
   {
    "name": "sys_clock_driver_init",
-   "first_i": 612540,
+   "first_i": 613340,
    "entries": 5,
    "instr": 47
   },
   {
    "name": "compare_set",
-   "first_i": 612611,
-   "entries": 10,
-   "instr": 136
+   "first_i": 613411,
+   "entries": 20,
+   "instr": 272
   },
   {
    "name": "compare_int_lock",
-   "first_i": 612618,
-   "entries": 2,
-   "instr": 42
+   "first_i": 613418,
+   "entries": 4,
+   "instr": 84
   },
   {
    "name": "z_nrf_rtc_timer_read",
-   "first_i": 612641,
-   "entries": 20,
-   "instr": 340
+   "first_i": 613441,
+   "entries": 35,
+   "instr": 595
   },
   {
    "name": "event_clear",
-   "first_i": 612681,
-   "entries": 2,
-   "instr": 18
+   "first_i": 613481,
+   "entries": 4,
+   "instr": 36
   },
   {
    "name": "compare_int_unlock",
-   "first_i": 612723,
-   "entries": 2,
-   "instr": 44
+   "first_i": 613523,
+   "entries": 4,
+   "instr": 88
   },
   {
    "name": "z_nrf_clock_control_lf_on",
-   "first_i": 612750,
+   "first_i": 613550,
    "entries": 4,
    "instr": 76
   },
   {
    "name": "onoff_request",
-   "first_i": 612765,
+   "first_i": 613565,
    "entries": 5,
    "instr": 41
   },
   {
    "name": "validate_args",
-   "first_i": 612769,
+   "first_i": 613569,
    "entries": 2,
    "instr": 12
   },
   {
    "name": "sys_notify_validate",
-   "first_i": 612775,
+   "first_i": 613575,
    "entries": 1,
    "instr": 13
   },
   {
    "name": "z_spin_lock_valid",
-   "first_i": 612803,
-   "entries": 26187,
-   "instr": 104748
+   "first_i": 613603,
+   "entries": 27003,
+   "instr": 108012
   },
   {
    "name": "z_spin_lock_set_owner",
-   "first_i": 612811,
-   "entries": 26187,
-   "instr": 157122
+   "first_i": 613611,
+   "entries": 27003,
+   "instr": 162018
   },
   {
    "name": "process_event",
-   "first_i": 612838,
+   "first_i": 613638,
    "entries": 14,
    "instr": 183
   },
   {
    "name": "process_recheck",
-   "first_i": 612850,
+   "first_i": 613650,
    "entries": 2,
    "instr": 19
   },
   {
    "name": "z_spin_unlock_valid",
-   "first_i": 612891,
-   "entries": 26186,
-   "instr": 314232
+   "first_i": 613691,
+   "entries": 27003,
+   "instr": 324036
   },
   {
    "name": "onoff_start",
-   "first_i": 612915,
+   "first_i": 613715,
    "entries": 2,
    "instr": 16
   },
   {
    "name": "async_start",
-   "first_i": 612927,
+   "first_i": 613727,
    "entries": 2,
    "instr": 24
   },
   {
    "name": "lfclk_start",
-   "first_i": 612949,
+   "first_i": 613749,
    "entries": 1,
    "instr": 2
   },
   {
    "name": "nrfx_clock_start",
-   "first_i": 612951,
+   "first_i": 613751,
    "entries": 1,
    "instr": 27
   },
   {
    "name": "k_is_in_isr",
-   "first_i": 613044,
-   "entries": 21,
-   "instr": 105
+   "first_i": 613844,
+   "entries": 1579,
+   "instr": 7895
   },
   {
    "name": "arch_cpu_atomic_idle",
-   "first_i": 613074,
+   "first_i": 613874,
    "entries": 2,
    "instr": 17
   },
   {
    "name": "z_arm_on_enter_cpu_idle",
-   "first_i": 613079,
-   "entries": 3,
-   "instr": 21
+   "first_i": 613879,
+   "entries": 6,
+   "instr": 42
   },
   {
    "name": "sys_clock_cycle_get_32",
-   "first_i": 613089,
-   "entries": 30,
-   "instr": 45
+   "first_i": 613889,
+   "entries": 44,
+   "instr": 66
   },
   {
    "name": "_skip_1",
-   "first_i": 613152,
+   "first_i": 613952,
    "entries": 1,
    "instr": 4
   },
   {
    "name": "z_sched_init",
-   "first_i": 613193,
+   "first_i": 613993,
    "entries": 1,
    "instr": 4
   },
   {
    "name": "z_setup_new_thread",
-   "first_i": 613209,
-   "entries": 12,
-   "instr": 264
+   "first_i": 614009,
+   "entries": 16,
+   "instr": 352
   },
   {
    "name": "arch_new_thread",
-   "first_i": 613242,
-   "entries": 6,
-   "instr": 114
+   "first_i": 614042,
+   "entries": 8,
+   "instr": 152
   },
   {
    "name": "z_ready_thread",
-   "first_i": 613278,
-   "entries": 5,
-   "instr": 19
+   "first_i": 614078,
+   "entries": 20,
+   "instr": 76
   },
   {
    "name": "ready_thread",
-   "first_i": 613301,
-   "entries": 5,
-   "instr": 198
+   "first_i": 614101,
+   "entries": 11,
+   "instr": 411
   },
   {
    "name": "update_cache",
-   "first_i": 613331,
-   "entries": 11,
-   "instr": 176
+   "first_i": 614131,
+   "entries": 44,
+   "instr": 536
   },
   {
    "name": "z_reset_time_slice",
-   "first_i": 613348,
-   "entries": 9,
-   "instr": 48
+   "first_i": 614148,
+   "entries": 51,
+   "instr": 272
   },
   {
    "name": "z_abort_timeout",
-   "first_i": 613357,
-   "entries": 16,
-   "instr": 88
+   "first_i": 614157,
+   "entries": 105,
+   "instr": 573
   },
   {
    "name": "sliceable",
-   "first_i": 613406,
-   "entries": 3,
-   "instr": 23
+   "first_i": 614206,
+   "entries": 17,
+   "instr": 134
   },
   {
    "name": "z_init_cpu",
-   "first_i": 613439,
+   "first_i": 614239,
    "entries": 2,
    "instr": 39
   },
   {
    "name": "arch_switch_to_main_thread",
-   "first_i": 613545,
+   "first_i": 614345,
    "entries": 2,
    "instr": 20
   },
   {
    "name": "_isr_wrapper",
-   "first_i": 613561,
-   "entries": 78,
-   "instr": 429
+   "first_i": 614361,
+   "entries": 168,
+   "instr": 924
   },
   {
    "name": "nrfx_isr",
-   "first_i": 613569,
-   "entries": 39,
-   "instr": 39
+   "first_i": 614369,
+   "entries": 84,
+   "instr": 84
   },
   {
    "name": "nrfx_power_clock_irq_handler",
-   "first_i": 613570,
+   "first_i": 614370,
    "entries": 2,
    "instr": 29
   },
   {
    "name": "clock_event_handler",
-   "first_i": 613591,
+   "first_i": 614391,
    "entries": 1,
    "instr": 8
   },
   {
    "name": "clkstarted_handle.constprop.0",
-   "first_i": 613599,
+   "first_i": 614399,
    "entries": 2,
    "instr": 18
   },
   {
    "name": "set_on_state",
-   "first_i": 613611,
+   "first_i": 614411,
    "entries": 1,
    "instr": 11
   },
   {
    "name": "onoff_started_callback",
-   "first_i": 613628,
+   "first_i": 614428,
    "entries": 1,
    "instr": 5
   },
   {
    "name": "transition_complete",
-   "first_i": 613633,
+   "first_i": 614433,
    "entries": 3,
    "instr": 19
   },
   {
    "name": "notify_one",
-   "first_i": 613755,
+   "first_i": 614555,
    "entries": 2,
    "instr": 11
   },
   {
    "name": "sys_notify_finalize",
-   "first_i": 613763,
+   "first_i": 614563,
    "entries": 1,
    "instr": 17
   },
   {
    "name": "z_arm_int_exit",
-   "first_i": 613846,
-   "entries": 39,
-   "instr": 195
+   "first_i": 614646,
+   "entries": 84,
+   "instr": 423
   },
   {
    "name": "_ExcExitWithGdbStub",
-   "first_i": 613851,
-   "entries": 39,
-   "instr": 39
+   "first_i": 614651,
+   "entries": 84,
+   "instr": 84
   },
   {
    "name": "z_thread_entry",
-   "first_i": 613856,
-   "entries": 2,
-   "instr": 12
+   "first_i": 614656,
+   "entries": 7,
+   "instr": 42
   },
   {
    "name": "bg_thread_main",
-   "first_i": 613862,
+   "first_i": 614662,
    "entries": 5,
    "instr": 11
   },
   {
    "name": "rtc_pretick_init",
-   "first_i": 613878,
+   "first_i": 614678,
    "entries": 5,
    "instr": 24
   },
   {
    "name": "nrfx_gppi_channel_alloc",
-   "first_i": 613881,
+   "first_i": 614681,
    "entries": 1,
    "instr": 1
   },
   {
    "name": "enable_logger",
-   "first_i": 613946,
+   "first_i": 614746,
    "entries": 4,
    "instr": 26
   },
   {
    "name": "k_timer_init",
-   "first_i": 613952,
-   "entries": 1,
-   "instr": 8
+   "first_i": 614752,
+   "entries": 2,
+   "instr": 16
   },
   {
    "name": "z_impl_k_thread_create",
-   "first_i": 613974,
-   "entries": 9,
-   "instr": 104
+   "first_i": 614774,
+   "entries": 14,
+   "instr": 162
   },
   {
    "name": "z_sched_start",
-   "first_i": 614063,
-   "entries": 16,
-   "instr": 88
+   "first_i": 614863,
+   "entries": 20,
+   "instr": 110
   },
   {
    "name": "z_reschedule",
-   "first_i": 614156,
-   "entries": 17398,
-   "instr": 147692
+   "first_i": 614956,
+   "entries": 17792,
+   "instr": 150772
   },
   {
    "name": "z_impl_k_thread_name_set",
-   "first_i": 614191,
+   "first_i": 614991,
    "entries": 4,
    "instr": 8
   },
   {
    "name": "mbox_nrf_init",
-   "first_i": 614206,
+   "first_i": 615006,
    "entries": 5,
    "instr": 304
   },
   {
    "name": "nrfx_ipc_init",
-   "first_i": 614214,
+   "first_i": 615014,
    "entries": 2,
    "instr": 15
   },
   {
    "name": "nrfx_ipc_config_load",
-   "first_i": 615084,
+   "first_i": 615884,
    "entries": 1,
    "instr": 206
   },
   {
    "name": "malloc_prepare",
-   "first_i": 615305,
+   "first_i": 616105,
    "entries": 1,
    "instr": 8
   },
   {
    "name": "hw_cc3xx_init",
-   "first_i": 615321,
+   "first_i": 616121,
    "entries": 3,
    "instr": 5
   },
   {
    "name": "nrf_cc3xx_platform_abort_init",
-   "first_i": 615323,
+   "first_i": 616123,
    "entries": 1,
    "instr": 2
   },
   {
    "name": "nrf_cc3xx_platform_set_abort",
-   "first_i": 615325,
+   "first_i": 616125,
    "entries": 1,
    "instr": 4
   },
   {
    "name": "nrf_cc3xx_platform_mutex_init",
-   "first_i": 615330,
+   "first_i": 616130,
    "entries": 2,
    "instr": 10
   },
   {
    "name": "k_mem_slab_init",
-   "first_i": 615336,
+   "first_i": 616136,
    "entries": 2,
    "instr": 12
   },
   {
    "name": "nrf_cc3xx_platform_set_mutexes",
-   "first_i": 616002,
+   "first_i": 616802,
    "entries": 2,
    "instr": 37
   },
   {
    "name": "mutex_init_platform",
-   "first_i": 616035,
+   "first_i": 616835,
    "entries": 8,
    "instr": 68
   },
   {
    "name": "k_mem_slab_alloc",
-   "first_i": 616053,
+   "first_i": 616853,
    "entries": 8,
    "instr": 66
   },
   {
    "name": "k_sys_work_q_init",
-   "first_i": 616418,
+   "first_i": 617218,
    "entries": 2,
    "instr": 15
   },
   {
    "name": "k_work_queue_start",
-   "first_i": 616430,
-   "entries": 9,
-   "instr": 120
+   "first_i": 617230,
+   "entries": 11,
+   "instr": 153
   },
   {
    "name": "z_impl_k_thread_start",
-   "first_i": 616560,
-   "entries": 3,
-   "instr": 3
+   "first_i": 617360,
+   "entries": 4,
+   "instr": 4
   },
   {
    "name": "arch_swap",
-   "first_i": 616749,
-   "entries": 7,
-   "instr": 60
+   "first_i": 617549,
+   "entries": 30,
+   "instr": 264
   },
   {
    "name": "z_arm_pendsv",
-   "first_i": 616761,
-   "entries": 4,
-   "instr": 40
+   "first_i": 617561,
+   "entries": 19,
+   "instr": 183
   },
   {
    "name": "out_fp_endif",
-   "first_i": 616770,
-   "entries": 4,
-   "instr": 66
+   "first_i": 617570,
+   "entries": 19,
+   "instr": 327
   },
   {
    "name": "in_fp_endif",
-   "first_i": 616788,
-   "entries": 8,
-   "instr": 48
+   "first_i": 617588,
+   "entries": 38,
+   "instr": 228
   },
   {
    "name": "configure_builtin_stack_guard",
-   "first_i": 616798,
-   "entries": 4,
-   "instr": 12
+   "first_i": 617598,
+   "entries": 19,
+   "instr": 57
   },
   {
    "name": "work_queue_main",
-   "first_i": 616809,
-   "entries": 4,
-   "instr": 29
+   "first_i": 617609,
+   "entries": 56,
+   "instr": 418
   },
   {
    "name": "flag_test_and_clear",
-   "first_i": 616838,
-   "entries": 1,
-   "instr": 8
+   "first_i": 617638,
+   "entries": 6,
+   "instr": 48
   },
   {
    "name": "z_sched_wait",
-   "first_i": 616856,
-   "entries": 1,
-   "instr": 5
+   "first_i": 617656,
+   "entries": 8,
+   "instr": 36
   },
   {
    "name": "z_pend_curr",
-   "first_i": 616861,
-   "entries": 6,
-   "instr": 35
+   "first_i": 617661,
+   "entries": 54,
+   "instr": 315
   },
   {
    "name": "pend_locked",
-   "first_i": 616897,
-   "entries": 2,
-   "instr": 10
+   "first_i": 617697,
+   "entries": 18,
+   "instr": 90
   },
   {
    "name": "add_to_waitq_locked",
-   "first_i": 616902,
-   "entries": 2,
-   "instr": 21
+   "first_i": 617702,
+   "entries": 18,
+   "instr": 189
   },
   {
    "name": "unready_thread",
-   "first_i": 616906,
-   "entries": 2,
-   "instr": 18
+   "first_i": 617706,
+   "entries": 20,
+   "instr": 180
   },
   {
    "name": "z_priq_dumb_remove",
-   "first_i": 616917,
-   "entries": 1,
-   "instr": 10
+   "first_i": 617717,
+   "entries": 18,
+   "instr": 180
   },
   {
    "name": "qspi_nor_init",
-   "first_i": 617144,
-   "entries": 8634,
-   "instr": 51836
+   "first_i": 617944,
+   "entries": 8652,
+   "instr": 51929
   },
   {
    "name": "nrfx_qspi_init",
-   "first_i": 617591,
-   "entries": 4,
-   "instr": 30
+   "first_i": 618391,
+   "entries": 22,
+   "instr": 165
   },
   {
    "name": "qspi_configure",
-   "first_i": 617598,
-   "entries": 6,
-   "instr": 108
+   "first_i": 618398,
+   "entries": 33,
+   "instr": 572
   },
   {
    "name": "qspi_workaround_apply",
-   "first_i": 617614,
-   "entries": 25884,
-   "instr": 345120
+   "first_i": 618414,
+   "entries": 25995,
+   "instr": 346600
   },
   {
    "name": "nrf_qspi_pins_set.constprop.0",
-   "first_i": 617643,
-   "entries": 17256,
-   "instr": 552192
+   "first_i": 618443,
+   "entries": 17330,
+   "instr": 554560
   },
   {
    "name": "qspi_get_zephyr_ret_code",
-   "first_i": 617777,
-   "entries": 8626,
-   "instr": 69008
+   "first_i": 618575,
+   "entries": 8663,
+   "instr": 69304
   },
   {
    "name": "exit_dpd",
-   "first_i": 617789,
+   "first_i": 618587,
    "entries": 3,
    "instr": 16
   },
   {
    "name": "qspi_send_cmd",
-   "first_i": 617798,
-   "entries": 43120,
-   "instr": 353579
+   "first_i": 618596,
+   "entries": 43215,
+   "instr": 354358
   },
   {
    "name": "qspi_lock",
-   "first_i": 617824,
-   "entries": 25881,
-   "instr": 112151
+   "first_i": 618622,
+   "entries": 26019,
+   "instr": 104076
   },
   {
    "name": "pm_device_busy_set",
-   "first_i": 617827,
-   "entries": 8627,
-   "instr": 77643
+   "first_i": 618625,
+   "entries": 8673,
+   "instr": 78057
   },
   {
    "name": "z_impl_k_sem_take",
-   "first_i": 617840,
-   "entries": 34892,
-   "instr": 287859
+   "first_i": 618638,
+   "entries": 35648,
+   "instr": 294088
   },
   {
    "name": "nrfx_qspi_cinstr_xfer",
-   "first_i": 617905,
-   "entries": 34507,
-   "instr": 388182
+   "first_i": 618702,
+   "entries": 34628,
+   "instr": 389478
   },
   {
    "name": "qspi_activate",
-   "first_i": 617918,
-   "entries": 4,
-   "instr": 32
+   "first_i": 618715,
+   "entries": 22,
+   "instr": 122
   },
   {
    "name": "qspi_ready_wait",
-   "first_i": 617927,
-   "entries": 8628,
-   "instr": 129420
+   "first_i": 618724,
+   "entries": 8656,
+   "instr": 129840
   },
   {
    "name": "qspi_unlock",
-   "first_i": 618103,
-   "entries": 17254,
-   "instr": 112151
+   "first_i": 618900,
+   "entries": 17346,
+   "instr": 112749
   },
   {
    "name": "z_impl_k_sem_give",
-   "first_i": 618113,
-   "entries": 43475,
-   "instr": 234765
+   "first_i": 618910,
+   "entries": 44445,
+   "instr": 239991
   },
   {
    "name": "z_unpend_first_thread",
-   "first_i": 618136,
-   "entries": 34784,
-   "instr": 200008
+   "first_i": 618933,
+   "entries": 35706,
+   "instr": 205275
   },
   {
    "name": "z_handle_obj_poll_events",
-   "first_i": 618190,
-   "entries": 8695,
-   "instr": 43475
+   "first_i": 618987,
+   "entries": 8888,
+   "instr": 44440
   },
   {
    "name": "pm_device_busy_clear",
-   "first_i": 618232,
-   "entries": 8627,
-   "instr": 77643
+   "first_i": 619029,
+   "entries": 8673,
+   "instr": 78057
   },
   {
    "name": "z_impl_k_busy_wait",
-   "first_i": 618259,
+   "first_i": 619056,
    "entries": 1,
    "instr": 2
   },
   {
    "name": "arch_busy_wait",
-   "first_i": 618261,
+   "first_i": 619058,
    "entries": 1,
    "instr": 9
   },
   {
    "name": "__text_region_end",
-   "first_i": 618270,
+   "first_i": 619067,
    "entries": 1,
    "instr": 1495
   },
   {
    "name": "qspi_rdsr.constprop.0",
-   "first_i": 619776,
-   "entries": 17242,
-   "instr": 172420
+   "first_i": 620575,
+   "entries": 17280,
+   "instr": 172800
   },
   {
    "name": "nrf_qspi_cinstrdata_get.constprop.0",
-   "first_i": 620061,
-   "entries": 8624,
-   "instr": 86244
+   "first_i": 620859,
+   "entries": 8652,
+   "instr": 86524
   },
   {
    "name": "nrf_qspi_cinstrdata_set.constprop.0",
-   "first_i": 620485,
-   "entries": 3,
-   "instr": 33
+   "first_i": 621282,
+   "entries": 12,
+   "instr": 132
   },
   {
    "name": "qspi_device_uninit",
-   "first_i": 4620375,
-   "entries": 10,
-   "instr": 46
+   "first_i": 4621349,
+   "entries": 55,
+   "instr": 253
   },
   {
    "name": "nrfx_qspi_mem_busy_check",
-   "first_i": 4620521,
-   "entries": 4,
-   "instr": 40
+   "first_i": 4621494,
+   "entries": 22,
+   "instr": 220
   },
   {
    "name": "nrfx_qspi_uninit",
-   "first_i": 4620733,
-   "entries": 6,
-   "instr": 24
+   "first_i": 4621706,
+   "entries": 33,
+   "instr": 132
   },
   {
    "name": "arch_irq_disable",
-   "first_i": 4620739,
-   "entries": 2,
-   "instr": 26
-  },
-  {
-   "name": "qspi_deactivate",
-   "first_i": 4620753,
-   "entries": 2,
-   "instr": 20
-  },
-  {
-   "name": "qspi_device_init",
-   "first_i": 4620922,
-   "entries": 6,
-   "instr": 24
-  },
-  {
-   "name": "memcmp",
-   "first_i": 4622496,
-   "entries": 1,
-   "instr": 19
-  },
-  {
-   "name": "z_log_msg_static_create.constprop.0",
-   "first_i": 4622537,
-   "entries": 3,
-   "instr": 6
-  },
-  {
-   "name": "z_impl_z_log_msg_static_create",
-   "first_i": 4622539,
-   "entries": 60,
-   "instr": 756
-  },
-  {
-   "name": "cbprintf_package_convert",
-   "first_i": 4622565,
-   "entries": 40,
-   "instr": 785
-  },
-  {
-   "name": "z_log_msg_alloc",
-   "first_i": 4622601,
-   "entries": 13,
-   "instr": 65
-  },
-  {
-   "name": "mpsc_pbuf_alloc",
-   "first_i": 4622606,
-   "entries": 83,
-   "instr": 823
-  },
-  {
-   "name": "free_space",
-   "first_i": 4622644,
-   "entries": 14,
-   "instr": 205
-  },
-  {
-   "name": "idx_inc",
-   "first_i": 4622673,
-   "entries": 26,
-   "instr": 260
-  },
-  {
-   "name": "z_cbprintf_cpy",
-   "first_i": 4622752,
-   "entries": 24,
-   "instr": 204
-  },
-  {
-   "name": "z_log_msg_finalize",
-   "first_i": 4622947,
-   "entries": 13,
-   "instr": 156
-  },
-  {
-   "name": "z_log_msg_commit",
-   "first_i": 4622959,
-   "entries": 39,
+   "first_i": 4621712,
+   "entries": 11,
    "instr": 143
   },
   {
-   "name": "default_get_timestamp",
-   "first_i": 4622964,
-   "entries": 13,
-   "instr": 13
+   "name": "qspi_deactivate",
+   "first_i": 4621726,
+   "entries": 11,
+   "instr": 110
   },
   {
-   "name": "mpsc_pbuf_commit",
-   "first_i": 4622989,
-   "entries": 91,
-   "instr": 429
+   "name": "qspi_device_init",
+   "first_i": 4621895,
+   "entries": 60,
+   "instr": 240
   },
   {
-   "name": "log_msg_generic_get_wlen",
-   "first_i": 4622995,
-   "entries": 13,
-   "instr": 169
-  },
-  {
-   "name": "max_utilization_update",
-   "first_i": 4623049,
-   "entries": 13,
-   "instr": 78
-  },
-  {
-   "name": "z_log_msg_post_finalize",
-   "first_i": 4623075,
-   "entries": 26,
-   "instr": 169
-  },
-  {
-   "name": "atomic_inc",
-   "first_i": 4623078,
-   "entries": 14,
-   "instr": 98
+   "name": "memcmp",
+   "first_i": 4623464,
+   "entries": 267,
+   "instr": 67770
   },
   {
    "name": "backend_init",
-   "first_i": 4623129,
+   "first_i": 4623517,
    "entries": 3,
    "instr": 12
   },
   {
    "name": "atomic_set.isra.0",
-   "first_i": 4623144,
-   "entries": 1,
-   "instr": 5
+   "first_i": 4623532,
+   "entries": 2,
+   "instr": 10
   },
   {
    "name": "init_saadc",
-   "first_i": 4623165,
+   "first_i": 4623553,
    "entries": 4,
    "instr": 22
   },
   {
    "name": "nrf_flash_init",
-   "first_i": 4623346,
+   "first_i": 4623734,
    "entries": 4,
    "instr": 12
   },
   {
    "name": "nrfx_nvmc_flash_page_count_get",
-   "first_i": 4623361,
+   "first_i": 4623749,
    "entries": 1,
    "instr": 2
   },
   {
    "name": "nrfx_nvmc_flash_page_size_get",
-   "first_i": 4623366,
+   "first_i": 4623754,
    "entries": 1,
    "instr": 2
   },
   {
    "name": "i2c_nrfx_twim_init",
-   "first_i": 4623385,
+   "first_i": 4623773,
    "entries": 10,
    "instr": 52
   },
   {
    "name": "irq_connect1",
-   "first_i": 4623392,
+   "first_i": 4623780,
    "entries": 1,
    "instr": 4
   },
   {
    "name": "nrfx_twim_init",
-   "first_i": 4623586,
+   "first_i": 4623974,
    "entries": 4,
    "instr": 74
   },
   {
    "name": "twim_configure",
-   "first_i": 4623619,
+   "first_i": 4624007,
    "entries": 2,
    "instr": 32
   },
   {
    "name": "nrfx_twim_enable",
-   "first_i": 4623654,
+   "first_i": 4624042,
    "entries": 2,
    "instr": 28
   },
   {
    "name": "irq_connect2",
-   "first_i": 4623693,
+   "first_i": 4624081,
    "entries": 1,
    "instr": 4
   },
   {
    "name": "remoteproc_mgr_boot",
-   "first_i": 4623989,
+   "first_i": 4624377,
    "entries": 1,
    "instr": 15
   },
   {
    "name": "long_wq_init",
-   "first_i": 4624012,
+   "first_i": 4624400,
    "entries": 3,
    "instr": 19
   },
   {
    "name": "k_work_queue_init",
-   "first_i": 4624021,
-   "entries": 4,
-   "instr": 12
+   "first_i": 4624409,
+   "entries": 6,
+   "instr": 18
   },
   {
    "name": "bt_rpmsg_init",
-   "first_i": 4625304,
+   "first_i": 4625692,
    "entries": 2,
    "instr": 9
   },
   {
    "name": "bt_hci_driver_register",
-   "first_i": 4625308,
+   "first_i": 4625696,
    "entries": 1,
    "instr": 10
   },
   {
    "name": "mfd_npm1300_init",
-   "first_i": 4625333,
+   "first_i": 4625721,
    "entries": 3,
    "instr": 14
   },
   {
    "name": "gpio_npm1300_init",
-   "first_i": 4625375,
+   "first_i": 4625763,
    "entries": 2,
    "instr": 9
   },
   {
    "name": "wdt_npm1300_init",
-   "first_i": 4625407,
+   "first_i": 4625795,
    "entries": 2,
    "instr": 9
   },
   {
    "name": "regulator_npm1300_common_init",
-   "first_i": 4625439,
+   "first_i": 4625827,
    "entries": 1,
    "instr": 31
   },
   {
    "name": "regulator_npm1300_init",
-   "first_i": 4625484,
+   "first_i": 4625872,
    "entries": 20,
    "instr": 120
   },
   {
    "name": "regulator_common_init",
-   "first_i": 4625503,
+   "first_i": 4625891,
    "entries": 11,
    "instr": 159
   },
   {
    "name": "regulator_npm1300_get_voltage",
-   "first_i": 4625523,
+   "first_i": 4625911,
    "entries": 4,
    "instr": 34
   },
   {
    "name": "buck_get_voltage.isra.0",
-   "first_i": 4625531,
+   "first_i": 4625919,
    "entries": 6,
    "instr": 82
   },
   {
    "name": "mfd_npm1300_reg_read",
-   "first_i": 4625540,
-   "entries": 14,
-   "instr": 42
+   "first_i": 4625928,
+   "entries": 20,
+   "instr": 60
   },
   {
    "name": "mfd_npm1300_reg_read_burst",
-   "first_i": 4625544,
-   "entries": 14,
-   "instr": 175
+   "first_i": 4625932,
+   "entries": 22,
+   "instr": 275
   },
   {
    "name": "i2c_nrfx_twim_transfer",
-   "first_i": 4625567,
-   "entries": 216,
-   "instr": 3120
+   "first_i": 4625955,
+   "entries": 308,
+   "instr": 4490
   },
   {
    "name": "nrfx_twim_xfer",
-   "first_i": 4625829,
-   "entries": 76,
-   "instr": 5686
+   "first_i": 4626217,
+   "entries": 106,
+   "instr": 7903
   },
   {
    "name": "nrfx_twim_1_irq_handler",
-   "first_i": 4625988,
-   "entries": 38,
-   "instr": 114
+   "first_i": 4626376,
+   "entries": 50,
+   "instr": 150
   },
   {
    "name": "irq_handler",
-   "first_i": 4625991,
-   "entries": 190,
-   "instr": 3044
+   "first_i": 4626379,
+   "entries": 265,
+   "instr": 4234
   },
   {
    "name": "__nrfy_internal_twim_events_process.constprop.0",
-   "first_i": 4625999,
-   "entries": 688,
-   "instr": 2408
+   "first_i": 4626387,
+   "entries": 968,
+   "instr": 3388
   },
   {
    "name": "__nrfy_internal_twim_event_handle.isra.0",
-   "first_i": 4626006,
-   "entries": 602,
-   "instr": 5216
+   "first_i": 4626394,
+   "entries": 847,
+   "instr": 7336
   },
   {
    "name": "event_handler",
-   "first_i": 4626324,
-   "entries": 38,
-   "instr": 380
+   "first_i": 4626712,
+   "entries": 53,
+   "instr": 530
   },
   {
    "name": "xfer_completeness_check",
-   "first_i": 4626916,
-   "entries": 28,
-   "instr": 346
+   "first_i": 4627304,
+   "entries": 38,
+   "instr": 473
   },
   {
    "name": "regulator_npm1300_set_pin_ctrl",
-   "first_i": 4629179,
+   "first_i": 4629567,
    "entries": 12,
    "instr": 72
   },
   {
    "name": "regulator_set_voltage",
-   "first_i": 4629256,
+   "first_i": 4629644,
    "entries": 1,
    "instr": 12
   },
   {
    "name": "regulator_npm1300_set_voltage",
-   "first_i": 4629268,
+   "first_i": 4629656,
    "entries": 1,
    "instr": 12
   },
   {
    "name": "buck_set_voltage.isra.0",
-   "first_i": 4629280,
+   "first_i": 4629668,
    "entries": 4,
    "instr": 29
   },
   {
    "name": "linear_range_get_win_index.constprop.0",
-   "first_i": 4629288,
+   "first_i": 4629676,
    "entries": 1,
    "instr": 25
   },
   {
    "name": "mfd_npm1300_reg_write",
-   "first_i": 4629322,
-   "entries": 30,
-   "instr": 150
+   "first_i": 4629710,
+   "entries": 34,
+   "instr": 170
   },
   {
    "name": "i2c_write_dt",
-   "first_i": 4629330,
-   "entries": 34,
-   "instr": 238
+   "first_i": 4629718,
+   "entries": 38,
+   "instr": 266
   },
   {
    "name": "mfd_npm1300_reg_update",
-   "first_i": 4630379,
+   "first_i": 4630767,
    "entries": 5,
    "instr": 33
   },
   {
    "name": "z_impl_k_mutex_lock",
-   "first_i": 4630390,
-   "entries": 4,
-   "instr": 34
+   "first_i": 4630778,
+   "entries": 136,
+   "instr": 1156
   },
   {
    "name": "z_impl_k_mutex_unlock",
-   "first_i": 4633303,
-   "entries": 6,
-   "instr": 40
+   "first_i": 4633691,
+   "entries": 204,
+   "instr": 1360
   },
   {
    "name": "adjust_owner_prio.isra.0",
-   "first_i": 4633340,
-   "entries": 1,
-   "instr": 5
+   "first_i": 4633728,
+   "entries": 34,
+   "instr": 170
   },
   {
    "name": "regulator_set_mode",
-   "first_i": 4637160,
+   "first_i": 4637548,
    "entries": 2,
    "instr": 22
   },
   {
    "name": "regulator_npm1300_set_mode",
-   "first_i": 4637171,
+   "first_i": 4637559,
    "entries": 2,
    "instr": 17
   },
   {
    "name": "set_ldsw_mode.isra.0",
-   "first_i": 4637179,
+   "first_i": 4637567,
    "entries": 2,
    "instr": 22
   },
   {
    "name": "ldo_get_voltage.isra.0",
-   "first_i": 4638259,
+   "first_i": 4638647,
    "entries": 4,
    "instr": 46
   },
   {
    "name": "pdm_nrfx_init0",
-   "first_i": 4643154,
+   "first_i": 4643542,
    "entries": 6,
    "instr": 39
   },
   {
    "name": "k_msgq_init",
-   "first_i": 4643367,
+   "first_i": 4643755,
    "entries": 1,
    "instr": 13
   },
   {
    "name": "z_nrf_clock_control_get_onoff",
-   "first_i": 4643388,
+   "first_i": 4643776,
    "entries": 1,
    "instr": 4
   },
   {
    "name": "opt3001_init",
-   "first_i": 4643411,
+   "first_i": 4643799,
    "entries": 6,
    "instr": 62
   },
   {
    "name": "opt3001_reg_read.isra.0",
-   "first_i": 4643433,
+   "first_i": 4643821,
    "entries": 6,
    "instr": 87
   },
   {
    "name": "npm1300_charger_init",
-   "first_i": 4649886,
+   "first_i": 4650274,
    "entries": 19,
    "instr": 199
   },
   {
    "name": "linear_range_group_get_win_index.constprop.0",
-   "first_i": 4651002,
+   "first_i": 4651390,
    "entries": 3,
    "instr": 54
   },
   {
    "name": "linear_range_get_win_index",
-   "first_i": 4651020,
+   "first_i": 4651408,
    "entries": 5,
    "instr": 155
   },
   {
    "name": "mfd_npm1300_reg_write2",
-   "first_i": 4653265,
+   "first_i": 4653653,
    "entries": 4,
    "instr": 24
   },
   {
    "name": "sync_rtc_setup",
-   "first_i": 4663941,
+   "first_i": 4664329,
    "entries": 7,
    "instr": 49
   },
   {
    "name": "z_nrf_rtc_timer_chan_alloc",
-   "first_i": 4663972,
+   "first_i": 4664360,
    "entries": 1,
    "instr": 18
   },
   {
    "name": "mbox_nrf_register_callback",
-   "first_i": 4664004,
-   "entries": 1,
-   "instr": 11
+   "first_i": 4664392,
+   "entries": 2,
+   "instr": 22
   },
   {
    "name": "mbox_nrf_set_enabled",
-   "first_i": 4664024,
-   "entries": 3,
-   "instr": 36
+   "first_i": 4664412,
+   "entries": 7,
+   "instr": 98
   },
   {
    "name": "nrfx_ipc_receive_event_enable",
-   "first_i": 4664064,
-   "entries": 1,
-   "instr": 9
-  },
-  {
-   "name": "ppi_ipc_to_rtc.isra.0",
-   "first_i": 4664093,
-   "entries": 3,
+   "first_i": 4664452,
+   "entries": 2,
    "instr": 18
   },
   {
+   "name": "ppi_ipc_to_rtc.isra.0",
+   "first_i": 4664481,
+   "entries": 6,
+   "instr": 36
+  },
+  {
    "name": "z_nrf_rtc_timer_capture_task_address_get",
-   "first_i": 4664101,
-   "entries": 1,
-   "instr": 8
+   "first_i": 4664489,
+   "entries": 2,
+   "instr": 16
   },
   {
    "name": "boot_banner",
-   "first_i": 4664137,
+   "first_i": 4664525,
    "entries": 1,
    "instr": 2
   },
   {
    "name": "printk",
-   "first_i": 4664139,
+   "first_i": 4664527,
    "entries": 2,
    "instr": 10
   },
   {
    "name": "z_log_vprintk",
-   "first_i": 4664145,
+   "first_i": 4664533,
    "entries": 2,
    "instr": 10
   },
   {
    "name": "z_impl_z_log_msg_runtime_vcreate",
-   "first_i": 4664153,
+   "first_i": 4664541,
    "entries": 4,
    "instr": 50
   },
   {
    "name": "cbvprintf_package",
-   "first_i": 4664169,
+   "first_i": 4664557,
    "entries": 2,
    "instr": 670
   },
   {
+   "name": "z_log_msg_alloc",
+   "first_i": 4664898,
+   "entries": 18,
+   "instr": 90
+  },
+  {
+   "name": "mpsc_pbuf_alloc",
+   "first_i": 4664903,
+   "entries": 108,
+   "instr": 1062
+  },
+  {
+   "name": "free_space",
+   "first_i": 4664941,
+   "entries": 18,
+   "instr": 270
+  },
+  {
+   "name": "idx_inc",
+   "first_i": 4664970,
+   "entries": 72,
+   "instr": 720
+  },
+  {
+   "name": "z_log_msg_finalize",
+   "first_i": 4665372,
+   "entries": 18,
+   "instr": 216
+  },
+  {
+   "name": "z_log_msg_commit",
+   "first_i": 4665384,
+   "entries": 54,
+   "instr": 198
+  },
+  {
+   "name": "default_get_timestamp",
+   "first_i": 4665389,
+   "entries": 18,
+   "instr": 18
+  },
+  {
+   "name": "mpsc_pbuf_commit",
+   "first_i": 4665414,
+   "entries": 126,
+   "instr": 594
+  },
+  {
+   "name": "log_msg_generic_get_wlen",
+   "first_i": 4665420,
+   "entries": 54,
+   "instr": 702
+  },
+  {
+   "name": "max_utilization_update",
+   "first_i": 4665474,
+   "entries": 18,
+   "instr": 108
+  },
+  {
+   "name": "z_log_msg_post_finalize",
+   "first_i": 4665500,
+   "entries": 42,
+   "instr": 303
+  },
+  {
+   "name": "atomic_inc",
+   "first_i": 4665503,
+   "entries": 20,
+   "instr": 140
+  },
+  {
    "name": "mcumgr_handlers_init",
-   "first_i": 4665150,
+   "first_i": 4665538,
    "entries": 3,
    "instr": 24
   },
   {
    "name": "img_mgmt_register_group",
-   "first_i": 4665160,
+   "first_i": 4665548,
    "entries": 1,
    "instr": 2
   },
   {
    "name": "mgmt_register_group",
-   "first_i": 4665162,
+   "first_i": 4665550,
    "entries": 1,
    "instr": 7
   },
   {
    "name": "smp_bt_setup",
-   "first_i": 4665177,
+   "first_i": 4665565,
    "entries": 4,
    "instr": 25
   },
   {
    "name": "smp_transport_init",
-   "first_i": 4665206,
+   "first_i": 4665594,
    "entries": 4,
    "instr": 12
   },
   {
    "name": "smp_reassembly_init",
-   "first_i": 4665211,
+   "first_i": 4665599,
    "entries": 1,
    "instr": 4
   },
   {
    "name": "k_work_init",
-   "first_i": 4665218,
-   "entries": 2,
-   "instr": 10
+   "first_i": 4665606,
+   "entries": 4,
+   "instr": 20
   },
   {
    "name": "z_impl_k_queue_init",
-   "first_i": 4665299,
+   "first_i": 4665687,
    "entries": 1,
    "instr": 8
   },
   {
    "name": "smp_bt_register",
-   "first_i": 4665311,
+   "first_i": 4665699,
    "entries": 1,
    "instr": 2
   },
   {
    "name": "bt_gatt_service_register",
-   "first_i": 4665313,
+   "first_i": 4665701,
    "entries": 8,
    "instr": 113
   },
   {
    "name": "atomic_get",
-   "first_i": 4665324,
+   "first_i": 4665712,
    "entries": 2,
    "instr": 4
   },
   {
    "name": "bt_gatt_service_init",
-   "first_i": 4665329,
+   "first_i": 4665717,
    "entries": 2,
    "instr": 34
   },
   {
    "name": "atomic_or",
-   "first_i": 4665333,
+   "first_i": 4665721,
    "entries": 1,
    "instr": 8
   },
   {
    "name": "bt_uuid_cmp",
-   "first_i": 4665379,
+   "first_i": 4665767,
    "entries": 2,
    "instr": 36
   },
   {
    "name": "k_sched_lock",
-   "first_i": 4665427,
+   "first_i": 4665815,
    "entries": 8,
    "instr": 50
   },
   {
    "name": "k_sched_unlock",
-   "first_i": 4665550,
+   "first_i": 4665938,
    "entries": 10,
    "instr": 52
   },
   {
    "name": "z_reschedule_unlocked",
-   "first_i": 4665621,
+   "first_i": 4666009,
    "entries": 2,
    "instr": 10
   },
   {
    "name": "z_reschedule_irqlock",
-   "first_i": 4665626,
-   "entries": 2,
-   "instr": 10
+   "first_i": 4666014,
+   "entries": 6,
+   "instr": 36
   },
   {
    "name": "in_fp_active",
-   "first_i": 4665669,
-   "entries": 2,
-   "instr": 4
+   "first_i": 4666057,
+   "entries": 5,
+   "instr": 10
   },
   {
    "name": "smp_init",
-   "first_i": 4665712,
+   "first_i": 4666100,
    "entries": 3,
    "instr": 14
   },
   {
    "name": "z_init_static_threads",
-   "first_i": 4666998,
+   "first_i": 4667386,
    "entries": 2,
    "instr": 21
   },
   {
    "name": "main",
-   "first_i": 4667207,
-   "entries": 43,
-   "instr": 201
+   "first_i": 4667595,
+   "entries": 71,
+   "instr": 344
   },
   {
    "name": "boot_uptime_seconds_capture",
-   "first_i": 4667210,
+   "first_i": 4667598,
    "entries": 3,
    "instr": 11
   },
   {
    "name": "k_uptime_get_9",
-   "first_i": 4667213,
+   "first_i": 4667601,
    "entries": 2,
    "instr": 9
   },
   {
    "name": "uptime_ticks_get",
-   "first_i": 4667215,
-   "entries": 1,
-   "instr": 1
+   "first_i": 4667603,
+   "entries": 7,
+   "instr": 7
   },
   {
    "name": "k_uptime_ticks_impl",
-   "first_i": 4667216,
-   "entries": 5,
-   "instr": 18
+   "first_i": 4667604,
+   "entries": 40,
+   "instr": 144
   },
   {
    "name": "rtc_get_elapsed_cycles_since_baseline",
-   "first_i": 4667233,
-   "entries": 1,
-   "instr": 4
+   "first_i": 4667621,
+   "entries": 8,
+   "instr": 32
   },
   {
    "name": "rtc_read_extended_cycle_count",
-   "first_i": 4667237,
-   "entries": 1,
-   "instr": 21
+   "first_i": 4667625,
+   "entries": 8,
+   "instr": 168
   },
   {
    "name": "__aeabi_ldivmod",
-   "first_i": 4667292,
+   "first_i": 4667680,
    "entries": 2,
    "instr": 13
   },
   {
    "name": "app_event_alloc",
-   "first_i": 4667360,
+   "first_i": 4667748,
    "entries": 2,
    "instr": 4
   },
   {
    "name": "malloc_impl",
-   "first_i": 4667362,
+   "first_i": 4667750,
    "entries": 1,
    "instr": 3
   },
   {
    "name": "k_aligned_alloc",
-   "first_i": 4667365,
-   "entries": 1,
-   "instr": 13
+   "first_i": 4667753,
+   "entries": 3,
+   "instr": 39
   },
   {
    "name": "z_heap_aligned_alloc",
-   "first_i": 4667378,
-   "entries": 2,
-   "instr": 20
+   "first_i": 4667766,
+   "entries": 6,
+   "instr": 60
   },
   {
    "name": "k_heap_aligned_alloc",
-   "first_i": 4667388,
-   "entries": 6,
-   "instr": 42
+   "first_i": 4667776,
+   "entries": 18,
+   "instr": 126
   },
   {
    "name": "sys_timepoint_calc",
-   "first_i": 4667398,
-   "entries": 1,
-   "instr": 17
+   "first_i": 4667786,
+   "entries": 3,
+   "instr": 51
   },
   {
    "name": "sys_heap_aligned_alloc",
-   "first_i": 4667444,
-   "entries": 1,
-   "instr": 17
+   "first_i": 4667832,
+   "entries": 3,
+   "instr": 51
   },
   {
    "name": "sys_heap_alloc",
-   "first_i": 4667461,
-   "entries": 7,
-   "instr": 40
+   "first_i": 4667849,
+   "entries": 21,
+   "instr": 120
   },
   {
    "name": "alloc_chunk",
-   "first_i": 4667480,
-   "entries": 3,
-   "instr": 26
+   "first_i": 4667868,
+   "entries": 9,
+   "instr": 78
   },
   {
    "name": "free_list_remove_bidx",
-   "first_i": 4667521,
-   "entries": 2,
-   "instr": 18
+   "first_i": 4667909,
+   "entries": 8,
+   "instr": 72
   },
   {
    "name": "split_chunks",
-   "first_i": 4667573,
-   "entries": 6,
-   "instr": 30
+   "first_i": 4667961,
+   "entries": 18,
+   "instr": 90
   },
   {
    "name": "app_event_manager_submit",
-   "first_i": 4667804,
+   "first_i": 4668192,
    "entries": 4,
    "instr": 34
   },
   {
    "name": "k_work_submit",
-   "first_i": 4667860,
+   "first_i": 4668248,
    "entries": 1,
    "instr": 3
   },
   {
    "name": "k_work_submit_to_queue",
-   "first_i": 4667863,
-   "entries": 2,
-   "instr": 6
+   "first_i": 4668251,
+   "entries": 18,
+   "instr": 62
   },
   {
    "name": "z_work_submit_to_queue",
-   "first_i": 4667865,
-   "entries": 5,
-   "instr": 25
+   "first_i": 4668253,
+   "entries": 35,
+   "instr": 175
   },
   {
    "name": "submit_to_queue_locked",
-   "first_i": 4667891,
-   "entries": 1,
-   "instr": 14
+   "first_i": 4668279,
+   "entries": 12,
+   "instr": 231
   },
   {
-   "name": "z_impl_k_timer_start",
-   "first_i": 4667938,
-   "entries": 2,
-   "instr": 31
+   "name": "notify_queue_locked.isra.0",
+   "first_i": 4668318,
+   "entries": 4,
+   "instr": 20
   },
   {
-   "name": "z_add_timeout",
-   "first_i": 4668013,
-   "entries": 7,
+   "name": "z_sched_wake",
+   "first_i": 4668323,
+   "entries": 22,
+   "instr": 118
+  },
+  {
+   "name": "unpend_thread_no_timeout",
+   "first_i": 4668355,
+   "entries": 10,
+   "instr": 60
+  },
+  {
+   "name": "app_event_manager_process_events",
+   "first_i": 4668732,
+   "entries": 5,
    "instr": 55
   },
   {
-   "name": "elapsed",
-   "first_i": 4668047,
-   "entries": 2,
-   "instr": 8
-  },
-  {
-   "name": "sys_clock_elapsed",
-   "first_i": 4668051,
-   "entries": 4,
-   "instr": 12
-  },
-  {
-   "name": "next_timeout",
-   "first_i": 4668097,
-   "entries": 2,
-   "instr": 20
-  },
-  {
-   "name": "sys_clock_set_timeout",
-   "first_i": 4668146,
-   "entries": 3,
-   "instr": 32
-  },
-  {
-   "name": "serialization_init",
-   "first_i": 4668351,
-   "entries": 3,
-   "instr": 24
-  },
-  {
-   "name": "ipc_service_open_instance",
-   "first_i": 4668358,
+   "name": "thunk_FUN_000868b4",
+   "first_i": 4668803,
    "entries": 1,
-   "instr": 10
+   "instr": 4
   },
   {
-   "name": "serialization_register_endpoint",
-   "first_i": 4668377,
-   "entries": 2,
-   "instr": 20
-  },
-  {
-   "name": "ipc_log_forward",
-   "first_i": 4668393,
-   "entries": 1,
-   "instr": 2
-  },
-  {
-   "name": "z_log_msg_runtime_create",
-   "first_i": 4668395,
+   "name": "k_heap_free",
+   "first_i": 4668807,
    "entries": 6,
-   "instr": 84
+   "instr": 25
   },
   {
-   "name": "g1_recon_z_log_msg_alloc",
-   "first_i": 4668455,
-   "entries": 2,
-   "instr": 10
+   "name": "sys_heap_free",
+   "first_i": 4668833,
+   "entries": 6,
+   "instr": 31
   },
   {
-   "name": "log_msg_finalize_commit",
-   "first_i": 4668487,
+   "name": "mem_to_chunkid",
+   "first_i": 4668841,
    "entries": 1,
    "instr": 9
   },
   {
-   "name": "z_log_dropped",
-   "first_i": 4668496,
+   "name": "free_chunk",
+   "first_i": 4668909,
+   "entries": 8,
+   "instr": 36
+  },
+  {
+   "name": "free_list_remove",
+   "first_i": 4668942,
+   "entries": 3,
+   "instr": 15
+  },
+  {
+   "name": "merge_chunks",
+   "first_i": 4669030,
+   "entries": 5,
+   "instr": 23
+  },
+  {
+   "name": "z_unpend_all",
+   "first_i": 4669209,
+   "entries": 1,
+   "instr": 7
+  },
+  {
+   "name": "z_impl_k_yield",
+   "first_i": 4669291,
+   "entries": 24,
+   "instr": 198
+  },
+  {
+   "name": "z_impl_k_timer_start",
+   "first_i": 4669773,
+   "entries": 6,
+   "instr": 93
+  },
+  {
+   "name": "z_add_timeout",
+   "first_i": 4669848,
+   "entries": 29,
+   "instr": 343
+  },
+  {
+   "name": "elapsed",
+   "first_i": 4669882,
+   "entries": 7,
+   "instr": 28
+  },
+  {
+   "name": "sys_clock_elapsed",
+   "first_i": 4669886,
+   "entries": 14,
+   "instr": 42
+  },
+  {
+   "name": "next_timeout",
+   "first_i": 4669932,
+   "entries": 4,
+   "instr": 40
+  },
+  {
+   "name": "sys_clock_set_timeout",
+   "first_i": 4669981,
+   "entries": 6,
+   "instr": 64
+  },
+  {
+   "name": "serialization_init",
+   "first_i": 4670186,
+   "entries": 4,
+   "instr": 30
+  },
+  {
+   "name": "ipc_service_open_instance",
+   "first_i": 4670193,
+   "entries": 1,
+   "instr": 9
+  },
+  {
+   "name": "open",
+   "first_i": 4670202,
+   "entries": 72,
+   "instr": 494
+  },
+  {
+   "name": "shm_size",
+   "first_i": 4670225,
+   "entries": 62,
+   "instr": 744
+  },
+  {
+   "name": "ipc_static_vrings_init",
+   "first_i": 4671366,
+   "entries": 7,
+   "instr": 79
+  },
+  {
+   "name": "metal_io_init",
+   "first_i": 4671386,
+   "entries": 2,
+   "instr": 33
+  },
+  {
+   "name": "metal_init",
+   "first_i": 4671558,
+   "entries": 2,
+   "instr": 20
+  },
+  {
+   "name": "metal_sys_init",
+   "first_i": 4671711,
+   "entries": 2,
+   "instr": 5
+  },
+  {
+   "name": "metal_bus_register",
+   "first_i": 4671714,
+   "entries": 2,
+   "instr": 25
+  },
+  {
+   "name": "metal_bus_find",
+   "first_i": 4671723,
+   "entries": 3,
+   "instr": 25
+  },
+  {
+   "name": "metal_register_generic_device",
+   "first_i": 4671755,
+   "entries": 1,
+   "instr": 20
+  },
+  {
+   "name": "metal_device_open",
+   "first_i": 4671781,
+   "entries": 2,
+   "instr": 21
+  },
+  {
+   "name": "strcmp",
+   "first_i": 4671804,
+   "entries": 33,
+   "instr": 3798
+  },
+  {
+   "name": "metal_generic_dev_open",
+   "first_i": 4671867,
+   "entries": 2,
+   "instr": 16
+  },
+  {
+   "name": "metal_generic_dev_sys_open",
+   "first_i": 4671945,
+   "entries": 1,
+   "instr": 2
+  },
+  {
+   "name": "virtqueue_allocate",
+   "first_i": 4671956,
+   "entries": 6,
+   "instr": 24
+  },
+  {
+   "name": "k_malloc",
+   "first_i": 4671961,
    "entries": 2,
    "instr": 6
   },
   {
-   "name": "malloc",
-   "first_i": 4668530,
-   "entries": 18,
-   "instr": 72
+   "name": "ipc_rpmsg_init",
+   "first_i": 4676797,
+   "entries": 3,
+   "instr": 29
   },
   {
-   "name": "_malloc_r",
-   "first_i": 4668534,
+   "name": "rpmsg_virtio_init_shm_pool",
+   "first_i": 4676817,
+   "entries": 1,
+   "instr": 6
+  },
+  {
+   "name": "rpmsg_init_vdev_with_config",
+   "first_i": 4676830,
+   "entries": 104,
+   "instr": 1066
+  },
+  {
+   "name": "ipc_virtio_get_features",
+   "first_i": 4677483,
+   "entries": 1,
+   "instr": 2
+  },
+  {
+   "name": "virtio_create_virtqueues",
+   "first_i": 4677530,
+   "entries": 5,
+   "instr": 111
+  },
+  {
+   "name": "metal_io_block_set",
+   "first_i": 4677575,
+   "entries": 68,
+   "instr": 23712
+  },
+  {
+   "name": "virtqueue_create",
+   "first_i": 4678688,
+   "entries": 2,
+   "instr": 504
+  },
+  {
+   "name": "virtqueue_disable_cb",
+   "first_i": 4680352,
+   "entries": 1,
+   "instr": 21
+  },
+  {
+   "name": "rpmsg_virtio_shm_pool_get_buffer",
+   "first_i": 4680391,
+   "entries": 34,
+   "instr": 442
+  },
+  {
+   "name": "virtqueue_add_buffer",
+   "first_i": 4681101,
+   "entries": 84,
+   "instr": 3150
+  },
+  {
+   "name": "metal_io_phys",
+   "first_i": 4681134,
+   "entries": 42,
+   "instr": 840
+  },
+  {
+   "name": "rpmsg_register_endpoint",
+   "first_i": 4706482,
+   "entries": 4,
+   "instr": 54
+  },
+  {
+   "name": "strncpy",
+   "first_i": 4706494,
+   "entries": 3,
+   "instr": 434
+  },
+  {
+   "name": "ipc_virtio_set_status",
+   "first_i": 4706659,
+   "entries": 1,
+   "instr": 5
+  },
+  {
+   "name": "rpmsg_virtio_get_buffer_size",
+   "first_i": 4706675,
+   "entries": 3,
+   "instr": 17
+  },
+  {
+   "name": "__metal_mutex_acquire",
+   "first_i": 4706681,
+   "entries": 26,
+   "instr": 78
+  },
+  {
+   "name": "k_sem_give",
+   "first_i": 4706748,
+   "entries": 25,
+   "instr": 25
+  },
+  {
+   "name": "serialization_register_endpoint",
+   "first_i": 4706890,
+   "entries": 1,
+   "instr": 13
+  },
+  {
+   "name": "register_ept",
+   "first_i": 4706903,
+   "entries": 5,
+   "instr": 46
+  },
+  {
+   "name": "get_ept",
+   "first_i": 4706984,
+   "entries": 5,
+   "instr": 25
+  },
+  {
+   "name": "get_ept_slot_with_name",
+   "first_i": 4706989,
+   "entries": 7,
+   "instr": 34
+  },
+  {
+   "name": "k_mutex_unlock.isra.0",
+   "first_i": 4707207,
+   "entries": 2,
+   "instr": 2
+  },
+  {
+   "name": "log_process_thread_func",
+   "first_i": 4708617,
+   "entries": 6,
+   "instr": 44
+  },
+  {
+   "name": "z_log_init",
+   "first_i": 4708626,
+   "entries": 6,
+   "instr": 57
+  },
+  {
+   "name": "log_backend_uart_init",
+   "first_i": 4708658,
+   "entries": 2,
+   "instr": 5
+  },
+  {
+   "name": "log_backend_enable",
+   "first_i": 4708680,
+   "entries": 1,
+   "instr": 18
+  },
+  {
+   "name": "z_log_notify_backend_enabled",
+   "first_i": 4708698,
+   "entries": 2,
+   "instr": 9
+  },
+  {
+   "name": "z_impl_z_current_get",
+   "first_i": 4708838,
+   "entries": 2,
+   "instr": 6
+  },
+  {
+   "name": "z_impl_log_process",
+   "first_i": 4708852,
    "entries": 74,
-   "instr": 765
+   "instr": 829
   },
   {
-   "name": "__malloc_lock",
-   "first_i": 4668547,
+   "name": "z_log_msg_local_claim",
+   "first_i": 4708858,
+   "entries": 19,
+   "instr": 38
+  },
+  {
+   "name": "mpsc_pbuf_claim",
+   "first_i": 4708860,
+   "entries": 112,
+   "instr": 1007
+  },
+  {
+   "name": "process",
+   "first_i": 4708980,
+   "entries": 36,
+   "instr": 198
+  },
+  {
+   "name": "log_format_func_t_get",
+   "first_i": 4708985,
    "entries": 18,
-   "instr": 36
+   "instr": 54
   },
   {
-   "name": "g1_recon_retarget_lock_acquire_recursive",
-   "first_i": 4668549,
+   "name": "log_output_msg_process",
+   "first_i": 4708994,
+   "entries": 53,
+   "instr": 675
+  },
+  {
+   "name": "log_output_process",
+   "first_i": 4709021,
+   "entries": 155,
+   "instr": 2043
+  },
+  {
+   "name": "cbpprintf_external",
+   "first_i": 4709047,
    "entries": 18,
-   "instr": 108
+   "instr": 432
   },
   {
-   "name": "thunk_FUN_000723b8",
-   "first_i": 4668555,
-   "entries": 72,
-   "instr": 645
+   "name": "cbvprintf",
+   "first_i": 4709071,
+   "entries": 240,
+   "instr": 720
   },
   {
-   "name": "_sbrk_r",
-   "first_i": 4668620,
-   "entries": 40,
-   "instr": 200
+   "name": "z_cbvprintf_impl",
+   "first_i": 4709075,
+   "entries": 2053,
+   "instr": 67502
   },
   {
-   "name": "sbrk_impl",
-   "first_i": 4668627,
-   "entries": 20,
-   "instr": 220
+   "name": "cr_out_func",
+   "first_i": 4709090,
+   "entries": 79,
+   "instr": 392
   },
   {
-   "name": "__malloc_unlock",
-   "first_i": 4668702,
-   "entries": 18,
-   "instr": 36
+   "name": "out_func",
+   "first_i": 4709098,
+   "entries": 2980,
+   "instr": 37439
   },
   {
-   "name": "g1_recon_retarget_lock_release_recursive",
-   "first_i": 4668704,
+   "name": "log_output_flush",
+   "first_i": 4709155,
+   "entries": 3000,
+   "instr": 16500
+  },
+  {
+   "name": "buffer_write",
+   "first_i": 4709162,
+   "entries": 3000,
+   "instr": 19500
+  },
+  {
+   "name": "char_out",
+   "first_i": 4709171,
+   "entries": 2999,
+   "instr": 25492
+  },
+  {
+   "name": "uarte_nrfx_poll_out",
+   "first_i": 4709183,
+   "entries": 6348,
+   "instr": 63634
+  },
+  {
+   "name": "is_tx_ready.isra.0",
+   "first_i": 4709200,
+   "entries": 1617,
+   "instr": 9702
+  },
+  {
+   "name": "pm_device_state_get",
+   "first_i": 4709230,
+   "entries": 1578,
+   "instr": 9468
+  },
+  {
+   "name": "z_log_msg_free",
+   "first_i": 4715526,
    "entries": 18,
    "instr": 72
   },
   {
-   "name": "thunk_FUN_00072558",
-   "first_i": 4668708,
-   "entries": 18,
+   "name": "mpsc_pbuf_free",
+   "first_i": 4715530,
+   "entries": 108,
+   "instr": 810
+  },
+  {
+   "name": "rd_idx_inc",
+   "first_i": 4715590,
+   "entries": 36,
    "instr": 180
   },
   {
-   "name": "memset_bytes",
-   "first_i": 4668731,
+   "name": "z_log_msg_pending",
+   "first_i": 4715757,
+   "entries": 19,
+   "instr": 38
+  },
+  {
+   "name": "mpsc_pbuf_is_pending",
+   "first_i": 4715759,
+   "entries": 19,
+   "instr": 228
+  },
+  {
+   "name": "idle",
+   "first_i": 4716247,
+   "entries": 1,
+   "instr": 11
+  },
+  {
+   "name": "arch_cpu_idle",
+   "first_i": 4716258,
+   "entries": 2,
+   "instr": 18
+  },
+  {
+   "name": "_skip_0",
+   "first_i": 4716337,
+   "entries": 1,
+   "instr": 2
+  },
+  {
+   "name": "nrfx_ipc_irq_handler",
+   "first_i": 4716348,
+   "entries": 14,
+   "instr": 168
+  },
+  {
+   "name": "mbox_dispatcher",
+   "first_i": 4716369,
    "entries": 7,
-   "instr": 7
+   "instr": 189
+  },
+  {
+   "name": "mbox_callback",
+   "first_i": 4716396,
+   "entries": 13,
+   "instr": 61
+  },
+  {
+   "name": "mbox_callback_process",
+   "first_i": 4716880,
+   "entries": 3,
+   "instr": 24
+  },
+  {
+   "name": "virtqueue_notification",
+   "first_i": 4716888,
+   "entries": 3,
+   "instr": 12
+  },
+  {
+   "name": "rpmsg_virtio_rx_callback",
+   "first_i": 4716892,
+   "entries": 63,
+   "instr": 342
+  },
+  {
+   "name": "rpmsg_virtio_get_rx_buffer",
+   "first_i": 4716960,
+   "entries": 9,
+   "instr": 72
+  },
+  {
+   "name": "virtqueue_get_buffer",
+   "first_i": 4716968,
+   "entries": 13,
+   "instr": 410
+  },
+  {
+   "name": "rpmsg_get_endpoint",
+   "first_i": 4717202,
+   "entries": 8,
+   "instr": 182
+  },
+  {
+   "name": "rpmsg_virtio_ns_callback",
+   "first_i": 4717353,
+   "entries": 6,
+   "instr": 42
+  },
+  {
+   "name": "metal_io_block_read",
+   "first_i": 4717369,
+   "entries": 1,
+   "instr": 80
+  },
+  {
+   "name": "strncmp",
+   "first_i": 4717533,
+   "entries": 1,
+   "instr": 10
+  },
+  {
+   "name": "ns_bind_cb",
+   "first_i": 4717683,
+   "entries": 4,
+   "instr": 29
+  },
+  {
+   "name": "advertise_ept",
+   "first_i": 4717934,
+   "entries": 2,
+   "instr": 21
+  },
+  {
+   "name": "rpmsg_create_ept",
+   "first_i": 4717946,
+   "entries": 4,
+   "instr": 52
+  },
+  {
+   "name": "bound_cb",
+   "first_i": 4718354,
+   "entries": 2,
+   "instr": 16
+  },
+  {
+   "name": "rpmsg_send_offchannel_raw",
+   "first_i": 4718363,
+   "entries": 4,
+   "instr": 64
+  },
+  {
+   "name": "rpmsg_virtio_send_offchannel_raw",
+   "first_i": 4718379,
+   "entries": 16,
+   "instr": 140
+  },
+  {
+   "name": "rpmsg_virtio_get_tx_payload_buffer",
+   "first_i": 4718387,
+   "entries": 23,
+   "instr": 198
+  },
+  {
+   "name": "ipc_virtio_get_status",
+   "first_i": 4718395,
+   "entries": 4,
+   "instr": 20
+  },
+  {
+   "name": "metal_io_block_write",
+   "first_i": 4718663,
+   "entries": 8,
+   "instr": 409
+  },
+  {
+   "name": "rpmsg_virtio_send_offchannel_nocopy",
+   "first_i": 4718703,
+   "entries": 24,
+   "instr": 192
+  },
+  {
+   "name": "virtqueue_kick",
+   "first_i": 4718958,
+   "entries": 11,
+   "instr": 150
+  },
+  {
+   "name": "ipc_virtio_notify",
+   "first_i": 4718978,
+   "entries": 4,
+   "instr": 20
+  },
+  {
+   "name": "virtio_notify_cb",
+   "first_i": 4718983,
+   "entries": 4,
+   "instr": 36
+  },
+  {
+   "name": "mbox_nrf_send",
+   "first_i": 4718992,
+   "entries": 4,
+   "instr": 84
+  },
+  {
+   "name": "g1_ipc0_ept_bound",
+   "first_i": 4719148,
+   "entries": 1,
+   "instr": 2
+  },
+  {
+   "name": "rpmsg_virtio_return_buffer",
+   "first_i": 4719497,
+   "entries": 12,
+   "instr": 90
+  },
+  {
+   "name": "malloc",
+   "first_i": 4720061,
+   "entries": 20,
+   "instr": 80
+  },
+  {
+   "name": "_malloc_r",
+   "first_i": 4720065,
+   "entries": 82,
+   "instr": 849
+  },
+  {
+   "name": "__malloc_lock",
+   "first_i": 4720078,
+   "entries": 20,
+   "instr": 40
+  },
+  {
+   "name": "g1_recon_retarget_lock_acquire_recursive",
+   "first_i": 4720080,
+   "entries": 20,
+   "instr": 120
+  },
+  {
+   "name": "thunk_FUN_000723b8",
+   "first_i": 4720086,
+   "entries": 116,
+   "instr": 1038
+  },
+  {
+   "name": "_sbrk_r",
+   "first_i": 4720151,
+   "entries": 44,
+   "instr": 220
+  },
+  {
+   "name": "sbrk_impl",
+   "first_i": 4720158,
+   "entries": 22,
+   "instr": 22
+  },
+  {
+   "name": "sbrk",
+   "first_i": 4720159,
+   "entries": 22,
+   "instr": 286
+  },
+  {
+   "name": "__malloc_unlock",
+   "first_i": 4720242,
+   "entries": 20,
+   "instr": 40
+  },
+  {
+   "name": "g1_recon_retarget_lock_release_recursive",
+   "first_i": 4720244,
+   "entries": 20,
+   "instr": 80
+  },
+  {
+   "name": "thunk_FUN_00072558",
+   "first_i": 4720248,
+   "entries": 29,
+   "instr": 290
+  },
+  {
+   "name": "memset_bytes",
+   "first_i": 4720271,
+   "entries": 45,
+   "instr": 45
   },
   {
    "name": "sem_init_zero",
-   "first_i": 4686703,
+   "first_i": 4738618,
    "entries": 9,
    "instr": 27
   },
   {
    "name": "change_work_mode_to",
-   "first_i": 4686842,
+   "first_i": 4738757,
    "entries": 11,
    "instr": 153
   },
   {
    "name": "global_system_resume",
-   "first_i": 4686885,
+   "first_i": 4738800,
    "entries": 10,
    "instr": 140
   },
   {
    "name": "set_device_sync_timestamp",
-   "first_i": 4687723,
+   "first_i": 4739641,
    "entries": 2,
    "instr": 6
   },
   {
    "name": "get_device_info",
-   "first_i": 4687726,
-   "entries": 2,
-   "instr": 6
+   "first_i": 4739644,
+   "entries": 44,
+   "instr": 132
   },
   {
    "name": "arm_onboarding_watchdog",
-   "first_i": 4701348,
+   "first_i": 4753308,
    "entries": 3,
    "instr": 12
   },
   {
    "name": "register_ipc_service_context",
-   "first_i": 4701823,
+   "first_i": 4753789,
    "entries": 1,
-   "instr": 16
+   "instr": 17
   },
   {
-   "name": "check_sw0_status",
-   "first_i": 4701848,
+   "name": "register_ipc_service_recv_callback",
+   "first_i": 4753816,
+   "entries": 4,
+   "instr": 68
+  },
+  {
+   "name": "spi_master_install_ops",
+   "first_i": 4753924,
+   "entries": 1,
+   "instr": 10
+  },
+  {
+   "name": "button_init",
+   "first_i": 4753935,
+   "entries": 32,
+   "instr": 232
+  },
+  {
+   "name": "gpio_pin_configure_17688",
+   "first_i": 4754024,
+   "entries": 11,
+   "instr": 429
+  },
+  {
+   "name": "gpio_nrfx_pin_configure",
+   "first_i": 4754063,
+   "entries": 44,
+   "instr": 573
+  },
+  {
+   "name": "nrfx_gpiote_channel_get",
+   "first_i": 4754073,
+   "entries": 26,
+   "instr": 104
+  },
+  {
+   "name": "pin_in_use_by_te",
+   "first_i": 4754077,
+   "entries": 40,
+   "instr": 140
+  },
+  {
+   "name": "get_pin_idx",
+   "first_i": 4754079,
+   "entries": 79,
+   "instr": 553
+  },
+  {
+   "name": "nrfx_gpiote_input_configure",
+   "first_i": 4754104,
+   "entries": 63,
+   "instr": 667
+  },
+  {
+   "name": "pin_is_output",
+   "first_i": 4754125,
+   "entries": 52,
+   "instr": 182
+  },
+  {
+   "name": "pin_is_task_output",
+   "first_i": 4754192,
+   "entries": 12,
+   "instr": 36
+  },
+  {
+   "name": "nrf_gpio_reconfigure",
+   "first_i": 4754221,
+   "entries": 22,
+   "instr": 605
+  },
+  {
+   "name": "nrf_gpio_pin_present_check",
+   "first_i": 4754234,
+   "entries": 11,
+   "instr": 90
+  },
+  {
+   "name": "nrfx_gpiote_output_configure",
+   "first_i": 4755372,
+   "entries": 30,
+   "instr": 175
+  },
+  {
+   "name": "pin_has_trigger",
+   "first_i": 4755423,
+   "entries": 14,
+   "instr": 63
+  },
+  {
+   "name": "gpio_pin_set_checked",
+   "first_i": 4755543,
+   "entries": 5,
+   "instr": 112
+  },
+  {
+   "name": "gpio_nrfx_port_set_bits_raw",
+   "first_i": 4755566,
+   "entries": 2,
+   "instr": 10
+  },
+  {
+   "name": "gpio_nrfx_port_clear_bits_raw",
+   "first_i": 4755939,
+   "entries": 3,
+   "instr": 15
+  },
+  {
+   "name": "gpio_nrfx_manage_callback",
+   "first_i": 4757391,
+   "entries": 2,
+   "instr": 41
+  },
+  {
+   "name": "gpio_pin_configure",
+   "first_i": 4757414,
+   "entries": 2,
+   "instr": 68
+  },
+  {
+   "name": "gpio_nrfx_pin_interrupt_configure",
+   "first_i": 4757448,
+   "entries": 10,
+   "instr": 136
+  },
+  {
+   "name": "nrfx_gpiote_channel_alloc",
+   "first_i": 4757518,
+   "entries": 2,
+   "instr": 6
+  },
+  {
+   "name": "nrfx_gpiote_trigger_enable",
+   "first_i": 4757636,
+   "entries": 12,
+   "instr": 68
+  },
+  {
+   "name": "pin_te_get",
+   "first_i": 4757694,
+   "entries": 4,
+   "instr": 14
+  },
+  {
+   "name": "get_board_rev_flag",
+   "first_i": 4758093,
+   "entries": 1,
+   "instr": 3
+  },
+  {
+   "name": "gpio_pin_get_checked",
+   "first_i": 4758431,
+   "entries": 8,
+   "instr": 92
+  },
+  {
+   "name": "gpio_nrfx_port_get_raw",
+   "first_i": 4758444,
+   "entries": 8,
+   "instr": 48
+  },
+  {
+   "name": "gpio_pin_get_raw_checked",
+   "first_i": 4758560,
+   "entries": 8,
+   "instr": 76
+  },
+  {
+   "name": "ext_flash_api_init",
+   "first_i": 4758689,
+   "entries": 5,
+   "instr": 35
+  },
+  {
+   "name": "kmutex_dlist_init",
+   "first_i": 4758697,
+   "entries": 5,
+   "instr": 20
+  },
+  {
+   "name": "z_impl_flash_get_page_count",
+   "first_i": 4758729,
+   "entries": 2,
+   "instr": 22
+  },
+  {
+   "name": "qspi_nor_pages_layout",
+   "first_i": 4758735,
+   "entries": 1,
+   "instr": 5
+  },
+  {
+   "name": "sett_init",
+   "first_i": 4758774,
+   "entries": 3,
+   "instr": 23
+  },
+  {
+   "name": "settings_subsys_init",
+   "first_i": 4758777,
+   "entries": 5,
+   "instr": 19
+  },
+  {
+   "name": "settings_init",
+   "first_i": 4758842,
+   "entries": 1,
+   "instr": 4
+  },
+  {
+   "name": "settings_store_init",
+   "first_i": 4758846,
+   "entries": 1,
+   "instr": 4
+  },
+  {
+   "name": "settings_backend_init",
+   "first_i": 4758851,
+   "entries": 6,
+   "instr": 61
+  },
+  {
+   "name": "flash_area_open",
+   "first_i": 4758857,
+   "entries": 4,
+   "instr": 172
+  },
+  {
+   "name": "flash_area_get_sectors",
+   "first_i": 4758958,
+   "entries": 4,
+   "instr": 32
+  },
+  {
+   "name": "flash_area_close",
+   "first_i": 4759076,
+   "entries": 1,
+   "instr": 1
+  },
+  {
+   "name": "flash_page_foreach",
+   "first_i": 4759082,
+   "entries": 256,
+   "instr": 3828
+  },
+  {
+   "name": "flash_nrf_pages_layout",
+   "first_i": 4759092,
+   "entries": 2,
+   "instr": 10
+  },
+  {
+   "name": "get_sectors_cb",
+   "first_i": 4759116,
+   "entries": 254,
+   "instr": 1808
+  },
+  {
+   "name": "settings_nvs_backend_init",
+   "first_i": 4764764,
+   "entries": 3,
+   "instr": 23
+  },
+  {
+   "name": "nvs_mount",
+   "first_i": 4764772,
+   "entries": 21,
+   "instr": 269
+  },
+  {
+   "name": "flash_nrf_get_parameters",
+   "first_i": 4764788,
    "entries": 2,
    "instr": 4
   },
   {
-   "name": "log_message",
-   "first_i": 4701850,
+   "name": "z_impl_flash_get_page_info_by_offs",
+   "first_i": 4764806,
+   "entries": 1,
+   "instr": 3
+  },
+  {
+   "name": "flash_get_page_info",
+   "first_i": 4764809,
    "entries": 2,
-   "instr": 10
+   "instr": 40
   },
   {
-   "name": "vprintf",
-   "first_i": 4701856,
+   "name": "nvs_al_size.isra.0",
+   "first_i": 4764930,
+   "entries": 1005,
+   "instr": 9045
+  },
+  {
+   "name": "nvs_flash_cmp_const",
+   "first_i": 4764954,
+   "entries": 269,
+   "instr": 3970
+  },
+  {
+   "name": "nvs_flash_block_cmp",
+   "first_i": 4765110,
+   "entries": 795,
+   "instr": 9251
+  },
+  {
+   "name": "nvs_flash_rd",
+   "first_i": 4765130,
+   "entries": 1172,
+   "instr": 14064
+  },
+  {
+   "name": "flash_nrf_read",
+   "first_i": 4765142,
+   "entries": 3516,
+   "instr": 17580
+  },
+  {
+   "name": "is_regular_addr_valid",
+   "first_i": 4765149,
+   "entries": 2446,
+   "instr": 17122
+  },
+  {
+   "name": "nrfx_nvmc_flash_size_get",
+   "first_i": 4765153,
+   "entries": 1223,
+   "instr": 2446
+  },
+  {
+   "name": "nvs_sector_advance",
+   "first_i": 4766072,
    "entries": 2,
-   "instr": 10
+   "instr": 20
   },
   {
-   "name": "z_cbvprintf_impl",
-   "first_i": 4701864,
-   "entries": 21,
-   "instr": 293
+   "name": "nvs_recover_last_ate",
+   "first_i": 4766085,
+   "entries": 1022,
+   "instr": 7667
   },
   {
-   "name": "g1_vprintf_char_out",
-   "first_i": 4701879,
-   "entries": 40,
-   "instr": 240
+   "name": "nvs_ate_valid",
+   "first_i": 4766206,
+   "entries": 1611,
+   "instr": 9264
   },
   {
-   "name": "uarte_nrfx_poll_out",
-   "first_i": 4701889,
-   "entries": 100,
-   "instr": 960
+   "name": "crc8_ccitt",
+   "first_i": 4766226,
+   "entries": 559,
+   "instr": 62049
   },
   {
-   "name": "is_tx_ready.isra.0",
-   "first_i": 4701906,
-   "entries": 40,
-   "instr": 240
-  },
-  {
-   "name": "pm_device_state_get",
-   "first_i": 4701936,
-   "entries": 20,
-   "instr": 120
-  },
-  {
-   "name": "pt_nfc_eeprom_link_start",
-   "first_i": 4703825,
-   "entries": 2,
+   "name": "nrfx_ipc_receive_event_disable",
+   "first_i": 5005411,
+   "entries": 1,
    "instr": 9
   },
   {
-   "name": "pt_nfc_eeprom_link_init",
-   "first_i": 4703828,
+   "name": "z_nrf_rtc_timer_compare_read",
+   "first_i": 5005436,
+   "entries": 1,
+   "instr": 7
+  },
+  {
+   "name": "nrfx_gppi_task_endpoint_clear",
+   "first_i": 5005473,
+   "entries": 1,
+   "instr": 5
+  },
+  {
+   "name": "z_nrf_rtc_timer_compare_evt_address_get",
+   "first_i": 5005483,
+   "entries": 1,
+   "instr": 7
+  },
+  {
+   "name": "z_nrf_rtc_timer_set",
+   "first_i": 5005514,
+   "entries": 2,
+   "instr": 12
+  },
+  {
+   "name": "nvs_add_gc_done_ate",
+   "first_i": 5022792,
+   "entries": 3,
+   "instr": 16
+  },
+  {
+   "name": "nvs_ate_crc8_update",
+   "first_i": 5022803,
+   "entries": 44,
+   "instr": 176
+  },
+  {
+   "name": "nvs_flash_ate_wrt",
+   "first_i": 5022925,
+   "entries": 66,
+   "instr": 330
+  },
+  {
+   "name": "nvs_flash_al_wrt",
+   "first_i": 5022931,
+   "entries": 132,
+   "instr": 1495
+  },
+  {
+   "name": "flash_nrf_write",
+   "first_i": 5022953,
+   "entries": 368,
+   "instr": 2780
+  },
+  {
+   "name": "nrfx_nvmc_word_write",
+   "first_i": 5023048,
+   "entries": 328,
+   "instr": 1968
+  },
+  {
+   "name": "nvmc_word_write",
+   "first_i": 5023058,
+   "entries": 164,
+   "instr": 1148
+  },
+  {
+   "name": "nvmc_readonly_mode_set",
+   "first_i": 5023067,
+   "entries": 164,
+   "instr": 820
+  },
+  {
+   "name": "z_log_msg_static_create.constprop.0",
+   "first_i": 5023395,
+   "entries": 5,
+   "instr": 10
+  },
+  {
+   "name": "z_impl_z_log_msg_static_create",
+   "first_i": 5023397,
+   "entries": 85,
+   "instr": 1071
+  },
+  {
+   "name": "cbprintf_package_convert",
+   "first_i": 5023423,
+   "entries": 61,
+   "instr": 1276
+  },
+  {
+   "name": "z_cbprintf_cpy",
+   "first_i": 5023610,
+   "entries": 46,
+   "instr": 391
+  },
+  {
+   "name": "nvs_read",
+   "first_i": 5025084,
+   "entries": 44,
+   "instr": 132
+  },
+  {
+   "name": "nvs_read_hist",
+   "first_i": 5025088,
+   "entries": 256,
+   "instr": 4031
+  },
+  {
+   "name": "nvs_prev_ate",
+   "first_i": 5025124,
+   "entries": 1093,
+   "instr": 10047
+  },
+  {
+   "name": "settings_src_register",
+   "first_i": 5025574,
+   "entries": 1,
+   "instr": 7
+  },
+  {
+   "name": "settings_dst_register",
+   "first_i": 5025584,
+   "entries": 1,
+   "instr": 3
+  },
+  {
+   "name": "settings_register",
+   "first_i": 5025715,
+   "entries": 9,
+   "instr": 79
+  },
+  {
+   "name": "init_analytics_settings",
+   "first_i": 5026026,
+   "entries": 6,
+   "instr": 15
+  },
+  {
+   "name": "load_sys_setting",
+   "first_i": 5026029,
+   "entries": 3,
+   "instr": 97
+  },
+  {
+   "name": "flash_settings_read",
+   "first_i": 5026574,
+   "entries": 15,
+   "instr": 69
+  },
+  {
+   "name": "ext_flash_read",
+   "first_i": 5026608,
+   "entries": 36,
+   "instr": 306
+  },
+  {
+   "name": "qspi_nor_read",
+   "first_i": 5026686,
+   "entries": 94,
+   "instr": 854
+  },
+  {
+   "name": "nrfx_qspi_read",
+   "first_i": 5027363,
+   "entries": 14,
+   "instr": 28
+  },
+  {
+   "name": "qspi_xfer",
+   "first_i": 5027365,
+   "entries": 28,
+   "instr": 668
+  },
+  {
+   "name": "nrfx_qspi_irq_handler",
+   "first_i": 5027425,
+   "entries": 51,
+   "instr": 559
+  },
+  {
+   "name": "qspi_event_xfer_handle.constprop.0",
+   "first_i": 5027476,
+   "entries": 14,
+   "instr": 154
+  },
+  {
+   "name": "qspi_handler",
+   "first_i": 5027496,
+   "entries": 14,
+   "instr": 42
+  },
+  {
+   "name": "qspi_wait_for_completion.isra.0",
+   "first_i": 5027633,
+   "entries": 14,
+   "instr": 98
+  },
+  {
+   "name": "load_usr_setting",
+   "first_i": 5028514,
+   "entries": 5,
+   "instr": 94
+  },
+  {
+   "name": "set_test_mode",
+   "first_i": 5030584,
+   "entries": 2,
+   "instr": 12
+  },
+  {
+   "name": "log_message",
+   "first_i": 5030592,
+   "entries": 56,
+   "instr": 280
+  },
+  {
+   "name": "vprintf",
+   "first_i": 5030598,
+   "entries": 56,
+   "instr": 280
+  },
+  {
+   "name": "is_battery_critical",
+   "first_i": 5030630,
+   "entries": 2,
+   "instr": 6
+  },
+  {
+   "name": "load_burial_point",
+   "first_i": 5030647,
+   "entries": 4,
+   "instr": 29
+  },
+  {
+   "name": "sys_rand32_get",
+   "first_i": 5033793,
+   "entries": 3,
+   "instr": 15
+  },
+  {
+   "name": "entropy_get_entropy_isr_call",
+   "first_i": 5033812,
+   "entries": 1,
+   "instr": 12
+  },
+  {
+   "name": "entropy_cc3xx_rng_get_entropy",
+   "first_i": 5033824,
+   "entries": 1,
+   "instr": 15
+  },
+  {
+   "name": "reset_countdown_timer_default",
+   "first_i": 5034623,
    "entries": 1,
    "instr": 8
   },
   {
+   "name": "runtime_info_sync",
+   "first_i": 5034643,
+   "entries": 6,
+   "instr": 86
+  },
+  {
+   "name": "global_ipc_service_send",
+   "first_i": 5034663,
+   "entries": 12,
+   "instr": 81
+  },
+  {
+   "name": "ipc_service_send",
+   "first_i": 5034688,
+   "entries": 3,
+   "instr": 51
+  },
+  {
+   "name": "send",
+   "first_i": 5034705,
+   "entries": 6,
+   "instr": 63
+  },
+  {
+   "name": "ept_cb",
+   "first_i": 5036415,
+   "entries": 9,
+   "instr": 65
+  },
+  {
+   "name": "g1_ipc0_ept_received",
+   "first_i": 5037024,
+   "entries": 4,
+   "instr": 4
+  },
+  {
+   "name": "ipc0_ept_recv",
+   "first_i": 5037025,
+   "entries": 4,
+   "instr": 92
+  },
+  {
+   "name": "local_ipc_service_recv",
+   "first_i": 5037048,
+   "entries": 11,
+   "instr": 86
+  },
+  {
+   "name": "submit_task_work",
+   "first_i": 5038991,
+   "entries": 10,
+   "instr": 49
+  },
+  {
+   "name": "z_ready_thread_locked",
+   "first_i": 5039132,
+   "entries": 1,
+   "instr": 1
+  },
+  {
+   "name": "ancs_ctx_init",
+   "first_i": 5040868,
+   "entries": 5,
+   "instr": 37
+  },
+  {
+   "name": "power_for_panel",
+   "first_i": 5041170,
+   "entries": 2,
+   "instr": 20
+  },
+  {
+   "name": "dev_write_reg3",
+   "first_i": 5041181,
+   "entries": 6,
+   "instr": 33
+  },
+  {
+   "name": "dev_ctrl_write1",
+   "first_i": 5041190,
+   "entries": 6,
+   "instr": 42
+  },
+  {
+   "name": "burial_point_record_info_init",
+   "first_i": 5041574,
+   "entries": 4,
+   "instr": 18
+  },
+  {
+   "name": "power_for_imu_and_mic",
+   "first_i": 5042023,
+   "entries": 2,
+   "instr": 14
+  },
+  {
+   "name": "lsm6dso_init_chip",
+   "first_i": 5042420,
+   "entries": 6,
+   "instr": 34
+  },
+  {
+   "name": "audio_codec_select_page",
+   "first_i": 5042432,
+   "entries": 2,
+   "instr": 11
+  },
+  {
+   "name": "audio_codec_bus_write",
+   "first_i": 5042441,
+   "entries": 1,
+   "instr": 6
+  },
+  {
+   "name": "stmemsc_i2c_write",
+   "first_i": 5042447,
+   "entries": 2,
+   "instr": 22
+  },
+  {
+   "name": "nrfx_twim_2_irq_handler",
+   "first_i": 5042956,
+   "entries": 3,
+   "instr": 9
+  },
+  {
+   "name": "audio_codec_read_reg0x0f",
+   "first_i": 5043575,
+   "entries": 2,
+   "instr": 8
+  },
+  {
+   "name": "audio_codec_reg_op_dispatch",
+   "first_i": 5043581,
+   "entries": 1,
+   "instr": 6
+  },
+  {
+   "name": "stmemsc_i2c_read",
+   "first_i": 5043587,
+   "entries": 2,
+   "instr": 23
+  },
+  {
+   "name": "register_imu_funsion_context",
+   "first_i": 5045490,
+   "entries": 1,
+   "instr": 17
+  },
+  {
+   "name": "opt3007_init_ctx_setup",
+   "first_i": 5045509,
+   "entries": 1,
+   "instr": 9
+  },
+  {
+   "name": "quicknote_buffer_pool_init",
+   "first_i": 5045520,
+   "entries": 3,
+   "instr": 835
+  },
+  {
+   "name": "st25dv_read_chip_ids",
+   "first_i": 5046512,
+   "entries": 2,
+   "instr": 13
+  },
+  {
+   "name": "serialization_ipc_ept_register",
+   "first_i": 5046518,
+   "entries": 6,
+   "instr": 37
+  },
+  {
+   "name": "g1_vprintf_char_out",
+   "first_i": 5046578,
+   "entries": 155,
+   "instr": 929
+  },
+  {
+   "name": "extract_decimal",
+   "first_i": 5050634,
+   "entries": 207,
+   "instr": 4032
+  },
+  {
+   "name": "encode_uint",
+   "first_i": 5050775,
+   "entries": 331,
+   "instr": 6251
+  },
+  {
+   "name": "outs",
+   "first_i": 5050921,
+   "entries": 705,
+   "instr": 5970
+  },
+  {
+   "name": "init_dashboard_info",
+   "first_i": 5051136,
+   "entries": 19,
+   "instr": 131
+  },
+  {
+   "name": "uarte_nrfx_irq_rx_ready",
+   "first_i": 5051138,
+   "entries": 1,
+   "instr": 8
+  },
+  {
+   "name": "init_dashboard_startup_mode_info_defaults",
+   "first_i": 5051153,
+   "entries": 1,
+   "instr": 101
+  },
+  {
+   "name": "getQuickNoteDataFromFlash",
+   "first_i": 5051278,
+   "entries": 24,
+   "instr": 156
+  },
+  {
+   "name": "getDashboardStartUpModeInfofromFlash",
+   "first_i": 5133913,
+   "entries": 5,
+   "instr": 40
+  },
+  {
+   "name": "getAppLanguageInfofromFlash",
+   "first_i": 5135802,
+   "entries": 5,
+   "instr": 40
+  },
+  {
+   "name": "drain_setting_storage_queue",
+   "first_i": 5137691,
+   "entries": 1,
+   "instr": 11
+  },
+  {
+   "name": "drain_quick_note_data_queue",
+   "first_i": 5137703,
+   "entries": 1,
+   "instr": 11
+  },
+  {
+   "name": "device_info_register_persistent_fields",
+   "first_i": 5137727,
+   "entries": 8,
+   "instr": 44
+  },
+  {
+   "name": "local_store_write",
+   "first_i": 5137737,
+   "entries": 28,
+   "instr": 385
+  },
+  {
+   "name": "__strcat_chk",
+   "first_i": 5138186,
+   "entries": 7,
+   "instr": 1988
+  },
+  {
+   "name": "settings_save_one",
+   "first_i": 5138405,
+   "entries": 28,
+   "instr": 161
+  },
+  {
+   "name": "settings_nvs_save",
+   "first_i": 5138479,
+   "entries": 77,
+   "instr": 868
+  },
+  {
+   "name": "nvs_write",
+   "first_i": 5138511,
+   "entries": 390,
+   "instr": 4620
+  },
+  {
+   "name": "__memcpy_chk",
+   "first_i": 5140249,
+   "entries": 19,
+   "instr": 204
+  },
+  {
+   "name": "strlen",
+   "first_i": 5141036,
+   "entries": 77,
+   "instr": 2351
+  },
+  {
+   "name": "init_ble_work_thread",
+   "first_i": 5239893,
+   "entries": 4,
+   "instr": 23
+  },
+  {
+   "name": "low_speed_peripheral_dispatch_thread",
+   "first_i": 5240169,
+   "entries": 9,
+   "instr": 66
+  },
+  {
+   "name": "fuel_gauge_update",
+   "first_i": 5241623,
+   "entries": 6,
+   "instr": 37
+  },
+  {
+   "name": "fuel_gauge_poll_should_stop",
+   "first_i": 5241632,
+   "entries": 1,
+   "instr": 3
+  },
+  {
+   "name": "fuel_gauge_lock",
+   "first_i": 5241638,
+   "entries": 1,
+   "instr": 6
+  },
+  {
+   "name": "fuel_gauge_read_voltage_current_temp",
+   "first_i": 5241649,
+   "entries": 5,
+   "instr": 51
+  },
+  {
+   "name": "npm1300_charger_sample_fetch",
+   "first_i": 5241660,
+   "entries": 7,
+   "instr": 62
+  },
+  {
+   "name": "sensor_channel_get_trampoline",
+   "first_i": 5250980,
+   "entries": 3,
+   "instr": 9
+  },
+  {
+   "name": "npm1300_charger_channel_get",
+   "first_i": 5250983,
+   "entries": 7,
+   "instr": 98
+  },
+  {
+   "name": "__extendsfdf2",
+   "first_i": 5251038,
+   "entries": 1,
+   "instr": 9
+  },
+  {
+   "name": "log",
+   "first_i": 5251049,
+   "entries": 2,
+   "instr": 14
+  },
+  {
+   "name": "__ieee754_log",
+   "first_i": 5251053,
+   "entries": 3,
+   "instr": 41
+  },
+  {
+   "name": "__subdf3",
+   "first_i": 5251078,
+   "entries": 1,
+   "instr": 1
+  },
+  {
+   "name": "__aeabi_dadd",
+   "first_i": 5251079,
+   "entries": 1,
+   "instr": 25
+  },
+  {
+   "name": "__aeabi_dcmpeq",
+   "first_i": 5251113,
+   "entries": 2,
+   "instr": 6
+  },
+  {
+   "name": "__aeabi_cdcmple",
+   "first_i": 5251115,
+   "entries": 2,
+   "instr": 6
+  },
+  {
+   "name": "__nedf2",
+   "first_i": 5251117,
+   "entries": 1,
+   "instr": 17
+  },
+  {
+   "name": "__truncdfsf2",
+   "first_i": 5251161,
+   "entries": 1,
+   "instr": 12
+  },
+  {
+   "name": "fmodf",
+   "first_i": 5251187,
+   "entries": 2,
+   "instr": 11
+  },
+  {
+   "name": "__ieee754_fmodf",
+   "first_i": 5251192,
+   "entries": 1,
+   "instr": 85
+  },
+  {
+   "name": "fuel_gauge_unlock",
+   "first_i": 5251350,
+   "entries": 1,
+   "instr": 6
+  },
+  {
+   "name": "k_uptime_get_3",
+   "first_i": 5251359,
+   "entries": 2,
+   "instr": 9
+  },
+  {
+   "name": "task_transition_pending",
+   "first_i": 5251450,
+   "entries": 1,
+   "instr": 13
+  },
+  {
+   "name": "debounce_read_pending_flag_1",
+   "first_i": 5251465,
+   "entries": 1,
+   "instr": 13
+  },
+  {
+   "name": "check_bind_status",
+   "first_i": 5251483,
+   "entries": 1,
+   "instr": 11
+  },
+  {
+   "name": "sync_to_slave",
+   "first_i": 5252421,
+   "entries": 6,
+   "instr": 61
+  },
+  {
+   "name": "get_current_work_mode",
+   "first_i": 5253573,
+   "entries": 1,
+   "instr": 4
+  },
+  {
+   "name": "k_uptime_get_1",
+   "first_i": 5253596,
+   "entries": 2,
+   "instr": 9
+  },
+  {
+   "name": "msg_queue_init",
+   "first_i": 5253710,
+   "entries": 24,
+   "instr": 179
+  },
+  {
+   "name": "msg_queue_debug_dump",
+   "first_i": 5288888,
+   "entries": 11,
+   "instr": 160
+  },
+  {
+   "name": "debug_dump_message_slots_10_19",
+   "first_i": 5289379,
+   "entries": 11,
+   "instr": 116
+  },
+  {
+   "name": "handle_box_placement_event",
+   "first_i": 5289832,
+   "entries": 1,
+   "instr": 8
+  },
+  {
+   "name": "periodic_check_run",
+   "first_i": 5289840,
+   "entries": 3,
+   "instr": 9
+  },
+  {
+   "name": "dev_read_status_bit_reg34",
+   "first_i": 5289843,
+   "entries": 2,
+   "instr": 25
+  },
+  {
+   "name": "dev_ctrl_read1",
+   "first_i": 5289855,
+   "entries": 1,
+   "instr": 1
+  },
+  {
+   "name": "dev_ctrl_write2",
+   "first_i": 5289856,
+   "entries": 2,
+   "instr": 14
+  },
+  {
+   "name": "display_dev_reg_config",
+   "first_i": 5291586,
+   "entries": 3,
+   "instr": 14
+  },
+  {
+   "name": "wait_for_event",
+   "first_i": 5294060,
+   "entries": 1,
+   "instr": 9
+  },
+  {
+   "name": "z_tick_sleep",
+   "first_i": 5294069,
+   "entries": 7,
+   "instr": 44
+  },
+  {
+   "name": "get_uptime_ms",
+   "first_i": 5294084,
+   "entries": 1,
+   "instr": 1
+  },
+  {
+   "name": "dlist_unlink_node",
+   "first_i": 5294186,
+   "entries": 1,
+   "instr": 12
+  },
+  {
+   "name": "sched_switch_handle_timeout",
+   "first_i": 5294229,
+   "entries": 1,
+   "instr": 1
+  },
+  {
+   "name": "?",
+   "first_i": 5296253,
+   "entries": 1,
+   "instr": 1
+  },
+  {
    "name": "z_arm_usage_fault",
-   "first_i": 4703842,
+   "first_i": 5296254,
    "entries": 1,
    "instr": 5
   },
   {
    "name": "z_arm_fault",
-   "first_i": 4703847,
+   "first_i": 5296259,
    "entries": 3,
    "instr": 48
   },
   {
    "name": "usage_fault.constprop.0",
-   "first_i": 4703876,
+   "first_i": 5296288,
    "entries": 3,
    "instr": 56
   },
   {
    "name": "z_arm_fatal_error",
-   "first_i": 4705360,
+   "first_i": 5297778,
    "entries": 10,
    "instr": 170
   },
   {
-   "name": "z_fatal_error",
-   "first_i": 4710310,
-   "entries": 2,
-   "instr": 33
-  },
-  {
-   "name": "k_current_get",
-   "first_i": 4710319,
-   "entries": 1,
-   "instr": 3
-  },
-  {
-   "name": "is_ptr",
-   "first_i": 4710434,
-   "entries": 1,
+   "name": "z_impl_k_timer_stop",
+   "first_i": 5300543,
+   "entries": 3,
    "instr": 10
   },
   {
-   "name": "strlen",
-   "first_i": 4710451,
+   "name": "remove_timeout",
+   "first_i": 5300571,
    "entries": 1,
-   "instr": 7
+   "instr": 19
   },
   {
-   "name": "drop_item_locked",
-   "first_i": 4710550,
+   "name": "z_unpend1_no_timeout",
+   "first_i": 5300615,
+   "entries": 4,
+   "instr": 23
+  },
+  {
+   "name": "z_fatal_error",
+   "first_i": 5303211,
+   "entries": 5,
+   "instr": 61
+  },
+  {
+   "name": "is_ptr",
+   "first_i": 5303335,
+   "entries": 4,
+   "instr": 958
+  },
+  {
+   "name": "k_thread_name_get",
+   "first_i": 5304525,
    "entries": 1,
-   "instr": 10288594
+   "instr": 2
+  },
+  {
+   "name": "k_sys_fatal_error_handler",
+   "first_i": 5305671,
+   "entries": 3,
+   "instr": 13
+  },
+  {
+   "name": "z_impl_log_panic",
+   "first_i": 5305673,
+   "entries": 19,
+   "instr": 74
+  },
+  {
+   "name": "panic",
+   "first_i": 5305713,
+   "entries": 3,
+   "instr": 15
+  },
+  {
+   "name": "log_source_name_get",
+   "first_i": 5305933,
+   "entries": 17,
+   "instr": 136
+  },
+  {
+   "name": "z_log_get_tag",
+   "first_i": 5305980,
+   "entries": 17,
+   "instr": 34
+  },
+  {
+   "name": "print_formatted",
+   "first_i": 5306018,
+   "entries": 204,
+   "instr": 1224
+  },
+  {
+   "name": "newline_print",
+   "first_i": 5320050,
+   "entries": 17,
+   "instr": 119
+  },
+  {
+   "name": "sys_arch_reboot",
+   "first_i": 5611658,
+   "entries": 1,
+   "instr": 671
   }
  ]
 }

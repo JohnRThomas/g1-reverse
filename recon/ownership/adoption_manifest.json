@@ -72,11 +72,11 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 623,
-    "exclude_reconstruction": 609,
+    "entries": 639,
+    "exclude_reconstruction": 625,
     "retain_reconstruction": 14,
     "by_kind": {
-     "source": 441,
+     "source": 457,
      "archive": 132,
      "static_helper": 28,
      "table": 22,
@@ -37549,17 +37549,817 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed"
       }
      ]
+    },
+    {
+     "core": "app",
+     "va": "0x000736ec",
+     "raw_symbol": "FUN_000736ec",
+     "current_symbol": "sched_thread_should_preempt",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "sliceable",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 2 sub-batch B2b (recon/ownership/library_displacement_report.md \u00a74): high-confidence non-Bluetooth zephyr_kernel candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `sliceable`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.sliceable section (60 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000736ec after masking 3 relocation slots; 48 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: sliceable (local linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "21 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000736ec",
+       "upstream_symbol": "sliceable",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00073788",
+     "raw_symbol": "FUN_00073788",
+     "current_symbol": "sched_switch_handle_timeout",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "z_reset_time_slice",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 2 sub-batch B2b (recon/ownership/library_displacement_report.md \u00a74): high-confidence non-Bluetooth zephyr_kernel candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `z_reset_time_slice`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.z_reset_time_slice section (80 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00073788 after masking 8 relocation slots; 48 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: z_reset_time_slice (global linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "21 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00073788",
+       "upstream_symbol": "z_reset_time_slice",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000738d4",
+     "raw_symbol": "FUN_000738d4",
+     "current_symbol": "z_ready_thread_locked",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "z_ready_thread",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 2 sub-batch B2b (recon/ownership/library_displacement_report.md \u00a74): high-confidence non-Bluetooth zephyr_kernel candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `z_ready_thread`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.z_ready_thread section (140 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000738d4 after masking 16 relocation slots; 76 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: z_ready_thread (global linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "sdk_source_path_literal",
+       "detail": "literal pool references SDK source path(s) ['WEST_TOPDIR/zephyr/include/zephyr/spinlock.h']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "21 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000738d4",
+       "upstream_symbol": "z_ready_thread",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 10,
+        "library_owned": 10,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00073960",
+     "raw_symbol": "FUN_00073960",
+     "current_symbol": "abort_thread_timeout_locked",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "z_unpend_thread_no_timeout",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 2 sub-batch B2b (recon/ownership/library_displacement_report.md \u00a74): high-confidence non-Bluetooth zephyr_kernel candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `z_unpend_thread_no_timeout`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.z_unpend_thread_no_timeout section (144 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00073960 after masking 16 relocation slots; 80 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: z_unpend_thread_no_timeout (global linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "sdk_source_path_literal",
+       "detail": "literal pool references SDK source path(s) ['WEST_TOPDIR/zephyr/include/zephyr/spinlock.h']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "21 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00073960",
+       "upstream_symbol": "z_unpend_thread_no_timeout",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 0,
+        "library_owned": 0,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00073d1c",
+     "raw_symbol": "FUN_00073d1c",
+     "current_symbol": "sched_requeue_by_prio",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "move_thread_to_end_of_prio_q",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 2 sub-batch B2b (recon/ownership/library_displacement_report.md \u00a74): high-confidence non-Bluetooth zephyr_kernel candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `move_thread_to_end_of_prio_q`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.move_thread_to_end_of_prio_q section (164 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00073d1c after masking 10 relocation slots; 124 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: move_thread_to_end_of_prio_q (local linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "assert_literal_source_path",
+       "detail": "literal pool references ['WEST_TOPDIR/zephyr/kernel/sched.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "21 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00073d1c",
+       "upstream_symbol": "move_thread_to_end_of_prio_q",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 0,
+        "library_owned": 0,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00073ec0",
+     "raw_symbol": "FUN_00073ec0",
+     "current_symbol": "add_thread_to_wait_queue",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "add_to_waitq_locked",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 2 sub-batch B2b (recon/ownership/library_displacement_report.md \u00a74): high-confidence non-Bluetooth zephyr_kernel candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `add_to_waitq_locked`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.add_to_waitq_locked section (124 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00073ec0 after masking 7 relocation slots; 96 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: add_to_waitq_locked (local linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "assert_literal_source_path",
+       "detail": "literal pool references ['WEST_TOPDIR/zephyr/kernel/sched.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "21 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00073ec0",
+       "upstream_symbol": "add_to_waitq_locked",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00074060",
+     "raw_symbol": "FUN_00074060",
+     "current_symbol": "z_sched_set_prio_and_requeue",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "z_set_prio",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 2 sub-batch B2b (recon/ownership/library_displacement_report.md \u00a74): high-confidence non-Bluetooth zephyr_kernel candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `z_set_prio`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.z_set_prio section (292 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00074060 after masking 22 relocation slots; 204 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: z_set_prio (global linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "assert_literal_source_path",
+       "detail": "literal pool references ['WEST_TOPDIR/zephyr/include/zephyr/spinlock.h', 'WEST_TOPDIR/zephyr/kernel/sched.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "21 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00074060",
+       "upstream_symbol": "z_set_prio",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000741a4",
+     "raw_symbol": "FUN_000741a4",
+     "current_symbol": "z_thread_suspend",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "z_impl_k_thread_suspend",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 2 sub-batch B2b (recon/ownership/library_displacement_report.md \u00a74): high-confidence non-Bluetooth zephyr_kernel candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `z_impl_k_thread_suspend`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.z_impl_k_thread_suspend section (208 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000741a4 after masking 21 relocation slots; 124 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: z_impl_k_thread_suspend (global linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "sdk_source_path_literal",
+       "detail": "literal pool references SDK source path(s) ['WEST_TOPDIR/zephyr/include/zephyr/spinlock.h']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "21 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000741a4",
+       "upstream_symbol": "z_impl_k_thread_suspend",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000742b4",
+     "raw_symbol": "FUN_000742b4",
+     "current_symbol": "unpend_thread",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "z_unpend_thread",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 2 sub-batch B2b (recon/ownership/library_displacement_report.md \u00a74): high-confidence non-Bluetooth zephyr_kernel candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `z_unpend_thread`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.z_unpend_thread section (152 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000742b4 after masking 17 relocation slots; 84 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: z_unpend_thread (global linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "sdk_source_path_literal",
+       "detail": "literal pool references SDK source path(s) ['WEST_TOPDIR/zephyr/include/zephyr/spinlock.h']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "21 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000742b4",
+       "upstream_symbol": "z_unpend_thread",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007440c",
+     "raw_symbol": "FUN_0007440c",
+     "current_symbol": "z_timer_stop_unpend",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "z_unpend1_no_timeout",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 2 sub-batch B2b (recon/ownership/library_displacement_report.md \u00a74): high-confidence non-Bluetooth zephyr_kernel candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `z_unpend1_no_timeout`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.z_unpend1_no_timeout section (152 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0007440c after masking 16 relocation slots; 88 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: z_unpend1_no_timeout (global linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "sdk_source_path_literal",
+       "detail": "literal pool references SDK source path(s) ['WEST_TOPDIR/zephyr/include/zephyr/spinlock.h']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "21 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0007440c",
+       "upstream_symbol": "z_unpend1_no_timeout",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00074b7c",
+     "raw_symbol": "FUN_00074b7c",
+     "current_symbol": "next_timeout",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "next_timeout",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/timeout.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 2 sub-batch B2b (recon/ownership/library_displacement_report.md \u00a74): high-confidence non-Bluetooth zephyr_kernel candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `next_timeout`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.next_timeout section (64 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00074b7c after masking 3 relocation slots; 52 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/timeout.c :: next_timeout (local linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/timeout.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "4 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00074b7c",
+       "upstream_symbol": "next_timeout",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": true
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00074bbc",
+     "raw_symbol": "FUN_00074bbc",
+     "current_symbol": "remove_timeout",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "remove_timeout",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/timeout.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 2 sub-batch B2b (recon/ownership/library_displacement_report.md \u00a74): high-confidence non-Bluetooth zephyr_kernel candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `remove_timeout`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.remove_timeout section (56 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00074bbc after masking 1 relocation slots; 52 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/timeout.c :: remove_timeout (local linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/timeout.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "4 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00074bbc",
+       "upstream_symbol": "remove_timeout",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000751d0",
+     "raw_symbol": "FUN_000751d0",
+     "current_symbol": "register_events",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "register_events",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 2 sub-batch B2b (recon/ownership/library_displacement_report.md \u00a74): high-confidence non-Bluetooth zephyr_kernel candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `register_events`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.register_events section (540 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000751d0 after masking 40 relocation slots; 380 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c :: register_events (local linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/poll.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "assert_literal_source_path",
+       "detail": "literal pool references ['WEST_TOPDIR/zephyr/include/zephyr/spinlock.h', 'WEST_TOPDIR/zephyr/kernel/poll.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "5 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000751d0",
+       "upstream_symbol": "register_events",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000753ec",
+     "raw_symbol": "FUN_000753ec",
+     "current_symbol": "clear_event_registrations",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "clear_event_registrations",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 2 sub-batch B2b (recon/ownership/library_displacement_report.md \u00a74): high-confidence non-Bluetooth zephyr_kernel candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `clear_event_registrations`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.clear_event_registrations section (392 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000753ec after masking 36 relocation slots; 248 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c :: clear_event_registrations (local linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/poll.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "assert_literal_source_path",
+       "detail": "literal pool references ['WEST_TOPDIR/zephyr/include/zephyr/spinlock.h', 'WEST_TOPDIR/zephyr/kernel/poll.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "5 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000753ec",
+       "upstream_symbol": "clear_event_registrations",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000757b0",
+     "raw_symbol": "FUN_000757b0",
+     "current_symbol": "poll_signal_event_locked",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "z_impl_k_poll_signal_raise",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 2 sub-batch B2b (recon/ownership/library_displacement_report.md \u00a74): high-confidence non-Bluetooth zephyr_kernel candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `z_impl_k_poll_signal_raise`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.z_impl_k_poll_signal_raise section (180 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000757b0 after masking 17 relocation slots; 112 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c :: z_impl_k_poll_signal_raise (global linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/poll.c.obj"
+      },
+      {
+       "signal": "sdk_source_path_literal",
+       "detail": "literal pool references SDK source path(s) ['WEST_TOPDIR/zephyr/include/zephyr/spinlock.h']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "5 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000757b0",
+       "upstream_symbol": "z_impl_k_poll_signal_raise",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000867da",
+     "raw_symbol": "FUN_000867da",
+     "current_symbol": "signal_poll_event",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "signal_poll_event",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 2 sub-batch B2b (recon/ownership/library_displacement_report.md \u00a74): high-confidence non-Bluetooth zephyr_kernel candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `signal_poll_event`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.signal_poll_event section (180 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000867da after masking 4 relocation slots; 164 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c :: signal_poll_event (local linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/poll.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "5 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000867da",
+       "upstream_symbol": "signal_poll_event",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
     }
    ]
   },
   "net": {
    "summary": {
-    "entries": 611,
-    "exclude_reconstruction": 244,
+    "entries": 612,
+    "exclude_reconstruction": 245,
     "retain_reconstruction": 367,
     "by_kind": {
      "source": 125,
-     "archive": 296,
+     "archive": 297,
      "static_helper": 61,
      "table": 0,
      "glue": 129
@@ -56976,6 +57776,47 @@
        "caller_count": 19,
        "raw_evidence_preserved": true,
        "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01021a38",
+     "raw_symbol": "FUN_01021a38",
+     "current_symbol": "FUN_01021a38",
+     "kind": "archive",
+     "component": "mpsl",
+     "upstream_symbol": "mpsl_timeslot_session_open",
+     "upstream_unit": "/Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Public documented MPSL API identity, established by three independent lines of evidence from the shipped image (call-site ABI, return-code set, and the documented low-frequency-clock wait).  The reconstruction reads MPSL's private clock state through original-image absolute RAM addresses that this build never initialises, because the genuine libmpsl.a owns that state at its own layout; the public symbol is a safe link alias (unlike the obfuscated archive spellings recorded for the private MPSL/SDC bodies).",
+     "evidence": [
+      {
+       "source": "recon/emulator/reports/our_boot_bringup.md#iteration-9",
+       "type": "call_site_abi",
+       "detail": "netcore_image.bin 0x0102b84a..0x0102b850 (inside FUN_0102b810, the product timeslot worker): r0 = literal at 0x0102b8e4 (the timeslot signal callback), r1 = sp+7 (a one-byte session-id out parameter), then bl 0x01021a38; the returned value is tested against 0 and any non-zero result is logged as an error.  This is exactly int32_t mpsl_timeslot_session_open(mpsl_timeslot_callback_t, mpsl_timeslot_session_id_t *).  The same worker calls 0x0102a122 with (session_id, request) and 0x0102a0e6 with (session_id); 0x0102a0e6 is already aliased to mpsl_timeslot_session_close."
+      },
+      {
+       "source": "recon/net/src/FUN_01021a38.c",
+       "type": "return_code_set",
+       "detail": "The proven reconstruction returns -22 for a NULL callback and -12 when no free session slot exists; mpsl_timeslot.h documents -NRF_ENOMEM (=-12) as the failure of mpsl_timeslot_session_open and NRF_EINVAL is 22."
+      },
+      {
+       "source": "/Users/freedomcoder/ncs251/nrfxlib/mpsl/include/mpsl_timeslot.h:275-286",
+       "type": "documented_behaviour",
+       "detail": "\"If the low frequency clock is not running when this function is called, the function will wait until the low frequency clock has started.\"  The reconstruction's first action is FUN_01022e34 -> FUN_010248d0, a spin on CLOCK.LFCLKSTAT at 0x41005418 -- the documented wait."
+      },
+      {
+       "source": "recon/emulator/reports/our_boot_bringup.md#iteration-9",
+       "type": "boot_divergence",
+       "detail": "Renode diagnostic read at t=0.15 s of the iteration-8 net image: CLOCK.LFCLKSTAT = 0x00010002 (STATE=1, SRC=2/LFXO), LFCLKRUN = 1, LFCLKSRC = 2 -- the low-frequency clock IS running.  The reconstruction nevertheless spins forever because it compares LFCLKSTAT.SRC against MPSL's private expected-source word at 0x21001bd0+0x20, which reads 0 in this build: nothing here owns or initialises the original MPSL clock state at that absolute address."
+      },
+      {
+       "source": "recon/emulator/reports/golden_boot_trace.json",
+       "type": "golden_trace",
+       "detail": "The shipped image reaches FUN_01021a38 at net instruction 387,868 and FUN_01022e34 at 387,916; its FUN_010248d0 returns immediately (10 entries / 131 instructions total over the whole 3.0 s boot), because the shipped MPSL initialised the same private state.  The control path itself is therefore correct -- only the state owner is wrong in the reconstruction."
       }
      ]
     }

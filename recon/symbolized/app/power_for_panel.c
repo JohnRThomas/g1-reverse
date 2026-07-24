@@ -32,7 +32,7 @@ extern int dev_reg_modify_bits(int,...);
 unsigned power_for_panel(unsigned param_1, unsigned param_2)
 {
     int *piVar1; int iVar2; unsigned char *puVar3; int iVar4;
-    iVar2 = dev_write_reg3(*(unsigned*)(*(volatile int*)(0x00087cf8+4)+0x1c), 8, 0, 1, param_1, param_2);
+    iVar2 = dev_write_reg3(*(unsigned*)(*(volatile int*)((unsigned long)&rodata_87cf8 + 4) /*=0x87cf8*/+0x1c), 8, 0, 1, param_1, param_2);
     piVar1 = (int*)((unsigned long)&g_log_level) /*=0x2000230c*/;
     if(iVar2 < 0){
         if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ < 1) return 0;
@@ -45,7 +45,7 @@ unsigned power_for_panel(unsigned param_1, unsigned param_2)
         else { debug_print(((unsigned long)&rodata_99345) /*=0x99345*/, ((unsigned long)&rodata_99c3e) /*=0x99c3e*/); }
     }
     app_msleep_thunk_a(1);
-    iVar2 = *(volatile int*)(0x00087d10+4);
+    iVar2 = *(volatile int*)((unsigned long)&rodata_87d10 + 4) /*=0x87d10*/;
     if(*(char*)(*(volatile int*)((unsigned long)&device_info) /*=0x200069fc*/ + 0xed4) == 1){
         iVar4 = dev_write_reg3(*(unsigned*)(iVar2+0x1c), 4, 10, 1, param_1, param_2);
         if(iVar4 < 0){
