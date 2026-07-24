@@ -811,6 +811,17 @@
     "FUN_00016268"
    ]
   },
+  "0x000162ec": {
+   "address": "0x000162ec",
+   "raw_name": "FUN_000162ec",
+   "name": "local_ipc_service_recv",
+   "display_name": "local_ipc_service_recv",
+   "human": true,
+   "source": "recon/app/src/local_ipc_service_recv.c",
+   "aliases": [
+    "FUN_000162ec"
+   ]
+  },
   "0x0001655c": {
    "address": "0x0001655c",
    "raw_name": "FUN_0001655c",
@@ -1007,6 +1018,17 @@
    "source": "recon/app/src/change_work_mode_to.c",
    "aliases": [
     "change_work_mode"
+   ]
+  },
+  "0x00016bf0": {
+   "address": "0x00016bf0",
+   "raw_name": "FUN_00016bf0",
+   "name": "local_esbm_ipc_service_recv",
+   "display_name": "local_esbm_ipc_service_recv",
+   "human": true,
+   "source": "recon/app/src/local_esbm_ipc_service_recv.c",
+   "aliases": [
+    "FUN_00016bf0"
    ]
   },
   "0x00016eb8": {
@@ -17725,6 +17747,17 @@
     "FUN_0007c004"
    ]
   },
+  "0x0007c00c": {
+   "address": "0x0007c00c",
+   "raw_name": "FUN_0007c00c",
+   "name": "local_esbs_ctrl_ipc_service_recv",
+   "display_name": "local_esbs_ctrl_ipc_service_recv",
+   "human": true,
+   "source": "recon/app/src/local_esbs_ctrl_ipc_service_recv.c",
+   "aliases": [
+    "FUN_0007c00c"
+   ]
+  },
   "0x0007c010": {
    "address": "0x0007c010",
    "raw_name": "FUN_0007c010",
@@ -28958,7 +28991,10 @@
   "load_sys_setting": "0x00022bd0",
   "load_usr_setting": "0x00022e78",
   "load_whitelist": "0x00034b34",
+  "local_esbm_ipc_service_recv": "0x00016bf0",
+  "local_esbs_ctrl_ipc_service_recv": "0x0007c00c",
   "local_esbs_ipc_service_recv": "0x00015960",
+  "local_ipc_service_recv": "0x000162ec",
   "local_store_write": "0x00022168",
   "lock_device_mutex": "0x0007c8b0",
   "log": "0x00012d20",

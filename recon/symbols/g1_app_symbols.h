@@ -94,6 +94,9 @@ extern const unsigned char __g1_fp_l2cap_reassemble_frag[] __asm__("l2cap_reasse
 extern const unsigned char __g1_fp_libc_stream_write_syscall[] __asm__("libc_stream_write_syscall");
 extern const unsigned char __g1_fp_libc_write_buffer_via_putc[] __asm__("libc_write_buffer_via_putc");
 extern const unsigned char __g1_fp_local_esbs_ipc_service_recv[] __asm__("local_esbs_ipc_service_recv");
+extern const unsigned char __g1_fp_local_esbm_ipc_service_recv[] __asm__("local_esbm_ipc_service_recv");
+extern const unsigned char __g1_fp_local_esbs_ctrl_ipc_service_recv[] __asm__("local_esbs_ctrl_ipc_service_recv");
+extern const unsigned char __g1_fp_local_ipc_service_recv[] __asm__("local_ipc_service_recv");
 extern const unsigned char __g1_fp_local_store_write[] __asm__("local_store_write");
 extern const unsigned char __g1_fp_low_speed_peripheral_dispatch_thread_for_test[] __asm__("low_speed_peripheral_dispatch_thread_for_test");
 extern const unsigned char __g1_fp_mic_transm_thread[] __asm__("mic_transm_thread");
@@ -218,6 +221,9 @@ extern const unsigned char __g1_fp_z_impl_net_if_ipv6_addr_rm_by_index[] __asm__
 #define ADDR_libc_stream_write_syscall_THUMB (((unsigned long)&__g1_fp_libc_stream_write_syscall) | 1u) /* libc_stream_write_syscall -> &libc_stream_write_syscall; was 0x86f5b */
 #define ADDR_libc_write_buffer_via_putc_THUMB (((unsigned long)&__g1_fp_libc_write_buffer_via_putc) | 1u) /* libc_write_buffer_via_putc -> &libc_write_buffer_via_putc; was 0x86cb7 */
 #define ADDR_local_esbs_ipc_service_recv_THUMB (((unsigned long)&__g1_fp_local_esbs_ipc_service_recv) | 1u) /* local_esbs_ipc_service_recv -> &local_esbs_ipc_service_recv; was 0x15961 */
+#define ADDR_local_esbm_ipc_service_recv_THUMB (((unsigned long)&__g1_fp_local_esbm_ipc_service_recv) | 1u) /* local_esbm_ipc_service_recv -> &local_esbm_ipc_service_recv; was 0x16bf1 */
+#define ADDR_local_esbs_ctrl_ipc_service_recv_THUMB (((unsigned long)&__g1_fp_local_esbs_ctrl_ipc_service_recv) | 1u) /* local_esbs_ctrl_ipc_service_recv -> &local_esbs_ctrl_ipc_service_recv; was 0x7c00d */
+#define ADDR_local_ipc_service_recv_THUMB (((unsigned long)&__g1_fp_local_ipc_service_recv) | 1u) /* local_ipc_service_recv -> &local_ipc_service_recv; was 0x162ed */
 #define ADDR_local_store_write_THUMB (((unsigned long)&__g1_fp_local_store_write) | 1u) /* local_store_write -> &local_store_write; was 0x22169 */
 #define ADDR_low_speed_peripheral_dispatch_thread_for_test_THUMB (((unsigned long)&__g1_fp_low_speed_peripheral_dispatch_thread_for_test) | 1u) /* low_speed_peripheral_dispatch_thread_for_test -> &low_speed_peripheral_dispatch_thread_for_test; was 0x2685d */
 #define ADDR_mic_transm_thread_THUMB (((unsigned long)&__g1_fp_mic_transm_thread) | 1u) /* mic_transm_thread -> &mic_transm_thread; was 0x324bd */
@@ -3610,5 +3616,22 @@ extern const unsigned char lc3_tns_coeffs_bits[]; /* @0x8fd50 */
 extern const unsigned char lc3_tns_coeffs_models[]; /* @0x8fe60 */
 extern const unsigned char lc3_tns_order_bits[]; /* @0x90080 */
 #endif
+
+
+/* Iteration 8: pins used by the three reconstructed IPC-service handlers. */
+extern const unsigned char rodata_995d9[]; /* @0x995d9 */
+extern const unsigned char rodata_99605[]; /* @0x99605 */
+extern const unsigned char rodata_99638[]; /* @0x99638 */
+extern const unsigned char rodata_996a3[]; /* @0x996a3 */
+extern const unsigned char rodata_996b3[]; /* @0x996b3 */
+extern const unsigned char rodata_996e3[]; /* @0x996e3 */
+extern const unsigned char rodata_99789[]; /* @0x99789 */
+extern const unsigned char rodata_997b2[]; /* @0x997b2 */
+extern const unsigned char rodata_997d9[]; /* @0x997d9 */
+extern const unsigned char rodata_99805[]; /* @0x99805 */
+extern const unsigned char rodata_99b56[]; /* @0x99b56 */
+extern const unsigned char rodata_99b6d[]; /* @0x99b6d */
+extern unsigned char g_20007b34[]; /* @0x20007b34 */
+extern unsigned char g_2000ff4a[]; /* @0x2000ff4a */
 
 #endif

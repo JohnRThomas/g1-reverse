@@ -19,8 +19,8 @@ PROVIDE(rodata_12558 = 0x00012558);
 PROVIDE(rodata_1255c = 0x0001255c);
 PROVIDE(rodata_1256c = 0x0001256c);
 PROVIDE(rodata_1274f = 0x0001274f);
-PROVIDE(rodata_162ed = 0x000162ed);
-PROVIDE(rodata_16bf1 = 0x00016bf1);
+PROVIDE(rodata_162ed = local_ipc_service_recv | 1); /* iteration 8 rebind */
+PROVIDE(rodata_16bf1 = local_esbm_ipc_service_recv | 1); /* iteration 8 rebind */
 PROVIDE(rodata_17819 = 0x00017819);
 PROVIDE(rodata_1827d = 0x0001827d);
 PROVIDE(rodata_18ef5 = 0x00018ef5);
@@ -102,7 +102,7 @@ PROVIDE(rodata_73729 = 0x00073729);
 PROVIDE(rodata_75005 = z_timer_expiration_handler | 1);
 PROVIDE(rodata_76b91 = 0x00076b91);
 PROVIDE(rodata_79274 = 0x00079274);
-PROVIDE(rodata_7c00d = 0x0007c00d);
+PROVIDE(rodata_7c00d = local_esbs_ctrl_ipc_service_recv | 1); /* iteration 8 rebind */
 PROVIDE(rodata_7c26b = 0x0007c26b);
 PROVIDE(rodata_7c38b = 0x0007c38b);
 PROVIDE(rodata_7c39d = 0x0007c39d);
@@ -3547,3 +3547,23 @@ PROVIDE(rodata_a4147 = 0x000a4147);
 PROVIDE(rodata_a417e = 0x000a417e);
 PROVIDE(rodata_a41a0 = 0x000a41a0);
 PROVIDE(g_20003778 = 0x20003778);
+
+/* Iteration 8: interior rodata string pins and two absolute RAM cells used by
+ * the three reconstructed IPC-service handlers (local_ipc_service_recv @
+ * 0x162ec, local_esbm_ipc_service_recv @ 0x16bf0). Same non-owning PROVIDE
+ * kind as the entries above; each address is the literal VA the shipped code
+ * loads from its own literal pool. */
+PROVIDE(rodata_995d9 = 0x000995d9); /* iteration 8: local_ipc_service_recv "%s(): cpunet request send info uptime %lld" */
+PROVIDE(rodata_99605 = 0x00099605); /* iteration 8: local_ipc_service_recv "sys reboot because recv cpunet sync package" */
+PROVIDE(rodata_99638 = 0x00099638); /* iteration 8: local_ipc_service_recv "cpunet request update macaddr info" */
+PROVIDE(rodata_996a3 = 0x000996a3); /* iteration 8: local_ipc_service_recv "bt_ready" */
+PROVIDE(rodata_996b3 = 0x000996b3); /* iteration 8: local_ipc_service_recv "IPC_RESP_CPUNET_ESB_PACKAGES" */
+PROVIDE(rodata_996e3 = 0x000996e3); /* iteration 8: local_ipc_service_recv "sync fail!" */
+PROVIDE(rodata_99789 = 0x00099789); /* iteration 8: local_esbm_ipc_service_recv "received slave double click event" */
+PROVIDE(rodata_997b2 = 0x000997b2); /* iteration 8: local_esbm_ipc_service_recv "received SYNC_DISPLAY_FUNC_DATA" */
+PROVIDE(rodata_997d9 = 0x000997d9); /* iteration 8: local_esbm_ipc_service_recv "master sync onboarding action_cmd" */
+PROVIDE(rodata_99805 = 0x00099805); /* iteration 8: local_esbm_ipc_service_recv "master sync not_disturb sub_step" */
+PROVIDE(rodata_99b56 = 0x00099b56); /* iteration 8: local_ipc_service_recv log tag */
+PROVIDE(rodata_99b6d = 0x00099b6d); /* iteration 8: local_esbm_ipc_service_recv log tag */
+PROVIDE(g_20007b34 = 0x20007b34); /* iteration 8: local_esbm_ipc_service_recv atomic shutdown-request flags */
+PROVIDE(g_2000ff4a = 0x2000ff4a); /* iteration 8: local_esbm_ipc_service_recv last-handled esbm sequence */

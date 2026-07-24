@@ -174,6 +174,11 @@ target_sources(app PRIVATE
   # bind, so their historical identities are re-expressed here as thin bridges
   # over the real gpio.h API.
   src/g1_gpio_header_bridges.c
+  # Library displacement Batch 1 (goal G2): twelve newlib-nano mprec/stdio
+  # primitives are excluded in adoption_manifest.json but are still called by
+  # name from recovered newlib TUs outside the batch, so their historical
+  # identities forward onto the genuine newlib entry points here.
+  src/g1_newlib_mprec_bridges.c
   ${ZEPHYR_BASE}/drivers/sensor/stmemsc/stmemsc_i2c.c
   ${ZEPHYR_ST_MODULE_DIR}/sensor/stmemsc/lsm6dso_STdC/driver/lsm6dso_reg.c
   # Generated only after compiling every recovered table and comparing its

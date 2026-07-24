@@ -2489,3 +2489,449 @@ rebinds with evidence),
 generator only).
 No `tools/` change, no Kconfig/`prj.conf`/devicetree change, `armemul` additive
 only. Nothing committed.
+
+---
+
+## Iteration 8 — the three remaining IPC-service handlers (Step A) + library-displacement Batch 1 (Step B)
+
+**Headline.** The three unrelocated IPC-service handler pointers are gone.
+`0x162ec`, `0x16bf0` and `0x7c00c` were reconstructed from the image, proven,
+and rebound, and the app's IPC receive path now runs **real Even handler code**
+instead of jumping into whatever our layout happened to put at the raw
+address. Iteration 7's kernel `_oops` at 5,038,881 is **gone**: the whole
+`assert_print → assert_post_action → _oops → z_fatal_error →
+nrf_cc3xx_platform_abort → SYSRESETREQ` chain disappears from the trace and the
+app completes its init and settles in the kernel idle loop.
+
+Step B displaced **52** leaf libc / lib-os / zcbor / arch reconstructions onto
+their genuine upstream bodies, clean, with **FLASH −2,252 B** and no trace
+regression.
+
+Milestone tier: **E1–E3 complete, E4 advanced further than any previous
+iteration but still NOT completed.** `spi_read_id`, `bt_enable`/`bt_start` and
+the first ADV_IND are still not reached — the new blocker is on the **CPUNET**
+core (§A.7).
+
+Final artifacts: app `/private/tmp/g1-i8b-app` (Step-A-only:
+`/private/tmp/g1-i8a-app`), net unchanged `/private/tmp/g1-i7c-net`.
+Traces `/tmp/g1_i8a/`, `/tmp/g1_i8b/` (0.15 s, comparable to the baseline) and
+`/tmp/g1_i8a_long/`, `/tmp/g1_i8b_long/` (3.0 s, comparable to golden).
+
+| metric | iteration 7 (baseline) | **iter 8 Step A** | **iter 8 Step A+B (final)** |
+|---|---:|---:|---:|
+| app instructions @0.15 s | 5,045,044 | 5,041,477 | **5,041,553** |
+| app unique functions @0.15 s | 681 | 671 | **672** |
+| app instructions @3.0 s | — (machine reset at 0.15 s) | 5,151,848 | **5,149,911** |
+| app unique functions @3.0 s | — | 680 | **681** |
+| net instructions @0.15 s | 255,064 (cut short by the reset) | 10,091,064 | **10,091,064** |
+| net unique functions | 423 | 435 | **435** |
+| app FLASH | 628,380 B (63.96 %) | 629,932 B (64.11 %) | **627,680 B (63.88 %)** |
+| app RAM | 75,757 B (16.81 %) | 75,757 B (16.81 %) | **75,757 B (16.81 %)** |
+| net FLASH / RAM | 228,009 B / 54,140 B | unchanged (net not rebuilt) | unchanged |
+
+Both app builds: `nm -u` = **0** undefined, **0** duplicate globals. No
+`--allow-multiple-definition`, no weak symbols, no numeric-root hacks, no
+`tools/` change, no Kconfig/`prj.conf`/devicetree change; `armemul` used
+additively only (extra `.resc` files under `/tmp`; `g1-ours.resc` and the
+models untouched). Nothing committed.
+
+**Honest note on "fewer instructions / fewer unique functions".** At 0.15 s the
+Step-A run executes 3,567 *fewer* app instructions and 10 fewer unique
+functions than the baseline. Every one of the 24 functions the baseline reached
+and this run does not is fatal-path machinery that only ran *because* of the
+crash: `assert_print`, `vprintk`, `assert_post_action`, `z_arm_svc`, `_oops`,
+`z_do_kernel_oops`, `z_arm_fatal_error`, `z_fatal_error`, `k_current_get`,
+`z_log_msg_runtime_create`, `is_ptr`, `g1_recon_z_log_msg_alloc`,
+`log_msg_finalize_commit`, `z_log_dropped`, `fatal_log_and_reset`,
+`g1_recon_z_impl_log_panic`, `log_msg_process`, `log_msg_commit`, `panic`,
+`log_process`, `nrf_cc3xx_platform_abort`, `z_impl_k_timer_stop`,
+`z_unpend1_no_timeout`. Nothing legitimate was lost. Given the same 3.0 s
+budget golden gets, the run reaches 681 unique functions — the baseline's count
+— without any of the fatal chain.
+
+---
+
+### Step A — reconstruct and rebind the three IPC-service handlers
+
+#### A.1 What the three pins actually are
+
+`main()` registers four named IPC services into the context record at +0x6e4;
+each record is `{ id : u8, name : char*, handler : code* }`. Iteration 4 bound
+only one of the four handlers. The other three were raw image literals:
+
+| service id | name string | handler pin | identity |
+|---|---|---|---|
+| 1 | `"cpuapp-hw-id"` (0x998da) | `rodata_162ed` | **`local_ipc_service_recv`** @0x162ec |
+| 6 | `"cpunet-esbm-cpu-sync"` (0x998e7) | `rodata_16bf1` | **`local_esbm_ipc_service_recv`** @0x16bf0 |
+| 4 | `"cpunet-esbs"` (0x998fc) | (already bound, iteration 4) | `local_esbs_ipc_service_recv` @0x15960 |
+| 5 | `"cpunet-esbs-ctrl"` (0x99908) | `rodata_7c00d` | **`local_esbs_ctrl_ipc_service_recv`** @0x7c00c |
+
+`ipc0_ept_recv` dispatches `handler(context, data + 1, length - 1)`, so the
+handler's `packet[0]` is a sub-command.
+
+**Both names are self-evidenced, not guessed** — exactly the 0x25ae8 pattern:
+every log line in 0x162ec passes the string at 0x00099b56,
+`"local_ipc_service_recv"`, as its `"%s()"` argument, and every log line in
+0x16bf0 passes 0x00099b6d, `"local_esbm_ipc_service_recv"`.
+
+#### A.2 Extents derived from the image (all three are Ghidra gaps)
+
+| VA | Ghidra gap | code extent | literal pool | size |
+|---|---|---|---|---|
+| 0x162ec | 0x162d8..0x1655c | **0x162ec..0x16520** | 0x16520..0x1655c | **0x234 = 564 B** |
+| 0x16bf0 | 0x16bc4..0x16eb8 | **0x16bf0..0x16e88** | 0x16e88..0x16eb8 | **0x298 = 664 B** |
+| 0x7c00c | 0x7c00c..0x7c010 | **0x7c00c..0x7c010** | — | **4 B** |
+
+0x162d8..0x162eb and 0x16bc4..0x16bef are the *preceding* functions' literal
+pools (`runtime_info_sync`'s and `change_work_mode_to`'s respectively), decoded
+word-by-word to confirm they are data, not code. 0x7c00c is a 4-byte
+`movs r0,#0; bx lr` stub sitting between `FUN_0007c004` and the
+`thunk_FUN_00072880` veneer, preceded by an alignment `nop`.
+
+`local_ipc_service_recv` is a 13-entry `tbh` switch on `packet[0] - 1`
+(commands 1,2,3,4,6,7,13 + default) over the "cpuapp-hw-id" protocol: uptime
+reporting, a `sys_reboot` watchdog when the cpunet sync package arrives later
+than 10,001 ms, BT MAC/ESB-master-address mirroring into the context at
++0xfda/+0xfe0, a `bt_ready` notification, a 32-byte device-name `strncpy`, and
+the `IPC_RESP_CPUNET_ESB_PACKAGES` counters at 0x200069e8..0x200069f4.
+`local_esbm_ipc_service_recv` is a 12-entry `tbh` switch on
+`packet[0] & 0x3f` (commands 4..15) over the ESB-master sync protocol: a
+sequence-dedup on `packet[0x15]`, a 22-byte snapshot of the packet into
+context+0x6cc with the previous snapshot preserved at +0xfcf/+0xfe0, shutdown
+and work-mode transitions, two 0xda-byte message-payload copies, and the
+onboarding / not-disturb display sync.
+
+#### A.3 Proof status — what was actually run
+
+All three were saved by `recon_kit.prove(...)` (auto-save on pass) into
+`recon/app/src/`, mirrored into `recon/verified/src/`, and re-checked with the
+CLI verifier:
+
+| function | `recon_kit.prove` | `cfg_verify.py app <name>` |
+|---|---|---|
+| `local_ipc_service_recv` | `pass=True cfg_status=PASS checked=310` | **`PASS cases=13`** |
+| `local_esbm_ipc_service_recv` | `pass=True cfg_status=PASS checked=312` | **`PASS cases=12`** |
+| `local_esbs_ctrl_ipc_service_recv` | `pass=True cfg_status=PASS checked=300` | `PASS cases=0` |
+
+`cases=13` / `cases=12` are exactly the two `tbh` table sizes: cfg_verify drove
+**every** switch case from the original's own jump table.
+
+**Catalog note (disclosed).** `recon_kit.info` / `cfg_verify` resolve identity
+and size from the scratchpad catalogs, and none of the three was catalogued.
+One record per function was appended to `<scratchpad>/app_funcs.json` and
+`<scratchpad>/classified.json` (originals backed up as `*.json.i8bak`), exactly
+as iteration 4 did for 0x25ae8. **No `tools/` logic was changed.**
+
+#### A.4 Heeding the harness blind spot — directed fixtures + mutation controls
+
+`prove` + `cfg_verify` model callees as **order-keyed oracles that ignore their
+arguments** (iteration 5 §3b, iteration 7 §A.2). A separate directed harness
+(`<scratchpad>/directed8.py`) therefore re-ran all three with
+
+* `candidate_direct_target_map` — the **call target** is compared,
+* `call_arity_by_target` — **r0..r3** are compared at every call,
+* `call_stack_arity_by_format` — the **stack varargs** are compared at the two
+  log sites that pass them (formats 0x99638 and 0x996b3, two words each; the
+  other sites pass none, and the words at `[sp]` there are just the incoming
+  r0/r1/r2 the prologue pushed),
+* `absolute_memory_overrides` — `g_log_level`, `g_log_use_alt_sink` and
+  `device_info` are driven explicitly instead of left as PRNG garbage,
+* `arg_overrides` — a real packet buffer per switch case.
+
+Results: `local_ipc_service_recv` **256 cases, PASS** (240 compared; the 16
+that exercise the case-2 reboot arm are inconclusive because the shipped code
+has *no return path* there — it falls through into its out-of-line log blocks
+and loops, so both sides hit the instruction cap. Re-running the same 256 cases
+with `sys_reboot` as a `terminal_target` compares that arm too: **256/256
+PASS**). `local_esbm_ipc_service_recv` **240 cases, PASS**.
+`local_esbs_ctrl_ipc_service_recv` **16 cases, PASS**.
+
+Two further oracle-pinned fixtures close the two coverage holes the mutation
+run exposed (below): `h1_boundary` pins `uptime_ticks_get`'s return so the
+`0x2711` millisecond bound is straddled exactly (72 cases, PASS), and
+`h2_payload` pins `get_message_entry` / `pt_queue_get_free_slot` to a seeded
+object so both 0xda-byte payload copies are actually reached (48 cases, PASS).
+
+**Mutation controls (`<scratchpad>/mutate8.py`).** 13 deliberate defects were
+injected one at a time; every one must be rejected. First run: **10 of 13
+rejected, 3 survived** — and the three survivors were real fixture gaps, not
+false alarms:
+
+| surviving mutant | why it survived | fix |
+|---|---|---|
+| reboot bound `0x2711 → 0x2710` | the uptime oracle returns a pseudorandom 64-bit tick count, so the exact boundary is never produced | `h1_boundary` |
+| case-11 payload `0xda → 0xd9` | `get_message_entry`'s pseudorandom return never survives the `entry[0xe]`/`entry[0xd]` gates, so the copy is never reached | `h2_payload` |
+| case-12 destination loses the `+0xda` bias | same | `h2_payload` |
+
+With the two new fixtures **all 13 mutants FAIL and both unmutated controls
+PASS**. The other ten (dropped stack varargs, flipped sink polarity, swapped
+store target, off-by-one `strncpy` length, shifted log-level guards, 22→21-byte
+mirror copy, wrong flag mask, wrong pending-state constant, wrong sentinel)
+were rejected from the start.
+
+#### A.5 Rebinding the three pins
+
+A bare linker `PROVIDE` is not a `--gc-sections` root (iteration 4 proved it
+links as `0x00000001` when the target is discarded), so each pin is bound
+through the `pointer_rebind.md` `__asm__`-alias mechanism:
+
+```c
+/* recon/symbols/g1_app_symbols.h */
+extern const unsigned char __g1_fp_local_ipc_service_recv[]
+    __asm__("local_ipc_service_recv");
+#define ADDR_local_ipc_service_recv_THUMB \
+    (((unsigned long)&__g1_fp_local_ipc_service_recv) | 1u)
+```
+
+and `recon/symbolized/app/main.c` stores `ADDR_<name>_THUMB` into ctx+0x6ec /
++0x6f8 / +0x710 instead of `&rodata_162ed` / `&rodata_16bf1` / `&rodata_7c00d`.
+The `g1_app_globals.ld` entries are kept as the documented binding
+(`PROVIDE(rodata_162ed = local_ipc_service_recv | 1);` and siblings).
+
+Verified in the linked ELF (`/private/tmp/g1-i8a-app`):
+
+```
+nm:      00015354 T local_ipc_service_recv
+         00015bf0 T local_esbm_ipc_service_recv
+         00075102 T local_esbs_ctrl_ipc_service_recv
+objdump: 1624c: .word 0x00015355      <- local_ipc_service_recv | 1
+         16254: .word 0x00015bf1      <- local_esbm_ipc_service_recv | 1
+         16264: .word 0x00075103      <- local_esbs_ctrl_ipc_service_recv | 1
+```
+
+and the raw literals `0x000162ed` / `0x00016bf1` / `0x0007c00d` no longer
+appear anywhere in `.text`.
+
+**14 new pins** were added to `g1_app_globals.ld` + `g1_app_symbols.h` in a
+dedicated iteration-8 block: 12 interior rodata string pins (the log formats
+and the two `%s()` tag strings) and two absolute RAM cells,
+`g_20007b34` (the atomic shutdown-request flags word) and `g_2000ff4a` (the
+last-handled esbm sequence byte). Both RAM cells land inside live objects in
+our layout (`smp_work_queue_stack` and `kheap__system_heap`) — they are members
+of the still-open 561-pin collision set, harmless on this boot because only the
+service-id-1 handler is ever dispatched, and recorded here so the next
+iteration can emit them if the esbm path starts running.
+
+**No RAM re-shuffle.** RAM stayed at exactly 75,757 B across both builds, so
+none of the latent absolute-RAM-pin collisions changed owner (contrast
+iteration 7 §A.5, where +64 B of RAM turned a latent collision fatal).
+
+#### A.6 Boot result — the fault is gone and the app finishes its init
+
+Build `/private/tmp/g1-i8a-app` + the iteration-7 net, trace `/tmp/g1_i8a/`:
+
+| app function | iteration 8 | iteration 7 |
+|---|---:|---:|
+| `ept_cb` → `g1_ipc0_ept_received` → `ipc0_ept_recv` | 5,036,937 … 5,036,949 | 5,036,942 … 5,036,954 |
+| **`local_ipc_service_recv`** | **5,036,972** | — (jumped into `button_init` at raw 0x162ec) |
+| `uptime_ticks_get` → `k_uptime_ticks_impl` | 5,036,982 | — |
+| `runtime_info_sync` | 5,037,067 | — |
+| `global_ipc_service_send` → `ipc_service_send` → `send` | 5,037,087 … 5,037,129 | — |
+| `assert_print` / `_oops` / `z_fatal_error` | **never** | 5,037,038 / 5,038,893 / 5,044,262 |
+
+The received message is sub-command **2** (the cpunet sync package): the
+handler reads the uptime, finds it below the 10,001 ms reboot threshold, and
+answers with `runtime_info_sync`, which sends the reply back over IPC. That is
+the shipped protocol running end to end for the first time.
+
+After that the app runs the RTC/DPPI teardown (`z_nrf_rtc_timer_chan_free`,
+`nrfx_dppi_channel_free`, `nrfx_flag32_free`, all new) and enters the kernel
+`idle` loop.
+
+#### A.7 New first divergence — the CPUNET core spins on LFCLKSTAT
+
+With the app fault removed, the machine is no longer reset, so both cores run
+the full budget for the first time. Extending to golden's 3.0 s
+(`/tmp/g1_i8b_long/`) makes the new blocker unambiguous:
+
+| checkpoint | ours @3.0 s | golden @3.0 s |
+|---|---:|---:|
+| app instructions | 5,149,911 | 12,629,795 |
+| net instructions | 295,091,064 | 2,157,739 |
+| `radio TransmittedFrames` | **0** | **6** (first at t=1.5 s) |
+
+* **App side:** `main` sends `runtime_info_sync` and then blocks in
+  `k_sem_take` at 5,035,486 (`z_pend_curr → arch_swap`), and never runs again.
+  The semaphore it waits on is the one `local_ipc_service_recv` releases on
+  sub-commands **1** and **3** (`if (*(u32 *)(ctx+0x10) == 0) k_sem_give(ctx+8)`).
+  Only sub-command 2 ever arrives, so `main` stays pended and the display / BT
+  bring-up that follows it never starts. `spi_read_id`, `bt_enable`,
+  `bt_start` and ADV_IND are therefore still unreached — **E4 is not
+  completed.**
+* **Net side, and this is the actual stop:** after handling the app's message
+  the CPUNET runs
+  `ept_cb → FUN_0102ab14 → FUN_01021a38 → FUN_01022e34 → FUN_010248d0`
+  and **never leaves** `FUN_010248d0`:
+
+  ```c
+  void FUN_010248d0(void) {           /* recon/symbolized/net/FUN_010248d0.c */
+      unsigned base = (unsigned)&g_154_critical_section_nest_cnt; /* 0x21001bd0 */
+      while (FUN_01024b20(*(volatile unsigned *)(base + 0x20) & 3) == 0)
+          ;
+  }
+  unsigned FUN_01024b20(unsigned char want) {   /* reads 0x41005000 + 0x418 */
+      unsigned a = LFCLKSTAT, b = LFCLKSTAT;    /* CPUNET CLOCK */
+      return (a & 0x10000) ? ((b & 3) == want) : 0;
+  }
+  ```
+
+  0x41005000 is the CPUNET CLOCK/POWER/RESET block and +0x418 is **LFCLKSTAT**
+  (bit 16 = STATE, bits 0..1 = SRC). The loop spins until the low-frequency
+  clock reports *running* with the source the controller stored at
+  `0x21001bf0`. It never does: `armemul`'s `NRF5340_ClockPowerReset` model
+  (`models/NRF5340_ClockPowerReset.cs:224-230`) drives LFCLKSTAT.STATE from
+  `lfclkRunning`, which is set only by an LFCLKSTART write, and nothing on our
+  CPUNET issues one. 615,296 iterations at 0.15 s, ~18 M at 3.0 s.
+
+  **This code path does not exist in golden at all.** The golden net trace
+  (739 unique functions, E1–E5) never executes `FUN_010248d0`,
+  `FUN_01024b20`, `FUN_01022e34`, `FUN_01021a38` or `FUN_0102ab14`; at the
+  corresponding point it is inside the SoftDevice controller. So the CPUNET is
+  taking a branch golden does not take, and the missing LFCLK start is
+  downstream of that.
+
+  **It is not new, and it is not caused by Step A.** The same loop is already
+  in the iteration-7 net trace (620 iterations); iteration 7 only looked
+  quiet because the app's `_oops` reset the machine 0.15 s in and stopped the
+  net. Removing the app fault unmasked it. The net image was **not rebuilt**
+  this iteration (`/private/tmp/g1-i7c-net` byte-for-byte).
+
+**Classification: a CPUNET control-path divergence — the natural scope of
+iteration 9.** The three sub-questions it has to answer are (a) why our CPUNET
+enters `FUN_0102ab14`'s slot-allocation path at all when golden does not,
+(b) which CPUNET code should have started the LFCLK, and (c) which sub-command
+the net is supposed to send so `main`'s semaphore is released.
+
+---
+
+### Step B — library-displacement Batch 1 (goal G2)
+
+#### B.1 Rows added
+
+Batch 1 was re-derived from `recon/ownership/library_displacement_candidates.json`
+with the report's own §4 predicate
+
+```
+core == app && confidence == high && upstream_object_in_link &&
+referenced_by_linker_artifact == [] && callers.even_owned == 0 &&
+component in {libc_newlib_nano, zcbor, zephyr_lib_os, zephyr_arch,
+              zephyr_soc, zephyr_libc}
+```
+
+which yields exactly the documented **52 rows / 8,186 B**
+(`libc_newlib_nano` 25, `zcbor` 9, `zephyr_lib_os` 7, `zephyr_arch` 7,
+`zephyr_soc` 2, `zephyr_libc` 2). All 52 `exclude_reconstruction: true` rows
+were appended to `recon/ownership/adoption_manifest.json` (`cores.app.entries`)
+by `<scratchpad>/batch1.py`, each carrying the candidate's own evidence records
+plus a `library_displacement_candidate` record with its linkage, caller counts
+and boot-path flags. App manifest **571 → 623** entries, **557 → 609**
+exclusions.
+
+`recon/generated/app_retained_sources.cmake` was regenerated **only** by
+`tools/gen_retained_sources.py` (retained 1707 → **1655**, matched sources
+412 → **464**); `--check` reports "retained source lists are current". The
+generated cmake was not hand-edited.
+
+Verified in the build tree: all 52 reconstruction TUs produced a `.c.obj` in
+the Step-A build and **none** of them is compiled in the Step-B build.
+
+#### B.2 The callers that broke, and how they were wired
+
+The first Step-B link failed with undefined references to **twelve** of the
+displaced identities — `Balloc`, `Bfree`, `multadd`, `pow5mult`, `bigint_mult`,
+`lshift`, `bigint_diff`, `clz32`, `bignum_compare_abs`, `d2b_decompose`,
+`sbrk_impl`, `smakebuf_r` — from five *recovered newlib TUs that are not in
+Batch 1* (`dtoa_r.c`, `i2b.c`, `bignum_div_trial_subtract.c`, `stdio_fclose.c`,
+`_sbrk_r.c`). This is exactly the predicted failure mode, and the fix is the
+goal: wire the callers to the real library API.
+
+New bridge TU **`recon/application/app/src/g1_newlib_mprec_bridges.c`** (the
+Batch 0 `g1_gpio_header_bridges.c` pattern) forwards each historical identity
+onto the genuine newlib entry point:
+
+| historical identity | forwards to |
+|---|---|
+| `Balloc` / `Bfree` | `_Balloc` / `_Bfree` |
+| `multadd` / `pow5mult` / `bigint_mult` | `__multadd` / `__pow5mult` / `__multiply` |
+| `lshift` / `bigint_diff` | `__lshift` / `__mdiff` |
+| `clz32` / `bignum_compare_abs` | `__hi0bits` / `__mcmp` |
+| `d2b_decompose` | `__d2b` (hard-float: r0=reent, d0=value, r1/r2=out) |
+| `sbrk_impl` / `smakebuf_r` | `_sbrk` / `__smakebuf_r` |
+
+Argument lists are taken from the **proven** reconstruction prototypes in
+`recon/app/src/<name>.c`; the trailing Ghidra-artifact parameters that the
+shipped code never reads (`pow5mult` #4, `bigint_diff` #4, `smakebuf_r` #3) are
+accepted and dropped. AAPCS makes each forward exact, and GCC emits a 4-byte
+`b.w` per bridge (confirmed: `readelf -sW` shows size 4 for every one).
+**No recovered caller source was edited.** The TU is listed explicitly in
+`recon/application/app/CMakeLists.txt` next to the Batch 0 bridge.
+
+`_sbrk` was not previously in the link at all; referencing it from the bridge
+pulls the genuine Zephyr libc hook in — which is why one new function,
+`sbrk`, appears in the Step-B trace.
+
+#### B.3 Verification and boot result
+
+Rebuild `/private/tmp/g1-i8b-app`: **exit 0, 0 undefined, 0 duplicate**.
+FLASH 629,932 → **627,680 B (63.88 %, −2,252 B)**; RAM unchanged at 75,757 B,
+so **no RAM re-shuffle**. (The delta is smaller than the batch's 8,186 B of
+displaced extent because most of those bodies were already `--gc-sections`
+casualties and several upstream members are newly pulled in.)
+
+Boot (`/tmp/g1_i8b/`, same net build): **5,041,553** instructions / **672**
+unique at 0.15 s and **5,149,911** / **681** at 3.0 s — versus Step A's
+5,041,477 / 671 and 5,151,848 / 680. **No regression:** the trace diff is
+exactly one new function (`sbrk`, the genuine newlib hook) and **zero**
+functions lost; every marker shifts by the same +76 instructions the bridge
+thunks cost, in the same order:
+
+| function | Step B | Step A |
+|---|---:|---:|
+| `main` | 4,667,595 | 4,667,579 |
+| `button_init` | 4,753,935 | 4,753,859 |
+| `settings_subsys_init` | 4,758,777 | 4,758,701 |
+| `runtime_info_sync` | 5,034,643 | 5,034,567 |
+| `local_ipc_service_recv` | 5,037,048 | 5,036,972 |
+
+**Rows reverted: none.** All 52 survived the build and the boot.
+
+---
+
+### Regenerate (iteration 8)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python tools/cfg_verify.py app local_ipc_service_recv
+PYTHONSAFEPATH=1 .venv/bin/python tools/cfg_verify.py app local_esbm_ipc_service_recv
+PYTHONSAFEPATH=1 .venv/bin/python tools/cfg_verify.py app local_esbs_ctrl_ipc_service_recv
+PYTHONSAFEPATH=1 .venv/bin/python <scratchpad>/directed8.py h1|h2|h3|h1b|h2b
+PYTHONSAFEPATH=1 .venv/bin/python <scratchpad>/mutate8.py
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check
+recon/application/build_cohesive.sh app /private/tmp/g1-i8b-app
+cd /Users/freedomcoder/Projects/armemul
+~/tools/Renode.app/Contents/MacOS/renode --disable-xwt --console --plain \
+  -e 'i @/tmp/g1_i8b/trace.resc'       > /tmp/g1_i8b/run.out 2>&1        # 0.15 s
+~/tools/Renode.app/Contents/MacOS/renode --disable-xwt --console --plain \
+  -e 'i @/tmp/g1_i8b_long/trace.resc'  > /tmp/g1_i8b_long/run.out 2>&1   # 3.0 s
+# analyze: <scratchpad>/analyze.py <nm.txt> <trace.log> <out.json>
+```
+
+Files changed:
+`recon/app/src/local_ipc_service_recv.c`,
+`recon/app/src/local_esbm_ipc_service_recv.c`,
+`recon/app/src/local_esbs_ctrl_ipc_service_recv.c` (new, proven) + their
+`recon/verified/src/` mirrors and `recon/named/` readable mirrors,
+`recon/symbolized/app/{local_ipc_service_recv,local_esbm_ipc_service_recv,local_esbs_ctrl_ipc_service_recv}.c`
+(new build inputs),
+`recon/symbolized/app/main.c` (three handler stores rebound),
+`recon/symbols/g1_app_globals.ld` (3 rebinds + 14 new pins),
+`recon/symbols/g1_app_symbols.h` (3 `__asm__` aliases + 3 ADDR macros + 14 externs),
+`recon/catalogs/function_names_app.json` (3 durable entries, 2509 → 2512),
+`recon/ownership/adoption_manifest.json` (52 Batch-1 exclusions),
+`recon/application/app/src/g1_newlib_mprec_bridges.c` (new),
+`recon/application/app/CMakeLists.txt` (1 TU listed),
+`recon/generated/app_retained_sources.cmake` (regenerated by the sanctioned
+generator only).
+Scratchpad catalogs gained three records each (backed up as `*.json.i8bak`).
+No `tools/` change, no Kconfig/`prj.conf`/devicetree change, `armemul`
+additive only. Nothing committed.

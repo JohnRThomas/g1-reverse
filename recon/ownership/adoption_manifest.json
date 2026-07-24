@@ -72,13 +72,13 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 571,
-    "exclude_reconstruction": 557,
+    "entries": 623,
+    "exclude_reconstruction": 609,
     "retain_reconstruction": 14,
     "by_kind": {
-     "source": 417,
-     "archive": 107,
-     "static_helper": 25,
+     "source": 441,
+     "archive": 132,
+     "static_helper": 28,
      "table": 22,
      "glue": 0
     }
@@ -999,6 +999,106 @@
     },
     {
      "core": "app",
+     "va": "0x0004b4fc",
+     "raw_symbol": "FUN_0004b4fc",
+     "current_symbol": "onoff_process_event",
+     "kind": "source",
+     "component": "zephyr_lib_os",
+     "upstream_symbol": "process_event",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_lib_os primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `process_event`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.process_event section (936 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0004b4fc after masking 42 relocation slots; 768 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c :: process_event (local linkage) from /private/tmp/g1-i5d-app/zephyr/CMakeFiles/zephyr.dir/lib/os/onoff.c.obj"
+      },
+      {
+       "signal": "assert_literal_source_path",
+       "detail": "literal pool references ['WEST_TOPDIR/zephyr/lib/os/onoff.c', 'WEST_TOPDIR/zephyr/include/zephyr/spinlock.h']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "7 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0004b4fc",
+       "upstream_symbol": "process_event",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004b908",
+     "raw_symbol": "FUN_0004b908",
+     "current_symbol": "onoff_request_enqueue",
+     "kind": "source",
+     "component": "zephyr_lib_os",
+     "upstream_symbol": "onoff_request",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_lib_os primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `onoff_request`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.onoff_request section (304 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0004b908 after masking 20 relocation slots; 224 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c :: onoff_request (global linkage) from /private/tmp/g1-i5d-app/zephyr/CMakeFiles/zephyr.dir/lib/os/onoff.c.obj"
+      },
+      {
+       "signal": "assert_literal_source_path",
+       "detail": "literal pool references ['WEST_TOPDIR/zephyr/lib/os/onoff.c', 'WEST_TOPDIR/zephyr/include/zephyr/spinlock.h']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "7 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0004b908",
+       "upstream_symbol": "onoff_request",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x0004ba38",
      "raw_symbol": "FUN_0004ba38",
      "current_symbol": "onoff_release",
@@ -1532,6 +1632,98 @@
         ],
         "new_undefined_symbols": []
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004c278",
+     "raw_symbol": "FUN_0004c278",
+     "current_symbol": "nrf53_ipc_channel_configure",
+     "kind": "source",
+     "component": "zephyr_soc",
+     "upstream_symbol": "ppi_ipc_to_rtc.isra.0",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/soc/arm/nordic_nrf/nrf53/sync_rtc.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_soc primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `ppi_ipc_to_rtc.isra.0`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.ppi_ipc_to_rtc.isra.0 section (92 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0004c278 after masking 8 relocation slots; 60 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/soc/arm/nordic_nrf/nrf53/sync_rtc.c :: ppi_ipc_to_rtc.isra.0 (local linkage) from /private/tmp/g1-i5d-app/zephyr/CMakeFiles/zephyr.dir/soc/arm/nordic_nrf/nrf53/sync_rtc.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "3 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0004c278",
+       "upstream_symbol": "ppi_ipc_to_rtc.isra.0",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004c2d4",
+     "raw_symbol": "FUN_0004c2d4",
+     "current_symbol": "nrf53_sync_rtc_init",
+     "kind": "source",
+     "component": "zephyr_soc",
+     "upstream_symbol": "sync_rtc_setup",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/soc/arm/nordic_nrf/nrf53/sync_rtc.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_soc primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `sync_rtc_setup`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.sync_rtc_setup section (184 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0004c2d4 after masking 10 relocation slots; 144 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/soc/arm/nordic_nrf/nrf53/sync_rtc.c :: sync_rtc_setup (local linkage) from /private/tmp/g1-i5d-app/zephyr/CMakeFiles/zephyr.dir/soc/arm/nordic_nrf/nrf53/sync_rtc.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "3 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0004c2d4",
+       "upstream_symbol": "sync_rtc_setup",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 0,
+        "library_owned": 0,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
       }
      ]
     },
@@ -3863,6 +4055,48 @@
     },
     {
      "core": "app",
+     "va": "0x0004ff6c",
+     "raw_symbol": "FUN_0004ff6c",
+     "current_symbol": "arm_fault_dump_esf_registers",
+     "kind": "source",
+     "component": "zephyr_arch",
+     "upstream_symbol": "z_arm_fatal_error",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/fatal.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_arch primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `z_arm_fatal_error`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.z_arm_fatal_error section (320 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0004ff6c after masking 14 relocation slots; 264 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/fatal.c :: z_arm_fatal_error (global linkage) from /private/tmp/g1-i5d-app/zephyr/arch/arch/arm/core/aarch32/CMakeFiles/arch__arm__core__aarch32.dir/fatal.c.obj"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0004ff6c",
+       "upstream_symbol": "z_arm_fatal_error",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x000501d4",
      "raw_symbol": "FUN_000501d4",
      "current_symbol": "arch_swap",
@@ -4346,6 +4580,294 @@
         ],
         "new_undefined_symbols": []
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00050bf0",
+     "raw_symbol": "FUN_00050bf0",
+     "current_symbol": "region_init",
+     "kind": "source",
+     "component": "zephyr_arch",
+     "upstream_symbol": "region_init",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/mpu/arm_mpu.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_arch primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `region_init`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.region_init section (52 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00050bf0 after masking 0 relocation slots; 52 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/mpu/arm_mpu.c :: region_init (local linkage) from /private/tmp/g1-i5d-app/zephyr/arch/arch/arm/core/aarch32/mpu/CMakeFiles/arch__arm__core__aarch32__mpu.dir/arm_mpu.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "5 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00050bf0",
+       "upstream_symbol": "region_init",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": true
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00050c24",
+     "raw_symbol": "FUN_00050c24",
+     "current_symbol": "mpu_region_alloc_fail_log",
+     "kind": "source",
+     "component": "zephyr_arch",
+     "upstream_symbol": "region_allocate_and_init.part.0",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/mpu/arm_mpu.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_arch primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `region_allocate_and_init.part.0`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.region_allocate_and_init.part.0 section (48 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00050c24 after masking 3 relocation slots; 36 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/mpu/arm_mpu.c :: region_allocate_and_init.part.0 (local linkage) from /private/tmp/g1-i5d-app/zephyr/arch/arch/arm/core/aarch32/mpu/CMakeFiles/arch__arm__core__aarch32__mpu.dir/arm_mpu.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "5 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00050c24",
+       "upstream_symbol": "region_allocate_and_init.part.0",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00050c54",
+     "raw_symbol": "FUN_00050c54",
+     "current_symbol": "arm_core_mpu_configure",
+     "kind": "source",
+     "component": "zephyr_arch",
+     "upstream_symbol": "mpu_configure_regions_and_partition.constprop.0",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/mpu/arm_mpu.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_arch primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `mpu_configure_regions_and_partition.constprop.0`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.mpu_configure_regions_and_partition.constprop.0 section (412 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00050c54 after masking 11 relocation slots; 368 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/mpu/arm_mpu.c :: mpu_configure_regions_and_partition.constprop.0 (local linkage) from /private/tmp/g1-i5d-app/zephyr/arch/arch/arm/core/aarch32/mpu/CMakeFiles/arch__arm__core__aarch32__mpu.dir/arm_mpu.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "5 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00050c54",
+       "upstream_symbol": "mpu_configure_regions_and_partition.constprop.0",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 0,
+        "library_owned": 0,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00050e64",
+     "raw_symbol": "FUN_00050e64",
+     "current_symbol": "mpu_partition_sanity_check_assert",
+     "kind": "source",
+     "component": "zephyr_arch",
+     "upstream_symbol": "arm_core_mpu_mark_areas_for_dynamic_regions",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/mpu/arm_mpu.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_arch primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `arm_core_mpu_mark_areas_for_dynamic_regions`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.arm_core_mpu_mark_areas_for_dynamic_regions section (232 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00050e64 after masking 11 relocation slots; 188 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/mpu/arm_mpu.c :: arm_core_mpu_mark_areas_for_dynamic_regions (global linkage) from /private/tmp/g1-i5d-app/zephyr/arch/arch/arm/core/aarch32/mpu/CMakeFiles/arch__arm__core__aarch32__mpu.dir/arm_mpu.c.obj"
+      },
+      {
+       "signal": "assert_literal_source_path",
+       "detail": "literal pool references ['WEST_TOPDIR/zephyr/arch/arm/core/aarch32/mpu/arm_mpu.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "5 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00050e64",
+       "upstream_symbol": "arm_core_mpu_mark_areas_for_dynamic_regions",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 0,
+        "library_owned": 0,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00051074",
+     "raw_symbol": "FUN_00051074",
+     "current_symbol": "sbrk_impl",
+     "kind": "source",
+     "component": "zephyr_libc",
+     "upstream_symbol": "_sbrk",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/libc/newlib/libc-hooks.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_libc primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `_sbrk`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text._sbrk section (40 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00051074 after masking 2 relocation slots; 32 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/lib/libc/newlib/libc-hooks.c :: _sbrk (global linkage) from /private/tmp/g1-i5d-app/zephyr/lib/libc/newlib/CMakeFiles/lib__libc__newlib.dir/libc-hooks.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "5 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00051074",
+       "upstream_symbol": "_sbrk",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": true
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0005109c",
+     "raw_symbol": "FUN_0005109c",
+     "current_symbol": "retarget_lock_init",
+     "kind": "static_helper",
+     "component": "zephyr_libc",
+     "upstream_symbol": "__retarget_lock_init_recursive",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/libc/newlib/libc-hooks.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_libc primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__retarget_lock_init_recursive`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__retarget_lock_init_recursive section (96 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0005109c after masking 11 relocation slots; 52 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/lib/libc/newlib/libc-hooks.c :: __retarget_lock_init_recursive (global linkage) from /private/tmp/g1-i5d-app/zephyr/lib/libc/newlib/CMakeFiles/lib__libc__newlib.dir/libc-hooks.c.obj"
+      },
+      {
+       "signal": "assert_literal_source_path",
+       "detail": "literal pool references ['WEST_TOPDIR/zephyr/lib/libc/newlib/libc-hooks.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "5 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0005109c",
+       "upstream_symbol": "__retarget_lock_init_recursive",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
       }
      ]
     },
@@ -19336,6 +19858,56 @@
     },
     {
      "core": "app",
+     "va": "0x00071684",
+     "raw_symbol": "FUN_00071684",
+     "current_symbol": "z_fatal_error",
+     "kind": "source",
+     "component": "zephyr_arch",
+     "upstream_symbol": "z_fatal_error",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/fatal.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_arch primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `z_fatal_error`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.z_fatal_error section (300 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00071684 after masking 21 relocation slots; 216 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/fatal.c :: z_fatal_error (global linkage) from /private/tmp/g1-i5d-app/zephyr/kernel/CMakeFiles/kernel.dir/fatal.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "assert_literal_source_path",
+       "detail": "literal pool references ['>>> ZEPHYR FATAL ERROR %d: %s on CPU %d', 'WEST_TOPDIR/zephyr/kernel/fatal.c']"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00071684",
+       "upstream_symbol": "z_fatal_error",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": true
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x000719f4",
      "raw_symbol": "FUN_000719f4",
      "current_symbol": "k_heap_alloc",
@@ -23306,6 +23878,48 @@
     },
     {
      "core": "app",
+     "va": "0x00076cec",
+     "raw_symbol": "FUN_00076cec",
+     "current_symbol": "smakebuf_r",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__smakebuf_r",
+     "upstream_unit": "newlib-nano:lib_a-makebuf.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__smakebuf_r`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__smakebuf_r section (128 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00076cec after masking 4 relocation slots; 112 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-makebuf.o :: __smakebuf_r (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-makebuf.o"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00076cec",
+       "upstream_symbol": "__smakebuf_r",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00076d6c",
      "raw_symbol": "FUN_00076d6c",
      "current_symbol": "malloc",
@@ -23931,6 +24545,598 @@
         "new_undefined_symbols": [],
         "private_state": []
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00078110",
+     "raw_symbol": "FUN_00078110",
+     "current_symbol": "dtoa",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__gethex",
+     "upstream_unit": "newlib-nano:lib_a-gdtoa-gethex.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__gethex`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__gethex section (1120 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00078110 after masking 33 relocation slots; 988 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-gdtoa-gethex.o :: __gethex (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-gdtoa-gethex.o"
+      },
+      {
+       "signal": "sdk_source_path_literal",
+       "detail": "literal pool references SDK source path(s) ['/__w/_temp/workspace/build/.build/HOST-x86_64-w64-mingw32/arm-zephyr-eabi/src/newlib-nano/newlib/libc/stdlib/gdtoa-gethe']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "3 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00078110",
+       "upstream_symbol": "__gethex",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000785d4",
+     "raw_symbol": "FUN_000785d4",
+     "current_symbol": "Balloc",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "_Balloc",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `_Balloc`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text._Balloc section (128 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000785d4 after masking 6 relocation slots; 104 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: _Balloc (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_source_path_literal",
+       "detail": "literal pool references SDK source path(s) ['/__w/_temp/workspace/build/.build/HOST-x86_64-w64-mingw32/arm-zephyr-eabi/src/newlib-nano/newlib/libc/stdlib/mprec.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000785d4",
+       "upstream_symbol": "_Balloc",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 10,
+        "library_owned": 10,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00078654",
+     "raw_symbol": "FUN_00078654",
+     "current_symbol": "Bfree",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "_Bfree",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `_Bfree`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text._Bfree section (68 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00078654 after masking 4 relocation slots; 52 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: _Bfree (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_source_path_literal",
+       "detail": "literal pool references SDK source path(s) ['/__w/_temp/workspace/build/.build/HOST-x86_64-w64-mingw32/arm-zephyr-eabi/src/newlib-nano/newlib/libc/stdlib/mprec.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00078654",
+       "upstream_symbol": "_Bfree",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 6,
+        "library_owned": 6,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00078698",
+     "raw_symbol": "FUN_00078698",
+     "current_symbol": "multadd",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__multadd",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__multadd`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__multadd section (144 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00078698 after masking 6 relocation slots; 120 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: __multadd (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_source_path_literal",
+       "detail": "literal pool references SDK source path(s) ['/__w/_temp/workspace/build/.build/HOST-x86_64-w64-mingw32/arm-zephyr-eabi/src/newlib-nano/newlib/libc/stdlib/mprec.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00078698",
+       "upstream_symbol": "__multadd",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 3,
+        "library_owned": 3,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00078728",
+     "raw_symbol": "FUN_00078728",
+     "current_symbol": "s2b",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__s2b",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__s2b`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__s2b section (148 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00078728 after masking 6 relocation slots; 124 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: __s2b (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_source_path_literal",
+       "detail": "literal pool references SDK source path(s) ['/__w/_temp/workspace/build/.build/HOST-x86_64-w64-mingw32/arm-zephyr-eabi/src/newlib-nano/newlib/libc/stdlib/mprec.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00078728",
+       "upstream_symbol": "__s2b",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000787e8",
+     "raw_symbol": "FUN_000787e8",
+     "current_symbol": "bigint_mult",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__multiply",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__multiply`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__multiply section (340 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000787e8 after masking 4 relocation slots; 324 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: __multiply (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_source_path_literal",
+       "detail": "literal pool references SDK source path(s) ['/__w/_temp/workspace/build/.build/HOST-x86_64-w64-mingw32/arm-zephyr-eabi/src/newlib-nano/newlib/libc/stdlib/mprec.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000787e8",
+       "upstream_symbol": "__multiply",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 3,
+        "library_owned": 3,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007893c",
+     "raw_symbol": "FUN_0007893c",
+     "current_symbol": "pow5mult",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__pow5mult",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__pow5mult`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__pow5mult section (180 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0007893c after masking 10 relocation slots; 140 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: __pow5mult (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_source_path_literal",
+       "detail": "literal pool references SDK source path(s) ['/__w/_temp/workspace/build/.build/HOST-x86_64-w64-mingw32/arm-zephyr-eabi/src/newlib-nano/newlib/libc/stdlib/mprec.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0007893c",
+       "upstream_symbol": "__pow5mult",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000789f0",
+     "raw_symbol": "FUN_000789f0",
+     "current_symbol": "lshift",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__lshift",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__lshift`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__lshift section (216 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000789f0 after masking 5 relocation slots; 196 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: __lshift (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_source_path_literal",
+       "detail": "literal pool references SDK source path(s) ['/__w/_temp/workspace/build/.build/HOST-x86_64-w64-mingw32/arm-zephyr-eabi/src/newlib-nano/newlib/libc/stdlib/mprec.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000789f0",
+       "upstream_symbol": "__lshift",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 3,
+        "library_owned": 3,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00078ac8",
+     "raw_symbol": "FUN_00078ac8",
+     "current_symbol": "bigint_diff",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__mdiff",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__mdiff`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__mdiff section (304 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00078ac8 after masking 6 relocation slots; 280 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: __mdiff (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_source_path_literal",
+       "detail": "literal pool references SDK source path(s) ['/__w/_temp/workspace/build/.build/HOST-x86_64-w64-mingw32/arm-zephyr-eabi/src/newlib-nano/newlib/libc/stdlib/mprec.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00078ac8",
+       "upstream_symbol": "__mdiff",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00078bf8",
+     "raw_symbol": "FUN_00078bf8",
+     "current_symbol": "double_ulp_from_exp",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__ulp",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__ulp`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__ulp section (76 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00078bf8 after masking 0 relocation slots; 76 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: __ulp (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00078bf8",
+       "upstream_symbol": "__ulp",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00078c44",
+     "raw_symbol": "FUN_00078c44",
+     "current_symbol": "d2b",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__b2d",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__b2d`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__b2d section (156 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00078c44 after masking 1 relocation slots; 152 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: __b2d (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00078c44",
+       "upstream_symbol": "__b2d",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00078ce0",
+     "raw_symbol": "FUN_00078ce0",
+     "current_symbol": "d2b_decompose",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__d2b",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__d2b`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__d2b section (176 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00078ce0 after masking 7 relocation slots; 148 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: __d2b (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_source_path_literal",
+       "detail": "literal pool references SDK source path(s) ['/__w/_temp/workspace/build/.build/HOST-x86_64-w64-mingw32/arm-zephyr-eabi/src/newlib-nano/newlib/libc/stdlib/mprec.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00078ce0",
+       "upstream_symbol": "__d2b",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
       }
      ]
     },
@@ -26032,6 +27238,56 @@
     },
     {
      "core": "app",
+     "va": "0x0007e0a6",
+     "raw_symbol": "FUN_0007e0a6",
+     "current_symbol": "free_chunk",
+     "kind": "source",
+     "component": "zephyr_lib_os",
+     "upstream_symbol": "free_chunk",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_lib_os primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `free_chunk`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.free_chunk section (132 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0007e0a6 after masking 12 relocation slots; 84 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c :: free_chunk (local linkage) from /private/tmp/g1-i5d-app/zephyr/CMakeFiles/zephyr.dir/lib/os/heap.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "8 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0007e0a6",
+       "upstream_symbol": "free_chunk",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x0007e12a",
      "raw_symbol": "FUN_0007e12a",
      "current_symbol": "sys_heap_alloc",
@@ -26117,6 +27373,106 @@
          "sys_heap_aligned_realloc"
         ]
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007e18e",
+     "raw_symbol": "FUN_0007e18e",
+     "current_symbol": "process_recheck",
+     "kind": "source",
+     "component": "zephyr_lib_os",
+     "upstream_symbol": "process_recheck",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_lib_os primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `process_recheck`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.process_recheck section (56 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0007e18e after masking 0 relocation slots; 56 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c :: process_recheck (local linkage) from /private/tmp/g1-i5d-app/zephyr/CMakeFiles/zephyr.dir/lib/os/onoff.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "7 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0007e18e",
+       "upstream_symbol": "process_recheck",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": true
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007e1e6",
+     "raw_symbol": "FUN_0007e1e6",
+     "current_symbol": "notify_one",
+     "kind": "source",
+     "component": "zephyr_lib_os",
+     "upstream_symbol": "notify_one",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_lib_os primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `notify_one`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.notify_one section (44 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0007e1e6 after masking 1 relocation slots; 40 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c :: notify_one (local linkage) from /private/tmp/g1-i5d-app/zephyr/CMakeFiles/zephyr.dir/lib/os/onoff.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "7 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0007e1e6",
+       "upstream_symbol": "notify_one",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": true
       }
      ]
     },
@@ -28658,6 +30014,56 @@
        "ownership": "source",
        "confidence": "high",
        "evidence": "Exact symbol and source definition."
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080798",
+     "raw_symbol": "FUN_00080798",
+     "current_symbol": "mpu_configure_region",
+     "kind": "source",
+     "component": "zephyr_arch",
+     "upstream_symbol": "mpu_configure_region",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/mpu/arm_mpu.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_arch primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `mpu_configure_region`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.mpu_configure_region section (64 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00080798 after masking 2 relocation slots; 56 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/arch/arm/core/aarch32/mpu/arm_mpu.c :: mpu_configure_region (local linkage) from /private/tmp/g1-i5d-app/zephyr/arch/arch/arm/core/aarch32/mpu/CMakeFiles/arch__arm__core__aarch32__mpu.dir/arm_mpu.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "5 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00080798",
+       "upstream_symbol": "mpu_configure_region",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
       }
      ]
     },
@@ -31217,6 +32623,56 @@
     },
     {
      "core": "app",
+     "va": "0x0008137e",
+     "raw_symbol": "FUN_0008137e",
+     "current_symbol": "sys_slist_find_and_remove",
+     "kind": "static_helper",
+     "component": "zephyr_lib_os",
+     "upstream_symbol": "sys_slist_find_and_remove",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_lib_os primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `sys_slist_find_and_remove`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.sys_slist_find_and_remove section (54 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0008137e after masking 0 relocation slots; 54 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c :: sys_slist_find_and_remove (local linkage) from /private/tmp/g1-i5d-app/zephyr/CMakeFiles/zephyr.dir/lib/os/onoff.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "7 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0008137e",
+       "upstream_symbol": "sys_slist_find_and_remove",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x000813e8",
      "raw_symbol": "FUN_000813e8",
      "current_symbol": "conn_lookup_handle",
@@ -31905,6 +33361,52 @@
         "reconstruction_input": "app/libapp.a(bt_gatt_attr_read_service.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:1763: multiple definition of `bt_gatt_attr_read_service'; app/libapp.a(bt_gatt_attr_read_service.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_attr_read_service.c:13: first defined here"
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00082ab8",
+     "raw_symbol": "FUN_00082ab8",
+     "current_symbol": "sys_slist_find_and_remove_0",
+     "kind": "static_helper",
+     "component": "zephyr_lib_os",
+     "upstream_symbol": "sys_slist_find_and_remove",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zephyr_lib_os primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `sys_slist_find_and_remove`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.sys_slist_find_and_remove section (54 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00082ab8 after masking 0 relocation slots; 54 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/lib/os/onoff.c :: sys_slist_find_and_remove (local linkage) from /private/tmp/g1-i5d-app/zephyr/CMakeFiles/zephyr.dir/lib/os/onoff.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "7 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00082ab8",
+       "upstream_symbol": "sys_slist_find_and_remove",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
       }
      ]
     },
@@ -32970,6 +34472,52 @@
     },
     {
      "core": "app",
+     "va": "0x00085c38",
+     "raw_symbol": "FUN_00085c38",
+     "current_symbol": "zcbor_entry_backup_and_advance",
+     "kind": "source",
+     "component": "zcbor",
+     "upstream_symbol": "zcbor_new_backup",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zcbor primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `zcbor_new_backup`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.zcbor_new_backup section (78 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00085c38 after masking 2 relocation slots; 70 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c :: zcbor_new_backup (global linkage) from /private/tmp/g1-i5d-app/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "3 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00085c38",
+       "upstream_symbol": "zcbor_new_backup",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00085c86",
      "raw_symbol": "FUN_00085c86",
      "current_symbol": "zcbor_process_backup",
@@ -33053,6 +34601,374 @@
         "selected_exact_section": ".text.zcbor_process_backup",
         "source_unit": "modules/lib/zcbor/src/zcbor_common.c"
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00085d36",
+     "raw_symbol": "FUN_00085d36",
+     "current_symbol": "cbor_decode_is_break",
+     "kind": "source",
+     "component": "zcbor",
+     "upstream_symbol": "zcbor_array_at_end",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zcbor primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `zcbor_array_at_end`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.zcbor_array_at_end section (38 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00085d36 after masking 0 relocation slots; 38 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c :: zcbor_array_at_end (global linkage) from /private/tmp/g1-i5d-app/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "3 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00085d36",
+       "upstream_symbol": "zcbor_array_at_end",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00085e1a",
+     "raw_symbol": "FUN_00085e1a",
+     "current_symbol": "cbor_decode_extract_value",
+     "kind": "source",
+     "component": "zcbor",
+     "upstream_symbol": "value_extract",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zcbor primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `value_extract`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.value_extract section (162 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00085e1a after masking 3 relocation slots; 150 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c :: value_extract (local linkage) from /private/tmp/g1-i5d-app/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00085e1a",
+       "upstream_symbol": "value_extract",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 6,
+        "library_owned": 6,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00085f06",
+     "raw_symbol": "FUN_00085f06",
+     "current_symbol": "cbor_decode_container_start",
+     "kind": "source",
+     "component": "zcbor",
+     "upstream_symbol": "list_map_start_decode",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zcbor primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `list_map_start_decode`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.list_map_start_decode section (102 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00085f06 after masking 4 relocation slots; 86 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c :: list_map_start_decode (local linkage) from /private/tmp/g1-i5d-app/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00085f06",
+       "upstream_symbol": "list_map_start_decode",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00085fa2",
+     "raw_symbol": "FUN_00085fa2",
+     "current_symbol": "cbor_decode_map_start",
+     "kind": "source",
+     "component": "zcbor",
+     "upstream_symbol": "zcbor_map_start_decode",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zcbor primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `zcbor_map_start_decode`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.zcbor_map_start_decode section (44 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00085fa2 after masking 2 relocation slots; 36 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c :: zcbor_map_start_decode (global linkage) from /private/tmp/g1-i5d-app/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00085fa2",
+       "upstream_symbol": "zcbor_map_start_decode",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00085fd2",
+     "raw_symbol": "FUN_00085fd2",
+     "current_symbol": "cbor_decode_simple_value",
+     "kind": "source",
+     "component": "zcbor",
+     "upstream_symbol": "zcbor_simple_decode",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zcbor primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `zcbor_simple_decode`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.zcbor_simple_decode section (52 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00085fd2 after masking 3 relocation slots; 40 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c :: zcbor_simple_decode (global linkage) from /private/tmp/g1-i5d-app/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00085fd2",
+       "upstream_symbol": "zcbor_simple_decode",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0008603c",
+     "raw_symbol": "FUN_0008603c",
+     "current_symbol": "cbor_decode_tag",
+     "kind": "source",
+     "component": "zcbor",
+     "upstream_symbol": "zcbor_tag_decode",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zcbor primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `zcbor_tag_decode`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.zcbor_tag_decode section (40 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0008603c after masking 2 relocation slots; 32 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c :: zcbor_tag_decode (global linkage) from /private/tmp/g1-i5d-app/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0008603c",
+       "upstream_symbol": "zcbor_tag_decode",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00086064",
+     "raw_symbol": "FUN_00086064",
+     "current_symbol": "cbor_decode_skip_value",
+     "kind": "source",
+     "component": "zcbor",
+     "upstream_symbol": "zcbor_any_skip",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zcbor primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `zcbor_any_skip`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.zcbor_any_skip section (326 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00086064 after masking 8 relocation slots; 294 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c :: zcbor_any_skip (global linkage) from /private/tmp/g1-i5d-app/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_decode.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00086064",
+       "upstream_symbol": "zcbor_any_skip",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0008629e",
+     "raw_symbol": "FUN_0008629e",
+     "current_symbol": "cbor_encode_signed_bytes",
+     "kind": "source",
+     "component": "zcbor",
+     "upstream_symbol": "zcbor_int_encode",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf zcbor primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `zcbor_int_encode`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.zcbor_int_encode section (80 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0008629e after masking 2 relocation slots; 72 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c :: zcbor_int_encode (global linkage) from /private/tmp/g1-i5d-app/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "6 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0008629e",
+       "upstream_symbol": "zcbor_int_encode",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
       }
      ]
     },
@@ -34158,6 +36074,48 @@
     },
     {
      "core": "app",
+     "va": "0x00086b7e",
+     "raw_symbol": "FUN_00086b7e",
+     "current_symbol": "swhatbuf_r",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__swhatbuf_r",
+     "upstream_unit": "newlib-nano:lib_a-makebuf.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__swhatbuf_r`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__swhatbuf_r section (74 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00086b7e after masking 1 relocation slots; 70 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-makebuf.o :: __swhatbuf_r (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-makebuf.o"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00086b7e",
+       "upstream_symbol": "__swhatbuf_r",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00086be4",
      "raw_symbol": "FUN_00086be4",
      "current_symbol": "memcmp",
@@ -34357,6 +36315,512 @@
        ],
        "safe_to_adopt": true,
        "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0008729e",
+     "raw_symbol": "FUN_0008729e",
+     "current_symbol": "bignum_shift_right_bits",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "rshift",
+     "upstream_unit": "newlib-nano:lib_a-gdtoa-gethex.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `rshift`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.rshift section (162 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0008729e after masking 0 relocation slots; 162 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-gdtoa-gethex.o :: rshift (local linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-gdtoa-gethex.o"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "3 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0008729e",
+       "upstream_symbol": "rshift",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00087340",
+     "raw_symbol": "FUN_00087340",
+     "current_symbol": "hex_nibble_from_ascii",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__hexdig_fun",
+     "upstream_unit": "newlib-nano:lib_a-gdtoa-gethex.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__hexdig_fun`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__hexdig_fun section (42 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00087340 after masking 0 relocation slots; 42 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-gdtoa-gethex.o :: __hexdig_fun (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-gdtoa-gethex.o"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "3 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00087340",
+       "upstream_symbol": "__hexdig_fun",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0008736a",
+     "raw_symbol": "FUN_0008736a",
+     "current_symbol": "bignum_limbs_merge_shift_left",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "L_shift",
+     "upstream_unit": "newlib-nano:lib_a-gdtoa-hexnan.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `L_shift`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.L_shift section (36 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0008736a after masking 0 relocation slots; 36 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-gdtoa-hexnan.o :: L_shift (local linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-gdtoa-hexnan.o"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "3 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0008736a",
+       "upstream_symbol": "L_shift",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0008738e",
+     "raw_symbol": "FUN_0008738e",
+     "current_symbol": "strtod_match_token",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__match",
+     "upstream_unit": "newlib-nano:lib_a-gdtoa-hexnan.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__match`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__match section (40 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0008738e after masking 0 relocation slots; 40 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-gdtoa-hexnan.o :: __match (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-gdtoa-hexnan.o"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "3 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0008738e",
+       "upstream_symbol": "__match",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000873b6",
+     "raw_symbol": "FUN_000873b6",
+     "current_symbol": "bignum_parse_hex_literal",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__hexnan",
+     "upstream_unit": "newlib-nano:lib_a-gdtoa-hexnan.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__hexnan`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__hexnan section (310 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000873b6 after masking 3 relocation slots; 298 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-gdtoa-hexnan.o :: __hexnan (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-gdtoa-hexnan.o"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "3 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000873b6",
+       "upstream_symbol": "__hexnan",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00087510",
+     "raw_symbol": "FUN_00087510",
+     "current_symbol": "clz32",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__hi0bits",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__hi0bits`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__hi0bits section (68 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00087510 after masking 0 relocation slots; 68 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: __hi0bits (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00087510",
+       "upstream_symbol": "__hi0bits",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 4,
+        "library_owned": 4,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00087554",
+     "raw_symbol": "FUN_00087554",
+     "current_symbol": "ctz32_normalize_inplace",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__lo0bits",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__lo0bits`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__lo0bits section (90 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00087554 after masking 0 relocation slots; 90 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: __lo0bits (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00087554",
+       "upstream_symbol": "__lo0bits",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000875ae",
+     "raw_symbol": "FUN_000875ae",
+     "current_symbol": "bignum_compare_abs",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__mcmp",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__mcmp`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__mcmp section (54 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000875ae after masking 0 relocation slots; 54 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: __mcmp (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000875ae",
+       "upstream_symbol": "__mcmp",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 4,
+        "library_owned": 4,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000875e4",
+     "raw_symbol": "FUN_000875e4",
+     "current_symbol": "bignum_compare_estimate",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__ratio",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__ratio`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__ratio section (100 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000875e4 after masking 3 relocation slots; 88 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: __ratio (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000875e4",
+       "upstream_symbol": "__ratio",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00087648",
+     "raw_symbol": "FUN_00087648",
+     "current_symbol": "bigint_copy_words_zero_pad",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__copybits",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__copybits`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__copybits section (70 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00087648 after masking 0 relocation slots; 70 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: __copybits (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00087648",
+       "upstream_symbol": "__copybits",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0008768e",
+     "raw_symbol": "FUN_0008768e",
+     "current_symbol": "bignum_any_bit_set_from",
+     "kind": "archive",
+     "component": "libc_newlib_nano",
+     "upstream_symbol": "__any_on",
+     "upstream_unit": "newlib-nano:lib_a-mprec.o",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 1 (recon/ownership/library_displacement_report.md \u00a74): leaf libc_newlib_nano primitive with zero Even callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link. The reconstruction is a duplicate body of `__any_on`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__any_on section (66 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0008768e after masking 0 relocation slots; 66 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "newlib-nano:lib_a-mprec.o :: __any_on (global linkage) from /private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/948a9f9c-888b-452e-bc51-2bae2455b8cb/scratchpad/armembers/_Users_freedomcoder_zephyr-sdk-0.16.5-1_arm-zephyr-eabi_arm-zephyr-eabi_lib_thumb_v8-m.main+fp_hard_libc_nano.a/lib_a-mprec.o"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "18 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0008768e",
+       "upstream_symbol": "__any_on",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
       }
      ]
     },

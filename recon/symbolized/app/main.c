@@ -15,9 +15,9 @@
  *   sem_init_zero                            <= FUN_0007c030 @ 0x0007c030
  * address symbols (name @ address):
  *   ADDR_local_esbs_ipc_service_recv_THUMB   @ 0x00015961
- *   rodata_162ed                             @ 0x000162ed
- *   rodata_16bf1                             @ 0x00016bf1
- *   rodata_7c00d                             @ 0x0007c00d
+ *   ADDR_local_ipc_service_recv_THUMB        @ 0x000162ed
+ *   ADDR_local_esbm_ipc_service_recv_THUMB   @ 0x00016bf1
+ *   ADDR_local_esbs_ctrl_ipc_service_recv_THUMB @ 0x0007c00d
  *   rodata_87cb0                             @ 0x00087cb0
  *   rodata_87d58                             @ 0x00087d58
  *   rodata_87d70                             @ 0x00087d70
@@ -271,17 +271,17 @@ void main(void)
     /* Four named IPC services share the registrar installed at +0x778. */
     B8(context, 0x6e4) = 1;
     W32(context, 0x6e8) = ((unsigned long)&rodata_998da) /*=0x998da*/;
-    W32(context, 0x6ec) = ((unsigned long)&rodata_162ed) /*=0x162ed*/;
+    W32(context, 0x6ec) = ADDR_local_ipc_service_recv_THUMB /*=0x162ed*/;
     call_hook(context, 0x778, 0x6e4);
     B8(context, 0x6f0) = 6;
     W32(context, 0x6f4) = ((unsigned long)&rodata_998e7) /*=0x998e7*/;
-    W32(context, 0x6f8) = ((unsigned long)&rodata_16bf1) /*=0x16bf1*/;
+    W32(context, 0x6f8) = ADDR_local_esbm_ipc_service_recv_THUMB /*=0x16bf1*/;
     B8(context, 0x6fc) = 4;
     W32(context, 0x700) = ((unsigned long)&rodata_998fc) /*=0x998fc*/;
     W32(context, 0x704) = ADDR_local_esbs_ipc_service_recv_THUMB /*=0x15961*/;
     B8(context, 0x708) = 5;
     W32(context, 0x70c) = ((unsigned long)&rodata_99908) /*=0x99908*/;
-    W32(context, 0x710) = ((unsigned long)&rodata_7c00d) /*=0x7c00d*/;
+    W32(context, 0x710) = ADDR_local_esbs_ctrl_ipc_service_recv_THUMB /*=0x7c00d*/;
     call_hook(context, 0x778, 0x6f0);
     call_hook(context, 0x778, 0x6fc);
     call_hook(context, 0x778, 0x708);
