@@ -197,7 +197,28 @@ PROVIDE(rodata_87bf8 = 0x00087bf8);
  * 557 / 5,061,646 with the pin left absolute).  The blocker is the net-core
  * rpmsg handshake, not this pin.  Re-apply once the CPUNET rpmsg/IPC bring-up
  * completes the bind.  Evidence: recon/emulator/reports/our_boot_bringup.md
- * §Iteration 5. */
+ * §Iteration 5.
+ *
+ * RE-APPLIED then REVERTED AGAIN (iteration 6, measured).  The CPUNET side of
+ * the handshake was fixed this iteration (its own "ipc0" device pin
+ * rodata_103bfac + the dropped-argument defect in FUN_0102d558), and the net
+ * core now completes open_instance -> ipc_static_vrings_init -> ipc_rpmsg_init
+ * -> rpmsg_create_ept -> rpmsg_send_ns_message -> mbox_nrf_send, and the app
+ * receives it: mbox_callback_process -> virtqueue_notification ->
+ * rpmsg_virtio_rx_callback -> rpmsg_virtio_ns_callback -> ns_bind_cb with the
+ * announced name "ipc0".  The bind STILL does not complete, and the reason is
+ * a THIRD unrelocated pin: the app's own `struct ipc_ept_cfg` at 0x00089748,
+ * whose cfg->name reads back 0x0004bc05 (a code address inside open()) instead
+ * of a string, so ns_bind_cb's get_ept_slot_with_name() never matches and
+ * bound_cb() is never called.  With this pin applied main() therefore still
+ * blocks in serialization_init's k_sem_take and the app never reaches
+ * button_init / settings_subsys_init / flash_settings_read
+ * (4,720,087 instr / 525 unique fns, vs 5,042,715 / 612 with the pin left
+ * absolute).  Per the no-regression gate it is reverted again.  RE-APPLY
+ * TOGETHER WITH emitting a relocated ipc_ept_cfg for 0x00089748 (contents
+ * embed a name pointer + callback pointers, so it must be emitted like the
+ * gpio_dt_spec tables of iteration 5 §2, not merely rebound).
+ * Evidence: recon/emulator/reports/our_boot_bringup.md §Iteration 6. */
 PROVIDE(rodata_87c08 = 0x00087c08);
 PROVIDE(rodata_87c20 = 0x00087c20);
 /* DATA-POINTER REBIND (iteration 5 sweep) — `struct device` "regulators"
@@ -2976,11 +2997,19 @@ PROVIDE(g_gatt_discovery_flags = 0x20006ab4);
 PROVIDE(g_ancs_active_conn = 0x20006ab8);
 PROVIDE(g_ancs_discover_params = 0x20006abc);
 PROVIDE(g_ancs_client = 0x20006ae8);
-PROVIDE(g_bonded_count = 0x20007514);
-PROVIDE(g_ancs_conn = 0x20007518);
-PROVIDE(g_debug_msg_pipe = 0x2000751c);
-PROVIDE(g_ring_log_pending = 0x20007550);
-PROVIDE(g_log_use_alt_sink = 0x20007554);
+/* RAM-PIN REBIND (iteration 6): these five pins span 0x20007514..0x20007558,
+ * which in OUR build is the TOP of `logging_stack` (0x20006d58 + 2048) — i.e.
+ * exactly where arch_new_thread puts the log thread's initial exception frame
+ * (PSP 0x20007538).  Measured: debug_print+0x4a wrote 1 to 0x20007550, the
+ * stacked-PC slot, so the next switch to the log thread resumed at PC=1 and
+ * usage-faulted (Renode watchpoint + z_arm_pendsv hook; see
+ * recon/emulator/reports/our_boot_bringup.md Iteration 6 §3).
+ * Real storage is defined in recon/symbolized/app/g1_app_ram_relocs.c. */
+PROVIDE(g_bonded_count = g1_bonded_count);
+PROVIDE(g_ancs_conn = g1_ancs_conn);
+PROVIDE(g_debug_msg_pipe = g1_debug_msg_pipe);
+PROVIDE(g_ring_log_pending = g1_ring_log_pending);
+PROVIDE(g_log_use_alt_sink = g1_log_use_alt_sink);
 PROVIDE(g_dmic_send_fail_cnt = 0x20007558);
 PROVIDE(g_dmic_send_pos_cnt = 0x2000755c);
 PROVIDE(g_dmic_send_hundreds_cnt = 0x20007560);

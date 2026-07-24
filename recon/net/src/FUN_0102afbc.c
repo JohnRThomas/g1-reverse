@@ -24,7 +24,13 @@ extern unsigned char g1_hci_endpoint_config;
 #define C_0102b05c ((int)(uintptr_t)&FUN_0102adac) /*=0x0102b5ad*/
 #define C_0102b06c ((int)(uintptr_t)&FUN_0102acf4) /*=0x0102b4f5*/
 #define C_0102b08c ((int)(uintptr_t)&g1_hci_endpoint_config) /*=0x2100059c*/
+/* see recon/net/src/FUN_0102ac0c.c: 0x0103bfac is the shipped `struct device`
+ * "ipc0"; unrelocated it makes instance->api read 0 and every ipc_service call
+ * fail with -EIO.  Parity builds keep the literal (C_0102b07c below). */
+#include <zephyr/devicetree.h>
+#define C_0102b07c_DEV ((int)(uintptr_t)DEVICE_DT_GET(DT_NODELABEL(ipc0)))
 #else
+#define C_0102b07c_DEV 0x0103bfac
 #define C_0102b05c 0x0102b5ad
 #define C_0102b06c 0x0102b4f5
 #define C_0102b08c 0x2100059c
@@ -50,11 +56,11 @@ int FUN_0102afbc(void)
   FUN_0103b156(C_0102b064, C_0102b068);
   FUN_01035fa0(C_0102b074, C_0102b070, 0x800, C_0102b06c, 0, 0, 0, 0xfffffff7, 0);
   FUN_0103b156(C_0102b074, C_0102b078);
-  iVar1 = FUN_0102d558(C_0102b07c);
+  iVar1 = FUN_0102d558(C_0102b07c_DEV);
   if (iVar1 < 0 && iVar1 != -0x78 && 0 < *(volatile int *)P_0102b080) {
     FUN_01039722(C_0102b084, 0);
   }
-  iVar1 = FUN_0102d5b4(C_0102b07c, C_0102b088, C_0102b08c);
+  iVar1 = FUN_0102d5b4(C_0102b07c_DEV, C_0102b088, C_0102b08c);
   if (iVar1 != 0 && 0 < *(volatile int *)P_0102b080) {
     FUN_01039722(C_0102b090, iVar1);
   }

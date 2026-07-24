@@ -1531,3 +1531,460 @@ documented revert + 3 table bindings), `recon/symbolized/app/g1_gpio_dt_specs.c`
 `recon/generated/app_retained_sources.cmake` (1 entry).
 No `recon/app/src` change, no `tools/` change, no `prj.conf`/Kconfig/devicetree
 change, `armemul` additive only. Nothing committed.
+
+## Iteration 6 — external-NOR devicetree + the first RAM-pin collision + the CPUNET rpmsg backend
+
+Three independent defects were found and fixed; one change was measured to
+regress and was reverted. Net result on the **app core**: the settings store on
+external QSPI NOR now really mounts and reads, `main()` runs the whole
+settings/analytics load and reaches `runtime_info_sync` →
+`global_ipc_service_send`, **fault-free**, **612** unique functions (iteration 5:
+601). Net result on the **net core**: the OpenAMP/rpmsg backend comes up for the
+first time (`open` → `ipc_static_vrings_init` → `ipc_rpmsg_init` →
+`rpmsg_init_vdev`), and — when the app-side pin is also applied — completes
+`rpmsg_create_ept` → `rpmsg_send_ns_message` → `mbox_nrf_send` → `ipc_service_send`,
+which the app receives and decodes.
+
+Milestone tier is still **E1–E3 complete, E4 entered, NOT completed**. No
+`spi_read_id` (golden 7,273,380), no `bt_enable`/`bt_start` (golden 7,641,560),
+no ADV_IND. **E4 did not complete.**
+
+Final artifacts: app build `/private/tmp/g1-i6f-app`, net build
+`/private/tmp/g1-i6d-net`, trace `/tmp/g1_i6final/`.
+
+### 1. Task 1 — the external QSPI NOR node, corrected field by field
+
+Reference layout: NCS 2.5.1 `struct qspi_nor_config`
+(`zephyr/drivers/flash/nrf_qspi_nor.c:47`) = `nrfx_qspi_config_t nrfx_cfg;
+uint32_t size; uint8_t id[3]; const struct pinctrl_dev_config *pcfg;`. The
+build uses **short enums** (arm-eabi default), which is what puts `size` at
++0x2c and `id` at +0x30 — confirmed by the shipped object itself and by
+`qspi_nor_init`'s own `ldrb r3,[r6,#29]` / `ldrb r8,[r6,#28]` reading writeoc /
+readoc at +0x1d / +0x1c.
+
+Shipped object: `app_update.bin` VA **0x8b66c** (file offset 0x7f66c), reached
+from the `struct device` at 0x87bf0 (`name -> 0xf5d6b = "mx25r6435f@0"`,
+`config = 0x0008b66c`). Ours: `qspi_nor_dev_config` @0x89fd8.
+
+| off | field | shipped | ours (iter 5) | verdict / evidence |
+|---|---|---|---|---|
+| +0x00 | `xip_offset` | 0 | 0 | same |
+| +0x04..0x1b | `pins` (6 × u32) | all 0 | all 0 | same (both skip GPIO/PSEL cfg) |
+| +0x1c | `prot_if.readoc` | `04` | `04` | same — `NRF_QSPI_READOC_READ4IO` ⇒ `readoc = "read4io"` **kept** |
+| +0x1d | `prot_if.writeoc` | `03` | `03` | same — `NRF_QSPI_WRITEOC_PP4IO` ⇒ `writeoc = "pp4io"` **kept** |
+| +0x1e | `prot_if.addrmode` | `00` | `00` | same — 24-bit ⇒ `address-size-32` absent. **Kept even though the part is 32 MiB** (the shipped firmware really does use 24-bit + bank addressing) |
+| +0x1f | `prot_if.dpmconfig` | `00` | `00` | same (this NCS never sets it) |
+| +0x20 | `phy_if.sck_delay` | `00` | `00` | same — `sck-delay` default 0 **kept** |
+| +0x21 | `phy_if.dpmen` | `00` | `00` | same |
+| +0x22 | `phy_if.spi_mode` | `00` | `00` | same — MODE0 ⇒ no `cpol`/`cpha` **kept** |
+| +0x23 | `phy_if.sck_freq` | **`00`** | **`05`** | **CHANGED → `sck-frequency = <96000000>`** |
+| +0x24 | `timeout` | 0 | 0 | same |
+| +0x28 | `irq_priority` | `00` | `00` | same |
+| +0x29 | `skip_gpio_cfg` | `01` | `01` | same |
+| +0x2a | `skip_psel_cfg` | `01` | `01` | same |
+| +0x2c | `size` (bytes) | **`0x02000000`** | **`0x00800000`** | **CHANGED → `size = <268435456>`** (bits; 32 MiB) |
+| +0x30 | `id[3]` | **`c2 25 39`** | **`c2 28 17`** | **CHANGED → `jedec-id = [c2 25 39]`** |
+| +0x34 | `pcfg` | 0x0008b6a4 | 0x00089fd8-relative | relocated pointer; expected to differ |
+
+**After the fix the object byte-matches the shipped one over 0x00..0x33** (only
+`pcfg`, a relocated pointer, differs). Verified by re-reading both images.
+
+**`sck-frequency` evidence (the field iteration 5 did not notice).**
+`sck_freq = 0 = NRF_QSPI_FREQ_DIV1` alone is ambiguous — the driver's nRF53
+ladder produces it for both the "≥ 96 MHz" and the "≥ 48 MHz" branches. The
+tie-break is `BASE_CLOCK_DIV`, which the same function writes to
+`HFCLK192MCTRL`. In the shipped `qspi_nor_init` (0x60c00, the DEVICE_DT_INST
+init entry — the `struct init_entry` at VA 0x87a74 is `{0x00060c01, 0x00087bf0}`,
+with `qspi_nrfx_configure` inlined):
+
+```
+60c22:  mov.w r4, #0x50005000     ; NRF_CLOCK (secure)
+60c26:  movs  r3, #0
+60c2e:  str.w r3, [r4, #0x5b8]    ; HFCLK192MCTRL = 0 = NRF_CLOCK_HFCLK_DIV_1
+60c34:  bl    0x66994             ; nrfx_qspi_init
+60c38:  movs  r3, #2
+60c3a:  str.w r3, [r4, #0x5b8]    ; restore NRF_CLOCK_HFCLK_DIV_4 (=2)
+```
+
+`HFCLK192MCTRL` is at offset 0x5B8 (`nrf5340_application.h:1513`) and the
+restore value 2 = `NRF_CLOCK_HFCLK_DIV_4` confirms the decode. Only the
+`INST_0_SCK_FREQUENCY >= NRF_QSPI_BASE_CLOCK_FREQ` (96 MHz) branch yields the
+pair (`BASE_CLOCK_DIV = DIV_1`, `INST_0_SCK_CFG = FREQ_DIV1`): the ≥48 MHz
+branch would write `DIV_2` (=1) and the ≥32 MHz branch would give
+`sck_freq = 3`. Any value ≥ 96000000 reproduces the bytes; **96000000** is the
+canonical choice. Our previous 8 MHz gave `DIV_ROUND_UP(48e6, 8e6) - 1 = 5`.
+
+**Properties that are NOT expressible in the config bytes — checked in code
+instead, all already correct and left unchanged:**
+
+* `has-dpd` — `dpmconfig`/`dpmen` are 0 in **both** images because this NCS
+  version never sets them from `has-dpd`; the property is compile-time only.
+  The shipped `qspi_nor_init` really calls `exit_dpd` at 0x8397e (which emits
+  cinstr **0xAB**), so `has-dpd` is present. ✔
+* `t-exit-dpd = <35000>` — `exit_dpd` @0x8397e does `movs r0,#35; bl 0x86384`
+  (`k_busy_wait(35 µs)`); the driver computes `DIV_ROUND_UP(t_exit_dpd, 1000)`,
+  so 35000 ns is right. ✔
+* `t-enter-dpd = <10000>` — `enter_dpd` (inlined in `qspi_nor_pm_action`
+  @0x60b48) emits cinstr **0xB9** then `movs r0,#10; bl 0x86384`. ✔
+* `quad-enable-requirements` — the shipped code does `sr_num = 1` and
+  `eor.w r2,r2,#0x40` (= BIT(6)) ⇒ **S1B6**, the binding default. ✔
+
+**Node name kept, label corrected.** The node NAME must stay `mx25r6435f@0`:
+that literal string is the Zephyr device name in the shipped image (device
+object 0x87bf0 → name pointer 0xf5d6b → `"mx25r6435f@0"`) and every recovered
+consumer resolves it. Only the misleading DT **label** was renamed
+`mx25r64 → extflash` (2 references, both in the overlay), with a comment
+recording the part's real identity (MX25U256 family).
+
+Independent corroboration for 32 MiB: Renode's `models/Macronix_MX25U.cs`
+(`C2/25/39`, capacity 0x2000000) and `armemul/docs/g1-qspi-layout.md`, the
+region map of a ~31 MiB dump taken off the actual glasses.
+
+### 2. Effect of the DT fix — and the fault it unmasked
+
+With the node corrected, `qspi_nor_init` succeeds, `z_device_is_ready` returns
+true, and `flash_settings_read` returns on the **first** try instead of looping
+10 × 3.277 s. The boot immediately advanced into a large body of new code — and
+**faulted**, for a reason that had nothing to do with the devicetree.
+
+**First run after the DT fix** (build `/private/tmp/g1-i6-app`, trace `/tmp/g1_i6/`):
+`z_arm_usage_fault` @5,009,759 → `z_arm_fatal_error` → `z_fatal_error` →
+`fatal_log_and_reset` → **SYSRESETREQ** @t≈0.055 s.
+
+Root cause, proved with two Renode probes:
+
+* A write-watchpoint on 0x20007550 caught exactly two writers:
+  `WROTE_PC_SLOT pc=0x0004e0bc val=0x00077a8e` (`arch_new_thread+0x18`, correct)
+  and `WROTE_PC_SLOT pc=0x00017aea val=0x00000001` (**`debug_print+0x4a`**).
+* A hook on `z_arm_pendsv`'s exception return (0x4e078) caught the consequence:
+  `BADSWITCH th=0x20003420 psp=0x20007538 stackedpc=0x00000001`.
+
+`debug_print` @0x17aa0 ends with `ldr r3,[pc,#20]` → literal `0x20007550`,
+`str r2,[r3]` — the recovered global `g_ring_log_pending`, pinned at its
+ORIGINAL absolute address. In OUR build 0x20007550 is inside
+`logging_stack` (0x20006d58 + 2048 = 0x20007558) — specifically inside the log
+thread's *initial exception frame* at PSP 0x20007538, at the stacked-PC slot.
+The next switch to the log thread resumed at PC = 1, slid the whole
+0x0000..0xC200 MCUboot window (24,832 halfword-zero instructions = exactly
+0xC200 bytes), hit `_vector_table`, and usage-faulted.
+
+**Classification: a FOURTH class — absolute RAM-pin collision.** Distinct from
+the code-pointer pins (iterations 3–4), the flash data pins (iteration 5) and
+the recovered-devicetree error (§1). Not a recon-logic defect (the pin is a
+faithful transcription), not an emulator gap.
+
+**Fix (bounded, group 1 only).** New wiring TU
+`recon/symbolized/app/g1_app_ram_relocs.c` gives real linker-allocated storage
+to the five pins that span 0x20007514..0x20007558, i.e. the whole overlap with
+`logging_stack`: `g_bonded_count` (u32), `g_ancs_conn` (u32),
+`g_debug_msg_pipe` (`struct k_msgq`; 52 B in the original — the gap to the next
+pin — and `debug_log_queue_init` does `k_msgq_alloc_init(&it, 200, 0x14)`),
+`g_ring_log_pending` (u32), `g_log_use_alt_sink` (u32).
+`g1_app_globals.ld` rebinds the five pin names to those definitions; the
+canonical `recon/app/src` bodies take `&name`, so no source change was needed.
+
+Side effect worth recording: `g_log_use_alt_sink` now reads its own
+zero-initialised storage instead of log-stack garbage, so the `DEBUG_PRINT`
+alternative sink is (correctly) not selected and `debug_print` / `enqueue_debug`
+/ `vsnprintf_impl` are no longer executed on this boot. That is a **fidelity
+improvement**, not a loss: in the original those globals are zero-initialised too.
+
+### 3. How big is this class? (measured, not estimated)
+
+A sweep (`ramsweep.py`, scratchpad) cross-referenced every `PROVIDE(x = 0x2000….)`
+in `g1_app_globals.ld` against every sized RAM symbol in our linked ELF, and
+attributed each pin to the functions whose literal pools reference it:
+
+* **738** RAM pins total.
+* **561** of them land INSIDE a sized object of our build.
+* **66** of those are referenced by a function that this boot actually executed.
+
+**A structural "reserve the original's RAM" fix is NOT available**: the pins
+span **0x20000000 … 0x2007fc70**, i.e. essentially the entire 512 KiB SRAM, so
+Zephyr cannot be relocated out of the way. The class has to be retired pin by
+pin (or by reproducing the original RAM layout outright, which is the
+byte-match endgame). Notable still-colliding groups, all currently latent
+because the object they sit in is unused so far:
+
+| pins | our object they land in |
+|---|---|
+| `g_ipc_send_fail_cnt`, `g_serialization_ipc_ept`, `g_serialization_ipc_ready`, `g_ipc0_endpoint`, `g_ext_flash_mutex`, `g_ext_flash_dev` | `smp_work_queue_stack` (0x20007558, 2048 B) |
+| `g_curr_tick_lo/hi`, `device_info`, `g_button_irq_cb*`, `g_ble_conn_ctx_ptr`, `g_ambient_light_sensor_ready` | `mbox_stack` (0x20006958, 1024 B) |
+| `g_boot_uptime_s`, `log_backend_count`, `log_buffered_cnt`, `g_current_thread_ptr`, `g_sched_ready_runq`, `g_errno`, … | `z_main_stack` (0x20008d48, 16384 B) |
+| `g_debug_msg_scratch_buf` (200 B memcpy target), `g_change_work_mode_busy`, `g_runtime_mode_flag`, … | `kheap__system_heap` (0x2000d148, 16384 B) |
+| `g_log_level`, `g_t_init`, `g_serialization_ipc_ept_ctx` | `fdtable` (0x20002218, 640 B) |
+
+Each iteration should re-run this sweep against the new trace and fix the group
+that the new code path actually touches — the same bounded discipline as
+iteration 5 §4.
+
+### 4. Task 2 — the CPUNET rpmsg bind
+
+**Net-side defect A — the `ipc0` device pin was unrelocated on the net core too.**
+Captured the net UART for the first time
+(`sysbus.uart_net CreateFileBackend`); it printed
+
+```
+*** Booting nRF Connect SDK v2.5.1 ***
+[00:00:00.000,579] <err> ipc_service: Invalid backend configuration
+```
+
+That string is `ipc_service.c`'s `!backend` path, i.e. `instance->api == NULL`.
+Traced to `FUN_0102ac0c`, which passes the literal **0x0103bfac** to both
+`ipc_service_open_instance` and `ipc_service_register_endpoint`. In the shipped
+`netcore_image.bin` that VA is a `struct device` whose word0 (0x0103cf12) is
+the C string **`"ipc0"`** and whose api is 0x0103c8a8. In our net build the same
+address is plain text (`nm`: `0103bf82 t ept_cb`). Our net DT has
+`DT_N_S_ipc_S_ipc0_ORD = 22`; `__device_dts_ord_22` @0x0103d500 reads back name
+`"ipc0"`, api 0x0103dd08.
+
+A linker `PROVIDE` could **not** fix this one — unlike the app side, the net
+sources embed the address as a *numeric literal*, so `rodata_103bfac` was never
+referenced and the PROVIDE was dropped. The fix therefore uses the files' own
+established `G1_COHESIVE_BUILD` mechanism (already present in both TUs for
+`g1_ipc0_endpoint_config` / `g1_hci_endpoint_config`): a guarded macro
+`G1_IPC0_DEVICE` / `C_0102b07c_DEV` resolving to
+`DEVICE_DT_GET(DT_NODELABEL(ipc0))` in the cohesive build and to the original
+literal otherwise, applied in `recon/net/src/FUN_0102ac0c.c` and
+`recon/net/src/FUN_0102afbc.c`. Parity builds are unaffected. Verified in
+codegen: the literal pool word became `0x0103d500`.
+`recon/symbols/g1_net_globals.ld` also carries the documented
+`PROVIDE(rodata_103bfac = __device_dts_ord_22)` for any symbolic consumer.
+
+**Net-side defect B — an argument dropped at an indirect call (iteration 5 §3b
+class), PROVEN.** With defect A fixed the `-EIO` disappeared but the net core
+went from 250,075 to **10,375,000** instructions, spinning in
+`optimal_num_desc()` inside the static-vrings `open()`. A Renode hook at
+`open+0xa` gave the answer directly:
+
+```
+NET_OPEN_A instance=0x01030ee5 cfg=0x05468123 lr=0x0102ea7f
+```
+
+`instance` was **`open` itself** (`0x01030ee4|1`), so `conf = *(u32*)(inst+4)`
+was garbage, `conf->shm_size` read 0, and `available = 0 - 4 = 0xFFFFFFFC` made
+the `while (available > shm_size(n, buf)) n++;` loop effectively unbounded.
+`lr` points into `FUN_0102ac0c` right after its `bl FUN_0102d558`, so the
+culprit is `FUN_0102d558` — the recovered `ipc_service_open_instance`:
+
+```c
+r3 = **(volatile int32_t **)(param_1 + 8);      /* backend->open_instance */
+if (r3 != 0) { fnptr_t f = (fnptr_t)r3; return f(); }   /* <-- no argument */
+```
+
+The ORIGINAL (netcore_image.bin, analysis VA 0x0102d558) tail-calls with r0
+never touched since entry:
+
+```
+102d57a: ldr r3,[r0,#8]              ; backend = instance->api
+102d598: ldr r3,[r3,#0]              ; backend->open_instance
+102d59a: cbz r3, 0102d5a4
+102d59c: add sp,#28 / ldr.w lr,[sp],#4
+102d5a2: bx  r3                      ; r0 STILL = instance
+```
+
+Fixed in `recon/symbolized/net/FUN_0102d558.c` (the TU the net build actually
+compiles, per `recon/generated/net_retained_sources.cmake:771`) and mirrored in
+`recon/net/src/FUN_0102d558.c`: `typedef int32_t (*fnptr_t)(int32_t)` and
+`return f(param_1);`. Our codegen is now `ldr r0,[r3,#0]; … bx r0` with r0
+preserved — structurally identical to the original's tail call.
+`tools/parity` cannot see this defect (callees are modelled as order-keyed
+oracles that ignore arguments), which is exactly the iteration 5 §3(b) note.
+
+**What the net core does now.** With both net fixes and (temporarily) the app
+pin applied — build `/private/tmp/g1-i6d-net`, trace `/tmp/g1_i6k/` — the net
+core reproduces golden's own ordering for the first time:
+
+| net function | ours | golden |
+|---|---:|---:|
+| `open` (backend) | 198,636 | (inlined/absent) |
+| `ipc_static_vrings_init` | 199,800 | 111,106 |
+| `metal_device_open` | 200,215 | — |
+| `ipc_rpmsg_init` | 205,100 | 139,129 |
+| `rpmsg_init_vdev` | 205,123 | — |
+| `ipc_service_register_endpoint` | 206,931 | 140,407 |
+| `rpmsg_create_ept` | 207,166 | 140,642 |
+| `rpmsg_send_ns_message` | 207,561 | 141,037 |
+| `ipc_virtio_notify` → `mbox_nrf_send` | 208,365 / 208,379 | — |
+| `ipc_service_send` | 212,706 | — |
+
+The net UART's `<err> ipc_service` line is gone, and the app **receives** the
+announcement: `nrfx_ipc_irq_handler` → `mbox_callback` → `k_work_submit_to_queue`
+→ `work_queue_main` → `mbox_callback_process` → `virtqueue_notification` →
+`rpmsg_virtio_rx_callback` → `virtqueue_get_buffer` → `rpmsg_virtio_ns_callback`
+→ `ns_bind_cb`. The vring transport works in **both** directions.
+
+**But the bind still does not complete, and the app pin was REVERTED again.**
+`bound_cb` is never reached. A hook on the app's `register_ept` shows why:
+
+```
+APP_REGEPT  cfg=0x00089748  nameptr=0x0004bc05  name=<binary garbage>
+APP_NSBIND  name='ipc0'
+```
+
+The net announces `"ipc0"`, but the app's own `struct ipc_ept_cfg` is at the
+**unrelocated** absolute rodata address 0x00089748, so `cfg->name` reads
+0x0004bc05 — a code address inside `open()` — instead of a string.
+`get_ept_slot_with_name()` therefore never matches and `bound_cb()` never fires,
+so `serialization_init`'s `k_sem_take` blocks forever and `main()` never reaches
+`register_ipc_service_context` / `button_init` / `settings_subsys_init`
+(**4,720,087** instr / **525** unique fns, vs **5,042,715** / **612** with the
+pin left absolute). Per the no-regression gate `rodata_87c08` is pinned back to
+`0x00087c08`, with the re-apply condition recorded in `g1_app_globals.ld`.
+
+The three **net-side** changes are kept: they are proven correct, and with the
+app pin reverted the app trace is **byte-identical** to the run without them
+(same 5,042,715 instructions, identical first-instruction map).
+
+### 5. Rebuild status
+
+| build | result |
+|---|---|
+| `build_cohesive.sh app /private/tmp/g1-i6f-app` | exit 0, `nm -u` = **0** undefined, **0** duplicate globals. FLASH **626680 / 982528 B = 63.78 %** (unchanged vs iteration 5), RAM **75645 B = 16.79 %** (+72 B = the five relocated RAM globals) |
+| `build_cohesive.sh net /private/tmp/g1-i6d-net -- -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF` | exit 0, **0** undefined, **0** duplicate. FLASH **227961 B = 98.50 %**, RAM **54076 B = 82.51 %** (identical to the previous net build; the net image layout did not move) |
+
+No `--allow-multiple-definition`, no weak/numeric root, no Kconfig/`prj.conf`
+change, no `tools/` change. `armemul` used additively only (an extra `.resc`
+under `/tmp`; `g1-ours.resc` and the models untouched).
+
+### 6. Boot result — before/after, both cores
+
+Same environment as iteration 5 (0.15 s, 10 µs global quantum, seeded CC3xx
+RNG, serial core scheduling, unmodified `g1-ours.resc`).
+
+| metric | iteration 5 | **iteration 6** |
+|---|---:|---:|
+| app instructions (0.15 s) | 5,067,675 | **5,042,715** |
+| app unique functions | 601 | **612** |
+| app faults (`assert_post_action`/`_oops`/fatal/SYSRESETREQ) | none | **none** |
+| app ends | alive, idling in a 10 × 3.277 s retry loop | **alive, idling; settings loaded, blocked on main's IPC reply semaphore** |
+| net instructions | 250,075 | **10,375,000** |
+| net unique functions | 371 | **332** |
+
+**No regression on the app.** The whole iteration-5 prefix is reproduced and
+extended; `button_init` (4,701,826), `gpio_pin_*`, `ext_flash_api_init`
+(4,706,587) and `settings_subsys_init` (4,706,676) are all still reached, and
+`flash_settings_read` (4,973,924) now **returns 0 on the first call**.
+The app instruction count is slightly *lower* than iteration 5 (5,042,715 vs
+5,067,675) purely because the 32.7 s retry/sleep loop is gone — the 25 k
+"missing" instructions were tick/idle spin. Unique functions went **up**, 601 →
+612: 20 genuinely new ones, 9 lost, and all 9 lost ones
+(`z_tick_sleep`, `wait_for_event`, `get_uptime_ms`, `dlist_unlink_node`,
+`sched_switch_handle_timeout`, `sched_thread_should_preempt`,
+`g1_vprintf_char_out`, `z_thread_timeout`, `z_sched_wake_thread`) are the retry
+loop's own machinery.
+
+**New app forward progress — and it follows golden's order exactly:**
+
+| function | ours | golden | note |
+|---|---:|---:|---|
+| `z_impl_flash_get_page_count` / `qspi_nor_pages_layout` | 4,706,627 | — | flash-map layout now queryable |
+| `settings_register` | 4,973,065 | — | |
+| `init_analytics_settings` | 4,973,376 | 5,502,525 | |
+| `load_sys_setting` | 4,973,379 | 5,502,528 | |
+| `flash_settings_read` | 4,973,924 | 5,503,072 | **returns 0 first try** |
+| `ext_flash_read` | 4,973,958 | 5,503,106 | never reached before |
+| `qspi_nor_read` → `nrfx_qspi_read` | 4,974,036 / 4,974,713 | — / 5,503,849 | **real QSPI transfer** |
+| `qspi_xfer` → `nrfx_qspi_irq_handler` → `qspi_handler` | 4,974,715 … 4,974,846 | — | DMA completion IRQ serviced |
+| `load_usr_setting` | 4,975,864 | 5,510,520 | |
+| `set_test_mode` | 4,977,934 | 5,518,204 | |
+| `is_battery_critical` | 4,977,980 | — | |
+| `load_burial_point` | 4,977,997 | 5,520,837 | |
+| `sys_rand32_get` → `entropy_cc3xx_rng_get_entropy` | 4,981,143 / 4,981,174 | 5,524,043 | CC312 entropy consumed by app code |
+| `reset_countdown_timer_default` | 4,981,973 | — | |
+| `runtime_info_sync` | 4,981,993 | 5,533,805 | |
+| `global_ipc_service_send` | 4,982,013 | 5,533,821 | |
+
+Golden's chain
+`settings_subsys_init → init_analytics_settings → load_sys_setting →
+flash_settings_read → ext_flash_read → nrfx_qspi_read → load_usr_setting →
+set_test_mode → load_burial_point → sys_rand32_get → runtime_info_sync →
+global_ipc_service_send` is reproduced **function-for-function, in order**.
+
+**Net core, honest accounting.** 19 genuinely new functions — the entire
+OpenAMP/libmetal/rpmsg backend (`open`, `ipc_static_vrings_init`, `metal_init`,
+`metal_device_open`, `virtqueue_allocate`, `ipc_rpmsg_init`, `rpmsg_init_vdev`,
+`ipc_virtio_get_status`, …) — none of which had ever executed. 58 functions that
+iteration 5 reached are **not** reached now, and they are all downstream of a
+wait that is *correct*: the net core is `ROLE_REMOTE` and, with the app-side pin
+reverted, the app never sets `VIRTIO_CONFIG_STATUS_DRIVER_OK` in
+`sram0_shared`, so `rpmsg_init_vdev_with_config` busy-polls
+`ipc_virtio_get_status` (624,949 iterations = the 10.4 M instruction count).
+Deferred that way: the net log thread and its UART output, `idle`,
+`z_impl_k_sleep`, `z_impl_k_timer_start`, and four recovered net functions
+(`FUN_0102acb4`, `FUN_0102ab50`, `FUN_0102a620`, `FUN_0102abac`). This is the
+remote behaving as designed; it resolves the moment the app opens its side
+(§7 step 1). It was kept rather than reverted because reverting restores a state
+where the net's `ipc_service` silently fails with `-EIO`.
+
+### 7. New first divergence + classification + next fix
+
+**Divergence (app):** at **4,982,013** `main → runtime_info_sync →
+global_ipc_service_send` sends the runtime-info message and `main` then does
+`k_sem_take(&ctx[8], K_FOREVER)` (`mutex_lock_syscall_handler(context + 8, …, -1, -1)`
+in `recon/symbolized/app/main.c`). The semaphore is only given by the IPC reply
+path, which cannot run because the app's rpmsg endpoint is not bound. The app
+drops to `idle`/`arch_cpu_idle` (5,039,635) and stays there, still servicing
+`nrfx_ipc_irq_handler` → `mbox_dispatcher` → `mbox_callback` (5,039,736).
+
+**Classification: unrelocated absolute rodata pin (iteration-5 data-pin class),
+`struct ipc_ept_cfg` at 0x00089748.** Not a fault, not an emulator gap — the
+transport is proven working in both directions.
+
+**Next fixes, in order:**
+
+1. **Emit a relocated `ipc_ept_cfg` for 0x00089748.** Its contents embed a
+   `const char *name` and callback pointers, so — exactly like the
+   `gpio_dt_spec` tables of iteration 5 §2 — it must be *emitted* by the build
+   (new wiring TU + `PROVIDE(rodata_89748 = …)`), not merely rebound. Transcribe
+   the shipped bytes with `tools/extract.py`; the name must come out `"ipc0"` to
+   match what the net core announces. **Then re-apply
+   `PROVIDE(rodata_87c08 = __device_dts_ord_29)`** — the pin itself is right and
+   everything downstream of it is now proven ready. Expected result: `bound_cb`
+   on both sides, `ipc_service_send` on the app, `main` unblocks, and the boot
+   should run on toward `spi_read_id` (golden 7,273,380) and `bt_start`
+   (golden 7,641,560), i.e. **E4 completion**.
+2. **Re-run the §3 RAM-pin sweep against the new trace** and fix the group the
+   newly-reached code touches. The `smp_work_queue_stack` group
+   (`g_serialization_ipc_ept`, `g_serialization_ipc_ready`, `g_ipc0_endpoint`,
+   `g_ext_flash_dev`, `g_ext_flash_mutex`, `g_ipc_send_fail_cnt`) is the most
+   likely next casualty, because step 1 puts exactly those objects into use.
+3. **Sweep the dropped-argument class on the net core** the same way iteration 5
+   §8.3 proposed for the app. `FUN_0102d558` was found only because it happened
+   to be on the critical path; every recovered `(*fn)()` / zero-argument
+   `extern` in `recon/{net,symbolized/net}` should be cross-checked against the
+   original's live registers at the call. `tools/parity` is blind to this class.
+4. Long term: the RAM-pin class (561 colliding pins) cannot be retired by
+   relocation — the original occupies the whole SRAM. It goes away only as the
+   RAM layout itself is reproduced.
+
+### Regenerate (iteration 6)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+recon/application/build_cohesive.sh app /private/tmp/g1-i6f-app
+recon/application/build_cohesive.sh net /private/tmp/g1-i6d-net -- \
+  -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF
+cd /Users/freedomcoder/Projects/armemul
+~/tools/Renode.app/Contents/MacOS/renode --disable-xwt --console --plain \
+  -e 'i @/tmp/g1_i6final/trace.resc' > /tmp/g1_i6final/run.out 2>&1
+# trace.resc = $app_elf/$net_elf override + 'i @g1-ours.resc' + the tracing macro
+# + `sysbus.uart_net CreateFileBackend` (additive; g1-ours.resc untouched).
+# analyze: <scratchpad>/analyze.py <nm.txt> <trace.log> <out.json>
+# RAM-pin sweep: <scratchpad>/ramsweep.py
+```
+
+Files changed:
+`recon/board/g1_board.overlay` (QSPI NOR node: jedec-id, size, sck-frequency,
+label + per-field evidence comments),
+`recon/symbolized/app/g1_app_ram_relocs.c` (new),
+`recon/generated/app_retained_sources.cmake` (1 entry),
+`recon/symbols/g1_app_globals.ld` (5 RAM-pin rebinds + the `rodata_87c08`
+re-apply-then-revert record),
+`recon/symbols/g1_net_globals.ld` (`rodata_103bfac` rebind + evidence),
+`recon/net/src/FUN_0102ac0c.c`, `recon/net/src/FUN_0102afbc.c` (guarded
+`G1_COHESIVE_BUILD` ipc0-device macro; parity path unchanged),
+`recon/symbolized/net/FUN_0102d558.c` + `recon/net/src/FUN_0102d558.c`
+(dropped-argument defect fix, proven against the original bytes).
+No `recon/app/src` change, no `tools/` change, no Kconfig/`prj.conf` change,
+`armemul` additive only. Nothing committed.

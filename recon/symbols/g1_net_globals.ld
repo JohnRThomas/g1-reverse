@@ -63,7 +63,20 @@ PROVIDE(rodata_103b7f3 = 0x0103b7f3);
 PROVIDE(rodata_103bac9 = 0x0103bac9);
 PROVIDE(rodata_103be3f = 0x0103be3f);
 PROVIDE(rodata_103bf70 = 0x0103bf70);
-PROVIDE(rodata_103bfac = 0x0103bfac);
+/* DATA-POINTER REBIND (iteration 6) — CPUNET `struct device` "ipc0".
+ * Shipped netcore_image.bin at runtime VA 0x0103bfac is a struct device whose
+ * word0 (0x0103cf12) is the C string "ipc0"; api = 0x0103c8a8.  It is passed
+ * as the `instance` argument of ipc_service_open_instance() and
+ * ipc_service_register_endpoint() by FUN_0102ac0c.  Left unrelocated our build
+ * has plain text there (nm: 0x0103bf82 t ept_cb), so instance->api read back 0
+ * and BOTH calls returned -EIO with the net UART printing
+ *     <err> ipc_service: Invalid backend configuration
+ * (captured with sysbus.uart_net CreateFileBackend, iteration 6) — which is
+ * exactly why the app-core rpmsg endpoint bind never completed.
+ * Our net DT: ipc0 = ordinal 22 (DT_N_S_ipc_S_ipc0_ORD in this build's
+ * devicetree_generated.h); __device_dts_ord_22 @0x0103d500, name reads back
+ * "ipc0", api 0x0103dd08. */
+PROVIDE(rodata_103bfac = __device_dts_ord_22);
 PROVIDE(rodata_103bfc0 = 0x0103bfc0);
 PROVIDE(rodata_103bfec = 0x0103bfec);
 PROVIDE(rodata_103c024 = 0x0103c024);

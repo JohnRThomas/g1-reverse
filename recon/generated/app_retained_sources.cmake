@@ -79,6 +79,10 @@ set(G1_RETAINED_SOURCES
   # that button_init / nfc_field_event_signal_sem used to read from the
   # unrelocated absolute pins rodata_88340 / rodata_889d0 / rodata_889e0.
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/g1_gpio_dt_specs.c"
+  # P4 iteration 6 bring-up wiring TU: real storage for the absolute RAM pins
+  # that were measured to land inside a live object of OUR build (group 1:
+  # the five pins that overlapped the top of `logging_stack`).
+  "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/g1_app_ram_relocs.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/read_sw0_pin.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/bt_send_enabled.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/notify_config_change_if_connected.c"

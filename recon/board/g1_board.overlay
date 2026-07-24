@@ -2,7 +2,7 @@
 
 / {
 	chosen {
-		nordic,pm-ext-flash = &mx25r64;
+		nordic,pm-ext-flash = &extflash;
 	};
 };
 
@@ -110,17 +110,40 @@
 	pinctrl-1 = <&qspi_sleep>;
 	pinctrl-names = "default", "sleep";
 
-	mx25r64: mx25r6435f@0 {
+	/*
+	 * External serial NOR — the PART IS A MACRONIX MX25U256-family
+	 * (256 Mbit / 32 MiB) device, NOT an MX25R6435F.
+	 *
+	 * The DT node NAME must stay "mx25r6435f@0": that literal string is the
+	 * Zephyr device name in the shipped image (app_update.bin device object
+	 * 0x87bf0 -> name pointer 0xf5d6b -> "mx25r6435f@0"), and every
+	 * device_get_binding()/z_device_is_ready() consumer in the recovered code
+	 * references it. Only the DT *label* is corrected here (mx25r64 ->
+	 * extflash) so the source no longer claims the wrong part.
+	 *
+	 * Every property below was checked byte-for-byte against the shipped
+	 * `struct qspi_nor_config` at VA 0x8b66c (file offset 0x7f66c); see
+	 * recon/emulator/reports/our_boot_bringup.md, Iteration 6 §1.
+	 */
+	extflash: mx25r6435f@0 {
 		compatible = "nordic,qspi-nor";
 		reg = <0>;
-		writeoc = "pp4io";
-		readoc = "read4io";
-		sck-frequency = <8000000>;
-		jedec-id = [c2 28 17];
-		size = <67108864>; /* 64 Mbit */
-		has-dpd;
-		t-enter-dpd = <10000>;
-		t-exit-dpd = <35000>;
+		writeoc = "pp4io";		/* cfg+0x1d = 03 = NRF_QSPI_WRITEOC_PP4IO  */
+		readoc = "read4io";		/* cfg+0x1c = 04 = NRF_QSPI_READOC_READ4IO */
+		/*
+		 * cfg+0x23 (phy_if.sck_freq) = 0 = NRF_QSPI_FREQ_DIV1 AND the
+		 * inlined qspi_nrfx_configure at 0x60c26/0x60c2e writes
+		 * HFCLK192MCTRL(0x50005000+0x5b8) = 0 = NRF_CLOCK_HFCLK_DIV_1.
+		 * Only the ">= NRF_QSPI_BASE_CLOCK_FREQ (96 MHz)" branch of the
+		 * driver's ladder yields that pair (the >=48 MHz branch would
+		 * write DIV_2=1; the >=32 MHz branch would give sck_freq=3).
+		 */
+		sck-frequency = <96000000>;
+		jedec-id = [c2 25 39];		/* cfg+0x30 = c2 25 39 (MX25U256)   */
+		size = <268435456>;		/* cfg+0x2c = 0x02000000 B = 32 MiB  */
+		has-dpd;			/* exit_dpd@0x8397e emits 0xAB       */
+		t-enter-dpd = <10000>;		/* enter_dpd: k_busy_wait(10 us)     */
+		t-exit-dpd = <35000>;		/* exit_dpd:  k_busy_wait(35 us)     */
 	};
 };
 
