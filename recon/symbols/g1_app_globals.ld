@@ -44,13 +44,22 @@ PROVIDE(rodata_25d8d = 0x00025d8d);
 PROVIDE(rodata_25dc5 = 0x00025dc5);
 PROVIDE(rodata_25df9 = 0x00025df9);
 PROVIDE(rodata_25fad = 0x00025fad);
-PROVIDE(rodata_2692d = 0x0002692d);
+/* CODE-POINTER REBIND (systematic sweep): odd (Thumb) flash pin was the
+ * original-image address of master_display_thread; unrelocated in our build.
+ * Evidence: durable-map exact entry 0x2692c; z_impl_k_thread_create entry arg in run_main_dispatch_thread. */
+PROVIDE(rodata_2692d = master_display_thread | 1);
 PROVIDE(rodata_27cf8 = 0x00027cf8);
-PROVIDE(rodata_27cfd = 0x00027cfd);
+/* CODE-POINTER REBIND (systematic sweep): odd (Thumb) flash pin was the
+ * original-image address of slave_display_thread; unrelocated in our build.
+ * Evidence: durable-map exact entry 0x27cfc; z_impl_k_thread_create entry arg in run_main_dispatch_thread. */
+PROVIDE(rodata_27cfd = slave_display_thread | 1);
 PROVIDE(rodata_28000 = 0x00028000);
 PROVIDE(rodata_2e301 = 0x0002e301);
 PROVIDE(rodata_30000 = 0x00030000);
-PROVIDE(rodata_32421 = 0x00032421);
+/* CODE-POINTER REBIND (systematic sweep): odd (Thumb) flash pin was the
+ * original-image address of aging_mode_thread; unrelocated in our build.
+ * Evidence: durable-map exact entry 0x32420; z_impl_k_thread_create entry arg in start_aging_mode_thread. */
+PROVIDE(rodata_32421 = aging_mode_thread | 1);
 PROVIDE(rodata_33c44 = 0x00033c44);
 PROVIDE(rodata_33c48 = 0x00033c48);
 PROVIDE(rodata_35775 = 0x00035775);
@@ -78,7 +87,10 @@ PROVIDE(rodata_60635 = 0x00060635);
 PROVIDE(rodata_72ab1 = 0x00072ab1);
 PROVIDE(rodata_72dad = 0x00072dad);
 PROVIDE(rodata_73729 = 0x00073729);
-PROVIDE(rodata_75005 = 0x00075005);
+/* CODE-POINTER REBIND (systematic sweep): odd (Thumb) flash pin was the
+ * original-image address of z_timer_expiration_handler; unrelocated in our build.
+ * Evidence: 24 leading bytes byte-identical to our z_timer_expiration_handler; z_add_timeout handler arg in z_impl_k_timer_start. */
+PROVIDE(rodata_75005 = z_timer_expiration_handler | 1);
 PROVIDE(rodata_76b91 = 0x00076b91);
 PROVIDE(rodata_79274 = 0x00079274);
 PROVIDE(rodata_7c00d = 0x0007c00d);
@@ -111,11 +123,26 @@ PROVIDE(rodata_838cb = 0x000838cb);
 PROVIDE(rodata_84c57 = 0x00084c57);
 PROVIDE(rodata_859a3 = 0x000859a3);
 PROVIDE(rodata_859b1 = 0x000859b1);
-PROVIDE(rodata_85f8d = 0x00085f8d);
-PROVIDE(rodata_85f93 = 0x00085f93);
-PROVIDE(rodata_85f97 = 0x00085f97);
-PROVIDE(rodata_86661 = 0x00086661);
-PROVIDE(rodata_86f35 = 0x00086f35);
+/* CODE-POINTER REBIND (systematic sweep): odd (Thumb) flash pin was the
+ * original-image address of zcbor_uint32_decode; unrelocated in our build.
+ * Evidence: 32 leading bytes byte-identical modulo b.w relocs; zcbor decoder fn-ptr table in img_mgmt_upload. */
+PROVIDE(rodata_85f8d = zcbor_uint32_decode | 1);
+/* CODE-POINTER REBIND (systematic sweep): odd (Thumb) flash pin was the
+ * original-image address of zcbor_size_decode; unrelocated in our build.
+ * Evidence: 32 leading bytes byte-identical modulo b.w relocs; zcbor decoder fn-ptr table in img_mgmt_upload. */
+PROVIDE(rodata_85f93 = zcbor_size_decode | 1);
+/* CODE-POINTER REBIND (systematic sweep): odd (Thumb) flash pin was the
+ * original-image address of zcbor_bstr_decode; unrelocated in our build.
+ * Evidence: 32 leading bytes byte-identical modulo b.w relocs; zcbor decoder fn-ptr table in img_mgmt_upload. */
+PROVIDE(rodata_85f97 = zcbor_bstr_decode | 1);
+/* CODE-POINTER REBIND (systematic sweep): odd (Thumb) flash pin was the
+ * original-image address of z_thread_timeout; unrelocated in our build.
+ * Evidence: 8-byte fn byte-identical modulo the b.w reloc, and the function immediately after it (z_unpend_all) is byte-identical in both images; z_add_timeout handler arg in z_impl_k_thread_create/pend_locked/z_init_static_threads. */
+PROVIDE(rodata_86661 = z_thread_timeout | 1);
+/* CODE-POINTER REBIND (systematic sweep): odd (Thumb) flash pin was the
+ * original-image address of __sread; unrelocated in our build.
+ * Evidence: 10 leading bytes byte-identical modulo the bl reloc + app_toolchain_exact_matches.json newlib lib_a-stdio.o .text.__sread archive match at 0x86f34; FILE-op fn ptr in newlib_stdio_init_stream. */
+PROVIDE(rodata_86f35 = __sread | 1);
 PROVIDE(rodata_86f57 = 0x00086f57);
 PROVIDE(rodata_86fb7 = 0x00086fb7);
 PROVIDE(rodata_877ed = 0x000877ed);

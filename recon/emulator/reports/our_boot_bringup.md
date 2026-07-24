@@ -602,3 +602,291 @@ display init) on our build.
 Same commands as iterations 1–2 (build `app`, boot `g1-ours.resc` via
 `/tmp/g1_ours/trace_ours.resc`, analyze with `analyze_ours.py` + `app_nm.txt`).
 The only source change is `recon/symbolized/app/vprintf.c`. Nothing committed.
+
+---
+
+## Systematic sweep (code-pointer + section pins)
+
+Targeted sweep of the **"absolute flash pointer used as a code pointer, not
+relocated"** defect class (the iteration-3 `vprintf`/`rodata_4b1b5` archetype),
+so the Renode boot stops hitting these one at a time.
+
+### 0. The enumeration net had to be corrected first
+
+A previous pass enumerated candidates as *"FLASH-range pin whose address falls
+inside a reconstructed function's extent"* and found ~11, all interior. **That
+net is wrong**, and the proof is the archetype itself: `rodata_4b1b5` (0x4b1b5,
+the console char-out trampoline that iteration 3 fixed) is **not** inside any
+`app_funcs.json.gz` extent — it sits in the *gap* between `FUN_0004b17c`
+(ends 0x4b1b0) and `FUN_0004b1c0`. Ghidra simply never catalogued it. A net that
+misses the one confirmed positive cannot be used to clear the class.
+
+The correct discriminator is **discriminator #1 from the task: bit0 set**.
+Re-enumerating `PROVIDE(<name> = 0x...)` in `recon/symbols/g1_app_globals.ld`:
+
+| population | count | verdict |
+|---|---:|---|
+| numeric pins total | 3343 | — |
+| FLASH-range (0xC200..0xA4074) | 1121 | — |
+| RAM `0x2000xxxx` | 738 | left literal (kept per task) |
+| in the **code** region 0xC358..0x879A6, **odd** (Thumb) | **83** | **the candidate set** |
+| in the code region, **even** | 34 | data (see §3) |
+| "inside a function extent" (the old net) | 11 | 3 of them are in the 83; the rest are data |
+
+All 11 of the old net's candidates were re-checked and are accounted for below.
+
+### 1. Per-candidate evidence and verdict (83 odd code-region pins)
+
+Three discriminators were applied to every candidate:
+**(a)** disassemble the **original image bytes** at `addr & ~1` (`tools/extract.py` +
+capstone); **(b)** how the pin is **used** in `recon/symbolized/app` (callback /
+thread entry / `blx` argument vs. numeric compare); **(c)** a new
+**byte-prologue matcher**: read 16 original bytes at the pin and compare against
+the first bytes of every function symbol in our linked ELF, to *name* the target.
+
+Result: **80 of 83 are genuine unrelocated Thumb code pointers** (each decodes as
+a real function prologue at the exact address, and each is used as a callback,
+thread entry, `k_work`/`k_timer`/`z_add_timeout` handler, or `foreach` visitor).
+This is a much larger surface than iteration 1–3 assumed, and it is a **separate
+channel of the same defect that `pointer_rebind.md` fixed for the
+`ADDR_*_THUMB` macros** — the `rodata_<odd-addr>` linker pins were never swept.
+
+| verdict | n | meaning |
+|---|---:|---|
+| **DATA → left literal** | 3 | not a pointer at all |
+| **code-pointer → REBOUND** | 9 | a symbol in our build was positively identified |
+| **code-pointer → BLOCKED (SDK-static)** | 28 | target named with certainty, but it is `static`/local in its SDK library, so no honest `&sym` binding exists |
+| **code-pointer → DEFERRED (unreconstructed)** | 43 | target is a Ghidra-uncatalogued, unreconstructed function; nothing to bind to |
+
+**DATA (3) — left literal.** Positive evidence they are constants, not addresses:
+
+| pin | evidence |
+|---|---|
+| `rodata_fc09` 0xfc09 | used as `bt_hci_cmd_send_sync(0xfc09, …)` — an **HCI opcode** (OGF 0x3f vendor, OCF 0x09). Bytes at 0xfc08 decode mid-instruction. |
+| `rodata_ff41` 0xff41 | used as `if (0xff41 < param_2 - 0xa4)` — numeric magnitude compare. |
+| `rodata_1274f` 0x1274f | used as `if (uVar9 - 0x2a30 <= 0x1274f)` — numeric magnitude compare. |
+
+**REBOUND (9).** Each has a *positive* identification, not proximity:
+
+| pin | → target | evidence that decided it |
+|---|---|---|
+| `rodata_2692d` | `master_display_thread` | `function_names_app.json` durable map gives entry **0x2692c** exactly; prologue `push {r3,r4,r5,r6,r7,lr}`; used as the `z_impl_k_thread_create` *entry* argument in `run_main_dispatch_thread` |
+| `rodata_27cfd` | `slave_display_thread` | durable map entry **0x27cfc** exactly (Ghidra's `app_funcs` has an off-by-2 at 0x27cfe); same thread-entry use site |
+| `rodata_32421` | `aging_mode_thread` | durable map entry **0x32420** exactly; `z_impl_k_thread_create` entry arg in `start_aging_mode_thread` |
+| `rodata_75005` | `z_timer_expiration_handler` | **24 leading bytes byte-identical** to our build's `z_timer_expiration_handler`; use site is the `z_add_timeout` handler arg inside `z_impl_k_timer_start` — semantically the same function |
+| `rodata_86661` | `z_thread_timeout` | 8-byte function, byte-identical modulo the `b.w` relocation (`movs r1,#1; subs r0,#0x18; b.w z_sched_wake_thread`), **and** the function immediately following it is byte-identical in both images (`z_unpend_all`); use site is `z_add_timeout(thread+0x18, …)` in `z_impl_k_thread_create` / `pend_locked` / `z_init_static_threads` |
+| `rodata_85f8d` | `zcbor_uint32_decode` | **32/32 leading bytes identical** modulo `b.w` relocs; zcbor decoder fn-ptr in `img_mgmt_upload` |
+| `rodata_85f93` | `zcbor_size_decode` | 32/32 identical; +6 byte offset preserved in both images |
+| `rodata_85f97` | `zcbor_bstr_decode` | 32/32 identical; +10 byte offset preserved in both images |
+| `rodata_86f35` | `__sread` | 10 leading bytes identical modulo the `bl` reloc, **plus** an independent hit in `recon/catalogs/app_toolchain_exact_matches.json`: newlib `lib_a-stdio.o .text.__sread`, normalized-code SHA match, `firmware_hits: ["0x00086f34"]`; use site is a `FILE` op fn-ptr in `newlib_stdio_init_stream` |
+
+**Rejected matches (discipline check).** Two byte-prologue hits were *not* taken:
+`rodata_46d8d` → `panel_on` (10 bytes agree, then codegen diverges; the durable
+map places `panel_on` at **0x46dd8**, not 0x46d8c — a shared `*_init` prologue,
+false positive) and `rodata_4b1b5` → `mutex_init` (only 8 bytes; 0x4b1b4 is
+already known from iteration 3 to be the char-out trampoline, already fixed at
+source level in `symbolized/app/vprintf.c`).
+
+**BLOCKED — SDK-static targets (28).** The byte-prologue matcher named these with
+16/16-byte agreement, so the *identification* is solid, but each target is `t`
+(local) in its Zephyr/newlib/open-amp library and no external `&sym` can bind to
+it (identical constraint to `pointer_rebind.md`'s "17 stock functions defined
+static"): `clock_event_handler` (`nrfx_clock_init` handler), `work_queue_main`,
+`work_timeout`, `slice_timeout`, `mbox_callback`, `mbox_callback_process`,
+`virtio_notify_cb`, `rpmsg_virtio_hold_rx_buffer`, `l2cap_rtx_timeout`,
+`l2cap_alloc_frag`, `l2cap_rx_process`, `prep_write_cb`, `found_attr`,
+`match_uuid`, `gatt_write_rsp`, `gatt_find_type_encode`, `remove_peer_from_attr`,
+`convert_to_id_on_match`, `ccc_save`, `sc_process`, `smp_ident_sent`,
+`keys_add_id`, `adv_pause_enabled`, `clock_started_callback`, `out_func`,
+`transition_complete`, `rtc_cb`, `find_flash_total_size`.
+The semantic agreement between each matched name and its use site (e.g.
+`work_queue_main` ← `k_work_queue_start`'s `k_thread_create` entry;
+`clock_event_handler` ← `nrfx_clock_init`'s argument) is itself strong
+confirmation that the whole 80-pin class is real.
+
+**DEFERRED — unreconstructed targets (43).** The address decodes as a clean
+function entry in the original image but that function is **not in
+`app_funcs.json.gz`, not in the durable name map, and has no reconstruction**
+anywhere in `recon/` — so there is no symbol to bind to. Rebinding these requires
+*reconstructing* the target, not editing a pin. This group contains the current
+boot blocker (§4).
+
+### 2. Iterable-section sub-class — re-confirmed, nothing new
+
+Re-swept `g1_app_globals.ld` for `_*_list_start/end`, `__device_*`, `__init_*`,
+`_settings_handler_*`, `_bt_*_static_list_*`, `_net_buf_pool_list_*`, `_log_*`,
+`_shell_*`, `_k_*_list_*`, `_static_thread_data_*`. **Exactly the two pins
+iteration 2 already rebound exist** (`rodata_882a0` → `_log_backend_list_start`,
+`__settings_handler_static_list_start` → `_log_backend_list_end`); every other
+such section is iterated by stock SDK code using the linker's own symbols. No
+change. Iteration 2's conclusion holds.
+
+### 3. Even code-region pins and other flash pins — data, left alone
+
+The 34 even pins inside the code region are page/size constants and rodata table
+bases (0xf000, 0x10000, 0x28000, 0x30000, 0x40000, 0x50100 …) or land in the
+trailing data of a **data-inflated** Ghidra function (AGENTS.md CRITICAL FINDING
+#2) — e.g. `rodata_1f400` at +19620 inside `ble_process_put_req` (242 B of code +
+25 KB of trailing table). None are code pointers; all left literal. The named
+non-`rodata_*` flash pins are LC3 codec tables, font tables and `struct device`
+instances — data, out of this class (the four `*_dev` pins are a separate
+unrelocated-**data**-pointer residue, noted not fixed).
+
+### 4. Rebuild status
+
+`recon/application/build_cohesive.sh app /private/tmp/g1-sweep-app` → **exit 0,
+0 undefined (`nm -u`), 0 duplicate global definitions.**
+FLASH **626432 / 982528 B = 63.76%** — *bit-identical to iteration 3*; a pin
+rebind emits no code.
+
+The rebind was done in `recon/symbols/g1_app_globals.ld` only, using the
+linker-script form (same mechanism as iteration 2's section rebind, with the
+Thumb bit made explicit as `pointer_rebind.md` requires):
+
+```ld
+PROVIDE(rodata_2692d = master_display_thread | 1);
+```
+
+Verification in the linked ELF (`readelf` — note `nm` *masks* bit0 on `FUNC`
+symbols, `readelf` does not):
+
+```
+readelf:  000220a5 FUNC GLOBAL ABS rodata_2692d      (= master_display_thread|1)
+          0007f459 FUNC GLOBAL ABS rodata_86661      (= z_thread_timeout|1)
+objdump:  25a78: .word 0x000220a5    <- run_main_dispatch_thread's k_thread_create entry
+          25aa4: .word 0x0002328d    <- slave_display_thread|1
+          2c3e8: .word 0x0002bf1d    <- aging_mode_thread|1
+          46830/6d4d8/6d5e0/6f418/6fc70: .word 0x0007f459   <- z_thread_timeout|1 (5 z_add_timeout sites)
+```
+and the old absolutes `0x0002692d / 0x00027cfd / 0x00032421 / 0x00086661` no
+longer appear as literals anywhere in `.text`.
+
+4 of the 9 rebinds materialise in this build; the other 5
+(`rodata_75005`, `rodata_85f8d/93/97`, `rodata_86f35`) are referenced only from
+TUs that are **not in `app_retained_sources.cmake`** (`z_impl_k_timer_start.c`,
+`img_mgmt_upload.c`, `newlib_stdio_init_stream.c` — the SDK provides those), so
+`PROVIDE` correctly does not emit them. They are corrected for the day those TUs
+are retained. No source file, no `prj.conf`, no `tools/` change.
+
+### 5. Boot result: **no regression, and no advance** (honest)
+
+Re-booted the unmodified `armemul/g1-ours.resc` (via an additive
+`/tmp/g1_sweep/trace_sweep.resc` that only overrides `$app_elf`) and re-traced
+both cores with the same 0.15 s / 10 µs-quantum / seeded-RNG environment.
+
+| metric | iteration 3 | this sweep |
+|---|---|---|
+| app instructions executed | 14,999,144 (budget) | **14,999,144** |
+| app unique functions | 465 | **465** |
+| net instructions | 248,823 | **248,823** |
+| net unique functions | 357 | **357** |
+| first divergence (app instr) | 4,703,842 | **4,703,842** |
+
+A name-by-name diff of the two app traces gives **0 differences in `first_i` for
+all 462 shared functions** (the 3 name deltas are enclosing-symbol aliasing
+between the two analyzers at identical addresses). Milestone tier is unchanged:
+**E1–E3 complete, E4 entered not completed** (CPUNET released and running,
+console UART logging working, `ipc_service_open_instance` reached; still not
+reached: `ipc_service_send`, `spi_read_id`, `bt_enable`, `bt_start`, ADV_IND).
+
+This is the expected outcome and it is worth stating plainly: none of the 9
+rebound pointers is *invoked* before the fault. The display/aging threads are
+spawned by `run_main_dispatch_thread`, which the boot never reaches, and no
+thread timeout expires before the panic. The rebinds are **latent correctness
+fixes** (each one was a live landmine — `z_thread_timeout` in particular is armed
+from 5 sites starting at instr 613,974), not a boot advance.
+
+### 6. New first divergence — precisely identified, and it is *this* class
+
+The re-trace did produce a decisive result: it **corrects iteration 3's
+diagnosis** of the first divergence, and pins it on a DEFERRED pin from §1.
+
+Iteration 3 reported the fault as `pop {r3,pc}` in `pt_nfc_eeprom_link_start`,
+blamed on `g_pt_nfc_link_cfg_static` being unpopulated, reached by a tail-call
+from `check_sw0_status`. The instruction-level trace shows that is a *symptom*.
+The actual chain (our relocated addresses):
+
+```
+4701815  main+0x27c
+4701823  register_ipc_service_context+0x0     ; ctx[0x60]=global_ipc_service_send|1  (correctly relocated)
+                                              ; ctx[0x64]=0x00025ae9                 (RAW, unrelocated)
+4701839  main+0x298                           ; builds 4 IPC-service records at ctx+0x6e4/0x6f0/0x6fc/0x708
+4701848  0x00025ae8   <-- blx *(ctx+0x778) == the unrelocated pin rodata_25ae9
+                          in OUR image 0x25ae8 is arbitrary code at check_sw0_status+0x38
+4701850  log_message -> vprintf -> ... -> uarte_nrfx_poll_out   (~2000 instr of real console output)
+4703823  check_sw0_status+0x3e:  ldmia.w sp!,{r3,r4,r5,lr}      ; pops a frame that was never pushed
+4703825  b.w pt_nfc_eeprom_link_start          ; entered with a corrupt lr
+4703836  pt_nfc_eeprom_link_start+0x8
+4703842  z_arm_usage_fault                     <-- FAULT (pop {r3,pc} with the corrupt return word)
+         -> z_arm_fault -> usage_fault.constprop.0 -> z_arm_fatal_error -> spins in drop_item_locked
+```
+
+Ground truth for the call site (`objdump` on our ELF):
+
+```
+main:      15c0a: ldr.w r2,[r4,#0x778] ; 15c0e: blx r2         <- call_hook(context,0x778,0x6e4)
+register_ipc_service_context:
+           21a58: ldr r3,[pc,#52] ; 21a5a: orr.w r3,r3,#1 ; 21a5e: str r3,[r0,#0x60]   (relocated OK)
+           21a60: ldr r3,[pc,#48] ; 21a62: str r3,[r0,#0x64]                            (NO orr — raw pin)
+           21a94: .word 0x00025ae9      <- rodata_25ae9, the unrelocated absolute
+```
+
+**Classification: absolute flash pointer used as a code pointer, not relocated —
+i.e. exactly the class of this sweep — sub-case "target unreconstructed".**
+`rodata_25ae9` is the original-image entry 0x25ae8 of the **IPC-service
+registrar**: `push {r0,r1,r4,lr}; …; ldr r1,[r3,#4]; cmp r1,#0x15; …; str.w r0,[r3,r4,lsl #2]` —
+it appends a service record to a ≤22-entry table and logs on overflow. It lives
+in the Ghidra gap 0x25AD2..0x25B78, immediately before its already-reconstructed
+sibling `global_ipc_service_send` (0x25b78, correctly bound via
+`ADDR_global_ipc_service_send_THUMB`). It has **no catalog entry and no
+reconstruction**, so it cannot be rebound — it must be reconstructed.
+
+It is a genuine divergence from golden: golden runs
+`register_ipc_service_context` **59×** and `global_ipc_service_send` **24×** and
+reaches E5, and only reaches `check_sw0_status` at steady state (instr
+12,310,559); ours enters `check_sw0_status`'s *middle* at 4,701,848 on the first
+pass. `pt_nfc_eeprom_link_start` is never legitimately called on our path at all
+— golden calls it at 7,273,973 with `pt_nfc_eeprom_link_init` running its full
+33 instructions. The iteration-3 observation that `g_pt_nfc_link_cfg_static`
+(0x20002408) is all-zero is real but **incidental** (it is a separate, still-open
+defect: a `.data` RAM pin whose initialiser was lost), not the cause of the fault.
+
+### 7. Next fix (drives iteration 5)
+
+1. **Reconstruct the IPC-service registrar at original 0x25AE8** (the target of
+   `rodata_25ae9`) and rebind the pin to it. This is the single blocking defect;
+   everything after it in `main()` (the four IPC-service registrations, then
+   `spi_master_install_ops`, then the display/`bt_enable` bring-up) is gated on it.
+2. **The same cluster, same gap:** `main()` also stores three *unrelocated*
+   IPC-service handlers into those records — `rodata_162ed` (ctx+0x6ec),
+   `rodata_16bf1` (ctx+0x6f8), `rodata_7c00d` (ctx+0x710) — all DEFERRED in §1,
+   all unreconstructed, all in the same Ghidra gaps. Only the fourth
+   (`ADDR_local_esbs_ipc_service_recv_THUMB`) is reconstructed. Reconstruct the
+   three; they will be dispatched immediately after the registrar starts working.
+3. **The 28 SDK-static BLOCKED pins** need a different remedy from a linker pin:
+   either an SDK-side alias/export, or the iteration-3 pattern of replacing the
+   pinned callback in the *wiring TU* with a compiler-emitted equivalent (as done
+   for `g1_vprintf_char_out`). `clock_event_handler`, `work_queue_main`,
+   `work_timeout`, `slice_timeout` and the three rpmsg/mbox ones are the
+   boot-relevant ones.
+4. Then re-check `g_pt_nfc_link_cfg_static` (0x20002408) as its own defect —
+   a `.data` RAM pin whose original initialiser (4 function pointers) is not
+   reproduced by our build.
+
+Acceptance target unchanged: reach E4 completion (`bt_start` / first ADV_IND /
+display init).
+
+### Regenerate (this sweep)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+recon/application/build_cohesive.sh app /private/tmp/g1-sweep-app
+cd /Users/freedomcoder/Projects/armemul
+~/tools/Renode.app/Contents/MacOS/renode --disable-xwt --console --plain \
+  -e 'i @/tmp/g1_sweep/trace_sweep.resc' > /tmp/g1_sweep/run.out 2>&1
+# trace_sweep.resc = $app_elf/$net_elf override + 'i @g1-ours.resc' + the iteration-1
+# tracing macro (additive; g1-ours.resc itself untouched).
+```
+
+Only `recon/symbols/g1_app_globals.ld` was changed (9 `PROVIDE` rebinds +
+their evidence comments). Nothing committed.
