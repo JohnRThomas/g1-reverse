@@ -1198,3 +1198,336 @@ Files changed: `recon/app/src/register_ipc_service_recv_callback.c` (new, proven
 `recon/generated/app_retained_sources.cmake` (1 entry).
 Scratchpad catalogs gained one record each (backed up). No `tools/` change, no
 `prj.conf`/Kconfig change, `armemul` additive only. Nothing committed.
+
+---
+
+## Iteration 5 — absolute DATA pins (devices + gpio_dt_spec tables)
+
+Iteration 4's blocker is **fixed** and the boot advances a long way: the app core
+now completes `button_init`, runs `settings_subsys_init`, reaches
+`flash_settings_read`, and — for the **first time in this bring-up** — **never
+faults at all**: no `assert_post_action`, no `_oops`, no `z_arm_fatal_error`, no
+`SYSRESETREQ`. It ends the run **alive and idling** in a retry/sleep loop.
+App unique functions **472 → 601**; app instructions **4,709,377 → 5,067,675**
+(same 0.15 s budget). Milestone tier still **E1–E3 complete, E4 entered, not
+completed** (no `spi_read_id`, `bt_enable`, `bt_start`, ADV_IND yet).
+
+Final artifacts: build `/private/tmp/g1-i5d-app`, trace `/tmp/g1_i5e/`.
+
+### 1. Device pins rebound (with evidence)
+
+Identification method (per pin, not by proximity): read the **original** device
+object out of `app_update.bin`, follow word0 to its **C name string**, and match
+that exact string against the device object at `__device_dts_ord_<N>` in **our
+linked ELF**. Ordinals were re-derived from *this build's*
+`zephyr/include/generated/devicetree_generated.h` and confirmed by `nm`/`readelf`
+(they are **not** the iteration-4 numbers taken on faith — 12 and 22 happened to
+still be right; the rest are new).
+
+| pin | original addr | name string (both images) | rebound to | our addr |
+|---|---|---|---|---|
+| `g_gpio0_dev` | 0x87b60 | `gpio@842500` | `__device_dts_ord_12` | 0x80084 |
+| `g_gpio1_dev` | 0x87b48 | `gpio@842800` | `__device_dts_ord_22` | 0x8006c |
+| `entropy_dev` | 0x87b90 | `crypto@50844000` | `__device_dts_ord_86` | 0x800b4 |
+| `g_watchdog_device` | 0x87cc8 | `watchdog` (nPM1300) | `__device_dts_ord_148` | 0x801ec |
+| `rodata_87bf0` | 0x87bf0 | `mx25r6435f@0` | `__device_dts_ord_160` | 0x80114 |
+| `rodata_87cb0` | 0x87cb0 | `regulators` (nPM1300) | `__device_dts_ord_149` | 0x801d4 |
+| `rodata_87d58` | 0x87d58 | `lsm6dso@6b` | `__device_dts_ord_155` | 0x8027c |
+| `rodata_87d70` | 0x87d70 | `charger` (nPM1300) | `__device_dts_ord_146` | 0x80294 |
+
+All eight resolve in the linked ELF (`readelf -sW`) and each target's name string
+was re-read from our own ELF image to confirm the match. The original and our
+`struct device` / `gpio_driver_config` layouts are identical (verified:
+`config[0] = port_pin_mask` = 0xffffffff for gpio0, 0xffff for gpio1 in **both**
+images), so the rebind is layout-safe.
+
+`entropy_dev`, `g_watchdog_device`, `rodata_87cb0/87d58/87d70` are **latent** on
+this boot (their consumers — `sys_rand32_get`, `init_watchdog`,
+`lsm6dso_init_chip`, `fuel_gauge_*` — are not reached yet); they are corrected
+and caused no regression. `g_gpio0/1_dev` and `rodata_87bf0` are live.
+
+**One rebind REVERTED after measurement.** `rodata_87c08` = the `ipc0` device
+(original name string `"ipc0"`, our `__device_dts_ord_29`) — the identification
+is unambiguous and the pin is genuinely wrong, but with it applied the boot
+**regresses**: the real OpenAMP/rpmsg instance gets opened, `main()` then blocks
+waiting for the endpoint bind (`serialization_register_endpoint` slips
+4,668,377 → 4,705,055), the app drops into `idle`/`arch_cpu_idle` forever and
+**never reaches** `register_ipc_service_context`, `spi_master_install_ops`,
+`button_init` or `settings_subsys_init` (**521** unique fns / **4,738,510**
+instr, vs 557 / 5,061,646 with the pin left absolute). Per the no-regression
+gate it is reverted, with the measurement and the re-apply condition recorded in
+`g1_app_globals.ld`. The real blocker there is the **CPUNET rpmsg handshake**,
+not the pin.
+
+### 2. The `gpio_dt_spec` tables — re-emitted, not rebound
+
+`rodata_88340` / `rodata_889d0` / `rodata_889e0` cannot be rebound to any linker
+symbol: their *contents* embed absolute `struct device *` words. They are now
+emitted by the build in a new wiring TU
+**`recon/symbolized/app/g1_gpio_dt_specs.c`** (added to
+`recon/generated/app_retained_sources.cmake`), transcribed from the shipped
+image with `tools/extract.py`:
+
+```
+0x88340: 9 x { 0x87b60 (gpio0), pin, dt_flags 0 }
+         pins = 26, 25, 28, 27, 24, 19, 21, 30, 23
+0x889d0: { 0x87b48 (gpio1), pin  9, dt_flags 0x0011 }   /* ACTIVE_LOW|PULL_UP */
+0x889e0: { 0x87b48 (gpio1), pin 10, dt_flags 0x0011 }
+```
+
+**Correction to iteration 4 §5:** the last two pins of the 9-entry table are
+`30, 23`, not `23, 30`. Cross-checked two ways — the image bytes at
+0x88370/0x88378, and `button_init`'s own interleaved
+`gpio_pin_set_checked(gpio0, 0x1e=30, 1)` / `(gpio0, 0x17=23, 0)` after
+`spec[7]` / `spec[8]`.
+
+Layout is `{ const struct device *port; u8 pin; /*pad*/ u16 dt_flags; }`
+(8 B/entry), matching Zephyr's `struct gpio_dt_spec` exactly; the tables are
+built with `DEVICE_DT_GET(DT_NODELABEL(gpio0|gpio1))` so both the table address
+and the embedded device pointers relocate. Verified in the linked ELF: all nine
+entries have `port = 0x80084` whose name reads back as `"gpio@842500"`.
+`g1_app_globals.ld` binds the recovered pin names to these definitions, which is
+what fixes the *other* consumer (`nfc_field_event_signal_sem` uses
+`rodata_889d0`) with no source edit; `readelf` shows
+`rodata_889d0 = 0x80a48 = g1_gpio1_pin9_spec`. The canonical
+`recon/app/src/button_init.c` is untouched.
+
+The build TU had to be separate: including `<zephyr/drivers/gpio.h>` inside
+`button_init.c` collides with its recovered `gpio_pin_configure` /
+`z_device_is_ready` externs.
+
+### 3. Two NON-pin defects found on the way — same "lost information at a call" family
+
+Fixing the pins alone would **not** have advanced the boot. Two reconstruction
+defects sit directly on the `button_init` path; both were proved by
+disassembling the **original** bytes and comparing with **our** codegen, and both
+were fixed in the build/wiring TUs only (canonical `recon/app/src` untouched).
+
+**(a) One pointer level too many** — `gpio_pin_configure_17688.c` (0x17688) and
+`gpio_pin_configure.c` (0x17858). Both wrote
+`enabled = **(volatile uint32_t ***)(dev + 4)` (and the same for
+`output = ...(dev + 16)`), so `*enabled` was a **third** load. The original does
+two:
+
+```
+orig 0x176a0: ldrd r7,r6,[r0,#4]   ; r7 = dev->config
+orig 0x17706: ldr  r3,[r7]         ; r3 = cfg->port_pin_mask
+orig 0x1770a: tst  r4,r3           ;  == Zephyr __ASSERT(cfg->port_pin_mask & BIT(pin))
+ours 0x16194: ldr  r3,[r3,#0]      ; mask
+ours 0x1619a: ldr  r3,[r3,#0]      ; <-- EXTRA: dereferences 0xffffffff
+```
+
+With the *wrong* device this was invisible; with the *correct* one it would have
+dereferenced the port-pin mask value. Same for `data->invert`. The sibling
+recon of `gpio_pin_set_checked` / `gpio_pin_get_checked` /
+`gpio_pin_get_raw_checked` / `gpio_pin_configure_dt` uses the correct depth —
+which is itself the cross-check that the two above are wrong.
+
+**(b) Arguments dropped at an indirect/extern call.** Ghidra's
+`(*UNRECOVERED_JUMPTABLE)()` / `(*api)()` idiom compiles to a call with
+*whatever* is in r0–r2. In the ORIGINAL codegen those registers happened to hold
+the right values; in ours they do not:
+
+| site | original passes | ours passed |
+|---|---|---|
+| `gpio_pin_configure_17688` tail call `api->pin_configure` | r0=dev, r1=pin, r2=combined flags | r0=**spec**, r1=flags, r2=? |
+| `gpio_pin_set_checked` tail call `api->port_{set,clear}_bits_raw` | r0=port, r1=**BIT(pin)** | r0=port, r1=**pin** |
+| `z_tick_sleep` → `unready_thread` (`extern void unready_thread(void)`) | r0=`_current` (`ldr r0,[r7,#8]` @0x74786) | r0=**&sched_spinlock** |
+
+All three now pass their arguments explicitly. `add_thread_to_wait_queue.c`
+carried the same `unready_thread()` no-arg form and was fixed the same way (it
+is currently gc'd out of the image).
+
+The `z_tick_sleep` one was the *measured* blocker after the pin fix: calling
+`unready_thread(&sched_spinlock)` left the sleeping thread in the ready cache
+(`update_cache(0)`), `z_swap` returned to it immediately, and the following
+`__ASSERT(!_THREAD_SUSPENDED)` (sched.c:1458) tripped a kernel OOPS.
+
+### 4. Bounded sweep of the class (evidence per pin, deferrals stated)
+
+`g1_app_globals.ld` has **3336** numeric pins, **648** of them even and in the
+FLASH range — far too many to blanket-rebind, and a blanket rebind would be
+wrong anyway (most are scalars or strings). The sweep was bounded two ways:
+**(i)** the pin must be referenced by a function that the emulator **actually
+executed**, and **(ii)** the original bytes at the pin must **start with a
+pointer** (flash 0xC200..0xFAB8D or RAM 0x2000xxxx) rather than ASCII or a
+scalar. That leaves **18** candidates (66 pins pass (i) alone; 48 of those are
+string constants). Re-run against the *new* (iteration-5) executed set, which is
+how `rodata_87bf0` was found — it was invisible in the iteration-4 trace because
+`flash_settings_read` was never reached.
+
+**Fixed (12):** the 8 device pins of §1 (one later reverted) + the 3
+`gpio_dt_spec` tables of §2 + `rodata_87c08` (reverted).
+
+**Deferred, with reasons:**
+
+| pin(s) | what the bytes are | why deferred |
+|---|---|---|
+| `rodata_88058`, `88070`, `88128`, `88188`, `881a8`, `881b0`, `881b8`, `881d8`, `881e0`, `88258` | arrays of `{const char *name; u32 level}` = Zephyr `struct log_source_const_data` (`log_const_area`); names decode to `"bt_gatt"`, `"cbprintf_package"`, `"fatal_error"`, `"flash_nrf"`, `"fs_nvs"`, `"ipc_service"`, `"log"`, `"LSM6DSO"` | passed as the *source* argument of `z_log_msg_runtime_create` / `log_msg_create_3arg`, only dereferenced when a backend formats the message. Fixing them needs per-module `LOG_MODULE_REGISTER` emission + a name→section-entry map, not a pin rebind. No observed boot impact — the log path runs and flushes to UART this iteration. |
+| `rodata_87fc8` | `_static_thread_data` iterable-section bound | `z_init_static_threads` uses it as **both** start and end (`piVar2 = piVar6 = 0x87fc8`), so the iteration is empty and the value is never dereferenced. **Correct as-is**; a rebind would be a behaviour change, not a fix. |
+| `rodata_88058` / `88070` (second role) | `_bt_gatt_service_static` list bounds in `bt_gatt_service_init` / `bt_gatt_foreach_attr_type` | same iterable-section sub-class; BT is not reached, and the correct remedy is the linker's own `_bt_gatt_service_static_list_{start,end}`, which needs the BT service tables to exist first. |
+| `rodata_10000`, `30000`, `40000`, `40002`, `40202` | 0x10000 = `GPIO_INPUT`, 0x30000 = `GPIO_INPUT\|GPIO_OUTPUT`, others are size/page constants | **scalars, not addresses** — used as the `flags`/size argument. Correctly literal. |
+| ~48 `rodata_99xxx/9axxx/9fxxx/…` | printf/log format and name strings (`"%s()"`, `"button_..."`, assert texts) | interior rodata offsets, the still-open class from iteration 2 §2. Not struct/table pointers; the structural remedy is source-level string emission. |
+| the other 630 even FLASH pins | not referenced by any executed function | outside the bounded sweep; re-run the sweep against each new trace (that is how `rodata_87bf0` surfaced). |
+
+### 5. Rebuild status
+
+`recon/application/build_cohesive.sh app /private/tmp/g1-i5d-app` → **exit 0,
+`nm -u` = 0 undefined, 0 duplicate global definitions.**
+FLASH **626680 / 982528 B = 63.78 %** (iteration 4: 626576 B = 63.77 %; +104 B =
+the emitted gpio_dt_spec tables + the explicit call arguments). RAM 75573 B =
+16.77 %. No `--allow-multiple-definition`, no weak/numeric root, no `prj.conf` /
+Kconfig / devicetree change, no `tools/` change.
+
+### 6. Boot result — no regression, large advance
+
+Re-booted the **unmodified** `armemul/g1-ours.resc` through an additive
+`/tmp/g1_i5e/trace_i5e.resc` (only `$app_elf` / trace paths overridden), same
+0.15 s / 10 µs-quantum / seeded-RNG / serial-scheduling environment.
+
+**(a) No regression — the whole iteration-4 prefix is instruction-identical:**
+
+| marker | iteration 4 | iteration 5 |
+|---|---:|---:|
+| `region_init` | 80,111 | **80,111** |
+| `nrf_cc3xx_platform_init` | 83,071 | **83,071** |
+| `z_impl_k_thread_create` | 613,974 | **613,974** |
+| `main` | 4,667,207 | **4,667,207** |
+| `ipc_service_open_instance` | 4,668,358 | **4,668,358** |
+| `register_ipc_service_context` | 4,701,823 | **4,701,823** |
+| `register_ipc_service_recv_callback` ×4 | 4,701,849 | **4,701,849** |
+| `spi_master_install_ops` | 4,701,955 | **4,701,955** |
+| `button_init` | 4,701,966 | **4,701,966** |
+
+**(b) New forward progress — all of it on golden's own path:**
+
+| our instr | function | golden instr | note |
+|---:|---|---:|---|
+| 4,703,554 | `gpio_pin_set_checked` | 5,182,831 | never reached before |
+| 4,705,405 | `gpio_pin_configure` | 5,184,663 | never reached before |
+| 4,706,414 | `gpio_pin_get_checked` | 5,194,087 | never reached before |
+| 4,706,571 | `gpio_pin_get_raw_checked` | — | `button_init` now runs to completion |
+| 4,706,727 | `ext_flash_api_init` | — | |
+| **4,706,769** | **`settings_subsys_init`** | 5,244,168 | listed "NOT reached" in iterations 1–4 |
+| 4,974,017 | `flash_settings_read` | 5,503,072 | |
+| 4,979,326 | `z_tick_sleep` (`k_sleep`) | 5,568,434 | |
+| 5,058,012 | `idle` / `arch_cpu_idle` | — | the idle thread runs for the first time |
+| 5,058,113 | `nrfx_ipc_irq_handler` → `mbox_dispatcher` → `mbox_callback` | — | **the CPUNET → CPUAPP IPC interrupt is received and dispatched** |
+| 5,058,760 | `z_timer_expiration_handler` | — | timer/timeout subsystem live |
+| 5,061,160 | `z_thread_timeout` → `z_sched_wake_thread` | — | the sweep's `rodata_86661` rebind fires for real |
+
+Golden's function ordering `register_ipc_service_context → spi_master_install_ops
+→ button_init → gpio_pin_* → settings_subsys_init → flash_settings_read →
+k_sleep/z_tick_sleep` is reproduced exactly.
+
+| metric | iter 4 | **iter 5** |
+|---|---:|---:|
+| app instructions (0.15 s) | 4,709,377 | **5,067,675** |
+| app unique functions | 472 | **601** |
+| net instructions | 86,000 | **250,075** |
+| net unique functions | — | **371** |
+| app faults (`assert_post_action`/`_oops`/fatal) | yes | **none** |
+| ends by | `SYSRESETREQ`, both cores halted | **alive, idling** |
+
+`grep -iE "abort|fault|halted|SYSRESETREQ"` on the Renode log is **empty** for
+the app core — the first fault-free run of this bring-up.
+
+### 7. New first divergence (precise) + classification
+
+**Not a fault — a liveness stall.** At **4,974,017** `main → …
+init_analytics_settings → load_sys_setting → flash_settings_read` runs
+
+```c
+if (!z_device_is_ready(<mx25r6435f@0>)) { log_message(...); result = -1; }
+...
+if (retry == 10) return result;
+k_sleep(0x0ccd /* 3277 ms */); ++retry;
+```
+
+`z_device_is_ready` returns **false**, so it enters a **10 × 3.277 s** retry
+loop — 32.7 s of virtual time. Confirmed by extending the budget to 0.6 s: the
+app gains only ~17.6 k instructions per 0.2 s (pure tick/idle) and the PC stays
+at `arch_cpu_idle`. Golden enters `flash_settings_read` **once** and returns 0.
+
+**Root cause, proved from both images (and it is NOT a pin).** The
+`rodata_87bf0` rebind of §1 is applied and verified
+(`rodata_87bf0 = 0x80114 = __device_dts_ord_160`, name `"mx25r6435f@0"`), and the
+trace is byte-identical with and without it — because the *real* device also
+reports not-ready. `z_device_is_ready` checks `state->initialized &&
+state->init_res == 0`; `qspi_nor_init` runs at 617,144, gets through
+`nrfx_qspi_init` / `exit_dpd` / `qspi_rdsr`, and returns an error. Comparing the
+`qspi_nor_config` object in both images:
+
+```
+ORIGINAL (app_update.bin @0x8b66c) +0x2c: 00 00 00 02   size = 0x02000000 = 32 MiB
+                                   +0x30: c2 25 39      jedec-id  (MX25U25635F)
+OURS     (zephyr.elf  @0x89fd8)    +0x2c: 00 00 80 00   size = 0x00800000 =  8 MiB
+                                   +0x30: c2 28 17      jedec-id  (MX25R6435F)
+```
+
+`recon/board/g1_board.overlay:113-119` declares `mx25r6435f@0` with
+`jedec-id = [c2 28 17]`. The shipped firmware expects **`c2 25 39`, 32 MiB** —
+which is exactly what Renode's `models/Macronix_MX25U.cs` reports
+(`manufacturerId = 0xC2, memoryType = 0x25, memoryDensity = 0x39`, capacity
+0x2000000). So the driver's RDID check fails, `qspi_nor_init` returns `-ENODEV`,
+and every external-flash consumer (settings, analytics, quick-note) degrades to
+retry loops.
+
+**Classification: recovered-devicetree (board-evidence) error** — a *third*
+class, distinct from the code-pointer pins (iterations 3–4) and the data pins
+(this iteration). Not a recon-logic defect, not an emulator gap (the Renode model
+matches the shipped image), not a linker/relocation problem.
+
+### 8. Recommended next fix (drives iteration 6)
+
+1. **Correct the external-NOR node in `recon/board/g1_board.overlay`**: the part
+   is a **MX25U25635F** — `jedec-id = [c2 25 39]`, `size = <0x10000000>` (bits,
+   32 MiB) — not an MX25R6435F. Evidence is the shipped `qspi_nor_config` bytes
+   above; the Renode model already agrees. This should let `qspi_nor_init`
+   succeed, `flash_settings_read` return 0 on the first try, and `main()` proceed
+   past the settings/analytics load toward `spi_read_id` (golden 7,273,380) and
+   `bt_start` (golden 7,641,560). *(Deliberately not done here: it is a
+   devicetree/config change, outside this iteration's scope.)*
+2. **Then re-apply `PROVIDE(rodata_87c08 = __device_dts_ord_29)`** together with
+   work on the **CPUNET rpmsg/IPC bind**. The pin is right; today it just moves
+   the stall earlier. The app already receives the net core's IPC interrupt
+   (`nrfx_ipc_irq_handler → mbox_dispatcher → mbox_callback` @5,058,113), so the
+   remaining gap is the rpmsg endpoint handshake, not the mailbox.
+3. **Sweep for more dropped-argument call sites** (§3b). Both instances found
+   were `Ghidra (*UNRECOVERED_JUMPTABLE)()` / `extern f(void)` forms that only
+   worked by register accident in the original codegen. A grep for
+   `UNRECOVERED_JUMPTABLE` / zero-argument externs in `recon/symbolized/app`,
+   cross-checked against the original disassembly's live registers at each `bl`,
+   would clear the class before it costs another iteration. **These pass parity
+   today**, so `tools/parity` cannot see them — worth a note in AGENTS.md.
+4. Re-run the §4 bounded sweep against the *new* trace each iteration: each
+   advance exposes device pins that were previously unreachable
+   (`rodata_87bf0` was invisible until this run).
+
+Acceptance target unchanged: reach E4 completion (`bt_start` / first ADV_IND /
+display init).
+
+### Regenerate (iteration 5)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+recon/application/build_cohesive.sh app /private/tmp/g1-i5d-app
+cd /Users/freedomcoder/Projects/armemul
+~/tools/Renode.app/Contents/MacOS/renode --disable-xwt --console --plain \
+  -e 'i @/tmp/g1_i5e/trace_i5e.resc' > /tmp/g1_i5e/run.out 2>&1
+# trace_i5e.resc = $app_elf/$net_elf override + 'i @g1-ours.resc' + the iteration-1
+# tracing macro (additive; g1-ours.resc itself untouched).
+# analyze: <scratchpad>/analyze.py <app_nm.txt> <trace_app.log> <out.json>
+```
+
+Files changed: `recon/symbols/g1_app_globals.ld` (8 device-pin rebinds + 1
+documented revert + 3 table bindings), `recon/symbolized/app/g1_gpio_dt_specs.c`
+(new), `recon/symbolized/app/button_init.c`,
+`recon/symbolized/app/gpio_pin_configure_17688.c`,
+`recon/symbolized/app/gpio_pin_configure.c`,
+`recon/symbolized/app/gpio_pin_set_checked.c`,
+`recon/symbolized/app/z_tick_sleep.c`,
+`recon/symbolized/app/add_thread_to_wait_queue.c`,
+`recon/generated/app_retained_sources.cmake` (1 entry).
+No `recon/app/src` change, no `tools/` change, no `prj.conf`/Kconfig/devicetree
+change, `armemul` additive only. Nothing committed.

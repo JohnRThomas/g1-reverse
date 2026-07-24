@@ -46,9 +46,32 @@ void gpio_pin_configure_17688(const uint8_t *pin, uint32_t flags)
         assert_post_action((void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x3d1);
     }
 
-    enabled = **(volatile uint32_t ***)(dev + 4);
+    /* BRING-UP WIRING FIX (P4 iteration 5) — pointer-depth + indirect-call ABI.
+     * Verified against the ORIGINAL image bytes at 0x17688 (capstone):
+     *     17692: ldr  r0,[r0]          ; dev = spec->port
+     *     1769e: ldr  r5,[r0,#0x10]    ; r5 = dev->data          (1 load)
+     *     176a0: ldrd r7,r6,[r0,#4]    ; r7 = dev->config, r6 = dev->api
+     *     17706: ldr  r3,[r7]          ; r3 = cfg->port_pin_mask (2nd load)
+     *     1770a: tst  r4,r3
+     *     17728: ldr  r3,[r5] ... 17732: str r3,[r5]   ; data->invert (2nd load)
+     *     17734: ldr  r3,[r6] ; 1773a: bx r3   ; api->pin_configure(r0=dev,
+     *                                          ;   r1=pin, r2=combined flags)
+     * i.e. exactly Zephyr's gpio_pin_configure():
+     *   __ASSERT(cfg->port_pin_mask & BIT(pin), "Unsupported pin");
+     *   data->invert |= / &= ~BIT(pin);
+     *   return api->pin_configure(port, pin, flags);
+     * The reconstruction carried ONE POINTER LEVEL TOO MANY on `enabled` and
+     * `output` (`**(uint32_t***)` yields a uint32_t*, and the later `*enabled`
+     * made a THIRD load — our build emitted `ldr r3,[r3]; ldr r3,[r3]` where the
+     * original has a single `ldr r3,[r7]`), so with a *correct* device pointer
+     * it dereferenced the port_pin_mask VALUE (0xffffffff) instead of reading
+     * it.  It also called `(*api)()` with no arguments, which in the original
+     * codegen happened to leave r0/r1/r2 holding dev/pin/flags but in our
+     * codegen leaves r0 = the spec pointer.  Both are corrected here (build /
+     * wiring TU only; recon/app/src/FUN_00017688.c left untouched). */
+    enabled = *(volatile uint32_t **)(dev + 4);   /* &cfg->port_pin_mask */
     api = *(void (***)(void))(dev + 8);
-    output = **(volatile uint32_t ***)(dev + 16);
+    output = *(volatile uint32_t **)(dev + 16);   /* &data->invert */
     bit = 1u << line;
     if ((*enabled & bit) == 0) {
         printk((void *)((unsigned long)&rodata_99cbd) /*=0x99cbd*/, (void *)((unsigned long)&rodata_99de0) /*=0x99de0*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x3e4);
@@ -59,5 +82,5 @@ void gpio_pin_configure_17688(const uint8_t *pin, uint32_t flags)
         *output |= bit;
     else
         *output &= ~bit;
-    (*api)();
+    ((int (*)(uintptr_t, unsigned, uint32_t))(*api))(dev, line, combined);
 }

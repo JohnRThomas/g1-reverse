@@ -156,20 +156,65 @@ PROVIDE(rodata_86f57 = 0x00086f57);
 PROVIDE(rodata_86fb7 = 0x00086fb7);
 PROVIDE(rodata_877ed = 0x000877ed);
 PROVIDE(rodata_87b30 = 0x00087b30);
-PROVIDE(g_gpio1_dev = 0x00087b48);
-PROVIDE(g_gpio0_dev = 0x00087b60);
-PROVIDE(entropy_dev = 0x00087b90);
+/* DATA-POINTER REBIND (iteration 5) — `struct device` instances.
+ * These four pins were the ORIGINAL-image addresses of Zephyr device objects.
+ * Our relocated build places its own device objects in the `device_area`
+ * iterable section (`__device_dts_ord_<N>`), so the original addresses now hold
+ * unrelated rodata and every `dev->config/api/data` walk read garbage.
+ * Identification is by the device NAME STRING stored in the original object
+ * (word0 -> C string), matched against the same name in our linked ELF:
+ *   0x87b48 "gpio@842800"     -> DT gpio1        ord 22  @0x80068
+ *   0x87b60 "gpio@842500"     -> DT gpio0        ord 12  @0x80080
+ *   0x87b90 "crypto@50844000" -> DT cryptocell   ord 86  @0x800b0
+ *   0x87cc8 "watchdog"        -> npm1300 wdt     ord 148 @0x801e8
+ * (ordinals re-verified against THIS build's devicetree_generated.h + nm). */
+PROVIDE(g_gpio1_dev = __device_dts_ord_22);
+PROVIDE(g_gpio0_dev = __device_dts_ord_12);
+PROVIDE(entropy_dev = __device_dts_ord_86);
 PROVIDE(rodata_87bc0 = 0x00087bc0);
 PROVIDE(rodata_87bd8 = 0x00087bd8);
-PROVIDE(rodata_87bf0 = 0x00087bf0);
+/* DATA-POINTER REBIND (iteration 5 sweep, 2nd pass) — `struct device`
+ * "mx25r6435f@0" (external QSPI NOR; original 0x87bf0, name string 0xf5b8e).
+ * z_device_is_ready()/flash-API dispatch in ext_flash_api_init and
+ * flash_settings_read.  With the absolute pin, flash_settings_read's readiness
+ * check failed and it entered its 10 x k_sleep(3277 ms) retry loop, which is
+ * what stalled the boot after settings_subsys_init.  ord 160 in this build. */
+PROVIDE(rodata_87bf0 = __device_dts_ord_160);
 PROVIDE(rodata_87bf8 = 0x00087bf8);
+/* DATA-POINTER REBIND (iteration 5 sweep) — `struct device` "ipc0"
+ * (original 0x87c08, name string 0x9f71c = "ipc0"); passed as the instance
+ * argument of ipc_service_open_instance()/serialization_register_endpoint()
+ * in serialization_init (executed on this boot, previously reading garbage
+ * at 0xC016CBE4).  Our build: DT ipc0 = __device_dts_ord_29.
+ *
+ * REVERTED (iteration 5, measured): the rebind is CORRECT but it REGRESSES the
+ * boot, so per the no-regression gate it is left pinned for now.  With
+ * __device_dts_ord_29 the real OpenAMP/rpmsg instance is opened, main() then
+ * blocks waiting for the endpoint bind (serialization_register_endpoint slips
+ * 4,668,377 -> 4,705,055) and the app core drops into `idle`/`arch_cpu_idle`
+ * forever: it never reaches register_ipc_service_context, spi_master_install_ops,
+ * button_init or settings_subsys_init (521 unique fns / 4,738,510 instr vs
+ * 557 / 5,061,646 with the pin left absolute).  The blocker is the net-core
+ * rpmsg handshake, not this pin.  Re-apply once the CPUNET rpmsg/IPC bring-up
+ * completes the bind.  Evidence: recon/emulator/reports/our_boot_bringup.md
+ * §Iteration 5. */
 PROVIDE(rodata_87c08 = 0x00087c08);
 PROVIDE(rodata_87c20 = 0x00087c20);
-PROVIDE(rodata_87cb0 = 0x00087cb0);
-PROVIDE(g_watchdog_device = 0x00087cc8);
+/* DATA-POINTER REBIND (iteration 5 sweep) — `struct device` "regulators"
+ * (nPM1300 regulators node; original 0x87cb0, name string 0xf6160).
+ * main() does z_device_is_ready() + api dispatch on it.  ord 149. */
+PROVIDE(rodata_87cb0 = __device_dts_ord_149);
+PROVIDE(g_watchdog_device = __device_dts_ord_148);   /* "watchdog" (npm1300) — see note above */
 PROVIDE(rodata_87d40 = 0x00087d40);
-PROVIDE(rodata_87d58 = 0x00087d58);
-PROVIDE(rodata_87d70 = 0x00087d70);
+/* DATA-POINTER REBIND (iteration 5 sweep) — `struct device` "lsm6dso@6b"
+ * (original 0x87d58, name string 0xf649d); main() -> lsm6dso_init_chip(dev).
+ * ord 155. */
+PROVIDE(rodata_87d58 = __device_dts_ord_155);
+/* DATA-POINTER REBIND (iteration 5 sweep) — `struct device` "charger"
+ * (nPM1300 charger/fuel-gauge node; original 0x87d70, name string 0xf64b0);
+ * main()/low_speed_peripheral_dispatch_thread -> fuel_gauge_update(dev,0).
+ * ord 146. */
+PROVIDE(rodata_87d70 = __device_dts_ord_146);
 PROVIDE(rodata_87fc8 = 0x00087fc8);
 PROVIDE(rodata_87fec = 0x00087fec);
 PROVIDE(rodata_88058 = 0x00088058);
@@ -224,7 +269,16 @@ PROVIDE(rodata_88290 = 0x00088290);
  * literal in the settings .c sources — a canonical-recon defect, not a pin.) */
 PROVIDE(rodata_882a0 = _log_backend_list_start);
 PROVIDE(__settings_handler_static_list_start = _log_backend_list_end);
-PROVIDE(rodata_88340 = 0x00088340);
+/* DATA-TABLE RE-EMISSION (iteration 5) — `struct gpio_dt_spec` tables.
+ * 0x88340 is a 9-entry gpio_dt_spec[] read by button_init; its entries EMBED an
+ * absolute `struct device *` (0x87b60 = gpio0), so the pin cannot be rebound to
+ * any linker symbol — the table itself has to be emitted by the build so both
+ * the table address AND the device pointers inside it get relocated.  It is now
+ * defined in the wiring TU recon/symbolized/app/button_init.c; this PROVIDE
+ * keeps the recovered name bound to that definition for any other consumer.
+ * Original bytes (app_update.bin @0x88340, 9 x 8B):
+ *   port=0x87b60(gpio0) pin = 26,25,28,27,24,19,21,30,23  dt_flags = 0 */
+PROVIDE(rodata_88340 = g1_button_gpio_specs);
 PROVIDE(rodata_88388 = 0x00088388);
 PROVIDE(rodata_8839c = 0x0008839c);
 PROVIDE(rodata_883b0 = 0x000883b0);
@@ -255,8 +309,13 @@ PROVIDE(rodata_88888 = 0x00088888);
 PROVIDE(rodata_888a8 = 0x000888a8);
 PROVIDE(rodata_888e0 = 0x000888e0);
 PROVIDE(rodata_88908 = 0x00088908);
-PROVIDE(rodata_889d0 = 0x000889d0);
-PROVIDE(rodata_889e0 = 0x000889e0);
+/* Same class as rodata_88340: single `struct gpio_dt_spec` objects whose first
+ * word is the absolute gpio1 device (0x87b48).  Original bytes:
+ *   0x889d0 = { gpio1, pin  9, dt_flags 0x0011 }   (button/NFC-field line)
+ *   0x889e0 = { gpio1, pin 10, dt_flags 0x0011 }
+ * (0x0011 = GPIO_ACTIVE_LOW | GPIO_PULL_UP).  Re-emitted in button_init.c. */
+PROVIDE(rodata_889d0 = g1_gpio1_pin9_spec);
+PROVIDE(rodata_889e0 = g1_gpio1_pin10_spec);
 PROVIDE(rodata_889f8 = 0x000889f8);
 PROVIDE(rodata_88a00 = 0x00088a00);
 PROVIDE(rodata_88a0c = 0x00088a0c);

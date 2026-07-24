@@ -41,7 +41,7 @@ extern int32_t get_uptime_ms(uint32_t, int32_t, ...);
 extern int z_spin_lock_valid(uintptr_t);
 extern void z_spin_lock_set_owner(uintptr_t);
 extern int z_spin_unlock_valid(uintptr_t);
-extern void unready_thread(void);
+extern void unready_thread(void *thread);
 extern void z_add_timeout(void *, uintptr_t, uint32_t, int32_t);
 extern void arch_swap(uint32_t);
 extern void printk(uintptr_t, ...);
@@ -78,7 +78,19 @@ int32_t z_tick_sleep(uint32_t lo, int32_t hi)
     z_spin_lock_set_owner(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
     volatile uint8_t *thread = *(volatile uint8_t **)(uintptr_t)(((unsigned long)&_kernel) /*=0x2000b448*/ + 8);
     *(uint32_t *)(uintptr_t)((unsigned long)&g_pend_locked_thread_tmp) /*=0x2000b484*/ = (uint32_t)(uintptr_t)thread;
-    unready_thread();
+    /* BRING-UP WIRING FIX (P4 iteration 5) — dropped call argument.
+     * Zephyr's z_tick_sleep does `unready_thread(_current)`; the original bytes
+     * at 0x74786 load r0 = _current (`ldr r0,[r7,#8]`) immediately before
+     * `bl 0x73e88` (unready_thread).  The reconstruction declared the callee
+     * `void unready_thread(void)` and called it with no argument, which only
+     * worked because the ORIGINAL codegen happened to leave _current in r0.
+     * Our codegen loads _current into r2 and leaves r0 = &sched_spinlock, so
+     * unready_thread() ran on the spinlock object and then called
+     * update_cache(0) -- the sleeping thread stayed in the ready cache, z_swap
+     * returned to it immediately, and the following
+     * __ASSERT(!_THREAD_SUSPENDED) (sched.c:1458) tripped a kernel OOPS.
+     * Build/wiring TU only; recon/app/src is untouched. */
+    unready_thread((void *)thread);
     thread = *(volatile uint8_t * volatile *)(uintptr_t)(((unsigned long)&_kernel) /*=0x2000b448*/ + 8);
     z_add_timeout((void *)(thread + 0x18), ((unsigned long)&rodata_86661) /*=0x86661*/, lo, hi);
     thread[0xd] |= 0x10;

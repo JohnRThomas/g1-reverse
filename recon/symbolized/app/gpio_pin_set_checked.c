@@ -31,10 +31,19 @@ void gpio_pin_set_checked(int param_1, unsigned int param_2, unsigned int param_
   if ((uVar1 & **(volatile unsigned int **)(param_1 + 0x10)) != 0) {
     param_3 = param_3 ^ 1;
   }
+  /* BRING-UP WIRING FIX (P4 iteration 5) — indirect-call ABI.
+   * Original bytes at 0x17768 tail-call the port op with r0 = the port device
+   * and r1 = BIT(pin) (`lsl.w r1,r3,r1` at 0x1776c, then
+   * `ldr r3,[r0,#8]; ldr r3,[r3,#0x10 or 0xc]; pop; bx r3`), i.e. Zephyr's
+   * api->port_clear_bits_raw(port, mask) / api->port_set_bits_raw(port, mask).
+   * The `(*UNRECOVERED_JUMPTABLE)()` no-argument form only worked because the
+   * ORIGINAL codegen happened to leave r0/r1 correct; our codegen leaves r1 =
+   * the raw pin number, so the wrong pins were driven.  Arguments are now
+   * explicit.  Build/wiring TU only; recon/app/src left untouched. */
   if (param_3 == 0) {
     UNRECOVERED_JUMPTABLE = *(jfn847 *)(*(int *)(param_1 + 8) + 0x10);
   } else {
     UNRECOVERED_JUMPTABLE = *(jfn847 *)(*(int *)(param_1 + 8) + 0xc);
   }
-  (*UNRECOVERED_JUMPTABLE)();
+  ((void (*)(int, unsigned int))UNRECOVERED_JUMPTABLE)(param_1, uVar1);
 }

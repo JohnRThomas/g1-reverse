@@ -75,6 +75,10 @@ set(G1_RETAINED_SOURCES
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/touch_pmic_reset_assert.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/touch_pmic_reset_deassert.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/button_init.c"
+  # P4 iteration 5 bring-up wiring TU: emits the relocated gpio_dt_spec tables
+  # that button_init / nfc_field_event_signal_sem used to read from the
+  # unrelocated absolute pins rodata_88340 / rodata_889d0 / rodata_889e0.
+  "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/g1_gpio_dt_specs.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/read_sw0_pin.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/bt_send_enabled.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/app/notify_config_change_if_connected.c"

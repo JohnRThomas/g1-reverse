@@ -50,9 +50,17 @@ void gpio_pin_configure(const uint8_t *pin, uint32_t flags)
         assert_post_action((void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x378);
     }
 
-    enabled = **(volatile uint32_t ***)(dev + 4);
+    /* BRING-UP WIRING FIX (P4 iteration 5) — same one-level-too-deep pointer
+     * defect as gpio_pin_configure_17688 (see the note there).  Original bytes
+     * at 0x17858:  1786a: ldr r5,[r0,#0x10] ; 1786c: ldrd r6,r4,[r0,#4]
+     *              178d2: ldr r6,[r6]   ; cfg->port_pin_mask   (2 loads total)
+     *              178f8: ldr r5,[r5]   ; data->invert         (2 loads total)
+     * The indirect `configure(...)` call here already passes its arguments
+     * explicitly and matches the original tail call
+     * (r0=dev, r1=pin, r2=flags&0x1600000, r3=flags&0x6000000). */
+    enabled = *(volatile uint32_t **)(dev + 4);   /* &cfg->port_pin_mask */
     configure = *(pin_config_t *)(*(uintptr_t *)(dev + 8) + 0x18);
-    output = **(volatile uint32_t ***)(dev + 16);
+    output = *(volatile uint32_t **)(dev + 16);   /* &data->invert */
     bit = 1u << line;
     if ((*enabled & bit) == 0) {
         printk((void *)((unsigned long)&rodata_99cbd) /*=0x99cbd*/, (void *)((unsigned long)&rodata_99de0) /*=0x99de0*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x382);

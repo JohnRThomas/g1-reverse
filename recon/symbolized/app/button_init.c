@@ -41,6 +41,19 @@
  */
 /* Reconstructed button_init @ 0x17a40  (parity: 200/200 trials, PROVEN) */
 #include <stdint.h>
+
+/* BRING-UP WIRING FIX (P4 iteration 5) — the three `struct gpio_dt_spec`
+ * tables this function used to read from the unrelocated absolute pins
+ * rodata_88340 / rodata_889d0 / rodata_889e0 are now emitted by the build in
+ * recon/symbolized/app/g1_gpio_dt_specs.c (that file carries the full
+ * rationale + the original bytes).  Declared here without pulling in the
+ * Zephyr GPIO headers, whose static inlines collide with the recovered
+ * gpio_pin_configure / z_device_is_ready externs below. */
+struct g1_gpio_dt_spec { const void *port; unsigned char pin; unsigned short dt_flags; };
+extern const struct g1_gpio_dt_spec g1_button_gpio_specs[9];
+extern const struct g1_gpio_dt_spec g1_gpio1_pin9_spec;
+extern const struct g1_gpio_dt_spec g1_gpio1_pin10_spec;
+
 extern int log_message(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 extern int gpio_pin_configure_17688(unsigned int, unsigned int);
 extern void gpio_pin_set_checked(unsigned int, unsigned int, unsigned int);
@@ -62,7 +75,7 @@ unsigned char button_init(void)
     void *pcVar17;
     unsigned int gpio_specs[9][2];
     volatile const unsigned int *spec_data =
-        (volatile const unsigned int *)((unsigned long)&rodata_88340) /*=0x88340*/;
+        (volatile const unsigned int *)g1_button_gpio_specs; /* was &rodata_88340 (=0x88340) */
 
     for (unsigned int spec = 0; spec < 9; ++spec) {
         gpio_specs[spec][0] = spec_data[spec * 2];
@@ -98,7 +111,7 @@ LAB_b48_1:
             }
         }
     } else {
-        iVar6 = gpio_pin_configure_17688(((unsigned long)&rodata_889d0) /*=0x889d0*/, ((unsigned long)&rodata_10000) /*=0x10000*/);
+        iVar6 = gpio_pin_configure_17688(((unsigned long)&g1_gpio1_pin9_spec)  /*was 0x889d0*/, ((unsigned long)&rodata_10000) /*=0x10000*/);
         iVar5 = ((unsigned long)&g_button_irq_cb1) /*=0x20006a10*/;
         if (-1 < iVar6) {
             *(volatile unsigned int *)((unsigned long)&g_button_irq_cb1_handler) /*=0x20006a14*/ = ADDR_nfc_field_event_signal_sem_THUMB /*=0x1793d*/;
@@ -119,7 +132,7 @@ LAB_b48_1:
                         goto LAB_b48_1;
                     }
                 } else {
-                    gpio_pin_configure(((unsigned long)&rodata_889d0) /*=0x889d0*/, 0x5c00000);
+                    gpio_pin_configure(((unsigned long)&g1_gpio1_pin9_spec)  /*was 0x889d0*/, 0x5c00000);
                     if (1 < *piVar2) {
                         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                             log_message(((unsigned long)&rodata_99fd2) /*=0x99fd2*/, ((unsigned long)&rodata_9a126) /*=0x9a126*/, 9,0,0,0);
@@ -139,7 +152,7 @@ LAB_b48_1:
         uVar15 = ((unsigned long)&rodata_99f81) /*=0x99f81*/;
         uVar14 = ((unsigned long)&rodata_9a119) /*=0x9a119*/;
     } else {
-        iVar6 = gpio_pin_configure_17688(((unsigned long)&rodata_889e0) /*=0x889e0*/, ((unsigned long)&rodata_10000) /*=0x10000*/);
+        iVar6 = gpio_pin_configure_17688(((unsigned long)&g1_gpio1_pin10_spec) /*was 0x889e0*/, ((unsigned long)&rodata_10000) /*=0x10000*/);
         iVar5 = ((unsigned long)&g_button_irq_cb2) /*=0x20006a04*/;
         if (iVar6 < 0) goto LAB_c40;
         *(volatile unsigned int *)((unsigned long)&g_button_irq_cb2_handler) /*=0x20006a08*/ = ((unsigned long)&rodata_17819) /*=0x17819*/;
@@ -154,7 +167,7 @@ LAB_b48_1:
                 } else {
                     uVar15 = 0x3c00000;
                 }
-                gpio_pin_configure(((unsigned long)&rodata_889e0) /*=0x889e0*/, uVar15);
+                gpio_pin_configure(((unsigned long)&g1_gpio1_pin10_spec) /*was 0x889e0*/, uVar15);
                 if (1 < *piVar2) {
                     if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                         log_message(((unsigned long)&rodata_9a0c6) /*=0x9a0c6*/, ((unsigned long)&rodata_9a119) /*=0x9a119*/, 10,0,0,0);
