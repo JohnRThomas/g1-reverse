@@ -4,17 +4,20 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   signal_persist_task_event                <= FUN_0007cdf8 @ 0x0007cdf8
  * address symbols (name @ address):
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_persist_task_status_lock               @ 0x20018d9c
+ * note: 0xa2566/0xa267b are flash string pointers (log fmt/file); kept as
+ *   numeric literals because no rodata symbol is PROVIDE-backed for them.
  */
-/* Reconstructed now_has_persist_task @ 0x2be64  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed now_has_persist_task @ 0x2be64  (parity: CFG state-case proven, 4/4 cases) */
 
 extern void signal_persist_task_event(void);
-extern void log_message(void);
-extern void debug_print(void);
+extern void log_message(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
+extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned char now_has_persist_task(unsigned char *param_1, unsigned int param_2)
 {
@@ -27,10 +30,11 @@ unsigned char now_has_persist_task(unsigned char *param_1, unsigned int param_2)
     unsigned char uVar2 = 0;
     if (uVar3 > 1) {
         if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 3) {
+            unsigned int b = *(unsigned char*)(param_1 + 0xd5);
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message();
+                log_message(0xa2566U, 0xa267bU, uVar3, param_2, b);
             } else {
-                debug_print();
+                debug_print(0xa2566U, 0xa267bU, uVar3, param_2, b);
             }
         }
         uVar2 = 1;

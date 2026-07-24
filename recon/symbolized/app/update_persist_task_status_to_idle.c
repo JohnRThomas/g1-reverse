@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   display_close_screen                     <= FUN_00049858 @ 0x00049858
+ *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   signal_persist_task_event                <= FUN_0007cdf8 @ 0x0007cdf8
  * address symbols (name @ address):
  *   rodata_a25d9                             @ 0x000a25d9
@@ -14,7 +15,7 @@
  *   g_persist_task_status_lock               @ 0x20018d9c
  *   g_persist_task_status                    @ 0x20018d9d
  */
-/* Reconstructed update_persist_task_status_to_idle @ 0x2c0e8  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed update_persist_task_status_to_idle @ 0x2c0e8  (parity: CFG state-case proven, 5/5 cases) */
 
 typedef unsigned char u8;
 extern void log_message(unsigned int, unsigned int, ...);
