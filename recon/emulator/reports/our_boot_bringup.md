@@ -226,3 +226,181 @@ PYTHONSAFEPATH=1 .venv/bin/python $S/analyze_ours.py $S/net_nm.txt /tmp/g1_ours/
 driver; `analyze_ours.py` + the two `*_nm.txt` maps live in the session
 scratchpad. Nothing committed; `armemul` changes are additive only
 (`g1-ours.resc` + the in-script tail-region override).
+
+---
+
+# Iteration 2 — log-backend iterable-section rebind
+
+Applied the §6 fix, rebuilt, re-booted, re-traced. **The QSPI-XIP log fault is
+resolved.** But the re-trace also corrects iteration 1's own diagnosis: the
+`log_msg_process` abort was a *secondary* fault inside the fatal-error logging
+path. The **true first divergence is an earlier kernel OOPS** (instr ~4,702,339)
+that iteration 1's log double-fault had masked. The milestone tier is therefore
+**unchanged** from iteration 1 — this iteration removed the masking fault and
+exposed the real blocker; it did not advance the boot.
+
+## 1. Pins rebound (in `recon/symbols/g1_app_globals.ld`)
+
+Two pins — and *only* two; a full sweep (below) found no others of this class.
+Both were mislabeled by the symbolizer as generic `rodata` / settings symbols but
+are in fact the Zephyr **log-backend iterable-section boundaries**:
+
+| pin (name) | was (absolute, original-image) | now (linker section symbol) | resolves to (our build) |
+|---|---|---|---|
+| `rodata_882a0` | `0x000882a0` | `_log_backend_list_start` | **0x00080640** |
+| `__settings_handler_static_list_start` | `0x000882b0` | `_log_backend_list_end` | **0x00080650** |
+
+**Why one value serves two consumers.** `__settings_handler_static_list_start`
+is referenced with a *double meaning*: as the log-backend-list **end** (7 log
+functions) and as the settings-handler-list **start** (3 settings functions). In
+the shipped image both were `0x882b0` because the two iterable sections are
+adjacent (log-backend list ends exactly where the settings-handler list begins).
+That adjacency is **preserved by the linker in our relocated build**:
+`_log_backend_list_end == _settings_handler_static_list_start == 0x80650` (nm
+confirms). So binding the pin to `_log_backend_list_end` is simultaneously the
+correct settings-handler-list start. No source edit and no symbol split needed.
+
+## 2. Sweep of the same class (systematic, not one-off)
+
+Searched every `PROVIDE(...)` in `g1_app_globals.ld` and every reconstructed app
+source for Zephyr iterable-section boundary pins. Findings:
+
+- The **only** iterable-section boundary pins referenced by reconstructed code
+  are the two above (`__settings_handler_static_list_start` appears in 16 sites;
+  `rodata_882a0` in the 7 log functions). No other `_*_list_start/end`,
+  `__*_start/end`, `_bt_*_static_list_*`, `__device_*`, `__init_*`,
+  `_net_buf_pool_list_*`, `_static_thread_data_*`, `_shell_*` boundary pin is
+  wired into reconstructed code — those sections are iterated by **stock SDK
+  code**, which already uses the linker's real symbols.
+- The `g_*_list_head/tail/next` and `log_backend_count` pins are **RAM runtime
+  globals at `0x2000xxxx`** (linked-list heads, counters) — genuine absolute
+  pins, correctly left untouched.
+- **One residual latent defect, NOT a linker pin, left in place (out of scope):**
+  the settings-handler-list **end** is a hard-coded integer literal `0x00088328`
+  inside the reconstructed `settings_register.c` / `settings_parse_and_lookup.c`
+  sources (the original `_settings_handler_static_list_end`; ours is `0x806c8`).
+  It is in canonical recon C, not the linker script, so it is not fixed here.
+  It only bites if a settings iteration runs; the boot faults earlier (§5), so it
+  stays latent this round. Flagged for a source-level pass.
+
+## 3. Rebuild status
+
+`build_cohesive.sh app /private/tmp/g1-ours-app` → exit 0. **0 undefined, 0
+duplicate** symbols. FLASH **626384 / 982528 B = 63.75%** (unchanged — the rebind
+adds no code). Verification in the linked ELF:
+
+```
+nm:   00080640 R rodata_882a0                          (= _log_backend_list_start)
+      00080650 R __settings_handler_static_list_start  (= _log_backend_list_end = _settings_handler_static_list_start)
+log_msg_process constant pool (was 0x882a0 / 0x882b0):
+      42ab4: .word 0x00080640   ; start  (loaded into r4)
+      42ad0: .word 0x00080650   ; end    (loaded into r9)
+```
+
+## 4. Log fault resolved (confirmed on hardware-model)
+
+Re-booted via the unmodified `g1-ours.resc` / `trace_ours.resc`. `log_msg_process`
+now iterates the **correct** range `0x80640..0x80650` (one entry,
+`log_backend_uart`). Renode log for iteration 1 vs 2:
+
+```
+iter-1:  qspi: XIP read at offset 0xB168B4 while disabled; returning 0
+         cpuapp: CPU abort [PC=0x10B168B4]: Trying to execute code outside RAM or ROM   <-- GONE
+iter-2:  (no QSPI-XIP read, no 0x10B168B4 abort)
+```
+
+`log_msg_process` runs to completion; the whole fatal-error logging path now
+flushes and reaches `nrf_cc3xx_platform_abort` (instr 4,708,476 — never reached
+in iter-1), after which both cores halt (`PC does not lay in memory ...`), which
+is the platform's fatal/reset hook, not a code abort.
+
+## 5. New milestone tier + the corrected first divergence
+
+**Milestone tier: unchanged — E1–E3 complete, E4 *entered* not completed**
+(CPUNET released — `clock_app: Network core released`, net ran 85,000 instr of
+early `.data`/`.bss` init; app IPC endpoint open begun: `ipc_service_open_instance`
+@4,668,358). **NOT reached:** `settings_subsys_init`, `ipc_service_send`,
+`spi_read_id` (display), `bt_enable`, `bt_start`, first ADV_IND — same as iter-1.
+App executed **4,708,483** instr (iter-1: 4,707,995; +488 = the now-completed
+panic-log flush).
+
+**Corrected first divergence — a kernel OOPS golden never takes** (present in
+iter-1 too, at identical indices; masked there by the log double-fault):
+
+| step | our instr | function |
+|---|---|---|
+| assertion tripped | **4,702,339** | `assert_post_action` → `z_arm_svc` |
+| kernel oops | 4,702,351 | `_oops` → `z_do_kernel_oops` (4,702,353) |
+| arch fatal | 4,702,356 | `z_arm_fatal_error` → `z_fatal_error` (4,707,306) |
+| fatal logging (now completes) | 4,707,946 | `fatal_log_and_reset` → `log_panic` → `log_msg_process` (fixed) |
+| platform abort / halt | 4,708,476 | `nrf_cc3xx_platform_abort` → cores halt |
+
+**Golden comparison (the proof it is a divergence):** in the golden app trace
+(1117 functions, reaches E5), the **entire oops/fatal chain is absent** —
+`assert_post_action`, `_oops`, `z_do_kernel_oops`, `z_arm_fatal_error`, `panic`,
+`fatal_log_and_reset` are all MISSING. Golden also **never enters the runtime
+deferred-log packaging path** (`z_log_vprintk`, `z_impl_z_log_msg_runtime_vcreate`,
+`cbvprintf_package` all MISSING in golden) — whereas our build enters all three
+just before the assert. (Golden's lone `z_fatal_error`/`nrf_cc3xx_platform_abort`
+hits at first_i 367/104 are early-boot enclosing-symbol misattributions, not real
+calls.)
+
+Immediately before the assert, our trace runs (relocated addrs, our-ELF nm):
+`main → register_ipc_service_context → check_sw0_status → log_message →
+z_log_vprintk → z_impl_z_log_msg_runtime_vcreate → cbvprintf_package → …`. During
+packaging, `strlen`/`get_skip` read garbage — notably `strlen(0x29287325)`;
+`0x29287325` little-endian is the ASCII bytes `25 73 28 29 = "%s()"`, i.e. the
+packager is consuming **format-string bytes as a `%s` argument pointer** — a
+format/vararg misalignment. The §5 rpmsg/IPC reads
+(`0xC016CBE4`/`0xC016CBF0` via `ipc_service_open_instance` /
+`serialization_register_endpoint`) recur on the same early-main path.
+
+## 6. Classification of the new divergence
+
+Ranked, with confidence. **Not** a recon-logic defect (the functions are
+parity-proven) and **not** the data-section-boundary class fixed this iteration
+(that pin is now correct).
+
+1. **(highest-leverage) LOG configuration / mode mismatch — config class
+   (→ Kconfig/overlay).** Golden's app never uses the runtime deferred-vprintk
+   packaging path at all; ours does, and that is where it dies. Strongly suggests
+   our `recon/application/app/prj.conf` enables a fuller/deferred `CONFIG_LOG_*`
+   mode (or a higher default level / `LOG_PRINTK`) than the shipped image, so a
+   debug `log_message` that golden compiles out or routes to a no-op is instead
+   runtime-packaged — and the packaging is what trips. Also explains why our
+   `check_sw0_status` debug branch runs ~35k instr into `main()` while golden only
+   reaches `check_sw0_status` at steady state (12.3M).
+2. **(contributing) Absolute rodata *format-string / constant* pins not
+   relocated — same meta-class as this iteration's fix, different subset.** The
+   format string (`rodata_a18cd`) and its arg (`rodata_a19af`) are absolute pins
+   to *original* rodata; in the relocated image the packager reads mismatched
+   bytes (the `"%s()"` evidence). Unlike the log-backend boundary, these are
+   **interior rodata offsets, not section boundaries**, so they cannot be rebound
+   to a linker symbol — the structural remedy is to have the reconstructed sources
+   **emit their own string constants** (let the compiler place+relocate them)
+   rather than pin to original addresses. This is the residual DATA-pin tail.
+3. **(contributing) rpmsg/IPC endpoint unresolved-pointer cluster** — the §5
+   pointers from `pointer_rebind.md`'s residual 24 app literals (incl. the 7
+   unreconstructed IPC/rpmsg callbacks), still reading `0xC016CBE4`/`0xC016CBF0`
+   on this same path.
+
+## 7. Recommended next fix (drives iteration 3)
+
+1. **Diff the app LOG Kconfig against the shipped image** (`CONFIG_LOG_MODE_*`,
+   `CONFIG_LOG_DEFAULT_LEVEL`, `CONFIG_LOG_PRINTK`, and `g_log_level` init). This
+   is the single highest-value lead: golden never runs runtime `cbvprintf_package`.
+   Aligning the log mode likely removes the early `check_sw0_status` debug-log path
+   (and the packaging assert) outright.
+2. If the log statement is legitimately present, address the **absolute rodata
+   format-string pins** structurally (emit strings from the reconstructed source).
+3. **Sweep the §5 rpmsg/IPC endpoint pointer cluster** per `pointer_rebind.md`.
+4. Also carry the latent **settings-list-end `0x88328` literal** (§2) into the
+   source-level rodata-pin pass.
+
+Acceptance target unchanged: reach E4 (`bt_start` / first ADV_IND / display init).
+
+## Regenerate (iteration 2)
+
+Same commands as above; the app ELF is rebuilt in place at
+`/private/tmp/g1-ours-app`. The two rebound pins are the only source change
+(`recon/symbols/g1_app_globals.ld`). Nothing committed.

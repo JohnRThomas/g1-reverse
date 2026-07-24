@@ -174,8 +174,20 @@ PROVIDE(rodata_88270 = 0x00088270);
 PROVIDE(rodata_88278 = 0x00088278);
 PROVIDE(rodata_88288 = 0x00088288);
 PROVIDE(rodata_88290 = 0x00088290);
-PROVIDE(rodata_882a0 = 0x000882a0);
-PROVIDE(__settings_handler_static_list_start = 0x000882b0);
+/* Iter-2 rebind (boot bring-up): these two pins are NOT generic rodata — they
+ * are the Zephyr log-backend iterable-section boundaries, mislabeled by the
+ * symbolizer as `rodata_882a0` / `__settings_handler_static_list_start` because
+ * in the ORIGINAL image the log-backend list ended (0x882b0) exactly where the
+ * settings-handler list began (adjacent sections). In the relocated build those
+ * sections MOVE, so the 0x882a0/0x882b0 absolute pins point into foreign rodata
+ * and log_msg_process walked garbage -> QSPI-XIP abort. Bind to the linker's own
+ * boundary symbols instead. In this build _log_backend_list_end (0x80650) ==
+ * _settings_handler_static_list_start (0x80650), so this single value is also
+ * correct for the settings functions that read `__settings_handler_static_list_start`
+ * as their list start. (The settings-list END is a separate hardcoded 0x88328
+ * literal in the settings .c sources — a canonical-recon defect, not a pin.) */
+PROVIDE(rodata_882a0 = _log_backend_list_start);
+PROVIDE(__settings_handler_static_list_start = _log_backend_list_end);
 PROVIDE(rodata_88340 = 0x00088340);
 PROVIDE(rodata_88388 = 0x00088388);
 PROVIDE(rodata_8839c = 0x0008839c);
