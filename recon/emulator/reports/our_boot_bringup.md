@@ -3735,3 +3735,351 @@ generator only), `recon/ownership/library_displacement_report.md`.
 The app scratchpad catalog gained one record (backed up as
 `app_funcs.json.i10bak` / `classified.json.i10bak`). No `tools/` change, no
 Kconfig / `prj.conf` / devicetree change, `armemul` untouched. Nothing committed.
+
+---
+
+## Iteration 11 (structural RAM-pin pass)
+
+**Headline.** The absolute-RAM-pin defect class is **closed structurally, in one
+pass**. Every recovered RAM pin that lies inside the linked RAM region
+(0x20002000 .. 0x20070000) now resolves *relative to a real linked object* —
+680 of them to a single 0x27000-byte arena that reproduces the original
+relative layout, 24 to the SDK objects they are genuinely interior views of
+(`bt_dev`, `fdtable`), 1 to a newly emitted initialised object. Only 22 pins
+remain literal, and all 22 are physically outside the linked RAM region, so no
+linked object can ever occupy them. A mechanical checker
+(`recon/emulator/scripts/check_ram_pin_collisions.py`) proves the property on
+the linked ELF: **0 raw literal pins inside a live object, 0 rebinds escaping
+their owner**. Run against the iteration-10 image with the pre-pass linker
+scripts the same checker reports **472 colliding pins, 117 of them inside a
+thread stack** (that counts the 649 pins that actually survive as absolute
+symbols; scoring all 721 ledger literals against the same object map — including
+the 72 whose names a real object strongly defines, so their PROVIDE is inert —
+gives **545 / 163**, which is the figure iteration 10 §A.5 quoted).
+
+The boot improves on every axis and **regresses on none**:
+
+| metric | iter 10 baseline `/private/tmp/g1-b3f-app` | **iter 11 `/private/tmp/g1-i11c-app`** |
+|---|---:|---:|
+| app instr @0.15 s | 5,360,315 | **6,011,048** |
+| app unique fns @0.15 s | 759 | **768** (3 lost, 12 gained) |
+| app resets @0.15 s | 0 | **0** |
+| app @0.6 s | 5,715,450 / 781, **fatal reset @0.2498 s** | **6,104,274 / 808, no fault, no reset** |
+| app @2.0 s | (not run; baseline resets first) | **6,239,878 / 816, no fault, no reset** |
+| net @0.15 s | 290,688 / 432 | **290,688 / 432** (identical) |
+| net @0.6 s / @2.0 s | 290,688 / 432 | **302,962 / 452** and **369,627 / 465** |
+| `radio TransmittedFrames` | 0 | 0 |
+| app FLASH | 626,444 B (63.76 %) | **626,452 B (63.76 %)**, +8 B |
+| app RAM | 84,477 B (18.75 %) | **244,229 B (54.21 %)**, +159,752 B |
+
+The function set at 0.6 s is a **strict superset** of the baseline's non-fault
+set: 47 gained, and the only 20 "lost" are the fault/panic path itself
+(`z_arm_usage_fault`, `z_arm_fault`, `z_fatal_error`, `panic`, `sys_arch_reboot`,
+`z_impl_log_panic`, …) — gone because the fault is gone.
+
+**E4 is still NOT complete.** `spi_read_id`, `panel_on`, `spi_master_init`,
+`bt_enable`, `bt_start`, `master_display_thread` and `display_thread_handler`
+are all absent from the 2.0 s trace, and `radio TransmittedFrames` is **0**. No
+SPI traffic reached the JBD panel model, so no comparison against
+`display_sensor_oracle.json` was possible. The reason is now **fully diagnosed
+and is a different defect class** — see §11.6.
+
+Both links: `nm -u` = **0** undefined, **0** duplicate globals. No
+`--allow-multiple-definition`, no weak symbols, no numeric-root hacks, no
+`tools/` change, no Kconfig / `prj.conf` / devicetree change, no canonical
+`recon/app/src` body changed; `armemul` untouched. Nothing committed.
+Net core not rebuilt (`/private/tmp/g1-i9c-net`, unchanged since iteration 9).
+
+### 11.1 Why a structural pass, and what "structural" means here
+
+Iteration 10 §A.5 measured the failure mode of first-divergence chasing: three
+*individually correct* fixes each shifted RAM and pushed a *different* pin into
+a *different* live object (759 → 603 → 331 unique functions). The class cannot
+be retired pin by pin because every fix perturbs the layout the remaining pins
+depend on.
+
+The linked RAM region of this build is **0x20002000 .. 0x20070000**
+(`zephyr.map`, "Memory region RAM"), and the highest recovered RAM pin below
+its end is `g_display_thread_stack_buf` at **0x20028e68**. So one object of
+**0x27000 bytes** covers every in-region pin:
+
+```c
+unsigned char g1_ram_arena[0x27000] __aligned(32) __attribute__((used, retain));
+```
+
+and each pin becomes
+
+```
+PROVIDE(name = g1_ram_arena + (original_address - 0x20002000));
+```
+
+Three properties follow, and they are the whole point:
+
+1. **No recovered global can overlap a Zephyr/driver object ever again** — the
+   entire recovered RAM image lives inside one linker-allocated object.
+2. **All original relative distances are preserved exactly.** Interior views
+   (pool slot N, struct field +off) and multi-object sweeps such as
+   `msg_queue_init`'s 20 × 436-byte memset stay inside the arena by
+   construction. `g_ble_work_thread_stack` (original 0x2001e968, 0x3000 B) and
+   its top pin 0x20021968 keep their exact original 12 KiB separation.
+3. **A later RAM shift is harmless** — the pins move *with* the arena, so the
+   next iteration's changes cannot resurrect the class.
+
+Sizing is deliberately the **full original span**, not a per-object estimate:
+over-sizing costs dead `.bss`, under-sizing costs a corruption. Arena base
+0x200030a0 ≡ 0 (mod 32) and the origin 0x20002000 ≡ 0 (mod 32), so every
+original offset keeps its alignment up to 32 bytes.
+
+`used, retain` is mandatory — iteration 10 measured a sibling block being
+silently discarded by `--gc-sections`, after which every `PROVIDE(x = block +
+off)` resolved against a base of 0.
+
+### 11.2 Pin counts by class
+
+The ledger is 721 literal `PROVIDE(name = 0x2000….)` records in
+`recon/symbols/g1_app_globals.ld` plus 6 **strong** assignments in
+`recon/symbols/g1_app_sdk_state.ld` (4 settings-subsystem, 2 fdtable) = **727
+records**, of which the strong settings four are also RAM pins.
+
+| class | count | treatment | evidence |
+|---|---:|---|---|
+| **(a) recovered-owned RAM** | **680** | `g1_ram_arena + off` | the address is not inside any SDK object at its *original* base; the shipped `.data` ends at 0x20003e29 so all pins ≥ that were `.bss` in the original too and zeroed storage reproduces them exactly |
+| **(a′) recovered-owned, needs an initialiser** | **1** | emitted object `g1_st25dv_i2c_dev` | §11.3 |
+| **(b) interior of a live SDK object** | **24** | `bt_dev + off` (20), `fdtable` / `fdtable + 8` (4) | §11.4 |
+| **(d) outside the linked RAM region** | **22** | left literal | 0x20000000, 0x20000800 (below region start); 0x20070000 `__kernel_ram_end`; 0x2007fc00..0x2007fc70 (18 `g_all_static_info` / `g_dashboard_startup_mode_info_*` words, at/above region end) — no linked object can occupy them |
+
+Objects **emitted** this iteration: `g1_ram_arena` (0x27000 B) and
+`g1_st25dv_i2c_dev` (8 B). Objects **bound to an SDK owner**: 24 pins onto
+`bt_dev` and `fdtable`. Objects **left literal**: 22.
+
+The four previously emitted relocation objects (`g1_message_pool`,
+`g1_app_event_processor_work`, the group-1 log-stack scalars, the IPC
+serialization objects) were **left as they are** — they already carry
+initialisers or proven storage, and minimum churn keeps the bisect honest.
+Their arena slots are simply unused.
+
+Note on the 682 → 680 correction: `g_fdtable_entries` / `g_fdtable_refcount_field`
+were first rewritten to the arena by the bulk pass and then re-bound to
+`fdtable` / `fdtable + 8`, because `g1_app_sdk_state.ld` already owns them with
+a *strong* assignment that always wins over a PROVIDE. The checker caught the
+inconsistency (it flagged the pin as "bound but escaping its owner"), which is
+exactly what that check is for.
+
+### 11.3 Class (a′) — the ST25DV `i2c_dt_spec`, the one pin that needed contents
+
+Iteration 10 §A.5 root-caused the then-first divergence to
+`g_st25dv_i2c_dev` (original 0x200023cc) reading a NULL bus pointer. It is
+`.data` in the shipped image: load image at flash `0xf6d64 + 0x23cc = 0xf9130`
+reads `{ .bus = 0x00087c68, .addr = 0x53 }`, and 0x87c68's name string is
+`"i2c@9000"` with config word 0 = 0x50009000, i.e. **i2c1** — matching
+`armemul/platforms/nrf5340.repl`, where `st25dv` sits on `twim1` at 0x53. No
+recovered function writes word 0, so a zeroed arena slot would reproduce the
+same fault. It is therefore emitted with its real initialiser:
+
+```c
+struct i2c_dt_spec g1_st25dv_i2c_dev __attribute__((used, retain)) = {
+	.bus = DEVICE_DT_GET(DT_NODELABEL(i2c1)), .addr = 0x53,
+};
+```
+
+Its two siblings from iteration 10 (`g_st25dv_i2c_cfg` 0x20007a48,
+`g_eeprom_comm_mutex` 0x20007a60) and `g_st25dv_dev` (0x20007a44) are all above
+the shipped `.data` end, i.e. `.bss` in the original, so the zeroed arena is
+the faithful reproduction and no emission is needed. Iteration 10 had to emit
+them only because they collided with `cancel` / `sc_restore_params` /
+`smp_work_queue_stack`; the arena removes the collision instead.
+
+**Measured effect:** the ST25DV/NFC path runs for the first time
+(`ipc_transport_ops_dispatch`, `st25dv_ipc_request`,
+`st25dv_ipc_request_chip_ids`, `st25dv_ipc_send_byte`,
+`st25dv_mailbox_send_id_pair`, `st25dv_write_control_and_ack`,
+`nfc_ipc_send_op20`, `adc_nfc_init/run`), and iteration 10's §A.7 usage fault
+at `ipc_transport_ops_dispatch+0xc` is gone.
+
+### 11.4 Class (b) — the pins that are genuinely SDK interior views
+
+`bt_dev`'s **original** base is 0x20002000 with size 0x170 (proven in
+`recon/wiring/GAPS.md`: `rx_queue` is `bt_dev + 0x144`, the receive work is at
+0x20002980, the identity table and controller state span the block). Every pin
+in [0x20002000, 0x20002170) is therefore a `bt_dev` field, and the naming is
+independently coherent — `g_ble_dev_state` (+0), `g_bt_le_legacy_adv` (+0x18),
+`g_ble_dev_ncmd_sem` (+0xd4), `g_ble_dev_le_pkts_sem` (+0x108),
+`g_bt_hci_recv_fifo` (+0x144, = `rx_queue`), `hci_cmd_pool` (+0x14c),
+`g_bt_dev_name` (+0x16c). All 20 are now `PROVIDE(name = bt_dev + off)`, which
+is *identical to today's behaviour* while `bt_dev` happens to sit at
+0x20002000 and *strictly better* the moment it moves. `fdtable`'s two pins keep
+the strong ownership `g1_app_sdk_state.ld` already established.
+
+**Class (b) is deliberately small, and this is a limitation, not an oversight.**
+A linker script can only reference **global** symbols, and almost every other
+candidate SDK owner in this build is a file-local static: `m_data` (nrfx ADC,
+`d`), `m_cb` (7 distinct nrfx statics, `b`/`d`), `db_hash`, `gatt_sc`,
+`gatt_delayed_store`, `impure_data`, `__global_locale`. Three pins with
+unambiguous ADC naming (`adc_context` @ m_data+0x20, `g_adc_context_lock`
+@ +0x60, `g_adc_saadc_ctrl_mutex` @ +0x78) and four with unambiguous nrfx-GPIOTE
+naming (`g_gpiote_cb` at the proven original `m_cb` base 0x20002bc0,
+`g_gpiote_lock`/`g_nrfx_gpiote_channels_mask` at +0x70/+0x74) are almost
+certainly class (b) but **cannot be bound without globalising the static**
+(the `--globalize-symbol=fdtable` precedent in `app/CMakeLists.txt`). They went
+to the arena, which means the recovered accessor now uses private storage
+instead of aliasing the driver's. Measured: no regression, and
+`adc_nrfx_channel_setup` / `adc_nrfx_read` newly run. Recorded here as the one
+known semantic risk of this pass.
+
+### 11.5 The residual-collision check (the real deliverable)
+
+`recon/emulator/scripts/check_ram_pin_collisions.py` reads **both** the linker
+scripts (to know whether a pin is a raw hex literal or bound relative to a
+symbol, and that a strong assignment beats a PROVIDE) and the **linked ELF**
+(final pin values + every object's extent), then reports raw literals that land
+inside a live object, raw literals outside the region, and rebinds whose offset
+escapes the object they were bound to. Exit status is non-zero if either defect
+exists.
+
+On the iteration-10 image (same script, `--ld` pointed at the pre-pass scripts):
+`raw_literal_pins_inside_a_live_object = 472` (117 of them inside a thread
+stack), `raw_literal_pins_inside_ram_region_but_free = 152`,
+`bound_pins_ok = 4`, exit status 1. Top owners `g1_message_pool` (74 foreign
+pins inside the object iteration 10 emitted), `bt_lw_stack_area` (50),
+`kheap__system_heap` (41), `z_main_stack` (30), `fdtable` (21), `key_pool` (21),
+`bt_dev` (18), `smp_work_queue_stack` (17), `buf32` (15), `tx_meta_data` (15),
+`num_complete_pool` (14), `subscriptions` (13), `z_interrupt_stacks` (10),
+`z_idle_stacks` (10).
+
+On the final image:
+
+```
+$ PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py \
+      /private/tmp/g1-i11c-app/zephyr/zephyr.elf
+elf                                           /private/tmp/g1-i11c-app/zephyr/zephyr.elf
+ram_region                                    ['0x20002000', '0x20070000']
+abs_ram_symbols                               649
+raw_literal_pins_inside_a_live_object         0
+raw_literal_pins_inside_ram_region_but_free   0
+raw_literal_pins_outside_ram_region           20
+bound_pins_ok                                 626
+bound_pins_escaping_their_owner               0
+abs_symbols_not_in_linker_scripts             3
+unknown_inside_a_live_object                  0
+EXIT=0
+```
+
+(649 absolute SRAM symbols = 626 bound + 20 literal-outside-region + 3 that are
+not pins at all: `CONFIG_SRAM_BASE_ADDRESS`, `CONFIG_PM_SRAM_BASE`,
+`__kernel_ram_end`. The ledger has 721 literal pins but only 649 survive as
+absolute symbols — the other 72 names are strongly defined by a real object, so
+their PROVIDE is inert.)
+
+### 11.6 New first divergence — **the boot no longer faults; it under-runs**
+
+There is **no fault and no reset anywhere in 2.0 s of virtual time**. `main`
+completes its init, hands over to `low_speed_peripheral_dispatch_thread`, and
+the periodic loop runs steadily (`periodic_check_run`, `check_work_mode`,
+`check_sw0_status`, `check_disp_onboarding`, `try_enter_low_power_mode`,
+`watchdog_feed_retry` → `wdt_npm1300_feed`, `refresh_box_field_timer`,
+`process_box_event`, the ST25DV/NFC chain, the nPM1300 fuel gauge). Unique
+functions plateau at **816** and app instructions at **6,239,878**; the golden
+trace needs **7,273,380** to reach `spi_read_id` and **7,641,560** to reach
+`bt_start`.
+
+The divergence is therefore a **liveness** one: *every application worker
+thread is created and none of them ever executes.* `ble_work_thread`,
+`master_display_thread`, `ancs_main`, `imu_fusion_thread`,
+`display_thread_handler`, `run_main_dispatch_thread` are all absent from the
+2.0 s trace, while the Zephyr work-queue threads (whose `k_work_queue_start` is
+displaced to stock) run normally.
+
+**Root cause, proven against the raw disassembly (this is a NEW, different
+defect class — the "lost information at a call" family, and it is the gate to
+E4).** In Zephyr 3.4.99 with `CONFIG_TIMEOUT_64BIT`, `k_thread_create`'s last
+parameter is a **64-bit `k_timeout_t delay`**, so AAPCS places it 8-byte
+aligned at `sp+0x18` with `sp+0x14` as padding. Every original call site does
+exactly that:
+
+```
+init_ble_work_thread     0x2201c   sub sp,#0x24 ; movs r2,#0; movs r3,#0; strd r2,r3,[sp,#0x18]
+spawn_display_thread     0x49638   sub sp,#0x20 ; movs r2,#0; movs r3,#0; strd r2,r3,[sp,#0x18]
+spawn_proxy_thread       0x47ad0   sub sp,#0x24 ; movs r2,#0; movs r3,#0; strd r2,r3,[sp,#0x18]
+spawn_aging_mode_aux…    0x3304c   sub sp,#0x24 ; movs r2,#0; movs r3,#0; strd r2,r3,[sp,#0x18]
+start_ancs_work_thread   0x198cc   sub sp,#0x20 ; movs r2,#0; movs r3,#0; strd r2,r3,[sp,#0x18]
+start_aging_mode_thread  0x32fe8   sub sp,#0x20 ; movs r0,#0; movs r1,#0; strd r0,r1,[sp,#0x18]
+spawn_flash_ops_…        0x23a54   sub sp,#0x24 ; movs r6,#0; movs r7,#0; strd r6,r7,[sp,#0x18] (x2)
+k_thread_create veneer   0x7cb66   ldrd r4,r5,[sp,#0x38] ; strd r4,r5,[sp,#0x18]   (forwards its own delay)
+```
+
+Every corresponding reconstruction declares `z_impl_k_thread_create` with **8 or
+9 `int` parameters** and passes at most `…, prio, options` — the 64-bit `delay`
+is never passed, and the compiled frames are 0x1c bytes, so
+`z_impl_k_thread_create` reads its `delay` from **beyond the caller's stack
+frame**. A garbage (large/positive) delay schedules the thread's start
+arbitrarily far in the future, which is exactly the observed symptom: created,
+never run, no fault. Verified in the linked image, e.g. `init_ble_work_thread`
+compiles to `sub sp,#28` with writes only at `sp+0,4,8,0xc,0x10`.
+
+This is the documented harness blind spot again (`tools/parity` compares
+*non-stack* writes, so neither `emu.compare` nor `cfg_verify` can see a missing
+outgoing stack argument), and all of these bodies are marked "300/300 PROVEN".
+
+**It was NOT fixed in this iteration** — it touches 8 canonical `recon/app/src`
+bodies plus the `run_main_dispatch_thread` / `main_dispatch_thread_tick`
+argument-order question (that veneer's reconstruction is `z_impl_k_thread_create()`
+with *no* arguments, and its caller's `CREATE_DISPATCH_THREAD` macro passes
+`priority` where `p2` belongs), which is a scope of its own. It is iteration
+12 Step A, and the disassembly above is the whole evidence needed.
+
+**Secondary, already fixed on the way:** at 0.2847 s the first build of this
+iteration (`/private/tmp/g1-i11a-app`, arena only) usage-faulted "Illegal use of
+the EPSR" at `adc_nfc_run+0x2a` (`blx r3`, r3 = 0), because `rodata_87c20` was
+still a literal flash pin. Decoded from the shipped image it is the
+`struct device` **"adc@e000"** (name 0xf5648; api 0x8b58c =
+`{channel_setup 0x5f655, read 0x5f761, read_async 0, ref_internal 0x258 = 600 mV}`),
+i.e. the SAADC, so it is rebound to `__device_dts_ord_88` — the same
+data-pointer class as iterations 5/9. That is the difference between
+`/private/tmp/g1-i11a-app` (804 fns, reset @0.2847 s) and the final
+`/private/tmp/g1-i11c-app` (808 fns @0.6 s, 816 @2.0 s, no reset).
+
+### 11.7 Bisect ledger (every build and boot actually run)
+
+| build | change | 0.15 s traced | 0.6 s traced |
+|---|---|---|---|
+| `/private/tmp/g1-b3f-app` | iteration 10 final (baseline) | 5,360,315 / 759 / 0 resets | 5,715,450 / 781, reset @0.2498 s |
+| `/private/tmp/g1-i11a-app` | + arena, + bt_dev/fdtable binds, + `g1_st25dv_i2c_dev` | 6,011,032 / **767** / 0 resets | 6,400,673 / 804, reset @0.2847 s (`adc_nfc_run+0x2a`) |
+| `/private/tmp/g1-i11c-app` | + `rodata_87c20 = __device_dts_ord_88` | 6,011,048 / **768** / 0 resets | **6,104,274 / 808, no fault, no reset**; @2.0 s **6,239,878 / 816** |
+
+0.15 s function-set diff vs baseline: **3 lost** (`encode_uint`,
+`extract_decimal`, `outs` — printf helpers, a consequence of different log
+content), **12 gained** (`FUN_0007c86c`, `adc_nfc_init`,
+`adc_nrfx_channel_setup`, `clear_pending_state_flags`,
+`ipc_ept_op_b_locked_retry`, `ipc_send_len_prefixed_packet`,
+`ipc_transport_ops_dispatch`, `json_arr_encode`, `nfc_ipc_send_op20`,
+`sleep_fixed_33_ticks`, `st25dv_ipc_request`, `st25dv_ipc_request_chip_ids`).
+Net core identical at 0.15 s (290,688 / 432) and ahead at 0.6 s / 2.0 s.
+
+No subset had to be reverted: both steps improved monotonically.
+
+### Regenerate (iteration 11)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+recon/application/build_cohesive.sh app /private/tmp/g1-i11c-app
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py \
+    /private/tmp/g1-i11c-app/zephyr/zephyr.elf          # exit 0
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check
+# net unchanged since iteration 9: /private/tmp/g1-i9c-net
+cd /Users/freedomcoder/Projects/armemul
+~/tools/Renode.app/Contents/MacOS/renode --disable-xwt --console --plain \
+  -e 'i @/tmp/g1_i11c/trace.resc' > /tmp/g1_i11c/run.out 2>&1     # 0.15 s
+# 0.6 s: /tmp/g1_i11d/trace.resc   2.0 s: /tmp/g1_i11e/trace.resc
+# analyze: <scratchpad>/analyze.py <nm.txt> <trace.log> <out.json>
+```
+
+Files changed:
+`recon/application/app/src/g1_app_ram_relocs.c` (group 4: `g1_ram_arena`;
+group 4b: `g1_st25dv_i2c_dev`),
+`recon/symbols/g1_app_globals.ld` (680 arena rebinds, 20 `bt_dev` binds,
+2 `fdtable` binds, 1 emitted-object bind, 1 `rodata_87c20` device rebind),
+`recon/symbols/g1_app_sdk_state.ld` (the 4 strong settings assignments moved
+onto the arena), new `recon/emulator/scripts/check_ram_pin_collisions.py`.
+**No canonical `recon/app/src` body changed**, no `tools/` change, no
+Kconfig / `prj.conf` / devicetree change, `armemul` untouched (only extra
+`.resc` files under `/tmp`). Nothing committed.

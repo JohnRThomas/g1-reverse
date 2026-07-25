@@ -3,10 +3,10 @@
  * the shipped firmware's private RAM identities. Generic reconstruction names
  * remain non-owning PROVIDE aliases in g1_app_globals.ld.
  */
-settings_lock = 0x20003868;
-settings_save_dst = 0x2000a100;
-settings_load_srcs = 0x2000a104;
-settings_handlers = 0x2000a10c;
+settings_lock = g1_ram_arena + 0x1868;
+settings_save_dst = g1_ram_arena + 0x8100;
+settings_load_srcs = g1_ram_arena + 0x8104;
+settings_handlers = g1_ram_arena + 0x810c;
 
 /* The pinned fdtable.c owns one initialized 16-entry array.  The cohesive
  * build globalizes only this otherwise-local ELF symbol after archiving, so

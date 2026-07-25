@@ -48,6 +48,7 @@
 #include <zephyr/kernel.h>
 #include <zephyr/device.h>
 #include <zephyr/devicetree.h>
+#include <zephyr/drivers/i2c.h>
 
 /* --- group 1: pins that overlapped `logging_stack` -------------------- */
 volatile unsigned int g1_bonded_count;
@@ -140,3 +141,75 @@ volatile unsigned int g1_notify_pending_flags_bitmap[4];
  * --gc-sections, after which every PROVIDE resolved against a base of 0. */
 unsigned char g1_message_pool[20 * 436] __aligned(4)
 	__attribute__((used, retain));
+
+/* --- group 4 (P4 iteration 11): the STRUCTURAL RAM-pin arena ------------
+ *
+ * Iterations 6-10 retired absolute-RAM-pin collisions ONE AT A TIME.  That
+ * does not converge: every fix changes RAM sizes, the linker re-lays out its
+ * own objects, and a DIFFERENT pin moves into a live object.  Iteration 10
+ * measured the loop twice in a row (759 -> 603 -> 331 unique functions for
+ * three individually-correct fixes) and quantified the residue: 476 of the
+ * 649 still-absolute SRAM pins landed inside a linked object, 117 of them
+ * inside a thread stack.
+ *
+ * This object closes the class structurally.  The LINKED RAM region of this
+ * build is 0x20002000 .. 0x20070000 (zephyr.map "Memory region RAM"), and
+ * every recovered RAM pin below 0x20029000 is rebound in
+ * recon/symbols/g1_app_globals.ld to
+ *
+ *     PROVIDE(name = g1_ram_arena + (original_address - 0x20002000))
+ *
+ * so that
+ *   - no recovered global can overlap a Zephyr/driver object ever again: the
+ *     whole recovered RAM image lives inside ONE linker-allocated object;
+ *   - all ORIGINAL RELATIVE DISTANCES are preserved exactly, so interior
+ *     views (pool slot N, struct field +off) and multi-object memsets such as
+ *     msg_queue_init's 20 x 436 sweep stay inside the arena;
+ *   - a later RAM shift is harmless: the pins move WITH the arena.
+ *
+ * Extent: the highest recovered RAM pin below the region end is
+ * g_display_thread_stack_buf at 0x20028e68, so the arena covers
+ * 0x20002000 .. 0x20029000.  Sizing is deliberately the FULL original span
+ * rather than a per-object estimate (over-sizing is the safe direction: a
+ * hole is dead .bss, an under-size is a corruption).  Alignment 32 with an
+ * arena base congruent to 0 mod 32 preserves every original offset's
+ * alignment up to 32 bytes.
+ *
+ * Original .bss/.data note: the shipped image's .data ends at 0x20003e29, so
+ * all pins at or above that are .bss in the original too and zero-initialised
+ * storage reproduces them exactly.  The few pins BELOW it that carry a
+ * non-trivial initialiser the recovered code never writes are emitted as
+ * their own objects (see g1_st25dv_i2c_dev below) and bound out of the arena;
+ * their arena slot is simply left unused.
+ *
+ * Pins OUTSIDE the linked RAM region are intentionally left literal: 0x20000000
+ * and 0x20000800 are below the region start and 0x20070000 / 0x2007fc00..
+ * 0x2007fc70 are at or above its end, so no linked object can ever occupy
+ * them.
+ *
+ * `used, retain`: iteration 10 measured that PROVIDE(x = block + off) does NOT
+ * root `block` against --gc-sections; the block was discarded and every pin
+ * resolved against a base of 0.
+ */
+#define G1_RAM_ARENA_ORIGIN 0x20002000u
+#define G1_RAM_ARENA_LIMIT  0x20029000u
+
+unsigned char g1_ram_arena[G1_RAM_ARENA_LIMIT - G1_RAM_ARENA_ORIGIN]
+	__aligned(32) __attribute__((used, retain));
+
+/* --- group 4b: the ST25DV i2c_dt_spec (original 0x200023cc) --------------
+ *
+ * `g_st25dv_i2c_dev` is `.data` in the shipped image.  Its load image is at
+ * flash 0xf6d64 + 0x23cc = 0xf9130 and reads { .bus = 0x00087c68,
+ * .addr = 0x53 }; the name string at 0x00087c68 is "i2c@9000" and its config
+ * word 0 is 0x50009000, i.e. the bus is i2c1 (which also matches
+ * armemul/platforms/nrf5340.repl, where st25dv sits on twim1 at 0x53).
+ * No recovered function ever writes word 0, so the pointer must come from the
+ * initialiser -- a zeroed arena slot would reproduce iteration 10's
+ * measured usage fault at ipc_transport_ops_dispatch+0xc (bx ip, ip = 0),
+ * which is exactly the current first divergence (iteration 10 §A.5/§A.7).
+ */
+struct i2c_dt_spec g1_st25dv_i2c_dev __attribute__((used, retain)) = {
+	.bus = DEVICE_DT_GET(DT_NODELABEL(i2c1)),
+	.addr = 0x53,
+};
