@@ -23,7 +23,18 @@ extern int FUN_0102d558(int);
 extern int ipc_service_register_endpoint(int, int, int);
 extern void printk(int, ...);
 
+/* P4 iteration 19: 0x2100095c is hci_rpmsg.c's controller->host k_fifo
+ * (the argument bt_enable_raw stores in `raw_rx`).  In the cohesive link it
+ * is 0x14 bytes into the stock hci_raw.c `hci_cmd_pool`; real storage is
+ * g1_hci_rx_queue in recon/application/net/src/g1_product_endpoints.c.
+ * See recon/net/src/FUN_0102acf4.c for the measured consequence. */
+#ifdef G1_COHESIVE_BUILD
+#include <zephyr/kernel.h>
+extern struct k_fifo g1_hci_rx_queue;
+#define C_0102b058 ((int)(uintptr_t)&g1_hci_rx_queue) /*=0x2100095c*/
+#else
 #define C_0102b058 0x2100095c
+#endif
 #define C_0102b05c ((unsigned long)&rodata_102b5ad) /*=0x102b5ad*/
 #define C_0102b060 0x21006cc0
 #define C_0102b064 0x21001da0

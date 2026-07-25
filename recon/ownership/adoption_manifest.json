@@ -39352,15 +39352,15 @@
   },
   "net": {
    "summary": {
-    "entries": 617,
-    "exclude_reconstruction": 250,
-    "retain_reconstruction": 367,
+    "entries": 619,
+    "exclude_reconstruction": 253,
+    "retain_reconstruction": 366,
     "by_kind": {
-     "source": 130,
+     "source": 133,
      "archive": 297,
      "static_helper": 61,
      "table": 0,
-     "glue": 129
+     "glue": 128
     }
    },
    "entries": [
@@ -45291,6 +45291,47 @@
        "ratio": 0.957,
        "threshold": 0.9,
        "provenance": ".text          0x00000000010197d8       0x34 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01021a38",
+     "raw_symbol": "FUN_01021a38",
+     "current_symbol": "FUN_01021a38",
+     "kind": "archive",
+     "component": "mpsl",
+     "upstream_symbol": "mpsl_timeslot_session_open",
+     "upstream_unit": "/Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Public documented MPSL API identity, established by three independent lines of evidence from the shipped image (call-site ABI, return-code set, and the documented low-frequency-clock wait).  The reconstruction reads MPSL's private clock state through original-image absolute RAM addresses that this build never initialises, because the genuine libmpsl.a owns that state at its own layout; the public symbol is a safe link alias (unlike the obfuscated archive spellings recorded for the private MPSL/SDC bodies).",
+     "evidence": [
+      {
+       "source": "recon/emulator/reports/our_boot_bringup.md#iteration-9",
+       "type": "call_site_abi",
+       "detail": "netcore_image.bin 0x0102b84a..0x0102b850 (inside FUN_0102b810, the product timeslot worker): r0 = literal at 0x0102b8e4 (the timeslot signal callback), r1 = sp+7 (a one-byte session-id out parameter), then bl 0x01021a38; the returned value is tested against 0 and any non-zero result is logged as an error.  This is exactly int32_t mpsl_timeslot_session_open(mpsl_timeslot_callback_t, mpsl_timeslot_session_id_t *).  The same worker calls 0x0102a122 with (session_id, request) and 0x0102a0e6 with (session_id); 0x0102a0e6 is already aliased to mpsl_timeslot_session_close."
+      },
+      {
+       "source": "recon/net/src/FUN_01021a38.c",
+       "type": "return_code_set",
+       "detail": "The proven reconstruction returns -22 for a NULL callback and -12 when no free session slot exists; mpsl_timeslot.h documents -NRF_ENOMEM (=-12) as the failure of mpsl_timeslot_session_open and NRF_EINVAL is 22."
+      },
+      {
+       "source": "/Users/freedomcoder/ncs251/nrfxlib/mpsl/include/mpsl_timeslot.h:275-286",
+       "type": "documented_behaviour",
+       "detail": "\"If the low frequency clock is not running when this function is called, the function will wait until the low frequency clock has started.\"  The reconstruction's first action is FUN_01022e34 -> FUN_010248d0, a spin on CLOCK.LFCLKSTAT at 0x41005418 -- the documented wait."
+      },
+      {
+       "source": "recon/emulator/reports/our_boot_bringup.md#iteration-9",
+       "type": "boot_divergence",
+       "detail": "Renode diagnostic read at t=0.15 s of the iteration-8 net image: CLOCK.LFCLKSTAT = 0x00010002 (STATE=1, SRC=2/LFXO), LFCLKRUN = 1, LFCLKSRC = 2 -- the low-frequency clock IS running.  The reconstruction nevertheless spins forever because it compares LFCLKSTAT.SRC against MPSL's private expected-source word at 0x21001bd0+0x20, which reads 0 in this build: nothing here owns or initialises the original MPSL clock state at that absolute address."
+      },
+      {
+       "source": "recon/emulator/reports/golden_boot_trace.json",
+       "type": "golden_trace",
+       "detail": "The shipped image reaches FUN_01021a38 at net instruction 387,868 and FUN_01022e34 at 387,916; its FUN_010248d0 returns immediately (10 entries / 131 instructions total over the whole 3.0 s boot), because the shipped MPSL initialised the same private state.  The control path itself is therefore correct -- only the state owner is wrong in the reconstruction."
       }
      ]
     },
@@ -52293,6 +52334,33 @@
     },
     {
      "core": "net",
+     "va": "0x0102e974",
+     "raw_symbol": "FUN_0102e974",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_sw_isr_common_adoption.json",
+       "type": "net_arch_singleton_raw_table_base_defect",
+       "phase": "P4 boot parity iteration 19",
+       "duplicate_private_state": true,
+       "stock_owner_present_in_link": true,
+       "call_targets_checked": true,
+       "reconstruction_present": true,
+       "runtime_defect_observed": "CPUNET z_arm_exc_spurious + PendSV restoring PC=0 at t=5.094 s, immediately after hci_driver_send().",
+       "safe_to_adopt": true
+      }
+     ],
+     "current_symbol": "z_isr_install",
+     "kind": "source",
+     "component": "zephyr_arch_common_stock",
+     "upstream_symbol": "z_isr_install",
+     "upstream_unit": "zephyr/arch/common/sw_isr_common.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "_sw_isr_table is a singleton generated by the linker; the reconstruction addressed it through the ORIGINAL image's base 0x2100076c, which lands 0x64 bytes inside the linked table, so every dynamically installed ISR overwrote unrelated vector slots."
+    },
+    {
+     "core": "net",
      "va": "0x0102e9b0",
      "raw_symbol": "FUN_0102e9b0",
      "current_symbol": "FUN_0102e9b0",
@@ -52488,21 +52556,59 @@
     },
     {
      "core": "net",
+     "va": "0x0102fc30",
+     "raw_symbol": "FUN_0102fc30",
+     "current_symbol": "bt_buf_get_tx",
+     "kind": "source",
+     "component": "zephyr_bluetooth_host_stock",
+     "upstream_symbol": "bt_buf_get_tx",
+     "upstream_unit": "zephyr/subsys/bluetooth/host/hci_raw.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "bt_buf_get_tx selects hci_raw.c's file-static hci_cmd_pool / hci_acl_pool by original absolute address; those statics are not linkable, and the CMD pointer aliased the stock hci_rx_pool in the cohesive link.  hci_raw.c is already the linked owner of bt_send/bt_recv/bt_enable_raw.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_hci_raw_bt_buf_get_tx_adoption.json",
+       "type": "net_bluetooth_host_private_pool_pointer_defect",
+       "phase": "P4 boot parity iteration 19",
+       "duplicate_private_state": true,
+       "stock_owner_present_in_link": true,
+       "call_targets_checked": true,
+       "reconstruction_present": true,
+       "runtime_defect_observed": "CPUNET '<err> bt_sdc_hci_driver: No event buffer available' at t=5.0938 s; hci_rx_pool corrupted by CMD allocations aimed at 0x210009c8.",
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
      "va": "0x0102fcec",
      "raw_symbol": "FUN_0102fcec",
-     "current_symbol": "FUN_0102fcec",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
-     "upstream_symbol": null,
-     "upstream_unit": null,
-     "confidence": 0.95,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "current_symbol": "bt_enable_raw",
+     "kind": "source",
+     "component": "zephyr_bluetooth_host_stock",
+     "upstream_symbol": "bt_enable_raw",
+     "upstream_unit": "zephyr/subsys/bluetooth/host/hci_raw.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "hci_raw.c is a singleton whose file-static raw_rx is written only by bt_enable_raw; bt_send/bt_recv from the same unit are already the linked owners, so a second bt_enable_raw writing a private original-image pin left the stock raw_rx NULL and the controller->host HCI path never delivered.",
      "evidence": [
       {
        "source": "recon/ownership/net_function_ownership.json",
        "type": "net_signature_match"
+      },
+      {
+       "source": "recon/ownership/net_hci_raw_singleton_adoption.json",
+       "type": "net_bluetooth_host_singleton_duplicate_state_defect",
+       "phase": "P4 boot parity iteration 19",
+       "duplicate_private_state": true,
+       "stock_owner_present_in_link": true,
+       "call_targets_checked": true,
+       "reconstruction_present": true,
+       "runtime_defect_observed": "Stock bt_recv() (linked at 0x01033530) puts into hci_raw.c raw_rx (0x210083d4); the retained FUN_0102fcec wrote its own pin 0x210047fc instead, so raw_rx stayed NULL and the app core's first HCI Reset (opcode 0x0c03, delivered by bt_rpmsg_send at t=5.13 s) was never answered.",
+       "safe_to_adopt": true
       }
      ]
     },
@@ -52749,6 +52855,33 @@
        "ratio": 1.0,
        "threshold": 0.9,
        "provenance": "0x0000000001024524       0x64 zephyr/drivers/timer/libdrivers__timer.a(nrf_rtc_timer.c.obj)"
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010317c0",
+     "raw_symbol": "FUN_010317c0",
+     "current_symbol": "sys_clock_elapsed",
+     "kind": "source",
+     "component": "zephyr_nrf_rtc_timer",
+     "upstream_symbol": "sys_clock_elapsed",
+     "upstream_unit": "zephyr/drivers/timer/nrf_rtc_timer.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction header itself states the identity; body is z_nrf_rtc_timer_read() - last_count, last_count pinned at 0x21002b80 which lands inside sdc_mempool in the cohesive link.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_kernel_timeout_singleton_adoption.json",
+       "type": "net_kernel_singleton_duplicate_state_defect",
+       "phase": "P4 boot parity iteration 18",
+       "duplicate_private_state": true,
+       "stock_owner_present_in_link": true,
+       "call_targets_checked": true,
+       "reconstruction_present": true,
+       "runtime_defect_observed": "Renode watchpoint: the retained reconstruction wrote through timeout_list = 0x21000750, which lands inside _sw_isr_table, and corrupted backend_data_0's rpmsg endpoint list (rpmsg_get_endpoint then never terminated).",
+       "safe_to_adopt": true
       }
      ]
     },
@@ -54816,6 +54949,114 @@
        "private_state_sections": 6,
        "reconstruction_present": true,
        "raw_mapping_preserved": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01037f8c",
+     "raw_symbol": "FUN_01037f8c",
+     "current_symbol": "z_add_timeout",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "z_add_timeout",
+     "upstream_unit": "zephyr/kernel/timeout.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Recorded as z_add_timeout by net_kernel_private_stock_adoption.json and net_zephyr_stock_atomic_adoption.json call_target_checks; kernel/timeout.c is a singleton and the stock unit is already linked.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_kernel_timeout_singleton_adoption.json",
+       "type": "net_kernel_singleton_duplicate_state_defect",
+       "phase": "P4 boot parity iteration 18",
+       "duplicate_private_state": true,
+       "stock_owner_present_in_link": true,
+       "call_targets_checked": true,
+       "reconstruction_present": true,
+       "runtime_defect_observed": "Renode watchpoint: the retained reconstruction wrote through timeout_list = 0x21000750, which lands inside _sw_isr_table, and corrupted backend_data_0's rpmsg endpoint list (rpmsg_get_endpoint then never terminated).",
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010380d8",
+     "raw_symbol": "FUN_010380d8",
+     "current_symbol": "z_abort_timeout",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "z_abort_timeout",
+     "upstream_unit": "zephyr/kernel/timeout.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Same timeout_lock/remove_timeout private state as z_add_timeout; kernel/timeout.c is a singleton and the stock unit is already linked.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_kernel_timeout_singleton_adoption.json",
+       "type": "net_kernel_singleton_duplicate_state_defect",
+       "phase": "P4 boot parity iteration 18",
+       "duplicate_private_state": true,
+       "stock_owner_present_in_link": true,
+       "call_targets_checked": true,
+       "reconstruction_present": true,
+       "runtime_defect_observed": "Renode watchpoint: the retained reconstruction wrote through timeout_list = 0x21000750, which lands inside _sw_isr_table, and corrupted backend_data_0's rpmsg endpoint list (rpmsg_get_endpoint then never terminated).",
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x0103814c",
+     "raw_symbol": "FUN_0103814c",
+     "current_symbol": "sys_clock_announce",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "sys_clock_announce",
+     "upstream_unit": "zephyr/kernel/timeout.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Announces the same list/curr_tick/announce_remaining state and tail-branches to z_time_slice; kernel/timeout.c is a singleton and the stock unit is already linked (reached from the stock rtc_nrf_isr).",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_kernel_timeout_singleton_adoption.json",
+       "type": "net_kernel_singleton_duplicate_state_defect",
+       "phase": "P4 boot parity iteration 18",
+       "duplicate_private_state": true,
+       "stock_owner_present_in_link": true,
+       "call_targets_checked": true,
+       "reconstruction_present": true,
+       "runtime_defect_observed": "Renode watchpoint: the retained reconstruction wrote through timeout_list = 0x21000750, which lands inside _sw_isr_table, and corrupted backend_data_0's rpmsg endpoint list (rpmsg_get_endpoint then never terminated).",
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01038284",
+     "raw_symbol": "FUN_01038284",
+     "current_symbol": "sys_clock_tick_get",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "sys_clock_tick_get",
+     "upstream_unit": "zephyr/kernel/timeout.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "curr_tick + elapsed() under timeout_lock; kernel/timeout.c is a singleton and the stock unit is already linked.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_kernel_timeout_singleton_adoption.json",
+       "type": "net_kernel_singleton_duplicate_state_defect",
+       "phase": "P4 boot parity iteration 18",
+       "duplicate_private_state": true,
+       "stock_owner_present_in_link": true,
+       "call_targets_checked": true,
+       "reconstruction_present": true,
+       "runtime_defect_observed": "Renode watchpoint: the retained reconstruction wrote through timeout_list = 0x21000750, which lands inside _sw_isr_table, and corrupted backend_data_0's rpmsg endpoint list (rpmsg_get_endpoint then never terminated).",
        "safe_to_adopt": true
       }
      ]
@@ -58773,182 +59014,6 @@
        "executable_relocations": 0,
        "caller_count": 19,
        "raw_evidence_preserved": true,
-       "safe_to_adopt": true
-      }
-     ]
-    },
-    {
-     "core": "net",
-     "va": "0x01021a38",
-     "raw_symbol": "FUN_01021a38",
-     "current_symbol": "FUN_01021a38",
-     "kind": "archive",
-     "component": "mpsl",
-     "upstream_symbol": "mpsl_timeslot_session_open",
-     "upstream_unit": "/Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Public documented MPSL API identity, established by three independent lines of evidence from the shipped image (call-site ABI, return-code set, and the documented low-frequency-clock wait).  The reconstruction reads MPSL's private clock state through original-image absolute RAM addresses that this build never initialises, because the genuine libmpsl.a owns that state at its own layout; the public symbol is a safe link alias (unlike the obfuscated archive spellings recorded for the private MPSL/SDC bodies).",
-     "evidence": [
-      {
-       "source": "recon/emulator/reports/our_boot_bringup.md#iteration-9",
-       "type": "call_site_abi",
-       "detail": "netcore_image.bin 0x0102b84a..0x0102b850 (inside FUN_0102b810, the product timeslot worker): r0 = literal at 0x0102b8e4 (the timeslot signal callback), r1 = sp+7 (a one-byte session-id out parameter), then bl 0x01021a38; the returned value is tested against 0 and any non-zero result is logged as an error.  This is exactly int32_t mpsl_timeslot_session_open(mpsl_timeslot_callback_t, mpsl_timeslot_session_id_t *).  The same worker calls 0x0102a122 with (session_id, request) and 0x0102a0e6 with (session_id); 0x0102a0e6 is already aliased to mpsl_timeslot_session_close."
-      },
-      {
-       "source": "recon/net/src/FUN_01021a38.c",
-       "type": "return_code_set",
-       "detail": "The proven reconstruction returns -22 for a NULL callback and -12 when no free session slot exists; mpsl_timeslot.h documents -NRF_ENOMEM (=-12) as the failure of mpsl_timeslot_session_open and NRF_EINVAL is 22."
-      },
-      {
-       "source": "/Users/freedomcoder/ncs251/nrfxlib/mpsl/include/mpsl_timeslot.h:275-286",
-       "type": "documented_behaviour",
-       "detail": "\"If the low frequency clock is not running when this function is called, the function will wait until the low frequency clock has started.\"  The reconstruction's first action is FUN_01022e34 -> FUN_010248d0, a spin on CLOCK.LFCLKSTAT at 0x41005418 -- the documented wait."
-      },
-      {
-       "source": "recon/emulator/reports/our_boot_bringup.md#iteration-9",
-       "type": "boot_divergence",
-       "detail": "Renode diagnostic read at t=0.15 s of the iteration-8 net image: CLOCK.LFCLKSTAT = 0x00010002 (STATE=1, SRC=2/LFXO), LFCLKRUN = 1, LFCLKSRC = 2 -- the low-frequency clock IS running.  The reconstruction nevertheless spins forever because it compares LFCLKSTAT.SRC against MPSL's private expected-source word at 0x21001bd0+0x20, which reads 0 in this build: nothing here owns or initialises the original MPSL clock state at that absolute address."
-      },
-      {
-       "source": "recon/emulator/reports/golden_boot_trace.json",
-       "type": "golden_trace",
-       "detail": "The shipped image reaches FUN_01021a38 at net instruction 387,868 and FUN_01022e34 at 387,916; its FUN_010248d0 returns immediately (10 entries / 131 instructions total over the whole 3.0 s boot), because the shipped MPSL initialised the same private state.  The control path itself is therefore correct -- only the state owner is wrong in the reconstruction."
-      }
-     ]
-    },
-    {
-     "core": "net",
-     "va": "0x010317c0",
-     "raw_symbol": "FUN_010317c0",
-     "current_symbol": "sys_clock_elapsed",
-     "kind": "source",
-     "component": "zephyr_nrf_rtc_timer",
-     "upstream_symbol": "sys_clock_elapsed",
-     "upstream_unit": "zephyr/drivers/timer/nrf_rtc_timer.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Reconstruction header itself states the identity; body is z_nrf_rtc_timer_read() - last_count, last_count pinned at 0x21002b80 which lands inside sdc_mempool in the cohesive link.",
-     "evidence": [
-      {
-       "source": "recon/ownership/net_kernel_timeout_singleton_adoption.json",
-       "type": "net_kernel_singleton_duplicate_state_defect",
-       "phase": "P4 boot parity iteration 18",
-       "duplicate_private_state": true,
-       "stock_owner_present_in_link": true,
-       "call_targets_checked": true,
-       "reconstruction_present": true,
-       "runtime_defect_observed": "Renode watchpoint: the retained reconstruction wrote through timeout_list = 0x21000750, which lands inside _sw_isr_table, and corrupted backend_data_0's rpmsg endpoint list (rpmsg_get_endpoint then never terminated).",
-       "safe_to_adopt": true
-      }
-     ]
-    },
-    {
-     "core": "net",
-     "va": "0x01037f8c",
-     "raw_symbol": "FUN_01037f8c",
-     "current_symbol": "z_add_timeout",
-     "kind": "source",
-     "component": "zephyr_os_kernel_stock",
-     "upstream_symbol": "z_add_timeout",
-     "upstream_unit": "zephyr/kernel/timeout.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Recorded as z_add_timeout by net_kernel_private_stock_adoption.json and net_zephyr_stock_atomic_adoption.json call_target_checks; kernel/timeout.c is a singleton and the stock unit is already linked.",
-     "evidence": [
-      {
-       "source": "recon/ownership/net_kernel_timeout_singleton_adoption.json",
-       "type": "net_kernel_singleton_duplicate_state_defect",
-       "phase": "P4 boot parity iteration 18",
-       "duplicate_private_state": true,
-       "stock_owner_present_in_link": true,
-       "call_targets_checked": true,
-       "reconstruction_present": true,
-       "runtime_defect_observed": "Renode watchpoint: the retained reconstruction wrote through timeout_list = 0x21000750, which lands inside _sw_isr_table, and corrupted backend_data_0's rpmsg endpoint list (rpmsg_get_endpoint then never terminated).",
-       "safe_to_adopt": true
-      }
-     ]
-    },
-    {
-     "core": "net",
-     "va": "0x010380d8",
-     "raw_symbol": "FUN_010380d8",
-     "current_symbol": "z_abort_timeout",
-     "kind": "source",
-     "component": "zephyr_os_kernel_stock",
-     "upstream_symbol": "z_abort_timeout",
-     "upstream_unit": "zephyr/kernel/timeout.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Same timeout_lock/remove_timeout private state as z_add_timeout; kernel/timeout.c is a singleton and the stock unit is already linked.",
-     "evidence": [
-      {
-       "source": "recon/ownership/net_kernel_timeout_singleton_adoption.json",
-       "type": "net_kernel_singleton_duplicate_state_defect",
-       "phase": "P4 boot parity iteration 18",
-       "duplicate_private_state": true,
-       "stock_owner_present_in_link": true,
-       "call_targets_checked": true,
-       "reconstruction_present": true,
-       "runtime_defect_observed": "Renode watchpoint: the retained reconstruction wrote through timeout_list = 0x21000750, which lands inside _sw_isr_table, and corrupted backend_data_0's rpmsg endpoint list (rpmsg_get_endpoint then never terminated).",
-       "safe_to_adopt": true
-      }
-     ]
-    },
-    {
-     "core": "net",
-     "va": "0x0103814c",
-     "raw_symbol": "FUN_0103814c",
-     "current_symbol": "sys_clock_announce",
-     "kind": "source",
-     "component": "zephyr_os_kernel_stock",
-     "upstream_symbol": "sys_clock_announce",
-     "upstream_unit": "zephyr/kernel/timeout.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Announces the same list/curr_tick/announce_remaining state and tail-branches to z_time_slice; kernel/timeout.c is a singleton and the stock unit is already linked (reached from the stock rtc_nrf_isr).",
-     "evidence": [
-      {
-       "source": "recon/ownership/net_kernel_timeout_singleton_adoption.json",
-       "type": "net_kernel_singleton_duplicate_state_defect",
-       "phase": "P4 boot parity iteration 18",
-       "duplicate_private_state": true,
-       "stock_owner_present_in_link": true,
-       "call_targets_checked": true,
-       "reconstruction_present": true,
-       "runtime_defect_observed": "Renode watchpoint: the retained reconstruction wrote through timeout_list = 0x21000750, which lands inside _sw_isr_table, and corrupted backend_data_0's rpmsg endpoint list (rpmsg_get_endpoint then never terminated).",
-       "safe_to_adopt": true
-      }
-     ]
-    },
-    {
-     "core": "net",
-     "va": "0x01038284",
-     "raw_symbol": "FUN_01038284",
-     "current_symbol": "sys_clock_tick_get",
-     "kind": "source",
-     "component": "zephyr_os_kernel_stock",
-     "upstream_symbol": "sys_clock_tick_get",
-     "upstream_unit": "zephyr/kernel/timeout.c",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "curr_tick + elapsed() under timeout_lock; kernel/timeout.c is a singleton and the stock unit is already linked.",
-     "evidence": [
-      {
-       "source": "recon/ownership/net_kernel_timeout_singleton_adoption.json",
-       "type": "net_kernel_singleton_duplicate_state_defect",
-       "phase": "P4 boot parity iteration 18",
-       "duplicate_private_state": true,
-       "stock_owner_present_in_link": true,
-       "call_targets_checked": true,
-       "reconstruction_present": true,
-       "runtime_defect_observed": "Renode watchpoint: the retained reconstruction wrote through timeout_list = 0x21000750, which lands inside _sw_isr_table, and corrupted backend_data_0's rpmsg endpoint list (rpmsg_get_endpoint then never terminated).",
        "safe_to_adopt": true
       }
      ]

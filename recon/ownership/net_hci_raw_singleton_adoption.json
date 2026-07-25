@@ -1,0 +1,32 @@
+{
+ "schema": 1,
+ "core": "net",
+ "phase": "P4 boot-parity iteration 19",
+ "title": "CPUNET subsys/bluetooth/host/hci_raw.c bt_enable_raw singleton adoption",
+ "identity": {
+  "raw_symbol": "FUN_0102fcec",
+  "analysis_va": "0x0102fcec",
+  "upstream_symbol": "bt_enable_raw",
+  "upstream_unit": "zephyr/subsys/bluetooth/host/hci_raw.c"
+ },
+ "instruction_shape_match": {
+  "stores_argument_to_file_static": "0x210047fc  (hci_raw.c `raw_rx`)",
+  "reads_driver_pointer": "0x210047f8  (hci_raw.c `bt_dev.drv`)",
+  "calls_driver_open_at_offset": 12,
+  "returns_on_null_driver": -19,
+  "log_strings_runtime": {
+   "0x0103dde1": "No HCI driver registered",
+   "0x0103ddfa": "HCI driver open failed (%d)",
+   "0x0103de16": "Bluetooth enabled in RAW mode"
+  },
+  "log_strings_source": "The three strings are, verbatim and in this order, the only LOG_ERR/LOG_INF texts of NCS 2.5.1 zephyr/subsys/bluetooth/host/hci_raw.c bt_enable_raw() (lines 365-388).",
+  "read_through": "tools/net_extract.py read_runtime()"
+ },
+ "duplicate_private_state": true,
+ "stock_owner_present_in_link": true,
+ "runtime_defect_observed": "hci_raw.c is a singleton: its `raw_rx` (0x210083d4 in the iteration-18 net link) is the fifo the STOCK bt_recv() puts controller->host buffers into, and only bt_enable_raw sets it.  The retained reconstruction set its own raw pin 0x210047fc instead, so the stock raw_rx stayed NULL and the stock bt_recv() could never deliver.  With bt_send()/bt_recv() already adopted from the same stock unit, the reconstruction was the only member of hci_raw.c that was NOT adopted.",
+ "consequence_measured": "Iteration 19: the app core's bt_enable() reached bt_hci_cmd_send_sync(BT_HCI_OP_RESET=0x0c03) and bt_rpmsg_send() delivered it, but no HCI event ever came back and bt_hci_cmd_send_sync blocked; the CPUNET spun in FUN_0102acf4's `Unknown type %u` branch.",
+ "call_targets_checked": true,
+ "reconstruction_present": true,
+ "safe_to_adopt": true
+}

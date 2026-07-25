@@ -76,8 +76,26 @@ volatile uint32_t g1_ipc0_ept_ready;
  * Give the three objects real storage.  Sizes and priorities are unchanged;
  * only the addresses move, exactly as for g1_ipc0_ept above.
  * ------------------------------------------------------------------------ */
-K_THREAD_STACK_DEFINE(g1_hci_rpmsg_tx_stack, 0x600);
-K_THREAD_STACK_DEFINE(g1_hci_rpmsg_rx_stack, 0x800);
+/* P4 iteration 19 — the +0x40 K_KERNEL_STACK_RESERVED of the SHIPPED build.
+ * The recovered z_setup_new_thread (recon/net/src/FUN_01035edc.c) computes
+ *     stack_buf_start = stack + 0x40
+ *     stack_ptr       = stack + 0x40 + ROUND_UP(size, 8)
+ * i.e. the shipped K_KERNEL_STACK_DEFINE reserved 0x40 bytes at the bottom of
+ * every stack object (Cortex-M MPU stack guard).  This build's
+ * K_THREAD_STACK_DEFINE reserves 0 (nm reports the arrays at exactly their
+ * nominal size), so a nominal-size object made every thread run 0x40 bytes
+ * past its own array.  Measured on g1-i19c-net with a Renode hook at the two
+ * thread entry points: FUN_0102adac entered with sp = 0x21009b88 while
+ * g1_hci_rpmsg_tx_stack is 0x21009560..0x21009b60, and FUN_0102acf4 entered
+ * with sp = 0x21009588 while g1_hci_rpmsg_rx_stack is 0x21008d60..0x21009560 —
+ * both 0x28 past their array end (0x40 reserve minus the 0x18 already pushed
+ * at the entry hook).  The TX thread's outermost frames therefore sat on the
+ * bottom of _k_thread_stack_mpsl_nonpreemptible_thread_id.  The arrays are
+ * sized nominal + 0x40 so the reconstruction's own arithmetic stays inside
+ * them. */
+#define G1_NET_STACK_RESERVED 0x40
+K_THREAD_STACK_DEFINE(g1_hci_rpmsg_tx_stack, 0x600 + G1_NET_STACK_RESERVED);
+K_THREAD_STACK_DEFINE(g1_hci_rpmsg_rx_stack, 0x800 + G1_NET_STACK_RESERVED);
 struct k_thread g1_hci_rpmsg_tx_thread;
 struct k_thread g1_hci_rpmsg_rx_thread;
 struct ipc_ept g1_hci_ept;
@@ -97,11 +115,21 @@ const char g1_hci_rpmsg_rx_name[] = "HCI rpmsg RX";
  * treat a net_buf pool as a k_fifo. */
 K_FIFO_DEFINE(g1_hci_tx_queue);
 
+/* hci_rpmsg.c's controller->host k_fifo, shipped at 0x2100095c: the argument
+ * FUN_0102afbc passes to bt_enable_raw (which stores it in hci_raw.c's
+ * `raw_rx`) and the queue FUN_0102acf4 consumes.  In the cohesive link
+ * 0x2100095c is 0x14 bytes into the STOCK hci_raw.c `hci_cmd_pool`
+ * (0x21000948..0x2100097c), so net_buf_get() ran on a net_buf pool: measured
+ * in iteration 19 as an unbounded `Unknown type %u` log loop on the CPUNET
+ * (289,729,537 instructions in 8 s) with the app core's first HCI Reset never
+ * answered. */
+K_FIFO_DEFINE(g1_hci_rx_queue);
+
 /* FUN_0102b1c8's ESB worker thread: shipped object 0x21001e38 (inside
  * backend_data_0 in the cohesive link) and stack 0x21007300 (inside
  * sdc_mempool).  See recon/net/src/FUN_0102b1c8.c for the measurement and for
  * the deferred reconstruction of its entry point (analysis 0x0102b204). */
-K_THREAD_STACK_DEFINE(g1_esb_worker_stack, 0x600);
+K_THREAD_STACK_DEFINE(g1_esb_worker_stack, 0x600 + G1_NET_STACK_RESERVED);
 struct k_thread g1_esb_worker_thread;
 
 extern void FUN_0102ac00(void *priv); /*=0x0102b401*/

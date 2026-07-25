@@ -1,0 +1,30 @@
+{
+ "schema": 1,
+ "core": "net",
+ "phase": "P4 boot-parity iteration 19",
+ "title": "CPUNET arch/common/sw_isr_common.c z_isr_install adoption (raw _sw_isr_table base)",
+ "identity": {
+  "raw_symbol": "FUN_0102e974",
+  "analysis_va": "0x0102e974",
+  "upstream_symbol": "z_isr_install",
+  "upstream_unit": "zephyr/arch/common/sw_isr_common.c"
+ },
+ "proof": {
+  "assert_file_string_runtime": "0x0103d7fb = \"WEST_TOPDIR/zephyr/arch/common/sw_isr_common.c\" (read with tools/net_extract.py read_runtime)",
+  "assert_line": 85,
+  "stock_line_85": "__ASSERT(!irq_is_enabled(irq), \"IRQ %d is enabled\", irq);",
+  "guard_callee": "FUN_0102eb70 reads NVIC->ISER at 0xE000E100 and returns (1u << (irq & 0x1f)) & ISER[irq >> 5] -- arch_irq_is_enabled()",
+  "body": "writes [base + irq*8] = param (r2) and [base + irq*8 + 4] = routine (r1), i.e. _sw_isr_table[idx].arg / .isr in that order",
+  "abi": "z_isr_install(unsigned int irq, void (*routine)(const void *), const void *param)"
+ },
+ "private_state_defect": {
+  "raw_table_base": "0x2100076c",
+  "linked_table": "_sw_isr_table 0x21000708 .. 0x210007f8 (0xf0, 30 entries)",
+  "explanation": "The raw base is the ORIGINAL image's _sw_isr_table address.  In the cohesive link it falls 0x64 bytes INSIDE the linker-generated _sw_isr_table, so every dynamically installed ISR was written 12.5 entries too high: entry N's {arg,isr} landed on entry N+12's isr and entry N+13's arg.",
+  "runtime_defect_observed": "Iteration 19: once the stock hci_raw.c/SDC path actually ran, hci_driver_send() was followed by z_arm_exc_spurious and then a PendSV that restored PC = 0 (CPUNET 'Reserved Exception', 'Fault during interrupt handling', t = 5.094 s)."
+ },
+ "stock_owner_present_in_link": true,
+ "duplicate_private_state": true,
+ "reconstruction_present": true,
+ "safe_to_adopt": true
+}

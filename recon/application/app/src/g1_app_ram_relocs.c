@@ -168,12 +168,30 @@ unsigned char g1_message_pool[20 * 436] __aligned(4)
  *   - a later RAM shift is harmless: the pins move WITH the arena.
  *
  * Extent: the highest recovered RAM pin below the region end is
- * g_display_thread_stack_buf at 0x20028e68, so the arena covers
- * 0x20002000 .. 0x20029000.  Sizing is deliberately the FULL original span
- * rather than a per-object estimate (over-sizing is the safe direction: a
- * hole is dead .bss, an under-size is a corruption).  Alignment 32 with an
- * arena base congruent to 0 mod 32 preserves every original offset's
- * alignment up to 32 bytes.
+ * g_display_thread_stack_buf at 0x20028e68.  Sizing is deliberately the FULL
+ * original span rather than a per-object estimate (over-sizing is the safe
+ * direction: a hole is dead .bss, an under-size is a corruption).  Alignment
+ * 32 with an arena base congruent to 0 mod 32 preserves every original
+ * offset's alignment up to 32 bytes.
+ *
+ * ITERATION 19 CORRECTION.  The limit was originally set to 0x20029000, i.e.
+ * to the highest pin's BASE rounded up, not to its EXTENT.  The display
+ * thread's stack is 0x1400 bytes (FUN_00049638 @ 0x49650 loads
+ * `mov.w r2, #5120` and passes 0x20028e68 as the stack base; the recovered
+ * spawn_display_thread reproduces both), so the object really runs
+ * 0x20028e68 .. 0x2002a268 and the last 0x1268 bytes of it fell OUTSIDE the
+ * arena, on top of whatever the linker allocated immediately after it.  An
+ * ARM stack grows DOWN from its top, so the overrun covered exactly the part
+ * the thread uses first.  In the iteration-18 layout the objects landing
+ * there were `backend_data_0`, `logging_thread`, `posix_thread_pool`,
+ * `smp_work_queue`, `conn_data`, `bt_long_wq`, `tx_thread_data` and
+ * `bt_workq`; measured consequence: the moment `bt_enable` initialised
+ * `tx_thread_data` / `bt_workq` it overwrote the display thread's saved
+ * context and the next PendSV returned to PC = 0 (USAGE FAULT, "Attempt to
+ * execute undefined instruction", t = 5.14 s).  The limit is therefore raised
+ * to 0x2002a400, which covers the full 0x2002a268 extent with a 32-byte
+ * aligned margin.  Every other pinned stack in the arena was checked against
+ * its own k_thread_create size argument and ends below 0x2002a100.
  *
  * Original .bss/.data note: the shipped image's .data ends at 0x20003e29, so
  * all pins at or above that are .bss in the original too and zero-initialised
@@ -192,7 +210,7 @@ unsigned char g1_message_pool[20 * 436] __aligned(4)
  * resolved against a base of 0.
  */
 #define G1_RAM_ARENA_ORIGIN 0x20002000u
-#define G1_RAM_ARENA_LIMIT  0x20029000u
+#define G1_RAM_ARENA_LIMIT  0x2002a400u
 
 unsigned char g1_ram_arena[G1_RAM_ARENA_LIMIT - G1_RAM_ARENA_ORIGIN]
 	__aligned(32) __attribute__((used, retain));

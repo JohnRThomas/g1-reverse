@@ -1,0 +1,35 @@
+{
+ "schema": 1,
+ "core": "net",
+ "phase": "P4 boot-parity iteration 19",
+ "title": "CPUNET subsys/bluetooth/host/hci_raw.c bt_buf_get_tx adoption (private pool pointers)",
+ "identity": {
+  "raw_symbol": "FUN_0102fc30",
+  "analysis_va": "0x0102fc30",
+  "upstream_symbol": "bt_buf_get_tx",
+  "upstream_unit": "zephyr/subsys/bluetooth/host/hci_raw.c"
+ },
+ "instruction_shape_match": {
+  "dispatch": "type==0 -> pool A; type==2 -> pool B; anything else -> LOG_ERR and return NULL",
+  "log_string_runtime": {
+   "0x0103ddcd": "Invalid tx type: %u"
+  },
+  "post_alloc_sequence": [
+   "net_buf_reserve(&buf->b, 1) == BT_BUF_RESERVE (CONFIG_BT_HCI_RESERVE=1)",
+   "bt_buf_set_type(buf, type) at buf+0x18",
+   "net_buf_tailroom(&buf->b) < size -> net_buf_unref(buf); return NULL",
+   "net_buf_add_mem(&buf->b, data, size)"
+  ],
+  "abi": "r0=type, r1=alignment hole, r2:r3=k_timeout_t, stack: data, size -- exactly bt_buf_get_tx(enum bt_buf_type, k_timeout_t, const void *, size_t)"
+ },
+ "private_state_defect": {
+  "pool_cmd_literal": "0x210009c8",
+  "pool_acl_literal": "0x21000994",
+  "explanation": "These are the ORIGINAL image's addresses of hci_raw.c's file-static hci_cmd_pool and hci_acl_pool, not an array base.  Iteration 18 bound the second one to _net_buf_pool_list_start, which happens to be correct only because hci_acl_pool is the FIRST pool in the linked net_buf_pool_area; the first one was left as a raw literal and in the iteration-19 net link 0x210009c8 falls inside the STOCK hci_rx_pool (0x21000998..0x210009cc).",
+  "runtime_defect_observed": "Every host->controller HCI command allocated from a net_buf_pool pointer aimed at the last 4 bytes of hci_rx_pool, corrupting the very pool bt_buf_get_evt() uses.  Measured: the app core's HCI Reset (0x0c03) reached the controller and the CPUNET then logged '<err> bt_sdc_hci_driver: No event buffer available' at t = 5.0938 s, so the Command Complete was never returned and bt_hci_cmd_send_sync() blocked forever."
+ },
+ "stock_owner_present_in_link": true,
+ "duplicate_private_state": true,
+ "reconstruction_present": true,
+ "safe_to_adopt": true
+}

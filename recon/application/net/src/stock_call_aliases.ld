@@ -79,6 +79,40 @@ PROVIDE(FUN_010380d8 = z_abort_timeout);
 PROVIDE(FUN_0103814c = sys_clock_announce);
 PROVIDE(FUN_01038284 = sys_clock_tick_get);
 
+/* Iteration 19: the CPUNET subsys/bluetooth/host/hci_raw.c SINGLETON.
+ *
+ * FUN_0102fcec is bt_enable_raw (its three log strings, read out of
+ * netcore_image.bin at runtime 0x0103dde1 / 0x0103ddfa / 0x0103de16, are
+ * verbatim hci_raw.c's "No HCI driver registered" / "HCI driver open failed
+ * (%d)" / "Bluetooth enabled in RAW mode", in that order, and it stores its
+ * argument then calls drv->open at +12 and returns -ENODEV on a null driver).
+ * hci_raw.c is already the linked owner of bt_send and bt_recv, and its
+ * `raw_rx` file-static is written ONLY by bt_enable_raw.  The retained
+ * reconstruction wrote its own original-image pin instead, so the stock
+ * raw_rx stayed NULL, bt_recv() had nowhere to queue and the app core's first
+ * HCI Reset was never answered.  Evidence:
+ * recon/ownership/net_hci_raw_singleton_adoption.json. */
+PROVIDE(FUN_0102fcec = bt_enable_raw);
+
+/* Iteration 19: FUN_0102fc30 is bt_buf_get_tx from the same singleton unit.
+ * It selects hci_raw.c's FILE-STATIC hci_cmd_pool / hci_acl_pool by their
+ * original absolute addresses (0x210009c8 / 0x21000994).  Those statics are
+ * not linkable, and in the cohesive link 0x210009c8 lands inside the stock
+ * hci_rx_pool, so every HCI command allocation corrupted the pool that
+ * bt_buf_get_evt() uses -- measured as "<err> bt_sdc_hci_driver: No event
+ * buffer available" the moment the app core's HCI Reset arrived.  Evidence:
+ * recon/ownership/net_hci_raw_bt_buf_get_tx_adoption.json. */
+PROVIDE(FUN_0102fc30 = bt_buf_get_tx);
+
+/* Iteration 19: FUN_0102e974 is z_isr_install (its __ASSERT prints
+ * "WEST_TOPDIR/zephyr/arch/common/sw_isr_common.c":85, which is exactly
+ * `__ASSERT(!irq_is_enabled(irq), ...)`, and its guard callee reads NVIC->ISER).
+ * It addressed _sw_isr_table through the ORIGINAL image base 0x2100076c, which
+ * in the cohesive link falls 0x64 bytes INSIDE the linker-generated table, so
+ * every dynamically installed ISR overwrote entries 12/13 instead of its own.
+ * Evidence: recon/ownership/net_sw_isr_common_adoption.json. */
+PROVIDE(FUN_0102e974 = z_isr_install);
+
 PROVIDE(assert_report = assert_print);
 PROVIDE(controller_connection_config_get = FUN_010282a6);
 PROVIDE(controller_handle_lookup = FUN_0100cfc0);

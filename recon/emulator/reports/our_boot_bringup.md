@@ -6666,3 +6666,573 @@ committed.
    `PROVIDE` pins. A source-level sweep is needed.
 5. **The app-core `bt_rpmsg_send` headroom assertion** (§18.6) is the new first
    divergence.
+
+## Iteration 19 — `bt_enable` was never called: the app core boots
+## RESET-FREE for the first time, and the CPUNET's Bluetooth host comes up
+## ("Bluetooth enabled in RAW mode")
+
+**Headline.** Iteration 18's `net_buf_simple_headroom` assertion was a
+*symptom*, not a defect in any buffer pool: the buffer handed to
+`bt_rpmsg_send` was **NULL**, because `ancs_main` was calling
+**`bt_send(NULL)` where the shipped firmware calls `bt_enable(NULL)`**.  With
+that repaired — and with a second, independent arena-sizing defect it
+unmasked — **the app core runs 8.0 s with zero fatal errors for the first time
+in this project** (previously it reset at t = 5.093 s in every iteration since
+16).  On the net core, five further defects were root-caused and fixed and the
+Bluetooth host now actually comes up: the CPUNET UART prints the SoftDevice
+Controller build revision and `<inf> bt_hci_raw: Bluetooth enabled in RAW mode`
+for the first time.
+
+**BLE still does not advertise.**  `radio TransmittedFrames` = 0,
+`vcentral Connected` = False.  The new first divergence is on the **net** core
+at t = 5.0942 s, immediately after `hci_driver_send()` (§19.8).
+
+### 19.1 Step A — the root cause of the headroom assertion: `bt_send` vs `bt_enable`
+
+The iteration-18 report's hypothesis (a `net_buf` pool or allocation site that
+did not reserve `CONFIG_BT_HCI_RESERVE`) is **wrong, and the evidence says so
+directly.**  A Renode hook on `bt_rpmsg_send` (0x5fd58 in `g1-i17d-app`) printed:
+
+```
+[ERROR] cpuapp: RPMSG_SEND buf=0x0 type=0 lr=0x187f7
+[ERROR] cpuapp: PUSH buf=0xc len=1 data=0x0 __buf=0x0 lr=0x7fedb
+```
+
+`buf = 0`, so `net_buf_simple_push(&buf->b /* = 0xc */, 1)` computed
+`headroom = data - __buf = 0 - 0 = 0 < 1`.  Hooks on `net_buf_alloc_len` and
+`net_buf_simple_reserve` **never fired at all**, i.e. no HCI command buffer was
+ever allocated: `bt_hci_cmd_create` (0x542ac) reserves correctly
+(`net_buf_alloc_fixed`, `net_buf_simple_reserve(&buf->b, 1)`, `bt_buf_set_type`,
+`net_buf_simple_add(&buf->b, 3)`) and was simply never reached.
+
+`lr = 0x187f7` resolves inside `ancs_main`:
+
+```
+   187f0:  2000        movs r0, #0
+   187f2:  f03c f8d9   bl 549a8 <bt_send>        <-- ours
+```
+
+against the shipped `app_update.bin` (read through `tools/extract.py`, never a
+naive VA subtraction):
+
+```
+   199a0:  2000        movs r0, #0
+   199a2:  f03b f84f   bl 0x54a44                <-- original
+```
+
+and `recon/catalogs/function_names_app.json` has already recorded, verbatim,
+that **`0x00054a44` is `bt_enable`**:
+
+> `"source": "function_name_overrides.json: Relocation-normalized
+> instruction-exact configured Zephyr Bluetooth host initializer; **the former
+> bt_send label was an identity mismatch.** Raw identity remains FUN_00054a44
+> at 0x00054a44."`
+
+That correction was never propagated into `ancs_main`'s callee declaration.
+`recon/{app,verified}/src/ancs_main.c`, `recon/symbolized/app/ancs_main.c`,
+`recon/named/ancs_main.c` and `recon/readable_sources/app/g1/ancs_main.c` all
+still carried
+
+```c
+extern int bt_send(int mode);   /* FUN_00054a44 @ 0x00054a44 */
+...
+error = bt_send(0);
+```
+
+and because **`bt_send` is a genuine Zephyr symbol** (`hci_core.c`, 0x549a8 in
+that link) the cohesive link bound it silently — no undefined symbol, no
+duplicate, both gates green.  `.text.bt_enable` was consequently **garbage
+collected**: it appears in `/private/tmp/g1-i17d-app/zephyr/zephyr.map` at
+address `0x0000000000000000`.  So **Bluetooth was never enabled at all**; the
+app merely poked the HCI transport with a null pointer.
+
+**A second, independent defect at the same site.**  The shipped `ancs_main`
+executes at 0x199c6
+
+```
+   199c6:  2200        movs r2, #0
+   199c8:  492f        ldr  r1, [pc, #188]
+   199ca:  4610        mov  r0, r2
+   199cc:  f044 fe82   bl 0x5e6d4                ; bt_foreach_bond(0, cb, NULL)
+```
+
+i.e. **three** arguments, while the reconstruction declared
+`bt_foreach_bond(unsigned int, const void *)` and passed two — the
+**dropped-register-argument** class the differential harness is structurally
+blind to (ninth instance).  `user_data` was whatever `r2` happened to hold.
+Both were corrected; `cfg_verify.verify('app', 'ancs_main')` **PASS**, 11 cases.
+
+A mechanical sweep of the same class over every symbolized/canonical source
+(`extern … NAME(...); /* FUN_xxxxxxxx @ 0xADDR */` vs the catalog's name for
+that address) found **exactly one other** genuine mismatch class, and it is
+benign: `main.c` names 0x75174 `k_timer_start` and 0x72908
+`mutex_lock_syscall_handler` where the catalog says `z_impl_k_timer_start` /
+`z_impl_k_sem_take` — in this link those pairs are the **same address**
+(0x734d0 and 0x489cc respectively), so both bind to the same body.
+
+Build `/private/tmp/g1-i19a-app`.  **Effect: the headroom assertion is GONE**;
+`bt_enable` is linked at 0x55154, is entered with `cb = 0` at t ≈ 5.13 s, calls
+`bt_init` → `bt_hci_cmd_send_sync(opcode 0x0c03 = HCI_Reset)` →
+`bt_rpmsg_send(buf = 0x2003f774, type = 0 = BT_BUF_CMD)`.  Measured with hooks
+on all five functions.
+
+### 19.2 Step B — the arena was sized to a pin's BASE, not its EXTENT
+
+`g1-i19a-app` then died at t = 5.1418 s:
+
+```
+<err> os: ***** USAGE FAULT *****
+<err> os:   Attempt to execute undefined instruction
+<err> os: Faulting instruction address (r15/pc): 0x00000000
+<err> os: Current thread: 0x20005e18 (unknown)
+```
+
+A 250 ms Renode PC trace over the fault window (`cpuapp CreateExecutionTracing`)
+ends:
+
+```
+… z_time_slice -> rtc_nrf_isr -> _isr_wrapper -> z_arm_int_exit
+   -> z_arm_pendsv -> configure_builtin_stack_guard -> 0x0 -> z_arm_usage_fault
+```
+
+so PendSV restored **PC = 0** for the incoming thread.  A `k_thread_create`
+hook identified it: `obj = 0x20005e18, stack = 0x20029f68, size = 5120,
+entry = 0x43165 = display_thread_handler`.
+
+`g_display_thread_stack_buf` is an **arena-relative** pin
+(`recon/symbols/g1_app_globals.ld`: `PROVIDE(g_display_thread_stack_buf =
+g1_ram_arena + 0x26e68)`), and `recon/application/app/src/g1_app_ram_relocs.c`
+sized the arena as
+
+```c
+#define G1_RAM_ARENA_LIMIT  0x20029000u   /* "highest recovered RAM pin is
+                                             g_display_thread_stack_buf at
+                                             0x20028e68" */
+```
+
+— i.e. to the highest pin's **base**, rounded up, **not to its extent**.  The
+stack is 0x1400 bytes: the shipped `spawn_display_thread` (FUN_00049638) loads
+`mov.w r2, #5120` at 0x49650 and passes 0x20028e68, and our reconstruction
+reproduces both.  The object therefore really runs 0x20028e68 .. 0x2002a268 and
+its top **0x1268 bytes lay OUTSIDE the arena**.  An ARM stack grows *down* from
+its top, so the overrun covered exactly the part the thread uses first.  In the
+`g1-i19a-app` layout the linker had put these there:
+
+```
+0x2002a100 backend_data_0     0x2002a4c8 logging_thread   0x2002a9e0 posix_thread_pool
+0x2002aeb8 smp_work_queue     0x2002afb0 conn_data        0x2002b038 bt_long_wq
+0x2002b130 tx_thread_data     0x2002b208 bt_workq
+```
+
+`tx_thread_data` and `bt_workq` are `hci_core.c`'s HCI-TX thread object and BT
+work queue — **initialised by `bt_enable` itself**, at the very top of the
+display thread's stack, which is why the defect had been latent for four
+iterations and detonated the instant `bt_enable` started working.
+
+`G1_RAM_ARENA_LIMIT` is raised to **0x2002a400** (covers the 0x2002a268 extent
+with a 32-byte-aligned margin; every other pinned stack in the arena was checked
+against its own `k_thread_create` size argument and ends below 0x2002a100).
+Build `/private/tmp/g1-i19b-app`: `g1_ram_arena` = 0x20003100 + 0x28400, and
+`g_display_thread_stack_buf` (0x20029f68 + 0x1400 = 0x2002b368) now ends below
+`backend_data_0` (0x2002b500).
+
+**Result — the app core is reset-free through 8.0 s for the first time.**
+`/private/tmp/g1-i19/b2_uart_app.log` (app `g1-i19b`, net `g1-i18e`) contains
+**zero** `ZEPHYR FATAL ERROR` / `ASSERTION FAIL` lines; `cpuapp
+ExecutedInstructions` at 8.0 s = 16,942,935.
+
+### 19.3 Step C — CPUNET: `bt_enable_raw` was a duplicate of a SINGLETON
+
+With the app finally sending HCI, the CPUNET was measured burning
+**289,729,537 instructions in 8 s**.  A 5 ms PC trace at t = 6.0 s named the
+spin (top of 500,000 sampled PCs): `cbvprintf_package` 147,628,
+`mpsc_pbuf_alloc` 55,377, `drop_item_locked` 25,846,
+`z_impl_z_log_msg_runtime_vcreate` 24,110, `FUN_0102acf4` 13,014 — an unbounded
+**logging** loop inside the HCI rpmsg thread, i.e. its `Unknown type %u\n`
+branch (string read at runtime 0x0103cf17 with `tools/net_extract.py`).
+
+Two causes, both of iteration 18's open item 4 ("raw `0x21xxxxxx` literals
+inside net sources are invisible to the RAM-pin gate"):
+
+1. **`FUN_0102fcec` is `bt_enable_raw`.**  Its three log strings, read out of
+   `netcore_image.bin`, are verbatim `hci_raw.c`'s, in order:
+   0x0103dde1 `"No HCI driver registered"`, 0x0103ddfa
+   `"HCI driver open failed (%d)"`, 0x0103de16
+   `"Bluetooth enabled in RAW mode"`; it stores its argument, reads a driver
+   pointer, calls `drv->open` at +12 and returns −19 (`-ENODEV`).
+   `hci_raw.c` is a **singleton** and is already the linked owner of `bt_send`
+   (0x01033544) and `bt_recv` (0x01033530); its file-static `raw_rx`
+   (0x210083d4) is written **only** by `bt_enable_raw`.  The retained
+   reconstruction wrote its own original-image pin 0x210047fc instead, so the
+   stock `raw_rx` stayed NULL and the controller → host path had nowhere to
+   queue.  Displaced:
+   `PROVIDE(FUN_0102fcec = bt_enable_raw)`, manifest exclusion, evidence
+   `recon/ownership/net_hci_raw_singleton_adoption.json`.
+2. **The controller → host `k_fifo` at 0x2100095c** — the argument
+   `FUN_0102afbc` passes to `bt_enable_raw` (`k_fifo` → `raw_rx`) and the queue
+   `FUN_0102acf4` consumes — was a raw literal in the cohesive path, and in this
+   link it falls **inside the stock `hci_cmd_pool`/`hci_acl_pool`**
+   (`_net_buf_pool_list_start` 0x21000930).  `net_buf_get()` therefore ran on a
+   `net_buf_pool`, returned garbage on every iteration, and the thread logged
+   forever.  The `struct ipc_ept` at 0x21004608 in the same file was equally raw
+   (it aliases `sdc_mempool`) even though iteration 18 had already relocated the
+   *same object* in `FUN_0102afbc`.  Both bound to real storage:
+   `K_FIFO_DEFINE(g1_hci_rx_queue)` in
+   `recon/application/net/src/g1_product_endpoints.c`, and `&g1_hci_ept`.
+
+Build `/private/tmp/g1-i19a-net`.
+
+### 19.4 Step D — `CONFIG_MAIN_STACK_SIZE = 512` was inherited, never measured
+
+`g1-i19a-net` reached, for the first time,
+
+```
+<inf> bt_sdc_hci_driver: SoftDevice Controller build revision: c5 93 ba a9 …
+<inf> bt_hci_raw: Bluetooth enabled in RAW mode
+```
+
+and then took `MPU FAULT / Instruction Access Violation, pc 0x2100bc74` at
+t = 0.3426 s.  Renode hooks measured the stack directly:
+
+| point | sp |
+|---|---|
+| `main` (FUN_0102a720) entry | 0x2100bdc8 |
+| `hci_rpmsg` main (FUN_0102afbc) entry | 0x2100bd70 |
+| `bt_enable_raw` entry (fifo = 0x210008f8) | 0x2100bd40 |
+| `hci_driver_open` entry | 0x2100bd18 |
+| `z_arm_fault` | msp 0x2100bae8, **psp 0x2100bba8** |
+
+`z_main_stack` is 0x2100bbe8 .. 0x2100bde8 (512 B), so the faulting PSP was
+**0x40 below the stack base**, and 0x2100bc74 / 0x2100bbc0 are inside
+`z_main_stack` / `z_idle_stacks` — a plain main-stack overflow inside the
+SoftDevice Controller's `hci_driver_open()`/`sdc_enable()`.  The previous
+`bt_enable_raw` never opened the driver (its driver pointer pin read 0), so the
+path had never been executed.
+
+`CONFIG_MAIN_STACK_SIZE=512` in `recon/application/net/prj.conf` is annotated
+*"Values inherited from the NCS v2.5.1 hci_rpmsg image baseline"* — it is the
+upstream sample's number, never measured against the shipped image.  Raised to
+**1024**, with the measurement recorded in the file.  This is the **only**
+Kconfig/`prj.conf`/devicetree change in this iteration; it is a deliberate,
+documented divergence from the inherited baseline, and the shipped firmware
+cannot have used 512 either, since it runs the same stock open path from the
+same `main`.
+
+Build `/private/tmp/g1-i19b-net`: **both cores reset-free through 8.0 s**
+(`app 16,945,522` / `net 515,353` instructions, 0 `FATAL` in either UART), and
+the only remaining net error is
+
+```
+[00:00:05.093,841] <err> bt_sdc_hci_driver: No event buffer available
+```
+
+### 19.5 Step E — `bt_buf_get_tx` selected `hci_raw.c`'s file-static pools by
+### original address
+
+`FUN_0102fc30` is `bt_buf_get_tx`: it dispatches `type == 0` to one pool and
+`type == 2` to another, logs `"Invalid tx type: %u"` (runtime 0x0103ddcd)
+otherwise, and then does exactly `net_buf_reserve(&buf->b, 1)` (=
+`BT_BUF_RESERVE`, `CONFIG_BT_HCI_RESERVE=1`), `bt_buf_set_type(buf, type)` at
++0x18, the `net_buf_tailroom < size → net_buf_unref → NULL` guard and
+`net_buf_add_mem`.  Its ABI is `r0 = type`, `r1` = the alignment hole,
+`r2:r3 = k_timeout_t`, `data`/`size` on the stack — which is why
+`FUN_0102adf0`'s own comment already noted "the shipped call leaves the packet
+indicator in the r1 alignment hole".
+
+The two pool pointers are **not** an array base.  0x21000994 and 0x210009c8 are
+the original image's `hci_acl_pool` and `hci_cmd_pool`.  Iteration 18 bound the
+first to `_net_buf_pool_list_start`, which is right **only by coincidence**
+(`hci_acl_pool` is the first pool in the linked `net_buf_pool_area`); the second
+was left literal and in this link **0x210009c8 falls inside the stock
+`hci_rx_pool`** (0x21000998 .. 0x210009cc).  Every host → controller HCI command
+was therefore allocated through a `net_buf_pool` pointer aimed at the last four
+bytes of the very pool `bt_buf_get_evt()` uses — which is precisely the
+`No event buffer available` above.
+
+Displaced onto the stock owner: `PROVIDE(FUN_0102fc30 = bt_buf_get_tx)`,
+manifest exclusion, evidence
+`recon/ownership/net_hci_raw_bt_buf_get_tx_adoption.json`.
+Build `/private/tmp/g1-i19c-net`.  Measured effect: the command buffer now
+comes from the real pool (`bt_send(buf = 0x2100e66c)`, inside
+`_net_buf_hci_cmd_pool`) and `hci_driver_send()` runs — and the net core then
+hits §19.8.
+
+### 19.6 Step F — `z_isr_install` wrote 12½ entries into `_sw_isr_table`
+
+`FUN_0102e974`'s `__ASSERT` file string is, read out of the image,
+`"WEST_TOPDIR/zephyr/arch/common/sw_isr_common.c"` at line **85**, which in the
+pinned NCS 2.5.1 tree is exactly `__ASSERT(!irq_is_enabled(irq), "IRQ %d is
+enabled", irq);`; its guard callee `FUN_0102eb70` reads `NVIC->ISER`
+(0xE000E100) and returns `(1u << (irq & 0x1f)) & ISER[irq >> 5]`
+(= `arch_irq_is_enabled`); and the body writes `[base + irq*8] = param` then
+`[base + irq*8 + 4] = routine`, i.e. `_sw_isr_table[idx].arg` / `.isr` in that
+order and with `z_isr_install`'s exact ABI.
+
+Its table base is the raw original-image literal **0x2100076c**, which in the
+cohesive link lands **0x64 bytes inside** the linker-generated `_sw_isr_table`
+(0x21000708 .. 0x210007f8, 30 entries), so every dynamically installed ISR
+overwrote entries 12/13 instead of its own.  Displaced:
+`PROVIDE(FUN_0102e974 = z_isr_install)`, evidence
+`recon/ownership/net_sw_isr_common_adoption.json`.  Build
+`/private/tmp/g1-i19d-net`.  **This did not change the §19.8 symptom** — it is
+kept because it is provably correct, and is reported as such.
+
+### 19.7 Step G — the shipped `K_KERNEL_STACK_RESERVED` is 0x40
+
+The recovered `z_setup_new_thread` (`recon/net/src/FUN_01035edc.c`) computes
+
+```c
+uVar2  = (stack_size + 7) & ~7;
+iVar3  = stack + 0x40 + uVar2;      /* stack_ptr  */
+…      = stack + 0x40;              /* stack_start */
+```
+
+i.e. the shipped `K_KERNEL_STACK_DEFINE` reserved **0x40** bytes at the bottom
+of every stack object (the Cortex-M MPU stack guard).  This build's
+`K_THREAD_STACK_DEFINE` reserves **0** — `nm -S` reports the arrays at exactly
+their nominal size — so every thread created through the reconstruction ran
+0x40 bytes past its own array.  Measured with entry hooks on `g1-i19c-net`:
+`FUN_0102adac` entered with `sp = 0x21009b88` while `g1_hci_rpmsg_tx_stack` is
+0x21009560 .. 0x21009b60, and `FUN_0102acf4` entered with `sp = 0x21009588`
+while `g1_hci_rpmsg_rx_stack` is 0x21008d60 .. 0x21009560 — both 0x28 past
+their array end (the 0x40 reserve minus the 0x18 already pushed at the hook).
+The TX thread's outermost frames therefore sat on the bottom of
+`_k_thread_stack_mpsl_nonpreemptible_thread_id`.
+
+The three arrays in `g1_product_endpoints.c` are re-sized nominal + 0x40.
+Build `/private/tmp/g1-i19e-net` (final).  **This also did not change the
+§19.8 symptom**; kept, provably correct, reported as such.
+
+### 19.8 The new first divergence (CPUNET, t = 5.0942 s)
+
+```
+<inf> bt_hci_raw: Bluetooth enabled in RAW mode          (t = 0.3425 s, OK)
+…
+ASSERTION FAIL @ WEST_TOPDIR/zephyr/arch/arm/core/aarch32/cortex_m/fault.c:1112   (x8)
+<err> os: ***** Reserved Exception ( … ) *****
+<err> os: r0..r3 = 0, r12 = 0, lr = 0, xpsr = 0x000001ff
+<err> os: Faulting instruction address (r15/pc): 0x00000000
+<err> os: >>> ZEPHYR FATAL ERROR 0: CPU exception on CPU 0
+<err> os: Fault during interrupt handling
+<err> os: Current thread: 0xff000000 (unknown)
+```
+
+A 60 ms CPUNET PC trace across the fault ends:
+
+```
+… FUN_0102acf4 -> net_buf_get -> z_impl_k_queue_get -> z_pend_curr
+   -> arch_swap -> z_arm_pendsv -> configure_builtin_stack_guard -> 0x0
+   -> z_arm_usage_fault -> z_arm_fault
+```
+
+so, exactly as on the app core in §19.2, **PendSV restored PC = 0** — the
+incoming thread's saved context is zeroed.  `_kernel.cpus[0].current` reads
+0x21002100 (inside `backend_data_0`) in `g1-i19c-net` and 0xff000000 in
+`g1-i19d/e-net`, i.e. the scheduler state itself is corrupt.  It is reached
+only through `hci_driver_send()`, i.e. only now that the HCI command actually
+gets to the controller.  **This is NOT yet root-caused**, and no guess is
+recorded here as if it were.
+
+Because Renode's nRF5340 platform resets the SoC from the CPUNET fault, this
+also halts the app core, which is why the parity capture's every `p2_render`
+column is still zero even though the **app** core no longer resets.
+
+### 19.9 A new, systematic ledger: source-level raw CPUNET RAM literals
+
+Iteration 18 §18.8 item 4 noted that raw `0x21xxxxxx` literals inside net
+sources are invisible to `check_ram_pin_collisions.py` (which only sees linker
+`PROVIDE` pins).  This iteration produced the ledger: over every source the
+CPUNET build actually compiles, with the `#else` (parity-only) branches of
+`G1_COHESIVE_BUILD` removed and comments stripped, **93 distinct raw
+`0x21xxxxxx` literals still land inside a live linked object**.  The
+distribution:
+
+| owner | distinct literals |
+|---|---:|
+| `sdc_mempool` | 61 |
+| `_sw_isr_table` | 6 (0x21000718, 0x21000760/61/63/67, 0x2100076c) |
+| `m_cb` (three nrfx driver control blocks) | 3 |
+| thread objects (`g1_esb_worker_thread`, the two HCI rpmsg `k_thread`s) | 7 |
+| thread stacks (`g1_esb_worker_stack`) | 1 |
+| net_buf pools (`hci_acl_pool`, `hci_cmd_pool`, `hci_rx_pool`) | 5 |
+| other recovered/linked objects | 10 |
+
+(A handful are provenance spellings the branch-stripper could not remove; the
+sdc_mempool rows are dominated by recovered SDC/ESB state, the same class
+iteration 18 §18.8 item 2 named.)  Three of them were fixed this iteration
+(0x2100095c, 0x21004608, 0x2100076c via displacement); the rest are the named
+follow-up and the most likely home of §19.8.
+
+### 19.10 Measurements (every number below was actually run)
+
+| metric | iter 18 (`i17d-app` + `i18e-net`) | **iter 19 app-only** (`i19b-app` + `i18e-net`) | **iter 19 final** (`i19b-app` + `i19e-net`) |
+|---|---:|---:|---:|
+| app `ZEPHYR FATAL ERROR` in the boot UART | 1 (t = 5.093 s; iteration 18's 6 s log, and reproduced here in a 5.3 s run) | **0** (8.0 s) | **0** (8.0 s) |
+| net `ZEPHYR FATAL ERROR` in the boot UART | 0 | 0 (8.0 s) | **1 (t = 5.094 s, §19.8)** |
+| app instr @8.0 s | — | **16,942,935** | not reached (SoC reset) |
+| net instr @8.0 s | — | **289,729,537** (logging spin, §19.3) | not reached |
+| app instr @8.0 s (`i19b-app` + `i19b-net`) | — | — | **16,945,522** |
+| net instr @8.0 s (`i19b-app` + `i19b-net`) | — | — | **515,353** |
+| `bt_enable` present in the app ELF | **no (GC'd)** | **yes, 0x55154** | yes |
+| `bt_enable(NULL)` actually called | no | **yes, t ≈ 5.13 s** | yes |
+| HCI Reset (0x0c03) delivered to the transport | no | **yes** | yes |
+| `Bluetooth enabled in RAW mode` on CPUNET | no | no | **yes, t = 0.3425 s** |
+| `radio TransmittedFrames` | 0 | 0 | **0** |
+| `vcentral Connected` | False | False | **False** |
+| app FLASH / RAM | 649,672 B / 247,765 B | 649,672 B / **252,885 B (56.13 %)** | same |
+| net FLASH / RAM | 228,717 B / 59,796 B | — | **228,445 B / 60,524 B (92.35 %)** |
+| app `nm -u` undefined / duplicate globals | 0 / 0 | **0 / 0** | 0 / 0 |
+| net `nm -u` undefined / duplicate globals | 0 / 0 | — | **0 / 0** |
+| `check_ram_pin_collisions.py` (app) | 0 / 0, EXIT 0 | **0 / 0, EXIT 0** | 0 / 0, EXIT 0 |
+| `check_thread_create_stack_args.py` | 10/10, EXIT 0 | **10/10, EXIT 0** (120 trials) | 10/10, EXIT 0 |
+| `gen_retained_sources.py --check` | clean | clean | **clean** |
+
+### 19.11 Graphics + sensor parity (`g1-i19b-app` + `g1-i19e-net`)
+
+Full capture actually run, both phases, identical determinism knobs and
+stimulus to the oracle, **no memory poking**:
+
+```
+G1_RESC=/Users/freedomcoder/Projects/armemul/g1-ours.resc \
+G1_APP_ELF=/private/tmp/g1-i19b-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i19e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x200551d8 G1_CTX_105A=0x2005524a \
+recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i19e
+```
+
+| id | verdict | detail |
+|---|---|---|
+| **G-5** | **PASS** (unchanged) | all four enumerated panel-init elements byte-exact, including the trailing `0xB9 FF`. |
+| **G-6** | **PASS** (unchanged) | `spim_b` 0 == 0, hash EQ. |
+| **G-3** | **FAIL (truncation only)**, unchanged | `p1_boot` **34 vs 764** transactions; the shared 34 are **byte-identical**; first difference at index **34** (oracle `{"op":"0x66","kind":"command","n_tx":1,"n_rx":1}`, ours `<end>`). `p2_render` 0 vs 2,881. |
+| **G-1** | **FAIL**, unchanged | `p2_render` ours `0c5cc90b…` / **0 lit px**; oracle `b26c73b3…` / 1,098. |
+| **G-2** | **FAIL**, unchanged | `p1_boot` ours `0c5cc90b…` / **0 lit px**; oracle `1d617c65…` / 656. |
+| **G-4** | *localiser, unchanged* | our framebuffer sha is still bit-identical to iterations 16–18, so first differing row **y = 267**, first differing pixel **x = 178** carries over unchanged. |
+
+**No pixels were painted, and that is stated plainly.**  The capture is still
+truncated inside `p1_boot`, now by the **net** core's §19.8 reset rather than
+the app core's.
+
+Sensors, `p1_boot` (per device, first-difference index in brackets):
+LSM6DSO 983/1,089 [#3], nPM1300 199/291 [#0], OPT3001 14/33 [#14 = prefix-exact],
+ST25DV system port 12/22 [#10], NFC EEPROM 11/25 [#6], `saadc` 17/998 [#5],
+`spim_a` 34/764 [#34], `gpiote0` 25/25 (hash EQ), `pdm0` 2/2 (hash EQ),
+`spim_b` 0/0 (hash EQ).  Every `p2_render` column is 0.  Score is unchanged at
+**5 PASS / 5 PARTIAL / 4 FAIL**; see `sensor_parity_status.md`.  The single
+cell that moved is cosmetic: the NFC EEPROM's first differing payload is now
+`W 2002B8` (was `W 200258`) because the arena moved — the divergence index #6
+is unchanged.
+
+### 19.11b BOTH BUILDS reported: the reset-free-net variant reaches
+### `p2_render` for the first time
+
+Because §19.5–19.7's provably-correct net fixes move the boot *further into a
+new stall* (§19.8) rather than past it, the capture was **also** run with
+`g1-i19b-net` — the last net build in which **neither core resets** — so both
+are on the record.  Same script, same knobs, same stimulus; this one used the
+**corrected** context-probe addresses (`G1_CTX_FE8=0x20055238`,
+`G1_CTX_105A=0x200552aa`, i.e. the iteration-14 values + the 0x60 the arena
+moved).
+
+| device / phase | final tree (`i19e-net`) | **reset-free net (`i19b-net`)** | oracle | first-difference index (vs oracle) |
+|---|---:|---:|---:|---:|
+| LSM6DSO `p1_boot` | 983 | **1,027** | 1,089 | 3 |
+| LSM6DSO `p2_render` | 0 | **456** | 1,200 | **456 — the whole 456-transaction prefix is byte-identical** |
+| nPM1300 `p1_boot` | 199 | **232** | 291 | 0 |
+| nPM1300 `p2_render` | 0 | **233** | 508 | 0 |
+| `saadc` (whole run) | 17 | **53** | 998 | 5 |
+| OPT3001 `p1_boot` | 14 | 14 | 33 | 14 (prefix-exact) |
+| ST25DV system port / EEPROM `p1_boot` | 12 / 11 | 12 / 11 | 22 / 25 | 10 / 6 |
+| `spim_a` `p1_boot` / `p2_render` | 34 / 0 | **34 / 0** | 764 / 2,881 | 34 |
+| `gpiote0` / `pdm0` / `spim_b` | 25 / 2 / 0, hash EQ | 25 / 2 / 0, **hash EQ** | 25 / 2 / 0 | — |
+| framebuffer `p1_boot` / `p2_render` | `0c5cc90b…`, 0 lit px | `0c5cc90b…`, **0 lit px** | 656 / 1,098 lit px | — |
+
+So the extra 14 s of live run time buys **real sensor traffic that no previous
+iteration had reached** — in particular the IMU's entire `p2_render` prefix
+(456 transactions) is byte-identical to the oracle's — but **not a single lit
+pixel and not one extra `spim_a` transaction**, because `spim_a` index 34
+onwards is gated on the BLE link, which is still down (`radio
+TransmittedFrames` = 0 and `vcentral Connected` = False, measured on the same
+pair in the 8 s boot run).  No parity criterion changes verdict.
+
+Caveat recorded honestly: Renode's stdout for this longer run is truncated at
+10,580 bytes and stops after `ORACLE_PHASE_BEGIN p2_render`, so the end-of-run
+**counter echoes** (`RADIO_TX`, `VC_CONNECTED`, `JBD_FRAMECOUNTER_P2`, the ESB
+counters) were **not** captured for this variant; the transaction traces and
+both framebuffer dumps are complete and are what the table above is computed
+from.  The counters quoted for it come from the separate 8.0 s boot run
+(`RADIO_TX` = 0, `VC_CONNECTED` = False).
+
+### 19.12 Re-proof
+
+Every corrected canonical reconstruction was re-verified with the authoritative
+CFG-directed verifier **after** the change:
+`cfg_verify.verify('app','ancs_main')` **PASS** (11 cases);
+`cfg_verify.verify('net', …)` **PASS** for `FUN_0102acf4` (7),
+`FUN_0102afbc` (0), `FUN_0102fc30` (4), `FUN_0102fcec` (0).  As in iteration 18
+this is necessary but not sufficient: `cfg_verify` passed *before* the
+`ancs_main` fix too, because a wrong callee **name** that resolves to a real
+library symbol is invisible to a harness that models callees as order-keyed
+oracles by address.
+
+### Regenerate (iteration 19)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check   # clean
+recon/application/build_cohesive.sh app /private/tmp/g1-i19b-app
+recon/application/build_cohesive.sh net /private/tmp/g1-i19e-net -- \
+    -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF
+arm-zephyr-eabi-nm -u /private/tmp/g1-i19b-app/zephyr/zephyr.elf | wc -l   # 0
+arm-zephyr-eabi-nm -u /private/tmp/g1-i19e-net/zephyr/zephyr.elf | wc -l   # 0
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py \
+    /private/tmp/g1-i19b-app/zephyr/zephyr.elf                             # EXIT 0, 0/0
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_thread_create_stack_args.py \
+    --trials 120                                                           # EXIT 0, 10/10
+# boot + graphics/sensors: <scratch>/g1-i19/b*.resc and §19.11
+```
+
+Bisect ledger (every build and boot actually run):
+
+| build | change | app FATAL @8 s | net FATAL @8 s | note |
+|---|---|---|---|---|
+| `g1-i19a-app` | `ancs_main`: `bt_send` → `bt_enable`; `bt_foreach_bond` third arg | 1 (t = 5.1418 s) | 0 | headroom assert GONE; new USAGE FAULT, PendSV restores PC = 0 |
+| `g1-i19b-app` | `G1_RAM_ARENA_LIMIT` 0x20029000 → 0x2002a400 | **0** | 0 | **first reset-free 8 s app boot** |
+| `g1-i19a-net` | `bt_enable_raw` displacement + `g1_hci_rx_queue` + `g1_hci_ept` | 0 | 1 (t = 0.3426 s) | SDC opens; `main` stack overflows |
+| `g1-i19b-net` | `CONFIG_MAIN_STACK_SIZE` 512 → 1024 | **0** | **0** | `Bluetooth enabled in RAW mode`; `No event buffer available` @5.0938 s |
+| `g1-i19c-net` | `bt_buf_get_tx` displacement | 0 | 1 (t = 5.0942 s) | command allocated from the real pool; `hci_driver_send` runs; §19.8 |
+| `g1-i19d-net` | `z_isr_install` displacement | 0 | 1 (t = 5.0942 s) | correct, symptom unchanged |
+| `g1-i19e-net` | thread stacks + 0x40 `K_KERNEL_STACK_RESERVED` | 0 | 1 (t = 5.0942 s) | **final**; correct, symptom unchanged |
+
+Files changed: `recon/{app,verified}/src/ancs_main.c`,
+`recon/symbolized/app/ancs_main.c`, `recon/named/ancs_main.c`,
+`recon/readable_sources/app/g1/ancs_main.c`;
+`recon/application/app/src/g1_app_ram_relocs.c`;
+`recon/net/src/{FUN_0102acf4,FUN_0102afbc}.c` and the
+`recon/symbolized/net/FUN_0102afbc.c` mirror;
+`recon/application/net/src/{g1_product_endpoints.c,stock_call_aliases.ld}`;
+`recon/application/net/prj.conf` (one Kconfig value, §19.4);
+`recon/ownership/adoption_manifest.json` (three net rows) and three new
+evidence files `recon/ownership/net_{hci_raw_singleton,hci_raw_bt_buf_get_tx,sw_isr_common}_adoption.json`;
+`recon/generated/net_retained_sources.cmake` (regenerated by its own tool);
+`recon/emulator/reports/sensor_parity_status.md`; this report.
+**No `tools/` change**, no `recon/emulator/scripts/` change, `armemul`
+untouched, nothing committed.
+
+### 19.13 Open, named, and NOT fixed
+
+1. **§19.8** — the CPUNET PendSV-restores-PC-0 at t = 5.0942 s, reached only
+   through `hci_driver_send()`.  This is the first divergence.
+2. **93 raw `0x21xxxxxx` source literals still land inside live linked
+   objects** (§19.9), 61 of them inside `sdc_mempool`, 6 inside
+   `_sw_isr_table`.  No gate covers this class; a source-level checker is the
+   obvious next tool (deliberately not written this iteration — `tools/` is
+   off-limits here).
+3. **`CONFIG_MAIN_STACK_SIZE = 1024` is measured-sufficient, not
+   original-verified.**  The shipped value has not been recovered from the
+   image; 512 was demonstrably wrong.
+4. **`analysis 0x0102b204` (168 B) is still unreconstructed** (iteration 18
+   §18.8 item 1), so `FUN_0102b1c8` still creates the ESB worker with
+   `K_FOREVER`.
+5. **The net RAM-pin gate still does not exist** (iteration 18 §18.8 item 3).
