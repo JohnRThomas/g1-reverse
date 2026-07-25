@@ -72,13 +72,13 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 639,
-    "exclude_reconstruction": 625,
+    "entries": 660,
+    "exclude_reconstruction": 646,
     "retain_reconstruction": 14,
     "by_kind": {
-     "source": 457,
+     "source": 477,
      "archive": 132,
-     "static_helper": 28,
+     "static_helper": 29,
      "table": 22,
      "glue": 0
     }
@@ -38343,6 +38343,1004 @@
        "callers": {
         "total": 2,
         "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000654c4",
+     "raw_symbol": "FUN_000654c4",
+     "current_symbol": "gpiote_pin_event_dispatch",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "call_handler",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-nrfx_gpiote (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth hal_nordic_nrfx candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `call_handler`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.call_handler section (64 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000654c4 after masking 2 relocation slots; 56 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c :: call_handler (local linkage) from /private/tmp/g1-i5d-app/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "22 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000654c4",
+       "upstream_symbol": "call_handler",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00065504",
+     "raw_symbol": "FUN_00065504",
+     "current_symbol": "gpiote_channel_release_if_unshared",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "release_handler",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-nrfx_gpiote (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth hal_nordic_nrfx candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `release_handler`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.release_handler section (128 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00065504 after masking 9 relocation slots; 92 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c :: release_handler (local linkage) from /private/tmp/g1-i5d-app/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c.obj"
+      },
+      {
+       "signal": "assert_literal_source_path",
+       "detail": "literal pool references ['WEST_TOPDIR/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "22 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00065504",
+       "upstream_symbol": "release_handler",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00065584",
+     "raw_symbol": "FUN_00065584",
+     "current_symbol": "gpio_port_base_from_pin",
+     "kind": "static_helper",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "nrf_gpio_pin_port_decode",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-nrfx_gpiote (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth hal_nordic_nrfx candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `nrf_gpio_pin_port_decode`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.nrf_gpio_pin_port_decode section (104 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00065584 after masking 8 relocation slots; 72 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c :: nrf_gpio_pin_port_decode (local linkage) from /private/tmp/g1-i5d-app/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "22 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00065584",
+       "upstream_symbol": "nrf_gpio_pin_port_decode",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 4,
+        "library_owned": 4,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000655ec",
+     "raw_symbol": "FUN_000655ec",
+     "current_symbol": "gpiote_in_event_reg_offset",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "nrf_gpiote_in_event_get",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-nrfx_gpiote (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth hal_nordic_nrfx candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `nrf_gpiote_in_event_get`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.nrf_gpiote_in_event_get section (52 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000655ec after masking 5 relocation slots; 32 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c :: nrf_gpiote_in_event_get (local linkage) from /private/tmp/g1-i5d-app/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "22 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000655ec",
+       "upstream_symbol": "nrf_gpiote_in_event_get",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 3,
+        "library_owned": 3,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00065620",
+     "raw_symbol": "FUN_00065620",
+     "current_symbol": "gpiote_read_and_clear_pending_events",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "__nrfy_internal_gpiote_events_process.constprop.0",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-nrfx_gpiote (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth hal_nordic_nrfx candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `__nrfy_internal_gpiote_events_process.constprop.0`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__nrfy_internal_gpiote_events_process.constprop.0 section (92 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00065620 after masking 1 relocation slots; 88 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c :: __nrfy_internal_gpiote_events_process.constprop.0 (local linkage) from /private/tmp/g1-i5d-app/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "22 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00065620",
+       "upstream_symbol": "__nrfy_internal_gpiote_events_process.constprop.0",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000657e4",
+     "raw_symbol": "FUN_000657e4",
+     "current_symbol": "gpiote_trigger_enable",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "nrfx_gpiote_output_configure",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-nrfx_gpiote (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth hal_nordic_nrfx candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `nrfx_gpiote_output_configure`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.nrfx_gpiote_output_configure section (248 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000657e4 after masking 7 relocation slots; 220 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c :: nrfx_gpiote_output_configure (global linkage) from /private/tmp/g1-i5d-app/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "22 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000657e4",
+       "upstream_symbol": "nrfx_gpiote_output_configure",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00065b18",
+     "raw_symbol": "FUN_00065b18",
+     "current_symbol": "gpiote_in_uninit",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "nrfx_gpiote_pin_uninit",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-nrfx_gpiote (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth hal_nordic_nrfx candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `nrfx_gpiote_pin_uninit`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.nrfx_gpiote_pin_uninit section (132 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00065b18 after masking 8 relocation slots; 100 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c :: nrfx_gpiote_pin_uninit (global linkage) from /private/tmp/g1-i5d-app/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "22 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00065b18",
+       "upstream_symbol": "nrfx_gpiote_pin_uninit",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00065b9c",
+     "raw_symbol": "FUN_00065b9c",
+     "current_symbol": "gpiote_irq_handler",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "nrfx_gpiote_irq_handler",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-nrfx_gpiote (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth hal_nordic_nrfx candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `nrfx_gpiote_irq_handler`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.nrfx_gpiote_irq_handler section (416 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00065b9c after masking 15 relocation slots; 356 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c :: nrfx_gpiote_irq_handler (global linkage) from /private/tmp/g1-i5d-app/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "22 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00065b9c",
+       "upstream_symbol": "nrfx_gpiote_irq_handler",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 0,
+        "library_owned": 0,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000850f6",
+     "raw_symbol": "FUN_000850f6",
+     "current_symbol": "value_in_bitmap_0_47",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "nrf_gpio_pin_present_check",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-nrfx_gpiote (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth hal_nordic_nrfx candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `nrf_gpio_pin_present_check`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.nrf_gpio_pin_present_check section (36 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000850f6 after masking 0 relocation slots; 36 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c :: nrf_gpio_pin_present_check (local linkage) from /private/tmp/g1-i5d-app/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "22 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000850f6",
+       "upstream_symbol": "nrf_gpio_pin_present_check",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00085130",
+     "raw_symbol": "FUN_00085130",
+     "current_symbol": "gpio_pin_cnf_build_fields",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "nrf_gpio_reconfigure",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-nrfx_gpiote (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth hal_nordic_nrfx candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `nrf_gpio_reconfigure`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.nrf_gpio_reconfigure section (154 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00085130 after masking 1 relocation slots; 150 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c :: nrf_gpio_reconfigure (local linkage) from /private/tmp/g1-i5d-app/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "22 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00085130",
+       "upstream_symbol": "nrf_gpio_reconfigure",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 3,
+        "library_owned": 3,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00066d78",
+     "raw_symbol": "FUN_00066d78",
+     "current_symbol": "nrfx_pin_freq_config_validate",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "spim_configuration_verify",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-nrfx_spim (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth hal_nordic_nrfx candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `spim_configuration_verify`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.spim_configuration_verify section (248 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00066d78 after masking 0 relocation slots; 248 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c :: spim_configuration_verify (local linkage) from /private/tmp/g1-i5d-app/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "8 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00066d78",
+       "upstream_symbol": "spim_configuration_verify",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00066e70",
+     "raw_symbol": "FUN_00066e70",
+     "current_symbol": "pin_init",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "pin_init",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-nrfx_spim (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth hal_nordic_nrfx candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `pin_init`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.pin_init section (80 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00066e70 after masking 3 relocation slots; 68 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c :: pin_init (local linkage) from /private/tmp/g1-i5d-app/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "8 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00066e70",
+       "upstream_symbol": "pin_init",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00066ec0",
+     "raw_symbol": "FUN_00066ec0",
+     "current_symbol": "nrfx_spim_configure",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "spim_configure",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-nrfx_spim (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth hal_nordic_nrfx candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `spim_configure`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.spim_configure section (632 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00066ec0 after masking 12 relocation slots; 584 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c :: spim_configure (local linkage) from /private/tmp/g1-i5d-app/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c.obj"
+      },
+      {
+       "signal": "assert_literal_source_path",
+       "detail": "literal pool references ['WEST_TOPDIR/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c']"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "8 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00066ec0",
+       "upstream_symbol": "spim_configure",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00067138",
+     "raw_symbol": "FUN_00067138",
+     "current_symbol": "spim_pin_uninit",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "spim_pin_uninit",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-nrfx_spim (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth hal_nordic_nrfx candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `spim_pin_uninit`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.spim_pin_uninit section (48 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00067138 after masking 1 relocation slots; 44 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c :: spim_pin_uninit (local linkage) from /private/tmp/g1-i5d-app/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "8 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00067138",
+       "upstream_symbol": "spim_pin_uninit",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0008523e",
+     "raw_symbol": "FUN_0008523e",
+     "current_symbol": "__nrfy_internal_spim_events_process",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "__nrfy_internal_spim_events_process",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-nrfx_spim (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth hal_nordic_nrfx candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `__nrfy_internal_spim_events_process`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.__nrfy_internal_spim_events_process section (124 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0008523e after masking 5 relocation slots; 104 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c :: __nrfy_internal_spim_events_process (local linkage) from /private/tmp/g1-i5d-app/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "8 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0008523e",
+       "upstream_symbol": "__nrfy_internal_spim_events_process",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000852ba",
+     "raw_symbol": "FUN_000852ba",
+     "current_symbol": "spim_abort",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "spim_abort",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-nrfx_spim (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth hal_nordic_nrfx candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `spim_abort`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.spim_abort section (44 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000852ba after masking 2 relocation slots; 36 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c :: spim_abort (local linkage) from /private/tmp/g1-i5d-app/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "8 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000852ba",
+       "upstream_symbol": "spim_abort",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 2,
+        "library_owned": 2,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0006125c",
+     "raw_symbol": "FUN_0006125c",
+     "current_symbol": "flash_nrf_erase",
+     "kind": "source",
+     "component": "zephyr_drivers",
+     "upstream_symbol": "flash_nrf_erase",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/drivers/flash/soc_flash_nrf.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-soc_flash_nrf (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth zephyr_drivers candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `flash_nrf_erase`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.flash_nrf_erase section (180 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x0006125c after masking 11 relocation slots; 136 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/drivers/flash/soc_flash_nrf.c :: flash_nrf_erase (local linkage) from /private/tmp/g1-i5d-app/zephyr/drivers/flash/CMakeFiles/drivers__flash.dir/soc_flash_nrf.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "3 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x0006125c",
+       "upstream_symbol": "flash_nrf_erase",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 0,
+        "library_owned": 0,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": false,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00061310",
+     "raw_symbol": "FUN_00061310",
+     "current_symbol": "flash_nrf_write",
+     "kind": "source",
+     "component": "zephyr_drivers",
+     "upstream_symbol": "flash_nrf_write",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/drivers/flash/soc_flash_nrf.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-soc_flash_nrf (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth zephyr_drivers candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `flash_nrf_write`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.flash_nrf_write section (180 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00061310 after masking 9 relocation slots; 144 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/drivers/flash/soc_flash_nrf.c :: flash_nrf_write (local linkage) from /private/tmp/g1-i5d-app/zephyr/drivers/flash/CMakeFiles/drivers__flash.dir/soc_flash_nrf.c.obj"
+      },
+      {
+       "signal": "symbol_name_identity",
+       "detail": "recovered name equals the upstream symbol name (independent naming-wave identification)"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "3 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00061310",
+       "upstream_symbol": "flash_nrf_write",
+       "upstream_linkage": "local",
+       "callers": {
+        "total": 0,
+        "library_owned": 0,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00084068",
+     "raw_symbol": "FUN_00084068",
+     "current_symbol": "dev_channel_dispatch_range",
+     "kind": "source",
+     "component": "zephyr_drivers",
+     "upstream_symbol": "regulator_set_voltage",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/drivers/regulator/regulator_common.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-regulator_common (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth zephyr_drivers candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `regulator_set_voltage`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.regulator_set_voltage section (40 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00084068 after masking 0 relocation slots; 40 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/drivers/regulator/regulator_common.c :: regulator_set_voltage (global linkage) from /private/tmp/g1-i5d-app/zephyr/drivers/regulator/CMakeFiles/drivers__regulator.dir/regulator_common.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "3 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00084068",
+       "upstream_symbol": "regulator_set_voltage",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00084090",
+     "raw_symbol": "FUN_00084090",
+     "current_symbol": "dev_channel_dispatch_lookup",
+     "kind": "source",
+     "component": "zephyr_drivers",
+     "upstream_symbol": "regulator_set_mode",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/drivers/regulator/regulator_common.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-regulator_common (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth zephyr_drivers candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `regulator_set_mode`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.regulator_set_mode section (60 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x00084090 after masking 0 relocation slots; 60 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/drivers/regulator/regulator_common.c :: regulator_set_mode (global linkage) from /private/tmp/g1-i5d-app/zephyr/drivers/regulator/CMakeFiles/drivers__regulator.dir/regulator_common.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "3 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00084090",
+       "upstream_symbol": "regulator_set_mode",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
+        "even_owned": 0
+       },
+       "on_golden_boot_path": true,
+       "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000840cc",
+     "raw_symbol": "FUN_000840cc",
+     "current_symbol": "dev_channel_validate_and_set",
+     "kind": "source",
+     "component": "zephyr_drivers",
+     "upstream_symbol": "regulator_common_init",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/drivers/regulator/regulator_common.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Library-displacement Batch 3 unit B3-regulator_common (recon/ownership/library_displacement_report.md \u00a7Batch 3): high-confidence non-Bluetooth zephyr_drivers candidate with zero Even-owned callers, zero pin/linker-artifact references, and its upstream unit already in the cohesive link.  The reconstruction is a duplicate body of `regulator_common_init`; excluding it removes the duplicate and lets the genuine library definition own the identity.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.regulator_common_init section (166 B incl. tail beyond the Ghidra extent) is byte-identical to the shipped image at 0x000840cc after masking 3 relocation slots; 154 distinguishing bytes"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/drivers/regulator/regulator_common.c :: regulator_common_init (global linkage) from /private/tmp/g1-i5d-app/zephyr/drivers/regulator/CMakeFiles/drivers__regulator.dir/regulator_common.c.obj"
+      },
+      {
+       "signal": "sdk_unit_cluster",
+       "detail": "3 recovered functions in this build map to the same upstream unit"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the current cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000840cc",
+       "upstream_symbol": "regulator_common_init",
+       "upstream_linkage": "global",
+       "callers": {
+        "total": 1,
+        "library_owned": 1,
         "even_owned": 0
        },
        "on_golden_boot_path": true,

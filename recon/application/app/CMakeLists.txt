@@ -168,6 +168,10 @@ target_sources(app PRIVATE
   src/g1_gpio_dt_specs.c
   src/g1_app_ram_relocs.c
   src/g1_ipc_serialization_objects.c
+  # Iteration 10: the 3-entry ST25DV transport ops vtable (original
+  # rodata_88a38).  Its contents are original-image Thumb function pointers, so
+  # like the gpio_dt_spec tables it has to be emitted, not pinned.
+  src/g1_st25dv_ops_table.c
   # Library displacement Batch 0 (goal G2): the four out-lined
   # zephyr/include/zephyr/drivers/gpio.h static inlines are excluded in
   # adoption_manifest.json; a header `static inline` has no external symbol to

@@ -3352,3 +3352,386 @@ sanctioned generator only),
 The net scratchpad catalog gained five records (backed up as
 `net_funcs.json.i9bak`). No `tools/` change, no Kconfig/`prj.conf`/devicetree
 change, `armemul` untouched. Nothing committed.
+
+---
+
+## Iteration 10 — the message-pool RAM collision that zeroed the idle stack (Step A) + library-displacement Batch 3 (Step B)
+
+**Headline.** Iteration 9's blocker is solved and **the app boot no longer
+faults or resets**. The thread with the NULL entry was **`z_idle_threads[0]`,
+the Zephyr idle thread**, and its entry pointer was never wrong: the whole
+64-byte window holding its saved exception frame had been **zeroed by
+`msg_queue_init`**, which memsets 20 × 436 = 8720 bytes at the pinned absolute
+address `g_message_pool = 0x20007dac`. In our build that window covers six live
+Zephyr objects, `z_idle_stacks` among them. Emitting the pool as a real object
+and rebinding its four pins removes the fault: the app now runs the whole 0.15 s
+budget cleanly (**759 unique functions, 0 resets**) and, given a longer budget,
+runs to **0.2498 s** and **781 unique functions** before the next divergence.
+
+Two further genuine defects were found, proven and fixed along the way: a
+**dropped `struct i2c_msg.flags` store** in `dev_ctrl_write1` (a stack write, so
+structurally invisible to the parity harness), and the **unrelocated ST25DV ops
+vtable** `rodata_88a38`, whose third entry is a 6-byte Ghidra catalog gap that
+was reconstructed and proven (`FUN_0007c86c`).
+
+**E4 is still NOT complete.** `spi_read_id`, `panel_on`, `spi_master_init`,
+`bt_enable`, `bt_start` are all still unreached and `radio TransmittedFrames`
+is **0**. No SPI display traffic occurred, so no graphics comparison against
+`display_sensor_oracle.json` was possible this iteration.
+
+Step B applied **4 upstream units (21 rows)** and **reverted 1 unit (3 rows)**;
+FLASH delta **0 B** — the excluded reconstructions were already
+garbage-collected, so the linked image is **byte-identical** (see §B.3, which
+also corrects the method for finding rows that can still change the image).
+
+Final artifacts: app `/private/tmp/g1-b3f-app` (byte-identical to the Step A
+build `/private/tmp/g1-i10v-app`), net `/private/tmp/g1-i9c-net` (unchanged
+from iteration 9 — the net core was not rebuilt this iteration). Traces
+`/tmp/g1_i10a/` (iteration-9 baseline reproduced), `/tmp/g1_i10b/`,
+`/tmp/g1_i10w/` (final, 0.15 s), `/tmp/g1_i10x/` (final, 0.6 s).
+
+### Measurements
+
+All rows below are **execution-traced** runs at the same `.resc`, quantum and
+RNG seed as iterations 1–9, so they are directly comparable to the baseline and
+to `golden_boot_trace.json`.
+
+| metric | iteration 9 (reproduced) | **iter 10 final** |
+|---|---:|---:|
+| app instructions in 0.15 s | 5,612,329 (fatal reset at 0.048 s) | **5,360,315 (no reset)** |
+| app unique functions in 0.15 s | 760 (18 of them the fault/panic path) | **759** |
+| app unique functions at first fault | 760 @ 0.048 s | **781 @ 0.2498 s** |
+| net instructions in 0.15 s | 289,451 | **290,688** |
+| net unique functions | 420 | **432** |
+| app resets in 0.15 s | 1 | **0** |
+| `radio TransmittedFrames` | 0 | 0 |
+| app FLASH | 626,416 B (63.76 %) | **626,444 B (63.76 %)** |
+| app RAM | 75,757 B (16.81 %) | **84,477 B (18.75 %)** |
+| net FLASH / RAM | 229,161 B (99.02 %) / 54,140 B | unchanged (net not rebuilt) |
+
+Function-set diff vs the baseline: **18 lost, 17 gained**. All 18 lost are the
+fault/panic path itself (`z_arm_usage_fault`, `z_arm_fault`, `z_fatal_error`,
+`usage_fault.constprop.0`, `panic`, `sys_arch_reboot`, `k_sys_fatal_error_handler`,
+`z_impl_log_panic`, `log_source_name_get`, `k_thread_name_get`, `print_formatted`,
+`newline_print`, `is_ptr`, `z_log_get_tag`, `z_impl_k_timer_stop`,
+`z_unpend1_no_timeout`, `?`) — i.e. they are gone *because the fault is gone*.
+The 17 gained are the RTC/timer/scheduler paths that only run once the boot
+survives past 0.048 s (`rtc_nrf_isr`, `rtc_cb`, `sys_clock_announce`,
+`sys_clock_timeout_handler`, `z_thread_timeout`, `z_time_slice`,
+`z_sched_wake_thread`, `z_timer_expiration_handler`, `z_impl_k_uptime_ticks`,
+`z_nrf_rtc_timer_chan_free`, `nrfx_dppi_channel_free`, `nrfx_flag32_free`,
+`nrfx_gppi_*`) **plus `dev_reg_modify_bits` and `app_msleep_thunk_a`**, which
+are new real work unlocked by the `dev_ctrl_write1` defect fix (§A.3). Net gains
+12 functions and loses none.
+
+Both links: `nm -u` = **0** undefined, **0** duplicate globals. No
+`--allow-multiple-definition`, no weak symbols, no numeric-root hacks, no
+`tools/` change, no Kconfig / `prj.conf` / devicetree change; `armemul`
+untouched (only extra `.resc` files under `/tmp`). Nothing committed.
+
+**Honest note on measurement regime.** Traced and untraced runs are *not*
+comparable and this iteration is the first to quantify it. Renode's execution
+tracer (and `AddHook`s) defeat the WFI halt, so a traced run executes ~117 MIPS
+of virtual time while an untraced one executes ~9.6 MIPS once the system starts
+idling. The same final image reaches 5,360,315 instructions at 0.15 s traced and
+4,801,090 instructions at 0.5 s untraced — the *same execution point*. All
+iteration 1–10 numbers, and the golden oracle, are traced runs, so the table
+above is internally consistent; but hooks also perturb *scheduling* enough to
+move divergences (§A.6), so every diagnostic hook result in this report is
+labelled as such.
+
+---
+
+### Step A
+
+#### A.1 Which thread had the NULL entry, and why it was not a thread-entry pin
+
+A Renode hook on `z_impl_k_thread_create` (0x6cfdc) and on `z_setup_new_thread`
+(0x6cf28) captured every thread the app creates, and a second hook on
+`z_arm_pendsv`'s exception return (0x4d9e4) printed the restored frame whenever
+its stacked PC was 0. On the iteration-9 build `/private/tmp/g1-i9g-app`:
+
+```
+SETUP thread=20004948 stack=20008e00 size=16384 entry=0006c929   (z_main_thread)
+SETUP thread=20004870 stack=20008cc0 size=320   entry=0006d1b9   (z_idle_threads[0])
+TCREATE thread=20003460 stack=20006e10 size=2048 entry=0004be9d  (logging_thread)
+TCREATE thread=20004a20 ... 20003fd0 ... 20003e50 ... 20003358    (work queues)
+SWITCH0 thread=20004870 psp=20008dd0 r0..r3=0 lr=0 pc=00000000
+```
+
+The faulting thread is **`z_idle_threads[0]` (0x20004870)** — created by the
+kernel, not by any recovered `k_thread_create`, so this is **not** the
+`ADDR_*_THUMB` / unrebound-pin class that iteration 9 predicted. Its initial
+frame had been written correctly:
+
+```
+FR00 pc=0004da10 val=0006d1b9   (arch_new_thread: r0 slot = idle entry)
+FRPC pc=0004da28 val=00077468   (arch_new_thread: PC slot = z_thread_entry)
+PSPW pc=0004da44 val=20008de0   (arch_new_thread: callee_saved.psp)
+PSPW pc=0004d96c val=20008dd0   (z_arm_pendsv saved PSP after the HW push)
+```
+
+but at the moment of the switch the **whole window 0x20008dc0..0x20008e00 read
+zero**, so the restored PC was 0 and the CPU took "Attempt to execute undefined
+instruction" → `z_fatal_error` → SYSRESETREQ at 0.048 s.
+
+#### A.2 Root cause — `g_message_pool`, an 8.5 KiB absolute RAM pin
+
+A byte-width write watchpoint on the stacked-PC slot found the writer
+(doubleword watchpoints missed it — `memset` stores bytes):
+
+```
+B  pc=0007f22c val=00        (= memset+0xa)
+MEMSET dst=20008d00 len=436 val=0 lr=0002d479   (= msg_queue_init+0x1c)
+```
+
+`msg_queue_init` (original 0x33c5c) clears the message pool with 20 iterations
+of `memset_bytes(p, 0, 0x1b4)` starting at `g_message_pool`, i.e. the original
+absolute range **0x20007dac .. 0x20009fbc** (20 × 436 = 8720 B). The pin ledger
+brackets it exactly: the next pinned global is `g_whitelist_app_parse_buf` at
+0x20009fbc, and the only three other pins inside are the pool's own interior
+views (`g_notif_app_pkg_table_buf` = pool+0x10,
+`g_message_table_mirror` = pool+0x1108 = slot 10,
+`g_message_table_mirror_ovfl_slot` = pool+0x205c = slot 19).
+
+In our build that 8.5 KiB window covers **six live Zephyr objects**:
+`smp_work_queue_stack`, `bt_lw_stack_area`, `_k_mem_slab_buf_chan_slab`,
+`z_interrupt_stacks`, `z_idle_stacks` and `z_main_stack`. This is the
+absolute-RAM-pin collision class of iterations 6/7, at the largest scale seen so
+far.
+
+**Fix** (the established mechanism): the pool is emitted as one real
+zero-initialised object, `g1_message_pool[20 * 436]` in
+`recon/application/app/src/g1_app_ram_relocs.c` (group 3), and all four pins are
+rebound onto it at their original relative offsets in
+`recon/symbols/g1_app_globals.ld`. It is `.bss` in the shipped image too (the
+image's `.data` ends at 0x20003e29), so zeroed storage reproduces it exactly.
+No canonical parity body changed. App RAM 75,757 → 84,477 B (+8,720, exactly the
+pool).
+
+**Result (build `/private/tmp/g1-i10b-app`): the fault is gone.** The app runs
+the full 0.15 s with 0 resets, 5,405,138 instructions and 757 unique functions.
+
+#### A.3 Second defect — `dev_ctrl_write1` dropped `struct i2c_msg.flags`
+
+With the reset gone the boot reached a new failure at 0.0455 s:
+
+```
+ASSERTION FAIL [... (p_instance->drv_inst_idx == NRFX_TWIM1_INST_IDX) && ...]
+  @ WEST_TOPDIR/modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c:593
+path: main -> power_for_panel -> dev_write_reg3 -> dev_ctrl_write1
+      -> i2c_nrfx_twim_transfer -> nrfx_twim_xfer
+```
+
+— the **same assertion that killed library-displacement Batch 2a**, which makes
+this a useful cross-check on that failure too.
+
+`dev_ctrl_write1` (original 0x83d60) is Zephyr's `i2c_write_dt`. Its original
+Thumb is 32 bytes:
+
+```
+83d64  strd   r1, r2, [sp, #4]     ; msg.buf, msg.len
+83d68  movs   r2, #2
+83d6e  strb.w r2, [sp, #0xc]       ; msg.flags = 2  (I2C_MSG_WRITE|I2C_MSG_STOP)
+83d74  add    r1, sp, #4           ; &msg
+83d78  movs   r2, #1               ; num_msgs
+83d7a  blx    r4                   ; api->transfer
+```
+
+The reconstruction declared only `local_14`/`uStack_10` (buf, len) and **never
+wrote the flags byte**, so `i2c_nrfx_twim_transfer` read whatever the stack
+happened to hold. This is a textbook instance of the documented harness blind
+spot: `tools/parity` compares the *non-stack* memory-write trace, and the
+message is a stack object, so both `emu.compare` and `cfg_verify` are
+structurally incapable of seeing the missing store. It passed "300/300 PROVEN".
+
+**This is a PROVEN defect**, so the canonical body was changed (the only
+canonical change this iteration): `recon/app/src/FUN_00083d60.c` plus its
+`recon/verified/src`, `recon/named` and `recon/symbolized/app` mirrors now
+declare `struct { unsigned int buf; unsigned int len; unsigned char flags; }`
+and set `msg.flags = 2`. `tools/cfg_verify.py app dev_ctrl_write1` → **PASS
+cases=0** — reported honestly: cases=0 because the body is straight-line, and
+the verifier is blind to the fixed store in *both* directions. The evidence is
+the original disassembly above and the boot: the nrfx assertion disappears and
+`dev_reg_modify_bits` runs for the first time.
+
+#### A.4 Third defect — the unrelocated ST25DV ops vtable (`rodata_88a38`)
+
+`serialization_ipc_ept_register` (0x259d4 — a mis-named identity: it is the
+ST25DV/NFC EEPROM bring-up, not an IPC registrar) stores `&rodata_88a38` into
+the ST25DV descriptor's +8 slot, and `st25dv_read_chip_ids` (0x25290) then calls
+the table's third entry through `(*(void (**)(void))(*(int *)(desc + 8) + 8))()`.
+
+`rodata_88a38` was a bare `PROVIDE(... = 0x00088a38)`. The pin ledger brackets
+the table exactly (next pin `rodata_88a44`), so it is 12 bytes = three
+**original-image Thumb function pointers**, read out of `app_update.bin`:
+
+| word | value | identity |
+|---|---|---|
+| 0x88a38 | 0x00025789 | `ipc_send_len_prefixed_packet_locked_retry` (0x25788) |
+| 0x88a3c | 0x000256dd | `ipc_ept_op_a_locked_retry` (0x256dc) |
+| 0x88a40 | 0x0007c86d | **Ghidra catalog gap** at 0x7c86c |
+
+In the rebuilt image 0x88a38 holds an unrelated string, so the indirect call
+jumped to garbage (measured: usage fault "Illegal use of the EPSR" at
+`st25dv_read_chip_ids+0x3a`). Both the table address **and** its contents have to
+relocate, so — exactly like iteration 5's `gpio_dt_spec` tables — the table is
+**emitted**: `recon/application/app/src/g1_st25dv_ops_table.c`, with
+`PROVIDE(rodata_88a38 = g1_st25dv_ops_table)`.
+
+**`FUN_0007c86c` reconstructed and proven.** The Ghidra catalog stops
+`FUN_0007c85e` (`ipc_transport_ops_dispatch`) at 0x7c86c and resumes at the thunk
+0x7c872, leaving 6 unowned bytes:
+
+```
+7c86c  ldr r3, [r0, #4]      ; descriptor->i2c_spec
+7c86e  ldr r0, [r3, #0xc]    ; spec[12]  (= 0x1000, set by 0x259d4)
+7c870  bx  lr
+```
+
+`recon_kit.prove(0x7c86c, 6, "FUN_0007c86c", ...)` → **`pass=True checked=300
+cfg_status=PASS`**; `tools/cfg_verify.py app FUN_0007c86c` → **`PASS cases=0`**
+(honest: the body is straight-line, so there is no branch or switch selector for
+the CFG verifier to drive; the 300 random trials plus a byte-for-byte read of
+the three instructions are the whole evidence).
+
+**Catalog note (disclosed).** One record was appended to the scratchpad
+`app_funcs.json` and `classified.json` (originals backed up as
+`*.i10bak`) and one durable entry added to
+`recon/catalogs/function_names_app.json` (2512 → 2513), exactly as iterations
+4/8/9 did. New sources `recon/app/src/FUN_0007c86c.c` and its
+`recon/symbolized/app/` mirror; `tools/gen_retained_sources.py` regenerated the
+list (`--check` passes). **No `tools/` logic was changed.**
+
+Both A.4 changes are FLASH-only (+28 B) and shift no RAM.
+
+#### A.5 What was diagnosed but could NOT be landed — the ST25DV `i2c_dt_spec`
+
+The next divergence after A.3/A.4 is fully root-caused and is recorded here so
+iteration 11 does not have to re-derive it.
+
+At 0.2498 s the boot takes a usage fault "Illegal use of the EPSR" at
+`ipc_transport_ops_dispatch+0xc` (`bx ip`, `ip = 0`), reached through
+`periodic_check_run → handle_box_placement_event → st25dv_mailbox_set_enabled →
+read_bool_attr_0x2004 → ipc_send_len_prefixed_packet_locked_retry →
+ipc_send_len_prefixed_packet → ipc_transport_ops_dispatch`. Despite the names,
+that dispatch is **`i2c_transfer`**: it loads `dev->api` (+8) and
+`api->transfer` (+8) and tail-calls it. `dev` came from
+`*(u32 *)&g_st25dv_i2c_dev` (0x200023cc) **== 0**.
+
+`g_st25dv_i2c_dev` is `.data` in the shipped image. Its load image is at flash
+`0xf6d64 + 0x23cc = 0xf9130` and reads `{ .bus = 0x00087c68, .addr = 0x53 }`;
+0x87c68's name string is **"i2c@9000"** and its config word 0 is 0x50009000, so
+the bus is **i2c1** — which matches `armemul/platforms/nrf5340.repl`, where
+`st25dv: Sensors.ST_ST25DV @ twim1 0x53`. The recovered code never writes word 0,
+and in our build 0x200023cc is inside `fdtable`, so the bus pointer reads 0.
+
+Two more pins of the same object are inside live objects
+(`g_st25dv_i2c_cfg` 0x20007a48 inside `cancel`, `g_eeprom_comm_mutex`
+0x20007a60 inside `sc_restore_params`), and `g_st25dv_dev` (0x20007a44) is
+inside `smp_work_queue_stack` — `st25dv_read_chip_ids` stores the descriptor
+there, `k_sleep(0x290)`s, then reloads it, and the work queue overwrites it in
+between.
+
+**The fix was written and measured, and it regressed, so it was REVERTED.**
+Sequence, all measured:
+
+| build | change on top of the message-pool fix | 0.15 s traced result |
+|---|---|---|
+| `g1-i10b-app` | (message pool only) | 5,405,138 instr / **757** fns, 0 resets |
+| `g1-i10e/g/j-app` | + emit `g_st25dv_i2c_dev` (bus = `DEVICE_DT_GET(i2c1)`), `g_st25dv_i2c_cfg`, `g_eeprom_comm_mutex`; + ops table; + flags fix | fault moves to `st25dv_read_chip_ids+0x3a` (g_st25dv_dev still pinned in a live stack) |
+| `g1-i10m-app` | + relocate the whole 74-pin run 0x200079a0..0x20007dac as one block | **603** fns — `main → sett_init → settings_subsys_init → k_mutex_lock` pends forever; RAM moved `settings_lock` (a *strong* pin at 0x20003868 in `g1_app_sdk_state.ld`) from inside `buf32` into `backend_data_0` |
+| `g1-i10r/t-app` | + emit `settings_lock` as `K_MUTEX_DEFINE` (+20 B RAM) | **331** fns — `qspi_lock → k_sem_take` hits `z_spin_lock_valid` at `sem.c:114` and panics at 0.0001 s |
+
+Every one of those changes is *individually correct*; the boot is simply so
+sensitive to RAM layout that a **24-byte** shift moved a different pin into a
+different live object each time. Under the no-regression gate all of them were
+reverted, leaving only the message-pool relocation (which strictly improves) and
+the two FLASH-only fixes.
+
+A durable, measured lesson came out of the attempt and is recorded in the code:
+**a linker-script `PROVIDE(name = block + off)` does NOT root `block` against
+`--gc-sections`.** The first cluster-block build silently discarded
+`.bss.g1_ram_block_79a0` and every one of the 74 pins resolved against a base of
+**0** (`nm`: `00000000 A g_file_msg_pipe`, `000000a4 A g_st25dv_dev`). The
+emitted relocation objects therefore now carry
+`__attribute__((used, retain))` (SHF_GNU_RETAIN), which is why
+`g1_message_pool` and `g1_st25dv_ops_table` are safe.
+
+**Quantified for iteration 11:** in the final image **543 of 721 RAM pins land
+inside a live object, 163 of them inside a thread stack** (measured on
+`/private/tmp/g1-b3f-app` with `nm -nS` against the pin ledger). Chasing them one
+fatal boot at a time does not converge. The structural options are (a) relocate
+*all* RAM pins into one arena in a single step (so no intermediate layout is
+ever exercised), or (b) reserve the pinned ranges from Zephyr's allocator. Both
+are iteration-11 design work, not a first-divergence fix.
+
+#### A.6 Diagnostic-perturbation caveat (new, and important)
+
+Renode `AddHook`s split translation blocks and change interrupt interleaving
+enough to move divergences. Measured on the identical build
+`/private/tmp/g1-i10m-app`: with four marker hooks it usage-faults at 0.0656 s;
+with execution tracing it reaches 0.07 s with neither the fault nor
+`st25dv_read_chip_ids` in the trace at all; with three argument-printing hooks
+it runs 0.05 s with no reset. Consequence for method: **hooks are for finding
+values, never for measuring progress.** All headline numbers in this report come
+from the standard traced run with no `AddHook`s.
+
+#### A.7 New first divergence
+
+```
+0.2498 s  USAGE FAULT "Illegal use of the EPSR"
+          pc = 0x00074a72 = ipc_transport_ops_dispatch+0xc  (bx ip, ip = 0)
+          lr = 0x00021833, current thread 0x20004948 (z_main_thread)
+```
+Root cause, fix and the RAM-layout obstacle are §A.5.
+
+**E4 completion markers — NOT reached.** `spi_read_id`, `panel_on`,
+`spi_master_init`, `bt_enable`, `bt_start` and `display_thread_handler` are all
+absent from the 0.6 s trace, and `radio TransmittedFrames` is **0**. **E4 is not
+completed.** No SPI traffic reached the JBD panel model, so no comparison
+against `display_sensor_oracle.json` was possible.
+
+---
+
+### Step B — library-displacement Batch 3 (goal G2)
+
+See `recon/ownership/library_displacement_report.md` §"Batch 3 applied" for the
+per-unit ledger. Summary: **4 units applied (21 rows), 1 unit reverted (3 rows),
+FLASH delta 0 B, linked image byte-identical to the Step A build** (both
+`md5 f10f2fbd3a53e29c1d3a74c9c1113080`), so boot no-regression is proven by
+image identity rather than by a re-run.
+
+---
+
+### Regenerate (iteration 10)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python tools/cfg_verify.py app FUN_0007c86c    # PASS cases=0
+PYTHONSAFEPATH=1 .venv/bin/python tools/cfg_verify.py app dev_ctrl_write1 # PASS cases=0
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check
+recon/application/build_cohesive.sh app /private/tmp/g1-b3f-app
+# net is unchanged from iteration 9: /private/tmp/g1-i9c-net
+cd /Users/freedomcoder/Projects/armemul
+~/tools/Renode.app/Contents/MacOS/renode --disable-xwt --console --plain \
+  -e 'i @/tmp/g1_i10w/trace.resc' > /tmp/g1_i10w/run.out 2>&1
+# analyze: <scratchpad>/analyze.py <nm.txt> <trace.log> <out.json>
+```
+
+Files changed:
+`recon/application/app/src/g1_app_ram_relocs.c` (group 3: `g1_message_pool`),
+`recon/application/app/src/g1_st25dv_ops_table.c` (new),
+`recon/application/app/CMakeLists.txt` (1 TU listed),
+`recon/symbols/g1_app_globals.ld` (4 message-pool pins + `rodata_88a38`),
+`recon/app/src/FUN_00083d60.c` + `recon/verified/src/FUN_00083d60.c` +
+`recon/named/dev_ctrl_write1.c` + `recon/symbolized/app/dev_ctrl_write1.c`
+(the proven `i2c_msg.flags` defect),
+`recon/app/src/FUN_0007c86c.c` + `recon/symbolized/app/FUN_0007c86c.c` (new,
+proven), `recon/catalogs/function_names_app.json` (+1 durable entry),
+`recon/ownership/adoption_manifest.json` (+21 rows),
+`recon/generated/app_retained_sources.cmake` (regenerated by the sanctioned
+generator only), `recon/ownership/library_displacement_report.md`.
+The app scratchpad catalog gained one record (backed up as
+`app_funcs.json.i10bak` / `classified.json.i10bak`). No `tools/` change, no
+Kconfig / `prj.conf` / devicetree change, `armemul` untouched. Nothing committed.

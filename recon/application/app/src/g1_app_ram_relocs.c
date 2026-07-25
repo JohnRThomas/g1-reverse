@@ -46,6 +46,8 @@
  * See recon/emulator/reports/our_boot_bringup.md, Iteration 6.
  * ------------------------------------------------------------------------- */
 #include <zephyr/kernel.h>
+#include <zephyr/device.h>
+#include <zephyr/devicetree.h>
 
 /* --- group 1: pins that overlapped `logging_stack` -------------------- */
 volatile unsigned int g1_bonded_count;
@@ -92,3 +94,49 @@ sys_slist_t       g1_notify_pending_slist;
  * Four are allocated so the index cannot leave the object if the section
  * bounds are ever relocated. */
 volatile unsigned int g1_notify_pending_flags_bitmap[4];
+
+/* --- group 3 (P4 iteration 10): the 20-slot message pool -----------------
+ *
+ * `msg_queue_init` (original 0x33c5c) clears the message pool with
+ *
+ *     iVar2 = g_message_pool;                     /- 0x20007dac -/
+ *     do { iVar2 = memset_bytes(iVar2, 0, 0x1b4, ...); iVar2 += 0x1b4; }
+ *     while (++iVar3 != 0x14);
+ *
+ * i.e. it zeroes 20 x 436 = 8720 bytes spanning the ORIGINAL absolute range
+ * 0x20007dac .. 0x20009fbc.  That range is confirmed exactly by the pin
+ * ledger: the next pinned global after the pool is g_whitelist_app_parse_buf
+ * at 0x20009fbc, and the only three other pins inside it are the pool's own
+ * interior views (g_notif_app_pkg_table_buf = pool+0x10,
+ * g_message_table_mirror = pool+0x1108 = slot 10, and
+ * g_message_table_mirror_ovfl_slot = pool+0x205c = slot 19).
+ *
+ * In OUR build that 8.5 KiB window covers SIX live Zephyr objects:
+ *   smp_work_queue_stack (0x20007610), bt_lw_stack_area (0x20007e10),
+ *   _k_mem_slab_buf_chan_slab (0x20008328), z_interrupt_stacks (0x200084c0),
+ *   z_idle_stacks (0x20008cc0) and z_main_stack (0x20008e00).
+ *
+ * MEASURED FAILURE (iteration 9's blocker, diagnosed in iteration 10): with
+ * the pin, `msg_queue_init` zeroed the idle thread's stack.  Renode
+ * instrumentation on /private/tmp/g1-i9g-app:
+ *     TCREATE/SETUP  thread=20004870 (z_idle_threads[0]) stack=20008cc0 320 B
+ *     arch_new_thread wrote its initial frame: r0 slot 0x20008de0 = 0x0006d1b9
+ *                     (idle entry), PC slot 0x20008df8 = 0x00077468
+ *                     (z_thread_entry), callee_saved.psp = 0x20008de0
+ *     byte watchpoint on 0x20008de8 -> "B pc=0007f22c val=00"  (memset+0xa)
+ *     memset hook     -> "MEMSET dst=20008d00 len=436 val=0 lr=0002d479"
+ *                        (= msg_queue_init+0x1c, pool slot 9)
+ *     at the fault the whole window 0x20008dc0..0x20008e00 reads zero, so
+ *     z_arm_pendsv restored the idle thread with a stacked PC of 0 ->
+ *     "Attempt to execute undefined instruction" -> SYSRESETREQ at 0.048 s.
+ *
+ * The pool is above the shipped .data end (0x20003e29), so it is .bss in the
+ * original too: plain zero-initialised storage reproduces it exactly.  All
+ * four pins are rebound onto this one object at their original relative
+ * offsets, so every recovered accessor keeps the original layout. */
+/* `retain` (SHF_GNU_RETAIN): the four bindings are lazy linker-script
+ * PROVIDE expressions, not relocations, so they do not root the section.
+ * Iteration 10 measured a sibling block being silently discarded by
+ * --gc-sections, after which every PROVIDE resolved against a base of 0. */
+unsigned char g1_message_pool[20 * 436] __aligned(4)
+	__attribute__((used, retain));

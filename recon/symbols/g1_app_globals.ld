@@ -372,7 +372,12 @@ PROVIDE(rodata_889f8 = 0x000889f8);
 PROVIDE(rodata_88a00 = 0x00088a00);
 PROVIDE(rodata_88a0c = 0x00088a0c);
 PROVIDE(rodata_88a2a = 0x00088a2a);
-PROVIDE(rodata_88a38 = 0x00088a38);
+/* RODATA REBIND + EMISSION (iteration 10) — the ST25DV transport ops
+ * vtable.  0x88a38..0x88a44 is three ORIGINAL-image Thumb function pointers
+ * (0x25789, 0x256dd, 0x7c86d); both the table address and its contents have
+ * to relocate, so the build emits it.  Storage:
+ * recon/application/app/src/g1_st25dv_ops_table.c. */
+PROVIDE(rodata_88a38 = g1_st25dv_ops_table);
 PROVIDE(rodata_88a44 = 0x00088a44);
 PROVIDE(rodata_8a050 = 0x0008a050);
 PROVIDE(rodata_8a0a8 = 0x0008a0a8);
@@ -3159,10 +3164,22 @@ PROVIDE(g_20007bd4 = 0x20007bd4);
 PROVIDE(g_periodic_check_last_uptime_ms = 0x20007bf0);
 PROVIDE(g_esb_notify_ring_staging_buf = 0x20007bf4);
 PROVIDE(g_ancs_notify_rx_buf = 0x20007da8);
-PROVIDE(g_message_pool = 0x20007dac);
-PROVIDE(g_notif_app_pkg_table_buf = 0x20007dbc);
-PROVIDE(g_message_table_mirror = 0x20008eb4);
-PROVIDE(g_message_table_mirror_ovfl_slot = 0x20009e08);
+/* RAM-PIN REBIND (iteration 10): the 20-slot message pool.  `msg_queue_init`
+ * (0x33c5c) memsets 20 x 436 = 8720 B from g_message_pool, i.e. the original
+ * range 0x20007dac..0x20009fbc.  In OUR build that window covers six live
+ * Zephyr objects (smp_work_queue_stack, bt_lw_stack_area,
+ * _k_mem_slab_buf_chan_slab, z_interrupt_stacks, z_idle_stacks, z_main_stack).
+ * Measured: memset(0x20008d00, 0, 436) from msg_queue_init+0x1c zeroed the
+ * idle thread's stack, so the next z_arm_pendsv restored PC = 0 and the boot
+ * usage-faulted at 0.048 s (Renode byte-watchpoint + memset hook; see
+ * recon/emulator/reports/our_boot_bringup.md Iteration 10 §A).
+ * The other three pins are interior views of the same pool and are rebound at
+ * their original relative offsets.  Storage:
+ * recon/application/app/src/g1_app_ram_relocs.c (group 3). */
+PROVIDE(g_message_pool = g1_message_pool);
+PROVIDE(g_notif_app_pkg_table_buf = g1_message_pool + 0x10);
+PROVIDE(g_message_table_mirror = g1_message_pool + 0x1108);
+PROVIDE(g_message_table_mirror_ovfl_slot = g1_message_pool + 0x205c);
 PROVIDE(g_whitelist_app_parse_buf = 0x20009fbc);
 PROVIDE(g_misc_last_uptime_ms = 0x20009fc0);
 PROVIDE(g_pixel4bit_bitpos = 0x20009fc4);
