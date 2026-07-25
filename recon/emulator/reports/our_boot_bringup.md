@@ -10810,3 +10810,407 @@ literals),
 `recon/emulator/reports/sensor_parity_status.md`, this report.
 **No `tools/` logic change**, no Kconfig / `prj.conf` / devicetree change,
 `armemul` untouched, nothing committed.
+
+## Iteration 28 — the duplicate-singleton class is swept **mechanically**, not
+## one crash at a time: 153 recovered CPUNET functions are proven
+## relocation-masked byte-identical to a stock unit this link already contains,
+## 46 shipped RAM addresses are attributed to stock-owned objects, and three
+## complete units are displaced.  The ≈5.8 s reset is GONE, the 20 s capture is
+## reset-free, and for the FIRST time `radio TransmittedFrames` is non-zero
+## (**0xCF**) with `vcentral Connected` **True**
+
+**Stated before anything else, because the acceptance bar is pixels: NO PIXEL
+IS PAINTED.**  `framebuffer.lit_pixels` is **0 / 0** against the oracle's
+**656** (`p1_boot`) / **1,098** (`p2_render`).  Everything below is measured;
+nothing is claimed that was not.
+
+### 28.1 Iteration 27's identification of the blocker was WRONG, and the byte
+### evidence says which file it really is
+
+§27.7 named `nrfx_ipc.c:202`.  That reading came from a string read at the
+wrong offset.  Read with `tools/net_extract.read_runtime`, the shipped `.rodata`
+at `0x0103e700` is
+
+```
+0x0103e700  "WEST_TOPDIR/modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c\0"   (58 B + NUL)
+0x0103e73b  "WEST_TOPDIR/modules/hal/nordic/nrfx/drivers/src/nrfx_timer.c\0"
+```
+
+`0x0103e700 + 59 = 0x0103e73b` exactly, so **the pointer the assert passes is
+the `nrfx_timer.c` path**, not `nrfx_ipc.c` (0x0103e71d, 0x1e lower, is the
+mid-string `"c/nrfx/drivers/src/nrfx_ipc.c"` §27.7 actually printed).  And line
+202 of the pinned `~/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_timer.c` is
+
+```c
+200  void nrfx_timer_disable(nrfx_timer_t const * p_instance)
+201  {
+202      NRFX_ASSERT(m_cb[p_instance->instance_id].state != NRFX_DRV_STATE_UNINITIALIZED);
+```
+
+which is exactly `FUN_01035028`'s shape.  Iteration 24's `timeslot_owner.c`
+comment had it right all along (`".../nrfx_timer.c", 0x8e`); iteration 27
+regressed the identification.  The four functions are
+`nrfx_timer_init / _disable / _uninit / _2_irq_handler`, and
+`g_net_gpiote_evt_handler_table` @ `0x21004af8` is a **mis-name**: the object is
+nrfx's timer control block `m_cb`.
+
+### 28.2 The blocker root cause, MEASURED, is not "init never ran" — it is a
+### relocation-block **aliasing overrun**
+
+Four directed Renode probes on the iteration-27 tree rebuilt as
+`/private/tmp/g1-i28base-net` (image md5 `dd9e08a1…`, **identical** to
+`g1-i27b-net`, so the baseline is the same firmware):
+
+```
+probe2  NET timer_configure OK
+probe2  NET timer_init_store  state=0x1  r0=0x0bad0000  r4=0x21001fa8  r5=0x8
+probe2  NET nrfx_timer_uninit state=0x0          <-- the byte was 1 and became 0
+probe4/5 (sysbus watchpoint, 0x21001fb0, Byte, Write)
+        WRITE pc=0x0103c4ba (memset, z_bss_zero)          -- boot clear
+        WRITE pc=0x0102d0ac (FUN_01034fa8 store)          -- state = 1, init OK
+        WRITE pc=0x0103c514 (memcpy+0x12) lr=0x0102d91f r0=0x21001f06  <-- CLOBBER
+        WRITE pc=0x0102d13a (FUN_01035068, state = UNINIT)
+```
+
+`lr = 0x0102d91f` is `FUN_0102b3f0 + 0x66`, and `r0 = 0x21001f06` is
+`g_net_ctrl_status_byte`, i.e. `g1_net_ram_blk_21004c98 + 0x7`, shipped address
+`0x21004c9f`.  **In the SHIPPED address space that copy runs upward from
+`0x21004c9f` and cannot touch `m_cb.state` at `0x21004b00`.  In iteration 26's
+COMPRESSED relocation-block space the two objects are only `0xb1` bytes apart,
+so it does.**  `nrfx_timer_init` had succeeded; the state byte was destroyed
+afterwards.  This is iteration 26 §26.3's own stated limitation — "a block is
+sized from the *referenced* addresses, not from the object's true extent" —
+producing a real defect for the first time.
+
+Displacing the owning unit is the fix the standing directive asks for and it is
+also the structurally right one: it takes `m_cb` **out of the block space
+entirely**, into the stock `.bss`, where nothing aliases it.
+
+### 28.3 A second defect the displacement repairs, which the parity harness
+### **cannot** see
+
+The recovered `FUN_01034f24` (`timer_configure`) carries the base-frequency
+literal `0x000f4240` = **1,000,000**.  The stock section and the shipped image
+both carry `0x00f42400` = **16,000,000**:
+
+```
+shipped / stock      78:  00f42400   .word 0x00f42400      (16 MHz)
+our reconstruction  102cfd2:  ldr r5,[pc,#120] -> 0x000f4240      (1 MHz)
+```
+
+With the ESB config frequency of 1,000,000 Hz the recovered body computes
+`prescaler = ctz(1) = 0` and programs **TIMER2 at 16 MHz**; the stock body
+computes `ctz(16) = 4` and programs **1 MHz**.  **The ESB timer was running
+sixteen times too fast.**  The parity harness is structurally blind to this: the
+literal lives inside the reconstructed body, so original and candidate agree
+with *each other*.  Only a byte comparison against the SDK finds it — which is
+precisely the evidence bar the task sets.
+
+### 28.4 The sweep — method, and what it found
+
+Three detectors, all analysis-only (scratchpad scripts; **no `tools/` logic was
+changed**), recorded in **`recon/ownership/net_duplicate_singleton_sweep.json`**
+(new, 99 KB):
+
+1. **Byte identity.**  Index every `.text.*` input section of every stock
+   archive member this net link consumes — all 40 build archives except our own
+   `app/libapp.a`, plus the toolchain `libgcc` and picolibc multilibs — with a
+   4-byte mask at every relocation offset (**2,506 sections**).  For each of the
+   **980 retained** recovered net functions, read `netcore_image.bin` at its
+   analysis VA for each candidate section length and require agreement on
+   **every unmasked byte of the whole section**.  Instruction shape is never
+   accepted (iteration 20's `bt_ancs_register_attr` mistake).
+2. **Shipped-state attribution.**  For every located section, resolve every
+   `R_ARM_ABS32` relocation into a `.bss.*`/`.data.*` object of the same member:
+   `shipped = image_word(hit_va + off) − in-place addend`.  This is iteration
+   27's stock-`.data`-window proof **generalised to `.bss` and to every unit**,
+   and it needs no shipped link map.
+3. **Unit completeness.**  Slide every section of a candidate unit over the
+   whole image.  A unit may only be displaced **whole**: displacing the exact
+   half of a partially-vendored unit would SPLIT its file-static state between
+   two translation units — the very defect being removed.
+
+Result:
+
+| | |
+|---|---:|
+| stock `.text` sections indexed | 2,506 |
+| retained recovered net functions scanned | 980 |
+| **recovered functions byte-identical to a stock section** | **153** |
+| of those, whose stock unit owns mutable state | **70** |
+| **distinct shipped RAM addresses attributed to a stock object** | **46** |
+| upstream units touched | 50 |
+
+The 46 attributed addresses immediately re-name a long list of autonamed pins
+and independently **confirm three earlier iterations' hand findings**:
+
+| shipped addr | stock owner | our pin name |
+|---|---|---|
+| `0x21000750` | `timeout.c :: .data.timeout_list` | `g_net_kernel_timeout_dlist_head` (iteration 18) |
+| `0x2100065c` | `esb.c :: .data.disable_event` | (iteration 25's "ESB session word") |
+| `0x21000698` | `esb.c :: .data.esb_timer` | `g_net_log_msg_ctx` (iteration 24) |
+| `0x21004af8` | `nrfx_timer.c :: .bss.m_cb` | `g_net_gpiote_evt_handler_table` |
+| `0x21004aec` | `nrfx_ipc.c :: .bss.m_cb` | `g_sdc_radio_context_area` |
+| `0x21004a94` / `0x21004a34` / `0x21004a60` | `esb.c :: esb_cfg / rx_fifo / tx_fifo` | `g_esb_state` / `g_net_queue_stats_block_b` / — |
+| `0x21006458` / `0x21006459` | `esb.c :: esb_state / esb_initialized` | `g_net_radio_busy_flag` / `g_esb_enabled_flag` |
+| `0x2100645a..0x21006460` | `esb_dppi.c` — 7 DPPI channel/group bytes | `g_net_radio_trx_ppi_ch_a` … |
+| `0x21004b48` / `0x21004b4c` | `mutex.c :: lock` / `sem.c :: lock` | — |
+| `0x210006a0` / `0x210006a4` | `nrfx_dppi.c :: m_allocated_groups / _channels` | (iteration 24) |
+| `0x21002b60` / `0x21004964` / `0x2100496c` | `nrf_rtc_timer.c :: cc_data / force_isr_mask / int_mask` | — |
+| `0x210051ae` | `hci_internal.c :: cmd_complete_or_status` | `g_net_pending_tx_pkt` |
+
+### 28.5 The three units displaced, and the ones deliberately KEPT
+
+| batch | unit | fns | sections in image / byte-identical | distinguishing bytes | singleton state |
+|---|---|---:|---|---:|---|
+| **1** | `nrfx_timer.c` | 6 | **6 / 6** | 472 | `.bss.m_cb` @ `0x21004af8` |
+| **2** | `esb_dppi.c` | 12 | **12 / 12** | 996 | 7 bytes @ `0x2100645a..0x21006460` |
+| **3** | `nrfx_ipc.c` | 2 (of 5 present) | **5 / 5** | 148 | `.bss.m_cb` @ `0x21004aec` |
+
+* **`nrfx_timer.c`** — the other 13 stock sections are absent from the shipped
+  image because the shipped link garbage-collected them, exactly as ours does.
+  `timer_configure` is file-local (`t`) in the stock object so a `PROVIDE`
+  cannot name it; its only recovered referrer, `FUN_01034fa8`, is displaced in
+  the same batch, so the exclusion leaves no undefined symbol.  After the batch
+  the sweep's cross-reference reports **0 retained referrers** of `0x21004af8`.
+* **`esb_dppi.c`** — the 12 located sections tile a contiguous run
+  `0x01033b18..0x01033ff8` in the object's own section order; the two absent
+  ones (`esb_ppi_for_wait_for_rx_set/clear`) were gc'd out of the shipped link.
+  All 12 stock symbols are global.  Cross-reference: the only referrers of the
+  seven DPPI state bytes are the twelve `esb_dppi.c` functions themselves —
+  `esb.c` only calls the `esb_ppi_*` accessors — so the displacement is total.
+  Corroboration that the allocator it now calls is the right one: the stock
+  `nrfx_dppi.c` `.data` initialisers in **this** build are byte-identical to the
+  shipped ones (`m_allocated_channels 00 c0 ff ff`, `m_allocated_groups
+  3f 00 00 00`).
+* **`nrfx_ipc.c`** — the five located sections tile `0x01034d8c..0x01034f24`
+  **exactly** (76+120+56+56+100 = 408 B, no gap; the next byte is
+  `timer_configure`).  The stock unit is **already unconditionally linked**
+  (`nrfx_ipc_init`, `_config_load`, `_receive_event_enable`, `_disable`,
+  `_irq_handler` all present) with its own `m_cb`, so this was a genuine live
+  duplicate — the hazard iteration 27 was reaching for, in the right file.
+  Stated honestly: it is **latent**, because `FUN_01030bac` (the recovered
+  `mbox_nrf_init`) has no referrer and `--gc-sections` had already dropped both
+  reconstructions.  The image is therefore byte-identical before and after
+  (md5 `135efe97…` for both `g1-i28b-net` and `g1-i28c-net`), which is checked,
+  not assumed.
+
+**KEPT, with the reason — where Even genuinely diverged from stock:**
+
+| unit | fns matched | evidence for KEEPING |
+|---|---:|---|
+| **`esb.c`** | 29 | Only **32 of 53** sections are in the shipped image at all, and **eight RETAINED reconstructions lie inside esb.c's own VA run** `0x01032764..0x01033b18` (`0x1032a3c`, `0x1032be4`, `0x1032c28`, `0x1032de4`, `0x1032e54`, `0x10331c8`, `0x10333b4` = `esb_init`, `0x1033660`) and match **no** `esb.c` section.  The missing stock sections cluster hard: `esb_init`, `esb_write_payload`, `start_tx_transaction`, `on_radio_disabled_rx`, `..._tx_wait_for_ack`, `..._tx_noack`, `rx_fifo_push_rfbuf`, `esb_flush_rx/tx`, `esb_pop_tx`, `esb_set_address_length/bitrate/retransmit_*` — i.e. every FIFO-size- and payload-length-dependent function.  That is the signature of a **different ESB Kconfig or a vendored copy**, and it is the single highest-leverage lead for the next iteration.  Displacing the matching half would split `esb_cfg`/`esb_state`/`rx_fifo`/`tx_fifo`/`pids` across two TUs. |
+| **`nrfx_gpiote.c`** | 21 | 27 of 49 sections located; `.data.m_cb` is shared by all of them.  Same split hazard. |
+| **`nrf_rtc_timer.c`** | 4 | `cc_data` / `int_mask` / `force_isr_mask` shared with unlocated sections. |
+| **`sem.c` / `mutex.c`** | 1 + 1 | `z_impl_k_sem_take` is byte-identical (140 distinguishing bytes) but `z_impl_k_sem_give` (the adjacent `FUN_01036824`, exactly 0x78 lower) is **not**, and both take `sem.c :: lock`.  Displacing only `take` would split the lock. |
+| `clock_control_nrf.c`, `hci_internal.c`, `nrfx_dppi.c`, `timeout.c` | 1–2 each | same partial-unit hazard |
+
+**Liveness, measured, and why the rest of the ranked list is not displaced.**
+Of every remaining ranked candidate, only `sem.c`'s `FUN_0103689c` and
+`FUN_01036824` **survive `--gc-sections` in the link at all** (checked with `nm`
+on `g1-i28c-net`).  Every other hazard the sweep found is **latent** — the
+reconstruction is already dropped.  Displacing them would change nothing
+measurable while carrying real regression risk (iteration 26's 39-row
+`zephyr_drivers` batch had to be reverted), so they are ranked, recorded and
+left.  On a UP kernel a Zephyr spinlock is an IRQ lock, so the split `sem.c`
+lock is a correctness hazard in principle but not a live race today; it is
+recorded as open.
+
+### 28.6 Build ledger and gates
+
+| net build | change | FLASH | RAM | `nm -u` | image md5 |
+|---|---|---:|---:|---:|---|
+| `/private/tmp/g1-i28base-net` | iteration-27 tree rebuilt (baseline) | 225,073 B | 63,508 B | 0 | `dd9e08a1…` (== `g1-i27b-net`) |
+| `/private/tmp/g1-i28a-net` | + batch 1 (`nrfx_timer.c`) | 225,149 B | 63,516 B | 0 | — |
+| `/private/tmp/g1-i28b-net` | + batch 2 (`esb_dppi.c`) | 225,149 B | 63,524 B | 0 | `135efe97…` |
+| `/private/tmp/g1-i28c-net` | + batch 3 (`nrfx_ipc.c`) — **final** | 225,149 B | 63,524 B | 0 | `135efe97…` (identical to b) |
+
+FLASH **+76 B** and RAM **+16 B** against iteration 27 — the stock units are
+slightly larger than the reconstructions they replace; both remain inside
+budget (97.29 % / 96.93 %).  Net retained sources **980 → 960**; manifest
+exclusions **255 → 275**.  The app core is **UNCHANGED** (`g1-i23a-app`,
+`$rtinfo_pc = 0x00015b9c`).
+
+| gate | iteration 27 | **iteration 28 (`g1-i28c-net`)** |
+|---|---|---|
+| `check_ram_pin_collisions.py --core net` raw-in-object / raw-free | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_ram_pin_collisions.py --core net` bound OK / escaping | 199 / 0 | **190 / 0** (9 pins lost their last referrer with the displaced units) |
+| `check_ram_pin_collisions.py` (app) | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_net_raw_literals.py` distinct / colliding | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_thread_create_stack_args.py` | 10/10 | **10/10**, EXIT 0 |
+| `gen_retained_sources.py --check` | clean | **clean**, EXIT 0 |
+| `verify_net_stock_data_window.py` | PROVEN | **PROVEN** |
+| net / app `nm -u` undefined | 0 / 0 | **0 / 0** |
+| net / app duplicate global definitions | 0 / 0 | **0 / 0** |
+
+No `--allow-multiple-definition`, no weak-symbol hack, no numeric root.
+
+### 28.7 MEASURED — the full 20 s capture, A/B/C against iterations 26 and 27
+
+```
+G1_RESC=/private/tmp/g1-i28/ours-paired-i28.resc
+G1_APP_ELF=/private/tmp/g1-i23a-app/zephyr/zephyr.elf
+G1_NET_ELF=/private/tmp/g1-i28{a,b}-net/zephyr/zephyr.elf
+G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i28{a,b}
+```
+
+(`sleep 100000 | …` throughout, per iteration 26's `SemaphoreFullException`
+note.  `g1-i28c-net` is byte-identical to `g1-i28b-net`, so the `i28b` capture
+IS the final tree's capture.)
+
+| counter | oracle | iter 26 | iter 27 | **iter 28a** (batch 1) | **iter 28b/c** (final) |
+|---|---:|---:|---:|---:|---:|
+| machine reset / CPU halt | none | none | **≈5.8 s** | **none** | **none (0 halts over 20 s)** |
+| `JBD FrameCounter` p1 / p2 | 0x2A1 / 0xD61 | 0x3 / 0x3 | 0 / 0 | 0x3 / 0x3 | **0x3 / 0x3** |
+| `JBD JournalCount` | 0x400 | 0x22 | 0 | 0x22 | **0x22** |
+| **`radio TransmittedFrames`** | 0x230 | **0x0** | **0x0** | **0xCE** | **0xCF** |
+| **`vcentral Connected`** | True | False | False | **True** | **True** |
+| `vcentral ConnectInds` | 1 | 0 | 0 | **1** | **1** |
+| `vcentral DataEvents` | 0x215 | 0 | 0 | **0x26B** | **0x26B** |
+| `esbslave MasterFramesSeen` / `Acks` | 0x175 / 0x175 | 0 / 0 | 0 / 0 | 0 / 0 | **0 / 0** |
+| `esbslave AnnounceResponses` | 0x15B | 0 | 0 | 0 | **0** |
+| `ESB_SYNC_ctx_105a` | 0x02 | 0x01 | 0x01 | 0x01 | **0x01** |
+| `DISPLAY_ON_ctx_fe8` | 0x01 | 0x00 | 0x00 | 0x00 | **0x00** |
+| framebuffer lit px p1 / p2 | 656 / 1,098 | 0 / 0 | 0 / 0 | 0 / 0 | **0 / 0** |
+
+| device / phase | oracle | iter 26 | iter 27 | **iter 28b/c** |
+|---|---:|---:|---:|---:|
+| LSM6DSO `p1_boot` / `p2_render` | 1,089 / 1,200 | 1,027 / 700 | 551 / 0 | **1,027 / 700** |
+| nPM1300 `p1_boot` / `p2_render` | 291 / 508 | 232 / 370 | 97 / 0 | **232 / 370** |
+| OPT3001 `p1_boot` / `p2_render` | 33 / 80 | 14 / 0 | 14 / 0 | **14 / 0** |
+| ST25DV EEPROM / system port `p1` | 25 / 22 | 11 / 12 | 0 / 6 | **11 / 12** |
+| `saadc` (whole run) | 998 | 71 | 5 | **71** |
+| `gpiote0` / `gpiote1` / `pdm0` | 25 / 0 / 2 | 25 / 0 / 2 | 25 / 0 / 2 | **25 / 0 / 2, all hash-EQ** |
+| `spim_a` `p1_boot` / `p2_render` | 764 / 2,881 | 34 / 0 | 34 / 0 | **34 / 0** |
+| `spim_b` | 0 / 0 | 0 / 0 | 0 / 0 | **0 / 0, hash-EQ** |
+| `IMU_ACCEL_ENABLED` | True | True | False | **True** |
+| `OPT3001_CONVERSION_READY` | True | True | False | **True** |
+| `NPM1300_CHARGING` | True | True | False | **True** |
+
+**Iteration 26's stability and every sensor volume are recovered exactly, and
+`radio TransmittedFrames` / `vcentral Connected` / `ConnectInds` / `DataEvents`
+are ahead of BOTH iteration 26 and iteration 27** — `DataEvents` (0x26B) even
+exceeds the oracle's 0x215.  `MasterFramesSeen` is still 0.
+
+#### Graphics + sensor verdicts (iteration 28, `g1-i28c-net`)
+
+| id | verdict | first difference / detail |
+|---|---|---|
+| **G-1** | **FAIL** | `p2_render` ours `0c5cc90b07…`, **0 lit px, 0 pixel windows**; oracle `b26c73b37d…`, **1,098 lit px**, bbox x 34–497 / y 266–287, 2,881 transactions. |
+| **G-2** | **FAIL** | `p1_boot` ours `0c5cc90b07…`, **0 lit px, 3 pixel windows** (the panel-init window writes the oracle also makes; they paint nothing); oracle `1d617c65a6…`, **656 lit px**, bbox x 178–449 / y 267–287. |
+| **G-3** | **FAIL (truncation only)** | `p1_boot` **34 vs 764**, the 34 shared transactions **identical entry-for-entry**, first difference at index **34** (ours `<end>`).  `p2_render` **0 vs 2,881**, first difference index **0**. |
+| **G-4** | *localiser* | our framebuffer is still bit-identical to iterations 16–27 (`0c5cc90b07…`), so the first differing row is the oracle's lowest lit row **y = 267** and the first differing pixel **x = 178** (oracle `ffffff`, ours `000000`). |
+| **G-5** | **PASS** | the panel-init sequence is byte-exact over the whole 34-transaction non-blit prefix, including the `0x9F` ID probe answering `0x4010` and the `0x46`/`0x31` brightness pair. |
+| **G-6** | **PASS** | `spim_b` 0 == 0, `stream_sha256` EQ, both phases. |
+| **S-MIC** | **PASS** | `pdm0` whole-run hash EQ (`255852a6c9…`) — 2 accesses, PSEL only, no spurious ENABLE/START. |
+| **S-KEYS** | **PASS** | `gpiote0` whole-run hash EQ (`2f47878f41…`), 25 accesses. |
+| **S-IMU** | **PARTIAL** | `p1_boot` 1,027 / 1,089, `p2_render` 700 / 1,200; `IMU_ACCEL_ENABLED` True; stream hashes differ. |
+| **S-ALS** | **PARTIAL** | `p1_boot` 14 / 33, `p2_render` **0 / 80**; `OPT3001_CONVERSION_READY` True. |
+| **S-PMIC** | **PARTIAL** | `p1_boot` 232 / 291, `p2_render` 370 / 508; `NPM1300_CHARGING` True. |
+| **S-NFC** | **PARTIAL** | EEPROM 11 / 25, system port 12 / 22 in `p1_boot`; nothing in `p2_render`. |
+| **S-ADC** | **FAIL** | 71 / 998 accesses, hash NE. |
+| **S-ESB** | **FAIL** | `ESB_SYNC_ctx_105a` 0x01 vs 0x02, `DISPLAY_ON_ctx_fe8` 0x00 vs 0x01, master PTX frames **0** vs 0x175 — but `radio TransmittedFrames` is **0xCF vs 0**, the first non-zero this project has measured. |
+
+**Criteria score: 4 PASS / 4 PARTIAL / 6 FAIL** — iteration 26's score exactly,
+restored from iteration 27's 4/1/9, with the radio and BLE-link counters strictly
+ahead of both.  **NO PIXEL IS PAINTED**, `firmware_events` is `{}` against the
+oracle's `{"spi_read_id":1,"display_START":2,"BLIT":15}`, so **no display START
+with `action = 1` arrived.**
+
+### 28.8 The new first divergence, root-probed as far as it goes
+
+A directed 8 s probe on the final tree (`/private/tmp/g1-i28/probe6.resc`):
+
+```
+NET esb_initialized <- pc=0x0103c4ba          (memset / z_bss_zero, boot clear)
+NET esb_init (FUN_010333b4) enter lr=0x0102b179
+NET esb_ppi_init (STOCK) enter                 <-- the displaced unit runs
+NET esb_initialized <- pc=0x0102c4fe           = FUN_010333b4 + 0x22a
+NET FUN_01033660 (esb tx path) enter
+NET esb_disable (FUN_01033354) enter lr=0x0102d28d = FUN_0102b664 + 0x6c
+NET esb_initialized <- pc=0x0102c29e           = FUN_01033354 + 0x2e
+```
+
+`FUN_010333b4 + 0x22a` is the **success tail** (`*active = 0; *initialized = 1;
+return 0`).  **`esb_init` now SUCCEEDS for the first time** — in iterations 24
+and 25 it returned `-EFAULT`/`-EIO` and never set the flag.  The stock
+`esb_ppi_init` allocates its DPPI channels and returns 0, and the ESB TX path
+`FUN_01033660` is entered.  The teardown that follows is **not** a defect:
+`FUN_0102b664` is the recovered "ESB radio stop and peripheral release", the
+MPSL timeslot-end handler, so opening and closing the ESB session inside a
+timeslot is the designed behaviour.
+
+So the first divergence is now **downstream of a working ESB bring-up**: the
+virtual ESB slave sees **0** master PTX frames although the radio model counts
+**0xCF** transmitted frames.  The next questions, in order, are (a) whether
+`esb_write_payload` / `start_tx_transaction` — **both of them among the eight
+`esb.c` functions Even modified** — key a frame with the pipe address/channel
+the provisioned slave expects, and (b) whether the timeslot window is long
+enough at the now-correct 1 MHz timer for a PTX/ACK exchange to complete.
+
+### 28.9 Open, named, and NOT fixed
+
+1. **`esb.c` is partially vendored.**  32 of 53 stock sections are byte-exact in
+   the shipped image; the 21 that are not cluster on the FIFO- and
+   payload-length-dependent functions.  Determining whether that is a **Kconfig
+   difference** (`CONFIG_ESB_TX_FIFO_SIZE` / `RX_FIFO_SIZE` /
+   `MAX_PAYLOAD_LENGTH` / `PIPE_COUNT`) rather than a source change is the
+   single highest-leverage next step: if a Kconfig choice makes all 53 match,
+   the whole ESB core becomes displaceable and the eight modified
+   reconstructions — which include `esb_init`, `esb_write_payload` and
+   `start_tx_transaction`, i.e. exactly the TX path — go away.
+2. **`esbslave MasterFramesSeen` is still 0** — §28.8.
+3. **The relocation-block aliasing class is real, not theoretical** (§28.2).
+   `g1_net_ram_blk_21004c98` is sized 32 B from its referenced addresses while
+   the object it holds is copied into with ≥0xb1 bytes.  Displacement removed
+   the *victim*; the *overrun* is still there and will hit whatever else lands
+   at `block + 0x18`.  A general fix is to size a block from the true object
+   extent, or to displace enough units that the block space empties.
+4. **The split `sem.c :: lock`** — `FUN_0103689c` / `FUN_01036824` are the only
+   sweep hazards still live in the link.  Benign on a UP kernel (a Zephyr
+   spinlock is an IRQ lock) but recorded.
+5. **The 5 addresses in the block at `0x21000c28`** — unchanged from §27.8(4).
+6. **21 blocks still carry an atomic EXCLUDE** — unchanged from §27.8(5); the
+   sweep's attribution map (§28.4) is the right instrument to re-examine them.
+7. `FUN_01031a68` still has no caller anywhere — unchanged.
+8. Iteration 23 §23.7 items 4–7 unchanged.
+
+### Regenerate (iteration 28)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+# the three displacement batches are already in
+#   recon/ownership/adoption_manifest.json  (+20 net rows, 255 -> 275 exclusions)
+#   recon/application/net/src/stock_call_aliases.ld (+19 PROVIDEs, batches 1-3)
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py       # 980 -> 960
+recon/application/build_cohesive.sh net /private/tmp/g1-i28c-net -- -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF
+# gates (all exit 0)
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py --core net /private/tmp/g1-i28c-net/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py        /private/tmp/g1-i23a-app/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_net_raw_literals.py          /private/tmp/g1-i28c-net/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_thread_create_stack_args.py --trials 120
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/verify_net_stock_data_window.py /private/tmp/g1-i28c-net/zephyr/zephyr.elf
+# 20 s capture -- NOTE the stdin pipe
+printf '$rtinfo_pc=0x00015b9c\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i28/ours-paired-i28.resc
+sleep 100000 | G1_RESC=/private/tmp/g1-i28/ours-paired-i28.resc \
+G1_APP_ELF=/private/tmp/g1-i23a-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i28c-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i28c
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_ours_i28c /private/tmp/g1-i28/rep_c
+```
+
+Files changed: new `recon/ownership/net_duplicate_singleton_sweep.json`,
+`recon/ownership/net_nrfx_timer_singleton_adoption.json`,
+`recon/ownership/net_esb_dppi_singleton_adoption.json`,
+`recon/ownership/net_nrfx_ipc_singleton_adoption.json`;
+`recon/ownership/adoption_manifest.json` (+20 net rows);
+`recon/application/net/src/stock_call_aliases.ld` (+19 `PROVIDE`s);
+`recon/generated/net_retained_sources.cmake` (generated, 980 → 960);
+`recon/emulator/reports/sensor_parity_status.md`; this report.
+**No `tools/` logic change**, no Kconfig / `prj.conf` / devicetree change, no
+reconstruction source edited, `armemul` untouched, nothing committed.

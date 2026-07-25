@@ -160,3 +160,73 @@ main = FUN_0102a720;
  * 0x01032440 is sys_memcpy_swap specialised to length 0x20.  Evidence:
  * recon/ownership/net_hci_ecdh_singleton_adoption.json. */
 PROVIDE(FUN_01032680 = hci_ecdh_init);
+
+/* Iteration 28, BATCH 1 -- nrfx_timer.c is a STOCK, UNMODIFIED unit and it owns
+ * the singleton control block `m_cb` (12 B, one enabled instance = TIMER2).
+ * All six nrfx_timer.c functions the shipped image contains are
+ * relocation-masked byte-identical to the stock sections over 472
+ * distinguishing bytes (evidence:
+ * recon/ownership/net_nrfx_timer_singleton_adoption.json).  The
+ * reconstructions reached m_cb through the pin `g_net_gpiote_evt_handler_table`
+ * (shipped 0x21004af8 -- a mis-name; the object is nrfx's timer control block),
+ * which iteration 26 relocated into g1_net_ram_blk_21004ae8 + 0x10.  MEASURED
+ * (iteration 28, Renode watchpoint): nrfx_timer_init succeeded and wrote
+ * state = 1, and memcpy from FUN_0102b3f0+0x66 -- copying into
+ * g_net_ctrl_status_byte, 0xb1 bytes away in the COMPRESSED block space but far
+ * away in the shipped space -- zeroed it again, so nrfx_timer_disable's
+ * NRFX_ASSERT (nrfx_timer.c:202) fired and k_oops reset the SoC at ~5.8 s.
+ * Displacing the unit takes m_cb out of the relocation-block space entirely.
+ * It also repairs a transcription defect the parity harness cannot see: the
+ * recovered timer_configure carried base frequency 0x000f4240 (1 MHz) where the
+ * shipped bytes carry 0x00f42400 (16 MHz), so the ESB timer was clocked 16x too
+ * fast. */
+PROVIDE(FUN_01034fa8 = nrfx_timer_init);
+PROVIDE(FUN_01035028 = nrfx_timer_disable);
+PROVIDE(FUN_01035068 = nrfx_timer_uninit);
+PROVIDE(FUN_010350a4 = nrfx_timer_2_irq_handler);
+PROVIDE(FUN_0103a9dc = nrfx_timer_compare);
+/* FUN_01034f24 = timer_configure is file-local in the stock object, so it
+ * cannot be named by a PROVIDE.  Its only recovered referrer, FUN_01034fa8, is
+ * displaced in this same batch, so the exclusion leaves no undefined symbol. */
+
+/* Iteration 28, BATCH 2 -- esb_dppi.c is a STOCK, UNMODIFIED unit and it owns
+ * seven ESB DPPI channel/group singletons (shipped 0x2100645a..0x21006460).
+ * All twelve esb_dppi.c functions the shipped image contains are
+ * relocation-masked byte-identical to the stock sections over 996
+ * distinguishing bytes, in the object's own section order, over the contiguous
+ * VA run 0x01033b18..0x01033ff8 (evidence:
+ * recon/ownership/net_esb_dppi_singleton_adoption.json).  The sweep's
+ * cross-reference proves no RETAINED reconstruction reaches that state -- the
+ * vendored esb.c only calls the esb_ppi_* accessors -- so the displacement is
+ * total for the unit and leaves no second copy.  Note the CONTRAST with esb.c
+ * in the same archive: only 32 of its 53 sections are byte-identical, so esb.c
+ * is genuinely vendored/reconfigured by Even and its reconstruction is KEPT. */
+PROVIDE(FUN_01033b18 = esb_ppi_for_txrx_set);
+PROVIDE(FUN_01033bf0 = esb_ppi_for_txrx_clear);
+PROVIDE(FUN_01033c74 = esb_ppi_for_fem_set);
+PROVIDE(FUN_01033ca4 = esb_ppi_for_fem_clear);
+PROVIDE(FUN_01033cd0 = esb_ppi_for_retransmission_set);
+PROVIDE(FUN_01033d20 = esb_ppi_for_retransmission_clear);
+PROVIDE(FUN_01033d54 = esb_ppi_for_wait_for_ack_set);
+PROVIDE(FUN_01033da0 = esb_ppi_for_wait_for_ack_clear);
+PROVIDE(FUN_01033de4 = esb_ppi_radio_disabled_get);
+PROVIDE(FUN_01033df0 = esb_ppi_init);
+PROVIDE(FUN_01033ee4 = esb_ppi_disable_all);
+PROVIDE(FUN_01033f38 = esb_ppi_deinit);
+
+/* Iteration 28, BATCH 3 -- nrfx_ipc.c.  The stock unit is ALREADY linked
+ * unconditionally in this build and owns the singleton IPC control block m_cb;
+ * the two reconstructions read a private relocation block bound from the pin
+ * `g_sdc_radio_context_area` (shipped 0x21004aec -- another mis-name; the
+ * object is nrfx's IPC control block).  All five nrfx_ipc.c functions the
+ * shipped image contains are relocation-masked byte-identical to the stock
+ * sections and tile the 408-byte run 0x01034d8c..0x01034f24 exactly, so the
+ * unit is stock and unmodified (evidence:
+ * recon/ownership/net_nrfx_ipc_singleton_adoption.json).  NOTE: iteration 27
+ * named this file as the source of the ~5.8 s assert; that identification was
+ * WRONG -- 0x0103e73b is the nrfx_TIMER.c path string (the nrfx_ipc.c string
+ * ends at 0x0103e73a) and nrfx_timer.c:202 is nrfx_timer_disable's
+ * NRFX_ASSERT.  The real nrfx_ipc hazard is this one, and it is latent: both
+ * reconstructions are already --gc-sections'd out of the link. */
+PROVIDE(FUN_01034d8c = nrfx_ipc_init);
+PROVIDE(FUN_01034dd8 = nrfx_ipc_config_load);

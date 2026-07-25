@@ -1,0 +1,257 @@
+{
+ "schema": 1,
+ "title": "CPUNET nrfx_timer.c duplicate-singleton adoption (P4 iteration 28)",
+ "core": "net",
+ "upstream_unit": "modules/hal/nordic/nrfx/drivers/src/nrfx_timer.c (NCS 2.5.1, nrfx 3.x)",
+ "upstream_object": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_timer.c.obj)",
+ "singleton_state": {
+  "object": ".bss.m_cb",
+  "size_bytes": 12,
+  "enabled_instance_count": 1,
+  "shipped_address": "0x21004af8",
+  "shipped_address_proof": "R_ARM_ABS32 relocation into .bss.m_cb at +0x34 of the stock .text.nrfx_timer_disable section; the shipped image word at 0x01035028+0x34 minus the in-place addend resolves to 0x21004af8, and the same value is reached independently from .text.nrfx_timer_init (+0x68), .text.nrfx_timer_uninit (+0x38) and .text.nrfx_timer_2_irq_handler (+0x64).",
+  "reconstruction_pin": "g_net_gpiote_evt_handler_table (a mis-name; the object is nrfx_timer's control block, not a GPIOTE handler table)",
+  "reconstruction_binding": "g1_net_ram_blk_21004ae8 + 0x10  ->  0x21001fa8"
+ },
+ "unit_completeness": {
+  "stock_sections": 19,
+  "sections_present_in_shipped_image": 6,
+  "sections_present_and_byte_identical": 6,
+  "sections_absent_from_shipped_image": 13,
+  "note": "Every nrfx_timer.c function that the shipped firmware contains is byte-identical to the stock section; the other 13 were --gc-sections'd out of the shipped link exactly as they are out of ours.  The unit is stock and UNMODIFIED."
+ },
+ "method": [
+  "Indexed every .text.* input section of every stock archive member this net link consumes (2506 sections, 40 archives), with a 4-byte mask at each relocation offset.",
+  "Compared the shipped netcore_image.bin bytes at each recovered function's analysis VA against every same-length section under that mask; a claim requires agreement over EVERY unmasked byte of the WHOLE section.",
+  "Independently re-scanned the whole image with a sliding window for each nrfx_timer.c section, to prove no function of the unit sits at a different VA and that the unit is not partially vendored."
+ ],
+ "measured_defects_this_displacement_fixes": [
+  {
+   "id": "D1",
+   "detail": "The recovered FUN_01034f24 (timer_configure) carries the base frequency literal 0x000f4240 = 1,000,000 Hz; the stock section and the shipped image both carry 0x00f42400 = 16,000,000 Hz.  With the ESB config frequency of 1,000,000 Hz the recovered body computes prescaler = ctz(1) = 0 and programs TIMER2 at 16 MHz, i.e. the ESB timer ran SIXTEEN TIMES too fast; the stock body computes ctz(16) = 4 and programs 1 MHz.  This is a transcription defect the parity harness could not see (the literal is inside the reconstructed body, so original and candidate agree with each other)."
+  },
+  {
+   "id": "D2",
+   "detail": "MEASURED on /private/tmp/g1-i28base-net (probe4/probe5, Renode watchpoint on the state byte): nrfx_timer_init DOES succeed and writes m_cb.state = 1 at 0x21001fb0 (pc 0x0102d0ac), and the byte is later zeroed by memcpy (pc 0x0103c514) called from FUN_0102b3f0+0x66 with dest 0x21001eff = g_net_ctrl_status_byte (shipped 0x21004c9f, block g1_net_ram_blk_21004c98 + 0x7).  In the SHIPPED address space that copy runs from 0x21004c9f upwards and cannot touch 0x21004b00; in the compressed relocation-block space the two objects are only 0xb1 bytes apart, so it does.  Moving m_cb out of the block space into the stock .bss removes the aliasing."
+  }
+ ],
+ "adoptions": [
+  {
+   "raw_symbol": "FUN_01034f24",
+   "va": "0x01034f24",
+   "upstream_symbol": "timer_configure",
+   "upstream_linkage": "local",
+   "section_bytes": 132,
+   "distinguishing_bytes": 128,
+   "relocation_slots_masked": 1,
+   "agreement": "entire section, every unmasked byte",
+   "relocations": [
+    [
+     "0x6c",
+     "R_ARM_THM_CALL",
+     "arch_irq_enable"
+    ]
+   ]
+  },
+  {
+   "raw_symbol": "FUN_01034fa8",
+   "va": "0x01034fa8",
+   "upstream_symbol": "nrfx_timer_init",
+   "upstream_linkage": "global",
+   "section_bytes": 128,
+   "distinguishing_bytes": 104,
+   "relocation_slots_masked": 6,
+   "agreement": "entire section, every unmasked byte",
+   "relocations": [
+    [
+     "0x3c",
+     "R_ARM_THM_CALL",
+     "assert_print"
+    ],
+    [
+     "0x44",
+     "R_ARM_THM_CALL",
+     "assert_post_action"
+    ],
+    [
+     "0x48",
+     "R_ARM_THM_CALL",
+     "timer_configure"
+    ],
+    [
+     "0x68",
+     "R_ARM_ABS32",
+     ".bss.m_cb"
+    ],
+    [
+     "0x70",
+     "R_ARM_ABS32",
+     ".rodata.nrfx_timer_init.str1.1"
+    ],
+    [
+     "0x74",
+     "R_ARM_ABS32",
+     ".rodata.nrfx_timer_init.str1.1"
+    ]
+   ]
+  },
+  {
+   "raw_symbol": "FUN_01035028",
+   "va": "0x01035028",
+   "upstream_symbol": "nrfx_timer_disable",
+   "upstream_linkage": "global",
+   "section_bytes": 64,
+   "distinguishing_bytes": 44,
+   "relocation_slots_masked": 5,
+   "agreement": "entire section, every unmasked byte",
+   "relocations": [
+    [
+     "0x16",
+     "R_ARM_THM_CALL",
+     "assert_print"
+    ],
+    [
+     "0x1e",
+     "R_ARM_THM_CALL",
+     "assert_post_action"
+    ],
+    [
+     "0x34",
+     "R_ARM_ABS32",
+     ".bss.m_cb"
+    ],
+    [
+     "0x38",
+     "R_ARM_ABS32",
+     ".rodata.nrfx_timer_init.str1.1"
+    ],
+    [
+     "0x3c",
+     "R_ARM_ABS32",
+     ".rodata.nrfx_timer_init.str1.1"
+    ]
+   ]
+  },
+  {
+   "raw_symbol": "FUN_01035068",
+   "va": "0x01035068",
+   "upstream_symbol": "nrfx_timer_uninit",
+   "upstream_linkage": "global",
+   "section_bytes": 60,
+   "distinguishing_bytes": 48,
+   "relocation_slots_masked": 3,
+   "agreement": "entire section, every unmasked byte",
+   "relocations": [
+    [
+     "0xc",
+     "R_ARM_THM_CALL",
+     "arch_irq_disable"
+    ],
+    [
+     "0x26",
+     "R_ARM_THM_CALL",
+     "nrfx_timer_disable"
+    ],
+    [
+     "0x38",
+     "R_ARM_ABS32",
+     ".bss.m_cb"
+    ]
+   ]
+  },
+  {
+   "raw_symbol": "FUN_010350a4",
+   "va": "0x010350a4",
+   "upstream_symbol": "nrfx_timer_2_irq_handler",
+   "upstream_linkage": "global",
+   "section_bytes": 104,
+   "distinguishing_bytes": 100,
+   "relocation_slots_masked": 1,
+   "agreement": "entire section, every unmasked byte",
+   "relocations": [
+    [
+     "0x64",
+     "R_ARM_ABS32",
+     ".bss.m_cb"
+    ]
+   ]
+  },
+  {
+   "raw_symbol": "FUN_0103a9dc",
+   "va": "0x0103a9dc",
+   "upstream_symbol": "nrfx_timer_compare",
+   "upstream_linkage": "global",
+   "section_bytes": 48,
+   "distinguishing_bytes": 48,
+   "relocation_slots_masked": 0,
+   "agreement": "entire section, every unmasked byte",
+   "relocations": []
+  }
+ ],
+ "linker_aliases": [
+  "PROVIDE(FUN_01034fa8 = nrfx_timer_init);",
+  "PROVIDE(FUN_01035028 = nrfx_timer_disable);",
+  "PROVIDE(FUN_01035068 = nrfx_timer_uninit);",
+  "PROVIDE(FUN_010350a4 = nrfx_timer_2_irq_handler);",
+  "PROVIDE(FUN_0103a9dc = nrfx_timer_compare);"
+ ],
+ "not_aliased": [
+  {
+   "raw_symbol": "FUN_01034f24",
+   "reason": "timer_configure is a file-local symbol ('t') in the stock object, so a linker PROVIDE cannot name it.  Its only referrer in the recovered corpus is FUN_01034fa8, which is displaced in the same batch, so the exclusion leaves no undefined reference."
+  },
+  {
+   "raw_symbol": "FUN_01035028",
+   "reason": "nrfx_timer_disable's only recovered referrer is FUN_01035068, displaced in the same batch.  A defensive PROVIDE is still emitted; PROVIDE only defines a symbol that is actually referenced."
+  }
+ ],
+ "stock_ram_attribution_context": {
+  "0x21004aec": [
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_ipc.c.obj)",
+    "object": ".bss.m_cb",
+    "via_section": ".text.nrfx_ipc_init",
+    "via_va": "0x01034d8c",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_ipc.c.obj)",
+    "object": ".bss.m_cb",
+    "via_section": ".text.nrfx_ipc_config_load",
+    "via_va": "0x01034dd8",
+    "field_offset": 0
+   }
+  ],
+  "0x21004af8": [
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_timer.c.obj)",
+    "object": ".bss.m_cb",
+    "via_section": ".text.nrfx_timer_init",
+    "via_va": "0x01034fa8",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_timer.c.obj)",
+    "object": ".bss.m_cb",
+    "via_section": ".text.nrfx_timer_disable",
+    "via_va": "0x01035028",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_timer.c.obj)",
+    "object": ".bss.m_cb",
+    "via_section": ".text.nrfx_timer_uninit",
+    "via_va": "0x01035068",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_timer.c.obj)",
+    "object": ".bss.m_cb",
+    "via_section": ".text.nrfx_timer_2_irq_handler",
+    "via_va": "0x010350a4",
+    "field_offset": 0
+   }
+  ]
+ },
+ "total_distinguishing_bytes": 472
+}

@@ -1,0 +1,4041 @@
+{
+ "schema": 1,
+ "title": "CPUNET duplicate-singleton sweep (P4 iteration 28)",
+ "generated_for": "recon/emulator/reports/our_boot_bringup.md section 28",
+ "why": "Ten consecutive net blockers had one root pattern: a recovered copy of an SDK unit keeping SEPARATE STATE from a stock unit the same link also contains.  Each was found only when it crashed.  This sweep looks for the whole class mechanically instead.",
+ "method": {
+  "detector_1_byte_identity": [
+   "Index every .text.* input section of every stock archive member this net link consumes -- all 40 build archives except our own app/libapp.a, plus the toolchain libgcc and picolibc multilibs -- with a 4-byte mask at every relocation offset.  2506 sections indexed.",
+   "For each of the 980 RETAINED recovered net functions, read the shipped netcore_image.bin at its analysis VA for each candidate section length and require agreement on EVERY unmasked byte of the WHOLE section.",
+   "This is the evidence bar the task demands -- relocation-masked BYTE identity, never instruction shape (iteration 20's bt_ancs_register_attr mistake)."
+  ],
+  "detector_2_shipped_state_attribution": [
+   "For every located section, resolve every R_ARM_ABS32 relocation into a .bss.* / .data.* object of the same member:  shipped_address = image_word(hit_va + reloc_off) - in_place_addend.",
+   "That yields a map  shipped RAM address -> stock-owned mutable object: iteration 27's stock-.data-window proof generalised to .bss and to every unit, WITHOUT needing a shipped link map.",
+   "Cross-reference every attributed address against every retained recovered source (pin name from recon/symbols/g1_net_globals.ld, G1N_ macro, raw literal) to answer 'does something I am KEEPING still own a copy?'."
+  ],
+  "detector_3_unit_completeness": [
+   "Slide every section of a candidate unit over the WHOLE shipped image.  A unit may only be displaced WHOLE: if some of its functions are byte-exact and others are not, displacing the exact ones would SPLIT the file-static state between two translation units -- the very defect being removed."
+  ],
+  "tools": [
+   "scratchpad i28/sweep_singletons.py, attribute_state.py, hazard_xref.py, scan_unit.py, rank.py, cmpsec.py, gaps.py (analysis-only, outside the repo; no tools/ logic was changed)"
+  ]
+ },
+ "results": {
+  "stock_sections_indexed": 2506,
+  "retained_recovered_net_functions_scanned": 980,
+  "recovered_functions_byte_identical_to_a_stock_section": 153,
+  "of_those_whose_stock_unit_owns_mutable_state": 70,
+  "distinct_shipped_RAM_addresses_attributed_to_stock_objects": 46,
+  "upstream_units_touched": 50,
+  "units_displaced_this_iteration": 3,
+  "functions_displaced_this_iteration": 20
+ },
+ "caveat_on_sections_not_located": "'sections_not_located' counts stock sections the sliding scan did not find in the shipped image.  A section can be missing for TWO reasons: the shipped link garbage-collected it, or Even's build produced different code.  Where the located sections tile a contiguous VA run with no gaps AND no retained reconstruction inside that run failed to match, the unit is COMPLETE.  esb.c is the unit where the distinction is proven the hard way: eight RETAINED reconstructions lie inside esb.c's own VA run 0x01032764..0x01033b18 (0x1032a3c, 0x1032be4, 0x1032c28, 0x1032de4, 0x1032e54, 0x10331c8, 0x10333b4, 0x1033660) and match NO esb.c section, so esb.c is genuinely vendored/reconfigured by Even and its reconstruction is KEPT.",
+ "liveness_note": "MEASURED on /private/tmp/g1-i28c-net: of every remaining ranked candidate, only sem.c's z_impl_k_sem_take (FUN_0103689c) and its sibling FUN_01036824 (z_impl_k_sem_give) survive --gc-sections in the link at all.  Every other hazard the sweep found is LATENT -- the reconstruction is already dropped.  That is why the remaining ranked rows are not displaced: they would change nothing measurable and each carries regression risk (iteration 26's 39-row zephyr_drivers batch).",
+ "shipped_ram_attribution": {
+  "0x21004fab": [
+   {
+    "member": "libzephyr.a(soc.c.obj)",
+    "object": ".bss.cpu_idle_prepare_monitor_dummy",
+    "via_section": ".text.z_arm_on_enter_cpu_idle_prepare",
+    "via_va": "0x0102d0c4",
+    "field_offset": 0
+   },
+   {
+    "member": "libzephyr.a(soc.c.obj)",
+    "object": ".bss.cpu_idle_prepare_monitor_dummy",
+    "via_section": ".text.z_arm_on_enter_cpu_idle",
+    "via_va": "0x0102d1c0",
+    "field_offset": 0
+   }
+  ],
+  "0x21004fa9": [
+   {
+    "member": "libzephyr.a(soc.c.obj)",
+    "object": ".bss.rtc_pretick_cc_set_on_time.4",
+    "via_section": ".text.z_arm_on_enter_cpu_idle_prepare",
+    "via_va": "0x0102d0c4",
+    "field_offset": 0
+   }
+  ],
+  "0x21004faa": [
+   {
+    "member": "libzephyr.a(soc.c.obj)",
+    "object": ".bss.cpu_idle_prepare_allows_sleep",
+    "via_section": ".text.z_arm_on_enter_cpu_idle_prepare",
+    "via_va": "0x0102d0c4",
+    "field_offset": 0
+   },
+   {
+    "member": "libzephyr.a(soc.c.obj)",
+    "object": ".bss.cpu_idle_prepare_allows_sleep",
+    "via_section": ".text.z_arm_on_enter_cpu_idle",
+    "via_va": "0x0102d1c0",
+    "field_offset": 0
+   }
+  ],
+  "0x21004fa8": [
+   {
+    "member": "libzephyr.a(soc.c.obj)",
+    "object": ".bss.current.3",
+    "via_section": ".text.z_arm_on_enter_cpu_idle",
+    "via_va": "0x0102d1c0",
+    "field_offset": 0
+   }
+  ],
+  "0x21004640": [
+   {
+    "member": "libzephyr.a(soc.c.obj)",
+    "object": ".bss.timestamps.1",
+    "via_section": ".text.z_arm_on_enter_cpu_idle",
+    "via_va": "0x0102d1c0",
+    "field_offset": 0
+   }
+  ],
+  "0x21004fa7": [
+   {
+    "member": "libzephyr.a(soc.c.obj)",
+    "object": ".bss.timestamps_filled.2",
+    "via_section": ".text.z_arm_on_enter_cpu_idle",
+    "via_va": "0x0102d1c0",
+    "field_offset": 0
+   }
+  ],
+  "0x21004810": [
+   {
+    "member": "libdrivers__clock_control.a(clock_control_nrf.c.obj)",
+    "object": ".bss.on.2",
+    "via_section": ".text.z_nrf_clock_control_lf_on",
+    "via_va": "0x0103038c",
+    "field_offset": 0
+   }
+  ],
+  "0x21004800": [
+   {
+    "member": "libdrivers__clock_control.a(clock_control_nrf.c.obj)",
+    "object": ".bss.cli.1",
+    "via_section": ".text.z_nrf_clock_control_lf_on",
+    "via_va": "0x0103038c",
+    "field_offset": 0
+   }
+  ],
+  "0x21004814": [
+   {
+    "member": "libdrivers__clock_control.a(clock_control_nrf.c.obj)",
+    "object": ".bss.data",
+    "via_section": ".text.z_nrf_clock_control_lf_on",
+    "via_va": "0x0103038c",
+    "field_offset": 32
+   }
+  ],
+  "0x2100496c": [
+   {
+    "member": "libdrivers__timer.a(nrf_rtc_timer.c.obj)",
+    "object": ".bss.int_mask",
+    "via_section": ".text.compare_int_lock",
+    "via_va": "0x01031248",
+    "field_offset": 0
+   },
+   {
+    "member": "libdrivers__timer.a(nrf_rtc_timer.c.obj)",
+    "object": ".bss.int_mask",
+    "via_section": ".text.compare_int_unlock",
+    "via_va": "0x010312d0",
+    "field_offset": 0
+   }
+  ],
+  "0x21004964": [
+   {
+    "member": "libdrivers__timer.a(nrf_rtc_timer.c.obj)",
+    "object": ".bss.force_isr_mask",
+    "via_section": ".text.compare_int_unlock",
+    "via_va": "0x010312d0",
+    "field_offset": 0
+   },
+   {
+    "member": "libdrivers__timer.a(nrf_rtc_timer.c.obj)",
+    "object": ".bss.force_isr_mask",
+    "via_section": ".text.compare_set",
+    "via_va": "0x010313ec",
+    "field_offset": 0
+   }
+  ],
+  "0x21002b60": [
+   {
+    "member": "libdrivers__timer.a(nrf_rtc_timer.c.obj)",
+    "object": ".bss.cc_data",
+    "via_section": ".text.compare_set",
+    "via_va": "0x010313ec",
+    "field_offset": 0
+   }
+  ],
+  "0x210051ae": [
+   {
+    "member": "lib..__nrf__subsys__bluetooth__controller.a(hci_internal.c.obj)",
+    "object": ".bss.cmd_complete_or_status",
+    "via_section": ".text.hci_internal_msg_get",
+    "via_va": "0x010323cc",
+    "field_offset": 0
+   }
+  ],
+  "0x21004a94": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_cfg",
+    "via_section": ".text.update_radio_bitrate",
+    "via_va": "0x01032764",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_cfg",
+    "via_section": ".text.on_radio_disabled_rx_ack",
+    "via_va": "0x01032804",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_cfg",
+    "via_section": ".text.clear_events_restart_rx",
+    "via_va": "0x010329b4",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_cfg",
+    "via_section": ".text.update_radio_tx_power",
+    "via_va": "0x01032ad8",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_cfg",
+    "via_section": ".text.on_radio_disabled_tx",
+    "via_va": "0x010330b0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_cfg",
+    "via_section": ".text.esb_set_tx_power",
+    "via_va": "0x01033af8",
+    "field_offset": 0
+   }
+  ],
+  "0x210049a4": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.wait_for_ack_timeout_us",
+    "via_section": ".text.update_radio_bitrate",
+    "via_va": "0x01032764",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.wait_for_ack_timeout_us",
+    "via_section": ".text.on_radio_disabled_tx",
+    "via_va": "0x010330b0",
+    "field_offset": 0
+   }
+  ],
+  "0x21004a60": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.tx_fifo",
+    "via_section": ".text.reset_fifos",
+    "via_va": "0x010327a0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.tx_fifo",
+    "via_section": ".text.tx_fifo_remove_last.part.0",
+    "via_va": "0x01032954",
+    "field_offset": 0
+   }
+  ],
+  "0x21004a34": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.rx_fifo",
+    "via_section": ".text.reset_fifos",
+    "via_va": "0x010327a0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.rx_fifo",
+    "via_section": ".text.esb_read_rx_payload",
+    "via_va": "0x010337ac",
+    "field_offset": 0
+   }
+  ],
+  "0x21000698": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_timer",
+    "via_section": ".text.esb_timer_handler",
+    "via_va": "0x010327bc",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_timer",
+    "via_section": ".text.esb_fem_for_tx_set",
+    "via_va": "0x01032860",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_timer",
+    "via_section": ".text.esb_fem_reset",
+    "via_va": "0x01032908",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_timer",
+    "via_section": ".text.esb_fem_for_rx_set",
+    "via_va": "0x01032988",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_timer",
+    "via_section": ".text.clear_events_restart_rx",
+    "via_va": "0x010329b4",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_timer",
+    "via_section": ".text.esb_fem_for_rx_ack",
+    "via_va": "0x01033084",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_timer",
+    "via_section": ".text.on_radio_disabled_tx",
+    "via_va": "0x010330b0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_timer",
+    "via_section": ".text.esb_fem_for_tx_retry",
+    "via_va": "0x01033168",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_timer",
+    "via_section": ".text.esb_fem_for_tx_retry_clear",
+    "via_va": "0x010331a0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_timer",
+    "via_section": ".text.esb_disable",
+    "via_va": "0x01033354",
+    "field_offset": 0
+   }
+  ],
+  "0x2100065c": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.disable_event",
+    "via_section": ".text.on_radio_disabled_rx_ack",
+    "via_va": "0x01032804",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.disable_event",
+    "via_section": ".text.esb_fem_for_tx_set",
+    "via_va": "0x01032860",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.disable_event",
+    "via_section": ".text.esb_fem_for_rx_set",
+    "via_va": "0x01032988",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.disable_event",
+    "via_section": ".text.esb_fem_for_rx_ack",
+    "via_va": "0x01033084",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.disable_event",
+    "via_section": ".text.esb_fem_for_tx_retry",
+    "via_va": "0x01033168",
+    "field_offset": 0
+   }
+  ],
+  "0x2100499c": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.update_rf_payload_format",
+    "via_section": ".text.on_radio_disabled_rx_ack",
+    "via_va": "0x01032804",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.update_rf_payload_format",
+    "via_section": ".text.clear_events_restart_rx",
+    "via_va": "0x010329b4",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.update_rf_payload_format",
+    "via_section": ".text.on_radio_disabled_tx",
+    "via_va": "0x010330b0",
+    "field_offset": 0
+   }
+  ],
+  "0x2100625e": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.rx_payload_buffer",
+    "via_section": ".text.on_radio_disabled_rx_ack",
+    "via_va": "0x01032804",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.rx_payload_buffer",
+    "via_section": ".text.clear_events_restart_rx",
+    "via_va": "0x010329b4",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.rx_payload_buffer",
+    "via_section": ".text.on_radio_disabled_tx",
+    "via_va": "0x010330b0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.rx_payload_buffer",
+    "via_section": ".text.esb_start_rx",
+    "via_va": "0x01033888",
+    "field_offset": 0
+   }
+  ],
+  "0x210049a0": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.on_radio_disabled",
+    "via_section": ".text.on_radio_disabled_rx_ack",
+    "via_va": "0x01032804",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.on_radio_disabled",
+    "via_section": ".text.on_radio_disabled_tx",
+    "via_va": "0x010330b0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.on_radio_disabled",
+    "via_section": ".text.esb_start_rx",
+    "via_va": "0x01033888",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.on_radio_disabled",
+    "via_section": ".text.esb_stop_rx",
+    "via_va": "0x01033968",
+    "field_offset": 0
+   }
+  ],
+  "0x21006458": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_state",
+    "via_section": ".text.on_radio_disabled_rx_ack",
+    "via_va": "0x01032804",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_state",
+    "via_section": ".text.on_radio_disabled_tx",
+    "via_va": "0x010330b0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_state",
+    "via_section": ".text.esb_disable",
+    "via_va": "0x01033354",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_state",
+    "via_section": ".text.esb_start_rx",
+    "via_va": "0x01033888",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_state",
+    "via_section": ".text.esb_stop_rx",
+    "via_va": "0x01033968",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_state",
+    "via_section": ".text.esb_set_base_address_0",
+    "via_va": "0x010339e4",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_state",
+    "via_section": ".text.esb_set_base_address_1",
+    "via_va": "0x01033a20",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_state",
+    "via_section": ".text.esb_set_prefixes",
+    "via_va": "0x01033a60",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_state",
+    "via_section": ".text.esb_enable_pipes",
+    "via_va": "0x01033aac",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_state",
+    "via_section": ".text.esb_set_rf_channel",
+    "via_va": "0x01033acc",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_state",
+    "via_section": ".text.esb_set_tx_power",
+    "via_va": "0x01033af8",
+    "field_offset": 0
+   }
+  ],
+  "0x210049a8": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.last_tx_attempts",
+    "via_section": ".text.SWI0_IRQHandler",
+    "via_va": "0x0103289c",
+    "field_offset": 0
+   }
+  ],
+  "0x210049b0": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.interrupt_flags",
+    "via_section": ".text.SWI0_IRQHandler",
+    "via_va": "0x0103289c",
+    "field_offset": 0
+   }
+  ],
+  "0x21004a90": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.event_handler",
+    "via_section": ".text.SWI0_IRQHandler",
+    "via_va": "0x0103289c",
+    "field_offset": 0
+   }
+  ],
+  "0x21000684": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_addr",
+    "via_section": ".text.update_radio_addresses.part.0",
+    "via_va": "0x01032930",
+    "field_offset": 8
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_addr",
+    "via_section": ".text.update_radio_tx_power",
+    "via_va": "0x01032ad8",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_addr",
+    "via_section": ".text.update_rf_payload_format_esb",
+    "via_va": "0x01032ba4",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_addr",
+    "via_section": ".text.esb_start_rx",
+    "via_va": "0x01033888",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_addr",
+    "via_section": ".text.esb_set_base_address_0",
+    "via_va": "0x010339e4",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_addr",
+    "via_section": ".text.esb_set_base_address_1",
+    "via_va": "0x01033a20",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_addr",
+    "via_section": ".text.esb_set_prefixes",
+    "via_va": "0x01033a60",
+    "field_offset": 8
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_addr",
+    "via_section": ".text.esb_set_prefixes",
+    "via_va": "0x01033a60",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_addr",
+    "via_section": ".text.esb_enable_pipes",
+    "via_va": "0x01033aac",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.esb_addr",
+    "via_section": ".text.esb_set_rf_channel",
+    "via_va": "0x01033acc",
+    "field_offset": 0
+   }
+  ],
+  "0x21000670": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".data.tx_time_shifted",
+    "via_section": ".text.esb_fem_for_tx_retry",
+    "via_va": "0x01033168",
+    "field_offset": 0
+   }
+  ],
+  "0x21004b7c": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.rx_pipe_info",
+    "via_section": ".text.esb_disable",
+    "via_va": "0x01033354",
+    "field_offset": 0
+   }
+  ],
+  "0x21006459": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_initialized",
+    "via_section": ".text.esb_disable",
+    "via_va": "0x01033354",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.esb_initialized",
+    "via_section": ".text.esb_read_rx_payload",
+    "via_va": "0x010337ac",
+    "field_offset": 0
+   }
+  ],
+  "0x21006256": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb.c.obj)",
+    "object": ".bss.pids",
+    "via_section": ".text.esb_disable",
+    "via_va": "0x01033354",
+    "field_offset": 0
+   }
+  ],
+  "0x2100645c": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.egu_timer_start",
+    "via_section": ".text.esb_ppi_for_txrx_set",
+    "via_va": "0x01033b18",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.egu_timer_start",
+    "via_section": ".text.esb_ppi_for_txrx_clear",
+    "via_va": "0x01033bf0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.egu_timer_start",
+    "via_section": ".text.esb_ppi_for_fem_set",
+    "via_va": "0x01033c74",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.egu_timer_start",
+    "via_section": ".text.esb_ppi_for_fem_clear",
+    "via_va": "0x01033ca4",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.egu_timer_start",
+    "via_section": ".text.esb_ppi_init",
+    "via_va": "0x01033df0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.egu_timer_start",
+    "via_section": ".text.esb_ppi_disable_all",
+    "via_va": "0x01033ee4",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.egu_timer_start",
+    "via_section": ".text.esb_ppi_deinit",
+    "via_va": "0x01033f38",
+    "field_offset": 0
+   }
+  ],
+  "0x2100645b": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.egu_ramp_up",
+    "via_section": ".text.esb_ppi_for_txrx_set",
+    "via_va": "0x01033b18",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.egu_ramp_up",
+    "via_section": ".text.esb_ppi_for_txrx_clear",
+    "via_va": "0x01033bf0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.egu_ramp_up",
+    "via_section": ".text.esb_ppi_init",
+    "via_va": "0x01033df0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.egu_ramp_up",
+    "via_section": ".text.esb_ppi_disable_all",
+    "via_va": "0x01033ee4",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.egu_ramp_up",
+    "via_section": ".text.esb_ppi_deinit",
+    "via_va": "0x01033f38",
+    "field_offset": 0
+   }
+  ],
+  "0x2100645a": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.ramp_up_dppi_group",
+    "via_section": ".text.esb_ppi_for_txrx_set",
+    "via_va": "0x01033b18",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.ramp_up_dppi_group",
+    "via_section": ".text.esb_ppi_for_txrx_clear",
+    "via_va": "0x01033bf0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.ramp_up_dppi_group",
+    "via_section": ".text.esb_ppi_init",
+    "via_va": "0x01033df0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.ramp_up_dppi_group",
+    "via_section": ".text.esb_ppi_deinit",
+    "via_va": "0x01033f38",
+    "field_offset": 0
+   }
+  ],
+  "0x2100645d": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.disabled_egu",
+    "via_section": ".text.esb_ppi_for_txrx_set",
+    "via_va": "0x01033b18",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.disabled_egu",
+    "via_section": ".text.esb_ppi_for_retransmission_set",
+    "via_va": "0x01033cd0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.disabled_egu",
+    "via_section": ".text.esb_ppi_init",
+    "via_va": "0x01033df0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.disabled_egu",
+    "via_section": ".text.esb_ppi_disable_all",
+    "via_va": "0x01033ee4",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.disabled_egu",
+    "via_section": ".text.esb_ppi_deinit",
+    "via_va": "0x01033f38",
+    "field_offset": 0
+   }
+  ],
+  "0x2100645e": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.timer_compare1_radio_txen",
+    "via_section": ".text.esb_ppi_for_retransmission_set",
+    "via_va": "0x01033cd0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.timer_compare1_radio_txen",
+    "via_section": ".text.esb_ppi_for_retransmission_clear",
+    "via_va": "0x01033d20",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.timer_compare1_radio_txen",
+    "via_section": ".text.esb_ppi_init",
+    "via_va": "0x01033df0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.timer_compare1_radio_txen",
+    "via_section": ".text.esb_ppi_deinit",
+    "via_va": "0x01033f38",
+    "field_offset": 0
+   }
+  ],
+  "0x21006460": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.radio_address_timer_stop",
+    "via_section": ".text.esb_ppi_for_wait_for_ack_set",
+    "via_va": "0x01033d54",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.radio_address_timer_stop",
+    "via_section": ".text.esb_ppi_for_wait_for_ack_clear",
+    "via_va": "0x01033da0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.radio_address_timer_stop",
+    "via_section": ".text.esb_ppi_init",
+    "via_va": "0x01033df0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.radio_address_timer_stop",
+    "via_section": ".text.esb_ppi_disable_all",
+    "via_va": "0x01033ee4",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.radio_address_timer_stop",
+    "via_section": ".text.esb_ppi_deinit",
+    "via_va": "0x01033f38",
+    "field_offset": 0
+   }
+  ],
+  "0x2100645f": [
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.timer_compare0_radio_disable",
+    "via_section": ".text.esb_ppi_for_wait_for_ack_set",
+    "via_va": "0x01033d54",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.timer_compare0_radio_disable",
+    "via_section": ".text.esb_ppi_for_wait_for_ack_clear",
+    "via_va": "0x01033da0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.timer_compare0_radio_disable",
+    "via_section": ".text.esb_ppi_init",
+    "via_va": "0x01033df0",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.timer_compare0_radio_disable",
+    "via_section": ".text.esb_ppi_disable_all",
+    "via_va": "0x01033ee4",
+    "field_offset": 0
+   },
+   {
+    "member": "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+    "object": ".bss.timer_compare0_radio_disable",
+    "via_section": ".text.esb_ppi_deinit",
+    "via_va": "0x01033f38",
+    "field_offset": 0
+   }
+  ],
+  "0x210006a4": [
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_dppi.c.obj)",
+    "object": ".data.m_allocated_channels",
+    "via_section": ".text.nrfx_dppi_channel_free",
+    "via_va": "0x01034464",
+    "field_offset": 0
+   }
+  ],
+  "0x210006a0": [
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_dppi.c.obj)",
+    "object": ".data.m_allocated_groups",
+    "via_section": ".text.nrfx_dppi_group_free",
+    "via_va": "0x0103448c",
+    "field_offset": 0
+   }
+  ],
+  "0x210006a8": [
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)",
+    "object": ".data.m_cb",
+    "via_section": ".text.pin_in_use",
+    "via_va": "0x010344bc",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)",
+    "object": ".data.m_cb",
+    "via_section": ".text.pin_in_use_by_te",
+    "via_va": "0x010344d4",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)",
+    "object": ".data.m_cb",
+    "via_section": ".text.pin_has_trigger",
+    "via_va": "0x010344ec",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)",
+    "object": ".data.m_cb",
+    "via_section": ".text.pin_is_output",
+    "via_va": "0x01034508",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)",
+    "object": ".data.m_cb",
+    "via_section": ".text.pin_te_get",
+    "via_va": "0x01034520",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)",
+    "object": ".data.m_cb",
+    "via_section": ".text.call_handler",
+    "via_va": "0x01034538",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)",
+    "object": ".data.m_cb",
+    "via_section": ".text.release_handler",
+    "via_va": "0x01034578",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)",
+    "object": ".data.m_cb",
+    "via_section": ".text.release_handler",
+    "via_va": "0x01034578",
+    "field_offset": 116
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)",
+    "object": ".data.m_cb",
+    "via_section": ".text.nrfx_gpiote_input_configure",
+    "via_va": "0x010346d8",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)",
+    "object": ".data.m_cb",
+    "via_section": ".text.nrfx_gpiote_input_configure",
+    "via_va": "0x010346d8",
+    "field_offset": 116
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)",
+    "object": ".data.m_cb",
+    "via_section": ".text.nrfx_gpiote_output_configure",
+    "via_va": "0x01034840",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)",
+    "object": ".data.m_cb",
+    "via_section": ".text.nrfx_gpiote_channel_get",
+    "via_va": "0x0103494c",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)",
+    "object": ".data.m_cb",
+    "via_section": ".text.nrfx_gpiote_init",
+    "via_va": "0x0103499c",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)",
+    "object": ".data.m_cb",
+    "via_section": ".text.nrfx_gpiote_pin_uninit",
+    "via_va": "0x01034b64",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)",
+    "object": ".data.m_cb",
+    "via_section": ".text.nrfx_gpiote_irq_handler",
+    "via_va": "0x01034be4",
+    "field_offset": 0
+   }
+  ],
+  "0x21004aec": [
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_ipc.c.obj)",
+    "object": ".bss.m_cb",
+    "via_section": ".text.nrfx_ipc_init",
+    "via_va": "0x01034d8c",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_ipc.c.obj)",
+    "object": ".bss.m_cb",
+    "via_section": ".text.nrfx_ipc_config_load",
+    "via_va": "0x01034dd8",
+    "field_offset": 0
+   }
+  ],
+  "0x21004af8": [
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_timer.c.obj)",
+    "object": ".bss.m_cb",
+    "via_section": ".text.nrfx_timer_init",
+    "via_va": "0x01034fa8",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_timer.c.obj)",
+    "object": ".bss.m_cb",
+    "via_section": ".text.nrfx_timer_disable",
+    "via_va": "0x01035028",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_timer.c.obj)",
+    "object": ".bss.m_cb",
+    "via_section": ".text.nrfx_timer_uninit",
+    "via_va": "0x01035068",
+    "field_offset": 0
+   },
+   {
+    "member": "libmodules__hal_nordic__nrfx.a(nrfx_timer.c.obj)",
+    "object": ".bss.m_cb",
+    "via_section": ".text.nrfx_timer_2_irq_handler",
+    "via_va": "0x010350a4",
+    "field_offset": 0
+   }
+  ],
+  "0x21004b48": [
+   {
+    "member": "libkernel.a(mutex.c.obj)",
+    "object": ".bss.lock",
+    "via_section": ".text.z_impl_k_mutex_lock",
+    "via_va": "0x01036410",
+    "field_offset": 0
+   }
+  ],
+  "0x21004b4c": [
+   {
+    "member": "libkernel.a(sem.c.obj)",
+    "object": ".bss.lock",
+    "via_section": ".text.z_impl_k_sem_take",
+    "via_va": "0x0103689c",
+    "field_offset": 0
+   }
+  ],
+  "0x21000750": [
+   {
+    "member": "libkernel.a(timeout.c.obj)",
+    "object": ".data.timeout_list",
+    "via_section": ".text.next_timeout",
+    "via_va": "0x01037f14",
+    "field_offset": 0
+   },
+   {
+    "member": "libkernel.a(timeout.c.obj)",
+    "object": ".data.timeout_list",
+    "via_section": ".text.remove_timeout",
+    "via_va": "0x01037f54",
+    "field_offset": 0
+   }
+  ]
+ },
+ "hazard_cross_reference": {
+  "0x2100065c": {
+   "stock_owner": [
+    "esb.c.obj::.data.disable_event"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "FUN_01032804": [
+     "G1N_2100065c"
+    ],
+    "FUN_01032988": [
+     "G1N_2100065c"
+    ],
+    "FUN_01033084": [
+     "0x2100065c",
+     "G1N_2100065c"
+    ],
+    "FUN_01033168": [
+     "G1N_2100065c"
+    ],
+    "FUN_01032860": [
+     "G1N_2100065c"
+    ],
+    "FUN_010333b4": [
+     "G1N_2100065c"
+    ],
+    "FUN_01032e54": [
+     "G1N_2100065c"
+    ]
+   }
+  },
+  "0x21000670": {
+   "stock_owner": [
+    "esb.c.obj::.data.tx_time_shifted"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "FUN_01033168": [
+     "0x21000670"
+    ],
+    "timeslot_owner": [
+     "0x21000670"
+    ],
+    "g1_net_ram_relocs": [
+     "0x21000670"
+    ]
+   }
+  },
+  "0x21000684": {
+   "stock_owner": [
+    "esb.c.obj::.data.esb_addr"
+   ],
+   "pin_names": [
+    "g_net_radio_crc_scratch"
+   ],
+   "retained_referrers": {
+    "FUN_01033a20": [
+     "0x21000684",
+     "g_net_radio_crc_scratch"
+    ],
+    "FUN_01033a60": [
+     "0x21000684",
+     "g_net_radio_crc_scratch"
+    ],
+    "FUN_01033888": [
+     "0x21000684",
+     "g_net_radio_crc_scratch"
+    ],
+    "FUN_01032ba4": [
+     "0x21000684",
+     "g_net_radio_crc_scratch"
+    ],
+    "FUN_01032be4": [
+     "0x21000684",
+     "g_net_radio_crc_scratch"
+    ],
+    "FUN_01033aac": [
+     "0x21000684",
+     "g_net_radio_crc_scratch"
+    ],
+    "FUN_01032ad8": [
+     "0x21000684",
+     "g_net_radio_crc_scratch"
+    ],
+    "FUN_01032c28": [
+     "0x21000684",
+     "g_net_radio_crc_scratch"
+    ],
+    "FUN_01033acc": [
+     "0x21000684",
+     "g_net_radio_crc_scratch"
+    ],
+    "FUN_010339e4": [
+     "0x21000684",
+     "g_net_radio_crc_scratch"
+    ]
+   }
+  },
+  "0x21000698": {
+   "stock_owner": [
+    "esb.c.obj::.data.esb_timer"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "FUN_01032988": [
+     "0x21000698"
+    ],
+    "FUN_01032de4": [
+     "0x21000698"
+    ],
+    "FUN_010329b4": [
+     "0x21000698"
+    ],
+    "FUN_010331a0": [
+     "0x21000698"
+    ],
+    "FUN_010331c8": [
+     "0x21000698"
+    ],
+    "FUN_01033084": [
+     "0x21000698"
+    ],
+    "FUN_01032908": [
+     "0x21000698"
+    ],
+    "FUN_010327bc": [
+     "0x21000698"
+    ],
+    "FUN_01033168": [
+     "0x21000698"
+    ],
+    "FUN_01032860": [
+     "0x21000698"
+    ],
+    "FUN_010330b0": [
+     "0x21000698"
+    ],
+    "FUN_01033354": [
+     "0x21000698"
+    ],
+    "FUN_010333b4": [
+     "0x21000698"
+    ],
+    "timeslot_owner": [
+     "0x21000698"
+    ]
+   }
+  },
+  "0x210006a0": {
+   "stock_owner": [
+    "nrfx_dppi.c.obj::.data.m_allocated_groups"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "FUN_01034480": [
+     "0x210006a0"
+    ],
+    "FUN_0103448c": [
+     "0x210006a0"
+    ],
+    "FUN_01034328": [
+     "0x210006a0"
+    ],
+    "timeslot_owner": [
+     "0x210006a0"
+    ]
+   }
+  },
+  "0x210006a4": {
+   "stock_owner": [
+    "nrfx_dppi.c.obj::.data.m_allocated_channels"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "FUN_01034458": [
+     "0x210006a4"
+    ],
+    "FUN_01034464": [
+     "0x210006a4"
+    ],
+    "FUN_01034328": [
+     "0x210006a4"
+    ],
+    "timeslot_owner": [
+     "0x210006a4"
+    ]
+   }
+  },
+  "0x210006a8": {
+   "stock_owner": [
+    "nrfx_gpiote.c.obj::.data.m_cb"
+   ],
+   "pin_names": [
+    "g_sdc_res_pool_slot_tbl"
+   ],
+   "retained_referrers": {
+    "FUN_010344ec": [
+     "0x210006a8",
+     "g_sdc_res_pool_slot_tbl"
+    ],
+    "FUN_01034508": [
+     "0x210006a8",
+     "g_sdc_res_pool_slot_tbl"
+    ],
+    "FUN_0103494c": [
+     "0x210006a8",
+     "g_sdc_res_pool_slot_tbl"
+    ],
+    "FUN_01034840": [
+     "0x210006a8",
+     "g_sdc_res_pool_slot_tbl"
+    ],
+    "FUN_010344d4": [
+     "0x210006a8",
+     "g_sdc_res_pool_slot_tbl"
+    ],
+    "FUN_01034be4": [
+     "0x210006a8",
+     "g_sdc_res_pool_slot_tbl"
+    ],
+    "FUN_01034520": [
+     "0x210006a8",
+     "g_sdc_res_pool_slot_tbl"
+    ],
+    "FUN_01034b64": [
+     "0x210006a8",
+     "g_sdc_res_pool_slot_tbl"
+    ],
+    "FUN_0103499c": [
+     "0x210006a8",
+     "g_sdc_res_pool_slot_tbl"
+    ],
+    "FUN_01034538": [
+     "0x210006a8",
+     "g_sdc_res_pool_slot_tbl"
+    ],
+    "FUN_010346d8": [
+     "0x210006a8",
+     "g_sdc_res_pool_slot_tbl"
+    ],
+    "FUN_01034578": [
+     "0x210006a8",
+     "g_sdc_res_pool_slot_tbl"
+    ],
+    "FUN_010344bc": [
+     "0x210006a8",
+     "g_sdc_res_pool_slot_tbl"
+    ]
+   }
+  },
+  "0x21000750": {
+   "stock_owner": [
+    "timeout.c.obj::.data.timeout_list"
+   ],
+   "pin_names": [
+    "g_net_kernel_timeout_dlist_head"
+   ],
+   "retained_referrers": {
+    "FUN_01037f14": [
+     "0x21000750",
+     "g_net_kernel_timeout_dlist_head"
+    ],
+    "FUN_01037f54": [
+     "0x21000750",
+     "g_net_kernel_timeout_dlist_head"
+    ],
+    "g1_net_ram_relocs": [
+     "0x21000750"
+    ]
+   }
+  },
+  "0x21002b60": {
+   "stock_owner": [
+    "nrf_rtc_timer.c.obj::.bss.cc_data"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "rtc_compare_set": [
+     "G1N_21002b60"
+    ],
+    "g1_net_ram_relocs": [
+     "0x21002b60"
+    ]
+   }
+  },
+  "0x21004640": {
+   "stock_owner": [
+    "soc.c.obj::.bss.timestamps.1"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "FUN_0102d1c0": [
+     "G1N_21004640"
+    ]
+   }
+  },
+  "0x21004800": {
+   "stock_owner": [
+    "clock_control_nrf.c.obj::.bss.cli.1"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "FUN_0103038c": [
+     "G1N_21004800"
+    ]
+   }
+  },
+  "0x21004810": {
+   "stock_owner": [
+    "clock_control_nrf.c.obj::.bss.on.2"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "FUN_0103038c": [
+     "G1N_21004810"
+    ]
+   }
+  },
+  "0x21004814": {
+   "stock_owner": [
+    "clock_control_nrf.c.obj::.bss.data"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "FUN_0103037c": [
+     "0x21004814"
+    ]
+   }
+  },
+  "0x21004964": {
+   "stock_owner": [
+    "nrf_rtc_timer.c.obj::.bss.force_isr_mask"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "rtc_compare_int_unlock": [
+     "G1N_21004964"
+    ],
+    "rtc_compare_set": [
+     "0x21004964",
+     "G1N_21004964"
+    ]
+   }
+  },
+  "0x2100496c": {
+   "stock_owner": [
+    "nrf_rtc_timer.c.obj::.bss.int_mask"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "rtc_compare_int_unlock": [
+     "G1N_2100496c"
+    ],
+    "rtc_compare_int_lock": [
+     "G1N_2100496c"
+    ]
+   }
+  },
+  "0x2100499c": {
+   "stock_owner": [
+    "esb.c.obj::.bss.update_rf_payload_format"
+   ],
+   "pin_names": [
+    "g_esb_event_handler_fn"
+   ],
+   "retained_referrers": {
+    "FUN_01032804": [
+     "0x2100499c",
+     "g_esb_event_handler_fn"
+    ],
+    "FUN_010329b4": [
+     "0x2100499c",
+     "g_esb_event_handler_fn"
+    ],
+    "FUN_01032764": [
+     "0x2100499c",
+     "g_esb_event_handler_fn"
+    ],
+    "FUN_010331c8": [
+     "0x2100499c",
+     "g_esb_event_handler_fn"
+    ],
+    "FUN_01032c28": [
+     "0x2100499c",
+     "g_esb_event_handler_fn"
+    ],
+    "FUN_010330b0": [
+     "0x2100499c",
+     "g_esb_event_handler_fn"
+    ],
+    "FUN_010333b4": [
+     "0x2100499c",
+     "g_esb_event_handler_fn"
+    ],
+    "FUN_01032e54": [
+     "0x2100499c",
+     "g_esb_event_handler_fn"
+    ]
+   }
+  },
+  "0x210049a0": {
+   "stock_owner": [
+    "esb.c.obj::.bss.on_radio_disabled"
+   ],
+   "pin_names": [
+    "g_net_radio_irq_continuation_ptr"
+   ],
+   "retained_referrers": {
+    "FUN_01032804": [
+     "0x210049a0",
+     "g_net_radio_irq_continuation_ptr"
+    ],
+    "FUN_01032de4": [
+     "0x210049a0"
+    ],
+    "FUN_01033888": [
+     "0x210049a0",
+     "g_net_radio_irq_continuation_ptr"
+    ],
+    "FUN_010331c8": [
+     "0x210049a0",
+     "g_net_radio_irq_continuation_ptr"
+    ],
+    "FUN_01033968": [
+     "0x210049a0",
+     "g_net_radio_irq_continuation_ptr"
+    ],
+    "FUN_01032c28": [
+     "0x210049a0",
+     "g_net_radio_irq_continuation_ptr"
+    ],
+    "FUN_010330b0": [
+     "0x210049a0",
+     "g_net_radio_irq_continuation_ptr"
+    ],
+    "FUN_01032e54": [
+     "0x210049a0",
+     "g_net_radio_irq_continuation_ptr"
+    ],
+    "timeslot_owner": [
+     "0x210049a0",
+     "G1N_210049a0"
+    ]
+   }
+  },
+  "0x210049a4": {
+   "stock_owner": [
+    "esb.c.obj::.bss.wait_for_ack_timeout_us"
+   ],
+   "pin_names": [
+    "g_net_radio_op_status"
+   ],
+   "retained_referrers": {
+    "FUN_01032764": [
+     "0x210049a4",
+     "g_net_radio_op_status"
+    ],
+    "FUN_010330b0": [
+     "0x210049a4",
+     "g_net_radio_op_status"
+    ]
+   }
+  },
+  "0x210049a8": {
+   "stock_owner": [
+    "esb.c.obj::.bss.last_tx_attempts"
+   ],
+   "pin_names": [
+    "g_esb_tx_busy_flag"
+   ],
+   "retained_referrers": {
+    "FUN_010331c8": [
+     "0x210049a8",
+     "g_esb_tx_busy_flag"
+    ],
+    "FUN_01032c28": [
+     "0x210049a8",
+     "g_esb_tx_busy_flag"
+    ],
+    "FUN_0103289c": [
+     "0x210049a8",
+     "g_esb_tx_busy_flag"
+    ]
+   }
+  },
+  "0x210049b0": {
+   "stock_owner": [
+    "esb.c.obj::.bss.interrupt_flags"
+   ],
+   "pin_names": [
+    "g_210049b0"
+   ],
+   "retained_referrers": {
+    "FUN_01032804": [
+     "0x210049b0"
+    ],
+    "FUN_01032de4": [
+     "0x210049b0",
+     "g_210049b0"
+    ],
+    "FUN_010331c8": [
+     "0x210049b0",
+     "g_210049b0"
+    ],
+    "FUN_01032c28": [
+     "0x210049b0"
+    ],
+    "FUN_010330b0": [
+     "0x210049b0"
+    ],
+    "FUN_0103289c": [
+     "0x210049b0",
+     "g_210049b0"
+    ],
+    "FUN_010333b4": [
+     "0x210049b0",
+     "g_210049b0"
+    ],
+    "FUN_01032e54": [
+     "0x210049b0",
+     "g_210049b0"
+    ]
+   }
+  },
+  "0x21004a34": {
+   "stock_owner": [
+    "esb.c.obj::.bss.rx_fifo"
+   ],
+   "pin_names": [
+    "g_net_queue_stats_block_b"
+   ],
+   "retained_referrers": {
+    "FUN_010327a0": [
+     "0x21004a34",
+     "g_net_queue_stats_block_b"
+    ],
+    "FUN_010331c8": [
+     "0x21004a34",
+     "g_net_queue_stats_block_b"
+    ],
+    "FUN_010337ac": [
+     "0x21004a34",
+     "g_net_queue_stats_block_b"
+    ],
+    "FUN_01032a3c": [
+     "0x21004a34",
+     "g_net_queue_stats_block_b"
+    ],
+    "FUN_010333b4": [
+     "0x21004a34",
+     "g_net_queue_stats_block_b"
+    ],
+    "FUN_01032e54": [
+     "0x21004a34",
+     "g_net_queue_stats_block_b"
+    ]
+   }
+  },
+  "0x21004a60": {
+   "stock_owner": [
+    "esb.c.obj::.bss.tx_fifo"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "FUN_01033660": [
+     "G1N_21004a60"
+    ],
+    "FUN_01032de4": [
+     "G1N_21004a60"
+    ],
+    "FUN_010327a0": [
+     "G1N_21004a60"
+    ],
+    "FUN_01032954": [
+     "0x21004a60",
+     "G1N_21004a60"
+    ],
+    "FUN_010331c8": [
+     "G1N_21004a60"
+    ],
+    "FUN_01032c28": [
+     "G1N_21004a60"
+    ],
+    "FUN_010333b4": [
+     "G1N_21004a60"
+    ],
+    "FUN_01032e54": [
+     "G1N_21004a60"
+    ],
+    "g1_net_ram_relocs": [
+     "0x21004a60"
+    ]
+   }
+  },
+  "0x21004a90": {
+   "stock_owner": [
+    "esb.c.obj::.bss.event_handler"
+   ],
+   "pin_names": [
+    "g_21004a90"
+   ],
+   "retained_referrers": {
+    "FUN_0102b50c": [
+     "0x21004a90"
+    ],
+    "FUN_0103289c": [
+     "0x21004a90",
+     "g_21004a90"
+    ],
+    "FUN_010333b4": [
+     "0x21004a90",
+     "g_21004a90"
+    ]
+   }
+  },
+  "0x21004a94": {
+   "stock_owner": [
+    "esb.c.obj::.bss.esb_cfg"
+   ],
+   "pin_names": [
+    "g_esb_state"
+   ],
+   "retained_referrers": {
+    "FUN_01032804": [
+     "0x21004a94",
+     "g_esb_state"
+    ],
+    "FUN_01033660": [
+     "0x21004a94",
+     "g_esb_state"
+    ],
+    "FUN_010329b4": [
+     "0x21004a94",
+     "g_esb_state"
+    ],
+    "FUN_010331c8": [
+     "0x21004a94",
+     "g_esb_state"
+    ],
+    "FUN_01033af8": [
+     "0x21004a94",
+     "g_esb_state"
+    ],
+    "FUN_01032a3c": [
+     "0x21004a94",
+     "g_esb_state"
+    ],
+    "FUN_01032ad8": [
+     "0x21004a94",
+     "g_esb_state"
+    ],
+    "FUN_01032c28": [
+     "0x21004a94",
+     "g_esb_state"
+    ],
+    "FUN_010330b0": [
+     "0x21004a94",
+     "g_esb_state"
+    ],
+    "FUN_010333b4": [
+     "0x21004a94",
+     "g_esb_state"
+    ],
+    "FUN_01032e54": [
+     "0x21004a94",
+     "g_esb_state"
+    ]
+   }
+  },
+  "0x21004aec": {
+   "stock_owner": [
+    "nrfx_ipc.c.obj::.bss.m_cb"
+   ],
+   "pin_names": [
+    "g_sdc_radio_context_area"
+   ],
+   "retained_referrers": {
+    "FUN_01034d8c": [
+     "0x21004aec",
+     "g_sdc_radio_context_area"
+    ],
+    "FUN_01034dd8": [
+     "0x21004aec",
+     "g_sdc_radio_context_area"
+    ]
+   }
+  },
+  "0x21004af8": {
+   "stock_owner": [
+    "nrfx_timer.c.obj::.bss.m_cb"
+   ],
+   "pin_names": [
+    "g_net_gpiote_evt_handler_table"
+   ],
+   "retained_referrers": {}
+  },
+  "0x21004b48": {
+   "stock_owner": [
+    "mutex.c.obj::.bss.lock"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "FUN_01036410": [
+     "G1N_21004b48"
+    ]
+   }
+  },
+  "0x21004b4c": {
+   "stock_owner": [
+    "sem.c.obj::.bss.lock"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "FUN_0103689c": [
+     "G1N_21004b4c"
+    ],
+    "FUN_01036824": [
+     "G1N_21004b4c"
+    ]
+   }
+  },
+  "0x21004b7c": {
+   "stock_owner": [
+    "esb.c.obj::.bss.rx_pipe_info"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "FUN_01033354": [
+     "G1N_21004b7c"
+    ],
+    "FUN_010333b4": [
+     "G1N_21004b7c"
+    ],
+    "FUN_01032e54": [
+     "0x21004b7c",
+     "G1N_21004b7c"
+    ]
+   }
+  },
+  "0x21004fa7": {
+   "stock_owner": [
+    "soc.c.obj::.bss.timestamps_filled.2"
+   ],
+   "pin_names": [
+    "g_sdc_clock_recalc_flag"
+   ],
+   "retained_referrers": {
+    "FUN_0102d1c0": [
+     "0x21004fa7",
+     "g_sdc_clock_recalc_flag"
+    ]
+   }
+  },
+  "0x21004fa8": {
+   "stock_owner": [
+    "soc.c.obj::.bss.current.3"
+   ],
+   "pin_names": [
+    "g_sdc_clock_history_idx"
+   ],
+   "retained_referrers": {
+    "FUN_0102d1c0": [
+     "0x21004fa8",
+     "g_sdc_clock_history_idx"
+    ]
+   }
+  },
+  "0x21004fa9": {
+   "stock_owner": [
+    "soc.c.obj::.bss.rtc_pretick_cc_set_on_time.4"
+   ],
+   "pin_names": [
+    "g_net_rtc_timer_sync_valid"
+   ],
+   "retained_referrers": {
+    "FUN_0102d0c4": [
+     "0x21004fa9",
+     "g_net_rtc_timer_sync_valid"
+    ]
+   }
+  },
+  "0x21004faa": {
+   "stock_owner": [
+    "soc.c.obj::.bss.cpu_idle_prepare_allows_sleep"
+   ],
+   "pin_names": [
+    "g_sdc_clock_calc_valid"
+   ],
+   "retained_referrers": {
+    "FUN_0102d1c0": [
+     "0x21004faa",
+     "g_sdc_clock_calc_valid"
+    ],
+    "FUN_0102d0c4": [
+     "0x21004faa",
+     "g_sdc_clock_calc_valid"
+    ]
+   }
+  },
+  "0x21004fab": {
+   "stock_owner": [
+    "soc.c.obj::.bss.cpu_idle_prepare_monitor_dummy"
+   ],
+   "pin_names": [
+    "g_sdc_clock_calc_lock"
+   ],
+   "retained_referrers": {
+    "FUN_0102d1c0": [
+     "0x21004fab",
+     "g_sdc_clock_calc_lock"
+    ],
+    "FUN_0102d0c4": [
+     "0x21004fab",
+     "g_sdc_clock_calc_lock"
+    ]
+   }
+  },
+  "0x210051ae": {
+   "stock_owner": [
+    "hci_internal.c.obj::.bss.cmd_complete_or_status"
+   ],
+   "pin_names": [
+    "g_net_pending_tx_pkt"
+   ],
+   "retained_referrers": {
+    "FUN_010323cc": [
+     "0x210051ae",
+     "g_net_pending_tx_pkt"
+    ]
+   }
+  },
+  "0x21006256": {
+   "stock_owner": [
+    "esb.c.obj::.bss.pids"
+   ],
+   "pin_names": [
+    "g_esb_pipe_pid_cnt"
+   ],
+   "retained_referrers": {
+    "FUN_01033660": [
+     "0x21006256",
+     "g_esb_pipe_pid_cnt"
+    ],
+    "FUN_01033354": [
+     "0x21006256",
+     "g_esb_pipe_pid_cnt"
+    ],
+    "FUN_010333b4": [
+     "0x21006256",
+     "g_esb_pipe_pid_cnt"
+    ]
+   }
+  },
+  "0x2100625e": {
+   "stock_owner": [
+    "esb.c.obj::.bss.rx_payload_buffer"
+   ],
+   "pin_names": [],
+   "retained_referrers": {
+    "FUN_01032804": [
+     "0x2100625e",
+     "G1N_2100625e"
+    ],
+    "FUN_01033888": [
+     "G1N_2100625e"
+    ],
+    "FUN_010329b4": [
+     "G1N_2100625e"
+    ],
+    "FUN_010331c8": [
+     "G1N_2100625e"
+    ],
+    "FUN_01032a3c": [
+     "G1N_2100625e"
+    ],
+    "FUN_010330b0": [
+     "G1N_2100625e"
+    ],
+    "FUN_01032e54": [
+     "G1N_2100625e"
+    ]
+   }
+  },
+  "0x21006458": {
+   "stock_owner": [
+    "esb.c.obj::.bss.esb_state"
+   ],
+   "pin_names": [
+    "g_net_radio_busy_flag"
+   ],
+   "retained_referrers": {
+    "FUN_01033a20": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "FUN_01032804": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "FUN_01033a60": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "FUN_01033660": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "FUN_01032de4": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "FUN_01033888": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "FUN_010331c8": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "FUN_01033af8": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "FUN_01033aac": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "FUN_01033968": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "FUN_01032c28": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "FUN_01033acc": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "FUN_010330b0": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "FUN_01033354": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "FUN_010333b4": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "FUN_01032e54": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "FUN_010339e4": [
+     "0x21006458",
+     "g_net_radio_busy_flag"
+    ],
+    "g1_net_ram_relocs": [
+     "0x21006458"
+    ]
+   }
+  },
+  "0x21006459": {
+   "stock_owner": [
+    "esb.c.obj::.bss.esb_initialized"
+   ],
+   "pin_names": [
+    "g_esb_enabled_flag"
+   ],
+   "retained_referrers": {
+    "FUN_01033660": [
+     "0x21006459",
+     "g_esb_enabled_flag"
+    ],
+    "FUN_010337ac": [
+     "0x21006459",
+     "g_esb_enabled_flag"
+    ],
+    "FUN_01033354": [
+     "0x21006459",
+     "g_esb_enabled_flag"
+    ],
+    "FUN_010333b4": [
+     "0x21006459",
+     "g_esb_enabled_flag"
+    ],
+    "timeslot_owner": [
+     "0x21006459",
+     "G1N_21006459"
+    ]
+   }
+  },
+  "0x2100645a": {
+   "stock_owner": [
+    "esb_dppi.c.obj::.bss.ramp_up_dppi_group"
+   ],
+   "pin_names": [
+    "g_net_radio_trx_ppi_ch_a"
+   ],
+   "retained_referrers": {
+    "FUN_01033b18": [
+     "0x2100645a",
+     "g_net_radio_trx_ppi_ch_a"
+    ],
+    "FUN_01033f38": [
+     "0x2100645a",
+     "g_net_radio_trx_ppi_ch_a"
+    ],
+    "FUN_01033df0": [
+     "0x2100645a",
+     "g_net_radio_trx_ppi_ch_a"
+    ],
+    "FUN_01033bf0": [
+     "0x2100645a",
+     "g_net_radio_trx_ppi_ch_a"
+    ]
+   }
+  },
+  "0x2100645b": {
+   "stock_owner": [
+    "esb_dppi.c.obj::.bss.egu_ramp_up"
+   ],
+   "pin_names": [
+    "g_esb_ppi_ch_id_1"
+   ],
+   "retained_referrers": {
+    "FUN_01033ee4": [
+     "0x2100645b",
+     "g_esb_ppi_ch_id_1"
+    ],
+    "FUN_01033b18": [
+     "0x2100645b",
+     "g_esb_ppi_ch_id_1"
+    ],
+    "FUN_01033f38": [
+     "0x2100645b",
+     "g_esb_ppi_ch_id_1"
+    ],
+    "FUN_01033df0": [
+     "0x2100645b",
+     "g_esb_ppi_ch_id_1"
+    ],
+    "FUN_01033bf0": [
+     "0x2100645b",
+     "g_esb_ppi_ch_id_1"
+    ]
+   }
+  },
+  "0x2100645c": {
+   "stock_owner": [
+    "esb_dppi.c.obj::.bss.egu_timer_start"
+   ],
+   "pin_names": [
+    "g_154_dppi_channel_ack"
+   ],
+   "retained_referrers": {
+    "FUN_01033ca4": [
+     "0x2100645c",
+     "g_154_dppi_channel_ack"
+    ],
+    "FUN_01033c74": [
+     "0x2100645c",
+     "g_154_dppi_channel_ack"
+    ],
+    "FUN_01033ee4": [
+     "0x2100645c",
+     "g_154_dppi_channel_ack"
+    ],
+    "FUN_01033b18": [
+     "0x2100645c",
+     "g_154_dppi_channel_ack"
+    ],
+    "FUN_01033f38": [
+     "0x2100645c",
+     "g_154_dppi_channel_ack"
+    ],
+    "FUN_01033df0": [
+     "0x2100645c",
+     "g_154_dppi_channel_ack"
+    ],
+    "FUN_01033bf0": [
+     "0x2100645c",
+     "g_154_dppi_channel_ack"
+    ]
+   }
+  },
+  "0x2100645d": {
+   "stock_owner": [
+    "esb_dppi.c.obj::.bss.disabled_egu"
+   ],
+   "pin_names": [
+    "g_esb_ppi_ch_id_3"
+   ],
+   "retained_referrers": {
+    "FUN_01033de4": [
+     "0x2100645d",
+     "g_esb_ppi_ch_id_3"
+    ],
+    "FUN_01033cd0": [
+     "0x2100645d",
+     "g_esb_ppi_ch_id_3"
+    ],
+    "FUN_01033ee4": [
+     "0x2100645d",
+     "g_esb_ppi_ch_id_3"
+    ],
+    "FUN_01033b18": [
+     "0x2100645d",
+     "g_esb_ppi_ch_id_3"
+    ],
+    "FUN_01033f38": [
+     "0x2100645d",
+     "g_esb_ppi_ch_id_3"
+    ],
+    "FUN_01033df0": [
+     "0x2100645d",
+     "g_esb_ppi_ch_id_3"
+    ]
+   }
+  },
+  "0x2100645e": {
+   "stock_owner": [
+    "esb_dppi.c.obj::.bss.timer_compare1_radio_txen"
+   ],
+   "pin_names": [
+    "g_net_radio_trx_ppi_ch_e"
+   ],
+   "retained_referrers": {
+    "FUN_01033cd0": [
+     "0x2100645e",
+     "g_net_radio_trx_ppi_ch_e"
+    ],
+    "FUN_01033d20": [
+     "0x2100645e",
+     "g_net_radio_trx_ppi_ch_e"
+    ],
+    "FUN_01033f38": [
+     "0x2100645e",
+     "g_net_radio_trx_ppi_ch_e"
+    ],
+    "FUN_01033df0": [
+     "0x2100645e",
+     "g_net_radio_trx_ppi_ch_e"
+    ]
+   }
+  },
+  "0x2100645f": {
+   "stock_owner": [
+    "esb_dppi.c.obj::.bss.timer_compare0_radio_disable"
+   ],
+   "pin_names": [
+    "g_esb_ppi_ch_id_5"
+   ],
+   "retained_referrers": {
+    "FUN_01033ee4": [
+     "0x2100645f",
+     "g_esb_ppi_ch_id_5"
+    ],
+    "FUN_01033da0": [
+     "0x2100645f",
+     "g_esb_ppi_ch_id_5"
+    ],
+    "FUN_01033f38": [
+     "0x2100645f",
+     "g_esb_ppi_ch_id_5"
+    ],
+    "FUN_01033d54": [
+     "0x2100645f",
+     "g_esb_ppi_ch_id_5"
+    ],
+    "FUN_01033df0": [
+     "0x2100645f",
+     "g_esb_ppi_ch_id_5"
+    ]
+   }
+  },
+  "0x21006460": {
+   "stock_owner": [
+    "esb_dppi.c.obj::.bss.radio_address_timer_stop"
+   ],
+   "pin_names": [
+    "g_esb_ppi_ch_id_6"
+   ],
+   "retained_referrers": {
+    "FUN_01033ee4": [
+     "0x21006460",
+     "g_esb_ppi_ch_id_6"
+    ],
+    "FUN_01033da0": [
+     "0x21006460",
+     "g_esb_ppi_ch_id_6"
+    ],
+    "FUN_01033f38": [
+     "0x21006460",
+     "g_esb_ppi_ch_id_6"
+    ],
+    "FUN_01033d54": [
+     "0x21006460",
+     "g_esb_ppi_ch_id_6"
+    ],
+    "FUN_01033df0": [
+     "0x21006460",
+     "g_esb_ppi_ch_id_6"
+    ]
+   }
+  }
+ },
+ "units": {
+  "lib..__nrf__subsys__esb.a(esb.c.obj)": {
+   "functions_matched": 29,
+   "state_owning": 27,
+   "sections_located_in_shipped_image": 32,
+   "sections_not_located": 21,
+   "state_objects": [
+    ".bss.current_payload",
+    ".bss.esb_cfg",
+    ".bss.esb_initialized",
+    ".bss.esb_state",
+    ".bss.event_handler",
+    ".bss.interrupt_flags",
+    ".bss.last_tx_attempts",
+    ".bss.on_radio_disabled",
+    ".bss.pids",
+    ".bss.retransmits_remaining",
+    ".bss.rx_fifo",
+    ".bss.rx_payload.0",
+    ".bss.rx_payload_buffer",
+    ".bss.rx_pipe_info",
+    ".bss.tx_fifo",
+    ".bss.tx_payload.1",
+    ".bss.tx_payload_buffer",
+    ".bss.update_rf_payload_format",
+    ".bss.wait_for_ack_timeout_us",
+    ".data.disable_event",
+    ".data.esb_addr",
+    ".data.esb_timer",
+    ".data.tx_time_shifted"
+   ],
+   "verdict": "KEEP - unit only PARTIALLY byte-identical (32/53 present sections match); displacing part of it would SPLIT the shared state",
+   "functions": [
+    {
+     "raw": "FUN_01032764",
+     "va": "0x01032764",
+     "section": ".text.update_radio_bitrate",
+     "size": 60,
+     "distinguishing": 52
+    },
+    {
+     "raw": "FUN_010327a0",
+     "va": "0x010327a0",
+     "section": ".text.reset_fifos",
+     "size": 28,
+     "distinguishing": 20
+    },
+    {
+     "raw": "FUN_010327bc",
+     "va": "0x010327bc",
+     "section": ".text.esb_timer_handler",
+     "size": 28,
+     "distinguishing": 24
+    },
+    {
+     "raw": "FUN_01032804",
+     "va": "0x01032804",
+     "section": ".text.on_radio_disabled_rx_ack",
+     "size": 92,
+     "distinguishing": 52
+    },
+    {
+     "raw": "FUN_01032860",
+     "va": "0x01032860",
+     "section": ".text.esb_fem_for_tx_set",
+     "size": 60,
+     "distinguishing": 40
+    },
+    {
+     "raw": "FUN_0103289c",
+     "va": "0x0103289c",
+     "section": ".text.SWI0_IRQHandler",
+     "size": 108,
+     "distinguishing": 96
+    },
+    {
+     "raw": "FUN_01032908",
+     "va": "0x01032908",
+     "section": ".text.esb_fem_reset",
+     "size": 40,
+     "distinguishing": 16
+    },
+    {
+     "raw": "FUN_01032930",
+     "va": "0x01032930",
+     "section": ".text.update_radio_addresses.part.0",
+     "size": 36,
+     "distinguishing": 24
+    },
+    {
+     "raw": "FUN_01032954",
+     "va": "0x01032954",
+     "section": ".text.tx_fifo_remove_last.part.0",
+     "size": 52,
+     "distinguishing": 48
+    },
+    {
+     "raw": "FUN_01032988",
+     "va": "0x01032988",
+     "section": ".text.esb_fem_for_rx_set",
+     "size": 44,
+     "distinguishing": 24
+    },
+    {
+     "raw": "FUN_010329b4",
+     "va": "0x010329b4",
+     "section": ".text.clear_events_restart_rx",
+     "size": 136,
+     "distinguishing": 96
+    },
+    {
+     "raw": "FUN_01032ad8",
+     "va": "0x01032ad8",
+     "section": ".text.update_radio_tx_power",
+     "size": 116,
+     "distinguishing": 84
+    },
+    {
+     "raw": "FUN_01032b4c",
+     "va": "0x01032b4c",
+     "section": ".text.nrf_radio_packet_configure.constprop.0",
+     "size": 88,
+     "distinguishing": 88
+    },
+    {
+     "raw": "FUN_01032ba4",
+     "va": "0x01032ba4",
+     "section": ".text.update_rf_payload_format_esb",
+     "size": 64,
+     "distinguishing": 52
+    },
+    {
+     "raw": "FUN_01033084",
+     "va": "0x01033084",
+     "section": ".text.esb_fem_for_rx_ack",
+     "size": 44,
+     "distinguishing": 24
+    },
+    {
+     "raw": "FUN_010330b0",
+     "va": "0x010330b0",
+     "section": ".text.on_radio_disabled_tx",
+     "size": 184,
+     "distinguishing": 124
+    },
+    {
+     "raw": "FUN_01033168",
+     "va": "0x01033168",
+     "section": ".text.esb_fem_for_tx_retry",
+     "size": 56,
+     "distinguishing": 36
+    },
+    {
+     "raw": "FUN_010331a0",
+     "va": "0x010331a0",
+     "section": ".text.esb_fem_for_tx_retry_clear",
+     "size": 40,
+     "distinguishing": 24
+    },
+    {
+     "raw": "FUN_01033354",
+     "va": "0x01033354",
+     "section": ".text.esb_disable",
+     "size": 96,
+     "distinguishing": 48
+    },
+    {
+     "raw": "FUN_010337ac",
+     "va": "0x010337ac",
+     "section": ".text.esb_read_rx_payload",
+     "size": 172,
+     "distinguishing": 160
+    },
+    {
+     "raw": "FUN_01033888",
+     "va": "0x01033888",
+     "section": ".text.esb_start_rx",
+     "size": 224,
+     "distinguishing": 176
+    },
+    {
+     "raw": "FUN_01033968",
+     "va": "0x01033968",
+     "section": ".text.esb_stop_rx",
+     "size": 104,
+     "distinguishing": 88
+    },
+    {
+     "raw": "FUN_010339e4",
+     "va": "0x010339e4",
+     "section": ".text.esb_set_base_address_0",
+     "size": 60,
+     "distinguishing": 48
+    },
+    {
+     "raw": "FUN_01033a20",
+     "va": "0x01033a20",
+     "section": ".text.esb_set_base_address_1",
+     "size": 64,
+     "distinguishing": 52
+    },
+    {
+     "raw": "FUN_01033a60",
+     "va": "0x01033a60",
+     "section": ".text.esb_set_prefixes",
+     "size": 76,
+     "distinguishing": 56
+    },
+    {
+     "raw": "FUN_01033aac",
+     "va": "0x01033aac",
+     "section": ".text.esb_enable_pipes",
+     "size": 32,
+     "distinguishing": 24
+    },
+    {
+     "raw": "FUN_01033acc",
+     "va": "0x01033acc",
+     "section": ".text.esb_set_rf_channel",
+     "size": 44,
+     "distinguishing": 36
+    },
+    {
+     "raw": "FUN_01033af8",
+     "va": "0x01033af8",
+     "section": ".text.esb_set_tx_power",
+     "size": 32,
+     "distinguishing": 24
+    },
+    {
+     "raw": "FUN_0103a80c",
+     "va": "0x0103a80c",
+     "section": ".text.bytewise_bit_swap",
+     "size": 46,
+     "distinguishing": 46
+    }
+   ]
+  },
+  "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)": {
+   "functions_matched": 21,
+   "state_owning": 13,
+   "sections_located_in_shipped_image": 27,
+   "sections_not_located": 22,
+   "state_objects": [
+    ".data.m_cb"
+   ],
+   "verdict": "KEEP - unit only PARTIALLY byte-identical (27/49 present sections match); displacing part of it would SPLIT the shared state",
+   "functions": [
+    {
+     "raw": "FUN_010344a8",
+     "va": "0x010344a8",
+     "section": ".text.get_pin_idx",
+     "size": 20,
+     "distinguishing": 16
+    },
+    {
+     "raw": "FUN_010344bc",
+     "va": "0x010344bc",
+     "section": ".text.pin_in_use",
+     "size": 24,
+     "distinguishing": 16
+    },
+    {
+     "raw": "FUN_010344d4",
+     "va": "0x010344d4",
+     "section": ".text.pin_in_use_by_te",
+     "size": 24,
+     "distinguishing": 16
+    },
+    {
+     "raw": "FUN_010344ec",
+     "va": "0x010344ec",
+     "section": ".text.pin_has_trigger",
+     "size": 28,
+     "distinguishing": 20
+    },
+    {
+     "raw": "FUN_01034508",
+     "va": "0x01034508",
+     "section": ".text.pin_is_output",
+     "size": 24,
+     "distinguishing": 16
+    },
+    {
+     "raw": "FUN_01034520",
+     "va": "0x01034520",
+     "section": ".text.pin_te_get",
+     "size": 24,
+     "distinguishing": 16
+    },
+    {
+     "raw": "FUN_01034538",
+     "va": "0x01034538",
+     "section": ".text.call_handler",
+     "size": 64,
+     "distinguishing": 56
+    },
+    {
+     "raw": "FUN_01034578",
+     "va": "0x01034578",
+     "section": ".text.release_handler",
+     "size": 124,
+     "distinguishing": 92
+    },
+    {
+     "raw": "FUN_010345f4",
+     "va": "0x010345f4",
+     "section": ".text.nrf_gpio_pin_port_decode",
+     "size": 92,
+     "distinguishing": 68
+    },
+    {
+     "raw": "FUN_01034650",
+     "va": "0x01034650",
+     "section": ".text.nrf_gpiote_in_event_get",
+     "size": 44,
+     "distinguishing": 28
+    },
+    {
+     "raw": "FUN_0103467c",
+     "va": "0x0103467c",
+     "section": ".text.__nrfy_internal_gpiote_events_process.constprop.0",
+     "size": 92,
+     "distinguishing": 88
+    },
+    {
+     "raw": "FUN_010346d8",
+     "va": "0x010346d8",
+     "section": ".text.nrfx_gpiote_input_configure",
+     "size": 360,
+     "distinguishing": 328
+    },
+    {
+     "raw": "FUN_01034840",
+     "va": "0x01034840",
+     "section": ".text.nrfx_gpiote_output_configure",
+     "size": 256,
+     "distinguishing": 228
+    },
+    {
+     "raw": "FUN_0103494c",
+     "va": "0x0103494c",
+     "section": ".text.nrfx_gpiote_channel_get",
+     "size": 80,
+     "distinguishing": 52
+    },
+    {
+     "raw": "FUN_0103499c",
+     "va": "0x0103499c",
+     "section": ".text.nrfx_gpiote_init",
+     "size": 120,
+     "distinguishing": 104
+    },
+    {
+     "raw": "FUN_01034b18",
+     "va": "0x01034b18",
+     "section": ".text.nrfx_gpiote_trigger_disable",
+     "size": 76,
+     "distinguishing": 60
+    },
+    {
+     "raw": "FUN_01034b64",
+     "va": "0x01034b64",
+     "section": ".text.nrfx_gpiote_pin_uninit",
+     "size": 128,
+     "distinguishing": 96
+    },
+    {
+     "raw": "FUN_01034be4",
+     "va": "0x01034be4",
+     "section": ".text.nrfx_gpiote_irq_handler",
+     "size": 424,
+     "distinguishing": 364
+    },
+    {
+     "raw": "FUN_0103a8ea",
+     "va": "0x0103a8ea",
+     "section": ".text.nrf_gpio_pin_present_check",
+     "size": 36,
+     "distinguishing": 36
+    },
+    {
+     "raw": "FUN_0103a924",
+     "va": "0x0103a924",
+     "section": ".text.nrf_gpio_reconfigure",
+     "size": 154,
+     "distinguishing": 150
+    },
+    {
+     "raw": "FUN_0103a9be",
+     "va": "0x0103a9be",
+     "section": ".text.nrf_gpio_cfg_sense_set",
+     "size": 30,
+     "distinguishing": 26
+    }
+   ]
+  },
+  "lib..__nrf__subsys__esb.a(esb_dppi.c.obj)": {
+   "functions_matched": 11,
+   "state_owning": 11,
+   "sections_located_in_shipped_image": 12,
+   "sections_not_located": 2,
+   "state_objects": [
+    ".bss.disabled_egu",
+    ".bss.egu_ramp_up",
+    ".bss.egu_timer_start",
+    ".bss.radio_address_timer_stop",
+    ".bss.ramp_up_dppi_group",
+    ".bss.timer_compare0_radio_disable",
+    ".bss.timer_compare1_radio_txen"
+   ],
+   "verdict": "DISPLACED iteration 28 (batch 2) -- 12/12 sections the shipped image contains are byte-identical over a contiguous run 0x01033b18..0x01033ff8; the 2 absent sections (esb_ppi_for_wait_for_rx_set/clear) were gc'd out of the shipped link; seven .bss singletons @0x2100645a..0x21006460; 0 retained referrers left.",
+   "functions": [
+    {
+     "raw": "FUN_01033b18",
+     "va": "0x01033b18",
+     "section": ".text.esb_ppi_for_txrx_set",
+     "size": 216,
+     "distinguishing": 184
+    },
+    {
+     "raw": "FUN_01033bf0",
+     "va": "0x01033bf0",
+     "section": ".text.esb_ppi_for_txrx_clear",
+     "size": 132,
+     "distinguishing": 120
+    },
+    {
+     "raw": "FUN_01033c74",
+     "va": "0x01033c74",
+     "section": ".text.esb_ppi_for_fem_set",
+     "size": 48,
+     "distinguishing": 44
+    },
+    {
+     "raw": "FUN_01033ca4",
+     "va": "0x01033ca4",
+     "section": ".text.esb_ppi_for_fem_clear",
+     "size": 44,
+     "distinguishing": 40
+    },
+    {
+     "raw": "FUN_01033cd0",
+     "va": "0x01033cd0",
+     "section": ".text.esb_ppi_for_retransmission_set",
+     "size": 80,
+     "distinguishing": 72
+    },
+    {
+     "raw": "FUN_01033d20",
+     "va": "0x01033d20",
+     "section": ".text.esb_ppi_for_retransmission_clear",
+     "size": 52,
+     "distinguishing": 48
+    },
+    {
+     "raw": "FUN_01033d54",
+     "va": "0x01033d54",
+     "section": ".text.esb_ppi_for_wait_for_ack_set",
+     "size": 76,
+     "distinguishing": 68
+    },
+    {
+     "raw": "FUN_01033da0",
+     "va": "0x01033da0",
+     "section": ".text.esb_ppi_for_wait_for_ack_clear",
+     "size": 68,
+     "distinguishing": 60
+    },
+    {
+     "raw": "FUN_01033df0",
+     "va": "0x01033df0",
+     "section": ".text.esb_ppi_init",
+     "size": 244,
+     "distinguishing": 168
+    },
+    {
+     "raw": "FUN_01033ee4",
+     "va": "0x01033ee4",
+     "section": ".text.esb_ppi_disable_all",
+     "size": 84,
+     "distinguishing": 64
+    },
+    {
+     "raw": "FUN_01033f38",
+     "va": "0x01033f38",
+     "section": ".text.esb_ppi_deinit",
+     "size": 192,
+     "distinguishing": 120
+    }
+   ]
+  },
+  "libmodules__hal_nordic__nrfx.a(nrfx_timer.c.obj)": {
+   "functions_matched": 6,
+   "state_owning": 4,
+   "sections_located_in_shipped_image": 6,
+   "sections_not_located": 13,
+   "state_objects": [
+    ".bss.m_cb"
+   ],
+   "verdict": "DISPLACED iteration 28 (batch 1) -- 6/6 sections the shipped image contains are byte-identical; unit stock and unmodified; singleton .bss.m_cb @0x21004af8; 0 retained referrers left.",
+   "functions": [
+    {
+     "raw": "FUN_01034f24",
+     "va": "0x01034f24",
+     "section": ".text.timer_configure",
+     "size": 132,
+     "distinguishing": 128
+    },
+    {
+     "raw": "FUN_01034fa8",
+     "va": "0x01034fa8",
+     "section": ".text.nrfx_timer_init",
+     "size": 128,
+     "distinguishing": 104
+    },
+    {
+     "raw": "FUN_01035028",
+     "va": "0x01035028",
+     "section": ".text.nrfx_timer_disable",
+     "size": 64,
+     "distinguishing": 44
+    },
+    {
+     "raw": "FUN_01035068",
+     "va": "0x01035068",
+     "section": ".text.nrfx_timer_uninit",
+     "size": 60,
+     "distinguishing": 48
+    },
+    {
+     "raw": "FUN_010350a4",
+     "va": "0x010350a4",
+     "section": ".text.nrfx_timer_2_irq_handler",
+     "size": 104,
+     "distinguishing": 100
+    },
+    {
+     "raw": "FUN_0103a9dc",
+     "va": "0x0103a9dc",
+     "section": ".text.nrfx_timer_compare",
+     "size": 48,
+     "distinguishing": 48
+    }
+   ]
+  },
+  "libopen_amp.a(rpmsg_virtio.c.obj)": {
+   "functions_matched": 6,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 14,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "FUN_010355bc",
+     "va": "0x010355bc",
+     "section": ".text.rpmsg_virtio_send_offchannel_nocopy",
+     "size": 176,
+     "distinguishing": 132
+    },
+    {
+     "raw": "FUN_0103566c",
+     "va": "0x0103566c",
+     "section": ".text.rpmsg_virtio_rx_callback",
+     "size": 256,
+     "distinguishing": 188
+    },
+    {
+     "raw": "FUN_0103576c",
+     "va": "0x0103576c",
+     "section": ".text.rpmsg_virtio_send_offchannel_raw",
+     "size": 128,
+     "distinguishing": 100
+    },
+    {
+     "raw": "FUN_01035830",
+     "va": "0x01035830",
+     "section": ".text.rpmsg_init_vdev_with_config",
+     "size": 340,
+     "distinguishing": 272
+    },
+    {
+     "raw": "FUN_0103afac",
+     "va": "0x0103afac",
+     "section": ".text.rpmsg_virtio_release_rx_buffer",
+     "size": 70,
+     "distinguishing": 50
+    },
+    {
+     "raw": "FUN_0103aff2",
+     "va": "0x0103aff2",
+     "section": ".text.rpmsg_virtio_get_tx_payload_buffer",
+     "size": 186,
+     "distinguishing": 158
+    }
+   ]
+  },
+  "libzephyr.a(log_output.c.obj)": {
+   "functions_matched": 5,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 9,
+   "sections_not_located": 2,
+   "state_objects": [
+    ".bss.freq",
+    ".bss.timestamp_div"
+   ],
+   "verdict": "PARTIAL - 9/11 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_0102e460",
+     "va": "0x0102e460",
+     "section": ".text.print_formatted",
+     "size": 36,
+     "distinguishing": 28
+    },
+    {
+     "raw": "FUN_0102e484",
+     "va": "0x0102e484",
+     "section": ".text.newline_print",
+     "size": 28,
+     "distinguishing": 16
+    },
+    {
+     "raw": "FUN_0102e7e0",
+     "va": "0x0102e7e0",
+     "section": ".text.log_output_msg_process",
+     "size": 112,
+     "distinguishing": 100
+    },
+    {
+     "raw": "FUN_0103a32a",
+     "va": "0x0103a32a",
+     "section": ".text.buffer_write",
+     "size": 26,
+     "distinguishing": 26
+    },
+    {
+     "raw": "FUN_0103a344",
+     "va": "0x0103a344",
+     "section": ".text.log_output_flush",
+     "size": 26,
+     "distinguishing": 22
+    }
+   ]
+  },
+  "libzephyr.a(cbprintf_packaged.c.obj)": {
+   "functions_matched": 4,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 4,
+   "sections_not_located": 1,
+   "state_objects": [],
+   "verdict": "PARTIAL - 4/5 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_0102bbec",
+     "va": "0x0102bbec",
+     "section": ".text.cbvprintf_package",
+     "size": 1016,
+     "distinguishing": 960
+    },
+    {
+     "raw": "FUN_0102bfe4",
+     "va": "0x0102bfe4",
+     "section": ".text.cbprintf_package_convert",
+     "size": 1100,
+     "distinguishing": 996
+    },
+    {
+     "raw": "FUN_0103966e",
+     "va": "0x0103966e",
+     "section": ".text.cbpprintf_external",
+     "size": 98,
+     "distinguishing": 94
+    },
+    {
+     "raw": "FUN_010396d0",
+     "va": "0x010396d0",
+     "section": ".text.is_ptr",
+     "size": 74,
+     "distinguishing": 74
+    }
+   ]
+  },
+  "libzephyr.a(soc.c.obj)": {
+   "functions_matched": 4,
+   "state_owning": 2,
+   "sections_located_in_shipped_image": 7,
+   "sections_not_located": 0,
+   "state_objects": [
+    ".bss.cpu_idle_prepare_allows_sleep",
+    ".bss.cpu_idle_prepare_monitor_dummy",
+    ".bss.current.3",
+    ".bss.rtc_pretick_cc_set_on_time.4",
+    ".bss.timestamps.1",
+    ".bss.timestamps_filled.2"
+   ],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, owns state)",
+   "functions": [
+    {
+     "raw": "FUN_0102cfec",
+     "va": "0x0102cfec",
+     "section": ".text.rtc_pretick_finish_previous",
+     "size": 36,
+     "distinguishing": 36
+    },
+    {
+     "raw": "FUN_0102d0c4",
+     "va": "0x0102d0c4",
+     "section": ".text.z_arm_on_enter_cpu_idle_prepare",
+     "size": 252,
+     "distinguishing": 228
+    },
+    {
+     "raw": "FUN_0102d1c0",
+     "va": "0x0102d1c0",
+     "section": ".text.z_arm_on_enter_cpu_idle",
+     "size": 156,
+     "distinguishing": 128
+    },
+    {
+     "raw": "FUN_01039dec",
+     "va": "0x01039dec",
+     "section": ".text.rtc_ticks_to_next_event_get",
+     "size": 94,
+     "distinguishing": 94
+    }
+   ]
+  },
+  "libzephyr.a(ipc_rpmsg_static_vrings.c.obj)": {
+   "functions_matched": 4,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 12,
+   "sections_not_located": 10,
+   "state_objects": [],
+   "verdict": "PARTIAL - 12/22 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_0102d69c",
+     "va": "0x0102d69c",
+     "section": ".text.advertise_ept",
+     "size": 68,
+     "distinguishing": 60
+    },
+    {
+     "raw": "FUN_0102d6e0",
+     "va": "0x0102d6e0",
+     "section": ".text.get_ept",
+     "size": 40,
+     "distinguishing": 28
+    },
+    {
+     "raw": "get_ept_slot_with_name",
+     "va": "0x01039f4c",
+     "section": ".text.get_ept_slot_with_name",
+     "size": 44,
+     "distinguishing": 36
+    },
+    {
+     "raw": "FUN_01039fe6",
+     "va": "0x01039fe6",
+     "section": ".text.ns_bind_cb",
+     "size": 112,
+     "distinguishing": 88
+    }
+   ]
+  },
+  "libarch__arm__core__aarch32.a(irq_manage.c.obj)": {
+   "functions_matched": 4,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 8,
+   "sections_not_located": 1,
+   "state_objects": [],
+   "verdict": "PARTIAL - 8/9 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_0102eb48",
+     "va": "0x0102eb48",
+     "section": ".text.arch_irq_disable",
+     "size": 40,
+     "distinguishing": 40
+    },
+    {
+     "raw": "FUN_0102eb70",
+     "va": "0x0102eb70",
+     "section": ".text.arch_irq_is_enabled",
+     "size": 28,
+     "distinguishing": 28
+    },
+    {
+     "raw": "FUN_0102eb8c",
+     "va": "0x0102eb8c",
+     "section": ".text.z_arm_irq_priority_set",
+     "size": 80,
+     "distinguishing": 64
+    },
+    {
+     "raw": "FUN_0103a38a",
+     "va": "0x0103a38a",
+     "section": ".text.arch_irq_connect_dynamic",
+     "size": 28,
+     "distinguishing": 20
+    }
+   ]
+  },
+  "libdrivers__timer.a(nrf_rtc_timer.c.obj)": {
+   "functions_matched": 4,
+   "state_owning": 3,
+   "sections_located_in_shipped_image": 18,
+   "sections_not_located": 5,
+   "state_objects": [
+    ".bss.alloc_mask",
+    ".bss.anchor",
+    ".bss.cc_data",
+    ".bss.force_isr_mask",
+    ".bss.int_mask",
+    ".bss.last_count",
+    ".bss.overflow_cnt"
+   ],
+   "verdict": "KEEP - unit only PARTIALLY byte-identical (18/23 present sections match); displacing part of it would SPLIT the shared state",
+   "functions": [
+    {
+     "raw": "rtc_compare_int_lock",
+     "va": "0x01031248",
+     "section": ".text.compare_int_lock",
+     "size": 64,
+     "distinguishing": 60
+    },
+    {
+     "raw": "rtc_compare_int_unlock",
+     "va": "0x010312d0",
+     "section": ".text.compare_int_unlock",
+     "size": 76,
+     "distinguishing": 68
+    },
+    {
+     "raw": "rtc_compare_set",
+     "va": "0x010313ec",
+     "section": ".text.compare_set",
+     "size": 292,
+     "distinguishing": 264
+    },
+    {
+     "raw": "FUN_010317d4",
+     "va": "0x010317d4",
+     "section": ".text.sys_clock_disable",
+     "size": 48,
+     "distinguishing": 44
+    }
+   ]
+  },
+  "libopen_amp.a(virtqueue.c.obj)": {
+   "functions_matched": 4,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 11,
+   "sections_not_located": 5,
+   "state_objects": [],
+   "verdict": "PARTIAL - 11/16 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_010353b4",
+     "va": "0x010353b4",
+     "section": ".text.virtqueue_free",
+     "size": 56,
+     "distinguishing": 44
+    },
+    {
+     "raw": "FUN_0103ac0c",
+     "va": "0x0103ac0c",
+     "section": ".text.virtqueue_create",
+     "size": 58,
+     "distinguishing": 58
+    },
+    {
+     "raw": "FUN_0103ac98",
+     "va": "0x0103ac98",
+     "section": ".text.virtqueue_disable_cb",
+     "size": 50,
+     "distinguishing": 50
+    },
+    {
+     "raw": "FUN_0103acca",
+     "va": "0x0103acca",
+     "section": ".text.virtqueue_kick",
+     "size": 80,
+     "distinguishing": 80
+    }
+   ]
+  },
+  "libkernel.a(thread.c.obj)": {
+   "functions_matched": 4,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 7,
+   "sections_not_located": 12,
+   "state_objects": [],
+   "verdict": "PARTIAL - 7/19 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_01035fa0",
+     "va": "0x01035fa0",
+     "section": ".text.z_impl_k_thread_create",
+     "size": 124,
+     "distinguishing": 92
+    },
+    {
+     "raw": "FUN_0103601c",
+     "va": "0x0103601c",
+     "section": ".text.z_init_static_threads",
+     "size": 240,
+     "distinguishing": 184
+    },
+    {
+     "raw": "FUN_0103610c",
+     "va": "0x0103610c",
+     "section": ".text.z_spin_lock_valid",
+     "size": 28,
+     "distinguishing": 24
+    },
+    {
+     "raw": "FUN_01036128",
+     "va": "0x01036128",
+     "section": ".text.z_spin_unlock_valid",
+     "size": 28,
+     "distinguishing": 24
+    }
+   ]
+  },
+  "libzephyr.a(log_msg.c.obj)": {
+   "functions_matched": 3,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 4,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "FUN_0102e3a8",
+     "va": "0x0102e3a8",
+     "section": ".text.z_impl_z_log_msg_runtime_vcreate",
+     "size": 184,
+     "distinguishing": 148
+    },
+    {
+     "raw": "FUN_0103a2cc",
+     "va": "0x0103a2cc",
+     "section": ".text.z_cbprintf_cpy",
+     "size": 44,
+     "distinguishing": 40
+    },
+    {
+     "raw": "FUN_0103a2f8",
+     "va": "0x0103a2f8",
+     "section": ".text.z_log_msg_finalize",
+     "size": 50,
+     "distinguishing": 38
+    }
+   ]
+  },
+  "libsubsys__net.a(buf.c.obj)": {
+   "functions_matched": 3,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 6,
+   "sections_not_located": 18,
+   "state_objects": [
+    ".bss.net_buf_slist_lock"
+   ],
+   "verdict": "PARTIAL - 6/24 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_0102fdd0",
+     "va": "0x0102fdd0",
+     "section": ".text.net_buf_alloc_len",
+     "size": 388,
+     "distinguishing": 312
+    },
+    {
+     "raw": "FUN_0102ff54",
+     "va": "0x0102ff54",
+     "section": ".text.net_buf_put",
+     "size": 64,
+     "distinguishing": 40
+    },
+    {
+     "raw": "FUN_0102ff94",
+     "va": "0x0102ff94",
+     "section": ".text.net_buf_unref",
+     "size": 128,
+     "distinguishing": 104
+    }
+   ]
+  },
+  "libarch__arm__core__aarch32__cortex_m.a(scb.c.obj)": {
+   "functions_matched": 2,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 3,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "FUN_010255a4",
+     "va": "0x010255a4",
+     "section": ".text.sys_arch_reboot",
+     "size": 36,
+     "distinguishing": 36
+    },
+    {
+     "raw": "FUN_0102f4ec",
+     "va": "0x0102f4ec",
+     "section": ".text.sys_arch_reboot",
+     "size": 36,
+     "distinguishing": 36
+    }
+   ]
+  },
+  "libzephyr.a(log_mgmt.c.obj)": {
+   "functions_matched": 2,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 3,
+   "sections_not_located": 14,
+   "state_objects": [
+    ".bss.dname_cache",
+    ".bss.sname_cache"
+   ],
+   "verdict": "PARTIAL - 3/17 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_0102e220",
+     "va": "0x0102e220",
+     "section": ".text.log_source_name_get",
+     "size": 28,
+     "distinguishing": 20
+    },
+    {
+     "raw": "FUN_0102e23c",
+     "va": "0x0102e23c",
+     "section": ".text.log_backend_enable",
+     "size": 72,
+     "distinguishing": 48
+    }
+   ]
+  },
+  "libdrivers__pinctrl.a(pinctrl_nrf.c.obj)": {
+   "functions_matched": 2,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 2,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "FUN_01030dd0",
+     "va": "0x01030dd0",
+     "section": ".text.nrf_gpio_pin_port_decode",
+     "size": 88,
+     "distinguishing": 72
+    },
+    {
+     "raw": "FUN_01030e28",
+     "va": "0x01030e28",
+     "section": ".text.pinctrl_configure_pins",
+     "size": 212,
+     "distinguishing": 204
+    }
+   ]
+  },
+  "libmodules__hal_nordic__nrfx.a(nrfx_flag32_allocator.c.obj)": {
+   "functions_matched": 2,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 2,
+   "sections_not_located": 1,
+   "state_objects": [],
+   "verdict": "PARTIAL - 2/3 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_01034328",
+     "va": "0x01034328",
+     "section": ".text.nrfx_flag32_alloc",
+     "size": 64,
+     "distinguishing": 64
+    },
+    {
+     "raw": "FUN_01034368",
+     "va": "0x01034368",
+     "section": ".text.nrfx_flag32_free",
+     "size": 56,
+     "distinguishing": 56
+    }
+   ]
+  },
+  "libmodules__hal_nordic__nrfx.a(nrfx_gppi_dppi.c.obj)": {
+   "functions_matched": 2,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 8,
+   "sections_not_located": 11,
+   "state_objects": [],
+   "verdict": "PARTIAL - 8/19 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_010343b8",
+     "va": "0x010343b8",
+     "section": ".text.nrfx_gppi_event_endpoint_setup",
+     "size": 40,
+     "distinguishing": 24
+    },
+    {
+     "raw": "FUN_010343e0",
+     "va": "0x010343e0",
+     "section": ".text.nrfx_gppi_task_endpoint_setup",
+     "size": 40,
+     "distinguishing": 24
+    }
+   ]
+  },
+  "libmodules__hal_nordic__nrfx.a(nrfx_dppi.c.obj)": {
+   "functions_matched": 2,
+   "state_owning": 2,
+   "sections_located_in_shipped_image": 4,
+   "sections_not_located": 8,
+   "state_objects": [
+    ".data.m_allocated_channels",
+    ".data.m_allocated_groups"
+   ],
+   "verdict": "KEEP - unit only PARTIALLY byte-identical (4/12 present sections match); displacing part of it would SPLIT the shared state",
+   "functions": [
+    {
+     "raw": "FUN_01034464",
+     "va": "0x01034464",
+     "section": ".text.nrfx_dppi_channel_free",
+     "size": 28,
+     "distinguishing": 20
+    },
+    {
+     "raw": "FUN_0103448c",
+     "va": "0x0103448c",
+     "section": ".text.nrfx_dppi_group_free",
+     "size": 28,
+     "distinguishing": 20
+    }
+   ]
+  },
+  "libmodules__hal_nordic__nrfx.a(nrfx_ipc.c.obj)": {
+   "functions_matched": 2,
+   "state_owning": 2,
+   "sections_located_in_shipped_image": 5,
+   "sections_not_located": 5,
+   "state_objects": [
+    ".bss.m_cb"
+   ],
+   "verdict": "DISPLACED iteration 28 (batch 3) -- the 5 sections the shipped image contains tile 0x01034d8c..0x01034f24 EXACTLY (76+120+56+56+100 = 408 B, no gap) and all 5 are byte-identical; the other 5 were gc'd, not modified; singleton .bss.m_cb @0x21004aec and the stock unit is ALREADY linked.  Latent: both reconstructions were already gc'd, so the image is unchanged.",
+   "functions": [
+    {
+     "raw": "FUN_01034d8c",
+     "va": "0x01034d8c",
+     "section": ".text.nrfx_ipc_init",
+     "size": 76,
+     "distinguishing": 52
+    },
+    {
+     "raw": "FUN_01034dd8",
+     "va": "0x01034dd8",
+     "section": ".text.nrfx_ipc_config_load",
+     "size": 120,
+     "distinguishing": 96
+    }
+   ]
+  },
+  "libkernel.a(timeout.c.obj)": {
+   "functions_matched": 2,
+   "state_owning": 2,
+   "sections_located_in_shipped_image": 10,
+   "sections_not_located": 4,
+   "state_objects": [
+    ".bss.announce_remaining",
+    ".bss.curr_tick",
+    ".bss.timeout_lock",
+    ".data.timeout_list"
+   ],
+   "verdict": "KEEP - unit only PARTIALLY byte-identical (10/14 present sections match); displacing part of it would SPLIT the shared state",
+   "functions": [
+    {
+     "raw": "FUN_01037f14",
+     "va": "0x01037f14",
+     "section": ".text.next_timeout",
+     "size": 64,
+     "distinguishing": 52
+    },
+    {
+     "raw": "FUN_01037f54",
+     "va": "0x01037f54",
+     "section": ".text.remove_timeout",
+     "size": 56,
+     "distinguishing": 52
+    }
+   ]
+  },
+  "libc.a(strcpy.S.o)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 0,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "FUN_0102a258",
+     "va": "0x0102a258",
+     "section": ".text",
+     "size": 16,
+     "distinguishing": 16
+    }
+   ]
+  },
+  "libc.a(strlen.S.o)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 0,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "FUN_0102a268",
+     "va": "0x0102a268",
+     "section": ".text",
+     "size": 16,
+     "distinguishing": 16
+    }
+   ]
+  },
+  "libzephyr.a(notify.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 2,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "FUN_0102cb84",
+     "va": "0x0102cb84",
+     "section": ".text.sys_notify_finalize",
+     "size": 84,
+     "distinguishing": 64
+    }
+   ]
+  },
+  "libzephyr.a(reboot.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 1,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "FUN_0102cfbc",
+     "va": "0x0102cfbc",
+     "section": ".text.sys_reboot",
+     "size": 48,
+     "distinguishing": 28
+    }
+   ]
+  },
+  "libzephyr.a(ipc_service.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 3,
+   "sections_not_located": 8,
+   "state_objects": [],
+   "verdict": "PARTIAL - 3/11 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_0102d558",
+     "va": "0x0102d558",
+     "section": ".text.ipc_service_open_instance",
+     "size": 92,
+     "distinguishing": 72
+    }
+   ]
+  },
+  "libzephyr.a(ipc_rpmsg.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 4,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "g1_ipc_rpmsg_register_ept",
+     "va": "0x0102da84",
+     "section": ".text.ipc_rpmsg_register_ept",
+     "size": 60,
+     "distinguishing": 52
+    }
+   ]
+  },
+  "libarch__arm__core__aarch32.a(fatal.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 2,
+   "sections_not_located": 1,
+   "state_objects": [],
+   "verdict": "PARTIAL - 2/3 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_0102ea40",
+     "va": "0x0102ea40",
+     "section": ".text.z_arm_fatal_error",
+     "size": 204,
+     "distinguishing": 164
+    }
+   ]
+  },
+  "libarch__arm__core__aarch32__cortex_m.a(fault.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 3,
+   "sections_not_located": 2,
+   "state_objects": [],
+   "verdict": "PARTIAL - 3/5 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_0102ee28",
+     "va": "0x0102ee28",
+     "section": ".text.bus_fault.constprop.0",
+     "size": 304,
+     "distinguishing": 244
+    }
+   ]
+  },
+  "libarch__arm__core__aarch32__cortex_m.a(thread_abort.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 1,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "FUN_0102f580",
+     "va": "0x0102f580",
+     "section": ".text.z_impl_k_thread_abort",
+     "size": 44,
+     "distinguishing": 36
+    }
+   ]
+  },
+  "liblib__libc__picolibc.a(libc-hooks.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 6,
+   "sections_not_located": 7,
+   "state_objects": [
+    ".bss.__stdin",
+    ".bss._stdout_hook",
+    ".data.__stdout"
+   ],
+   "verdict": "PARTIAL - 6/13 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_0102fa4c",
+     "va": "0x0102fa4c",
+     "section": ".text.cbvprintf",
+     "size": 56,
+     "distinguishing": 44
+    }
+   ]
+  },
+  "libsubsys__bluetooth__host.a(hci_raw.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 6,
+   "sections_not_located": 2,
+   "state_objects": [
+    ".bss.raw_rx"
+   ],
+   "verdict": "PARTIAL - 6/8 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_0102fbd0",
+     "va": "0x0102fbd0",
+     "section": ".text.bt_buf_get_rx",
+     "size": 96,
+     "distinguishing": 72
+    }
+   ]
+  },
+  "libdrivers__clock_control.a(clock_control_nrf.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 1,
+   "sections_located_in_shipped_image": 16,
+   "sections_not_located": 2,
+   "state_objects": [
+    ".bss.cli.1",
+    ".bss.data",
+    ".bss.hfclk_users",
+    ".bss.on.2"
+   ],
+   "verdict": "KEEP - unit only PARTIALLY byte-identical (16/18 present sections match); displacing part of it would SPLIT the shared state",
+   "functions": [
+    {
+     "raw": "FUN_0103038c",
+     "va": "0x0103038c",
+     "section": ".text.z_nrf_clock_control_lf_on",
+     "size": 300,
+     "distinguishing": 248
+    }
+   ]
+  },
+  "libdrivers__gpio.a(gpio_nrfx.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 10,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "FUN_01030a50",
+     "va": "0x01030a50",
+     "section": ".text.gpio_nrfx_pin_configure",
+     "size": 348,
+     "distinguishing": 300
+    }
+   ]
+  },
+  "libdrivers__mbox.a(mbox_nrfx_ipc.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 5,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "FUN_01030bac",
+     "va": "0x01030bac",
+     "section": ".text.mbox_nrf_init",
+     "size": 180,
+     "distinguishing": 140
+    }
+   ]
+  },
+  "libdrivers__serial.a(uart_nrfx_uarte.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 8,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "FUN_01030efc",
+     "va": "0x01030efc",
+     "section": ".text.uarte_nrfx_configure",
+     "size": 380,
+     "distinguishing": 380
+    }
+   ]
+  },
+  "lib..__nrf__lib__fatal_error.a(fatal_error.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 1,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "FUN_01031820",
+     "va": "0x01031820",
+     "section": ".text.k_sys_fatal_error_handler",
+     "size": 44,
+     "distinguishing": 24
+    }
+   ]
+  },
+  "lib..__nrf__subsys__bluetooth__controller.a(hci_internal.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 1,
+   "sections_located_in_shipped_image": 2,
+   "sections_not_located": 3,
+   "state_objects": [
+    ".bss.cmd_complete_or_status",
+    ".bss.user_cmd_handler"
+   ],
+   "verdict": "KEEP - unit only PARTIALLY byte-identical (2/5 present sections match); displacing part of it would SPLIT the shared state",
+   "functions": [
+    {
+     "raw": "FUN_010323cc",
+     "va": "0x010323cc",
+     "section": ".text.hci_internal_msg_get",
+     "size": 44,
+     "distinguishing": 32
+    }
+   ]
+  },
+  "lib..__nrf__subsys__bluetooth__controller.a(crypto.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 1,
+   "sections_not_located": 3,
+   "state_objects": [],
+   "verdict": "PARTIAL - 1/4 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_010323f8",
+     "va": "0x010323f8",
+     "section": ".text.bt_rand",
+     "size": 72,
+     "distinguishing": 48
+    }
+   ]
+  },
+  "libopen_amp.a(virtio.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 1,
+   "sections_not_located": 1,
+   "state_objects": [],
+   "verdict": "PARTIAL - 1/2 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_0103533c",
+     "va": "0x0103533c",
+     "section": ".text.virtio_create_virtqueues",
+     "size": 120,
+     "distinguishing": 116
+    }
+   ]
+  },
+  "libkernel.a(fatal.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 1,
+   "sections_not_located": 2,
+   "state_objects": [],
+   "verdict": "PARTIAL - 1/3 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_010359b8",
+     "va": "0x010359b8",
+     "section": ".text.z_fatal_error",
+     "size": 288,
+     "distinguishing": 212
+    }
+   ]
+  },
+  "libkernel.a(mutex.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 1,
+   "sections_located_in_shipped_image": 3,
+   "sections_not_located": 1,
+   "state_objects": [
+    ".bss.lock"
+   ],
+   "verdict": "KEEP - unit only PARTIALLY byte-identical (3/4 present sections match); displacing part of it would SPLIT the shared state",
+   "functions": [
+    {
+     "raw": "FUN_01036410",
+     "va": "0x01036410",
+     "section": ".text.z_impl_k_mutex_lock",
+     "size": 364,
+     "distinguishing": 284
+    }
+   ]
+  },
+  "libkernel.a(sem.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 1,
+   "sections_located_in_shipped_image": 2,
+   "sections_not_located": 2,
+   "state_objects": [
+    ".bss.lock"
+   ],
+   "verdict": "KEEP - unit only PARTIALLY byte-identical (2/4 present sections match); displacing part of it would SPLIT the shared state",
+   "functions": [
+    {
+     "raw": "FUN_0103689c",
+     "va": "0x0103689c",
+     "section": ".text.z_impl_k_sem_take",
+     "size": 192,
+     "distinguishing": 140
+    }
+   ]
+  },
+  "libkernel.a(sched.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 37,
+   "sections_not_located": 21,
+   "state_objects": [
+    ".bss.pending_current",
+    ".bss.slice_expired",
+    ".bss.slice_max_prio",
+    ".bss.slice_ticks",
+    ".bss.slice_timeouts"
+   ],
+   "verdict": "PARTIAL - 37/58 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_010378c4",
+     "va": "0x010378c4",
+     "section": ".text.z_sched_wake_thread",
+     "size": 156,
+     "distinguishing": 112
+    }
+   ]
+  },
+  "libc.a(libc_tinystdio_snprintf.c.o)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 1,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "FUN_01039138",
+     "va": "0x01039138",
+     "section": ".text.snprintf",
+     "size": 88,
+     "distinguishing": 76
+    }
+   ]
+  },
+  "libc.a(libc_tinystdio_snprintfd.c.o)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 1,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "FUN_01039138",
+     "va": "0x01039138",
+     "section": ".text.__d_snprintf",
+     "size": 88,
+     "distinguishing": 76
+    }
+   ]
+  },
+  "libc.a(libc_tinystdio_snprintff.c.o)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 1,
+   "sections_not_located": 0,
+   "state_objects": [],
+   "verdict": "DISPLACE-CANDIDATE (unit complete, stateless)",
+   "functions": [
+    {
+     "raw": "FUN_01039138",
+     "va": "0x01039138",
+     "section": ".text.__f_snprintf",
+     "size": 88,
+     "distinguishing": 76
+    }
+   ]
+  },
+  "libzephyr.a(mpsc_pbuf.c.obj)": {
+   "functions_matched": 1,
+   "state_owning": 0,
+   "sections_located_in_shipped_image": 14,
+   "sections_not_located": 5,
+   "state_objects": [],
+   "verdict": "PARTIAL - 14/19 present sections match; stateless, so a per-function displacement is possible but low value",
+   "functions": [
+    {
+     "raw": "FUN_01039dd0",
+     "va": "0x01039dd0",
+     "section": ".text.mpsc_pbuf_is_pending",
+     "size": 26,
+     "distinguishing": 26
+    }
+   ]
+  }
+ }
+}

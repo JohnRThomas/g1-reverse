@@ -40296,13 +40296,13 @@
   },
   "net": {
    "summary": {
-    "entries": 619,
-    "exclude_reconstruction": 255,
+    "entries": 640,
+    "exclude_reconstruction": 275,
     "retain_reconstruction": 365,
     "by_kind": {
-     "source": 134,
+     "source": 153,
      "archive": 298,
-     "static_helper": 61,
+     "static_helper": 62,
      "table": 0,
      "glue": 127
     }
@@ -46281,42 +46281,6 @@
     },
     {
      "core": "net",
-     "va": "0x0102a122",
-     "raw_symbol": "FUN_0102a122",
-     "current_symbol": "FUN_0102a122",
-     "kind": "archive",
-     "component": "mpsl",
-     "upstream_symbol": "mpsl_timeslot_request",
-     "upstream_unit": "/Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Public documented MPSL API identity, and the exact companion of the already-adopted 0x01021a38 (mpsl_timeslot_session_open) and 0x0102a0e6 (mpsl_timeslot_session_close): the product timeslot worker FUN_0102b810 calls all three on the SAME session id.  The reconstruction reaches MPSL's private session table through original-image absolute RAM addresses (0x210016e4 / 0x210016e8, via FUN_01021ac0) that this build never initialises, because the genuine libmpsl.a owns that table at its own layout -- mpsl_timeslot_session_count_set() and mpsl_timeslot_session_open() are both linked from libmpsl.a.  Splitting open/request between the two owners is what makes the request fail; the public symbol is a safe link alias (unlike the obfuscated archive spellings recorded for the private MPSL/SDC bodies).",
-     "evidence": [
-      {
-       "source": "recon/emulator/reports/our_boot_bringup.md#iteration-21",
-       "type": "call_site_abi",
-       "detail": "netcore_image.bin 0x0102b86a..0x0102b870 and the NORMAL-request arm of FUN_0102b810 call 0x0102a122 as (uint8_t session_id, const mpsl_timeslot_request_t *request) and treat any non-zero return as fatal; the two request objects are the shipped mpsl_timeslot_request_t at 0x210005b8 (NORMAL) and 0x210005d8 (EARLIEST).  This is exactly int32_t mpsl_timeslot_request(mpsl_timeslot_session_id_t, const mpsl_timeslot_request_t *)."
-      },
-      {
-       "source": "/Users/freedomcoder/ncs251/nrfxlib/mpsl/include/mpsl_timeslot.h:317-320",
-       "type": "return_code_set",
-       "detail": "The proven reconstruction returns exactly the three documented failure codes of mpsl_timeslot_request and nothing else: 0xfffffffe = -NRF_ENOENT (\"The session is not open\"), 0xffffffdd = -NRF_EAGAIN (\"The session is not IDLE\") and 0xffffffea = -NRF_EINVAL (\"The parameters of p_request are not valid\")."
-      },
-      {
-       "source": "recon/net/src/FUN_0102a122.c",
-       "type": "private_state_owner",
-       "detail": "Its first action is FUN_01021ac0(session_id), which indexes MPSL's private session array as *(uint32_t *)0x210016e4 + id * 0x30 with the count at 0x210016e8 -- absolute original-image RAM.  Nothing in this build owns or initialises that pair."
-      },
-      {
-       "source": "recon/emulator/reports/our_boot_bringup.md#iteration-21",
-       "type": "boot_divergence",
-       "detail": "Measured with Renode hooks on /private/tmp/g1-i21a-net: the NCS mpsl_init calls the LIBRARY mpsl_timeslot_session_count_set(0x2100859C, 1) (timeslot_context) at t < 0.2 s, and the library mpsl_timeslot_session_open() then returns 0 with session id 0; but at the request call *(uint32_t *)0x210016e4 reads 0x00000001, so the reconstruction's FUN_01021ac0(0) returned 0x00000001 and read its session state from address 0x27, obtaining 0.  mpsl_timeslot_request therefore returned -NRF_EAGAIN (-35) and the recovered worker took its fatal `svc 2` path (K_ERR_KERNEL_OOPS, reason 3), resetting the SoC ~4,700 net instructions after esb_service_init() first succeeded."
-      }
-     ]
-    },
-    {
-     "core": "net",
      "va": "0x01021ac0",
      "raw_symbol": "FUN_01021ac0",
      "current_symbol": "FUN_01021ac0",
@@ -51987,6 +51951,42 @@
     },
     {
      "core": "net",
+     "va": "0x0102a122",
+     "raw_symbol": "FUN_0102a122",
+     "current_symbol": "FUN_0102a122",
+     "kind": "archive",
+     "component": "mpsl",
+     "upstream_symbol": "mpsl_timeslot_request",
+     "upstream_unit": "/Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Public documented MPSL API identity, and the exact companion of the already-adopted 0x01021a38 (mpsl_timeslot_session_open) and 0x0102a0e6 (mpsl_timeslot_session_close): the product timeslot worker FUN_0102b810 calls all three on the SAME session id.  The reconstruction reaches MPSL's private session table through original-image absolute RAM addresses (0x210016e4 / 0x210016e8, via FUN_01021ac0) that this build never initialises, because the genuine libmpsl.a owns that table at its own layout -- mpsl_timeslot_session_count_set() and mpsl_timeslot_session_open() are both linked from libmpsl.a.  Splitting open/request between the two owners is what makes the request fail; the public symbol is a safe link alias (unlike the obfuscated archive spellings recorded for the private MPSL/SDC bodies).",
+     "evidence": [
+      {
+       "source": "recon/emulator/reports/our_boot_bringup.md#iteration-21",
+       "type": "call_site_abi",
+       "detail": "netcore_image.bin 0x0102b86a..0x0102b870 and the NORMAL-request arm of FUN_0102b810 call 0x0102a122 as (uint8_t session_id, const mpsl_timeslot_request_t *request) and treat any non-zero return as fatal; the two request objects are the shipped mpsl_timeslot_request_t at 0x210005b8 (NORMAL) and 0x210005d8 (EARLIEST).  This is exactly int32_t mpsl_timeslot_request(mpsl_timeslot_session_id_t, const mpsl_timeslot_request_t *)."
+      },
+      {
+       "source": "/Users/freedomcoder/ncs251/nrfxlib/mpsl/include/mpsl_timeslot.h:317-320",
+       "type": "return_code_set",
+       "detail": "The proven reconstruction returns exactly the three documented failure codes of mpsl_timeslot_request and nothing else: 0xfffffffe = -NRF_ENOENT (\"The session is not open\"), 0xffffffdd = -NRF_EAGAIN (\"The session is not IDLE\") and 0xffffffea = -NRF_EINVAL (\"The parameters of p_request are not valid\")."
+      },
+      {
+       "source": "recon/net/src/FUN_0102a122.c",
+       "type": "private_state_owner",
+       "detail": "Its first action is FUN_01021ac0(session_id), which indexes MPSL's private session array as *(uint32_t *)0x210016e4 + id * 0x30 with the count at 0x210016e8 -- absolute original-image RAM.  Nothing in this build owns or initialises that pair."
+      },
+      {
+       "source": "recon/emulator/reports/our_boot_bringup.md#iteration-21",
+       "type": "boot_divergence",
+       "detail": "Measured with Renode hooks on /private/tmp/g1-i21a-net: the NCS mpsl_init calls the LIBRARY mpsl_timeslot_session_count_set(0x2100859C, 1) (timeslot_context) at t < 0.2 s, and the library mpsl_timeslot_session_open() then returns 0 with session id 0; but at the request call *(uint32_t *)0x210016e4 reads 0x00000001, so the reconstruction's FUN_01021ac0(0) returned 0x00000001 and read its session state from address 0x27, obtaining 0.  mpsl_timeslot_request therefore returned -NRF_EAGAIN (-35) and the recovered worker took its fatal `svc 2` path (K_ERR_KERNEL_OOPS, reason 3), resetting the SoC ~4,700 net instructions after esb_service_init() first succeeded."
+      }
+     ]
+    },
+    {
+     "core": "net",
      "va": "0x0102a1ea",
      "raw_symbol": "FUN_0102a1ea",
      "current_symbol": "sdc_byte_lock_try_acquire",
@@ -53909,6 +53909,542 @@
        "reconstruction_present": true,
        "runtime_defect_observed": "Not observed at runtime: the recovered chain is already garbage-collected in the iteration-25/26 link because FUN_01031a68, its only caller, is itself orphaned (empty `callers` array in recon/catalogs/refgraph_net.json.gz and no caller anywhere in the recovered corpus).  The defect closed here is structural -- a duplicated kernel singleton started at an original-image code address -- and the iteration-26 report states plainly that it has no measured boot effect.",
        "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033b18",
+     "raw_symbol": "FUN_01033b18",
+     "current_symbol": "FUN_01033b18",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_ppi_for_txrx_set",
+     "upstream_unit": "nrf/subsys/esb/esb_dppi.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb_dppi.c owns the seven ESB DPPI channel/group singletons (shipped 0x2100645a..0x21006460); every esb_dppi.c function in the shipped image is relocation-masked byte-identical to the stock section and no retained reconstruction touches that state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_dppi_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+       "unit_sections_in_image": 12,
+       "unit_sections_byte_identical": 12,
+       "section_bytes": 216,
+       "distinguishing_bytes": 184,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033bf0",
+     "raw_symbol": "FUN_01033bf0",
+     "current_symbol": "FUN_01033bf0",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_ppi_for_txrx_clear",
+     "upstream_unit": "nrf/subsys/esb/esb_dppi.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb_dppi.c owns the seven ESB DPPI channel/group singletons (shipped 0x2100645a..0x21006460); every esb_dppi.c function in the shipped image is relocation-masked byte-identical to the stock section and no retained reconstruction touches that state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_dppi_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+       "unit_sections_in_image": 12,
+       "unit_sections_byte_identical": 12,
+       "section_bytes": 132,
+       "distinguishing_bytes": 120,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033c74",
+     "raw_symbol": "FUN_01033c74",
+     "current_symbol": "FUN_01033c74",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_ppi_for_fem_set",
+     "upstream_unit": "nrf/subsys/esb/esb_dppi.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb_dppi.c owns the seven ESB DPPI channel/group singletons (shipped 0x2100645a..0x21006460); every esb_dppi.c function in the shipped image is relocation-masked byte-identical to the stock section and no retained reconstruction touches that state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_dppi_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+       "unit_sections_in_image": 12,
+       "unit_sections_byte_identical": 12,
+       "section_bytes": 48,
+       "distinguishing_bytes": 44,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033ca4",
+     "raw_symbol": "FUN_01033ca4",
+     "current_symbol": "FUN_01033ca4",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_ppi_for_fem_clear",
+     "upstream_unit": "nrf/subsys/esb/esb_dppi.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb_dppi.c owns the seven ESB DPPI channel/group singletons (shipped 0x2100645a..0x21006460); every esb_dppi.c function in the shipped image is relocation-masked byte-identical to the stock section and no retained reconstruction touches that state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_dppi_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+       "unit_sections_in_image": 12,
+       "unit_sections_byte_identical": 12,
+       "section_bytes": 44,
+       "distinguishing_bytes": 40,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033cd0",
+     "raw_symbol": "FUN_01033cd0",
+     "current_symbol": "FUN_01033cd0",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_ppi_for_retransmission_set",
+     "upstream_unit": "nrf/subsys/esb/esb_dppi.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb_dppi.c owns the seven ESB DPPI channel/group singletons (shipped 0x2100645a..0x21006460); every esb_dppi.c function in the shipped image is relocation-masked byte-identical to the stock section and no retained reconstruction touches that state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_dppi_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+       "unit_sections_in_image": 12,
+       "unit_sections_byte_identical": 12,
+       "section_bytes": 80,
+       "distinguishing_bytes": 72,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033d20",
+     "raw_symbol": "FUN_01033d20",
+     "current_symbol": "FUN_01033d20",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_ppi_for_retransmission_clear",
+     "upstream_unit": "nrf/subsys/esb/esb_dppi.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb_dppi.c owns the seven ESB DPPI channel/group singletons (shipped 0x2100645a..0x21006460); every esb_dppi.c function in the shipped image is relocation-masked byte-identical to the stock section and no retained reconstruction touches that state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_dppi_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+       "unit_sections_in_image": 12,
+       "unit_sections_byte_identical": 12,
+       "section_bytes": 52,
+       "distinguishing_bytes": 48,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033d54",
+     "raw_symbol": "FUN_01033d54",
+     "current_symbol": "FUN_01033d54",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_ppi_for_wait_for_ack_set",
+     "upstream_unit": "nrf/subsys/esb/esb_dppi.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb_dppi.c owns the seven ESB DPPI channel/group singletons (shipped 0x2100645a..0x21006460); every esb_dppi.c function in the shipped image is relocation-masked byte-identical to the stock section and no retained reconstruction touches that state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_dppi_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+       "unit_sections_in_image": 12,
+       "unit_sections_byte_identical": 12,
+       "section_bytes": 76,
+       "distinguishing_bytes": 68,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033da0",
+     "raw_symbol": "FUN_01033da0",
+     "current_symbol": "FUN_01033da0",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_ppi_for_wait_for_ack_clear",
+     "upstream_unit": "nrf/subsys/esb/esb_dppi.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb_dppi.c owns the seven ESB DPPI channel/group singletons (shipped 0x2100645a..0x21006460); every esb_dppi.c function in the shipped image is relocation-masked byte-identical to the stock section and no retained reconstruction touches that state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_dppi_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+       "unit_sections_in_image": 12,
+       "unit_sections_byte_identical": 12,
+       "section_bytes": 68,
+       "distinguishing_bytes": 60,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033de4",
+     "raw_symbol": "FUN_01033de4",
+     "current_symbol": "FUN_01033de4",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_ppi_radio_disabled_get",
+     "upstream_unit": "nrf/subsys/esb/esb_dppi.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb_dppi.c owns the seven ESB DPPI channel/group singletons (shipped 0x2100645a..0x21006460); every esb_dppi.c function in the shipped image is relocation-masked byte-identical to the stock section and no retained reconstruction touches that state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_dppi_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+       "unit_sections_in_image": 12,
+       "unit_sections_byte_identical": 12,
+       "section_bytes": 12,
+       "distinguishing_bytes": 8,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033df0",
+     "raw_symbol": "FUN_01033df0",
+     "current_symbol": "FUN_01033df0",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_ppi_init",
+     "upstream_unit": "nrf/subsys/esb/esb_dppi.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb_dppi.c owns the seven ESB DPPI channel/group singletons (shipped 0x2100645a..0x21006460); every esb_dppi.c function in the shipped image is relocation-masked byte-identical to the stock section and no retained reconstruction touches that state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_dppi_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+       "unit_sections_in_image": 12,
+       "unit_sections_byte_identical": 12,
+       "section_bytes": 244,
+       "distinguishing_bytes": 168,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033ee4",
+     "raw_symbol": "FUN_01033ee4",
+     "current_symbol": "FUN_01033ee4",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_ppi_disable_all",
+     "upstream_unit": "nrf/subsys/esb/esb_dppi.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb_dppi.c owns the seven ESB DPPI channel/group singletons (shipped 0x2100645a..0x21006460); every esb_dppi.c function in the shipped image is relocation-masked byte-identical to the stock section and no retained reconstruction touches that state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_dppi_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+       "unit_sections_in_image": 12,
+       "unit_sections_byte_identical": 12,
+       "section_bytes": 84,
+       "distinguishing_bytes": 64,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033f38",
+     "raw_symbol": "FUN_01033f38",
+     "current_symbol": "FUN_01033f38",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_ppi_deinit",
+     "upstream_unit": "nrf/subsys/esb/esb_dppi.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb_dppi.c owns the seven ESB DPPI channel/group singletons (shipped 0x2100645a..0x21006460); every esb_dppi.c function in the shipped image is relocation-masked byte-identical to the stock section and no retained reconstruction touches that state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_dppi_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+       "unit_sections_in_image": 12,
+       "unit_sections_byte_identical": 12,
+       "section_bytes": 192,
+       "distinguishing_bytes": 120,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01034d8c",
+     "raw_symbol": "FUN_01034d8c",
+     "current_symbol": "FUN_01034d8c",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "nrfx_ipc_init",
+     "upstream_unit": "modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock nrfx_ipc.c is already unconditionally linked and owns the singleton m_cb; the reconstruction is a duplicate body on a private relocation block (shipped 0x21004aec).",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_nrfx_ipc_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_ipc.c.obj)",
+       "unit_sections_in_image": 5,
+       "unit_sections_byte_identical": 5,
+       "section_bytes": 76,
+       "distinguishing_bytes": 52,
+       "singleton_state_object": ".bss.m_cb",
+       "singleton_shipped_address": "0x21004aec",
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01034dd8",
+     "raw_symbol": "FUN_01034dd8",
+     "current_symbol": "FUN_01034dd8",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "nrfx_ipc_config_load",
+     "upstream_unit": "modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock nrfx_ipc.c is already unconditionally linked and owns the singleton m_cb; the reconstruction is a duplicate body on a private relocation block (shipped 0x21004aec).",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_nrfx_ipc_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_ipc.c.obj)",
+       "unit_sections_in_image": 5,
+       "unit_sections_byte_identical": 5,
+       "section_bytes": 120,
+       "distinguishing_bytes": 96,
+       "singleton_state_object": ".bss.m_cb",
+       "singleton_shipped_address": "0x21004aec",
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01034f24",
+     "raw_symbol": "FUN_01034f24",
+     "current_symbol": "FUN_01034f24",
+     "kind": "static_helper",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "timer_configure",
+     "upstream_unit": "modules/hal/nordic/nrfx/drivers/src/nrfx_timer.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock nrfx_timer.c file-local helper; the whole unit is relocation-masked byte-exact and unmodified in the shipped image.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_nrfx_timer_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_timer.c.obj)",
+       "unit_sections_in_image": 6,
+       "unit_sections_byte_identical": 6,
+       "singleton_state_object": ".bss.m_cb",
+       "singleton_shipped_address": "0x21004af8",
+       "upstream_linkage": "local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01034fa8",
+     "raw_symbol": "FUN_01034fa8",
+     "current_symbol": "FUN_01034fa8",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "nrfx_timer_init",
+     "upstream_unit": "modules/hal/nordic/nrfx/drivers/src/nrfx_timer.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock nrfx_timer.c owns the singleton control block m_cb (shipped 0x21004af8); every nrfx_timer.c function present in the shipped image is relocation-masked byte-identical to the stock section, so the reconstruction is a duplicate body on private storage.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_nrfx_timer_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_timer.c.obj)",
+       "unit_sections_in_image": 6,
+       "unit_sections_byte_identical": 6,
+       "singleton_state_object": ".bss.m_cb",
+       "singleton_shipped_address": "0x21004af8",
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01035028",
+     "raw_symbol": "FUN_01035028",
+     "current_symbol": "FUN_01035028",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "nrfx_timer_disable",
+     "upstream_unit": "modules/hal/nordic/nrfx/drivers/src/nrfx_timer.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock nrfx_timer.c owns the singleton control block m_cb (shipped 0x21004af8); every nrfx_timer.c function present in the shipped image is relocation-masked byte-identical to the stock section, so the reconstruction is a duplicate body on private storage.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_nrfx_timer_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_timer.c.obj)",
+       "unit_sections_in_image": 6,
+       "unit_sections_byte_identical": 6,
+       "singleton_state_object": ".bss.m_cb",
+       "singleton_shipped_address": "0x21004af8",
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01035068",
+     "raw_symbol": "FUN_01035068",
+     "current_symbol": "FUN_01035068",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "nrfx_timer_uninit",
+     "upstream_unit": "modules/hal/nordic/nrfx/drivers/src/nrfx_timer.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock nrfx_timer.c owns the singleton control block m_cb (shipped 0x21004af8); every nrfx_timer.c function present in the shipped image is relocation-masked byte-identical to the stock section, so the reconstruction is a duplicate body on private storage.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_nrfx_timer_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_timer.c.obj)",
+       "unit_sections_in_image": 6,
+       "unit_sections_byte_identical": 6,
+       "singleton_state_object": ".bss.m_cb",
+       "singleton_shipped_address": "0x21004af8",
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010350a4",
+     "raw_symbol": "FUN_010350a4",
+     "current_symbol": "FUN_010350a4",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "nrfx_timer_2_irq_handler",
+     "upstream_unit": "modules/hal/nordic/nrfx/drivers/src/nrfx_timer.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock nrfx_timer.c owns the singleton control block m_cb (shipped 0x21004af8); every nrfx_timer.c function present in the shipped image is relocation-masked byte-identical to the stock section, so the reconstruction is a duplicate body on private storage.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_nrfx_timer_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_timer.c.obj)",
+       "unit_sections_in_image": 6,
+       "unit_sections_byte_identical": 6,
+       "singleton_state_object": ".bss.m_cb",
+       "singleton_shipped_address": "0x21004af8",
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
       }
      ]
     },
@@ -58490,6 +59026,34 @@
        "ratio": 1.0,
        "threshold": 0.9,
        "provenance": "NCS 2.5.1 netref object index"
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x0103a9dc",
+     "raw_symbol": "FUN_0103a9dc",
+     "current_symbol": "FUN_0103a9dc",
+     "kind": "source",
+     "component": "hal_nordic_nrfx",
+     "upstream_symbol": "nrfx_timer_compare",
+     "upstream_unit": "modules/hal/nordic/nrfx/drivers/src/nrfx_timer.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock nrfx_timer.c owns the singleton control block m_cb (shipped 0x21004af8); every nrfx_timer.c function present in the shipped image is relocation-masked byte-identical to the stock section, so the reconstruction is a duplicate body on private storage.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_nrfx_timer_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_timer.c.obj)",
+       "unit_sections_in_image": 6,
+       "unit_sections_byte_identical": 6,
+       "singleton_state_object": ".bss.m_cb",
+       "singleton_shipped_address": "0x21004af8",
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
       }
      ]
     },

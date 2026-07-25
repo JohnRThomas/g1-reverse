@@ -1,0 +1,51 @@
+{
+ "schema": 1,
+ "title": "CPUNET nrfx_ipc.c duplicate-singleton adoption (P4 iteration 28, batch 3)",
+ "core": "net",
+ "upstream_unit": "modules/hal/nordic/nrfx/drivers/src/nrfx_ipc.c (NCS 2.5.1)",
+ "upstream_object": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_ipc.c.obj)",
+ "singleton_state": {
+  "object": ".bss.m_cb",
+  "size_bytes": 12,
+  "shipped_address": "0x21004aec",
+  "shipped_address_proof": "R_ARM_ABS32 relocations into .bss.m_cb of the stock .text.nrfx_ipc_init / .text.nrfx_ipc_config_load sections resolved against the shipped image words.",
+  "our_link_stock_address": "0x21009178 (local 'b' symbol -- a linker PROVIDE cannot name it, so displacement of the owning unit is the only route)",
+  "reconstruction_pin": "g_sdc_radio_context_area (a mis-name; the object is nrfx's IPC control block)",
+  "hazard": "The stock nrfx_ipc.c is UNCONDITIONALLY linked in this build (nrfx_ipc_init / nrfx_ipc_config_load / nrfx_ipc_receive_event_enable / _disable / _irq_handler are all present), and it initialises ITS m_cb while the two reconstructions read the private relocation block."
+ },
+ "unit_completeness": {
+  "stock_sections": 10,
+  "sections_present_in_shipped_image": 5,
+  "sections_present_and_byte_identical": 5,
+  "sections_absent_from_shipped_image": 5,
+  "shipped_extent": "0x01034d8c..0x01034f24 (408 B)",
+  "extent_proof": "The five located sections tile the 408-byte run EXACTLY (76+120+56+56+100 = 408) with no gap, and the next byte 0x01034f24 is nrfx_timer.c's timer_configure.  The unit is stock and UNMODIFIED.",
+  "reconstructed_subset": "Only 0x01034d8c and 0x01034dd8 were ever reconstructed; 0x01034e50 / 0x01034e88 / 0x01034ec0 have no reconstruction in the corpus at all."
+ },
+ "measured_liveness": "MEASURED on /private/tmp/g1-i28b-net: FUN_01030bac (the recovered mbox_nrf_init, itself byte-identical to stock mbox_nrfx_ipc.c) has no referrer, so --gc-sections had ALREADY dropped both reconstructions from the ELF.  This displacement therefore closes the hazard permanently but is expected to leave the image unchanged; that expectation is checked, not assumed (see the report's build ledger).",
+ "adoptions": [
+  {
+   "raw_symbol": "FUN_01034d8c",
+   "va": "0x01034d8c",
+   "upstream_symbol": "nrfx_ipc_init",
+   "upstream_linkage": "public",
+   "section_bytes": 76,
+   "distinguishing_bytes": 52,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01034dd8",
+   "va": "0x01034dd8",
+   "upstream_symbol": "nrfx_ipc_config_load",
+   "upstream_linkage": "public",
+   "section_bytes": 120,
+   "distinguishing_bytes": 96,
+   "agreement": "entire section, every unmasked byte"
+  }
+ ],
+ "linker_aliases": [
+  "PROVIDE(FUN_01034d8c = nrfx_ipc_init);",
+  "PROVIDE(FUN_01034dd8 = nrfx_ipc_config_load);"
+ ],
+ "total_distinguishing_bytes": 148
+}

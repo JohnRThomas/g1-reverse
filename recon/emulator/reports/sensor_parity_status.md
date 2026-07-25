@@ -1,7 +1,92 @@
 # Sensor + graphics parity status — OUR rebuilt firmware vs the shipped oracle
 
-**Fourteenth measurement of `display_sensor_parity.md`'s criteria against our
-rebuild** (iteration 27; previous measurements were iterations 14–26).
+**Fifteenth measurement of `display_sensor_parity.md`'s criteria against our
+rebuild** (iteration 28; previous measurements were iterations 14–27).
+
+## READ THIS FIRST — iteration 28: still 0 lit pixels, but the ≈5.8 s reset is
+## GONE, iteration 26's every sensor volume is recovered exactly, and for the
+## FIRST time in this project `radio TransmittedFrames` is non-zero (**0xCF**)
+## with `vcentral Connected` **True**
+
+**NO PIXEL IS PAINTED.**  `framebuffer.lit_pixels` is **0 / 0** against the
+oracle's **656** (`p1_boot`) / **1,098** (`p2_render`); `spim_a` is **34 / 764**
+and **0 / 2,881**; **no `0x02` pixel window is emitted in `p2_render`**, so **no
+display START with `action = 1` arrived** (our `firmware_events` is `{}` against
+the oracle's `{"spi_read_id":1,"display_START":2,"BLIT":15}`).  The three `0x02`
+transactions in `p1_boot` are the panel-init window writes the oracle also makes
+there and they paint nothing.
+
+Measured this iteration (`our_boot_bringup.md` §28; capture
+`/private/tmp/g1_ours_i28b`, net `g1-i28c-net` — byte-identical to `g1-i28b-net`
+so the capture IS the final tree's — app **unchanged** `g1-i23a-app`):
+
+1. **Iteration 27's blocker was mis-identified and is now fixed.**  The assert
+   string at `0x0103e73b` is `".../nrfx/drivers/src/nrfx_timer.c"`, not
+   `nrfx_ipc.c` (that string ends at `0x0103e73a`), and line 202 is
+   `nrfx_timer_disable`'s `NRFX_ASSERT(m_cb.state != UNINITIALIZED)`.
+2. **Root cause, MEASURED with a Renode watchpoint:** `nrfx_timer_init` DID
+   succeed and wrote `state = 1`; a `memcpy` from `FUN_0102b3f0 + 0x66` into
+   `g_net_ctrl_status_byte` then zeroed it, because iteration 26's *compressed*
+   relocation blocks put the two objects `0xb1` bytes apart where the shipped
+   layout keeps them far apart.
+3. **A defect the parity harness structurally cannot see:** the recovered
+   `timer_configure` carried base frequency `0x000f4240` (1 MHz) where the
+   shipped bytes carry `0x00f42400` (16 MHz) — **the ESB timer was clocked
+   sixteen times too fast**.  Only a byte comparison against the SDK finds it.
+4. **A mechanical sweep replaced crash-by-crash discovery.**  2,506 stock
+   `.text` sections indexed; **153 of the 980 retained recovered net functions
+   are relocation-masked byte-identical to a stock section**, 70 of them in
+   units that own mutable state; **46 shipped RAM addresses attributed to
+   stock-owned `.bss`/`.data` objects**.  Record:
+   `recon/ownership/net_duplicate_singleton_sweep.json`.
+5. **Three complete units displaced** — `nrfx_timer.c` (6 fns, 472
+   distinguishing bytes), `esb_dppi.c` (12 fns, 996), `nrfx_ipc.c` (5 sections
+   tiling 408 B exactly, 148).  **`esb.c` is KEPT**: only 32 of its 53 sections
+   are in the shipped image and eight retained reconstructions inside its own VA
+   run match none of them, so Even genuinely diverged there.
+6. **`esb_init` SUCCEEDS for the first time** (probe: `FUN_010333b4 + 0x22a`,
+   the `*initialized = 1` tail) and the stock `esb_ppi_init` runs.
+   `esbslave MasterFramesSeen` is nonetheless still **0**.
+
+| counter | oracle | iter 26 | iter 27 | **iter 28** |
+|---|---:|---:|---:|---:|
+| machine reset | none | none | **≈5.8 s** | **none over 20 s** |
+| `radio TransmittedFrames` | 0x230 | 0x0 | 0x0 | **0xCF** |
+| `vcentral Connected` | True | False | False | **True** |
+| `vcentral ConnectInds` / `DataEvents` | 1 / 0x215 | 0 / 0 | 0 / 0 | **1 / 0x26B** |
+| `esbslave MasterFramesSeen` | 0x175 | 0 | 0 | **0** |
+| `ESB_SYNC_ctx_105a` | 0x02 | 0x01 | 0x01 | **0x01** |
+| `DISPLAY_ON_ctx_fe8` | 0x01 | 0x00 | 0x00 | **0x00** |
+| framebuffer lit px p1 / p2 | 656 / 1,098 | 0 / 0 | 0 / 0 | **0 / 0** |
+
+| device / phase | oracle | iter 26 | iter 27 | **iter 28** |
+|---|---:|---:|---:|---:|
+| LSM6DSO `p1_boot` / `p2_render` | 1,089 / 1,200 | 1,027 / 700 | 551 / 0 | **1,027 / 700** |
+| nPM1300 `p1_boot` / `p2_render` | 291 / 508 | 232 / 370 | 97 / 0 | **232 / 370** |
+| OPT3001 `p1_boot` / `p2_render` | 33 / 80 | 14 / 0 | 14 / 0 | **14 / 0** |
+| ST25DV EEPROM / system port `p1` | 25 / 22 | 11 / 12 | 0 / 6 | **11 / 12** |
+| `saadc` (whole run) | 998 | 71 | 5 | **71** |
+| `gpiote0` / `gpiote1` / `pdm0` | 25 / 0 / 2 | 25 / 0 / 2 | 25 / 0 / 2 | **25 / 0 / 2, hash-EQ** |
+| `spim_a` `p1_boot` / `p2_render` | 764 / 2,881 | 34 / 0 | 34 / 0 | **34 / 0** |
+| `spim_b` | 0 | 0 | 0 | **0, hash-EQ** |
+
+**Per-criterion verdicts (iteration 28):** G-5 **PASS** (34-transaction non-blit
+prefix byte-exact, `0x9F` ID probe answering `0x4010`, `0x46`/`0x31` brightness
+pair), G-6 **PASS**, S-MIC **PASS** (`255852a6c9…` EQ), S-KEYS **PASS**
+(`2f47878f41…` EQ); S-IMU / S-ALS / S-PMIC / S-NFC **PARTIAL** (volumes above,
+state flags all True); G-1, G-2, G-3, S-ADC, S-ESB **FAIL**.  G-3's first
+difference is at index **34** in `p1_boot` (truncation only) and index **0** in
+`p2_render`.  G-4 localiser: our framebuffer is still bit-identical to
+iterations 16–27 (`0c5cc90b07…`), so the first differing row is **y = 267** and
+the first differing pixel **x = 178** (oracle `ffffff`, ours `000000`).
+**Score: 4 PASS / 4 PARTIAL / 6 FAIL** — iteration 26's score restored from
+iteration 27's 4 / 1 / 9, with the radio and BLE-link counters ahead of both.
+
+**Next divergence:** downstream of a working ESB bring-up — whether
+`esb_write_payload` / `start_tx_transaction` (both among the eight `esb.c`
+functions Even modified) key a PTX frame the provisioned slave recognises.
+
+## Everything below this line is the ITERATION 27 measurement, kept for provenance
 
 ## READ THIS FIRST — iteration 27: still 0 lit pixels, and this iteration is a
 ## **REGRESSION on every counter** against iteration 26.  What it buys is

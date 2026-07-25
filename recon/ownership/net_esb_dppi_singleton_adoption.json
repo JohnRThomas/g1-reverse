@@ -1,0 +1,169 @@
+{
+ "schema": 1,
+ "title": "CPUNET esb_dppi.c duplicate-singleton adoption (P4 iteration 28, batch 2)",
+ "core": "net",
+ "upstream_unit": "nrf/subsys/esb/esb_dppi.c (NCS 2.5.1)",
+ "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb_dppi.c.obj)",
+ "singleton_state": {
+  "objects": [
+   ".bss.ramp_up_dppi_group",
+   ".bss.egu_ramp_up",
+   ".bss.egu_timer_start",
+   ".bss.disabled_egu",
+   ".bss.timer_compare1_radio_txen",
+   ".bss.timer_compare0_radio_disable",
+   ".bss.radio_address_timer_stop"
+  ],
+  "shipped_addresses": [
+   "0x2100645a",
+   "0x2100645b",
+   "0x2100645c",
+   "0x2100645d",
+   "0x2100645e",
+   "0x2100645f",
+   "0x21006460"
+  ],
+  "shipped_address_proof": "R_ARM_ABS32 relocations of the stock sections, resolved against the shipped image words (see the sweep's attribution map); the seven bytes are contiguous and in the object's own order.",
+  "retained_referrers_after_displacement": 0,
+  "retained_referrer_proof": "recon/ownership/net_duplicate_singleton_sweep.json cross-references every one of the seven shipped addresses against every retained recovered source: the only referrers are the twelve esb_dppi.c functions themselves, all of which this batch displaces.  No esb.c function touches the DPPI state directly -- esb.c only calls the esb_ppi_* accessors."
+ },
+ "unit_completeness": {
+  "stock_sections": 14,
+  "sections_present_in_shipped_image": 12,
+  "sections_present_and_byte_identical": 12,
+  "sections_absent_from_shipped_image": 2,
+  "absent": [
+   "esb_ppi_for_wait_for_rx_set",
+   "esb_ppi_for_wait_for_rx_clear"
+  ],
+  "note": "The two absent sections were --gc-sections'd out of the shipped link (the vendored esb.c never calls them) and are dropped from ours the same way.  Every esb_dppi.c function the shipped image DOES contain is byte-identical, in the object's own section order, over a contiguous VA run 0x01033b18..0x01033ff8.  The unit is stock and UNMODIFIED -- unlike esb.c in the same archive (see the sweep report's KEEP verdict)."
+ },
+ "adjacent_allocator_check": {
+  "detail": "Stock esb_ppi_init allocates its DPPI channels/groups through nrfx_dppi.c.  The stock .data initialisers in THIS build are byte-identical to the shipped ones (m_allocated_channels 00 c0 ff ff, m_allocated_groups 3f 00 00 00), so the displaced unit allocates from the same free set the shipped firmware did."
+ },
+ "adoptions": [
+  {
+   "raw_symbol": "FUN_01033b18",
+   "va": "0x01033b18",
+   "upstream_symbol": "esb_ppi_for_txrx_set",
+   "upstream_linkage": "public",
+   "section_bytes": 216,
+   "distinguishing_bytes": 184,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033bf0",
+   "va": "0x01033bf0",
+   "upstream_symbol": "esb_ppi_for_txrx_clear",
+   "upstream_linkage": "public",
+   "section_bytes": 132,
+   "distinguishing_bytes": 120,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033c74",
+   "va": "0x01033c74",
+   "upstream_symbol": "esb_ppi_for_fem_set",
+   "upstream_linkage": "public",
+   "section_bytes": 48,
+   "distinguishing_bytes": 44,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033ca4",
+   "va": "0x01033ca4",
+   "upstream_symbol": "esb_ppi_for_fem_clear",
+   "upstream_linkage": "public",
+   "section_bytes": 44,
+   "distinguishing_bytes": 40,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033cd0",
+   "va": "0x01033cd0",
+   "upstream_symbol": "esb_ppi_for_retransmission_set",
+   "upstream_linkage": "public",
+   "section_bytes": 80,
+   "distinguishing_bytes": 72,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033d20",
+   "va": "0x01033d20",
+   "upstream_symbol": "esb_ppi_for_retransmission_clear",
+   "upstream_linkage": "public",
+   "section_bytes": 52,
+   "distinguishing_bytes": 48,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033d54",
+   "va": "0x01033d54",
+   "upstream_symbol": "esb_ppi_for_wait_for_ack_set",
+   "upstream_linkage": "public",
+   "section_bytes": 76,
+   "distinguishing_bytes": 68,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033da0",
+   "va": "0x01033da0",
+   "upstream_symbol": "esb_ppi_for_wait_for_ack_clear",
+   "upstream_linkage": "public",
+   "section_bytes": 68,
+   "distinguishing_bytes": 60,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033de4",
+   "va": "0x01033de4",
+   "upstream_symbol": "esb_ppi_radio_disabled_get",
+   "upstream_linkage": "public",
+   "section_bytes": 12,
+   "distinguishing_bytes": 8,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033df0",
+   "va": "0x01033df0",
+   "upstream_symbol": "esb_ppi_init",
+   "upstream_linkage": "public",
+   "section_bytes": 244,
+   "distinguishing_bytes": 168,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033ee4",
+   "va": "0x01033ee4",
+   "upstream_symbol": "esb_ppi_disable_all",
+   "upstream_linkage": "public",
+   "section_bytes": 84,
+   "distinguishing_bytes": 64,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033f38",
+   "va": "0x01033f38",
+   "upstream_symbol": "esb_ppi_deinit",
+   "upstream_linkage": "public",
+   "section_bytes": 192,
+   "distinguishing_bytes": 120,
+   "agreement": "entire section, every unmasked byte"
+  }
+ ],
+ "linker_aliases": [
+  "PROVIDE(FUN_01033b18 = esb_ppi_for_txrx_set);",
+  "PROVIDE(FUN_01033bf0 = esb_ppi_for_txrx_clear);",
+  "PROVIDE(FUN_01033c74 = esb_ppi_for_fem_set);",
+  "PROVIDE(FUN_01033ca4 = esb_ppi_for_fem_clear);",
+  "PROVIDE(FUN_01033cd0 = esb_ppi_for_retransmission_set);",
+  "PROVIDE(FUN_01033d20 = esb_ppi_for_retransmission_clear);",
+  "PROVIDE(FUN_01033d54 = esb_ppi_for_wait_for_ack_set);",
+  "PROVIDE(FUN_01033da0 = esb_ppi_for_wait_for_ack_clear);",
+  "PROVIDE(FUN_01033de4 = esb_ppi_radio_disabled_get);",
+  "PROVIDE(FUN_01033df0 = esb_ppi_init);",
+  "PROVIDE(FUN_01033ee4 = esb_ppi_disable_all);",
+  "PROVIDE(FUN_01033f38 = esb_ppi_deinit);"
+ ],
+ "total_distinguishing_bytes": 996
+}
