@@ -3338,9 +3338,16 @@ PROVIDE(m_dppi_channels = g1_ram_arena + 0x941c);
 PROVIDE(g_metal_generic_bus = g1_ram_arena + 0x9424);
 PROVIDE(metal_log_handler = g1_ram_arena + 0x9428);
 PROVIDE(_kernel = g1_ram_arena + 0x9448);
+/* iteration 12: interior views of the real linked `_kernel` (original base
+ * 0x2000b448, size 0x28 == struct z_kernel).  The arena binding pointed the
+ * recovered scheduler at dead storage while the STOCK sched.c code used the
+ * real _kernel, so unready_thread() unlinked from an empty private runq and
+ * the sleeping thread was never actually removed from the ready queue --
+ * z_tick_sleep then asserted _THREAD_SUSPENDED after z_swap returned.
+ *   +0x08 cpus[0].current   +0x10 cpus[0].id   +0x1c ready_q.runq */
 PROVIDE(g_current_thread_ptr = g1_ram_arena + 0x9450);
 PROVIDE(g_spinlock_validate_owner = g1_ram_arena + 0x9458);
-PROVIDE(g_sched_ready_runq = g1_ram_arena + 0x9464);
+PROVIDE(g_sched_ready_runq = _kernel + 0x1c);
 PROVIDE(mutex_spinlock_b470 = g1_ram_arena + 0x9470);
 PROVIDE(g_mutex_lock_spinlock = g1_ram_arena + 0x9474);
 PROVIDE(g_2000b478 = g1_ram_arena + 0x9478);
@@ -3374,6 +3381,10 @@ PROVIDE(g_bt_hci_pending_opcode = g1_ram_arena + 0xdf06);
 PROVIDE(g_bt_hci_acl_frag_conn_handle = g1_ram_arena + 0xdf08);
 PROVIDE(sc_range = g1_ram_arena + 0xdf14);
 PROVIDE(sc_cfg = g1_ram_arena + 0xdf18);
+/* iteration 12: NOT rebound.  The 0x2000ff18/+1 pair really is an interior
+ * view, but gatt.c's `sc_cfg` is a FILE-LOCAL static (nm: `b`), so no
+ * linker-script reference can reach it -- the iteration-11 class (b)
+ * limitation.  Both stay in the arena, which keeps their mutual offset. */
 PROVIDE(g_bt_gatt_sc_cfg_addr_ff19 = g1_ram_arena + 0xdf19);
 PROVIDE(last_static_handle = g1_ram_arena + 0xdf3c);
 PROVIDE(g_change_work_mode_busy = g1_ram_arena + 0xdf4b);

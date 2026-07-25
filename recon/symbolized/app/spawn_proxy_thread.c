@@ -1,3 +1,5 @@
+#include <zephyr/kernel.h>
+#undef NRF_NVMC_S
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_00047ad0 @ 0x00047ad0
  * public-name: spawn_proxy_thread
@@ -13,12 +15,14 @@
  */
 /* Reconstructed FUN_00047ad0 @ 0x47ad0  (parity: 300/300 trials, PROVEN) */
 
-#include <stdint.h>
-extern int z_impl_k_thread_create(int a,int b,int c,int d,int e,int f,int g,int h,int i);
 int spawn_proxy_thread(int param_1)
 {
-  int iVar1;
-  iVar1 = z_impl_k_thread_create(((unsigned long)&g_proxy_thread) /*=0x20004c08*/,((unsigned long)&g_proxy_thread_stack) /*=0x20028668*/,0x800,ADDR_proxy_thread_handler_THUMB /*=0x47c49*/,param_1,0,0,0xfffffff4,0);
-  *(volatile int*)((unsigned long)&g_proxy_thread_id) /*=0x2000a090*/ = iVar1;
-  return -(unsigned int)(iVar1 == 0);
+  k_tid_t tid = k_thread_create((struct k_thread *)((unsigned long)&g_proxy_thread) /*=0x20004c08*/,
+                                (k_thread_stack_t *)((unsigned long)&g_proxy_thread_stack) /*=0x20028668*/,
+                                0x800,
+                                (k_thread_entry_t)(unsigned long)(ADDR_proxy_thread_handler_THUMB /*=0x47c49*/),
+                                (void *)(unsigned long)param_1, NULL, NULL,
+                                (int)0xfffffff4, 0, K_NO_WAIT);
+  *(volatile int*)((unsigned long)&g_proxy_thread_id) /*=0x2000a090*/ = (int)(unsigned long)tid;
+  return -(int)(unsigned int)(tid == 0);
 }

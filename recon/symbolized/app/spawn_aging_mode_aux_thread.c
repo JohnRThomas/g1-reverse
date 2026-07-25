@@ -1,3 +1,5 @@
+#include <zephyr/kernel.h>
+#undef NRF_NVMC_S
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_0003304c @ 0x0003304c
  * public-name: spawn_aging_mode_aux_thread
@@ -12,10 +14,12 @@
  */
 /* Reconstructed FUN_0003304c @ 0x3304c  (parity: 300/300 trials, PROVEN) */
 
-#include <stdint.h>
-extern void z_impl_k_thread_create(uint32_t,uint32_t,uint32_t,uint32_t,uint32_t,uint32_t,uint32_t,uint32_t,uint32_t);
-
 void spawn_aging_mode_aux_thread(void)
 {
-  z_impl_k_thread_create(((unsigned long)&g_aging_mode_aux_thread) /*=0x20004798*/,((unsigned long)&g_aging_mode_aux_thread_stack) /*=0x20027668*/,0x400,ADDR_mic_transm_thread_THUMB /*=0x324bd*/,0,0,0,0xfffffff4UL,0);
+  k_thread_create((struct k_thread *)((unsigned long)&g_aging_mode_aux_thread) /*=0x20004798*/,
+                  (k_thread_stack_t *)((unsigned long)&g_aging_mode_aux_thread_stack) /*=0x20027668*/,
+                  0x400,
+                  (k_thread_entry_t)(unsigned long)(ADDR_mic_transm_thread_THUMB /*=0x324bd*/),
+                  NULL, NULL, NULL,
+                  (int)0xfffffff4, 0, K_NO_WAIT);
 }

@@ -4083,3 +4083,377 @@ onto the arena), new `recon/emulator/scripts/check_ram_pin_collisions.py`.
 **No canonical `recon/app/src` body changed**, no `tools/` change, no
 Kconfig / `prj.conf` / devicetree change, `armemul` untouched (only extra
 `.resc` files under `/tmp`). Nothing committed.
+
+## Iteration 12 — the dropped 64-bit `k_timeout_t delay` at every `k_thread_create`
+
+**Headline.** The liveness blocker is **fixed and proven**: all nine
+`k_thread_create` boundaries now pass the 64-bit `k_timeout_t delay` the
+original writes at `sp+0x18`, every fixed body compiles to an
+**instruction-for-instruction match of the original frame**, and the boot
+changes from "16 threads created, none ever runs" to **worker threads actually
+starting and executing** (`ble_work_thread` → `ancs_main` run 13 instructions
+after `z_impl_k_thread_create` returns, via `z_sched_start` → `ready_thread` →
+`z_reschedule` → `arch_swap`). The harness blind spot that hid this is now
+closed by a new directed check,
+`recon/emulator/scripts/check_thread_create_stack_args.py`, which **FAILs 8/9
+sites on the pre-fix sources and PASSes 9/9 after** — the first mechanical
+detector this repo has for *outgoing stack arguments*.
+
+**E4 is still NOT reached, and the headline boot metrics REGRESSED.** Once the
+threads really run, the boot panics 20 000 instructions later on a Zephyr
+scheduler assertion. The panic's cause is diagnosed to a *second, independent*
+misbound RAM pin (`g_current_thread_ptr`, which is `_kernel + 0x8`); rebinding
+it removes the panic but exposes a *third* defect (a CC312-PAL/AES livelock),
+so that rebind was **measured and REVERTED**. Honest summary: **the defect is
+fixed, the boot goes functionally further and metrically backwards.**
+
+| metric | iter 11 baseline `/private/tmp/g1-i11c-app` | **iter 12 final `/private/tmp/g1-i12d-app`** | (measured-and-reverted `g1-i12c-app`) |
+|---|---:|---:|---:|
+| app instr @0.15 s | 6,011,048 | **6,221,826** | 14,882,225 |
+| app unique fns @0.15 s | 768 | **749** | 666 |
+| app resets @0.15 s | 0 | **1 @ 0.0717 s** | 0 |
+| app @2.0 s | 6,239,878 / 816, no fault, no reset | **1 reset, does not survive** | 199,631,345 instr, 0 resets, **livelocked** |
+| net instr / fns @0.15 s | 290,688 / 432 | **286,515 / 420** | 282,706 / 430 |
+| `radio TransmittedFrames` | 0 | **0** | 0 |
+| app FLASH | 626,452 B (63.76 %) | **626,548 B (63.77 %)**, +96 B | 626,548 B |
+| app RAM | 244,229 B (54.21 %) | **244,229 B (54.21 %)**, +0 B | 244,229 B |
+| `nm -u` undefined / duplicate globals | 0 / 0 | **0 / 0** | 0 / 0 |
+| `check_ram_pin_collisions.py` | 0 / 0, EXIT 0 | **0 / 0, EXIT 0** | 0 / 0, EXIT 0 |
+
+No `--allow-multiple-definition`, no weak symbols, no numeric-root hacks, no
+`tools/` change, no Kconfig / `prj.conf` / devicetree change; `armemul`
+untouched (only extra `.resc` files under `/tmp`). Nothing committed. Net core
+not rebuilt (`/private/tmp/g1-i9c-net`, unchanged since iteration 9).
+
+### 12.1 The defect, re-verified from raw bytes
+
+`extract.read` + `arm-zephyr-eabi-objdump -b binary -M force-thumb` on
+`app_update.bin`, e.g. `init_ble_work_thread` @0x2201c:
+
+```
+2201c  push {r4,r5,lr}      2203c  mvn.w r3,#14          ; prio  0xfffffff1
+2201e  mov  r5,r0           22040  mov.w r2,#0x3000      ; stack_size
+22020  sub  sp,#0x24        22044  strd  r3,r4,[sp,#0xc] ; prio, options
+22032  movs r2,#0           22048  strd  r4,r4,[sp,#4]   ; p2, p3
+22034  movs r3,#0           22050  str   r5,[sp,#0]      ; p1
+22036  movs r4,#0           22054  bl    0x71eac
+22038  strd r2,r3,[sp,#0x18]   <-- 64-bit k_timeout_t delay
+```
+
+Stock `z_impl_k_thread_create` (`~/ncs251/zephyr/kernel/thread.c:646`) is
+`(new_thread, stack, stack_size, entry, p1, p2, p3, prio, options, k_timeout_t
+delay)`; with `CONFIG_TIMEOUT_64BIT=1` (confirmed in
+`zephyr/include/generated/autoconf.h`; `CONFIG_USERSPACE` absent) AAPCS puts
+`delay` 8-byte aligned at `sp+0x18` with `sp+0x14` as padding, which is exactly
+the frame above. Our pre-fix `init_ble_work_thread` linked to:
+
+```
+1e9e4  push {r4,r5,lr} ; 1e9e8  sub sp,#28    <-- 0x1c, not 0x24
+       writes only sp+0,4,8,0xc,0x10 ; no strd at sp+0x18
+```
+
+so `z_impl_k_thread_create` read `delay` from **beyond the caller's frame**
+(`sp+0x18` = the pushed `r4`, `sp+0x1c` = the pushed `lr`). `schedule_new_thread`
+then took the `z_add_timeout` branch with a garbage tick count: created, never
+started, no fault. That is precisely iteration 11 §11.6's diagnosis, now
+confirmed byte-for-byte on both sides.
+
+### 12.2 The nine call sites, before/after frame evidence
+
+The candidates were compiled with the **exact cohesive-build command line**
+(pulled from `compile_commands.json`) so the comparison is against real emitted
+code, not an approximation. Every one is an instruction-for-instruction match of
+the original; the only differences are the `orr.w r3,r3,#1` that iteration-P4's
+pointer rebind adds to make an entry pointer Thumb, and literal-pool ordering.
+
+| VA | body | original frame | pre-fix ours | post-fix ours |
+|---|---|---|---|---|
+| 0x2201c | `init_ble_work_thread` | `sub sp,#0x24` + `strd [sp,#0x18]` | `sub sp,#28`, no `[sp,#0x18]` | **`sub sp,#0x24` + `strd r2,r3,[sp,#24]`** |
+| 0x49638 | `spawn_display_thread` | `sub sp,#0x20` + `strd [sp,#0x18]` | `sub sp,#24` | **`sub sp,#32` + `strd r2,r3,[sp,#24]`** |
+| 0x47ad0 | `spawn_proxy_thread` | `sub sp,#0x24` + `strd [sp,#0x18]` | `push {r0..r3,r4,r5,r6,lr}` (28 B) | **`sub sp,#36` + `strd r2,r3,[sp,#24]`** |
+| 0x3304c | `spawn_aging_mode_aux_thread` | `sub sp,#0x24` + `strd [sp,#0x18]` | 28 B frame | **`sub sp,#36` + `strd r2,r3,[sp,#24]`** |
+| 0x198cc | `start_ancs_work_thread` | `sub sp,#0x20` + `strd [sp,#0x18]` | `sub sp,#24` | **`sub sp,#32` + `strd r2,r3,[sp,#24]`** |
+| 0x32fe8 | `start_aging_mode_thread` | `sub sp,#0x20` + `strd r0,r1,[sp,#0x18]` | `sub sp,#24` | **`sub sp,#32` + `strd r0,r1,[sp,#24]`** |
+| 0x23a54 ×2 | `spawn_flash_ops_and_brightness_threads` | `sub sp,#0x24` + `strd r6,r7,[sp,#0x18]` twice | `sub sp,#28`, neither | **`sub sp,#36` + both `strd r6,r7,[sp,#24]`** |
+| 0x7cb66 | `main_dispatch_thread_tick` (veneer) | see below | **`b.w z_impl_k_thread_create`** | **exact veneer reproduced** |
+| 0x2a65c | `run_main_dispatch_thread` | `sub sp,#20`, 4 outgoing words | already correct | unchanged behaviour |
+
+**The veneer was the worst of the nine.** Its reconstruction was
+`extern int z_impl_k_thread_create(void); void main_dispatch_thread_tick(void)
+{ z_impl_k_thread_create(); }`, which GCC compiled to a single
+`b.w z_impl_k_thread_create`. That tail call forwarded the *caller's* four-word
+outgoing block verbatim, so `z_impl_k_thread_create` read
+`p1=context, p2=prio, p3=0, prio=0, options=<caller's stack>, delay=<garbage>`
+— i.e. **all eight dispatch threads got a corrupted argument frame**, not merely
+a bad delay. The original is a genuine re-layer:
+
+```
+7cb66  push {r4,r5,lr} ; sub sp,#0x24
+7cb6a  ldrd r4,r5,[sp,#0x38]   ; caller's own delay  (its sp+0x08)
+7cb6e  strd r4,r5,[sp,#0x18]   ; callee delay
+7cb74  ldr  r5,[sp,#0x34]      ; caller's prio       (its sp+0x04)
+7cb76  str  r4,[sp,#0x10]      ; options = 0
+7cb78  strd r4,r5,[sp,#0x08]   ; p3 = 0, prio
+7cb7c  str  r4,[sp,#0x04]      ; p2 = 0
+7cb7e  ldr  r4,[sp,#0x30]      ; caller's p1         (its sp+0x00)
+7cb80  str  r4,[sp,#0x00]
+7cb82  bl   0x71eac
+```
+
+so its true signature is
+`(struct k_thread*, k_thread_stack_t*, size_t, k_thread_entry_t, void *p1,
+int prio, k_timeout_t delay)` with `p2`, `p3` and `options` hard-coded to 0.
+Written that way and compiled, GCC emits that block **instruction for
+instruction, in the same order**.
+
+**Resolution of iteration 11's argument-order question.** Iteration 11 suspected
+`run_main_dispatch_thread`'s `CREATE_DISPATCH_THREAD` macro of "passing
+`priority` where `p2` belongs". It does not. The original 0x2a65c uses
+`sub sp,#20` and writes exactly four outgoing words —
+`strd r4,r5,[sp]` (p1, prio) and `strd r6,r7,[sp,#8]` (the 64-bit delay = 0) —
+which is precisely what the old 8-`uint32_t` prototype produced. `run_main_dispatch_thread`
+was **already correct**; 100 % of that site's defect lived in the veneer's own
+definition. The directed check confirms it independently: with `{0x7cb66: 4}`
+pinned, 0x2a65c is the **only one of the nine sites that PASSed before the fix**.
+Its prototype was still updated to the real `k_timeout_t` so caller and callee
+agree; emitted code is unchanged apart from GCC now materialising the delay in
+`r6/r7` (`movs r6,#0; movs r7,#0; strd r6,r7,[sp,#8]`) — which is what the
+original does, and is closer to it than before.
+
+**How they are written now.** Per the owner's stated direction (library types
+for correctness) the build-tree bodies use the real Zephyr API:
+`#include <zephyr/kernel.h>` and `k_thread_create(..., prio, 0, K_NO_WAIT)`
+(plus `k_timer_init`, `k_sem_init` with their real prototypes where the same TU
+declared them loosely). The syscall inline expands to a direct
+`bl z_impl_k_thread_create`, so the emitted code is identical while a future
+prototype mismatch becomes a compile error. One `#undef NRF_NVMC_S` is needed
+per file because `g1_app_symbols.h` and nRFX's `nrf5340_application.h` both
+define that macro. The **canonical `recon/app/src` bodies stay header-free**
+(the parity harness compiles them standalone with stub callees), so there the
+fix is the minimal, ABI-identical form: the `FUN_00071eac` prototype gains a
+trailing `unsigned long long` and each call gains `, 0ULL`.
+
+### 12.3 The new directed check — closing the blind spot
+
+`emu.compare` keys its trace on the return register(s), the ordered *non-stack*
+memory writes, and the call order with the callee's arguments — and it captures
+**stack** arguments only for callees listed in `call_stack_arity_by_target`
+(which `cfg_verify` feeds from `REVIEWED_TARGET_CALL_STACK_ARITIES`). There was
+no reviewed entry for `z_impl_k_thread_create`, which is exactly why eight
+bodies that never wrote `sp+0x18` were all "300/300 PROVEN".
+
+`recon/emulator/scripts/check_thread_create_stack_args.py` pins
+`{0x00071eac: 8}` at the eight direct sites and `{0x0007cb66: 4}` at the
+veneer's caller. It reads the canonical bodies from `recon/app/src`, **changes
+nothing under `tools/`** (the single cfg_verify-routed site augments that
+module's reviewed dict in memory for the duration of the run), and it was
+validated as *discriminating*, not merely green:
+
+```
+                       pre-fix sources        post-fix sources
+FUN_0002201c   0x2201c   FAIL (60/60)             PASS (120)
+FUN_00049638   0x49638   FAIL                     PASS
+FUN_00047ad0   0x47ad0   FAIL                     PASS
+FUN_0003304c   0x3304c   FAIL                     PASS
+start_ancs_…   0x198cc   FAIL                     PASS
+FUN_00032fe8   0x32fe8   FAIL                     PASS
+FUN_00023a54   0x23a54   FAIL                     PASS
+FUN_0007cb66   0x7cb66   FAIL                     PASS
+FUN_0002a65c   0x2a65c   PASS  (already correct)  PASS
+EXIT=1 (1/9)                                   EXIT=0 (9/9)
+```
+
+Three traps were found and handled while building it, and they are the reason a
+naive version of this check would have been worthless:
+
+1. **The candidate's call stubs move.** Without
+   `candidate_direct_target_map=recon.LAST_DIRECT_TARGET_MAP` the candidate's
+   semantic-target lookup misses, it captures **zero** stack words for every
+   call, and all nine sites "FAIL" for a bookkeeping reason.
+2. **Two sites never reach the call under random seeding**
+   (`start_aging_mode_thread` needs `*(u8*)0x20019ef1 == 0`;
+   `start_ancs_work_thread` needs `get_device_info()[0] == 2` and
+   `is_battery_critical() != 1`). Both originally reported PASS *with the defect
+   present*. They now carry reviewed path-forcing fixtures, and **every
+   emu-routed site asserts the pinned callee was actually called** (`reached`
+   column) so a never-reached PASS cannot recur.
+3. **`start_ancs_work_thread` also needed reviewed register arities**
+   (`get_device_info` 0, `is_battery_critical` 0, `debug_print` 0,
+   `log_message` 2); with the default arity of 4 it mismatched on scratch
+   registers regardless of stack arguments.
+
+`cfg_verify` re-proof of all nine bodies after the fix: **9/9 PASS** (40 CFG
+cases each, 8 for 0x2a65c), i.e. no regression in what it does cover.
+
+### 12.4 Systematic sweep for the class
+
+**Scope.** Rather than grep, the whole shipped `.text` was decoded for
+`BL`-immediate instructions (T1 encoding, 25-bit signed displacement) and every
+call to a target whose real Zephyr 3.4.99 prototype places arguments on the
+stack was enumerated. Under `CONFIG_TIMEOUT_64BIT` the candidate set is small
+and can be reasoned about exhaustively: a `k_timeout_t` costs two words but is
+usually absorbed by `r2/r3`, so only four APIs actually spill —
+`k_thread_create` (8 words), `k_pipe_put`/`k_pipe_get` (4, **not called by this
+firmware**), `k_timer_start` (2) and `k_work_queue_start` (1). Everything else
+in the plausible list (`k_work_schedule`, `k_work_reschedule`, `k_msgq_put/get`,
+`k_sem_take`, `k_sleep`, `k_msleep`, `k_mutex_lock`, `k_poll`, `k_heap_alloc`,
+`k_mem_slab_alloc`, `k_queue_get`, `k_stack_pop`, `k_thread_join`,
+`k_condvar_wait`, `z_add_timeout`) passes its timeout in `r2/r3` and has **no**
+outgoing stack word, so the class cannot bite there.
+
+**Result — 26 call sites across the three live targets:**
+
+| target | sites | verdict |
+|---|---:|---|
+| `z_impl_k_thread_create` @0x71eac | 13 (12 owners) | 9 fixed here; 3 in bodies **displaced to stock Zephyr** (`bt_enable` @0x54ace, `ipc_static_vrings_init` @0x4d2a4, `k_work_queue_start` @0x73180 — none retained, so the stock call sites are correct); **1 in a Ghidra catalog gap** (below) |
+| `z_impl_k_timer_start` @0x75174 (2 words) | 7 | `main` (×2) and `uarte_nrfx_isr` pass with the pin; `ble_process_req_dispatch` and `main` were already in `REVIEWED_TARGET_CALL_STACK_ARITIES` with `{0x75174: 2}`; `img_mgmt_upload`, `opt3001_chip_init`, `saadc_start_read`, `z_log_msg_post_finalize` are stock-displaced or need cfg_verify context. **No defect found.** |
+| `k_work_queue_start` @0x730e8 (1 word) | 5 | `ipc_rpmsg_backend_register` and `bt_settings_save_or_delete_key` PASS both with and without the pin; the rest are stock. **No defect found.** |
+
+So the class is **confined to `k_thread_create`**, and within it to the nine
+bodies fixed here — with one genuinely new finding:
+
+**A 13th `k_thread_create` call at 0x260c2 lives in an uncatalogued function.**
+Ghidra's nearest preceding symbol is `panel_level_calc_cached` (0x25ecc, size
+196 → ends 0x25f90), and the next catalog entry is `update_imu_mode` (0x26100),
+so the call sits in the gap [0x25f90, 0x26100). Its literals decode to
+thread `0x20003fe8`, stack `0x20023568`, size 0x700, prio `mvn #10` = −11, and
+**entry 0x0000fe89 = `imu_fusion_thread`**. No reconstruction owns that gap, so
+**our build never creates the IMU fusion thread at all** — directly relevant to
+the sensor half of the parity goal. Recovering that function is a concrete
+iteration-13 item.
+
+### 12.5 What the boot does now, and the next divergence
+
+With the fix the scheduler behaves: `init_ble_work_thread` →
+`z_impl_k_thread_create` → `z_setup_new_thread` → `z_sched_start` →
+`ready_thread` → `update_cache` → `z_reschedule` → `arch_swap` → `z_arm_pendsv`
+→ **`ble_work_thread` (0x1e784) executes**, calls **`ancs_main`**,
+`get_device_info`, then `k_msleep`. That is the first time any application
+worker thread has ever run in this project. Threads that execute: **2 of 16**
+(`ble_work_thread`, `ancs_main`) — the rest are created later in `main`, past
+the panic point.
+
+**New first divergence (app), at instruction 5 929 081 / 0.0717 s:**
+a `__ASSERT` inside the recovered `z_tick_sleep` (0x466e6..0x46708, sched.c line
+1458) — after `z_swap` returns, `_current->base.thread_state` still has
+`_THREAD_SUSPENDED` set. UART:
+
+```
+[00:00:00.071,746] <err> os: Faulting instruction address (r15/pc): 0x000779f8
+[00:00:00.071,746] <err> os: >>> ZEPHYR FATAL ERROR 4: Kernel panic on CPU 0
+[00:00:00.071,777] <err> os: Current thread: 0x20004e00      (= g_ble_work_thread)
+```
+
+**Root cause, proven from disassembly:** `z_tick_sleep` calls the recovered
+`unready_thread` (0x4644c), whose last act is
+`update_cache(*g_current_thread_ptr == thread)`. `g_current_thread_ptr` is pin
+0x2000b450, which is `_kernel + 0x8` — `_kernel`'s original base is
+**0x2000b448** (stated in `sched_update_cache`'s own provenance header, and
+corroborated by the recovered `sched_update_cache` reading `[_kernel,#8]`
+current, `[+12]` idle_thread, `[+24]` ready_q.cache, `[+28]` runq — exactly the
+0x28-byte `struct z_kernel` our ELF links). Iteration 11 sent that pin to
+`g1_ram_arena` instead, so the comparison reads dead storage, yields
+`preempt_ok = 0`, and `sched_update_cache` takes its non-preemptible path
+(`str r2,[r5,#24]` with `r2 = current`) — leaving `_kernel.ready_q.cache`
+pointing at the very thread that just suspended itself. `z_arm_pendsv` switches
+"to" the same thread, `z_tick_sleep` resumes with `SUSPENDED` still set, and
+asserts.
+
+### 12.6 The `_kernel` interior-pin rebind: proven correct, measured, REVERTED
+
+A mechanical sweep (every arena pin whose original address lands inside the
+extent of a real linked object whose name is itself a pin) found **4 candidates
+across 12 owners**:
+
+```
+owner=_kernel  base=0x2000b448 size=0x28   g_current_thread_ptr      @0x2000b450 +0x8
+owner=_kernel                              g_spinlock_validate_owner @0x2000b458 +0x10
+owner=_kernel                              g_sched_ready_runq        @0x2000b464 +0x1c
+owner=sc_cfg   base=0x2000ff18 size=0x24   g_bt_gatt_sc_cfg_addr_ff19@0x2000ff19 +0x1
+```
+
+`sc_cfg` was a **false positive of the sweep**: gatt.c's `sc_cfg` is a
+file-local static (`nm`: `b sc_cfg`), so no linker-script reference can reach it
+— the iteration-11 §11.4 class-(b) limitation. Binding to it produced an
+`A sc_cfg` alias and the collision checker correctly reported
+`bound_pins_escaping_their_owner = 1`. Reverted; the sweep should filter owners
+to uppercase (global) `nm` classes.
+
+The three `_kernel` binds are unambiguous. Measured individually:
+
+| build | change | app @0.15 s | resets | notes |
+|---|---|---:|---:|---|
+| `/private/tmp/g1-i12a-app` | thread fix only | 6,221,826 / 749 | 1 @0.0717 s | `ble_work_thread`, `ancs_main` run |
+| `/private/tmp/g1-i12d-app` | **+ `g_sched_ready_runq = _kernel+0x1c`** | 6,221,826 / 749 | 1 @0.0717 s | **byte-identical trace** to i12a → neutral, kept |
+| `/private/tmp/g1-i12c-app` | + `g_current_thread_ptr`, + `g_spinlock_validate_owner` | 14,882,225 / 666 | **0** | **REVERTED** |
+
+`g1-i12c-app` removes the panic entirely — the scheduler now preempts correctly
+— but it unmasks the *next* defect and the boot never finishes `main`
+(51 `main` entries vs 70). The first divergence between i12a and i12c is at
+instruction 5 394 154, inside `__malloc_unlock` →
+`g1_recon_retarget_lock_release_recursive` → `thunk_FUN_00072558`: with a real
+`_current` that recursive lock stops short-circuiting and performs a genuine
+`k_mutex_unlock`. Downstream the CC312 PAL enters a lock/AES loop that never
+terminates — `ProcessAesDrv` **248 → 66,939** entries, `InitAes` **93 →
+25,102**, `z_impl_k_mutex_unlock` **192 → 150,834**, `mutex_lock_platform`
+**absent → 50,271**. A 2.0 s untraced run confirms a livelock: **199,631,345
+instructions, 0 resets, UART silent after the boot banner** (≈99 % CPU busy vs
+≈40 % for the baseline, so this is spinning, not slowness).
+
+Per the standing rule the regressing subset was reverted. **Iteration 13 Step A
+is to land `PROVIDE(g_current_thread_ptr = _kernel + 0x8)` together with a fix
+for the CC312-PAL/newlib-retarget recursive-lock loop it exposes** — the two
+have to move as one unit.
+
+### 12.7 Function-set diff (0.15 s, vs iteration-11 baseline)
+
+**Gained (24):** `ble_work_thread`, `ancs_main`, `k_msleep_ticks32768_d`
+(the threads finally running) plus the whole panic path (`assert_post_action`,
+`z_arm_svc`, `_oops`, `z_do_kernel_oops`, `z_arm_fatal_error`, `z_fatal_error`,
+`k_sys_fatal_error_handler`, `panic`, `z_impl_log_panic`, `sys_arch_reboot`,
+`is_ptr`, `k_thread_name_get`, `print_formatted`, `newline_print`,
+`log_source_name_get`, `z_log_get_tag`, `encode_uint`, `extract_decimal`,
+`outs`, `z_impl_k_timer_stop`, `z_unpend1_no_timeout`).
+
+**Lost (43):** the periodic-loop and sensor tail that only executes *after*
+0.0717 s — `periodic_check_run`, `low_speed_peripheral_dispatch_thread`,
+`fuel_gauge_*`, `npm1300_charger_*`, `msg_queue_init`, `handle_box_placement_event`,
+`display_dev_reg_config`, the `nrfx_gppi`/`nrfx_dppi` teardown, the softfloat
+helpers they call. **None of these were broken; the boot simply dies earlier.**
+
+### 12.8 E4 status and graphics-oracle comparison
+
+**Not reached.** `spi_read_id`, `panel_on`, `spi_master_init`, `bt_enable`,
+`bt_start`, `master_display_thread`, `display_thread_handler` are all absent
+from the trace and `radio TransmittedFrames` is **0**. `power_for_panel` runs
+(5 entries) but no SPI transaction reaches the JBD panel model, so **no
+comparison against `display_sensor_oracle.json` was possible** — criteria G-5
+(`0x9F`→`0x4010`, the three-band 153 600 B clear, five `0xC0` words, the
+`0x46`/`0x31` brightness pairs) are all **untested, not failed**.
+
+### Regenerate (iteration 12)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_thread_create_stack_args.py --trials 120   # EXIT=0, 9/9
+PYTHONSAFEPATH=1 .venv/bin/python -c "import sys;sys.path.insert(0,'tools');import cfg_verify as c;\
+ [print(n, c.verify('app',n)['status']) for n in ('FUN_0002201c','FUN_00049638','FUN_00047ad0','FUN_0003304c',\
+ 'start_ancs_work_thread','FUN_00032fe8','FUN_00023a54','FUN_0007cb66','FUN_0002a65c')]"            # 9x PASS
+recon/application/build_cohesive.sh app /private/tmp/g1-i12d-app
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py \
+    /private/tmp/g1-i12d-app/zephyr/zephyr.elf                                                      # EXIT=0
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check
+# net unchanged since iteration 9: /private/tmp/g1-i9c-net
+<scratchpad>/mkrun.sh i12d /private/tmp/g1-i12d-app /private/tmp/g1-i9c-net 0.15
+```
+
+Files changed: `recon/app/src/{FUN_0002201c,FUN_00023a54,FUN_00032fe8,FUN_0003304c,
+FUN_00047ad0,FUN_00049638,FUN_0007cb66,start_ancs_work_thread}.c` (canonical,
+re-proven); the same nine bodies in `recon/named/` and `recon/symbolized/app/`
+(the built tree, propagated by hand — `symbolize.py`'s sanctioned path is still
+unavailable, its hardcoded scratchpad `symbol_map.json` being gone);
+`recon/symbols/g1_app_globals.ld` (one rebind kept, two reverted with a comment,
+one false positive documented); new
+`recon/emulator/scripts/check_thread_create_stack_args.py`. No `tools/` change,
+no Kconfig / `prj.conf` / devicetree change, `armemul` untouched. Nothing
+committed.

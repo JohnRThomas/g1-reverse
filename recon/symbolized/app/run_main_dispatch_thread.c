@@ -1,3 +1,5 @@
+#include <zephyr/kernel.h>
+#undef NRF_NVMC_S
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_0002a65c @ 0x0002a65c
  * public-name: run_main_dispatch_thread
@@ -59,13 +61,17 @@ extern void start_aging_mode_thread(void);
 extern void spawn_aging_mode_aux_thread(void);
 extern void spawn_proxy_thread(void *);
 extern void spawn_display_thread(void *);
-extern void main_dispatch_thread_tick(uint32_t, uint32_t, uint32_t, uint32_t,
-                         void *, int32_t, uint32_t, uint32_t);
+extern void main_dispatch_thread_tick(struct k_thread *thread,
+                         k_thread_stack_t *stack, size_t stack_size,
+                         k_thread_entry_t entry, void *p1, int prio,
+                         k_timeout_t delay);
 extern void kmutex_dlist_init(uint32_t);
 
 #define CREATE_DISPATCH_THREAD(control, stack, stack_size, entry, context, priority) \
-    main_dispatch_thread_tick((control), (stack), (stack_size), (entry), \
-                 (context), (priority), 0, 0)
+    main_dispatch_thread_tick((struct k_thread *)(control), \
+                 (k_thread_stack_t *)(stack), (stack_size), \
+                 (k_thread_entry_t)(unsigned long)(entry), \
+                 (void *)(context), (priority), K_NO_WAIT)
 
 void run_main_dispatch_thread(char *dispatch_mode)
 {

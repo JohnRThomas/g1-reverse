@@ -21,12 +21,15 @@ extern void log_message(int,...);
 extern int get_device_info(void);
 extern int debug_print(void);
 extern int is_battery_critical(void);
-extern int z_impl_k_thread_create(unsigned,unsigned,int,unsigned,unsigned,int,int,int,int);
+/* CONFIG_TIMEOUT_64BIT: z_impl_k_thread_create's 10th parameter is a
+ * 64-bit k_timeout_t delay, AAPCS-placed 8-byte aligned at sp+0x18.
+ * The original writes it (strd r,r,[sp,#0x18]); it must be passed. */
+extern int z_impl_k_thread_create(unsigned,unsigned,int,unsigned,unsigned,int,int,int,int,unsigned long long);
 void start_ancs_work_thread(unsigned param_1){
   char* pcVar1; int iVar2;
   pcVar1 = (char*)get_device_info();
   if((*(unsigned char*)pcVar1==2) && (iVar2=is_battery_critical(), iVar2!=1)){
-    z_impl_k_thread_create(0x20003c50, 0x2001d568, 0x1400, 0x19719, param_1, 0,0,0xfffffff5,0);
+    z_impl_k_thread_create(0x20003c50, 0x2001d568, 0x1400, 0x19719, param_1, 0,0,0xfffffff5,0,0ULL);
     if(2 < *(volatile int*)0x2000230cUL){
       if(*(volatile int*)0x20007554UL != 0){
         debug_print();

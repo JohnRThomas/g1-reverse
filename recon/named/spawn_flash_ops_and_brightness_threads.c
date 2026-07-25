@@ -16,9 +16,12 @@
  */
 /* Reconstructed FUN_00023a54 @ 0x23a54  (parity: 300/300 trials, PROVEN) */
 extern void z_impl_k_sem_init(unsigned a, int b, int c);
-extern void z_impl_k_thread_create(unsigned, ...);
+/* CONFIG_TIMEOUT_64BIT: z_impl_k_thread_create's 10th parameter is a
+ * 64-bit k_timeout_t delay, AAPCS-placed 8-byte aligned at sp+0x18.
+ * The original writes it (strd r,r,[sp,#0x18]); it must be passed. */
+extern void z_impl_k_thread_create(unsigned,unsigned,unsigned,unsigned,int,int,int,int,int,unsigned long long);
 void spawn_flash_ops_and_brightness_threads(int param_1){
     z_impl_k_sem_init(0x200079e4, 0, 0x14);
-    z_impl_k_thread_create(0x20003e38, 0x20021968, 0x800, 0x23481, param_1, 0, 0, 0xfffffff4, 0);
-    z_impl_k_thread_create(0x20003f10, 0x20022168, 0x1400, 0x23845, param_1, 0, 0, 0xfffffff5, 0);
+    z_impl_k_thread_create(0x20003e38, 0x20021968, 0x800, 0x23481, param_1, 0, 0, 0xfffffff4, 0, 0ULL);
+    z_impl_k_thread_create(0x20003f10, 0x20022168, 0x1400, 0x23845, param_1, 0, 0, 0xfffffff5, 0, 0ULL);
 }

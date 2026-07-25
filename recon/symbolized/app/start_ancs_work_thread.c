@@ -1,3 +1,5 @@
+#include <zephyr/kernel.h>
+#undef NRF_NVMC_S
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_000198cc @ 0x000198cc
  * public-name: start_ancs_work_thread
@@ -22,12 +24,17 @@ extern void log_message(int,...);
 extern int get_device_info(void);
 extern int debug_print(void);
 extern int is_battery_critical(void);
-extern int z_impl_k_thread_create(unsigned,unsigned,int,unsigned,unsigned,int,int,int,int);
+
 void start_ancs_work_thread(unsigned param_1){
   char* pcVar1; int iVar2;
   pcVar1 = (char*)get_device_info();
   if((*(unsigned char*)pcVar1==2) && (iVar2=is_battery_critical(), iVar2!=1)){
-    z_impl_k_thread_create(((unsigned long)&g_ancs_work_thread) /*=0x20003c50*/, ((unsigned long)&g_ancs_work_thread_stack) /*=0x2001d568*/, 0x1400, ADDR_ble_ancs_data_req_thread_THUMB /*=0x19719*/, param_1, 0,0,0xfffffff5,0);
+    k_thread_create((struct k_thread *)((unsigned long)&g_ancs_work_thread) /*=0x20003c50*/,
+                    (k_thread_stack_t *)((unsigned long)&g_ancs_work_thread_stack) /*=0x2001d568*/,
+                    0x1400,
+                    (k_thread_entry_t)(unsigned long)(ADDR_ble_ancs_data_req_thread_THUMB /*=0x19719*/),
+                    (void *)(unsigned long)param_1, NULL, NULL,
+                    (int)0xfffffff5, 0, K_NO_WAIT);
     if(2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/){
       if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ != 0){
         debug_print();

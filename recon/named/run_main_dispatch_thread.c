@@ -58,13 +58,15 @@ extern void start_aging_mode_thread(void);
 extern void spawn_aging_mode_aux_thread(void);
 extern void spawn_proxy_thread(void *);
 extern void spawn_display_thread(void *);
+/* The 7th parameter is a 64-bit k_timeout_t delay; the two trailing zero
+ * words the macro passes are exactly that value (K_NO_WAIT). */
 extern void main_dispatch_thread_tick(uint32_t, uint32_t, uint32_t, uint32_t,
-                         void *, int32_t, uint32_t, uint32_t);
+                         void *, int32_t, unsigned long long);
 extern void kmutex_dlist_init(uint32_t);
 
 #define CREATE_DISPATCH_THREAD(control, stack, stack_size, entry, context, priority) \
     main_dispatch_thread_tick((control), (stack), (stack_size), (entry), \
-                 (context), (priority), 0, 0)
+                 (context), (priority), 0ULL)
 
 void run_main_dispatch_thread(char *dispatch_mode)
 {
