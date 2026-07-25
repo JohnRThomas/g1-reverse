@@ -2982,7 +2982,20 @@ PROVIDE(g_audio_755f8_wait_obj = g1_ram_arena + 0xd04);
 PROVIDE(g_batt_soc_curve_charge_lo = g1_ram_arena + 0xd14);
 PROVIDE(g_batt_soc_curve_charge_hi = g1_ram_arena + 0xd18);
 PROVIDE(g_spline_nan_sentinel = g1_ram_arena + 0xd1c);
-PROVIDE(g_libc_heap_ctrl = g1_ram_arena + 0xd20);
+/* P4 iteration 21: `g_libc_heap_ctrl` (original 0x20002d20) is newlib's
+   `_impure_ptr`: fifteen recovered libc TUs read it as
+   `*(int *)&g_libc_heap_ctrl` and pass the result as the leading `struct
+   _reent *` of `_vsnprintf_r` / `_malloc_r` / `_free_r` / `_strtol_r` ...
+   Bound into the RAM arena it is a `.data` POINTER word, and the arena
+   restore deliberately drops pointer words (see
+   recon/application/gen_app_data_image.py), so it read 0.  Measured
+   (iteration 21): `vsnprintf_impl` called `_vsnprintf_r(NULL, ...)`, which
+   wrote nothing and returned 131; `__sprintf_chk` compared 131 >= 32 and
+   raised the FORTIFY buffer-overflow oops that reset the app core the
+   moment `bt_start()` first formatted the advertised device name.  The
+   linked newlib-nano owns exactly this word, so bind the identity onto it.
+   (was: PROVIDE(g_libc_heap_ctrl = g1_ram_arena + 0xd20);) */
+PROVIDE(g_libc_heap_ctrl = _impure_ptr);
 PROVIDE(g_20002d84 = g1_ram_arena + 0xd84);
 PROVIDE(g_misc_static_ctx_ptr = g1_ram_arena + 0xe74);
 PROVIDE(g_misc_deferred_req_params = g1_ram_arena + 0xef8);

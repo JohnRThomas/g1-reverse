@@ -174,6 +174,18 @@ target_sources(app PRIVATE
   #   recon/application/gen_app_data_image.py --stage a2
   # (the generator documents the load-image base proof and the pointer policy).
   src/g1_app_data_image.c
+  # Iteration 21: 2,128 of the `rodata_<hex>` PROVIDE pins in
+  # recon/symbols/g1_app_globals.ld were still ABSOLUTE in the link (nm class
+  # `A`), i.e. they named ORIGINAL-image flash addresses that hold unrelated
+  # bytes in this relocated build.  1,793 of them are NUL-terminated printable
+  # C strings and are emitted here byte-exactly, which makes the PROVIDE inert.
+  # Measured motivation: bt_start() formats the advertised device name with
+  # __sprintf_chk(name, 0, 0x20, rodata_9acb2, rodata_9ac7c, ...) and both
+  # operands were garbage, so the result overran the 32-byte buffer and
+  # fortify_chk_fail() raised K_ERR_KERNEL_OOPS.  Regenerate with
+  #   recon/application/gen_app_string_rodata.py --elf <link>/zephyr/zephyr.elf
+  # `--gc-sections` still drops the strings nothing references.
+  src/g1_app_string_rodata.c
   src/g1_ipc_serialization_objects.c
   # Iteration 10: the 3-entry ST25DV transport ops vtable (original
   # rodata_88a38).  Its contents are original-image Thumb function pointers, so

@@ -7775,3 +7775,451 @@ no `adoption_manifest.json` change, `armemul` untouched, nothing committed.
    `FUN_0102b1c8` still creates the ESB worker with `K_FOREVER`.
 6. **`CONFIG_MAIN_STACK_SIZE = 1024` remains measured-sufficient, not
    original-verified** (iteration 19 §19.13 item 3).
+
+## Iteration 21 — `device_info[0x1058]` is FIXED: the CPUNET now delivers the
+## `0x0601` "ready" IPC message, `bt_start()` sees state 1 and runs past the
+## guard for the first time — and the app core stalls one step later on a
+## FORTIFY buffer-overflow oops in the device-name `__sprintf_chk`
+
+**Headline, stated before anything else.**  The §20.6 first divergence is
+root-caused and closed.  `device_info[0x1058]` is written by
+`local_ipc_service_recv` **case 6** (`context[0x1058] = 1`), i.e. by an IPC
+message `[0x01, 0x06, <build string>]` that the **CPUNET** sends as the last act
+of `main` (`FUN_0102a720`) — and only if `esb_service_init` (`FUN_0102b5bc`)
+returns 0.  It did not.  **Four independent defects** stood between the CPUNET
+and that message; all four are fixed with disassembly + measurement evidence
+(§21.1–§21.4), and the measured result is
+
+```
+[ERROR] cpuapp: APP_IPCRECV op=6            <-- the 0x0601 message ARRIVES
+[ERROR] cpuapp: BTSTART_STATE byte=0x1      <-- was 0x0 in iteration 20
+```
+
+with `bt_enable()` now completing at **t = 1.40 s instead of t = 5.10 s**
+(`ancs_main` no longer has to time out its 5 s wait for that byte).
+
+**BLE still does not advertise, and this iteration ends in a REGRESSION on the
+reset metric that is reported in full.**  Past the `[0x1058]` guard, `bt_start`
+formats the advertised device name with `__sprintf_chk(name, 0, 0x20, fmt, …)`
+and the recovered printf engine returns 131 for a 16-character result, so
+`fortify_chk_fail()` raises `K_ERR_KERNEL_OOPS` and the app core resets at
+**t = 1.4026 s**.  Two of the three causes of that were found and fixed
+(§21.5, §21.6); the third is named, localised and NOT fixed (§21.7).  So:
+
+| pair | app reset-free @8 s | net reset-free @8 s | `device_info[0x1058]` | `bt_start` past the guard |
+|---|---|---|---|---|
+| iteration 20 (`i20a-app` + `i20d-net`) | **yes** | **yes** | 0 | no |
+| **iteration 21 (`i21b-app` + `i21c-net`)** | **no — oops at t = 1.4026 s** | yes (to that point) | **1** | **yes** |
+
+Both are reported; nothing is claimed for the iteration-21 pair that was not
+measured.
+
+### 21.1 The chain from `device_info[0x1058]` back to the CPUNET
+
+Read forward from the byte, not backward from a guess:
+
+* `bt_start` (`FUN_00019308`) requires `device_info[0x1058] != 0 && != 2`.
+* the only writer of the value **1** is `local_ipc_service_recv`
+  (`FUN_000162ec`) **case 6**, which also `checked_strncpy_zero_pad`s a 0x20-byte
+  name into `g_2000ff4e`.  `ipc0_ept_recv` dispatches it as
+  `handler(device_info, data + 1, length - 1)`, so the wire form is
+  `[0x01, 0x06, …]`.
+* the CPUNET builds exactly that at the end of `main` (`FUN_0102a720`):
+  `*(uint16_t *)&build_message[0] = 0x0601; copy_c_string(&build_message[2], …);
+  send_retry(state, build_message, 32, 100);` — but only after
+  `esb_service_init(primary_role, handler)` returns 0.
+
+Measured with Renode hooks on the iteration-20 pair
+(`/private/tmp/g1-i21/probeA.log`, `probeB.log`):
+
+```
+cpuapp: APP_IPCRECV op=2      <-- registration answered
+cpuapp: APP_IPCSEND b0=1 b1=0 <-- runtime_info_sync -> net sets state->role
+cpunet: NET_START_ESB_WORKERS <-- role IS resolved (1); this path is fine
+cpunet: NET_ESBINIT_CALL role=0
+cpunet: NET_ESBINIT_RET  r0=0xFFFFFFEA        <-- -EINVAL
+cpunet: NET_MAIN_RETURN0                      <-- main() returns; no 0x0601
+```
+
+`op=6` never appeared in an 8 s run.  Everything below is that `-EINVAL`.
+
+### 21.2 Defect A — the on-stack `struct onoff_client` was four scattered
+### locals, so `validate_args()` saw a garbage `sys_notify`
+
+`FUN_0102b5bc`'s shipped prologue is `push {r0, r1, r2, r3, r4, lr}`: **the four
+incoming arguments ARE the initial image of one contiguous 16-byte
+`struct onoff_client` on the stack**, and every later access is an sp-relative
+field of that same object —
+
+```
+102b5f0  str r3, [sp, #4]     ; notify.method = 0
+102b5f2  str r3, [sp, #0xc]   ; notify.result = 0
+102b5f6  mov r1, sp           ; &client
+102b5f8  str r3, [sp, #8]     ; notify.flags  = 1 (SYS_NOTIFY_METHOD_SPINWAIT)
+102b5fa  bl  #0x102ca80       ; onoff_request(mgr, &client)
+102b618  ldr r3, [sp, #8]     ; spin while (flags & 3)
+102b61e  ldr r4, [sp, #0xc]   ; result -- read AFTER the spin
+```
+
+The reconstruction declared `uStack_18 / local_14 / local_10 / local_c` as four
+**independent** locals and took the address of the first one only, so the
+compiler was free to place the other three anywhere.  Measured directly
+(`probeC.log`), the client that actually reached `onoff_request` was
+
+```
+ONOFF_REQ mgr=0x21004814 cli=0x2100C028 node=0x0 meth=0x1
+          flags=0x2100C370 res=0x102AB73
+```
+
+— `notify.flags` was a **stack address** and `notify.result` a **return
+address**, so `sys_notify_validate()` rejected it and `validate_args()` returned
+`-EINVAL`.  (The correct `flags = 1` had landed in `method` at +4.)  Ghidra had
+also hoisted the `result` read above the busy-wait; that is corrected too.
+
+Rewritten with an explicit 16-byte `struct g1_onoff_client` in
+`recon/{net/src,net/named,symbolized/net}/FUN_0102b5bc.c`.  The generated code
+is now instruction-for-instruction the shipped shape
+(`strd r0,r1,[sp]` / `str r2,[sp,#8]` / `str r3,[sp,#12]` … `ldr r4,[sp,#12]`).
+`cfg_verify.verify('net','FUN_0102b5bc')` **PASS**.
+
+### 21.3 Defect B — `z_nrf_clock_control_get_onoff` returned a pointer into
+### `sdc_mempool`
+
+With A fixed, `onoff_request` was still handed
+`mgr = FUN_0103037c(0) = 0x21004814 + 0*0x20` — a **raw original-image
+literal**.  `FUN_0103037c` is Zephyr's
+`z_nrf_clock_control_get_onoff(sys) = &((struct nrf_clock_control_data *)
+dev->data)->mgr[sys]`, with `sizeof(struct onoff_manager) = 0x20` and `mgr[]`
+first in the driver data, so **0x21004814 is the SHIPPED image's
+`nrf_clock_control_data`**.  Confirmed structurally in this link: the stock
+`clock_control_nrf.c` data object is `data` @ **0x21008414**, size **0x58**
+(= 2 × 0x20 managers + 2 × 0xc subsys), and `z_nrf_clock_control_lf_on()` was
+**measured** requesting `mgr = 0x21008434 = data + 0x20` with its own
+`cli.1 @ 0x21008400` — the same 0x20 stride.  In our link 0x21004814 is inside
+`sdc_mempool`.
+
+`FUN_0103037c` now calls the stock accessor under `G1_COHESIVE_BUILD` (which
+also roots the archive member; it had been garbage-collected).  Parity keeps the
+literal.  `cfg_verify.verify('net','FUN_0103037c')` **PASS**.
+
+Build `/private/tmp/g1-i21a-net`: `onoff_request` returns **0** and the ESB
+clock request completes — `esb_service_init` reaches its success path for the
+first time.
+
+### 21.4 Defects C and D — the MPSL timeslot session was split between two
+### owners, and the ESB radio-state word was pinned on top of a timeslot request
+
+Success in §21.3 immediately unmasked two more, both fatal (`svc #2`,
+`K_ERR_KERNEL_OOPS`, SoC reset) because the recovered timeslot worker
+`FUN_0102b810` treats any MPSL error as fatal.
+
+**C — `mpsl_timeslot_request` was the reconstruction while
+`mpsl_timeslot_session_open` was already the library's.**  Iteration 9 adopted
+`FUN_01021a38 = mpsl_timeslot_session_open` and `FUN_0102a0e6 =
+mpsl_timeslot_session_close` from `libmpsl.a`, but left `FUN_0102a122`
+(`mpsl_timeslot_request`) as a recovered body.  That body reaches MPSL's private
+session array through `FUN_01021ac0(id) = *(uint32_t *)0x210016e4 + id*0x30`
+with the count at `0x210016e8` — absolute original-image RAM that this build
+never initialises, because the library owns that table at its own layout and
+NCS's `mpsl_init` hands it `timeslot_context` through the **library**
+`mpsl_timeslot_session_count_set`.  Measured (`probeI.log`):
+
+```
+TS_COUNT_SET ctx=0x2100859C n=1          <-- the LIBRARY's state
+TS_OPEN_RET  r0=0x0 base=0x1 cnt=1       <-- *(uint32_t*)0x210016e4 == 1
+TSREQ_ENTRY  entry=0x1 state=0           <-- session state read from address 0x27
+                                          -> -NRF_EAGAIN (-35)
+```
+
+The reconstruction's return set is *exactly* the documented set of
+`mpsl_timeslot_request` (`-NRF_ENOENT` / `-NRF_EAGAIN` / `-NRF_EINVAL`,
+`mpsl_timeslot.h:317-320`), which is the identity evidence.  Adopted:
+`recon/ownership/adoption_manifest.json` gains the `0x0102a122` entry
+(`exclude_reconstruction: true`, four evidence records),
+`recon/generated/net_retained_sources.cmake` regenerated
+(`gen_retained_sources.py --check` clean), and
+`recon/application/net/src/stock_call_aliases.ld` gains
+`PROVIDE(FUN_0102a122 = mpsl_timeslot_request);`.  Net FLASH **228,457 → 221,977 B (−6,480)**.
+
+**D — `g_net_radio_op_state` was an absolute pin sitting exactly on
+`g1_timeslot_request_earliest`.**  With C fixed the library's
+`mpsl_timeslot_request` returned **-NRF_EINVAL (-22)** and the measured request
+had `request_type = 1`, i.e. `MPSL_TIMESLOT_REQ_TYPE_NORMAL` — but
+`mpsl_timeslot.h:302` requires the **first** request of a session to be
+`EARLIEST`.  The emitted object's `.data` image is correct
+(`00 00 00 00 | 01 00 00 00 | 88 13 00 00 | 40 42 0f 00`); something overwrote
+byte 0 at runtime.  `check_net_raw_literals.py` names the writer:
+
+```
+0x210005b4 -> g1_timeslot_request_earliest +0x0
+   recon/net/src/FUN_0102b758.c:19, recon/symbolized/net/FUN_0102b794.c:12,
+   recon/symbolized/net/FUN_0102b7a0.c:12 …
+```
+
+`g_net_radio_op_state` (original VA 0x210005b4) was `PROVIDE(... = 0x210005b4)`
+plus four raw literals; in the cohesive link that is precisely where the linker
+had placed `g1_timeslot_request_earliest`, so IPC sub-commands 10/11/12
+(`FUN_0102b794/7a0/7ac`) wrote 2/1/3 straight into the request's `request_type`.
+Sub-command 11 arrives at t ≈ 1.1 s, hence the NORMAL type.
+
+**Iteration 20 §20.1 classified `g1_timeslot_request_earliest`'s two literals as
+"benign self-aliases". That was wrong, and this is the correction.**
+
+Fixed by giving the word real storage with its **shipped initialiser**, read out
+of `netcore_image.bin` at the net `.data` LMA (analysis `0x0103e524 + VMA`, the
+base re-verified against the §20.4 ESB pipe block):
+
+```
+0x210005b4  01 00 00 00                                        g_net_radio_op_state
+0x210005b8  01 00 00 00 01 00 00 00 50 c3 00 00 88 13 00 00    NORMAL   (role 0)
+0x210005c8  01 00 00 00 01 00 00 00 50 c3 00 00 88 13 00 00    NORMAL   (role 1)
+0x210005d8  00 00 00 00 01 00 00 00 88 13 00 00 40 42 0f 00    EARLIEST
+```
+
+so `recon/application/net/src/timeslot_owner.c` now also emits
+`g_net_radio_op_state = 1` and the **third** request object
+(`g1_timeslot_request_normal_role1`) that the shipped image has and this project
+had never modelled — `FUN_0102b944`, the timeslot **signal callback**, selects
+between the two NORMAL ones on the ESB role, and its three request pointers were
+raw literals landing on `g1_timeslot_request_earliest+4`,
+`g1_timeslot_request_normal+4` and `nrf53_sync_offset+0`.  All three are now
+bound to the emitted objects (guarded; parity keeps the literals), the absolute
+`PROVIDE` is retired, and the four `0x210005b4` literal sites go through a
+`G1_NET_RADIO_OP_STATE` guard.
+
+Build `/private/tmp/g1-i21c-net` (final net): **`APP_IPCRECV op=6` arrives and
+`BTSTART_STATE byte=0x1`.**  `check_net_raw_literals.py` **74 → 69**.
+
+### 21.5 Defect E — 2,128 app `rodata_*` symbols were ABSOLUTE
+### original-image addresses, including every printf format string
+
+Past the `[0x1058]` guard the app core took `K_ERR_KERNEL_OOPS` at
+`fortify_chk_fail+0x18`.  `bt_start` builds the advertised name with
+`vdprintf_to_fd` = `__sprintf_chk(dst, 0, 0x20, fmt, …)` (shipped
+`0x86f2c cmp r0,r4 / blo return / bl 0x51164`), and the measured call was
+
+```
+VDP dst=0x20011087 cnt=32 fmt=0x9ACB2 arg0=0x9AC7C
+    fmtstr=T¿Ú9¿ FZ¿wÂ¿æ[_¿,ú¾d¿qq          <-- GARBAGE
+```
+
+`0x9ACB2` and `0x9AC7C` are **original-image flash addresses**:
+`recon/symbols/g1_app_globals.ld` pins 2,563 `rodata_<hex>` symbols with
+`PROVIDE(rodata_XXXX = 0xXXXX)` and only the byte-verified TABLES
+(`recon/data`, emitted as `rodata_0x<hex>`) ever override them —
+`arm-zephyr-eabi-nm` reported **2,128** of them still as class `A`.  Our image
+is relocated, so every one names unrelated bytes.  Harmless for a log line;
+fatal for a `_FORTIFY_SOURCE`-checked format string.
+
+New generator `recon/application/gen_app_string_rodata.py` emits a byte-exact
+object for every absolute pin whose target is a NUL-terminated printable C
+string in `app_update.bin` (read through `tools/extract.py`) — **1,793 objects,
+58,598 bytes** — into `recon/application/app/src/g1_app_string_rodata.c`.  A
+`PROVIDE` is inert once the symbol has a definition, so no linker-script edit
+and no parity-tree edit was needed; `--gc-sections` still drops the strings
+nothing references.  Absolute `rodata_` pins **2,128 → 346**; app FLASH
+**+48,948 B** (71.11 % of 982,528 B).  `rodata_9acb2` and `rodata_9ac7c` are now
+real objects and the format string reaching `__sprintf_chk` is the correct
+`"%s_R_%02X%02X%02X"` / `"Even G1"` (confirmed in the fault dump:
+`s[7]=0x000a89f1`, `s[8]=0x000a8a31`).
+
+### 21.6 Defect F — `g_libc_heap_ctrl` (newlib's `_impure_ptr`) read 0
+
+The oops survived §21.5.  Measured: `vsnprintf_impl` (`FUN_00077c30`) loads the
+reent pointer as `*(int *)&g_libc_heap_ctrl` and passes it as the leading
+`struct _reent *` of `_vsnprintf_r`; the value was **0**.  `g_libc_heap_ctrl`
+(original 0x20002d20) was bound into the RAM arena (`g1_ram_arena + 0xd20`), and
+it is a `.data` **pointer** word, which the arena restore deliberately drops
+(the policy documented in `gen_app_data_image.py`).  Fifteen recovered libc TUs
+read it.  The linked newlib-nano owns exactly this word, so
+`recon/symbols/g1_app_globals.ld` now has
+`PROVIDE(g_libc_heap_ctrl = _impure_ptr);` (0x2000298c → `impure_data`
+0x20002990).  Measured after: `VSN_IN … reent=0x20002990`.
+
+### 21.7 The NEW first divergence — the recovered `_svfprintf_r` returns 131
+### for a 16-character result (NOT fixed, NOT guessed at)
+
+With a correct format string, correct arguments and a valid reent, the oops
+still fires.  Measured (`probeS.log`, build `g1-i21b-app` + `g1-i21c-net`):
+
+```
+VSN_IN dst=0x20011087 cnt=32 fmt=0xA89F1 reent=0x20002990
+PPF_IN reent=0x20002990 f=0x20022860 fmt=0xA89F1 ap=0x200228B8
+PPF_RET r0=131
+```
+
+`printf_parse_format` (the recovered `_svfprintf_r`, linked at 0x0004b064, owner
+`app/libapp.a(printf_parse_format.c.obj)`) returns **131** and leaves the
+destination buffer empty for
+`("%s_R_%02X%02X%02X", "Even G1", 0xff, 0xff, 0xff)`, whose correct result is
+the 16-character `Even G1_R_FFFFFF`.  `__sprintf_chk` compares `131 >= 32`,
+calls `fortify_chk_fail()` → `k_oops` → SoC reset at t = 1.4026 s:
+
+```
+<err> os: Faulting instruction address (r15/pc): 0x00045b78
+<err> os: >>> ZEPHYR FATAL ERROR 3: Kernel oops on CPU 0
+<err> fatal_error: Resetting system
+```
+
+The caller chain is proven by the fault dump itself (`s[1] = 0x0007b201` inside
+`vdprintf_to_fd`, `s[5] = 0x000182ef` inside `bt_start`, `s[6] = 0x20` the
+buffer size).  **The defect inside `printf_parse_format` / its `__ssputs_r`
+writer is NOT diagnosed here and no guess is recorded as if it were.**  Two
+candidates that the next iteration should discriminate with disassembly, not
+shape: (i) the fake `FILE` that `snprintf_engine_bounded` (`FUN_0008712e`,
+`_vsnprintf_r`) builds on the stack has the same "four scattered locals" hazard
+as §21.2; (ii) the recovered engine's argument walk.  This is the first
+divergence for iteration 22 and it is the only thing between the current build
+and `bt_le_adv_start`.
+
+### 21.8 Measurements (every number below was actually run)
+
+| metric | iter 20 final | **iter 21 final (`i21b-app` + `i21c-net`)** |
+|---|---:|---:|
+| `device_info[0x1058]` at `bt_start` | **0x0** | **0x1** |
+| `APP_IPCRECV op=6` (the `0x0601` message) | never | **yes** |
+| `bt_start()` runs past the state guard | no | **yes** |
+| `bt_enable()` / `bt_hci_core: Identity` | t = 5.100 s | **t = 1.397 s** |
+| app `ZEPHYR FATAL ERROR` @8.0 s | 0 | **1 (oops, t = 1.3988 s)** — §21.7 |
+| net `ZEPHYR FATAL ERROR` @8.0 s | 0 | 0 up to the SoC reset |
+| `radio TransmittedFrames` | 0 | 0 |
+| `vcentral Connected` | False | False |
+| app FLASH | 649,688 B | **698,636 B (+48,948; 71.11 % of 982,528)** |
+| app RAM | 252,885 B | **252,885 B (+0)** |
+| net FLASH | 228,409 B | **221,997 B (−6,412; 95.93 % of 231,424)** |
+| net RAM | 60,540 B | **60,556 B (+16)** |
+| app `nm -u` undefined / duplicate globals | 0 / 0 | **0 / 0** |
+| net `nm -u` undefined / duplicate globals | 0 / 0 | **0 / 0** |
+| `check_ram_pin_collisions.py` (app) | 0 / 0, EXIT 0 | **0 / 0, EXIT 0** |
+| `check_net_raw_literals.py` (net) | 74, EXIT 1 | **69, EXIT 1** |
+| `check_thread_create_stack_args.py` | 10/10, EXIT 0 | **10/10, EXIT 0** (120 trials) |
+| `gen_retained_sources.py --check` | clean | **clean** |
+| absolute `rodata_*` pins in the app link | 2,128 | **346** |
+
+### 21.8b Graphics + sensor parity — PARTIAL capture, honestly scoped
+
+The capture was run on the final pair with identical determinism knobs and
+stimulus to the oracle, no memory poking:
+
+```
+G1_RESC=/Users/freedomcoder/Projects/armemul/g1-ours.resc \
+G1_APP_ELF=/private/tmp/g1-i21b-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i21c-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A \
+recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i21
+```
+
+**`p1_boot` completed; `p2_render` did NOT.**  Renode itself crashed on entry to
+phase 2 with `System.Threading.SemaphoreFullException` inside
+`Antmicro.Renode.UI.ConsoleIOSource` (`/private/tmp/g1_ours_i21/run.out`) —
+an emulator-harness failure caused by running the script backgrounded, not a
+firmware result.  `spim_a.p2.trace`, `twim1.p2.trace`, `twim2.p2.trace` and the
+`p2_render` framebuffer are absent, so **no `p2` number is claimed for
+iteration 21** and **G-1 is NOT re-measured**.
+
+| id | verdict (iteration 21 `p1_boot`) | detail |
+|---|---|---|
+| **G-2** | **FAIL**, unchanged | `fb_p1_boot.ppm` is **byte-identical to iteration 20** (`cmp`): **0 lit px** vs the oracle's **656**.  **Not one pixel was painted.** |
+| **G-3** | **FAIL (truncation only)**, unchanged | `p1_boot` **34 vs 764**; the whole trace is identical to iteration 20 **modulo the `tick=` column** (`sed 's/ tick=[0-9]*//' \| cmp`), so all 34 shared transactions stay byte-identical and the first difference stays at index **34** (oracle `{"op":"0x66",…}`, ours `<end>`).  `p2_render` not measured. |
+| **G-4** | *localiser, carries over* | the framebuffer bytes are unchanged, so first differing row **y = 267**, first differing pixel **x = 178**. |
+| **G-5** | **PASS**, unchanged | the four enumerated panel-init elements are present at the same indices (three-band 153,600 B clear at 4–6, five `0xC0` words at 7–16, `0x46`/`0x31` pairs `0F 04` at 21/22 and `00 04` at 28/29, `0x9F`→ID at 32, trailing `0xB9 FF` at 33). |
+| **G-6** | **PASS**, unchanged | `spim_b.p1.trace` byte-identical, 0 == 0. |
+| **S-ESB** | **FAIL**, unchanged | `radio TransmittedFrames` 0, `vcentral Connected` False in the 8 s boot. |
+
+Per-sensor `p1_boot` volumes actually counted from the traces — **three
+regressions, caused by the app core rebooting roughly every 1.4 s inside the 6 s
+phase-1 window**:
+
+| device `p1_boot` | oracle | iter 20 | **iter 21** |
+|---|---:|---:|---:|
+| LSM6DSO (twim2) | 1,089 | 1,027 | **551** |
+| nPM1300 (twim1 0x6B) | 291 | 232 | **97** |
+| OPT3001 (twim1 0x45) | 33 | 14 | **14** |
+| ST25DV system port (0x57) | 22 | 12 | **6** |
+| ST25DV NFC EEPROM (0x53) | 25 | 11 | **0** |
+| `spim_a` | 764 | 34 | **34** |
+| `JBD_FRAMECOUNTER_P1` | 0x2A1 | 0x3 | **0x0** |
+
+No verdict cell changes (still **5 PASS / 5 PARTIAL / 4 FAIL**), and the
+iteration-20 pair remains the best-scoring build on these criteria.  The named
+sensor divergences (S-IMU #3, S-PMIC #0, S-NFC EEPROM #6 / system port #10,
+S-ADC `CH[3]` not configured) were **not** worked on this iteration.
+
+### 21.9 Re-proof
+
+```
+net  FUN_0102b5bc   PASS   (cfg_verify)
+net  FUN_0103037c   PASS   (cfg_verify)
+```
+
+As in iterations 18–20 this is necessary but not sufficient: `cfg_verify` passed
+on `FUN_0102b5bc` **before** the fix too, because the four scattered locals are
+still four writes to *some* stack slots and the harness models `onoff_request`
+as an opaque callee.  The evidence that settled it was the shipped `push {r0,
+r1, r2, r3, r4, lr}` prologue plus the measured client fields.  **This is the
+eleventh instance of the harness blind-spot family** and the first that is a
+*stack-object layout* defect rather than a dropped argument or a wrong
+indirection.
+
+### Regenerate (iteration 21)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check      # clean
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/gen_app_string_rodata.py \
+    --elf /private/tmp/g1-i21a-app/zephyr/zephyr.elf \
+    -o recon/application/app/src/g1_app_string_rodata.c   # 1793 objects, 58598 B
+recon/application/build_cohesive.sh app /private/tmp/g1-i21b-app
+recon/application/build_cohesive.sh net /private/tmp/g1-i21c-net -- \
+    -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF
+# boot: /private/tmp/g1-i21/probeR.resc  (8.0 s, checkpoints at 5.0/6.5/8.0)
+```
+
+Bisect ledger (every build and boot actually run):
+
+| build | change | app FATAL | net FATAL | note |
+|---|---|---|---|---|
+| `i20a-app` + `i20d-net` | iteration-20 baseline | 0 | 0 | `[0x1058]` = 0, `esb_service_init` = −22 |
+| `g1-i21a-net` | §21.2 onoff_client struct + §21.3 clock manager | — | **1 (k_oops, mpsl_timeslot_request = −35)** | `onoff_request` now returns 0 |
+| `g1-i21b-net` | §21.4 C — adopt `mpsl_timeslot_request` | — | **1 (k_oops, = −22)** | request type was NORMAL |
+| `g1-i21c-net` | §21.4 D — `g_net_radio_op_state` + 3rd request | **1 (t ≈ 4 s, fortify)** | **0** | **`op=6` arrives, `[0x1058]` = 1** |
+| `g1-i21a-app` | §21.5 string rodata | 1 (t = 1.42 s, fortify) | 0 | format string now correct |
+| `g1-i21b-app` | §21.6 `_impure_ptr` | 1 (t = 1.4026 s, fortify) | 0 | **final**; reent now valid, §21.7 remains |
+
+Files changed: `recon/{net/src,net/named,symbolized/net}/FUN_0102b5bc.c`,
+`.../FUN_0103037c.c` (§21.2/§21.3);
+`recon/ownership/adoption_manifest.json` (+1 net entry),
+`recon/generated/net_retained_sources.cmake` (regenerated),
+`recon/application/net/src/stock_call_aliases.ld` (§21.4 C);
+`recon/application/net/src/timeslot_owner.c`,
+`recon/symbols/g1_net_globals.ld`,
+`recon/net/src/FUN_0102b944.c`, `recon/net/src/FUN_0102b758.c`,
+`recon/{net/src,symbolized/net}/FUN_0102b794.c`, `FUN_0102b7a0.c`,
+`FUN_0102b7ac.c` (§21.4 D);
+new `recon/application/gen_app_string_rodata.py` +
+`recon/application/app/src/g1_app_string_rodata.c` +
+`recon/application/app/CMakeLists.txt` (§21.5);
+`recon/symbols/g1_app_globals.ld` (§21.6);
+`recon/emulator/reports/sensor_parity_status.md`; this report.
+**No `tools/` logic change**, no Kconfig / `prj.conf` / devicetree change,
+`armemul` untouched, nothing committed.
+
+### 21.10 Open, named, and NOT fixed
+
+1. **§21.7 — `printf_parse_format` (`_svfprintf_r`) returns 131 for a
+   16-character result**, so `__sprintf_chk` oopses the app core at t = 1.4026 s
+   the first time `bt_start` formats the device name.  **This is the first
+   divergence for iteration 22.**
+2. **346 app `rodata_*` pins are still absolute** (§21.5): the ones whose target
+   is not a NUL-terminated printable string.  Each needs its own extent
+   evidence; none is known to be load-bearing yet.
+3. **69 source-level raw `0x21xxxxxx` net literals still land inside a live
+   linked object**, 54 of them inside `sdc_mempool` (unchanged instrument:
+   displacement of the duplicate SDC/MPSL bodies).  Two that this iteration did
+   NOT close and that the timeslot signal callback WILL touch:
+   `RETURN_PARAM = 0x21004630` (the `mpsl_timeslot_signal_return_param_t` that
+   `FUN_0102b944` hands back to MPSL) and the ESB event-handler slot
+   `0x21004628` written by `esb_service_init`.
+4. Iteration 20 items 3–6 (the rest of the vendored ANCS client, the missing net
+   RAM-pin gate, unreconstructed `analysis 0x0102b204`, unverified
+   `CONFIG_MAIN_STACK_SIZE`) are unchanged.

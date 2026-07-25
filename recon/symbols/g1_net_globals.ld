@@ -297,7 +297,11 @@ PROVIDE(g_net_radio_ops_table_ptr = 0x21000530);
 PROVIDE(g_net_driver_api_ptr = 0x21000574);
 PROVIDE(g_net_last_fault_code = 0x2100057c);
 PROVIDE(g_zephyr_log_level = 0x21000580);
-PROVIDE(g_net_radio_op_state = 0x210005b4);
+/* P4 iteration 21: g_net_radio_op_state is now a REAL object emitted by
+   recon/application/net/src/timeslot_owner.c with its shipped initialiser
+   (1).  The absolute pin 0x210005b4 landed inside the emitted
+   g1_timeslot_request_earliest and corrupted its request_type. */
+/* PROVIDE(g_net_radio_op_state = 0x210005b4); -- superseded, see above */
 PROVIDE(g_210005ec = 0x210005ec);
 PROVIDE(g_net_radio_crc_scratch = 0x21000684);
 PROVIDE(g_net_log_msg_ctx = 0x21000698);

@@ -30,55 +30,76 @@ extern int onoff_request(int, void *);
 extern void printk(int, int);
 extern void FUN_0102bba8(int);
 
+/* P4 iteration 21 - the on-stack `struct onoff_client` must be ONE contiguous
+ * 16-byte object.  The shipped prologue is `push {r0, r1, r2, r3, r4, lr}`,
+ * i.e. the four incoming arguments ARE the client's initial image, and every
+ * later access is an sp-relative field of that same object:
+ *     sp+0x00  sys_snode_t node
+ *     sp+0x04  sys_notify.method   (str r3,[sp,#4]   with r3 = 0)
+ *     sp+0x08  sys_notify.flags    (str r3,[sp,#8]   with r3 = 1 = SPINWAIT)
+ *     sp+0x0c  sys_notify.result   (str r3,[sp,#0xc] with r3 = 0)
+ * and `mov r1, sp` passes &client to onoff_request.
+ * The previous rendering declared four INDEPENDENT locals and took the address
+ * of the first one only, so the compiler was free to place `method`, `flags`
+ * and `result` anywhere; measured in /private/tmp/g1-i20d-net the client that
+ * reached onoff_request had notify.flags = 0x2100C370 (a stack address) and
+ * validate_args() returned -EINVAL, which made esb_service_init() fail and
+ * CPUNET main() return before it could send the 0x0601 IPC message.
+ * The shipped code also reloads `result` from sp+0xc AFTER the spin-wait
+ * (0x102b61e `ldr r4,[sp,#0xc]`); Ghidra hoisted that read above the loop. */
+struct g1_onoff_client {
+    unsigned int node;              /* +0x00 */
+    unsigned int method;            /* +0x04 */
+    volatile unsigned int flags;    /* +0x08 */
+    volatile int result;            /* +0x0c */
+};
+
 int FUN_0102b5bc(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
-  unsigned int uVar1;
-  int iVar2;
-  int iVar3;
-  unsigned int uStack_18;
-  unsigned int local_14;
-  volatile unsigned int local_10;
-  int local_c;
+  struct g1_onoff_client client;
+  int manager;
+  int status;
+  int result;
 
-  uVar1 = C_0102b644;
   *(volatile unsigned int *)P_0102b640 = param_2;
   *(volatile unsigned char *)P_0102b648 = (unsigned char)param_1;
-  iVar2 = C_0102b64c;
-  *(volatile unsigned int *)(iVar2 + 0x18) = uVar1;
-  *(volatile unsigned int *)(iVar2 + 0xc) = 0xf0000000;
-  uStack_18 = param_1;
-  local_14 = param_2;
-  local_10 = param_3;
-  local_c = param_4;
-  iVar2 = FUN_0103037c(0);
-  if (iVar2 == 0) {
+  *(volatile unsigned int *)(C_0102b64c + 0x18) = C_0102b644;
+  *(volatile unsigned int *)(C_0102b64c + 0xc) = 0xf0000000;
+
+  client.node = param_1;
+  client.method = param_2;
+  client.flags = param_3;
+  client.result = (int)param_4;
+
+  manager = FUN_0103037c(0);
+  if (manager == 0) {
     if (0 < *(volatile int *)P_0102b650) {
       printk(P_0102b654, 0);
     }
-    iVar3 = -6;
-  } else {
-    local_14 = 0;
-    local_c = 0;
-    local_10 = 1;
-    iVar3 = onoff_request(iVar2, &uStack_18);
-    iVar2 = local_c;
-    if (iVar3 < 0) {
-      if (0 < *(volatile int *)P_0102b650) {
-        printk(P_0102b658, iVar3);
-      }
-    } else {
-      while ((local_10 & 3) != 0) { }
-      if (local_c != 0) {
-        if (0 < *(volatile int *)P_0102b650) {
-          printk(P_0102b65c, local_c);
-        }
-        if (iVar2 < 0) {
-          return iVar2;
-        }
-      }
-      FUN_0102bba8(P_0102b660);
-      iVar3 = 0;
+    return -6;
+  }
+
+  client.method = 0;
+  client.result = 0;
+  client.flags = 1;
+  status = onoff_request(manager, &client);
+  if (status < 0) {
+    if (0 < *(volatile int *)P_0102b650) {
+      printk(P_0102b658, status);
+    }
+    return status;
+  }
+
+  while ((client.flags & 3) != 0) { }
+  result = client.result;
+  if (result != 0) {
+    if (0 < *(volatile int *)P_0102b650) {
+      printk(P_0102b65c, result);
+    }
+    if (result < 0) {
+      return result;
     }
   }
-  return iVar3;
+  FUN_0102bba8(P_0102b660);
+  return 0;
 }

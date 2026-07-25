@@ -45337,6 +45337,42 @@
     },
     {
      "core": "net",
+     "va": "0x0102a122",
+     "raw_symbol": "FUN_0102a122",
+     "current_symbol": "FUN_0102a122",
+     "kind": "archive",
+     "component": "mpsl",
+     "upstream_symbol": "mpsl_timeslot_request",
+     "upstream_unit": "/Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Public documented MPSL API identity, and the exact companion of the already-adopted 0x01021a38 (mpsl_timeslot_session_open) and 0x0102a0e6 (mpsl_timeslot_session_close): the product timeslot worker FUN_0102b810 calls all three on the SAME session id.  The reconstruction reaches MPSL's private session table through original-image absolute RAM addresses (0x210016e4 / 0x210016e8, via FUN_01021ac0) that this build never initialises, because the genuine libmpsl.a owns that table at its own layout -- mpsl_timeslot_session_count_set() and mpsl_timeslot_session_open() are both linked from libmpsl.a.  Splitting open/request between the two owners is what makes the request fail; the public symbol is a safe link alias (unlike the obfuscated archive spellings recorded for the private MPSL/SDC bodies).",
+     "evidence": [
+      {
+       "source": "recon/emulator/reports/our_boot_bringup.md#iteration-21",
+       "type": "call_site_abi",
+       "detail": "netcore_image.bin 0x0102b86a..0x0102b870 and the NORMAL-request arm of FUN_0102b810 call 0x0102a122 as (uint8_t session_id, const mpsl_timeslot_request_t *request) and treat any non-zero return as fatal; the two request objects are the shipped mpsl_timeslot_request_t at 0x210005b8 (NORMAL) and 0x210005d8 (EARLIEST).  This is exactly int32_t mpsl_timeslot_request(mpsl_timeslot_session_id_t, const mpsl_timeslot_request_t *)."
+      },
+      {
+       "source": "/Users/freedomcoder/ncs251/nrfxlib/mpsl/include/mpsl_timeslot.h:317-320",
+       "type": "return_code_set",
+       "detail": "The proven reconstruction returns exactly the three documented failure codes of mpsl_timeslot_request and nothing else: 0xfffffffe = -NRF_ENOENT (\"The session is not open\"), 0xffffffdd = -NRF_EAGAIN (\"The session is not IDLE\") and 0xffffffea = -NRF_EINVAL (\"The parameters of p_request are not valid\")."
+      },
+      {
+       "source": "recon/net/src/FUN_0102a122.c",
+       "type": "private_state_owner",
+       "detail": "Its first action is FUN_01021ac0(session_id), which indexes MPSL's private session array as *(uint32_t *)0x210016e4 + id * 0x30 with the count at 0x210016e8 -- absolute original-image RAM.  Nothing in this build owns or initialises that pair."
+      },
+      {
+       "source": "recon/emulator/reports/our_boot_bringup.md#iteration-21",
+       "type": "boot_divergence",
+       "detail": "Measured with Renode hooks on /private/tmp/g1-i21a-net: the NCS mpsl_init calls the LIBRARY mpsl_timeslot_session_count_set(0x2100859C, 1) (timeslot_context) at t < 0.2 s, and the library mpsl_timeslot_session_open() then returns 0 with session id 0; but at the request call *(uint32_t *)0x210016e4 reads 0x00000001, so the reconstruction's FUN_01021ac0(0) returned 0x00000001 and read its session state from address 0x27, obtaining 0.  mpsl_timeslot_request therefore returned -NRF_EAGAIN (-35) and the recovered worker took its fatal `svc 2` path (K_ERR_KERNEL_OOPS, reason 3), resetting the SoC ~4,700 net instructions after esb_service_init() first succeeded."
+      }
+     ]
+    },
+    {
+     "core": "net",
      "va": "0x01021ac0",
      "raw_symbol": "FUN_01021ac0",
      "current_symbol": "FUN_01021ac0",

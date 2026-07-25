@@ -24,6 +24,23 @@ PROVIDE(FUN_0102a0e6 = mpsl_timeslot_session_close);
  * that this build never initialises, so it spun forever on CLOCK.LFCLKSTAT even
  * though the low-frequency clock was running. */
 PROVIDE(FUN_01021a38 = mpsl_timeslot_session_open);
+
+/* Iteration 21: the SAME session's request call.  FUN_0102b810 opens the
+ * timeslot session with 0x01021a38, requests with 0x0102a122 and closes with
+ * 0x0102a0e6, all on the one session id.  Two of the three were already the
+ * library's; the third was not, and the recovered body reaches MPSL's private
+ * session array through the original-image absolutes 0x210016e4 (table base)
+ * and 0x210016e8 (count) via FUN_01021ac0.  Nothing in this build owns that
+ * pair -- the genuine libmpsl.a keeps the table at its own layout, and NCS's
+ * mpsl_init hands it `timeslot_context` through the LIBRARY
+ * mpsl_timeslot_session_count_set().  Measured (iteration 21): after a
+ * successful library session_open, *(uint32_t *)0x210016e4 read 0x00000001, so
+ * FUN_01021ac0(0) returned 0x1, the session state was read from address 0x27
+ * as 0, mpsl_timeslot_request returned -NRF_EAGAIN (-35) and the recovered
+ * worker's fatal `svc 2` (K_ERR_KERNEL_OOPS) reset the SoC.  The return-code
+ * set of the reconstruction (-NRF_ENOENT / -NRF_EAGAIN / -NRF_EINVAL) is
+ * exactly the documented set of mpsl_timeslot_request. */
+PROVIDE(FUN_0102a122 = mpsl_timeslot_request);
 PROVIDE(FUN_0103b300 = thunk_FUN_01038284);
 PROVIDE(FUN_0103b224 = z_impl_k_sem_init);
 PROVIDE(FUN_01036fcc = z_ready_thread);

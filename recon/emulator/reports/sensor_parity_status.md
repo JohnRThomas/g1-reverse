@@ -1,7 +1,79 @@
 # Sensor + graphics parity status — OUR rebuilt firmware vs the shipped oracle
 
-**Seventh measurement of `display_sensor_parity.md`'s criteria against our
-rebuild** (iteration 20; previous measurements were iterations 14–19).
+**Eighth measurement of `display_sensor_parity.md`'s criteria against our
+rebuild** (iteration 21; previous measurements were iterations 14–20).
+
+## READ THIS FIRST — iteration 21 is a partial capture and a reset REGRESSION
+
+Iteration 21 closed the iteration-20 first divergence: `device_info[0x1058]` is
+now **1** (was 0), the CPUNET's `0x0601` "ready" IPC message arrives, and
+`bt_start()` runs past its state guard for the first time in this project
+(`our_boot_bringup.md` §21.1–§21.4).  `bt_enable()` now completes at
+**t = 1.397 s** instead of t = 5.100 s.
+
+**But the app core no longer survives 8 s.**  Immediately past that guard,
+`bt_start` formats the advertised device name through
+`__sprintf_chk(dst, 0, 0x20, "%s_R_%02X%02X%02X", "Even G1", 0xff, 0xff, 0xff)`,
+the recovered `_svfprintf_r` returns **131** for what should be a 16-character
+result, the FORTIFY check fires and `k_oops()` resets the SoC at
+**t = 1.4026 s** (`our_boot_bringup.md` §21.7).  Two of the three causes of that
+were fixed this iteration (§21.5 the 2,128 absolute `rodata_*` pins, §21.6
+`g_libc_heap_ctrl` = `_impure_ptr`); the third is named and NOT fixed.
+
+Consequences for this file, stated plainly:
+
+* **Every `p2_render` column below is from ITERATION 20 and is NOT re-measured.**
+  The iteration-21 capture crashed **Renode itself** on entry to phase 2
+  (`System.Threading.SemaphoreFullException` inside
+  `Antmicro.Renode.UI.ConsoleIOSource`, see
+  `/private/tmp/g1_ours_i21/run.out`) — an emulator-harness failure, not a
+  firmware result — so `spim_a.p2.trace`, `twim1.p2.trace`, `twim2.p2.trace` and
+  the `p2_render` framebuffer are **absent**.  Nothing is claimed for them.
+* **The `p1_boot` half WAS captured and is reported below**, and it is a
+  regression in *depth* for three sensors, because the app core reboots roughly
+  every 1.4 s inside the 6 s phase-1 window.
+* **No verdict cell changes.**  Score is still 5 PASS / 5 PARTIAL / 4 FAIL.
+
+### Iteration 21 `p1_boot`, actually measured
+
+| device | oracle | iter 20 | **iter 21** | note |
+|---|---:|---:|---:|---|
+| `spim_a` | 764 | 34 | **34** | the trace is **identical to iteration 20 modulo the `tick=` column** (verified with `sed 's/ tick=[0-9]*//' \| cmp`), so G-3's and G-5's iteration-20 findings carry over exactly |
+| `spim_b` | 0 | 0 | **0** | byte-identical file (G-6 PASS) |
+| LSM6DSO (twim2) | 1,089 | 1,027 | **551** | **regression** — the reboot loop truncates it |
+| nPM1300 (twim1 0x6B) | 291 | 232 | **97** | **regression** |
+| OPT3001 (twim1 0x45) | 33 | 14 | **14** | unchanged |
+| ST25DV system port (0x57) | 22 | 12 | **6** | **regression** |
+| ST25DV NFC EEPROM (0x53) | 25 | 11 | **0** | **regression** — never reached before the first reset |
+| framebuffer `p1_boot` | 656 lit px | 0 lit px | **0 lit px** | `fb_p1_boot.ppm` is **byte-identical to iteration 20** (`cmp`), so G-2 and the G-4 localiser (first differing row y = 267, first differing pixel x = 178) carry over unchanged |
+| `JBD_FRAMECOUNTER_P1` | 0x2A1 | 0x3 | **0x0** | |
+
+**Not one pixel was painted, and that is stated plainly.**  `radio
+TransmittedFrames` = 0 and `vcentral Connected` = False in the 8 s boot of the
+iteration-21 pair, exactly as in iteration 20.
+
+**The iteration-20 pair (`g1-i20a-app` + `g1-i20d-net`) therefore remains the
+best-scoring build on this file's criteria**, and the tables in §2/§3 below are
+its measurement, unchanged.  The iteration-21 pair
+(`g1-i21b-app` + `g1-i21c-net`) is ahead on the *boot chain* and behind on the
+*reset metric*; both are reported.
+
+### Reproduce the iteration-21 `p1_boot` capture
+
+```sh
+G1_RESC=/Users/freedomcoder/Projects/armemul/g1-ours.resc \
+G1_APP_ELF=/private/tmp/g1-i21b-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i21c-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A \
+recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i21
+```
+
+Run it in the FOREGROUND: backgrounding it is what tripped Renode's console
+IO source above.
+
+---
+
+## Everything below this line is the ITERATION 20 measurement, unchanged
 
 Iteration 20 root-caused and fixed the iteration-19 blocker.  It was **not** in
 the raw-literal class that iteration 19 nominated: it was a **wrong-indirection
@@ -9,22 +81,9 @@ defect in the recovered `net_buf_unref` (`FUN_0102ff94`)**, which dereferenced
 `pool->alloc` once where the shipped code dereferences it twice and therefore
 called `pool->alloc->max_alloc_size` — measured as `blx r3` with **r3 = 0x44 =
 CONFIG_BT_BUF_EVT_RX_SIZE** — instead of `pool->alloc->cb->unref`.  With that
-and one wrong library adoption on the app core repaired, **both cores now run
-8.0 s with zero fatal errors at the same time for the first time in this
-project**, and the app core's `bt_enable()` completes the entire HCI handshake
-(`<inf> bt_hci_core: Identity: … / HCI: version 5.4 …`).
-
-**BLE still does not advertise, and no pixel was painted.**  `radio
-TransmittedFrames` = 0, `vcentral Connected` = False.  `bt_start()` is now
-*reached* and returns 0 without calling `bt_le_adv_start`, because
-`device_info[0x1058]` is 0 (`our_boot_bringup.md` §20.6).  That is the new first
-divergence and it is one call short of advertising.
-
-**What DID move in this file:** because the capture is no longer truncated by a
-reset, `p2_render` is real in the final tree for the first time.  The LSM6DSO's
-byte-identical `p2_render` prefix grew **456 → 700** transactions, the nPM1300's
-`p2_render` **233 → 369**, and the SAADC **53 → 71**.  No criterion changes
-verdict.
+and one wrong library adoption on the app core repaired, **both cores run 8.0 s
+with zero fatal errors at the same time**, and the app core's `bt_enable()`
+completes the entire HCI handshake.
 
 * Oracle (diff target): `recon/emulator/reports/display_sensor_oracle.json`
   (shipped `app_update.bin` / `netcore_image.bin`), criteria in

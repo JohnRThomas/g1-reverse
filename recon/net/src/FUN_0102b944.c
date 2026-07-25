@@ -15,9 +15,32 @@ typedef struct {
 } timeslot_return_t;
 
 #define RETURN_PARAM ((timeslot_return_t *)0x21004630u)
+/* P4 iteration 21 - the three shipped mpsl_timeslot_request_t objects.
+ *
+ * netcore .data (read with tools/net_extract.py at the net .data LMA,
+ * analysis 0x0103e524 + VMA offset) holds them back to back:
+ *   0x210005b8  NORMAL   hfclk=1 prio=0 distance=50000 length=5000   (role 0)
+ *   0x210005c8  NORMAL   hfclk=1 prio=0 distance=50000 length=5000   (role 1)
+ *   0x210005d8  EARLIEST hfclk=1 prio=0 length=5000 timeout=1000000
+ * They are emitted by recon/application/net/src/timeslot_owner.c.  Left as raw
+ * literals in the cohesive link they landed at
+ * g1_timeslot_request_earliest+0x4, g1_timeslot_request_normal+0x4 and
+ * nrf53_sync_offset+0x0 -- all three wrong, and this body is the timeslot
+ * SIGNAL callback, so MPSL would have followed them.  Parity keeps the
+ * original literals. */
+#ifdef G1_COHESIVE_BUILD
+#include <mpsl_timeslot.h>
+extern mpsl_timeslot_request_t g1_timeslot_request_normal;
+extern mpsl_timeslot_request_t g1_timeslot_request_normal_role1;
+extern mpsl_timeslot_request_t g1_timeslot_request_earliest;
+#define ROLE_REQUEST_1 ((void *)&g1_timeslot_request_normal_role1) /*=0x210005c8*/
+#define ROLE_REQUEST_0 ((void *)&g1_timeslot_request_normal)       /*=0x210005b8*/
+#define SPECIAL_REQUEST ((void *)&g1_timeslot_request_earliest)    /*=0x210005d8*/
+#else
 #define ROLE_REQUEST_1 ((void *)0x210005c8u)
 #define ROLE_REQUEST_0 ((void *)0x210005b8u)
 #define SPECIAL_REQUEST ((void *)0x210005d8u)
+#endif
 #define RADIO_BASE ((volatile uint32_t *)0x41008000u)
 #define DPPIC_BASE ((volatile uint32_t *)0x4100c000u)
 #define NVIC_BASE ((volatile uint32_t *)0xe000e100u)

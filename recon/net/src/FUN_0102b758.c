@@ -16,7 +16,19 @@ extern int g1_esb_radio_release(void);
 
 void g1_esb_clock_transition(unsigned int transition)
 {
-    volatile uint32_t *const radio_state = (volatile uint32_t *)0x210005b4u;
+#ifdef G1_COHESIVE_BUILD
+/* P4 iteration 21 - the ESB radio operating-state word (original VA
+ * 0x210005b4) is emitted by recon/application/net/src/timeslot_owner.c.  Left
+ * as a raw literal it landed inside the emitted g1_timeslot_request_earliest
+ * and overwrote that request's `request_type` byte.  Parity keeps the
+ * original literal. */
+extern volatile unsigned int g_net_radio_op_state;
+#define G1_NET_RADIO_OP_STATE (&g_net_radio_op_state)
+#else
+#define G1_NET_RADIO_OP_STATE ((volatile unsigned int *)0x210005b4u)
+#endif
+
+    volatile uint32_t *const radio_state = G1_NET_RADIO_OP_STATE;
     volatile uint32_t *const gpio0 = (volatile uint32_t *)0x418c0500u;
     volatile uint8_t *const clock_ready = (volatile uint8_t *)0x21004fa1u;
 
