@@ -200,6 +200,26 @@ target_sources(app PRIVATE
   # name from recovered TUs outside the sub-batch, so their historical
   # identities forward onto the genuine Zephyr kernel entry points here.
   src/g1_kernel_sched_bridges.c
+  # P4 iteration 20: the shipped firmware VENDORS nrf/subsys/bluetooth/services
+  # /ancs_client.c.  adoption_manifest.json excluded FUN_0007f772 /
+  # FUN_0007f79e in favour of the stock owner on a 1.0 instruction-shape match,
+  # but the shape match is blind to the two things that differ, and both are
+  # proven by disassembly:
+  #   shipped 0x7f772  cmp r4,#0xff ; strh [r0,#0x870] strb [r0,#0x868] str [r0,#0x874]
+  #   stock            cmp r4,#0x1f ; strh [r0,#0x110] strb [r0,#0x108] str [r0,#0x114]
+  #   shipped 0x7f79e  cmp r4,#0xff ; strh [r0,#0x8f0] strb [r0,#0x8e8] str [r0,#0x8f4]
+  #   stock            cmp r4,#0x1f ; strh [r0,#0x190] strb [r0,#0x188] str [r0,#0x194]
+  # i.e. BT_ANCS_ATTR_DATA_MAX is 256 in the shipped build (32 upstream) and
+  # `struct bt_ancs_client` is 0xa2c bytes (the recovered ancs_service_ctx_clear
+  # memsets exactly 0xa2c at g_ancs_client).  MEASURED on /private/tmp/g1-i20b:
+  # once bt_enable() finally succeeded, ancs_c_init's fifth registration
+  # (id = 3, len = 0x100) hit the stock `cmp r4,#31` limit, returned -EINVAL and
+  # ancs_main rebooted the SoC at t = 6.6 s.  The canonical raw-identity
+  # reconstructions are linked here under their FUN_ names, so the stock
+  # `bt_ancs_register_attr` / `bt_ancs_register_app_attr` symbols stay with
+  # their upstream owner and there is no duplicate definition.
+  ${CMAKE_CURRENT_LIST_DIR}/../../app/src/FUN_0007f772.c
+  ${CMAKE_CURRENT_LIST_DIR}/../../app/src/FUN_0007f79e.c
   ${ZEPHYR_BASE}/drivers/sensor/stmemsc/stmemsc_i2c.c
   ${ZEPHYR_ST_MODULE_DIR}/sensor/stmemsc/lsm6dso_STdC/driver/lsm6dso_reg.c
   # Generated only after compiling every recovered table and comparing its

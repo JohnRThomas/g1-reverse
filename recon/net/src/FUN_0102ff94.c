@@ -21,6 +21,8 @@ extern unsigned char _net_buf_pool_list_start[];
 #endif
 
 typedef void (*release_fn_t)(void *);
+/* P4 iteration 20 -- the data-unref callback takes TWO arguments; see below. */
+typedef void (*data_unref_fn_t)(void *, void *);
 
 void FUN_0102ff94(uint8_t *buffer)
 {
@@ -36,13 +38,35 @@ void FUN_0102ff94(uint8_t *buffer)
         if (refs != 0)
             return;
 
-        if (*(uint32_t *)(buffer + 0x14) != 0) {
+        /* P4 iteration 20 -- TWO defects, both proven against the shipped
+         * disassembly (tools/net_recon_kit.py info 0x0102ff94):
+         *
+         *   102ffb2  ldr  r1, [r4, #0x14]   <- __buf kept in r1 and PASSED
+         *   102ffb4  cbz  r1, #0x102ffce
+         *   ...
+         *   102ffc4  ldr  r3, [r3, #0x2c]   ; pool->alloc
+         *   102ffc6  ldr  r3, [r3]          ; alloc->cb      <- THREE loads
+         *   102ffc8  ldr  r3, [r3, #8]      ; cb->unref
+         *   102ffca  blx  r3
+         *
+         * This body had only TWO loads (`*(pool+0x2c)` then `[2]`), so it
+         * called `pool->alloc->max_alloc_size` instead of
+         * `pool->alloc->cb->unref`.  MEASURED on /private/tmp/g1-i20a-net:
+         * `blx r3` with r3 = 0x44 = CONFIG_BT_BUF_EVT_RX_SIZE, i.e. the net
+         * core branched to address 0x44 at t = 5.0942 s -- the fault iteration
+         * 19 §19.8 recorded as "PendSV restored PC = 0".  It also dropped the
+         * second argument (`data`), which the shipped code leaves live in r1.
+         * Wrong indirection + dropped register argument: the two classes the
+         * differential harness is structurally blind to. */
+        uint8_t *data = *(uint8_t **)(buffer + 0x14);
+        if (data != 0) {
             if ((buffer[9] & 1u) == 0) {
 
                 uint8_t *pool = (uint8_t *)G1_NET_BUF_POOL_LIST +
                                 (uint32_t)buffer[10] * 0x34u;
-                void **owner = *(void ***)(pool + 0x2c);
-                ((release_fn_t)owner[2])(buffer);
+                void **alloc = *(void ***)(pool + 0x2c);
+                void **cb = (void **)alloc[0];
+                ((data_unref_fn_t)cb[2])(buffer, data);
             }
             *(uint32_t *)(buffer + 0x14) = 0;
         }

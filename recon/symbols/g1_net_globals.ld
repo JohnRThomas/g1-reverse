@@ -305,9 +305,15 @@ PROVIDE(g_sdc_res_pool_free_bitmap = 0x210006a4);
 PROVIDE(g_sdc_res_pool_slot_tbl = 0x210006a8);
 PROVIDE(g_net_conn_teardown_ctx_b = 0x2100071c);
 PROVIDE(g_net_kernel_timeout_dlist_head = 0x21000750);
-PROVIDE(g_net_radio_sched_param_a = 0x21000761);
-PROVIDE(g_net_radio_sched_param_b = 0x21000763);
-PROVIDE(g_net_radio_sched_param_c = 0x21000767);
+/* P4 iteration 20: these three are interior views of ONE recovered 12-byte
+ * .data object at 0x21000760..0x2100076c (the ESB pipe-address block; the
+ * shipped _sw_isr_table began at 0x2100076c, iteration 19).  In the cohesive
+ * link the raw addresses fall inside the LINKER's own _sw_isr_table
+ * (0x21000704, 30 entries) at +0x5d/+0x5f/+0x63, i.e. entries 11 and 12.
+ * Bind them onto the emitted object with their original relative offsets. */
+PROVIDE(g_net_radio_sched_param_a = g1_esb_pipe_addr_block + 0x1);
+PROVIDE(g_net_radio_sched_param_b = g1_esb_pipe_addr_block + 0x3);
+PROVIDE(g_net_radio_sched_param_c = g1_esb_pipe_addr_block + 0x7);
 PROVIDE(g_net_periodic_work_obj = 0x2100086c);
 PROVIDE(g_net_layout_count_table = 0x21000a30);
 PROVIDE(g_net_mac_pib_ext = 0x21000a40);

@@ -132,6 +132,38 @@ K_FIFO_DEFINE(g1_hci_rx_queue);
 K_THREAD_STACK_DEFINE(g1_esb_worker_stack, 0x600 + G1_NET_STACK_RESERVED);
 struct k_thread g1_esb_worker_thread;
 
+/* ------------------------------------------------------------------------
+ * P4 iteration 20 — the ESB pipe-address block at 0x21000760.
+ *
+ * FUN_0102a278 (the "set pair addresses" IPC message handler) writes four
+ * identical bytes at 0x21000761, 0x21000763 and 0x21000767; FUN_0102b31c
+ * reads the same three; and main (FUN_0102a720) logs the four bytes at
+ * 0x21000767 and 0x21000763 through two `%02x` format strings.  Iteration 19
+ * independently established that the SHIPPED `_sw_isr_table` began at
+ * 0x2100076c (that was z_isr_install's table-base literal), so this recovered
+ * object is exactly 0x21000760..0x2100076c, twelve bytes.
+ *
+ * It is `.data` in the shipped image (below the 0xc3c .data end), and its
+ * load image reads, through tools/net_extract.py at .data LMA + 0x760:
+ *
+ *     01 e9 d3 | a3 a3 a3 a3 | c9 c9 c9 c9 | ff
+ *
+ * i.e. exactly the {flag, ...} + master-address + slave-address + 0xff
+ * placeholder shape the two accessors imply.  In the COHESIVE link the same
+ * addresses land at `_sw_isr_table + 0x5c .. + 0x67` (the table is at
+ * 0x21000704, 30 entries), so the handler was overwriting `_sw_isr_table[11]`
+ * and `[12]`.  Measured mitigation: in this build those two entries are
+ * `{NULL, z_irq_spurious}` (IRQ 11/12 use direct vectors on the CPUNET), so
+ * the corruption is currently INERT — this is closed because it is a real
+ * collision, not because it was observed to fault.
+ * ------------------------------------------------------------------------ */
+unsigned char g1_esb_pipe_addr_block[12] __attribute__((used, retain)) = {
+    0x01, 0xe9, 0xd3,
+    0xa3, 0xa3, 0xa3, 0xa3,
+    0xc9, 0xc9, 0xc9, 0xc9,
+    0xff,
+};
+
 extern void FUN_0102ac00(void *priv); /*=0x0102b401*/
 extern void FUN_0102ab14(const uint8_t *data, size_t size, void *priv); /*=0x0102b315*/
 extern void FUN_0102ace8(void *priv); /*=0x0102b4e9*/

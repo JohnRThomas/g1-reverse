@@ -7236,3 +7236,542 @@ untouched, nothing committed.
    §18.8 item 1), so `FUN_0102b1c8` still creates the ESB worker with
    `K_FOREVER`.
 5. **The net RAM-pin gate still does not exist** (iteration 18 §18.8 item 3).
+
+## Iteration 20 — the CPUNET t = 5.0942 s fault is FIXED (a missing
+## indirection in `net_buf_unref`), the shipped `_kernel` shadow is closed
+## structurally, `bt_enable()` completes the full HCI handshake, and
+## **both cores now run 8.0 s reset-free at the same time for the first time**
+
+**Headline.** The §19.8 blocker was **not** in the raw-literal class at all,
+and this report says so before it says anything else.  It was a
+**wrong-indirection defect in the recovered `net_buf_unref` (`FUN_0102ff94`)**:
+the body dereferenced `pool->alloc` once where the shipped code dereferences it
+twice, so it called `pool->alloc->max_alloc_size` instead of
+`pool->alloc->cb->unref`.  Measured: `blx r3` with **r3 = 0x44 =
+CONFIG_BT_BUF_EVT_RX_SIZE**, i.e. the net core branched to address 0x44 at
+t = 5.0942 s (§20.3).  With that repaired the CPUNET is fatal-free, the app
+core's `bt_enable()` runs to completion for the first time in this project —
+
+```
+<inf> bt_hci_core: HW Platform: Nordic Semiconductor (0x0002)
+<inf> bt_hci_core: HW Variant: nRF53x (0x0003)
+<inf> bt_hci_core: Firmware: Standard Bluetooth controller (0x00) Version 197.47763 …
+<inf> bt_hci_core: Identity: E1:D8:D3:9A:B8:82 (random)
+<inf> bt_hci_core: HCI: version 5.4 (0x0d) revision 0x2102, manufacturer 0x0059
+```
+
+— i.e. the whole host↔controller HCI command/event round trip works over the
+reconstructed rpmsg transport.  A second, independent app-core defect that this
+immediately unmasked (a *wrong* library adoption, §20.5) was fixed too, and
+**both cores now run 8.0 s with zero `ZEPHYR FATAL ERROR` simultaneously** —
+app 17,753,624 instructions, net 2,080,530.
+
+**BLE still does not advertise.**  `radio TransmittedFrames` = 0,
+`vcentral Connected` = False.  The new first divergence is named precisely and
+is one call short of advertising: `bt_start()` is now reached and returns 0
+**without calling `bt_le_adv_start`**, because `device_info[0x1058]` is 0
+(§20.6).
+
+The requested structural work was done as well: a new reusable gate
+(`recon/emulator/scripts/check_net_raw_literals.py`, §20.1) and two structural
+literal passes (§20.2, §20.4).
+
+### 20.1 The deliverable: a source-level raw-literal gate for the CPUNET
+
+`check_ram_pin_collisions.py` only sees linker `PROVIDE` pins.  The new
+`recon/emulator/scripts/check_net_raw_literals.py` closes the other half of the
+class.  It reads the build's `compile_commands.json`, re-runs **every**
+reconstruction translation unit through the *same* compiler and flags with
+`-E`, attributes each preprocessed line to its originating file with the
+`# line "file"` markers, keeps only lines that came from a repository
+reconstruction source, collects every `0x21xxxxxx` literal, and scores each
+distinct literal against the extent of every live object in the linked ELF.
+Because it preprocesses, it is **exact with respect to `#if` branches** — the
+parity-only `#else` arms of `G1_COHESIVE_BUILD` are never counted, which is
+precisely what iteration 19's branch-stripping sweep could not guarantee.
+
+**Before** (iteration-19 tree, `/private/tmp/g1-i20-net`):
+
+```
+recon_translation_units                       1012
+translation_units_failed_to_preprocess        0
+distinct_raw_literals                         137
+raw_literals_inside_a_live_object             79        <-- EXIT 1
+raw_literals_in_ram_region_but_free           58
+owners: sdc_mempool 56, _sw_isr_table 5, g1_esb_worker_thread 4, m_cb 3,
+        g1_timeslot_request_earliest 2, sym_SXHUVOM4EI7… 2, DAT_01033b10 1,
+        g1_timeslot_request_normal 1, nrf53_sync_offset 1, g1_ipc0_bound_sem 1,
+        posix_thread_pool 1, cc_data 1, g1_esb_worker_stack 1
+```
+
+**After** (`/private/tmp/g1-i20d-net`):
+
+```
+distinct_raw_literals                         132
+raw_literals_inside_a_live_object             74
+raw_literals_in_ram_region_but_free           58
+owners: sdc_mempool 55, g1_esb_worker_thread 4, m_cb 3,
+        g1_timeslot_request_earliest 2, sym_SXHUVOM4EI7… 2, posix_thread_pool 2,
+        DAT_01033b10 1, g1_timeslot_request_normal 1, nrf53_sync_offset 1,
+        _sw_isr_table 1, g1_hci_bound_sem 1, g1_esb_worker_stack 1
+```
+
+Diffed literal-by-literal (not just by count): the five literals **removed from
+the sources** are `0x21000760`, `0x21000761`, `0x21000763`, `0x21000767`
+(§20.4) and `0x21004b28` (§20.2); **no literal was newly introduced and none
+newly collided** despite the layout shift.  `_sw_isr_table` drops 5 → 1 and the
+one that remains (`0x21000718`) is in a garbage-collected TU.
+
+**Iteration 19's "93" is corrected to 79 by this measurement, and that is an
+honest downward revision, not an achievement.**  The 93 came from a
+branch-stripping text sweep; the preprocessor-based count is the ground truth
+for what the compiler actually sees.
+
+**A limitation of the gate, stated up front.**  "Literal inside a live object"
+is a *superset* of the defect: an emitted recovered object that the linker
+happens to place at its own original address is flagged against itself.  Five
+of the 74 are provably that benign case — `DAT_01033b10` (0x21000580, the
+object is at 0x21000580, offset 0), `g1_timeslot_request_earliest` (+0, +4),
+`g1_timeslot_request_normal` (+4) and `nrf53_sync_offset` (+0) are all
+self-aliases of objects this build emits.  No attempt was made to auto-classify
+that; it is recorded so the number is read correctly.
+
+### 20.2 Structural pass A — the shipped CPUNET `_kernel` shadow (the
+### iteration-11 move, adapted)
+
+Iteration 7 §A.7 established that **`0x21004b28` is `_kernel` in the shipped
+netcore image** and converted exactly four spinlock validators, recording
+verbatim: *"This is a bounded fix, not the whole class. `0x21004b28` still
+appears in 20 further `recon/symbolized/net` TUs."*  It was never closed.
+
+In this link `_kernel` is at **0x21008600** (size 0x20) and 0x21004b28 is inside
+**`sdc_mempool`** (0x21002bb8..0x21007e79).  So every recovered kernel body that
+reached the scheduler through that base — `z_setup_new_thread` (FUN_01035edc),
+`k_sem_give` (FUN_01036824), `k_sem_take` (FUN_0103689c), `z_impl_k_poll`,
+`z_impl_k_msgq_get/put`, `submit_to_queue_locked`, `z_pend_curr`,
+`z_ready_thread`, `z_time_slice`, `k_sched_lock/unlock`, … — read and wrote a
+**shadow `_kernel` carved out of the SoftDevice Controller's heap** while the
+linked Zephyr scheduler (`z_arm_pendsv`, `arch_swap`) used the real one.  Two
+independent harms: an inconsistent scheduler view, and SDC heap corruption.
+
+Closed structurally in one pass, the iteration-11 way.  A generated guard in
+every affected TU:
+
+```c
+#ifdef G1_COHESIVE_BUILD
+extern char g1_net_kernel_object[] __asm__("_kernel");
+#define G1_NET_KERNEL_BASE ((unsigned long)g1_net_kernel_object)
+#else
+#define G1_NET_KERNEL_BASE 0x21004b28ul
+#endif
+#define G1_NET_K(off) (G1_NET_KERNEL_BASE + (off))
+```
+
+and every code-position (never comment, never string) spelling of
+`0x21004b28 / 0x21004b30 / 0x21004b38 / 0x21004b40` rewritten to
+`G1_NET_K(0x00 / 0x08 / 0x10 / 0x18)`.  **75 files, 83 literal sites**
+(`recon/net/src`, `recon/symbolized/net`, `recon/net/named`); the four
+already-converted TUs were detected and skipped.  The parity `#else` keeps the
+original literal, so no proven body changes.
+
+Field-offset justification, recorded because it is the load-bearing assumption:
+iteration 7 verified `+0x08 = cpus[0].current` and `+0x10 = cpus[0].id` in
+**both** images.  `id` at +0x10 fixes `struct _cpu` at 0x14 bytes, hence
+`ready_q.cache` at +0x14 and `ready_q.runq` at +0x18; `nm -S` reports
+`sizeof(_kernel) = 0x20` in this link, which is exactly 0x14 + 0xc.  The
+spellings found in the corpus (+0, +8, +0x10, +0x18) are all inside that
+window, and the +0x18 uses are dlist operations, consistent with `ready_q.runq`.
+
+An `__asm__("_kernel")` label is used rather than `#include <zephyr/kernel.h>`
+because several reconstruction TUs declare `assert_print` /
+`assert_post_action` with the *recovered* prototypes, which conflict with the
+Zephyr headers (measured: 4 compile errors on the first attempt).
+
+**Measured effect on the boot: none.**  `/private/tmp/g1-i20a-net` faults at
+t = 5.0942 s exactly as before.  It is kept because it is provably correct and
+because it removes a whole class, and it is reported as such rather than
+credited with the fix.
+
+### 20.3 The actual root cause of §19.8 — a missing dereference in
+### `net_buf_unref`
+
+A 60 ms CPUNET PC trace across the fault (`/private/tmp/g1-i20/tr/net.log`,
+278,000 PCs) ends, symbolised:
+
+```
+… FUN_0102acf4+0x54 -> FUN_0102ff94+0x00 … +0x4a -> 0x00000046 -> 0x48 -> 0x4a …
+```
+
+so the net core did **not** have PendSV restore PC = 0 (iteration 19's reading);
+it **branched to address 0x44** from inside `FUN_0102ff94` and then executed
+whatever the vector table holds.  The Zephyr fault path then printed
+`Reserved Exception` / `pc 0x00000000`, which is what iteration 19 saw.
+
+`FUN_0102ff94` is `net_buf_unref`.  Its shipped disassembly
+(`tools/net_recon_kit.py info 0x0102ff94`) is unambiguous:
+
+```
+  102ffb2  ldr  r1, [r4, #0x14]     ; __buf kept in r1 and PASSED
+  102ffb4  cbz  r1, #0x102ffce
+  ...
+  102ffc4  ldr  r3, [r3, #0x2c]     ; pool->alloc
+  102ffc6  ldr  r3, [r3]            ; alloc->cb        <-- THREE loads
+  102ffc8  ldr  r3, [r3, #8]        ; cb->unref
+  102ffca  blx  r3
+```
+
+The reconstruction had
+
+```c
+void **owner = *(void ***)(pool + 0x2c);
+((release_fn_t)owner[2])(buffer);          /* only TWO loads, one argument */
+```
+
+i.e. it computed `*( *(pool+0x2c) + 8 )` where the original computes
+`*( *( *(pool+0x2c) ) + 8 )`.  In Zephyr 3.4 `pool->alloc` is a
+`struct net_buf_data_alloc { cb; alloc_data; max_alloc_size; }`, so `owner[2]`
+is **`max_alloc_size`** — and for the HCI event pool that is
+`CONFIG_BT_BUF_EVT_RX_SIZE = 68 = 0x44`, exactly the branch target measured in
+the linked image.  It also dropped the second argument (`data`), which the
+shipped code deliberately keeps live in r1 across the `cbz`.
+
+Both corrected in `recon/{net/src,symbolized/net}/FUN_0102ff94.c`:
+
+```c
+uint8_t *data = *(uint8_t **)(buffer + 0x14);
+if (data != 0) {
+    if ((buffer[9] & 1u) == 0) {
+        uint8_t *pool  = base + buffer[10] * 0x34u;
+        void   **alloc = *(void ***)(pool + 0x2c);
+        void   **cb    = (void **)alloc[0];
+        ((data_unref_fn_t)cb[2])(buffer, data);
+    }
+    *(uint32_t *)(buffer + 0x14) = 0;
+}
+```
+
+`cfg_verify.verify('net','FUN_0102ff94')` **PASS**, 2 cases, 42 checks.
+
+**This is the tenth instance of the harness blind-spot family** and the first
+that is a *wrong indirection* rather than a dropped argument; it also carries a
+dropped register argument, so it is both classes at once.
+
+Build `/private/tmp/g1-i20b-net`: **the CPUNET t = 5.0942 s fatal is gone**, the
+net core is fatal-free through 8.0 s, and the app core's `bt_enable()` returns 0
+after a complete HCI handshake (§20 headline).
+
+### 20.4 Structural pass B — the ESB pipe-address block vs the linker's
+### `_sw_isr_table`
+
+Five literals landed inside `_sw_isr_table` (0x21000704, 30 entries).  Four of
+them (`0x21000760/61/63/67`) are byte views of **one** recovered object, written
+by `FUN_0102a278` (the "set pair addresses" IPC handler), read by
+`FUN_0102b31c`, and logged four bytes at a time by `main` (FUN_0102a720).
+
+Its extent is pinned from two independent directions: iteration 19 established
+that the **shipped** `_sw_isr_table` began at `0x2100076c` (that was
+`z_isr_install`'s table-base literal), and the object is `.data` in the shipped
+image.  Read through `tools/net_extract.py` at the `.data` LMA + 0x760 — noting
+that the LMA `0x0103ed24` quoted in `g1_product_endpoints.c` is a **runtime**
+address, so the analysis-space read is at `0x0103e524 + 0x760` — the twelve
+bytes are
+
+```
+01 e9 d3 | a3 a3 a3 a3 | c9 c9 c9 c9 | ff
+```
+
+exactly the {flag, master-address, slave-address, 0xff placeholder} shape the
+two accessors imply.  The object is therefore emitted **with its shipped
+initialiser** in `recon/application/net/src/g1_product_endpoints.c` as
+`g1_esb_pipe_addr_block[12]`, and:
+
+* the four raw literals in `recon/{net/src,symbolized/net,net/named}` are bound
+  to it through a `G1_NET_ESB_ADDR(off)` guard (16 sites, same mechanism as
+  §20.2);
+* the three **linker** pins that expressed the same three addresses
+  (`g_net_radio_sched_param_a/b/c` in `recon/symbols/g1_net_globals.ld`) are
+  rebound to `g1_esb_pipe_addr_block + 0x1/0x3/0x7`, preserving their original
+  relative offsets.
+
+**Honest scoping of the harm:** in this build `_sw_isr_table[11]` and `[12]`
+were the corrupted entries, and both are `{NULL, z_irq_spurious}` — RADIO,
+TIMER0 and RTC0 use *direct* vectors on the CPUNET (`_irq_vector_table`
+entries 8/12/17 hold real ISRs, not `_isr_wrapper`).  So the corruption was
+**inert in this build**.  It is closed because it is a real collision with a
+linker-generated kernel table, **not** because it was observed to fault, and
+the boot is byte-for-byte unchanged by it.
+
+Build `/private/tmp/g1-i20c-net` (and `g1-i20d-net`, byte-identical, after a
+cosmetic repair of the symbolized identity headers, §"Regenerate").
+
+### 20.5 App core — the ANCS client is VENDORED, and the library adoption of
+### two of its functions was wrong
+
+With `bt_enable()` finally succeeding, the app core reached a **new** reset at
+t ≈ 6.6 s: `SYSRESETREQ` with no fatal-error banner.  A 0.5 s app PC trace ends
+`… wait_for_event -> ancs_main -> sys_reboot -> sys_arch_reboot`, i.e. the
+firmware's own `reboot_after_ancs_failure()`.  A second trace over 5.0–6.5 s
+localised it to `ancs_c_init`, whose **fifth** registration executed only 9
+instructions — the early-return path.
+
+`adoption_manifest.json` excluded `FUN_0007f772` / `FUN_0007f79e` in favour of
+`nrf/subsys/bluetooth/services/ancs_client.c` on a **1.0 instruction-shape
+match**.  The shape match is blind to the two things that actually differ, and
+both are proven by disassembly:
+
+| | shipped (0x0007f772) | stock (linked) |
+|---|---|---|
+| length guard | `cmp r4, #0xff` (len ≤ **256**) | `cmp r4, #0x1f` (len ≤ **32**) |
+| stores | `strh [r0,#0x870]`, `strb [r0,#0x868]`, `str [r0,#0x874]` | `[r0,#0x110]`, `[r0,#0x108]`, `[r0,#0x114]` |
+| | shipped (0x0007f79e) | stock (linked) |
+| length guard | `cmp r4, #0xff` | `cmp r4, #0x1f` |
+| stores | `[r0,#0x8f0]`, `[r0,#0x8e8]`, `[r0,#0x8f4]` | `[r0,#0x190]`, `[r0,#0x188]`, `[r0,#0x194]` |
+
+Corroborated independently: the recovered `ancs_service_ctx_clear`
+(`FUN_0007f69e`) memsets **0xa2c bytes** at `g_ancs_client`, far larger than the
+upstream `struct bt_ancs_client`, and `BT_ANCS_ATTR_DATA_MAX` is a hard
+`#define 32` in the pinned NCS header — not a Kconfig, so this cannot be
+configured away.  **The shipped firmware vendors `ancs_client.c`.**
+
+Fix, deliberately minimal and collision-free: the manifest exclusion is left
+alone (the stock owner keeps the `bt_ancs_register_attr` /
+`bt_ancs_register_app_attr` symbols, so there is no duplicate definition), the
+two **raw-identity** reconstructions are added explicitly to
+`recon/application/app/CMakeLists.txt`, and `recon/symbolized/app/ancs_c_init.c`
+calls `FUN_0007f772` / `FUN_0007f79e`.  `cfg_verify.verify('app','ancs_c_init')`
+**PASS**, 40 checks.
+
+Build `/private/tmp/g1-i20a-app`: all six registrations succeed (19 instructions
+each), `ancs_discover_params_reset`, `bt_conn_auth_cb_register`,
+`bt_conn_auth_info_cb_register`, `bt_gatt_cb_register`, **`bt_start`** and
+`start_ancs_work_thread` all run, and the reset is gone.
+
+### 20.6 The new first divergence — `bt_start()` short-circuits on
+### `device_info[0x1058] == 0`
+
+`bt_start` (0x000180fc in this link) is now entered and returns **0** after 29
+instructions:
+
+```
+18114  bl   get_device_info
+18118  ldrb r3, [r0, r4]      ; r4 = 0x1058
+1811a  cmp  r3, #2
+1811c  bne  18134
+18134  bl   get_device_info
+18138  ldrb r3, [r0, r4]
+1813a  cmp  r3, #0
+1813c  beq  1811e             ; -> return 0, WITHOUT bt_le_adv_start
+```
+
+A Renode hook at 0x18138 measured it directly, twice in an 8 s run:
+
+```
+[ERROR] cpuapp: BTSTART_STATE di=0x2003FBE0 byte=0x0
+```
+
+So `device_info[0x1058]` is **0** and advertising is never started.  That byte
+is the same "device ready / work mode" field `ancs_main` polls for up to 5 s
+before calling `bt_enable`.  **Which recovered writer should set it, and why it
+does not, is NOT root-caused here and no guess is recorded as if it were.**
+This is the first divergence for iteration 21 and it is one call short of
+`bt_le_adv_start`.
+
+Side benefit: `di = 0x2003FBE0` also gives the **correct** parity-capture probe
+addresses for this build (`G1_CTX_FE8 = 0x20040BC8`,
+`G1_CTX_105A = 0x20040C3A`), and they now read plausible values (`0x00` / `0x01`)
+instead of iteration 19's stale `0x7C`.
+
+### 20.7 What is left in the literal class, and why it was deferred
+
+Of the 74 remaining colliding literals, the enclosing function of **35** is
+absent from the linked ELF entirely (garbage-collected or fully inlined —
+`--gc-sections` is on with `G1_INTEGRATION_PROBE_RETAIN_ALL=OFF`), so those
+literals are never executed.  The **39** with at least one linked enclosing
+function break down as:
+
+| owner | live | note |
+|---|---:|---|
+| `sdc_mempool` | 28 | recovered SDC/MPSL/ESB private state (`FUN_010333b4`, `FUN_01032c28`, `FUN_01033660`, `FUN_010327a0/d8`, `FUN_0102b944`, …).  The owner's standing direction is displacement onto the stock controller, which is a per-function ownership exercise, not a literal rewrite. |
+| `m_cb` | 3 | nrfx driver control block.  `m_cb` is a **file-local static** in this build (`nm` shows `d m_cb` at 0x2100064c), so a linker script cannot name it; the literals are +0x10/+0x40/+0x54 and are plausibly *correct* interior views that the .data layout happens to reproduce. |
+| `g1_esb_worker_thread` | 3 | 0x21001ce8/cf8/d00 — three `uint64_t` uptime stamps `main` uses; they alias the `struct k_thread` this build emits for the ESB worker.  Real defect; deferred because the ESB worker's entry point (analysis 0x0102b204) is still unreconstructed, so the whole object is provisional. |
+| `g1_timeslot_request_earliest` / `_normal` / `nrf53_sync_offset` / `DAT_01033b10` | 5 | **benign self-aliases** (§20.1): the emitted object sits at its own original address and the literal is its base or a real interior offset. |
+
+Deferred deliberately and named: the 28 `sdc_mempool` rows.  A net arena remains
+impossible (iteration 18 §18.8 item 2; this build has 60,540 B of 65,536 B in
+use), and rewriting 28 literals into 28 emitted objects would move ~2.5 KB of
+recovered state into a RAM budget with 4,996 B free while leaving the
+duplicate SDC bodies in place.  Displacement is the right instrument and it is
+its own iteration.
+
+### 20.8 Measurements (every number below was actually run)
+
+| metric | iter 19 final (`i19b-app` + `i19e-net`) | **iter 20 (`i20a-app` + `i20d-net`)** |
+|---|---:|---:|
+| app `ZEPHYR FATAL ERROR` @8.0 s | 0 | **0** |
+| net `ZEPHYR FATAL ERROR` @8.0 s | **1 (t = 5.0942 s)** | **0** |
+| SoC `SYSRESETREQ` in an 8 s run | 1 (from the net fault) | **0** |
+| app instructions @8.0 s | not reached (SoC reset) | **17,753,624** |
+| net instructions @8.0 s | not reached | **2,080,530** |
+| `Bluetooth enabled in RAW mode` (CPUNET) | yes | yes |
+| **`bt_hci_core: Identity: …` (host init complete)** | **no** | **yes, t = 5.100 s** |
+| **`ancs_c_init` returns 0** | not reached | **yes** |
+| **`bt_start()` reached** | no | **yes (returns 0 early, §20.6)** |
+| `radio TransmittedFrames` | 0 | **0** |
+| `vcentral Connected` | False | **False** |
+| app FLASH / RAM | 649,672 B / 252,885 B | **649,688 B (+16) / 252,885 B (+0)** |
+| net FLASH / RAM | 228,445 B / 60,524 B | **228,409 B (−36) / 60,540 B (+16)** |
+| app `nm -u` undefined / duplicate globals | 0 / 0 | **0 / 0** |
+| net `nm -u` undefined / duplicate globals | 0 / 0 | **0 / 0** |
+| `check_ram_pin_collisions.py` (app) | 0 / 0, EXIT 0 | **0 / 0, EXIT 0** |
+| `check_net_raw_literals.py` (net) | *did not exist* — 79 / EXIT 1 measured retroactively | **74 / EXIT 1** (§20.1) |
+| `check_thread_create_stack_args.py` | 10/10, EXIT 0 | **10/10, EXIT 0** (120 trials) |
+| `gen_retained_sources.py --check` | clean | **clean** |
+
+Net FLASH stayed inside its budget (98.70 % of 231,424 B; **−36 B** net), so the
+`app.overlay` headroom mechanism was not touched.
+
+### 20.9 Graphics + sensor parity (`g1-i20a-app` + `g1-i20c-net`)
+
+Full capture actually run, both phases, identical determinism knobs and
+stimulus to the oracle, **no memory poking**:
+
+```
+G1_RESC=/Users/freedomcoder/Projects/armemul/g1-ours.resc \
+G1_APP_ELF=/private/tmp/g1-i20a-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i20c-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A \
+recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i20
+```
+
+| id | verdict | detail |
+|---|---|---|
+| **G-5** | **PASS** (unchanged) | all four enumerated panel-init elements byte-exact. |
+| **G-6** | **PASS** (unchanged) | `spim_b` 0 == 0, hash EQ. |
+| **G-3** | **FAIL (truncation only)**, unchanged | `p1_boot` **34 vs 764**; the shared 34 are byte-identical; first difference at index **34** (oracle `{"op":"0x66","kind":"command","n_tx":1,"n_rx":1}`, ours `<end>`).  `p2_render` **0 vs 2,881**. |
+| **G-1** | **FAIL**, unchanged | `p2_render` ours `0c5cc90b07…` / **0 lit px**; oracle `b26c73b37d…` / **1,098**. |
+| **G-2** | **FAIL**, unchanged | `p1_boot` ours `0c5cc90b07…` / **0 lit px**; oracle `1d617c65a6…` / **656**. |
+| **G-4** | *localiser, unchanged* | our framebuffer sha is still bit-identical to iterations 16–19, so first differing row **y = 267**, first differing pixel **x = 178** carries over. |
+
+**Not one pixel was painted, and that is stated plainly.**  `JBD_FRAMECOUNTER_P1`
+= 0x3 (oracle 0x2A1), `JBD_FRAMECOUNTER_P2` = 0x3 (oracle 0xD61).
+
+Sensors — but this time **the capture is no longer truncated by a reset**, so
+`p2_render` is real for the first time in the *final* tree:
+
+| device / phase | iter 19 final | iter 19 "reset-free net" variant | **iter 20** | oracle | first difference |
+|---|---:|---:|---:|---:|---:|
+| LSM6DSO `p1_boot` | 983 | 1,027 | **1,027** | 1,089 | #3 |
+| LSM6DSO `p2_render` | 0 | 456 | **700** | 1,200 | **#700 — the entire 700-transaction prefix is byte-identical to the oracle** |
+| nPM1300 `p1_boot` | 199 | 232 | **232** | 291 | #0 |
+| nPM1300 `p2_render` | 0 | 233 | **369** | 508 | #2 |
+| OPT3001 `p1_boot` | 14 | 14 | **14** | 33 | #14 (prefix-exact) |
+| ST25DV sysport / EEPROM `p1_boot` | 12 / 11 | 12 / 11 | **12 / 11** | 22 / 25 | #10 / #6 |
+| `saadc` (whole run) | 17 | 53 | **71** | 998 | #5 |
+| `spim_a` `p1_boot` / `p2_render` | 34 / 0 | 34 / 0 | **34 / 0** | 764 / 2,881 | #34 |
+| `gpiote0` / `pdm0` / `spim_b` | 25 / 2 / 0 hash EQ | same | **25 / 2 / 0, hash EQ** | 25 / 2 / 0 | — |
+| framebuffer `p1` / `p2` lit px | 0 / 0 | 0 / 0 | **0 / 0** | 656 / 1,098 | — |
+
+Score **unchanged at 5 PASS / 5 PARTIAL / 4 FAIL** — no criterion changes
+verdict.  What did change is the *depth* of the sensor prefixes: the IMU's
+byte-identical `p2_render` prefix grew 456 → **700** transactions, the PMIC's
+`p2_render` 233 → **369**, and the SAADC 53 → **71**.  `spim_a` did not move by
+a single transaction, because everything past index 34 is gated on the BLE link,
+which is still down.
+
+### 20.10 Re-proof
+
+Every changed or newly linked reconstruction re-verified with the authoritative
+CFG-directed verifier **after** the change:
+
+```
+app  ancs_c_init      PASS  checked=40
+net  FUN_0102ff94     PASS  cases=2   checked=42
+net  FUN_0102a278     PASS  cases=13  checked=53
+net  FUN_0102b31c     PASS  cases=3   checked=43
+net  FUN_01035edc     PASS  checked=40
+net  FUN_01036824     PASS  checked=40
+net  FUN_0102a720     PASS  cases=5
+net  FUN_01037768     PASS  cases=6
+```
+
+As in iterations 18–19 this is necessary but not sufficient — `cfg_verify`
+passed on `FUN_0102ff94` **before** the fix too, because a missing dereference
+inside a callback-pointer computation is modelled as an opaque callback slot.
+The evidence that settled it was the raw shipped disassembly plus the measured
+branch target, not the harness.
+
+### Regenerate (iteration 20)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check   # clean
+recon/application/build_cohesive.sh app /private/tmp/g1-i20a-app
+recon/application/build_cohesive.sh net /private/tmp/g1-i20d-net -- \
+    -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF
+arm-zephyr-eabi-nm -u /private/tmp/g1-i20a-app/zephyr/zephyr.elf | wc -l    # 0
+arm-zephyr-eabi-nm -u /private/tmp/g1-i20d-net/zephyr/zephyr.elf | wc -l    # 0
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py \
+    /private/tmp/g1-i20a-app/zephyr/zephyr.elf                             # EXIT 0, 0/0
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_net_raw_literals.py \
+    /private/tmp/g1-i20d-net/zephyr/zephyr.elf                             # 74, EXIT 1
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_thread_create_stack_args.py \
+    --trials 120                                                           # EXIT 0, 10/10
+# boot: <scratch>/g1-i20/boot_e.resc  (8.0 s, checkpoints every 0.5 s from t=5)
+# parity: §20.9
+```
+
+Note on `g1-i20c-net` vs `g1-i20d-net`: the §20.2/§20.4 guard blocks were first
+inserted at the very top of the symbolized TUs, which displaced the
+`#include "g1_net_symbols.h"` identity header that `gen_retained_sources.py
+--check` requires.  Twenty files were repaired by moving the guard below the
+header; **`zephyr.bin` is byte-identical between the two builds** (verified with
+`cmp`), so the §20.9 capture taken on `g1-i20c-net` stands for `g1-i20d-net`.
+
+Bisect ledger (every build and boot actually run):
+
+| build | change | app FATAL @8 s | net FATAL @8 s | note |
+|---|---|---|---|---|
+| `g1-i20-net` / `g1-i20-app` | iteration-19 tree rebuilt (baseline) | — | 1 (t = 5.0942 s) | reproduces §19.8 |
+| `g1-i20a-net` | §20.2 `_kernel` structural pass | — | 1 (t = 5.0942 s) | correct, symptom unchanged; **kept** |
+| `g1-i20b-net` | §20.3 `net_buf_unref` indirection + dropped arg | **1 (t = 6.6 s, `ancs_main` → `sys_reboot`)** | **0** | **net fault GONE**; `bt_enable` completes; new app stall |
+| `g1-i20a-app` | §20.5 vendored ANCS registrars | **0** | 0 | `bt_start` reached; **both cores reset-free** |
+| `g1-i20c-net` | §20.4 ESB pipe-address block | **0** | **0** | `_sw_isr_table` collisions closed; boot unchanged |
+| `g1-i20d-net` | identity-header repair only | 0 | 0 | **final**; `zephyr.bin` identical to `g1-i20c-net` |
+
+Files changed: `recon/net/src/FUN_0102ff94.c` and its
+`recon/symbolized/net` mirror (§20.3); 75 TUs across
+`recon/{net/src,symbolized/net,net/named}` for the `_kernel` guard (§20.2);
+`recon/{net/src,symbolized/net,net/named}/FUN_0102a278.c`,
+`FUN_0102b31c.c`, `FUN_0102a720.c` for the ESB block (§20.4);
+`recon/application/net/src/g1_product_endpoints.c` (the emitted
+`g1_esb_pipe_addr_block` with its shipped initialiser);
+`recon/symbols/g1_net_globals.ld` (three pins rebound);
+`recon/application/app/CMakeLists.txt` and
+`recon/symbolized/app/ancs_c_init.c` (§20.5);
+new `recon/emulator/scripts/check_net_raw_literals.py`;
+`recon/emulator/reports/sensor_parity_status.md` (rewritten in place); this
+report.  **No `tools/` change**, no Kconfig / `prj.conf` / devicetree change,
+no `adoption_manifest.json` change, `armemul` untouched, nothing committed.
+
+### 20.11 Open, named, and NOT fixed
+
+1. **§20.6 — `bt_start()` returns 0 because `device_info[0x1058]` is 0**, so
+   `bt_le_adv_start` is never called and BLE never advertises.  This is the
+   first divergence.  Not root-caused.
+2. **74 source-level raw `0x21xxxxxx` literals still land inside a live linked
+   object** (§20.1/§20.7); 39 of them are in linked code and 28 of those are
+   inside `sdc_mempool`.  The instrument is displacement of the duplicate
+   SDC/MPSL bodies, not a literal rewrite.
+3. **The rest of the vendored ANCS client is still the stock one** (§20.5).
+   Only the two registrars were corrected; every other `ancs_client.c` function
+   in the link (subscribe, parse, attribute request) writes the *upstream*
+   offsets into the 0xa2c-byte recovered `g_ancs_client`.  None of them runs
+   before a GATT connection, so nothing is measured yet — but this is a known,
+   named landmine for the connect step.
+4. **The net RAM-pin gate still does not exist** as a first-class invocation
+   (iteration 18 §18.8 item 3); `check_ram_pin_collisions.py` remains hard-coded
+   to the app window.  The new checker covers the *source* half only.
+5. **`analysis 0x0102b204` (168 B) is still unreconstructed**, so
+   `FUN_0102b1c8` still creates the ESB worker with `K_FOREVER`.
+6. **`CONFIG_MAIN_STACK_SIZE = 1024` remains measured-sufficient, not
+   original-verified** (iteration 19 §19.13 item 3).

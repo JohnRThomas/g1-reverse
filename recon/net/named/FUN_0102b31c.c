@@ -14,6 +14,23 @@
  */
 /* net-core FUN_0102b31c @ 0x102b31c  (parity 300 trials PROVEN) */
 
+#ifdef G1_COHESIVE_BUILD
+/* P4 iteration 20 - the recovered ESB pipe-address block at 0x21000760.
+ * Twelve bytes, `.data` in the shipped image (initialiser
+ * 01 e9 d3 a3 a3 a3 a3 c9 c9 c9 c9 ff, read with tools/net_extract.py), ending
+ * exactly where the SHIPPED _sw_isr_table began (0x2100076c, established in
+ * iteration 19).  In the cohesive link those twelve bytes land at
+ * _sw_isr_table + 0x5c .. + 0x67, i.e. entries 11 and 12 of the LINKER's own
+ * interrupt table.  Bind the emitted object in
+ * recon/application/net/src/g1_product_endpoints.c instead.  Parity builds
+ * keep the original literals. */
+extern unsigned char g1_esb_pipe_addr_block[];
+#define G1_NET_ESB_ADDR_BASE ((unsigned long)g1_esb_pipe_addr_block)
+#else
+#define G1_NET_ESB_ADDR_BASE 0x21000760ul
+#endif
+#define G1_NET_ESB_ADDR(off) (G1_NET_ESB_ADDR_BASE + (off))
+
 #include <stdint.h>
 
 extern int FUN_010333b4(void *);
@@ -55,11 +72,11 @@ int FUN_0102b31c(int param_1)
     unsigned char v = p3d4[0];
     FUN_01033acc((unsigned char)(v / 5) + 0x50);
   }
-  iVar2 = FUN_010339e4(0x21000767);
+  iVar2 = FUN_010339e4(G1_NET_ESB_ADDR(0x7));
   if (iVar2 == 0) {
-    iVar2 = FUN_01033a20(0x21000763);
+    iVar2 = FUN_01033a20(G1_NET_ESB_ADDR(0x3));
     if (iVar2 == 0) {
-      iVar2 = FUN_01033a60(0x21000761, 2);
+      iVar2 = FUN_01033a60(G1_NET_ESB_ADDR(0x1), 2);
       if (iVar2 == 0) {
         iVar2 = FUN_01033aac(3);
         if (iVar2 == 0) {

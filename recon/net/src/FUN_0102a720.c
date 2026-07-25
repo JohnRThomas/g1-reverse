@@ -5,6 +5,23 @@
  * and addresses, starts the ESB service, and then reports stable link-state
  * transitions.  Fixed addresses below retain the reversible firmware map.
  */
+#ifdef G1_COHESIVE_BUILD
+/* P4 iteration 20 - the recovered ESB pipe-address block at 0x21000760.
+ * Twelve bytes, `.data` in the shipped image (initialiser
+ * 01 e9 d3 a3 a3 a3 a3 c9 c9 c9 c9 ff, read with tools/net_extract.py), ending
+ * exactly where the SHIPPED _sw_isr_table began (0x2100076c, established in
+ * iteration 19).  In the cohesive link those twelve bytes land at
+ * _sw_isr_table + 0x5c .. + 0x67, i.e. entries 11 and 12 of the LINKER's own
+ * interrupt table.  Bind the emitted object in
+ * recon/application/net/src/g1_product_endpoints.c instead.  Parity builds
+ * keep the original literals. */
+extern unsigned char g1_esb_pipe_addr_block[];
+#define G1_NET_ESB_ADDR_BASE ((unsigned long)g1_esb_pipe_addr_block)
+#else
+#define G1_NET_ESB_ADDR_BASE 0x21000760ul
+#endif
+#define G1_NET_ESB_ADDR(off) (G1_NET_ESB_ADDR_BASE + (off))
+
 #include <stdint.h>
 
 /* Keep the production spelling readable while emitting the reversible raw
@@ -204,11 +221,11 @@ int main(void)
         *(volatile uint8_t *)0x21004b9eu = (uint8_t)state->bt_identity;
     }
     if (*net_log_level > 1) {
-        const volatile uint8_t *address0 = (const volatile uint8_t *)0x21000767u;
+        const volatile uint8_t *address0 = (const volatile uint8_t *)G1_NET_ESB_ADDR(0x7);
         net_printk((const char *)0x0103cdadu, address0[0], address0[1],
                    address0[2], address0[3]);
         if (*net_log_level > 1) {
-            const volatile uint8_t *address1 = (const volatile uint8_t *)0x21000763u;
+            const volatile uint8_t *address1 = (const volatile uint8_t *)G1_NET_ESB_ADDR(0x3);
             net_printk((const char *)0x0103cdd1u, address1[0], address1[1],
                        address1[2], address1[3]);
         }

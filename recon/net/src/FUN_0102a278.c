@@ -9,6 +9,23 @@
  * arguments, so the ordinal-0 comparison is declared:
  * CFG_VERIFY_CALL_ARITIES=2
  */
+#ifdef G1_COHESIVE_BUILD
+/* P4 iteration 20 - the recovered ESB pipe-address block at 0x21000760.
+ * Twelve bytes, `.data` in the shipped image (initialiser
+ * 01 e9 d3 a3 a3 a3 a3 c9 c9 c9 c9 ff, read with tools/net_extract.py), ending
+ * exactly where the SHIPPED _sw_isr_table began (0x2100076c, established in
+ * iteration 19).  In the cohesive link those twelve bytes land at
+ * _sw_isr_table + 0x5c .. + 0x67, i.e. entries 11 and 12 of the LINKER's own
+ * interrupt table.  Bind the emitted object in
+ * recon/application/net/src/g1_product_endpoints.c instead.  Parity builds
+ * keep the original literals. */
+extern unsigned char g1_esb_pipe_addr_block[];
+#define G1_NET_ESB_ADDR_BASE ((unsigned long)g1_esb_pipe_addr_block)
+#else
+#define G1_NET_ESB_ADDR_BASE 0x21000760ul
+#endif
+#define G1_NET_ESB_ADDR(off) (G1_NET_ESB_ADDR_BASE + (off))
+
 #include <stdint.h>
 
 typedef int (*net_send_fn)(const void *message, uint32_t size);
@@ -22,7 +39,7 @@ extern void FUN_0102bbc4(void);
 int FUN_0102a278(uint8_t *state, const uint8_t *packet, uint32_t size)
 {
     volatile int32_t *const log_level = (volatile int32_t *)0x21000580u;
-    volatile uint8_t *const reply_pending = (volatile uint8_t *)0x21000760u;
+    volatile uint8_t *const reply_pending = (volatile uint8_t *)G1_NET_ESB_ADDR(0x0);
     uint8_t **const service_slot = (uint8_t **)0x210045f4u;
     union {
         uint32_t w[4];
@@ -45,9 +62,9 @@ int FUN_0102a278(uint8_t *state, const uint8_t *packet, uint32_t size)
         if (primary != 0xffu) {
             uint8_t secondary = packet[5];
             if ((uint8_t)(secondary - 1u) <= 0xfdu && primary != 0u) {
-                volatile uint8_t *const hi = (volatile uint8_t *)0x21000767u;
-                volatile uint8_t *const lo = (volatile uint8_t *)0x21000761u;
-                volatile uint8_t *const mid = (volatile uint8_t *)0x21000763u;
+                volatile uint8_t *const hi = (volatile uint8_t *)G1_NET_ESB_ADDR(0x7);
+                volatile uint8_t *const lo = (volatile uint8_t *)G1_NET_ESB_ADDR(0x1);
+                volatile uint8_t *const mid = (volatile uint8_t *)G1_NET_ESB_ADDR(0x3);
                 hi[0] = primary;
                 hi[1] = primary;
                 hi[2] = primary;

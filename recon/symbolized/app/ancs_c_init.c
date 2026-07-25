@@ -20,8 +20,24 @@
 extern int log_message(int,...);
 extern int debug_print(int,...);
 extern int ancs_service_ctx_clear(int,...);
-extern int bt_ancs_register_attr(int,...);
-extern int bt_ancs_register_app_attr(int,...);
+/* P4 iteration 20 -- the shipped firmware VENDORS ancs_client.c: its
+ * bt_ancs_register_attr accepts len <= 256 and writes
+ * ancs_notif_attr_list at +0x868/+0x870/+0x874, while upstream NCS 2.5.1
+ * accepts len <= 32 and writes +0x108/+0x110/+0x114 (proven by disassembly of
+ * 0x0007f772 / 0x0007f79e against the linked stock bodies; the recovered
+ * ancs_service_ctx_clear memsets 0xa2c bytes at g_ancs_client, so the shipped
+ * struct really is that large).  adoption_manifest.json excluded both
+ * reconstructions on a 1.0 instruction-SHAPE match, which cannot see a
+ * changed immediate or a changed struct offset.  MEASURED: with bt_enable()
+ * finally succeeding, the fifth registration (id = 3, len = 0x100) failed the
+ * stock `cmp r4,#31` guard, ancs_c_init returned -EINVAL and ancs_main
+ * rebooted the SoC at t = 6.6 s -- so bt_start() (advertising) was never
+ * reached.  Call the raw identities, which recon/application/app/CMakeLists.txt
+ * links alongside (not instead of) the stock owner. */
+extern int FUN_0007f772(int,...);
+extern int FUN_0007f79e(int,...);
+#define bt_ancs_register_attr     FUN_0007f772
+#define bt_ancs_register_app_attr FUN_0007f79e
 #define C8 (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define CC (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
 
