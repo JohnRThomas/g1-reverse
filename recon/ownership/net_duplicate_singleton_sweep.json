@@ -2594,7 +2594,8 @@
      "size": 46,
      "distinguishing": 46
     }
-   ]
+   ],
+   "verdict_superseded": "WITHDRAWN by P4 iteration 29.  The 21 non-matching sections were NOT an Even source change: they were CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 (not the build's 32) plus ESB_EVT_IRQ=SWI3_IRQn (the SDK header hardcodes SWI0_IRQn, which MPSL already owns on CPUNET). With both applied all 40 esb.c sections present in the shipped image are relocation-masked byte-identical and the 39 in the main run tile 0x01032764..0x01033b18 with no gap or overlap. The unit is DISPLACED -- see recon/ownership/net_esb_core_singleton_adoption.json."
   },
   "libmodules__hal_nordic__nrfx.a(nrfx_gpiote.c.obj)": {
    "functions_matched": 21,

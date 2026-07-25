@@ -230,3 +230,78 @@ PROVIDE(FUN_01033f38 = esb_ppi_deinit);
  * reconstructions are already --gc-sections'd out of the link. */
 PROVIDE(FUN_01034d8c = nrfx_ipc_init);
 PROVIDE(FUN_01034dd8 = nrfx_ipc_config_load);
+
+/* ============================================================================
+ * Iteration 29, BATCH 4 -- the ESB CORE.  Iteration 28 KEPT esb.c because only
+ * 32 of its 53 stock sections were byte-identical to the shipped image and the
+ * 21 that were not clustered hard on the FIFO/payload path (esb_init,
+ * esb_write_payload, start_tx_transaction, on_radio_disabled_*, ...).  That
+ * verdict is now WITHDRAWN with byte evidence: the cluster was a KCONFIG and a
+ * one-line header difference, not an Even source change.
+ *
+ *   CONFIG_ESB_MAX_PAYLOAD_LENGTH = 251 (not the default 32)
+ *        -> .text.esb_write_payload, .text.start_tx_transaction,
+ *           .text.rx_fifo_push_rfbuf.part.0 and
+ *           .text.update_rf_payload_format_esb_dpl become byte-identical.
+ *        Independently confirmed by the shipped `.bss` tiling:
+ *        rx_payload.0 @0x21005256 +0x800, tx_payload.1 @0x21005a56 +0x800
+ *        (8 x sizeof(esb_payload) = 8 x 256), pids @0x21006256,
+ *        rx_payload_buffer @0x2100625e (253 = 251+2),
+ *        tx_payload_buffer @0x2100635b (253), esb_state @0x21006458,
+ *        esb_initialized @0x21006459 -- contiguous, no slack.
+ *
+ *   ESB_EVT_IRQ = SWI3_IRQn (the SDK header hardcodes SWI0_IRQn, which MPSL
+ *        already owns on CPUNET -- mpsl_init.c:38)
+ *        -> .text.esb_init, .text.on_radio_disabled_rx,
+ *           .text.on_radio_disabled_tx_noack and
+ *           .text.on_radio_disabled_tx_wait_for_ack become byte-identical.
+ *        The ONLY unmasked difference before the change was the NVIC ISPR
+ *        bit-mask literal: shipped `f04f 5300` (bit 29 = SWI3) vs stock
+ *        `f04f 6380` (bit 26 = SWI0).
+ *
+ * With both, 39 stock sections TILE the shipped run 0x01032764..0x01033b18
+ * with NO gap and NO overlap; the remaining 11 stock sections are pure API
+ * leaves the shipped link garbage-collected, exactly as ours does.  Evidence:
+ * recon/ownership/net_esb_core_singleton_adoption.json.
+ *
+ * The unit is displaced WHOLE (37 reconstructions, 36 in the run plus the
+ * shared-tail static bytewise_bit_swap at 0x0103a80c), so esb_cfg / rx_fifo /
+ * tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized stay
+ * in ONE translation unit.  Cross-reference: no retained reconstruction
+ * references any of the 28 esb.c-owned shipped RAM addresses, and every
+ * external referrer of the unit (FUN_0102b31c, FUN_0102b49c, FUN_0102b50c,
+ * FUN_0102ece0, FUN_0103a83a) calls only PUBLIC esb_* entry points, all of
+ * which are PROVIDEd below.  The 21 file-local sections have no referrer
+ * outside the displaced set, so their exclusion leaves no undefined symbol.
+ * ==========================================================================*/
+PROVIDE(FUN_01033354 = esb_disable);
+PROVIDE(FUN_010333b4 = esb_init);
+PROVIDE(FUN_01033660 = esb_write_payload);
+PROVIDE(FUN_010337ac = esb_read_rx_payload);
+PROVIDE(FUN_01033858 = esb_start_tx);
+PROVIDE(FUN_01033888 = esb_start_rx);
+PROVIDE(FUN_01033968 = esb_stop_rx);
+PROVIDE(FUN_010339d0 = esb_tx_full);
+PROVIDE(FUN_010339e4 = esb_set_base_address_0);
+PROVIDE(FUN_01033a20 = esb_set_base_address_1);
+PROVIDE(FUN_01033a60 = esb_set_prefixes);
+PROVIDE(FUN_01033aac = esb_enable_pipes);
+PROVIDE(FUN_01033acc = esb_set_rf_channel);
+PROVIDE(FUN_01033af8 = esb_set_tx_power);
+PROVIDE(FUN_01033084 = esb_fem_for_rx_ack);
+PROVIDE(FUN_01033168 = esb_fem_for_tx_retry);
+PROVIDE(FUN_010331a0 = esb_fem_for_tx_retry_clear);
+/* File-local in the stock object, so unnameable by a PROVIDE -- and unneeded:
+ * every referrer is displaced in this same batch.
+ *   0x01032764 update_radio_bitrate            0x010327a0 reset_fifos
+ *   0x010327bc esb_timer_handler               0x01032804 on_radio_disabled_rx_ack
+ *   0x01032860 esb_fem_for_tx_set              0x0103289c SWI3_IRQHandler
+ *   0x01032908 esb_fem_reset                   0x01032930 update_radio_addresses.part.0
+ *   0x01032954 tx_fifo_remove_last.part.0      0x01032988 esb_fem_for_rx_set
+ *   0x010329b4 clear_events_restart_rx         0x01032a3c rx_fifo_push_rfbuf.part.0
+ *   0x01032ad8 update_radio_tx_power           0x01032b4c nrf_radio_packet_configure.constprop.0
+ *   0x01032ba4 update_rf_payload_format_esb    0x01032be4 update_rf_payload_format_esb_dpl
+ *   0x01032c28 start_tx_transaction            0x01032de4 on_radio_disabled_tx_noack
+ *   0x01032e54 on_radio_disabled_rx            0x010330b0 on_radio_disabled_tx
+ *   0x010331c8 on_radio_disabled_tx_wait_for_ack
+ *   0x0103a80c bytewise_bit_swap (shared tail) */

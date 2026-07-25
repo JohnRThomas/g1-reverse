@@ -11214,3 +11214,345 @@ Files changed: new `recon/ownership/net_duplicate_singleton_sweep.json`,
 `recon/emulator/reports/sensor_parity_status.md`; this report.
 **No `tools/` logic change**, no Kconfig / `prj.conf` / devicetree change, no
 reconstruction source edited, `armemul` untouched, nothing committed.
+
+## Iteration 29 — iteration 28's `esb.c` KEEP verdict is WITHDRAWN with byte
+## evidence: the 21 "Even-modified" sections were a **Kconfig value and a
+## one-line header difference**.  With `CONFIG_ESB_MAX_PAYLOAD_LENGTH=251` and
+## `ESB_EVT_IRQ = SWI3_IRQn` the stock NCS 2.5.1 `esb.c` tiles the shipped run
+## `0x01032764..0x01033b18` **exactly**, the whole ESB core is displaced (37
+## reconstructions), and **master ESB PTX frames reach the virtual slave for
+## the first time in this project — `MasterFramesSeen` 0 → 0x26C, with the
+## first frame BYTE-IDENTICAL to the oracle's**
+
+**Stated first, because the acceptance bar is pixels: NO PIXEL IS PAINTED.**
+`framebuffer.lit_pixels` is **0 / 0** against the oracle's **656** (`p1_boot`) /
+**1,098** (`p2_render`), `firmware_events` is `{}`, and **no display START with
+`action = 1` arrived.**  Everything below is measured.
+
+### 29.1 The `esb.c` Kconfig verdict — REPRODUCED, so the unit is DISPLACED
+
+Method (identical gate to iteration 28's sweep, scripts in the session
+scratchpad, **no `tools/` logic touched**): rebuild the pinned
+`~/ncs251/nrf/subsys/esb/esb.c` with the net build's **exact** compile command
+and a patched `autoconf.h`; index every `.text.*` section with a 4-byte mask at
+each relocation offset; slide each section over the whole shipped
+`netcore_image.bin` and require agreement on **every unmasked byte**
+(≥ 16 distinguishing).  Value = sections located, of 51 indexed:
+
+| variant | located |
+|---|---:|
+| this build's configuration (baseline, `CONFIG_ESB_MAX_PAYLOAD_LENGTH=32`) | **32** — reproduces iteration 28 exactly |
+| payload length 64 / 128 / 252 | 32 / 32 / 32 |
+| **payload length 251** | **36** |
+| 251 + TX/RX FIFO 2 / 4 / 16 / 32 | 28 / 28 / 28 / 28 |
+| 251 + `ESB_PIPE_COUNT` 1 / 2 / 4 | 32 / 32 / 32 |
+| 251 + `ESB_NEVER_DISABLE_TX=y` | 33 |
+| 251 + `ESB_DYNAMIC_INTERRUPTS=n` | 33 |
+| **251 + `ESB_EVT_IRQ = SWI3_IRQn`** | **40** |
+
+So the recovered configuration is **payload 251, TX/RX FIFO 8, pipes 8,
+dynamic interrupts on, never-disable-TX off, sys timer 2** — every deviation
+loses sections.
+
+**The 251 is confirmed three independent ways.**
+
+1. Iteration 24 decoded the shipped `esb_config` template: `payload_length =
+   0xfb = 251`.
+2. The shipped **`.bss` tiles with zero slack only at 251**.  Resolving the
+   `R_ARM_ABS32` relocations of the located sections against the image words:
+   ```
+   0x21005256  rx_payload.0        8 x 256 B   (sizeof(esb_payload) = 5 + 251)
+   0x21005a56  tx_payload.1        8 x 256 B      = 0x21005256 + 0x800
+   0x21006256  pids                8 B            = 0x21005a56 + 0x800
+   0x2100625e  rx_payload_buffer   253 B          = payload_length + 2
+   0x2100635b  tx_payload_buffer   253 B
+   0x21006458  esb_state           0x21006459 esb_initialized
+   ```
+3. The recovered `FUN_0102b49c` (the announce-response builder) stages exactly
+   `packet[0] = 0xfb` bytes — see §29.5.
+
+**The SWI3 difference is a genuine Even change, and a necessary one.**
+`nrf/subsys/esb/esb_peripherals.h` hardcodes `ESB_EVT_IRQ = SWI0_IRQn`, but on
+the nRF5340 **network** core `nrf/subsys/mpsl/init/mpsl_init.c:38` already owns
+SWI0 (`#define MPSL_LOW_PRIO_IRQn SWI0_IRQn`), and this firmware runs ESB and
+MPSL/SDC on the same core.  Before the change the ONLY unmasked difference
+across `.text.on_radio_disabled_tx_noack` (112 B) and
+`.text.on_radio_disabled_rx` (560 B) was four bytes, at three sites, all the
+same instruction:
+
+```
+                 str.w r3,[r0,#0x100]        r0 = 0xE000E000  ->  NVIC->ISPR[0]
+shipped   0x01032e1c / 0x01032e30 / 0x01032fe0:  f04f 5300   mov.w r3,#0x20000000  (bit 29 = SWI3_IRQn)
+stock SWI0                                    :  f04f 6380   mov.w r3,#0x04000000  (bit 26 = SWI0_IRQn)
+```
+
+Implemented WITHOUT touching the pinned SDK: `recon/application/net/src/esb_peripherals_g1.h`
+defines the SDK header's own include guard and is force-included (`-include`)
+into the `..__nrf__subsys__esb` library target only.
+
+**Result — the 39 located sections TILE the shipped run with no gap and no
+overlap:**
+
+```
+0x01032764 update_radio_bitrate 60      ...      0x01032c28 start_tx_transaction 444
+0x01032de4 on_radio_disabled_tx_noack 112        0x01032e54 on_radio_disabled_rx 560
+0x010331c8 on_radio_disabled_tx_wait_for_ack 396 0x01033354 esb_disable 96
+0x010333b4 esb_init 684                          0x01033660 esb_write_payload 332
+   ...                                           0x01033af8 esb_set_tx_power 32  -> ends 0x01033b18
+```
+
+The three gaps iteration 28 left (672 / 396 / 684 bytes) are filled by sections
+whose compiled sizes are **112 + 560 = 672**, **396** and **684** — exact.  The
+40th section, the file-local `bytewise_bit_swap` (46 B), sits in the shared tail
+at `0x0103a80c`.  The remaining 11 stock sections (`esb_flush_rx/tx`,
+`esb_pop_tx`, `esb_reuse_pid`, `esb_get_rf_channel`, `esb_suspend`,
+`esb_update_prefix`, `esb_set_address_length/bitrate/retransmit_count/_delay`)
+are pure API leaves the shipped link garbage-collected; ours drops them the same
+way.
+
+**VERDICT: `esb.c` is STOCK NCS 2.5.1.  Nothing in it was modified by Even.**
+Iteration 28's KEEP was measured against the wrong Kconfig.
+
+### 29.2 The displacement
+
+37 reconstructions excluded (36 inside the run + `FUN_0103a80c`).  Safety, both
+checked not assumed:
+
+* **Callers.** Every external referrer — `FUN_0102b31c`, `FUN_0102b49c`,
+  `FUN_0102b50c`, `FUN_0102ece0`, `FUN_0103a83a` — calls only **public**
+  `esb_*` entry points; all 16 are `PROVIDE`d in `stock_call_aliases.ld`.  No
+  external referrer of any of the 21 file-local sections exists, so their
+  exclusion leaves no undefined symbol (`nm -u` = 0).
+* **State.** The 28 `esb.c`-owned shipped RAM addresses were cross-referenced
+  against every retained recovered source and against the RAM pin map: **no
+  retained source reads or writes any of them.**  The single textual hit
+  (`0x21004a90` in `FUN_0102b50c`) is a provenance comment, not code.  The unit
+  moves whole, so `esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids
+  / esb_state / esb_initialized` stay in ONE translation unit.
+
+Evidence file: **`recon/ownership/net_esb_core_singleton_adoption.json`** (new).
+
+### 29.3 The RAM that made it possible — the shipped heap size, MEASURED
+
+The correct payload length needs ≈ 4.6 KiB of real `.bss`, and the first
+displaced build **overflowed RAM by 2,964 B**.  Rather than trim something
+arbitrary, the shipped value was read out of the image.  Zephyr's
+`K_HEAP_DEFINE` statically initialises
+`struct sys_heap { struct z_heap *heap; void *init_mem; size_t init_bytes; }`,
+the shipped `k_aligned_alloc` at analysis VA `0x010389a0` loads `&_system_heap`
+from its literal pool at `0x010389e8` = `0x210008b4`, and the shipped `.data`
+(LMA runtime `0x0103ed24`, VMA `0x21000000`) holds there:
+
+```
+0x210008b4  heap       = 0x00000000
+0x210008b8  init_mem   = 0x2100a440
+0x210008bc  init_bytes = 0x00000a00 = 2560
+```
+
+`CONFIG_HEAP_MEM_POOL_SIZE` was **8192**, inherited unverified from the NCS
+hci_rpmsg baseline; the shipped firmware uses **2560**.  That single measured
+correction frees 5,632 B and the displaced build fits with room to spare.
+
+### 29.4 Build ledger and gates
+
+| net build | change | FLASH | RAM | `nm -u` | image md5 |
+|---|---|---:|---:|---:|---|
+| `g1-i28c-net` | iteration 28 (baseline) | 225,149 B | 63,524 B | 0 | `135efe97…` |
+| **`g1-i29a-net`** | **+ esb.c displaced, payload 251, SWI3, heap 2560** | **225,165 B** | **62,868 B** | **0** | `66bf631d…` |
+| `g1-i29b-net` | + real 256 B rx AND tx payload objects | 225,165 B | 63,380 B | 0 | — |
+| `g1-i29c-net` | + real 256 B rx payload object only | 225,165 B | 63,124 B | 0 | — |
+| **`g1-i29d-net`** | **final tree (payload objects OFF by default)** | **225,165 B** | **62,868 B** | **0** | `66bf631d…` — **byte-identical to `g1-i29a-net`**, so the `i29a` capture IS the final tree's |
+
+FLASH **+16 B**, RAM **−656 B** against iteration 28 (97.30 % / 95.93 %).  Net
+retained sources **960 → 923**; manifest exclusions **275 → 312**.  The app core
+is **UNCHANGED** (`g1-i23a-app`).
+
+| gate | iteration 28 | **iteration 29 (`g1-i29d-net`)** |
+|---|---|---|
+| `check_ram_pin_collisions.py --core net` raw-in-object / raw-free | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_ram_pin_collisions.py --core net` bound OK / escaping | 190 / 0 | **172 / 0** (18 pins lost their last referrer with the displaced unit) |
+| `check_ram_pin_collisions.py` (app) | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_net_raw_literals.py` distinct / colliding | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_thread_create_stack_args.py` | 10/10 | **10/10**, EXIT 0 |
+| `gen_retained_sources.py --check` | clean | **clean**, EXIT 0 |
+| `verify_net_stock_data_window.py` | PROVEN | **PROVEN** |
+| net / app `nm -u` undefined | 0 / 0 | **0 / 0** |
+| net / app duplicate global definitions | 0 / 0 | **0 / 0** |
+
+No `--allow-multiple-definition`, no weak symbol, no numeric root.
+
+### 29.5 MEASURED — the 20 s capture (`/private/tmp/g1_ours_i29a`)
+
+```
+G1_RESC=/private/tmp/g1-i29/ours-paired-i29.resc
+G1_APP_ELF=/private/tmp/g1-i23a-app/zephyr/zephyr.elf
+G1_NET_ELF=/private/tmp/g1-i29a-net/zephyr/zephyr.elf
+G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i29a
+```
+
+| counter | oracle | iter 28 | **iter 29** |
+|---|---:|---:|---:|
+| machine reset / CPU halt | none | none | **none over 20 s** |
+| `radio TransmittedFrames` | 0x230 | 0xCF | **0x339** |
+| `vcentral Connected` | True | True | **True** |
+| `vcentral ConnectInds` / `DataEvents` | 1 / 0x215 | 1 / 0x26B | **1 / 0x26B** |
+| **`esbslave MasterFramesSeen`** | 0x175 | **0** | **0x26C** |
+| **`esbslave AcksInjected`** | 0x175 | 0 | **0x26C** |
+| `esbslave AnnounceResponses` | 0x15B | 0 | **0x26C** |
+| `ESB_SYNC_ctx_105a` | 0x02 | 0x01 | **0x01** |
+| `DISPLAY_ON_ctx_fe8` | 0x01 | 0x00 | **0x00** |
+| `JBD FrameCounter` p1 / p2 | 0x2A1 / 0xD61 | 0x3 / 0x3 | **0x3 / 0x3** |
+| framebuffer lit px p1 / p2 | 656 / 1,098 | 0 / 0 | **0 / 0** |
+
+**The first master PTX frame is BYTE-IDENTICAL to the oracle's:**
+
+```
+ours   tx#1 len=41 8282828282200311000000000000000000000000000000000000000000000000000000000000004BFD
+oracle tx#1 len=41 8282828282200311000000000000000000000000000000000000000000000000000000000000004BFD
+```
+
+so the ESB address (`0x82` prefix, base `0x82828282`), channel (34), CRC and
+DPL length are all correct.  `tx#2` also matches.  **`tx#3` does not**: the
+oracle sends a data frame (`…200340 00…92654C00…`) where we repeat the
+`0x11` announce (`…200311…`).  Consistently, the oracle's announce-response
+count (0x15B) is *lower* than its frame count (0x175) — 26 of its frames are
+sync/data frames — while ours are **all** announces.
+
+Sensor volumes are **iteration 26/28's exactly, with no regression**:
+
+| device / phase | oracle | iter 28 | **iter 29** |
+|---|---:|---:|---:|
+| LSM6DSO `p1_boot` / `p2_render` | 1,089 / 1,200 | 1,027 / 700 | **1,027 / 700** |
+| nPM1300 | 291 / 508 | 232 / 370 | **232 / 370** |
+| OPT3001 | 33 / 80 | 14 / 0 | **14 / 0** |
+| ST25DV EEPROM / system port `p1` | 25 / 22 | 11 / 12 | **11 / 12** |
+| `saadc` (whole run) | 998 | 71 | **71** |
+| `gpiote0` / `gpiote1` / `pdm0` | 25 / 0 / 2 | 25 / 0 / 2 | **25 / 0 / 2, all hash-EQ** |
+| `spim_a` `p1_boot` / `p2_render` | 764 / 2,881 | 34 / 0 | **34 / 0** |
+| `spim_b` | 0 / 0 | 0 / 0 | **0 / 0, hash-EQ** |
+| `IMU_ACCEL_ENABLED` / `OPT3001_CONVERSION_READY` / `NPM1300_CHARGING` | True/True/True | True/True/True | **True/True/True** |
+
+#### Graphics + sensor verdicts (iteration 29, `g1-i29d-net`)
+
+| id | verdict | first difference / detail |
+|---|---|---|
+| **G-1** | **FAIL** | `p2_render` ours `0c5cc90b07…`, **0 lit px, 0 pixel windows**; oracle `b26c73b37d…`, **1,098 lit px**, bbox x 34–497 / y 266–287. |
+| **G-2** | **FAIL** | `p1_boot` ours `0c5cc90b07…`, **0 lit px, 3 pixel windows** (the panel-init windows the oracle also makes; they paint nothing); oracle `1d617c65a6…`, **656 lit px**, bbox x 178–449 / y 267–287. |
+| **G-3** | **FAIL (truncation only)** | `p1_boot` **34 vs 764**, the 34 shared transactions identical entry-for-entry, first difference at index **34** — ours ends, oracle continues `{"op":"0x66","kind":"command","n_tx":1,"n_rx":1}`.  `p2_render` **0 vs 2,881**, first difference index **0**, oracle `{"op":"0x02","kind":"pixel_window","x":32,"y":265,"n_pixel_bytes":9}`. |
+| **G-4** | *localiser* | our framebuffer is still bit-identical to iterations 16–28 (`0c5cc90b07…`), so the first differing row is the oracle's lowest lit row **y = 267**, first differing pixel **x = 178** (oracle `ffffff`, ours `000000`). |
+| **G-5** | **PASS** | panel init byte-exact over the whole 34-transaction non-blit prefix. |
+| **G-6** | **PASS** | `spim_b` 0 == 0, `stream_sha256` EQ, both phases. |
+| **S-MIC** | **PASS** | `pdm0` whole-run hash EQ (`255852a6c9…`). |
+| **S-KEYS** | **PASS** | `gpiote0` whole-run hash EQ (`2f47878f41…`), 25 accesses. |
+| **S-IMU** | **PARTIAL** | 1,027 / 1,089 and 700 / 1,200; `IMU_ACCEL_ENABLED` True; stream hashes differ. |
+| **S-ALS** | **PARTIAL** | 14 / 33 and 0 / 80; `OPT3001_CONVERSION_READY` True. |
+| **S-PMIC** | **PARTIAL** | 232 / 291 and 370 / 508; `NPM1300_CHARGING` True. |
+| **S-NFC** | **PARTIAL** | EEPROM 11 / 25, system port 12 / 22 in `p1_boot`; nothing in `p2_render`. |
+| **S-ADC** | **FAIL** | 71 / 998 accesses, hash NE. |
+| **S-ESB** | **PARTIAL** (was FAIL) | the criterion is the boolean triple `ESB_SYNC_ctx_105a == 0x02`, `DISPLAY_ON_ctx_fe8 == 0x01`, **master PTX frames > 0**.  The third is satisfied for the FIRST time — **0x26C frames, all ACKed, first frame byte-identical to the oracle's**.  The first two are still `0x01` / `0x00`. |
+
+**Criteria score: 4 PASS / 5 PARTIAL / 5 FAIL** (iteration 28: 4 / 4 / 6).
+**NO PIXEL IS PAINTED**; `firmware_events` `{}` vs the oracle's
+`{"spi_read_id":1,"display_START":2,"BLIT":15}`, so **no display START with
+`action = 1` arrived.**
+
+### 29.6 The new first divergence, root-probed — and an A/B that must be
+### reported as a REGRESSION
+
+The ESB link is up; the **L↔R sync frame is never sent**, so `ctx[0x105a]`
+never leaves 1.  Probing that path found the next defect and it is again the
+relocation-block extent class (§28.9(3)), now at its worst:
+
+```
+PROVIDE(g_esb_rx_payload           = g1_net_ram_blk_21004da0 + 0x1);   block =  24 B
+PROVIDE(g_esb_sync_response_packet = g1_net_ram_blk_21004ea0 + 0x1);   block =  24 B
+```
+
+Both are `struct esb_payload` = **256 B** (5 + 251), and the shipped addresses
+prove it: `0x21004ea1 − 0x21004da1 = 0x100`, exactly one payload, the same
+256-byte stride as the shipped FIFO arrays.  Stock `esb_read_rx_payload()`
+memcpys `5 + length` bytes INTO the first one, so **every received ESB frame
+overruns its 24-byte block** (32-byte payloads ⇒ 13 bytes into the sibling
+block).  `FUN_0102b49c` stages `packet[0] = 0xfb` — a full **251**-byte
+payload — into the second.
+
+Giving them real storage is provably correct, and it was BUILT AND MEASURED:
+
+| build | objects | result |
+|---|---|---|
+| `g1-i29a/d-net` | both are 24-byte blocks (default) | **0x26C ESB frames, BLE up, all sensor volumes, no halt** |
+| `g1-i29c-net` | `g_esb_rx_payload` real (256 B) | **BOTH CORES HALT** 0.29 s after the first injected ACK (`cpuapp`/`cpunet` "PC does not lay in memory", 01:46:49.44); 1 ESB frame, `vcentral Connected` False, saadc 5, twim2 551 |
+| `g1-i29b-net` | both real (256 B) | **BOTH CORES HALT**, same signature, same instant after the first ACK; `RADIO_TX` 0x2 |
+
+The sizing is not what breaks it — it is what the sizing **unmasks**.  With the
+24-byte block, `rx[5]` (= `payload->data[0]`) read block filler, so
+`FUN_0102b50c` never took its announce-response branch.  With correct storage
+`data[0]` really is `0x11`, the branch runs `FUN_0102b49c`, and that function —
+which stages 251 bytes from a **251-byte stack scratch buffer inside the ESB
+event IRQ** and then loops `esb_write_payload` + `esb_start_tx` — has never
+executed in this project before.  **That is where the next defect lives.**
+
+Both variants build clean and pass every gate, so this is reported as an A/B,
+not hidden: the fix is kept in the tree at
+`recon/application/net/src/g1_esb_payload_objects.c`, compiled, and gated OFF
+(`-DG1_ESB_REAL_RX_PAYLOAD_OBJECT` / `-DG1_ESB_REAL_TX_PAYLOAD_OBJECT`),
+because switching it on today costs 0x26B ESB frames, the BLE link and every
+sensor volume.  `g1-i29d-net` is byte-identical to `g1-i29a-net`, which is
+checked, not assumed.
+
+### 29.7 Open, named, and NOT fixed
+
+1. **The announce-response path halts both cores** (§29.6) — the named next
+   step.  Turn `G1_ESB_REAL_RX_PAYLOAD_OBJECT` on and trace `FUN_0102b49c` /
+   `esb_write_payload` / `esb_start_tx` and the ESB event IRQ stack.
+2. **`ESB_SYNC_ctx_105a` is still 0x01.**  Our master repeats the `0x11`
+   announce; the oracle interleaves 26 sync/data frames.  The app-side
+   `sync_to_slave` frame is never put on the air.
+3. **The relocation-block extent class is now a MEASURED defect twice**
+   (iteration 28 §28.2, and §29.6 here).  A general fix — size a block from the
+   object's true extent — is overdue; the sweep's attribution map plus the
+   displaced stock units are the instrument for it.
+4. **21 blocks still carry an atomic EXCLUDE**; **the 5 addresses in the block
+   at `0x21000c28`**; **the split `sem.c :: lock`** — unchanged from §28.9.
+5. `FUN_01031a68` still has no caller anywhere — unchanged.
+6. Iteration 23 §23.7 items 4–7 unchanged.
+
+### Regenerate (iteration 29)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py        # 960 -> 923
+recon/application/build_cohesive.sh net /private/tmp/g1-i29d-net -- -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF
+# gates (all exit 0)
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py --core net /private/tmp/g1-i29d-net/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py        /private/tmp/g1-i23a-app/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_net_raw_literals.py          /private/tmp/g1-i29d-net/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_thread_create_stack_args.py --trials 120
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/verify_net_stock_data_window.py /private/tmp/g1-i29d-net/zephyr/zephyr.elf
+# 20 s capture -- NOTE the stdin pipe
+printf '$rtinfo_pc=0x00015b9c\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i29/ours-paired-i29.resc
+sleep 100000 | G1_RESC=/private/tmp/g1-i29/ours-paired-i29.resc \
+G1_APP_ELF=/private/tmp/g1-i23a-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i29d-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i29
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_ours_i29 /private/tmp/g1-i29/rep
+```
+
+Files changed: new `recon/ownership/net_esb_core_singleton_adoption.json`;
+new `recon/application/net/src/esb_peripherals_g1.h`;
+new `recon/application/net/src/g1_esb_payload_objects.c` (gated OFF);
+`recon/ownership/adoption_manifest.json` (+37 net rows, 275 → 312 exclusions);
+`recon/application/net/src/stock_call_aliases.ld` (+17 `PROVIDE`s, batch 4);
+`recon/application/net/CMakeLists.txt` (ESB `-include` override; the two ESB
+public leaves removed from the clock-callback closure);
+`recon/application/net/prj.conf` (`CONFIG_ESB_MAX_PAYLOAD_LENGTH=251`,
+`CONFIG_HEAP_MEM_POOL_SIZE` 8192 → 2560, both with byte evidence);
+`recon/generated/net_retained_sources.cmake` (generated, 960 → 923);
+`recon/emulator/reports/sensor_parity_status.md`; this report.
+**No `tools/` logic change**, no reconstruction source edited, `armemul`
+untouched, nothing committed.

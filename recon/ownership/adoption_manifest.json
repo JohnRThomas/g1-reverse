@@ -40296,11 +40296,11 @@
   },
   "net": {
    "summary": {
-    "entries": 640,
-    "exclude_reconstruction": 275,
+    "entries": 677,
+    "exclude_reconstruction": 312,
     "retain_reconstruction": 365,
     "by_kind": {
-     "source": 153,
+     "source": 190,
      "archive": 298,
      "static_helper": 62,
      "table": 0,
@@ -60566,6 +60566,1042 @@
        "caller_count": 19,
        "raw_evidence_preserved": true,
        "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01032764",
+     "raw_symbol": "FUN_01032764",
+     "current_symbol": "FUN_01032764",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "update_radio_bitrate",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 60,
+       "distinguishing_bytes": 52,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010327a0",
+     "raw_symbol": "FUN_010327a0",
+     "current_symbol": "FUN_010327a0",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "reset_fifos",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 28,
+       "distinguishing_bytes": 20,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010327bc",
+     "raw_symbol": "FUN_010327bc",
+     "current_symbol": "FUN_010327bc",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_timer_handler",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 28,
+       "distinguishing_bytes": 24,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01032804",
+     "raw_symbol": "FUN_01032804",
+     "current_symbol": "FUN_01032804",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "on_radio_disabled_rx_ack",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 92,
+       "distinguishing_bytes": 52,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01032860",
+     "raw_symbol": "FUN_01032860",
+     "current_symbol": "FUN_01032860",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_fem_for_tx_set",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 60,
+       "distinguishing_bytes": 40,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x0103289c",
+     "raw_symbol": "FUN_0103289c",
+     "current_symbol": "FUN_0103289c",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "SWI3_IRQHandler",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 108,
+       "distinguishing_bytes": 96,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01032908",
+     "raw_symbol": "FUN_01032908",
+     "current_symbol": "FUN_01032908",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_fem_reset",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 40,
+       "distinguishing_bytes": 16,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01032930",
+     "raw_symbol": "FUN_01032930",
+     "current_symbol": "FUN_01032930",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "update_radio_addresses.part.0",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 36,
+       "distinguishing_bytes": 24,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01032954",
+     "raw_symbol": "FUN_01032954",
+     "current_symbol": "FUN_01032954",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "tx_fifo_remove_last.part.0",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 52,
+       "distinguishing_bytes": 48,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01032988",
+     "raw_symbol": "FUN_01032988",
+     "current_symbol": "FUN_01032988",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_fem_for_rx_set",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 44,
+       "distinguishing_bytes": 24,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010329b4",
+     "raw_symbol": "FUN_010329b4",
+     "current_symbol": "FUN_010329b4",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "clear_events_restart_rx",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 136,
+       "distinguishing_bytes": 96,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01032a3c",
+     "raw_symbol": "FUN_01032a3c",
+     "current_symbol": "FUN_01032a3c",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "rx_fifo_push_rfbuf.part.0",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 156,
+       "distinguishing_bytes": 136,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01032ad8",
+     "raw_symbol": "FUN_01032ad8",
+     "current_symbol": "FUN_01032ad8",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "update_radio_tx_power",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 116,
+       "distinguishing_bytes": 84,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01032b4c",
+     "raw_symbol": "FUN_01032b4c",
+     "current_symbol": "FUN_01032b4c",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "nrf_radio_packet_configure.constprop.0",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 88,
+       "distinguishing_bytes": 88,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01032ba4",
+     "raw_symbol": "FUN_01032ba4",
+     "current_symbol": "FUN_01032ba4",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "update_rf_payload_format_esb",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 64,
+       "distinguishing_bytes": 52,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01032be4",
+     "raw_symbol": "FUN_01032be4",
+     "current_symbol": "FUN_01032be4",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "update_rf_payload_format_esb_dpl",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 68,
+       "distinguishing_bytes": 60,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01032c28",
+     "raw_symbol": "FUN_01032c28",
+     "current_symbol": "FUN_01032c28",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "start_tx_transaction",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 444,
+       "distinguishing_bytes": 352,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01032de4",
+     "raw_symbol": "FUN_01032de4",
+     "current_symbol": "FUN_01032de4",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "on_radio_disabled_tx_noack",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 112,
+       "distinguishing_bytes": 72,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01032e54",
+     "raw_symbol": "FUN_01032e54",
+     "current_symbol": "FUN_01032e54",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "on_radio_disabled_rx",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 560,
+       "distinguishing_bytes": 468,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033084",
+     "raw_symbol": "FUN_01033084",
+     "current_symbol": "FUN_01033084",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_fem_for_rx_ack",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 44,
+       "distinguishing_bytes": 24,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010330b0",
+     "raw_symbol": "FUN_010330b0",
+     "current_symbol": "FUN_010330b0",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "on_radio_disabled_tx",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 184,
+       "distinguishing_bytes": 124,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033168",
+     "raw_symbol": "FUN_01033168",
+     "current_symbol": "FUN_01033168",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_fem_for_tx_retry",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 56,
+       "distinguishing_bytes": 36,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010331a0",
+     "raw_symbol": "FUN_010331a0",
+     "current_symbol": "FUN_010331a0",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_fem_for_tx_retry_clear",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 40,
+       "distinguishing_bytes": 24,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010331c8",
+     "raw_symbol": "FUN_010331c8",
+     "current_symbol": "FUN_010331c8",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "on_radio_disabled_tx_wait_for_ack",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 396,
+       "distinguishing_bytes": 288,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033354",
+     "raw_symbol": "FUN_01033354",
+     "current_symbol": "FUN_01033354",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_disable",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 96,
+       "distinguishing_bytes": 48,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010333b4",
+     "raw_symbol": "FUN_010333b4",
+     "current_symbol": "FUN_010333b4",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_init",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 684,
+       "distinguishing_bytes": 496,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033660",
+     "raw_symbol": "FUN_01033660",
+     "current_symbol": "FUN_01033660",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_write_payload",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 332,
+       "distinguishing_bytes": 292,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010337ac",
+     "raw_symbol": "FUN_010337ac",
+     "current_symbol": "FUN_010337ac",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_read_rx_payload",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 172,
+       "distinguishing_bytes": 160,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033888",
+     "raw_symbol": "FUN_01033888",
+     "current_symbol": "FUN_01033888",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_start_rx",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 224,
+       "distinguishing_bytes": 176,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033968",
+     "raw_symbol": "FUN_01033968",
+     "current_symbol": "FUN_01033968",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_stop_rx",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 104,
+       "distinguishing_bytes": 88,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010339e4",
+     "raw_symbol": "FUN_010339e4",
+     "current_symbol": "FUN_010339e4",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_set_base_address_0",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 60,
+       "distinguishing_bytes": 48,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033a20",
+     "raw_symbol": "FUN_01033a20",
+     "current_symbol": "FUN_01033a20",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_set_base_address_1",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 64,
+       "distinguishing_bytes": 52,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033a60",
+     "raw_symbol": "FUN_01033a60",
+     "current_symbol": "FUN_01033a60",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_set_prefixes",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 76,
+       "distinguishing_bytes": 56,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033aac",
+     "raw_symbol": "FUN_01033aac",
+     "current_symbol": "FUN_01033aac",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_enable_pipes",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 32,
+       "distinguishing_bytes": 24,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033acc",
+     "raw_symbol": "FUN_01033acc",
+     "current_symbol": "FUN_01033acc",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_set_rf_channel",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 44,
+       "distinguishing_bytes": 36,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01033af8",
+     "raw_symbol": "FUN_01033af8",
+     "current_symbol": "FUN_01033af8",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "esb_set_tx_power",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 32,
+       "distinguishing_bytes": 24,
+       "upstream_linkage": "public",
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x0103a80c",
+     "raw_symbol": "FUN_0103a80c",
+     "current_symbol": "FUN_0103a80c",
+     "kind": "source",
+     "component": "nrf_subsys",
+     "upstream_symbol": "bytewise_bit_swap",
+     "upstream_unit": "nrf/subsys/esb/esb.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Stock esb.c is the ESB core and owns esb_cfg / rx_fifo / tx_fifo / rx_payload / tx_payload / pids / esb_state / esb_initialized (28 shipped addresses, 0x2100065c..0x21006459).  Every esb.c section in the shipped image is relocation-masked byte-identical to the pinned NCS 2.5.1 source once CONFIG_ESB_MAX_PAYLOAD_LENGTH=251 and ESB_EVT_IRQ=SWI3_IRQn are applied, and the 39 sections tile 0x01032764..0x01033b18 with no gap or overlap.  No retained reconstruction touches the unit's state.  This WITHDRAWS iteration 28's KEEP verdict, which was measured against the wrong Kconfig.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_esb_core_singleton_adoption.json",
+       "type": "net_stock_unit_relocation_masked_byte_exact",
+       "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+       "unit_sections_in_image": 40,
+       "unit_sections_byte_identical": 40,
+       "section_bytes": 46,
+       "distinguishing_bytes": 46,
+       "upstream_linkage": "file_local",
+       "safe_to_adopt": true,
+       "blockers": []
       }
      ]
     }

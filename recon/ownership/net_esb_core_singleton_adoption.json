@@ -1,0 +1,522 @@
+{
+ "schema": 1,
+ "title": "CPUNET esb.c duplicate-singleton adoption (P4 iteration 29, batch 4) -- WITHDRAWS iteration 28's KEEP verdict",
+ "core": "net",
+ "upstream_unit": "nrf/subsys/esb/esb.c (NCS 2.5.1)",
+ "upstream_object": "modules/nrf/subsys/esb/lib..__nrf__subsys__esb.a(esb.c.obj)",
+ "withdraws": {
+  "prior_verdict": "recon/ownership/net_duplicate_singleton_sweep.json :: units['lib..__nrf__subsys__esb.a(esb.c.obj)'].verdict = KEEP (32/53 sections)",
+  "why_it_was_wrong": "The sweep compiled esb.c with THIS build's Kconfig (CONFIG_ESB_MAX_PAYLOAD_LENGTH=32) and the SDK's hardcoded ESB_EVT_IRQ=SWI0_IRQn.  Both differ in the shipped firmware.  Under the shipped values every esb.c section present in the image is byte-identical; nothing in esb.c was modified by Even."
+ },
+ "configuration_recovered": {
+  "CONFIG_ESB_MAX_PAYLOAD_LENGTH": 251,
+  "CONFIG_ESB_TX_FIFO_SIZE": 8,
+  "CONFIG_ESB_RX_FIFO_SIZE": 8,
+  "CONFIG_ESB_PIPE_COUNT": 8,
+  "CONFIG_ESB_DYNAMIC_INTERRUPTS": true,
+  "CONFIG_ESB_NEVER_DISABLE_TX": false,
+  "CONFIG_ESB_SYS_TIMER_INSTANCE": 2,
+  "ESB_EVT_IRQ": "SWI3_IRQn (SDK default SWI0_IRQn; MPSL owns SWI0 on CPUNET -- nrf/subsys/mpsl/init/mpsl_init.c:38)",
+  "method": "Rebuild the pinned nrf/subsys/esb/esb.c with the net build's EXACT compile command and a patched autoconf.h; index every .text.* section with a 4-byte mask at each relocation offset; slide each section over the whole shipped netcore image and require agreement on EVERY unmasked byte (>=16 distinguishing).  Identical gate to iteration 28's sweep.",
+  "sweep": {
+   "payload_length": {
+    "32": 32,
+    "64": 32,
+    "128": 32,
+    "251": 36,
+    "252": 32
+   },
+   "fifo_size_at_251": {
+    "2": 28,
+    "4": 28,
+    "8": 36,
+    "16": 28,
+    "32": 28
+   },
+   "pipe_count_at_251": {
+    "1": 32,
+    "2": 32,
+    "4": 32,
+    "8": 36
+   },
+   "never_disable_tx_at_251": {
+    "n": 36,
+    "y": 33
+   },
+   "dynamic_interrupts_at_251": {
+    "y": 36,
+    "n": 33
+   },
+   "swi3_and_251": 40,
+   "note": "value = number of the 51 indexed stock sections located byte-identically in the shipped image; every deviation from the recovered configuration LOSES sections."
+  },
+  "swi_byte_proof": {
+   "instruction": "NVIC_SetPendingIRQ(ESB_EVT_IRQ) -> str.w r3,[r0,#0x100] with r0 = 0xE000E000 (NVIC->ISPR[0])",
+   "shipped": "f04f 5300  mov.w r3,#0x20000000  (bit 29 = SWI3_IRQn)",
+   "stock_swi0": "f04f 6380  mov.w r3,#0x04000000  (bit 26 = SWI0_IRQn)",
+   "sites": [
+    "0x01032e1c",
+    "0x01032e30",
+    "0x01032fe0"
+   ],
+   "note": "These 4 bytes were the ONLY unmasked difference across .text.on_radio_disabled_tx_noack (112 B) and .text.on_radio_disabled_rx (560 B) once payload length was correct."
+  },
+  "payload_length_data_proof": {
+   "rx_payload.0": "0x21005256, 8 x 256 B",
+   "tx_payload.1": "0x21005a56, 8 x 256 B",
+   "pids": "0x21006256, 8 B",
+   "rx_payload_buffer": "0x2100625e, 253 B",
+   "tx_payload_buffer": "0x2100635b, 253 B",
+   "esb_state": "0x21006458",
+   "esb_initialized": "0x21006459",
+   "note": "sizeof(struct esb_payload) = 5 + CONFIG_ESB_MAX_PAYLOAD_LENGTH rounded to 2 = 256 only at 251; the objects tile with zero slack, and payload_length+2 = 253 is exactly the shipped rx/tx buffer stride.  Agrees with iteration 24's decode of the shipped esb_config template (payload_length = 0xfb = 251)."
+  }
+ },
+ "unit_completeness": {
+  "stock_sections_indexed": 51,
+  "sections_present_in_shipped_image": 40,
+  "sections_present_and_byte_identical": 40,
+  "contiguous_run": "0x01032764..0x01033b18 -- 39 sections, NO gap, NO overlap (plus the shared-tail static bytewise_bit_swap at 0x0103a80c)",
+  "sections_absent_from_shipped_image": 11,
+  "absent": [
+   "esb_flush_rx",
+   "esb_flush_tx",
+   "esb_get_rf_channel",
+   "esb_pop_tx",
+   "esb_reuse_pid",
+   "esb_set_address_length",
+   "esb_set_bitrate",
+   "esb_set_retransmit_count",
+   "esb_set_retransmit_delay",
+   "esb_suspend",
+   "esb_update_prefix"
+  ],
+  "absent_note": "pure public API leaves the shipped link garbage-collected because the Even glue never calls them; ours drops them the same way."
+ },
+ "singleton_state": {
+  "objects": [
+   ".bss.current_payload",
+   ".bss.esb_cfg",
+   ".bss.esb_initialized",
+   ".bss.esb_state",
+   ".bss.event_handler",
+   ".bss.interrupt_flags",
+   ".bss.last_tx_attempts",
+   ".bss.on_radio_disabled",
+   ".bss.pids",
+   ".bss.retransmits_remaining",
+   ".bss.rx_fifo",
+   ".bss.rx_payload.0",
+   ".bss.rx_payload_buffer",
+   ".bss.rx_pipe_info",
+   ".bss.tx_fifo",
+   ".bss.tx_payload.1",
+   ".bss.tx_payload_buffer",
+   ".bss.update_rf_payload_format",
+   ".bss.wait_for_ack_timeout_us",
+   ".data.disable_event",
+   ".data.esb_addr",
+   ".data.esb_timer",
+   ".data.tx_time_shifted",
+   "ack_pl_wrap",
+   "ack_pl_wrap_pipe"
+  ],
+  "shipped_addresses": [
+   "0x2100065c",
+   "0x21000670",
+   "0x21000684",
+   "0x2100068c",
+   "0x21000698",
+   "0x2100499c",
+   "0x210049a0",
+   "0x210049a4",
+   "0x210049a8",
+   "0x210049ac",
+   "0x210049b0",
+   "0x210049b4",
+   "0x210049d4",
+   "0x21004a34",
+   "0x21004a60",
+   "0x21004a8c",
+   "0x21004a90",
+   "0x21004a94",
+   "0x21004b7c",
+   "0x21005256",
+   "0x21005a56",
+   "0x21006256",
+   "0x2100625e",
+   "0x21006260",
+   "0x2100635b",
+   "0x2100635d",
+   "0x21006458",
+   "0x21006459"
+  ],
+  "shipped_address_proof": "R_ARM_ABS32 relocations of the located stock sections resolved against the shipped image words.",
+  "retained_referrers_after_displacement": 0,
+  "retained_referrer_proof": "Every one of the 28 addresses was cross-referenced against every RETAINED recovered net source and against the RAM pin map: no retained source reads or writes any of them.  The single textual hit (0x21004a90 in FUN_0102b50c) is a PROVENANCE COMMENT, not code.",
+  "external_callers": {
+   "FUN_0102b31c": [
+    "esb_init",
+    "esb_start_rx",
+    "esb_set_base_address_0",
+    "esb_set_base_address_1",
+    "esb_set_prefixes",
+    "esb_enable_pipes",
+    "esb_set_rf_channel",
+    "esb_set_tx_power"
+   ],
+   "FUN_0102b49c": [
+    "esb_write_payload"
+   ],
+   "FUN_0102b50c": [
+    "esb_init",
+    "esb_read_rx_payload"
+   ],
+   "FUN_0102ece0": [
+    "esb_disable"
+   ],
+   "FUN_0103a83a": [
+    "esb_init"
+   ],
+   "note": "all PUBLIC entry points; every one is PROVIDEd in recon/application/net/src/stock_call_aliases.ld.  No external referrer of a file-local section exists."
+  }
+ },
+ "hazard_removed": {
+  "detail": "The recovered corpus bound esb.c's payload arrays to 24-byte relocation blocks (g1_net_ram_blk_21005250[24] for the 2048-byte rx_payload array, g1_net_ram_blk_21005a50[24] for tx_payload, g1_net_ram_blk_21006250[32] for pids+rx_payload_buffer).  That is iteration 28 SS28.9(3)'s aliasing-overrun class at its worst: a 2 KB object standing on 24 bytes of storage.  Displacing the unit puts all of it in real .bss."
+ },
+ "adoptions": [
+  {
+   "raw_symbol": "FUN_01032764",
+   "va": "0x01032764",
+   "upstream_symbol": "update_radio_bitrate",
+   "upstream_linkage": "file_local",
+   "section_bytes": 60,
+   "distinguishing_bytes": 52,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_010327a0",
+   "va": "0x010327a0",
+   "upstream_symbol": "reset_fifos",
+   "upstream_linkage": "file_local",
+   "section_bytes": 28,
+   "distinguishing_bytes": 20,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_010327bc",
+   "va": "0x010327bc",
+   "upstream_symbol": "esb_timer_handler",
+   "upstream_linkage": "file_local",
+   "section_bytes": 28,
+   "distinguishing_bytes": 24,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01032804",
+   "va": "0x01032804",
+   "upstream_symbol": "on_radio_disabled_rx_ack",
+   "upstream_linkage": "file_local",
+   "section_bytes": 92,
+   "distinguishing_bytes": 52,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01032860",
+   "va": "0x01032860",
+   "upstream_symbol": "esb_fem_for_tx_set",
+   "upstream_linkage": "file_local",
+   "section_bytes": 60,
+   "distinguishing_bytes": 40,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_0103289c",
+   "va": "0x0103289c",
+   "upstream_symbol": "SWI3_IRQHandler",
+   "upstream_linkage": "public",
+   "section_bytes": 108,
+   "distinguishing_bytes": 96,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01032908",
+   "va": "0x01032908",
+   "upstream_symbol": "esb_fem_reset",
+   "upstream_linkage": "file_local",
+   "section_bytes": 40,
+   "distinguishing_bytes": 16,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01032930",
+   "va": "0x01032930",
+   "upstream_symbol": "update_radio_addresses.part.0",
+   "upstream_linkage": "file_local",
+   "section_bytes": 36,
+   "distinguishing_bytes": 24,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01032954",
+   "va": "0x01032954",
+   "upstream_symbol": "tx_fifo_remove_last.part.0",
+   "upstream_linkage": "file_local",
+   "section_bytes": 52,
+   "distinguishing_bytes": 48,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01032988",
+   "va": "0x01032988",
+   "upstream_symbol": "esb_fem_for_rx_set",
+   "upstream_linkage": "file_local",
+   "section_bytes": 44,
+   "distinguishing_bytes": 24,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_010329b4",
+   "va": "0x010329b4",
+   "upstream_symbol": "clear_events_restart_rx",
+   "upstream_linkage": "file_local",
+   "section_bytes": 136,
+   "distinguishing_bytes": 96,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01032a3c",
+   "va": "0x01032a3c",
+   "upstream_symbol": "rx_fifo_push_rfbuf.part.0",
+   "upstream_linkage": "file_local",
+   "section_bytes": 156,
+   "distinguishing_bytes": 136,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01032ad8",
+   "va": "0x01032ad8",
+   "upstream_symbol": "update_radio_tx_power",
+   "upstream_linkage": "file_local",
+   "section_bytes": 116,
+   "distinguishing_bytes": 84,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01032b4c",
+   "va": "0x01032b4c",
+   "upstream_symbol": "nrf_radio_packet_configure.constprop.0",
+   "upstream_linkage": "file_local",
+   "section_bytes": 88,
+   "distinguishing_bytes": 88,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01032ba4",
+   "va": "0x01032ba4",
+   "upstream_symbol": "update_rf_payload_format_esb",
+   "upstream_linkage": "file_local",
+   "section_bytes": 64,
+   "distinguishing_bytes": 52,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01032be4",
+   "va": "0x01032be4",
+   "upstream_symbol": "update_rf_payload_format_esb_dpl",
+   "upstream_linkage": "file_local",
+   "section_bytes": 68,
+   "distinguishing_bytes": 60,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01032c28",
+   "va": "0x01032c28",
+   "upstream_symbol": "start_tx_transaction",
+   "upstream_linkage": "file_local",
+   "section_bytes": 444,
+   "distinguishing_bytes": 352,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01032de4",
+   "va": "0x01032de4",
+   "upstream_symbol": "on_radio_disabled_tx_noack",
+   "upstream_linkage": "file_local",
+   "section_bytes": 112,
+   "distinguishing_bytes": 72,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01032e54",
+   "va": "0x01032e54",
+   "upstream_symbol": "on_radio_disabled_rx",
+   "upstream_linkage": "file_local",
+   "section_bytes": 560,
+   "distinguishing_bytes": 468,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033084",
+   "va": "0x01033084",
+   "upstream_symbol": "esb_fem_for_rx_ack",
+   "upstream_linkage": "public",
+   "section_bytes": 44,
+   "distinguishing_bytes": 24,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_010330b0",
+   "va": "0x010330b0",
+   "upstream_symbol": "on_radio_disabled_tx",
+   "upstream_linkage": "file_local",
+   "section_bytes": 184,
+   "distinguishing_bytes": 124,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033168",
+   "va": "0x01033168",
+   "upstream_symbol": "esb_fem_for_tx_retry",
+   "upstream_linkage": "public",
+   "section_bytes": 56,
+   "distinguishing_bytes": 36,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_010331a0",
+   "va": "0x010331a0",
+   "upstream_symbol": "esb_fem_for_tx_retry_clear",
+   "upstream_linkage": "public",
+   "section_bytes": 40,
+   "distinguishing_bytes": 24,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_010331c8",
+   "va": "0x010331c8",
+   "upstream_symbol": "on_radio_disabled_tx_wait_for_ack",
+   "upstream_linkage": "file_local",
+   "section_bytes": 396,
+   "distinguishing_bytes": 288,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033354",
+   "va": "0x01033354",
+   "upstream_symbol": "esb_disable",
+   "upstream_linkage": "public",
+   "section_bytes": 96,
+   "distinguishing_bytes": 48,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_010333b4",
+   "va": "0x010333b4",
+   "upstream_symbol": "esb_init",
+   "upstream_linkage": "public",
+   "section_bytes": 684,
+   "distinguishing_bytes": 496,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033660",
+   "va": "0x01033660",
+   "upstream_symbol": "esb_write_payload",
+   "upstream_linkage": "public",
+   "section_bytes": 332,
+   "distinguishing_bytes": 292,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_010337ac",
+   "va": "0x010337ac",
+   "upstream_symbol": "esb_read_rx_payload",
+   "upstream_linkage": "public",
+   "section_bytes": 172,
+   "distinguishing_bytes": 160,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033888",
+   "va": "0x01033888",
+   "upstream_symbol": "esb_start_rx",
+   "upstream_linkage": "public",
+   "section_bytes": 224,
+   "distinguishing_bytes": 176,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033968",
+   "va": "0x01033968",
+   "upstream_symbol": "esb_stop_rx",
+   "upstream_linkage": "public",
+   "section_bytes": 104,
+   "distinguishing_bytes": 88,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_010339e4",
+   "va": "0x010339e4",
+   "upstream_symbol": "esb_set_base_address_0",
+   "upstream_linkage": "public",
+   "section_bytes": 60,
+   "distinguishing_bytes": 48,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033a20",
+   "va": "0x01033a20",
+   "upstream_symbol": "esb_set_base_address_1",
+   "upstream_linkage": "public",
+   "section_bytes": 64,
+   "distinguishing_bytes": 52,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033a60",
+   "va": "0x01033a60",
+   "upstream_symbol": "esb_set_prefixes",
+   "upstream_linkage": "public",
+   "section_bytes": 76,
+   "distinguishing_bytes": 56,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033aac",
+   "va": "0x01033aac",
+   "upstream_symbol": "esb_enable_pipes",
+   "upstream_linkage": "public",
+   "section_bytes": 32,
+   "distinguishing_bytes": 24,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033acc",
+   "va": "0x01033acc",
+   "upstream_symbol": "esb_set_rf_channel",
+   "upstream_linkage": "public",
+   "section_bytes": 44,
+   "distinguishing_bytes": 36,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_01033af8",
+   "va": "0x01033af8",
+   "upstream_symbol": "esb_set_tx_power",
+   "upstream_linkage": "public",
+   "section_bytes": 32,
+   "distinguishing_bytes": 24,
+   "agreement": "entire section, every unmasked byte"
+  },
+  {
+   "raw_symbol": "FUN_0103a80c",
+   "va": "0x0103a80c",
+   "upstream_symbol": "bytewise_bit_swap",
+   "upstream_linkage": "file_local",
+   "section_bytes": 46,
+   "distinguishing_bytes": 46,
+   "agreement": "entire section, every unmasked byte"
+  }
+ ]
+}

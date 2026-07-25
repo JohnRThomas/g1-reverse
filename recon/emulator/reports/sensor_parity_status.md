@@ -1,5 +1,120 @@
 # Sensor + graphics parity status — OUR rebuilt firmware vs the shipped oracle
 
+**Sixteenth measurement of `display_sensor_parity.md`'s criteria against our
+rebuild** (iteration 29; previous measurements were iterations 14–28).
+
+## READ THIS FIRST — iteration 29: still 0 lit pixels, but **master ESB PTX
+## frames reach the virtual right lens for the FIRST time in this project**
+## (`MasterFramesSeen` 0 → **0x26C**, all ACKed, first frame **byte-identical**
+## to the oracle's), because `esb.c` turned out to be **stock NCS 2.5.1** —
+## iteration 28's "Even modified it" verdict is WITHDRAWN with byte evidence
+
+**NO PIXEL IS PAINTED.**  `framebuffer.lit_pixels` is **0 / 0** against the
+oracle's **656** (`p1_boot`) / **1,098** (`p2_render`); `spim_a` is **34 / 764**
+and **0 / 2,881**; **no `0x02` pixel window is emitted in `p2_render`**, so **no
+display START with `action = 1` arrived** (our `firmware_events` is `{}` against
+the oracle's `{"spi_read_id":1,"display_START":2,"BLIT":15}`).  The three `0x02`
+transactions in `p1_boot` are the panel-init window writes the oracle also makes
+there and they paint nothing.
+
+Measured this iteration (`our_boot_bringup.md` §29; capture
+`/private/tmp/g1_ours_i29a`, net `g1-i29a-net` — byte-identical to the final
+`g1-i29d-net`, so the capture IS the final tree's — app **unchanged**
+`g1-i23a-app`):
+
+1. **`esb.c` is STOCK.**  Iteration 28 located only 32 of its 53 sections and
+   concluded Even had vendored the FIFO/payload cluster.  Rebuilt with
+   **`CONFIG_ESB_MAX_PAYLOAD_LENGTH=251`** and **`ESB_EVT_IRQ = SWI3_IRQn`**,
+   **all 40 sections present in the shipped image are relocation-masked
+   byte-identical** and the 39 in the main run TILE `0x01032764..0x01033b18`
+   with **no gap and no overlap**.
+2. **The 251 is confirmed three ways**: iteration 24's decode of the shipped
+   `esb_config` (`payload_length = 0xfb`); the shipped `.bss` tiling
+   (`rx_payload.0` `0x21005256` +0x800, `tx_payload.1` `0x21005a56` +0x800,
+   `pids` `0x21006256`, `rx/tx_payload_buffer` 253 B each, `esb_state`
+   `0x21006458`) — zero slack only at 251; and `FUN_0102b49c` staging exactly
+   `packet[0] = 0xfb`.
+3. **SWI3 is a real, necessary Even change**: the SDK hardcodes SWI0, but MPSL
+   already owns SWI0 on CPUNET (`mpsl_init.c:38`).  The only unmasked
+   difference before the change was `f04f 5300` vs `f04f 6380` — the
+   `NVIC->ISPR[0]` bit for IRQ 29 vs IRQ 26 — at three sites.
+4. **The whole ESB core is displaced** (37 reconstructions), with no external
+   referrer of a file-local section and **no retained source touching any of
+   the 28 `esb.c`-owned shipped RAM addresses**.
+5. **The shipped `CONFIG_HEAP_MEM_POOL_SIZE` is 2560, not 8192** — read out of
+   the shipped `.data` `_system_heap` initialiser at `0x210008b4`.  That
+   measured correction freed the 4.6 KiB the correct payload length needs.
+6. **A/B, reported not hidden:** giving `g_esb_rx_payload` its true 256-byte
+   size (it stands on a 24-byte relocation block, and every received frame
+   overruns it) is provably correct **and halts both cores** 0.29 s after the
+   first ESB ACK, because it unmasks the never-before-executed
+   announce-response path.  Kept in the tree, gated OFF.
+
+| counter | oracle | iter 27 | iter 28 | **iter 29** |
+|---|---:|---:|---:|---:|
+| machine reset | none | **≈5.8 s** | none | **none over 20 s** |
+| `radio TransmittedFrames` | 0x230 | 0x0 | 0xCF | **0x339** |
+| `vcentral Connected` | True | False | True | **True** |
+| `vcentral ConnectInds` / `DataEvents` | 1 / 0x215 | 0 / 0 | 1 / 0x26B | **1 / 0x26B** |
+| **`esbslave MasterFramesSeen`** | 0x175 | 0 | 0 | **0x26C** |
+| **`esbslave AcksInjected`** | 0x175 | 0 | 0 | **0x26C** |
+| `esbslave AnnounceResponses` | 0x15B | 0 | 0 | **0x26C** |
+| `ESB_SYNC_ctx_105a` | 0x02 | 0x01 | 0x01 | **0x01** |
+| `DISPLAY_ON_ctx_fe8` | 0x01 | 0x00 | 0x00 | **0x00** |
+| framebuffer lit px p1 / p2 | 656 / 1,098 | 0 / 0 | 0 / 0 | **0 / 0** |
+
+First master PTX frame, ours vs the oracle — **identical**:
+
+```
+ours   tx#1 len=41 8282828282200311000000000000000000000000000000000000000000000000000000000000004BFD
+oracle tx#1 len=41 8282828282200311000000000000000000000000000000000000000000000000000000000000004BFD
+```
+
+`tx#3` differs: the oracle sends a sync/data frame, we repeat the `0x11`
+announce — which is exactly why `ESB_SYNC_ctx_105a` never reaches `0x02`.
+
+| device / phase | oracle | iter 27 | iter 28 | **iter 29** |
+|---|---:|---:|---:|---:|
+| LSM6DSO `p1_boot` / `p2_render` | 1,089 / 1,200 | 551 / 0 | 1,027 / 700 | **1,027 / 700** |
+| nPM1300 `p1_boot` / `p2_render` | 291 / 508 | 97 / 0 | 232 / 370 | **232 / 370** |
+| OPT3001 `p1_boot` / `p2_render` | 33 / 80 | 14 / 0 | 14 / 0 | **14 / 0** |
+| ST25DV EEPROM / system port `p1` | 25 / 22 | 0 / 6 | 11 / 12 | **11 / 12** |
+| `saadc` (whole run) | 998 | 5 | 71 | **71** |
+| `gpiote0` / `gpiote1` / `pdm0` | 25 / 0 / 2 | 25 / 0 / 2 | 25 / 0 / 2 | **25 / 0 / 2, hash-EQ** |
+| `spim_a` `p1_boot` / `p2_render` | 764 / 2,881 | 34 / 0 | 34 / 0 | **34 / 0** |
+| `spim_b` | 0 | 0 | 0 | **0, hash-EQ** |
+
+**Per-criterion verdicts (iteration 29):** G-5 **PASS** (34-transaction non-blit
+prefix byte-exact, `0x9F` ID probe answering `0x4010`, `0x46`/`0x31` brightness
+pair), G-6 **PASS**, S-MIC **PASS** (`255852a6c9…` EQ), S-KEYS **PASS**
+(`2f47878f41…` EQ); S-IMU / S-ALS / S-PMIC / S-NFC **PARTIAL** (volumes above,
+state flags all True); **S-ESB moves FAIL → PARTIAL** — its criterion is the
+boolean triple (`ESB_SYNC_ctx_105a == 0x02`, `DISPLAY_ON_ctx_fe8 == 0x01`,
+**master PTX frames > 0**) and the third is satisfied for the first time.
+G-1, G-2, G-3, S-ADC **FAIL**.  G-3's first difference is at index **34** in
+`p1_boot` (truncation only; oracle continues with
+`{"op":"0x66","kind":"command"}`) and index **0** in `p2_render` (oracle
+`{"op":"0x02","kind":"pixel_window","x":32,"y":265}`).  G-4 localiser: our
+framebuffer is still bit-identical to iterations 16–28 (`0c5cc90b07…`), so the
+first differing row is **y = 267** and the first differing pixel **x = 178**
+(oracle `ffffff`, ours `000000`).
+**Score: 4 PASS / 5 PARTIAL / 5 FAIL** (iteration 28: 4 / 4 / 6).
+
+**Next divergence:** the announce-response path.  Our master repeats the `0x11`
+announce frame forever; the oracle interleaves 26 sync/data frames.  Enabling
+the proven `g_esb_rx_payload` sizing makes the firmware take that branch — and
+halt — so `FUN_0102b49c` / `esb_write_payload` / `esb_start_tx` and the ESB
+event IRQ stack are the named next target (`our_boot_bringup.md` §29.6).
+
+## Everything below this line is the ITERATION 28 measurement, kept for provenance
+
+> **CORRECTION (iteration 29).**  Item 5 below — "`esb.c` is KEPT … Even
+> genuinely diverged there" — is **WRONG and is withdrawn**.  The 21
+> non-matching sections were a Kconfig value (`CONFIG_ESB_MAX_PAYLOAD_LENGTH`
+> 251, not 32) plus a one-line header difference (`ESB_EVT_IRQ = SWI3_IRQn`).
+> With both applied, every `esb.c` section in the shipped image is
+> byte-identical and the unit is displaced.  See the iteration-29 block above.
+
 **Fifteenth measurement of `display_sensor_parity.md`'s criteria against our
 rebuild** (iteration 28; previous measurements were iterations 14–27).
 
