@@ -196,6 +196,12 @@ target_sources(app PRIVATE
   # DEREFERENCES the original address, so the block has to be emitted and the
   # four rodata_8baXX pins bound onto it in g1_app_globals.ld.
   src/g1_npm1300_linear_ranges.c
+  # P4 iteration 22: the three advertising operands of bt_le_adv_start.  The
+  # `struct bt_le_adv_param` pin (rodata_8839c) was still an ORIGINAL-image
+  # address holding unrelated bytes, and the two `struct bt_data` arrays have
+  # pointer-bearing `.data` initialisers that the RAM-arena restore drops.
+  # Measured: bt_le_adv_start returned -EINVAL with options = 0x682e7365.
+  src/g1_bt_adv_objects.c
   # Library displacement Batch 0 (goal G2): the four out-lined
   # zephyr/include/zephyr/drivers/gpio.h static inlines are excluded in
   # adoption_manifest.json; a header `static inline` has no external symbol to
@@ -279,6 +285,30 @@ zephyr_linker_sources(SECTIONS
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_public_sdk_aliases.ld"
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_readable_aliases.ld"
 )
+
+# P4 iteration 22, library-displacement Batch 4: the newlib-nano printf closure
+# is displaced to the pinned libc_nano.a (adoption_manifest.json), so the
+# historical spellings that retained callers and the reversible alias files
+# still use are mapped onto the upstream owners.  GNU ld evaluates PROVIDE in
+# script order and zephyr_linker_sources concatenates snippets sorted by sort
+# key, so this fragment needs a key that orders BEFORE the default one used by
+# g1_app_function_aliases.ld -- that file chains
+# `PROVIDE(FUN_00086f00 = vdprintf_to_fd)` onto a name this fragment defines.
+zephyr_linker_sources(SECTIONS
+  SORT_KEY 0_g1_newlib_printf
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_newlib_printf_aliases.ld"
+)
+# GNU ld does not extract an archive member to satisfy a symbol that is only
+# named inside a linker-script expression, so the three displaced identities
+# that retained Even code still calls by their historical spelling need their
+# upstream owners pulled into the link explicitly.  Everything else in the
+# family (`_svfprintf_r`, `__ssputs_r`, `_printf_i`, `_printf_common`,
+# `__sfputs_r`, `_printf_float`, `__cvt`, `__exponent`, `_dtoa_r`, `quorem`)
+# arrives through ordinary relocations from these members plus the
+# `-u _printf_float` that CONFIG_NEWLIB_LIBC_FLOAT_PRINTF adds.
+foreach(_g1_newlib_root __sprintf_chk sprintf _vsnprintf_r vsnprintf fprintf)
+  zephyr_ld_options("-Wl,--undefined=${_g1_newlib_root}")
+endforeach()
 if(G1_ENABLE_FIXED_VERIFIED_RODATA)
   zephyr_linker_sources(SECTIONS "${G1_FIXED_VERIFIED_DATA_LINKER}")
 endif()

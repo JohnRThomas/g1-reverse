@@ -366,7 +366,12 @@ PROVIDE(__settings_handler_static_list_start = _log_backend_list_end);
  *   port=0x87b60(gpio0) pin = 26,25,28,27,24,19,21,30,23  dt_flags = 0 */
 PROVIDE(rodata_88340 = g1_button_gpio_specs);
 PROVIDE(rodata_88388 = 0x00088388);
-PROVIDE(rodata_8839c = 0x0008839c);
+/* Iteration 22 — the `struct bt_le_adv_param` bt_start copies into its stack
+ * local before calling bt_le_adv_start.  The identity pin named an
+ * ORIGINAL-image address that holds ASCII debug-path bytes in this build, so
+ * `options` read 0x682e7365 and bt_le_adv_start returned -EINVAL.  Emitted
+ * byte-exactly by recon/application/app/src/g1_bt_adv_objects.c. */
+PROVIDE(rodata_8839c = g1_bt_le_adv_param);
 /* Iteration 16 Step A — the SPIM `p_reg` defect that kept every panel transfer
  * from ever reaching `spim_a`.
  *
@@ -2901,8 +2906,13 @@ PROVIDE(g_ancs_last_cmd_id = g1_ram_arena + 0x31c);
 PROVIDE(g_20002320 = g1_ram_arena + 0x320);
 PROVIDE(g_20002328 = g1_ram_arena + 0x328);
 PROVIDE(g_20002338 = g1_ram_arena + 0x338);
-PROVIDE(g_20002350 = g1_ram_arena + 0x350);
-PROVIDE(g_20002358 = g1_ram_arena + 0x358);
+/* Iteration 22 — the advertising / scan-response `struct bt_data` arrays.
+ * Both shipped initialisers contain POINTERS, so the arena `.data` restore
+ * drops the run (measured: nothing between arena offsets 0x34c and 0x368) and
+ * bt_start advertised a zeroed AD set.  Emitted with their shipped contents by
+ * recon/application/app/src/g1_bt_adv_objects.c and bound here. */
+PROVIDE(g_20002350 = g1_bt_adv_scan_rsp);
+PROVIDE(g_20002358 = g1_bt_adv_data);
 PROVIDE(g_t_init = g1_ram_arena + 0x368);
 PROVIDE(g_box_event_state_buf = g1_ram_arena + 0x380);
 PROVIDE(g_st25dv_i2c_dev = g1_st25dv_i2c_dev);

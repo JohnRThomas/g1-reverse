@@ -1,79 +1,172 @@
 # Sensor + graphics parity status — OUR rebuilt firmware vs the shipped oracle
 
-**Eighth measurement of `display_sensor_parity.md`'s criteria against our
-rebuild** (iteration 21; previous measurements were iterations 14–20).
+**Ninth measurement of `display_sensor_parity.md`'s criteria against our
+rebuild** (iteration 22; previous measurements were iterations 14–21).
 
-## READ THIS FIRST — iteration 21 is a partial capture and a reset REGRESSION
+## READ THIS FIRST — iteration 22 is a COMPLETE capture, reset-free, and the
+## BLE half of the chain now works
 
-Iteration 21 closed the iteration-20 first divergence: `device_info[0x1058]` is
-now **1** (was 0), the CPUNET's `0x0601` "ready" IPC message arrives, and
-`bt_start()` runs past its state guard for the first time in this project
-(`our_boot_bringup.md` §21.1–§21.4).  `bt_enable()` now completes at
-**t = 1.397 s** instead of t = 5.100 s.
+Iteration 22 closed the §21.7 blocker by **displacing the whole newlib-nano
+printf family to the pinned `libc_nano.a`** (20 members, every one byte-exact
+against the shipped image over its entire upstream section after masking
+relocation slots — `our_boot_bringup.md` §22.1), then fixed the three
+`bt_le_adv_start` operands that were still bound to original-image addresses
+(§22.6).  Measured results:
 
-**But the app core no longer survives 8 s.**  Immediately past that guard,
-`bt_start` formats the advertised device name through
-`__sprintf_chk(dst, 0, 0x20, "%s_R_%02X%02X%02X", "Even G1", 0xff, 0xff, 0xff)`,
-the recovered `_svfprintf_r` returns **131** for what should be a 16-character
-result, the FORTIFY check fires and `k_oops()` resets the SoC at
-**t = 1.4026 s** (`our_boot_bringup.md` §21.7).  Two of the three causes of that
-were fixed this iteration (§21.5 the 2,128 absolute `rodata_*` pins, §21.6
-`g_libc_heap_ctrl` = `_impure_ptr`); the third is named and NOT fixed.
-
-Consequences for this file, stated plainly:
-
-* **Every `p2_render` column below is from ITERATION 20 and is NOT re-measured.**
-  The iteration-21 capture crashed **Renode itself** on entry to phase 2
-  (`System.Threading.SemaphoreFullException` inside
-  `Antmicro.Renode.UI.ConsoleIOSource`, see
-  `/private/tmp/g1_ours_i21/run.out`) — an emulator-harness failure, not a
-  firmware result — so `spim_a.p2.trace`, `twim1.p2.trace`, `twim2.p2.trace` and
-  the `p2_render` framebuffer are **absent**.  Nothing is claimed for them.
-* **The `p1_boot` half WAS captured and is reported below**, and it is a
-  regression in *depth* for three sensors, because the app core reboots roughly
-  every 1.4 s inside the 6 s phase-1 window.
-* **No verdict cell changes.**  Score is still 5 PASS / 5 PARTIAL / 4 FAIL.
-
-### Iteration 21 `p1_boot`, actually measured
-
-| device | oracle | iter 20 | **iter 21** | note |
-|---|---:|---:|---:|---|
-| `spim_a` | 764 | 34 | **34** | the trace is **identical to iteration 20 modulo the `tick=` column** (verified with `sed 's/ tick=[0-9]*//' \| cmp`), so G-3's and G-5's iteration-20 findings carry over exactly |
-| `spim_b` | 0 | 0 | **0** | byte-identical file (G-6 PASS) |
-| LSM6DSO (twim2) | 1,089 | 1,027 | **551** | **regression** — the reboot loop truncates it |
-| nPM1300 (twim1 0x6B) | 291 | 232 | **97** | **regression** |
-| OPT3001 (twim1 0x45) | 33 | 14 | **14** | unchanged |
-| ST25DV system port (0x57) | 22 | 12 | **6** | **regression** |
-| ST25DV NFC EEPROM (0x53) | 25 | 11 | **0** | **regression** — never reached before the first reset |
-| framebuffer `p1_boot` | 656 lit px | 0 lit px | **0 lit px** | `fb_p1_boot.ppm` is **byte-identical to iteration 20** (`cmp`), so G-2 and the G-4 localiser (first differing row y = 267, first differing pixel x = 178) carry over unchanged |
-| `JBD_FRAMECOUNTER_P1` | 0x2A1 | 0x3 | **0x0** | |
-
-**Not one pixel was painted, and that is stated plainly.**  `radio
-TransmittedFrames` = 0 and `vcentral Connected` = False in the 8 s boot of the
-iteration-21 pair, exactly as in iteration 20.
-
-**The iteration-20 pair (`g1-i20a-app` + `g1-i20d-net`) therefore remains the
-best-scoring build on this file's criteria**, and the tables in §2/§3 below are
-its measurement, unchanged.  The iteration-21 pair
-(`g1-i21b-app` + `g1-i21c-net`) is ahead on the *boot chain* and behind on the
-*reset metric*; both are reported.
-
-### Reproduce the iteration-21 `p1_boot` capture
-
-```sh
-G1_RESC=/Users/freedomcoder/Projects/armemul/g1-ours.resc \
-G1_APP_ELF=/private/tmp/g1-i21b-app/zephyr/zephyr.elf \
-G1_NET_ELF=/private/tmp/g1-i21c-net/zephyr/zephyr.elf \
-G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A \
-recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i21
+```
+Advertising Even G1_R_FFFFFF successfully started uptime 1400   <-- app UART
+ORACLE_VC_CONNECTED:     True        (oracle True)
+ORACLE_VC_CONNECT_INDS:  0x00000001  (oracle 0x00000001)
+ORACLE_VC_DATA_EVENTS:   0x00000212  (oracle 0x00000215)
+ORACLE_RADIO_TX:         0x000000BA  (oracle 0x00000230)
 ```
 
-Run it in the FOREGROUND: backgrounding it is what tripped Renode's console
-IO source above.
+* **Both phases of the capture completed** (`VTIME_P1` 6.000000000,
+  `VTIME_P2` 20.000000000) with **zero `ZEPHYR FATAL ERROR` and zero
+  `SYSRESETREQ`** — the first complete capture since iteration 20, and the
+  first ever in which the app advertises.
+* **Nothing regressed against the iteration-20 baseline on any per-device
+  number**, and nPM1300 `p2_render` improved 369 → **370**.
+* **Verdict cells are unchanged: 5 PASS / 5 PARTIAL / 4 FAIL.**
+* **No pixel was painted.**  G-1/G-2 remain **0 lit px** against the oracle's
+  **656** (`p1_boot`) / **1,098** (`p2_render`); `spim_a` is **34 / 764** in
+  `p1_boot` and **0 / 2,881** in `p2_render`.
+
+### The gate has moved off BLE and onto ESB
+
+```
+                        oracle        ours
+ESB_MASTER_FRAMES       0x00000175    0x00000000    esbslave MasterFramesSeen
+ESB_ACKS                0x00000175    0x00000000
+ESB_ANNOUNCE_RESP       0x0000015B    0x00000000
+ESB_SYNC_ctx_105a       0x02          0x01
+DISPLAY_ON_ctx_fe8      0x01          0x00
+```
+
+The app UART names the state directly and repeatedly: `esb_channel 255`,
+`esb_master_addr 00 esb_slave_addr 00`, and
+`get_glasses_ble_status 0 ble_is_connected 0` even while the link layer reports
+`vcentral Connected = True` and answers 530 data events.  Every `spim_a`
+transaction past index 33 is downstream of the L+R lens sync, so the display is
+never asked to paint.  **That, plus the app-side connection flag, is the
+iteration-23 first divergence.**
+
+## 1. Reproduce (exact commands, iteration 22)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+
+G1_RESC=/Users/freedomcoder/Projects/armemul/g1-ours.resc \
+G1_APP_ELF=/private/tmp/g1-i22b-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i21c-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A \
+recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i22
+
+PYTHONSAFEPATH=1 .venv/bin/python \
+  recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_ours_i22 /private/tmp/g1-i22/ours_reports
+```
+
+`G1_HOOKS=0` is required because the four `sysbus.cpuapp AddHook` PCs in the
+oracle capture are **ORIGINAL-image** addresses; our build relocates them.
+`G1_CTX_FE8` / `G1_CTX_105A` are `device_ctx + 0xfe8` / `+ 0x105a`; the app RAM
+map of `g1-i22b-app` is byte-identical to `g1-i21b-app` and `g1-i20a-app`
+(252,885 B, `g1_ram_arena` at 0x20003100, `_end` at 0x2003fbd5), so the
+iteration-20 probe addresses remain correct.
+
+## 2. Per-criterion table (iteration 22, `g1-i22b-app` + `g1-i21c-net`)
+
+| id | criterion | verdict | vs iter 20 | evidence |
+|---|---|---|---|---|
+| **S-IMU** | `twim2` LSM6DSO stream hash per phase | **PARTIAL** | unchanged | `p1_boot` **1,027** vs 1,089, first difference at txn **#3** (oracle `W 18`, ours `W 0180`).  `p2_render` **700** vs 1,200, **all 700 byte-identical**, first difference is the truncation at **#700** (oracle's next is `W 28`). |
+| **S-ALS** | `opt3001_ambient_light` stream hash | **PARTIAL (prefix-exact)** | unchanged | `p1_boot` **14** vs 33, all 14 byte-identical, first difference at **#14** (oracle `W 7E`).  `p2_render` **0** vs 80. |
+| **S-PMIC** | `npm1300_charger_fuelgauge` stream hash | **PARTIAL** | **+1 txn in `p2`** | `p1_boot` **232** vs 291, first difference at **#0** (oracle `W 060206`, ours `W 040F`).  `p2_render` **370** vs 508 (iter 20: 369), first difference at **#0** (oracle `W 070401 ×2`, ours `×3`). |
+| **S-NFC** | `st25dv_nfc_eeprom` + `st25dv_system_port` | **PARTIAL** | unchanged | EEPROM (0x53) **11** vs 25, first difference at **#6** (oracle `W 200200`, ours `W 2002B8`).  System port (0x57) **12** vs 22, first difference at **#10** (oracle `W 0001`, ours `W 000101`).  Both `p2_render` **0** (oracle 7 / 4). |
+| **S-ADC** | `saadc` whole-run stream hash | **PARTIAL (prefix-exact)** | unchanged | first **5** register accesses byte-identical, first difference at **#5**: oracle writes `CH[3].CONFIG` (0x548 ← 0x20000), ours goes straight to `CH[0].PSELP`.  **71** vs 998.  UART confirms `<err> adc_nrfx_saadc: Channel 3 not configured`. |
+| **S-KEYS** | `gpiote0` whole-run stream hash; `gpiote1` count == 0 | **PASS** | unchanged | `gpiote0` **stream_sha256 identical** (25 == 25); `gpiote1` **0 == 0**. |
+| **S-MIC** (negative) | `pdm0` == exactly 2 writes, no ENABLE/START | **PASS** | unchanged | `pdm0` **stream_sha256 identical**, 2 == 2. |
+| **gyro** (negative) | `CTRL2_G` stays 0 / gyro never enabled | **PASS (weak)** | unchanged | `IMU_GYRO_ENABLED` False in both; `IMU_ACCEL_ENABLED` True in both. |
+| **S-ESB** | ESB sync reaches 0x02, display-on 0x01, PTX > 0 | **FAIL** | **BLE half now passes** | `esbslave MasterFramesSeen` **0** vs 0x175, `AcksInjected` **0** vs 0x175, `AnnounceResponsesInjected` **0** vs 0x15B, `ESB_SYNC_ctx_105a` **0x01** vs 0x02, `DISPLAY_ON_ctx_fe8` **0x00** vs 0x01.  But `vcentral Connected` **True == True**, `ConnectIndsSent` **1 == 1**, `DataEventsAnswered` **530** vs 533, `radio TransmittedFrames` **186** vs 560 — all four were 0/False in iterations 14–21. |
+| **G-1** | `framebuffer.p2_render.sha256` | **FAIL** | unchanged | ours `0c5cc90b07…`, **0 lit px / 0 pixel windows**; oracle `b26c73b37d…`, **1,098 lit px / 2,752 windows**. |
+| **G-2** | `framebuffer.p1_boot.sha256` | **FAIL** | unchanged | ours `0c5cc90b07…`, **0 lit px / 3 pixel windows**; oracle `1d617c65a6…`, **656 lit px / 673 windows**. |
+| **G-3** | `spim_a` ordered byte stream per phase | **FAIL (truncation only)** | unchanged (34 txns) | `p1_boot` **34 vs 764**; **all 34 shared transactions byte-identical**; first difference at index **34**, oracle `{"op":"0x66","kind":"command","n_tx":1,"n_rx":1}`, ours `<end>`.  `p2_render` **0 vs 2,881**, first difference index **0** (oracle `{"op":"0x02","kind":"pixel_window","x":32,"y":265,…}`). |
+| **G-4** | *(localiser only)* first differing row | **localised (unchanged)** | our framebuffer bytes are bit-identical to iterations 16–21 (`0c5cc90b07…`) | first differing row **y = 267**, first differing pixel **x = 178** (oracle `ffffff`, ours `000000`) — top-left of the oracle's lit bbox (178,267)–(449,287).  Not re-derived: the sha is bit-identical, so the result carries over. |
+| **G-5** | panel init: `0x9F`→`0x4010`, three-band 153 600 B clear, five `0xC0` words, `0x46`/`0x31` pairs `0F 04` / `00 04` | **PASS** | unchanged | all four enumerated elements byte-exact at the same indices, including the trailing `0xB9 FF` at index 33. |
+| **G-6** | `spim_b` transaction count == 0 | **PASS** | unchanged | `stream_sha256` EQ, 0 == 0 in both phases, and we genuinely drive `spim_a`. |
+
+Score: **5 PASS** (S-KEYS, S-MIC, gyro-negative, G-5, G-6), **5 PARTIAL**
+(S-IMU, S-ALS, S-PMIC, S-NFC, S-ADC), **4 FAIL** (S-ESB, G-1, G-2, G-3) —
+**identical verdict cells to iterations 17–21.**  What iteration 22 bought is
+not a verdict but the first four BLE counters ever to match the oracle, plus a
+reset-free 20 s capture.
+
+## 3. Transaction volumes
+
+| device / phase | oracle | iter 19 | iter 20 | iter 21 | **iter 22** |
+|---|---:|---:|---:|---:|---:|
+| LSM6DSO (0x6B) `p1_boot` | 1,089 | 1,027 | 1,027 | 551 | **1,027** |
+| LSM6DSO (0x6B) `p2_render` | 1,200 | 456 | 700 | not measured | **700** |
+| nPM1300 (0x6B) `p1_boot` | 291 | 232 | 232 | 97 | **232** |
+| nPM1300 (0x6B) `p2_render` | 508 | 233 | 369 | not measured | **370** |
+| OPT3001 (0x45) `p1_boot` | 33 | 14 | 14 | 14 | **14** |
+| ST25DV system port (0x57) `p1_boot` | 22 | 12 | 12 | 6 | **12** |
+| ST25DV NFC EEPROM (0x53) `p1_boot` | 25 | 11 | 11 | 0 | **11** |
+| `saadc` accesses (whole run) | 998 | 53 | 71 | not measured | **71** |
+| `gpiote0` accesses (whole run) | 25 | 25 | 25 | not measured | **25** (hash EQ) |
+| `pdm0` accesses (whole run) | 2 | 2 | 2 | not measured | **2** (hash EQ) |
+| `spim_a` `p1_boot` | 764 | 34 | 34 | 34 | **34** |
+| `spim_a` `p2_render` | 2,881 | 0 | 0 | not measured | **0** |
+| `spim_b` (both phases) | 0 | 0 | 0 | 0 | **0** (hash EQ) |
+| `JBD FrameCounter` `p1` / `p2` | 0x2A1 / 0xD61 | — | 0x3 / 0x3 | 0x0 / – | **0x3 / 0x3** |
+| framebuffer lit px `p1` / `p2` | 656 / 1,098 | 0 / 0 | 0 / 0 | 0 / – | **0 / 0** |
+
+## 4. What moved this iteration
+
+### 4.1 The recovered printf engine is retired, not debugged
+
+`our_boot_bringup.md` §22.1 re-measured all twenty members of the newlib-nano
+formatting closure against
+`arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a`: **7,124
+distinguishing bytes, zero disagreements**, whole sections including the tails
+past Ghidra's extent.  Even did not modify printf.  The proof the displacement
+is semantically right is the firmware's own log line — `Advertising
+Even G1_R_FFFFFF successfully started` — with the exact sixteen-character
+string the recovered `_svfprintf_r` could not produce (it returned 131 and left
+the buffer empty).
+
+**Method note that generalises:** `tools/parity` / `tools/cfg_verify` passed
+`printf_parse_format` because they emulate at the ORIGINAL address with the
+ORIGINAL callees as order-keyed oracles, so a flattened control-flow
+reconstruction can still reproduce the traced side effects.  Byte identity
+against the pinned SDK is a strictly stronger gate for anything the SDK owns.
+
+### 4.2 Three of `bt_le_adv_start`'s four operands were pointing at the
+### original image
+
+`rodata_8839c` (the `struct bt_le_adv_param`) was still an identity pin, and
+0x0008839c in OUR image holds the ASCII `_types.h`, so `options` read
+0x682e7365 and `valid_adv_param()` returned -EINVAL.  The two `struct bt_data`
+arrays at 0x20002350 / 0x20002358 have pointer-bearing `.data` initialisers
+that the RAM-arena restore drops, so `sd[0].type` advertised as 0x00 instead of
+`BT_DATA_NAME_COMPLETE` and `ad[0]` was an empty AD structure instead of the
+flags byte.  All three emitted byte-exactly in
+`recon/application/app/src/g1_bt_adv_objects.c` and bound in
+`recon/symbols/g1_app_globals.ld` (full evidence in §22.6).
+
+### 4.3 Why the painting still does not happen
+
+Unchanged in kind, moved in cause.  The oracle's own `spim_a.p1.trace` has no
+SPI activity between 0.121 s and 3.92 s and every transaction after index 33 is
+downstream of the L+R lens sync.  In iterations 14–21 the gate was BLE; it is
+now **ESB**: `esb_channel` = 255, `esb_master_addr`/`esb_slave_addr` = 00,
+`esbslave MasterFramesSeen` = 0, so `ESB_SYNC_ctx_105a` stops at 1 and
+`DISPLAY_ON_ctx_fe8` never becomes 1.  Our display driver still reproduces the
+oracle byte-for-byte for everything it is asked to do; it is still never asked
+to paint.
 
 ---
 
-## Everything below this line is the ITERATION 20 measurement, unchanged
+## Everything below this line is the ITERATION 20 measurement, kept for provenance
 
 Iteration 20 root-caused and fixed the iteration-19 blocker.  It was **not** in
 the raw-literal class that iteration 19 nominated: it was a **wrong-indirection

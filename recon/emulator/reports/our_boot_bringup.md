@@ -8223,3 +8223,488 @@ new `recon/application/gen_app_string_rodata.py` +
 4. Iteration 20 items 3–6 (the rest of the vendored ANCS client, the missing net
    RAM-pin gate, unreconstructed `analysis 0x0102b204`, unverified
    `CONFIG_MAIN_STACK_SIZE`) are unchanged.
+
+---
+
+## Iteration 22 — the recovered printf engine is DISPLACED to newlib-nano, the
+## t = 1.4026 s oops is gone, and the app **advertises and accepts a BLE
+## connection for the first time in this project**
+
+**Headline, stated before anything else, with the firmware's own words.**  The
+§21.7 blocker is closed and the chain it was blocking ran two more steps:
+
+```
+Advertising Even G1_R_FFFFFF successfully started uptime 1400     <-- app UART
+ORACLE_VC_CONNECTED:      True        (oracle True)
+ORACLE_VC_CONNECT_INDS:   0x00000001  (oracle 0x00000001)
+ORACLE_VC_DATA_EVENTS:    0x00000212  (oracle 0x00000215)
+ORACLE_RADIO_TX:          0x000000BA  (oracle 0x00000230)
+```
+
+`Even G1_R_FFFFFF` is exactly the sixteen-character string §21.7 recorded the
+recovered `_svfprintf_r` could not produce.  `radio TransmittedFrames` moves
+**0 → 186** over the 20 s capture (90 at t = 8.0 s in a plain boot), the virtual
+central sends the same **one** CONNECT_IND the oracle does and is answered on
+**530** of the oracle's 533 data events.  Both cores run **8.0 s and the full
+20.0 s capture with zero `ZEPHYR FATAL ERROR` and zero `SYSRESETREQ`**, so this
+build beats **both** iteration-21 (progress, but resetting at 1.4026 s) and
+iteration-20 (reset-free, but `[0x1058]` = 0 and no advertising) at the same
+time, and it does so **without giving up a single sensor transaction**: every
+per-device `p1_boot`/`p2_render` volume is equal to or better than the
+iteration-20 baseline.
+
+**No pixel is painted yet.**  `spim_a` is still 34 transactions in `p1_boot` and
+**0** in `p2_render`, and the framebuffer is still 0 lit px against the oracle's
+656 / 1,098.  The gate has moved off BLE and onto the **ESB L↔R lens sync**
+(§22.7), which is named and measured, not guessed.
+
+| pair | app reset-free @8 s | net reset-free @8 s | `bt_le_adv_start` | ADV on air | central connected |
+|---|---|---|---|---|---|
+| iteration 20 (`i20a-app` + `i20d-net`) | yes | yes | never called | 0 | False |
+| iteration 21 (`i21b-app` + `i21c-net`) | **no — oops @1.4026 s** | yes | never reached | 0 | False |
+| **iteration 22 (`i22b-app` + `i21c-net`)** | **yes** | **yes** | **returns 0** | **186** | **True** |
+
+### 22.1 The printf resolution: DISPLACED, and the evidence is byte identity
+
+The owner's standing directive applies here in its strongest form, and
+iteration 20's warning ("an instruction-*shape* match is not sufficient
+evidence; the shipped firmware vendors some upstream files") was applied as the
+gate rather than waved at.  The distinction is exactly measurable:
+
+* the **vendored** `ancs_client.c` case (§20.5) differs in *constants and
+  structure offsets* — `cmp r4,#0xff` vs `#0x1f`, `strh [r0,#0x870]` vs
+  `#0x110`.  Those bytes are NOT relocation slots, so a byte comparison
+  separates them immediately;
+* the printf family differs **nowhere**.  Re-measured this iteration from
+  scratch (`<scratchpad>/verify_printf.py`, `<scratchpad>/verify_member.py`:
+  extract the member from
+  `arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a`, read the shipped
+  bytes through `tools/extract.py`'s VA mapping, zero the 4-byte window at every
+  relocation offset, compare the **entire** upstream section including the tail
+  past Ghidra's reported extent):
+
+```
+member                     section              VA         size  relocs  dist   agreement
+lib_a-nano-svfprintf.o     .text._svfprintf_r   0x00078d90   504     12    456   504/504  BYTE-EXACT
+lib_a-nano-svfprintf.o     .text.__ssputs_r     0x00087736   182      5    162   182/182  BYTE-EXACT
+lib_a-vsnprintf.o          .text._vsnprintf_r   0x0008712e    86      1     82    86/86   BYTE-EXACT
+lib_a-vsnprintf.o          .text.vsnprintf      0x00077c30    28      2     20    28/28   BYTE-EXACT
+lib_a-sprintf_chk.o        .text.__sprintf_chk  0x00086f00    52      3     40    52/52   BYTE-EXACT
+lib_a-nano-vfprintf_i.o    .text._printf_i      0x00077594   604     26    500   604/604  BYTE-EXACT
+lib_a-nano-vfprintf_i.o    .text._printf_common 0x00086e1c   228      0    228   228/228  BYTE-EXACT
+lib_a-nano-vfprintf_float.o .text._printf_float 0x0007712c  1128     16   1064  1128/1128 BYTE-EXACT
+lib_a-nano-vfprintf_float.o .text.__cvt         0x00086cda   208      3    196   208/208  BYTE-EXACT
+lib_a-nano-vfprintf_float.o .text.__exponent    0x00086daa   114      0    114   114/114  BYTE-EXACT
+lib_a-dtoa.o               .text._dtoa_r        0x00014b60  3156    115   2696  3156/3156 BYTE-EXACT
+lib_a-dtoa.o               .text.quorem         0x00087184   282      1    278   282/282  BYTE-EXACT
+lib_a-nano-vfprintf.o      .text._vfprintf_r    0x00076ed4   600     19    524   600/600  BYTE-EXACT
+lib_a-nano-vfprintf.o      .text.__sfputs_r     0x00086cb6    36      1     32    36/36   BYTE-EXACT
+lib_a-printf.o             .text.printf         0x000777f0    48      3     36    48/48   BYTE-EXACT
+lib_a-snprintf.o           .text.snprintf       0x00077914   104      2     96   104/104  BYTE-EXACT
+lib_a-sprintf.o            .text.sprintf        0x0007797c    64      2     56    64/64   BYTE-EXACT
+lib_a-vsprintf.o           .text._vsprintf_r    0x00077c4c    44      1     40    44/44   BYTE-EXACT
+lib_a-vsprintf.o           .text.vsprintf       0x00077c78    20      2     12    20/20   BYTE-EXACT
+lib_a-fprintf.o            .text.fprintf        0x00076cc8    36      2     28    36/36   BYTE-EXACT
+```
+
+**7,124 distinguishing bytes across 20 members, zero disagreements.**  Even did
+not modify printf; the reconstruction was simply wrong, and the harness could
+not see it because `tools/parity` emulates at the ORIGINAL addresses where the
+recovered control flow still reproduced the traced side effects for the argument
+sets it drove.  So the reconstruction is **not** debugged — it is retired.
+
+For the record, the specific recovered defect is visible on inspection once you
+know the answer: `recon/symbolized/app/printf_parse_format.c` opens its
+conversion loop with
+
+```c
+LAB_de4:
+  pbVar6 = pbVar7;
+  while (*pbVar6 != 0 && *pbVar6 != 0x25) { pbVar6++; }
+  pbVar7 = pbVar6 + 1;
+  if (*pbVar6 == 0x25) { /* fallthrough to LAB_df0 */ }
+LAB_df0:
+  ...
+```
+
+i.e. Ghidra's `goto` structure was flattened into a fallthrough that reaches
+`LAB_df0` on *both* exits of the scan loop, and the `%`-branch never restores
+`pbVar7`.  That is a control-flow reconstruction error, not an Even
+modification, and it is exactly the class the owner's directive says to stop
+paying for.
+
+### 22.2 Batch 4 — the sixteen-function printf closure
+
+`recon/ownership/library_displacement_candidates.json` already carried all
+sixteen as `high`/`medium` `adopt_upstream_exclude_reconstruction` rows.
+`<scratchpad>/batch22.py apply` appends them to
+`recon/ownership/adoption_manifest.json` with their own evidence plus the
+independent re-measurement record above:
+
+| VA | recovered identity | upstream owner |
+|---|---|---|
+| 0x00014b60 | `dtoa_r` | `_dtoa_r` |
+| 0x00076ed4 | `_vfprintf_r` | `_vfprintf_r` |
+| 0x0007712c | `printf_render_float` | `_printf_float` |
+| 0x00077594 | `vfprintf_format_engine` | `_printf_i` |
+| 0x000777f0 | `printf` | `printf` |
+| 0x00077914 | `snprintf` | `snprintf` |
+| 0x0007797c | `format_string_to_buffer` | `sprintf` |
+| 0x00078d90 | `printf_parse_format` | `_svfprintf_r` |
+| 0x00086cb6 | `libc_write_buffer_via_putc` | `__sfputs_r` |
+| 0x00086cda | `dtoa_format_cvt` | `__cvt` |
+| 0x00086daa | `itoa_signed_exponent` | `__exponent` |
+| 0x00086e1c | `vfprintf_emit_padded_field` | `_printf_common` |
+| 0x00086f00 | `vdprintf_to_fd` | `__sprintf_chk` |
+| 0x0008712e | `snprintf_engine_bounded` | `_vsnprintf_r` |
+| 0x00087184 | `bignum_div_trial_subtract` | `quorem` |
+| 0x00087736 | `iobuf_ensure_capacity_and_append` | `__ssputs_r` |
+
+**Batch 4b** adds the four wrappers the exhaustive sweep missed or mis-matched
+(it had put 0x00077c30 on `fread` and 0x00076cc8 on `fscanf`, both `low`, and
+had not catalogued 0x00077c4c / 0x00077c78 at all) — `fprintf_stream` →
+`fprintf`, `vsnprintf_impl` → `vsnprintf`, `_vsprintf_r` → `_vsprintf_r`,
+`vsprintf_impl` → `vsprintf`.  Their byte evidence is in the table above, and
+the link forces them anyway: the newly-owned `sprintf` pulls
+`lib_a-vsprintf.o`, whose `_vsprintf_r` duplicated the recovered body (measured
+as a `multiple definition` error on the first Batch-4 link).
+
+App manifest **660 → 680 entries / 646 → 666 exclusions**; retained sources
+**1,640 → 1,620** (`gen_retained_sources.py`, `--check` clean, generated cmake
+never hand-edited).
+
+### 22.3 Wiring the callers — three mechanisms, no hacks
+
+1. **Linker aliases.**  Every member of the family whose historical spelling
+   differs from the upstream name is mapped in the new
+   `recon/symbols/g1_app_newlib_printf_aliases.ld`.  Aliases rather than C
+   bridges because `__sprintf_chk`, `sprintf`, `printf`, `snprintf` and
+   `vsprintf` are **variadic** — a C forwarder cannot express them, whereas the
+   shipped bytes ARE the upstream body, so the ABI is identical by
+   construction.  Three of them have live retained callers
+   (`vdprintf_to_fd` ← `bt_start`, `DashBoard_Reflash`, `gui_clock_draw`,
+   `build_str_response_frame`, `send_notification_app_whitelist`,
+   `spec_ble_command_hook`, `test_mode_apply_base_status_cmd`;
+   `format_string_to_buffer` ← `format_message_relative_time`;
+   `vsnprintf_impl` ← `debug_print`), the rest keep the historical spellings
+   single-owner for `g1_app_function_aliases.ld`'s existing chains
+   (`PROVIDE(FUN_00086f00 = vdprintf_to_fd)`,
+   `PROVIDE(svfprintf_reentrant = printf_parse_format)`).
+
+2. **Snippet ordering.**  GNU ld evaluates `PROVIDE` in script order and
+   `zephyr_linker_sources` concatenates snippets **sorted by sort key** (Zephyr
+   3.4.99 `extensions.cmake:1270-1300`), which put the new file at
+   `linker.cmd:3734` while `g1_app_function_aliases.ld`'s chained alias sits at
+   line 344 — a hard `undefined symbol 'vdprintf_to_fd' referenced in
+   expression`.  The fragment is therefore registered with an explicit
+   `SORT_KEY 0_g1_newlib_printf`.
+
+3. **Archive extraction.**  GNU ld does **not** extract an archive member to
+   satisfy a symbol that is only named inside a linker-script expression
+   (measured: `undefined symbol '__sprintf_chk' referenced in expression` even
+   with the alias in place).  Five roots are therefore pulled explicitly with
+   `-Wl,--undefined=` — `__sprintf_chk`, `sprintf`, `_vsnprintf_r`, `vsnprintf`,
+   `fprintf`.  Everything else in the closure (`_svfprintf_r`, `__ssputs_r`,
+   `_printf_i`, `_printf_common`, `__sfputs_r`, `quorem`, `_vsprintf_r`)
+   arrives through ordinary relocations from those members.
+
+**No `--allow-multiple-definition`, no weak symbols, no numeric-root hacks.
+0 undefined / 0 duplicate globals.**
+
+### 22.4 `CONFIG_NEWLIB_LIBC_FLOAT_PRINTF=y` — a recovered configuration fact
+
+`_printf_float` (1,128 B), `__cvt` (208 B), `__exponent` (114 B) and `_dtoa_r`
+(3,156 B) are **in the shipped image**, byte-exact.  newlib-nano only links
+those members when the link carries `-u _printf_float`, which is precisely what
+this Kconfig adds; without it `%f`/`%e`/`%g` in the recovered callers would fall
+through to the integer engine, which the original never did.  This is the only
+Kconfig change in the iteration and it is recorded in
+`recon/application/app/prj.conf` with that evidence.
+
+### 22.5 Build `g1-i22a-app` — the oops is gone and the next divergence appears
+### in one line
+
+```
+Advertising Even G1_R_FFFFFF failed to start (err -22)
+ancs or ncs init failure, reboot it
+ancs_main(): reboot because ancs start failed
+```
+
+The FORTIFY oops at t = 1.4026 s is **gone** and the name is **correct**, which
+is the direct measurement that closes §21.7.  The app now resets at t ≈ 2.4 s
+for a different, clearly-labelled reason: `bt_le_adv_start` returns **-EINVAL**.
+
+### 22.6 Defect G/H — three of `bt_le_adv_start`'s four operands were still
+### bound to original-image addresses
+
+`bt_start` calls
+`bt_le_adv_start(params, &g_20002358, 2, &g_20002350, 1)`.
+
+**G — `rodata_8839c`, the `struct bt_le_adv_param`, was an identity pin.**
+`bt_start` copies it word by word into a stack local
+(`for (i = 0; i < 5; i++) params[i] = ((const uint32_t *)0x8839c)[i]`), so the
+extent is exactly 20 B = `sizeof(struct bt_le_adv_param)`.  Iteration 21's
+string-rodata generator could not emit it because the bytes are a binary struct,
+not a NUL-terminated printable string (§21.10 item 2), so
+`PROVIDE(rodata_8839c = 0x0008839c)` survived.  **Measured on
+`/private/tmp/g1-i22a-app`:** address 0x0008839c in OUR image holds
+`5f 74 79 70 65 73 2e 68 00 02 00 00 5f 73 74 64` — the ASCII `_types.h`/`_std`
+of a debug path — so `options` read **0x682e7365**, a word full of undefined
+`BT_LE_ADV_OPT_*` bits, which is exactly what `valid_adv_param()` rejects with
+-EINVAL.  The shipped 20 bytes (`app_update.bin` @ 0x8839c via
+`tools/extract.py`) are
+
+```
+00 00 00 00 | 01 00 00 00 | 60 01 00 00 | e0 01 00 00 | 00 00 00 00
+id=0 sid=0 skip=0 | options=BT_LE_ADV_OPT_CONNECTABLE | int_min=0x160 | int_max=0x1e0 | peer=NULL
+```
+
+**H — the two `struct bt_data` arrays had pointer-bearing `.data` initialisers
+that the RAM-arena restore drops.**  Shipped `.data` load image (LMA flash
+0xf6d64 for VMA 0x20000000):
+
+```
+0x20002350  09 07 00 00 7c ac 09 00                            sd[0] = { BT_DATA_NAME_COMPLETE, 7, rodata_9ac7c="Even G1" }
+0x20002358  01 01 00 00 e1 2f 00 20  00*8                      ad[0] = { BT_DATA_FLAGS, 1, &0x20002fe1 }, ad[1] = 0
+0x20002fe0  01 06 ff ...                                       the flags byte 0x20002fe1 = 0x06 = GENERAL | NO_BREDR
+```
+
+Measured in the generated `g1_app_data_image.c` run table: the last run before
+this block covers arena offset 0x348 for 4 bytes and the next starts at 0x368,
+so **0x350..0x367 stayed zero** — `sd[0].type` advertised as 0x00 instead of
+`BT_DATA_NAME_COMPLETE` and `ad[0]` was an empty AD structure instead of the
+flags byte.  (`bt_start` writes only `sd[0].data_len`, `sd[0].data`,
+`ad[1].type`, `ad[1].data_len` and `ad[1].data` at run time.)  The next pin
+after the array, `g_t_init = g1_ram_arena + 0x368`, confirms the array is
+exactly the two entries `ad_len = 2` names.
+
+Both fixed the documented way — a linker rebind cannot express an object whose
+CONTENTS embed pointers, so the objects are emitted and the pins are bound onto
+them (the `g1_npm1300_linear_ranges.c` / `g1_st25dv_ops_table.c` precedent):
+new `recon/application/app/src/g1_bt_adv_objects.c`, and in
+`recon/symbols/g1_app_globals.ld`
+`PROVIDE(rodata_8839c = g1_bt_le_adv_param)`,
+`PROVIDE(g_20002350 = g1_bt_adv_scan_rsp)`,
+`PROVIDE(g_20002358 = g1_bt_adv_data)`.
+`ad[0].data` is bound to `&g1_ram_arena[0xfe1]`, the same byte the original
+pointed at and one the arena image DOES restore.  **No canonical parity body was
+touched.**
+
+Build `/private/tmp/g1-i22b-app` (final): advertising starts, the central
+connects, no reset.
+
+### 22.7 The NEW first divergence — the ESB L↔R lens sync never starts
+
+The display is not BLE-gated any more; it is ESB-gated, and the three counters
+say so together:
+
+```
+                        oracle        ours
+ESB_MASTER_FRAMES       0x00000175    0x00000000     esbslave MasterFramesSeen
+ESB_ACKS                0x00000175    0x00000000
+ESB_ANNOUNCE_RESP       0x0000015B    0x00000000
+ESB_SYNC_ctx_105a       0x02          0x01
+DISPLAY_ON_ctx_fe8      0x01          0x00
+spim_a p2_render        2,881 txns    0 txns
+```
+
+Our CPUNET never transmits an ESB PTX frame, so the virtual right lens is never
+seen, `device_ctx[0x105a]` stops at 1 instead of 2, `device_ctx[0xfe8]` never
+becomes 1, and `trigger_screen_state_change(action=1)` /
+`reflash_fb_data_to_lcd` are never called.  The app UART names the state
+directly and repeatedly:
+
+```
+runtime_info_sync(): --role:1 --mode:0, esb_channel 255 --ret:8 esb_master_addr 00 esb_slave_addr 00
+local_ipc_service_recv(): cpunet request update macaddr info uptime 343 bt macaddr esb_master_addr 00 esb_slave_addr 00
+c->esb_channel 255
+low_speed_peripheral_dispatch_thread(): Global Working Mode: 10 get_glasses_ble_status 0 ble_is_connected 0
+```
+
+`esb_channel` = 255 and both ESB addresses = 00 for the whole run: the ESB
+pairing record is never populated, so `esb_service_init`'s workers have nothing
+to transmit on.  `ble_is_connected` also stays 0 on the app side even though the
+link layer reports `vcentral Connected = True` and 530 data events are answered
+— i.e. the host-side `connected` callback is not reaching the application's
+state.  Independently re-run with the identical stimulus but the UART analyser enabled
+(`/private/tmp/g1-i22/probeC.resc`, 6 s + `PlayGesture "don"` + 14 s), which is
+where the four UART lines above come from: `RADIO_TX 0xBC`, `VC_CONNECTED True`,
+`VC_DATA_EVENTS 0x217`, `ESB_MASTER_FRAMES 0x0`, `CTX_FE8 0x00`,
+`CTX_105A 0x01`, and **no reset over the whole 20 s**.  (The small deltas
+against the capture's `0xBA` / `0x212` are the timing cost of the capture's
+four peripheral trace files; the capture numbers are the ones quoted as the
+measurement.)
+
+**Those two — the ESB pairing record and the app-side connection flag —
+are the iteration-23 first divergence.  Neither is diagnosed here and no guess
+is recorded as if it were.**
+
+### 22.8 Measurements (every number below was actually run)
+
+| metric | iter 20 final | iter 21 final | **iter 22 final (`i22b-app` + `i21c-net`)** |
+|---|---:|---:|---:|
+| app `ZEPHYR FATAL ERROR` @8.0 s | 0 | 1 (oops, t = 1.3988 s) | **0** |
+| net `ZEPHYR FATAL ERROR` @8.0 s | 0 | 0 | **0** |
+| `SYSRESETREQ` in the 20 s capture | 0 | n/a (capture crashed) | **0** |
+| device name formatted by `__sprintf_chk` | not reached | **oops** | **`Even G1_R_FFFFFF`** |
+| `bt_le_adv_start` return | not called | not reached | **0** |
+| `radio TransmittedFrames` (20 s capture) | 0 | 0 | **186 (0xBA)**; oracle 560 |
+| `vcentral Connected` | False | False | **True** (oracle True) |
+| `vcentral ConnectIndsSent` | 0 | 0 | **1** (oracle 1) |
+| `vcentral DataEventsAnswered` | 0 | 0 | **530** (oracle 533) |
+| app instructions @8.0 s | 17,753,624 | — | **17,050,183** |
+| net instructions @8.0 s | 2,080,530 | — | **2,896,620** |
+| app FLASH | 649,688 B | 698,636 B | **698,652 B (+16; 71.11 % of 982,528)** |
+| app RAM | 252,885 B | 252,885 B | **252,885 B (+0)** |
+| net FLASH | 228,409 B | 221,997 B | **221,997 B (+0, net not rebuilt)** |
+| app `nm -u` undefined / duplicate globals | 0 / 0 | 0 / 0 | **0 / 0** |
+| net `nm -u` undefined / duplicate globals | 0 / 0 | 0 / 0 | **0 / 0** |
+| `check_ram_pin_collisions.py` (app) | 0 / 0, EXIT 0 | 0 / 0, EXIT 0 | **0 / 0, EXIT 0** |
+| `check_net_raw_literals.py` (net) | 74 | 69 | **69** (unchanged image) |
+| `check_thread_create_stack_args.py` | 10/10, EXIT 0 | 10/10, EXIT 0 | **10/10, EXIT 0** (120 trials) |
+| `gen_retained_sources.py --check` | clean | clean | **clean** |
+| absolute `rodata_*` pins in the app link | 2,128 | 346 | **342** |
+| app retained reconstruction sources | 1,707 | 1,640 | **1,620** |
+
+App RAM is byte-identical to iteration 21, so **no latent absolute-RAM-pin
+collision changed owner** (the hazard iteration 7 §A.5 recorded).
+
+### 22.9 Graphics + sensor parity — a COMPLETE capture, first since iteration 20
+
+```
+G1_RESC=/Users/freedomcoder/Projects/armemul/g1-ours.resc \
+G1_APP_ELF=/private/tmp/g1-i22b-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i21c-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A \
+recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i22
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+    /private/tmp/g1_ours_i22 /private/tmp/g1-i22/ours_reports
+```
+
+Both phases completed (`VTIME_P1` 6.000000000, `VTIME_P2` 20.000000000), no
+Renode failure, **no memory poked**.
+
+| id | verdict | first difference / detail |
+|---|---|---|
+| **G-1** | **FAIL** | `p2_render` ours `0c5cc90b07…`, **0 lit px / 0 pixel windows**; oracle `b26c73b37d…`, **1,098 lit px / 2,752 windows**. |
+| **G-2** | **FAIL** | `p1_boot` ours `0c5cc90b07…`, **0 lit px / 3 pixel windows**; oracle `1d617c65a6…`, **656 lit px / 673 windows**. |
+| **G-3** | **FAIL (truncation only)** | `p1_boot` **34 vs 764** — all 34 shared transactions byte-identical, first difference at index **34** (oracle `{"op":"0x66","kind":"command","n_tx":1,"n_rx":1}`, ours `<end>`).  `p2_render` **0 vs 2,881**, first difference index **0** (oracle `{"op":"0x02","kind":"pixel_window","x":32,"y":265,…}`). |
+| **G-4** | *localiser* | our framebuffer bytes are bit-identical to iterations 16–21 (`0c5cc90b07…`), so first differing row **y = 267**, first differing pixel **x = 178** carries over unchanged. |
+| **G-5** | **PASS** | panel-init sequence byte-exact at the same indices (three-band 153,600 B clear at 4–6, five `0xC0` words at 7–16, `0x46`/`0x31` pairs `0F 04` at 21/22 and `00 04` at 28/29, `0x9F`→ID at 32, trailing `0xB9 FF` at 33). |
+| **G-6** | **PASS** | `spim_b` **stream_sha256 EQ**, 0 == 0 in both phases. |
+| **S-IMU** | **PARTIAL** | `p1_boot` **1,027 / 1,089**, first difference at **#3** (oracle `W 18`, ours `W 0180`).  `p2_render` **700 / 1,200**, **all 700 byte-identical**, first difference is the truncation at **#700** (oracle's next is `W 28`). |
+| **S-ALS** | **PARTIAL (prefix-exact)** | `p1_boot` **14 / 33**, all 14 byte-identical, first difference at **#14** (oracle `W 7E`).  `p2_render` **0 / 80**. |
+| **S-PMIC** | **PARTIAL** | `p1_boot` **232 / 291**, first difference at **#0** (oracle `W 060206`, ours `W 040F`).  `p2_render` **370 / 508**, first difference at **#0** (oracle `W 070401 ×2`, ours `×3`). |
+| **S-NFC** | **PARTIAL** | EEPROM (0x53) **11 / 25**, first difference at **#6** (oracle `W 200200`, ours `W 2002B8`).  System port (0x57) **12 / 22**, first difference at **#10** (oracle `W 0001`, ours `W 000101`).  Both `p2_render` **0** (oracle 7 / 4). |
+| **S-ADC** | **PARTIAL (prefix-exact)** | **71 / 998**, first five register accesses byte-identical, first difference at **#5** (oracle writes `CH[3].CONFIG` 0x548 ← 0x20000; we go straight to `CH[0].PSELP`).  UART confirms `<err> adc_nrfx_saadc: Channel 3 not configured`. |
+| **S-KEYS** | **PASS** | `gpiote0` **stream_sha256 EQ** (25 == 25); `gpiote1` 0 == 0. |
+| **S-MIC** (negative) | **PASS** | `pdm0` **stream_sha256 EQ**, 2 == 2, no ENABLE/START. |
+| **gyro** (negative) | **PASS** | `IMU_GYRO_ENABLED` False in both; `IMU_ACCEL_ENABLED` True in both. |
+| **S-ESB** | **FAIL** | `esbslave MasterFramesSeen` **0** vs 0x175, `ESB_SYNC_ctx_105a` **0x01** vs 0x02, `DISPLAY_ON_ctx_fe8` **0x00** vs 0x01.  BLE half of the same chain now PASSES in all four of its counters (see §22.8). |
+
+Score **5 PASS / 5 PARTIAL / 4 FAIL** — the same verdict cells as iterations
+17–21.  **Nothing regressed against the iteration-20 baseline on any
+per-device number**, and one improved:
+
+| device / phase | oracle | iter 20 | iter 21 | **iter 22** |
+|---|---:|---:|---:|---:|
+| LSM6DSO `p1_boot` | 1,089 | 1,027 | 551 | **1,027** |
+| LSM6DSO `p2_render` | 1,200 | 700 | not measured | **700** (all byte-identical) |
+| nPM1300 `p1_boot` | 291 | 232 | 97 | **232** |
+| nPM1300 `p2_render` | 508 | 369 | not measured | **370** |
+| OPT3001 `p1_boot` | 33 | 14 | 14 | **14** |
+| ST25DV system port `p1_boot` | 22 | 12 | 6 | **12** |
+| ST25DV NFC EEPROM `p1_boot` | 25 | 11 | 0 | **11** |
+| `saadc` (whole run) | 998 | 71 | not measured | **71** |
+| `gpiote0` (whole run) | 25 | 25 | not measured | **25** (hash EQ) |
+| `pdm0` (whole run) | 2 | 2 | not measured | **2** (hash EQ) |
+| `spim_a` `p1_boot` | 764 | 34 | 34 | **34** |
+| `spim_a` `p2_render` | 2,881 | 0 | not measured | **0** |
+| framebuffer lit px `p1` / `p2` | 656 / 1,098 | 0 / 0 | 0 / – | **0 / 0** |
+
+**Not one pixel was painted, and that is stated plainly.**  What changed is
+*why*: the oracle's own `spim_a.p1.trace` has no SPI activity between 0.121 s
+and 3.92 s and every transaction past index 33 is downstream of the L+R lens
+sync, which our CPUNET never starts (§22.7).  `JBD FrameCounter` is 0x3 in both
+phases (oracle 0x2A1 / 0xD61) and `JournalCount` 0x22 (oracle 0x400).
+
+### 22.10 Re-proof
+
+No canonical parity body was modified this iteration, so there is nothing to
+re-prove with `cfg_verify`: twenty reconstructions were *retired* in favour of
+the library, and the three new objects are hand-written wiring, not recovered
+functions.  The proof that the displacement is correct is the byte table in
+§22.1 plus the firmware's own `Advertising Even G1_R_FFFFFF successfully
+started` line, which the recovered engine demonstrably could not produce.
+
+**Harness blind-spot ledger:** unchanged at eleven instances.  This iteration
+adds a *different* lesson: `tools/parity`/`tools/cfg_verify` passed
+`printf_parse_format` because they emulate at the ORIGINAL address with the
+ORIGINAL callees as order-keyed oracles, so a flattened control-flow
+reconstruction can still reproduce the traced side effects.  **Byte identity
+against the pinned SDK is a strictly stronger gate than parity for any function
+the SDK owns, and it should be applied before parity, not after.**
+
+### Regenerate (iteration 22)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python <scratchpad>/verify_printf.py     # 20 members, byte-exact
+PYTHONSAFEPATH=1 .venv/bin/python <scratchpad>/batch22.py apply     # Batch 4  (16 rows)
+PYTHONSAFEPATH=1 .venv/bin/python <scratchpad>/batch22b.py apply    # Batch 4b (4 rows)
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check   # clean
+recon/application/build_cohesive.sh app /private/tmp/g1-i22a-app    # printf only
+recon/application/build_cohesive.sh app /private/tmp/g1-i22b-app    # + adv objects (final)
+# boot:    /private/tmp/g1-i22/probeB.resc  (8.0 s, checkpoints at 5.0/6.5/8.0)
+# capture: see §22.9
+```
+
+Bisect ledger (every build and boot actually run):
+
+| build | change | app FATAL @8 s | note |
+|---|---|---|---|
+| `i21b-app` + `i21c-net` | iteration-21 baseline | 1 (fortify oops, t = 1.4026 s) | `_svfprintf_r` returns 131 |
+| `g1-i22a-app` | Batch 4 + 4b + aliases + FLOAT_PRINTF | 1 (t ≈ 2.4 s, `ancs_main` reboot) | **name correct**, `bt_le_adv_start` = −22 |
+| `g1-i22b-app` | + `g1_bt_adv_objects.c` (§22.6) | **0** | **advertising starts, central connects** |
+
+Files changed:
+`recon/ownership/adoption_manifest.json` (+20 app exclusions),
+`recon/generated/app_retained_sources.cmake` (regenerated by the sanctioned
+generator only),
+new `recon/symbols/g1_app_newlib_printf_aliases.ld`,
+new `recon/application/app/src/g1_bt_adv_objects.c`,
+`recon/symbols/g1_app_globals.ld` (3 pin rebinds),
+`recon/application/app/prj.conf` (`CONFIG_NEWLIB_LIBC_FLOAT_PRINTF=y`),
+`recon/application/app/CMakeLists.txt` (1 TU, 1 linker fragment with SORT_KEY,
+5 `--undefined` roots),
+`recon/emulator/reports/sensor_parity_status.md`, this report.
+**No `tools/` logic change**, no devicetree change, `armemul` untouched, nothing
+committed.  The twenty displaced `.c` files remain on disk in
+`recon/{app,symbolized}/src` exactly as before; only the manifest decides
+whether they are compiled.
+
+### 22.11 Open, named, and NOT fixed
+
+1. **§22.7 — the ESB L↔R lens sync never starts.**  `esb_channel` = 255 and
+   `esb_master_addr`/`esb_slave_addr` = 00 for the whole run, `esbslave
+   MasterFramesSeen` = 0, so `ESB_SYNC_ctx_105a` stops at 1 and
+   `DISPLAY_ON_ctx_fe8` never becomes 1.  **This is the first divergence for
+   iteration 23 and it is the only thing between the current build and the
+   first pixel.**
+2. **The app-side connection flag does not follow the link.**
+   `vcentral Connected` = True and 530 data events are answered, but
+   `low_speed_peripheral_dispatch_thread` keeps printing
+   `get_glasses_ble_status 0 ble_is_connected 0`.  The host `connected`
+   callback path into the application state is unverified.
+3. **342 app `rodata_*` pins are still absolute.**  §22.6 shows this class is
+   live, not latent: one of them (`rodata_8839c`) was worth an -EINVAL.  Each
+   still needs its own extent evidence; a companion generator for
+   non-string rodata is the obvious instrument.
+4. **The RAM-arena `.data` restore drops every pointer-bearing run**, not just
+   this one.  §22.6 fixed the two advertising arrays by hand; the generator's
+   policy should be revisited for runs whose pointers target the arena itself
+   (expressible as `&g1_ram_arena[off]`) or an emitted rodata object.
+5. Iteration 21 items 3–4 (69 net raw literals incl. `RETURN_PARAM =
+   0x21004630` and the ESB event-handler slot `0x21004628` — both on the ESB
+   path that item 1 now blocks on) and iteration 20 items 3–6 are unchanged.
