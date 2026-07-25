@@ -13,7 +13,7 @@
 /* Reconstructed FUN_000289b0 @ 0x289b0  (parity: 300/300 trials, PROVEN) */
 
 extern int get_device_info(void);
-extern void global_system_suspend(void);
+extern void global_system_suspend(int context);
 extern void free_pixel4bit_row_buf(void);
 extern void display_close_screen(int);
 
@@ -21,8 +21,12 @@ void prepare_system_suspend_state(void)
 {
     int iVar2;
     free_pixel4bit_row_buf();
-    get_device_info();
-    global_system_suspend();
+    /* iteration 14: the original forwards get_device_info()'s return (r0, the
+     * device context) straight into global_system_suspend -- 0x289b6 bl
+     * 0x167a8 ; 0x289ba bl 0x2bd7c.  Dropping it handed the callee a NULL
+     * context, and its `ldr r3,[r4,#0xb70] ; blx r3` then faulted. */
+    iVar2 = get_device_info();
+    global_system_suspend(iVar2);
     iVar2 = get_device_info();
     *(unsigned char*)(iVar2 + 0xee4) = 1;
     display_close_screen(3);

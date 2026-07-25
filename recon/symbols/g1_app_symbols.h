@@ -112,6 +112,12 @@ extern const unsigned char __g1_fp_opt3001_read_lux_raw[] __asm__("opt3001_read_
 extern const unsigned char __g1_fp_opt3007_chip_init[] __asm__("opt3007_chip_init");
 extern const unsigned char __g1_fp_panel_off[] __asm__("panel_off");
 extern const unsigned char __g1_fp_panel_on[] __asm__("panel_on");
+extern const unsigned char __g1_fp_panel_suspend[] __asm__("panel_suspend");
+extern const unsigned char __g1_fp_panel_resume[] __asm__("panel_resume");
+extern const unsigned char __g1_fp_panel_set_brightness_level[] __asm__("panel_set_brightness_level");
+extern const unsigned char __g1_fp_panel_render_screen_dispatch[] __asm__("panel_render_screen_dispatch");
+extern const unsigned char __g1_fp_projector_clear_canvas[] __asm__("projector_clear_canvas");
+extern const unsigned char __g1_fp_projector_flush_canvas[] __asm__("projector_flush_canvas");
 extern const unsigned char __g1_fp_printf_render_float[] __asm__("printf_render_float");
 extern const unsigned char __g1_fp_process_task_sync_event[] __asm__("process_task_sync_event");
 extern const unsigned char __g1_fp_proxy_thread_handler[] __asm__("proxy_thread_handler");
@@ -244,6 +250,16 @@ extern const unsigned char __g1_fp_z_impl_net_if_ipv6_addr_rm_by_index[] __asm__
 #define ADDR_opt3007_chip_init_THUMB (((unsigned long)&__g1_fp_opt3007_chip_init) | 1u) /* opt3007_chip_init -> &opt3007_chip_init; was 0x2e67d */
 #define ADDR_panel_off_THUMB (((unsigned long)&__g1_fp_panel_off) | 1u) /* panel_off -> &panel_off; was 0x46d2d */
 #define ADDR_panel_on_THUMB (((unsigned long)&__g1_fp_panel_on) | 1u) /* panel_on -> &panel_on; was 0x46dd9 */
+/* iteration 14: the six remaining slots of the projector-controller vtable
+ * written by quicknote_buffer_pool_init (0x47148).  Ghidra folded each of
+ * these into the tail of the preceding symbol, so our build kept them as raw
+ * flash literals and global_system_suspend's `blx [ctx+0xb70]` faulted. */
+#define ADDR_panel_suspend_THUMB (((unsigned long)&__g1_fp_panel_suspend) | 1u) /* panel_suspend -> &panel_suspend; was 0x46d8d */
+#define ADDR_panel_resume_THUMB (((unsigned long)&__g1_fp_panel_resume) | 1u) /* panel_resume -> &panel_resume; was 0x46f21 */
+#define ADDR_panel_set_brightness_level_THUMB (((unsigned long)&__g1_fp_panel_set_brightness_level) | 1u) /* panel_set_brightness_level -> &panel_set_brightness_level; was 0x46ce9 */
+#define ADDR_panel_render_screen_dispatch_THUMB (((unsigned long)&__g1_fp_panel_render_screen_dispatch) | 1u) /* panel_render_screen_dispatch -> &panel_render_screen_dispatch; was 0x35775 */
+#define ADDR_projector_clear_canvas_THUMB (((unsigned long)&__g1_fp_projector_clear_canvas) | 1u) /* projector_clear_canvas -> &projector_clear_canvas; was 0x7d4cb */
+#define ADDR_projector_flush_canvas_THUMB (((unsigned long)&__g1_fp_projector_flush_canvas) | 1u) /* projector_flush_canvas -> &projector_flush_canvas; was 0x7d4d7 */
 #define ADDR_printf_render_float_THUMB (((unsigned long)&__g1_fp_printf_render_float) | 1u) /* printf_render_float -> &printf_render_float; was 0x7712d */
 #define ADDR_process_task_sync_event_THUMB (((unsigned long)&__g1_fp_process_task_sync_event) | 1u) /* process_task_sync_event -> &process_task_sync_event; was 0x286f9 */
 #define ADDR_proxy_thread_handler_THUMB (((unsigned long)&__g1_fp_proxy_thread_handler) | 1u) /* proxy_thread_handler -> &proxy_thread_handler; was 0x47c49 */
@@ -298,6 +314,7 @@ extern volatile unsigned int g_adc_context_lock; /* @0x200021d0 */
 extern volatile unsigned int g_adc_saadc_ctrl_mutex; /* @0x200021e8 */
 extern volatile unsigned int m_adc_channel_input_cfg; /* @0x20002230 */
 extern volatile int g_log_level; /* @0x2000230c */
+extern unsigned int g_screen_render_table[]; /* @0x20002430 */
 extern volatile unsigned int g_ancs_notify_sync_obj; /* @0x20002310 */
 extern volatile unsigned int g_ancs_last_cmd_id; /* @0x2000231c */
 extern volatile unsigned int g_20002320; /* @0x20002320 */
@@ -1233,6 +1250,9 @@ extern const unsigned char rodata_888e0[]; /* @0x888e0 */
 extern const unsigned char rodata_88908[]; /* @0x88908 */
 extern const unsigned char rodata_889d0[]; /* @0x889d0 */
 extern const unsigned char rodata_889e0[]; /* @0x889e0 */
+extern const unsigned char rodata_889d8[]; /* @0x889d8 */
+extern const unsigned char rodata_889e8[]; /* @0x889e8 */
+extern const unsigned char rodata_889f0[]; /* @0x889f0 */
 extern const unsigned char rodata_889f8[]; /* @0x889f8 */
 extern const unsigned char rodata_88a00[]; /* @0x88a00 */
 extern const unsigned char rodata_88a0c[]; /* @0x88a0c */
@@ -2709,15 +2729,20 @@ extern const unsigned char rodata_d7173[]; /* @0xd7173 */
 extern const unsigned char rodata_d71ad[]; /* @0xd71ad */
 extern const unsigned char rodata_d71e3[]; /* @0xd71e3 */
 extern const unsigned char rodata_d71f9[]; /* @0xd71f9 */
+extern const unsigned char rodata_d720f[]; /* @0xd720f */
 extern const unsigned char rodata_d721e[]; /* @0xd721e */
 extern const unsigned char rodata_d723a[]; /* @0xd723a */
 extern const unsigned char rodata_d7251[]; /* @0xd7251 */
 extern const unsigned char rodata_d728d[]; /* @0xd728d */
+extern const unsigned char rodata_d7272[]; /* @0xd7272 */
 extern const unsigned char rodata_d72ac[]; /* @0xd72ac */
 extern const unsigned char rodata_d72bb[]; /* @0xd72bb */
+extern const unsigned char rodata_d72c4[]; /* @0xd72c4 */
 extern const unsigned char rodata_d72d1[]; /* @0xd72d1 */
 extern const unsigned char rodata_d72e9[]; /* @0xd72e9 */
+extern const unsigned char rodata_d72db[]; /* @0xd72db */
 extern const unsigned char rodata_d7310[]; /* @0xd7310 */
+extern const unsigned char rodata_d732c[]; /* @0xd732c */
 extern const unsigned char rodata_d7347[]; /* @0xd7347 */
 extern const unsigned char rodata_d7374[]; /* @0xd7374 */
 extern const unsigned char rodata_d7383[]; /* @0xd7383 */

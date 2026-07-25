@@ -27518,6 +27518,60 @@
    "aliases": [
     "FUN_00087996"
    ]
+  },
+  "0x00046ce8": {
+   "address": "0x00046ce8",
+   "raw_name": "FUN_00046ce8",
+   "name": "panel_set_brightness_level",
+   "display_name": "panel_set_brightness_level",
+   "human": true,
+   "source": "iteration 14: uncatalogued projector-controller vtable target (slot +0x20); name from the log tag string 0xd732c it passes",
+   "aliases": []
+  },
+  "0x00046d8c": {
+   "address": "0x00046d8c",
+   "raw_name": "FUN_00046d8c",
+   "name": "panel_suspend",
+   "display_name": "panel_suspend",
+   "human": true,
+   "source": "iteration 14: uncatalogued projector-controller vtable target (slot +0x04 = ctx+0xb70, the pointer global_system_suspend dispatches through); name from the log tag string 0xd72db",
+   "aliases": []
+  },
+  "0x00046f20": {
+   "address": "0x00046f20",
+   "raw_name": "FUN_00046f20",
+   "name": "panel_resume",
+   "display_name": "panel_resume",
+   "human": true,
+   "source": "iteration 14: uncatalogued projector-controller vtable target (slot +0x08); name from the log tag string 0xd72c4; calls spi_read_id and checks the 0x4010 panel ID",
+   "aliases": []
+  },
+  "0x00035774": {
+   "address": "0x00035774",
+   "raw_name": "FUN_00035774",
+   "name": "panel_render_screen_dispatch",
+   "display_name": "panel_render_screen_dispatch",
+   "human": true,
+   "source": "iteration 14: uncatalogued projector-controller vtable target (slot +0x14, used by ui_refalsh_warp); dispatches through the screen table at 0x20002430",
+   "aliases": []
+  },
+  "0x0007d4ca": {
+   "address": "0x0007d4ca",
+   "raw_name": "FUN_0007d4ca",
+   "name": "projector_clear_canvas",
+   "display_name": "projector_clear_canvas",
+   "human": true,
+   "source": "iteration 14: uncatalogued projector-controller vtable target (slot +0x1c); tail-calls memset_bytes(ctx+0x24,0,ctx+0x350)",
+   "aliases": []
+  },
+  "0x0007d4d6": {
+   "address": "0x0007d4d6",
+   "raw_name": "FUN_0007d4d6",
+   "name": "projector_flush_canvas",
+   "display_name": "projector_flush_canvas",
+   "human": true,
+   "source": "iteration 14: uncatalogued projector-controller vtable target (slot +0x18); tail-calls projector_write_pixel_data",
+   "aliases": []
   }
  },
  "by_name": {
@@ -30037,7 +30091,13 @@
   "zcbor_simple_put": "0x00086360",
   "zcbor_str_decode": "0x00085ef0",
   "zcbor_str_encode": "0x00086228",
-  "zcbor_tstr_encode_ptr": "0x0008099e"
+  "zcbor_tstr_encode_ptr": "0x0008099e",
+  "panel_set_brightness_level": "0x00046ce8",
+  "panel_suspend": "0x00046d8c",
+  "panel_resume": "0x00046f20",
+  "panel_render_screen_dispatch": "0x00035774",
+  "projector_clear_canvas": "0x0007d4ca",
+  "projector_flush_canvas": "0x0007d4d6"
  },
  "conflicts": {
   "slave_display_thread": [

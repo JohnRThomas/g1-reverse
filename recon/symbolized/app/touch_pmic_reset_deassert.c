@@ -8,6 +8,11 @@
  */
 /* Reconstructed FUN_00017a34 @ 0x17a34: touch_pmic_reset_deassert. */
 
+/* iteration 14: the descriptor address was a hardcoded numeric literal, so
+ * the PROVIDE() rebind in g1_app_globals.ld could not apply and the wrapper
+ * handed gpio_pin_set_dt a raw ORIGINAL-image flash address; the port
+ * pointer inside it is garbage in our link and gpio_pin_set_checked
+ * asserted.  Referencing the pinned symbol is what makes the rebind real. */
 #include <stdint.h>
 
 extern uint32_t gpio_pin_set_dt(uint32_t, uint32_t, uint32_t, uint32_t);
@@ -17,5 +22,5 @@ uint32_t touch_pmic_reset_deassert(uint32_t unused0, uint32_t unused1,
 {
     (void)unused0;
     (void)unused1;
-    return gpio_pin_set_dt(0x000889d8U, 0U, arg2, arg3);
+    return gpio_pin_set_dt((unsigned long)&rodata_889d8 /*=0x889d8*/, 0U, arg2, arg3);
 }

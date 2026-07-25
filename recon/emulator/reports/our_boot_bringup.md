@@ -4886,3 +4886,382 @@ Four records appended to the scratchpad catalogs `app_funcs.json` /
 `classified.json` (backed up as `*.i13bak`), the iteration-4/8 route.
 No `tools/` change, no Kconfig / `prj.conf` / devicetree change, `armemul`
 untouched. Nothing committed.
+
+## Iteration 14 — the projector-controller vtable (six more uncatalogued
+## functions), the NULL context, the un-rebindable GPIO descriptors, and the
+## first real sensor-parity measurement
+
+**Headline.** Iteration 13's `global_system_suspend` fault is **root-caused and
+gone**, and with it every reset: `/private/tmp/g1-i14b-app` boots
+**fault-free and reset-free through 2.0 s of virtual time with 883 unique
+functions** (previous reset-free best: iteration 13's `g1-i13a` at 822; previous
+absolute best: `g1-i13e` at 839 *with* a reset at 0.0892 s). At 0.15 s it
+reaches **882 unique functions, 0 resets** — 43 more than the iteration-13
+final, with **every one of the 17 lost functions being the fault/panic path**
+(`z_arm_fault`, `z_fatal_error`, `panic`, `sys_arch_reboot`, …).
+
+Three defects, all in classes this project already has a playbook for:
+
+1. **A ninth-slot vtable, six of whose nine targets Ghidra never catalogued.**
+   `quicknote_buffer_pool_init` (0x47148) is misnamed — it is the
+   **projector-controller vtable registrar**, called from `main` at 0x17324 with
+   `r0 = device_ctx + 0xb6c`. It writes nine code pointers at
+   `ctx+0xb6c .. ctx+0xb8c`. Ghidra catalogued only three targets
+   (`jdb_panel_init` 0x46fc0, `panel_off` 0x46d2c, `panel_on` 0x46dd8) and
+   **folded the other six into the tail of the preceding symbol**, so our build
+   kept them as raw flash literals `rodata_46d8d`, `rodata_46f21`,
+   `rodata_35775`, `rodata_7d4d7`, `rodata_7d4cb`, `rodata_46ce9`.
+   `global_system_suspend` dispatches through slot +0x04 (`ctx+0xb70`).
+2. **A dropped register argument at that same boundary** — the NULL context.
+3. **Six `gpio_dt_spec` addresses that were hardcoded numeric literals in the
+   symbolized sources**, so their `PROVIDE()` rebinds in `g1_app_globals.ld`
+   could never apply.
+
+Step B then produced the **first evaluation of `display_sensor_parity.md`'s
+criteria against our rebuild** (full detail in the new
+`recon/emulator/reports/sensor_parity_status.md`): **S-KEYS, S-MIC (negative)
+and the gyro negative PASS by exact stream-hash equality**; S-ALS, S-NFC
+(system port) and S-ADC are **byte-exact for every transaction our build emits**
+and then stop; S-IMU and S-PMIC diverge inside their init sequences with a named
+first-differing register; and **G-1/G-2/G-3/G-5 are not reached at all** — our
+firmware still produces **zero** display SPI transactions.
+
+| metric | iter 13 final `g1-i13e-app` | iter 13 reset-free `g1-i13a-app` | iter 14 `g1-i14a-app` | **iter 14 final `g1-i14b-app`** |
+|---|---:|---:|---:|---:|
+| app instr @0.15 s | 6,388,996 | 6,004,916 | 6,380,786 | **10,865,770** |
+| app unique fns @0.15 s | 839 | 777 | 855 | **882** |
+| app resets | 1 @0.0892 s | 0 | 1 @0.0893 s | **0** |
+| app @2.0 s | 6,388,996 / 839, reset | 6,261,306 / 822, no reset | — | **195,865,770 / 883, no reset** |
+| net instr / fns @0.15 s | 287,341 / 420 | 291,514 / 432 | 290,772 / 422 | **293,078 / 433** |
+| net @2.0 s | — | — | — | **380,275 / 466** |
+| `radio TransmittedFrames` | 0 | 0 | 0 | **0** |
+| app FLASH | 631,996 B (64.32 %) | 626,548 B | 632,716 B | **632,740 B (64.40 %)**, +744 B |
+| app RAM | 244,229 B (54.21 %) | 244,229 B | 244,229 B | **244,229 B**, +0 B |
+| `nm -u` undefined / duplicate globals | 0 / 0 | 0 / 0 | 0 / 0 | **0 / 0** |
+| `check_ram_pin_collisions.py` | 0 / 0, EXIT 0 | 0 / 0, EXIT 0 | 0 / 0, EXIT 0 | **0 / 0, EXIT 0** |
+| `check_thread_create_stack_args.py` | 10/10, EXIT 0 | 10/10 | 10/10 | **10/10, EXIT 0** |
+
+No `--allow-multiple-definition`, no weak symbols, no numeric-root hacks, no
+`tools/` change, no Kconfig / `prj.conf` / devicetree change. `armemul` is
+**untouched** (its two opt-in `TraceFile` hooks were already present from the
+oracle capture and were not modified). Net core not rebuilt
+(`/private/tmp/g1-i9c-net`, unchanged since iteration 9). Nothing committed.
+
+### 14.1 Step A(1) — the NULL context: a dropped register argument at
+### `prepare_system_suspend_state` (and the same defect in `global_system_resume`)
+
+The iteration-13 fault was `global_system_suspend + 0x34` executing
+`ldr.w r3,[r4,#0xb70] ; blx r3` with `r4 = 0`. `global_system_suspend`'s own
+reconstruction is correct — it takes the context in `param_1`. The zero comes
+from its callers. There are exactly two (found by scanning the image for
+`bl`/`b.w` targets equal to 0x2bd7c):
+
+```
+prepare_system_suspend_state @0x289b0            global_system_resume @0x16854
+  289b2  bl 0x47ab8                                168b0  bl 0x32ee4   ; is_battery_critical(r0=param_1)
+  289b6  bl 0x167a8   ; get_device_info -> r0      168b4  cmp r0,#0
+  289ba  bl 0x2bd7c   ; global_system_suspend(r0)  168b6  bne 0x1689c  ; returns ITS result
+  289be  bl 0x167a8                                168b8  ldr r0,[r6,#0] ; r0 = *device_info
+  289c2  movs r3,#1 ; strb.w r3,[r0,#0xee4]        168ba  cbz r4,0x16902
+                                                   168bc  pop ; b.w 0x2bdf0  ; active_mode_shutdown(ctx)
+                                                   16906  pop ; b.w 0x2bd7c  ; global_system_suspend(ctx)
+```
+
+Our sources declared `extern void global_system_suspend(void);` and called it
+with **no arguments**, so `r0` was whatever `z_device_is_ready()` / the
+preceding call left behind — reliably 0. This is the **fifth** member of the
+class the harness is structurally blind to (dropped register args, dropped stack
+args, wrong indirection levels, stack writes, collapsed stack objects): both
+callers were at `PASS` under `cfg_verify` **before and after** the fix
+(`prepare_system_suspend_state` 40 checks, `global_system_resume` 65 → 225),
+because callees are order-keyed oracles whose argument registers are never
+compared. The disassembly is the authority.
+
+While rewriting `global_system_resume` against the frame above, four further
+argument defects in the same function were corrected with the same evidence —
+`bt_start(0)`→`bt_start(param_1)`, `gpio_set_fixed_output_889f0(0)`,
+`imu_apply_normalized_mode(0)`, `gpio_set_pin1_dt_wrapper(0)` all pass `r0 =
+param_1` in the original — plus the `is_battery_critical` **return value**
+(0x168b6 returns the callee's result, our body returned `param_1`). Re-proven:
+`recon_kit.prove` / `cfg_verify` **PASS** (200 and 225 checks).
+
+### 14.2 Step A(2) — the `+0xb70` vtable is the whole projector/panel vtable
+
+`quicknote_buffer_pool_init` @0x47148 is `main`'s counterpart to iteration 13's
+`register_imu_funsion_context`:
+
+```
+17310  addw r0,r4,#0xee4 ; bl 0x26250   <- register_imu_funsion_context (iter 13)
+17320  addw r0,r4,#0xb6c ; bl 0x47148   <- THIS registrar
+```
+
+```
+47152  ldr r3,=0x46fc1 ; str r3,[r4,#0]      <- +0x00  jdb_panel_init          (already bound)
+4715a  ldr r3,=0x46d8d ; str r3,[r4,#4]      <- +0x04  ctx+0xb70, the faulting slot
+47162  ldr r3,=0x46f21 ; str r3,[r4,#8]      <- +0x08
+4716a  ldr r3,=0x46d2d ; str r3,[r4,#0xc]    <- +0x0c  panel_off               (already bound)
+47166  ldr r3,=0x46dd9 ; str r3,[r4,#0x10]   <- +0x10  panel_on                (already bound)
+4716e  ldr r3,=0x35775 ; str r3,[r4,#0x14]   <- +0x14
+47172  ldr r3,=0x7d4d7 ; str r3,[r4,#0x18]   <- +0x18
+4717a  ldr r3,=0x7d4cb ; str r3,[r4,#0x1c]   <- +0x1c
+47176  ldr r3,=0x46ce9 ; str r3,[r4,#0x20]   <- +0x20
+```
+
+Unlike iteration 13's four, these six do **not** sit in Ghidra catalog gaps —
+they sit *inside* the declared extents of neighbouring symbols, i.e. Ghidra
+over-reported those functions' sizes and swallowed the next function whole.
+Each was read off the image (code, then its own literal pool) and named from the
+log tag it passes:
+
+| VA | size | container it was folded into | log tag | name | slot |
+|---|---:|---|---|---|---|
+| 0x46ce8 | 0x44 | `ui_set_imu_pitch_task` (0x46b80, declared 0x1ac) | 0xd732c `"panel_set_brightness_level"` | `panel_set_brightness_level` | +0x20 |
+| 0x46d8c | 0x4c | `panel_off` (0x46d2c, declared 0xac) | 0xd72db `"panel_suspend"` | `panel_suspend` | **+0x04** |
+| 0x46f20 | 0xa0 | `set_brightness_to_panel_reg` (0x46e3c, declared 0x184) | 0xd72c4 `"panel_resume"` | `panel_resume` | +0x08 |
+| 0x35774 | 0x68 | `dump_whitelist_init` (0x35744, declared 0x98) | — | `panel_render_screen_dispatch` | +0x14 |
+| 0x7d4ca | 0x0c | `get_localized_weekday_name` (0x7d4b2, declared 0x3a) | — | `projector_clear_canvas` | +0x1c |
+| 0x7d4d6 | 0x16 | `get_localized_weekday_name` | — | `projector_flush_canvas` | +0x18 |
+
+`panel_resume` @0x46f20 is the **E4 display bring-up path**:
+
+```
+46f64  bl 0x47638      ; jbd_panel_resume
+46f68  bl 0x47724      ; spi_read_id
+46f6c  movw r3,#0x4010 ; cmp r0,r3 ; beq ...   <- the JBD panel ID gate
+46f7a  ...             ; else log 0xd728d "%s(): JBD PANEL init failure!\n"
+46f9c  bl 0x46dd8      ; panel_on
+46fa4  bl 0x46e3c      ; set_brightness_to_panel_reg(ctx[0x369])
+```
+
+All six reconstructed and **`recon_kit.prove` / `cfg_verify` PASS** (200/200,
+200/200, 200/200, 203/203, 200/200, 200/200), re-verified after wiring
+(40/40/40/43/40/40 CFG-directed checks each). Wiring is the iteration-13 route:
+records added to the scratchpad catalogs `app_funcs.json` / `classified.json`
+(backed up as `*.i14bak`) and to `recon/catalogs/function_names_app.json`; new
+canonical bodies in `recon/app/src/` mirrored to `recon/verified/src`,
+`recon/symbolized/app` and `recon/named`; six `__asm__`-alias rebinds
+(`extern const unsigned char __g1_fp_<name>[] __asm__("<name>");` +
+`ADDR_<name>_THUMB`) in `recon/symbols/g1_app_symbols.h`; the six
+`PROVIDE(rodata_* = <name> | 1)` rebinds in `recon/symbols/g1_app_globals.ld`;
+and — critically — `recon/symbolized/app/quicknote_buffer_pool_init.c` now
+stores `ADDR_<name>_THUMB` instead of the `rodata_*` literals, because a
+`PROVIDE` expression is not an archive reference and would leave the six
+functions out of the link (measured in iteration 13 §13.2).
+
+One new RAM pin: `g_screen_render_table = g1_ram_arena + 0x430` (original
+0x20002430), the 16-entry / 16-byte-stride screen table
+`panel_render_screen_dispatch` indexes. `check_ram_pin_collisions.py` still
+reports 0 escaping pins / 0 unknowns inside a live object.
+
+**Measured (`/private/tmp/g1-i14a-app`).** The `Illegal use of the EPSR` fault
+is **gone**. `global_system_suspend` executes (2 entries), `panel_suspend` (3),
+`panel_off` (1), and `bt_start` runs for the first time (3 entries).
+855 unique functions. A *new* fault surfaced at 0.0893 s — see §14.3.
+
+### 14.3 Step A(3) — six `gpio_dt_spec` addresses that no `PROVIDE` could reach
+
+`g1-i14a-app` died at 0.0893 s with `ZEPHYR FATAL ERROR 4` (kernel panic) at
+`assert_post_action+0xc`, from `gpio_pin_set_checked`'s
+`__ASSERT(port_pin_mask & BIT(pin))`. Walking the trace back to the call:
+
+```
+global_system_resume -> gpio_set_pin1_dt_wrapper -> gpio_pin_set_dt
+                     -> gpio_pin_set_checked -> printk -> assert_post_action
+```
+
+The original 0x17a10 is `movs r1,#1 ; ldr r0,=0x000889e8 ; b.w gpio_pin_set_dt`.
+Iteration 13 already emitted the descriptors and pinned them
+(`PROVIDE(rodata_889e8 = g1_gpio0_pin30_spec)` etc.) — but the **symbolized
+sources spelled the descriptor address as a hardcoded numeric literal**:
+
+```c
+return gpio_pin_set_dt(0x000889e8U, 1U, arg2, arg3);   /* before */
+```
+
+A `PROVIDE` can only rebind a *named* reference. Our link therefore still
+emitted `.word 0x000889e8` — a raw ORIGINAL-image flash address whose first word
+is not a `struct device *` in our build — and `gpio_pin_set_checked` asserted on
+the garbage `port_pin_mask`. Six sites were affected:
+
+| source | descriptor | original bytes |
+|---|---|---|
+| `gpio_set_pin1_dt_wrapper` (0x17a10) | 0x889e8 | `{ gpio0, pin 30, 0 }` |
+| `gpio_set_fixed_pin_dt` (0x17a1c) | 0x889e8 | " |
+| `subsystem_enable_gpio_pin_set_adapter` (0x179f8) | 0x889f0 | `{ gpio0, pin 21, 0 }` |
+| `gpio_set_fixed_output_889f0` (0x17a04) | 0x889f0 | " |
+| `touch_pmic_reset_assert` (0x17a28) | 0x889d8 | `{ gpio0, pin 23, 0 }` — **descriptor did not exist yet** |
+| `touch_pmic_reset_deassert` (0x17a34) | 0x889d8 | " |
+
+All six now reference `((unsigned long)&rodata_889XX)`, and the missing
+`0x889d8` descriptor was added to
+`recon/application/app/src/g1_gpio_dt_specs.c` (`g1_gpio0_pin23_spec`) with its
+pin and header extern. This is a *new* sub-class worth naming: the descriptor
+was emitted **and** pinned correctly, but the consumer never named the symbol,
+so the rebind was a no-op. It is worth sweeping the symbolized tree for other
+raw `0x000[0-9a-f]{5}` literals that have a `PROVIDE` waiting for them.
+
+**Measured (`/private/tmp/g1-i14b-app`, the final image).** **No faults, no
+resets, at 0.15 s or at 2.0 s.** Function-set diff vs the iteration-13 final:
+**60 gained, 17 lost**, and every one of the 17 lost is the fault/panic path
+(`z_arm_fault`, `z_arm_usage_fault`, `z_arm_fatal_error`, `z_fatal_error`,
+`panic`, `sys_arch_reboot`, `k_sys_fatal_error_handler`, `z_impl_log_panic`, …).
+Gained, among others: `master_display_thread`, `display_thread_handler`,
+`display_dispatch_thread`, `spawn_display_thread`, `spawn_proxy_thread`,
+`proxy_thread_handler`, `transport_dispatch_thread`, `sync_to_slave`,
+`trigger_screen_state_change`, `esb_pairing_sync_step`,
+`spi_master_trans_data_tx_rx`, `projector_send_command`,
+`projector_spi_write_chunked`, `projector_bus_lock`/`_unlock`,
+`gui_set_active_canvas`, `bt_start`, `panel_suspend`, `panel_off`,
+`jbd_panel_suspend`, `process_task_sync_event`, `k_msgq_get`.
+
+### 14.4 E4 status and the G-5 comparison
+
+**E4 is still NOT reached, but the display *thread graph* now runs.** Present
+for the first time: `master_display_thread` (7 entries), `display_thread_handler`
+(73 048 @0.15 s), `display_dispatch_thread` (8), `spi_master_trans_data_tx_rx`
+(1), `bt_start` (3). Still absent: `spi_read_id`, `spi_master_init`,
+`jdb_panel_init`, `panel_on`, `panel_resume`, `bt_enable`; `radio
+TransmittedFrames` = **0**.
+
+**G-5 comparison: not possible — there is no display SPI traffic to compare.**
+A full 20 s two-phase capture of `g1-i14b-app` under the oracle's determinism
+knobs (§14.5) recorded **0 transactions on `spim_a`**, `JBD FrameCounter` = 0,
+`JournalCount` = 0, journal empty, framebuffer uniformly zero. The `0x9F`→
+`0x4010` probe, the three-band 153 600 B clear, the five `0xC0` words
+`0000/0014/1800/1814/0C0A` and the `0x46`/`0x31` brightness pairs `0F 04` /
+`00 04` are therefore **UNTESTED, not failed**. `spim_b` is 0 == 0 (G-6),
+but vacuously so.
+
+### 14.5 Step B — the first real sensor-parity measurement
+
+Full per-criterion table, first-difference detail and the exact reproduction
+command are in **`recon/emulator/reports/sensor_parity_status.md`**. Summary:
+
+| criterion | verdict |
+|---|---|
+| **S-KEYS** | **PASS** — `gpiote0` stream_sha256 **identical** (25 == 25 accesses, `CONFIG[7]=0x22901`, `CONFIG[6]=0x22A01`, `INTENSET` `0x80000000`/`0x80`/`0x40`); `gpiote1` 0 == 0 |
+| **S-MIC** (negative) | **PASS** — `pdm0` stream_sha256 **identical**: exactly `PSEL.CLK ← 0x2D`, `PSEL.DIN ← 0x2E`, no ENABLE, no START, no DMA |
+| gyro (negative) | **PASS** — `GyroscopeEnabled` = False after 20 s (accel True) |
+| **S-ALS** | **PARTIAL, prefix-exact** — 7/33 txns, all 7 byte-identical, then stops |
+| **S-NFC** | **PARTIAL / NOT-EXERCISED** — system port 6/22 byte-identical then stops; NFC EEPROM (0x53) **0**/25 |
+| **S-ADC** | **PARTIAL, prefix-exact** — 5/998 accesses, all 5 byte-identical (`EVENTS_END`, `EVENTS_CALIBRATEDONE`, `INTENSET ← 0x12`), no conversion cycle |
+| **S-IMU** | **PARTIAL** — 35/1089 txns; first **3** byte-identical, **first difference at txn #3** |
+| **S-PMIC** | **PARTIAL** — 54/270 txns; **first difference at txn #0** |
+| **S-ESB** | **FAIL** — `radio TransmittedFrames` = 0 |
+| **G-1 / G-2 / G-3 / G-5** | **NOT REACHED** — 0 SPI transactions |
+| **G-6** | PASS (vacuous) |
+
+The two genuine parity findings:
+
+* **S-IMU** — after an identical `FUNC_CFG_ACCESS ← 0x00` / `WHO_AM_I → 0x6C`
+  handshake, the original does a `CTRL9_XL (0x18)` read-modify-write
+  (`R E0`, `W 18E2`, then `0x62 ← 00`); **ours writes `FUNC_CFG_ACCESS ← 0x80`**
+  and reads `0x46` (`FSM_ENABLE_A`) in the embedded-functions bank the original
+  never enters. Classified **recon defect**: the golden trace's only `lsm6dso_*`
+  symbol is `lsm6dso_init_chip` (37 entries) with **no** `mem_bank_set` /
+  `fsm_enable_get` / `attr_set`, whereas ours runs `lsm6dso_mem_bank_set` 16×,
+  `lsm6dso_fsm_enable_get` 16×, `lsm6dso_attr_set` 8× and `lsm6dso_init_chip`
+  only 6×. The iteration-13 `imu_fusion_init` reaches the sensor through a
+  `dev_api_call_slot0(dev, 3|7, …)` attr-set path the original does not take.
+* **S-PMIC** — the original opens with a bank-0x06 write burst
+  (`0x0602 ← 06`, `0x0616 ← 00`, `0x060C ← 00`, `0x0611 ← 00`); ours opens with
+  bank-0x04 **reads** (`0x040F`, `0x0410`). Classified **recon defect
+  (init-sequence ordering)** — the bus-level protocol is right, the routine
+  order is not.
+
+Everything else that is "partial" is **not-yet-reached**, not wrong: our build
+reproduces every transaction it emits byte-for-byte and then stops, and it emits
+**zero** transactions on every device during `p2_render`.
+
+### 14.6 New first divergence (drives iteration 15) — the `display_thread_handler` free-run
+
+With the faults gone the boot no longer dies; it **live-runs**. At 2.0 s the app
+core executes **195 865 770 instructions** against the golden trace's
+**12 629 795** — 15× — and the profile is one loop:
+
+| function | ours @2.0 s (entries / instr) | golden (entries / instr) |
+|---|---:|---:|
+| `display_thread_handler` | 2 918 551 / 26 996 542 | 178 / 2 033 |
+| `k_msgq_get` | 2 918 551 / 25 537 257 | 182 / 1 597 |
+| `wake_display_thread_on_reflash` | 729 636 / 4 377 810 | 43 / 258 |
+| `memset` + `memset_bytes` | 729 885 / 75 301 204 | — |
+
+`display_thread_handler` (original 0x49090) derives its `k_msgq_get` timeout from
+`g_dashboard_display_level` (original 0x20002544, correctly bound to
+`g1_ram_arena + 0x544`):
+
+```
+orig  4914e ldr r3,=0x20002544 ; 49154 ldr r3,[r3]
+      4915a bic.w ip,r3,r3,asr #31        ; clamp to >= 0
+      4915e smlal r0,r1,ip,lr             ; * 0x8000, + 999
+      49164 bl __aeabi_uldivmod           ; / 1000  -> ticks
+      49170 bl k_msgq_get
+ours  4238a ldr.w r3,[r9]   (r9 = g_dashboard_display_level)
+      42390 bic.w ip,r3,r2 ; 42394 smlal r0,r1,ip,lr ; 4239e bl __aeabi_uldivmod
+      423aa bl k_msgq_get
+```
+
+— instruction-for-instruction the original's frame, so this is **not** another
+dropped-argument defect. The value is simply **0** in our build, making the
+timeout `K_NO_WAIT`; the thread free-runs, re-clears the canvas every iteration
+(`memset` is 38 % of all instructions) and starves every sensor thread, which is
+exactly why `p2_render` records zero I²C traffic on every device. The only
+writer, `set_dashboard_display_level_clamped` (0x48b44), executes in **neither**
+trace, so the original's non-zero value must come from the settings store or
+from a `.data` initialiser we have not reproduced. **That is iteration 15's
+Step A.** The obvious companions are the still-absent `spi_master_init` /
+`jdb_panel_init` / `spi_read_id` / `bt_enable` (all present in the golden trace)
+and the two S-IMU / S-PMIC init-sequence defects located in §14.5.
+
+### Regenerate (iteration 14)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check          # current
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_thread_create_stack_args.py --trials 120
+                                                                                # EXIT=0, 10/10
+PYTHONSAFEPATH=1 .venv/bin/python -c "import sys;sys.path.insert(0,'tools');import cfg_verify as c;\
+ [print(n, c.verify('app',n)['status']) for n in ('panel_suspend','panel_resume',\
+ 'panel_set_brightness_level','panel_render_screen_dispatch','projector_clear_canvas',\
+ 'projector_flush_canvas','FUN_000289b0','FUN_00016854','quicknote_buffer_pool_init',\
+ 'global_system_suspend')]"                                                     # 10x PASS
+recon/application/build_cohesive.sh app /private/tmp/g1-i14b-app
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py \
+    /private/tmp/g1-i14b-app/zephyr/zephyr.elf                                  # EXIT=0
+# net unchanged since iteration 9: /private/tmp/g1-i9c-net
+<scratchpad>/mkrun.sh i14b  /private/tmp/g1-i14b-app /private/tmp/g1-i9c-net 0.15
+<scratchpad>/mkrun.sh i14b2 /private/tmp/g1-i14b-app /private/tmp/g1-i9c-net 2.0
+# Step B capture + diff: see recon/emulator/reports/sensor_parity_status.md §1
+```
+
+Bisect ledger (every build and boot actually run):
+
+| build | change | app @0.15 s | resets | note |
+|---|---|---:|---|---|
+| `/private/tmp/g1-i14-app` | rebuild of the iteration-13 tree (baseline check) | 6,388,996 / 839 | 1 @0.0892 s | reproduces `g1-i13e-app` exactly |
+| `/private/tmp/g1-i14a-app` | + the six vtable functions, the NULL-context fix, the `global_system_resume` argument fixes | 6,380,786 / **855** | 1 @0.0893 s | EPSR fault gone; new `gpio_pin_set_checked` assert |
+| `/private/tmp/g1-i14b-app` | + the six `gpio_dt_spec` symbol references and `g1_gpio0_pin23_spec` | **10,865,770 / 882** | **0** | **final**; 195,865,770 / 883 / 0 resets @2.0 s |
+
+Files changed: new `recon/app/src/{panel_suspend,panel_resume,
+panel_set_brightness_level,panel_render_screen_dispatch,projector_clear_canvas,
+projector_flush_canvas}.c` (+ `recon/verified/src` mirror, `recon/symbolized/app`
+and `recon/named` copies); corrected + re-proven
+`recon/app/src/{FUN_000289b0,FUN_00016854}.c` (+ mirrors) and
+`recon/symbolized/app/{prepare_system_suspend_state,global_system_resume,
+quicknote_buffer_pool_init,gpio_set_pin1_dt_wrapper,gpio_set_fixed_pin_dt,
+gpio_set_fixed_output_889f0,subsystem_enable_gpio_pin_set_adapter,
+touch_pmic_reset_assert,touch_pmic_reset_deassert}.c` (+ `recon/named` copies of
+the first two); `recon/symbols/g1_app_symbols.h` (six `__asm__` aliases, six
+`ADDR_*_THUMB`, five new log-string externs, `rodata_889d8`/`889e8`/`889f0`,
+`g_screen_render_table`); `recon/symbols/g1_app_globals.ld` (six vtable rebinds,
+five log-string pins, `rodata_889d8`, the `g_screen_render_table` RAM pin);
+`recon/application/app/src/g1_gpio_dt_specs.c` (`g1_gpio0_pin23_spec`);
+`recon/catalogs/function_names_app.json` (six new names);
+`recon/generated/app_retained_sources.cmake` (regenerated by its own tool,
+1623 → 1629 retained sources); `recon/emulator/scripts/capture_display_sensor_oracle.sh`
+(additive `G1_RESC` / `G1_APP_ELF` / `G1_NET_ELF` / `G1_HOOKS` / `G1_CTX_*` /
+`G1_P*_SECS` parameters — with none set it is byte-for-byte the previous oracle
+capture); new `recon/emulator/reports/sensor_parity_status.md`. Six records
+appended to the scratchpad catalogs `app_funcs.json` / `classified.json`
+(backed up as `*.i14bak`), the iteration-4/8/13 route. No `tools/` change, no
+Kconfig / `prj.conf` / devicetree change, `armemul` untouched. Nothing committed.

@@ -93,13 +93,13 @@ PROVIDE(rodata_30000 = 0x00030000);
 PROVIDE(rodata_32421 = aging_mode_thread | 1);
 PROVIDE(rodata_33c44 = 0x00033c44);
 PROVIDE(rodata_33c48 = 0x00033c48);
-PROVIDE(rodata_35775 = 0x00035775);
+PROVIDE(rodata_35775 = panel_render_screen_dispatch | 1); /* iteration 14 rebind */
 PROVIDE(rodata_40000 = 0x00040000);
 PROVIDE(rodata_40002 = 0x00040002);
 PROVIDE(rodata_40202 = 0x00040202);
-PROVIDE(rodata_46ce9 = 0x00046ce9);
-PROVIDE(rodata_46d8d = 0x00046d8d);
-PROVIDE(rodata_46f21 = 0x00046f21);
+PROVIDE(rodata_46ce9 = panel_set_brightness_level | 1); /* iteration 14 rebind */
+PROVIDE(rodata_46d8d = panel_suspend | 1); /* iteration 14 rebind */
+PROVIDE(rodata_46f21 = panel_resume | 1); /* iteration 14 rebind */
 PROVIDE(rodata_4b1b5 = 0x0004b1b5);
 PROVIDE(rodata_4b8a5 = 0x0004b8a5);
 PROVIDE(rodata_4c38d = 0x0004c38d);
@@ -128,8 +128,8 @@ PROVIDE(rodata_7c00d = local_esbs_ctrl_ipc_service_recv | 1); /* iteration 8 reb
 PROVIDE(rodata_7c26b = 0x0007c26b);
 PROVIDE(rodata_7c38b = 0x0007c38b);
 PROVIDE(rodata_7c39d = 0x0007c39d);
-PROVIDE(rodata_7d4cb = 0x0007d4cb);
-PROVIDE(rodata_7d4d7 = 0x0007d4d7);
+PROVIDE(rodata_7d4cb = projector_clear_canvas | 1); /* iteration 14 rebind */
+PROVIDE(rodata_7d4d7 = projector_flush_canvas | 1); /* iteration 14 rebind */
 PROVIDE(rodata_7d86d = 0x0007d86d);
 PROVIDE(rodata_7eb11 = 0x0007eb11);
 PROVIDE(rodata_7eb1d = 0x0007eb1d);
@@ -402,6 +402,8 @@ PROVIDE(rodata_88908 = 0x00088908);
  * (0x0011 = GPIO_ACTIVE_LOW | GPIO_PULL_UP).  Re-emitted in button_init.c. */
 PROVIDE(rodata_889d0 = g1_gpio1_pin9_spec);
 PROVIDE(rodata_889e0 = g1_gpio1_pin10_spec);
+/* iteration 14: same class -- { gpio0, pin 23, dt_flags 0 }. */
+PROVIDE(rodata_889d8 = g1_gpio0_pin23_spec);
 /* iteration 13: same class as 0x889d0/0x889e0 -- the descriptor itself
  * embeds an absolute `struct device *`, so it must be emitted by the build. */
 PROVIDE(rodata_889e8 = g1_gpio0_pin30_spec);
@@ -1901,7 +1903,23 @@ PROVIDE(rodata_d7173 = 0x000d7173);
 PROVIDE(rodata_d71ad = 0x000d71ad);
 PROVIDE(rodata_d71e3 = 0x000d71e3);
 PROVIDE(rodata_d71f9 = 0x000d71f9);
+/* ---- iteration 14: the projector-controller vtable (quicknote_buffer_pool_init
+ * @0x47148, called from main() at 0x17324 with r0 = device_ctx + 0xb6c).
+ * Nine code pointers land at ctx+0xb6c..ctx+0xb8c; Ghidra catalogued only
+ * three of the targets (jdb_panel_init / panel_off / panel_on) and folded the
+ * other six into the tail of the preceding symbol, so they stayed raw flash
+ * literals.  global_system_suspend dispatches through slot +0x04 (ctx+0xb70)
+ * = panel_suspend, which is why the boot faulted with "Illegal use of the
+ * EPSR".  All six are now reconstructed (cfg_verify PASS 200/200 each) and
+ * bound to their real definitions; the archive members are pulled in by
+ * quicknote_buffer_pool_init referencing ADDR_<name>_THUMB. */
+/* log-tag / format strings used by the six new panel vtable bodies. */
+PROVIDE(rodata_d720f = 0x000d720f);
 PROVIDE(rodata_d721e = 0x000d721e);
+PROVIDE(rodata_d7272 = 0x000d7272);
+PROVIDE(rodata_d72c4 = 0x000d72c4);
+PROVIDE(rodata_d72db = 0x000d72db);
+PROVIDE(rodata_d732c = 0x000d732c);
 PROVIDE(rodata_d723a = 0x000d723a);
 PROVIDE(rodata_d7251 = 0x000d7251);
 PROVIDE(rodata_d728d = 0x000d728d);
@@ -2840,6 +2858,9 @@ PROVIDE(g_adc_context_lock = g1_ram_arena + 0x1d0);
 PROVIDE(g_adc_saadc_ctrl_mutex = g1_ram_arena + 0x1e8);
 PROVIDE(m_adc_channel_input_cfg = g1_ram_arena + 0x230);
 PROVIDE(g_log_level = g1_ram_arena + 0x30c);
+/* iteration 14: the 16-entry (16 B stride) screen-render table that
+ * panel_render_screen_dispatch (0x35774) indexes; original 0x20002430. */
+PROVIDE(g_screen_render_table = g1_ram_arena + 0x430);
 PROVIDE(g_ancs_notify_sync_obj = g1_ram_arena + 0x310);
 PROVIDE(g_ancs_last_cmd_id = g1_ram_arena + 0x31c);
 PROVIDE(g_20002320 = g1_ram_arena + 0x320);

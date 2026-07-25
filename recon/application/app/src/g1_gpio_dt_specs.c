@@ -75,6 +75,12 @@ const struct g1_gpio_dt_spec g1_gpio1_pin9_spec = {
 	.port = G1_GPIO1, .pin = 9, .dt_flags = 0x0011
 };
 
+/* iteration 14: was rodata_889d8 (original 0x000889d8) -- { gpio0, pin 23,
+ * dt_flags 0 }, the descriptor touch_pmic_reset_assert / _deassert use. */
+const struct g1_gpio_dt_spec g1_gpio0_pin23_spec = {
+	.port = G1_GPIO0, .pin = 23, .dt_flags = 0
+};
+
 /* was rodata_889e0 (original 0x000889e0) */
 const struct g1_gpio_dt_spec g1_gpio1_pin10_spec = {
 	.port = G1_GPIO1, .pin = 10, .dt_flags = 0x0011

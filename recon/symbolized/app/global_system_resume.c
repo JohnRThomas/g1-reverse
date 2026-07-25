@@ -47,20 +47,26 @@ unsigned int global_system_resume(unsigned int param_1, int param_2)
   } else {
     *flags = *flags | (unsigned short)param_2;
     if (*(volatile char*)(base+1) == 0) return param_1;
-    if (param_2 == 0x80) return bt_start(0);
+    if (param_2 == 0x80) return bt_start(param_1);
   }
   if (param_2 > 0x80) {
-    if (param_2 == 0x400) { if (param_1==0) return subsystem_enable_gpio_pin_set_adapter(0); return gpio_set_fixed_output_889f0(0); }
+    if (param_2 == 0x400) { if (param_1==0) return subsystem_enable_gpio_pin_set_adapter(0); return gpio_set_fixed_output_889f0(param_1); }
     if (param_2 == 0x800) { if (param_1==0) return enable_ship_mode(1); return param_1; }
     if (param_2 == 0x100) {
-      if (is_battery_critical(0) != 0) return param_1;
-      if (param_1 == 0) return global_system_suspend(0);
-      return active_mode_shutdown(0);
+      /* iteration 14: 0x168b0 calls is_battery_critical with r0 = param_1 and
+       * 0x168b6 returns ITS result; 0x168b8 then reloads r0 = *device_info,
+       * so both global_system_suspend (0x2bd7c) and active_mode_shutdown
+       * (0x2bdf0) receive the device CONTEXT, not 0.  Passing 0 was one half
+       * of the iteration-13 "Illegal use of the EPSR" fault. */
+      int crit = is_battery_critical(param_1);
+      if (crit != 0) return crit;
+      if (param_1 == 0) return global_system_suspend(base);
+      return active_mode_shutdown(base);
     }
     return param_1;
   }
   if (param_2 == 0x20) {
-    if (*(volatile char*)base == 1) return imu_apply_normalized_mode(0);
+    if (*(volatile char*)base == 1) return imu_apply_normalized_mode(param_1);
     return app_msleep_thunk_a(0x32);
   }
   if (param_2 == 0x40) {
@@ -70,7 +76,7 @@ unsigned int global_system_resume(unsigned int param_1, int param_2)
   }
   if (param_2 == 1) {
     if (param_1==0) return gpio_set_fixed_pin_dt(0);
-    return gpio_set_pin1_dt_wrapper(0);
+    return gpio_set_pin1_dt_wrapper(param_1);
   }
   return param_1;
 }
