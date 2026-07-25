@@ -31,13 +31,41 @@ it drops any *structured group* (non-zero bytes separated by < GROUP_GAP zero
 bytes) that contains a pointer word at all, plus an explicit review exclusion
 list.  Everything dropped keeps today's zero-initialised behaviour exactly.
 
+RELOCATION-AWARE POINTERS (P4 iteration 16)
+-------------------------------------------
+Dropping every group that contains a pointer left 106 pinned globals at zero,
+and at least one of them is fatal: `g_cjson_hooks` (0x20002bac) is cJSON's
+`internal_hooks = { malloc, free, realloc }`, so with it zeroed
+`alloc_zeroed_node` executed `blx r3` with r3 = 0 and took a USAGE FAULT
+("Illegal use of the EPSR", INVSTATE) that reset the SoC.
+
+Stage a3 therefore restores such a group *relocation-aware*: the group's bytes
+are copied verbatim and then every pointer word is OVERWRITTEN with the address
+the symbol actually has in OUR link.  A group is only accepted when EVERY
+pointer word in it resolves, so the iteration-15 rule ("a half-initialised
+table is worse than an all-zero one") still holds.  Two resolution classes are
+allowed, both of which are exact:
+
+  * FLASH pointer -> the catalogued function name for `word & ~1`, referenced
+    through an `__asm__`-alias extern so the LINKER supplies the relocated
+    address (never a raw absolute).  Emitted with the Thumb bit re-set.
+  * SRAM pointer that points INSIDE THE GROUP'S OWN BYTES -> `g1_ram_arena +
+    (word - 0x20002000)`.  These are the self-referential `sys_dlist_t` heads of
+    the shipped kernel objects (k_mutex wait_q, k_mem_slab, work queues).
+    Restricting to self-references is what makes this safe: a pointer to some
+    *other* RAM address could name an object that is bound OUT of the arena
+    (like g_st25dv_i2c_dev), whose arena slot is dead storage.
+
+Anything else still stays zero, exactly as before.
+
 Stages (kept so the bring-up bisect ledger can reproduce each measurement):
   --stage a1   only g_dashboard_display_level (arena +0x544, u32)
   --stage a2   the full reviewed non-pointer restore
+  --stage a3   a2 + the relocation-aware pointer groups described above
 
 Usage:
   PYTHONSAFEPATH=1 .venv/bin/python recon/application/gen_app_data_image.py \
-      --stage a2 -o recon/application/app/src/g1_app_data_image.c
+      --stage a3 -o recon/application/app/src/g1_app_data_image.c
 """
 
 import argparse
@@ -82,6 +110,62 @@ EXCLUDE = [
 ]
 
 STAGE_A1 = [(0x544, 4, "g_dashboard_display_level")]
+
+ARENA_LIMIT = 0x20029000    # g1_ram_arena end (g1_app_ram_relocs.c)
+
+# Uncatalogued flash leaves that a shipped .data pointer names.  Each entry is
+# justified from raw disassembly of app_update.bin.
+UNCATALOGUED = {
+    # 0x778e4: `ldr r3,[pc,#8] (=0x20002d20, _impure_ptr) ; mov r2,r1 ;
+    #           mov r1,r0 ; ldr r0,[r3] ; b.w 0x876ec` -- the newlib
+    # `realloc(p,n) -> _realloc_r(_impure_ptr, p, n)` thunk.  It is the third
+    # member of cJSON's internal_hooks at 0x20002bb4.
+    0x778E4: "realloc",
+}
+
+
+def our_symbols(elf):
+    """Symbol names defined by OUR build, so stage a3 never emits a reference
+    that would turn into an undefined symbol at link time."""
+    import subprocess
+    nm = os.environ.get(
+        "G1_NM",
+        "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/arm-zephyr-eabi-nm")
+    out = subprocess.run([nm, elf], capture_output=True, text=True)
+    if out.returncode != 0:
+        raise SystemExit("nm failed on %s: %s" % (elf, out.stderr.strip()))
+    names = set()
+    for line in out.stdout.splitlines():
+        parts = line.split()
+        if len(parts) == 3 and parts[1] not in "uU":
+            names.add(parts[2])
+    return names
+
+
+def catalog_names():
+    import json
+    path = os.path.join(REPO, "recon/catalogs/function_names_app.json")
+    d = json.load(open(path))
+    return {int(v["address"], 16): v["name"] for v in d["by_address"].values()}
+
+
+def resolve_pointer(word, glo, ghi, byaddr, syms):
+    """Resolve a shipped .data pointer word to OUR build.
+
+    Returns ("flash", name) | ("arena", arena_offset) | None (unresolvable).
+    """
+    if word < SRAM_LO:
+        target = word & ~1
+        name = byaddr.get(target) or UNCATALOGUED.get(target)
+        if name and (name in syms or target in UNCATALOGUED):
+            return ("flash", name)
+        return None
+    if SRAM_LO <= word < ARENA_LIMIT:
+        off = word - ARENA_ORIGIN
+        # only self-references INSIDE this group are safe (see module header)
+        if glo <= off < ghi:
+            return ("arena", off)
+    return None
 
 
 def pointerish(word):
@@ -180,7 +264,51 @@ def runs_for_stage(stage, verbose=False):
     return keep, blob
 
 
-def emit(runs, stage, path):
+def runs_for_stage_a3(elf, verbose=False):
+    """Stage a2 plus every dropped group whose pointer words ALL resolve.
+
+    Returns (runs, ptrs) where ptrs is a list of
+    (arena_offset, "flash", symbol_name) | (arena_offset, "arena", target_off).
+    """
+    keep, blob = runs_for_stage("a2")
+    mask = pointer_word_mask(blob)
+    bounds = pin_offsets()
+    byaddr = catalog_names()
+    syms = our_symbols(elf)
+
+    extra, ptrs = [], []
+    for lo, hi in groups(blob, bounds):
+        wlo, whi = lo & ~3, (hi + 3) & ~3
+        if not any(mask[wlo:whi]):
+            continue            # already restored verbatim by stage a2
+        resolved = []
+        ok = True
+        for w in range(wlo, whi, 4):
+            word = int.from_bytes(blob[w:w + 4], "little")
+            if not pointerish(word):
+                continue
+            r = resolve_pointer(word, wlo, whi, byaddr, syms)
+            if r is None:
+                ok = False
+                break
+            resolved.append((w, r, word))
+        if not ok:
+            if verbose:
+                print("  drop  +0x%04x..0x%04x  (unresolvable pointer)" % (lo, hi))
+            continue
+        # copy the group on the aligned word grid so a pointer word is whole
+        extra.append((wlo, bytes(blob[wlo:whi])))
+        for w, r, word in resolved:
+            ptrs.append((w, r[0], r[1], word))
+        if verbose:
+            print("  RELOC +0x%04x..0x%04x  (%d B, %d ptr words)"
+                  % (wlo, whi, whi - wlo, len(resolved)))
+    runs = sorted(keep + extra)
+    return runs, ptrs
+
+
+def emit(runs, stage, path, ptrs=None):
+    ptrs = ptrs or []
     total = sum(len(b) for _, b in runs)
     lines = []
     lines.append("/* GENERATED by recon/application/gen_app_data_image.py"
@@ -216,6 +344,30 @@ def emit(runs, stage, path):
     if not runs:
         lines.append("\t{ 0, 0, 0 },\n")
     lines.append("};\n\n")
+    if ptrs:
+        flash = sorted({name for _, kind, name, _ in ptrs if kind == "flash"})
+        lines.append(
+            "/* Relocation-aware pointer words.  The shipped image stores ABSOLUTE\n"
+            " * original-image addresses here; our build relocates every one of them, so\n"
+            " * each word is taken from the LINKER through an `__asm__`-alias extern (flash\n"
+            " * function pointers, Thumb bit re-set) or computed from the arena base\n"
+            " * (self-referential SRAM pointers).  No raw absolute address is ever stored.\n"
+            " */\n")
+        for name in flash:
+            lines.append("extern const unsigned char __g1_dp_%s[] __asm__(\"%s\");\n"
+                         % (name, name))
+        lines.append("\nstatic void g1_arena_data_relocate(void)\n{\n")
+        for off, kind, name, word in sorted(ptrs):
+            if kind == "flash":
+                lines.append(
+                    "\t*(void **)&g1_ram_arena[0x%05x] ="
+                    " (void *)(((unsigned long)&__g1_dp_%s) | 1u);"
+                    "\t/* was 0x%08x */\n" % (off, name, word))
+            else:
+                lines.append(
+                    "\t*(void **)&g1_ram_arena[0x%05x] = (void *)&g1_ram_arena[0x%05x];"
+                    "\t/* was 0x%08x (self) */\n" % (off, name, word))
+        lines.append("}\n\n")
     lines.append(
         "/* PRE_KERNEL_1 priority 0: after z_bss_zero/z_data_copy and before any\n"
         " * recovered device or application initialiser can observe the arena. */\n"
@@ -224,7 +376,9 @@ def emit(runs, stage, path):
         "\t\tconst struct g1_arena_data_run *r = &g1_arena_data_runs[i];\n\n"
         "\t\tif (r->len == 0U) {\n\t\t\tcontinue;\n\t\t}\n"
         "\t\tmemcpy(&g1_ram_arena[r->off], &g1_arena_data_bytes[r->src], r->len);\n"
-        "\t}\n\treturn 0;\n}\n\n"
+        "\t}\n"
+        + ("\tg1_arena_data_relocate();\n" if ptrs else "")
+        + "\treturn 0;\n}\n\n"
         "SYS_INIT(g1_arena_data_init, PRE_KERNEL_1, 0);\n")
     with open(path, "w") as fh:
         fh.write("".join(lines))
@@ -256,7 +410,11 @@ def selftest():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--stage", default="a2", choices=("a1", "a2"))
+    ap.add_argument("--stage", default="a2", choices=("a1", "a2", "a3"))
+    ap.add_argument("--elf", default="/private/tmp/g1-i16-app/zephyr/zephyr.elf",
+                    help="stage a3 only: our build's ELF, read with `nm` so a "
+                         "pointer is never emitted for a symbol this link does "
+                         "not define (the 0-undefined link gate re-checks it)")
     ap.add_argument("-o", "--out",
                     default=os.path.join(REPO, "recon/application/app/src/g1_app_data_image.c"))
     ap.add_argument("--selftest", action="store_true")
@@ -265,13 +423,18 @@ def main():
     args = ap.parse_args()
     if args.selftest:
         return selftest()
-    runs, _ = runs_for_stage(args.stage, args.verbose)
+    if args.stage == "a3":
+        runs, ptrs = runs_for_stage_a3(args.elf, args.verbose)
+    else:
+        runs, _ = runs_for_stage(args.stage, args.verbose)
+        ptrs = []
     if args.dry_run:
-        print("stage=%s runs=%d bytes=%d" % (args.stage, len(runs),
-                                             sum(len(b) for _, b in runs)))
+        print("stage=%s runs=%d bytes=%d ptrs=%d"
+              % (args.stage, len(runs), sum(len(b) for _, b in runs), len(ptrs)))
         return 0
-    n, total = emit(runs, args.stage, args.out)
-    print("wrote %s: stage=%s runs=%d bytes=%d" % (args.out, args.stage, n, total))
+    n, total = emit(runs, args.stage, args.out, ptrs)
+    print("wrote %s: stage=%s runs=%d bytes=%d relocated-pointers=%d"
+          % (args.out, args.stage, n, total, len(ptrs)))
     return 0
 
 

@@ -367,9 +367,30 @@ PROVIDE(__settings_handler_static_list_start = _log_backend_list_end);
 PROVIDE(rodata_88340 = g1_button_gpio_specs);
 PROVIDE(rodata_88388 = 0x00088388);
 PROVIDE(rodata_8839c = 0x0008839c);
-PROVIDE(rodata_883b0 = 0x000883b0);
-PROVIDE(rodata_883b4 = 0x000883b4);
-PROVIDE(rodata_883b8 = 0x000883b8);
+/* Iteration 16 Step A — the SPIM `p_reg` defect that kept every panel transfer
+ * from ever reaching `spim_a`.
+ *
+ * `spi_master_init` (FUN_00026418 @ 0x26418) builds the `nrfx_spim_t` for
+ * mode 4 by COPYING TWO WORDS OF FLASH DATA:
+ *   mode4.base = *(uint32_t *)0x883b0 ;  mode4.tag = *(uint32_t *)0x883b4
+ * and the shipped image holds exactly the nrfx instance descriptor there:
+ *   app_update.bin @0x883b0 = 00 a0 00 50   -> 0x5000a000  (NRF_SPIM, `spim_a`)
+ *   app_update.bin @0x883b4 = 01 00 00 00   -> drv_inst_idx 1
+ * These were still IDENTITY pins, so our build read its OWN unrelated rodata
+ * at 0x883b0 (measured in g1-i15e-app: `78 b9 08 00 d0 b9 08 00` = 0x0008b978 /
+ * 0x0008b9d0).  `p_reg` therefore pointed into FLASH, `nrfx_spim_xfer` wrote
+ * TASKS_START into read-only memory and then polled EVENTS_END at
+ * 0x0008b978+0x118 forever -- the 187,696,414-instruction spin of iteration 15
+ * section 15.5, and the reason `sysbus LogPeripheralAccess` saw ZERO register
+ * accesses on both `spim_a` and `spim_b`.
+ *
+ * recon/data/rodata_0x88340.c is the byte-verified owner of this block (it is
+ * already compiled through app_verified_data_sources.cmake), so the three pins
+ * are bound at their original relative offsets instead of being emitted again.
+ *   0x883b0 = rodata_0x88340 + 0x70,  0x883b4 = +0x74,  0x883b8 = +0x78 */
+PROVIDE(rodata_883b0 = rodata_0x88340 + 0x70);
+PROVIDE(rodata_883b4 = rodata_0x88340 + 0x74);
+PROVIDE(rodata_883b8 = rodata_0x88340 + 0x78);
 PROVIDE(rodata_883c8 = 0x000883c8);
 PROVIDE(rodata_883ec = 0x000883ec);
 PROVIDE(rodata_88410 = 0x00088410);

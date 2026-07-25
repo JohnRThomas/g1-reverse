@@ -5633,3 +5633,260 @@ Files changed: new `recon/application/gen_app_data_image.py` (generator +
 record appended to the scratchpad catalogs `app_funcs.json` / `classified.json`
 (backed up as `*.i15bak`). No `tools/` change, no Kconfig / `prj.conf` /
 devicetree change, `armemul` untouched. Nothing committed.
+
+## Iteration 16 — SPI reaches the panel: the panel-init sequence is now
+## byte-identical to the shipped firmware (G-5), and `.data` pointers are
+## restored relocation-aware
+
+**Headline.** The iteration-15 `nrfx_spim_xfer` spin is gone and **our firmware
+now drives the real JBD microdisplay**: the first **33 `spim_a` transactions of
+our boot are BYTE-IDENTICAL to the shipped firmware's**, covering the entire
+panel-init block of `display_sensor_parity.md` §3.1 — the `0x9F` ID probe
+answered `0x4010`, the three-band 153,600 B full-panel clear, the five `0xC0`
+words and both `0x46`/`0x31` brightness pairs. **G-5 passes on all four of its
+enumerated elements.** `nrfx_spim_xfer` falls from **247 entries /
+187,696,414 instructions to 165 / 3,663** against golden's 170 / 3,774, and
+`panel_init` matches golden **exactly** at 20 / 52.
+
+Two independent defects were fixed, and each unmasked the next one.
+
+### 16.1 Step A — the SPIM `p_reg` defect (three identity pins)
+
+`spi_master_init` (`FUN_00026418` @0x26418) builds the mode-4 `nrfx_spim_t` by
+**copying two words of flash data**, not by using an immediate:
+
+```
+26424: ldr r2,[pc,#308]   ; literal @0x2655c = 0x000883b0
+2642a: ldmia.w r2,{r0,r1} ; r0 = *(0x883b0), r1 = *(0x883b4)
+26430: stmia.w r5,{r0,r1} ; -> sp+24, the mode-4 pair
+...
+264ae: (mode 4) ldmia r5!,{r0,r1} ; str r0,[r4,#12] / str r1,[r4,#16]
+```
+
+Verified against `app_update.bin` through `tools/extract.py`'s VA mapping
+(`off = va - 0xC200 + 0x200`; the image carries a 0x200-byte MCUboot header,
+magic `0x96f3b83d`, so a naive `va - 0xC200` read is off by 0x200 and yields
+garbage):
+
+```
+0x883b0 = 0x5000a000   NRF_SPIM base -> `spim_a`
+0x883b4 = 0x00000001   drv_inst_idx
+0x883b8 = 0x000037f8
+```
+
+All three were still **identity pins**, so our build read its own unrelated
+rodata and `p_reg` pointed into FLASH: `nrfx_spim_xfer` wrote `TASKS_START`
+into read-only memory and polled `EVENTS_END` forever. Mode 3 was never
+affected because it uses an **immediate** literal (`0x2655c-4` = `0x5000c000`),
+which is exactly why only the display path was broken.
+
+`recon/data/rodata_0x88340.c` is the byte-verified owner of that block and
+already carries `0x5000a000 / 0x00000001 / 0x000037f8` at indices 28/29/30, so
+the three pins are bound at their original relative offsets rather than
+re-emitted:
+
+```
+PROVIDE(rodata_883b0 = rodata_0x88340 + 0x70);   /* -> 0x88720 in our link */
+PROVIDE(rodata_883b4 = rodata_0x88340 + 0x74);
+PROVIDE(rodata_883b8 = rodata_0x88340 + 0x78);
+```
+
+Build `g1-i16-app`. Effect: SPI reaches the panel for the first time, and the
+run immediately hits a **new** fault (§16.2).
+
+### 16.2 Step B — `.data` function pointers, restored RELOCATION-AWARE
+
+With the SPIM spin removed, the boot ran on and took a
+**USAGE FAULT / "Illegal use of the EPSR"** (INVSTATE) at `alloc_zeroed_node`
++0x6 with **`r3 = 0x00000000`** — `blx r3` on a NULL allocator:
+
+```
+0x00077cf6:  4798  blx r3        ; r0 = 0x28, r3 = 0
+>>> ZEPHYR FATAL ERROR 35 ; fatal_error: Resetting system
+```
+
+Root cause: `g_cjson_hooks` (0x20002bac) is cJSON's
+`internal_hooks = { malloc, free, realloc }`, and iteration 15's conservative
+policy **drops every `.data` group containing a pointer word**, so all three
+hooks were zero. The shipped initialiser is
+`{ 0x00076d6d, 0x00076d7d, 0x000778e5 }`; `0x778e4` is uncatalogued and its
+disassembly (`ldr r3,[pc,#8] (=0x20002d20, _impure_ptr) ; mov r2,r1 ; mov r1,r0
+; ldr r0,[r3] ; b.w 0x876ec`) identifies it as newlib's
+`realloc(p,n) -> _realloc_r(_impure_ptr,p,n)` thunk.
+
+`recon/application/gen_app_data_image.py` gained **stage a3**, which restores
+such a group *relocation-aware*: the bytes are copied and then **every pointer
+word is overwritten with the address the symbol has in OUR link**, taken from
+the linker through an `__asm__`-alias extern — never a raw absolute. Two exact
+resolution classes are allowed, and a group is accepted **only if every pointer
+word in it resolves**, so iteration 15's "a half-initialised table is worse than
+an all-zero one" rule still holds:
+
+* **FLASH pointer** → the catalogued function name for `word & ~1`, emitted as
+  `*(void **)&g1_ram_arena[off] = (void *)((unsigned long)&__g1_dp_NAME | 1u)`.
+* **SRAM pointer that points inside the group's own bytes** →
+  `g1_ram_arena + (word - 0x20002000)`. These are the self-referential
+  `sys_dlist_t` heads of the shipped kernel objects (`k_mutex` wait_q,
+  `k_mem_slab`, work queues) — i.e. exactly the group the iteration-15 header
+  deferred as *"needs arena-relative pointer relocation, which this generator
+  does not do yet"*. **Restricting to self-references is what makes this safe**:
+  a pointer to any *other* RAM address could name an object bound OUT of the
+  arena (like `g_st25dv_i2c_dev`), whose arena slot is dead storage.
+
+Restore units/bytes: **85 runs / 1,199 B → 146 runs / 1,899 B**, i.e. **61 new
+groups / 700 B**, plus **155 relocated pointer words** (8 distinct flash
+symbols: `malloc`, `free`, `realloc`, `settings_nvs_load`,
+`app_event_manager_process_events`, `bt_gatt_pairing_complete`,
+`qspi_nor_pm_action`, `uarte_nrfx_pm_action`). `g_screen_render_table` and
+`g_st25dv_i2c_dev` correctly remain dropped (their pointers do not resolve).
+Build `g1-i16b-app`; the cJSON fault is gone and unique functions rise
+**884 → 907**.
+
+### 16.3 Measurements (every number below was actually run)
+
+| metric | `g1-i15b-app` (best aggregate) | `g1-i15e-app` (iter 15 final) | `g1-i16-app` (Step A) | **`g1-i16b-app` (Step A+B)** |
+|---|---:|---:|---:|---:|
+| app instr @0.15 s | 6,724,014 | 10,879,768 | 8,200,768 | **7,878,667** |
+| app unique fns @0.15 s | 886 | 842 | 884 | **907** |
+| app instr @2.0 s | 10,157,310 | 195,879,768 | 8,200,768 | **7,878,667** |
+| app unique fns @2.0 s | **917** | 843 | 884 | **907** |
+| SoC resets | 0 | 0 | **1** | **1** |
+| net instr / fns @0.15 s | 293,961 / 433 | 288,578 / 432 | 288,578 / 432 | **288,578 / 432** |
+| `radio TransmittedFrames` | 0 | 0 | 0 | **0** |
+| app FLASH | 635,024 B | 635,096 B | 635,096 B | **639,556 B (65.09 %)** |
+| app RAM | 244,229 B | 244,229 B | 244,229 B | **244,229 B** |
+| `nm -u` undefined / duplicate | 0 / 0 | 0 / 0 | 0 / 0 | **0 / 0** |
+| `check_ram_pin_collisions.py` | 0 / 0, EXIT 0 | 0 / 0, EXIT 0 | 0 / 0, EXIT 0 | **0 / 0, EXIT 0** |
+| `check_thread_create_stack_args.py` | 10/10, EXIT 0 | 10/10, EXIT 0 | 10/10, EXIT 0 | **10/10, EXIT 0** |
+| `gen_retained_sources.py --check` | clean | clean | clean | **clean** |
+
+The @2.0 s and @0.15 s figures are identical for both iteration-16 builds
+because the SoC resets at **t ≈ 0.104 s** and Renode's nRF5340 platform has no
+reset macro, so both cores halt there. **This is an honest regression on the
+aggregate counters and it is reported as such**: `g1-i15b-app` still has the
+better instruction/unique-function aggregate, and `g1-i15e-app` still runs the
+sensor threads for the full 6 s. Iteration 16 buys correct, byte-exact display
+behaviour at the cost of dying earlier — the same "further into a new stall"
+trade iteration 15 documented, so **both builds are reported**.
+
+SPI/display markers (ours `g1-i16b-app` vs golden):
+
+| function | ours entries / instr | golden |
+|---|---|---|
+| `nrfx_spim_init` | **3 / 24** | 3 / 24 |
+| `nrfx_spim_xfer` | **165 / 3,663** | 170 / 3,774 |
+| `spi_master_trans_data_tx_rx` | **66 / 693** | 68 / 714 |
+| `panel_init` | **20 / 52** | 20 / 52 |
+| `spi_read_id` | **5 / 30** | fires |
+| `spim_select_instance_by_mode` | ABSENT | 2 / 42 |
+| `nrfx_spim_uninit` | ABSENT | 8 / 43 |
+| `projector_send_cmd_immediate` | ABSENT | 90 / 360 |
+
+E4 markers **gained**: `spi_read_id`, and the whole panel-init SPI block.
+E4 markers still **missing**: `panel_on`, `panel_resume`, `bt_enable`,
+`radio TransmittedFrames` = 0.
+
+### 16.4 Graphics parity results
+
+Measured with the oracle capture script against `g1-i16b-app`, identical
+determinism knobs and stimulus.
+
+| id | verdict | detail |
+|---|---|---|
+| **G-5** | **PASS (all four enumerated elements)** | `0x9F tx=9F000000 rx=00004010` probe answered and accepted; three-band clear `61446 / 61446 / 30726` B (= 153,600 pixel bytes); five `0xC0` words `0000 / 0014 / 1800 / 1814 / 0C0A` each followed by `0x97`; both brightness pairs `0x46=0F,0x31=04` and `0x46=00,0x31=04`. **Transactions 0–32 are byte-identical to the oracle.** The one §3.1 item we do not emit is the trailing `0xB9 FF` at index 33, cut off by the §16.5 reset. |
+| **G-3** | **FAIL** | `spim_a.p1_boot` stream sha256 ours `8df70cec…` vs oracle `b64599b1…`; **33 vs 764** transactions. The **entire 33-transaction common prefix is identical** — the divergence is pure truncation at index 33 (`0xB9 tx=B9FF`), not a wrong byte. |
+| **G-1** | **FAIL** | `p2_render` framebuffer: ours **0 lit pixels**, oracle **1,098**. We never render — the SoC resets before the dashboard paints. |
+| **G-2** | **FAIL** | `p1_boot` framebuffer: ours 0 lit pixels / sha `0c5cc90b…`, oracle 656 lit pixels / sha `1d617c65…`. **G-4 localiser: first differing row y = 267, first differing pixel x = 178** (oracle `ffffff`, ours `000000`) — exactly the top-left of the oracle's lit bbox (178,267)–(449,287). Our panel is correctly *cleared*, just never painted. |
+| **G-6** | **PASS** | `spim_b` transaction count **0** in both phases (hash EQ), as required. |
+
+### 16.5 The new first divergence — the NFC EEPROM ops table (`.data`, 5 pointers)
+
+After Step B the boot dies at a *different* NULL `blx`, at `attr_store_get`+0x6:
+
+```
+0x0002c6fe:  4798  blx r3      ; r6 = &g_pt_nfc_link_cfg, r3 = *(*(r6)) = 0
+USAGE FAULT / Illegal use of the EPSR ; fatal_error: Resetting system
+```
+
+Causal chain, fully established:
+
+1. `pt_nfc_eeprom_link_start` (0x30c90) calls
+   `pt_nfc_eeprom_link_init(&g_pt_nfc_link_cfg_static)` — arena **+0x408**.
+2. `pt_nfc_eeprom_link_init` (0x30b3c) returns −1 unless `param_1[0..3]` are
+   **all non-zero**, and only then sets `g_pt_nfc_link_cfg`.
+3. The shipped `.data` at arena+0x408 is the ops table
+   `{ 0x00030c25, 0x00030c61, 0x0007d0c1, 0x0007d0c3, 0x00087c50, 0x6b }`;
+   our build zeroes it, the guard fails, `g_pt_nfc_link_cfg` stays NULL, and
+   `attr_store_get` dereferences it. Measured: `pt_nfc_eeprom_link_init`
+   1 entry / **8 instructions** (the guard, and nothing else).
+4. Stage a3 cannot yet restore this group because **not one of its five
+   pointers resolves**:
+
+| pointer | identity | status in our build |
+|---|---|---|
+| `0x30c24` | `misc_dev_api_transfer_op12` (catalogued, EXACT) | **garbage-collected** — the zeroed table was its only referrer |
+| `0x30c60` | uncatalogued; **INTERIOR** to `misc_dev_api_transfer_op12` | Ghidra folded it into the preceding symbol |
+| `0x7d0c0` | uncatalogued 2-byte `bx lr` stub; **INTERIOR** to `read_rtc_counter_ms` | same fold |
+| `0x7d0c2` | uncatalogued; **INTERIOR** to `read_rtc_counter_ms` | same fold |
+| `0x87c50` | `struct device`, name string **`"i2c@b000"`** (i2c2 / twim2) | needs `DEVICE_DT_GET` treatment like `g1_st25dv_i2c_dev` |
+
+This is the **seventh** instance of the recurring "Ghidra folded a sibling
+function into the tail of the preceding symbol" class (iteration 15 hit it as
+`panel_suspend` / `panel_resume` / `coredep_delay_cycles`). **Iteration 17's
+Step A** is therefore: split `0x30c60`, `0x7d0c0`, `0x7d0c2` out as emitted
+objects, force-retain `misc_dev_api_transfer_op12`, bind `0x87c50` to
+`DEVICE_DT_GET(DT_NODELABEL(i2c2))`, and let stage a3 restore arena+0x408.
+
+### 16.6 `.data` follow-up status
+
+Iteration 15 left **106 of 598** arena-resolving pins with non-zero shipped
+initialisers zeroed. Stage a3 clears **61 groups / 700 B** of that backlog
+relocation-aware. The remaining dropped set is **152 groups / ~1,801 B**,
+dominated by pointers that name (a) GC'd or Ghidra-folded functions (the §16.5
+class), (b) `struct device` pointers needing `DEVICE_DT_GET`, and (c) SRAM
+pointers to objects bound OUT of the arena. None of these are byte-copyable;
+each needs a named owner, which is the correct next unit of work.
+
+### Regenerate (iteration 16)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+# Step A: the three SPIM pins are already in recon/symbols/g1_app_globals.ld
+recon/application/build_cohesive.sh app /private/tmp/g1-i16-app
+# Step B:
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/gen_app_data_image.py --selftest
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/gen_app_data_image.py \
+    --stage a3 --elf /private/tmp/g1-i16-app/zephyr/zephyr.elf
+recon/application/build_cohesive.sh app /private/tmp/g1-i16b-app
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py \
+    /private/tmp/g1-i16b-app/zephyr/zephyr.elf                       # EXIT 0, 0/0
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_thread_create_stack_args.py \
+    --trials 120                                                     # EXIT 0, 10/10
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check   # clean
+# net unchanged since iteration 9: /private/tmp/g1-i9c-net
+<scratchpad>/mkrun.sh i16b  /private/tmp/g1-i16b-app /private/tmp/g1-i9c-net 0.15
+<scratchpad>/mkrun.sh i16b2 /private/tmp/g1-i16b-app /private/tmp/g1-i9c-net 2.0
+# graphics + sensors:
+G1_RESC=/Users/freedomcoder/Projects/armemul/g1-ours.resc \
+G1_APP_ELF=/private/tmp/g1-i16b-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i9c-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x200551d8 G1_CTX_105A=0x2005524a \
+recon/emulator/scripts/capture_display_sensor_oracle.sh /tmp/g1_ours_i16b2
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+    /tmp/g1_ours_i16b2 <scratchpad>/i16/rep_i16b
+```
+
+Bisect ledger (every build and boot actually run):
+
+| build | change | app @0.15 s | resets | note |
+|---|---|---:|---|---|
+| `/private/tmp/g1-i16-app` | Step A: three `rodata_883b*` pins bound to `rodata_0x88340 + 0x70/0x74/0x78` | 8,200,768 / 884 | **1** | **SPI reaches the panel**; `nrfx_spim_xfer` 187.7 M → 3,663 instr; new NULL-`blx` fault in `alloc_zeroed_node` (cJSON hooks) |
+| `/private/tmp/g1-i16b-app` | + Step B: `gen_app_data_image.py` stage a3 (relocation-aware pointers) | 7,878,667 / **907** | **1** | cJSON fault gone; **G-5 passes**; new first divergence = the NFC ops table (§16.5) |
+
+Files changed: `recon/symbols/g1_app_globals.ld` (three SPIM pins);
+`recon/application/gen_app_data_image.py` (stage a3 + `resolve_pointer` +
+`our_symbols` + `UNCATALOGUED`); regenerated
+`recon/application/app/src/g1_app_data_image.c`;
+`recon/emulator/reports/sensor_parity_status.md` (rewritten in place); this
+report. **No `tools/` change**, no Kconfig / `prj.conf` / devicetree change,
+`armemul` untouched. Nothing committed.
