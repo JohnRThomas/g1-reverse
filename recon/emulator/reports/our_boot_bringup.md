@@ -5890,3 +5890,368 @@ Files changed: `recon/symbols/g1_app_globals.ld` (three SPIM pins);
 `recon/emulator/reports/sensor_parity_status.md` (rewritten in place); this
 report. **No `tools/` change**, no Kconfig / `prj.conf` / devicetree change,
 `armemul` untouched. Nothing committed.
+
+## Iteration 17 — the reset is gone: the NFC ops table is restored, the boot
+## runs reset-free to 5.09 s, and the painting path is now blocked by ONE named
+## defect on the NET core
+
+**Headline.** The iteration-16 `t ≈ 0.104 s` reset is **fixed**. The shipped
+`.data` ops table at arena `+0x408` is restored relocation-aware, so
+`pt_nfc_eeprom_link_init` succeeds (2 entries / **32** instructions vs golden's
+2 / 33, up from 1 / **8**), `g_pt_nfc_link_cfg` is non-NULL and `attr_store_get`
+no longer faults. `/private/tmp/g1-i17d-app` boots **reset-free through 2.0 s
+with 996 unique functions and 11,684,715 instructions** (previous best
+aggregate, `g1-i15b`: 917 / 10,157,310; golden 12,629,795), and the whole SPI
+display block, the NFC link and the sensor threads all run.
+
+Everything the reset was suppressing came back at once:
+
+| device, `p1_boot` | oracle | `g1-i15e` | `g1-i16b` | **`g1-i17d`** |
+|---|---:|---:|---:|---:|
+| `twim2` LSM6DSO | 1,089 | 969 | 25 | **983** |
+| `twim1` nPM1300 | 291 | 85 | 85 | **199** |
+| `twim1` OPT3001 | 33 | 7 | 7 | **14** |
+| `twim1` ST25DV system port (0x57) | 22 | 6 | 6 | **12** |
+| `twim1` ST25DV NFC EEPROM (0x53) | 25 | 0 | **0** | **11** |
+| `saadc` register accesses | 998 | — | 5 | **17** |
+| `spim_a` | 764 | 0 | 33 | **34** |
+
+**G-5 still passes**, and the `spim_a` prefix grew by one: **all 34 transactions
+we emit are byte-identical to the oracle's first 34**, now including the
+trailing `0xB9 FF` that iteration 16 was cut off before. **G-1/G-2 still fail
+with 0 lit pixels** — and iteration 17 establishes *exactly* why, with a
+reproducible log line rather than an inference (§17.5).
+
+Four defects were fixed, three of them new members of classes this project has
+a playbook for, and one of them a **provably-wrong emission the harness is
+structurally blind to** that was found while reading the ops table.
+
+### 17.1 Step A — the NFC EEPROM ops table (arena +0x408)
+
+The shipped `.data` at `0x20002408` is
+`{ 0x00030c25, 0x00030c61, 0x0007d0c1, 0x0007d0c3, 0x00087c50, 0x6b }`, and
+`pt_nfc_eeprom_link_init` (0x30b3c) returns −1 unless the first four words are
+all non-zero:
+
+```
+30b4a  ldr r3,[r0,#0]  ; cmp r3,#0 ; beq -1
+30b50  ldr r3,[r0,#4]  ; cmp r3,#0 ; beq -1
+30b56  ldr r3,[r0,#8]  ; cmp r3,#0 ; beq -1
+30b5c  ldr r3,[r0,#12] ; cmp r3,#0 ; beq -1
+30b62  ldr r3,=g_pt_nfc_link_cfg ; str r0,[r3,#0]
+```
+
+Reading 0x30c24's frame gives the table's meaning: `base = *(0x20002418)` is a
+`struct device *`, `field = base[8]` its `api`, `fp = api[8]` the i2c
+`transfer` op, and the two 0x30cXX entries hand it a `{ buf, len, flags }`
+descriptor array. So slots 0/1 are register-read / register-write, slot 2 a
+no-op and slot 3 a delay; slot 4 is the bus device and slot 5 (`0x6b`) the
+address.
+
+Each of the five pointers needed a different remedy, exactly as iteration 16
+predicted:
+
+| pointer | identity | remedy |
+|---|---|---|
+| `0x30c24` | `misc_dev_api_transfer_op12` (catalogued) | was **garbage-collected**; the address-taken reference stage a3 now emits is what roots it (§17.3) |
+| `0x30c60` | uncatalogued, **interior** to `misc_dev_api_transfer_op12` | reconstructed as **`misc_dev_api_write_op12`** |
+| `0x7d0c0` | uncatalogued 2-byte `bx lr`, **interior** to `read_rtc_counter_ms` | reconstructed as **`nfc_link_ops_noop`** |
+| `0x7d0c2` | uncatalogued, **interior** to `read_rtc_counter_ms` | reconstructed as **`nfc_link_delay_msec`** |
+| `0x87c50` | `struct device`, name `"i2c@b000"`, `config->base` `0x5000b000` | new **`DEVICE_DT_GET(DT_NODELABEL(i2c2))`** resolution class |
+
+This is the **seventh** instance of the "Ghidra folded a sibling function into
+the tail of the preceding symbol" class. Both containers' own reconstructions
+already stopped at the true code extent, so only the folded siblings were
+missing. Their identities are read straight off the image:
+
+* **`misc_dev_api_write_op12` @0x30c60** (code 0x30c60..0x30c8a, literal pool
+  0x30c8c = `0x20002418`): one `{ buf, len, flags = 2 }` descriptor
+  (`I2C_MSG_WRITE|I2C_MSG_STOP`), `transfer(dev, &msg, 1, 0x12)`.
+* **`nfc_link_ops_noop` @0x7d0c0**: the shipped bytes are exactly `4770`.
+  **PROOF: the compiled `.text` is `4770`, byte-identical.**
+* **`nfc_link_delay_msec` @0x7d0c2** (code 0x7d0c2..0x7d0e8, next catalogued
+  entry `serial_data_read_dispatch` 0x7d0e8):
+  `bic.w r4,r0,r0,asr #31` (= `MAX(ms,0)`), `smlal` against `0x8000` with a
+  999 bias, `__aeabi_uldivmod` by 1000, then `b.w k_sleep` — i.e.
+  `k_sleep(K_MSEC(ms))`, because with `CONFIG_SYS_CLOCK_TICKS_PER_SEC = 32768`
+  Zephyr 3.4's `Z_TIMEOUT_MS(t)` is `k_ms_to_ticks_ceil64(MAX(t, 0))`. The
+  compiled body is the shipped instruction sequence modulo the scheduling of
+  two independent `mov`s and the two relocated branch targets.
+
+`cfg_verify.verify('app', …)` **PASS** for all three (40 CFG-directed checks
+each) plus the corrected 0x30c24 (§17.2).
+
+### 17.2 A provably-wrong emission found while reading the table:
+### `misc_dev_api_transfer_op12` had **five of its six stack stores deleted**
+
+The shipped 0x30c24 writes a two-element descriptor array before the call:
+
+```
+30c2a  strd r4,r1,[sp]        ; msgs[0] = { param_1, param_2 }
+30c38  strb r1,[sp,#8]        ; msgs[0].flags = 0
+30c2e  strd r2,r3,[sp,#12]    ; msgs[1] = { param_3, param_4 }
+30c3e  strb r3,[sp,#20]       ; msgs[1].flags = 7
+30c4c  blx  api->transfer(dev, msgs, 2, 0x12)
+```
+
+The recovered body declared the six fields as **separate stack scalars** and
+passed only `&local_20`. Taking the address of `local_20` does not make the
+others escape, so GCC legally dropped their stores — and did. Compiled, the
+emitted frame was
+
+```
+push {r0,r1,r4,lr} ; str r0,[sp,#4] ; ... ; add r1,sp,#4 ; blx r4
+```
+
+i.e. **one** of the six shipped stores survived; the callee read whatever was
+on the stack. Re-expressed as a real `struct g1_i2c_msg msgs[2]` the emitted
+frame is instruction-for-instruction the original's (only the `0x20002418`
+address materialisation differs, because our build reaches that global through
+a linker pin instead of a literal pool). This is the **seventh** member of the
+family the differential harness is structurally blind to (dropped register
+args, dropped stack args, wrong indirection levels, stack writes, collapsed
+stack objects, dropped pass-through args, and now **collapsed stack objects
+that GCC deletes outright**) — `cfg_verify` returns **PASS both before and
+after**, because it never inspects a callee's arguments or the stack.
+
+### 17.3 Step B — two new exact resolution classes in `gen_app_data_image.py`
+
+1. **`struct device` pointers.** `DEVICE_POINTERS` maps a shipped device-struct
+   address to a devicetree node label, and stage a3 emits
+   `DEVICE_DT_GET(DT_NODELABEL(<node>))`. Only devices whose shipped struct was
+   read out of `app_update.bin` and whose `name` string *and* `config->base`
+   identify the node beyond doubt are listed:
+
+   ```
+   0x00087c50  name "i2c@b000"  config->base 0x5000b000  -> i2c2 (TWIM2)
+   0x00087c68  name "i2c@9000"  config->base 0x50009000  -> i2c1 (TWIM1)
+   ```
+
+2. **Archive-defined targets.** `our_symbols()` now reads the build's static
+   archives (`<build>/app/*.a`) as well as the ELF. The question the gate must
+   answer is "can this link define the symbol", and a symbol the *previous*
+   link garbage-collected — because the zeroed `.data` word we are about to
+   restore was its only referrer — is still definable. The address-taken
+   reference stage a3 emits is itself what roots it, and the 0-undefined
+   `nm -u` gate re-checks the result on the next build. This is what recovers
+   `misc_dev_api_transfer_op12`, and it also unlocked **22 more** previously
+   GC'd targets.
+
+   One consequence is reported as found: rooting `bt_hci_core_recv_event`
+   exposed a **missing pin**, `rodata_f2ed1`, while its three sibling
+   log-format strings (`rodata_f2ddb` / `f2ef5` / `f2f45`) were all present in
+   `g1_app_globals.ld`. Added.
+
+3. **The EXCLUDE regions are now atomic (a policy repair).** Iteration 16's
+   stage a3 iterated plain groups and **did not consult `EXCLUDE` at all**, so
+   it could restore part of a reviewed object — measured: `g_screen_render_table`
+   came out with three handlers set and eight screen ids still zero, which is
+   precisely the half-initialised table the iteration-15 policy exists to
+   forbid. `EXCLUDE` entries now carry an `atomic` flag and a3 restores such a
+   region **whole or not at all**.
+
+### 17.4 Step C — `g_screen_render_table` restored (eight more folded leaves)
+
+With EXCLUDE atomic, `g_screen_render_table` (0x20002430, 11 × 16 B, the table
+`panel_render_screen_dispatch` indexes) needed **every** pointer to resolve.
+Three already did (`render_device_info_float_screen`, `dump_template_gyro_info`,
+`gui_draw_timer_hms`, `draw_template_translate_screen`); the other eight slots
+name **seven distinct uncatalogued 4-byte leaves**, each folded into the tail of
+a neighbour and each referenced from **nowhere else in the image**:
+
+| VA | folded into | screen id |
+|---|---|---|
+| `0x7d1b4` | `k_msleep_ticks32768_c` (0x7d194) | 4 |
+| `0x7d1cc` | `ptr_load_u32` (0x7d1c8) | 5 |
+| `0x7d240` | `set_device_sync_timestamp` (0x7d230) | 3 and 6 |
+| `0x7d244` | `set_device_sync_timestamp` | 8 |
+| `0x7d2f4` | `k_uptime_get_5` (0x7d2d8) | 7 |
+| `0x7d356` | `k_uptime_get_6` (0x7d33a) | 9 |
+| `0x7d37e` | `FUN_0007d37a` (0x7d37a) | 10 |
+
+Every one is the same four bytes, `2000 movs r0,#0 / 4770 bx lr`.
+**PROOF: each compiles to `00207047`, byte-identical to the shipped bytes at
+its address.** `cfg_verify` **PASS** (40 checks each). The whole 176-byte table
+— ids *and* handlers — is now restored as one unit, so
+`panel_render_screen_dispatch` can no longer match an id and call 0.
+
+### 17.5 The new first divergence — and it is on the NET core
+
+With the reset gone the boot runs on. A dedicated 6.0 s app-core trace
+(`/tmp/g1_i17d6`, UART captured) shows the next stop **precisely**, at
+**t = 5.093 s** — which is exactly when `ancs_main`'s `50 × 100 ms` readiness
+poll expires and it calls `bt_enable`:
+
+```
+[00:00:05.093,139] <err> ipc_service: Endpoint not registered
+[00:00:05.093,139] <err> bt_hci_driver: Failed to send (err -2)
+ASSERTION FAIL [buf] @ WEST_TOPDIR/zephyr/subsys/net/buf.c:467
+<err> os: Faulting instruction address (r15/pc): 0x0007b45c
+<err> os: >>> ZEPHYR FATAL ERROR 4: Kernel panic on CPU 0
+<err> fatal_error: Resetting system
+```
+
+`ipc_service_send()` returns `-ENOENT` when `ept->instance == NULL`, i.e. the
+HCI endpoint was never bound. The cause is on the other core:
+
+```
+CPUNET @2.0 s, top by instruction count
+  rpmsg_get_endpoint        7 entries    53,146,996 instr   <<< 99.3 % of the core
+  memset                   70 entries       137,530
+  uarte_nrfx_poll_out    2904 entries        31,218
+```
+
+`rpmsg_get_endpoint` is upstream OpenAMP `rpmsg.c` (confirmed in
+`zephyr.map`: `modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)`,
+0x103d048), a `metal_list_for_each` over `rdev->endpoints`. **It never
+terminates**, so the net core never completes the endpoint bind, the app's HCI
+endpoint stays unregistered, `bt_enable` fails, nothing advertises
+(`radio TransmittedFrames = 0`, `vcentral Connected = False`), no display
+`START` arrives — **and the dashboard is never painted.**
+
+This closes the question this iteration was asked: *why is no pixel window ever
+emitted after the clear?* The oracle's own trace answers it —
+`spim_a.p1.trace` has **nothing between tick 1.21e8 (0.121 s) and 3.92e9
+(3.92 s)**, and the ORACLE hooks show the sequence
+`display_START action=0` → BLE connect → `display_START action=1` →
+`BLIT notify_display_mode screen=10`. Every transaction after index 33 is
+**downstream of the BLE link**, not of the display driver. Our display driver
+reproduces the oracle byte-for-byte for everything it is asked to do; it is
+never asked to paint.
+
+The net core has not been rebuilt since iteration 9. Its `rdev->endpoints` list
+head is almost certainly the CPUNET counterpart of the app-core defect
+iteration 15 root-caused — a shipped `.data`/`.bss` object our net build never
+initialises — which makes "give the net core the iteration-15 `.data`
+treatment" the obvious iteration-18 Step A.
+
+### 17.6 Measurements (every number below was actually run)
+
+| metric | `g1-i15b-app` (old best aggregate) | `g1-i16b-app` (iter 16 final) | `g1-i17b-app` | **`g1-i17d-app` (iter 17 final)** |
+|---|---:|---:|---:|---:|
+| app instr @0.15 s | 6,724,014 | 7,878,667 | 8,086,343 | **8,060,397** |
+| app unique fns @0.15 s | 886 | 907 | 953 | **957** |
+| app instr @2.0 s | 10,157,310 | 7,878,667 | 11,731,356 | **11,684,715** |
+| app unique fns @2.0 s | 917 | 907 | 994 | **996** |
+| SoC resets @2.0 s | 0 | **1 (t≈0.104 s)** | **0** | **0** |
+| SoC resets @6.0 s | not measured | (dead at 0.104 s) | not measured | **1 (t = 5.093 s, §17.5)** |
+| net instr / fns @0.15 s | 293,961 / 433 | 288,578 / 432 | 288,578 / 432 | **288,578 / 432** |
+| net instr / fns @2.0 s | not recorded | not recorded | 53,507,158 / 467 | **53,529,158 / 467** |
+| `radio TransmittedFrames` | 0 | 0 | 0 | **0** |
+| app FLASH | 635,024 B | 639,556 B | 645,648 B | **645,616 B (65.71 %)** |
+| app RAM | 244,229 B | 244,229 B | 244,229 B | **244,229 B** |
+| `nm -u` undefined / duplicate | 0 / 0 | 0 / 0 | 0 / 0 | **0 / 0** |
+| `check_ram_pin_collisions.py` | 0 / 0, EXIT 0 | 0 / 0, EXIT 0 | 0 / 0, EXIT 0 | **0 / 0, EXIT 0** |
+| `check_thread_create_stack_args.py` | 10/10, EXIT 0 | 10/10, EXIT 0 | 10/10, EXIT 0 | **10/10, EXIT 0** |
+| `gen_retained_sources.py --check` | clean | clean | clean | **clean** |
+| `.data` restore (runs / bytes / relocated ptrs) | 85 / 1,199 / 0 | 146 / 1,899 / 155 | 165 / 2,083 / 194 | **154 / 2,151 / 184** |
+
+(The stage-a3 run count *falls* from 165 to 154 between `i17b` and `i17d`
+because §17.3(3) replaced eleven partial restores of `g_screen_render_table`
+with one whole-table restore; the byte count rises.)
+
+SPI / NFC markers, ours `g1-i17d-app` @2.0 s vs the golden autonomous trace:
+
+| function | golden | **ours** |
+|---|---|---|
+| `nrfx_spim_init` | 3 / 24 | **3 / 24** |
+| `nrfx_spim_xfer` | 170 / 3,774 | **170 / 3,774** |
+| `nrfx_spim_uninit` | 8 / 43 | **8 / 43** |
+| `spim_select_instance_by_mode` | 2 / 42 | **2 / 41** |
+| `spi_master_trans_data_tx_rx` | 68 / 714 | **68 / 714** |
+| `panel_init` | 20 / 52 | **20 / 52** |
+| `spi_read_id` | 5 / 27 | **5 / 30** |
+| `pt_nfc_eeprom_link_init` | 2 / 33 | **2 / 32** (was 1 / 8) |
+| `pt_nfc_eeprom_link_start` | 2 / 9 | **2 / 9** |
+| `attr_store_get` | 14 / 102 | **14 / 96** |
+| `misc_dev_api_transfer_op12` | 12 / 138 | **12 / 132** |
+| `projector_send_cmd_immediate` | 90 / 360 | **ABSENT** (BLE-gated, §17.5) |
+
+Every one of the iteration-15/16 SPI markers is now an exact or near-exact
+match. (`misc_dev_api_transfer_op12` and `read_rtc_counter_ms` cover a *larger*
+address range in the golden trace than in ours, because that trace was built
+before this iteration split their folded siblings out; the difference in
+instruction counts is exactly the split-off code.)
+
+### 17.7 Graphics parity results (`g1-i17d-app`)
+
+| id | verdict | detail |
+|---|---|---|
+| **G-5** | **PASS** | all four enumerated elements byte-exact, and the `0xB9 FF` at index 33 that iteration 16 was cut off before is now emitted too — the entire `display_sensor_parity.md` §3.1 init block is reproduced. |
+| **G-3** | **FAIL (truncation only)** | `p1_boot` ours sha `f40cbd5d…` vs oracle `b64599b1…`, **34 vs 764** transactions; **all 34 shared transactions byte-identical**. `p2_render` 0 vs 2,881. |
+| **G-1** | **FAIL** | `p2_render`: ours `0c5cc90b…` / **0 lit px**, oracle `b26c73b3…` / 1,098. |
+| **G-2** | **FAIL** | `p1_boot`: ours `0c5cc90b…` / 0 lit px, oracle `1d617c65…` / 656. |
+| **G-4** | *localiser, unchanged* | our framebuffer sha is **bit-identical to iteration 16's** (`0c5cc90b…`), so the localisation is unchanged rather than re-derived: first differing row y = 267, first differing pixel x = 178. |
+| **G-6** | **PASS** | `spim_b` 0 == 0, hash EQ, and we genuinely drive `spim_a`. |
+
+**No pixels were painted.** The panel is correctly cleared and never painted,
+for the reason established in §17.5.
+
+### Regenerate (iteration 17)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+# Step A/B need two passes: the new leaves must exist in the build's archives
+# before stage a3 will emit a reference to them (that reference is what roots
+# them), and the 0-undefined link gate re-checks the result.
+recon/application/build_cohesive.sh app /private/tmp/g1-i17a-app     # bootstrap
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/gen_app_data_image.py --selftest
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/gen_app_data_image.py \
+    --stage a3 --elf /private/tmp/g1-i17a-app/zephyr/zephyr.elf
+recon/application/build_cohesive.sh app /private/tmp/g1-i17b-app
+# Step C (screen table) is the same two-pass shape:
+recon/application/build_cohesive.sh app /private/tmp/g1-i17c-app      # bootstrap
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/gen_app_data_image.py \
+    --stage a3 --elf /private/tmp/g1-i17c-app/zephyr/zephyr.elf
+recon/application/build_cohesive.sh app /private/tmp/g1-i17d-app
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py \
+    /private/tmp/g1-i17d-app/zephyr/zephyr.elf                        # EXIT 0, 0/0
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_thread_create_stack_args.py \
+    --trials 120                                                      # EXIT 0, 10/10
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check    # clean
+PYTHONSAFEPATH=1 .venv/bin/python -c "import sys;sys.path.insert(0,'tools');import cfg_verify as c;\
+ [print(n, c.verify('app',n)['status']) for n in ('FUN_00030c24','FUN_00030c60','FUN_0007d0c0',\
+ 'FUN_0007d0c2','FUN_0007d1b4','FUN_0007d1cc','FUN_0007d240','FUN_0007d244','FUN_0007d2f4',\
+ 'FUN_0007d356','FUN_0007d37e')]"                                     # 11x PASS
+# net unchanged since iteration 9: /private/tmp/g1-i9c-net
+<scratchpad>/mkrun.sh i17d  /private/tmp/g1-i17d-app /private/tmp/g1-i9c-net 0.15
+<scratchpad>/mkrun.sh i17d2 /private/tmp/g1-i17d-app /private/tmp/g1-i9c-net 2.0
+# the 6.0 s app-only probe that names the §17.5 blocker (uart0 backend + PC trace)
+#   see /tmp/g1_i17d6/trace.resc
+# graphics + sensors:
+G1_RESC=/Users/freedomcoder/Projects/armemul/g1-ours.resc \
+G1_APP_ELF=/private/tmp/g1-i17d-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i9c-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x200551d8 G1_CTX_105A=0x2005524a \
+recon/emulator/scripts/capture_display_sensor_oracle.sh /tmp/g1_ours_i17d
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+    /tmp/g1_ours_i17d <scratchpad>/i17/rep_i17d
+```
+
+Bisect ledger (every build and boot actually run):
+
+| build | change | app @0.15 s | resets @2.0 s | note |
+|---|---|---:|---|---|
+| `/private/tmp/g1-i17a-app` | 3 new folded leaves + corrected `misc_dev_api_transfer_op12` | **not booted** | — | bootstrap only: exists so stage a3 can see the new symbols in `libapp.a` |
+| `/private/tmp/g1-i17b-app` | + stage a3 with the device / archive classes (165 runs, 194 ptrs) + the `rodata_f2ed1` pin | 8,086,343 / 953 | **0** | **the 0.104 s reset is gone**; 11,731,356 / 994 @2.0 s; sensors recover (S-IMU 25 → 983, S-NFC EEPROM 0 → 11) |
+| `/private/tmp/g1-i17c-app` | 7 screen-table leaves + atomic EXCLUDE | **not booted** | — | bootstrap only, same reason |
+| `/private/tmp/g1-i17d-app` | + `g_screen_render_table` restored whole (154 runs / 2,151 B / 184 ptrs) | 8,060,397 / **957** | **0** | **final**; 11,684,715 / **996** @2.0 s; graphics unchanged vs `i17b` (the table is BLE-gated too) |
+
+Files changed: new `recon/app/src/{FUN_00030c60,FUN_0007d0c0,FUN_0007d0c2,
+FUN_0007d1b4,FUN_0007d1cc,FUN_0007d240,FUN_0007d244,FUN_0007d2f4,FUN_0007d356,
+FUN_0007d37e}.c` (+ `recon/verified/src` mirrors, `recon/named/*`,
+`recon/symbolized/app/*`); corrected + re-proven
+`recon/app/src/FUN_00030c24.c` (+ mirror, `recon/named/`,
+`recon/symbolized/app/misc_dev_api_transfer_op12.c`);
+`recon/application/gen_app_data_image.py` (`DEVICE_POINTERS`, archive-aware
+`our_symbols`, atomic `EXCLUDE`) and its regenerated
+`recon/application/app/src/g1_app_data_image.c`;
+`recon/symbols/g1_app_globals.ld` (one missing `rodata_f2ed1` pin);
+`recon/catalogs/function_names_app.json` (10 new names);
+`recon/generated/app_retained_sources.cmake` (regenerated by its own tool,
+1,630 → 1,640 retained sources);
+`recon/emulator/reports/sensor_parity_status.md` (rewritten in place); this
+report. Ten records appended to the scratchpad catalogs `app_funcs.json` /
+`classified.json` (backed up as `*.i17bak`). **No `tools/` change**, no
+Kconfig / `prj.conf` / devicetree change, `armemul` untouched. Nothing
+committed.

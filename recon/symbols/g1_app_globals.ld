@@ -2347,6 +2347,11 @@ PROVIDE(rodata_f2e3c = 0x000f2e3c);
 PROVIDE(rodata_f2e62 = 0x000f2e62);
 PROVIDE(rodata_f2e84 = 0x000f2e84);
 PROVIDE(rodata_f2eb8 = 0x000f2eb8);
+/* iteration 17: this pin was missing from the generated set while every other
+ * log-format string in bt_hci_core_recv_event (rodata_f2ddb / f2ef5 / f2f45)
+ * was present.  The gap only became visible once the `.data` restore rooted
+ * bt_hci_core_recv_event, which the previous links garbage-collected. */
+PROVIDE(rodata_f2ed1 = 0x000f2ed1);
 PROVIDE(rodata_f2ef5 = 0x000f2ef5);
 PROVIDE(rodata_f2f17 = 0x000f2f17);
 PROVIDE(rodata_f2f45 = 0x000f2f45);

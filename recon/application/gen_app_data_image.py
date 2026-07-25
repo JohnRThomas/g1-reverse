@@ -58,6 +58,25 @@ allowed, both of which are exact:
 
 Anything else still stays zero, exactly as before.
 
+DEVICE POINTERS AND ARCHIVE-DEFINED TARGETS (P4 iteration 17)
+-------------------------------------------------------------
+Stage a3 as first written could not restore the ops table at arena +0x408 (the
+one `pt_nfc_eeprom_link_init`, 0x30b3c, requires to be all-non-zero, and whose
+absence reset the SoC at t ~ 0.104 s), because none of its five pointers
+resolved.  Two further exact classes close that gap:
+
+  * `struct device` pointer -> `DEVICE_DT_GET(DT_NODELABEL(<node>))`.  Only
+    devices whose SHIPPED `struct device` was read out of app_update.bin and
+    whose `name` string and `config->base` identify the node beyond doubt are
+    listed in DEVICE_POINTERS below; anything else stays unresolvable.  This is
+    the same treatment `g1_st25dv_i2c_dev` already gets in g1_app_ram_relocs.c.
+  * A flash function pointer whose target is compiled by our build but was
+    GARBAGE-COLLECTED from the previous link, because the zeroed `.data` word
+    was its only referrer.  `our_symbols` therefore reads the build's static
+    archives as well as the ELF: the question the gate must answer is "can this
+    link define the symbol", and emitting the address-taken reference here is
+    itself what roots it.  The 0-undefined `nm -u` link gate still re-checks it.
+
 Stages (kept so the bring-up bisect ledger can reproduce each measurement):
   --stage a1   only g_dashboard_display_level (arena +0x544, u32)
   --stage a2   the full reviewed non-pointer restore
@@ -88,25 +107,34 @@ GROUP_GAP = 4               # zero bytes that still keep two runs in one group
 FLASH_LO, FLASH_HI = 0x0000C200, 0x00100000
 SRAM_LO, SRAM_HI = 0x20000000, 0x20080000
 
-# Reviewed exclusions, by arena offset range [lo, hi).  These groups contain no
-# pointer word by the automatic test but are still unsafe or meaningless to
-# restore; each entry names the reason.
+# Reviewed exclusions, by arena offset range [lo, hi, atomic, why).  Stage a2
+# never restores these.  `atomic` says whether stage a3 may restore the region
+# as ONE unit once every pointer word in it resolves (iteration 17): that is the
+# only way a structured object gets its ids and its handlers together, and it is
+# what stops a3 from producing the half-initialised table this list exists to
+# prevent.  An `atomic = False` region stays dropped in every stage.
 EXCLUDE = [
     # g_st25dv_i2c_dev (0x200023cc) is emitted as its own object and bound out
-    # of the arena (g1_app_ram_relocs.c); its arena slot is dead storage.
-    (0x3CC, 0x3D4, "g_st25dv_i2c_dev is bound out of the arena"),
+    # of the arena (g1_app_ram_relocs.c); its arena slot is dead storage, so
+    # there is nothing to gain from restoring it and it is never atomic.
+    (0x3CC, 0x3D4, False, "g_st25dv_i2c_dev is bound out of the arena"),
     # g_screen_render_table (0x20002430, 11 x 16 B) interleaves a u32 screen id
     # with two original-image Thumb function pointers.  Restoring the ids while
     # the handlers stay NULL turns "no entry matches" into "matched, call 0",
-    # which is strictly worse than today's all-zero table.  The table needs the
-    # emitted-object treatment (like g1_st25dv_ops_table.c), not a byte copy.
-    (0x430, 0x4E0, "g_screen_render_table mixes ids with function pointers"),
+    # which is strictly worse than today's all-zero table.  Iteration 17 makes
+    # it atomic: all eleven handlers are now catalogued (the eight `movs r0,#0 /
+    # bx lr` leaves Ghidra folded into neighbouring symbols were reconstructed
+    # byte-exactly), so the whole table -- ids AND handlers -- is restored
+    # together or not at all.
+    (0x430, 0x4E0, True, "g_screen_render_table mixes ids with function pointers"),
     # Kernel objects whose wait_q dlist heads are self-referential SRAM
     # pointers: only a scalar field (k_mem_slab.num_blocks, k_mutex
     # owner_orig_prio) survives the pointer filter, and a half-initialised
-    # kernel object is not an improvement over an all-zero one.  These need
-    # arena-relative pointer relocation, which this generator does not do yet.
-    (0x17B8, 0x1890, "k_mem_slab / k_mutex objects need pointer relocation"),
+    # kernel object is not an improvement over an all-zero one.  Atomic since
+    # iteration 17: stage a3's self-reference class resolves the dlist heads
+    # (an empty sys_dlist_t is exactly head == tail == &head), so the object is
+    # restored whole.
+    (0x17B8, 0x1890, True, "k_mem_slab / k_mutex objects need pointer relocation"),
 ]
 
 STAGE_A1 = [(0x544, 4, "g_dashboard_display_level")]
@@ -123,22 +151,51 @@ UNCATALOGUED = {
     0x778E4: "realloc",
 }
 
+# Shipped `struct device` objects a `.data` pointer names.  Each entry was read
+# out of app_update.bin through tools/extract.py: word 0 is the `name` string
+# and word 1 the driver config whose first word is the peripheral base, so the
+# devicetree node is identified, not guessed.
+#
+#   0x00087c50: name "i2c@b000", config->base 0x5000b000  -> i2c2 (TWIM2)
+#   0x00087c68: name "i2c@9000", config->base 0x50009000  -> i2c1 (TWIM1)
+#
+# 0x87c68 is the same device g1_st25dv_i2c_dev is already bound to in
+# recon/application/app/src/g1_app_ram_relocs.c.
+DEVICE_POINTERS = {
+    0x00087C50: "i2c2",
+    0x00087C68: "i2c1",
+}
+
 
 def our_symbols(elf):
-    """Symbol names defined by OUR build, so stage a3 never emits a reference
-    that would turn into an undefined symbol at link time."""
+    """Symbol names OUR build can define, so stage a3 never emits a reference
+    that would turn into an undefined symbol at link time.
+
+    Both the linked ELF and the build's static archives are read.  An archive
+    member that the previous link garbage-collected (because the zeroed `.data`
+    word we are about to restore was the symbol's only referrer) is still a
+    definition this link can supply -- and the address-taken reference emitted
+    here is exactly what roots it.  The `nm -u` 0-undefined gate re-checks the
+    result on the next build.
+    """
+    import glob
     import subprocess
     nm = os.environ.get(
         "G1_NM",
         "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/arm-zephyr-eabi-nm")
-    out = subprocess.run([nm, elf], capture_output=True, text=True)
-    if out.returncode != 0:
-        raise SystemExit("nm failed on %s: %s" % (elf, out.stderr.strip()))
+    inputs = [elf]
+    build = os.path.dirname(os.path.dirname(os.path.abspath(elf)))
+    inputs += sorted(glob.glob(os.path.join(build, "app", "*.a")))
     names = set()
-    for line in out.stdout.splitlines():
-        parts = line.split()
-        if len(parts) == 3 and parts[1] not in "uU":
-            names.add(parts[2])
+    for path in inputs:
+        out = subprocess.run([nm, "--defined-only", path],
+                             capture_output=True, text=True)
+        if out.returncode != 0:
+            raise SystemExit("nm failed on %s: %s" % (path, out.stderr.strip()))
+        for line in out.stdout.splitlines():
+            parts = line.split()
+            if len(parts) == 3 and parts[1] not in "uU":
+                names.add(parts[2])
     return names
 
 
@@ -152,8 +209,11 @@ def catalog_names():
 def resolve_pointer(word, glo, ghi, byaddr, syms):
     """Resolve a shipped .data pointer word to OUR build.
 
-    Returns ("flash", name) | ("arena", arena_offset) | None (unresolvable).
+    Returns ("flash", name) | ("arena", arena_offset) | ("device", node)
+    | None (unresolvable).
     """
+    if word in DEVICE_POINTERS:
+        return ("device", DEVICE_POINTERS[word])
     if word < SRAM_LO:
         target = word & ~1
         name = byaddr.get(target) or UNCATALOGUED.get(target)
@@ -233,7 +293,7 @@ def groups(blob, boundaries):
 
 
 def excluded(lo, hi):
-    for a, b, why in EXCLUDE:
+    for a, b, _atomic, why in EXCLUDE:
         if lo < b and a < hi:
             return why
     return None
@@ -276,10 +336,28 @@ def runs_for_stage_a3(elf, verbose=False):
     byaddr = catalog_names()
     syms = our_symbols(elf)
 
-    extra, ptrs = [], []
+    # A reviewed EXCLUDE region is a SINGLE structured object (a dispatch table,
+    # a kernel object).  Iteration 16's stage a3 iterated plain groups and could
+    # therefore restore some of an excluded object's words while leaving others
+    # zero -- exactly the half-initialised table the iteration-15 policy forbids
+    # (g_screen_render_table came out with three handlers set and eight screen
+    # ids still zero).  Treat each region atomically instead: restore the WHOLE
+    # region, bytes plus relocations, only when every pointer word in it
+    # resolves, and otherwise drop every group that touches it.
+    units, atomic = [], set()
     for lo, hi in groups(blob, bounds):
+        if excluded(lo, hi) is None:
+            units.append((lo, hi))
+    for a, b, is_atomic, _why in EXCLUDE:
+        if is_atomic and any(blob[a:b]):
+            units.append((a, b))
+            atomic.add((a, b))
+    units.sort()
+
+    extra, ptrs = [], []
+    for lo, hi in units:
         wlo, whi = lo & ~3, (hi + 3) & ~3
-        if not any(mask[wlo:whi]):
+        if not any(mask[wlo:whi]) and (lo, hi) not in atomic:
             continue            # already restored verbatim by stage a2
         resolved = []
         ok = True
@@ -323,6 +401,7 @@ def emit(runs, stage, path, ptrs=None):
     lines.append(" */\n")
     lines.append("#include <zephyr/init.h>\n")
     lines.append("#include <zephyr/kernel.h>\n")
+    lines.append("#include <zephyr/device.h>\n")
     lines.append("#include <string.h>\n\n")
     lines.append("extern unsigned char g1_ram_arena[];\n\n")
     lines.append("struct g1_arena_data_run {\n\tunsigned int off;\n"
@@ -350,7 +429,9 @@ def emit(runs, stage, path, ptrs=None):
             "/* Relocation-aware pointer words.  The shipped image stores ABSOLUTE\n"
             " * original-image addresses here; our build relocates every one of them, so\n"
             " * each word is taken from the LINKER through an `__asm__`-alias extern (flash\n"
-            " * function pointers, Thumb bit re-set) or computed from the arena base\n"
+            " * function pointers, Thumb bit re-set), from DEVICE_DT_GET (shipped\n"
+            " * `struct device` pointers, identified by the device's own name string and\n"
+            " * config base in app_update.bin) or computed from the arena base\n"
             " * (self-referential SRAM pointers).  No raw absolute address is ever stored.\n"
             " */\n")
         for name in flash:
@@ -362,6 +443,11 @@ def emit(runs, stage, path, ptrs=None):
                 lines.append(
                     "\t*(void **)&g1_ram_arena[0x%05x] ="
                     " (void *)(((unsigned long)&__g1_dp_%s) | 1u);"
+                    "\t/* was 0x%08x */\n" % (off, name, word))
+            elif kind == "device":
+                lines.append(
+                    "\t*(const struct device **)&g1_ram_arena[0x%05x] ="
+                    " DEVICE_DT_GET(DT_NODELABEL(%s));"
                     "\t/* was 0x%08x */\n" % (off, name, word))
             else:
                 lines.append(

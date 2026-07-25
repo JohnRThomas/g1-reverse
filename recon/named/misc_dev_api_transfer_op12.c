@@ -1,37 +1,53 @@
+#include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_00030c24 @ 0x00030c24
  * public-name: misc_dev_api_transfer_op12
  * durable-map: recon/catalogs/function_names_app.json
- * callees (readable <= raw @ address):
- *   misc_dev_api_transfer_op12               <= FUN_00030c24 @ 0x00030c24
  * address symbols (name @ address):
  *   g_misc_dev_handle_2418                   @ 0x20002418
  */
-/* Reconstructed FUN_00030c24 @ 0x30c24  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed misc_dev_api_transfer_op12 @ 0x30c24
+ *
+ * ITERATION 17 CORRECTION (collapsed stack objects).  The previous body
+ * declared the six descriptor fields as SEPARATE stack scalars and passed only
+ * `&local_20` to the callee.  GCC is entitled to drop stores to the other five
+ * objects because taking the address of `local_20` does not make them escape,
+ * and it did -- the emitted frame was
+ *     push {r0,r1,r4,lr} ; str r0,[sp,#4] ; ... ; add r1,sp,#4
+ * i.e. FIVE of the six shipped stores were gone and the callee read garbage.
+ * The original writes a two-element descriptor array:
+ *     30c2a  strd r4,r1,[sp]      ; msgs[0] = { param_1, param_2 }
+ *     30c38  strb r1,[sp,#8]      ; msgs[0].flags = 0
+ *     30c2e  strd r2,r3,[sp,#12]  ; msgs[1] = { param_3, param_4 }
+ *     30c3e  strb r3,[sp,#20]     ; msgs[1].flags = 7
+ *     30c4c  blx api->transfer(dev, msgs, 2, 0x12)
+ * Expressed as a real array the emitted frame is instruction-for-instruction
+ * the original's (only the 0x20002418 address materialisation differs, because
+ * our build reaches that global through a linker pin rather than a literal).
+ *
+ * flags 0 / 7 are I2C_MSG_WRITE and I2C_MSG_READ|STOP|RESTART, so this is the
+ * write-then-read half of the ops table at 0x20002408; misc_dev_api_write_op12
+ * (0x30c60) is the write-only half.
+ */
 
-typedef int (*fnptr)(unsigned int, void *, int, int);
+struct g1_i2c_msg { unsigned char *buf; unsigned int len; unsigned char flags; };
+typedef int (*fnptr)(unsigned int, struct g1_i2c_msg *, int, int);
 
-int misc_dev_api_transfer_op12(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
+int misc_dev_api_transfer_op12(unsigned char *param_1, unsigned int param_2,
+                               unsigned char *param_3, unsigned int param_4)
 {
+  struct g1_i2c_msg msgs[2];
   int iVar1;
-  unsigned int local_20;
-  unsigned int uStack_1c;
-  unsigned char local_18;
-  unsigned int local_14;
-  unsigned int uStack_10;
-  unsigned char local_c;
   unsigned int base;
-  int field;
   fnptr fp;
-  local_18 = 0;
-  local_c = 7;
-  local_20 = param_1;
-  uStack_1c = param_2;
-  local_14 = param_3;
-  uStack_10 = param_4;
-  base = *(volatile unsigned int *)0x20002418UL;
-  field = *(int *)(base + 8);
-  fp = *(fnptr *)(field + 8);
-  iVar1 = fp(base, &local_20, 2, 0x12);
+  msgs[0].buf = param_1;
+  msgs[0].len = param_2;
+  msgs[0].flags = 0;
+  msgs[1].buf = param_3;
+  msgs[1].len = param_4;
+  msgs[1].flags = 7;
+  base = *(volatile unsigned int *)((unsigned long)&g_misc_dev_handle_2418) /*=0x20002418*/;
+  fp = *(fnptr *)(*(unsigned int *)(base + 8) + 8);
+  iVar1 = fp(base, msgs, 2, 0x12);
   if (iVar1 != 0) iVar1 = 1;
   return -iVar1;
 }

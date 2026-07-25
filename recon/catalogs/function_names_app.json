@@ -27581,6 +27581,96 @@
    "human": true,
    "source": "P4 iteration 15: uncatalogued 6-byte busy-wait leaf reached only through the literal 0x00088841 in FUN_0004c254",
    "aliases": []
+  },
+  "0x00030c60": {
+   "address": "0x00030c60",
+   "raw_name": "FUN_00030c60",
+   "name": "misc_dev_api_write_op12",
+   "display_name": "misc_dev_api_write_op12",
+   "human": true,
+   "source": "iteration 17: uncatalogued function folded into the tail of misc_dev_api_transfer_op12 (0x30c24, declared extent to 0x30c90); slot 1 of the shipped .data ops table at 0x20002408 that pt_nfc_eeprom_link_init requires non-zero; single I2C_MSG_WRITE|STOP descriptor through api->transfer",
+   "aliases": []
+  },
+  "0x0007d0c0": {
+   "address": "0x0007d0c0",
+   "raw_name": "FUN_0007d0c0",
+   "name": "nfc_link_ops_noop",
+   "display_name": "nfc_link_ops_noop",
+   "human": true,
+   "source": "iteration 17: uncatalogued 2-byte leaf (`4770 bx lr`) folded into the tail of read_rtc_counter_ms (0x7d0aa, declared size 0x3a); slot 2 of the shipped .data ops table at 0x20002408",
+   "aliases": []
+  },
+  "0x0007d0c2": {
+   "address": "0x0007d0c2",
+   "raw_name": "FUN_0007d0c2",
+   "name": "nfc_link_delay_msec",
+   "display_name": "nfc_link_delay_msec",
+   "human": true,
+   "source": "iteration 17: uncatalogued function folded into the tail of read_rtc_counter_ms; slot 3 of the shipped .data ops table at 0x20002408; k_sleep(K_MSEC(ms)) with the 32768 Hz tick conversion inline",
+   "aliases": []
+  },
+  "0x0007d1b4": {
+   "address": "0x0007d1b4",
+   "raw_name": "FUN_0007d1b4",
+   "name": "screen_render_ret0_7d1b4",
+   "display_name": "screen_render_ret0_7d1b4",
+   "human": true,
+   "source": "iteration 17: uncatalogued 4-byte `movs r0,#0 / bx lr` leaf folded into the tail of k_msleep_ticks32768_c (0x7d194); handler slot of g_screen_render_table (shipped .data 0x20002430) for screen id 4; that table word is its only referrer in the image",
+   "aliases": []
+  },
+  "0x0007d1cc": {
+   "address": "0x0007d1cc",
+   "raw_name": "FUN_0007d1cc",
+   "name": "screen_render_ret0_7d1cc",
+   "display_name": "screen_render_ret0_7d1cc",
+   "human": true,
+   "source": "iteration 17: uncatalogued 4-byte `movs r0,#0 / bx lr` leaf folded into the tail of ptr_load_u32 (0x7d1c8); handler slot of g_screen_render_table (shipped .data 0x20002430) for screen id 5; that table word is its only referrer in the image",
+   "aliases": []
+  },
+  "0x0007d240": {
+   "address": "0x0007d240",
+   "raw_name": "FUN_0007d240",
+   "name": "screen_render_ret0_7d240",
+   "display_name": "screen_render_ret0_7d240",
+   "human": true,
+   "source": "iteration 17: uncatalogued 4-byte `movs r0,#0 / bx lr` leaf folded into the tail of set_device_sync_timestamp (0x7d230); handler slot of g_screen_render_table (shipped .data 0x20002430) for screen ids 3 and 6; that table word is its only referrer in the image",
+   "aliases": []
+  },
+  "0x0007d244": {
+   "address": "0x0007d244",
+   "raw_name": "FUN_0007d244",
+   "name": "screen_render_ret0_7d244",
+   "display_name": "screen_render_ret0_7d244",
+   "human": true,
+   "source": "iteration 17: uncatalogued 4-byte `movs r0,#0 / bx lr` leaf folded into the tail of set_device_sync_timestamp (0x7d230); handler slot of g_screen_render_table (shipped .data 0x20002430) for screen id 8; that table word is its only referrer in the image",
+   "aliases": []
+  },
+  "0x0007d2f4": {
+   "address": "0x0007d2f4",
+   "raw_name": "FUN_0007d2f4",
+   "name": "screen_render_ret0_7d2f4",
+   "display_name": "screen_render_ret0_7d2f4",
+   "human": true,
+   "source": "iteration 17: uncatalogued 4-byte `movs r0,#0 / bx lr` leaf folded into the tail of k_uptime_get_5 (0x7d2d8); handler slot of g_screen_render_table (shipped .data 0x20002430) for screen id 7; that table word is its only referrer in the image",
+   "aliases": []
+  },
+  "0x0007d356": {
+   "address": "0x0007d356",
+   "raw_name": "FUN_0007d356",
+   "name": "screen_render_ret0_7d356",
+   "display_name": "screen_render_ret0_7d356",
+   "human": true,
+   "source": "iteration 17: uncatalogued 4-byte `movs r0,#0 / bx lr` leaf folded into the tail of k_uptime_get_6 (0x7d33a); handler slot of g_screen_render_table (shipped .data 0x20002430) for screen id 9; that table word is its only referrer in the image",
+   "aliases": []
+  },
+  "0x0007d37e": {
+   "address": "0x0007d37e",
+   "raw_name": "FUN_0007d37e",
+   "name": "screen_render_ret0_7d37e",
+   "display_name": "screen_render_ret0_7d37e",
+   "human": true,
+   "source": "iteration 17: uncatalogued 4-byte `movs r0,#0 / bx lr` leaf folded into the tail of FUN_0007d37a (0x7d37a); handler slot of g_screen_render_table (shipped .data 0x20002430) for screen id 10; that table word is its only referrer in the image",
+   "aliases": []
   }
  },
  "by_name": {
@@ -30107,7 +30197,17 @@
   "zcbor_simple_put": "0x00086360",
   "zcbor_str_decode": "0x00085ef0",
   "zcbor_str_encode": "0x00086228",
-  "zcbor_tstr_encode_ptr": "0x0008099e"
+  "zcbor_tstr_encode_ptr": "0x0008099e",
+  "misc_dev_api_write_op12": "0x00030c60",
+  "nfc_link_ops_noop": "0x0007d0c0",
+  "nfc_link_delay_msec": "0x0007d0c2",
+  "screen_render_ret0_7d1b4": "0x0007d1b4",
+  "screen_render_ret0_7d1cc": "0x0007d1cc",
+  "screen_render_ret0_7d240": "0x0007d240",
+  "screen_render_ret0_7d244": "0x0007d244",
+  "screen_render_ret0_7d2f4": "0x0007d2f4",
+  "screen_render_ret0_7d356": "0x0007d356",
+  "screen_render_ret0_7d37e": "0x0007d37e"
  },
  "conflicts": {
   "slave_display_thread": [
