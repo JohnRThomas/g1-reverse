@@ -14,7 +14,7 @@ unsigned int FUN_0102023c(void)
 {
   int iVar1;
 
-  FUN_01025a84((void*)0x210015f0, 0, 0x48);
+  FUN_01025a84((void*)G1N_210015f0, 0, 0x48);
   iVar1 = 0x41007000;
   *(volatile undefined4 *)REG_41000e00 /*=0x41000e00*/ = 0x1111;
   *(volatile undefined4 *)(iVar1 + 0xe40) = 0;

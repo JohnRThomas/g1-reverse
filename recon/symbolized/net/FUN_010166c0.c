@@ -18,7 +18,7 @@ extern unsigned int *ble_ext_adv_header_field_get(unsigned char*, int);
 extern void sdc_work_submit(unsigned int, unsigned int, int);
 extern void controller_work_update_or_enqueue(unsigned int, unsigned int, int);
 
-#define DAT_010167e0 0x21000f90u
+#define DAT_010167e0 G1N_21000f90
 #define DAT_010167e4 (DAT_010167e0 + 0x14u)
 #define DAT_010167e8_ADDR (DAT_010167e0 + 0x0eu)
 #define DAT_010167ec (DAT_010167e0 + 0x89u)

@@ -31,7 +31,7 @@ bool FUN_010250d0(uint32_t channel, uint32_t unused, uint32_t timestamp)
         uint8_t radio_pending;
     };
     volatile struct controller_channel_state *const state =
-        (volatile struct controller_channel_state *)UINT32_C(0x21001bf8);
+        (volatile struct controller_channel_state *)G1N_21001bf8;
     timestamp &= UINT32_C(0x00ffffff);
 
     if (channel < 4) {

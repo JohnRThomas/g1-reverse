@@ -34,14 +34,14 @@ unsigned int sdc_llcp_handle_unknown_response(char *param_1)
     char local_1b;
     char local_1a[2];
 
-    iVar6 = 0x21000f90;
-    if (*(volatile char *)(0x21000f90 + 0x57) == 0) {
+    iVar6 = G1N_21000f90;
+    if (*(volatile char *)(G1N_21000f90 + 0x57) == 0) {
 LAB_01018406:
         sdc_llcp_note_unsupported_pdu();
         return 5;
     }
-    if (*(volatile char *)(0x21000f90 + 0x82) == 0) {
-        if (*(volatile char *)(0x21000f90 + 0x83) == 0) goto LAB_01018406;
+    if (*(volatile char *)(G1N_21000f90 + 0x82) == 0) {
+        if (*(volatile char *)(G1N_21000f90 + 0x83) == 0) goto LAB_01018406;
         cVar1 = *param_1;
     } else {
         cVar1 = *param_1;
@@ -56,7 +56,7 @@ LAB_01018406:
                 uVar8 = *(volatile unsigned char *)(iVar6 + 0x79);
                 uVar3 = *(volatile unsigned char *)(iVar6 + 0x8f);
                 *(volatile char *)((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/ = 0x7f;
-                iVar5 = FUN_01019aa0(param_1, 0xff, (void*)0x21000fd6, *(volatile unsigned char *)(iVar6 + 0xb9), uVar3, uVar8, (int)cVar1, 0);
+                iVar5 = FUN_01019aa0(param_1, 0xff, (void*)G1N_21000fd6, *(volatile unsigned char *)(iVar6 + 0xb9), uVar3, uVar8, (int)cVar1, 0);
                 if (iVar5 == 0) return 5;
                 uVar8 = 2;
 LAB_0101854a:
@@ -81,7 +81,7 @@ LAB_0101854a:
                 FUN_01017658(param_1, local_1a, &local_1b, local_1a + 1);
                 bVar10 = *(volatile unsigned char *)(iVar6 + 0x45);
                 if (local_1b == 0) {
-                    iVar5 = sdc_ble_address_equal(bVar10, (void*)0x21000fd6, (unsigned char)param_1[0x12], *(unsigned int *)(param_1 + 8));
+                    iVar5 = sdc_ble_address_equal(bVar10, (void*)G1N_21000fd6, (unsigned char)param_1[0x12], *(unsigned int *)(param_1 + 8));
                     if (iVar5 == 0) {
                         if (1 < (unsigned char)(*(volatile unsigned char *)(iVar6 + 0x55) - 2)) return 5;
                         if (local_1a[0] == 0) return 5;
@@ -99,7 +99,7 @@ LAB_0101854a:
                     uVar8 = 0;
                     uVar4 = *(volatile unsigned char *)(iVar6 + 0x8f);
                     *(volatile char *)((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/ = 0x7f;
-                    iVar5 = FUN_01019aa0(param_1, bVar10, (void*)0x21000fd6, *(volatile unsigned char *)(iVar6 + 0xb9), uVar4, uVar3, iVar5, 0);
+                    iVar5 = FUN_01019aa0(param_1, bVar10, (void*)G1N_21000fd6, *(volatile unsigned char *)(iVar6 + 0xb9), uVar4, uVar3, iVar5, 0);
                     if (iVar5 == 0) return 5;
                     goto LAB_0101854a;
                 }
@@ -109,7 +109,7 @@ LAB_0101854a:
                 if (*(volatile char *)(iVar6 + 0x70) != 5) {
                     if (*(volatile char *)(iVar6 + 0x70) == 8) uVar9 = 3; else uVar9 = 1;
                 }
-                iVar6 = FUN_01019aa0(param_1, bVar10, (void*)0x21000fd6, *(volatile unsigned char *)(iVar6 + 0xb9), *(volatile unsigned char *)(iVar6 + 0x8f), *(volatile unsigned char *)(iVar6 + 0x79), iVar5, uVar9);
+                iVar6 = FUN_01019aa0(param_1, bVar10, (void*)G1N_21000fd6, *(volatile unsigned char *)(iVar6 + 0xb9), *(volatile unsigned char *)(iVar6 + 0x8f), *(volatile unsigned char *)(iVar6 + 0x79), iVar5, uVar9);
                 if (iVar6 != 0) {
                     FUN_01019660();
                     return 5;
@@ -145,7 +145,7 @@ LAB_01018442:
     if (cVar1 != 0x7f) {
         uVar8 = *(volatile unsigned char *)(iVar6 + 0x79);
         *(volatile char *)((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/ = 0x7f;
-        iVar5 = FUN_01019aa0(param_1, 0xff, (void*)0x21000fd6, *(volatile unsigned char *)(iVar6 + 0xb9), *(volatile unsigned char *)(iVar6 + 0x8f), uVar8, (int)cVar1, 0);
+        iVar5 = FUN_01019aa0(param_1, 0xff, (void*)G1N_21000fd6, *(volatile unsigned char *)(iVar6 + 0xb9), *(volatile unsigned char *)(iVar6 + 0x8f), uVar8, (int)cVar1, 0);
         if (iVar5 == 0) return 5;
         iVar5 = FUN_01017018(1, *(unsigned int *)(param_1 + 0x18));
         if (iVar5 != 0) {

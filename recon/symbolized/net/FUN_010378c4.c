@@ -16,7 +16,7 @@ static inline unsigned int getBasePriority(void){ return __get_BASEPRI(); }
 static inline void setBasePriority(unsigned p){ __set_BASEPRI(p); }
 static inline void isb(void){ __ISB(); }
 
-#define C_01037954 0x21004b68
+#define C_01037954 G1N_21004b68
 #define C_01037958 ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/
 #define C_0103795c ((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/
 

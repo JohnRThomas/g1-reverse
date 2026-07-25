@@ -22,7 +22,7 @@ uint32_t controller_packet_config_apply_if_active(uint32_t packet_value)
     if (active != 0) {
         uint32_t count = controller_state[1];
         if (count != 0) {
-            FUN_0101fc40(0x21000d1au, count, packet_value);
+            FUN_0101fc40(G1N_21000d1a, count, packet_value);
         } else {
             active = 0;
         }

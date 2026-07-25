@@ -27,7 +27,7 @@ extern void FUN_01037c64(uint32_t irq, uint32_t unused);
 
 uint32_t FUN_0103038c(uint32_t mode)
 {
-    volatile uint32_t *const initialized = (volatile uint32_t *)0x21004810u;
+    volatile uint32_t *const initialized = (volatile uint32_t *)G1N_21004810;
     uint32_t old_initialized;
 
     /* Atomic acquire/release exchange used by the one-time initializer. */
@@ -36,12 +36,12 @@ uint32_t FUN_0103038c(uint32_t mode)
     } while (__STLEX(1u, initialized) != 0u);
 
     if (old_initialized == 0u) {
-        volatile uint32_t *const state = (volatile uint32_t *)0x21004800u;
+        volatile uint32_t *const state = (volatile uint32_t *)G1N_21004800;
 
         state[1] = 0u;
         state[3] = 0u;
         state[2] = 1u;
-        if (onoff_request(0x21004834u, 0x21004800u) < 0) {
+        if (onoff_request(G1N_21004834, G1N_21004800) < 0) {
             assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, 0x0103dea5u, 0x230u);
             assert_post_action(0x0103dea5u, 0x230u);
         }
@@ -63,7 +63,7 @@ uint32_t FUN_0103038c(uint32_t mode)
     uint32_t has_context = context_result;
     uint32_t saved_basepri = 0u;
     if (has_context == 0u) {
-        if (*(volatile uint8_t *)0x21006461u != 0u)
+        if (*(volatile uint8_t *)G1N_21006461 != 0u)
             CLOCK[0x308 / 4] = 2u;
         saved_basepri = __get_BASEPRI();
         __set_BASEPRI_MAX(0x40u);

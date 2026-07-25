@@ -43,9 +43,9 @@ extern void FUN_0102bbc4(void);
 
 int FUN_0102a278(uint8_t *state, const uint8_t *packet, uint32_t size)
 {
-    volatile int32_t *const log_level = (volatile int32_t *)0x21000580u;
+    volatile int32_t *const log_level = (volatile int32_t *)G1N_21000580;
     volatile uint8_t *const reply_pending = (volatile uint8_t *)G1_NET_ESB_ADDR(0x0);
-    uint8_t **const service_slot = (uint8_t **)0x210045f4u;
+    uint8_t **const service_slot = (uint8_t **)G1N_210045f4;
     union {
         uint32_t w[4];
         uint16_t h[8];

@@ -72,11 +72,11 @@ unlink_and_reject(volatile uint8_t *state, uint32_t bank, uint32_t index)
 
 uint32_t sdc_conn_window_admit(uint32_t index, const uint8_t *request)
 {
-    volatile uint8_t *const state = (volatile uint8_t *)UINT32_C(0x210016f0);
+    volatile uint8_t *const state = (volatile uint8_t *)G1N_210016f0;
     volatile uint32_t *const scb_icsr = (volatile uint32_t *)UINT32_C(0xe000ed04);
     volatile uint8_t *const scb_shp = (volatile uint8_t *)UINT32_C(0xe000ed14);
     volatile uint8_t *const nvic_ipr = (volatile uint8_t *)UINT32_C(0xe000e400);
-    volatile uint32_t *const bank_image = (volatile uint32_t *)UINT32_C(0x21001740);
+    volatile uint32_t *const bank_image = (volatile uint32_t *)G1N_21001740;
     uint32_t exception = *scb_icsr & 0x1ffu;
     uint32_t priority;
 

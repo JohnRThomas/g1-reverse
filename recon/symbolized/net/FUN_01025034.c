@@ -13,7 +13,7 @@ extern uint32_t FUN_01024440(uint32_t counter);
 uint64_t FUN_01025034(void)
 {
     volatile uint32_t *const timer = (volatile uint32_t *)UINT32_C(0x41011000);
-    volatile uint32_t *const epochs = (volatile uint32_t *)UINT32_C(0x21001c08);
+    volatile uint32_t *const epochs = (volatile uint32_t *)G1N_21001c08;
     uint32_t counter = timer[0x504 / 4];
 
     while (timer[0x104 / 4] != 0) {

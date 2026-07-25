@@ -30,11 +30,11 @@ extern int FUN_010218cc(void *, const void *);
 extern int FUN_010218c0(void *, uint32_t);
 extern int FUN_01025bc8(void *);
 
-#define STATE ((volatile uint8_t *)0x210015f0u)
+#define STATE ((volatile uint8_t *)G1N_210015f0)
 #define TABLE ((volatile uint8_t *)((unsigned long)&rodata_103c4d0) /*=0x103c4d0*/)
 #define RADIO ((volatile uint32_t *)REG_41008000 /*=0x41008000*/)
 #define TIMER ((volatile uint32_t *)0x4100c000u)
-#define REQUEST ((volatile uint32_t *)0x21000028u)
+#define REQUEST ((volatile uint32_t *)G1N_21000028)
 #define REQUEST_DESCRIPTOR ((const void *)((unsigned long)&rodata_103c578) /*=0x103c578*/)
 #define SCALE 0x10624dd3u
 #define TASK 0x80000008u

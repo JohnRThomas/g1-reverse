@@ -25,7 +25,7 @@ unsigned int FUN_01009c68(unsigned int event_counter_raw,
    * extension, because callers may leave non-semantic upper bits in r0/r1. */
   const unsigned short event_counter = (unsigned short)event_counter_raw;
   const unsigned char channel = (unsigned char)channel_raw;
-  volatile int * const tbl = (volatile int *)0x21000b7c;
+  volatile int * const tbl = (volatile int *)G1N_21000b7c;
   int iVar3 = tbl[channel];
   if (iVar3 == 0) {
     return 0;

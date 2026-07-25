@@ -7,7 +7,7 @@
 
 void FUN_01019160(unsigned char *param_1)
 {
-  volatile unsigned char * const base = (volatile unsigned char *)0x21000f90;
+  volatile unsigned char * const base = (volatile unsigned char *)G1N_21000f90;
   unsigned char b0 = param_1[0];
   unsigned int uVar4 = (unsigned int)b0;
   unsigned int uVar3;

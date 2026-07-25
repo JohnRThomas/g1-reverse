@@ -56,7 +56,7 @@ static inline void wr32(uint8_t *p, size_t n, uint32_t v)
 
 int FUN_0101d404(uint16_t *input)
 {
-    build_state_t *const state = (build_state_t *)UINT32_C(0x21001124);
+    build_state_t *const state = (build_state_t *)G1N_21001124;
     uint8_t *connection = (uint8_t *)input;
     state->active = 0;
     state->counter = 0;
@@ -162,10 +162,10 @@ int FUN_0101d404(uint16_t *input)
         case 28: FUN_0100e808((intptr_t)packet,(intptr_t)(connection+0x179)); break;
         case 29: controller_packet_type29_init((intptr_t)packet); break;
         case 30: controller_packet_type30_init((intptr_t)packet); break;
-        case 31: { void (*cb)(uint8_t*,uint8_t*)=*(void (**)(uint8_t*,uint8_t*))UINT32_C(0x210004b4); if(cb) cb(packet,connection); break; }
-        case 33: { void (*cb)(uint8_t*,uint8_t*)=*(void (**)(uint8_t*,uint8_t*))UINT32_C(0x210004b0); if(cb) cb(packet,connection); break; }
-        case 34: { void (*cb)(uint8_t*,uint8_t*)=*(void (**)(uint8_t*,uint8_t*))UINT32_C(0x210001e8); if(cb) cb(packet,connection+0x160); break; }
-        case 35: case 36: case 37: { void (*cb)(uint8_t,uint8_t*,build_state_t*)=*(void (**)(uint8_t,uint8_t*,build_state_t*))UINT32_C(0x210004c8); cb(attribute,packet,state); break; }
+        case 31: { void (*cb)(uint8_t*,uint8_t*)=*(void (**)(uint8_t*,uint8_t*))G1N_210004b4; if(cb) cb(packet,connection); break; }
+        case 33: { void (*cb)(uint8_t*,uint8_t*)=*(void (**)(uint8_t*,uint8_t*))G1N_210004b0; if(cb) cb(packet,connection); break; }
+        case 34: { void (*cb)(uint8_t*,uint8_t*)=*(void (**)(uint8_t*,uint8_t*))G1N_210001e8; if(cb) cb(packet,connection+0x160); break; }
+        case 35: case 36: case 37: { void (*cb)(uint8_t,uint8_t*,build_state_t*)=*(void (**)(uint8_t,uint8_t*,build_state_t*))G1N_210004c8; cb(attribute,packet,state); break; }
         case 42: controller_descriptor_timing_copy((intptr_t)packet,(intptr_t)(connection+0x179),(intptr_t)(connection+0x19b)); break;
         default: fatal_loop(0x8ec);
         }

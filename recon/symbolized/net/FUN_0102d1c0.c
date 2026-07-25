@@ -23,7 +23,7 @@ uint8_t FUN_0102d1c0(void)
     volatile uint8_t *const enabled = (volatile uint8_t *)((unsigned long)&g_sdc_clock_calc_valid) /*=0x21004faa*/;
     volatile uint8_t *const cursor = (volatile uint8_t *)((unsigned long)&g_sdc_clock_history_idx) /*=0x21004fa8*/;
     volatile uint8_t *const wrapped = (volatile uint8_t *)((unsigned long)&g_sdc_clock_recalc_flag) /*=0x21004fa7*/;
-    volatile uint32_t *const samples = (volatile uint32_t *)0x21004640u;
+    volatile uint32_t *const samples = (volatile uint32_t *)G1N_21004640;
     volatile uint32_t *const timer_event = (volatile uint32_t *)REG_41005114 /*=0x41005114*/;
     volatile uint32_t *const radio_power = (volatile uint32_t *)REG_410121ac /*=0x410121ac*/;
     volatile uint32_t *const task_start = (volatile uint32_t *)REG_4100b004 /*=0x4100b004*/;

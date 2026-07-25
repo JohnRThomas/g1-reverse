@@ -11,7 +11,7 @@
  */
 void FUN_01032954(void)
 {
-    volatile unsigned int *q = (volatile unsigned int *)0x21004a60u;
+    volatile unsigned int *q = (volatile unsigned int *)G1N_21004a60;
     unsigned int basepri;
     unsigned int v;
 

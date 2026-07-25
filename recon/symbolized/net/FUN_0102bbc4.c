@@ -15,7 +15,7 @@ extern int FUN_0102b900(uint32_t value);
 
 void FUN_0102bbc4(void)
 {
-    *(volatile uint8_t *)0x21004fa5u = 1u;
+    *(volatile uint8_t *)G1N_21004fa5 = 1u;
     FUN_0102b758(1u);
     FUN_0102b900(3u);
 }

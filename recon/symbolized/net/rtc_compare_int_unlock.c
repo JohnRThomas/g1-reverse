@@ -16,10 +16,10 @@ uint32_t rtc_compare_int_unlock(uint32_t channel, uint32_t enable)
         return channel;
     uint32_t shift = channel & 255u;
     uint32_t bit = shift < 32u ? 1u << shift : 0u;
-    uint32_t *enabled = (uint32_t *)0x2100496cu;
+    uint32_t *enabled = (uint32_t *)G1N_2100496c;
     (void)__atomic_fetch_or(enabled, bit, __ATOMIC_ACQ_REL);
     *(volatile uint32_t *)REG_41016304 /*=0x41016304*/ = shift < 16u ? 0x10000u << shift : 0u;
-    uint32_t pending = *(volatile uint32_t *)0x21004964u;
+    uint32_t pending = *(volatile uint32_t *)G1N_21004964;
     if (shift < 32u && ((pending >> shift) & 1u))
         *(volatile uint32_t *)0xe000e200u = 0x00400000u;
     /* The machine routine leaves the channel value in r0. */

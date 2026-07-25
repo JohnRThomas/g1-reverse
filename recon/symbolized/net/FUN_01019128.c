@@ -13,7 +13,7 @@ extern void sdc_work_submit(unsigned int a0, unsigned int a1, unsigned int a2);
 
 void FUN_01019128(void)
 {
-  unsigned int iVar1 = 0x21000f90u;
+  unsigned int iVar1 = G1N_21000f90;
   unsigned int uVar2;
   unsigned int uVar3;
   unsigned short uVar4;
@@ -26,7 +26,7 @@ void FUN_01019128(void)
     uVar4 = 0;
   }
   *(volatile unsigned short *)(iVar1 + 0x40) = uVar4;
-  uVar3 = 0x21000fc6u;
+  uVar3 = G1N_21000fc6;
   uVar2 = ((unsigned long)&rodata_1017579) /*=0x1017579*/;
   *(volatile unsigned char *)(iVar1 + 0x3f) = bVar5;
   sdc_work_submit(uVar3, uVar2, 2);

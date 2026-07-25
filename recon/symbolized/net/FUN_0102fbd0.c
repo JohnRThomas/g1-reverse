@@ -21,7 +21,7 @@ int32_t FUN_0102fbd0(uint32_t param_1)
     int32_t iVar1;
 
     if ((param_1 < 6) && (((int32_t)((0x2aU >> (param_1 & 0xff)) << 0x1f)) < 0)) {
-        iVar1 = FUN_0103a44c(0x210009fc);
+        iVar1 = FUN_0103a44c(G1N_210009fc);
         if (iVar1 != 0) {
             net_buf_simple_reserve(iVar1 + 0xc, 1);
             *(volatile int8_t *)(iVar1 + 0x18) = (int8_t)param_1;

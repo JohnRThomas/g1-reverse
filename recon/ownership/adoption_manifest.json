@@ -40297,14 +40297,14 @@
   "net": {
    "summary": {
     "entries": 619,
-    "exclude_reconstruction": 253,
-    "retain_reconstruction": 366,
+    "exclude_reconstruction": 255,
+    "retain_reconstruction": 365,
     "by_kind": {
-     "source": 133,
-     "archive": 297,
+     "source": 134,
+     "archive": 298,
      "static_helper": 61,
      "table": 0,
-     "glue": 128
+     "glue": 127
     }
    },
    "entries": [
@@ -53889,19 +53889,26 @@
      "core": "net",
      "va": "0x01032680",
      "raw_symbol": "FUN_01032680",
-     "current_symbol": "FUN_01032680",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
-     "upstream_symbol": null,
-     "upstream_unit": null,
-     "confidence": 0.95,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "current_symbol": "hci_ecdh_init",
+     "kind": "source",
+     "component": "ncs_bluetooth_controller_hci_ecdh_stock",
+     "upstream_symbol": "hci_ecdh_init",
+     "upstream_unit": "nrf/subsys/bluetooth/controller/hci_ecdh.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "P4 iteration 26. hci_ecdh.c is a SINGLETON (one ecdh_thread, one k_poll_signal, one stack) and the stock NCS unit is unconditionally linked in this build (ecdh_thread 0x01034fc4, ecdh_cmd_process 0x01034eb4, hci_ecdh_init 0x01035004, ecdh_thread_data 0x21008c20, ecdh_thread_stack 0x2100b9b8 0x388 B, ecdh_signal 0x21009318, log_const_bt_sdc_ecdh 0x0103c7f8; CONFIG_BT_CTLR_ECDH=y, CONFIG_BT_CTLR_ECDH_STACK_SIZE=0x384).  The reconstruction creates the SAME thread from raw original-image addresses (signal 0x21004988, thread 0x21004258, stack 0x21008a00, stack size 0x388, prio 10, name \"BT CTLR ECDH\" at runtime 0x0103e386) and starts it at PROVIDE(rodata_1032e41 = 0x01032e41), an ORIGINAL-IMAGE code address (runtime -> analysis 0x01032640 | 1 = ecdh_thread).  Identification is from the literal pools of 0x01032530 and 0x01032488: both hold the 32-byte Bluetooth debug public key at analysis 0x0103db93 and the \"Unknown command\" / \"BT CTLR ECDH\" strings at 0x0103db76, and 0x01032440 is sys_memcpy_swap specialised to length 0x20 (the stock link already carries sys_memcpy_swap.constprop.0 at 0x01034dc4).",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match"
+       "source": "recon/ownership/net_hci_ecdh_singleton_adoption.json",
+       "type": "net_kernel_singleton_duplicate_state_defect",
+       "phase": "P4 boot parity iteration 26",
+       "duplicate_private_state": true,
+       "stock_owner_present_in_link": true,
+       "call_targets_checked": true,
+       "reconstruction_present": true,
+       "runtime_defect_observed": "Not observed at runtime: the recovered chain is already garbage-collected in the iteration-25/26 link because FUN_01031a68, its only caller, is itself orphaned (empty `callers` array in recon/catalogs/refgraph_net.json.gz and no caller anywhere in the recovered corpus).  The defect closed here is structural -- a duplicated kernel singleton started at an original-image code address -- and the iteration-26 report states plainly that it has no measured boot effect.",
+       "safe_to_adopt": true
       }
      ]
     },

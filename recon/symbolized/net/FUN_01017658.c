@@ -18,7 +18,7 @@ extern unsigned int FUN_0100cb10(void);
 extern int FUN_010199cc(void);
 extern unsigned int thunk_FUN_0101fd20(void);
 
-#define DAT_773c 0x21000f90u
+#define DAT_773c G1N_21000f90
 
 void FUN_01017658(int param_1, unsigned int param_2, char *param_3, unsigned char *param_4)
 {

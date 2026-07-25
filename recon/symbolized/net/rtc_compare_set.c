@@ -25,7 +25,7 @@ int rtc_compare_set(unsigned int param_1, unsigned int param_2, unsigned int par
     if (current_time >= PARAM34) {
         if (param_7 == 0) {
             /* atomic_or(&force_isr_mask, BIT(chan)); raw SRAM back-map 0x21004964 */
-            __atomic_fetch_or((unsigned int*)0x21004964u, (1u << param_1), __ATOMIC_ACQ_REL);
+            __atomic_fetch_or((unsigned int*)G1N_21004964, (1u << param_1), __ATOMIC_ACQ_REL);
             goto STORE_BLOCK;
         } else {
             uVar6 = (int)0xffffffea;
@@ -38,7 +38,7 @@ int rtc_compare_set(unsigned int param_1, unsigned int param_2, unsigned int par
             goto DONE;
         }
         {
-            unsigned int base = 0x21002b60u + param_1*16u;
+            unsigned int base = G1N_21002b60 + param_1*16u;
             unsigned int stored8 = *(volatile unsigned int*)(unsigned long)(base+8);
             unsigned int storedc = *(volatile unsigned int*)(unsigned long)(base+0xc);
             if (param_4 != storedc || param_3 != stored8) {
@@ -79,7 +79,7 @@ int rtc_compare_set(unsigned int param_1, unsigned int param_2, unsigned int par
 
 STORE_BLOCK: ;
     {
-        unsigned int iVar4 = 0x21002b60u + param_1*16u;
+        unsigned int iVar4 = G1N_21002b60 + param_1*16u;
         *(volatile unsigned int*)(unsigned long)iVar4 = param_5;
         *(volatile unsigned int*)(unsigned long)(iVar4+8) = param_3;
         *(volatile unsigned int*)(unsigned long)(iVar4+0xc) = param_4;

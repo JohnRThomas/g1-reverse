@@ -37,9 +37,9 @@ extern void FUN_0100e054(u32 a, u32 b);
 extern u32 FUN_0101f924(void);
 extern void FUN_01020764(u32 a);
 
-#define DAT 0x21000f90u
+#define DAT G1N_21000f90
 #define DAT2 ((unsigned long)&g_sdc_ll_ctx_param) /*=0x21001019*/
-#define DAT3 0x21000fd6u
+#define DAT3 G1N_21000fd6
 
 void FUN_010162e0(i32 param_1, u32 param_2, u32 param_3, u32 param_4)
 {

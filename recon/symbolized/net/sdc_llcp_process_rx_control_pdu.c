@@ -35,7 +35,7 @@ struct llcp_controller_state_overlay {
 static volatile uint8_t *const active_link_index =
     (volatile uint8_t *)(uintptr_t)((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/;
 static volatile struct llcp_controller_state_overlay *const llcp_state =
-    (volatile struct llcp_controller_state_overlay *)(uintptr_t)0x21000f90;
+    (volatile struct llcp_controller_state_overlay *)(uintptr_t)G1N_21000f90;
 
 extern uint8_t sdc_llcp_get_active_link_index(void);             /* FUN_0100d760 */
 extern void sdc_llcp_decode_control_pdu(const uint8_t *pdu,

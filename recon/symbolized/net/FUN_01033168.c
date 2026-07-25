@@ -21,7 +21,7 @@ void FUN_01033168(void)
 
     w[3] = (*inst)[0x544u / 4u] + 0x81u;
     FUN_01033c74();
-    if (FUN_010218c0(((unsigned long)g1_esb_window_request) /*=0x21000670*/, 0x2100065cu) == 0u) {
+    if (FUN_010218c0(((unsigned long)g1_esb_window_request) /*=0x21000670*/, G1N_2100065c) == 0u) {
         (*inst)[0x200u / 4u] = 0x40004u;
     }
 }

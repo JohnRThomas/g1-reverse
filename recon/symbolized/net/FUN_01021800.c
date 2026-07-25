@@ -16,7 +16,7 @@ void FUN_01021800(uint8_t *context)
 {
     void *node;
     void **const free_list =
-        *(void ***)(uintptr_t)(0x21001670u + 0x10u);
+        *(void ***)(uintptr_t)(G1N_21001670 + 0x10u);
 
     while ((node = controller_queue_pop((void **)(context + 0x38))) != 0) {
         controller_intrusive_list_prepend(free_list, node);

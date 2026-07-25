@@ -54,7 +54,7 @@ extern void assert_print(int,int,int);
 extern void assert_post_action(int,int);
 extern int FUN_0103b1c4(int,int);
 
-#define OBJ  0x21004b48u
+#define OBJ  G1N_21004b48
 #define TAB  G1_NET_K(0x00)
 #define STRA ((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/
 #define STR65 ((unsigned long)&rodata_103eaab) /*=0x103eaab*/

@@ -1,3 +1,16 @@
+/* P4 iteration 26 - structural CPUNET RAM relocation.  Self-contained
+   so tools/parity keeps compiling this canonical body unchanged: the
+   #else arm is the shipped literal.  See recon/application/
+   gen_net_ram_relocs.py and recon/symbols/g1_net_ram_reloc.h. */
+#ifdef G1_COHESIVE_BUILD
+extern unsigned char g1_net_ram_blk_21000570[];
+extern unsigned char g1_net_ram_blk_210045e0[];
+#define G1N_21000580 ((unsigned long)(g1_net_ram_blk_21000570 + 0x10))
+#define G1N_21004638 ((unsigned long)(g1_net_ram_blk_210045e0 + 0x58))
+#else
+#define G1N_21000580 0x21000580ul
+#define G1N_21004638 0x21004638ul
+#endif
 /* CPUNET non-preemptible MPSL API worker @ 0x0102b810.
  * Raw back-map: FUN_0102b810@0x0102b810; true extent 0xc8.
  *
@@ -39,7 +52,7 @@ extern void *FUN_0102b944(uint8_t, uint32_t, uint32_t);
 static inline __attribute__((always_inline)) void
 timeslot_api_fatal(const void *message, int error)
 {
-  if (*(volatile int32_t *)0x21000580 > 0) {
+  if (*(volatile int32_t *)G1N_21000580 > 0) {
     FUN_01039722(message, error);
   }
   __asm volatile(
@@ -78,13 +91,13 @@ void g1_timeslot_api_worker(void)
 
     case 2: {
       volatile uint32_t *normal_request = TIMESLOT_NORMAL_REQUEST;
-      uint32_t timeout_steps = *(volatile uint32_t *)0x21004638;
+      uint32_t timeout_steps = *(volatile uint32_t *)G1N_21004638;
       if (timeout_steps != 0) {
         normal_request[2] = 50000u + 5000u * timeout_steps;
       }
       error = FUN_0102a122(session_id, (void *)normal_request);
       if (error != 0) {
-        if (*(volatile int32_t *)0x21000580 > 0) {
+        if (*(volatile int32_t *)G1N_21000580 > 0) {
           FUN_01039722((const void *)0x0103d1f2, error);
         }
         /* The shipped MLA leaves the timeout-step count live in r2 at the

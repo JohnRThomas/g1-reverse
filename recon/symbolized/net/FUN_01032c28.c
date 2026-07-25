@@ -59,9 +59,9 @@ void FUN_01032c28(void)
 {
   W32(((unsigned long)&g_esb_tx_busy_flag) /*=0x210049a8*/) = 1;
   u32 pcVar4 = ((unsigned long)&g_esb_state) /*=0x21004a94*/;
-  u32 idx = W32(0x21004a60u + 0x24u);
+  u32 idx = W32(G1N_21004a60 + 0x24u);
   u8 cVar1 = W8(pcVar4);
-  u32 pbVar9 = W32(0x21004a60u + idx*4u);
+  u32 pbVar9 = W32(G1N_21004a60 + idx*4u);
   u32 piVar5_addr = ((unsigned long)&g_net_rf_cur_frame_ptr) /*=0x21004a8c*/;
   W32(piVar5_addr) = pbVar9;
   u32 pbVar3 = ((unsigned long)&g_net_rf_ack_hdr_buf) /*=0x2100635b*/;
@@ -93,7 +93,7 @@ void FUN_01032c28(void)
     u8 bVar11 = (u8)((W8(pbVar9+4) & 3u) << 1);
     if (bVar2 == 0) bVar11 |= 1;
     W8(pbVar3+1) = (u8)(bVar11 | (W8(pbVar3+1) & 0xf8u));
-    __memcpy_chk(0x2100635du, pbVar9+5, W8(pbVar9), 0xfb);
+    __memcpy_chk(G1N_2100635d, pbVar9+5, W8(pbVar9), 0xfb);
     if (bVar14 == 0) {
       W32(REG_41008000 /*=0x41008000*/+0x200) = 0x113;
       W32(((unsigned long)&g_net_radio_irq_continuation_ptr) /*=0x210049a0*/) = G1_ESB_CONT_010335E5;

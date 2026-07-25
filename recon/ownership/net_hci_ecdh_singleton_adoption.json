@@ -1,0 +1,80 @@
+{
+  "core": "net",
+  "component": "ncs_bluetooth_controller_hci_ecdh_stock",
+  "atomic_group": "nrf/subsys/bluetooth/controller/hci_ecdh.c",
+  "policy": "hci_ecdh.c owns exactly one ECDH worker thread, one k_poll_signal and one thread stack. Either the reconstruction or the stock unit owns the unit, never both.",
+  "why_now": {
+    "phase": "P4 boot parity, iteration 26",
+    "task": "Iteration 25 §25.10(2) named 0x01032640 as 'a k_thread_create thread entry' reached through PROVIDE(rodata_1032e41 = 0x01032e41), i.e. a THIRD `rodata_` name that is really a code pointer, and 0x01032530 as 'the ESB assign-channel work handler it calls'. Both were to be reconstructed and rebound.",
+    "correction": "The disassembly identifies the unit differently, and the correct remedy is DISPLACEMENT, not reconstruction. The literal pool of 0x01032530 holds 0x0103e393 and 0x0103e376 (RUNTIME addresses; analysis 0x0103db93 / 0x0103db76). tools/net_extract.py read_analysis at those addresses returns the 32-byte Bluetooth DEBUG PUBLIC KEY constant (3f 49 f6 d4 a3 c5 5f 38 74 c9 b3 e3 d2 10 3f 50 4a ff 60 7b eb 40 b7 99 58 89 b8 a6 cd 3c 1a bd) and the strings \"Unknown command\" / \"BT CTLR ECDH\". So 0x01032530 is hci_ecdh.c's command processor and 0x01032640 is its `ecdh_thread`, not an ESB pairing handler.",
+    "stock_unit_already_linked": {
+      "elf": "/private/tmp/g1-i26a-net/zephyr/zephyr.elf",
+      "symbols": [
+        "ecdh_thread          0x01034fc4 (local)",
+        "ecdh_cmd_process     0x01034eb4",
+        "ecdh_p256_common_secret 0x01034e0c",
+        "sys_memcpy_swap.constprop.0 0x01034dc4",
+        "hci_ecdh_init        0x01035004",
+        "hci_ecdh_uninit      0x01035058",
+        "ecdh_signal          0x21009318",
+        "ecdh_thread_data     0x21008c20",
+        "ecdh_thread_stack    0x2100b9b8 (0x388 B)",
+        "log_const_bt_sdc_ecdh 0x0103c7f8"
+      ],
+      "kconfig": "CONFIG_BT_CTLR_ECDH=1, CONFIG_BT_CTLR_ECDH_LIB_OBERON=1, CONFIG_BT_CTLR_ECDH_STACK_SIZE=0x384"
+    }
+  },
+  "identification": {
+    "FUN_01032680": {
+      "va": "0x01032680",
+      "upstream_symbol": "hci_ecdh_init",
+      "body": "z_impl_k_poll_signal_init(0x21004988); k_thread_create(0x21004258, 0x21008a00, 0x388, rodata_1032e41, 0,0,0, prio 10, 0, K_NO_WAIT); k_thread_name_set(0x21004258, 0x0103e386)",
+      "upstream_body": "k_poll_signal_init(&ecdh_signal); k_thread_create(&ecdh_thread_data, ecdh_thread_stack, K_THREAD_STACK_SIZEOF(ecdh_thread_stack), ecdh_thread, NULL, NULL, NULL, K_PRIO_PREEMPT(10), 0, K_NO_WAIT); k_thread_name_set(&ecdh_thread_data, \"BT CTLR ECDH\")",
+      "name_string": "0x0103e386 runtime -> analysis 0x0103db86 = \"BT CTLR ECDH\"",
+      "stack_size": "0x388 == CONFIG_BT_CTLR_ECDH_STACK_SIZE (0x384) rounded up to the 8-byte K_THREAD_STACK boundary"
+    },
+    "0x01032640": {
+      "upstream_symbol": "ecdh_thread",
+      "extent": "0x3c (0x01032640..0x0103267c, the pool word at 0x0103267c is 0x21004988)",
+      "body": "memset(&ev,0,0x10); ev.type = 1 (K_POLL_TYPE_SIGNAL); ev.obj = &ecdh_signal; for(;;){ k_poll(&ev,1,K_FOREVER); k_poll_signal_reset(&ecdh_signal); ev.state = 0; <cmd process>(); }",
+      "reached_through": "PROVIDE(rodata_1032e41 = 0x01032e41); 0x01032e41 is a RUNTIME Thumb pointer, analysis 0x01032640 | 1"
+    },
+    "0x01032530": {
+      "upstream_symbol": "ecdh_cmd_process (hci_ecdh.c static)",
+      "extent": "0xf4 code + 0x1c literal pool",
+      "evidence": "atomic state at 0x21004998 dispatched 1/2/4; state 1 does generate-random-until-not-the-debug-key (memcmp against the 32-byte debug public key at analysis 0x0103db93), then builds an HCI vendor event (0x3e 0x42 ... len 0x41) and byte-swaps two 32-byte halves through 0x01032440; the default arm logs \"Unknown command\" through the bt_sdc_ecdh log module"
+    },
+    "0x01032440": {
+      "upstream_symbol": "sys_memcpy_swap (constprop, len = 0x20)",
+      "evidence": "overlap __ASSERT then a reverse byte copy of exactly 0x20 bytes; the stock link already carries sys_memcpy_swap.constprop.0 at 0x01034dc4"
+    },
+    "0x01032488": {
+      "upstream_symbol": "hci_ecdh.c public-key command path",
+      "evidence": "same HCI vendor-event shape (0x3e 0x22 ... len 0x21) and the same debug-key constant"
+    }
+  },
+  "decision": "Adopt the stock unit and exclude the recovered duplicate. Reconstructing 0x01032640 / 0x01032530 / 0x01032440 / 0x01032488 would create a SECOND ecdh_thread, a second k_poll_signal and a second stack, i.e. exactly the singleton-duplication defect iteration 18 §18.2 measured for kernel/timeout.c, and would gain nothing: the stock unit is unconditionally linked and already runs.",
+  "manifest_functions": [
+    {
+      "raw_symbol": "FUN_01032680",
+      "va": "0x01032680",
+      "upstream_symbol": "hci_ecdh_init",
+      "upstream_unit": "nrf/subsys/bluetooth/controller/hci_ecdh.c",
+      "upstream_linkage": "public",
+      "reconstruction_source": "recon/net/src/FUN_01032680.c",
+      "stock_owner_present_in_link": true
+    }
+  ],
+  "measured_state_before": {
+    "note": "The recovered chain is ALREADY dead in the iteration-25/26 link and this is stated so the change is not credited with a boot effect it does not have.",
+    "elf": "/private/tmp/g1-i26a-net/zephyr/zephyr.elf",
+    "FUN_01032680_in_elf": false,
+    "FUN_01031a68_in_elf": false,
+    "reason": "FUN_01031a68 is the only caller of FUN_01032680 and has NO caller anywhere -- neither in the recovered corpus nor in recon/catalogs/refgraph_net.json.gz (its `callers` array is empty), so --gc-sections drops the whole subtree. Its own root is an open question recorded in the iteration-26 report."
+  },
+  "pin_superseded": {
+    "pin": "PROVIDE(rodata_1032e41 = 0x01032e41)",
+    "file": "recon/symbols/g1_net_globals.ld",
+    "reason": "code pointer wearing a `rodata_` name; its only referrer FUN_01032680 is now excluded in favour of the stock hci_ecdh_init, so the pin has no referrer and must not survive as a raw original-image code address"
+  }
+}

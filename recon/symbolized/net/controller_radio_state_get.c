@@ -7,4 +7,4 @@
  */
 /* net-core FUN_01019204 @ 0x01019204 */
 #include <stdint.h>
-uint32_t controller_radio_state_get(void){return 0x21001048u;}
+uint32_t controller_radio_state_get(void){return G1N_21001048;}

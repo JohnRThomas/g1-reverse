@@ -12,7 +12,7 @@
 extern void sdc_assertion_fail(uint32_t group, uint32_t line);
 void controller_slot_offsets_recompute(void)
 {
-    volatile uint8_t * volatile *slots = (volatile uint8_t * volatile *)0x21000b7cu;
+    volatile uint8_t * volatile *slots = (volatile uint8_t * volatile *)G1N_21000b7c;
     for (int index = 10; index >= 0; --index) {
         volatile uint8_t *entry = slots[index];
         if (entry == 0) continue;

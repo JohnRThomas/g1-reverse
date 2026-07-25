@@ -22,14 +22,14 @@ void FUN_01020088(uint32_t mode)
 
     if (mode == 1) {
         peripheral[0x500 / 4] = 2;
-        peripheral[0x514 / 4] = 0x210014e4;
+        peripheral[0x514 / 4] = G1N_210014e4;
     } else if (mode == 2) {
         peripheral[0x500 / 4] = 3;
-        peripheral[0x514 / 4] = 0x210014e4;
+        peripheral[0x514 / 4] = G1N_210014e4;
         peripheral[0x80 / 4] = 0x80000003;
     } else if (mode != 0) {
         sdc_assertion_fail(0x3d, 0x82);
         peripheral[0x500 / 4] = 2;
-        peripheral[0x514 / 4] = 0x210014e4;
+        peripheral[0x514 / 4] = G1N_210014e4;
     }
 }

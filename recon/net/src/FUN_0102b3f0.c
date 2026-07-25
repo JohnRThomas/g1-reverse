@@ -1,3 +1,24 @@
+/* P4 iteration 26 - structural CPUNET RAM relocation.  Self-contained
+   so tools/parity keeps compiling this canonical body unchanged: the
+   #else arm is the shipped literal.  See recon/application/
+   gen_net_ram_relocs.py and recon/symbols/g1_net_ram_reloc.h. */
+#ifdef G1_COHESIVE_BUILD
+extern unsigned char g1_net_ram_blk_210045e0[];
+extern unsigned char g1_net_ram_blk_21004b30[];
+extern unsigned char g1_net_ram_blk_21004c98[];
+extern unsigned char g1_net_ram_blk_21004fa0[];
+#define G1N_21004614 ((unsigned long)(g1_net_ram_blk_210045e0 + 0x34))
+#define G1N_21004b9f ((unsigned long)(g1_net_ram_blk_21004b30 + 0x6f))
+#define G1N_21004c9b ((unsigned long)(g1_net_ram_blk_21004c98 + 0x3))
+#define G1N_21004ca1 ((unsigned long)(g1_net_ram_blk_21004c98 + 0x9))
+#define G1N_21004fa2 ((unsigned long)(g1_net_ram_blk_21004fa0 + 0x2))
+#else
+#define G1N_21004614 0x21004614ul
+#define G1N_21004b9f 0x21004b9ful
+#define G1N_21004c9b 0x21004c9bul
+#define G1N_21004ca1 0x21004ca1ul
+#define G1N_21004fa2 0x21004fa2ul
+#endif
 /* CPUNET ESB startup announcement and receive-state service @ 0x0102b3f0.
  * Raw back-map: FUN_0102b3f0@0x0102b3f0; true extent 0x98.
  * CFG_VERIFY_CALL_ARITIES=3,0,4,1,0,1,0,3
@@ -22,11 +43,11 @@ extern int FUN_01033858(void);
 
 void g1_esb_start_announcement(unsigned int announce_start)
 {
-    volatile uint8_t *const packet = (volatile uint8_t *)0x21004ca1u;
-    const uint8_t *const identity = (const uint8_t *)0x21004b9fu;
-    volatile uint8_t *const receive_mode = (volatile uint8_t *)0x21004fa2u;
-    volatile uint8_t *const service_state = (volatile uint8_t *)0x21004c9bu;
-    volatile uint32_t *const idle_count = (volatile uint32_t *)0x21004614u;
+    volatile uint8_t *const packet = (volatile uint8_t *)G1N_21004ca1;
+    const uint8_t *const identity = (const uint8_t *)G1N_21004b9f;
+    volatile uint8_t *const receive_mode = (volatile uint8_t *)G1N_21004fa2;
+    volatile uint8_t *const service_state = (volatile uint8_t *)G1N_21004c9b;
+    volatile uint32_t *const idle_count = (volatile uint32_t *)G1N_21004614;
     struct {
         uint32_t header;
         uint8_t tail[247];

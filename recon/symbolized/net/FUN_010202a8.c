@@ -9,7 +9,7 @@
 
 int FUN_010202a8(void)
 {
-  unsigned int base = 0x210015f0u;
+  unsigned int base = G1N_210015f0;
   unsigned int lit = ((unsigned long)&rodata_103c4d0) /*=0x103c4d0*/;
   unsigned int idx = *(volatile unsigned char *)(base + 0x28);
   unsigned int iVar1 = lit + idx * 4;

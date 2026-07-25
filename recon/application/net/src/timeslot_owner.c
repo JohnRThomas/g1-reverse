@@ -1,3 +1,25 @@
+/* P4 iteration 26 - structural CPUNET RAM relocation.  Self-contained
+   so tools/parity keeps compiling this canonical body unchanged: the
+   #else arm is the shipped literal.  See recon/application/
+   gen_net_ram_relocs.py and recon/symbols/g1_net_ram_reloc.h. */
+#ifdef G1_COHESIVE_BUILD
+extern unsigned char g1_net_ram_blk_210004a8[];
+extern unsigned char g1_net_ram_blk_210045e0[];
+extern unsigned char g1_net_ram_blk_21004960[];
+extern unsigned char g1_net_ram_blk_21004fa0[];
+extern unsigned char g1_net_ram_blk_21006458[];
+#define G1N_21000530 ((unsigned long)(g1_net_ram_blk_210004a8 + 0x88))
+#define G1N_210045f4 ((unsigned long)(g1_net_ram_blk_210045e0 + 0x14))
+#define G1N_210049a0 ((unsigned long)(g1_net_ram_blk_21004960 + 0x40))
+#define G1N_21004fa3 ((unsigned long)(g1_net_ram_blk_21004fa0 + 0x3))
+#define G1N_21006459 ((unsigned long)(g1_net_ram_blk_21006458 + 0x1))
+#else
+#define G1N_21000530 0x21000530ul
+#define G1N_210045f4 0x210045f4ul
+#define G1N_210049a0 0x210049a0ul
+#define G1N_21004fa3 0x21004fa3ul
+#define G1N_21006459 0x21006459ul
+#endif
 /* Cohesive ownership for the product MPSL timeslot dispatch closure.
  *
  * Original evidence: request VAs 0x210005b8/0x210005d8; queue VA
@@ -145,13 +167,13 @@ volatile unsigned int g_sdc_res_pool_free_bitmap __attribute__((used, retain)) =
 /* Tiny address-owned leaves used by the recovered signal callback. */
 uint32_t FUN_0102a4a4(void) /*=0x0102a4a4*/
 {
-    volatile uint32_t **owner = (volatile uint32_t **)0x210045f4u;
+    volatile uint32_t **owner = (volatile uint32_t **)G1N_210045f4;
     return **owner;
 }
 
 uint32_t FUN_0102b7c4(void) /*=0x0102b7c4*/
 {
-    return *(volatile uint8_t *)0x21004fa3u;
+    return *(volatile uint8_t *)G1N_21004fa3;
 }
 
 /* P4 iteration 24 - MASK CORRECTION, disassembly evidence.  The shipped body
@@ -172,7 +194,7 @@ void FUN_010327d8(void) /*=0x010327d8*/
     if ((radio[0x304u / 4u] & 0x10u) != 0u && radio[0x110u / 4u] != 0u) {
         radio[0x110u / 4u] = 0;
         (void)radio[0x110u / 4u];
-        void (*callback)(void) = *(void (**)(void))0x210049a0u;
+        void (*callback)(void) = *(void (**)(void))G1N_210049a0;
         if (callback != NULL) {
             callback();
         }
@@ -184,3 +206,4 @@ extern void FUN_0102b810(void *, void *, void *);
 K_THREAD_DEFINE(mpsl_nonpreemptible_thread_id, 0x400,
                 FUN_0102b810, NULL, NULL, NULL,
                 -16, 0, 0);
+

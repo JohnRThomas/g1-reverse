@@ -18,7 +18,7 @@ struct net_clock_onoff_batch_state {
 };
 
 #define NET_CLOCK_ONOFF_BATCH_STATE \
-    ((volatile struct net_clock_onoff_batch_state *)0x21001670u) /* g_net_clk_onoff_ctx */
+    ((volatile struct net_clock_onoff_batch_state *)G1N_21001670) /* g_net_clk_onoff_ctx */
 #define net_clock_onoff_recompute_batch_size FUN_010217cc /* raw entry back-map */
 
 void net_clock_onoff_recompute_batch_size(void)

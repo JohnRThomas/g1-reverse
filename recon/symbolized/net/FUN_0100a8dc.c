@@ -5,7 +5,7 @@
  */
 /* net-core FUN_0100a8dc @ 0x100a8dc  (parity 300 trials PROVEN) */
 
-#define DAT_0100a8f4 ((unsigned int)0x21000bf8)
+#define DAT_0100a8f4 ((unsigned int)G1N_21000bf8)
 
 void FUN_0100a8dc(unsigned int param_1)
 {

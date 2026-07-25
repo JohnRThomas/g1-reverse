@@ -1,3 +1,13 @@
+/* P4 iteration 26 - structural CPUNET RAM relocation.  Self-contained
+   so tools/parity keeps compiling this canonical body unchanged: the
+   #else arm is the shipped literal.  See recon/application/
+   gen_net_ram_relocs.py and recon/symbols/g1_net_ram_reloc.h. */
+#ifdef G1_COHESIVE_BUILD
+extern unsigned char g1_net_ram_blk_21000570[];
+#define G1N_21000580 ((unsigned long)(g1_net_ram_blk_21000570 + 0x10))
+#else
+#define G1N_21000580 0x21000580ul
+#endif
 /* net-core FUN_0102ac0c @ 0x102ac0c */
 #include <stdint.h>
 
@@ -58,7 +68,7 @@ extern unsigned char g1_ipc0_endpoint_config;
 
 int FUN_0102ac0c(void)
 {
-    volatile int *const log_level = (volatile int *)UINT32_C(0x21000580);
+    volatile int *const log_level = (volatile int *)G1N_21000580;
 
     if (*log_level > 2)
         FUN_01039722((const void *)UINT32_C(0x0103ce92));

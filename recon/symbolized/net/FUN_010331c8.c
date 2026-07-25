@@ -38,8 +38,8 @@ void FUN_010331c8(void)
     volatile unsigned int *retries = (volatile unsigned int *)((unsigned long)&g_esb_pipe_cfg_field) /*=0x210049ac*/;
     volatile unsigned int *pending = (volatile unsigned int *)((unsigned long)&g_210049b0) /*=0x210049b0*/;
     volatile unsigned char *cfg = (volatile unsigned char *)((unsigned long)&g_esb_state) /*=0x21004a94*/;
-    volatile unsigned int *q = (volatile unsigned int *)0x21004a60u;
-    volatile unsigned char *hdr = (volatile unsigned char *)0x2100625eu;
+    volatile unsigned int *q = (volatile unsigned int *)G1N_21004a60;
+    volatile unsigned char *hdr = (volatile unsigned char *)G1N_2100625e;
     volatile unsigned int *fifo = (volatile unsigned int *)((unsigned long)&g_net_queue_stats_block_b) /*=0x21004a34*/;
     volatile unsigned int *volatile *inst =
         (volatile unsigned int *volatile *)((unsigned long)&g_net_log_msg_ctx) /*=0x21000698*/;

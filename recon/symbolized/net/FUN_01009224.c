@@ -19,7 +19,7 @@ extern void sdc_assertion_fail(unsigned module, unsigned line)
 
 unsigned FUN_01009224(uint8_t *packet, uint32_t metadata)
 {
-    volatile uint8_t *const cursor = (volatile uint8_t *)0x21000a6cu;
+    volatile uint8_t *const cursor = (volatile uint8_t *)G1N_21000a6c;
     uint32_t local_packet = (uint32_t)(uintptr_t)packet;
     uint32_t local_metadata = metadata;
 

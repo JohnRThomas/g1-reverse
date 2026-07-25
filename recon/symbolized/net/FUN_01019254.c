@@ -7,7 +7,7 @@
 
 unsigned int FUN_01019254(void)
 {
-  unsigned int iVar1 = 0x21000f90u;
+  unsigned int iVar1 = G1N_21000f90;
   unsigned int iVar2;
 
   if (*(volatile int *)(iVar1 + 0x64) != 0) {

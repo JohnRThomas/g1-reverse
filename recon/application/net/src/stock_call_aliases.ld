@@ -143,3 +143,20 @@ PROVIDE(spinlock_release = z_spin_unlock_valid);
 /* The recovered product main emits its reversible raw identity.  Assign the
  * Zephyr ABI entry directly, avoiding a synthetic wrapper function. */
 main = FUN_0102a720;
+
+/* Iteration 26: the CPUNET nrf/subsys/bluetooth/controller/hci_ecdh.c
+ * SINGLETON.  FUN_01032680 is hci_ecdh_init: it k_poll_signal_init()s one
+ * signal, k_thread_create()s one 0x388-byte "BT CTLR ECDH" worker at priority
+ * 10 and k_thread_name_set()s it -- the stock body exactly.  The stock unit is
+ * unconditionally linked here (ecdh_thread 0x01034fc4, ecdh_cmd_process
+ * 0x01034eb4, hci_ecdh_init 0x01035004, ecdh_thread_stack 0x388 B,
+ * ecdh_signal, log_const_bt_sdc_ecdh), so retaining the reconstruction would
+ * start a SECOND ECDH thread on a second signal -- and start it at
+ * `rodata_1032e41` = 0x01032e41, an ORIGINAL-IMAGE code address (runtime ->
+ * analysis 0x01032640 | 1 = ecdh_thread).  Identification comes from the
+ * literal pools of the gap functions it reaches: 0x01032530 and 0x01032488
+ * both hold the 32-byte Bluetooth debug public key (analysis 0x0103db93) and
+ * the "Unknown command" / "BT CTLR ECDH" strings (analysis 0x0103db76), and
+ * 0x01032440 is sys_memcpy_swap specialised to length 0x20.  Evidence:
+ * recon/ownership/net_hci_ecdh_singleton_adoption.json. */
+PROVIDE(FUN_01032680 = hci_ecdh_init);

@@ -8,7 +8,7 @@
 
 /* MPSL's deferred-event IRQ number; negative means no IRQ was assigned. */
 static volatile int8_t *const deferred_event_irq =
-    (volatile int8_t *)0x21001c20u; /* g_21001c18 + 8 */
+    (volatile int8_t *)G1N_21001c20; /* g_21001c18 + 8 */
 
 /* ARMv8-M NVIC interrupt-set-pending registers for external interrupt lines. */
 static volatile uint32_t *const nvic_ispr =

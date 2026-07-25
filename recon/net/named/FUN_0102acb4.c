@@ -8,7 +8,7 @@
  *   rodata_102b3ad                           @ 0x0102b3ad
  *   rodata_103cf0b                           @ 0x0103cf0b
  *   g_zephyr_log_level                       @ 0x21000580
- *   g_net_0x21004604_flag                    @ 0x21004604
+ *   g_net_flag_21004604                    @ 0x21004604
  */
 /* net-core FUN_0102acb4 @ 0x102acb4  (parity 300 trials PROVEN) */
 

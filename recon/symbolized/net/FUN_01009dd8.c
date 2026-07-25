@@ -12,7 +12,7 @@ extern uint32_t controller_handle_slot_value_ptr(const void *descriptor, uint32_
 /* Back-map: FUN_010274ea @ 0x010274ea = controller_handle_slot_value_ptr. */
 
 /* The firmware's descriptor-family pointer table. */
-#define DESCRIPTOR_FAMILY_TABLE ((const volatile uintptr_t *)0x21000b7cu)
+#define DESCRIPTOR_FAMILY_TABLE ((const volatile uintptr_t *)G1N_21000b7c)
 
 struct controller_slot_cursor {
     uint32_t value;

@@ -15,7 +15,7 @@ extern void FUN_0103b614(unsigned int dst, unsigned int src, unsigned int n);
 unsigned int FUN_01032a3c(unsigned int pipe, unsigned int pid)
 {
     volatile unsigned char *cfg = (volatile unsigned char *)((unsigned long)&g_esb_state) /*=0x21004a94*/;
-    volatile unsigned char *hdr = (volatile unsigned char *)0x2100625eu;
+    volatile unsigned char *hdr = (volatile unsigned char *)G1N_2100625e;
     volatile unsigned int *fifo = (volatile unsigned int *)((unsigned long)&g_net_queue_stats_block_b) /*=0x21004a34*/;
     volatile unsigned char *buf;
     unsigned int idx, len, rssi, h;

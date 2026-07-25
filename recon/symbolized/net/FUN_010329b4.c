@@ -31,7 +31,7 @@ void FUN_010329b4(void)
     radio[0x200u / 4u] = 0x113u;
     handler = *(void (*volatile *)(unsigned int))((unsigned long)&g_esb_event_handler_fn) /*=0x2100499c*/;
     handler(cfg[0x11]);
-    radio[0x504u / 4u] = 0x2100625eu;
+    radio[0x504u / 4u] = G1N_2100625e;
     radio[0x110u / 4u] = 0u;
     (void)radio[0x110u / 4u];
     radio[0x10u / 4u] = 1u;

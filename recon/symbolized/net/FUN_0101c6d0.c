@@ -34,9 +34,9 @@ typedef uint32_t code(uintptr_t, ...);
 #define DAT_0101c978 ((unsigned long)&g_net_link_ctx_b) /*=0x21001124*/
 #define DAT_0101c97c 0x010109cdu
 #define DAT_0101c980 ((unsigned long)&rodata_10100a1) /*=0x10100a1*/
-#define DAT_0101c984 0x21000400u
+#define DAT_0101c984 G1N_21000400
 #define DAT_0101cce8 ((unsigned long)&g_net_link_ctx_b) /*=0x21001124*/
-#define DAT_0101ccec 0x21000354u
+#define DAT_0101ccec G1N_21000354
 #define DAT_0101ccf0 ((volatile uint32_t *)((unsigned long)&g_210001e0) /*=0x210001e0*/)
 #define DAT_0101ccf4 ((unsigned long)&rodata_10101cd) /*=0x10101cd*/
 #define DAT_0101ccf8 ((volatile uint32_t *)((unsigned long)&g_210004ac) /*=0x210004ac*/)

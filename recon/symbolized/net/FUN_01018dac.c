@@ -18,7 +18,7 @@ void FUN_01018dac(unsigned int param_1)
   unsigned short uVar1 = (unsigned short)FUN_0100a5b4();
   unsigned int iVar3 = controller_packet_payload_reserve(uVar2, uVar1);
   if (iVar3 != 0) {
-    void **p = *(void***)(0x21000f90 + 0xc4);
+    void **p = *(void***)(G1N_21000f90 + 0xc4);
     void (*fn)(unsigned int, unsigned int) = (void(*)(unsigned int,unsigned int))*p;
     fn(param_1, iVar3);
     return;

@@ -17,7 +17,7 @@ extern void FUN_01025b8c(void);
 
 void controller_radio_event_cleanup(void)
 {
-    volatile uint8_t *controller = (volatile uint8_t *)0x210015f0u;
+    volatile uint8_t *controller = (volatile uint8_t *)G1N_210015f0;
     volatile uint8_t *radio = (volatile uint8_t *)0x4100c000u;
     volatile uint8_t *timer = (volatile uint8_t *)REG_41008000 /*=0x41008000*/;
     volatile uint8_t *egu = (volatile uint8_t *)0x4100f000u;

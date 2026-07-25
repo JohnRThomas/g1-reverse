@@ -13,7 +13,7 @@
 #define P_010096f8 ((unsigned long)&g_net_bump_alloc_state) /*=0x21000ba8*/
 #define P_010096fc ((unsigned long)&g_net_bump_alloc_cursor) /*=0x21000bac*/
 #define P_01009700 ((unsigned long)&g_net_bump_alloc_offset) /*=0x21000bb0*/
-#define P_01009704 0x21000b7c
+#define P_01009704 G1N_21000b7c
 
 extern void sdc_assertion_fail(int, int);
 extern void FUN_01025a84(void *, int, int);

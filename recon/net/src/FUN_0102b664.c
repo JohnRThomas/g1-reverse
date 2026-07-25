@@ -1,3 +1,15 @@
+/* P4 iteration 26 - structural CPUNET RAM relocation.  Self-contained
+   so tools/parity keeps compiling this canonical body unchanged: the
+   #else arm is the shipped literal.  See recon/application/
+   gen_net_ram_relocs.py and recon/symbols/g1_net_ram_reloc.h. */
+#ifdef G1_COHESIVE_BUILD
+extern unsigned char g1_net_ram_blk_21004fa0[];
+#define G1N_21004fa1 ((unsigned long)(g1_net_ram_blk_21004fa0 + 0x1))
+#define G1N_21004fa2 ((unsigned long)(g1_net_ram_blk_21004fa0 + 0x2))
+#else
+#define G1N_21004fa1 0x21004fa1ul
+#define G1N_21004fa2 0x21004fa2ul
+#endif
 /* CPUNET ESB radio stop and peripheral release @ 0x0102b664.
  * Raw back-map: FUN_0102b664@0x0102b664; true extent 0x96.
  * CFG_VERIFY_CALL_ARITIES=1,0,0
@@ -14,8 +26,8 @@ extern void FUN_01033968(void);
 
 int g1_esb_radio_release(void)
 {
-    volatile uint8_t *const clock_ready = (volatile uint8_t *)0x21004fa1u;
-    volatile uint8_t *const receive_mode = (volatile uint8_t *)0x21004fa2u;
+    volatile uint8_t *const clock_ready = (volatile uint8_t *)G1N_21004fa1;
+    volatile uint8_t *const receive_mode = (volatile uint8_t *)G1N_21004fa2;
     volatile uint32_t *const gpio0 = (volatile uint32_t *)0x418c0500u;
     volatile uint32_t *const nvic = (volatile uint32_t *)0xe000e100u;
     volatile uint32_t *const radio = (volatile uint32_t *)0x41008000u;

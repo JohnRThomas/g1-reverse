@@ -22,7 +22,7 @@ extern void FUN_01032c28(void);
 
 void FUN_01032de4(void)
 {
-    volatile unsigned int *q = (volatile unsigned int *)0x21004a60u;
+    volatile unsigned int *q = (volatile unsigned int *)G1N_21004a60;
     volatile unsigned int *nvic = (volatile unsigned int *)0xe000e100u;
 
     controller_mode1_state_validate();

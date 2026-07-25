@@ -12,7 +12,7 @@
    that faithfully instead of inlining the shared handler's logic.) */
 extern unsigned int z_impl_k_mutex_unlock(unsigned int);
 
-#define DAT_0103181c 0x210008ccu
+#define DAT_0103181c G1N_210008cc
 
 unsigned int FUN_01031814(void)
 {

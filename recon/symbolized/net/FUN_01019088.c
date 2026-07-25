@@ -12,7 +12,7 @@
 bool FUN_01019088(void)
 {
     volatile const uint8_t *const state =
-        (volatile const uint8_t *)0x21000f90u;
+        (volatile const uint8_t *)G1N_21000f90;
     uint8_t mode = state[0x54];
 
     if (mode == 3u)

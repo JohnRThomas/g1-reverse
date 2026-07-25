@@ -13,7 +13,7 @@ extern int FUN_0102a1e2(void *state);
 extern int sdc_assertion_fail(uint32_t group, uint32_t line);
 void controller_radio_state_release(void)
 {
-    volatile uint8_t *state = (volatile uint8_t *)0x21000bf4u;
+    volatile uint8_t *state = (volatile uint8_t *)G1N_21000bf4;
     int status = FUN_0102a1e2((void *)state);
     if (status != 0) {
         status = sdc_assertion_fail(0x1du, 0x30u);

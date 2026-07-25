@@ -21,7 +21,7 @@ uint64_t FUN_0102411c(uint32_t requested, uint32_t context,
 {
     volatile uint8_t *const state = (volatile uint8_t *)((unsigned long)&g_libc_tz_calc_state) /*=0x210016f0*/;
     volatile struct words4 *const snapshots =
-        (volatile struct words4 *)0x21001740U;
+        (volatile struct words4 *)G1N_21001740;
     uint8_t active = state[0x49];
     volatile uint8_t *requested_state =
         state + ((active * 0x20U + requested) * 2U) + 0x50U;

@@ -1,7 +1,113 @@
 # Sensor + graphics parity status — OUR rebuilt firmware vs the shipped oracle
 
-**Twelfth measurement of `display_sensor_parity.md`'s criteria against our
-rebuild** (iteration 25; previous measurements were iterations 14–24).
+**Thirteenth measurement of `display_sensor_parity.md`'s criteria against our
+rebuild** (iteration 26; previous measurements were iterations 14–25).
+
+## READ THIS FIRST — iteration 26: still 0 lit pixels; the machine now survives
+## the **whole 20 s** for the first time since iteration 23, but
+## `radio TransmittedFrames` fell to **0**
+
+**NO PIXEL IS PAINTED.**  `framebuffer.lit_pixels` is **0 / 0** against the
+oracle's **656** (`p1_boot`) / **1,098** (`p2_render`); `spim_a` is **34 / 764**
+and **0 / 2,881**; **no `0x02` pixel window is emitted in `p2_render`**, so **no
+display START with `action = 1` arrived**.  The three `0x02` transactions in
+`p1_boot` are the panel-init window writes the oracle also makes there and they
+paint nothing.
+
+Measured this iteration (`our_boot_bringup.md` §26; capture
+`/private/tmp/g1_ours_i26f`, net `g1-i26a-net`, app **unchanged**
+`g1-i23a-app`):
+
+1. **The CPUNET absolute-RAM-address collision class is closed structurally.**
+   All **300** recovered addresses (196 linker pins + 125 raw source literals)
+   are classified and bound to real storage — 70 `used, retain` blocks,
+   3,416 B, one per cluster so every original relative distance stays exact.
+   Both gates go to **0**: `check_net_raw_literals.py` **69 colliding / 125
+   distinct → 0 / 0**, and `check_ram_pin_collisions.py --core net` (the
+   `--core` option is new and additive; the app default is unchanged)
+   **66 colliding + 130 free → 0 / 0, EXIT 0**.
+2. **The ESB session word at `0x2100065c` is restored** to its shipped `1`
+   (it read `0x0000FFFF` inside `sdc_mempool`), together with 30 further
+   recovered addresses whose shipped `.data` initialiser is non-zero.  28 more
+   stay zero under the atomic pointer-exclusion policy and are each named in
+   the generated source.
+3. **`PROVIDE(rodata_1032e41 = 0x01032e41)` — the third `rodata_`-named code
+   pointer — is resolved and removed.**  It is `ecdh_thread`: the two Ghidra
+   gaps iteration 25 named (`0x01032640`, `0x01032530`) are NCS `hci_ecdh.c`,
+   whose stock unit is already linked, so the recovered duplicate is
+   **displaced** rather than reconstructed (reconstructing it would have
+   started a second ECDH thread on a second `k_poll_signal`).
+4. **MEASURED: the ≈1.3 s reset is gone.**  Iteration 25's capture contains
+   `PC does not lay in memory` twice at ≈1.3 s; iteration 26's 20 s capture
+   contains it **zero** times and reaches the full `00:00:20.000000000`.  A
+   directed 6 s probe hooked at our build's own `sdc_assertion_handler`
+   (`0x01034150`) shows it is **never entered**.
+5. **MEASURED REGRESSION, reported plainly: `radio TransmittedFrames` 1–2 → 0.**
+   The app still calls `bt_le_adv_start` (hooked, reached once) and the CPUNET
+   never keys a frame.  Root cause below.
+
+| device / phase | oracle | iter 24 | i25b | iter 25 | **iter 26** |
+|---|---:|---:|---:|---:|---:|
+| LSM6DSO `p1_boot` / `p2_render` | 1,089 / 1,200 | 1,027 / 268 | 1,027 / 268 | 551 / 0 | **1,027 / 700** |
+| nPM1300 `p1_boot` / `p2_render` | 291 / 508 | 232 / 140 | 232 / 140 | 97 / 0 | **232 / 370** |
+| OPT3001 `p1_boot` / `p2_render` | 33 / 80 | 14 / 0 | 14 / 0 | 14 / 0 | **14 / 0** |
+| ST25DV NFC EEPROM / system port `p1` | 25 / 22 | 11 / 12 | 11 / 12 | 0 / 6 | **11 / 12** |
+| `saadc` (whole run) | 998 | 41 | 41 | 5 | **71** |
+| `gpiote0` / `gpiote1` / `pdm0` | 25 / 0 / 2 | 25 / 0 / 2 | 25 / 0 / 2 | 25 / 0 / 2 | **25 / 0 / 2 (all hash-EQ)** |
+| `spim_a` `p1_boot` / `p2_render` | 764 / 2,881 | 34 / 0 | 34 / 0 | 34 / 0 | **34 / 0** |
+| `spim_b` | 0 | 0 | 0 | 0 | **0 (hash-EQ)** |
+| `JBD FrameCounter` p1 / p2 | 0x2A1 / 0xD61 | 0x3 / 0x0 | 0x3 / 0x0 | 0x0 / 0x0 | **0x3 / 0x3** |
+| `JBD JournalCount` | 0x400 | 0x0 | 0x0 | 0x0 | **0x22** |
+| `radio TransmittedFrames` | 0x230 | 0x1 | 0x1 | 0x2 | **0x0** |
+| `vcentral Connected` | True | False | False | False | **False** |
+| `esbslave MasterFramesSeen` | 0x175 | 0 | 0 | 0 | **0** |
+| framebuffer lit px p1 / p2 | 656 / 1,098 | 0 / 0 | 0 / 0 | 0 / 0 | **0 / 0** |
+
+`p2_render` LSM6DSO 268 → **700** and nPM1300 140 → **370** are the direct
+consequence of not resetting: the phase-2 threads keep polling for the whole
+14 s instead of dying part-way.  They are the highest sensor volumes this
+project has measured.
+
+## Verdicts
+
+| id | verdict | first difference / detail |
+|---|---|---|
+| **G-1** | **FAIL** | `p2_render` ours `0c5cc90b07…` / **0 lit px** / 0 pixel windows; oracle `b26c73b37d…` / **1,098** / 2,752 windows, bbox x 34–497, y 266–287. |
+| **G-2** | **FAIL** | `p1_boot` ours `0c5cc90b07…` / **0 lit px** / 3 pixel windows; oracle `1d617c65a6…` / **656** / 673 windows, bbox x 178–449, y 267–287. |
+| **G-3** | **FAIL (truncation only)** | `p1_boot` **34 vs 764**, the 34 shared transactions byte-identical, first difference index **34** (oracle `{"op":"0x66","kind":"command"}`, ours `<end>`).  `p2_render` **0 vs 2,881**, first difference index **0** (oracle `{"op":"0x02","kind":"pixel_window","x":32,"y":265}`). |
+| **G-4** | *localiser* | our framebuffer bytes are bit-identical to iterations 16–25, so first differing row **y = 267**, first differing pixel **x = 178** (oracle `ffffff`, ours `000000`). |
+| **G-5** | **PASS** | panel-init sequence byte-exact over the whole 34-transaction prefix, including the `0x9F` ID probe answering `0x4010` and the `0x46`/`0x31` brightness pair. |
+| **G-6** | **PASS** | `spim_b` 0 == 0, hash-EQ, both phases. |
+| **S-IMU** | **PARTIAL** | LSM6DSO 1,027 / 700 vs 1,089 / 1,200; accel enabled True, gyro False — both match the oracle. |
+| **S-ALS** | **PARTIAL** | OPT3001 14 / 0 vs 33 / 80; `ConversionReady` True, matches. |
+| **S-PMIC** | **PARTIAL** | nPM1300 232 / 370 vs 291 / 508; `ChargingEnabled` True, matches. |
+| **S-NFC** | **PARTIAL** | ST25DV EEPROM 11 vs 25, system port 12 vs 22 in `p1_boot`; 0 in `p2_render`. |
+| **S-ADC** | **FAIL** | `saadc` 71 vs 998. |
+| **S-MIC** | **PASS** | `pdm0` 2 == 2, hash-EQ. |
+| **S-KEYS** | **PASS** | `gpiote0` 25 == 25, hash-EQ; `gpiote1` 0 == 0. |
+| **S-ESB** | **FAIL** | `ESB_SYNC_ctx_105a` **0x01** vs 0x02, `DISPLAY_ON_ctx_fe8` **0x00** vs 0x01, master PTX frames **0** vs 0x175, `radio TransmittedFrames` **0** vs 0x230. |
+
+Score: **4 PASS / 4 PARTIAL / 6 FAIL** (G-5, G-6, S-MIC, S-KEYS pass).
+
+## The first divergence for iteration 27
+
+`g_net_radio_ops_table_ptr` at **0x21000530** is the pointer WORD to the
+SoftDevice Controller's radio-arbitration ops table, and the table itself is
+**`sym_NIQMZN22R7GGCSNM3BZ25GTCR6D457XB3DIUGWA`**, a 0x40-byte library `.data`
+object that this link places at exactly the shipped address **0x21000534** (it
+appears in no repository source; `nm -S` confirms the same placement in the
+iteration-25 build).  That is a class-(b) interior view of a real SDK object,
+and iteration 26's structural pass first bound it to a generic relocation block
+whose shipped `.data` is atomically excluded — fifteen of that block's pointer
+words are Ghidra-gap interior addresses that do not resolve — so the word read
+**0** and every recovered accessor (`FUN_010218f0`, `FUN_01021908`,
+`FUN_01021914`, `FUN_01021920`, `controller_mode2_state_validate`, all of which
+read `*(uint32_t *)0x21000530` and call through `+4`) skipped the whole
+arbitration path.  The binding to the real owner **by name** is in
+`recon/application/net/src/timeslot_owner.c` + `recon/symbols/g1_net_globals.ld`;
+`our_boot_bringup.md` §26.8 carries its measurement.
+
+## Everything below this line is the ITERATION 25 measurement, kept for provenance
 
 ## READ THIS FIRST — iteration 25: still 0 lit pixels, but the CPUNET now
 ## **cycles** the ESB radio state machine, and the MPSL/radio-arbitration

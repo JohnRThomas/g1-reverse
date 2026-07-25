@@ -16,7 +16,7 @@ extern void sdc_llcp_release_rx_context(void);
 
 void FUN_010190d0(void)
 {
-    unsigned int base = 0x21000f90;
+    unsigned int base = G1N_21000f90;
     if (*(volatile unsigned char*)(base+0x69)==0 && *(volatile int*)(base+0x64)!=0) {
         FUN_01022a50(*(volatile unsigned char*)(base+0x68));
     }

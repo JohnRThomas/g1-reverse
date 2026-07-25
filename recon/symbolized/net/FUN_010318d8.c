@@ -10,5 +10,5 @@
 #include <stdint.h>
 extern void k_work_submit_to_queue(uint32_t, uint32_t);
 void FUN_010318d8(void) {
-    k_work_submit_to_queue(0x210042f0, 0x21004974);
+    k_work_submit_to_queue(G1N_210042f0, G1N_21004974);
 }

@@ -6,7 +6,7 @@
  *   controller_time_now                      <= FUN_01022f08 @ 0x01022f08
  */
 /* net-core FUN_01016628 @ 0x1016628  (parity 300 trials PROVEN) */
-#define P_010166bc 0x21000f90
+#define P_010166bc G1N_21000f90
 
 extern unsigned long long controller_time_now(void);
 extern unsigned int FUN_0100c738(void);

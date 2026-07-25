@@ -53,7 +53,7 @@ int FUN_0103689c(uint32_t semaphore, uint32_t unused,
                  uint32_t timeout_lo, uint32_t timeout_hi)
 {
     const uint32_t timeout_ticks = timeout_lo | timeout_hi;
-    void *const kernel_lock = (void *)0x21004b4cu;
+    void *const kernel_lock = (void *)G1N_21004b4c;
 
     (void)unused;
     if (exception_number() != 0 && timeout_ticks != 0) {

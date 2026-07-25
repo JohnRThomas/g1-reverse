@@ -22,11 +22,11 @@ void FUN_01032804(void)
     void (*handler)(unsigned int);
 
     controller_mode1_state_validate();
-    FUN_010218cc(0x0103cafcu, 0x2100065cu);
+    FUN_010218cc(0x0103cafcu, G1N_2100065c);
     radio[0x200u / 4u] = 0x117u;
     handler = *(void (*volatile *)(unsigned int))((unsigned long)&g_esb_event_handler_fn) /*=0x2100499c*/;
     handler(cfg[0x11]);
-    radio[0x504u / 4u] = 0x2100625eu;
+    radio[0x504u / 4u] = G1N_2100625e;
     #ifdef G1_COHESIVE_BUILD
     /* P4 iteration 25 - CODE POINTER.  0x01033655 is a RUNTIME Thumb pointer;
        runtime->analysis is -0x800, so it is (0x01032e54 | 1) = FUN_01032e54, an ESB

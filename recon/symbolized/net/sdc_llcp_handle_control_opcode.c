@@ -23,7 +23,7 @@ extern int FUN_01016828(void);
 extern int FUN_01019750(int,int,int,int,int,int,int);
 extern int sdc_llcp_note_unsupported_pdu(void);
 
-#define IVAR9 0x21000f90u
+#define IVAR9 G1N_21000f90
 #define P14 ((volatile signed char*)((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/)
 #define G(off) (*(volatile unsigned char*)(IVAR9+(off)))
 #define GS(off) (*(volatile signed char*)(IVAR9+(off)))

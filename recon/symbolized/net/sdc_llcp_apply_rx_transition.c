@@ -30,7 +30,7 @@ extern i8 FUN_01010890(u8, u32);
 extern int FUN_010199cc(void);
 extern int controller_state_mode_is_invalid(int);
 
-#define DAT_01017648 0x21000f90u
+#define DAT_01017648 G1N_21000f90
 #define DAT_0101764c ((unsigned long)&g_net_conn_event_cb) /*=0x21000214*/
 #define DAT_01017650 ((unsigned long)&g_sdc_ll_ctx_param) /*=0x21001019*/
 #define DAT_01017654 ((unsigned long)&g_net_ctrlblk_chan_field) /*=0x21001008*/

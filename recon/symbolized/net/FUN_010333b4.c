@@ -77,7 +77,7 @@ int FUN_010333b4(const uint32_t *configuration)
     volatile uint32_t *const control = (volatile uint32_t *)((unsigned long)&g_210049b0) /*=0x210049b0*/;
     volatile uint32_t *callback_slot;
     volatile uint32_t *const radio = (volatile uint32_t *)REG_41008000 /*=0x41008000*/;
-    volatile uint8_t *const device_state = (volatile uint8_t *)0x2100065cU;
+    volatile uint8_t *const device_state = (volatile uint8_t *)G1N_2100065c;
     volatile uint32_t *table;
     uint32_t value;
     int status;
@@ -104,7 +104,7 @@ int FUN_010333b4(const uint32_t *configuration)
     }
 
     *control = 0;
-    value = clear_radio_storage(0x21004b7cU, 0, 0x20);
+    value = clear_radio_storage(G1N_21004b7c, 0, 0x20);
     *(volatile uint32_t *)((unsigned long)&g_esb_pipe_pid_cnt) /*=0x21006256*/ = 0;
     *(volatile uint32_t *)((unsigned long)&g_2100625a) /*=0x2100625a*/ = 0;
     uint64_t init_result = initialize_radio_mode_state(value, ((unsigned long)&g_esb_event_handler_fn) /*=0x2100499c*/);
@@ -141,18 +141,18 @@ int FUN_010333b4(const uint32_t *configuration)
     radio[0x524 / 4] = 0x23c343e7U;
     radio[0x528 / 4] = 0x13e363a3U;
 
-    table = acquire_radio_buffer_table(0x21004a60U);
-    value = 0x21005a56U;
+    table = acquire_radio_buffer_table(G1N_21004a60);
+    value = G1N_21005a56;
     for (unsigned i = 0; i < 8; ++i, value += 0x100U)
         table[i] = value;
 
     table = (volatile uint32_t *)((unsigned long)&g_net_queue_stats_block_b) /*=0x21004a34*/;
-    value = 0x21005256U;
+    value = G1N_21005256;
     __asm__ volatile ("" : "+r" (table));
     for (unsigned i = 0; i < 8; ++i, value += 0x100U)
         *table++ = value;
 
-    value = 0x21005a56U;
+    value = G1N_21005a56;
     for (unsigned i = 0; i < 8; ++i, value += 0x100U) {
         volatile uint8_t *entry = (volatile uint8_t *)(((unsigned long)&g_esb_tx_buf_pool) /*=0x210049d4*/ + 12U * i);
         *(volatile uint32_t *)(entry + 0) = value;
@@ -160,7 +160,7 @@ int FUN_010333b4(const uint32_t *configuration)
         *(volatile uint32_t *)(entry + 8) = 0;
     }
 
-    clear_radio_storage(0x210049b4U, 0, 0x20);
+    clear_radio_storage(G1N_210049b4, 0, 0x20);
     struct timer_init timer = { 1000000U, 0, 0 };
     status = (int)start_radio_owner_timer(((unsigned long)&g_net_log_msg_ctx) /*=0x21000698*/, &timer,
                                           ADDR_FUN_010327bc_THUMB /*=0x1032fbd*/);

@@ -1,3 +1,13 @@
+/* P4 iteration 26 - structural CPUNET RAM relocation.  Self-contained
+   so tools/parity keeps compiling this canonical body unchanged: the
+   #else arm is the shipped literal.  See recon/application/
+   gen_net_ram_relocs.py and recon/symbols/g1_net_ram_reloc.h. */
+#ifdef G1_COHESIVE_BUILD
+extern unsigned char g1_net_ram_blk_21000570[];
+#define G1N_21000580 ((unsigned long)(g1_net_ram_blk_21000570 + 0x10))
+#else
+#define G1N_21000580 0x21000580ul
+#endif
 /* net-core FUN_0102adf0 @ 0x0102adf0
  * Readable identity: hci_rpmsg_rx.
  * Raw back-map: initialized endpoint stores Thumb pointer 0x0102b5f1.
@@ -26,7 +36,7 @@ extern void FUN_0102ff94(void *buffer);
 extern void FUN_0102ff54(void *queue, void *buffer);
 extern void FUN_01039722(const char *format, ...);
 
-static volatile int32_t *const log_level = (volatile int32_t *)0x21000580u;
+static volatile int32_t *const log_level = (volatile int32_t *)G1N_21000580;
 /* P4 iteration 18: see recon/net/src/FUN_0102adac.c -- 0x21000978 (the shipped
  * `static K_FIFO_DEFINE(tx_queue)`) lands inside net_buf_pool_area in the
  * cohesive link. */

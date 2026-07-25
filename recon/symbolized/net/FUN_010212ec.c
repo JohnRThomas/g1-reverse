@@ -31,12 +31,12 @@ extern int32_t FUN_01025bc8(void *);
 extern void FUN_01025c9c(void *, ...);
 extern uint64_t thunk_FUN_010251e8(void);
 
-#define STATE       ((volatile uint8_t *)UINT32_C(0x210015f0))
+#define STATE       ((volatile uint8_t *)G1N_210015f0)
 #define LOOKUP8     ((volatile uint8_t *)UINT32_C(0x0103c4d0))
 #define LOOKUP16    ((volatile uint16_t *)UINT32_C(0x0103c5b0))
 #define RADIO       ((volatile uint32_t *)UINT32_C(0x41008000))
 #define TIMER       ((volatile uint32_t *)UINT32_C(0x4100c000))
-#define WORK        ((volatile uint32_t *)UINT32_C(0x21000028))
+#define WORK        ((volatile uint32_t *)G1N_21000028)
 
 static uint32_t scaled_delay(uint32_t channel, uint32_t bias)
 {

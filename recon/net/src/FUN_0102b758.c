@@ -1,3 +1,13 @@
+/* P4 iteration 26 - structural CPUNET RAM relocation.  Self-contained
+   so tools/parity keeps compiling this canonical body unchanged: the
+   #else arm is the shipped literal.  See recon/application/
+   gen_net_ram_relocs.py and recon/symbols/g1_net_ram_reloc.h. */
+#ifdef G1_COHESIVE_BUILD
+extern unsigned char g1_net_ram_blk_21004fa0[];
+#define G1N_21004fa1 ((unsigned long)(g1_net_ram_blk_21004fa0 + 0x1))
+#else
+#define G1N_21004fa1 0x21004fa1ul
+#endif
 /* CPUNET ESB clock-transition callback @ 0x0102b758.
  * Raw back-map: FUN_0102b758@0x0102b758; true extent 0x30.
  *
@@ -30,7 +40,7 @@ extern volatile unsigned int g_net_radio_op_state;
 
     volatile uint32_t *const radio_state = G1_NET_RADIO_OP_STATE;
     volatile uint32_t *const gpio0 = (volatile uint32_t *)0x418c0500u;
-    volatile uint8_t *const clock_ready = (volatile uint8_t *)0x21004fa1u;
+    volatile uint8_t *const clock_ready = (volatile uint8_t *)G1N_21004fa1;
 
     if (transition == 0) {
         if (*radio_state != 3) {

@@ -30,10 +30,10 @@ extern void sdc_llcp_stop_rx_timeout(void);
 extern void controller_random_window_step(unsigned int, int);
 
 #define DAT_01017458 ((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/
-#define DAT_0101745c 0x21000f90u
+#define DAT_0101745c G1N_21000f90
 #define DAT_01017460 ((unsigned long)&g_sdc_ll_ctx_param) /*=0x21001019*/
-#define DAT_01017464 0x21000fd6u
-#define DAT_01017468 0x21001014u
+#define DAT_01017464 G1N_21000fd6
+#define DAT_01017468 G1N_21001014
 
 struct S1017344 {
   char local_40;

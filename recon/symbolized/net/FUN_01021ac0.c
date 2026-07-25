@@ -8,7 +8,7 @@
 #include <stdint.h>
 uint32_t FUN_01021ac0(uint32_t index)
 {
-    volatile uint8_t *state = (volatile uint8_t *)(uintptr_t)0x210016e4u;
+    volatile uint8_t *state = (volatile uint8_t *)(uintptr_t)G1N_210016e4;
     if (index < state[4])
         return *(volatile uint32_t *)(uintptr_t)state + index * 0x30u;
     return 0;

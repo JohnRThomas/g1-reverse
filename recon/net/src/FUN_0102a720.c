@@ -1,3 +1,34 @@
+/* P4 iteration 26 - structural CPUNET RAM relocation.  Self-contained
+   so tools/parity keeps compiling this canonical body unchanged: the
+   #else arm is the shipped literal.  See recon/application/
+   gen_net_ram_relocs.py and recon/symbols/g1_net_ram_reloc.h. */
+#ifdef G1_COHESIVE_BUILD
+extern unsigned char g1_net_ram_blk_21000570[];
+extern unsigned char g1_net_ram_blk_21001ce8[];
+extern unsigned char g1_net_ram_blk_210045b0[];
+extern unsigned char g1_net_ram_blk_210045e0[];
+extern unsigned char g1_net_ram_blk_21004b30[];
+extern unsigned char g1_net_ram_blk_21004c98[];
+#define G1N_21000580 ((unsigned long)(g1_net_ram_blk_21000570 + 0x10))
+#define G1N_21001ce8 ((unsigned long)(g1_net_ram_blk_21001ce8 + 0x0))
+#define G1N_21001cf8 ((unsigned long)(g1_net_ram_blk_21001ce8 + 0x10))
+#define G1N_21001d00 ((unsigned long)(g1_net_ram_blk_21001ce8 + 0x18))
+#define G1N_210045c0 ((unsigned long)(g1_net_ram_blk_210045b0 + 0x10))
+#define G1N_210045f4 ((unsigned long)(g1_net_ram_blk_210045e0 + 0x14))
+#define G1N_21004b9e ((unsigned long)(g1_net_ram_blk_21004b30 + 0x6e))
+#define G1N_21004c9e ((unsigned long)(g1_net_ram_blk_21004c98 + 0x6))
+#define G1N_21004c9f ((unsigned long)(g1_net_ram_blk_21004c98 + 0x7))
+#else
+#define G1N_21000580 0x21000580ul
+#define G1N_21001ce8 0x21001ce8ul
+#define G1N_21001cf8 0x21001cf8ul
+#define G1N_21001d00 0x21001d00ul
+#define G1N_210045c0 0x210045c0ul
+#define G1N_210045f4 0x210045f4ul
+#define G1N_21004b9e 0x21004b9eul
+#define G1N_21004c9e 0x21004c9eul
+#define G1N_21004c9f 0x21004c9ful
+#endif
 /* net-core custom main [raw back-map: FUN_0102a720 @ 0x0102a720].
  *
  * The shipped image enters this routine from Zephyr bg_thread_main.  It
@@ -107,9 +138,9 @@ struct ipc_endpoint_cfg {
     const void *callback;
 };
 
-static volatile int32_t *const net_log_level = (volatile int32_t *)0x21000580u;
+static volatile int32_t *const net_log_level = (volatile int32_t *)G1N_21000580;
 static struct net_service_state **const service_slot =
-    (struct net_service_state **)0x210045f4u;
+    (struct net_service_state **)G1N_210045f4;
 
 static inline __attribute__((always_inline)) int
 send_retry(struct net_service_state *state, const void *message,
@@ -214,11 +245,11 @@ int main(void)
         }
         net_sleep_ms(50);
     }
-    *(volatile uint32_t *)0x210045c0u = 0;
+    *(volatile uint32_t *)G1N_210045c0 = 0;
 
     select_bt_identity(state->bt_identity == 0xff ? 0 : state->bt_identity);
     if (state->bt_identity != 0xff) {
-        *(volatile uint8_t *)0x21004b9eu = (uint8_t)state->bt_identity;
+        *(volatile uint8_t *)G1N_21004b9e = (uint8_t)state->bt_identity;
     }
     if (*net_log_level > 1) {
         const volatile uint8_t *address0 = (const volatile uint8_t *)G1_NET_ESB_ADDR(0x7);
@@ -254,11 +285,11 @@ int main(void)
     send_retry(state, build_message, sizeof(build_message), 100);
     refresh_shared_role();
 
-    volatile uint64_t *const previous_transition_ms = (volatile uint64_t *)0x21001ce8u;
-    volatile uint64_t *const current_transition_ms = (volatile uint64_t *)0x21001cf8u;
-    volatile uint64_t *const current_ticks = (volatile uint64_t *)0x21001d00u;
-    volatile uint8_t *const stable_state = (volatile uint8_t *)0x21004c9eu;
-    volatile uint8_t *const observed_state = (volatile uint8_t *)0x21004c9fu;
+    volatile uint64_t *const previous_transition_ms = (volatile uint64_t *)G1N_21001ce8;
+    volatile uint64_t *const current_transition_ms = (volatile uint64_t *)G1N_21001cf8;
+    volatile uint64_t *const current_ticks = (volatile uint64_t *)G1N_21001d00;
+    volatile uint8_t *const stable_state = (volatile uint8_t *)G1N_21004c9e;
+    volatile uint8_t *const observed_state = (volatile uint8_t *)G1N_21004c9f;
     uint32_t crossing_count = 0;
 
     for (;;) {

@@ -29,7 +29,7 @@ extern void FUN_010208f0(unsigned int a, unsigned int b, unsigned int c);
 extern __attribute__((noreturn)) void sdc_assertion_fail(unsigned int module,
                                                    unsigned int line);
 
-#define DAT_18084 0x21000f90u
+#define DAT_18084 G1N_21000f90
 #define DAT_18088 ((unsigned long)&g_net_radio_pending_proc_flag) /*=0x2100104a*/
 
 void FUN_01017f7c(void)

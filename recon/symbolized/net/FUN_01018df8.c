@@ -11,7 +11,7 @@
 extern void sdc_llcp_stop_rx_timeout(void);    /* FUN_010208b0 */
 extern void sdc_llcp_release_rx_context(void); /* FUN_0101fca8 */
 extern void sdc_event_publish(uint32_t, uint32_t, uint32_t, uint32_t); /* FUN_0101b4f4 */
-#define LLCP_STATE ((volatile uint8_t *)(uintptr_t)0x21000f90u)
+#define LLCP_STATE ((volatile uint8_t *)(uintptr_t)G1N_21000f90)
 #define RADIO_PENDING ((volatile uint8_t *)(uintptr_t)((unsigned long)&g_net_radio_pending_proc_flag) /*=0x2100104a*/)
 
 void FUN_01018df8(uint32_t call_context)

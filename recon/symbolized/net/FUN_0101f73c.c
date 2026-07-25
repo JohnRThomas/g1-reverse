@@ -11,6 +11,6 @@ extern void controller_intrusive_list_append_unique(unsigned int a, unsigned int
 
 void FUN_0101f73c(void)
 {
-  controller_intrusive_list_append_unique(0x21001230 + 0x20c, 0x210004e0);
-  controller_intrusive_list_append_unique(0x21001230 + 0x210, 0x210004e8);
+  controller_intrusive_list_append_unique(G1N_21001230 + 0x20c, G1N_210004e0);
+  controller_intrusive_list_append_unique(G1N_21001230 + 0x210, G1N_210004e8);
 }

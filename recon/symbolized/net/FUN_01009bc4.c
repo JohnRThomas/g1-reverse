@@ -7,7 +7,7 @@
  *   controller_handle_slot_value_set         <= FUN_0102751a @ 0x0102751a
  */
 /* net-core FUN_01009bc4 @ 0x1009bc4  (parity 300 trials PROVEN) */
-#define P_01009c64 0x21000b7c
+#define P_01009c64 G1N_21000b7c
 
 extern unsigned char controller_handle_slot_find_from(int, int, unsigned char);
 extern unsigned int controller_handle_slot_value_set(int, short, unsigned char);

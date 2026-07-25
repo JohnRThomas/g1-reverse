@@ -1,0 +1,2743 @@
+{
+ "gap": 32,
+ "pad": 16,
+ "blocks": [
+  {
+   "name": "g1_net_ram_blk_21000000",
+   "base": 553648128,
+   "size": 144,
+   "addrs": [
+    553648128,
+    553648136,
+    553648144,
+    553648152,
+    553648156,
+    553648160,
+    553648168,
+    553648188,
+    553648192,
+    553648196,
+    553648200,
+    553648204,
+    553648208,
+    553648212,
+    553648216,
+    553648220,
+    553648248
+   ],
+   "data_restored": true,
+   "data_note": "shipped .data initialiser restored"
+  },
+  {
+   "name": "g1_net_ram_blk_21000120",
+   "base": 553648416,
+   "size": 24,
+   "addrs": [
+    553648420
+   ],
+   "data_restored": false,
+   "data_note": "shipped .data bytes are all zero"
+  },
+  {
+   "name": "g1_net_ram_blk_210001d0",
+   "base": 553648592,
+   "size": 88,
+   "addrs": [
+    553648592,
+    553648596,
+    553648604,
+    553648608,
+    553648612,
+    553648616,
+    553648620,
+    553648628,
+    553648644,
+    553648652,
+    553648660
+   ],
+   "data_restored": false,
+   "data_note": "EXCLUDED (atomic): pointer word(s) +0x48=0x01016a9d, +0x4c=0x01018001, +0x50=0x01016a91, +0x54=0x01016a91 do not resolve in this link"
+  },
+  {
+   "name": "g1_net_ram_blk_21000308",
+   "base": 553648904,
+   "size": 24,
+   "addrs": [
+    553648904
+   ],
+   "data_restored": false,
+   "data_note": "EXCLUDED (atomic): pointer word(s) +0x4=0x010179c9, +0x8=0x01018951, +0xc=0x21000290, +0x10=0x210002a8, +0x14=0x21000254 do not resolve in this link"
+  },
+  {
+   "name": "g1_net_ram_blk_21000340",
+   "base": 553648960,
+   "size": 40,
+   "addrs": [
+    553648964,
+    553648980
+   ],
+   "data_restored": false,
+   "data_note": "EXCLUDED (atomic): pointer word(s) +0x0=0x210002e0, +0x4=0x01017531, +0x8=0x01016d3d, +0xc=0x01018555, +0x10=0x01018081 do not resolve in this link"
+  },
+  {
+   "name": "g1_net_ram_blk_21000400",
+   "base": 553649152,
+   "size": 24,
+   "addrs": [
+    553649152
+   ],
+   "data_restored": false,
+   "data_note": "shipped .data bytes are all zero"
+  },
+  {
+   "name": "g1_net_ram_blk_210004a8",
+   "base": 553649320,
+   "size": 160,
+   "addrs": [
+    553649324,
+    553649328,
+    553649332,
+    553649352,
+    553649360,
+    553649368,
+    553649372,
+    553649376,
+    553649384,
+    553649392,
+    553649400,
+    553649408,
+    553649416,
+    553649424,
+    553649432,
+    553649440,
+    553649448,
+    553649452,
+    553649456
+   ],
+   "data_restored": false,
+   "data_note": "EXCLUDED (atomic): pointer word(s) +0x38=0x0101fedd, +0x40=0x01029cef, +0x48=0x01029dbd, +0x50=0x01029d9f, +0x58=0x01029da3, +0x60=0x01029d87, +0x68=0x01029d3d, +0x70=0x0101ff19, +0x78=0x01029d41, +0x8c=0x0102a4d9, +0x90=0x0102a511, +0x94=0x0102a4dd, +0x98=0x0102a51b, +0x9c=0x0102a4e3 do not resolve in this link"
+  },
+  {
+   "name": "g1_net_ram_blk_21000570",
+   "base": 553649520,
+   "size": 40,
+   "addrs": [
+    553649524,
+    553649532,
+    553649536
+   ],
+   "data_restored": false,
+   "data_note": "EXCLUDED (atomic): pointer word(s) +0x0=0x0102a527, +0x4=0x0103c780, +0x14=0x0103cf12 do not resolve in this link"
+  },
+  {
+   "name": "g1_net_ram_blk_210005e8",
+   "base": 553649640,
+   "size": 24,
+   "addrs": [
+    553649644
+   ],
+   "data_restored": false,
+   "data_note": "EXCLUDED (atomic): pointer word(s) +0x0=0x01039f1b, +0x14=0x0103bf98 do not resolve in this link"
+  },
+  {
+   "name": "g1_net_ram_blk_21000658",
+   "base": 553649752,
+   "size": 24,
+   "addrs": [
+    553649756
+   ],
+   "data_restored": true,
+   "data_note": "shipped .data initialiser restored"
+  },
+  {
+   "name": "g1_net_ram_blk_21000680",
+   "base": 553649792,
+   "size": 64,
+   "addrs": [
+    553649796,
+    553649804,
+    553649832
+   ],
+   "data_restored": true,
+   "data_note": "shipped .data initialiser restored"
+  },
+  {
+   "name": "g1_net_ram_blk_21000718",
+   "base": 553649944,
+   "size": 24,
+   "addrs": [
+    553649944,
+    553649948
+   ],
+   "data_restored": false,
+   "data_note": "EXCLUDED (atomic): pointer word(s) +0xc=0x0103d5c7, +0x14=0x0103590d do not resolve in this link"
+  },
+  {
+   "name": "g1_net_ram_blk_21000750",
+   "base": 553650000,
+   "size": 24,
+   "addrs": [
+    553650000
+   ],
+   "data_restored": true,
+   "data_note": "shipped .data initialiser restored (4 pointer word(s) relocation-aware)"
+  },
+  {
+   "name": "g1_net_ram_blk_210008c8",
+   "base": 553650376,
+   "size": 24,
+   "addrs": [
+    553650380
+   ],
+   "data_restored": true,
+   "data_note": "shipped .data initialiser restored (2 pointer word(s) relocation-aware)"
+  },
+  {
+   "name": "g1_net_ram_blk_210009f8",
+   "base": 553650680,
+   "size": 24,
+   "addrs": [
+    553650684
+   ],
+   "data_restored": false,
+   "data_note": "EXCLUDED (atomic): pointer word(s) +0x0=0x2100d1f0 do not resolve in this link"
+  },
+  {
+   "name": "g1_net_ram_blk_21000a30",
+   "base": 553650736,
+   "size": 80,
+   "addrs": [
+    553650736,
+    553650752,
+    553650776,
+    553650784,
+    553650788,
+    553650792,
+    553650796
+   ],
+   "data_restored": false,
+   "data_note": "EXCLUDED (atomic): pointer word(s) +0x0=0x0103f758, +0x18=0x01008800 do not resolve in this link"
+  },
+  {
+   "name": "g1_net_ram_blk_21000b70",
+   "base": 553651056,
+   "size": 32,
+   "addrs": [
+    553651056,
+    553651064,
+    553651068
+   ],
+   "data_restored": true,
+   "data_note": "shipped .data initialiser restored"
+  },
+  {
+   "name": "g1_net_ram_blk_21000ba8",
+   "base": 553651112,
+   "size": 104,
+   "addrs": [
+    553651112,
+    553651116,
+    553651120,
+    553651124,
+    553651128,
+    553651132,
+    553651136,
+    553651140,
+    553651144,
+    553651145,
+    553651172,
+    553651176,
+    553651180,
+    553651184,
+    553651188,
+    553651192
+   ],
+   "data_restored": true,
+   "data_note": "shipped .data initialiser restored"
+  },
+  {
+   "name": "g1_net_ram_blk_21000c28",
+   "base": 553651240,
+   "size": 56,
+   "addrs": [
+    553651242,
+    553651244,
+    553651246,
+    553651248,
+    553651252,
+    553651272
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21000c68",
+   "base": 553651304,
+   "size": 24,
+   "addrs": [
+    553651308
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21000c90",
+   "base": 553651344,
+   "size": 24,
+   "addrs": [
+    553651344
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21000cc0",
+   "base": 553651392,
+   "size": 40,
+   "addrs": [
+    553651396,
+    553651408
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21000cf8",
+   "base": 553651448,
+   "size": 56,
+   "addrs": [
+    553651452,
+    553651480,
+    553651482
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21000db0",
+   "base": 553651632,
+   "size": 24,
+   "addrs": [
+    553651632
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21000ea0",
+   "base": 553651872,
+   "size": 224,
+   "addrs": [
+    553651878,
+    553651879,
+    553651880,
+    553651884,
+    553651886,
+    553651912,
+    553651936,
+    553651954,
+    553651956,
+    553651960,
+    553651964,
+    553651968,
+    553651972,
+    553651988,
+    553652000,
+    553652004,
+    553652033,
+    553652037,
+    553652052,
+    553652056,
+    553652060,
+    553652064,
+    553652068,
+    553652070,
+    553652072
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21000f90",
+   "base": 553652112,
+   "size": 24,
+   "addrs": [
+    553652112
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21000fc0",
+   "base": 553652160,
+   "size": 112,
+   "addrs": [
+    553652166,
+    553652182,
+    553652204,
+    553652232,
+    553652244,
+    553652249
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21001048",
+   "base": 553652296,
+   "size": 40,
+   "addrs": [
+    553652296,
+    553652298,
+    553652300,
+    553652312
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21001098",
+   "base": 553652376,
+   "size": 32,
+   "addrs": [
+    553652380,
+    553652384
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_210010f0",
+   "base": 553652464,
+   "size": 24,
+   "addrs": [
+    553652464
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21001118",
+   "base": 553652504,
+   "size": 64,
+   "addrs": [
+    553652508,
+    553652509,
+    553652512,
+    553652516,
+    553652520,
+    553652540,
+    553652544
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21001208",
+   "base": 553652744,
+   "size": 64,
+   "addrs": [
+    553652744,
+    553652773,
+    553652784
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21001448",
+   "base": 553653320,
+   "size": 24,
+   "addrs": [
+    553653322
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21001498",
+   "base": 553653400,
+   "size": 40,
+   "addrs": [
+    553653400,
+    553653416
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_210014d8",
+   "base": 553653464,
+   "size": 32,
+   "addrs": [
+    553653464,
+    553653468,
+    553653476
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_210015f0",
+   "base": 553653744,
+   "size": 56,
+   "addrs": [
+    553653744,
+    553653751,
+    553653769,
+    553653770,
+    553653780
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21001638",
+   "base": 553653816,
+   "size": 24,
+   "addrs": [
+    553653820
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21001660",
+   "base": 553653856,
+   "size": 56,
+   "addrs": [
+    553653860,
+    553653872,
+    553653884,
+    553653888
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_210016b0",
+   "base": 553653936,
+   "size": 88,
+   "addrs": [
+    553653940,
+    553653948,
+    553653952,
+    553653960,
+    553653980,
+    553653984,
+    553653988,
+    553653992,
+    553654000
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21001740",
+   "base": 553654080,
+   "size": 24,
+   "addrs": [
+    553654080
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21001bc8",
+   "base": 553655240,
+   "size": 112,
+   "addrs": [
+    553655242,
+    553655244,
+    553655246,
+    553655248,
+    553655250,
+    553655252,
+    553655254,
+    553655263,
+    553655287,
+    553655288,
+    553655304,
+    553655320,
+    553655324,
+    553655328,
+    553655332
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21001c88",
+   "base": 553655432,
+   "size": 24,
+   "addrs": [
+    553655432
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21001ce8",
+   "base": 553655528,
+   "size": 48,
+   "addrs": [
+    553655528,
+    553655536,
+    553655544,
+    553655552
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21002b60",
+   "base": 553659232,
+   "size": 24,
+   "addrs": [
+    553659232
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21002b90",
+   "base": 553659280,
+   "size": 24,
+   "addrs": [
+    553659280
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21004258",
+   "base": 553665112,
+   "size": 24,
+   "addrs": [
+    553665112
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_210042f0",
+   "base": 553665264,
+   "size": 24,
+   "addrs": [
+    553665264
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_210045b0",
+   "base": 553665968,
+   "size": 40,
+   "addrs": [
+    553665968,
+    553665984
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_210045e0",
+   "base": 553666016,
+   "size": 120,
+   "addrs": [
+    553666020,
+    553666024,
+    553666028,
+    553666032,
+    553666036,
+    553666052,
+    553666064,
+    553666068,
+    553666072,
+    553666088,
+    553666092,
+    553666096,
+    553666104,
+    553666108,
+    553666112
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21004670",
+   "base": 553666160,
+   "size": 56,
+   "addrs": [
+    553666160,
+    553666164,
+    553666192
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_210047f8",
+   "base": 553666552,
+   "size": 48,
+   "addrs": [
+    553666556,
+    553666560,
+    553666576
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21004830",
+   "base": 553666608,
+   "size": 24,
+   "addrs": [
+    553666612
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21004960",
+   "base": 553666912,
+   "size": 136,
+   "addrs": [
+    553666916,
+    553666924,
+    553666932,
+    553666952,
+    553666972,
+    553666976,
+    553666980,
+    553666984,
+    553666988,
+    553666992,
+    553666996,
+    553667028
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21004a30",
+   "base": 553667120,
+   "size": 24,
+   "addrs": [
+    553667124
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21004a60",
+   "base": 553667168,
+   "size": 24,
+   "addrs": [
+    553667168
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21004a88",
+   "base": 553667208,
+   "size": 40,
+   "addrs": [
+    553667212,
+    553667216,
+    553667220,
+    553667228
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21004ae8",
+   "base": 553667304,
+   "size": 56,
+   "addrs": [
+    553667308,
+    553667320,
+    553667332,
+    553667336
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21004b30",
+   "base": 553667376,
+   "size": 128,
+   "addrs": [
+    553667376,
+    553667400,
+    553667404,
+    553667432,
+    553667436,
+    553667452,
+    553667484,
+    553667485,
+    553667486,
+    553667487
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21004c98",
+   "base": 553667736,
+   "size": 32,
+   "addrs": [
+    553667739,
+    553667740,
+    553667741,
+    553667742,
+    553667743,
+    553667744,
+    553667745
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21004da0",
+   "base": 553668000,
+   "size": 24,
+   "addrs": [
+    553668001
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21004ea0",
+   "base": 553668256,
+   "size": 24,
+   "addrs": [
+    553668257
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21004fa0",
+   "base": 553668512,
+   "size": 32,
+   "addrs": [
+    553668513,
+    553668514,
+    553668515,
+    553668516,
+    553668517,
+    553668518,
+    553668519,
+    553668520,
+    553668521,
+    553668522,
+    553668523
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_210051a8",
+   "base": 553669032,
+   "size": 24,
+   "addrs": [
+    553669038
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21005250",
+   "base": 553669200,
+   "size": 24,
+   "addrs": [
+    553669206
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21005a50",
+   "base": 553671248,
+   "size": 24,
+   "addrs": [
+    553671254
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21006250",
+   "base": 553673296,
+   "size": 32,
+   "addrs": [
+    553673302,
+    553673306,
+    553673310
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21006358",
+   "base": 553673560,
+   "size": 24,
+   "addrs": [
+    553673563,
+    553673565
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21006458",
+   "base": 553673816,
+   "size": 32,
+   "addrs": [
+    553673816,
+    553673817,
+    553673818,
+    553673819,
+    553673820,
+    553673821,
+    553673822,
+    553673823,
+    553673824,
+    553673825
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21007d80",
+   "base": 553680256,
+   "size": 24,
+   "addrs": [
+    553680256
+   ],
+   "data_restored": false,
+   "data_note": ""
+  },
+  {
+   "name": "g1_net_ram_blk_21008a00",
+   "base": 553683456,
+   "size": 24,
+   "addrs": [
+    553683456
+   ],
+   "data_restored": false,
+   "data_note": ""
+  }
+ ],
+ "map": {
+  "0x21000000": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 0
+  },
+  "0x21000008": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 8
+  },
+  "0x21000010": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 16
+  },
+  "0x21000018": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 24
+  },
+  "0x2100001c": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 28
+  },
+  "0x21000020": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 32
+  },
+  "0x21000028": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 40
+  },
+  "0x2100003c": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 60
+  },
+  "0x21000040": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 64
+  },
+  "0x21000044": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 68
+  },
+  "0x21000048": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 72
+  },
+  "0x2100004c": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 76
+  },
+  "0x21000050": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 80
+  },
+  "0x21000054": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 84
+  },
+  "0x21000058": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 88
+  },
+  "0x2100005c": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 92
+  },
+  "0x21000078": {
+   "block": "g1_net_ram_blk_21000000",
+   "offset": 120
+  },
+  "0x21000124": {
+   "block": "g1_net_ram_blk_21000120",
+   "offset": 4
+  },
+  "0x210001d0": {
+   "block": "g1_net_ram_blk_210001d0",
+   "offset": 0
+  },
+  "0x210001d4": {
+   "block": "g1_net_ram_blk_210001d0",
+   "offset": 4
+  },
+  "0x210001dc": {
+   "block": "g1_net_ram_blk_210001d0",
+   "offset": 12
+  },
+  "0x210001e0": {
+   "block": "g1_net_ram_blk_210001d0",
+   "offset": 16
+  },
+  "0x210001e4": {
+   "block": "g1_net_ram_blk_210001d0",
+   "offset": 20
+  },
+  "0x210001e8": {
+   "block": "g1_net_ram_blk_210001d0",
+   "offset": 24
+  },
+  "0x210001ec": {
+   "block": "g1_net_ram_blk_210001d0",
+   "offset": 28
+  },
+  "0x210001f4": {
+   "block": "g1_net_ram_blk_210001d0",
+   "offset": 36
+  },
+  "0x21000204": {
+   "block": "g1_net_ram_blk_210001d0",
+   "offset": 52
+  },
+  "0x2100020c": {
+   "block": "g1_net_ram_blk_210001d0",
+   "offset": 60
+  },
+  "0x21000214": {
+   "block": "g1_net_ram_blk_210001d0",
+   "offset": 68
+  },
+  "0x21000308": {
+   "block": "g1_net_ram_blk_21000308",
+   "offset": 0
+  },
+  "0x21000344": {
+   "block": "g1_net_ram_blk_21000340",
+   "offset": 4
+  },
+  "0x21000354": {
+   "block": "g1_net_ram_blk_21000340",
+   "offset": 20
+  },
+  "0x21000400": {
+   "block": "g1_net_ram_blk_21000400",
+   "offset": 0
+  },
+  "0x210004ac": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 4
+  },
+  "0x210004b0": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 8
+  },
+  "0x210004b4": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 12
+  },
+  "0x210004c8": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 32
+  },
+  "0x210004d0": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 40
+  },
+  "0x210004d8": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 48
+  },
+  "0x210004dc": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 52
+  },
+  "0x210004e0": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 56
+  },
+  "0x210004e8": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 64
+  },
+  "0x210004f0": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 72
+  },
+  "0x210004f8": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 80
+  },
+  "0x21000500": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 88
+  },
+  "0x21000508": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 96
+  },
+  "0x21000510": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 104
+  },
+  "0x21000518": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 112
+  },
+  "0x21000520": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 120
+  },
+  "0x21000528": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 128
+  },
+  "0x2100052c": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 132
+  },
+  "0x21000530": {
+   "block": "g1_net_ram_blk_210004a8",
+   "offset": 136
+  },
+  "0x21000574": {
+   "block": "g1_net_ram_blk_21000570",
+   "offset": 4
+  },
+  "0x2100057c": {
+   "block": "g1_net_ram_blk_21000570",
+   "offset": 12
+  },
+  "0x21000580": {
+   "block": "g1_net_ram_blk_21000570",
+   "offset": 16
+  },
+  "0x210005ec": {
+   "block": "g1_net_ram_blk_210005e8",
+   "offset": 4
+  },
+  "0x2100065c": {
+   "block": "g1_net_ram_blk_21000658",
+   "offset": 4
+  },
+  "0x21000684": {
+   "block": "g1_net_ram_blk_21000680",
+   "offset": 4
+  },
+  "0x2100068c": {
+   "block": "g1_net_ram_blk_21000680",
+   "offset": 12
+  },
+  "0x210006a8": {
+   "block": "g1_net_ram_blk_21000680",
+   "offset": 40
+  },
+  "0x21000718": {
+   "block": "g1_net_ram_blk_21000718",
+   "offset": 0
+  },
+  "0x2100071c": {
+   "block": "g1_net_ram_blk_21000718",
+   "offset": 4
+  },
+  "0x21000750": {
+   "block": "g1_net_ram_blk_21000750",
+   "offset": 0
+  },
+  "0x210008cc": {
+   "block": "g1_net_ram_blk_210008c8",
+   "offset": 4
+  },
+  "0x210009fc": {
+   "block": "g1_net_ram_blk_210009f8",
+   "offset": 4
+  },
+  "0x21000a30": {
+   "block": "g1_net_ram_blk_21000a30",
+   "offset": 0
+  },
+  "0x21000a40": {
+   "block": "g1_net_ram_blk_21000a30",
+   "offset": 16
+  },
+  "0x21000a58": {
+   "block": "g1_net_ram_blk_21000a30",
+   "offset": 40
+  },
+  "0x21000a60": {
+   "block": "g1_net_ram_blk_21000a30",
+   "offset": 48
+  },
+  "0x21000a64": {
+   "block": "g1_net_ram_blk_21000a30",
+   "offset": 52
+  },
+  "0x21000a68": {
+   "block": "g1_net_ram_blk_21000a30",
+   "offset": 56
+  },
+  "0x21000a6c": {
+   "block": "g1_net_ram_blk_21000a30",
+   "offset": 60
+  },
+  "0x21000b70": {
+   "block": "g1_net_ram_blk_21000b70",
+   "offset": 0
+  },
+  "0x21000b78": {
+   "block": "g1_net_ram_blk_21000b70",
+   "offset": 8
+  },
+  "0x21000b7c": {
+   "block": "g1_net_ram_blk_21000b70",
+   "offset": 12
+  },
+  "0x21000ba8": {
+   "block": "g1_net_ram_blk_21000ba8",
+   "offset": 0
+  },
+  "0x21000bac": {
+   "block": "g1_net_ram_blk_21000ba8",
+   "offset": 4
+  },
+  "0x21000bb0": {
+   "block": "g1_net_ram_blk_21000ba8",
+   "offset": 8
+  },
+  "0x21000bb4": {
+   "block": "g1_net_ram_blk_21000ba8",
+   "offset": 12
+  },
+  "0x21000bb8": {
+   "block": "g1_net_ram_blk_21000ba8",
+   "offset": 16
+  },
+  "0x21000bbc": {
+   "block": "g1_net_ram_blk_21000ba8",
+   "offset": 20
+  },
+  "0x21000bc0": {
+   "block": "g1_net_ram_blk_21000ba8",
+   "offset": 24
+  },
+  "0x21000bc4": {
+   "block": "g1_net_ram_blk_21000ba8",
+   "offset": 28
+  },
+  "0x21000bc8": {
+   "block": "g1_net_ram_blk_21000ba8",
+   "offset": 32
+  },
+  "0x21000bc9": {
+   "block": "g1_net_ram_blk_21000ba8",
+   "offset": 33
+  },
+  "0x21000be4": {
+   "block": "g1_net_ram_blk_21000ba8",
+   "offset": 60
+  },
+  "0x21000be8": {
+   "block": "g1_net_ram_blk_21000ba8",
+   "offset": 64
+  },
+  "0x21000bec": {
+   "block": "g1_net_ram_blk_21000ba8",
+   "offset": 68
+  },
+  "0x21000bf0": {
+   "block": "g1_net_ram_blk_21000ba8",
+   "offset": 72
+  },
+  "0x21000bf4": {
+   "block": "g1_net_ram_blk_21000ba8",
+   "offset": 76
+  },
+  "0x21000bf8": {
+   "block": "g1_net_ram_blk_21000ba8",
+   "offset": 80
+  },
+  "0x21000c2a": {
+   "block": "g1_net_ram_blk_21000c28",
+   "offset": 2
+  },
+  "0x21000c2c": {
+   "block": "g1_net_ram_blk_21000c28",
+   "offset": 4
+  },
+  "0x21000c2e": {
+   "block": "g1_net_ram_blk_21000c28",
+   "offset": 6
+  },
+  "0x21000c30": {
+   "block": "g1_net_ram_blk_21000c28",
+   "offset": 8
+  },
+  "0x21000c34": {
+   "block": "g1_net_ram_blk_21000c28",
+   "offset": 12
+  },
+  "0x21000c48": {
+   "block": "g1_net_ram_blk_21000c28",
+   "offset": 32
+  },
+  "0x21000c6c": {
+   "block": "g1_net_ram_blk_21000c68",
+   "offset": 4
+  },
+  "0x21000c90": {
+   "block": "g1_net_ram_blk_21000c90",
+   "offset": 0
+  },
+  "0x21000cc4": {
+   "block": "g1_net_ram_blk_21000cc0",
+   "offset": 4
+  },
+  "0x21000cd0": {
+   "block": "g1_net_ram_blk_21000cc0",
+   "offset": 16
+  },
+  "0x21000cfc": {
+   "block": "g1_net_ram_blk_21000cf8",
+   "offset": 4
+  },
+  "0x21000d18": {
+   "block": "g1_net_ram_blk_21000cf8",
+   "offset": 32
+  },
+  "0x21000d1a": {
+   "block": "g1_net_ram_blk_21000cf8",
+   "offset": 34
+  },
+  "0x21000db0": {
+   "block": "g1_net_ram_blk_21000db0",
+   "offset": 0
+  },
+  "0x21000ea6": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 6
+  },
+  "0x21000ea7": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 7
+  },
+  "0x21000ea8": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 8
+  },
+  "0x21000eac": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 12
+  },
+  "0x21000eae": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 14
+  },
+  "0x21000ec8": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 40
+  },
+  "0x21000ee0": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 64
+  },
+  "0x21000ef2": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 82
+  },
+  "0x21000ef4": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 84
+  },
+  "0x21000ef8": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 88
+  },
+  "0x21000efc": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 92
+  },
+  "0x21000f00": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 96
+  },
+  "0x21000f04": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 100
+  },
+  "0x21000f14": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 116
+  },
+  "0x21000f20": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 128
+  },
+  "0x21000f24": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 132
+  },
+  "0x21000f41": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 161
+  },
+  "0x21000f45": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 165
+  },
+  "0x21000f54": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 180
+  },
+  "0x21000f58": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 184
+  },
+  "0x21000f5c": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 188
+  },
+  "0x21000f60": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 192
+  },
+  "0x21000f64": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 196
+  },
+  "0x21000f66": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 198
+  },
+  "0x21000f68": {
+   "block": "g1_net_ram_blk_21000ea0",
+   "offset": 200
+  },
+  "0x21000f90": {
+   "block": "g1_net_ram_blk_21000f90",
+   "offset": 0
+  },
+  "0x21000fc6": {
+   "block": "g1_net_ram_blk_21000fc0",
+   "offset": 6
+  },
+  "0x21000fd6": {
+   "block": "g1_net_ram_blk_21000fc0",
+   "offset": 22
+  },
+  "0x21000fec": {
+   "block": "g1_net_ram_blk_21000fc0",
+   "offset": 44
+  },
+  "0x21001008": {
+   "block": "g1_net_ram_blk_21000fc0",
+   "offset": 72
+  },
+  "0x21001014": {
+   "block": "g1_net_ram_blk_21000fc0",
+   "offset": 84
+  },
+  "0x21001019": {
+   "block": "g1_net_ram_blk_21000fc0",
+   "offset": 89
+  },
+  "0x21001048": {
+   "block": "g1_net_ram_blk_21001048",
+   "offset": 0
+  },
+  "0x2100104a": {
+   "block": "g1_net_ram_blk_21001048",
+   "offset": 2
+  },
+  "0x2100104c": {
+   "block": "g1_net_ram_blk_21001048",
+   "offset": 4
+  },
+  "0x21001058": {
+   "block": "g1_net_ram_blk_21001048",
+   "offset": 16
+  },
+  "0x2100109c": {
+   "block": "g1_net_ram_blk_21001098",
+   "offset": 4
+  },
+  "0x210010a0": {
+   "block": "g1_net_ram_blk_21001098",
+   "offset": 8
+  },
+  "0x210010f0": {
+   "block": "g1_net_ram_blk_210010f0",
+   "offset": 0
+  },
+  "0x2100111c": {
+   "block": "g1_net_ram_blk_21001118",
+   "offset": 4
+  },
+  "0x2100111d": {
+   "block": "g1_net_ram_blk_21001118",
+   "offset": 5
+  },
+  "0x21001120": {
+   "block": "g1_net_ram_blk_21001118",
+   "offset": 8
+  },
+  "0x21001124": {
+   "block": "g1_net_ram_blk_21001118",
+   "offset": 12
+  },
+  "0x21001128": {
+   "block": "g1_net_ram_blk_21001118",
+   "offset": 16
+  },
+  "0x2100113c": {
+   "block": "g1_net_ram_blk_21001118",
+   "offset": 36
+  },
+  "0x21001140": {
+   "block": "g1_net_ram_blk_21001118",
+   "offset": 40
+  },
+  "0x21001208": {
+   "block": "g1_net_ram_blk_21001208",
+   "offset": 0
+  },
+  "0x21001225": {
+   "block": "g1_net_ram_blk_21001208",
+   "offset": 29
+  },
+  "0x21001230": {
+   "block": "g1_net_ram_blk_21001208",
+   "offset": 40
+  },
+  "0x2100144a": {
+   "block": "g1_net_ram_blk_21001448",
+   "offset": 2
+  },
+  "0x21001498": {
+   "block": "g1_net_ram_blk_21001498",
+   "offset": 0
+  },
+  "0x210014a8": {
+   "block": "g1_net_ram_blk_21001498",
+   "offset": 16
+  },
+  "0x210014d8": {
+   "block": "g1_net_ram_blk_210014d8",
+   "offset": 0
+  },
+  "0x210014dc": {
+   "block": "g1_net_ram_blk_210014d8",
+   "offset": 4
+  },
+  "0x210014e4": {
+   "block": "g1_net_ram_blk_210014d8",
+   "offset": 12
+  },
+  "0x210015f0": {
+   "block": "g1_net_ram_blk_210015f0",
+   "offset": 0
+  },
+  "0x210015f7": {
+   "block": "g1_net_ram_blk_210015f0",
+   "offset": 7
+  },
+  "0x21001609": {
+   "block": "g1_net_ram_blk_210015f0",
+   "offset": 25
+  },
+  "0x2100160a": {
+   "block": "g1_net_ram_blk_210015f0",
+   "offset": 26
+  },
+  "0x21001614": {
+   "block": "g1_net_ram_blk_210015f0",
+   "offset": 36
+  },
+  "0x2100163c": {
+   "block": "g1_net_ram_blk_21001638",
+   "offset": 4
+  },
+  "0x21001664": {
+   "block": "g1_net_ram_blk_21001660",
+   "offset": 4
+  },
+  "0x21001670": {
+   "block": "g1_net_ram_blk_21001660",
+   "offset": 16
+  },
+  "0x2100167c": {
+   "block": "g1_net_ram_blk_21001660",
+   "offset": 28
+  },
+  "0x21001680": {
+   "block": "g1_net_ram_blk_21001660",
+   "offset": 32
+  },
+  "0x210016b4": {
+   "block": "g1_net_ram_blk_210016b0",
+   "offset": 4
+  },
+  "0x210016bc": {
+   "block": "g1_net_ram_blk_210016b0",
+   "offset": 12
+  },
+  "0x210016c0": {
+   "block": "g1_net_ram_blk_210016b0",
+   "offset": 16
+  },
+  "0x210016c8": {
+   "block": "g1_net_ram_blk_210016b0",
+   "offset": 24
+  },
+  "0x210016dc": {
+   "block": "g1_net_ram_blk_210016b0",
+   "offset": 44
+  },
+  "0x210016e0": {
+   "block": "g1_net_ram_blk_210016b0",
+   "offset": 48
+  },
+  "0x210016e4": {
+   "block": "g1_net_ram_blk_210016b0",
+   "offset": 52
+  },
+  "0x210016e8": {
+   "block": "g1_net_ram_blk_210016b0",
+   "offset": 56
+  },
+  "0x210016f0": {
+   "block": "g1_net_ram_blk_210016b0",
+   "offset": 64
+  },
+  "0x21001740": {
+   "block": "g1_net_ram_blk_21001740",
+   "offset": 0
+  },
+  "0x21001bca": {
+   "block": "g1_net_ram_blk_21001bc8",
+   "offset": 2
+  },
+  "0x21001bcc": {
+   "block": "g1_net_ram_blk_21001bc8",
+   "offset": 4
+  },
+  "0x21001bce": {
+   "block": "g1_net_ram_blk_21001bc8",
+   "offset": 6
+  },
+  "0x21001bd0": {
+   "block": "g1_net_ram_blk_21001bc8",
+   "offset": 8
+  },
+  "0x21001bd2": {
+   "block": "g1_net_ram_blk_21001bc8",
+   "offset": 10
+  },
+  "0x21001bd4": {
+   "block": "g1_net_ram_blk_21001bc8",
+   "offset": 12
+  },
+  "0x21001bd6": {
+   "block": "g1_net_ram_blk_21001bc8",
+   "offset": 14
+  },
+  "0x21001bdf": {
+   "block": "g1_net_ram_blk_21001bc8",
+   "offset": 23
+  },
+  "0x21001bf7": {
+   "block": "g1_net_ram_blk_21001bc8",
+   "offset": 47
+  },
+  "0x21001bf8": {
+   "block": "g1_net_ram_blk_21001bc8",
+   "offset": 48
+  },
+  "0x21001c08": {
+   "block": "g1_net_ram_blk_21001bc8",
+   "offset": 64
+  },
+  "0x21001c18": {
+   "block": "g1_net_ram_blk_21001bc8",
+   "offset": 80
+  },
+  "0x21001c1c": {
+   "block": "g1_net_ram_blk_21001bc8",
+   "offset": 84
+  },
+  "0x21001c20": {
+   "block": "g1_net_ram_blk_21001bc8",
+   "offset": 88
+  },
+  "0x21001c24": {
+   "block": "g1_net_ram_blk_21001bc8",
+   "offset": 92
+  },
+  "0x21001c88": {
+   "block": "g1_net_ram_blk_21001c88",
+   "offset": 0
+  },
+  "0x21001ce8": {
+   "block": "g1_net_ram_blk_21001ce8",
+   "offset": 0
+  },
+  "0x21001cf0": {
+   "block": "g1_net_ram_blk_21001ce8",
+   "offset": 8
+  },
+  "0x21001cf8": {
+   "block": "g1_net_ram_blk_21001ce8",
+   "offset": 16
+  },
+  "0x21001d00": {
+   "block": "g1_net_ram_blk_21001ce8",
+   "offset": 24
+  },
+  "0x21002b60": {
+   "block": "g1_net_ram_blk_21002b60",
+   "offset": 0
+  },
+  "0x21002b90": {
+   "block": "g1_net_ram_blk_21002b90",
+   "offset": 0
+  },
+  "0x21004258": {
+   "block": "g1_net_ram_blk_21004258",
+   "offset": 0
+  },
+  "0x210042f0": {
+   "block": "g1_net_ram_blk_210042f0",
+   "offset": 0
+  },
+  "0x210045b0": {
+   "block": "g1_net_ram_blk_210045b0",
+   "offset": 0
+  },
+  "0x210045c0": {
+   "block": "g1_net_ram_blk_210045b0",
+   "offset": 16
+  },
+  "0x210045e4": {
+   "block": "g1_net_ram_blk_210045e0",
+   "offset": 4
+  },
+  "0x210045e8": {
+   "block": "g1_net_ram_blk_210045e0",
+   "offset": 8
+  },
+  "0x210045ec": {
+   "block": "g1_net_ram_blk_210045e0",
+   "offset": 12
+  },
+  "0x210045f0": {
+   "block": "g1_net_ram_blk_210045e0",
+   "offset": 16
+  },
+  "0x210045f4": {
+   "block": "g1_net_ram_blk_210045e0",
+   "offset": 20
+  },
+  "0x21004604": {
+   "block": "g1_net_ram_blk_210045e0",
+   "offset": 36
+  },
+  "0x21004610": {
+   "block": "g1_net_ram_blk_210045e0",
+   "offset": 48
+  },
+  "0x21004614": {
+   "block": "g1_net_ram_blk_210045e0",
+   "offset": 52
+  },
+  "0x21004618": {
+   "block": "g1_net_ram_blk_210045e0",
+   "offset": 56
+  },
+  "0x21004628": {
+   "block": "g1_net_ram_blk_210045e0",
+   "offset": 72
+  },
+  "0x2100462c": {
+   "block": "g1_net_ram_blk_210045e0",
+   "offset": 76
+  },
+  "0x21004630": {
+   "block": "g1_net_ram_blk_210045e0",
+   "offset": 80
+  },
+  "0x21004638": {
+   "block": "g1_net_ram_blk_210045e0",
+   "offset": 88
+  },
+  "0x2100463c": {
+   "block": "g1_net_ram_blk_210045e0",
+   "offset": 92
+  },
+  "0x21004640": {
+   "block": "g1_net_ram_blk_210045e0",
+   "offset": 96
+  },
+  "0x21004670": {
+   "block": "g1_net_ram_blk_21004670",
+   "offset": 0
+  },
+  "0x21004674": {
+   "block": "g1_net_ram_blk_21004670",
+   "offset": 4
+  },
+  "0x21004690": {
+   "block": "g1_net_ram_blk_21004670",
+   "offset": 32
+  },
+  "0x210047fc": {
+   "block": "g1_net_ram_blk_210047f8",
+   "offset": 4
+  },
+  "0x21004800": {
+   "block": "g1_net_ram_blk_210047f8",
+   "offset": 8
+  },
+  "0x21004810": {
+   "block": "g1_net_ram_blk_210047f8",
+   "offset": 24
+  },
+  "0x21004834": {
+   "block": "g1_net_ram_blk_21004830",
+   "offset": 4
+  },
+  "0x21004964": {
+   "block": "g1_net_ram_blk_21004960",
+   "offset": 4
+  },
+  "0x2100496c": {
+   "block": "g1_net_ram_blk_21004960",
+   "offset": 12
+  },
+  "0x21004974": {
+   "block": "g1_net_ram_blk_21004960",
+   "offset": 20
+  },
+  "0x21004988": {
+   "block": "g1_net_ram_blk_21004960",
+   "offset": 40
+  },
+  "0x2100499c": {
+   "block": "g1_net_ram_blk_21004960",
+   "offset": 60
+  },
+  "0x210049a0": {
+   "block": "g1_net_ram_blk_21004960",
+   "offset": 64
+  },
+  "0x210049a4": {
+   "block": "g1_net_ram_blk_21004960",
+   "offset": 68
+  },
+  "0x210049a8": {
+   "block": "g1_net_ram_blk_21004960",
+   "offset": 72
+  },
+  "0x210049ac": {
+   "block": "g1_net_ram_blk_21004960",
+   "offset": 76
+  },
+  "0x210049b0": {
+   "block": "g1_net_ram_blk_21004960",
+   "offset": 80
+  },
+  "0x210049b4": {
+   "block": "g1_net_ram_blk_21004960",
+   "offset": 84
+  },
+  "0x210049d4": {
+   "block": "g1_net_ram_blk_21004960",
+   "offset": 116
+  },
+  "0x21004a34": {
+   "block": "g1_net_ram_blk_21004a30",
+   "offset": 4
+  },
+  "0x21004a60": {
+   "block": "g1_net_ram_blk_21004a60",
+   "offset": 0
+  },
+  "0x21004a8c": {
+   "block": "g1_net_ram_blk_21004a88",
+   "offset": 4
+  },
+  "0x21004a90": {
+   "block": "g1_net_ram_blk_21004a88",
+   "offset": 8
+  },
+  "0x21004a94": {
+   "block": "g1_net_ram_blk_21004a88",
+   "offset": 12
+  },
+  "0x21004a9c": {
+   "block": "g1_net_ram_blk_21004a88",
+   "offset": 20
+  },
+  "0x21004aec": {
+   "block": "g1_net_ram_blk_21004ae8",
+   "offset": 4
+  },
+  "0x21004af8": {
+   "block": "g1_net_ram_blk_21004ae8",
+   "offset": 16
+  },
+  "0x21004b04": {
+   "block": "g1_net_ram_blk_21004ae8",
+   "offset": 28
+  },
+  "0x21004b08": {
+   "block": "g1_net_ram_blk_21004ae8",
+   "offset": 32
+  },
+  "0x21004b30": {
+   "block": "g1_net_ram_blk_21004b30",
+   "offset": 0
+  },
+  "0x21004b48": {
+   "block": "g1_net_ram_blk_21004b30",
+   "offset": 24
+  },
+  "0x21004b4c": {
+   "block": "g1_net_ram_blk_21004b30",
+   "offset": 28
+  },
+  "0x21004b68": {
+   "block": "g1_net_ram_blk_21004b30",
+   "offset": 56
+  },
+  "0x21004b6c": {
+   "block": "g1_net_ram_blk_21004b30",
+   "offset": 60
+  },
+  "0x21004b7c": {
+   "block": "g1_net_ram_blk_21004b30",
+   "offset": 76
+  },
+  "0x21004b9c": {
+   "block": "g1_net_ram_blk_21004b30",
+   "offset": 108
+  },
+  "0x21004b9d": {
+   "block": "g1_net_ram_blk_21004b30",
+   "offset": 109
+  },
+  "0x21004b9e": {
+   "block": "g1_net_ram_blk_21004b30",
+   "offset": 110
+  },
+  "0x21004b9f": {
+   "block": "g1_net_ram_blk_21004b30",
+   "offset": 111
+  },
+  "0x21004c9b": {
+   "block": "g1_net_ram_blk_21004c98",
+   "offset": 3
+  },
+  "0x21004c9c": {
+   "block": "g1_net_ram_blk_21004c98",
+   "offset": 4
+  },
+  "0x21004c9d": {
+   "block": "g1_net_ram_blk_21004c98",
+   "offset": 5
+  },
+  "0x21004c9e": {
+   "block": "g1_net_ram_blk_21004c98",
+   "offset": 6
+  },
+  "0x21004c9f": {
+   "block": "g1_net_ram_blk_21004c98",
+   "offset": 7
+  },
+  "0x21004ca0": {
+   "block": "g1_net_ram_blk_21004c98",
+   "offset": 8
+  },
+  "0x21004ca1": {
+   "block": "g1_net_ram_blk_21004c98",
+   "offset": 9
+  },
+  "0x21004da1": {
+   "block": "g1_net_ram_blk_21004da0",
+   "offset": 1
+  },
+  "0x21004ea1": {
+   "block": "g1_net_ram_blk_21004ea0",
+   "offset": 1
+  },
+  "0x21004fa1": {
+   "block": "g1_net_ram_blk_21004fa0",
+   "offset": 1
+  },
+  "0x21004fa2": {
+   "block": "g1_net_ram_blk_21004fa0",
+   "offset": 2
+  },
+  "0x21004fa3": {
+   "block": "g1_net_ram_blk_21004fa0",
+   "offset": 3
+  },
+  "0x21004fa4": {
+   "block": "g1_net_ram_blk_21004fa0",
+   "offset": 4
+  },
+  "0x21004fa5": {
+   "block": "g1_net_ram_blk_21004fa0",
+   "offset": 5
+  },
+  "0x21004fa6": {
+   "block": "g1_net_ram_blk_21004fa0",
+   "offset": 6
+  },
+  "0x21004fa7": {
+   "block": "g1_net_ram_blk_21004fa0",
+   "offset": 7
+  },
+  "0x21004fa8": {
+   "block": "g1_net_ram_blk_21004fa0",
+   "offset": 8
+  },
+  "0x21004fa9": {
+   "block": "g1_net_ram_blk_21004fa0",
+   "offset": 9
+  },
+  "0x21004faa": {
+   "block": "g1_net_ram_blk_21004fa0",
+   "offset": 10
+  },
+  "0x21004fab": {
+   "block": "g1_net_ram_blk_21004fa0",
+   "offset": 11
+  },
+  "0x210051ae": {
+   "block": "g1_net_ram_blk_210051a8",
+   "offset": 6
+  },
+  "0x21005256": {
+   "block": "g1_net_ram_blk_21005250",
+   "offset": 6
+  },
+  "0x21005a56": {
+   "block": "g1_net_ram_blk_21005a50",
+   "offset": 6
+  },
+  "0x21006256": {
+   "block": "g1_net_ram_blk_21006250",
+   "offset": 6
+  },
+  "0x2100625a": {
+   "block": "g1_net_ram_blk_21006250",
+   "offset": 10
+  },
+  "0x2100625e": {
+   "block": "g1_net_ram_blk_21006250",
+   "offset": 14
+  },
+  "0x2100635b": {
+   "block": "g1_net_ram_blk_21006358",
+   "offset": 3
+  },
+  "0x2100635d": {
+   "block": "g1_net_ram_blk_21006358",
+   "offset": 5
+  },
+  "0x21006458": {
+   "block": "g1_net_ram_blk_21006458",
+   "offset": 0
+  },
+  "0x21006459": {
+   "block": "g1_net_ram_blk_21006458",
+   "offset": 1
+  },
+  "0x2100645a": {
+   "block": "g1_net_ram_blk_21006458",
+   "offset": 2
+  },
+  "0x2100645b": {
+   "block": "g1_net_ram_blk_21006458",
+   "offset": 3
+  },
+  "0x2100645c": {
+   "block": "g1_net_ram_blk_21006458",
+   "offset": 4
+  },
+  "0x2100645d": {
+   "block": "g1_net_ram_blk_21006458",
+   "offset": 5
+  },
+  "0x2100645e": {
+   "block": "g1_net_ram_blk_21006458",
+   "offset": 6
+  },
+  "0x2100645f": {
+   "block": "g1_net_ram_blk_21006458",
+   "offset": 7
+  },
+  "0x21006460": {
+   "block": "g1_net_ram_blk_21006458",
+   "offset": 8
+  },
+  "0x21006461": {
+   "block": "g1_net_ram_blk_21006458",
+   "offset": 9
+  },
+  "0x21007d80": {
+   "block": "g1_net_ram_blk_21007d80",
+   "offset": 0
+  },
+  "0x21008a00": {
+   "block": "g1_net_ram_blk_21008a00",
+   "offset": 0
+  }
+ },
+ "owned": [],
+ "left_literal": [],
+ "pins": {
+  "0x2100057c": [
+   "g_net_last_fault_code"
+  ],
+  "0x21000580": [
+   "g_zephyr_log_level"
+  ],
+  "0x210005ec": [
+   "g_210005ec"
+  ],
+  "0x21000684": [
+   "g_net_radio_crc_scratch"
+  ],
+  "0x210006a8": [
+   "g_sdc_res_pool_slot_tbl"
+  ],
+  "0x2100071c": [
+   "g_net_conn_teardown_ctx_b"
+  ],
+  "0x21000750": [
+   "g_net_kernel_timeout_dlist_head"
+  ],
+  "0x21000cfc": [
+   "g_ll_conn_pdu_hdr_ptr"
+  ],
+  "0x21000d18": [
+   "g_net_radio_addr_match_tbl"
+  ],
+  "0x21001bce": [
+   "g_21001bce"
+  ],
+  "0x210045e4": [
+   "g_net_ctrl_report_len"
+  ],
+  "0x210045e8": [
+   "g_net_ctrl_report_field0"
+  ],
+  "0x210045ec": [
+   "g_net_ctrl_report_field1"
+  ],
+  "0x210045f0": [
+   "g_net_ctrl_report_field2"
+  ],
+  "0x210045f4": [
+   "g_sdc_hci_transport_obj"
+  ],
+  "0x21004618": [
+   "g_esb_sync_message"
+  ],
+  "0x21004628": [
+   "g_net_ipc_msg_data"
+  ],
+  "0x2100463c": [
+   "g_net_evt_callback_fn"
+  ],
+  "0x21004670": [
+   "g_21004670"
+  ],
+  "0x21004674": [
+   "g_21004674"
+  ],
+  "0x21004690": [
+   "g_21004690"
+  ],
+  "0x210047fc": [
+   "g_net_047fc"
+  ],
+  "0x2100499c": [
+   "g_esb_event_handler_fn"
+  ],
+  "0x210049a0": [
+   "g_net_radio_irq_continuation_ptr"
+  ],
+  "0x210049a4": [
+   "g_net_radio_op_status"
+  ],
+  "0x210049a8": [
+   "g_esb_tx_busy_flag"
+  ],
+  "0x210049ac": [
+   "g_esb_pipe_cfg_field"
+  ],
+  "0x210049b0": [
+   "g_210049b0"
+  ],
+  "0x210049d4": [
+   "g_esb_tx_buf_pool"
+  ],
+  "0x21004a34": [
+   "g_net_queue_stats_block_b"
+  ],
+  "0x21004a8c": [
+   "g_net_rf_cur_frame_ptr"
+  ],
+  "0x21004a90": [
+   "g_21004a90"
+  ],
+  "0x21004a94": [
+   "g_esb_state"
+  ],
+  "0x21004a9c": [
+   "g_net_radio_mode_state"
+  ],
+  "0x21004aec": [
+   "g_sdc_radio_context_area"
+  ],
+  "0x21004af8": [
+   "g_net_gpiote_evt_handler_table"
+  ],
+  "0x21004b04": [
+   "g_net_debug_trace_level"
+  ],
+  "0x21004b08": [
+   "g_net_debug_trace_cb"
+  ],
+  "0x21004b30": [
+   "g_net_ipc_shm_pool_desc_ptr"
+  ],
+  "0x21004b6c": [
+   "announce_remaining"
+  ],
+  "0x21004b9e": [
+   "g_net_radio_temp_raw"
+  ],
+  "0x21004c9c": [
+   "g_net_ctrl_rx_ready_flag"
+  ],
+  "0x21004c9f": [
+   "g_net_ctrl_status_byte"
+  ],
+  "0x21004da1": [
+   "g_esb_rx_payload"
+  ],
+  "0x21004ea1": [
+   "g_esb_sync_response_packet"
+  ],
+  "0x21004fa2": [
+   "g_net_ipc_msg_type"
+  ],
+  "0x21004fa3": [
+   "g_esb_sync_pending_flag"
+  ],
+  "0x21004fa6": [
+   "g_net_evt_last_notified_state"
+  ],
+  "0x21004fa7": [
+   "g_sdc_clock_recalc_flag"
+  ],
+  "0x21004fa8": [
+   "g_sdc_clock_history_idx"
+  ],
+  "0x21004fa9": [
+   "g_net_rtc_timer_sync_valid"
+  ],
+  "0x21004faa": [
+   "g_sdc_clock_calc_valid"
+  ],
+  "0x21004fab": [
+   "g_sdc_clock_calc_lock"
+  ],
+  "0x210051ae": [
+   "g_net_pending_tx_pkt"
+  ],
+  "0x21006256": [
+   "g_esb_pipe_pid_cnt"
+  ],
+  "0x2100625a": [
+   "g_2100625a"
+  ],
+  "0x2100635b": [
+   "g_net_rf_ack_hdr_buf"
+  ],
+  "0x21006458": [
+   "g_net_radio_busy_flag"
+  ],
+  "0x21006459": [
+   "g_esb_enabled_flag"
+  ],
+  "0x2100645a": [
+   "g_net_radio_trx_ppi_ch_a"
+  ],
+  "0x2100645b": [
+   "g_esb_ppi_ch_id_1"
+  ],
+  "0x2100645c": [
+   "g_154_dppi_channel_ack"
+  ],
+  "0x2100645d": [
+   "g_esb_ppi_ch_id_3"
+  ],
+  "0x2100645e": [
+   "g_net_radio_trx_ppi_ch_e"
+  ],
+  "0x2100645f": [
+   "g_esb_ppi_ch_id_5"
+  ],
+  "0x21006460": [
+   "g_esb_ppi_ch_id_6"
+  ],
+  "0x21000010": [
+   "g_net_esb_own_addr"
+  ],
+  "0x2100001c": [
+   "g_net_ble_pending_channel_idx"
+  ],
+  "0x21000020": [
+   "g_net_flags_bitmap64"
+  ],
+  "0x2100003c": [
+   "g_net_clk_conv_cache_key"
+  ],
+  "0x21000040": [
+   "g_net_clk_conv_cache_ext"
+  ],
+  "0x21000044": [
+   "g_net_sdc_optfeat_fp_a"
+  ],
+  "0x21000048": [
+   "g_net_sdc_optfeat_fp_c"
+  ],
+  "0x2100004c": [
+   "g_net_sdc_optfeat_fp_b"
+  ],
+  "0x21000050": [
+   "g_21000050"
+  ],
+  "0x21000054": [
+   "g_21000054"
+  ],
+  "0x21000058": [
+   "g_21000058"
+  ],
+  "0x2100005c": [
+   "g_2100005c"
+  ],
+  "0x210001d4": [
+   "g_210001d4"
+  ],
+  "0x210001e0": [
+   "g_210001e0"
+  ],
+  "0x210001e4": [
+   "g_210001e4"
+  ],
+  "0x210001ec": [
+   "g_210001ec"
+  ],
+  "0x210001f4": [
+   "g_net_link_ctx_a_close_cb"
+  ],
+  "0x21000214": [
+   "g_net_conn_event_cb"
+  ],
+  "0x21000308": [
+   "g_sdc_ll_ctx_field_308"
+  ],
+  "0x210004ac": [
+   "g_210004ac"
+  ],
+  "0x210004d0": [
+   "g_net_link_ctx_b_close_cb"
+  ],
+  "0x210004d8": [
+   "g_net_ble_conn_setup_err_cb"
+  ],
+  "0x210004dc": [
+   "g_net_ble_conn_setup_ok_cb"
+  ],
+  "0x21000528": [
+   "g_net_cb_handler_fn"
+  ],
+  "0x2100052c": [
+   "g_net_cb_registered_flag"
+  ],
+  "0x21000530": [
+   "g_net_radio_ops_table_ptr"
+  ],
+  "0x21000574": [
+   "g_net_driver_api_ptr"
+  ],
+  "0x21000a30": [
+   "g_net_layout_count_table"
+  ],
+  "0x21000a40": [
+   "g_net_mac_pib_ext"
+  ],
+  "0x21000a58": [
+   "g_21000a58"
+  ],
+  "0x21000a60": [
+   "g_net_addr_record"
+  ],
+  "0x21000a64": [
+   "g_21000a64"
+  ],
+  "0x21000a68": [
+   "g_21000a68"
+  ],
+  "0x21000b78": [
+   "g_21000b78"
+  ],
+  "0x21000ba8": [
+   "g_net_bump_alloc_state"
+  ],
+  "0x21000bac": [
+   "g_net_bump_alloc_cursor"
+  ],
+  "0x21000bb0": [
+   "g_net_bump_alloc_offset"
+  ],
+  "0x21000bb4": [
+   "g_net_obj_table_root_ptr"
+  ],
+  "0x21000bb8": [
+   "g_net_bufpool_slot_cnt"
+  ],
+  "0x21000bbc": [
+   "g_net_bufpool_base_ptr"
+  ],
+  "0x21000bc0": [
+   "g_net_storage_area_id"
+  ],
+  "0x21000bc4": [
+   "g_net_retry_handle"
+  ],
+  "0x21000bc8": [
+   "g_net_retry_param2"
+  ],
+  "0x21000bc9": [
+   "g_sdc_last_cfg_param3"
+  ],
+  "0x21000be4": [
+   "g_21000be4"
+  ],
+  "0x21000be8": [
+   "g_21000be8"
+  ],
+  "0x21000bec": [
+   "g_net_pool_blk_cnt"
+  ],
+  "0x21000bf0": [
+   "g_net_pool_blk_size"
+  ],
+  "0x21000c2a": [
+   "g_net_ctrl_pending_req_busy_flag"
+  ],
+  "0x21000c2c": [
+   "g_net_ctrl_pending_req_id"
+  ],
+  "0x21000c2e": [
+   "g_21000c2e"
+  ],
+  "0x21000c30": [
+   "g_net_ctrl_pending_req_target_id"
+  ],
+  "0x21000c34": [
+   "g_net_addr_cache_pair"
+  ],
+  "0x21000c48": [
+   "g_net_radio_drv_ctx"
+  ],
+  "0x21000c6c": [
+   "g_net_link_drv_ctx_0x24"
+  ],
+  "0x21000c90": [
+   "g_ll_conn_empty_pdu_buf"
+  ],
+  "0x21000cc4": [
+   "g_ll_conn_tx_ctx_addr"
+  ],
+  "0x21000cd0": [
+   "g_ll_conn_trace_ctx_addr"
+  ],
+  "0x21000ea6": [
+   "g_net_rssi_cal_offset"
+  ],
+  "0x21000ea7": [
+   "g_21000ea7"
+  ],
+  "0x21000ea8": [
+   "g_net_esb_own_addr_valid"
+  ],
+  "0x21000eac": [
+   "g_net_ble_conn_create_ctx"
+  ],
+  "0x21000eae": [
+   "g_sdc_max_frag_len"
+  ],
+  "0x21000ec8": [
+   "g_net_pending_work_list"
+  ],
+  "0x21000ee0": [
+   "g_net_ctrl_timeout_node_addr"
+  ],
+  "0x21000ef2": [
+   "g_21000ef2"
+  ],
+  "0x21000ef4": [
+   "g_net_prng_state"
+  ],
+  "0x21000ef8": [
+   "g_net_prng_state_s1"
+  ],
+  "0x21000efc": [
+   "g_net_esb_prng_state_hi"
+  ],
+  "0x21000f00": [
+   "g_net_esb_prng_state_lo"
+  ],
+  "0x21000f04": [
+   "g_sdc_rssi_filter_cfg"
+  ],
+  "0x21000f14": [
+   "g_net_lookup_table_desc"
+  ],
+  "0x21000f20": [
+   "g_net_own_addr_info"
+  ],
+  "0x21000f24": [
+   "g_21000f24"
+  ],
+  "0x21000f41": [
+   "g_net_selected_peer_addr"
+  ],
+  "0x21000f45": [
+   "g_net_selected_peer_id"
+  ],
+  "0x21000f54": [
+   "g_net_radio_ack_pending_flag"
+  ],
+  "0x21000f58": [
+   "g_21000f58"
+  ],
+  "0x21000f5c": [
+   "g_21000f5c"
+  ],
+  "0x21000f60": [
+   "g_net_txbuf_alloc_idx"
+  ],
+  "0x21000f64": [
+   "g_21000f64"
+  ],
+  "0x21000f66": [
+   "g_21000f66"
+  ],
+  "0x21000f68": [
+   "g_net_link_ctx_a"
+  ],
+  "0x21000fec": [
+   "g_net_link_ctx_field_buf"
+  ],
+  "0x21001008": [
+   "g_net_ctrlblk_chan_field"
+  ],
+  "0x21001019": [
+   "g_sdc_ll_ctx_param"
+  ],
+  "0x2100104a": [
+   "g_net_radio_pending_proc_flag"
+  ],
+  "0x2100104c": [
+   "g_2100104c"
+  ],
+  "0x21001058": [
+   "g_ll_conn_default_ctx"
+  ],
+  "0x2100109c": [
+   "g_2100109c"
+  ],
+  "0x210010a0": [
+   "g_net_session_state_block"
+  ],
+  "0x210010f0": [
+   "g_net_session_queue_obj"
+  ],
+  "0x2100111c": [
+   "g_net_conn_teardown_busy_flag"
+  ],
+  "0x2100111d": [
+   "g_2100111d"
+  ],
+  "0x21001120": [
+   "g_21001120"
+  ],
+  "0x21001124": [
+   "g_net_link_ctx_b"
+  ],
+  "0x2100113c": [
+   "g_timeout_list"
+  ],
+  "0x21001140": [
+   "g_21001140"
+  ],
+  "0x21001208": [
+   "g_net_ble_conn_role_cfg"
+  ],
+  "0x21001225": [
+   "g_net_bufpool_id_tag"
+  ],
+  "0x2100144a": [
+   "g_net_radio_tx_power_level"
+  ],
+  "0x210014a8": [
+   "g_210014a8"
+  ],
+  "0x210014d8": [
+   "g_net_ccm_op_status"
+  ],
+  "0x210014dc": [
+   "g_net_radio_pending_reset_flag"
+  ],
+  "0x210015f7": [
+   "g_210015f7"
+  ],
+  "0x21001609": [
+   "g_21001609"
+  ],
+  "0x2100160a": [
+   "g_2100160a"
+  ],
+  "0x21001614": [
+   "g_21001614"
+  ],
+  "0x2100163c": [
+   "g_net_ble_session_key_buf"
+  ],
+  "0x21001664": [
+   "g_net_radio_frame_desc"
+  ],
+  "0x2100167c": [
+   "g_2100167c"
+  ],
+  "0x21001680": [
+   "g_21001680"
+  ],
+  "0x210016b4": [
+   "g_net_res_reg_key"
+  ],
+  "0x210016bc": [
+   "g_net_res_reg_handle"
+  ],
+  "0x210016c0": [
+   "g_net_res_reg_param16"
+  ],
+  "0x210016dc": [
+   "g_210016dc"
+  ],
+  "0x210016e0": [
+   "g_net_deferred_cb_fn"
+  ],
+  "0x210016e8": [
+   "g_210016e8"
+  ],
+  "0x210016f0": [
+   "g_libc_tz_calc_state"
+  ],
+  "0x21001bca": [
+   "g_net_deferred_irq_num"
+  ],
+  "0x21001bcc": [
+   "g_net_link_state"
+  ],
+  "0x21001bd0": [
+   "g_154_critical_section_nest_cnt"
+  ],
+  "0x21001bd2": [
+   "g_21001bd2"
+  ],
+  "0x21001bd4": [
+   "g_21001bd4"
+  ],
+  "0x21001bd6": [
+   "g_net_irq_lock_nest_cnt"
+  ],
+  "0x21001bdf": [
+   "g_net_irq_lock_suppress_flag"
+  ],
+  "0x21001bf7": [
+   "g_net_radio_timer_active_flag"
+  ],
+  "0x21001bf8": [
+   "g_net_radio_timer_sync_state"
+  ],
+  "0x21001c18": [
+   "g_21001c18"
+  ],
+  "0x21001c88": [
+   "g_net_task_state_struct"
+  ]
+ },
+ "totals": {
+  "addresses_in": 300,
+  "owned": 0,
+  "left_literal": 0,
+  "relocated": 300,
+  "blocks": 70,
+  "block_bytes": 3416,
+  "blocks_with_shipped_data": 7,
+  "shipped_data_bytes": 416,
+  "relocation_aware_pointer_words": 6,
+  "colliding_pins_in": 66,
+  "colliding_literals_in": 69
+ }
+}

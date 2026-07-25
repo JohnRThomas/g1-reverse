@@ -32,7 +32,7 @@ extern int thunk_FUN_0101f650(void *a);
 extern void FUN_01031814(void);
 
 #define DAT_b50 0x0103af63u
-#define DAT_b54 0x21004974u
+#define DAT_b54 G1N_21004974
 #define DAT_b58 ((unsigned long)&rodata_103d73e) /*=0x103d73e*/
 #define DAT_b5c ((unsigned long)&rodata_103e216) /*=0x103e216*/
 #define DAT_b60 0x01000003u
@@ -42,7 +42,7 @@ extern void FUN_01031814(void);
 #define DAT_b70 ((unsigned long)&rodata_103e23d) /*=0x103e23d*/
 #define DAT_b74 ((unsigned long)&rodata_103c11c) /*=0x103c11c*/
 #define DAT_b78 ((unsigned long)&rodata_103e25d) /*=0x103e25d*/
-#define DAT_b7c 0x21002b90u
+#define DAT_b7c G1N_21002b90
 #define DAT_b80 ((unsigned long)&rodata_10320d9) /*=0x10320d9*/
 #define DAT_b84 0x003d0900u
 

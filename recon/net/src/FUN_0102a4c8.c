@@ -1,3 +1,41 @@
+/* P4 iteration 26 - structural CPUNET RAM relocation.  Self-contained
+   so tools/parity keeps compiling this canonical body unchanged: the
+   #else arm is the shipped literal.  See recon/application/
+   gen_net_ram_relocs.py and recon/symbols/g1_net_ram_reloc.h. */
+#ifdef G1_COHESIVE_BUILD
+extern unsigned char g1_net_ram_blk_21000570[];
+extern unsigned char g1_net_ram_blk_21001ce8[];
+extern unsigned char g1_net_ram_blk_210045e0[];
+extern unsigned char g1_net_ram_blk_21004b30[];
+extern unsigned char g1_net_ram_blk_21004c98[];
+#define G1N_21000580 ((unsigned long)(g1_net_ram_blk_21000570 + 0x10))
+#define G1N_21001cf0 ((unsigned long)(g1_net_ram_blk_21001ce8 + 0x8))
+#define G1N_210045e8 ((unsigned long)(g1_net_ram_blk_210045e0 + 0x8))
+#define G1N_210045ec ((unsigned long)(g1_net_ram_blk_210045e0 + 0xc))
+#define G1N_210045f0 ((unsigned long)(g1_net_ram_blk_210045e0 + 0x10))
+#define G1N_210045f4 ((unsigned long)(g1_net_ram_blk_210045e0 + 0x14))
+#define G1N_21004b9c ((unsigned long)(g1_net_ram_blk_21004b30 + 0x6c))
+#define G1N_21004b9d ((unsigned long)(g1_net_ram_blk_21004b30 + 0x6d))
+#define G1N_21004c9b ((unsigned long)(g1_net_ram_blk_21004c98 + 0x3))
+#define G1N_21004c9c ((unsigned long)(g1_net_ram_blk_21004c98 + 0x4))
+#define G1N_21004c9d ((unsigned long)(g1_net_ram_blk_21004c98 + 0x5))
+#define G1N_21004c9f ((unsigned long)(g1_net_ram_blk_21004c98 + 0x7))
+#define G1N_21004ca0 ((unsigned long)(g1_net_ram_blk_21004c98 + 0x8))
+#else
+#define G1N_21000580 0x21000580ul
+#define G1N_21001cf0 0x21001cf0ul
+#define G1N_210045e8 0x210045e8ul
+#define G1N_210045ec 0x210045ecul
+#define G1N_210045f0 0x210045f0ul
+#define G1N_210045f4 0x210045f4ul
+#define G1N_21004b9c 0x21004b9cul
+#define G1N_21004b9d 0x21004b9dul
+#define G1N_21004c9b 0x21004c9bul
+#define G1N_21004c9c 0x21004c9cul
+#define G1N_21004c9d 0x21004c9dul
+#define G1N_21004c9f 0x21004c9ful
+#define G1N_21004ca0 0x21004ca0ul
+#endif
 /* net-core FUN_0102a4c8 @ 0x0102a4c8
  * Readable identity: g1_esb_event_handler.
  * Raw back-map: main stores runtime Thumb pointer 0x0102acc9.
@@ -26,19 +64,19 @@ struct g1_esb_event {
 
 void g1_esb_event_handler(const struct g1_esb_event *event)
 {
-    volatile int32_t *const log_level = (volatile int32_t *)0x21000580u;
-    volatile uint32_t *const rx_count = (volatile uint32_t *)0x210045e8u;
-    volatile uint32_t *const tx_failed_count = (volatile uint32_t *)0x210045ecu;
-    volatile uint32_t *const tx_success_count = (volatile uint32_t *)0x210045f0u;
-    volatile uint32_t *const service_slot = (volatile uint32_t *)0x210045f4u;
-    volatile uint8_t *const event_busy = (volatile uint8_t *)0x21004ca0u;
-    volatile uint8_t *const rx_state = (volatile uint8_t *)0x21004c9bu;
-    volatile uint8_t *const rx_ready = (volatile uint8_t *)0x21004c9cu;
-    volatile uint8_t *const rx_role = (volatile uint8_t *)0x21004c9du;
-    volatile uint8_t *const rx_channel = (volatile uint8_t *)0x21004c9fu;
-    volatile uint8_t *const retry_count = (volatile uint8_t *)0x21004b9du;
-    volatile uint8_t *const last_sequence = (volatile uint8_t *)0x21004b9cu;
-    volatile uint64_t *const last_rx_time = (volatile uint64_t *)0x21001cf0u;
+    volatile int32_t *const log_level = (volatile int32_t *)G1N_21000580;
+    volatile uint32_t *const rx_count = (volatile uint32_t *)G1N_210045e8;
+    volatile uint32_t *const tx_failed_count = (volatile uint32_t *)G1N_210045ec;
+    volatile uint32_t *const tx_success_count = (volatile uint32_t *)G1N_210045f0;
+    volatile uint32_t *const service_slot = (volatile uint32_t *)G1N_210045f4;
+    volatile uint8_t *const event_busy = (volatile uint8_t *)G1N_21004ca0;
+    volatile uint8_t *const rx_state = (volatile uint8_t *)G1N_21004c9b;
+    volatile uint8_t *const rx_ready = (volatile uint8_t *)G1N_21004c9c;
+    volatile uint8_t *const rx_role = (volatile uint8_t *)G1N_21004c9d;
+    volatile uint8_t *const rx_channel = (volatile uint8_t *)G1N_21004c9f;
+    volatile uint8_t *const retry_count = (volatile uint8_t *)G1N_21004b9d;
+    volatile uint8_t *const last_sequence = (volatile uint8_t *)G1N_21004b9c;
+    volatile uint64_t *const last_rx_time = (volatile uint64_t *)G1N_21001cf0;
 
     *event_busy = 1;
 

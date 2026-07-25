@@ -1,3 +1,22 @@
+/* P4 iteration 26 - structural CPUNET RAM relocation.  Self-contained
+   so tools/parity keeps compiling this canonical body unchanged: the
+   #else arm is the shipped literal.  See recon/application/
+   gen_net_ram_relocs.py and recon/symbols/g1_net_ram_reloc.h. */
+#ifdef G1_COHESIVE_BUILD
+extern unsigned char g1_net_ram_blk_210045e0[];
+extern unsigned char g1_net_ram_blk_21004fa0[];
+#define G1N_2100462c ((unsigned long)(g1_net_ram_blk_210045e0 + 0x4c))
+#define G1N_21004630 ((unsigned long)(g1_net_ram_blk_210045e0 + 0x50))
+#define G1N_21004638 ((unsigned long)(g1_net_ram_blk_210045e0 + 0x58))
+#define G1N_21004fa4 ((unsigned long)(g1_net_ram_blk_21004fa0 + 0x4))
+#define G1N_21004fa6 ((unsigned long)(g1_net_ram_blk_21004fa0 + 0x6))
+#else
+#define G1N_2100462c 0x2100462cul
+#define G1N_21004630 0x21004630ul
+#define G1N_21004638 0x21004638ul
+#define G1N_21004fa4 0x21004fa4ul
+#define G1N_21004fa6 0x21004fa6ul
+#endif
 /* net-core FUN_0102b944 @ 0x0102b944; true code extent 0x232. */
 #include <stdint.h>
 
@@ -14,7 +33,7 @@ typedef struct {
     volatile void *request;
 } timeslot_return_t;
 
-#define RETURN_PARAM ((timeslot_return_t *)0x21004630u)
+#define RETURN_PARAM ((timeslot_return_t *)G1N_21004630)
 /* P4 iteration 21 - the three shipped mpsl_timeslot_request_t objects.
  *
  * netcore .data (read with tools/net_extract.py at the net .data LMA,
@@ -71,8 +90,8 @@ timeslot_return_t *FUN_0102b944(uint8_t session_id, uint32_t signal_type,
     case 0:
         RETURN_PARAM->action = 0;
         select_role_request();
-        *(volatile uint8_t *)0x21004fa4u = 0;
-        *(volatile uint32_t *)0x21004638u = 0;
+        *(volatile uint8_t *)G1N_21004fa4 = 0;
+        *(volatile uint32_t *)G1N_21004638 = 0;
         NVIC_BASE[0x180u / 4u] = 0x100u;
         RADIO_BASE[0xffcu / 4u] = 0;
         RADIO_BASE[0xffcu / 4u] = 1;
@@ -87,7 +106,7 @@ timeslot_return_t *FUN_0102b944(uint8_t session_id, uint32_t signal_type,
 
     case 1: {
         uint32_t role_signal = (uint8_t)FUN_0102b7c4();
-        volatile uint32_t *retry = (volatile uint32_t *)0x2100462cu;
+        volatile uint32_t *retry = (volatile uint32_t *)G1N_2100462c;
 
         if (DPPIC_BASE[0x140u / 4u] != 0u) {
             DPPIC_BASE[0x308u / 4u] = 0x10000u;
@@ -112,7 +131,7 @@ timeslot_return_t *FUN_0102b944(uint8_t session_id, uint32_t signal_type,
             DPPIC_BASE[0x144u / 4u] = 0;
             (void)DPPIC_BASE[0x144u / 4u];
             select_role_request();
-            uint8_t pending = *(volatile uint8_t *)0x21004fa4u;
+            uint8_t pending = *(volatile uint8_t *)G1N_21004fa4;
             RETURN_PARAM->action = 3;
             if (pending != 0u) {
                 RETURN_PARAM->request = SPECIAL_REQUEST;
@@ -123,7 +142,7 @@ timeslot_return_t *FUN_0102b944(uint8_t session_id, uint32_t signal_type,
 
     case 2:
         RETURN_PARAM->action = 0;
-        if (*(volatile uint8_t *)0x21004fa6u != 0u) {
+        if (*(volatile uint8_t *)G1N_21004fa6 != 0u) {
             FUN_010327d8();
         } else {
             NVIC_BASE[0x180u / 4u] = 0x100u;
@@ -134,8 +153,8 @@ timeslot_return_t *FUN_0102b944(uint8_t session_id, uint32_t signal_type,
 
     case 3:
         RETURN_PARAM->action = 0;
-        *(volatile uint8_t *)0x21004fa4u = 1;
-        *(volatile uint32_t *)0x2100462cu = 0;
+        *(volatile uint8_t *)G1N_21004fa4 = 1;
+        *(volatile uint32_t *)G1N_2100462c = 0;
         FUN_0102b7d0(0);
         break;
 
@@ -158,7 +177,7 @@ timeslot_return_t *FUN_0102b944(uint8_t session_id, uint32_t signal_type,
         if (FUN_0102a498() != 1u) {
             uint32_t role = FUN_0102a4a4();
             if (role != 1u) {
-                ++*(volatile uint32_t *)0x21004638u;
+                ++*(volatile uint32_t *)G1N_21004638;
                 role = 2;
             }
             FUN_0102b900(role);

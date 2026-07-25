@@ -16,7 +16,7 @@ extern void sdc_assertion_fail(unsigned module, unsigned line,
 void FUN_010202fc(uint32_t channel, uint32_t mode,
                   uint32_t detail, uint32_t context)
 {
-    volatile uint8_t *state = (volatile uint8_t *)0x210015f0u;
+    volatile uint8_t *state = (volatile uint8_t *)G1N_210015f0;
     volatile uint32_t *radio = (volatile uint32_t *)REG_41008000 /*=0x41008000*/;
     uint32_t config;
 

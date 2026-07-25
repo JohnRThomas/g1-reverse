@@ -28,8 +28,8 @@ void FUN_0102b50c(const void *event)
     volatile uint8_t *const message       = (volatile uint8_t *)((unsigned long)&g_esb_sync_message) /*=0x21004618*/;
     void (*volatile *const dispatch)(volatile uint8_t *) =
         (void (*volatile *)(volatile uint8_t *))((unsigned long)&g_net_ipc_msg_data) /*=0x21004628*/;
-    volatile uint8_t *const clock_ready   = (volatile uint8_t *)0x21004fa1u;
-    volatile uint8_t *const receive_mode  = (volatile uint8_t *)0x21004fa2u;
+    volatile uint8_t *const clock_ready   = (volatile uint8_t *)G1N_21004fa1;
+    volatile uint8_t *const receive_mode  = (volatile uint8_t *)G1N_21004fa2;
     volatile uint8_t *const rx            = (volatile uint8_t *)((unsigned long)&g_esb_rx_payload) /*=0x21004da1*/;
     volatile uint8_t *const service_state = (volatile uint8_t *)((unsigned long)&g_net_ctrl_rx_ready_flag) /*=0x21004c9c*/;
     uint8_t id = *(const volatile uint8_t *)event;

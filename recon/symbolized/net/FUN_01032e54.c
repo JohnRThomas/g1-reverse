@@ -28,11 +28,11 @@ void FUN_01032e54(void)
 {
     volatile unsigned int *radio = (volatile unsigned int *)0x41008000u;
     volatile unsigned int *fifo = (volatile unsigned int *)((unsigned long)&g_net_queue_stats_block_b) /*=0x21004a34*/;
-    volatile unsigned char *pids = (volatile unsigned char *)0x21004b7cu;
-    volatile unsigned char *hdr = (volatile unsigned char *)0x2100625eu;
+    volatile unsigned char *pids = (volatile unsigned char *)G1N_21004b7c;
+    volatile unsigned char *hdr = (volatile unsigned char *)G1N_2100625e;
     volatile unsigned char *cfg = (volatile unsigned char *)((unsigned long)&g_esb_state) /*=0x21004a94*/;
     volatile unsigned char *stage = (volatile unsigned char *)((unsigned long)&g_net_rf_ack_hdr_buf) /*=0x2100635b*/;
-    volatile unsigned int *q = (volatile unsigned int *)0x21004a60u;
+    volatile unsigned int *q = (volatile unsigned int *)G1N_21004a60;
     volatile unsigned int *slot = (volatile unsigned int *)((unsigned long)&g_net_rf_cur_frame_ptr) /*=0x21004a8c*/;
     volatile unsigned int *pending = (volatile unsigned int *)((unsigned long)&g_210049b0) /*=0x210049b0*/;
     void (*handler)(unsigned int);
@@ -65,7 +65,7 @@ void FUN_01032e54(void)
     }
 
     controller_mode2_state_validate();
-    FUN_010218c0(0x0103cae8u, 0x2100065cu);
+    FUN_010218c0(0x0103cae8u, G1N_2100065c);
     radio[0x200u / 4u] = 0x11bu;
     proto = cfg[0];
     if (proto == 0u) {
@@ -80,7 +80,7 @@ void FUN_01032e54(void)
 
     cnt = radio[0x408u / 4u];
     entry = 0u;
-    head = (volatile unsigned int *)(0x210049b4u + (cnt & 0xffu) * 4u);
+    head = (volatile unsigned int *)(G1N_210049b4 + (cnt & 0xffu) * 4u);
     cnt = q[0x28u / 4u];
     if (cnt != 0u) {
         entry = *head;

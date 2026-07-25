@@ -11,7 +11,7 @@ extern __attribute__((noreturn)) void FUN_010256dc(uint32_t, uint32_t, ...);
 
 void FUN_010257e4(uint32_t callback)
 {
-    volatile uint8_t *const slots = (volatile uint8_t *)0x21001c24u;
+    volatile uint8_t *const slots = (volatile uint8_t *)G1N_21001c24;
     uint32_t index = 5;
 
     do {

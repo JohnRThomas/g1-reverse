@@ -7,7 +7,7 @@
 
 unsigned int FUN_0101fba4(void)
 {
-    volatile unsigned char * const p = (volatile unsigned char * const)0x21001498;
+    volatile unsigned char * const p = (volatile unsigned char * const)G1N_21001498;
     if (p[0x10] == 0) return 0x138;
     return 0x214;
 }

@@ -39,7 +39,7 @@ enum {
 
 void sdc_ecb_run_blocking(uint32_t ecb_data_address)
 {
-    volatile uint8_t *const ownership = (volatile uint8_t *)0x21000bf4;
+    volatile uint8_t *const ownership = (volatile uint8_t *)G1N_21000bf4;
     volatile struct nrf_ecb_registers *const ecb =
         (volatile struct nrf_ecb_registers *)REG_4100d000 /*=0x4100d000*/;
     volatile uint32_t *const scb_scr = (volatile uint32_t *)0xe000ed10;

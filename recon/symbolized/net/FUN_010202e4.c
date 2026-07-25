@@ -10,6 +10,6 @@
 uint32_t FUN_010202e4(void)
 {
     volatile const uint32_t *const controller_state =
-        (volatile const uint32_t *)0x21000db0u;
+        (volatile const uint32_t *)G1N_21000db0;
     return controller_state[8];
 }

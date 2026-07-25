@@ -19,10 +19,10 @@ int FUN_0102a6e0(void *param_1)
     unsigned char buf[251];
     int iVar1;
     FUN_0103b614(buf, (void*)((unsigned long)&rodata_103c798) /*=0x103c798*/, 0xfb);
-    if (*(volatile int *)(0x210045b0 + 0x10) == 0) {
+    if (*(volatile int *)(G1N_210045b0 + 0x10) == 0) {
         iVar1 = 1;
     } else {
-        iVar1 = z_impl_k_msgq_get(0x210045b0, buf, 0, 0);
+        iVar1 = z_impl_k_msgq_get(G1N_210045b0, buf, 0, 0);
         if (iVar1 == 0) {
             FUN_0103b614(param_1, buf, 0xfb);
         }

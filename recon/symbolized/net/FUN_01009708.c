@@ -17,7 +17,7 @@ typedef unsigned int u32;
 
 static volatile u8 *const DAT_01009868 = (volatile u8*)((unsigned long)&g_net_bump_alloc_state) /*=0x21000ba8*/;
 static volatile u32 *const DAT_0100986c = (volatile u32*)((unsigned long)&g_net_bump_alloc_cursor) /*=0x21000bac*/;
-static volatile u32 *const DAT_01009870 = (volatile u32*)0x21000b7c;
+static volatile u32 *const DAT_01009870 = (volatile u32*)G1N_21000b7c;
 
 extern void sdc_assertion_fail(u32,u32);
 extern u32 controller_handle_slot_byte_offset(u8);

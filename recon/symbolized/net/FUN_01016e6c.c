@@ -23,7 +23,7 @@ extern unsigned int FUN_010212ec(unsigned int, unsigned int);
 
 unsigned int FUN_01016e6c(int param_1, int param_2)
 {
-  volatile unsigned char * const base = (volatile unsigned char *)0x21000f90;
+  volatile unsigned char * const base = (volatile unsigned char *)G1N_21000f90;
   volatile unsigned char * const tbl = (volatile unsigned char *)((unsigned long)&rodata_103c24c) /*=0x103c24c*/;
   unsigned char bVar1;
   unsigned char bVar5;

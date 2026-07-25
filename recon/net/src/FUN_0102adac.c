@@ -1,3 +1,13 @@
+/* P4 iteration 26 - structural CPUNET RAM relocation.  Self-contained
+   so tools/parity keeps compiling this canonical body unchanged: the
+   #else arm is the shipped literal.  See recon/application/
+   gen_net_ram_relocs.py and recon/symbols/g1_net_ram_reloc.h. */
+#ifdef G1_COHESIVE_BUILD
+extern unsigned char g1_net_ram_blk_21000570[];
+#define G1N_21000580 ((unsigned long)(g1_net_ram_blk_21000570 + 0x10))
+#else
+#define G1N_21000580 0x21000580ul
+#endif
 /* net-core FUN_0102adac @ 0x0102adac
  * Readable identity: hci_rpmsg_tx_thread.
  * Raw back-map: FUN_0102afbc stores runtime Thumb pointer 0x0102b5ad.
@@ -42,7 +52,7 @@ void hci_rpmsg_tx_thread(void)
         void *buffer = FUN_0103a456(G1_HCI_TX_QUEUE, -1);
         int status = FUN_0102fcd8(buffer);
         if (status != 0) {
-            if (*(volatile int32_t *)0x21000580u > 0)
+            if (*(volatile int32_t *)G1N_21000580 > 0)
                 FUN_01039722((const char *)0x0103cf46u, status);
             FUN_0102ff94(buffer);
         }

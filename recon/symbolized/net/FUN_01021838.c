@@ -11,7 +11,7 @@ extern void FUN_010217cc(void);
 
 void FUN_01021838(int32_t param_1)
 {
-    volatile uint8_t * const g = (uint8_t *)0x21001670;
+    volatile uint8_t * const g = (uint8_t *)G1N_21001670;
 
     FUN_01021800();
     *(volatile uint8_t *)(param_1 + 0x80) = 0;

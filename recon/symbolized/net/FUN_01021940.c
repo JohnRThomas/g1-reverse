@@ -14,7 +14,7 @@ int32_t FUN_01021940(uint32_t channel, uint32_t index,
     if (channel < 5u && result != 0) {
         uint32_t count = channel == 4u ? 0x10u : 0x28u;
         if (index < count) {
-            uint32_t table = *(volatile uint32_t *)(0x210016c8u + channel * 4u);
+            uint32_t table = *(volatile uint32_t *)(G1N_210016c8 + channel * 4u);
             if (table != 0u) {
                 int32_t limit = *(volatile int8_t *)(uintptr_t)(table + index);
                 if (limit <= requested) {

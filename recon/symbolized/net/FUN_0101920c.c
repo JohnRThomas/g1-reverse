@@ -15,7 +15,7 @@ extern void FUN_010196e0(void);
 
 void FUN_0101920c(uint32_t event, uint32_t notify)
 {
-    volatile uint8_t *state = (volatile uint8_t *)0x21000f90;
+    volatile uint8_t *state = (volatile uint8_t *)G1N_21000f90;
 
     if (state[0x70] != 3) {
         for (;;)

@@ -6,7 +6,7 @@
 /* net-core FUN_0100a934 @ 0x0100a934, exact Thumb extent 0x1c bytes. */
 #include <stdint.h>
 
-#define CONTROLLER_STATE ((volatile uint8_t *)0x21000bf8u)
+#define CONTROLLER_STATE ((volatile uint8_t *)G1N_21000bf8)
 
 uint32_t FUN_0100a934(void)
 {

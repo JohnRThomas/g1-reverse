@@ -14,7 +14,7 @@ extern void FUN_01025734(void);
 
 void controller_deferred_event_raise(uint32_t event)
 {
-    volatile uint8_t *const slots = (volatile uint8_t *)0x21001c24u;
+    volatile uint8_t *const slots = (volatile uint8_t *)G1N_21001c24;
 
     if (event > 4)
         controller_fault(0x69, 0x58);

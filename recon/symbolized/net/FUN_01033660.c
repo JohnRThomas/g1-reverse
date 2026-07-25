@@ -27,10 +27,10 @@ extern void FUN_01032c28(void);
 
 #define A_01033790 ((unsigned long)&g_esb_enabled_flag) /*=0x21006459*/
 #define A_01033794 ((unsigned long)&g_esb_state) /*=0x21004a94*/
-#define A_01033798 0x21004a60u
+#define A_01033798 G1N_21004a60
 #define A_0103379c ((unsigned long)&g_esb_pipe_pid_cnt) /*=0x21006256*/
 #define A_010337a0 ((unsigned long)&g_esb_tx_buf_pool) /*=0x210049d4*/
-#define A_010337a4 0x210049b4u
+#define A_010337a4 G1N_210049b4
 #define A_010337a8 ((unsigned long)&g_net_radio_busy_flag) /*=0x21006458*/
 
 u32 FUN_01033660(u8 *param_1, u32 param_2, u32 param_3, u32 param_4)

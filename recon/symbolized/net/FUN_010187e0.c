@@ -33,18 +33,18 @@ extern int sdc_llcp_release_rx_context(void);
 extern int sdc_llcp_stop_rx_timeout(void);
 extern int FUN_0102961a(int);
 
-#define G8(o)  (*(volatile signed char*)(0x21000f90+(o)))
-#define G16(o) (*(volatile short*)(0x21000f90+(o)))
+#define G8(o)  (*(volatile signed char*)(G1N_21000f90+(o)))
+#define G16(o) (*(volatile short*)(G1N_21000f90+(o)))
 
 /* DAT pointers */
-#define P_ac0 ((void*)0x21000fd6)
+#define P_ac0 ((void*)G1N_21000fd6)
 #define P_ac4 ((volatile signed char*)((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/)
 #define P_ac8 ((void*)((unsigned long)&g_net_link_ctx_field_buf) /*=0x21000fec*/)
-#define P_acc ((void*)0x21001014)
+#define P_acc ((void*)G1N_21001014)
 #define P_abc ((volatile u32*)((unsigned long)&g_sdc_ll_ctx_field_308) /*=0x21000308*/)
 #define P_bec ((volatile signed char*)((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/)
-#define P_bf0 ((void*)0x21000fd6)
-#define P_bf4 ((void*)0x21001014)
+#define P_bf0 ((void*)G1N_21000fd6)
+#define P_bf4 ((void*)G1N_21001014)
 
 unsigned int FUN_010187e0(u32 param_1, u32 param_2)
 {
@@ -197,7 +197,7 @@ L_8932:
     uVar8=1;
 L_882e:
     if (G8(0x7c)!=0) {
-        sdc_llcp_stop_rx_timeout(); sdc_llcp_release_rx_context(); *(volatile signed char*)(0x21000f90+0x7c)=0;
+        sdc_llcp_stop_rx_timeout(); sdc_llcp_release_rx_context(); *(volatile signed char*)(G1N_21000f90+0x7c)=0;
         return uVar8;
     }
     return uVar8;

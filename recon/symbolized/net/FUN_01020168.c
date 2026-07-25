@@ -17,7 +17,7 @@ extern unsigned int FUN_010218fc(void *a);
 
 void FUN_01020168(unsigned int param_1)
 {
-  volatile unsigned char *iVar4 = (volatile unsigned char *)0x210015f0;
+  volatile unsigned char *iVar4 = (volatile unsigned char *)G1N_210015f0;
   volatile unsigned char *base230 = (volatile unsigned char *)REG_41008000 /*=0x41008000*/;
   volatile unsigned char *base234 = (volatile unsigned char *)0x01ff0000;
   volatile unsigned char *base238 = (volatile unsigned char *)((unsigned long)&rodata_103c4d0) /*=0x103c4d0*/;

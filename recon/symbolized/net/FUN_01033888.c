@@ -55,7 +55,7 @@ unsigned int FUN_01033888(void)
         __builtin_unreachable();
     }
     p4[0x508/4] = (unsigned int)pb2[0x13];
-    p4[0x504/4] = 0x2100625eu; /* DAT_0103395c */
+    p4[0x504/4] = G1N_2100625e; /* DAT_0103395c */
     volatile unsigned int * const p_1033960 = (volatile unsigned int *)0xe000e100; /* DAT_01033960 */
     p_1033960[0x180/4] = 0x100;
     arch_irq_enable(8);

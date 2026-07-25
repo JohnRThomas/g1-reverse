@@ -14,7 +14,7 @@ extern void controller_radio_idle_state_finish(uint32_t context, uint32_t active
 extern void FUN_0101c6d0(uint32_t context, uint32_t event);
 
 #define controller_radio_idle_state_finish controller_radio_idle_state_finish
-#define CONTROLLER_STATE_OWNER_ADDR 0x21001128u
+#define CONTROLLER_STATE_OWNER_ADDR G1N_21001128
 
 void FUN_0101d890(uint32_t context)
 {

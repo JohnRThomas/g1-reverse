@@ -19,7 +19,7 @@ unsigned int FUN_01033a60(unsigned int param_1, unsigned int param_2, unsigned i
         if (param_1 == 0 || param_2 > 8) {
             uVar2 = 0xffffffea;
         } else {
-            FUN_0103b614((void*)0x2100068c, param_1, param_2, 0, param_4);
+            FUN_0103b614((void*)G1N_2100068c, param_1, param_2, 0, param_4);
             *(volatile unsigned char*)(((unsigned long)&g_net_radio_crc_scratch) /*=0x21000684*/+0x10) = (unsigned char)param_2;
             *(volatile unsigned char*)(((unsigned long)&g_net_radio_crc_scratch) /*=0x21000684*/+0x12) = (unsigned char)(0xff >> ((8-param_2)&0xff));
             FUN_01032930();

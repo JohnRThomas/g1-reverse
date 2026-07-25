@@ -7,7 +7,7 @@
  */
 /* net-core FUN_010209c8 @ 0x10209c8  (parity 300 trials PROVEN) */
 
-#define DAT_010209dc ((unsigned int)0x210015f0)
+#define DAT_010209dc ((unsigned int)G1N_210015f0)
 
 void mpsl_timeslot_window_get(unsigned int *param_1, unsigned int *param_2)
 {

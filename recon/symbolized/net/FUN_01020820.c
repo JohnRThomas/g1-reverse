@@ -10,7 +10,7 @@ extern uint32_t FUN_01021654(uint16_t, uint8_t, uint8_t, uint32_t);
 extern uint32_t FUN_01021694(uint16_t, uint8_t, uint8_t, uint32_t);
 void FUN_01020820(uint32_t argument)
 {
-    volatile uint8_t *state = (volatile uint8_t *)(uintptr_t)0x210015f0u;
+    volatile uint8_t *state = (volatile uint8_t *)(uintptr_t)G1N_210015f0;
     uint32_t result;
     state[0x0c] = 2;
     if (state[0x29] == 1)

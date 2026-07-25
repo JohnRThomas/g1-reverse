@@ -11,7 +11,7 @@
 
 extern void __memcpy_chk(unsigned int, unsigned int, unsigned int, unsigned int);
 unsigned int FUN_0102a448(unsigned int param_1, unsigned int param_2) {
-  __memcpy_chk(0x21004b9f, param_1, param_2, 0xfc);
+  __memcpy_chk(G1N_21004b9f, param_1, param_2, 0xfc);
   *(volatile unsigned int *)((unsigned long)&g_net_ctrl_report_len) /*=0x210045e4*/ = param_2;
   return 0;
 }

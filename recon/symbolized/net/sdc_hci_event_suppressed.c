@@ -8,5 +8,5 @@
 /* net-core FUN_0101f888 @ 0x101f888  (parity 300 trials PROVEN) */
 
 unsigned char sdc_hci_event_suppressed(void) {
-    return *(volatile unsigned char *)(0x21001230 + 0x219);
+    return *(volatile unsigned char *)(G1N_21001230 + 0x219);
 }

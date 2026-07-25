@@ -22,7 +22,7 @@ extern void controller_random_window_step(void *, uint32_t);
 uint32_t FUN_01017154(const uint8_t *packet)
 {
     uint8_t parsed[40];
-    volatile uint8_t *state = (volatile uint8_t *)0x21000f90;
+    volatile uint8_t *state = (volatile uint8_t *)G1N_21000f90;
 
     *(volatile uint8_t *)((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/ = (uint8_t)sdc_llcp_get_active_link_index();
     if ((packet[0] & 0x0f) != 7)

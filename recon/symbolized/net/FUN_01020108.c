@@ -15,7 +15,7 @@ extern int32_t FUN_01023ac4(void);
 
 void FUN_01020108(void)
 {
-    volatile uint8_t * const flagbyte = (uint8_t *)0x210015f0;
+    volatile uint8_t * const flagbyte = (uint8_t *)G1N_210015f0;
     uint8_t r3 = flagbyte[0x35];
 
     if ((r3 & 1) == 0) {

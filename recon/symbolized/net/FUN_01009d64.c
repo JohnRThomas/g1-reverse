@@ -17,7 +17,7 @@ uint32_t FUN_01009d64(uint32_t raw_id, uint32_t raw_bank)
 {
     uint16_t id = (uint16_t)((uint32_t)raw_id & 0xffffu);
     uint8_t bank = (uint8_t)((uint32_t)raw_bank & 0xffu);
-    void *object = ((void *volatile *)0x21000b7cu)[bank];
+    void *object = ((void *volatile *)G1N_21000b7c)[bank];
     uint8_t slot = (uint8_t)controller_handle_slot_find(object, id);
 
     if (slot == 0xffu) {

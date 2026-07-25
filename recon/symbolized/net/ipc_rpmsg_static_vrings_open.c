@@ -114,8 +114,11 @@ enum recovered_addresses {
     ENDPOINT_BOUND_CALLBACK = 0x0102e0bd,      /* bound_cb */
     ENDPOINT_RX_CALLBACK = 0x0103a92d,         /* ept_cb */
     NAMESPACE_BIND_CALLBACK = 0x0103a7e7,      /* ns_bind_cb */
-    MAILBOX_STACK_ARRAY = 0x21007d80,
 };
+
+/* P4 iteration 26: a relocated RAM address is a link-time expression, so it
+   cannot be an enumerator (integer constant expression). */
+#define MAILBOX_STACK_ARRAY G1N_21007d80
 
 static uint32_t optimal_descriptor_count(uint32_t memory_size,
                                          uint32_t buffer_size)

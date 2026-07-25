@@ -14,7 +14,7 @@ uint32_t rtc_compare_int_lock(uint32_t channel)
 {
     uint32_t shift = channel & 0xffu;
     uint32_t enabled_bit = shift < 32u ? 1u << shift : 0u;
-    volatile uint32_t *enabled = (volatile uint32_t *)0x2100496cu;
+    volatile uint32_t *enabled = (volatile uint32_t *)G1N_2100496c;
 
     uint32_t previous = __atomic_fetch_and(enabled, ~enabled_bit,
                                            __ATOMIC_RELAXED);

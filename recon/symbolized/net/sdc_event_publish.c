@@ -33,7 +33,7 @@ extern void sdc_assertion_fail(uint32_t module, uint32_t line)
 void sdc_event_publish(uint32_t call_context, uint32_t event_count,
                        uint32_t pending_flag, uint32_t user_data)
 {
-    volatile uint8_t *const state = (volatile uint8_t *)UINT32_C(0x210010a0);
+    volatile uint8_t *const state = (volatile uint8_t *)G1N_210010a0;
     uint8_t timing_frame[24];
 
     /* The callback ABI supplies these values; this bridge reads shared state. */

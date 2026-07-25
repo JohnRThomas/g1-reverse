@@ -1,3 +1,16 @@
+/* P4 iteration 26 - structural CPUNET RAM relocation.  Self-contained
+   so tools/parity keeps compiling this canonical body unchanged: the
+   #else arm is the shipped literal.  See recon/application/
+   gen_net_ram_relocs.py and recon/symbols/g1_net_ram_reloc.h. */
+#ifdef G1_COHESIVE_BUILD
+extern unsigned char g1_net_ram_blk_21000570[];
+extern unsigned char g1_net_ram_blk_210045e0[];
+#define G1N_21000580 ((unsigned long)(g1_net_ram_blk_21000570 + 0x10))
+#define G1N_21004604 ((unsigned long)(g1_net_ram_blk_210045e0 + 0x24))
+#else
+#define G1N_21000580 0x21000580ul
+#define G1N_21004604 0x21004604ul
+#endif
 /* net-core FUN_0102ab50 @ 0x0102ab50
  * Readable identity: g1_ipc_endpoint_register.
  * Raw back-map: FUN_0102acb4 stores runtime Thumb pointer 0x0102b351.
@@ -23,9 +36,9 @@ struct g1_ipc_registry {
 int g1_ipc_endpoint_register(const struct g1_ipc_endpoint *endpoint)
 {
     struct g1_ipc_registry *registry =
-        *(struct g1_ipc_registry * volatile *)0x21004604u;
+        *(struct g1_ipc_registry * volatile *)G1N_21004604;
     int32_t count = registry->count;
-    int32_t level = *(volatile int32_t *)0x21000580u;
+    int32_t level = *(volatile int32_t *)G1N_21000580;
 
     if (count <= 21) {
         registry->entries[count] = endpoint;

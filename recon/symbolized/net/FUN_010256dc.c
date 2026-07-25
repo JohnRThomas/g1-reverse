@@ -17,7 +17,7 @@ void FUN_010256dc(uint32_t module, uint32_t reason,
     /* The private controller deliberately enters its fatal path atomically. */
     __asm__ volatile("cpsid i" ::: "memory");
     fault_reporter_t reporter =
-        *(fault_reporter_t volatile *)0x21001c1cu;
+        *(fault_reporter_t volatile *)G1N_21001c1c;
     char text[12];
     *(uint32_t *)&text[0] = reason;
     *(uint32_t *)&text[4] = detail;

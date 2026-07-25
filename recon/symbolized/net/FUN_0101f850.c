@@ -13,7 +13,7 @@ extern void callback_list_invoke_all(unsigned int);
 
 void FUN_0101f850(void)
 {
-  unsigned int base = 0x21001230;
+  unsigned int base = G1N_21001230;
 
   callback_list_invoke_all(*(volatile unsigned int*)(base + 0x210));
   callback_list_invoke_all(*(volatile unsigned int*)(base + 0x214));

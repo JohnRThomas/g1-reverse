@@ -27,7 +27,7 @@ extern void sdc_assertion_fail(uint32_t,uint32_t);         /* FUN_01008d00@0x010
 extern void sdc_llcp_note_unsupported_pdu(void);           /* FUN_01020500@0x01020500 */
 extern int controller_radio_work_pending(void);            /* FUN_01025be0@0x01025be0 */
 #define NRF_TIMER0_NS_BASE 0x4100c000u
-#define g_nrf802154_core_state 0x210015f0u
+#define g_nrf802154_core_state G1N_210015f0
 #define NRF_RADIO_NS_BASE REG_41008000 /*=0x41008000*/
 #define RADIO_INTEN_PRESERVE_MASK 0xfffffee2u
 #define RADIO_TIMER_COMPARE_TICKS 0x00023280u

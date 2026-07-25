@@ -29,7 +29,7 @@ typedef struct {
 void FUN_010208f0(unsigned char param_1, int param_2, unsigned int param_3_raw)
 {
     unsigned char param_3 = (unsigned char)param_3_raw;
-    volatile unsigned char * const iVar1 = (volatile unsigned char *)0x210015f0; /* DAT_010209a8 */
+    volatile unsigned char * const iVar1 = (volatile unsigned char *)G1N_210015f0; /* DAT_010209a8 */
     iVar1[7] = param_1;
     iVar1[10] = param_3;
     unsigned int uVar3;

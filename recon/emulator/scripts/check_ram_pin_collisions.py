@@ -46,6 +46,29 @@ DEFAULT_LDS = [
     os.path.join(REPO, "recon", "symbols", "g1_app_aliases.ld"),
 ]
 
+# P4 iteration 26 - the same property, gated on the CPUNET as well.  Iteration
+# 18 §18.8(3) recorded that this script was hard-coded to the app RAM window and
+# the app pin scripts and had to be driven for the net core by importing the
+# module and overriding RAM_LO/RAM_HI from a scratchpad script.  `--core net`
+# makes that a first-class invocation.  The app defaults are UNCHANGED: with no
+# `--core` (or `--core app`) every constant below is exactly what it was.
+CORES = {
+    "app": {
+        "ram": (0x20000000, 0x20080000),
+        "lds": DEFAULT_LDS,
+    },
+    "net": {
+        # nRF5340 network core: 64 KiB of SRAM at 0x21000000.
+        "ram": (0x21000000, 0x21010000),
+        "lds": [
+            os.path.join(REPO, "recon", "symbols", "g1_net_globals.ld"),
+            os.path.join(REPO, "recon", "symbols", "g1_net_aliases.ld"),
+            os.path.join(REPO, "recon", "application", "net", "src",
+                         "stock_call_aliases.ld"),
+        ],
+    },
+}
+
 SDK_ROOT = os.environ.get(
     "G1_ZEPHYR_SDK", "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin"
 )
@@ -183,11 +206,17 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("elf")
     ap.add_argument("--ld", action="append", default=None)
+    ap.add_argument("--core", choices=sorted(CORES), default="app",
+                    help="which core's RAM window and pin scripts to use "
+                         "(default: app -- identical to the pre-iteration-26 "
+                         "behaviour)")
     ap.add_argument("--json", dest="json_out")
     ap.add_argument("--max-print", type=int, default=40)
     args = ap.parse_args()
 
-    lds = args.ld if args.ld else DEFAULT_LDS
+    global RAM_LO, RAM_HI
+    RAM_LO, RAM_HI = CORES[args.core]["ram"]
+    lds = args.ld if args.ld else CORES[args.core]["lds"]
     kinds = read_pin_kinds(lds)
     abs_syms, objects = read_symbols(args.elf)
     starts, max_end = build_owner_index(objects)

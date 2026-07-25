@@ -16,7 +16,7 @@ void FUN_01033084(void)
 {
     volatile unsigned int *reg;
     controller_mode1_state_validate();
-    FUN_010218cc(0x0103cafcu, 0x2100065cu);
+    FUN_010218cc(0x0103cafcu, G1N_2100065c);
     reg = *(volatile unsigned int *volatile *)((unsigned long)&g_net_log_msg_ctx) /*=0x21000698*/;
     reg[0x200u / 4u] = reg[0x200u / 4u] & ~0x40004u;
 }

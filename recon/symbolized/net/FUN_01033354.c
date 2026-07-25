@@ -31,7 +31,7 @@ void FUN_01033354(void)
     *radio &= 0x300u;
     *(volatile uint8_t *)((unsigned long)&g_net_radio_busy_flag) /*=0x21006458*/ = 0;
     *(volatile uint8_t *)((unsigned long)&g_esb_enabled_flag) /*=0x21006459*/ = 0;
-    uint64_t value = FUN_010327a0(0x21004b7cu, 0);
+    uint64_t value = FUN_010327a0(G1N_21004b7c, 0);
     uint64_t completion = FUN_0103b62e((uint32_t)value,
                                        (uint32_t)(value >> 32), 0x20u);
     volatile uint32_t *state = (volatile uint32_t *)((unsigned long)&g_esb_pipe_pid_cnt) /*=0x21006256*/;

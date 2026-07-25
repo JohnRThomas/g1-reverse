@@ -101,7 +101,7 @@ void FUN_01012c84(undefined1 *param_1,uint param_2,undefined4 param_3,uint param
   undefined8 uVar19;
   undefined4 uStack_24;
 
-  iVar5 = 0x210015f0;
+  iVar5 = G1N_210015f0;
   iVar8 = 0x4100c000;
   if (param_1 == (undefined1 *)0x0) {
     sdc_assertion_fail(0x30,0xcd);

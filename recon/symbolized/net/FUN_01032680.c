@@ -21,8 +21,8 @@ extern uint32_t FUN_0103b156(uint32_t, const void *);
 
 void FUN_01032680(void)
 {
-    z_impl_k_poll_signal_init((void *)0x21004988u);
-    FUN_01035fa0(0x21004258u, 0x21008a00u, 0x388u, ((unsigned long)&rodata_1032e41) /*=0x1032e41*/,
+    z_impl_k_poll_signal_init((void *)G1N_21004988);
+    FUN_01035fa0(G1N_21004258, G1N_21008a00, 0x388u, ((unsigned long)&rodata_1032e41) /*=0x1032e41*/,
                  0, 0, 0, 10, 0, 0, 0, 0);
-    FUN_0103b156(0x21004258u, (const void *)((unsigned long)&rodata_103e386) /*=0x103e386*/);
+    FUN_0103b156(G1N_21004258, (const void *)((unsigned long)&rodata_103e386) /*=0x103e386*/);
 }

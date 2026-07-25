@@ -11,6 +11,6 @@
 uint32_t controller_feature_bit_enabled(uint32_t identifier)
 {
     uint32_t bit = identifier - 1u;
-    volatile const uint32_t *groups = (volatile const uint32_t *)0x21000008u;
+    volatile const uint32_t *groups = (volatile const uint32_t *)G1N_21000008;
     return (groups[(bit >> 5) & 7u] >> (bit & 31u)) & 1u;
 }

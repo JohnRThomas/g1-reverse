@@ -14,7 +14,7 @@ extern __attribute__((noreturn)) void sdc_assertion_fail(uint32_t, uint32_t);
 
 void FUN_010207cc(uint32_t deadline)
 {
-    volatile uint8_t *control = (volatile uint8_t *)0x210015f0u;
+    volatile uint8_t *control = (volatile uint8_t *)G1N_210015f0;
     volatile uint8_t *radio = (volatile uint8_t *)0x4100c000u;
     uint32_t previous;
 

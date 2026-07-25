@@ -10,7 +10,7 @@
 void FUN_01020864(unsigned int param_1, unsigned int *param_2)
 {
   unsigned int uVar2, uVar3;
-  volatile unsigned int *p1 = (volatile unsigned int*)0x210015f0;
+  volatile unsigned int *p1 = (volatile unsigned int*)G1N_210015f0;
   volatile unsigned int *p2 = (volatile unsigned int*)REG_41008000 /*=0x41008000*/;
   volatile unsigned int *p3 = (volatile unsigned int*)0x4100f000;
 

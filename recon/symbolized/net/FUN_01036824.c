@@ -24,7 +24,7 @@ extern void z_handle_obj_poll_events(void *object, int event);
 
 void FUN_01036824(uint8_t *queue)
 {
-    void *lock = (void *)0x21004b4c;
+    void *lock = (void *)G1N_21004b4c;
     uint8_t *item;
     uint32_t next;
 

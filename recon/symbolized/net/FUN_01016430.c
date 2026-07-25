@@ -34,7 +34,7 @@ extern int32_t FUN_010212ec(uint32_t direction, uint32_t operation_mode);
 #define finish_radio_setup              FUN_01021108
 #define finish_radio_setup_with_status  FUN_010212ec
 
-#define CONTROLLER_STATE ((volatile uint8_t *)UINT32_C(0x21000f90))
+#define CONTROLLER_STATE ((volatile uint8_t *)G1N_21000f90)
 #define RADIO_VALUE_MAP  ((const uint8_t *)UINT32_C(0x0103c24c))
 
 uint32_t FUN_01016430(uint32_t return_finish_status, uintptr_t packet)
