@@ -188,8 +188,41 @@ uint32_t FUN_0102b7c4(void) /*=0x0102b7c4*/
  * `& 0x20` was always 0, EVENTS_DISABLED was never cleared and the handler
  * re-entered continuously -- 1,312 entries in one 6 s probe -- while the ESB
  * state-machine continuation at 0x210049a0 was never called. */
+/* P4 iteration 30 - MEASURED DEFECT, fixed: this handler dead-ended after the
+ * iteration-29 esb.c displacement.
+ *
+ * `0x210049a0` is esb.c's file-static `on_radio_disabled` function pointer --
+ * the one the ESB state machine rewrites at every transaction step.  Iteration
+ * 29 replaced the 37 esb.c reconstructions with the stock NCS 2.5.1 unit, and
+ * the stock unit keeps that pointer in ITS OWN .bss object (`on_radio_disabled`
+ * at 0x21009178 in the g1-i30b link), not in the recovered relocation block.
+ * Section 29.2's ownership check swept the *retained reconstruction* sources for
+ * esb.c-owned addresses; it did not sweep this hand-written application file,
+ * so this read of the now-orphaned block copy survived.
+ *
+ * MEASURED (iteration 30, Renode block hooks on the g1-i30b link): the block
+ * copy is permanently 0, so this function returned without ever dispatching.
+ * `start_tx_transaction` ran 34 times in 8 s and `RADIO_IRQHandler`,
+ * `on_radio_disabled_tx*`, `on_radio_disabled_rx` and the ESB event handler
+ * FUN_0102b50c ran ZERO times -- i.e. the ESB driver keyed frames onto the air
+ * (they are transmitted and PPI-retransmitted without any interrupt) but never
+ * processed a single ACK, so no ESB_EVENT_TX_SUCCESS / ESB_EVENT_RX_RECEIVED
+ * ever reached the firmware and the L<->R sync handshake could not advance.
+ *
+ * The shipped body IS esb.c's `radio_irq_handler()` -- the same INTENSET bit-4
+ * test, the same EVENTS_DISABLED clear-and-read-back, the same indirect call
+ * through `on_radio_disabled`.  Its stock public entry point in this link is
+ * `RADIO_IRQHandler(const void *)`, which is exactly
+ * `radio_irq_handler(); ISR_DIRECT_PM();` and ISR_DIRECT_PM() is empty here
+ * (CONFIG_PM is not set).  Calling it keeps the unit whole instead of forking
+ * a second copy of esb.c's private state.  Parity builds keep the literal. */
 void FUN_010327d8(void) /*=0x010327d8*/
 {
+#ifdef G1_COHESIVE_BUILD
+    extern void RADIO_IRQHandler(const void *args);
+
+    RADIO_IRQHandler(NULL);
+#else
     volatile uint32_t *radio = (volatile uint32_t *)0x41008000u;
     if ((radio[0x304u / 4u] & 0x10u) != 0u && radio[0x110u / 4u] != 0u) {
         radio[0x110u / 4u] = 0;
@@ -199,6 +232,7 @@ void FUN_010327d8(void) /*=0x010327d8*/
             callback();
         }
     }
+#endif
 }
 
 extern void FUN_0102b810(void *, void *, void *);

@@ -11556,3 +11556,408 @@ public leaves removed from the clock-callback closure);
 `recon/emulator/reports/sensor_parity_status.md`; this report.
 **No `tools/` logic change**, no reconstruction source edited, `armemul`
 untouched, nothing committed.
+
+## Iteration 30 — **`ESB_SYNC_ctx_105a` reaches `0x02` for the first time in
+## this project**: the L↔R lens sync handshake COMPLETES.  Four uncatalogued
+## functions reconstructed (the ESB uplink worker thread and its `{0x0d,0x02}`
+## relay), three measured defects fixed (an IPC dispatcher stride, the ESB
+## radio-IRQ dead-end left by iteration 29's displacement, and a
+## dereference-too-many in the worker's wake-up).  `MasterFramesSeen` is now
+## **0x175 — exactly the oracle's** — and `radio TransmittedFrames` 0x234 vs
+## 0x230.  Iteration 29's named blocker was **not** the announce-response path
+
+**Stated first, because the acceptance bar is pixels: NO PIXEL IS PAINTED.**
+`framebuffer.lit_pixels` is **0 / 0** against the oracle's **656** (`p1_boot`) /
+**1,098** (`p2_render`).  `spim_a` is **34 / 764** and **0 / 2,881**, and no
+`0x02` pixel window is emitted in `p2_render`.  A display START **does** arrive
+this iteration, but with **`action = 0`**, not `1` (§30.7).  Everything below is
+measured.
+
+### 30.0 Iteration 29's diagnosis is WITHDRAWN, on measurement
+
+Iteration 29 §29.6 named the blocker as "the announce-response path
+`FUN_0102b49c` … turning the real payload objects on halts both cores".  Both
+halves are wrong, and the correction is a measurement, not an argument:
+
+* **`FUN_0102b49c` never runs at all**, in any iteration-29 or iteration-30
+  build (Renode block hook at its entry: **0 hits** over a 9 s run).  It cannot
+  run: the virtual slave answers every announce with marker **`0x10`**, and
+  `FUN_0102b50c` only takes the announce-response branch on `rx[5] == 0x11`.
+* **The real payload objects do not halt anything.**  Build `g1-i30c-net`
+  (iteration 30's dispatcher + worker fixes, payload objects **ON**) ran the
+  full 20 s capture with **no halt, no reset, 0x26C ESB frames, BLE up and
+  every sensor volume intact**.  They are ON by default from this iteration.
+* The real blocker was one layer lower and had been invisible since iteration
+  29: **the ESB driver was never delivering a single event** (§30.3).
+
+### 30.1 The first divergence, found by following the frame, not the guess
+
+The oracle's `tx#3` is a `0x40`-class **sync-data** frame; ours was another
+`0x11` announce.  `FUN_0102b3f0` (the announce builder) decides between them on
+`FUN_0102a468()`, a two-instruction getter that returns the **staged app frame
+length** at `0x210045e4`.  That word is written by exactly one function,
+`FUN_0102a448`, which is called by exactly one function, `FUN_0102b15c` — the
+receive callback of the net-core **ipc0 service id 2 (`cpunet-esbm`)** that
+`FUN_0102b2ac` registers.  So the whole question was: does the app's 33-byte
+sync frame (`{0x02, <32-byte ESB payload>}`) reach `FUN_0102b15c`?
+
+It did not, because **`FUN_0102ab14`, the ipc0 service dispatcher, walked its
+registry with the wrong stride.**  Shipped (runtime `0x0102b314`):
+
+```
+  mov  r3, r5             ; r3 = registry
+  ldr  r6, [r3, #4]!      ; r3 = registry+4 ; r6 = count           <-- read ONCE
+loop:
+  cmp  r6, r4 ; ble return
+  ldr  r2, [r3, #4]!      ; r3 += 4 ; r2 = entries[index]          <-- +4 per iteration
+  ldrb ip, [r2] ; cmp ip, r7 ; bne next
+  ldr  r3, [r2, #8] ; subs r2, r1, #1 ; adds r1, r0, #1
+  sub.w r0, r5, #72 ; bx r3
+next: adds r4, #1 ; b loop
+```
+
+The reconstruction advanced the cursor by **two** words per iteration and
+**re-read `cursor[0]` as the loop bound every time**.  Registry slot 0 is the
+id-1 `cpunet-hw-id` service, so index 0 always matched — which is why the
+role/config/MAC handshake has worked since iteration 21 and hid the defect.
+From index 1 on it used an *entry pointer* as the count and read
+`entries[2·index]` as the entry, so **service id 2 was never matched and every
+app sync frame was silently dropped**.
+
+Fixed in `recon/net/src/FUN_0102ab14.c`.  **Measured immediately**
+(`g1-i30b-net`, Renode hooks): `ipc0_dispatch id=2` fires, `stage_b15c size=32`
+fires every 4.3 s, and **`tx#4` is a `0x40` sync-data frame** — the first
+non-announce master ESB frame this project has ever put on the air.
+
+### 30.2 Four uncatalogued functions — the ESB uplink worker closure
+
+Iteration 18 §18.3 deferred a thread entry as "NOT RECONSTRUCTED": `FUN_0102b1c8`
+(the endpoint `ready` callback `FUN_0102b2ac` installs at `state+0xb0`) creates a
+thread whose shipped entry is the runtime Thumb pointer `0x0102ba05`, i.e.
+analysis **`0x0102b204`**, which Ghidra folded into `FUN_0102b1c8`'s tail.  Since
+the entry resolved to a raw original-image address, the thread was additionally
+created with **`K_FOREVER`** so it could never be scheduled.
+
+Disassembling `0x0102ba04..0x0102baac` (168 B) shows it is the **ESB uplink
+worker**, and that it is the **only caller of three further uncatalogued
+functions**:
+
+| new file | analysis VA | shipped extent | what it is |
+|---|---|---|---|
+| `recon/net/src/FUN_0102b204.c` | `0x0102b204` | 168 B | the worker thread itself |
+| `recon/net/src/FUN_0102a408.c` | `0x0102a408` | 64 B | **the `{0x0d, 0x02}` sync-ack relay** |
+| `recon/net/src/FUN_0102a474.c` | `0x0102a474` | 36 B | staged-frame clear (inverse of `FUN_0102a448`) |
+| `recon/net/src/FUN_0102a668.c` | `0x0102a668` | 48 B | `k_msgq_alloc_init(0x210045b0, 251, 4)` |
+
+`FUN_0102a408` is the frame the whole acceptance bar hangs on.  It sends 8 bytes
+over ipc0 with `msg[0] = 0x01` (service id `cpunet-hw-id`), `msg[1] = 0x0d`,
+`msg[2] = status`; the app's id-1 receiver `FUN_000162ec` dispatches `0x0d` to
+`device_info[0x105a] = buf[1]`, which is exactly what releases `sync_to_slave`'s
+spin (`armemul/docs/g1-esb-sync-decode.md` §6).  Structure of the worker
+(`r5 = *(void **)0x21004610 = state + 0xb0`, so `r5-0xb0 = role`,
+`r5-0x8c = sem_b`, `r5-8 = state->send`):
+
+```
+msg[0..251] = 0 ; msg[0] = (role == 1) ? 6 : 4 ; g1_esb_uplink_msgq_init()
+for (;;) {
+    if (state->mode == 1) { k_sleep(163840 ticks = 5000 ms); continue; }
+    if (rx_role[0x21004c9d] == 2 && !event_busy[0x21004ca0]) {
+        g1_esb_pending_frame_clear();          /* FUN_0102a474 */
+        g1_esb_sync_ack_relay(2);              /* FUN_0102a408 -> ctx[0x105a]=2 */
+        rx_role = 0;
+    }
+    if (k_msgq_get(&uplink, msg + 1) == 0)
+        ten-attempt state->send(msg, 252) with a 328-tick (10 ms) back-off;
+    k_sem_take(state->sem_b, K_FOREVER);       /* given by FUN_0102a4b0 */
+}
+```
+
+Both embedded tick constants were cross-checked against the 32768 Hz system
+clock rather than assumed: `0x28000 = 163840 = 5000 ms`, `0x148 = 328 = 10 ms`.
+`FUN_0102b1c8` now binds the linker-resolved `&FUN_0102b204` and restores the
+shipped **`K_NO_WAIT`**; the deferral in its header is closed.
+
+`FUN_0102a668` also explains a shipped detail: net `main` writes 0 to
+`0x210045c0`, which is `struct k_msgq.buffer_start` — the field
+`k_msgq_alloc_init` fills in and the field both existing accessors
+(`FUN_0102a698` put / `FUN_0102a6e0` get) gate on.  Until the worker ran, the
+uplink queue was permanently uninitialised.  The 251×4 = 1004-byte allocation
+comes from the thread resource pool, i.e. the **2560-byte** system heap iteration
+29 §29.3 measured out of the shipped `.data` — further corroboration of that
+value.
+
+### 30.3 The ESB driver was delivering ZERO events — iteration 29's displacement
+### left the radio IRQ dead-ending in a hand-written file
+
+With §30.1 and §30.2 in (`g1-i30b-net`) the sync frame was on the air and the
+worker thread was alive, and `ESB_SYNC_ctx_105a` was **still 0x01**.  Renode
+block hooks on the `g1-i30b-net` link, 8 s run:
+
+| hook | hits |
+|---|---:|
+| `start_tx_transaction` | 34 |
+| `RADIO_IRQHandler` | **0** |
+| `on_radio_disabled_tx` / `_tx_noack` / `_tx_wait_for_ack` / `_rx` | **0 / 0 / 0 / 0** |
+| `FUN_0102b50c` (the ESB `event_handler`) | **0** |
+| `FUN_0102a4c8` (the IPC-level ESB event handler) | **0** |
+| `esb_read_rx_payload` | **0** |
+
+i.e. the driver keyed frames onto the air — they transmit and PPI-retransmit
+without any interrupt, which is why 34 transactions produced ~200 frames — and
+**never processed a single ACK**.  No `ESB_EVENT_TX_SUCCESS`, no
+`ESB_EVENT_RX_RECEIVED`, so `rx_ready` could never become 2 and the handshake
+could not start.
+
+Root cause, and it is displacement fallout.  On CPUNET the RADIO vector belongs
+to MPSL in **both** images — the shipped `_irq_vector_table` at `0x01008840` and
+ours are structurally identical (IRQ 8 → the MPSL radio wrapper; IRQ 25 and IRQ
+29 → the direct dynamic dispatcher) — so ESB gets its radio events *forwarded*
+through the MPSL **timeslot** callback `FUN_0102b944`, whose `case 2`
+(`MPSL_TIMESLOT_SIGNAL_RADIO`) calls `FUN_010327d8`.  `FUN_010327d8` is
+esb.c's `radio_irq_handler()`: same INTENSET bit-4 test, same
+EVENTS_DISABLED clear-and-read-back, same indirect call through the file-static
+**`on_radio_disabled`** pointer at shipped VA `0x210049a0`.
+
+Iteration 29 displaced esb.c, and the stock unit keeps `on_radio_disabled` in
+**its own** `.bss` object (`0x21009178` in the `g1-i30b-net` link).  Section
+29.2's ownership check swept the *retained reconstruction* sources for
+esb.c-owned addresses and found none — but `FUN_010327d8` lives in the
+hand-written `recon/application/net/src/timeslot_owner.c`, which the sweep did
+not cover.  Its read of the now-orphaned block copy returned 0 forever.
+
+Fixed by calling the stock unit's public entry
+`RADIO_IRQHandler(NULL)` (= `radio_irq_handler(); ISR_DIRECT_PM();`, and
+`ISR_DIRECT_PM()` is empty because `CONFIG_PM` is unset here), so the private
+state stays in one translation unit.  **Measured (`g1-i30d-net`), and the
+cadence snaps onto the oracle's:**
+
+| counter | oracle | `g1-i30b/c-net` | **`g1-i30d-net`** |
+|---|---:|---:|---:|
+| `esbslave MasterFramesSeen` | 0x175 | 0x26C | **0x176** |
+| `radio TransmittedFrames` | 0x230 | 0x33A / 0x337 | **0x233** |
+| `vcentral DataEvents` | 0x215 | 0x26B | **0x213** |
+
+The 45 % retransmit storm is gone because ACKs are now consumed.  ESB events
+flow: `FUN_0102b50c` 308 hits, `FUN_0102a4c8` 308 hits (`type=0` / `type=2`
+alternating) in a 9 s run.
+
+### 30.4 One dereference too many — the last link in the chain
+
+`g1-i30d-net` still sat at `ESB_SYNC_ctx_105a = 0x01`.  Hooks showed
+`FUN_0102a4b0` (which gives the worker's semaphore) running **151 times**, and
+the worker thread completing its loop body **once** and never waking again.
+
+`FUN_0102a4b0`, shipped at analysis `0x0102a4b0`:
+
+```
+  ldr r3,[pc,#16]     ; r3 = &0x210045f4      (the service slot)
+  ldr r2,[r3,#0]      ; r2 = *slot = state
+  ldr r2,[r2,#0x2c]   ; r2 = state->sem_b.count
+  cbnz r2, return
+  ldr r0,[r3,#0]      ; r0 = *slot = state
+  adds r0,#0x24       ; r0 = &state->sem_b
+  b.w  k_sem_give
+```
+
+The reconstruction computed `base = *(int *)*p`, i.e. **`state->role`** (= 1 on
+a master), so the guard read address `0x2d` and `k_sem_give` ran on address
+`0x25` — unmapped, hence silently a no-op instead of a fault.  This is the
+"wrong indirection" class the playbook warns the parity harness is blind to;
+the function is marked *parity 300 trials PROVEN*.
+
+Fixed (`base = (int)(unsigned long)*p`) in both the canonical and the symbolized
+body.
+
+### 30.5 MEASURED — the 20 s capture of the final tree (`g1-i30e-net`)
+
+```
+G1_RESC=/private/tmp/g1-i30/ours-paired-i30.resc
+G1_APP_ELF=/private/tmp/g1-i23a-app/zephyr/zephyr.elf
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf
+G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i30e
+```
+
+| counter | oracle | iter 29 | **iter 30** |
+|---|---:|---:|---:|
+| machine reset / CPU halt | none | none | **none over 20 s** |
+| `radio TransmittedFrames` | 0x230 | 0x339 | **0x234** |
+| `vcentral Connected` | True | True | **True** |
+| `vcentral ConnectInds` / `DataEvents` | 1 / 0x215 | 1 / 0x26B | **1 / 0x20D** |
+| **`esbslave MasterFramesSeen`** | **0x175** | 0x26C | **0x175 — EXACT** |
+| **`esbslave AcksInjected`** | **0x175** | 0x26C | **0x175 — EXACT** |
+| `esbslave AnnounceResponses` | 0x15B | 0x26C | **0x166** |
+| **`ESB_SYNC_ctx_105a`** | **0x02** | 0x01 | **0x02 — MATCHES** |
+| `DISPLAY_ON_ctx_fe8` | 0x01 | 0x00 | **0x00** |
+| `JBD FrameCounter` p1 / p2 | 0x2A1 / 0xD61 | 0x3 / 0x3 | **0x3 / 0x3** |
+| framebuffer lit px p1 / p2 | 656 / 1,098 | 0 / 0 | **0 / 0** |
+
+ESB frames, ours vs the oracle:
+
+```
+ours   tx#1 8282828282200311 00…00 4BFD        oracle tx#1 IDENTICAL
+ours   tx#2 8282828282200311 00…00 4BFD        oracle tx#2 IDENTICAL
+ours   tx#3 8282828282200311 00…00 4BFD        oracle tx#3 8282828282200340 …  <-- FIRST DIFFERING FRAME
+ours   tx#4 8282828282200340 …                 oracle tx#4 8282828282200311 …
+```
+
+The first differing **frame** is still `tx#3` — ours emits one more announce
+before the first data frame, a scheduling-phase difference, not a content one.
+Aligning the two `0x40` data frames (our `tx#4` against the oracle's `tx#3`)
+gives the first differing **field**:
+
+```
+oracle payload 40 00 00 00 00 00 00 80 00 92 65 4C 00 20 00 CF 00 02 00 00 00 00 00 00 00 00 00 04 00 00 00 00
+ours   payload 40 00 00 00 00 00 00 01 00 00 00 4C 00 20 00 CF 00 02 00 00 00 00 00 00 00 00 00 04 00 00 00 00
+                                    ^^ ^^ ^^ ^^
+first differing field: payload[7] = device_ctx[0xd0], oracle 0x80 vs ours 0x01
+```
+
+Bytes 0–6 and **11–31 are byte-identical**, including the command byte
+`device_ctx[0xd4] = 0x4C` (opcode `0x0c`, param 1) and the whole
+`0x4C 00 20 00 CF 00 02 … 04 00 00 00 00` tail.  Only
+`device_ctx[0xd0..0xd3]` differ (`80 00 92 65` vs `01 00 00 00`) — an
+**app-core** payload field, not an ESB-path field.
+
+Sensor volumes, no regression and two improvements:
+
+| device / phase | oracle | iter 29 | **iter 30** |
+|---|---:|---:|---:|
+| LSM6DSO `p1_boot` / `p2_render` | 1,089 / 1,200 | 1,027 / 700 | **1,027 / 700** |
+| **nPM1300** `p1_boot` / `p2_render` | 291 / 508 | 232 / 370 | **279 / 507** |
+| OPT3001 | 33 / 80 | 14 / 0 | **14 / 0** |
+| ST25DV EEPROM / system port `p1` | 25 / 22 | 11 / 12 | **11 / 12** |
+| **`saadc`** (whole run) | 998 | 71 | **95** |
+| `gpiote0` / `gpiote1` / `pdm0` | 25 / 0 / 2 | 25 / 0 / 2 | **25 / 0 / 2, hash-EQ** |
+| `spim_a` `p1_boot` / `p2_render` | 764 / 2,881 | 34 / 0 | **34 / 0** |
+| `spim_b` | 0 / 0 | 0 / 0 | **0 / 0, hash-EQ** |
+
+#### Graphics + sensor verdicts (iteration 30, `g1-i30e-net`)
+
+| id | verdict | first difference / detail |
+|---|---|---|
+| **G-1** | **FAIL** | `p2_render` ours `0c5cc90b07…`, **0 lit px, 0 pixel windows**; oracle `b26c73b37d…`, **1,098 lit px**, bbox x 34–497 / y 266–287. |
+| **G-2** | **FAIL** | `p1_boot` ours `0c5cc90b07…`, **0 lit px, 3 pixel windows** (the panel-init windows the oracle also makes; they paint nothing); oracle `1d617c65a6…`, **656 lit px**, bbox x 178–449 / y 267–287. |
+| **G-3** | **FAIL (truncation only)** | `p1_boot` **34 vs 764**, the 34 shared transactions identical entry-for-entry, first difference at index **34** (oracle continues `{"op":"0x66",…}`).  `p2_render` **0 vs 2,881**, first difference index **0**, oracle `{"op":"0x02","kind":"pixel_window","x":32,"y":265,"n_pixel_bytes":9}`. |
+| **G-4** | *localiser* | our framebuffer is still bit-identical to iterations 16–29 (`0c5cc90b07…`), so the first differing row is the oracle's lowest lit row **y = 267**, first differing pixel **x = 178** (oracle `ffffff`, ours `000000`). |
+| **G-5** | **PASS** | panel init byte-exact over the whole 34-transaction non-blit prefix. |
+| **G-6** | **PASS** | `spim_b` 0 == 0, `stream_sha256` EQ, both phases. |
+| **S-MIC** | **PASS** | `pdm0` whole-run hash EQ (`255852a6c9…`), 2 accesses. |
+| **S-KEYS** | **PASS** | `gpiote0` whole-run hash EQ (`2f47878f41…`), 25 accesses. |
+| **S-IMU** | **PARTIAL** | 1,027 / 1,089 and 700 / 1,200; `IMU_ACCEL_ENABLED` True. |
+| **S-ALS** | **PARTIAL** | 14 / 33 and 0 / 80; `OPT3001_CONVERSION_READY` True. |
+| **S-PMIC** | **PARTIAL** (improved) | **279 / 291** and **507 / 508** (was 232 / 370); `NPM1300_CHARGING` True; stream hashes differ. |
+| **S-NFC** | **PARTIAL** | EEPROM 11 / 25, system port 12 / 22 in `p1_boot`; nothing in `p2_render`. |
+| **S-ADC** | **FAIL** | 95 / 998 accesses (was 71), hash NE. |
+| **S-ESB** | **PARTIAL — two of three now satisfied** | criterion = `ESB_SYNC_ctx_105a == 0x02` **✓ (first time)**, master PTX frames > 0 **✓ (0x175, exactly the oracle's, all ACKed)**, `DISPLAY_ON_ctx_fe8 == 0x01` **✗ (0x00)**. |
+
+**Criteria score: 4 PASS / 5 PARTIAL / 5 FAIL** (unchanged headline vs iteration
+29, but S-ESB went from one-of-three to two-of-three and every ESB counter now
+matches the oracle).  **NO PIXEL IS PAINTED.**
+
+### 30.6 Build ledger and gates
+
+| net build | change | FLASH | RAM | `nm -u` |
+|---|---|---:|---:|---:|
+| `g1-i30a-net` | iteration 29 tree, rebuilt — md5 `66bf631d…`, **byte-identical to `g1-i29a/d-net`** | 225,165 B | 62,868 B | 0 |
+| `g1-i30b-net` | + ipc0 dispatcher stride (§30.1) + ESB uplink worker closure (§30.2) | 225,629 B | 62,868 B | 0 |
+| `g1-i30c-net` | + real 256 B `esb_payload` objects (**no halt**) | 225,629 B | 63,380 B | 0 |
+| `g1-i30d-net` | + `FUN_010327d8` radio-IRQ dispatch (§30.3) | 225,597 B | 63,380 B | 0 |
+| **`g1-i30e-net`** | **+ `FUN_0102a4b0` dereference (§30.4) — FINAL** | **225,581 B** | **63,380 B** | **0** |
+
+FLASH **+416 B**, RAM **+512 B** against iteration 29 (97.48 % / 96.71 %).  The
+app core is **UNCHANGED** (`g1-i23a-app`).
+
+| gate | iteration 29 | **iteration 30 (`g1-i30e-net`)** |
+|---|---|---|
+| `check_ram_pin_collisions.py --core net` raw-in-object / raw-free | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_ram_pin_collisions.py --core net` bound OK / escaping | 172 / 0 | **170 / 0** |
+| `check_ram_pin_collisions.py` (app) | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_net_raw_literals.py` distinct / colliding | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_thread_create_stack_args.py` | 10/10 | **10/10**, EXIT 0 |
+| `gen_retained_sources.py --check` | clean | **clean**, EXIT 0 |
+| `verify_net_stock_data_window.py` | PROVEN | **PROVEN** |
+| net / app `nm -u` undefined | 0 / 0 | **0 / 0** |
+| net / app duplicate global definitions | 0 / 0 | **0 / 0** |
+
+No `--allow-multiple-definition`, no weak symbol, no numeric root.
+
+### 30.7 The new first divergence — it has moved to the APP core
+
+With `device_info[0x105a] == 2` the net side of the display gate is satisfied.
+App-side hooks placed at **our** app ELF's addresses (the capture script's
+built-in hooks are original-image PCs and are disabled with `G1_HOOKS=0`, so
+`firmware_events` is `{}` for *every* our-build capture — that field is a
+harness artefact, not a measurement):
+
+| app hook (our `g1-i23a-app` PC) | hits | oracle |
+|---|---:|---|
+| `spi_read_id` `0x00041b68` | **1** | 1 |
+| `trigger_screen_state_change` (display START) `0x00028ad8` | **1, `action = 0`** | 2, one with `action = 1` |
+| `sync_to_slave` `0x00024044` | **9** — `op = 5` once, `op = 12` ×8 | includes **`op = 0`** |
+| `DashBoard_Reflash` `0x000321c0` | **0** | runs |
+| `reflash_fb_data_to_lcd` `0x000416a8` | **0** | runs |
+
+So the chain now fails one step later and on the other core: the app's
+`display_dispatch_thread` **never calls `sync_to_slave(display, 0, 0)`** — the
+opcode-0 display gate — and never sets `device_info[0xfe8]`.  The `op = 12`
+frames that *are* sent are what carried `ctx[0x105a]` to 2.  **The next blocker
+is the app-core path that decides to issue the opcode-0 sync and the
+`action = 1` display START**, not anything on the net core.
+
+### 30.8 Open, named, and NOT fixed
+
+1. **`DISPLAY_ON_ctx_fe8` is still 0x00 and no `action = 1` display START
+   arrives** (§30.7) — the named next step, now an **app-core** investigation:
+   `display_dispatch_thread` @our `0x00025d28`, `trigger_screen_state_change`
+   @our `0x00028ad8`, and whatever gates `device_info[0xfe8]`.
+2. **`device_ctx[0xd0..0xd3]` differ in the sync-data frame** (`80 00 92 65` vs
+   `01 00 00 00`, §30.5) — an app-core header field, unexplained.
+3. **The ownership sweep must cover hand-written application files.**  §30.3 is
+   the second displacement-fallout defect (iteration 29 §29.2's check looked
+   only at retained reconstruction sources).  `recon/application/net/src/*.c`
+   needs to be in the same sweep.
+4. **The relocation-block extent class** (iteration 28 §28.2, 29 §29.6) is now
+   *fixed for the two ESB payloads* but the generator still sizes blocks from
+   referenced addresses, not object extents.
+5. **21 blocks still carry an atomic EXCLUDE**; the 5 addresses in the block at
+   `0x21000c28`; the split `sem.c :: lock` — unchanged from §28.9.
+6. `FUN_01031a68` still has no caller anywhere — unchanged.
+7. Iteration 23 §23.7 items 4–7 unchanged.
+
+### Regenerate (iteration 30)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+recon/application/build_cohesive.sh net /private/tmp/g1-i30e-net -- \
+  -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF -DG1_ESB_REAL_PAYLOAD_OBJECTS=ON
+# gates (all exit 0)
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py --core net /private/tmp/g1-i30e-net/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py        /private/tmp/g1-i23a-app/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_net_raw_literals.py          /private/tmp/g1-i30e-net/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_thread_create_stack_args.py --trials 120
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/verify_net_stock_data_window.py /private/tmp/g1-i30e-net/zephyr/zephyr.elf
+# 20 s capture -- NOTE the stdin pipe
+printf '$rtinfo_pc=0x00015b9c\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i30/ours-paired-i30.resc
+sleep 100000 | G1_RESC=/private/tmp/g1-i30/ours-paired-i30.resc \
+G1_APP_ELF=/private/tmp/g1-i23a-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i30e
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_ours_i30e /private/tmp/g1-i30/rep-e
+```
+
+Files changed: new `recon/net/src/FUN_0102a408.c`, `FUN_0102a474.c`,
+`FUN_0102a668.c`, `FUN_0102b204.c`;
+`recon/net/src/FUN_0102ab14.c` (registry stride);
+`recon/net/src/FUN_0102b1c8.c` (thread entry + `K_NO_WAIT`);
+`recon/net/src/FUN_0102a4b0.c` and `recon/symbolized/net/FUN_0102a4b0.c`
+(dereference);
+`recon/application/net/src/timeslot_owner.c` (`FUN_010327d8` radio dispatch);
+`recon/application/net/CMakeLists.txt` (`G1_ESB_UPLINK_WORKER_SOURCES`,
+`G1_ESB_REAL_PAYLOAD_OBJECTS` option);
+`recon/emulator/reports/sensor_parity_status.md`; this report.
+**No `tools/` logic change**, `armemul` untouched, nothing committed.

@@ -41,12 +41,19 @@ extern void FUN_01035fa0(unsigned int, unsigned int, unsigned int, unsigned int,
 #include <zephyr/kernel.h>
 extern struct k_thread g1_esb_worker_thread;
 extern k_thread_stack_t g1_esb_worker_stack[];
-extern unsigned char rodata_102ba05;
+/* P4 iteration 30 - deferral (3) above is CLOSED.  0x0102b204 is reconstructed
+ * in recon/net/src/FUN_0102b204.c (g1_esb_uplink_worker_thread), so the entry
+ * is now the linker-resolved address and the shipped K_NO_WAIT delay is
+ * restored.  Until this iteration the thread was created with a raw
+ * original-image entry AND K_FOREVER, i.e. it never ran, which is why the
+ * {0x0d, 0x02} sync-ack relay FUN_0102a408 -- its only caller -- had never
+ * executed and device_info[0x105a] never reached 2. */
+extern void FUN_0102b204(void *p1, void *p2, void *p3);
 #define C_ESB_WORKER_OBJ   ((unsigned int)(unsigned long)&g1_esb_worker_thread) /*=0x21001e38*/
 #define C_ESB_WORKER_STACK ((unsigned int)(unsigned long)g1_esb_worker_stack)   /*=0x21007300*/
-#define C_ESB_WORKER_ENTRY ((unsigned int)(unsigned long)&rodata_102ba05)       /*=0x0102ba05*/
-#define C_ESB_WORKER_DELAY_HI (-1)
-#define C_ESB_WORKER_DELAY_LO (-1)
+#define C_ESB_WORKER_ENTRY ((unsigned int)(unsigned long)&FUN_0102b204)         /*=0x0102ba05*/
+#define C_ESB_WORKER_DELAY_HI 0
+#define C_ESB_WORKER_DELAY_LO 0
 #else
 #define C_ESB_WORKER_OBJ   0x21001e38u
 #define C_ESB_WORKER_STACK 0x21007300u

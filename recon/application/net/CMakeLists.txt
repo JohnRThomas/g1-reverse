@@ -84,6 +84,21 @@ set(G1_PRODUCT_ENDPOINT_SOURCES
   "${CMAKE_CURRENT_LIST_DIR}/src/g1_product_endpoints.c"
 )
 
+# P4 iteration 30 -- the ESB uplink worker closure.  Four functions Ghidra
+# never catalogued (they sit in the gaps 0x0102a408..0x0102a448,
+# 0x0102a474..0x0102a498, 0x0102a668..0x0102a698 and inside FUN_0102b1c8's
+# folded tail 0x0102b204..0x0102b2ac).  FUN_0102b204 is the thread FUN_0102b1c8
+# creates; it is the ONLY caller of FUN_0102a408, the {0x0d, 0x02} relay that
+# sets the app core's device_info[0x105a] = 2 and releases sync_to_slave.
+# Canonical sources: they need the same cohesive-build RAM relocations as the
+# product-endpoint closure they belong to.
+set(G1_ESB_UPLINK_WORKER_SOURCES
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102a408.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102a474.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102a668.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102b204.c"
+)
+
 set(G1_TIMESLOT_OWNER_SOURCES
   "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102b7d0.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102b810.c"
@@ -191,6 +206,7 @@ target_sources(app PRIVATE
   ${G1_PRIVATE_REPORT_ONLY_SOURCES}
   ${G1_ESB_CLOCK_CALLBACK_CLOSURE_SOURCES}
   ${G1_PRODUCT_ENDPOINT_SOURCES}
+  ${G1_ESB_UPLINK_WORKER_SOURCES}
   ${G1_TIMESLOT_OWNER_SOURCES}
   # Byte-exact literal/data pools split from CFG-inflated net functions.
   # These are reviewed reconstruction artifacts, not synthesized link stubs.
@@ -205,6 +221,20 @@ target_sources(app PRIVATE
 # Canonical parity sources retain their fixed-address form by default.  The
 # cohesive firmware build selects only reviewed object/callback relocations.
 target_compile_definitions(app PRIVATE G1_COHESIVE_BUILD=1)
+
+# P4 iteration 30 -- real 256-byte storage for the two `struct esb_payload`
+# objects (see src/g1_esb_payload_objects.c for the proof of the size).  The
+# generic relocation blocks size them at 24 B, so stock esb_read_rx_payload()
+# overruns g_esb_rx_payload on every received frame and FUN_0102a4c8's
+# `event->payload[0x11]` read lands outside the block.
+option(G1_ESB_REAL_PAYLOAD_OBJECTS
+  "Give g_esb_rx_payload / g_esb_sync_response_packet their true 256-byte extent"
+  OFF)
+if(G1_ESB_REAL_PAYLOAD_OBJECTS)
+  target_compile_definitions(app PRIVATE
+    G1_ESB_REAL_RX_PAYLOAD_OBJECT
+    G1_ESB_REAL_TX_PAYLOAD_OBJECT)
+endif()
 
 # Symbolized reconstruction inputs include the generated reversible VA/name
 # declarations from this directory.
