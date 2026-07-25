@@ -49,6 +49,36 @@ PROVIDE(FUN_0103b5c4 = strnlen);
 PROVIDE(FUN_0103b614 = __aeabi_memcpy4);
 PROVIDE(FUN_0103b62e = memset);
 
+/* Iteration 18: the CPUNET kernel/timeout.c SINGLETON.
+ *
+ * `kernel/timeout.c` owns exactly one `timeout_list` / `curr_tick` /
+ * `announce_remaining` / `timeout_lock`, and the stock unit is unconditionally
+ * linked here (sys_clock_announce is reached from the stock `rtc_nrf_isr`).
+ * The reconstruction of the same unit was ALSO retained, and it addressed its
+ * private state through raw original-image RAM pins:
+ *
+ *     timeout_list        0x21000750  -> lands inside `_sw_isr_table`
+ *     curr_tick           0x210044f0  -> lands inside `sdc_mempool`
+ *     announce_remaining  0x21004b6c  -> lands inside `sdc_mempool`
+ *     last_count          0x21002b80  -> lands inside `sdc_mempool`   (rtc)
+ *
+ * so the recovered z_add_timeout walked the software ISR table as if it were a
+ * dlist of `struct _timeout` and wrote through those wild links.  Measured
+ * with a Renode watchpoint (iteration 18 §18.1): FUN_01037f8c+0x68 and +0xfa
+ * wrote 0x21001d30 and 0x21001e14, i.e. `backend_data_0`'s rpmsg endpoint
+ * list, which is why `rpmsg_get_endpoint` never terminated and the HCI
+ * endpoint never bound.  Two lists also mean a recovered caller's timeout is
+ * never announced by the stock ISR.
+ *
+ * The reconstructions are therefore excluded (adoption_manifest.json, evidence
+ * recon/ownership/net_kernel_timeout_singleton_adoption.json) and every raw
+ * caller identity is mapped onto the single stock owner. */
+PROVIDE(FUN_010317c0 = sys_clock_elapsed);
+PROVIDE(FUN_01037f8c = z_add_timeout);
+PROVIDE(FUN_010380d8 = z_abort_timeout);
+PROVIDE(FUN_0103814c = sys_clock_announce);
+PROVIDE(FUN_01038284 = sys_clock_tick_get);
+
 PROVIDE(assert_report = assert_print);
 PROVIDE(controller_connection_config_get = FUN_010282a6);
 PROVIDE(controller_handle_lookup = FUN_0100cfc0);

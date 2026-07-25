@@ -27,7 +27,15 @@ extern void FUN_0102ff54(void *queue, void *buffer);
 extern void FUN_01039722(const char *format, ...);
 
 static volatile int32_t *const log_level = (volatile int32_t *)0x21000580u;
+/* P4 iteration 18: see recon/net/src/FUN_0102adac.c -- 0x21000978 (the shipped
+ * `static K_FIFO_DEFINE(tx_queue)`) lands inside net_buf_pool_area in the
+ * cohesive link. */
+#ifdef G1_COHESIVE_BUILD
+extern struct k_fifo g1_hci_tx_queue;
+static void *const tx_queue = (void *)&g1_hci_tx_queue;
+#else
 static void *const tx_queue = (void *)0x21000978u;
+#endif
 
 void hci_rpmsg_rx(uint8_t *data, uint32_t length)
 {

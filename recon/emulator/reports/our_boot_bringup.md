@@ -6255,3 +6255,414 @@ report. Ten records appended to the scratchpad catalogs `app_funcs.json` /
 `classified.json` (backed up as `*.i17bak`). **No `tools/` change**, no
 Kconfig / `prj.conf` / devicetree change, `armemul` untouched. Nothing
 committed.
+
+## Iteration 18 — the CPUNET blocker is FIXED: the HCI endpoint binds, the
+## `rpmsg_get_endpoint` spin is gone, and the net core's two "HCI rpmsg"
+## threads run for the first time
+
+**Headline.** Iteration 17's blocker is solved. `rpmsg_get_endpoint` no longer
+spins: **net instructions at 2.0 s fall from 53,529,158 to 412,379** and the
+app core's
+
+```
+[00:00:05.093,139] <err> ipc_service: Endpoint not registered
+[00:00:05.093,139] <err> bt_hci_driver: Failed to send (err -2)
+```
+
+is **gone** — measured, not inferred: the string occurs **once** in the
+iteration-17 6.0 s UART log (`/tmp/g1_i17d6/uart_app.log`) and **zero** times in
+iteration 18's (`/tmp/g1_i18e6/uart_app.log`). The net core boots reset-free
+through 2.0 s with **466 unique functions** and, for the first time, actually
+schedules the "HCI rpmsg TX"/"HCI rpmsg RX" threads.
+
+**The iteration-17 hypothesis was wrong, and the report says so.** The list
+head was *not* an uninitialised shipped `.data` object: dumped at 2.0 s,
+`rdev->endpoints` (`backend_data_0 + 0xe0`, offset taken from the build's own
+DWARF) read `next = 0x21001e14`, `prev = 0x21001d9c` — a properly initialised,
+self-consistent head. What was broken was a node *inside* the list, and the
+cause is the CPUNET counterpart of the **app-core RAM-pin collision class**
+(iterations 10/11), not of the `.data` class (iterations 15–17). **No net-side
+`gen_net_data_image.py` was written**, because the evidence said it would not
+have fixed anything.
+
+**BLE still does not advertise.** `radio TransmittedFrames` = 0,
+`vcentral Connected` = False. The boot now stops at a **different** assertion,
+on the **app** core, one call deeper into the same path (§18.6).
+
+### 18.1 Root cause, measured with Renode watchpoints
+
+`backend_data_0` (the `ipc_rpmsg_static_vrings` backend instance) is at
+0x21001cf8 in the iteration-17 net link and is 0x398 bytes long. Offsets inside
+it were read from the build's DWARF, not guessed:
+`backend_data_t.rpmsg_inst.rvdev.rdev.endpoints = +0xe0`, `struct
+ipc_rpmsg_ept` is 0x70 bytes, `rpmsg_endpoint.node` is at +0x34 (confirmed
+independently by `rpmsg_get_endpoint`'s own `sub.w r5, r4, #52`).
+
+A 2.0 s dump of the whole struct shows the damage precisely:
+
+| word | should be | actually was |
+|---|---|---|
+| `endpoints.next` | `&ns_ept.node` = 0x21001e14 | 0x21001e14 (OK) |
+| `endpoints.prev` | `&endpoint[1].node` = 0x21001d9c | 0x21001d9c (OK) |
+| `ns_ept.node.next` | `&endpoint[0].node` = 0x21001d2c | **0x00000000** |
+| `endpoint[0].node.prev` | `&ns_ept.node` = 0x21001e14 | **0x00004f65** |
+
+`metal_list_for_each` therefore walked `head -> ns_ept -> NULL` and never came
+back to the head. Two `sysbus AddWatchpointHook`s named the writers:
+
+```
+WP-D30 pc=0x1037416  val=0x21001e14   <- rpmsg_register_endpoint+0x32 (correct)
+WP-D30 pc=0x102dc9c  val=0x2100d1a6   <- FUN_01037f8c+0x68   (corruption)
+WP-D30 pc=0x102dd2e  val=0x00009ecb   <- FUN_01037f8c+0xfa   (corruption)
+WP-D30 pc=0x102dd2e  val=0x00004f66   <- FUN_01037f8c+0xfa   (corruption)
+```
+
+`FUN_01037f8c` is the **reconstruction of Zephyr's `z_add_timeout`**, and it
+addresses `kernel/timeout.c`'s private state through raw original-image RAM
+pins that, in the cohesive link, land inside live linker-allocated objects:
+
+```
+timeout_list        0x21000750 -> _sw_isr_table [0x21000708..0x210007f8] + 0x48
+curr_tick           0x210044f0 -> sdc_mempool   [0x21002990..0x21007c51] + 0x1b60
+announce_remaining  0x21004b6c -> sdc_mempool   + 0x21dc
+timeout_lock        0x21004b70 -> sdc_mempool   + 0x21e0
+last_count          0x21002b80 -> sdc_mempool   + 0x1f0   (sys_clock_elapsed)
+```
+
+So `queue->next` was a software-ISR-table word, the ordered-insert loop treated
+arbitrary RAM as a chain of `struct _timeout`, and it wrote `dticks` and link
+words all over `backend_data_0`. The writes at +0x68 / +0xfa are exactly
+`to->dticks` and `position->ticks -= node->ticks` on a bogus node at
+0x21001d20 (= `endpoint[0].ep.dest_addr`).
+
+A mechanical sweep of the same class (the app-core
+`check_ram_pin_collisions.py` logic, re-pointed at the CPUNET RAM window and
+the net linker scripts, run from the scratchpad — **`recon/emulator/scripts` and
+`tools/` were not modified**) found this is systemic: **72 raw literal net RAM
+pins land inside a live linked object, 53 of which are referenced by a literal
+that survives `--gc-sections`.** Iteration 18 fixes the ones on the boot path;
+**49 live-referenced collisions remain** and are the named follow-up.
+
+### 18.2 Step A — `kernel/timeout.c` is a SINGLETON and was linked twice
+
+Our net image contains BOTH the stock unit (`z_add_timeout` @0x01039f28,
+`timeout_list` @0x210006f8, announced by the stock `rtc_nrf_isr`) and the
+reconstruction. Two timeout lists means the recovered callers' timeouts are
+never announced, on top of the corruption. The repository's own ownership
+records already identify 0x01037f8c as `z_add_timeout`
+(`net_kernel_private_stock_adoption.json` `call_target_checks[4]`,
+`net_zephyr_stock_atomic_adoption.json` `call_target_checks[269]`).
+
+Five reconstructions are therefore excluded and their raw identities bridged to
+the stock owners (evidence:
+`recon/ownership/net_kernel_timeout_singleton_adoption.json`; five rows added to
+`recon/ownership/adoption_manifest.json`; five `PROVIDE`s in
+`recon/application/net/src/stock_call_aliases.ld`):
+
+| raw | stock owner | unit |
+|---|---|---|
+| `FUN_010317c0` | `sys_clock_elapsed` | `drivers/timer/nrf_rtc_timer.c` |
+| `FUN_01037f8c` | `z_add_timeout` | `kernel/timeout.c` |
+| `FUN_010380d8` | `z_abort_timeout` | `kernel/timeout.c` |
+| `FUN_0103814c` | `sys_clock_announce` | `kernel/timeout.c` |
+| `FUN_01038284` | `sys_clock_tick_get` | `kernel/timeout.c` |
+
+The three file-static helpers (`FUN_01037f00` = `elapsed`, `FUN_01037f14` =
+`next_timeout`, `FUN_01037f54` = `remove_timeout`) have no linkable upstream
+symbol; every caller is now excluded, so `--gc-sections` drops them and their
+sources are left untouched.
+
+**Also fixed here: `rodata_103bac9` was pinned in the WRONG ADDRESS SPACE.**
+`z_impl_k_thread_create` (FUN_01035fa0) passes it to `z_add_timeout` as the
+timeout callback. 0x0103bac9 is a stored pointer VALUE, i.e. a CPUNET *runtime*
+address; its analysis address is 0x0103b2c9, and `netcore_image.bin` at analysis
+0x0103b2c8 disassembles to `movs r1,#1 / subs r0,#24 / b.w 0x010378c4` — exactly
+`z_thread_timeout` (`base.timeout` is at +0x18, the same offset FUN_01035fa0
+passes). Analysis 0x0103bac8 is plain data. Rebound to
+`PROVIDE(rodata_103bac9 = z_thread_timeout | 1)`.
+
+Build `g1-i18a-net`. **Effect: none on the symptom** — net still 53,529,301
+instructions at 2.0 s, still parked in `rpmsg_get_endpoint+0x28`. Correct fix,
+wrong culprit; kept, and the next watchpoint run named the real one.
+
+### 18.3 Step B — the two "HCI rpmsg" threads: colliding storage AND a dropped
+### 64-bit `K_NO_WAIT`
+
+The next watchpoint run pointed at `FUN_01035edc+0x9c` (`z_setup_new_thread`
+writing `thread+0x74`) hitting 0x21001e14. A `k_thread_create` hook printed the
+objects:
+
+```
+THREAD_CREATE obj=0x21001da0 lr=0x102f051   (FUN_0102afbc+0x28)
+THREAD_CREATE obj=0x21001d08 lr=0x102f071   (FUN_0102afbc+0x48)
+```
+
+`FUN_0102afbc` is NCS 2.5.1's `samples/bluetooth/hci_rpmsg/src/main.c` body.
+Its shipped storage is
+
+```
+struct k_thread RX 0x21001d08   stack 0x21006480 (0x800)   entry FUN_0102acf4
+struct k_thread TX 0x21001da0   stack 0x21006cc0 (0x600)   entry FUN_0102adac
+struct ipc_ept  HCI 0x21004608
+names            0x0103d088 / 0x0103d095 (runtime) = "HCI rpmsg TX"/"HCI rpmsg RX"
+```
+
+and **every one of those addresses is inside a live object in our link**: the
+two `k_thread`s inside `backend_data_0`, the two stacks and the `ipc_ept` inside
+`sdc_mempool`. Real storage is now emitted in
+`recon/application/net/src/g1_product_endpoints.c`, alongside the endpoint
+configs and semaphores that file already owns.
+
+**And a second, independent defect at the same call sites.** The shipped
+0x0102afbc has a `sub sp, #36` frame and executes
+
+```
+102afd4  strd r6, r7, [sp, #24]      ; r6 = r7 = 0  -> the 64-bit K_NO_WAIT delay
+102afd8  strd r5, r4, [sp, #12]      ; prio = -9, options = 0
+102afdc  strd r4, r4, [sp, #4]       ; p2, p3
+102afe4  str  r4, [sp, #0]           ; p1
+```
+
+but the reconstruction declared `FUN_01035fa0` with only **nine** parameters, so
+GCC emitted a `sub sp, #28` frame and never wrote sp+24/sp+28. `FUN_01035fa0`
+(= `z_impl_k_thread_create`) read an **uninitialised** `k_timeout_t delay`, took
+its `z_add_timeout` branch instead of `z_sched_start`, and **the two HCI threads
+never started** — which is also how the corrupting `z_add_timeout` call got
+made in the first place. This is the same class as app-core iteration 12
+(`k_thread_create` stack args) and the **eighth** member of the family the
+differential harness is structurally blind to; `emu`/`cfg_verify` never compare
+a callee's incoming stack frame.
+
+Build `g1-i18b-net`. The threads now start — and immediately unmask §18.4.
+
+### 18.4 Step C — three more mis-relocated original-image constants, each found
+### by following the next fault
+
+Each of these was reached only because the previous one was fixed; all three are
+"a raw original-image address survived symbolization" and all three are proven
+against `netcore_image.bin`.
+
+1. **`arch_new_thread` planted a runtime-space `z_thread_entry`.**
+   `g1-i18b-net` died at t = 0.342 s with `USAGE FAULT / Illegal use of the
+   EPSR` at PC 0x0102c3e4 (`bx lr` with `lr = 0`). The net PC trace shows the
+   very first `z_arm_pendsv` returning to **PC = 0x0102cc3c**, which in our link
+   is the *middle* of `FUN_01033354`'s `ldmia.w sp!, {r4, lr}` — so the thread
+   popped a garbage LR. `FUN_0102ece0` (= `arch_new_thread`) contains
+   `uVar1 = 0x0102cc3d`, the shipped Thumb pointer to `z_thread_entry`;
+   analysis 0x0102c43c disassembles to
+   `push {r7,lr} / mov r5,r0 / mov r6,r1 / mov r7,r2 / mov r8,r3 /
+   bl z_impl_z_current_get / mov r3,r0 / bl __aeabi_read_tp / mov r4,r0 /
+   ldr.w r9,[pc,#24] / mov r2,r8 / str.w r3,[r9,r0] / mov r1,r6 / mov r0,r7 /
+   blx r5`, instruction-for-instruction our linked `z_thread_entry`. Bound to
+   `&z_thread_entry` under `G1_COHESIVE_BUILD`. Build `g1-i18c-net`.
+
+2. **`hci_rpmsg.c`'s `tx_queue` and the `net_buf` pool list base.**
+   `g1-i18c-net` died at t = 0.345 s with `ASSERTION FAIL @ spinlock.h:114`
+   (recursive spinlock) inside `queue_insert`, `Current thread: 0x21001cf8` =
+   the new TX thread. The TX thread does `net_buf_get(0x21000978, K_FOREVER)`;
+   0x21000978 is the shipped `static K_FIFO_DEFINE(tx_queue)` and in our link it
+   is 0x18 bytes into `net_buf_pool_area`'s third `struct net_buf_pool`
+   (the section runs `_net_buf_pool_list_start` 0x210008f8 ..
+   `_net_buf_pool_list_end` 0x21000994). Separately, `FUN_0102fc30`,
+   `FUN_0102fdd0` and `FUN_0102ff94` compute `pool = 0x21000994 + id*0x34`;
+   0x21000994 is the ORIGINAL `_net_buf_pool_list` base but our
+   `_net_buf_pool_list_end`, so every pool word read back was one element past
+   the array. Both are bound to real objects (`g1_hci_tx_queue`,
+   `_net_buf_pool_list_start`). Build `g1-i18d-net`.
+
+3. **`FUN_0102b1c8`'s ESB worker thread — storage fixed, start DEFERRED.**
+   `g1-i18d-net` got to t = 1.455 s and then took `USAGE FAULT` at
+   `rpmsg_virtio_rx_callback+0x84` (`blx r8` on `ept->cb`). A watchpoint on
+   `endpoint[0].ep.cb` showed it set correctly to 0x0103c1fd, three messages
+   delivered, and then **zeroed by `FUN_01035edc+0x96`** — a *third*
+   `k_thread_create`, `FUN_0102b1c8`, whose shipped object 0x21001e38 also lands
+   inside `backend_data_0` and whose stack 0x21007300 lands inside
+   `sdc_mempool`. It drops the same 64-bit delay.
+   Its storage is relocated. Its **entry point is NOT reconstructed**: the
+   stored pointer 0x0102ba05 is runtime-space, analysis 0x0102b204, which lies
+   *inside* `FUN_0102b1c8`'s declared Ghidra extent (next catalogued entry is
+   `FUN_0102b2ac`) — an **eighth instance of the "Ghidra folded a sibling
+   function into the tail of the preceding symbol" class**, 168 bytes with no
+   reconstruction and no catalogue entry. Starting the thread would jump into
+   unrelated text, so the delay is passed as **K_FOREVER**: the thread is
+   created and never scheduled. **This is a deliberate, documented divergence**
+   (the shipped firmware passes `K_NO_WAIT`), recorded in the source, and it is
+   to be reverted to `K_NO_WAIT` the moment 0x0102b204 is reconstructed.
+   Build `g1-i18e-net` — **final, and reset-free through 2.0 s**.
+
+### 18.5 Measurements (every number below was actually run)
+
+App core unchanged this iteration (`/private/tmp/g1-i17d-app`).
+
+| metric | iter 17 net (`g1-i9c-net`) | `g1-i18a-net` | **iter 18 final `g1-i18e-net`** |
+|---|---:|---:|---:|
+| net instr @2.0 s (`cpunet ExecutedInstructions`) | 53,529,158 | 53,529,301 | **412,379** |
+| net unique fns @2.0 s (from the PC trace) | 467 | — | **466** |
+| net top consumer @2.0 s | `rpmsg_get_endpoint` 53,146,996 (99.3 %) | `rpmsg_get_endpoint` (still spinning) | `memset` 139,562; **`rpmsg_get_endpoint` not in the top 12** |
+| app instr @2.0 s (`cpuapp ExecutedInstructions`) | 11,684,715 | 11,684,715 | **11,687,004** |
+| app unique fns @2.0 s (from the PC trace) | 996 | — | **996** |
+| SoC resets @2.0 s | 0 | 0 | **0** |
+| SoC resets @6.0 s | 1 (t = 5.093 s) | — | **1 (t = 5.093 s, different cause — §18.6)** |
+| `ipc_service: Endpoint not registered` in the 6 s UART | **1** | — | **0** |
+| `radio TransmittedFrames` | 0 | 0 | **0** |
+| net FLASH image span | 229,161 B | 228,633 B | **228,717 B** (end LMA 0x0104056d, *smaller* than iter 17's 0x01040729) |
+| net RAM | 54,140 B | 54,140 B | **59,796 B (91.24 %)**, +5,656 B |
+| net `nm -u` undefined / duplicate | 0 / 0 | 0 / 0 | **0 / 0** |
+| app `check_ram_pin_collisions.py` | 0 / 0, EXIT 0 | — | **0 / 0, EXIT 0** |
+| `check_thread_create_stack_args.py` | 10/10, EXIT 0 | — | **10/10, EXIT 0** |
+| `gen_retained_sources.py --check` | clean | clean | **clean** |
+| net literal RAM pins colliding with a live object (live-referenced) | 72 (53) | — | **69 (49)** |
+
+The net image did **not** grow past its region: the FLASH enlargement of
+`recon/application/net/app.overlay` was already in place and the image is
+228,717 B against the modelled 231,424 B limit (2,707 B headroom), i.e. **484 B
+smaller than iteration 17's**, because displacing the five duplicate
+`kernel/timeout.c` bodies frees more than the new thread storage costs. No
+Kconfig, `prj.conf` or devicetree change was made.
+
+### 18.6 The new first divergence — still t = 5.093 s, but one call deeper
+
+The 6.0 s run (`/tmp/g1_i18e6`, both UARTs captured) shows `bt_enable` now
+reaching the transport and failing **inside** it rather than before it:
+
+```
+                                            (iteration 17)
+[00:00:05.093,139] <err> ipc_service: Endpoint not registered
+[00:00:05.093,139] <err> bt_hci_driver: Failed to send (err -2)
+ASSERTION FAIL [buf] @ WEST_TOPDIR/zephyr/subsys/net/buf.c:467
+
+                                            (iteration 18 — the two <err>
+                                             lines are GONE)
+ASSERTION FAIL [net_buf_simple_headroom(buf) >= len]
+               @ WEST_TOPDIR/zephyr/subsys/net/buf_simple.c:301
+<err> os: Faulting instruction address (r15/pc): 0x0007b45c   r14/lr: 0x0005f1a3
+<err> os: >>> ZEPHYR FATAL ERROR 4: Kernel panic on CPU 0
+```
+
+Resolved against `/private/tmp/g1-i17d-app/zephyr/zephyr.elf`:
+`0x0007b45c = assert_post_action+0xc`, `0x0005f1a3 = net_buf_simple_push+0x27`,
+and the surrounding frames are `bt_rpmsg_send` (0x0005fd58) and
+`ble_work_thread` (0x0001f52c). `bt_rpmsg_send` prepends the one-byte H:4 packet
+indicator with `net_buf_push_u8()`; the buffer it is handed has **no headroom**,
+even though `CONFIG_BT_HCI_RESERVE = 1` is set in the app build's
+`autoconf.h` (line 177) and `CONFIG_BT_RPMSG = 1` (line 767). So the TX buffer
+does not come from a `BT_BUF_RESERVE`-reserving allocation — an **app-core**
+defect, and iteration 19's Step A. `bt_buf_get_tx` is absent from the app ELF's
+symbol table, which is the thread to pull.
+
+### 18.7 Graphics + sensor parity (`g1-i17d-app` + `g1-i18e-net`)
+
+Full capture actually run, both phases, identical determinism knobs and
+stimulus to the oracle, no memory poking:
+
+```
+G1_RESC=/Users/freedomcoder/Projects/armemul/g1-ours.resc \
+G1_APP_ELF=/private/tmp/g1-i17d-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i18e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x200551d8 G1_CTX_105A=0x2005524a \
+recon/emulator/scripts/capture_display_sensor_oracle.sh /tmp/g1_ours_i18e
+```
+
+| id | verdict | detail |
+|---|---|---|
+| **G-5** | **PASS** (unchanged) | all four enumerated elements byte-exact, including the trailing `0xB9 FF`. |
+| **G-3** | **FAIL (truncation only)**, unchanged | `p1_boot` **34 vs 764** transactions; **all 34 byte-identical**; first difference at index **34** (oracle `0x66 tx=66`, ours absent). `p2_render` 0 vs 2,881. |
+| **G-1** | **FAIL**, unchanged | `p2_render` ours `0c5cc90b…` / **0 lit px**, oracle `b26c73b3…` / 1,098. |
+| **G-2** | **FAIL**, unchanged | `p1_boot` ours `0c5cc90b…` / **0 lit px**, oracle `1d617c65…` / 656. |
+| **G-4** | *localiser, unchanged* | our framebuffer sha is still bit-identical to iterations 16/17, so the localisation carries over unchanged: first differing row **y = 267**, first differing pixel **x = 178** (oracle `ffffff`, ours `000000`) — the top-left of the oracle's lit bbox (178,267)–(449,287). |
+| **G-6** | **PASS** | `spim_b` 0 == 0, hash EQ. |
+
+**No pixels were painted, and the graphics numbers are bit-for-bit those of
+iteration 17.** That is expected and is stated plainly: the app core still
+resets at t = 5.093 s, before any BLE connection, and the oracle's `spim_a`
+stream has nothing between 0.121 s and 3.92 s because every transaction after
+index 33 is downstream of the BLE link. Iteration 18 moved the blocker one call
+deeper; it did not yet reach the link.
+
+Per-sensor `p1_boot` volumes are also unchanged (the app binary is unchanged and
+the reset time is unchanged): LSM6DSO 983/1,089, nPM1300 199/291, OPT3001
+14/33, ST25DV system port 12/22, NFC EEPROM 11/25, `saadc` 17/998, `spim_a`
+34/764, `gpiote0` 25/25 (hash EQ), `pdm0` 2/2 (hash EQ), `spim_b` 0/0. Every
+`p2_render` column is 0. Score is unchanged at **5 PASS / 5 PARTIAL / 4 FAIL**;
+see `sensor_parity_status.md`.
+
+**Re-proof.** Every corrected canonical reconstruction was re-verified with the
+authoritative CFG-directed verifier after the change — `cfg_verify.verify('net',
+n)` **PASS** for all eight: `FUN_0102afbc` (40 checks), `FUN_0102b1c8` (40),
+`FUN_0102ece0` (40), `FUN_0102adac` (3), `FUN_0102adf0` (17), `FUN_0102fc30`
+(44), `FUN_0102fdd0` (11), `FUN_0102ff94` (42). As expected this is necessary
+but not sufficient: `cfg_verify` **also passed before** the FUN_0102afbc /
+FUN_0102b1c8 fixes, because it never compares a callee's incoming stack frame —
+which is precisely why the dropped `k_timeout_t` survived 300-trial parity.
+(The `#ifdef G1_COHESIVE_BUILD` relocations are invisible to the harness; the
+parity path keeps the original literals, and for the two `k_thread_create`
+callers it now also emits the previously-missing delay words, i.e. the parity
+body moved *towards* the shipped instruction sequence.)
+
+### Regenerate (iteration 18)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py            # 964 -> 959 net
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check    # clean
+recon/application/build_cohesive.sh net /private/tmp/g1-i18e-net -- \
+    -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF
+arm-zephyr-eabi-nm -u /private/tmp/g1-i18e-net/zephyr/zephyr.elf | wc -l   # 0
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py \
+    /private/tmp/g1-i17d-app/zephyr/zephyr.elf                             # EXIT 0, 0/0
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_thread_create_stack_args.py \
+    --trials 120                                                           # EXIT 0, 10/10
+# boot (2.0 s, both cores traced) and the 6.0 s UART probe that names §18.6:
+#   <scratchpad>/i18e.resc  and  <scratchpad>/i18e6.resc
+# graphics + sensors: see §18.7
+```
+
+Bisect ledger (every build and boot actually run; app fixed at `g1-i17d-app`):
+
+| net build | change | net instr @2.0 s | resets | note |
+|---|---|---:|---|---|
+| `/private/tmp/g1-i18a-net` | `kernel/timeout.c` singleton displacement (5 rows) + `rodata_103bac9` → `z_thread_timeout` | 53,529,301 | 0 @2.0 s | correct, but **no symptom change** — still parked in `rpmsg_get_endpoint+0x28` |
+| `/private/tmp/g1-i18b-net` | + HCI TX/RX thread objects, stacks, `ipc_ept`, names relocated; + the dropped 64-bit `K_NO_WAIT` | not reached | **1 (t = 0.342 s)** | threads start for the first time; USAGE FAULT, `bx lr` with `lr = 0` (`z_thread_entry` defect) |
+| `/private/tmp/g1-i18c-net` | + `arch_new_thread` → `&z_thread_entry` | not reached | **1 (t = 0.345 s)** | first pendsv lands correctly; `spinlock.h:114` recursive-spinlock assert in `queue_insert` |
+| `/private/tmp/g1-i18d-net` | + `g1_hci_tx_queue` + `_net_buf_pool_list_start` | not reached | **1 (t = 1.455 s)** | 3 rpmsg messages delivered, then `ept->cb` zeroed by a third colliding thread object |
+| `/private/tmp/g1-i18e-net` | + ESB worker thread storage relocated, start deferred (K_FOREVER) | **412,379** | **0** | **final**; endpoint binds, `Endpoint not registered` gone |
+
+Files changed: `recon/symbols/g1_net_globals.ld` (one function-pointer rebind);
+`recon/application/net/src/stock_call_aliases.ld` (5 `PROVIDE`s);
+new `recon/ownership/net_kernel_timeout_singleton_adoption.json`;
+`recon/ownership/adoption_manifest.json` (5 net rows + summary);
+`recon/generated/net_retained_sources.cmake` (regenerated by its own tool,
+964 → 959 retained sources);
+`recon/application/net/src/g1_product_endpoints.c` (three `k_thread`s, three
+stacks, one `ipc_ept`, one `k_fifo`, two name strings);
+`recon/net/src/{FUN_0102afbc,FUN_0102b1c8,FUN_0102ece0,FUN_0102adac,FUN_0102adf0,
+FUN_0102fc30,FUN_0102fdd0,FUN_0102ff94}.c` and the compiled
+`recon/symbolized/net/{FUN_0102ece0,FUN_0102fc30,FUN_0102fdd0,FUN_0102ff94}.c`
+mirrors; `recon/emulator/reports/sensor_parity_status.md` (rewritten in place);
+this report. **No `tools/` change**, no `recon/emulator/scripts/` change, no
+Kconfig / `prj.conf` / devicetree change, `armemul` untouched. Nothing
+committed.
+
+### 18.8 Open, named, and NOT fixed
+
+1. **`analysis 0x0102b204` (168 B) is unreconstructed** — the ESB worker thread
+   entry; until it exists `FUN_0102b1c8` creates its thread with `K_FOREVER`
+   (deliberate divergence, §18.4(3)).
+2. **49 live-referenced net RAM-pin collisions remain**, dominated by recovered
+   ESB / nrfx / SDC state pinned inside `sdc_mempool` and by four pins inside
+   `_sw_isr_table` / `m_cb` / `backend_config_0` / `g1_ipc0_endpoint_config`.
+   The app core solved this class structurally with `g1_ram_arena`; the net core
+   **cannot** copy that directly — the pinned span is 0x6450 (25,680 B) and the
+   net has 64 KiB of RAM with 59,796 B already in use. The tractable route is
+   the one iteration 18 used: displace the recovered duplicates onto the stock
+   owners so the pins stop being dereferenced at all.
+3. **The net RAM-pin gate does not exist.** `check_ram_pin_collisions.py` is
+   hard-coded to the app RAM window and the app linker scripts. It was driven
+   for the net core from the scratchpad by importing the module and overriding
+   `RAM_LO`/`RAM_HI`; making that a first-class `--ram`/`--ld` invocation is a
+   one-line, additive change that was deliberately NOT made this iteration.
+4. **Raw `0x21xxxxxx` literals inside net sources are invisible to that gate**
+   anyway — the three thread objects fixed here were plain C literals, not
+   `PROVIDE` pins. A source-level sweep is needed.
+5. **The app-core `bt_rpmsg_send` headroom assertion** (§18.6) is the new first
+   divergence.

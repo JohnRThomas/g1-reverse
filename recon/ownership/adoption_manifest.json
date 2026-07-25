@@ -39352,11 +39352,11 @@
   },
   "net": {
    "summary": {
-    "entries": 612,
-    "exclude_reconstruction": 245,
+    "entries": 617,
+    "exclude_reconstruction": 250,
     "retain_reconstruction": 367,
     "by_kind": {
-     "source": 125,
+     "source": 130,
      "archive": 297,
      "static_helper": 61,
      "table": 0,
@@ -58815,6 +58815,141 @@
        "source": "recon/emulator/reports/golden_boot_trace.json",
        "type": "golden_trace",
        "detail": "The shipped image reaches FUN_01021a38 at net instruction 387,868 and FUN_01022e34 at 387,916; its FUN_010248d0 returns immediately (10 entries / 131 instructions total over the whole 3.0 s boot), because the shipped MPSL initialised the same private state.  The control path itself is therefore correct -- only the state owner is wrong in the reconstruction."
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010317c0",
+     "raw_symbol": "FUN_010317c0",
+     "current_symbol": "sys_clock_elapsed",
+     "kind": "source",
+     "component": "zephyr_nrf_rtc_timer",
+     "upstream_symbol": "sys_clock_elapsed",
+     "upstream_unit": "zephyr/drivers/timer/nrf_rtc_timer.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Reconstruction header itself states the identity; body is z_nrf_rtc_timer_read() - last_count, last_count pinned at 0x21002b80 which lands inside sdc_mempool in the cohesive link.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_kernel_timeout_singleton_adoption.json",
+       "type": "net_kernel_singleton_duplicate_state_defect",
+       "phase": "P4 boot parity iteration 18",
+       "duplicate_private_state": true,
+       "stock_owner_present_in_link": true,
+       "call_targets_checked": true,
+       "reconstruction_present": true,
+       "runtime_defect_observed": "Renode watchpoint: the retained reconstruction wrote through timeout_list = 0x21000750, which lands inside _sw_isr_table, and corrupted backend_data_0's rpmsg endpoint list (rpmsg_get_endpoint then never terminated).",
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01037f8c",
+     "raw_symbol": "FUN_01037f8c",
+     "current_symbol": "z_add_timeout",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "z_add_timeout",
+     "upstream_unit": "zephyr/kernel/timeout.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Recorded as z_add_timeout by net_kernel_private_stock_adoption.json and net_zephyr_stock_atomic_adoption.json call_target_checks; kernel/timeout.c is a singleton and the stock unit is already linked.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_kernel_timeout_singleton_adoption.json",
+       "type": "net_kernel_singleton_duplicate_state_defect",
+       "phase": "P4 boot parity iteration 18",
+       "duplicate_private_state": true,
+       "stock_owner_present_in_link": true,
+       "call_targets_checked": true,
+       "reconstruction_present": true,
+       "runtime_defect_observed": "Renode watchpoint: the retained reconstruction wrote through timeout_list = 0x21000750, which lands inside _sw_isr_table, and corrupted backend_data_0's rpmsg endpoint list (rpmsg_get_endpoint then never terminated).",
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010380d8",
+     "raw_symbol": "FUN_010380d8",
+     "current_symbol": "z_abort_timeout",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "z_abort_timeout",
+     "upstream_unit": "zephyr/kernel/timeout.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Same timeout_lock/remove_timeout private state as z_add_timeout; kernel/timeout.c is a singleton and the stock unit is already linked.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_kernel_timeout_singleton_adoption.json",
+       "type": "net_kernel_singleton_duplicate_state_defect",
+       "phase": "P4 boot parity iteration 18",
+       "duplicate_private_state": true,
+       "stock_owner_present_in_link": true,
+       "call_targets_checked": true,
+       "reconstruction_present": true,
+       "runtime_defect_observed": "Renode watchpoint: the retained reconstruction wrote through timeout_list = 0x21000750, which lands inside _sw_isr_table, and corrupted backend_data_0's rpmsg endpoint list (rpmsg_get_endpoint then never terminated).",
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x0103814c",
+     "raw_symbol": "FUN_0103814c",
+     "current_symbol": "sys_clock_announce",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "sys_clock_announce",
+     "upstream_unit": "zephyr/kernel/timeout.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Announces the same list/curr_tick/announce_remaining state and tail-branches to z_time_slice; kernel/timeout.c is a singleton and the stock unit is already linked (reached from the stock rtc_nrf_isr).",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_kernel_timeout_singleton_adoption.json",
+       "type": "net_kernel_singleton_duplicate_state_defect",
+       "phase": "P4 boot parity iteration 18",
+       "duplicate_private_state": true,
+       "stock_owner_present_in_link": true,
+       "call_targets_checked": true,
+       "reconstruction_present": true,
+       "runtime_defect_observed": "Renode watchpoint: the retained reconstruction wrote through timeout_list = 0x21000750, which lands inside _sw_isr_table, and corrupted backend_data_0's rpmsg endpoint list (rpmsg_get_endpoint then never terminated).",
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01038284",
+     "raw_symbol": "FUN_01038284",
+     "current_symbol": "sys_clock_tick_get",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "sys_clock_tick_get",
+     "upstream_unit": "zephyr/kernel/timeout.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "curr_tick + elapsed() under timeout_lock; kernel/timeout.c is a singleton and the stock unit is already linked.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_kernel_timeout_singleton_adoption.json",
+       "type": "net_kernel_singleton_duplicate_state_defect",
+       "phase": "P4 boot parity iteration 18",
+       "duplicate_private_state": true,
+       "stock_owner_present_in_link": true,
+       "call_targets_checked": true,
+       "reconstruction_present": true,
+       "runtime_defect_observed": "Renode watchpoint: the retained reconstruction wrote through timeout_list = 0x21000750, which lands inside _sw_isr_table, and corrupted backend_data_0's rpmsg endpoint list (rpmsg_get_endpoint then never terminated).",
+       "safe_to_adopt": true
       }
      ]
     }

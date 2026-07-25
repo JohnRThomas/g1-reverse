@@ -51,7 +51,21 @@ extern void assert_post_action(uint32_t, uint32_t); /* =FUN_01039bb0 */
 #define ASSERT_SOURCE       0x0103d2a7u
 #define ASSERT_POOL_MESSAGE 0x0103de3fu
 #define ASSERT_SPIN_MESSAGE 0x0103d3b6u
-#define NET_BUF_POOLS_BASE  0x21000994u
+
+/* P4 iteration 18: 0x21000994 is where the ORIGINAL image's net_buf pool array
+ * (`_net_buf_pool_list`) starts.  In the cohesive link that section is
+ * net_buf_pool_area = [_net_buf_pool_list_start 0x210008f8 ..
+ * _net_buf_pool_list_end 0x21000994), so the raw literal indexes one element
+ * PAST the last pool and every pool word read back is unrelated memory.  Bind
+ * the linker's own section start instead. */
+#ifdef G1_COHESIVE_BUILD
+extern unsigned char _net_buf_pool_list_start[];
+#define G1_NET_BUF_POOL_LIST ((unsigned long)_net_buf_pool_list_start)
+#else
+#define G1_NET_BUF_POOL_LIST 0x21000994u
+#endif
+
+#define NET_BUF_POOLS_BASE  G1_NET_BUF_POOL_LIST
 #define NET_BUF_POOL_STRIDE 0x34u
 
 static __attribute__((always_inline)) inline void

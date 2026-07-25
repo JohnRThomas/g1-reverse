@@ -1,0 +1,99 @@
+{
+  "core": "net",
+  "component": "zephyr_os_kernel_stock",
+  "atomic_group": "kernel/timeout.c + drivers/timer/nrf_rtc_timer.c sys_clock_elapsed",
+  "policy": "A kernel singleton whose private state is a linked list may not be duplicated. Either the reconstruction or the stock unit owns kernel/timeout.c, never both.",
+  "why_now": {
+    "phase": "P4 boot parity, iteration 18",
+    "observed": "rpmsg_get_endpoint on CPUNET never terminates (53,146,996 of 53,529,158 instructions at 2.0 s); the app core therefore logs 'ipc_service: Endpoint not registered' + 'bt_hci_driver: Failed to send (err -2)' at t = 5.093 s and panics in net/buf.c:467.",
+    "measurement": {
+      "tool": "Renode sysbus AddWatchpointHook",
+      "script": "recon/emulator/reports/our_boot_bringup.md iteration 18 section 18.1",
+      "elf_app": "/private/tmp/g1-i17d-app/zephyr/zephyr.elf",
+      "elf_net": "/private/tmp/g1-i9c-net/zephyr/zephyr.elf",
+      "watched_addresses": ["0x21001d30", "0x21001d60"],
+      "hits": [
+        {"pc": "0x0102dc9c", "symbol": "FUN_01037f8c+0x68", "wrote": "0x2100d1a6"},
+        {"pc": "0x0102dd2e", "symbol": "FUN_01037f8c+0xfa", "wrote": "0x00009ecb"},
+        {"pc": "0x0102dd2e", "symbol": "FUN_01037f8c+0xfa", "wrote": "0x00004f66"}
+      ],
+      "victim": "backend_data_0 (0x21001cf8, ipc_rpmsg_static_vrings backend instance); the corrupted words are rpmsg_inst.endpoint[0].ep.node.prev (+0x38) and rvdev.rdev.ns_ept.node.next (+0x11c). Struct offsets read from the build's own DWARF: backend_data_t.rpmsg_inst.rvdev.rdev.endpoints = +0xe0."
+    }
+  },
+  "private_state_collisions": [
+    {"pin": "g_net_kernel_timeout_dlist_head", "va": "0x21000750", "upstream": "timeout_list", "our_link_owner": "_sw_isr_table[0x21000708..0x210007f8]+0x48"},
+    {"pin": "g_net_kernel_curr_tick", "va": "0x210044f0", "upstream": "curr_tick", "our_link_owner": "sdc_mempool[0x21002990..0x21007c51]+0x1b60"},
+    {"pin": "announce_remaining", "va": "0x21004b6c", "upstream": "announce_remaining", "our_link_owner": "sdc_mempool[0x21002990..0x21007c51]+0x21dc"},
+    {"pin": "g_21002b80", "va": "0x21002b80", "upstream": "last_count (nrf_rtc_timer.c)", "our_link_owner": "sdc_mempool[0x21002990..0x21007c51]+0x1f0"},
+    {"pin": "(timeout_lock)", "va": "0x21004b70", "upstream": "timeout_lock", "our_link_owner": "sdc_mempool[0x21002990..0x21007c51]+0x21e0"}
+  ],
+  "manifest_functions": [
+    {
+      "raw_symbol": "FUN_010317c0",
+      "va": "0x010317c0",
+      "upstream_symbol": "sys_clock_elapsed",
+      "upstream_unit": "zephyr/drivers/timer/nrf_rtc_timer.c",
+      "upstream_linkage": "public",
+      "identification": "The reconstruction's own header states the identity: 'Zephyr sys_clock_elapsed @ 0x010317c0'; body is z_nrf_rtc_timer_read() - last_count with last_count pinned at 0x21002b80.",
+      "reconstruction_source": "recon/net/src/FUN_010317c0.c",
+      "reconstruction_source_sha256": "e80bc765ce92055aa69bec374b6636e4b3de8a032325d104f4276c80762bb25e",
+      "stock_owner_present_in_link": true,
+      "exclude_reconstruction": true
+    },
+    {
+      "raw_symbol": "FUN_01037f8c",
+      "va": "0x01037f8c",
+      "upstream_symbol": "z_add_timeout",
+      "upstream_unit": "zephyr/kernel/timeout.c",
+      "upstream_linkage": "public",
+      "identification": "Already recorded as z_add_timeout by two independent ownership records in this repository: recon/ownership/net_kernel_private_stock_adoption.json call_target_checks[4] (caller z_reset_time_slice @0x01036f24 +52) and recon/ownership/net_zephyr_stock_atomic_adoption.json call_target_checks[269] (caller z_timer_expiration_handler @0x010382fc +174). Body matches upstream statement for statement: K_FOREVER early return, sys_dnode_is_linked assert, to->fn = fn, LOCKED(&timeout_lock), absolute-vs-relative dticks, ordered insert with dticks subtraction, sys_dlist_append, sys_clock_set_timeout(next_timeout(), false).",
+      "reconstruction_source": "recon/net/src/FUN_01037f8c.c",
+      "reconstruction_source_sha256": "3779fd73a332b7a3f9d7aa72237b5b73f84753afe8ee13ab0d574ca38ac8c74f",
+      "stock_owner_present_in_link": true,
+      "exclude_reconstruction": true
+    },
+    {
+      "raw_symbol": "FUN_010380d8",
+      "va": "0x010380d8",
+      "upstream_symbol": "z_abort_timeout",
+      "upstream_unit": "zephyr/kernel/timeout.c",
+      "upstream_linkage": "public",
+      "identification": "LOCKED(&timeout_lock) { if (sys_dnode_is_linked(&to->node)) { remove_timeout(to); ret = 0; } } with ret initialised to -EINVAL (-22) - byte-for-byte the upstream shape; the same timeout_lock literal 0x21004b70 and the same remove_timeout callee (FUN_01037f54) as z_add_timeout.",
+      "reconstruction_source": "recon/net/src/FUN_010380d8.c",
+      "reconstruction_source_sha256": "bbc9b5bf26cd77d49d06c39bb4c10185019dba2f45c921c44045812b7a77a3ec",
+      "stock_owner_present_in_link": true,
+      "exclude_reconstruction": true
+    },
+    {
+      "raw_symbol": "FUN_0103814c",
+      "va": "0x0103814c",
+      "upstream_symbol": "sys_clock_announce",
+      "upstream_unit": "zephyr/kernel/timeout.c",
+      "upstream_linkage": "public",
+      "identification": "Sets announce_remaining = ticks (0x21004b6c), walks first() of the list at 0x21000750 subtracting dticks, calls t->fn(t) with the lock released, advances curr_tick (0x210044f0), clears announce_remaining, calls sys_clock_set_timeout(next_timeout(), false) and tail-branches to 0x01037438, which stock_call_aliases.ld already binds to z_time_slice - exactly upstream's closing z_time_slice() call.",
+      "reconstruction_source": "recon/net/src/FUN_0103814c.c",
+      "reconstruction_source_sha256": "29586be3e2d39da71233145dd5b768de17e9282e2e1e9265f032efd474933e3a",
+      "stock_owner_present_in_link": true,
+      "exclude_reconstruction": true
+    },
+    {
+      "raw_symbol": "FUN_01038284",
+      "va": "0x01038284",
+      "upstream_symbol": "sys_clock_tick_get",
+      "upstream_unit": "zephyr/kernel/timeout.c",
+      "upstream_linkage": "public",
+      "identification": "LOCKED(&timeout_lock) { t = curr_tick + elapsed(); } return t; with the same timeout_lock 0x21004b70, the same curr_tick 0x210044f0 and the same static elapsed() helper (FUN_01037f00).",
+      "reconstruction_source": "recon/net/src/FUN_01038284.c",
+      "reconstruction_source_sha256": "8afff34dda2bf6497e81eacaef57ef13da7a50bf30155f3914fb27017691822f",
+      "stock_owner_present_in_link": true,
+      "exclude_reconstruction": true
+    }
+  ],
+  "file_static_helpers_left_retained": [
+    {"raw_symbol": "FUN_01037f00", "upstream_symbol": "elapsed", "note": "file-static in timeout.c; every caller is excluded above, so --gc-sections drops it. Left in the manifest as retained so no reconstruction is deleted."},
+    {"raw_symbol": "FUN_01037f14", "upstream_symbol": "next_timeout", "note": "same"},
+    {"raw_symbol": "FUN_01037f54", "upstream_symbol": "remove_timeout", "note": "same"}
+  ],
+  "call_identity_bridges": "recon/application/net/src/stock_call_aliases.ld (5 PROVIDE lines).",
+  "safe_to_adopt": true
+}

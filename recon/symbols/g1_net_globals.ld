@@ -60,7 +60,25 @@ PROVIDE(rodata_103b6c1 = 0x0103b6c1);
 PROVIDE(rodata_103b6d3 = 0x0103b6d3);
 PROVIDE(rodata_103b7ad = 0x0103b7ad);
 PROVIDE(rodata_103b7f3 = 0x0103b7f3);
-PROVIDE(rodata_103bac9 = 0x0103bac9);
+/* FUNCTION-POINTER REBIND (iteration 18) — CPUNET `z_thread_timeout`.
+ * 0x0103bac9 is a Thumb pointer VALUE stored in the shipped image, i.e. a
+ * RUNTIME address (tools/net_address_space.py); its ANALYSIS address is
+ * 0x0103bac9 - 0x800 = 0x0103b2c9.  Disassembling netcore_image.bin at
+ * analysis 0x0103b2c8 gives
+ *     2101       movs r1, #1
+ *     3818       subs r0, #24
+ *     f7fc bafa  b.w  0x010378c4
+ * i.e. exactly Zephyr's kernel/sched.c
+ *     void z_thread_timeout(struct _timeout *t)
+ *     { z_sched_wake_thread(CONTAINER_OF(t, struct k_thread, base.timeout),
+ *                           true); }
+ * (`base.timeout` is at +0x18, which is also the offset FUN_01035fa0 =
+ * z_impl_k_thread_create passes to z_add_timeout).  Analysis 0x0103bac8 is
+ * plain data (`0a 00 05 00 02 00 01 00 ...`), so the identity pin was reading
+ * the WRONG coordinate space and handed the kernel a data address as a
+ * timeout callback.  Bind it to the linked owner instead; `| 1` re-sets the
+ * Thumb bit whatever the ELF symbol value carries. */
+PROVIDE(rodata_103bac9 = z_thread_timeout | 1);
 PROVIDE(rodata_103be3f = 0x0103be3f);
 PROVIDE(rodata_103bf70 = 0x0103bf70);
 /* DATA-POINTER REBIND (iteration 6) — CPUNET `struct device` "ipc0".

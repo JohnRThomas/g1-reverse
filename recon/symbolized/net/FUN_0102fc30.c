@@ -13,7 +13,21 @@
  */
 /* net-core FUN_0102fc30 @ 0x102fc30  (parity 300 trials PROVEN) */
 #define C_0102fcbc 0x210009c8
-#define C_0102fcc0 0x21000994
+
+/* P4 iteration 18: 0x21000994 is where the ORIGINAL image's net_buf pool array
+ * (`_net_buf_pool_list`) starts.  In the cohesive link that section is
+ * net_buf_pool_area = [_net_buf_pool_list_start 0x210008f8 ..
+ * _net_buf_pool_list_end 0x21000994), so the raw literal indexes one element
+ * PAST the last pool and every pool word read back is unrelated memory.  Bind
+ * the linker's own section start instead. */
+#ifdef G1_COHESIVE_BUILD
+extern unsigned char _net_buf_pool_list_start[];
+#define G1_NET_BUF_POOL_LIST ((unsigned long)_net_buf_pool_list_start)
+#else
+#define G1_NET_BUF_POOL_LIST 0x21000994u
+#endif
+
+#define C_0102fcc0 G1_NET_BUF_POOL_LIST
 #define C_0102fcb4 ((unsigned long)&rodata_103ddcd) /*=0x103ddcd*/
 #define C_0102fcb8 ((unsigned long)&rodata_103c024) /*=0x103c024*/
 
