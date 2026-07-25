@@ -49,10 +49,32 @@ PROVIDE(rodata_25059 = 0x00025059);
  * and parity-proven as register_ipc_service_recv_callback (its own %s()
  * log argument at 0x9f6a3 names it). */
 PROVIDE(rodata_25ae9 = register_ipc_service_recv_callback | 1);
-PROVIDE(rodata_25d8d = 0x00025d8d);
-PROVIDE(rodata_25dc5 = 0x00025dc5);
-PROVIDE(rodata_25df9 = 0x00025df9);
-PROVIDE(rodata_25fad = 0x00025fad);
+/* CODE-POINTER REBIND (iteration 13): these four odd (Thumb) flash pins are the
+ * IMU-fusion vtable that register_imu_funsion_context (0x26250) writes into its
+ * context at +0x8c/+0x90/+0x94/+0x98, and main() calls the +0x8c slot as
+ * `ldr r3,[r4,#0xf70] ; blx r3`.  Ghidra catalogued none of the four targets
+ * (gaps 0x25d8c..0x25ecc and 0x25f90..0x26100), so they stayed literal and
+ * main() branched into the middle of low_speed_peripheral_dispatch_thread in
+ * our link -- the boot's first divergence at 2.0 s.  All four are now
+ * reconstructed (cfg_verify PASS 200/200 each) and bound to their real
+ * definitions.  0x25fac == imu_fusion_init holds the 13th k_thread_create call
+ * (0x260c2), which is the only site that creates imu_fusion_thread. */
+PROVIDE(rodata_25d8d = set_imu_thread_delay | 1);
+PROVIDE(rodata_25dc5 = imu_fusion_resume | 1);
+PROVIDE(rodata_25df9 = imu_fusion_suspend | 1);
+PROVIDE(rodata_25fad = imu_fusion_init | 1);
+/* imu_fusion_init's own literals: the log-tag / format strings it passes. */
+PROVIDE(rodata_9f721 = 0x0009f721);
+PROVIDE(rodata_9f72f = 0x0009f72f);
+PROVIDE(rodata_9f773 = 0x0009f773);
+PROVIDE(rodata_9f797 = 0x0009f797);
+PROVIDE(rodata_9f7c3 = 0x0009f7c3);
+PROVIDE(rodata_9f812 = 0x0009f812);
+PROVIDE(rodata_9f851 = 0x0009f851);
+PROVIDE(rodata_9fae1 = 0x0009fae1);
+PROVIDE(rodata_9faf1 = 0x0009faf1);
+PROVIDE(rodata_9faf9 = 0x0009faf9);
+PROVIDE(rodata_9fb00 = 0x0009fb00);
 /* CODE-POINTER REBIND (systematic sweep): odd (Thumb) flash pin was the
  * original-image address of master_display_thread; unrelocated in our build.
  * Evidence: durable-map exact entry 0x2692c; z_impl_k_thread_create entry arg in run_main_dispatch_thread. */
@@ -380,7 +402,11 @@ PROVIDE(rodata_88908 = 0x00088908);
  * (0x0011 = GPIO_ACTIVE_LOW | GPIO_PULL_UP).  Re-emitted in button_init.c. */
 PROVIDE(rodata_889d0 = g1_gpio1_pin9_spec);
 PROVIDE(rodata_889e0 = g1_gpio1_pin10_spec);
-PROVIDE(rodata_889f8 = 0x000889f8);
+/* iteration 13: same class as 0x889d0/0x889e0 -- the descriptor itself
+ * embeds an absolute `struct device *`, so it must be emitted by the build. */
+PROVIDE(rodata_889e8 = g1_gpio0_pin30_spec);
+PROVIDE(rodata_889f0 = g1_gpio0_pin21_spec);
+PROVIDE(rodata_889f8 = g1_gpio0_pin24_spec);
 PROVIDE(rodata_88a00 = 0x00088a00);
 PROVIDE(rodata_88a0c = 0x00088a0c);
 PROVIDE(rodata_88a2a = 0x00088a2a);
@@ -2971,6 +2997,8 @@ PROVIDE(g_ble_work_timer = g1_ram_arena + 0x1d28);
 PROVIDE(g_ble_work_thread = g1_ram_arena + 0x1d60);
 PROVIDE(g_flash_ops_thread = g1_ram_arena + 0x1e38);
 PROVIDE(g_brightness_thread = g1_ram_arena + 0x1f10);
+/* iteration 13: imu_fusion_init's k_thread_create thread object (0x20003fe8). */
+PROVIDE(g_imu_fusion_thread = g1_ram_arena + 0x1fe8);
 PROVIDE(g_delay_deadline_ticks = g1_ram_arena + 0x20c8);
 PROVIDE(g_200040d0 = g1_ram_arena + 0x20d0);
 PROVIDE(g_200041a8 = g1_ram_arena + 0x21a8);
@@ -3344,9 +3372,15 @@ PROVIDE(_kernel = g1_ram_arena + 0x9448);
  * real _kernel, so unready_thread() unlinked from an empty private runq and
  * the sleeping thread was never actually removed from the ready queue --
  * z_tick_sleep then asserted _THREAD_SUSPENDED after z_swap returned.
- *   +0x08 cpus[0].current   +0x10 cpus[0].id   +0x1c ready_q.runq */
-PROVIDE(g_current_thread_ptr = g1_ram_arena + 0x9450);
-PROVIDE(g_spinlock_validate_owner = g1_ram_arena + 0x9458);
+ *   +0x08 cpus[0].current   +0x10 cpus[0].id   +0x1c ready_q.runq
+ * Iteration 12 measured `g_current_thread_ptr` alone and REVERTED it because it
+ * unmasked a CC312-PAL/AES livelock.  Iteration 13 root-caused that livelock to
+ * `sys_rand32_get` (FUN_00052c40) dropping the `length = 4` register argument at
+ * its call to `entropy_get_entropy_isr_call` (FUN_00052bf8) -- the original does
+ * `movs r1,#4 ; add.w r0,sp,r1 ; bl 0x52bf8` at 0x52c68.  With that fixed the two
+ * land together. */
+PROVIDE(g_current_thread_ptr = _kernel + 0x8);
+PROVIDE(g_spinlock_validate_owner = _kernel + 0x10);
 PROVIDE(g_sched_ready_runq = _kernel + 0x1c);
 PROVIDE(mutex_spinlock_b470 = g1_ram_arena + 0x9470);
 PROVIDE(g_mutex_lock_spinlock = g1_ram_arena + 0x9474);
@@ -3557,6 +3591,10 @@ PROVIDE(g_ancs_work_thread_stack = g1_ram_arena + 0x1b568);
 PROVIDE(g_ble_work_thread_stack = g1_ram_arena + 0x1c968);
 PROVIDE(g_flash_ops_thread_stack = g1_ram_arena + 0x1f968);
 PROVIDE(g_brightness_thread_stack = g1_ram_arena + 0x20168);
+/* iteration 13: imu_fusion_init's k_thread_create operands (0x260c2).
+ * The stack top 0x20023568 + 0x700 == 0x20023c68 is already pinned below as
+ * g_20023c68, which corroborates the size. */
+PROVIDE(g_imu_fusion_thread_stack = g1_ram_arena + 0x21568);
 PROVIDE(g_20023c68 = g1_ram_arena + 0x21c68);
 PROVIDE(g_20024868 = g1_ram_arena + 0x22868);
 PROVIDE(g_20024c68 = g1_ram_arena + 0x22c68);

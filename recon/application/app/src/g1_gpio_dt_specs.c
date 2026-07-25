@@ -24,6 +24,19 @@
  *   0x889e0: { 0x00087b48 (gpio1), pin 10, dt_flags 0x0011 }
  *   (0x0011 = GPIO_ACTIVE_LOW | GPIO_PULL_UP)
  *
+ * ITERATION 13 adds the panel-power descriptor that the same class had left
+ * behind.  `power_for_panel` -> `gpio_dt_spec_activate` (0x179ec) and
+ * `panel_pwr_gpio_deassert` (0x179f8) both `ldr r0,=0x000889f8 ; movs r1,#1/0 ;
+ * b.w gpio_pin_set_dt`, and 0x889f8 was still a raw flash literal, so
+ * gpio_pin_set_checked() received a bogus port pointer and asserted
+ * (ZEPHYR FATAL ERROR 4 at 0.0477 s).  Transcribed from the image, the three
+ * consecutive descriptors there are
+ *   0x889e8: { 0x00087b60 (gpio0), pin 30, dt_flags 0 }
+ *   0x889f0: { 0x00087b60 (gpio0), pin 21, dt_flags 0 }
+ *   0x889f8: { 0x00087b60 (gpio0), pin 24, dt_flags 0 }
+ * (0x87b60's name string is "gpio@842500" = gpio0; 0x87b48 is "gpio@842800"
+ * = gpio1).
+ *
  * The canonical parity bodies in recon/app/src/ are untouched.
  * See recon/emulator/reports/our_boot_bringup.md §Iteration 5.
  * ------------------------------------------------------------------------- */
@@ -65,4 +78,19 @@ const struct g1_gpio_dt_spec g1_gpio1_pin9_spec = {
 /* was rodata_889e0 (original 0x000889e0) */
 const struct g1_gpio_dt_spec g1_gpio1_pin10_spec = {
 	.port = G1_GPIO1, .pin = 10, .dt_flags = 0x0011
+};
+
+/* was rodata_889e8 (original 0x000889e8) */
+const struct g1_gpio_dt_spec g1_gpio0_pin30_spec = {
+	.port = G1_GPIO0, .pin = 30, .dt_flags = 0
+};
+
+/* was rodata_889f0 (original 0x000889f0) */
+const struct g1_gpio_dt_spec g1_gpio0_pin21_spec = {
+	.port = G1_GPIO0, .pin = 21, .dt_flags = 0
+};
+
+/* was rodata_889f8 (original 0x000889f8) -- the panel power-enable line */
+const struct g1_gpio_dt_spec g1_gpio0_pin24_spec = {
+	.port = G1_GPIO0, .pin = 24, .dt_flags = 0
 };

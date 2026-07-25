@@ -68,6 +68,11 @@ extern const unsigned char __g1_fp_display_thread_handler[] __asm__("display_thr
 extern const unsigned char __g1_fp_ext_flash_read[] __asm__("ext_flash_read");
 extern const unsigned char __g1_fp_ext_flash_write[] __asm__("ext_flash_write");
 extern const unsigned char __g1_fp_flash_ops_thread[] __asm__("flash_ops_thread");
+extern const unsigned char __g1_fp_imu_fusion_thread[] __asm__("imu_fusion_thread");
+extern const unsigned char __g1_fp_imu_fusion_init[] __asm__("imu_fusion_init");
+extern const unsigned char __g1_fp_imu_fusion_resume[] __asm__("imu_fusion_resume");
+extern const unsigned char __g1_fp_imu_fusion_suspend[] __asm__("imu_fusion_suspend");
+extern const unsigned char __g1_fp_set_imu_thread_delay[] __asm__("set_imu_thread_delay");
 extern const unsigned char __g1_fp_flowctl_schedule_next_send[] __asm__("flowctl_schedule_next_send");
 extern const unsigned char __g1_fp_gatt_ccc_settings_set[] __asm__("gatt_ccc_settings_set");
 extern const unsigned char __g1_fp_gatt_ccc_write[] __asm__("gatt_ccc_write");
@@ -171,6 +176,11 @@ extern const unsigned char __g1_fp_z_impl_net_if_ipv6_addr_rm_by_index[] __asm__
 #define ADDR_ext_flash_read_THUMB (((unsigned long)&__g1_fp_ext_flash_read) | 1u) /* ext_flash_read -> &ext_flash_read; was 0x2e399 */
 #define ADDR_ext_flash_write_THUMB (((unsigned long)&__g1_fp_ext_flash_write) | 1u) /* ext_flash_write -> &ext_flash_write; was 0x2e441 */
 #define ADDR_flash_ops_thread_THUMB (((unsigned long)&__g1_fp_flash_ops_thread) | 1u) /* flash_ops_thread -> &flash_ops_thread; was 0x23481 */
+#define ADDR_imu_fusion_thread_THUMB (((unsigned long)&__g1_fp_imu_fusion_thread) | 1u) /* imu_fusion_thread -> &imu_fusion_thread; was 0xfe89 */
+#define ADDR_imu_fusion_init_THUMB (((unsigned long)&__g1_fp_imu_fusion_init) | 1u) /* imu_fusion_init -> &imu_fusion_init; was 0x25fad */
+#define ADDR_imu_fusion_resume_THUMB (((unsigned long)&__g1_fp_imu_fusion_resume) | 1u) /* imu_fusion_resume -> &imu_fusion_resume; was 0x25dc5 */
+#define ADDR_imu_fusion_suspend_THUMB (((unsigned long)&__g1_fp_imu_fusion_suspend) | 1u) /* imu_fusion_suspend -> &imu_fusion_suspend; was 0x25df9 */
+#define ADDR_set_imu_thread_delay_THUMB (((unsigned long)&__g1_fp_set_imu_thread_delay) | 1u) /* set_imu_thread_delay -> &set_imu_thread_delay; was 0x25d8d */
 #define ADDR_flowctl_schedule_next_send_THUMB (((unsigned long)&__g1_fp_flowctl_schedule_next_send) | 1u) /* flowctl_schedule_next_send -> &flowctl_schedule_next_send; was 0x84b87 */
 /* UNRESOLVED (no defined symbol for 0x8278a) -- kept as original literal */
 #define ADDR_gatt_cancel_encode_THUMB        0x8278b /* gatt_cancel_encode */
@@ -424,6 +434,7 @@ extern volatile unsigned int g_ble_work_timer; /* @0x20003d28 */
 extern volatile unsigned int g_ble_work_thread; /* @0x20003d60 */
 extern volatile unsigned int g_flash_ops_thread; /* @0x20003e38 */
 extern volatile unsigned int g_brightness_thread; /* @0x20003f10 */
+extern volatile unsigned int g_imu_fusion_thread; /* @0x20003fe8 */
 extern volatile unsigned long long g_delay_deadline_ticks; /* @0x200040c8 */
 extern volatile unsigned int g_200040d0; /* @0x200040d0 */
 extern volatile unsigned int g_200041a8; /* @0x200041a8 */
@@ -965,6 +976,7 @@ extern volatile unsigned char g_tx_yield_allowed_flag; /* @0x2001d564 */
 extern volatile unsigned int g_percpu_timeout_abort_flag; /* @0x2001d565 */
 extern volatile unsigned int g_ancs_work_thread_stack; /* @0x2001d568 */
 extern volatile unsigned int g_ble_work_thread_stack; /* @0x2001e968 */
+extern volatile unsigned int g_imu_fusion_thread_stack; /* @0x20023568 */
 extern volatile unsigned int g_flash_ops_thread_stack; /* @0x20021968 */
 extern volatile unsigned int g_brightness_thread_stack; /* @0x20022168 */
 extern volatile unsigned int g_20023c68; /* @0x20023c68 */
@@ -1785,6 +1797,17 @@ extern const unsigned char rodata_9f73d[]; /* @0x9f73d */
 extern const unsigned char rodata_9f929[]; /* @0x9f929 */
 extern const unsigned char rodata_9fa9c[]; /* @0x9fa9c */
 extern const unsigned char rodata_9fb15[]; /* @0x9fb15 */
+extern const unsigned char rodata_9f721[]; /* @0x9f721 */ /* iteration 13: imu_fusion_init log strings */
+extern const unsigned char rodata_9f72f[]; /* @0x9f72f */ /* iteration 13: imu_fusion_init log strings */
+extern const unsigned char rodata_9f773[]; /* @0x9f773 */ /* iteration 13: imu_fusion_init log strings */
+extern const unsigned char rodata_9f797[]; /* @0x9f797 */ /* iteration 13: imu_fusion_init log strings */
+extern const unsigned char rodata_9f7c3[]; /* @0x9f7c3 */ /* iteration 13: imu_fusion_init log strings */
+extern const unsigned char rodata_9f812[]; /* @0x9f812 */ /* iteration 13: imu_fusion_init log strings */
+extern const unsigned char rodata_9f851[]; /* @0x9f851 */ /* iteration 13: imu_fusion_init log strings */
+extern const unsigned char rodata_9fae1[]; /* @0x9fae1 */ /* iteration 13: imu_fusion_init log strings */
+extern const unsigned char rodata_9faf1[]; /* @0x9faf1 */ /* iteration 13: imu_fusion_init log strings */
+extern const unsigned char rodata_9faf9[]; /* @0x9faf9 */ /* iteration 13: imu_fusion_init log strings */
+extern const unsigned char rodata_9fb00[]; /* @0x9fb00 */ /* iteration 13: imu_fusion_init log strings */
 extern const unsigned char rodata_9fb42[]; /* @0x9fb42 */
 extern const unsigned char rodata_9fb59[]; /* @0x9fb59 */
 extern const unsigned char rodata_9fb89[]; /* @0x9fb89 */

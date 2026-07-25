@@ -2941,6 +2941,33 @@
     "FUN_00025d40"
    ]
   },
+  "0x00025d8c": {
+   "address": "0x00025d8c",
+   "raw_name": "FUN_00025d8c",
+   "name": "set_imu_thread_delay",
+   "display_name": "set_imu_thread_delay",
+   "human": true,
+   "source": "iteration 13: uncatalogued IMU-fusion vtable target; name from the log tag string it passes",
+   "aliases": []
+  },
+  "0x00025dc4": {
+   "address": "0x00025dc4",
+   "raw_name": "FUN_00025dc4",
+   "name": "imu_fusion_resume",
+   "display_name": "imu_fusion_resume",
+   "human": true,
+   "source": "iteration 13: uncatalogued IMU-fusion vtable target; name from the log tag string it passes",
+   "aliases": []
+  },
+  "0x00025df8": {
+   "address": "0x00025df8",
+   "raw_name": "FUN_00025df8",
+   "name": "imu_fusion_suspend",
+   "display_name": "imu_fusion_suspend",
+   "human": true,
+   "source": "iteration 13: uncatalogued IMU-fusion vtable target; name from the log tag string it passes",
+   "aliases": []
+  },
   "0x00025e2c": {
    "address": "0x00025e2c",
    "raw_name": "FUN_00025e2c",
@@ -2962,6 +2989,15 @@
    "aliases": [
     "FUN_00025ecc"
    ]
+  },
+  "0x00025fac": {
+   "address": "0x00025fac",
+   "raw_name": "FUN_00025fac",
+   "name": "imu_fusion_init",
+   "display_name": "imu_fusion_init",
+   "human": true,
+   "source": "iteration 13: uncatalogued IMU-fusion vtable target; name from the log tag string it passes",
+   "aliases": []
   },
   "0x00026100": {
    "address": "0x00026100",
@@ -18308,6 +18344,15 @@
     "FUN_0007c85e"
    ]
   },
+  "0x0007c86c": {
+   "address": "0x0007c86c",
+   "raw_name": "FUN_0007c86c",
+   "name": "FUN_0007c86c",
+   "display_name": "FUN_0007c86c",
+   "human": false,
+   "source": "recon/app/src/FUN_0007c86c.c",
+   "aliases": []
+  },
   "0x0007c872": {
    "address": "0x0007c872",
    "raw_name": "FUN_0007c872",
@@ -27473,15 +27518,6 @@
    "aliases": [
     "FUN_00087996"
    ]
-  },
-  "0x0007c86c": {
-   "address": "0x0007c86c",
-   "raw_name": "FUN_0007c86c",
-   "name": "FUN_0007c86c",
-   "display_name": "FUN_0007c86c",
-   "human": false,
-   "source": "recon/app/src/FUN_0007c86c.c",
-   "aliases": []
   }
  },
  "by_name": {
@@ -27524,6 +27560,7 @@
   "FUN_0007c010": "0x0007c010",
   "FUN_0007c0a4": "0x0007c0a4",
   "FUN_0007c172": "0x0007c172",
+  "FUN_0007c86c": "0x0007c86c",
   "FUN_0007c872": "0x0007c872",
   "FUN_0007c876": "0x0007c876",
   "FUN_0007ca72": "0x0007ca72",
@@ -28798,7 +28835,10 @@
   "img_mgmt_vercmp": "0x00080970",
   "img_mgmt_write_image_data": "0x00051870",
   "imu_apply_normalized_mode": "0x00016834",
+  "imu_fusion_init": "0x00025fac",
+  "imu_fusion_resume": "0x00025dc4",
   "imu_fusion_state_init": "0x000265b8",
+  "imu_fusion_suspend": "0x00025df8",
   "imu_fusion_thread": "0x0000fe88",
   "imu_mahony_ahrs_update": "0x00026624",
   "imu_pitch_task_reset_render_state": "0x000436f8",
@@ -29575,6 +29615,7 @@
   "set_glassbox_charge_percent": "0x00032808",
   "set_glasses_sn_info": "0x00031ee8",
   "set_imu_pitch_reflash": "0x000469bc",
+  "set_imu_thread_delay": "0x00025d8c",
   "set_message_pending_state": "0x0003443c",
   "set_message_pool_entry_status": "0x00033bf0",
   "set_misc_286c_value": "0x00051038",
@@ -29996,8 +30037,7 @@
   "zcbor_simple_put": "0x00086360",
   "zcbor_str_decode": "0x00085ef0",
   "zcbor_str_encode": "0x00086228",
-  "zcbor_tstr_encode_ptr": "0x0008099e",
-  "FUN_0007c86c": "0x0007c86c"
+  "zcbor_tstr_encode_ptr": "0x0008099e"
  },
  "conflicts": {
   "slave_display_thread": [

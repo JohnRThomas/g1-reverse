@@ -4457,3 +4457,432 @@ one false positive documented); new
 `recon/emulator/scripts/check_thread_create_stack_args.py`. No `tools/` change,
 no Kconfig / `prj.conf` / devicetree change, `armemul` untouched. Nothing
 committed.
+
+## Iteration 13 — the paired landing (`_kernel + 0x8` + the entropy-length defect), and the IMU-fusion vtable
+
+**Headline.** Iteration 12's paired fix is **landed and works**. The livelock it
+was blocked on is root-caused to a *third* instance of the "lost information at
+a call" family — `sys_rand32_get` (0x52c40) **dropped the `length = 4` register
+argument** at its call to `entropy_get_entropy_isr_call` (0x52bf8), so the CC312
+CTR_DRBG was asked for a garbage number of bytes. With that one word restored,
+`PROVIDE(g_current_thread_ptr = _kernel + 0x8)` lands cleanly: **the 0.0717 s
+kernel panic is gone, there is no livelock, and the boot survives 2.0 s of
+virtual time with 822 unique functions — the best result this project has
+reached** (iteration 11's no-reset baseline was 816 / 6,239,878).
+
+Step B then reconstructed the **four uncatalogued IMU-fusion vtable functions**
+(the gap that iteration 12 found the 13th `k_thread_create` in) and wired them
+in. **`imu_fusion_init` and `imu_fusion_thread` now execute for the first time**,
+the whole `lsm6dso_*` driver stack and the quaternion/orientation fusion math
+run, and Renode logs real **LSM6DSO register traffic on twim2**. Getting there
+required fixing two further latent defects that the new code path unmasked
+(the `dev_ctrl_*` I²C-message family, and one more unrelocated `gpio_dt_spec`).
+The final image reaches **839 unique functions at 0.15 s** but **resets once at
+0.0892 s** on a *new*, precisely-located divergence (a NULL context handed to
+`global_system_suspend`, whose `blx` then faults).
+
+Both results are reported; nothing was reverted, because every change is
+provably correct (cfg_verify + instruction-level frame comparison against the
+shipped image) and the standing rule forbids reverting a provably-correct fix to
+improve a metric.
+
+| metric | iter 11 `g1-i11c-app` | iter 12 final `g1-i12d-app` | **iter 13 Step A `g1-i13a-app`** | **iter 13 final `g1-i13e-app`** |
+|---|---:|---:|---:|---:|
+| app instr @0.15 s | 6,011,048 | 6,221,826 | **6,004,916** | **6,388,996** |
+| app unique fns @0.15 s | 768 | 749 | **777** | **839** |
+| app resets | 0 | 1 @0.0717 s | **0** | **1 @0.0892 s** |
+| app @2.0 s | 6,239,878 / 816, no reset | does not survive | **6,261,306 / 822, no reset** | 6,388,996 / 839, reset @0.0892 s |
+| net instr / fns @0.15 s | 290,688 / 432 | 286,515 / 420 | **291,514 / 432** | 287,341 / 420 |
+| `radio TransmittedFrames` | 0 | 0 | **0** | **0** |
+| app FLASH | 626,452 B (63.76 %) | 626,548 B (63.77 %) | **626,548 B (63.77 %)** | **631,996 B (64.32 %)**, +5,448 B |
+| app RAM | 244,229 B (54.21 %) | 244,229 B (54.21 %) | **244,229 B** | **244,229 B**, +0 B |
+| `nm -u` undefined / duplicate globals | 0 / 0 | 0 / 0 | **0 / 0** | **0 / 0** |
+| `check_ram_pin_collisions.py` | 0 / 0, EXIT 0 | 0 / 0, EXIT 0 | **0 / 0, EXIT 0** | **0 / 0, EXIT 0** |
+| `check_thread_create_stack_args.py` | — | 9/9, EXIT 0 | 9/9 | **10/10, EXIT 0** |
+
+No `--allow-multiple-definition`, no weak symbols, no numeric-root hacks, no
+`tools/` change, no Kconfig / `prj.conf` / devicetree change; `armemul`
+untouched (only extra `.resc` files under `/tmp`). Nothing committed. Net core
+not rebuilt (`/private/tmp/g1-i9c-net`, unchanged since iteration 9).
+
+### 13.1 Step A — the livelock root cause: a dropped `length` at `sys_rand32_get`
+
+Iteration 12 measured the livelock as "`ProcessAesDrv` 248 → 66,939 entries,
+`mutex_lock_platform` absent → 50,271, 199,631,345 instructions in 2.0 s". Those
+counters are symptoms two levels below the cause. Walking the i12c trace's
+repeating cycle from the inside out gives the outermost recurring frame:
+
+```
+cc_mbedtls_ctr_drbg_random_with_add+0x162
+  -> (return) nrf_cc3xx_platform_ctr_drbg_get+0x28
+  -> (return) entropy_cc3xx_rng_get_entropy+0x44      <- the loop head
+  -> nrf_cc3xx_platform_ctr_drbg_get  (next 1024-byte chunk)
+```
+
+`entropy_cc3xx_rng_get_entropy` (stock NCS `drivers/entropy/entropy_cc3xx.c`) is
+a `while (offset < length)` loop that draws `min(length - offset, 1024)` bytes
+per iteration; each 1024-byte chunk costs ~72,000 instructions because every AES
+block goes through the CC312 PAL mutex dance. It is not an infinite loop — it
+was simply given an enormous `length`. The i12c trace shows **125 entries**
+(≈124 chunks) and still running; the golden trace never enters it at all.
+
+Where `length` comes from, proven from the shipped bytes
+(`arm-zephyr-eabi-objdump -b binary -M force-thumb` on `app_update.bin`):
+
+```
+sys_rand32_get @0x52c40
+  52c68  movs r1,#4              ; length = 4
+  52c6a  add.w r0,sp,r1          ; buffer = sp+4
+  52c6e  bl   0x52bf8            ; entropy_get_entropy_isr_call(buf, 4)
+```
+
+and `entropy_get_entropy_isr_call` @0x52bf8 forwards both:
+
+```
+  52bfa  mov r3,r0 ; 52bfe mov r2,r1     ; save buf, len
+  52c20  mov r1,r3 ; ldmia.w sp!,{r4,lr} ; ldr r0,=entropy_dev ; bx r3
+                                          ; -> api->get_entropy(dev, buf, len)
+```
+
+Our reconstruction declared it `extern int entropy_get_entropy_isr_call(int*)`
+and called `entropy_get_entropy_isr_call(&local_c)` — **one argument**. `r1` at
+that point is whatever `z_device_is_ready()` left behind. With
+`g_current_thread_ptr` pointing at the arena (i12a/i12d) that residue happened
+to be **0**, so the driver returned immediately and the defect was invisible;
+with the pin rebound (i12c) the residue was a large value and the CTR_DRBG
+churned for the rest of the run. **The livelock was never a CC312-PAL or
+newlib-retarget-lock defect at all** — those functions are correct; iteration
+12's `__malloc_unlock` observation was the first *trace* difference, not the
+cause.
+
+The fix is one argument in `recon/app/src/FUN_00052c40.c` (+ the symbolized /
+named mirrors):
+
+```c
+-extern int FUN_00052bf8(int*);
+-    iVar2 = FUN_00052bf8(&local_c);
++extern int FUN_00052bf8(int*, int);
++    iVar2 = FUN_00052bf8(&local_c, 4);
+```
+
+Emitted code, verified in the linked ELF, now matches the original's sequence:
+
+```
+43be4  movs r1,#4 ; 43be6 add r0,sp,#12 ; 43be8 bl entropy_get_entropy_isr_call
+```
+
+This is the **fourth** member of the class the harness is structurally blind to
+(outgoing stack args, dropped register args, wrong indirection level, stack
+writes) — here a **dropped register argument**. `cfg_verify` reports PASS both
+before and after, which is expected and is exactly why the disassembly is the
+authority.
+
+**Landed together with** `PROVIDE(g_current_thread_ptr = _kernel + 0x8)` and
+`PROVIDE(g_spinlock_validate_owner = _kernel + 0x10)` in
+`recon/symbols/g1_app_globals.ld` (iteration 12 §12.6's measured-and-reverted
+pair; `g_sched_ready_runq = _kernel + 0x1c` had already been kept).
+
+**Measured (`/private/tmp/g1-i13a-app`).** The 0.0717 s
+`z_tick_sleep` `__ASSERT(!SUSPENDED)` panic is **gone**; the whole panic path
+(`assert_post_action`, `_oops`, `z_do_kernel_oops`, `z_arm_fatal_error`,
+`z_fatal_error`, `panic`, `sys_arch_reboot`, …) disappears from the trace.
+`ProcessAesDrv` returns to **280 entries — exactly the golden trace's count**
+(the shipped firmware's own figure), from 248 (i12d) and 66,939 (i12c).
+2.0 s: **6,261,306 instructions, 822 unique functions, 0 faults, 0 resets.**
+
+### 13.2 Step B — the IMU-fusion vtable, and how it also *was* the first divergence
+
+Iteration 12 recorded a 13th `k_thread_create` at 0x260c2 inside the catalog gap
+`[0x25f90, 0x26100)`. Chasing the iteration-13 Step-A boot's own first
+divergence landed on the same gap from the other direction, which is the useful
+result:
+
+`main`'s last executed instruction in `g1-i13a-app` (2.0 s trace, transition
+#5,937,086) is
+
+```
+163dc  ldr.w r3,[r4,#0xf70]      ; a function pointer out of the context struct
+163e0  addw  r0,r4,#0xee4
+163e4  blx   r3                  ; --> lands at 0x25FAC, i.e. 0x94 bytes INTO
+                                 ;     low_speed_peripheral_dispatch_thread
+```
+
+`register_imu_funsion_context` (0x26250) is what fills that slot:
+
+```
+26252  ldr r3,=0x00025fad ; str.w r3,[r0,#0x8c]     <- main's [r4+0xf70]
+26258  ldr r3,=0x00025df9 ; str.w r3,[r0,#0x90]
+2625e  ldr r3,=0x00025dc5 ; str.w r3,[r0,#0x94]
+26264  ldr r3,=0x00025d8d ; str.w r3,[r0,#0x98]
+```
+
+All four targets sit in Ghidra catalog gaps (`0x25d8c..0x25ecc` and
+`0x25f90..0x26100`; the latter's first 0x1c bytes are
+`panel_level_calc_cached`'s literal pool), so our build kept them as raw flash
+literals `PROVIDE(rodata_25fad = 0x00025fad)` — and `main` branched into the
+middle of an unrelated function. **The uncatalogued IMU function and the boot's
+first divergence were the same defect.**
+
+Each function's name is self-evidenced by the log tag it passes as the `"%s()"`
+argument:
+
+| VA | size (code) | log tag | name | vtable slot |
+|---|---:|---|---|---|
+| 0x25d8c | 0x28 | 0x9fb00 `"set_imu_thread_delay"` | `set_imu_thread_delay` | +0x98 |
+| 0x25dc4 | 0x24 | 0x9faf9 `"resume"` | `imu_fusion_resume` | +0x94 |
+| 0x25df8 | 0x24 | 0x9faf1 `"suspend"` | `imu_fusion_suspend` | +0x90 |
+| 0x25fac | 0x124 | 0x9fae1 `"imu_fusion_init"` | `imu_fusion_init` | +0x8c |
+
+`imu_fusion_init` is the substantial one: it refuses to run twice
+(`ctx[0x14] != 0` → `-1`), stores the LSM6DSO `struct device *` 0x87d58 at
+`ctx+0x1c`, calls the sensor API twice through `dev_api_call_slot0(dev, 3|7,
+&ctx[0x20])` with an ODR word of `0x34` when `get_device_type() == 1`
+(accelerometer, then gyro; `-3` / `-4` on failure — the two error strings are
+literally *"Cannot set sampling frequency for accelerometer"* and
+*"… for gyro."*), initialises the fusion state (`imu_fusion_state_init`),
+marks the context live (`*(u16*)(ctx+0x14) = 0x100`), calls
+`panel_level_calc_cached`, and finally creates the thread:
+
+```
+260ba  ldr r3,=0x0000fe89   ; entry  = imu_fusion_thread
+260bc  ldr r1,=0x20023568   ; stack
+260be  ldr r0,=0x20003fe8   ; thread object
+260ae  mov.w r2,#0x700      ; stack size
+260aa  mvn.w r3,#10         ; prio = -11
+260a6  strd r2,r3,[sp,#0x18]; delay = K_NO_WAIT (the 64-bit k_timeout_t)
+260c2  bl  0x71eac
+```
+
+All four were registered in the scratchpad catalogs (the sanctioned
+iteration-4/8 route), reconstructed, and **`recon_kit.prove` / `cfg_verify`
+PASS 200/200 each**. Wiring:
+
+* new canonical bodies `recon/app/src/{imu_fusion_init,imu_fusion_resume,
+  imu_fusion_suspend,set_imu_thread_delay}.c` (+ `recon/verified/src` mirror),
+  symbolized build-tree copies, four entries added to
+  `recon/catalogs/function_names_app.json`, and
+  `tools/gen_retained_sources.py` regenerated (**`--check` clean**);
+* `recon/symbolized/app/register_imu_funsion_context.c` now stores
+  `ADDR_imu_fusion_init_THUMB` &c. instead of the `rodata_25*` literals. This is
+  deliberate: it is the *only* real reference to those functions, so it is also
+  what pulls them out of `libapp.a`. Binding the pins in the linker script alone
+  was measured and does **not** work — a `PROVIDE` expression is not an archive
+  reference, and the first attempt (`/private/tmp/g1-i13b-app`) linked with the
+  four functions absent and FLASH byte-identical to `g1-i13a-app`;
+* two new RAM pins on the existing arena, `g_imu_fusion_thread = arena+0x1fe8`
+  (0x20003fe8) and `g_imu_fusion_thread_stack = arena+0x21568` (0x20023568).
+  The stack size is corroborated by an already-present pin: `g_20023c68` =
+  0x20023568 + 0x700.
+
+**A 10th site was added to `check_thread_create_stack_args.py`.** It needs three
+reviewed fixtures (zeroed argument scratch so `ctx[0x14] == 0`, forced `>= 0`
+returns on call ordinals 2 and 4, and `g_log_level` pinned to 0 so the five
+guarded log branches stay out of the call sequence), and it passes with all
+eight outgoing words compared. Mutation battery actually run against it (60
+trials each): `prio -11 → -12` **FAIL 60/60**, `delay 0 → 5` **FAIL 60/60**,
+`p2 0 → 1` **FAIL 60/60**, and — honestly — `delay argument removed` **PASS**,
+because dropping it shrinks the frame by exactly 8 bytes so `sp+0x18/0x1c` land
+on the pushed `r4`/`r5` slots, which the harness enters with `r4 = r5 = 0`,
+byte-identical to `K_NO_WAIT`. (The other eight sites lost more than 8 bytes and
+hit the pushed `lr = RETURN_MAGIC`, which is why *they* failed pre-fix.) The
+authority for that mutation here is the emitted frame, which is
+instruction-for-instruction the original's:
+
+```
+ours   260c6 movs r2,#0 ; movs r3,#0 ; movs r5,#0
+       260cc strd r2,r3,[sp,#24]   260d8 strd r3,r5,[sp,#12]
+       260dc strd r5,r5,[sp,#4]    260e8 str  r4,[sp,#0]     260ea bl ...
+orig   260a0 movs r2,#0 ; movs r3,#0 ; movs r5,#0
+       260a6 strd r2,r3,[sp,#0x18] 260b2 strd r3,r5,[sp,#0xc]
+       260b6 strd r5,r5,[sp,#4]    260c0 str  r4,[sp,#0]     260c2 bl 0x71eac
+```
+
+(the only difference is `sub sp,#32` vs `sub sp,#0x24`, because GCC needs four
+callee-saved registers where the original used five.)
+
+**Result: the IMU fusion thread is created and runs.** In `g1-i13e-app`:
+`register_imu_funsion_context` 1 entry, `imu_fusion_init` 9 entries (first at
+i=5,955,553), **`imu_fusion_thread` 56 entries** (first at i=5,970,236), and the
+whole sensor stack behind it — `lsm6dso_attr_set`, `lsm6dso_xl_data_rate_set`,
+`lsm6dso_gy_data_rate_set`, `lsm6dso_mem_bank_set`, `lsm6dso_read_reg`,
+`lsm6dso_write_reg`, `lsm6dso_sample_fetch`, `lsm6dso_channel_get`,
+`lsm6dso_acceleration_raw_get`, `lsm6dso_angular_rate_raw_get`,
+`lsm6dso_accel_convert`, `lsm6dso_gyro_convert`, `imu_mahony_ahrs_update`,
+`quaternion_to_euler`, `orientation_filter_update_dt`,
+`orientation_get_pitch_deg`/`_yaw_deg`/`_heading_deg`, `fast_inverse_sqrt`,
+`__ieee754_asinf`, `__ieee754_atan2f`. Renode's twim2 model logs real LSM6DSO
+register accesses (offsets 0x46/0x47, the EmbeddedFunctions bank) — the first
+IMU bus traffic this project has produced. `run_main_dispatch_thread` (5
+entries) and `flash_ops_thread`/`brightness_level` also start for the first
+time.
+
+### 13.3 What the IMU path unmasked (both fixed, both provable)
+
+**(a) The `dev_ctrl_*` I²C-message family — a stack-object reconstruction that
+GCC legally deleted.** With the vtable linked, FLASH shifts and the boot reset at
+0.0466 s on `nrfx_twim.c:593` (`primary_length < (1U << 16)`). Cause:
+
+```
+ours  dev_ctrl_write2   push {r0,r1,r4,lr} ; add r2,sp,#3 ; str r2,[sp,#4]
+                        strb r1,[sp,#3] ; add r1,sp,#4 ; movs r2,#2 ; blx r4
+orig  0x83d80           sub sp,#0x24
+                        strb.w r1,[sp,#4]  strb.w r2,[sp,#5]      ; data[2]
+                        str r2,[sp,#8]  str r2,[sp,#12]  strb.w r1,[sp,#16]
+                        str r5,[sp,#20] str r1,[sp,#24]  strb.w r1,[sp,#28]
+                        add r1,sp,#8 ; movs r2,#2 ; blx r4
+```
+
+The previous body declared six unrelated locals and passed `&local_28`, relying
+on GCC laying them out contiguously as a two-element `i2c_msg` array. GCC kept
+only the store whose address escapes and deleted the rest, so
+`msgs[0].len`, `msgs[0].flags` and all of `msgs[1]` were uninitialised stack.
+This is the same class iteration 10 already fixed one member of
+(`dev_ctrl_write1` @0x83d60) — and, again, invisible to the harness, which
+compares only NON-stack writes. Three siblings were wrong for related reasons:
+
+| VA | name | defect | evidence |
+|---|---|---|---|
+| 0x83d80 | `dev_ctrl_write2` | 2-element `i2c_msg` array collapsed to one word | frame above |
+| 0x83dba | `dev_ctrl_read1` | declared `(void)` calling `(void)` → GCC emitted a bare `b.w`, forwarding registers by accident and leaving the 5th (stack) argument `length = 1` as caller residue | `83dbc movs r4,#1 ; str r4,[sp,#0] ; bl 0x83d80` |
+| 0x83e0e | `dev_reg_modify_bits` | declared 3 parameters; the original takes 5 (the 5th, an 8-bit mask, at `sp+0x28`) and does a real read-modify-write | `83e1a ldrb.w r9,[sp,#0x28]`, `83e48 bic/and/orr` |
+| 0x841fc | `dev_set_mode_register` | passed 4 arguments to the 5-argument `dev_reg_modify_bits`, dropping the mask (0x47 / 0xb8) | `84216/84218 movne/moveq r2 ; 8422a str r2,[sp,#4] ; b.w 0x83e0e` |
+
+All four rewritten, `cfg_verify` **PASS 200/200** each, and the emitted
+`dev_ctrl_write2` / `dev_ctrl_read1` are now **instruction-for-instruction
+identical to the shipped originals**, same frame size and same stack offsets:
+
+```
+77728 push {r4,r5,lr} ; sub sp,#0x24 ; ... ; strb.w r1,[sp,#4] ; strb.w r2,[sp,#5]
+      str r2,[sp,#8] ; str r2,[sp,#12] ; strb.w r1,[sp,#16] ; str r3,[sp,#20]
+      str r3,[sp,#24] ; strb.w r3,[sp,#28] ; add r1,sp,#8 ; movs r2,#2 ; blx r5
+77762 push {r0,r1,r4,lr} ; movs r4,#1 ; str r4,[sp,#0] ; bl 0x77728
+```
+
+**(b) One more unrelocated `gpio_dt_spec`.** With real I²C the nPM1300 sequence
+completes and `power_for_panel` advances to `gpio_dt_spec_activate` (0x179ec),
+which is `ldr r0,=0x000889f8 ; movs r1,#1 ; b.w gpio_pin_set_dt`.
+`PROVIDE(rodata_889f8 = 0x000889f8)` was still a raw flash literal, so
+`gpio_pin_set_checked` got a bogus port pointer and asserted (fatal error 4 at
+0.0477 s). This is exactly iteration 5's class — the descriptor itself embeds an
+absolute `struct device *`, so a linker rebind cannot express it and the table
+must be emitted by the build. Transcribed from the image:
+
+```
+0x889e8: { 0x00087b60 (gpio0 "gpio@842500"), pin 30, dt_flags 0 }
+0x889f0: { 0x00087b60,                        pin 21, dt_flags 0 }
+0x889f8: { 0x00087b60,                        pin 24, dt_flags 0 }   <- panel power
+```
+
+Added to `recon/application/app/src/g1_gpio_dt_specs.c` next to the existing
+0x88340 / 0x889d0 / 0x889e0 entries and bound in `g1_app_globals.ld`.
+
+### 13.4 Bisect ledger (every build and boot actually run)
+
+| build | change | app @0.15 s | resets | note |
+|---|---|---:|---|---|
+| `/private/tmp/g1-i13a-app` | **Step A**: `sys_rand32_get` length + `g_current_thread_ptr`/`g_spinlock_validate_owner` = `_kernel+0x8`/`+0x10` | 6,004,916 / **777** | **0** | @2.0 s **6,261,306 / 822, no reset** |
+| `/private/tmp/g1-i13b-app` | + the four IMU functions, bound only through the linker script | 626,548 B FLASH, identical to i13a | — | **not linked** — `PROVIDE` is not an archive reference; not booted |
+| `/private/tmp/g1-i13c-app` | + `register_imu_funsion_context` referencing them by symbol | 6,340,570 / 707 | 1 @0.0466 s | `nrfx_twim.c:593` assert (defect (a)) |
+| `/private/tmp/g1-i13d-app` | + the four `dev_ctrl_*` fixes | 6,034,477 / 707 | 1 @0.0477 s | `gpio_pin_set_checked` assert (defect (b)) |
+| `/private/tmp/g1-i13e-app` | + the three `gpio_dt_spec` descriptors | **6,388,996 / 839** | 1 @0.0892 s | **final**; IMU thread runs |
+
+Function-set diff, `g1-i13e-app` vs `g1-i13a-app` (2.0 s): **83 gained**
+(the LSM6DSO / fusion / orientation stack listed in §13.2, plus
+`dev_api_call_slot0`, `get_device_type`, `panel_level_calc_cached`,
+`gpio_dt_spec_activate`, `gpio_pin_set_dt`, `run_main_dispatch_thread`,
+`main_dispatch_thread_tick`, `spawn_flash_ops_and_brightness_threads`,
+`flash_ops_thread`, `brightness_level`, `opt3007_chip_init`, `wdt_npm1300_*`,
+`init_watchdog`, `battery_soc_curve_model_init`, and the fault path), **66
+lost** — all of them the periodic/NFC/ST25DV tail that only executes *after*
+0.0892 s (`periodic_check_run`, `check_work_mode`, `check_sw0_status`,
+`fuel_gauge_*`, `st25dv_*`, `adc_nfc_run`, `msg_queue_init`, …). None of those
+were broken; the boot simply dies earlier.
+
+### 13.5 E4 status and the oracle
+
+**E4 is still NOT reached.** `spi_read_id`, `panel_on`, `spi_master_init`,
+`bt_enable`, `bt_start`, `master_display_thread`, `display_thread_handler` are
+all absent from every iteration-13 trace, and `radio TransmittedFrames` is **0**
+in all of them. `power_for_panel` now runs 9 times (was 5) and gets as far as
+driving its GPIO power-enable line, but **no SPI transaction reaches the JBD
+panel model**, so no comparison against `display_sensor_oracle.json` criterion
+G-5 was possible — `0x9F`→`0x4010`, the three-band 153,600 B clear, the five
+`0xC0` words and the `0x46`/`0x31` brightness pairs are **untested, not failed**.
+
+On the **sensor** half there is a first, partial result. `twim2` (LSM6DSO) now
+carries real traffic where before there was none: the Renode model logs reads of
+the EmbeddedFunctions-bank registers 0x46/0x47, and the driver stack that issues
+them (`lsm6dso_mem_bank_set`, `lsm6dso_read_reg`, `lsm6dso_xl_data_rate_set`,
+`lsm6dso_gy_data_rate_set`) executes. That is the precondition for the oracle's
+**S-IMU** criterion ("identical init register writes AND identical steady-state
+polling of 0x22/0x28"), but S-IMU itself was **not evaluated**: it needs the
+opt-in `TraceFile` hook in `armemul/models/NRF5340_TWIM.cs` plus the scripted
+20 s two-phase capture (`capture_display_sensor_oracle.sh`), which this
+iteration did not run. Reported as "traffic exists, criterion untested".
+
+### 13.6 New first divergence (drives iteration 14)
+
+`/private/tmp/g1-i13e-app`, app instruction ≈6,388,9xx, virtual time
+**0.0892 s**:
+
+```
+[00:00:00.089,141] <err> os: ***** USAGE FAULT *****
+[00:00:00.089,141] <err> os:   Illegal use of the EPSR
+[00:00:00.089,202] <err> os: Faulting instruction address (r15/pc): 0x0002821c
+[00:00:00.089,202] <err> os: >>> ZEPHYR FATAL ERROR 35
+```
+
+0x2821c is `global_system_suspend + 0x34` (original 0x2bd7c), and the
+instruction is another **context vtable dispatch**:
+
+```
+28214  ldr.w r3,[r4,#0xb70]
+28218  addw  r0,r4,#0xb6c
+2821c  blx   r3
+```
+
+with `r4 = 0` at the fault (the reported `r0/a1 = 0x00000b6c` is `r4 + 0xb6c`),
+so `r3` is read out of flash address 0xb70 and is even ⇒ EPSR fault. Two things
+are therefore wrong at that boundary and both are in classes this project has a
+playbook for: **the context pointer handed to `global_system_suspend` is NULL**
+(a caller/argument defect), and **the `+0xb70` slot is another code-pointer
+table** that has to be found and rebound the way §13.2 rebound `+0x8c..+0x98`.
+That is the concrete iteration-14 Step A.
+
+### Regenerate (iteration 13)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check            # current
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_thread_create_stack_args.py --trials 120
+                                                                                  # EXIT=0, 10/10
+PYTHONSAFEPATH=1 .venv/bin/python -c "import sys;sys.path.insert(0,'tools');import cfg_verify as c;\
+ [print(n, c.verify('app',n)['status']) for n in ('FUN_00052c40','imu_fusion_init','imu_fusion_resume',\
+ 'imu_fusion_suspend','set_imu_thread_delay','FUN_00083d80','FUN_00083dba','FUN_00083e0e','FUN_000841fc',\
+ 'register_imu_funsion_context')]"                                                # 10x PASS
+recon/application/build_cohesive.sh app /private/tmp/g1-i13e-app
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py \
+    /private/tmp/g1-i13e-app/zephyr/zephyr.elf                                    # EXIT=0
+# net unchanged since iteration 9: /private/tmp/g1-i9c-net
+<scratchpad>/mkrun.sh i13e /private/tmp/g1-i13e-app /private/tmp/g1-i9c-net 0.15
+# Step-A-only reference build: /private/tmp/g1-i13a-app (0 resets over 2.0 s)
+```
+
+Files changed: `recon/app/src/{FUN_00052c40,FUN_00083d80,FUN_00083dba,
+FUN_00083e0e,FUN_000841fc}.c` (corrected + re-proven) and the new
+`recon/app/src/{imu_fusion_init,imu_fusion_resume,imu_fusion_suspend,
+set_imu_thread_delay}.c`; the same nine bodies mirrored into
+`recon/verified/src`, `recon/symbolized/app` and `recon/named`;
+`recon/symbolized/app/{sys_rand32_get,register_imu_funsion_context,
+dev_ctrl_write2,dev_ctrl_read1,dev_reg_modify_bits,dev_set_mode_register}.c`;
+`recon/symbols/g1_app_globals.ld` (the two `_kernel` interior pins, the four
+IMU vtable rebinds, three `gpio_dt_spec` rebinds, two new arena RAM pins,
+eleven log-string pins); `recon/symbols/g1_app_symbols.h`;
+`recon/application/app/src/g1_gpio_dt_specs.c`;
+`recon/catalogs/function_names_app.json` (four new names);
+`recon/generated/app_retained_sources.cmake` (regenerated by its own tool);
+`recon/emulator/scripts/check_thread_create_stack_args.py` (10th site).
+Four records appended to the scratchpad catalogs `app_funcs.json` /
+`classified.json` (backed up as `*.i13bak`), the iteration-4/8 route.
+No `tools/` change, no Kconfig / `prj.conf` / devicetree change, `armemul`
+untouched. Nothing committed.

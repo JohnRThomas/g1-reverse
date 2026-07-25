@@ -17,7 +17,7 @@
  */
 /* Reconstructed FUN_00052c40 @ 0x52c40  (parity: 300/300 trials, PROVEN) */
 
-extern int entropy_get_entropy_isr_call(int*);
+extern int entropy_get_entropy_isr_call(int*, int);
 extern void assert_post_action(int,int);
 extern void printk(int, ...);
 extern int sys_clock_cycle_get_32(void);
@@ -33,7 +33,7 @@ int sys_rand32_get(int param_1, int param_2)
         printk(0x000f2b15, *(volatile int*)0x00087b90UL);
         assert_post_action(0x000f2abf, 0x15);
     }
-    iVar2 = entropy_get_entropy_isr_call(&local_c);
+    iVar2 = entropy_get_entropy_isr_call(&local_c, 4);
     if (iVar2 < 0) {
         local_c = sys_clock_cycle_get_32();
     }

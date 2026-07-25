@@ -78,6 +78,55 @@ PATH_FORCING = {
                                           0x00019C70: 0,   # debug_print
                                           0x0007DDA4: 2,   # log_message
                                           K_THREAD_CREATE: 4}},
+    # imu_fusion_init (iteration 13): the 13th k_thread_create site, recovered
+    # from the Ghidra catalog gap [0x25f90, 0x26100).  It only reaches the call
+    # when context[0x14] == 0 and both dev_api_call_slot0 results are >= 0.
+    # The argument-pointer scratch half is therefore zero-filled (identically for
+    # original and candidate) and the two driver results are forced on call
+    # ordinals 2 and 4.
+    #
+    # The stack window below STACK_TOP is poison-filled for the same reason the
+    # scratch is zeroed, and it is the one place this site differs from the other
+    # nine: the original prologue is `push {r4,r5,r6,r7,lr} ; sub sp,#0x24` while
+    # GCC needs only four callee-saved registers for the reconstruction
+    # (`push {r4,r5,r6,lr} ; sub sp,#32`).  Both frames therefore leave the
+    # architecturally dead AAPCS pad word at sp+0x14 uninitialised, but at
+    # DIFFERENT absolute addresses, so without a constant fill the eight-word
+    # window would differ on that dead word alone.  All eight outgoing words are
+    # still compared; the live seven plus the 64-bit delay match exactly.
+    #
+    # g_log_level (0x2000230c) is pinned to 0 so the five guarded log branches
+    # stay out of the call sequence and the two forced ordinals are stable.
+    #
+    # Mutation battery actually run on this site (60 trials each):
+    #   prio -11 -> -12          FAIL (60/60)   <- discriminating
+    #   delay 0ULL -> 5ULL       FAIL (60/60)   <- discriminating
+    #   p2 0 -> 1                FAIL (60/60)   <- discriminating
+    #   delay argument removed   PASS           <- NOT discriminating HERE, and
+    #     the reason is specific and known: dropping the argument shrinks the
+    #     frame from `sub sp,#32` to `sub sp,#24`, exactly 8 bytes, so sp+0x18
+    #     and sp+0x1c land on the pushed r4/r5 slots -- and the harness enters
+    #     the function with r4 = r5 = 0, which is byte-identical to the correct
+    #     K_NO_WAIT delay.  (The other eight sites lost more than 8 bytes and hit
+    #     the pushed lr = RETURN_MAGIC, which is why they did fail pre-fix.)
+    #     The authority for that mutation at this site is therefore the
+    #     instruction-level frame comparison recorded in
+    #     reports/our_boot_bringup.md Iteration 13: the emitted
+    #     `str r4,[sp,#0] / strd r5,r5,[sp,#4] / strd r3,r5,[sp,#12] /
+    #     strd r2,r3,[sp,#24]` block matches the original word for word.  Register arities: get_device_type 0, dev_api_call_slot0 3,
+    # imu_fusion_state_init 1, panel_level_calc_cached 1.
+    0x00025FAC: {"absolute_memory_overrides": [(emu.SCRATCH, b"\x00" * 0x4000),
+                                              (emu.STACK_TOP - 0x100,
+                                               b"\xa5" * 0x100),
+                                              (0x2000230C, b"\x00" * 4)],
+                 "oracle_overrides": {2: {0: 0}, 4: {0: 0}},
+                 "call_arity_by_target": {0x00016568: 0,   # get_device_type
+                                          0x0007CA54: 3,   # dev_api_call_slot0
+                                          0x000265B8: 1,   # imu_fusion_state_init
+                                          0x00025ECC: 1,   # panel_level_calc_cached
+                                          0x00019C70: 4,   # debug_print
+                                          0x0007DDA4: 4,   # log_message
+                                          K_THREAD_CREATE: 4}},
 }
 
 # (source basenames, va, size, ret_kind, {callee_va: stack_words}, method)
@@ -108,6 +157,8 @@ SITES = [
      {K_THREAD_CREATE: THREAD_CREATE_STACK_WORDS}, "emu"),
     (("FUN_0002a65c", "run_main_dispatch_thread"), 0x0002A65C, 398, "void",
      {DISPATCH_VENEER: VENEER_STACK_WORDS}, "cfg"),
+    (("imu_fusion_init",), 0x00025FAC, 0x124, "i32",
+     {K_THREAD_CREATE: THREAD_CREATE_STACK_WORDS}, "emu"),
 ]
 
 
