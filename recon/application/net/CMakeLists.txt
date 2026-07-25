@@ -131,6 +131,12 @@ set(G1_ESB_CLOCK_CALLBACK_CLOSURE_SOURCES
   "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102b758.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_01033858.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_010339d0.c"
+  # P4 iteration 23: the two RADIO packet-configuration trampolines
+  # FUN_010333b4 stores into its callback slot as the runtime Thumb pointers
+  # 0x010333a5 / 0x010333e5 (analysis 0x01032ba4 / 0x01032be4), plus the RADIO
+  # PCNF0/PCNF1 packer they share (analysis 0x01032b4c), are recovered from a
+  # Ghidra gap and are picked up automatically by gen_retained_sources.py once
+  # their symbolized copies carry an identity header -- no explicit entry here.
 )
 
 # The recovered product main deliberately emits its reversible raw identity

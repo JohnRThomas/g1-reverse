@@ -41,8 +41,21 @@
 extern const unsigned char __g1_fp_FUN_01012438[] __asm__("FUN_01012438");
 
 #define ADDR_FUN_01012438_THUMB (((unsigned long)&__g1_fp_FUN_01012438) | 1u) /* FUN_01012438 -> &FUN_01012438; was 0x1012439 */
-/* UNRESOLVED (no defined symbol for 0x10333e4) -- kept as original literal */
-#define ADDR_FUN_010333e4_THUMB              0x10333e5 /* FUN_010333e4 */
+/* P4 iteration 23 — RESOLVED.  The two runtime Thumb pointers FUN_010333b4
+ * stores into the RADIO callback slot map to analysis addresses through the
+ * standard net -0x800 delta:
+ *     0x010333a5 -> 0x01032ba4      0x010333e5 -> 0x01032be4
+ * Both are genuine function entries in a Ghidra gap and are now reconstructed
+ * (recon/net/src/FUN_01032ba4.c, FUN_01032be4.c, sharing FUN_01032b4c.c), so
+ * the pointers can be rebound to the linker-placed symbols instead of the
+ * original-image literals.  Measured before the rebind: FUN_010333b4's
+ * `((void (*)(uint32_t))*callback_slot)(...)` jumped into unrelated bytes and
+ * the CPUNET hung inside the ESB enable — g1_esb_start_announcement and the
+ * RADIO TX keying never ran and `esbslave MasterFramesSeen` stayed 0. */
+extern const unsigned char __g1_fp_FUN_01032ba4[] __asm__("FUN_01032ba4");
+extern const unsigned char __g1_fp_FUN_01032be4[] __asm__("FUN_01032be4");
+#define ADDR_FUN_010333a4_THUMB (((unsigned long)&__g1_fp_FUN_01032ba4) | 1u) /* was 0x10333a5 */
+#define ADDR_FUN_010333e4_THUMB (((unsigned long)&__g1_fp_FUN_01032be4) | 1u) /* was 0x10333e5 */
 /* ---- RAM globals / kernel objects (232) ---- */
 extern volatile unsigned int g_net_fault_canary_flag; /* @0x20070000 */
 extern volatile unsigned int g_net_esb_own_addr; /* @0x21000010 */

@@ -202,6 +202,13 @@ target_sources(app PRIVATE
   # pointer-bearing `.data` initialisers that the RAM-arena restore drops.
   # Measured: bt_le_adv_start returned -EINVAL with options = 0x682e7365.
   src/g1_bt_adv_objects.c
+  # P4 iteration 23: the application's own `struct bt_conn_cb` entry in the
+  # `bt_conn_cb` iterable section.  The shipped section [0x87fec, 0x88058) holds
+  # three 0x24-byte entries; entry 0 is {ancs_connected, ancs_disconnected,
+  # ancs_security_changed}.  Our build's section held only the SDK's mcumgr
+  # entry, so `ancs_connected` never ran, `g_ancs_conn` (0x20007518) stayed 0
+  # and `ble_is_connected` printed 0 on a live link.
+  src/g1_bt_conn_cb_objects.c
   # Library displacement Batch 0 (goal G2): the four out-lined
   # zephyr/include/zephyr/drivers/gpio.h static inlines are excluded in
   # adoption_manifest.json; a header `static inline` has no external symbol to

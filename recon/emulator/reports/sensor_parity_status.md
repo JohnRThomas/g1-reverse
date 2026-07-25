@@ -1,71 +1,89 @@
 # Sensor + graphics parity status — OUR rebuilt firmware vs the shipped oracle
 
-**Ninth measurement of `display_sensor_parity.md`'s criteria against our
-rebuild** (iteration 22; previous measurements were iterations 14–21).
+**Tenth measurement of `display_sensor_parity.md`'s criteria against our
+rebuild** (iteration 23; previous measurements were iterations 14–22).
 
-## READ THIS FIRST — iteration 22 is a COMPLETE capture, reset-free, and the
-## BLE half of the chain now works
+## READ THIS FIRST — iteration 23: still 0 lit pixels, but the ESB gate was
+## re-diagnosed and three provable net-core defects were fixed
 
-Iteration 22 closed the §21.7 blocker by **displacing the whole newlib-nano
-printf family to the pinned `libc_nano.a`** (20 members, every one byte-exact
-against the shipped image over its entire upstream section after masking
-relocation slots — `our_boot_bringup.md` §22.1), then fixed the three
-`bt_le_adv_start` operands that were still bound to original-image addresses
-(§22.6).  Measured results:
+**NO PIXEL IS PAINTED.**  `framebuffer.lit_pixels` is **0 / 0** against the
+oracle's **656** (`p1_boot`) / **1,098** (`p2_render`); `spim_a` is **34 / 764**
+and **0 / 2,881**; no `0x02` pixel-window transaction was emitted.  Verdict
+cells are **5 PASS / 5 PARTIAL / 4 FAIL**, unchanged since iteration 17, and
+**no per-device volume regressed**.
 
-```
-Advertising Even G1_R_FFFFFF successfully started uptime 1400   <-- app UART
-ORACLE_VC_CONNECTED:     True        (oracle True)
-ORACLE_VC_CONNECT_INDS:  0x00000001  (oracle 0x00000001)
-ORACLE_VC_DATA_EVENTS:   0x00000212  (oracle 0x00000215)
-ORACLE_RADIO_TX:         0x000000BA  (oracle 0x00000230)
-```
+Three things did change, all measured (`our_boot_bringup.md` §23):
 
-* **Both phases of the capture completed** (`VTIME_P1` 6.000000000,
-  `VTIME_P2` 20.000000000) with **zero `ZEPHYR FATAL ERROR` and zero
-  `SYSRESETREQ`** — the first complete capture since iteration 20, and the
-  first ever in which the app advertises.
-* **Nothing regressed against the iteration-20 baseline on any per-device
-  number**, and nPM1300 `p2_render` improved 369 → **370**.
-* **Verdict cells are unchanged: 5 PASS / 5 PARTIAL / 4 FAIL.**
-* **No pixel was painted.**  G-1/G-2 remain **0 lit px** against the oracle's
-  **656** (`p1_boot`) / **1,098** (`p2_render`); `spim_a` is **34 / 764** in
-  `p1_boot` and **0 / 2,881** in `p2_render`.
+1. **The ESB symptom iteration 22 reported was a HARNESS asymmetry, not a
+   firmware defect.**  `device_info[2..4]` (esb_channel / master / slave addr)
+   are written only by the factory pairing command `get_assign_channel_info`
+   @0x31fd8, gated on the test-mode flag — a lone offline glass never runs it.
+   `armemul/g1.resc` therefore *provisions* them with a hook at
+   `runtime_info_sync` **for the shipped oracle**, while `g1-ours.resc`
+   deliberately omits that hook.  Every ours-vs-oracle capture since iteration
+   14 compared an **unprovisioned** device to a **provisioned** one.  New
+   additive, opt-in `armemul/g1-ours-paired.resc` restores the symmetry
+   (identical writes, identical values, same firmware function, our PC), and
+   the app UART changes from `esb_channel 255 esb_master_addr 00
+   esb_slave_addr 00` to **`esb_channel 34 esb_master_addr 41 esb_slave_addr
+   42`**, with the net id-1 handler receiving `b0=0 b4=65 b5=66`.
+2. **The app's own `struct bt_conn_cb` was missing from the `bt_conn_cb`
+   iterable section**, so `ancs_connected` never ran and `g_ancs_conn` stayed 0.
+   The shipped section `[0x87fec, 0x88058)` holds three 0x24-byte entries and
+   entry 0 is `{ancs_connected, ancs_disconnected, ancs_security_changed}`; our
+   image had only the SDK's mcumgr entry, and `--gc-sections` had dropped all
+   three callbacks (no symbol for any of them in the iteration-22 ELF).  New
+   `recon/application/app/src/g1_bt_conn_cb_objects.c` emits the entry with the
+   stock `BT_CONN_CB_DEFINE`.  **Measured:** the section now has 2 entries,
+   `ancs_connected` executes once at t ≈ 1.47 s and `g_ancs_conn` reads
+   **0x2002C838**.
+3. **The CPUNET ESB radio path advanced four stages** — `clock-transition cb →
+   transport_start → radio_configure → ESB enable (FUN_010333b4) →
+   mode_state_init` — after three fixes: a clock-callback pointer left at an
+   ORIGINAL-image address, two unreconstructed Ghidra-gap RADIO trampolines
+   (`FUN_01032ba4`/`FUN_01032be4`, plus their shared packer `FUN_01032b4c`),
+   and a **dropped register argument** in `FUN_01032764` (the harness blind
+   spot: the caller relies on r1 living through the call).
+   `esbslave MasterFramesSeen` is still **0** vs the oracle's **0x175**.
 
-### The gate has moved off BLE and onto ESB
+**Correction to iteration 22's second named gate.**  `ble_is_connected` still
+prints 0, and on the MASTER leg that is *correct*: the flag additionally
+requires `ctx[0x6de] & 1`, which is the **peer lens's** connection flag carried
+inside the ESB segmented-frame staging window.  The unregistered callback was
+a real defect and is fixed; the counter it was named by is ESB-gated.
 
-```
-                        oracle        ours
-ESB_MASTER_FRAMES       0x00000175    0x00000000    esbslave MasterFramesSeen
-ESB_ACKS                0x00000175    0x00000000
-ESB_ANNOUNCE_RESP       0x0000015B    0x00000000
-ESB_SYNC_ctx_105a       0x02          0x01
-DISPLAY_ON_ctx_fe8      0x01          0x00
-```
+### The first divergence for iteration 24
 
-The app UART names the state directly and repeatedly: `esb_channel 255`,
-`esb_master_addr 00 esb_slave_addr 00`, and
-`get_glasses_ble_status 0 ble_is_connected 0` even while the link layer reports
-`vcentral Connected = True` and answers 530 data events.  Every `spim_a`
-transaction past index 33 is downstream of the L+R lens sync, so the display is
-never asked to paint.  **That, plus the app-side connection flag, is the
-iteration-23 first divergence.**
+`FUN_010333b4` writes its RADIO callback slot only for `saved[0] ∈ {0,1}`;
+measured, neither branch is taken, so the ESB **configuration struct** that
+`FUN_0102b31c` hands it does not carry the mode byte the shipped firmware has.
+One function upstream of where the chain now stops.
 
-## 1. Reproduce (exact commands, iteration 22)
+## 1. Reproduce (exact commands, iteration 23)
 
 ```sh
 cd /Users/freedomcoder/Projects/G1disasm2
 
-G1_RESC=/Users/freedomcoder/Projects/armemul/g1-ours.resc \
-G1_APP_ELF=/private/tmp/g1-i22b-app/zephyr/zephyr.elf \
-G1_NET_ELF=/private/tmp/g1-i21c-net/zephyr/zephyr.elf \
+# $rtinfo_pc must be OUR build's runtime_info_sync:
+#   arm-zephyr-eabi-nm zephyr.elf | grep -w runtime_info_sync   -> 0x00015b9c
+printf '$rtinfo_pc=0x00015b9c\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i23/ours-paired-i23.resc
+
+G1_RESC=/private/tmp/g1-i23/ours-paired-i23.resc \
+G1_APP_ELF=/private/tmp/g1-i23a-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i23-net/zephyr/zephyr.elf \
 G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A \
-recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i22
+recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i23
 
 PYTHONSAFEPATH=1 .venv/bin/python \
   recon/emulator/scripts/build_display_sensor_oracle.py \
-  /private/tmp/g1_ours_i22 /private/tmp/g1-i22/ours_reports
+  /private/tmp/g1_ours_i23 /private/tmp/g1-i23/ours_reports
 ```
+
+`g1-ours-paired.resc` is **additive and opt-in**: it includes `g1-ours.resc`
+unchanged and adds only the factory ESB pairing provisioning that
+`armemul/g1.resc` already gives the shipped oracle (see the READ-THIS-FIRST
+item 1).  Without it the comparison is unprovisioned-vs-provisioned.
 
 `G1_HOOKS=0` is required because the four `sysbus.cpuapp AddHook` PCs in the
 oracle capture are **ORIGINAL-image** addresses; our build relocates them.
@@ -74,7 +92,8 @@ map of `g1-i22b-app` is byte-identical to `g1-i21b-app` and `g1-i20a-app`
 (252,885 B, `g1_ram_arena` at 0x20003100, `_end` at 0x2003fbd5), so the
 iteration-20 probe addresses remain correct.
 
-## 2. Per-criterion table (iteration 22, `g1-i22b-app` + `g1-i21c-net`)
+## 2. Per-criterion table (iteration 23, `g1-i23a-app` + `g1-i23-net`; the
+## iteration-22 evidence cells below are unchanged unless noted)
 
 | id | criterion | verdict | vs iter 20 | evidence |
 |---|---|---|---|---|
@@ -86,7 +105,7 @@ iteration-20 probe addresses remain correct.
 | **S-KEYS** | `gpiote0` whole-run stream hash; `gpiote1` count == 0 | **PASS** | unchanged | `gpiote0` **stream_sha256 identical** (25 == 25); `gpiote1` **0 == 0**. |
 | **S-MIC** (negative) | `pdm0` == exactly 2 writes, no ENABLE/START | **PASS** | unchanged | `pdm0` **stream_sha256 identical**, 2 == 2. |
 | **gyro** (negative) | `CTRL2_G` stays 0 / gyro never enabled | **PASS (weak)** | unchanged | `IMU_GYRO_ENABLED` False in both; `IMU_ACCEL_ENABLED` True in both. |
-| **S-ESB** | ESB sync reaches 0x02, display-on 0x01, PTX > 0 | **FAIL** | **BLE half now passes** | `esbslave MasterFramesSeen` **0** vs 0x175, `AcksInjected` **0** vs 0x175, `AnnounceResponsesInjected` **0** vs 0x15B, `ESB_SYNC_ctx_105a` **0x01** vs 0x02, `DISPLAY_ON_ctx_fe8` **0x00** vs 0x01.  But `vcentral Connected` **True == True**, `ConnectIndsSent` **1 == 1**, `DataEventsAnswered` **530** vs 533, `radio TransmittedFrames` **186** vs 560 — all four were 0/False in iterations 14–21. |
+| **S-ESB** | ESB sync reaches 0x02, display-on 0x01, PTX > 0 | **FAIL** | **BLE half passes; ESB now provisioned + 4 stages deeper (iter 23)** | `esbslave MasterFramesSeen` **0** vs 0x175, `AcksInjected` **0** vs 0x175, `AnnounceResponsesInjected` **0** vs 0x15B, `ESB_SYNC_ctx_105a` **0x01** vs 0x02, `DISPLAY_ON_ctx_fe8` **0x00** vs 0x01.  But `vcentral Connected` **True == True**, `ConnectIndsSent` **1 == 1**, `DataEventsAnswered` **530** vs 533, `radio TransmittedFrames` **186** vs 560 — all four were 0/False in iterations 14–21. |
 | **G-1** | `framebuffer.p2_render.sha256` | **FAIL** | unchanged | ours `0c5cc90b07…`, **0 lit px / 0 pixel windows**; oracle `b26c73b37d…`, **1,098 lit px / 2,752 windows**. |
 | **G-2** | `framebuffer.p1_boot.sha256` | **FAIL** | unchanged | ours `0c5cc90b07…`, **0 lit px / 3 pixel windows**; oracle `1d617c65a6…`, **656 lit px / 673 windows**. |
 | **G-3** | `spim_a` ordered byte stream per phase | **FAIL (truncation only)** | unchanged (34 txns) | `p1_boot` **34 vs 764**; **all 34 shared transactions byte-identical**; first difference at index **34**, oracle `{"op":"0x66","kind":"command","n_tx":1,"n_rx":1}`, ours `<end>`.  `p2_render` **0 vs 2,881**, first difference index **0** (oracle `{"op":"0x02","kind":"pixel_window","x":32,"y":265,…}`). |
@@ -117,6 +136,18 @@ reset-free 20 s capture.
 | `spim_a` `p1_boot` | 764 | 34 | 34 | 34 | **34** |
 | `spim_a` `p2_render` | 2,881 | 0 | 0 | not measured | **0** |
 | `spim_b` (both phases) | 0 | 0 | 0 | 0 | **0** (hash EQ) |
+
+### 3.1 Iteration 23 (`g1-i23a-app` + `g1-i23-net`, paired provisioning)
+
+Every volume in the table above is **reproduced exactly** — LSM6DSO 1,027 /
+700, nPM1300 232 / 370, OPT3001 14 / 0, ST25DV 12 and 11, saadc 71, gpiote0 25
+(hash EQ), pdm0 2 (hash EQ), spim_a 34 / 0, spim_b 0 (hash EQ), JBD
+FrameCounter 0x3 / 0x3, JournalCount 0x22, framebuffer **0 / 0 lit px**.  BLE
+counters moved slightly with the radio-model cadence: `RADIO_TX` **0xBD** vs
+oracle 0x230, `VC_DATA_EVENTS` **0x216** vs 0x215, `VC_CONNECTED` True == True,
+`VC_CONNECT_INDS` 1 == 1.  ESB: `MasterFramesSeen` / `AcksInjected` /
+`AnnounceResponsesInjected` all **0** vs 0x175 / 0x175 / 0x15B;
+`ESB_SYNC_ctx_105a` **0x01** vs 0x02; `DISPLAY_ON_ctx_fe8` **0x00** vs 0x01.
 | `JBD FrameCounter` `p1` / `p2` | 0x2A1 / 0xD61 | — | 0x3 / 0x3 | 0x0 / – | **0x3 / 0x3** |
 | framebuffer lit px `p1` / `p2` | 656 / 1,098 | 0 / 0 | 0 / 0 | 0 / – | **0 / 0** |
 

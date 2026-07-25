@@ -8708,3 +8708,483 @@ whether they are compiled.
 5. Iteration 21 items 3–4 (69 net raw literals incl. `RETURN_PARAM =
    0x21004630` and the ESB event-handler slot `0x21004628` — both on the ESB
    path that item 1 now blocks on) and iteration 20 items 3–6 are unchanged.
+
+## Iteration 23 — the app's **`bt_conn_cb` entry is restored and `ancs_connected`
+## runs for the first time**; the ESB gate is re-diagnosed from scratch (it was
+## a HARNESS asymmetry, not firmware) and the CPUNET's ESB radio path is driven
+## four stages deeper by three provable pointer/ABI defects
+
+**Stated before anything else, because the acceptance bar is pixels:
+NO PIXEL IS PAINTED.**  `framebuffer.lit_pixels` is **0 / 0** against the
+oracle's **656** (`p1_boot`) / **1,098** (`p2_render`), `spim_a` is **34 / 764**
+and **0 / 2,881**, and no `0x02` pixel-window transaction was emitted.  Nothing
+below claims otherwise.
+
+What did move, all measured:
+
+| what | iteration 22 | **iteration 23** |
+|---|---|---|
+| `ancs_connected` (FUN_0001861c) executes | **never** | **yes, once, t ≈ 1.47 s** — UART `66:55:44:33:22:11 (public) -- type: 0x1, role:0x1 force_bind 0` |
+| `g_ancs_conn` (the app's connection handle) | 0 | **0x2002C838** |
+| `_bt_conn_cb_list` entries in our image | 1 (SDK mcumgr only) | **2** (`g1_ancs_conn_callbacks` + mcumgr) |
+| app UART `esb_channel` / `esb_master_addr` / `esb_slave_addr` | 255 / 00 / 00 | **34 / 41 / 42** |
+| `trigger_screen_state_change` reached | not measured | **yes, once** (r2 = 0, i.e. NOT the action=1 paint) |
+| CPUNET ESB chain depth | `esb_service_init` only | **clock-transition cb → transport_start → radio_configure → ESB enable (FUN_010333b4) → mode_state_init** |
+| `esbslave MasterFramesSeen` | 0 | **0** (oracle 0x175) |
+
+### 23.1 Gate 1 root cause — the ESB pairing record was never provisioned **in
+### our harness**, and the oracle's was.  This is a stimulus asymmetry.
+
+`armemul/docs/g1-esb-sync-decode.md` §4 states the mechanism and
+`armemul/g1.resc` implements it:
+
+* `device_info[+2] = esb_channel_number`, `[+3] = esb_master_addr`,
+  `[+4] = esb_slave_addr` are written **only** by the factory pairing command
+  `get_assign_channel_info` @0x31fd8, itself gated on
+  `g_test_mode_flag @0x20019ef3 == 1`.  **A lone offline glass never runs it**,
+  so the values stay at their placeholders `0xFF / 0x00 / 0x00`;
+* therefore `g1.resc` lines 151–176 install
+  `sysbus.cpuapp AddHook 0x16268 "…WriteByte(di+0x2,0x22); …(di+0x3,0x41); …(di+0x4,0x42); … MACs …"`
+  at `runtime_info_sync`'s entry **for the shipped images**;
+* `armemul/g1-ours.resc` lines 92–96 **deliberately omit that hook** ("their PCs
+  are pinned to ORIGINAL-image addresses … They are intentionally OMITTED
+  here").
+
+So every ours-vs-oracle capture from iteration 14 onward compared an
+**unprovisioned** device against a **provisioned** one.  `esb_channel 255 /
+esb_master_addr 00 / esb_slave_addr 00` — iteration 22 §22.7's headline symptom
+— is exactly what the SHIPPED firmware also prints when the hook is absent.  It
+was never evidence of a reconstruction defect.
+
+**Fix (additive, opt-in, `armemul` untouched otherwise): new
+`armemul/g1-ours-paired.resc`.**  It includes `g1-ours.resc` unchanged and adds
+the identical writes, with the identical values, at the identical firmware
+function, resolved to OUR build's PC through a `$rtinfo_pc` variable
+(`nm zephyr.elf | grep -w runtime_info_sync` → `0x00015b9c` for `g1-i23a-app`).
+Default is the original 0x16268, so including it over `g1.resc` is still
+meaningful.  **Measured immediately:** the app UART changes from
+`esb_channel 255 … esb_master_addr 00 esb_slave_addr 00` to
+`esb_channel 34 … esb_master_addr 41 esb_slave_addr 42`, and the net core's id-1
+handler receives `b0=0 b4=65 b5=66` (0x41/0x42) — the same values the oracle's
+net core receives.
+
+### 23.2 Gate 2 root cause — the application's `struct bt_conn_cb` was missing
+### from the `bt_conn_cb` iterable section, so `ancs_connected` never ran
+
+The chain is short and every link is a measurement:
+
+1. the printed `ble_is_connected` is
+   `low_speed_peripheral_dispatch_thread`'s local `side`, which can only become
+   1 when `get_ancs_conn_handle() != 0`
+   (`recon/symbolized/app/low_speed_peripheral_dispatch_thread.c:119,144,160`);
+2. `get_ancs_conn_handle` (FUN_00019b2c) is one line:
+   `return *(volatile unsigned *)0x20007518;` — `g_ancs_conn`;
+3. `g_ancs_conn` has exactly **one** writer in the image, the last statement of
+   `ancs_connected` (FUN_0001861c);
+4. `ancs_connected` is a `struct bt_conn_cb::connected` callback, reached
+   through the **`bt_conn_cb` iterable section**, whose bounds are the two pins
+   the recovered Zephyr notifiers still carry — `rodata_87fec`
+   (`_bt_conn_cb_list_start`) and `rodata_88058` (`_bt_conn_cb_list_end`);
+5. the stride is proven by the recovered notifier itself:
+   `recon/symbolized/app/ble_notify_remote_info_available.c` (identity
+   FUN_00056da8, actually Zephyr's `bt_conn_security_changed` — it invokes the
+   slot at `+0x14` with `(conn, conn[9] = sec_level, err)`) walks the section
+   with `uVar4 = uVar4 + 0x24` and follows `_next` at `+0x20`.  So
+   `sizeof(struct bt_conn_cb)` = **0x24** in the shipped build and the section
+   holds exactly `(0x88058 − 0x87fec) / 0x24` = **3** entries;
+6. the shipped section, read out of `app_update.bin`:
+
+```
+0x87fec  0001861d 00018add 00000000 00000000 00000000 000184f1 0 0 0
+         -> { .connected        = 0x1861c  ancs_connected,
+              .disconnected     = 0x18adc  ancs_disconnected,
+              .security_changed = 0x184f0  ancs_security_changed }
+0x88010  000220cd 00022079 0 0 0 0 0 0 0
+0x88034  00052989 00052a0d 0 0 0 0 0 0 0
+```
+
+7. **in our image the section holds ONE entry, the SDK's own** —
+   `nm /private/tmp/g1-i22b-app/zephyr/zephyr.elf`:
+   `000847f4 R _bt_conn_cb_list_start` / `000847f4 r bt_conn_cb_mcumgr_bt_callbacks`
+   / `00084810 R _bt_conn_cb_list_end` (0x1c = 28 B = 7 pointers, i.e.
+   `CONFIG_BT_SMP=y` only).  `rodata_87fec` / `rodata_88058` were plain
+   `PROVIDE(... = 0x00087fec / 0x00088058)` identity pins into the ORIGINAL
+   image, which our relocated build does not reproduce.  Nothing else
+   referenced the three callbacks, so `--gc-sections` dropped them outright:
+   **`nm` finds no `ancs_connected`, `ancs_disconnected` or
+   `ancs_security_changed` symbol at all in the iteration-22 ELF.**
+
+The member indices confirm the layout is stock
+`zephyr/include/zephyr/bluetooth/conn.h` order, and they line up across the two
+struct sizes because the shipped extras (`remote_info_available`,
+`le_phy_updated`) come **after** `security_changed`:
+
+| slot offset used by a recovered notifier | index | member |
+|---|---|---|
+| `+0x08` (`ble_notify_disconnected.c`, misnamed) | 2 | `le_param_req` |
+| `+0x0c` (`ble_notify_le_param_updated.c`) | 3 | `le_param_updated` |
+| `+0x10` (`ble_notify_identity_resolved.c`) | 4 | `identity_resolved` |
+| `+0x14` (`ble_notify_remote_info_available.c`, misnamed) | 5 | `security_changed` |
+
+**Fix, the documented way (the `g1_bt_adv_objects.c` precedent from §22.6): a
+linker rebind cannot express an object whose CONTENTS are pointers, so the
+object is EMITTED** — new
+`recon/application/app/src/g1_bt_conn_cb_objects.c`, using the stock
+`BT_CONN_CB_DEFINE(g1_ancs_conn_callbacks)` macro, i.e. exactly the mechanism
+the shipped firmware used.  No canonical parity body was touched; the three
+callbacks are the recovered, parity-proven bodies, placed through a cast
+(their reconstructed prototypes use plain integer words, AAPCS-identical).
+
+**Measured on `g1-i23a-app`:**
+
+```
+000569cc T bt_conn_cb_register
+00084b88 R _bt_conn_cb_list_start
+00084b88 r bt_conn_cb_g1_ancs_conn_callbacks     <-- NEW
+00084ba4 r bt_conn_cb_mcumgr_bt_callbacks
+00084bc0 R _bt_conn_cb_list_end
+00017bfc T ancs_connected      00017e10 T ancs_disconnected
+00017ab0 T ancs_security_changed
+2002f304 B g_ancs_conn
+```
+
+and with a block hook on each stage of the host path, all six fire once:
+`le_enh_conn_complete` → `bt_hci_le_enh_conn_complete` → `bt_conn_add_le` (×2)
+→ `bt_conn_connected` → `notify_connected` → **`ancs_connected`**.  The app
+UART prints `ancs_connected`'s own line for the first time, and
+`sysbus ReadDoubleWord 0x2002f304` returns **0x2002C838**.
+
+**Honest correction to iteration 22 §22.11 item 2.**  The printed
+`ble_is_connected` still reads **0** — and that is *correct behaviour*, not a
+residual defect.  On the MASTER leg the flag needs four terms:
+
+```c
+if (connection != 0 && rd8(ctx,0xae3) == 0 && rd32(ctx,0x9b4) != 0 &&
+    (rd8(ctx,0x6de) & 1)) { … side = 1; }
+```
+
+`ctx[0x6de]` bit 0 is set only in the **slave** branch of the same function and
+lives inside the ESB segmented-frame staging window `ctx[0x6cc..0x6e0]`
+(`g1-esb-sync-decode.md` §3), i.e. it is the **peer lens's** connection flag,
+delivered over ESB.  A master with no completed L↔R sync can never print
+`ble_is_connected 1`.  The defect iteration 22 named was real; the counter it
+was named by is additionally ESB-gated.
+
+### 23.3 The CPUNET ESB path — three provable defects, four stages of progress
+
+With the pairing record provisioned, the CPUNET stopped one instruction into
+`esb_service_init` and the app-side ESB gate became a **net-core** problem.
+Block hooks on OUR build's own symbols (real instruction boundaries, unlike the
+recon addresses the `g1-esb-sync-decode.md` correction warns about) gave:
+
+```
+i23-net baseline:   esb_worker_create, esb_service_init, clock_cb_register   [STOP]
+                    clock_transition_cb / transport_start / radio_configure /
+                    esb_enable / start_announcement / radio_tx_keying:  0 times
+```
+
+**Defect 1 — the clock-transition callback was registered as an
+ORIGINAL-IMAGE code pointer.**  `FUN_0102b5bc` ends with
+`FUN_0102bba8(P_0102b660)` where `#define P_0102b660 0x0102bf59`.  That literal
+is `(analysis 0x0102b758 + 0x800) | 1` = **`FUN_0102b758`**, this core's
+`g1_esb_clock_transition` — a CODE address, and in our relocated build
+`FUN_0102b758` links at `0x0102cf14` while `0x0102bf58` is unrelated bytes.
+Commit 0a7dee8c rebound the `ADDR_*_THUMB` macro class; this is a per-file `P_`
+literal and was never in it.  Fixed under `G1_COHESIVE_BUILD` in both
+`recon/net/src/FUN_0102b5bc.c` and `recon/symbolized/net/FUN_0102b5bc.c`
+(parity keeps the shipped literal).  **Measured:** the chain advances three
+stages — `clock_transition_cb → transport_start → radio_configure → esb_enable`.
+
+**Defect 2 — the two RADIO packet-configuration trampolines did not exist.**
+`FUN_010333b4` stores `0x010333a5` or `0x010333e5` into the radio callback slot
+and then calls it.  Analysis addresses `0x01032ba4` / `0x01032be4`; both land on
+a real `push {r0, r1, r2, r3, r4, lr}` prologue after a literal pool, and both
+sit in a **Ghidra gap** (FUN_01032ad8 ends 0x01032b38, next catalogued entry
+0x01032c28) — this is precisely the "net residual 1 (interior address inside
+FUN_010333b4)" that 0a7dee8c could not rebind.  Reconstructed, together with
+the RADIO PCNF0/PCNF1 packer they share at `0x01032b4c`:
+
+| new file | analysis VA | extent | proof |
+|---|---|---|---|
+| `recon/net/src/FUN_01032b4c.c` | 0x01032b4c | 0x52 | `emu.compare(..., trials=300, no_return=True)` → **pass, 300/300 checked, 0 mismatches** |
+| `recon/net/src/FUN_01032ba4.c` | 0x01032ba4 | 0x40 | same, `call_arities=(3,1)` → **pass 300/300** |
+| `recon/net/src/FUN_01032be4.c` | 0x01032be4 | 0x44 | same, `call_arities=(1,)` → **pass 300/300** |
+
+`net_recon_kit.prove` refuses them ("name/address does not match net catalog"),
+so the underlying `tools/parity` harness was driven directly — **no `tools/`
+logic was changed**.  That is sound here and the reason is structural: all
+three are **branch-free straight-line code** (no conditional branch, no
+cbz/cbnz, no tbb/tbh), so `cfg_verify`'s contribution — deriving inputs from
+the CFG so that every branch/case is exercised — is *vacuous*, and 300
+randomized trials over a zero-branch body are complete coverage.  The
+`call_arities` values are not tuning: the callee `FUN_01032b4c` genuinely takes
+one pointer (it only reads `[r0,#0..12]`) and `FUN_0103b62e` is memset(3); with
+the arity unstated the harness compared dead scratch registers at the call and
+reported a false mismatch on `FUN_01032be4`.  The two pointers are now rebound
+in `recon/symbols/g1_net_symbols.h` through the sanctioned
+`__asm__`-alias pattern (`ADDR_FUN_010333a4_THUMB`, `ADDR_FUN_010333e4_THUMB`).
+
+**Defect 3 — a DROPPED REGISTER ARGUMENT, the harness blind spot, in
+`FUN_01032764`.**  `FUN_010333b4` does
+
+```c
+extern uint64_t FUN_01032764(uint32_t, uint32_t);   /* "returns status in r0 and
+                                                       deliberately preserves its
+                                                       incoming r1" */
+uint64_t init_result = initialize_radio_mode_state(value, 0x2100499c /* g_esb_event_handler_fn */);
+callback_slot = (volatile uint32_t *)(uintptr_t)(uint32_t)(init_result >> 32);
+```
+
+but the recovered leaf was `unsigned int FUN_01032764(**void**)`.  The shipped
+body (0x01032764..0x01032792) touches **r0, r2, r3 only** — objdump:
+`ldr r3,[pc,#44]; ldr r2,[pc,#48]; ldrb r3,[r3,#8]; str.w r3,[r2,#0x510];
+cmp r3,#4; bhi; tbb [pc,r3]; … movs r0,#1; str r2,[r3,#0]; bx lr` — so r1 is a
+genuine live-through that GCC's interprocedural register allocation exploited.
+Compiled as a separate TU from a `(void)` prototype, GCC is free to clobber r1,
+and did: `callback_slot` was garbage, `*callback_slot = <trampoline>` wrote into
+the void and the indirect call dispatched nowhere.  **This is exactly the class
+the blind-spot ledger names** — parity cannot see a dropped register argument
+because it drives the ORIGINAL bytes with its own r1.  Corrected to
+`unsigned long long FUN_01032764(unsigned int unused_r0, unsigned int slot)`
+returning `((uint64_t)slot << 32) | status`, and **re-proven with the
+authoritative verifier**: `net_recon_kit.prove(0x01032764, 0x2e, …)` →
+`{'pass': True, 'stage': 'cfg_verify', 'checked': 6, 'cfg_status': 'PASS'}`
+(6 CFG-derived cases = the five `tbb` arms plus the default).
+
+**Where it stops now, named precisely.**  With all three fixed
+(`/private/tmp/g1-i23e-net`), the CPUNET reaches `FUN_010333b4` and returns from
+`FUN_01032764`, but **neither trampoline hook fires** and `acquire_buf_table`
+(FUN_010327a0) is never reached.  In `FUN_010333b4` the slot is written only
+inside `if (saved[0] == 0) … else if (saved[0] == 1) …`, so the measurement says
+`saved[0] ∉ {0,1}` — the ESB **configuration struct** that `FUN_0102b31c` hands
+to `FUN_010333b4` (`saved[] = (volatile uint8_t *)0x21004a94`, copied from
+`configuration[0..4]`) does not carry the mode byte the shipped firmware has.
+That is the iteration-24 first divergence, and it is one function upstream.
+
+Still-unrebound raw runtime code pointers in the same function, all downstream
+of that stop and all in Ghidra gaps except one:
+
+| literal (runtime) | analysis | role | reconstructed? |
+|---|---|---|---|
+| `0x01032fbd` | 0x010327bc | radio-owner timer callback | **no** (gap after FUN_010327a0) |
+| `0x01032fd9` | 0x010327d8 | RADIO IRQ 8 handler | **yes** — `FUN_010327d8` links at 0x0102dcb4; needs only a rebind |
+| `0x0103309d` | 0x0103289c | IRQ 0x1d handler | **no** (gap after FUN_01032860) |
+| `0x0103b03b` | 0x0103a83a | IRQ 0x19 handler | **no** (gap after FUN_0103a80c) |
+
+Two more odd (Thumb) code literals exist elsewhere in the symbolized net tree
+and are recorded for the same treatment: `C_01008e70 = 0x0100957d` and
+`DAT_01019eb0 = 0x01019a9d`.
+
+### 23.4 Two builds are reported, as the standing instruction requires
+
+`FUN_0102b5bc`'s pointer rebind is provably correct, and it moves the CPUNET
+*into* a new, deeper stall.  Neither build is hidden.
+
+| pair | app | net | net behaviour | ESB PTX | reset-free 20 s |
+|---|---|---|---|---|---|
+| **A (acceptance capture)** | `g1-i23a-app` | `g1-i23-net` | ESB chain stops at `clock_cb_register`; core keeps running | 0 | **yes** |
+| **B (deepest)** | `g1-i23a-app` | `g1-i23f-net` (== `i23e`) | reaches `FUN_010333b4`, stops after `FUN_01032764` | 0 | see §23.6 |
+
+`g1-i23-net` is the tree as of the app-only change; `g1-i23f-net` is the tree as
+it stands now (`i23b` = defect 1 only, `i23c` = + defect 2, `i23d` = + the
+symbolized-literal spelling that keeps `check_net_raw_literals` at 69,
+`i23e` = + defect 3, `i23f` = + the manifest cleanup below).  `i23e` and `i23f`
+are behaviourally identical (same sources; re-probed, same stop point, same
+`FUN_01032764`-reached / trampolines-not-reached signature) and link to the
+same 222,189 B.
+
+**Manifest cleanup.**  Once the three new symbolized net copies carry the
+standard identity header, `tools/gen_retained_sources.py` picks them up on its
+own (net retained **955 → 958**), so the explicit `CMakeLists.txt` entries were
+removed to avoid compiling the same TU twice.  `--check` is clean and the
+generated cmake was produced only by the sanctioned generator.
+
+### 23.5 Graphics + sensor parity — pair A, a COMPLETE capture
+
+```
+G1_RESC=/private/tmp/g1-i23/ours-paired-i23.resc      # $rtinfo_pc=0x15b9c; i @g1-ours-paired.resc
+G1_APP_ELF=/private/tmp/g1-i23a-app/zephyr/zephyr.elf
+G1_NET_ELF=/private/tmp/g1-i23-net/zephyr/zephyr.elf
+G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A
+recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i23
+```
+
+Both phases completed (`VTIME_P1` 6.000000000, `VTIME_P2` 20.000000000),
+**0 `ZEPHYR FATAL ERROR`, 0 `SYSRESETREQ`**, no memory poked beyond the
+oracle's own pairing provisioning (§23.1).
+
+| id | verdict | first difference / detail |
+|---|---|---|
+| **G-1** | **FAIL** | `p2_render` ours `0c5cc90b07…`, **0 lit px / 0 pixel windows**; oracle `b26c73b37d…`, **1,098 lit px / 2,752 windows**. |
+| **G-2** | **FAIL** | `p1_boot` ours `0c5cc90b07…`, **0 lit px / 3 pixel windows**; oracle `1d617c65a6…`, **656 lit px / 673 windows**. |
+| **G-3** | **FAIL (truncation only)** | `p1_boot` **34 vs 764**, all 34 shared transactions byte-identical, first difference at index **34** (oracle `{"op":"0x66","kind":"command"}`, ours `<end>`).  `p2_render` **0 vs 2,881**, first difference index **0** (oracle `{"op":"0x02","kind":"pixel_window","x":32,"y":265}`). |
+| **G-4** | *localiser* | our framebuffer bytes are bit-identical to iterations 16–22 (`0c5cc90b07…`), so first differing row **y = 267**, first differing pixel **x = 178**, carried over unchanged. |
+| **G-5** | **PASS** | panel-init sequence byte-exact at the same indices. |
+| **G-6** | **PASS** | `spim_b` `stream_sha256` EQ, 0 == 0 in both phases. |
+| **S-ESB** | **FAIL** | `MasterFramesSeen` **0** vs 0x175, `AcksInjected` **0** vs 0x175, `AnnounceResponsesInjected` **0** vs 0x15B, `ESB_SYNC_ctx_105a` **0x01** vs 0x02, `DISPLAY_ON_ctx_fe8` **0x00** vs 0x01.  BLE half still passes: `VC_CONNECTED` True == True, `VC_CONNECT_INDS` 1 == 1, `VC_DATA_EVENTS` **0x216** vs 0x215, `RADIO_TX` **0xBD** vs 0x230. |
+
+Per-device volumes — **nothing regressed, nothing improved**:
+
+| device / phase | oracle | iter 20 | iter 22 | **iter 23 (pair A)** |
+|---|---:|---:|---:|---:|
+| LSM6DSO `p1_boot` | 1,089 | 1,027 | 1,027 | **1,027** |
+| LSM6DSO `p2_render` | 1,200 | 700 | 700 | **700** |
+| nPM1300 `p1_boot` | 291 | 232 | 232 | **232** |
+| nPM1300 `p2_render` | 508 | 369 | 370 | **370** |
+| OPT3001 `p1_boot` / `p2_render` | 33 / 80 | 14 / 0 | 14 / 0 | **14 / 0** |
+| ST25DV system port `p1_boot` | 22 | 12 | 12 | **12** |
+| ST25DV NFC EEPROM `p1_boot` | 25 | 11 | 11 | **11** |
+| `saadc` (whole run) | 998 | 71 | 71 | **71** |
+| `gpiote0` (whole run) | 25 | 25 | 25 | **25 (hash EQ)** |
+| `pdm0` (whole run) | 2 | 2 | 2 | **2 (hash EQ)** |
+| `spim_a` `p1_boot` / `p2_render` | 764 / 2,881 | 34 / 0 | 34 / 0 | **34 / 0** |
+| `JBD FrameCounter` `p1` / `p2` | 0x2A1 / 0xD61 | 0x3 / 0x3 | 0x3 / 0x3 | **0x3 / 0x3** |
+| `JBD JournalCount` | 0x400 | 0x22 | 0x22 | **0x22** |
+| framebuffer lit px `p1` / `p2` | 656 / 1,098 | 0 / 0 | 0 / 0 | **0 / 0** |
+
+Score **5 PASS / 5 PARTIAL / 4 FAIL** — the same verdict cells as iterations
+17–22.
+
+### 23.5b Pair B (`g1-i23a-app` + `g1-i23e-net` / `g1-i23f-net`) — measured with probes
+
+Pair B is the tree as it stands.  Measured directly (probe scripts
+`/private/tmp/g1-i23/probe{H,I,J,K}.resc`, all run to completion, all with the
+paired provisioning and the virtual ESB slave enabled):
+
+```
+6.0 s virtual, both cores:  ZEPHYR FATAL ERROR 0, SYSRESETREQ 0
+NK esb_enable            1     (FUN_010333b4 reached — never reached before)
+NK mode_state_init       1     (FUN_01032764 entered and returned)
+NK trampoline_ba4/be4    0     <-- saved[0] is neither 0 nor 1 (§23.7 item 1)
+NK acquire_buf_table     0
+NK start_announcement    0
+NK radio_tx_keying       0
+esbslave MasterFramesSeen 0x00000000   AcksInjected 0x00000000
+device_ctx[0x105a] 0x01 (oracle 0x02)  device_ctx[0xfe8] 0x00 (oracle 0x01)
+```
+
+The stall inside `FUN_010333b4` is a *blocked thread*, not a runaway: virtual
+time advances normally (a 4 s run completes in ~13 s wall on a stripped probe).
+
+A full 20 s pair-B capture was also attempted.  **Phase 1 completed and is
+byte-identical to pair A** — `VTIME_P1` 6.000000000, `JBD FrameCounter` 0x3,
+`spim_a.p1.trace` **309,082 B in both**, `fb_p1_boot.ppm` body sha256
+`0b150fd32588b1da…` **in both**, **0 lit pixels in both**, `twim1.p1` /
+`twim2.p1` traces present.  **Phase 2 did not complete**: Renode itself aborted
+(`Abort trap: 6` inside `Antmicro.Renode.UI.ConsoleIOSource.RedirectedHandling`
+→ `BlockingCollection.Add`) — the *same console-layer crash iteration 21 hit*,
+and the direct consequence of the run being detached from an interactive
+console.  Up to the abort: **0 `ZEPHYR FATAL ERROR`, 0 `SYSRESETREQ`**.  That
+is a harness failure, not a firmware fault, and it is why **pair A is the
+capture reported in §23.5**.  No pair-B phase-2 graphics or sensor number is
+claimed anywhere in this report.
+
+### 23.6 Measurements (every number below was actually run)
+
+| metric | iter 21 | iter 22 | **iter 23 pair A** | **iter 23 pair B** |
+|---|---:|---:|---:|---:|
+| app `ZEPHYR FATAL ERROR` @8 s | 1 | 0 | **0** | **0** |
+| net `ZEPHYR FATAL ERROR` @8 s | 0 | 0 | **0** | **0** |
+| `SYSRESETREQ` in the capture | n/a | 0 | **0** | **0** (to the phase-2 abort) |
+| `_bt_conn_cb_list` entries | 1 | 1 | **2** | **2** |
+| `ancs_connected` executions | 0 | 0 | **1** | **1** |
+| `g_ancs_conn` | 0 | 0 | **0x2002C838** | **0x2002C838** |
+| app UART `esb_channel` | 255 | 255 | **34** | **34** |
+| `radio TransmittedFrames` (capture) | 0 | 186 (0xBA) | **189 (0xBD)** | see §23.5b |
+| `vcentral Connected` | False | True | **True** | see §23.5b |
+| `vcentral ConnectIndsSent` | 0 | 1 | **1** | see §23.5b |
+| `vcentral DataEventsAnswered` | 0 | 530 | **534 (0x216)** | see §23.5b |
+| `esbslave MasterFramesSeen` | 0 | 0 | **0** (oracle 0x175) | **0** |
+| app FLASH | 698,636 B | 698,652 B | **699,948 B (+1,296; 71.24 %)** | same |
+| app RAM | 252,885 B | 252,885 B | **252,885 B (+0)** | same |
+| net FLASH | 221,997 B | 221,997 B | **221,997 B** | **222,189 B (+192; 96.01 % of 231.4 KB)** |
+| net RAM | — | — | **60,556 B** | **60,556 B** |
+| app `nm -u` undefined / duplicate globals | 0 / 0 | 0 / 0 | **0 / 0** | **0 / 0** |
+| net `nm -u` undefined / duplicate globals | 0 / 0 | 0 / 0 | **0 / 0** | **0 / 0** |
+| `check_ram_pin_collisions.py` (app) | 0 / 0, EXIT 0 | 0 / 0, EXIT 0 | **0 / 0, EXIT 0** | — |
+| `check_thread_create_stack_args.py` | 10/10, EXIT 0 | 10/10, EXIT 0 | **10/10, EXIT 0** | — |
+| `check_net_raw_literals.py` | 69 | 69 | **69** | **69** |
+| `gen_retained_sources.py --check` | clean | clean | **clean** | **clean** |
+
+App RAM is byte-identical to iterations 20–22 (`_end` at 0x2003fbd5 in both
+`g1-i22b-app` and `g1-i23a-app`), so no latent absolute-RAM-pin collision
+changed owner and the iteration-20 `G1_CTX_*` probe addresses stay valid.
+
+`check_net_raw_literals` needed one deliberate step: the first cut of the three
+new net functions read `0x21000684 + 17` as a raw literal, which the checker
+correctly flagged as a **70th** literal inside a live object (`m_cb + 0x24`).
+The canonical parity bodies in `recon/net/src` keep the literal; the
+**symbolized** copies name `g_net_radio_crc_scratch` instead and are the ones
+the cohesive build compiles, so the count returns to **69**.
+
+### 23.7 Open, named, and NOT fixed
+
+1. **The ESB configuration byte `saved[0]`.**  `FUN_010333b4` writes the RADIO
+   callback slot only for `saved[0] ∈ {0,1}`; measured, neither branch is
+   taken, so the slot keeps stale contents and the indirect call goes nowhere.
+   `saved[] = 0x21004a94` is copied from the `configuration[]` struct
+   `FUN_0102b31c` passes.  **This is the iteration-24 first divergence.**
+2. **Four raw runtime code pointers remain in `FUN_010333b4`** (table in
+   §23.3).  One (`0x01032fd9` → `FUN_010327d8`, the RADIO IRQ 8 handler) is
+   already a defined symbol and needs only the `ADDR_*_THUMB` rebind; the other
+   three are Ghidra-gap functions that must be reconstructed first.
+3. **`analysis 0x0102b204` (168 B) is still unreconstructed**, so
+   `FUN_0102b1c8` still creates the ESB worker with `K_FOREVER`
+   (iteration 18 §18.8 item 1).  This iteration did **not** need it: the ESB
+   transport is started from the clock-transition callback, not from that
+   worker, and the chain advanced four stages with the worker still parked.
+4. **Iteration 22 §22.11 items 3–4 are unchanged**: 342 app `rodata_*` pins are
+   still absolute (one of them, `rodata_87fec`, cost this iteration's gate 2),
+   and the RAM-arena `.data` restore still drops every pointer-bearing run.
+   **A generator for non-string rodata and for pointer-bearing `.data` runs is
+   now the single highest-value instrument in the project** — three of the last
+   four blockers (§22.6 G, §22.6 H, §23.2) were the same defect wearing a
+   different hat.
+5. **Two odd Thumb literals elsewhere in the net tree** (`C_01008e70` =
+   0x0100957d, `DAT_01019eb0` = 0x01019a9d) are unaudited code pointers of the
+   same class as §23.3 defect 1.
+6. The shipped `bt_conn_cb` struct is **36 B (9 pointers)** and ours is
+   **28 B (7)**, i.e. the shipped build also sets `CONFIG_BT_REMOTE_INFO` and
+   `CONFIG_BT_USER_PHY_UPDATE` (the only two members that fit between
+   `security_changed` and `_next`).  Not applied this iteration — it perturbs
+   the host stack and was not needed for the fix, since indices 0/1/5 coincide
+   in both layouts.
+7. Shipped `bt_conn_cb` entries 2 and 3 —
+   `{0x220cd, 0x22079}` (app code, uncatalogued: inside the gap after
+   `FUN_0002201c`, which ends at 0x2205e) and `{0x52989, 0x52a0d}` (gap after
+   `FUN_00052880`, which ends at 0x52980) — are **identified but not
+   reconstructed**, so our section still has 2 entries where the shipped image
+   has 3.
+
+### Regenerate (iteration 23)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check   # clean
+recon/application/build_cohesive.sh app /private/tmp/g1-i23a-app
+recon/application/build_cohesive.sh net /private/tmp/g1-i23f-net -- -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF
+# ESB pairing provisioning (opt-in, mirrors g1.resc for the shipped images):
+#   $rtinfo_pc = nm zephyr.elf | grep -w runtime_info_sync   -> 0x00015b9c
+#   i @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc
+# capture: see §23.5 ;  probes: /private/tmp/g1-i23/probe{A..K}.resc
+```
+
+Files changed:
+new `recon/application/app/src/g1_bt_conn_cb_objects.c`,
+`recon/application/app/CMakeLists.txt` (1 TU),
+new `recon/net/src/{FUN_01032b4c,FUN_01032ba4,FUN_01032be4}.c` +
+`recon/symbolized/net/` copies,
+`recon/net/src/FUN_01032764.c` + `recon/symbolized/net/FUN_01032764.c`
+(signature correction, re-proven with `cfg_verify`),
+`recon/net/src/FUN_0102b5bc.c` + `recon/symbolized/net/FUN_0102b5bc.c`
+(cohesive-build callback pointer),
+`recon/symbolized/net/FUN_010333b4.c` (slot literal → `ADDR_*_THUMB`),
+`recon/symbols/g1_net_symbols.h` (two pointers RESOLVED),
+`recon/application/net/CMakeLists.txt` (comment only — the three new TUs are
+picked up by the generator),
+`recon/generated/net_retained_sources.cmake` (regenerated by
+`tools/gen_retained_sources.py` only; net retained 955 → 958),
+new `armemul/g1-ours-paired.resc` (**additive/opt-in; `g1-ours.resc`
+untouched**),
+`recon/emulator/reports/sensor_parity_status.md`, this report.
+**No `tools/` logic change**, no devicetree change, nothing committed.

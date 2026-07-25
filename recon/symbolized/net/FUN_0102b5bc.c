@@ -24,7 +24,30 @@
 #define P_0102b654 ((unsigned long)&rodata_103d18c) /*=0x103d18c*/
 #define P_0102b658 ((unsigned long)&rodata_103d19e) /*=0x103d19e*/
 #define P_0102b65c ((unsigned long)&rodata_103d1b8) /*=0x103d1b8*/
+/* P4 iteration 23 — the ESB clock-transition CALLBACK POINTER.
+ * The shipped literal at analysis 0x0102b660 is the runtime Thumb pointer
+ * 0x0102bf59 = (analysis 0x0102b758 + 0x800) | 1, i.e. FUN_0102b758, this
+ * core's `g1_esb_clock_transition` (recon/net/src/FUN_0102b758.c documents the
+ * same identity).  It is a CODE address, so in the relocated cohesive build the
+ * original literal points at unrelated bytes: measured on
+ * /private/tmp/g1-i23-net, FUN_0102b758 links at 0x0102cf14 while 0x0102bf58
+ * lands elsewhere entirely.  Consequence, measured with block hooks on OUR
+ * build's own symbols (all real instruction boundaries): `esb_service_init`
+ * (FUN_0102b5bc) and the registration `FUN_0102bba8` each ran exactly once,
+ * and `g1_esb_clock_transition`, `g1_esb_transport_start`,
+ * `g1_esb_radio_configure`, the ESB enable and the RADIO TX keying ran ZERO
+ * times — so the net core never transmitted an ESB PTX frame
+ * (`esbslave MasterFramesSeen` 0 vs the oracle's 0x175).
+ * commit 0a7dee8c rebound the `ADDR_*_THUMB` macro class; this pointer is a
+ * per-file `P_` literal and was never in that class.  Parity keeps the shipped
+ * literal; the cohesive build binds the linker-resolved address (GCC yields the
+ * Thumb-flagged value for a function symbol's address). */
+#ifdef G1_COHESIVE_BUILD
+extern void FUN_0102b758(unsigned int);
+#define P_0102b660 ((unsigned long)&FUN_0102b758)
+#else
 #define P_0102b660 0x0102bf59
+#endif
 
 extern int FUN_0103037c(int);
 extern int onoff_request(int, void *);

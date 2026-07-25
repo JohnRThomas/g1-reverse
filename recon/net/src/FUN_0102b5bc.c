@@ -9,7 +9,17 @@
 #define P_0102b654 0x0103d18c
 #define P_0102b658 0x0103d19e
 #define P_0102b65c 0x0103d1b8
+/* P4 iteration 23 — CODE pointer: the shipped literal 0x0102bf59 is
+ * (analysis 0x0102b758 + 0x800) | 1 = FUN_0102b758, the ESB clock-transition
+ * callback.  Parity keeps the literal; the cohesive build must use the
+ * linker-resolved address or the callback is never invoked (measured: the whole
+ * ESB transport chain ran zero times).  See recon/symbolized/net/FUN_0102b5bc.c. */
+#ifdef G1_COHESIVE_BUILD
+extern void FUN_0102b758(unsigned int);
+#define P_0102b660 ((unsigned long)&FUN_0102b758)
+#else
 #define P_0102b660 0x0102bf59
+#endif
 
 extern int FUN_0103037c(int);
 extern int FUN_0102ca80(int, void *);

@@ -110,8 +110,14 @@ int FUN_010333b4(const uint32_t *configuration)
     uint64_t init_result = initialize_radio_mode_state(value, ((unsigned long)&g_esb_event_handler_fn) /*=0x2100499c*/);
     callback_slot = (volatile uint32_t *)(uintptr_t)(uint32_t)(init_result >> 32);
 
+    /* P4 iteration 23: both slot values are CODE pointers (runtime Thumb), not
+     * rodata.  0x10333a5 -> analysis 0x1032ba4 = FUN_01032ba4 and
+     * 0x10333e5 -> analysis 0x1032be4 = FUN_01032be4, now reconstructed; the
+     * `rodata_10333a5` spelling was a mis-classification of the same pointer.
+     * The slot is invoked indirectly a few lines below, so the original-image
+     * literals hung the CPUNET here in the relocated build. */
     if (saved[0] == 0)
-        *callback_slot = ((unsigned long)&rodata_10333a5) /*=0x10333a5*/;
+        *callback_slot = ADDR_FUN_010333a4_THUMB /*=0x10333a5*/;
     else if (saved[0] == 1)
         *callback_slot = ADDR_FUN_010333e4_THUMB /*=0x10333e5*/;
 
