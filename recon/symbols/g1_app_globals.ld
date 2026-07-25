@@ -450,10 +450,19 @@ PROVIDE(rodata_8b2b4 = 0x0008b2b4);
 PROVIDE(rodata_8b3dc = 0x0008b3dc);
 PROVIDE(rodata_8b508 = 0x0008b508);
 PROVIDE(rodata_8b5fc = 0x0008b5fc);
-PROVIDE(rodata_8ba64 = 0x0008ba64);
-PROVIDE(rodata_8ba7c = 0x0008ba7c);
-PROVIDE(rodata_8ba88 = 0x0008ba88);
-PROVIDE(rodata_8ba94 = 0x0008ba94);
+/* Iteration 15: the four nPM1300 charger `linear_range` tables are DATA the
+ * recovered npm1300_charger_init dereferences, not addresses it merely
+ * compares, so an identity pin to original flash 0x8ba64.. handed it our
+ * build's unrelated bytes and layout_select_region returned -EINVAL, which
+ * made main skip jdb_panel_init / pt_nfc_eeprom_link_start /
+ * notification_system_init (the E4 blocker).  Bind all four onto the one
+ * emitted 72-byte block in
+ * recon/application/app/src/g1_npm1300_linear_ranges.c, keeping their
+ * original relative offsets. */
+PROVIDE(rodata_8ba64 = g1_npm1300_linear_ranges + 0x00);
+PROVIDE(rodata_8ba7c = g1_npm1300_linear_ranges + 0x18);
+PROVIDE(rodata_8ba88 = g1_npm1300_linear_ranges + 0x24);
+PROVIDE(rodata_8ba94 = g1_npm1300_linear_ranges + 0x30);
 PROVIDE(rodata_8bb90 = 0x0008bb90);
 PROVIDE(lc3_bwdet_l_table = 0x0008bbc0);
 PROVIDE(lc3_bwdet_bws_table = 0x0008bbe0);

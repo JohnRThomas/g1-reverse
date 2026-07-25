@@ -167,11 +167,23 @@ target_sources(app PRIVATE
   # functions, so they live here rather than in the generated retained list.
   src/g1_gpio_dt_specs.c
   src/g1_app_ram_relocs.c
+  # Iteration 15: the recovered RAM arena is plain .bss, but every pin below
+  # 0x20003e29 is `.data` in the shipped image and therefore starts at its
+  # SHIPPED INITIALISER, not at zero.  This generated TU replays the shipped
+  # `.data` load image into the arena at PRE_KERNEL_1.  Regenerate with
+  #   recon/application/gen_app_data_image.py --stage a2
+  # (the generator documents the load-image base proof and the pointer policy).
+  src/g1_app_data_image.c
   src/g1_ipc_serialization_objects.c
   # Iteration 10: the 3-entry ST25DV transport ops vtable (original
   # rodata_88a38).  Its contents are original-image Thumb function pointers, so
   # like the gpio_dt_spec tables it has to be emitted, not pinned.
   src/g1_st25dv_ops_table.c
+  # Iteration 15: the four nPM1300 charger `linear_range` tables (original
+  # 0x8ba64..0x8baac).  Like the ops table above, the recovered code
+  # DEREFERENCES the original address, so the block has to be emitted and the
+  # four rodata_8baXX pins bound onto it in g1_app_globals.ld.
+  src/g1_npm1300_linear_ranges.c
   # Library displacement Batch 0 (goal G2): the four out-lined
   # zephyr/include/zephyr/drivers/gpio.h static inlines are excluded in
   # adoption_manifest.json; a header `static inline` has no external symbol to

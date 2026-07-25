@@ -5265,3 +5265,371 @@ capture); new `recon/emulator/reports/sensor_parity_status.md`. Six records
 appended to the scratchpad catalogs `app_funcs.json` / `classified.json`
 (backed up as `*.i14bak`), the iteration-4/8/13 route. No `tools/` change, no
 Kconfig / `prj.conf` / devicetree change, `armemul` untouched. Nothing committed.
+
+## Iteration 15 — the display free-run root cause (a whole `.data` section our
+## build never loaded), and four more provably-wrong emissions on the E4 path
+
+**Headline.** The `display_thread_handler` free-run is **root-caused and gone**,
+and the cause was not local to the display at all: **every recovered CPUAPP
+global below 0x20003e29 is `.data` in the shipped image and our build starts
+all of them at ZERO**, because the RAM arena (`g1_ram_arena`, iteration 11) is
+plain `.bss`. `g_dashboard_display_level` is one of 106 such globals; its
+shipped initialiser is **`0x42` = 66, i.e. `K_MSEC(66)`**, and the clamp in its
+only writer (`set_dashboard_display_level_clamped`, 0x48b44, `[0x21, 0x7d]` =
+33..125 ms) confirms the units. With 0 the `k_msgq_get` timeout was
+`K_NO_WAIT`; with 66 the display thread waits ~15 fps like the original.
+
+Measured effect of that one fix alone (build `g1-i15a`, stage a1, four bytes):
+app instructions @2.0 s fall from **195,865,770 to 66,209,805** and unique
+functions rise from 883 to **932**; `display_thread_handler` goes from
+**2,918,551 entries to 82**, `wake_display_thread_on_reflash` from 729,636 to
+19, `memset` from 729,885 entries to 557.
+
+Removing the free-run immediately unmasked four further defects, each found by
+following the *first* divergence and each fixed with disassembly evidence:
+
+1. **`sqrtf_hw` was an infinite mutual recursion.** `__builtin_sqrtf` under
+   GCC's default `-fmath-errno` lowers to a **call to `sqrtf`**, and our
+   `sqrtf` (0x75dc8) calls `sqrtf_hw` — so the emitted pair recursed until SP
+   walked below 0x20000000. The shipped body is six bytes,
+   `eeb1 0ac0  vsqrt.f32 s0,s0 / 4770  bx lr`; inline `__asm__("vsqrt.f32")`
+   now emits **exactly those six bytes**.
+2. **The four nPM1300 `linear_range` tables were identity pins.**
+   `PROVIDE(rodata_8ba94 = 0x0008ba94)` handed `npm1300_charger_init`
+   (`panel_temp_calibration_init`, 0x62644) our build's unrelated flash bytes.
+3. **`layout_select_region` (0x84774) dropped three pass-through arguments** —
+   the **sixth** member of the class the differential harness is structurally
+   blind to.
+4. **`delay_busy_wait_usec` called a hardcoded raw original-image address**
+   (`(busy_wait_fn_t)0x00088841UL`) — a six-byte busy-wait leaf Ghidra never
+   catalogued. Emitted as `coredep_delay_cycles`; the compiled bytes
+   `0338fdd87047` are **byte-identical** to the shipped 0x88840.
+
+(2)+(3) together are what kept **E4 out of reach**: the charger init returned
+`-EINVAL`, and `main` therefore took its failure branch and **skipped
+`call_hook(context, 0xb6c)` — i.e. `jdb_panel_init` — plus
+`pt_nfc_eeprom_link_start()` and `notification_system_init()`**. With them
+fixed, `panel_temp_calibration_init` (20/197 vs golden 38/398),
+`jdb_panel_init`, `panel_init`, `spi_master_init` and
+`projector_reset_sequence` all execute for the first time.
+
+**E4 is still not reached.** The new first divergence is `nrfx_spim_xfer`
+spinning on `EVENTS_END` (offset +0x118) that never arrives: **0 register
+accesses on `spim_a` AND `spim_b`** (verified directly with
+`sysbus LogPeripheralAccess`), so the instance's `p_reg` is neither modelled
+SPIM. Golden runs `spim_select_instance_by_mode` (2/42) and `nrfx_spim_uninit`
+(8/43); ours runs neither. That spin costs 187,696,414 instructions at 2.0 s
+and is why the final build's aggregate counters are worse than `g1-i15b`'s.
+
+| metric | iter 14 final `g1-i14b-app` | `g1-i15a-app` | `g1-i15b-app` | `g1-i15c-app` | `g1-i15d-app` | **iter 15 final `g1-i15e-app`** |
+|---|---:|---:|---:|---:|---:|---:|
+| app instr @0.15 s | 10,865,770 | 6,232,745 | 6,724,014 | 6,674,784 | 6,884,767 | **10,879,768** |
+| app unique fns @0.15 s | 882 | 886 | 886 | 888 | 853 | **842** |
+| app resets @0.15 s | 0 | 0 | 0 | 0 | **1** | **0** |
+| app instr @2.0 s | 195,865,770 | 66,209,805 | **10,157,310** | 10,114,427 | — | 195,879,768 |
+| app unique fns @2.0 s | 883 | 932 | **917** | 919 | — | 843 |
+| app resets @2.0 s | 0 | **1** | 0 | 0 | — | **0** |
+| net instr / fns @0.15 s | 293,078 / 433 | 293,534 / 433 | 293,961 / 433 | 293,961 / 433 | 288,578 / 432 | 288,578 / 432 |
+| `radio TransmittedFrames` | 0 | 0 | 0 | 0 | 0 | **0** |
+| app FLASH | 632,740 B (64.32 %) | 632,776 B | 635,024 B | 635,096 B | 635,096 B | **635,096 B (64.64 %)**, +2,356 B |
+| app RAM | 244,229 B | 244,229 B | 244,229 B | 244,229 B | 244,229 B | **244,229 B**, +0 B |
+| `nm -u` undefined / duplicate globals | 0 / 0 | — | 0 / 0 | 0 / 0 | — | **0 / 0** |
+| `check_ram_pin_collisions.py` | 0 / 0, EXIT 0 | 0 / 0, EXIT 0 | 0 / 0, EXIT 0 | 0 / 0, EXIT 0 | — | **0 / 0, EXIT 0** |
+| `check_thread_create_stack_args.py` | 10/10, EXIT 0 | — | 10/10, EXIT 0 | — | — | **10/10, EXIT 0** |
+| `gen_retained_sources.py --check` | clean | clean | clean | clean | clean | **clean** |
+
+No `--allow-multiple-definition`, no weak symbols, no numeric-root hacks, no
+`tools/` change, no Kconfig / `prj.conf` / devicetree change. `armemul` is
+**untouched**. Net core not rebuilt (`/private/tmp/g1-i9c-net`, unchanged since
+iteration 9). Nothing committed.
+
+**On the final-build regression.** `g1-i15e` is worse than `g1-i15b` on raw
+instruction count and unique-function count *only because it gets further*: the
+three fixes after `g1-i15b` are each proven against the shipped disassembly
+(one of them byte-exactly), they turn on `jdb_panel_init` / `panel_init` /
+`spi_master_init` / `projector_reset_sequence` — all present in the golden
+trace — and they expose the SPIM `p_reg` defect that was previously hidden
+behind a `-EINVAL`. Per the standing rule they are **kept, not reverted**, and
+both measurements are reported.
+
+### 15.1 Step A — the missing `.data` section (the free-run root cause)
+
+`display_thread_handler` (0x49090) computes its `k_msgq_get` timeout from
+`g_dashboard_display_level` (original 0x20002544, bound to `g1_ram_arena +
+0x544`). Iteration 14 proved our emitted frame is instruction-for-instruction
+the original's, so the defect had to be the *value*. It is:
+
+```
+shipped .data load image:  LMA(0x20000000 + x) = flash 0xf6d64 + x
+0xf6d64 + 0x2544 = 0xf92a8  ->  42 00 00 00     = 0x42 = 66 (ms)
+```
+
+The load-image base is proven three independent ways, all reproduced by
+`recon/application/gen_app_data_image.py --selftest`:
+
+| offset | shipped bytes | identity |
+|---|---|---|
+| `+0x23cc` | `687c0800 53000000` | `g_st25dv_i2c_dev = { bus = 0x00087c68 ("i2c@9000"), addr = 0x53 }` (iteration 11) |
+| `+0x2fe3` | `"S100demoglasses"` | `g_product_code_buf` |
+| `+0x3003` | `"S100demodevice"` | `g_device_serial_buf` |
+| `+0x34f7` | `80 00 00 …` | `g_md5_padding` (canonical MD5 pad block) |
+
+This is **systemic, not a one-off**: of the 676 `PROVIDE(name = g1_ram_arena +
+off)` pins, **598 actually resolve inside the arena**, **113 of those sit below
+the shipped `.data` end 0x20003e29**, and **106 of those have a non-zero
+shipped initialiser** our build replaced with zeros — including
+`g_product_code_buf`, `g_device_serial_buf`, the 24 calendar/mail bundle-id
+strings in `g_periodic_check_ok_flag`, `g_esb_sync_inbound_status = 0x13`,
+`g_gpiote_lock = 0xff`, `g_spline_nan_sentinel = 0x7fc00000`,
+`g_batt_soc_curve_charge_lo/hi`, and `g_20002bb8 = 64000000` (the CPU-cycle
+constant `delay_busy_wait_usec` divides by).
+
+**The fix** is a generated TU, `recon/application/app/src/g1_app_data_image.c`,
+produced by `recon/application/gen_app_data_image.py`, that replays the shipped
+`.data` bytes into the arena from a `const` flash image at `SYS_INIT(...,
+PRE_KERNEL_1, 0)` — after `z_bss_zero`/`z_data_copy` and before any recovered
+device or application initialiser. It is **not** a hardcoded constant: every
+byte is read verbatim from `app_update.bin`.
+
+**Policy (deliberately conservative, and documented in the generator).** The
+load image also contains **absolute original-image pointers** — flash function
+pointers and self-referential SRAM pointers — which are meaningless in our
+build; restoring those verbatim would trade a loud NULL for a wild pointer. So
+the generator restores only *units* that contain **no** pointer-looking
+4-byte-aligned word (flash `[0xC200,0x100000)` or SRAM `[0x20000000,
+0x20080000)`), where a unit is a maximal run of non-zero bytes split at every
+pinned-object boundary and at every gap of >= 4 zero bytes. Two reviewed
+exclusions are listed in the generator: `g_screen_render_table` (0x20002430,
+11 x 16 B) because it interleaves screen ids with **function pointers** — ids
+without handlers turns "no entry matched" into "matched, call 0", strictly
+worse than an all-zero table — and the `k_mem_slab`/`k_mutex` block at
+0x200037b8..0x20003890 whose only non-pointer field is a scalar. Everything
+dropped keeps today's zero-initialised behaviour exactly.
+
+Result: **85 runs, 1,199 bytes** restored (stage a2). FLASH grows 632,776 B
+(`g1-i15a`) -> 635,024 B (`g1-i15b`), i.e. +2,248 B, which also carries the
+15.2 fix; RAM +0 B.
+The remaining 105 dropped units are the obvious follow-up: they need the
+`g1_st25dv_i2c_dev` treatment (emit the object and re-point) or, for
+self-referential SRAM pointers that land inside the arena, an arena-relative
+relocation the generator does not do yet.
+
+### 15.2 `sqrtf_hw`: `__builtin_sqrtf` is not `vsqrt.f32`
+
+`g1-i15a` (stage a1) ran clean at 0.15 s but **reset in the 2.0 s run** (fault at app instruction 8,550,305, just past the 0.15 s mark). Trace:
+
+```
+sqrtf(0x47b68) -> sqrtf_hw(0x77e90) -> b.w 0x47b68 <sqrtf> -> ...
+  each cycle: push {r3,lr} + vpush {d8}  = 16 bytes, lr = 0x47b77
+  SP walks down past 0x20000000 (first out-of-range write logged by Renode:
+    [cpuapp: 0x47B68] WriteDoubleWord at 0x1FFFFFF8, value 0x2000C594)
+  -> exception return unstacks PC = 0 -> z_arm_usage_fault -> z_fatal_error
+  -> sys_arch_reboot
+```
+
+`recon/symbolized/app/sqrtf_hw.c` said `return __builtin_sqrtf(value);`. Under
+`-fmath-errno` (the default; Zephyr does not disable it) GCC lowers that to a
+**tail call to `sqrtf`**, and `sqrtf` calls `sqrtf_hw`. The shipped 0x869c6 is
+six bytes — `eeb1 0ac0 / 4770` — so the body is now
+`__asm__("vsqrt.f32 %0, %1")`, which compiles to exactly those two
+instructions. `cfg_verify.verify('app','FUN_000869c6')` **PASS**.
+
+This one is worth naming as a class of its own: **a compiler builtin that is
+semantically right but codegen-wrong**, invisible to a differential harness
+whose callees are order-keyed oracles (the recursion never happens under
+`emu.compare`, which stubs `sqrtf`).
+
+### 15.3 The E4 blocker: `main` skipped `jdb_panel_init` because the nPM1300
+### charger init returned `-EINVAL`
+
+With the free-run gone, `main` ran to completion but **stopped at
+`k_sem_take(..., K_FOREVER)` in its event loop having taken the failure
+branch**. Walking the PCs it executed:
+
+```
+16d34  z_device_is_ready(fuel_gauge)          -> ready
+16d50  z_device_is_ready(fuel_config)         -> ready
+16e06  fuel_gauge_sample_init_timestamp(...)  -> >= 0
+16e14  panel_temp_calibration_init(...)       -> < 0     <<< failure branch
+16e1c/16d5a -> 16f0c   : SKIPS call_hook(ctx,0xb10), call_hook(ctx,0xb6c)
+                         = jdb_panel_init, pt_nfc_eeprom_link_start(),
+                           notification_system_init(), read_rtc_counter_ms()
+```
+
+`panel_temp_calibration_init` (0x62644) is the recovered `npm1300_charger_init`.
+Its config struct is byte-identical to the original's
+(`npm1300_charger_config_0` at our 0x8ba48 vs the shipped 0x8ba14: term
+4,400,000 uV, warm 4,100,000 uV, 40,000 uA, 1,000,000 uA, 500,000 uA, four
+`INT_MAX` thermistor slots, 100,000 ohm, beta 4,250 — every word matches). The
+failure was in the lookup, and it had **two** independent causes.
+
+**(a) Four identity pins that are DATA, not addresses.** The four
+`struct linear_range` tables the charger init searches were still
+`PROVIDE(rodata_8ba64 = 0x0008ba64)` etc. Read off the shipped image they
+decode exactly as Zephyr 3.4.99's `npm1300_charger.c` tables:
+
+```
+0x8ba64 vbus_limit      { 100000,      0,  1,   1 }, { 500000, 100000, 5, 15 }
+0x8ba7c dischg_limit    { 268090,   3230, 83, 415 }
+0x8ba88 charger_current { 32000,    2000, 16, 400 }
+0x8ba94 charger_volt    { 3500000, 50000,  0,   3 }, { 4000000, 50000, 4, 13 }
+```
+
+All four are interior views of one contiguous 72-byte block, so they are
+emitted as one object (`recon/application/app/src/g1_npm1300_linear_ranges.c`,
+byte-exact) and the four pins bound at their original relative offsets.
+(`recon/data/rodata_0x8ba64.c` is the byte-verified owner of the first 52 bytes
+of the same block but stops four bytes into `charger_volt_ranges`, so it cannot
+be the binding target; it is left untouched so the verified-data ledger stays
+as generated.)
+
+**(b) `layout_select_region` (0x84774) dropped three pass-through arguments.**
+Even with correct tables it still returned -22. The original is a tail call
+that forwards **all four** arguments to 0x84602 (`flash_page_index_lookup`):
+
+```
+84774  push {r4,r5,r6}                       <- r1, r2, r3 are never touched
+84776  ldrh r4,[r0,#8] ; ldrh r5,[r0,#10] ; subs r5,r5,r4
+8477c  ldrd r4,r6,[r0] ; mla r4,r6,r5,r4 ; cmp r1,r4 ; ble 8479c
+84788  ldrh r4,[r0,#20]; ldrh r5,[r0,#22]; subs r5,r5,r4
+8478e  ldrd r4,r6,[r0,#12]; mla r4,r6,r5,r4; cmp r1,r4; bgt 847a2
+8479a  adds r0,#12
+8479c  pop {r4,r5,r6} ; b.w 0x84602
+```
+
+Our body was declared `layout_select_region(int *param_1, int param_2)`, so GCC
+used **r2 and r3 as scratch** (`subs r2,r2,r3` at our 0x77b82/0x77b94) and
+`max` arrived at `flash_page_index_lookup` as `max_idx - min_idx` = **9**
+instead of 4,400,000 — `cmp r2,r6 ; bge` at our 0x77b2e/0x77b34 then failed
+against `range->min` = 4,000,000 and returned `-EINVAL`. Declaring all four
+parameters and forwarding them fixes it. `cfg_verify` **PASS** for both
+`FUN_00084774` and `FUN_00084602` after the change — as expected, because the
+harness never compares a callee's argument registers. **Sixth** member of this
+class (dropped register args, dropped stack args, wrong indirection levels,
+stack writes, collapsed stack objects, and now dropped *pass-through* args).
+
+### 15.4 `delay_busy_wait_usec` executed rodata
+
+`g1-i15d` (with 15.3 fixed) reached `jdb_panel_init` -> `panel_init` ->
+`projector_reset_sequence` -> `delay_ms` and then died:
+
+```
+<err> os: Attempt to execute undefined instruction
+<err> os: Faulting instruction address (r15/pc): 0x00088854   r14/lr: 0x00076fa1
+<err> os: >>> ZEPHYR FATAL ERROR 36  -> Resetting system
+```
+
+`recon/symbolized/app/delay_busy_wait_usec.c` (FUN_0004c254) contained
+`busy_wait_fn_t const busy_wait = (busy_wait_fn_t)0x00088841UL;` — a **raw
+original-image Thumb address**, faithfully copied from the original's literal
+pool (0x4c274: `.word 0x00088840`, `orr #1`, `bx r3`) but never rebound. Our
+build puts unrelated rodata at 0x88840. The target is a six-byte leaf Ghidra
+never catalogued, referenced from **nowhere else in the image**:
+
+```
+88840  3803  subs r0, r0, #3
+88842  d8fd  bhi  .-2
+88844  4770  bx   lr
+```
+
+i.e. nrfx's `nrfx_coredep_delay_us` three-cycle busy-wait kernel. It is now a
+proper reconstruction, `coredep_delay_cycles` (canonical
+`recon/app/src/FUN_00088840.c`), registered in
+`recon/catalogs/function_names_app.json` and the scratchpad catalogs, with the
+consumer changed to `ADDR_coredep_delay_cycles_THUMB`. **Proof: the compiled
+`.text` is `0338fdd87047` — byte-identical to the shipped six bytes.** (This is
+strictly stronger than a differential proof; `cfg_verify` cannot drive it,
+returning `FAIL` with `checked: 0` because the busy-wait has no comparable
+side effects.) The restored `.data` value `g_20002bb8 = 64000000` from 15.1 is
+what makes the arithmetic right: `delay_ms(1)` -> 1000 us -> 64,000 cycles ->
+21,333 loop iterations, which is exactly the 42,669 instructions the trace now
+attributes to `coredep_delay_cycles`.
+
+Same sub-class as iteration 14 section 14.3, and the sweep flagged there is now
+quantified: **2,569 `PROVIDE(rodata_xxxxx = 0x000xxxxx)` identity pins remain**
+in `g1_app_globals.ld`. Most are log-format strings (harmless-looking garbage
+output); the dangerous ones are the two kinds found this iteration —
+**dereferenced data tables** and **called function pointers**.
+
+### 15.5 The new first divergence — `nrfx_spim_xfer` polls a SPIM that is not
+### `spim_a` or `spim_b`
+
+`g1-i15e` boots reset-free and reaches the panel bring-up, then hangs:
+
+| function | ours @2.0 s | golden |
+|---|---:|---:|
+| `nrfx_spim_init` | 3 / 24 | 3 / 24 |
+| `nrfx_spim_xfer` | 247 / **187,696,414** | 170 / 3,774 |
+| `spim_select_instance_by_mode` | **ABSENT** | 2 / 42 |
+| `nrfx_spim_uninit` | **ABSENT** | 8 / 43 |
+| `spi_master_trans_data_tx_rx` | 1 / 13 | 68 / 714 |
+| `projector_send_cmd_immediate` | **ABSENT** | 90 / 360 |
+| `panel_init` | 1 / 6 | 20 / 52 |
+
+The hot PCs are `0x63b12/16/18` — `ldr r3,[r4,#0x118] ; cmp r3,#0 ; beq .-6`,
+i.e. polling `EVENTS_END` after `str r1,[r4,#0x10]` (`TASKS_START`). Measured
+with `sysbus LogPeripheralAccess sysbus.spim_a/spim_b true` over 0.30 s:
+**zero register accesses on either instance**, and `spim_a.jbd FrameCounter` =
+`JournalCount` = 0. `spim_select_instance_by_mode` (0x26338) is the function
+that writes the base — `mode == 3 -> 0x5000c000` (`spim_b`),
+`mode == 4 -> 0x5000a000` (`spim_a`) — into `event+0xc`, and **it never runs in
+our build** while golden runs it twice. So the `nrfx_spim_t` our
+`nrfx_spim_xfer` receives still has an unset/uninitialised `p_reg`. That is
+iteration 16's Step A.
+
+### Regenerate (iteration 15)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/gen_app_data_image.py --selftest
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/gen_app_data_image.py --stage a2
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check          # clean
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_thread_create_stack_args.py --trials 120
+                                                                                # EXIT=0, 10/10
+PYTHONSAFEPATH=1 .venv/bin/python -c "import sys;sys.path.insert(0,'tools');import cfg_verify as c;\
+ [print(n, c.verify('app',n)['status']) for n in ('FUN_000869c6','FUN_00084774','FUN_00084602')]"
+                                                                                # 3x PASS
+# byte proof for the new 6-byte leaf:
+#   arm-zephyr-eabi-gcc -c -Os -mcpu=cortex-m33 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard \
+#     -ffunction-sections recon/app/src/FUN_00088840.c  ->  .text = 0338fdd87047
+recon/application/build_cohesive.sh app /private/tmp/g1-i15e-app
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py \
+    /private/tmp/g1-i15e-app/zephyr/zephyr.elf                                  # EXIT=0
+# net unchanged since iteration 9: /private/tmp/g1-i9c-net
+<scratchpad>/mkrun.sh i15e  /private/tmp/g1-i15e-app /private/tmp/g1-i9c-net 0.15
+<scratchpad>/mkrun.sh i15e2 /private/tmp/g1-i15e-app /private/tmp/g1-i9c-net 2.0
+# Step B capture + diff: see recon/emulator/reports/sensor_parity_status.md section 1
+```
+
+Bisect ledger (every build and boot actually run):
+
+| build | change | app @0.15 s | resets | note |
+|---|---|---:|---|---|
+| `/private/tmp/g1-i15a-app` | + arena `.data` restore, stage a1 (only `g_dashboard_display_level`, 4 B) | 6,232,745 / 886 | 0 @0.15 s; **1 in the 2.0 s run** (fault at app instr 8,550,305) | free-run gone (2,918,551 -> 82 `display_thread_handler` entries); unmasks the `sqrtf`/`sqrtf_hw` recursion |
+| `/private/tmp/g1-i15b-app` | + stage a2 (85 runs / 1,199 B) + `sqrtf_hw` inline VSQRT | 6,724,014 / 886 | **0** | **10,157,310 / 917 / 0 resets @2.0 s** — best aggregate |
+| `/private/tmp/g1-i15c-app` | + the four nPM1300 `linear_range` pins bound to an emitted block | 6,674,784 / 888 | 0 | 10,114,427 / 919 @2.0 s; charger init still `-EINVAL` |
+| `/private/tmp/g1-i15d-app` | + `layout_select_region` 4-argument pass-through | 6,884,767 / 853 | **1** | charger init succeeds; `jdb_panel_init`/`spi_master_init` run; dies executing rodata at 0x88854 |
+| `/private/tmp/g1-i15e-app` | + `coredep_delay_cycles` (0x88840) emitted and bound | 10,879,768 / 842 | **0** | **final**; 195,879,768 / 843 / 0 resets @2.0 s, dominated by the `nrfx_spim_xfer` poll |
+
+Files changed: new `recon/application/gen_app_data_image.py` (generator +
+`--selftest`) and its generated
+`recon/application/app/src/g1_app_data_image.c`; new
+`recon/application/app/src/g1_npm1300_linear_ranges.c`; new
+`recon/app/src/FUN_00088840.c` (+ `recon/verified/src` mirror,
+`recon/named/coredep_delay_cycles.c`,
+`recon/symbolized/app/coredep_delay_cycles.c`); corrected + re-proven
+`recon/app/src/{FUN_000869c6,FUN_00084774}.c` (+ `recon/verified/src` mirrors,
+`recon/named/{sqrtf_hw,layout_select_region}.c`,
+`recon/symbolized/app/{sqrtf_hw,layout_select_region}.c`);
+`recon/symbolized/app/delay_busy_wait_usec.c` and
+`recon/named/delay_busy_wait_usec.c` (raw 0x00088841 -> named symbol);
+`recon/symbols/g1_app_symbols.h` (one `__asm__` alias + one `ADDR_*_THUMB`);
+`recon/symbols/g1_app_globals.ld` (four `rodata_8baXX` rebinds);
+`recon/application/app/CMakeLists.txt` (two new wiring TUs);
+`recon/catalogs/function_names_app.json` (one new name);
+`recon/generated/app_retained_sources.cmake` (regenerated by its own tool,
+1,629 -> 1,630 retained sources);
+`recon/emulator/reports/sensor_parity_status.md` (rewritten in place). One
+record appended to the scratchpad catalogs `app_funcs.json` / `classified.json`
+(backed up as `*.i15bak`). No `tools/` change, no Kconfig / `prj.conf` /
+devicetree change, `armemul` untouched. Nothing committed.

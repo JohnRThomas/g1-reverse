@@ -114,6 +114,9 @@ extern const unsigned char __g1_fp_panel_off[] __asm__("panel_off");
 extern const unsigned char __g1_fp_panel_on[] __asm__("panel_on");
 extern const unsigned char __g1_fp_panel_suspend[] __asm__("panel_suspend");
 extern const unsigned char __g1_fp_panel_resume[] __asm__("panel_resume");
+/* P4 iteration 15: the uncatalogued 6-byte nrfx busy-wait kernel at 0x88840,
+ * reached only through the literal 0x00088841 in delay_busy_wait_usec. */
+extern const unsigned char __g1_fp_coredep_delay_cycles[] __asm__("coredep_delay_cycles");
 extern const unsigned char __g1_fp_panel_set_brightness_level[] __asm__("panel_set_brightness_level");
 extern const unsigned char __g1_fp_panel_render_screen_dispatch[] __asm__("panel_render_screen_dispatch");
 extern const unsigned char __g1_fp_projector_clear_canvas[] __asm__("projector_clear_canvas");
@@ -256,6 +259,7 @@ extern const unsigned char __g1_fp_z_impl_net_if_ipv6_addr_rm_by_index[] __asm__
  * flash literals and global_system_suspend's `blx [ctx+0xb70]` faulted. */
 #define ADDR_panel_suspend_THUMB (((unsigned long)&__g1_fp_panel_suspend) | 1u) /* panel_suspend -> &panel_suspend; was 0x46d8d */
 #define ADDR_panel_resume_THUMB (((unsigned long)&__g1_fp_panel_resume) | 1u) /* panel_resume -> &panel_resume; was 0x46f21 */
+#define ADDR_coredep_delay_cycles_THUMB (((unsigned long)&__g1_fp_coredep_delay_cycles) | 1u) /* coredep_delay_cycles -> &coredep_delay_cycles; was 0x88841 */
 #define ADDR_panel_set_brightness_level_THUMB (((unsigned long)&__g1_fp_panel_set_brightness_level) | 1u) /* panel_set_brightness_level -> &panel_set_brightness_level; was 0x46ce9 */
 #define ADDR_panel_render_screen_dispatch_THUMB (((unsigned long)&__g1_fp_panel_render_screen_dispatch) | 1u) /* panel_render_screen_dispatch -> &panel_render_screen_dispatch; was 0x35775 */
 #define ADDR_projector_clear_canvas_THUMB (((unsigned long)&__g1_fp_projector_clear_canvas) | 1u) /* projector_clear_canvas -> &projector_clear_canvas; was 0x7d4cb */
