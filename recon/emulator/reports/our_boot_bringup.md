@@ -10396,3 +10396,417 @@ new `recon/ownership/net_hci_ecdh_singleton_adoption.json`;
 shipped address), `recon/emulator/reports/sensor_parity_status.md`, this report.
 **No `tools/` logic change**, no Kconfig / `prj.conf` / devicetree change,
 `armemul` untouched, nothing committed.
+
+## Iteration 27 — the radio-arbitration ops table is RESTORED, but by the other
+## branch: the 14 "gap functions" are **stock NCS library code this link already
+## contains**, and the block that hid them was a mis-classification.  The table
+## is now live and complete (no atomic EXCLUDE) — and the machine now resets at
+## ≈5.8 s on a *newly reachable* `nrfx_ipc.c:202` assert
+
+**Stated before anything else, because the acceptance bar is pixels:
+NO PIXEL IS PAINTED.  And this iteration is, on every measured counter, a
+REGRESSION against iteration 26** — the 20 s stability is lost, `p2_render`
+sensor volumes fall to 0, and `radio TransmittedFrames` is still 0.  Both
+builds are reported side by side in §27.6 and the tree is left in the
+corrected state for the reason §27.7 gives.  Nothing below claims a pixel, a
+transaction or a sensor match that was not measured.
+
+### 27.1 The task's premise was wrong, and the byte evidence says so
+
+Iteration 26 §26.8 listed **14 unresolved Ghidra-gap analysis addresses**
+reached through the pointer word at `0x21000530` and asked iteration 27 to
+reconstruct them.  They are not reconstructible work.  They are **stock NCS
+2.5.1 library code that this link already links**, and the whole `.data` block
+they live in belongs to the stock libraries too.
+
+Two tables sit in the shipped `.data` (read with `tools/net_extract.read_runtime`
+at LMA `0x0103ed24`, per `tools/NET_PLAYBOOK.md`'s base rule — every address
+below is *runtime*, its analysis twin is runtime − 0x800):
+
+| shipped `.data` | shape | contents |
+|---|---|---|
+| `0x210004e0..0x21000528` | 9 × `{void (*fn)(void); 0}` | `0x0101fedd 0x01029cef 0x01029dbd 0x01029d9f 0x01029da3 0x01029d87 0x01029d3d 0x0101ff19 0x01029d41` |
+| `0x21000530` | pointer word | `0x21000534` |
+| `0x21000534..0x21000574` | 16 function pointers (0x40 B) | `0x0102a4d9 0x0102a511 0x0102a4dd 0x0102a51b 0x0102a4e3 0x0102a521 0x0102a4e9 0x0102a4eb 0x0102a4ed 0x0102a4fb 0x0102a50b 0x0102a52d 0x0102a4f1 0x0102a4f7 0x0102a517 0x0102a527` |
+
+The 14 addresses iteration 26 named are exactly nine entries of the first table
+and five of the second.  In **our** linked `.data` the same 25 words are
+present and hold `shipped − 0x34` — **all twenty-five, the same constant**.
+The link map names the owners:
+
+```
+0x21000000 .. 0x21000530  .data  libsoftdevice_controller_multirole.a(...obfuscated.elf)
+0x21000530 .. 0x21000574  .data  libmpsl_fem_common.a(libmpsl_fem_common_debug_soft__obfuscated.elf)
+0x21000534               sym_NIQMZN22R7GGCSNM3BZ25GTCR6D457XB3DIUGWA   (0x40 B)
+```
+
+So `0x21000530` is the **MPSL front-end-module `p_api` pointer word** and
+`0x21000534` is the **FEM API vtable**; the 16 entries are the "no FEM present"
+stubs (`movs r0,#0; bx lr` / `mov.w r0,#-1; bx lr` / `bx lr` /
+`movs r3,#0; strb r3,[r0]; bx lr`).  The nine-entry table is a SoftDevice
+Controller `.data` object.  The recovered accessors
+(`FUN_010218b4/c0/cc/d8/e4/f0/fc`, `FUN_01021908/14/20`,
+`controller_mode1_state_validate`, `controller_mode2_state_validate`) are the
+`mpsl_fem_*` public API thunks.
+
+**Proof the whole window is the same objects, not a coincidence**
+(`recon/application/verify_net_stock_data_window.py`, new, additive):
+
+```
+window                         0x21000000..0x21000574 (1396 B)
+words equal                    256 / 349
+words differing (flash ptrs)   93
+words differing (OTHER)        0
+distinct pointer deltas        2  0x34 x25, 0xa0 x68
+map input sections in window   72, 1396 B covered
+non-stock input sections       0
+VERDICT                        PROVEN
+```
+
+Every single differing word is a flash code pointer, and the differences
+collapse to **exactly two constants — one per contributing archive**.  That can
+only happen if both images contain the same library objects, in the same order,
+at the same addresses.
+
+**Proof at the code level too** (`/private/tmp/g1-i27/cmp_stock.py`):
+
+* all **16** FEM vtable targets are **byte-identical** to the shipped bytes at
+  −0x34 over 24 bytes;
+* the 9 SDC-table targets are **opcode-for-opcode identical over all 62
+  instructions**, with the only differences being branch displacements, which
+  cluster into 4 constants (`0xa0` ×16, `0x34` ×15, `0x5c` ×3, and one literal
+  pool word that is an SDC `.bss` address).
+
+Reconstructing them would have created a **second** FEM vtable and a second SDC
+dispatch table — the singleton-duplication defect iteration 26 §26.4 avoided for
+`hci_ecdh.c`.  The evidence record is
+`recon/ownership/net_mpsl_fem_radio_ops_table_ownership.json` (new), which
+carries all 14 addresses with their our-link twins and per-address verdicts.
+
+### 27.2 The real defect: iteration 26's structural pass over-reached
+
+Iteration 26 classified all 300 recovered CPUNET addresses as class (a),
+"recovered-owned net RAM", and gave each one fabricated `used, retain` storage.
+**52 of them are inside the stock-library `.data` window above.**  Giving those
+private zeroed blocks is what zeroed `0x21000530` — and, because the block that
+swallowed it contains pointer words into stock library code that our link does
+not define under those addresses, the block was also atomically excluded, which
+is why §26.8 read the symptom as "fifteen unresolved Ghidra-gap pointer words".
+There was never anything to resolve: the words are *library* pointers and the
+library already writes them.
+
+The gate never flagged these 52, and correctly so — the stock `.data` input
+sections are anonymous, so `check_ram_pin_collisions.py` saw them as "in region
+but free" (130 of them), not as collisions.  The pass relocated that whole
+category on principle rather than on evidence.
+
+### 27.3 The fix — a fourth classification in the generator
+
+`recon/application/gen_net_ram_relocs.py` gains `STOCK_DATA_WINDOWS`: a
+verified range of stock-library `.data` that this link places at the shipped
+address.  Addresses inside it are **not** clustered into a block; they are bound
+to `<anchor> + <shipped .data offset>`, where the anchor is the linker's own
+`__data_start` (the archives export no symbol for most of these objects — their
+`.data` input sections are anonymous — so the region anchor is the only NAME
+available, and the offset is exactly the shipped one, which §27.1 proves this
+link reproduces).  The gate treats `__data_start` as a chained bind (it is a
+zero-size script symbol), so the 26 affected pins stay **bound**, not raw.
+
+Three generator changes were needed and are recorded because they are what
+makes the pass re-runnable at all:
+
+* `rewrite_linker` now recognises an **already-bound** `PROVIDE` (both the
+  `g1_net_ram_blk_… + off` and `__data_start + off` forms) and recovers the
+  original address **from the binding itself** (a block's name carries its
+  base), so no external name→address table is needed and the pass is
+  idempotent in both directions.  It also replaces a previously emitted
+  generator header instead of stacking a second one.
+* `rewrite_sources` masks the character range of a guard block this generator
+  injected earlier.  Without that mask a second `--rewrite` run rewrote the
+  shipped literals in the guard's own `#else` arm into `#define G1N_x G1N_x`
+  and prepended a second guard.  **This actually happened on the first attempt
+  in this iteration and was reverted with `git checkout` before any build.**
+* `refresh_guards` re-emits those self-contained guard blocks from the current
+  classification, because they do not come from `g1_net_ram_reloc.h` and a
+  reclassification has to reach them (24 files refreshed).
+
+Result:
+
+| | iteration 26 | **iteration 27** |
+|---|---:|---:|
+| addresses classified | 300 | 300 |
+| — relocated into blocks | 300 | **248** |
+| — bound to stock `.data` (new class) | 0 | **52** |
+| blocks emitted | 70 | **63** |
+| block bytes | 3,416 | **2,912** |
+| linker pins bound to a block | 204 | **174** |
+| linker pins bound to `__data_start` | 0 | **30** |
+| blocks with a restored shipped initialiser | 8 | 6 (the two lost are now the library's own) |
+
+**`g_net_radio_ops_table_ptr` is bound and the table is complete.**  `nm` on the
+new link gives `21000530 A g_net_radio_ops_table_ptr` and
+`21000534 D sym_NIQMZN22…`; the linked `.data` image at `0x21000530` reads
+`34 05 00 21` followed by the sixteen live stub pointers.  **There is no atomic
+EXCLUDE anywhere near it** — the block `g1_net_ram_blk_210004a8` and the six
+other blocks that covered the window no longer exist.
+
+### 27.4 A second, independent correction: the `FUN_01021920` thunk dropped r3
+
+With the table live the thunks actually execute, which exposed a
+**harness-blind dropped-register-argument defect** — the class the task warns
+about (12 known instances).  The shipped thunk is
+
+```
+01021920  10b4  push {r4}          01021908  014b  ldr r3,[pc,#4]
+01021922  034c  ldr  r4,[pc,#0xc]  0102190a  1b68  ldr r3,[r3]
+01021924  2468  ldr  r4,[r4]       0102190c  9b6a  ldr r3,[r3,#0x28]
+01021926  6468  ldr  r4,[r4,#4]    0102190e  1847  bx  r3
+01021928  a446  mov  ip,r4
+0102192a  10bc  pop  {r4}
+0102192c  6047  bx   ip
+```
+
+i.e. `FUN_01021920` saves and restores **r4** and tail-calls through **ip**,
+while its nine siblings use **r3** as scratch.  That is the byte evidence that
+r3 is a **live fourth argument** only in this one.  The old body
+(`void FUN_01021920(void) { fn(); }`) compiled to
+`ldr r3,[pc]; ldr r3,[r3]; ldr r3,[r3,#4]; bx r3`, clobbering r3 with the callee
+address; the sole live caller `FUN_01032ad8` passes five arguments and the
+callee (ops[1], shipped `0x01029d10` → `0x01029cb6`, falling into `0x01029cbc`)
+consumes r3 as `sxtb r1, r3`.
+
+The corrected body forwards four register arguments and returns the callee's
+value; GCC 12.2 at `-Os` emits **exactly the shipped instruction sequence**:
+
+```
+0102ae54  b410  push {r4}
+0102ae56  4c03  ldr  r4,[pc,#12]
+0102ae58  6824  ldr  r4,[r4]
+0102ae5a  6864  ldr  r4,[r4,#4]
+0102ae5c  46a4  mov  ip,r4
+0102ae5e  bc10  pop  {r4}
+0102ae60  4760  bx   ip
+```
+
+— byte-for-byte the shipped thunk.  The nine siblings are left alone: their
+`void(void)` bodies already compile to the shipped `r3` form byte-for-byte, so
+they are correct as they stand.
+
+**Proof, stated honestly.**  `cfg_verify.verify("net", "FUN_01021920")`
+(the authoritative CFG-directed verifier, which supplies its own catalogue-derived
+`call_arity_by_target` / `call_float_arity_by_target` / `call_return_kind_by_target`)
+returns `PASS, checked = 40 random trials, cover_cases = 0` — 0 directed cases
+because the thunk is straight-line and has no branch condition to cover.  The
+**old, wrong body also returns `PASS, 40, 0`**, measured this iteration with
+`source_override`.  So parity is *not* the evidence here; the byte-for-byte
+match of the emitted code against the shipped bytes is.  The same run
+re-verified `FUN_010218b4`, `FUN_010218f0` and `FUN_010218fc`: `PASS, 40, 0`
+each, unchanged.
+
+### 27.5 Gates (all clean) and build ledger
+
+| gate | iteration 26 | **iteration 27** |
+|---|---|---|
+| `check_ram_pin_collisions.py --core net` raw-in-object / raw-free | 0 / 0 | **0 / 0** |
+| `check_ram_pin_collisions.py --core net` bound OK / escaping | 199 / 0 | **199 / 0**, EXIT 0 |
+| `check_ram_pin_collisions.py` (app, unchanged invocation) | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_net_raw_literals.py` distinct / colliding | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_thread_create_stack_args.py` | 10/10 | **10/10**, EXIT 0 |
+| `gen_retained_sources.py --check` | clean | **clean** |
+| net `nm -u` undefined / duplicate globals | 0 / 0 | **0 / 0** |
+| app `nm -u` undefined / duplicate globals | 0 / 0 | **0 / 0** |
+| `verify_net_stock_data_window.py` | — | **PROVEN** (new) |
+| net FLASH | 225,217 B (97.32 %) | **225,073 B (−144; 97.26 %)** |
+| net RAM | 64,012 B (97.67 %) | **63,508 B (−504; 96.91 %)** |
+
+Both budgets went **down**, so the `app.overlay` headroom mechanism was not
+needed and no real content was dropped.
+
+| net build | change | FLASH | RAM |
+|---|---|---:|---:|
+| `/private/tmp/g1-i26g-net` | iteration-26 final (the A side) | 225,217 B | 64,012 B |
+| `/private/tmp/g1-i27a-net` | + the stock-`.data`-window reclassification | 225,073 B | 63,508 B |
+| `/private/tmp/g1-i27b-net` | + the `FUN_01021920` r3 correction (**final**) | 225,073 B | 63,508 B |
+
+The app core is **UNCHANGED** (`/private/tmp/g1-i23a-app`, `$rtinfo_pc = 0x00015b9c`).
+
+### 27.6 MEASURED — the full 20 s capture, A/B against iteration 26
+
+```
+G1_RESC=/private/tmp/g1-i27/ours-paired-i27.resc
+G1_APP_ELF=/private/tmp/g1-i23a-app/zephyr/zephyr.elf
+G1_NET_ELF=/private/tmp/g1-i27b-net/zephyr/zephyr.elf
+G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i27b
+```
+
+(`sleep 100000 | …`, per iteration 26's `SemaphoreFullException` note.  The run
+completed in ≈2 minutes of host time because both cores stop early.)
+
+| counter | oracle | **iter 26 (`g1-i26g`)** | **iter 27 (`g1-i27b`)** |
+|---|---:|---:|---:|
+| machine reset / CPU halt | none | **none (full 20 s)** | **≈5.8 s, both cores** |
+| `JBD FrameCounter` p1 / p2 | 0x2A1 / 0xD61 | 0x3 / 0x3 | **0x0 / 0x0** |
+| `JBD JournalCount` | 0x400 | 0x22 | **0x0** |
+| `radio TransmittedFrames` | 0x230 | 0x0 | **0x0** |
+| `vcentral Connected` | True | False | **False** |
+| `vcentral ConnectInds` / `DataEvents` | 1 / 0x215 | 0 / 0 | **0 / 0** |
+| `esbslave MasterFramesSeen` / `Acks` | 0x175 / 0x175 | 0 / 0 | **0 / 0** |
+| `ESB_SYNC_ctx_105a` | 0x02 | 0x01 | **0x01** |
+| `DISPLAY_ON_ctx_fe8` | 0x01 | 0x00 | **0x00** |
+| framebuffer lit px p1 / p2 | 656 / 1,098 | 0 / 0 | **0 / 0** |
+
+| device / phase | oracle | **iter 26** | **iter 27** |
+|---|---:|---:|---:|
+| LSM6DSO `p1_boot` / `p2_render` | 1,089 / 1,200 | 1,027 / 700 | **551 / 0** |
+| nPM1300 `p1_boot` / `p2_render` | 291 / 508 | 232 / 370 | **97 / 0** |
+| OPT3001 `p1_boot` / `p2_render` | 33 / 80 | 14 / 0 | **14 / 0** |
+| ST25DV NFC EEPROM / system port `p1` | 25 / 22 | 11 / 12 | **0 / 6** |
+| `saadc` (whole run) | 998 | 71 | **5** |
+| `gpiote0` / `gpiote1` / `pdm0` | 25 / 0 / 2 | 25 / 0 / 2 | **25 / 0 / 2, all hash-EQ** |
+| `spim_a` `p1_boot` / `p2_render` | 764 / 2,881 | 34 / 0 | **34 / 0** |
+| `spim_b` | 0 | 0 | **0, hash-EQ** |
+| `IMU_ACCEL_ENABLED` | True | True | **False** |
+| `OPT3001_CONVERSION_READY` | True | True | **False** |
+| `NPM1300_CHARGING` | True | True | **False** |
+
+#### Graphics verdicts (iteration 27)
+
+| id | verdict | first difference / detail |
+|---|---|---|
+| **G-1** | **FAIL** | `p2_render` ours `0c5cc90b07…`, **0 lit px, 0 pixel windows**; oracle `b26c73b37d…`, **1,098 lit px**, bbox x 34–497 / y 266–287, 2,881 transactions. |
+| **G-2** | **FAIL** | `p1_boot` ours `0c5cc90b07…`, **0 lit px, 3 pixel windows**; oracle `1d617c65a6…`, **656 lit px**, bbox x 178–449 / y 267–287. |
+| **G-3** | **FAIL (truncation only)** | `p1_boot` **34 vs 764**; the 34 shared transactions are **identical entry-for-entry**, first difference at index **34** (oracle `{"op":"0x66","kind":"command"}`, ours `<end>`).  `p2_render` **0 vs 2,881**, first difference index **0** (oracle `{"op":"0x02","kind":"pixel_window","x":32,"y":265}`). |
+| **G-4** | *localiser* | our framebuffer bytes are still bit-identical to iterations 16–26 (`0c5cc90b07…`), so the first differing row is the oracle's lowest lit row **y = 267** and the first differing pixel **x = 178** (oracle `ffffff`, ours `000000`). |
+| **G-5** | **PASS** | the panel-init sequence is byte-exact over the whole 34-transaction prefix, including the `0x9F` ID probe answering `0x4010` and the `0x46`/`0x31` brightness pair. |
+| **G-6** | **PASS** | `spim_b` 0 == 0, hash-EQ, both phases. |
+| **S-ESB** | **FAIL** | `ESB_SYNC_ctx_105a` 0x01 vs 0x02, `DISPLAY_ON_ctx_fe8` 0x00 vs 0x01, master PTX frames 0 vs 0x175. |
+
+**NO PIXEL IS PAINTED — `framebuffer.lit_pixels` is 0 in both phases against
+656 / 1,098.  No `0x02` pixel window is emitted in `p2_render`, so no display
+START with `action = 1` arrived** (`firmware_events` is `{}` for our run against
+the oracle's `{"spi_read_id":1,"display_START":2,"BLIT":15}`).  Criteria score
+falls from iteration 26's 4 PASS / 4 PARTIAL / 6 FAIL to **4 PASS / 1 PARTIAL /
+9 FAIL** (G-5, G-6, S-MIC, S-KEYS still pass; S-IMU is the only PARTIAL left;
+S-ALS, S-PMIC and S-NFC drop to FAIL because their phase-2 traffic and their
+state flags are gone with the reset).
+
+### 27.7 The new stall, root-caused — `nrfx_ipc.c:202`, and it is the SAME class
+
+A directed 6 s probe on `g1-i27b-net` (`/private/tmp/g1-i27/probe{B,C,D,E}.resc`,
+`sleep 100000 | renode …`) walks the whole path:
+
+```
+NET z_arm_fatal_error / z_fatal_error / k_sys_fatal_error_handler / panic   (CPUNET, ≈5.8 s)
+  z_arm_fatal_error entered with LR = _oops+0x7, i.e. via z_arm_svc -> _oops
+NET assert_post_action  r0=0x0103e73b  r1=0xca  lr=0x0102d0f1
+  rodata @0x0103e73b = "ic/nrfx/drivers/src/nrfx_ipc.c" , line 0xca = 202
+  0x0102d0f1 = FUN_01035028 + 0x21   (our reconstruction)
+NET sdc_assertion_handler   -- NEVER entered
+NET m_assert_handler        -- NEVER entered
+```
+
+`FUN_01035028` asserts `table[idx*0xc + 8] != 0` and then writes `1` into it.
+`table` is the pin `g_net_gpiote_evt_handler_table` at `0x21004af8`, and the
+layout (12-byte entries, a state byte at +8) is exactly nrfx's IPC control
+block `{ handler, p_context, state }` — the assert is nrfx's
+`NRFX_ASSERT(m_cb.state != NRFX_DRV_STATE_UNINITIALIZED)`.  In this link the
+**stock** `nrfx_ipc.c` is also present (`nrfx_ipc_init 0x01035e5c`,
+`nrfx_ipc_receive_event_enable 0x01035f20`, its `m_cb` at `0x21009178`, 0xc B,
+`.bss`), so the stock driver initialises **its** control block while our four
+recovered copies (`FUN_01034fa8`, `FUN_01035028`, `FUN_01035068`,
+`FUN_010350a4`) read a **private zeroed relocation block**.  With the FEM path
+now live the IPC enable is actually reached, the state byte reads 0, and
+`k_oops` resets the SoC — which is why **both** cores report
+`PC does not lay in memory` at the same instant (the reset vector table at
+address 0 is empty in this machine).
+
+This is the **same class as §27.2** — a stock-owned object handed private
+storage — but one address higher up: `0x21004af8` is `.bss` in the shipped
+image, our link's `m_cb` is at a different address, and the archive symbol is
+`local` (`b`), so a linker `PROVIDE` cannot name it.  The remedy is therefore
+**displacement**, the iteration-26 §26.4 pattern: adopt the stock `nrfx_ipc.c`
+unit and exclude the four reconstructions, with an ownership record.  That is a
+self-contained iteration-28 task and was deliberately **not** started
+mid-iteration.
+
+**Why the iteration is not reverted.**  The standing instruction is that a
+provably-correct fix is not reverted to improve a metric, and that a fix which
+moves further into a *new* stall is reported as an A/B.  §27.1's evidence is
+byte-level and unambiguous: the ops table and its 25 targets are stock library
+objects that this link already owns, and iteration 26's blocks for them were
+wrong.  The tree is left corrected, both builds are measured above, and the new
+divergence is named to the file and line.  A reader who wants iteration 26's
+stability back can rebuild `/private/tmp/g1-i26g-net` from commit `806dba5c`.
+
+### 27.8 Open, named, and NOT fixed — the iteration-28 first divergence
+
+1. **`nrfx_ipc.c:202` / the four recovered nrfx_ipc copies** — §27.7.  This is
+   the first divergence: displace `FUN_01034fa8` / `FUN_01035028` /
+   `FUN_01035068` / `FUN_010350a4` to the stock `nrfx_ipc.c` singleton (or bind
+   `g_net_gpiote_evt_handler_table` to it), then re-measure.  Until then the
+   CPUNET resets at ≈5.8 s.
+2. **Generalise the §27.3 sweep.**  The stock-`.data` window closed 52
+   addresses; the same question — "does a stock library already own this
+   object?" — has not been asked of the other 248, particularly the ones in
+   `.bss` where only displacement can answer it.  A mechanical pass would be
+   `for each pin, does a stock archive define an object of the right size that
+   the recovered accessor's field offsets fit?`.
+3. **`radio TransmittedFrames` is still 0 and `vcentral Connected` still
+   False.**  The ops table is no longer the reason; the reset now is.
+4. **The 5 addresses in the block at `0x21000c28`** are still not restored
+   (block straddles the shipped `.data` end at `0x21000c3c`) — unchanged from
+   §26.9(4), still a two-line fix.
+5. **21 blocks still carry an atomic EXCLUDE** (down from 28 addresses in 11
+   blocks by the 7 blocks this pass deleted); each names its unresolved words
+   in `recon/application/net/src/g1_net_ram_relocs.c`.  Several of the named
+   words are `0x0103xxxx` flash pointers that are very probably the same
+   stock-library situation as §27.1 and should be re-examined under item 2.
+6. **`FUN_01031a68` still has no caller anywhere** (§26.9(5)) — unchanged.
+7. Iteration 23 §23.7 items 4–7 unchanged.
+
+### Regenerate (iteration 27)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+# the reclassification (inputs are the SAME pre-pass gate reports iteration 26 used)
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/gen_net_ram_relocs.py \
+    --pins /private/tmp/g1-i26-pins-base.json --lits /private/tmp/g1-i26-lit-base.json \
+    --elf /private/tmp/g1-i26base-net/zephyr/zephyr.elf --rewrite
+recon/application/build_cohesive.sh net /private/tmp/g1-i27b-net -- -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF
+# the new evidence gate
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/verify_net_stock_data_window.py \
+    /private/tmp/g1-i27b-net/zephyr/zephyr.elf --json /private/tmp/g1-i27-stock-window.json
+# gates (all exit 0)
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py --core net /private/tmp/g1-i27b-net/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py        /private/tmp/g1-i23a-app/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_net_raw_literals.py          /private/tmp/g1-i27b-net/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_thread_create_stack_args.py --trials 120
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check
+# re-verify the corrected thunk (and the harness-blindness demonstration)
+PYTHONSAFEPATH=1 .venv/bin/python -c "import sys;sys.path.insert(0,'tools');import cfg_verify;print(cfg_verify.verify('net','FUN_01021920'))"
+# 20 s capture -- NOTE the stdin pipe
+sleep 100000 | G1_RESC=/private/tmp/g1-i27/ours-paired-i27.resc \
+G1_APP_ELF=/private/tmp/g1-i23a-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i27b-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i27b
+```
+
+Files changed:
+new `recon/application/verify_net_stock_data_window.py`,
+new `recon/ownership/net_mpsl_fem_radio_ops_table_ownership.json`;
+`recon/application/gen_net_ram_relocs.py` (`STOCK_DATA_WINDOWS` + idempotent
+rewrite + `refresh_guards`),
+`recon/application/net/src/g1_net_ram_relocs.c` (generated, 70 → 63 blocks),
+`recon/symbols/g1_net_ram_reloc.h` (generated),
+`recon/application/net_ram_reloc_ledger.json` (generated, new `stock` section),
+`recon/symbols/g1_net_globals.ld` (30 pins moved to `__data_start + off`),
+`recon/net/src/FUN_01021920.c` + `recon/symbolized/net/FUN_01021920.c`
+(the r3 correction), 23 `recon/net/src/*.c` +
+`recon/application/net/src/timeslot_owner.c` (guard blocks refreshed by the
+generator; `#else` arms unchanged, so `tools/parity` still sees the shipped
+literals),
+`recon/emulator/reports/sensor_parity_status.md`, this report.
+**No `tools/` logic change**, no Kconfig / `prj.conf` / devicetree change,
+`armemul` untouched, nothing committed.

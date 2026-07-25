@@ -3,121 +3,6 @@
  "pad": 16,
  "blocks": [
   {
-   "name": "g1_net_ram_blk_21000000",
-   "base": 553648128,
-   "size": 144,
-   "addrs": [
-    553648128,
-    553648136,
-    553648144,
-    553648152,
-    553648156,
-    553648160,
-    553648168,
-    553648188,
-    553648192,
-    553648196,
-    553648200,
-    553648204,
-    553648208,
-    553648212,
-    553648216,
-    553648220,
-    553648248
-   ],
-   "data_restored": true,
-   "data_note": "shipped .data initialiser restored"
-  },
-  {
-   "name": "g1_net_ram_blk_21000120",
-   "base": 553648416,
-   "size": 24,
-   "addrs": [
-    553648420
-   ],
-   "data_restored": false,
-   "data_note": "shipped .data bytes are all zero"
-  },
-  {
-   "name": "g1_net_ram_blk_210001d0",
-   "base": 553648592,
-   "size": 88,
-   "addrs": [
-    553648592,
-    553648596,
-    553648604,
-    553648608,
-    553648612,
-    553648616,
-    553648620,
-    553648628,
-    553648644,
-    553648652,
-    553648660
-   ],
-   "data_restored": false,
-   "data_note": "EXCLUDED (atomic): pointer word(s) +0x48=0x01016a9d, +0x4c=0x01018001, +0x50=0x01016a91, +0x54=0x01016a91 do not resolve in this link"
-  },
-  {
-   "name": "g1_net_ram_blk_21000308",
-   "base": 553648904,
-   "size": 24,
-   "addrs": [
-    553648904
-   ],
-   "data_restored": false,
-   "data_note": "EXCLUDED (atomic): pointer word(s) +0x4=0x010179c9, +0x8=0x01018951, +0xc=0x21000290, +0x10=0x210002a8, +0x14=0x21000254 do not resolve in this link"
-  },
-  {
-   "name": "g1_net_ram_blk_21000340",
-   "base": 553648960,
-   "size": 40,
-   "addrs": [
-    553648964,
-    553648980
-   ],
-   "data_restored": false,
-   "data_note": "EXCLUDED (atomic): pointer word(s) +0x0=0x210002e0, +0x4=0x01017531, +0x8=0x01016d3d, +0xc=0x01018555, +0x10=0x01018081 do not resolve in this link"
-  },
-  {
-   "name": "g1_net_ram_blk_21000400",
-   "base": 553649152,
-   "size": 24,
-   "addrs": [
-    553649152
-   ],
-   "data_restored": false,
-   "data_note": "shipped .data bytes are all zero"
-  },
-  {
-   "name": "g1_net_ram_blk_210004a8",
-   "base": 553649320,
-   "size": 160,
-   "addrs": [
-    553649324,
-    553649328,
-    553649332,
-    553649352,
-    553649360,
-    553649368,
-    553649372,
-    553649376,
-    553649384,
-    553649392,
-    553649400,
-    553649408,
-    553649416,
-    553649424,
-    553649432,
-    553649440,
-    553649448,
-    553649452,
-    553649456
-   ],
-   "data_restored": false,
-   "data_note": "EXCLUDED (atomic): pointer word(s) +0x38=0x0101fedd, +0x40=0x01029cef, +0x48=0x01029dbd, +0x50=0x01029d9f, +0x58=0x01029da3, +0x60=0x01029d87, +0x68=0x01029d3d, +0x70=0x0101ff19, +0x78=0x01029d41, +0x8c=0x0102a4d9, +0x90=0x0102a511, +0x94=0x0102a4dd, +0x98=0x0102a51b, +0x9c=0x0102a4e3 do not resolve in this link"
-  },
-  {
    "name": "g1_net_ram_blk_21000570",
    "base": 553649520,
    "size": 40,
@@ -935,1206 +820,2028 @@
  ],
  "map": {
   "0x21000000": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 0
+   "block": "__data_start",
+   "offset": 0,
+   "kind": "stock_data_anchor"
   },
   "0x21000008": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 8
+   "block": "__data_start",
+   "offset": 8,
+   "kind": "stock_data_anchor"
   },
   "0x21000010": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 16
+   "block": "__data_start",
+   "offset": 16,
+   "kind": "stock_data_anchor"
   },
   "0x21000018": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 24
+   "block": "__data_start",
+   "offset": 24,
+   "kind": "stock_data_anchor"
   },
   "0x2100001c": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 28
+   "block": "__data_start",
+   "offset": 28,
+   "kind": "stock_data_anchor"
   },
   "0x21000020": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 32
+   "block": "__data_start",
+   "offset": 32,
+   "kind": "stock_data_anchor"
   },
   "0x21000028": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 40
+   "block": "__data_start",
+   "offset": 40,
+   "kind": "stock_data_anchor"
   },
   "0x2100003c": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 60
+   "block": "__data_start",
+   "offset": 60,
+   "kind": "stock_data_anchor"
   },
   "0x21000040": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 64
+   "block": "__data_start",
+   "offset": 64,
+   "kind": "stock_data_anchor"
   },
   "0x21000044": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 68
+   "block": "__data_start",
+   "offset": 68,
+   "kind": "stock_data_anchor"
   },
   "0x21000048": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 72
+   "block": "__data_start",
+   "offset": 72,
+   "kind": "stock_data_anchor"
   },
   "0x2100004c": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 76
+   "block": "__data_start",
+   "offset": 76,
+   "kind": "stock_data_anchor"
   },
   "0x21000050": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 80
+   "block": "__data_start",
+   "offset": 80,
+   "kind": "stock_data_anchor"
   },
   "0x21000054": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 84
+   "block": "__data_start",
+   "offset": 84,
+   "kind": "stock_data_anchor"
   },
   "0x21000058": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 88
+   "block": "__data_start",
+   "offset": 88,
+   "kind": "stock_data_anchor"
   },
   "0x2100005c": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 92
+   "block": "__data_start",
+   "offset": 92,
+   "kind": "stock_data_anchor"
   },
   "0x21000078": {
-   "block": "g1_net_ram_blk_21000000",
-   "offset": 120
+   "block": "__data_start",
+   "offset": 120,
+   "kind": "stock_data_anchor"
   },
   "0x21000124": {
-   "block": "g1_net_ram_blk_21000120",
-   "offset": 4
+   "block": "__data_start",
+   "offset": 292,
+   "kind": "stock_data_anchor"
   },
   "0x210001d0": {
-   "block": "g1_net_ram_blk_210001d0",
-   "offset": 0
+   "block": "__data_start",
+   "offset": 464,
+   "kind": "stock_data_anchor"
   },
   "0x210001d4": {
-   "block": "g1_net_ram_blk_210001d0",
-   "offset": 4
+   "block": "__data_start",
+   "offset": 468,
+   "kind": "stock_data_anchor"
   },
   "0x210001dc": {
-   "block": "g1_net_ram_blk_210001d0",
-   "offset": 12
+   "block": "__data_start",
+   "offset": 476,
+   "kind": "stock_data_anchor"
   },
   "0x210001e0": {
-   "block": "g1_net_ram_blk_210001d0",
-   "offset": 16
+   "block": "__data_start",
+   "offset": 480,
+   "kind": "stock_data_anchor"
   },
   "0x210001e4": {
-   "block": "g1_net_ram_blk_210001d0",
-   "offset": 20
+   "block": "__data_start",
+   "offset": 484,
+   "kind": "stock_data_anchor"
   },
   "0x210001e8": {
-   "block": "g1_net_ram_blk_210001d0",
-   "offset": 24
+   "block": "__data_start",
+   "offset": 488,
+   "kind": "stock_data_anchor"
   },
   "0x210001ec": {
-   "block": "g1_net_ram_blk_210001d0",
-   "offset": 28
+   "block": "__data_start",
+   "offset": 492,
+   "kind": "stock_data_anchor"
   },
   "0x210001f4": {
-   "block": "g1_net_ram_blk_210001d0",
-   "offset": 36
+   "block": "__data_start",
+   "offset": 500,
+   "kind": "stock_data_anchor"
   },
   "0x21000204": {
-   "block": "g1_net_ram_blk_210001d0",
-   "offset": 52
+   "block": "__data_start",
+   "offset": 516,
+   "kind": "stock_data_anchor"
   },
   "0x2100020c": {
-   "block": "g1_net_ram_blk_210001d0",
-   "offset": 60
+   "block": "__data_start",
+   "offset": 524,
+   "kind": "stock_data_anchor"
   },
   "0x21000214": {
-   "block": "g1_net_ram_blk_210001d0",
-   "offset": 68
+   "block": "__data_start",
+   "offset": 532,
+   "kind": "stock_data_anchor"
   },
   "0x21000308": {
-   "block": "g1_net_ram_blk_21000308",
-   "offset": 0
+   "block": "__data_start",
+   "offset": 776,
+   "kind": "stock_data_anchor"
   },
   "0x21000344": {
-   "block": "g1_net_ram_blk_21000340",
-   "offset": 4
+   "block": "__data_start",
+   "offset": 836,
+   "kind": "stock_data_anchor"
   },
   "0x21000354": {
-   "block": "g1_net_ram_blk_21000340",
-   "offset": 20
+   "block": "__data_start",
+   "offset": 852,
+   "kind": "stock_data_anchor"
   },
   "0x21000400": {
-   "block": "g1_net_ram_blk_21000400",
-   "offset": 0
+   "block": "__data_start",
+   "offset": 1024,
+   "kind": "stock_data_anchor"
   },
   "0x210004ac": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 4
+   "block": "__data_start",
+   "offset": 1196,
+   "kind": "stock_data_anchor"
   },
   "0x210004b0": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 8
+   "block": "__data_start",
+   "offset": 1200,
+   "kind": "stock_data_anchor"
   },
   "0x210004b4": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 12
+   "block": "__data_start",
+   "offset": 1204,
+   "kind": "stock_data_anchor"
   },
   "0x210004c8": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 32
+   "block": "__data_start",
+   "offset": 1224,
+   "kind": "stock_data_anchor"
   },
   "0x210004d0": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 40
+   "block": "__data_start",
+   "offset": 1232,
+   "kind": "stock_data_anchor"
   },
   "0x210004d8": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 48
+   "block": "__data_start",
+   "offset": 1240,
+   "kind": "stock_data_anchor"
   },
   "0x210004dc": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 52
+   "block": "__data_start",
+   "offset": 1244,
+   "kind": "stock_data_anchor"
   },
   "0x210004e0": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 56
+   "block": "__data_start",
+   "offset": 1248,
+   "kind": "stock_data_anchor"
   },
   "0x210004e8": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 64
+   "block": "__data_start",
+   "offset": 1256,
+   "kind": "stock_data_anchor"
   },
   "0x210004f0": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 72
+   "block": "__data_start",
+   "offset": 1264,
+   "kind": "stock_data_anchor"
   },
   "0x210004f8": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 80
+   "block": "__data_start",
+   "offset": 1272,
+   "kind": "stock_data_anchor"
   },
   "0x21000500": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 88
+   "block": "__data_start",
+   "offset": 1280,
+   "kind": "stock_data_anchor"
   },
   "0x21000508": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 96
+   "block": "__data_start",
+   "offset": 1288,
+   "kind": "stock_data_anchor"
   },
   "0x21000510": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 104
+   "block": "__data_start",
+   "offset": 1296,
+   "kind": "stock_data_anchor"
   },
   "0x21000518": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 112
+   "block": "__data_start",
+   "offset": 1304,
+   "kind": "stock_data_anchor"
   },
   "0x21000520": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 120
+   "block": "__data_start",
+   "offset": 1312,
+   "kind": "stock_data_anchor"
   },
   "0x21000528": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 128
+   "block": "__data_start",
+   "offset": 1320,
+   "kind": "stock_data_anchor"
   },
   "0x2100052c": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 132
+   "block": "__data_start",
+   "offset": 1324,
+   "kind": "stock_data_anchor"
   },
   "0x21000530": {
-   "block": "g1_net_ram_blk_210004a8",
-   "offset": 136
+   "block": "__data_start",
+   "offset": 1328,
+   "kind": "stock_data_anchor"
   },
   "0x21000574": {
    "block": "g1_net_ram_blk_21000570",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x2100057c": {
    "block": "g1_net_ram_blk_21000570",
-   "offset": 12
+   "offset": 12,
+   "kind": "relocation_block"
   },
   "0x21000580": {
    "block": "g1_net_ram_blk_21000570",
-   "offset": 16
+   "offset": 16,
+   "kind": "relocation_block"
   },
   "0x210005ec": {
    "block": "g1_net_ram_blk_210005e8",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x2100065c": {
    "block": "g1_net_ram_blk_21000658",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21000684": {
    "block": "g1_net_ram_blk_21000680",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x2100068c": {
    "block": "g1_net_ram_blk_21000680",
-   "offset": 12
+   "offset": 12,
+   "kind": "relocation_block"
   },
   "0x210006a8": {
    "block": "g1_net_ram_blk_21000680",
-   "offset": 40
+   "offset": 40,
+   "kind": "relocation_block"
   },
   "0x21000718": {
    "block": "g1_net_ram_blk_21000718",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x2100071c": {
    "block": "g1_net_ram_blk_21000718",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21000750": {
    "block": "g1_net_ram_blk_21000750",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x210008cc": {
    "block": "g1_net_ram_blk_210008c8",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x210009fc": {
    "block": "g1_net_ram_blk_210009f8",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21000a30": {
    "block": "g1_net_ram_blk_21000a30",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21000a40": {
    "block": "g1_net_ram_blk_21000a30",
-   "offset": 16
+   "offset": 16,
+   "kind": "relocation_block"
   },
   "0x21000a58": {
    "block": "g1_net_ram_blk_21000a30",
-   "offset": 40
+   "offset": 40,
+   "kind": "relocation_block"
   },
   "0x21000a60": {
    "block": "g1_net_ram_blk_21000a30",
-   "offset": 48
+   "offset": 48,
+   "kind": "relocation_block"
   },
   "0x21000a64": {
    "block": "g1_net_ram_blk_21000a30",
-   "offset": 52
+   "offset": 52,
+   "kind": "relocation_block"
   },
   "0x21000a68": {
    "block": "g1_net_ram_blk_21000a30",
-   "offset": 56
+   "offset": 56,
+   "kind": "relocation_block"
   },
   "0x21000a6c": {
    "block": "g1_net_ram_blk_21000a30",
-   "offset": 60
+   "offset": 60,
+   "kind": "relocation_block"
   },
   "0x21000b70": {
    "block": "g1_net_ram_blk_21000b70",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21000b78": {
    "block": "g1_net_ram_blk_21000b70",
-   "offset": 8
+   "offset": 8,
+   "kind": "relocation_block"
   },
   "0x21000b7c": {
    "block": "g1_net_ram_blk_21000b70",
-   "offset": 12
+   "offset": 12,
+   "kind": "relocation_block"
   },
   "0x21000ba8": {
    "block": "g1_net_ram_blk_21000ba8",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21000bac": {
    "block": "g1_net_ram_blk_21000ba8",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21000bb0": {
    "block": "g1_net_ram_blk_21000ba8",
-   "offset": 8
+   "offset": 8,
+   "kind": "relocation_block"
   },
   "0x21000bb4": {
    "block": "g1_net_ram_blk_21000ba8",
-   "offset": 12
+   "offset": 12,
+   "kind": "relocation_block"
   },
   "0x21000bb8": {
    "block": "g1_net_ram_blk_21000ba8",
-   "offset": 16
+   "offset": 16,
+   "kind": "relocation_block"
   },
   "0x21000bbc": {
    "block": "g1_net_ram_blk_21000ba8",
-   "offset": 20
+   "offset": 20,
+   "kind": "relocation_block"
   },
   "0x21000bc0": {
    "block": "g1_net_ram_blk_21000ba8",
-   "offset": 24
+   "offset": 24,
+   "kind": "relocation_block"
   },
   "0x21000bc4": {
    "block": "g1_net_ram_blk_21000ba8",
-   "offset": 28
+   "offset": 28,
+   "kind": "relocation_block"
   },
   "0x21000bc8": {
    "block": "g1_net_ram_blk_21000ba8",
-   "offset": 32
+   "offset": 32,
+   "kind": "relocation_block"
   },
   "0x21000bc9": {
    "block": "g1_net_ram_blk_21000ba8",
-   "offset": 33
+   "offset": 33,
+   "kind": "relocation_block"
   },
   "0x21000be4": {
    "block": "g1_net_ram_blk_21000ba8",
-   "offset": 60
+   "offset": 60,
+   "kind": "relocation_block"
   },
   "0x21000be8": {
    "block": "g1_net_ram_blk_21000ba8",
-   "offset": 64
+   "offset": 64,
+   "kind": "relocation_block"
   },
   "0x21000bec": {
    "block": "g1_net_ram_blk_21000ba8",
-   "offset": 68
+   "offset": 68,
+   "kind": "relocation_block"
   },
   "0x21000bf0": {
    "block": "g1_net_ram_blk_21000ba8",
-   "offset": 72
+   "offset": 72,
+   "kind": "relocation_block"
   },
   "0x21000bf4": {
    "block": "g1_net_ram_blk_21000ba8",
-   "offset": 76
+   "offset": 76,
+   "kind": "relocation_block"
   },
   "0x21000bf8": {
    "block": "g1_net_ram_blk_21000ba8",
-   "offset": 80
+   "offset": 80,
+   "kind": "relocation_block"
   },
   "0x21000c2a": {
    "block": "g1_net_ram_blk_21000c28",
-   "offset": 2
+   "offset": 2,
+   "kind": "relocation_block"
   },
   "0x21000c2c": {
    "block": "g1_net_ram_blk_21000c28",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21000c2e": {
    "block": "g1_net_ram_blk_21000c28",
-   "offset": 6
+   "offset": 6,
+   "kind": "relocation_block"
   },
   "0x21000c30": {
    "block": "g1_net_ram_blk_21000c28",
-   "offset": 8
+   "offset": 8,
+   "kind": "relocation_block"
   },
   "0x21000c34": {
    "block": "g1_net_ram_blk_21000c28",
-   "offset": 12
+   "offset": 12,
+   "kind": "relocation_block"
   },
   "0x21000c48": {
    "block": "g1_net_ram_blk_21000c28",
-   "offset": 32
+   "offset": 32,
+   "kind": "relocation_block"
   },
   "0x21000c6c": {
    "block": "g1_net_ram_blk_21000c68",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21000c90": {
    "block": "g1_net_ram_blk_21000c90",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21000cc4": {
    "block": "g1_net_ram_blk_21000cc0",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21000cd0": {
    "block": "g1_net_ram_blk_21000cc0",
-   "offset": 16
+   "offset": 16,
+   "kind": "relocation_block"
   },
   "0x21000cfc": {
    "block": "g1_net_ram_blk_21000cf8",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21000d18": {
    "block": "g1_net_ram_blk_21000cf8",
-   "offset": 32
+   "offset": 32,
+   "kind": "relocation_block"
   },
   "0x21000d1a": {
    "block": "g1_net_ram_blk_21000cf8",
-   "offset": 34
+   "offset": 34,
+   "kind": "relocation_block"
   },
   "0x21000db0": {
    "block": "g1_net_ram_blk_21000db0",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21000ea6": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 6
+   "offset": 6,
+   "kind": "relocation_block"
   },
   "0x21000ea7": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 7
+   "offset": 7,
+   "kind": "relocation_block"
   },
   "0x21000ea8": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 8
+   "offset": 8,
+   "kind": "relocation_block"
   },
   "0x21000eac": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 12
+   "offset": 12,
+   "kind": "relocation_block"
   },
   "0x21000eae": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 14
+   "offset": 14,
+   "kind": "relocation_block"
   },
   "0x21000ec8": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 40
+   "offset": 40,
+   "kind": "relocation_block"
   },
   "0x21000ee0": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 64
+   "offset": 64,
+   "kind": "relocation_block"
   },
   "0x21000ef2": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 82
+   "offset": 82,
+   "kind": "relocation_block"
   },
   "0x21000ef4": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 84
+   "offset": 84,
+   "kind": "relocation_block"
   },
   "0x21000ef8": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 88
+   "offset": 88,
+   "kind": "relocation_block"
   },
   "0x21000efc": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 92
+   "offset": 92,
+   "kind": "relocation_block"
   },
   "0x21000f00": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 96
+   "offset": 96,
+   "kind": "relocation_block"
   },
   "0x21000f04": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 100
+   "offset": 100,
+   "kind": "relocation_block"
   },
   "0x21000f14": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 116
+   "offset": 116,
+   "kind": "relocation_block"
   },
   "0x21000f20": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 128
+   "offset": 128,
+   "kind": "relocation_block"
   },
   "0x21000f24": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 132
+   "offset": 132,
+   "kind": "relocation_block"
   },
   "0x21000f41": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 161
+   "offset": 161,
+   "kind": "relocation_block"
   },
   "0x21000f45": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 165
+   "offset": 165,
+   "kind": "relocation_block"
   },
   "0x21000f54": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 180
+   "offset": 180,
+   "kind": "relocation_block"
   },
   "0x21000f58": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 184
+   "offset": 184,
+   "kind": "relocation_block"
   },
   "0x21000f5c": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 188
+   "offset": 188,
+   "kind": "relocation_block"
   },
   "0x21000f60": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 192
+   "offset": 192,
+   "kind": "relocation_block"
   },
   "0x21000f64": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 196
+   "offset": 196,
+   "kind": "relocation_block"
   },
   "0x21000f66": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 198
+   "offset": 198,
+   "kind": "relocation_block"
   },
   "0x21000f68": {
    "block": "g1_net_ram_blk_21000ea0",
-   "offset": 200
+   "offset": 200,
+   "kind": "relocation_block"
   },
   "0x21000f90": {
    "block": "g1_net_ram_blk_21000f90",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21000fc6": {
    "block": "g1_net_ram_blk_21000fc0",
-   "offset": 6
+   "offset": 6,
+   "kind": "relocation_block"
   },
   "0x21000fd6": {
    "block": "g1_net_ram_blk_21000fc0",
-   "offset": 22
+   "offset": 22,
+   "kind": "relocation_block"
   },
   "0x21000fec": {
    "block": "g1_net_ram_blk_21000fc0",
-   "offset": 44
+   "offset": 44,
+   "kind": "relocation_block"
   },
   "0x21001008": {
    "block": "g1_net_ram_blk_21000fc0",
-   "offset": 72
+   "offset": 72,
+   "kind": "relocation_block"
   },
   "0x21001014": {
    "block": "g1_net_ram_blk_21000fc0",
-   "offset": 84
+   "offset": 84,
+   "kind": "relocation_block"
   },
   "0x21001019": {
    "block": "g1_net_ram_blk_21000fc0",
-   "offset": 89
+   "offset": 89,
+   "kind": "relocation_block"
   },
   "0x21001048": {
    "block": "g1_net_ram_blk_21001048",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x2100104a": {
    "block": "g1_net_ram_blk_21001048",
-   "offset": 2
+   "offset": 2,
+   "kind": "relocation_block"
   },
   "0x2100104c": {
    "block": "g1_net_ram_blk_21001048",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21001058": {
    "block": "g1_net_ram_blk_21001048",
-   "offset": 16
+   "offset": 16,
+   "kind": "relocation_block"
   },
   "0x2100109c": {
    "block": "g1_net_ram_blk_21001098",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x210010a0": {
    "block": "g1_net_ram_blk_21001098",
-   "offset": 8
+   "offset": 8,
+   "kind": "relocation_block"
   },
   "0x210010f0": {
    "block": "g1_net_ram_blk_210010f0",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x2100111c": {
    "block": "g1_net_ram_blk_21001118",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x2100111d": {
    "block": "g1_net_ram_blk_21001118",
-   "offset": 5
+   "offset": 5,
+   "kind": "relocation_block"
   },
   "0x21001120": {
    "block": "g1_net_ram_blk_21001118",
-   "offset": 8
+   "offset": 8,
+   "kind": "relocation_block"
   },
   "0x21001124": {
    "block": "g1_net_ram_blk_21001118",
-   "offset": 12
+   "offset": 12,
+   "kind": "relocation_block"
   },
   "0x21001128": {
    "block": "g1_net_ram_blk_21001118",
-   "offset": 16
+   "offset": 16,
+   "kind": "relocation_block"
   },
   "0x2100113c": {
    "block": "g1_net_ram_blk_21001118",
-   "offset": 36
+   "offset": 36,
+   "kind": "relocation_block"
   },
   "0x21001140": {
    "block": "g1_net_ram_blk_21001118",
-   "offset": 40
+   "offset": 40,
+   "kind": "relocation_block"
   },
   "0x21001208": {
    "block": "g1_net_ram_blk_21001208",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21001225": {
    "block": "g1_net_ram_blk_21001208",
-   "offset": 29
+   "offset": 29,
+   "kind": "relocation_block"
   },
   "0x21001230": {
    "block": "g1_net_ram_blk_21001208",
-   "offset": 40
+   "offset": 40,
+   "kind": "relocation_block"
   },
   "0x2100144a": {
    "block": "g1_net_ram_blk_21001448",
-   "offset": 2
+   "offset": 2,
+   "kind": "relocation_block"
   },
   "0x21001498": {
    "block": "g1_net_ram_blk_21001498",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x210014a8": {
    "block": "g1_net_ram_blk_21001498",
-   "offset": 16
+   "offset": 16,
+   "kind": "relocation_block"
   },
   "0x210014d8": {
    "block": "g1_net_ram_blk_210014d8",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x210014dc": {
    "block": "g1_net_ram_blk_210014d8",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x210014e4": {
    "block": "g1_net_ram_blk_210014d8",
-   "offset": 12
+   "offset": 12,
+   "kind": "relocation_block"
   },
   "0x210015f0": {
    "block": "g1_net_ram_blk_210015f0",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x210015f7": {
    "block": "g1_net_ram_blk_210015f0",
-   "offset": 7
+   "offset": 7,
+   "kind": "relocation_block"
   },
   "0x21001609": {
    "block": "g1_net_ram_blk_210015f0",
-   "offset": 25
+   "offset": 25,
+   "kind": "relocation_block"
   },
   "0x2100160a": {
    "block": "g1_net_ram_blk_210015f0",
-   "offset": 26
+   "offset": 26,
+   "kind": "relocation_block"
   },
   "0x21001614": {
    "block": "g1_net_ram_blk_210015f0",
-   "offset": 36
+   "offset": 36,
+   "kind": "relocation_block"
   },
   "0x2100163c": {
    "block": "g1_net_ram_blk_21001638",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21001664": {
    "block": "g1_net_ram_blk_21001660",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21001670": {
    "block": "g1_net_ram_blk_21001660",
-   "offset": 16
+   "offset": 16,
+   "kind": "relocation_block"
   },
   "0x2100167c": {
    "block": "g1_net_ram_blk_21001660",
-   "offset": 28
+   "offset": 28,
+   "kind": "relocation_block"
   },
   "0x21001680": {
    "block": "g1_net_ram_blk_21001660",
-   "offset": 32
+   "offset": 32,
+   "kind": "relocation_block"
   },
   "0x210016b4": {
    "block": "g1_net_ram_blk_210016b0",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x210016bc": {
    "block": "g1_net_ram_blk_210016b0",
-   "offset": 12
+   "offset": 12,
+   "kind": "relocation_block"
   },
   "0x210016c0": {
    "block": "g1_net_ram_blk_210016b0",
-   "offset": 16
+   "offset": 16,
+   "kind": "relocation_block"
   },
   "0x210016c8": {
    "block": "g1_net_ram_blk_210016b0",
-   "offset": 24
+   "offset": 24,
+   "kind": "relocation_block"
   },
   "0x210016dc": {
    "block": "g1_net_ram_blk_210016b0",
-   "offset": 44
+   "offset": 44,
+   "kind": "relocation_block"
   },
   "0x210016e0": {
    "block": "g1_net_ram_blk_210016b0",
-   "offset": 48
+   "offset": 48,
+   "kind": "relocation_block"
   },
   "0x210016e4": {
    "block": "g1_net_ram_blk_210016b0",
-   "offset": 52
+   "offset": 52,
+   "kind": "relocation_block"
   },
   "0x210016e8": {
    "block": "g1_net_ram_blk_210016b0",
-   "offset": 56
+   "offset": 56,
+   "kind": "relocation_block"
   },
   "0x210016f0": {
    "block": "g1_net_ram_blk_210016b0",
-   "offset": 64
+   "offset": 64,
+   "kind": "relocation_block"
   },
   "0x21001740": {
    "block": "g1_net_ram_blk_21001740",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21001bca": {
    "block": "g1_net_ram_blk_21001bc8",
-   "offset": 2
+   "offset": 2,
+   "kind": "relocation_block"
   },
   "0x21001bcc": {
    "block": "g1_net_ram_blk_21001bc8",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21001bce": {
    "block": "g1_net_ram_blk_21001bc8",
-   "offset": 6
+   "offset": 6,
+   "kind": "relocation_block"
   },
   "0x21001bd0": {
    "block": "g1_net_ram_blk_21001bc8",
-   "offset": 8
+   "offset": 8,
+   "kind": "relocation_block"
   },
   "0x21001bd2": {
    "block": "g1_net_ram_blk_21001bc8",
-   "offset": 10
+   "offset": 10,
+   "kind": "relocation_block"
   },
   "0x21001bd4": {
    "block": "g1_net_ram_blk_21001bc8",
-   "offset": 12
+   "offset": 12,
+   "kind": "relocation_block"
   },
   "0x21001bd6": {
    "block": "g1_net_ram_blk_21001bc8",
-   "offset": 14
+   "offset": 14,
+   "kind": "relocation_block"
   },
   "0x21001bdf": {
    "block": "g1_net_ram_blk_21001bc8",
-   "offset": 23
+   "offset": 23,
+   "kind": "relocation_block"
   },
   "0x21001bf7": {
    "block": "g1_net_ram_blk_21001bc8",
-   "offset": 47
+   "offset": 47,
+   "kind": "relocation_block"
   },
   "0x21001bf8": {
    "block": "g1_net_ram_blk_21001bc8",
-   "offset": 48
+   "offset": 48,
+   "kind": "relocation_block"
   },
   "0x21001c08": {
    "block": "g1_net_ram_blk_21001bc8",
-   "offset": 64
+   "offset": 64,
+   "kind": "relocation_block"
   },
   "0x21001c18": {
    "block": "g1_net_ram_blk_21001bc8",
-   "offset": 80
+   "offset": 80,
+   "kind": "relocation_block"
   },
   "0x21001c1c": {
    "block": "g1_net_ram_blk_21001bc8",
-   "offset": 84
+   "offset": 84,
+   "kind": "relocation_block"
   },
   "0x21001c20": {
    "block": "g1_net_ram_blk_21001bc8",
-   "offset": 88
+   "offset": 88,
+   "kind": "relocation_block"
   },
   "0x21001c24": {
    "block": "g1_net_ram_blk_21001bc8",
-   "offset": 92
+   "offset": 92,
+   "kind": "relocation_block"
   },
   "0x21001c88": {
    "block": "g1_net_ram_blk_21001c88",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21001ce8": {
    "block": "g1_net_ram_blk_21001ce8",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21001cf0": {
    "block": "g1_net_ram_blk_21001ce8",
-   "offset": 8
+   "offset": 8,
+   "kind": "relocation_block"
   },
   "0x21001cf8": {
    "block": "g1_net_ram_blk_21001ce8",
-   "offset": 16
+   "offset": 16,
+   "kind": "relocation_block"
   },
   "0x21001d00": {
    "block": "g1_net_ram_blk_21001ce8",
-   "offset": 24
+   "offset": 24,
+   "kind": "relocation_block"
   },
   "0x21002b60": {
    "block": "g1_net_ram_blk_21002b60",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21002b90": {
    "block": "g1_net_ram_blk_21002b90",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21004258": {
    "block": "g1_net_ram_blk_21004258",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x210042f0": {
    "block": "g1_net_ram_blk_210042f0",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x210045b0": {
    "block": "g1_net_ram_blk_210045b0",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x210045c0": {
    "block": "g1_net_ram_blk_210045b0",
-   "offset": 16
+   "offset": 16,
+   "kind": "relocation_block"
   },
   "0x210045e4": {
    "block": "g1_net_ram_blk_210045e0",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x210045e8": {
    "block": "g1_net_ram_blk_210045e0",
-   "offset": 8
+   "offset": 8,
+   "kind": "relocation_block"
   },
   "0x210045ec": {
    "block": "g1_net_ram_blk_210045e0",
-   "offset": 12
+   "offset": 12,
+   "kind": "relocation_block"
   },
   "0x210045f0": {
    "block": "g1_net_ram_blk_210045e0",
-   "offset": 16
+   "offset": 16,
+   "kind": "relocation_block"
   },
   "0x210045f4": {
    "block": "g1_net_ram_blk_210045e0",
-   "offset": 20
+   "offset": 20,
+   "kind": "relocation_block"
   },
   "0x21004604": {
    "block": "g1_net_ram_blk_210045e0",
-   "offset": 36
+   "offset": 36,
+   "kind": "relocation_block"
   },
   "0x21004610": {
    "block": "g1_net_ram_blk_210045e0",
-   "offset": 48
+   "offset": 48,
+   "kind": "relocation_block"
   },
   "0x21004614": {
    "block": "g1_net_ram_blk_210045e0",
-   "offset": 52
+   "offset": 52,
+   "kind": "relocation_block"
   },
   "0x21004618": {
    "block": "g1_net_ram_blk_210045e0",
-   "offset": 56
+   "offset": 56,
+   "kind": "relocation_block"
   },
   "0x21004628": {
    "block": "g1_net_ram_blk_210045e0",
-   "offset": 72
+   "offset": 72,
+   "kind": "relocation_block"
   },
   "0x2100462c": {
    "block": "g1_net_ram_blk_210045e0",
-   "offset": 76
+   "offset": 76,
+   "kind": "relocation_block"
   },
   "0x21004630": {
    "block": "g1_net_ram_blk_210045e0",
-   "offset": 80
+   "offset": 80,
+   "kind": "relocation_block"
   },
   "0x21004638": {
    "block": "g1_net_ram_blk_210045e0",
-   "offset": 88
+   "offset": 88,
+   "kind": "relocation_block"
   },
   "0x2100463c": {
    "block": "g1_net_ram_blk_210045e0",
-   "offset": 92
+   "offset": 92,
+   "kind": "relocation_block"
   },
   "0x21004640": {
    "block": "g1_net_ram_blk_210045e0",
-   "offset": 96
+   "offset": 96,
+   "kind": "relocation_block"
   },
   "0x21004670": {
    "block": "g1_net_ram_blk_21004670",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21004674": {
    "block": "g1_net_ram_blk_21004670",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21004690": {
    "block": "g1_net_ram_blk_21004670",
-   "offset": 32
+   "offset": 32,
+   "kind": "relocation_block"
   },
   "0x210047fc": {
    "block": "g1_net_ram_blk_210047f8",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21004800": {
    "block": "g1_net_ram_blk_210047f8",
-   "offset": 8
+   "offset": 8,
+   "kind": "relocation_block"
   },
   "0x21004810": {
    "block": "g1_net_ram_blk_210047f8",
-   "offset": 24
+   "offset": 24,
+   "kind": "relocation_block"
   },
   "0x21004834": {
    "block": "g1_net_ram_blk_21004830",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21004964": {
    "block": "g1_net_ram_blk_21004960",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x2100496c": {
    "block": "g1_net_ram_blk_21004960",
-   "offset": 12
+   "offset": 12,
+   "kind": "relocation_block"
   },
   "0x21004974": {
    "block": "g1_net_ram_blk_21004960",
-   "offset": 20
+   "offset": 20,
+   "kind": "relocation_block"
   },
   "0x21004988": {
    "block": "g1_net_ram_blk_21004960",
-   "offset": 40
+   "offset": 40,
+   "kind": "relocation_block"
   },
   "0x2100499c": {
    "block": "g1_net_ram_blk_21004960",
-   "offset": 60
+   "offset": 60,
+   "kind": "relocation_block"
   },
   "0x210049a0": {
    "block": "g1_net_ram_blk_21004960",
-   "offset": 64
+   "offset": 64,
+   "kind": "relocation_block"
   },
   "0x210049a4": {
    "block": "g1_net_ram_blk_21004960",
-   "offset": 68
+   "offset": 68,
+   "kind": "relocation_block"
   },
   "0x210049a8": {
    "block": "g1_net_ram_blk_21004960",
-   "offset": 72
+   "offset": 72,
+   "kind": "relocation_block"
   },
   "0x210049ac": {
    "block": "g1_net_ram_blk_21004960",
-   "offset": 76
+   "offset": 76,
+   "kind": "relocation_block"
   },
   "0x210049b0": {
    "block": "g1_net_ram_blk_21004960",
-   "offset": 80
+   "offset": 80,
+   "kind": "relocation_block"
   },
   "0x210049b4": {
    "block": "g1_net_ram_blk_21004960",
-   "offset": 84
+   "offset": 84,
+   "kind": "relocation_block"
   },
   "0x210049d4": {
    "block": "g1_net_ram_blk_21004960",
-   "offset": 116
+   "offset": 116,
+   "kind": "relocation_block"
   },
   "0x21004a34": {
    "block": "g1_net_ram_blk_21004a30",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21004a60": {
    "block": "g1_net_ram_blk_21004a60",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21004a8c": {
    "block": "g1_net_ram_blk_21004a88",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21004a90": {
    "block": "g1_net_ram_blk_21004a88",
-   "offset": 8
+   "offset": 8,
+   "kind": "relocation_block"
   },
   "0x21004a94": {
    "block": "g1_net_ram_blk_21004a88",
-   "offset": 12
+   "offset": 12,
+   "kind": "relocation_block"
   },
   "0x21004a9c": {
    "block": "g1_net_ram_blk_21004a88",
-   "offset": 20
+   "offset": 20,
+   "kind": "relocation_block"
   },
   "0x21004aec": {
    "block": "g1_net_ram_blk_21004ae8",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21004af8": {
    "block": "g1_net_ram_blk_21004ae8",
-   "offset": 16
+   "offset": 16,
+   "kind": "relocation_block"
   },
   "0x21004b04": {
    "block": "g1_net_ram_blk_21004ae8",
-   "offset": 28
+   "offset": 28,
+   "kind": "relocation_block"
   },
   "0x21004b08": {
    "block": "g1_net_ram_blk_21004ae8",
-   "offset": 32
+   "offset": 32,
+   "kind": "relocation_block"
   },
   "0x21004b30": {
    "block": "g1_net_ram_blk_21004b30",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21004b48": {
    "block": "g1_net_ram_blk_21004b30",
-   "offset": 24
+   "offset": 24,
+   "kind": "relocation_block"
   },
   "0x21004b4c": {
    "block": "g1_net_ram_blk_21004b30",
-   "offset": 28
+   "offset": 28,
+   "kind": "relocation_block"
   },
   "0x21004b68": {
    "block": "g1_net_ram_blk_21004b30",
-   "offset": 56
+   "offset": 56,
+   "kind": "relocation_block"
   },
   "0x21004b6c": {
    "block": "g1_net_ram_blk_21004b30",
-   "offset": 60
+   "offset": 60,
+   "kind": "relocation_block"
   },
   "0x21004b7c": {
    "block": "g1_net_ram_blk_21004b30",
-   "offset": 76
+   "offset": 76,
+   "kind": "relocation_block"
   },
   "0x21004b9c": {
    "block": "g1_net_ram_blk_21004b30",
-   "offset": 108
+   "offset": 108,
+   "kind": "relocation_block"
   },
   "0x21004b9d": {
    "block": "g1_net_ram_blk_21004b30",
-   "offset": 109
+   "offset": 109,
+   "kind": "relocation_block"
   },
   "0x21004b9e": {
    "block": "g1_net_ram_blk_21004b30",
-   "offset": 110
+   "offset": 110,
+   "kind": "relocation_block"
   },
   "0x21004b9f": {
    "block": "g1_net_ram_blk_21004b30",
-   "offset": 111
+   "offset": 111,
+   "kind": "relocation_block"
   },
   "0x21004c9b": {
    "block": "g1_net_ram_blk_21004c98",
-   "offset": 3
+   "offset": 3,
+   "kind": "relocation_block"
   },
   "0x21004c9c": {
    "block": "g1_net_ram_blk_21004c98",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21004c9d": {
    "block": "g1_net_ram_blk_21004c98",
-   "offset": 5
+   "offset": 5,
+   "kind": "relocation_block"
   },
   "0x21004c9e": {
    "block": "g1_net_ram_blk_21004c98",
-   "offset": 6
+   "offset": 6,
+   "kind": "relocation_block"
   },
   "0x21004c9f": {
    "block": "g1_net_ram_blk_21004c98",
-   "offset": 7
+   "offset": 7,
+   "kind": "relocation_block"
   },
   "0x21004ca0": {
    "block": "g1_net_ram_blk_21004c98",
-   "offset": 8
+   "offset": 8,
+   "kind": "relocation_block"
   },
   "0x21004ca1": {
    "block": "g1_net_ram_blk_21004c98",
-   "offset": 9
+   "offset": 9,
+   "kind": "relocation_block"
   },
   "0x21004da1": {
    "block": "g1_net_ram_blk_21004da0",
-   "offset": 1
+   "offset": 1,
+   "kind": "relocation_block"
   },
   "0x21004ea1": {
    "block": "g1_net_ram_blk_21004ea0",
-   "offset": 1
+   "offset": 1,
+   "kind": "relocation_block"
   },
   "0x21004fa1": {
    "block": "g1_net_ram_blk_21004fa0",
-   "offset": 1
+   "offset": 1,
+   "kind": "relocation_block"
   },
   "0x21004fa2": {
    "block": "g1_net_ram_blk_21004fa0",
-   "offset": 2
+   "offset": 2,
+   "kind": "relocation_block"
   },
   "0x21004fa3": {
    "block": "g1_net_ram_blk_21004fa0",
-   "offset": 3
+   "offset": 3,
+   "kind": "relocation_block"
   },
   "0x21004fa4": {
    "block": "g1_net_ram_blk_21004fa0",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x21004fa5": {
    "block": "g1_net_ram_blk_21004fa0",
-   "offset": 5
+   "offset": 5,
+   "kind": "relocation_block"
   },
   "0x21004fa6": {
    "block": "g1_net_ram_blk_21004fa0",
-   "offset": 6
+   "offset": 6,
+   "kind": "relocation_block"
   },
   "0x21004fa7": {
    "block": "g1_net_ram_blk_21004fa0",
-   "offset": 7
+   "offset": 7,
+   "kind": "relocation_block"
   },
   "0x21004fa8": {
    "block": "g1_net_ram_blk_21004fa0",
-   "offset": 8
+   "offset": 8,
+   "kind": "relocation_block"
   },
   "0x21004fa9": {
    "block": "g1_net_ram_blk_21004fa0",
-   "offset": 9
+   "offset": 9,
+   "kind": "relocation_block"
   },
   "0x21004faa": {
    "block": "g1_net_ram_blk_21004fa0",
-   "offset": 10
+   "offset": 10,
+   "kind": "relocation_block"
   },
   "0x21004fab": {
    "block": "g1_net_ram_blk_21004fa0",
-   "offset": 11
+   "offset": 11,
+   "kind": "relocation_block"
   },
   "0x210051ae": {
    "block": "g1_net_ram_blk_210051a8",
-   "offset": 6
+   "offset": 6,
+   "kind": "relocation_block"
   },
   "0x21005256": {
    "block": "g1_net_ram_blk_21005250",
-   "offset": 6
+   "offset": 6,
+   "kind": "relocation_block"
   },
   "0x21005a56": {
    "block": "g1_net_ram_blk_21005a50",
-   "offset": 6
+   "offset": 6,
+   "kind": "relocation_block"
   },
   "0x21006256": {
    "block": "g1_net_ram_blk_21006250",
-   "offset": 6
+   "offset": 6,
+   "kind": "relocation_block"
   },
   "0x2100625a": {
    "block": "g1_net_ram_blk_21006250",
-   "offset": 10
+   "offset": 10,
+   "kind": "relocation_block"
   },
   "0x2100625e": {
    "block": "g1_net_ram_blk_21006250",
-   "offset": 14
+   "offset": 14,
+   "kind": "relocation_block"
   },
   "0x2100635b": {
    "block": "g1_net_ram_blk_21006358",
-   "offset": 3
+   "offset": 3,
+   "kind": "relocation_block"
   },
   "0x2100635d": {
    "block": "g1_net_ram_blk_21006358",
-   "offset": 5
+   "offset": 5,
+   "kind": "relocation_block"
   },
   "0x21006458": {
    "block": "g1_net_ram_blk_21006458",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21006459": {
    "block": "g1_net_ram_blk_21006458",
-   "offset": 1
+   "offset": 1,
+   "kind": "relocation_block"
   },
   "0x2100645a": {
    "block": "g1_net_ram_blk_21006458",
-   "offset": 2
+   "offset": 2,
+   "kind": "relocation_block"
   },
   "0x2100645b": {
    "block": "g1_net_ram_blk_21006458",
-   "offset": 3
+   "offset": 3,
+   "kind": "relocation_block"
   },
   "0x2100645c": {
    "block": "g1_net_ram_blk_21006458",
-   "offset": 4
+   "offset": 4,
+   "kind": "relocation_block"
   },
   "0x2100645d": {
    "block": "g1_net_ram_blk_21006458",
-   "offset": 5
+   "offset": 5,
+   "kind": "relocation_block"
   },
   "0x2100645e": {
    "block": "g1_net_ram_blk_21006458",
-   "offset": 6
+   "offset": 6,
+   "kind": "relocation_block"
   },
   "0x2100645f": {
    "block": "g1_net_ram_blk_21006458",
-   "offset": 7
+   "offset": 7,
+   "kind": "relocation_block"
   },
   "0x21006460": {
    "block": "g1_net_ram_blk_21006458",
-   "offset": 8
+   "offset": 8,
+   "kind": "relocation_block"
   },
   "0x21006461": {
    "block": "g1_net_ram_blk_21006458",
-   "offset": 9
+   "offset": 9,
+   "kind": "relocation_block"
   },
   "0x21007d80": {
    "block": "g1_net_ram_blk_21007d80",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   },
   "0x21008a00": {
    "block": "g1_net_ram_blk_21008a00",
-   "offset": 0
+   "offset": 0,
+   "kind": "relocation_block"
   }
  },
+ "stock_data_windows": [
+  {
+   "lo": "0x21000000",
+   "hi": "0x21000574",
+   "anchor": "__data_start",
+   "anchor_address": "0x21000000",
+   "note": "stock libsoftdevice_controller_multirole.a + libmpsl_fem_common.a .data, verified byte-for-byte by recon/application/verify_net_stock_data_window.py"
+  }
+ ],
+ "stock": [
+  {
+   "addr": "0x21000000",
+   "anchor": "__data_start",
+   "offset": "0x0",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_0100930c.c:13"
+   ]
+  },
+  {
+   "addr": "0x21000008",
+   "anchor": "__data_start",
+   "offset": "0x8",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/controller_feature_bit_enabled.c:14"
+   ]
+  },
+  {
+   "addr": "0x21000010",
+   "anchor": "__data_start",
+   "offset": "0x10",
+   "pins": [
+    "g_net_esb_own_addr"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x21000018",
+   "anchor": "__data_start",
+   "offset": "0x18",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/sdc_conn_event_process.c:1080"
+   ]
+  },
+  {
+   "addr": "0x2100001c",
+   "anchor": "__data_start",
+   "offset": "0x1c",
+   "pins": [
+    "g_net_ble_pending_channel_idx"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x21000020",
+   "anchor": "__data_start",
+   "offset": "0x20",
+   "pins": [
+    "g_net_flags_bitmap64"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x21000028",
+   "anchor": "__data_start",
+   "offset": "0x28",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_01021108.c:83",
+    "recon/symbolized/net/FUN_01021108.c:84",
+    "recon/symbolized/net/FUN_01021108.c:85",
+    "recon/symbolized/net/FUN_01021108.c:96",
+    "recon/symbolized/net/FUN_01021108.c:97",
+    "recon/symbolized/net/FUN_01021108.c:98",
+    "recon/symbolized/net/FUN_010212ec.c:122",
+    "recon/symbolized/net/FUN_010212ec.c:123",
+    "recon/symbolized/net/FUN_010212ec.c:124",
+    "recon/symbolized/net/FUN_010212ec.c:133",
+    "recon/symbolized/net/FUN_010212ec.c:134",
+    "recon/symbolized/net/FUN_010212ec.c:135",
+    "recon/symbolized/net/FUN_010212ec.c:163",
+    "recon/symbolized/net/FUN_010212ec.c:164",
+    "recon/symbolized/net/FUN_010212ec.c:165",
+    "recon/symbolized/net/controller_radio_transition_schedule.c:129",
+    "recon/symbolized/net/controller_radio_transition_schedule.c:130",
+    "recon/symbolized/net/controller_radio_transition_schedule.c:131",
+    "recon/symbolized/net/controller_radio_transition_schedule.c:145",
+    "recon/symbolized/net/controller_radio_transition_schedule.c:146",
+    "recon/symbolized/net/controller_radio_transition_schedule.c:147",
+    "recon/symbolized/net/controller_radio_transition_schedule.c:179",
+    "recon/symbolized/net/controller_radio_transition_schedule.c:180",
+    "recon/symbolized/net/controller_radio_transition_schedule.c:181"
+   ]
+  },
+  {
+   "addr": "0x2100003c",
+   "anchor": "__data_start",
+   "offset": "0x3c",
+   "pins": [
+    "g_net_clk_conv_cache_key"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x21000040",
+   "anchor": "__data_start",
+   "offset": "0x40",
+   "pins": [
+    "g_net_clk_conv_cache_ext"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x21000044",
+   "anchor": "__data_start",
+   "offset": "0x44",
+   "pins": [
+    "g_net_sdc_optfeat_fp_a"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x21000048",
+   "anchor": "__data_start",
+   "offset": "0x48",
+   "pins": [
+    "g_net_sdc_optfeat_fp_c"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x2100004c",
+   "anchor": "__data_start",
+   "offset": "0x4c",
+   "pins": [
+    "g_net_sdc_optfeat_fp_b"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x21000050",
+   "anchor": "__data_start",
+   "offset": "0x50",
+   "pins": [
+    "g_21000050"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x21000054",
+   "anchor": "__data_start",
+   "offset": "0x54",
+   "pins": [
+    "g_21000054"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x21000058",
+   "anchor": "__data_start",
+   "offset": "0x58",
+   "pins": [
+    "g_21000058"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x2100005c",
+   "anchor": "__data_start",
+   "offset": "0x5c",
+   "pins": [
+    "g_2100005c"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x21000078",
+   "anchor": "__data_start",
+   "offset": "0x78",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_010161e8.c:11",
+    "recon/symbolized/net/FUN_010161e8.c:12",
+    "recon/symbolized/net/FUN_0101621c.c:11",
+    "recon/symbolized/net/FUN_0101621c.c:12",
+    "recon/symbolized/net/sdc_conn_event_process.c:281"
+   ]
+  },
+  {
+   "addr": "0x21000124",
+   "anchor": "__data_start",
+   "offset": "0x124",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_010161e8.c:13",
+    "recon/symbolized/net/FUN_010161e8.c:14",
+    "recon/symbolized/net/FUN_0101621c.c:13",
+    "recon/symbolized/net/FUN_0101621c.c:14",
+    "recon/symbolized/net/sdc_conn_event_process.c:298"
+   ]
+  },
+  {
+   "addr": "0x210001d0",
+   "anchor": "__data_start",
+   "offset": "0x1d0",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/sdc_conn_event_process.c:1079",
+    "recon/symbolized/net/sdc_conn_event_process.c:1080"
+   ]
+  },
+  {
+   "addr": "0x210001d4",
+   "anchor": "__data_start",
+   "offset": "0x1d4",
+   "pins": [
+    "g_210001d4"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x210001dc",
+   "anchor": "__data_start",
+   "offset": "0x1dc",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/sdc_conn_event_process.c:176",
+    "recon/symbolized/net/sdc_conn_event_process.c:181"
+   ]
+  },
+  {
+   "addr": "0x210001e0",
+   "anchor": "__data_start",
+   "offset": "0x1e0",
+   "pins": [
+    "g_210001e0"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x210001e4",
+   "anchor": "__data_start",
+   "offset": "0x1e4",
+   "pins": [
+    "g_210001e4"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x210001e8",
+   "anchor": "__data_start",
+   "offset": "0x1e8",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_0101d404.c:167"
+   ]
+  },
+  {
+   "addr": "0x210001ec",
+   "anchor": "__data_start",
+   "offset": "0x1ec",
+   "pins": [
+    "g_210001ec"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x210001f4",
+   "anchor": "__data_start",
+   "offset": "0x1f4",
+   "pins": [
+    "g_net_link_ctx_a_close_cb"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x21000204",
+   "anchor": "__data_start",
+   "offset": "0x204",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/sdc_conn_event_process.c:659"
+   ]
+  },
+  {
+   "addr": "0x2100020c",
+   "anchor": "__data_start",
+   "offset": "0x20c",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/sdc_conn_event_process.c:654"
+   ]
+  },
+  {
+   "addr": "0x21000214",
+   "anchor": "__data_start",
+   "offset": "0x214",
+   "pins": [
+    "g_net_conn_event_cb"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x21000308",
+   "anchor": "__data_start",
+   "offset": "0x308",
+   "pins": [
+    "g_sdc_ll_ctx_field_308"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x21000344",
+   "anchor": "__data_start",
+   "offset": "0x344",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_010171c8.c:72"
+   ]
+  },
+  {
+   "addr": "0x21000354",
+   "anchor": "__data_start",
+   "offset": "0x354",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_0101c6d0.c:256",
+    "recon/symbolized/net/FUN_0101dbe8.c:11",
+    "recon/symbolized/net/FUN_0101dbe8.c:12",
+    "recon/symbolized/net/FUN_0101dc1c.c:12",
+    "recon/symbolized/net/FUN_0101dc1c.c:13"
+   ]
+  },
+  {
+   "addr": "0x21000400",
+   "anchor": "__data_start",
+   "offset": "0x400",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_0101c6d0.c:138",
+    "recon/symbolized/net/FUN_0101dbe8.c:13",
+    "recon/symbolized/net/FUN_0101dbe8.c:14",
+    "recon/symbolized/net/FUN_0101dc1c.c:14",
+    "recon/symbolized/net/FUN_0101dc1c.c:15"
+   ]
+  },
+  {
+   "addr": "0x210004ac",
+   "anchor": "__data_start",
+   "offset": "0x4ac",
+   "pins": [
+    "g_210004ac"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x210004b0",
+   "anchor": "__data_start",
+   "offset": "0x4b0",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_0101d404.c:166"
+   ]
+  },
+  {
+   "addr": "0x210004b4",
+   "anchor": "__data_start",
+   "offset": "0x4b4",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_0101d404.c:165"
+   ]
+  },
+  {
+   "addr": "0x210004c8",
+   "anchor": "__data_start",
+   "offset": "0x4c8",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_0101d404.c:168"
+   ]
+  },
+  {
+   "addr": "0x210004d0",
+   "anchor": "__data_start",
+   "offset": "0x4d0",
+   "pins": [
+    "g_net_link_ctx_b_close_cb"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x210004d8",
+   "anchor": "__data_start",
+   "offset": "0x4d8",
+   "pins": [
+    "g_net_ble_conn_setup_err_cb"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x210004dc",
+   "anchor": "__data_start",
+   "offset": "0x4dc",
+   "pins": [
+    "g_net_ble_conn_setup_ok_cb"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x210004e0",
+   "anchor": "__data_start",
+   "offset": "0x4e0",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_0101f73c.c:14"
+   ]
+  },
+  {
+   "addr": "0x210004e8",
+   "anchor": "__data_start",
+   "offset": "0x4e8",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_0101f73c.c:15"
+   ]
+  },
+  {
+   "addr": "0x210004f0",
+   "anchor": "__data_start",
+   "offset": "0x4f0",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_0101f7e0.c:16"
+   ]
+  },
+  {
+   "addr": "0x210004f8",
+   "anchor": "__data_start",
+   "offset": "0x4f8",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_0101f7a8.c:18",
+    "recon/symbolized/net/FUN_0101f7e0.c:18"
+   ]
+  },
+  {
+   "addr": "0x21000500",
+   "anchor": "__data_start",
+   "offset": "0x500",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_0101f7a8.c:16"
+   ]
+  },
+  {
+   "addr": "0x21000508",
+   "anchor": "__data_start",
+   "offset": "0x508",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_0101f7a8.c:17",
+    "recon/symbolized/net/FUN_0101f7e0.c:17"
+   ]
+  },
+  {
+   "addr": "0x21000510",
+   "anchor": "__data_start",
+   "offset": "0x510",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_0101f764.c:18"
+   ]
+  },
+  {
+   "addr": "0x21000518",
+   "anchor": "__data_start",
+   "offset": "0x518",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_0101f764.c:16"
+   ]
+  },
+  {
+   "addr": "0x21000520",
+   "anchor": "__data_start",
+   "offset": "0x520",
+   "pins": [],
+   "sites": [
+    "recon/symbolized/net/FUN_0101f764.c:17"
+   ]
+  },
+  {
+   "addr": "0x21000528",
+   "anchor": "__data_start",
+   "offset": "0x528",
+   "pins": [
+    "g_net_cb_handler_fn"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x2100052c",
+   "anchor": "__data_start",
+   "offset": "0x52c",
+   "pins": [
+    "g_net_cb_registered_flag"
+   ],
+   "sites": []
+  },
+  {
+   "addr": "0x21000530",
+   "anchor": "__data_start",
+   "offset": "0x530",
+   "pins": [
+    "g_net_radio_ops_table_ptr"
+   ],
+   "sites": []
+  }
+ ],
  "owned": [],
  "left_literal": [],
  "pins": {
@@ -2730,12 +3437,13 @@
  "totals": {
   "addresses_in": 300,
   "owned": 0,
+  "stock_data_anchored": 52,
   "left_literal": 0,
-  "relocated": 300,
-  "blocks": 70,
-  "block_bytes": 3416,
-  "blocks_with_shipped_data": 7,
-  "shipped_data_bytes": 416,
+  "relocated": 248,
+  "blocks": 63,
+  "block_bytes": 2912,
+  "blocks_with_shipped_data": 6,
+  "shipped_data_bytes": 272,
   "relocation_aware_pointer_words": 6,
   "colliding_pins_in": 66,
   "colliding_literals_in": 69

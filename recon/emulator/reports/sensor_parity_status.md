@@ -1,7 +1,127 @@
 # Sensor + graphics parity status — OUR rebuilt firmware vs the shipped oracle
 
-**Thirteenth measurement of `display_sensor_parity.md`'s criteria against our
-rebuild** (iteration 26; previous measurements were iterations 14–25).
+**Fourteenth measurement of `display_sensor_parity.md`'s criteria against our
+rebuild** (iteration 27; previous measurements were iterations 14–26).
+
+## READ THIS FIRST — iteration 27: still 0 lit pixels, and this iteration is a
+## **REGRESSION on every counter** against iteration 26.  What it buys is
+## structural: the radio-arbitration ops table is restored and complete, and the
+## next blocker is named to a file and line.
+
+**NO PIXEL IS PAINTED.**  `framebuffer.lit_pixels` is **0 / 0** against the
+oracle's **656** (`p1_boot`) / **1,098** (`p2_render`); `spim_a` is **34 / 764**
+and **0 / 2,881**; **no `0x02` pixel window is emitted in `p2_render`**, so **no
+display START with `action = 1` arrived** (our `firmware_events` is `{}` against
+the oracle's `{"spi_read_id":1,"display_START":2,"BLIT":15}`).  The three `0x02`
+transactions in `p1_boot` are the panel-init window writes the oracle also makes
+there and they paint nothing.
+
+Measured this iteration (`our_boot_bringup.md` §27; capture
+`/private/tmp/g1_ours_i27b`, net `g1-i27b-net`, app **unchanged**
+`g1-i23a-app`):
+
+1. **Iteration 26's premise is refuted by byte evidence.**  The 14 "unresolved
+   Ghidra-gap functions" behind `g_net_radio_ops_table_ptr` are **stock NCS
+   2.5.1 library code this link already contains**: `0x21000530` is the MPSL
+   front-end-module `p_api` pointer word and `0x21000534..0x21000574` is the FEM
+   API vtable, both owned by `libmpsl_fem_common.a`; the nine-entry table at
+   `0x210004e0` is a SoftDevice Controller `.data` object.  All 16 vtable
+   targets are **byte-identical** to the shipped code at a constant −0x34, and
+   the 9 SDC-table targets match **opcode-for-opcode over all 62 instructions**.
+   Reconstructing them would have duplicated singletons.
+2. **The whole low `.data` window is proven stock.**  Over
+   `0x21000000..0x21000574`, 256 of 349 words are byte-identical to the shipped
+   `.data` and all 93 differing words are flash code pointers whose differences
+   collapse to **exactly two constants, one per archive** (`0xa0` ×68, `0x34`
+   ×25); the map shows 1,396 B covered by stock archive `.data` and **0**
+   non-stock input sections.  New gate:
+   `recon/application/verify_net_stock_data_window.py` → **PROVEN**.
+3. **The ops table is RESTORED and COMPLETE — there is no atomic EXCLUDE.**
+   The 52 addresses in that window are reclassified out of iteration 26's
+   fabricated blocks and bound to `__data_start + <shipped .data offset>`
+   (`STOCK_DATA_WINDOWS` in `recon/application/gen_net_ram_relocs.py`).  Seven
+   blocks disappear, `g_net_radio_ops_table_ptr` is `0x21000530` and the word
+   there reads `0x21000534` — the live 16-entry vtable.  Net RAM **−504 B**
+   (63,508 B, 96.91 %) and FLASH **−144 B** (225,073 B, 97.26 %).
+4. **One reconstruction corrected with byte evidence:** `FUN_01021920` saved r4
+   and tail-called through ip precisely because **r3 is a live fourth
+   argument**; the old `void(void)` body clobbered it.  The corrected body
+   compiles to the shipped thunk **byte-for-byte**.  Stated honestly: the old,
+   wrong body also passes `cfg_verify` (`PASS, 40 trials, 0 cover cases`), so
+   parity is not the evidence — the bytes are.
+5. **MEASURED REGRESSION, reported plainly.**  With the arbitration path live
+   the CPUNET reaches a *newly executable* nrfx assert and resets the SoC at
+   **≈5.8 s**: `assert_post_action("…/nrfx/drivers/src/nrfx_ipc.c", 202)` from
+   our `FUN_01035028`, i.e. nrfx-IPC's
+   `NRFX_ASSERT(m_cb.state != UNINITIALIZED)`.  It is the **same class** as
+   item 3 — the stock `nrfx_ipc.c` initialises its own `m_cb` at `0x21009178`
+   while our four recovered copies read a private zeroed block at the relocated
+   `0x21004af8`.  `sdc_assertion_handler` and MPSL's `m_assert_handler` are
+   **never entered**.
+
+| device / phase | oracle | iter 24 | iter 25 | iter 26 | **iter 27** |
+|---|---:|---:|---:|---:|---:|
+| LSM6DSO `p1_boot` / `p2_render` | 1,089 / 1,200 | 1,027 / 268 | 551 / 0 | 1,027 / 700 | **551 / 0** |
+| nPM1300 `p1_boot` / `p2_render` | 291 / 508 | 232 / 140 | 97 / 0 | 232 / 370 | **97 / 0** |
+| OPT3001 `p1_boot` / `p2_render` | 33 / 80 | 14 / 0 | 14 / 0 | 14 / 0 | **14 / 0** |
+| ST25DV NFC EEPROM / system port `p1` | 25 / 22 | 11 / 12 | 0 / 6 | 11 / 12 | **0 / 6** |
+| `saadc` (whole run) | 998 | 41 | 5 | 71 | **5** |
+| `gpiote0` / `gpiote1` / `pdm0` | 25 / 0 / 2 | 25 / 0 / 2 | 25 / 0 / 2 | 25 / 0 / 2 | **25 / 0 / 2 (all hash-EQ)** |
+| `spim_a` `p1_boot` / `p2_render` | 764 / 2,881 | 34 / 0 | 34 / 0 | 34 / 0 | **34 / 0** |
+| `spim_b` | 0 | 0 | 0 | 0 | **0 (hash-EQ)** |
+| `JBD FrameCounter` p1 / p2 | 0x2A1 / 0xD61 | 0x3 / 0x0 | 0x0 / 0x0 | 0x3 / 0x3 | **0x0 / 0x0** |
+| `JBD JournalCount` | 0x400 | 0x0 | 0x0 | 0x22 | **0x0** |
+| `radio TransmittedFrames` | 0x230 | 0x1 | 0x2 | 0x0 | **0x0** |
+| `vcentral Connected` | True | False | False | False | **False** |
+| `esbslave MasterFramesSeen` | 0x175 | 0 | 0 | 0 | **0** |
+| `ESB_SYNC_ctx_105a` / `DISPLAY_ON_ctx_fe8` | 0x02 / 0x01 | 0x01 / 0x00 | 0x01 / 0x00 | 0x01 / 0x00 | **0x01 / 0x00** |
+| machine reset / CPU halt | none | ≈15 s | ≈1.3 s | **none (20 s)** | **≈5.8 s** |
+| framebuffer lit px p1 / p2 | 656 / 1,098 | 0 / 0 | 0 / 0 | 0 / 0 | **0 / 0** |
+
+The phase-2 columns are 0 because both cores stop at ≈5.8 s, inside phase 1's
+6 s window.  Iteration 26's numbers are the ones to beat and they are recorded
+here unchanged; iteration 26's image is rebuildable from commit `806dba5c`.
+
+## Verdicts (iteration 27)
+
+| id | verdict | first difference / detail |
+|---|---|---|
+| **G-1** | **FAIL** | `p2_render` ours `0c5cc90b07…` / **0 lit px** / 0 pixel windows; oracle `b26c73b37d…` / **1,098** / 2,881 transactions, bbox x 34–497, y 266–287. |
+| **G-2** | **FAIL** | `p1_boot` ours `0c5cc90b07…` / **0 lit px** / 3 pixel windows; oracle `1d617c65a6…` / **656** / 764 transactions, bbox x 178–449, y 267–287. |
+| **G-3** | **FAIL (truncation only)** | `p1_boot` **34 vs 764**, the 34 shared transactions identical entry-for-entry, first difference index **34** (oracle `{"op":"0x66","kind":"command"}`, ours `<end>`).  `p2_render` **0 vs 2,881**, first difference index **0** (oracle `{"op":"0x02","kind":"pixel_window","x":32,"y":265}`). |
+| **G-4** | *localiser* | our framebuffer bytes are bit-identical to iterations 16–26, so first differing row **y = 267**, first differing pixel **x = 178** (oracle `ffffff`, ours `000000`). |
+| **G-5** | **PASS** | panel-init sequence byte-exact over the whole 34-transaction prefix, including the `0x9F` ID probe answering `0x4010` and the `0x46`/`0x31` brightness pair. |
+| **G-6** | **PASS** | `spim_b` 0 == 0, hash-EQ, both phases. |
+| **S-IMU** | **PARTIAL** | LSM6DSO 551 / 0 vs 1,089 / 1,200; `IMU_ACCEL_ENABLED` **False** vs True (was True in iteration 26), gyro False == False. |
+| **S-ALS** | **FAIL** | OPT3001 14 / 0 vs 33 / 80; `ConversionReady` **False** vs True (was True in iteration 26). |
+| **S-PMIC** | **FAIL** | nPM1300 97 / 0 vs 291 / 508; `ChargingEnabled` **False** vs True (was True in iteration 26). |
+| **S-NFC** | **FAIL** | ST25DV EEPROM **0** vs 25, system port 6 vs 22 in `p1_boot`; 0 in `p2_render`. |
+| **S-ADC** | **FAIL** | `saadc` 5 vs 998. |
+| **S-MIC** | **PASS** | `pdm0` 2 == 2, hash-EQ. |
+| **S-KEYS** | **PASS** | `gpiote0` 25 == 25, hash-EQ; `gpiote1` 0 == 0. |
+| **S-ESB** | **FAIL** | `ESB_SYNC_ctx_105a` **0x01** vs 0x02, `DISPLAY_ON_ctx_fe8` **0x00** vs 0x01, master PTX frames **0** vs 0x175, `radio TransmittedFrames` **0** vs 0x230. |
+
+Score: **4 PASS / 1 PARTIAL / 9 FAIL** (G-5, G-6, S-MIC, S-KEYS pass), down from
+iteration 26's 4 / 4 / 6.  Every lost cell is a consequence of the ≈5.8 s reset,
+not of a different behaviour before it.
+
+## The first divergence for iteration 28
+
+**`nrfx_ipc.c:202`.**  The CPUNET resets at ≈5.8 s through
+`assert_post_action(file="…/nrfx/drivers/src/nrfx_ipc.c", line=202)` called from
+`FUN_01035028 + 0x20`, then `z_arm_svc → _oops → z_do_kernel_oops →
+z_arm_fatal_error → panic`; both cores then report `PC does not lay in memory`
+because the reset vector table at address 0 is empty in this machine.  The
+asserted object is nrfx-IPC's control block `{handler, p_context, state}`: our
+four recovered copies (`FUN_01034fa8`, `FUN_01035028`, `FUN_01035068`,
+`FUN_010350a4`) read the relocated pin `g_net_gpiote_evt_handler_table`
+(`0x21004af8`) while the **stock** `nrfx_ipc.c` — also linked, `nrfx_ipc_init`
+at `0x01035e5c` — initialises **its own** `m_cb` at `0x21009178`.  Because
+`0x21004af8` is `.bss` in the shipped image and the archive symbol is local, a
+linker `PROVIDE` cannot name it: the remedy is **displacement** to the stock
+singleton, the iteration-26 §26.4 pattern, with an ownership record.
+
+## Everything below this line is the ITERATION 26 measurement, kept for provenance
 
 ## READ THIS FIRST — iteration 26: still 0 lit pixels; the machine now survives
 ## the **whole 20 s** for the first time since iteration 23, but

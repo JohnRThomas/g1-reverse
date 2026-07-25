@@ -130,10 +130,51 @@ LEAVE_LITERAL_FILES = ("recon/net/data/",)
 NEVER_REWRITE = ("recon/symbols/g1_net_symbols.h",)
 
 
+# ---------------------------------------------------------------------------
+# P4 iteration 27 -- STOCK-LIBRARY `.data` WINDOWS.
+#
+# Iteration 26 classified every recovered CPUNET address as "recovered-owned net
+# RAM".  In the LOW `.data` window that is wrong: the shipped firmware's storage
+# there is the `.data` of the stock NCS 2.5.1 SoftDevice Controller and MPSL
+# front-end-module archives, and THIS link places exactly those archive `.data`
+# input sections at exactly the same addresses.  Handing such an address a
+# fabricated zeroed block gives the recovered accessor private storage instead of
+# the live library object -- which is precisely how iteration 26 lost
+# `radio TransmittedFrames`: the MPSL FEM API pointer word at 0x21000530 read 0
+# instead of &fem_api_table (iteration 26 §26.8).
+#
+# The window is PROVEN byte-for-byte, not assumed, by
+# recon/application/verify_net_stock_data_window.py: over 0x21000000..0x21000574
+# our linked `.data` image and the shipped `.data` image agree on 256 of 349
+# words, all 93 differing words are flash code pointers, and their differences
+# collapse to exactly two constants -- one per contributing archive (0xa0 for the
+# SoftDevice Controller block, 0x34 for the two libmpsl_fem_common objects).
+#
+# Addresses inside such a window are bound to `<anchor> + off`, where the anchor
+# is the linker's own `.data` region symbol.  The archives export no symbol for
+# most of these objects (their `.data` input sections are anonymous), so the
+# region anchor is the only NAME the address can be expressed against; the
+# offset is the address's shipped offset within `.data`, which the verification
+# above shows this link reproduces exactly.
+STOCK_DATA_WINDOWS = [
+    (0x21000000, 0x21000574, "__data_start", 0x21000000,
+     "stock libsoftdevice_controller_multirole.a + libmpsl_fem_common.a .data, "
+     "verified byte-for-byte by recon/application/verify_net_stock_data_window.py"),
+]
+
+
 def owned_of(addr):
     for lo, hi, name in OWNED:
         if lo <= addr < hi:
             return name
+    return None
+
+
+def stock_window_of(addr):
+    """(anchor symbol, offset, note) when `addr` is stock-library `.data`."""
+    for lo, hi, anchor, anchor_addr, note in STOCK_DATA_WINDOWS:
+        if lo <= addr < hi:
+            return anchor, addr - anchor_addr, note
     return None
 
 
@@ -281,13 +322,22 @@ def main():
 
     pins, lits, collide_l, collide_p = load_inputs(args.pins, args.lits)
 
-    classified = {"owned": [], "relocate": [], "left_literal": []}
+    classified = {"owned": [], "stock": [], "relocate": [], "left_literal": []}
     todo = []
+    stock_map = {}
     for a in sorted(set(pins) | set(lits)):
         own = owned_of(a)
         sites = lits.get(a, [])
         if own:
             classified["owned"].append({"addr": a, "owner": own,
+                                        "pins": pins.get(a, []), "sites": sites})
+            continue
+        stock = stock_window_of(a)
+        if stock:
+            anchor, off, note = stock
+            stock_map[a] = (anchor, off)
+            classified["stock"].append({"addr": a, "anchor": anchor,
+                                        "offset": off, "note": note,
                                         "pins": pins.get(a, []), "sites": sites})
             continue
         if sites and all(s.startswith(LEAVE_LITERAL_FILES) for s in sites) \
@@ -319,6 +369,12 @@ def main():
         for a in b["addrs"]:
             addr2block[a] = (b["name"], a - b["base"])
 
+    # Every address that is expressed against a NAME: the emitted relocation
+    # blocks plus the stock-library `.data` anchors of STOCK_DATA_WINDOWS.
+    addr2sym = dict(addr2block)
+    addr2sym.update(stock_map)
+    anchors = sorted({s for s, _ in stock_map.values()})
+
     catalog = {}
     cat_path = os.path.join(REPO, "recon", "catalogs", "function_names_net.json")
     if os.path.exists(cat_path):
@@ -346,12 +402,23 @@ def main():
            "#ifdef G1_COHESIVE_BUILD"]
     for b in blocks:
         hdr.append("extern unsigned char %s[];" % b["name"])
+    if anchors:
+        hdr.append("")
+        hdr.append("/* P4 iteration 27: stock-library `.data` anchors.  The addresses bound")
+        hdr.append("   against these are NOT recovered-owned RAM -- they are the `.data` of")
+        hdr.append("   the stock SoftDevice Controller / MPSL front-end-module archives, which")
+        hdr.append("   this link places at exactly their shipped addresses (proven by")
+        hdr.append("   recon/application/verify_net_stock_data_window.py).  Relocating them")
+        hdr.append("   would give the recovered accessor private storage instead of the live")
+        hdr.append("   library object. */")
+        for s in anchors:
+            hdr.append("extern unsigned char %s[];" % s)
     hdr.append("")
-    for a in sorted(addr2block):
-        n, off = addr2block[a]
+    for a in sorted(addr2sym):
+        n, off = addr2sym[a]
         hdr.append("#define G1N_%08x ((unsigned long)(%s + 0x%x))" % (a, n, off))
     hdr.append("#else")
-    for a in sorted(addr2block):
+    for a in sorted(addr2sym):
         hdr.append("#define G1N_%08x 0x%08xul" % (a, a))
     hdr.append("#endif")
     hdr.append("")
@@ -409,9 +476,19 @@ def main():
         "blocks": [{"name": b["name"], "base": b["base"], "size": b["size"],
                     "addrs": b["addrs"], "data_restored": bool(b["data"]),
                     "data_note": b["data_note"]} for b in blocks],
-        "map": {"0x%08x" % a: {"block": addr2block[a][0],
-                               "offset": addr2block[a][1]}
-                for a in sorted(addr2block)},
+        "map": {"0x%08x" % a: {"block": addr2sym[a][0],
+                               "offset": addr2sym[a][1],
+                               "kind": ("stock_data_anchor" if a in stock_map
+                                        else "relocation_block")}
+                for a in sorted(addr2sym)},
+        "stock_data_windows": [
+            {"lo": "0x%08x" % lo, "hi": "0x%08x" % hi, "anchor": anchor,
+             "anchor_address": "0x%08x" % anchor_addr, "note": note}
+            for lo, hi, anchor, anchor_addr, note in STOCK_DATA_WINDOWS],
+        "stock": [{"addr": "0x%08x" % r["addr"], "anchor": r["anchor"],
+                   "offset": "0x%x" % r["offset"], "pins": r["pins"],
+                   "sites": r["sites"]}
+                  for r in classified["stock"]],
         "owned": [{"addr": "0x%08x" % r["addr"], "owner": r["owner"]}
                   for r in classified["owned"]],
         "left_literal": [{"addr": "0x%08x" % r["addr"], "reason": r["reason"],
@@ -421,6 +498,7 @@ def main():
         "totals": {
             "addresses_in": len(pins) + len(set(lits) - set(pins)),
             "owned": len(classified["owned"]),
+            "stock_data_anchored": len(classified["stock"]),
             "left_literal": len(classified["left_literal"]),
             "relocated": len(addr2block),
             "blocks": len(blocks),
@@ -438,10 +516,12 @@ def main():
         print("%-32s %s" % (k, v))
 
     if args.rewrite:
-        rewrite_linker(addr2block, pins)
-        n_files, n_sites = rewrite_sources(addr2block, lits)
+        rewrite_linker(addr2sym, pins)
+        n_files, n_sites = rewrite_sources(addr2sym, lits)
         print("%-32s %s" % ("sources rewritten", n_files))
         print("%-32s %s" % ("literal sites rewritten", n_sites))
+        print("%-32s %s" % ("self-contained guards refreshed",
+                            refresh_guards(addr2sym)))
 
     if args.report:
         json.dump(ledger, open(args.report, "w"), indent=1)
@@ -453,29 +533,76 @@ PROVIDE_RE = re.compile(
     r"^(\s*PROVIDE\s*\(\s*)([A-Za-z_][A-Za-z_0-9]*)(\s*=\s*)0x(21[0-9a-fA-F]{6})"
     r"(\s*\)\s*;.*)$")
 
+# A pin this generator has ALREADY rebound, in either of its two bound forms.
+# Matching it is what makes the pass idempotent: iteration 27 has to move 26
+# pins from a relocation block to a stock-library anchor, and after iteration 26
+# no raw 0x21xxxxxx literal is left in the script for PROVIDE_RE to find.
+BOUND_RE = re.compile(
+    r"^(\s*PROVIDE\s*\(\s*)([A-Za-z_][A-Za-z_0-9]*)(\s*=\s*)"
+    r"(g1_net_ram_blk_([0-9a-f]{8})|__data_start)\s*\+\s*(0x[0-9a-fA-F]+)"
+    r"(\s*\)\s*;.*)$")
 
-def rewrite_linker(addr2block, pins):
-    lines = open(GLOBALS_LD).read().splitlines()
-    out, n = [], 0
+GEN_HEADER_MARK = "P4 iteration 2"
+
+
+def rewrite_linker(addr2sym, pins):
+    """Rebind every generator-owned PROVIDE to `<symbol> + <original offset>`.
+
+    Idempotent in both directions: a raw `0x21xxxxxx` literal and an already
+    rebound `block + off` / `__data_start + off` are both recognised, and a
+    previously emitted generator header is replaced rather than stacked.
+    """
+    text = open(GLOBALS_LD).read()
+    lines = text.splitlines()
+    # drop a previously emitted generator header (a leading /* ... */ block
+    # written by this function, identified by its marker)
+    if lines and lines[0].startswith("/*") and GEN_HEADER_MARK in text[:600]:
+        end = next((i for i, l in enumerate(lines) if "*/" in l), None)
+        if end is not None and GEN_HEADER_MARK in "\n".join(lines[:end + 1]):
+            lines = lines[end + 1:]
+
+    out, n_block, n_stock = [], 0, 0
     for line in lines:
         m = PROVIDE_RE.match(line)
+        a = None
         if m:
             a = int(m.group(4), 16)
-            if a in addr2block:
-                blk, off = addr2block[a]
-                line = "%s%s%s%s + 0x%x%s" % (m.group(1), m.group(2),
-                                              m.group(3), blk, off, m.group(5))
-                n += 1
+            pre, name, eq, tail = m.group(1), m.group(2), m.group(3), m.group(5)
+        else:
+            m = BOUND_RE.match(line)
+            if m:
+                pre, name, eq, tail = m.group(1), m.group(2), m.group(3), m.group(7)
+                # The ORIGINAL address is recoverable from the binding itself:
+                # a block's name carries its base and `__data_start` is the
+                # `.data` VMA, so no external name->address table is needed.
+                base = (int(m.group(5), 16) if m.group(5) else DATA_VMA)
+                a = base + int(m.group(6), 16)
+        if a is not None and a in addr2sym:
+            sym, off = addr2sym[a]
+            line = "%s%s%s%s + 0x%x%s" % (pre, name, eq, sym, off, tail)
+            if sym.startswith("g1_net_ram_blk_"):
+                n_block += 1
+            else:
+                n_stock += 1
         out.append(line)
-    header = ("/* P4 iteration 26 - STRUCTURAL PASS.  %d pins below are bound to a\n"
+    header = ("/* P4 iteration 26/27 - STRUCTURAL PASS.  %d pins below are bound to a\n"
               "   recon/application/net/src/g1_net_ram_relocs.c storage block plus the\n"
               "   original offset instead of to a raw 0x21xxxxxx literal, so no recovered\n"
               "   CPUNET global can land inside a live linker-allocated object (54 of them\n"
-              "   were inside sdc_mempool).  Generated by recon/application/\n"
-              "   gen_net_ram_relocs.py; ledger recon/application/net_ram_reloc_ledger.json. */\n"
-              % n)
+              "   were inside sdc_mempool).\n"
+              "   A further %d pins are bound to `__data_start + <shipped .data offset>`:\n"
+              "   their storage is NOT recovered-owned RAM but the `.data` of the stock\n"
+              "   SoftDevice Controller / MPSL front-end-module archives, which this link\n"
+              "   places at exactly the shipped addresses (iteration 27; proven by\n"
+              "   recon/application/verify_net_stock_data_window.py).  Relocating those\n"
+              "   away from the live library object is what zeroed the MPSL FEM API\n"
+              "   pointer word at 0x21000530 in iteration 26.\n"
+              "   Generated by recon/application/gen_net_ram_relocs.py;\n"
+              "   ledger recon/application/net_ram_reloc_ledger.json. */\n"
+              % (n_block, n_stock))
     open(GLOBALS_LD, "w").write(header + "\n".join(out) + "\n")
-    print("%-32s %s" % ("linker pins rebound", n))
+    print("%-32s %s" % ("linker pins bound to blocks", n_block))
+    print("%-32s %s" % ("linker pins bound to stock .data", n_stock))
 
 
 # A LITERAL, never a hex run inside an identifier: recon/symbols/
@@ -531,6 +658,98 @@ def strip_comments_mask(text):
     return mask
 
 
+GUARD_MARK = "structural CPUNET RAM relocation"
+GUARD_DEF = re.compile(r"^#define (G1N_([0-9a-f]{8})) ")
+
+
+def guard_line_spans(lines):
+    """[(first, last)] line indices of each generator-injected guard block."""
+    spans, i = [], 0
+    while i < len(lines):
+        if GUARD_MARK in lines[i]:
+            try:
+                els = next(j for j in range(i, len(lines)) if lines[j] == "#else")
+                end = next(j for j in range(els, len(lines)) if lines[j] == "#endif")
+            except StopIteration:
+                break
+            spans.append((i, end))
+            i = end + 1
+            continue
+        i += 1
+    return spans
+
+
+def guard_spans(text):
+    """[(start, end)] CHARACTER ranges of each generator-injected guard block."""
+    if GUARD_MARK not in text:
+        return []
+    lines = text.splitlines(keepends=True)
+    starts, pos = [], 0
+    for l in lines:
+        starts.append(pos)
+        pos += len(l)
+    plain = [l.rstrip("\n") for l in lines]
+    return [(starts[a], starts[b] + len(lines[b]))
+            for a, b in guard_line_spans(plain)]
+
+
+def guard_block(addrs, addr2sym):
+    guard = ["/* P4 iteration 26/27 - structural CPUNET RAM relocation.  Self-contained",
+             "   so tools/parity keeps compiling this canonical body unchanged: the",
+             "   #else arm is the shipped literal.  See recon/application/",
+             "   gen_net_ram_relocs.py and recon/symbols/g1_net_ram_reloc.h. */",
+             "#ifdef G1_COHESIVE_BUILD"]
+    for s in sorted({addr2sym[a][0] for a in addrs}):
+        guard.append("extern unsigned char %s[];" % s)
+    for a in addrs:
+        s, off = addr2sym[a]
+        guard.append("#define G1N_%08x ((unsigned long)(%s + 0x%x))" % (a, s, off))
+    guard.append("#else")
+    for a in addrs:
+        guard.append("#define G1N_%08x 0x%08xul" % (a, a))
+    guard.append("#endif")
+    return guard
+
+
+def refresh_guards(addr2sym):
+    """Re-emit the self-contained guard blocks injected into canonical bodies.
+
+    Those blocks do NOT come from g1_net_ram_reloc.h, so a reclassification
+    (iteration 27 moves stock-library `.data` addresses off their relocation
+    block) has to reach them explicitly.  The `#else` arm is the authoritative
+    list of addresses the file uses.
+    """
+    n = 0
+    for root, _dirs, names in os.walk(os.path.join(REPO, "recon")):
+        for nm in names:
+            if not nm.endswith((".c", ".h")):
+                continue
+            path = os.path.join(root, nm)
+            text = open(path).read()
+            if GUARD_MARK not in text:
+                continue
+            lines = text.splitlines()
+            new, last, ok = [], 0, True
+            for start, end in guard_line_spans(lines):
+                els = next(i for i in range(start, end) if lines[i] == "#else")
+                addrs = [int(m.group(2), 16)
+                         for m in (GUARD_DEF.match(l) for l in lines[els + 1:end])
+                         if m]
+                if not addrs or any(a not in addr2sym for a in addrs):
+                    ok = False
+                    break
+                new += lines[last:start] + guard_block(addrs, addr2sym)
+                last = end + 1
+            if not ok or last == 0:
+                continue
+            new += lines[last:]
+            new_text = "\n".join(new) + "\n"
+            if new_text != text:
+                open(path, "w").write(new_text)
+                n += 1
+    return n
+
+
 def rewrite_sources(addr2block, lits):
     files = {}
     for a, sites in lits.items():
@@ -546,6 +765,14 @@ def rewrite_sources(addr2block, lits):
             continue
         text = open(path).read()
         mask = strip_comments_mask(text)
+        # A guard block this generator injected on an earlier run carries the
+        # shipped literals in its `#else` arm.  They are the FALLBACK, not a
+        # site: masking the block is what makes --rewrite idempotent (without
+        # it a second run rewrites `#define G1N_x 0x21...` into `#define G1N_x
+        # G1N_x` and stacks a second guard on top).
+        for lo, hi in guard_spans(text):
+            for i in range(lo, hi):
+                mask[i] = False
         out, last, hits = [], 0, 0
         for m in LIT_RE.finditer(text):
             if not all(mask[m.start():m.end()]):
@@ -567,23 +794,7 @@ def rewrite_sources(addr2block, lits):
         if SYMBOLS_INCLUDE in new:
             pass                      # g1_net_symbols.h pulls the macros in
         else:
-            guard = ["/* P4 iteration 26 - structural CPUNET RAM relocation.  Self-contained",
-                     "   so tools/parity keeps compiling this canonical body unchanged: the",
-                     "   #else arm is the shipped literal.  See recon/application/",
-                     "   gen_net_ram_relocs.py and recon/symbols/g1_net_ram_reloc.h. */",
-                     "#ifdef G1_COHESIVE_BUILD"]
-            blks = sorted({addr2block[a][0] for a in used})
-            for b in blks:
-                guard.append("extern unsigned char %s[];" % b)
-            for a in used:
-                b, off = addr2block[a]
-                guard.append("#define G1N_%08x ((unsigned long)(%s + 0x%x))"
-                             % (a, b, off))
-            guard.append("#else")
-            for a in used:
-                guard.append("#define G1N_%08x 0x%08xul" % (a, a))
-            guard.append("#endif")
-            new = "\n".join(guard) + "\n" + new
+            new = "\n".join(guard_block(used, addr2block)) + "\n" + new
         open(path, "w").write(new)
         n_files += 1
         n_sites += hits

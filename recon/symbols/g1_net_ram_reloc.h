@@ -8,13 +8,6 @@
 #define G1_NET_RAM_RELOC_H_
 
 #ifdef G1_COHESIVE_BUILD
-extern unsigned char g1_net_ram_blk_21000000[];
-extern unsigned char g1_net_ram_blk_21000120[];
-extern unsigned char g1_net_ram_blk_210001d0[];
-extern unsigned char g1_net_ram_blk_21000308[];
-extern unsigned char g1_net_ram_blk_21000340[];
-extern unsigned char g1_net_ram_blk_21000400[];
-extern unsigned char g1_net_ram_blk_210004a8[];
 extern unsigned char g1_net_ram_blk_21000570[];
 extern unsigned char g1_net_ram_blk_210005e8[];
 extern unsigned char g1_net_ram_blk_21000658[];
@@ -79,58 +72,67 @@ extern unsigned char g1_net_ram_blk_21006458[];
 extern unsigned char g1_net_ram_blk_21007d80[];
 extern unsigned char g1_net_ram_blk_21008a00[];
 
-#define G1N_21000000 ((unsigned long)(g1_net_ram_blk_21000000 + 0x0))
-#define G1N_21000008 ((unsigned long)(g1_net_ram_blk_21000000 + 0x8))
-#define G1N_21000010 ((unsigned long)(g1_net_ram_blk_21000000 + 0x10))
-#define G1N_21000018 ((unsigned long)(g1_net_ram_blk_21000000 + 0x18))
-#define G1N_2100001c ((unsigned long)(g1_net_ram_blk_21000000 + 0x1c))
-#define G1N_21000020 ((unsigned long)(g1_net_ram_blk_21000000 + 0x20))
-#define G1N_21000028 ((unsigned long)(g1_net_ram_blk_21000000 + 0x28))
-#define G1N_2100003c ((unsigned long)(g1_net_ram_blk_21000000 + 0x3c))
-#define G1N_21000040 ((unsigned long)(g1_net_ram_blk_21000000 + 0x40))
-#define G1N_21000044 ((unsigned long)(g1_net_ram_blk_21000000 + 0x44))
-#define G1N_21000048 ((unsigned long)(g1_net_ram_blk_21000000 + 0x48))
-#define G1N_2100004c ((unsigned long)(g1_net_ram_blk_21000000 + 0x4c))
-#define G1N_21000050 ((unsigned long)(g1_net_ram_blk_21000000 + 0x50))
-#define G1N_21000054 ((unsigned long)(g1_net_ram_blk_21000000 + 0x54))
-#define G1N_21000058 ((unsigned long)(g1_net_ram_blk_21000000 + 0x58))
-#define G1N_2100005c ((unsigned long)(g1_net_ram_blk_21000000 + 0x5c))
-#define G1N_21000078 ((unsigned long)(g1_net_ram_blk_21000000 + 0x78))
-#define G1N_21000124 ((unsigned long)(g1_net_ram_blk_21000120 + 0x4))
-#define G1N_210001d0 ((unsigned long)(g1_net_ram_blk_210001d0 + 0x0))
-#define G1N_210001d4 ((unsigned long)(g1_net_ram_blk_210001d0 + 0x4))
-#define G1N_210001dc ((unsigned long)(g1_net_ram_blk_210001d0 + 0xc))
-#define G1N_210001e0 ((unsigned long)(g1_net_ram_blk_210001d0 + 0x10))
-#define G1N_210001e4 ((unsigned long)(g1_net_ram_blk_210001d0 + 0x14))
-#define G1N_210001e8 ((unsigned long)(g1_net_ram_blk_210001d0 + 0x18))
-#define G1N_210001ec ((unsigned long)(g1_net_ram_blk_210001d0 + 0x1c))
-#define G1N_210001f4 ((unsigned long)(g1_net_ram_blk_210001d0 + 0x24))
-#define G1N_21000204 ((unsigned long)(g1_net_ram_blk_210001d0 + 0x34))
-#define G1N_2100020c ((unsigned long)(g1_net_ram_blk_210001d0 + 0x3c))
-#define G1N_21000214 ((unsigned long)(g1_net_ram_blk_210001d0 + 0x44))
-#define G1N_21000308 ((unsigned long)(g1_net_ram_blk_21000308 + 0x0))
-#define G1N_21000344 ((unsigned long)(g1_net_ram_blk_21000340 + 0x4))
-#define G1N_21000354 ((unsigned long)(g1_net_ram_blk_21000340 + 0x14))
-#define G1N_21000400 ((unsigned long)(g1_net_ram_blk_21000400 + 0x0))
-#define G1N_210004ac ((unsigned long)(g1_net_ram_blk_210004a8 + 0x4))
-#define G1N_210004b0 ((unsigned long)(g1_net_ram_blk_210004a8 + 0x8))
-#define G1N_210004b4 ((unsigned long)(g1_net_ram_blk_210004a8 + 0xc))
-#define G1N_210004c8 ((unsigned long)(g1_net_ram_blk_210004a8 + 0x20))
-#define G1N_210004d0 ((unsigned long)(g1_net_ram_blk_210004a8 + 0x28))
-#define G1N_210004d8 ((unsigned long)(g1_net_ram_blk_210004a8 + 0x30))
-#define G1N_210004dc ((unsigned long)(g1_net_ram_blk_210004a8 + 0x34))
-#define G1N_210004e0 ((unsigned long)(g1_net_ram_blk_210004a8 + 0x38))
-#define G1N_210004e8 ((unsigned long)(g1_net_ram_blk_210004a8 + 0x40))
-#define G1N_210004f0 ((unsigned long)(g1_net_ram_blk_210004a8 + 0x48))
-#define G1N_210004f8 ((unsigned long)(g1_net_ram_blk_210004a8 + 0x50))
-#define G1N_21000500 ((unsigned long)(g1_net_ram_blk_210004a8 + 0x58))
-#define G1N_21000508 ((unsigned long)(g1_net_ram_blk_210004a8 + 0x60))
-#define G1N_21000510 ((unsigned long)(g1_net_ram_blk_210004a8 + 0x68))
-#define G1N_21000518 ((unsigned long)(g1_net_ram_blk_210004a8 + 0x70))
-#define G1N_21000520 ((unsigned long)(g1_net_ram_blk_210004a8 + 0x78))
-#define G1N_21000528 ((unsigned long)(g1_net_ram_blk_210004a8 + 0x80))
-#define G1N_2100052c ((unsigned long)(g1_net_ram_blk_210004a8 + 0x84))
-#define G1N_21000530 ((unsigned long)(g1_net_ram_blk_210004a8 + 0x88))
+/* P4 iteration 27: stock-library `.data` anchors.  The addresses bound
+   against these are NOT recovered-owned RAM -- they are the `.data` of
+   the stock SoftDevice Controller / MPSL front-end-module archives, which
+   this link places at exactly their shipped addresses (proven by
+   recon/application/verify_net_stock_data_window.py).  Relocating them
+   would give the recovered accessor private storage instead of the live
+   library object. */
+extern unsigned char __data_start[];
+
+#define G1N_21000000 ((unsigned long)(__data_start + 0x0))
+#define G1N_21000008 ((unsigned long)(__data_start + 0x8))
+#define G1N_21000010 ((unsigned long)(__data_start + 0x10))
+#define G1N_21000018 ((unsigned long)(__data_start + 0x18))
+#define G1N_2100001c ((unsigned long)(__data_start + 0x1c))
+#define G1N_21000020 ((unsigned long)(__data_start + 0x20))
+#define G1N_21000028 ((unsigned long)(__data_start + 0x28))
+#define G1N_2100003c ((unsigned long)(__data_start + 0x3c))
+#define G1N_21000040 ((unsigned long)(__data_start + 0x40))
+#define G1N_21000044 ((unsigned long)(__data_start + 0x44))
+#define G1N_21000048 ((unsigned long)(__data_start + 0x48))
+#define G1N_2100004c ((unsigned long)(__data_start + 0x4c))
+#define G1N_21000050 ((unsigned long)(__data_start + 0x50))
+#define G1N_21000054 ((unsigned long)(__data_start + 0x54))
+#define G1N_21000058 ((unsigned long)(__data_start + 0x58))
+#define G1N_2100005c ((unsigned long)(__data_start + 0x5c))
+#define G1N_21000078 ((unsigned long)(__data_start + 0x78))
+#define G1N_21000124 ((unsigned long)(__data_start + 0x124))
+#define G1N_210001d0 ((unsigned long)(__data_start + 0x1d0))
+#define G1N_210001d4 ((unsigned long)(__data_start + 0x1d4))
+#define G1N_210001dc ((unsigned long)(__data_start + 0x1dc))
+#define G1N_210001e0 ((unsigned long)(__data_start + 0x1e0))
+#define G1N_210001e4 ((unsigned long)(__data_start + 0x1e4))
+#define G1N_210001e8 ((unsigned long)(__data_start + 0x1e8))
+#define G1N_210001ec ((unsigned long)(__data_start + 0x1ec))
+#define G1N_210001f4 ((unsigned long)(__data_start + 0x1f4))
+#define G1N_21000204 ((unsigned long)(__data_start + 0x204))
+#define G1N_2100020c ((unsigned long)(__data_start + 0x20c))
+#define G1N_21000214 ((unsigned long)(__data_start + 0x214))
+#define G1N_21000308 ((unsigned long)(__data_start + 0x308))
+#define G1N_21000344 ((unsigned long)(__data_start + 0x344))
+#define G1N_21000354 ((unsigned long)(__data_start + 0x354))
+#define G1N_21000400 ((unsigned long)(__data_start + 0x400))
+#define G1N_210004ac ((unsigned long)(__data_start + 0x4ac))
+#define G1N_210004b0 ((unsigned long)(__data_start + 0x4b0))
+#define G1N_210004b4 ((unsigned long)(__data_start + 0x4b4))
+#define G1N_210004c8 ((unsigned long)(__data_start + 0x4c8))
+#define G1N_210004d0 ((unsigned long)(__data_start + 0x4d0))
+#define G1N_210004d8 ((unsigned long)(__data_start + 0x4d8))
+#define G1N_210004dc ((unsigned long)(__data_start + 0x4dc))
+#define G1N_210004e0 ((unsigned long)(__data_start + 0x4e0))
+#define G1N_210004e8 ((unsigned long)(__data_start + 0x4e8))
+#define G1N_210004f0 ((unsigned long)(__data_start + 0x4f0))
+#define G1N_210004f8 ((unsigned long)(__data_start + 0x4f8))
+#define G1N_21000500 ((unsigned long)(__data_start + 0x500))
+#define G1N_21000508 ((unsigned long)(__data_start + 0x508))
+#define G1N_21000510 ((unsigned long)(__data_start + 0x510))
+#define G1N_21000518 ((unsigned long)(__data_start + 0x518))
+#define G1N_21000520 ((unsigned long)(__data_start + 0x520))
+#define G1N_21000528 ((unsigned long)(__data_start + 0x528))
+#define G1N_2100052c ((unsigned long)(__data_start + 0x52c))
+#define G1N_21000530 ((unsigned long)(__data_start + 0x530))
 #define G1N_21000574 ((unsigned long)(g1_net_ram_blk_21000570 + 0x4))
 #define G1N_2100057c ((unsigned long)(g1_net_ram_blk_21000570 + 0xc))
 #define G1N_21000580 ((unsigned long)(g1_net_ram_blk_21000570 + 0x10))

@@ -1,0 +1,1189 @@
+{
+ "core": "net",
+ "iteration": 27,
+ "component": "mpsl_fem_common + softdevice_controller",
+ "question": "iteration 26 named 14 unresolved Ghidra-gap analysis addresses reached through the CPUNET radio-arbitration ops table and asked for them to be reconstructed; this record is the byte evidence that they are STOCK library code this link already contains, so branch (b) -- respect the existing owner -- applies and reconstruction would duplicate singletons.",
+ "ops_table": {
+  "pointer_word": "0x21000530",
+  "pointer_word_shipped_value": "0x21000534",
+  "table": "0x21000534..0x21000574 (0x40 B, 16 function pointers)",
+  "our_link_owner_pointer_word": "libmpsl_fem_common.a(libmpsl_fem_common_debug_soft__obfuscated.elf) .data, 4 B at 0x21000530",
+  "our_link_owner_table": "libmpsl_fem_common.a(...) .data, 0x40 B at 0x21000534, symbol sym_NIQMZN22R7GGCSNM3BZ25GTCR6D457XB3DIUGWA",
+  "identity": "the MPSL front-end-module API vtable and the p_api pointer that selects it; the 16 entries are the 'no FEM present' stubs (return 0 / return -1 / bx lr / strb 0,[r0])",
+  "secondary_table": {
+   "range": "0x210004e0..0x21000528",
+   "shape": "9 x {void (*fn)(void); 0}",
+   "our_link_owner": "libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf) .data"
+  }
+ },
+ "gap_addresses_from_iteration_26": [
+  {
+   "analysis_address": "0x0101f6dc",
+   "shipped_runtime": "0x101fedd",
+   "table": "secondary (SDC)",
+   "slot": "A0 fem/radio arb entry",
+   "our_link_address": "0x101fea8",
+   "displacement": "0x34",
+   "byte_identical_first_24B": false,
+   "verdict": "stock library code already linked -- do NOT reconstruct"
+  },
+  {
+   "analysis_address": "0x0101f718",
+   "shipped_runtime": "0x101ff19",
+   "table": "secondary (SDC)",
+   "slot": "A7",
+   "our_link_address": "0x101fee4",
+   "displacement": "0x34",
+   "byte_identical_first_24B": false,
+   "verdict": "stock library code already linked -- do NOT reconstruct"
+  },
+  {
+   "analysis_address": "0x0102953c",
+   "shipped_runtime": "0x1029d3d",
+   "table": "secondary (SDC)",
+   "slot": "A6",
+   "our_link_address": "0x1029d08",
+   "displacement": "0x34",
+   "byte_identical_first_24B": true,
+   "verdict": "stock library code already linked -- do NOT reconstruct"
+  },
+  {
+   "analysis_address": "0x01029540",
+   "shipped_runtime": "0x1029d41",
+   "table": "secondary (SDC)",
+   "slot": "A8",
+   "our_link_address": "0x1029d0c",
+   "displacement": "0x34",
+   "byte_identical_first_24B": false,
+   "verdict": "stock library code already linked -- do NOT reconstruct"
+  },
+  {
+   "analysis_address": "0x01029586",
+   "shipped_runtime": "0x1029d87",
+   "table": "secondary (SDC)",
+   "slot": "A5",
+   "our_link_address": "0x1029d52",
+   "displacement": "0x34",
+   "byte_identical_first_24B": false,
+   "verdict": "stock library code already linked -- do NOT reconstruct"
+  },
+  {
+   "analysis_address": "0x0102959e",
+   "shipped_runtime": "0x1029d9f",
+   "table": "secondary (SDC)",
+   "slot": "A3",
+   "our_link_address": "0x1029d6a",
+   "displacement": "0x34",
+   "byte_identical_first_24B": true,
+   "verdict": "stock library code already linked -- do NOT reconstruct"
+  },
+  {
+   "analysis_address": "0x010295a2",
+   "shipped_runtime": "0x1029da3",
+   "table": "secondary (SDC)",
+   "slot": "A4",
+   "our_link_address": "0x1029d6e",
+   "displacement": "0x34",
+   "byte_identical_first_24B": false,
+   "verdict": "stock library code already linked -- do NOT reconstruct"
+  },
+  {
+   "analysis_address": "0x010295bc",
+   "shipped_runtime": "0x1029dbd",
+   "table": "secondary (SDC)",
+   "slot": "A2",
+   "our_link_address": "0x1029d88",
+   "displacement": "0x34",
+   "byte_identical_first_24B": false,
+   "verdict": "stock library code already linked -- do NOT reconstruct"
+  },
+  {
+   "analysis_address": "0x010294ee",
+   "shipped_runtime": "0x1029cef",
+   "table": "secondary (SDC)",
+   "slot": "A1",
+   "our_link_address": "0x1029cba",
+   "displacement": "0x34",
+   "byte_identical_first_24B": false,
+   "verdict": "stock library code already linked -- do NOT reconstruct"
+  },
+  {
+   "analysis_address": "0x01029cd8",
+   "shipped_runtime": "0x102a4d9",
+   "table": "FEM API vtable",
+   "slot": "B0",
+   "our_link_address": "0x102a4a4",
+   "displacement": "0x34",
+   "byte_identical_first_24B": true,
+   "verdict": "stock library code already linked -- do NOT reconstruct"
+  },
+  {
+   "analysis_address": "0x01029cdc",
+   "shipped_runtime": "0x102a4dd",
+   "table": "FEM API vtable",
+   "slot": "B2",
+   "our_link_address": "0x102a4a8",
+   "displacement": "0x34",
+   "byte_identical_first_24B": true,
+   "verdict": "stock library code already linked -- do NOT reconstruct"
+  },
+  {
+   "analysis_address": "0x01029ce2",
+   "shipped_runtime": "0x102a4e3",
+   "table": "FEM API vtable",
+   "slot": "B4",
+   "our_link_address": "0x102a4ae",
+   "displacement": "0x34",
+   "byte_identical_first_24B": true,
+   "verdict": "stock library code already linked -- do NOT reconstruct"
+  },
+  {
+   "analysis_address": "0x01029d10",
+   "shipped_runtime": "0x102a511",
+   "table": "FEM API vtable",
+   "slot": "B1",
+   "our_link_address": "0x102a4dc",
+   "displacement": "0x34",
+   "byte_identical_first_24B": true,
+   "verdict": "stock library code already linked -- do NOT reconstruct"
+  },
+  {
+   "analysis_address": "0x01029d1a",
+   "shipped_runtime": "0x102a51b",
+   "table": "FEM API vtable",
+   "slot": "B3",
+   "our_link_address": "0x102a4e6",
+   "displacement": "0x34",
+   "byte_identical_first_24B": true,
+   "verdict": "stock library code already linked -- do NOT reconstruct"
+  }
+ ],
+ "evidence": {
+  "data_window": {
+   "core": "net",
+   "window": [
+    "0x21000000",
+    "0x21000574"
+   ],
+   "elf": "/private/tmp/g1-i27b-net/zephyr/zephyr.elf",
+   "shipped_data_image": {
+    "lma_runtime": "0x103ed24",
+    "vma": "0x21000000",
+    "length": "0xc3c"
+   },
+   "words_total": 349,
+   "words_equal": 256,
+   "words_differing_flash_pointer": 93,
+   "words_differing_other": [],
+   "pointer_deltas": {
+    "0x34": [
+     "0x210004e0",
+     "0x210004e8",
+     "0x210004f0",
+     "0x210004f8",
+     "0x21000500",
+     "0x21000508",
+     "0x21000510",
+     "0x21000518",
+     "0x21000520",
+     "0x21000534",
+     "0x21000538",
+     "0x2100053c",
+     "0x21000540",
+     "0x21000544",
+     "0x21000548",
+     "0x2100054c",
+     "0x21000550",
+     "0x21000554",
+     "0x21000558",
+     "0x2100055c",
+     "0x21000560",
+     "0x21000564",
+     "0x21000568",
+     "0x2100056c",
+     "0x21000570"
+    ],
+    "0xa0": [
+     "0x21000218",
+     "0x2100021c",
+     "0x21000220",
+     "0x21000224",
+     "0x21000228",
+     "0x2100022c",
+     "0x21000230",
+     "0x21000234",
+     "0x21000238",
+     "0x2100023c",
+     "0x21000240",
+     "0x21000244",
+     "0x21000248",
+     "0x2100024c",
+     "0x21000250",
+     "0x21000254",
+     "0x21000258",
+     "0x2100025c",
+     "0x21000260",
+     "0x21000264",
+     "0x21000268",
+     "0x2100026c",
+     "0x21000270",
+     "0x21000274",
+     "0x21000278",
+     "0x2100027c",
+     "0x21000280",
+     "0x21000284",
+     "0x21000288",
+     "0x2100028c",
+     "0x21000290",
+     "0x21000294",
+     "0x21000298",
+     "0x2100029c",
+     "0x210002a0",
+     "0x210002a4",
+     "0x210002a8",
+     "0x210002ac",
+     "0x210002b0",
+     "0x210002b4",
+     "0x210002b8",
+     "0x210002bc",
+     "0x210002c0",
+     "0x210002c4",
+     "0x210002c8",
+     "0x210002cc",
+     "0x210002d0",
+     "0x210002d4",
+     "0x210002d8",
+     "0x210002dc",
+     "0x210002e0",
+     "0x210002e4",
+     "0x210002e8",
+     "0x210002ec",
+     "0x210002f0",
+     "0x210002f4",
+     "0x210002f8",
+     "0x210002fc",
+     "0x21000300",
+     "0x21000304",
+     "0x2100030c",
+     "0x21000310",
+     "0x21000328",
+     "0x2100032c",
+     "0x21000344",
+     "0x21000348",
+     "0x2100034c",
+     "0x21000350"
+    ]
+   },
+   "map_input_sections": [
+    [
+     "0x21000000",
+     68,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000044",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000048",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x2100004c",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000050",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000054",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000058",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x2100005c",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000060",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000064",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000068",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x2100006c",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000070",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000074",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000078",
+     172,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000124",
+     172,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210001d0",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210001d4",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210001d8",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210001dc",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210001e4",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210001ec",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210001f0",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210001f4",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210001f8",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210001fc",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000200",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000204",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x2100020c",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000214",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000218",
+     60,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000254",
+     60,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000290",
+     16,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210002a0",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210002a8",
+     24,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210002c0",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210002c8",
+     24,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210002e0",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210002e8",
+     24,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000300",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000308",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x2100030c",
+     28,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000328",
+     28,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000344",
+     16,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000354",
+     172,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000400",
+     172,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004ac",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004b0",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004b4",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004b8",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004bc",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004c0",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004c4",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004c8",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004cc",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004d0",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004d4",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004d8",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004dc",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004e0",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004e8",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004f0",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x210004f8",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000500",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000508",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000510",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000518",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000520",
+     8,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000528",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x2100052c",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000530",
+     4,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/mpsl/fem/common/lib/cortex-m33+nodsp/soft-float/libmpsl_fem_common.a(libmpsl_fem_common_debug_soft__obfuscated.elf)"
+    ],
+    [
+     "0x21000534",
+     64,
+     ".data",
+     "/Users/freedomcoder/ncs251/nrfxlib/mpsl/fem/common/lib/cortex-m33+nodsp/soft-float/libmpsl_fem_common.a(libmpsl_fem_common_debug_soft__obfuscated.elf)"
+    ]
+   ],
+   "non_stock_input_sections": [],
+   "verdict": "PROVEN"
+  },
+  "ops_table_targets_code_compare": [
+   {
+    "label": "A0 fem/radio arb entry",
+    "shipped_runtime": "0x101fedd",
+    "shipped_analysis": "0x101f6dc",
+    "ours": "0x101fea8",
+    "size": 24,
+    "insns": 8,
+    "displacement_normalised_identical": false,
+    "byte_identical": false,
+    "diffs": [
+     {
+      "index": 1,
+      "shipped": "bl #0x1012a68",
+      "ours": "bl #0x10129fc"
+     },
+     {
+      "index": 2,
+      "shipped": "bl #0x1014330",
+      "ours": "bl #0x10142c4"
+     },
+     {
+      "index": 5,
+      "shipped": "b.w #0x10129a4",
+      "ours": "b.w #0x1012938"
+     },
+     {
+      "index": 6,
+      "shipped": "asrs r0, r6, #8",
+      "ours": "asrs r0, r4, #0xc"
+     }
+    ]
+   },
+   {
+    "label": "A1",
+    "shipped_runtime": "0x1029cef",
+    "shipped_analysis": "0x10294ee",
+    "ours": "0x1029cba",
+    "size": 40,
+    "insns": 13,
+    "displacement_normalised_identical": false,
+    "byte_identical": false,
+    "diffs": [
+     {
+      "index": 1,
+      "shipped": "bl #0x1014248",
+      "ours": "bl #0x10141dc"
+     },
+     {
+      "index": 2,
+      "shipped": "cbz r0, #0x1029d00",
+      "ours": "cbz r0, #0x1029ccc"
+     },
+     {
+      "index": 5,
+      "shipped": "bl #0x1009500",
+      "ours": "bl #0x10094d8"
+     },
+     {
+      "index": 6,
+      "shipped": "bl #0x1012978",
+      "ours": "bl #0x101290c"
+     },
+     {
+      "index": 7,
+      "shipped": "cbz r0, #0x1029d0c",
+      "ours": "cbz r0, #0x1029cd8"
+     }
+    ]
+   },
+   {
+    "label": "A2",
+    "shipped_runtime": "0x1029dbd",
+    "shipped_analysis": "0x10295bc",
+    "ours": "0x1029d88",
+    "size": 26,
+    "insns": 7,
+    "displacement_normalised_identical": false,
+    "byte_identical": false,
+    "diffs": [
+     {
+      "index": 1,
+      "shipped": "bl #0x1019598",
+      "ours": "bl #0x101952c"
+     },
+     {
+      "index": 4,
+      "shipped": "bl #0x101e12c",
+      "ours": "bl #0x101e0c0"
+     },
+     {
+      "index": 6,
+      "shipped": "b.w #0x100f420",
+      "ours": "b.w #0x100f3b4"
+     }
+    ]
+   },
+   {
+    "label": "A3",
+    "shipped_runtime": "0x1029d9f",
+    "shipped_analysis": "0x102959e",
+    "ours": "0x1029d6a",
+    "size": 4,
+    "insns": 1,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "A4",
+    "shipped_runtime": "0x1029da3",
+    "shipped_analysis": "0x10295a2",
+    "ours": "0x1029d6e",
+    "size": 26,
+    "insns": 7,
+    "displacement_normalised_identical": false,
+    "byte_identical": false,
+    "diffs": [
+     {
+      "index": 1,
+      "shipped": "bl #0x1019584",
+      "ours": "bl #0x1019518"
+     },
+     {
+      "index": 4,
+      "shipped": "bl #0x101e12c",
+      "ours": "bl #0x101e0c0"
+     },
+     {
+      "index": 6,
+      "shipped": "b.w #0x100f420",
+      "ours": "b.w #0x100f3b4"
+     }
+    ]
+   },
+   {
+    "label": "A5",
+    "shipped_runtime": "0x1029d87",
+    "shipped_analysis": "0x1029586",
+    "ours": "0x1029d52",
+    "size": 24,
+    "insns": 8,
+    "displacement_normalised_identical": false,
+    "byte_identical": false,
+    "diffs": [
+     {
+      "index": 2,
+      "shipped": "bl #0x101e128",
+      "ours": "bl #0x101e0bc"
+     },
+     {
+      "index": 3,
+      "shipped": "cbz r0, #0x1029d9c",
+      "ours": "cbz r0, #0x1029d68"
+     },
+     {
+      "index": 6,
+      "shipped": "bl #0x1009500",
+      "ours": "bl #0x10094d8"
+     }
+    ]
+   },
+   {
+    "label": "A6",
+    "shipped_runtime": "0x1029d3d",
+    "shipped_analysis": "0x102953c",
+    "ours": "0x1029d08",
+    "size": 4,
+    "insns": 1,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "A7",
+    "shipped_runtime": "0x101ff19",
+    "shipped_analysis": "0x101f718",
+    "ours": "0x101fee4",
+    "size": 30,
+    "insns": 9,
+    "displacement_normalised_identical": false,
+    "byte_identical": false,
+    "diffs": [
+     {
+      "index": 4,
+      "shipped": "bl #0x1012a78",
+      "ours": "bl #0x1012a0c"
+     },
+     {
+      "index": 5,
+      "shipped": "bl #0x10165cc",
+      "ours": "bl #0x1016560"
+     },
+     {
+      "index": 8,
+      "shipped": "b.w #0x100f430",
+      "ours": "b.w #0x100f3c4"
+     }
+    ]
+   },
+   {
+    "label": "A8",
+    "shipped_runtime": "0x1029d41",
+    "shipped_analysis": "0x1029540",
+    "ours": "0x1029d0c",
+    "size": 24,
+    "insns": 8,
+    "displacement_normalised_identical": false,
+    "byte_identical": false,
+    "diffs": [
+     {
+      "index": 2,
+      "shipped": "bl #0x10165bc",
+      "ours": "bl #0x1016550"
+     },
+     {
+      "index": 3,
+      "shipped": "cbz r0, #0x1029d56",
+      "ours": "cbz r0, #0x1029d22"
+     },
+     {
+      "index": 6,
+      "shipped": "bl #0x1009500",
+      "ours": "bl #0x10094d8"
+     }
+    ]
+   },
+   {
+    "label": "B0",
+    "shipped_runtime": "0x102a4d9",
+    "shipped_analysis": "0x1029cd8",
+    "ours": "0x102a4a4",
+    "size": 4,
+    "insns": 2,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "B1",
+    "shipped_runtime": "0x102a511",
+    "shipped_analysis": "0x1029d10",
+    "ours": "0x102a4dc",
+    "size": 6,
+    "insns": 2,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "B2",
+    "shipped_runtime": "0x102a4dd",
+    "shipped_analysis": "0x1029cdc",
+    "ours": "0x102a4a8",
+    "size": 6,
+    "insns": 2,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "B3",
+    "shipped_runtime": "0x102a51b",
+    "shipped_analysis": "0x1029d1a",
+    "ours": "0x102a4e6",
+    "size": 6,
+    "insns": 2,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "B4",
+    "shipped_runtime": "0x102a4e3",
+    "shipped_analysis": "0x1029ce2",
+    "ours": "0x102a4ae",
+    "size": 6,
+    "insns": 2,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "B5",
+    "shipped_runtime": "0x102a521",
+    "shipped_analysis": "0x1029d20",
+    "ours": "0x102a4ec",
+    "size": 6,
+    "insns": 2,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "B6",
+    "shipped_runtime": "0x102a4e9",
+    "shipped_analysis": "0x1029ce8",
+    "ours": "0x102a4b4",
+    "size": 2,
+    "insns": 1,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "B7",
+    "shipped_runtime": "0x102a4eb",
+    "shipped_analysis": "0x1029cea",
+    "ours": "0x102a4b6",
+    "size": 2,
+    "insns": 1,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "B8",
+    "shipped_runtime": "0x102a4ed",
+    "shipped_analysis": "0x1029cec",
+    "ours": "0x102a4b8",
+    "size": 4,
+    "insns": 2,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "B9",
+    "shipped_runtime": "0x102a4fb",
+    "shipped_analysis": "0x1029cfa",
+    "ours": "0x102a4c6",
+    "size": 14,
+    "insns": 5,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "B10",
+    "shipped_runtime": "0x102a50b",
+    "shipped_analysis": "0x1029d0a",
+    "ours": "0x102a4d6",
+    "size": 6,
+    "insns": 3,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "B11",
+    "shipped_runtime": "0x102a52d",
+    "shipped_analysis": "0x1029d2c",
+    "ours": "0x102a4f8",
+    "size": 6,
+    "insns": 3,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "B12",
+    "shipped_runtime": "0x102a4f1",
+    "shipped_analysis": "0x1029cf0",
+    "ours": "0x102a4bc",
+    "size": 6,
+    "insns": 2,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "B13",
+    "shipped_runtime": "0x102a4f7",
+    "shipped_analysis": "0x1029cf6",
+    "ours": "0x102a4c2",
+    "size": 4,
+    "insns": 2,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "B14",
+    "shipped_runtime": "0x102a517",
+    "shipped_analysis": "0x1029d16",
+    "ours": "0x102a4e2",
+    "size": 4,
+    "insns": 2,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   },
+   {
+    "label": "B15",
+    "shipped_runtime": "0x102a527",
+    "shipped_analysis": "0x1029d26",
+    "ours": "0x102a4f2",
+    "size": 6,
+    "insns": 2,
+    "displacement_normalised_identical": true,
+    "byte_identical": true,
+    "diffs": []
+   }
+  ],
+  "table_a_normalised_compare": [
+   {
+    "label": "A0",
+    "shipped": "0x101fedc",
+    "ours": "0x101fea8",
+    "insns": 8,
+    "opcode_mismatches": []
+   },
+   {
+    "label": "A1",
+    "shipped": "0x1029cee",
+    "ours": "0x1029cba",
+    "insns": 13,
+    "opcode_mismatches": []
+   },
+   {
+    "label": "A2",
+    "shipped": "0x1029dbc",
+    "ours": "0x1029d88",
+    "insns": 7,
+    "opcode_mismatches": []
+   },
+   {
+    "label": "A3",
+    "shipped": "0x1029d9e",
+    "ours": "0x1029d6a",
+    "insns": 1,
+    "opcode_mismatches": []
+   },
+   {
+    "label": "A4",
+    "shipped": "0x1029da2",
+    "ours": "0x1029d6e",
+    "insns": 7,
+    "opcode_mismatches": []
+   },
+   {
+    "label": "A5",
+    "shipped": "0x1029d86",
+    "ours": "0x1029d52",
+    "insns": 8,
+    "opcode_mismatches": []
+   },
+   {
+    "label": "A6",
+    "shipped": "0x1029d3c",
+    "ours": "0x1029d08",
+    "insns": 1,
+    "opcode_mismatches": []
+   },
+   {
+    "label": "A7",
+    "shipped": "0x101ff18",
+    "ours": "0x101fee4",
+    "insns": 9,
+    "opcode_mismatches": []
+   },
+   {
+    "label": "A8",
+    "shipped": "0x1029d40",
+    "ours": "0x1029d0c",
+    "insns": 8,
+    "opcode_mismatches": []
+   }
+  ]
+ },
+ "conclusion": {
+  "classification": "adopt_upstream_exclude_reconstruction",
+  "reason": "our linked .data window 0x21000000..0x21000574 is byte-identical to the shipped .data except for 93 flash code pointers whose differences collapse to exactly two per-archive constants (0xa0, 0x34); all 16 ops-table targets are byte-identical to the shipped code at -0x34 and all 62 instructions of the 9 secondary-table targets match opcode-for-opcode with only per-archive branch displacements differing.",
+  "action": "bind the recovered pins to `__data_start + <shipped .data offset>` instead of to a fabricated relocation block (recon/application/gen_net_ram_relocs.py STOCK_DATA_WINDOWS); reconstruct nothing."
+ }
+}

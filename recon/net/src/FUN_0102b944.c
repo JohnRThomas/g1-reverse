@@ -1,4 +1,4 @@
-/* P4 iteration 26 - structural CPUNET RAM relocation.  Self-contained
+/* P4 iteration 26/27 - structural CPUNET RAM relocation.  Self-contained
    so tools/parity keeps compiling this canonical body unchanged: the
    #else arm is the shipped literal.  See recon/application/
    gen_net_ram_relocs.py and recon/symbols/g1_net_ram_reloc.h. */
