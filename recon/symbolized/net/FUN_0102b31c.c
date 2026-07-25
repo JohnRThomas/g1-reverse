@@ -35,14 +35,51 @@ int FUN_0102b31c(int param_1)
   volatile int * const p3e8 = (volatile int *)((unsigned long)&g_zephyr_log_level) /*=0x21000580*/;
 
   /* Five-word radio configuration assembled from the firmware template at
-     0x0103c100, with its mode and runtime fields overridden below. */
+     RUNTIME address 0x0103c100 (= analysis 0x0103b900), with its mode and
+     runtime fields overridden below.  Shipped prologue:
+         ldr r5,[pc] ; = 0x0103c100  (a RUNTIME flash pointer)
+         ldm r5!,{r0,r1,r2,r3} ; stm r4!,{r0,r1,r2,r3}    -> config[0..3]
+         str  r3,[sp,#8]       -> config[1] = 0x0102bd0d  (event handler)
+         strb r3,[sp,#5]       -> config[0] byte 1 = (param_1 != 0)  (mode)
+         strd r2,r3,[sp,#0x10] -> config[3] = 0x0005012c, config[4] = 0x0101fb02
+     Only config[0] bytes 0/2/3 and config[2] survive from the template.
+
+     P4 iteration 24 - COORDINATE-SPACE DEFECT (the class tools/NET_PLAYBOOK.md
+     warns about).  The template had been read at ANALYSIS 0x0103c100 instead of
+     RUNTIME 0x0103c100, giving {0x21002388, _, 0x0103aac3, _} in place of the
+     real {0x00000001, _, 0x00000201, _}
+     (net_extract.read_runtime(0x0103c100,0x10) = 01 00 00 00 00 00 00 00
+      01 02 00 00 58 02 03 00).  Consequence, measured in iteration 23:
+     FUN_010333b4 saw saved[0] = 0x88 (not the ESB protocol 1 = DPL) and
+     saved[9] = 0xaa (not the CRC selector 2), so it took NEITHER packet-config
+     branch, never wrote the RADIO packet-configuration callback slot, never
+     programmed CRCCNF/CRCPOLY, and no ESB frame was ever keyed.
+     The corrected bytes reproduce the nRF ESB `struct esb_config` exactly:
+       +0x00 protocol=1(DPL) +0x01 mode +0x04 event_handler +0x08 bitrate=1
+       +0x09 crc=2(16-bit, matches the 0x11021 poly FUN_010333b4 programs)
+       +0x0a tx_output_power=0 +0x0c retransmit_delay=300us +0x0e count=5
+       +0x10 tx_mode=2 +0x11 payload_length=0xfb(251, DPL max)
+       +0x12 selective_auto_ack=1 +0x13 use_fast_ramp_up=1 */
   uint32_t config[5];
   int iVar2;
   int iVar1;
 
-  config[0] = 0x21000088u | ((param_1 != 0) ? 0x100u : 0u);
+  config[0] = 0x00000001u | ((param_1 != 0) ? 0x100u : 0u);
+#ifdef G1_COHESIVE_BUILD
+  /* P4 iteration 24 - CODE POINTER.  0x0102bd0d is a RUNTIME Thumb pointer;
+     runtime->analysis is -0x800, so it is (0x0102b50c | 1) = FUN_0102b50c, the
+     ESB event handler, recovered this iteration from the Ghidra gap
+     0x0102b488..0x0102b50c and proven at 400/400 directed trials.  Left as the
+     shipped literal the relocated build hands the ESB driver an address inside
+     unrelated code: measured, the announcement was transmitted ONCE and never
+     re-armed, because event id 1 (TX success) is what calls
+     FUN_0102b3f0(0) -> esb_start_tx again.  Parity keeps the literal. */
+  extern void FUN_0102b50c(const void *event);
+  config[1] = (uint32_t)(unsigned long)&FUN_0102b50c;
+#else
   config[1] = 0x0102bd0du;
-  config[2] = 0x0103aac3u;
+#endif
+  config[2] = 0x00000201u;
   config[3] = 0x0005012cu;
   config[4] = 0x0101fb02u;
 

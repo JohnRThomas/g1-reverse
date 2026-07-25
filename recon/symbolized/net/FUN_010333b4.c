@@ -163,7 +163,7 @@ int FUN_010333b4(const uint32_t *configuration)
     clear_radio_storage(0x210049b4U, 0, 0x20);
     struct timer_init timer = { 1000000U, 0, 0 };
     status = (int)start_radio_owner_timer(((unsigned long)&g_net_log_msg_ctx) /*=0x21000698*/, &timer,
-                                          ((unsigned long)&rodata_1032fbd) /*=0x1032fbd*/);
+                                          ADDR_FUN_010327bc_THUMB /*=0x1032fbd*/);
     if ((uint32_t)status != 0x0bad0000U) {
         struct { uint32_t count, text, code; } first = {
             3, ((unsigned long)&rodata_103e414) /*=0x103e414*/, (uint32_t)status
@@ -187,9 +187,9 @@ int FUN_010333b4(const uint32_t *configuration)
     configure_radio_irq(8, 1, 0);
     configure_radio_irq(0x1d, 2, 0);
     configure_radio_irq(0x19, 2, 0);
-    connect_radio_irq_handler(8, 1, ((unsigned long)&rodata_1032fd9) /*=0x1032fd9*/, 0, 0);
-    connect_radio_irq_handler(0x1d, 2, ((unsigned long)&rodata_103309d) /*=0x103309d*/, 0, 0);
-    connect_radio_irq_handler(0x19, 2, 0x0103b03bU, 0, 0);
+    connect_radio_irq_handler(8, 1, ADDR_FUN_010327d8_THUMB /*=0x1032fd9*/, 0, 0);
+    connect_radio_irq_handler(0x1d, 2, ADDR_FUN_0103289c_THUMB /*=0x103309d*/, 0, 0);
+    connect_radio_irq_handler(0x19, 2, ADDR_FUN_0103a83a_THUMB /*=0x103b03b*/, 0, 0);
     enable_radio_irq(8);
     enable_radio_irq(0x1d);
     enable_radio_irq(0x19);

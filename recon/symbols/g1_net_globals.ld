@@ -304,10 +304,27 @@ PROVIDE(g_zephyr_log_level = 0x21000580);
 /* PROVIDE(g_net_radio_op_state = 0x210005b4); -- superseded, see above */
 PROVIDE(g_210005ec = 0x210005ec);
 PROVIDE(g_net_radio_crc_scratch = 0x21000684);
-PROVIDE(g_net_log_msg_ctx = 0x21000698);
-PROVIDE(g_sdc_res_pool_free_bitmap = 0x210006a4);
+/* P4 iteration 24: g_net_log_msg_ctx (really the ESB radio's `nrfx_timer_t`
+   instance for TIMER2, see recon/symbols/g1_net_symbols.h) is now a REAL
+   8-byte object emitted by recon/application/net/src/timeslot_owner.c with its
+   shipped .data initialiser { 0x41019000, 0x00000800 }.  As a bare pin the
+   address held whatever the cohesive linker put there, so nrfx_timer_init's
+   `p_reg` assertion failed, nrfx_timer_extended_compare returned 0x0BAD0004
+   and FUN_010333b4 bailed with -EFAULT before enabling ESB. */
+/* PROVIDE(g_net_log_msg_ctx = 0x21000698); -- superseded, see above */
+/* P4 iteration 24: superseded -- g_sdc_res_pool_free_bitmap (and the
+   unnamed group pool at 0x210006a0, now g_net_dppi_group_pool) are REAL
+   objects emitted by recon/application/net/src/timeslot_owner.c with their
+   shipped .data initialisers 0xffffc000 / 0x0000003f. */
+/* PROVIDE(g_sdc_res_pool_free_bitmap = 0x210006a4); -- superseded */
 PROVIDE(g_sdc_res_pool_slot_tbl = 0x210006a8);
 PROVIDE(g_net_conn_teardown_ctx_b = 0x2100071c);
+/* P4 iteration 24: four ESB peer-sync objects named so the reconstructions
+   recovered this iteration carry symbols rather than raw literals. */
+PROVIDE(g_esb_sync_message = 0x21004618);
+PROVIDE(g_esb_rx_payload = 0x21004da1);
+PROVIDE(g_esb_sync_response_packet = 0x21004ea1);
+PROVIDE(g_esb_sync_pending_flag = 0x21004fa3);
 PROVIDE(g_net_kernel_timeout_dlist_head = 0x21000750);
 /* P4 iteration 20: these three are interior views of ONE recovered 12-byte
  * .data object at 0x21000760..0x2100076c (the ESB pipe-address block; the

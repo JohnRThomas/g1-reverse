@@ -74,6 +74,52 @@ mpsl_timeslot_request_t g1_timeslot_request_normal_role1 = {
  * SoC.  Give the word its own storage. */
 volatile unsigned int g_net_radio_op_state = 1u;
 
+/* P4 iteration 24 - the ESB radio owner's `nrfx_timer_t` INSTANCE, original VA
+ * 0x21000698, shipped `.data` initialiser (tools/net_extract.py, .data LMA
+ * 0x0103ed24 + 0x698):
+ *
+ *     00 90 01 41 | 00 08 00 00
+ *       = { .p_reg = 0x41019000 (CPUNET TIMER2), .instance_id = 0,
+ *           .cc_channel_count = 8 }
+ *
+ * It was a LINKER PIN (`PROVIDE(g_net_log_msg_ctx = 0x21000698)`) with no
+ * storage and no initialiser, so `p_reg` read as whatever the cohesive link
+ * placed there.  FUN_01034fa8 is nrfx_timer_init: it asserts
+ * `p_instance->p_reg` is TIMER0 (0x4100c000) / TIMER1 (0x41018000) /
+ * TIMER2 (0x41019000) at nrfx_timer.c:142 -- the exact string pair
+ * ("ASSERTION FAIL @ %s:%d", ".../nrfx_timer.c", 0x8e) in its literal pool.
+ * MEASURED (iteration 24 probeE): the assertion failed; Zephyr's default
+ * `assert_post_action` RETURNS (the shipped FUN_01039bb0 is noreturn), so
+ * control fell through into nrfx_timer_extended_compare (FUN_01034f24) with
+ * r0 = 4 / r1 = 0x8e -- the assert's own leftovers -- which failed its
+ * frequency check and returned 0x0BAD0004.  FUN_010333b4 requires 0x0BAD0000
+ * and returned -EFAULT, so the ESB "enabled" flag at 0x21006459 stayed 0, the
+ * announcement packet could not be published, and no ESB frame was keyed.
+ * The name is the autonamer's; the object is the timer instance. */
+volatile unsigned int g_net_log_msg_ctx[2] __attribute__((used, retain)) = {
+    0x41019000u,   /* p_reg = NRF_TIMER2 (CPUNET) */
+    0x00000800u,   /* instance_id = 0, cc_channel_count = 8 */
+};
+
+/* P4 iteration 24 - the two nrfx GPPI/DPPI allocator words, original VAs
+ * 0x210006a0 and 0x210006a4, shipped `.data` initialisers (same read):
+ *
+ *     +0x6a0  3f 00 00 00   groups   0..5  free
+ *     +0x6a4  00 c0 ff ff   channels 14..31 free (0..13 belong to the SDC)
+ *
+ * FUN_01034328 claims the highest set bit with an LDREX/STREX loop and returns
+ * 0x0BAD0002 ("no resource") when the word is zero.  Both addresses were bare
+ * linker pins with no storage, so the words read 0 and every
+ * gppi_channel_alloc in FUN_01033df0 failed; it logged
+ * "gppi_channel_alloc failed with: %d" and returned -EIO, and FUN_010333b4
+ * returned that error WITHOUT setting the ESB enabled flag at 0x21006459.
+ * MEASURED (iteration 24 probeF): with only the timer instance restored,
+ * FUN_01033df0 was reached for the first time and still failed here. */
+volatile unsigned int g_net_dppi_group_pool __attribute__((used, retain)) =
+    0x0000003fu;
+volatile unsigned int g_sdc_res_pool_free_bitmap __attribute__((used, retain)) =
+    0xffffc000u;
+
 /* Tiny address-owned leaves used by the recovered signal callback. */
 uint32_t FUN_0102a4a4(void) /*=0x0102a4a4*/
 {
@@ -86,10 +132,22 @@ uint32_t FUN_0102b7c4(void) /*=0x0102b7c4*/
     return *(volatile uint8_t *)0x21004fa3u;
 }
 
+/* P4 iteration 24 - MASK CORRECTION, disassembly evidence.  The shipped body
+ * at analysis 0x010327d8 is
+ *     ldr.w r2,[r3,#0x304]      ; RADIO INTENSET
+ *     lsls  r2,r2,#27           ; N = bit (31-27) = bit 4
+ *     bpl.n <return>
+ * so the tested bit is 4 (0x10 = the DISABLED interrupt, which pairs with the
+ * EVENTS_DISABLED register at 0x110 the very next instruction reads), NOT
+ * bit 5 (0x20).  MEASURED with the wrong mask (iteration 24 probeK, after IRQ
+ * 8 was finally connected to this handler): RADIO INTENSET reads 0x00000010,
+ * `& 0x20` was always 0, EVENTS_DISABLED was never cleared and the handler
+ * re-entered continuously -- 1,312 entries in one 6 s probe -- while the ESB
+ * state-machine continuation at 0x210049a0 was never called. */
 void FUN_010327d8(void) /*=0x010327d8*/
 {
     volatile uint32_t *radio = (volatile uint32_t *)0x41008000u;
-    if ((radio[0x304u / 4u] & 0x20u) != 0u && radio[0x110u / 4u] != 0u) {
+    if ((radio[0x304u / 4u] & 0x10u) != 0u && radio[0x110u / 4u] != 0u) {
         radio[0x110u / 4u] = 0;
         (void)radio[0x110u / 4u];
         void (*callback)(void) = *(void (**)(void))0x210049a0u;

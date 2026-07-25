@@ -46,14 +46,47 @@ int g1_esb_radio_configure(int param_1)
   volatile int * const p3e8 = (volatile int *)0x21000580;
 
   /* Five-word radio configuration assembled from the firmware template at
-     0x0103c100, with its mode and runtime fields overridden below. */
+     RUNTIME address 0x0103c100, with its mode and runtime fields overridden
+     below.  The shipped prologue is
+         ldr r5,[pc] ; = 0x0103c100      <- a RUNTIME flash pointer
+         ldm r5!,{r0,r1,r2,r3} ; stm r4!,{r0,r1,r2,r3}   (config[0..3])
+         str  r3,[sp,#8]     -> config[1] = 0x0102bd0d
+         strb r3,[sp,#5]     -> config[0] byte 1 = (param_1 != 0)
+         strd r2,r3,[sp,#0x10] -> config[3] = 0x0005012c, config[4] = 0x0101fb02
+     so only config[0] (bytes 0,2,3) and config[2] survive from the template.
+
+     P4 iteration 24 - COORDINATE-SPACE DEFECT.  The template was previously
+     read at ANALYSIS 0x0103c100 (= runtime 0x0103c900) instead of RUNTIME
+     0x0103c100 (= analysis 0x0103b900), which yielded
+     {0x21002388, .., 0x0103aac3, ..} instead of the real {1, .., 0x201, ..}.
+     tools/net_extract.py read_runtime(0x0103c100, 0x10):
+         01 00 00 00 | 00 00 00 00 | 01 02 00 00 | 58 02 03 00
+     The corrected bytes are self-consistent with the nRF ESB config layout and
+     with FUN_010333b4's own reads of the copy at 0x21004a94:
+         +0x00 protocol          = 1     (ESB_PROTOCOL_ESB_DPL)
+         +0x01 mode              = (param_1 != 0)
+         +0x04 event_handler     = 0x0102bd0d
+         +0x08 bitrate           = 1
+         +0x09 crc               = 2     -> FUN_010333b4 programs CRCPOLY
+                                            0x11021 / CRCCNF 2, the 16-bit CRC
+         +0x0a tx_output_power   = 0
+         +0x0c retransmit_delay  = 0x012c (300 us)
+         +0x0e retransmit_count  = 5
+         +0x10 tx_mode           = 2
+         +0x11 payload_length    = 0xfb  (251, the DPL maximum)
+         +0x12 selective_auto_ack= 1
+         +0x13 use_fast_ramp_up  = 1     -> RADIO MODECNF0 |= 1
+     The stale value made saved[0] = 0x88 and saved[9] = 0xaa, so
+     FUN_010333b4 took NEITHER packet-configuration branch (measured in
+     iteration 23: the callback slot was never written and the RADIO PCNF
+     registers were never programmed) and no ESB frame could be keyed. */
   uint32_t config[5];
   int iVar2;
   int iVar1;
 
-  config[0] = 0x21000088u | ((param_1 != 0) ? 0x100u : 0u);
+  config[0] = 0x00000001u | ((param_1 != 0) ? 0x100u : 0u);
   config[1] = 0x0102bd0du;
-  config[2] = 0x0103aac3u;
+  config[2] = 0x00000201u;
   config[3] = 0x0005012cu;
   config[4] = 0x0101fb02u;
 

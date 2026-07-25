@@ -56,6 +56,28 @@ extern const unsigned char __g1_fp_FUN_01032ba4[] __asm__("FUN_01032ba4");
 extern const unsigned char __g1_fp_FUN_01032be4[] __asm__("FUN_01032be4");
 #define ADDR_FUN_010333a4_THUMB (((unsigned long)&__g1_fp_FUN_01032ba4) | 1u) /* was 0x10333a5 */
 #define ADDR_FUN_010333e4_THUMB (((unsigned long)&__g1_fp_FUN_01032be4) | 1u) /* was 0x10333e5 */
+/* P4 iteration 24 - RESOLVED: the four remaining runtime code pointers
+ * FUN_010333b4 hands to nrfx_timer_init and to connect_radio_irq_handler.
+ * Runtime->analysis is -0x800:
+ *     0x01032fbd -> 0x010327bc   nrfx_timer handler (TIMER2 COMPARE1)
+ *     0x01032fd9 -> 0x010327d8   RADIO IRQ 8 handler
+ *     0x0103309d -> 0x0103289c   IRQ 0x1d - the ESB EVENT DISPATCH that calls
+ *                                the handler slot at 0x21004a90
+ *     0x0103b03b -> 0x0103a83a   IRQ 0x19 thunk (b.w FUN_010350a4)
+ * Three were Ghidra-gap functions and are reconstructed this iteration;
+ * FUN_010327d8 already existed (recon/application/net/src/timeslot_owner.c).
+ * MEASURED before the rebind (iteration 24 probeI): the ESB announcement was
+ * keyed ONCE, the virtual slave answered it (AnnounceResponsesInjected 1) and
+ * the event handler was never entered, because IRQ 0x1d was connected to
+ * unrelated original-image bytes.  Parity keeps the shipped literals. */
+extern const unsigned char __g1_fp_FUN_010327bc[] __asm__("FUN_010327bc");
+extern const unsigned char __g1_fp_FUN_010327d8[] __asm__("FUN_010327d8");
+extern const unsigned char __g1_fp_FUN_0103289c[] __asm__("FUN_0103289c");
+extern const unsigned char __g1_fp_FUN_0103a83a[] __asm__("FUN_0103a83a");
+#define ADDR_FUN_010327bc_THUMB (((unsigned long)&__g1_fp_FUN_010327bc) | 1u) /* was 0x1032fbd */
+#define ADDR_FUN_010327d8_THUMB (((unsigned long)&__g1_fp_FUN_010327d8) | 1u) /* was 0x1032fd9 */
+#define ADDR_FUN_0103289c_THUMB (((unsigned long)&__g1_fp_FUN_0103289c) | 1u) /* was 0x103309d */
+#define ADDR_FUN_0103a83a_THUMB (((unsigned long)&__g1_fp_FUN_0103a83a) | 1u) /* was 0x103b03b */
 /* ---- RAM globals / kernel objects (232) ---- */
 extern volatile unsigned int g_net_fault_canary_flag; /* @0x20070000 */
 extern volatile unsigned int g_net_esb_own_addr; /* @0x21000010 */
@@ -97,10 +119,37 @@ extern volatile int g_zephyr_log_level; /* @0x21000580 */
 extern volatile unsigned int g_net_radio_op_state; /* @0x210005b4 */
 extern volatile unsigned int g_210005ec; /* @0x210005ec */
 extern volatile unsigned int g_net_radio_crc_scratch; /* @0x21000684 */
-extern volatile unsigned int g_net_log_msg_ctx; /* @0x21000698 */
+/* P4 iteration 24: `g_net_log_msg_ctx` is a MISNOMER carried over from the
+ * autonamer.  Every recovered consumer treats 0x21000698 as an `nrfx_timer_t`
+ * INSTANCE: FUN_01034fa8 (nrfx_timer_init) reads `p_reg` at +0 and asserts it
+ * is TIMER0/1/2, reads `instance_id` at +4 to index m_cb[0x21004af8];
+ * FUN_01032860 writes `*(*(uint32_t**)0x21000698 + 0x548)` = TIMER CC[2];
+ * FUN_01032908/FUN_01032988 dereference it the same way.  It is EIGHT bytes,
+ * not one word, and it is `.data` with the shipped initialiser
+ * { .p_reg = 0x41019000 (TIMER2), .instance_id = 0, .cc_channel_count = 8 }.
+ * It is now emitted with that initialiser by
+ * recon/application/net/src/timeslot_owner.c; the linker pin is superseded. */
+extern volatile unsigned int g_net_log_msg_ctx[2]; /* @0x21000698 */
+/* P4 iteration 24: the two nrfx GPPI/DPPI allocator words.  Both are `.data`
+ * in the shipped image and BOTH were bare linker pins here, so they read as
+ * whatever the cohesive link placed at those addresses -- measured 0, i.e.
+ * "no free resource".  FUN_01034328 (claim highest free bit) then returned
+ * 0x0BAD0002 for every channel, FUN_01033df0 logged "gppi_channel_alloc
+ * failed" and returned -EIO, and FUN_010333b4 never set the ESB enabled flag.
+ * Shipped initialisers (tools/net_extract.py, .data LMA 0x0103ed24):
+ *     +0x6a0 = 0x0000003f  (DPPI groups 0..5 free)
+ *     +0x6a4 = 0xffffc000  (DPPI channels 14..31 free; 0..13 are the SDC's)
+ * Both are now emitted with those initialisers by
+ * recon/application/net/src/timeslot_owner.c. */
+extern volatile unsigned int g_net_dppi_group_pool; /* @0x210006a0 */
 extern volatile unsigned int g_sdc_res_pool_free_bitmap; /* @0x210006a4 */
 extern volatile unsigned int g_sdc_res_pool_slot_tbl; /* @0x210006a8 */
 extern volatile unsigned int g_net_conn_teardown_ctx_b; /* @0x2100071c */
+/* P4 iteration 24 - ESB peer-sync objects (see recon/net/src/FUN_0102b50c.c). */
+extern volatile unsigned char g_esb_sync_message[13]; /* @0x21004618 */
+extern volatile unsigned char g_esb_rx_payload[]; /* @0x21004da1 */
+extern volatile unsigned char g_esb_sync_response_packet[]; /* @0x21004ea1 */
+extern volatile unsigned char g_esb_sync_pending_flag; /* @0x21004fa3 */
 extern volatile unsigned int g_net_kernel_timeout_dlist_head; /* @0x21000750 */
 extern volatile unsigned int g_net_radio_sched_param_a; /* @0x21000761 */
 extern volatile unsigned int g_net_radio_sched_param_b; /* @0x21000763 */

@@ -9188,3 +9188,346 @@ new `armemul/g1-ours-paired.resc` (**additive/opt-in; `g1-ours.resc`
 untouched**),
 `recon/emulator/reports/sensor_parity_status.md`, this report.
 **No `tools/` logic change**, no devicetree change, nothing committed.
+
+## Iteration 24 — the ESB mode byte is FIXED (a net analysis/runtime
+## COORDINATE-SPACE defect), two more missing `.data` objects are restored, and
+## the CPUNET keys its **first ESB PTX frame ever** — at the cost of a real,
+## measured phase-2 regression that is reported in full
+
+**Stated before anything else, because the acceptance bar is pixels:
+NO PIXEL IS PAINTED.**  `framebuffer.lit_pixels` is **0 / 0** against the
+oracle's **656** (`p1_boot`) / **1,098** (`p2_render`); `spim_a` is **34 / 764**
+and **0 / 2,881**; **no `0x02` pixel-window transaction was emitted**; no
+display START with `action = 1` arrived (`trigger_screen_state_change` is
+reached exactly once, with `r2 = 0`).  Nothing below claims otherwise.
+
+What did move, all measured:
+
+| what | iteration 23 | **iteration 24** |
+|---|---|---|
+| `FUN_010333b4` packet-config branch taken | **neither** (`saved[0] ∉ {0,1}`) | **`saved[0] == 1`** → `FUN_01032be4` (the DPL packet config) runs |
+| `esb_enabled` flag `0x21006459` | 0 | **1** |
+| `esbslave MasterFramesSeen` (6 s probe) | 0 | **1** |
+| `esbslave AcksInjected` (6 s probe) | 0 | **1** |
+| `esbslave AnnounceResponsesInjected` (6 s probe) | 0 | **1** |
+| ESB chain depth | stops in `FUN_010333b4` | `radio_configure → esb_enable → mode_state_init → DPL trampoline → acquire_buf_table → owner_timer → backend_init → start_announcement → packet_publish → **esb_start_tx**` |
+| `esbslave MasterFramesSeen` (20 s acceptance capture) | 0 | **0** — see §24.6, the machine resets mid-phase-2 and zeroes the model counters |
+
+### 24.1 Root cause of the named blocker: the ESB configuration template was
+### read in the WRONG COORDINATE SPACE
+
+`FUN_0102b31c` builds the five-word ESB configuration from a rodata template.
+The shipped prologue is unambiguous:
+
+```
+102b322  ldr  r5,[pc,#0x9c]   ; [0x102b3c0] = 0x0103c100     <- a RUNTIME pointer
+102b326  ldm  r5!,{r0,r1,r2,r3}
+102b328  stm  r4!,{r0,r1,r2,r3}     ; config[0..3] = template[0..3]
+102b32e  str  r3,[sp,#8]            ; config[1] = 0x0102bd0d   (event handler)
+102b336  strb r3,[sp,#5]            ; config[0] byte 1 = (param_1 != 0)  (mode)
+102b33e  strd r2,r3,[sp,#0x10]      ; config[3] = 0x0005012c, config[4] = 0x0101fb02
+```
+
+so only **config[0] bytes 0/2/3 and config[2]** survive from the template.  The
+literal `0x0103c100` is a **runtime** flash address (`tools/net_address_space.py`;
+runtime = analysis + 0x800).  The reconstruction had inlined the template read
+at **analysis** 0x0103c100 instead:
+
+| | word 0 | word 2 |
+|---|---|---|
+| `net_extract.read_analysis(0x0103c100)` — what was inlined | `0x21002388` | `0x0103aac3` |
+| `net_extract.read_runtime(0x0103c100)` — **the real template** | **`0x00000001`** | **`0x00000201`** |
+
+The full 16 real bytes are `01 00 00 00 | 00 00 00 00 | 01 02 00 00 | 58 02 03 00`,
+and they reproduce nRF `struct esb_config` exactly, cross-checked against
+`FUN_010333b4`'s own byte reads of the copy at `0x21004a94`:
+
+```
++0x00 protocol          = 1      ESB_PROTOCOL_ESB_DPL   -> saved[0] == 1
++0x01 mode              = (param_1 != 0)
++0x04 event_handler     = 0x0102bd0d
++0x08 bitrate           = 1
++0x09 crc               = 2      -> FUN_010333b4 programs CRCPOLY 0x11021 / CRCCNF 2
++0x0a tx_output_power   = 0
++0x0c retransmit_delay  = 0x012c (300 us)
++0x0e retransmit_count  = 5
++0x10 tx_mode           = 2
++0x11 payload_length    = 0xfb   (251 = the DPL maximum; FUN_010333b4 passes
+                                  saved[0x11] to the packet-config trampoline)
++0x12 selective_auto_ack= 1
++0x13 use_fast_ramp_up  = 1      -> RADIO MODECNF0 |= 1  (saved[0x13])
+```
+
+With the stale words, `saved[0]` was `0x88` and `saved[9]` was `0xaa`, so
+`FUN_010333b4` took **neither** packet-config branch and **neither** CRC branch:
+the RADIO callback slot was never written, CRCCNF/CRCPOLY/PCNF were never
+programmed, and no ESB frame could be keyed.  That is exactly the
+iteration-23 §23.7 item 1 symptom, and it is a **harness blind spot of a new
+kind**: `config[]` is a *stack buffer passed by pointer to an oracled callee*,
+so the parity harness never compared its contents — and the harness's own flash
+map has nothing at 0x0103c100 either, so the original run read zeros.  The
+values were pure reconstruction judgement, and the judgement used the wrong
+address space (`tools/NET_PLAYBOOK.md`'s named hazard).
+
+**Fix** — `recon/net/src/FUN_0102b31c.c` corrected to the runtime template and
+**re-proven with the authoritative verifier**:
+`net_recon_kit.prove(0x0102b31c, 0xa2, …)` →
+`{'pass': True, 'stage': 'cfg_verify', 'checked': 303, 'cfg_status': 'PASS'}`.
+The symbolized copy carries the same correction.
+**Measured immediately (`/private/tmp/g1-i24a-net`):** `NK trampoline_be4`
+fires — `saved[0] == 1` — and the chain advances through `acquire_buf_table`
+into `start_announcement`.
+
+### 24.2 Two more `.data` objects that were bare linker pins
+
+The corrected mode byte unmasked two consecutive failures, both the
+"§23.7 item 4" class (a pinned address with no storage and no initialiser).
+
+**(a) The ESB radio owner's `nrfx_timer_t` instance @ 0x21000698.**
+`FUN_01034fa8` is `nrfx_timer_init`; its literal pool holds
+`"ASSERTION FAIL @ %s:%d"` + `".../nrfx_timer.c"` + line `0x8e`, and it asserts
+`p_instance->p_reg ∈ {TIMER0 0x4100c000, TIMER1 0x41018000, TIMER2 0x41019000}`.
+The pin `g_net_log_msg_ctx = 0x21000698` (an autonamer misnomer — every
+consumer dereferences it as a timer instance, e.g. `FUN_01032860` writes
+`*(*(uint32_t**)0x21000698 + 0x548)` = TIMER CC[2]) had no object, so `p_reg`
+read garbage.  **Measured (probeE):** the assertion failed, Zephyr's default
+`assert_post_action` **returns** (the shipped `FUN_01039bb0` is `noreturn`), so
+control fell straight through into `nrfx_timer_extended_compare`
+(`FUN_01032764`… `FUN_01034f24`) with `r0 = 4` / `r1 = 0x8e` — the assert's own
+leftover registers — which failed its frequency check and returned
+**`0x0BAD0004`**.  `FUN_010333b4` requires `0x0BAD0000`, so it returned -EFAULT.
+Shipped `.data` initialiser (LMA 0x0103ed24 + 0x698):
+`00 90 01 41 | 00 08 00 00` = `{ p_reg = TIMER2, instance_id = 0,
+cc_channel_count = 8 }`.  Emitted in
+`recon/application/net/src/timeslot_owner.c`; the linker PROVIDE is superseded.
+
+**(b) The two nrfx GPPI/DPPI allocator words @ 0x210006a0 / 0x210006a4.**
+`FUN_01034328` claims the highest set bit of a free bitmap and returns
+`0x0BAD0002` when the word is zero.  Both addresses were pins.  Shipped
+initialisers `3f 00 00 00` (groups 0..5 free) and `00 c0 ff ff` (channels 14..31
+free; 0..13 belong to the SDC).  **Measured (probeF):** with only (a) fixed,
+`FUN_01033df0` was reached for the first time and still failed here —
+`"gppi_channel_alloc failed with: %d"` → -EIO.  Both are now emitted;
+0x210006a0 gained the name `g_net_dppi_group_pool` (its raw-literal users are
+symbolized, so the raw-literal count went **down**).
+
+**Measured with (a)+(b) (`/private/tmp/g1-i24c-net`, probeG):**
+
+```
+esb_enabled(0x21006459) 0x01     service_state(0x21004c9b) 0x02
+esbslave MasterFramesSeen 1      AcksInjected 1      radio TransmittedFrames 1
+NK radio_configure / backend_init / start_announcement / packet_publish / esb_start_tx
+```
+
+**That is the first ESB PTX frame this project has ever produced, and the
+virtual right lens answered it.**
+
+### 24.3 Seven Ghidra-gap functions recovered (the ESB event path)
+
+Exactly one frame was keyed and the announcement was never re-armed, because
+event id 1 (TX success) is what calls `FUN_0102b3f0(0) → esb_start_tx` again.
+The whole event path was unreconstructed.  All seven were proven by driving
+`tools/parity` directly (`net_recon_kit.prove` refuses names absent from the
+net catalog; **no `tools/` logic was changed**):
+
+| new file | analysis VA | extent | role | proof |
+|---|---|---|---|---|
+| `FUN_0102b50c.c` | 0x0102b50c | 0x90 | **the ESB `event_handler`** (config[1]) | 400/400, event ids 0/1/2/default all directed via `memory_overrides` |
+| `FUN_0102b49c.c` | 0x0102b49c | 0x60 | peer-sync 0x11 announce-response builder | 300/300 |
+| `FUN_010337ac.c` | 0x010337ac | 0xa2 | `esb_read_rx_payload` (FIFO pop at 0x21004a34) | 300/300 |
+| `FUN_0102bbe0.c` | 0x0102bbe0 | 0x6 | peer-sync pending flag read | 300/300 |
+| `FUN_0103289c.c` | 0x0103289c | 0x5e | **the ESB EVENT DISPATCH** (IRQ 0x1d) | 300/300 + 50 directed null-handler trials |
+| `FUN_010327bc.c` | 0x010327bc | 0x18 | nrfx_timer COMPARE1 callback | 300/300 |
+| `FUN_0103a83a.c` | 0x0103a83a | 0x4 | IRQ 0x19 thunk (`b.w FUN_010350a4`) | 300/300 |
+
+`FUN_0103289c` is the piece that closes the loop: it drains the pending-event
+bitmap at 0x210049b0 under BASEPRI and calls the handler published at
+0x21004a90 once per set bit, with a stack object whose byte 0 is the event id —
+exactly what `FUN_0102b50c` reads.
+
+**Five pointers rebound** (all original-image runtime literals, all the
+0a5/0a8-commit class the `ADDR_*_THUMB` pass could not reach):
+
+* `config[1]` `0x0102bd0d` → `&FUN_0102b50c` (under `G1_COHESIVE_BUILD`;
+  parity keeps the literal).  **Measured:** `0x21004a90` now reads
+  `0x0102B2C5` = `&FUN_0102b50c | 1`;
+* `0x01032fbd` → `FUN_010327bc`, `0x01032fd9` → `FUN_010327d8`,
+  `0x0103309d` → `FUN_0103289c`, `0x0103b03b` → `FUN_0103a83a`
+  (`ADDR_*_THUMB` aliases in `recon/symbols/g1_net_symbols.h`) — iteration 23
+  §23.7 item 2, now closed.
+
+### 24.4 A fourth defect: the RADIO IRQ 8 handler's mask was wrong
+
+`recon/application/net/src/timeslot_owner.c`'s hand-written `FUN_010327d8`
+tested `INTENSET & 0x20`.  The shipped body is
+`ldr.w r2,[r3,#0x304]; lsls r2,r2,#27; bpl` — shifting left by 27 puts **bit 4**
+in N, i.e. the mask is **0x10** (the DISABLED interrupt, which pairs with the
+`EVENTS_DISABLED` register at 0x110 the next instruction reads).  **Measured
+(probeK), once IRQ 8 was finally connected to this handler:** RADIO INTENSET
+reads `0x00000010`, `& 0x20` was always 0, `EVENTS_DISABLED` was never cleared,
+and the handler re-entered **1,312 times in one 6 s probe** while the ESB
+state-machine continuation was never called.  Corrected to 0x10.
+
+### 24.5 Where it stops now — the iteration-25 first divergence, named
+
+```
+probeN (final tree g1-i24g-net):
+  esb_state_cb (0x210049a0)  = 0x010338B1   <-- ORIGINAL-IMAGE literal
+  handler_slot (0x21004a90)  = 0x0102B2C5   (correct: &FUN_0102b50c)
+  pending_flags(0x210049b0)  = 0x00000000
+  RADIO INTENSET             = 0x00000010
+  MasterFramesSeen 1, RADIO TransmittedFrames 1, 0 FATAL, 0 SYSRESETREQ
+```
+
+`FUN_01032c28` writes `0x010338b1` and `0x010335e5` into the ESB radio
+state-machine continuation slot at 0x210049a0.  Runtime→analysis is −0x800, so
+those are **analysis 0x010330b0 and 0x01032de4** — both inside the
+**unreconstructed 1,836-byte Ghidra gap 0x01032c28 .. 0x01033354**, which is
+the ESB radio state machine itself.  `FUN_010327d8`'s indirect `bx r3`
+therefore has nowhere valid to go, the pending-event bitmap is never set, IRQ
+0x1d never fires, `FUN_0102b50c` is never entered, and the announcement is
+never re-armed.  `FUN_010330b0` alone is 0x92 B and calls six further
+gap-resident functions (0x1033084, 0x1033bf0, 0x1033ca4, 0x1033d54, 0x1033d20,
+0x103a9dc).  **That gap is iteration 25.**
+
+### 24.6 THE REGRESSION, reported in full and NOT hidden
+
+The 20 s acceptance capture with the final tree completes both phases
+(`VTIME_P1` 6.000000000, `VTIME_P2` 20.000000000) with **0 `ZEPHYR FATAL
+ERROR` and 0 `SYSRESETREQ`** — but the **machine is reset roughly 15 s into the
+run** (`cpuapp`/`cpunet`: *"PC does not lay in memory or PC and SP are equal to
+zero. CPU was halted."*, a pair of lines that does **not** appear in the
+iteration-23 capture), which zeroes every peripheral model counter before the
+script reads them.
+
+Bisected with an identical 20 s probe (`probeP`, same stimulus knobs as the
+capture; the probe is calibrated — on `g1-i23-net` it reproduces the
+iteration-23 capture numbers exactly):
+
+| net build | contents | `vcentral Connected` | `VC_DATA_EVENTS` | `radio TX` | `JBD FrameCounter` | halt |
+|---|---|---|---|---|---|---|
+| `g1-i23-net` | iteration-23 baseline | **True** | 0x219 | 0xBD | 3 | no |
+| **`g1-i24a-net`** | **+ template fix only** | **False** | 0 | 0 | 0 | **yes** |
+| `g1-i24b-net` | + timer instance | False | 0 | 0 | 3 | no |
+| `g1-i24c-net` | + DPPI pools (first ESB frame) | False | 0 | **1** | 0 | **yes** |
+
+So the regression is introduced by the **template fix alone** — i.e. by the ESB
+radio configuration finally being *applied*.  The reading the evidence supports
+is that our CPUNET now really programs and keys the RADIO **outside any MPSL
+timeslot**: the ESB worker `FUN_0102b1c8` is still parked on `K_FOREVER`
+(iteration 23 §23.7 item 3, analysis 0x0102b204 unreconstructed) and the ESB
+state machine that would hand the radio back is the gap of §24.5, so the
+SoftDevice Controller loses the radio and the BLE link dies.  This is a
+*deeper* stall, not a wrong fix: the mode byte, the timer instance and the DPPI
+pools are each proven against the shipped bytes.  Per the standing instruction
+the provably-correct fixes are **not** reverted; both the baseline and the new
+build are reported.
+
+### 24.7 Graphics + sensor parity — final tree, a COMPLETE capture
+
+```
+G1_RESC=/private/tmp/g1-i24/ours-paired-i24.resc     # $rtinfo_pc=0x15b9c; i @g1-ours-paired.resc
+G1_APP_ELF=/private/tmp/g1-i23a-app/zephyr/zephyr.elf   # app UNCHANGED this iteration
+G1_NET_ELF=/private/tmp/g1-i24g-net/zephyr/zephyr.elf
+G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A
+recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i24g
+```
+
+| id | verdict | first difference / detail |
+|---|---|---|
+| **G-1** | **FAIL** | `p2_render` ours `0c5cc90b07…`, **0 lit px / 0 pixel windows**; oracle `b26c73b37d…`, **1,098 lit px / 2,752 windows**. |
+| **G-2** | **FAIL** | `p1_boot` ours `0c5cc90b07…`, **0 lit px / 3 pixel windows**; oracle `1d617c65a6…`, **656 lit px / 673 windows**. |
+| **G-3** | **FAIL (truncation only)** | `p1_boot` **34 vs 764**, all 34 shared transactions byte-identical, first difference at index **34** (oracle `{"op":"0x66","kind":"command"}`, ours `<end>`).  `p2_render` **0 vs 2,881**, first difference index **0** (oracle `{"op":"0x02","kind":"pixel_window","x":32,"y":265}`). |
+| **G-4** | *localiser* | our framebuffer bytes are bit-identical to iterations 16–23 (`0c5cc90b07…`), so first differing row **y = 267**, first differing pixel **x = 178**, carried over unchanged. |
+| **G-5** | **PASS** | panel-init sequence byte-exact at the same indices (the 34-transaction prefix is identical). |
+| **G-6** | **PASS** | `spim_b` `stream_sha256` EQ, 0 == 0 in both phases. |
+| **S-ESB** | **FAIL** | capture counters all 0 (reset, §24.6).  In a reset-free 6 s probe: `MasterFramesSeen` **1**, `AcksInjected` **1**, `AnnounceResponsesInjected` **1** (oracle 0x175 / 0x175 / 0x15B).  `ESB_SYNC_ctx_105a` **0x01** vs 0x02, `DISPLAY_ON_ctx_fe8` **0x00** vs 0x01. |
+
+`trigger_screen_state_change` (app 0x00028ad8) is reached **once, with
+`action = 0`** (probeQ, 20 s); `reflash_fb_data_to_lcd` and `pixelto4bithex`
+are **never** reached.
+
+Per-device volumes — **phase 1 unchanged, phase 2 regressed by the §24.6
+reset**:
+
+| device / phase | oracle | iter 23 | **iter 24 (final tree)** |
+|---|---:|---:|---:|
+| LSM6DSO `p1_boot` | 1,089 | 1,027 | **1,027** |
+| LSM6DSO `p2_render` | 1,200 | 700 | **268** |
+| nPM1300 `p1_boot` | 291 | 232 | **232** |
+| nPM1300 `p2_render` | 508 | 370 | **140** |
+| OPT3001 `p1_boot` / `p2_render` | 33 / 80 | 14 / 0 | **14 / 0** |
+| ST25DV system port `p1_boot` | 22 | 12 | **12** |
+| ST25DV NFC EEPROM `p1_boot` | 25 | 11 | **11** |
+| `saadc` (whole run) | 998 | 71 | **41** |
+| `gpiote0` (whole run) | 25 | 25 | **25 (hash EQ)** |
+| `pdm0` (whole run) | 2 | 2 | **2 (hash EQ)** |
+| `spim_a` `p1_boot` / `p2_render` | 764 / 2,881 | 34 / 0 | **34 / 0** |
+| `JBD FrameCounter` `p1` / `p2` | 0x2A1 / 0xD61 | 0x3 / 0x3 | **0x3 / 0x0** |
+| `JBD JournalCount` | 0x400 | 0x22 | **0x0** |
+| framebuffer lit px `p1` / `p2` | 656 / 1,098 | 0 / 0 | **0 / 0** |
+
+Verdict cells stay **5 PASS / 5 PARTIAL / 4 FAIL**; the *volumes* inside the
+PARTIAL cells regressed for phase 2 only, for the reason in §24.6.
+
+### 24.8 Gates and sizes
+
+| gate | iter 23 | **iter 24** |
+|---|---|---|
+| `check_ram_pin_collisions.py` (net) | 0 / 0, EXIT 0 | **0 / 0, EXIT 0** |
+| `check_ram_pin_collisions.py` (app) | 0 / 0, EXIT 0 | **0 / 0, EXIT 0** (app untouched) |
+| `check_thread_create_stack_args.py` | 10/10, EXIT 0 | **10/10, EXIT 0** |
+| `check_net_raw_literals.py` | 69 | **68** |
+| `gen_retained_sources.py --check` | clean | **clean** |
+| net `nm -u` undefined / duplicate globals | 0 / 0 | **0 / 0** |
+| app `nm -u` undefined / duplicate globals | 0 / 0 | **0 / 0** |
+| net FLASH | 222,189 B | **222,925 B (+736; 96.33 % of 231,424)** |
+| net RAM | 60,556 B | **60,572 B (+16)** |
+| net retained sources | 958 | **965** |
+
+### 24.9 Open, named, and NOT fixed
+
+1. **The ESB radio state machine** — the 1,836-byte gap
+   `0x01032c28 .. 0x01033354`, entered through the continuation pointers
+   `0x010338b1` (analysis 0x010330b0) and `0x010335e5` (analysis 0x01032de4)
+   that `FUN_01032c28` writes to 0x210049a0.  **This is the iteration-25 first
+   divergence.**  Note `PROVIDE(rodata_10335e5 = 0x010335e5)` in
+   `recon/symbols/g1_net_globals.ld` is a *code* pointer wearing a `rodata_`
+   name and must be rebound with the rest.
+2. **MPSL timeslot arbitration for ESB** (§24.6).  `FUN_0102b1c8` still creates
+   the ESB worker with `K_FOREVER` because analysis 0x0102b204 is
+   unreconstructed; nothing gives the radio back to the SoftDevice Controller.
+3. **39 pins in the net `.data` window `[0x21000000, 0x21000c3c)` still have a
+   non-zero shipped initialiser our build does not reproduce** (surveyed this
+   iteration; three of them — 0x21000698, 0x210006a0, 0x210006a4 — were fixed
+   here, and each one was a hard blocker).  A generator for pointer-bearing
+   `.data` runs remains the highest-value instrument in the project.
+4. Iteration 23 §23.7 items 4–7 (342 absolute app `rodata_*` pins, the two odd
+   Thumb literals `C_01008e70` / `DAT_01019eb0`, the 36-vs-28-byte
+   `struct bt_conn_cb`, and shipped `bt_conn_cb` entries 2 and 3) are unchanged.
+
+### Regenerate (iteration 24)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check   # clean
+recon/application/build_cohesive.sh net /private/tmp/g1-i24g-net -- -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF
+# app is UNCHANGED: reuse /private/tmp/g1-i23a-app  ($rtinfo_pc = 0x00015b9c)
+# capture: see §24.7 ;  probes: /private/tmp/g1-i24/probe{A..Q}.resc
+```
+
+Files changed:
+`recon/net/src/FUN_0102b31c.c` + `recon/symbolized/net/FUN_0102b31c.c`
+(runtime-space template; cohesive event-handler rebind),
+new `recon/net/src/{FUN_0102b50c,FUN_0102b49c,FUN_010337ac,FUN_0102bbe0,FUN_0103289c,FUN_010327bc,FUN_0103a83a}.c`
++ `recon/symbolized/net/` copies,
+`recon/symbolized/net/FUN_010333b4.c` (four handler pointers → `ADDR_*_THUMB`),
+`recon/symbolized/net/{FUN_01034480,FUN_0103448c}.c` (group-pool symbol),
+`recon/symbols/g1_net_symbols.h` (timer instance type + 4 new ESB pins +
+4 new `ADDR_*_THUMB`), `recon/symbols/g1_net_globals.ld` (2 pins superseded,
+4 pins added), `recon/application/net/src/timeslot_owner.c` (three emitted
+`.data` objects + the IRQ-8 mask correction),
+`recon/generated/net_retained_sources.cmake` (generator only; 958 → 965),
+`recon/emulator/reports/sensor_parity_status.md`, this report.
+**No `tools/` logic change**, no devicetree change, no `armemul` change,
+nothing committed.
