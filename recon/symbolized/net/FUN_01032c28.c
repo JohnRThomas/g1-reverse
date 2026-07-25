@@ -8,7 +8,6 @@
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  *   __memcpy_chk                             <= FUN_0103b53a @ 0x0103b53a
  * address symbols (name @ address):
- *   rodata_10335e5                           @ 0x010335e5
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103e3e0                           @ 0x0103e3e0
  *   g_net_radio_crc_scratch                  @ 0x21000684
@@ -23,6 +22,23 @@
  *   REG_41008000                             @ 0x41008000
  */
 /* net-core FUN_01032c28 @ 0x1032c28  (parity 300 trials PROVEN) */
+/* P4 iteration 25 - CODE POINTERS.  The two continuation values this function
+ * stores into g_net_radio_irq_continuation_ptr are RUNTIME Thumb pointers;
+ * runtime->analysis is -0x800:
+ *     0x010338b1 -> (0x010330b0 | 1) = FUN_010330b0   (ACK window armed)
+ *     0x010335e5 -> (0x01032de4 | 1) = FUN_01032de4   (TX slot finished)
+ * Both were inside the unreconstructed Ghidra gap 0x01032c28..0x01033354 and
+ * are reconstructed and parity-proven this iteration.  MEASURED before the
+ * rebind (iteration 24 probeN): 0x210049a0 = 0x010338B1, FUN_010327d8's
+ * `bx r3` went nowhere valid, 0x210049b0 stayed 0 and IRQ 0x1d never fired. */
+#ifdef G1_COHESIVE_BUILD
+#define G1_ESB_CONT_010338B1 ADDR_FUN_010330b0_THUMB
+#define G1_ESB_CONT_010335E5 ADDR_FUN_01032de4_THUMB
+#else
+#define G1_ESB_CONT_010338B1 0x010338b1u
+#define G1_ESB_CONT_010335E5 0x010335e5u
+#endif
+
 typedef unsigned int u32;
 typedef unsigned short u16;
 typedef unsigned char u8;
@@ -63,7 +79,7 @@ void FUN_01032c28(void)
     W32(REG_41008000 /*=0x41008000*/ + 0x200) = 0x11b;
     W32(REG_41008000 /*=0x41008000*/ + 0x304) = 0x10;
     W32(((unsigned long)&g_esb_pipe_cfg_field) /*=0x210049ac*/) = W16(pcVar4 + 0xe);
-    W32(((unsigned long)&g_net_radio_irq_continuation_ptr) /*=0x210049a0*/) = 0x010338b1u;
+    W32(((unsigned long)&g_net_radio_irq_continuation_ptr) /*=0x210049a0*/) = G1_ESB_CONT_010338B1;
     W8(((unsigned long)&g_net_radio_busy_flag) /*=0x21006458*/) = 2;
     goto set13;
   } else if (cVar1 == 1) {
@@ -80,7 +96,7 @@ void FUN_01032c28(void)
     __memcpy_chk(0x2100635du, pbVar9+5, W8(pbVar9), 0xfb);
     if (bVar14 == 0) {
       W32(REG_41008000 /*=0x41008000*/+0x200) = 0x113;
-      W32(((unsigned long)&g_net_radio_irq_continuation_ptr) /*=0x210049a0*/) = ((unsigned long)&rodata_10335e5) /*=0x10335e5*/;
+      W32(((unsigned long)&g_net_radio_irq_continuation_ptr) /*=0x210049a0*/) = G1_ESB_CONT_010335E5;
       W8(((unsigned long)&g_net_radio_busy_flag) /*=0x21006458*/) = 1;
       W32(REG_41008000 /*=0x41008000*/+0x304) = 0x10;
       uVar13 = 0;
@@ -88,7 +104,7 @@ void FUN_01032c28(void)
     }
     W32(REG_41008000 /*=0x41008000*/+0x200) = 0x11b;
     W32(((unsigned long)&g_esb_pipe_cfg_field) /*=0x210049ac*/) = W16(pcVar4+0xe);
-    W32(((unsigned long)&g_net_radio_irq_continuation_ptr) /*=0x210049a0*/) = 0x010338b1u;
+    W32(((unsigned long)&g_net_radio_irq_continuation_ptr) /*=0x210049a0*/) = G1_ESB_CONT_010338B1;
     W8(((unsigned long)&g_net_radio_busy_flag) /*=0x21006458*/) = 2;
     W32(REG_41008000 /*=0x41008000*/+0x304) = 0x10;
     goto set13;

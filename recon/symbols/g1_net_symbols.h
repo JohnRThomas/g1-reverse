@@ -78,6 +78,36 @@ extern const unsigned char __g1_fp_FUN_0103a83a[] __asm__("FUN_0103a83a");
 #define ADDR_FUN_010327d8_THUMB (((unsigned long)&__g1_fp_FUN_010327d8) | 1u) /* was 0x1032fd9 */
 #define ADDR_FUN_0103289c_THUMB (((unsigned long)&__g1_fp_FUN_0103289c) | 1u) /* was 0x103309d */
 #define ADDR_FUN_0103a83a_THUMB (((unsigned long)&__g1_fp_FUN_0103a83a) | 1u) /* was 0x103b03b */
+/* P4 iteration 25 - RESOLVED: the FIVE ESB RADIO STATE-MACHINE continuations
+ * stored into g_net_radio_irq_continuation_ptr (0x210049a0) and dispatched by
+ * FUN_010327d8's `bx r3` on the RADIO DISABLED interrupt.  Runtime->analysis
+ * is -0x800:
+ *     0x010338b1 -> 0x010330b0   state 3: ACK window armed
+ *     0x010335e5 -> 0x01032de4   TX slot finished
+ *     0x010339c9 -> 0x010331c8   state 2: ACK window elapsed
+ *     0x01033005 -> 0x01032804   state 4: ACK sent, arm RX
+ *     0x01033655 -> 0x01032e54   state 5: frame received
+ * All five were inside the unreconstructed 1,836-byte Ghidra gap
+ * 0x01032c28..0x01033354 (plus 0x01032804) and are reconstructed and proven
+ * this iteration.  MEASURED before the rebind (iteration 24 probeN):
+ * 0x210049a0 held the original-image literal 0x010338B1, the `bx r3` reached
+ * unrelated bytes, the pending-event bitmap at 0x210049b0 never left 0, IRQ
+ * 0x1d never fired, FUN_0102b50c was never entered and the ESB announcement
+ * was never re-armed after the first frame.  Parity keeps the shipped
+ * literals; only G1_COHESIVE_BUILD rebinds.
+ * NOTE: PROVIDE(rodata_10335e5)/PROVIDE(rodata_1033655) in
+ * recon/symbols/g1_net_globals.ld were *code* pointers wearing `rodata_`
+ * names; they are superseded by these aliases. */
+extern const unsigned char __g1_fp_FUN_010330b0[] __asm__("FUN_010330b0");
+extern const unsigned char __g1_fp_FUN_01032de4[] __asm__("FUN_01032de4");
+extern const unsigned char __g1_fp_FUN_010331c8[] __asm__("FUN_010331c8");
+extern const unsigned char __g1_fp_FUN_01032804[] __asm__("FUN_01032804");
+extern const unsigned char __g1_fp_FUN_01032e54[] __asm__("FUN_01032e54");
+#define ADDR_FUN_010330b0_THUMB (((unsigned long)&__g1_fp_FUN_010330b0) | 1u) /* was 0x10338b1 */
+#define ADDR_FUN_01032de4_THUMB (((unsigned long)&__g1_fp_FUN_01032de4) | 1u) /* was 0x10335e5 */
+#define ADDR_FUN_010331c8_THUMB (((unsigned long)&__g1_fp_FUN_010331c8) | 1u) /* was 0x10339c9 */
+#define ADDR_FUN_01032804_THUMB (((unsigned long)&__g1_fp_FUN_01032804) | 1u) /* was 0x1033005 */
+#define ADDR_FUN_01032e54_THUMB (((unsigned long)&__g1_fp_FUN_01032e54) | 1u) /* was 0x1033655 */
 /* ---- RAM globals / kernel objects (232) ---- */
 extern volatile unsigned int g_net_fault_canary_flag; /* @0x20070000 */
 extern volatile unsigned int g_net_esb_own_addr; /* @0x21000010 */
@@ -384,8 +414,6 @@ extern const unsigned char rodata_1032fbd[]; /* @0x1032fbd */
 extern const unsigned char rodata_1032fd9[]; /* @0x1032fd9 */
 extern const unsigned char rodata_103309d[]; /* @0x103309d */
 extern const unsigned char rodata_10333a5[]; /* @0x10333a5 */
-extern const unsigned char rodata_10335e5[]; /* @0x10335e5 */
-extern const unsigned char rodata_1033655[]; /* @0x1033655 */
 extern const unsigned char rodata_1035f6d[]; /* @0x1035f6d */
 extern const unsigned char rodata_103704c[]; /* @0x103704c */
 extern const unsigned char rodata_1037050[]; /* @0x1037050 */

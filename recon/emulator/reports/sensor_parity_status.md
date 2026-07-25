@@ -1,101 +1,84 @@
 # Sensor + graphics parity status — OUR rebuilt firmware vs the shipped oracle
 
-**Eleventh measurement of `display_sensor_parity.md`'s criteria against our
-rebuild** (iteration 24; previous measurements were iterations 14–23).
+**Twelfth measurement of `display_sensor_parity.md`'s criteria against our
+rebuild** (iteration 25; previous measurements were iterations 14–24).
 
-## READ THIS FIRST — iteration 24: still 0 lit pixels, but the CPUNET keys its
-## FIRST ESB PTX FRAME, and phase 2 regressed
+## READ THIS FIRST — iteration 25: still 0 lit pixels, but the CPUNET now
+## **cycles** the ESB radio state machine, and the MPSL/radio-arbitration
+## defect is confirmed by a hooked `sdc_assertion_handler`
 
 **NO PIXEL IS PAINTED.**  `framebuffer.lit_pixels` is **0 / 0** against the
 oracle's **656** (`p1_boot`) / **1,098** (`p2_render`); `spim_a` is **34 / 764**
 and **0 / 2,881**; no `0x02` pixel-window transaction was emitted;
-`trigger_screen_state_change` is reached once with **`action = 0`**, and
-`reflash_fb_data_to_lcd` / `pixelto4bithex` are never reached.
+`trigger_screen_state_change` is reached **exactly once** and
+`reflash_fb_data_to_lcd` / `pixelto4bithex` are reached **0 times**, so **no
+display START with `action = 1` arrived**.
 
-Measured this iteration (`our_boot_bringup.md` §24):
+Measured this iteration (`our_boot_bringup.md` §25):
 
-1. **The iteration-23 blocker is FIXED and it was a COORDINATE-SPACE defect.**
-   `FUN_0102b31c` read the ESB configuration template at **analysis**
-   0x0103c100 instead of **runtime** 0x0103c100 (= analysis 0x0103b900).  The
-   real template is `01 00 00 00 | 00 00 00 00 | 01 02 00 00 | 58 02 03 00`, so
-   `saved[0]` is the ESB protocol **1 (DPL)** and `saved[9]` is the CRC selector
-   **2** — not `0x88` / `0xaa`.  `FUN_010333b4` now takes its packet-config
-   branch (`FUN_01032be4`) and programs CRCCNF/CRCPOLY.  Re-proven:
-   `cfg_verify` PASS, 303 checked.
-2. **Two more `.data` objects were bare linker pins**: the ESB radio owner's
-   `nrfx_timer_t` instance @0x21000698 (`{TIMER2, id 0, 8 CC}`) and the two
-   nrfx GPPI/DPPI allocator words @0x210006a0 (`0x3f`) / @0x210006a4
-   (`0xffffc000`).  Without them `nrfx_timer_init` asserted (and Zephyr's
-   default `assert_post_action` *returns*, so control fell into
-   `nrfx_timer_extended_compare` with the assert's leftover registers and got
-   `0x0BAD0004`), then every `gppi_channel_alloc` failed.
-3. **FIRST ESB PTX FRAME EVER.**  In a reset-free 6 s probe the ESB enabled
-   flag reads 1, `esbslave MasterFramesSeen` = **1**, `AcksInjected` = **1**,
-   `AnnounceResponsesInjected` = **1**, `radio TransmittedFrames` = **1**
-   (oracle 0x175 / 0x175 / 0x15B / 0x230).
-4. **Seven Ghidra-gap functions recovered and proven** (the ESB event handler
-   `FUN_0102b50c`, the event dispatch `FUN_0103289c`, `esb_read_rx_payload`
-   `FUN_010337ac`, `FUN_0102b49c`, `FUN_0102bbe0`, `FUN_010327bc`,
-   `FUN_0103a83a`) and five original-image code pointers rebound.
-5. **A REGRESSION, reported not hidden.**  The 20 s acceptance capture still
-   completes both phases with 0 `ZEPHYR FATAL ERROR` / 0 `SYSRESETREQ`, but the
-   machine is reset ~15 s in, which zeroes the model counters.  Bisected: the
-   regression appears with the template fix ALONE, i.e. as soon as the ESB
-   radio configuration is really applied — our CPUNET programs and keys the
-   RADIO outside any MPSL timeslot and the SoftDevice Controller loses it.
-   Phase-1 volumes are unchanged; phase-2 volumes drop
-   (LSM6DSO 700 → 268, nPM1300 370 → 140, saadc 71 → 41,
-   `JBD FrameCounter p2` 0x3 → 0x0, `JBD JournalCount` 0x22 → 0x0,
-   `vcentral Connected` True → False).  The provably-correct fixes are NOT
-   reverted; both builds are reported.
+1. **The ESB radio state machine is reconstructed — 16 functions out of the
+   Ghidra gaps, all parity-proven, 0 mismatches.**  Five state functions
+   (`FUN_01032de4`, `FUN_01032e54`, `FUN_01032804`, `FUN_010330b0`,
+   `FUN_010331c8`), the abort/restart `FUN_010329b4`, the RX-FIFO push
+   `FUN_01032a3c`, the TX-FIFO pop `FUN_01032954`, the timeslot-window
+   request/release trio (`FUN_01033168`, `FUN_010331a0`, `FUN_01033084`), the
+   four DPPI wiring leaves (`FUN_01033cd0/d20/d54/da0`) and
+   `nrfx_timer_compare` (`FUN_0103a9dc`).  Proof: `tools/parity` driven
+   directly (`net_recon_kit.prove` refuses uncatalogued entries), with
+   `cfg_verify`'s own catalog-derived arity/return-kind tables and hand-derived
+   directed coverage — 200–500 trials each.
+2. **Five continuation pointers rebound**, including two linker pins that were
+   *code* pointers wearing `rodata_` names (`rodata_10335e5`, `rodata_1033655`).
+3. **MEASURED: the announcement is re-armed for the first time.**  The loop
+   key → RADIO DISABLED → state 3 → RADIO DISABLED → state 2 → pending bitmap →
+   IRQ 0x1d → `FUN_0103289c` → `FUN_0102b50c` → key again runs end to end;
+   `radio TransmittedFrames` = **2** (iteration 24: 1).  `0x210049a0` now reads
+   `0x0102C14D` = `&FUN_010331c8 | 1` instead of the original literal.
+4. **One more `.data` object restored**: `g1_esb_window_request` @0x21000670
+   (`{0, 0x41019000, 0, len}`), previously an unowned address inside the live
+   `sdc_mempool`.
+5. **The blocker is now MPSL/radio arbitration, confirmed not inferred.**
+   `NET sdc_assertion_handler` fires ≈0.11 s after the second ESB cycle and the
+   reset takes both cores down at ≈1.3 s (iteration 24: ≈15 s).  An A/B on the
+   SAME tree — the five `ADDR_*_THUMB` macros pointed back at the shipped
+   literals (`/private/tmp/g1-i25b-net`) — reproduces iteration 24's numbers
+   exactly and does not reach the assertion in 6 s.  So the metric regression
+   below is caused by reaching a deeper, correctly-diagnosed stall earlier, not
+   by a wrong reconstruction.  The provably-correct fix is **not** reverted and
+   **both builds are reported**.
 
-### The first divergence for iteration 25
+| device / phase | oracle | iter 24 | i25b (rebind OFF) | i25 (rebind ON) |
+|---|---:|---:|---:|---:|
+| LSM6DSO `p1_boot` / `p2_render` | 1,089 / 1,200 | 1,027 / 268 | 1,027 / 268 | 551 / 0 |
+| nPM1300 `p1_boot` / `p2_render` | 291 / 508 | 232 / 140 | 232 / 140 | 97 / 0 |
+| OPT3001 `p1_boot` / `p2_render` | 33 / 80 | 14 / 0 | 14 / 0 | 14 / 0 |
+| ST25DV NFC EEPROM / system port `p1` | 25 / 22 | 11 / 12 | 11 / 12 | 0 / 6 |
+| `saadc` (whole run) | 998 | 41 | 41 | 5 |
+| `gpiote0` / `pdm0` (whole run) | 25 / 2 | 25 / 2 | 25 / 2 (hash EQ) | 25 / 2 (hash EQ) |
+| `spim_a` `p1_boot` / `p2_render` | 764 / 2,881 | 34 / 0 | 34 / 0 | 34 / 0 |
+| `JBD FrameCounter` p1 / p2 | 0x2A1 / 0xD61 | 0x3 / 0x0 | 0x3 / 0x0 | 0x0 / 0x0 |
+| framebuffer lit px p1 / p2 | 656 / 1,098 | 0 / 0 | **0 / 0** | **0 / 0** |
 
-`0x210049a0` (the ESB radio state-machine continuation) still holds the
-original-image literal **`0x010338B1`** = analysis **0x010330b0**, inside the
-unreconstructed **1,836-byte Ghidra gap 0x01032c28 .. 0x01033354** — the ESB
-radio state machine.  `FUN_010327d8`'s indirect `bx r3` therefore goes nowhere,
-the pending-event bitmap at 0x210049b0 is never set, IRQ 0x1d never fires, the
-event handler is never entered, and the announcement is never re-armed.
+Verdicts: **G-1 FAIL**, **G-2 FAIL**, **G-3 FAIL (truncation only; first
+difference at index 34, oracle `{"op":"0x66","kind":"command"}` vs `<end>`;
+`p2_render` index 0, oracle `{"op":"0x02","x":32,"y":265}`)**, **G-4** first
+differing row **y = 267**, first differing pixel **x = 178** (framebuffer bytes
+bit-identical to iterations 16–24), **G-5 PASS**, **G-6 PASS**, **S-ESB FAIL**
+(`ESB_SYNC_ctx_105a` 0x01 vs 0x02, `DISPLAY_ON_ctx_fe8` 0x00 vs 0x01).
 
-### Iteration-24 per-criterion verdicts (`g1-i23a-app` + `g1-i24g-net`)
+### The first divergence for iteration 26
 
-| id | verdict | detail |
-|---|---|---|
-| G-1 | **FAIL** | `p2_render` 0 lit px vs 1,098; ours `0c5cc90b07…`, oracle `b26c73b37d…` |
-| G-2 | **FAIL** | `p1_boot` 0 lit px vs 656; 3 pixel windows vs 673 |
-| G-3 | **FAIL (truncation only)** | `p1` 34 vs 764, first diff index 34 (oracle `op 0x66 command`); `p2` 0 vs 2,881, first diff index 0 (oracle `op 0x02 pixel_window x=32 y=265`) |
-| G-4 | *localiser* | first differing row y = 267, first differing pixel x = 178 (unchanged) |
-| G-5 | **PASS** | panel-init prefix byte-exact over all 34 shared transactions |
-| G-6 | **PASS** | `spim_b` 0 == 0, `stream_sha256` EQ in both phases |
-| S-ESB | **FAIL** | capture counters 0 (reset); 6 s probe 1 / 1 / 1 vs 0x175 / 0x175 / 0x15B.  `ESB_SYNC_ctx_105a` 0x01 vs 0x02, `DISPLAY_ON_ctx_fe8` 0x00 vs 0x01 |
-| S-IMU | PARTIAL | `p1` 1,027 / 1,089 (unchanged); `p2` **268** / 1,200 (was 700 — §24.6 reset) |
-| S-PMIC | PARTIAL | `p1` 232 / 291 (unchanged); `p2` **140** / 508 (was 370) |
-| S-ALS | PARTIAL | `p1` 14 / 33, `p2` 0 / 80 (unchanged) |
-| S-NFC | PARTIAL | `p1` 12 / 22 (system port), 11 / 25 (EEPROM) (unchanged) |
-| S-ADC | PARTIAL | **41** / 998 (was 71 — §24.6 reset) |
-| S-GPIOTE | PASS | 25 / 25, `stream_sha256` EQ |
-| S-PDM | PASS | 2 / 2, `stream_sha256` EQ |
-
-Score remains **5 PASS / 5 PARTIAL / 4 FAIL**.
-
-### Reproduce (iteration 24)
-
-```sh
-recon/application/build_cohesive.sh net /private/tmp/g1-i24g-net -- -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF
-# app UNCHANGED: reuse /private/tmp/g1-i23a-app  ($rtinfo_pc = 0x00015b9c)
-printf '$rtinfo_pc=0x00015b9c\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
-    > /private/tmp/g1-i24/ours-paired-i24.resc
-G1_RESC=/private/tmp/g1-i24/ours-paired-i24.resc \
-G1_APP_ELF=/private/tmp/g1-i23a-app/zephyr/zephyr.elf \
-G1_NET_ELF=/private/tmp/g1-i24g-net/zephyr/zephyr.elf \
-G1_HOOKS=0 G1_CTX_FE8=0x20040BC8 G1_CTX_105A=0x20040C3A \
-  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i24g
-PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
-  /private/tmp/g1_ours_i24g /private/tmp/g1-i24/ours_reports
-```
-
----
+The SoftDevice Controller's own assertion — `sdc_assertion_handler` at our
+`0x010342c4` — reached ≈0.11 s after the second complete ESB transaction.  The
+radio-arbitration vtable at `0x21000530 -> 0x21000534` is fully bound (all
+eight slots point at reconstructed `sym_*` code), so the next steps are the
+session word at **0x2100065c** (shipped `.data` initialiser `01 00 00 00`;
+currently reads `0x0000FFFF` because the address falls inside `sdc_mempool`)
+and extracting the assertion's own `(file, line)` arguments.  Two further
+Ghidra gaps were identified with evidence and left open: **0x01032640** (a
+`k_thread_create` THREAD ENTRY — so `PROVIDE(rodata_1032e41 = 0x01032e41)` is a
+third `rodata_` name that is really a code pointer) and **0x01032530**, the ESB
+assign-channel/pairing work handler it calls.
 
 ## Everything below this line is the ITERATION 23 measurement, kept for provenance
 

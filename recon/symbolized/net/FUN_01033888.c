@@ -3,7 +3,6 @@
  * public-name: FUN_01033888
  * durable-map: recon/catalogs/function_names_net.json
  * address symbols (name @ address):
- *   rodata_1033655                           @ 0x01033655
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103e3e0                           @ 0x0103e3e0
  *   g_net_radio_crc_scratch                  @ 0x21000684
@@ -12,6 +11,17 @@
  *   REG_41008000                             @ 0x41008000
  */
 /* net-core FUN_01033888 @ 0x1033888  (parity 300 trials PROVEN) */
+
+/* P4 iteration 25 - CODE POINTER.  0x01033655 is a RUNTIME Thumb pointer;
+ * runtime->analysis -0x800 makes it (0x01032e54 | 1) = FUN_01032e54, the ESB
+ * "frame received" radio state recovered from the Ghidra gap this iteration.
+ * This function is the RX start, so the literal is what the DISABLED interrupt
+ * dispatches to for every received ESB frame. */
+#ifdef G1_COHESIVE_BUILD
+#define G1_ESB_CONT_01033655 ADDR_FUN_01032e54_THUMB
+#else
+#define G1_ESB_CONT_01033655 0x01033655u
+#endif
 
 typedef unsigned int uint;
 extern void arch_irq_enable(unsigned int); /* FUN_0102eb2c */
@@ -32,7 +42,7 @@ unsigned int FUN_01033888(void)
     p4[0x110/4] = uVar5;
     (void)p4[0x110/4]; /* read-back @ 0x41008110 (original 0x010338a6) */
     volatile unsigned int * const pgp = (volatile unsigned int *)((unsigned long)&g_net_radio_irq_continuation_ptr) /*=0x210049a0*/; /* DAT_0103394c */
-    *pgp = ((unsigned long)&rodata_1033655) /*=0x1033655*/; /* DAT_01033948 */
+    *pgp = G1_ESB_CONT_01033655; /* DAT_01033948 */
     p4[0x200/4] = 0x117;
     p4[0x304/4] = 0x10;
     *pb = 4;

@@ -115,6 +115,28 @@ volatile unsigned int g_net_log_msg_ctx[2] __attribute__((used, retain)) = {
  * returned that error WITHOUT setting the ESB enabled flag at 0x21006459.
  * MEASURED (iteration 24 probeF): with only the timer instance restored,
  * FUN_01033df0 was reached for the first time and still failed here. */
+/* P4 iteration 25 - the ESB retransmission-window REQUEST record, original VA
+ * 0x21000670, shipped `.data` initialiser (tools/net_extract.py read_runtime at
+ * the net .data LMA 0x0103ed24 + 0x670):
+ *
+ *     00 00 00 00 | 00 90 01 41 | 00 00 00 00 | 00 00 00 00
+ *       = { 0, 0x41019000 (CPUNET TIMER2), 0, length }
+ *
+ * FUN_01033168 (recovered this iteration from the Ghidra gap) fills word 3
+ * with TIMER2 CC[1] + 0x81 us and submits the record through slot 8 of the
+ * radio-arbitration vtable at 0x21000530 (FUN_010218c0); on rejection it falls
+ * back to setting TIMER2 SHORTS 0x40004 directly.  The address had no owner in
+ * the cohesive link: check_net_raw_literals.py places 0x21000670 INSIDE the
+ * live `sdc_mempool`, so the write corrupted the SoftDevice Controller pool.
+ * Emitting it is the same remedy iteration 24 applied to 0x21000698 /
+ * 0x210006a0 / 0x210006a4. */
+volatile unsigned int g1_esb_window_request[4] __attribute__((used, retain)) = {
+    0x00000000u,
+    0x41019000u,   /* NRF_TIMER2 (CPUNET) */
+    0x00000000u,
+    0x00000000u,
+};
+
 volatile unsigned int g_net_dppi_group_pool __attribute__((used, retain)) =
     0x0000003fu;
 volatile unsigned int g_sdc_res_pool_free_bitmap __attribute__((used, retain)) =

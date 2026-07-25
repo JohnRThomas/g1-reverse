@@ -46,8 +46,13 @@ PROVIDE(rodata_1032fbd = 0x01032fbd);
 PROVIDE(rodata_1032fd9 = 0x01032fd9);
 PROVIDE(rodata_103309d = 0x0103309d);
 PROVIDE(rodata_10333a5 = 0x010333a5);
-PROVIDE(rodata_10335e5 = 0x010335e5);
-PROVIDE(rodata_1033655 = 0x01033655);
+/* P4 iteration 25 - SUPERSEDED.  0x010335e5 is a *code* pointer wearing a
+   `rodata_` name: runtime->analysis -0x800 makes it (0x01032de4 | 1), the
+   ESB radio state-machine entry now reconstructed as FUN_01032de4.  It is
+   rebound through ADDR_FUN_01032de4_THUMB in recon/symbols/g1_net_symbols.h. */
+/* P4 iteration 25 - SUPERSEDED.  0x01033655 is a *code* pointer:
+   (0x01032e54 | 1) = FUN_01032e54, the ESB "frame received" state.  Rebound
+   through ADDR_FUN_01032e54_THUMB. */
 PROVIDE(rodata_1035f6d = 0x01035f6d);
 PROVIDE(rodata_103704c = 0x0103704c);
 PROVIDE(rodata_1037050 = 0x01037050);
