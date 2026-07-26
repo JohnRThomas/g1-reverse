@@ -9,7 +9,7 @@ extern int FUN_000254d8(volatile void*, volatile void*, int, volatile void*, uin
 extern int FUN_0003271c(void);
 extern int FUN_00032ee4(void);
 extern int FUN_0007c9f2(uint32_t, void*);
-extern int FUN_0007c9fe(uint32_t);
+extern int FUN_0007c9fe(uint32_t, uint32_t);
 
 uint32_t FUN_00025528(uint32_t param_1, uint32_t param_2) {
     volatile int *piVar1 = (volatile int*)0x200079fcUL;
@@ -26,7 +26,12 @@ uint32_t FUN_00025528(uint32_t param_1, uint32_t param_2) {
         iVar4 = FUN_0007c9f2(*g_a44, (void*)&local7);
         if (iVar4 == 0) {
             local7 = local7 & 0xfe;
-            FUN_0007c9fe(*g_a44);
+            /* 0x25552 `ldrb.w r1,[sp,#7]` / 0x25558 `and r1,r1,#0xfe` /
+             * 0x2555c `strb.w r1,[sp,#7]` / 0x25560 `bl 0x7c9fe` -- TWO register
+             * arguments.  0x7c9fe stores r1 with `strb.w r1,[sp,#7]` and sends it as
+             * the EH_CTRL_Dyn (0x2002) payload, so dropping it put stale r1 on the
+             * bus: measured `20 02 58` at ST25DV 0x53 against the shipped `20 02 00`. */
+            FUN_0007c9fe(*g_a44, local7);
         }
         FUN_00024f40(0xff);
         iVar4 = FUN_00024cc8(0);

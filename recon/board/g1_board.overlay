@@ -199,6 +199,24 @@
 
 		pmic_wdt: watchdog {
 			compatible = "nordic,npm1300-wdt";
+			/*
+			 * Decoded from the shipped `struct wdt_npm1300_config`.
+			 * The "watchdog" struct device at 0x87cc8 (name pointer
+			 * 0xf66c4 -> "watchdog") has config = 0x8bb50:
+			 *   0x8bb50 mfd   = 0x87c80 -> name 0xf6132 "pmic@6b"
+			 *   0x8bb54 port  = 0x87c98 -> name 0xf5ebd "gpio-controller"
+			 *   0x8bb58 pin   = 2
+			 *   0x8bb5a flags = 0x0001 = GPIO_ACTIVE_LOW
+			 * Without it `config->reset_gpios.port` is NULL, so
+			 * wdt_npm1300_init() skips gpio_pin_configure_dt(...,
+			 * NPM1300_GPIO_WDT_RESET_ON) and the six GPIO-bank writes
+			 * `060206 061600 060C00 061100 060700 061B00` that the
+			 * shipped firmware issues at the head of nPM1300 boot are
+			 * absent (measured: our `p1_boot` twim1 @0x6B stream was
+			 * 279 transactions against the oracle's 285, and those six
+			 * were exactly the missing ones).
+			 */
+			reset-gpios = <&pmic_gpio 2 GPIO_ACTIVE_LOW>;
 		};
 
 		/* Exact config object at 0x8ba14: 4.4/4.1 V termination,

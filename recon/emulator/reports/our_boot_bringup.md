@@ -15507,3 +15507,469 @@ that takes or returns floats/doubles should be treated as **unproven by
 float values (small magnitudes, ±1, 0.5, and quaternion-scale values) rather
 than integer bit patterns.  A sweep of the corpus for VFP-argument functions
 is the obvious follow-up and is **not** done in this iteration.
+
+## Iteration 38 — sensor parity: six unwired-pin / dropped-argument /
+## wrong-indirection defects across four sensor buses.  **The LSM6DSO boot
+## stream, the nPM1300 boot stream and every shared ST25DV transaction go
+## BYTE-IDENTICAL; the SAADC — which had never configured a channel since
+## iteration 14 — now runs register-exact conversion cycles.  All four
+## framebuffers HELD.**
+
+Build **`g1-i38d-app`**, net **unchanged** `g1-i30e-net`.  Captures
+`/private/tmp/g1_ours_dash_i38d` and `/private/tmp/g1_ours_nav_i38d`; analysis
+in `/private/tmp/g1-i38/rep-dash-d` and `/private/tmp/g1-i38/rep-nav-d`.
+`g1-i38c-app` is the immediately preceding build (everything except §38.55's
+battery-EKF pin) and its captures are kept alongside, because two hashes flip
+between the two builds — see §38.2.  The
+shipped **navigation** oracle was re-captured this session into
+`/private/tmp/g1_oracle_nav` so the navigation per-device streams could be
+diffed transaction-by-transaction; it reproduces the stored
+`display_sensor_oracle.json` exactly (every framebuffer, `spim_a`, `saadc`,
+`twim2` and per-device `twim1` hash EQ — only the merged `twim1` bus stream
+differs, exactly as §2.1 documents).
+
+Every one of the six defects was found the same way: filter the peripheral
+trace to one device, strip `seq=`/`tick=`, diff against the oracle, take the
+**first differing transaction**, and read the shipped instructions at the site
+that should have issued it.  Every one belongs to a defect class already in the
+project's ledger.
+
+### 38.1 `S-D-ADC` — an unwired `.rodata` pin (defect class: raw pins read at the original image address)
+
+`adc_nfc_init` (`FUN_00024b98` @ `0x24b98`) does
+`api->channel_setup(&rodata_87c20, &rodata_88a2a)`.  Iteration 11 rebound
+`rodata_87c20` onto the real `adc@e000` DT device, but `rodata_88a2a` — the
+`struct adc_channel_cfg` it points at — stayed
+`PROVIDE(rodata_88a2a = 0x00088a2a)`, an ORIGINAL-image flash address.
+
+**Measured before** (build `g1-i37a-app`, capture
+`/private/tmp/g1_ours_dash_i37a/run.out`): the `saadc` register stream ran only
+`CH0/CH1/CH2.PSELP <- 0` and then stopped.  All three of those writes come from
+PC **`0x5EED6`**, which in that ELF is `adc_nrfx_read+0xd6`
+(`str r3,[r4,r0]` — the per-channel deselect store of the driver's channel
+loop), so the driver was walking the channel mask and bailing out the moment it
+reached channel 3.  **95** register accesses against the oracle's **998**; the
+oracle's `CH3.CONFIG <- 0x00020000`, `CH3.PSELN <- 0`, `CH3.PSELP <- 0` triple
+from `adc_channel_setup` was absent entirely.  (The Renode monitor log carries
+no firmware console output, so the `<err> adc_nrfx_saadc: Channel 3 not
+configured` line reported since iteration 14 is taken from the project record,
+not re-observed here; the register stream is the direct evidence and it is
+sufficient — the driver emits that error on exactly this path.)
+
+Shipped bytes at `0x88a2a` (`tools/extract.py`): `00 04 00 00 03 04 00` =
+`{ gain ADC_GAIN_1_6, reference ADC_REF_INTERNAL, acquisition_time
+ADC_ACQ_TIME_DEFAULT, channel_id 3, differential 0, input_positive
+NRF_SAADC_INPUT_AIN3, input_negative NRF_SAADC_INPUT_DISABLED }`.  Two
+independent confirmations that this is the right reading: the object is only
+**2-byte aligned**, which a 4-byte-enum layout could not be (the arm-eabi
+default `-fshort-enums` applies to both the shipped build and ours), and the
+field values reproduce §4.5 of `display_sensor_parity.md` — TACQ 10 µs (the
+driver's mapping for `ADC_ACQ_TIME_DEFAULT`), gain 1/6, internal reference,
+12-bit, no oversampling, CH3/AIN3 only.
+
+Emitted as `recon/application/app/src/g1_adc_channel_cfg.c` and bound with
+`PROVIDE(rodata_88a2a = g1_adc_nfc_channel_cfg)`.  **The object the build
+produces is `00 04 00 00 03 04 00` — byte-identical to the shipped seven
+bytes**, verified by reading `.rodata` out of `zephyr.elf` at the symbol.
+
+**Measured after: `saadc` 95 → 668 accesses.**  A full diff of the two
+register streams shows **zero lines present in ours that are absent from the
+oracle**; every one of our 30 conversion cycles reproduces the oracle's
+22-access cycle register for register:
+
+```
+CH0..2/CH4..7.PSELP <- 0 ; CH3.CONFIG r/w 0x20000 ; CH3.PSELP <- 4
+RESOLUTION <- 2 ; OVERSAMPLE <- 0 ; RESULT.PTR ; RESULT.MAXCNT <- 1
+ENABLE <- 1 ; TASKS_START ; TASKS_SAMPLE ; poll EVENTS_END ; TASKS_STOP ; ENABLE <- 0
+```
+
+Two residues, both named:
+1. `RESULT.PTR` is oracle `0x200275CE` / ours `0x20028766`.  That buffer is
+   `adc_nfc_run`'s own `int16_t sample` **stack local**, so this is a RAM-layout
+   artifact of a differently-laid-out thread stack, not a firmware defect, and
+   it alone keeps the whole-run hash NE.
+2. **30 conversion cycles in 20 s against the oracle's 45** — and this is
+   **not** a wrong timer period.  `RESULT.PTR` is `adc_nfc_run`'s own stack
+   buffer, so it fingerprints the call stack that reached each conversion.  The
+   histogram over the whole run is decisive:
+
+   | | conversions | distinct `RESULT.PTR` | per value |
+   |---|---:|---|---:|
+   | oracle | 45 | `0x200275A6`, `0x200275BE`, `0x200275CE` | 15 each |
+   | ours (`g1-i38c` and `g1-i38d`, identical) | 30 | `0x20028766`, `0x20028786` | 15 each |
+
+   45 = 15x3 and 30 = 15x2: **the outer 15-per-20 s rhythm is already exact**
+   and one of three per-tick call sites into `read_nfc_adc_scaled` is missing.
+   By frame arithmetic on the shipped prologues the three oracle stacks are
+   (A) `try_enter_low_power_mode` → `refresh_and_read_box_field_timer` →
+   `refresh_box_field_timer`, (B) `handle_box_placement_event` →
+   `process_box_event`, and (C) `handle_box_placement_event` →
+   **`box_placement_animation_step`** → `update_box_presence_flag` →
+   `update_box_field_debounce` → `is_box_field_timer_expired` →
+   `refresh_box_field_timer`.  Ours has A and B; **C is the missing one** — the
+   same `box_placement_animation_step` subtree that owns the missing ST25DV
+   NDEF write of §38.6.  So `S-D-ADC`'s residue and `S-D-NFC`'s residue are
+   **one gap, not two**.  Not fixed.
+
+### 38.2 `S-D-IMU` — wrong indirection level: bit 2 of a POINTER instead of bit 2 of the byte read
+
+`audio_codec_get_reg14_bit2` (`FUN_0007fe72` @ `0x7fe72`) is the LSM6DSO
+`sh_master_get`.  Shipped:
+
+```
+0007fe72  push  {r0, r1, r2, r4, r5, r6, r7, lr}   ; sp+4 <- r1 (the out pointer)
+0007fe84  movs  r1, #0x14                          ; MASTER_CONFIG
+0007fe86  add   r2, sp, #4                         ; the read buffer
+0007fe8a  bl    #0x7f97c                           ; read_reg(ctx, 0x14, sp+4, 1)
+0007fe8e  ldrb.w r3, [sp, #4]                      ; THE BYTE THAT WAS READ
+0007fe94  ubfx  r3, r3, #2, #1                     ; bit 2 = MASTER_ON
+0007fe9c  strb  r3, [r7]                           ; *out = bit
+```
+
+The reconstruction read the *pointer*:
+`*param_2 = (unsigned char)(((unsigned int)(unsigned long)param_2 >> 2) & 1)`.
+
+Consequence, traced to the instruction: `lsm6dso_init_chip` (`0x622a0`) does
+`add.w r1, sp, #7` / `bl 0x7fe72` / `ldrb.w r3,[sp,#7]` / `cbz r3, 0x62338` —
+skip the master shutdown when the flag is already clear.  Our value was
+non-zero, so `sh_master_set(0)` (`FUN_0007fe2a`) ran and emitted five extra
+transactions `0140 / 14 / R 00 / 1400 / 0100`.  That was the entire
+"`twim2` `p1_boot` differs by +5" open item of §37.10.
+
+**Measured after, dashboard stimulus: `twim2` `p1_boot` 1,080 → 1,075 == 1,075
+and the whole-phase device stream sha is EQUAL — the LSM6DSO boot stream is
+byte-identical to the shipped firmware, on both `g1-i38c-app` and
+`g1-i38d-app`, and reproducibly so (§38.85).**
+
+`p2_render` is where honesty is required.  The count is exact
+(**1,206 == 1,206**) in every run, but the hash is **EQ on `g1-i38c-app`** (two
+independent runs) and **NE on `g1-i38d-app`** — and the difference is exactly
+**4 of 1,206** transactions, all of them accelerometer sample *values* during
+the `don` gesture (ours `2B3500001D1B` where the oracle reads `7F340000421C`,
+etc.): we sample the same played waveform one sub-step ahead.  The navigation
+stimulus flips the other way — `p2_render` **1,200 == 1,200** sha **NE by 5
+sample values on i38c** and **EQ on i38d** — and `p1_boot` there is
+**1,089 == 1,089** with the only difference a `0x28`/`0x22` poll pair sitting
+one block later relative to the `CTRL1_XL <- 0x20` / `CTRL2_G <- 0x00` ODR
+change (8 differing lines on i38c, 16 on i38d).
+
+There is no register, ordering or count difference anywhere in any of these
+phases; what moves is the sampling phase against the gesture playback, and a
+1,392-byte flash shift is enough to move it.  **`S-D-IMU` is therefore recorded
+as `p1_boot` byte-identical and `p2_render` count-exact but sample-phase
+sensitive — not as a PASS.**  Closing it needs the `p2` thread cadence to line
+up, which is the same family as the `G-3`/`D-3` repaint cadence and the nPM1300
+kick lattice.
+
+**Why the harness was blind (a new instance, stated plainly):**
+`tools/cfg_verify.py app FUN_0007fe72` returns `PASS cases=0` on the broken
+body *and* on the fixed one.  The callee `FUN_0007f97c` is modelled as an
+order-keyed oracle that never writes the output buffer, so under emulation
+`sp+4` still holds the value the `push {r0,r1,r2}` prologue put there — which
+is `param_2` — and the broken expression `(param_2 >> 2) & 1` computes exactly
+what the correct code computes from that slot.  **An output parameter written
+only by a stubbed callee is invisible to the differential harness.**  The fixed
+body is harness-equivalent *and* correct against the real callee.
+
+### 38.3 `S-D-PMIC` (a) — a missing devicetree property
+
+Shipped `struct wdt_npm1300_config` (`{ const struct device *mfd;
+struct gpio_dt_spec reset_gpios; }`).  The "watchdog" `struct device` at
+`0x87cc8` (name pointer `0xf66c4` → `"watchdog"`) has `config = 0x8bb50`:
+
+```
+0x8bb50: 80 7c 08 00 | 98 7c 08 00 | 02 00 | 01 00
+         mfd 0x87c80   port 0x87c98  pin 2   dt_flags 0x0001
+0x87c80 -> name 0xf6132 "pmic@6b"
+0x87c98 -> name 0xf5ebd "gpio-controller"
+```
+
+Our `pmic_wdt` node had no `reset-gpios`, so `config->reset_gpios.port` was
+NULL, `wdt_npm1300_init()` took the skip branch, and the six GPIO-bank writes
+`060206 061600 060C00 061100 060700 061B00` (GPIOMODE2 ← 6 =
+`NPM1300_GPIO_GPORESET`, then OPENDRAIN/PUEN/PDEN/DRIVE/DEBOUNCE ← 0 for pin 2)
+never happened.  That was exactly the `p1_boot` 279-vs-285 gap.
+Added `reset-gpios = <&pmic_gpio 2 GPIO_ACTIVE_LOW>;` to
+`recon/board/g1_board.overlay`.
+
+### 38.4 `S-D-PMIC` (b) — a dropped 4th register argument
+
+`panel_temp_calibration_init` (`FUN_00062644` @ `0x62644`, the recovered
+`npm1300_charger_init`):
+
+```
+0006284a  movs r3, #1     ; data   = 1
+0006284c  movs r1, #5     ; base   = 5 (ADC bank)
+0006284e  mov  r2, r3     ; offset = 1 (TASKNTCMEASURE)
+00062850  ldr  r0, [r5]
+00062852  bl   #0x83dc8   ; dev_write_reg3(mfd, 5, 1, 1)
+```
+
+The reconstruction called `dev_write_reg3(*puVar8, 5, 1)` — three arguments —
+while its three immediate neighbours all pass four.  With `r3` left stale the
+transmitted byte was whatever the previous call had put there: measured
+`05 01 74` on the nPM1300 bus against the shipped `05 01 01`.
+
+**Measured after, dashboard stimulus: `npm1300` `p1_boot` 279 → 285 == 285 with
+the device stream sha EQUAL — byte-identical, on both builds.**  On navigation,
+`g1-i38d-app` reaches **291 == 291** with the only difference one `070401`
+watchdog kick moved six slots (`g1-i38c-app` was 292 vs 291).  `p2_render` is 514 == 514 and the sha still differs; with the 68
+`070401` watchdog-kick writes removed the two streams are **byte-identical**,
+and the single difference is one kick landing one slot earlier relative to the
+`080001` LDO1 enable.  The kick lattice has drifted ~107 ms in phase by
+t ≈ 10.8 s (mean period 208.2 ms ours vs 204.84 ms oracle) — a feed-thread
+timing residue, named and not fixed.
+
+### 38.5 `S-D-NFC` — three dropped register arguments in one ST25DV chain
+
+| # | shipped evidence | dropped argument | measured wrong transaction |
+|---|---|---|---|
+| 1 | `0x25552 ldrb.w r1,[sp,#7]` / `0x25558 and r1,r1,#0xfe` / `0x2555c strb.w r1,[sp,#7]` / `0x25560 bl 0x7c9fe`; `0x7ca02 strb.w r1,[sp,#7]` sends r1 as the payload | the `EH_CTRL_Dyn` (0x2002) data byte | 0x53 wrote **`20 02 58`**, oracle `20 02 00` |
+| 2 | `0x24f5c ubfx r1,r4,#8,#2` / `0x24f60 orr r1,r1,#0xc` / `0x24f66 strb.w r1,[sp,#7]` / `0x24f6a bl 0x7c8fa`; `0x7c8fe mov r4,r1` … `and r4,r4,#0x1f` consumes it | the value byte | fed line 3 |
+| 3 | `0x7c920 movs r3,#1` / `0x7c922 mov r0,r5` / `0x7c924 mov r1,r3` / `0x7c926 add r2,sp,#7` / `0x7c92a bl 0x25850`; `0x25850` uses r3 as the byte count (`mov r5,r3` … `cbz r3`) and `0x257ec` rejects a zero one | the I2C byte **COUNT** | 0x57 wrote a **26-byte** frame `00 01 18 00…58 58 00` instead of the 3-byte `00 01 0C`, streaming our own stack frame onto the bus (`E48B0020` = `&g_st25dv_dev`, `1D240200` = a return address into `st25dv_write_control_and_ack+0x2d`) and clobbering ST25DV system registers 0x01–0x18 |
+
+A **fourth** site of the same class — `ipc_ept_op_b_guarded` (`0x7c8e8`)
+dropping the read length that `0x7c8ec movs r3,#1` supplies — had been fixed in
+`recon/app/src` in iteration 32 and **never propagated to `recon/app/src_sym`,
+`recon/verified/src_sym`, `recon/named` or `recon/readable_sources`**.  The
+compiled `recon/symbolized/app` copy did carry the fix, so it was latent rather
+than live; all trees are now consistent.  A sweep for the pre-fix text across
+`recon/**` confirms zero stale `.c`/`.md` copies of any of the four sites
+remain; the only residual hits are the *generated* view catalogs
+`recon/viewer_sweep/reference_semantics.json` and
+`recon/viewer_assets/catalog.json`, which are regenerated artifacts and were
+deliberately not hand-edited.
+
+**Measured after: both corrupted transactions are byte-exact.**  ST25DV 0x53
+transactions 1–11 and 0x57 transactions 1–14 are now **byte-identical to the
+oracle**, on both stimuli.
+
+### 38.55 A sixth unwired `.rodata` pin — correct, but with NO measured effect
+
+`batt_soc_curve_estimate` (`FUN_0000e2b4` @ `0xe2b4`) copies a 64-byte struct
+out of `rodata_88570` and hands it to `battery_soc_curve_model_init`
+(`0xe53c`), which bakes it into the estimator workspace that
+`battery_soc_from_curve` / `battery_model_state_update` use for the rest of the
+run.  Shipped bytes at `0x88570`:
+
+```
+bd378635 00000000 00000000 00000000     1e-6
+00000000 bd378635 00000000 00000000     1e-6
+00000000 00000000 77cc2b32 00000000     1e-8
+00000000 00000000 00000000 17b75139     2e-4
+```
+
+— a 4x4 binary32 **diagonal EKF process-noise matrix Q**.  The extent is closed
+by the next entry in the pin ledger (`rodata_885b0`), i.e. exactly 64 bytes.
+The pin was still `PROVIDE(rodata_88570 = 0x00088570)`, so our build read its
+own `.rodata` at that address — an unrelated pointer table that reads as ~1e-40
+and ~1e-19 floats, i.e. an effectively zero Q.  Emitted byte-exact as
+`recon/data/rodata_0x88570.c` and rebound; `tools/verify_data.py` now reports
+**994 files / 50,647 bytes / 100.00 % byte-exact** (was 993 / 50,583).
+
+This was chased because it was the predicted upstream cause of §38.1's missing
+call site: a frozen estimator would leave `device_info[0xfc0]` (battery percent)
+below the `> 0x1d` gate at `handle_box_placement_event+0xbc` (`0x255ec`), which
+is exactly what selects `box_placement_animation_step`.  **The prediction did
+not hold.**  Measured in `g1-i38d-app`: `saadc` **668** accesses (unchanged),
+ST25DV **11 + 14** transactions (unchanged), and the `RESULT.PTR` histogram
+still `15 x 0x20028766, 15 x 0x20028786` — two call stacks, not three.  A
+read-back probe of `0x20040F10` (the ctx-relative address of
+`device_info + 0xfc0`) returned `0x00` both before and after, so either the
+battery percentage is still zero for a different reason or that address is not
+the object `get_device_info()` returns — `get_device_info` is
+`return *(uint32_t *)0x200069fc`, a RAM pointer, and this iteration did not
+prove it aliases the `0x2003ff50` context.  **Recorded as a correct fix with no
+observable behavioural change, not as a closure**; it is kept because reading
+our own image at `0x88570` is wrong on its face and the emitted table is
+byte-verified.
+
+**Next probe for §38.1/§38.6:** read `*(uint32_t *)0x200069fc` at t = 20 s to
+get the real `device_info` base, then read `+0xfc0` from it.  If the percentage
+really is low, `battery_model_state_update` (`recon/named/…`, whose header says
+"strict reviewed production fixtures" rather than the 300/300 PROVEN standard of
+everything else on this path) is the next suspect; if it is 100, the gate is not
+the blocker and the divergence is inside `box_placement_animation_step`'s own
+state machine.
+
+### 38.6 What is still missing on the ST25DV, localised
+
+The remaining gap is a **missing tail**, not a wrong byte.  In the oracle,
+transactions 0x53 #12–25 and 0x57 #15–22 all belong to one flow that fires at
+**t = 4.2262 s** (and repeats in `p2_render`):
+
+```
+0x57 W 0014 / R 7F00        MEM_SIZE
+0x57 W 0016 / R 03          BLOCK_SIZE
+0x53 W 0000 / R 00000000    user memory probe
+0x53 W 0004 / R 00000000
+0x53 W 0000E1404001         NDEF CC header
+0x53 W 000403 ; W 000500
+0x53 W 0004031C
+0x53 W 0006 91 06 06 57 4C 43 43 41 50 20 01 09 1E 03 0A 51 07 03 57 4C 43 53 54 41 49 05 64 01   (WLC record)
+0x53 W 0022FE               terminator
+```
+
+Our build never issues any of it.  The gating in `handle_box_placement_event`
+(`is_battery_critical()` or `device_info[0xfc0] > 0x1d` → `0x255d0..0x255ec`)
+was checked instruction-for-instruction and is structurally correct in our
+build, so the divergence is inside `box_placement_animation_step`
+(`FUN_0000fcf0`, cases 3 and 12) → `st25dv_build_and_write_ndef_records` →
+`pt_write_frame_type3` → `packet_transport_write_frame`, or in that state
+machine's input state.  **Next probe:** trace `g_box_event_state_buf`
+(`0x20003520` in our build, `0x20002380` original) fields `s[5]`, `s[7]`,
+`s[0xb]`, `s[0xc]` and find why case 12 / case 3 is never taken.  Note that
+before this iteration the 26-byte over-length write clobbered exactly the
+system registers this flow reads (`MEM_SIZE` 0x14/0x15, `BLOCK_SIZE` 0x16,
+`MB_MODE`), so it is worth re-confirming the tail is still absent now that the
+clobber is gone — it is: the re-captured `g1-i38c` streams still stop at 0x53
+#11 / 0x57 #14.
+
+### 38.7 The verifier did not catch any of this — measured, not assumed
+
+`tools/cfg_verify.py app <name>` returns **PASS** on all six changed bodies.
+For two of them the converse was measured directly this session: the
+pre-iteration-38 `FUN_00025528` and `FUN_0007c8fa` were restored, re-verified,
+and both returned the same `PASS cases=0` as the fixed versions before being
+put back.  So the dropped-argument class and the stubbed-output-parameter class
+are both invisible here, and every one of these five fixes rests on the shipped
+instructions plus the end-to-end peripheral measurement, not on the harness.
+
+`emu` does compare `r0..r3` at each call boundary (default arity 4), so this is
+not a design gap in principle; empirically it did not bite on these sites.
+Chasing exactly why is left as a follow-up — `tools/` is out of scope for this
+iteration and was not modified.
+
+### 38.8 Gates
+
+| gate | result |
+|---|---|
+| app FLASH | **948,828 B / 982,528 B = 96.57 %** (`g1-i38c-app` was 950,220 B; see the delta caveat below) |
+| app RAM | **253,765 B — delta 0 B**; `_end` `0x2003ff45`, `runtime_info_sync` `0x00015b8c`, both unchanged |
+| `check_ram_pin_collisions.py` (app) raw-in-object / raw-free | **0 / 0**; bound OK / escaping **624 / 0** |
+| `check_ram_pin_collisions.py --core net` | **0 / 0**; bound 170 / escaping 0 |
+| `check_net_raw_literals.py` | **0 / 0 / 0** |
+| `check_thread_create_stack_args.py` | **10/10**, EXIT 0 |
+| `verify_net_stock_data_window.py` | **PROVEN** |
+| `gen_retained_sources.py --check` | clean |
+| `gen_app_data_image.py --selftest` | clean |
+| `tools/verify_data.py` | **994 / 994 files byte-exact, 50,647 / 50,647 bytes, 100.00 %** (was 993 / 50,583) |
+| app `nm -u` / duplicate GLOBAL definitions | **0 / 0** |
+| link flags | no `--allow-multiple-definition`, no weak-symbol or numeric-root hacks; 17 weak symbols, unchanged |
+| `cfg_verify` on every changed body | PASS (`FUN_0007fe72`, `FUN_00062644`, `FUN_00025528`, `FUN_00024f40`, `FUN_0007c8fa`, `FUN_0007c8e8`) |
+| **dashboard `p2_render` pixel gate** | **`19b1f24a09f97a8d…`, 2,923 px — `cmp` vs `golden_framebuffer_dashboard_p2_render.raw`: NO DIFFERENCE** |
+| **dashboard `p1_boot` pixel gate** | **`0c5cc90b079d0d9c…`, 0 px, all-zero — byte-compared** |
+| **navigation `p2_render` pixel gate** | **`b26c73b37d441fc8…`, 1,098 px — `cmp` vs `golden_framebuffer_p2_render.raw`: NO DIFFERENCE** |
+| **navigation `p1_boot` pixel gate** | **`1d617c65a688f10e…`, 656 px — `cmp` vs `golden_framebuffer_p1_boot.raw`: NO DIFFERENCE** |
+
+**Flash-delta caveat.** The working tree during this iteration also carried a
+*concurrent* literal-inlining pass across the nine source trees and the
+generated `recon/application/rodata/*` files, so the −3,488 B against iteration
+37's 952,316 B is **not** attributable to this iteration alone.  This
+iteration's own additive cost was measured in isolation in `g1-i38a-app`
+(ADC + IMU fixes only, before the concurrent pass landed): **952,340 B, i.e.
++24 B**, all of it the emitted `struct adc_channel_cfg`.  The
+`g1-i38c-app` → `g1-i38d-app` step is −1,392 B and likewise mixes this
+iteration's 64-byte battery-Q table with the concurrent pass.  Every other change
+here is a pure expression / argument / devicetree edit with no size cost.  Net
+core **UNCHANGED** (`g1-i30e-net`); `armemul` untouched; no `tools/` logic
+change; nothing committed.
+
+### 38.85 Reproducibility
+
+The dashboard capture was run **twice end-to-end** from the same
+`g1-i38c-app`/`g1-i30e-net` pair (`/private/tmp/g1_ours_dash_i38c` and
+`…_i38c_run2`); `g1-i38d-app` was captured once per stimulus.  Both runs report the identical numbers on every gated field:
+framebuffer `19b1f24a09f97a8d…` / 2,923 lit px, `spim_a` `p1_boot` 34 sha EQ,
+`twim2` **1,075 == 1,075 sha EQ** and **1,206 == 1,206 sha EQ**, `npm1300`
+`p1_boot` **285 == 285 sha EQ**, `opt3001` 14/59 sha EQ, `saadc` 668,
+`SCREEN_ID_ctx_d5` `0x06`.  This matters because `display_sensor_parity.md`
+§8.3 lists `twim2` `p2_render` as one of the fields that is **not** stable
+across runs of the *shipped* firmware under the dashboard stimulus; the
+`1,206 == 1,206 sha EQ` result is reproduced here in two independent runs, not
+observed once.
+
+The shipped **navigation** oracle was also re-captured and reproduces the
+stored `display_sensor_oracle.json` field-for-field, so the navigation
+per-device diffs in §38.2 are against a verified target.
+
+### 38.9 Open, named, and NOT fixed
+
+1. **`saadc` cadence** — 30 conversion cycles against the oracle's 45.  The
+   cycle itself is register-exact and the outer period already matches; what is
+   missing is one of three per-tick call sites, the
+   `box_placement_animation_step` subtree, which is **the same gap** as item 3
+   (§38.1, §38.6).
+2. **`saadc RESULT.PTR`** — a stack address; needs stack-layout parity, not a
+   code fix.
+3. **ST25DV NDEF tail** — §38.6, localised to `box_placement_animation_step`;
+   same root as item 1.  §38.55 records one candidate cause investigated and
+   **excluded by measurement**.
+4. **nPM1300 watchdog-kick phase** — §38.4; ~3.4 ms/cycle extra feed-loop
+   latency integrating to ~107 ms by t ≈ 10.8 s.
+5. **`G-3`/`D-3` repaint cadence** — unchanged from §37.10; still 0 ours-only
+   pixel windows on either stimulus.
+6. **Sample/thread phase** — the `twim2` `p2_render` hash (both stimuli) and
+   the nPM1300 kick lattice depend on a sampling phase that a small flash shift
+   moves; see §38.2.  Navigation-only residues: `opt3001` `p1_boot` 35 vs 33
+   (one extra RESULT read pair at the end of the phase), `npm1300` `p2_render`
+   527 vs 508 (one extra 22-transaction poll block).
+7. `g1_app_rodata_02.c`'s withheld demo-image window and the dead
+   `K_MSGQ_DEFINE` queues are unchanged.
+
+### Regenerate (iteration 38)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+recon/application/build_cohesive.sh app /private/tmp/g1-i38d-app
+# net UNCHANGED from iteration 30 (g1-i30e-net)
+
+mkdir -p /private/tmp/g1-i38
+printf '$rtinfo_pc=0x00015b8c\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i38/ours-paired-i38d.resc
+
+# `_end` = 0x2003ff45 -> device context 0x2003ff50, so +0xd5 / +0xfe8 / +0x105a
+# are 0x20040025 / 0x20040F38 / 0x20040FAA.  TAKE THESE FROM THE ELF YOU BOOT.
+# NOTE the mkfifo stdin pipe: a bare `sleep 100000 | ...` never reaches a
+# following command in the same shell.
+bash -c 'F=$(mktemp -u); mkfifo $F; sleep 100000 > $F & W=$!
+G1_ATT_WRITE="" \
+G1_RESC=/private/tmp/g1-i38/ours-paired-i38d.resc \
+G1_APP_ELF=/private/tmp/g1-i38d-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040F38 G1_CTX_105A=0x20040FAA G1_SCREEN_ID=0x20040025 \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_dash_i38d < $F
+kill $W; rm -f $F'
+# ---- NAVIGATION stimulus: identical with G1_ATT_WRITE left UNSET, into
+#      /private/tmp/g1_ours_nav_i38d
+# ---- shipped NAVIGATION oracle re-capture: the same command with no G1_* at
+#      all, into /private/tmp/g1_oracle_nav
+
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_ours_dash_i38d /private/tmp/g1-i38/rep-dash-d
+```
+
+Per-device diffs are `grep "dev=0x<addr> " <dir>/twim1.<phase>.trace |
+sed -E 's/^TWIM1 +seq=[0-9]+ tick=[0-9]+ //'` compared between the two
+captures — **never** the merged `twim1` bus stream (§2.1).
+
+Files changed this iteration (**source, board and wiring only — no generated
+data, no `tools/` logic, no `armemul` change**):
+`recon/application/app/src/g1_adc_channel_cfg.c` (new),
+`recon/data/rodata_0x88570.c` (new),
+`recon/generated/app_verified_data_sources.cmake` (regenerated by
+`tools/verify_data.py --cmake-output`, not hand-edited),
+`recon/application/app/CMakeLists.txt`, `recon/symbols/g1_app_globals.ld`
+(two `PROVIDE` rebinds), `recon/board/g1_board.overlay`;
+`FUN_0007fe72`/`audio_codec_get_reg14_bit2`,
+`FUN_00062644`/`panel_temp_calibration_init`,
+`FUN_00025528`/`handle_box_placement_event`,
+`FUN_00024f40`/`st25dv_write_control_and_ack`,
+`FUN_0007c8fa`/`st25dv_reg_modify_low5` and
+`ipc_ept_op_b_guarded` across `recon/app/src`, `recon/app/src_sym`,
+`recon/verified/src`, `recon/verified/src_sym`, `recon/named`,
+`recon/symbolized/app`, `recon/readable_sources/app/g1` and
+`recon/naming_bundles/FUN_00062644.md` (each function in whichever of those
+trees holds a copy);
+`recon/emulator/reports/sensor_parity_status.md`; this report; and the refreshed
+`ours_framebuffer_{dashboard,navigation}_*` artifacts.

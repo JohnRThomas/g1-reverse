@@ -248,6 +248,12 @@ target_sources(app PRIVATE
   # DEREFERENCES the original address, so the block has to be emitted and the
   # four rodata_8baXX pins bound onto it in g1_app_globals.ld.
   src/g1_npm1300_linear_ranges.c
+  # P4 iteration 38: the SAADC `struct adc_channel_cfg` (original rodata_88a2a)
+  # that adc_nfc_init passes to adc_channel_setup.  Left as an ORIGINAL-image
+  # address it configured no channel at all, so every adc_read failed with
+  # "Channel 3 not configured" and the saadc stream stopped at 95 register
+  # accesses against the oracle's 998.
+  src/g1_adc_channel_cfg.c
   # P4 iteration 22: the three advertising operands of bt_le_adv_start.  The
   # `struct bt_le_adv_param` pin (rodata_8839c) was still an ORIGINAL-image
   # address holding unrelated bytes, and the two `struct bt_data` arrays have

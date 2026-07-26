@@ -65,7 +65,7 @@ int FUN_00062644(int param_1)
                 if (iVar4 != 0) return iVar4;
                 iVar4 = FUN_00083dc8(*puVar8,5,0,1);
                 if (iVar4 != 0) return iVar4;
-                iVar4 = FUN_00083dc8(*puVar8,5,1);
+                iVar4 = FUN_00083dc8(*puVar8,5,1,1);
                 if (iVar4 != 0) return iVar4;
                 iVar4 = FUN_00083dc8(*puVar8,5,0xc,1);
                 if (iVar4 != 0) return iVar4;
