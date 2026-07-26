@@ -38,8 +38,8 @@ int FUN_000622a0(int param_1, unsigned int param_2, int param_3)
     uVar3 = 0x000f62ac;
     if (iVar2 < 0) goto LAB_622bc;
 
-    DEBUG_PRINT(0x000f62c5, (param_2 >> 0x10) & 0xff);
-    uVar5 = (param_2 >> 0x10) & 0xff;
+    DEBUG_PRINT(0x000f62c5, (uStack_24 >> 0x10) & 0xff);
+    uVar5 = (uStack_24 >> 0x10) & 0xff;
     uVar3 = 0x000f62e6;
     if (uVar5 == 0x6c) {
         iVar2 = FUN_0007fb7a(iVar7, 0x80);
@@ -48,7 +48,7 @@ int FUN_000622a0(int param_1, unsigned int param_2, int param_3)
         iVar2 = FUN_0007fe72(iVar7, ((int)&uStack_24) + 3);
         uVar3 = 0x000f6315;
         if (iVar2 < 0) goto LAB_622bc;
-        if (((param_2 >> 0x18) & 0xff) != 0) {
+        if (((uStack_24 >> 0x18) & 0xff) != 0) {
             DEBUG_PRINT(0x000f6337);
             FUN_0007fe2a(iVar7, 0);
             FUN_00086384(300);

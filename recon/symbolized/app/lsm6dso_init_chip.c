@@ -83,8 +83,8 @@ int lsm6dso_init_chip(int param_1, unsigned int param_2, int param_3)
     uVar3 = ((unsigned long)&rodata_f62ac) /*=0xf62ac*/;
     if (iVar2 < 0) goto LAB_622bc;
 
-    log_message(((unsigned long)&rodata_f62c5) /*=0xf62c5*/, (param_2 >> 0x10) & 0xff);
-    uVar5 = (param_2 >> 0x10) & 0xff;
+    log_message(((unsigned long)&rodata_f62c5) /*=0xf62c5*/, (uStack_24 >> 0x10) & 0xff);
+    uVar5 = (uStack_24 >> 0x10) & 0xff;
     uVar3 = ((unsigned long)&rodata_f62e6) /*=0xf62e6*/;
     if (uVar5 == 0x6c) {
         iVar2 = audio_codec_set_reg18_and_reg62(iVar7, 0x80);
@@ -93,7 +93,7 @@ int lsm6dso_init_chip(int param_1, unsigned int param_2, int param_3)
         iVar2 = audio_codec_get_reg14_bit2(iVar7, ((int)&uStack_24) + 3);
         uVar3 = ((unsigned long)&rodata_f6315) /*=0xf6315*/;
         if (iVar2 < 0) goto LAB_622bc;
-        if (((param_2 >> 0x18) & 0xff) != 0) {
+        if (((uStack_24 >> 0x18) & 0xff) != 0) {
             log_message(((unsigned long)&rodata_f6337) /*=0xf6337*/);
             audio_codec_set_reg14_bit2(iVar7, 0);
             delay_scaled_busy_wait(300);

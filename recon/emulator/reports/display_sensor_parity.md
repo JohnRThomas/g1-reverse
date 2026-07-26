@@ -355,3 +355,92 @@ pixel content is confirmed by two independent paths. It also matches the
 7. **`twim1` cross-device ordering is not reproducible** (see §2.1) — a real
    property of three threads sharing a bus under a 10 µs quantum, not a capture
    defect. Hence the per-device criteria.
+
+---
+
+## 8. SIBLING ORACLE — `display_sensor_oracle_dashboard.json` (`E_ID_SCREEN_DASHBOARD`)
+
+*Everything above describes the **navigation** oracle and its G-/S- criteria,
+which are unchanged and remain in force.*  From iteration 34 there is a second,
+independent oracle for the screen the glasses actually show head-up.
+
+### 8.1 The screen and the stimulus
+
+`E_ID_SCREEN_DASHBOARD` is **screen id 6** (`device_ctx[0xd5] == 6`;
+`process_for_new_task` case 6, log tag `process_for_DASHBOARD_show`;
+`ui_refalsh_warp` case 6 → `ui_DashBoard_task` @`0x0003af78`).
+
+**It cannot be commanded over BLE.**  A whole-image scan of the shipped app's
+Thumb `BL` encodings finds every call site of `update_persist_task_status`
+(`0x0002bef4`, ids 7/9/0x0a/0x0c/0x0e/0x10/0x11) and `update_temp_task_status`
+(`0x0002bffc`, ids 4/5/6/8) — **no phone-reachable path passes 6**.  The
+firmware selects the dashboard itself, from `process_for_new_task` case 0
+(`IDLE`) at `0x0002e1a2`, with its own reason string `"IMU:wakeup:dashboard"`
+(`0xa2733`), when the `don` head-up gesture makes `imu_fusion_thread` set
+`device_ctx[0xee4] = 2`.
+
+The existing navigation oracle never reaches it because its GATT write
+`0a0600000000` (opcode `0x0a`, sub-command 0 = *"received navigation func
+startup packet"*) installs persist task **10** and `now_has_persist_task` wins
+the race in the same `IDLE` case.
+
+**So the dashboard stimulus is the navigation stimulus MINUS the GATT write** —
+identical machine, identical determinism knobs, identical phases, identical
+`don` gesture, one fewer input.  No memory poke, no forced state.
+
+```sh
+G1_ATT_WRITE="" recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_oracle_dash
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+    /private/tmp/g1_oracle_dash /private/tmp/g1_dash_rep_oracle
+```
+
+`G1_ATT_WRITE` (default `0a0600000000`) and `G1_SCREEN_ID` (default
+`0x20053225` = `device_ctx+0xd5`) are additive knobs on the same capture
+script; with neither set it emits a byte-identical capture script to before.
+
+### 8.2 What the original does
+
+| phase | spim_a transactions | pixel windows | lit px | bbox | framebuffer sha256 |
+|---|---:|---:|---:|---|---|
+| `p1_boot` | 34 | 3 | 0 | — | `0c5cc90b079d0d9c…` (all-zero) |
+| `p2_render` | ~12,200 | ~11,850 | **2,923** | (78,211)–(564,338) 487×128 | **`19b1f24a09f97a8d…`** |
+
+`SCREEN_ID_ctx_d5 = 0x06`, `DISPLAY_ON_ctx_fe8 = 0x01`,
+`ESB_SYNC_ctx_105a = 0x02`, `DashBoard_Reflash` ×136, `ui_navigation_task` ×0.
+
+The picture is the real head-up dashboard: `Mon, Jan 1`, a large `00:00` clock,
+a Bluetooth glyph, a vertical divider, a note glyph and the two-line
+`Hold Right TouchBar` / `to Add QuickNote` hint —
+`golden_framebuffer_dashboard_p2_render_crop.png`.
+
+### 8.3 Determinism — verified over two full runs, and NOT total
+
+Bit-identical across runs: **both framebuffer sha256 and every `row_sha256`**,
+`spim_a` `p1_boot` stream, `spim_b` (empty), every `twim1` **per-device**
+stream, `twim2` `p1_boot`, `pdm0`/`saadc`/`gpiote0`/`gpiote1` whole-run, and
+`SCREEN_ID_ctx_d5` / `DISPLAY_ON_ctx_fe8` / `ESB_SYNC_ctx_105a` /
+`JBD_FRAMECOUNTER_P1`.
+
+**Not stable** — `spim_a` `p2_render` (12,225 vs 12,161 transactions), `twim2`
+`p2_render`, the merged `twim1` bus stream, `JBD_FRAMECOUNTER_P2`, `RADIO_TX`,
+`VC_DATA_EVENTS` and the ESB frame counters.  The dashboard **repaints
+continuously**, so how many redraws fit in the 14 s budget rides on radio/timer
+cadence.  The *resulting framebuffer is identical anyway*, which is why the
+gate is the framebuffer and never that stream.
+
+### 8.4 Criteria (`D-`), additive to G-1…G-6 / S-*
+
+| id | criterion |
+|---|---|
+| **D-1** | **acceptance bar** — `framebuffer/p2_render/sha256` byte-for-byte `19b1f24a09f97a8d…`; 2,923 lit px; bbox (78,211)–(564,338) |
+| **D-2** | `framebuffer/p1_boot/sha256` = `0c5cc90b079d0d9c…` (all-zero) |
+| **D-3** | `spim_a` `p1_boot` `stream_sha256` = `f91505ab8dc0dd27…` (34 transactions) |
+| **D-4** | localiser: `row_sha256` → first differing row, then first differing pixel |
+| **D-5** | `counters/SCREEN_ID_ctx_d5 == 0x06` — proves the firmware selected the dashboard *itself* |
+| **D-6** | `DISPLAY_ON_ctx_fe8 == 0x01` and `ESB_SYNC_ctx_105a == 0x02` |
+| **D-7** | `spim_b` empty, both phases |
+| S-D-IMU / S-D-I2C / S-D-MIC,KEYS,ADC | `twim2` `p1_boot` stream; `twim1` **per device**; `pdm0`/`gpiote*`/`saadc` whole-run |
+| *not a gate* | `spim_a` `p2_render` stream/count and `JBD_FRAMECOUNTER_P2` (§8.3) |
+
+Current standing of our rebuild against these is in `sensor_parity_status.md`
+and `our_boot_bringup.md` §34.

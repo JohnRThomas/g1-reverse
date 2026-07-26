@@ -13423,3 +13423,565 @@ stub withdrawn); `recon/symbols/g1_app_globals.ld` (three pins rebound);
 `recon/application/app/CMakeLists.txt` (the new TU);
 `recon/emulator/reports/sensor_parity_status.md`; this report.
 **No `tools/` logic change**, `armemul` untouched, nothing committed.
+
+---
+
+## Iteration 34 — dashboard screen: `E_ID_SCREEN_DASHBOARD` is reached by
+## **removing** a stimulus, not by adding one.  The shipped firmware paints the
+## real head-up dashboard (date / clock / Bluetooth glyph / QuickNote hint) from
+## the `don` IMU gesture alone, with **no memory pokes and no GATT command**.
+
+*(written incrementally as each finding was confirmed)*
+
+### 34.1 The screen enum, resolved from the shipped image
+
+`process_for_new_task` (`FUN_0002c99c` @ `0x0002c99c`) switches on
+**`device_ctx[0xd5]`** — the live screen id — and each case opens with its own
+`"%s(): switch -> E_ID_SCREEN_<NAME>\n"` log.  Matching the case entry format
+pointers against the shipped `.rodata` (`tools/extract.py` mapping,
+`off = va - 0xC200 + 0x200`) gives the enum directly:
+
+| `ctx[0xd5]` | `E_ID_SCREEN_…` | evidence |
+|---:|---|---|
+| 0 | `IDLE` | case-0 log `0xa3669` |
+| 1 | `WAIT_BLOW_HEAD` | case-1 log `0xa3811` |
+| 2 | `COUNTDOWN_TIMER` | case-2 log `0xa2c85` |
+| 4 | `ANCS_NOTIFICATION` | case-4 log `0xa2a7e` |
+| 5 | `NEW_MESSAGE_COME_ON` | case-5 log `0xa2a4d` |
+| **6** | **`DASHBOARD`** | case-6 log `0xa2aad` = `"%s(): switch -> E_ID_SCREEN_DASHBOARD\n"`, log tag `0xa39bb` = `"process_for_DASHBOARD_show"` |
+| 10 | `NAVIGATION` | case-10 log `0xa30bd` |
+
+This agrees with `ui_refalsh_warp` (`0x00048b5c`) **case 6 → `ui_DashBoard_task`
+(`0x0003af78`)** and **case 10 → `ui_navigation_task` (`0x0003f410`)`, i.e. the
+value in `ctx[0xd5]` is the same number `display_reflash_handler` passes to the
+raster dispatcher.
+
+### 34.2 **There is no BLE opcode that selects the dashboard.**  Measured, not argued.
+
+A whole-image scan of the shipped app `.text` for the Thumb `BL` encoding
+(scratchpad `find_bl.py`; every 2-byte offset, decode `imm10/J1/J2/imm11`)
+finds **every** call site of the two screen-selecting functions:
+
+* `update_persist_task_status` `FUN_0002bef4` @ `0x0002bef4` — 20 call sites,
+  task ids `{7, 9, 0x0a, 0x0c, 0x0e, 0x10, 0x11}` and two register-sourced ones
+  (`ldr r1,[r3]` = *replay the id already in the persist record*).
+  **Not one of them passes 6.**
+* `update_temp_task_status` `FUN_0002bffc` @ `0x0002bffc` — 12 call sites, ids
+  `{4, 5, 6, 8}`.  The three that pass **6** are at `0x0002c7dc`
+  (`process_for_message_show`), `0x0002cf60` and **`0x0002e1a2`**
+  (both `process_for_new_task`).
+
+So the dashboard is **not** phone-commanded.  For contrast, the opcode the
+existing oracle uses is fully accounted for: `ble_process_put_req` case `0x0a`,
+sub-command `request[4] == 0` logs *"received navigation func startup packet"*
+and calls `update_persist_task_status(device_info, 10, 2)` — the **navigation**
+screen.  That is precisely what `vcentral QueueAttWrite "0a0600000000"` sends
+(`packet[0] = 0x0a`, `request[4] = 0x00`), and it is why the existing oracle's
+`p1_boot`/`p2_render` images are navigation strings.
+
+### 34.3 The real path — `IMU:wakeup:dashboard`
+
+`master_display_thread` (`0x0002692c`) runs
+`process_for_new_task(device_ctx, device_ctx + 0xee4)`, so the handler's
+`param_2` **is `&device_ctx[0xee4]`**, the wear/head-state byte.
+`imu_fusion_thread` (`0x0000fe88`) receives `p = device_ctx + 0xee4` and, on the
+head-up transition, executes `p[0] = 2` — i.e. **`device_ctx[0xee4] = 2`**.
+
+In `process_for_new_task` case 0 (`IDLE`) the shipped code at `0x0002e114`…
+`0x0002e1a6` is:
+
+```
+0002e118  bl   #0x23eec          ; get_ui_mode_flag2()
+0002e11c  cmp  r0, #0
+0002e11e  bne  #0x2e074          ; must be 0
+0002e138  bl   #0x34808          ; can_begin_task_transition()
+0002e13c  cbz  r0, #0x2e19c      ; must be 0  -> dashboard
+...
+0002e19c  movs r2, #2
+0002e19e  movs r1, #6            ; <== E_ID_SCREEN_DASHBOARD
+0002e1a0  mov  r0, r4
+0002e1a2  bl   #0x2bffc          ; update_temp_task_status(ctx, 6, 2)
+0002e1a6  movs r2, #1
+0002e1a8  mov  r1, r4
+0002e1aa  ldr  r0, [pc, #0x128]  ; -> 0xa2733 = "IMU:wakeup:dashboard"
+0002e1ac  b.w  #0x2cd8c          ; trigger_screen_state_change(reason, ctx, 1)
+```
+
+reached when `device_ctx[0xee4] == 2` **and** `get_ui_mode_flag2() == 0`.
+`update_temp_task_status` then writes `ctx[0xd5] = 6` and clears the persist
+record.  The reason string the firmware itself attaches to the transition is
+**`"IMU:wakeup:dashboard"`** (`0xa2733`) — the code names the stimulus.
+
+**Why the existing oracle never sees it:** the same `IDLE` case first calls
+`now_has_persist_task(ctx, ctx[0xd5])`, and if a persist task is pending it does
+`ctx[0xd5] = persist_record->task_id` and jumps straight out.  The
+`0a0600000000` GATT write installs persist task **10**, so navigation wins the
+race before the IMU branch is ever evaluated.
+
+**Therefore the stimulus that selects `E_ID_SCREEN_DASHBOARD` is the oracle
+stimulus MINUS the GATT write**: virtual phone connects (link up, ESB L/R sync
+completes), no BLE command is sent, and `lsm6dso PlayGesture "don"` is played at
+t = 6 s.  Nothing is poked.
+
+### 34.4 MEASURED — the SHIPPED images render the dashboard
+
+`recon/emulator/scripts/capture_display_sensor_oracle.sh` gained two **additive,
+default-preserving** knobs (with no variable set it emits a byte-identical
+capture script to before):
+
+* `G1_ATT_WRITE` — payload of the single NUS write (default `0a0600000000`);
+  **empty string ⇒ the `vcentral QueueAttWrite` line is not emitted at all**;
+* `G1_SCREEN_ID` — address of `device_ctx+0xd5`, read back as
+  `ORACLE_SCREEN_ID_ctx_d5` (default `0x20053225`, the original image).
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+G1_ATT_WRITE="" recon/emulator/scripts/capture_display_sensor_oracle.sh \
+    /private/tmp/g1_oracle_dash
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+    /private/tmp/g1_oracle_dash /private/tmp/g1_dash_rep_oracle
+```
+
+Same determinism knobs as every other capture (quantum `0.000010`, CC312 seed
+`0x5340CC3105340CC3`, `ExecuteInSerial`, 6 s + 14 s phases).
+
+```
+ORACLE_SCREEN_ID_ctx_d5:   0x06      <- E_ID_SCREEN_DASHBOARD
+ORACLE_DISPLAY_ON_ctx_fe8: 0x01
+ORACLE_ESB_SYNC_ctx_105a:  0x02
+ORACLE display_START action=0 x1, action=1 x1
+ORACLE BLIT notify_display_mode screen=6  x8
+ORACLE DashBoard_Reflash                  x136
+ui_navigation_task                        x0
+```
+
+| phase | spim_a transactions | pixel windows | lit px | bbox | framebuffer sha256 |
+|---|---:|---:|---:|---|---|
+| `p1_boot` (0–6 s) | 128 | 3 | **0** | — | `0c5cc90b079d0d9c…` (all-zero) |
+| `p2_render` (6–20 s) | 12,131 | 11,874 | **2,923** | (78,211)–(564,338) 487×128 | **`19b1f24a09f97a8d…`** |
+
+`JBD FrameCounter` `0x3` → **`0x2E65`**, `JournalCount` `0x400`,
+`ESB_MASTER_FRAMES`/`ACKS` `0x175`/`0x175`, `VC_CONNECTED` True.
+The replayed-from-SPI framebuffer and the JBD model's own frame dump agree
+(`xcheck=True`) for both phases.
+
+**What the screen shows** (crop of the lit bbox): the real G1 head-up dashboard —
+`Mon, Jan 1` on the left, a large `00:00` clock beneath it, a Bluetooth glyph
+below that, a vertical divider, a note glyph, and the two-line hint
+`Hold Right TouchBar` / `to Add QuickNote` on the right.  This is the same
+picture `armemul/scripts/g1-render.sh` used to produce **by poking memory** —
+now produced by the firmware itself from real stimulus.
+
+`p1_boot` being empty is expected and is the honest consequence of the changed
+stimulus: with no navigation command the first six seconds only initialise the
+panel and clear it, so the dashboard oracle's *only* pixel gate is `p2_render`.
+
+### 34.5 Determinism of the dashboard capture — verified, not assumed
+
+The shipped dashboard capture was run **twice end-to-end** and the two results
+diffed field-by-field.
+
+**Bit-identical across runs** — `framebuffer/p1_boot` and
+**`framebuffer/p2_render` sha256 and every `row_sha256`** (2,923 lit px, same
+bbox), `spim_a` `p1_boot` stream (34 transactions), `spim_b` (empty),
+**every `twim1` per-device stream** (both phases), `twim2` `p1_boot`,
+`pdm0`/`saadc`/`gpiote0`/`gpiote1` whole-run, and
+`JBD_FRAMECOUNTER_P1` / `DISPLAY_ON_ctx_fe8` / `ESB_SYNC_ctx_105a` /
+**`SCREEN_ID_ctx_d5`** / all sensor booleans.
+
+**NOT stable** — and this is a *new* property that the navigation oracle does
+not have, so it is called out explicitly rather than hidden:
+
+| field | run 1 | run 2 |
+|---|---:|---:|
+| `spim_a` `p2_render` transactions | 12,225 | 12,161 |
+| `twim2` `p2_render` transactions | 1,206 | 1,202 |
+| `JBD FrameCounter` `p2` | 0x2E65 | 0x2E27 |
+| `RADIO_TX` / `VC_DATA_EVENTS` | 0x232 / 0x214 | 0x231 / 0x209 |
+| `ESB_MASTER_FRAMES` / `ACKS` | 0x175 / 0x175 | 0x174 / 0x174 |
+
+The dashboard is a **continuously repainting** screen: over the 14 s phase the
+firmware redraws it ~11.8 k pixel windows, and *how many* complete inside the
+budget rides on radio/timer cadence.  The **resulting framebuffer is identical
+in both runs**, so `spim_a`'s `p2_render` stream hash / transaction count and
+`JBD_FRAMECOUNTER_P2` are **explicitly NOT gates** for this oracle.  (The
+navigation oracle's `spim_a` stream *is* stable and G-3 stays in force there.)
+
+### 34.6 The dashboard oracle and its criteria (permanent, additive)
+
+`recon/emulator/reports/display_sensor_oracle_dashboard.json` (schema
+`g1.display_sensor_oracle_dashboard/1`) is a **sibling** of
+`display_sensor_oracle.json`; **the navigation oracle and its G-1…G-6 / S-*
+criteria are untouched.**  The dashboard criteria carry a `D-` prefix:
+
+| id | criterion |
+|---|---|
+| **D-1** | **THE ACCEPTANCE BAR** — `framebuffer/p2_render/sha256` byte-for-byte = `19b1f24a09f97a8d…`, 2,923 lit px, bbox (78,211)–(564,338) 487×128 |
+| **D-2** | `framebuffer/p1_boot/sha256` = `0c5cc90b079d0d9c…` (all-zero) |
+| **D-3** | `spim_a` `p1_boot` `stream_sha256` = `f91505ab8dc0dd27…`, 34 transactions |
+| **D-4** | localiser: `row_sha256` → first differing row, then first differing pixel |
+| **D-5** | `counters/SCREEN_ID_ctx_d5 == 0x06` — *the honest-stimulus gate*: it proves the firmware selected `E_ID_SCREEN_DASHBOARD` **itself** |
+| **D-6** | `DISPLAY_ON_ctx_fe8 == 0x01` and `ESB_SYNC_ctx_105a == 0x02` |
+| **D-7** | `spim_b` empty, both phases |
+| S-D-IMU / S-D-I2C / S-D-MIC,KEYS,ADC | `twim2` `p1_boot` stream; `twim1` **per device**; `pdm0`/`gpiote*`/`saadc` whole-run |
+
+Golden artifacts written alongside it:
+`golden_framebuffer_dashboard_p2_render.{raw,pgm,png}` and
+`…_crop.png` (lit bbox, 3× upscale, human inspection only).
+
+### 34.7 MEASURED — OUR rebuild (`g1-i33c-app` + `g1-i30e-net`) on the identical stimulus
+
+```sh
+printf '$rtinfo_pc=0x00015b8c\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i34/ours-paired-i34.resc
+G1_ATT_WRITE="" \
+G1_RESC=/private/tmp/g1-i34/ours-paired-i34.resc \
+G1_APP_ELF=/private/tmp/g1-i33c-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040F38 G1_CTX_105A=0x20040FAA G1_SCREEN_ID=0x20040025 \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_dash
+```
+
+(`_end` = `0x2003ff45` ⇒ device context `0x2003ff50`, so `+0xd5` = `0x20040025`,
+`+0xfe8` = `0x20040F38`, `+0x105a` = `0x20040FAA`; `runtime_info_sync` =
+`0x00015b8c`, all read out of the ELF actually booted.)
+
+| counter | oracle | **ours** |
+|---|---|---|
+| machine reset / CPU halt / fatal | none | **none over 20 s** |
+| **`SCREEN_ID_ctx_d5`** | **0x06** | **0x00 — still `E_ID_SCREEN_IDLE`** |
+| `DISPLAY_ON_ctx_fe8` | 0x01 | 0x00 |
+| `ESB_SYNC_ctx_105a` | 0x02 | **0x02 — MATCHES** |
+| `ESB_MASTER_FRAMES` / `ACKS` | 0x175 / 0x175 | **0x175 / 0x175 — MATCHES exactly** |
+| `VC_CONNECTED` / `ConnectInds` | True / 1 | **True / 1 — MATCHES** |
+| `RADIO_TX` / `VC_DATA_EVENTS` | 0x232 / 0x214 | 0x230 / 0x209 (inside the ±cadence band) |
+| `JBD FrameCounter` p1 / p2 | 0x3 / 0x2E65 | **0x3** / 0x3 |
+| `IMU_ACCEL` / `GYRO` / `OPT3001` / `NPM1300` | T / F / T / T | **T / F / T / T — all MATCH** |
+
+#### Pixel comparison verdict (dashboard criteria)
+
+| id | verdict | measurement |
+|---|---|---|
+| **D-1** (`p2_render` framebuffer) | **FAIL** | ours `0c5cc90b079d0d9c…` (all-zero, **0 lit px, 0 pixel windows**) vs oracle `19b1f24a09f97a8d…` (**2,923 lit px**, bbox (78,211)–(564,338)).  **128 differing rows; first differing row y = 211, first differing pixel x = 244** (oracle `0xF`, ours `0x0`). |
+| **D-2** (`p1_boot` framebuffer) | **PASS** | `0c5cc90b079d0d9c…` == `0c5cc90b079d0d9c…`, 0 == 0 lit px, **zero differing rows**. |
+| **D-3** (`spim_a` `p1_boot` stream) | **PASS** | **34 == 34 transactions, `stream_sha256` `f91505ab8dc0dd27…` IDENTICAL** — our phase-1 display byte stream is byte-for-byte the shipped one, panel ID probe, brightness/gear registers and all three full-screen clears included. |
+| **D-4** | *localiser* | first differing row **211**, first differing pixel **x = 244**; `spim_a` `p2_render` first difference index **0** (ours **0** transactions vs the oracle's 12,225, whose index 0 is `{"op":"0x66","kind":"command"}`). |
+| **D-5** (screen actually selected) | **FAIL** | ours `0x00` (`E_ID_SCREEN_IDLE`) vs `0x06` (`E_ID_SCREEN_DASHBOARD`). |
+| **D-6** | **PARTIAL** | `ESB_SYNC_ctx_105a` **0x02 ✓**; `DISPLAY_ON_ctx_fe8` 0x00 ✗. |
+| **D-7** (`spim_b` unused) | **PASS** | 0 == 0, stream hash EQ, both phases. |
+| **S-D-MIC / KEYS** | **PASS** | `pdm0` 2 == 2 and `gpiote0` 25 == 25, whole-run hashes EQ; `gpiote1` 0 == 0. |
+| **S-D-IMU** | **FAIL** | `twim2` `p1_boot` 1,027 vs 1,075, hash NE; `p2_render` 700 vs 1,206. |
+| **S-D-I2C** | **PARTIAL** | nPM1300 / OPT3001 / ST25DV volumes below the oracle's, per-device hashes NE. |
+| **S-D-ADC** | **FAIL** | `saadc` 95 vs 998, hash NE. |
+
+**Score: 4 PASS / 2 PARTIAL / 4 FAIL.**  **NO DASHBOARD PIXEL IS PAINTED by our
+build** — reported plainly, because the acceptance bar is pixels.
+
+### 34.8 ROOT CAUSE of the dashboard FAIL, measured to one instruction
+
+Block hooks at **our** ELF's PCs (`imu_fusion_thread 0x00012ff8`,
+`master_display_thread 0x00023cbc`, `process_for_new_task 0x00029874`,
+`update_temp_task_status 0x00028eb0`, `update_persist_task_status 0x00028dc4`,
+`now_has_persist_task 0x00028d38`, `get_ui_mode_flag2 0x00021500`,
+`can_begin_task_transition 0x0002f918`, `ui_refalsh_warp 0x00042e8c`,
+`change_work_mode_to 0x000163a8`) plus a `uart0` file backend:
+
+| hook | oracle (shipped PCs) | **ours** |
+|---|---:|---:|
+| `now_has_persist_task screen=0` | many | **94** — the IDLE loop really runs |
+| `change_work_mode_to 2` | **9** | **0** |
+| `get_ui_mode_flag2` | 2 | **0** |
+| `can_begin_task_transition` | 1 | **0** |
+| `update_temp_task_status id=6 st=2` | **1** | **0** |
+| `device_ctx[0xee4]` at t=20 s | **0x02** | **0x01** |
+
+`get_ui_mode_flag2` is never even *called*, which by C short-circuit rules means
+the `*param_2 == 2` term is false — i.e. **`device_ctx[0xee4]` never becomes 2**,
+so the IMU never wakes the dashboard.  The UART log says why, in one line:
+
+```
+shipped:  lsm6dso_init_chip chip id 0x6c    ->  accel pm 1 / odr 0 ... imu_fusion_thread(): start imu looper
+ours:     lsm6dso_init_chip chip id 0x3
+          Invalid chip id 0x3
+          failed to initialize chip                 (no "start imu looper" ever)
+```
+
+**But the I2C bus read is correct.**  Our own `twim2.p1.trace` seq 0–2 is
+byte-identical to the oracle's:
+
+```
+TWIM2 seq=0 dev=0x6B dir=W n=2 data=0100
+TWIM2 seq=1 dev=0x6B dir=W n=1 data=0F      <- WHO_AM_I
+TWIM2 seq=2 dev=0x6B dir=R n=1 data=6C      <- the model returns 0x6C, correctly
+```
+
+so the chip id **arrives** and our firmware then reads `0x03` instead.
+
+The shipped `lsm6dso_init_chip` (`FUN_000622a0` @ `0x000622a0`) spills its
+arguments and **reloads the byte from the stack** after the read:
+
+```
+000622a0  push.w {r0, r1, r2, r4..r8, sb, lr}   ; r1 (param_2) is spilled to [sp,#4]
+000622c4  add.w  r1, sp, #6                     ; &((u8*)&spilled_param_2)[2]
+000622c8  bl     #0x7fb3e                       ; lsm6dso_device_id_get(ctx, &chip_id)
+000622d4  ldrb.w r1, [sp, #6]                   ; <== RELOAD from the stack slot
+000622da  bl     #0x7dda4                       ; log "chip id 0x%x"
+000622de  ldrb.w r1, [sp, #6]                   ; <== RELOAD again
+000622e2  cmp    r1, #0x6c
+```
+
+Our reconstruction (`recon/application/src/lsm6dso_init_chip.c`, and the same in
+`recon/app/src`, `recon/verified/src`, `recon/named`, `recon/symbolized/app`,
+`recon/readable_sources/app/g1`) spells it as
+
+```c
+unsigned int uStack_24;
+uStack_24 = param_2;                                     /* the spill */
+audio_codec_read_reg0x0f(iVar7, ((int)&uStack_24) + 2);  /* callee writes byte 2 */
+log_message(0xf62c5, (param_2 >> 0x10) & 0xff);          /* <-- reads the REGISTER  */
+uVar5 = (param_2 >> 0x10) & 0xff;                        /* <-- reads the REGISTER  */
+if (uVar5 == 0x6c) { ...
+    if (((param_2 >> 0x18) & 0xff) != 0) { ...           /* <-- and again, for +3   */
+```
+
+GCC keeps `param_2` in a register across the call and never reloads
+`uStack_24`, so all three sites see the **stale incoming argument** (whose byte 2
+happens to be `0x03`) instead of the value the callee just wrote.  The three
+reads must be `(uStack_24 >> 0x10) & 0xff` / `(uStack_24 >> 0x18) & 0xff`.
+
+**This is a new defect class for the ledger: *a value written by a callee
+through a pointer into a spilled-parameter stack slot, read back from the
+parameter register instead of from the slot*.**  It is invisible to
+`tools/cfg_verify.py` / `emu.compare` for exactly the same structural reason as
+the undersized-stack-frame class (instances 1–18): the harness models callees as
+**order-keyed oracles that write nothing**, so the stack slot is never modified
+during a trial and the stale-register spelling and the reload spelling produce
+*identical* side-effect traces.  `cfg_verify.py app FUN_000622a0` passes both
+before and after.
+
+**It was latent for 33 iterations because every previous capture used the
+navigation stimulus**, which installs the screen through a BLE persist task and
+never needs the IMU.  Changing the stimulus to the honest dashboard one is what
+exposed it.
+
+### 34.9 The fix, and what it unmasks — `g1-i34a-app`
+
+The three stale reads become reads of the spilled slot, in all six trees
+(`recon/application/src`, `recon/app/src/FUN_000622a0.c`,
+`recon/verified/src/FUN_000622a0.c`, `recon/named`, `recon/symbolized/app`,
+`recon/readable_sources/app/g1`):
+
+```c
+-    log_message(0x000f62c5, (param_2   >> 0x10) & 0xff);
+-    uVar5 =                 (param_2   >> 0x10) & 0xff;
+-    if (               ((param_2   >> 0x18) & 0xff) != 0) {
++    log_message(0x000f62c5, (uStack_24 >> 0x10) & 0xff);
++    uVar5 =                 (uStack_24 >> 0x10) & 0xff;
++    if (               ((uStack_24 >> 0x18) & 0xff) != 0) {
+```
+
+`uStack_24`'s address escapes to the callee on the line above, so GCC is
+*obliged* to reload it — the shipped `ldrb.w r1,[sp,#6]` is restored by
+construction, not by hoping.  `tools/cfg_verify.py app FUN_000622a0` is
+`PASS cases=0` before **and** after, which is the point: the harness cannot see
+this class.
+
+`g1-i34a-app` = `g1-i33c-app` + this change only.
+FLASH **737,504 B** and RAM **253,765 B** — *unchanged*; `nm -u` **0**;
+`_end` `0x2003ff45` and `runtime_info_sync` `0x00015b8c` unchanged (so every
+probe address above still holds).
+
+**MEASURED on the same dashboard stimulus** (`/private/tmp/g1_ours_dash_i34a`):
+
+```
+lsm6dso_init_chip chip id 0x6c        <- was 0x3
+...  imu_fusion_thread(): start imu looper
+I34E temp_task id=6 st=2              <- update_temp_task_status(ctx, 6, 2)  FIRST TIME EVER
+I34E ui_DashBoard_task                <- FIRST TIME EVER
+I34E DashBoard_Reflash                <- FIRST TIME EVER
+ORACLE_SCREEN_ID_ctx_d5:   0x06       <- D-5 now PASSES: our firmware SELECTS the dashboard itself
+ORACLE_DISPLAY_ON_ctx_fe8: 0x01       <- D-6 now fully PASSES
+```
+
+**The reconstructed firmware now reaches `E_ID_SCREEN_DASHBOARD` on its own from
+the `don` gesture, with no pokes** — `ui_DashBoard_task` and `DashBoard_Reflash`
+execute for the first time in this project.  It then **faults**, ~11.9 s in:
+
+```
+* buffer overflow detected *
+<err> os: Faulting instruction address (r15/pc): 0x00045e20   (fortify_chk_fail)
+<err> os: >>> ZEPHYR FATAL ERROR 3: Kernel oops on CPU 0
+<err> fatal_error: Resetting system
+```
+
+so `CONFIG_RESET_ON_FATAL_ERROR=1` reboots the SoC and the 20 s capture ends with
+`JBD FrameCounter 0x0` and **still 0 dashboard pixels**.  D-1 therefore remains
+**FAIL** for `g1-i34a-app` too; the framebuffer is unchanged (`0c5cc90b…`).
+
+### 34.10 The NEW first divergence — the **unrecovered font family 3**
+
+Traced to one call with hooks at `safe_memcpy_checked 0x0007af0a`,
+`fortify_chk_fail 0x00045e08`, `resource_manger_get 0x0003fc98` and the four
+per-family glyph-offset entries:
+
+```
+I34E DashBoard_Reflash
+I34H rmg font=3 ch=0x2c            <- resource_manger_get(font=3, ch=',')
+I34H style3                        <- dispatches to get_font_style3_glyph_offset 0x0003fbfc
+I34G smc lr=0x3e3db n=0xd1a lim=0x2a4   <- gui_utf_draw: memcpy 3354 B into the 676 B glyph buffer
+I34F CHKFAIL lr=0x7af29 r0=0x2002af98 r1=0x4370588
+```
+
+The very first glyph the dashboard needs is the **comma of `"Mon, Jan 1"` in font
+style 3**.  `get_font_style3_glyph_offset` is one of the **three font families
+§33.12 item 4 records as still unrecovered** (`get_clock_digit_glyph_offset_large`,
+`…_small`, `get_font_style3_glyph_offset` — still raw absolute pins; only
+`font == 0`, the default font, was recovered in §33.7).  It returns a bogus glyph
+descriptor, so `gui_utf_draw` computes `glyph_height * (glyph_width/2) = 0xd1a`
+= 3,354 bytes against the shipped 676-byte (`0x2a4`) stack glyph buffer, and the
+fortified `safe_memcpy_checked` correctly refuses.
+
+This is a **clean, named, already-known gap**, not a new mystery: the navigation
+screen renders entirely in font 0, which is why iteration 33 could reach a
+pixel-identical `p1_boot` without ever touching families 1–3.  The dashboard is
+the first screen that needs them.  **Recovering the three remaining font
+families is now the single blocker for D-1.**
+
+### 34.11 Regression gate — the NAVIGATION criteria are held, measured
+
+`g1-i34a-app` re-run on the **unchanged** navigation stimulus
+(`G1_ATT_WRITE` left at its default `0a0600000000`), against
+`display_sensor_oracle.json`:
+
+| navigation criterion | iteration 33 (`g1-i33c-app`) | **iteration 34 (`g1-i34a-app`)** |
+|---|---|---|
+| **G-2** `p1_boot` framebuffer | **PASS** `1d617c65a688…`, 656 px, 0 differing rows | **PASS — identical**, `1d617c65a688…`, 656 px, **0 differing rows** |
+| G-1 `p2_render` framebuffer | FAIL 544 px `b855eac0a3d4…`, first row 266 | **FAIL, unchanged**: 544 px `b855eac0a3d4…`, first differing row **266** |
+| G-3 `spim_a` p1 / p2 transactions | 126 / 109 | **126 / 109 — identical** |
+| G-6 `spim_b` | PASS (0) | **PASS (0)** |
+| `JBD FrameCounter` p1 / p2 | 0x40 / 0xAA | **0x40 / 0xAA — identical** |
+| `DISPLAY_ON_ctx_fe8` | 0x01 | **0x01** |
+| `ESB_MASTER_FRAMES` | 0x176 | **0x176** |
+| `ESB_SYNC_ctx_105a` | 0x02 | **0x01** ← the one measured delta |
+
+**No graphics regression**: every framebuffer, every SPI count and every JBD
+counter is bit-identical to iteration 33.  The single delta is the
+`ESB_SYNC_ctx_105a` byte sampled at t = 20 s reading `0x01` instead of `0x02` in
+this run; it is a **state byte read at one instant**, the IMU thread is now
+actually running (which shifts `twim2` `p2` traffic 41,774 → 44,294 B and hence
+scheduling phase), and the **same build reads `0x02` on the dashboard stimulus**
+(`/private/tmp/g1_ours_dash_i34a`, `ESB_SYNC_ctx_105a: 0x02`).  It is reported
+because it was measured, not explained away; it is not a pixel or transaction
+regression.
+
+The fix is therefore **kept**: it restores the shipped `ldrb.w r1,[sp,#6]`
+semantics by construction, it converts D-5/D-6 from FAIL to PASS, and it costs
+nothing on the navigation criteria.
+
+### 34.12 Build ledger and gates
+
+| app build | change | FLASH | RAM | `nm -u` |
+|---|---|---:|---:|---:|
+| `g1-i33c-app` | iteration 33 | 737,504 B | 253,765 B | 0 |
+| **`g1-i34a-app`** | **+ `lsm6dso_init_chip` reloads the spilled chip-id slot (§34.9) — FINAL** | **737,504 B** | **253,765 B** | **0** |
+
+FLASH and RAM are **unchanged to the byte**; `_end` `0x2003ff45` and
+`runtime_info_sync` `0x00015b8c` unchanged.  Net core **UNCHANGED**
+(`g1-i30e-net`).
+
+| gate | iteration 33 | **iteration 34 (`g1-i34a-app`)** |
+|---|---|---|
+| `check_ram_pin_collisions.py` (app) raw-in-object / raw-free | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_ram_pin_collisions.py` (app) bound OK / escaping | 624 / 0 | **624 / 0** |
+| `check_thread_create_stack_args.py` | 10/10 | **10/10**, EXIT 0 |
+| `gen_retained_sources.py --check` | clean | **clean**, EXIT 0 |
+| `cfg_verify.py app FUN_000622a0` | PASS (blind) | **PASS** (blind before *and* after — that is the finding) |
+| app `nm -u` undefined | 0 | **0** |
+
+### 34.13 Open, named, and NOT fixed
+
+1. **The three unrecovered font families** —
+   `get_font_style3_glyph_offset`, `get_clock_digit_glyph_offset_large` and
+   `…_small` (§33.12 item 4).  This is now **the single blocker for D-1**:
+   the dashboard's first glyph (`,` in font style 3) already trips it.
+2. **The `p2_render` navigation string selection** (§33.10) — still the blocker
+   for G-1.
+3. **A new defect class for the ledger** (§34.8): *a value written by a callee
+   through a pointer into a spilled-parameter stack slot, read back from the
+   parameter register instead of from the slot.*  One instance found and fixed
+   (`lsm6dso_init_chip`); **the class has not been swept.**  A directed sweep is
+   mechanical: find every reconstruction that takes `&local` of a variable
+   initialised from a parameter, passes it to a callee, and then reads the
+   *parameter* afterwards.
+4. Five of the six static `K_MSGQ_DEFINE` queues are still dead
+   (§33.12 item 2); 356 absolute `A` symbols remain in the FLASH range
+   (§33.12 item 3); `saadc` 95 / 998 and the ST25DV volumes (§33.12 item 5).
+5. **The dashboard `spim_a` `p2_render` stream is not a reproducible artifact**
+   (§34.5) and is deliberately not a gate.  If a byte-exact display stream is
+   ever wanted for the dashboard, the phase would have to end on a *quiescent*
+   condition rather than a wall-clock budget.
+
+### Regenerate (iteration 34)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+
+# ---- build (only lsm6dso_init_chip changed vs iteration 33) ---------------
+recon/application/build_cohesive.sh app /private/tmp/g1-i34a-app
+# net UNCHANGED from iteration 30 (g1-i30e-net)
+
+# ---- SHIPPED dashboard oracle (the new criterion) ------------------------
+G1_ATT_WRITE="" recon/emulator/scripts/capture_display_sensor_oracle.sh \
+    /private/tmp/g1_oracle_dash
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+    /private/tmp/g1_oracle_dash /private/tmp/g1_dash_rep_oracle
+
+# ---- OUR build, dashboard stimulus --------------------------------------
+mkdir -p /private/tmp/g1-i34
+printf '$rtinfo_pc=0x00015b8c\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i34/ours-paired-i34.resc
+G1_ATT_WRITE="" \
+G1_RESC=/private/tmp/g1-i34/ours-paired-i34.resc \
+G1_APP_ELF=/private/tmp/g1-i34a-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040F38 G1_CTX_105A=0x20040FAA G1_SCREEN_ID=0x20040025 \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_dash_i34a
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_ours_dash_i34a /private/tmp/g1_dash_rep_i34a
+
+# ---- OUR build, NAVIGATION stimulus (the regression gate) ----------------
+#      identical command with G1_ATT_WRITE left unset
+G1_RESC=/private/tmp/g1-i34/ours-paired-i34.resc \
+G1_APP_ELF=/private/tmp/g1-i34a-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040F38 G1_CTX_105A=0x20040FAA G1_SCREEN_ID=0x20040025 \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_nav_i34a
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_ours_nav_i34a /private/tmp/g1_nav_rep_i34a
+```
+
+**NOTE on the stdin pipe.**  Renode's `ConsoleIOSource` aborts if stdin closes,
+so every capture above must be run with a writer holding stdin open.  A bare
+`sleep 100000 | …` works but the *shell* then waits on `sleep` forever, so a
+following command in the same script is never reached (§33's note).  The
+pipeline used in this iteration keeps the shell free:
+
+```sh
+bash -c 'F=$(mktemp -u); mkfifo $F; sleep 100000 > $F & W=$!
+         <capture command> < $F
+         kill $W; rm -f $F'
+```
+
+Files changed this iteration:
+`recon/emulator/scripts/capture_display_sensor_oracle.sh` (additive
+`G1_ATT_WRITE` / `G1_SCREEN_ID` knobs and the `ORACLE_SCREEN_ID_ctx_d5`
+read-back; with no variable set it emits a byte-identical capture script);
+`recon/application/src/lsm6dso_init_chip.c`, `recon/app/src/FUN_000622a0.c`,
+`recon/verified/src/FUN_000622a0.c`, `recon/named/lsm6dso_init_chip.c`,
+`recon/symbolized/app/lsm6dso_init_chip.c`,
+`recon/readable_sources/app/g1/lsm6dso_init_chip.c` (the three stale reads);
+new `recon/emulator/reports/display_sensor_oracle_dashboard.json` and
+`golden_framebuffer_dashboard_p2_render.{raw,pgm,png}` + `…_crop.png`;
+`recon/emulator/reports/display_sensor_parity.md`;
+`recon/emulator/reports/sensor_parity_status.md`; this report.
+**No `tools/` logic change**, `armemul` untouched, nothing committed.

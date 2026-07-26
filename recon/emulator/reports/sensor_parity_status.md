@@ -1,9 +1,52 @@
 # Sensor + graphics parity status — OUR rebuilt firmware vs the shipped oracle
 
-**Twentieth measurement of `display_sensor_parity.md`'s criteria against our
-rebuild** (iteration 33; previous measurements were iterations 14–32).
+**Twenty-first measurement** (iteration 34; previous measurements were
+iterations 14–33).  From iteration 34 there are **two** oracles and **two**
+criteria sets, both in force:
 
-## READ THIS FIRST — iteration 33: **THE RECONSTRUCTED FIRMWARE PAINTS PIXELS.**
+| oracle | screen | stimulus | criteria |
+|---|---|---|---|
+| `display_sensor_oracle.json` | `E_ID_SCREEN_NAVIGATION` (id 10) | phone connects **and writes GATT `0a0600000000`**, then `don` gesture | G-1…G-6, S-* |
+| **`display_sensor_oracle_dashboard.json`** *(new)* | **`E_ID_SCREEN_DASHBOARD` (id 6)** | phone connects, **NO GATT command**, then `don` gesture | **D-1…D-7, S-D-*** |
+
+## READ THIS FIRST — iteration 34: the dashboard is reached by REAL STIMULUS
+
+`E_ID_SCREEN_DASHBOARD` is **not phone-commandable** — a whole-image `BL` scan
+of the shipped app finds no `update_persist_task_status(_, 6, _)` call site at
+all.  The firmware selects it *itself*, from `process_for_new_task` case 0
+(`IDLE`) at `0x0002e1a2`
+(`movs r2,#2 / movs r1,#6 / bl update_temp_task_status`), with its own reason
+string **`"IMU:wakeup:dashboard"`**, when the `don` head-up gesture sets
+`device_ctx[0xee4] = 2`.  The existing oracle never sees it because the
+`0a0600000000` GATT write installs persist task 10 (navigation) first and wins
+the race.  **So the dashboard stimulus is the navigation stimulus MINUS the GATT
+write** — nothing added, nothing poked.
+
+* **SHIPPED**: `SCREEN_ID_ctx_d5 = 0x06`, `DashBoard_Reflash` ×136,
+  `p2_render` **2,923 lit px**, bbox (78,211)–(564,338),
+  sha `19b1f24a09f97a8d…` — the real head-up dashboard: `Mon, Jan 1`, a large
+  `00:00` clock, a Bluetooth glyph, a divider and the
+  `Hold Right TouchBar / to Add QuickNote` hint.
+* **OURS (`g1-i33c-app`)**: `SCREEN_ID_ctx_d5 = 0x00` — never leaves IDLE.
+  **D-1 FAIL** (0 lit px; first differing row y = 211, first differing pixel
+  x = 244).  **D-2 PASS**, **D-3 PASS** (`spim_a` `p1_boot` 34 == 34
+  transactions, `stream_sha256` `f91505ab8dc0dd27…` **identical**), D-7 PASS.
+  Root cause measured to one instruction: `lsm6dso_init_chip` reads the chip id
+  back from the **parameter register** instead of the spilled stack slot the
+  callee wrote, so it sees `0x3` where the I2C bus really returned `0x6C`, the
+  IMU never initialises and the `don` gesture does nothing.
+* **OURS (`g1-i34a-app`, that one fix)**: `SCREEN_ID_ctx_d5 = **0x06**`,
+  `DISPLAY_ON = 0x01`, and `ui_DashBoard_task` / `DashBoard_Reflash` run **for
+  the first time in this project** — **D-5 and D-6 PASS**.  It then hits
+  `* buffer overflow detected *` in `gui_utf_draw` because
+  `resource_manger_get(font=3, ch=',')` dispatches to the **still-unrecovered**
+  `get_font_style3_glyph_offset`, which returns a 3,354-byte glyph for a
+  676-byte buffer → `K_ERR_KERNEL_OOPS` → reset.  **D-1 still FAIL.**
+  **Recovering the three remaining font families is now the single blocker.**
+
+Full detail and every measurement in `our_boot_bringup.md` §34.
+
+## Iteration 33: **THE RECONSTRUCTED FIRMWARE PAINTS PIXELS.**
 ## `p1_boot`'s 640×480 4 bpp framebuffer is **BYTE-IDENTICAL to the oracle's**
 ## (`sha256 1d617c65a688f10e…`, **656 == 656 lit pixels**, bbox x 178–449 /
 ## y 267–287, **zero differing rows**) — our rebuild renders the shipped

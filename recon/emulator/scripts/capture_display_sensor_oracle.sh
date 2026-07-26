@@ -49,6 +49,18 @@
 #   G1_CTX_105A  address of device_ctx+0x105a  (default 0x200541aa, original)
 #   G1_P1_SECS   phase-1 length (default 6)
 #   G1_P2_SECS   phase-2 length (default 14)
+#   G1_ATT_WRITE hex payload of the single GATT (NUS) write the virtual phone
+#                performs during phase 1.  Default "0a0600000000" == the
+#                navigation-startup command (BLE opcode 0x0a, sub-command 0),
+#                which is what the original oracle captures.  Set to the empty
+#                string to send NO GATT command at all: the phone still
+#                connects and the link still comes up, but no BLE screen is
+#                requested, so the `don` head-up gesture drives the firmware
+#                into E_ID_SCREEN_DASHBOARD instead (see
+#                display_sensor_oracle_dashboard.json / our_boot_bringup.md
+#                iteration 34).  No memory is written either way.
+#   G1_SCREEN_ID address of device_ctx+0xd5 (the live screen id) to read back
+#                at the end of the run; default 0x20053225 (original image).
 #
 # Example (our build):
 #   G1_RESC=$ARMEMUL/g1-ours.resc \
@@ -70,6 +82,14 @@ G1_CTX_FE8="${G1_CTX_FE8:-0x20054138}"
 G1_CTX_105A="${G1_CTX_105A:-0x200541aa}"
 G1_P1_SECS="${G1_P1_SECS:-6}"
 G1_P2_SECS="${G1_P2_SECS:-14}"
+G1_ATT_WRITE="${G1_ATT_WRITE-0a0600000000}"
+G1_SCREEN_ID="${G1_SCREEN_ID:-0x20053225}"
+# Emitted verbatim into the capture script; empty => the phone sends no command.
+if [ -n "$G1_ATT_WRITE" ]; then
+  G1_ATT_WRITE_LINE="vcentral QueueAttWrite \"$G1_ATT_WRITE\""
+else
+  G1_ATT_WRITE_LINE=""
+fi
 
 mkdir -p "$OUT"
 rm -f "$OUT"/*.trace "$OUT"/*.ppm "$OUT"/run.out "$OUT"/capture.resc
@@ -112,7 +132,7 @@ vcentral SweepLoop true
 vcentral SweepStartHandle 0x0F
 vcentral SweepMaxHandle 0x15
 vcentral SweepDwell 4
-vcentral QueueAttWrite "0a0600000000"
+$G1_ATT_WRITE_LINE
 esbslave Enabled true
 esbslave AnnounceResponse true
 esbslave DumpFirstN 4
@@ -182,6 +202,8 @@ echo "ORACLE_DISPLAY_ON_ctx_fe8:"
 sysbus ReadByte $G1_CTX_FE8
 echo "ORACLE_ESB_SYNC_ctx_105a:"
 sysbus ReadByte $G1_CTX_105A
+echo "ORACLE_SCREEN_ID_ctx_d5:"
+sysbus ReadByte $G1_SCREEN_ID
 echo "ORACLE_IMU_ACCEL_ENABLED:"
 sysbus.twim2.lsm6dso AccelerometerEnabled
 echo "ORACLE_IMU_GYRO_ENABLED:"
