@@ -71,6 +71,140 @@ SREG = [getattr(__import__("unicorn.arm_const", fromlist=["x"]),
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
 
 
+def _f32w(value):
+    return struct.unpack("<I", struct.pack("<f", value))[0]
+
+
+def _f64w(value):
+    return struct.unpack("<II", struct.pack("<d", value))
+
+
+# ---- realistic FLOAT inputs -------------------------------------------------
+# Uniform 32-bit words are almost never ORDINARY floats.  Interpreted as
+# binary32, a random word has a uniformly random 8-bit exponent, so it is a
+# huge or vanishing magnitude with overwhelming probability, and the values
+# that real firmware branches on -- exact 0.0, +/-1.0, +/-0.5, sensor-scale
+# magnitudes, denormals -- have probability ~0.  That is exactly the shape of
+# CRITICAL FINDING #1 (uniform integers almost never land in a small switch
+# range) transposed to the VFP argument bank: `x == 0.0f`, `x > 1.0f` and
+# similar guards were never exercised, so float code that is wrong on those
+# paths could pass.  Seed a MIX of production-plausible float values and raw
+# random words so both domains are covered.
+FLOAT_POOL = tuple(_f32w(v) for v in (
+    # exact/boundary values that random bit patterns never produce
+    0.0, -0.0, 1.0, -1.0, 0.5, -0.5, 2.0, -2.0, 0.25, 4.0, 3.0, -3.0,
+    # small sensor-scale magnitudes (gyro rad/s, normalized accelerometer,
+    # quaternion components, filter gains, sample intervals)
+    0.1, -0.1, 0.01, -0.01, 0.001, 0.05, -0.05, 0.6, 0.8, -0.8,
+    0.70710678, -0.70710678, 0.99999994,
+    # physical / geometric constants the firmware actually uses
+    9.80665, -9.80665, 3.14159265, -3.14159265, 1.57079633, 57.2957795,
+    0.0174532925, 180.0, 360.0,
+    # ordinary display/percentage/brightness ranges
+    10.0, 100.0, 255.0, 1000.0, 1024.0, 16777216.0,
+    # magnitude extremes that remain finite, and the smallest denormal
+    1e-6, 1e6, 1e-20, 1e20, 1.1754944e-38, 3.4028235e38, 1.4e-45,
+))
+# NOTE ON INFINITY/NaN.  They are deliberately NOT in this pool, and that is a
+# measured decision, not an oversight.  Algebraically identical float code does
+# not preserve NaN sign/payload (`-a + b*c` via VNMLS versus `b*c - a` flips the
+# sign bit of a propagated NaN; `inf - inf` yields the positive default NaN
+# instead), while the harness compares float memory writes and float call
+# arguments BIT-EXACTLY.  Seeding NaN/infinity therefore fails semantically
+# correct reconstructions -- measured on FUN_00026624, whose corrected body
+# mismatched only in the sign bit of a NaN.  Production float inputs are never
+# NaN, exceptional-value coverage stays in the hand-reviewed REVIEWED_FP_CASES
+# (which is where libm classification needs it), and the ~20% of register pairs
+# that keep uniform random words still deliver infinities and NaNs at exactly
+# their historical rate, so nothing that used to be exercised has been lost.
+
+# The values firmware actually BRANCHES on.  Over-sampled in both pools for
+# the same reason make_args over-samples small integers: a comparison against
+# exactly 0.0/1.0/0.5 is a real control-flow edge, and one pool slot in forty
+# is not enough to reach it reliably.
+FLOAT_BOUNDARY = tuple(_f32w(v) for v in (0.0, -0.0, 1.0, -1.0, 0.5, -0.5))
+FLOAT_POOL = FLOAT_POOL + FLOAT_BOUNDARY * 3
+
+# Pool for float-typed POINTEE memory: finite and of MODERATE magnitude
+# (|x| <= 1e6).  Two reasons, both measured rather than assumed:
+#   * a NaN stored through a reconstruction can carry a different payload/sign
+#     than the original's (ARM NaN propagation is operand-order dependent, and
+#     `inf - inf` versus a propagated NaN differ), and the memory-write trace is
+#     compared bit-exactly -- seeding NaN/infinity would manufacture mismatches
+#     for a semantically identical candidate;
+#   * 1e20-scale inputs overflow to infinity as soon as they are squared, which
+#     reintroduces the same NaN divergence one step later.
+FLOAT_POOL_FINITE = tuple(
+    w for w in FLOAT_POOL
+    if (w & 0x7f800000) != 0x7f800000
+    and abs(struct.unpack("<f", struct.pack("<I", w))[0]) <= 1e6) + FLOAT_BOUNDARY
+
+DOUBLE_POOL = tuple(_f64w(v) for v in (
+    0.0, -0.0, 1.0, -1.0, 0.5, -0.5, 2.0, 0.25, 3.0, 0.1, -0.1, 0.01,
+    9.80665, 3.14159265358979, 1.5707963267949, 57.29577951308232,
+    0.017453292519943295, 100.0, 1000.0, 1e-6, 1e6, 1e-300, 1e300,
+    2.2250738585072014e-308, 1.7976931348623157e308, 5e-324,
+))
+
+
+def _vfp_seed_words(seed):
+    """16 words for s0..s15: realistic float/double values mixed with random.
+
+    Pairs are seeded as a unit so that a function reading d0..d7 receives
+    plausible binary64 values, not two unrelated binary32 words.  ~20% of
+    pairs keep the historical uniform-random content, so the new seeding is
+    strictly additional coverage rather than a replacement.
+    """
+    words = list(struct.unpack("<16I", _prng_fill(
+        b"vfp" + struct.pack("<I", seed), 64)))
+    sel = _prng_fill(b"vfpmode" + struct.pack("<I", seed), 24)
+    for pair in range(8):
+        mode = sel[pair * 3] * 100 // 256
+        a, b = sel[pair * 3 + 1], sel[pair * 3 + 2]
+        if mode < 25:
+            lo, hi = DOUBLE_POOL[((a << 8) | b) % len(DOUBLE_POOL)]
+            words[2 * pair], words[2 * pair + 1] = lo, hi
+        elif mode < 80:
+            words[2 * pair] = FLOAT_POOL[a % len(FLOAT_POOL)]
+            words[2 * pair + 1] = FLOAT_POOL[b % len(FLOAT_POOL)]
+    return words
+
+
+def _float_scratch_bytes(seed, size):
+    """Pointee-memory image whose words read as ordinary binary32 values.
+
+    Float arguments also arrive through POINTERS (filter state, quaternions,
+    coefficient arrays).  Uniform-random pointee bytes have the same blind
+    spot as uniform-random VFP registers, so provide a keystream of plausible
+    finite floats with ~25% of slots left random (a real record also holds
+    integers, flags and pointers).
+    """
+    random_words = _prng_fill(b"fram" + struct.pack("<I", seed), size + 4)
+    sel = _prng_fill(b"frammode" + struct.pack("<I", seed), (size // 4) + 2)
+    out = bytearray()
+    index = 0
+    while len(out) < size:
+        pick = sel[index % len(sel)]
+        if pick * 100 // 256 < 75:
+            out += struct.pack("<I", FLOAT_POOL_FINITE[
+                random_words[(index * 4) % size] % len(FLOAT_POOL_FINITE)])
+        else:
+            # Keep sign and mantissa arbitrary (integer/flag/pointer fields
+            # live in these records too) but clamp the exponent into a moderate
+            # band, 2**-23 .. 2**8.  A raw random word is a ~1e34 float three
+            # times in ten; squaring it overflows to infinity and the following
+            # subtraction yields a NaN whose SIGN is not preserved by
+            # algebraically equivalent float code, which would fail a correct
+            # reconstruction on a bit-exact float compare (measured on
+            # FUN_00026624, state word q0 = 0x77f8197f = 1.0e34).
+            word = int.from_bytes(random_words[index * 4:index * 4 + 4],
+                                  "little")
+            word = (word & 0x807fffff) | ((0x68 + ((word >> 23) & 0x1f)) << 23)
+            out += struct.pack("<I", word)
+        index += 1
+    return bytes(out[:size])
+
+
 def _range_contains(window, address, size=1):
     start, end = window
     return (type(address) is int and type(size) is int and size > 0 and
@@ -169,7 +303,7 @@ class Runner:
             normalized_stack_pointer_calls=None,
             stack_objects=None,
             fp_arg_overrides=None, initial_xpsr=0, initial_primask=0,
-            initial_exclusive_monitor=None):
+            initial_exclusive_monitor=None, float_scratch=False):
         """Run one trial. Returns dict(state) or {'error':...}.
         stop_events>0: stop after that many side-effect events (for non-returning
         supervisor loops — we compare the ordered event-trace prefix instead of a
@@ -225,6 +359,12 @@ class Runner:
         uc.mem_write(ORACLE_TRAMPOLINE, bytes.fromhex("7047"))
         # seed RAM + scratch identically per trial
         uc.mem_write(RAM_BASE, _prng_fill(b"ram" + struct.pack("<I", scratch_seed), RAM_SIZE))
+        if float_scratch:
+            # Argument-pointer region only: the pointee records of a hard-float
+            # function read as plausible binary32 values instead of uniform
+            # bytes.  Applied before every observation hook and identically for
+            # original and candidate, exactly like the other input fixtures.
+            uc.mem_write(SCRATCH, _float_scratch_bytes(scratch_seed, SCRATCH_SZ))
 
         # registers
         for i, r in enumerate(REG):
@@ -266,11 +406,15 @@ class Runner:
                                      "ordinal": int(ordinal),
                                      "value": int(value) & 0xffffffff,
                                      "count": 0})
-        # seed VFP s0..s15 identically (float args + float-return coverage)
-        fseed = _prng_fill(b"vfp" + struct.pack("<I", scratch_seed), 64)
+        # seed VFP s0..s15 identically (float args + float-return coverage).
+        # Values mix production-plausible floats/doubles with random words --
+        # see FLOAT_POOL: uniform bit patterns alone never produce 0.0, +/-1.0,
+        # +/-0.5 or sensor-scale magnitudes, which is the float analogue of the
+        # integer small-value false-proof class.
+        fseed = _vfp_seed_words(scratch_seed)
         for i, sr in enumerate(SREG):
             try:
-                uc.reg_write(sr, struct.unpack_from("<I", fseed, i * 4)[0])
+                uc.reg_write(sr, fseed[i])
             except UcError:
                 break
         for i, value in (fp_arg_overrides or {}).items():
@@ -969,7 +1113,8 @@ def compare(orig_bytes, orig_va, orig_size,
             compare_primask=False,
             orig_internal_code_regions=None,
             candidate_internal_code_regions=None, max_insns=200000,
-            max_resumes=5000, initial_exclusive_monitors=None):
+            max_resumes=5000, initial_exclusive_monitors=None,
+            float_scratch_trials=()):
     """arg_overrides: optional list of {arg_index: value} dicts. When given, the
     first len(arg_overrides) trials pin those argument registers to the specified
     values (control-flow-derived, to guarantee every branch/switch-case is
@@ -1011,6 +1156,9 @@ def compare(orig_bytes, orig_va, orig_size,
     matched_orig_stack_objects = set()
     matched_cand_stack_objects = set()
     se = prefix_k if no_return else 0
+    # Trial indices whose argument-pointer region is seeded with plausible
+    # binary32 values instead of uniform bytes (hard-float pointee coverage).
+    float_scratch_trials = frozenset(int(t) for t in (float_scratch_trials or ()))
     for t in range(trials):
         args = make_args(t, nptr)
         if arg_overrides and t < len(arg_overrides):
@@ -1093,7 +1241,8 @@ def compare(orig_bytes, orig_va, orig_size,
                    normalized_stack_pointer_calls=normalized_stack_pointer_calls,
                    fp_arg_overrides=trial_fp, initial_xpsr=trial_xpsr,
                    initial_primask=trial_primask,
-                   initial_exclusive_monitor=trial_exclusive_monitor)
+                   initial_exclusive_monitor=trial_exclusive_monitor,
+                   float_scratch=(t in float_scratch_trials))
         # candidate emulated at its own VA but identical inputs/scratch
         b = rc.run(t, args, t, max_insns=run_cap, max_resumes=max_resumes,
                    stop_events=se, memory_overrides=mov,
@@ -1117,7 +1266,8 @@ def compare(orig_bytes, orig_va, orig_size,
                    normalized_stack_pointer_calls=normalized_stack_pointer_calls,
                    fp_arg_overrides=trial_fp, initial_xpsr=trial_xpsr,
                    initial_primask=trial_primask,
-                   initial_exclusive_monitor=trial_exclusive_monitor)
+                   initial_exclusive_monitor=trial_exclusive_monitor,
+                   float_scratch=(t in float_scratch_trials))
         matched_orig_stack_objects.update(a.get("matched_stack_objects", ()))
         matched_cand_stack_objects.update(b.get("matched_stack_objects", ()))
         # Generated direct-call stubs move with candidate code layout.  When
@@ -1268,6 +1418,57 @@ if __name__ == "__main__":
     v = compare(ex_r1, va, len(ex_r1), ex_r4, va, len(ex_r4),
                 trials=1, nptr=0, arg_overrides=[{0: 1}])
     assert v["pass"], v
+    # ---- float-argument coverage (the float analogue of finding #1) ---------
+    # `vcmp.f32 s0,#0; vmrs; ite eq; moveq r0,#1; movne r0,#2; bx lr` versus a
+    # body that always answers 2.  Only an EXACTLY zero float argument tells
+    # them apart, and a uniform-random 32-bit word is never exactly 0.0f, so
+    # the historical seeding proved this wrong candidate correct.  The pooled
+    # seeding must reach the equal case.
+    zero_test = bytes.fromhex("b5ee400a" "f1ee10fa" "0cbf" "0120" "0220" "7047")
+    always_two = bytes.fromhex("0220" "7047")
+    vz = compare(zero_test, va, len(zero_test), always_two, va, len(always_two),
+                 trials=40, nptr=0)
+    assert not vz["pass"], vz
+    # Same shape against exactly 1.0f (vcmp.f32 s0,s1 with s1 seeded 1.0).
+    one_test = bytes.fromhex("b4ee600a" "f1ee10fa" "0cbf" "0120" "0220" "7047")
+    vo = compare(one_test, va, len(one_test), always_two, va, len(always_two),
+                 trials=40, nptr=0, fp_arg_overrides={1: _f32w(1.0)})
+    assert not vo["pass"], vo
+    # Sign of a multiply-accumulate: VMLS (Sd = Sd - Sn*Sm) versus VNMLS
+    # (Sd = -Sd + Sn*Sm), the exact iteration-37 fusion defect shape.
+    vmls_body = bytes.fromhex("00eec10a" "7047")
+    vnmls_body = bytes.fromhex("10ee810a" "7047")
+    vm = compare(vmls_body, va, len(vmls_body), vnmls_body, va, len(vnmls_body),
+                 trials=40, nptr=0, ret_kind="f32")
+    assert not vm["pass"], vm
+    # NEGATIVE control: realistic float seeding must not manufacture failures.
+    # Two different encodings of "ignore every float argument, return 5" stay
+    # parity even when the return kind is f32 (s0 is untouched by both).
+    five_a = bytes.fromhex("0520" "7047")
+    five_b = bytes.fromhex("4ff00500" "7047")
+    for kind in ("i32", "f32", "f64", "void"):
+        vn = compare(five_a, va, len(five_a), five_b, va, len(five_b),
+                     trials=40, nptr=0, ret_kind=kind)
+        assert vn["pass"], (kind, vn)
+    # Float POINTEE coverage: `vldr s0,[r0]; vcmp.f32 s0,#0; ...` distinguishes
+    # itself from the constant body only when the pointed-to word is exactly
+    # 0.0f.  Uniform pointee bytes never are; the float scratch profile is.
+    load_zero_test = bytes.fromhex("90ed000a" "b5ee400a" "f1ee10fa"
+                                   "0cbf" "0120" "0220" "7047")
+    ptr_case = [{0: SCRATCH + 0x2000}] * 40
+    vp = compare(load_zero_test, va, len(load_zero_test),
+                 always_two, va, len(always_two), trials=40, nptr=0,
+                 arg_overrides=ptr_case)
+    assert vp["pass"], vp          # uniform pointee bytes: blind, as measured
+    vp = compare(load_zero_test, va, len(load_zero_test),
+                 always_two, va, len(always_two), trials=40, nptr=0,
+                 arg_overrides=ptr_case, float_scratch_trials=range(40))
+    assert not vp["pass"], vp      # float pointee profile: discriminates
+    # The float pointee profile is symmetric setup, so identical bodies pass.
+    vp = compare(load_zero_test, va, len(load_zero_test),
+                 load_zero_test, va, len(load_zero_test), trials=40, nptr=0,
+                 arg_overrides=ptr_case, float_scratch_trials=range(40))
+    assert vp["pass"], vp
     # add r0,r0,r1 ; bx lr  -> returns arg0+arg1  (exercises inputs)
     addf = bytes.fromhex("0844" "7047")
     v2 = compare(addf, va, len(addf), addf, va, len(addf), trials=16, nptr=0)

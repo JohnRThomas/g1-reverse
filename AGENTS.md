@@ -80,6 +80,47 @@ reconstruction could pass 300/300. Confirmed on `FUN_01013650` (net).
   CFG to pick inputs, then compare side effects). Self-tests hold; catches false proofs that
   survive biased fuzzing. **All re-verification and redo must use `cfg_verify.verify(core, name)`.**
 
+### 1b. FLOAT-argument false proofs (FIXED) — same shape as #1, different domain
+The VFP bank was the *second* input dimension the harness never varied. `s0..s15` were
+seeded, but only with **uniform random words** — which, read as binary32, are ~1e±30
+magnitudes essentially always, so the values firmware branches on (**exactly 0.0, ±1.0,
+±0.5, sensor magnitudes**) had probability ~0, exactly as uniform integers never land in a
+small switch range. Float inputs were otherwise driven only by hand-written per-function
+`REVIEWED_FP_CASES`; **52 of the 61 app functions taking float args had none**. Measured: a
+body returning a different result iff `x == 0.0f` passed 40/40 trials against a candidate
+that always answered the other way. `imu_mahony_ahrs_update` (`FUN_00026624`) shipped five
+`VNMLS`→`VMLS` sign inversions and returned `PASS cases=2` **on the broken body too** — its
+reviewed fixture pinned the identity quaternion `q=(1,0,0,0)`, which makes the sign errors
+cancel algebraically for *every* argument (a **degenerate fixture** hides a defect no matter
+how the arguments vary).
+- **Fix (landed):** `emu` seeds `s0..s15` from a pooled realistic float/double generator
+  (boundary values over-sampled, ~20% still uniform random) and can seed the argument-pointer
+  region with plausible floats (`float_scratch_trials`); `cfg_verify.float_argument_registers`
+  derives the incoming VFP slots **from the shipped instructions** and
+  `build_float_cases` drives every float function through exact-value profiles plus a
+  per-argument `zero-arg-sN` probe — including a `relaxed:` variant that drops a reviewed
+  absolute fixture so a degenerate state cannot hide anything. Broken `FUN_00026624` now
+  FAILs 17/48; corrected PASSes 48/48.
+- **NaN/infinity are deliberately excluded** from generated inputs: equivalent float code
+  does not preserve NaN sign/payload while writes compare bit-exactly, so seeding them fails
+  *correct* reconstructions. Opt in with `CFG_VERIFY_FLOAT_EXTREMES=1` (advisory only).
+- **`-ffp-contract` is a per-TU build contract recovered from the image:** `VMLA`-family =
+  unfused (contract off, all 5 G1 application float bodies), `VFMA`-family = fused (all 19
+  liblc3/libm bodies), never mixed. `cfg_verify` now derives it. **The cohesive build must
+  set `-ffp-contract=off` for `FUN_00026624/265e8/26828/7cab4/fuel_gauge_update`** or their
+  codegen cannot byte-match.
+- **Net core has ZERO floating-point instructions** (CPUNET has no FPU) — this class is
+  app-core only.
+- **`cfg_verify --self-test` is ALREADY BROKEN at HEAD** and cannot run to completion: 2 of
+  its 406 negative controls assert strings that source rewrites removed (`FUN_0100f5d8`,
+  `FUN_00065324`) and 7 more are vacuous (mutated source PASSes / `checked=0`). Audited
+  exhaustively under both harnesses — 397/406 bite and every outcome is identical, so this
+  work flips none of them. Details + the list: `float_arg_harness_fix.md` §7.4.
+- Sweep + open items: `recon/analysis/float_arg_harness_fix.md`. Fixed defects: `finitef`
+  (`FUN_000869f2`, was `return 1`), `battery_soc_from_curve` (`FUN_0000e340`, float compare
+  where the image does a sign-bit test). **STILL OPEN (real, previously invisible):**
+  `FUN_0000e53c` `batt_soc_curve_estimate` and `FUN_0000c358` `battery_model_state_update`.
+
 ### 2. Ghidra data-inflation — many "huge" functions are small code + a trailing DATA table
 Ghidra folds a trailing rodata table into the function symbol. CFG-reachable analysis (BFS from
 entry, follow branches/jump-tables, stop at ret) vs declared size reveals e.g. `ble_process_put_req`

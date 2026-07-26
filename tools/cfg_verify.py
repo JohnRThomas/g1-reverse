@@ -17864,6 +17864,204 @@ def build_overrides(selvals, cap=64):
             if len(ovs) >= cap: return ovs
     return ovs
 
+# ---- hard-float argument coverage -------------------------------------------
+# The integer side of this verifier derives switch/branch inputs from the CFG so
+# coverage is a property of the function, not of luck.  The VFP argument bank
+# had no equivalent: floats were driven only by (a) uniform random words, which
+# are never the exact values firmware compares against, and (b) hand-written
+# REVIEWED_FP_CASES for a handful of libm leaves.  Everything else -- including
+# the sensor-fusion update whose five sign-inverted multiply-accumulates shipped
+# undetected -- was effectively unproven on its float inputs.
+#
+# Derivation is taken from the ORIGINAL instructions, not from a Ghidra
+# signature: an s0-s15 register that is READ before it is written is an incoming
+# hard-float argument (s16-s31 are callee-saved and never argument slots on
+# AAPCS-VFP).  Values are then enumerated per production-shaped profile.
+
+_FLOAT_ARG_CACHE = {}
+
+
+def _sreg_indices(reg_id, _memo={}):
+    if reg_id in _memo:
+        return _memo[reg_id]
+    name = _md.reg_name(reg_id) or ""
+    result = ()
+    m = re.fullmatch(r's(\d+)', name)
+    if m:
+        result = (int(m.group(1)),)
+    else:
+        m = re.fullmatch(r'd(\d+)', name)
+        if m:
+            result = (2 * int(m.group(1)), 2 * int(m.group(1)) + 1)
+        else:
+            m = re.fullmatch(r'q(\d+)', name)
+            if m:
+                result = tuple(4 * int(m.group(1)) + i for i in range(4))
+    _memo[reg_id] = result
+    return result
+
+
+def float_argument_registers(rawread, va, size, core=None):
+    """Incoming AAPCS-VFP argument slots: s0..s15 read before being written.
+
+    Returns (sorted register indices, uses_double_pairs, any_vfp).  The scan is
+    linear over the decoded body, so a register written on one path and read on
+    another can be reported as incoming.  That is deliberate: driving an extra
+    VFP register is harmless (both machines receive the identical value), while
+    missing one leaves a real argument undriven.
+    """
+    key = (core, va, size)
+    if key in _FLOAT_ARG_CACHE:
+        return _FLOAT_ARG_CACHE[key]
+    code = rawread(va & ~1, min(size, 8192))
+    written, incoming, any_vfp, doubles = set(), set(), False, False
+    md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
+    md.detail = True
+    for ins in md.disasm(code, va & ~1):
+        if ins.mnemonic[:1] == "v":
+            any_vfp = True
+            if re.search(r'\.(f64|i64|u64)\b', ins.mnemonic) or re.search(
+                    r'\bd\d+\b', ins.op_str):
+                doubles = True
+        try:
+            regs_read, regs_written = ins.regs_access()
+        except Exception:
+            continue
+        for reg in regs_read:
+            for index in _sreg_indices(reg):
+                if index < 16 and index not in written:
+                    incoming.add(index)
+        for reg in regs_written:
+            written.update(_sreg_indices(reg))
+    result = (sorted(incoming), doubles, any_vfp)
+    _FLOAT_ARG_CACHE[key] = result
+    return result
+
+
+def _f32(value):
+    return struct.unpack("<I", struct.pack("<f", value))[0]
+
+
+def _f64_pair(value):
+    return struct.unpack("<II", struct.pack("<d", value))
+
+
+# Production-shaped single-precision profiles.  Each row is cycled across the
+# function's incoming VFP argument slots.  The first rows are the exact values
+# firmware compares against (0.0, +/-1.0, +/-0.5) and the magnitudes the G1
+# actually handles (gyro rad/s, normalized accelerometer, quaternion
+# components, filter gains, degrees/radians, brightness and pixel counts).
+_FLOAT_PROFILES = (
+    ("zero", (0.0,)),
+    ("negative-zero", (-0.0,)),
+    ("unit", (1.0,)),
+    ("negative-unit", (-1.0,)),
+    ("half", (0.5, -0.5)),
+    ("sensor", (0.1, 0.2, -0.05, 0.5, 0.6, 0.8, 0.01, 9.80665,
+                -0.3, 0.70710678, 0.25, 100.0, 0.0174532925, 57.2957795,
+                2.0, 3.14159265)),
+    ("sensor-negated", (-0.1, -0.2, 0.05, -0.5, -0.6, -0.8, -0.01, -9.80665,
+                        0.3, -0.70710678, -0.25, -100.0, -0.0174532925,
+                        -57.2957795, -2.0, -3.14159265)),
+    ("unit-quaternion", (1.0, 0.0, 0.0, 0.0, 0.70710678, 0.70710678, 0.0,
+                         0.5, 0.5, 0.5, 0.5, 0.01, 0.1, 1.0, 0.0, 0.0)),
+    ("tilted-quaternion", (0.5, 0.5, 0.5, 0.5, 0.3, -0.4, 0.8660254,
+                           0.0174532925, -0.05, 0.2, 0.6, 0.01, 9.80665,
+                           0.7, -0.2, 0.1)),
+    ("alternating-zero", (0.0, 1.0, 0.0, -1.0, 0.5, 0.0, 2.0, 0.0)),
+    ("tiny", (1e-6, -1e-6, 1e-20, 1.1754944e-38, 1.4e-45, 0.001, -0.001,
+              5e-7)),
+    ("large", (1e6, -1e6, 1000.0, 255.0, 1024.0, 16777216.0, 360.0, 180.0)),
+    ("integral", (2.0, 3.0, 4.0, 10.0, 100.0, -2.0, -3.0, 255.0)),
+)
+
+# Extreme profiles are kept separate: a semantically identical reconstruction
+# can legitimately publish a different NaN payload than the original (ARM NaN
+# propagation depends on operand order, and vmla/vfma versus mul+add differ),
+# and float memory writes are compared bit-exactly.  A divergence seen ONLY
+# here is reported as advisory rather than as a defect.
+_FLOAT_EXTREME_PROFILES = (
+    ("infinite", (float("inf"), float("-inf"), 1.0, 0.0)),
+    ("nan", (float("nan"), 1.0, float("nan"), 0.0)),
+)
+
+_DOUBLE_PROFILES = (
+    ("double-zero", (0.0,)),
+    ("double-unit", (1.0, 0.5)),
+    ("double-sensor", (0.1, -0.05, 9.80665, 3.14159265358979, 0.01, 2.0,
+                       57.29577951308232, 1e-6)),
+)
+
+
+def build_float_cases(regs, doubles, cap=None, include_extremes=None):
+    """One fp_arg_overrides dict per profile, plus per-argument zero probes.
+
+    The per-argument probes are the float analogue of ``cmp arg,#k`` coverage:
+    a firmware guard such as ``if (ax != 0 || ay != 0 || az != 0)`` selects a
+    whole arm on ONE argument being exactly zero, and no uniform random word
+    and no all-values-equal profile reaches that edge.
+    """
+    if not regs:
+        return []
+    cases = []
+    for label, values in _FLOAT_PROFILES:
+        cases.append((label, {r: _f32(values[i % len(values)])
+                              for i, r in enumerate(regs)}))
+    ordinary = _FLOAT_PROFILES[5][1]          # the "sensor" row
+    for position, reg in enumerate(regs):
+        case = {r: _f32(ordinary[i % len(ordinary)])
+                for i, r in enumerate(regs)}
+        case[reg] = _f32(0.0)
+        cases.append(("zero-arg-s%d" % reg, case))
+        if len(cases) > 40:
+            break
+    if doubles:
+        pairs = [r for r in regs if r % 2 == 0 and r + 1 < 16]
+        for label, values in _DOUBLE_PROFILES:
+            case = {}
+            for i, base in enumerate(pairs or regs[:1]):
+                lo, hi = _f64_pair(values[i % len(values)])
+                case[base] = lo
+                case[base + 1] = hi
+            cases.append((label, case))
+    if include_extremes is None:
+        include_extremes = bool(os.environ.get("CFG_VERIFY_FLOAT_EXTREMES"))
+    if include_extremes:
+        # ADVISORY only, off by default.  Infinity/NaN inputs make the ORIGINAL
+        # and a semantically identical reconstruction publish differently signed
+        # default NaNs (`inf - inf` versus a propagated operand NaN), and float
+        # writes are compared bit-exactly, so including these in the verdict
+        # would produce false FAILs.  Production float inputs are never NaN;
+        # deliberate NaN/infinity classification coverage stays in the
+        # hand-reviewed REVIEWED_FP_CASES, which is where libm needs it.
+        for label, values in _FLOAT_EXTREME_PROFILES:
+            cases.append((label, {r: _f32(values[i % len(values)])
+                                  for i, r in enumerate(regs)}))
+    if cap is not None and len(cases) > cap:
+        cases = cases[:max(1, cap)]
+    return cases
+
+
+# Reviewed opt-outs from generic float coverage.  Intentionally EMPTY: an entry
+# here must name the exact reason a function's incoming VFP registers may not be
+# driven, and no such case has been found.  It exists so that a future opt-out
+# is an explicit, reviewable decision instead of a silent gap.
+FLOAT_COVERAGE_EXEMPT = frozenset()
+
+
+def _extend_trial_list(values, count, fill=None):
+    """Cycle a reviewed per-trial fixture list up to `count` entries."""
+    if values is None:
+        return None
+    values = list(values)
+    if not values:
+        return values
+    base = len(values)
+    while len(values) < count:
+        values.append(values[len(values) % base] if fill is None else fill)
+    return values
+
+
 def pointer_control_inputs(rawread, va, size):
     """Derive byte-valued switch inputs loaded through pointer arguments.
 
@@ -19116,6 +19314,16 @@ def _app_vsprintf_case():
         {0: [(1, 0, (output + 3).to_bytes(4, "little"), 0x00078d90)]},
     )
 
+
+# FUN_00078ce0 (newlib __d2b) hands the normalization helper a pointer to its
+# own frame: `mov r0,sp` on the two-word path and `add r0,sp,#4` on the
+# low-word-zero path.  Which frame slot the compiler picks is layout, not
+# behaviour -- and the low-word-zero path is only reachable when the incoming
+# binary64 has an all-zero low mantissa word (0.0, 1.0, 0.5, 2.0), which no
+# uniform random double ever is.  Generic float coverage reached it for the
+# first time; the VALUE the helper produced is still proven exactly by the
+# following stores through the returned block pointer.
+REVIEWED_STACK_POINTER_CALLS[("app", 0x00078ce0)] = {1: {0}}
 
 REVIEWED_NPTR_COUNTS[("app", 0x00077c4c)] = 4
 REVIEWED_STACK_POINTER_CALLS[("app", 0x00077c4c)] = {0: {1}}
@@ -23669,6 +23877,21 @@ def verify(core, name, trials_random=40, source_override=None):
     prefix_k = REVIEWED_PREFIX_PROOFS.get((core, va))
     prefix_first = prefix_k is not None
     extra_cflags = []
+    # Floating-point contraction is a per-translation-unit build contract, and
+    # the shipped bytes state which one applies.  `VMLA/VMLS/VNMLA/VNMLS`
+    # multiply-accumulate with an INTERMEDIATE rounding (two roundings, exactly
+    # C's `a + b*c`), while `VFMA/VFMS/VFNMA/VFNMS` are FUSED (one rounding).
+    # They differ by up to 1 ULP, so compiling a candidate under the wrong
+    # contract both manufactures spurious last-bit mismatches and hides real
+    # ones.  Census over the whole app image: 24 functions use MAC ops and NONE
+    # mixes the two forms -- the five G1 application bodies (0x26624, 0x265e8,
+    # 0x26828, 0x7cab4, fuel_gauge_update) are unfused, every liblc3/libm body
+    # is fused.  Derive the flag rather than assuming the generic profile.
+    if any(ins.mnemonic.startswith(("vmla", "vmls", "vnmla", "vnmls"))
+           for ins in insns) and not any(
+               ins.mnemonic.startswith(("vfma", "vfms", "vfnma", "vfnms"))
+               for ins in insns):
+        extra_cflags += ["-ffp-contract=off"]
     if "CFG_VERIFY_NO_IF_CONVERSION" in txt[:400]:
         extra_cflags += ["-fno-if-conversion", "-fno-if-conversion2"]
     if (core, va) == ("app", 0x0006ffd8):
@@ -23848,6 +24071,63 @@ def verify(core, name, trials_random=40, source_override=None):
             ({ordinal: [(0, 0x104c, (0x15).to_bytes(4, "little"))]}
              if ordinal is not None else {})
             for ordinal in completion_ordinals]
+    # ---- generic hard-float argument coverage -------------------------------
+    # Derived from the shipped instructions (see float_argument_registers), so
+    # every function with incoming VFP arguments gets exact-value coverage
+    # whether or not somebody hand-wrote REVIEWED_FP_CASES for it.
+    float_regs, float_doubles, _float_any_vfp = float_argument_registers(
+        ctx["rawread"], va, size, core)
+    float_trial_labels = []
+    float_scratch_trials = set()
+    if float_regs and (core, va) not in FLOAT_COVERAGE_EXEMPT:
+        generic_cases = build_float_cases(
+            float_regs, float_doubles, cap=(10 if size > 3000 else None))
+        base = len(ovs)
+        reviewed_fp = list(fp_arg_overrides or ())
+        fp_list = [dict(reviewed_fp[i]) if i < len(reviewed_fp) else {}
+                   for i in range(base)]
+        # Variant A keeps every reviewed fixture and varies only the floats.
+        # Variant B additionally drops the reviewed ABSOLUTE memory fixture so
+        # that a fixture pinning a float state object to a DEGENERATE value
+        # (identity quaternion, all-zero coefficients) cannot hide a defect;
+        # reviewed oracle results and argument registers are preserved, so the
+        # callee ABI stays production-shaped.
+        variants = [("", False)] + ([("relaxed:", True)] if absolute_movs
+                                    else [])
+        for prefix, relax in variants:
+            for label, case in generic_cases:
+                index = len(ovs)
+                source = (index % base) if base else None
+                ovs.append(dict(ovs[source]) if source is not None else {})
+                if absolute_movs is not None:
+                    absolute_movs.append(
+                        [] if relax or source is None
+                        else list(absolute_movs[source]))
+                if isinstance(oracle_overrides, list) and source is not None:
+                    oracle_overrides.append(dict(oracle_overrides[source]))
+                if isinstance(oracle_memory_writes, list) and source is not None:
+                    oracle_memory_writes.append(oracle_memory_writes[source])
+                fp_list.append(case)
+                float_scratch_trials.add(index)
+                float_trial_labels.append((index, prefix + label))
+        fp_arg_overrides = fp_list
+        total = len(ovs)
+        # compare() passes the whole container when a per-trial list runs short,
+        # so a list-valued oracle table must always cover every trial.
+        if isinstance(oracle_overrides, list):
+            oracle_overrides += [{}] * (total - len(oracle_overrides))
+        if isinstance(oracle_memory_writes, list):
+            oracle_memory_writes += [{}] * (total - len(oracle_memory_writes))
+        pointer_read_transitions = _extend_trial_list(
+            pointer_read_transitions, total)
+        absolute_read_transitions = _extend_trial_list(
+            absolute_read_transitions, total)
+        initial_primask_overrides = _extend_trial_list(
+            initial_primask_overrides, total)
+        initial_xpsr_overrides = _extend_trial_list(
+            initial_xpsr_overrides, total)
+        initial_exclusive_monitors = _extend_trial_list(
+            initial_exclusive_monitors, total)
     # Canonical files retain their raw/address-derived filenames for reversible
     # provenance, while reviewed bodies may now define the readable symbol from
     # function_names_<core>.json.  Select the symbol actually defined by this
@@ -23963,6 +24243,14 @@ def verify(core, name, trials_random=40, source_override=None):
         # (especially zero, which would otherwise modify mapped code memory).
         overridden = set(ovs[t]) if t < len(ovs) else set()
         movs.append([item for item in common_setup if item[0] not in overridden])
+    if float_trial_labels:
+        # Appended float trials reuse the argument-relative pointee setup of the
+        # reviewed case they were cloned from, so their pointer graphs stay
+        # production-shaped while only the float inputs vary.
+        base = float_trial_labels[0][0]
+        for index, _label in float_trial_labels:
+            if base and index < len(movs):
+                movs[index] = list(movs[index % base])
     required_nptr = 1 + max([ai for ai, _, _ in ptr_cases] +
                             [ai for ai, _ in callback_slots] +
                             [ai for ai, _ in data_pointer_slots], default=-1)
@@ -24081,7 +24369,8 @@ def verify(core, name, trials_random=40, source_override=None):
                             initial_exclusive_monitors=initial_exclusive_monitors,
                             orig_internal_code_regions=orig_internal_code_regions,
                             max_insns=compare_max_insns,
-                            max_resumes=compare_max_resumes)
+                            max_resumes=compare_max_resumes,
+                            float_scratch_trials=float_scratch_trials)
         else:
             v = emu.compare(orig, va, size, cb + ct, cva, cs, code_base=ctx["cb"],
                             trials=trials, nptr=nptr, ret_kind=rk, arg_overrides=ovs,
@@ -24112,15 +24401,23 @@ def verify(core, name, trials_random=40, source_override=None):
                             initial_exclusive_monitors=initial_exclusive_monitors,
                             orig_internal_code_regions=orig_internal_code_regions,
                             max_insns=compare_max_insns,
-                            max_resumes=compare_max_resumes)
+                            max_resumes=compare_max_resumes,
+                            float_scratch_trials=float_scratch_trials)
         if v.get("pass") and type(v.get("checked")) is int and v["checked"] > 0:
             return {"status": "PASS", "selectors": selvals, "pointer_cases": ptr_cases,
                     "callback_slots": callback_slots, "data_pointer_slots": data_pointer_slots,
                     "cover_cases": len(ovs),
+                    "float_regs": float_regs, "float_cases": len(float_trial_labels),
                     "checked": v.get("checked")}
+    failed_float_labels = sorted(
+        {label for index, label in float_trial_labels
+         if any(isinstance(m[0], int) and m[0] == index for m in (v.get("detail") or ()))})
     return {"status": "FAIL", "selectors": selvals, "pointer_cases": ptr_cases,
             "callback_slots": callback_slots, "data_pointer_slots": data_pointer_slots,
             "cover_cases": len(ovs),
+            "float_regs": float_regs, "float_cases": len(float_trial_labels),
+            "float_trial_labels": dict(float_trial_labels),
+            "failed_float_labels": failed_float_labels,
             "checked": v.get("checked"), "mismatches": v.get("mismatches"), "detail": v.get("detail")}
 
 def self_test():
@@ -24471,7 +24768,12 @@ def self_test():
             "event[0] = 0xf4;"),
     }
     for function_name, (correct, wrong) in negative_sources.items():
-        source_path = (BASE + "/recon/app/src/" + function_name + ".c")
+        # Resolve readable identities the same way verify() does.  A hard-coded
+        # readable filename made the whole suite abort with FileNotFoundError
+        # when the canonical body keeps its raw address identity instead (the
+        # committed lc3_tns_analyze body is recon/app/src/FUN_0006ffd8.c).
+        source_path = _resolve_source_path(
+            "app", function_name, BASE + "/recon/app/src")
         source = open(source_path).read()
         assert correct in source, function_name
         verdict = verify("app", function_name, trials_random=8,
