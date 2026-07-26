@@ -1,0 +1,254 @@
+{
+ "schema": "g1.refactor.quarantine/1",
+ "stage": 2,
+ "note": "Sites NOT automatable under this stage's acceptance rules. Left UNTRANSFORMED.  None was hand-edited.",
+ "C_log_route_refused": {
+  "argument_count_differs": 55,
+  "else_branch_dropped_ALL_arguments": 80,
+  "same_arity_different_argument_text": 8
+ },
+ "D_assert_fail_refused": {
+  "print_half_has_zero_arguments": 4
+ },
+ "B_noreturn_refused": [
+  {
+   "file": "recon/symbolized/app/bt_hci_core_recv_event.c",
+   "reason": "not in statement position"
+  },
+  {
+   "file": "recon/symbolized/app/bt_hci_core_recv_event.c",
+   "reason": "not in statement position"
+  },
+  {
+   "file": "recon/symbolized/net/FUN_010256dc.c",
+   "reason": "call head is not a plain identifier"
+  }
+ ],
+ "E_files_quarantined": [
+  {
+   "file": "recon/symbolized/app/SendDashboardLockInfoToApp.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/ancs_main.c",
+   "zero_argument_sites": 2,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/app_event_alloc.c",
+   "zero_argument_sites": 1,
+   "declarations": 1
+  },
+  {
+   "file": "recon/symbolized/app/ble_process_put_ops_09_10.inc",
+   "zero_argument_sites": 41,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/ble_process_put_ops_21_27.inc",
+   "zero_argument_sites": 8,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/bt_start.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/button_init.c",
+   "zero_argument_sites": 10,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/check_disp_onboarding.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/check_sw0_status.c",
+   "zero_argument_sites": 2,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/check_work_mode.c",
+   "zero_argument_sites": 10,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/conn_tx_send_to_driver.c",
+   "zero_argument_sites": 1,
+   "declarations": 1
+  },
+  {
+   "file": "recon/symbolized/app/display_DelayClose.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/display_thread_handler.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/erase_audio_buffer.c",
+   "zero_argument_sites": 4,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/flash_settings_read.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/flash_settings_write_and_verify.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/get_notification_counts_cmd_process.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/global_system_suspend.c",
+   "zero_argument_sites": 2,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/gui_area_clear.c",
+   "zero_argument_sites": 2,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/gui_bitmps_merge_draw.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/gui_bmp_bitmap_draw_ex.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/gui_screen_clear.c",
+   "zero_argument_sites": 2,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/gui_utf_Wordwrap_draw.c",
+   "zero_argument_sites": 3,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/gui_utf_draw_align_right.c",
+   "zero_argument_sites": 3,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/gui_utf_draw_truncate.c",
+   "zero_argument_sites": 5,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/imu_fusion_thread.c",
+   "zero_argument_sites": 12,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/init_watchdog.c",
+   "zero_argument_sites": 7,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/key_event_thread.c",
+   "zero_argument_sites": 2,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/msg_count_dec.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/navigation_overview_map_display.c",
+   "zero_argument_sites": 7,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/opt3001_reg_read.c",
+   "zero_argument_sites": 2,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/panel_on.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/parse_ncs_notification.c",
+   "zero_argument_sites": 2,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/proxy_thread_handler.c",
+   "zero_argument_sites": 25,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/put_whitelist_app_from_app.c",
+   "zero_argument_sites": 2,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/requestAudioInfoToApp.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/revalidate_whitelist_json.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/safe_memmove_or_die.c",
+   "zero_argument_sites": 4,
+   "declarations": 1
+  },
+  {
+   "file": "recon/symbolized/app/start_ancs_work_thread.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/sync_message_signal_to_slave.c",
+   "zero_argument_sites": 2,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/try_to_save_file.c",
+   "zero_argument_sites": 2,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/uart_callback.c",
+   "zero_argument_sites": 2,
+   "declarations": 3
+  },
+  {
+   "file": "recon/symbolized/app/update_burial_point_day_index.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/update_persist_task_status_to_wait_blow_head.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  },
+  {
+   "file": "recon/symbolized/app/wait_touch_key_release_or_timeout.c",
+   "zero_argument_sites": 1,
+   "declarations": 2
+  }
+ ]
+}

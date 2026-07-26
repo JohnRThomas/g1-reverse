@@ -45,6 +45,17 @@ STAGES = [
      "live reference is a string-consuming call argument, withdrawing the backing "
      "object, its PROVIDE pin and its extern declaration in the same transaction",
      "t01_literal_inline"),
+    (2, "block_dedupe", "replace repeated code blocks with inlinable macros: "
+     "volatile-accessor spelling normalisation (same C type only), the noreturn "
+     "tail, the log-sink route, the assert expansion, and convergence of the "
+     "per-file logging externs onto the one authoritative prototype",
+     "t02_block_dedupe"),
+    (99, "defect_probe", "DIAGNOSTIC, NOT A STAGE: stage 02 with "
+     "G1_STAGE02_FORCE_LOG_HEADER=1, which withdraws the local log externs in "
+     "the files stage 02 quarantines.  This tree is EXPECTED NOT TO COMPILE; "
+     "its compile errors are the measurement that turns stage 02's static "
+     "prediction of latent defects into a compiler-confirmed count.",
+     "t02_block_dedupe"),
 ]
 
 #: directories that must be REAL in a stage tree (not symlinks), because a
@@ -154,7 +165,9 @@ def materialize(number: int) -> dict:
         relpaths = list(iset.transformable)
         input_stage = None
     else:
-        pn, pslug, _, _ = _stage(n - 1)
+        # stage 99 is the diagnostic re-run of stage 02's transformer with the
+        # forcing environment variable set; its input is stage 02's input.
+        pn, pslug, _, _ = _stage(1 if n == 99 else n - 1)
         prev = stagelib.Stage(pn, pslug, "")
         prev_man = stagelib.load_manifest(pn, pslug)
         if prev_man is None:

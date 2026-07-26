@@ -132,9 +132,9 @@ the end gives a pass/fail with no diagnostic value.
 |---|---|---|
 | 00 | verbatim snapshot | identity transform; proves the build mechanism |
 | 01 | literal inlining | value-preserving substitution in argument position; no control flow, no MMIO, no layout |
-| 02 (next) | spelling normalisation of the volatile accessors (one type only) | textual, codegen-identical; gate is a byte-identical `.o` |
-| 03 | `__ASSERT` / noreturn macro extraction | depends on 01 having produced the literals |
-| 04 | MMIO accessor macros per width, with a signedness audit | **first stage that can change codegen**; C8 applies |
+| 02 | **block dedupe (LANDED)** — volatile-accessor spelling normalisation (one type only), plus the `G1_NORETURN_CALL` / `G1_LOG_ROUTE` / `G1_ASSERT_FAIL` macros and the log-prototype convergence residue. Stage 03's `__ASSERT` / noreturn extraction was folded in here because it is the same class of token-identical statement macro. | textual, codegen-identical; gate is a byte-identical `.o`, and it held: both cores' `zephyr.bin` byte-identical to stage 01, 4,594/4,598 objects byte-identical. Report: `recon/analysis/staged_refactor_stage02.md` |
+| 03 (next) | authoritative `assert_post_action` / `assert_print` prototype (160 declarations, 58 spellings), read off the shipped prologues; and enumerate `.h` fragments in `input_set.py` (stage 02 §5.3 found two wrong declarations invisible to the pipeline) | decides 160 declarations at once; will change codegen where the local one was wrong |
+| 04 | MMIO accessor macros per width, with a signedness audit | **first stage that can change codegen**; C8 applies. Stage 02 already reduced 84 accessor spellings to 52, which is the prerequisite. |
 | 05 | net renaming from upstream-identified symbols | 0 B, gated by a real link (C6) |
 | 06 | module materialisation / directory move | file-layout only; both builds must emit byte-identical images |
 | 07 | struct typing | the stage that can grow the image; budget it |
