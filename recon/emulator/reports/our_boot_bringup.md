@@ -15973,3 +15973,506 @@ data, no `tools/` logic, no `armemul` change**):
 trees holds a copy);
 `recon/emulator/reports/sensor_parity_status.md`; this report; and the refreshed
 `ours_framebuffer_{dashboard,navigation}_*` artifacts.
+
+## Iteration 39 — the SAADC's missing third call site and the ST25DV's missing
+## NDEF/WLC tail are **ONE defect with one cause**: `fuel_gauge_sample_init_timestamp`
+## never plants the battery-curve table pointer in the stack record it hands to
+## `batt_soc_curve_estimate`, so the EKF diverges to NaN, the reported battery
+## percentage is stuck at **0**, and the `> 0x1d` gate in
+## `handle_box_placement_event` never opens.
+
+Baseline for this iteration is **`g1-i38d-app`** + **`g1-i30e-net`** — the
+iteration-38 pair, unmodified — so every "before" number below is measured on
+the same binaries §38 gated.
+
+### 39.1 The gate, measured directly in both images
+
+§38.1 named the missing SAADC call stack as
+`handle_box_placement_event` → `box_placement_animation_step` → … and §38.6
+localised the missing ST25DV NDEF/WLC write to the same subtree.  Both hang off
+one conditional.  Shipped bytes, `tools/extract.py` + capstone at `0x255d0`:
+
+```
+000255d0  bl   #0x32ee4              ; is_battery_critical()
+000255d4  cbz  r0, #0x255e2
+000255d6  ldr  r0, [pc, #0x20]       ; &g_box_event_state_buf
+000255d8  bl   #0xfcf0               ; box_placement_animation_step
+...
+000255e2  bl   #0x167a8              ; get_device_info()
+000255e6  ldrb.w r3, [r0, #0xfc0]    ; battery percent
+000255ea  cmp  r3, #0x1d
+000255ec  bhi  #0x255d6              ; > 29 %  -> animation step
+```
+
+Our build reproduces it instruction-for-instruction at `0x22a06..0x22a24`
+(`objdump` of `/private/tmp/g1-i38d-app/zephyr/zephyr.elf`), and
+`is_battery_critical` is *not* a battery predicate at all — both images compile
+to `ldrb r0,[g_test_mode_flag]` (`0x20019ef3` shipped, `0x2001b093` ours), which
+is 0 on a non-factory boot.  **The whole gate is therefore
+`device_info[0xfc0] > 29`.**
+
+Renode probe run, dashboard stimulus, `g1-i38d-app`
+(`/private/tmp/g1-i39/probe-batt.{resc,out}`), hook at our `0x22a1c`:
+
+```
+PROBE gate di=0x2003ff50 batt=0 crit=0     x15 (every call, 0 -> 20 s)
+PROBE_DEVICE_INFO_PTR: 0x2003FF50
+```
+
+`fuel_gauge_update` ran **15** times and `battery_soc_from_curve` **15** times,
+so the path is live; it simply computes 0.  (This also confirms §38.55's
+read-back address `0x20040F10` was the right one — `device_info` really is
+`0x2003ff50` in our build — so that section's "either the percentage is still
+zero or the address is wrong" ambiguity is now settled: the address was right
+and the percentage really is 0.)
+
+### 39.2 The differential: identical inputs, different answer
+
+`fuel_gauge_update` ends with
+`device_info[0xfc0] = (0.0f < soc) * (char)(int)soc`, where
+`soc = battery_soc_from_curve(v, i, t, uptime/1000, 0)`.  Hooks were placed on
+**both** images at the `bl` to `battery_soc_from_curve` (shipped `0x10baa`,
+ours `0x13c94`; the three floats are read out of the caller's own frame at
+`sp+0x14/0x18/0x1c` and `sp+16/20/24` respectively) and at the `strb` to
+`+0xfc0` (shipped `0x10d5c`, ours `0x13e9c`).
+
+| | inputs `v / i / t` (raw binary32) | stored byte |
+|---|---|---:|
+| **shipped** (`/private/tmp/g1-i39/probe-fgu-ship.out`) | `408fe76d / 00000000 / 41c80000` | **100** |
+| **ours** (`…/probe-fgu-ours.out`) | `408fe76d / 00000000 / 41c80000` | **0** |
+
+15 calls each, every one identical.  `408fe76d` = 4.4985 V, `41c80000` = 25.0 °C
+— the nPM1300 model's seeded battery, byte-for-byte the same on both sides.
+**The inputs are not the problem; the estimator is.**
+
+### 39.3 The estimator workspace, dumped and diffed
+
+`battery_soc_from_curve` (`0xe340`) is a thin wrapper: it selects a charge
+constant pair, then calls `battery_model_state_update` (`0xc358`) with
+`r0 = 0x2000b4a4` — a **6,008-byte estimator workspace** — and multiplies the
+returned state of charge by 100.  Both runs were re-run with
+`sysbus ReadBytes <workspace> 6008` at t = 20 s
+(`/private/tmp/g1-i39/dump-ws-{ours,ship}.out`; ours at `0x2000c644`, the
+build's `g_batt_soc_curve_interp_buf`).
+
+```
+differing bytes  5762 / 6008
+differing words  1452 / 1502
+idx 0x02..0x11 : ours ffc00000 (NaN)  ship 36d818ed, 37c45f42, 00000000, ...
+idx 0x31..     : ours 00000000        ship 3fae76c9 (1.363), 3fa0e560 (1.257), ...
+```
+
+Words 0 and 1 (`1.0f`, `2.0f`, written unconditionally by the init) **match**,
+so the workspace is being initialised — but everything the curve feeds is
+**zero**, and the 4x4 covariance block has gone to **NaN**.
+
+### 39.4 Root cause: a dropped `str` into a stack-passed record
+
+`batt_soc_curve_estimate` (`FUN_0000e2b4` @ `0xe2b4`) takes a **four-word**
+request record and forwards word 3 as the curve table:
+
+```
+0000e2ba  ldr  r3, [r0, #0xc]        ; request[3]
+0000e2c0  cbz  r3, #0xe322           ; NULL -> -EINVAL
+...
+0000e2f6  ldr  r1, [r5, #0xc]        ; request[3] -> r1
+0000e312  bl   #0xe53c               ; battery_soc_curve_model_init(Qcopy, r1, ws, &out)
+```
+
+and `battery_soc_curve_model_init` consumes it as **5,632 bytes of curve data**:
+
+```
+0000e5ae  mov.w r2, #0x1600
+0000e5b2  mov  r1, r5                ; r1 = the table pointer
+0000e5c4  add.w r0, r4, #0x144       ; workspace + 0x144
+0000e5d4  bl   #0x86c04              ; memcpy(ws+0x144, table, 0x1600)
+```
+
+The only caller is `fuel_gauge_sample_init_timestamp` (`FUN_0002ea28` @
+`0x2ea28`), and the shipped prologue plants a **constant pointer** into that
+fourth word:
+
+```
+0002ea2c  ldr  r3, [pc, #0x40]       ; literal @0x2ea70 = 0x00088a50
+0002ea30  str  r3, [sp, #0x14]       ; <<< request[3]
+0002ea3a  strd r4, r4, [sp, #8]      ; request[0], request[1] = 0
+0002ea3e  str  r4, [sp, #0x10]       ; request[2] = 0
+0002ea40  bl   #0x2e988              ; read v/i/t into sp+8 / sp+0xc / sp+0x10
+0002ea54  add  r0, sp, #8            ; r0 = request
+0002ea56  bl   #0xe2b4               ; batt_soc_curve_estimate(request, 0)
+```
+
+**Our reconstruction declares the record as three words and omits the fourth
+entirely**, so `request[3]` was whatever the previous frame left on the stack.
+Measured, at the `battery_soc_curve_model_init` entry hook:
+
+| | `r0` (Q copy) | `r1` (curve table) | `r2` (workspace) | `r3` (out) |
+|---|---|---|---|---|
+| shipped | `0x20031220` | **`0x00088a50`** | `0x2000b4a4` | `0x2003121c` |
+| ours | `0x20038490` | **`0x0009d5ba`** | `0x2000c644` | `0x2003848c` |
+
+`0x0009d5ba` is a stale word of our own flash — non-NULL, so the `cbz` guard
+passed and 5,632 bytes of unrelated `.rodata` were memcpy'd in as the battery
+curve.  This is the **stack-passed-record-contents** class listed in
+`AGENTS.md`, and the harness is blind to it exactly as documented:
+`cfg_verify` seeds the frame, so the uninitialised word is *defined* under
+emulation and both bodies agree.
+
+### 39.5 The table itself was never emitted
+
+There is **no** `rodata_88a50` symbol anywhere in `recon/symbols/g1_app_globals.ld`
+— the pin ledger jumps `rodata_88a44` → `rodata_8a050`, and
+`0x8a050 - 0x88a50 = 0x1600`, i.e. the ledger gap is **exactly** the memcpy
+length.  The extent is therefore closed two independent ways.  Contents
+(`tools/extract.py`, 5,632 B, sha256 `ceb03552a16df160…`): a 201-point
+0.000…1.000 state-of-charge grid in 0.005 steps (words 0..200), then
+`17.0 / 0.0 / 0.0` at `+0x324` (the three temperature break-points
+`battery_soc_curve_model_init` compares at `0xe5d8..0xe61e`), then the
+open-circuit-voltage curves starting `2.990, 3.0017, 3.0133, …` — a textbook
+OCV-vs-SoC lookup family.  A byte search of
+`/private/tmp/g1-i38d-app/zephyr/zephyr.elf` for its first 64 bytes returns
+**-1**: the data is not in our image at all.
+
+### 39.6 Fix 1 landed — and it exposed a SECOND defect on the same path
+
+`recon/data/rodata_0x88a50.c` (5632 B, byte-verified) was emitted,
+`PROVIDE(rodata_88a50 = rodata_0x88a50)` added, and the request record extended
+to four words in every tree that holds it.  The rebuilt
+`fuel_gauge_sample_init_timestamp` is then **instruction-for-instruction
+identical to the shipped function** (`objdump` of `g1-i39a-app` @ `0x2b80c` vs
+`tools/extract.py` @ `0x2ea28`) — same 15 instructions in the same order, same
+`sub sp,#28`, same `str r3,[sp,#0x14]`.
+
+**Measured (build `g1-i39a-app`, dashboard stimulus):** the estimator workspace
+diff against the shipped run collapsed from **1452 of 1502 differing words to
+40** — the whole 5632-byte curve region now matches byte-for-byte.  But
+`device_info[0xfc0]` was **still 0**, and the residual 40 words said why:
+
+```
+idx 0x031..0x03f : ours 0.0        ship 1.363, 1.257, 1.260, 1.265, ...
+idx 0x04f        : ours 0.0        ship 18.700998
+```
+
+Those are `param_5[0x30 + i] = param_4` — the **elapsed-time argument** of
+`battery_model_state_update` — and its running sum.  Ours was exactly 0.0 for
+every sample.
+
+Shipped:
+
+```
+00010b7a  subs r0, r0, r2        ; lVar16 low
+00010b7c  sbc.w r1, r1, r3       ; lVar16 high
+00010b80  cmp.w r0, #0x3e8
+00010b84  sbcs r3, r1, #0        ; signed 64-bit  lVar16 < 1000
+00010b88  blt.w #0x10fbe
+00010b8c  bl   #0xe128           ; __floatdisf(r0:r1)
+00010b90  vldr s16, [sp, #0x18]
+00010b94  vmov s3, r0            ; <<< result comes back in r0
+00010b9e  vdiv.f32 s3, s3, s18   ; / 1000.0
+```
+
+The reconstruction had `extern float __floatdisf(void); ... fVar15 =
+(float)__floatdisf();` — **no argument and the wrong return register.**
+`__floatdisf` is an alias of `__aeabi_l2f` (both `0xced4` in our ELF), a
+SOFT-float helper: r0:r1 in, raw float bits out in **r0**.  Under the
+hard-float ABI our caller read the result from **s0**, which `__aeabi_l2f`
+never writes; and Ghidra's r0-clobbering 64-bit-compare idiom
+(`ite cs / movcs r0,#0 / movcc r0,#1`) meant r0:r1 no longer held `lVar16` at
+the call either.  Fixed to the project's raw-bits convention
+(`extern uint32_t __floatdisf(int64_t)` + a bit-cast union), after which GCC
+emits `subs/sbc` into r0:r1, `bl`, `vmov s3,r0`, `vdiv` — the shipped sequence
+instruction for instruction.
+
+**Measured after (build `g1-i39b-app`): `device_info[0xfc0]` 0 -> 4..5** and
+the workspace diff is 67 words, now with real per-sample dt values
+(1.285, 1.290, 1.295 s ours vs 1.363, 1.257, 1.260 s shipped).  Still under the
+`> 0x1d` gate, so `saadc` stayed 668 and the ST25DV stopped at 11 + 14
+transactions.  **All four acceptance framebuffers HELD on `g1-i39b-app`**
+(dashboard `19b1f24a…` 2,923 px + all-zero `0c5cc90b…`; navigation
+`b26c73b3…` 1,098 px + `1d617c65…` 656 px).
+
+`tools/cfg_verify.py app fuel_gauge_update` returns `PASS cases=0` before and
+after — `__floatdisf` is an order-keyed oracle, so the harness cannot see
+either half of this defect.
+
+### 39.7 Fix 3 — `battery_soc_curve_model_init` used the WRONG PARAMETER
+
+With the workspace now correct and dt now real, the remaining error was
+localised by a two-image hook differential on the instruction after each
+image's own `bl battery_soc_curve_model_init` (ours `0x11b34`, shipped
+`0xe316`), reading `[sp+4]` = the `*result` the init writes:
+
+| | `*result` after `battery_soc_curve_model_init` | first `battery_model_state_update` SoC |
+|---|---|---|
+| shipped | `0x408fe76d` = **4.4985** (the pack voltage) | `0x3f866666` = 1.05 (upper clamp), x15 |
+| ours (`g1-i39b`) | `0x7fc00000` = **NaN** | `0x3d6cf0a7` = 0.0578, x165 |
+
+`*result = base` where `base += scale * curve` and `scale` is the pack current,
+0.0 — so `base` can only become NaN if **`curve` is NaN**.  Reading the shipped
+function register by register:
+
+* `0000e552 vmov.f32 s16, s4` (5th float, `charge_low`) — s16 is **dead** after
+  `0000e580 vstr s16,[r4,#0x4c]` (`workspace[0x13]`) and is reused as scratch at
+  `0000e674 vmov.f32 s16, s0`;
+* `0000e572 vmov.f32 s18, s2` (3rd float, `limit`, the pack temperature) — and
+  **every** later site reads s18:
+  `0000e62c vcmpe.f32 s18,s14`, `0000e638 vcmp.f32 s18,s15`,
+  `0000e640 vselgt.f32 s18,s15,s18` (the clamp),
+  `0000e66a vmov.f32 s0,s18` immediately before `0000e66e bl #0x8693c` (fminf),
+  and `0000e774 / 0000e778 / 0000e790 / 0000e806 vfma.f32 …, s18, …`.
+
+The reconstruction read **`charge_low`** at all ten of those sites.  Renamed to
+`limit`.
+
+A second, independent miss in the same block: the `t0 >= t1` branch is
+
+```
+0000e924  vmov.f32 s15, s14
+0000e928  vmov.f32 s18, s14     <<< MISSING from the reconstruction
+0000e92c  movs r2, #1
+```
+
+i.e. that branch also replaces the temperature with the single break-point.
+It is the branch the firmware actually takes, because the curve table's
+temperature triple at `+0x324` is `{17.0, 0.0, 0.0}`.
+
+**`cfg_verify` mismatches on `FUN_0000e53c`: 40 -> 39 (parameter rename)
+-> 13 (missing `vmov`), out of 43 CFG-derived cases.**  This function was
+already on `AGENTS.md`'s STILL-OPEN false-proof list (`FUN_0000e53c`), and it
+is still FAILing — see §39.9.
+
+### 39.8 Measured end to end — the gate OPENS, and it exposes a thread hang
+
+Build **`g1-i39c-app`** (all three fixes), net **unchanged** `g1-i30e-net`.
+Captures `/private/tmp/g1_ours_{dash,nav}_i39c`, reports
+`/private/tmp/g1-i39/rep-{dash,nav}-c`.
+
+Probe run (`/private/tmp/g1-i39/probe-batt-c.out`), dashboard stimulus:
+
+| | `g1-i38d` | `g1-i39b` | **`g1-i39c`** | shipped |
+|---|---:|---:|---:|---:|
+| `*result` of `battery_soc_curve_model_init` | — | `0x7fc00000` NaN | **`0x408fe76d`** | `0x408fe76d` |
+| `device_info[0xfc0]` (battery %) | **0** | 4..5 | **92** | 100 |
+| `box_placement_animation_step` entries / 20 s | **0** | 0 | **3** | 15 |
+| `st25dv_build_and_write_ndef_records` calls | **0** | 0 | **1** | ≥1 |
+
+`*result` is now **byte-identical to the shipped firmware**, and the
+`device_info[0xfc0] > 0x1d` gate that §38.1/§38.6 named as the single common
+cause of the SAADC and ST25DV gaps **opens for the first time in this project**.
+
+**But the newly-reachable code hangs the low-speed peripheral thread.**  A
+virtual-time hook trace (`/private/tmp/g1-i39/probe-ndef-c{,2}.out`) shows the
+thread reaching, in order,
+`box_placement_animation_step` → `st25dv_build_and_write_ndef_records` →
+`event_record_init` → `invoke_optional_op_offset12` at
+**t = 4.3799 s — and never emitting another event for the remaining 15.6 s.**
+The consequence is visible in the buses:
+
+| dashboard stimulus | oracle | `g1-i38d` | **`g1-i39c`** |
+|---|---:|---:|---:|
+| `twim1` nPM1300 `p1_boot` / `p2_render` | 285 / 514 | 285 / 514 | **535 / 6** |
+| `twim1` OPT3001 `p1` / `p2` | 14 / 59 | 14 / 59 | 14 / 59 |
+| `twim1` ST25DV 0x53 / 0x57 `p1` | 25 / 22 | 11 / 14 | 11 / 14 |
+| `saadc` whole run | 998 | 668 | **184** |
+| last `twim1` transaction before the gap | — | — | **t = 4.3882 s** |
+
+**Root cause of the hang, proven from the shipped bytes.**  `event_record_init`
+(`FUN_00025090` @ `0x25090`) plants a three-entry op vtable:
+
+```
+0002509c  ldr r2,[pc,#0x18] ; str r2,[r3,#4]     ; literal @0x250b8 = 0x0007c38b
+000250a0  ldr r2,[pc,#0x18] ; str r2,[r3,#8]     ; literal @0x250bc = 0x00024a41
+000250a4  ldr r2,[pc,#0x18] ; str r2,[r3,#0xc]   ; literal @0x250c0 = 0x00025021
+```
+
+and `invoke_optional_op_offset12` (`0x7c3da`) does `ldr r3,[r0,#0xc]` / `bx r3`.
+Those three literals are **ORIGINAL-IMAGE THUMB CODE ADDRESSES**, and all three
+are still bare pins in `recon/symbols/g1_app_globals.ld`:
+
+```
+PROVIDE(rodata_24a41 = 0x00024a41);
+PROVIDE(rodata_25021 = 0x00025021);
+PROVIDE(rodata_7c38b = 0x0007c38b);
+```
+
+so our build `bx`es into the middle of its own relocated `.text`.  The three
+targets are genuine functions the corpus never recovered — `0x25020`,
+`0x24a40` and `0x7c38a` all start with clean prologues
+(`push {r3,r4,r5,lr}` / `push {r4,r5,r6,lr}` / `cbz r0`), none of them appears
+in `recon/catalogs/function_names_app.json` (`by_address` lookup: all three
+`False`), and there is no `FUN_00025020.c` / `FUN_00024a40.c` /
+`FUN_0007c38a.c` anywhere in `recon/`.  They are reachable **only** through
+this vtable, which is why nothing ever hit them before the battery gate opened.
+Recovering them (0x24a40 alone carries a `tbb` jump table and a chain of
+callees) is a reconstruction job in its own right and is **NOT done here**.
+
+### 39.9 Standing of the four assignments, and what is NOT closed
+
+**1. ADC (668 of 998).**  Root cause **found and fixed at the source**: the
+missing third per-tick `read_nfc_adc_scaled` call site was gated on
+`device_info[0xfc0] > 0x1d`, which was 0 because of the three defects above.
+The gate now opens.  **The transaction count did NOT improve — it went 668 ->
+184** because the newly-reachable ST25DV path hangs the thread that owns the
+ADC.  **NOT closed.**  The remaining work is §39.8's three unrecovered
+functions, not the ADC.
+
+**2. NFC NDEF/WLC records.**  The composing code is
+`box_placement_animation_step` case 3 / case 12 ->
+`st25dv_build_and_write_ndef_records` (`0x250f8`).  It is now **called** (×1,
+measured) where before it was never reached, but it never reaches its
+`st25dv_mailbox_write_with_retry`, so **no NDEF byte is written yet** — ST25DV
+is still 11 + 14 transactions against the oracle's 25 + 22.  **NOT closed**,
+blocked on the same three functions.
+
+**3. IMU / PMIC phase-2 drift.**  Characterised, not fixed.  On `g1-i39c`,
+`twim2` is **`p1_boot` sha EQ on the dashboard stimulus** (§38's gain held) and
+**`p2_render` sha EQ on the navigation stimulus**, with the other two phases
+NE — i.e. the EQ/NE pattern flipped versus `g1-i38d` under a change that adds
+only 5,632 bytes of `.rodata` and touches no IMU code at all.  That is direct
+evidence for §38.2's reading: the `p2` IMU hash rides on the **sampling phase
+against the gesture playback**, not on content.  The nPM1300 `p1_boot` stream
+**regressed from sha-EQ to NE** (535 vs 285 transactions) — that is not drift,
+it is the §39.8 hang, and it will follow the hang.
+
+**4. `G-3` / `D-3` cadence.**  Settled with evidence, and the two are *not* the
+same case.
+* **`D-3` is a PASS, not a gap**: dashboard `spim_a` `p1_boot` is
+  **34 == 34 transactions with the stream sha EQUAL** on `g1-i39c`.
+* **`G-3` is a REAL behavioural difference, not an emulator artifact.**
+  Navigation `spim_a` is **126 vs 764** (`p1_boot`) and **109 vs 2,881**
+  (`p2_render`), while the resulting `p1_boot` framebuffer is byte-identical
+  (656 == 656 lit px, zero differing rows).  Three independent facts settle it:
+  (a) `display_sensor_parity.md` §2.1 records that the **shipped** navigation
+  `spim_a` stream hash is bit-identical across two full end-to-end runs, so
+  that stream is deterministic under these knobs and a 6x count difference
+  cannot be scheduling jitter; (b) by contrast the *dashboard* `p2_render`
+  stream is documented as **non**-deterministic in the shipped firmware
+  (12,225 vs 12,161) — so cadence-sensitivity is real, but only for the
+  continuously-repainting screen, and that stream is explicitly not a gate;
+  (c) every window we emit the oracle also emits (0 ours-only pixel windows,
+  §38.9 item 5), so our raster paints the **right content with too few
+  invocations** — the shipped firmware redraws the same rows ~6x more often.
+  **Conclusion: `G-3` is a genuine reconstruction difference in repaint
+  frequency, `D-3` is closed, and neither is a Renode artifact.**  Locating
+  what makes the shipped raster re-run is not attempted here.
+
+**Also NOT closed / newly named:**
+5. `FUN_0000e53c` (`battery_soc_curve_model_init`) still **FAILs `cfg_verify`
+   at 13 of 43 cases** (down from 40).  The two residues are (a) an extra
+   `floorf` call the candidate makes where the original goes straight to
+   `float_is_nan` (`direct-target (8, 0xe938, 0x868fc)`), i.e. the NaN /
+   unordered branch shape of the `base` in-range test at `0xe72c..0xe750` vs
+   `0xe87a..0xe8b6` is not exactly reproduced; and (b) two workspace words that
+   differ by value.  It was already on `AGENTS.md`'s STILL-OPEN list.  This
+   also leaves the last 4 % of battery (92 vs 100) unexplained.
+6. The shipped `battery_soc_curve_model_init` uses **`VFMA`** (`0xe70c`,
+   `0xe774`, `0xe778`, `0xe790`, `0xe806`, `0xe8d2`, `0xe8d6`, `0xe8ee`), so by
+   the rule in `AGENTS.md` §1b it is a **fused / `-ffp-contract=fast`** unit.
+   Our build does not currently pin a per-TU contract for it.  Not investigated.
+7. `fuel_gauge_update` also declares `extern uint64_t __extendsfdf2(float)` and
+   calls it with a hard-float argument, the same ABI mistake §39.6 fixed for
+   `__floatdisf`.  Those calls sit behind `if (0 < g_log_level)` and were not
+   observed to execute, so this is recorded as a **latent** defect and was NOT
+   changed.
+8. **A latent trap in `tools/verify_data.py`:** it derives the compared extent
+   from the first `(\d+)\s*bytes` match in the file's comment, so a **comma in
+   the byte count** silently truncates the comparison — the first draft of
+   `rodata_0x88a50.c` said "5,632 bytes" and the verifier compared only 632 of
+   them while still reporting 100 %.  Caught here by the total moving +632
+   instead of +5,632.  A sweep of all 995 `recon/data/*.c` files found **no
+   other file affected**; the tool itself was NOT changed.
+
+### 39.10 Gates (build `g1-i39c-app`, net unchanged `g1-i30e-net`)
+
+| gate | result |
+|---|---|
+| app FLASH | **954,460 B / 982,528 B = 97.14 %** (was 948,828 B / 96.57 %; **+5,632 B**, all of it `rodata_0x88a50`) |
+| app RAM | **253,765 B — delta 0 B**; `_end` `0x2003ff45` unchanged |
+| app `nm -u` / duplicate GLOBAL definitions | **0 / 0** |
+| `check_ram_pin_collisions.py` (app) raw-in-object / raw-free | **0 / 0**; bound OK / escaping **624 / 0** |
+| `check_ram_pin_collisions.py --core net` | **0 / 0**; bound 170 / escaping 0 |
+| `check_thread_create_stack_args.py` | **10/10, EXIT 0** |
+| `gen_app_data_image.py --selftest` | clean (0 FAIL/mismatch lines) |
+| `tools/verify_data.py` | **995 / 995 files byte-exact, 56,279 / 56,279 bytes, 100.00 %** (was 994 / 50,647) |
+| `cfg_verify` `FUN_0002ea28` | **PASS** (and the pre-fix body now **FAILs 3/3** — see below) |
+| `cfg_verify` `fuel_gauge_update` | PASS `cases=0` (vacuous — `__floatdisf` is a stubbed oracle) |
+| `cfg_verify` `FUN_0000e53c` | **FAIL 13/43** (was 40/43) — open, §39.9 item 5 |
+| **dashboard `p2_render` pixel gate** | **`19b1f24a09f97a8d…`, 2,923 px — `cmp` vs `golden_framebuffer_dashboard_p2_render.raw`: NO DIFFERENCE** |
+| **dashboard `p1_boot` pixel gate** | **`0c5cc90b079d0d9c…`, 153,600 B all-zero — byte-checked** |
+| **navigation `p2_render` pixel gate** | **`b26c73b37d441fc8…`, 1,098 px — `cmp` vs `golden_framebuffer_p2_render.raw`: NO DIFFERENCE** |
+| **navigation `p1_boot` pixel gate** | **`1d617c65a688f10e…`, 656 px — `cmp` vs `golden_framebuffer_p1_boot.raw`: NO DIFFERENCE** |
+| **`D-3`** | `spim_a` `p1_boot` **34 == 34, stream sha EQ — PASS** |
+| `S-D-IMU` `p1_boot` (dashboard) | `twim2` stream sha **EQ** |
+| `S-D-ALS` | `opt3001` per-device sha **EQ**, both phases, both stimuli |
+| `S-D-MIC` / `S-D-KEYS` | `pdm0`, `gpiote0`, `gpiote1` whole-run sha **EQ** |
+| `S-D-PMIC` `p1_boot` | **REGRESSED EQ -> NE** (535 vs 285) — the §39.8 hang |
+| `S-D-ADC` | 184 vs 998 — **regressed from 668**, same cause |
+
+Net core UNCHANGED; `armemul` untouched; nothing committed.
+
+**One deliberate trade-off, stated plainly.**  `g1-i39c` is *more faithful* than
+`g1-i38d` — three defects are fixed against the shipped instructions, one of
+the rebuilt bodies is now instruction-for-instruction identical to the shipped
+one, and the estimator reproduces the shipped `*result` bit for bit — but two
+sensor **counters** moved the wrong way, because correctness reached code that
+was never executed before and that code contains three unrelocated function
+pointers.  Reverting §39.7's `limit` rename would restore the old counters by
+re-hiding a proven defect; that is not recommended, and the fix for the counters
+is item 5/§39.8's three unrecovered functions, not a revert.
+
+### 39.11 A NEW harness finding: a reviewed stack-object fixture that hid the defect
+
+`cfg_verify.py`'s `("app", 0x0002ea28)` entry described the record as
+`("event-and-results", -40, -36, 20)` — twenty bytes based at entry-SP-36 on
+the candidate side.  Measured this session:
+
+* the **broken** three-word body returns `FUN_0002ea28 PASS cases=3`;
+* the **fixed** body — whose codegen is instruction-for-instruction identical
+  to the shipped function — returned `FAIL cases=3 mismatches=3`, because the
+  fourth word lands at object-offset 20 (outside the 20-byte window) on the
+  original side and at offset 16 (inside it) on the candidate side.
+
+The fixture was corrected to `("event-and-results", -40, -40, 24)`: the shipped
+frame is `push {r4,r5,lr}` + `sub sp,#28` = entry-SP-40, the record is
+sp+0..sp+23, and the rebuilt frame is now identical.  After the correction the
+fixed body **PASSes** and the broken body **FAILs 3/3** — the negative control
+bites where it previously did not.  This is the only `tools/` change in this
+iteration and it is a fixture description, not verifier logic.
+
+### Regenerate (iteration 39)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+recon/application/build_cohesive.sh app /private/tmp/g1-i39c-app
+# net UNCHANGED from iteration 30 (g1-i30e-net)
+printf '$rtinfo_pc=0x00015b98\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i39/ours-paired-i39c.resc
+# `_end` = 0x2003ff45 -> ctx 0x2003ff50; +0xd5/+0xfe8/+0x105a =
+# 0x20040025 / 0x20040F38 / 0x20040FAA.  TAKE THESE FROM THE ELF YOU BOOT.
+bash -c 'F=$(mktemp -u); mkfifo $F; sleep 100000 > $F & W=$!
+G1_ATT_WRITE="" G1_RESC=/private/tmp/g1-i39/ours-paired-i39c.resc \
+G1_APP_ELF=/private/tmp/g1-i39c-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040F38 G1_CTX_105A=0x20040FAA G1_SCREEN_ID=0x20040025 \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_dash_i39c < $F
+kill $W; rm -f $F'
+# navigation: identical with G1_ATT_WRITE left UNSET, into /private/tmp/g1_ours_nav_i39c
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_ours_dash_i39c /private/tmp/g1-i39/rep-dash-c
+```
+
+Files changed this iteration (**source, data, symbols and one `cfg_verify`
+fixture — no `armemul` change, no net-core change, nothing committed**):
+`recon/data/rodata_0x88a50.c` (new, 5,632 B byte-verified),
+`recon/generated/app_verified_data_sources.cmake` (regenerated by
+`tools/verify_data.py --cmake-output`, not hand-edited),
+`recon/symbols/g1_app_globals.ld` (one `PROVIDE`),
+`recon/symbols/g1_app_symbols.h` (one `extern`),
+`tools/cfg_verify.py` (the `0x2ea28` stack-object fixture only);
+`FUN_0002ea28`/`fuel_gauge_sample_init_timestamp`,
+`FUN_00010b18`/`fuel_gauge_update` and
+`FUN_0000e53c`/`battery_soc_curve_model_init` across `recon/app/src`,
+`recon/app/src_sym`, `recon/verified/src`, `recon/verified/src_sym`,
+`recon/named`, `recon/symbolized/app` and `recon/readable_sources/app/g1`
+(each in whichever of those trees holds a copy; `recon/application/src/*` are
+symlinks into `recon/named`).  `recon/refactor/` was NOT touched.

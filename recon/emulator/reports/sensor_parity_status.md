@@ -9,12 +9,17 @@ criteria sets, both in force:
 | `display_sensor_oracle.json` | `E_ID_SCREEN_NAVIGATION` (id 10) | phone connects **and writes GATT `0a0600000000`**, then `don` gesture | G-1…G-6, S-* |
 | **`display_sensor_oracle_dashboard.json`** *(new)* | **`E_ID_SCREEN_DASHBOARD` (id 6)** | phone connects, **NO GATT command**, then `don` gesture | **D-1…D-7, S-D-*** |
 
-> ## ⇩ CURRENT STATE IS AT THE BOTTOM: **"UPDATE — P4 iteration 38"** ⇩
-> **Iteration 38 (`g1-i38d-app`) is the live measurement.  All four
-> framebuffers are still BYTE-IDENTICAL to the shipped firmware, and the
-> LSM6DSO IMU `p1_boot` stream is now byte-identical, the nPM1300
-> `p1_boot` stream is byte-identical, and the SAADC — which had never
-> configured a channel — now runs register-exact conversion cycles.**
+> ## ⇩ CURRENT STATE IS AT THE BOTTOM: **"UPDATE — P4 iteration 39"** ⇩
+> **Iteration 39 (`g1-i39c-app`) is the live measurement.  All four
+> framebuffers are still BYTE-IDENTICAL to the shipped firmware.  The
+> battery-percentage gate that suppressed BOTH the SAADC's third call site and
+> the whole ST25DV NDEF/WLC write is FIXED at the source (three proven defects;
+> `device_info[0xfc0]` 0 -> 92, shipped 100) and `box_placement_animation_step`
+> runs for the first time in this project — but the newly-reachable
+> `st25dv_build_and_write_ndef_records` HANGS the low-speed peripheral thread on
+> three unrelocated original-image function pointers, so `saadc` went 668 -> 184
+> and the nPM1300 `p1_boot` stream regressed from sha-EQ to NE.  Full accounting
+> in `our_boot_bringup.md` §39.**
 > Everything between here and that section is kept for provenance and is
 > superseded.
 
@@ -1721,3 +1726,105 @@ All four framebuffer gates re-confirmed on `g1-i38d-app` by `cmp` against the
 golden `.raw` files: dashboard `p2_render`, navigation `p2_render` and
 navigation `p1_boot` all report **no difference**, and dashboard `p1_boot` is
 all-zero as the oracle is.
+
+
+---
+
+# UPDATE — P4 iteration 39 (`g1-i39c-app`, net unchanged `g1-i30e-net`)
+
+Full detail, every command and every number: `our_boot_bringup.md` §39.
+
+**One root cause, three defects, all proven from the shipped instructions
+before a line was changed.**  §38.1 and §38.6 had localised the SAADC's missing
+third per-tick conversion call site and the missing ST25DV NDEF/WLC record
+write to the same subtree, gated on `device_info[0xfc0] > 0x1d` in
+`handle_box_placement_event` (`0x255e6..0x255ec`).  A Renode probe measured that
+byte as **0 for the whole 20 s run**, against the shipped firmware's **100**,
+with byte-identical fuel-gauge inputs (`v = 0x408fe76d`, `i = 0`,
+`t = 0x41c80000`) on both sides.
+
+1. **`fuel_gauge_sample_init_timestamp` dropped word 3 of a stack-passed
+   record** — the constant `0x00088a50` the shipped prologue plants at
+   `sp+0x14`.  That word is the **battery-curve table**, 5,632 B, which
+   `battery_soc_curve_model_init` memcpy's into the estimator workspace.  There
+   was no `rodata_88a50` pin at all; the table is now emitted byte-exact as
+   `recon/data/rodata_0x88a50.c` (extent closed twice: the `mov.w r2,#0x1600`
+   memcpy length and the ledger gap to `rodata_8a050`).  Estimator-workspace
+   diff vs the shipped run: **1452 of 1502 differing words -> 40**.
+2. **`__floatdisf` was called with no argument and its result read from the
+   wrong register** — it is an alias of `__aeabi_l2f`, a soft-float helper
+   (r0:r1 in, raw bits out in **r0**), and the reconstruction declared it
+   `float __floatdisf(void)` under the hard-float ABI.  The elapsed-time
+   argument reaching the EKF was **0.0 for every sample**.  Battery **0 -> 4..5**.
+3. **`battery_soc_curve_model_init` used the WRONG PARAMETER** — ten sites read
+   the fifth float (`charge_low`, s4) where the shipped function reads the
+   third (`limit`, s2, held in s18 from `0000e572 vmov.f32 s18,s2`), and the
+   `t0 >= t1` branch dropped `0000e928 vmov.f32 s18,s14`.  Battery **-> 92**,
+   and the init's `*result` is now `0x408fe76d` — **byte-identical to the
+   shipped firmware**.  `cfg_verify` mismatches on `FUN_0000e53c`: **40 -> 13**
+   of 43 cases (still FAIL; it was already on `AGENTS.md`'s STILL-OPEN list).
+
+**Consequence, and the honest cost.**  The gate opens,
+`box_placement_animation_step` runs (3 entries / 20 s vs the shipped 15) and
+`st25dv_build_and_write_ndef_records` is called for the first time — but it
+never returns: `event_record_init` installs a three-entry op vtable from the
+literals `0x0007c38b / 0x00024a41 / 0x00025021`, all three still bare
+`PROVIDE(... = <original address>)` pins, and `invoke_optional_op_offset12`
+`bx`es straight into our own relocated `.text`.  All three targets are genuine
+functions the corpus never recovered.  Measured: the low-speed thread emits its
+last bus transaction at **t = 4.3882 s** and nothing for the remaining 15.6 s,
+so `saadc` **668 -> 184** and nPM1300 `p1_boot` **285 -> 535** with its stream
+sha **EQ -> NE**.
+
+| criterion | `g1-i38d` | **`g1-i39c`** |
+|---|---|---|
+| dashboard `p2_render` framebuffer | `19b1f24a…` 2,923 px, `cmp` clean | **unchanged, `cmp` clean** |
+| dashboard `p1_boot` framebuffer | all-zero | **unchanged** |
+| navigation `p2_render` framebuffer | `b26c73b3…` 1,098 px, `cmp` clean | **unchanged, `cmp` clean** |
+| navigation `p1_boot` framebuffer | `1d617c65…` 656 px, `cmp` clean | **unchanged, `cmp` clean** |
+| **`D-3`** `spim_a` `p1_boot` | 34 == 34 sha EQ | **34 == 34 sha EQ — PASS** |
+| `S-D-IMU` `twim2` `p1_boot` | sha EQ | **sha EQ** |
+| `S-D-ALS` `opt3001` | sha EQ | **sha EQ both phases, both stimuli** |
+| `S-D-MIC` / `S-D-KEYS` | sha EQ | **sha EQ** |
+| `S-D-PMIC` `p1_boot` | sha EQ | **NE (535 vs 285) — REGRESSED** |
+| `S-D-ADC` | 668 / 998 | **184 / 998 — REGRESSED** |
+| `device_info[0xfc0]` | 0 | **92** (shipped 100) |
+| `box_placement_animation_step` | never reached | **runs** |
+
+**`G-3` vs `D-3`, settled with evidence.**  `D-3` is a **PASS**, not a cadence
+gap.  `G-3` is a **real behavioural difference, not a Renode artifact**:
+navigation `spim_a` is 126 vs 764 (`p1_boot`) and 109 vs 2,881 (`p2_render`)
+while the `p1_boot` framebuffer is byte-identical, and
+`display_sensor_parity.md` §2.1 records the **shipped** navigation `spim_a`
+stream as bit-identical across two full runs — so that stream is deterministic
+under these knobs and a 6x count difference cannot be scheduling jitter.  Every
+window we emit the oracle also emits (0 ours-only windows), so the content is
+right and the **invocation count** is wrong: the shipped raster redraws the same
+rows ~6x more often.  By contrast the *dashboard* `p2_render` stream is
+documented as non-deterministic in the shipped firmware itself (12,225 vs
+12,161) and is explicitly not a gate — cadence sensitivity is real, but only
+for the continuously-repainting screen.
+
+**IMU / PMIC phase-2 drift, characterised.**  On `g1-i39c` `twim2` is sha EQ for
+dashboard `p1_boot` and for navigation `p2_render`, and NE for the other two —
+the EQ/NE pattern **flipped** versus `g1-i38d` under a change that adds only
+5,632 B of `.rodata` and touches no IMU code.  That is direct evidence for
+§38.2's reading that the `p2` IMU hash rides on sampling phase against the
+gesture playback, not on content.
+
+## Gates (iteration 39)
+
+`g1-i39c-app` / `g1-i30e-net`: app FLASH **954,460 B / 982,528 B = 97.14 %**
+(+5,632 B, all of it the emitted curve table); app RAM **253,765 B, delta 0**;
+`nm -u` **0**; duplicate GLOBAL definitions **0**;
+`check_ram_pin_collisions.py` **0 / 0** both cores (app bound **624** /
+escaping **0**; net bound 170 / escaping 0);
+`check_thread_create_stack_args.py` **10/10**, EXIT 0;
+`gen_app_data_image.py --selftest` clean; `tools/verify_data.py` **995 / 995
+files, 56,279 / 56,279 bytes, 100.00 %**; all four framebuffer gates
+re-confirmed by `cmp` against the golden `.raw` files.  `cfg_verify`
+`FUN_0002ea28` **PASS** (and the pre-fix body now **FAILs 3/3** after its
+reviewed stack-object fixture was corrected from `(-40,-36,20)` to
+`(-40,-40,24)` — the only `tools/` change, a fixture description, not verifier
+logic).  `FUN_0000e53c` **FAIL 13/43**, open.  Net core, `armemul` and
+`recon/refactor/` untouched; nothing committed.

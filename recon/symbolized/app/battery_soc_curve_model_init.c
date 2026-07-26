@@ -19,7 +19,29 @@
 /* Reconstructed FUN_0000e53c @ 0x0000e53c, exact extent 1020 bytes. */
 #include <stdint.h>
 
-extern void memcpy(void *destination, const void *source, uint32_t size);
+extern /* ITERATION 39 DEFECT FIX -- WRONG PARAMETER.  Everything below the
+ * `workspace[0x13] = charge_low` store operates on the THIRD float argument
+ * (s2, the temperature `limit`), NOT on the fifth (s4, `charge_low`).  The
+ * shipped prologue moves s2 into s18 (`0000e572 vmov.f32 s18, s2`) and s4 into
+ * s16 (`0000e552 vmov.f32 s16, s4`); s16 is dead after `0000e580 vstr s16,
+ * [r4,#0x4c]` (workspace[0x13]) and is immediately reused as scratch at
+ * `0000e674 vmov.f32 s16, s0`.  Every later site reads s18:
+ *     0000e62c vcmpe.f32 s18, s14  / 0000e638 vcmp.f32 s18, s15
+ *     0000e640 vselgt.f32 s18, s15, s18      <- the clamp
+ *     0000e66a vmov.f32  s0, s18   ; 0000e66e bl #0x8693c   <- fminf's 1st arg
+ *     0000e774 / 0000e778 / 0000e790 / 0000e806 vfma.f32 ..., s18, ...
+ * The reconstruction read `charge_low` at all of them, so with the shipped
+ * runtime values (limit = 25.0 degC, charge_low = 0.3) it clamped and
+ * interpolated with 0.3 where the firmware uses 25.0 clamped to the curve's
+ * temperature break-points {17.0, 0.0, 0.0} -> 0.0.  Measured end to end:
+ * `battery_soc_curve_model_init` wrote NaN into `*result` where the shipped
+ * firmware writes 4.4985 (the pack voltage), the EKF started from NaN and the
+ * reported state of charge never rose above 5 %% against the shipped 100 %%.
+ * The differential that pinned it: a Renode hook on the instruction after each
+ * image's own `bl battery_soc_curve_model_init` read `[sp+4]` --
+ * ours 0x7fc00000, shipped 0x408fe76d.
+ */
+void memcpy(void *destination, const void *source, uint32_t size);
 extern int float_is_nan(float value);
 extern float array_max_skip_nan_a(float *values);
 extern float array_max_skip_nan_b(float *values);
@@ -82,6 +104,13 @@ void battery_soc_curve_model_init(float base, float scale, float limit,
         selected_index = 1;
         selected = lower;
         upper = lower;
+        /* ITERATION 39: `0000e924 vmov.f32 s15,s14` is followed by
+         * `0000e928 vmov.f32 s18,s14` -- this branch also REPLACES the
+         * temperature argument with the single break-point, and the
+         * reconstruction dropped that second move.  It is the branch the
+         * shipped firmware actually takes at runtime (break-points
+         * {17.0, 0.0, 0.0} => t0 >= t1). */
+        limit = lower;
     } else {
         selected = lower;
         if (lower > upper)
@@ -99,10 +128,10 @@ void battery_soc_curve_model_init(float base, float scale, float limit,
             selected_index = 3;
         }
 
-        if (charge_low < upper)
-            upper = charge_low;
-        else if (charge_low > selected)
-            charge_low = selected;
+        if (limit < upper)
+            upper = limit;
+        else if (limit > selected)
+            limit = selected;
     }
 
     workspace[0x5d1] = selected;
@@ -110,7 +139,7 @@ void battery_soc_curve_model_init(float base, float scale, float limit,
     ((uint8_t *)workspace)[0x5d3 * 4] = selected_index;
 
     curve = array_max_skip_nan_a((float *)(source + 0x324 / 4));
-    curve = fminf(charge_low, curve);
+    curve = fminf(limit, curve);
     curve = fmaxf(curve, array_max_skip_nan_b((float *)(source + 0x324 / 4)));
 
     matches[0] = source[0x324 / 4] == curve;
@@ -134,12 +163,12 @@ void battery_soc_curve_model_init(float base, float scale, float limit,
         float span = source[0x334 / 4] - lower;
 
         if (base >= lower && base <= upper) {
-            float y0 = source[0x1390 / 4] + source[0x11a8 / 4] * charge_low;
-            float y1 = source[0x1394 / 4] + source[0x11ac / 4] * charge_low;
+            float y0 = source[0x1390 / 4] + source[0x11a8 / 4] * limit;
+            float y1 = source[0x1394 / 4] + source[0x11ac / 4] * limit;
             selected = interpolate_segment(base, lower, span, y0, y1);
         } else if (base >= upper) {
-            float y0 = source[0x1574 / 4] + source[0x138c / 4] * charge_low;
-            float y1 = source[0x1570 / 4] + source[5000 / 4] * charge_low;
+            float y0 = source[0x1574 / 4] + source[0x138c / 4] * limit;
+            float y1 = source[0x1570 / 4] + source[5000 / 4] * limit;
             selected = interpolate_segment(base, upper, span, y0, y1);
         } else {
             selected = 0.0f;
@@ -153,7 +182,7 @@ void battery_soc_curve_model_init(float base, float scale, float limit,
             float inverse = 1.0f - fraction;
             selected = fraction * source[right + 0x38c] +
                        inverse * source[left + 0x38c] +
-                       charge_low * (fraction * source[right + 0x1a4] +
+                       limit * (fraction * source[right + 0x1a4] +
                                 inverse * source[left + 0x1a4]);
         }
     }

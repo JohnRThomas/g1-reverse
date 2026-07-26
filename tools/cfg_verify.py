@@ -2837,10 +2837,18 @@ REVIEWED_PAIRED_STACK_OBJECTS = {
         ("command-header", -24, -32, 4),
     ],
     # One contiguous local record owns the eight-byte event payload followed
-    # by three four-byte result words.  GCC leaves one alignment word before
-    # the record, shifting the whole semantic object by four bytes.
+    # by three four-byte result words AND the constant battery-curve-table
+    # pointer the shipped prologue plants at entry-SP-20 (`0002ea30
+    # str r3,[sp,#0x14]`, literal 0x00088a50) -- i.e. TWENTY-FOUR bytes, not
+    # twenty.  P4 iteration 39: the reconstruction used to omit that fourth
+    # word, and with the object described as only twenty bytes based at
+    # entry-SP-36 on the candidate side the harness could neither see the
+    # missing store (it fell outside the original's window) nor pair the two
+    # frames once the store was restored.  With the store back the rebuilt body
+    # is instruction-for-instruction identical to the shipped one, so both
+    # bases are entry-SP-40 and the full record is in scope.
     ("app", 0x0002ea28): [
-        ("event-and-results", -40, -36, 20),
+        ("event-and-results", -40, -40, 24),
     ],
     # The three device-query result buffers are distinct caller-owned output
     # objects.  FUN_000302f8 receives their identity/extent but does not consume

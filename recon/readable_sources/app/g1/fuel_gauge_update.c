@@ -79,7 +79,31 @@ typedef uint8_t byte; typedef int64_t longlong; typedef uint64_t ulonglong; type
 #define firmware_data_00010fa4 0.0f
 extern uint64_t __aeabi_dadd(uint32_t,...); extern uint64_t __extendsfdf2(float);
 extern uint64_t __muldf3(uint32_t,...); extern uint8_t __fixunsdfsi(uint32_t,...);
-extern float __floatdisf(void); extern float battery_soc_from_curve(float,float,float,float,uint32_t);
+/* ITERATION 39 DEFECT FIX (2 of 2) -- the 64-bit->float conversion had BOTH
+ * its argument and its return register wrong.  Shipped:
+ *     00010b7a  subs r0, r0, r2       ; lVar16 low
+ *     00010b7c  sbc.w r1, r1, r3      ; lVar16 high
+ *     00010b80  cmp.w r0, #0x3e8
+ *     00010b84  sbcs r3, r1, #0       ; signed 64-bit  lVar16 < 1000
+ *     00010b88  blt.w #0x10fbe
+ *     00010b8c  bl   #0xe128          ; __floatdisf(r0:r1)  == __aeabi_l2f
+ *     00010b90  vldr s16, [sp, #0x18]
+ *     00010b94  vmov s3, r0           ; <<< the RESULT COMES BACK IN r0
+ *     00010b9e  vdiv.f32 s3, s3, s18  ; / 1000.0  -> seconds since last sample
+ * The reconstruction called it with NO argument and declared it `float
+ * __floatdisf(void)`.  Under the hard-float ABI the caller then read the
+ * result out of s0, which __aeabi_l2f never writes, and Ghidra's r0-clobbering
+ * comparison idiom meant r0:r1 no longer held lVar16 at the call either.
+ * Measured consequence: the elapsed-time argument reaching
+ * battery_model_state_update was 0.0 for every sample (the shipped run carries
+ * 1.363, 1.257, 1.260 ... s), the EKF divided by it, its covariance block went
+ * to NaN and the reported state of charge stuck at 0 -- which is the other
+ * half of the `device_info[0xfc0] > 0x1d` gate failure of iteration 39.
+ * `__floatdisf` is an alias of `__aeabi_l2f` (both at 0xced4 in our ELF), a
+ * SOFT-float helper: it takes r0:r1 and returns raw float bits in r0, so the
+ * declaration below uses the project's raw-bits convention (the same one
+ * battery_model_state_update already uses for __extendsfdf2). */
+extern uint32_t __floatdisf(int64_t); /* soft-float: r0:r1 in, raw float bits out in r0 */ extern float battery_soc_from_curve(float,float,float,float,uint32_t);
 extern uint32_t get_device_info(void);
 extern uint32_t get_product_code_buf(void); extern uint32_t esb_send_command_and_wait_ack(uintptr_t,...);
 extern int fuel_gauge_read_voltage_current_temp(uint32_t,float*,float*,float*); extern int fuel_gauge_poll_should_stop(void);
@@ -131,7 +155,8 @@ int fuel_gauge_update(undefined4 param_1)
     if ((int)((ulonglong)lVar16 >> 0x20) < (int)(uint)((uint)lVar16 < 1000)) {
       return -1;
     }
-    fVar15 = (float)__floatdisf();
+    { union { uint32_t u; float f; } g1_l2f; g1_l2f.u = __floatdisf(lVar16);
+      fVar15 = g1_l2f.f; }
     fVar14 = local_40;
     fVar15 = (float)battery_soc_from_curve(local_44,local_40,local_3c[0],fVar15 / fVar3,0);
     if ((((fVar14 != 0.0) || (iVar13 = iVar13 + -1, iVar13 == 0)) ||

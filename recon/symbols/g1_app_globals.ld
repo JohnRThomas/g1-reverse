@@ -465,6 +465,24 @@ PROVIDE(rodata_88a2a = g1_adc_nfc_channel_cfg);
  * recon/application/app/src/g1_st25dv_ops_table.c. */
 PROVIDE(rodata_88a38 = g1_st25dv_ops_table);
 PROVIDE(rodata_88a44 = 0x00088a44);
+/* RODATA EMISSION (iteration 39) — the battery state-of-charge model CURVE
+ * TABLE, 5632 B (0x1600).  There was NO pin for it at all before this
+ * iteration: the ledger jumped 0x88a44 -> 0x8a050, and 0x8a050 - 0x88a50 is
+ * exactly the 0x1600 that `battery_soc_curve_model_init` (0xe53c) memcpy's
+ * into the estimator workspace at +0x144, so the extent is closed twice over.
+ * The address reaches the estimator as WORD 3 OF A STACK RECORD:
+ * `fuel_gauge_sample_init_timestamp` (0x2ea28) does
+ * `ldr r3,[pc,#0x40]` (literal @0x2ea70 = 0x00088a50) / `str r3,[sp,#0x14]`,
+ * and our reconstruction declared that record with only three words, so
+ * `batt_soc_curve_estimate` was handed a stale stack value (measured
+ * 0x0009d5ba) and memcpy'd 5632 bytes of unrelated .rodata in as the battery
+ * curve.  Measured consequence: the EKF covariance went to NaN, the reported
+ * battery percent stuck at 0 for the whole run, and the
+ * `device_info[0xfc0] > 0x1d` gate at `handle_box_placement_event+0xbc`
+ * (0x255ec) never opened -- which is what suppressed BOTH the SAADC's third
+ * per-tick conversion call site and the ST25DV NDEF/WLC record write.
+ * Storage: recon/data/rodata_0x88a50.c (byte-verified by tools/verify_data.py). */
+PROVIDE(rodata_88a50 = rodata_0x88a50);
 PROVIDE(rodata_8a050 = 0x0008a050);
 PROVIDE(rodata_8a0a8 = 0x0008a0a8);
 PROVIDE(rodata_8a208 = 0x0008a208);

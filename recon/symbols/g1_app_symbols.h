@@ -1263,6 +1263,7 @@ extern const unsigned char rodata_88a0c[]; /* @0x88a0c */
 extern const unsigned char rodata_88a2a[]; /* @0x88a2a */
 extern const unsigned char rodata_88a38[]; /* @0x88a38 */
 extern const unsigned char rodata_88a44[]; /* @0x88a44 */
+extern const unsigned char rodata_88a50[]; /* @0x88a50 */
 extern const unsigned char rodata_8a050[]; /* @0x8a050 */
 extern const unsigned char rodata_8a0a8[]; /* @0x8a0a8 */
 extern const unsigned char rodata_8a208[]; /* @0x8a208 */
