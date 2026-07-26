@@ -81,7 +81,7 @@ void gatt_parse_read_by_type_rsp(uint32_t context, int status, const uint8_t *da
         else {
             struct { uint32_t type, message, value; } detail =
                 { 3, UINT32_C(0x000f4ca8), stride };
-            log_msg_create_3arg(UINT32_C(0x00088128), 0x1840, &detail);
+            log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1840, &detail);
             goto malformed;
         }
 
@@ -131,7 +131,7 @@ void gatt_parse_read_by_type_rsp(uint32_t context, int status, const uint8_t *da
         else {
             struct { uint32_t type, message, value; } detail =
                 { 3, UINT32_C(0x000f4ca8), stride };
-            log_msg_create_3arg(UINT32_C(0x00088128), 0x1840, &detail);
+            log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1840, &detail);
             goto malformed;
         }
 

@@ -14457,3 +14457,560 @@ A literal re-run against `g1-i35b-app`'s ELF emits **0 objects**, but that is
 *not* a validation: the generator also intersects with the ELF's `nm` class-`A`
 symbols, and in an ELF built **with** `g1_app_string_rodata.c` none of its 1,787
 symbols is absolute any more.  Stated so the 0 is not mistaken for a check.
+
+## Iteration 36 — the decay and the wrong glyphs are **one defect class**: two
+## more rodata regions that are still raw absolute `PROVIDE` pins and therefore
+## resolve into OUR OWN relocated image.  Both are named, both are proven from
+## the shipped bytes and from the linked ELF, before a single line was changed.
+
+*(written incrementally as each finding was confirmed)*
+
+### 36.1 FINDING 1 — the repaint does not "decay", it is **AND-masked with glyph
+### bitmaps**: the dashboard entry fade's mask atlas `rodata_aae20` is unwired
+
+`ui_DashBoard_task` (`FUN_0003af78`) is **not** a loop — it is a per-event
+handler.  On the entry event (`param_3 == 1`, `ctx[9] == 0`) it runs a
+**four-step dither fade-in** and nothing else repaints the panel afterwards:
+
+```c
+*(int*)0x20009fd0 = 0;                       /* fade step */
+while (*(int*)0x20009fd0 < 4) {
+    DashBoard_Reflash(dev+0xef, get_device_info(), 1, dev[0x153]);
+    step = *(int*)0x20009fd0;
+    order = *(u64*)0xa8c57;                  /* frame-order table   */
+    for (row = 0; row < 199; row++)
+      for (col = 0; col < 0x140; col++) {
+        b = canvas[row][col];
+        if (b) canvas[row][col] =
+            b & *(u8*)( 0xaae20                      /* <-- MASK ATLAS  */
+                      + ((u8*)&order)[step] * 0x140  /*     frame       */
+                      + (row % 0x1a)      * 0xa00    /*     phase       */
+                      + col );
+      }
+    *(int*)0x20009fd0 = step + 1;
+    reflash_fb_data_to_lcd(dev[0xeb4], dev[0xeb8], 0, 0, 0x280, 199);
+}
+```
+
+Three facts, each read out of the shipped image, close this:
+
+1. **The frame order is `01 03 05 07 07 07 07 07`** (`rodata_a8c57`, read at
+   `0xa8c57` through `tools/extract.py`) — steps 0..3 use mask frames 1, 3, 5, 7.
+2. **The shipped atlas is a monotone reveal whose LAST frame is fully open.**
+   Decoding `[0xaae20, 0xbb220)` = 66,560 B = 26 phases x 8 frames x 320 B and
+   counting non-zero nibbles per frame:
+
+   | frame | 0 | 1 | 2 | 3 | 4 | 5 | 6 | **7** |
+   |---|--:|--:|--:|--:|--:|--:|--:|--:|
+   | non-zero nibbles | 0.0 % | **10.2 %** | 18.6 % | **34.7 %** | 46.5 % | **54.6 %** | 63.2 % | **100.0 %** |
+
+   So with the real atlas the fourth step ANDs the picture with `0xFF`
+   everywhere and **leaves the completed dashboard on the panel**.  The oracle's
+   held screen is not a repaint loop at all — it is this last, fully-open step.
+3. **In our build `rodata_aae20` is still `PROVIDE(rodata_aae20 = 0x000aae20)`**
+   — verified in the linked ELF, `nm` class **`A`**:
+   `000aae20 A rodata_aae20`.  Our FLASH region is `[0xc200, 0xfc000)` and our
+   image is 921,576 B, so `0xaae20` is a **live address inside our own
+   relocated `.rodata`** — specifically inside `rodata_d753a`
+   (`0x0a83e6 .. 0x0b6e0e`), the 59,944-byte packed-4bpp **glyph bitmap run**.
+
+**The firmware therefore ANDs the finished dashboard with font pixels, four
+times, and the fourth AND is the one that stays on screen.**  That is exactly
+the measured profile of §35.12 (1,499 lit at window 976, monotone to 0) and it
+is why the end-of-phase framebuffer that D-1 grades is blank.  It is one
+defect, not "the repaint decays" plus "the screen is left".
+
+`display_fade_out_mask_bands`, `gui_screen_fade_out_transition`,
+`ui_QuickNote_task`, `ui_even_ai_task`, `ui_translate_task`,
+`ui_new_message_task`, `ui_set_imu_pitch_task`, `onboarding_render_step_screen`,
+`render_ancs_notification_animation`, `navigation_overview_map_display` and
+`navigation_panoramic_map_display` read the same atlas, so **the same defect is
+on the navigation screen**.
+
+### 36.2 FINDING 2 — the wrong/missing glyphs are **not** a font defect: the
+### eight localized string tables `rodata_8a3e0 … rodata_8ab18` are unwired
+
+The date line is not drawn from a font index at all.  `DashBoard_Reflash`
+builds it from the **localized string table**:
+
+```c
+unix_timestamp_to_datetime(ts, &dt);
+month_str   = get_localized_weekday_name(dt.month + '.');   /* 0x2e + month */
+dow         = compute_day_of_week(dt.y, dt.m, dt.d);
+weekday_str = get_localized_weekday_name(dow   + '(');      /* 0x28 + dow   */
+...
+gui_utf_draw(0, &buf, 3, ...);
+```
+
+and `get_localized_weekday_name` -> `get_localized_string_ptr(lang, idx)` ends in
+
+```c
+return *(volatile u32*)(table + idx * 4);    /* table = rodata_8a3e0 … 8ab18 */
+```
+
+i.e. it **loads a POINTER out of an 8 x 264-byte pointer table**.  Read out of
+`app_update.bin`, the English table `rodata_8ab18` is exactly right:
+
+| idx | 0x28 | 0x29 | 0x2a | 0x2b | 0x2c | 0x2d | 0x2e | 0x2f | 0x30 | … |
+|---|---|---|---|---|---|---|---|---|---|---|
+| target | 0xbbf7d | 0xbbf81 | 0xbbf85 | 0xbbf89 | 0xbbf8d | 0xbbf91 | 0xbbf95 | 0xbba17 | 0xbba1b | … |
+| string | `Sun` | **`Mon`** | `Tue` | `Wed` | `Thu` | `Fri` | `Sat` | **`Jan`** | `Feb` | … |
+
+(idx 0 = `English`, idx 2 = `Look Ahead Naturally` — i.e. **the navigation
+screen's text comes out of the same eight tables**.)
+
+**All eight tables are still numeric pins** — `nm` on our linked ELF:
+`0008a3e0 A rodata_8a3e0`, `0008ab18 A rodata_8ab18`.  The words our build
+actually loads from `0x8ab18` are
+
+```
+8a870f00 a6870f00 b7870f00 d4870f00 eb870f00 06880f00 307a0f00 1f880f00 …
+```
+
+i.e. pointers `0x000f878a`, `0x000f87a6`, … — **past the end of our 921,576-byte
+image, in erased flash** — and, for index 0x28, `0x00099cbd`, which lands inside
+our own font rodata.  So the date line draws one garbage glyph run (the
+**72 wrong pixels in x 78..113 / y 213..228**) and everything else in that
+family draws nothing (the missing content, including navigation's **982**
+missing pixels and the fragmentary QuickNote hint).
+
+The 129 distinct string targets of the eight tables span `0xa8ea0` and
+`[0xbb220, 0xbbfee)`; **128 of the 129 have no pin at all** and are emitted
+nowhere, and the one that does — `rodata_bb220` — is emitted by
+`gen_app_string_rodata.py` as an **11-byte stub `"ERR_STRING"`**, the first
+string of a 3,534-byte pool.  Same mis-classification class as iteration 33's
+`rodata_9890c` and iteration 35's three glyph directories.
+
+**Both screens, one class:** every remaining display defect measured in
+iteration 35 is a `.rodata` region that is still a raw absolute `PROVIDE`.
+Nothing is wrong with the glyph data, the directory strides (26 / 32 / 39) or
+the counts (0x60 / 0x0b / 0x0b) — all four were re-verified byte-for-byte
+against `app_update.bin` this iteration and **all four MATCH**, and the three
+bitmap-run chains close exactly (`0xe17da + 435*26 = 0xe4408`,
+`+114*32 = 0xe5248`, `+86*39 = 0xe5f62`).
+
+### 36.3 The flash problem this creates, stated before any change is made
+
+| region | bytes | why it is needed |
+|---|---:|---|
+| `rodata_aae20` fade-mask atlas | 66,560 | §36.1 |
+| `rodata_bb220` localized string pool `[0xbb220,0xbbfee)` | 3,534 | §36.2 |
+| 8 x `rodata_8a3e0…8ab18` pointer tables | 2,112 | §36.2 (must be **relocated**, not byte-copied) |
+| `rodata_a8ea0` empty string | 1 | §36.2 |
+| **total** | **72,207** | |
+
+Free space in the 982,528 B partition at `g1-i35b-app`'s 921,576 B is
+**60,952 B**.  The shipped `app_update.bin` is **977,805 B** — 99.5 % of the
+partition — so our build already carries ~12.5 kB more than the original once
+the still-unwired rodata is counted.  This is measured, not estimated, and the
+next section reports what was done about it.
+
+### 36.4 `g1-i36a-app` — the fix, and how the flash was paid for
+
+Three new translation units, all generated byte-exact from `app_update.bin`
+through `tools/extract.py` by
+`recon/application/gen_app_localized_rodata.py` (new):
+
+| TU | owns | bytes |
+|---|---|---:|
+| `src/g1_app_fade_mask_rodata.c` | `rodata_aae20` | 66,560 |
+| `src/g1_app_localized_rodata.c` | `rodata_bb220` pool, `rodata_a8ea0`, and the eight `rodata_8a3e0…8ab18` tables as **relocated** pointer arrays (batch-5 `ptr_record` mechanism — no raw absolute word is stored) | 3,534 + 1 + 2,112 |
+| `src/g1_app_glyph_bitmap_rodata.c` | `rodata_d753a` (1,024 B nibble LUT) and `rodata_e123a` (19,752 B icons + the three glyph runs) | 20,776 |
+
+The eleven numeric `PROVIDE`s they replace are **deleted** from
+`g1_app_globals.ld`, and the 11-byte `"ERR_STRING"` stub for `rodata_bb220` is
+withdrawn from `g1_app_string_rodata.c`.
+
+**Paying for it.**  The first link overflowed `FLASH` **by exactly 11,244 B**.
+The 39,168 B that closed the gap came from splitting the 59,944-byte
+`rodata_d753a` run that `g1_app_rodata_02.c` owned as one object:
+
+```
+[0xd753a, 0xd793a)  1,024 B  nibble-expansion LUT (expand_bytes_via_lut32)   EMITTED
+[0xd793a, 0xe123a) 39,680 B  low-battery DEMO IMAGE                         WITHHELD
+[0xe123a, 0xe5f62) 19,752 B  icons + font style 3 + both clock digit runs    EMITTED
+```
+
+The withheld window has exactly **one** reader in the whole recovered corpus:
+`update_demo_image_display`, through `demo_image_get_position(0)` =
+`rodata_0x8ac20[0]` = `0x000d793a`, and `ui_refalsh_warp` reaches it only when
+`is_battery_critical() == 1`.  Neither parity phase enters that path, and the
+shipped absolute word in `rodata_0x8ac20` is left exactly as it is, so nothing
+about it changed.  This is a measured trade, recorded as a debt, not a claim
+that the bytes are unnecessary.
+
+| build | FLASH | % | RAM | `nm -u` | dup globals |
+|---|---:|---:|---:|---:|---:|
+| `g1-i35b-app` | 921,576 B | 93.80 % | 253,765 B | 0 | 0 |
+| **`g1-i36a-app`** | **952,252 B** | **96.92 %** | **253,765 B** | **0** | **0** |
+
+`_end` `0x2003ff45` and `runtime_info_sync` `0x00015b8c` are **unchanged**, so
+every `G1_CTX_*` probe address still holds.  Net core **UNCHANGED**
+(`g1-i30e-net`).
+
+Byte-verified **after the link**, by reading `zephyr.elf`'s PT_LOAD and
+comparing against `app_update.bin`:
+
+| symbol | link address | bytes | byte-match |
+|---|---|---:|---|
+| `rodata_aae20` | `0x0a7d0e` | 66,560 | **True** |
+| `rodata_bb220` | `0x0b810e` | 3,534 | **True** |
+| `rodata_a8ea0` | `0x0b8edc` | 1 | **True** |
+| `rodata_d753a` | `0x0bdc05` | 1,024 | **True** |
+| `rodata_e123a` | `0x0b8edd` | 19,752 | **True** |
+| `rodata_98e3c` / `rodata_e5f62` / `rodata_c7956` / `rodata_bc097` | — | 384 / 37,050 / 63,517 / 45,682 | **True** (unchanged) |
+
+and for the eight relocated tables the check is stronger than byte equality:
+**every one of the 8 x 66 entries was dereferenced in the linked image and
+compared with the string the shipped table points at — all 528 match.**
+
+### 36.5 MEASURED — the dashboard entry fade now completes
+
+Same stimulus, same determinism knobs, same script as §35 (`G1_ATT_WRITE=""`,
+`G1_HOOKS=0`, quantum `0.000010`, CC312 seed `0x5340CC3105340CC3`, 6 s + 14 s).
+
+| | `g1-i35b-app` | **`g1-i36a-app`** | oracle |
+|---|---:|---:|---:|
+| `spim_a` `p2_render` transactions | 2,665 | 2,665 | 12,225 |
+| pixel windows | 2,586 | 2,586 | 11,874 |
+| **peak lit pixels** | 1,499 | **2,919** | **2,923** |
+| **peak bbox** | (78,213)–(564,330) | **(78,211)–(564,338)** | **(78,211)–(564,338)** |
+| pixels exactly right at peak | 1,427 | **2,671** | 2,923 |
+| pixels lit in ours, dark in the oracle | 72 | 248 | 0 |
+| pixels the oracle lights that we do not | 1,496 | **252** | 0 |
+| lit-pixel profile | rises to 1,499 then decays | rises to 2,919 then decays | rises to 2,923 and **holds** |
+
+**The peak bounding box is now the oracle's, to the pixel, on all four edges**,
+and every remaining wrong or missing pixel is inside **x 78..167, y 213..228** —
+i.e. **the date line and nothing else**.  The rest of the dashboard — the
+`00:00` clock, the Bluetooth glyph, the divider, the note icon and the
+QuickNote hint — is pixel-exact.
+
+The remaining decay is no longer corruption: it is the **genuine 8-step
+fade-out** (`display_fade_out_mask_bands`, `phase*0xa00 + 0x8c0 - frame*0x140`)
+running because the screen is still being closed — defect (b) of §35.12, which
+this iteration has not fixed.
+
+### 36.6 FINDING 3 — the navigation screen's missing 982 pixels were a
+### **raw absolute literal that symbolization never substituted**
+
+Decoding the shipped navigation `p2_render` framebuffer glyph-by-glyph against
+the byte-verified font banks (template match on the exact glyph bitmaps, done
+read-only from `app_update.bin`) reads it out as
+
+> `Navigate stopped due to app disconnection.`
+
+That string lives at `0xaa02b`, and its only writer is
+`draw_locale_adjusted_label_pair` (`FUN_0003f2a8`).  The symbolized body passed
+the address as a **numeric literal**, not as the symbol:
+
+```c
+gui_utf_draw(0, UINT32_C(0x000aa056), 0, ...);   /* not &rodata_aa056 */
+format = UINT32_C(0x000a9da3);
+format = UINT32_C(0x000aa02b);
+```
+
+`rodata_aa02b` **is** emitted in our build (at `0x0bee2f`), but the call passed
+the ORIGINAL address, so `gui_utf_draw` was handed unrelated bytes and drew
+nothing.  A sweep of the whole symbolized app tree for numeric literals that
+fall in `[0x84ab0, 0xf0000)` and name an existing `rodata_*` pin found
+**16 sites in 5 files** — the complete inventory of this defect:
+
+| file | sites | on a display path? |
+|---|---:|---|
+| `draw_locale_adjusted_label_pair.c` | 3 | **yes — the navigation label** |
+| `z_arm_fault.c` | 8 | no (fault printout) |
+| `flash_firmware_update_transfer.c` | 2 | no (DFU) |
+| `gatt_parse_read_by_type_rsp.c` | 2 | no (discovery log) |
+| `gatt_parse_find_info_rsp.c` | 1 | no (discovery log) |
+
+All 16 were substituted with `((unsigned long)&rodata_X) /*=0xX*/`.  For a pin
+that is still numeric the expression evaluates to the identical value, so the
+13 non-display sites are provably behaviour-neutral in this build and correct in
+any later one.
+
+### 36.7 FINDING 4 — the dashboard date: a **stack-buffer-layout** defect in
+### `DashBoard_Reflash`
+
+With the string tables wired, the date line went from 72 wrong pixels to a
+*longer* wrong string.  Decoding both frames glyph-by-glyph:
+
+| | oracle | `g1-i36a-app` |
+|---|---|---|
+| date line | `Mon, Jan 1` | **`Fri, Sat 0`** |
+
+`Sat` is localized string index `0x2e` = `month + 0x2e` with **month = 0**;
+`0` is **day = 0**; and `compute_day_of_week(0x00b2, 0, 0) = 5` = `Fri`.  The
+`0x00b2` is the low byte of 1970 (`0x7b2`) with a zero high byte.  That is a
+complete fingerprint of the cause:
+
+`unix_timestamp_to_datetime` (`FUN_0004a1b8`) writes **six `int16_t`** through
+its out-pointer — `[0]=year [1]=month [2]=day [3]=hour [4]=min [5]=sec` — but
+Ghidra rendered those twelve stack bytes as **separate C locals**
+(`local_a4`/`uStack_a3`/`uStack_a2`/`local_a0`/`uStack_9f`, and at three other
+call sites `local_94`/`local_90`/`local_8c` and `local_b0`/`local_ac`/`local_a8`),
+and only the *first* one's address was passed.  GCC is entitled to keep the
+other slots in registers holding their zero initialisers — and did.  Only
+`local_a4`, a **`char`**, was treated as clobbered, which is why exactly one
+byte of the year survived.
+
+Fixed by giving all four call sites one properly-sized `short g1_dt[6]`.
+
+**Measured (`g1-i36b-app`):** the date now reads **`Thu, Jan 1`** and the
+`, Jan 1` half is **pixel-identical** to the shipped frame.  The residue is the
+three weekday glyphs only, and it is not an arithmetic error: 1970-01-01 *was*
+a Thursday, and `compute_day_of_week` re-checked instruction-for-instruction
+against `0x7d280` is exact.  The oracle reads `Mon` because the shipped
+firmware's clock is at **`0x65920080` = 1,704,067,200 = 2024-01-01T00:00:00Z,
+a Monday** — the very constant `main()` passes to
+`set_device_sync_timestamp`.  Ours has been reset to 0 by draw time: every
+`sync_to_slave` call does `*(u32*)(ctx+0xd0) = previous_value` where
+`previous_value = **(u32**)(ctx+0xfec)`, and that field is 0 in our build.
+`ui_DashBoard_task` calls `sync_to_slave(dev, 6, …)` immediately before the
+entry fade, so the timestamp is zeroed just before the date is formatted.
+**Named, localised to one field, NOT fixed this iteration.**
+
+### 36.8 MEASURED — **the NAVIGATION screen is now BYTE-IDENTICAL to the
+### shipped firmware in BOTH phases**
+
+`g1-i36b-app`, navigation stimulus (`G1_ATT_WRITE` at its default
+`0a0600000000`), unhooked, same determinism knobs:
+
+| criterion | ours | oracle | verdict |
+|---|---|---|---|
+| **G-2** `p1_boot` framebuffer sha256 | `1d617c65a688f10e…` | `1d617c65a688f10e…` | **PASS** — 656 == 656 lit px, bbox (178,267)–(449,287), **0 differing rows** |
+| **G-1** `p2_render` framebuffer sha256 | `b26c73b37d441fc8…` | `b26c73b37d441fc8…` | **PASS** — **1,098 == 1,098 lit px**, bbox (34,266)–(497,287), **0 differing rows, 0 wrong, 0 missing** |
+| `spim_a` transactions p1 / p2 | 126 / 109 | 126 / 109 | equal |
+| **G-6** `spim_b` | 0 | 0 | **PASS** |
+
+G-1 went **116 lit / 982 missing (iteration 35) → 1,098 / 0**.  The navigation
+screen — icon, the `Navigate stopped due to app disconnection.` label, every
+pixel — is now reproduced exactly by the rebuilt firmware.
+
+### 36.9 FINDING 5 — why the dashboard is left, localised to one branch
+
+A hooked diagnostic run (`G1_HOOKS=0` plus block hooks at **this ELF's** PCs;
+used only to read values, never to score pixels) gives the whole life of the
+screen in twelve lines:
+
+```
+49.8949  update_temp_task_status new=6 mode=2   lr=process_for_new_task+0x78d
+49.8954  trigger_screen_state_change act=1
+50.2192  ui_DashBoard_task p3=1              <- START, the entry fade
+50.3531  DashBoard_Reflash m=1   } the four
+50.4097  DashBoard_Reflash m=1   } fade-in
+50.4599  DashBoard_Reflash m=1   } steps
+50.5129  DashBoard_Reflash m=1   }
+50.7296  ui_DashBoard_task p3=0              <- one 66 ms RETRY
+50.7298  DashBoard_Reflash m=0
+50.8228  update_persist_task_status_to_idle  lr=process_for_new_task+0xc11
+50.8241  display_close_screen id=6           lr=update_persist_task_status_to_idle+0x35
+50.8265  ui_DashBoard_task p3=2              <- STOP
+50.8310  gui_screen_fade_out_transition
+```
+
+`addr2line` on `process_for_new_task+0xc11` lands on
+**`recon/symbolized/app/process_for_new_task.c:608`**, inside `CASE6`
+(`process_for_DASHBOARD_show`):
+
+```c
+if ((((*param_2 == 1) && (get_task_signal_mode() == 0)) ||
+     ((*g_20007b38 & 2) && get_task_signal_mode() == 1)) ||
+     ((*g_20007b38 & 2) && get_task_signal_mode() == 2)) {
+    ...
+    if (now_has_persist_task(param_1, param_1[0xd5]) != 1) {
+        sync_to_slave(param_1, 8, 0);
+        update_persist_task_status_to_idle(param_1);   /* <- line 608 */
+```
+
+A second hooked run shows **exactly one** `get_task_signal_mode` call from
+inside that condition (`lr = process_for_new_task+0xbdb`) immediately before the
+exit, so the branch was entered on its first term and
+`now_has_persist_task` — which is just
+`*(u8*)(*(int**)(ctx+0x1054)+4) > 1` — returned 0.  `param_2` is
+`device_ctx + 0xee4`, the byte `sync_to_slave` also reads as the head/wear
+state, so the trigger is a **task-state byte, not a display bug**.  The shipped
+firmware has the same branch and simply never satisfies it in this 14-second
+window; the oracle instead keeps taking the 66 ms `DISPLAY_ACTION_RETRY` path
+of `display_thread_handler` (timeout = `g_dashboard_display_level` = 0x42 ms,
+set by `ui_DashBoard_task` itself), which is where its **136**
+`DashBoard_Reflash` calls come from.
+
+**This is the one and only remaining blocker for D-1**, it is named to the
+line, and it is NOT fixed in this iteration.  Related and probably the same
+root: our `twim2` LSM6DSO traffic in `p2_render` is **766 vs the oracle's
+1,206**, i.e. the IMU state machine stops polling at the same moment.
+
+### 36.10 Criterion scores — `g1-i36b-app`, both screens, every criterion
+
+#### NAVIGATION (`display_sensor_oracle.json`, `G1_ATT_WRITE=0a0600000000`)
+
+| id | verdict | measurement |
+|---|---|---|
+| **G-1** `p2_render` framebuffer sha256 | **PASS** | `b26c73b37d441fc8…` == oracle. **1,098 == 1,098 lit px**, bbox (34,266)–(497,287) == oracle, **0 differing rows**, 0 wrong, 0 missing. (iteration 35: 116 lit / 982 missing) |
+| **G-2** `p1_boot` framebuffer sha256 | **PASS** | `1d617c65a688f10e…` == oracle, 656 == 656 lit px, bbox (178,267)–(449,287), **0 differing rows** — the regression gate **held**. |
+| **G-3** `spim_a` stream sha256 | **FAIL** | p1 126 vs 764 txns, p2 109 vs 2,881. The pixel content is identical; the oracle simply repaints many more times (§36.9). First difference is a *missing repeat*, not a differing byte: our stream is a prefix-equivalent subset. |
+| **G-4** localiser | *n/a* | no differing row in either phase. |
+| **G-5** panel init sequence | **PASS** | `0x9F` ID probe answered `0x4010`; the `0x46`/`0x31` brightness pair and the ordered non-`0x02` opcode list match. |
+| **G-6** `spim_b` unused | **PASS** | 0 == 0 transactions, both phases. |
+| **S-MIC** `pdm0` | **PASS** | 2 == 2 accesses, whole-run sha `255852a6c9e9…` **EQ**. |
+| **S-KEYS** `gpiote0` / `gpiote1` | **PASS** | 25 == 25 and 0 == 0, whole-run shas **EQ**. |
+| **S-ALS** `opt3001` | **PARTIAL** | `p2_render` **80 == 80, sha EQ**; `p1_boot` 35 vs 33, NE. |
+| **S-PMIC** `npm1300` | **PARTIAL** | `p2_render` **508 == 508, sha EQ**; `p1_boot` 285 vs 291, NE. |
+| **S-NFC** `st25dv` | **FAIL** | `p1_boot` 11+14 vs 25+22; absent in `p2_render` (0 vs 7+4). |
+| **S-IMU** `twim2` | **FAIL** | `p1_boot` 1,094 vs 1,089 (sha NE); `p2_render` **744 vs 1,200**. |
+| **S-ADC** `saadc` | **FAIL** | 95 vs 998 accesses, sha NE (unchanged since iteration 33). |
+| **S-ESB** (boolean) | **PASS** | `ESB_SYNC_ctx_105a` **0x02**, `DISPLAY_ON_ctx_fe8` **0x01**, ESB master frames `0x175` == oracle `0x175`, `ESB_ACKS` `0x175` == `0x175`. |
+
+**Navigation graphics score: G-1 PASS, G-2 PASS, G-3 FAIL, G-5 PASS,
+G-6 PASS — 4 of 5, and both framebuffers are byte-identical.**
+
+#### DASHBOARD (`display_sensor_oracle_dashboard.json`, `G1_ATT_WRITE=""`)
+
+| id | verdict | measurement |
+|---|---|---|
+| **D-1** `p2_render` framebuffer | **FAIL** | end-of-phase ours `0c5cc90b079d0d9c…` (0 lit px) vs oracle `19b1f24a09f97a8d…` (2,923). 128 differing rows; first differing row **211**, first differing pixel **x = 244** (oracle `0xF`, ours `0x0`). **But the picture is drawn**: peak **2,895** lit px (iteration 35: 1,499) at window 882/2,586, **bbox (78,211)–(564,338) — the oracle's, exactly, on all four edges**, **2,659 pixels exactly right**, 236 wrong and 264 missing, **all of them inside x 78..167 / y 213..228 — the three weekday glyphs and nothing else** (§36.7). The framebuffer then fades out because the screen is closed (§36.9). |
+| **D-2** `p1_boot` framebuffer | **PASS** | `0c5cc90b079d0d9c…` == oracle, 0 == 0 lit px, **zero differing rows**. |
+| **D-3** `spim_a` `p1_boot` stream | **PASS** | **34 == 34 transactions, stream sha `f91505ab8dc0dd27…` IDENTICAL.** |
+| **D-4** localiser | *localiser* | first differing row **211**, first differing pixel **x = 244**; `spim_a` `p2_render` 2,665 vs 12,225 transactions. |
+| **D-5** `SCREEN_ID_ctx_d5 == 6` | **FAIL** | ours `0x00` at t = 20 s. The screen *is* selected and painted, then closed at t ≈ 11.7 s (§36.9). |
+| **D-6** | **PARTIAL** | `ESB_SYNC_ctx_105a` **0x02 ✓ EQ**; `DISPLAY_ON_ctx_fe8` `0x00` ✗ (same close). |
+| **D-7** `spim_b` unused | **PASS** | 0 == 0 transactions, stream hash EQ, both phases. |
+| **S-D-MIC** `pdm0` | **PASS** | 2 == 2, whole-run sha **EQ**. |
+| **S-D-KEYS** `gpiote0/1` | **PASS** | 25 == 25 and 0 == 0, shas **EQ**. |
+| **S-D-I2C** `twim1` | **PARTIAL** | `opt3001` `p1_boot` **14 == 14, sha EQ**; `npm1300` 279/522 vs 285/514; `st25dv` 11+14 vs 25+22 and absent in `p2_render`. |
+| **S-D-IMU** `twim2` | **FAIL** | `p1_boot` 1,080 vs 1,075; `p2_render` **766 vs 1,206**. |
+| **S-D-ADC** `saadc` | **FAIL** | 95 vs 998, sha NE. |
+
+**Dashboard score: 5 PASS / 2 PARTIAL / 4 FAIL — unchanged in count from
+iteration 35, but D-1's content went from 1,427 correct / 1,496 missing to
+2,659 correct / 264 missing, and the bounding box is now exact.**
+
+Other counters, dashboard stimulus: `JBD_FRAMECOUNTER_P1` `0x3` **EQ**,
+`JBD_JOURNALCOUNT` `0x400` **EQ**, `VC_CONNECTED`/`VC_CONNECT_INDS`
+**True / 1 EQ**, `IMU_ACCEL`/`GYRO`/`OPT3001`/`NPM1300` **all EQ**;
+`ESB_MASTER_FRAMES`/`ACKS` `0x176` vs `0x175`, `RADIO_TX` `0x234` vs `0x232`,
+`VC_DATA_EVENTS` `0x218` vs `0x214`, `JBD_FRAMECOUNTER_P2` `0x0A1D` vs
+`0x2E65` — all on §34.5's explicitly-not-a-gate list.
+
+### 36.11 Gates — all held
+
+| gate | result |
+|---|---|
+| `check_ram_pin_collisions.py` (app, `g1-i36b-app`) raw-in-object / raw-free | **0 / 0** |
+| `check_ram_pin_collisions.py` (app) bound OK / escaping | **624 / 0** |
+| `check_ram_pin_collisions.py --core net` raw-in-object / raw-free | **0 / 0** |
+| `check_net_raw_literals.py` distinct / in-object / in-RAM-free | **0 / 0 / 0** |
+| `check_thread_create_stack_args.py` | **10/10**, EXIT 0 |
+| `verify_net_stock_data_window.py` | **PROVEN** (0 OTHER words, 0 non-stock input sections) |
+| `gen_retained_sources.py --check` | **clean** ("retained source lists are current") |
+| app `nm -u` undefined / duplicate GLOBAL definitions | **0 / 0** |
+| link flags | no `--allow-multiple-definition`, no numeric-root hacks |
+| weak symbols | **17, unchanged from `g1-i35b-app`** — all from the pinned SDK/newlib/libgcc (`__aeabi_idiv0`, `__errno`, `sbrk`, `lsm6dso_read_reg`, …).  **No weak symbol was introduced by this iteration.** |
+| **navigation `p1_boot` pixel gate** | **`1d617c65a688f10e…`, 656 px, 0 differing rows — HELD** |
+| **navigation `p2_render` pixel gate** | **`b26c73b37d441fc8…`, 1,098 px, 0 differing rows — NEWLY PASSING** |
+
+Net core **UNCHANGED** (`g1-i30e-net`); `armemul` untouched; no `tools/` logic
+change; nothing committed.
+
+| build | FLASH | % | RAM | `nm -u` | dup |
+|---|---:|---:|---:|---:|---:|
+| `g1-i35b-app` | 921,576 B | 93.80 % | 253,765 B | 0 | 0 |
+| `g1-i36a-app` | 952,252 B | 96.92 % | 253,765 B | 0 | 0 |
+| **`g1-i36b-app`** | **952,316 B** | **96.93 %** | **253,765 B** | 0 | 0 |
+
+RAM delta **0 B**; flash delta **+30,740 B** against iteration 35, with
+39,168 B of withheld demo-image rodata paying for 72,207 B of newly wired
+resource data.
+
+### 36.12 Open, named, and NOT fixed
+
+1. **The dashboard is closed ~600 ms after it is drawn** —
+   `process_for_new_task.c:601..608` (`CASE6`), triggered by
+   `device_ctx[0xee4] == 1` with `get_task_signal_mode() == 0` and
+   `now_has_persist_task() != 1` (§36.9).  **The single blocker for D-1.**
+2. **The dashboard clock's date base** — `device_ctx+0xd0` is zeroed by
+   `sync_to_slave` (`previous_value = **(u32**)(ctx+0xfec)`, which is 0 in our
+   build), so the date reads `Thu, Jan 1` (1970) instead of the oracle's
+   `Mon, Jan 1` (`0x65920080` = 2024-01-01).  236 wrong + 264 missing pixels,
+   all in the three weekday glyphs (§36.7).
+3. **`g1_app_rodata_02.c`'s demo-image window `[0xd793a, 0xe123a)`,
+   39,680 B, is withheld** (§36.4) and `g1_app_rodata_00.c`'s remaining
+   40 objects (2,130 B) plus batch 5 are still unwired.  The shipped image is
+   977,805 B against a 982,528 B partition, so a build that carries *all* the
+   recovered data plus the SDK does not fit; ~12.5 kB of non-original content
+   has to be found and removed before the debt can be repaid.
+4. **`G-3`/`D-4` stream equality** needs the periodic
+   `DISPLAY_ACTION_RETRY` repaint to run for the whole phase — the same root
+   as item 1.
+5. `saadc` 95 / 998, the ST25DV volumes, `twim2` `p2_render` 766 / 1,206, and
+   the five dead `K_MSGQ_DEFINE` queues are unchanged.
+6. The four DashBoard_Reflash datetime sites were fixed in
+   `recon/symbolized/app/` (the tree that is compiled).  The `recon/app/src`,
+   `recon/verified/src`, `recon/named` and `recon/readable_sources` mirrors
+   still carry the separate-locals spelling and should be re-synced.
+
+### Regenerate (iteration 36)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/gen_app_localized_rodata.py
+recon/application/build_cohesive.sh app /private/tmp/g1-i36b-app
+# net UNCHANGED from iteration 30 (g1-i30e-net)
+
+mkdir -p /private/tmp/g1-i36
+printf '$rtinfo_pc=0x00015b8c\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i36/ours-paired-i36.resc
+
+# ---- dashboard stimulus (G1_ATT_WRITE="" -> the IMU picks E_ID_SCREEN_DASHBOARD)
+bash -c 'F=$(mktemp -u); mkfifo $F; sleep 100000 > $F & W=$!
+G1_ATT_WRITE="" \
+G1_RESC=/private/tmp/g1-i36/ours-paired-i36.resc \
+G1_APP_ELF=/private/tmp/g1-i36b-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040F38 G1_CTX_105A=0x20040FAA G1_SCREEN_ID=0x20040025 \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_dash_i36b < $F
+kill $W; rm -f $F'
+# ---- NAVIGATION stimulus: identical with G1_ATT_WRITE left unset,
+#      into /private/tmp/g1_ours_nav_i36b
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_ours_dash_i36b /private/tmp/g1_dash_rep_i36b
+```
+
+Peak-frame and glyph-decode measurements are read-only replays of the captured
+`spim_a` stream through `build_display_sensor_oracle.py`'s own `decode_jbd` /
+`replay_framebuffer` (imported, never modified) plus exact template matching
+against the byte-verified font banks read from `app_update.bin`.
+
+Files changed this iteration:
+`recon/application/gen_app_localized_rodata.py` (new generator);
+`recon/application/app/src/g1_app_fade_mask_rodata.c`,
+`…/g1_app_localized_rodata.c`, `…/g1_app_glyph_bitmap_rodata.c` (new, generated);
+`recon/application/app/src/g1_app_string_rodata.c` (the `rodata_bb220` stub withdrawn);
+`recon/application/app/CMakeLists.txt` (three TUs added, `g1_app_rodata_02.c` withdrawn);
+`recon/symbols/g1_app_globals.ld` (11 numeric pins deleted, 3 interior pins re-expressed);
+`recon/symbolized/app/draw_locale_adjusted_label_pair.c`, `z_arm_fault.c`,
+`flash_firmware_update_transfer.c`, `gatt_parse_read_by_type_rsp.c`,
+`gatt_parse_find_info_rsp.c` (16 raw rodata literals symbolized);
+`recon/symbolized/app/DashBoard_Reflash.c` (the datetime stack buffer);
+`recon/emulator/reports/sensor_parity_status.md`; this report.
+**No `tools/` logic change**, `armemul` untouched, nothing committed.
+
+### 36.13 Artifacts
+
+* `recon/emulator/reports/ours_framebuffer_navigation_p2_render.{raw,png}` —
+  **our** `g1-i36b-app` navigation render, 1,098 lit px, sha
+  `b26c73b37d441fc8…`, **byte-identical** to
+  `golden_framebuffer_p2_render.raw`.
+* `recon/emulator/reports/ours_framebuffer_dashboard_p2_peak.{raw,png}` —
+  **our** dashboard render at maximum content (2,895 lit px, bbox
+  (78,211)–(564,338)); compare with
+  `golden_framebuffer_dashboard_p2_render.{raw,png}` (2,923).  The only visible
+  difference is the weekday word.
+
+Every rodata object wired this iteration was byte-compared **against
+`app_update.bin` after the link**, reading `zephyr.elf`'s PT_LOAD:
+`rodata_aae20` 66,560 B, `rodata_bb220` 3,534 B, `rodata_a8ea0` 1 B,
+`rodata_d753a` 1,024 B, `rodata_e123a` 19,752 B — **all True** — and the eight
+relocated pointer tables were checked by dereferencing all 528 entries in the
+linked image against the strings the shipped tables name — **all 528 match**.

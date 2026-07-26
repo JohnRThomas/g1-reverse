@@ -55,7 +55,7 @@ void gatt_parse_find_info_rsp(uint32_t context, int status, const uint8_t *data,
             uint32_t message;
             uint32_t value;
         } detail = { 3, UINT32_C(0x000f4cbc), data[0] };
-        log_msg_create_3arg(UINT32_C(0x00088128), 0x1840, &detail);
+        log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1840, &detail);
         goto malformed;
     }
 

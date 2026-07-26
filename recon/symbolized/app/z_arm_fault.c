@@ -47,7 +47,7 @@ struct log2 { uint32_t count, message; };
 static __attribute__((always_inline)) inline void log_message(uint32_t message)
 {
     struct log2 log = { 2, message };
-    arm_fault_forward_handler(UINT32_C(0x00088258), 0x1040, &log);
+    arm_fault_forward_handler(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &log);
 }
 
 void z_arm_fault(int first, int frame, uint32_t exc_return)
@@ -92,7 +92,7 @@ void z_arm_fault(int first, int frame, uint32_t exc_return)
         detail.context = (scb[1] & 0x1f0u) ? UINT32_C(0x000f1f8d)
                                            : UINT32_C(0x000f1f78);
         detail.count = 0;
-        arm_fault_forward_handler(UINT32_C(0x00088258), 0x2440, &detail);
+        arm_fault_forward_handler(((unsigned long)&rodata_88258) /*=0x88258*/, 0x2440, &detail);
         goto deliver;
     }
 
@@ -111,7 +111,7 @@ void z_arm_fault(int first, int frame, uint32_t exc_return)
             break;
         }
         if ((int32_t)(scb[0x2c / 4] << 1) >= 0) {
-            printk(UINT32_C(0x00099cbd), UINT32_C(0x000f20a3),
+            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, UINT32_C(0x000f20a3),
                          UINT32_C(0x000f1d11), 0x32e);
             printk(UINT32_C(0x000f20c7));
             assert_post_action(UINT32_C(0x000f1d11), 0x32e);
@@ -127,7 +127,7 @@ void z_arm_fault(int first, int frame, uint32_t exc_return)
             if (opcode == 0xdf02u) {
                 struct { uint32_t type, message, value; } detail =
                     { 3, UINT32_C(0x000f2087), *(const uint32_t *)frame };
-                arm_fault_forward_handler(UINT32_C(0x00088258), 0x1840, &detail);
+                arm_fault_forward_handler(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1840, &detail);
                 result = *(const int *)frame;
             } else if ((scb[0x28 / 4] & 0xffu) != 0) {
                 result = arm_mem_manage_fault_helper(1, &handled);
@@ -136,7 +136,7 @@ void z_arm_fault(int first, int frame, uint32_t exc_return)
             } else if (scb[0x28 / 4] >= ((unsigned long)&rodata_10000) /*=0x10000*/) {
                 result = arm_usage_fault_helper();
             } else {
-                printk(UINT32_C(0x00099cbd), UINT32_C(0x000f20f7),
+                printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, UINT32_C(0x000f20f7),
                              UINT32_C(0x000f1d11), 0x32a);
                 printk(UINT32_C(0x000f20c7));
                 assert_post_action(UINT32_C(0x000f1d11), 0x32a);
@@ -170,7 +170,7 @@ void z_arm_fault(int first, int frame, uint32_t exc_return)
                 (scb[1] & 0x1f0u) ? UINT32_C(0x000f1f8d)
                                    : UINT32_C(0x000f1f78)
             };
-            arm_fault_forward_handler(UINT32_C(0x00088258), 0x2440, &detail);
+            arm_fault_forward_handler(((unsigned long)&rodata_88258) /*=0x88258*/, 0x2440, &detail);
         }
         result = 0;
         break;
@@ -190,7 +190,7 @@ deliver:
     return;
 
 invalid:
-    printk(UINT32_C(0x00099cbd), UINT32_C(0x000f1fd1),
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, UINT32_C(0x000f1fd1),
                  UINT32_C(0x000f1d11), 0x458);
     printk(UINT32_C(0x000f1fe4));
     assert_post_action(UINT32_C(0x000f1d11), 0x458);
@@ -206,7 +206,7 @@ invalid:
             UINT32_C(0x01000004), UINT32_C(0x000f211b),
             0x448, 0x200, 0, UINT32_C(0x000f1f78)
         };
-        arm_fault_forward_handler(UINT32_C(0x00088258), 0x2440, &detail);
+        arm_fault_forward_handler(((unsigned long)&rodata_88258) /*=0x88258*/, 0x2440, &detail);
     }
     result = 0;
     handled = 0;

@@ -32,7 +32,7 @@ void draw_locale_adjusted_label_pair(void)
         b = device_info_text_height_get_clamped();
         c = device_info_text_width_get();
         d = device_info_text_height_get_clamped();
-        gui_utf_draw(0, UINT32_C(0x000aa056), 0,
+        gui_utf_draw(0, ((unsigned long)&rodata_aa056) /*=0xaa056*/, 0,
                      a + 0xa8, b + 0x37, c + 0x23a, d + 0x52,
                      1, 0, 0, 0, 0);
 
@@ -44,7 +44,7 @@ void draw_locale_adjusted_label_pair(void)
         b += 0x52;
         c += 0x23a;
         d += 0x6d;
-        format = UINT32_C(0x000a9da3);
+        format = ((unsigned long)&rodata_a9da3) /*=0xa9da3*/;
     } else {
         a = device_info_text_width_get();
         b = device_info_text_height_get_clamped();
@@ -54,7 +54,7 @@ void draw_locale_adjusted_label_pair(void)
         b += 0x37;
         c += 0x23a;
         d += 0x88;
-        format = UINT32_C(0x000aa02b);
+        format = ((unsigned long)&rodata_aa02b) /*=0xaa02b*/;
     }
 
     gui_utf_draw(0, format, 0, a, b, c, d, 1, 0, 0, 0, 0);

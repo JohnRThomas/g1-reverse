@@ -175,6 +175,26 @@ target_sources(app PRIVATE
   # (the generator documents the load-image base proof and the pointer policy).
   src/g1_app_data_image.c
   src/g1_app_font_rodata.c
+  # P4 iteration 36.  Two more regions that were still raw absolute PROVIDE pins
+  # (nm class `A`) and therefore resolved into our OWN relocated .rodata:
+  #  * g1_app_fade_mask_rodata.c owns `rodata_aae20`, the 66,560-byte display
+  #    fade/dither MASK ATLAS.  ui_DashBoard_task's four-step entry fade ANDs the
+  #    finished dashboard with it; the shipped step order (rodata_a8c57 =
+  #    01 03 05 07) ends on frame 7, which is 100 % open, so the last step LEAVES
+  #    the picture on the panel.  Reading it at 0xaae20 in our build hit the
+  #    interior of the glyph bitmap run rodata_d753a and erased the dashboard --
+  #    the measured "decay to zero" of report section 35.12.
+  #  * g1_app_localized_rodata.c owns the eight `rodata_8a3e0..8ab18` localized
+  #    string TABLES (emitted as RELOCATED pointers, like batch 5's ptr_records),
+  #    the 3,534-byte string POOL `rodata_bb220` they point into, and the 1-byte
+  #    empty string `rodata_a8ea0`.  get_localized_string_ptr loads a pointer out
+  #    of those tables, so every non-clock label -- `Mon, Jan 1', the QuickNote
+  #    hint, and the whole navigation screen's text -- came from them.
+  # Regenerate both with
+  #   PYTHONSAFEPATH=1 .venv/bin/python recon/application/gen_app_localized_rodata.py
+  src/g1_app_fade_mask_rodata.c
+  src/g1_app_localized_rodata.c
+  src/g1_app_glyph_bitmap_rodata.c
   # P4 iteration 35, rodata decode BATCH 4 (recon/analysis/rodata_decode_report.md
   # §8), the single blob the dashboard needs: g1_app_rodata_02.c owns
   # `rodata_d753a`, the byte-verified 59,944-byte packed-4bpp glyph BITMAP run
@@ -196,7 +216,11 @@ target_sources(app PRIVATE
   # image to 990,265 B against a 982,528 B partition.  Its one large object,
   # rodata_aae20 (66,560 B), has no reader on the dashboard path.
   ${CMAKE_CURRENT_LIST_DIR}/../rodata/g1_app_rodata_01.c
-  ${CMAKE_CURRENT_LIST_DIR}/../rodata/g1_app_rodata_02.c
+  # g1_app_rodata_02.c is WITHDRAWN in iteration 36: its single 59,944-byte
+  # `rodata_d753a` object carried the 39,680-byte low-battery demo image that no
+  # display-parity path reads.  src/g1_app_glyph_bitmap_rodata.c below owns the
+  # two halves that ARE read (the 1,024 B nibble LUT and the 19,752 B icon+glyph
+  # run), which is what made room for the fade-mask atlas.
   ${CMAKE_CURRENT_LIST_DIR}/../rodata/g1_app_rodata_03.c
   ${CMAKE_CURRENT_LIST_DIR}/../rodata/g1_app_rodata_04.c
   ${CMAKE_CURRENT_LIST_DIR}/../rodata/g1_app_rodata_05.c

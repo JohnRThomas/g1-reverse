@@ -78,7 +78,7 @@ uint32_t flash_firmware_update_transfer(int mode)
                     attr_store_set(((unsigned long)&rodata_ff20) /*=0xff20*/, UINT32_C(0x3c00f091)) == 0 &&
                     attr_store_set(0x4820, 4) == 0 &&
                     attr_configure_mode3_readback(&scratch, 0x7fc) == 0) {
-                    uint32_t identity = flash_data_checksum_neg_sum(UINT32_C(0x000a49ed),
+                    uint32_t identity = flash_data_checksum_neg_sum(((unsigned long)&rodata_a49ed) /*=0xa49ed*/,
                                                      0x1b9c, 0x37f8);
                     device_word = __builtin_bswap32(identity);
                     PHASE = 1;
@@ -161,7 +161,7 @@ program_ranges:
                 packet[2] = 0;
                 packet[3] = sequence;
                 *(uint32_t *)(packet + 4) = UINT32_C(0x003b0010);
-                memcpy(packet + 8, (const void *)UINT32_C(0x000a64ed), 0x9c);
+                memcpy(packet + 8, (const void *)((unsigned long)&rodata_a64ed) /*=0xa64ed*/, 0x9c);
                 rc = pt_nfc_link_transfer_fw_packet(1, 2, packet, 0xa4);
                 if (rc != 0) {
                     free(packet);

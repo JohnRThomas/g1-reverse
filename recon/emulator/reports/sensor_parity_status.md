@@ -1223,3 +1223,75 @@ iteration.**
   233 → **369**, SAADC 53 → **71**).
 * **Next**: `device_info[0x1058]` — the one byte between `bt_start()` and
   `bt_le_adv_start()` (`our_boot_bringup.md` §20.6).
+
+---
+
+# UPDATE — P4 iteration 36 (supersedes the score in §6 above)
+
+Build `g1-i36b-app` (952,316 B, 96.93 % of the 982,528 B partition; RAM
+253,765 B; `nm -u` 0; 0 duplicate globals).  Net core unchanged
+(`g1-i30e-net`).  Full derivation in `our_boot_bringup.md` §36.
+
+## Graphics — the NAVIGATION screen is BYTE-IDENTICAL in both phases
+
+| id | iteration 35 | **iteration 36** |
+|---|---|---|
+| **G-1** `p2_render` framebuffer sha256 | FAIL — 116 lit px, 982 missing | **PASS — `b26c73b37d441fc8…`, 1,098 == 1,098 lit px, 0 differing rows** |
+| **G-2** `p1_boot` framebuffer sha256 | PASS | **PASS — `1d617c65a688f10e…`, 656 px, 0 differing rows (regression gate held)** |
+| **G-3** `spim_a` stream sha256 | FAIL | **FAIL** — 126 vs 764 and 109 vs 2,881 transactions; identical pixels, missing repeats |
+| **G-5** panel init sequence | PASS | **PASS** |
+| **G-6** `spim_b` unused | PASS | **PASS** |
+| **D-1** dashboard `p2_render` | FAIL — peak 1,499 lit / 1,427 correct | **FAIL** at end of phase, but peak **2,895 lit / 2,659 exactly right**, bbox **(78,211)–(564,338) == the oracle's**, and every residual pixel is in the three weekday glyphs |
+| **D-2** dashboard `p1_boot` | PASS | **PASS** |
+| **D-3** dashboard `spim_a` `p1_boot` stream | PASS (34 == 34, sha EQ) | **PASS** |
+| **D-7** `spim_b` | PASS | **PASS** |
+
+Three root causes were found and fixed, all of the same class — **`.rodata`
+regions still bound by raw absolute `PROVIDE` pins, resolving into our own
+relocated image**:
+
+1. `rodata_aae20`, the 66,560-byte **fade/dither mask atlas**.
+   `ui_DashBoard_task`'s four-step entry fade ANDs the finished dashboard with
+   it; frame order `01 03 05 07` ends on a 100 %-open frame, so the shipped
+   firmware's last step leaves the picture on the panel.  Ours was ANDing with
+   glyph bitmaps and erasing it — the "decay" of §35.12.
+2. The eight **localized string tables** `rodata_8a3e0…8ab18` plus their
+   3,534-byte pool `rodata_bb220` (previously an 11-byte `"ERR_STRING"` stub).
+   Every non-clock label comes through them.  Emitted as **relocated** pointer
+   arrays; all 8 x 66 entries verified to dereference to the shipped string.
+3. Sixteen **un-symbolized `UINT32_C(0x000…)` rodata literals** in five files;
+   the three in `draw_locale_adjusted_label_pair` were the navigation screen's
+   entire missing text.
+
+Plus a **stack-buffer-layout** defect in `DashBoard_Reflash`: the six `int16_t`
+that `unix_timestamp_to_datetime` writes were four sets of separate C locals
+with only the first one's address passed, so GCC kept the rest at zero.  Date
+went `Fri, Sat 0` -> `Thu, Jan 1`; the `, Jan 1` half is now pixel-exact.
+
+## Sensors
+
+| id | verdict | measurement (navigation / dashboard stimulus) |
+|---|---|---|
+| **S-MIC** `pdm0` | **PASS** | 2 == 2 accesses, whole-run sha `255852a6c9e9…` **EQ**, both stimuli |
+| **S-KEYS** `gpiote0` / `gpiote1` | **PASS** | 25 == 25 and 0 == 0, shas **EQ**, both stimuli |
+| **S-ESB** | **PASS** | `ESB_SYNC_ctx_105a` 0x02 both; `DISPLAY_ON_ctx_fe8` 0x01 on navigation; `ESB_MASTER_FRAMES`/`ACKS` `0x175` == `0x175` on navigation |
+| **S-ALS** `opt3001` | **PARTIAL** | nav `p2_render` **80 == 80, sha EQ**; dash `p1_boot` **14 == 14, sha EQ**; nav `p1_boot` 35 vs 33 |
+| **S-PMIC** `npm1300` | **PARTIAL** | nav `p2_render` **508 == 508, sha EQ**; `p1_boot` 285 vs 291 |
+| **S-NFC** `st25dv` | **FAIL** | `p1_boot` 11+14 vs 25+22; absent in `p2_render` |
+| **S-IMU** `twim2` | **FAIL** | `p1_boot` 1,094 vs 1,089; `p2_render` **744 vs 1,200** — our IMU polling stops when the dashboard task exits |
+| **S-ADC** `saadc` | **FAIL** | 95 vs 998 accesses, sha NE (unchanged since iteration 33) |
+
+**Score: 8 PASS / 2 PARTIAL / 3 FAIL across the graphics+sensor criteria of the
+navigation oracle** (iteration 35: 6 PASS / 2 PARTIAL / 4 FAIL), and the
+navigation screen is reproduced **pixel-for-pixel** for the first time.
+
+## The one blocker left for the dashboard
+
+`process_for_new_task.c:601..608` (`CASE6`, `process_for_DASHBOARD_show`) calls
+`update_persist_task_status_to_idle` ~600 ms after the dashboard is drawn,
+which calls `display_close_screen(6)`, which STOPs the panel and runs the
+fade-out.  Trigger measured by hook: `device_ctx[0xee4] == 1` with
+`get_task_signal_mode() == 0` and `now_has_persist_task() != 1`.  The shipped
+firmware has the same branch and never satisfies it inside the 14-second
+window, which is where its 136 `DashBoard_Reflash` calls (66 ms
+`DISPLAY_ACTION_RETRY`) come from.  **Named, not fixed.**

@@ -311,6 +311,17 @@ void DashBoard_Reflash(int param_1,int param_2,int param_3,int param_4)
   undefined4 uStack_88;
   undefined4 local_80;
   uint local_7c [22];
+  /* P4 iteration 36 -- STACK-BUFFER-LAYOUT defect fix.
+   * unix_timestamp_to_datetime (FUN_0004a1b8) writes SIX int16_t through the
+   * pointer it is given: [0]=year [1]=month [2]=day [3]=hour [4]=min [5]=sec.
+   * Ghidra rendered those twelve stack bytes as SEPARATE locals and only the
+   * first one's address was passed, so GCC was entitled to keep the other
+   * slots in registers holding their zero initialisers -- and did.  MEASURED:
+   * the dashboard date line rendered `Fri, Sat 0' (month = 0 -> string index
+   * 0x2e = "Sat", day = 0, and compute_day_of_week(0x00b2,0,0) = 5 = "Fri")
+   * where the shipped firmware renders `Mon, Jan 1'.  One properly-sized
+   * six-halfword object expresses the original stack frame exactly. */
+  short g1_dt[6];
 
   piVar2 = DAT_000374c0;
   if (2 < *DAT_000374c0) {
@@ -358,20 +369,19 @@ void DashBoard_Reflash(int param_1,int param_2,int param_3,int param_4)
           }
         }
       }
-      local_94 = 0;
-      local_90 = 0;
-      local_8c = 0;
+      g1_dt[0] = 0; g1_dt[1] = 0; g1_dt[2] = 0;
+      g1_dt[3] = 0; g1_dt[4] = 0; g1_dt[5] = 0;
       if (iVar4 == 1) {
         uVar5 = ((long long (*)(void))get_timestamp)();
-        unix_timestamp_to_datetime(uVar5,&local_94);
-        uVar5 = get_localized_weekday_name((char)(local_94 >> 0x10) + '.');
-        cVar3 = compute_day_of_week(local_94 & 0xffff,(((local_94)>>16)&0xffff),local_90 & 0xffff);
+        unix_timestamp_to_datetime(uVar5,g1_dt);
+        uVar5 = get_localized_weekday_name((char)g1_dt[1] + '.');
+        cVar3 = compute_day_of_week(g1_dt[0] & 0xffff,g1_dt[1] & 0xffff,g1_dt[2] & 0xffff);
         uVar6 = get_localized_weekday_name(cVar3 + '(');
         local_80 = 0;
         local_7c[0] = 0;
         local_7c[1] = 0;
         local_7c[2] = 0;
-        vdprintf_to_fd(&local_80,0,0x10,DAT_0003abbc,uVar6,uVar5,local_90 & 0xffff);
+        vdprintf_to_fd(&local_80,0,0x10,DAT_0003abbc,uVar6,uVar5,g1_dt[2] & 0xffff);
         iVar4 = ((long long (*)(void))device_info_text_width_get)();
         iVar9 = ((long long (*)(void))device_info_text_height_get_clamped)();
         iVar14 = ((long long (*)(void))device_info_text_width_get)();
@@ -519,15 +529,17 @@ LAB_0003acba:
       }
       else {
         uVar5 = ((long long (*)(void))get_timestamp)();
-        unix_timestamp_to_datetime(uVar5,&local_94);
-        uVar5 = get_localized_weekday_name((char)(local_94 >> 0x10) + '.');
-        cVar3 = compute_day_of_week(local_94 & 0xffff,(((local_94)>>16)&0xffff),local_90 & 0xffff);
+        g1_dt[0] = 0; g1_dt[1] = 0; g1_dt[2] = 0;
+        g1_dt[3] = 0; g1_dt[4] = 0; g1_dt[5] = 0;
+        unix_timestamp_to_datetime(uVar5,g1_dt);
+        uVar5 = get_localized_weekday_name((char)g1_dt[1] + '.');
+        cVar3 = compute_day_of_week(g1_dt[0] & 0xffff,g1_dt[1] & 0xffff,g1_dt[2] & 0xffff);
         uVar6 = get_localized_weekday_name(cVar3 + '(');
         local_80 = 0;
         local_7c[0] = 0;
         local_7c[1] = 0;
         local_7c[2] = 0;
-        vdprintf_to_fd(&local_80,0,0x10,DAT_0003ae68,uVar6,uVar5,local_90 & 0xffff);
+        vdprintf_to_fd(&local_80,0,0x10,DAT_0003ae68,uVar6,uVar5,g1_dt[2] & 0xffff);
         iVar4 = ((long long (*)(void))device_info_text_width_get)();
         iVar9 = ((long long (*)(void))device_info_text_height_get_clamped)();
         iVar14 = ((long long (*)(void))device_info_text_width_get)();
@@ -615,13 +627,12 @@ LAB_0003acba:
       }
     }
     if (iVar4 == 1) {
-      local_b0 = 0;
-      local_ac = 0;
-      local_a8 = 0;
+      g1_dt[0] = 0; g1_dt[1] = 0; g1_dt[2] = 0;
+      g1_dt[3] = 0; g1_dt[4] = 0; g1_dt[5] = 0;
       uVar5 = ((long long (*)(void))get_timestamp)();
-      unix_timestamp_to_datetime(uVar5,&local_b0);
-      uVar5 = get_localized_weekday_name((char)(local_b0 >> 0x10) + '.');
-      cVar3 = compute_day_of_week(local_b0 & 0xffff,(((local_b0)>>16)&0xffff),local_ac & 0xffff);
+      unix_timestamp_to_datetime(uVar5,g1_dt);
+      uVar5 = get_localized_weekday_name((char)g1_dt[1] + '.');
+      cVar3 = compute_day_of_week(g1_dt[0] & 0xffff,g1_dt[1] & 0xffff,g1_dt[2] & 0xffff);
       uVar6 = get_localized_weekday_name(cVar3 + '(');
       local_a4 = '\0';
       uStack_a3 = 0;
@@ -631,7 +642,7 @@ LAB_0003acba:
       uStack_9e = 0;
       local_9c = 0;
       uStack_98 = 0;
-      vdprintf_to_fd(&local_a4,0,0x10,DAT_000374e4,uVar6,uVar5,local_ac & 0xffff);
+      vdprintf_to_fd(&local_a4,0,0x10,DAT_000374e4,uVar6,uVar5,g1_dt[2] & 0xffff);
       uVar5 = ((long long (*)(void))device_info_text_width_get)();
       iVar4 = ((long long (*)(void))device_info_text_height_get_clamped)();
       iVar14 = ((long long (*)(void))device_info_text_width_get)();
@@ -1388,23 +1399,18 @@ LAB_0003846c:
       iVar14 = iVar14 + 0x10a;
     }
     else {
-      local_a4 = '\0';
-      uStack_a3 = 0;
-      uStack_a2 = 0;
-      local_a0 = 0;
-      uStack_9f = 0;
-      uStack_9e = 0;
-      local_9c = 0;
+      g1_dt[0] = 0; g1_dt[1] = 0; g1_dt[2] = 0;
+      g1_dt[3] = 0; g1_dt[4] = 0; g1_dt[5] = 0;
       uVar5 = ((long long (*)(void))get_timestamp)();
-      unix_timestamp_to_datetime(uVar5,&local_a4);
-      uVar5 = get_localized_weekday_name((char)uStack_a2 + '.');
-      cVar3 = compute_day_of_week(CONCAT11(uStack_a3,local_a4),uStack_a2,CONCAT11(uStack_9f,local_a0));
+      unix_timestamp_to_datetime(uVar5,g1_dt);
+      uVar5 = get_localized_weekday_name((char)g1_dt[1] + '.');
+      cVar3 = compute_day_of_week(g1_dt[0] & 0xffff,g1_dt[1] & 0xffff,g1_dt[2] & 0xffff);
       uVar6 = get_localized_weekday_name(cVar3 + '(');
       local_94 = 0;
       local_90 = 0;
       local_8c = 0;
       uStack_88 = 0;
-      vdprintf_to_fd(&local_94,0,0x10,DAT_00038adc,uVar6,uVar5,CONCAT11(uStack_9f,local_a0));
+      vdprintf_to_fd(&local_94,0,0x10,DAT_00038adc,uVar6,uVar5,g1_dt[2] & 0xffff);
       iVar4 = ((long long (*)(void))device_info_text_width_get)();
       uVar5 = ((long long (*)(void))device_info_text_height_get_clamped)();
       iVar14 = ((long long (*)(void))device_info_text_width_get)();

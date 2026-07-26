@@ -453,14 +453,38 @@ PROVIDE(rodata_88a44 = 0x00088a44);
 PROVIDE(rodata_8a050 = 0x0008a050);
 PROVIDE(rodata_8a0a8 = 0x0008a0a8);
 PROVIDE(rodata_8a208 = 0x0008a208);
-PROVIDE(rodata_8a3e0 = 0x0008a3e0);
-PROVIDE(rodata_8a4e8 = 0x0008a4e8);
-PROVIDE(rodata_8a5f0 = 0x0008a5f0);
-PROVIDE(rodata_8a6f8 = 0x0008a6f8);
-PROVIDE(rodata_8a800 = 0x0008a800);
-PROVIDE(rodata_8a908 = 0x0008a908);
-PROVIDE(rodata_8aa10 = 0x0008aa10);
-PROVIDE(rodata_8ab18 = 0x0008ab18);
+/* P4 iteration 36: rodata_8a3e0 -- localized string table 1 of 8, 66 RELOCATED pointer entries is a REAL OBJECT now
+ * (recon/application/app/src/g1_app_localized_rodata.c).  The numeric
+ * pin is deleted deliberately -- a link that failed to retain the object must
+ * error out instead of silently reading our own relocated image again. */
+/* P4 iteration 36: rodata_8a4e8 -- localized string table 2 of 8, 66 RELOCATED pointer entries is a REAL OBJECT now
+ * (recon/application/app/src/g1_app_localized_rodata.c).  The numeric
+ * pin is deleted deliberately -- a link that failed to retain the object must
+ * error out instead of silently reading our own relocated image again. */
+/* P4 iteration 36: rodata_8a5f0 -- localized string table 3 of 8, 66 RELOCATED pointer entries is a REAL OBJECT now
+ * (recon/application/app/src/g1_app_localized_rodata.c).  The numeric
+ * pin is deleted deliberately -- a link that failed to retain the object must
+ * error out instead of silently reading our own relocated image again. */
+/* P4 iteration 36: rodata_8a6f8 -- localized string table 4 of 8, 66 RELOCATED pointer entries is a REAL OBJECT now
+ * (recon/application/app/src/g1_app_localized_rodata.c).  The numeric
+ * pin is deleted deliberately -- a link that failed to retain the object must
+ * error out instead of silently reading our own relocated image again. */
+/* P4 iteration 36: rodata_8a800 -- localized string table 5 of 8, 66 RELOCATED pointer entries is a REAL OBJECT now
+ * (recon/application/app/src/g1_app_localized_rodata.c).  The numeric
+ * pin is deleted deliberately -- a link that failed to retain the object must
+ * error out instead of silently reading our own relocated image again. */
+/* P4 iteration 36: rodata_8a908 -- localized string table 6 of 8, 66 RELOCATED pointer entries is a REAL OBJECT now
+ * (recon/application/app/src/g1_app_localized_rodata.c).  The numeric
+ * pin is deleted deliberately -- a link that failed to retain the object must
+ * error out instead of silently reading our own relocated image again. */
+/* P4 iteration 36: rodata_8aa10 -- localized string table 7 of 8, 66 RELOCATED pointer entries is a REAL OBJECT now
+ * (recon/application/app/src/g1_app_localized_rodata.c).  The numeric
+ * pin is deleted deliberately -- a link that failed to retain the object must
+ * error out instead of silently reading our own relocated image again. */
+/* P4 iteration 36: rodata_8ab18 -- localized string table 8 of 8, 66 RELOCATED pointer entries is a REAL OBJECT now
+ * (recon/application/app/src/g1_app_localized_rodata.c).  The numeric
+ * pin is deleted deliberately -- a link that failed to retain the object must
+ * error out instead of silently reading our own relocated image again. */
 PROVIDE(rodata_8ac20 = 0x0008ac20);
 /* P4 iteration 33: this is the shipped word at 0x8ac28, i.e. element [2] of
  * the already byte-verified recon/data table rodata_0x8ac20 (= 0x14c = 332).
@@ -1659,7 +1683,10 @@ PROVIDE(rodata_a8e48 = 0x000a8e48);
 PROVIDE(rodata_a8e61 = 0x000a8e61);
 PROVIDE(rodata_a8e84 = 0x000a8e84);
 PROVIDE(rodata_a8e98 = 0x000a8e98);
-PROVIDE(rodata_a8ea0 = 0x000a8ea0);
+/* P4 iteration 36: rodata_a8ea0 -- the 1-byte empty localized string is a REAL OBJECT now
+ * (recon/application/app/src/g1_app_localized_rodata.c).  The numeric
+ * pin is deleted deliberately -- a link that failed to retain the object must
+ * error out instead of silently reading our own relocated image again. */
 PROVIDE(rodata_a8ea1 = 0x000a8ea1);
 PROVIDE(rodata_a8eb5 = 0x000a8eb5);
 PROVIDE(rodata_a8ec6 = 0x000a8ec6);
@@ -1850,8 +1877,14 @@ PROVIDE(rodata_aadd0 = 0x000aadd0);
 PROVIDE(rodata_aade4 = 0x000aade4);
 PROVIDE(rodata_aae00 = 0x000aae00);
 PROVIDE(rodata_aae0f = 0x000aae0f);
-PROVIDE(rodata_aae20 = 0x000aae20);
-PROVIDE(rodata_bb220 = 0x000bb220);
+/* P4 iteration 36: rodata_aae20 -- the 66,560-byte display fade/dither MASK ATLAS [0xaae20,0xbb220) is a REAL OBJECT now
+ * (recon/application/app/src/g1_app_fade_mask_rodata.c).  The numeric
+ * pin is deleted deliberately -- a link that failed to retain the object must
+ * error out instead of silently reading our own relocated image again. */
+/* P4 iteration 36: rodata_bb220 -- the 3,534-byte localized string POOL [0xbb220,0xbbfee) is a REAL OBJECT now
+ * (recon/application/app/src/g1_app_localized_rodata.c).  The numeric
+ * pin is deleted deliberately -- a link that failed to retain the object must
+ * error out instead of silently reading our own relocated image again. */
 PROVIDE(rodata_bbfee = 0x000bbfee);
 PROVIDE(rodata_bc04c = 0x000bc04c);
 PROVIDE(rodata_bc083 = 0x000bc083);
@@ -2026,10 +2059,22 @@ PROVIDE(rodata_d752a = 0x000d752a);
  *   0xe4408 + 114*0x20                          = 0xe5248  (= large clock)
  *   0xe5248 +  86*0x27                          = 0xe5f62  (= rodata_e5f62,
  *   the default-font blob recovered in iteration 33). */
-PROVIDE(rodata_e123a = rodata_d753a + 0x9d00);
-PROVIDE(rodata_e17da = rodata_d753a + 0xa2a0);
-PROVIDE(rodata_e4408 = rodata_d753a + 0xcece);
-PROVIDE(rodata_e5248 = rodata_d753a + 0xdd0e);
+/* P4 iteration 36 SPLITS that run in three (see
+ * recon/application/app/src/g1_app_glyph_bitmap_rodata.c, which now owns
+ * `rodata_d753a` and `rodata_e123a` instead of g1_app_rodata_02.c):
+ *   [0xd753a, 0xd793a)  1,024 B  nibble-expansion LUT              EMITTED
+ *   [0xd793a, 0xe123a) 39,680 B  low-battery DEMO IMAGE           WITHHELD
+ *   [0xe123a, 0xe5f62) 19,752 B  icons + the three glyph runs      EMITTED
+ * The demo image's only reader is update_demo_image_display via
+ * demo_image_get_position(0) = rodata_0x8ac20[0] = 0x000d793a, which
+ * ui_refalsh_warp reaches only when is_battery_critical() == 1; neither
+ * display-parity phase enters it, and that shipped absolute word is left
+ * exactly as it is.  Withholding it buys the 39,168 B the fade-mask atlas
+ * needed against a 982,528 B partition holding a 977,805 B shipped image.
+ * The three glyph pins are therefore re-expressed on rodata_e123a. */
+PROVIDE(rodata_e17da = rodata_e123a + 0x5a0);
+PROVIDE(rodata_e4408 = rodata_e123a + 0x31ce);
+PROVIDE(rodata_e5248 = rodata_e123a + 0x400e);
 /* rodata_e5f62: P4 iteration 33 -- the default-font glyph BITMAP blob, now
  * defined byte-exact in g1_app_font_rodata.c (37050 B, 0xe5f62..0xef01c). */
 PROVIDE(rodata_ef01c = 0x000ef01c);
