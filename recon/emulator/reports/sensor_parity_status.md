@@ -1,9 +1,97 @@
 # Sensor + graphics parity status — OUR rebuilt firmware vs the shipped oracle
 
-**Sixteenth measurement of `display_sensor_parity.md`'s criteria against our
-rebuild** (iteration 29; previous measurements were iterations 14–28).
+**Eighteenth measurement of `display_sensor_parity.md`'s criteria against our
+rebuild** (iteration 31; previous measurements were iterations 14–30).
 
-## READ THIS FIRST — iteration 29: still 0 lit pixels, but **master ESB PTX
+## READ THIS FIRST — iteration 31: **`DISPLAY_ON_ctx_fe8` reaches 0x01 and an
+## `action = 1` display START arrives, both for the first time in this
+## project** — the app's own GATT service was simply MISSING from the link.
+## Still 0 lit pixels, and the build now panics at t ≈ 6 s one step further on.
+
+**NO PIXEL IS PAINTED.**  `framebuffer.lit_pixels` is **0 / 0** against the
+oracle's **656** (`p1_boot`) / **1,098** (`p2_render`).
+
+What changed (full detail and every measurement in `our_boot_bringup.md` §31;
+capture `/private/tmp/g1_ours_i31c`, app **`g1-i31c-app`**, net **unchanged**
+`g1-i30e-net`):
+
+1. **Root cause of the display gate: the shipped `bt_gatt_service_static`
+   section holds THREE services — Zephyr's GATT (8 attrs), Zephyr's GAP (7) and
+   the application's own NUS-shaped transport service (`{0x0008ad18, 6}`) — and
+   OUR link had only the first two.**  The 128-bit NUS UUID body occurs 5 times
+   in `app_update.bin` and **0 times** in our `zephyr.bin`, so the virtual
+   phone's ATT write had nothing to land on: `ble_process_req_dispatch` was hit
+   **0 times** in a 20 s capture, `now_has_persist_task` returned 0 all **398**
+   times, and `trigger_screen_state_change` was only ever called with
+   `action = 0`.
+2. **Fixed** by emitting the service in a new wiring TU
+   (`recon/application/app/src/g1_bt_nus_service.c`) rather than by
+   `CONFIG_BT_NUS=y`, because stock `nus.c` would bring a SECOND `nus_cb`
+   singleton while the recovered one at `0x2000a2b8` is already written by the
+   retained `FUN_0004f500`.  Two dangling pins (`rodata_8ad40` = `&attrs[2]`,
+   `rodata_4f4f1` = `on_sent`) were rebound onto it.
+3. **That unmasked a stack-frame defect in `spec_ble_command_hook`**: Ghidra
+   had named two 256-byte buffers as ten scalars, so our frame was 212 bytes
+   against the shipped `subw sp,sp,#1500`, and the body's own
+   `memset(…, 0, 0xfc)` calls overwrote the return address (INVSTATE,
+   `K_ERR_ARM_USAGE_ILLEGAL_EPSR`).  Fixed with a struct at the shipped offsets.
+4. **Then the chain completes**: `ble_dispatch op=0x0a` → **`display_START
+   action = 1`** → `device_info[0xfe8] = 1`.  `spim_a` `p1_boot` goes 34 → **66
+   transactions, all 66 byte-identical to the oracle's**, including three
+   `op 0x02` full-screen clears whose `pixel_sha256` match the oracle exactly.
+5. **The next divergence is a kernel panic**, `K_ERR_KERNEL_PANIC` from
+   `__ASSERT(!_THREAD_SUSPENDED)` (sched.c:1458) inside the recovered
+   `z_tick_sleep`: `display_dispatch_thread` returns from `arch_swap()` still
+   suspended after its post-blit 35 ms sleep.  Both cores halt at t ≈ 6 s, so
+   every ESB / phase-2 / sensor volume in this build collapses to near zero.
+   **Reported, not hidden**: iteration 30's app remains the build with the
+   healthy 20 s run, and both are tabulated below.
+
+| counter | oracle | iter 30 (`g1-i23a-app`) | **iter 31 (`g1-i31c-app`)** |
+|---|---:|---:|---:|
+| **`DISPLAY_ON_ctx_fe8`** | **0x01** | 0x00 | **0x01 — MATCHES** |
+| **`ESB_SYNC_ctx_105a`** | **0x02** | 0x02 | **0x02 — MATCHES** |
+| display START `action = 1` | yes | **no** | **YES** |
+| machine reset / CPU halt | none | none | **halt @ t ≈ 6 s** |
+| `spim_a` `p1_boot` / `p2_render` | 764 / 2,881 | 34 / 0 | **66 / 0** |
+| `spim_a` `p1_boot` pixel windows | many | 3 | **6** |
+| framebuffer lit px `p1` / `p2` | 656 / 1,098 | 0 / 0 | **0 / 0** |
+| `twim2` (LSM6DSO) `p1` / `p2` | 1,089 / 1,200 | 1,027 / 700 | 925 / 0 |
+| `twim1` `p1` / `p2` | 371 / 599 | — / 370 | 240 / 0 |
+| `saadc` whole run | 998 | 95 | 17 |
+| `pdm0` / `gpiote0` whole run | 2 / 25 | 2 / 25 | **2 / 25, hash-EQ** |
+| `radio TransmittedFrames` | 0x230 | 0x234 | 0x4A |
+| `esbslave MasterFramesSeen` | 0x175 | 0x175 | 0 |
+
+| id | iter 30 | **iter 31** | first difference / detail |
+|---|---|---|---|
+| **G-1** | FAIL | **FAIL** | `p2_render` 0 lit px, 0 windows (core halted before phase 2); oracle 1,098 px, bbox x 34–497 / y 266–287. |
+| **G-2** | FAIL | **FAIL** | `p1_boot` 0 lit px, **6** windows (was 3); oracle 656 px, bbox x 178–449 / y 267–287. |
+| **G-3** | FAIL (trunc.) | **FAIL (trunc.) — IMPROVED** | first difference index **66** (was 34); the 66 shared `spim_a` transactions are identical entry-for-entry. |
+| **G-4** | localiser | localiser | our framebuffer still `0c5cc90b07…`; oracle's first differing row **y = 267**, pixel **x = 178**. |
+| **G-5** | PASS | **PASS — extended** | panel init byte-exact over the whole 66-transaction prefix. |
+| **G-6** | PASS | **PASS** | `spim_b` 0 == 0, hashes EQ, both phases. |
+| **S-MIC** | PASS | **PASS** | `pdm0` whole-run hash EQ, 2 accesses. |
+| **S-KEYS** | PASS | **PASS** | `gpiote0` whole-run hash EQ, 25 accesses. |
+| **S-IMU** | PARTIAL | **PARTIAL** (halt-truncated) | 925 / 1,089 and 0 / 1,200. |
+| **S-ALS** | PARTIAL | **PARTIAL** (halt-truncated) | on `twim1`, 240 / 371 and 0 / 599. |
+| **S-PMIC** | PARTIAL | **PARTIAL** (halt-truncated) | same bus. |
+| **S-NFC** | PARTIAL | **PARTIAL** (halt-truncated) | same bus. |
+| **S-ADC** | FAIL | **FAIL** | 17 / 998. |
+| **S-ESB** | PARTIAL (2 of 3) | **PARTIAL (2 of 3, different two)** | `ctx[0x105a] == 2` ✓, **`ctx[0xfe8] == 1` ✓ (first time)**, master PTX > 0 ✗ (halt). |
+
+**Criteria score: 4 PASS / 5 PARTIAL / 5 FAIL** (headline unchanged; G-5's
+proven prefix nearly doubled and the display-on criterion is met for the first
+time).
+
+**Named next blocker:** the `sched.c:1458` `_THREAD_SUSPENDED` panic
+(`our_boot_bringup.md` §31.7).  Two scheduler families — recovered
+`unready_thread`/`sched_update_cache`/`z_tick_sleep` and stock sched.c's own
+statics — coexist over one shared `_kernel`; audit that first.
+
+---
+
+## Iteration 29 record (kept) — still 0 lit pixels, but **master ESB PTX
 ## frames reach the virtual right lens for the FIRST time in this project**
 ## (`MasterFramesSeen` 0 → **0x26C**, all ACKed, first frame **byte-identical**
 ## to the oracle's), because `esb.c` turned out to be **stock NCS 2.5.1** —

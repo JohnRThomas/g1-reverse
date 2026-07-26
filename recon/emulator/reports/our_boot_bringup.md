@@ -11961,3 +11961,445 @@ Files changed: new `recon/net/src/FUN_0102a408.c`, `FUN_0102a474.c`,
 `G1_ESB_REAL_PAYLOAD_OBJECTS` option);
 `recon/emulator/reports/sensor_parity_status.md`; this report.
 **No `tools/` logic change**, `armemul` untouched, nothing committed.
+
+## Iteration 31 — the app-core display gate is a **missing GATT service**: the
+## shipped firmware's third static `bt_gatt_service_static` entry (stock NCS
+## `nus.c`, 6 attributes) is absent from our link, so the phone's ATT write
+## never reaches the firmware, no persist task is ever created and
+## `trigger_screen_state_change` is only ever called with `action = 0`
+
+*(written incrementally; measurements are recorded as they are confirmed)*
+
+### 31.0 The measurement that named it (`g1-i23a-app` + `g1-i30e-net`, unchanged tree)
+
+Iteration 30 §30.8 item 1 named the app core. A diagnostic 20 s capture with
+five app-side hooks placed at **our** ELF's PCs (`G1_HOOKS=0`, the paired resc,
+identical stimulus) gives:
+
+| app hook (our `g1-i23a-app` PC) | hits | what it means |
+|---|---:|---|
+| `ble_process_req_dispatch` `0x0001ee80` | **0** | the GATT write **never reaches the firmware** |
+| `process_for_new_task` `0x00029884` | 1 | the task thread runs, once, and stays in `CASE0` |
+| `now_has_persist_task` `0x00028d48` | **398, all returning 0** | `ctx[0x1054]->state` never rises above 1 |
+| `trigger_screen_state_change` `0x00028ad8` | **1, `reason = 0`, `action = 0`** | the `CASE0`-entry "no task" call, `process_for_new_task.c:160` |
+| `sync_to_slave` `0x00024044` | 16 (`op=5` ×1, `op=12` ×15) | the display thread's own `op = 0` / `op = 1` calls never happen |
+
+`process_for_new_task` `CASE0` polls `now_has_persist_task(ctx, ctx[0xd5])`
+every `0x667` ticks and only issues the `action = 1` START
+(`trigger_screen_state_change(uVar14, param_1, 1)` at `LAB_0002e00e`) when that
+returns 1.  `now_has_persist_task` (`FUN_0002be64`) is two loads:
+
+```c
+int *p = *(int **)(ctx + 0x1054);
+return (unsigned)((unsigned char *)p)[4] > 1;
+```
+
+so the whole acceptance bar reduces to: *something must set the persist-task
+record's state byte above 1*, and in the oracle that something is the virtual
+phone's `0a0600000000` ATT write.
+
+### 31.1 Root cause — the app's own GATT service was never built
+
+The chain the write has to travel is
+NUS RX value attribute → `on_receive` → `nus_cb.received` = `FUN_00017f70`
+(@0x17f70) → `k_msgq_put(0x200038f8)` → `ble_work_thread` → `FUN_00021d78` →
+`spec_ble_command_hook` → `FUN_0007c244` → `ble_process_req_dispatch`
+(@0x21460) → persist task.
+
+The shipped image's `bt_gatt_service_static` iterable section is at
+`0x88058..0x88078` and holds **three** services (`tools/extract.py`):
+
+```
+0x88058  {attrs = 0x0008b3b4, count = 8}   Zephyr GATT service
+0x88060  {attrs = 0x0008b454, count = 7}   Zephyr GAP service
+0x88068  {attrs = 0x0008ad18, count = 6}   <-- the application's NUS service
+```
+
+(the following words `{0x000f64a8, 4}` … are *not* a fourth service: `0xf64a8`
+is the ASCII `"6dsob@6b\0LSM6DSO"`, i.e. a different table begins there.)
+
+Our `g1-i23a-app` link has `bt_gatt_service_static_area` = **0x10 bytes = 2
+entries** (`attr__1_gatt_svc` 8, `attr__2_gap_svc` 7).  The third service does
+not exist, and **the 128-bit NUS UUID bytes `9e ca dc 24 0e e5 a9 e0 93 f3 a3
+b5` appear 5 times in `app_update.bin` and 0 times in our `zephyr.bin`.**
+
+The six shipped attributes decode exactly as stock NCS
+`nrf/subsys/bluetooth/services/nus.c` compiled **without** `CONFIG_BT_NUS_AUTHEN`:
+
+| VA | uuid | read | write | user_data | handle\|perm |
+|---|---|---|---|---|---|
+| `0x8ad18` | `0x2000357b` (`6E400001…`) | `0x82989` `bt_gatt_attr_read_service` | — | `0x2000357b` | `0x0000\|0x0001` |
+| `0x8ad2c` | `0x20002f70` (`0x2803`) | `0x82c49` `bt_gatt_attr_read_chrc` | — | `0x20002830` `struct bt_gatt_chrc` | `\|0x0001` |
+| `0x8ad40` | `0x20003559` (`6E400003…` TX) | — | — | — | `\|0x0001` = `BT_GATT_PERM_READ` |
+| `0x8ad54` | `0x20002f6c` (`0x2902`) | `0x8295b` `…read_ccc` | `0x5a465` `…write_ccc` | `0x20002818` `_bt_gatt_ccc` | `\|0x0003` |
+| `0x8ad68` | `0x20002f68` (`0x2803`) | `0x82c49` | — | `0x20002810` | `\|0x0001` |
+| `0x8ad7c` | `0x20003537` (`6E400002…` RX) | — | `0x4f4d9` `on_receive` | — | `\|0x0003` |
+
+The `bt_uuid_128` / `bt_gatt_chrc` / `_bt_gatt_ccc` objects sit in **`.data`**
+(`0x20002810`, `0x20002818`, `0x20002830`, `0x20003537…0x200035ad`) exactly as
+GCC places the non-const compound literals inside `BT_GATT_SERVICE_DEFINE`,
+which is independent corroboration that this is the stock macro expansion and
+not a hand-rolled table.
+
+Two further consequences of the same defect, both already in the tree:
+
+* `FUN_000181f0` (`ancs_notify_sync_init`, called from `ancs_main` line 173) is
+  `bt_nus_init(&nus_cb)`: it tail-calls `FUN_0004f500` with `0x20002310`, whose
+  shipped `.data` initialiser is `{received = 0x00017f71, sent = 0,
+  send_enabled = 0x00017e3d}` — a verbatim `struct bt_nus_cb`.  Our RAM-arena
+  data image already restores and re-binds all three words correctly
+  (`g1_app_data_image.c` arena `0x310`/`0x318`), so the callback table is
+  populated at `g_2000a2b8` — there was simply no service to call it.
+* `FUN_0004f518` (`gatt_notify_config_change`) is `bt_nus_send`; it spells
+  `rodata_8ad40` (`&attrs[2]`, the TX value attribute) and `rodata_4f4f1`
+  (`on_sent`).  Both were still **absolute original-image addresses** in
+  `recon/symbols/g1_app_globals.ld` (lines 469 and 107), i.e. the NUS TX path
+  was pointing at unrelated bytes in our relocated image.
+
+Note also that `recon/data/rodata_0x8ac20.c` ("pointer/config table, reader
+FUN_00047a84", 292 B, `0x8ac20..0x8ad44`) **overruns into this attribute
+array**: its last 11 words are attributes 0, 1 and the first word of attribute
+2.  That is the Ghidra data-inflation class applied to a data table rather than
+a function.
+
+### 31.2 The fix — the service is emitted, not `CONFIG_BT_NUS=y`
+
+New wiring TU **`recon/application/app/src/g1_bt_nus_service.c`** emits the
+service with `BT_GATT_SERVICE_DEFINE(g1_nus_svc, …)` in the shipped shape (six
+attributes, `BT_GATT_PERM_READ` on the TX value, `READ|WRITE` on the CCC and on
+the RX value).  It is *not* `CONFIG_BT_NUS=y` because stock `nus.c` owns a
+file-static `struct bt_nus_cb nus_cb` singleton and the recovered corpus
+already owns that singleton at the shipped `0x2000a2b8` (pin `g_2000a2b8 =
+g1_ram_arena + 0x82b8`), written by the retained, parity-proven `FUN_0004f500`.
+Compiling stock nus.c as well would create a second, permanently-NULL copy and
+the write would be delivered to it — the duplicate-singleton class of
+iterations 26/28/29/30 §30.3.  The three callbacks here therefore read the ONE
+recovered singleton.
+
+Two linker pins were rebound onto the emitted service in
+`recon/symbols/g1_app_globals.ld` (both were still ORIGINAL-image absolutes):
+
+```
+PROVIDE(rodata_8ad40 = attr_g1_nus_svc + 40);   /* &attrs[2], the TX value attr */
+PROVIDE(rodata_4f4f1 = g1_nus_on_sent + 1);     /* on_sent, + the Thumb bit     */
+```
+
+and one stale line was withdrawn from `g1_app_string_rodata.c`: the generator
+had emitted `rodata_8ad40[3] = {0x59,0x35,0x00}` as if the attribute's
+`uuid = 0x20003559` pointer were a NUL-terminated string, and that STRONG
+definition would have overridden the `PROVIDE`.  The pin is no longer a numeric
+literal, so `gen_app_string_rodata.py` no longer selects it and a regeneration
+reproduces the file without the line.
+
+**MEASURED (`g1-i31b-app` + `g1-i30e-net`) — the gate opens:**
+
+```
+I31 ancs_notify_sync_init
+I31 bt_nus_init cb=0x200034b0          (= arena 0x200031a0 + 0x310, the .data nus_cb)
+I31 nus_on_receive len=6               <-- the phone's ATT write reaches the firmware
+I31 nus_received(FUN_17f70) len=6      <-- and is delivered to the recovered callback
+```
+
+That is the first time in this project that a GATT write from the virtual
+central has reached application code.
+
+### 31.3 …and immediately unmasks a stack-frame defect in `spec_ble_command_hook`
+
+The frame is then handed to `ble_work_thread` → `ble_packet_receive_dispatch`
+(`FUN_00021d78`) → `spec_ble_command_hook` (`FUN_0000ef28`), which had never
+executed before.  It runs its twenty `strncmp` comparisons, takes the
+`return 0xffffffff` path and **faults on its own epilogue**:
+
+```
+I31 spec_hook sp=0x200229c8 len=6
+I31 strncmp lr=0x127eb … lr=0x12d75          (20 calls, all returning normally)
+I31 FATAL r=35 esf=0x200340b8 r0=0xffffffff r1=0xa7ef9 r2=0xa r3=0x23
+                r12=0x0 lr=0x12d75 pc=0x12600 xpsr=0xa1000200
+```
+
+`reason 35` is `K_ERR_ARM_USAGE_ILLEGAL_EPSR` (`K_ERR_ARCH_START = 16` +
+19) — INVSTATE, i.e. a branch to an address whose Thumb bit is clear.  The
+stacked `pc = 0x12600` is even and lies inside `spec_ble_command_hook` itself,
+`lr = 0x12d75` is its own `strncmp` return site and `r0 = 0xffffffff` is the
+value it was returning: **the return address popped by
+`ldmia.w sp!,{r4-fp,pc}` had been overwritten.**
+
+Root cause, proven by disassembly rather than inferred.  Ghidra named only the
+stack slots this body dereferences by name, so the decompiled declaration list
+spelled two 256-byte character buffers as six and four scalars
+(`local_520 … local_51b`, `local_420 … local_414`).  The body nevertheless
+writes their full extents — `memset_bytes(&uStack_51c, 0, 0xfc)` and
+`memset_bytes(&local_41c, 0, 0xfc)` — so GCC sized our frame at **212 bytes**
+(`sub sp,#212` at 0x1220a) and those 252-byte stores ran off the end of it,
+across the pushed callee-saved registers and the return address.  The shipped
+prologue is unambiguous:
+
+```
+ef28  stmdb sp!,{r4,r5,r6,r7,r8,r9,lr}
+ef2c  subw  sp,sp,#1500        ; 0x5dc          <-- OUR BUILD RESERVED 212
+ef40  add   r0,sp,#220 (0xdc)  ; memset(&uStack_51c, 0, 0xfc)
+ef50  add   r0,sp,#216 (0xd8)  ; __memcpy_chk(&local_520, param_1, len, 0x100)
+```
+
+so `local_520` is at `sp+216`, `local_420` at `sp+472` — exactly 256 bytes
+apart — and the frame is 1500 bytes.  This is the **stack-buffer class the
+parity harness is blind to** (the harness compares only non-stack writes), and
+the function is recorded as proven.
+
+Fixed in all three trees (`recon/app/src`, `recon/verified/src`,
+`recon/symbolized/app`) by laying the named slots out in ONE struct at their
+shipped offsets — `g1_pad_head[52]`, the five named slots, `g1_pad_cmd[250]`,
+the four named slots, `g1_pad_value[240]`, `g1_pad_tail[772]`, total 1500 —
+with `#define`s that keep every original spelling, so the body itself is
+unchanged and the existing parity proof still applies.
+
+### 31.4 MEASURED — `action = 1` ARRIVES.  The display gate is open.
+
+With the frame corrected (`g1-i31c-app`, prologue now `subw sp,sp,#1556`
+against the shipped 1500) the chain completes end to end for the first time:
+
+```
+I31 pkt_recv_dispatch len=6      ble_packet_receive_dispatch (FUN_00021d78)
+I31 spec_hook                    spec_ble_command_hook returns, no fault
+I31 requeue_via_dispatch         FUN_0007c244
+I31 ble_dispatch op=0xa          ble_process_req_dispatch, the phone's op 0x0a
+I31 display_START action=1       <-- trigger_screen_state_change(..., action = 1)
+```
+
+`trigger_screen_state_change` with `action = 1` writes `device_info[0xfe8] = 1`
+and gives the display semaphore.  **This is the first `action = 1` display START
+this project has produced, and the gate iteration 30 §30.8 item 1 named is
+open.**  `spim_a` also moves: **66 transactions and 6 pixel windows in
+`p1_boot`** against iteration 30's 34 and 3.
+
+### 31.5 …and the next divergence, immediately after: a kernel panic in `z_tick_sleep`
+
+The very next event is a fatal:
+
+```
+I31 FATAL r=4        (K_ERR_KERNEL_PANIC)
+     lr=0x49111  pc=0x7c06e  r1=0x5b2
+```
+
+`pc = 0x7c06e` is `assert_post_action` (zephyr/lib/os/assert.c:44) and
+`lr = 0x49111` is `recon/symbolized/app/z_tick_sleep.c:107` — the
+`__ASSERT(!z_is_thread_state_set(_current, _THREAD_SUSPENDED))` of
+`sched.c:1458` (`r1 = 0x5b2 = 1458`).  i.e. a thread returned from
+`arch_swap()` inside `z_tick_sleep` with `_THREAD_SUSPENDED` (0x10) still set
+in `thread->base.thread_state`.
+
+This is the SAME assert iteration 5 hit and worked around (the dropped
+`unready_thread(_current)` argument, recorded in that file's comment); the
+`unready_thread` fix is still in place and correct, so this is a second,
+different way into it.  Both cores halt at t ≈ 6 s, so **every downstream
+counter in this build is zero** — this is a stall further along, not a working
+build, and it is reported as such below.
+
+### 31.6 MEASURED — the 20 s captures, A/B on the same tree
+
+Three builds, one net image (`g1-i30e-net`, unchanged), the iteration-30 recipe
+with the probe addresses recomputed for each link (`_end` moves, and
+`device_info` is the first allocation above it):
+
+| build | app change | `G1_CTX_FE8` / `G1_CTX_105A` |
+|---|---|---|
+| `g1-i23a-app` | iteration 30's app, unchanged (the A side) | `0x20040BC8` / `0x20040C3A` |
+| `g1-i31b-app` | + the NUS GATT service (§31.2) | `0x20040C68` / `0x20040CDA` |
+| `g1-i31c-app` | + the `spec_ble_command_hook` frame (§31.3) | `0x20040C68` / `0x20040CDA` |
+
+| counter | oracle | iter 30 (`i23a`) | `i31b` | **`i31c`** |
+|---|---:|---:|---:|---:|
+| **`DISPLAY_ON_ctx_fe8`** | **0x01** | 0x00 | 0x00 (halt) | **0x01 — MATCHES** |
+| **`ESB_SYNC_ctx_105a`** | **0x02** | 0x02 | 0x00 (halt) | **0x02 — MATCHES** |
+| display START `action = 1` | yes | **no** | no | **YES** |
+| machine reset / CPU halt | none | none | **halt @ t≈6 s** | **halt @ t≈6 s** |
+| `spim_a` `p1_boot` transactions | 764 | 34 | 34 | **66** |
+| `spim_a` `p1_boot` pixel windows | many | 3 | 3 | **6** |
+| `spim_a` `p2_render` | 2,881 | 0 | 0 | 0 |
+| `twim1` `p1` / `p2` | 371 / 599 | 225-ish / 370 | 225 / 0 | **240 / 0** |
+| `twim2` (LSM6DSO) `p1` / `p2` | 1,089 / 1,200 | 1,027 / 700 | 911 / 0 | **925 / 0** |
+| `saadc` whole run | 998 | 95 | 17 | 17 |
+| `pdm0` / `gpiote0` whole run | 2 / 25 | 2 / 25 | 2 / 25 | **2 / 25, hash-EQ** |
+| `radio TransmittedFrames` | 0x230 | 0x234 | 0x49 | 0x4A |
+| `esbslave MasterFramesSeen` | 0x175 | 0x175 | 0 | 0 |
+| framebuffer lit px `p1` / `p2` | 656 / 1,098 | 0 / 0 | 0 / 0 | **0 / 0** |
+
+The `i31c` row is a build that gets **further** and then dies: the panic at
+t ≈ 6 s truncates the run, so every ESB / phase-2 / sensor volume collapses.
+Both effects are real and both are reported; nothing here is a working
+replacement for iteration 30's app yet.
+
+#### Graphics + sensor verdicts (iteration 31, `g1-i31c-app` + `g1-i30e-net`)
+
+| id | verdict | first difference / detail |
+|---|---|---|
+| **G-1** | **FAIL** | `p2_render` **0 lit px, 0 pixel windows** (the core is halted before phase 2 begins); oracle `b26c73b37d…`, 1,098 lit px, bbox x 34–497 / y 266–287. |
+| **G-2** | **FAIL** | `p1_boot` ours `0c5cc90b07…`, **0 lit px, 6 pixel windows**; oracle `1d617c65a6…`, **656 lit px**, bbox x 178–449 / y 267–287.  The six windows are the panel's blank clears — our `op 0x02` windows at `(0,0)`, `(0,192)`, `(0,384)` carry `pixel_sha256 = 0693f6bf…` / `4c7eea52…`, **exactly the oracle's**, i.e. correct all-transparent fills. |
+| **G-3** | **FAIL (truncation only) — IMPROVED** | `p1_boot` **66 vs 764**; the 66 shared transactions are identical entry-for-entry (iteration 30: 34).  First difference is at index **66**, where the oracle continues `{"op":"0x02","kind":"pixel_window","x":0,"y":0,"n_pixel_bytes":61440}`.  `p2_render` 0 vs 2,881, first difference index 0. |
+| **G-4** | *localiser* | our framebuffer is still bit-identical to iterations 16–30 (`0c5cc90b07…`); the oracle's lowest lit row is **y = 267**, first differing pixel **x = 178**. |
+| **G-5** | **PASS — extended** | panel init byte-exact over the whole 66-transaction prefix, including the three full-screen clears (was 34). |
+| **G-6** | **PASS** | `spim_b` 0 == 0, `stream_sha256` EQ, both phases. |
+| **S-MIC** | **PASS** | `pdm0` whole-run hash EQ (`255852a6c9…`), 2 accesses, same register order. |
+| **S-KEYS** | **PASS** | `gpiote0` whole-run hash EQ, 25 accesses. |
+| **S-IMU** | **PARTIAL (regressed by the halt)** | 925 / 1,089 in `p1_boot`, 0 / 1,200 in `p2_render`. |
+| **S-ALS** | **PARTIAL (regressed by the halt)** | inside `twim1` 240 / 371 and 0 / 599. |
+| **S-PMIC** | **PARTIAL (regressed by the halt)** | same bus. |
+| **S-NFC** | **PARTIAL (regressed by the halt)** | same bus. |
+| **S-ADC** | **FAIL** | 17 / 998. |
+| **S-ESB** | **PARTIAL — the third criterion is now met, the first two are lost to the halt** | `ESB_SYNC_ctx_105a == 0x02` ✓, **`DISPLAY_ON_ctx_fe8 == 0x01` ✓ (first time)**, master PTX frames > 0 ✗ (0, the cores halt before the ESB cadence starts). |
+
+**Criteria score: 4 PASS / 5 PARTIAL / 5 FAIL** — the same headline as iteration
+30, with G-5's proven prefix nearly doubled and two of S-ESB's three criteria
+met by different halves than before.  **NO PIXEL IS PAINTED.**
+
+### 31.7 The scheduler assert — what is and is not known
+
+Instrumented run (`g1-i31c-app`, hooks filtered on the panicking thread
+`0x20005780`, whose sleep argument `1147 = ((0x46 - 35) * 0x8000 + 999)/1000`
+identifies it as **`display_dispatch_thread`** and the 35 as the value
+`sync_to_slave(display, 0, 0)` returned — i.e. the blit branch was taken):
+
+```
+… wake t=0x20005780 is_to=1            (timeout fires, SUSPENDED cleared)
+   ready_thread_static T lr=0x725cd    (from stock z_sched_wake_thread)
+   tick_sleep cur=0x20005780 lo=33     (~1 ms; this cycle repeats cleanly ~40x)
+   unready_thread T lr=0x4909f
+…
+   tick_sleep cur=0x20005780 lo=1147   (~35 ms — the post-blit sleep)
+   unready_thread T lr=0x4909f
+   FATAL r=4 cur=0x20005780            (no wake, no ready, no timeout in between)
+```
+
+So the thread dequeued itself, set `_THREAD_SUSPENDED`, called `arch_swap()`
+and **came straight back with the bit still set** — nothing readied it.  The
+pieces that were checked and are NOT at fault:
+
+* `z_thread_timeout` (0x83634) is `r1 = 1; r0 -= 24; b z_sched_wake_thread`, so
+  the timeout path does pass `is_timeout = true` and would clear the bit; the
+  pin `PROVIDE(rodata_86661 = z_thread_timeout | 1)` resolves to it.
+* the recovered `unready_thread` (`FUN_00073e88`) tests `_THREAD_QUEUED` (0x80),
+  unlinks, and calls `update_cache(thread == _current)` — the iteration-5
+  argument fix is intact and correct.
+* the recovered `sched_update_cache` (`FUN_000737d8`) takes the
+  `piVar4 != _current → cache = piVar4` branch whenever `preempt_ok != 0`,
+  which is this call.
+* no other readier fired: hooks on stock `ready_thread` (0x71a30), stock
+  `z_ready_thread` (0x71ac4) and `z_sched_wake_thread` (0x7253c), all filtered
+  on this thread, are silent between the last `tick_sleep` and the fatal.
+
+What is NOT yet established is why `arch_swap()` returned to the same thread on
+this one sleep after ~40 identical ones.  **That is the named next blocker.**
+Note also that the app link now carries TWO scheduler families side by side —
+recovered `unready_thread`/`sched_update_cache`/`z_tick_sleep` (0x48e50 /
+0x737d8 / 0x49008) and stock sched.c's own statics (0x72078 / 0x72878) — over
+one shared `_kernel`; that co-existence is the first thing to audit.
+
+### 31.8 Build ledger and gates
+
+| app build | change | FLASH | RAM | `nm -u` |
+|---|---|---:|---:|---:|
+| `g1-i23a-app` | iteration 30's app (the A side) | 699,948 B | — | 0 |
+| `g1-i31b-app` | + `g1_bt_nus_service.c`, two pin rebinds, one string withdrawn | 700,272 B | — | 0 |
+| **`g1-i31c-app`** | **+ the `spec_ble_command_hook` frame — FINAL** | **700,272 B** | 253,045 B | **0** |
+
+FLASH **+324 B** against iteration 30.  The net core is **UNCHANGED**
+(`g1-i30e-net`).
+
+| gate | iteration 30 | **iteration 31** |
+|---|---|---|
+| `check_ram_pin_collisions.py` (app) raw-in-object / raw-free | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_ram_pin_collisions.py` (app) bound OK / escaping | 626 / 0 | **626 / 0 — identical to the A side** |
+| `check_ram_pin_collisions.py --core net` | 0 / 0, 170 / 0 | **0 / 0, 170 / 0**, EXIT 0 |
+| `check_net_raw_literals.py` | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_thread_create_stack_args.py` | 10/10 | **10/10**, EXIT 0 |
+| `gen_retained_sources.py --check` | clean | **clean**, EXIT 0 |
+| `verify_net_stock_data_window.py` | PROVEN | **PROVEN** |
+| app / net `nm -u` undefined | 0 / 0 | **0 / 0** |
+| app / net duplicate global definitions | 0 / 0 | **0 / 0** |
+
+No `--allow-multiple-definition`, no weak symbol, no numeric root.
+
+### 31.9 The duplicate-singleton ownership sweep, extended to hand-written TUs
+### (iteration 30 §30.8 item 3)
+
+Every absolute RAM literal and every `g_`/`rodata_` pin symbol in the
+hand-written `recon/application/{app,net}/src/*.{c,h}` was extracted (comments
+stripped) and cross-referenced against the 28 `esb.c`-owned shipped RAM
+addresses in `recon/ownership/net_esb_core_singleton_adoption.json`:
+
+| file | absolute RAM literals | owned by a displaced unit? |
+|---|---|---|
+| `app/src/g1_app_ram_relocs.c` | `0x20002000`, `0x2002a400` (arena bounds) | no |
+| `net/src/timeslot_owner.c` | `0x21000530`, `0x210045f4`, `0x210049a0`, `0x21004fa3`, `0x21006459` | `0x210049a0` and `0x21006459` **are** esb.c-owned |
+| every other hand-written TU | none | — |
+
+Both esb.c-owned addresses are **inert in the cohesive build**: `0x210049a0`
+survives only inside the `#else` (non-`G1_COHESIVE_BUILD`) arm that iteration 30
+replaced with `RADIO_IRQHandler(NULL)`, and `G1N_21006459` is a macro with **no
+use site at all** (comment/definition only).  The sweep is therefore clean for
+the current tree, and the method now covers the files §30.3 showed it had
+missed.  The new `g1_bt_nus_service.c` was written to the same rule: it reads
+the ONE recovered `nus_cb` at `g_2000a2b8` instead of instantiating a second.
+
+### 31.10 Open, named, and NOT fixed
+
+1. **The `sched.c:1458` `_THREAD_SUSPENDED` panic in `z_tick_sleep`** (§31.7) —
+   the blocker, and the whole run's truncation.  `display_dispatch_thread`
+   returns from `arch_swap()` still suspended after the post-blit 35 ms sleep.
+   Two scheduler families coexist over one `_kernel`; audit that first.
+2. **Still zero lit pixels.**  With the panic fixed the next thing to watch is
+   `spim_a` index 66 onward: the oracle's next transaction is another
+   full-screen `op 0x02` clear, and the first *content* window is
+   `p2_render` `op 0x02, x=32, y=265`.
+3. `device_ctx[0xd0..0xd3]` in the sync-data frame (`80 00 92 65` vs
+   `01 00 00 00`) — unchanged from iteration 30 §30.8 item 2.
+4. `PTR_s__s____unable_to_change_MTU_for_a_0000f798 0x0009dc3fu` in
+   `spec_ble_command_hook.c` is still a RAW original-image address, not a bound
+   pin — cosmetic today (a log format string on a path not taken) but it is the
+   same class as the `rodata_8ad40` defect this iteration fixed.
+5. `recon/data/rodata_0x8ac20.c` over-runs into the NUS attribute array
+   (§31.1); its declared 292-byte extent should be cut to the table
+   `FUN_00047a84` actually reads.
+6. Iteration 30 §30.8 items 4–7 unchanged.
+
+### Regenerate (iteration 31)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+recon/application/build_cohesive.sh app /private/tmp/g1-i31c-app
+# net is UNCHANGED from iteration 30:
+recon/application/build_cohesive.sh net /private/tmp/g1-i30e-net -- \
+  -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF -DG1_ESB_REAL_PAYLOAD_OBJECTS=ON
+# gates (all exit 0)
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py        /private/tmp/g1-i31c-app/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py --core net /private/tmp/g1-i30e-net/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_net_raw_literals.py          /private/tmp/g1-i30e-net/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_thread_create_stack_args.py --trials 120
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/verify_net_stock_data_window.py         /private/tmp/g1-i30e-net/zephyr/zephyr.elf
+# 20 s capture -- NOTE the stdin pipe, the NEW $rtinfo_pc and the NEW ctx probes
+printf '$rtinfo_pc=0x00015b8c\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i31/ours-paired-i31c.resc
+sleep 100000 | G1_RESC=/private/tmp/g1-i31/ours-paired-i31c.resc \
+G1_APP_ELF=/private/tmp/g1-i31c-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040C68 G1_CTX_105A=0x20040CDA \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i31c
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_ours_i31c /private/tmp/g1-i31/rep-c
+```
+
+`$rtinfo_pc`, `G1_CTX_FE8` and `G1_CTX_105A` are **link-specific**: take
+`runtime_info_sync` from `nm`, and `device_info` from the first allocation above
+`_end` (0x2003FC80 here, so `+0xfe8` and `+0x105a`).  Reusing iteration 30's
+values against this link reads unrelated bytes (it returned `fe8 = 0x33`).
+
+Files changed: new `recon/application/app/src/g1_bt_nus_service.c`;
+`recon/application/app/CMakeLists.txt`;
+`recon/symbols/g1_app_globals.ld` (`rodata_8ad40`, `rodata_4f4f1`);
+`recon/application/app/src/g1_app_string_rodata.c` (one line withdrawn);
+`recon/app/src/spec_ble_command_hook.c`,
+`recon/verified/src/spec_ble_command_hook.c`,
+`recon/symbolized/app/spec_ble_command_hook.c` (the stack frame);
+`recon/emulator/reports/sensor_parity_status.md`; this report.
+**No `tools/` logic change**, `armemul` untouched, nothing committed.

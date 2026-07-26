@@ -305,21 +305,75 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
   char *pcVar18;
   uint uVar19;
   undefined8 uVar20;
-  undefined4 local_5c4;
-  int local_5c0;
-  undefined1 auStack_5bc [28];
-  undefined4 local_5a0;
-  undefined1 auStack_59c [124];
-  undefined1 local_520;
-  undefined1 uStack_51f;
-  char cStack_51e;
-  undefined1 uStack_51d;
-  undefined1 uStack_51c;
-  undefined1 local_51b;
-  undefined4 local_420;
-  int local_41c;
-  int iStack_418;
-  int local_414;
+  /* P4 iteration 31 - STACK-FRAME CORRECTION, disassembly-evidenced.
+   *
+   * Ghidra named only the stack slots this body dereferences BY NAME, so the
+   * decompiled declaration list spelled two 256-byte character buffers as six
+   * and four scalars.  The body nevertheless writes their FULL original
+   * extents -- `memset_bytes(&uStack_51c, 0, 0xfc)` and
+   * `memset_bytes(&local_41c, 0, 0xfc)` -- so with the scalar declarations the
+   * compiler sized the frame at 212 bytes and those 252-byte stores ran off
+   * the end of it, over the pushed callee-saved registers and the return
+   * address.
+   *
+   * MEASURED (iteration 31, `g1-i31b-app` + `g1-i30e-net`, Renode): once the
+   * NUS service existed and the phone's `0a 06 00 00 00 00` frame finally
+   * reached this function, it ran its 20 `strncmp` comparisons, took the
+   * `return 0xffffffff` path and faulted on the epilogue with
+   * `z_arm_fatal_error(reason = 35 = K_ERR_ARM_USAGE_ILLEGAL_EPSR, ...)`,
+   * i.e. INVSTATE -- the popped return address had lost its Thumb bit
+   * (stacked r0 = 0xffffffff, lr = 0x12d75, pc = 0x12600).  Both cores then
+   * halted at t = 6 s and every downstream counter went to zero.
+   *
+   * The shipped prologue proves the true frame (app_update.bin @ 0xef28,
+   * tools/extract.py):
+   *     ef28  stmdb sp!,{r4,r5,r6,r7,r8,r9,lr}
+   *     ef2c  subw  sp,sp,#1500        ; 0x5dc
+   *     ef40  add   r0,sp,#220 (0xdc)  ; memset(&uStack_51c, 0, 0xfc)
+   *     ef50  add   r0,sp,#216 (0xd8)  ; __memcpy_chk(&local_520, .., 0x100)
+   * so `local_520` is at sp+216 and `local_420` at sp+472 -- exactly 256 bytes
+   * apart -- and the frame is 1500 bytes.  The slots are therefore laid out in
+   * ONE struct here so the offsets are guaranteed rather than left to the
+   * compiler's ordering of independent locals; every name below keeps its
+   * original spelling through the macros, so the body is unchanged.  Stack
+   * writes are outside the parity harness's compared trace, so this correction
+   * is invisible to the existing proof. */
+  struct {
+    unsigned char g1_pad_head[52];   /* sp+0   .. sp+52  */
+    undefined4 local_5c4;            /* sp+52            */
+    int local_5c0;                   /* sp+56            */
+    undefined1 auStack_5bc [28];     /* sp+60            */
+    undefined4 local_5a0;            /* sp+88            */
+    undefined1 auStack_59c [124];    /* sp+92            */
+    undefined1 local_520;            /* sp+216           */
+    undefined1 uStack_51f;
+    char cStack_51e;
+    undefined1 uStack_51d;
+    undefined1 uStack_51c;
+    undefined1 local_51b;
+    unsigned char g1_pad_cmd[250];   /* completes the 256-byte command buffer */
+    undefined4 local_420;            /* sp+472           */
+    int local_41c;
+    int iStack_418;
+    int local_414;
+    unsigned char g1_pad_value[240]; /* completes the 256-byte value buffer   */
+    unsigned char g1_pad_tail[772];  /* sp+728 .. sp+1500                     */
+  } g1_frame;
+#define local_5c4    g1_frame.local_5c4
+#define local_5c0    g1_frame.local_5c0
+#define auStack_5bc  g1_frame.auStack_5bc
+#define local_5a0    g1_frame.local_5a0
+#define auStack_59c  g1_frame.auStack_59c
+#define local_520    g1_frame.local_520
+#define uStack_51f   g1_frame.uStack_51f
+#define cStack_51e   g1_frame.cStack_51e
+#define uStack_51d   g1_frame.uStack_51d
+#define uStack_51c   g1_frame.uStack_51c
+#define local_51b    g1_frame.local_51b
+#define local_420    g1_frame.local_420
+#define local_41c    g1_frame.local_41c
+#define iStack_418   g1_frame.iStack_418
+#define local_414    g1_frame.local_414
 
   iVar4 = ancs_get_conn_ctx(0);
   local_520 = 0;

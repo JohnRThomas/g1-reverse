@@ -209,6 +209,17 @@ target_sources(app PRIVATE
   # entry, so `ancs_connected` never ran, `g_ancs_conn` (0x20007518) stayed 0
   # and `ble_is_connected` printed 0 on a live link.
   src/g1_bt_conn_cb_objects.c
+  # P4 iteration 31: the application's own GATT service — the THIRD entry of
+  # the shipped `bt_gatt_service_static` section ({0x0008ad18, 6}, stock NCS
+  # nus.c's BT_GATT_SERVICE_DEFINE without CONFIG_BT_NUS_AUTHEN).  Our link had
+  # only Zephyr's GATT and GAP services, so the phone's ATT write had nothing
+  # to land on: measured, `ble_process_req_dispatch` was hit 0 times in a 20 s
+  # capture, `now_has_persist_task` returned 0 all 398 times and the display
+  # START only ever arrived with `action = 0`.  The service is emitted here
+  # rather than by CONFIG_BT_NUS=y because stock nus.c would bring a SECOND
+  # `nus_cb` singleton; the recovered one at 0x2000a2b8 (written by the
+  # retained FUN_0004f500) is the one the callbacks here read.
+  src/g1_bt_nus_service.c
   # Library displacement Batch 0 (goal G2): the four out-lined
   # zephyr/include/zephyr/drivers/gpio.h static inlines are excluded in
   # adoption_manifest.json; a header `static inline` has no external symbol to

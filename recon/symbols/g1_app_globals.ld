@@ -104,7 +104,12 @@ PROVIDE(rodata_4b1b5 = 0x0004b1b5);
 PROVIDE(rodata_4b8a5 = 0x0004b8a5);
 PROVIDE(rodata_4c38d = 0x0004c38d);
 PROVIDE(rodata_4daad = 0x0004daad);
-PROVIDE(rodata_4f4f1 = 0x0004f4f1);
+/* P4 iteration 31: nus.c's `on_sent`, installed as
+ * bt_gatt_notify_params.func by the recovered bt_nus_send
+ * (FUN_0004f518 / gatt_notify_config_change).  Bound onto the emitted
+ * service in recon/application/app/src/g1_bt_nus_service.c; `+ 1` is the
+ * Thumb bit a linker-script assignment does not add by itself. */
+PROVIDE(rodata_4f4f1 = g1_nus_on_sent + 1);
 PROVIDE(rodata_50100 = 0x00050100);
 PROVIDE(rodata_57525 = 0x00057525);
 PROVIDE(rodata_582b4 = 0x000582b4);
@@ -466,7 +471,10 @@ PROVIDE(rodata_8acb4 = 0x0008acb4);
 PROVIDE(rodata_8acc4 = 0x0008acc4);
 PROVIDE(rodata_8acd8 = 0x0008acd8);
 PROVIDE(rodata_8ad08 = 0x0008ad08);
-PROVIDE(rodata_8ad40 = 0x0008ad40);
+/* P4 iteration 31: &attrs_nus_svc[2], the NUS TX value attribute the
+ * recovered bt_nus_send hands to bt_gatt_notify_cb.  Attribute stride is
+ * 20 bytes (BUILD_ASSERT in g1_bt_nus_service.c). */
+PROVIDE(rodata_8ad40 = attr_g1_nus_svc + 40);
 PROVIDE(rodata_8af10 = 0x0008af10);
 PROVIDE(rodata_8af4c = 0x0008af4c);
 PROVIDE(rodata_8b190 = 0x0008b190);

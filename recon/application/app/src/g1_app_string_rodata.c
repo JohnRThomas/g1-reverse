@@ -16,7 +16,14 @@
 /* 0x8a208 */ const unsigned char rodata_8a208[2] = { 0x22, 0x00 };
 /* 0x8ac20 */ const unsigned char rodata_8ac20[4] = { 0x3a, 0x79, 0x0d, 0x00 };
 /* 0x8ac2c */ const unsigned char rodata_8ac2c[2] = { 0x60, 0x00 };
-/* 0x8ad40 */ const unsigned char rodata_8ad40[3] = { 0x59, 0x35, 0x00 };
+/* 0x8ad40 -- WITHDRAWN, P4 iteration 31.  Those bytes are not a string: they
+ * are the first word of the NUS TX value ATTRIBUTE (`uuid = 0x20003559`) in
+ * the shipped `attrs_nus_svc[]` at 0x8ad18, and the pin is the `&attrs[2]`
+ * operand of the recovered bt_nus_send.  It is now bound onto the emitted
+ * service (recon/application/app/src/g1_bt_nus_service.c) by
+ * `PROVIDE(rodata_8ad40 = attr_g1_nus_svc + 40)`, so the pin is no longer a
+ * numeric literal and gen_app_string_rodata.py no longer selects it: a
+ * regeneration reproduces this file without the line. */
 /* 0x9890c */ const unsigned char rodata_9890c[2] = { 0x20, 0x00 };
 /* 0x98e3c */ const unsigned char rodata_98e3c[2] = { 0x20, 0x00 };
 /* 0x98fbc */ const unsigned char rodata_98fbc[2] = { 0x30, 0x00 };
