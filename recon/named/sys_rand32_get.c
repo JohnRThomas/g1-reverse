@@ -15,11 +15,11 @@
  *   rodata_f2af8                             @ 0x000f2af8   [INLINED -- G6 literal batch]
  *   rodata_f2b15                             @ 0x000f2b15   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00052c40 @ 0x52c40  (parity: 300/300 trials, PROVEN) */
 
 extern int entropy_get_entropy_isr_call(int*, int);
 extern void assert_post_action(int,int);
-extern void printk(int, ...);
 extern int sys_clock_cycle_get_32(void);
 extern int z_device_is_ready(int);
 

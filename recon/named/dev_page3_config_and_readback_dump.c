@@ -17,7 +17,7 @@
  */
 /* Reconstructed FUN_00016110 @ 0x16110  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int log_message(int, ...);
+#include "../headers/g1_log.h"
 extern int dev_ctrl_read1(int,int,int,int);
 extern int dev_write_reg3(int, ...);
 

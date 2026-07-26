@@ -11,11 +11,10 @@
  *   g_uid_pipe                               @ 0x20006a38
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed dequeue_uid @ 0x18ff8  (parity: 300/300 trials, PROVEN) */
 
 extern int k_msgq_get(unsigned int a, void *b, unsigned int c, unsigned int d);
-extern void log_message(unsigned int a, unsigned int b);
-extern void debug_print(unsigned int a, unsigned int b, ...);
 
 int dequeue_uid(unsigned int *param_1, unsigned int param_2, unsigned int param_3)
 {

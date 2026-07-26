@@ -25,6 +25,7 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_2000a098                               @ 0x2000a098
  */
+#include "../headers/g1_log.h"
 /* Reconstructed ui_refalsh_warp @ 0x48b5c.
  * Reachable code ends at 0x48e10; the following six words are its literal
  * pool, not executable instructions.  The reviewed executable extent is
@@ -33,8 +34,6 @@
 
 extern int is_battery_critical(void);
 extern int update_demo_image_display(int,int,int);
-extern int log_message(int,int,int,int);
-extern int debug_print(int,int,int,int);
 extern int ui_ancs_notification_task(int,int,int);
 extern int ui_new_message_task(int,int,int);
 extern int ui_navigation_task(int,int,int);

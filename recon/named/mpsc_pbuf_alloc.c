@@ -26,9 +26,10 @@
 /* Reconstructed FUN_0004bc8c @ 0x4bc8c (NCS mpsc_pbuf_alloc) */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../headers/g1_log.h"
 typedef struct { volatile uint32_t tmp_wr_idx; uint32_t wr_idx,tmp_rd_idx; volatile uint32_t rd_idx,flags; uint32_t lock; void (*notify_drop)(void *,void *); uint32_t get_wlen; volatile uint32_t *buf; uint32_t size,max_usage; uint8_t sem[0x10]; } mpsc_buffer;
 extern int z_spin_lock_valid(void *); extern int z_spin_unlock_valid(void *); extern void z_spin_lock_set_owner(void *);
-extern void printk(uint32_t,...); extern void assert_post_action(uint32_t,uint32_t) __attribute__((noreturn));
+extern void assert_post_action(uint32_t,uint32_t) __attribute__((noreturn));
 extern void post_drop_action(mpsc_buffer*,uint32_t,uint32_t); extern int free_space(mpsc_buffer*,uint32_t*);
 extern uint32_t idx_inc(mpsc_buffer*,uint32_t,uint32_t); extern void add_skip_item(mpsc_buffer*,uint32_t);
 extern int k_is_in_isr(void); extern int z_impl_k_sem_take(void*,uint64_t);

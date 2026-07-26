@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0004a424 @ 0x0004a424
  * public-name: debug_print_hex_dump
  * durable-map: recon/catalogs/function_names_app.json
@@ -11,7 +12,6 @@
  */
 /* Reconstructed FUN_0004a424 @ 0x4a424  (parity: 166/300 trials, PROVEN) */
 
-extern int log_message(int fmt, ...);
 void debug_print_hex_dump(int param_1, int param_2, int param_3)
 {
   unsigned int uVar1;

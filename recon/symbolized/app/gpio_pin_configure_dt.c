@@ -19,9 +19,9 @@
 /* Reconstructed FUN_000639d4 @ 0x639d4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef unsigned (*codep)(int,unsigned,unsigned);
 extern void assert_post_action(int,unsigned);
-extern void printk(int,...);
 extern int z_device_is_ready(int);
 unsigned gpio_pin_configure_dt(int param_1){
   unsigned char bVar1; int iVar2; unsigned uVar3; unsigned uVar4; unsigned *puVar5; unsigned uVar6; unsigned uVar7;

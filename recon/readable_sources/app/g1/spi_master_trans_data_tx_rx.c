@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_spi_trans_desc__param_0064             [param_0064; G1-original]
  * Raw function identity: 0x000262ac.  See ../include/g1_recovered_layouts.h. */
@@ -19,8 +20,6 @@
 /* Reconstructed spi_master_trans_data_tx_rx @ 0x262ac  (parity: 300/300 trials, PROVEN) */
 
 extern int nrfx_spim_xfer(void*, void*, int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, ...);
 
 unsigned int spi_master_trans_data_tx_rx(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4, unsigned int param_5)
 {

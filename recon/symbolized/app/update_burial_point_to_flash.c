@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00023014 @ 0x00023014
  * public-name: update_burial_point_to_flash
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,8 +18,6 @@
  */
 /* Reconstructed update_burial_point_to_flash @ 0x23014  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int a, unsigned int b);
-extern void debug_print(unsigned int,unsigned int);
 extern int flash_settings_read(unsigned int a, void *b, unsigned int n);
 extern int flash_settings_write_and_verify(unsigned int a, void *b, unsigned int n);
 extern int memcmp(void *a, void *b, unsigned int n);

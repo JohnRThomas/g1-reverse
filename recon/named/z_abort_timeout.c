@@ -18,6 +18,7 @@
  *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   g_timeout_list_spinlock                  @ 0x2000b498
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00074d74 @ 0x74d74  (parity: 300/300 trials, PROVEN) */
 
 extern int z_spin_lock_valid(int);
@@ -25,7 +26,6 @@ extern int z_spin_unlock_valid(int);
 extern void z_spin_lock_set_owner(int);
 extern void remove_timeout(int);
 extern void assert_post_action(int,int);
-extern int printk(int,...);
 int z_abort_timeout(int *param_1,int param_2,int param_3,int param_4){
   int uVar4;
   int r=z_spin_lock_valid(0x2000b498);

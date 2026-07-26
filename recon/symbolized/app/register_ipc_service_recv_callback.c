@@ -20,8 +20,7 @@
 /* Reconstructed register_ipc_service_recv_callback @ 0x25ae8
  * (cfg_verify PASS, 300/300 trials; plus 96/96 directed-fixture cases) */
 #include <stdint.h>
-extern void log_message(uint32_t, ...);
-extern void debug_print(uint32_t, ...);
+#include "../../headers/g1_log.h"
 
 int register_ipc_service_recv_callback(unsigned int param_1)
 {

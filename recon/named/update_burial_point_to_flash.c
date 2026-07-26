@@ -14,10 +14,9 @@
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed update_burial_point_to_flash @ 0x23014  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int a, unsigned int b);
-extern void debug_print(unsigned int,unsigned int);
 extern int flash_settings_read(unsigned int a, void *b, unsigned int n);
 extern int flash_settings_write_and_verify(unsigned int a, void *b, unsigned int n);
 extern int memcmp(void *a, void *b, unsigned int n);

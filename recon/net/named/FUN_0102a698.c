@@ -8,11 +8,11 @@
  *   rodata_103cd46                           @ 0x0103cd46
  *   g_zephyr_log_level                       @ 0x21000580
  */
+#include "../../headers/g1_log.h"
 /* net-core FUN_0102a698 @ 0x102a698  (parity 300 trials PROVEN) */
 
 extern void FUN_0103b614(void *dst, void *src, unsigned int n);
 extern int z_impl_k_msgq_put(unsigned int a, void *b, int c, int d);
-extern void printk(unsigned int a);
 
 int FUN_0102a698(void *param_1)
 {

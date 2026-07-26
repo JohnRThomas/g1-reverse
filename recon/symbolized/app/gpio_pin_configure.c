@@ -20,8 +20,8 @@
  */
 /* app-core FUN_00017858 @ 0x00017858 */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void printk(const void *, ...);
 extern void assert_post_action(const void *, unsigned);
 
 typedef void (*pin_config_t)(uintptr_t, unsigned, uint32_t, uint32_t);

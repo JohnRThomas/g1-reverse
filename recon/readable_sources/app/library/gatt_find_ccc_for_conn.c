@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_bt_conn__param_0248                    [param_0248; library]
  * Raw function identity: 0x0005b0dc.  See ../include/g1_recovered_layouts.h. */
@@ -23,7 +24,6 @@
 /* Reconstructed FUN_0005b0dc @ 0x5b0dc  (parity: 296/300 trials, PROVEN) */
 extern int  bt_gatt_attr_next(int);
 extern void assert_post_action(int,int);
-extern void printk(int,...);
 extern int  bt_uuid_cmp(int,void*);
 extern int  bt_conn_is_peer_addr_le(int,int,void*);
 #define VI(a) (*(volatile int*)(a))

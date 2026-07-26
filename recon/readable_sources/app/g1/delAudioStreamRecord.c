@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002f878 @ 0x0002f878
  * public-name: delAudioStreamRecord
  * durable-map: recon/catalogs/function_names_app.json
@@ -21,8 +22,6 @@
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
 extern void k_sem_give(unsigned int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, ...);
 
 unsigned int delAudioStreamRecord(unsigned char param_1)
 {

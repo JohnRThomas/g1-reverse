@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002be64 @ 0x0002be64
  * public-name: now_has_persist_task
  * durable-map: recon/catalogs/function_names_app.json
@@ -16,8 +17,6 @@
 /* Reconstructed now_has_persist_task @ 0x2be64  (parity: CFG state-case proven, 4/4 cases) */
 
 extern void signal_persist_task_event(void);
-extern void log_message(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
-extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned char now_has_persist_task(unsigned char *param_1, unsigned int param_2)
 {

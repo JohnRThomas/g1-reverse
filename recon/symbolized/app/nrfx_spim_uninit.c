@@ -18,13 +18,13 @@
 /* Reconstructed FUN_00067248 @ 0x67248  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef unsigned int uint;
 extern void arch_irq_disable(int);
 /* The cleanup helper's live context word occupies the aligned r2 slot; r1 is
  * an unused ABI hole in the shipped implementation. */
 extern void spim_pin_uninit(uint32_t handle, uint64_t context_word);
 extern void assert_post_action(uint32_t,int);
-extern void printk(uint32_t,uint32_t,...);
 extern void spim_abort(int, int);
 
 void nrfx_spim_uninit(int *param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4){

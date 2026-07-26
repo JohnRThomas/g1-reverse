@@ -15,6 +15,7 @@
  *   g_dashboard_response_msgq                @ 0x2000392c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed SendSystemLanguageInfoToSlave @ 0x48998  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned char u8;
@@ -22,8 +23,6 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, unsigned int);
 
 u32 SendSystemLanguageInfoToSlave(int param_1)
 {

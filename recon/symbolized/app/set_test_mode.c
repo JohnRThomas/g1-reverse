@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00032ef0 @ 0x00032ef0
  * public-name: set_test_mode
  * durable-map: recon/catalogs/function_names_app.json
@@ -13,8 +14,6 @@
  */
 /* Reconstructed FUN_00032ef0 @ 0x32ef0  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int, ...);
-extern void debug_print(unsigned int, ...);
 
 void set_test_mode(unsigned int param_1)
 {

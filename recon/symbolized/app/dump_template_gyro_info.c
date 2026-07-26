@@ -15,10 +15,9 @@
 /* Reconstructed dump_template_gyro_info @ 0x36164  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void log_message(int,...);
+#include "../../headers/g1_log.h"
 extern int get_device_info(void);
 extern unsigned long long __extendsfdf2(unsigned);
-extern void debug_print(int, ...);
 void dump_template_gyro_info(int param_1){
   int iVar1; uint32_t raw_x,raw_y,raw_z; unsigned long long uVar2,uVar3,uVar4;
   iVar1=get_device_info();

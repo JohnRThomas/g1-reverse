@@ -12,9 +12,8 @@
  */
 /* Reconstructed FUN_000227d0 @ 0x227d0. */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern void log_message(uint32_t format, ...);
-extern void debug_print(uint32_t format, ...);
 extern int flash_settings_write_and_verify(const void *source, void *destination, int count);
 
 int flash_write_paged(const uint8_t *source, uint8_t *destination,

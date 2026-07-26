@@ -28,6 +28,7 @@
 /* Reconstructed FUN_00074bf4 @ 0x74bf4. */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../headers/g1_log.h"
 
 extern int z_spin_lock_valid(uintptr_t);
 extern void z_spin_lock_set_owner(uintptr_t);
@@ -35,7 +36,6 @@ extern int z_spin_unlock_valid(uintptr_t);
 extern uint32_t rtc_get_elapsed_cycles_since_baseline(void);
 extern uint32_t next_timeout(void);
 extern void sys_clock_set_timeout(uint32_t, uint32_t);
-extern void printk(uintptr_t, ...);
 extern void assert_post_action(uintptr_t, uintptr_t);
 
 void z_add_timeout(uint32_t *timer, uintptr_t source, uint32_t lo, int32_t hi)

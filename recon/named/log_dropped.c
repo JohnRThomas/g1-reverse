@@ -14,11 +14,11 @@
  *   rodata_f0cff                             @ 0x000f0cff   [INLINED -- G6 literal batch]
  *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0004d4a8 @ 0x4d4a8  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int z_log_dropped_read_and_clear_0(void);
 extern void assert_post_action(void*, int);
-extern void printk(void*, void*, void*, int);
 
 void log_dropped(void)
 {

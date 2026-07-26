@@ -12,9 +12,9 @@
  * alignment and the literal pool starts at 0x324a4. CFG_VERIFY_PREFIX_FIRST
  */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void log_message(uintptr_t, ...);
-extern void debug_print(uintptr_t, ...); /* FUN_00019c70 @ 0x00019c70 */
+/* FUN_00019c70 @ 0x00019c70 */
 extern uint32_t k_uptime_get_4(void);     /* FUN_0007d12e */
 extern void k_msleep_ticks32768_b(uint32_t); /* FUN_0007d14a */
 extern void set_display_page_index(uint32_t); /* FUN_000369dc */

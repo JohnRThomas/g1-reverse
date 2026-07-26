@@ -24,6 +24,7 @@
  * Call arities are derived by target because optional logging and cache
  * refresh calls do not have stable ordinals. */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 extern uintptr_t get_device_info(void);
 extern void gui_screen_clear(void);
@@ -34,8 +35,6 @@ extern uintptr_t get_localized_weekday_name(unsigned id);
 extern void gui_bmp_bitmap_draw(int, int, int, int, int, int);
 extern unsigned gui_utf_draw(unsigned, uintptr_t, unsigned, int, int, int, int,
                             unsigned, unsigned, int, void *, int);
-extern void log_message(uintptr_t, ...);
-extern void debug_print(uintptr_t, ...);
 
 static __attribute__((always_inline)) inline void draw_pair(uintptr_t text, int x, unsigned second_id)
 {

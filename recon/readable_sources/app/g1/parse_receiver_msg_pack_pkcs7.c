@@ -23,8 +23,7 @@
  */
 /* Reconstructed FUN_00019da4 @ 0x19da4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int log_message(int,...);
-extern int debug_print(int,...);
+#include "../../../headers/g1_log.h"
 extern int memcpy(int,...);
 unsigned int parse_receiver_msg_pack_pkcs7(int param_1, unsigned char *param_2, unsigned int param_3)
 {

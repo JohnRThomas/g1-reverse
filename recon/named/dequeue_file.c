@@ -9,11 +9,11 @@
  *   rodata_9e85d                             @ 0x0009e85d   [INLINED -- G6 literal batch]
  *   g_file_msg_pipe                          @ 0x200079a0
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_000235a4 @ 0x235a4  (parity: 300/300 trials, PROVEN) */
 
 extern int k_msgq_get(unsigned int, void*, int, int);
 extern void memcpy(unsigned int, void*, int);
-extern void log_message(unsigned int);
 
 int dequeue_file(unsigned int param_1)
 {

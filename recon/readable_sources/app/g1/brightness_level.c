@@ -39,6 +39,7 @@
 /* Full reconstruction brightness_level @ 0x23844, CFG-correct extent 464 bytes.
  * CFG_VERIFY_PREFIX_FIRST CFG_VERIFY_PREFIX_K=20 */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 extern void file_subsystem_queue_init(void);
 extern void crc32_table_init(void);
 extern void try_to_save_file(uintptr_t);
@@ -51,8 +52,6 @@ extern void change_work_mode_to(uint32_t);
 extern void set_shutdown_flag(uintptr_t,uint32_t);
 extern void rproc_virtio_negotiate_features(uintptr_t,uint32_t);
 extern uint64_t thunk_FUN_00074f68(void);
-extern void log_message(uintptr_t,...);
-extern void debug_print(uintptr_t,...);
 
 typedef void (*brightness_callback)(uintptr_t text, uintptr_t value,
                                     uint32_t style);

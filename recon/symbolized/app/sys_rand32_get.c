@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00052c40 @ 0x00052c40
  * public-name: sys_rand32_get
  * durable-map: recon/catalogs/function_names_app.json
@@ -20,7 +21,6 @@
 
 extern int entropy_get_entropy_isr_call(int*, int);
 extern void assert_post_action(int,int);
-extern void printk(int, ...);
 extern int sys_clock_cycle_get_32(void);
 extern int z_device_is_ready(int);
 

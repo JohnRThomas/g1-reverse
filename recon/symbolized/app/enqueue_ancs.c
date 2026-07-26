@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00018bb4 @ 0x00018bb4
  * public-name: enqueue_ancs
  * durable-map: recon/catalogs/function_names_app.json
@@ -22,8 +23,6 @@ extern void memset_bytes(void*, int, int);
 extern void k_msgq_get(unsigned int, void*, int, int);
 extern void memcpy(void*, unsigned int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void log_message(unsigned int, ...);
-extern void debug_print(unsigned int, ...);
 
 int enqueue_ancs(unsigned int param_1)
 {

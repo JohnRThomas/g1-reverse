@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00024420 @ 0x00024420
  * public-name: upgradeQuickNoteDataToFlash
  * durable-map: recon/catalogs/function_names_app.json
@@ -18,8 +19,6 @@
 /* Reconstructed upgradeQuickNoteDataToFlash @ 0x24420  (parity: 300/300 trials, PROVEN) */
 
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, ...);
 extern void k_sem_give(unsigned int);
 
 int upgradeQuickNoteDataToFlash(unsigned int param_1, unsigned int param_2, unsigned int param_3)

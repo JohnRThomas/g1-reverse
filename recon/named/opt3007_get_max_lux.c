@@ -15,14 +15,13 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_opt3007_chip_ready                     @ 0x20018da1
  */
+#include "../headers/g1_log.h"
 /* Reconstructed opt3007_get_max_lux @ 0x10a68  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e, unsigned int f, unsigned int g);
 extern unsigned long long __floatdidf(unsigned int lo, unsigned int hi);
 extern unsigned long long __divdf3(unsigned int lo, unsigned int hi, unsigned int c1, unsigned int c2, unsigned int p1, unsigned int p2, unsigned int p3, unsigned int p4);
 extern int __fixdfsi(unsigned int lo, unsigned int hi);
 extern unsigned int get_device_info(void);
-extern void debug_print(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned long long e, unsigned int f);
 extern int opt3001_read_lux_raw(unsigned int a);
 
 int opt3007_get_max_lux(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

@@ -18,9 +18,8 @@
 /* Reconstructed reset_usr_setting @ 0x22ddc */
 
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern void log_message(uint32_t format, uint32_t function_name);
-extern void debug_print(uint32_t format, uint32_t function_name, ...);
 extern void set_test_mode(uint32_t mode);
 extern void save_usr_setting(void *settings, uint32_t value);
 

@@ -16,13 +16,12 @@
  *   rodata_a78eb                             @ 0x000a78eb   [INLINED -- G6 literal batch]
  *   g_serial_port_ready                      @ 0x2001a127
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_000332dc @ 0x332dc  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(void*);
 extern int z_device_is_ready(void*);
 extern int uart_read_start(void*);
 extern void assert_post_action(void*, int);
-extern void printk(void*, void*, void*, int, unsigned int);
 
 unsigned int init_serial_port(void)
 {

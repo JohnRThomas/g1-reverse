@@ -16,11 +16,10 @@
  */
 /* Full ABI-faithful reconstruction indicate_sc_cb @ 0x18a38. */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 extern void gatt_discover(uint32_t connection, uint32_t enabled);
-extern void debug_print(uintptr_t format, ...);
 extern void bt_conn_disconnect_by_state(uint32_t connection, uint32_t reason);
-extern void log_message(uintptr_t format, ...);
 
 void indicate_sc_cb(const uint32_t *connection_ref, uint32_t security_level,
                     int32_t error)

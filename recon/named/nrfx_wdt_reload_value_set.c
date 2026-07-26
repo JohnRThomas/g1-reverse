@@ -15,8 +15,8 @@
  */
 /* Full reconstruction FUN_00067d84 @ 0x67d84, exact extent 102 bytes. */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern uint64_t __aeabi_uldivmod(uint32_t,uint32_t,uint32_t,uint32_t);
-extern void printk(uintptr_t,uintptr_t,uintptr_t,uint32_t,...);
 extern __attribute__((noreturn)) void assert_post_action(uintptr_t,uint32_t);
 extern void arch_irq_enable(int32_t,uint32_t,uint32_t,uint32_t);
 void nrfx_wdt_reload_value_set(uintptr_t *device,const uint32_t *ticks){

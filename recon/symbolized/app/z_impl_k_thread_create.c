@@ -19,10 +19,10 @@
 /* Reconstructed FUN_00071eac @ 0x71eac  (parity: 80/80 trials, PROVEN) */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../../headers/g1_log.h"
 extern void z_setup_new_thread(int,int,int,int,int,int,int,int,int);
 extern void sched_thread_ready(int);
 extern void z_add_timeout(int,unsigned int,int,int,int,int,int,int,int,unsigned int);
-extern void printk(unsigned int,...);
 extern void assert_post_action(unsigned int,unsigned int) __attribute__((noreturn));
 int z_impl_k_thread_create(int param_1,int p2,int p3,int p4,int s0,int s1,int s2,int s3,int s4,int s5,int s6,int s7){
   unsigned int uVar2=__get_IPSR() & 0x1f;

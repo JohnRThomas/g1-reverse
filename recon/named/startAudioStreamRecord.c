@@ -18,10 +18,9 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_app_language_msgq                      @ 0x200079e4
  */
+#include "../headers/g1_log.h"
 /* Reconstructed startAudioStreamRecord @ 0x2f764  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int message, unsigned int function);
-extern void debug_print(unsigned int message, unsigned int function);
 extern unsigned int get_device_info(void);
 extern void display_DelayClose(unsigned int ms);
 extern int k_msgq_put(int a, void *b, int c, int d);

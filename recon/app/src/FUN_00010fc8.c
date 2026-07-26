@@ -1,26 +1,22 @@
 /* Reconstructed FUN_00010fc8 @ 0x10fc8 */
 #include <stdint.h>
 
-extern uint64_t DEBUG_PRINT(uint32_t, uint32_t, uint32_t, uint32_t);
+extern void DEBUG_PRINT(uint32_t, ...);
 extern uint64_t FUN_0000d804(uint32_t);
 extern uint64_t FUN_0000d848(uint32_t);
 extern void FUN_0000d8f8(uint32_t, uint32_t, uint32_t, uint32_t);
 extern uint64_t FUN_0000db4c(uint32_t, uint32_t, uint32_t, uint32_t);
 extern uint32_t FUN_0000dea8(void);
 extern uintptr_t FUN_000167a8(void);
-extern void FUN_00019c70(uint32_t, uint32_t, uint32_t, uint32_t);
+extern void FUN_00019c70(uint32_t, ...);
 extern uint32_t FUN_0002e648(uint32_t);
 
 uint32_t FUN_00010fc8(uint32_t request, uint32_t context,
                       uint32_t *buffer_slot, uint8_t *encoded_size)
 {
-    uint64_t debug_state = DEBUG_PRINT(0x000a6a28u, context,
-                                      (uint32_t)(uintptr_t)buffer_slot,
-                                      (uint32_t)(uintptr_t)encoded_size);
+    DEBUG_PRINT(0x000a6a28u);
     if (buffer_slot == 0 || encoded_size == 0) {
-        DEBUG_PRINT(0x000a6a61u, (uint32_t)(debug_state >> 32),
-                    (uint32_t)(uintptr_t)buffer_slot,
-                    (uint32_t)(uintptr_t)encoded_size);
+        DEBUG_PRINT(0x000a6a61u);
         return UINT32_MAX;
     }
 
@@ -52,10 +48,9 @@ uint32_t FUN_00010fc8(uint32_t request, uint32_t context,
     *(uint32_t *)(out + 32) = value;
     if (*(volatile int32_t *)0x2000230cu > 2) {
         if (*(volatile int32_t *)0x20007554u == 0)
-            DEBUG_PRINT(0x000a6a7cu, 0x000a76beu, value, 0);
+            DEBUG_PRINT(0x000a6a7cu, 0x000a76beu, value);
         else
-            FUN_00019c70(0x000a6a7cu, 0x000a76beu, value,
-                         *(volatile uint32_t *)0x20007554u);
+            FUN_00019c70(0x000a6a7cu, 0x000a76beu, value);
     }
     *encoded_size = 0x24;
     (void)request;

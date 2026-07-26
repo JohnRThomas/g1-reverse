@@ -16,6 +16,7 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_app_language_msgq                      @ 0x200079e4
  */
+#include "../headers/g1_log.h"
 /* Reconstructed sendAudioStram2Cache @ 0x2f6b0  (CFG-directed parity verified) */
 
 typedef unsigned char uint8_t;
@@ -29,8 +30,6 @@ struct audio_cache_record {
     uint8_t payload[200];
 };
 
-extern void log_message(uint32_t format, uint32_t module);
-extern void debug_print(uint32_t format, uint32_t module);
 extern int k_msgq_put(void *queue, const void *record, int timeout, int flags);
 extern void k_sem_give(void *event);
 extern void memcpy(void *destination, const void *source, int length);

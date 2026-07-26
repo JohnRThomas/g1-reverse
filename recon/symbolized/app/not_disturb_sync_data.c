@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0003ce04 @ 0x0003ce04
  * public-name: not_disturb_sync_data
  * durable-map: recon/catalogs/function_names_app.json
@@ -18,9 +19,7 @@
 typedef unsigned int uint32_t;
 typedef unsigned char uint8_t;
 
-extern void log_message(uint32_t a, uint32_t b);
 extern uint32_t get_device_info(void);
-extern void debug_print(uint32_t a, uint32_t b);
 extern uint32_t esb_send_command_and_wait_ack(uint32_t a, uint32_t b, void* c, uint32_t d, void* e);
 extern void memcpy(uint32_t dst, void* src, uint32_t len);
 extern uint32_t sync_to_slave(uint32_t a, uint32_t b, void* c, uint32_t d);

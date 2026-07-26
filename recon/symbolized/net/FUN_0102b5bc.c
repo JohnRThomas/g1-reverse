@@ -1,5 +1,6 @@
 #include "g1_net_symbols.h"
 #include "../../headers/g1_nrf_regs.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0102b5bc @ 0x0102b5bc
  * public-name: FUN_0102b5bc
  * durable-map: recon/catalogs/function_names_net.json
@@ -52,7 +53,6 @@ extern void FUN_0102b758(unsigned int);
 
 extern int FUN_0103037c(int);
 extern int onoff_request(int, void *);
-extern void printk(int, int);
 extern void FUN_0102bba8(int);
 
 /* P4 iteration 21 - the on-stack `struct onoff_client` must be ONE contiguous

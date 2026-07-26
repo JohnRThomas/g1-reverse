@@ -30,12 +30,11 @@
  */
 /* Reconstructed FUN_0002c498 @ 0x2c498  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef unsigned int uint;
 typedef unsigned char byte;
 typedef unsigned char undefined1;
-extern void log_message(unsigned, ...);
 extern int get_device_info(void);
-extern void debug_print(unsigned, ...);
 extern void trigger_screen_state_change(unsigned a, byte *b, uint c);
 extern void update_temp_task_status(byte *a, int b, int c);
 extern void update_persist_task_status_to_idle(byte *a);

@@ -19,11 +19,11 @@
  */
 /* Reconstructed FUN_00057a04 @ 0x57a04  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern int l2cap_chan_send_disconnect(int,int);
 extern int net_buf_unref(int);
 extern short net_buf_append_bytes(int,int,int);
 extern int assert_post_action(int,int);
-extern int printk(int,int,int,int);
 extern long long net_buf_frags_len(int);
 extern int atomic_get_word(int);
 extern int log_msg_3arg_thunk(int,int,void*);

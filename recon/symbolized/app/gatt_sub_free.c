@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00059e78 @ 0x00059e78
  * public-name: gatt_sub_free
  * durable-map: recon/catalogs/function_names_app.json
@@ -16,7 +17,6 @@
 /* Reconstructed FUN_00059e78 @ 0x59e78  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(unsigned int a, unsigned int b);
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern void bt_addr_le_copy_828da(void *a, unsigned int b, unsigned int c, unsigned int d);
 
 void gatt_sub_free(char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

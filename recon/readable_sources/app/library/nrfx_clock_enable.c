@@ -20,7 +20,7 @@
 /* Reconstructed FUN_000651d8 @ 0x651d8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
+#include "../../../headers/g1_log.h"
 extern void assert_post_action(unsigned int, unsigned int);
 extern int arch_irq_is_enabled(int);
 extern void arch_irq_enable(int);

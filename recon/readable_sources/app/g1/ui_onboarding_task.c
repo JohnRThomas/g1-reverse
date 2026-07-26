@@ -26,13 +26,12 @@
  */
 /* Reconstructed FUN_00042d44 @ 0x42d44  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 typedef unsigned int uint;
 typedef unsigned undefined4;
 typedef unsigned char byte;
 typedef unsigned char undefined1;
-extern void log_message(unsigned, ...);
 extern int get_device_info(void);
-extern void debug_print(unsigned, ...);
 extern void onboarding_retry_watchdog_update(void);
 extern void onboarding_render_step_screen(int a);
 extern void render_onboarding_screen(int a);

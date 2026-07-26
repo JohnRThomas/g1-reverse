@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   local_d8         => struct g1_layout_audio_stream_params__stack_0934        [stack_0934; G1-original]
  * Raw function identity: 0x0002f764.  See ../include/g1_recovered_layouts.h. */
@@ -24,8 +25,6 @@
  */
 /* Reconstructed startAudioStreamRecord @ 0x2f764  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int message, unsigned int function);
-extern void debug_print(unsigned int message, unsigned int function);
 extern unsigned int get_device_info(void);
 extern void display_DelayClose(unsigned int ms);
 extern int k_msgq_put(int a, void *b, int c, int d);

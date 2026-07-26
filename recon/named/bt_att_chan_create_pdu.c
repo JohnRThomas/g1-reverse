@@ -26,6 +26,7 @@
  */
 /* Reconstructed FUN_000585f0 @ 0x585f0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern int att_op_get_type(int);
 extern int net_buf_reset(void);
 extern int net_buf_unref(int);
@@ -35,7 +36,6 @@ extern int net_buf_simple_add(int,int);
 extern int net_buf_pool_get_727ac(int);
 extern int k_current_get(void);
 extern int assert_post_action(int,int);
-extern int printk(int,int,int,int);
 extern int att_create_pdu_reserve4(int,int,int,int);
 extern int att_log_emit_3arg(int,int,void*);
 

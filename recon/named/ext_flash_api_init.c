@@ -20,14 +20,13 @@
  *   g_ext_flash_mutex                        @ 0x20007b54
  *   g_ext_flash_dev                          @ 0x20007b68
  */
+#include "../headers/g1_log.h"
 /* Reconstructed ext_flash_api_init @ 0x2e4e8  (parity: 300/300 trials, PROVEN) */
 
 extern void kmutex_dlist_init(unsigned int);
 extern unsigned int z_device_is_ready(unsigned int);
 extern unsigned short z_impl_flash_get_page_count(unsigned int);
 extern unsigned int get_device_info(void);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, ...);
 
 unsigned int ext_flash_api_init(unsigned int *param_1, unsigned int *param_2, unsigned int *param_3, unsigned int param_4)
 {

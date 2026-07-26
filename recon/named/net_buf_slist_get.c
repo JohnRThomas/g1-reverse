@@ -22,8 +22,8 @@
 /* Reconstructed FUN_0005f148 @ 0x5f148  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../headers/g1_log.h"
 typedef uint32_t u32;
-extern void printk(u32,u32,...);
 extern void assert_post_action(u32,u32);
 extern int z_spin_lock_valid(u32);
 extern void z_spin_lock_set_owner(u32);

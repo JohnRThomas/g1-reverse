@@ -15,9 +15,9 @@
  */
 /* Reconstructed FUN_00067e8c @ 0x67e8c  (parity: 1/400 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef unsigned int uint;
 extern void assert_post_action(uint32_t,uint32_t);
-extern void printk(uint32_t,uint32_t,uint32_t,uint32_t);
 uint32_t g1_recon_nrfx_wdt_channel_alloc(int* param_1, uint8_t* param_2){
   uint8_t r4byte=*(volatile uint8_t*)((char*)param_1+4);
   if(param_2==0){

@@ -13,13 +13,12 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_panel_spi_id                           @ 0x2000a074
  */
+#include "../headers/g1_log.h"
 /* Reconstructed jdb_panel_init @ 0x46fc0  (parity: 300/300 trials, PROVEN) */
 
 extern void panel_init(void);
 extern void set_brightness_to_panel_reg(unsigned int);
 extern int spi_read_id(void);
-extern void log_message(unsigned int,unsigned int);
-extern void debug_print(unsigned int,unsigned int);
 
 unsigned int jdb_panel_init(unsigned char *param_1)
 {

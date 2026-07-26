@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0004a568 @ 0x0004a568
  * public-name: uint32_to_little_endian
  * durable-map: recon/catalogs/function_names_app.json
@@ -12,8 +13,6 @@
  */
 /* Reconstructed uint32_to_little_endian @ 0x4a568  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
-extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 
 unsigned int uint32_to_little_endian(unsigned char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00048b5c @ 0x00048b5c
  * public-name: ui_refalsh_warp
  * durable-map: recon/catalogs/function_names_app.json
@@ -34,8 +35,6 @@
 
 extern int is_battery_critical(void);
 extern int update_demo_image_display(int,int,int);
-extern int log_message(int,int,int,int);
-extern int debug_print(int,int,int,int);
 extern int ui_ancs_notification_task(int,int,int);
 extern int ui_new_message_task(int,int,int);
 extern int ui_navigation_task(int,int,int);

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   0x000332a4       => struct g1_layout_pt_data_indices__global_0961           [global_0961; G1-original]
  *   local_1c         => struct g1_layout_pt_data_pair__stack_0960               [stack_0960; G1-original]
@@ -39,8 +40,6 @@
  *   g_pt_status_msg_buf                      @ 0x2001a0f5
  */
 /* Reconstructed FUN_000330ec @ 0x330ec  (parity: 300/300 trials, PROVEN) */
-extern int log_message(int,...);
-extern int debug_print(int,...);
 extern int set_delay_deadline(int,...);
 extern int display_dev_reg_config(void);
 extern int set_pending_state_flag(int,...);

@@ -11,10 +11,10 @@
  */
 /* Reconstructed FUN_00025670 @ 0x25670 CFG_VERIFY_CALL_ARITIES=3,4,0,2 */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern void memcpy(uint8_t *, const uint8_t *, uint32_t);
 extern int ipc_transport_ops_dispatch(uint32_t, void *, uint32_t, uint32_t);
 extern void sleep_fixed_33_ticks(void);
-extern void log_message(uint32_t, int);
 struct part { uint8_t *data; uint32_t length; uint8_t type; };
 int dev_send_cmd16_payload(uint32_t *dev, uint32_t op, uint32_t command,
                  uint32_t value, uint32_t n)

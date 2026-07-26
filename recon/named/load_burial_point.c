@@ -12,13 +12,12 @@
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed load_burial_point @ 0x230e0  (parity: 300/300 trials, PROVEN) */
 
 extern int flash_settings_read(unsigned int, void*, int, unsigned int, unsigned int);
 extern unsigned int sys_rand32_get(void);
 extern void memset_bytes(void*, int, int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int,unsigned int);
 
 unsigned int load_burial_point(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

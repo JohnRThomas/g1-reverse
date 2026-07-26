@@ -24,12 +24,12 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 typedef uint32_t u32;
-extern void printk(u32,u32,...);
 extern void assert_post_action(u32,u32);
 extern int z_spin_lock_valid(u32);
 extern void z_spin_lock_set_owner(u32);
 extern int z_spin_unlock_valid(u32);
 #include "../../headers/g1_cmsis_shim.h"
+#include "../../headers/g1_log.h"
 u32* net_buf_slist_get(u32* param_1){
     u32 uVar4, uVar6;
     if(param_1 == 0){

@@ -30,9 +30,8 @@
  */
 /* Reconstructed FUN_00034dbc @ 0x34dbc. */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
-extern void log_message(uint32_t format, ...);
-extern void debug_print(uint32_t format, ...);
 extern void cjson_delete(int object);
 extern int cbor_decode_start_default(void);
 extern unsigned int sllist_count_nodes(int object);

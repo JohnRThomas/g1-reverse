@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0005e9a0 @ 0x0005e9a0
  * public-name: bt_keys_add_type
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,7 +15,6 @@
 /* Reconstructed FUN_0005e9a0 @ 0x5e9a0  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long assert_post_action(unsigned int a0, unsigned int a1);
-extern void printk(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3);
 
 void bt_keys_add_type(int param_1, unsigned short param_2, unsigned int param_3, unsigned int param_4)
 {

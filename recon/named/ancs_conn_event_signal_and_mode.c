@@ -8,9 +8,9 @@
  *   rodata_9a436                             @ 0x0009a436   [INLINED -- G6 literal batch]
  *   g_ancs_active_conn                       @ 0x20006ab8
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00018300 @ 0x18300  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(int);
 extern void k_sem_give(int);
 extern void change_work_mode_to(int);
 void ancs_conn_event_signal_and_mode(int param_1, unsigned int param_2)

@@ -24,6 +24,7 @@
  */
 /* Full reconstruction of FUN_000571e8 @ 0x571e8 (owned code: 258 bytes). */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 typedef struct {
     uint8_t reserved_00[0x0d];
@@ -44,8 +45,6 @@ typedef struct {
 extern int atomic_and_2(const void *object, int selector);
 extern void bt_conn_tx_drain_and_reset(stream_owner_t *owner);
 extern void *k_fifo_peek_head_impl(void *queue);
-extern void printk(uintptr_t subsystem, uintptr_t file,
-                         uintptr_t message, unsigned line);
 extern stream_fragment_t *net_buf_ref(void *object);
 extern stream_fragment_t *bt_conn_frag_buf_destroy(unsigned kind, int a, int b, int c);
 extern int conn_tx_send_to_driver(stream_owner_t *owner, stream_fragment_t *source,

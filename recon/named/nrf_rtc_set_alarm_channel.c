@@ -11,9 +11,9 @@
  *   rodata_f6659                             @ 0x000f6659
  *   rodata_f66a6                             @ 0x000f66a6   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00063778 @ 0x63778  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 extern void assert_post_action(unsigned int, unsigned int);
 extern void compare_set(unsigned int, unsigned int, unsigned int,
                          unsigned int, unsigned int, unsigned int,

@@ -14,8 +14,7 @@
 /* Reconstructed clean_fb_data @ 0x471cc  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, ...);
+#include "../../../headers/g1_log.h"
 extern void memset_bytes(int, void*, int);
 
 int clean_fb_data(int param_1, void *param_2, int param_3, int param_4, int param_5, int param_6)

@@ -23,6 +23,7 @@
  * Durable reverse mapping: recon/catalogs/function_names_app.json.
  */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 /* Semantic aliases retain exact raw linker identities. */
 #define log_message log_message
@@ -33,8 +34,6 @@
 #define get_device_info get_device_info
 #define reflash_fb_data_to_lcd reflash_fb_data_to_lcd
 
-extern void log_message(uintptr_t, ...);
-extern void debug_print(uintptr_t, ...);
 extern void gui_canvas_flags_clear_bit1(void);
 extern void gui_canvas_flags_set_bit1(void);
 extern void draw_message(uint32_t, int);

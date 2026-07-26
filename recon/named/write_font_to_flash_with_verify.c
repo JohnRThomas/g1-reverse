@@ -17,10 +17,10 @@
  *   rodata_9e46a                             @ 0x0009e46a   [INLINED -- G6 literal batch]
  *   rodata_a40ec                             @ 0x000a40ec
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00022834 @ 0x22834  (parity: 300/300 trials, PROVEN) */
 
 typedef int (*codeptr)(int,...);
-extern int log_message(int,...);
 extern int get_device_info(void);
 extern int k_sleep(int,int);
 extern int z_device_is_ready(int);

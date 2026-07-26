@@ -15,6 +15,7 @@
  */
 /* Reconstructed FUN_0005f3d8 @ 0x5f3d8, exact extent 100 bytes. */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 typedef struct list_node {
     uint32_t value;
@@ -22,7 +23,6 @@ typedef struct list_node {
 } list_node_t;
 
 extern void net_buf_unref(list_node_t *node);
-extern void printk(uintptr_t format, ...);
 extern void assert_post_action(uintptr_t file, uint32_t line);
 
 list_node_t *net_buf_frag_del(list_node_t *previous, list_node_t *node)

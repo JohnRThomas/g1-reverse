@@ -30,11 +30,10 @@
  */
 /* Reconstructed FUN_000442bc @ 0x442bc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 typedef unsigned char byte; typedef uint32_t undefined4; typedef uint16_t undefined2; typedef unsigned int uint; typedef unsigned short ushort;
-extern int log_message(int,...);
 extern int strlen(int,...);
 extern int get_device_info(int,...);
-extern int debug_print(int,...);
 extern int atomic_get_3_0(int,...);
 extern int gui_utf_draw(int,...);
 extern int resource_manger_get(int,...);

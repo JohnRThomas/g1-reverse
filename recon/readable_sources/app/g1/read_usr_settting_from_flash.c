@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_usr_settings_record__param_0046        [param_0046; G1-original]
  * Raw function identity: 0x00023400.  See ../include/g1_recovered_layouts.h. */
@@ -19,8 +20,6 @@
 /* Reconstructed read_usr_settting_from_flash @ 0x23400  (parity: 300/300 trials, PROVEN) */
 extern void memset_bytes(void *a0, unsigned int a1, unsigned int a2);
 extern int flash_settings_read(unsigned int a0, void *a1, unsigned int a2);
-extern void log_message(unsigned int a0, unsigned int a1);
-extern void debug_print(unsigned int, unsigned int);
 
 unsigned int read_usr_settting_from_flash(unsigned char *param_1)
 {

@@ -17,8 +17,7 @@
  */
 /* Reconstructed FUN_00017eec @ 0x17eec  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(uint32_t);
-extern void debug_print(uint32_t diagnostic);
+#include "../../headers/g1_log.h"
 extern void k_msgq_put(void);
 extern int FUN_000720d0_i(uint32_t,void*,int,int);
 extern void k_msgq_get(uint32_t,void*,int,int);

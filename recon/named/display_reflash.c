@@ -21,8 +21,7 @@
  */
 /* Reconstructed FUN_0004967c @ 0x4967c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(unsigned,unsigned,unsigned,unsigned);
-extern void debug_print(unsigned,unsigned,...);
+#include "../headers/g1_log.h"
 extern void submit_display_reflash_work(void);
 extern int k_msgq_put(unsigned,void*,int,int);
 extern void memcpy(void*,int,unsigned);

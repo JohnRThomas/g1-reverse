@@ -27,6 +27,7 @@
 /* CPUAPP ui_new_message_task @ 0x00036b3c.
  * Raw/back-map identity: FUN_00036b3c, exact reachable extent 0x1fc bytes. */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 extern uintptr_t get_device_info(void);
 extern uint32_t get_message_pending_state(void);
@@ -41,8 +42,6 @@ extern void gui_bmp_bitmap_draw(uint32_t glyph, uint32_t x, uint32_t y,
                          uint32_t a3, uint32_t a4, uint32_t a5);
 extern void reflash_fb_data_to_lcd(uintptr_t left, uintptr_t right, uint32_t x,
                          uint32_t y, uint32_t width, uint32_t height);
-extern void log_message(uintptr_t format, ...);
-extern void debug_print(uintptr_t format, ...);
 
 #define LOG_ROUTE (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
 #define MESSAGE_TASK_ACTIVE (*(volatile uint8_t *)((unsigned long)&g_2001b813) /*=0x2001b813*/)

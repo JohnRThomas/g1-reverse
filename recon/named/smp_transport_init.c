@@ -15,11 +15,11 @@
  *   rodata_f293b                             @ 0x000f293b   [INLINED -- G6 literal batch]
  *   rodata_f2963                             @ 0x000f2963
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_000526f4 @ 0x526f4  (parity: 300/300 trials, PROVEN) */
 
 extern void k_work_init(int a, unsigned int b);
 extern void assert_post_action(unsigned int a, unsigned int b);
-extern void printk(unsigned int a, ...);
 extern void smp_reassembly_init(void);
 #define z_impl_k_queue_init z_impl_k_queue_init
 extern void z_impl_k_queue_init(void *queue);

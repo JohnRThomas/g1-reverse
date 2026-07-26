@@ -20,10 +20,10 @@
  */
 /* Reconstructed FUN_000739f0 @ 0x739f0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 extern int z_spin_unlock_valid(int);
 extern void arch_swap(int);
 extern void assert_post_action(int,int);
-extern void printk(int,...);
 void z_reschedule(int param_1, int param_2){
   unsigned int r6;
   int r0v;

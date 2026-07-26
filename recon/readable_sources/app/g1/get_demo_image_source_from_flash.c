@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000365ec @ 0x000365ec
  * public-name: get_demo_image_source_from_flash
  * durable-map: recon/catalogs/function_names_app.json
@@ -25,7 +26,6 @@
  *   g_pixel4bit_row_buf                      @ 0x20009fcc
  */
 /* Reconstructed FUN_000365ec @ 0x365ec  (parity: 300/300 trials, PROVEN) */
-extern void log_message(int,...);
 extern int  get_device_info(void);
 extern void pixelto4bithex_for_flash(int,int);
 extern int  malloc(int);

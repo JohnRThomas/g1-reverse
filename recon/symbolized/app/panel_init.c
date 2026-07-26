@@ -19,9 +19,8 @@
  */
 /* Reconstructed panel_init @ 0x47538. */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void log_message(uint32_t format, ...);
-extern void debug_print(uint32_t format, ...);
 extern void projector_send_cmd1(uint32_t a, uint32_t b);
 extern void projector_send_cmd_c0(uint32_t a, uint32_t b);
 extern void projector_send_cmd_0x46(uint32_t a);

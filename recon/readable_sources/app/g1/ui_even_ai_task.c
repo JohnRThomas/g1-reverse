@@ -42,13 +42,14 @@
  * Literal islands at 0x3c2dc, 0x3c644 and 0x3c9a8 are jumped over by the
  * original CFG; the final trailing literal pool begins at 0x3cb2c. */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 #define ALWAYS_INLINE static __attribute__((always_inline)) inline
 
 /* Callee provenance (readable local name <- raw identity @ address). */
 extern uintptr_t get_device_info(void);                         /* FUN_000167a8 @ 0x000167a8 */
-extern int log_message(uintptr_t, uintptr_t, int, int);         /* FUN_0007dda4 @ 0x0007dda4 */
-extern int debug_print(uintptr_t, uintptr_t, int, int);         /* FUN_00019c70 @ 0x00019c70 */
+/* FUN_0007dda4 @ 0x0007dda4 */
+/* FUN_00019c70 @ 0x00019c70 */
 extern int get_ui_mode_flag_byte1(void);                                  /* @ 0x00023ee0 */
 extern uintptr_t draw_status_icon_by_state(void *, ...);                     /* @ 0x0003be18 */
 extern uintptr_t gui_set_active_canvas(uintptr_t);                       /* @ 0x000431b4 */

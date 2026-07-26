@@ -12,12 +12,11 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_boot_uptime_s                          @ 0x2000a0b0
  */
+#include "../headers/g1_log.h"
 /* Reconstructed get_boot_seconds @ 0x4a51c  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long k_uptime_get_9(void);
 extern int __aeabi_ldivmod(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int);
 
 int get_boot_seconds(void)
 {

@@ -17,8 +17,8 @@
 /* Full reconstruction FUN_000604e4 @ 0x000604e4 (114-byte exact extent). */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../../../headers/g1_log.h"
 
-extern void printk(uintptr_t, uintptr_t, uintptr_t, uint32_t);
 extern void assert_post_action(uintptr_t, uint32_t) __attribute__((noreturn));
 
 int clock_control_nrf_on(uint8_t *device, uint8_t type, uint32_t owner)

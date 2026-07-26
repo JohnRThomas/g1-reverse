@@ -28,11 +28,9 @@
 /* Full reconstruction FUN_00026418 @ 0x26418, exact extent 320 bytes.
  * CFG_VERIFY_CALL_ARITIES=3,4,2 */
 #include <stdint.h>
-extern void log_message(uintptr_t,...);
-extern void debug_print(uintptr_t,...);
+#include "../../headers/g1_log.h"
 extern void arch_irq_priority_set(uint32_t,uint32_t);
 extern uint32_t nrfx_spim_init(void*,void*,uintptr_t,uintptr_t);
-extern void printk(uintptr_t,uintptr_t,uintptr_t,uint32_t);
 extern void assert_post_action(uintptr_t,uint32_t);
 extern void memset_bytes(void*,int,uint32_t);
 struct spi_map { uint32_t base, tag; };

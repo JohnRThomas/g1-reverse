@@ -10,9 +10,9 @@
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f84d6                             @ 0x000f84d6
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00073cdc @ 0x73cdc  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int a,unsigned int b,unsigned int c,unsigned int d);
 extern unsigned long long assert_post_action(unsigned int a,unsigned int b);
 
 void dlist_unlink_node(unsigned int param_1, int *param_2, unsigned int param_3, unsigned int param_4)

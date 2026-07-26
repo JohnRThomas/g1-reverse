@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00023514 @ 0x00023514
  * public-name: enqueue_file
  * durable-map: recon/catalogs/function_names_app.json
@@ -20,8 +21,6 @@
 extern void k_msgq_get(unsigned int, void*, int, int);
 extern void safe_memcpy_checked(void*, unsigned int, unsigned int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, ...);
 
 int enqueue_file(unsigned int param_1, unsigned int param_2)
 {

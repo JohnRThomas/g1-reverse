@@ -7,9 +7,9 @@
  * address symbols (name @ address):
  *   rodata_9a8c3                             @ 0x0009a8c3   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00018a1c @ 0x18a1c  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int fmt);
 extern void gatt_discover(unsigned int a, unsigned int b);
 
 void discovery_service_not_found_cb_gatt(unsigned int param_1)

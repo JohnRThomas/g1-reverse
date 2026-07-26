@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00074274 @ 0x00074274
  * public-name: z_abort_thread_timeout
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,7 +16,6 @@
 /* Reconstructed FUN_00074274 @ 0x74274  (parity: 300/300 trials, PROVEN) */
 
 extern void dlist_unlink_node(int, int);
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
 extern unsigned long long assert_post_action(unsigned int, unsigned int);
 
 void z_abort_thread_timeout(int param_1)

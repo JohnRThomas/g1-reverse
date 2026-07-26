@@ -11,10 +11,10 @@
  *   rodata_f7a3f                             @ 0x000f7a3f
  *   m_dppi_channels                          @ 0x2000b41c
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00067f1c @ 0x67f1c  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long assert_post_action(unsigned int a,unsigned int b);
-extern void printk(unsigned int a,unsigned int b,unsigned int c,unsigned int d);
 
 void nrfx_dppi_channel_slot_reset(int *param_1, int param_2, unsigned int param_3, unsigned int param_4)
 {

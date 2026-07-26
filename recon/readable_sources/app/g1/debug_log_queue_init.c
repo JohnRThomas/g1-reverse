@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00019bd0 @ 0x00019bd0
  * public-name: debug_log_queue_init
  * durable-map: recon/catalogs/function_names_app.json
@@ -13,7 +14,6 @@
 /* Reconstructed FUN_00019bd0 @ 0x19bd0  (parity: 300/300 trials, PROVEN) */
 
 extern int z_impl_k_msgq_alloc_init(void *, int, int);
-extern void log_message(unsigned int);
 
 int debug_log_queue_init(void)
 {

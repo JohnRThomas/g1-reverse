@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00025850 @ 0x00025850
  * public-name: ipc_ept_op_c_locked_retry
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,7 +15,6 @@ extern void FUN_0007c872(unsigned,unsigned,unsigned,unsigned);
 extern int set_uart_line_ctrl_dtr(int,unsigned,unsigned,int);
 extern void FUN_0007c876(unsigned);
 extern unsigned long long sleep_fixed_33_ticks(void);
-extern void log_message(unsigned,unsigned,unsigned,int);
 int ipc_ept_op_c_locked_retry(int param_1, unsigned param_2, unsigned param_3, int param_4){
     int iVar1;
     if (param_4 == 0){ iVar1 = 0; }

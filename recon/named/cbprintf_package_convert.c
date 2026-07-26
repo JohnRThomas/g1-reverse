@@ -18,6 +18,7 @@
  *   rodata_f0642                             @ 0x000f0642   [INLINED -- G6 literal batch]
  *   rodata_f0661                             @ 0x000f0661
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0004abc0 @ 0x4abc0  (parity: 1/1 trials, PROVEN) */
 typedef unsigned char byte;
 typedef unsigned int uint;
@@ -28,7 +29,6 @@ extern int strlen(void *);
 extern int z_log_msg_runtime_create(uint,uint,void*,int);
 extern long long is_ptr(uint,uint);
 extern void assert_post_action(uint,uint) __attribute__((noreturn));
-extern void printk(uint,uint,uint,uint);
 extern void memcpy(void*,void*,uint);
 
 int cbprintf_package_convert(byte *param_1,int param_2,int (*param_3)(byte*,int,uint),

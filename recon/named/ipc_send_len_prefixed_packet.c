@@ -8,11 +8,11 @@
  * address symbols (name @ address):
  *   rodata_9f239                             @ 0x0009f239   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00025740 @ 0x25740  (parity: 300/300 trials, PROVEN) */
 
 extern int ipc_transport_ops_dispatch(int, void*, int, int);
 extern void sleep_fixed_33_ticks(void);
-extern void log_message(unsigned int, int);
 
 int ipc_send_len_prefixed_packet(int param_1, int param_2, unsigned int param_3, int param_4, int param_5)
 {

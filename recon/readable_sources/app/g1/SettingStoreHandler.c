@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   0x000243e8       => struct g1_layout_setting_store_handler_state__global_0886 [global_0886; G1-original]
  *   local_20         => struct g1_layout_setting_store_ctx__stack_0887          [stack_0887; G1-original]
@@ -100,9 +101,7 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern void log_message(unsigned int format, ...);
 extern unsigned int get_device_info(void);
-extern void debug_print(unsigned int format, ...);
 extern int k_msgq_get(unsigned int,void*,unsigned int,unsigned int);
 extern int z_device_is_ready(unsigned int);
 #define firmware_data_0002418c ((unsigned long)&g_flash_store_cmd_msgq) /*=0x20003994*/

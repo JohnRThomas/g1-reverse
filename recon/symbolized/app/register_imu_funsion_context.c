@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00026250 @ 0x00026250
  * public-name: register_imu_funsion_context
  * durable-map: recon/catalogs/function_names_app.json
@@ -16,8 +17,6 @@
  */
 /* Reconstructed register_imu_funsion_context @ 0x26250  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
-extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 
 unsigned int register_imu_funsion_context(unsigned char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

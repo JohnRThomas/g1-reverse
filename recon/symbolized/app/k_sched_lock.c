@@ -26,12 +26,12 @@
  */
 /* Reconstructed FUN_00073bf4 @ 0x73bf4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 extern int z_spin_lock_valid(void*);
 extern int z_spin_unlock_valid(void*);
 extern void z_spin_lock_set_owner(void*);
 extern void sched_update_cache(void);
 extern void assert_post_action(unsigned,unsigned);
-extern void printk(unsigned,...);
 extern void z_reschedule_irqlock(unsigned);
 
 void k_sched_lock(void){

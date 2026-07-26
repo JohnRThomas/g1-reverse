@@ -41,6 +41,7 @@
 /* Full reconstruction fuel_gauge_update @ 0x10b18. */
 #include <stdint.h>
 #include <stdbool.h>
+#include "../../../headers/g1_log.h"
 typedef uint8_t undefined1; typedef uint16_t undefined2;
 typedef uint32_t undefined4; typedef uint64_t undefined8;
 typedef uint8_t byte; typedef int64_t longlong; typedef uint64_t ulonglong; typedef uint32_t uint;
@@ -76,11 +77,10 @@ typedef uint8_t byte; typedef int64_t longlong; typedef uint64_t ulonglong; type
 #define firmware_data_00010f9c 0x0001d4bfu
 #define firmware_data_00010fa0 ((uint8_t *)((unsigned long)&g_flash_crc_skip_watchdog_flag) /*=0x20018d90*/)
 #define firmware_data_00010fa4 0.0f
-extern uint32_t log_message(uintptr_t,...);
 extern uint64_t __aeabi_dadd(uint32_t,...); extern uint64_t __extendsfdf2(float);
 extern uint64_t __muldf3(uint32_t,...); extern uint8_t __fixunsdfsi(uint32_t,...);
 extern float __floatdisf(void); extern float battery_soc_from_curve(float,float,float,float,uint32_t);
-extern uint32_t get_device_info(void); extern uint32_t debug_print(uintptr_t,...);
+extern uint32_t get_device_info(void);
 extern uint32_t get_product_code_buf(void); extern uint32_t esb_send_command_and_wait_ack(uintptr_t,...);
 extern int fuel_gauge_read_voltage_current_temp(uint32_t,float*,float*,float*); extern int fuel_gauge_poll_should_stop(void);
 extern void fuel_gauge_lock(void); extern void fuel_gauge_unlock(void);

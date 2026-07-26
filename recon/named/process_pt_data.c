@@ -33,9 +33,8 @@
  *   g_system_19ff5                           @ 0x20019ff5
  *   g_pt_status_msg_buf                      @ 0x2001a0f5
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_000330ec @ 0x330ec  (parity: 300/300 trials, PROVEN) */
-extern int log_message(int,...);
-extern int debug_print(int,...);
 extern int set_delay_deadline(int,...);
 extern int display_dev_reg_config(void);
 extern int set_pending_state_flag(int,...);

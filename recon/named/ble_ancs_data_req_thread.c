@@ -30,11 +30,11 @@
  */
 /* Reconstructed FUN_00019718 @ 0x19718 CFG_VERIFY_PREFIX_FIRST */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern void z_impl_k_sem_init(void*,int,int),init_msgq_ancs(void),init_msgq_uid(void),wait_for_event(int,int);
 extern uint8_t *get_device_info(void); extern void k_msleep_ticks32768_d(int);
 extern void z_impl_k_sem_take(void*,int64_t);
 extern int dequeue_uid(void*); extern int request_ancs_attr_ext(void); extern void enqueue_ancs(void*),memset_bytes(void*,int,int),ancs_notification_forward(void*);
-extern void log_message(uint32_t,...),debug_print(uint32_t,...);
 void ble_ancs_data_req_thread(uint8_t *c,uint32_t p2,uint32_t p3,uint32_t p4){
  volatile int *lv=(int*)0x2000230c,*sink=(int*)0x20007554; volatile uint32_t *ev=(uint32_t*)0x20006aac;
  if(*lv>2){if(!*sink)log_message(0x99969,((unsigned long)"ble_ancs_data_req_thread"),p3,0,p4);else debug_print(0x99969,((unsigned long)"ble_ancs_data_req_thread"),p3,*sink,p4);}

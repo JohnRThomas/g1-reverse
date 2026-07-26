@@ -68,13 +68,14 @@
  * [1756c,17664); jumped-over literal islands [17200,17264) and
  * [1750c,1756c); trailing literals begin at 0x17664. */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 /* Readable callee <- raw identity @ address. */
 extern uintptr_t boot_uptime_seconds_capture(void);             /* FUN_0004a500 @ 0x4a500 */
 extern uintptr_t app_event_alloc(unsigned, ...);                    /* @ 0x4f564 */
 extern uintptr_t app_event_manager_submit(void *, ...);                      /* @ 0x4f770 */
-extern uintptr_t log_message(uintptr_t, ...);                    /* DEBUG_PRINT/FUN_0007dda4 */
-extern uintptr_t debug_print(uintptr_t, ...);                    /* FUN_00019c70 @ 0x19c70 */
+/* DEBUG_PRINT/FUN_0007dda4 */
+/* FUN_00019c70 @ 0x19c70 */
 extern uintptr_t k_timer_start(void *, uint64_t, uint64_t);      /* FUN_00075174 @ 0x75174 */
 extern uintptr_t serialization_init(void);                       /* FUN_00025c54 @ 0x25c54 */
 extern void *malloc(unsigned);                                   /* FUN_00076d6c @ 0x76d6c */

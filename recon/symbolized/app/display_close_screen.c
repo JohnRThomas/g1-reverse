@@ -17,9 +17,8 @@
  */
 /* Reconstructed display_close_screen @ 0x49858  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(int,...);
+#include "../../headers/g1_log.h"
 extern int get_device_info(void);
-extern int debug_print(int,...);
 extern int set_dashboard_close_pending_flag(void);
 extern int display_close(void*,int);
 extern int mutex_unlock_syscall_handler(void);

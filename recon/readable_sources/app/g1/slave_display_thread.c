@@ -59,9 +59,9 @@
  * Durable name/back mapping: recon/catalogs/function_names_app.json.
  */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern void log_message(uintptr_t format, ...);
-extern void debug_print(uintptr_t format, ...); /* FUN_00019c70 @ 0x19c70 */
+/* FUN_00019c70 @ 0x19c70 */
 extern uintptr_t get_device_info(void);         /* get_device_info @ 0x167a8 */
 extern int is_battery_critical(void);            /* is_battery_critical @ 0x32ee4 */
 extern void change_work_mode_to(uint32_t mode);

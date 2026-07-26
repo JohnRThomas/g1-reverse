@@ -7,10 +7,10 @@
  * address symbols (name @ address):
  *   rodata_a3e1a                             @ 0x000a3e1a   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0002ea78 @ 0x2ea78  (parity: 300/300 trials, PROVEN) */
 
 extern int dev_write_reg3(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3);
-extern void log_message(unsigned int a0);
 
 unsigned int device_reg3_init_config(void)
 {

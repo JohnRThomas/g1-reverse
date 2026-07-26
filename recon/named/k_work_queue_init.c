@@ -11,9 +11,9 @@
  *   rodata_f820f                             @ 0x000f820f
  *   rodata_f824d                             @ 0x000f824d
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_000730b4 @ 0x730b4  (parity: 300/300 trials, PROVEN) */
 
-extern int printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern int assert_post_action(unsigned int a, unsigned int b);
 extern void memset_bytes(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 

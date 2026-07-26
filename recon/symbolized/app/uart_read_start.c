@@ -15,7 +15,7 @@
 /* Reconstructed FUN_000336a0 @ 0x336a0  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void log_message(int,...);
+#include "../../headers/g1_log.h"
 extern int k_mem_slab_alloc(unsigned,void*,int,int,int);
 typedef int (*fp1)(int,unsigned,int);
 typedef int (*fp2)(int,unsigned,int,int);

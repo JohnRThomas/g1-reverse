@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00064fa8 @ 0x00064fa8
  * public-name: nrfx_gppi_event_endpoint_clear
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,7 +16,6 @@
  */
 
 extern unsigned long long assert_post_action(unsigned int,unsigned int);
-extern void printk(unsigned int,unsigned int,unsigned int,unsigned int);
 void nrfx_gppi_event_endpoint_clear(
     unsigned int channel, int event_endpoint,
     unsigned int param_3, unsigned int param_4)

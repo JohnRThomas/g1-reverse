@@ -11,10 +11,10 @@
  */
 /* net-core FUN_0102b900 @ 0x102b900 */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 extern int z_impl_k_msgq_put(void *queue, const uint8_t *value,
                         unsigned flags, unsigned timeout);
-extern void printk(const void *message, int status);
 
 #define G1_ARCH_RUNTIME_EXCEPTION(reason) do { \
     __asm__ volatile("eors.n r0, r0\n\t" \

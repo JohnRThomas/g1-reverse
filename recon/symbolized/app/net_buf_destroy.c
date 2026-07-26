@@ -16,8 +16,8 @@
 /* Reconstructed FUN_00056080 @ 0x56080  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef int (*fnptr_t)(int,int,int);
-extern void printk(int a,int b,int c,int d);
 extern unsigned long long assert_post_action(int a,int b);
 extern void net_pkt_skip(int a);
 void net_buf_destroy(int param_1, int param_2)

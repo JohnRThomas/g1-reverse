@@ -20,8 +20,8 @@
  */
 /* Reconstructed FUN_0005833c @ 0x5833c, exact extent 118 bytes. */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern void printk(uintptr_t format, ...);
 extern void assert_post_action(uintptr_t file, uint32_t line);
 extern void net_pkt_skip(uintptr_t queue, void *item);
 extern void memset_bytes(void *destination, uint32_t value, uint32_t length);

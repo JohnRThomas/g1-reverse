@@ -18,11 +18,11 @@
  */
 /* Full reconstruction FUN_00056300 @ 0x00056300 (128-byte exact extent). */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 extern void *net_buf_get(void *, uint32_t, uint32_t, uint32_t);
 extern void net_buf_unref(void *);
 extern void net_buf_destroy(void *, void *);
-extern void printk(uintptr_t, ...);
 extern void assert_post_action(uintptr_t, uint32_t) __attribute__((noreturn));
 extern uint64_t bt_conn_reset_rx_state(void *);
 extern void k_work_reschedule(void *, uint32_t, uint32_t, uint32_t);

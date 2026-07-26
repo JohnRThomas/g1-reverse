@@ -11,9 +11,9 @@
  *   rodata_87bc0                             @ 0x00087bc0
  *   rodata_a7907                             @ 0x000a7907   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00033340 @ 0x33340  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int a);
 extern int fuel_gauge_dev_register(unsigned int a);
 extern int process_pt_data(void);
 extern int init_serial_port(void);

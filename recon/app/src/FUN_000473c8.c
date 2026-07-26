@@ -1,8 +1,8 @@
 /* Reconstructed FUN_000473c8 @ 0x473c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned long long u64;
-extern long long DEBUG_PRINT(int,...);
-extern long long FUN_00019c70(int,...);
+extern void DEBUG_PRINT(int,...);
+extern void FUN_00019c70(int,...);
 extern int FUN_000723b8(int,...);
 extern int FUN_00072558(int,...);
 extern int FUN_0007d4ec(int,...);
@@ -52,9 +52,9 @@ unsigned FUN_000473c8(int param_1,int param_2,int param_3,int param_4,int param_
             uVar3 = (unsigned)((u64)ret >> 32);
             if(iVar4 != 0 && 0 < *(volatile int*)0x2000230c){
                 if(*(volatile int*)0x20007554 == 0){
-                    uVar3 = (unsigned)((u64)DEBUG_PRINT(0x000d7383,0x000d7426) >> 32);
+                    DEBUG_PRINT(0x000d7383,0x000d7426);
                 } else {
-                    uVar3 = (unsigned)((u64)FUN_00019c70(0x000d7383, 0x000d7426) >> 32);
+                    FUN_00019c70(0x000d7383, 0x000d7426);
                 }
             }
             *(unsigned char*)(iVar7+iVar9) = uVar1;

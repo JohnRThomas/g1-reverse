@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000499b8 @ 0x000499b8
  * public-name: display_MasterSendClose
  * durable-map: recon/catalogs/function_names_app.json
@@ -19,8 +20,6 @@
 extern void memset_bytes(void *destination, int value, unsigned int length);
 extern int k_msgq_put(unsigned int queue, void *record,
                        unsigned int wait, unsigned int flags);
-extern void log_message(unsigned int format, unsigned int context);
-extern void debug_print(unsigned int format, unsigned int context, ...);
 
 unsigned int display_MasterSendClose(void)
 {

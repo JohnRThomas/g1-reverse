@@ -12,8 +12,8 @@
  */
 /* Reconstructed FUN_00019b54 @ 0x19b54  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef unsigned int uint;
-extern void log_message(uint32_t,uint32_t,uint,uint,uint,uint,uint,uint,uint,uint);
 extern uint32_t master_process_audio_fw_load_req(int,uint32_t,uint8_t*,uint32_t);
 uint32_t audio_fw_load_get_wrapper(int param_1,uint8_t* param_2,uint32_t param_3){
   if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/==5){

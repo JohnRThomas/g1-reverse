@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000182c8 @ 0x000182c8
  * public-name: ancs_discover_start
  * durable-map: recon/catalogs/function_names_app.json
@@ -13,7 +14,6 @@
 /* Reconstructed FUN_000182c8 @ 0x182c8  (parity: 300/300 trials, PROVEN) */
 
 extern int gatt_dm_start(unsigned int a, void *b, unsigned int c, unsigned int d, unsigned int e);
-extern void log_message(unsigned int a, int b);
 
 void ancs_discover_start(unsigned int param_1, unsigned short param_2, unsigned int param_3)
 {

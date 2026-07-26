@@ -15,11 +15,10 @@
  */
 /* Reconstructed SlaveDoubleClickEventInject @ 0x48ad4 */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 extern void *memset_bytes(void *, int, uint32_t);
 extern int k_msgq_put(uint32_t, const void *, uint32_t, uint32_t);
-extern void log_message(uint32_t, uint32_t);
-extern void debug_print(uint32_t, uint32_t);
 
 int SlaveDoubleClickEventInject(void)
 {

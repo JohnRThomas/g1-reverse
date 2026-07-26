@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_kernel_obj_shared_param__param_0167    [param_0167; library]
  *   param_2          => struct g1_layout_bt_att_pdu_buf__param_0261             [param_0261; library]
@@ -26,7 +27,6 @@
  */
 /* Reconstructed FUN_0005c22c @ 0x5c22c  (parity: 300/300 trials, PROVEN) */
 extern void assert_post_action(int,...);
-extern void printk(int,...);
 extern int bt_att_get_mtu(int);
 extern int gatt_req_send(int,int,int*,int,int,unsigned);
 int bt_gatt_write(int param_1, int *param_2){

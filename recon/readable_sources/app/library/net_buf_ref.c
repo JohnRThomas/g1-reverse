@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_net_buf__param_0172                    [param_0172; library]
  * Raw function identity: 0x0005f2d4.  See ../include/g1_recovered_layouts.h. */
@@ -19,7 +20,6 @@
 /* Hardware never returns; the return type describes the verifier's otherwise
  * unreachable r0 continuation. */
 extern int assert_post_action(unsigned int a0, unsigned int a1);
-extern void printk(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3, unsigned int a4);
 
 void net_buf_ref(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

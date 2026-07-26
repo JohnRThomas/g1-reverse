@@ -12,10 +12,9 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ipc0_endpoint                          @ 0x20007a84
  */
+#include "../headers/g1_log.h"
 /* Reconstructed register_ipc_service_context @ 0x25d40  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
-extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 unsigned int register_ipc_service_context(int param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4){
     *(unsigned int*)(param_1+0x60) = 0x00025b79UL;
     *(unsigned int*)(param_1+0x64) = 0x00025ae9UL;

@@ -28,12 +28,12 @@
 /* Full reconstruction of FUN_0004f770 @ 0x4f770 (182 bytes). */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../headers/g1_log.h"
 
 extern int z_spin_lock_valid(uintptr_t lock);
 extern int z_spin_unlock_valid(uintptr_t lock);
 extern void z_spin_lock_set_owner(uintptr_t lock);
 extern void k_work_submit(uintptr_t object);
-extern void printk(uintptr_t domain, uintptr_t message, ...);
 extern void assert_post_action(uintptr_t file, uint32_t line) __attribute__((noreturn));
 
 void app_event_manager_submit(uint32_t *item)

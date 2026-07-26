@@ -16,9 +16,8 @@
  * CFG_VERIFY_CALL_ARITIES=2
  */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
-extern void log_message(uintptr_t format, ...);
-extern void debug_print(uintptr_t format, ...);
 
 int display_mode_globals_configure(unsigned mode, ...)
 {

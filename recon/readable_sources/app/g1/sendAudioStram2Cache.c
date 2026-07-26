@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   local_dc         => struct g1_layout_audio_stream_cache_flags__stack_0931   [stack_0931; G1-original]
  * Raw function identity: 0x0002f6b0.  See ../include/g1_recovered_layouts.h. */
@@ -33,8 +34,6 @@ struct audio_cache_record {
     uint8_t payload[200];
 };
 
-extern void log_message(uint32_t format, uint32_t module);
-extern void debug_print(uint32_t format, uint32_t module);
 extern int k_msgq_put(void *queue, const void *record, int timeout, int flags);
 extern void k_sem_give(void *event);
 extern void memcpy(void *destination, const void *source, int length);

@@ -23,6 +23,7 @@
 /* Reconstructed load_usr_setting @ 0x22e78 */
 
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 struct __attribute__((packed)) user_settings_record {
     uint8_t display_mode;
@@ -47,8 +48,6 @@ struct __attribute__((packed)) user_settings_record {
     uint32_t counter;
 };
 
-extern void log_message(uint32_t format, uint32_t function_name);
-extern void debug_print(uint32_t format, uint32_t function_name, ...);
 extern int flash_settings_read(uint32_t address, void *destination, uint32_t length);
 extern void reset_usr_setting(void *settings);
 extern int is_battery_critical(void);

@@ -49,9 +49,8 @@
  */
 /* Reconstructed FUN_0002a65c @ 0x2a65c */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern void log_message(uint32_t, uint32_t);
-extern void debug_print(uint32_t, uint32_t);
 extern void spawn_flash_ops_and_brightness_threads(void *);
 extern void init_watchdog(void);
 extern int is_battery_critical(void);

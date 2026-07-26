@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00018d94 @ 0x00018d94
  * public-name: dequeue_ancs
  * durable-map: recon/catalogs/function_names_app.json
@@ -16,8 +17,6 @@
  */
 /* Reconstructed dequeue_ancs @ 0x18d94  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int fmt, unsigned int arg);
-extern void debug_print(unsigned int fmt, unsigned int arg, ...);
 extern int k_msgq_get(void *a, void *b, unsigned int c, unsigned int d);
 extern void memcpy(void *dst, void *src, unsigned int len);
 extern void memset_bytes(void *dst, int val, unsigned int len);

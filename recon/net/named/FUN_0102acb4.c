@@ -10,9 +10,9 @@
  *   g_zephyr_log_level                       @ 0x21000580
  *   g_net_flag_21004604                    @ 0x21004604
  */
+#include "../../headers/g1_log.h"
 /* net-core FUN_0102acb4 @ 0x102acb4  (parity 300 trials PROVEN) */
 
-extern void printk(unsigned int a);
 
 unsigned int FUN_0102acb4(unsigned int param_1)
 {

@@ -30,8 +30,8 @@
 
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../../headers/g1_log.h"
 
-extern void printk(uint32_t, ...);
 extern void assert_post_action(uint32_t, uint32_t);
 extern int z_spin_lock_valid(uint32_t lock);
 extern void z_spin_lock_set_owner(uint32_t lock);

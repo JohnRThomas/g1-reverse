@@ -25,6 +25,7 @@
 /* Full reconstruction FUN_00058a54 @ 0x58a54, exact extent 254 bytes.
  * The following 38 bytes are its literal pool, not executable ownership. */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 extern int return_neg_notsup_stub(uint32_t);
 extern void att_log_emit_3arg(uintptr_t, uint32_t, const void *);
@@ -33,7 +34,7 @@ extern void net_buf_unref(void *); /* FUN_0005f24c @ 0x0005f24c */
 extern uint32_t net_buf_simple_headroom(void *); /* FUN_00083728 @ 0x00083728 */
 extern uint32_t att_op_get_type(uint8_t); /* FUN_000582b8 @ 0x000582b8 */
 extern int bt_conn_create_pdu(uint32_t, uint32_t, void *, uint32_t, void *); /* FUN_00081820 @ 0x00081820 */
-extern void printk(uintptr_t, ...); /* FUN_0007e2fa @ 0x0007e2fa */
+/* FUN_0007e2fa @ 0x0007e2fa */
 extern void assert_post_action(uintptr_t, uint32_t) __attribute__((noreturn)); /* FUN_0007e2ec @ 0x0007e2ec */
 
 struct packet_58a54 {

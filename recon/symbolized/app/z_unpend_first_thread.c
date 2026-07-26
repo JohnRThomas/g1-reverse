@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000744a4 @ 0x000744a4
  * public-name: z_unpend_first_thread
  * durable-map: recon/catalogs/function_names_app.json
@@ -28,7 +29,6 @@ extern void z_spin_lock_set_owner(int);
 extern void z_abort_thread_timeout(int);
 extern void z_abort_timeout(int);
 extern void assert_post_action(int,int);
-extern int printk(int,...);
 int z_unpend_first_thread(int *param_1){
   int r=z_spin_lock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
   if(r==0){ printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/,((unsigned long)&sched_spinlock) /*=0x2000b490*/); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); }

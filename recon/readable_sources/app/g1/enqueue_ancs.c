@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   0x00018c30       => struct g1_layout_ancs_enqueue_state__global_0832        [global_0832; G1-original]
  * Raw function identity: 0x00018bb4.  See ../include/g1_recovered_layouts.h. */
@@ -25,8 +26,6 @@ extern void memset_bytes(void*, int, int);
 extern void k_msgq_get(unsigned int, void*, int, int);
 extern void memcpy(void*, unsigned int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void log_message(unsigned int, ...);
-extern void debug_print(unsigned int, ...);
 
 int enqueue_ancs(unsigned int param_1)
 {

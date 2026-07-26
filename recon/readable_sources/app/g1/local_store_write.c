@@ -17,11 +17,8 @@
 /* Reconstructed local_store_write @ 0x22168 */
 
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern void log_message(uint32_t format, uint32_t function_name,
-                        const char *key_suffix, uint32_t length);
-extern void debug_print(uint32_t format, uint32_t function_name,
-                         const char *key_suffix, uint32_t length);
 extern int settings_save_one(const char *key, const void *value, uint32_t length);
 extern void memset_bytes(void *destination, int value, uint32_t length);
 extern void __strcat_chk(char *destination, const char *source,

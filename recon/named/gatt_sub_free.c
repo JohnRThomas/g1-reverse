@@ -12,10 +12,10 @@
  *   rodata_f46b8                             @ 0x000f46b8
  *   rodata_f4707                             @ 0x000f4707   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00059e78 @ 0x59e78  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(unsigned int a, unsigned int b);
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern void bt_addr_le_copy_828da(void *a, unsigned int b, unsigned int c, unsigned int d);
 
 void gatt_sub_free(char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

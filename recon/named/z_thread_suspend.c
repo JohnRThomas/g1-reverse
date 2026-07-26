@@ -25,6 +25,7 @@
  */
 /* Reconstructed FUN_000741a4 @ 0x741a4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern int z_spin_lock_valid(void*);
 extern int z_spin_unlock_valid(void*);
 extern void z_spin_lock_set_owner(void*);
@@ -32,7 +33,6 @@ extern void sched_update_cache(int);
 extern void dlist_unlink_node(void*,void*);
 extern void z_abort_timeout(void*);
 extern void assert_post_action(unsigned,unsigned);
-extern void printk(unsigned,...);
 extern void z_reschedule_unlocked(void);
 
 void z_thread_suspend(uint8_t *param_1){

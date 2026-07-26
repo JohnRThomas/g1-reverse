@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0004a3d0 @ 0x0004a3d0
  * public-name: log_notification_fields_debug
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,8 +15,6 @@
 /* Reconstructed FUN_0004a3d0 @ 0x4a3d0  (parity: 300/300 trials, PROVEN)
  * CFG_VERIFY_CALL_ARITIES=2,2,4 */
 
-extern void log_message(int, ...);
-extern void debug_print(int, ...);
 
 void log_notification_fields_debug(int param_1, int param_2, int param_3, int param_4)
 {

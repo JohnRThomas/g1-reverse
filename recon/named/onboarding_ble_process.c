@@ -24,15 +24,14 @@
  *   g_onboarding_primary_reset_flag          @ 0x2001cdcf
  *   onboarding_attempt_counter               @ 0x2001cdd2
  */
+#include "../headers/g1_log.h"
 /* Reconstructed onboarding_ble_process @ 0x42a64  (parity: 300/300 trials, PROVEN) */
 typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
 typedef unsigned long long u64;
 
-extern void log_message(u32,u32,...);
 extern u32 get_device_info(void);
-extern void debug_print(u32,u32,...);
 extern u32 check_ancs_inbox_flag_change(void);
 extern void onboarding_retry_watchdog_update(void);
 extern u64 k_uptime_get_8(void);

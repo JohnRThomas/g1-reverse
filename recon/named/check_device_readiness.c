@@ -8,10 +8,10 @@
  *   rodata_99726                             @ 0x00099726   [INLINED -- G6 literal batch]
  *   rodata_a40ec                             @ 0x000a40ec
  */
+#include "../headers/g1_log.h"
 /* Reconstructed check_device_readiness @ 0x167b4  (parity: 300/300 trials, PROVEN) */
 
 extern int z_device_is_ready(unsigned int);
-extern void log_message(unsigned int, ...);
 unsigned int check_device_readiness(void){
     unsigned int *puVar1 = (unsigned int*)0x00087bf0UL;
     int iVar2 = z_device_is_ready((unsigned int)puVar1);

@@ -14,9 +14,9 @@
  *   REG_50026004                             @ 0x50026004
  *   REG_50026500                             @ 0x50026500
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00066300 @ 0x66300  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(int a, int b, int c, int d, int e);
 extern void assert_post_action(int a, int b);
 
 unsigned int nrfx_pdm_stop(void)

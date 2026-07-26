@@ -10,11 +10,10 @@
  *   rodata_f028c                             @ 0x000f028c   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0004a3d0 @ 0x4a3d0  (parity: 300/300 trials, PROVEN)
  * CFG_VERIFY_CALL_ARITIES=2,2,4 */
 
-extern void log_message(int, ...);
-extern void debug_print(int, ...);
 
 void log_notification_fields_debug(int param_1, int param_2, int param_3, int param_4)
 {

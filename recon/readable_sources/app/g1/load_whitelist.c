@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00034b34 @ 0x00034b34
  * public-name: load_whitelist
  * durable-map: recon/catalogs/function_names_app.json
@@ -19,8 +20,6 @@
 extern void memset_bytes(void*, int, int);
 extern unsigned int flash_settings_read(unsigned int, void*, int);
 extern void memcpy(unsigned int, void*, int);
-extern void log_message(unsigned int, unsigned int, unsigned int, unsigned int);
-extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned int load_whitelist(void)
 {

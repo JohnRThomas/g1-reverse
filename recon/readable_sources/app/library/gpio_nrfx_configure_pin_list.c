@@ -19,8 +19,8 @@
 /* Reconstructed FUN_000620cc @ 0x620cc  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 extern void assert_post_action(uint32_t,uint32_t);
-extern void printk(uint32_t,...);
 extern int z_device_is_ready(void);
 
 int gpio_nrfx_configure_pin_list(int param_1){

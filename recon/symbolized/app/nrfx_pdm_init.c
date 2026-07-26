@@ -16,7 +16,7 @@
  */
 /* Reconstructed FUN_0006615c @ 0x6615c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void printk(unsigned,unsigned,unsigned,unsigned);
+#include "../../headers/g1_log.h"
 extern long long assert_post_action(unsigned,unsigned);
 extern void pdm_configure_pins(void);
 unsigned nrfx_pdm_init(int param_1, int param_2){

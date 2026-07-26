@@ -18,6 +18,7 @@
 /* CPUAPP send_notification_app_whitelist @ 0x00033730.
  * Raw/back-map identity: FUN_00033730, exact extent 0x11c bytes. */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 extern void memset_bytes(void *destination, uint32_t value, uint32_t size);
 extern void safe_memcpy_checked(void *destination, const void *source,
@@ -25,8 +26,6 @@ extern void safe_memcpy_checked(void *destination, const void *source,
 extern uint32_t vdprintf_to_fd(void *destination, uint32_t append,
                              uint32_t capacity, uintptr_t format, ...);
 extern void k_sleep(uint32_t ticks, uint32_t unused);
-extern void log_message(uintptr_t format, ...);
-extern void debug_print(uintptr_t format, ...);
 
 #define LOG_ROUTE (*(volatile uint32_t *)0x20007554u)
 

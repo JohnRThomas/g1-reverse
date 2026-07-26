@@ -22,9 +22,10 @@
  * recon/catalogs/function_names_app.json.
  */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void log_message(uintptr_t format, ...); /* alias of FUN_0007dda4 */
-extern void debug_print(uintptr_t format, ...); /* FUN_00019c70 @ 0x19c70 */
+/* alias of FUN_0007dda4 */
+/* FUN_00019c70 @ 0x19c70 */
 
 /* Semantic aliases retain the exact raw linker identities. */
 #define wait_for_flash_work z_impl_k_sem_take

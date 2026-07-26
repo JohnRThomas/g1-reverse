@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_g1_device_runtime_state__param_0027    [param_0027; G1-original]
  * Raw function identity: 0x0002c0e8.  See ../include/g1_recovered_layouts.h. */
@@ -20,8 +21,6 @@
 /* Reconstructed update_persist_task_status_to_idle @ 0x2c0e8  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned char u8;
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, unsigned int);
 extern void display_close_screen(unsigned int);
 extern void signal_persist_task_event(void);
 

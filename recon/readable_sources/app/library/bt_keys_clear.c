@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_param_0101_false_union__param_0101     [param_0101; G1-original]
  * Raw function identity: 0x0005ea18.  See ../include/g1_recovered_layouts.h. */
@@ -19,7 +20,6 @@
  */
 /* Reconstructed FUN_0005ea18 @ 0x5ea18  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(int a,int b,int c,int d);
 extern unsigned char *assert_post_action(int a,int b);
 extern void ble_privacy_id_remove(void);
 extern void bt_settings_save_or_delete_key(unsigned char a, unsigned char *b);

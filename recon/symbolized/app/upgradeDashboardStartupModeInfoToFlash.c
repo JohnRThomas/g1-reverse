@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00023bfc @ 0x00023bfc
  * public-name: upgradeDashboardStartupModeInfoToFlash
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,8 +18,6 @@
  */
 /* Reconstructed upgradeDashboardStartupModeInfoToFlash @ 0x23bfc  (parity: 300/300 trials, PROVEN) */
 extern int k_msgq_put(unsigned int a0, void *a1, unsigned int a2, unsigned int a3);
-extern void log_message(unsigned int a0, ...);
-extern void debug_print(unsigned int a0, ...);
 extern void k_sem_give(unsigned int a0);
 
 unsigned int upgradeDashboardStartupModeInfoToFlash(unsigned int param_1, unsigned int param_2, unsigned int param_3)

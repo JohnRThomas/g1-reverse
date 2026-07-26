@@ -16,12 +16,11 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_runtime_mode_flag                      @ 0x2000ff6e
  */
+#include "../headers/g1_log.h"
 /* Reconstructed switch_to_dfu_mode @ 0x158bc  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned char u8;
 typedef unsigned int u32;
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
 extern int k_is_in_isr(void);
 extern void app_msleep_thunk_a(int);
 extern int sys_reboot(int);

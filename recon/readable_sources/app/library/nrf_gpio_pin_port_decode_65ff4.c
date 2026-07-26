@@ -13,7 +13,7 @@
  */
 /* Full reconstruction FUN_00065ff4 @ 0x65ff4, exact extent 72 bytes. */
 #include <stdint.h>
-extern void printk(uintptr_t,uintptr_t,uintptr_t,uint32_t,...);
+#include "../../../headers/g1_log.h"
 extern __attribute__((noreturn)) void assert_post_action(uintptr_t,uint32_t);
 uintptr_t nrf_gpio_pin_port_decode_65ff4(uint32_t *descriptor,uint32_t a,uint32_t b,uint32_t context){
  (void)a;(void)b; uint32_t v=*descriptor,bit,idx=v&31; uintptr_t base;

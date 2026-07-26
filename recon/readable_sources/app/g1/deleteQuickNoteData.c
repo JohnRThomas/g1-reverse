@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000244a8 @ 0x000244a8
  * public-name: deleteQuickNoteData
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,8 +18,6 @@
  */
 /* Reconstructed deleteQuickNoteData @ 0x244a8  (parity: 300/300 trials, PROVEN) */
 extern int k_msgq_put(unsigned int a0, void *a1, unsigned int a2, unsigned int a3);
-extern void log_message(unsigned int a0, ...);
-extern void debug_print(unsigned int a0, ...);
 extern void k_sem_give(unsigned int a0);
 
 unsigned int deleteQuickNoteData(unsigned int param_1, unsigned int param_2, unsigned int param_3)

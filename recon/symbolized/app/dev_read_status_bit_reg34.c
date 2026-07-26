@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002ead8 @ 0x0002ead8
  * public-name: dev_read_status_bit_reg34
  * durable-map: recon/catalogs/function_names_app.json
@@ -10,7 +11,6 @@
  */
 /* Reconstructed FUN_0002ead8 @ 0x2ead8  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(int);
 extern int dev_ctrl_read1(int,int,int,void*,int);
 
 unsigned int dev_read_status_bit_reg34(int param_1, unsigned int param_2)

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_g1_device_runtime_state__param_0027    [param_0027; G1-original]
  * Raw function identity: 0x0002bef4.  See ../include/g1_recovered_layouts.h. */
@@ -21,8 +22,8 @@
 typedef unsigned char u8;
 typedef unsigned int  u32;
 
-extern void log_message(u32 format, u32 source, u32 task_id); /* FUN_0007dda4 */
-extern void debug_print(u32 format, u32 source, u32 task_id); /* FUN_00019c70 */
+/* FUN_0007dda4 */
+/* FUN_00019c70 */
 extern void display_close_screen(u32 screen_id);              /* FUN_00049858 */
 extern void wait_for_persist_task_status_lock(void);          /* FUN_0007cdf8 */
 

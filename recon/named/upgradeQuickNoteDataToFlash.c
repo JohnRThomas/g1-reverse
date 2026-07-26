@@ -14,11 +14,10 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_app_language_msgq                      @ 0x200079e4
  */
+#include "../headers/g1_log.h"
 /* Reconstructed upgradeQuickNoteDataToFlash @ 0x24420  (parity: 300/300 trials, PROVEN) */
 
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, ...);
 extern void k_sem_give(unsigned int);
 
 int upgradeQuickNoteDataToFlash(unsigned int param_1, unsigned int param_2, unsigned int param_3)

@@ -12,10 +12,10 @@
  *   rodata_f6c8e                             @ 0x000f6c8e   [INLINED -- G6 literal batch]
  *   NRF_NVMC_S                               @ 0x50039000
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00065f1c @ 0x65f1c  (parity: 300/300 trials, PROVEN) */
 
 extern void nvmc_readonly_mode_set(void);
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 extern void assert_post_action(unsigned int a, unsigned int b);
 
 unsigned int nrfx_nvmc_page_erase(unsigned int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

@@ -25,9 +25,9 @@
 /* Full reconstruction FUN_0002a4f4 @ 0x2a4f4, exact extent 320 bytes.
  * CFG_VERIFY_PREFIX_FIRST */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 extern int z_impl_k_sem_init(uintptr_t object, uint32_t flags, uint32_t count);
-extern void log_message(uintptr_t format, ...);
 extern uintptr_t get_device_info(void);
 extern void set_delay_deadline(uint32_t delay);
 extern void arm_timeout_10s(void);

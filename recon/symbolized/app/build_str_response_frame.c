@@ -16,7 +16,7 @@
  */
 /* Reconstructed FUN_00031b60 @ 0x31b60  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(uint32_t);
+#include "../../headers/g1_log.h"
 extern int strlen(void*);
 extern int get_device_serial_buf(void);
 extern void memcpy(void*,void*,int);

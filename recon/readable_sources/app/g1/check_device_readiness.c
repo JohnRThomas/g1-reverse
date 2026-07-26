@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000167b4 @ 0x000167b4
  * public-name: check_device_readiness
  * durable-map: recon/catalogs/function_names_app.json
@@ -12,7 +13,6 @@
 /* Reconstructed check_device_readiness @ 0x167b4  (parity: 300/300 trials, PROVEN) */
 
 extern int z_device_is_ready(unsigned int);
-extern void log_message(unsigned int, ...);
 unsigned int check_device_readiness(void){
     unsigned int *puVar1 = (unsigned int*)((unsigned long)&rodata_87bf0) /*=0x87bf0*/;
     int iVar2 = z_device_is_ready((unsigned int)puVar1);

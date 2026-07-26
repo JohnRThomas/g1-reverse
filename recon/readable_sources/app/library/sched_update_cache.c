@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   0x0007382c       => struct g1_layout_sched_update_cache__global_1403        [global_1403; G1-original]
  * Raw function identity: 0x000737d8.  See ../include/g1_recovered_layouts.h. */
@@ -19,7 +20,6 @@
  */
 /* Reconstructed FUN_000737d8 @ 0x737d8  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(int a, int b, int c, int d, int e);
 extern void assert_post_action(int a, int b);
 extern void sched_switch_handle_timeout(int *a);
 

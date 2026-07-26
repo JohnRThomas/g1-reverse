@@ -8,9 +8,9 @@
  *   rodata_f02a5                             @ 0x000f02a5   [INLINED -- G6 literal batch]
  *   rodata_f5400                             @ 0x000f5400
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0004a424 @ 0x4a424  (parity: 166/300 trials, PROVEN) */
 
-extern int log_message(int fmt, ...);
 void debug_print_hex_dump(int param_1, int param_2, int param_3)
 {
   unsigned int uVar1;

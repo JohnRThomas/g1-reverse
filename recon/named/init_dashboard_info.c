@@ -20,13 +20,12 @@
 /* Reconstructed init_dashboard_info @ 0x36ed8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern int uarte_nrfx_irq_rx_ready(void);
 extern void init_dashboard_startup_mode_info_defaults(void);
 extern int get_device_info(void);
-extern void debug_print(int, int, ...);
 extern int getQuickNoteDataFromFlash(int,int,int,int,int);
 extern void record_dashboard_startup_snapshot(int,int);
-extern void log_message(int,int,int);
 #define VB(a) (*(volatile unsigned char*)(a))
 #define VI(a) (*(volatile int*)(a))
 

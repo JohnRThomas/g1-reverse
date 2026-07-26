@@ -17,8 +17,7 @@
  */
 /* Reconstructed FUN_0001905c @ 0x1905c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int log_message(int,...);
-extern int debug_print(int,...);
+#include "../../../headers/g1_log.h"
 extern int ancs_service_ctx_clear(int,...);
 extern int bt_ancs_register_attr(int,...);
 extern int bt_ancs_register_app_attr(int,...);

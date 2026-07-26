@@ -14,12 +14,11 @@
  *   g_dashboard_response_msgq                @ 0x2000392c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed SendDashBoardStartupModeInfoToSlave @ 0x48a3c  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned int SendDashBoardStartupModeInfoToSlave(int param_1)
 {

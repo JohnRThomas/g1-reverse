@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_2          => struct g1_layout_param_0101_false_union__param_0101     [param_0101; G1-original]
  * Raw function identity: 0x0004a3d0.  See ../include/g1_recovered_layouts.h. */
@@ -17,8 +18,6 @@
 /* Reconstructed FUN_0004a3d0 @ 0x4a3d0  (parity: 300/300 trials, PROVEN)
  * CFG_VERIFY_CALL_ARITIES=2,2,4 */
 
-extern void log_message(int, ...);
-extern void debug_print(int, ...);
 
 void log_notification_fields_debug(int param_1, int param_2, int param_3, int param_4)
 {

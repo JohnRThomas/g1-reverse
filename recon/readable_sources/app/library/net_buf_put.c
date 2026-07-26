@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0005f200 @ 0x0005f200
  * public-name: net_buf_put
  * durable-map: recon/catalogs/function_names_app.json
@@ -16,7 +17,6 @@
 /* Reconstructed FUN_0005f200 @ 0x5f200  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long assert_post_action(unsigned int a, unsigned int b);
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern void net_pkt_skip(int);
 
 void net_buf_put(int param_1, int param_2, unsigned int param_3, unsigned int param_4)

@@ -10,11 +10,10 @@
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed power_for_imu_and_mic @ 0x15f80  (parity: 300/300 trials, PROVEN) */
 
 extern int dev_write_reg3(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void log_message(unsigned int,...);
-extern void debug_print(unsigned int,...);
 
 unsigned int power_for_imu_and_mic(void)
 {

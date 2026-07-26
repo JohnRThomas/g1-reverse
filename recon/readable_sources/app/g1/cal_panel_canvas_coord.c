@@ -11,6 +11,7 @@
  */
 /* Reconstructed cal_panel_canvas_coord @ 0x42fb0 (raw: FUN_00042fb0). */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 /* Callee backmap:
  *   get_device_info  <- FUN_000167a8 @ 0x000167a8
@@ -18,10 +19,6 @@
  *   DEBUG_PRINT                         @ 0x0007dda4
  */
 extern uintptr_t get_device_info(void);
-extern void debug_print(uintptr_t format, uintptr_t function_name,
-                        unsigned int gear, int coordinate);
-extern void log_message(uintptr_t format, uintptr_t function_name,
-                        unsigned int gear, int coordinate);
 
 /* Fixed-address backmap retained for the standalone parity build. */
 #define g_log_level           (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/)

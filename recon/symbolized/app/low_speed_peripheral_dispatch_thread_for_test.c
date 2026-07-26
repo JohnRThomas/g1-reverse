@@ -26,8 +26,7 @@
 /* Full reconstruction FUN_0002685c @ 0x2685c, exact extent 176 bytes.
  * CFG_VERIFY_PREFIX_FIRST CFG_VERIFY_PREFIX_K=150 */
 #include <stdint.h>
-extern void log_message(uintptr_t, ...);
-extern void debug_print(uintptr_t, ...);
+#include "../../headers/g1_log.h"
 extern void handle_box_placement_event(void);
 extern void watchdog_feed_retry(void);
 extern void disable_watchdog(void);

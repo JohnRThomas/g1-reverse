@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0004a51c @ 0x0004a51c
  * public-name: get_boot_seconds
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,8 +18,6 @@
 
 extern unsigned long long k_uptime_get_9(void);
 extern int __aeabi_ldivmod(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int);
 
 int get_boot_seconds(void)
 {

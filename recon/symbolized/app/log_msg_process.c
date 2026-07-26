@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0004d334 @ 0x0004d334
  * public-name: log_msg_process
  * durable-map: recon/catalogs/function_names_app.json
@@ -25,7 +26,6 @@ extern int atomic_inc(int);
 extern unsigned activate_foreach_backend(unsigned);
 extern void log_msg_commit(int*,unsigned,int);
 extern void k_sleep(int,int);
-extern void printk(int,...);
 extern void assert_post_action(int,...);
 unsigned log_msg_process(int param_1,int param_2){
   int *piVar1 = (int*)((unsigned long)&__settings_handler_static_list_start) /*=0x882b0*/;

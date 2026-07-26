@@ -7,11 +7,13 @@
  * Raw/address back-map: FUN_01039722 / 0x01039722.
  */
 #include <stdarg.h>
+#include <stdint.h>
+#include "../../headers/g1_log.h"
 extern void FUN_0103a2a6(const char *fmt, va_list ap);
-void printk(const char *fmt, ...)
+void printk(uintptr_t fmt, ...)
 {
     va_list ap;
     va_start(ap, fmt);
-    FUN_0103a2a6(fmt, ap);
+    FUN_0103a2a6((const char *)fmt, ap);
     va_end(ap);
 }

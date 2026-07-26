@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00017980 @ 0x00017980
  * public-name: gpio_pin_get_checked
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,7 +16,6 @@
  */
 /* Reconstructed FUN_00017980 @ 0x17980  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern void assert_post_action(unsigned int a, unsigned int b);
 typedef int (*ifn5)(unsigned int, void*, unsigned int, unsigned int, unsigned int);
 int gpio_pin_get_checked(unsigned int param_1, unsigned int param_2, unsigned int param_3)

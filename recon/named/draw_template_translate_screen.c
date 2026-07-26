@@ -20,10 +20,9 @@
  *   g_translate_lang_string_table            @ 0x200024f4
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed draw_template_translate_screen @ 0x3fd44  (parity: 300/300 trials, PROVEN) */
-extern void log_message(int,...);
 extern int  get_device_info(void);
-extern void debug_print(int,int,...);
 extern void gui_set_active_canvas(int);
 extern void gui_bmp_bitmap_draw(int,int,int,int,int,int);
 extern void gui_utf_draw(int,int,int,int,int,int,int,int,int,int,int,int);

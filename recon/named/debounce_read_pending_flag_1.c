@@ -8,9 +8,9 @@
  *   g_confirmed_state_flag_1                 @ 0x20018da4
  *   g_ancs_inbox_flag_current                @ 0x20018da6
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0002eb78 @ 0x2eb78  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 unsigned int debounce_read_pending_flag_1(unsigned int param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4)
 {
   unsigned char bVar1 = *(volatile unsigned char *)(0x20018da6UL + 1);

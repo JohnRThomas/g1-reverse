@@ -19,10 +19,9 @@
  */
 /* Reconstructed FUN_0004396c @ 0x4396c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 typedef unsigned int uint;
-extern void log_message(int,int,uint,int,uint,int,uint);
 extern int get_device_info(void);
-extern void debug_print(int,...);
 extern int64_t atomic_get_3_0(void);
 extern void gui_bmp_bitmap_draw(int,int,int,int,int,int);
 extern void clean_fb_data(int,int,int,int,int,int);

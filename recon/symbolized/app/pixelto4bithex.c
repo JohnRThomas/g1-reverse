@@ -16,7 +16,7 @@
 /* Reconstructed FUN_0003678c @ 0x3678c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int log_message(int,...);
+#include "../../headers/g1_log.h"
 extern int malloc(int,...);
 extern int memset_bytes(int,...);
 void pixelto4bithex(int param_1,int param_2,unsigned param_3,unsigned param_4){

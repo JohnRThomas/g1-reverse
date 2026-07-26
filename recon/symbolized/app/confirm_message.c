@@ -32,8 +32,9 @@
  */
 /* Reconstructed FUN_00034524 @ 0x34524  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef unsigned char byte; typedef uint32_t undefined4; typedef unsigned int uint;
-extern int log_message(int,...); extern int get_device_info(int,...); extern int debug_print(int,...);
+extern int get_device_info(int,...);
 extern int check_pending_messages_flag(int,...); extern int msg_queue_debug_dump(int,...); extern int debug_dump_message_slots_10_19(int,...);
 extern int get_active_message_count(int,...); extern int msg_content_used_count(int,...); extern int msg_content_recalc_unread(int,...);
 extern int clear_timeout_message(int,...); extern int message_table_contains_id(int,...); extern int is_msg_expiration(int,...);

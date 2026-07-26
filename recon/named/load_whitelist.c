@@ -13,13 +13,12 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_app_whitelist_buffer                   @ 0x2001a22c
  */
+#include "../headers/g1_log.h"
 /* Reconstructed load_whitelist @ 0x34b34  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*, int, int);
 extern unsigned int flash_settings_read(unsigned int, void*, int);
 extern void memcpy(unsigned int, void*, int);
-extern void log_message(unsigned int, unsigned int, unsigned int, unsigned int);
-extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned int load_whitelist(void)
 {

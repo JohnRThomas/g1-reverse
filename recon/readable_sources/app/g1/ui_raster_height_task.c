@@ -20,9 +20,8 @@
  */
 /* Reconstructed ui_raster_height_task @ 0x430c0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(uint32_t, ...);
+#include "../../../headers/g1_log.h"
 extern void *get_device_info(void);
-extern void debug_print(uint32_t, ...);
 extern void ui_DashBoard_task(uint32_t, uint32_t, int);
 extern void cal_panel_canvas_coord(int*, int*);
 extern void gui_screen_clear(void);

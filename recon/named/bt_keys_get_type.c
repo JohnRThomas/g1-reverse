@@ -13,9 +13,9 @@
  *   rodata_f5268                             @ 0x000f5268
  *   rodata_f52ac                             @ 0x000f52ac   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0005e9d0 @ 0x5e9d0  (parity: 300/300 trials, PROVEN) */
 
-extern int printk(int a,int b,int c,int d,int e);
 extern void assert_post_action(int a,int b);
 extern int bt_keys_find(void);
 extern int bt_keys_get_addr(int a,int b);

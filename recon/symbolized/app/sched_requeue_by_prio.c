@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00073d1c @ 0x00073d1c
  * public-name: sched_requeue_by_prio
  * durable-map: recon/catalogs/function_names_app.json
@@ -19,7 +20,6 @@
 
 extern void sched_update_cache(int a);
 extern void dlist_unlink_node(unsigned a, int* b);
-extern void printk(unsigned a,unsigned b,unsigned c,unsigned d);
 extern void assert_post_action(unsigned a,unsigned b);
 void sched_requeue_by_prio(int *param_1){
     volatile unsigned char *p = (volatile unsigned char*)param_1;

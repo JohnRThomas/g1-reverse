@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000167f4 @ 0x000167f4
  * public-name: enable_ship_mode
  * durable-map: recon/catalogs/function_names_app.json
@@ -16,7 +17,6 @@ extern void power_down_imu_and_mic(void);
 extern void app_msleep_thunk_a(unsigned int a);
 extern int dev_write_reg3(unsigned int a, unsigned int b,
                         unsigned int c, unsigned int d);
-extern void log_message(unsigned int, ...);
 
 unsigned int enable_ship_mode(void)
 {

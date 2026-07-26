@@ -14,12 +14,11 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_app_language_msgq                      @ 0x200079e4
  */
+#include "../headers/g1_log.h"
 /* Reconstructed cleanAppLanguageInfo @ 0x23b78  (parity: 300/300 trials, PROVEN) */
 
-extern void debug_print(int, int);
 extern int k_msgq_put(void*, void*, int, int);
 extern void k_sem_give(void*);
-extern int log_message(int, ...);
 
 int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
 {

@@ -16,10 +16,10 @@
  */
 /* Reconstructed FUN_000671d8 @ 0x671d8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 extern int nrfx_pin_freq_config_validate(void);
 extern int nrfx_spim_configure(int);
 extern int assert_post_action(int,int);
-extern int printk(int,...);
 int nrfx_spim_init(int param_1, int param_2, uint32_t param_3, uint32_t param_4){
   int r0src = param_1;
   if(param_2 == 0){

@@ -23,6 +23,7 @@
 /* Reconstructed send_dmic_msg @ 0x19ed4. */
 
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 struct dmic_message {
     uint32_t header;
@@ -31,8 +32,6 @@ struct dmic_message {
 
 typedef int (*dmic_send_fn)(const void *message, unsigned int length);
 
-extern void log_message(uint32_t format, uint32_t name, ...);
-extern void debug_print(uint32_t format, uint32_t name, ...);
 extern void *get_device_info(void);
 extern int get_dmic_msgq_count(void);
 extern int dequeue_dmic(void *payload);

@@ -23,8 +23,8 @@
 /* Reconstructed FUN_000503d8 @ 0x503d8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../headers/g1_nrf_regs.h"
+#include "../headers/g1_log.h"
 extern int assert_post_action(int,...) __attribute__((noreturn));
-extern int printk(int,...);
 extern int arm_fault_forward_handler(int,...);
 #define SCB28 (*(volatile int*)G1_SCB_CFSR)
 

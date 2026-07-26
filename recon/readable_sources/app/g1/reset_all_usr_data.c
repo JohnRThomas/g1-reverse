@@ -25,6 +25,7 @@
  */
 /* Reconstructed reset_all_usr_data @ 0x2316c. */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 extern void reset_touch_selection_state(void);
 extern void delAudioStreamRecord(uint32_t);
@@ -38,8 +39,6 @@ extern void reset_all_static_info(void);
 extern void bt_unpair_all_or_addr(uint32_t, uint32_t);
 extern void enable_ship_mode(uint32_t);
 extern uint32_t sys_reboot(uint32_t);
-extern void log_message(uint32_t, ...);
-extern void debug_print(uint32_t, uint32_t);
 
 #define LOG_LEVEL (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define LOG_BACKEND (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)

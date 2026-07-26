@@ -15,10 +15,10 @@
  */
 /* Reconstructed FUN_00071294 @ 0x71294  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 typedef unsigned int uint;
 extern int rpmsg_virtio_tx_enqueue(int,uint32_t,uint32_t,int,int);
 extern void assert_post_action(uint32_t,uint32_t);
-extern void printk(uint32_t,uint32_t,uint32_t,uint32_t);
 extern int metal_io_block_write(int*,uint,int,int);
 extern int rpmsg_virtio_get_tx_buffer_wait(int,int*,uint32_t,int,int,uint32_t,uint32_t);
 uint32_t rpmsg_virtio_send_copy(int param_1,uint32_t param_2,uint32_t param_3,int param_4,int param_5,uint32_t param_6){

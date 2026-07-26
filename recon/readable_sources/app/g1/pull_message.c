@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000342e0 @ 0x000342e0
  * public-name: pull_message
  * durable-map: recon/catalogs/function_names_app.json
@@ -18,8 +19,6 @@
  */
 /* Reconstructed pull_message @ 0x342e0  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int,...);
-extern void debug_print(unsigned int,...);
 extern unsigned int get_device_info(void);
 
 unsigned char pull_message(int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

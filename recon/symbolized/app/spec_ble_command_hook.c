@@ -125,6 +125,7 @@
 /* Full reconstruction spec_ble_command_hook @ 0xef28. */
 #include <stdint.h>
 #include <stdbool.h>
+#include "../../headers/g1_log.h"
 typedef uint8_t undefined; typedef uint8_t undefined1; typedef uint16_t undefined2;
 typedef uint32_t undefined4; typedef uint64_t undefined8; typedef uint8_t byte;
 typedef uint32_t uint; typedef uint64_t ulonglong; typedef uint32_t code(uintptr_t,...);
@@ -234,12 +235,10 @@ typedef uint32_t uint; typedef uint64_t ulonglong; typedef uint32_t code(uintptr
 #define PTR_s_spec_ble_command_hook_0000f460 ((unsigned long)"spec_ble_command_hook") /*=0x9dfa9*/
 #define PTR_s_spec_ble_command_hook_0000fccc ((unsigned long)"spec_ble_command_hook") /*=0x9dfa9*/
 #define PTR_s_t0____d_error_count____d_0000f790 ((unsigned long)"t0 = %d error count = %d \n") /*=0x9dd09*/
-extern uint32_t log_message(uintptr_t,...);
 extern uint32_t strcmp(uintptr_t,...);
 extern uint32_t strlen(uintptr_t,...);
 extern uint32_t opt3007_get_max_lux(uintptr_t,...);
 extern uint32_t ancs_get_conn_ctx(uintptr_t,...);
-extern uint32_t debug_print(uintptr_t,...);
 extern uint32_t subcontracing_send_data_pkcs7(uintptr_t,...);
 extern uint32_t mobile_send_notification_to_ble_device_test(uintptr_t,...);
 extern uint32_t simulator_ancs_calendar_schedule_trigger(uintptr_t,...);

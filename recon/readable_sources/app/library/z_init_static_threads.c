@@ -22,6 +22,7 @@
  */
 /* Reconstructed FUN_00071f38 @ 0x71f38  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 typedef long long i64; typedef unsigned long long u64;
 extern u64 __aeabi_uldivmod(int,int,int,int);
 extern void z_setup_new_thread(int,int,int,int,int,int,int,int,int,int);
@@ -30,7 +31,6 @@ extern void k_sched_unlock(void);
 extern void k_sched_lock(void);
 extern void z_add_timeout(int,unsigned,int,int);
 extern void assert_post_action(unsigned,unsigned);
-extern void printk(unsigned,unsigned,unsigned,unsigned);
 void z_init_static_threads(void)
 {
   i64 lVar1; u64 uVar8;

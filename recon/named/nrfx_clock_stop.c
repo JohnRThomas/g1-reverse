@@ -16,8 +16,8 @@
  * Readable namespace target: g1_nrfx_clock_stop_checked.
  */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern __attribute__((noreturn)) void assert_post_action(uint32_t,uint32_t);
-extern void printk(uint32_t,uint32_t,uint32_t,uint32_t);
 extern void clock_stop(int domain);
 
 void nrfx_clock_stop(int domain)

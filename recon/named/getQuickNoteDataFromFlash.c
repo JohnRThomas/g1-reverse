@@ -22,9 +22,8 @@
  */
 /* Reconstructed FUN_00024534 @ 0x24534  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(unsigned,...);
+#include "../headers/g1_log.h"
 extern int get_device_info(void);
-extern void debug_print(unsigned,...);
 extern int z_device_is_ready(unsigned);
 extern void memcpy(unsigned,int,int);
 extern void memset_bytes(unsigned,int,int);

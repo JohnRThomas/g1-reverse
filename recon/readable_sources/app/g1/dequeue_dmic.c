@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002ed00 @ 0x0002ed00
  * public-name: dequeue_dmic
  * durable-map: recon/catalogs/function_names_app.json
@@ -16,8 +17,6 @@
  */
 /* Reconstructed dequeue_dmic @ 0x2ed00  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int fmt, unsigned int arg);
-extern void debug_print(unsigned int fmt, unsigned int arg, ...);
 extern int k_msgq_get(unsigned int queue, void *record,
                        unsigned int wait, unsigned int flags);
 extern void memcpy(void *destination, const void *source,

@@ -14,9 +14,9 @@
  */
 
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 extern void *memset_bytes(void *destination, int value, uint32_t length);
-extern int log_message(uintptr_t format, ...);
 extern int load_whitelist(void);
 extern void revalidate_whitelist_json(void);
 

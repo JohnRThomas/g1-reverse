@@ -10,9 +10,9 @@
  *   rodata_f6b3e                             @ 0x000f6b3e
  *   rodata_f6b73                             @ 0x000f6b73   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_000655ec @ 0x655ec  (parity: 300/300 trials, PROVEN) */
 
-extern int printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 extern int assert_post_action(unsigned int a, unsigned int b);
 
 int gpiote_in_event_reg_offset(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

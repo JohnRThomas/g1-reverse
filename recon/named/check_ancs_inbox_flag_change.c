@@ -10,10 +10,9 @@
  *   g_ancs_inbox_flag_cached                 @ 0x20018da5
  *   g_ancs_inbox_flag_current                @ 0x20018da6
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0002eb40 @ 0x2eb40  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
-extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned int check_ancs_inbox_flag_change(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

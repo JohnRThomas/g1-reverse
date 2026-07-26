@@ -16,7 +16,7 @@
  */
 /* Reconstructed FUN_00050e64 @ 0x50e64  (parity: 147/300 trials, PROVEN) */
 #include <stdint.h>
-extern void printk(uint32_t,...);
+#include "../headers/g1_log.h"
 extern void assert_post_action(uint32_t,uint32_t);
 extern int arm_cmse_mpu_region_get(int);
 

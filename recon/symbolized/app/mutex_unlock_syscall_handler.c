@@ -29,6 +29,7 @@
 /* Reconstructed FUN_000745c8 @ 0x745c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../../headers/g1_log.h"
 extern int arch_swap(int,...);
 extern int z_spin_lock_valid(int,...);
 extern int z_spin_unlock_valid(int,...);
@@ -36,7 +37,6 @@ extern int z_spin_lock_set_owner(int,...);
 extern int sched_update_cache(int,...);
 extern int dlist_unlink_node(int,...);
 extern int assert_post_action(int,...);
-extern int printk(int,...);
 void mutex_unlock_syscall_handler(void)
 {
   if (__get_IPSR() != 0) {

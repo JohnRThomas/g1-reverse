@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000477a0 @ 0x000477a0
  * public-name: utf8_to_unicode
  * durable-map: recon/catalogs/function_names_app.json
@@ -18,8 +19,6 @@
 
 typedef unsigned char byte;
 typedef unsigned int uint;
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int);
 extern void printf(unsigned int);
 extern void puts(unsigned int);
 

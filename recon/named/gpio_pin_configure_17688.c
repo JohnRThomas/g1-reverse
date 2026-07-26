@@ -18,8 +18,8 @@
  */
 /* app-core FUN_00017688 @ 0x00017688 */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
-extern void printk(const void *, ...);
 extern void assert_post_action(const void *, unsigned);
 
 void gpio_pin_configure_17688(const uint8_t *pin, uint32_t flags)

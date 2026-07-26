@@ -30,6 +30,7 @@
 /* Reconstructed FUN_00072240 @ 0x72240  (parity: 48/300 trials, PROVEN) */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../../headers/g1_log.h"
 extern int z_spin_lock_valid(int,...);
 extern int z_spin_unlock_valid(int,...);
 extern int z_spin_lock_set_owner(int,...);
@@ -38,7 +39,6 @@ extern int z_reschedule(int,...);
 extern int z_pend_curr(int,...);
 extern int z_unpend_first_thread(int,...);
 extern int assert_post_action(int,...) __attribute__((noreturn));
-extern int printk(int,...);
 extern int memcpy(int,...);
 static inline int ipsr(void){return (int)__get_IPSR();}
 static inline int rd_basepri(void){return (int)__get_BASEPRI();}

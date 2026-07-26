@@ -28,6 +28,7 @@
  */
 /* Reconstructed FUN_0005b9cc @ 0x5b9cc  (parity: 28/60 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 typedef unsigned int uint;
 typedef unsigned short ushort;
 struct attr_value {
@@ -37,7 +38,6 @@ struct attr_value {
 };
 
 extern __attribute__((noreturn)) void assert_post_action(uint32_t,uint32_t);
-extern void printk(uint32_t,...);
 extern int bt_uuid_cmp(void*,void*);
 extern void log_msg_create_3arg(uint32_t,uint32_t,void*);
 extern uint32_t gatt_req_send(int,uint32_t,int*,uint32_t,uint32_t,uint32_t);

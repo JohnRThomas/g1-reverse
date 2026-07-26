@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00053cd4 @ 0x00053cd4
  * public-name: bt_hci_cmd_create
  * durable-map: recon/catalogs/function_names_app.json
@@ -24,7 +25,6 @@ extern void net_buf_simple_reserve(int,int);
 extern int net_buf_id(int);
 extern int net_buf_simple_add(int,int);
 extern void assert_post_action(int,int);
-extern int printk(int,...);
 int bt_hci_cmd_create(short param_1,int param_2){
   int iVar2=bt_conn_alloc_pdu_buf(((unsigned long)&g_hci_cmd_pool) /*=0x20003b4c*/,param_2,-1,-1);
   if(iVar2==0){ printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f45be) /*=0xf45be*/,((unsigned long)&rodata_f2e84) /*=0xf2e84*/,0x10a); assert_post_action(((unsigned long)&rodata_f2e84) /*=0xf2e84*/,0x10a); }

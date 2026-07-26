@@ -32,10 +32,9 @@
  */
 /* Reconstructed FUN_0002ed68 @ 0x2ed68  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 typedef unsigned int uint;
 typedef unsigned undefined4;
-extern void log_message(unsigned, ...);
-extern void debug_print(unsigned, ...);
 extern void enqueue_dmic(int a);
 extern void sendAudioStram2Cache(int a);
 extern int is_battery_critical(void);

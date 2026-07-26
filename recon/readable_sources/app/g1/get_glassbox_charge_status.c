@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00032784 @ 0x00032784
  * public-name: get_glassbox_charge_status
  * durable-map: recon/catalogs/function_names_app.json
@@ -13,8 +14,6 @@
  */
 /* Reconstructed get_glassbox_charge_status @ 0x32784  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int);
 unsigned char get_glassbox_charge_status(void){
     volatile unsigned char *pbVar1 = (volatile unsigned char*)((unsigned long)&g_glassbox_charge_status_byte) /*=0x20019ef4*/;
     if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2){

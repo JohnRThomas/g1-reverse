@@ -13,12 +13,11 @@
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed utf8_to_unicode @ 0x477a0  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned char byte;
 typedef unsigned int uint;
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int);
 extern void printf(unsigned int);
 extern void puts(unsigned int);
 

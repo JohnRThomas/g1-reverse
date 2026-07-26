@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00035608 @ 0x00035608
  * public-name: store_whitelist
  * durable-map: recon/catalogs/function_names_app.json
@@ -18,8 +19,6 @@
 extern int flash_write_paged(unsigned int a0, unsigned int a1, unsigned int a2);
 extern void revalidate_whitelist_json(void);
 extern void k_sleep(unsigned int a0, unsigned int a1);
-extern void log_message(unsigned int a0, ...);
-extern void debug_print(unsigned int a0, ...);
 
 int store_whitelist(void)
 {

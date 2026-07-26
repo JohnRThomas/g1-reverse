@@ -25,6 +25,7 @@
  */
 /* Reconstructed FUN_00071cf4 @ 0x71cf4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 extern int z_spin_lock_valid(int);
 extern int z_spin_unlock_valid(int);
 extern void z_spin_lock_set_owner(int);
@@ -32,7 +33,6 @@ extern void z_ready_thread_locked(void);
 extern void z_reschedule(int,uint32_t);
 extern int z_unpend_first_thread(int);
 extern void assert_post_action(uint32_t,int);
-extern void printk(uint32_t,...);
 void k_mem_slab_free(int param_1, uint32_t* param_2){
     int iVar6=param_1+8;
     uint32_t uVar7=0;

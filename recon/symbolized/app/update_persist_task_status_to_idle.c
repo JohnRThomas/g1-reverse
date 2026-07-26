@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002c0e8 @ 0x0002c0e8
  * public-name: update_persist_task_status_to_idle
  * durable-map: recon/catalogs/function_names_app.json
@@ -18,8 +19,6 @@
 /* Reconstructed update_persist_task_status_to_idle @ 0x2c0e8  (parity: CFG state-case proven, 5/5 cases) */
 
 typedef unsigned char u8;
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, unsigned int);
 extern void display_close_screen(unsigned int);
 extern void signal_persist_task_event(void);
 

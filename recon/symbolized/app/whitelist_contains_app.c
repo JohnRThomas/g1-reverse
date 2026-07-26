@@ -15,9 +15,8 @@
  */
 /* Reconstructed FUN_00034ff0 @ 0x34ff0 (strict CFG parity). */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void debug_print(uintptr_t format);
-extern void log_message(uintptr_t format);
 extern int strncmp(const void *left, const void *right, uint32_t length);
 
 uint32_t whitelist_contains_app(const void *name, const void *identifier)

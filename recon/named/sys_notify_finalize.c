@@ -11,10 +11,10 @@
  *   rodata_f0959                             @ 0x000f0959
  *   rodata_f7a30                             @ 0x000f7a30
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0004bb0c @ 0x4bb0c  (parity: 300/300 trials, PROVEN) */
 
 extern void poll_signal_event_locked(unsigned int, unsigned int);
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 extern void assert_post_action(unsigned int a, unsigned int b);
 int sys_notify_finalize(int *param_1,int param_2,unsigned int param_3,unsigned int param_4)
 {

@@ -26,6 +26,7 @@
  */
 /* Reconstructed FUN_000719f4 @ 0x719f4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 extern void sys_timepoint_calc(void*);
 extern int z_spin_lock_valid(int);
 extern void z_spin_lock_set_owner(int);
@@ -33,7 +34,6 @@ extern int z_spin_unlock_valid(int);
 extern long long sys_heap_aligned_alloc(int,unsigned,unsigned);
 extern void sys_timepoint_timeout(void*,int,int,int);
 extern void z_pend_curr(int,unsigned,int,int,int,int);
-extern void printk(unsigned,...);
 extern void assert_post_action(unsigned,unsigned);
 
 static inline unsigned gp(void){unsigned r;__asm volatile("mrs %0, basepri":"=r"(r));return r;}

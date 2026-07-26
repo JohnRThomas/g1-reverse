@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002ec1c @ 0x0002ec1c
  * public-name: clean_dmic_msgq
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,8 +16,6 @@
 /* Reconstructed clean_dmic_msgq @ 0x2ec1c  (parity: 300/300 trials, PROVEN) */
 
 extern int k_msgq_cleanup(unsigned int);
-extern void log_message(unsigned int,unsigned int);
-extern void debug_print(unsigned int,unsigned int);
 int clean_dmic_msgq(void){
     int iVar1 = k_msgq_cleanup(((unsigned long)&g_dmic_msgq) /*=0x20007b7c*/);
     if(iVar1!=0 && *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0){

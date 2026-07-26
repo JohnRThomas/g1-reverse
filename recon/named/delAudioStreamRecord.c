@@ -15,13 +15,12 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_app_language_msgq                      @ 0x200079e4
  */
+#include "../headers/g1_log.h"
 /* Reconstructed delAudioStreamRecord @ 0x2f878  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
 extern void k_sem_give(unsigned int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, ...);
 
 unsigned int delAudioStreamRecord(unsigned char param_1)
 {

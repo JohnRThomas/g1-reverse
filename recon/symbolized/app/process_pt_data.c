@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000330ec @ 0x000330ec
  * public-name: process_pt_data
  * durable-map: recon/catalogs/function_names_app.json
@@ -35,8 +36,6 @@
  *   g_pt_status_msg_buf                      @ 0x2001a0f5
  */
 /* Reconstructed FUN_000330ec @ 0x330ec  (parity: 300/300 trials, PROVEN) */
-extern int log_message(int,...);
-extern int debug_print(int,...);
 extern int set_delay_deadline(int,...);
 extern int display_dev_reg_config(void);
 extern int set_pending_state_flag(int,...);

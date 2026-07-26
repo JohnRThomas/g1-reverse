@@ -17,9 +17,8 @@
  */
 
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
-extern int log_message(uintptr_t format, ...);
-extern int debug_print(uintptr_t format, ...);
 #define debug_print debug_print
 
 uint32_t get_notification_counts_cmd_response(const uint8_t *notification,

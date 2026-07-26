@@ -17,9 +17,9 @@
  * Private namespace target: g1_recon_retarget_lock_release_recursive.
  */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 extern __attribute__((noreturn)) void assert_post_action(uint32_t, uint32_t);
-extern void printk(uint32_t, uint32_t, uint32_t, uint32_t);
 extern int k_mutex_unlock(uintptr_t lock);
 
 #define g1_recon_retarget_lock_release_recursive g1_recon_retarget_lock_release_recursive

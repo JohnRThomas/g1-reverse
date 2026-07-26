@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000635d8 @ 0x000635d8
  * public-name: rtc_channel_cc_read
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,7 +15,6 @@
 /* Reconstructed FUN_000635d8 @ 0x635d8  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(unsigned int a0, unsigned int a1);
-extern void printk(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3, unsigned int a4);
 
 unsigned int rtc_channel_cc_read(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

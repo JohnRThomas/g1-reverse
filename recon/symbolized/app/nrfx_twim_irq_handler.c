@@ -16,9 +16,9 @@
  */
 /* Reconstructed FUN_00067600 @ 0x67600 */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 extern void assert_post_action(uint32_t, uint32_t);
-extern void printk(uint32_t, ...);
 extern int xfer_completeness_check(uintptr_t, void *);
 extern int __nrfy_internal_twim_events_process(uintptr_t, uint32_t);
 

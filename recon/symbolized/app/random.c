@@ -32,13 +32,12 @@
  */
 /* Reconstructed FUN_00017f70 @ 0x17f70  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef unsigned int uint;
 typedef unsigned char undefined1;
 typedef unsigned undefined4;
-extern void log_message(unsigned, ...);
 extern unsigned get_device_info(void);
 extern void enqueue_bt_data(void *a, uint b);
-extern void debug_print(unsigned, ...);
 extern void k_sem_give(int a);
 extern void set_shutdown_flag(unsigned a, int b);
 extern void snprintk(void *a, int b, unsigned c, ...);

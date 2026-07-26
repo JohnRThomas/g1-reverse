@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000158bc @ 0x000158bc
  * public-name: switch_to_dfu_mode
  * durable-map: recon/catalogs/function_names_app.json
@@ -21,8 +22,6 @@
 
 typedef unsigned char u8;
 typedef unsigned int u32;
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
 extern int k_is_in_isr(void);
 extern void app_msleep_thunk_a(int);
 extern int sys_reboot(int);

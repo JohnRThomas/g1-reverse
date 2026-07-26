@@ -15,8 +15,8 @@
  */
 /* Reconstructed FUN_00065d8c @ 0x65d8c  (parity: 2/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 extern void assert_post_action(uint32_t,uint32_t);
-extern void printk(uint32_t,uint32_t,uint32_t,uint32_t,uint32_t);
 void nrfx_ipc_config_load(int param_1,uint32_t param_2,uint32_t param_3,uint32_t param_4){
   if(param_1==0){
     printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"p_config") /*=0xf6c00*/,((unsigned long)&rodata_f6bc5) /*=0xf6bc5*/,0x46,param_4);

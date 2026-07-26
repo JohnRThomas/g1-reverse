@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_0004a2a4 @ 0x4a2a4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(int,...);
+#include "../headers/g1_log.h"
 extern int unix_timestamp_to_datetime(int,void*);
 extern int compute_day_of_week(int,int,int);
 extern int get_localized_weekday_name(int);

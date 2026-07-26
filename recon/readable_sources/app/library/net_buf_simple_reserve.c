@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_net_buf_simple__param_0284             [param_0284; library]
  * Raw function identity: 0x0005f4d4.  See ../include/g1_recovered_layouts.h. */
@@ -17,7 +18,6 @@
  */
 /* Reconstructed FUN_0005f4d4 @ 0x5f4d4  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
 extern unsigned long long assert_post_action(unsigned int, unsigned int);
 
 static void merge_tail(unsigned int r0, unsigned int r1)

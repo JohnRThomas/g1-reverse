@@ -20,10 +20,10 @@
 /* Reconstructed FUN_00066bc4 @ 0x66bc4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 extern int qspi_ready_wait(void);
 extern int qspi_activate(int);
 extern void assert_post_action(uint32_t,int);
-extern void printk(uint32_t,uint32_t,uint32_t,int,uint32_t);
 
 #define g1_recon_nrfx_qspi_erase nrfx_qspi_erase
 int g1_recon_nrfx_qspi_erase(uint32_t param_1, uint32_t param_2,

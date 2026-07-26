@@ -11,9 +11,9 @@
  *   rodata_99de0                             @ 0x00099de0   [INLINED -- G6 literal batch]
  *   rodata_99e1e                             @ 0x00099e1e   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00017768 @ 0x17768  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern void assert_post_action(unsigned int a, unsigned int b);
 typedef void (*jfn847)(void);
 void gpio_pin_set_checked(int param_1, unsigned int param_2, unsigned int param_3)

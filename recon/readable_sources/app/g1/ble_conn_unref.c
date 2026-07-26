@@ -19,8 +19,8 @@
  */
 /* Reconstructed FUN_000566a4 @ 0x566a4  true code extent: 0x50 bytes */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern void printk(uint32_t module, ...);
 extern void assert_post_action(uint32_t source, uint32_t line);
 extern void legacy_advertising_connection_restart(void *object);
 

@@ -50,11 +50,10 @@
  * CFG_VERIFY_PREFIX_FIRST CFG_VERIFY_PREFIX_K=240
  */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 extern void change_work_mode_to(uint32_t);
 extern void update_persist_task_status_to_idle(uint8_t *);
-extern void log_message(uintptr_t, ...);
-extern void debug_print(uintptr_t, ...);
 extern int sync_to_slave(uint8_t *, uint32_t, uint32_t);
 extern int get_ancs_conn_handle(void);
 extern int g1_recon_bt_conn_set_security(int, uint32_t);

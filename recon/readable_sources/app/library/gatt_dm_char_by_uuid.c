@@ -16,11 +16,11 @@
  */
 /* Full reconstruction of FUN_0004ed3c @ 0x4ed3c (66-byte extent). */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 extern uint32_t bt_gatt_dm_char_next(uint32_t collection, uint32_t previous);
 extern const uint32_t *bt_gatt_dm_attr_chrc_val(void);
 extern int bt_uuid_cmp(const void *key, uint32_t candidate);
-extern void printk(uintptr_t format, ...);
 extern _Noreturn void assert_post_action(uintptr_t file, uint32_t line);
 
 uint32_t gatt_dm_char_by_uuid(uint32_t collection, const void *key)

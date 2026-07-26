@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_gpio_pin_get_raw_ctx__param_0030       [param_0030; G1-original]
  * Raw function identity: 0x000177c4.  See ../include/g1_recovered_layouts.h. */
@@ -17,7 +18,6 @@
  */
 /* Reconstructed FUN_000177c4 @ 0x177c4  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void assert_post_action(unsigned int, unsigned int);
 typedef int (*fnptr)(int, unsigned int*, unsigned int, void*, int);
 

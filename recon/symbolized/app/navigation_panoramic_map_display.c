@@ -49,14 +49,13 @@
  */
 /* Reconstructed navigation_panoramic_map_display @ 0x3e7f8  (parity: 298/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef uint8_t undefined1; typedef uint8_t byte; typedef uint8_t undefined; typedef uint8_t uchar;
 typedef uint16_t undefined2; typedef uint16_t ushort; typedef uint16_t wchar_t;
 typedef uint32_t undefined4; typedef uint32_t uint;
 typedef uint64_t undefined8; typedef uint64_t ulonglong;
 typedef int64_t longlong;
 
-extern long long log_message(int, ...);
-extern long long debug_print(int, ...);
 extern long long get_device_info(int, ...);
 extern long long reflash_fb_data_to_lcd(int, ...);
 extern long long gui_canvas_flags_clear_bit1(int, ...);

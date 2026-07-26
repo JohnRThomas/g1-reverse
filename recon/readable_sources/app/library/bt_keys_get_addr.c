@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0005e6a8 @ 0x0005e6a8
  * public-name: bt_keys_get_addr
  * durable-map: recon/catalogs/function_names_app.json
@@ -16,7 +17,6 @@
 
 extern void bt_keys_pool_find_or_alloc(void);
 extern void assert_post_action(unsigned int,unsigned int);
-extern void printk(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 void bt_keys_get_addr(unsigned int param_1,int param_2,unsigned int param_3,unsigned int param_4)
 {
   if (param_2 == 0) {

@@ -31,6 +31,7 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ui_mode_flag                           @ 0x20018462
  */
+#include "../headers/g1_log.h"
 /* Reconstructed SettingStoreHandler @ 0x23f04  (parity: 30/30 trials, PROVEN) */
 #pragma GCC diagnostic ignored "-Wint-conversion"
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
@@ -95,9 +96,7 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern void log_message(unsigned int format, ...);
 extern unsigned int get_device_info(void);
-extern void debug_print(unsigned int format, ...);
 extern int k_msgq_get(unsigned int,void*,unsigned int,unsigned int);
 extern int z_device_is_ready(unsigned int);
 #define DAT_0002418c 0x20003994UL

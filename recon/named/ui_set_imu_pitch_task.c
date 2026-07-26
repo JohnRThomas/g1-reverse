@@ -26,9 +26,8 @@
  */
 /* Reconstructed FUN_00046b80 @ 0x46b80  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int log_message(int,...);
+#include "../headers/g1_log.h"
 extern int get_device_info(int,...);
-extern int debug_print(int,...);
 extern int gui_set_active_canvas(int,...);
 extern int gui_screen_clear(int,...);
 extern int gui_canvas_flags_set_bit1(int,...);

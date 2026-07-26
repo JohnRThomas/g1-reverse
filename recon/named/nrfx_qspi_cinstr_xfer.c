@@ -23,7 +23,7 @@
 /* Reconstructed FUN_000669f4 @ 0x669f4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void printk(uint32_t,...);
+#include "../headers/g1_log.h"
 extern uint32_t assert_post_action(uint32_t,uint32_t);
 extern uint32_t qspi_activate(void);
 extern uint32_t qspi_ready_wait(void);

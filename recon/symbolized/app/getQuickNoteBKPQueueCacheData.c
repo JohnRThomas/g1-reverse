@@ -32,11 +32,10 @@
  */
 /* Reconstructed FUN_00024684 @ 0x24684. */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 extern int k_msgq_get(void *queue, void *request, uint32_t timeout,
                         uint32_t flags);
-extern void log_message(uint32_t format, ...);
-extern void debug_print(uint32_t format, ...);
 extern int z_device_is_ready(const void *object);
 extern void memset_bytes(void *destination, int value, uint32_t length);
 extern int memcmp(const void *left, const void *right, uint32_t length);

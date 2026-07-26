@@ -21,7 +21,6 @@ extern void FUN_01035fa0(int, int, int, int, int, int, int, int, int);
 extern void FUN_0103b156(int, int);
 extern int FUN_0102d558(int);
 extern int ipc_service_register_endpoint(int, int, int);
-extern void printk(int, ...);
 
 /* P4 iteration 19: 0x2100095c is hci_rpmsg.c's controller->host k_fifo
  * (the argument bt_enable_raw stores in `raw_rx`).  In the cohesive link it
@@ -30,6 +29,7 @@ extern void printk(int, ...);
  * See recon/net/src/FUN_0102acf4.c for the measured consequence. */
 #ifdef G1_COHESIVE_BUILD
 #include <zephyr/kernel.h>
+#include "../../headers/g1_log.h"
 extern struct k_fifo g1_hci_rx_queue;
 #define C_0102b058 ((int)(uintptr_t)&g1_hci_rx_queue) /*=0x2100095c*/
 #else

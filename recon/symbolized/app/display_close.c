@@ -19,6 +19,7 @@
 /* Reconstructed display_close @ 0x497b0. */
 
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 struct display_close_packet {
     uint8_t type;
@@ -27,8 +28,6 @@ struct display_close_packet {
     uint8_t payload[20];
 };
 
-extern void log_message(uint32_t format, uint32_t name, ...);
-extern void debug_print(uint32_t format, uint32_t name, ...);
 extern int k_msgq_put(void *owner, const void *packet,
                         int option_a, int option_b);
 extern void memcpy(void *destination, const void *source,

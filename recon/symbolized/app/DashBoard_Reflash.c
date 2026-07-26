@@ -82,6 +82,7 @@
  */
 /* Reconstructed DashBoard_Reflash @ 0x3727c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 #pragma GCC diagnostic warning "-Wint-conversion"
 #pragma GCC diagnostic warning "-Wimplicit-int"
 #pragma GCC diagnostic warning "-Wimplicit-function-declaration"
@@ -98,10 +99,8 @@ typedef uint64_t undefined8; typedef uint64_t ulonglong;
 typedef int64_t longlong;
 #define CONCAT11(a,b) ((ushort)(((ushort)(uint8_t)(a)<<8)|(uint8_t)(b)))
 #define CONCAT22(a,b) ((uint)(((uint)(ushort)(a)<<16)|(ushort)(b)))
-extern long long log_message(int, ...);
 extern long long strlen(int, ...);
 extern long long get_device_info(int, ...);
-extern long long debug_print(int, ...);
 extern long long get_ui_mode_flag_byte1(int, ...);
 extern long long check_charging_and_touch_flags(int, ...);
 extern long long msg_content_recalc_unread(int, ...);

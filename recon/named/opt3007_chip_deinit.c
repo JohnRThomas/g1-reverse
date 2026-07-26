@@ -11,10 +11,9 @@
  *   g_opt3007_dev                            @ 0x20007b6c
  *   g_opt3007_chip_ready                     @ 0x20018da1
  */
+#include "../headers/g1_log.h"
 /* Reconstructed opt3007_chip_deinit @ 0x2e8b4  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
-extern void debug_print(unsigned int,...);
 void opt3007_chip_deinit(unsigned int param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4){
     unsigned int v = *(volatile unsigned int*)0x20007b6cUL;
     if(v != 0){

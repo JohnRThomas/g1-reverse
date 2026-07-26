@@ -18,9 +18,8 @@
  */
 /* Reconstructed set_brightness_to_panel_reg @ 0x46e3c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(uint32_t, ...);
+#include "../../headers/g1_log.h"
 extern void *get_device_info(void);
-extern void debug_print(uint32_t, ...);
 extern void projector_send_cmd1(int, int);
 extern void projector_send_cmd_0x46(unsigned int);
 extern void net_pkt_write_be16(int);

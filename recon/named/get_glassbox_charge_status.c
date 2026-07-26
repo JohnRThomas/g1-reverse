@@ -10,10 +10,9 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_glassbox_charge_status_byte            @ 0x20019ef4
  */
+#include "../headers/g1_log.h"
 /* Reconstructed get_glassbox_charge_status @ 0x32784  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int);
 unsigned char get_glassbox_charge_status(void){
     volatile unsigned char *pbVar1 = (volatile unsigned char*)0x20019ef4UL;
     if(*(volatile int*)0x2000230cUL > 2){

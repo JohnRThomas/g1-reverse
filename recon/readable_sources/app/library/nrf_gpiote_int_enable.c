@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00065e10 @ 0x00065e10
  * public-name: nrf_gpiote_int_enable
  * durable-map: recon/catalogs/function_names_app.json
@@ -16,7 +17,6 @@
 /* Reconstructed FUN_00065e10 @ 0x65e10  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int assert_post_action(unsigned int a, unsigned int b);
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 
 void nrf_gpiote_int_enable(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

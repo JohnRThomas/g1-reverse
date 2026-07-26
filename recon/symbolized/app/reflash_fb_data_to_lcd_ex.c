@@ -20,9 +20,8 @@
  */
 /* Reconstructed FUN_000473c8 @ 0x473c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef unsigned long long u64;
-extern long long log_message(int,...);
-extern long long debug_print(int,...);
 extern int k_mutex_lock(int,...);
 extern int k_mutex_unlock(int,...);
 extern int get_projector_controller(int,...);
@@ -71,10 +70,17 @@ unsigned reflash_fb_data_to_lcd_ex(int param_1,int param_2,int param_3,int param
             k_mutex_unlock(((unsigned long)&g_projector_bus_lock) /*=0x2000a060*/);
             uVar3 = (unsigned)((u64)ret >> 32);
             if(iVar4 != 0 && 0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/){
+                /* G7-B2 defect fix.  Both sinks are `void`
+                 * (recon/headers/g1_log.h); the `(u64)... >> 32` wrapper was
+                 * the decompiler modelling r1 after the call.  0x474fe and
+                 * 0x47516 load only r0/r1 -- "%s(): spi transfer error....\n"
+                 * has one specifier, so two arguments -- and 0x47502
+                 * immediately reloads r0 from [sp,#0x20], so nothing the sink
+                 * leaves behind is read. */
                 if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
-                    uVar3 = (unsigned)((u64)log_message(((unsigned long)"%s(): spi transfer error....\n") /*=0xd7383*/,((unsigned long)"_reflash_fb_data_to_lcd_ex") /*=0xd7426*/) >> 32);
+                    log_message(((unsigned long)"%s(): spi transfer error....\n") /*=0xd7383*/,((unsigned long)"_reflash_fb_data_to_lcd_ex") /*=0xd7426*/);
                 } else {
-                    uVar3 = (unsigned)((u64)debug_print(((unsigned long)"%s(): spi transfer error....\n") /*=0xd7383*/, ((unsigned long)"_reflash_fb_data_to_lcd_ex") /*=0xd7426*/) >> 32);
+                    debug_print(((unsigned long)"%s(): spi transfer error....\n") /*=0xd7383*/, ((unsigned long)"_reflash_fb_data_to_lcd_ex") /*=0xd7426*/);
                 }
             }
             *(unsigned char*)(iVar7+iVar9) = uVar1;

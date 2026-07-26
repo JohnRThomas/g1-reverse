@@ -18,6 +18,7 @@
  * The caller-owned TX/RX locals are narrowly stack-pointer-normalized while
  * all four register arguments remain compared. */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 typedef void (*spi_transfer_47724_t)(void *device, const void *tx,
                                     uint32_t tx_length, void *rx,
@@ -31,8 +32,6 @@ struct spi_state_47724 {
 extern struct spi_state_47724 *get_projector_controller(void);
 extern void projector_bus_lock(uint32_t a, uint32_t b);
 extern void projector_bus_unlock(void);
-extern void log_message(uintptr_t format, ...);
-extern void debug_print(uintptr_t format, ...);
 
 uint32_t spi_read_id(uint32_t unused, uint32_t options, uint32_t ignored)
 {

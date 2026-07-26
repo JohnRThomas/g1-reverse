@@ -15,8 +15,8 @@
  * Raw/address backmap: transport_parameters_write <= FUN_00025950 @ 0x00025950.
  */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern int log_message(uintptr_t format, ...);
 extern int ipc_send_len_prefixed_packet_locked_retry(uint32_t transport, uint32_t key,
                         void *value, uint32_t length);
 extern int ipc_ept_op_a_locked_retry(uint32_t transport, uint32_t key,

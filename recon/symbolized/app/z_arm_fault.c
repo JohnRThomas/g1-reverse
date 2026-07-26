@@ -32,13 +32,13 @@
  */
 /* Reconstructed FUN_000507d4 @ 0x507d4 */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 extern void arm_fault_dump_esf_registers(int, void *);
 extern int arm_mem_manage_fault_helper(int, uint8_t *);
 extern int arm_bus_fault_helper(int, uint8_t *);
 extern int arm_usage_fault_helper(void);
 extern void assert_post_action(uint32_t, uint32_t);
-extern void printk(uint32_t, ...);
 extern void arm_fault_forward_handler(uint32_t, uint32_t, void *);
 extern void memcpy(void *, const void *, uint32_t);
 

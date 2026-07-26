@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000177c4 @ 0x000177c4
  * public-name: gpio_pin_get_raw_checked
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,7 +15,6 @@
  */
 /* Reconstructed FUN_000177c4 @ 0x177c4  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void assert_post_action(unsigned int, unsigned int);
 typedef int (*fnptr)(int, unsigned int*, unsigned int, void*, int);
 

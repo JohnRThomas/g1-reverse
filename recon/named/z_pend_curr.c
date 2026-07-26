@@ -23,13 +23,13 @@
  *   g_pend_locked_thread_tmp                 @ 0x2000b484
  *   sched_spinlock                           @ 0x2000b490
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00073f6c @ 0x73f6c  (parity: 300/300 trials, PROVEN) */
 extern int z_spin_lock_valid(int,int,int,int);
 extern int z_spin_unlock_valid(int);
 extern void z_spin_lock_set_owner(int);
 extern void pend_locked(int,int,int,int);
 extern void arch_swap(int);
-extern void printk(int,...);
 extern void assert_post_action(int,...);
 void z_pend_curr(int param_1,int param_2,int param_3,int param_4,int param_5,int param_6){
   int iVar3 = 0x2000b448;

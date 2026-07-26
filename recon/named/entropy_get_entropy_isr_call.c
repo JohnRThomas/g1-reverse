@@ -12,9 +12,9 @@
  *   rodata_f2a79                             @ 0x000f2a79   [INLINED -- G6 literal batch]
  *   rodata_f2a99                             @ 0x000f2a99   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00052bf8 @ 0x52bf8  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern unsigned int assert_post_action(unsigned int a, unsigned int b);
 
 void entropy_get_entropy_isr_call(unsigned int param_1, unsigned int param_2)

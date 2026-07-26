@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00015f80 @ 0x00015f80
  * public-name: power_for_imu_and_mic
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,8 +15,6 @@
 /* Reconstructed power_for_imu_and_mic @ 0x15f80  (parity: 300/300 trials, PROVEN) */
 
 extern int dev_write_reg3(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void log_message(unsigned int,...);
-extern void debug_print(unsigned int,...);
 
 unsigned int power_for_imu_and_mic(void)
 {

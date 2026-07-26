@@ -17,11 +17,11 @@
  */
 /* Reconstructed FUN_00065504 @ 0x65504  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef unsigned int uint;
 extern int nrfx_flag32_free(uint32_t);
 extern int get_pin_idx(void);
 extern void assert_post_action(uint32_t,uint32_t);
-extern void printk(uint32_t,uint32_t,uint32_t,uint32_t);
 void gpiote_channel_release_if_unshared(void){
   int iVar3=get_pin_idx();
   int iVar4=((unsigned long)g_gpiote_cb) /*=0x20002bc0*/;

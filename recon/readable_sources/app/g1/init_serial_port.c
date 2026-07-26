@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000332dc @ 0x000332dc
  * public-name: init_serial_port
  * durable-map: recon/catalogs/function_names_app.json
@@ -19,11 +20,9 @@
  */
 /* Reconstructed FUN_000332dc @ 0x332dc  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(void*);
 extern int z_device_is_ready(void*);
 extern int uart_read_start(void*);
 extern void assert_post_action(void*, int);
-extern void printk(void*, void*, void*, int, unsigned int);
 
 unsigned int init_serial_port(void)
 {

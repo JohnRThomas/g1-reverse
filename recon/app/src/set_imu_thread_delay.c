@@ -6,24 +6,28 @@
  */
 #include <stdint.h>
 
-extern int FUN_0007dda4(uint32_t format, uint32_t function, uint32_t a, uint32_t b);
-extern int FUN_00019c70(uint32_t format, uint32_t function, uint32_t a, uint32_t b);
+extern void FUN_0007dda4(uint32_t format, ...);
+extern void FUN_00019c70(uint32_t format, ...);
 
 #define LOG_LEVEL (*(volatile int32_t *)0x2000230cUL)
 #define LOG_SINK  (*(volatile int32_t *)0x20007554UL)
 #define LOG_TAG   0x0009fb00UL
 
-int set_imu_thread_delay(unsigned char *context, int delay_ms)
+/* G7-B2: both sinks are void variadic (see recon/headers/g1_log.h); the
+ * fall-through at 0x25db0 is a bare `bx lr` with r0 untouched and both logging
+ * paths are tail calls, so this function computes no return value.  0x0009f721
+ * is "%s(): %d(ms)\n" -- two specifiers, three arguments; the fourth the body
+ * used to pass was the g_log_use_alt_sink value left in r3 by the branch. */
+void set_imu_thread_delay(unsigned char *context, int delay_ms)
 {
     if (*(volatile int32_t *)(context + 0x18) != delay_ms) {
         *(volatile int32_t *)(context + 0x18) = delay_ms;
         if (LOG_LEVEL > 2) {
-            int32_t sink = LOG_SINK;
-            if (sink == 0) {
-                return FUN_0007dda4(0x0009f721UL, LOG_TAG, (uint32_t)delay_ms, (uint32_t)sink);
+            if (LOG_SINK == 0) {
+                FUN_0007dda4(0x0009f721UL, LOG_TAG, (uint32_t)delay_ms);
+                return;
             }
-            return FUN_00019c70(0x0009f721UL, LOG_TAG, (uint32_t)delay_ms, (uint32_t)sink);
+            FUN_00019c70(0x0009f721UL, LOG_TAG, (uint32_t)delay_ms);
         }
     }
-    return (int)(unsigned long)context;
 }

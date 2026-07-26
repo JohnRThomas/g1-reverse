@@ -21,6 +21,7 @@
  */
 /* Full reconstruction of gui_string_draw @ 0x455cc (280 bytes). */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 extern int strlen(const uint8_t *s);
 extern uint32_t atomic_get_3_0(void);
@@ -30,8 +31,6 @@ extern void reflash_fb_data_to_lcd(uint32_t, uint32_t, uint32_t, uint32_t, uint3
 extern int resource_manger_get(uint32_t, uint32_t, int32_t *, int32_t *, uint32_t *, uint32_t);
 extern void fb_blit_rows_copy(uint32_t, uint32_t, int32_t, int32_t, int32_t, uint32_t);
 extern int count_chars_in_default_font_table(uint32_t, uint32_t);
-extern void log_message(uint32_t, uint32_t);
-extern void debug_print(uint32_t, uint32_t);
 
 int gui_string_draw(uint32_t font, const uint8_t *text, int32_t x, uint32_t y,
                     uint32_t arg5, uint32_t arg6, int32_t *width_out)

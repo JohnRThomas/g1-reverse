@@ -13,12 +13,11 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_app_whitelist_buffer                   @ 0x2001a22c
  */
+#include "../headers/g1_log.h"
 /* Reconstructed store_whitelist @ 0x35608  (parity: 300/300 trials, PROVEN) */
 extern int flash_write_paged(unsigned int a0, unsigned int a1, unsigned int a2);
 extern void revalidate_whitelist_json(void);
 extern void k_sleep(unsigned int a0, unsigned int a1);
-extern void log_message(unsigned int a0, ...);
-extern void debug_print(unsigned int a0, ...);
 
 int store_whitelist(void)
 {

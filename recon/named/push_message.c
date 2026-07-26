@@ -23,8 +23,7 @@
  */
 /* Reconstructed FUN_00033f54 @ 0x33f54  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int log_message(int, ...);
-extern int debug_print(int, ...);
+#include "../headers/g1_log.h"
 extern long long message_table_contains_id(int,int,int,int,int,int,int);
 extern int memcpy(int, ...);
 

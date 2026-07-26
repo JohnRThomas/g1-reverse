@@ -13,13 +13,13 @@
  *   rodata_f539a                             @ 0x000f539a
  *   rodata_f542d                             @ 0x000f542d
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0005f390 @ 0x5f390  (parity: 300/300 trials, PROVEN) */
 
 extern int net_buf_ref(int a, int b, unsigned int c, unsigned int d);
 extern unsigned int net_buf_frag_last(void);
 extern void net_buf_frag_insert(unsigned int a, int b);
 extern void assert_post_action(unsigned int a, unsigned int b);
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 
 int net_buf_frag_add(int param_1, int param_2, unsigned int param_3, unsigned int param_4)
 {

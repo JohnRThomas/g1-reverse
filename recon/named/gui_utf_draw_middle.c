@@ -25,8 +25,9 @@
  */
 /* Reconstructed FUN_00044bd8 @ 0x44bd8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort; typedef unsigned char byte;
-extern int log_message(int,...); extern int get_device_info(int,...); extern int debug_print(int,...);
+extern int get_device_info(int,...);
 extern int atomic_get_3_0(int,...); extern int count_chars_in_default_font_table(int,...); extern int resource_manger_get(int,...);
 extern int clean_fb_data(int,...); extern int reflash_fb_data_to_lcd(int,...); extern int utf8_string_to_utf16(int,...);
 extern int fb_blit_rows_copy(int,...); extern int index_in_range32_mask(int,...); extern int safe_memcpy_checked(int,...);

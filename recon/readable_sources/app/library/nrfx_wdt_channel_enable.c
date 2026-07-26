@@ -15,7 +15,7 @@
  */
 /* Full reconstruction FUN_00067e30 @ 0x67e30, exact extent 70 bytes. */
 #include <stdint.h>
-extern void printk(uintptr_t,uintptr_t,uintptr_t,uint32_t,...);
+#include "../../../headers/g1_log.h"
 extern __attribute__((noreturn)) void assert_post_action(uintptr_t,uint32_t);
 void nrfx_wdt_channel_enable(uintptr_t *device,uint32_t a,uint32_t b,uint32_t context){
  (void)a;(void)b;uint32_t ch=((uint8_t*)device)[4];volatile uint8_t *s=(volatile uint8_t*)(((unsigned long)&m_dppi_channels) /*=0x2000b41c*/+ch*8u);

@@ -9,10 +9,10 @@
  *   rodata_9b345                             @ 0x0009b345   [INLINED -- G6 literal batch]
  *   g_debug_msg_pipe                         @ 0x2000751c
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00019bd0 @ 0x19bd0  (parity: 300/300 trials, PROVEN) */
 
 extern int z_impl_k_msgq_alloc_init(void *, int, int);
-extern void log_message(unsigned int);
 
 int debug_log_queue_init(void)
 {

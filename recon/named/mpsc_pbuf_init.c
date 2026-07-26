@@ -14,8 +14,8 @@
  */
 /* Reconstructed FUN_0004bc28 @ 0x4bc28  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern int assert_post_action(int,int);
-extern int printk(int,...);
 extern int z_impl_k_sem_init(int,int,int);
 extern int memset_bytes(int,int,int);
 void mpsc_pbuf_init(int param_1, uint32_t *param_2, uint32_t param_3, uint32_t param_4){

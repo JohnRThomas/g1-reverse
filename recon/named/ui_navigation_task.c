@@ -83,6 +83,7 @@
  */
 #include <stdint.h>
 #include <stddef.h>
+#include "../headers/g1_log.h"
 
 /* Human identity: ui_navigation_task; raw definition remains reversible. */
 
@@ -124,8 +125,8 @@ extern int device_info_text_width_get(void);
 extern int device_info_text_height_get_clamped(void);
 extern int unix_timestamp_to_datetime(int, void *);
 extern void memset_bytes(void *, int, size_t);                /* memset */
-extern void debug_print(uintptr_t, ...);                    /* routed log */
-extern void log_message(uintptr_t, ...);                    /* direct log */
+/* routed log */
+/* direct log */
 
 #define V8(a)  (*(volatile uint8_t  *)(uintptr_t)(a))
 #define V16(a) (*(volatile uint16_t *)(uintptr_t)(a))

@@ -25,10 +25,9 @@
  */
 /* Reconstructed FUN_0002c714 @ 0x2c714  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 typedef unsigned char byte; typedef unsigned char undefined1; typedef uint32_t undefined4; typedef unsigned int uint;
-extern int log_message(int,...);
 extern int get_device_info(void);
-extern int debug_print(int,...);
 extern int update_temp_task_status(int,...);
 extern int update_persist_task_status_to_idle(void*,...);
 extern int get_message_type_param(int,...);

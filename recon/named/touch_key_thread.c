@@ -20,11 +20,11 @@
  * trailing literal pool.
  */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
-extern void log_message(uint32_t format, ...);                 /* FUN_0007dda4 */
+/* FUN_0007dda4 */
 extern uintptr_t get_device_info(void);                        /* FUN_000167a8 */
-extern void debug_print(uint32_t format, uint32_t module,
-                        uint32_t value, ...);                  /* FUN_00019c70 */
+/* FUN_00019c70 */
 extern void trigger_touch_key_hw_reset(void);                  /* FUN_0002a0c0 */
 extern void handle_touch_key_irq(void);                        /* FUN_00030af0 */
 extern void k_msleep(int32_t milliseconds);                    /* FUN_0007cb8e */

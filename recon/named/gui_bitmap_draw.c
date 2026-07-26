@@ -17,10 +17,9 @@
  */
 /* Reconstructed FUN_00043a68 @ 0x43a68  (parity: 299/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 typedef unsigned uint; typedef unsigned char byte; typedef unsigned long long ulonglong;
-extern int log_message(int,...);
 extern int get_device_info(int,...);
-extern int debug_print(int,...);
 extern unsigned atomic_get_3_0(void);
 extern int clean_fb_data(int,...);
 extern int reflash_fb_data_to_lcd(int,...);

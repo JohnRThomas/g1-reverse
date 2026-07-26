@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0003dff8 @ 0x0003dff8
  * public-name: navigation_direction_img_display
  * durable-map: recon/catalogs/function_names_app.json
@@ -18,8 +19,6 @@
 extern int device_info_text_width_get(void);
 extern int device_info_text_height_get_clamped(void);
 extern void gui_bmp_bitmap_draw(int a, int b, int c, int d, int e, int f, int g);
-extern void debug_print(int a, int b);
-extern void log_message(int a, int b);
 
 void navigation_direction_img_display(int param_1, int param_2, int param_3)
 {

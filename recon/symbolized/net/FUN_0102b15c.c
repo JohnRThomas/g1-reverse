@@ -1,4 +1,5 @@
 #include "g1_net_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0102b15c @ 0x0102b15c
  * public-name: FUN_0102b15c
  * durable-map: recon/catalogs/function_names_net.json
@@ -16,7 +17,6 @@ extern void __memcpy_chk(void *dst, unsigned int a, unsigned int b, int len);
 extern int FUN_0102a498(void);
 extern int FUN_0102a468(void);
 extern void FUN_0102a448(void *a, unsigned int b);
-extern void printk(int a, unsigned int b, int c);
 
 unsigned int FUN_0102b15c(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

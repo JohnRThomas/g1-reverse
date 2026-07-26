@@ -32,6 +32,7 @@
  */
 /* Reconstructed FUN_00055094 @ 0x55094  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 extern int bt_hci_cmd_create(int,...);
 extern int bt_hci_cmd_send_sync(int,...);
 extern int bt_le_adv_legacy_invoke(int,...);
@@ -39,7 +40,6 @@ extern int ble_conn_unref(void);
 extern int bt_conn_lookup_state_le(int,...);
 extern int bt_keys_foreach_type(int,...);
 extern int net_buf_simple_add(int,...);
-extern int printk(int,...);
 extern void assert_post_action(int,...) __attribute__((noreturn));
 extern int bt_addr_le_copy_80fc4(int,...);
 extern int bt_id_addr_update_thunk(int,...);

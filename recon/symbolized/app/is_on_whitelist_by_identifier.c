@@ -30,9 +30,8 @@
 /* Reconstructed is_on_whitelist_by_identifier @ 0x34bd4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void log_message(uint32_t,...);
+#include "../../headers/g1_log.h"
 extern unsigned int strlen(const void *);
-extern void debug_print(uint32_t,...);
 extern int strncmp(const void *,int,unsigned int);
 extern int strstr(const void *,int);
 

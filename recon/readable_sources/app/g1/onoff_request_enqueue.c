@@ -28,6 +28,7 @@
 /* Reconstructed FUN_0004b908 @ 0x4b908  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../../../headers/g1_log.h"
 extern int onoff_process_event(int,int,unsigned int);
 extern int z_spin_lock_valid(int);
 extern int z_spin_unlock_valid(int);
@@ -35,7 +36,6 @@ extern int z_spin_lock_set_owner(int);
 extern int validate_args(int,int);
 extern int notify_one(int,int,unsigned int,int);
 extern int assert_post_action(int,...);
-extern int printk(int,...);
 unsigned int onoff_request_enqueue(int *param_1, int *param_2)
 {
   unsigned int uVar3 = (unsigned int)validate_args((int)param_1,(int)param_2);

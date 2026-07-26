@@ -33,6 +33,7 @@ extern unsigned char g1_esb_pipe_addr_block[];
 
 #include <stdint.h>
 #include "../../headers/g1_nrf_regs.h"
+#include "../../headers/g1_log.h"
 
 extern int FUN_010333b4(void *);
 extern void FUN_01033af8(int);
@@ -42,7 +43,6 @@ extern int FUN_01033a20(int);
 extern int FUN_01033a60(int, int);
 extern int FUN_01033aac(int);
 extern int FUN_01033888(void);
-extern void printk(int);
 
 int FUN_0102b31c(int param_1)
 {

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00067f1c @ 0x00067f1c
  * public-name: nrfx_dppi_channel_slot_reset
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,7 +16,6 @@
 /* Reconstructed FUN_00067f1c @ 0x67f1c  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long assert_post_action(unsigned int a,unsigned int b);
-extern void printk(unsigned int a,unsigned int b,unsigned int c,unsigned int d);
 
 void nrfx_dppi_channel_slot_reset(int *param_1, int param_2, unsigned int param_3, unsigned int param_4)
 {

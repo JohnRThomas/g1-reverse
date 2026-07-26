@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00051c68 @ 0x00051c68
  * public-name: img_mgmt_slot_to_image
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,7 +15,6 @@
  */
 /* Reconstructed FUN_00051c68 @ 0x51c68  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void assert_post_action(unsigned int, unsigned int) __attribute__((noreturn));
 
 void img_mgmt_slot_to_image(void)

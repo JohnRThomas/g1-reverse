@@ -21,12 +21,12 @@
  */
 /* Reconstructed FUN_0004ba38 @ 0x4ba38  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern int onoff_process_event(int,int,unsigned,int,unsigned);
 extern int z_spin_lock_valid(int);
 extern int z_spin_unlock_valid(int);
 extern void z_spin_lock_set_owner(int);
 extern void assert_post_action(unsigned,unsigned);
-extern void printk(unsigned,...);
 
 unsigned onoff_release(int param_1, unsigned param_2, unsigned param_3, unsigned param_4){
     int iVar7 = param_1 + 0x14;

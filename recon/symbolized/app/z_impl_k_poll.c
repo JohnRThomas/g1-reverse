@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000755f8 @ 0x000755f8
  * public-name: z_impl_k_poll
  * durable-map: recon/catalogs/function_names_app.json
@@ -32,7 +33,6 @@
  */
 /* Reconstructed FUN_000755f8 @ 0x755f8  (parity: 300/300 trials, PROVEN) */
 extern void assert_post_action(int,int);
-extern void printk(int,int,int,int);
 extern int  register_events(int,int,int,int,int,int,int);
 extern void clear_event_registrations(int,int,int);
 extern int  z_spin_lock_valid(int);

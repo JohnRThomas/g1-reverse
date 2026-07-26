@@ -15,10 +15,9 @@
  *   g_message_pool                           @ 0x20007dac
  *   g_message_pool_index                     @ 0x2001a22a
  */
+#include "../headers/g1_log.h"
 /* Reconstructed pull_message @ 0x342e0  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int,...);
-extern void debug_print(unsigned int,...);
 extern unsigned int get_device_info(void);
 
 unsigned char pull_message(int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

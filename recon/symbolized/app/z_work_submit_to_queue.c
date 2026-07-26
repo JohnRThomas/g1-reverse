@@ -25,13 +25,13 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 typedef uint32_t u32;
-extern void printk(u32,u32,...);
 extern void assert_post_action(u32,u32);
 extern int z_spin_lock_valid(u32);
 extern void z_spin_lock_set_owner(u32);
 extern int z_spin_unlock_valid(u32);
 extern u32 submit_to_queue_locked(int,void*);
 #include "../../headers/g1_cmsis_shim.h"
+#include "../../headers/g1_log.h"
 u32 z_work_submit_to_queue(u32 param_1, int param_2, u32 param_3){
     struct lookup_key {
         u32 value;

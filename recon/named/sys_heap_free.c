@@ -20,13 +20,13 @@
  */
 /* Full reconstruction of FUN_0004b214 @ 0x4b214 (130-byte extent). */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 extern uint32_t mem_to_chunkid(uint32_t object, uint32_t length, uint32_t mode);
 extern uint32_t chunk_field(uint32_t object, uint32_t offset, uint32_t mode);
 extern uint32_t chunk_size(uint32_t object, uint32_t offset);
 extern uint32_t set_chunk_used(uint32_t object, uint32_t offset);
 extern void free_chunk(uint32_t value, uint32_t offset);
-extern void printk(uintptr_t format, ...);
 extern _Noreturn void assert_post_action(uintptr_t file, uint32_t line);
 
 void sys_heap_free(const uint32_t *owner, uint32_t length,

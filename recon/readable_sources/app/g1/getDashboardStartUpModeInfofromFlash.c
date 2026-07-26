@@ -19,9 +19,8 @@
  */
 /* Reconstructed getDashboardStartUpModeInfofromFlash @ 0x23df4  (parity: 100/100 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(uint32_t, ...);
+#include "../../../headers/g1_log.h"
 extern void *get_device_info(void);
-extern void debug_print(uint32_t, ...);
 extern int z_device_is_ready(uint32_t);
 
 unsigned char getDashboardStartUpModeInfofromFlash(unsigned int param_1, unsigned int param_2, unsigned int param_3)

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_bt_conn__param_0248                    [param_0248; library]
  *   param_2          => struct g1_layout_bt_gatt_notify_params__param_0259      [param_0259; library]
@@ -33,7 +34,6 @@ extern int bt_gatt_attr_get_handle();
 extern int bt_gatt_foreach_attr_type(int,...);
 extern int gatt_notify(int,...);
 extern int assert_post_action(int,...);
-extern int printk(int,...);
 extern int bt_uuid_cmp(int,...);
 extern int read_struct_first_word(int,...);
 extern int bt_gatt_attr_value_handle();

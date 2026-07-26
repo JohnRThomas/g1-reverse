@@ -22,9 +22,8 @@
  */
 /* Reconstructed FUN_00021a40 @ 0x21a40. */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void log_message(uint32_t format, ...);
-extern void debug_print(uint32_t format, ...);
 extern void debug_print_hex_dump(uint32_t format, const void *record,
                          unsigned int record_size);
 extern void safe_memcpy_checked(void *destination, const void *source,

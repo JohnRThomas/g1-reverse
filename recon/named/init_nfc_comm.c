@@ -9,11 +9,11 @@
  *   rodata_9f196                             @ 0x0009f196   [INLINED -- G6 literal batch]
  *   g_st25dv_dev                             @ 0x20007a44
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0002560c @ 0x2560c  (parity: 300/300 trials, PROVEN) */
 
 extern int pt_comm_bind_device(unsigned int a0);
 extern int process_pt_data(void);
-extern void log_message(unsigned int a0);
 
 int init_nfc_comm(void)
 {

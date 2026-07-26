@@ -15,8 +15,7 @@
  */
 /* Reconstructed read_sys_settting_from_flash @ 0x232f8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(unsigned,...);
-extern void debug_print(unsigned,...);
+#include "../../headers/g1_log.h"
 extern int flash_settings_read(int,void*,int);
 extern void memset_bytes(void*,int,int);
 unsigned read_sys_settting_from_flash(unsigned *param_1)

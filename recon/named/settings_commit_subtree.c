@@ -18,9 +18,9 @@
 /* Reconstructed FUN_0004e6a8 @ 0x4e6a8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern int bt_dev_settings_commit(int,...);
 extern void assert_post_action(int,...);
-extern void printk(int,...);
 extern int settings_name_steq(int,...);
 int settings_commit_subtree(int param_1,unsigned param_2,unsigned param_3,unsigned param_4){
   unsigned *puVar1 = (unsigned*)0x88328UL;

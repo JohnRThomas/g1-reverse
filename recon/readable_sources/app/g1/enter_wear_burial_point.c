@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0004a890 @ 0x0004a890
  * public-name: enter_wear_burial_point
  * durable-map: recon/catalogs/function_names_app.json
@@ -18,8 +19,6 @@
 extern int get_device_info(void);
 extern unsigned get_current_burial_point_type(void);
 extern unsigned long long k_uptime_get_10(void);
-extern void log_message(int,...);
-extern void debug_print(int,...);
 void enter_wear_burial_point(void){
   int iVar1; unsigned uVar2; unsigned long long uVar3;
   iVar1 = get_device_info();

@@ -16,8 +16,8 @@
  */
 /* Full reconstruction FUN_00058b78 @ 0x58b78, exact extent 108 bytes. */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
-extern void printk(uintptr_t, ...);
 extern void assert_post_action(uintptr_t, uint32_t) __attribute__((noreturn));
 extern void chan_req_send(void);
 

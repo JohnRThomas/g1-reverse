@@ -17,12 +17,11 @@
  *   g_t_init                                 @ 0x20002368
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed sett_init @ 0x22518  (parity: 300/300 trials, PROVEN) */
 
 extern int settings_subsys_init(void);
 extern int settings_register(unsigned int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, ...);
 
 void sett_init(int *param_1)
 {

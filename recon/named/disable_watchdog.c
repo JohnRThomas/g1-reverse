@@ -13,11 +13,10 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_wdt_channel_id                         @ 0x20007b50
  */
+#include "../headers/g1_log.h"
 /* Reconstructed disable_watchdog @ 0x2aeb4  (parity: 151/300 trials, PROVEN) */
 
 extern void k_sleep(unsigned int, unsigned int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, ...);
 
 typedef int (*fp_t)(unsigned int);
 

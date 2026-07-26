@@ -27,6 +27,7 @@
 /* Full reconstruction of FUN_00043e90 @ 0x43e90, exact extent 574 bytes.
  * CFG_VERIFY_CALL_ARITIES=2,2,4 */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 typedef unsigned (*render_callback_t)(unsigned, uintptr_t, int, int, int);
 extern uint16_t *utf8_string_to_utf16(uintptr_t text, uint16_t *count);
@@ -41,8 +42,6 @@ extern void fb_blit_rows_copy(uintptr_t display, const void *bitmap, int half_wi
 extern uintptr_t get_device_info(void);
 extern void clean_fb_data(uintptr_t, int, int, int, int, int);
 extern void reflash_fb_data_to_lcd(uintptr_t, uintptr_t, int, int, int, int);
-extern void log_message(uintptr_t, ...);
-extern void debug_print(uintptr_t, ...);
 
 unsigned gui_utf_draw(unsigned unused, uintptr_t text, int font,
                       int left, int top, int right, int bottom,

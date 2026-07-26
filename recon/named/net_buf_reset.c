@@ -11,9 +11,9 @@
  *   rodata_f53be                             @ 0x000f53be   [INLINED -- G6 literal batch]
  *   rodata_f53cf                             @ 0x000f53cf   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0005ee6c @ 0x5ee6c  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 extern int assert_post_action(unsigned int, unsigned int);
 
 void net_buf_reset(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

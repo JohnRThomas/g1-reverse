@@ -27,8 +27,8 @@
  */
 /* Reconstructed FUN_00036820 @ 0x36820. */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void log_message(uint32_t format, ...);
 extern uintptr_t get_device_info(void);
 extern void pixelto4bithex(unsigned int inverted_byte, int glyph_width);
 extern void *malloc(unsigned int size);

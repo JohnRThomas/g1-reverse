@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0005e9d0 @ 0x0005e9d0
  * public-name: bt_keys_get_type
  * durable-map: recon/catalogs/function_names_app.json
@@ -16,7 +17,6 @@
  */
 /* Reconstructed FUN_0005e9d0 @ 0x5e9d0  (parity: 300/300 trials, PROVEN) */
 
-extern int printk(int a,int b,int c,int d,int e);
 extern void assert_post_action(int a,int b);
 extern int bt_keys_find(void);
 extern int bt_keys_get_addr(int a,int b);

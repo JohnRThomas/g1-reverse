@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   0x00066350       => struct g1_layout_nrfx_pdm_cb__global_1329               [global_1329; library]
  *   0x00066360       => struct g1_layout_pdm_capture_buffer_state__global_1330  [global_1330; G1-original]
@@ -21,7 +22,6 @@
  */
 /* Reconstructed FUN_00066300 @ 0x66300  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(int a, int b, int c, int d, int e);
 extern void assert_post_action(int a, int b);
 
 unsigned int nrfx_pdm_stop(void)

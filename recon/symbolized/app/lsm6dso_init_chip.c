@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000622a0 @ 0x000622a0
  * public-name: lsm6dso_init_chip
  * durable-map: recon/catalogs/function_names_app.json
@@ -44,7 +45,6 @@
  *   rodata_f6481                             @ 0x000f6481   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_000622a0 @ 0x622a0  (parity: 300/300 trials, PROVEN) */
-extern void log_message(int fmt, ...);
 extern int audio_codec_set_reg10_field2(int a0,int a1);
 extern int audio_codec_set_reg11_field1(int a0,int a1);
 extern int audio_codec_set_reg12_bit6(int a0,int a1);

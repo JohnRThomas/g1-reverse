@@ -20,9 +20,8 @@
  */
 /* Reconstructed FUN_00043484 @ 0x43484  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int log_message(int, ...);
+#include "../headers/g1_log.h"
 extern int get_device_info(void);
-extern int debug_print(int, ...);
 extern long long atomic_get_3_0(void);
 extern int resource_manger_get(int,int,void*,void*,void*,int);
 extern int clean_fb_data(int,int,int,int,int,int);

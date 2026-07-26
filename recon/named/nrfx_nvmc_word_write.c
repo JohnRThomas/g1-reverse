@@ -14,8 +14,8 @@
  *   rodata_f6cc2                             @ 0x000f6cc2   [INLINED -- G6 literal batch]
  *   NRF_NVMC_S                               @ 0x50039000
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00065f80 @ 0x65f80  (parity: 300/300 trials, PROVEN) */
-extern void printk(unsigned,unsigned,unsigned,unsigned,unsigned);
 extern long long assert_post_action(unsigned,unsigned);
 extern void nvmc_word_write(void);
 extern void nvmc_readonly_mode_set(void);

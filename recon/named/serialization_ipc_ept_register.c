@@ -17,8 +17,8 @@
  */
 /* Reconstructed FUN_000259d4 @ 0x259d4 */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
-extern uint64_t log_message(uint32_t, uint32_t, uint32_t, uint32_t);
 extern uint64_t z_device_is_ready(uint32_t);
 extern void kmutex_dlist_init(uint32_t);
 

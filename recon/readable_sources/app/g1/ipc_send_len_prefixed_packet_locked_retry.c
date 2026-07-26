@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_ipc_ept_ctx__param_0059                [param_0059; G1-original]
  * Raw function identity: 0x00025788.  See ../include/g1_recovered_layouts.h. */
@@ -17,7 +18,6 @@ extern void thunk_FUN_000723b8(unsigned,unsigned,unsigned,unsigned,int,unsigned)
 extern int ipc_send_len_prefixed_packet(int,unsigned,unsigned,unsigned,int);
 extern void thunk_FUN_00072558(unsigned);
 extern unsigned long long sleep_fixed_33_ticks(void);
-extern void log_message(unsigned,unsigned,unsigned,int);
 int ipc_send_len_prefixed_packet_locked_retry(int param_1, unsigned param_2, unsigned param_3, int param_4){
     int iVar1;
     if (param_4 == 0){ iVar1 = 0; }

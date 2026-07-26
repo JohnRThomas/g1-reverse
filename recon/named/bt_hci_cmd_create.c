@@ -16,6 +16,7 @@
  *   g_hci_cmd_pool                           @ 0x20003b4c
  *   bt_hci_cmd_data                          @ 0x2000abf4
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00053cd4 @ 0x53cd4  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_conn_alloc_pdu_buf(int,int,int,int);
@@ -23,7 +24,6 @@ extern void net_buf_simple_reserve(int,int);
 extern int net_buf_id(int);
 extern int net_buf_simple_add(int,int);
 extern void assert_post_action(int,int);
-extern int printk(int,...);
 int bt_hci_cmd_create(short param_1,int param_2){
   int iVar2=bt_conn_alloc_pdu_buf(0x20003b4c,param_2,-1,-1);
   if(iVar2==0){ printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0xf45be,0xf2e84,0x10a); assert_post_action(0xf2e84,0x10a); }

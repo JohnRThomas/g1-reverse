@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002c324 @ 0x0002c324
  * public-name: update_touch_key_flag
  * durable-map: recon/catalogs/function_names_app.json
@@ -22,9 +23,7 @@
  */
 /* Reconstructed FUN_0002c324 @ 0x2c324  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned a, unsigned b);
 extern int get_device_info(void);
-extern void debug_print(unsigned a, unsigned b);
 extern void trigger_screen_state_change(unsigned a, int b, int c);
 extern unsigned get_message_type_param(unsigned a, int b);
 extern int clear_timeout_message(int a);

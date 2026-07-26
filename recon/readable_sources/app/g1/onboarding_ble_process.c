@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_onboarding_ble_ctx__param_0114         [param_0114; G1-original]
  * Raw function identity: 0x00042a64.  See ../include/g1_recovered_layouts.h. */
@@ -34,9 +35,7 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 typedef unsigned long long u64;
 
-extern void log_message(u32,u32,...);
 extern u32 get_device_info(void);
-extern void debug_print(u32,u32,...);
 extern u32 check_ancs_inbox_flag_change(void);
 extern void onboarding_retry_watchdog_update(void);
 extern u64 k_uptime_get_8(void);

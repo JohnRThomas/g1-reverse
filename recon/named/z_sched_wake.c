@@ -23,6 +23,7 @@
 /* Reconstructed FUN_00074a54 @ 0x74a54  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern int z_spin_lock_valid(uint32_t);
 extern int z_spin_unlock_valid(uint32_t);
 extern void z_spin_lock_set_owner(uint32_t);
@@ -30,7 +31,6 @@ extern void sched_ready_queue_insert(void*);
 extern void z_abort_thread_timeout(void*);
 extern void z_abort_timeout(void*);
 extern void assert_post_action(uint32_t, uint32_t);
-extern void printk(uint32_t, uint32_t, ...);
 
 int z_sched_wake(int *param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4){
   uint32_t sb;

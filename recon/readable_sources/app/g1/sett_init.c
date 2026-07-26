@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_sett_init_params__param_0041           [param_0041; G1-original]
  * Raw function identity: 0x00022518.  See ../include/g1_recovered_layouts.h. */
@@ -25,8 +26,6 @@
 
 extern int settings_subsys_init(void);
 extern int settings_register(unsigned int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, ...);
 
 void sett_init(int *param_1)
 {

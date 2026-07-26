@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002563c @ 0x0002563c
  * public-name: ipc_service_send_with_retry
  * durable-map: recon/catalogs/function_names_app.json
@@ -11,7 +12,6 @@
  */
 /* Reconstructed FUN_0002563c @ 0x2563c  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(int);
 extern int ipc_send_packet_ch2005(int,int);
 int ipc_service_send_with_retry(int param_1)
 {

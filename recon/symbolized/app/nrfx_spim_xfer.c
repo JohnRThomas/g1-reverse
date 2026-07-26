@@ -24,8 +24,8 @@
  */
 /* Full reconstruction FUN_00067304 @ 0x00067304 (498-byte exact extent). */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void printk(uintptr_t, ...);
 extern void assert_post_action(uintptr_t, uint32_t) __attribute__((noreturn));
 extern void __nrfy_internal_spim_events_process(void *, uint32_t, const void *);
 extern void spim_abort(void *, void *);

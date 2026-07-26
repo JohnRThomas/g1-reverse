@@ -17,7 +17,7 @@
  */
 /* Reconstructed FUN_0005ec18 @ 0x5ec18  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void printk(unsigned int,unsigned int,unsigned int,int);
+#include "../../headers/g1_log.h"
 extern void assert_post_action(unsigned int,int);
 extern int bt_keys_settings_store(unsigned int,void*,void*,int);
 extern void z_log_msg_runtime_create(unsigned int,unsigned int,void*,int);

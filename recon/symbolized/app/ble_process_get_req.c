@@ -25,12 +25,11 @@
  */
 /* Reconstructed ble_process_get_req @ 0x1a064 */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void log_message(uint32_t, ...);
 extern int  get_device_type(void);
 extern int  get_device_info(void);
 extern void audio_fw_load_get_wrapper(void *, void *, uint32_t);
-extern void debug_print(uint32_t, ...);
 extern void get_notification_counts_cmd_process(void *, void *, void *);
 extern void send_whitelist_json_chunked(void *, void *);
 extern void SendSystemLanguageInfoToSlave(uint32_t);

@@ -11,14 +11,15 @@
  *   g_persist_task_status_lock               @ 0x20018d9c
  *   g_persist_task_status                    @ 0x20018d9d
  */
+#include "../headers/g1_log.h"
 /* Reconstructed update_persist_task_status @ 0x2bef4.
  * Raw identity/back-map: FUN_0002bef4 @ 0x0002bef4.
  * Executable extent: 0xe4 bytes; literals begin at 0x0002bfd8. */
 typedef unsigned char u8;
 typedef unsigned int  u32;
 
-extern void log_message(u32 format, u32 source, u32 task_id); /* FUN_0007dda4 */
-extern void debug_print(u32 format, u32 source, u32 task_id); /* FUN_00019c70 */
+/* FUN_0007dda4 */
+/* FUN_00019c70 */
 extern void display_close_screen(u32 screen_id);              /* FUN_00049858 */
 extern void wait_for_persist_task_status_lock(void);          /* FUN_0007cdf8 */
 

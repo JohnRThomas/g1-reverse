@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002560c @ 0x0002560c
  * public-name: init_nfc_comm
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,7 +15,6 @@
 
 extern int pt_comm_bind_device(unsigned int a0);
 extern int process_pt_data(void);
-extern void log_message(unsigned int a0);
 
 int init_nfc_comm(void)
 {

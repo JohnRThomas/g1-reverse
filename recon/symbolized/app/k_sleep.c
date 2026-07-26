@@ -17,10 +17,10 @@
  */
 /* Reconstructed FUN_00074844 @ 0x74844  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 extern int z_thread_suspend(int);
 extern int z_tick_sleep(void);
 extern int assert_post_action(int,int);
-extern int printk(int,...);
 uint32_t k_sleep(int param_1,int param_2,int param_3,int param_4){
   uint32_t ipsr;
   __asm volatile("mrs %0, ipsr":"=r"(ipsr));

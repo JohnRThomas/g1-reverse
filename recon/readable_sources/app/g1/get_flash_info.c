@@ -23,9 +23,8 @@
 /* Reconstructed get_flash_info @ 0x32628  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int log_message(int,...);
+#include "../../../headers/g1_log.h"
 extern int get_device_info(void);
-extern int debug_print(int,...);
 extern int device_api_call_slot0(int,int,int,int,void*);
 extern int z_device_is_ready(int);
 extern int memcpy(void*,int,int);

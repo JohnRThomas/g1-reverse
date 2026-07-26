@@ -12,9 +12,9 @@
  */
 /* Reconstructed FUN_000234e8 @ 0x234e8 */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 extern uint64_t z_impl_k_msgq_alloc_init(uint32_t, uint32_t, uint32_t, uint32_t);
-extern void log_message(uint32_t, uint32_t, uint32_t, uint32_t);
 
 int file_subsystem_queue_init(uint32_t inherited_r0, uint32_t inherited_r1,
                  uint32_t inherited_r2, uint32_t inherited_r3)

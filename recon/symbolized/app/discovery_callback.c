@@ -37,9 +37,10 @@
  */
 /* Reconstructed FUN_0004ea78 @ 0x4ea78  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef unsigned char byte; typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort;
 extern void gatt_dm_notify_discovery_complete(void); extern int gatt_dm_data_add_attribute(int,int); extern int uuid_store(int);
-extern int bt_gatt_discover(int,int); extern void assert_post_action(int,int); extern int printk(int,...);
+extern int bt_gatt_discover(int,int); extern void assert_post_action(int,int);
 extern int attr_find_by_handle(int,int); extern int gatt_dm_log_helper(int,int,int); extern int discovery_complete_error(int,int);
 extern int discovery_complete_not_found(int); extern int bt_gatt_dm_attr_service_val(int); extern int bt_gatt_dm_attr_chrc_val(int);
 extern int bt_uuid_cmp(int,int);

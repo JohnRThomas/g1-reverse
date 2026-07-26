@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000737d8 @ 0x000737d8
  * public-name: sched_update_cache
  * durable-map: recon/catalogs/function_names_app.json
@@ -16,7 +17,6 @@
  */
 /* Reconstructed FUN_000737d8 @ 0x737d8  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(int a, int b, int c, int d, int e);
 extern void assert_post_action(int a, int b);
 extern void sched_switch_handle_timeout(int *a);
 

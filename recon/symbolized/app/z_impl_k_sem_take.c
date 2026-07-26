@@ -25,12 +25,12 @@
 /* Reconstructed FUN_00072908 @ 0x72908  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../../headers/g1_log.h"
 extern int z_spin_lock_valid(uint32_t);
 extern int z_spin_unlock_valid(uint32_t);
 extern void z_spin_lock_set_owner(uint32_t);
 extern int z_pend_curr(uint32_t,uint32_t,int,uint32_t,uint32_t,uint32_t);
 extern void assert_post_action(uint32_t,uint32_t);
-extern void printk(uint32_t,...);
 
 int z_impl_k_sem_take(int param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4){
     uint32_t ipsr, bp, v; int iVar2; int r3;

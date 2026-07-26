@@ -145,6 +145,7 @@ typedef long long code(int,...);
 typedef uint64_t undefined8; typedef uint64_t ulonglong;
 typedef int64_t longlong; typedef int32_t int32; typedef unsigned int uint3;
 #include "../../headers/g1_ghidra_ops.h"
+#include "../../headers/g1_log.h"
 #define CONCAT11(a,b) ((ushort)(((ushort)(uint8_t)(a)<<8)|(uint8_t)(b)))
 #define CONCAT22(a,b) ((uint)(((uint)(ushort)(a)<<16)|(ushort)(b)))
 #define CONCAT44(a,b) ((ulonglong)(((ulonglong)(uint)(a)<<32)|(uint)(b)))
@@ -164,9 +165,7 @@ typedef int64_t longlong; typedef int32_t int32; typedef unsigned int uint3;
 #define NAN (__builtin_nanf(""))
 #define INFINITY (__builtin_inff())
 
-extern long long log_message(uintptr_t, ...);
 extern int get_device_info(void);
-extern void debug_print(uintptr_t, uintptr_t, uintptr_t, uintptr_t);
 extern int get_clock_digit_glyph_offset_large(uint16_t, uint32_t *, uint32_t *);
 extern int get_clock_digit_glyph_offset_small(uint16_t, uint32_t *, uint32_t *);
 extern int get_font_style3_glyph_offset(uint16_t, uint32_t *, uint32_t *);

@@ -27,8 +27,9 @@
  * Raw/address backmap: sys_heap_init <= FUN_0004b3c8 @ 0x0004b3c8.
  */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern void printk(uint32_t, ...); /* printk */
+/* printk */
 extern void assert_post_action(uint32_t, uint32_t); /* assert_post_action */
 extern uint32_t heap_bucket_index(uint32_t, uint32_t, uint32_t, uint32_t); /* bucket_idx */
 extern uint32_t log_msg_compute_wlen(uint32_t, uint32_t); /* chunksz */

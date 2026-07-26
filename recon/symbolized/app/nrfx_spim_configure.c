@@ -18,12 +18,12 @@
  */
 /* Reconstructed FUN_00066ec0 @ 0x66ec0  (parity: 60/60 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef unsigned int uint;
 
 extern void arch_irq_enable(int);
 extern void pin_init(uint32_t,int,int,uint32_t,int);
 extern void assert_post_action(uint32_t,uint32_t) __attribute__((noreturn));
-extern void printk(uint32_t,uint32_t,uint32_t,uint32_t);
 
 void nrfx_spim_configure(int *param_1, uint32_t *param_2)
 {

@@ -36,12 +36,11 @@
  */
 /* Full reconstruction FUN_000545f0 @ 0x000545f0 (348-byte exact extent). */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 extern uint32_t bt_conn_prepare_tx_events(uintptr_t poll_events);
 extern uint32_t z_impl_k_poll(uintptr_t events, uint32_t count,
                             uint32_t timeout_lo, uint32_t timeout_hi);
-extern uint64_t printk(uintptr_t module, uintptr_t file,
-                            uintptr_t condition, uint32_t line);
 /* Stock Zephyr 3.4 ARMv8-M Mainline ARCH_EXCEPT().  These instructions are
  * embedded at 0x54634..0x5463e and 0x5467e..0x54688 in the shipped function;
  * 0x5463e/0x54688 are SVC sites, not callable function entries. */

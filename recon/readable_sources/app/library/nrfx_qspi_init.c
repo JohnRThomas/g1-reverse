@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00066994 @ 0x00066994
  * public-name: nrfx_qspi_init
  * durable-map: recon/catalogs/function_names_app.json
@@ -19,7 +20,6 @@
 
 extern int qspi_configure_pins_and_interface(void);
 extern void assert_post_action(void*, int);
-extern void printk(void*, void*, void*, int, unsigned int);
 
 #define g1_recon_nrfx_qspi_init nrfx_qspi_init
 int g1_recon_nrfx_qspi_init(int param_1, unsigned int param_2,

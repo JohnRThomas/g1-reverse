@@ -16,12 +16,12 @@
  *   NRF_QSPI_BASE                            @ 0x5002b000
  */
 #include "../headers/g1_nrf_regs.h"
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00066b24 @ 0x66b24  (parity: 300/300 trials, PROVEN) */
 
 extern void arch_irq_disable(int a);
 extern void qspi_deactivate(void);
 extern void nrf_gpio_cfg_default(unsigned a);
-extern void printk(unsigned a,unsigned b,unsigned c,unsigned d,unsigned e);
 extern void assert_post_action(unsigned a,unsigned b);
 void nrfx_qspi_uninit(void){
     volatile unsigned char *g = (volatile unsigned char*)0x2000b348;

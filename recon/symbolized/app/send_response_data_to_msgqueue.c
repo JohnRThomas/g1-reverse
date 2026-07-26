@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00047b1c @ 0x00047b1c
  * public-name: send_response_data_to_msgqueue
  * durable-map: recon/catalogs/function_names_app.json
@@ -22,8 +23,6 @@ extern void *get_device_info(void);
 extern void memset_bytes(void*, int, int);
 extern void memcpy(void*, void*, unsigned int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, ...);
 
 unsigned int send_response_data_to_msgqueue(void *param_1, unsigned int param_2)
 {

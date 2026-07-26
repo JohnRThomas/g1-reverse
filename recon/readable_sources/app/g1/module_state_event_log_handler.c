@@ -23,6 +23,7 @@
  */
 /* Full reconstruction of FUN_0004f860 @ 0x4f860 (204 bytes). */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 typedef struct {
     uint32_t reserved;
@@ -43,8 +44,6 @@ typedef struct {
 
 extern void z_log_msg_runtime_create(uintptr_t target, uint32_t command,
                         const dispatch_record *record, uint32_t zero);
-extern void printk(uintptr_t domain, uintptr_t message,
-                        uintptr_t file, uint32_t line);
 extern void assert_post_action(uintptr_t file, uint32_t line) __attribute__((noreturn));
 
 void module_state_event_log_handler(const work_event *event)

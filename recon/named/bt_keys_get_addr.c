@@ -11,11 +11,11 @@
  *   rodata_f5268                             @ 0x000f5268
  *   rodata_f52ac                             @ 0x000f52ac   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0005e6a8 @ 0x5e6a8  (parity: 300/300 trials, PROVEN) */
 
 extern void bt_keys_pool_find_or_alloc(void);
 extern void assert_post_action(unsigned int,unsigned int);
-extern void printk(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 void bt_keys_get_addr(unsigned int param_1,int param_2,unsigned int param_3,unsigned int param_4)
 {
   if (param_2 == 0) {

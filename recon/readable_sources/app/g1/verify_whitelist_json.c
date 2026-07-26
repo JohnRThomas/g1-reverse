@@ -33,10 +33,9 @@
  */
 /* Reconstructed FUN_00035050 @ 0x35050  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 typedef unsigned int uint;
 typedef unsigned undefined4;
-extern void log_message(unsigned, ...);
-extern void debug_print(unsigned, ...);
 extern int whitelist_contains_app(void *a, void *b);
 extern void cjson_delete(int a);
 extern int cbor_decode_start_default(void);

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0005ea18 @ 0x0005ea18
  * public-name: bt_keys_clear
  * durable-map: recon/catalogs/function_names_app.json
@@ -16,7 +17,6 @@
  */
 /* Reconstructed FUN_0005ea18 @ 0x5ea18  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(int a,int b,int c,int d);
 extern unsigned char *assert_post_action(int a,int b);
 extern void ble_privacy_id_remove(void);
 extern void bt_settings_save_or_delete_key(unsigned char a, unsigned char *b);

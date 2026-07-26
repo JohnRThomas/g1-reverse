@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00036558 @ 0x00036558
  * public-name: pixelto4bithex_for_flash
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,7 +18,6 @@
 
 extern int malloc(int);
 extern void memset_bytes(int,int,int);
-extern void log_message(int,int,int,int);
 void pixelto4bithex_for_flash(int param_1,int param_2,int param_3,int param_4){
   if(*(volatile int*)((unsigned long)&g_pixel4bit_row_buf) /*=0x20009fcc*/==0){
     int iVar4=malloc(0x140);

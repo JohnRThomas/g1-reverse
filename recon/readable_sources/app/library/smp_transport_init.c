@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_param_0101_false_union__param_0101     [param_0101; G1-original]
  * Raw function identity: 0x000526f4.  See ../include/g1_recovered_layouts.h. */
@@ -23,7 +24,6 @@
 
 extern void k_work_init(int a, unsigned int b);
 extern void assert_post_action(unsigned int a, unsigned int b);
-extern void printk(unsigned int a, ...);
 extern void smp_reassembly_init(void);
 #define z_impl_k_queue_init z_impl_k_queue_init
 extern void z_impl_k_queue_init(void *queue);

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_jdb_panel_cfg__param_0118              [param_0118; G1-original]
  * Raw function identity: 0x00046fc0.  See ../include/g1_recovered_layouts.h. */
@@ -22,8 +23,6 @@
 extern void panel_init(void);
 extern void set_brightness_to_panel_reg(unsigned int);
 extern int spi_read_id(void);
-extern void log_message(unsigned int,unsigned int);
-extern void debug_print(unsigned int,unsigned int);
 
 unsigned int jdb_panel_init(unsigned char *param_1)
 {

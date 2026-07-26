@@ -25,13 +25,13 @@
 /* Reconstructed FUN_00072880 @ 0x72880  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../../../headers/g1_log.h"
 extern int z_spin_lock_valid(int);
 extern void z_spin_lock_set_owner(int);
 extern void z_ready_thread_locked(void);
 extern void z_reschedule(int,int);
 extern int z_unpend_first_thread(int);
 extern void assert_post_action(int,int);
-extern void printk(int,...);
 extern void z_handle_obj_poll_events(int,int);
 void k_sem_give(int object)
 {

@@ -22,8 +22,7 @@
  */
 /* Reconstructed serialization_init @ 0x25c54  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(uint32_t, ...);
-extern void debug_print(uint32_t, ...);
+#include "../headers/g1_log.h"
 extern int ipc_service_open_instance(uint32_t);
 extern unsigned long long serialization_register_endpoint(uint32_t, uint32_t, uint32_t);
 extern void z_impl_k_sem_take(uint32_t, int, int, int);

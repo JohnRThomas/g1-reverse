@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0004c278 @ 0x0004c278
  * public-name: nrf53_ipc_channel_configure
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,7 +16,6 @@
 /* Reconstructed FUN_0004c278 @ 0x4c278  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(void*, int);
-extern void printk(void*, void*, void*, int, int);
 extern unsigned int rtc_timer_cc_reg_get(unsigned int);
 extern void nrfx_gppi_task_endpoint_clear(unsigned int, unsigned int);
 extern void nrfx_gppi_task_endpoint_setup(unsigned int, unsigned int);

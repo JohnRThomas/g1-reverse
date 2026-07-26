@@ -7,11 +7,11 @@
  *   rodata_103d0db                           @ 0x0103d0db
  *   rodata_103d0f9                           @ 0x0103d0f9
  */
+#include "../../headers/g1_log.h"
 /* net-core FUN_0102b094 @ 0x102b094  (parity 300 trials PROVEN) */
 
 extern void FUN_01039138(void *a, unsigned int b, unsigned int c, unsigned int d, unsigned int e,
                           unsigned int f, unsigned int g, unsigned int h, unsigned int i);
-extern void printk(unsigned int a, void *b);
 
 unsigned int FUN_0102b094(unsigned char *param_1)
 {

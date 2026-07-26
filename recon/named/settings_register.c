@@ -17,13 +17,13 @@
  *   g_settings_lock                          @ 0x20003868
  *   g_settings_handlers                      @ 0x2000a10c
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0004e494 @ 0x4e494  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long strcmp(unsigned a, unsigned b);
 extern void k_mutex_lock(unsigned a, unsigned b, unsigned c, unsigned d);
 extern void k_mutex_unlock(unsigned a);
 extern void assert_post_action(unsigned a, unsigned b);
-extern void printk(unsigned a, unsigned b, unsigned c, unsigned d);
 
 unsigned settings_register(unsigned *param_1, unsigned param_2){
     unsigned r5 = (unsigned)param_1;

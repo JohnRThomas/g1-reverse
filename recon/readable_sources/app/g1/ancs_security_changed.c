@@ -28,12 +28,11 @@
  */
 /* Full ABI-faithful reconstruction FUN_000184f0 @ 0x184f0. */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern void log_message(uintptr_t format, ...);
 extern uintptr_t get_device_info(void);
 extern void ancs_discover_start(uint32_t connection);
 extern void format_bt_addr_str(const void *connection, char *description);
-extern void debug_print(uintptr_t format, ...);
 extern int32_t is_battery_critical(void);
 extern void sys_reboot(uint32_t enabled);
 extern void k_msleep_ticks32768_d(uint32_t milliseconds);

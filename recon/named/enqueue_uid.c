@@ -14,10 +14,9 @@
  *   g_uid_pipe                               @ 0x20006a38
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed enqueue_uid @ 0x18e48  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned a, ...);
-extern void debug_print(unsigned a, ...);
 extern void k_msgq_get(unsigned a, void*b, int c, int d);
 extern int  k_msgq_put(unsigned a, void*b, int c, int d);
 int enqueue_uid(unsigned *param_1, unsigned param_2, unsigned param_3){

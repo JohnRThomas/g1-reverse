@@ -27,10 +27,9 @@
  */
 /* Reconstructed opt3007_chip_init @ 0x2e67c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 typedef uint32_t u32; typedef unsigned char byte;
-extern void log_message(u32 a,...);
 extern int get_device_info(void);
-extern void debug_print(u32 format,...);
 extern int opt3001_reg_read(int a, void* b);
 extern int z_device_is_ready(u32 a);
 #define FLAG (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)

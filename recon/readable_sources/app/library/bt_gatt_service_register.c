@@ -36,7 +36,8 @@
  * Raw/address backmap: FUN_0005ad38 @ 0x0005ad38, extent 0x0000021c.
  */
 #include <stdint.h>
-extern void printk(const char *, ...); /* printk */
+#include "../../../headers/g1_log.h"
+/* printk */
 extern void assert_post_action(const char *, uint32_t); /* assert_post_action */
 extern uint32_t read_struct_first_word(volatile uint32_t *); /* atomic_get */
 extern void bt_gatt_service_init(void); /* bt_gatt_service_init */

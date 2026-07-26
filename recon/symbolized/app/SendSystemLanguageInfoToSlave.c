@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00048998 @ 0x00048998
  * public-name: SendSystemLanguageInfoToSlave
  * durable-map: recon/catalogs/function_names_app.json
@@ -23,8 +24,6 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, unsigned int);
 
 u32 SendSystemLanguageInfoToSlave(int param_1)
 {

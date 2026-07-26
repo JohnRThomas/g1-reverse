@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_g1_device_runtime_state__param_0027    [param_0027; G1-original]
  * Raw function identity: 0x00028bec.  See ../include/g1_recovered_layouts.h. */
@@ -140,8 +141,6 @@ typedef long long s64;
 #define g_ble_dispatch_pending_marker   (*(volatile u8 *)((unsigned long)&g_ble_dispatch_pending_marker) /*=0x20018d9b*/)   /* DAT_0002951c */
 
 /* callee oracles (keyed on call order by the harness) */
-extern void debug_print(u32 format, u32 module, ...);
-extern void log_message(u32 format, u32 module, ...);
 extern s32  get_device_info(void);
 extern s32  get_current_work_mode(void);
 extern void change_work_mode_to(int);

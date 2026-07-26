@@ -15,14 +15,13 @@
  *   g_ancs_msgq                              @ 0x20006a6c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed enqueue_ancs @ 0x18bb4  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*, int, int);
 extern void k_msgq_get(unsigned int, void*, int, int);
 extern void memcpy(void*, unsigned int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void log_message(unsigned int, ...);
-extern void debug_print(unsigned int, ...);
 
 int enqueue_ancs(unsigned int param_1)
 {

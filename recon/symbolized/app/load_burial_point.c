@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000230e0 @ 0x000230e0
  * public-name: load_burial_point
  * durable-map: recon/catalogs/function_names_app.json
@@ -18,8 +19,6 @@
 extern int flash_settings_read(unsigned int, void*, int, unsigned int, unsigned int);
 extern unsigned int sys_rand32_get(void);
 extern void memset_bytes(void*, int, int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int,unsigned int);
 
 unsigned int load_burial_point(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

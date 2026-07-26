@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00047ba8 @ 0x00047ba8
  * public-name: send_response_data_to_ble
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,7 +18,6 @@
 extern char* get_device_info(void);
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void log_message(unsigned int, unsigned int);
 
 unsigned int send_response_data_to_ble(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

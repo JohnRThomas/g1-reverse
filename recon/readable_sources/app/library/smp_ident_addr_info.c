@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_bt_smp__param_0265                     [param_0265; library]
  * Raw function identity: 0x0005de70.  See ../include/g1_recovered_layouts.h. */
@@ -47,7 +48,6 @@ extern int bt_keys_find_addr(u32 a, void *b);
 extern int bt_keys_get_type(int a, u32 b, int c);
 extern void bt_keys_clear(int a);
 extern void assert_post_action(u32 a, u32 b);
-extern void printk(u32 a, u32 b, u32 c, u32 d);
 extern int atomic_test_bit(void *a, int b);
 extern int bt_conn_security_sufficient(int a, int b);
 extern void bt_addr_le_copy_83062(int a, void *b);

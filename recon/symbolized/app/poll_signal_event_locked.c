@@ -24,7 +24,6 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 typedef uint32_t u32;
-extern void printk(u32,u32,...);
 extern void assert_post_action(u32,u32);
 extern int z_spin_lock_valid(u32);
 extern void z_spin_lock_set_owner(u32);
@@ -32,6 +31,7 @@ extern int z_spin_unlock_valid(u32);
 extern u32 signal_poll_event(void*,u32);
 extern void z_reschedule(u32,u32);
 #include "../../headers/g1_cmsis_shim.h"
+#include "../../headers/g1_log.h"
 u32 poll_signal_event_locked(int* param_1, int param_2){
     u32 uVar7 = rd_basepri();
     wr_basepri_max(0x20);

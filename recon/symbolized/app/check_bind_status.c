@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00026b88 @ 0x00026b88
  * public-name: check_bind_status
  * durable-map: recon/catalogs/function_names_app.json
@@ -16,8 +17,6 @@
 
 typedef unsigned char u8;
 typedef unsigned int u32;
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int);
 
 void check_bind_status(int param_1, int param_2, int param_3)
 {

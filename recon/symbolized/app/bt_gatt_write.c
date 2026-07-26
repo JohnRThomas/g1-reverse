@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0005c22c @ 0x0005c22c
  * public-name: bt_gatt_write
  * durable-map: recon/catalogs/function_names_app.json
@@ -22,7 +23,6 @@
  */
 /* Reconstructed FUN_0005c22c @ 0x5c22c  (parity: 300/300 trials, PROVEN) */
 extern void assert_post_action(int,...);
-extern void printk(int,...);
 extern int bt_att_get_mtu(int);
 extern int gatt_req_send(int,int,int*,int,int,unsigned);
 int bt_gatt_write(int param_1, int *param_2){

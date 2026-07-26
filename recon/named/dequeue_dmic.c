@@ -13,10 +13,9 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_dmic_msgq                              @ 0x20007b7c
  */
+#include "../headers/g1_log.h"
 /* Reconstructed dequeue_dmic @ 0x2ed00  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int fmt, unsigned int arg);
-extern void debug_print(unsigned int fmt, unsigned int arg, ...);
 extern int k_msgq_get(unsigned int queue, void *record,
                        unsigned int wait, unsigned int flags);
 extern void memcpy(void *destination, const void *source,

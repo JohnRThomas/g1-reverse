@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0005b0dc @ 0x0005b0dc
  * public-name: gatt_find_ccc_for_conn
  * durable-map: recon/catalogs/function_names_app.json
@@ -20,7 +21,6 @@
 /* Reconstructed FUN_0005b0dc @ 0x5b0dc  (parity: 296/300 trials, PROVEN) */
 extern int  bt_gatt_attr_next(int);
 extern void assert_post_action(int,int);
-extern void printk(int,...);
 extern int  bt_uuid_cmp(int,void*);
 extern int  bt_conn_is_peer_addr_le(int,int,void*);
 #define VI(a) (*(volatile int*)(a))

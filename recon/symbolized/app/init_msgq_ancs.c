@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00018b6c @ 0x00018b6c
  * public-name: init_msgq_ancs
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,8 +16,6 @@
 /* Reconstructed init_msgq_ancs @ 0x18b6c  (parity: 300/300 trials, PROVEN) */
 
 extern int z_impl_k_msgq_alloc_init(unsigned int,int,int);
-extern void log_message(unsigned int,unsigned int);
-extern void debug_print(unsigned int,...);
 int init_msgq_ancs(void){
     int iVar1 = z_impl_k_msgq_alloc_init(((unsigned long)&g_ancs_msgq) /*=0x20006a6c*/,0x1b4,10);
     if(iVar1!=0 && *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/>0){

@@ -12,11 +12,11 @@
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f85d2                             @ 0x000f85d2
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00074554 @ 0x74554  (parity: 300/300 trials, PROVEN) */
 
 extern void z_thread_priority_set(int,int);
 extern void assert_post_action(int,int);
-extern int printk(int,...);
 void k_thread_priority_set(int param_1,int param_2){
   if((unsigned)(param_2+0x10) >= 0x1f){
     printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0xf85d2,0xf82f4,0x53d);

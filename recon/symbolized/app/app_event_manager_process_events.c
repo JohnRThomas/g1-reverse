@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0004f5b0 @ 0x0004f5b0
  * public-name: app_event_manager_process_events
  * durable-map: recon/catalogs/function_names_app.json
@@ -34,7 +35,6 @@
 extern int  z_spin_lock_valid(int);
 extern void z_spin_lock_set_owner(int);
 extern int  z_spin_unlock_valid(int);
-extern void printk(int,int,int,int);
 extern void assert_post_action(int,int) __attribute__((noreturn));
 extern void z_log_msg_runtime_create(int,int,void*);
 extern void thunk_FUN_000868b4(int);

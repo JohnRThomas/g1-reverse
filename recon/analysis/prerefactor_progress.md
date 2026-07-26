@@ -910,3 +910,520 @@ down from 1,787 to **562** emitted string objects.
 | `<none>` / `<stmt>` / `fatal` / `nrfx_assert_report` / `FUN_0007e2ec` / `assert_post_action` sites | 58 | not provably a string consumer; needs a per-site disassembly read |
 | G6-B2, B5, B6, G6-A, G6-X | — | out of this pass by plan order; **G6-B2 is additionally blocked by §5** |
 | `full_link.py` UNKNOWN-audit drift | — | pre-existing, unrelated to G6 (§4) |
+
+---
+
+## Pre-refactor batch G7-B2 — one declaration per logging entry point
+
+Cluster **G7-C10** of `recon/analysis/prerefactor_plan.md`, applied after
+G7-B1 and G6-B3/B1. The plan calls this batch *"not really a dedupe — it is a
+latent ABI bug"*, and the measurement below confirms that reading: the
+consolidation is what made six reconstructions stop compiling, and every one
+of them was a real defect.
+
+**Nothing here is committed.** No `tools/` logic, no `armemul`, no build file,
+no linker script and nothing under `recon/emulator/**` or `recon/board/**` was
+modified. The only new file is `recon/headers/g1_log.h`.
+
+### 0. Headline result
+
+| | app | net |
+|---|---|---|
+| declarations consolidated | **2,398** in **1,661 files** (4 trees) | **22** in **22 files** (2 trees) |
+| distinct signature spellings retired | 245 | 11 |
+| **real ABI defects found and fixed** | **6 files / 15 call sites** | 0 |
+| `zephyr.bin` vs pre-batch baseline | differs — **only** where the six defects were fixed and where a wrong prototype had been changing codegen (§4) | **byte-identical (`cmp` silent)** |
+| FLASH | 948,812 B / 982,528 B = 96.57 % — **Δ −16 B** | 225,581 B / 226 KB = 97.48 % — **Δ 0 B** |
+| RAM | 253,765 B / 440 KB = 56.32 % — **Δ 0 B** | 63,380 B / 64 KB = 96.71 % — **Δ 0 B** |
+| per-object comparison | **3,407 / 3,430 byte-identical** | **1,168 / 1,170 byte-identical** |
+| the four acceptance framebuffers | **all four byte-identical** (§6) | — |
+
+The two net objects that differ are `open_amp/remoteproc_virtio.c.obj` and
+`lib__posix/uname.c.obj` — stock SDK units this batch does not touch, and the
+linked `zephyr.bin` is byte-identical, so the difference is not in loaded
+content.
+
+Baselines were built first, from the working tree as found at `914f61b0`
+(clean except for an untracked `.xapk`), and each `zephyr.bin` kept:
+
+```sh
+recon/application/build_cohesive.sh app /private/tmp/g1-b2-base-app
+recon/application/build_cohesive.sh net /private/tmp/g1-b2-base-net -- \
+    -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF -DG1_ESB_REAL_PAYLOAD_OBJECTS=ON
+```
+
+The baseline reproduced the brief's figures exactly: app 948,828 B FLASH /
+253,765 B RAM, net 225,581 / 63,380.
+
+---
+
+### 1. Ground truth, per symbol, from the shipped disassembly
+
+The plan names four entry points. **There are three**, on the application
+core, plus one on the net core. `DEBUG_PRINT` is Ghidra's name for the *same
+address* as `log_message`, and `recon/symbolized/app/log_message.c` already
+binds it as an `__asm__` alias:
+
+| symbol | address | sink | authoritative declaration |
+|---|---|---|---|
+| `debug_print` | `FUN_00019c70` @ `0x00019c70` | ring buffer via `vsnprintf_impl` | `void debug_print(uintptr_t format, ...)` |
+| `log_message` | `FUN_0007dda4` @ `0x0007dda4` | console via `vprintf` | `void log_message(uintptr_t format, ...)` |
+| `DEBUG_PRINT` | **== `0x0007dda4`** | same function | alias of `log_message` |
+| `printk` (app) | `FUN_0007e2fa` @ `0x0007e2fa` | console via `vprintf` | `void printk(uintptr_t format, ...)` |
+| `printk` (net) | `FUN_01039722` @ `0x01039722` | console | `void printk(uintptr_t format, ...)` |
+
+#### 1.1 Evidence for `...` and for exactly ONE fixed parameter
+
+All three application entries open with the AAPCS variadic register-save
+prologue and then take the `va_list` from the **second** saved word:
+
+```
+00019c70  push {r0, r1, r2, r3}       0007dda4  push {r0, r1, r2, r3}
+00019c72  push {r4, r5, r6, lr}       0007dda6  push {r0, r1, r2, lr}
+00019c74  sub  sp, #0xd0              0007dda8  add  r1, sp, #0x10
+00019c76  add  r5, sp, #0xe0          0007ddaa  ldr  r0, [r1], #4   <- fixed arg
+00019c78  ldr  r6, [r5], #4  <- fixed arg, va_list = r5 afterwards
+
+0007e2fa  push {r0, r1, r2, r3} / push {r0, r1, r2, lr}
+0007e300  ldr  r0, [r1], #4     <- fixed arg, va_list = r1 afterwards
+```
+
+The **post-increment load** is decisive: the callee reads exactly one word out
+of the r0..r3 save area and starts the `va_list` at the next word. One fixed
+parameter, in r0, then `...`. No VFP register is touched anywhere in any of
+the three prologues, which is what the variadic ABI requires and what a
+non-variadic hard-float declaration would have violated.
+
+This agrees with, and is independent of, the evidence already recorded in
+`tools/cfg_verify.py`: `REVIEWED_CALL_ARITIES_BY_FORMAT` keys every reviewed
+arity by `(callee, format)` — e.g. `(0x7dda4, 0xa25d9) -> 2`,
+`(0x19c70, 0xa25d9) -> 3` — which is only meaningful for a variadic callee
+whose argument count is a property of the format string.
+
+#### 1.2 Evidence for `void`
+
+Every `bl`/`b.w` in `app_update.bin` that targets one of the three addresses
+was disassembled — **2,526 sites** (990 `log_message`/`DEBUG_PRINT`, 829
+`debug_print`, 707 `printk`; 56 of them tail calls) — and the instructions
+after each call examined for a read of r0 before a write. **Not one site reads
+it.** The ten sites that mention r0 at all execute `eors r0, r0`, which is a
+write. The corpus spellings `int`, `uint32_t`, `uint64_t`, `long long`,
+`uintptr_t` and `unsigned int` were all decompiler noise from r0/r1 being live
+scratch across a `void` call — and §3 shows that noise had become six real
+defects.
+
+#### 1.3 Evidence that the shipped firmware really does pass floats here
+
+`fuel_gauge_update` @ `0x10c14` converts three floats with `__aeabi_f2d`
+(`FUN_0000d848`) and hands the results to `debug_print` in **core** register
+pairs and on the stack:
+
+```
+00010c14  vmov  r0, s21          00010c2a  vmov  r0, s20
+00010c18  bl    #0xd848          00010c30  bl    #0xd848
+...                              00010c3a  strd  r0, r1, [sp, #8]
+00010c36  mov   r2, r6           00010c3e  strd  r8, sb, [sp]
+00010c48  mov   r3, r7           00010c4e  bl    #0x19c70
+```
+
+r2:r3 carries the first `double`, `[sp+0]` and `[sp+8]` the other two. That is
+the variadic convention. A non-variadic declaration in that translation unit
+would have placed them in `s0..s15` instead, which is exactly the hazard the
+plan flagged.
+
+#### 1.4 Why the fixed parameter is spelled `uintptr_t` and not `const char *`
+
+In the shipped firmware r0 holds a pointer to a format string. `uintptr_t` on
+arm-zephyr-eabi in this build is `unsigned long`: the same 32-bit value in the
+same register, so the declaration is ABI-identical. The reason for choosing it
+is measured, not aesthetic — after batch G6-B1 the corpus universally spells
+format addresses as integer expressions (`((unsigned long)"...")`,
+`DAT_000241a8`, `0x000a6a28u`), and a probe compile with `const char *`
+produced, for a single five-argument `printk` call, **four** diagnostics: one
+`-Wint-conversion` for the format plus one `-Wformat` per variadic argument,
+because the SDK prototype carries `__printf_like(1, 2)`. Corpus-wide that is
+roughly 2,500 + 1,500 diagnostics and **zero** instruction changes.
+Re-spelling the call sites is a separate, purely textual batch.
+
+#### 1.5 `printk` is Zephyr's, and the header defers to it
+
+Both link maps show `printk` resolving to stock
+`zephyr/libzephyr.a(printk.c.obj)`, not to the reconstructions in
+`recon/symbolized/{app,net}/printk.c` — the adoption manifest displaces both.
+`<zephyr/sys/printk.h>` therefore declares the linked function as
+`extern __printf_like(1, 2) void printk(const char *fmt, ...)`, and two
+different declarations of one symbol in one translation unit is a **hard
+error** (verified by probe: `error: conflicting types for 'printk'`).
+`g1_log.h` guards its own `printk` declaration on
+`#ifndef ZEPHYR_INCLUDE_SYS_PRINTK_H_`, and the transformer always emits the
+include **after every other `#include` in the file** (verified: 0 files have
+an `#include` following it), so where the SDK header is in scope the SDK wins.
+
+---
+
+### 2. What was created and what was replaced
+
+`recon/headers/g1_log.h` is the single declaration site. Its body is four
+lines; the rest of the file is the evidence of §1, written down where the next
+editor will see it.
+
+```c
+void log_message(uintptr_t format, ...);   /* 0x0007dda4 */
+void DEBUG_PRINT(uintptr_t format, ...);   /* the same address, Ghidra's name */
+void debug_print(uintptr_t format, ...);   /* 0x00019c70 */
+#ifndef ZEPHYR_INCLUDE_SYS_PRINTK_H_
+void printk(uintptr_t format, ...);        /* 0x0007e2fa app / 0x01039722 net */
+#endif
+```
+
+The transformer deletes whole `extern` **statements** (parsing the declarator
+list so a statement that also declares a non-logging symbol is refused rather
+than mangled) and inserts
+
+```c
+#include "../../headers/g1_log.h"
+```
+
+after the last `#include` of the file. It refuses, and records as deferred, any
+file that (a) `#define`s one of the four names to something else, (b) contains
+a call with **zero** arguments — which cannot compile against a prototype with
+one fixed parameter — or (c) mixes logging and non-logging declarators in one
+statement.
+
+| tree | files | declarations removed | still carrying a local declaration |
+|---|---:|---:|---:|
+| `recon/symbolized/app` (**build**) | 557 + 3 definition files | **806** | 45 files / 87 decls |
+| `recon/symbolized/net` (**build**) | 11 + 1 definition file | **11** | 0 |
+| `recon/named` | 558 | **808** | 44 / 85 |
+| `recon/net/named` | 11 | **11** | 0 |
+| `recon/readable_sources/app/g1` | 343 | **577** | 42 / 82 |
+| `recon/readable_sources/app/library` | 203 | **207** | 4 / 7 |
+| **total** | **1,683 files** | **2,420** | 135 files / 261 decls |
+
+The four **definition** files were also pointed at the header so that the
+corpus has one type, not two: `recon/symbolized/app/{log_message,debug_print,
+printk}.c` and `recon/symbolized/net/printk.c`. `log_message` was defined
+`void log_message(const char *format, ...)` while 355 of its declarations said
+otherwise; it and the net `printk` now take `uintptr_t` and cast once when
+forwarding to `vprintf` / `FUN_0103a2a6`. `debug_print.c` and the two
+`printk.c` were already `unsigned int`, which is the same type. All four
+objects are byte-identical to baseline afterwards (`printk.c` on both cores is
+displaced by the SDK and not compiled at all — §1.5).
+
+---
+
+### 3. The six real ABI defects — the payoff
+
+These are not style. Each one is a translation unit that compiled, linked and
+shipped in our image while doing something the shipped firmware does not do,
+and **each was found because the authoritative declaration refused to compile
+it**. Five of the six were invisible to `cfg_verify`, which returns PASS on
+the defective canonical bodies.
+
+The common root: `log_message`/`debug_print` return **nothing**, so r0 and r1
+after a call hold the sink's scratch. Ghidra saw them live, invented a 32- or
+64-bit return value, and the reconstructions then *fed that invented value back
+in as an argument*. The same class produced surplus arguments: the format
+strings were never consulted, so r1..r3 residue was written down as arguments
+that the format has no specifier for.
+
+| # | file | sites | what was wrong | evidence |
+|---|---|---:|---|---|
+| 1 | `get_lux_info` (`FUN_00010fc8` @ 0x10fc8) | 4 | `uint64_t debug_state = log_message(fmt, ctx, slot, size)` and then `debug_state >> 32` passed as argument 2 of the next call; two more calls carried a stale 4th argument | `0xa6a28` = `"###…join in get_lux_info\n"` and `0xa6a61` = `"get_lux_info para is NULL\n"` have **no specifiers**; 0x10fce and 0x10fda load **only r0**. `0xa6a7c` = `"%s(): curve_lux:0x%x\n\n"` has two, so three arguments; 0x11086..0x1108c loads exactly r0/r1/r2 and the r3 that was being passed is the `g_log_use_alt_sink` value the branch itself loaded |
+| 2 | `set_imu_thread_delay` @ 0x25d8c | 2 | declared `int` and `return`ed the logging call; also passed a 4th argument | fall-through 0x25db0 is a bare `bx lr` with r0 untouched; both logging exits are TAIL calls `b.w 0x19c70` / `b.w 0x7dda4`. `0x9f721` = `"%s(): %d(ms)\n"` — two specifiers, three arguments |
+| 3 | `send_data_in_ble_chunks` (`FUN_0003384c` @ 0x3384c) | 2 | declared `uint32_t` and `return`ed the logging call — while **both** call sites already declared it `extern void send_data_in_ble_chunks(void *)` | 0x338d4 pops straight to pc with the incoming NULL still in r0; the other three exits are tail calls `b.w 0x19c70`, `b.w 0x7dda4`, `b.w 0x33730`. The four-argument shape here is CORRECT (`0xa7bf5` has three specifiers) and was left alone |
+| 4 | `exit_dashboard_burial_point` @ 0x4aab0 | 2 | `r0v = log_message(...)` where `r0v` is the value the function returns | every exit is `add sp,#0xc; pop {r4,r5,pc}` at 0x4ab0a with r0 left as the last callee's scratch, and the sole caller (`ui_DashBoard_task.c:649`) discards it. The five-argument shape is CORRECT and was left alone |
+| 5 | `test_mode_apply_base_status_cmd` (`FUN_00031dd8` @ 0x31dd8) | 3 | `uint64_t debug_result = log_message(fmt, …)` fed back as argument 2 of the two later calls, plus stale 3rd/4th arguments on all three | `0xa715d`, `0xa7173`, `0xa672f` are **all** argument-free formats; 0x31dde, 0x31dea and 0x31e00 load **only r0** |
+| 6 | `reflash_fb_data_to_lcd_ex` (`FUN_000473c8` @ 0x473c8) | 2 | `uVar3 = (unsigned)((u64)log_message(...) >> 32)` — modelling r1 after a `void` call | 0x474fe / 0x47516 load only r0/r1 (the format has one specifier) and 0x47502 immediately reloads r0 from `[sp,#0x20]`, so nothing the sink leaves is read |
+
+That is **6 files and 15 call sites** (the table's counts). Every fix was
+verified the way the brief demands — by compiling the single translation unit
+and reading the emitted instructions against the shipped disassembly, not by
+trusting a green harness:
+
+* `get_lux_info` — the corrected body emits
+  `stmdb / mov r4,r2 / ldr r0,[pc] / mov r5,r3 / bl / cbz / cbnz / ldr r0,[pc] /
+  bl / mov.w r0,#-1 / ldmia.w` and a tail
+  `ldr r3,[pc] / mov r2,r0 / ldr r3,[r3] / str r0,[r4,#32] / cmp r3,#2 / ble /
+  ldr r3,[pc] / ldr r1,[pc] / ldr r3,[r3] / ldr r0,[pc] / cbnz / bl / … / bl` —
+  **instruction-for-instruction** the shipped 0x10fc8..0x10fe4 and
+  0x1107a..0x110a0, with only the cbz/cbnz polarity and the two sinks exchanged
+  (identical semantics; GCC picks the layout).
+* `set_imu_thread_delay` — instruction-for-instruction the shipped
+  0x25d8c..0x25db2, including the trailing `nop`.
+* `send_data_in_ble_chunks` — all four exits reproduce the shipped shape:
+  `add sp,#0x28 / ldmia.w sp!,{…,lr} / b.w <sink>` twice, the same to
+  `send_notification_app_whitelist`, and `ldmia.w sp!,{…,pc}` for the NULL path.
+* `test_mode_apply_base_status_cmd` — instruction-identical prologue to the
+  shipped 0x31dd8..0x31df6.
+* `exit_dashboard_burial_point` and `reflash_fb_data_to_lcd_ex` — same call
+  order, same argument registers (`r0,r1,r2,r3,[sp]` / `r0,r1`), same branch
+  structure and epilogue as the shipped bodies.
+
+**Objects, measured against the pre-batch baseline:** `set_imu_thread_delay`
+and `send_data_in_ble_chunks` are **byte-identical** — dropping the stale r3
+and the `return` changed nothing, because r3 already held that value and the
+tail call survives. The other four shrink: `get_lux_info` −12 B,
+`test_mode_apply_base_status_cmd` −12 B, `exit_dashboard_burial_point` −4 B,
+`reflash_fb_data_to_lcd_ex` −4 B.
+
+#### 3.1 One canonical body could not be re-proven, and is left divergent
+
+The six fixes were also applied to the canonical parity tree
+(`recon/app/src` + `recon/verified/src`) and re-proven:
+
+| canonical function | `cfg_verify` after the fix |
+|---|---|
+| `FUN_00010fc8` (`get_lux_info`) | **PASS** `cases=4 sel={2:[0,1], 3:[0,1]}` |
+| `FUN_0003384c` (`send_data_in_ble_chunks`) | **PASS** `cases=2 sel={0:[0,1]}` |
+| `FUN_000473c8` (`reflash_fb_data_to_lcd_ex`) | **PASS** `cases=5` |
+| `set_imu_thread_delay` | **PASS** `cases=0` |
+| `exit_dashboard_burial_point` | **PASS** `cases=0` |
+| `FUN_00031dd8` (`test_mode_apply_base_status_cmd`) | **FAIL**, 42 mismatches — **reverted** |
+
+`FUN_00031dd8`'s failure is instructive and is recorded rather than worked
+around. The harness compares **four** arguments at each of these calls
+(`call_arities_used: [4, 4]` in the trace) even though all three formats are
+argument-free, and the mismatch is entirely in argument 4:
+
+```
+original  ('C', 1, ('RO', b'warning: not test mode,disable setting\n'), …, 536977139)
+candidate ('C', 1, ('RO', b'warning: not test mode,disable setting\n'), …, 536976896)
+```
+
+`536977139` is `0x20019EF3`, the `g_test_mode_flag` address the shipped code had
+just loaded into r3 for its own `ldrb`. It is dead scratch at the call, not an
+argument — exactly what `REVIEWED_CALL_ARITIES_BY_FORMAT` exists to record, and
+adding an entry for `("app", 0x00031dd8)` is a `tools/` change, which this pass
+is forbidden to make. **The canonical body therefore keeps its defect and the
+build tree carries the fix**, and this divergence is listed in §9. The evidence
+that the build tree is the correct one is the disassembly, not the harness: the
+three formats have no conversion specifiers and the image loads only r0.
+
+This is the mirror image of the hazard the brief names. Here the harness is
+**red on correct code**, for the same reason it is elsewhere green on broken
+code: it compares register residue it cannot distinguish from arguments.
+
+---
+
+### 4. Per-object measurement — which translation units the declaration changed
+
+Every `.c.obj` of both builds was `--strip-debug`-ed and `cmp`-ed against its
+baseline counterpart.
+
+| core | objects | byte-identical | differing |
+|---|---:|---:|---:|
+| app | 3,430 | **3,407** | 23 |
+| net | 1,170 | **1,168** | 2 |
+
+The **net** pair — `open_amp/remoteproc_virtio.c.obj` and
+`lib__posix/uname.c.obj` — are stock SDK units this batch does not touch, and
+the linked net `zephyr.bin` is byte-identical, so whatever differs in them is
+not loaded content. The **same two** objects also differ on the app side, which
+confirms they are build non-determinism rather than a consequence of the batch.
+
+Of the 23 app objects: **6** are the defect fixes of §3, **1** is the generated
+`isr_tables.c.obj` (it follows the link layout), **2** are the stock pair just
+named, and the remaining **14** changed for the reason this batch exists — they
+had been compiling against a wrong prototype:
+
+| object | Δ text | previous local declaration | what changed |
+|---|---:|---|---|
+| `app_event_manager_process_events` | **−20 B** | `void printk(int,int,int,int)` | **instruction stream identical**; the literal pool loses 5 words, because the format/argument expressions no longer round-trip through `int` |
+| `master_process_audio_fw_load_req` | +4 B | `int log_message(const char*, const char*, ...)` (**two** fixed parameters) | register/stack-slot allocation and one `cmp` operand order |
+| `is_ext_flash_burned` | 0 | 4 fixed `int` | scheduling |
+| `spec_ble_command_hook` | 0 | 4 fixed | scheduling |
+| `arch_irq_priority_set` | 0 | 5 fixed | a `str`/`ldr` pair swapped |
+| `k_msgq_put`, `k_msgq_get`, `gatt_notify`, `adc_nfc_init`, `adc_nfc_run`, `jbd_panel_resume`, `ble_privacy_id_remove`, `bt_ancs_data_source_handler`, `bt_att_chan_create_pdu`, `main`, `reflash_fb_data_to_lcd` | 0 | 2–5 fixed parameters | 2–8 lines of scheduling / literal-pool ordering |
+
+None of the 14 changes an executed operation; they are the compiler's freedom
+under a corrected prototype. The whole-image effect is **−16 B**.
+
+**1,589 of the 1,609 retained app translation units and all 944 retained net
+ones are byte-identical objects** — i.e. for the overwhelming majority the
+consolidation is provably codegen-neutral, and the batch's risk is concentrated
+in a list of 20 objects small enough to read one by one, which is what §3 and
+this table do.
+
+---
+
+### 5. Gate ladder
+
+| gate | result |
+|---|---|
+| `gen_retained_sources.py --check` | **clean** — "retained source lists are current" |
+| app build | **exit 0**, 3,070 targets |
+| net build (`-DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF -DG1_ESB_REAL_PAYLOAD_OBJECTS=ON`) | **exit 0** |
+| `nm -u` undefined | **0 / 0** |
+| duplicate global definitions | **0 / 0** |
+| `--allow-multiple-definition` / `--defsym` / weak-symbol hack | **0 occurrences** in either log (the only `weak` hits are the stock `main_weak.c` filename) |
+| numeric-root hacks added | **0** — no linker script touched |
+| `check_ram_pin_collisions.py` app | **0 escaped binds, 0 unknown inside a live object** (624 bound pins OK) |
+| `check_ram_pin_collisions.py --core net` | **0 / 0** (170 bound pins OK) |
+| `check_net_raw_literals.py` | **0 / 0** — 0 TUs failed to preprocess, 0 distinct raw literals |
+| `check_thread_create_stack_args.py` | **10 / 10 PASS** |
+| `verify_net_stock_data_window.py` | **PROVEN** — 256/349 words equal, 93 differing all flash pointers, **0 differing for any other reason**, 0 non-stock input sections |
+| `cfg_verify` on every canonical body this batch changed | **5 / 5 PASS**; the sixth (`FUN_00031dd8`) FAILed and was reverted — §3.1 |
+| net `zephyr.bin` `cmp` vs baseline | **byte-identical** |
+| app FLASH | 948,812 / 982,528 = 96.57 % — **Δ −16 B**, ~32.9 KB headroom |
+| app RAM | 253,765 / 440 KB = 56.32 % — **Δ 0 B** |
+| compiler warnings | app 1,798 → **1,887** (+89), net 1,066 → **1,066** (Δ 0) |
+
+The +89 app diagnostics are all one kind: `-Wint-conversion, passing argument 1`
+— 44 `log_message`, 41 `debug_print`, 4 `printk`. They are the call sites that
+hand a *pointer* expression (`(const void *)…`, `void *`, a bare `rodata_*`
+array) to the `uintptr_t` format parameter, and they were silent before only
+because each such file declared its own pointer-typed prototype. **No
+instruction changes with them**; re-spelling those 89 first arguments is
+mechanical and is left for the same textual batch as §1.4. This is two orders
+of magnitude cheaper than the ~4,000 diagnostics a `const char *` header would
+have produced.
+
+---
+
+### 6. Behavioural oracle — the acceptance bar
+
+Re-run end to end on **the ELFs this batch produced**
+(`/private/tmp/g1-b2-app`, `/private/tmp/g1-b2-net`), following
+`our_boot_bringup.md` §37/§38: `mkfifo` stdin pipe, `G1_HOOKS=0`,
+`$rtinfo_pc=0x00015b8c`, and `G1_CTX_*`/`G1_SCREEN_ID` **taken from the ELF
+booted** — `nm` gives `_end = 0x2003ff45` in this build exactly as in
+iteration 38, so `G1_CTX_FE8=0x20040F38`, `G1_CTX_105A=0x20040FAA`,
+`G1_SCREEN_ID=0x20040025`. The net ELF used is this batch's own, and its
+`zephyr.bin` `cmp`s byte-identical to `g1-i30e-net`.
+
+| stimulus / phase | expected sha256 | measured sha256 | lit px | bbox | verdict |
+|---|---|---|---|---|---|
+| DASHBOARD `p2_render` (`G1_ATT_WRITE=""`) | `19b1f24a…` | `19b1f24a09f97a8d85f1572ac865c8fc61fe6d542af18247a5bcceeb7651b513` | **2,923 == 2,923** | (78,211)–(564,338) | **PASS** |
+| DASHBOARD `p1_boot` | `0c5cc90b…` | `0c5cc90b079d0d9c1ded1376357d23a9782a704a83e01731f50ccd162e246492` | **0 == 0** | — | **PASS** |
+| NAVIGATION `p2_render` (`G1_ATT_WRITE` unset) | `b26c73b3…` | `b26c73b37d441fc8a6732c02e6d889a719677ec4c9ad2adc2d48f28deedb8131` | **1,098 == 1,098** | (34,266)–(497,287) | **PASS** |
+| NAVIGATION `p1_boot` | `1d617c65…` | `1d617c65a688f10eefe139741b680164f09adcd960b18c3ec9ad1f0fb193b953` | **656 == 656** | (178,267)–(449,287) | **PASS** |
+
+The raws were additionally `cmp`-ed against the committed goldens, not only
+compared by hash:
+
+```
+cmp <dash p2_render>.raw recon/emulator/reports/golden_framebuffer_dashboard_p2_render.raw -> no difference
+cmp <nav  p2_render>.raw recon/emulator/reports/golden_framebuffer_p2_render.raw           -> no difference
+cmp <nav  p1_boot>.raw   recon/emulator/reports/golden_framebuffer_p1_boot.raw             -> no difference
+```
+
+Supporting counters held: dashboard `spim_a` `p1_boot` stream sha
+`f91505ab8dc0dd271eb4d43a3f6c12605247c0e01eb9e14463f64f8e37a5a52e` (the §37.7
+D-3 PASS value) over 34 transactions, `spim_b` 0 transactions in both phases.
+
+**All four framebuffers byte-identical. The acceptance bar is held**, and
+unlike G7-B1 it is held across a **−16 B image change**, so this is a
+measurement rather than a tautology.
+
+---
+
+### 7. Constraint compliance
+
+| constraint | status |
+|---|---|
+| `recon/{app,net}/src` stay flat and address-keyed | **held** — no file moved, added or removed in any tree; the five surviving canonical edits are in place under their existing names |
+| no renames | **held** — no function, file or symbol renamed |
+| flash budget | **held and improved** — app −16 B (96.57 %, ~32.9 KB headroom), net Δ 0 B |
+| RAM | **held** — Δ 0 B on both cores |
+| no `tools/` logic edited | **held** — and §3.1 records one place where a `tools/` change *would* have been the right fix and was not made |
+| no `recon/board/**` edited | **held** |
+| no build file, linker script, `recon/emulator/**` or `armemul` edited | **held** — `recon/emulator/**` was only *read* and *executed*; the capture output went to `/private/tmp` |
+| nothing committed | **held** |
+| `--allow-multiple-definition` / weak-symbol / numeric-root hacks | **none** |
+
+---
+
+### 8. Trees reconciled
+
+| tree | role | declarations consolidated | defect fixes propagated |
+|---|---|---:|---:|
+| `recon/symbolized/app` | **build** | 806 (+3 definition files) | 6 |
+| `recon/symbolized/net` | **build** | 11 (+1 definition file) | — |
+| `recon/named` | readable app mirror | 808 | 6 |
+| `recon/net/named` | readable net mirror | 11 | — |
+| `recon/readable_sources/app/g1` | readable split | 577 | 5 (no `set_imu_thread_delay` copy exists) |
+| `recon/readable_sources/app/library` | readable split | 207 | — |
+| `recon/app/src` | **canonical parity** | deferred (§9) | **5** of 6 — `FUN_00031dd8` reverted (§3.1) |
+| `recon/verified/src` | canonical mirror | deferred | **5**, copied from `recon/app/src` so the two are identical for those files |
+| `recon/app/src_sym`, `recon/verified/src_sym` | older symbolized snapshots | deferred | none — no copy of any of the six functions carries the defect in a compiled path |
+| `recon/net/src` | canonical net (28 files are **compiled**) | 0 declarations exist | — |
+| `recon/application/src` | readable app tree | deferred (1 declaration) | — |
+
+The `recon/net/src` files that the net build compiles were checked
+individually: **none** of the 28 declares any of the four symbols, so the batch
+neither needed nor made a change there. `recon/symbolized/net/FUN_0102afbc.c`
+does carry `extern void printk(int, ...)` next to a `#include
+<zephyr/kernel.h>` — a declaration that would not compile — but that file is
+**not** in the retained list; the compiled copy is `recon/net/src/FUN_0102afbc.c`
+and it has no such declaration. Recorded, not acted on.
+
+---
+
+### 9. Deferred, in one list, with reasons
+
+| deferred | count | reason |
+|---|---:|---|
+| **zero-argument call sites** | **140 sites / 45 files** in the build tree (1,071 sites across all nine trees) | `debug_print()` / `log_message()` / `printk()` with **no arguments at all** cannot compile against a prototype with one fixed parameter, so those files keep their local declarations. They are a **real defect class, quantified here for the first time**: the shipped image loads r0 (and often r1, r2) before every one of these `bl`s — e.g. `handle_attitude_trigger` @ 0xfec0 hoists `ldr r1,[pc]` and `ldr r0,[pc]` *above* the `cbz` and then calls either sink, so both take the same two arguments. Our build emits `bl` with r0 undefined. Fixing them is mechanical (give each the arguments its paired sibling call carries, which also lets GCC hoist the setup exactly as the image does) but it is 140 call sites each needing its own format-string check, and it changes codegen at every one — a batch of its own, not a rider on this one. |
+| **canonical parity trees** (`recon/app/src`, `recon/verified/src`, `recon/app/src_sym`, `recon/verified/src_sym`, `recon/application/src`) — 1,435 declarations | 1,435 | `tools/parity/recon.py` builds a **temporary translation unit** and its `CFLAGS` carry only `-I…/recon/app/src` and `-I…/recon/net/src`; a `#include "../../headers/g1_log.h"` written relative to the source directory does not resolve from there, and adding `recon/headers` to that include path is a `tools/` change. The same `CFLAGS` also pin `-std=gnu11` specifically to *preserve* the firmware-era rule that `f()` is unprototyped — which is what the 1,071 zero-argument canonical call sites rely on. The six defect **bodies** were still fixed and re-proven individually (§3.1); only the declaration consolidation is deferred. |
+| **`FUN_00031dd8` canonical body** | 1 | `cfg_verify` FAILs on the corrected body because it compares four arguments at an argument-free format (§3.1). Needs a `REVIEWED_CALL_ARITIES_BY_FORMAT[("app", 0x00031dd8)]` entry — a `tools/` change. |
+| files that `#define` a logging name to something else | 8 (`hci_set_ad.c` → `z_log_msg_runtime_create`, plus 7 raw-`FUN_` redirects in the older `*_sym` snapshots) | the name is not this symbol there |
+| mixed-declarator `extern` statements | 2 | one `extern` statement declaring both a logging and a non-logging function; the transformer refuses rather than rewrites |
+| re-spelling the format argument as `const char *` | ~2,500 sites + the 89 pointer-typed ones that now warn | §1.4 / §5 — purely textual, zero instruction change, but it must be done *with* the `-Wformat` fallout of the SDK's `__printf_like(1, 2)` in view |
+| `DEBUG_PRINT` as a live spelling in the build tree | — | no build-tree file calls or declares it; the header declares it for the canonical trees' benefit and `recon/symbolized/app/log_message.c` still supplies the `__asm__` alias |
+
+---
+
+### 10. Honest summary
+
+The plan predicted this batch would find a latent ABI bug and it did, but not
+in the shape predicted. **No call site was passing a floating-point argument
+under the wrong convention** — the corpus scan found ten translation units that
+mention `float`/`double` at all near a logging declaration, six of them with a
+non-variadic prototype, and per-site inspection showed none of the six actually
+hands a float to a logging entry. The one place in the whole image where floats
+*do* reach one of these sinks, `fuel_gauge_update` @ 0x10c14, already had a
+variadic declaration.
+
+What the wrong prototypes were actually doing was **inventing return values and
+arguments**: 15 call sites across 6 files, all of them consequences of
+`log_message`/`debug_print` being declared to return data when the shipped
+functions return nothing. Four of the six files are invisible to `cfg_verify`,
+and one of them (§3.1) is a body the verifier actively rejects *after* it was
+corrected. The declaration change also moved codegen in 14 further translation
+units, all provably semantics-neutral, and the net effect on the image is
+−16 B with all four acceptance framebuffers byte-identical.
+
+The batch is **not** complete: 45 build-tree files and the five canonical trees
+still carry their own declarations, for the two structural reasons in §9. Both
+unblock the same way — the zero-argument sites need a dedicated per-site batch,
+and the canonical trees need one line in `tools/parity/recon.py`'s include path.
+
+---
+
+### 11. Observation: `tools/` changed underneath this session again
+
+As in G7-B1 §6, `tools/` carries **uncommitted modifications this pass did not
+make** — 41 modified files including `tools/cfg_verify.py` (mtime 22:10:31),
+`tools/parity/emu.py` and `tools/parity/recon.py` (22:00:21), plus three new
+files (`tools/g1_paths.py`, `tools/run_tests.py`,
+`tools/audit_negative_controls.py`) and three new
+`recon/analysis/harness_unblock*` artifacts. The session-start `git status` was
+clean apart from an untracked `.xapk`, and this pass never opened any file
+under `tools/` for writing. Recorded, not acted on.
+
+Two consequences were checked rather than assumed:
+
+1. **The §9 deferral rationale is still true at the end of the session.**
+   `grep -c "recon/headers" tools/parity/recon.py` = **0**; its `CFLAGS` still
+   carry only `-I…/recon/app/src` and `-I…/recon/net/src`, so a header include
+   written relative to a canonical source directory still cannot resolve in the
+   temporary parity TU.
+2. **Every `cfg_verify` result in §3.1 was re-measured after the last observed
+   `tools/` mtime** and is unchanged: `FUN_00010fc8` PASS `cases=4`,
+   `FUN_0003384c` PASS `cases=2`, `FUN_000473c8` PASS `cases=5`,
+   `set_imu_thread_delay` PASS `cases=0`, `exit_dashboard_burial_point` PASS
+   `cases=0`. The corrected `FUN_00031dd8` still **FAILs** with the same 42
+   mismatches, and the reverted (still-defective) body still **PASSes** — the
+   two outcomes side by side, under the newest verifier, are the cleanest
+   statement of why a green harness is not evidence for an ABI change.

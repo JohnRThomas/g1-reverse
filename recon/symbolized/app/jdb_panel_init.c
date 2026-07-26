@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00046fc0 @ 0x00046fc0
  * public-name: jdb_panel_init
  * durable-map: recon/catalogs/function_names_app.json
@@ -19,8 +20,6 @@
 extern void panel_init(void);
 extern void set_brightness_to_panel_reg(unsigned int);
 extern int spi_read_id(void);
-extern void log_message(unsigned int,unsigned int);
-extern void debug_print(unsigned int,unsigned int);
 
 unsigned int jdb_panel_init(unsigned char *param_1)
 {

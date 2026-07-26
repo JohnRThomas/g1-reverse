@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_lsm6dso_dev_ctx__param_0308            [param_0308; G1-original]
  * Raw function identity: 0x000622a0.  See ../include/g1_recovered_layouts.h. */
@@ -47,7 +48,6 @@
  *   rodata_f6481                             @ 0x000f6481   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_000622a0 @ 0x622a0  (parity: 300/300 trials, PROVEN) */
-extern void log_message(int fmt, ...);
 extern int audio_codec_set_reg10_field2(int a0,int a1);
 extern int audio_codec_set_reg11_field1(int a0,int a1);
 extern int audio_codec_set_reg12_bit6(int a0,int a1);

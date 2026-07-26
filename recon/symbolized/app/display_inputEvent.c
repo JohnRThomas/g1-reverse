@@ -17,12 +17,11 @@
 /* Reconstructed display_inputEvent @ 0x49938 */
 
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 extern void memset_bytes(void *destination, int value, uint32_t length);
 extern int k_msgq_put(uint32_t queue, const void *record,
                        uint32_t wait, uint32_t flags);
-extern void log_message(uint32_t format, uint32_t argument);
-extern void debug_print(uint32_t format, uint32_t argument, ...);
 
 uint32_t display_inputEvent(uint8_t input, uint8_t state)
 {

@@ -11,10 +11,10 @@
  *   rodata_f543a                             @ 0x000f543a   [INLINED -- G6 literal batch]
  *   rodata_f54a8                             @ 0x000f54a8
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0005f5d0 @ 0x5f5d0  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int net_buf_simple_tailroom(void);
-extern void printk(unsigned int a,unsigned int b,unsigned int c,unsigned int d);
 extern void assert_post_action(unsigned int a,unsigned int b);
 
 int net_buf_simple_add(int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

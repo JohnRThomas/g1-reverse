@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00065d3c @ 0x00065d3c
  * public-name: nrfx_ipc_init
  * durable-map: recon/catalogs/function_names_app.json
@@ -18,7 +19,6 @@
 /* Reconstructed FUN_00065d3c @ 0x65d3c  (parity: 300/300 trials, PROVEN) */
 
 extern void arch_irq_enable(int);
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
 extern unsigned int assert_post_action(unsigned int, unsigned int);
 
 unsigned int nrfx_ipc_init(unsigned int param_1, int param_2, int param_3)

@@ -54,6 +54,7 @@
  */
 /* Full reconstruction audioStreamFileManagerHandler @ 0x2f94c. */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 typedef uint8_t undefined; typedef uint8_t undefined1; typedef uint16_t undefined2;
 typedef uint32_t undefined4; typedef uint64_t undefined8; typedef uint8_t byte;
 typedef uint32_t uint; typedef uint64_t ulonglong; typedef uint32_t code(uintptr_t,...);
@@ -111,9 +112,7 @@ typedef uint32_t uint; typedef uint64_t ulonglong; typedef uint32_t code(uintptr
 #define DAT_00030160 0x000a47d7u
 #define DAT_00030164 0x000a4840u
 #define DAT_00030168 ((volatile int *)0x20007bb8u)
-extern uint32_t log_message(uintptr_t,...);
 extern uint32_t get_device_info(uintptr_t,...);
-extern uint32_t debug_print(uintptr_t,...);
 extern uint32_t crc32_update(uintptr_t,...);
 extern uint32_t getAudioMessageQueueCacheData(uintptr_t,...);
 extern uint32_t delVoiceBlock(uintptr_t,...);

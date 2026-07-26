@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_refcounted_list_node__param_0247       [param_0247; G1-original]
  * Raw function identity: 0x00059e78.  See ../include/g1_recovered_layouts.h. */
@@ -19,7 +20,6 @@
 /* Reconstructed FUN_00059e78 @ 0x59e78  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(unsigned int a, unsigned int b);
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern void bt_addr_le_copy_828da(void *a, unsigned int b, unsigned int c, unsigned int d);
 
 void gatt_sub_free(char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

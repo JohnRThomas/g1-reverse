@@ -13,9 +13,9 @@
  *   rodata_f5268                             @ 0x000f5268
  *   rodata_f5298                             @ 0x000f5298   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0005ea18 @ 0x5ea18  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(int a,int b,int c,int d);
 extern unsigned char *assert_post_action(int a,int b);
 extern void ble_privacy_id_remove(void);
 extern void bt_settings_save_or_delete_key(unsigned char a, unsigned char *b);

@@ -19,8 +19,8 @@
  */
 /* Reconstructed FUN_00054dd8 @ 0x54dd8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 extern void assert_post_action(unsigned,unsigned);
-extern void printk(unsigned,...);
 extern int bt_addr_le_eq(int,int);
 extern int memcmp(int,void*,int);
 extern void memset_bytes(void*,int,int);

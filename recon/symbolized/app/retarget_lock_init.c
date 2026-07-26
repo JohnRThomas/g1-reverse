@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0005109c @ 0x0005109c
  * public-name: retarget_lock_init
  * durable-map: recon/catalogs/function_names_app.json
@@ -19,7 +20,6 @@
 
 extern int malloc(int);
 extern void assert_post_action(void*, unsigned int);
-extern void printk(void*, void*, void*, int);
 extern void kmutex_dlist_init(void);
 
 void retarget_lock_init(int *param_1)

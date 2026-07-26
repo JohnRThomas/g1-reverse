@@ -31,9 +31,10 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <cmsis_gcc.h>
+#include "../../headers/g1_log.h"
 extern int k_is_in_isr(void); extern int z_spin_lock_valid(uint32_t); extern void z_spin_lock_set_owner(uint32_t); extern uint64_t z_spin_unlock_valid(uint32_t);
 extern void unschedule_locked(void*); extern void cancel_async_locked(void*); extern int cancel_sync_locked(void*,void*); extern void z_impl_k_sem_take(void*,uint32_t,uint32_t,uint32_t);
-extern void printk(uint32_t,...); extern void assert_post_action(uint32_t,uint32_t);
+extern void assert_post_action(uint32_t,uint32_t);
 bool k_work_cancel_delayable_sync(uint8_t *obj,uint8_t *request)
 {
     if (!obj) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f82df) /*=0xf82df*/,((unsigned long)&rodata_f820f) /*=0xf820f*/,0x411); assert_post_action(((unsigned long)&rodata_f820f) /*=0xf820f*/,0x411); }

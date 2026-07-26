@@ -27,6 +27,7 @@
 /* CPUAPP ui_ancs_notification_task @ 0x0003603c.
  * Raw/back-map identity: FUN_0003603c, exact extent 0x128 bytes. */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 extern void gui_screen_clear(void);
 extern void display_fade_out_mask_bands(void);
@@ -37,8 +38,6 @@ extern uint32_t msg_content_recalc_unread(void);
 extern uint32_t pull_message(uintptr_t *message);
 extern void render_ancs_notification_animation(void *framebuffer, uint32_t message_index);
 extern void draw_message(uint32_t message_index, uintptr_t message);
-extern void log_message(uintptr_t format, ...);
-extern void debug_print(uintptr_t format, ...);
 
 #define LOG_ROUTE (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
 #define LAST_GROUP (*(volatile uint8_t *)((unsigned long)&g_200033d3) /*=0x200033d3*/)

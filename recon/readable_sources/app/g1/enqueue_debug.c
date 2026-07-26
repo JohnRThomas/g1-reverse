@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00019bfc @ 0x00019bfc
  * public-name: enqueue_debug
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,7 +15,6 @@
  */
 /* Reconstructed FUN_00019bfc @ 0x19bfc  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int a);
 extern int k_msgq_put(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern void k_msgq_get(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern void memcpy(unsigned int a, unsigned int b, unsigned int c);

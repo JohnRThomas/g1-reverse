@@ -21,7 +21,7 @@
  */
 /* Reconstructed FUN_0005c4f0 @ 0x5c4f0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void printk(unsigned,unsigned,unsigned,unsigned,unsigned);
+#include "../../headers/g1_log.h"
 extern void assert_post_action(unsigned,unsigned);
 extern int gatt_find_conn_in_known_table(void);
 extern int gatt_sub_free(int);

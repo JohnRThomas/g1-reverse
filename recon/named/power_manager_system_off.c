@@ -19,6 +19,7 @@
  *   rodata_f67a5                             @ 0x000f67a5
  *   g_caf_power_manager_system_off_flag      @ 0x2001d563
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00063c3c @ 0x63c3c  (parity: 300/300 trials, PROVEN) */
 
 extern int z_log_msg_runtime_create(unsigned,int,void*,int);
@@ -27,7 +28,6 @@ extern int ancs_notify_table_is_idle(int);
 extern int app_event_submit_power(void);
 extern int power_manager_set_system_off_flag(int);
 extern void assert_post_action(unsigned,unsigned);
-extern void printk(unsigned,...);
 void power_manager_system_off(void){
   int iVar1; unsigned local_18, local_14;
   unsigned char r5 = *(volatile unsigned char*)0x2001d563UL;

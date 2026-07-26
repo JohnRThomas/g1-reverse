@@ -30,9 +30,8 @@
  */
 /* Reconstructed FUN_000338ec @ 0x338ec  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int log_message(int,...);
+#include "../../../headers/g1_log.h"
 extern int audio_fw_load_get_wrapper(int,...);
-extern int debug_print(int,...);
 extern int parse_receiver_msg_pack_pkcs7(int,...);
 extern int parse_ncs_notification(int,...);
 extern int malloc(int,...);

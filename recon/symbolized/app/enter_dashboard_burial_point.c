@@ -16,11 +16,10 @@
  */
 /* Reconstructed FUN_0004a9ec @ 0x4a9ec  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 extern int get_device_info(void);
 extern unsigned get_current_burial_point_type(void);
 extern unsigned long long k_uptime_get_10(void);
-extern void debug_print(unsigned,unsigned,unsigned,unsigned);
-extern void log_message(unsigned,unsigned,unsigned,unsigned);
 
 void enter_dashboard_burial_point(void){
     int iVar1 = get_device_info();

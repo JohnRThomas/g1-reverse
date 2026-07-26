@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000371e8 @ 0x000371e8
  * public-name: handle_stocks_action
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,8 +15,6 @@
  */
 /* Reconstructed handle_stocks_action @ 0x371e8  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, ...);
 
 unsigned int handle_stocks_action(unsigned int param_1, unsigned int param_2,
                                   unsigned int param_3, unsigned int param_4)

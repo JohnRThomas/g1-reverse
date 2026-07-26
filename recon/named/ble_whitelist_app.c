@@ -26,9 +26,10 @@
  */
 /* Reconstructed FUN_00022218 @ 0x22218  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned char byte;
-extern int log_message(int,...); extern int strcmp(int,...); extern int get_device_info(int,...);
-extern int debug_print(int,...); extern int get_app_whitelist_buffer(int,...);
+extern int strcmp(int,...); extern int get_device_info(int,...);
+extern int get_app_whitelist_buffer(int,...);
 typedef int (*codeptr)(int,...);
 
 int ble_whitelist_app(undefined4 param_1,undefined4 param_2,codeptr param_3,undefined4 param_4)

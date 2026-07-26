@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00065f80 @ 0x00065f80
  * public-name: nrfx_nvmc_word_write
  * durable-map: recon/catalogs/function_names_app.json
@@ -16,7 +17,6 @@
  *   NRF_NVMC_S                               @ 0x50039000
  */
 /* Reconstructed FUN_00065f80 @ 0x65f80  (parity: 300/300 trials, PROVEN) */
-extern void printk(unsigned,unsigned,unsigned,unsigned,unsigned);
 extern long long assert_post_action(unsigned,unsigned);
 extern void nvmc_word_write(void);
 extern void nvmc_readonly_mode_set(void);

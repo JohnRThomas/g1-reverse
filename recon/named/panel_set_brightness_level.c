@@ -18,9 +18,8 @@
  * Name self-evidenced: the log tag 0x000d732c is "panel_set_brightness_level".
  */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
-extern void log_message(uint32_t format, ...);
-extern void debug_print(uint32_t format, ...);
 
 uint32_t panel_set_brightness_level(uint8_t *context, uint32_t level)
 {

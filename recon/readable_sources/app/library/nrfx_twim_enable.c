@@ -14,7 +14,7 @@
  */
 /* Full reconstruction FUN_00067884 @ 0x67884, exact extent 60 bytes. */
 #include <stdint.h>
-extern void printk(uintptr_t,uintptr_t,uintptr_t,uint32_t,...);
+#include "../../../headers/g1_log.h"
 extern __attribute__((noreturn)) void assert_post_action(uintptr_t,uint32_t);
 void nrfx_twim_enable(uintptr_t *device,uint32_t a,uint32_t b,uint32_t context){
  (void)a;(void)b; uint8_t channel=((uint8_t*)device)[4]; volatile uint8_t *state=(volatile uint8_t*)(((unsigned long)&g_nrfx_twim_cb) /*=0x2000b3cc*/+channel*40u);

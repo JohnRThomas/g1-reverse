@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00025a48 @ 0x00025a48
  * public-name: ipc0_ept_recv
  * durable-map: recon/catalogs/function_names_app.json
@@ -13,8 +14,6 @@
  */
 /* Reconstructed ipc0_ept_recv @ 0x25a48  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(int,...);
-extern void debug_print(int,...);
 void ipc0_ept_recv(unsigned char *param_1,int param_2){
   int iVar4=0;
   unsigned uVar1=*param_1;

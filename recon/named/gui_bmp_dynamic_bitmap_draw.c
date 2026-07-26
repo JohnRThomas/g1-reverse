@@ -22,9 +22,8 @@
  */
 /* Reconstructed FUN_0004334c @ 0x4334c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(unsigned,...);
+#include "../headers/g1_log.h"
 extern int get_device_info(void);
-extern void debug_print(unsigned,...);
 extern unsigned atomic_get_3_0(void);
 extern int resource_manger_get(int,unsigned,int*,int*,int*,unsigned char*);
 extern void clean_fb_data(unsigned,int,int,int,int,int);

@@ -13,8 +13,8 @@
  */
 /* Full reconstruction FUN_00061f64 @ 0x00061f64 (72-byte exact extent). */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern void printk(uintptr_t, uintptr_t, uintptr_t, uint32_t);
 extern void assert_post_action(uintptr_t, uint32_t) __attribute__((noreturn));
 
 uintptr_t nrf_gpio_pin_port_decode(uint32_t *encoded_pin)

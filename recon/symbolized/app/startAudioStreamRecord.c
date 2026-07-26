@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002f764 @ 0x0002f764
  * public-name: startAudioStreamRecord
  * durable-map: recon/catalogs/function_names_app.json
@@ -21,8 +22,6 @@
  */
 /* Reconstructed startAudioStreamRecord @ 0x2f764  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int message, unsigned int function);
-extern void debug_print(unsigned int message, unsigned int function);
 extern unsigned int get_device_info(void);
 extern void display_DelayClose(unsigned int ms);
 extern int k_msgq_put(int a, void *b, int c, int d);

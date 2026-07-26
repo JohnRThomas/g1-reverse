@@ -22,10 +22,9 @@
  */
 /* Reconstructed FUN_00031fd8 @ 0x31fd8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 typedef unsigned uint; typedef unsigned char byte;
-extern int log_message(int,...);
 extern int get_device_info(int,...);
-extern int debug_print(int,...);
 extern int build_and_send_device_status_report(int,...);
 extern int read_sys_settting_from_flash(int,...);
 extern int k_msleep_ticks32768_b(int,...);

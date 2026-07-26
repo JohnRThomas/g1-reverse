@@ -27,6 +27,7 @@
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed mobile_send_notification_to_ble_device_test @ 0x21c04  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned int uint32_t;
@@ -35,8 +36,6 @@ extern uint32_t cjson_create_object(void);
 extern void cjson_add_string_to_object(uint32_t a, uint32_t b, uint32_t c);
 extern void cjson_add_item_to_object_thunk(uint32_t a, uint32_t b, uint32_t c);
 extern uint32_t cjson_print_pretty(uint32_t a);
-extern void log_message(uint32_t a, uint32_t b, uint32_t c);
-extern void debug_print(uint32_t a, uint32_t b, ...);
 extern uint32_t strlen(uint32_t a);
 extern void subcontracing_send_data_pkcs7(uint32_t a, uint32_t b, uint32_t c, uint32_t d);
 extern void cjson_delete(uint32_t a);

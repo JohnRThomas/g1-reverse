@@ -22,7 +22,7 @@
  */
 /* Reconstructed FUN_00031dd8 @ 0x31dd8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern uint64_t log_message(unsigned, unsigned, unsigned, unsigned);
+#include "../../../headers/g1_log.h"
 extern int get_device_info(void);
 extern void build_and_send_device_status_report(unsigned,int);
 extern int read_sys_settting_from_flash(void*);
@@ -33,16 +33,13 @@ unsigned test_mode_apply_base_status_cmd(unsigned param_1, unsigned param_2, uns
 {
   int *piVar1; int iVar2, iVar4; unsigned uVar3; unsigned char *puVar5; unsigned char uVar6; char cVar7;
   unsigned local_b0; unsigned char auStack_ac[16]; unsigned char auStack_9c[12]; int local_90;
-  uint64_t debug_result = log_message(((unsigned long)"join in set_imu_base\n") /*=0xa715d*/, param_2, (unsigned)param_3,
-                                      (unsigned)param_4);
+  log_message(((unsigned long)"join in set_imu_base\n") /*=0xa715d*/);
   if ((param_3 == 0) || (param_4 == 0)) {
-    log_message(((unsigned long)"set_imu_base para is NULL\n") /*=0xa7173*/, (unsigned)(debug_result >> 32), (unsigned)param_3,
-                (unsigned)param_4);
+    log_message(((unsigned long)"set_imu_base para is NULL\n") /*=0xa7173*/);
     return 0xffffffff;
   }
   if (*(char*)((unsigned long)&g_test_mode_flag) /*=0x20019ef3*/ != 1) {
-    log_message(((unsigned long)"warning: not test mode,disable setting\n") /*=0xa672f*/, (unsigned)(debug_result >> 32),
-                (unsigned)param_3, ((unsigned long)&g_test_mode_flag) /*=0x20019ef3*/);
+    log_message(((unsigned long)"warning: not test mode,disable setting\n") /*=0xa672f*/);
     return 0xfffffffe;
   }
   puVar5 = (unsigned char*)*param_3;

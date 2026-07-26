@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000730e8 @ 0x000730e8
  * public-name: k_work_queue_start
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,7 +18,6 @@
  *   rodata_f82ab                             @ 0x000f82ab
  */
 /* Reconstructed FUN_000730e8 @ 0x730e8  (parity: 300/300 trials, PROVEN) */
-extern void printk(int,...);
 extern void assert_post_action(int,...);
 extern void z_impl_k_thread_create(int,int,unsigned,int,int,int,int,unsigned,int);
 extern void posix_stub_enosys(int);

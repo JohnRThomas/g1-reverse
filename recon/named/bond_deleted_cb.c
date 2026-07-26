@@ -9,10 +9,10 @@
  *   g_ancs_active_conn                       @ 0x20006ab8
  *   g_bonded_count                           @ 0x20007514
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_000183ac @ 0x183ac  (parity: 300/300 trials, PROVEN) */
 
 extern void format_bt_addr_str(int, int);
-extern void log_message(int, int);
 void bond_deleted_cb(int param_1, int param_2)
 {
     char auStack_28[32];

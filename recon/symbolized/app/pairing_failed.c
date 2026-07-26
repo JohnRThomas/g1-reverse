@@ -16,11 +16,10 @@
  */
 /* Full ABI-faithful reconstruction pairing_failed @ 0x18444. */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 extern uintptr_t bt_conn_get_field_0x90(void);
 extern void format_bt_addr_str(const void *connection, char description[36]);
-extern void log_message(uintptr_t format, ...);
-extern void debug_print(uintptr_t format, ...);
 extern void bt_conn_disconnect_by_state(uint32_t connection, uint32_t reason);
 
 void pairing_failed(uint32_t connection, uint32_t error)

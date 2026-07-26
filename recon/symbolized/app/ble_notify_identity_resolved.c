@@ -17,9 +17,9 @@
  */
 /* Reconstructed FUN_00056d1c @ 0x56d1c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef unsigned int uint;
 extern void assert_post_action(uint32_t,uint32_t);
-extern void printk(uint32_t,uint32_t,uint32_t,uint32_t);
 void ble_notify_identity_resolved(int param_1){
   int iVar4 = (*(volatile int8_t*)(param_1+3)==0) ? param_1+0x9e : param_1+0x97;
   int iVar2=*(volatile int*)((unsigned long)&g_ble_conn_cb_list_head) /*=0x2000ad1c*/;

@@ -21,12 +21,12 @@
  *   rodata_f4b44                             @ 0x000f4b44
  *   g_ble_dev_ncmd_sem                       @ 0x200020d4
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0005b378 @ 0x5b378  (parity: 300/300 trials, PROVEN) */
 extern int bt_gatt_attr_get_handle(int a0);
 extern int bt_gatt_foreach_attr_type(int a0,int a1,int a2,int a3,int a4,int a5,void *a6);
 extern int gatt_indicate(int a0,int a1,int *a2);
 extern void assert_post_action(int a0,int a1);
-extern void printk(int a0,int a1,int a2,int a3);
 extern int bt_uuid_cmp(int a0,void *a1);
 extern int read_struct_first_word(int a0);
 extern int bt_gatt_attr_value_handle(void);

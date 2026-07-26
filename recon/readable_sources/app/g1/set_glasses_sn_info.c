@@ -27,9 +27,8 @@
 /* Reconstructed set_glasses_sn_info @ 0x31ee8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int log_message(int,...);
+#include "../../../headers/g1_log.h"
 extern int get_device_info(void);
-extern int debug_print(int,...);
 extern int build_and_send_device_status_report(int,int);
 extern int get_product_code_buf(void);
 extern int store_product_code_info(int);

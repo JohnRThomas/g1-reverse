@@ -38,9 +38,8 @@
  * 0x260c2 -- the sole creator of imu_fusion_thread.
  */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern int log_message(uint32_t format, uint32_t function, uint32_t a, uint32_t b);
-extern int debug_print(uint32_t format, uint32_t function, uint32_t a, uint32_t b);
 extern int get_device_type(void);
 extern int dev_api_call_slot0(uint32_t device, int slot, void *value);
 extern void imu_fusion_state_init(void *state);

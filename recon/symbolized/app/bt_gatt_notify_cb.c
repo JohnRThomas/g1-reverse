@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0005b754 @ 0x0005b754
  * public-name: bt_gatt_notify_cb
  * durable-map: recon/catalogs/function_names_app.json
@@ -28,7 +29,6 @@ extern int bt_gatt_attr_get_handle();
 extern int bt_gatt_foreach_attr_type(int,...);
 extern int gatt_notify(int,...);
 extern int assert_post_action(int,...);
-extern int printk(int,...);
 extern int bt_uuid_cmp(int,...);
 extern int read_struct_first_word(int,...);
 extern int bt_gatt_attr_value_handle();

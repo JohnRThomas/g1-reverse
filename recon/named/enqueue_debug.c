@@ -11,9 +11,9 @@
  *   g_debug_msg_pipe                         @ 0x2000751c
  *   g_debug_msg_scratch_buf                  @ 0x20010257
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00019bfc @ 0x19bfc  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int a);
 extern int k_msgq_put(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern void k_msgq_get(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern void memcpy(unsigned int a, unsigned int b, unsigned int c);

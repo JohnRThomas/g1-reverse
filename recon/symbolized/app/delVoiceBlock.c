@@ -27,9 +27,8 @@
  */
 /* Reconstructed FUN_0002f4a8 @ 0x2f4a8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(unsigned, ...);
+#include "../../headers/g1_log.h"
 extern int get_device_info(void);
-extern void debug_print(unsigned, ...);
 extern int z_device_is_ready(int);
 extern void memcpy(uintptr_t, int, int);
 extern void memset_bytes(uintptr_t, int, int);

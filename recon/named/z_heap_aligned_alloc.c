@@ -16,10 +16,10 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include "../headers/g1_log.h"
 
 extern void *k_heap_alloc(void *heap, size_t alignment, size_t size,
                           uint64_t timeout);
-extern void printk(uint32_t, ...);
 extern void assert_post_action(uint32_t, uint32_t);
 
 #define k_heap_aligned_alloc k_heap_alloc

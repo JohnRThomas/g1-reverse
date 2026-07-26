@@ -40,6 +40,7 @@
 
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../../headers/g1_log.h"
 
 extern int z_spin_lock_valid(void *lock);
 extern void z_spin_lock_set_owner(void *lock);
@@ -51,7 +52,6 @@ extern void sched_ready_queue_insert(void *thread);
 extern void sched_update_cache(int reschedule);
 extern void mpu_region_index_lookup(void *thread);
 extern void arch_swap(uint32_t key);
-extern void printk(uint32_t, ...);
 extern void assert_post_action(uint32_t, uint32_t);
 
 #define z_spin_lock_valid z_spin_lock_valid

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00073cdc @ 0x00073cdc
  * public-name: dlist_unlink_node
  * durable-map: recon/catalogs/function_names_app.json
@@ -13,7 +14,6 @@
  */
 /* Reconstructed FUN_00073cdc @ 0x73cdc  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int a,unsigned int b,unsigned int c,unsigned int d);
 extern unsigned long long assert_post_action(unsigned int a,unsigned int b);
 
 void dlist_unlink_node(unsigned int param_1, int *param_2, unsigned int param_3, unsigned int param_4)

@@ -9,8 +9,10 @@
 /* Reconstructed FUN_0007e2fa @ 0x7e2fa  (parity: 300/300 trials, PROVEN) */
 
 #include <stdarg.h>
+#include <stdint.h>
+#include "../../headers/g1_log.h"
 extern void vprintf(unsigned int, va_list);
-void printk(unsigned int param_1, ...)
+void printk(uintptr_t param_1, ...)
 {
   va_list args;
   va_start(args, param_1);

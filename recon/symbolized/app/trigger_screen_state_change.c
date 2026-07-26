@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002bc2c @ 0x0002bc2c
  * public-name: trigger_screen_state_change
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,8 +16,6 @@
 /* Reconstructed trigger_screen_state_change @ 0x2bc2c  (parity: 300/300 trials, PROVEN) */
 
 extern void k_sem_give(unsigned int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, ...);
 
 unsigned int trigger_screen_state_change(unsigned int param_1, int param_2, unsigned int param_3, unsigned int param_4)
 {

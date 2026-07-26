@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_g1_device_runtime_state__param_0027    [param_0027; G1-original]
  *   local_2c         => struct g1_layout_new_task_locals__stack_0910            [stack_0910; G1-original]
@@ -151,9 +152,9 @@ typedef unsigned long long u64;
 
 /* Every raw identity below is retained as an address back-map; semantic names
  * are used in the function body where the subsystem role is known. */
-extern int log_message(u32, ...);                         /* FUN_0007dda4 */
+/* FUN_0007dda4 */
 extern int get_device_info(void);                         /* FUN_000167a8 */
-extern int debug_print(u32, ...);                         /* FUN_00019c70 */
+/* FUN_00019c70 */
 extern int get_task_signal_mode(void);                    /* FUN_00023eec */
 extern int is_task_transport_blocked(void);               /* FUN_00026c28 */
 extern int trigger_screen_state_change(u32, char *, int); /* FUN_0002bc2c */

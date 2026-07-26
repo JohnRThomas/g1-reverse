@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   0x00018ed8       => struct g1_layout_uid_enqueue_state__global_0836         [global_0836; G1-original]
  * Raw function identity: 0x00018e48.  See ../include/g1_recovered_layouts.h. */
@@ -20,8 +21,6 @@
  */
 /* Reconstructed enqueue_uid @ 0x18e48  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned a, ...);
-extern void debug_print(unsigned a, ...);
 extern void k_msgq_get(unsigned a, void*b, int c, int d);
 extern int  k_msgq_put(unsigned a, void*b, int c, int d);
 int enqueue_uid(unsigned *param_1, unsigned param_2, unsigned param_3){

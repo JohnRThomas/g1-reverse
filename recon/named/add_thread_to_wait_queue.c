@@ -13,9 +13,9 @@
  */
 /* Reconstructed FUN_00073ec0 @ 0x73ec0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern void unready_thread(void);
 extern void assert_post_action(uint32_t,uint32_t);
-extern void printk(uint32_t,uint32_t,uint32_t,uint32_t,uint32_t);
 void add_thread_to_wait_queue(volatile int *param_1, volatile int *param_2, uint32_t param_3, uint32_t param_4){
   volatile int *piVar1,*piVar2;
   unready_thread();

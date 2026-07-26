@@ -53,13 +53,12 @@
  */
 /* Reconstructed ble_process_req_dispatch @ 0x21460  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern void log_message(uint32_t, uint32_t, ...);
 extern int  get_device_type(void);
 extern uintptr_t get_device_info(void);
 extern int  get_ancs_conn_handle(void);
 extern void audio_fw_load_get_wrapper(void *, void *, uint32_t);
-extern void debug_print(uint32_t, uint32_t, ...);
 extern void send_dmic_msg(void *);
 extern void build_status_notify_packet(void *, void *);
 extern void mark_master_or_low_battery_flag(void);

@@ -14,13 +14,13 @@
  *   rodata_103d0bf                           @ 0x0103d0bf
  *   g_zephyr_log_level                       @ 0x21000580
  */
+#include "../../headers/g1_log.h"
 /* net-core FUN_0102afbc @ 0x102afbc  (parity 300 trials PROVEN) */
 extern void FUN_0102fcec(int);
 extern void FUN_01035fa0(int, int, int, int, int, int, int, int, int);
 extern void FUN_0103b156(int, int);
 extern int FUN_0102d558(int);
 extern int ipc_service_register_endpoint(int, int, int);
-extern void printk(int, ...);
 
 #define C_0102b058 0x2100095c
 #define C_0102b05c 0x0102b5ad

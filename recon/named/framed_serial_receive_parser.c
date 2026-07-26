@@ -15,9 +15,9 @@
 /* CPUAPP framed serial receive/parser @ 0x00033554.
  * Raw/back-map identity: FUN_00033554, exact extent 0x14c bytes. */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 extern void memcpy(void *destination, const void *source, uint32_t size);
-extern void log_message(uintptr_t format, ...);
 
 uint32_t framed_serial_receive_parser(uint32_t transport, uint8_t **output,
                       uint32_t *output_size)

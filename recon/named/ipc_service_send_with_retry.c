@@ -8,9 +8,9 @@
  *   rodata_9f1af                             @ 0x0009f1af   [INLINED -- G6 literal batch]
  *   g_st25dv_dev                             @ 0x20007a44
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0002563c @ 0x2563c  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(int);
 extern int ipc_send_packet_ch2005(int,int);
 int ipc_service_send_with_retry(int param_1)
 {

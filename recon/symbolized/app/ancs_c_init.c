@@ -17,8 +17,7 @@
  */
 /* Reconstructed FUN_0001905c @ 0x1905c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int log_message(int,...);
-extern int debug_print(int,...);
+#include "../../headers/g1_log.h"
 extern int ancs_service_ctx_clear(int,...);
 /* P4 iteration 20 -- the shipped firmware VENDORS ancs_client.c: its
  * bt_ancs_register_attr accepts len <= 256 and writes

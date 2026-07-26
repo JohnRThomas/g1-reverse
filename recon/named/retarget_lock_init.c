@@ -14,11 +14,11 @@
  *   rodata_f23d4                             @ 0x000f23d4
  *   rodata_f240f                             @ 0x000f240f   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0005109c @ 0x5109c  (parity: 300/300 trials, PROVEN) */
 
 extern int malloc(int);
 extern void assert_post_action(void*, unsigned int);
-extern void printk(void*, void*, void*, int);
 extern void kmutex_dlist_init(void);
 
 void retarget_lock_init(int *param_1)

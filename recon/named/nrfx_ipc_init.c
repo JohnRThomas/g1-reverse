@@ -14,10 +14,10 @@
  *   g_nrfx_gpiote_init_flag                  @ 0x2000b328
  *   g_nrfx_gpiote_init_ctx                   @ 0x2000b32c
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00065d3c @ 0x65d3c  (parity: 300/300 trials, PROVEN) */
 
 extern void arch_irq_enable(int);
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
 extern unsigned int assert_post_action(unsigned int, unsigned int);
 
 unsigned int nrfx_ipc_init(unsigned int param_1, int param_2, int param_3)

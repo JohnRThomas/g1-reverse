@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00018a1c @ 0x00018a1c
  * public-name: discovery_service_not_found_cb_gatt
  * durable-map: recon/catalogs/function_names_app.json
@@ -10,7 +11,6 @@
  */
 /* Reconstructed FUN_00018a1c @ 0x18a1c  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int fmt);
 extern void gatt_discover(unsigned int a, unsigned int b);
 
 void discovery_service_not_found_cb_gatt(unsigned int param_1)

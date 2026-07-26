@@ -27,9 +27,8 @@
 /* Reconstructed set_device_sn_info @ 0x32164  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int log_message(int,...);
+#include "../../../headers/g1_log.h"
 extern int get_device_info(void);
-extern int debug_print(int,...);
 extern int build_and_send_device_status_report(int,int);
 extern int get_device_serial_buf(void);
 extern int format_device_serial_to_buf(int);

@@ -11,9 +11,9 @@
  *   rodata_f6fef                             @ 0x000f6fef
  *   g_nrfx_twim_cb                           @ 0x2000b3cc
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_000678d0 @ 0x678d0  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(int a, int b, int c, int d, int e);
 extern int assert_post_action(int a, int b);
 
 void nrfx_twim_disable(int *param_1, int param_2, int param_3, int param_4)

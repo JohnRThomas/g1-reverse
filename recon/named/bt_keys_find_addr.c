@@ -15,8 +15,8 @@
  */
 /* Reconstructed FUN_0005e938 @ 0x5e938  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern int assert_post_action(int,int);
-extern int printk(int,int,int,int);
 extern int memcmp(int,int,int);
 unsigned char *bt_keys_find_addr(uint32_t param_1, int param_2){
   unsigned char *pbVar1 = (unsigned char*)0x2000af4cUL;

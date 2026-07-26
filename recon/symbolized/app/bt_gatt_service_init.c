@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00059cb4 @ 0x00059cb4
  * public-name: bt_gatt_service_init
  * durable-map: recon/catalogs/function_names_app.json
@@ -20,7 +21,6 @@
 /* Reconstructed FUN_00059cb4 @ 0x59cb4  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long atomic_or_0(int a, int b);
-extern void printk(int a, int b, int c, int d);
 extern void assert_post_action(int a, int b);
 
 void bt_gatt_service_init(void)

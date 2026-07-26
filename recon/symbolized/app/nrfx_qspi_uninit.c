@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00066b24 @ 0x00066b24
  * public-name: nrfx_qspi_uninit
  * durable-map: recon/catalogs/function_names_app.json
@@ -21,7 +22,6 @@
 extern void arch_irq_disable(int a);
 extern void qspi_deactivate(void);
 extern void nrf_gpio_cfg_default(unsigned a);
-extern void printk(unsigned a,unsigned b,unsigned c,unsigned d,unsigned e);
 extern void assert_post_action(unsigned a,unsigned b);
 void nrfx_qspi_uninit(void){
     volatile unsigned char *g = (volatile unsigned char*)((unsigned long)&g_qspi_cb) /*=0x2000b348*/;

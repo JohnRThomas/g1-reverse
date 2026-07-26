@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00021cd8 @ 0x00021cd8
  * public-name: simulator_ancs_calendar_schedule_trigger
  * durable-map: recon/catalogs/function_names_app.json
@@ -23,8 +24,6 @@
 /* Reconstructed simulator_ancs_calendar_schedule_trigger @ 0x21cd8  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int ancs_get_conn_ctx(void);
-extern void log_message(unsigned int, unsigned int);
-extern void debug_print(unsigned int, unsigned int);
 extern void memset_bytes(unsigned int, int, int);
 extern void strncpy_zero_pad(unsigned int, unsigned int, int);
 extern void log_notification_fields_debug(unsigned int, unsigned int);

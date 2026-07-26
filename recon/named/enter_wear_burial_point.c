@@ -13,12 +13,11 @@
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0004a890 @ 0x4a890  (parity: 300/300 trials, PROVEN) */
 extern int get_device_info(void);
 extern unsigned get_current_burial_point_type(void);
 extern unsigned long long k_uptime_get_10(void);
-extern void log_message(int,...);
-extern void debug_print(int,...);
 void enter_wear_burial_point(void){
   int iVar1; unsigned uVar2; unsigned long long uVar3;
   iVar1 = get_device_info();

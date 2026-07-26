@@ -22,9 +22,8 @@
  */
 /* Reconstructed FUN_00015df4 @ 0x15df4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int log_message(int,...);
+#include "../../headers/g1_log.h"
 extern int gpio_dt_spec_activate(int,...);
-extern void debug_print(int, int);
 extern int app_msleep_thunk_a(int,...);
 extern int dev_write_reg3(int,...);
 extern int dev_reg_modify_bits(int,...);

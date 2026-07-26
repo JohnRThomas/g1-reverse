@@ -19,11 +19,10 @@
  */
 /* Reconstructed change_work_mode_to @ 0x1694c  (parity: 296/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef unsigned char byte; typedef unsigned int uint;
-extern int log_message(int,...);
 extern int enable_ship_mode(int,...);
 extern int global_system_resume(int,...);
-extern int debug_print(int,...);
 extern int global_ipc_service_send(int,...);
 extern int app_msleep_thunk_a(int,...);
 extern int memset_bytes(int,...);

@@ -13,9 +13,9 @@
  * alignment and the literal pool starts at 0x269e0. CFG_VERIFY_PREFIX_FIRST
  */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern void log_message(uintptr_t, ...);
-extern void debug_print(uintptr_t, ...); /* FUN_00019c70 @ 0x00019c70 */
+/* FUN_00019c70 @ 0x00019c70 */
 extern void *memset_bytes(void *, int, uint32_t); /* FUN_00086c78 */
 extern void k_msleep(uint32_t);                   /* FUN_0007cb8e */
 extern void wait_for_event(uint32_t, uint32_t);   /* FUN_0007cb8a */

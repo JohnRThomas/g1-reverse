@@ -17,9 +17,8 @@
  */
 /* Reconstructed cleanDashBoardStartUpModeInfo @ 0x23c88 */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void log_message(uint32_t, uint32_t);
-extern void debug_print(uint32_t, uint32_t);
 extern int k_msgq_put(uint32_t, const void *, uint32_t, uint32_t);
 extern void k_sem_give(uint32_t);
 

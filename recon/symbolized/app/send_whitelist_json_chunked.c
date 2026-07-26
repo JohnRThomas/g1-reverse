@@ -18,8 +18,7 @@
  */
 /* Full reconstruction FUN_00035498 @ 0x35498 (268-byte extent; CFG PASS). */
 #include <stdint.h>
-extern int log_message(int,...);
-extern int debug_print(int,...);
+#include "../../headers/g1_log.h"
 extern int convert_app_whitelist_to_json(int,...);
 extern int malloc(int,...);
 extern int free(int,...);

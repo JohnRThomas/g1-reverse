@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00018e48 @ 0x00018e48
  * public-name: enqueue_uid
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,8 +18,6 @@
  */
 /* Reconstructed enqueue_uid @ 0x18e48  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned a, ...);
-extern void debug_print(unsigned a, ...);
 extern void k_msgq_get(unsigned a, void*b, int c, int d);
 extern int  k_msgq_put(unsigned a, void*b, int c, int d);
 int enqueue_uid(unsigned *param_1, unsigned param_2, unsigned param_3){

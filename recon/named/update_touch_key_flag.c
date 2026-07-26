@@ -19,11 +19,10 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_pending_message_flag                   @ 0x20018d9e
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0002c324 @ 0x2c324  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned a, unsigned b);
 extern int get_device_info(void);
-extern void debug_print(unsigned a, unsigned b);
 extern void trigger_screen_state_change(unsigned a, int b, int c);
 extern unsigned get_message_type_param(unsigned a, int b);
 extern int clear_timeout_message(int a);

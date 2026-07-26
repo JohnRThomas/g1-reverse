@@ -11,9 +11,9 @@
  *   rodata_99de0                             @ 0x00099de0   [INLINED -- G6 literal batch]
  *   rodata_99e1e                             @ 0x00099e1e   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_000177c4 @ 0x177c4  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void assert_post_action(unsigned int, unsigned int);
 typedef int (*fnptr)(int, unsigned int*, unsigned int, void*, int);
 

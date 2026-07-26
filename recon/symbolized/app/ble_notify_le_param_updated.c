@@ -18,10 +18,10 @@
  */
 /* Reconstructed FUN_00056ae0 @ 0x56ae0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef uint32_t u32; typedef uint16_t u16;
 typedef void (*fp)(int,u32,u32,u32);
 extern void atomic_and_2(int*,u32,int,int,u32);
-extern void printk(u32,...);
 extern void assert_post_action(u32,u32);
 void ble_notify_le_param_updated(int param_1, u32 p2, u32 p3, u32 p4){
     if( ((int)(*(volatile u32*)(param_1+4) << 0x16) < 0)

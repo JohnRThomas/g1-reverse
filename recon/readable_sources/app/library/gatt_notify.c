@@ -33,6 +33,7 @@
  */
 /* Reconstructed FUN_0005b680 @ 0x5b680  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 extern int att_chan_req_free(int,...);
 extern int att_get(int,...);
 extern int bt_att_create_pdu(int,...);
@@ -41,7 +42,6 @@ extern int net_buf_put(int,...);
 extern int net_buf_unref(int,...);
 extern int net_buf_simple_add(int,...);
 extern int assert_post_action(int,...) __attribute__((noreturn));
-extern int printk(int,...);
 extern int process_queue(int,...);
 extern int bt_att_set_tx_meta_data(int,...);
 extern int log_msg_create_3arg(int,...);

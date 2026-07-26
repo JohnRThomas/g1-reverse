@@ -17,9 +17,9 @@
  *   rodata_9a88a                             @ 0x0009a88a
  *   rodata_9a8c3                             @ 0x0009a8c3   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_000189a0 @ 0x189a0  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(int,...);
 extern unsigned bt_gatt_dm_conn_get(unsigned callback_object);
 extern unsigned bt_gatt_dm_attr_cnt(unsigned);
 extern int gatt_service_changed_c_discovery_completed(unsigned,unsigned);

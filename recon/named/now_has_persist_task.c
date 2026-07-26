@@ -10,11 +10,10 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_persist_task_status_lock               @ 0x20018d9c
  */
+#include "../headers/g1_log.h"
 /* Reconstructed now_has_persist_task @ 0x2be64  (parity: CFG state-case proven, 4/4 cases) */
 
 extern void signal_persist_task_event(void);
-extern void log_message(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
-extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned char now_has_persist_task(unsigned char *param_1, unsigned int param_2)
 {

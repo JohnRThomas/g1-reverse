@@ -1,6 +1,7 @@
 #include <zephyr/kernel.h>
 #undef NRF_NVMC_S
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00032fe8 @ 0x00032fe8
  * public-name: start_aging_mode_thread
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,7 +18,6 @@
  */
 /* Reconstructed FUN_00032fe8 @ 0x32fe8  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(void*, void*, unsigned int);
 
 void start_aging_mode_thread(void)
 {

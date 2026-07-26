@@ -19,6 +19,7 @@
  */
 /* Full reconstruction of FUN_0004c418 @ 0x4c418 (184 bytes). */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 typedef int (*prepare_fn)(void *object, uint32_t context, uint32_t zero);
 
@@ -30,8 +31,6 @@ extern void nrfx_gppi_event_endpoint_setup(uint32_t id,
                                                     uint32_t state);
 extern void nrf_rtc_set_alarm_channel(uint32_t channel, uint32_t state, uint32_t length,
                         uint32_t zero, uintptr_t callback, uint32_t descriptor);
-extern void printk(uintptr_t domain, uintptr_t message,
-                        uintptr_t file, uint32_t line);
 extern void assert_post_action(uintptr_t file, uint32_t line) __attribute__((noreturn));
 
 void nrf53_sync_rtc_ipc_channel_setup(void *object, uint32_t context, uint32_t descriptor)

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000678d0 @ 0x000678d0
  * public-name: nrfx_twim_disable
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,7 +15,6 @@
  */
 /* Reconstructed FUN_000678d0 @ 0x678d0  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(int a, int b, int c, int d, int e);
 extern int assert_post_action(int a, int b);
 
 void nrfx_twim_disable(int *param_1, int param_2, int param_3, int param_4)

@@ -19,9 +19,8 @@
  * ("local_ipc_service_recv") as the "%s()" argument.
  */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
-extern void log_message(uint32_t format, uint32_t function, ...);
-extern void debug_print(uint32_t format, uint32_t function, ...);
 extern int64_t uptime_ticks_get(void);
 extern void FUN_0007c010(void *object);          /* tail thunk -> k_sem_give */
 extern void app_msleep_thunk_a(uint32_t milliseconds);

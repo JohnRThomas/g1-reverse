@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00066300 @ 0x00066300
  * public-name: nrfx_pdm_stop
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,7 +18,6 @@
  */
 /* Reconstructed FUN_00066300 @ 0x66300  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(int a, int b, int c, int d, int e);
 extern void assert_post_action(int a, int b);
 
 unsigned int nrfx_pdm_stop(void)

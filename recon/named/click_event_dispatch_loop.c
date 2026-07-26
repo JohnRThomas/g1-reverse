@@ -17,8 +17,8 @@
 /* CFG_VERIFY_PREFIX_FIRST: modeled first oracle result cannot take the only return. */
 
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
-extern void log_message(uint32_t a, ...);
 extern uintptr_t get_device_info(void);
 extern void handle_touch_key_irq(void);
 extern void set_click_dispatch_flag(int32_t);
@@ -33,7 +33,6 @@ extern void log_and_dispatch_click_event2(void);
 extern void on_triple_click(void);
 extern void enter_active_click_mode(void);
 extern uint32_t sys_reboot(int32_t a);
-extern void debug_print(uint32_t a, uint32_t b, uint32_t c, ...);
 
 void click_event_dispatch_loop(char *param_1, int32_t param_2, uint32_t param_3)
 {

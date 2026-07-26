@@ -19,9 +19,8 @@
  */
 /* Reconstructed FUN_000473c8 @ 0x473c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 typedef unsigned long long u64;
-extern long long log_message(int,...);
-extern long long debug_print(int,...);
 extern int k_mutex_lock(int,...);
 extern int k_mutex_unlock(int,...);
 extern int get_projector_controller(int,...);
@@ -71,9 +70,9 @@ unsigned reflash_fb_data_to_lcd_ex(int param_1,int param_2,int param_3,int param
             uVar3 = (unsigned)((u64)ret >> 32);
             if(iVar4 != 0 && 0 < *(volatile int*)0x2000230c){
                 if(*(volatile int*)0x20007554 == 0){
-                    uVar3 = (unsigned)((u64)log_message(((unsigned long)"%s(): spi transfer error....\n"),((unsigned long)"_reflash_fb_data_to_lcd_ex")) >> 32);
+                    log_message(((unsigned long)"%s(): spi transfer error....\n"),((unsigned long)"_reflash_fb_data_to_lcd_ex"));
                 } else {
-                    uVar3 = (unsigned)((u64)debug_print(((unsigned long)"%s(): spi transfer error....\n"), ((unsigned long)"_reflash_fb_data_to_lcd_ex")) >> 32);
+                    debug_print(((unsigned long)"%s(): spi transfer error....\n"), ((unsigned long)"_reflash_fb_data_to_lcd_ex"));
                 }
             }
             *(unsigned char*)(iVar7+iVar9) = uVar1;

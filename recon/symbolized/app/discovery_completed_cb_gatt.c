@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000189a0 @ 0x000189a0
  * public-name: discovery_completed_cb_gatt
  * durable-map: recon/catalogs/function_names_app.json
@@ -20,7 +21,6 @@
  */
 /* Reconstructed FUN_000189a0 @ 0x189a0  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(int,...);
 extern unsigned bt_gatt_dm_conn_get(unsigned callback_object);
 extern unsigned bt_gatt_dm_attr_cnt(unsigned);
 extern int gatt_service_changed_c_discovery_completed(unsigned,unsigned);

@@ -18,8 +18,8 @@
  */
 /* FUN_00075574 @ 0x00075574 — complete 98-byte reconstruction. */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void printk(uintptr_t, ...);
 extern void assert_post_action(uintptr_t, uint32_t) __attribute__((noreturn));
 
 void k_poll_event_init(uint8_t *object, uint32_t priority,

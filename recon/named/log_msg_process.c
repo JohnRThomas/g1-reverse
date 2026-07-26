@@ -19,12 +19,12 @@
  *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  *   z_log_process_guard                      @ 0x2000a0dc
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0004d334 @ 0x4d334  (parity: 300/300 trials, PROVEN) */
 extern int atomic_inc(int);
 extern unsigned activate_foreach_backend(unsigned);
 extern void log_msg_commit(int*,unsigned,int);
 extern void k_sleep(int,int);
-extern void printk(int,...);
 extern void assert_post_action(int,...);
 unsigned log_msg_process(int param_1,int param_2){
   int *piVar1 = (int*)0x000882b0;

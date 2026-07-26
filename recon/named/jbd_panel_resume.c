@@ -12,10 +12,9 @@
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed jbd_panel_resume @ 0x47638  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(void*, void*, unsigned int, int, unsigned int);
-extern void debug_print(void*, void*, unsigned int, unsigned int, unsigned int);
 extern void set_brightness_to_panel_reg(unsigned int);
 extern void panel_init(void);
 

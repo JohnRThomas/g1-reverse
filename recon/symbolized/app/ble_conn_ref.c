@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00056654 @ 0x00056654
  * public-name: ble_conn_ref
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,7 +15,6 @@
 /* Reconstructed FUN_00056654 @ 0x56654  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(int,int);
-extern void printk(int,int,int,int);
 
 int ble_conn_ref(int param_1)
 {

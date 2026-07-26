@@ -21,9 +21,10 @@
 /* Reconstructed FUN_0004beb8 @ 0x4beb8 (NCS mpsc_pbuf_claim) */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../headers/g1_log.h"
 typedef struct { uint32_t tmp_wr_idx,wr_idx,tmp_rd_idx,rd_idx,flags,lock; void(*notify_drop)(void*,void*); uint32_t (*get_wlen)(void*); volatile uint32_t *buf; uint32_t size,max_usage; uint8_t sem[0x10]; } mpsc_buffer;
 extern int z_spin_lock_valid(void*); extern int z_spin_unlock_valid(void*); extern void z_spin_lock_set_owner(void*);
-extern void printk(uint32_t,...); extern void assert_post_action(uint32_t,uint32_t) __attribute__((noreturn));
+extern void assert_post_action(uint32_t,uint32_t) __attribute__((noreturn));
 extern uint32_t idx_inc(mpsc_buffer*,uint32_t,uint32_t); extern void rd_idx_inc(mpsc_buffer*,uint32_t);
 __attribute__((always_inline)) static inline uint32_t lock_checked(mpsc_buffer*b){uint32_t k=__get_BASEPRI();__set_BASEPRI_MAX(0x20);__ISB();if(!z_spin_lock_valid(&b->lock)){printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_lock_valid(l)"),0xf08c7,0x72);printk(((unsigned long)"\tInvalid spinlock %p\n"),&b->lock);assert_post_action(0xf08c7,0x72);}z_spin_lock_set_owner(&b->lock);return k;}
 __attribute__((always_inline)) static inline void unlock_checked(mpsc_buffer*b,uint32_t k){if(!z_spin_unlock_valid(&b->lock)){printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_unlock_valid(l)"),0xf08c7,0xf0);printk(((unsigned long)"\tNot my spinlock %p\n"),&b->lock);assert_post_action(0xf08c7,0xf0);}__set_BASEPRI(k);__ISB();}

@@ -19,9 +19,8 @@
  */
 /* Reconstructed gui_4bit_bitmap_override @ 0x43d78  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(uint32_t, ...);
+#include "../../../headers/g1_log.h"
 extern void *get_device_info(void);
-extern void debug_print(uint32_t, ...);
 extern int atomic_get_3_0(void);
 extern int resource_manger_get(int, uint32_t, int*, int*, uint32_t*, int);
 extern void reflash_fb_data_to_lcd(uint32_t, uint32_t, unsigned int, unsigned int, int, int);

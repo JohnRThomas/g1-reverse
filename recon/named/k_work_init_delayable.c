@@ -12,10 +12,10 @@
  *   rodata_f8230                             @ 0x000f8230
  *   rodata_f82df                             @ 0x000f82df
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_000732d4 @ 0x732d4  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(void*, int);
-extern void printk(void*, void*, void*, int);
 extern void memset_bytes(int, int, int, unsigned int, unsigned int);
 
 void k_work_init_delayable(int param_1, int param_2, unsigned int param_3, unsigned int param_4)

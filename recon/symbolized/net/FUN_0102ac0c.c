@@ -17,8 +17,8 @@
  */
 /* net-core FUN_0102ac0c @ 0x102ac0c */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void printk(const void *message);
 extern int FUN_0102d558(const void *path);
 extern int ipc_service_register_endpoint(const void *path, void *destination, void *metadata);
 extern void FUN_0103689c(void *object, int ignored, int first, int second);

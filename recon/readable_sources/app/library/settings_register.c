@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0004e494 @ 0x0004e494
  * public-name: settings_register
  * durable-map: recon/catalogs/function_names_app.json
@@ -24,7 +25,6 @@ extern unsigned long long strcmp(unsigned a, unsigned b);
 extern void k_mutex_lock(unsigned a, unsigned b, unsigned c, unsigned d);
 extern void k_mutex_unlock(unsigned a);
 extern void assert_post_action(unsigned a, unsigned b);
-extern void printk(unsigned a, unsigned b, unsigned c, unsigned d);
 
 unsigned settings_register(unsigned *param_1, unsigned param_2){
     unsigned r5 = (unsigned)param_1;

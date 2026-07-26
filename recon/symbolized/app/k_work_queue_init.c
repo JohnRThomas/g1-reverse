@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000730b4 @ 0x000730b4
  * public-name: k_work_queue_init
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,7 +15,6 @@
  */
 /* Reconstructed FUN_000730b4 @ 0x730b4  (parity: 300/300 trials, PROVEN) */
 
-extern int printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern int assert_post_action(unsigned int a, unsigned int b);
 extern void memset_bytes(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 

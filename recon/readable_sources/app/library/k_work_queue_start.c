@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_k_thread__param_0408                   [param_0408; library]
  * Raw function identity: 0x000730e8.  See ../include/g1_recovered_layouts.h. */
@@ -20,7 +21,6 @@
  *   rodata_f82ab                             @ 0x000f82ab
  */
 /* Reconstructed FUN_000730e8 @ 0x730e8  (parity: 300/300 trials, PROVEN) */
-extern void printk(int,...);
 extern void assert_post_action(int,...);
 extern void z_impl_k_thread_create(int,int,unsigned,int,int,int,int,unsigned,int);
 extern void posix_stub_enosys(int);

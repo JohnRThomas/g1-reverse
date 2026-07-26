@@ -17,6 +17,7 @@
  */
 /* Reconstructed FUN_00018730 @ 0x18730  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern uint32_t bt_conn_get_field_0x90(void);
 extern void format_bt_addr_str(void*,void*);
 extern int get_device_info(void);
@@ -24,7 +25,6 @@ extern int is_battery_critical(void);
 extern int memcmp(int,void*,int);
 extern void bt_unpair_all_or_addr(int,int);
 extern void k_sem_give(int);
-extern void log_message(unsigned, ...);
 
 void pairing_complete(unsigned param_1, unsigned param_2){
     unsigned char auStack_38[32];

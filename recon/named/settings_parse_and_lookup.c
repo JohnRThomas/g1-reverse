@@ -17,8 +17,8 @@
 /* Reconstructed FUN_0004e540 @ 0x4e540  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern void assert_post_action(uint32_t,int);
-extern void printk(uint32_t,...);
 extern int settings_name_steq(uint32_t,uint32_t,void*);
 
 uint32_t* settings_parse_and_lookup(uint32_t param_1, uint32_t *param_2, uint32_t param_3){

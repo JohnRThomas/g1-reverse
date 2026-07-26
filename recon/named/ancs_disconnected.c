@@ -18,12 +18,11 @@
  */
 /* Full ABI-faithful reconstruction ancs_disconnected @ 0x18adc. */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
-extern void log_message(uintptr_t format, ...);
 extern uint64_t get_device_info(void);
 extern void format_bt_addr_str(const void *connection, char *description);
 extern void ancs_cancel_timers(void);
-extern void debug_print(uintptr_t format, ...);
 extern void z_impl_k_sem_take(uint32_t object_low, uint32_t object_high,
                         uint32_t timeout_low, uint32_t timeout_high);
 extern uintptr_t bt_conn_get_field_0x90(uint32_t connection);

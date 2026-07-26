@@ -20,11 +20,11 @@
  */
 /* Reconstructed FUN_0005c3c4 @ 0x5c3c4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern void* gatt_find_conn_in_known_table(void);
 extern void gatt_sub_free(void*);
 extern int gatt_write_ccc(int,int*);
 extern void assert_post_action(unsigned,unsigned);
-extern void printk(unsigned,...);
 extern void bt_addr_le_copy_828da(void*,int);
 
 int gatt_subscribe_add(int param_1,int *param_2){

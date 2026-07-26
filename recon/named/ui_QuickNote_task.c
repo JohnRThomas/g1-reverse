@@ -33,6 +33,7 @@
  */
 /* Reconstructed ui_QuickNote_task @ 0x3b824 (raw: FUN_0003b824). */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 /* Callee provenance (readable name <- raw identity @ address):
  *   get_device_info                       <- FUN_000167a8 @ 0x000167a8
@@ -58,8 +59,6 @@
  *   DEBUG_PRINT                                               @ 0x0007dda4
  */
 extern uintptr_t get_device_info(void);
-extern void debug_print(uintptr_t format, uintptr_t function_name, ...);
-extern void log_message(uintptr_t format, uintptr_t function_name, ...);
 extern unsigned int get_ui_mode_flag_byte1(void);
 extern void dmic_record_start(void);
 extern void consume_pending_event_and_refresh_flag(void);

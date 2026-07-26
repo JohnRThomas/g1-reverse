@@ -12,8 +12,8 @@
  */
 /* Reconstructed FUN_00062fe8 @ 0x62fe8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern int assert_post_action(int,int);
-extern int printk(int, ...);
 extern int post_event_tag2_from_node(int,int);
 extern int post_event_tag4_and_clear(int,int);
 extern int post_event_tag5(int);

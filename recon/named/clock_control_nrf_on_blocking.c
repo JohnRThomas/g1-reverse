@@ -23,9 +23,9 @@
 /* Full reconstruction FUN_00060788 @ 0x60788, exact 280-byte extent. */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../headers/g1_log.h"
 
 extern int onoff_request_enqueue(uintptr_t);
-extern void printk(uintptr_t, uintptr_t, uintptr_t, uint32_t);
 extern void assert_post_action(uintptr_t, uint32_t) __attribute__((noreturn));
 extern int k_is_in_isr(void);
 extern void arch_cpu_atomic_idle(uint32_t);

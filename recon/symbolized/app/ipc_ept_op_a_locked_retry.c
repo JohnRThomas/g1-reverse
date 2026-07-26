@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000256dc @ 0x000256dc
  * public-name: ipc_ept_op_a_locked_retry
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,7 +15,6 @@ extern void thunk_FUN_000723b8(unsigned,unsigned,unsigned,unsigned,int,unsigned)
 extern int dev_send_cmd16_payload(int,unsigned,unsigned,unsigned,int);
 extern void thunk_FUN_00072558(unsigned);
 extern unsigned long long sleep_fixed_33_ticks(void);
-extern void log_message(unsigned,unsigned,unsigned,int);
 int ipc_ept_op_a_locked_retry(int param_1, unsigned param_2, unsigned param_3, int param_4){
     int iVar1;
     if (param_4 == 0){ iVar1 = 0; }

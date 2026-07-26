@@ -18,10 +18,9 @@
  */
 /* Reconstructed FUN_00047058 @ 0x47058  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 typedef unsigned int uint;
-extern void log_message(uint32_t, ...);
 extern int get_device_info(void);
-extern void debug_print(uint32_t, ...);
 extern void panel_write_xy_reg_cached(int,int);
 extern void projector_send_cmd1(int,int);
 extern void thunk_FUN_0007d77c(int);

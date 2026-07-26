@@ -20,9 +20,8 @@
  */
 /* Reconstructed FUN_0004792c @ 0x4792c */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void log_message(unsigned int, ...);
-extern void debug_print(unsigned int, ...);
 extern void *get_device_info(void);
 extern unsigned int expand_bytes_via_lut32(void *, unsigned int, unsigned int);
 extern unsigned int find_chinese_bitmap_stub_zero(unsigned int, unsigned int);

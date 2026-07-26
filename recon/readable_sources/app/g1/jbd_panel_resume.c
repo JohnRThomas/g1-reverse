@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00047638 @ 0x00047638
  * public-name: jbd_panel_resume
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,8 +16,6 @@
  */
 /* Reconstructed jbd_panel_resume @ 0x47638  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(void*, void*, unsigned int, int, unsigned int);
-extern void debug_print(void*, void*, unsigned int, unsigned int, unsigned int);
 extern void set_brightness_to_panel_reg(unsigned int);
 extern void panel_init(void);
 

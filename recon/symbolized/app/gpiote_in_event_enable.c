@@ -23,6 +23,7 @@
  */
 /* Reconstructed FUN_000659e4 @ 0x659e4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 extern int get_pin_idx(uint32_t);
 extern int pin_in_use_by_te(uint32_t);
 extern int gpiote_pin_sense_is_enabled(void);
@@ -31,7 +32,6 @@ extern int pin_te_get(uint32_t);
 extern int gpio_port_base_from_pin(void*);
 extern int gpiote_in_event_reg_offset(void);
 extern __attribute__((noreturn)) void assert_post_action(uint32_t,uint32_t);
-extern void printk(uint32_t,...);
 extern void nrf_gpio_cfg_sense_set(uint32_t,int);
 
 void gpiote_in_event_enable(uint32_t param_1, uint32_t param_2){

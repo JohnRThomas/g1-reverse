@@ -74,6 +74,7 @@
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed master_process_audio_fw_load_req @ 0x2af4c  (parity: 750/750 trials, PROVEN) */
 typedef unsigned char byte;
 typedef unsigned char undefined1;
@@ -82,8 +83,6 @@ typedef unsigned int undefined4;
 typedef unsigned int uint;
 typedef void code;
 
-extern int log_message(const char*, const char*, ...);
-extern int debug_print(const char*, const char*, ...);
 extern int get_device_info(void);
 extern int ancs_set_notification_enabled(uint);
 extern int get_device_serial_buf(void);

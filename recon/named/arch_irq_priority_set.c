@@ -12,9 +12,9 @@
  *   rodata_f1bf9                             @ 0x000f1bf9   [INLINED -- G6 literal batch]
  */
 #include "../headers/g1_nrf_regs.h"
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0005010c @ 0x5010c  (parity: 300/300 trials, PROVEN) */
 
-extern int printk(int a, int b, int c, int d, int e);
 extern int assert_post_action(int a, int b);
 
 void arch_irq_priority_set(int param_1, unsigned int param_2, int param_3, int param_4)

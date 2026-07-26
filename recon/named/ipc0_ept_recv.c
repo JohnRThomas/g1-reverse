@@ -10,10 +10,9 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ipc0_endpoint                          @ 0x20007a84
  */
+#include "../headers/g1_log.h"
 /* Reconstructed ipc0_ept_recv @ 0x25a48  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(int,...);
-extern void debug_print(int,...);
 void ipc0_ept_recv(unsigned char *param_1,int param_2){
   int iVar4=0;
   unsigned uVar1=*param_1;

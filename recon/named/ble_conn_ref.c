@@ -10,10 +10,10 @@
  *   rodata_f3a5d                             @ 0x000f3a5d
  *   rodata_f3ebd                             @ 0x000f3ebd
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00056654 @ 0x56654  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(int,int);
-extern void printk(int,int,int,int);
 
 int ble_conn_ref(int param_1)
 {

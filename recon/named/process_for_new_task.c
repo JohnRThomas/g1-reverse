@@ -138,6 +138,7 @@
  *   g_pending_message_flag                   @ 0x20018d9e
  *   g_esb_notify_slave_role_guard            @ 0x20018d9f
  */
+#include "../headers/g1_log.h"
 /* Reconstructed process_for_new_task @ 0x2c99c.
  * Raw identity/back-map: FUN_0002c99c @ 0x0002c99c. */
 typedef unsigned char      u8;
@@ -146,9 +147,9 @@ typedef unsigned long long u64;
 
 /* Every raw identity below is retained as an address back-map; semantic names
  * are used in the function body where the subsystem role is known. */
-extern int log_message(u32, ...);                         /* FUN_0007dda4 */
+/* FUN_0007dda4 */
 extern int get_device_info(void);                         /* FUN_000167a8 */
-extern int debug_print(u32, ...);                         /* FUN_00019c70 */
+/* FUN_00019c70 */
 extern int get_task_signal_mode(void);                    /* FUN_00023eec */
 extern int is_task_transport_blocked(void);               /* FUN_00026c28 */
 extern int trigger_screen_state_change(u32, char *, int); /* FUN_0002bc2c */

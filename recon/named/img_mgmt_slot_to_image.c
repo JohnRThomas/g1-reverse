@@ -11,9 +11,9 @@
  *   rodata_f25c5                             @ 0x000f25c5   [INLINED -- G6 literal batch]
  *   rodata_f25e2                             @ 0x000f25e2   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00051c68 @ 0x51c68  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void assert_post_action(unsigned int, unsigned int) __attribute__((noreturn));
 
 void img_mgmt_slot_to_image(void)

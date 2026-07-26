@@ -13,9 +13,8 @@
  */
 /* Reconstructed get_glassbox_charge_percent @ 0x327c4. */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern void log_message(uint32_t, uint32_t, ...);
-extern void debug_print(uint32_t, uint32_t, ...);
 
 uint8_t get_glassbox_charge_percent(void)
 {

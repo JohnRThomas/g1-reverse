@@ -13,9 +13,9 @@
  *   rodata_f84af                             @ 0x000f84af
  *   _kernel                                  @ 0x2000b448
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_000737d8 @ 0x737d8  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(int a, int b, int c, int d, int e);
 extern void assert_post_action(int a, int b);
 extern void sched_switch_handle_timeout(int *a);
 

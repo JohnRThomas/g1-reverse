@@ -15,10 +15,9 @@
  */
 /* Reconstructed panel_off @ 0x46d2c. */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 typedef void (*panel_callback_t)(void *panel);
-extern void log_message(uint32_t format, ...);
-extern void debug_print(uint32_t format, ...);
 extern int get_ambient_light_sensor_ready_flag(void);
 extern void opt3007_chip_deinit(void);
 extern void power_down_panel(void);

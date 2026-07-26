@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00033b0c @ 0x00033b0c
  * public-name: msg_queue_debug_dump
  * durable-map: recon/catalogs/function_names_app.json
@@ -12,8 +13,6 @@
  */
 /* Reconstructed FUN_00033b0c @ 0x33b0c  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int, int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
-extern void debug_print(unsigned int, ...);
 
 void msg_queue_debug_dump(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

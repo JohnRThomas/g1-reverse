@@ -18,9 +18,8 @@
  * Name self-evidenced: the log tag 0x0009faf1 is "suspend".
  */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
-extern int log_message(uint32_t format, uint32_t function, uint32_t a, uint32_t b);
-extern int debug_print(uint32_t format, uint32_t function, uint32_t a, uint32_t b);
 
 #define LOG_LEVEL (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define LOG_SINK  (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)

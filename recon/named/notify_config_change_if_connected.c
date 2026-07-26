@@ -13,6 +13,7 @@
  *   rodata_9a155                             @ 0x0009a155   [INLINED -- G6 literal batch]
  *   g_settings_notify_mutex                  @ 0x20006a1c
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00017e84 @ 0x17e84  (parity: 300/300 trials, PROVEN) */
 extern int get_ancs_conn_handle(void);
 extern long long is_battery_critical(void);
@@ -20,7 +21,6 @@ extern int get_device_info(void);
 extern void k_mutex_lock(unsigned,unsigned,unsigned,unsigned);
 extern int gatt_notify_config_change(int,unsigned,unsigned);
 extern void k_mutex_unlock(unsigned);
-extern void log_message(unsigned,int,unsigned);
 unsigned notify_config_change_if_connected(unsigned param_1, unsigned param_2){
     int r6 = get_ancs_conn_handle();
     long long uVar3 = is_battery_critical();

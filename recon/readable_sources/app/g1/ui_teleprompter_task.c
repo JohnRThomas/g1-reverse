@@ -54,6 +54,7 @@
  */
 /* Reconstructed ui_teleprompter_task @ 0x3cf44  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 /* absolute globals (literal-pool values) */
 #define G        ((unsigned long)&g_notification_display_buffer) /*=0x20004988*/          /* teleprompter state struct (r4) */
@@ -80,8 +81,6 @@
 extern unsigned get_device_info(void);
 extern void     gui_set_active_canvas(unsigned);
 extern void     gui_canvas_flags_set_bit1(void);
-extern void     debug_print(unsigned,unsigned);
-extern void     log_message(unsigned,unsigned);
 extern void     gui_screen_clear(void);
 extern void     memset_bytes(unsigned,unsigned,unsigned);
 extern void     memcpy(unsigned,unsigned,unsigned);

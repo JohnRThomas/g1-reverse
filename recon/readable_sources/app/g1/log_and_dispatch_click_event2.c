@@ -13,9 +13,8 @@
 /* Reconstructed FUN_0002893c @ 0x2893c (uncatalogued exact click-event entry). */
 
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern uint32_t debug_print(uint32_t, uint32_t, uint32_t, uint32_t);
-extern uint32_t log_message(uint32_t, uint32_t, uint32_t, uint32_t);
 extern uint32_t set_click_dispatch_flag(uint32_t);
 
 uint32_t log_and_dispatch_click_event2(uint32_t unused0, uint32_t arg1,

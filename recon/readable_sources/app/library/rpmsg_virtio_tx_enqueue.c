@@ -22,6 +22,7 @@
  */
 /* Reconstructed FUN_000710b4 @ 0x710b4 */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 extern int metal_io_block_write(void *, uint32_t, const void *, uint32_t);
 extern void mutex_lock_wait_forever_dup(void *);
@@ -29,7 +30,6 @@ extern void firmware_function_000859b2(void *);
 extern uint32_t virtqueue_get_buffer_length(void *, uint16_t);
 extern int virtqueue_add_buffer(void *, const void *, int, int, void *);
 extern void dma_xfer_end_handler(void *);
-extern void printk(uint32_t, ...);
 extern void assert_post_action(uint32_t, uint32_t);
 
 uint32_t rpmsg_virtio_tx_enqueue(uint8_t *owner, uint32_t a, uint32_t b,

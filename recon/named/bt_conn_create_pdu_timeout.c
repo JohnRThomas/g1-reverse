@@ -17,11 +17,11 @@
  *   rodata_f3d84                             @ 0x000f3d84
  *   acl_tx_pool                              @ 0x20003a7c
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_000569ec @ 0x569ec  (parity: 300/300 trials, PROVEN) */
 
 extern int net_buf_simple_reserve(int,int);
 extern void assert_post_action(unsigned,unsigned);
-extern void printk(unsigned,...);
 extern int bt_conn_call_4arg_zero(unsigned,unsigned,void*);
 extern int bt_conn_alloc_pdu_buf(int,unsigned,unsigned,unsigned);
 extern int k_is_in_isr(void);

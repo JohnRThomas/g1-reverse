@@ -15,11 +15,11 @@
  *   rodata_f3a8d                             @ 0x000f3a8d   [INLINED -- G6 literal batch]
  *   g_ble_conn_cb_list_head                  @ 0x2000ad1c
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00056c78 @ 0x56c78  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_le_conn_params_valid(int);
 extern void assert_post_action(int,int);
-extern int printk(int,...);
 int ble_notify_disconnected(int param_1,int param_2){
   int iVar2=bt_le_conn_params_valid(param_2);
   if(iVar2==0) return 0;

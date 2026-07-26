@@ -11,12 +11,11 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_bind_status_log_debounce_cnt           @ 0x20018d83
  */
+#include "../headers/g1_log.h"
 /* Reconstructed check_bind_status @ 0x26b88  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned char u8;
 typedef unsigned int u32;
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int);
 
 void check_bind_status(int param_1, int param_2, int param_3)
 {

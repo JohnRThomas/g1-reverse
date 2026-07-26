@@ -11,10 +11,9 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_news_widget_index_raw                  @ 0x2001b814
  */
+#include "../headers/g1_log.h"
 /* Reconstructed handle_stocks_action @ 0x371e8  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, ...);
 
 unsigned int handle_stocks_action(unsigned int param_1, unsigned int param_2,
                                   unsigned int param_3, unsigned int param_4)

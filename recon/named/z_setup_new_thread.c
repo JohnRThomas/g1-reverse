@@ -15,10 +15,10 @@
  */
 /* FUN_00071df8 @ 0x00071df8 — complete 154-byte code reconstruction. */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 extern void arch_new_thread(uintptr_t, uintptr_t, uintptr_t, uintptr_t,
                          uintptr_t, uintptr_t, uintptr_t);
-extern void printk(uintptr_t, ...);
 extern void assert_post_action(uintptr_t, uint32_t) __attribute__((noreturn));
 
 uintptr_t z_setup_new_thread(uint8_t *object, uintptr_t buffer, uint32_t size,

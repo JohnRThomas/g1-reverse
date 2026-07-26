@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000526f4 @ 0x000526f4
  * public-name: smp_transport_init
  * durable-map: recon/catalogs/function_names_app.json
@@ -20,7 +21,6 @@
 
 extern void k_work_init(int a, unsigned int b);
 extern void assert_post_action(unsigned int a, unsigned int b);
-extern void printk(unsigned int a, ...);
 extern void smp_reassembly_init(void);
 #define z_impl_k_queue_init z_impl_k_queue_init
 extern void z_impl_k_queue_init(void *queue);

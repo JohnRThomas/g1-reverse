@@ -14,8 +14,8 @@
  */
 /* Reconstructed FUN_0004d8f8 @ 0x4d8f8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
-extern void printk(int a, int b, int c, int d);
 extern uint64_t assert_post_action(int a, int b);
 extern void z_log_notify_backend_enabled(void);
 

@@ -22,10 +22,9 @@
  */
 /* Reconstructed request_ancs_attr_ext @ 0x191e4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(unsigned,...);
+#include "../headers/g1_log.h"
 extern unsigned strlen(unsigned);
 extern int ancs_get_conn_ctx(void);
-extern void debug_print(unsigned,...);
 extern int bt_ancs_request_attrs(unsigned,unsigned,unsigned);
 extern void FUN_0007c0a4(int,int);
 extern int thunk_FUN_0007f7d2(unsigned,unsigned,unsigned,unsigned);

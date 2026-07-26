@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00025740 @ 0x00025740
  * public-name: ipc_send_len_prefixed_packet
  * durable-map: recon/catalogs/function_names_app.json
@@ -13,7 +14,6 @@
 
 extern int ipc_transport_ops_dispatch(int, void*, int, int);
 extern void sleep_fixed_33_ticks(void);
-extern void log_message(unsigned int, int);
 
 int ipc_send_len_prefixed_packet(int param_1, int param_2, unsigned int param_3, int param_4, int param_5)
 {

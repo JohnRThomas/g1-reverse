@@ -19,10 +19,10 @@
  * Firmware checked nrfx_clock_start; raw/address back-map is preserved.
  */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 #define CLOCK ((volatile uint32_t *)0x50005000UL)
 extern void clock_stop(int domain);
-extern void printk(uint32_t, uint32_t, uint32_t, uint32_t);
 extern __attribute__((noreturn)) void assert_post_action(uint32_t, uint32_t);
 
 void nrfx_clock_start(unsigned domain)

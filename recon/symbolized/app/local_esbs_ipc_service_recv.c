@@ -17,9 +17,8 @@
 /* local_esbs_ipc_service_recv @ 0x15960 / FUN_00015960 (CFG parity: 16/16, PROVEN) */
 #include <stdint.h>
 #include <string.h>
+#include "../../headers/g1_log.h"
 
-extern void log_message(uint32_t format, uint32_t function, ...);
-extern void debug_print(uint32_t format, uint32_t function, ...);
 extern void switch_to_dfu_mode(void *state);
 extern void *find_message_pool_entry_by_id(uint32_t id);
 extern void msg_queue_init(void);

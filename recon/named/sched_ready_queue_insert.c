@@ -15,9 +15,9 @@
 /* Reconstructed FUN_00073840 @ 0x73840  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern void sched_update_cache(int,...);
 extern void assert_post_action(int,...);
-extern void printk(int,...);
 void sched_ready_queue_insert(int *param_1){
   if( *(int8_t*)((int)param_1+0xd) < 0
       || (*(uint8_t*)((int)param_1+0xd) & 0x1f)!=0

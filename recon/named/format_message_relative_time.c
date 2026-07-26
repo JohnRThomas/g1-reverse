@@ -38,14 +38,13 @@
  */
 /* Reconstructed FUN_000357dc @ 0x357dc (strict CFG parity). */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 typedef uint32_t undefined4;
 typedef uint32_t uint;
 typedef uint16_t ushort;
 typedef uint8_t byte;
 
-extern void log_message(uintptr_t format, ...);
 extern uintptr_t get_device_info(void);
-extern void debug_print(uintptr_t format, ...);
 extern int get_ui_mode_flag_byte1(void);
 extern void gui_utf_draw_align_right(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t,
                         uint32_t, uint32_t, uint32_t, uint32_t, uint32_t,

@@ -13,8 +13,8 @@
  */
 /* Reconstructed FUN_0005e6d4 @ 0x5e6d4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern void assert_post_action(uint32_t,uint32_t);
-extern void printk(uint32_t,uint32_t,uint32_t,uint32_t);
 void bt_foreach_bond(uint32_t param_1, void* param_2, uint32_t param_3){
   volatile uint32_t local_20; volatile uint8_t local_1c[8];
   (void)local_1c;

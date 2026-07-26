@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000655ec @ 0x000655ec
  * public-name: gpiote_in_event_reg_offset
  * durable-map: recon/catalogs/function_names_app.json
@@ -13,7 +14,6 @@
  */
 /* Reconstructed FUN_000655ec @ 0x655ec  (parity: 300/300 trials, PROVEN) */
 
-extern int printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 extern int assert_post_action(unsigned int a, unsigned int b);
 
 int gpiote_in_event_reg_offset(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

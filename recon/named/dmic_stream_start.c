@@ -32,17 +32,18 @@
  * In particular, its non-flash arm calls app_codec_lc3_test at 0x0002f3f2;
  * the former 44-line reconstruction stopped before that live edge. */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 typedef uint8_t  u8;
 typedef uint16_t u16;
 typedef uint32_t u32;
 typedef int (*device_call)(u32 device, ...);
 
-extern int log_message(u32 format, ...);                  /* FUN_0007dda4 */
+/* FUN_0007dda4 */
 extern int get_device_info(void);                         /* FUN_000167a8 */
 extern int enqueue_bt_data(const void *data, u32 length); /* FUN_00017eec */
 extern int ancs_get_conn_ctx(void);                       /* FUN_000181fc */
-extern int debug_print(u32 format, ...);                  /* FUN_00019c70 */
+/* FUN_00019c70 */
 extern int init_dmic_msgq(void);                          /* FUN_0002ebd8 */
 extern int clean_dmic_msgq(void);                         /* FUN_0002ec1c */
 extern void app_codec_lc3_test(u32 samples, u32 bytes);   /* FUN_0002ed68 */

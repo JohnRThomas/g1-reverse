@@ -11,11 +11,10 @@
  *   g_audio_msgq                             @ 0x20003890
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed getAudioMessageQueueCacheData @ 0x2f460  (parity: 300/300 trials, PROVEN) */
 
 extern int k_msgq_get(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
-extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int);
 int getAudioMessageQueueCacheData(unsigned int param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4){
     (void)param_2;
     (void)param_3;

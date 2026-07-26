@@ -20,13 +20,13 @@
  */
 /* Reconstructed FUN_00061624 @ 0x61624  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 extern int gpiote_in_init(int,...);
 extern int gpiote_trigger_enable(int,...);
 extern int gpiote_pin_channel_get(int,...);
 extern int gpiote_lock_release(int,...);
 extern int gpiote_in_uninit(int,...);
 extern int assert_post_action(int,...) __attribute__((noreturn));
-extern int printk(int,...);
 
 unsigned gpio_nrfx_pin_configure(int param_1, unsigned param_2, unsigned param_3, unsigned param_4)
 {

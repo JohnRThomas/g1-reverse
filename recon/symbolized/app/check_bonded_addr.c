@@ -15,10 +15,9 @@
  */
 /* Full ABI-faithful reconstruction check_bonded_addr @ 0x183e4. */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 extern void format_bt_addr_str(const void *connection, char description[36]);
-extern void log_message(uintptr_t format, ...);
-extern void debug_print(uintptr_t format, ...);
 
 void check_bonded_addr(const void *connection)
 {

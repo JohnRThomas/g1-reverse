@@ -1,4 +1,5 @@
 #include "g1_net_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0102acb4 @ 0x0102acb4
  * public-name: FUN_0102acb4
  * durable-map: recon/catalogs/function_names_net.json
@@ -13,7 +14,6 @@
  */
 /* net-core FUN_0102acb4 @ 0x102acb4  (parity 300 trials PROVEN) */
 
-extern void printk(unsigned int a);
 
 unsigned int FUN_0102acb4(unsigned int param_1)
 {

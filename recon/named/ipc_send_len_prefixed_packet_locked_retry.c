@@ -8,12 +8,12 @@
  * address symbols (name @ address):
  *   rodata_9f250                             @ 0x0009f250   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00025788 @ 0x25788  (parity: 300/300 trials, PROVEN) */
 extern void thunk_FUN_000723b8(unsigned,unsigned,unsigned,unsigned,int,unsigned);
 extern int ipc_send_len_prefixed_packet(int,unsigned,unsigned,unsigned,int);
 extern void thunk_FUN_00072558(unsigned);
 extern unsigned long long sleep_fixed_33_ticks(void);
-extern void log_message(unsigned,unsigned,unsigned,int);
 int ipc_send_len_prefixed_packet_locked_retry(int param_1, unsigned param_2, unsigned param_3, int param_4){
     int iVar1;
     if (param_4 == 0){ iVar1 = 0; }

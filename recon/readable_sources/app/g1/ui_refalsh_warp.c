@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   0x00040190       => struct g1_layout_ui_refresh_warp_state__global_1046     [global_1046; G1-original]
  *   param_1          => struct g1_layout_display_thread_ctx__param_0123         [param_0123; G1-original]
@@ -39,8 +40,6 @@
 
 extern int is_battery_critical(void);
 extern int update_demo_image_display(int,int,int);
-extern int log_message(int,int,int,int);
-extern int debug_print(int,int,int,int);
 extern int ui_ancs_notification_task(int,int,int);
 extern int ui_new_message_task(int,int,int);
 extern int ui_navigation_task(int,int,int);

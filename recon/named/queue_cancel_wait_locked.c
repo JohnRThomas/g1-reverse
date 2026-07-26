@@ -22,10 +22,11 @@
  * CFG_VERIFY_PREFIX_FIRST: drains callback-owned queue until it reports empty. */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../headers/g1_log.h"
 extern int z_spin_lock_valid(uint32_t); extern void z_spin_lock_set_owner(uint32_t);
 extern int z_unpend_first_thread(void *); extern void z_ready_thread_locked(void);
 extern void z_handle_obj_poll_events(void *, int); extern void z_reschedule(uint32_t,uint32_t);
-extern void printk(uint32_t,...); extern void assert_post_action(uint32_t,uint32_t);
+extern void assert_post_action(uint32_t,uint32_t);
 void queue_cancel_wait_locked(uint8_t *queue)
 {
     uint32_t bp=__get_BASEPRI(); __set_BASEPRI_MAX(0x20); __ISB();

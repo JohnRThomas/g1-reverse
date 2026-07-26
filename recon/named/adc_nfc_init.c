@@ -18,6 +18,7 @@
  * Raw/address back-map: FUN_00024b98 / 0x00024b98.
  */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 struct device_raw {
     const char *name;
@@ -30,8 +31,6 @@ struct adc_api_raw {
 };
 
 extern int z_device_is_ready(const struct device_raw *device);
-extern void debug_print(const void *, const void *, ...);
-extern void log_message(const void *, const void *, ...);
 
 int adc_nfc_init(void)
 {

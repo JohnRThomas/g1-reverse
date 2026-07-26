@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00063570 @ 0x00063570
  * public-name: rtc_cc_reg_addr_get
  * durable-map: recon/catalogs/function_names_app.json
@@ -13,7 +14,6 @@
  */
 /* Reconstructed FUN_00063570 @ 0x63570  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(int a, int b, int c, int d, int e);
 extern unsigned int assert_post_action(int a, int b);
 unsigned int rtc_cc_reg_addr_get(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

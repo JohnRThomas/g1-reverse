@@ -14,9 +14,8 @@
  * Raw identity/back-map: FUN_00064f48.
  */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern void printk(uint32_t subsystem, uint32_t message,
-                         uint32_t source, uint32_t line);
 /* The real routine is noreturn.  The return type models unreachable r0 only. */
 extern uint32_t assert_post_action(uint32_t source, uint32_t line);
 

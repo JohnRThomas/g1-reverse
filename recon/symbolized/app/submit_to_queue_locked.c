@@ -17,7 +17,7 @@
 /* Reconstructed FUN_00072cd4 @ 0x72cd4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void printk(uint32_t,...);
+#include "../../headers/g1_log.h"
 extern void assert_post_action(uint32_t,uint32_t);
 extern int k_is_in_isr(void);
 extern void notify_queue_locked(int);

@@ -17,8 +17,7 @@
 /* Full reconstruction FUN_00026338 @ 0x26338, exact extent 190 bytes.
  * CFG_VERIFY_CALL_ARITIES=1 */
 #include <stdint.h>
-extern void log_message(uintptr_t,...);
-extern void debug_print(uintptr_t,...);
+#include "../../headers/g1_log.h"
 extern void nrfx_spim_uninit(void*);
 unsigned spim_select_instance_by_mode(uintptr_t event){
  struct mapping{uint32_t base,tag;};

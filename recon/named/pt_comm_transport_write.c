@@ -10,8 +10,8 @@
  */
 /* Reconstructed FUN_00030cd0 @ 0x30cd0  true code extent: 0x3a bytes */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
-extern int log_message(uint32_t, ...);
 extern uint32_t transport_parameters_write(int, uint8_t *, int, int);
 extern uint32_t packet_transport_send_byte(int, uint8_t *, int, int);
 

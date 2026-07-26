@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0004abc0 @ 0x0004abc0
  * public-name: cbprintf_package_convert
  * durable-map: recon/catalogs/function_names_app.json
@@ -29,7 +30,6 @@ extern int strlen(void *);
 extern int z_log_msg_runtime_create(uint,uint,void*,int);
 extern long long is_ptr(uint,uint);
 extern void assert_post_action(uint,uint) __attribute__((noreturn));
-extern void printk(uint,uint,uint,uint);
 extern void memcpy(void*,void*,uint);
 
 int cbprintf_package_convert(byte *param_1,int param_2,int (*param_3)(byte*,int,uint),

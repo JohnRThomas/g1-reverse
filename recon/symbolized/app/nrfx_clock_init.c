@@ -18,8 +18,8 @@
  */
 
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void printk(uint32_t, uint32_t, uint32_t, uint32_t);
 extern __attribute__((noreturn)) void assert_post_action(uint32_t, uint32_t);
 
 uint32_t nrfx_clock_init(uintptr_t event_handler)

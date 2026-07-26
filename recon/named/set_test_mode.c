@@ -10,10 +10,9 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_test_mode_flag                         @ 0x20019ef3
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00032ef0 @ 0x32ef0  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int, ...);
-extern void debug_print(unsigned int, ...);
 
 void set_test_mode(unsigned int param_1)
 {

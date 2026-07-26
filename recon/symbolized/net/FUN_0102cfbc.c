@@ -12,9 +12,9 @@
 #include <stdint.h>
 typedef unsigned int undefined4;
 #include <cmsis_gcc.h>
+#include "../../headers/g1_log.h"
 extern void FUN_010317d4(void);
 extern void FUN_0102f4ec(undefined4);
-extern void printk(undefined4);
 extern void FUN_0102e9bc(void);
 
 void FUN_0102cfbc(undefined4 param_1)

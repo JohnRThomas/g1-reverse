@@ -19,8 +19,7 @@
  */
 /* Reconstructed FUN_00047260 @ 0x47260  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int log_message(int,...);
-extern int debug_print(int, int);
+#include "../headers/g1_log.h"
 extern int k_mutex_lock(int,...);
 extern int k_mutex_unlock(int,...);
 extern long long get_projector_controller(void);

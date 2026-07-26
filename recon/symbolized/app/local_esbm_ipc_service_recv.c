@@ -12,9 +12,8 @@
  * log line passes 0x00099b6d ("local_esbm_ipc_service_recv") as "%s()".
  */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void log_message(uint32_t format, uint32_t function, ...);
-extern void debug_print(uint32_t format, uint32_t function, ...);
 extern void msg_queue_init(void);
 extern void msg_content_decrement_timer(void);
 extern void set_message_pending_state(uint32_t state);

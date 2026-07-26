@@ -1,4 +1,5 @@
 #include "g1_net_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0102a698 @ 0x0102a698
  * public-name: FUN_0102a698
  * durable-map: recon/catalogs/function_names_net.json
@@ -13,7 +14,6 @@
 
 extern void FUN_0103b614(void *dst, void *src, unsigned int n);
 extern int z_impl_k_msgq_put(unsigned int a, void *b, int c, int d);
-extern void printk(unsigned int a);
 
 int FUN_0102a698(void *param_1)
 {

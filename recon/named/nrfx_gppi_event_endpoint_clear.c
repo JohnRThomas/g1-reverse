@@ -9,12 +9,12 @@
  *   rodata_f6a09                             @ 0x000f6a09
  *   rodata_f6a46                             @ 0x000f6a46
  */
+#include "../headers/g1_log.h"
 /* Reconstructed g1_recon_nrfx_gppi_event_endpoint_clear @ 0x64fa8.
  * Raw identity/back-map: FUN_00064fa8.  Parity: 300/300 trials, PROVEN.
  */
 
 extern unsigned long long assert_post_action(unsigned int,unsigned int);
-extern void printk(unsigned int,unsigned int,unsigned int,unsigned int);
 void nrfx_gppi_event_endpoint_clear(
     unsigned int channel, int event_endpoint,
     unsigned int param_3, unsigned int param_4)

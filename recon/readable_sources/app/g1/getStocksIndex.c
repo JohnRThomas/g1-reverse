@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000370bc @ 0x000370bc
  * public-name: getStocksIndex
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,8 +15,6 @@
  */
 /* Reconstructed getStocksIndex @ 0x370bc  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int);
 
 unsigned char getStocksIndex(void)
 {

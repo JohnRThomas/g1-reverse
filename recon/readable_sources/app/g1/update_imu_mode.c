@@ -14,13 +14,12 @@
 /* CPUAPP update_imu_mode @ 0x00026100.
  * Raw/back-map identity: FUN_00026100, exact extent 0x150 bytes. */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 extern int32_t get_device_type(void);
 extern int32_t dev_api_call_slot0(uintptr_t device, uint32_t attribute,
                             void *configuration);
 extern void wait_for_event(uint32_t ticks, uint32_t unused);
-extern void log_message(uintptr_t format, ...);
-extern void debug_print(uintptr_t format, ...);
 
 #define LOG_LEVEL (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define LOG_ROUTE (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)

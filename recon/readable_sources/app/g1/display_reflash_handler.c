@@ -22,9 +22,8 @@
  */
 /* Reconstructed FUN_00048e28 @ 0x48e28 */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern void log_message(unsigned int, ...);
-extern void debug_print(unsigned int, ...);
 extern int ui_refalsh_warp(unsigned int, unsigned int, unsigned int, int);
 
 unsigned int display_reflash_handler(unsigned int owner, unsigned int requested,

@@ -10,12 +10,12 @@
  *   rodata_f45be                             @ 0x000f45be
  *   rodata_f539a                             @ 0x000f539a
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0005f2d4 @ 0x5f2d4  (parity: 300/300 trials, PROVEN) */
 
 /* Hardware never returns; the return type describes the verifier's otherwise
  * unreachable r0 continuation. */
 extern int assert_post_action(unsigned int a0, unsigned int a1);
-extern void printk(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3, unsigned int a4);
 
 void net_buf_ref(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

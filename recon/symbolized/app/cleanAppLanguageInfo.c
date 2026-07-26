@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00023b78 @ 0x00023b78
  * public-name: cleanAppLanguageInfo
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,10 +18,8 @@
  */
 /* Reconstructed cleanAppLanguageInfo @ 0x23b78  (parity: 300/300 trials, PROVEN) */
 
-extern void debug_print(int, int);
 extern int k_msgq_put(void*, void*, int, int);
 extern void k_sem_give(void*);
-extern int log_message(int, ...);
 
 int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
 {

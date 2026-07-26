@@ -30,6 +30,7 @@
  */
 /* Full reconstruction of FUN_0005757c @ 0x5757c (owned code: 442 bytes). */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 typedef struct packet packet_t;
 struct packet {
@@ -74,8 +75,6 @@ extern packet_t *net_buf_ref(packet_t *packet);
 extern uint64_t net_buf_pool_get(uint8_t kind);
 extern packet_t *bt_conn_alloc_pdu_buf(uint32_t a, uint32_t b, uint32_t c, uint32_t d);
 extern packet_t *bt_conn_create_pdu_timeout(uint32_t a, uint32_t b, uint32_t c, uint32_t d);
-extern void printk(uintptr_t subsystem, uintptr_t file,
-                         uintptr_t message, unsigned line);
 extern void assert_post_action(uintptr_t message, unsigned line);
 extern void net_buf_simple_reserve(void *cursor, unsigned amount);
 extern void net_buf_push_le16(void *cursor, uint16_t amount);

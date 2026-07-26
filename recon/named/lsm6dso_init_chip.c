@@ -42,8 +42,8 @@
  *   rodata_f6468                             @ 0x000f6468
  *   rodata_f6481                             @ 0x000f6481   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_000622a0 @ 0x622a0  (parity: 300/300 trials, PROVEN) */
-extern void log_message(int fmt, ...);
 extern int audio_codec_set_reg10_field2(int a0,int a1);
 extern int audio_codec_set_reg11_field1(int a0,int a1);
 extern int audio_codec_set_reg12_bit6(int a0,int a1);

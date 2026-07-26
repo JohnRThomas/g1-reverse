@@ -15,14 +15,13 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_app_language_msgq                      @ 0x200079e4
  */
+#include "../headers/g1_log.h"
 /* Reconstructed stopAudioStreamRecord @ 0x2f80c  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void *destination, int value, unsigned int length);
 extern int k_msgq_put(unsigned int queue, void *record,
                         unsigned int wait, unsigned int flags);
 extern void k_sem_give(void *work);
-extern void log_message(unsigned int message, unsigned int function);
-extern void debug_print(unsigned int message, unsigned int function);
 
 unsigned int stopAudioStreamRecord(void)
 {

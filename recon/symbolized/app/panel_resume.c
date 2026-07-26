@@ -26,9 +26,8 @@
  * requires the JBD panel ID 0x4010.
  */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void log_message(uint32_t format, ...);
-extern void debug_print(uint32_t format, ...);
 extern void jbd_panel_resume(uint8_t *context);
 extern uint32_t spi_read_id(void);
 extern void panel_on(uint8_t *context);

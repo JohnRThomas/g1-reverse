@@ -1,5 +1,6 @@
 #include "g1_app_symbols.h"
 #include "../../headers/g1_nrf_regs.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0006666c @ 0x0006666c
  * public-name: gpio_configure_pin_output
  * durable-map: recon/catalogs/function_names_app.json
@@ -13,7 +14,6 @@
  *   rodata_f0a04                             @ 0x000f0a04   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0006666c @ 0x6666c  (parity: 300/300 trials, PROVEN) */
-extern void printk(unsigned,unsigned,unsigned,unsigned,unsigned);
 extern long long assert_post_action(unsigned,unsigned);
 void gpio_configure_pin_output(unsigned param_1, int param_2, unsigned param_3, unsigned param_4){
     unsigned r0v = param_1;

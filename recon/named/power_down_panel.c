@@ -17,9 +17,8 @@
  */
 /* Reconstructed power_down_panel @ 0x15fdc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(uint32_t, ...);
+#include "../headers/g1_log.h"
 extern void panel_pwr_gpio_deassert(void);
-extern void debug_print(uint32_t, ...);
 extern int app_msleep_thunk_a(int);
 extern int dev_write_reg3(int, ...);
 

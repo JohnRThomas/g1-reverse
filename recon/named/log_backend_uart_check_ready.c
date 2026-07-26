@@ -12,10 +12,10 @@
  *   rodata_f0f71                             @ 0x000f0f71   [INLINED -- G6 literal batch]
  *   rodata_f0faf                             @ 0x000f0faf   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0004df88 @ 0x4df88  (parity: 300/300 trials, PROVEN) */
 
 extern int z_device_is_ready(unsigned int);
-extern void printk(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 extern void assert_post_action(unsigned int,unsigned int);
 void log_backend_uart_check_ready(void)
 {

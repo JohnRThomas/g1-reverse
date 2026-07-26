@@ -16,10 +16,9 @@
  *   g_ext_flash_mutex                        @ 0x20007b54
  *   g_ext_flash_dev                          @ 0x20007b68
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0002e398 @ 0x2e398  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned a, unsigned b);
-extern void debug_print(unsigned a, unsigned b);
 extern void k_mutex_lock(unsigned a, int b, unsigned c, unsigned d);
 extern void k_mutex_unlock(unsigned a);
 extern void ext_flash_sync_noop(void);

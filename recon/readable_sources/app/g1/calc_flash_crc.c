@@ -29,13 +29,12 @@
  */
 /* Reconstructed FUN_00022974 @ 0x22974. */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 typedef int (*flash_read_fn)(int context, int address, void *destination,
                              int count);
 
-extern void log_message(uint32_t format, ...);
 extern int get_device_info(void);
-extern void debug_print(uint32_t format, ...);
 extern void watchdog_feed_retry(void);
 extern unsigned int g1_recon_crc16_ansi_seeded(unsigned int crc,
         const unsigned char *data, int count);

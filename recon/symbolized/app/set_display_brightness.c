@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00032254 @ 0x00032254
  * public-name: set_display_brightness
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,7 +16,6 @@
  */
 /* Reconstructed FUN_00032254 @ 0x32254  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned a);
 extern int get_device_info(void);
 extern int read_usr_settting_from_flash(void*a);
 extern void display_dev_reg_config(void);

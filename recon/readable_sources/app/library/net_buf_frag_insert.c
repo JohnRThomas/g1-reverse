@@ -15,8 +15,8 @@
  */
 /* Full reconstruction FUN_0005f338 @ 0x5f338, exact extent 70 bytes. */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 extern void *net_buf_frag_last(void *node);
-extern void printk(uintptr_t, uintptr_t, uintptr_t, uint32_t);
 extern __attribute__((noreturn)) void assert_post_action(uintptr_t, uint32_t);
 
 void net_buf_frag_insert(void *owner, void *node)

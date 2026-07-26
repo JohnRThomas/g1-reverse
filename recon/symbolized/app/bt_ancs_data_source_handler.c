@@ -24,11 +24,10 @@
  */
 /* Reconstructed FUN_00018c48 @ 0x18c48  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int log_message(int, ...);
+#include "../../headers/g1_log.h"
 extern int get_device_info(void);
 extern int ancs_get_conn_ctx(int);
 extern int enqueue_ancs(int);
-extern int debug_print(uintptr_t, ...);
 extern int k_sem_give(int);
 extern int k_uptime_get_32(void);
 extern int memset_bytes(int,int,int);

@@ -13,9 +13,8 @@
  */
 /* Full ABI-faithful reconstruction bt_send_enabled @ 0x17e3c. */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void log_message(uintptr_t format, ...);
-extern void debug_print(uintptr_t format, ...);
 
 void bt_send_enabled(int32_t error)
 {

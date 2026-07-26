@@ -15,6 +15,7 @@
 /* Reconstructed runtime_info_sync @ 0x16268 */
 
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 struct __attribute__((packed)) runtime_sync_packet {
     uint16_t marker;
@@ -23,8 +24,6 @@ struct __attribute__((packed)) runtime_sync_packet {
 };
 
 extern uint32_t global_ipc_service_send(const void *packet, uint32_t length);
-extern void log_message(uint32_t format, uint32_t function_name, ...);
-extern void debug_print(uint32_t format, uint32_t function_name, ...);
 
 uint32_t runtime_info_sync(const uint8_t *runtime)
 {

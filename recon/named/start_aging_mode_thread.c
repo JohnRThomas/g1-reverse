@@ -12,9 +12,9 @@
  *   g_aging_mode_thread_started_flag         @ 0x20019ef1
  *   g_aging_mode_thread_stack                @ 0x20027a68
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00032fe8 @ 0x32fe8  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(void*, void*, unsigned int);
 /* CONFIG_TIMEOUT_64BIT: z_impl_k_thread_create's 10th parameter is a
  * 64-bit k_timeout_t delay, AAPCS-placed 8-byte aligned at sp+0x18.
  * The original writes it (strd r,r,[sp,#0x18]); it must be passed. */

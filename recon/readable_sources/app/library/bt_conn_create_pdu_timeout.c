@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000569ec @ 0x000569ec
  * public-name: bt_conn_create_pdu_timeout
  * durable-map: recon/catalogs/function_names_app.json
@@ -22,7 +23,6 @@
 
 extern int net_buf_simple_reserve(int,int);
 extern void assert_post_action(unsigned,unsigned);
-extern void printk(unsigned,...);
 extern int bt_conn_call_4arg_zero(unsigned,unsigned,void*);
 extern int bt_conn_alloc_pdu_buf(int,unsigned,unsigned,unsigned);
 extern int k_is_in_isr(void);

@@ -23,6 +23,7 @@
  */
 /* Full reconstruction of FUN_0005774c @ 0x5774c (exact extent: 270 bytes). */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 typedef struct transfer transfer_t;
 typedef struct {
@@ -62,8 +63,6 @@ extern uintptr_t net_buf_get(void *queue, uint32_t wait, uint32_t unused);
 extern uint32_t atomic_get_word(const uint32_t *value);
 extern stop_record_t *net_buf_simple_add(uintptr_t pool, uint32_t size);
 extern void att_send_simple(uintptr_t endpoint, int status);
-extern void printk(uintptr_t subsystem, uintptr_t file,
-                         uintptr_t message, uint32_t line);
 extern void assert_post_action(uintptr_t message, uint32_t line);
 
 static __attribute__((always_inline)) inline void fatal_state(uintptr_t file,

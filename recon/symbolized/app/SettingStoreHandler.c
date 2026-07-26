@@ -55,6 +55,7 @@ typedef unsigned int(*code3)(unsigned int,unsigned int,unsigned int);
 #define FPMax(a,b) __builtin_fmaxf((a),(b))
 #define FPMin(a,b) __builtin_fminf((a),(b))
 #include "../../headers/g1_ghidra_ops.h"
+#include "../../headers/g1_log.h"
 
 #define CONCAT11(a,b) ((unsigned short)(((unsigned)(unsigned char)(a)<<8)|(unsigned char)(b)))
 #define CONCAT21(a,b) (((unsigned)(unsigned short)(a)<<8)|(unsigned char)(b))
@@ -90,9 +91,7 @@ typedef unsigned int(*code3)(unsigned int,unsigned int,unsigned int);
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern void log_message(unsigned int format, ...);
 extern unsigned int get_device_info(void);
-extern void debug_print(unsigned int format, ...);
 extern int k_msgq_get(unsigned int,void*,unsigned int,unsigned int);
 extern int z_device_is_ready(unsigned int);
 #define DAT_0002418c ((unsigned long)&g_flash_store_cmd_msgq) /*=0x20003994*/

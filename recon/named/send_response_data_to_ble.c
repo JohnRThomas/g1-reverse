@@ -11,12 +11,12 @@
  *   rodata_ef736                             @ 0x000ef736   [INLINED -- G6 literal batch]
  *   g_dashboard_response_msgq                @ 0x2000392c
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00047ba8 @ 0x47ba8  (parity: 300/300 trials, PROVEN) */
 
 extern char* get_device_info(void);
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void log_message(unsigned int, unsigned int);
 
 unsigned int send_response_data_to_ble(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

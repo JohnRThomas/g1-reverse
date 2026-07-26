@@ -17,9 +17,8 @@
  * CFG_VERIFY_CALL_ARITIES=4,1,4,1
  */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
-extern int debug_print(uintptr_t format, ...);
-extern int log_message(uintptr_t format, ...);
 
 int active_mode_shutdown(uint8_t *device)
 {

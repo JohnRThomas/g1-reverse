@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0004d4a8 @ 0x0004d4a8
  * public-name: log_dropped
  * durable-map: recon/catalogs/function_names_app.json
@@ -19,7 +20,6 @@
 
 extern unsigned int z_log_dropped_read_and_clear_0(void);
 extern void assert_post_action(void*, int);
-extern void printk(void*, void*, void*, int);
 
 void log_dropped(void)
 {

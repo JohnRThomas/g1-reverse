@@ -11,9 +11,9 @@
  *   rodata_f66a6                             @ 0x000f66a6   [INLINED -- G6 literal batch]
  *   nrf_rtc_timer_free_channels              @ 0x2000b2d4
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00063898 @ 0x63898  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
 extern unsigned long long assert_post_action(unsigned int, unsigned int);
 
 void nrf_rtc_timer_chan_free(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

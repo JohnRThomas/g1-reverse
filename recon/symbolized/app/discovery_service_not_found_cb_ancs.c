@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00018978 @ 0x00018978
  * public-name: discovery_service_not_found_cb_ancs
  * durable-map: recon/catalogs/function_names_app.json
@@ -12,7 +13,6 @@
  */
 /* Reconstructed FUN_00018978 @ 0x18978  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int);
 extern void atomic_and(void *, unsigned int);
 extern void gatt_discover(unsigned int, unsigned int);
 

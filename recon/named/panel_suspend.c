@@ -21,9 +21,8 @@
  * Name self-evidenced: the log tag 0x000d72db is "panel_suspend".
  */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
-extern void log_message(uint32_t format, ...);
-extern void debug_print(uint32_t format, ...);
 extern void jbd_panel_suspend(void);
 extern uint32_t panel_off(uint8_t *context);
 

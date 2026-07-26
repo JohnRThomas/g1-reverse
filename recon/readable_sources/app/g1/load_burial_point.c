@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_burial_point_record__param_0043        [param_0043; G1-original]
  * Raw function identity: 0x000230e0.  See ../include/g1_recovered_layouts.h. */
@@ -21,8 +22,6 @@
 extern int flash_settings_read(unsigned int, void*, int, unsigned int, unsigned int);
 extern unsigned int sys_rand32_get(void);
 extern void memset_bytes(void*, int, int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int,unsigned int);
 
 unsigned int load_burial_point(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002bef4 @ 0x0002bef4
  * public-name: update_persist_task_status
  * durable-map: recon/catalogs/function_names_app.json
@@ -18,8 +19,8 @@
 typedef unsigned char u8;
 typedef unsigned int  u32;
 
-extern void log_message(u32 format, u32 source, u32 task_id); /* FUN_0007dda4 */
-extern void debug_print(u32 format, u32 source, u32 task_id); /* FUN_00019c70 */
+/* FUN_0007dda4 */
+/* FUN_00019c70 */
 extern void display_close_screen(u32 screen_id);              /* FUN_00049858 */
 extern void wait_for_persist_task_status_lock(void);          /* FUN_0007cdf8 */
 

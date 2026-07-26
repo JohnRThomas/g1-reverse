@@ -26,8 +26,8 @@
  * CFG_VERIFY_CALL_ARITIES=2,0,1,1,0,4
  */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void printk(uint32_t, ...);
 extern void assert_post_action(uint32_t, uint32_t) __attribute__((noreturn));
 extern uintptr_t log_msg_process(uint32_t, uint32_t);
 extern uintptr_t activate_foreach_backend(uintptr_t);

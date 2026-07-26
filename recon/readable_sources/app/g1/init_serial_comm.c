@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00033340 @ 0x00033340
  * public-name: init_serial_comm
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,7 +15,6 @@
  */
 /* Reconstructed FUN_00033340 @ 0x33340  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int a);
 extern int fuel_gauge_dev_register(unsigned int a);
 extern int process_pt_data(void);
 extern int init_serial_port(void);

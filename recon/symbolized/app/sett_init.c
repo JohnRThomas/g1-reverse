@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00022518 @ 0x00022518
  * public-name: sett_init
  * durable-map: recon/catalogs/function_names_app.json
@@ -22,8 +23,6 @@
 
 extern int settings_subsys_init(void);
 extern int settings_register(unsigned int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, ...);
 
 void sett_init(int *param_1)
 {

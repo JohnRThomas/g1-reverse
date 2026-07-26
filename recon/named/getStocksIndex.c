@@ -11,10 +11,9 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_stocks_widget_index_raw                @ 0x2001b815
  */
+#include "../headers/g1_log.h"
 /* Reconstructed getStocksIndex @ 0x370bc  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int);
 
 unsigned char getStocksIndex(void)
 {

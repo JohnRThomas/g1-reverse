@@ -17,10 +17,9 @@
  *   g_message_pool                           @ 0x20007dac
  *   g_msg_queue_busy                         @ 0x20018d8e
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00033d58 @ 0x33d58  (parity: 300/300 trials, PROVEN) */
-extern int log_message(int,...);
 extern int get_device_info(int,...);
-extern int debug_print(int,...);
 extern int msg_content_recalc_unread(int,...);
 extern unsigned get_timestamp(int,...);
 extern int memcpy(int,...);

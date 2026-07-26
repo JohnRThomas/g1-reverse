@@ -24,9 +24,8 @@
 /* Reconstructed FUN_0001965c @ 0x1965c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void log_message(uint32_t, ...);
+#include "../headers/g1_log.h"
 extern int dequeue_ancs(void*);
-extern void debug_print(uint32_t, void*);
 extern void ble_process_req_dispatch(uint32_t, void*, void*);
 extern void send_data_in_ble_chunks(void*);
 extern int is_on_whitelist_by_identifier(void*);

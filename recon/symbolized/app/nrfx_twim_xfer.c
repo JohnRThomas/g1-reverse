@@ -26,8 +26,8 @@
  */
 /* Reconstructed FUN_00067938 @ 0x67938  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern int printk(int,int,int,int,int);
 extern int assert_post_action(int,int);
 extern int __nrfy_internal_twim_events_process(int,int);
 extern int xfer_completeness_check(int,int);

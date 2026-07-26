@@ -15,9 +15,9 @@
  */
 /* Reconstructed FUN_0005e758 @ 0x5e758  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 typedef void (*fnptr)(unsigned int, unsigned int);
 extern void assert_post_action(uint32_t, uint32_t);
-extern void printk(uint32_t, uint32_t, uint32_t, uint32_t);
 
 void bt_keys_foreach_type(unsigned short param_1, fnptr param_2, unsigned int param_3)
 {

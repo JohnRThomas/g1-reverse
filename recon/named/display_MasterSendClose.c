@@ -13,13 +13,12 @@
  *   g_display_msgq                           @ 0x200038c4
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed display_MasterSendClose @ 0x499b8  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void *destination, int value, unsigned int length);
 extern int k_msgq_put(unsigned int queue, void *record,
                        unsigned int wait, unsigned int flags);
-extern void log_message(unsigned int format, unsigned int context);
-extern void debug_print(unsigned int format, unsigned int context, ...);
 
 unsigned int display_MasterSendClose(void)
 {

@@ -14,6 +14,7 @@
 
 #include <stdarg.h>
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 extern uintptr_t ancs_get_conn_ctx(void);
 extern void memset_bytes(void *dst, int val, unsigned int len);
@@ -21,7 +22,7 @@ extern void vsnprintf_impl(void *dst, unsigned int size, unsigned int fmt, va_li
 extern void enqueue_debug(void *buf);
 extern void process_sync_buffer(uintptr_t arg);
 
-void debug_print(unsigned int format, ...)
+void debug_print(uintptr_t format, ...)
 {
     va_list arguments;
     va_start(arguments, format);

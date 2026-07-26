@@ -18,9 +18,8 @@
  */
 /* Reconstructed FUN_00032308 @ 0x32308  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(unsigned,...);
+#include "../../headers/g1_log.h"
 extern int get_device_info(void);
-extern void debug_print(unsigned int, ...);
 extern void build_and_send_device_status_report(int,int);
 extern int read_sys_settting_from_flash(void*);
 extern void k_msleep_ticks32768_b(int);

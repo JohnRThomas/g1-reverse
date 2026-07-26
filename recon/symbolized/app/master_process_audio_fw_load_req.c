@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002af4c @ 0x0002af4c
  * public-name: master_process_audio_fw_load_req
  * durable-map: recon/catalogs/function_names_app.json
@@ -83,8 +84,6 @@ typedef unsigned int undefined4;
 typedef unsigned int uint;
 typedef void code;
 
-extern int log_message(const char*, const char*, ...);
-extern int debug_print(const char*, const char*, ...);
 extern int get_device_info(void);
 extern int ancs_set_notification_enabled(uint);
 extern int get_device_serial_buf(void);

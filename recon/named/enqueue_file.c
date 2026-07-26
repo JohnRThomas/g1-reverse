@@ -14,13 +14,12 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_file_msg_pipe                          @ 0x200079a0
  */
+#include "../headers/g1_log.h"
 /* Reconstructed enqueue_file @ 0x23514  (parity: 300/300 trials, PROVEN) */
 
 extern void k_msgq_get(unsigned int, void*, int, int);
 extern void safe_memcpy_checked(void*, unsigned int, unsigned int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, ...);
 
 int enqueue_file(unsigned int param_1, unsigned int param_2)
 {

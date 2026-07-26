@@ -25,10 +25,9 @@
  */
 /* Reconstructed ancs_connected @ 0x1861c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(unsigned,...);
+#include "../../headers/g1_log.h"
 extern int get_device_info(void);
 extern void format_bt_addr_str(unsigned, void*);
-extern void debug_print(uintptr_t,...);
 extern int is_battery_critical(void);
 extern void bt_conn_disconnect_by_state(int,int);
 extern unsigned k_uptime_get_32(void);

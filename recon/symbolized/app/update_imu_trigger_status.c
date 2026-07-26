@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002bcbc @ 0x0002bcbc
  * public-name: update_imu_trigger_status
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,8 +16,6 @@
 /* Reconstructed update_imu_trigger_status @ 0x2bcbc  (parity: 300/300 trials, PROVEN) */
 
 extern void k_sem_give(unsigned int);
-extern void log_message(unsigned int, unsigned int, unsigned int, unsigned int);
-extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned int update_imu_trigger_status(unsigned int param_1, int param_2, int param_3)
 {

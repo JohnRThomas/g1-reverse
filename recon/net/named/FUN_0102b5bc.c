@@ -13,6 +13,7 @@
  *   g_net_ipc_msg_type                       @ 0x21004fa2
  */
 #include "../../headers/g1_nrf_regs.h"
+#include "../../headers/g1_log.h"
 /* net-core FUN_0102b5bc @ 0x102b5bc  (parity 300 trials PROVEN)
  * CFG_VERIFY_PREFIX_FIRST: the successful submission path busy-waits for an
  * asynchronous completion flag written by hardware/ISR code. */
@@ -28,7 +29,6 @@
 
 extern int FUN_0103037c(int);
 extern int onoff_request(int, void *);
-extern void printk(int, int);
 extern void FUN_0102bba8(int);
 
 /* P4 iteration 21 - the on-stack `struct onoff_client` must be ONE contiguous

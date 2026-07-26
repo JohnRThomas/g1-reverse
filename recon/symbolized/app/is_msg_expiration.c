@@ -18,9 +18,8 @@
  */
 /* Reconstructed is_msg_expiration @ 0x3444c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(uint32_t, ...);
+#include "../../headers/g1_log.h"
 extern void *get_device_info(void);
-extern void debug_print(uint32_t, ...);
 extern unsigned int get_timestamp(void);
 extern void set_device_sync_timestamp(unsigned int);
 

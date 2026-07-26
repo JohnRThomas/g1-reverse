@@ -12,9 +12,9 @@
  *   rodata_a731c                             @ 0x000a731c   [INLINED -- G6 literal batch]
  *   rodata_a7336                             @ 0x000a7336   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00032254 @ 0x32254  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned a);
 extern int get_device_info(void);
 extern int read_usr_settting_from_flash(void*a);
 extern void display_dev_reg_config(void);

@@ -39,12 +39,12 @@
  */
 /* Reconstructed FUN_0004db04 @ 0x4db04  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 typedef unsigned int uint;
 extern int print_formatted(unsigned,...);
 extern int newline_print(unsigned,unsigned);
 extern int cbpprintf_external(unsigned,unsigned,unsigned,int);
 extern int assert_post_action(unsigned,unsigned);
-extern int printk(unsigned,unsigned,unsigned,int);
 extern int log_output_flush_noop(void);
 extern int log_output_flush(unsigned);
 #define U8(a)  (*(volatile uint8_t*)(uintptr_t)(a))

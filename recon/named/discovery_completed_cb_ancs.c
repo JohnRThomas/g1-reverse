@@ -23,7 +23,7 @@
 /* Reconstructed FUN_000188d8 @ 0x188d8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int log_message(int,...);
+#include "../headers/g1_log.h"
 extern int gatt_discover(int,...);
 extern int ancs_gatt_dm_assign_handles(int,...);
 extern int ancs_subscribe_notification_source(int,...);

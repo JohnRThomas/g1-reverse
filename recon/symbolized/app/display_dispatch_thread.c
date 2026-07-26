@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00028bec @ 0x00028bec
  * public-name: display_dispatch_thread
  * durable-map: recon/catalogs/function_names_app.json
@@ -137,8 +138,6 @@ typedef long long s64;
 #define g_ble_dispatch_pending_marker   (*(volatile u8 *)((unsigned long)&g_ble_dispatch_pending_marker) /*=0x20018d9b*/)   /* DAT_0002951c */
 
 /* callee oracles (keyed on call order by the harness) */
-extern void debug_print(u32 format, u32 module, ...);
-extern void log_message(u32 format, u32 module, ...);
 extern s32  get_device_info(void);
 extern s32  get_current_work_mode(void);
 extern void change_work_mode_to(int);

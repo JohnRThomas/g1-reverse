@@ -19,9 +19,9 @@
  *   rodata_f4c07                             @ 0x000f4c07   [INLINED -- G6 literal batch]
  *   rodata_f4cce                             @ 0x000f4cce   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0005c22c @ 0x5c22c  (parity: 300/300 trials, PROVEN) */
 extern void assert_post_action(int,...);
-extern void printk(int,...);
 extern int bt_att_get_mtu(int);
 extern int gatt_req_send(int,int,int*,int,int,unsigned);
 int bt_gatt_write(int param_1, int *param_2){

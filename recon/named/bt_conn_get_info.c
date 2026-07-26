@@ -16,7 +16,7 @@
  */
 /* Reconstructed FUN_00056f4c @ 0x56f4c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void printk(uint32_t,...);
+#include "../headers/g1_log.h"
 extern uint64_t assert_post_action(uint32_t,uint32_t);
 extern uint64_t bt_conn_enc_key_size(void);
 

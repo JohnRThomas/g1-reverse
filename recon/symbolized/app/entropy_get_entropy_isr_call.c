@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00052bf8 @ 0x00052bf8
  * public-name: entropy_get_entropy_isr_call
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,7 +16,6 @@
  */
 /* Reconstructed FUN_00052bf8 @ 0x52bf8  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern unsigned int assert_post_action(unsigned int a, unsigned int b);
 
 void entropy_get_entropy_isr_call(unsigned int param_1, unsigned int param_2)

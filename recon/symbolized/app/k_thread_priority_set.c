@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00074554 @ 0x00074554
  * public-name: k_thread_priority_set
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,7 +18,6 @@
 
 extern void z_thread_priority_set(int,int);
 extern void assert_post_action(int,int);
-extern int printk(int,...);
 void k_thread_priority_set(int param_1,int param_2){
   if((unsigned)(param_2+0x10) >= 0x1f){
     printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f85d2) /*=0xf85d2*/,((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0x53d);

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002f6b0 @ 0x0002f6b0
  * public-name: sendAudioStram2Cache
  * durable-map: recon/catalogs/function_names_app.json
@@ -30,8 +31,6 @@ struct audio_cache_record {
     uint8_t payload[200];
 };
 
-extern void log_message(uint32_t format, uint32_t module);
-extern void debug_print(uint32_t format, uint32_t module);
 extern int k_msgq_put(void *queue, const void *record, int timeout, int flags);
 extern void k_sem_give(void *event);
 extern void memcpy(void *destination, const void *source, int length);

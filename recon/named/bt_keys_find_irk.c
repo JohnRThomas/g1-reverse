@@ -18,9 +18,9 @@
  */
 /* Reconstructed FUN_0005e83c @ 0x5e83c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 typedef unsigned int uint;
 extern void assert_post_action(uint,int);
-extern void printk(uint,uint,uint,uint);
 extern int bt_smp_ah(uint,void*);
 extern int memcmp(void*,uint,int);
 uint8_t* bt_keys_find_irk(uint param_1, uint8_t* param_2, uint param_3, uint param_4){

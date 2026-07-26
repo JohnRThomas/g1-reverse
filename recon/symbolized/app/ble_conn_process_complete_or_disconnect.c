@@ -26,11 +26,11 @@
  */
 /* Reconstructed FUN_000570a0 @ 0x570a0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 extern void ancs_disconnected(void);
 extern void ble_conn_unref(int);
 extern int send_conn_le_param_update(int,void*);
 extern void assert_post_action(unsigned,unsigned);
-extern void printk(unsigned,...);
 extern int atomic_and_2(volatile unsigned*,unsigned);
 extern void bt_conn_call_4arg_zero(unsigned,unsigned,void*);
 extern void bt_l2cap_disconnected(int);

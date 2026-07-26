@@ -35,6 +35,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <cmsis_gcc.h>
+#include "../../../headers/g1_log.h"
 extern int z_spin_lock_valid(int,...);
 extern int z_spin_unlock_valid(int,...);
 extern int z_spin_lock_set_owner(int,...);
@@ -43,7 +44,6 @@ extern int z_reschedule(int,...);
 extern int z_pend_curr(int,...);
 extern int z_unpend_first_thread(int,...);
 extern int assert_post_action(int,...) __attribute__((noreturn));
-extern int printk(int,...);
 extern int z_handle_obj_poll_events(int,...);
 extern int memcpy(int,...);
 

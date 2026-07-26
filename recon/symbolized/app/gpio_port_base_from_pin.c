@@ -15,8 +15,8 @@
  */
 /* Full reconstruction FUN_00065584 @ 0x65584, exact extent 80 bytes. */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 extern uint64_t value_in_bitmap_0_47(uint32_t,void*,uint32_t,uint32_t,uint32_t);
-extern void printk(uintptr_t,uintptr_t,uintptr_t,uint32_t,...);
 extern __attribute__((noreturn)) void assert_post_action(uintptr_t,uint32_t);
 uintptr_t gpio_port_base_from_pin(uint32_t *descriptor,uint32_t a,uint32_t b,uint32_t context){
  (void)a;(void)b; uint32_t encoded=*descriptor;

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_2          => struct g1_layout_k_thread__param_0168                   [param_0168; library]
  * Raw function identity: 0x00073cdc.  See ../include/g1_recovered_layouts.h. */
@@ -16,7 +17,6 @@
  */
 /* Reconstructed FUN_00073cdc @ 0x73cdc  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int a,unsigned int b,unsigned int c,unsigned int d);
 extern unsigned long long assert_post_action(unsigned int a,unsigned int b);
 
 void dlist_unlink_node(unsigned int param_1, int *param_2, unsigned int param_3, unsigned int param_4)

@@ -20,10 +20,10 @@
  * Authoritative CFG verification supersedes the legacy 298/300 fuzz receipt.
  */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 extern int log_msg_process(int);
 extern int log_process(void);
 extern int assert_post_action(int,int);
-extern int printk(int,...);
 void g1_recon_z_impl_log_panic(void){
   volatile uint8_t *pcVar1 = (volatile uint8_t*)0x2001d44cUL;
   if(*pcVar1 == 0){

@@ -23,9 +23,8 @@
  */
 /* Reconstructed post_notification_cmd_response @ 0x340c4. */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void log_message(uint32_t format, ...);
-extern void debug_print(uint32_t format, ...);
 extern void send_data_in_ble_chunks(void *notification);
 extern void push_message(void *notification);
 extern int is_on_whitelist_by_identifier(const void *classification);

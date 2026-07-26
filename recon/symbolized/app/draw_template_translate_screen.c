@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0003fd44 @ 0x0003fd44
  * public-name: draw_template_translate_screen
  * durable-map: recon/catalogs/function_names_app.json
@@ -22,9 +23,7 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  */
 /* Reconstructed draw_template_translate_screen @ 0x3fd44  (parity: 300/300 trials, PROVEN) */
-extern void log_message(int,...);
 extern int  get_device_info(void);
-extern void debug_print(int,int,...);
 extern void gui_set_active_canvas(int);
 extern void gui_bmp_bitmap_draw(int,int,int,int,int,int);
 extern void gui_utf_draw(int,int,int,int,int,int,int,int,int,int,int,int);

@@ -12,8 +12,7 @@
 /* Reconstructed FUN_00033b4c @ 0x33b4c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void log_message(uint32_t,uint32_t,uint32_t,uint32_t);
-extern void debug_print(uint32_t,uint32_t,uint32_t,uint32_t);
+#include "../headers/g1_log.h"
 
 void debug_dump_message_slots_10_19(void)
 {

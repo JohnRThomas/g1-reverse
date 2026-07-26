@@ -50,6 +50,7 @@
 /* CPUAPP ui_translate_task @ 0x0003fecc.
  * Raw/back-map identity: FUN_0003fecc, exact reachable extent 0x818 bytes. */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
 extern uintptr_t get_device_info(void);
 extern void gui_set_active_canvas(void *framebuffer);
@@ -87,8 +88,6 @@ extern void reflash_fb_data_to_lcd(uintptr_t left, uintptr_t right, uint32_t x0,
                          uint32_t y0, uint32_t x1, uint32_t y1);
 extern void unix_timestamp_to_datetime(uint32_t content, void *metrics);
 extern void gui_screen_fade_out_transition(void);
-extern void debug_print(uintptr_t format, ...);
-extern void log_message(uintptr_t format, ...);
 
 #define TRANSLATE_STATE ((volatile uint8_t *)((unsigned long)&g_2000f6ec) /*=0x2000f6ec*/)
 #define TRANSLATE_TEXT ((char *)((unsigned long)&g_2001cc3e) /*=0x2001cc3e*/)

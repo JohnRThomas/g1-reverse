@@ -12,13 +12,12 @@
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed navigation_direction_img_display @ 0x3dff8  (parity: 300/300 trials, PROVEN) */
 
 extern int device_info_text_width_get(void);
 extern int device_info_text_height_get_clamped(void);
 extern void gui_bmp_bitmap_draw(int a, int b, int c, int d, int e, int f, int g);
-extern void debug_print(int a, int b);
-extern void log_message(int a, int b);
 
 void navigation_direction_img_display(int param_1, int param_2, int param_3)
 {

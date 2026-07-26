@@ -16,8 +16,7 @@
  */
 /* Reconstructed update_temp_task_status @ 0x2bffc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(uint32_t, ...);
-extern void debug_print(uint32_t, ...);
+#include "../headers/g1_log.h"
 extern void display_close_screen(unsigned char);
 extern void signal_persist_task_event(void);
 

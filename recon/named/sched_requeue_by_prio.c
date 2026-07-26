@@ -14,11 +14,11 @@
  *   _kernel                                  @ 0x2000b448
  *   g_sched_ready_runq                       @ 0x2000b464
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00073d1c @ 0x73d1c  (parity: 300/300 trials, PROVEN) */
 
 extern void sched_update_cache(int a);
 extern void dlist_unlink_node(unsigned a, int* b);
-extern void printk(unsigned a,unsigned b,unsigned c,unsigned d);
 extern void assert_post_action(unsigned a,unsigned b);
 void sched_requeue_by_prio(int *param_1){
     volatile unsigned char *p = (volatile unsigned char*)param_1;

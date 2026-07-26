@@ -27,6 +27,7 @@
 #include <cmsis_gcc.h>
 
 #include "../../headers/g1_cmsis_shim.h"
+#include "../../headers/g1_log.h"
 
 extern int z_spin_lock_valid(unsigned int*);
 extern int z_spin_unlock_valid(unsigned int*);
@@ -36,7 +37,6 @@ extern int z_reschedule(unsigned int*,int);
 extern int z_unpend_first_thread(unsigned int*);
 extern unsigned int* resource_pool_aligned_alloc(int,int);
 extern int assert_post_action(int,int);
-extern int printk(int,...);
 extern int z_handle_obj_poll_events(unsigned int*,int);
 
 unsigned int k_queue_insert_and_wake(unsigned int *param_1, unsigned int *param_2, unsigned int *param_3, int param_4, char param_5)

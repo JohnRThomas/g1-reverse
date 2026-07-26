@@ -19,6 +19,7 @@
  */
 #include <stdint.h>
 #include <string.h>
+#include "../../../headers/g1_log.h"
 
 struct device_raw {
     const char *name;
@@ -44,8 +45,6 @@ struct adc_sequence_raw {
 };
 
 extern int adc_gain_invert(int32_t whole, int32_t *fraction);
-extern void debug_print(const void *, const void *, ...);
-extern void log_message(const void *, const void *, ...);
 
 uint32_t adc_nfc_run(void)
 {

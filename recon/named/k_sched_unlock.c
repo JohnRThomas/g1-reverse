@@ -25,12 +25,12 @@
 /* Reconstructed FUN_00073b1c @ 0x73b1c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../headers/g1_log.h"
 
 extern int z_spin_lock_valid(unsigned a);
 extern int z_spin_unlock_valid(unsigned a);
 extern void z_spin_lock_set_owner(unsigned a);
 extern void assert_post_action(unsigned a, unsigned b);
-extern void printk(unsigned a, unsigned b, unsigned c, unsigned d);
 void k_sched_unlock(void){
     unsigned r4;
     r4 = __get_BASEPRI();

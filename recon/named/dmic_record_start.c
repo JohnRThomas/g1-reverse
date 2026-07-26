@@ -17,10 +17,9 @@
 /* Reconstructed dmic_record_start @ 0x3b78c */
 
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 extern uint8_t *get_device_info(void);
-extern void log_message(uint32_t format, uint32_t argument);
-extern void debug_print(uint32_t format, uint32_t argument, ...);
 extern void drain_audio_msgq(void);
 extern void startAudioStreamRecord(void);
 extern void k_sem_give(void *event);

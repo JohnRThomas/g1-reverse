@@ -130,6 +130,7 @@
  */
 /* Reconstructed resource_manger_get @ 0x4588c  (parity: 120/120 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 #pragma GCC diagnostic warning "-Wint-conversion"
 #pragma GCC diagnostic warning "-Wimplicit-int"
 #pragma GCC diagnostic warning "-Wimplicit-function-declaration"
@@ -168,9 +169,7 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define NAN (__builtin_nanf(""))
 #define INFINITY (__builtin_inff())
 
-extern long long log_message(uintptr_t, ...);
 extern int get_device_info(void);
-extern void debug_print(uintptr_t, uintptr_t, uintptr_t, uintptr_t);
 extern int get_clock_digit_glyph_offset_large(uint16_t, uint32_t *, uint32_t *);
 extern int get_clock_digit_glyph_offset_small(uint16_t, uint32_t *, uint32_t *);
 extern int get_font_style3_glyph_offset(uint16_t, uint32_t *, uint32_t *);

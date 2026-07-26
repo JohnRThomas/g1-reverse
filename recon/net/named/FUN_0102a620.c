@@ -9,10 +9,10 @@
  *   g_net_last_fault_code                    @ 0x2100057c
  *   g_zephyr_log_level                       @ 0x21000580
  */
+#include "../../headers/g1_log.h"
 /* net-core FUN_0102a620 @ 0x102a620  (parity 300 trials PROVEN) */
 
 extern int FUN_0102d548(void);
-extern void printk(unsigned int, int);
 unsigned int FUN_0102a620(void)
 {
   volatile int *piVar1 = (volatile int*)0x2100057c;

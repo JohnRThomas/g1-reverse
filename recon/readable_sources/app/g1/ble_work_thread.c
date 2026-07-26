@@ -36,6 +36,7 @@
 /* Full reconstruction ble_work_thread @ 0x21da8, exact extent 578 bytes.
  * CFG_VERIFY_PREFIX_FIRST CFG_VERIFY_PREFIX_K=80 */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 extern int ancs_main(uintptr_t);
 extern void debug_log_queue_init(void);
 extern uintptr_t malloc(uint32_t);
@@ -48,8 +49,6 @@ extern int device_resume_state_advance(void);
 extern int bt_start(void);
 extern void memcpy(void*,const void*,uint32_t);
 extern void memset_bytes(void*,int,uint32_t);
-extern void log_message(uintptr_t,...);
-extern void debug_print(uintptr_t,...);
 
 static __attribute__((always_inline)) inline void
 ble_log(uintptr_t format, uint32_t value, int threshold)

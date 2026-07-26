@@ -21,9 +21,8 @@
  */
 /* sync_to_slave @ 0x26f74 / FUN_00026f74 (CFG parity: 7/7 cases, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern void log_message(uint32_t format, uint32_t function, ...);
-extern void debug_print(uint32_t format, uint32_t function, ...);
 extern uint8_t *get_device_info(void);
 extern int32_t get_current_work_mode(void);
 extern int32_t is_battery_critical(void);

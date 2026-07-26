@@ -9,11 +9,11 @@
  *   rodata_f6a09                             @ 0x000f6a09
  *   rodata_f6a4a                             @ 0x000f6a4a
  */
+#include "../headers/g1_log.h"
 /* Reconstructed g1_recon_nrfx_gppi_task_endpoint_setup @ 0x64f78.
  * Raw identity/back-map: FUN_00064f78.  Parity: 300/300 trials, PROVEN.
  */
 
-extern void printk(int a, int b, int c, int d, int e);
 extern unsigned int assert_post_action(int a, int b);
 void nrfx_gppi_task_endpoint_setup(
     unsigned int channel, int task_endpoint,

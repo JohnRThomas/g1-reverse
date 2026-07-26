@@ -16,11 +16,10 @@
  *   g_new_notification_pending_flag          @ 0x20018d8d
  *   g_esb_notify_slave_role_guard            @ 0x20018d9f
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_0002c3dc @ 0x2c3dc  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned);
 extern unsigned long long get_device_info(void);
-extern void debug_print(unsigned);
 extern unsigned long long esb_send_command_and_wait_ack(unsigned a, int b, int c, int d);
 extern void update_touch_key_flag(void);
 extern int get_message_entry(int a);

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_utf8_decode_cursor__param_0121         [param_0121; G1-original]
  * Raw function identity: 0x000477a0.  See ../include/g1_recovered_layouts.h. */
@@ -21,8 +22,6 @@
 
 typedef unsigned char byte;
 typedef unsigned int uint;
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int);
 extern void printf(unsigned int);
 extern void puts(unsigned int);
 

@@ -34,6 +34,7 @@
 /* Full reconstruction of FUN_0004b4fc @ 0x4b4fc (916-byte catalog extent). */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../../../headers/g1_log.h"
 
 typedef struct pending_node {
     struct pending_node *next;
@@ -65,7 +66,6 @@ extern void z_spin_lock_set_owner(void *lock);
 extern uint64_t process_recheck(transition_state *state, ...);
 extern void notify_one(transition_state *state, pending_node *node,
                          uint32_t mode, uint32_t operation);
-extern void printk(uintptr_t format, ...);
 extern void assert_post_action(uintptr_t file, uint32_t line) __attribute__((noreturn));
 
 static __attribute__((always_inline)) inline uint32_t enter_critical(void)

@@ -19,9 +19,8 @@
  */
 /* Reconstructed load_sys_setting @ 0x22bd0. */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
-extern void log_message(uint32_t, uint32_t);
-extern void debug_print(uint32_t, uint32_t);
 extern int flash_settings_read(uint32_t, void *, uint32_t);
 extern void build_and_send_device_status_report(uintptr_t);
 extern void memset_bytes(void *, int, uint32_t);

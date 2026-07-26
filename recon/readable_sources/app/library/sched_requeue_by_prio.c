@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_k_thread__param_0168                   [param_0168; library]
  * Raw function identity: 0x00073d1c.  See ../include/g1_recovered_layouts.h. */
@@ -22,7 +23,6 @@
 
 extern void sched_update_cache(int a);
 extern void dlist_unlink_node(unsigned a, int* b);
-extern void printk(unsigned a,unsigned b,unsigned c,unsigned d);
 extern void assert_post_action(unsigned a,unsigned b);
 void sched_requeue_by_prio(int *param_1){
     volatile unsigned char *p = (volatile unsigned char*)param_1;

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000569a0 @ 0x000569a0
  * public-name: bt_conn_index
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,7 +16,6 @@
  */
 /* Reconstructed FUN_000569a0 @ 0x569a0  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void assert_post_action(unsigned int, unsigned int);
 
 unsigned int bt_conn_index(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

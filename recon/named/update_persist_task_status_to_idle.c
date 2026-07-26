@@ -14,11 +14,10 @@
  *   g_persist_task_status_lock               @ 0x20018d9c
  *   g_persist_task_status                    @ 0x20018d9d
  */
+#include "../headers/g1_log.h"
 /* Reconstructed update_persist_task_status_to_idle @ 0x2c0e8  (parity: CFG state-case proven, 5/5 cases) */
 
 typedef unsigned char u8;
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, unsigned int);
 extern void display_close_screen(unsigned int);
 extern void signal_persist_task_event(void);
 

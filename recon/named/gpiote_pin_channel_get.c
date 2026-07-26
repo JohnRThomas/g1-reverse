@@ -13,12 +13,12 @@
  *   rodata_f6b7d                             @ 0x000f6b7d   [INLINED -- G6 literal batch]
  *   g_gpiote_cb                              @ 0x20002bc0
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_000658e8 @ 0x658e8  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long get_pin_idx(unsigned int a);
 extern int pin_in_use_by_te(void);
 extern void assert_post_action(int a,int b);
-extern void printk(int a,int b,int c,int d);
 
 unsigned int gpiote_pin_channel_get(unsigned int param_1, int param_2)
 {

@@ -15,13 +15,12 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_dmic_msgq                              @ 0x20007b7c
  */
+#include "../headers/g1_log.h"
 /* Reconstructed enqueue_dmic @ 0x2ec5c  (parity: 300/300 trials, PROVEN) */
 
 extern void memcpy(void*, unsigned int, int);
 extern void k_msgq_get(unsigned int, void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void log_message(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, ...);
 
 int enqueue_dmic(unsigned int param_1)
 {

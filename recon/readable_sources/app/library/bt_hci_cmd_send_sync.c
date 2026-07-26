@@ -26,6 +26,7 @@
  */
 /* Full reconstruction FUN_00053d70 @ 0x00053d70 (226-byte exact extent). */
 #include <stdint.h>
+#include "../../../headers/g1_log.h"
 
 extern void *bt_hci_cmd_create(uint32_t opcode, uint32_t reserve);
 extern void z_impl_k_sem_init(void *, uint32_t, uint32_t);
@@ -33,7 +34,6 @@ extern uint64_t net_buf_id(void *);
 extern uintptr_t net_buf_ref(void *, uint32_t, uint32_t, uint32_t);
 extern uint64_t net_buf_put(uintptr_t, uintptr_t, uint32_t, uint32_t);
 extern int z_impl_k_sem_take(void *, uint32_t, uint32_t, uint32_t);
-extern void printk(uintptr_t, ...);
 extern void bt_log_forward_3arg(uintptr_t, uint32_t, const void *);
 extern void net_buf_unref(void *);
 extern void assert_post_action(uintptr_t, uint32_t) __attribute__((noreturn));

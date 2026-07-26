@@ -9,13 +9,13 @@
  *   g_zephyr_log_level                       @ 0x21000580
  *   g_net_ctrl_rx_ready_flag                 @ 0x21004c9c
  */
+#include "../../headers/g1_log.h"
 /* net-core FUN_0102b15c @ 0x102b15c  (parity 300 trials PROVEN) */
 extern void FUN_0103b62e(void *dst, int val, int len);
 extern void __memcpy_chk(void *dst, unsigned int a, unsigned int b, int len);
 extern int FUN_0102a498(void);
 extern int FUN_0102a468(void);
 extern void FUN_0102a448(void *a, unsigned int b);
-extern void printk(int a, unsigned int b, int c);
 
 unsigned int FUN_0102b15c(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

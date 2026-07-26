@@ -33,8 +33,7 @@
  */
 /* Reconstructed convert_app_whitelist_to_json @ 0x352e8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(int,...);
-extern void debug_print(int,...);
+#include "../../../headers/g1_log.h"
 extern int  strlen(int);
 extern int  cjson_delete(int);
 extern int  cjson_create_array(void);

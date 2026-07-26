@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00064f78 @ 0x00064f78
  * public-name: nrfx_gppi_task_endpoint_setup
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,7 +15,6 @@
  * Raw identity/back-map: FUN_00064f78.  Parity: 300/300 trials, PROVEN.
  */
 
-extern void printk(int a, int b, int c, int d, int e);
 extern unsigned int assert_post_action(int a, int b);
 void nrfx_gppi_task_endpoint_setup(
     unsigned int channel, int task_endpoint,

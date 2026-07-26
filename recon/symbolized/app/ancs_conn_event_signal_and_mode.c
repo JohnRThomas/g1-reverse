@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00018300 @ 0x00018300
  * public-name: ancs_conn_event_signal_and_mode
  * durable-map: recon/catalogs/function_names_app.json
@@ -11,7 +12,6 @@
  */
 /* Reconstructed FUN_00018300 @ 0x18300  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(int);
 extern void k_sem_give(int);
 extern void change_work_mode_to(int);
 void ancs_conn_event_signal_and_mode(int param_1, unsigned int param_2)

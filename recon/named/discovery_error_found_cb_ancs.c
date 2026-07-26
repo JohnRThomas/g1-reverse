@@ -9,9 +9,9 @@
  *   rodata_9a6c1                             @ 0x0009a6c1   [INLINED -- G6 literal batch]
  *   g_gatt_discovery_flags                   @ 0x20006ab4
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_000188b0 @ 0x188b0  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int);
 extern void atomic_and(void *, unsigned int);
 extern void gatt_discover(unsigned int, unsigned int);
 

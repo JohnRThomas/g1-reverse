@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00056c78 @ 0x00056c78
  * public-name: ble_notify_disconnected
  * durable-map: recon/catalogs/function_names_app.json
@@ -20,7 +21,6 @@
 
 extern int bt_le_conn_params_valid(int);
 extern void assert_post_action(int,int);
-extern int printk(int,...);
 int ble_notify_disconnected(int param_1,int param_2){
   int iVar2=bt_le_conn_params_valid(param_2);
   if(iVar2==0) return 0;

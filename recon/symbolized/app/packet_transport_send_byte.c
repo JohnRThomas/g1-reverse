@@ -14,8 +14,8 @@
  * CFG_VERIFY_CALL_ARITIES=1,2,3,2
  */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 
-extern int log_message(uintptr_t format, ...);
 extern void k_sleep(uint32_t delay, uint32_t flags);
 
 int packet_transport_send_byte(void *transport, const uint8_t *value, const void *required)

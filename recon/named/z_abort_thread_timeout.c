@@ -11,10 +11,10 @@
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f85bb                             @ 0x000f85bb
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00074274 @ 0x74274  (parity: 300/300 trials, PROVEN) */
 
 extern void dlist_unlink_node(int, int);
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
 extern unsigned long long assert_post_action(unsigned int, unsigned int);
 
 void z_abort_thread_timeout(int param_1)

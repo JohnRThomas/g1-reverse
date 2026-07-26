@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_g1_device_runtime_state__param_0027    [param_0027; G1-original]
  *   param_3          => struct g1_layout_audio_fw_load_msg__param_0039          [param_0039; G1-original]
@@ -88,8 +89,6 @@ typedef unsigned int undefined4;
 typedef unsigned int uint;
 typedef void code;
 
-extern int log_message(const char*, const char*, ...);
-extern int debug_print(const char*, const char*, ...);
 extern int get_device_info(void);
 extern int ancs_set_notification_enabled(uint);
 extern int get_device_serial_buf(void);

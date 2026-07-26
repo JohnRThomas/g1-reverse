@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_device__param_0029                     [param_0029; library]
  * Raw function identity: 0x00017768.  See ../include/g1_recovered_layouts.h. */
@@ -17,7 +18,6 @@
  */
 /* Reconstructed FUN_00017768 @ 0x17768  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern void assert_post_action(unsigned int a, unsigned int b);
 typedef void (*jfn847)(void);
 void gpio_pin_set_checked(int param_1, unsigned int param_2, unsigned int param_3)

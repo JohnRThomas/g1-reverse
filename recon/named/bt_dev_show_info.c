@@ -16,11 +16,12 @@
  */
 /* Reconstructed FUN_000548b8 @ 0x000548b8. */
 #include <stdint.h>
+#include "../headers/g1_log.h"
 
 extern uint32_t bt_addr_le_str(const void *address); /* FUN_00052cdc */
 extern uint32_t version_string(uint32_t version); /* FUN_00053344 */
 extern void atomic_or(uint32_t *target, uint32_t bits); /* FUN_00080e6a */
-extern void log_message(uint32_t source, uint32_t descriptor, const void *record); /* FUN_00080ea2 */
+/* FUN_00080ea2 */
 
 struct five_word_log_record {
     uint32_t argument_count;

@@ -12,14 +12,13 @@
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
+#include "../headers/g1_log.h"
 /* Reconstructed not_disturb_sync_data @ 0x3ce04  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned int uint32_t;
 typedef unsigned char uint8_t;
 
-extern void log_message(uint32_t a, uint32_t b);
 extern uint32_t get_device_info(void);
-extern void debug_print(uint32_t a, uint32_t b);
 extern uint32_t esb_send_command_and_wait_ack(uint32_t a, uint32_t b, void* c, uint32_t d, void* e);
 extern void memcpy(uint32_t dst, void* src, uint32_t len);
 extern uint32_t sync_to_slave(uint32_t a, uint32_t b, void* c, uint32_t d);

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00025290 @ 0x00025290
  * public-name: st25dv_read_chip_ids
  * durable-map: recon/catalogs/function_names_app.json
@@ -22,7 +23,6 @@
 extern int serialization_ipc_ept_register(void);
 extern void k_sleep(int,int);
 extern void st25dv_ipc_request_chip_ids(int,void*);
-extern void log_message(int,...);
 extern void nfc_ipc_send_op20(int,void*);
 extern void st25dv_ipc_request(int,void*);
 extern void adc_nfc_init(void);

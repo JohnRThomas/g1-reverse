@@ -18,8 +18,8 @@
  */
 /* Reconstructed FUN_00056da8 @ 0x56da8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_log.h"
 extern void gatt_process_listener_notifications(void);
-extern void printk(unsigned,...);
 extern void assert_post_action(unsigned,unsigned);
 typedef void (*fp)(int,...);
 void ble_notify_remote_info_available(int param_1, unsigned param_2, unsigned param_3, unsigned param_4){

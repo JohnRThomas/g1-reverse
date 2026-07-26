@@ -10,9 +10,9 @@
  *   rodata_f6659                             @ 0x000f6659
  *   rodata_f668a                             @ 0x000f668a   [INLINED -- G6 literal batch]
  */
+#include "../headers/g1_log.h"
 /* Reconstructed FUN_00063570 @ 0x63570  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(int a, int b, int c, int d, int e);
 extern unsigned int assert_post_action(int a, int b);
 unsigned int rtc_cc_reg_addr_get(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
