@@ -174,6 +174,7 @@ target_sources(app PRIVATE
   #   recon/application/gen_app_data_image.py --stage a2
   # (the generator documents the load-image base proof and the pointer policy).
   src/g1_app_data_image.c
+  src/g1_app_font_rodata.c
   # Iteration 21: 2,128 of the `rodata_<hex>` PROVIDE pins in
   # recon/symbols/g1_app_globals.ld were still ABSOLUTE in the link (nm class
   # `A`), i.e. they named ORIGINAL-image flash addresses that hold unrelated

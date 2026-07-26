@@ -12804,3 +12804,622 @@ new `recon/ownership/app_duplicate_singleton_sweep.json` (the sweep receipt);
 `recon/symbolized/app/ipc_ept_op_b_guarded.c` (the dropped `r3`);
 `recon/emulator/reports/sensor_parity_status.md`; this report.
 **No `tools/` logic change**, `armemul` untouched, nothing committed.
+
+## Iteration 33 — the raster never ran because **`g_display_msgq` was never
+## initialised**: six shipped `K_MSGQ_DEFINE` objects came up with
+## `msg_size = 0`, `max_msgs = 0`, `buffer_start = NULL`, so every
+## `k_msgq_put` returned `-ENOMSG` and the display thread received **zero**
+## messages in 20 s.  Restoring the static initialiser opens the path — and
+## unmasks the next fault.
+
+*(written incrementally as each finding was confirmed)*
+
+### 33.1 MEASURED FIRST — where the control flow actually stops
+
+Iteration 32 §32.7 named the blocker as "nothing downstream of the opcode-0
+sync ever calls `DashBoard_Reflash`".  Two corrections came out of tracing the
+shipped control flow forward, both measured on `g1-i32b-app` + `g1-i30e-net`
+under iteration 30's exact recipe (20 s, `G1_HOOKS=0`, block hooks at **our**
+PCs, `sleep 100000 | …` stdin pipe, no memory pokes):
+
+| app hook (our `g1-i32b-app` PC) | hits p1 / p2 | what it means |
+|---|---:|---|
+| `projector_reflash_and_release` `0x00079cb6` | 30 / 196 = **226** | `display_dispatch_thread`'s `notify_display_mode(B(0xd5))` really fires, always with **`mode = 10`** |
+| `display_reflash` `0x00043a08` | 30 / 196 = **226** | it really builds the 24-byte START packet |
+| **`submit_display_reflash_work` `0x000433c8`** | **0 / 0** | ***every* `k_msgq_put(g_display_msgq, …)` FAILED** |
+| `display_thread_handler` `0x00043414` | 1 (entry only) | the consumer thread exists and is spawned |
+| `ui_refalsh_warp` / `ui_DashBoard_task` / `DashBoard_Reflash` | 0 | never reached |
+
+`display_reflash` (`FUN_0004967c`) only calls `submit_display_reflash_work`
+when `k_msgq_put` returns 0.  **226 puts, 0 successes** is therefore a direct
+measurement that the queue itself is broken, not that a predicate is false.
+
+**Correction to the task framing:** `mode = 10` is `ui_navigation_task`, not
+`ui_DashBoard_task` (`ui_refalsh_warp` `case 6`).  The oracle's two rendered
+strings — *"Your route is being generated…"* and *"Navigate stopped due to app
+disconnection."* — are **navigation** screens, so `DashBoard_Reflash`'s zero
+hit count is EXPECTED on this stimulus and is not evidence of anything.  That
+also explains iteration 14's observation that the `DashBoard_Reflash` hook
+never fired on the *shipped* firmware either: on this stimulus the shipped
+firmware does not call it.  The real raster entry point for this capture is
+`ui_navigation_task` (`FUN_0003f410`, our `0x00039ab8`) →
+`reflash_fb_data_to_lcd` → `pixelto4bithex`.
+
+### 33.2 ROOT CAUSE — six static `K_MSGQ_DEFINE` objects are all-zero
+
+`g_display_msgq` (shipped `0x200038c4`, our arena `0x20004a64`) is a
+`K_MSGQ_DEFINE`: a *fully* static object whose struct lives in `.data` with its
+ring-buffer pointers already set, and which **nothing at runtime ever
+initialises again**.  The shipped ROM initialiser (flash `0xf6d64 + 0x38c4`,
+read with `tools/extract.py`) is
+
+```
++0x00 wait_q       200038c4 200038c4   (self-referential sys_dlist_t)
++0x08 lock         00000000
++0x0c msg_size     00000018   (24)
++0x10 max_msgs     0000001e   (30)
++0x14 buffer_start 2004ca90
++0x18 buffer_end   2004cd60   (= start + 24*30 = start + 0x2d0)
++0x1c read_ptr     2004ca90
++0x20 write_ptr    2004ca90
++0x24 used_msgs    00000000
++0x28 poll_events  200038ec 200038ec   (CONFIG_POLL, self-referential)
++0x30 flags/pad    00000000
+```
+
+`sizeof(struct k_msgq) = 0x34`, proven by the constant 0x34 stride between the
+six msgq objects at `0x20003890 / 0x200038c4 / 0x200038f8 / 0x2000392c /
+0x20003960 / 0x20003994`.
+
+`recon/application/gen_app_data_image.py` restored **only the two
+self-referential dlist heads** (`+0x00` and `+0x28`, the two 8-byte runs
+`{0x018c4,8}` and `{0x018ec,8}` in `g1_app_data_image.c`).  Everything between
+them was dropped by the pointer policy, because `0x2004ca90` is an SRAM
+pointer that is neither a self-reference *nor inside the recovered arena*
+(`g1_ram_arena` spans `0x20002000..0x2002a400`; every one of the six ring
+buffers lives above it).
+
+So our `g_display_msgq` came up with **`msg_size = 0`, `max_msgs = 0`,
+`buffer_start = buffer_end = read_ptr = write_ptr = NULL`, `used_msgs = 0`**.
+`k_msgq_put` with `K_NO_WAIT` takes the "queue full" exit the instant
+`used_msgs == max_msgs` (`0 == 0`) and returns `-ENOMSG` — **always, from the
+first call**.  That is the measured 226 / 0.
+
+All **six** shipped `K_MSGQ_DEFINE` queues are dead the same way:
+
+| shipped VA | pin | msg_size × max_msgs | shipped ring |
+|---|---|---:|---|
+| `0x20003890` | `g_audio_msgq` | 204 × 18 | `[0x2004b7b8,0x2004c610)` |
+| `0x200038c4` | **`g_display_msgq`** | **24 × 30** | `[0x2004ca90,0x2004cd60)` |
+| `0x200038f8` | `g_bt_data_pipe` | 257 × 48 | `[0x200422f0,0x20045320)` |
+| `0x2000392c` | `g_dashboard_response_msgq` | 24 × 16 | `[0x2004c910,0x2004ca90)` |
+| `0x20003960` | `g_quicknote_flash_msgq` | 6 × 20 | `[0x20045340,0x200453b8)` |
+| `0x20003994` | `g_flash_store_cmd_msgq` | 6 × 5 | `[0x20045320,0x2004533e)` |
+
+This is a **new defect class** for the ledger: *a shipped fully-static kernel
+object whose backing storage lives outside the recovered RAM arena*.  The
+`.data` restore policy (iteration 15/16/17) correctly refuses to invent a
+pointer, and correctly refuses half-restores — but the result here was an
+object that looks initialised (its wait_q is a valid empty list) and is
+completely non-functional.  `check_ram_pin_collisions.py` cannot see it: the
+pin is bound, in-arena and non-escaping; only its *contents* are wrong.
+
+### 33.3 The fix
+
+`recon/application/gen_app_data_image.py` gains an explicit, self-verifying
+`STATIC_MSGQS` table.  For each listed object the generator **reads**
+`msg_size`, `max_msgs` and the four ring pointers out of `app_update.bin` and
+asserts the canonical shape (`lock == 0`, `used_msgs == 0`,
+`buffer_end - buffer_start == msg_size * max_msgs`,
+`read_ptr == write_ptr == buffer_start`, buffer outside the arena) before
+emitting anything — nothing is typed in by hand except the object address and
+the C identifier.  It then
+
+* declares a dedicated `static unsigned char <ring>[msg_size*max_msgs]
+  __aligned(4);` in the generated TU — the ring's *address* carries no
+  semantics, only its size does;
+* restores the 24 bytes `[+0x0c, +0x24)` verbatim; and
+* relocates the four pointer words onto that array
+  (`buffer_start = read_ptr = write_ptr = &ring[0]`, `buffer_end = &ring[n]`).
+
+The result is bit-for-bit the object `k_msgq_init(q, ring, msg_size, max_msgs)`
+builds, which is exactly what `K_MSGQ_DEFINE` encodes statically.
+A `--static-msgq {none,display,all}` switch keeps the bisect honest.
+
+Regenerating with `--static-msgq none` reproduces the committed
+iteration-17 `g1_app_data_image.c` **byte-identically** (one reviewed
+`KEEP_ALWAYS` entry was needed for the 2-byte run `{0x00d1e,2}`, the high half
+of the shipped NaN float at `0x20002d1c`, which the committed file contains and
+the current group/word-grid policy would otherwise drop) — so the diff of this
+iteration is exactly the msgq restore and nothing else.
+
+### 33.4 MEASURED — `g1-i33a-app` (display msgq restored, nothing else):
+### the raster path OPENS and immediately hits a second defect
+
+`g1-i33a-app` = `g1-i32b-app` + §33.3 with `--static-msgq display`.
+FLASH 699,076 → **699,144 B** (+68), RAM 253,045 → **253,765 B** (+720, the
+ring buffer exactly).  `nm -u` = 0.  Same net image, same stimulus, same recipe.
+
+Block hooks at `g1-i33a-app`'s own PCs:
+
+```
+I33 submit_display_reflash_work                     <- FIRST TIME EVER
+I33 display_reflash_handler req=10 mode=1           <- the START message arrives
+I33 ui_refalsh_warp screen=10 p4=1                  <- the UI dispatcher runs
+I33 ui_navigation_task p1=0x20040abc p2=0x20040024 p3=0x00000001
+I33 ARMFAULT  lr=0x0005086d       (z_arm_hard_fault)
+I33 ARMFATAL  reason=35 esf=0x20034388
+I33 ESF reason=35 r0=0xffffffff r1=0x2002b22f r2=0x00000000 r3=0x0009ff1a
+        r12=0x00000000 lr=0x00042033 pc=0x00041ffe xpsr=0x01000200
+```
+
+**The queue works.**  `submit_display_reflash_work`, `display_reflash_handler`,
+`ui_refalsh_warp` and `ui_navigation_task` all execute for the first time in
+this project.  Then, ~5.9 s in, reason **35 = `K_ERR_ARM_USAGE_ILLEGAL_EPSR`**
+(INVSTATE) at PC `0x00041ffe`, and because `CONFIG_RESET_ON_FATAL_ERROR=1` the
+SoC reboots — which is what Renode reports as
+`PC does not lay in memory … CPU was halted` and why `g1-i33a-app`'s counters
+(`JBD FrameCounter 0`, `RADIO_TX 0x4C`, journal empty) are worse than
+iteration 32's across the board.  **`g1-i33a-app` on its own is a regression
+and is NOT the iteration's build**; it is reported because it is the
+attribution.
+
+### 33.5 The second defect — instance **18** of the undersized-stack-frame class
+
+`0x00041ffe` is the epilogue `ldr.w pc,[sp],#4` of **`send_response_data_to_ble`**
+(shipped `FUN_00047ba8` @ `0x47ba8`).  Shipped bytes:
+
+```
+47ba8  push {r0,r1,r2,r3,r4,r5,r6,lr}   ; 32-BYTE frame; 24-byte msg at sp+0
+47bbc  movs r2,#23 ; movs r1,#0 ; add r0,sp,#1 ; bl 0x86c78   ; memset(sp+1,0,23)
+47bc8  movs r3,#1  ; strb.w r3,[sp]                            ; msg[0] = 1
+47bd2  mov  r1,sp  ; ldr r0,=0x2000392c ; bl 0x720d0           ; k_msgq_put
+47bb6  add  sp,#28 ; ldr.w pc,[sp],#4
+```
+
+Our reconstruction spelled the 24-byte message as **four `unsigned int` locals
+seeded from the four parameters**, three of them cast to `(void)`.  GCC laid
+that out in a **16-byte** `push {r0,r1,r2,lr}` frame, so
+`memset_bytes(&local_20 + 1, 0, 23)` ran from `sp+5` to `sp+27` and **destroyed
+the saved LR at `sp+12`** (plus 12 bytes of the caller's frame).  The epilogue
+then popped `PC = 0`, which is even ⇒ INVSTATE.
+
+This was **latent** exactly as long as the raster was: nothing had ever called
+`send_response_data_to_ble`, because it is reached only from the UI screen
+tasks (`ui_navigation_task`, `ui_DashBoard_task`, `ui_teleprompter_task`,
+`ui_onboarding_task`, `send_dashboard_status_sync…`).  `tools/cfg_verify.py app
+FUN_00047ba8` **passes both before and after the fix** (`PASS cases=0`) — the
+harness compares ABI returns, non-stack memory writes and call order, so a
+stack buffer that runs off the end of the frame is invisible to it.  That is
+the same structural blindness as instances 1–17.
+
+The fix restores the shipped shape (`unsigned char msg[24]`, `memset(msg+1,0,23)`,
+`msg[0]=1`, `k_msgq_put(g_dashboard_response_msgq, msg, K_NO_WAIT)`) in all
+three trees.  It also fixes a second, quieter error in the same function: the
+old spelling wrote `*(u32*)msg = (param_1 & ~0xff) | 1`, leaking param_1's
+upper three bytes into `msg[1..3]`, where the shipped code zeroes them first.
+Every caller already declares the function with no parameters, and the shipped
+prologue's `r0`–`r3` are pure spill space that nothing reads, so the signature
+becomes `void`.
+
+**A directed sweep for the whole class was run, not just this one site.**  An
+analysis-only script disassembles every function in our link, computes the
+prologue frame size, and flags any `sp+k` buffer handed to
+`memset`/`memcpy`/`k_msgq_put`/`k_msgq_get` with `k + size > frame` (the msgq
+message size taken from the six shipped `K_MSGQ_DEFINE` objects).  Over the
+whole app image it reports **exactly one** true positive —
+`send_response_data_to_ble` — plus one false positive (`att_write_rsp`, stock
+Zephyr, whose `sub sp,#28` follows an `it` block the scanner stops at).  A
+companion sweep comparing our prologue frame size against the shipped one for
+every recovered function lists 89 functions whose frame is smaller, but a
+smaller frame is only a defect when a buffer actually overruns it, which is
+what the first sweep tests.
+
+### 33.6 MEASURED — `g1-i33b-app` = `g1-i33a-app` + §33.5
+
+`g1-i33b-app` = `g1-i32b-app` + the `g_display_msgq` restore (§33.3) + the
+`send_response_data_to_ble` frame fix (§33.5).  FLASH **699,128 B**, RAM
+**253,765 B**, `nm -u` **0**, `_end` and `runtime_info_sync` unchanged from
+`g1-i33a-app` (`0x2003ff45` / `0x00015b8c`), device context `0x2003FF50`
+(confirmed from the `ui_navigation_task p1=0x20040abc` hook: `0x20040abc −
+0xb6c`), so `G1_CTX_FE8=0x20040F38`, `G1_CTX_105A=0x20040FAA`.
+
+**No fatal error, no halt, no reset.**
+
+**The G-3 first difference at index 66 is CLOSED.**  `spim_a` `p1_boot` goes
+from **66 → 70** transactions, and index 66 is now byte-for-byte the
+transaction the oracle emits there:
+
+```
+ours   seq=66 txn=61446 tx=02 000000 FF …     <- third full-screen clear, (0,0)
+       seq=67 txn=61446 tx=02 030000 FF …        (0,192)
+       seq=68 txn=30726 tx=02 060000 FF …        (0,384)
+       seq=69 txn=1     tx=97                    display update
+oracle idx 66 {"op":"0x02","kind":"pixel_window","x":0,"y":0,
+                "n_pixel_bytes":61440,"pixel_sha256":"0693f6bf…"}
+```
+
+`JBD FrameCounter` `p1_boot` **0x6 → 0x9** (three clear rounds × three
+windows).  The iteration-32 report's "the oracle emits a *third* full-screen
+clear at index 66 and we do not" is answered: the third clear is the one
+`ui_refalsh_warp` → `ui_navigation_task` issues on its first run, and it never
+happened because the START message never arrived.
+
+#### The 20 s capture of `g1-i33b-app` + `g1-i30e-net` (measured, nothing claimed)
+
+```sh
+printf '$rtinfo_pc=0x00015b8c\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i33/ours-paired-i33b.resc
+sleep 100000 | G1_RESC=/private/tmp/g1-i33/ours-paired-i33b.resc \
+G1_APP_ELF=/private/tmp/g1-i33b-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040F38 G1_CTX_105A=0x20040FAA \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i33b
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_ours_i33b /private/tmp/g1-i33/rep-b
+```
+
+| counter | oracle | iter 32 (`i32b`) | i33a (msgq only) | **iter 33 (`i33b`)** |
+|---|---:|---:|---:|---:|
+| machine reset / CPU halt | none | none | **reset @ 5.9 s** | **none over 20 s** |
+| fatal error | — | none | **`ILLEGAL_EPSR` (35)** | **none** |
+| `DISPLAY_ON_ctx_fe8` | 0x01 | 0x01 | 0x00 | **0x01 — MATCHES** |
+| `ESB_SYNC_ctx_105a` | 0x02 | 0x02 | 0x02 | **0x02 — MATCHES** |
+| `esbslave MasterFramesSeen` | 0x175 | 0x176 | 0 | **0x176** |
+| `esbslave AcksInjected` | 0x175 | 0x176 | 0 | **0x176** |
+| `esbslave AnnounceResponses` | 0x15B | 0x91 | 0 | **0x172 — best ever** |
+| `radio TransmittedFrames` | 0x230 | 0x232 | 0x4C | **0x233** |
+| `vcentral Connected` / `ConnectInds` | True / 1 | True / 1 | True / 1 | **True / 1** |
+| `vcentral DataEvents` | 0x215 | 0x212 | — | **0x217** |
+| **`spim_a` `p1_boot` transactions** | **764** | 66 | — | **70** |
+| `spim_a` `p2_render` transactions | 2,881 | 0 | — | **0** |
+| `spim_a` `p1` pixel windows | 673 | 6 | — | **9** |
+| `JBD FrameCounter` p1 / p2 | 0x2A1 / 0xD61 | 0x6 / 0x6 | 0 / 0 | **0x9 / 0x9** |
+| `JBD JournalCount` | 0x400 | 0x42 | 0 | **0x46** |
+| `twim1` p1 / p2 | 371 / 599 | 346 / 628 | — | **262 / 0** |
+| `twim2` p1 / p2 | 1,089 / 1,200 | 1,041 / 700 | — | **941 / 0** |
+| `saadc` whole run | 998 | 101 | — | **17** |
+| `pdm0` / `gpiote0` / `gpiote1` | 2 / 25 / 0 | 2 / 25 / 0 | — | **2 / 25 / 0** |
+| `IMU_ACCEL` / `OPT3001_READY` / `NPM1300_CHG` | T / T / T | T / T / T | F / F / F | **T / T / T** |
+| **framebuffer lit px p1 / p2** | **656 / 1,098** | 0 / 0 | 0 / 0 | **0 / 0** |
+
+**STATED UNAMBIGUOUSLY: NO PIXEL IS PAINTED.**  `framebuffer.lit_pixels` is
+**0 / 0** against the oracle's **656** (`p1_boot`) and **1,098** (`p2_render`).
+The framebuffer hash is still `0c5cc90b07…` (the all-transparent panel), bit
+identical to iterations 16–32.
+
+**G-3 moved: the first differing `spim_a` transaction is now index 70, not 66.**
+Transactions 0..69 are identical to the oracle entry-for-entry, including all
+three full-screen clear rounds (`pixel_sha256` `0693f6bf…`, `0693f6bf…`,
+`4c7eea52…`).  The oracle's index 70 is the **first CONTENT window**:
+
+```
+oracle idx 70  {"op":"0x02","kind":"pixel_window","x":178,"y":262,
+                "n_pixel_bytes":213,"pixel_sha256":"fe4694d7…"}
+ours   idx 70  (end of stream)
+```
+
+`x = 178` is exactly the oracle framebuffer's `bbox.x0` for `p1_boot` — i.e.
+index 70 is the first glyph row of *"Your route is being generated…"*.  **That
+is the new first divergence, and it is one function call away from a pixel.**
+
+**A REGRESSION IS ALSO REPORTED, not papered over:** phase 2 of `g1-i33b-app`
+performs **zero** `spim_a`, `twim1` and `twim2` transactions (iteration 32 did
+628 / 700), and `saadc` falls 101 → 17.  All peripheral traffic stops at
+t ≈ 4.03 s, right after the third clear round, while the ESB/radio path keeps
+running to the end (and in fact reaches its best numbers of the project).  So
+this is not a crash — the app core is alive — it is a stall in whatever the
+display thread does next.  §33.7 below is that investigation.
+
+### 33.7 The stall after the third clear — the default **font resources were
+### never recovered**, and the glyph-directory length was a raw absolute flash pin
+
+Block hooks on `gui_utf_draw` and every one of its callees, at `g1-i33b-app`'s
+PCs, give the exact stopping point (each line printed once, in this order):
+
+```
+I33 reflash_handler req=10 mode=1
+I33 ui_refalsh_warp screen=10 p4=1
+I33 ui_navigation_task p3=1
+I33 send_response_data_to_ble
+I33 gui_utf_draw font=0 l=178 t=87 r=607
+I33   utf8_to_utf16 text=0x000a0eed
+I33   atomic_get_3_0
+I33   clean_fb_data
+I33   idx_in_range ch=0x0059                 <- 'Y' of "Your route is being generated…"
+I33   resource_manger_get font=0 ch=0x0059   <- NEVER RETURNS
+```
+
+`left = 178` is the oracle framebuffer's `bbox.x0`, and `ch = 0x59` is the first
+glyph of the oracle's `p1_boot` string, so the raster is on the correct pixel
+with the correct character.  It stops in the **font resource manager**.
+
+`resource_manger_get` (`FUN_0004588c`) contains no loop; its `font == 0` arm
+calls `get_default_font_glyph_offset` (`FUN_00045840`), which walks a directory:
+
+```
+45844  ldr r3,=0x0008ac28 ; ldr r7,[r3]      ; the ENTRY COUNT
+45846  ldr r6,=0x0009890c                    ; the DIRECTORY
+4584c  cmp r5,r7 ; blt … ; ldrh.w ip,[r6],#4 ; { u16 codepoint, u8 half_width, u8 pad }
+4586e  … r3 += half_width*26 ; uxth r3 ; adds r5,#1 ; b 4584c
+45866  ldr r0,=0x000e5f62 ; add r0,r3        ; glyph bitmap = blob + accumulated offset
+```
+
+Three flash addresses.  In `recon/symbols/g1_app_globals.ld` **all three were
+raw absolute pins to the ORIGINAL image's addresses**, so in our link they read
+*our own* image at those VAs:
+
+| symbol | shipped meaning | shipped value | what OUR image holds there |
+|---|---|---|---|
+| `g_default_font_glyph_table_count` `0x8ac28` | entry count | **`0x14c` = 332** | `0x2000b448` = **536,918,600** |
+| `rodata_9890c` | 332 × 4 B glyph directory | `20 00 02 00 21 00 01 00 …` | `20 00 60 00 3a 79 0d 00 …` (a 2-byte string stub `{0x20,0x00}` emitted by `gen_app_string_rodata.py`, which had classified the directory as a string) |
+| `rodata_e5f62` | 37,050 B packed glyph bitmaps | — | never emitted at all |
+
+So the directory scan for `'Y'` was told to walk **536,918,600 entries**.  That
+is the stall: not a deadlock and not a crash — a cooperative-priority display
+thread grinding through half a billion iterations of a four-instruction loop,
+which is exactly the measured profile (phase 2 burns 5 minutes of host time for
+14 s of virtual time while issuing **zero** SPI and zero I2C transactions, and
+the ESB/radio path — driven from interrupt context — keeps running to the end).
+
+**The extents of the two missing rodata objects are proven, not guessed, and
+the two proofs agree to the byte:**
+
+* the entry count `0x14c` is the shipped word at `0x8ac28`, which is element
+  `[2]` of the already byte-verified `recon/data/rodata_0x8ac20.c`; 332 × 4
+  = **1,328 B**, i.e. `0x9890c..0x98e3c` — and `0x98e3c` is exactly where the
+  next recovered rodata symbol (`rodata_98e3c`) begins;
+* `get_default_font_glyph_offset` returns `0xe5f62 + Σ half_width·0x1a`, and
+  `gui_utf_draw` copies `0x1a · half_width` bytes per glyph, so the blob is
+  `Σ half_width_i · 26` = **37,050 B**, i.e. `0xe5f62..0xef01c` — and `0xef01c`
+  is exactly where the next recovered rodata symbol (`rodata_ef01c`, a
+  `display_reflash` log string) begins.
+
+Both are emitted byte-exact from `app_update.bin` via `tools/extract.py` into a
+new `recon/application/app/src/g1_app_font_rodata.c`; the two numeric pins are
+removed from `g1_app_globals.ld` (with the `rodata_8ad40` withdrawal precedent's
+comment form), the 2-byte `rodata_9890c` string stub is withdrawn from
+`g1_app_string_rodata.c`, and the count pin becomes
+
+```
+PROVIDE(g_default_font_glyph_table_count = rodata_0x8ac20 + 8);
+```
+
+so it reads the byte-verified table instead of a numeric literal.  **This is a
+third instance of a general class worth naming: 356 symbols in this link are
+still absolute `A` symbols in the FLASH range** — every one of them reads our
+own image at an original-image VA.  Most are log-format strings, which is why
+they have been survivable; these three were read as *data* on the raster path.
+
+### 33.8 **THE RECONSTRUCTED FIRMWARE PAINTS PIXELS — and `p1_boot` is
+### BYTE-IDENTICAL to the oracle**
+
+`g1-i33c-app` = `g1-i33b-app` + §33.7 (the two byte-exact font rodata objects
+and the three rebound symbols).  FLASH 699,128 → **737,504 B** (+38,376 =
+1,328 + 37,050 + 2 B alignment, i.e. exactly the two recovered blobs), RAM
+unchanged **253,765 B**, `nm -u` **0**, `_end` `0x2003ff45` and
+`runtime_info_sync` `0x00015b8c` unchanged, so the probe addresses are the same.
+
+**MEASURED, phase 1 (`p1_boot`, 0 → 6 s), same recipe, same stimulus, no pokes:**
+
+```
+lit_pixels   656          oracle 656
+bbox         x 178..449, y 267..287     oracle x 178..449, y 267..287
+sha256       1d617c65a688f10e…          oracle 1d617c65a688f10e…   IDENTICAL
+```
+
+The 153,600-byte 4 bpp framebuffer our firmware produced is **byte-for-byte the
+golden framebuffer** (`recon/emulator/reports/golden_framebuffer_p1_boot.raw`).
+The image is the shipped firmware's own boot string, *"Your route is being
+generated…"*, rendered by our rebuilt raster path from our recovered font.
+
+`JBD FrameCounter` `p1_boot` **0x9 → 0x40**, `spim_a` `p1` trace 925,544 →
+952,684 bytes, and phase 2 is alive again: `spim_a.p2` 0 → 354,231 bytes,
+`twim1.p2` 0 → 34,768, `twim2.p2` 0 → 41,774.  The half-billion-iteration stall
+is gone.
+
+**MEASURED, phase 2 (`p2_render`, 6 → 20 s):** the framebuffer is **non-empty
+but not the oracle's**:
+
+```
+             ours                       oracle
+lit_pixels   544                        1,098
+bbox         x 120..353, y 267..287     x 34..497, y 266..287
+sha256       b855eac0a3d4e5db…          b26c73b37d441fc8…
+first differing row      y = 266
+first differing pixel    x = 37   (oracle 0xF, ours 0x0)
+```
+
+Both images occupy the same 21-row band at the same baseline; ours is a
+**shorter string** (234 px wide, starting at x = 120) where the oracle draws
+*"Navigate stopped due to app disconnection."* (464 px wide, starting at
+x = 34).  The glyph machinery is therefore correct — it is the *string
+selection* in phase 2 that differs, i.e. our build renders a different
+navigation message for the disconnect event.  That is the new first divergence
+and it is a content question, not a raster question.
+
+### 33.9 The full 20 s capture of the iteration build `g1-i33c-app` + `g1-i30e-net`
+
+```sh
+recon/application/build_cohesive.sh app /private/tmp/g1-i33c-app
+# net UNCHANGED from iteration 30 (g1-i30e-net)
+printf '$rtinfo_pc=0x00015b8c\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i33/ours-paired-i33c.resc
+sleep 100000 | G1_RESC=/private/tmp/g1-i33/ours-paired-i33c.resc \
+G1_APP_ELF=/private/tmp/g1-i33c-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040F38 G1_CTX_105A=0x20040FAA \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i33c
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_ours_i33c /private/tmp/g1-i33/rep-c
+```
+
+| counter | oracle | iter 32 (`i32b`) | **iter 33 (`i33c`)** |
+|---|---:|---:|---:|
+| machine reset / CPU halt | none | none | **none over 20 s** |
+| fatal error | — | none | **none** |
+| `DISPLAY_ON_ctx_fe8` | 0x01 | 0x01 | **0x01 — MATCHES** |
+| `ESB_SYNC_ctx_105a` | 0x02 | 0x02 | **0x02 — MATCHES** |
+| `esbslave MasterFramesSeen` / `AcksInjected` | 0x175 / 0x175 | 0x176 / 0x176 | **0x176 / 0x176** |
+| `esbslave AnnounceResponses` | 0x15B | 0x91 | **0x167 — best ever** |
+| `radio TransmittedFrames` | 0x230 | 0x232 | **0x231** |
+| `vcentral Connected` / `ConnectInds` | True / 1 | True / 1 | **True / 1 — MATCHES** |
+| `vcentral DataEvents` | 0x215 | 0x212 | **0x215 — MATCHES exactly** |
+| **`spim_a` p1 / p2 transactions** | **764 / 2,881** | 66 / 0 | **126 / 109** |
+| `spim_a` pixel windows p1 / p2 | 673 / 2,752 | 6 / 0 | **64 / 106** |
+| `JBD FrameCounter` p1 / p2 | 0x2A1 / 0xD61 | 0x6 / 0x6 | **0x40 / 0xAA** |
+| `JBD JournalCount` | 0x400 | 0x42 | **0xEB** |
+| `twim1` p1 / p2 | 371 / 599 | 346 / 628 | **346 / 587** |
+| `twim2` (LSM6DSO) p1 / p2 | 1,089 / 1,200 | 1,041 / 700 | **1,041 / 700** |
+| `saadc` whole run | 998 | 101 | **95** |
+| `pdm0` / `gpiote0` / `gpiote1` | 2 / 25 / 0 | 2 / 25 / 0 | **2 / 25 / 0, all hash-EQ** |
+| `IMU_ACCEL` / `GYRO` / `OPT3001_READY` / `NPM1300_CHG` | T / F / T / T | T / F / T / T | **T / F / T / T — all MATCH** |
+| **framebuffer lit px p1 / p2** | **656 / 1,098** | 0 / 0 | **656 / 544** |
+| **framebuffer sha256 p1** | `1d617c65…` | `0c5cc90b…` | **`1d617c65…` — IDENTICAL** |
+| framebuffer sha256 p2 | `b26c73b3…` | `0c5cc90b…` | `b855eac0…` |
+
+`twim1` per device (`p1_boot` / `p2_render`), ours vs oracle:
+
+| device | oracle | **iter 33** |
+|---|---|---|
+| nPM1300 charger/fuel gauge | 291 / 508 | **286 / 507** |
+| OPT3001 ambient light | 33 / 80 | **35 / 80 — `p2_render` stream hash EQUAL** |
+| ST25DV NFC EEPROM | 25 / 7 | 11 / 0 |
+| ST25DV system port | 22 / 4 | 14 / 0 |
+
+The OPT3001 `p2_render` per-device stream is the **first sensor byte-stream in
+this project to hash-match the oracle exactly**.
+
+#### Graphics + sensor verdicts (iteration 33, `g1-i33c-app` + `g1-i30e-net`)
+
+| id | verdict | first difference / detail |
+|---|---|---|
+| **G-1** (`p2_render` framebuffer) | **FAIL** | ours `b855eac0…`, **544 lit px**, bbox x 120–353 / y 267–287; oracle `b26c73b3…`, **1,098 lit px**, bbox x 34–497 / y 266–287.  **First differing row y = 266, first differing pixel x = 37** (oracle 0xF, ours 0x0).  Both images sit in the same 21-row band on the same baseline; ours is a *shorter string*. |
+| **G-2** (`p1_boot` framebuffer) | **PASS** | **`1d617c65a688f10e…` == `1d617c65a688f10e…`, 656 == 656 lit pixels, bbox x 178–449 / y 267–287 identical, ZERO differing rows.**  Byte-for-byte the golden framebuffer. |
+| **G-3** (`spim_a` transaction stream) | **FAIL, but the first difference moved 66 → 126** | `p1_boot` **126 vs 764**, the 126 shared transactions identical entry-for-entry; the oracle's index 126 is `{"op":"0x02","x":32,"y":265,"n_pixel_bytes":9}`.  `p2_render` **109 vs 2,881**, first difference index 0 (ours restarts with a full clear where the oracle continues incremental).  Ours reaches the same `p1` image in **64** pixel windows where the oracle uses **673** — fewer, larger windows, same result. |
+| **G-4** | *localiser* | `p1_boot`: **no differing row**.  `p2_render`: first differing row **266**, first differing pixel **x = 37**. |
+| **G-5** (panel init) | **PASS** | byte-exact over the whole 126-transaction `p1` prefix, including all three `op 0x02` full-screen clears and the brightness/gear register writes. |
+| **G-6** (`spim_b` unused) | **PASS** | 0 == 0, stream hash EQ, both phases. |
+| **S-MIC** | **PASS** | `pdm0` whole-run hash EQ, 2 accesses. |
+| **S-KEYS** | **PASS** | `gpiote0` whole-run hash EQ, 25 accesses; `gpiote1` 0 == 0. |
+| **S-ALS** | **PARTIAL — best ever** | OPT3001 35 / 33 (`p1`) and **80 / 80 with the stream hash EQUAL** (`p2`); `OPT3001_CONVERSION_READY` True. |
+| **S-PMIC** | **PARTIAL — best ever** | nPM1300 286 / 291 and **507 / 508**; `NPM1300_CHARGING` True. |
+| **S-IMU** | **PARTIAL** | `twim2` 1,041 / 1,089 and 700 / 1,200; `IMU_ACCEL_ENABLED` True, `IMU_GYRO_ENABLED` False. |
+| **S-NFC** | **PARTIAL** | ST25DV EEPROM 11 / 25 and 0 / 7; system port 14 / 22 and 0 / 4. |
+| **S-ADC** | **FAIL** | `saadc` 95 / 998, hash NE. |
+| **S-ESB** | **PARTIAL — all three criteria met** | `ESB_SYNC_ctx_105a == 0x02` ✓, `DISPLAY_ON_ctx_fe8 == 0x01` ✓, master PTX frames 0x176 vs 0x175, all ACKed ✓.  `AnnounceResponses` 0x167 vs 0x15B (best ever). |
+
+**Criteria score: 5 PASS / 5 PARTIAL / 4 FAIL** (iteration 32: 4 / 5 / 5).
+The new PASS is **G-2**, and it is the acceptance-bar one: *the reconstructed
+firmware paints the shipped firmware's boot screen, pixel for pixel.*
+
+### 33.10 The NEW first divergence
+
+`p2_render` renders a **different, shorter navigation string** (234 px wide at
+x = 120) than the oracle's *"Navigate stopped due to app disconnection."*
+(464 px at x = 34).  The raster, the font, the canvas geometry and the baseline
+are all now proven correct by G-2, so the remaining question is **which string
+`ui_navigation_task` selects for the app-disconnection event in phase 2** — a
+content/state question in the navigation screen state machine, not a display
+one.  Concretely: first differing framebuffer row **y = 266**, first differing
+pixel **x = 37**, and `spim_a` `p2_render` index **0** (the oracle continues
+with a 9-byte incremental window at (32,265); we begin with a fresh full-screen
+clear).
+
+### 33.11 Build ledger and gates
+
+| app build | change | FLASH | RAM | `nm -u` |
+|---|---|---:|---:|---:|
+| `g1-i32b-app` | iteration 32 | 699,076 B | 253,045 B | 0 |
+| `g1-i33a-app` | + `g_display_msgq` restored (§33.3) | 699,144 B | 253,765 B | 0 |
+| `g1-i33b-app` | + `send_response_data_to_ble` frame fix (§33.5) | 699,128 B | 253,765 B | 0 |
+| **`g1-i33c-app`** | **+ the two font rodata objects and three rebound symbols (§33.7) — FINAL** | **737,504 B** | **253,765 B** | **0** |
+
+RAM +720 B (the display msgq ring).  FLASH +38,428 B, of which 38,376 B are the
+two byte-exact font blobs.  The net core is **UNCHANGED** (`g1-i30e-net`).
+
+| gate | iteration 32 | **iteration 33 (`g1-i33c-app`)** |
+|---|---|---|
+| `check_ram_pin_collisions.py` (app) raw-in-object / raw-free | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_ram_pin_collisions.py` (app) bound OK / escaping | 624 / 0 | **624 / 0** |
+| `check_ram_pin_collisions.py --core net` | 0 / 0, 170 / 0 | **0 / 0, 170 / 0**, EXIT 0 |
+| `check_net_raw_literals.py` | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_thread_create_stack_args.py` | 10/10 | **10/10**, EXIT 0 |
+| `gen_retained_sources.py --check` | clean | **clean**, EXIT 0 |
+| `verify_net_stock_data_window.py` | PROVEN | **PROVEN** |
+| app / net `nm -u` undefined | 0 / 0 | **0 / 0** |
+| app / net duplicate global definitions | 0 / 0 | **0 / 0** |
+| `cfg_verify.py app FUN_00047ba8` | PASS (blind) | **PASS** |
+| `gen_app_data_image.py --selftest` | OK | **OK (5/5)** |
+| `gen_app_data_image.py --static-msgq none` vs HEAD | — | **byte-identical** |
+
+No `--allow-multiple-definition`, no weak symbol, no numeric root.
+
+### 33.12 Open, named, and NOT fixed
+
+1. **The `p2_render` string selection** (§33.10) — the blocker for G-1.
+2. **Five of the six static `K_MSGQ_DEFINE` queues are still dead**
+   (`g_audio_msgq`, `g_bt_data_pipe`, `g_dashboard_response_msgq`,
+   `g_quicknote_flash_msgq`, `g_flash_store_cmd_msgq`).  The generator already
+   supports `--static-msgq all`; only `display` was enabled this iteration so
+   the pixel result could be attributed to exactly one object.  Restoring the
+   rest is the obvious next step, and the stack-buffer sweep (§33.5) already
+   shows no other producer overruns its frame.
+3. **356 absolute `A` symbols remain in the FLASH range** of the app link
+   (§33.7).  Three of them were read as *data* on the raster path and are now
+   bound; the rest are mostly log-format strings, but the class is real and
+   unswept.  A sweep that classifies each by how its referrers use it (string
+   vs data) is the natural follow-up.
+4. **The other three font families are still unrecovered**:
+   `get_clock_digit_glyph_offset_large` / `…_small` and
+   `get_font_style3_glyph_offset` have their own directories and blobs, all
+   still raw absolute pins.  Only `font == 0` (the default font) is fixed.
+5. `saadc` 95 / 998 and the ST25DV volumes (11 / 25, 14 / 22, 0 / 7, 0 / 4)
+   remain the largest sensor gaps.
+6. Iteration 32 §32.9 items 2, 5, 6, 7 unchanged.
+
+### Regenerate (iteration 33)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/gen_app_data_image.py \
+  --stage a3 --elf /private/tmp/g1-i32b-app/zephyr/zephyr.elf --static-msgq display
+recon/application/build_cohesive.sh app /private/tmp/g1-i33c-app
+# net UNCHANGED from iteration 30:
+#   recon/application/build_cohesive.sh net /private/tmp/g1-i30e-net -- \
+#     -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF -DG1_ESB_REAL_PAYLOAD_OBJECTS=ON
+# gates (all exit 0)
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py        /private/tmp/g1-i33c-app/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py --core net /private/tmp/g1-i30e-net/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_net_raw_literals.py          /private/tmp/g1-i30e-net/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_thread_create_stack_args.py --trials 120
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/verify_net_stock_data_window.py         /private/tmp/g1-i30e-net/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/gen_app_data_image.py --selftest
+# 20 s capture -- `_end` = 0x2003ff45, device context = 0x2003ff50, so
+# +0xfe8 = 0x20040F38 and +0x105a = 0x20040FAA.  NOTE the stdin pipe, and run
+# build_display_sensor_oracle.py SEPARATELY (a `sleep 100000 |` pipeline never
+# reaches a following command in the same script).
+printf '$rtinfo_pc=0x00015b8c\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i33/ours-paired-i33c.resc
+sleep 100000 | G1_RESC=/private/tmp/g1-i33/ours-paired-i33c.resc \
+G1_APP_ELF=/private/tmp/g1-i33c-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040F38 G1_CTX_105A=0x20040FAA \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i33c
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_ours_i33c /private/tmp/g1-i33/rep-c
+```
+
+Files changed: `recon/application/gen_app_data_image.py`
+(`STATIC_MSGQS` + the `extbuf` pointer class + `KEEP_ALWAYS` + `--static-msgq`);
+`recon/application/app/src/g1_app_data_image.c` (regenerated,
+`--static-msgq display`);
+`recon/app/src/FUN_00047ba8.c`, `recon/verified/src/FUN_00047ba8.c`,
+`recon/symbolized/app/send_response_data_to_ble.c` (the undersized frame);
+new `recon/application/app/src/g1_app_font_rodata.c` (the two byte-exact font
+blobs); `recon/application/app/src/g1_app_string_rodata.c` (the `rodata_9890c`
+stub withdrawn); `recon/symbols/g1_app_globals.ld` (three pins rebound);
+`recon/application/app/CMakeLists.txt` (the new TU);
+`recon/emulator/reports/sensor_parity_status.md`; this report.
+**No `tools/` logic change**, `armemul` untouched, nothing committed.

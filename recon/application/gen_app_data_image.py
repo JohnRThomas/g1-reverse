@@ -139,6 +139,19 @@ EXCLUDE = [
 
 STAGE_A1 = [(0x544, 4, "g_dashboard_display_level")]
 
+# Reviewed literal runs that are always restored, whatever the group/pointer
+# policy decides.  (P4 iteration 33: recorded explicitly so regenerating the
+# image is reproducible.  The committed iteration-17 image contains this run;
+# the group machinery drops it because the 4-byte word grid around it pulls in
+# the neighbouring pointer word 0x20002d24, which is not a self-reference.)
+#
+#   0x20002d1c holds the float 0x7fc00000 = NaN -- the two non-zero high bytes
+#   are at +0x1e/+0x1f.  They carry no pointer and restoring them alone
+#   reproduces the shipped word exactly, because the low half is zero.
+KEEP_ALWAYS = [
+    (0xD1E, 2, "high half of the shipped NaN float at 0x20002d1c"),
+]
+
 ARENA_LIMIT = 0x20029000    # g1_ram_arena end (g1_app_ram_relocs.c)
 
 # Uncatalogued flash leaves that a shipped .data pointer names.  Each entry is
@@ -165,6 +178,100 @@ DEVICE_POINTERS = {
     0x00087C50: "i2c2",
     0x00087C68: "i2c1",
 }
+
+# ---------------------------------------------------------------------------
+# STATIC `K_MSGQ_DEFINE` OBJECTS  (P4 iteration 33)
+# ---------------------------------------------------------------------------
+# The shipped CPUAPP has six `K_MSGQ_DEFINE` message queues.  A K_MSGQ_DEFINE
+# is a *fully* static object: the struct lives in `.data` with its ring buffer
+# pointers already pointing at a `.noinit`/`.bss` array, and NOTHING at runtime
+# ever initialises it again.  The shipped struct (sizeof = 0x34, proven by the
+# 0x34 stride between the six objects) is
+#
+#   +0x00 _wait_q_t   wait_q          (self-referential sys_dlist_t)
+#   +0x08 k_spinlock  lock            (CONFIG_SPIN_VALIDATE -> 4 B, zero)
+#   +0x0c size_t      msg_size
+#   +0x10 uint32_t    max_msgs
+#   +0x14 char       *buffer_start
+#   +0x18 char       *buffer_end      ( == buffer_start + msg_size*max_msgs )
+#   +0x1c char       *read_ptr        ( == buffer_start )
+#   +0x20 char       *write_ptr       ( == buffer_start )
+#   +0x24 uint32_t    used_msgs       (zero)
+#   +0x28 sys_dlist_t poll_events     (CONFIG_POLL, self-referential)
+#   +0x30 uint8_t     flags + pad     (zero)
+#
+# Stage a3 as written through iteration 32 restored ONLY the two self-
+# referential dlist heads (+0x00 and +0x28), because the four ring-buffer
+# pointers name SRAM addresses OUTSIDE the group (and outside the arena
+# entirely: 0x2004ca90, 0x200422f0, ... are all above ARENA_LIMIT).  The
+# consequence is measured, not theorised: `g_display_msgq` came up with
+# msg_size = 0, max_msgs = 0 and buffer_start = NULL, so every
+# `k_msgq_put(g_display_msgq, ...)` returned -ENOMSG ("queue full", used_msgs
+# == max_msgs == 0).  In the 20 s iteration-32 capture `display_reflash`
+# ran 226 times and `submit_display_reflash_work` ran ZERO times: the display
+# thread never received a single START message, so `ui_refalsh_warp` and the
+# whole raster path below it never executed and no pixel was ever painted.
+#
+# The ring buffer's ADDRESS carries no semantics -- only its size does -- so
+# the exact restore is: give each queue a dedicated buffer of the shipped size
+# in our own image and relocate the four pointer words onto it.  The resulting
+# object is bit-for-bit what `k_msgq_init(q, buf, msg_size, max_msgs)` builds.
+#
+# Each row is (shipped object VMA, C identifier, pin name).  msg_size,
+# max_msgs and the buffer extent are READ OUT of app_update.bin below and
+# cross-checked (buffer_end - buffer_start == msg_size * max_msgs,
+# read_ptr == write_ptr == buffer_start, used_msgs == 0); nothing is guessed.
+STATIC_MSGQS = [
+    (0x20003890, "g1_msgq_ring_audio",              "g_audio_msgq"),
+    (0x200038C4, "g1_msgq_ring_display",            "g_display_msgq"),
+    (0x200038F8, "g1_msgq_ring_bt_data_pipe",       "g_bt_data_pipe"),
+    (0x2000392C, "g1_msgq_ring_dashboard_response", "g_dashboard_response_msgq"),
+    (0x20003960, "g1_msgq_ring_quicknote_flash",    "g_quicknote_flash_msgq"),
+    (0x20003994, "g1_msgq_ring_flash_store_cmd",    "g_flash_store_cmd_msgq"),
+]
+
+# Which of the six the generated image restores.  `display` is the isolating
+# build used to attribute the raster result to exactly one object.
+MSGQ_SETS = {
+    "none": set(),
+    "display": {0x200038C4},
+    "all": {va for va, _, _ in STATIC_MSGQS},
+}
+
+K_MSGQ_MSG_SIZE = 0x0C
+K_MSGQ_USED_MSGS = 0x24
+
+
+def static_msgq_units(blob, selected):
+    """Restore units + relocations for the shipped static K_MSGQ_DEFINEs.
+
+    Returns (runs, ptrs, buffers) where `buffers` is a list of
+    (identifier, size, comment) the emitter must define.
+    """
+    runs, ptrs, buffers = [], [], []
+    for va, ident, pin in STATIC_MSGQS:
+        if va not in selected:
+            continue
+        off = va - ARENA_ORIGIN
+        w = [int.from_bytes(blob[off + 4 * i:off + 4 * i + 4], "little")
+             for i in range(13)]
+        lock, msg_size, max_msgs = w[2], w[3], w[4]
+        buf_start, buf_end, read_ptr, write_ptr, used = w[5], w[6], w[7], w[8], w[9]
+        size = msg_size * max_msgs
+        # self-verifying: refuse anything that is not the canonical shape
+        assert lock == 0 and used == 0, (pin, hex(lock), hex(used))
+        assert msg_size and max_msgs, (pin, msg_size, max_msgs)
+        assert buf_end - buf_start == size, (pin, hex(buf_start), hex(buf_end))
+        assert read_ptr == buf_start and write_ptr == buf_start, pin
+        assert not (SRAM_LO <= buf_start < ARENA_LIMIT), (pin, hex(buf_start))
+        lo = off + K_MSGQ_MSG_SIZE
+        hi = off + K_MSGQ_USED_MSGS
+        runs.append((lo, bytes(blob[lo:hi])))
+        for i, delta in ((5, 0), (6, size), (7, 0), (8, 0)):
+            ptrs.append((off + 4 * i, "extbuf", (ident, delta), w[i]))
+        buffers.append((ident, size, "%s: %d x %d, shipped ring [0x%08x,0x%08x)"
+                        % (pin, msg_size, max_msgs, buf_start, buf_end)))
+    return runs, ptrs, buffers
 
 
 def our_symbols(elf):
@@ -321,10 +428,16 @@ def runs_for_stage(stage, verbose=False):
         keep.append((lo, bytes(blob[lo:hi])))
         if verbose:
             print("  keep  +0x%04x..0x%04x  (%d B)" % (lo, hi, hi - lo))
+    for off, n, why in KEEP_ALWAYS:
+        if not any(off < k + len(b) and k < off + n for k, b in keep):
+            keep.append((off, bytes(blob[off:off + n])))
+            if verbose:
+                print("  KEEP  +0x%04x..0x%04x  (%s)" % (off, off + n, why))
+    keep.sort()
     return keep, blob
 
 
-def runs_for_stage_a3(elf, verbose=False):
+def runs_for_stage_a3(elf, verbose=False, msgq_set="all"):
     """Stage a2 plus every dropped group whose pointer words ALL resolve.
 
     Returns (runs, ptrs) where ptrs is a list of
@@ -381,12 +494,23 @@ def runs_for_stage_a3(elf, verbose=False):
         if verbose:
             print("  RELOC +0x%04x..0x%04x  (%d B, %d ptr words)"
                   % (wlo, whi, whi - wlo, len(resolved)))
+    mq_runs, mq_ptrs, buffers = static_msgq_units(blob, MSGQ_SETS[msgq_set])
+    if verbose:
+        for ident, size, why in buffers:
+            print("  MSGQ  %-34s %6d B  (%s)" % (ident, size, why))
+    extra += mq_runs
+    ptrs += mq_ptrs
+
     runs = sorted(keep + extra)
-    return runs, ptrs
+    # a restore unit must never overlap another one
+    for (a_off, a_b), (b_off, _b) in zip(runs, runs[1:]):
+        assert a_off + len(a_b) <= b_off, (hex(a_off), hex(b_off))
+    return runs, ptrs, buffers
 
 
-def emit(runs, stage, path, ptrs=None):
+def emit(runs, stage, path, ptrs=None, buffers=None):
     ptrs = ptrs or []
+    buffers = buffers or []
     total = sum(len(b) for _, b in runs)
     lines = []
     lines.append("/* GENERATED by recon/application/gen_app_data_image.py"
@@ -423,6 +547,18 @@ def emit(runs, stage, path, ptrs=None):
     if not runs:
         lines.append("\t{ 0, 0, 0 },\n")
     lines.append("};\n\n")
+    if buffers:
+        lines.append(
+            "/* Ring buffers for the shipped static K_MSGQ_DEFINE objects.  The shipped\n"
+            " * struct points at a dedicated array whose ADDRESS carries no semantics --\n"
+            " * only its size does -- and that array lives above the recovered RAM arena,\n"
+            " * so our build supplies its own of the exact shipped size and the four ring\n"
+            " * pointer words below are relocated onto it.  The result is bit-for-bit what\n"
+            " * k_msgq_init(q, buf, msg_size, max_msgs) builds. */\n")
+        for ident, size, why in buffers:
+            lines.append("static unsigned char %s[%d] __aligned(4);\t/* %s */\n"
+                         % (ident, size, why))
+        lines.append("\n")
     if ptrs:
         flash = sorted({name for _, kind, name, _ in ptrs if kind == "flash"})
         lines.append(
@@ -449,6 +585,11 @@ def emit(runs, stage, path, ptrs=None):
                     "\t*(const struct device **)&g1_ram_arena[0x%05x] ="
                     " DEVICE_DT_GET(DT_NODELABEL(%s));"
                     "\t/* was 0x%08x */\n" % (off, name, word))
+            elif kind == "extbuf":
+                ident, delta = name
+                lines.append(
+                    "\t*(void **)&g1_ram_arena[0x%05x] = (void *)&%s[%d];"
+                    "\t/* was 0x%08x (msgq ring) */\n" % (off, ident, delta, word))
             else:
                 lines.append(
                     "\t*(void **)&g1_ram_arena[0x%05x] = (void *)&g1_ram_arena[0x%05x];"
@@ -506,19 +647,25 @@ def main():
     ap.add_argument("--selftest", action="store_true")
     ap.add_argument("-v", "--verbose", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--static-msgq", default="all", choices=tuple(MSGQ_SETS),
+                    help="stage a3 only: which shipped K_MSGQ_DEFINE objects "
+                         "get their ring buffer restored (see STATIC_MSGQS)")
     args = ap.parse_args()
     if args.selftest:
         return selftest()
+    buffers = []
     if args.stage == "a3":
-        runs, ptrs = runs_for_stage_a3(args.elf, args.verbose)
+        runs, ptrs, buffers = runs_for_stage_a3(args.elf, args.verbose,
+                                                args.static_msgq)
     else:
         runs, _ = runs_for_stage(args.stage, args.verbose)
         ptrs = []
     if args.dry_run:
-        print("stage=%s runs=%d bytes=%d ptrs=%d"
-              % (args.stage, len(runs), sum(len(b) for _, b in runs), len(ptrs)))
+        print("stage=%s runs=%d bytes=%d ptrs=%d msgq=%d"
+              % (args.stage, len(runs), sum(len(b) for _, b in runs), len(ptrs),
+                 len(buffers)))
         return 0
-    n, total = emit(runs, args.stage, args.out, ptrs)
+    n, total = emit(runs, args.stage, args.out, ptrs, buffers)
     print("wrote %s: stage=%s runs=%d bytes=%d relocated-pointers=%d"
           % (args.out, args.stage, n, total, len(ptrs)))
     return 0

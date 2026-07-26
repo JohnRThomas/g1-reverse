@@ -24,7 +24,13 @@
  * `PROVIDE(rodata_8ad40 = attr_g1_nus_svc + 40)`, so the pin is no longer a
  * numeric literal and gen_app_string_rodata.py no longer selects it: a
  * regeneration reproduces this file without the line. */
-/* 0x9890c */ const unsigned char rodata_9890c[2] = { 0x20, 0x00 };
+/* 0x9890c -- WITHDRAWN, P4 iteration 33.  Those bytes are not a string: they
+ * are the 332-entry default-font glyph DIRECTORY (u16 codepoint, u8 half
+ * width, u8 pad) that get_default_font_glyph_offset (0x45840) walks.  It is
+ * now emitted byte-exact, together with the glyph bitmap blob it indexes, by
+ * recon/application/app/src/g1_app_font_rodata.c, and its numeric pin is gone
+ * from recon/symbols/g1_app_globals.ld, so gen_app_string_rodata.py no longer
+ * selects it: a regeneration reproduces this file without the line. */
 /* 0x98e3c */ const unsigned char rodata_98e3c[2] = { 0x20, 0x00 };
 /* 0x98fbc */ const unsigned char rodata_98fbc[2] = { 0x30, 0x00 };
 /* 0x98fe8 */ const unsigned char rodata_98fe8[2] = { 0x30, 0x00 };

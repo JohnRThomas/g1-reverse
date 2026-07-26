@@ -1,96 +1,108 @@
 # Sensor + graphics parity status — OUR rebuilt firmware vs the shipped oracle
 
-**Nineteenth measurement of `display_sensor_parity.md`'s criteria against our
-rebuild** (iteration 32; previous measurements were iterations 14–31).
+**Twentieth measurement of `display_sensor_parity.md`'s criteria against our
+rebuild** (iteration 33; previous measurements were iterations 14–32).
 
-## READ THIS FIRST — iteration 32: the app core's `sched.c` was a **SPLIT
-## unit**.  Displacing the family whole removes the `sched.c:1458` panic, and
-## the defect that unmasked (a dropped `r3` feeding a spinlock address to
-## `nrfx_twim_xfer` as an I2C length) is fixed.  **One build now holds every
-## gain: no halt over 20 s, the display gate OPEN, and all three S-ESB criteria
-## met for the first time.**  Still 0 lit pixels.
+## READ THIS FIRST — iteration 33: **THE RECONSTRUCTED FIRMWARE PAINTS PIXELS.**
+## `p1_boot`'s 640×480 4 bpp framebuffer is **BYTE-IDENTICAL to the oracle's**
+## (`sha256 1d617c65a688f10e…`, **656 == 656 lit pixels**, bbox x 178–449 /
+## y 267–287, **zero differing rows**) — our rebuild renders the shipped
+## firmware's own boot screen, *"Your route is being generated…"*, pixel for
+## pixel.  **G-2 PASSES.**  `p2_render` paints too (**544** lit px) but draws a
+## shorter string than the oracle's 1,098-px one, so **G-1 still FAILS**.
 
-**NO PIXEL IS PAINTED.**  `framebuffer.lit_pixels` is **0 / 0** against the
-oracle's **656** (`p1_boot`) / **1,098** (`p2_render`).
+Build **`g1-i33c-app`**, net **unchanged** `g1-i30e-net`; capture
+`/private/tmp/g1_ours_i33c`, report `/private/tmp/g1-i33/rep-c`.
+Full detail and every measurement in `our_boot_bringup.md` §33.
 
-Full detail and every measurement in `our_boot_bringup.md` §32; capture
-`/private/tmp/g1_ours_i32b`, app **`g1-i32b-app`**, net **unchanged**
-`g1-i30e-net`.
+Three defects, each measured before and after, took the raster from
+"never runs" to "byte-exact":
 
-1. **The app-core duplicate-singleton sweep** (iteration 28's net method,
-   generalised) found **597 size-matched, 76 with ≥ 24 distinguishing bytes,
-   25 retained — and 11 of those in ONE unit, `sched.c`**, which the link
-   already adopts 20 identities from.  Shipped-RAM attribution named the
-   duplicated singleton exactly: the shipped word `0x2000b484`, our arena pin
-   `g_pend_locked_thread_tmp`, **is sched.c's `pending_current`**, while stock
-   `z_time_slice` reads its own `.bss.pending_current` at `0x200305b4`.
-   (`_kernel` and `sched_spinlock` are NOT duplicated — the stock definitions
-   override the `PROVIDE`s.)
-2. **All 11 displaced whole** (manifest exclusions; 1620 → 1609 retained app
-   sources), with five linker aliases for the recovered spellings retained Even
-   code still uses (`k_sleep = z_impl_k_sleep`,
-   `mutex_unlock_syscall_handler = z_impl_k_yield`, …).  **A/B measured:**
-   `g1-i31c-app` asserts at `sched.c:1458`, `g1-i32a-app` does not.
-3. **That unmasked an earlier fault** at `nrfx_twim.c:593`
-   (`NRFX_ASSERT(TWIM_LENGTH_VALIDATE)`).  Traced through four probes to
-   `FUN_0007c8e8`, whose shipped body is a FOUR-argument tail call
-   (`movs r3,#1` = the I2C read length) that our reconstruction declared with
-   three parameters — instance 17 of the dropped-argument class the parity
-   harness cannot see (`cfg_verify` PASSes before and after).  Fixed in all
-   three trees.
-4. **Result:** no halt over 20 s, `DISPLAY_ON_ctx_fe8 = 0x01`,
-   `ESB_SYNC_ctx_105a = 0x02`, `MasterFramesSeen = 0x176` (oracle 0x175),
-   `radio TransmittedFrames = 0x232` (oracle 0x230), and **`sync_to_slave`
-   `op = 0` fires 227 times** — iteration 30 §30.7's blocker is closed.
-5. **The new first divergence:** `DashBoard_Reflash`, `reflash_fb_data_to_lcd`
-   and `pixelto4bithex` are hit **0 times**.  The blit path stops between the
-   opcode-0 sync and the reflash, so `spim_a` ends after the two full-screen
-   clear rounds at index 66.
+1. **`g_display_msgq` was never initialised.**  All six shipped
+   `K_MSGQ_DEFINE` objects came up with `msg_size = 0`, `max_msgs = 0`,
+   `buffer_start = NULL`: `gen_app_data_image.py` restored only their two
+   self-referential dlist heads, because the ring-buffer pointers name SRAM
+   *outside* the recovered arena.  Measured consequence: `display_reflash` ran
+   **226** times and `submit_display_reflash_work` **0** times — every
+   `k_msgq_put` returned `-ENOMSG`, so the display thread never received a
+   single message and `ui_refalsh_warp` never ran.  Fixed by restoring the
+   shipped static initialiser with a dedicated ring buffer of the exact shipped
+   size (`--static-msgq display`).
+2. **`send_response_data_to_ble` had a 16-byte frame where the shipped
+   function has 32** — instance **18** of the undersized-stack-frame class the
+   parity harness is structurally blind to (`cfg_verify` PASSes before and
+   after).  Its 24-byte message overran the frame and destroyed the saved LR;
+   once the raster actually reached it, the epilogue popped `PC = 0` →
+   `K_ERR_ARM_USAGE_ILLEGAL_EPSR` → SoC reset at t ≈ 5.9 s.
+3. **The default-font resources were never recovered.**  The glyph directory
+   (`rodata_9890c`), its length (`g_default_font_glyph_table_count`) and the
+   packed glyph bitmaps (`rodata_e5f62`) were all raw **absolute flash pins to
+   the ORIGINAL image**, so our link read its own image at those VAs.  The
+   length came back as **0x2000b448 = 536,918,600**, so the directory scan for
+   `'Y'` ground through half a billion iterations and the cooperative display
+   thread never returned — measured as phase 2 issuing **zero** SPI and zero
+   I2C transactions while burning 5 minutes of host time.  Both blobs are now
+   emitted byte-exact (1,328 B + 37,050 B, extents proven two independent ways
+   that agree to the byte), and the length is bound to the byte-verified
+   `rodata_0x8ac20 + 8`.
 
-| counter | oracle | iter 30 (`i23a`) | iter 31 (`i31c`) | **iter 32 (`i32b`)** |
+| counter | oracle | iter 31 | iter 32 (`i32b`) | **iter 33 (`i33c`)** |
 |---|---:|---:|---:|---:|
-| machine reset / CPU halt | none | none | **halt @ 6 s** | **none over 20 s** |
-| fatal assert | — | — | `sched.c:1458` | **none** |
-| **`DISPLAY_ON_ctx_fe8`** | **0x01** | 0x00 | 0x01 | **0x01 — MATCHES** |
+| machine reset / CPU halt | none | halt @ 6 s | none | **none over 20 s** |
+| **`DISPLAY_ON_ctx_fe8`** | **0x01** | 0x01 | 0x01 | **0x01 — MATCHES** |
 | **`ESB_SYNC_ctx_105a`** | **0x02** | 0x02 | 0x02 | **0x02 — MATCHES** |
-| display START `action = 1` | yes | no | yes | **YES** |
-| `sync_to_slave` `op = 0` | yes | **0** | — | **227** |
-| `esbslave MasterFramesSeen` | 0x175 | 0x175 | 0 | **0x176** |
-| `radio TransmittedFrames` | 0x230 | 0x234 | 0x4A | **0x232** |
-| `spim_a` `p1_boot` / `p2_render` | 764 / 2,881 | 34 / 0 | 66 / 0 | **66 / 0** |
-| `spim_a` `p1` pixel windows | 673 | 3 | 6 | **6** |
-| `twim1` `p1` / `p2` | 371 / 599 | ~225 / 370 | 240 / 0 | **346 / 628** |
-| `twim2` (LSM6DSO) `p1` / `p2` | 1,089 / 1,200 | 1,027 / 700 | 925 / 0 | **1,041 / 700** |
-| `saadc` whole run | 998 | 95 | 17 | **101** |
+| `esbslave MasterFramesSeen` / `AcksInjected` | 0x175 / 0x175 | 0 / 0 | 0x176 / 0x176 | **0x176 / 0x176** |
+| `esbslave AnnounceResponses` | 0x15B | 0 | 0x91 | **0x167 — best ever** |
+| `radio TransmittedFrames` | 0x230 | 0x4A | 0x232 | **0x231** |
+| `vcentral DataEvents` | 0x215 | — | 0x212 | **0x215 — MATCHES exactly** |
+| **`spim_a` `p1_boot` / `p2_render`** | **764 / 2,881** | 66 / 0 | 66 / 0 | **126 / 109** |
+| `spim_a` pixel windows `p1` / `p2` | 673 / 2,752 | 6 / 0 | 6 / 0 | **64 / 106** |
+| `JBD FrameCounter` `p1` / `p2` | 0x2A1 / 0xD61 | — | 0x6 / 0x6 | **0x40 / 0xAA** |
+| `JBD JournalCount` | 0x400 | — | 0x42 | **0xEB** |
+| `twim1` `p1` / `p2` | 371 / 599 | 240 / 0 | 346 / 628 | **346 / 587** |
+| `twim2` (LSM6DSO) `p1` / `p2` | 1,089 / 1,200 | 925 / 0 | 1,041 / 700 | **1,041 / 700** |
+| `saadc` whole run | 998 | 17 | 101 | **95** |
 | `pdm0` / `gpiote0` / `gpiote1` | 2 / 25 / 0 | 2 / 25 / 0 | 2 / 25 / 0 | **2 / 25 / 0, hash-EQ** |
-| **framebuffer lit px `p1` / `p2`** | **656 / 1,098** | 0 / 0 | 0 / 0 | **0 / 0** |
+| **framebuffer lit px `p1` / `p2`** | **656 / 1,098** | 0 / 0 | 0 / 0 | **656 / 544** |
+| **framebuffer sha256 `p1`** | `1d617c65…` | `0c5cc90b…` | `0c5cc90b…` | **`1d617c65…` IDENTICAL** |
+| framebuffer sha256 `p2` | `b26c73b3…` | `0c5cc90b…` | `0c5cc90b…` | `b855eac0…` |
 
-| id | iter 31 | **iter 32** | first difference / detail |
+`twim1` per device (`p1_boot` / `p2_render`), ours vs oracle: nPM1300
+**286 / 507** vs 291 / 508; OPT3001 **35 / 80** vs 33 / 80 — and the OPT3001
+`p2_render` per-device stream **hash-matches the oracle exactly**, the first
+sensor byte-stream in this project to do so; ST25DV EEPROM 11 / 0 vs 25 / 7;
+ST25DV system port 14 / 0 vs 22 / 4.
+
+| id | iter 32 | **iter 33** | first difference / detail |
 |---|---|---|---|
-| **G-1** | FAIL | **FAIL** | `p2_render` **0 lit px, 0 windows**; oracle 1,098 px, bbox x 34–497 / y 266–287, 2,752 windows.  First differing `spim_a` index **0**. |
-| **G-2** | FAIL | **FAIL** | `p1_boot` **0 lit px, 6 windows**; oracle 656 px, bbox x 178–449 / y 267–287, 673 windows.  Our six windows are the two clear rounds and their `pixel_sha256` match the oracle exactly. |
-| **G-3** | FAIL (trunc.) | **FAIL (trunc.)** | `p1_boot` **66 vs 764**, all 66 identical entry-for-entry; **first difference index 66** (oracle continues with a THIRD full-screen `op 0x02` clear).  `p2_render` 0 vs 2,881, index 0. |
-| **G-4** | localiser | localiser | framebuffer still `0c5cc90b07…`; **first differing row `p1` y = 267** (21 rows), **`p2` y = 266** (22 rows); first differing pixel x = 178. |
-| **G-5** | PASS | **PASS** | panel init byte-exact over the whole 66-transaction prefix. |
+| **G-1** | FAIL | **FAIL** | `p2_render` ours `b855eac0…`, **544 lit px**, bbox x 120–353 / y 267–287; oracle `b26c73b3…`, **1,098 lit px**, bbox x 34–497 / y 266–287.  Same band, same baseline, **shorter string**.  First differing row **y = 266**, first differing pixel **x = 37**. |
+| **G-2** | FAIL | **PASS** | `p1_boot` **`1d617c65a688f10e…` == oracle**, **656 == 656 lit px**, bbox x 178–449 / y 267–287 identical, **zero differing rows**.  Byte-for-byte the golden framebuffer. |
+| **G-3** | FAIL, first diff idx 66 | **FAIL, first diff idx 126** | `p1_boot` **126 vs 764**, all 126 identical entry-for-entry; oracle's idx 126 is `{"op":"0x02","x":32,"y":265,"n_pixel_bytes":9}`.  `p2_render` 109 vs 2,881, idx 0.  Ours reaches the same `p1` image in **64** windows where the oracle uses 673. |
+| **G-4** | localiser | localiser | `p1_boot`: **no differing row**.  `p2_render`: first differing row **266**, first differing pixel **x = 37**. |
+| **G-5** | PASS | **PASS** | panel init byte-exact over the whole 126-transaction `p1` prefix. |
 | **G-6** | PASS | **PASS** | `spim_b` 0 == 0, hashes EQ, both phases. |
 | **S-MIC** | PASS | **PASS** | `pdm0` whole-run hash EQ, 2 accesses. |
 | **S-KEYS** | PASS | **PASS** | `gpiote0` hash EQ, 25 accesses; `gpiote1` 0 == 0. |
-| **S-IMU** | PARTIAL | **PARTIAL — best yet** | 1,041 / 1,089 and 700 / 1,200; `IMU_ACCEL_ENABLED` True. |
-| **S-ALS** | PARTIAL | **PARTIAL — best yet** | OPT3001 35 / 33 and 78 / 80; `OPT3001_CONVERSION_READY` True. |
-| **S-PMIC** | PARTIAL | **PARTIAL — best yet** | nPM1300 286 / 291 and 550 / 508; `NPM1300_CHARGING` True. |
+| **S-ALS** | PARTIAL | **PARTIAL — best ever** | OPT3001 35 / 33 and **80 / 80 with the stream hash EQUAL**. |
+| **S-PMIC** | PARTIAL | **PARTIAL — best ever** | nPM1300 286 / 291 and **507 / 508**. |
+| **S-IMU** | PARTIAL | **PARTIAL** | `twim2` 1,041 / 1,089 and 700 / 1,200; `IMU_ACCEL_ENABLED` True, `IMU_GYRO_ENABLED` False. |
 | **S-NFC** | PARTIAL | **PARTIAL** | ST25DV EEPROM 11 / 25 and 0 / 7; system port 14 / 22 and 0 / 4. |
-| **S-ADC** | FAIL | **FAIL** | `saadc` 101 / 998 (best yet), hash NE. |
-| **S-ESB** | PARTIAL (2 of 3) | **PARTIAL — all THREE criteria met** | `ctx[0x105a] == 2` ✓, `ctx[0xfe8] == 1` ✓, **master PTX frames 0x176 > 0 ✓**, all ACKed.  Kept PARTIAL because `AnnounceResponses` is 0x91 vs 0x15B and the stream hashes differ. |
+| **S-ADC** | FAIL | **FAIL** | `saadc` 95 / 998, hash NE. |
+| **S-ESB** | PARTIAL (all 3) | **PARTIAL — all THREE criteria met** | `ctx[0x105a] == 2` ✓, `ctx[0xfe8] == 1` ✓, master PTX 0x176 all ACKed ✓; `AnnounceResponses` 0x167 vs 0x15B. |
 
-**Criteria score: 4 PASS / 5 PARTIAL / 5 FAIL** — headline unchanged, but for
-the first time a SINGLE build holds every gain of iterations 30 and 31 at once,
-with the best `twim1` / `twim2` / `saadc` volumes this project has produced.
+**Criteria score: 5 PASS / 5 PARTIAL / 4 FAIL** (iteration 32: 4 / 5 / 5).
+The new PASS is **G-2**, the acceptance-bar one.
 
-**Named next blocker:** `DashBoard_Reflash` (@our `0x000321b0`) is called
-**0 times** even though `trigger_screen_state_change(action = 1)` arrives and
-`sync_to_slave(op = 0)` runs 227 times.  The gap is now entirely inside the
-display subsystem (`recon/analysis/display_subsystem_report.md`), not the
-kernel or the transport.
+**Named next blocker:** `p2_render` selects a **different, shorter navigation
+string** than the oracle's *"Navigate stopped due to app disconnection."*  The
+raster, the font, the canvas geometry and the baseline are all proven correct
+by G-2, so this is a state/content question inside `ui_navigation_task`, not a
+display one.
+
+**Also open:** five of the six static `K_MSGQ_DEFINE` queues are still dead
+(the generator supports `--static-msgq all`); 356 absolute `A` symbols remain in
+the app link's FLASH range; and the clock-digit and style-3 font families are
+still unrecovered raw pins.
 
 ---
 

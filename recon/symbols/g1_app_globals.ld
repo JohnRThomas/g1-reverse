@@ -462,7 +462,12 @@ PROVIDE(rodata_8a908 = 0x0008a908);
 PROVIDE(rodata_8aa10 = 0x0008aa10);
 PROVIDE(rodata_8ab18 = 0x0008ab18);
 PROVIDE(rodata_8ac20 = 0x0008ac20);
-PROVIDE(g_default_font_glyph_table_count = 0x0008ac28);
+/* P4 iteration 33: this is the shipped word at 0x8ac28, i.e. element [2] of
+ * the already byte-verified recon/data table rodata_0x8ac20 (= 0x14c = 332).
+ * The old numeric pin read OUR image at 0x8ac28, which holds 0x2000b448, so
+ * get_default_font_glyph_offset's directory scan ran 536,918,600 iterations
+ * and the display thread never returned -- the measured iteration-33 stall. */
+PROVIDE(g_default_font_glyph_table_count = rodata_0x8ac20 + 8);
 PROVIDE(rodata_8ac2c = 0x0008ac2c);
 PROVIDE(rodata_8ac30 = 0x0008ac30);
 PROVIDE(rodata_8ac34 = 0x0008ac34);
@@ -535,7 +540,9 @@ PROVIDE(rodata_9873c = 0x0009873c);
 PROVIDE(rodata_98768 = 0x00098768);
 PROVIDE(rodata_98774 = 0x00098774);
 PROVIDE(rodata_988a8 = 0x000988a8);
-PROVIDE(rodata_9890c = 0x0009890c);
+/* rodata_9890c: P4 iteration 33 -- the default-font glyph DIRECTORY, now
+ * defined byte-exact in g1_app_font_rodata.c.  The numeric pin read our own
+ * image at the original VA and returned unrelated bytes. */
 PROVIDE(rodata_98e3c = 0x00098e3c);
 PROVIDE(rodata_98fbc = 0x00098fbc);
 PROVIDE(rodata_98fe8 = 0x00098fe8);
@@ -1996,7 +2003,8 @@ PROVIDE(rodata_e123a = 0x000e123a);
 PROVIDE(rodata_e17da = 0x000e17da);
 PROVIDE(rodata_e4408 = 0x000e4408);
 PROVIDE(rodata_e5248 = 0x000e5248);
-PROVIDE(rodata_e5f62 = 0x000e5f62);
+/* rodata_e5f62: P4 iteration 33 -- the default-font glyph BITMAP blob, now
+ * defined byte-exact in g1_app_font_rodata.c (37050 B, 0xe5f62..0xef01c). */
 PROVIDE(rodata_ef01c = 0x000ef01c);
 PROVIDE(rodata_ef058 = 0x000ef058);
 PROVIDE(rodata_ef081 = 0x000ef081);
