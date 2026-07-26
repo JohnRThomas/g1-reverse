@@ -34,7 +34,13 @@ PROVIDE(FUN_00072078 = z_spin_lock_set_owner); /* 0x00072078 */
 PROVIDE(net_buf_get_impl = net_buf_pool_get_727ac); /* 0x000727ac */
 PROVIDE(submit_task_work = k_sem_give); /* 0x00072880 */
 PROVIDE(mutex_lock_syscall_handler = z_impl_k_sem_take); /* 0x00072908 */
-PROVIDE(update_cache = sched_update_cache); /* 0x000737d8 */
+/* WITHDRAWN in P4 iteration 32: 0x000737d8 is displaced to
+ * zephyr/kernel/sched.c :: update_cache, which is translation-unit-local, so
+ * `sched_update_cache` no longer exists as a definition and this reversible
+ * alias has no owner to bind.  Its only referrer (the retained
+ * unready_thread.c) is displaced in the same batch, so nothing spells
+ * `update_cache` externally any more.  A regeneration from defined/undefined
+ * symbols reproduces this file without the line. */
 PROVIDE(k_timer_start = z_impl_k_timer_start); /* 0x00075174 */
 PROVIDE(FUN_00076cc8 = fprintf_stream); /* 0x00076cc8 */
 PROVIDE(FUN_00077914 = snprintf); /* 0x00077914 */

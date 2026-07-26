@@ -327,6 +327,27 @@ zephyr_linker_sources(SECTIONS
 foreach(_g1_newlib_root __sprintf_chk sprintf _vsnprintf_r vsnprintf fprintf)
   zephyr_ld_options("-Wl,--undefined=${_g1_newlib_root}")
 endforeach()
+
+# P4 iteration 32, coherent zephyr/kernel/sched.c displacement.  The unit was
+# split (20 adopted identities + 11 retained duplicate bodies over one
+# `_kernel`, with sched.c's `pending_current` file-static duplicated into the
+# recon RAM arena).  The manifest now excludes all 11; four of them are still
+# called by their historical recovered spelling from retained Even translation
+# units, so those spellings bind to the genuine upstream owners here.  Same
+# ordering rule as the newlib fragment above: this must precede
+# g1_app_function_aliases.ld / g1_app_veneer_aliases.ld, which chain onto these
+# names.
+zephyr_linker_sources(SECTIONS
+  SORT_KEY 0_g1_sched_displacement
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_sched_displacement_aliases.ld"
+)
+# Same archive-extraction caveat as the newlib roots: a symbol named only in a
+# linker-script expression does not pull its section in, so name the upstream
+# sched.c owners the aliases above resolve to.
+foreach(_g1_sched_root z_impl_k_sleep z_impl_k_yield z_impl_k_thread_priority_set
+                       z_sched_start z_priq_dumb_remove)
+  zephyr_ld_options("-Wl,--undefined=${_g1_sched_root}")
+endforeach()
 if(G1_ENABLE_FIXED_VERIFIED_RODATA)
   zephyr_linker_sources(SECTIONS "${G1_FIXED_VERIFIED_DATA_LINKER}")
 endif()

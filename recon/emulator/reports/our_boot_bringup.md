@@ -12403,3 +12403,404 @@ Files changed: new `recon/application/app/src/g1_bt_nus_service.c`;
 `recon/symbolized/app/spec_ble_command_hook.c` (the stack frame);
 `recon/emulator/reports/sensor_parity_status.md`; this report.
 **No `tools/` logic change**, `armemul` untouched, nothing committed.
+
+## Iteration 32 — the app core's **`sched.c` was a SPLIT unit** (20 adopted
+## identities + 11 retained duplicate bodies over one `_kernel`, with the
+## `pending_current` file-static duplicated into the recon RAM arena).
+## Displacing the family whole **removes the `sched.c:1458` panic**, and the
+## defect it unmasked — a dropped `r3` at `FUN_0007c8e8` that fed a kernel
+## spinlock address to `nrfx_twim_xfer` as an I2C read length — is fixed.
+## The result is **iteration 31's open display gate with iteration 30's
+## stability, and better**: no halt over 20 s, `DISPLAY_ON_ctx_fe8 = 0x01`,
+## `ESB_SYNC_ctx_105a = 0x02`, `MasterFramesSeen = 0x176`, `sync_to_slave`
+## `op = 0` fires **227 times** for the first time in this project
+
+**Stated first, because the acceptance bar is pixels: NO PIXEL IS PAINTED.**
+`framebuffer.lit_pixels` is **0 / 0** against the oracle's **656** (`p1_boot`)
+/ **1,098** (`p2_render`).  Everything below is measured; nothing is claimed
+that was not.
+
+### 32.1 The app-core duplicate-singleton sweep (the task's Priority 1 method)
+
+Iteration 28's net sweep was generalised to the app core.  Analysis-only
+scratchpad scripts (**no `tools/` logic changed**):
+
+1. **Byte identity.**  Every `.text.*` input section of the app link's own
+   Zephyr kernel objects (`sched.c.obj`, `timeout.c.obj`, `thread.c.obj`,
+   `sem.c.obj`, `mutex.c.obj`, `queue.c.obj`, `work.c.obj`, `msg_q.c.obj`,
+   `poll.c.obj`, `mempool.c.obj`, `timer.c.obj`, `stack.c.obj`, `condvar.c.obj`,
+   `init.c.obj`, `mailbox.c.obj`, taken from `/private/tmp/g1-i31c-app`) was
+   indexed with a 4-byte mask at every relocation offset, and compared against
+   `app_update.bin` at each recovered function's VA over its whole section
+   length.  **Instruction shape is never accepted** (iteration 20's
+   `ancs_client.c` mistake).
+2. **Shipped-RAM attribution.**  For each located section, every `R_ARM_ABS32`
+   relocation was resolved into the stock object's own `.bss.*`/`.data.*`
+   object and cross-checked against the shipped image word
+   (`shipped = image_word(hit_va + off) − in-place addend`).
+
+Result: **597 size-matched hits, 76 with ≥ 24 distinguishing (unmasked) bytes,
+of which 25 are RETAINED** — and **11 of those 25 are in one unit, `sched.c`**:
+
+| shipped VA | our retained name | stock section | linkage | unmasked bytes |
+|---|---|---|---|---:|
+| `0x000737d8` | `sched_update_cache` | `.text.update_cache` | local | 68 |
+| `0x00073840` | `sched_ready_queue_insert` | `.text.ready_thread` | local | 116 |
+| `0x00073a78` | `sched_thread_ready` | `.text.z_sched_start` | **global** | 96 |
+| `0x00073cdc` | `dlist_unlink_node` | `.text.z_priq_dumb_remove` | **global** | 40 |
+| `0x00073e88` | `unready_thread` | `.text.unready_thread` | local | 40 |
+| `0x00073f3c` | `pend_locked` | `.text.pend_locked` | local | 36 |
+| `0x00074274` | `z_abort_thread_timeout` | `.text.unpend_thread_no_timeout` | local | 40 |
+| `0x00074554` | `k_thread_priority_set` | `.text.z_impl_k_thread_priority_set` | **global** | 68 |
+| `0x000745c8` | `mutex_unlock_syscall_handler` | `.text.z_impl_k_yield` | **global** | 200 |
+| `0x000746fc` | `z_tick_sleep` | `.text.z_tick_sleep` | local | 200 |
+| `0x00074844` | `k_sleep` | `.text.z_impl_k_sleep` | **global** | 64 |
+
+The same link **already** adopts **20 other `sched.c` identities** from the
+same object (`sliceable`, `z_reset_time_slice`, `z_ready_thread`,
+`z_unpend_thread_no_timeout`, `z_reschedule`, `k_sched_lock/unlock`,
+`move_thread_to_end_of_prio_q`, `add_to_waitq_locked`, `z_pend_curr`,
+`z_set_prio`, `z_thread_priority_set`, `z_impl_k_thread_suspend`,
+`z_unpend_thread`, `z_unpend1_no_timeout`, `z_unpend_first_thread`,
+`z_thread_abort`, `z_sched_wake`, `z_reschedule_irqlock`, `z_unpend_all`,
+`k_work_delayable_busy_get`'s neighbour).  **That is the split.**
+
+`recon/ownership/library_displacement_candidates.json` already carried all 11
+with `decision = adopt_upstream_exclude_reconstruction`; Batch 2b (iteration 9)
+deferred them because seven upstream owners are translation-unit-local statics
+and `recon/application/app/src/g1_kernel_sched_bridges.c` says so in as many
+words: *"`z_tick_sleep` and `unready_thread` … both upstream bodies are
+file-static in sched.c with no linkable symbol, so their rows are reverted
+instead of bridged."*
+
+### 32.2 The duplicated singleton, named by attribution rather than by argument
+
+Detector 2 on `.text.z_tick_sleep` gives the decisive row:
+
+```
+  +0x120 sym=sched_spinlock     sec=.bss.sched_spinlock    shipped=0x2000b490
+  +0x130 sym=_kernel                                       shipped=0x2000b448
+  +0x134 sym=(sec)              sec=.bss.pending_current   shipped=0x2000b484
+  +0x138 sym=z_thread_timeout   sec=.text.z_thread_timeout shipped=0x00086661
+```
+
+so the shipped word `0x2000b484` — our pin
+`PROVIDE(g_pend_locked_thread_tmp = g1_ram_arena + 0x9484)` — **is sched.c's
+`pending_current` file-static**, the `CONFIG_SWAP_NONATOMIC` guard variable
+that `z_time_slice()` compares against `_current`.  `nm` on `g1-i31c-app`
+confirms the duplication in the link, not just on paper:
+
+```
+2000c624 A g_pend_locked_thread_tmp      <- arena copy, written by our z_tick_sleep
+200305b4 b pending_current               <- stock copy, read by stock z_time_slice
+20030578 B _kernel                       <- ONE object (PROVIDE is overridden)
+200305c0 B sched_spinlock                <- ONE object (global in NCS 2.5.1 sched.c)
+```
+
+`_kernel` and `sched_spinlock` are *not* duplicated (the stock definitions win
+over the `PROVIDE`s — `sched_spinlock` is non-static in NCS 2.5.1's `sched.c`),
+which is why iteration 31's hooks on the stock readiers were silent: the split
+was in `pending_current` and in the *bodies*, not in the queue state.
+
+### 32.3 The displacement, and what was deliberately KEPT
+
+All 11 rows were added to `recon/ownership/adoption_manifest.json`
+(`exclude_reconstruction = true`, component `zephyr_kernel`), and
+`tools/gen_retained_sources.py` regenerated — **1620 → 1609 retained app
+sources**, `--check` clean.  Four of the eleven are still spelled by retained
+Even TUs, and every one of those four has a **global** upstream owner, so they
+are bound by linker alias in a new fragment
+`recon/symbols/g1_app_sched_displacement_aliases.ld`:
+
+```
+PROVIDE(k_sleep                     = z_impl_k_sleep);                  /* 33 retained callers */
+PROVIDE(mutex_unlock_syscall_handler= z_impl_k_yield);                  /*  4 retained callers */
+PROVIDE(k_thread_priority_set       = z_impl_k_thread_priority_set);    /*  2 retained callers */
+PROVIDE(sched_thread_ready          = z_sched_start);                   /*  veneer alias chain */
+PROVIDE(dlist_unlink_node           = z_priq_dumb_remove);              /*  defensive          */
+```
+
+with `SORT_KEY 0_g1_sched_displacement` so GNU ld evaluates them **before**
+`g1_app_function_aliases.ld` / `g1_app_veneer_aliases.ld`, which chain further
+spellings onto these names (`FUN_0007c0a4 = k_sleep`,
+`process_touch_event = mutex_unlock_syscall_handler`,
+`FUN_0008641c = sched_thread_ready`), plus five `-Wl,--undefined=` roots for
+the archive-extraction caveat the newlib batch already documents.  One
+generated line was withdrawn: `PROVIDE(update_cache = sched_update_cache)` in
+`g1_app_function_aliases.ld` has no owner once `0x000737d8` is displaced, and
+its only referrer (`unready_thread.c`) is displaced in the same batch.
+
+**Verified in the link (`nm g1-i32a-app`):**
+
+```
+00072604 T k_sleep       == 00072604 T z_impl_k_sleep
+00072388 T mutex_unlock_syscall_handler == 00072388 T z_impl_k_yield
+00072314 T k_thread_priority_set == 00072314 T z_impl_k_thread_priority_set
+000724bc t z_tick_sleep    00071c48 t unready_thread    00071598 t update_cache
+200305b4 b pending_current   <- now the ONLY copy any scheduler code touches
+```
+
+**KEPT, with the evidence for keeping:**
+
+| VA | our name | stock candidate | why kept |
+|---|---|---|---|
+| `0x000748ac` | `k_current_get` | `.text.z_impl_z_current_get` | only **8** unmasked bytes (12 B function, 4 B masked literal) — **below the evidence bar**; and it owns no unit-private state, it only reads `_kernel + 8`, which is already the one shared object. |
+| `0x00074b10` | `z_sched_wait` | — | shipped extent **0x58**, stock `.text.z_sched_wait` is **0x24**: no byte match, so **not** a duplicate. Not retained in this link anyway. |
+| `0x0008664c` | `z_reschedule_unlocked` | `.text.z_reschedule_unlocked` (20 B) | VA gap is 28 B, so the sweep's whole-section test does not apply; it holds no private state (it forwards to the already-adopted `z_reschedule_irqlock`). |
+| 14 further ≥24-byte retained hits in `msg_q.c` (3), `mutex.c` (2), `queue.c` (2), `sem.c` (2), `timeout.c` (2), `mempool.c`, `work.c`, `poll.c` | — | — | **named, not displaced this iteration.** Each is a genuine split-unit candidate on the same evidence, but none is implicated by a measured defect, and `sem.c` in particular carries the deliberate `z_impl_k_sem_take=g1_displaced_sdk_…` CMake arrangement that must be re-reasoned, not bulk-flipped.  Recorded as open item 1 below. |
+
+The `esb.c`-style caution was applied: nothing was displaced on instruction
+shape, and every one of the eleven agrees on **every unmasked byte of the whole
+stock section** with this link's own Kconfig (`CONFIG_SPIN_VALIDATE=y`,
+`CONFIG_THREAD_CUSTOM_DATA=y`, `CONFIG_TIMEOUT_64BIT`, no TLS), not a variant.
+
+### 32.4 MEASURED — the panic is GONE, and it unmasked the next defect
+
+`g1-i32a-app` = `g1-i31c-app` + §32.3, nothing else.  Identical stimulus,
+identical net image, hooks on `z_fatal_error` / `assert_post_action` at each
+link's own PCs:
+
+| build | assert that kills the run |
+|---|---|
+| `g1-i31c-app` (iteration 31) | `file=0x0009e264 line=1458 lr=0x00049111` → **`zephyr/kernel/sched.c:1458`**, the `__ASSERT(!_THREAD_SUSPENDED)` in the RECOVERED `z_tick_sleep` |
+| **`g1-i32a-app`** | `file=0x000b3ee0 line=593 lr=0x000657b3` → **`modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c:593`**, `NRFX_ASSERT(TWIM_LENGTH_VALIDATE(...))` in `nrfx_twim_xfer` |
+
+**The `sched.c:1458` panic no longer occurs.**  What replaced it is an
+*earlier* fault, so `g1-i32a-app` on its own is a regression on every volume
+(spim_a 66 → 34, `DISPLAY_ON_ctx_fe8` 0x01 → 0x00): both facts are reported,
+and the second one was chased rather than papered over.
+
+### 32.5 The unmasked defect — a dropped `r3` at `FUN_0007c8e8`, proven by
+### disassembly
+
+Four Renode probes, each narrowing by one frame:
+
+```
+I32 ASSERT   file=nrfx_twim.c line=593
+I32 twim_xfer desc=0x200286fc d0=0x00005701 d1=0x200305a4 d2=0 d3=0x20028790 lr=0x00061055
+              (type=1 RX, i2c addr 0x57, primary_length = 0x200305a4)
+I32 i2c_xfer msgs=0x20028740 n=2 addr=0x57 m0len=2 m1len=0x200305a4 lr=0x00022bc3
+I32 sendlen  r0=0x0008446c r1=0x57 r2=0x0001 r3=0x20028790 [sp]=0x200305a4 lr=0x00078df9
+```
+
+`0x200305a4` is a **kernel `k_spinlock` file-static** in the same link — i.e.
+an uninitialised register, not data.  `lr = 0x00078df9` is inside
+`json_arr_encode` (`FUN_0007c898`), whose caller chain is
+`FUN_0007c8e8 → FUN_000257ec → FUN_0007c898 → FUN_00025740`, and the shipped
+bytes of `FUN_0007c8e8` settle it:
+
+```
+7c8e8  mov  r2, r1        ; r2 = buf
+7c8ea  cbz  r1, 7c8f4
+7c8ec  movs r3, #1        ; r3 = 1   <-- THE READ LENGTH, dropped by our build
+7c8ee  mov  r1, r3        ; r1 = 1   (the 16-bit register index)
+7c8f0  b.w  0x257ec       ; FUN_000257ec(dev, 1, buf, 1)
+```
+
+`movs r3,#1` supplies **both** the register index (via `mov r1,r3`) and the
+length; our reconstruction declared the callee with **three** parameters and
+dropped `r3`.  `FUN_000257ec` forwards its 4th parameter to `FUN_00025740`,
+which stores it as `i2c_msg[1].len` of an `i2c_write_read`, so the ST25DV
+**system-port (0x57) register-1** read reached `nrfx_twim_xfer` with a
+spinlock address as its length.
+
+This is instance **17** of the class the parity harness is structurally blind
+to (the callee is an order-keyed oracle, so a register argument it never reads
+is not compared).  `tools/cfg_verify.py app FUN_0007c8e8` **passes both before
+and after the fix** (`PASS cases=2`), which is exactly the blindness.
+
+A directed audit of the whole thunk block `0x7c830..0x7ca4e` (11 thunks that
+tail-call `FUN_000257ec` / `FUN_00025788` / `FUN_00025850` / `FUN_000256dc`)
+found `FUN_0007c8e8` to be the **only** one with a dropped argument; its three
+siblings with the same shape (`0x7c932` len=8, `0x7c944` len=1, `0x7c956`
+len=1) already pass four.  Fixed in all three trees
+(`recon/app/src/FUN_0007c8e8.c`, `recon/verified/src/FUN_0007c8e8.c`,
+`recon/symbolized/app/ipc_ept_op_b_guarded.c`) with the disassembly recorded in
+the comment.
+
+### 32.6 MEASURED — the 20 s capture of `g1-i32b-app` + `g1-i30e-net`
+
+```
+sleep 200 | G1_RESC=/private/tmp/g1-i32/ours-paired-i32a.resc \
+G1_APP_ELF=/private/tmp/g1-i32b-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040C68 G1_CTX_105A=0x20040CDA \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i32b
+```
+
+| counter | oracle | iter 30 (`i23a`) | iter 31 (`i31c`) | i32a (sched only) | **iter 32 (`i32b`)** |
+|---|---:|---:|---:|---:|---:|
+| machine reset / CPU halt | none | none | **halt @ 6 s** | **halt @ 6 s** | **none over 20 s** |
+| fatal assert | — | — | `sched.c:1458` | `nrfx_twim.c:593` | **none** |
+| **`DISPLAY_ON_ctx_fe8`** | **0x01** | 0x00 | 0x01 | 0x00 | **0x01 — MATCHES** |
+| **`ESB_SYNC_ctx_105a`** | **0x02** | 0x02 | 0x02 | 0x02 | **0x02 — MATCHES** |
+| display START `action = 1` | yes | no | yes | no | **YES** |
+| **`sync_to_slave` `op = 0`** | yes | **0** | (blit branch) | — | **227 calls** |
+| `esbslave MasterFramesSeen` | 0x175 | 0x175 | 0 | 0 | **0x176** |
+| `esbslave AcksInjected` | 0x175 | 0x175 | 0 | 0 | **0x176** |
+| `esbslave AnnounceResponses` | 0x15B | 0x166 | 0 | 0 | 0x91 |
+| `radio TransmittedFrames` | 0x230 | 0x234 | 0x4A | 0xC | **0x232** |
+| `vcentral Connected` / `ConnectInds` | True / 1 | True / 1 | — | True / 1 | **True / 1** |
+| `vcentral DataEvents` | 0x215 | 0x20D | — | 0x8 | **0x212** |
+| `spim_a` `p1_boot` / `p2_render` | 764 / 2,881 | 34 / 0 | 66 / 0 | 34 / 0 | **66 / 0** |
+| `spim_a` `p1` pixel windows | 673 | 3 | 6 | 3 | **6** |
+| `twim1` `p1` / `p2` | 371 / 599 | ~225 / 370 | 240 / 0 | 167 / 0 | **346 / 628** |
+| `twim2` (LSM6DSO) `p1` / `p2` | 1,089 / 1,200 | 1,027 / 700 | 925 / 0 | 659 / 0 | **1,041 / 700** |
+| `saadc` whole run | 998 | 95 | 17 | 5 | **101** |
+| `pdm0` / `gpiote0` / `gpiote1` | 2 / 25 / 0 | 2 / 25 / 0 | 2 / 25 / 0 | — | **2 / 25 / 0, all hash-EQ** |
+| `JBD FrameCounter` p1 / p2 | 0x2A1 / 0xD61 | 0x3 / 0x3 | — | — | 0x6 / 0x6 |
+| `JBD JournalCount` | 0x400 | — | — | — | 0x42 |
+| **framebuffer lit px `p1` / `p2`** | **656 / 1,098** | 0 / 0 | 0 / 0 | 0 / 0 | **0 / 0** |
+
+`twim1` per device (`p1_boot` / `p2_render`), ours vs oracle:
+
+| device | oracle | **iter 32** |
+|---|---|---|
+| nPM1300 charger/fuel gauge | 291 / 508 | **286 / 550** |
+| OPT3001 ambient light | 33 / 80 | **35 / 78** |
+| ST25DV NFC EEPROM | 25 / 7 | 11 / 0 |
+| ST25DV system port | 22 / 4 | 14 / 0 |
+
+Boolean sensor states all match the oracle: `IMU_ACCEL_ENABLED` True,
+`IMU_GYRO_ENABLED` False, `OPT3001_CONVERSION_READY` True, `NPM1300_CHARGING`
+True.
+
+#### Graphics + sensor verdicts (iteration 32, `g1-i32b-app` + `g1-i30e-net`)
+
+| id | verdict | first difference / detail |
+|---|---|---|
+| **G-1** | **FAIL** | `p2_render` ours `0c5cc90b07…`, **0 lit px, 0 pixel windows**; oracle `b26c73b37d…`, **1,098 lit px**, bbox x 34–497 / y 266–287, 2,752 windows. |
+| **G-2** | **FAIL** | `p1_boot` ours `0c5cc90b07…`, **0 lit px, 6 pixel windows**; oracle `1d617c65a6…`, **656 lit px**, bbox x 178–449 / y 267–287, 673 windows.  Our six windows are the two full-screen clear rounds `(0,0)`/`(0,192)`/`(0,384)`, `pixel_sha256` `0693f6bf…`/`0693f6bf…`/`4c7eea52…` — **exactly the oracle's**, i.e. correct all-transparent fills. |
+| **G-3** | **FAIL (truncation only)** | `p1_boot` **66 vs 764**, the 66 shared transactions identical entry-for-entry; **first difference at index 66**, where the oracle continues `{"op":"0x02","kind":"pixel_window","x":0,"y":0,"n_pixel_bytes":61440,"pixel_sha256":"0693f6bf…"}` (a THIRD clear round).  `p2_render` **0 vs 2,881**, first difference index **0**, oracle `{"op":"0x02","x":32,"y":265,"n_pixel_bytes":9}`. |
+| **G-4** | *localiser* | our framebuffer is bit-identical to iterations 16–31 (`0c5cc90b07…`).  **First differing row: `p1_boot` y = 267** (21 rows differ, 267–287), **`p2_render` y = 266** (22 rows differ, 266–287); first differing pixel x = 178 (oracle `ffffff`, ours `000000`). |
+| **G-5** | **PASS** | panel init byte-exact over the whole 66-transaction prefix, including the three `op 0x02` full-screen clears. |
+| **G-6** | **PASS** | `spim_b` 0 == 0, `stream_sha256` EQ, both phases. |
+| **S-MIC** | **PASS** | `pdm0` whole-run hash EQ, 2 accesses. |
+| **S-KEYS** | **PASS** | `gpiote0` whole-run hash EQ, 25 accesses; `gpiote1` 0 == 0. |
+| **S-IMU** | **PARTIAL — best yet** | `twim2` **1,041 / 1,089** (`p1`) and **700 / 1,200** (`p2`); `IMU_ACCEL_ENABLED` True. |
+| **S-ALS** | **PARTIAL — best yet** | OPT3001 **35 / 33** and **78 / 80**; `OPT3001_CONVERSION_READY` True. |
+| **S-PMIC** | **PARTIAL — best yet** | nPM1300 **286 / 291** and **550 / 508**; `NPM1300_CHARGING` True. |
+| **S-NFC** | **PARTIAL** | ST25DV EEPROM 11 / 25 and 0 / 7; system port 14 / 22 and 0 / 4. |
+| **S-ADC** | **FAIL** | `saadc` **101 / 998**, hash NE (best yet; was 95 / 17). |
+| **S-ESB** | **PARTIAL — all THREE criteria met for the first time** | `ESB_SYNC_ctx_105a == 0x02` ✓, **`DISPLAY_ON_ctx_fe8 == 0x01` ✓**, **master PTX frames > 0 ✓ (0x176 vs the oracle's 0x175, all ACKed)**.  Kept PARTIAL only because `AnnounceResponses` is 0x91 vs 0x15B and the stream hashes differ. |
+
+**Criteria score: 4 PASS / 5 PARTIAL / 5 FAIL** — the same headline as
+iterations 30 and 31, but for the first time **one single build** holds
+*every* gain: no halt, the display gate open, all three S-ESB criteria met, and
+the best `twim1`/`twim2`/`saadc` volumes this project has produced.
+**NO PIXEL IS PAINTED.**
+
+### 32.7 The NEW first divergence — the blit path stops between
+### `sync_to_slave(op = 0)` and `DashBoard_Reflash`
+
+Renode block hooks at **our** `g1-i32b-app` PCs, 20 s capture, same stimulus:
+
+| app hook (our PC) | hits | oracle |
+|---|---:|---|
+| `trigger_screen_state_change` `0x00028ac8` | **2** — `action = 0` then **`action = 1`** | 2, one with `action = 1` |
+| `sync_to_slave` `0x00024034` | **244** — **`op = 0` ×227**, `op = 12` ×16, `op = 5` ×1 | includes `op = 0` |
+| **`DashBoard_Reflash` `0x000321b0`** | **0** | runs |
+| **`reflash_fb_data_to_lcd` `0x00041698`** | **0** | runs |
+| **`pixelto4bithex` `0x0003171c`** | **0** | runs |
+
+Iteration 30 §30.7's blocker ("the app's `display_dispatch_thread` never calls
+`sync_to_slave(display, 0, 0)`") is **closed**: the opcode-0 display gate is
+now issued 227 times.  The divergence has moved exactly one step further along
+the raster path: **nothing downstream of the opcode-0 sync ever calls
+`DashBoard_Reflash`**, so `reflash_fb_data_to_lcd` and `pixelto4bithex` never
+run, no content window is ever emitted, and `spim_a` stops after the two
+full-screen clear rounds at index 66.  **That is the named next blocker**, and
+it is now a pure display-subsystem question (`display_dispatch_thread`
+@our `0x00025d18`, `DashBoard_Reflash` @our `0x000321b0`,
+`recon/analysis/display_subsystem_report.md`), not a kernel or transport one.
+
+### 32.8 Build ledger and gates
+
+| app build | change | FLASH | RAM | `nm -u` |
+|---|---|---:|---:|---:|
+| `g1-i31c-app` | iteration 31 (the A side) | 700,272 B | 253,045 B | 0 |
+| `g1-i32a-app` | + the 11-function `sched.c` displacement (§32.3) | 699,076 B | 253,045 B | 0 |
+| **`g1-i32b-app`** | **+ the `FUN_0007c8e8` dropped `r3` (§32.5) — FINAL** | **699,076 B** | **253,045 B** | **0** |
+
+FLASH **−1,196 B** against iteration 31 (11 duplicate bodies removed).  The net
+core is **UNCHANGED** (`g1-i30e-net`).
+
+| gate | iteration 31 | **iteration 32 (`g1-i32b-app`)** |
+|---|---|---|
+| `check_ram_pin_collisions.py` (app) raw-in-object / raw-free | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_ram_pin_collisions.py` (app) bound OK / escaping | 626 / 0 | **624 / 0** (two pins fewer: the displaced bodies) |
+| `check_ram_pin_collisions.py --core net` | 0 / 0, 170 / 0 | **0 / 0, 170 / 0**, EXIT 0 |
+| `check_net_raw_literals.py` | 0 / 0 | **0 / 0**, EXIT 0 |
+| `check_thread_create_stack_args.py` | 10/10 | **10/10**, EXIT 0 |
+| `gen_retained_sources.py --check` | clean | **clean**, EXIT 0 |
+| `verify_net_stock_data_window.py` | PROVEN | **PROVEN** |
+| app / net `nm -u` undefined | 0 / 0 | **0 / 0** |
+| app / net duplicate global definitions | 0 / 0 | **0 / 0** |
+| `cfg_verify.py app FUN_0007c8e8` | PASS (falsely) | **PASS** |
+
+No `--allow-multiple-definition`, no weak symbol, no numeric root.
+
+### 32.9 Open, named, and NOT fixed
+
+1. **`DashBoard_Reflash` is never called** (§32.7) — **the blocker**, and the
+   whole reason there is still no pixel.  The opcode-0 sync fires 227 times and
+   returns; whatever gates the transition from that to the reflash is the next
+   thing to read.
+2. **14 further ≥24-byte retained duplicates in `msg_q.c` / `mutex.c` /
+   `queue.c` / `sem.c` / `timeout.c` / `mempool.c` / `work.c` / `poll.c`**
+   (§32.3).  Each is a split unit on the same evidence that justified `sched.c`;
+   none is implicated by a measured defect yet.  `sem.c` additionally carries
+   the deliberate `z_impl_k_sem_take = g1_displaced_sdk_z_impl_k_sem_take`
+   CMake arrangement, which must be re-reasoned before that unit moves.
+3. **Not tested: whether the `FUN_0007c8e8` fix alone would also clear the
+   `sched.c:1458` panic.**  The A/B that was run is `i31c → i32a`, which shows
+   the displacement removes that assert; a `i31c + argfix` control was not
+   built.  The displacement stands on its own byte evidence regardless.
+4. `saadc` 101 / 998 and the ST25DV volumes (11 / 25, 14 / 22) remain the
+   largest sensor gaps.
+5. `device_ctx[0xd0..0xd3]` in the sync-data frame (`80 00 92 65` vs
+   `01 00 00 00`) — unchanged from iteration 30 §30.8 item 2.
+6. `PTR_s__s____unable_to_change_MTU_for_a_0000f798` and
+   `recon/data/rodata_0x8ac20.c`'s overrun — unchanged from iteration 31
+   §31.10 items 4 and 5.
+7. Iteration 30 §30.8 items 4–7 unchanged.
+
+### Regenerate (iteration 32)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+recon/application/build_cohesive.sh app /private/tmp/g1-i32b-app
+# net is UNCHANGED from iteration 30:
+#   recon/application/build_cohesive.sh net /private/tmp/g1-i30e-net -- \
+#     -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF -DG1_ESB_REAL_PAYLOAD_OBJECTS=ON
+# gates (all exit 0)
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py        /private/tmp/g1-i32b-app/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_ram_pin_collisions.py --core net /private/tmp/g1-i30e-net/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_net_raw_literals.py          /private/tmp/g1-i30e-net/zephyr/zephyr.elf
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/check_thread_create_stack_args.py --trials 120
+PYTHONSAFEPATH=1 .venv/bin/python tools/gen_retained_sources.py --check
+PYTHONSAFEPATH=1 .venv/bin/python recon/application/verify_net_stock_data_window.py         /private/tmp/g1-i30e-net/zephyr/zephyr.elf
+# 20 s capture -- `_end` and `runtime_info_sync` are unchanged from iteration 31,
+# so the probe addresses are the same.  NOTE the stdin pipe.
+printf '$rtinfo_pc=0x00015b8c\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i32/ours-paired-i32a.resc
+sleep 200 | G1_RESC=/private/tmp/g1-i32/ours-paired-i32a.resc \
+G1_APP_ELF=/private/tmp/g1-i32b-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040C68 G1_CTX_105A=0x20040CDA \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_i32b
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_ours_i32b /private/tmp/g1-i32/rep-b
+```
+
+Files changed: `recon/ownership/adoption_manifest.json` (11 new app exclusion
+rows + summary recount);
+`recon/generated/app_retained_sources.cmake` (regenerated, 1620 → 1609);
+new `recon/symbols/g1_app_sched_displacement_aliases.ld`;
+new `recon/ownership/app_duplicate_singleton_sweep.json` (the sweep receipt);
+`recon/symbols/g1_app_function_aliases.ld` (one line withdrawn);
+`recon/application/app/CMakeLists.txt` (the fragment + five `--undefined` roots);
+`recon/app/src/FUN_0007c8e8.c`, `recon/verified/src/FUN_0007c8e8.c`,
+`recon/symbolized/app/ipc_ept_op_b_guarded.c` (the dropped `r3`);
+`recon/emulator/reports/sensor_parity_status.md`; this report.
+**No `tools/` logic change**, `armemul` untouched, nothing committed.

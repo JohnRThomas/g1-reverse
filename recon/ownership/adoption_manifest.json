@@ -72,11 +72,11 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 680,
-    "exclude_reconstruction": 666,
+    "entries": 691,
+    "exclude_reconstruction": 677,
     "retain_reconstruction": 14,
     "by_kind": {
-     "source": 477,
+     "source": 488,
      "archive": 152,
      "static_helper": 29,
      "table": 22,
@@ -23244,6 +23244,86 @@
     },
     {
      "core": "app",
+     "va": "0x000737d8",
+     "raw_symbol": "FUN_000737d8",
+     "current_symbol": "sched_update_cache",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "update_cache",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Iteration 32 coherent scheduler-family displacement.  sched.c was a SPLIT unit: 20 identities already adopted upstream (Batch 2b) while 11 duplicate bodies were retained over the SAME `_kernel`.  The iteration-32 app-core duplicate-singleton sweep re-derived relocation-masked whole-section byte identity against THIS link's own zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj and additionally attributed the shipped RAM words the sections reference; the retained `z_tick_sleep` body writes sched.c's `pending_current` singleton (shipped 0x2000b484) through the arena pin `g_pend_locked_thread_tmp` while the stock half of the same unit reads its own `.bss.pending_current`.  A unit may only be displaced whole, so the whole family moves.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.update_cache section (104 B) is byte-identical to the shipped image at 0x000737d8 after masking 9 relocation slots; 68 distinguishing bytes (re-measured in iteration 32 against /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj)"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: update_cache (local linkage) from /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "split_unit_shared_state",
+       "detail": "sched.c already owns 20 adopted identities in this link; the retained duplicates share `_kernel` (0x2000b448) with them, and `.bss.pending_current` (shipped 0x2000b484) is duplicated between the stock unit and the arena pin g_pend_locked_thread_tmp"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000737d8",
+       "upstream_symbol": "update_cache",
+       "upstream_linkage": "local",
+       "detail": "candidate already carried decision=adopt_upstream_exclude_reconstruction; deferred in Batch 2b only because the upstream symbol is translation-unit-local or a linker artifact still spelled the recovered name"
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00073840",
+     "raw_symbol": "FUN_00073840",
+     "current_symbol": "sched_ready_queue_insert",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "ready_thread",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Iteration 32 coherent scheduler-family displacement.  sched.c was a SPLIT unit: 20 identities already adopted upstream (Batch 2b) while 11 duplicate bodies were retained over the SAME `_kernel`.  The iteration-32 app-core duplicate-singleton sweep re-derived relocation-masked whole-section byte identity against THIS link's own zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj and additionally attributed the shipped RAM words the sections reference; the retained `z_tick_sleep` body writes sched.c's `pending_current` singleton (shipped 0x2000b484) through the arena pin `g_pend_locked_thread_tmp` while the stock half of the same unit reads its own `.bss.pending_current`.  A unit may only be displaced whole, so the whole family moves.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.ready_thread section (148 B) is byte-identical to the shipped image at 0x00073840 after masking 8 relocation slots; 116 distinguishing bytes (re-measured in iteration 32 against /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj)"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: ready_thread (local linkage) from /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "split_unit_shared_state",
+       "detail": "sched.c already owns 20 adopted identities in this link; the retained duplicates share `_kernel` (0x2000b448) with them, and `.bss.pending_current` (shipped 0x2000b484) is duplicated between the stock unit and the arena pin g_pend_locked_thread_tmp"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00073840",
+       "upstream_symbol": "ready_thread",
+       "upstream_linkage": "local",
+       "detail": "candidate already carried decision=adopt_upstream_exclude_reconstruction; deferred in Batch 2b only because the upstream symbol is translation-unit-local or a linker artifact still spelled the recovered name"
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x000738d4",
      "raw_symbol": "FUN_000738d4",
      "current_symbol": "z_ready_thread_locked",
@@ -23443,6 +23523,46 @@
     },
     {
      "core": "app",
+     "va": "0x00073a78",
+     "raw_symbol": "FUN_00073a78",
+     "current_symbol": "sched_thread_ready",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "z_sched_start",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Iteration 32 coherent scheduler-family displacement.  sched.c was a SPLIT unit: 20 identities already adopted upstream (Batch 2b) while 11 duplicate bodies were retained over the SAME `_kernel`.  The iteration-32 app-core duplicate-singleton sweep re-derived relocation-masked whole-section byte identity against THIS link's own zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj and additionally attributed the shipped RAM words the sections reference; the retained `z_tick_sleep` body writes sched.c's `pending_current` singleton (shipped 0x2000b484) through the arena pin `g_pend_locked_thread_tmp` while the stock half of the same unit reads its own `.bss.pending_current`.  A unit may only be displaced whole, so the whole family moves.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.z_sched_start section (164 B) is byte-identical to the shipped image at 0x00073a78 after masking 17 relocation slots; 96 distinguishing bytes (re-measured in iteration 32 against /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj)"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: z_sched_start (global linkage) from /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "split_unit_shared_state",
+       "detail": "sched.c already owns 20 adopted identities in this link; the retained duplicates share `_kernel` (0x2000b448) with them, and `.bss.pending_current` (shipped 0x2000b484) is duplicated between the stock unit and the arena pin g_pend_locked_thread_tmp"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00073a78",
+       "upstream_symbol": "z_sched_start",
+       "upstream_linkage": "global",
+       "detail": "candidate already carried decision=adopt_upstream_exclude_reconstruction; deferred in Batch 2b only because the upstream symbol is translation-unit-local or a linker artifact still spelled the recovered name"
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00073b1c",
      "raw_symbol": "FUN_00073b1c",
      "current_symbol": "k_sched_unlock",
@@ -23486,6 +23606,46 @@
        "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
        "link_diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c:1005: multiple definition of `k_sched_lock'; app/libapp.a(k_sched_lock.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/k_sched_lock.c:37: first defined here",
        "cpunet_precedent": true
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00073cdc",
+     "raw_symbol": "FUN_00073cdc",
+     "current_symbol": "dlist_unlink_node",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "z_priq_dumb_remove",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Iteration 32 coherent scheduler-family displacement.  sched.c was a SPLIT unit: 20 identities already adopted upstream (Batch 2b) while 11 duplicate bodies were retained over the SAME `_kernel`.  The iteration-32 app-core duplicate-singleton sweep re-derived relocation-masked whole-section byte identity against THIS link's own zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj and additionally attributed the shipped RAM words the sections reference; the retained `z_tick_sleep` body writes sched.c's `pending_current` singleton (shipped 0x2000b484) through the arena pin `g_pend_locked_thread_tmp` while the stock half of the same unit reads its own `.bss.pending_current`.  A unit may only be displaced whole, so the whole family moves.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.z_priq_dumb_remove section (64 B) is byte-identical to the shipped image at 0x00073cdc after masking 6 relocation slots; 40 distinguishing bytes (re-measured in iteration 32 against /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj)"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: z_priq_dumb_remove (global linkage) from /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "split_unit_shared_state",
+       "detail": "sched.c already owns 20 adopted identities in this link; the retained duplicates share `_kernel` (0x2000b448) with them, and `.bss.pending_current` (shipped 0x2000b484) is duplicated between the stock unit and the arena pin g_pend_locked_thread_tmp"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00073cdc",
+       "upstream_symbol": "z_priq_dumb_remove",
+       "upstream_linkage": "global",
+       "detail": "candidate already carried decision=adopt_upstream_exclude_reconstruction; deferred in Batch 2b only because the upstream symbol is translation-unit-local or a linker artifact still spelled the recovered name"
       }
      ]
     },
@@ -23541,6 +23701,46 @@
     },
     {
      "core": "app",
+     "va": "0x00073e88",
+     "raw_symbol": "FUN_00073e88",
+     "current_symbol": "unready_thread",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "unready_thread",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Iteration 32 coherent scheduler-family displacement.  sched.c was a SPLIT unit: 20 identities already adopted upstream (Batch 2b) while 11 duplicate bodies were retained over the SAME `_kernel`.  The iteration-32 app-core duplicate-singleton sweep re-derived relocation-masked whole-section byte identity against THIS link's own zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj and additionally attributed the shipped RAM words the sections reference; the retained `z_tick_sleep` body writes sched.c's `pending_current` singleton (shipped 0x2000b484) through the arena pin `g_pend_locked_thread_tmp` while the stock half of the same unit reads its own `.bss.pending_current`.  A unit may only be displaced whole, so the whole family moves.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.unready_thread section (56 B) is byte-identical to the shipped image at 0x00073e88 after masking 4 relocation slots; 40 distinguishing bytes (re-measured in iteration 32 against /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj)"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: unready_thread (local linkage) from /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "split_unit_shared_state",
+       "detail": "sched.c already owns 20 adopted identities in this link; the retained duplicates share `_kernel` (0x2000b448) with them, and `.bss.pending_current` (shipped 0x2000b484) is duplicated between the stock unit and the arena pin g_pend_locked_thread_tmp"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00073e88",
+       "upstream_symbol": "unready_thread",
+       "upstream_linkage": "local",
+       "detail": "candidate already carried decision=adopt_upstream_exclude_reconstruction; deferred in Batch 2b only because the upstream symbol is translation-unit-local or a linker artifact still spelled the recovered name"
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00073ec0",
      "raw_symbol": "FUN_00073ec0",
      "current_symbol": "add_thread_to_wait_queue",
@@ -23586,6 +23786,46 @@
        },
        "on_golden_boot_path": true,
        "on_our_boot_path": false
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00073f3c",
+     "raw_symbol": "FUN_00073f3c",
+     "current_symbol": "pend_locked",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "pend_locked",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Iteration 32 coherent scheduler-family displacement.  sched.c was a SPLIT unit: 20 identities already adopted upstream (Batch 2b) while 11 duplicate bodies were retained over the SAME `_kernel`.  The iteration-32 app-core duplicate-singleton sweep re-derived relocation-masked whole-section byte identity against THIS link's own zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj and additionally attributed the shipped RAM words the sections reference; the retained `z_tick_sleep` body writes sched.c's `pending_current` singleton (shipped 0x2000b484) through the arena pin `g_pend_locked_thread_tmp` while the stock half of the same unit reads its own `.bss.pending_current`.  A unit may only be displaced whole, so the whole family moves.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.pend_locked section (48 B) is byte-identical to the shipped image at 0x00073f3c after masking 3 relocation slots; 36 distinguishing bytes (re-measured in iteration 32 against /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj)"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: pend_locked (local linkage) from /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "split_unit_shared_state",
+       "detail": "sched.c already owns 20 adopted identities in this link; the retained duplicates share `_kernel` (0x2000b448) with them, and `.bss.pending_current` (shipped 0x2000b484) is duplicated between the stock unit and the arena pin g_pend_locked_thread_tmp"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00073f3c",
+       "upstream_symbol": "pend_locked",
+       "upstream_linkage": "local",
+       "detail": "candidate already carried decision=adopt_upstream_exclude_reconstruction; deferred in Batch 2b only because the upstream symbol is translation-unit-local or a linker artifact still spelled the recovered name"
       }
      ]
     },
@@ -23813,6 +24053,46 @@
     },
     {
      "core": "app",
+     "va": "0x00074274",
+     "raw_symbol": "FUN_00074274",
+     "current_symbol": "z_abort_thread_timeout",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "unpend_thread_no_timeout",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Iteration 32 coherent scheduler-family displacement.  sched.c was a SPLIT unit: 20 identities already adopted upstream (Batch 2b) while 11 duplicate bodies were retained over the SAME `_kernel`.  The iteration-32 app-core duplicate-singleton sweep re-derived relocation-masked whole-section byte identity against THIS link's own zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj and additionally attributed the shipped RAM words the sections reference; the retained `z_tick_sleep` body writes sched.c's `pending_current` singleton (shipped 0x2000b484) through the arena pin `g_pend_locked_thread_tmp` while the stock half of the same unit reads its own `.bss.pending_current`.  A unit may only be displaced whole, so the whole family moves.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.unpend_thread_no_timeout section (64 B) is byte-identical to the shipped image at 0x00074274 after masking 6 relocation slots; 40 distinguishing bytes (re-measured in iteration 32 against /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj)"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: unpend_thread_no_timeout (local linkage) from /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "split_unit_shared_state",
+       "detail": "sched.c already owns 20 adopted identities in this link; the retained duplicates share `_kernel` (0x2000b448) with them, and `.bss.pending_current` (shipped 0x2000b484) is duplicated between the stock unit and the arena pin g_pend_locked_thread_tmp"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00074274",
+       "upstream_symbol": "unpend_thread_no_timeout",
+       "upstream_linkage": "local",
+       "detail": "candidate already carried decision=adopt_upstream_exclude_reconstruction; deferred in Batch 2b only because the upstream symbol is translation-unit-local or a linker artifact still spelled the recovered name"
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x000742b4",
      "raw_symbol": "FUN_000742b4",
      "current_symbol": "unpend_thread",
@@ -24006,6 +24286,166 @@
         ],
         "new_undefined_symbols": []
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00074554",
+     "raw_symbol": "FUN_00074554",
+     "current_symbol": "k_thread_priority_set",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "z_impl_k_thread_priority_set",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Iteration 32 coherent scheduler-family displacement.  sched.c was a SPLIT unit: 20 identities already adopted upstream (Batch 2b) while 11 duplicate bodies were retained over the SAME `_kernel`.  The iteration-32 app-core duplicate-singleton sweep re-derived relocation-masked whole-section byte identity against THIS link's own zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj and additionally attributed the shipped RAM words the sections reference; the retained `z_tick_sleep` body writes sched.c's `pending_current` singleton (shipped 0x2000b484) through the arena pin `g_pend_locked_thread_tmp` while the stock half of the same unit reads its own `.bss.pending_current`.  A unit may only be displaced whole, so the whole family moves.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.z_impl_k_thread_priority_set section (116 B) is byte-identical to the shipped image at 0x00074554 after masking 12 relocation slots; 68 distinguishing bytes (re-measured in iteration 32 against /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj)"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: z_impl_k_thread_priority_set (global linkage) from /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "split_unit_shared_state",
+       "detail": "sched.c already owns 20 adopted identities in this link; the retained duplicates share `_kernel` (0x2000b448) with them, and `.bss.pending_current` (shipped 0x2000b484) is duplicated between the stock unit and the arena pin g_pend_locked_thread_tmp"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00074554",
+       "upstream_symbol": "z_impl_k_thread_priority_set",
+       "upstream_linkage": "global",
+       "detail": "candidate already carried decision=adopt_upstream_exclude_reconstruction; deferred in Batch 2b only because the upstream symbol is translation-unit-local or a linker artifact still spelled the recovered name"
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000745c8",
+     "raw_symbol": "FUN_000745c8",
+     "current_symbol": "mutex_unlock_syscall_handler",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "z_impl_k_yield",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Iteration 32 coherent scheduler-family displacement.  sched.c was a SPLIT unit: 20 identities already adopted upstream (Batch 2b) while 11 duplicate bodies were retained over the SAME `_kernel`.  The iteration-32 app-core duplicate-singleton sweep re-derived relocation-masked whole-section byte identity against THIS link's own zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj and additionally attributed the shipped RAM words the sections reference; the retained `z_tick_sleep` body writes sched.c's `pending_current` singleton (shipped 0x2000b484) through the arena pin `g_pend_locked_thread_tmp` while the stock half of the same unit reads its own `.bss.pending_current`.  A unit may only be displaced whole, so the whole family moves.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.z_impl_k_yield section (308 B) is byte-identical to the shipped image at 0x000745c8 after masking 27 relocation slots; 200 distinguishing bytes (re-measured in iteration 32 against /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj)"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: z_impl_k_yield (global linkage) from /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "split_unit_shared_state",
+       "detail": "sched.c already owns 20 adopted identities in this link; the retained duplicates share `_kernel` (0x2000b448) with them, and `.bss.pending_current` (shipped 0x2000b484) is duplicated between the stock unit and the arena pin g_pend_locked_thread_tmp"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000745c8",
+       "upstream_symbol": "z_impl_k_yield",
+       "upstream_linkage": "global",
+       "detail": "candidate already carried decision=adopt_upstream_exclude_reconstruction; deferred in Batch 2b only because the upstream symbol is translation-unit-local or a linker artifact still spelled the recovered name"
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000746fc",
+     "raw_symbol": "FUN_000746fc",
+     "current_symbol": "z_tick_sleep",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "z_tick_sleep",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Iteration 32 coherent scheduler-family displacement.  sched.c was a SPLIT unit: 20 identities already adopted upstream (Batch 2b) while 11 duplicate bodies were retained over the SAME `_kernel`.  The iteration-32 app-core duplicate-singleton sweep re-derived relocation-masked whole-section byte identity against THIS link's own zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj and additionally attributed the shipped RAM words the sections reference; the retained `z_tick_sleep` body writes sched.c's `pending_current` singleton (shipped 0x2000b484) through the arena pin `g_pend_locked_thread_tmp` while the stock half of the same unit reads its own `.bss.pending_current`.  A unit may only be displaced whole, so the whole family moves.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.z_tick_sleep section (328 B) is byte-identical to the shipped image at 0x000746fc after masking 32 relocation slots; 200 distinguishing bytes (re-measured in iteration 32 against /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj)"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: z_tick_sleep (local linkage) from /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "split_unit_shared_state",
+       "detail": "sched.c already owns 20 adopted identities in this link; the retained duplicates share `_kernel` (0x2000b448) with them, and `.bss.pending_current` (shipped 0x2000b484) is duplicated between the stock unit and the arena pin g_pend_locked_thread_tmp"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x000746fc",
+       "upstream_symbol": "z_tick_sleep",
+       "upstream_linkage": "local",
+       "detail": "candidate already carried decision=adopt_upstream_exclude_reconstruction; deferred in Batch 2b only because the upstream symbol is translation-unit-local or a linker artifact still spelled the recovered name"
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00074844",
+     "raw_symbol": "FUN_00074844",
+     "current_symbol": "k_sleep",
+     "kind": "source",
+     "component": "zephyr_kernel",
+     "upstream_symbol": "z_impl_k_sleep",
+     "upstream_unit": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Iteration 32 coherent scheduler-family displacement.  sched.c was a SPLIT unit: 20 identities already adopted upstream (Batch 2b) while 11 duplicate bodies were retained over the SAME `_kernel`.  The iteration-32 app-core duplicate-singleton sweep re-derived relocation-masked whole-section byte identity against THIS link's own zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj and additionally attributed the shipped RAM words the sections reference; the retained `z_tick_sleep` body writes sched.c's `pending_current` singleton (shipped 0x2000b484) through the arena pin `g_pend_locked_thread_tmp` while the stock half of the same unit reads its own `.bss.pending_current`.  A unit may only be displaced whole, so the whole family moves.",
+     "evidence": [
+      {
+       "signal": "relocation_masked_byte_exact",
+       "detail": "entire upstream .text.z_impl_k_sleep section (104 B) is byte-identical to the shipped image at 0x00074844 after masking 10 relocation slots; 64 distinguishing bytes (re-measured in iteration 32 against /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj)"
+      },
+      {
+       "signal": "upstream_object",
+       "detail": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c :: z_impl_k_sleep (global linkage) from /private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj"
+      },
+      {
+       "signal": "split_unit_shared_state",
+       "detail": "sched.c already owns 20 adopted identities in this link; the retained duplicates share `_kernel` (0x2000b448) with them, and `.bss.pending_current` (shipped 0x2000b484) is duplicated between the stock unit and the arena pin g_pend_locked_thread_tmp"
+      },
+      {
+       "signal": "upstream_unit_already_linked",
+       "detail": "the upstream object is already pulled into the cohesive link; the reconstruction is a duplicate body"
+      },
+      {
+       "source": "recon/ownership/library_displacement_candidates.json",
+       "type": "library_displacement_candidate",
+       "va": "0x00074844",
+       "upstream_symbol": "z_impl_k_sleep",
+       "upstream_linkage": "global",
+       "detail": "candidate already carried decision=adopt_upstream_exclude_reconstruction; deferred in Batch 2b only because the upstream symbol is translation-unit-local or a linker artifact still spelled the recovered name"
       }
      ]
     },

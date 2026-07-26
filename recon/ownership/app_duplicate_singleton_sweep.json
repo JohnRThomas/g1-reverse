@@ -1,0 +1,401 @@
+{
+ "schema": "g1.app_duplicate_singleton_sweep/1",
+ "title": "Iteration 32 CPUAPP duplicate-singleton sweep (relocation-masked whole-section byte identity + shipped-RAM attribution)",
+ "generated": "2026-07-26",
+ "analysis_only": true,
+ "method": {
+  "byte_identity": "every .text.* input section of this app link's own Zephyr kernel objects is masked 4 bytes at each relocation offset and compared against app_update.bin at each recovered function's VA over the WHOLE section length; instruction shape is never accepted",
+  "shipped_state_attribution": "every R_ARM_ABS32 relocation of a located section is resolved into the stock object's own .bss/.data object and cross-checked against the shipped image word (shipped = image_word(hit_va+off) - in-place addend)",
+  "unit_completeness": "a unit may only be displaced WHOLE; displacing part of a partially-vendored unit would split its file-static state between two translation units",
+  "model": "recon/ownership/net_duplicate_singleton_sweep.json (iteration 28), generalised to the app core; no tools/ logic was changed"
+ },
+ "inputs": {
+  "app_image": "app_update.bin (tools/extract.py, link base 0xC200)",
+  "stock_objects_from": "/private/tmp/g1-i31c-app/zephyr/kernel/CMakeFiles/kernel.dir/*.obj",
+  "name_catalog": "recon/catalogs/function_names_app.json",
+  "manifest": "recon/ownership/adoption_manifest.json"
+ },
+ "summary": {
+  "size_matched_hits": 597,
+  "hits_with_ge_24_distinguishing_bytes": 76,
+  "of_those_retained_before_iteration_32": 25,
+  "retained_in_sched_c": 11,
+  "displaced_in_iteration_32": 11
+ },
+ "key_attribution": [
+  {
+   "shipped_addr": "0x2000b484",
+   "stock_owner": "zephyr/kernel/sched.c :: .bss.pending_current",
+   "our_pin": "g_pend_locked_thread_tmp = g1_ram_arena + 0x9484",
+   "linked_our_addr_before": "0x2000c624",
+   "linked_stock_addr": "0x200305b4",
+   "verdict": "DUPLICATED before iteration 32; the CONFIG_SWAP_NONATOMIC guard variable z_time_slice() compares against _current"
+  },
+  {
+   "shipped_addr": "0x2000b448",
+   "stock_owner": "zephyr/kernel/kernel_structs :: _kernel",
+   "our_pin": "_kernel = g1_ram_arena + 0x9448 (PROVIDE, overridden)",
+   "linked_stock_addr": "0x20030578",
+   "verdict": "NOT duplicated - the stock definition wins"
+  },
+  {
+   "shipped_addr": "0x2000b490",
+   "stock_owner": "zephyr/kernel/sched.c :: sched_spinlock (global in NCS 2.5.1)",
+   "our_pin": "sched_spinlock = g1_ram_arena + 0x9490 (PROVIDE, overridden)",
+   "linked_stock_addr": "0x200305c0",
+   "verdict": "NOT duplicated - the stock definition wins"
+  }
+ ],
+ "retained_significant_hits": [
+  {
+   "va": "0x000720d0",
+   "size": 368,
+   "our_names": [
+    "k_msgq_put"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/msg_q.c.obj",
+   "stock_section": ".text.z_impl_k_msgq_put",
+   "relocs": 29,
+   "unmasked_bytes": 252,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "kept"
+  },
+  {
+   "va": "0x00072240",
+   "size": 376,
+   "our_names": [
+    "k_msgq_get"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/msg_q.c.obj",
+   "stock_section": ".text.z_impl_k_msgq_get",
+   "relocs": 28,
+   "unmasked_bytes": 264,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "kept"
+  },
+  {
+   "va": "0x000723b8",
+   "size": 416,
+   "our_names": [
+    "k_mutex_lock"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/mutex.c.obj",
+   "stock_section": ".text.z_impl_k_mutex_lock",
+   "relocs": 29,
+   "unmasked_bytes": 300,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "kept"
+  },
+  {
+   "va": "0x00072558",
+   "size": 284,
+   "our_names": [
+    "k_mutex_unlock"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/mutex.c.obj",
+   "stock_section": ".text.z_impl_k_mutex_unlock",
+   "relocs": 27,
+   "unmasked_bytes": 176,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "kept"
+  },
+  {
+   "va": "0x00072674",
+   "size": 312,
+   "our_names": [
+    "k_queue_insert_and_wake"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/queue.c.obj",
+   "stock_section": ".text.queue_insert",
+   "relocs": 19,
+   "unmasked_bytes": 236,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "kept"
+  },
+  {
+   "va": "0x000727ac",
+   "size": 212,
+   "our_names": [
+    "net_buf_pool_get_727ac"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/queue.c.obj",
+   "stock_section": ".text.z_impl_k_queue_get",
+   "relocs": 17,
+   "unmasked_bytes": 144,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "kept"
+  },
+  {
+   "va": "0x00072880",
+   "size": 136,
+   "our_names": [
+    "k_sem_give"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/sem.c.obj",
+   "stock_section": ".text.z_impl_k_sem_give",
+   "relocs": 14,
+   "unmasked_bytes": 80,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "kept"
+  },
+  {
+   "va": "0x00072908",
+   "size": 244,
+   "our_names": [
+    "z_impl_k_sem_take"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/sem.c.obj",
+   "stock_section": ".text.g1_displaced_sdk_z_impl_k_sem_take",
+   "relocs": 22,
+   "unmasked_bytes": 156,
+   "excluded": false,
+   "in_manifest": true,
+   "iteration32_action": "kept"
+  },
+  {
+   "va": "0x000737d8",
+   "size": 104,
+   "our_names": [
+    "sched_update_cache"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj",
+   "stock_section": ".text.update_cache",
+   "relocs": 9,
+   "unmasked_bytes": 68,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "displaced"
+  },
+  {
+   "va": "0x00073840",
+   "size": 148,
+   "our_names": [
+    "sched_ready_queue_insert"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj",
+   "stock_section": ".text.ready_thread",
+   "relocs": 8,
+   "unmasked_bytes": 116,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "displaced"
+  },
+  {
+   "va": "0x00073a78",
+   "size": 164,
+   "our_names": [
+    "sched_thread_ready"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj",
+   "stock_section": ".text.z_sched_start",
+   "relocs": 17,
+   "unmasked_bytes": 96,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "displaced"
+  },
+  {
+   "va": "0x00073cdc",
+   "size": 64,
+   "our_names": [
+    "dlist_unlink_node"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj",
+   "stock_section": ".text.z_priq_dumb_remove",
+   "relocs": 6,
+   "unmasked_bytes": 40,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "displaced"
+  },
+  {
+   "va": "0x00073e88",
+   "size": 56,
+   "our_names": [
+    "unready_thread"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj",
+   "stock_section": ".text.unready_thread",
+   "relocs": 4,
+   "unmasked_bytes": 40,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "displaced"
+  },
+  {
+   "va": "0x00073f3c",
+   "size": 48,
+   "our_names": [
+    "pend_locked"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj",
+   "stock_section": ".text.pend_locked",
+   "relocs": 3,
+   "unmasked_bytes": 36,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "displaced"
+  },
+  {
+   "va": "0x00074274",
+   "size": 64,
+   "our_names": [
+    "z_abort_thread_timeout"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj",
+   "stock_section": ".text.unpend_thread_no_timeout",
+   "relocs": 6,
+   "unmasked_bytes": 40,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "displaced"
+  },
+  {
+   "va": "0x00074554",
+   "size": 116,
+   "our_names": [
+    "k_thread_priority_set"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj",
+   "stock_section": ".text.z_impl_k_thread_priority_set",
+   "relocs": 12,
+   "unmasked_bytes": 68,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "displaced"
+  },
+  {
+   "va": "0x000745c8",
+   "size": 308,
+   "our_names": [
+    "mutex_unlock_syscall_handler"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj",
+   "stock_section": ".text.z_impl_k_yield",
+   "relocs": 27,
+   "unmasked_bytes": 200,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "displaced"
+  },
+  {
+   "va": "0x000746fc",
+   "size": 328,
+   "our_names": [
+    "z_tick_sleep"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj",
+   "stock_section": ".text.z_tick_sleep",
+   "relocs": 32,
+   "unmasked_bytes": 200,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "displaced"
+  },
+  {
+   "va": "0x00074844",
+   "size": 104,
+   "our_names": [
+    "k_sleep"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj",
+   "stock_section": ".text.z_impl_k_sleep",
+   "relocs": 10,
+   "unmasked_bytes": 64,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "displaced"
+  },
+  {
+   "va": "0x00075864",
+   "size": 104,
+   "our_names": [
+    "z_heap_aligned_alloc"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/mempool.c.obj",
+   "stock_section": ".text.z_heap_aligned_alloc",
+   "relocs": 8,
+   "unmasked_bytes": 72,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "kept"
+  },
+  {
+   "va": "0x00086448",
+   "size": 56,
+   "our_names": [
+    "z_impl_k_msgq_alloc_init"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/msg_q.c.obj",
+   "stock_section": ".text.z_impl_k_msgq_alloc_init",
+   "relocs": 2,
+   "unmasked_bytes": 48,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "kept"
+  },
+  {
+   "va": "0x000865fc",
+   "size": 34,
+   "our_names": [
+    "k_work_submit_to_queue"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+   "stock_section": ".text.k_work_submit_to_queue",
+   "relocs": 2,
+   "unmasked_bytes": 26,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "kept"
+  },
+  {
+   "va": "0x0008669c",
+   "size": 72,
+   "our_names": [
+    "sys_timepoint_calc"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/timeout.c.obj",
+   "stock_section": ".text.sys_timepoint_calc",
+   "relocs": 1,
+   "unmasked_bytes": 68,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "kept"
+  },
+  {
+   "va": "0x000866e4",
+   "size": 66,
+   "our_names": [
+    "sys_timepoint_timeout"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/timeout.c.obj",
+   "stock_section": ".text.sys_timepoint_timeout",
+   "relocs": 1,
+   "unmasked_bytes": 62,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "kept"
+  },
+  {
+   "va": "0x00086778",
+   "size": 98,
+   "our_names": [
+    "add_event"
+   ],
+   "stock_unit": "zephyr/kernel/CMakeFiles/kernel.dir/poll.c.obj",
+   "stock_section": ".text.add_event",
+   "relocs": 2,
+   "unmasked_bytes": 90,
+   "excluded": false,
+   "in_manifest": false,
+   "iteration32_action": "kept"
+  }
+ ]
+}
