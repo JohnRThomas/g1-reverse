@@ -8,6 +8,17 @@ report the distribution. The build whose distribution is most concentrated at
 Usage: python opt_sweep.py <build_dir> [label]
        build_dir contains zephyr/zephyr.elf and **/*.obj
 """
+
+# Resolvable pipeline scratchpad (tools/g1_paths.py).  This used to be one
+# literal /private/tmp path belonging to a finished agent session; see that
+# module for the resolution order and the fail-closed catalog fallback.
+import os as _g1_os, sys as _g1_sys
+_G1_TOOLS = _g1_os.path.dirname(_g1_os.path.abspath(__file__))
+if _g1_os.path.basename(_G1_TOOLS) != "tools":
+    _G1_TOOLS = _g1_os.path.dirname(_G1_TOOLS)
+if _G1_TOOLS not in _g1_sys.path:
+    _g1_sys.path.insert(0, _G1_TOOLS)
+import g1_paths as _g1_paths
 import sys, re, glob, statistics
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 import extract, lib_sigmatch2 as L
@@ -55,7 +66,7 @@ def main():
     fwnames = {m.group(2): int(m.group(1), 16)
                for m in re.finditer(r'set_name\((0x[0-9A-Fa-f]+),\s*"([^"]+)"\)', idc)}
     import json
-    SCR = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
+    SCR = _g1_paths.scratchpad()
     fw = {f["entry"]: f for f in json.load(open(SCR + "/app_funcs.json"))["functions"]}
     by_len = build_index(build_dir)
     ratios = []

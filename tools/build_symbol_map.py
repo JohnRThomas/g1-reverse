@@ -7,10 +7,21 @@ width/signedness from the cast context in the code and names from the WS2 kernel
 object inventory + data clusters. Output: scratchpad/symbol_map.json (deterministic
 core) + a human-readable summary. NON-DESTRUCTIVE: reads only, writes only the map.
 """
+
+# Resolvable pipeline scratchpad (tools/g1_paths.py).  This used to be one
+# literal /private/tmp path belonging to a finished agent session; see that
+# module for the resolution order and the fail-closed catalog fallback.
+import os as _g1_os, sys as _g1_sys
+_G1_TOOLS = _g1_os.path.dirname(_g1_os.path.abspath(__file__))
+if _g1_os.path.basename(_G1_TOOLS) != "tools":
+    _G1_TOOLS = _g1_os.path.dirname(_G1_TOOLS)
+if _G1_TOOLS not in _g1_sys.path:
+    _g1_sys.path.insert(0, _G1_TOOLS)
+import g1_paths as _g1_paths
 import sys, os, re, json, glob, collections
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 
-SCR = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
+SCR = _g1_paths.scratchpad()
 
 CORE = sys.argv[1] if len(sys.argv) > 1 else "app"
 if CORE == "app":
@@ -39,10 +50,15 @@ else:  # net
 # Ghidra's reference graph distinguishes literal values that are actual
 # addresses from numerically-similar scalars.  This prevents masks such as
 # 0xffff and magic words such as 0x20222022 from becoming fake symbols.
-try:
-    _ref_functions = json.load(open(REFGRAPH)).get("functions", {})
-except (OSError, ValueError, TypeError):
-    _ref_functions = {}
+#
+# It used to be loaded through a bare try/except that fell back to an EMPTY
+# graph.  That is the data-inflation failure mode: with no graph, every mask
+# and magic word is eligible to become a symbol and the map silently doubles.
+# The graph is committed (recon/catalogs/refgraph_<core>.json.gz), so resolve
+# it fail-closed instead -- a missing graph is now an exception.
+_ref_functions = _g1_paths.load_catalog(
+    "refgraph_app.json" if CORE == "app" else "refgraph_net.json"
+).get("functions", {})
 FUNCTION_ENTRIES = {int(address, 16) & ~1 for address in _ref_functions}
 DATA_REFERENCES = set()
 for _function in _ref_functions.values():

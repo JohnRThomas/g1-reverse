@@ -248,6 +248,151 @@ def _oracle(idx):
     h = hashlib.sha256(struct.pack("<I", idx & 0xffffffff)).digest()
     return struct.unpack_from("<I", h, 0)[0], struct.unpack_from("<I", h, 4)[0]
 
+# ---- read-only pointee equivalence class ------------------------------------
+# A pointer ARGUMENT's numeric address is not observable behaviour when the
+# pointee is immutable.  The shipped firmware passes 0x000a3b3f because its
+# format string happens to live at that flash address; a reconstruction that
+# spells the same string as an ordinary C literal passes the address of its own
+# copy in its own .rodata.  Both callees read the identical bytes, so the two
+# programs are indistinguishable to every observer -- yet the ordered call
+# trace compared them as raw integers and failed.  That is the ONE false-FAIL
+# class this equivalence removes, and nothing else.
+#
+# The class is deliberately narrow.  A value is replaced by its content ONLY
+# when every one of these holds:
+#   1. it lands inside a declared read-only extent (the shipped flash image, or
+#      the candidate's own linked read-only tail) -- so NULL, RAM, MMIO,
+#      out-of-image and unmapped pointers are never normalized;
+#   2. the pointee is a COMPLETE, NUL-terminated byte string of length
+#      1..RODATA_STRING_MAX;
+#   3. every byte of it is printable ASCII or \t \n \r;
+#   4. the address is a string HEAD -- the preceding byte is NUL, or the
+#      address is the first byte of its extent.
+# Anything failing those tests keeps EXACT address comparison, which is what
+# the harness did before, so no discrimination is lost for non-string read-only
+# objects (const tables, function pointers, device structs, section bounds).
+#
+# Why no false PASS is introduced: normalization is a pure function of the
+# observed value on each side, so two EQUAL values always normalize to equal
+# identities.  The verdict can therefore only change for pairs where the two
+# sides observed DIFFERENT addresses whose pointees are byte-identical strings
+# -- which is precisely the equivalence being asserted, and is unobservable
+# because .rodata is never written.
+RODATA_STRING_MAX = 256
+_RO_TEXT_BYTES = frozenset(list(range(0x20, 0x7f)) + [0x09, 0x0a, 0x0d])
+# Enabled per core.  The CPUAPP image has a single flash coordinate space, so a
+# stored pointer's content is unambiguous.  CPUNET does NOT: analysis (0x1008000)
+# and runtime (0x1008800) windows overlap numerically and only provenance
+# distinguishes them (tools/net_address_space.py), so a content lookup there
+# could decode the WRONG object.  Net literal inlining is deferred anyway, so
+# net keeps exact address comparison and this stays a one-line switch.
+RODATA_EQUIVALENCE_CORES = ("app",)
+_RO_IMAGE_CACHE = {}
+# Count of resolutions served by a CANDIDATE'S OWN read-only tail rather than
+# by the shipped image.  See ReadOnlyPointees.content for what it measures.
+RO_OWN_TAIL_HITS = 0
+
+
+def _firmware_readonly_extent(code_base):
+    """(lo, hi, read) over the shipped read-only flash image for this core.
+
+    Returns None when the core is not enabled or the image cannot be loaded --
+    fail-closed to exact address comparison, never to a permissive default.
+    """
+    core = "net" if code_base == NET_CODE_BASE else "app"
+    if core not in RODATA_EQUIVALENCE_CORES:
+        return None
+    if core in _RO_IMAGE_CACHE:
+        return _RO_IMAGE_CACHE[core]
+    extent = None
+    try:
+        import sys as _sys
+        _tools = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        if _tools not in _sys.path:
+            _sys.path.insert(0, _tools)
+        if core == "app":
+            import extract
+            blob = extract._blob()
+            lo = extract.APP_LINK_BASE
+            hi = lo + (len(blob) - extract.APP_HDR)
+            extent = (lo, hi, extract.read, "image")
+        else:
+            import net_extract
+            blob = net_extract._blob()
+            lo = net_extract.NET_RUNTIME_BASE
+            hi = lo + len(blob)
+            extent = (lo, hi, net_extract.read_runtime, "image")
+    except Exception:
+        extent = None
+    _RO_IMAGE_CACHE[core] = extent
+    return extent
+
+
+class ReadOnlyPointees:
+    """Content identity for pointers into declared read-only extents."""
+
+    def __init__(self, extents):
+        # extents: ordered ((lo, hi, read), ...), tried in order.  The SHIPPED
+        # IMAGE is always first, so any address the image can decode resolves
+        # identically on both sides and today's verdict is preserved exactly.
+        # A candidate's own linked read-only tail is consulted only for
+        # addresses the image does not decode as a string -- which is where an
+        # inlined literal lives.
+        self.extents = tuple(e for e in extents if e)
+        self._cache = {}
+
+    def __bool__(self):
+        return bool(self.extents)
+
+    def content(self, value):
+        """('RO', bytes) for a read-only string head, else None."""
+        if type(value) is not int:
+            return None
+        value &= 0xffffffff
+        if value in self._cache:
+            return self._cache[value]
+        result = None
+        for lo, hi, read, tag in self.extents:
+            if not (lo <= value < hi):
+                continue
+            if value > lo:
+                previous = read(value - 1, 1)
+                if len(previous) != 1 or previous[0] != 0:
+                    continue            # interior of a string / of an object
+            span = min(RODATA_STRING_MAX + 1, hi - value)
+            raw = read(value, span)
+            end = raw.find(b"\x00")
+            if end >= 1 and all(byte in _RO_TEXT_BYTES for byte in raw[:end]):
+                result = ("RO", raw[:end])
+                if tag == "own":
+                    # Instrumentation, not policy.  The shipped-image extent is
+                    # applied identically on both sides, so it can only turn a
+                    # FAIL into a PASS.  This own-tail extent is the ONE
+                    # asymmetric element (the original has no such object), and
+                    # therefore the only way this change could in principle
+                    # lose an existing PASS.  Counting its hits over the corpus
+                    # is how that risk is measured rather than assumed.
+                    global RO_OWN_TAIL_HITS
+                    RO_OWN_TAIL_HITS += 1
+                break
+        self._cache[value] = result
+        return result
+
+    def key(self, value):
+        """Content identity if there is one, else the exact address."""
+        identity = self.content(value)
+        return identity if identity is not None else (value & 0xffffffff)
+
+
+def _bytes_extent(lo, data):
+    """Read-only extent backed by an in-memory byte string."""
+    data = bytes(data)
+    def read(va, n):
+        off = va - lo
+        return data[off:off + n] if off >= 0 else b""
+    return (lo, lo + len(data), read, "own")
+
+
 def _terminal_key(state):
     """Strict semantic prefix identity through a production-noreturn call."""
     if not state.get("terminal"):
@@ -259,11 +404,23 @@ def _terminal_key(state):
 
 class Runner:
     def __init__(self, func_va, func_size, func_bytes, code_base=CODE_BASE,
-                 internal_code_regions=None):
+                 internal_code_regions=None, own_readonly_tail=False):
         self.va = func_va
         self.size = func_size
         self.body = bytes(func_bytes)
         self.code_base = code_base
+        # Read-only extents whose pointees compare by CONTENT (see
+        # ReadOnlyPointees).  `own_readonly_tail` declares the bytes linked
+        # after this unit's executable extent -- for a compiled candidate that
+        # is its own .rodata, where an inlined string literal lives.  The
+        # shipped image stays FIRST: it is the extent both sides share, so
+        # every address it can decode keeps its pre-existing verdict, and the
+        # own tail is reached only for addresses the image does not decode.
+        extents = [_firmware_readonly_extent(code_base)]
+        if own_readonly_tail and len(self.body) > self.size:
+            extents.append(_bytes_extent(self.va + self.size,
+                                         self.body[self.size:]))
+        self.readonly = ReadOnlyPointees(extents)
         self.internal_code_regions = tuple(
             (int(address), bytes(data))
             for address, data in (internal_code_regions or ()))
@@ -577,6 +734,30 @@ class Runner:
                     return key
             return None
 
+        readonly = self.readonly
+
+        def _format_table_lookup(table, semantic_target, format_address,
+                                 default):
+            """Reviewed per-format-string arity, resolved by CONTENT.
+
+            The reviewed tables are keyed by the SHIPPED image address of the
+            format string.  A reconstruction that spells the same string as a C
+            literal presents a different address for the identical bytes; the
+            reviewed arity belongs to the string, not to the flash address, so
+            fall back to a content match.  An ambiguous or unresolvable address
+            falls back to the by-target default -- exactly today's behaviour.
+            """
+            key = (semantic_target, format_address)
+            if key in table:
+                return table[key]
+            identity = readonly.content(format_address)
+            if identity is None:
+                return default
+            matches = {value for (entry_target, address), value in table.items()
+                       if entry_target == semantic_target and
+                       readonly.content(address) == identity}
+            return matches.pop() if len(matches) == 1 else default
+
         def _call_event(index, target):
             """Record the observable register ABI at an external boundary.
 
@@ -591,8 +772,8 @@ class Runner:
                 arity = call_arities[index]
             elif call_arity_by_format is not None:
                 format_address = int(uc.reg_read(REG[0])) & 0xffffffff
-                arity = call_arity_by_format.get(
-                    (semantic_target, format_address),
+                arity = _format_table_lookup(
+                    call_arity_by_format, semantic_target, format_address,
                     ((call_arity_by_target or {}).get(semantic_target, 4)))
             elif call_arity_by_target is not None:
                 arity = call_arity_by_target.get(semantic_target, 4)
@@ -609,13 +790,14 @@ class Runner:
                         call_sp + 4 * (argument_index - 4), 4), "little")
                 values.append(value)
             format_address = int(uc.reg_read(REG[0])) & 0xffffffff
-            format_key = (semantic_target, format_address)
-            if (call_stack_arity_by_format is not None and
-                    format_key in call_stack_arity_by_format):
-                stack_arity = call_stack_arity_by_format[format_key]
+            default_stack_arity = ((call_stack_arity_by_target or {}).get(
+                semantic_target, 0))
+            if call_stack_arity_by_format is not None:
+                stack_arity = _format_table_lookup(
+                    call_stack_arity_by_format, semantic_target,
+                    format_address, default_stack_arity)
             else:
-                stack_arity = ((call_stack_arity_by_target or {}).get(
-                    semantic_target, 0))
+                stack_arity = default_stack_arity
             stack_values = [int.from_bytes(uc.mem_read(call_sp + 4 * i, 4),
                                            "little")
                             for i in range(stack_arity)]
@@ -627,6 +809,10 @@ class Runner:
                                                    call_index=index,
                                                    call_target=semantic_target,
                                                    argument_values=argument_values)
+                if identity is None:
+                    # Read-only pointee equivalence: a pointer to an immutable
+                    # string compares by its bytes, never by its flash address.
+                    identity = readonly.content(value)
                 if identity is not None:
                     values[ai] = identity
             for ai in ((normalized_stack_pointer_calls or {}).get(index, ())):
@@ -656,6 +842,8 @@ class Runner:
                     value, include_content=True, call_index=index,
                     call_target=semantic_target,
                     argument_values=argument_values)
+                if identity is None:
+                    identity = readonly.content(value)
                 if identity is not None:
                     stack_values[stack_index] = identity
             # A few recovered ABIs deliberately leave a register hole before
@@ -673,6 +861,10 @@ class Runner:
         def _mw(uc, access, address, size, value, ud):
             if not (stack_lo <= address < stack_hi):
                 pointer_identity = _stack_object_pointer(value)
+                if pointer_identity is None and size == 4:
+                    # A stored read-only string pointer is the same equivalence
+                    # class as a passed one.  Only full words can hold one.
+                    pointer_identity = readonly.content(value)
                 state["events"].append(("W", address & 0xffffffff, size,
                                         pointer_identity if pointer_identity is not None else
                                         value & ((1 << (size * 8)) - 1)))
@@ -1136,7 +1328,7 @@ def compare(orig_bytes, orig_va, orig_size,
         if (hi & 0x7ff00000) == 0x7ff00000 and ((hi & 0x000fffff) or lo):
             return (0, 0x7ff80000)
         return (lo, hi)
-    def _retkey(x):
+    def _retkey(x, readonly=None):
         if ret_kind == "void":
             return ()
         if ret_kind == "i64":
@@ -1145,12 +1337,20 @@ def compare(orig_bytes, orig_va, orig_size,
             return (_cf32(x["s0"]),)
         if ret_kind == "f64":
             return _cf64(x["s0"], x["s1"])
-        return (x["r0"],)  # i32 default
+        # i32 default.  A returned `const char *` is the same read-only
+        # equivalence class as a passed one; every other value is unchanged
+        # because `key()` falls back to the exact 32-bit result.
+        return ((readonly.key(x["r0"]) if readonly is not None else x["r0"]),)
     """Run both functions over `trials` randomized inputs; return verdict dict."""
     ro = Runner(orig_va, orig_size, orig_bytes, code_base,
                 internal_code_regions=orig_internal_code_regions)
+    # Only the CANDIDATE gets an own-tail read-only extent: its compiled
+    # .rodata is where an inlined string literal lands, and the shipped image
+    # has no such object.  The original needs none -- every address it can
+    # produce is already covered, authoritatively, by the image itself.
     rc = Runner(cand_va, cand_size, cand_bytes, code_base,
-                internal_code_regions=candidate_internal_code_regions)
+                internal_code_regions=candidate_internal_code_regions,
+                own_readonly_tail=True)
     mism = []
     checked = 0
     matched_orig_stack_objects = set()
@@ -1315,8 +1515,10 @@ def compare(orig_bytes, orig_va, orig_size,
             # differences because events are semantic, not instruction-counted.
             checked += 1
             if a["returned"] or b["returned"]:
-                key_a = (_retkey(a), a["returned"], a["ncalls"], a["events_hash"])
-                key_b = (_retkey(b), b["returned"], b["ncalls"], b["events_hash"])
+                key_a = (_retkey(a, ro.readonly), a["returned"], a["ncalls"],
+                         a["events_hash"])
+                key_b = (_retkey(b, rc.readonly), b["returned"], b["ncalls"],
+                         b["events_hash"])
                 if key_a != key_b:
                     mism.append((t, "prefix-return", key_a, key_b))
             elif a["prefix_hash"] != b["prefix_hash"]:
@@ -1357,9 +1559,9 @@ def compare(orig_bytes, orig_va, orig_size,
         checked += 1
         architectural_a = (a.get("primask"),) if compare_primask else ()
         architectural_b = (b.get("primask"),) if compare_primask else ()
-        key_a = (_retkey(a), a["returned"], a["ncalls"], a["events_hash"],
+        key_a = (_retkey(a, ro.readonly), a["returned"], a["ncalls"], a["events_hash"],
                  architectural_a)
-        key_b = (_retkey(b), b["returned"], b["ncalls"], b["events_hash"],
+        key_b = (_retkey(b, rc.readonly), b["returned"], b["ncalls"], b["events_hash"],
                  architectural_b)
         if key_a != key_b:
             mism.append((t, "state", a, b))

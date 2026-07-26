@@ -3,13 +3,24 @@
 Candidate persistence is gated by cfg_verify's CFG-directed side-effect proof;
 this helper only supplies catalog/disassembly metadata and the proof ledger.
 """
+
+# Resolvable pipeline scratchpad (tools/g1_paths.py).  This used to be one
+# literal /private/tmp path belonging to a finished agent session; see that
+# module for the resolution order and the fail-closed catalog fallback.
+import os as _g1_os, sys as _g1_sys
+_G1_TOOLS = _g1_os.path.dirname(_g1_os.path.abspath(__file__))
+if _g1_os.path.basename(_G1_TOOLS) != "tools":
+    _G1_TOOLS = _g1_os.path.dirname(_G1_TOOLS)
+if _G1_TOOLS not in _g1_sys.path:
+    _g1_sys.path.insert(0, _G1_TOOLS)
+import g1_paths as _g1_paths
 import sys, os, json, re
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 import net_extract as nx
 import function_names
 from capstone import *
 
-SCR = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
+SCR = _g1_paths.scratchpad()
 NET_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/net/src"
 LEDGER = os.environ.get("RECON_LEDGER", SCR + "/net_recon_ledger.json")
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
@@ -258,7 +269,7 @@ TRUE_SIZE_OVERRIDES = {
 def _load():
     global _fw
     if _fw is None:
-        _fw = {f["entry"]: f for f in json.load(open(SCR + "/net_funcs.json"))["functions"]}
+        _fw = {f["entry"]: f for f in _g1_paths.load_catalog("net_funcs.json")["functions"]}
     return _fw
 
 def _litval(pc, imm):

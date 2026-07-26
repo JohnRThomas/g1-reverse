@@ -16,6 +16,17 @@ Extraction (light taint over a linear disasm):
   - `cmp argReg,#k` that gates a tbb/tbh switch -> {0..k+1} (every case);
   - `tbb/tbh [pc, argReg]` with no preceding bound -> {0..N+1} for N table entries.
 """
+
+# Resolvable pipeline scratchpad (tools/g1_paths.py).  This used to be one
+# literal /private/tmp path belonging to a finished agent session; see that
+# module for the resolution order and the fail-closed catalog fallback.
+import os as _g1_os, sys as _g1_sys
+_G1_TOOLS = _g1_os.path.dirname(_g1_os.path.abspath(__file__))
+if _g1_os.path.basename(_G1_TOOLS) != "tools":
+    _G1_TOOLS = _g1_os.path.dirname(_G1_TOOLS)
+if _G1_TOOLS not in _g1_sys.path:
+    _g1_sys.path.insert(0, _G1_TOOLS)
+import g1_paths as _g1_paths
 import sys, os, re, json, glob, struct, math
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 import extract as ax, net_extract as nx
@@ -24,7 +35,7 @@ import recon_kit, net_recon_kit
 from truesize import true_extent
 from capstone import Cs, CS_ARCH_ARM, CS_MODE_THUMB, CS_MODE_MCLASS
 
-SCR = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
+SCR = _g1_paths.scratchpad()
 BASE = "/Users/freedomcoder/Projects/G1disasm2"
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
 _CACHE = {}
@@ -17738,15 +17749,15 @@ REVIEWED_NPTR_COUNTS = {
 def core_ctx(core):
     if core in _CACHE: return _CACHE[core]
     if core == "app":
-        funcs = json.load(open(SCR + "/app_funcs.json"))["functions"]
+        funcs = _g1_paths.load_catalog("app_funcs.json")["functions"]
         c = dict(srcdir=BASE + "/recon/app/src", read=ax.func_bytes_padded,
                  rawread=ax.read, cb=emu.CODE_BASE, ret=recon_kit._ret_kind,
-                 sizes={f["entry"]: f["size"] for f in json.load(open(SCR + "/classified.json"))["functions"]})
+                 sizes={f["entry"]: f["size"] for f in _g1_paths.load_catalog("classified.json")["functions"]})
     else:
-        funcs = json.load(open(SCR + "/net_funcs.json"))["functions"]
+        funcs = _g1_paths.load_catalog("net_funcs.json")["functions"]
         c = dict(srcdir=BASE + "/recon/net/src", read=nx.func_bytes_padded,
                  rawread=nx.read, cb=emu.NET_CODE_BASE, ret=net_recon_kit._ret_kind,
-                 sizes={f["entry"]: f["size"] for f in json.load(open(SCR + "/net_funcs.json"))["functions"]})
+                 sizes={f["entry"]: f["size"] for f in _g1_paths.load_catalog("net_funcs.json")["functions"]})
     c["call_arity_by_target"] = {
         f["entry"]: arity for f in funcs
         if (arity := _decompiled_arity(f)) is not None
@@ -24953,9 +24964,14 @@ def self_test():
         # The final state word uses the post-shift mix for its low 26 bits but
         # the pre-shift mix for its high six bits.  Moving that recovered
         # six-bit splice by one position must be observable.
+        # Re-anchored 2026-07-26: the body was rewritten to name its
+        # xoroshiro64** helper (`rotate_left`), so the old `pre_shift_mix`
+        # anchor no longer occurred and this control silently ABORTED the whole
+        # suite with an AssertionError instead of biting.  Same mutation, same
+        # intent: move the recovered rotate by one position.
         ("FUN_0100f5d8",
-         "(pre_shift_mix << 26)",
-         "(pre_shift_mix << 25)"),
+         "rotate_left(state_a, 26)",
+         "rotate_left(state_a, 25)"),
         # A completed CCM operation is valid only when the hardware error
         # event remains clear; the live error fixture rejects polarity drift.
         ("FUN_0101fd8c",
@@ -25246,8 +25262,12 @@ def self_test():
         ("FUN_00064b1c",
          "release((volatile int *)param_1[4]);",
          "release((volatile int *)param_1[8]);"),
-        ("FUN_00065324", "FUN_00065000(param_1, param_2);",
-         "FUN_00065000(param_2, param_1);"),
+        # Re-anchored 2026-07-26: `15ec3d1e` gave this body its readable
+        # single-argument form, so the old two-argument swap anchor no longer
+        # occurred and aborted the suite.  Same property under test -- the
+        # value forwarded to FUN_00065000 is semantic, not scratch.
+        ("FUN_00065324", "FUN_00065000(domain);",
+         "FUN_00065000(0);"),
         ("FUN_00065620", "}while(uVar3!=8);", "}while(uVar3!=7);"),
         # Formatter/queue tail batch: preserve the recovered writer flags,
         # integer conversion base, fixed-point bias, event mode, and callback
@@ -26716,6 +26736,72 @@ def self_test():
     v = emu.compare(ab + at, ava, asz, bb + bt, bva, bsz, trials=1,
                     nptr=1, candidate_direct_target_map=bmap)
     assert not v["pass"] and v["detail"][0][1] == "direct-target", v
+    # Read-only pointee equivalence (emu.ReadOnlyPointees).  A pointer to an
+    # IMMUTABLE STRING is compared by its bytes, because the shipped firmware
+    # passes 0x000a3b3f while a reconstruction spelling the same literal passes
+    # the address of its own .rodata copy, and no observer can tell them apart.
+    # Everything else keeps EXACT address comparison, and these controls are
+    # what keeps that true: a wrong string, a null pointer, an out-of-image
+    # pointer, an interior pointer into the right string, and a byte-verified
+    # non-string rodata object must all still FAIL.
+    readonly_decl = ("extern void FUN_00070000(unsigned long);\n"
+                     "void fixture(void){FUN_00070000(%s);}")
+    ro_a, ro_err = recon.compile_func(readonly_decl % "0x000a3b3fUL",
+                                      "fixture", 0x63000)
+    assert not ro_err, ro_err
+    ro_orig_stub = next(k for k, v in recon.LAST_DIRECT_TARGET_MAP.items()
+                        if v == 0x70000)
+    rab, rat, rasz, rava = ro_a
+    readonly_cases = (
+        # the identical flash address must stay identical
+        ("0x000a3b3fUL", True),
+        # the SAME string spelled as a C literal: the equivalence class
+        ('(unsigned long)"%s(): opt3007 init start:\\n"', True),
+        # a genuine, valid, printable image string -- but the WRONG one
+        ('(unsigned long)"%s(): opt3007 init done!\\n"', False),
+        # never treat a null pointer as equivalent to anything
+        ("0UL", False),
+        # out-of-image pointers are not read-only anything
+        ("0xdeadbe00UL", False),
+        # interior of the correct string: not a string head, exact compare
+        ("0x000a3b40UL", False),
+        # byte-verified NON-STRING rodata object (pointer table at 0x87b30):
+        # read-only, NUL-preceded, and still compared by address
+        ("0x00087b30UL", False),
+    )
+    for readonly_arg, expect_pass in readonly_cases:
+        ro_b, ro_err = recon.compile_func(readonly_decl % readonly_arg,
+                                          "fixture", 0x63000)
+        assert not ro_err, (readonly_arg, ro_err)
+        ro_cand_stub = next(k for k, v in recon.LAST_DIRECT_TARGET_MAP.items()
+                            if v == 0x70000)
+        rbb, rbt, rbsz, rbva = ro_b
+        v = emu.compare(rab + rat, rava, rasz, rbb + rbt, rbva, rbsz,
+                        trials=1, nptr=0, ret_kind="void",
+                        candidate_direct_target_map={ro_cand_stub: ro_orig_stub})
+        assert v["pass"] is expect_pass, (readonly_arg, expect_pass, v)
+    # One of the five functions commit 9361d2ef measured as PASS -> FAIL ->
+    # PASS when its literals were inlined, end to end through verify().  Its
+    # 22 REVIEWED_CALL_ARITIES_BY_FORMAT entries are keyed by the shipped
+    # format-string ADDRESS, so it also exercises the content-resolved arity
+    # lookup, which is the half of the blocker that argument comparison alone
+    # does not cover.  The literals-inlined direction is proved in
+    # recon/analysis/harness_unblock.md; only the unmutated body is asserted
+    # here, because the canonical corpus is the concurrent owner's tree.
+    readonly_verdict = verify("app", "opt3007_chip_init")
+    assert readonly_verdict["status"] == "PASS", readonly_verdict
+    inlined_source = open(
+        BASE + "/recon/app/src/opt3007_chip_init.c").read().replace(
+            "0xa3b3f", '((unsigned long)"%s(): opt3007 init start:\\n")', 1)
+    inlined_verdict = verify("app", "opt3007_chip_init",
+                             source_override=inlined_source)
+    assert inlined_verdict["status"] == "PASS", inlined_verdict
+    corrupted_source = open(
+        BASE + "/recon/app/src/opt3007_chip_init.c").read().replace(
+            "0xa3b3f", '((unsigned long)"%s(): opt3007 init start;\\n")', 1)
+    corrupted_verdict = verify("app", "opt3007_chip_init",
+                               source_override=corrupted_source)
+    assert corrupted_verdict["status"] == "FAIL", corrupted_verdict
     # Full regressions for the Unicorn ITSTATE leak.  These use immutable,
     # unpatched original bytes and must pass through the generic IT-end
     # execution boundary only.

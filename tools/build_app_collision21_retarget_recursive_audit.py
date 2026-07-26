@@ -1,6 +1,17 @@
 #!/usr/bin/env python3
 """Fail-closed ownership audit for COLLISION-21 recursive newlib locks."""
 
+# Resolvable pipeline scratchpad (tools/g1_paths.py).  This used to be one
+# literal /private/tmp path belonging to a finished agent session; see that
+# module for the resolution order and the fail-closed catalog fallback.
+import os as _g1_os, sys as _g1_sys
+_G1_TOOLS = _g1_os.path.dirname(_g1_os.path.abspath(__file__))
+if _g1_os.path.basename(_G1_TOOLS) != "tools":
+    _G1_TOOLS = _g1_os.path.dirname(_G1_TOOLS)
+if _G1_TOOLS not in _g1_sys.path:
+    _g1_sys.path.insert(0, _G1_TOOLS)
+import g1_paths as _g1_paths
+
 import argparse
 import hashlib
 import json
@@ -11,8 +22,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SCRATCH = Path("/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/"
-               "bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad")
+SCRATCH = Path(_g1_paths.scratchpad())
 COLLISIONS = ROOT / "recon/ownership/app_build_collision_ownership.json"
 AUTH = ROOT / "recon/ownership/app_collision_adoption_authorizations.json"
 RETAINED = ROOT / "recon/generated/app_retained_sources.cmake"

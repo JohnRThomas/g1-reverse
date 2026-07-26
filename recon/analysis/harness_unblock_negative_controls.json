@@ -1,0 +1,2493 @@
+{
+ "tool": "tools/audit_negative_controls.py",
+ "note": "Complete run over all 406 negative controls in cfg_verify.self_test. Per-list trial budget mirrors the suite: trials_random=0 for *_directed_* lists, 8 elsewhere.  VACUOUS = mutated source still verifies PASS (the suite's assert fires).  VACUOUS-FAIL = verify() returns FAIL with checked==0, so the suite's assert is SATISFIED while nothing is exercised.  Measured after this pass re-anchored two stale controls (FUN_0100f5d8, FUN_00065324), which both bite.",
+ "controls_total": 406,
+ "controls_measured": 406,
+ "counts": {
+  "BITE": 399,
+  "VACUOUS": 6,
+  "VACUOUS-FAIL": 1
+ },
+ "not_biting": [
+  {
+   "verdict": "VACUOUS",
+   "list": "net_random_negative_sources",
+   "function": "FUN_010388c8",
+   "anchor": "FUN_0103b442(piVar4, 1);"
+  },
+  {
+   "verdict": "VACUOUS-FAIL",
+   "list": "directed_negative_sources",
+   "function": "FUN_00081080",
+   "anchor": "~0x8000u"
+  },
+  {
+   "verdict": "VACUOUS",
+   "list": "app_random_negative_sources",
+   "function": "FUN_0004e604",
+   "anchor": "FUN_0004e540(param_1, &local_24)"
+  },
+  {
+   "verdict": "VACUOUS",
+   "list": "app_random_negative_sources",
+   "function": "FUN_0004e780",
+   "anchor": "0x0007f211,"
+  },
+  {
+   "verdict": "VACUOUS",
+   "list": "app_random_negative_sources",
+   "function": "FUN_0004ee68",
+   "anchor": "FUN_00080d3e(*context, work.common + 4)"
+  },
+  {
+   "verdict": "VACUOUS",
+   "list": "app_random_negative_sources",
+   "function": "ancs_connected",
+   "anchor": "*(volatile unsigned char*)(iVar5+0x367) = 1;"
+  },
+  {
+   "verdict": "VACUOUS",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_01019750",
+   "anchor": "extern int FUN_0100ca98(uint8_t, void *);"
+  }
+ ],
+ "results": [
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "cal_panel_canvas_coord",
+   "anchor": "case 2:             computed_x = 8;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "ui_QuickNote_task",
+   "anchor": "frame != 4; ++frame"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "main",
+   "anchor": "B8(allocation, 4) = 0;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "lc3_tns_analyze",
+   "anchor": "0x00098564UL"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00012080",
+   "anchor": "FUN_00053d70(0x1003,0,local_30)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00017f70",
+   "anchor": "if (param_3 < 0x15) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "sendAudioStram2Cache",
+   "anchor": "record.type = 2;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "master_process_audio_fw_load_req",
+   "anchor": "*param_3 = 0x6e;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00021a40",
+   "anchor": "FUN_00086c78(record + 3, 17, 17);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00022974",
+   "anchor": "*(uint32_t *)buffer = 0xff;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_0007d696",
+   "anchor": "(unsigned short)((value << 8) | ((value >> 8) & 0x"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_0007d82e",
+   "anchor": "command[0] = (unsigned char)opcode;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_0008099e",
+   "anchor": "struct work_item item = { value, context };"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_000829f0",
+   "anchor": "FUN_00082932(param_3, param_4, param_5, text, leng"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00085130",
+   "anchor": "uint32_t index = channel;   uintptr_t table = FUN_"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_000167f4",
+   "anchor": "FUN_00083dc8(arg0, 0xb, 2, 1)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_000545f0",
+   "anchor": "if (error != 0) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_0005c8d8",
+   "anchor": "while ((iVar2 = *(volatile int*)(iVar1+0x18)) != 0"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00060c00",
+   "anchor": "((uint32_t)configuration[0x1c] - 3u) < 2u"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_0001965c",
+   "anchor": "mode = 4;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_0002e398",
+   "anchor": "fn_t f = *(volatile fn_t*)(r3v + 0);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_0002e440",
+   "anchor": "fn_t f = *(volatile fn_t*)(r3v + 4);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "opt3007_chip_init",
+   "anchor": "frame.transfer.type = 2;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "spec_ble_command_hook",
+   "anchor": "FUN_00086c1e((uintptr_t)&local_520,param_1,param_2"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_0002eb40",
+   "anchor": "DEBUG_PRINT(0xa3e80,"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_0002ed68",
+   "anchor": "0x40ffff < *puVar2v"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00050558",
+   "anchor": "message.message = 0x000f1e69;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00050c24",
+   "anchor": "local.c = param_1;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00050c54",
+   "anchor": "iVar3 = FUN_00050c24(uVar4);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_000513e8",
+   "anchor": "pcVar12 = (codef)(uintptr_t)*puVar7;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_000518a8",
+   "anchor": "FUN_00086c78(param_2, 0, 0x18);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_0007f894",
+   "anchor": "callback_value = payload[1];"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00080798",
+   "anchor": "FUN_00050c24(param_1);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00080872",
+   "anchor": "if (field->decoded != 0)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_000809f6",
+   "anchor": "(unsigned char)(byte3 - 1) < 2"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00080ca0",
+   "anchor": "decoded[2] = *(volatile unsigned char *)(param_2 +"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00085ebc",
+   "anchor": "FUN_00085e1a(param_1, param_2 + 1, 4);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00086064",
+   "anchor": "FUN_00085e1a(local_30, &local_38, 8);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_0008629e",
+   "anchor": "*dst = (unsigned char)~(*src);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_0008688e",
+   "anchor": "*(volatile int *)(iVar3 + 4) = (int)piVar2;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00086b7e",
+   "anchor": "(flags & 0xf000) == 0x2000"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00064a88",
+   "anchor": "result + buffer.length"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00078110",
+   "anchor": "scale += exponent_delta;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "clean_fb_data",
+   "anchor": "if (0x27f < param_5) param_5 = 0x280;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "disable_watchdog",
+   "anchor": "DEBUG_PRINT(0xa1c6a, 0xa1c85, 0,"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "get_glassbox_charge_percent",
+   "anchor": "return *(volatile uint8_t *)0x20019ef4UL & 0x7f;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "dump_template_gyro_info",
+   "anchor": "uVar2,uVar3,uVar4);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "display_close_screen",
+   "anchor": "loc[1] = (uint8_t)param_1;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_0004d100",
+   "anchor": "struct { int *first; int *second; int zero; } requ"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_0005505c",
+   "anchor": "if (b120 == 0 || b120 < b121) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00055350",
+   "anchor": "FUN_0005f24c((void *)(uintptr_t)local_34[0]);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0102fbd0",
+   "anchor": "0x2aU >>"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_01030bac",
+   "anchor": "puVar4[1] > 0xffff"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_01030bac",
+   "anchor": "puVar4[0] > 0xffff"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0103566c",
+   "anchor": "typedef int (*fnptr)(int, void *, unsigned short, "
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0103566c",
+   "anchor": "if (bVar6) {         next_state ="
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0103566c",
+   "anchor": "if (iVar2 < 0) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0102bbec",
+   "anchor": "case 0x65:"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0102bbec",
+   "anchor": "case 0x67:"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_010359b8",
+   "anchor": "if (param_1 < 5) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_010359b8",
+   "anchor": "if ((param_2 != 0) && ((*(unsigned int *)(param_2 "
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_010359b8",
+   "anchor": "DAT_01035aa8 + (unsigned int)iVar3"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0103601c",
+   "anchor": "uVar6 = uVar6 & ~((int)uVar6 >> 31);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0103601c",
+   "anchor": "(long long)(int)uVar6 * 0x8000 + 999"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_01037398",
+   "anchor": "if ((*(signed char *)((int)param_1 + 0xe) != *(sig"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_01037398",
+   "anchor": "if (param_1 == (int *)P_01037428) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_01037768",
+   "anchor": "if (pb[0xd] < 0) {"
+  },
+  {
+   "verdict": "VACUOUS",
+   "list": "net_random_negative_sources",
+   "function": "FUN_010388c8",
+   "anchor": "FUN_0103b442(piVar4, 1);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_random_negative_sources",
+   "function": "FUN_0103961c",
+   "anchor": "(int)(quotient >> 32));"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_random_negative_sources",
+   "function": "FUN_01039936",
+   "anchor": "int iVar2 = FUN_01039768(param_1, param_3);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0102bbec",
+   "anchor": "if (param_1 == (undefined4 *)0x0) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0102bbec",
+   "anchor": "if ((uintptr_t)param_2 < 8u) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0102bbec",
+   "anchor": "if ((uintptr_t)param_2 < 8u) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00024684",
+   "anchor": "if (record[0] != 0xaa)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "onboarding_ble_process",
+   "anchor": "*(volatile u8*)(param_4+2) = 0xca;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "onboarding_ble_process",
+   "anchor": "*(volatile u8*)(ctx + 0x1f) = 0;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "onboarding_ble_process",
+   "anchor": "*(volatile u8*)(param_4+3) = uVar2;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "onboarding_ble_process",
+   "anchor": "update_persist_task_status(t2, 0xe, 2);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "onboarding_ble_process",
+   "anchor": "*(volatile u8*)(ctx + 0x20) = *(volatile u8*)(t3 +"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "onboarding_ble_process",
+   "anchor": "*(volatile u8*)(t5 + 0xed5) = 0x2a;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "send_response_data_to_msgqueue",
+   "anchor": "FUN_000720d0(0x2000392cUL,"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "serialization_init",
+   "anchor": "0x20007a80UL = 1;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "setDelayExitValue",
+   "anchor": "0x2000a094UL = param_1;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "set_brightness_lum_base",
+   "anchor": "0x3f < uVar8"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "set_brightness_to_panel_reg",
+   "anchor": "FUN_0007d63e(6);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "opt3007_chip_init",
+   "anchor": "frame.transfer.length = 3;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "pairing_failed",
+   "anchor": "FUN_00056a68(connection, 0x13);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "panel_init",
+   "anchor": "FUN_0007d642(0x31, 4);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "panel_off",
+   "anchor": "context + 0x35c"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "post_notification_cmd_response",
+   "anchor": "command->length != 0x1b4"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "read_usr_settting_from_flash",
+   "anchor": "param_1[0x15] = buf[0x15]"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "register_imu_funsion_context",
+   "anchor": "0x00025fadUL"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "register_ipc_service_context",
+   "anchor": "0x20007a84UL"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "request_ancs_attr_ext",
+   "anchor": "uVar1 = 0x20006ae8"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "reset_all_static_info",
+   "anchor": "base + 0x35"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "navigation_overview_map_display",
+   "anchor": "*(volatile unsigned char*)(iVar3 + 0x15) = 0;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "not_disturb_sync_data",
+   "anchor": "| 5UL;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "on_triple_click",
+   "anchor": "0x20018d8bUL"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "onboarding_sync_data",
+   "anchor": "| 4UL;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "opt3007_chip_deinit",
+   "anchor": "(v + 0x10)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "jbd_panel_resume",
+   "anchor": "param_1+0x369"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "jbd_panel_suspend",
+   "anchor": "command = 0xff"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "jdb_panel_init",
+   "anchor": "iVar1 == 0x4010"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "load_burial_point",
+   "anchor": "base + 0xda) = 7"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "load_sys_setting",
+   "anchor": "width_b > 0x40"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "button_init",
+   "anchor": "FUN_00017688((uintptr_t)gpio_specs[0], 0x10000)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "ble_process_get_req",
+   "anchor": "(*(send_response_fn *)(context + 0x0c))(data, 0xc2"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "change_work_mode_to",
+   "anchor": "{0,0,0,0,0,0,0,0,0,1},"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "check_bonded_addr",
+   "anchor": "+ 0x367u"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "cleanAppLanguageInfo",
+   "anchor": "FUN_00019c70(0x9e903, 0x9ed8f);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "getAudioMessageQueueCacheData",
+   "anchor": "0x20003890UL"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "getNewsIndex",
+   "anchor": "base[5] = b;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "getStocksIndex",
+   "anchor": "base[3] = b;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "get_boot_seconds",
+   "anchor": "1000,0);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "get_glassbox_charge_status",
+   "anchor": "return *pbVar1 >> 7;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "cleanNewsIndex",
+   "anchor": "0x20004950UL+5"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "cleanStocksIndex",
+   "anchor": "0x20004950UL+3"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "clean_dmic_msgq",
+   "anchor": "0x2000230cUL > 0"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "convert_app_whitelist_to_json",
+   "anchor": "uVar8*0x38 + 0x2a"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "debug_print",
+   "anchor": "context + 0x220"
+  },
+  {
+   "verdict": "VACUOUS-FAIL",
+   "list": "directed_negative_sources",
+   "function": "FUN_00081080",
+   "anchor": "~0x8000u"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000811ce",
+   "anchor": "FUN_00055534(0x2008,"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00081326",
+   "anchor": "param_3 + 7"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000818dc",
+   "anchor": "result == -11"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000821f4",
+   "anchor": "FUN_000585f0(owner, 1, 4)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000755f8",
+   "anchor": "uVar4=0x20"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00075c2c",
+   "anchor": "return fallback;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000767c8",
+   "anchor": "FUN_0000d58c(uVar7,uVar8,uVar4,normalized_high)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00076cc8",
+   "anchor": "&uStack_8, param_1, &uStack_8"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000777f0",
+   "anchor": "param_1, &uStack_c, uVar2, &uStack_c"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00064290",
+   "anchor": "case 0x6e: bVar7 = 10;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000646c0",
+   "anchor": "FUN_0008705a(iVar6,&local_44,"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00064b1c",
+   "anchor": "release((volatile int *)param_1[4]);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00065324",
+   "anchor": "FUN_00065000(domain);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00065620",
+   "anchor": "}while(uVar3!=8);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0007797c",
+   "anchor": "frame.writer.flags = 0xffff0208u;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00078f88",
+   "anchor": "state.base = 10;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0007c0a8",
+   "anchor": "param_1 * 0x8000 + 999"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0007c0e2",
+   "anchor": "(param_2 & 0xffffff00u) | 2u"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0007c20a",
+   "anchor": "frame.control = 0xf4;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "delAudioStreamRecord",
+   "anchor": "buf[0] = 4;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "dequeue_ancs",
+   "anchor": "FUN_00086c04(param_1, buf, 0x1b4);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "dequeue_dmic",
+   "anchor": "(const void *)0x000885ccUL"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "dequeue_uid",
+   "anchor": "param_1[1] = record.second;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "display_MasterSendClose",
+   "anchor": "record[0] = 6;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "handle_dashboard_action",
+   "anchor": "0x20004950UL+3"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "handle_stocks_action",
+   "anchor": "0x20004950UL+5"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "handle_touch_single_click",
+   "anchor": "sub_1672c(action);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "imu_fusion_thread",
+   "anchor": "uVar7 = 0x8000;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "imu_fusion_thread",
+   "anchor": "I(buf1 + 4)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "imu_fusion_thread",
+   "anchor": "0x45a1cac1,0x3fadf3b6"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "imu_fusion_thread",
+   "anchor": "as_f(d4),as_f(d5),as_f(d6)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "imu_fusion_thread",
+   "anchor": "I(0x20007aa8) = (int)(roll * 100.0f);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "imu_fusion_thread",
+   "anchor": "float la0 = roll, la1 = pitch, la2 = yaw;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "init_dashboard_info",
+   "anchor": "VB(pb+2) = 0x92;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "store_whitelist",
+   "anchor": "unsigned char cVar5 = 3;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "sync_message_signal_to_slave",
+   "anchor": "message.signal & 0xffff0000U"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "trigger_screen_state_change",
+   "anchor": "*(volatile unsigned char*)(param_2 + 0xfe8) = 1;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "try_to_save_file",
+   "anchor": "packet + 5, packet_length - 5"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "uart_callback",
+   "anchor": "param_3==0x5a"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0002ace0",
+   "anchor": "timeout.window.max = 30000;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0005a724",
+   "anchor": "FUN_00080cf2(param_1, frame.address)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0005b9cc",
+   "anchor": "0x00099cbdUL,0x000f3ebdUL,0x000f46b8UL,0x118f"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00051ac0",
+   "anchor": "(param_3>>3)&1"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00051d8c",
+   "anchor": "status = 0x1d;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00052180",
+   "anchor": "response = 9;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00052604",
+   "anchor": "iVar3+4, 0x3f, uVar2"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000526f4",
+   "anchor": "0x00080ab5UL"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0003439c",
+   "anchor": "uVar7=(*(volatile uint8_t*)(iVar4+0xdd)-1)&0xff;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00034dbc",
+   "anchor": "FUN_0008503c(root, 0x000a862c)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00035050",
+   "anchor": "FUN_0008503c(iVar4, 0xa862c)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000362e8",
+   "anchor": "FUN_00047a4c(uVar3,0x120)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00036820",
+   "anchor": "mode * 0x3ebeu"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0005f654",
+   "anchor": "error.format = 0x000f5503"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0005f760",
+   "anchor": "range_error[0] = 2;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0005fb30",
+   "anchor": "+ 0x51) = 0;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00060c00",
+   "anchor": "return -0x13;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00061624",
+   "anchor": "LAB_00061734:         uVar4 = 0;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00083cfc",
+   "anchor": "param_3, param_4);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00083dc8",
+   "anchor": "request[2] = (unsigned char)param_4;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00083e70",
+   "anchor": "buf[0] = 0x07;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00083ede",
+   "anchor": "(submode << 8)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000840cc",
+   "anchor": "owner->statistics->updates++;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "enqueue_ancs",
+   "anchor": "FUN_00086c78(buf, 0, 0x1b4);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "enqueue_dmic",
+   "anchor": "FUN_00086c04(buf, 0x885cc, 200);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "enqueue_file",
+   "anchor": "buf[200] = (unsigned char)param_2;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "ext_flash_api_init",
+   "anchor": "*param_1 = 0x2e399;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "getAppLanguageInfofromFlash",
+   "anchor": "(int8_t)0xaa ?"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004ed8c",
+   "anchor": "3, 0x000f1574, iVar3"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0002f4a8",
+   "anchor": "(msg), (ctx), (v2), param_4); else FUN_00019c70((m"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000442bc",
+   "anchor": "case 0:"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000442bc",
+   "anchor": "case 1:"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000442bc",
+   "anchor": "case 2:"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000442bc",
+   "anchor": "case 3:"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000442bc",
+   "anchor": "FUN_00086f00((int)display.text_12,0,0x10,"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000442bc",
+   "anchor": "FUN_0004588c(1,*pbVar9"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000442bc",
+   "anchor": "FUN_0004588c(2,*pbVar9"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000442bc",
+   "anchor": "param_2,param_3,param_4,param_5);     return 0;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000442bc",
+   "anchor": "if (param_7 == '\\0') {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000442bc",
+   "anchor": "if (pbVar9[1] == 0x3a)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000442bc",
+   "anchor": "if (*pbVar9 == 0x3a)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004967c",
+   "anchor": "if(iVar2 == 0){"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004967c",
+   "anchor": "if(iVar2 == 0){"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004967c",
+   "anchor": "if(param_2 < 0xb){"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004967c",
+   "anchor": "packet[0] = 2;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004967c",
+   "anchor": "packet[2] = (uint8_t)param_2;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004967c",
+   "anchor": "long long lVar8 = thunk_FUN_00074f68();"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004967c",
+   "anchor": "UINT64_C(1000)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004967c",
+   "anchor": "| uVar5*0x20000"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004967c",
+   "anchor": "| uVar3*0x20000"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004967c",
+   "anchor": "(uVar5>>0xf)-(uVar3>>0xf)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004967c",
+   "anchor": "(unsigned)(uVar4<uVar6)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004967c",
+   "anchor": "FUN_00019c70(0x000f001c,0x000f019a, uVar4-uVar6,  "
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004967c",
+   "anchor": "((uVar5>>0xf)-(uVar3>>0xf)) -                     "
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004967c",
+   "anchor": "FUN_0004904c();"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "display_inputEvent",
+   "anchor": "command[0] = 5;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "display_inputEvent",
+   "anchor": "*(uint16_t *)(command + 2) = 2;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "display_inputEvent",
+   "anchor": "command[4] = input;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "display_inputEvent",
+   "anchor": "FUN_000720d0(0x200038c4UL, command, 0, 0) != 0"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "dmic_record_start",
+   "anchor": "device[0x1059] = 4;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "dmic_record_start",
+   "anchor": "0x20007b78UL, 1,"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "dmic_record_start",
+   "anchor": "device + 0x104c"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "dmic_record_start",
+   "anchor": "device + 0x68"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "local_store_write",
+   "anchor": "\"ar_glass_userdata_settings/\""
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "local_store_write",
+   "anchor": "key + 28, 0, 100"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "local_store_write",
+   "anchor": "key, key_suffix, sizeof(key)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "local_store_write",
+   "anchor": "FUN_0004e374(key, value, length)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "load_usr_setting",
+   "anchor": "0x00134000UL, &record"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "load_usr_setting",
+   "anchor": "record.timeout == 0 ? 400 : record.timeout"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "load_usr_setting",
+   "anchor": "settings[0xec1] - 1) > 8"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "load_usr_setting",
+   "anchor": "record.critical_mode < 2"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "reset_usr_setting",
+   "anchor": "settings + 0xfea) = 10;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "reset_usr_setting",
+   "anchor": "settings + 0x1069) = UINT32_MAX;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "reset_usr_setting",
+   "anchor": "FUN_00032ef0(0);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "reset_usr_setting",
+   "anchor": "settings + 0xec1) = 3;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "runtime_info_sync",
+   "anchor": ".marker = 1,"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "runtime_info_sync",
+   "anchor": "runtime[0], runtime[1], runtime[2], runtime[3], ru"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "runtime_info_sync",
+   "anchor": "&packet, sizeof(packet)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "runtime_info_sync",
+   "anchor": "0x20002fe0UL = 0;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0003483c",
+   "anchor": "return length < 31U ? length : 31U;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0003483c",
+   "anchor": "return length < 31U ? length : 31U;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00047bf8",
+   "anchor": "if (iVar1 != 0) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00043a68",
+   "anchor": "if((param_1 & 1) == 0){"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00043a68",
+   "anchor": "if((uVar6 & 1U) != 0)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00043a68",
+   "anchor": "iVar8 < param_4 - param_2"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00043a68",
+   "anchor": "if((uVar14 & 2) != 0)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00043a68",
+   "anchor": "if(((uint32_t)iVar7 & 2U) != 0)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "get_glassbox_charge_percent",
+   "anchor": "return *(volatile uint8_t *)0x20019ef4UL & 0x7f;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "getDashboardStartUpModeInfofromFlash",
+   "anchor": "((unsigned char)local_14 == 0xaa)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004e124",
+   "anchor": "*(int*)(param_1+0x20)=local.result.selected;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000521fc",
+   "anchor": "puVar1[0] = decoded.value;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000521fc",
+   "anchor": "0x000f349f, 5, 0x00085f8d, parsed.text"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000521fc",
+   "anchor": "0x000f3b6f, 4, 0x00085f97, &parsed.values[2]"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000521fc",
+   "anchor": "0x000f3b6f, 4, 0x00085f97, &parsed.values[2]"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000521fc",
+   "anchor": "if (puVar1[2] == puVar1[1]) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000521fc",
+   "anchor": "if (iVar3 == 0) {             uVar4 = 7;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00052d58",
+   "anchor": "(unsigned char)(uVar4 / 7);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00065b9c",
+   "anchor": "channel_prefix << 5"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00067600",
+   "anchor": "if ((callback->flags & 4) != 0) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00067600",
+   "anchor": "irq_field < 0x80u"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0006bfc8",
+   "anchor": "if (0x3f < iVar8) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00071684",
+   "anchor": "if (event < 5) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000723b8",
+   "anchor": "entry->acquisitions == 0 || entry->item == head"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000723b8",
+   "anchor": "next != entry && next != 0"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000723b8",
+   "anchor": "if (next_priority <= priority) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000723b8",
+   "anchor": "if (priority < -127) {         priority = -127;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0002c714",
+   "anchor": "FUN_00033c04(*(byte *)(iVar4 + 0xdd) - 1);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0002c714",
+   "anchor": "if ((*(char *)(param_2 + 1) == '\\x06') ||"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0002c714",
+   "anchor": "load_u32_le((const void *)(uintptr_t)load_u32_le(p"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0002c714",
+   "anchor": "uVar9 - 1000"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0002c714",
+   "anchor": "sync_to_slave(param_1,0xc,0,0);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0002c714",
+   "anchor": "sync_to_slave(param_1,8,0,0);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00032308",
+   "anchor": "param_2 < 5"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00032308",
+   "anchor": "uVar4 = 4;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00032308",
+   "anchor": "uVar4 = 3;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00032308",
+   "anchor": "DEBUG_PRINT(0x000a676d, 0x000a7712, 0x3c1);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00032308",
+   "anchor": "if (*(int*)0x20007554 == 0)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00032b24",
+   "anchor": "if(param_1!=0){"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00032b24",
+   "anchor": "param_1==2"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00032b24",
+   "anchor": "0x00ffa55aU"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00033b0c",
+   "anchor": "DEBUG_PRINT(format_string, iVar2, value2, value1, "
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00033b0c",
+   "anchor": "FUN_00019c70(format_string, iVar2, value2, value1,"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0007d696",
+   "anchor": "FUN_0007d82e(0x36, &big_endian, sizeof(big_endian)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0007d82e",
+   "anchor": "command[0] = (unsigned char)opcode;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0007d82e",
+   "anchor": "command[0] = (unsigned char)opcode;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000125c0",
+   "anchor": "param_3 * (0u - (param_2 >> 31))"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000125c0",
+   "anchor": "FUN_0000ec34((uint32_t)multiplied,"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000125c0",
+   "anchor": "(uint32_t)((uint64_t)multiplied >> 32)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000125c0",
+   "anchor": "int64_t scaled = FUN_0000ec34"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_000125c0",
+   "anchor": "(uint32_t)(scaled % 1000000)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00019718",
+   "anchor": "if(*lv>2)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00019718",
+   "anchor": "if(*lv>0)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00019718",
+   "anchor": "if(*lv>0)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00019718",
+   "anchor": "FUN_00072908(c+0x200,-1LL)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00019718",
+   "anchor": "FUN_00086534(c+0x200,0,10)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00019718",
+   "anchor": "FUN_00086534(c+0x1e8,0,10)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00019718",
+   "anchor": "DEBUG_PRINT(0x99969,0x9b0d8,p3,0,p4)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00019718",
+   "anchor": "FUN_00019c70(0x99969,0x9b0d8,p3,*sink,p4)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00019718",
+   "anchor": "DEBUG_PRINT(0x9adc7,0x9b0d8)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00019718",
+   "anchor": "FUN_00019c70(0x9adc7,0x9b0d8)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "ble_process_req_dispatch",
+   "anchor": "DEBUG_PRINT(0x0009d4e4u, 0x0009e04eu);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "ble_process_req_dispatch",
+   "anchor": "== 6) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "ble_process_req_dispatch",
+   "anchor": "load_u16(packet + 2), load_u16(param_3 + 1));"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "ble_process_req_dispatch",
+   "anchor": "0x8000u,                                      0, 0"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "ble_process_req_dispatch",
+   "anchor": "0x8000u,                                      0, 0"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "ble_process_req_dispatch",
+   "anchor": "(uint32_t)(command_id - 1) < 0x27u"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "ble_process_req_dispatch",
+   "anchor": "(uint32_t)(command_id - 0x29u) < 0x1du"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "ble_process_req_dispatch",
+   "anchor": "((command_id + 0xfu) & 0xffu) > 5u"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "ble_process_req_dispatch",
+   "anchor": "case 0x4c:         if (2 < LVL_A) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "ble_process_req_dispatch",
+   "anchor": "__atomic_fetch_or(P_20007570, 2,"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "ble_process_req_dispatch",
+   "anchor": "P_2000756c, 0xfffffffdu, __ATOMIC_ACQ_REL);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00078110",
+   "anchor": "if ((*pbVar18 & 0xdf) == 0x50) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00078110",
+   "anchor": "iVar6 = FUN_0000ef12(iVar13);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00078110",
+   "anchor": "param_6 = 1 - param_6;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00078110",
+   "anchor": "if (*(volatile int*)(iVar7 + 8) <= iVar17) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "SettingStoreHandler",
+   "anchor": "uVar8 = 0;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "init_dmic_msgq",
+   "anchor": "0x20007b7cUL,200,8"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "init_msgq_ancs",
+   "anchor": "0x20006a6cUL,0x1b4,10"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "init_msgq_uid",
+   "anchor": "0x20006a38UL,8,10"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "ipc0_ept_recv",
+   "anchor": "(int)(param_1+1), param_2-1"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "is_on_whitelist_by_identifier",
+   "anchor": "(const void *)0x000a81d0,param_1,0x15"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "power_for_imu_and_mic",
+   "anchor": "8, 2, 1);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "power_down_imu_and_mic",
+   "anchor": "8, 3, 1);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "power_down_panel",
+   "anchor": ", 8, 1, 1);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "pull_message",
+   "anchor": "* 0x1b4 +"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "read_sys_settting_from_flash",
+   "anchor": "output[0x56] = record[0x56];"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "upgradeDashboardStartupModeInfoToFlash",
+   "anchor": "param_2 & 0xffff0000UL"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "upgradeQuickNoteDataToFlash",
+   "anchor": "param_2 & 0xffff0000U"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "utf8_to_unicode",
+   "anchor": "(param_1[1] & 3) << 6"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_00028a1c",
+   "anchor": "iVar4 - iVar8 < 0x2711"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004c2d4",
+   "anchor": "3, (const void *)0xf0a68, iVar2"
+  },
+  {
+   "verdict": "BITE",
+   "list": "directed_negative_sources",
+   "function": "FUN_0004c2d4",
+   "anchor": "iVar2 = api->enable(puVar1, 8, 1);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "app_random_negative_sources",
+   "function": "FUN_0005aba8",
+   "anchor": "FUN_0008016a(frame.work,frame.header,frame.scratch"
+  },
+  {
+   "verdict": "BITE",
+   "list": "app_random_negative_sources",
+   "function": "FUN_0005af8c",
+   "anchor": "param_5, 0xf4a9e, &frame.object"
+  },
+  {
+   "verdict": "BITE",
+   "list": "app_random_negative_sources",
+   "function": "FUN_0005c80c",
+   "anchor": "0x5a329,&frame.input"
+  },
+  {
+   "verdict": "BITE",
+   "list": "app_random_negative_sources",
+   "function": "FUN_0004e484",
+   "anchor": "0x2000a10cUL"
+  },
+  {
+   "verdict": "VACUOUS",
+   "list": "app_random_negative_sources",
+   "function": "FUN_0004e604",
+   "anchor": "FUN_0004e540(param_1, &local_24)"
+  },
+  {
+   "verdict": "VACUOUS",
+   "list": "app_random_negative_sources",
+   "function": "FUN_0004e780",
+   "anchor": "0x0007f211,"
+  },
+  {
+   "verdict": "VACUOUS",
+   "list": "app_random_negative_sources",
+   "function": "FUN_0004ee68",
+   "anchor": "FUN_00080d3e(*context, work.common + 4)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "app_random_negative_sources",
+   "function": "SendPowerInfoToSlave",
+   "anchor": "request[0] = 4;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "app_random_negative_sources",
+   "function": "SendSystemLanguageInfoToSlave",
+   "anchor": "local[0] = 5;"
+  },
+  {
+   "verdict": "VACUOUS",
+   "list": "app_random_negative_sources",
+   "function": "ancs_connected",
+   "anchor": "*(volatile unsigned char*)(iVar5+0x367) = 1;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "app_random_negative_sources",
+   "function": "ancs_disconnected",
+   "anchor": "*(volatile uint8_t *)(device_state + 0x365u) = 0;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "display_negative_sources",
+   "function": "get_notification_counts_cmd_process",
+   "anchor": "param_3[1] = 0xc9;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "display_negative_sources",
+   "function": "gui_screen_clear",
+   "anchor": "FUN_0007d6f4(0);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "display_negative_sources",
+   "function": "gui_area_clear",
+   "anchor": "FUN_000471cc(iVar2 + 0xb90, 0, param_1, param_2, p"
+  },
+  {
+   "verdict": "BITE",
+   "list": "display_negative_sources",
+   "function": "gui_bmp_bitmap_draw_ex",
+   "anchor": "return 0;         }"
+  },
+  {
+   "verdict": "BITE",
+   "list": "display_negative_sources",
+   "function": "gui_bitmps_merge_draw",
+   "anchor": "return 0;     }"
+  },
+  {
+   "verdict": "BITE",
+   "list": "display_negative_sources",
+   "function": "sett_init",
+   "anchor": "param_1[1] = 0x22169;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "display_negative_sources",
+   "function": "simulator_ancs_calendar_schedule_trigger",
+   "anchor": "FUN_00086c78(iVar1 + 0x34, 0, 0x1b4);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "display_negative_sources",
+   "function": "spi_master_trans_data_tx_rx",
+   "anchor": "{ param_2, param_3, param_4, param_5 };"
+  },
+  {
+   "verdict": "BITE",
+   "list": "display_negative_sources",
+   "function": "startAudioStreamRecord",
+   "anchor": "buf[4] = 1;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "display_negative_sources",
+   "function": "stopAudioStreamRecord",
+   "anchor": "record[4] = 3;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "blocker_negative_sources",
+   "function": "FUN_01008650",
+   "anchor": "(uint64_t)left[i] * right[j]"
+  },
+  {
+   "verdict": "BITE",
+   "list": "blocker_negative_sources",
+   "function": "FUN_0102d1c0",
+   "anchor": "__STREXB(0, lock)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00055454",
+   "anchor": "FUN_00081102(param_1, (uint32_t)param_2 << 12);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_0006567c",
+   "anchor": "uVar12 = FUN_00065434(param_1);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00065b18",
+   "anchor": "(iVar2+0x200))|2;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00066ec0",
+   "anchor": "FUN_0007e2fa(0x00099cbdUL,0x000f7a30UL,0x000f6df0U"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_000829c0",
+   "anchor": "local_14[0] = 0;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00082a1a",
+   "anchor": "FUN_00082932(param_3, param_4, param_5, local_12, "
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00082e04",
+   "anchor": "FUN_0005c310(param_1,param_3,param_4,param_5);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "getDashboardStartUpModeInfofromFlash",
+   "anchor": "FUN_00019c70(0x0009e9bfUL, 0x0009ed09UL, param_3, "
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00086c1e",
+   "anchor": "length > destination_size ||"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_00087080",
+   "anchor": "length > destination_size ||"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "FUN_000870ea",
+   "anchor": "u.d = FUN_00078bf8(u.d);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "display_close",
+   "anchor": "packet.type = 3;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "display_powerEvent",
+   "anchor": "packet[0] = powered_on == 1 ? 7 : 8;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "draw_template_translate_screen",
+   "anchor": "uVar3 = 0x1b;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "mobile_send_notification_to_ble_device_test",
+   "anchor": "FUN_00021a40(uVar1, uVar3, 0x4b, param_3);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "navigation_direction_img_display",
+   "anchor": "(unsigned int)(param_1 - 1) < 0x23"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "send_dmic_msg",
+   "anchor": "(&message, 202);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "negative_sources",
+   "function": "send_event",
+   "anchor": "event[0] = 0xf5;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_negative_sources",
+   "function": "FUN_010091cc",
+   "anchor": "FUN_0101e94c(requested_power_level);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_negative_sources",
+   "function": "FUN_0100a7e8",
+   "anchor": "} while (ecb->EVENTS_ERRORECB != 0);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_negative_sources",
+   "function": "FUN_0102bbec",
+   "anchor": "case 0x61:"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_negative_sources",
+   "function": "FUN_0102fbd0",
+   "anchor": "0x2aU >>"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_negative_sources",
+   "function": "FUN_01030bac",
+   "anchor": "unsigned int mask = 1u << bit;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_negative_sources",
+   "function": "FUN_0103566c",
+   "anchor": "*(unsigned int *)(uintptr_t)(iVar2 + 0x3c));"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_negative_sources",
+   "function": "FUN_010359b8",
+   "anchor": "if (param_1 < 5) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_negative_sources",
+   "function": "FUN_0103601c",
+   "anchor": "piVar9[5], piVar9[6], piVar9[7], piVar9[8], piVar9"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_negative_sources",
+   "function": "FUN_01037398",
+   "anchor": "if ((*(signed char *)((int)param_1 + 0xe) != *(sig"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_negative_sources",
+   "function": "FUN_01037768",
+   "anchor": "& 0x7f;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_01008d00",
+   "anchor": "*aircr = UINT32_C(0x05fa0004) | (*aircr & UINT32_C"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0100ec88",
+   "anchor": "*(volatile uint8_t *)(packet + 5) = 1;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0100a7e8",
+   "anchor": "if (saved_primask == 0) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0100a7e8",
+   "anchor": "if (retry_requested == 0) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0100f5d8",
+   "anchor": "rotate_left(state_a, 26)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0101fd8c",
+   "anchor": "CCM_REGISTER(CCM_EVENT_ERROR) == 0"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0102946c",
+   "anchor": "FUN_0101e090(entry)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_01034328",
+   "anchor": "31U - (unsigned int)__builtin_clz(observed)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_01037a60",
+   "anchor": "if (exception != 0) {"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_010384a8",
+   "anchor": "{ uVar5 = 2; goto LAB_0103851c; }"
+  },
+  {
+   "verdict": "VACUOUS",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_01019750",
+   "anchor": "extern int FUN_0100ca98(uint8_t, void *);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0101ab20",
+   "anchor": "request.exact_period = remainder == period * (rema"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0101132c",
+   "anchor": "controller_init.words[0] = 0x01012439u;"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_0101132c",
+   "anchor": "PW(0x28) + 4u"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_010162e0",
+   "anchor": "(volatile void *)(iVar10 + 0x1f)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_010162e0",
+   "anchor": "(volatile void *)(iVar7 + 0xce)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_010162e0",
+   "anchor": "load_packed_u32((volatile void *)puVar9)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_010162e0",
+   "anchor": "uVar1 = *(volatile u8*)(iVar2+0x78);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_010162e0",
+   "anchor": "& 0x1f) |"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_01017344",
+   "anchor": "if ((L.local_2e == 1)"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_01038764",
+   "anchor": "ticks_low, ticks_high);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_01038764",
+   "anchor": "(ticks_low | ticks_high) == 0);"
+  },
+  {
+   "verdict": "BITE",
+   "list": "net_directed_negative_sources",
+   "function": "FUN_01038764",
+   "anchor": "state[0] = 0;     if ((ticks_low | ticks_high) == "
+  }
+ ]
+}

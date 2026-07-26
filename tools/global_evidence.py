@@ -7,10 +7,21 @@ Evidence per global: ctype, kind, referencing functions (reverse index from the
 Ghidra refgraph), read/write disposition, owning module, and the recovered
 strings referenced by the same functions (the naming signal).
 """
+
+# Resolvable pipeline scratchpad (tools/g1_paths.py).  This used to be one
+# literal /private/tmp path belonging to a finished agent session; see that
+# module for the resolution order and the fail-closed catalog fallback.
+import os as _g1_os, sys as _g1_sys
+_G1_TOOLS = _g1_os.path.dirname(_g1_os.path.abspath(__file__))
+if _g1_os.path.basename(_G1_TOOLS) != "tools":
+    _G1_TOOLS = _g1_os.path.dirname(_G1_TOOLS)
+if _G1_TOOLS not in _g1_sys.path:
+    _g1_sys.path.insert(0, _G1_TOOLS)
+import g1_paths as _g1_paths
 import sys, os, re, json, glob, collections
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 
-SCR = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
+SCR = _g1_paths.scratchpad()
 BASE = "/Users/freedomcoder/Projects/G1disasm2"
 CORE = sys.argv[1] if len(sys.argv) > 1 else "app"
 if CORE == "app":

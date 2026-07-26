@@ -8,7 +8,16 @@ thread/work). High-confidence matches become the ram_map; the rest are flagged.
 """
 import json
 
-SCR = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c7-4e04-ae79-84a08ccae34e/scratchpad".replace("0c7-", "0c97-")
+# Resolvable pipeline scratchpad (tools/g1_paths.py).
+import os as _g1_os, sys as _g1_sys
+_G1_TOOLS = _g1_os.path.dirname(_g1_os.path.abspath(__file__))
+if _g1_os.path.basename(_G1_TOOLS) != "tools":
+    _G1_TOOLS = _g1_os.path.dirname(_G1_TOOLS)
+if _G1_TOOLS not in _g1_sys.path:
+    _g1_sys.path.insert(0, _G1_TOOLS)
+import g1_paths as _g1_paths
+
+SCR = _g1_paths.scratchpad()
 clusters = json.load(open(SCR + "/ws2_clusters.json"))
 types = json.load(open(SCR + "/ws2_types.json"))
 

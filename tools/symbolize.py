@@ -15,13 +15,24 @@ Correctness gate is NOT per-function emulation (symbols float); it is the whole-
 image byte-match at assembly. This tool only prepares/reports; it never claims a
 proof. Use --write to emit into recon/symbolized/<core>/ (copies, originals kept).
 """
+
+# Resolvable pipeline scratchpad (tools/g1_paths.py).  This used to be one
+# literal /private/tmp path belonging to a finished agent session; see that
+# module for the resolution order and the fail-closed catalog fallback.
+import os as _g1_os, sys as _g1_sys
+_G1_TOOLS = _g1_os.path.dirname(_g1_os.path.abspath(__file__))
+if _g1_os.path.basename(_G1_TOOLS) != "tools":
+    _G1_TOOLS = _g1_os.path.dirname(_G1_TOOLS)
+if _G1_TOOLS not in _g1_sys.path:
+    _g1_sys.path.insert(0, _G1_TOOLS)
+import g1_paths as _g1_paths
 import sys, os, re, json, glob, collections
 
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 import generated_identity
 import function_names
 
-SCR = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
+SCR = _g1_paths.scratchpad()
 BASE = "/Users/freedomcoder/Projects/G1disasm2"
 
 CORE = "app"
@@ -34,8 +45,12 @@ if CORE == "app":
     NAMED = BASE + "/recon/named"; MAP = SCR + "/symbol_map.json"
 else:
     NAMED = BASE + "/recon/net/named"; MAP = SCR + "/symbol_map_net.json"
-OUTSRC = BASE + "/recon/symbolized/" + CORE
-HDR = BASE + "/recon/symbols"
+# Both outputs are overridable so `--write` can be pointed at a scratch tree
+# and DIFFED against the committed one.  37 symbolized app files carry hand
+# edits newer than their recon/named source; regenerating straight over them
+# is how that work disappears.
+OUTSRC = os.environ.get("G1_SYMBOLIZE_OUT") or (BASE + "/recon/symbolized/" + CORE)
+HDR = os.environ.get("G1_SYMBOLS_OUT") or (BASE + "/recon/symbols")
 SUPPORT_SOURCE = (BASE + "/recon/app/src" if CORE == "app" else
                   BASE + "/recon/net/src")
 

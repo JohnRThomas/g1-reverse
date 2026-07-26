@@ -9,13 +9,24 @@ Modes:
 READ-ONLY. Fast path: nptr=2 first (false proofs are arg-VALUE bugs, nptr-agnostic),
 escalate nptr only on fail; trials default 40.
 """
+
+# Resolvable pipeline scratchpad (tools/g1_paths.py).  This used to be one
+# literal /private/tmp path belonging to a finished agent session; see that
+# module for the resolution order and the fail-closed catalog fallback.
+import os as _g1_os, sys as _g1_sys
+_G1_TOOLS = _g1_os.path.dirname(_g1_os.path.abspath(__file__))
+if _g1_os.path.basename(_G1_TOOLS) != "tools":
+    _G1_TOOLS = _g1_os.path.dirname(_G1_TOOLS)
+if _G1_TOOLS not in _g1_sys.path:
+    _g1_sys.path.insert(0, _G1_TOOLS)
+import g1_paths as _g1_paths
 import sys, os, re, json, glob, time, subprocess, hashlib
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 import extract as ax, net_extract as nx
 from parity import recon, emu
 import recon_kit, net_recon_kit
 
-SCR = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
+SCR = _g1_paths.scratchpad()
 BASE = "/Users/freedomcoder/Projects/G1disasm2"
 _HDR = re.compile(r'@\s+(0x[0-9a-fA-F]+)')
 _CACHE = {}
@@ -59,11 +70,11 @@ def core_ctx(core):
     if core == "app":
         ctx = dict(srcdir=BASE + "/recon/verified/src", read=ax.func_bytes_padded,
                    cb=emu.CODE_BASE, ret=recon_kit._ret_kind,
-                   sizes={f["entry"]: f["size"] for f in json.load(open(SCR + "/classified.json"))["functions"]})
+                   sizes={f["entry"]: f["size"] for f in _g1_paths.load_catalog("classified.json")["functions"]})
     else:
         ctx = dict(srcdir=BASE + "/recon/net/src", read=nx.func_bytes_padded,
                    cb=emu.NET_CODE_BASE, ret=net_recon_kit._ret_kind,
-                   sizes={f["entry"]: f["size"] for f in json.load(open(SCR + "/net_funcs.json"))["functions"]})
+                   sizes={f["entry"]: f["size"] for f in _g1_paths.load_catalog("net_funcs.json")["functions"]})
     _CACHE[core] = ctx
     return ctx
 

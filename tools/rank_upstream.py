@@ -16,6 +16,17 @@ Examples (run from /tmp: the repository has a local struct.py):
 The output is evidence only.  It never edits catalogs, worklists, or sources;
 a candidate must still be reconstructed and passed to cfg_verify.
 """
+
+# Resolvable pipeline scratchpad (tools/g1_paths.py).  This used to be one
+# literal /private/tmp path belonging to a finished agent session; see that
+# module for the resolution order and the fail-closed catalog fallback.
+import os as _g1_os, sys as _g1_sys
+_G1_TOOLS = _g1_os.path.dirname(_g1_os.path.abspath(__file__))
+if _g1_os.path.basename(_G1_TOOLS) != "tools":
+    _G1_TOOLS = _g1_os.path.dirname(_G1_TOOLS)
+if _G1_TOOLS not in _g1_sys.path:
+    _g1_sys.path.insert(0, _G1_TOOLS)
+import g1_paths as _g1_paths
 import argparse
 import difflib
 import gzip
@@ -28,8 +39,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from build_upstream_index import extract_features
 
 BASE = "/Users/freedomcoder/Projects/G1disasm2"
-SCR = ("/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/"
-       "bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad")
+SCR = (_g1_paths.scratchpad())
 WEIGHTS = {"exact": .15, "opcode": .30, "shape": .20, "length": .10,
            "calls": .10, "literals": .10, "signature": .05}
 

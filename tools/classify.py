@@ -11,11 +11,22 @@ Evidence, in priority order:
 Also merges the user's IDA symbol names (address->name from g1_rev_1.idc) onto
 the Ghidra export so application functions carry their meaningful names.
 """
+
+# Resolvable pipeline scratchpad (tools/g1_paths.py).  This used to be one
+# literal /private/tmp path belonging to a finished agent session; see that
+# module for the resolution order and the fail-closed catalog fallback.
+import os as _g1_os, sys as _g1_sys
+_G1_TOOLS = _g1_os.path.dirname(_g1_os.path.abspath(__file__))
+if _g1_os.path.basename(_G1_TOOLS) != "tools":
+    _G1_TOOLS = _g1_os.path.dirname(_G1_TOOLS)
+if _G1_TOOLS not in _g1_sys.path:
+    _g1_sys.path.insert(0, _G1_TOOLS)
+import g1_paths as _g1_paths
 import json, re, sys, hashlib
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 from ref_extract import sig_of
 
-SCRATCH = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
+SCRATCH = _g1_paths.scratchpad()
 IDC = "/Users/freedomcoder/Projects/G1disasm2/g1_rev_1.idc"
 
 # library namespace prefixes / exact names (Zephyr, nrfx, BLE host, crypto, RTOS)

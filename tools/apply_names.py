@@ -6,6 +6,17 @@ generated file carries a compact back-map in its header.  Absolute data/global
 addresses remain literals here and are handled later by ``symbolize.py``.
 """
 
+# Resolvable pipeline scratchpad (tools/g1_paths.py).  This used to be one
+# literal /private/tmp path belonging to a finished agent session; see that
+# module for the resolution order and the fail-closed catalog fallback.
+import os as _g1_os, sys as _g1_sys
+_G1_TOOLS = _g1_os.path.dirname(_g1_os.path.abspath(__file__))
+if _g1_os.path.basename(_G1_TOOLS) != "tools":
+    _G1_TOOLS = _g1_os.path.dirname(_G1_TOOLS)
+if _G1_TOOLS not in _g1_sys.path:
+    _g1_sys.path.insert(0, _G1_TOOLS)
+import g1_paths as _g1_paths
+
 import glob
 import json
 import os
@@ -18,8 +29,7 @@ import generated_identity
 
 
 BASE = "/Users/freedomcoder/Projects/G1disasm2"
-SCR = ("/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/"
-       "bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad")
+SCR = (_g1_paths.scratchpad())
 ADDRESS = re.compile(r"0x[0-9a-fA-F]{4,8}")
 ENTRY = re.compile(r"@\s+(0x[0-9a-fA-F]+)")
 RAW_FUNCTION = re.compile(r"\b(?:FUN_|sub_)0*([0-9a-fA-F]{3,8})\b")

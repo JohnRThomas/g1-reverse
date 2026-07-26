@@ -14,13 +14,24 @@ CLI:
   python recon_kit.py list-app            # list application functions to do
   python recon_kit.py ledger              # summary of proven/failed
 """
+
+# Resolvable pipeline scratchpad (tools/g1_paths.py).  This used to be one
+# literal /private/tmp path belonging to a finished agent session; see that
+# module for the resolution order and the fail-closed catalog fallback.
+import os as _g1_os, sys as _g1_sys
+_G1_TOOLS = _g1_os.path.dirname(_g1_os.path.abspath(__file__))
+if _g1_os.path.basename(_G1_TOOLS) != "tools":
+    _G1_TOOLS = _g1_os.path.dirname(_G1_TOOLS)
+if _G1_TOOLS not in _g1_sys.path:
+    _g1_sys.path.insert(0, _G1_TOOLS)
+import g1_paths as _g1_paths
 import sys, os, json, re
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 import extract
 import function_names
 from capstone import *
 
-SCRATCH = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
+SCRATCH = _g1_paths.scratchpad()
 RECON_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/app/src"
 TRUE_SIZE_OVERRIDES = {
     0x0004d7d8: 0xb0,  # z_log_msg_post_finalize; literals begin at 0x4d888
@@ -361,8 +372,8 @@ _fw = None; _cls = None
 def _load():
     global _fw, _cls
     if _fw is None:
-        _fw = {f["entry"]: f for f in json.load(open(SCRATCH + "/app_funcs.json"))["functions"]}
-        _cls = {c["entry"]: c for c in json.load(open(SCRATCH + "/classified.json"))["functions"]}
+        _fw = {f["entry"]: f for f in _g1_paths.load_catalog("app_funcs.json")["functions"]}
+        _cls = {c["entry"]: c for c in _g1_paths.load_catalog("classified.json")["functions"]}
         # overlay auto-derived names (from self-name logging strings) onto
         # functions the user never named, so info()/reconstructions use them.
         try:

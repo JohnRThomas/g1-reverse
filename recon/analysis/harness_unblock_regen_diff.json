@@ -1,0 +1,3994 @@
+{
+ "note": "symbolize.py --write was run into a SCRATCH tree, never over recon/**. These are the differences a real regeneration would introduce.",
+ "generated_by": "tools/symbolize.py + tools/gen_linker.py after tools/build_symbol_map.py",
+ "trees": {
+  "app": {
+   "committed_files": 2141,
+   "regenerated_files": 2140,
+   "byte_identical": 1450,
+   "would_change": 690,
+   "committed_only": [
+    "FUN_0007c86c.c"
+   ],
+   "regenerated_only": [],
+   "change_classes": {
+    "include_path,inlined_string,rodata_symbol": 246,
+    "include_path,rodata_symbol": 135,
+    "include_path,inlined_string": 103,
+    "inlined_string,rodata_symbol": 51,
+    "include_path": 34,
+    "include_path,inlined_string,other,rodata_symbol": 21,
+    "other": 18,
+    "include_path,other": 13,
+    "inlined_string": 11,
+    "comment,include_path,inlined_string,other,rodata_symbol": 10,
+    "comment,other,rodata_symbol": 9,
+    "comment,include_path,inlined_string,other": 8,
+    "comment,other": 6,
+    "rodata_symbol": 4,
+    "other,rodata_symbol": 4,
+    "comment": 4,
+    "comment,include_path,other,rodata_symbol": 3,
+    "comment,include_path,inlined_string,rodata_symbol": 3,
+    "include_path,other,rodata_symbol": 2,
+    "comment,inlined_string,other,rodata_symbol": 1,
+    "comment,include_path": 1,
+    "comment,include_path,other": 1,
+    "comment,inlined_string,other": 1,
+    "include_path,inlined_string,other": 1
+   },
+   "would_change_files": {
+    "DashBoard_Reflash.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "SendDashBoardStartupModeInfoToSlave.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "SendDashboardLockInfoToApp.c": [
+     "inlined_string"
+    ],
+    "SendPowerInfoToSlave.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "SendSystemLanguageInfoToSlave.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "SettingStoreHandler.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "SlaveDoubleClickEventInject.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "abort_thread_timeout_locked.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "active_mode_shutdown.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "adc_channel_config.c": [
+     "include_path"
+    ],
+    "adc_nfc_init.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "adc_nfc_run.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "add_thread_to_wait_queue.c": [
+     "comment",
+     "include_path",
+     "other",
+     "rodata_symbol"
+    ],
+    "aging_mode_thread.c": [
+     "include_path"
+    ],
+    "ancs_c_init.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other"
+    ],
+    "ancs_conn_event_signal_and_mode.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "ancs_connected.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "ancs_disconnected.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ancs_discover_start.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ancs_main.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ancs_notification_forward.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ancs_security_changed.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "app_codec_lc3_test.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "app_event_manager_process_events.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "app_event_manager_submit.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "arch_irq_priority_set.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "arm_bus_fault_helper.c": [
+     "include_path"
+    ],
+    "arm_mem_manage_fault_helper.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "arm_mpu_configure_partition_region.c": [
+     "include_path"
+    ],
+    "att_chan_req_free.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "att_chan_req_send_checked.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "att_chan_send.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "audioStreamFileManagerHandler.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "audio_fw_load_get_wrapper.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "auth_cancel.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ble_ancs_data_req_thread.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ble_conn_process_complete_or_disconnect.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ble_conn_ref.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "ble_conn_set_state.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "ble_conn_unref.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ble_notify_disconnected.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "ble_notify_identity_resolved.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ble_notify_le_param_updated.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ble_notify_remote_info_available.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ble_packet_receive_dispatch.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ble_privacy_id_remove.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "ble_process_get_req.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ble_process_req_dispatch.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ble_whitelist_app.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "ble_work_thread.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bond_deleted_cb.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "boot_write_swap_info.c": [
+     "rodata_symbol"
+    ],
+    "brightness_level.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_ancs_data_source_handler.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "bt_att_chan_create_pdu.c": [
+     "include_path"
+    ],
+    "bt_att_recv.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_att_req_send.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_conn_create_pdu_timeout.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_conn_disconnect_by_state.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_conn_get_info.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_conn_index.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_conn_send_cb.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_conn_tx_drain_and_reset.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_conn_tx_process.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_dev_show_info.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_foreach_bond.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_gatt_attr_get_handle.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_gatt_connected.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_gatt_discover.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_gatt_foreach_attr_type.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_gatt_indicate.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_gatt_notify_cb.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_gatt_service_init.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_gatt_service_register.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_gatt_store_hash.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_gatt_unsubscribe.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_gatt_write.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_hci_cmd_create.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_hci_cmd_send_sync.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_hci_core_recv_event.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_hci_le_ltk_request.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_hci_rx_work_submit.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_id_add_part_0.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_id_addr_check_and_enable.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_id_conflict_resolve_cb.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_keys_add_type.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_keys_clear.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_keys_find.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_keys_find_addr.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_keys_find_irk.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_keys_foreach_type.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_keys_get_addr.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_keys_get_type.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_keys_store.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_l2cap_connected.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "bt_send_enabled.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_settings_subsys_init_check.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "bt_start.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "build_device_info_response.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "build_str_response_frame.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "burial_point_record_info_init.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "button_init.c": [
+     "comment",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "cal_panel_canvas_coord.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "calc_flash_crc.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "cbprintf_package_convert.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "ccc_set_direct.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "change_work_mode_to.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "check_ancs_inbox_flag_change.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "check_bind_status.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "check_bonded_addr.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "check_device_readiness.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "check_disp_onboarding.c": [
+     "inlined_string"
+    ],
+    "check_sw0_status.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "check_work_mode.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "cjson_print_value.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "cleanAppLanguageInfo.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "cleanDashBoardStartUpModeInfo.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "cleanNewsIndex.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "cleanStocksIndex.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "clean_dmic_msgq.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "clean_fb_data.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "clear_event_registrations.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "clear_timeout_message.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "click_event_dispatch_loop.c": [
+     "include_path"
+    ],
+    "clock_control_nrf_on.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "clock_control_nrf_on_blocking.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "clock_stop.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "confirm_message.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "convert_app_whitelist_to_json.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "debounce_read_pending_flag_1.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "debounce_read_pending_flag_2.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "debug_dump_message_slots_10_19.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "debug_log_queue_init.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "debug_print.c": [
+     "include_path",
+     "other"
+    ],
+    "debug_print_burial_point_date.c": [
+     "include_path"
+    ],
+    "debug_print_hex_dump.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "delAudioStreamRecord.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "delVoiceBlock.c": [
+     "include_path"
+    ],
+    "deleteQuickNoteData.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "dequeue_ancs.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "dequeue_dmic.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "dequeue_file.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "dequeue_uid.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "dev_ctrl_read1.c": [
+     "other"
+    ],
+    "dev_ctrl_write2.c": [
+     "other"
+    ],
+    "dev_page3_config_and_readback_dump.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "dev_read_status_bit_reg34.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "dev_reg_modify_bits.c": [
+     "other"
+    ],
+    "dev_send_cmd16_payload.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "dev_set_mode_register.c": [
+     "other"
+    ],
+    "device_reg3_init_config.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "disable_watchdog.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "discovery_callback.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "discovery_completed_cb_ancs.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "discovery_completed_cb_gatt.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "discovery_error_found_cb_ancs.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "discovery_error_found_cb_gatt.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "discovery_service_not_found_cb_ancs.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "discovery_service_not_found_cb_gatt.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "display_DelayClose.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "display_MasterSendClose.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "display_close.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "display_close_screen.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "display_dev_reg_config.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "display_dispatch_thread.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "display_inputEvent.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "display_mode_globals_configure.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "display_powerEvent.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "display_reflash.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "display_reflash_handler.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "display_thread_handler.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "dlist_unlink_node.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "dmic_record_start.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "dmic_stream_start.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "draw_locale_adjusted_label_pair.c": [
+     "other",
+     "rodata_symbol"
+    ],
+    "draw_message.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "draw_template_translate_screen.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "dump_template_gyro_info.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "dump_whitelist_init.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "enable_ship_mode.c": [
+     "include_path",
+     "other",
+     "rodata_symbol"
+    ],
+    "enqueue_ancs.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "enqueue_bt_data.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "enqueue_debug.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "enqueue_dmic.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "enqueue_file.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "enqueue_uid.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "enter_dashboard_burial_point.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "enter_wear_burial_point.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "entropy_get_entropy_isr_call.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "exit_dashboard_burial_point.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other"
+    ],
+    "ext_flash_api_init.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "ext_flash_read.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ext_flash_write.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "fatal_log_and_reset.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "file_subsystem_queue_init.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "find_chinese_bitmap_by_unicode.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "flash_firmware_update_transfer.c": [
+     "other",
+     "rodata_symbol"
+    ],
+    "flash_nrf_write.c": [
+     "include_path",
+     "other"
+    ],
+    "flash_ops_thread.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "flash_settings_read.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "flash_settings_write_and_verify.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "flash_write_paged.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "format_message_relative_time.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "framed_serial_receive_parser.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "fuel_gauge_update.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "g1_recon_nrfx_gpiote_init.c": [
+     "include_path"
+    ],
+    "g1_recon_nrfx_wdt_channel_alloc.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "g1_recon_retarget_lock_acquire_recursive.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "g1_recon_retarget_lock_release_recursive.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "g1_recon_z_impl_log_panic.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gatt_delayed_store_enqueue.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gatt_discover.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "gatt_dm_attr_alloc.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "gatt_dm_char_by_uuid.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "gatt_find_ccc_for_conn.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "gatt_mult_notify_dispatch.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gatt_notify.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "gatt_parse_find_info_rsp.c": [
+     "other",
+     "rodata_symbol"
+    ],
+    "gatt_parse_read_by_type_rsp.c": [
+     "other",
+     "rodata_symbol"
+    ],
+    "gatt_prepare_write_rsp.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gatt_sub_free.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "gatt_subscribe_add.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "getAppLanguageInfofromFlash.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "getAudioMessageQueueCacheData.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "getDashboardStartUpModeInfofromFlash.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "getNewsIndex.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "getQuickNoteBKPQueueCacheData.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "getQuickNoteDataFromFlash.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "getStocksIndex.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "get_assign_channel_info.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "get_boot_seconds.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "get_dashboard_sum_time.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "get_demo_image_source.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "get_demo_image_source_from_flash.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "get_flash_info.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "get_glassbox_charge_percent.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "get_glassbox_charge_status.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "get_lux_info.c": [
+     "include_path"
+    ],
+    "get_notification_counts_cmd_response.c": [
+     "include_path"
+    ],
+    "global_ipc_service_send.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "global_system_suspend.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gpio_configure_pin_output.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "gpio_manage_callback.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "gpio_nrfx_configure_pin_list.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gpio_nrfx_pin_configure.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "gpio_pin_configure.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "gpio_pin_configure_17688.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "gpio_pin_configure_dt.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gpio_pin_get_checked.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gpio_pin_get_raw_checked.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gpio_pin_set_checked.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "gpio_port_base_from_pin.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "gpio_set_fixed_output_889f0.c": [
+     "comment",
+     "other",
+     "rodata_symbol"
+    ],
+    "gpio_set_fixed_pin_dt.c": [
+     "comment",
+     "other",
+     "rodata_symbol"
+    ],
+    "gpio_set_pin1_dt_wrapper.c": [
+     "comment",
+     "other",
+     "rodata_symbol"
+    ],
+    "gpiote_channel_release_if_unshared.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "gpiote_in_event_enable.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "gpiote_in_event_reg_offset.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "gpiote_in_init.c": [
+     "include_path"
+    ],
+    "gpiote_irq_handler.c": [
+     "include_path",
+     "other"
+    ],
+    "gpiote_pin_channel_get.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "gpiote_read_and_clear_pending_events.c": [
+     "include_path"
+    ],
+    "gpiote_trigger_enable.c": [
+     "include_path"
+    ],
+    "gui_4bit_bitmap_override.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gui_area_clear.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gui_bitmap_draw.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "gui_bmp_bitmap_draw.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "gui_bmp_dynamic_bitmap_draw.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "gui_clock_draw.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "gui_string_draw.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gui_utf_Wordwrap_draw.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gui_utf_draw.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gui_utf_draw_align_right.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gui_utf_draw_dark_light_split.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "gui_utf_draw_middle.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gui_utf_draw_truncate.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "gui_verticalLine_process_bar.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "handle_dashboard_action.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "handle_stocks_action.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "handle_touch_key_press_event.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "hci_cmd_alloc_failure_log.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "hci_event_dispatch_handler.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "hci_set_ad.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "hci_tx_thread.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "hci_vs_init.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "img_mgmt_get_opposite_slot.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "img_mgmt_slot_to_image.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "img_mgmt_upload_inspect.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "imu_fusion_init.c": [
+     "include_path",
+     "other"
+    ],
+    "imu_fusion_resume.c": [
+     "include_path",
+     "other"
+    ],
+    "imu_fusion_suspend.c": [
+     "include_path",
+     "other"
+    ],
+    "indicate_sc_cb.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "init_ble_work_thread.c": [
+     "comment",
+     "other",
+     "rodata_symbol"
+    ],
+    "init_dashboard_info.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "init_dmic_msgq.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "init_msgq_ancs.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "init_msgq_uid.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "init_nfc_comm.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "init_serial_comm.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "init_serial_port.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "init_watchdog.c": [
+     "inlined_string"
+    ],
+    "ipc0_ept_recv.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "ipc_ept_op_a_locked_retry.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "ipc_ept_op_b_guarded.c": [
+     "comment"
+    ],
+    "ipc_ept_op_b_locked_retry.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "ipc_ept_op_c_locked_retry.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "ipc_send_len_prefixed_packet.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "ipc_send_len_prefixed_packet_locked_retry.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "ipc_service_send_with_retry.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "is_ext_flash_burned.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "is_msg_expiration.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "is_on_whitelist_by_identifier.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "jbd_panel_resume.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "jbd_panel_suspend.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "jdb_panel_init.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "k_aligned_alloc.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "k_heap_alloc.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "k_mem_slab_alloc.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "k_mem_slab_free.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "k_msgq_get.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "k_msgq_put.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "k_mutex_lock.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "k_mutex_unlock.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "k_poll_event_init.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "k_queue_insert_and_wake.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "k_sched_lock.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "k_sched_unlock.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "k_sem_give.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "k_sleep.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "k_thread_priority_set.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "k_uptime_ticks_impl.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "k_work_busy_get.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "k_work_cancel.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "k_work_cancel_delayable.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "k_work_cancel_delayable_sync.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "k_work_init.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "k_work_init_delayable.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "k_work_queue_drain.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "k_work_queue_init.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "k_work_queue_start.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "k_work_reschedule_for_queue.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "k_work_schedule_for_queue.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "l2cap_chan_le_recv_seg.c": [
+     "include_path"
+    ],
+    "l2cap_chan_le_send_seg.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "l2cap_chan_send_disconnect.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "l2cap_le_recv_pdu.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "l2cap_recv.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "legacy_advertising_connection_restart.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "load_burial_point.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "load_sys_setting.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "load_usr_setting.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "load_whitelist.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "local_esbm_ipc_service_recv.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other"
+    ],
+    "local_esbs_ctrl_ipc_service_recv.c": [
+     "comment"
+    ],
+    "local_esbs_ipc_service_recv.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "local_ipc_service_recv.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other"
+    ],
+    "local_store_write.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "log_and_dispatch_click_event2.c": [
+     "include_path"
+    ],
+    "log_backend_uart_check_ready.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "log_dropped.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "log_message.c": [
+     "include_path",
+     "other"
+    ],
+    "log_msg_commit.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "log_msg_process.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "log_notification_fields_debug.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "log_output_process.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "log_process.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "log_process_thread.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "log_unhandled_hci_event.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "low_speed_peripheral_dispatch_thread.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "low_speed_peripheral_dispatch_thread_for_test.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "lsm6dso_init_chip.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "main.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "main_dispatch_thread_tick.c": [
+     "comment",
+     "other"
+    ],
+    "master_display_thread.c": [
+     "include_path"
+    ],
+    "master_process_audio_fw_load_req.c": [
+     "include_path"
+    ],
+    "metal_device_close.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "mic_transm_thread.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "misc_dev_api_transfer_op12.c": [
+     "other"
+    ],
+    "misc_dev_api_write_op12.c": [
+     "other"
+    ],
+    "mobile_send_notification_to_ble_device_test.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "module_state_event_log_handler.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "mpsc_pbuf_alloc.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "mpsc_pbuf_claim.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "mpsc_pbuf_commit.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "mpsc_pbuf_free.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "mpsc_pbuf_init.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "mpu_partition_sanity_check_assert.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "msg_count_dec.c": [
+     "inlined_string"
+    ],
+    "msg_queue_debug_dump.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "mutex_unlock_syscall_handler.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "navigation_direction_img_display.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "navigation_overview_map_display.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "navigation_panoramic_map_display.c": [
+     "include_path"
+    ],
+    "net_buf_alloc_len.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "net_buf_destroy.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "net_buf_frag_add.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "net_buf_frag_del.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "net_buf_frag_insert.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "net_buf_frag_last.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "net_buf_pool_get_727ac.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "net_buf_put.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "net_buf_ref.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "net_buf_reset.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "net_buf_simple_add.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "net_buf_simple_pull_5f558.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "net_buf_simple_pull_5f594.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "net_buf_simple_push.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "net_buf_simple_reserve.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "net_buf_slist_get.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "net_buf_slist_put.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "net_buf_unref.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nfc_link_delay_msec.c": [
+     "other"
+    ],
+    "nfc_link_ops_noop.c": [
+     "other"
+    ],
+    "not_disturb_sync_data.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "notify_config_change_if_connected.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "now_has_persist_task.c": [
+     "comment",
+     "include_path",
+     "other",
+     "rodata_symbol"
+    ],
+    "nrf53_ipc_channel_configure.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "nrf53_sync_rtc_ipc_channel_setup.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "nrf_gpio_pin_port_base_get.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrf_gpio_pin_port_decode.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrf_gpio_pin_port_decode_65ff4.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrf_gpio_pin_reconfigure.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrf_gpiote_int_disable.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrf_gpiote_int_enable.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrf_rtc_set_alarm_channel.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrf_rtc_timer_chan_free.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_clock_enable.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_clock_init.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_clock_start.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_clock_stop.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_dppi_channel_slot_reset.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_gppi_event_endpoint_clear.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_gppi_event_endpoint_setup.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_gppi_task_endpoint_clear.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_gppi_task_endpoint_setup.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_ipc_config_load.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_ipc_init.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_nvmc_page_erase.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_nvmc_word_write.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_pdm_buffer_set.c": [
+     "comment",
+     "include_path"
+    ],
+    "nrfx_pdm_init.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_pdm_start.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_pdm_stop.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_pin_freq_config_validate.c": [
+     "include_path"
+    ],
+    "nrfx_qspi_cinstr_xfer.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_qspi_erase.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_qspi_init.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_qspi_uninit.c": [
+     "include_path",
+     "other",
+     "rodata_symbol"
+    ],
+    "nrfx_spim_configure.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_spim_init.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_spim_uninit.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_spim_xfer.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_twim_disable.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_twim_enable.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_twim_init.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_twim_irq_handler.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_twim_xfer.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_wdt_channel_enable.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nrfx_wdt_reload_value_set.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "nvs_mount.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "on_triple_click.c": [
+     "include_path"
+    ],
+    "onboarding_ble_process.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "onboarding_sync_data.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "onoff_process_event.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "onoff_release.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "onoff_request_enqueue.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "opt3001_chip_init.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "opt3001_reg_read.c": [
+     "inlined_string"
+    ],
+    "opt3007_chip_deinit.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "opt3007_chip_init.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "opt3007_get_max_lux.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "packet_transport_send_byte.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "pairing_complete.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "pairing_failed.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "panel_init.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "panel_off.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "panel_on.c": [
+     "inlined_string"
+    ],
+    "panel_render_screen_dispatch.c": [
+     "other"
+    ],
+    "panel_resume.c": [
+     "include_path",
+     "other"
+    ],
+    "panel_set_brightness_level.c": [
+     "include_path",
+     "other"
+    ],
+    "panel_suspend.c": [
+     "include_path",
+     "other"
+    ],
+    "parse_ncs_notification.c": [
+     "inlined_string"
+    ],
+    "parse_receiver_msg_pack_pkcs7.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "parse_receiver_pack_pkcs7.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "parse_whitelist_json.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "pdm_configure_pins.c": [
+     "comment",
+     "include_path",
+     "other"
+    ],
+    "pdm_mic_event_handler.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "pdm_trigger_command.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "pixelto4bithex.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "pixelto4bithex_for_flash.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "poll_signal_event_locked.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "post_notification_cmd_process.c": [
+     "include_path"
+    ],
+    "post_notification_cmd_response.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "power_down_imu_and_mic.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "power_down_panel.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "power_for_imu_and_mic.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "power_for_panel.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "power_manager_restrict_event_log.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "power_manager_system_off.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "printk.c": [
+     "include_path",
+     "other"
+    ],
+    "process_for_message_show.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "process_for_new_message_come_on.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "process_for_new_task.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "process_pt_data.c": [
+     "include_path"
+    ],
+    "projector_clear_canvas.c": [
+     "other"
+    ],
+    "projector_flush_canvas.c": [
+     "other"
+    ],
+    "proxy_thread_handler.c": [
+     "rodata_symbol"
+    ],
+    "pt_cmd_dispatch_and_encode_response.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "pt_comm_transport_write.c": [
+     "include_path"
+    ],
+    "pull_message.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "push_message.c": [
+     "include_path"
+    ],
+    "put_whitelist_app_from_app.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "qspi_configure_pins_and_interface.c": [
+     "comment",
+     "include_path",
+     "other",
+     "rodata_symbol"
+    ],
+    "qspi_nor_configure.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "qspi_xfer.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "queue_cancel_wait_locked.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "quicknote_buffer_pool_init.c": [
+     "comment",
+     "other",
+     "rodata_symbol"
+    ],
+    "random.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "read_sys_settting_from_flash.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "read_usr_settting_from_flash.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "reflash_fb_data_to_lcd.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "reflash_fb_data_to_lcd_ex.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "register_events.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "register_imu_funsion_context.c": [
+     "include_path",
+     "other"
+    ],
+    "register_ipc_service_context.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "register_ipc_service_recv_callback.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other"
+    ],
+    "render_ancs_notification_animation.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "render_device_info_float_screen.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "requestAudioInfoToApp.c": [
+     "inlined_string"
+    ],
+    "request_ancs_attr_ext.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "reset_all_static_info.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "reset_all_usr_data.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "reset_usr_setting.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "resource_manger_get.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "retarget_lock_init.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "revalidate_whitelist_json.c": [
+     "rodata_symbol"
+    ],
+    "rpmsg_virtio_rx_notify.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "rpmsg_virtio_send_copy.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "rpmsg_virtio_tx_enqueue.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "rtc_cc_reg_addr_get.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "rtc_channel_cc_read.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "rtc_timer_cc_reg_get.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "run_main_dispatch_thread.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "runtime_info_sync.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "saadc_start_read.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "sched_ready_queue_insert.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "sched_requeue_by_prio.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "sched_thread_ready.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "sched_update_cache.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "screen_render_ret0_7d1b4.c": [
+     "other"
+    ],
+    "screen_render_ret0_7d1cc.c": [
+     "other"
+    ],
+    "screen_render_ret0_7d240.c": [
+     "other"
+    ],
+    "screen_render_ret0_7d244.c": [
+     "other"
+    ],
+    "screen_render_ret0_7d2f4.c": [
+     "other"
+    ],
+    "screen_render_ret0_7d356.c": [
+     "other"
+    ],
+    "screen_render_ret0_7d37e.c": [
+     "other"
+    ],
+    "sendAudioStram2Cache.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "sendAudioStreamFileToApp.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "send_data_in_ble_chunks.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "send_dmic_msg.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "send_err_rsp_alloc_failure_log.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "send_notification_app_whitelist.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "send_response_data_to_ble.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other"
+    ],
+    "send_response_data_to_msgqueue.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "send_whitelist_json_chunked.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "serialization_init.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "serialization_ipc_ept_register.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "serialization_register_endpoint.c": [
+     "comment",
+     "other"
+    ],
+    "setDelayExitValue.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "set_brightness_lum_base.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "set_brightness_to_panel_reg.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "set_brightness_to_panel_reg_in_running.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "set_device_sn_info.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "set_display_brightness.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "set_glasses_sn_info.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "set_imu_pitch_reflash.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "set_imu_thread_delay.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other"
+    ],
+    "set_panel_voltage.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "set_test_mode.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "sett_init.c": [
+     "include_path"
+    ],
+    "settings_commit_subtree.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "settings_invalid_index_log.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "settings_parse_and_lookup.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "settings_register.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "simulator_ancs_calendar_schedule_trigger.c": [
+     "include_path"
+    ],
+    "slave_display_thread.c": [
+     "include_path"
+    ],
+    "smp_ident_addr_info.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "smp_pairing_req.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "smp_timeout.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "smp_transport_init.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "spawn_aging_mode_aux_thread.c": [
+     "comment",
+     "other"
+    ],
+    "spawn_display_thread.c": [
+     "comment",
+     "other"
+    ],
+    "spawn_flash_ops_and_brightness_threads.c": [
+     "comment",
+     "other"
+    ],
+    "spawn_proxy_thread.c": [
+     "comment",
+     "other"
+    ],
+    "spec_ble_command_hook.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "spi_master_init.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "spi_master_trans_data_tx_rx.c": [
+     "include_path"
+    ],
+    "spi_read_id.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "spim_select_instance_by_mode.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "st25dv_read_chip_ids.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "st25dv_reg_modify_low5.c": [
+     "comment"
+    ],
+    "st25dv_write_control_and_ack.c": [
+     "comment"
+    ],
+    "startAudioStreamRecord.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "start_aging_mode_thread.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "start_ancs_work_thread.c": [
+     "comment",
+     "inlined_string",
+     "other"
+    ],
+    "stopAudioStreamRecord.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "store_whitelist.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "stream_flash_flush_buffer.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "stream_flash_init.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "subcontracing_send_data_pkcs7.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "submit_to_queue_locked.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "subsystem_enable_gpio_pin_set_adapter.c": [
+     "comment",
+     "other",
+     "rodata_symbol"
+    ],
+    "switch_to_dfu_mode.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "sync_message_signal_to_slave.c": [
+     "inlined_string"
+    ],
+    "sync_to_slave.c": [
+     "include_path",
+     "inlined_string",
+     "other"
+    ],
+    "sys_heap_aligned_alloc.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "sys_heap_free.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "sys_heap_init.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "sys_memcpy_swap.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "sys_notify_finalize.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "sys_rand32_get.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "test_mode_apply_base_status_cmd.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other"
+    ],
+    "touch_key_thread.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "touch_pmic_reset_assert.c": [
+     "comment",
+     "other",
+     "rodata_symbol"
+    ],
+    "touch_pmic_reset_deassert.c": [
+     "comment",
+     "other",
+     "rodata_symbol"
+    ],
+    "transport_dispatch_thread.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "transport_parameters_read.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "transport_parameters_write.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "trigger_screen_state_change.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "try_to_save_file.c": [
+     "inlined_string"
+    ],
+    "uart_callback.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "uart_read_start.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "uarte_nrfx_isr.c": [
+     "include_path",
+     "other"
+    ],
+    "uarte_nrfx_pm_action.c": [
+     "include_path"
+    ],
+    "uarte_nrfx_tx_start.c": [
+     "include_path"
+    ],
+    "ui_DashBoard_task.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "ui_QuickNote_task.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "ui_ancs_notification_task.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ui_even_ai_task.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ui_navigation_task.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ui_new_message_task.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ui_onboarding_task.c": [
+     "include_path"
+    ],
+    "ui_raster_height_task.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "ui_refalsh_warp.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "ui_set_imu_pitch_task.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "ui_teleprompter_task.c": [
+     "include_path"
+    ],
+    "ui_translate_task.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "uint32_to_little_endian.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "unpend_thread.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "update_burial_point_day_index.c": [
+     "inlined_string"
+    ],
+    "update_burial_point_to_flash.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "update_imu_mode.c": [
+     "include_path"
+    ],
+    "update_imu_trigger_status.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "update_persist_task_status.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "update_persist_task_status_to_idle.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "update_persist_task_status_to_wait_blow_head.c": [
+     "rodata_symbol"
+    ],
+    "update_temp_task_status.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "update_touch_key_flag.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "upgradeAppLanguageInfoToFlash.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "upgradeDashboardStartupModeInfoToFlash.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "upgradeQuickNoteDataToFlash.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "utf8_to_unicode.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "verify_whitelist_json.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "vprintf.c": [
+     "comment",
+     "other",
+     "rodata_symbol"
+    ],
+    "wait_touch_key_release_or_timeout.c": [
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "whitelist_contains_app.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "write_font_to_flash_with_verify.c": [
+     "include_path",
+     "inlined_string"
+    ],
+    "z_abort_thread_timeout.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "z_abort_timeout.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "z_add_timeout.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "z_arm_fault.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "z_fatal_error.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "z_heap_aligned_alloc.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "z_impl_k_poll.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "z_impl_k_sem_take.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "z_impl_k_thread_create.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "z_init_static_threads.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "z_log_msg_runtime_create.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "z_pend_curr.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "z_ready_thread_locked.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "z_reschedule.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "z_sched_set_prio_and_requeue.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "z_sched_wake.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "z_setup_new_thread.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "z_thread_abort.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "z_thread_suspend.c": [
+     "include_path",
+     "inlined_string",
+     "rodata_symbol"
+    ],
+    "z_tick_sleep.c": [
+     "comment",
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ],
+    "z_timer_stop_unpend.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "z_unpend_first_thread.c": [
+     "include_path",
+     "rodata_symbol"
+    ],
+    "z_work_submit_to_queue.c": [
+     "include_path",
+     "inlined_string",
+     "other",
+     "rodata_symbol"
+    ]
+   }
+  },
+  "net": {
+   "committed_files": 1155,
+   "regenerated_files": 1124,
+   "byte_identical": 896,
+   "would_change": 228,
+   "committed_only": [
+    "FUN_0102a278.c",
+    "FUN_0102b49c.c",
+    "FUN_0102b50c.c",
+    "FUN_0102b794.c",
+    "FUN_0102b7a0.c",
+    "FUN_0102b7ac.c",
+    "FUN_0102bbc4.c",
+    "FUN_0102bbe0.c",
+    "FUN_010327bc.c",
+    "FUN_01032804.c",
+    "FUN_0103289c.c",
+    "FUN_01032954.c",
+    "FUN_010329b4.c",
+    "FUN_01032a3c.c",
+    "FUN_01032b4c.c",
+    "FUN_01032ba4.c",
+    "FUN_01032be4.c",
+    "FUN_01032de4.c",
+    "FUN_01032e54.c",
+    "FUN_01033084.c",
+    "FUN_010330b0.c",
+    "FUN_01033168.c",
+    "FUN_010331a0.c",
+    "FUN_010331c8.c",
+    "FUN_010337ac.c",
+    "FUN_01033cd0.c",
+    "FUN_01033d20.c",
+    "FUN_01033d54.c",
+    "FUN_01033da0.c",
+    "FUN_0103a83a.c",
+    "FUN_0103a9dc.c"
+   ],
+   "regenerated_only": [],
+   "change_classes": {
+    "other": 108,
+    "include_path,other": 48,
+    "include_path": 26,
+    "comment,other": 21,
+    "comment": 6,
+    "comment,include_path,other": 5,
+    "comment,rodata_symbol": 4,
+    "comment,include_path": 3,
+    "other,rodata_symbol": 2,
+    "rodata_symbol": 2,
+    "comment,other,rodata_symbol": 2,
+    "comment,include_path,other,rodata_symbol": 1
+   },
+   "would_change_files": {
+    "FUN_01008940.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01009224.c": [
+     "other"
+    ],
+    "FUN_0100930c.c": [
+     "other"
+    ],
+    "FUN_01009668.c": [
+     "other"
+    ],
+    "FUN_01009708.c": [
+     "other"
+    ],
+    "FUN_01009bc4.c": [
+     "other"
+    ],
+    "FUN_01009c68.c": [
+     "other"
+    ],
+    "FUN_01009d64.c": [
+     "other"
+    ],
+    "FUN_01009dd8.c": [
+     "other"
+    ],
+    "FUN_0100a718.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_0100a760.c": [
+     "include_path"
+    ],
+    "FUN_0100a790.c": [
+     "include_path"
+    ],
+    "FUN_0100a7b0.c": [
+     "include_path"
+    ],
+    "FUN_0100a8c4.c": [
+     "other"
+    ],
+    "FUN_0100a8dc.c": [
+     "other"
+    ],
+    "FUN_0100a904.c": [
+     "other"
+    ],
+    "FUN_0100a934.c": [
+     "other"
+    ],
+    "FUN_0100a9b0.c": [
+     "other"
+    ],
+    "FUN_01012c84.c": [
+     "comment",
+     "include_path",
+     "other"
+    ],
+    "FUN_010161e8.c": [
+     "comment",
+     "rodata_symbol"
+    ],
+    "FUN_0101621c.c": [
+     "comment",
+     "rodata_symbol"
+    ],
+    "FUN_010162e0.c": [
+     "other"
+    ],
+    "FUN_01016430.c": [
+     "other"
+    ],
+    "FUN_01016628.c": [
+     "other"
+    ],
+    "FUN_010166c0.c": [
+     "other"
+    ],
+    "FUN_01016cc8.c": [
+     "other"
+    ],
+    "FUN_01016e6c.c": [
+     "other"
+    ],
+    "FUN_0101709c.c": [
+     "other"
+    ],
+    "FUN_01017154.c": [
+     "other"
+    ],
+    "FUN_010171c8.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01017344.c": [
+     "other"
+    ],
+    "FUN_01017658.c": [
+     "other"
+    ],
+    "FUN_01017f7c.c": [
+     "other"
+    ],
+    "FUN_010187e0.c": [
+     "other"
+    ],
+    "FUN_01018c58.c": [
+     "other"
+    ],
+    "FUN_01018dac.c": [
+     "other"
+    ],
+    "FUN_01018de8.c": [
+     "other"
+    ],
+    "FUN_01018df8.c": [
+     "other"
+    ],
+    "FUN_01019088.c": [
+     "other"
+    ],
+    "FUN_010190c4.c": [
+     "other"
+    ],
+    "FUN_010190d0.c": [
+     "other"
+    ],
+    "FUN_01019128.c": [
+     "other"
+    ],
+    "FUN_01019160.c": [
+     "other"
+    ],
+    "FUN_0101920c.c": [
+     "other"
+    ],
+    "FUN_01019254.c": [
+     "other"
+    ],
+    "FUN_0101ad38.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_0101c6d0.c": [
+     "other"
+    ],
+    "FUN_0101d404.c": [
+     "other"
+    ],
+    "FUN_0101d890.c": [
+     "other"
+    ],
+    "FUN_0101dbe8.c": [
+     "comment",
+     "rodata_symbol"
+    ],
+    "FUN_0101dc1c.c": [
+     "comment",
+     "rodata_symbol"
+    ],
+    "FUN_0101f73c.c": [
+     "other"
+    ],
+    "FUN_0101f764.c": [
+     "other"
+    ],
+    "FUN_0101f7a8.c": [
+     "other"
+    ],
+    "FUN_0101f7e0.c": [
+     "other"
+    ],
+    "FUN_0101f818.c": [
+     "other"
+    ],
+    "FUN_0101f850.c": [
+     "other"
+    ],
+    "FUN_0101f87c.c": [
+     "comment"
+    ],
+    "FUN_0101fba4.c": [
+     "other"
+    ],
+    "FUN_0101fc40.c": [
+     "comment",
+     "include_path"
+    ],
+    "FUN_0101fcf4.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_0101fd20.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_0101fe98.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_0101ff4c.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_0101ffd4.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01020048.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01020088.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01020108.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01020168.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_0102023c.c": [
+     "comment",
+     "include_path",
+     "other"
+    ],
+    "FUN_01020270.c": [
+     "comment"
+    ],
+    "FUN_0102029c.c": [
+     "other"
+    ],
+    "FUN_010202a8.c": [
+     "other"
+    ],
+    "FUN_010202e4.c": [
+     "other"
+    ],
+    "FUN_010202fc.c": [
+     "other"
+    ],
+    "FUN_01020368.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_010203d0.c": [
+     "other"
+    ],
+    "FUN_010204e0.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_0102072c.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01020764.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_010207cc.c": [
+     "other"
+    ],
+    "FUN_01020820.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_01020864.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01020898.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_010208cc.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_010208f0.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_010209b8.c": [
+     "include_path"
+    ],
+    "FUN_01020a00.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01021108.c": [
+     "other"
+    ],
+    "FUN_010212ec.c": [
+     "other"
+    ],
+    "FUN_010215a8.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_010217cc.c": [
+     "other"
+    ],
+    "FUN_01021800.c": [
+     "comment"
+    ],
+    "FUN_01021838.c": [
+     "other"
+    ],
+    "FUN_01021920.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_01021940.c": [
+     "other"
+    ],
+    "FUN_01021ac0.c": [
+     "other"
+    ],
+    "FUN_010237b0.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_0102411c.c": [
+     "other"
+    ],
+    "FUN_0102460c.c": [
+     "include_path"
+    ],
+    "FUN_01024a9c.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01024aa8.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01024ad0.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01024b20.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01024e1c.c": [
+     "include_path"
+    ],
+    "FUN_01025034.c": [
+     "other"
+    ],
+    "FUN_01025084.c": [
+     "other"
+    ],
+    "FUN_010250d0.c": [
+     "other"
+    ],
+    "FUN_010255a4.c": [
+     "include_path"
+    ],
+    "FUN_010256dc.c": [
+     "comment"
+    ],
+    "FUN_01025734.c": [
+     "other"
+    ],
+    "FUN_010257e4.c": [
+     "other"
+    ],
+    "FUN_0102581c.c": [
+     "comment"
+    ],
+    "FUN_01025b5c.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01025b8c.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_0102a448.c": [
+     "other"
+    ],
+    "FUN_0102a4b0.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_0102a620.c": [
+     "include_path"
+    ],
+    "FUN_0102a698.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_0102a6e0.c": [
+     "other"
+    ],
+    "FUN_0102acb4.c": [
+     "include_path"
+    ],
+    "FUN_0102afbc.c": [
+     "comment",
+     "include_path",
+     "other"
+    ],
+    "FUN_0102b094.c": [
+     "include_path"
+    ],
+    "FUN_0102b15c.c": [
+     "include_path"
+    ],
+    "FUN_0102b31c.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_0102b5bc.c": [
+     "comment",
+     "include_path",
+     "other"
+    ],
+    "FUN_0102cd8c.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_0102cf00.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_0102cfec.c": [
+     "include_path"
+    ],
+    "FUN_0102d1c0.c": [
+     "other"
+    ],
+    "FUN_0102d558.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_0102eb70.c": [
+     "include_path"
+    ],
+    "FUN_0102ece0.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_0102ed18.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_0102f580.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_0102fbd0.c": [
+     "other"
+    ],
+    "FUN_0102fc30.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_0102fdd0.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_0102ff94.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_0103038c.c": [
+     "other"
+    ],
+    "FUN_010317d4.c": [
+     "include_path"
+    ],
+    "FUN_01031804.c": [
+     "other"
+    ],
+    "FUN_01031814.c": [
+     "other"
+    ],
+    "FUN_010318d8.c": [
+     "other"
+    ],
+    "FUN_01031a68.c": [
+     "other"
+    ],
+    "FUN_01032680.c": [
+     "other",
+     "rodata_symbol"
+    ],
+    "FUN_01032764.c": [
+     "comment",
+     "include_path",
+     "other"
+    ],
+    "FUN_010327a0.c": [
+     "other"
+    ],
+    "FUN_01032860.c": [
+     "rodata_symbol"
+    ],
+    "FUN_01032930.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01032988.c": [
+     "rodata_symbol"
+    ],
+    "FUN_01032ad8.c": [
+     "include_path"
+    ],
+    "FUN_01032c28.c": [
+     "comment",
+     "other",
+     "rodata_symbol"
+    ],
+    "FUN_01033354.c": [
+     "other"
+    ],
+    "FUN_010333b4.c": [
+     "comment",
+     "other",
+     "rodata_symbol"
+    ],
+    "FUN_01033660.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01033888.c": [
+     "comment",
+     "include_path",
+     "other",
+     "rodata_symbol"
+    ],
+    "FUN_01033968.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01033a20.c": [
+     "comment",
+     "include_path"
+    ],
+    "FUN_01033a60.c": [
+     "other"
+    ],
+    "FUN_01033b18.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01033bf0.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01033c74.c": [
+     "include_path"
+    ],
+    "FUN_01033ca4.c": [
+     "include_path"
+    ],
+    "FUN_01033ee4.c": [
+     "include_path"
+    ],
+    "FUN_01033f38.c": [
+     "comment",
+     "include_path"
+    ],
+    "FUN_01034464.c": [
+     "include_path"
+    ],
+    "FUN_01034480.c": [
+     "other"
+    ],
+    "FUN_0103448c.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_010346d8.c": [
+     "include_path"
+    ],
+    "FUN_01034840.c": [
+     "include_path"
+    ],
+    "FUN_0103499c.c": [
+     "include_path"
+    ],
+    "FUN_01034a28.c": [
+     "other"
+    ],
+    "FUN_01034b18.c": [
+     "comment"
+    ],
+    "FUN_01034b64.c": [
+     "include_path"
+    ],
+    "FUN_01034be4.c": [
+     "include_path"
+    ],
+    "FUN_01034dd8.c": [
+     "include_path"
+    ],
+    "FUN_01034fa8.c": [
+     "include_path"
+    ],
+    "FUN_01035d18.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_0103610c.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_01036128.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_01036144.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_01036410.c": [
+     "other"
+    ],
+    "FUN_01036660.c": [
+     "include_path",
+     "other"
+    ],
+    "FUN_01036824.c": [
+     "other"
+    ],
+    "FUN_0103689c.c": [
+     "other",
+     "rodata_symbol"
+    ],
+    "FUN_01037130.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_010372b4.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_01037398.c": [
+     "other"
+    ],
+    "FUN_01037438.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_010374dc.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_01037670.c": [
+     "comment",
+     "other"
+    ],
+    "FUN_01037768.c": [
+     "other"
+    ],
+    "FUN_010378c4.c": [
+     "other"
+    ],
+    "clear_event_registrations.c": [
+     "include_path",
+     "other"
+    ],
+    "controller_deferred_event_raise.c": [
+     "other"
+    ],
+    "controller_feature_bit_enabled.c": [
+     "other"
+    ],
+    "controller_packet_config_apply_if_active.c": [
+     "other"
+    ],
+    "controller_radio_event_cleanup.c": [
+     "other"
+    ],
+    "controller_radio_state_get.c": [
+     "other"
+    ],
+    "controller_radio_state_release.c": [
+     "other"
+    ],
+    "controller_radio_transition_apply.c": [
+     "other"
+    ],
+    "controller_radio_transition_schedule.c": [
+     "other"
+    ],
+    "controller_slot_offsets_recompute.c": [
+     "other"
+    ],
+    "controller_tx_buffer_ready_get.c": [
+     "other"
+    ],
+    "controller_typed_handle_lookup.c": [
+     "other"
+    ],
+    "ipc_rpmsg_static_vrings_open.c": [
+     "comment",
+     "other"
+    ],
+    "mpsl_timeslot_window_get.c": [
+     "other"
+    ],
+    "onoff_request.c": [
+     "include_path",
+     "other"
+    ],
+    "printk.c": [
+     "include_path",
+     "other"
+    ],
+    "register_events.c": [
+     "include_path",
+     "other"
+    ],
+    "rtc_compare_int_lock.c": [
+     "other"
+    ],
+    "rtc_compare_int_unlock.c": [
+     "other"
+    ],
+    "rtc_compare_set.c": [
+     "other"
+    ],
+    "sdc_conn_event_process.c": [
+     "other"
+    ],
+    "sdc_conn_window_admit.c": [
+     "other"
+    ],
+    "sdc_ecb_run_blocking.c": [
+     "other"
+    ],
+    "sdc_event_publish.c": [
+     "other"
+    ],
+    "sdc_hci_event_suppressed.c": [
+     "other"
+    ],
+    "sdc_llcp_apply_rx_transition.c": [
+     "other"
+    ],
+    "sdc_llcp_handle_control_opcode.c": [
+     "other"
+    ],
+    "sdc_llcp_handle_unknown_response.c": [
+     "other"
+    ],
+    "sdc_llcp_note_unsupported_pdu.c": [
+     "other"
+    ],
+    "sdc_llcp_process_rx_control_pdu.c": [
+     "other"
+    ],
+    "sdc_llcp_release_rx_context.c": [
+     "include_path",
+     "other"
+    ],
+    "sdc_llcp_stop_rx_timeout.c": [
+     "include_path",
+     "other"
+    ],
+    "z_impl_k_msgq_put.c": [
+     "include_path",
+     "other"
+    ],
+    "z_impl_k_mutex_unlock.c": [
+     "comment",
+     "other"
+    ]
+   }
+  }
+ },
+ "linker_and_headers": {
+  "g1_app_globals.ld": {
+   "identical": false,
+   "committed_lines": 2513,
+   "regenerated_lines": 2820,
+   "committed_PROVIDE": 2026,
+   "regenerated_PROVIDE": 2816,
+   "PROVIDE_only_in_committed": 930,
+   "PROVIDE_only_in_regenerated": 1720,
+   "sample_resurrected_PROVIDE": [
+    "PROVIDE(__settings_handler_static_list_start = 0x000882b0);",
+    "PROVIDE(_kernel = 0x2000b448);",
+    "PROVIDE(acl_tx_pool = 0x20003a7c);",
+    "PROVIDE(adc_context = 0x20002190);",
+    "PROVIDE(att_handle_rsp_thread = 0x2000ae9c);",
+    "PROVIDE(att_prep_write_rsp_buf = 0x200029a0);",
+    "PROVIDE(auth_info_cbs = 0x2000ad24);",
+    "PROVIDE(bt_hci_cmd_data = 0x2000abf4);",
+    "PROVIDE(bt_keys_pool = 0x2000af4c);",
+    "PROVIDE(bt_keys_pool_0_irk = 0x2000af76);"
+   ]
+  },
+  "g1_net_globals.ld": {
+   "identical": false,
+   "committed_lines": 561,
+   "regenerated_lines": 485,
+   "committed_PROVIDE": 457,
+   "regenerated_PROVIDE": 481,
+   "PROVIDE_only_in_committed": 211,
+   "PROVIDE_only_in_regenerated": 235,
+   "sample_resurrected_PROVIDE": [
+    "PROVIDE(announce_remaining = 0x21004b6c);",
+    "PROVIDE(g_154_critical_section_nest_cnt = 0x21001bd0);",
+    "PROVIDE(g_154_dppi_channel_ack = 0x2100645c);",
+    "PROVIDE(g_21000018 = 0x21000018);",
+    "PROVIDE(g_21000050 = 0x21000050);",
+    "PROVIDE(g_21000054 = 0x21000054);",
+    "PROVIDE(g_21000058 = 0x21000058);",
+    "PROVIDE(g_2100005c = 0x2100005c);",
+    "PROVIDE(g_210001d0 = 0x210001d0);",
+    "PROVIDE(g_210001d4 = 0x210001d4);"
+   ]
+  },
+  "g1_app_symbols.h": {
+   "identical": false,
+   "committed_lines": 2348,
+   "regenerated_lines": 2968,
+   "committed_PROVIDE": 0,
+   "regenerated_PROVIDE": 0,
+   "PROVIDE_only_in_committed": 0,
+   "PROVIDE_only_in_regenerated": 0,
+   "sample_resurrected_PROVIDE": []
+  },
+  "g1_net_symbols.h": {
+   "identical": false,
+   "committed_lines": 610,
+   "regenerated_lines": 525,
+   "committed_PROVIDE": 0,
+   "regenerated_PROVIDE": 0,
+   "PROVIDE_only_in_committed": 0,
+   "PROVIDE_only_in_regenerated": 0,
+   "sample_resurrected_PROVIDE": []
+  }
+ }
+}

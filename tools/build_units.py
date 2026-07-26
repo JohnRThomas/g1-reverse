@@ -4,9 +4,20 @@
  B) data_units.json — rodata/data objects (clustered contiguous addresses that
     functions read) split into batches for data-recovery agents.
 Uses the authoritative Ghidra reference graph (refgraph_app.json)."""
+
+# Resolvable pipeline scratchpad (tools/g1_paths.py).  This used to be one
+# literal /private/tmp path belonging to a finished agent session; see that
+# module for the resolution order and the fail-closed catalog fallback.
+import os as _g1_os, sys as _g1_sys
+_G1_TOOLS = _g1_os.path.dirname(_g1_os.path.abspath(__file__))
+if _g1_os.path.basename(_G1_TOOLS) != "tools":
+    _G1_TOOLS = _g1_os.path.dirname(_G1_TOOLS)
+if _G1_TOOLS not in _g1_sys.path:
+    _g1_sys.path.insert(0, _G1_TOOLS)
+import g1_paths as _g1_paths
 import json
 from collections import defaultdict
-SCR = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
+SCR = _g1_paths.scratchpad()
 
 g = json.load(open(SCR + "/refgraph_app.json"))["functions"]
 groups = json.load(open(SCR + "/topic_groups.json"))

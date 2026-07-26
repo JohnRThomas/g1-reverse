@@ -11,6 +11,17 @@ Output: ref_db.json  { "by_sig": {sighash: [names...]},
                        "names": set of all library symbol names,
                        "by_name_sig": {name: [sighash,...]} }
 """
+
+# Resolvable pipeline scratchpad (tools/g1_paths.py).  This used to be one
+# literal /private/tmp path belonging to a finished agent session; see that
+# module for the resolution order and the fail-closed catalog fallback.
+import os as _g1_os, sys as _g1_sys
+_G1_TOOLS = _g1_os.path.dirname(_g1_os.path.abspath(__file__))
+if _g1_os.path.basename(_G1_TOOLS) != "tools":
+    _G1_TOOLS = _g1_os.path.dirname(_G1_TOOLS)
+if _G1_TOOLS not in _g1_sys.path:
+    _g1_sys.path.insert(0, _G1_TOOLS)
+import g1_paths as _g1_paths
 import json, sys, hashlib
 from capstone import *
 from elftools.elf.elffile import ELFFile
@@ -95,6 +106,6 @@ if __name__ == "__main__":
     for e in elfs:
         process_elf(e, db)
         print("processed", e, "-> sigs:", len(db["by_sig"]), "names:", len(db["names"]))
-    out = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad/ref_db.json"
+    out = _g1_paths.scratchpad() + '/ref_db.json'
     json.dump(db, open(out, "w"))
     print("wrote", out, "| unique sigs:", len(db["by_sig"]), "| library names:", len(db["names"]))

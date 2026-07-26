@@ -9,6 +9,17 @@ Reconstruction convention (makes parity exact):
   * Callees are opaque; the emulator models them as identical order/arg-keyed
     oracles for both original and candidate.
 """
+
+# Resolvable pipeline scratchpad (tools/g1_paths.py).  This used to be one
+# literal /private/tmp path belonging to a finished agent session; see that
+# module for the resolution order and the fail-closed catalog fallback.
+import os as _g1_os, sys as _g1_sys
+_G1_TOOLS = _g1_os.path.dirname(_g1_os.path.abspath(__file__))
+if _g1_os.path.basename(_G1_TOOLS) != "tools":
+    _G1_TOOLS = _g1_os.path.dirname(_G1_TOOLS)
+if _G1_TOOLS not in _g1_sys.path:
+    _g1_sys.path.insert(0, _G1_TOOLS)
+import g1_paths as _g1_paths
 import os, re, json, subprocess, tempfile, sys
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 from elftools.elf.elffile import ELFFile
@@ -19,8 +30,7 @@ GCC = "arm-none-eabi-gcc"
 LAST_DIRECT_TARGET_MAP = {}
 _SEMANTIC_NAME_MAPS = {}
 _BASE = "/Users/freedomcoder/Projects/G1disasm2"
-_SCR = ("/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/"
-        "bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad")
+_SCR = (_g1_paths.scratchpad())
 
 def _semantic_name_map(core):
     """Return unambiguous external symbol name -> original firmware VA.
@@ -37,9 +47,9 @@ def _semantic_name_map(core):
         if not name:
             return
         candidates.setdefault(name, set()).add(int(va) & ~1)
-    catalog = os.path.join(_SCR, "net_funcs.json" if core == "net" else "app_funcs.json")
+    catalog = "net_funcs.json" if core == "net" else "app_funcs.json"
     try:
-        obj = json.load(open(catalog))
+        obj = _g1_paths.load_catalog(catalog)
         funcs = obj.get("functions", obj) if isinstance(obj, dict) else obj
         for f in funcs:
             va = f.get("entry", f.get("address"))
