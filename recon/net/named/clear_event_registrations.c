@@ -12,7 +12,7 @@
  */
 /* net-core FUN_01038654 @ 0x1038654  (parity 300 trials PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 static inline int isCurrentModePrivileged(void){return (__get_CONTROL() & 1u)==0;}
 static inline int getBasePriority(void){return (int)__get_BASEPRI();}
 static inline void setBasePriority(int p){__set_BASEPRI((unsigned)p);}

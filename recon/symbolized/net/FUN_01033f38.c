@@ -1,4 +1,5 @@
 #include "g1_net_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
 /* readable reconstruction; identity: FUN_01033f38 @ 0x01033f38
  * public-name: FUN_01033f38
  * durable-map: recon/catalogs/function_names_net.json
@@ -27,7 +28,7 @@ void FUN_01033f38(void)
 {
   int r0, r4, r5;
 
-  *(volatile int *)(0x4100f000 + 0x508) = 1 << *(volatile unsigned char *)((unsigned long)&g_esb_ppi_ch_id_3) /*=0x2100645d*/;
+  *(volatile int *)(G1_NRF_DPPIC_NS_BASE + 0x508) = 1 << *(volatile unsigned char *)((unsigned long)&g_esb_ppi_ch_id_3) /*=0x2100645d*/;
   *(volatile int *)(REG_41008000 /*=0x41008000*/ + 0x190) = 0;
   r0 = FUN_01034464(*(volatile unsigned char *)((unsigned long)&g_esb_ppi_ch_id_6) /*=0x21006460*/);
   r5 = r0;

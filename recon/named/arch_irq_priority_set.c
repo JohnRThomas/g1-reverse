@@ -11,6 +11,7 @@
  *   rodata_f1bde                             @ 0x000f1bde
  *   rodata_f1bf9                             @ 0x000f1bf9
  */
+#include "../headers/g1_nrf_regs.h"
 /* Reconstructed FUN_0005010c @ 0x5010c  (parity: 300/300 trials, PROVEN) */
 
 extern int printk(int a, int b, int c, int d, int e);
@@ -36,7 +37,7 @@ void arch_irq_priority_set(int param_1, unsigned int param_2, int param_3, int p
     if (bVar5) {
         r0 = r0 + (int)0xe0000000;
     } else {
-        r2 = (int)0xe000ed14;
+        r2 = (int)G1_SCB_CCR;
     }
     r3 = r3 << 5;
     r3 = (unsigned char)r3;

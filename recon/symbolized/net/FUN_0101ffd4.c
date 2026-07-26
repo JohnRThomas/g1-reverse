@@ -1,4 +1,5 @@
 #include "g1_net_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
 /* readable reconstruction; identity: FUN_0101ffd4 @ 0x0101ffd4
  * public-name: FUN_0101ffd4
  * durable-map: recon/catalogs/function_names_net.json
@@ -18,8 +19,8 @@ void FUN_0101ffd4(unsigned int param_1, unsigned int param_2, unsigned int param
 {
     volatile unsigned char *p38 = (volatile unsigned char*)((unsigned long)&g_net_radio_pending_reset_flag) /*=0x210014dc*/;
     volatile unsigned char *e000 = (volatile unsigned char*)REG_4100e000 /*=0x4100e000*/;
-    volatile unsigned char *ed00 = (volatile unsigned char*)0xe000ed00;
-    volatile unsigned char *e100 = (volatile unsigned char*)0xe000e100;
+    volatile unsigned char *ed00 = (volatile unsigned char*)G1_SCB_CPUID;
+    volatile unsigned char *e100 = (volatile unsigned char*)G1_NVIC_ISER0;
 
     if (*p38 != 0) {
         if (*(volatile unsigned int*)(e000+0x104) == 0) {

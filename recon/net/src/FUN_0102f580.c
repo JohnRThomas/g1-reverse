@@ -25,7 +25,7 @@ extern char g1_net_kernel_object[] __asm__("_kernel");
 #define G1_NET_K(off) (G1_NET_KERNEL_BASE + (off))
 
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 /* The final branch is the shared Zephyr thread-abort implementation at
    0x1037cc8; it is a tail call, not trailing code owned by this wrapper. */

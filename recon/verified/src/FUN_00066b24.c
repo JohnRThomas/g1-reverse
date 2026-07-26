@@ -1,4 +1,5 @@
 /* Reconstructed FUN_00066b24 @ 0x66b24  (parity: 300/300 trials, PROVEN) */
+#include "../../headers/g1_nrf_regs.h"
 
 extern void FUN_000500c8(int a);
 extern void FUN_00066478(void);
@@ -14,7 +15,7 @@ void FUN_00066b24(void){
     FUN_000500c8(0x2b);
     FUN_00066478();
     if (g[0x3a] == 0){
-        volatile unsigned *b = (volatile unsigned*)0x5002b000;
+        volatile unsigned *b = (volatile unsigned*)G1_NRF_QSPI_S_BASE;
         unsigned v524 = b[0x524/4];
         unsigned v528 = b[0x528/4];
         unsigned v530 = b[0x530/4];

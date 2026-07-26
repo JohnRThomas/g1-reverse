@@ -1,6 +1,6 @@
 /* net-core FUN_0102d1c0 @ 0x102d1c0 */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern uint32_t FUN_0103a6c6(void);
 

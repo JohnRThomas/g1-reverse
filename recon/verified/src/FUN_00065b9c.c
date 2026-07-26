@@ -1,5 +1,6 @@
 /* Reconstructed FUN_00065b9c @ 0x65b9c */
 #include <stdint.h>
+#include "../../headers/g1_nrf_regs.h"
 
 extern uint64_t FUN_00065434(uint32_t);
 extern void FUN_000654c4(uint32_t, uint32_t);
@@ -15,15 +16,15 @@ static inline uint32_t configured_mode(uintptr_t table, uint32_t channel)
 void FUN_00065b9c(void)
 {
   uint32_t interrupt_mask =
-      FUN_00065620((*(volatile uint32_t *)0x5000d304 & 0xff) |
+      FUN_00065620((*(volatile uint32_t *)(G1_NRF_GPIOTE0_S_BASE + 0x304) & 0xff) |
                    0x80000000u);
 
   if ((int32_t)interrupt_mask < 0) {
     uint32_t pending[2];
-    pending[0] = *(volatile uint32_t *)0x50842520;
-    *(volatile uint32_t *)0x50842520 = pending[0];
-    pending[1] = *(volatile uint32_t *)0x50842820;
-    *(volatile uint32_t *)0x50842820 = pending[1];
+    pending[0] = *(volatile uint32_t *)(G1_NRF_P0_S_BASE + 0x20);
+    *(volatile uint32_t *)(G1_NRF_P0_S_BASE + 0x20) = pending[0];
+    pending[1] = *(volatile uint32_t *)(G1_NRF_P1_S_BASE + 0x20);
+    *(volatile uint32_t *)(G1_NRF_P1_S_BASE + 0x20) = pending[1];
 
     for (;;) {
       for (unsigned group = 0; group < 2; ++group) {
@@ -76,10 +77,10 @@ void FUN_00065b9c(void)
       }
 
       FUN_00065620(0x80000000u);
-      pending[0] = *(volatile uint32_t *)0x50842520;
-      *(volatile uint32_t *)0x50842520 = pending[0];
-      pending[1] = *(volatile uint32_t *)0x50842820;
-      *(volatile uint32_t *)0x50842820 = pending[1];
+      pending[0] = *(volatile uint32_t *)(G1_NRF_P0_S_BASE + 0x20);
+      *(volatile uint32_t *)(G1_NRF_P0_S_BASE + 0x20) = pending[0];
+      pending[1] = *(volatile uint32_t *)(G1_NRF_P1_S_BASE + 0x20);
+      *(volatile uint32_t *)(G1_NRF_P1_S_BASE + 0x20) = pending[1];
       if ((pending[0] | pending[1]) == 0) {
         break;
       }
@@ -89,7 +90,7 @@ void FUN_00065b9c(void)
 
   while (interrupt_mask != 0) {
     uint32_t slot = __builtin_ctz(interrupt_mask);
-    uintptr_t configuration = 0x5000d510 + slot * 4;
+    uintptr_t configuration = (G1_NRF_GPIOTE0_S_BASE + 0x510) + slot * 4;
     uint32_t channel =
         (*(volatile uint32_t *)configuration >> 8) & 0x3f;
     uint32_t mode =

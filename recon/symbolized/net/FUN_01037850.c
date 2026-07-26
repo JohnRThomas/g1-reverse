@@ -11,7 +11,7 @@
  */
 /* net-core FUN_01037850 @ 0x1037850  (parity 300 trials PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern int FUN_0103610c(unsigned int);
 extern void FUN_01036144(unsigned int);

@@ -27,7 +27,7 @@
  */
 /* Reconstructed FUN_00072908 @ 0x72908  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern int z_spin_lock_valid(uint32_t);
 extern int z_spin_unlock_valid(uint32_t);
 extern void z_spin_lock_set_owner(uint32_t);

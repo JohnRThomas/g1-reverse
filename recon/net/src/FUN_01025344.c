@@ -1,13 +1,14 @@
 /* net-core FUN_01025344 @ 0x1025344  (parity 300 trials PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_nrf_regs.h"
 
 #define W32(a) (*(volatile uint32_t *)(a))
 
 void FUN_01025344(void)
 {
     volatile uint8_t * const flag = (uint8_t *)0x21001bf8;
-    const uint32_t base1 = 0x41011000;
-    const uint32_t base2 = 0x4100c000;
+    const uint32_t base1 = G1_NRF_RTC0_NS_BASE;
+    const uint32_t base2 = G1_NRF_TIMER0_NS_BASE;
 
     if (*flag == 0) {
         W32(base1 + 0x348) = 0x30000;

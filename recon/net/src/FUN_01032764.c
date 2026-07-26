@@ -1,4 +1,5 @@
 /* net-core FUN_01032764 @ 0x1032764  (CFG-directed candidate) */
+#include "../../headers/g1_nrf_regs.h"
 
 /* net-core FUN_01032764 @ 0x1032764  (parity 300 trials PROVEN)
  *
@@ -27,7 +28,7 @@
 unsigned long long FUN_01032764(unsigned int unused_r0, unsigned int slot)
 {
   volatile unsigned char *p8  = (volatile unsigned char*)0x21004a9c;
-  volatile unsigned int  *p10 = (volatile unsigned int*)0x41008510;
+  volatile unsigned int  *p10 = (volatile unsigned int*)(G1_NRF_RADIO_NS_BASE + 0x510);
   volatile unsigned int  *out = (volatile unsigned int*)0x210049a4;
   unsigned char bVar1 = *p8;
 

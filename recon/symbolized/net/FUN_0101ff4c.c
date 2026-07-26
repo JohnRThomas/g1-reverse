@@ -1,4 +1,5 @@
 #include "g1_net_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
 /* readable reconstruction; identity: FUN_0101ff4c @ 0x0101ff4c
  * public-name: FUN_0101ff4c
  * durable-map: recon/catalogs/function_names_net.json
@@ -10,7 +11,7 @@
 
 volatile unsigned char * const DAT_0101ff90 = (volatile unsigned char *)((unsigned long)&g_net_radio_pending_reset_flag) /*=0x210014dc*/;
 volatile unsigned int * const DAT_0101ff94 = (volatile unsigned int *)REG_4100e000 /*=0x4100e000*/;
-volatile unsigned int * const DAT_0101ff98 = (volatile unsigned int *)0x4100f000;
+volatile unsigned int * const DAT_0101ff98 = (volatile unsigned int *)G1_NRF_DPPIC_NS_BASE;
 
 void FUN_0101ff4c(void)
 {

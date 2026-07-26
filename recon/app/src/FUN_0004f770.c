@@ -1,6 +1,6 @@
 /* Full reconstruction of FUN_0004f770 @ 0x4f770 (182 bytes). */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern int FUN_00072040(uintptr_t lock);
 extern int FUN_0007205c(uintptr_t lock);

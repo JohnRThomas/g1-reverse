@@ -11,12 +11,9 @@
  */
 /* net-core FUN_01033660 @ 0x1033660  (parity 300 trials PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
-static inline int isCurrentModePrivileged(void){return (__get_CONTROL()&1)==0;}
-static inline int getBasePriority(void){return (int)__get_BASEPRI();}
-static inline void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
+#include "../../headers/g1_cmsis_shim.h"
 
 typedef unsigned char u8;
 typedef unsigned int u32;

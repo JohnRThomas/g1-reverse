@@ -1,4 +1,5 @@
 /* net-core FUN_0101fd20 @ 0x101fd20  (parity 300 trials PROVEN) */
+#include "../../headers/g1_nrf_regs.h"
 
 extern void FUN_01008d00(unsigned int, unsigned int) __attribute__((noreturn));
 
@@ -23,7 +24,7 @@ unsigned int FUN_0101fd20(void)
         }
         return (r0 == 1) ? 1u : 0u;
     } else {
-        volatile unsigned char *e000 = (volatile unsigned char*)0x4100e000;
+        volatile unsigned char *e000 = (volatile unsigned char*)G1_NRF_AAR_NS_BASE;
         unsigned char r3 = 0xc8;
         while (1) {
             r3 = (unsigned char)(r3 - 1);

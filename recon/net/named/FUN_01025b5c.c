@@ -4,11 +4,12 @@
  * address symbols (name @ address):
  *   REG_41008000                             @ 0x41008000
  */
+#include "../../headers/g1_nrf_regs.h"
 /* net-core FUN_01025b5c @ 0x1025b5c  (parity 300 trials PROVEN) */
 
 void FUN_01025b5c(void)
 {
-  volatile int *base = (volatile int*)0x41008000;
+  volatile int *base = (volatile int*)G1_NRF_RADIO_NS_BASE;
   int v = 0x80000004;
 
   *(volatile int*)((char*)base + 0x180) = v;

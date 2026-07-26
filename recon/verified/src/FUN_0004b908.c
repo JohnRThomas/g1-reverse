@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0004b908 @ 0x4b908  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern int FUN_0004b4fc(int,int,unsigned int);
 extern int FUN_00072040(int);
 extern int FUN_0007205c(int);

@@ -38,7 +38,7 @@
  * occupy 0x4c090..0x4c0a7 and the next independent body starts at 0x4c0a8.
  */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 #define z_spin_lock_valid     z_spin_lock_valid
 #define z_spin_unlock_valid   z_spin_unlock_valid

@@ -33,7 +33,7 @@
  * CFG_VERIFY_CALL_ARITIES=3,1,1,0,4,1,1,4,1,2
  */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern void mutex_unlock_syscall_handler(void);
 extern int32_t get_uptime_ms(uint32_t, int32_t, ...);

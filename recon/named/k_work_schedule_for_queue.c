@@ -28,7 +28,7 @@
  */
 
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern void printk(uint32_t, ...);
 extern void assert_post_action(uint32_t, uint32_t);

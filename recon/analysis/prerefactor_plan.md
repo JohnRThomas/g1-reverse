@@ -448,3 +448,61 @@ The brief notes that the layering has itself caused bugs. The rules:
    them and, worse, hides that the two call sites were reading one object.
 6. **Nine trees.** Three are already out of sync. Any batch applied without a
    pre-sync will leave a silent minority of functions on the old form.
+
+---
+
+## Pre-refactor batch G7-B1 + G6-B4 — APPLIED
+
+The first two batches of §3 have been **applied** to the corpus. The full
+record — per-file counts, the copy-diff that bounds G7-B1, the `cmp` results,
+every gate, the oracle confirmation and everything deferred with its reason —
+is in the sibling file:
+
+> **`recon/analysis/prerefactor_progress.md`**
+
+Headline, so this file is not misleading on its own:
+
+* **Both cores' `zephyr.bin` are byte-identical to the pre-batch baseline.**
+  FLASH **952,316 B app / 225,581 B net — Δ 0 B**; RAM **253,765 B / 63,380 B —
+  Δ 0 B**. The ELF symbol table is identical, all 9,139 entries. Both batches
+  were budgeted at 0 B and landed at 0 B.
+* **All four framebuffers still byte-identical** to the committed goldens
+  (dashboard `p2_render` `19b1f24a…` 2,923 px, dashboard `p1_boot`
+  `0c5cc90b…` 0 px, navigation `p2_render` `b26c73b3…` 1,098 px, navigation
+  `p1_boot` `1d617c65…` 656 px), confirmed by re-running both captures.
+* Gates: `gen_retained_sources.py --check` clean; both builds exit 0; `nm -u`
+  **0/0**; duplicate globals **0/0**; no `--allow-multiple-definition`;
+  `check_ram_pin_collisions.py` **0/0** both cores; `check_net_raw_literals.py`
+  **0/0**; `check_thread_create_stack_args.py` **10/10**;
+  `verify_net_stock_data_window.py` **PROVEN**.
+
+**Two corrections to this document's own analysis, found by applying it.**
+
+1. **§2.2's C03/C04 risk rating is too optimistic.** The gate "diff every copy
+   before collapsing" **fails for the majority**. 743 helper definitions form
+   **43 distinct families** even after normalising spellings of the *same* type;
+   only 10 of 22 helper names have a single family. Several divergences are
+   semantic, not cosmetic: a 6-copy **stub family** (`getBasePriority` →
+   `return 0`, `setBasePriority` → `(void)p`, `isCurrentModePrivileged` →
+   `return 1`), a 6-copy `__atomic_signal_fence` barrier that emits **no**
+   instruction where the dominant form emits a real `isb`, and `always_inline`
+   spellings. C03 is therefore **not** "the lowest risk in G7" as a whole — the
+   *conforming subset* is, and it is 25 of the 38 build-tree files. The other 13
+   are deferred, individually, with the divergent helper named.
+2. **§1.3's numeric census undercounts, and G6-B4 has a trap the plan does not
+   name.** The live scan finds **662 sites in 282 files across nine trees** (241
+   in the canonical trees) against the recorded 232; the census recorded only the
+   canonical trees. More importantly, **50 sites in 29 files sit inside a
+   `UINT32_C()` / `UINT64_C()` macro argument**, which token-pastes a `U` suffix
+   (`c ## U`). Substituting anything there is a hard preprocessing error, not a
+   silent codegen change — three net TUs failed to compile on the first attempt.
+   Those 50 sites stay as raw hex. Any future G6 batch must exclude
+   token-pasting contexts.
+
+Also worth carrying forward: **one include spelling**,
+`#include "../../headers/g1_<name>.h"`, resolves for the app build, the net build
+*and* `tools/parity/recon.py`'s temp-directory TU (through its existing
+`-I recon/{app,net}/src`, since GCC concatenates the `-I` dir with the quoted
+path). New `recon/headers/` files therefore need **no** build-file or `tools/`
+change — which matters because `recon/headers` is on the app build's include path
+but not the net build's.

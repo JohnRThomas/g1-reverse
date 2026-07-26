@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00056704 @ 0x56704  (parity: 199/200 trials, PROVEN) */
 /* CFG_VERIFY_PREFIX_FIRST: event-state 1 is an intentional scheduler loop. */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 typedef unsigned int uint;
 
 static inline int getBasePriority(void){ return (int)__get_BASEPRI(); }

@@ -144,12 +144,7 @@ typedef uint32_t undefined4; typedef uint32_t uint;
 typedef long long code(int,...);
 typedef uint64_t undefined8; typedef uint64_t ulonglong;
 typedef int64_t longlong; typedef int32_t int32; typedef unsigned int uint3;
-static inline int CARRY4(uint a, uint b){return (a+b)<a;}
-static inline int CARRY1(uint a, uint b){return ((a&0xff)+(b&0xff))>0xff;}
-static inline int CARRY2(uint a, uint b){return ((a&0xffff)+(b&0xffff))>0xffff;}
-static inline int SBORROW4(int a,int b){int r=(int)((uint)a-(uint)b);return (((a^b)&(a^r))<0);}
-static inline int SBORROW1(int a,int b){signed char r=(signed char)(a-b);return ((((signed char)a^(signed char)b)&((signed char)a^r))<0);}
-static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^(short)b)&((short)a^r))<0);}
+#include "../../headers/g1_ghidra_ops.h"
 #define CONCAT11(a,b) ((ushort)(((ushort)(uint8_t)(a)<<8)|(uint8_t)(b)))
 #define CONCAT22(a,b) ((uint)(((uint)(ushort)(a)<<16)|(ushort)(b)))
 #define CONCAT44(a,b) ((ulonglong)(((ulonglong)(uint)(a)<<32)|(uint)(b)))

@@ -1,6 +1,6 @@
 /* Reconstructed FUN_000723b8 @ 0x723b8 */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern int FUN_00072040(uint32_t);
 extern int FUN_0007205c(uint32_t);

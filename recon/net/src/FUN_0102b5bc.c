@@ -1,10 +1,11 @@
 /* net-core FUN_0102b5bc @ 0x102b5bc  (parity 300 trials PROVEN)
  * CFG_VERIFY_PREFIX_FIRST: the successful submission path busy-waits for an
  * asynchronous completion flag written by hardware/ISR code. */
+#include "../../headers/g1_nrf_regs.h"
 #define P_0102b640 0x21004628
 #define C_0102b644 0xf0000010
 #define P_0102b648 0x21004fa2
-#define C_0102b64c 0x418c0500
+#define C_0102b64c G1_NRF_P0_NS_BASE
 #define P_0102b650 0x21000580
 #define P_0102b654 0x0103d18c
 #define P_0102b658 0x0103d19e

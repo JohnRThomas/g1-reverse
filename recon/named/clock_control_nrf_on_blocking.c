@@ -22,7 +22,7 @@
  */
 /* Full reconstruction FUN_00060788 @ 0x60788, exact 280-byte extent. */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern int onoff_request_enqueue(uintptr_t);
 extern void printk(uintptr_t, uintptr_t, uintptr_t, uint32_t);

@@ -1,4 +1,5 @@
 /* net-core FUN_010171c8 @ 0x10171c8  (parity 299 trials PROVEN) */
+#include "../../headers/g1_nrf_regs.h"
 typedef unsigned char byte;
 typedef unsigned int uint;
 typedef unsigned long long ulonglong;
@@ -20,7 +21,7 @@ extern void FUN_01025c44(int);
 
 #define IVAR5 0x21000f90
 #define MAGIC_RECIP 0xaaaaaaabu
-#define MMIO 0x41008000
+#define MMIO G1_NRF_RADIO_NS_BASE
 
 /* ARM ASR-by-register semantics: shift amount taken mod 256; amounts >=32
    saturate to the sign-extension of the value. v here is always a

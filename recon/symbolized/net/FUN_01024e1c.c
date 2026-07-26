@@ -1,4 +1,5 @@
 #include "g1_net_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
 /* readable reconstruction; identity: FUN_01024e1c @ 0x01024e1c
  * public-name: FUN_01024e1c
  * durable-map: recon/catalogs/function_names_net.json
@@ -12,8 +13,8 @@ extern void FUN_010256dc(unsigned int a, unsigned int b, unsigned int c, unsigne
 void FUN_01024e1c(unsigned int param_1, int param_2, unsigned int param_3, unsigned int param_4)
 {
   volatile unsigned char *pcVar2 = (volatile unsigned char *)((unsigned long)&g_net_radio_timer_sync_state) /*=0x21001bf8*/;
-  volatile unsigned char *iVar3 = (volatile unsigned char *)0x41011000;
-  volatile unsigned char *dat_edc = (volatile unsigned char *)0x4100f000;
+  volatile unsigned char *iVar3 = (volatile unsigned char *)G1_NRF_RTC0_NS_BASE;
+  volatile unsigned char *dat_edc = (volatile unsigned char *)G1_NRF_DPPIC_NS_BASE;
   unsigned int uVar4 = 0x00fffffe;
   unsigned int uVar5;
   volatile unsigned char *iVar6;
@@ -50,7 +51,7 @@ void FUN_01024e1c(unsigned int param_1, int param_2, unsigned int param_3, unsig
         } while ((unsigned int)((uVar8 - *(volatile int *)(iVar3 + 0x504)) & uVar4) == 0);
       }
       *(volatile unsigned int *)(pcVar2 + 8) = param_1;
-      iVar6 = (volatile unsigned char *)0x4100c000;
+      iVar6 = (volatile unsigned char *)G1_NRF_TIMER0_NS_BASE;
       uVar5 = 0x80000001;
       *(volatile int *)(pcVar2 + 0xc) = param_2;
       *(volatile unsigned int *)(iVar3 + 0x1c0) = uVar5;

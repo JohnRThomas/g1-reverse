@@ -29,7 +29,7 @@
  */
 /* Reconstructed FUN_00072558 @ 0x72558  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern void printk(unsigned,unsigned,unsigned,unsigned);
 extern void assert_post_action(unsigned,unsigned);
 extern int z_spin_lock_valid(unsigned);

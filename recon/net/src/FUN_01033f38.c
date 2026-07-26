@@ -1,4 +1,5 @@
 /* net-core FUN_01033f38 @ 0x1033f38  (parity 300 trials PROVEN) */
+#include "../../headers/g1_nrf_regs.h"
 extern int FUN_01034464(unsigned char);
 extern int FUN_0103448c(unsigned char);
 extern void FUN_01039bbe(int, int, unsigned int);
@@ -8,8 +9,8 @@ void FUN_01033f38(void)
 {
   int r0, r4, r5;
 
-  *(volatile int *)(0x4100f000 + 0x508) = 1 << *(volatile unsigned char *)0x2100645d;
-  *(volatile int *)(0x41008000 + 0x190) = 0;
+  *(volatile int *)(G1_NRF_DPPIC_NS_BASE + 0x508) = 1 << *(volatile unsigned char *)0x2100645d;
+  *(volatile int *)(G1_NRF_RADIO_NS_BASE + 0x190) = 0;
   r0 = FUN_01034464(*(volatile unsigned char *)0x21006460);
   r5 = r0;
   if (r5 != 0x0bad0000) goto L_abort;

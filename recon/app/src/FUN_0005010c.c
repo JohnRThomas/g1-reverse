@@ -1,4 +1,5 @@
 /* Reconstructed FUN_0005010c @ 0x5010c  (parity: 300/300 trials, PROVEN) */
+#include "../../headers/g1_nrf_regs.h"
 
 extern int FUN_0007e2fa(int a, int b, int c, int d, int e);
 extern int FUN_0007e2ec(int a, int b);
@@ -23,7 +24,7 @@ void FUN_0005010c(int param_1, unsigned int param_2, int param_3, int param_4)
     if (bVar5) {
         r0 = r0 + (int)0xe0000000;
     } else {
-        r2 = (int)0xe000ed14;
+        r2 = (int)G1_SCB_CCR;
     }
     r3 = r3 << 5;
     r3 = (unsigned char)r3;

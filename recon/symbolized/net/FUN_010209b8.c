@@ -1,11 +1,12 @@
 #include "g1_net_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
 /* readable reconstruction; identity: FUN_010209b8 @ 0x010209b8
  * public-name: FUN_010209b8
  * durable-map: recon/catalogs/function_names_net.json
  */
 /* net-core FUN_010209b8 @ 0x10209b8  (parity 300 trials PROVEN) */
 
-volatile unsigned char *const DAT_010209c4 = (volatile unsigned char *)0x4100c000;
+volatile unsigned char *const DAT_010209c4 = (volatile unsigned char *)G1_NRF_TIMER0_NS_BASE;
 void FUN_010209b8(void)
 {
   *(volatile unsigned int *)(DAT_010209c4 + 0x540) = 0;

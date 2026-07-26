@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00086634 @ 0x86634  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern void FUN_000501d4(void);
 void FUN_00086634(int param_1) {

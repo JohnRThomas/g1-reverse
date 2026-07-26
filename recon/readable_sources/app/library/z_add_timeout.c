@@ -31,7 +31,7 @@
  */
 /* Reconstructed FUN_00074bf4 @ 0x74bf4. */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern int z_spin_lock_valid(uintptr_t);
 extern void z_spin_lock_set_owner(uintptr_t);

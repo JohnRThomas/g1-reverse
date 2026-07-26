@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
 /* readable reconstruction; identity: FUN_000635a4 @ 0x000635a4
  * public-name: rtc_timer_cc_reg_get
  * durable-map: recon/catalogs/function_names_app.json
@@ -23,7 +24,7 @@ unsigned int rtc_timer_cc_reg_get(unsigned int param_1, unsigned int param_2, un
     printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f668a) /*=0xf668a*/, ((unsigned long)&rodata_f6659) /*=0xf6659*/, 0x8d, param_4);
     assert_post_action(((unsigned long)&rodata_f6659) /*=0xf6659*/, 0x8d);
   }
-  uVar1 = 0x50015044;
+  uVar1 = (G1_NRF_RTC1_S_BASE + 0x44);
   if (param_1 == 0) {
     uVar1 = 0;
   }

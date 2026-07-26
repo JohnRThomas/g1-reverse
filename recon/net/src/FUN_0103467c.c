@@ -1,5 +1,6 @@
 /* net-core FUN_0103467c @ 0x103467c  (parity 300 trials PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_nrf_regs.h"
 
 extern int32_t FUN_01034650(uint32_t a);
 
@@ -12,7 +13,7 @@ uint32_t FUN_0103467c(uint32_t param_1)
         int32_t iVar1 = FUN_01034650(uVar3 & 0xff);
         uint32_t uVar2 = 1u << (((uint32_t)(iVar1 - 0x100) >> 2) & 0xff);
         if ((param_1 & uVar2) != 0) {
-            volatile int32_t *p = (int32_t *)(iVar1 + 0x4100a000);
+            volatile int32_t *p = (int32_t *)(iVar1 + G1_NRF_GPIOTE_NS_BASE);
             if (*p != 0) {
                 *p = 0;
                 uVar4 |= uVar2;
@@ -21,7 +22,7 @@ uint32_t FUN_0103467c(uint32_t param_1)
         uVar3 = uVar3 + 1;
     } while (uVar3 != 8);
 
-    volatile int32_t * const p2 = (int32_t *)(0x4100a000 + 0x17c);
+    volatile int32_t * const p2 = (int32_t *)(G1_NRF_GPIOTE_NS_BASE + 0x17c);
     if (*p2 != 0) {
         *p2 = 0;
         uVar4 |= 0x80000000;

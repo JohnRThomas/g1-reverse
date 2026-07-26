@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000729fc @ 0x729fc
  * CFG_VERIFY_PREFIX_FIRST: drains callback-owned queue until it reports empty. */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern int FUN_00072040(uint32_t); extern void FUN_00072078(uint32_t);
 extern int FUN_000744a4(void *); extern void FUN_000738d4(void);
 extern void FUN_0008688e(void *, int); extern void FUN_000739f0(uint32_t,uint32_t);

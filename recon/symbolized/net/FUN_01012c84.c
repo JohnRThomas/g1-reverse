@@ -1,4 +1,5 @@
 #include "g1_net_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
 /* readable reconstruction; identity: FUN_01012c84 @ 0x01012c84
  * public-name: FUN_01012c84
  * durable-map: recon/catalogs/function_names_net.json
@@ -102,7 +103,7 @@ void FUN_01012c84(undefined1 *param_1,uint param_2,undefined4 param_3,uint param
   undefined4 uStack_24;
 
   iVar5 = G1N_210015f0;
-  iVar8 = 0x4100c000;
+  iVar8 = G1_NRF_TIMER0_NS_BASE;
   if (param_1 == (undefined1 *)0x0) {
     sdc_assertion_fail(0x30,0xcd);
   }
@@ -149,7 +150,7 @@ void FUN_01012c84(undefined1 *param_1,uint param_2,undefined4 param_3,uint param
     controller_radio_transition_apply(param_1,param_2);
     return;
 #if 0 /* stale inlined Ghidra continuation; the raw CFG leaves this function */
-    *(undefined4 *)(0x4100c000 + 0x4c) = 1;
+    *(undefined4 *)(G1_NRF_TIMER0_NS_BASE + 0x4c) = 1;
     iVar8 = *(int *)(iVar8 + 0x54c);
     uVar9 = controller_radio_timer_capture_get();
     *(undefined4 *)(iVar5 + 0x38) = uVar9;
@@ -236,11 +237,11 @@ LAB_01020d96:
     *(undefined4 *)(iVar10 + 0x108) = 0;
     *(undefined4 *)(iVar10 + 0x16c) = 0;
     iVar10 = controller_transition_pending_check(&uStack_24);
-    iVar12 = 0x4100c000;
+    iVar12 = G1_NRF_TIMER0_NS_BASE;
     if (iVar10 != 0) {
       uVar15 = uVar15 & 0xff | 0x10;
     }
-    *(undefined4 *)(0x4100c000 + 0x144) = 0;
+    *(undefined4 *)(G1_NRF_TIMER0_NS_BASE + 0x144) = 0;
     if (((uVar15 & 0x18) == 0x10) && (*(char *)(iVar5 + 9) == '\x01')) {
       iVar10 = *(int *)(iVar12 + 0x548);
       uVar9 = *(undefined4 *)(iVar12 + 0x544);
@@ -252,8 +253,8 @@ LAB_01020e02:
       cVar6 = *(char *)(iVar5 + 0x18);
     }
     else {
-      iVar10 = *(int *)(0x4100c000 + 0x548);
-      uVar9 = *(undefined4 *)(0x4100c000 + 0x544);
+      iVar10 = *(int *)(G1_NRF_TIMER0_NS_BASE + 0x548);
+      uVar9 = *(undefined4 *)(G1_NRF_TIMER0_NS_BASE + 0x544);
       *(int *)(iVar5 + 0x24) = iVar10;
       *(undefined4 *)(iVar5 + 0x20) = uVar9;
       if ((*(char *)(iVar5 + 0x29) != '\x02') && (*(char *)(iVar5 + 9) != '\x02'))
@@ -377,7 +378,7 @@ LAB_01021000:
     cVar6 = *(char *)(iVar5 + 0xc);
     if (cVar6 != '\0') {
       if (cVar6 == '\x02') {
-        *(int *)(0x4100c000 + 0x544) = *(int *)(iVar5 + 0x24) + *(int *)(iVar5 + 0x10);
+        *(int *)(G1_NRF_TIMER0_NS_BASE + 0x544) = *(int *)(iVar5 + 0x24) + *(int *)(iVar5 + 0x10);
       }
       else {
         if (cVar6 != '\x01') {
@@ -386,13 +387,13 @@ LAB_01021000:
         if (*(uint *)(iVar5 + 0x10) <= *(uint *)(iVar5 + 0x24)) {
           sdc_assertion_fail(0x3e,0xc16);
         }
-        *(uint *)(0x4100c000 + 0x544) = *(uint *)(iVar5 + 0x10);
+        *(uint *)(G1_NRF_TIMER0_NS_BASE + 0x544) = *(uint *)(iVar5 + 0x10);
       }
-      *(undefined4 *)(0x4100c000 + 0x1c4) = 0x8000000b;
+      *(undefined4 *)(G1_NRF_TIMER0_NS_BASE + 0x1c4) = 0x8000000b;
     }
 LAB_01020f60:
     cVar6 = (char)controller_radio_work_pending();
-    iVar8 = 0xe000e100;
+    iVar8 = G1_NVIC_ISER0;
     if ((uVar15 != 0) && (cVar6 != '\x01')) {
       uStack_24 = 0;
       do {

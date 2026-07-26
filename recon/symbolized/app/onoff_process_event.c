@@ -30,7 +30,7 @@
  */
 /* Full reconstruction of FUN_0004b4fc @ 0x4b4fc (916-byte catalog extent). */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 typedef struct pending_node {
     struct pending_node *next;

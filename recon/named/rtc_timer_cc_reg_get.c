@@ -10,6 +10,7 @@
  *   rodata_f6659                             @ 0x000f6659
  *   rodata_f668a                             @ 0x000f668a
  */
+#include "../headers/g1_nrf_regs.h"
 /* Reconstructed FUN_000635a4 @ 0x635a4  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(unsigned int a0, unsigned int a1);
@@ -22,7 +23,7 @@ unsigned int rtc_timer_cc_reg_get(unsigned int param_1, unsigned int param_2, un
     printk(0x00099cbd, 0x000f668a, 0x000f6659, 0x8d, param_4);
     assert_post_action(0x000f6659, 0x8d);
   }
-  uVar1 = 0x50015044;
+  uVar1 = (G1_NRF_RTC1_S_BASE + 0x44);
   if (param_1 == 0) {
     uVar1 = 0;
   }

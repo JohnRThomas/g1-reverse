@@ -33,7 +33,7 @@
 /* Reconstructed FUN_000735cc @ 0x735cc */
 #include <stdint.h>
 #include <stdbool.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern int k_is_in_isr(void); extern int z_spin_lock_valid(uint32_t); extern void z_spin_lock_set_owner(uint32_t); extern uint64_t z_spin_unlock_valid(uint32_t);
 extern void unschedule_locked(void*); extern void cancel_async_locked(void*); extern int cancel_sync_locked(void*,void*); extern void z_impl_k_sem_take(void*,uint32_t,uint32_t,uint32_t);
 extern void printk(uint32_t,...); extern void assert_post_action(uint32_t,uint32_t);

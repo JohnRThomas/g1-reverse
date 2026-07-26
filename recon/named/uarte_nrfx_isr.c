@@ -25,7 +25,7 @@
 #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
 #pragma GCC diagnostic ignored "-Wincompatible-pointer-types"
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 typedef unsigned char undefined,undefined1,byte,uchar,uint1;
 typedef unsigned short undefined2,ushort,uint2,wchar_t;
 typedef unsigned int undefined4,uint,uint3,code_t;

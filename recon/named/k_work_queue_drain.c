@@ -25,7 +25,7 @@
  */
 /* Reconstructed FUN_000731b8 @ 0x731b8 */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern int k_is_in_isr(void); extern int z_spin_lock_valid(uint32_t); extern void z_spin_lock_set_owner(uint32_t); extern int z_spin_unlock_valid(uint32_t);
 extern void notify_queue_locked(void *); extern uint32_t z_sched_wait(uint32_t,uint32_t,void*,uint32_t,uint32_t,uint32_t,uint32_t);
 extern void printk(uint32_t,...); extern void assert_post_action(uint32_t,uint32_t);

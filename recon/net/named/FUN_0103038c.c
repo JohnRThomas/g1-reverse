@@ -12,7 +12,7 @@
  */
 /* net-core FUN_0103038c @ 0x103038c; exact executable extent 268 bytes. */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern int32_t onoff_request(uint32_t object, uint32_t state);
 extern void assert_print(uint32_t source, uint32_t message, uint32_t line);

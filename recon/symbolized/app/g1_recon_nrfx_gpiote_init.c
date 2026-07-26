@@ -12,6 +12,7 @@
  */
 /* Reconstructed FUN_00065940 @ 0x65940  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_nrf_regs.h"
 typedef unsigned int uint;
 extern void arch_irq_enable(int);
 extern int gpiote_in_event_reg_offset(uint32_t);
@@ -28,7 +29,7 @@ uint32_t g1_recon_nrfx_gpiote_init(void){
       if((iVar2-0x100U)>>2==0x1f){
         *(volatile uint32_t*)(iVar2+0x5000d000UL)=0;
       }
-      iVar2=0x5000d000;
+      iVar2=G1_NRF_GPIOTE0_S_BASE;
       uVar4=uVar4+1;
     }while(uVar4!=8);
     *(volatile uint32_t*)(0x5000d000UL+0x17c)=0;

@@ -11,6 +11,7 @@
  */
 /* Reconstructed FUN_00066270 @ 0x66270  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_nrf_regs.h"
 extern void arch_irq_enable(int);
 extern void arch_irq_disable(int);
 unsigned int nrfx_pdm_buffer_set(int param_1,int param_2){
@@ -29,12 +30,12 @@ unsigned int nrfx_pdm_buffer_set(int param_1,int param_2){
         if(*(volatile int*)(iVar3+4)==0){
           *(volatile short*)(iVar1+uVar4*2+0xc)=(short)param_2;
           *(volatile int*)(iVar3+4)=param_1;
-          *(volatile int*)(0x50026000+0x158*4)=param_1;
-          *(volatile int*)(0x50026000+0x159*4)=param_2;
+          *(volatile int*)(G1_NRF_PDM0_S_BASE+0x158*4)=param_1;
+          *(volatile int*)(G1_NRF_PDM0_S_BASE+0x159*4)=param_2;
           uVar5=0x0bad0000;
           if(*(volatile unsigned char*)(iVar1+0x10)!=2){
             *(volatile unsigned char*)(iVar1+0x10)=2;
-            *(volatile int*)(0x50026000+0x140*4)=1;
+            *(volatile int*)(G1_NRF_PDM0_S_BASE+0x140*4)=1;
             *(volatile int*)0x50026000UL=1;
             uVar5=0x0bad0000;
           }

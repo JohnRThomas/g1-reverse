@@ -4,6 +4,7 @@
  */
 #include <stdint.h>
 #include <cmsis_gcc.h>
+#include "../../headers/g1_nrf_regs.h"
 
 extern int sdc_byte_lock_try_acquire(volatile uint8_t *lock);
 extern void sdc_byte_lock_release(volatile uint8_t *lock);
@@ -32,9 +33,9 @@ void FUN_0100a7e8(uint32_t ecb_data_address)
 {
     volatile uint8_t *const ownership = (volatile uint8_t *)0x21000bf4;
     volatile struct nrf_ecb_registers *const ecb =
-        (volatile struct nrf_ecb_registers *)0x4100d000;
-    volatile uint32_t *const scb_scr = (volatile uint32_t *)0xe000ed10;
-    volatile uint32_t *const nvic_icpr2 = (volatile uint32_t *)0xe000e280;
+        (volatile struct nrf_ecb_registers *)G1_NRF_ECB_NS_BASE;
+    volatile uint32_t *const scb_scr = (volatile uint32_t *)G1_SCB_SCR;
+    volatile uint32_t *const nvic_icpr2 = (volatile uint32_t *)G1_NVIC_ICPR0;
     int lock_status;
 
     for (;;) {

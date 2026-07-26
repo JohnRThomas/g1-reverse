@@ -4,7 +4,7 @@
 
 extern void FUN_01024aa8(void);
 extern void FUN_010256dc(int,int) __attribute__((noreturn));
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 volatile unsigned char *const G6 = (volatile unsigned char*)0x21001bd6;
 volatile unsigned char *const Gf = (volatile unsigned char*)0x21001bdf;

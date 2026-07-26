@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
 /* readable reconstruction; identity: FUN_0006666c @ 0x0006666c
  * public-name: gpio_configure_pin_output
  * durable-map: recon/catalogs/function_names_app.json
@@ -26,13 +27,13 @@ L_676:
       r0v = (unsigned)r; r1v = (unsigned)((unsigned long long)r >> 32); }
 L_68e:
     { unsigned s = r0v & 0xff; uVar2 = (s >= 32) ? 0u : (0xffffffffu >> s); }
-    iVar1 = 0x50842500;
+    iVar1 = G1_NRF_P0_S_BASE;
     if ((int)(uVar2 << 0x1f) >= 0) goto L_676;
     goto L_join;
 L_6b4:
     r0v = param_1 & 0x1f;
     uVar2 = 0xffffu >> r0v;
-    iVar1 = 0x50842800;
+    iVar1 = G1_NRF_P1_S_BASE;
     if ((int)(uVar2 << 0x1f) >= 0) goto L_676;
 L_join:
     {

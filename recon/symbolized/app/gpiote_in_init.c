@@ -17,6 +17,7 @@
  */
 /* Reconstructed FUN_0006567c @ 0x6567c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_nrf_regs.h"
 typedef unsigned uint; typedef unsigned char byte; typedef unsigned short ushort; typedef unsigned long long u64;
 extern long long nrfx_flag32_alloc(int,...);
 extern long long get_pin_idx(int,...);
@@ -58,7 +59,7 @@ int gpiote_in_init(uint param_1, uint param_2, byte *param_3, int *param_4)
                 bVar2 = **(byte**)(param_3+4);
                 iVar9 = (uint)bVar2 * 4;
                 volatile uint *channel_reg =
-                    (volatile uint *)(uintptr_t)(iVar9 + 0x5000d510);
+                    (volatile uint *)(uintptr_t)(iVar9 + (G1_NRF_GPIOTE0_S_BASE + 0x510));
                 if(uVar10 == 0){
                     *channel_reg = 0;
                     *channel_reg = 0;

@@ -1,6 +1,6 @@
 /* Reconstructed FUN_000745c8 @ 0x745c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern int FUN_000501d4(int,...);
 extern int FUN_00072040(int,...);
 extern int FUN_0007205c(int,...);

@@ -16,6 +16,7 @@
 /* net-core FUN_0102b31c @ 0x102b31c  (parity 300 trials PROVEN) */
 
 #include <stdint.h>
+#include "../../headers/g1_nrf_regs.h"
 
 extern int FUN_010333b4(void *);
 extern void FUN_01033af8(int);
@@ -31,7 +32,7 @@ int FUN_0102b31c(int param_1)
 {
   volatile int * const p3d0 = (volatile int *)((unsigned long)&g_net_radio_op_state) /*=0x210005b4*/;
   volatile unsigned char * const p3d4 = (volatile unsigned char *)((unsigned long)&g_net_radio_temp_raw) /*=0x21004b9e*/;
-  volatile unsigned char * const pE100 = (volatile unsigned char *)0xe000e100;
+  volatile unsigned char * const pE100 = (volatile unsigned char *)G1_NVIC_ISER0;
   volatile int * const p3e8 = (volatile int *)((unsigned long)&g_zephyr_log_level) /*=0x21000580*/;
 
   /* Five-word radio configuration assembled from the firmware template at

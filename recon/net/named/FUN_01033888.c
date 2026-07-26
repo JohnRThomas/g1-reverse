@@ -10,6 +10,7 @@
  *   g_net_radio_busy_flag                    @ 0x21006458
  *   REG_41008000                             @ 0x41008000
  */
+#include "../../headers/g1_nrf_regs.h"
 /* net-core FUN_01033888 @ 0x1033888  (parity 300 trials PROVEN) */
 
 typedef unsigned int uint;
@@ -25,7 +26,7 @@ unsigned int FUN_01033888(void)
     if (*pb != 0) {
         return 0xfffffff0u;
     }
-    volatile unsigned int * const p4 = (volatile unsigned int *)0x41008000; /* DAT_01033944 */
+    volatile unsigned int * const p4 = (volatile unsigned int *)G1_NRF_RADIO_NS_BASE; /* DAT_01033944 */
     unsigned int uVar5 = (unsigned int)(*pb); /* bVar (=0 here) widened, matches r5 = zext(byte) */
     p4[0x308/4] = 0xffffffffu;
     p4[0x110/4] = uVar5;
@@ -45,7 +46,7 @@ unsigned int FUN_01033888(void)
     }
     p4[0x508/4] = (unsigned int)pb2[0x13];
     p4[0x504/4] = 0x2100625eu; /* DAT_0103395c */
-    volatile unsigned int * const p_1033960 = (volatile unsigned int *)0xe000e100; /* DAT_01033960 */
+    volatile unsigned int * const p_1033960 = (volatile unsigned int *)G1_NVIC_ISER0; /* DAT_01033960 */
     p_1033960[0x180/4] = 0x100;
     arch_irq_enable(8);
     p4[0x104/4] = uVar5;
@@ -56,7 +57,7 @@ unsigned int FUN_01033888(void)
     (void)p4[0x110/4]; /* read-back @ 0x41008110 (original 0x01033922) */
     FUN_01033b18(1, uVar5);
     FUN_01032988();
-    volatile unsigned int * const p_1033964 = (volatile unsigned int *)0x41014000; /* DAT_01033964 */
+    volatile unsigned int * const p_1033964 = (volatile unsigned int *)G1_NRF_EGU0_NS_BASE; /* DAT_01033964 */
     p_1033964[0x18/4] = 1;
     return 0;
 }

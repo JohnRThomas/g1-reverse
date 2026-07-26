@@ -23,7 +23,7 @@
  */
 /* Reconstructed FUN_0004b908 @ 0x4b908  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern int onoff_process_event(int,int,unsigned int);
 extern int z_spin_lock_valid(int);
 extern int z_spin_unlock_valid(int);

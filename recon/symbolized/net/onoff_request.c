@@ -16,11 +16,8 @@
  */
 /* net-core FUN_0102ca80 @ 0x102ca80  (parity 300 trials PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
-static inline int isCurrentModePrivileged(void){return (__get_CONTROL()&1)==0;}
-static inline int getBasePriority(void){return (int)__get_BASEPRI();}
-static inline void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
+#include <cmsis_gcc.h>
+#include "../../headers/g1_cmsis_shim.h"
 
 extern int validate_args(void);
 extern int FUN_0103610c(int);

@@ -11,6 +11,7 @@
  */
 /* net-core FUN_010345f4 @ 0x10345f4 */
 #include <stdint.h>
+#include "../../headers/g1_nrf_regs.h"
 extern uint64_t FUN_0103a8ea(uint32_t, uint32_t *);
 extern void assert_print(uint32_t, uint32_t, uint32_t);
 extern uint64_t assert_post_action(uint32_t, uint32_t);
@@ -28,8 +29,8 @@ uint32_t FUN_010345f4(uint32_t *configuration)
     }
     for (;;) {
         *destination = encoded & 0x1f;
-        if ((encoded >> 5) == 0) return 0x418c0500;
-        if ((encoded >> 5) == 1) return 0x418c0800;
+        if ((encoded >> 5) == 0) return G1_NRF_P0_NS_BASE;
+        if ((encoded >> 5) == 1) return G1_NRF_P1_NS_BASE;
         assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103df89) /*=0x103df89*/, 0x338);
         result = assert_post_action(((unsigned long)&rodata_103df89) /*=0x103df89*/, 0x338);
         destination = (uint32_t *)(uintptr_t)(uint32_t)(result >> 32);

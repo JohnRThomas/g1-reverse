@@ -13,7 +13,7 @@
  */
 /* Full reconstruction FUN_000604e4 @ 0x000604e4 (114-byte exact extent). */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern void printk(uintptr_t, uintptr_t, uintptr_t, uint32_t);
 extern void assert_post_action(uintptr_t, uint32_t) __attribute__((noreturn));

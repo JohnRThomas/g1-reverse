@@ -10,7 +10,7 @@
  */
 /* net-core FUN_0100ec40 @ 0x100ec40  (parity 300 trials PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern void controller_deferred_event_raise(unsigned int a);
 

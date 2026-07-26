@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_00086634 @ 0x86634  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern void arch_swap(void);
 void z_reschedule_irqlock(int param_1) {

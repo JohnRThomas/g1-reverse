@@ -4,7 +4,7 @@
  */
 
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern void FUN_0007e2fa(uint32_t, ...);
 extern void FUN_0007e2ec(uint32_t, uint32_t);

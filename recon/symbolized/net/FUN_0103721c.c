@@ -37,7 +37,7 @@ extern char g1_net_kernel_object[] __asm__("_kernel");
 #define G1_NET_K(off) (G1_NET_KERNEL_BASE + (off))
 
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 static inline unsigned int getBasePriority(void){return __get_BASEPRI();}
 static inline void setBasePriority(unsigned p){__set_BASEPRI(p);}
 static inline void isb(void){__ISB();}

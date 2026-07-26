@@ -4,11 +4,12 @@
  * address symbols (name @ address):
  *   REG_4100d000                             @ 0x4100d000
  */
+#include "../../headers/g1_nrf_regs.h"
 /* net-core FUN_0100a718 @ 0x100a718  (parity 300 trials PROVEN) */
 
 void FUN_0100a718(void)
 {
-    unsigned int base = 0x4100d000;
+    unsigned int base = G1_NRF_ECB_NS_BASE;
     *(volatile unsigned int*)(base+4) = 1;
     *(volatile unsigned int*)(base+0x308) = 0xffffffff;
     base += 0x1000;

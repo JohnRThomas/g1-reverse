@@ -5,5 +5,6 @@
 /* net-core FUN_01025028 @ 0x1025028  (parity 300 trials PROVEN) */
 
 #include <stdint.h>
-static volatile uint32_t * const DAT_01025030 = (volatile uint32_t *)0x41011000;
+#include "../../headers/g1_nrf_regs.h"
+static volatile uint32_t * const DAT_01025030 = (volatile uint32_t *)G1_NRF_RTC0_NS_BASE;
 uint32_t FUN_01025028(void) { return *(uint32_t*)((uint8_t*)DAT_01025030 + 0x504); }

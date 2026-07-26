@@ -6,9 +6,10 @@
  * address symbols (name @ address):
  *   REG_41008000                             @ 0x41008000
  */
+#include "../../headers/g1_nrf_regs.h"
 /* net-core FUN_010208b0 @ 0x10208b0  (parity 300 trials PROVEN) */
 
-#define DAT_010208c8 ((unsigned int)0x41008000)
+#define DAT_010208c8 ((unsigned int)G1_NRF_RADIO_NS_BASE)
 
 void sdc_llcp_stop_rx_timeout(void)
 {

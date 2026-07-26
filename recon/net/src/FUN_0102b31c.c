@@ -24,6 +24,7 @@ extern unsigned char g1_esb_pipe_addr_block[];
 #define G1_NET_ESB_ADDR(off) (G1_NET_ESB_ADDR_BASE + (off))
 
 #include <stdint.h>
+#include "../../headers/g1_nrf_regs.h"
 
 /* Readable source identity; preprocessing preserves the raw parity symbol. */
 #define g1_esb_radio_configure FUN_0102b31c
@@ -42,7 +43,7 @@ int g1_esb_radio_configure(int param_1)
 {
   volatile int * const p3d0 = (volatile int *)0x210005b4;
   volatile unsigned char * const p3d4 = (volatile unsigned char *)0x21004b9e;
-  volatile unsigned char * const pE100 = (volatile unsigned char *)0xe000e100;
+  volatile unsigned char * const pE100 = (volatile unsigned char *)G1_NVIC_ISER0;
   volatile int * const p3e8 = (volatile int *)0x21000580;
 
   /* Five-word radio configuration assembled from the firmware template at

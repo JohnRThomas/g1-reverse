@@ -10,7 +10,7 @@
 typedef unsigned int u32;
 typedef unsigned short u16;
 typedef unsigned char u8;
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 #define PC6 ((unsigned long)&g_net_radio_timer_sync_state) /*=0x21001bf8*/
 #define NP  0x41011000u

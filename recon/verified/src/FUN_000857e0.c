@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 typedef void (*fn_t)(int *);
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 void FUN_000857e0(int *param_1)
 {

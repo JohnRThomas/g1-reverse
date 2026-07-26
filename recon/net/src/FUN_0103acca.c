@@ -1,6 +1,6 @@
 /* net-core FUN_0103acca @ 0x103acca  (parity 300 trials PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 void FUN_0103acca(int32_t *param_1)
 {

@@ -4,9 +4,10 @@
  * address symbols (name @ address):
  *   REG_41008000                             @ 0x41008000
  */
+#include "../../headers/g1_nrf_regs.h"
 /* net-core FUN_01020898 @ 0x1020898  (parity 300 trials PROVEN) */
 
-#define DAT_010208ac ((unsigned int)0x41008000)
+#define DAT_010208ac ((unsigned int)G1_NRF_RADIO_NS_BASE)
 
 void FUN_01020898(unsigned int param_1)
 {

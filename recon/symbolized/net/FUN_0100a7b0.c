@@ -1,4 +1,5 @@
 #include "g1_net_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
 /* readable reconstruction; identity: FUN_0100a7b0 @ 0x0100a7b0
  * public-name: FUN_0100a7b0
  * durable-map: recon/catalogs/function_names_net.json
@@ -7,7 +8,7 @@
 
 extern void FUN_0100a718(void);
 extern void FUN_0100a760(void);
-#define DAT_0100a7c8 ((unsigned int)0x4100f000)
+#define DAT_0100a7c8 ((unsigned int)G1_NRF_DPPIC_NS_BASE)
 
 void FUN_0100a7b0(void)
 {

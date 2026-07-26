@@ -1,4 +1,5 @@
 #include "g1_net_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
 /* readable reconstruction; identity: FUN_01032ad8 @ 0x01032ad8
  * public-name: FUN_01032ad8
  * durable-map: recon/catalogs/function_names_net.json
@@ -45,7 +46,7 @@ void FUN_01032ad8(unsigned int param_1, unsigned int param_2, unsigned int param
         use_r0 = 1;
         local_c = (unsigned int)(unsigned char)(cl - 3);
     }
-    volatile unsigned int *base = (volatile unsigned int *)0x41004000;
+    volatile unsigned int *base = (volatile unsigned int *)G1_NRF_VREQCTRL_NS_BASE;
     base[0x500 / 4] = (unsigned int)use_r0;
     unsigned char byte_val = *(unsigned char *)&local_c;
     *(volatile unsigned int *)((char *)base + 0x4000 + 0x50c) = (unsigned int)byte_val;

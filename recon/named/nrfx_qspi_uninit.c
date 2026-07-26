@@ -15,6 +15,7 @@
  *   g_qspi_cb                                @ 0x2000b348
  *   NRF_QSPI_BASE                            @ 0x5002b000
  */
+#include "../headers/g1_nrf_regs.h"
 /* Reconstructed FUN_00066b24 @ 0x66b24  (parity: 300/300 trials, PROVEN) */
 
 extern void arch_irq_disable(int a);
@@ -31,7 +32,7 @@ void nrfx_qspi_uninit(void){
     arch_irq_disable(0x2b);
     qspi_deactivate();
     if (g[0x3a] == 0){
-        volatile unsigned *b = (volatile unsigned*)0x5002b000;
+        volatile unsigned *b = (volatile unsigned*)G1_NRF_QSPI_S_BASE;
         unsigned v524 = b[0x524/4];
         unsigned v528 = b[0x528/4];
         unsigned v530 = b[0x530/4];

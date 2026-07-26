@@ -5,6 +5,7 @@
  *   rodata_103e6f2                           @ 0x0103e6f2
  *   g_sdc_res_pool_slot_tbl                  @ 0x210006a8
  */
+#include "../../headers/g1_nrf_regs.h"
 /* net-core FUN_01034be4 @ 0x1034be4  (parity 300 trials PROVEN) */
 typedef unsigned int uint;
 typedef unsigned char byte;
@@ -22,13 +23,13 @@ extern void FUN_0103a9be(uint, uint);
 
 void FUN_01034be4(void)
 {
-  volatile uint *p304 = (volatile uint *)(0x4100a000 + 0x304);
+  volatile uint *p304 = (volatile uint *)(G1_NRF_GPIOTE_NS_BASE + 0x304);
   uint r0 = *p304 & 0xffu;
   r0 |= 0x80000000u;
   int uVar6 = FUN_0103467c(r0);
 
-  volatile uint *sl20 = (volatile uint *)(0x418c0500 + 0x20);
-  volatile uint *sb20 = (volatile uint *)(0x418c0800 + 0x20);
+  volatile uint *sl20 = (volatile uint *)(G1_NRF_P0_NS_BASE + 0x20);
+  volatile uint *sb20 = (volatile uint *)(G1_NRF_P1_NS_BASE + 0x20);
   const byte *tbl_d84 = (const byte *)0x0103e6f2;
   const volatile ushort *tbl_d88 = (const volatile ushort *)0x210006a8;
 

@@ -21,7 +21,7 @@
  */
 /* Reconstructed FUN_0004be0c @ 0x4be0c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 typedef uint32_t u32; typedef uint8_t u8;
 typedef u32 (*fp)(u8*);
 extern void printk(u32,u32,...);

@@ -1,4 +1,5 @@
 #include "g1_net_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
 /* readable reconstruction; identity: FUN_01033ca4 @ 0x01033ca4
  * public-name: FUN_01033ca4
  * durable-map: recon/catalogs/function_names_net.json
@@ -10,7 +11,7 @@
 void FUN_01033ca4(void)
 {
   volatile unsigned char *p1 = (volatile unsigned char *)((unsigned long)&g_154_dppi_channel_ack) /*=0x2100645c*/;
-  volatile unsigned char *base = (volatile unsigned char *)0x4100f000;
+  volatile unsigned char *base = (volatile unsigned char *)G1_NRF_DPPIC_NS_BASE;
   unsigned char b = *p1;
   *(volatile unsigned int *)(base + 0x508) = 1u << b;
   *(volatile unsigned int *)(base + 0x5198) = 0;

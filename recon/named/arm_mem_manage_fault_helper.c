@@ -22,10 +22,11 @@
  */
 /* Reconstructed FUN_000503d8 @ 0x503d8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_nrf_regs.h"
 extern int assert_post_action(int,...) __attribute__((noreturn));
 extern int printk(int,...);
 extern int arm_fault_forward_handler(int,...);
-#define SCB28 (*(volatile int*)0xe000ed28)
+#define SCB28 (*(volatile int*)G1_SCB_CFSR)
 
 unsigned arm_mem_manage_fault_helper(int param_1, unsigned char *param_2)
 {
@@ -45,7 +46,7 @@ unsigned arm_mem_manage_fault_helper(int param_1, unsigned char *param_2)
         arm_fault_forward_handler(0x00088258, 0x1040, &log2);
         uVar2 = 0x12;
     }
-    iVar1 = 0xe000ed00;
+    iVar1 = G1_SCB_CPUID;
     if(SCB28 << 0x1e < 0){
         log2.format = 0x000f1c95; log2.count = 2;
         arm_fault_forward_handler(0x00088258, 0x1040, &log2);
@@ -69,7 +70,7 @@ unsigned arm_mem_manage_fault_helper(int param_1, unsigned char *param_2)
         arm_fault_forward_handler(0x00088258, 0x1040, &log2);
         uVar2 = 0x15;
     }
-    iVar1 = 0xe000ed00;
+    iVar1 = G1_SCB_CPUID;
     if(((SCB28 << 0x1b < 0) || (SCB28 << 0x1e < 0)) && (SCB28 << 0x1b < 0)){
         printk(0x00099cbd, 0x000f1d4b, 0x000f1d11, 0x163);
         printk(0x000f1d95);

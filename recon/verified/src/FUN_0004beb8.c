@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0004beb8 @ 0x4beb8 (NCS mpsc_pbuf_claim) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 typedef struct { uint32_t tmp_wr_idx,wr_idx,tmp_rd_idx,rd_idx,flags,lock; void(*notify_drop)(void*,void*); uint32_t (*get_wlen)(void*); volatile uint32_t *buf; uint32_t size,max_usage; uint8_t sem[0x10]; } mpsc_buffer;
 extern int FUN_00072040(void*); extern int FUN_0007205c(void*); extern void FUN_00072078(void*);
 extern void FUN_0007e2fa(uint32_t,...); extern void FUN_0007e2ec(uint32_t,uint32_t) __attribute__((noreturn));

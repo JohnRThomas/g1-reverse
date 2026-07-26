@@ -1,4 +1,5 @@
 #include "g1_net_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
 /* readable reconstruction; identity: FUN_01034b64 @ 0x01034b64
  * public-name: FUN_01034b64
  * durable-map: recon/catalogs/function_names_net.json
@@ -25,7 +26,7 @@ unsigned int FUN_01034b64(int param_1, int param_2)
         iVar1 = FUN_010344d4(param_1);
         if (iVar1 != 0) {
             iVar1 = FUN_01034520(param_1);
-            volatile unsigned int *vp = (volatile unsigned int*)(iVar1 * 4 + 0x4100a510);
+            volatile unsigned int *vp = (volatile unsigned int*)(iVar1 * 4 + (G1_NRF_GPIOTE_NS_BASE + 0x510));
             *vp = 0;
             *vp = 0;
         }

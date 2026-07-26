@@ -1,4 +1,5 @@
 /* net-core FUN_01034dd8 @ 0x1034dd8  (parity 300 trials PROVEN) */
+#include "../../headers/g1_nrf_regs.h"
 
 extern int FUN_01039bbe(int a, int b, int c);
 extern void FUN_01039bb0(int a, int b) __attribute__((noreturn));
@@ -12,7 +13,7 @@ void FUN_01034dd8(int param_1, unsigned int param_2, unsigned int param_3, unsig
     }
     volatile unsigned char *p48 = (volatile unsigned char*)0x21004aec;
     if (p48[4] == 1) {
-        volatile unsigned int *dst = (volatile unsigned int*)0x41012000;
+        volatile unsigned int *dst = (volatile unsigned int*)G1_NRF_IPC_NS_BASE;
         int iVar5;
         for (iVar5 = 0; iVar5 != 0x10; iVar5++) {
             unsigned int v = *(unsigned int*)(param_1 + iVar5 * 4);

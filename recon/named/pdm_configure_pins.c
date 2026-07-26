@@ -12,13 +12,14 @@
  */
 /* Reconstructed FUN_00066050 @ 0x66050  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_nrf_regs.h"
 extern int arch_irq_enable(int,uint32_t,uint32_t,uint32_t,void*);
 extern int nrf_gpio_pin_port_decode_65ff4(uint32_t*);
 void pdm_configure_pins(uint8_t* param_1, uint32_t param_2){
     volatile uint32_t *const pdm_events_started =
-        (volatile uint32_t *)0x50026100; /* PDM EVENTS_STARTED; raw: 0x50026000 + 0x100 */
+        (volatile uint32_t *)(G1_NRF_PDM0_S_BASE + 0x100); /* PDM EVENTS_STARTED; raw: 0x50026000 + 0x100 */
     volatile uint32_t *const pdm_events_stopped =
-        (volatile uint32_t *)0x50026104; /* PDM EVENTS_STOPPED; raw: 0x50026000 + 0x104 */
+        (volatile uint32_t *)(G1_NRF_PDM0_S_BASE + 0x104); /* PDM EVENTS_STOPPED; raw: 0x50026000 + 0x104 */
     (void)param_2;
     uint32_t local_1c; int iVar8;
     if(param_1[0x15]==0){
@@ -37,8 +38,8 @@ void pdm_configure_pins(uint8_t* param_1, uint32_t param_2){
     if(param_1[0x16]==0){
         uint32_t v4 = *(volatile uint32_t*)(param_1+4);
         uint32_t v8 = *(volatile uint32_t*)(param_1+8);
-        *(volatile uint32_t*)(0x50026000+0x540) = v4;
-        *(volatile uint32_t*)(0x50026000+0x544) = v8;
+        *(volatile uint32_t*)(G1_NRF_PDM0_S_BASE+0x540) = v4;
+        *(volatile uint32_t*)(G1_NRF_PDM0_S_BASE+0x544) = v8;
     }
     uint8_t bVar1=param_1[1], bVar2=param_1[0];
     uint32_t uVar11=*(volatile uint32_t*)(param_1+0xc);
@@ -48,15 +49,15 @@ void pdm_configure_pins(uint8_t* param_1, uint32_t param_2){
     uint8_t bVar5=param_1[0x16];
     uint32_t uVar10=*(volatile uint32_t*)(param_1+4);
     uint32_t uVar9=*(volatile uint32_t*)(param_1+8);
-    *(volatile uint32_t*)(0x50026000+0x520) = b13;
-    *(volatile uint32_t*)(0x50026000+0x54c) = bVar6;
-    *(volatile uint32_t*)(0x50026000+0x504) = uVar11;
-    *(volatile uint32_t*)(0x50026000+0x508) = ((uint32_t)(bVar1&1)<<1) | (bVar2&1);
-    *(volatile uint32_t*)(0x50026000+0x518) = bVar3;
-    *(volatile uint32_t*)(0x50026000+0x51c) = bVar4;
+    *(volatile uint32_t*)(G1_NRF_PDM0_S_BASE+0x520) = b13;
+    *(volatile uint32_t*)(G1_NRF_PDM0_S_BASE+0x54c) = bVar6;
+    *(volatile uint32_t*)(G1_NRF_PDM0_S_BASE+0x504) = uVar11;
+    *(volatile uint32_t*)(G1_NRF_PDM0_S_BASE+0x508) = ((uint32_t)(bVar1&1)<<1) | (bVar2&1);
+    *(volatile uint32_t*)(G1_NRF_PDM0_S_BASE+0x518) = bVar3;
+    *(volatile uint32_t*)(G1_NRF_PDM0_S_BASE+0x51c) = bVar4;
     if(bVar5==0){
-        *(volatile uint32_t*)(0x50026000+0x540) = uVar10;
-        *(volatile uint32_t*)(0x50026000+0x544) = uVar9;
+        *(volatile uint32_t*)(G1_NRF_PDM0_S_BASE+0x540) = uVar10;
+        *(volatile uint32_t*)(G1_NRF_PDM0_S_BASE+0x544) = uVar9;
     }
     /* Preserve the peripheral's exact write/read acknowledgement order. */
     *pdm_events_started = 0;
@@ -64,5 +65,5 @@ void pdm_configure_pins(uint8_t* param_1, uint32_t param_2){
     *pdm_events_stopped = 0;
     uint32_t events_stopped = *pdm_events_stopped;
     arch_irq_enable(0x26, uVar9, events_started, events_stopped, param_1);
-    *(volatile uint32_t*)(0x50026000+0x304) = 3;
+    *(volatile uint32_t*)(G1_NRF_PDM0_S_BASE+0x304) = 3;
 }

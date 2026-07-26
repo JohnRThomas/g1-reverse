@@ -24,12 +24,9 @@
  */
 /* Reconstructed FUN_00072674 @ 0x72674  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
-static inline int isCurrentModePrivileged(void){return (__get_CONTROL()&1)==0;}
-static inline int getBasePriority(void){return (int)__get_BASEPRI();}
-static inline void setBasePriority(int p){__set_BASEPRI((uint32_t)p);}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
+#include "../../headers/g1_cmsis_shim.h"
 
 extern int z_spin_lock_valid(unsigned int*);
 extern int z_spin_unlock_valid(unsigned int*);

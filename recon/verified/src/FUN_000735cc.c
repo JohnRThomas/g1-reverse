@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000735cc @ 0x735cc */
 #include <stdint.h>
 #include <stdbool.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern int FUN_00086406(void); extern int FUN_00072040(uint32_t); extern void FUN_00072078(uint32_t); extern uint64_t FUN_0007205c(uint32_t);
 extern void FUN_0008656a(void*); extern void FUN_00086596(void*); extern int FUN_00072c98(void*,void*); extern void FUN_00072908(void*,uint32_t,uint32_t,uint32_t);
 extern void FUN_0007e2fa(uint32_t,...); extern void FUN_0007e2ec(uint32_t,uint32_t);

@@ -19,6 +19,7 @@
  */
 /* Reconstructed FUN_00065b9c @ 0x65b9c */
 #include <stdint.h>
+#include "../../../headers/g1_nrf_regs.h"
 
 extern uint64_t get_pin_idx(uint32_t);
 extern void gpiote_pin_event_dispatch(uint32_t, uint32_t);
@@ -39,10 +40,10 @@ void gpiote_irq_handler(void)
 
   if ((int32_t)interrupt_mask < 0) {
     uint32_t pending[2];
-    pending[0] = *(volatile uint32_t *)0x50842520;
-    *(volatile uint32_t *)0x50842520 = pending[0];
-    pending[1] = *(volatile uint32_t *)0x50842820;
-    *(volatile uint32_t *)0x50842820 = pending[1];
+    pending[0] = *(volatile uint32_t *)(G1_NRF_P0_S_BASE + 0x20);
+    *(volatile uint32_t *)(G1_NRF_P0_S_BASE + 0x20) = pending[0];
+    pending[1] = *(volatile uint32_t *)(G1_NRF_P1_S_BASE + 0x20);
+    *(volatile uint32_t *)(G1_NRF_P1_S_BASE + 0x20) = pending[1];
 
     for (;;) {
       for (unsigned group = 0; group < 2; ++group) {
@@ -95,10 +96,10 @@ void gpiote_irq_handler(void)
       }
 
       gpiote_read_and_clear_pending_events(0x80000000u);
-      pending[0] = *(volatile uint32_t *)0x50842520;
-      *(volatile uint32_t *)0x50842520 = pending[0];
-      pending[1] = *(volatile uint32_t *)0x50842820;
-      *(volatile uint32_t *)0x50842820 = pending[1];
+      pending[0] = *(volatile uint32_t *)(G1_NRF_P0_S_BASE + 0x20);
+      *(volatile uint32_t *)(G1_NRF_P0_S_BASE + 0x20) = pending[0];
+      pending[1] = *(volatile uint32_t *)(G1_NRF_P1_S_BASE + 0x20);
+      *(volatile uint32_t *)(G1_NRF_P1_S_BASE + 0x20) = pending[1];
       if ((pending[0] | pending[1]) == 0) {
         break;
       }
@@ -108,7 +109,7 @@ void gpiote_irq_handler(void)
 
   while (interrupt_mask != 0) {
     uint32_t slot = __builtin_ctz(interrupt_mask);
-    uintptr_t configuration = 0x5000d510 + slot * 4;
+    uintptr_t configuration = (G1_NRF_GPIOTE0_S_BASE + 0x510) + slot * 4;
     uint32_t channel =
         (*(volatile uint32_t *)configuration >> 8) & 0x3f;
     uint32_t mode =

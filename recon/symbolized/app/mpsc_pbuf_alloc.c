@@ -26,7 +26,7 @@
  */
 /* Reconstructed FUN_0004bc8c @ 0x4bc8c (NCS mpsc_pbuf_alloc) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 typedef struct { volatile uint32_t tmp_wr_idx; uint32_t wr_idx,tmp_rd_idx; volatile uint32_t rd_idx,flags; uint32_t lock; void (*notify_drop)(void *,void *); uint32_t get_wlen; volatile uint32_t *buf; uint32_t size,max_usage; uint8_t sem[0x10]; } mpsc_buffer;
 extern int z_spin_lock_valid(void *); extern int z_spin_unlock_valid(void *); extern void z_spin_lock_set_owner(void *);
 extern void printk(uint32_t,...); extern void assert_post_action(uint32_t,uint32_t) __attribute__((noreturn));

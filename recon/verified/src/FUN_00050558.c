@@ -1,5 +1,6 @@
 /* Reconstructed FUN_00050558 @ 0x50558  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_nrf_regs.h"
 extern void FUN_00080780(uint32_t sink, uint32_t format, const void *record);
 
 struct fault_message {
@@ -16,9 +17,9 @@ struct fault_message_with_value {
 int FUN_00050558(int param_1, unsigned char *param_2)
 {
     volatile uint32_t *const scb_cfsr =
-        (volatile uint32_t *)0xe000ed28; /* raw backmap: 0xe000ed00 + 0x28 */
+        (volatile uint32_t *)G1_SCB_CFSR; /* raw backmap: 0xe000ed00 + 0x28 */
     volatile uint32_t *const scb_bfar =
-        (volatile uint32_t *)0xe000ed38; /* raw backmap: 0xe000ed00 + 0x38 */
+        (volatile uint32_t *)G1_SCB_BFAR; /* raw backmap: 0xe000ed00 + 0x38 */
     int uVar2;
     struct fault_message message;
 

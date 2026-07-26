@@ -1,11 +1,12 @@
 /* net-core FUN_01033b18 @ 0x1033b18  (parity 300 trials PROVEN) */
+#include "../../headers/g1_nrf_regs.h"
 
 extern __attribute__((noreturn)) void assert_post_action(unsigned int, unsigned int); /* FUN_01039bb0 */
 extern void assert_print(unsigned int, unsigned int, unsigned int); /* FUN_01039bbe */
 
 void FUN_01033b18(unsigned int param_1, int param_2)
 {
-  volatile unsigned char * const iVar3 = (volatile unsigned char *)0x41014000;
+  volatile unsigned char * const iVar3 = (volatile unsigned char *)G1_NRF_EGU0_NS_BASE;
 
   *(volatile unsigned int *)(iVar3 + 0x118) = 0;
   (void)*(volatile unsigned int *)(iVar3 + 0x118); /* read-back @ 0x41014118, raw 0x01033b28 */
@@ -30,7 +31,7 @@ void FUN_01033b18(unsigned int param_1, int param_2)
 
   *(volatile unsigned int *)(iVar3 + 0x9c) = uVar7;
 
-  volatile unsigned char * const p8080 = (volatile unsigned char *)0x41008080;
+  volatile unsigned char * const p8080 = (volatile unsigned char *)(G1_NRF_RADIO_NS_BASE + 0x80);
   *(volatile unsigned int *)(p8080 + (param_1 & 0x3f) * 4) = uVar8;
 
   if (uVar9 > 0x1f) {
@@ -38,7 +39,7 @@ void FUN_01033b18(unsigned int param_1, int param_2)
     assert_post_action(0x0103e47c, 0x17d);
   }
 
-  volatile unsigned char * const pf080 = (volatile unsigned char *)0x4100f080;
+  volatile unsigned char * const pf080 = (volatile unsigned char *)(G1_NRF_DPPIC_NS_BASE + 0x80);
   unsigned int idx = ((unsigned int)bVar1 * 8 + 4) & 0xff;
   *(volatile unsigned int *)(pf080 + idx) = uVar8;
 
@@ -46,10 +47,10 @@ void FUN_01033b18(unsigned int param_1, int param_2)
   *(volatile unsigned int *)(iVar3 + 0x98) = pbe4[0] | 0x80000000u;
 
   if (param_2 != 0) {
-    volatile unsigned char * const p9000 = (volatile unsigned char *)0x41019000;
+    volatile unsigned char * const p9000 = (volatile unsigned char *)G1_NRF_TIMER2_NS_BASE;
     *(volatile unsigned int *)(p9000 + 0x80) = uVar7;
   }
 
-  volatile unsigned char * const pf000 = (volatile unsigned char *)0x4100f000;
+  volatile unsigned char * const pf000 = (volatile unsigned char *)G1_NRF_DPPIC_NS_BASE;
   *(volatile unsigned int *)(pf000 + 0x504) = (1u << bVar2) | (1u << uVar9);
 }

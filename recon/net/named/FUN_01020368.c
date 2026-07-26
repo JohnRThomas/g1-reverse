@@ -8,12 +8,13 @@
  */
 /* net-core FUN_01020368 @ 0x1020368  (parity 1 trials PROVEN) */
 #include <stdint.h>
+#include "../../headers/g1_nrf_regs.h"
 
 extern void sdc_assertion_fail(uint32_t a, uint32_t b, uint32_t c, uint32_t d, uint32_t e);
 
 void FUN_01020368(char *param_1, int32_t param_2, uint32_t param_3, uint32_t param_4)
 {
-    const uint32_t iVar1 = 0x41008000;
+    const uint32_t iVar1 = G1_NRF_RADIO_NS_BASE;
     *(volatile uint32_t *)(iVar1 + 0x1ac) = 0x80000006;
     const uint32_t iVar2 = 0x210015f0;
 

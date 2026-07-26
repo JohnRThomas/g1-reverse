@@ -24,6 +24,7 @@
  *   m_adc_channel_input_cfg                  @ 0x20002230
  *   REG_5000e000                             @ 0x5000e000
  */
+#include "../headers/g1_nrf_regs.h"
 /* Reconstructed FUN_0005f760 @ 0x5f760  (parity: 200/200 trials, PROVEN) */
 typedef unsigned int u32;
 typedef unsigned long long u64;
@@ -52,10 +53,10 @@ undefined4 saadc_start_read(undefined4 param_1, int *param_2)
 
   z_impl_k_sem_take(0x200021d0u, param_2, 0xffffffffu, 0xffffffffu);
   iVar7 = 0x20002230;
-  iVar5 = 0x5000e000;
+  iVar5 = G1_NRF_SAADC_S_BASE;
   uVar10 = (u32)param_2[1];
   uVar9 = 0x000f5571u;
-  iVar11 = 0x5000e000;
+  iVar11 = G1_NRF_SAADC_S_BASE;
 
   if (uVar10 - 1 < 0xff) {
     uVar4 = 0;
@@ -77,7 +78,7 @@ undefined4 saadc_start_read(undefined4 param_1, int *param_2)
         *(volatile u32*)(long)(iVar5 + (uVar4 + 0x51) * 0x10) = (u32)bVar1;
         uVar6 = (uVar6 + 1) & 0xff;
       }
-      iVar11 = 0x5000e000;
+      iVar11 = G1_NRF_SAADC_S_BASE;
       uVar4 = uVar4 + 1;
     } while (uVar4 != 8);
 
@@ -99,7 +100,7 @@ undefined4 saadc_start_read(undefined4 param_1, int *param_2)
 LAB_f874:
       *(volatile u32*)(long)(iVar11 + 0x5f4) = uVar4;
       puVar3i = (volatile int*)0x20002190L;
-      iVar5 = 0x5000e000;
+      iVar5 = G1_NRF_SAADC_S_BASE;
       uVar10 = uVar6 * 2;
       if (*param_2 != 0) {
         uVar10 = (u32)(*(volatile u16*)((long)*param_2 + 0xc)) * uVar10 + uVar10;

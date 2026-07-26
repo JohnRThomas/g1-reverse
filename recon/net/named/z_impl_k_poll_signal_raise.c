@@ -12,7 +12,7 @@
  */
 /* net-core FUN_010388c8 @ 0x10388c8  (parity 300 trials PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 static inline unsigned int getBasePriority(void){return __get_BASEPRI();}
 static inline void setBasePriority(unsigned p){__set_BASEPRI(p);}
 static inline void isb(void){__ISB();}

@@ -1,15 +1,16 @@
 /* net-core FUN_01033bf0 @ 0x1033bf0  (parity 300 trials PROVEN) */
+#include "../../headers/g1_nrf_regs.h"
 
 void FUN_01033bf0(unsigned int param_1, int param_2)
 {
     volatile unsigned char *s54 = (volatile unsigned char*)0x2100645b;
     volatile unsigned char *s58 = (volatile unsigned char*)0x2100645c;
     volatile unsigned char *s68 = (volatile unsigned char*)0x2100645a;
-    volatile unsigned char *f000 = (volatile unsigned char*)0x4100f000;
-    volatile unsigned char *b8080 = (volatile unsigned char*)0x41008080;
-    volatile unsigned char *b4000 = (volatile unsigned char*)0x41014000;
-    volatile unsigned char *f080 = (volatile unsigned char*)0x4100f080;
-    volatile unsigned char *b9000 = (volatile unsigned char*)0x41019000;
+    volatile unsigned char *f000 = (volatile unsigned char*)G1_NRF_DPPIC_NS_BASE;
+    volatile unsigned char *b8080 = (volatile unsigned char*)(G1_NRF_RADIO_NS_BASE + 0x80);
+    volatile unsigned char *b4000 = (volatile unsigned char*)G1_NRF_EGU0_NS_BASE;
+    volatile unsigned char *f080 = (volatile unsigned char*)(G1_NRF_DPPIC_NS_BASE + 0x80);
+    volatile unsigned char *b9000 = (volatile unsigned char*)G1_NRF_TIMER2_NS_BASE;
 
     unsigned int mask = 1u << *s54;
     unsigned int combined = (1u << *s58) | mask;
@@ -28,7 +29,7 @@ void FUN_01033bf0(unsigned int param_1, int param_2)
 
     *(volatile unsigned int*)(b4000 + 0x98) = 0;
 
-    volatile unsigned int *fptr = (volatile unsigned int*)(0x4100f800 + v68 * 4);
+    volatile unsigned int *fptr = (volatile unsigned int*)((G1_NRF_DPPIC_NS_BASE + 0x800) + v68 * 4);
     *fptr = *fptr & ~mask;
 
     if (param_2 != 0) {

@@ -17,6 +17,7 @@
  */
 /* Reconstructed FUN_0005f654 @ 0x5f654  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../../../headers/g1_nrf_regs.h"
 extern int z_log_msg_runtime_create(unsigned,unsigned,void*,int);
 unsigned adc_channel_config(unsigned param_1, unsigned char *param_2)
 {
@@ -61,10 +62,10 @@ LAB:
   }
   iVar2 = 2;
 LAB2:
-  *(volatile unsigned*)(uVar4 * 0x10 + 0x5000e518) =
+  *(volatile unsigned*)(uVar4 * 0x10 + (G1_NRF_SAADC_S_BASE + 0x518)) =
       uVar3 << 8 | (((unsigned)param_2[4] << 0x1a) >> 0x1f) << 0x14 | iVar5 << 0xc | iVar2 << 0x10;
-  *(volatile unsigned*)(uVar4 * 0x10 + 0x5000e514) = (unsigned)param_2[6];
-  *(volatile unsigned*)(uVar4 * 0x10 + 0x5000e510) = 0;
+  *(volatile unsigned*)(uVar4 * 0x10 + (G1_NRF_SAADC_S_BASE + 0x514)) = (unsigned)param_2[6];
+  *(volatile unsigned*)(uVar4 * 0x10 + (G1_NRF_SAADC_S_BASE + 0x510)) = 0;
   *(volatile unsigned char*)(((unsigned long)&adc_context) /*=0x20002190*/ + uVar4 + 0xa0) = param_2[5];
   return 0;
 }

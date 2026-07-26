@@ -39,12 +39,8 @@ extern char g1_net_kernel_object[] __asm__("_kernel");
 #define G1_NET_K(off) (G1_NET_KERNEL_BASE + (off))
 
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
-static inline int isCurrentModePrivileged(void){return (__get_CONTROL()&1)==0;}
-static inline int getBasePriority(void){return (int)__get_BASEPRI();}
-static inline void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
-static inline unsigned int getCurrentExceptionNumber(void){return __get_IPSR();}
+#include <cmsis_gcc.h>
+#include "../../headers/g1_cmsis_shim.h"
 
 extern int FUN_0103610c(int);
 extern int FUN_01036128(int);

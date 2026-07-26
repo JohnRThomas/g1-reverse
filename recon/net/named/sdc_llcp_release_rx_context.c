@@ -7,13 +7,14 @@
  *   g_net_ccm_op_status                      @ 0x210014d8
  *   REG_4100e000                             @ 0x4100e000
  */
+#include "../../headers/g1_nrf_regs.h"
 /* net-core FUN_0101fca8 @ 0x101fca8  (parity 300 trials PROVEN) */
 
 extern void FUN_01020088(unsigned int a);
 
 void sdc_llcp_release_rx_context(void)
 {
-    unsigned int base = 0x4100e000;
+    unsigned int base = G1_NRF_AAR_NS_BASE;
     volatile unsigned char *pcVar1 = (volatile unsigned char *)0x210014d8;
     unsigned char cVar4=0, cVar3;
     int iVar5;

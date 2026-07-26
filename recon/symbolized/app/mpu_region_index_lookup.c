@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_00050304 @ 0x50304  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 unsigned long long mpu_region_index_lookup(int param_1, unsigned int param_2)
 {

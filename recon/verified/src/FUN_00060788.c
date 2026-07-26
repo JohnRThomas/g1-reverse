@@ -1,6 +1,6 @@
 /* Full reconstruction FUN_00060788 @ 0x60788, exact 280-byte extent. */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern int FUN_0004b908(uintptr_t);
 extern void FUN_0007e2fa(uintptr_t, uintptr_t, uintptr_t, uint32_t);

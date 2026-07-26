@@ -6,6 +6,7 @@
  * address symbols (name @ address):
  *   rodata_f4240                             @ 0x000f4240
  */
+#include "../headers/g1_nrf_regs.h"
 /* Reconstructed FUN_00066d78 @ 0x66d78  (parity: 300/300 trials, PROVEN) */
 int nrfx_pin_freq_config_validate(int *param_1, int *param_2){
   unsigned r3 = (unsigned)param_2[5];
@@ -30,7 +31,7 @@ int nrfx_pin_freq_config_validate(int *param_1, int *param_2){
   if (*(unsigned char*)((int)param_2+0x23) == 0) goto L_dca;
   goto L_dc2;
  L_dca:
-  if (*param_1 != 0x5000a000) return 0x0bad0000;
+  if (*param_1 != G1_NRF_SPIM4_S_BASE) return 0x0bad0000;
   if (r3 != 0x1e84800) return 0x0bad0000;
   if (*param_2 != -1 && *param_2 != 8) return 0x0bad0004;
   if (param_2[1] != -1 && param_2[1] != 9) return 0x0bad0004;

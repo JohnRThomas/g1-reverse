@@ -4,7 +4,7 @@ extern int FUN_0102286c(int a0, unsigned int a1);
 extern void FUN_01024440(void);
 extern unsigned long long FUN_01025084(int a0, int a1);
 extern void FUN_010256dc(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3);
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 static inline void enableIRQinterrupts(void) { __enable_irq(); }
 static inline void disableIRQinterrupts(void) { __disable_irq(); }

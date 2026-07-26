@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00071684 @ 0x71684 */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern void FUN_0004d944(uint32_t, uint32_t, const void *, uint32_t);
 extern void FUN_00050b8c(int);

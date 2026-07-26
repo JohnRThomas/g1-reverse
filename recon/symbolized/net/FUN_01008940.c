@@ -6,7 +6,7 @@
 /* net-core FUN_01008940 @ 0x1008940  (parity 300 trials PROVEN) */
 
 typedef unsigned int uint;
-static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
+#include "../../headers/g1_ghidra_ops.h"
 
 unsigned long long FUN_01008940(uint param_1,uint param_2,uint param_3,uint param_4)
 {

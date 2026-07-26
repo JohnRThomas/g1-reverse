@@ -27,7 +27,7 @@
  */
 /* Reconstructed FUN_00071684 @ 0x71684 */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern void z_log_msg_runtime_create(uint32_t, uint32_t, const void *, uint32_t);
 extern void arm_mpu_configure_partition_region(int);

@@ -6,7 +6,7 @@
  */
 
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern int FUN_00072040(void *lock);
 extern void FUN_00072078(void *lock);

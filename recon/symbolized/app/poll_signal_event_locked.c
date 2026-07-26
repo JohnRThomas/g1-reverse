@@ -22,7 +22,7 @@
  */
 /* Reconstructed FUN_000757b0 @ 0x757b0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 typedef uint32_t u32;
 extern void printk(u32,u32,...);
 extern void assert_post_action(u32,u32);
@@ -31,10 +31,7 @@ extern void z_spin_lock_set_owner(u32);
 extern int z_spin_unlock_valid(u32);
 extern u32 signal_poll_event(void*,u32);
 extern void z_reschedule(u32,u32);
-static inline u32 rd_basepri(void){return __get_BASEPRI();}
-static inline void wr_basepri_max(u32 v){__set_BASEPRI_MAX(v);}
-static inline void wr_basepri(u32 v){__set_BASEPRI(v);}
-static inline void isb_(void){__ISB();}
+#include "../../headers/g1_cmsis_shim.h"
 u32 poll_signal_event_locked(int* param_1, int param_2){
     u32 uVar7 = rd_basepri();
     wr_basepri_max(0x20);

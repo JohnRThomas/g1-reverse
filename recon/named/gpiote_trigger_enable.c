@@ -13,6 +13,7 @@
  */
 /* Reconstructed FUN_000657e4 @ 0x657e4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_nrf_regs.h"
 typedef unsigned long long u64;
 extern u64 get_pin_idx(unsigned);
 extern int pin_in_use_by_te(unsigned);
@@ -50,16 +51,16 @@ unsigned gpiote_trigger_enable(unsigned param_1, unsigned param_2, unsigned char
     iVar6 = (int)uVar9 + 8;
     iVar7 = (unsigned)bVar3 * 4;
     uVar8 = *(volatile unsigned short*)(0x20002bc0 + iVar6 * 2) & 0x1fdf;
-    *(volatile unsigned*)(iVar7 + 0x5000d510) = 0;
+    *(volatile unsigned*)(iVar7 + (G1_NRF_GPIOTE0_S_BASE + 0x510)) = 0;
     *(volatile unsigned short*)(iVar4 + iVar6 * 2) = uVar8;
-    *(volatile unsigned*)(iVar7 + 0x5000d510) = 0;
+    *(volatile unsigned*)(iVar7 + (G1_NRF_GPIOTE0_S_BASE + 0x510)) = 0;
     bVar1 = param_3[1];
     uVar5 = 0x0bad0000;
     if (bVar1 != 0) {
       bVar2 = param_3[2];
-      *(volatile unsigned*)(iVar7 + 0x5000d510) = *(volatile unsigned*)(iVar7 + 0x5000d510) & 0xffecc0ff;
-      *(volatile unsigned*)(iVar7 + 0x5000d510) =
-          (param_1 & 0x3f) << 8 | (bVar1 & 3) << 0x10 | *(volatile unsigned*)(iVar7 + 0x5000d510) |
+      *(volatile unsigned*)(iVar7 + (G1_NRF_GPIOTE0_S_BASE + 0x510)) = *(volatile unsigned*)(iVar7 + (G1_NRF_GPIOTE0_S_BASE + 0x510)) & 0xffecc0ff;
+      *(volatile unsigned*)(iVar7 + (G1_NRF_GPIOTE0_S_BASE + 0x510)) =
+          (param_1 & 0x3f) << 8 | (bVar1 & 3) << 0x10 | *(volatile unsigned*)(iVar7 + (G1_NRF_GPIOTE0_S_BASE + 0x510)) |
           (bVar2 & 1) << 0x14;
       *(volatile unsigned short*)(iVar4 + iVar6 * 2) = uVar8 | (unsigned short)bVar3 << 0xd | 0x20;
       uVar5 = 0x0bad0000;

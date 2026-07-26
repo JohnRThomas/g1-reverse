@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00071eac @ 0x71eac  (parity: 80/80 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern void FUN_00071df8(int,int,int,int,int,int,int,int,int);
 extern void FUN_00073a78(int);
 extern void FUN_00074bf4(int,unsigned int,int,int,int,int,int,int,int,unsigned int);

@@ -26,7 +26,7 @@
  * Reviewed executable extent: 0x140 bytes; literals begin at 0x7552c. */
 #include <stdbool.h>
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 typedef struct poll_event {
     uint32_t node[2];

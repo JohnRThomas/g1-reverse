@@ -18,7 +18,7 @@ extern int FUN_01036128(unsigned int);
 extern int assert_print(int, int, int);
 extern void assert_post_action(int, int) __attribute__((noreturn));
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 unsigned long long FUN_01038284(void)
 {

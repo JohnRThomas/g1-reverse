@@ -11,7 +11,7 @@
  */
 /* net-core FUN_01035fa0 @ 0x1035fa0 */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern void FUN_01035edc(uint32_t, uint32_t, uint32_t, uint32_t,
                          uint32_t, uint32_t, uint32_t, uint32_t,
                          uint32_t, uint32_t);

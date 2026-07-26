@@ -10,6 +10,7 @@
  *   rodata_f09d1                             @ 0x000f09d1
  *   rodata_f0a04                             @ 0x000f0a04
  */
+#include "../headers/g1_nrf_regs.h"
 /* Reconstructed FUN_00067548 @ 0x67548  (parity: 300/300 trials, PROVEN) */
 extern void printk(unsigned,unsigned,unsigned,unsigned);
 extern long long assert_post_action(unsigned,unsigned);
@@ -24,13 +25,13 @@ L_52:
     { long long r=assert_post_action(0xf09d1,0x32f); r0v=(unsigned)r; r1v=(unsigned)((unsigned long long)r>>32); }
 L_6a:
     { unsigned s=r0v & 0xff; uVar2=(s>=32)?0u:(0xffffffffu>>s); }
-    iVar1 = 0x50842500;
+    iVar1 = G1_NRF_P0_S_BASE;
     if ((int)(uVar2<<0x1f) >= 0) goto L_52;
     goto L_join;
 L_94:
     r0v = param_1 & 0x1f;
     uVar2 = 0xffffu >> r0v;
-    iVar1 = 0x50842800;
+    iVar1 = G1_NRF_P1_S_BASE;
     if ((int)(uVar2<<0x1f) >= 0) goto L_52;
 L_join:
     {

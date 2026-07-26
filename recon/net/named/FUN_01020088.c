@@ -8,12 +8,13 @@
  */
 /* net-core FUN_01020088 @ 0x1020088 */
 #include <stdint.h>
+#include "../../headers/g1_nrf_regs.h"
 extern void FUN_0101ff4c(void);
 extern void sdc_assertion_fail(uint32_t, uint32_t);
 
 void FUN_01020088(uint32_t mode)
 {
-    volatile uint32_t *const peripheral = (volatile uint32_t *)0x4100e000;
+    volatile uint32_t *const peripheral = (volatile uint32_t *)G1_NRF_AAR_NS_BASE;
     peripheral[0x500 / 4] = 0;
     peripheral[0x500 / 4] = 0;
     FUN_0101ff4c();

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
 /* readable reconstruction; identity: FUN_0005010c @ 0x0005010c
  * public-name: arch_irq_priority_set
  * durable-map: recon/catalogs/function_names_app.json
@@ -37,7 +38,7 @@ void arch_irq_priority_set(int param_1, unsigned int param_2, int param_3, int p
     if (bVar5) {
         r0 = r0 + (int)0xe0000000;
     } else {
-        r2 = (int)0xe000ed14;
+        r2 = (int)G1_SCB_CCR;
     }
     r3 = r3 << 5;
     r3 = (unsigned char)r3;

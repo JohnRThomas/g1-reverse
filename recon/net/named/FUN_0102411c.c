@@ -8,7 +8,7 @@
  */
 /* net-core FUN_0102411c @ 0x102411c — executable extent 654 bytes */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern uint64_t sdc_cpu_relax(uint32_t, uint32_t);
 extern void FUN_010256dc(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);

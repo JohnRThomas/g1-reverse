@@ -17,6 +17,7 @@
  */
 /* Reconstructed FUN_00061310 @ 0x61310 */
 #include <stdint.h>
+#include "../headers/g1_nrf_regs.h"
 
 extern unsigned long long is_regular_addr_valid(unsigned int address,
                                        unsigned int length);
@@ -52,7 +53,7 @@ unsigned int flash_nrf_write(unsigned int unused, unsigned int address,
             nrfx_nvmc_word_write(address + offset, source[offset / 4]);
             offset += 4;
         }
-        while ((*(volatile unsigned int *)0x50039400 & 1) == 0) {}
+        while ((*(volatile unsigned int *)(G1_NRF_KMU_S_BASE + 0x400) & 1) == 0) {}
         k_sem_give(0x2000b154);
     }
     return 0;

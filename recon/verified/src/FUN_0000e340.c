@@ -12,7 +12,12 @@ float FUN_0000e340(unsigned int *out_struct, float unused_s0, float cmpval)
   void *p_aux = (void*)(stk+4);
   unsigned int selA, selB, val1, val2;
 
-  if (cmpval < 0.0f) {
+  /* 0xe340: vmov r3,s1; cmp r3,#0; itete lt -- the selector is a SIGN-BIT
+   * test on the raw bits, not a float comparison.  `cmpval < 0.0f` differs
+   * for -0.0 and for negative NaNs, which selects the wrong curve pair. */
+  union { float f; int i; } sel;
+  sel.f = cmpval;
+  if (sel.i < 0) {
     selA = 0x20002d0cUL;
     selB = 0x20002d10UL;
   } else {

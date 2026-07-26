@@ -6,7 +6,7 @@
  */
 /* net-core FUN_01039bb0 @ 0x1039bb0 */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern void z_except_reason(unsigned int reason) __attribute__((noreturn));
 
 unsigned int assert_post_action(void)

@@ -1,5 +1,6 @@
 /* net-core FUN_01034b18 @ 0x1034b18 */
 #include <stdint.h>
+#include "../../headers/g1_nrf_regs.h"
 extern int FUN_010344d4(void);
 extern int FUN_01034508(uint32_t);
 extern uint32_t FUN_01034520(uint32_t);
@@ -9,9 +10,9 @@ void FUN_01034b18(uint32_t context)
 {
     if (FUN_010344d4() != 0 && FUN_01034508(context) == 0) {
         uint32_t index = FUN_01034520(context);
-        *(volatile uint32_t *)0x4100a308 = 1u << index;
+        *(volatile uint32_t *)(G1_NRF_GPIOTE_NS_BASE + 0x308) = 1u << index;
         volatile uint32_t *control =
-            (volatile uint32_t *)(0x4100a510 + index * 4);
+            (volatile uint32_t *)((G1_NRF_GPIOTE_NS_BASE + 0x510) + index * 4);
         *control &= ~3u;
         return;
     }

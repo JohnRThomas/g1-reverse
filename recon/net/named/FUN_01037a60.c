@@ -36,7 +36,7 @@ extern char g1_net_kernel_object[] __asm__("_kernel");
 #define G1_NET_K(off) (G1_NET_KERNEL_BASE + (off))
 
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern void FUN_0102ec10(unsigned int a);
 extern int FUN_0103610c(unsigned int a);

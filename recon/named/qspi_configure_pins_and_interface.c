@@ -15,6 +15,7 @@
  */
 /* Reconstructed FUN_00066850 @ 0x66850  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "../headers/g1_nrf_regs.h"
 extern int arch_irq_enable(int);
 extern int gpio_configure_pin_output(int,int);
 extern int nrf_qspi_pins_set(int);
@@ -48,10 +49,10 @@ unsigned int qspi_configure_pins_and_interface(unsigned int *param_1)
     }
     *(volatile int *)(0x2000b348 + 0x34) = param_1[9];
     *(volatile unsigned char *)(0x2000b348 + 0x3a) = *(unsigned char *)((int)param_1 + 0x29);
-    *(volatile int *)(0x5002b000 + 0x308) = 1;
+    *(volatile int *)(G1_NRF_QSPI_S_BASE + 0x308) = 1;
     qspi_workaround_apply();
-    *(volatile unsigned int *)(0x5002b000 + 0x540) = *param_1;
-    *(volatile unsigned int *)(0x5002b000 + 0x544) =
+    *(volatile unsigned int *)(G1_NRF_QSPI_S_BASE + 0x540) = *param_1;
+    *(volatile unsigned int *)(G1_NRF_QSPI_S_BASE + 0x544) =
          (unsigned int)*(unsigned char *)((int)param_1 + 0x1e) << 6 |
          (unsigned int)*(unsigned char *)((int)param_1 + 0x1d) << 3 |
          (unsigned int)*(unsigned char *)((int)param_1 + 0x1c) |
@@ -59,16 +60,16 @@ unsigned int qspi_configure_pins_and_interface(unsigned int *param_1)
     {
         unsigned int uVar3;
         if (*(char *)((int)param_1 + 0x23) == '\0') {
-            uVar3 = *(volatile unsigned int *)(0x5002b000 + 0x544) | 0x30000;
+            uVar3 = *(volatile unsigned int *)(G1_NRF_QSPI_S_BASE + 0x544) | 0x30000;
         } else {
-            uVar3 = (*(volatile unsigned int *)(0x5002b000 + 0x544) & 0xfffdffff) | 0x10000;
+            uVar3 = (*(volatile unsigned int *)(G1_NRF_QSPI_S_BASE + 0x544) & 0xfffdffff) | 0x10000;
         }
-        *(volatile unsigned int *)(0x5002b000 + 0x544) = uVar3;
+        *(volatile unsigned int *)(G1_NRF_QSPI_S_BASE + 0x544) = uVar3;
     }
-    *(volatile int *)(0x5002b000 + 0x640) = 0x600;
-    *(volatile unsigned int *)(0x5002b000 + 0x600) =
+    *(volatile int *)(G1_NRF_QSPI_S_BASE + 0x640) = 0x600;
+    *(volatile unsigned int *)(G1_NRF_QSPI_S_BASE + 0x600) =
          (unsigned int)*(unsigned char *)((int)param_1 + 0x20) |
-         (*(volatile unsigned int *)(0x5002b000 + 0x600) & 0xffff00) |
+         (*(volatile unsigned int *)(G1_NRF_QSPI_S_BASE + 0x600) & 0xffff00) |
          (unsigned int)*(unsigned char *)((int)param_1 + 0x21) << 0x18 |
          (unsigned int)*(unsigned char *)((int)param_1 + 0x22) << 0x19 |
          (unsigned int)*(unsigned char *)((int)param_1 + 0x23) << 0x1c;

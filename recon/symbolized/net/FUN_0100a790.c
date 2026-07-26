@@ -1,4 +1,5 @@
 #include "g1_net_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
 /* readable reconstruction; identity: FUN_0100a790 @ 0x0100a790
  * public-name: FUN_0100a790
  * durable-map: recon/catalogs/function_names_net.json
@@ -14,5 +15,5 @@ void FUN_0100a790(void) {
   FUN_0100a718();
   FUN_0100a760();
   controller_radio_state_release();
-  *(volatile unsigned int *)(0x4100f000 + 0x508) = 0x1ff8;
+  *(volatile unsigned int *)(G1_NRF_DPPIC_NS_BASE + 0x508) = 0x1ff8;
 }

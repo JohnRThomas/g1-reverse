@@ -8,6 +8,7 @@
  *   REG_41008000                             @ 0x41008000
  *   REG_4100e000                             @ 0x4100e000
  */
+#include "../../headers/g1_nrf_regs.h"
 /* net-core FUN_0101fe98 @ 0x101fe98  (parity 300 trials PROVEN) */
 
 extern void sdc_assertion_fail(unsigned int, unsigned int);
@@ -15,9 +16,9 @@ extern void sdc_assertion_fail(unsigned int, unsigned int);
 void FUN_0101fe98(unsigned int param_1, unsigned int param_2)
 {
   volatile unsigned char * const pcVar2 = (volatile unsigned char *)0x210014dc;
-  volatile unsigned int * const puVar3 = (volatile unsigned int *)0x4100e000;
-  volatile unsigned int * const p150 = (volatile unsigned int *)0x41008000;
-  volatile unsigned int * const p504 = (volatile unsigned int *)0x4100f000;
+  volatile unsigned int * const puVar3 = (volatile unsigned int *)G1_NRF_AAR_NS_BASE;
+  volatile unsigned int * const p150 = (volatile unsigned int *)G1_NRF_RADIO_NS_BASE;
+  volatile unsigned int * const p504 = (volatile unsigned int *)G1_NRF_DPPIC_NS_BASE;
   unsigned char bVar1;
 
   if (pcVar2[1] == 0) {

@@ -7,6 +7,7 @@
  *   g_net_ccm_op_status                      @ 0x210014d8
  *   REG_4100e000                             @ 0x4100e000
  */
+#include "../../headers/g1_nrf_regs.h"
 /* net-core FUN_0101fd20 @ 0x101fd20  (parity 300 trials PROVEN) */
 
 extern void sdc_assertion_fail(unsigned int, unsigned int) __attribute__((noreturn));
@@ -32,7 +33,7 @@ unsigned int FUN_0101fd20(void)
         }
         return (r0 == 1) ? 1u : 0u;
     } else {
-        volatile unsigned char *e000 = (volatile unsigned char*)0x4100e000;
+        volatile unsigned char *e000 = (volatile unsigned char*)G1_NRF_AAR_NS_BASE;
         unsigned char r3 = 0xc8;
         while (1) {
             r3 = (unsigned char)(r3 - 1);

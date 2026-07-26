@@ -7,7 +7,7 @@
  */
 /* net-core FUN_0102f580 @ 0x102f580 — true extent 36 bytes */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 /* The final branch is the shared Zephyr thread-abort implementation at
    0x1037cc8; it is a tail call, not trailing code owned by this wrapper. */

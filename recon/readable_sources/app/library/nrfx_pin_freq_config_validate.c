@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include "../../../headers/g1_nrf_regs.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_2          => struct g1_layout_nrfx_pin_freq_cfg__param_0340          [param_0340; library]
  * Raw function identity: 0x00066d78.  See ../include/g1_recovered_layouts.h. */
@@ -34,7 +35,7 @@ int nrfx_pin_freq_config_validate(int *param_1, int *param_2){
   if (*(unsigned char*)((int)param_2+0x23) == 0) goto L_dca;
   goto L_dc2;
  L_dca:
-  if (*param_1 != 0x5000a000) return 0x0bad0000;
+  if (*param_1 != G1_NRF_SPIM4_S_BASE) return 0x0bad0000;
   if (r3 != 0x1e84800) return 0x0bad0000;
   if (*param_2 != -1 && *param_2 != 8) return 0x0bad0004;
   if (param_2[1] != -1 && param_2[1] != 9) return 0x0bad0004;

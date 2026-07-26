@@ -14,12 +14,8 @@
  */
 /* net-core FUN_01035d18 @ 0x1035d18  (parity 300 trials PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
-static inline int isCurrentModePrivileged(void){return (__get_CONTROL()&1)==0;}
-static inline int getBasePriority(void){return (int)__get_BASEPRI();}
-static inline void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
-static inline unsigned int getCurrentExceptionNumber(void){return __get_IPSR();}
+#include <cmsis_gcc.h>
+#include "../../headers/g1_cmsis_shim.h"
 
 extern unsigned long long FUN_0102c4e4(int, unsigned int, unsigned int);
 extern int FUN_0103610c(int);

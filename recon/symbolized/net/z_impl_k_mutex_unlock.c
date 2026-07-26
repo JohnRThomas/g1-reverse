@@ -16,7 +16,7 @@
  * Raw backmap: FUN_0103657c.  This is Zephyr kernel/mutex.c's public
  * implementation body; the generated readable tree applies that identity. */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern int FUN_0103610c(uint32_t *);
 extern int FUN_01036128(uint32_t *);

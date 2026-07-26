@@ -1,4 +1,5 @@
 #include "g1_net_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
 /* readable reconstruction; identity: FUN_010346d8 @ 0x010346d8
  * public-name: FUN_010346d8
  * durable-map: recon/catalogs/function_names_net.json
@@ -74,10 +75,10 @@ int FUN_010346d8(uint param_1, uint param_2, byte *param_3, int *param_4)
                 bVar2 = **(byte**)(param_3+4);
                 iVar9 = (uint)bVar2 * 4;
                 if (uVar10 == 0) {
-                    *(volatile undefined4*)(iVar9 + 0x4100a510) = 0;
-                    *(volatile undefined4*)(iVar9 + 0x4100a510) = 0;
+                    *(volatile undefined4*)(iVar9 + (G1_NRF_GPIOTE_NS_BASE + 0x510)) = 0;
+                    *(volatile undefined4*)(iVar9 + (G1_NRF_GPIOTE_NS_BASE + 0x510)) = 0;
                 } else {
-                    volatile uint *reg = (volatile uint*)(iVar9 + 0x4100a510);
+                    volatile uint *reg = (volatile uint*)(iVar9 + (G1_NRF_GPIOTE_NS_BASE + 0x510));
                     *reg = *reg & 0xfffffffc;
                     *reg = *reg & 0xfffcc0ff;
                     *reg = (param_1 & 0x3f) << 8 | *reg | uVar10 << 0x10;

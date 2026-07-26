@@ -9,7 +9,8 @@
  */
 /* net-core FUN_010313a8 @ 0x10313a8  (parity 300 trials PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
+#include "../../headers/g1_nrf_regs.h"
 
 unsigned long long z_nrf_rtc_timer_read(void)
 {
@@ -18,7 +19,7 @@ unsigned long long z_nrf_rtc_timer_read(void)
   unsigned int hi = raw >> 8;
   unsigned int lo = raw << 24;
   __DMB();
-  volatile unsigned int *g2 = (volatile unsigned int*)0x41016000;
+  volatile unsigned int *g2 = (volatile unsigned int*)G1_NRF_RTC1_NS_BASE;
   unsigned int uVar3 = *(volatile unsigned int*)((char*)g2 + 0x504);
   unsigned int sum = uVar3 + lo;
   int carry = sum < uVar3;

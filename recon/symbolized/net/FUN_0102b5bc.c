@@ -1,4 +1,5 @@
 #include "g1_net_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
 /* readable reconstruction; identity: FUN_0102b5bc @ 0x0102b5bc
  * public-name: FUN_0102b5bc
  * durable-map: recon/catalogs/function_names_net.json
@@ -19,7 +20,7 @@
 #define P_0102b640 ((unsigned long)&g_net_ipc_msg_data) /*=0x21004628*/
 #define C_0102b644 0xf0000010
 #define P_0102b648 ((unsigned long)&g_net_ipc_msg_type) /*=0x21004fa2*/
-#define C_0102b64c 0x418c0500
+#define C_0102b64c G1_NRF_P0_NS_BASE
 #define P_0102b650 ((unsigned long)&g_zephyr_log_level) /*=0x21000580*/
 #define P_0102b654 ((unsigned long)&rodata_103d18c) /*=0x103d18c*/
 #define P_0102b658 ((unsigned long)&rodata_103d19e) /*=0x103d19e*/

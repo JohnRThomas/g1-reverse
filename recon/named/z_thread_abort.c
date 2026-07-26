@@ -38,7 +38,7 @@
  */
 
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern int z_spin_lock_valid(void *lock);
 extern void z_spin_lock_set_owner(void *lock);

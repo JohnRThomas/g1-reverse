@@ -23,7 +23,7 @@
  */
 /* Reconstructed FUN_00072f28 @ 0x72f28  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 typedef uint32_t u32;
 extern void printk(u32,u32,...);
 extern void assert_post_action(u32,u32);
@@ -31,10 +31,7 @@ extern int z_spin_lock_valid(u32);
 extern void z_spin_lock_set_owner(u32);
 extern int z_spin_unlock_valid(u32);
 extern u32 submit_to_queue_locked(int,void*);
-static inline u32 rd_basepri(void){return __get_BASEPRI();}
-static inline void wr_basepri_max(u32 v){__set_BASEPRI_MAX(v);}
-static inline void wr_basepri(u32 v){__set_BASEPRI(v);}
-static inline void isb_(void){__ISB();}
+#include "../../headers/g1_cmsis_shim.h"
 u32 z_work_submit_to_queue(u32 param_1, int param_2, u32 param_3){
     struct lookup_key {
         u32 value;

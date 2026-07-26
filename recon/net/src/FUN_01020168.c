@@ -1,4 +1,5 @@
 /* net-core FUN_01020168 @ 0x1020168  (parity 300 trials PROVEN) */
+#include "../../headers/g1_nrf_regs.h"
 
 extern void FUN_01008d00(unsigned int a, unsigned int b);
 extern void FUN_010216d4(unsigned int a, unsigned int b, int c, void *d);
@@ -8,7 +9,7 @@ extern unsigned int FUN_010218fc(void *a);
 void FUN_01020168(unsigned int param_1)
 {
   volatile unsigned char *iVar4 = (volatile unsigned char *)0x210015f0;
-  volatile unsigned char *base230 = (volatile unsigned char *)0x41008000;
+  volatile unsigned char *base230 = (volatile unsigned char *)G1_NRF_RADIO_NS_BASE;
   volatile unsigned char *base234 = (volatile unsigned char *)0x01ff0000;
   volatile unsigned char *base238 = (volatile unsigned char *)0x0103c4d0;
   signed char cVar1;

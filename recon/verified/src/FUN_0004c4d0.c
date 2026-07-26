@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0004c4d0 @ 0x4c4d0, exact extent 16 bytes.
  * CFG_VERIFY_PREFIX_FIRST: hardware poweroff idle loop after observable MMIO. */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 void FUN_0004c4d0(void)
 {

@@ -21,7 +21,7 @@
 /* Reconstructed FUN_000729fc @ 0x729fc
  * CFG_VERIFY_PREFIX_FIRST: drains callback-owned queue until it reports empty. */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern int z_spin_lock_valid(uint32_t); extern void z_spin_lock_set_owner(uint32_t);
 extern int z_unpend_first_thread(void *); extern void z_ready_thread_locked(void);
 extern void z_handle_obj_poll_events(void *, int); extern void z_reschedule(uint32_t,uint32_t);

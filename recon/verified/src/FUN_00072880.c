@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00072880 @ 0x72880  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern int FUN_00072040(int);
 extern void FUN_00072078(int);
 extern void FUN_000738d4(void);

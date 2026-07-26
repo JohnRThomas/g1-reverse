@@ -20,7 +20,7 @@
 typedef unsigned int u32;
 typedef int i32;
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern u32 FUN_0102ed18(u32 a, u32 b);
 extern void assert_post_action(u32 a, u32 b);

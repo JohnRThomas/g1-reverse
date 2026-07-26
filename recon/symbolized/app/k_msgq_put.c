@@ -31,7 +31,7 @@
 /* Reconstructed FUN_000720d0 @ 0x720d0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include <stdbool.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern int z_spin_lock_valid(int,...);
 extern int z_spin_unlock_valid(int,...);
 extern int z_spin_lock_set_owner(int,...);

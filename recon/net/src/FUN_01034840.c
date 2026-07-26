@@ -1,4 +1,5 @@
 /* net-core FUN_01034840 @ 0x1034840  (parity 300 trials PROVEN) */
+#include "../../headers/g1_nrf_regs.h"
 extern unsigned long long FUN_010344a8(void);
 extern int FUN_010344d4(unsigned int);
 extern unsigned long long FUN_010344ec(unsigned int);
@@ -53,18 +54,18 @@ unsigned int FUN_01034840(unsigned int param_1, unsigned int param_2,
     bVar1 = *param_3;
     iVar7 = (unsigned int)bVar1 * 4;
     uVar8 = *(unsigned short *)(DAT_01034934 + iVar6 * 2) & 0x1fdf;
-    *(volatile unsigned int *)(long)(iVar7 + 0x4100a510) = 0;
+    *(volatile unsigned int *)(long)(iVar7 + (G1_NRF_GPIOTE_NS_BASE + 0x510)) = 0;
     *(unsigned short *)(iVar4 + iVar6 * 2) = uVar8;
-    *(volatile unsigned int *)(long)(iVar7 + 0x4100a510) = 0;
+    *(volatile unsigned int *)(long)(iVar7 + (G1_NRF_GPIOTE_NS_BASE + 0x510)) = 0;
     bVar2 = param_3[1];
     uVar5 = DAT_01034938;
     if (bVar2 != 0) {
       bVar3 = param_3[2];
-      *(volatile unsigned int *)(long)(iVar7 + 0x4100a510) =
-          *(volatile unsigned int *)(long)(iVar7 + 0x4100a510) & 0xffecc0ffu;
-      *(volatile unsigned int *)(long)(iVar7 + 0x4100a510) =
+      *(volatile unsigned int *)(long)(iVar7 + (G1_NRF_GPIOTE_NS_BASE + 0x510)) =
+          *(volatile unsigned int *)(long)(iVar7 + (G1_NRF_GPIOTE_NS_BASE + 0x510)) & 0xffecc0ffu;
+      *(volatile unsigned int *)(long)(iVar7 + (G1_NRF_GPIOTE_NS_BASE + 0x510)) =
           ((param_1 & 0x3f) << 8) | ((unsigned int)(bVar2 & 3) << 0x10) |
-          *(volatile unsigned int *)(long)(iVar7 + 0x4100a510) | ((unsigned int)(bVar3 & 1) << 0x14);
+          *(volatile unsigned int *)(long)(iVar7 + (G1_NRF_GPIOTE_NS_BASE + 0x510)) | ((unsigned int)(bVar3 & 1) << 0x14);
       *(unsigned short *)(iVar4 + iVar6 * 2) = uVar8 | ((unsigned short)bVar1 << 0xd) | 0x20;
       uVar5 = DAT_01034938;
     }

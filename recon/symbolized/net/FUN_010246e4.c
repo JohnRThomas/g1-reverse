@@ -9,7 +9,7 @@
 #include <stdint.h>
 
 extern void FUN_01024a9c(void);
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 void FUN_010246e4(void)
 {

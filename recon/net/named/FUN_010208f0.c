@@ -7,6 +7,7 @@
  *   rodata_103c4d0                           @ 0x0103c4d0
  *   REG_41008000                             @ 0x41008000
  */
+#include "../../headers/g1_nrf_regs.h"
 /* net-core FUN_010208f0 @ 0x10208f0  (parity 300 trials PROVEN) */
 
 typedef unsigned int uint;
@@ -44,7 +45,7 @@ void FUN_010208f0(unsigned char param_1, int param_2, unsigned int param_3_raw)
             if (iVar2 != 0) {
                 sdc_assertion_fail(0x3e, 0x57e);
             }
-            volatile unsigned int * const p9b4 = (volatile unsigned int *)0x41008000; /* DAT_010209b4 */
+            volatile unsigned int * const p9b4 = (volatile unsigned int *)G1_NRF_RADIO_NS_BASE; /* DAT_010209b4 */
             p9b4[0x200/4] = p9b4[0x200/4] | 0x110;
             goto lab_948;
         }

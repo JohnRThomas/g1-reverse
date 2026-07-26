@@ -11,7 +11,7 @@
 
 #include <stdint.h>
 typedef unsigned int undefined4;
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern void FUN_010317d4(void);
 extern void FUN_0102f4ec(undefined4);
 extern void printk(undefined4);

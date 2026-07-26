@@ -26,7 +26,7 @@
 #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
 #pragma GCC diagnostic ignored "-Wincompatible-pointer-types"
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 typedef unsigned char undefined,undefined1,byte,uchar,uint1;
 typedef unsigned short undefined2,ushort,uint2,wchar_t;
 typedef unsigned int undefined4,uint,uint3,code_t;
@@ -36,17 +36,8 @@ typedef long long(*code)();
 #define bool int
 #define false 0
 #define true 1
-static inline int isCurrentModePrivileged(void){ return (__get_CONTROL() & 1u) == 0; }
-static inline int getBasePriority(void){ return (int)__get_BASEPRI(); }
-static inline void setBasePriority(int p){ __set_BASEPRI((uint32_t)p); }
-static inline void InstructionSynchronizationBarrier(int x){ (void)x; __ISB(); }
-static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
-static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
-static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
-static inline int SCARRY4(int a,int b){int r=(int)((unsigned)a+(unsigned)b);return (((a^r)&(b^r))<0);}
-static inline int SBORROW4(int a,int b){int r=(int)((unsigned)a-(unsigned)b);return (((a^b)&(a^r))<0);}
-static inline int SBORROW1(int a,int b){signed char r=(signed char)(a-b);return ((((signed char)a^(signed char)b)&((signed char)a^r))<0);}
-static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^(short)b)&((short)a^r))<0);}
+#include "../../headers/g1_cmsis_shim.h"
+#include "../../headers/g1_ghidra_ops.h"
 
 #define CONCAT11(a,b) ((unsigned short)(((unsigned)(unsigned char)(a)<<8)|(unsigned char)(b)))
 #define CONCAT21(a,b) (((unsigned)(unsigned short)(a)<<8)|(unsigned char)(b))

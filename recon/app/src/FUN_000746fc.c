@@ -2,7 +2,7 @@
  * CFG_VERIFY_CALL_ARITIES=3,1,1,0,4,1,1,4,1,2
  */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 extern void FUN_000745c8(void);
 extern int32_t FUN_00086690(uint32_t, int32_t, ...);

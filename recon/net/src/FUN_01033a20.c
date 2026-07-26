@@ -1,4 +1,5 @@
 /* net-core FUN_01033a20 @ 0x1033a20  (parity 300 trials PROVEN) */
+#include "../../headers/g1_nrf_regs.h"
 
 extern unsigned long long FUN_0103a80c(unsigned int*, int, int, unsigned int, int);
 int FUN_01033a20(unsigned int *param_1, int param_2, int param_3, int param_4)
@@ -15,7 +16,7 @@ int FUN_01033a20(unsigned int *param_1, int param_2, int param_3, int param_4)
       unsigned long long uVar4 = FUN_0103a80c(puVar1, 0, param_3, v, param_4);
       uVar3 = (int)(uVar4 >> 32);
       unsigned int uVar2 = (unsigned int)uVar4;
-      *(volatile unsigned int*)(0x41008000 + 0x520) =
+      *(volatile unsigned int*)(G1_NRF_RADIO_NS_BASE + 0x520) =
            (uVar2 << 24) | ((uVar2 >> 8 & 0xff) << 16) | ((uVar2 >> 16 & 0xff) << 8) | (uVar2 >> 24);
     }
   } else {

@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00072558 @ 0x72558  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern void FUN_0007e2fa(unsigned,unsigned,unsigned,unsigned);
 extern void FUN_0007e2ec(unsigned,unsigned);
 extern int FUN_00072040(unsigned);

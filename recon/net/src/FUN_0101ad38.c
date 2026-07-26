@@ -1,6 +1,6 @@
 /* net-core FUN_0101ad38 @ 0x101ad38  (parity 300 trials PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 static inline int isCurrentModePrivileged(void){return (__get_CONTROL() & 1u) == 0;}
 static inline int isIRQinterruptsEnabled(void){return (int)__get_PRIMASK();}
 static inline void disableIRQinterrupts(void){__disable_irq();}

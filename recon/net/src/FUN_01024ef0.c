@@ -3,7 +3,7 @@
 typedef unsigned int u32;
 typedef unsigned short u16;
 typedef unsigned char u8;
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 
 #define PC6 0x21001bf8u
 #define NP  0x41011000u

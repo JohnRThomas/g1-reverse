@@ -1,5 +1,6 @@
 /* Reconstructed FUN_00061310 @ 0x61310 */
 #include <stdint.h>
+#include "../../headers/g1_nrf_regs.h"
 
 extern unsigned long long FUN_000839dc(unsigned int address,
                                        unsigned int length);
@@ -35,7 +36,7 @@ unsigned int FUN_00061310(unsigned int unused, unsigned int address,
             FUN_00065f80(address + offset, source[offset / 4]);
             offset += 4;
         }
-        while ((*(volatile unsigned int *)0x50039400 & 1) == 0) {}
+        while ((*(volatile unsigned int *)(G1_NRF_KMU_S_BASE + 0x400) & 1) == 0) {}
         FUN_00072880(0x2000b154);
     }
     return 0;

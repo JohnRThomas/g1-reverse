@@ -22,7 +22,7 @@
  */
 /* Reconstructed FUN_0005f148 @ 0x5f148  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 typedef uint32_t u32;
 extern void printk(u32,u32,...);
 extern void assert_post_action(u32,u32);

@@ -17,7 +17,7 @@
  */
 /* Reconstructed FUN_00071eac @ 0x71eac  (parity: 80/80 trials, PROVEN) */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern void z_setup_new_thread(int,int,int,int,int,int,int,int,int);
 extern void sched_thread_ready(int);
 extern void z_add_timeout(int,unsigned int,int,int,int,int,int,int,int,unsigned int);

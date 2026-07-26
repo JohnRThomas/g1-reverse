@@ -18,7 +18,7 @@
  * Includes empty-queue waiting, callback dispatch, cancellation-list removal,
  * lock release/reacquisition, and scheduler wakeup. CFG parity: PASS. */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+#include <cmsis_gcc.h>
 extern int FUN_0103610c(int);
 extern int FUN_01036128(int);
 extern int FUN_01036144(int);
