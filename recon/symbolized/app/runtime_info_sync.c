@@ -6,8 +6,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   global_ipc_service_send                  <= FUN_00025b78 @ 0x00025b78
  * address symbols (name @ address):
- *   rodata_9957c                             @ 0x0009957c
- *   rodata_99bee                             @ 0x00099bee
+ *   rodata_9957c                             @ 0x0009957c   [INLINED -- G6 literal batch]
+ *   rodata_99bee                             @ 0x00099bee   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_esb_bringup_log_pending_flag           @ 0x20002fe0
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -39,11 +39,11 @@ uint32_t runtime_info_sync(const uint8_t *runtime)
         *(volatile uint8_t *)((unsigned long)&g_esb_bringup_log_pending_flag) /*=0x20002fe0*/ = 0;
         if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1) {
             if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_9957c) /*=0x9957c*/, ((unsigned long)&rodata_99bee) /*=0x99bee*/,
+                log_message(((unsigned long)"%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\n") /*=0x9957c*/, ((unsigned long)"runtime_info_sync") /*=0x99bee*/,
                             runtime[0], runtime[1], runtime[2], result,
                             runtime[3], runtime[4]);
             } else {
-                debug_print(((unsigned long)&rodata_9957c) /*=0x9957c*/, ((unsigned long)&rodata_99bee) /*=0x99bee*/,
+                debug_print(((unsigned long)"%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\n") /*=0x9957c*/, ((unsigned long)"runtime_info_sync") /*=0x99bee*/,
                              runtime[0], runtime[1], runtime[2], result,
                              runtime[3], runtime[4]);
             }

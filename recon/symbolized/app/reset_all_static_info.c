@@ -6,8 +6,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_99707                             @ 0x00099707
- *   rodata_99bd8                             @ 0x00099bd8
+ *   rodata_99707                             @ 0x00099707   [INLINED -- G6 literal batch]
+ *   rodata_99bd8                             @ 0x00099bd8   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_dashboard_startup_mode_info_defaults   @ 0x2007fc00
@@ -23,9 +23,9 @@ void reset_all_static_info(unsigned int param_1, unsigned int param_2, unsigned 
     if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         unsigned int sink = *(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
         if (sink == 0) {
-            log_message(((unsigned long)&rodata_99707) /*=0x99707*/, ((unsigned long)&rodata_99bd8) /*=0x99bd8*/, param_3, sink, param_4);
+            log_message(((unsigned long)"%s(): delete memory_keep_data\n") /*=0x99707*/, ((unsigned long)"reset_all_static_info") /*=0x99bd8*/, param_3, sink, param_4);
         } else {
-            debug_print(((unsigned long)&rodata_99707) /*=0x99707*/, ((unsigned long)&rodata_99bd8) /*=0x99bd8*/, param_3, sink, param_4);
+            debug_print(((unsigned long)"%s(): delete memory_keep_data\n") /*=0x99707*/, ((unsigned long)"reset_all_static_info") /*=0x99bd8*/, param_3, sink, param_4);
         }
     }
     volatile unsigned char *base = (volatile unsigned char *)((unsigned long)&g_dashboard_startup_mode_info_defaults) /*=0x2007fc00*/;

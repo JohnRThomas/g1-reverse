@@ -8,9 +8,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f075e                             @ 0x000f075e
- *   rodata_f0779                             @ 0x000f0779
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f075e                             @ 0x000f075e   [INLINED -- G6 literal batch]
+ *   rodata_f0779                             @ 0x000f0779   [INLINED -- G6 literal batch]
  *   rodata_f891e                             @ 0x000f891e
  *   rodata_f899c                             @ 0x000f899c
  *   rodata_f89d9                             @ 0x000f89d9
@@ -30,13 +30,13 @@ void *k_aligned_alloc(size_t alignment, size_t size)
 {
     if (alignment < sizeof(void *) ||
         (alignment & (sizeof(void *) - 1u)) != 0u) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f899c) /*=0xf899c*/, ((unsigned long)&rodata_f891e) /*=0xf891e*/, 0x42u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f899c) /*=0xf899c*/, ((unsigned long)&rodata_f891e) /*=0xf891e*/, 0x42u);
         printk(((unsigned long)&rodata_f89d9) /*=0xf89d9*/);
         assert_post_action(((unsigned long)&rodata_f891e) /*=0xf891e*/, 0x42u);
     }
     if ((alignment & (alignment - 1u)) != 0u) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f075e) /*=0xf075e*/, ((unsigned long)&rodata_f891e) /*=0xf891e*/, 0x46u);
-        printk(((unsigned long)&rodata_f0779) /*=0xf0779*/);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"(align & (align - 1)) == 0") /*=0xf075e*/, ((unsigned long)&rodata_f891e) /*=0xf891e*/, 0x46u);
+        printk(((unsigned long)"\talign must be a power of 2\n") /*=0xf0779*/);
         assert_post_action(((unsigned long)&rodata_f891e) /*=0xf891e*/, 0x46u);
     }
     return z_heap_aligned_alloc((void *)0x200037d8u, alignment, size);

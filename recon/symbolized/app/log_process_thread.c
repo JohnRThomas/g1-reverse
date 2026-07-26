@@ -15,9 +15,9 @@
  * address symbols (name @ address):
  *   rodata_882a0                             @ 0x000882a0
  *   __settings_handler_static_list_start     @ 0x000882b0
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f0cae                             @ 0x000f0cae
- *   rodata_f0d3f                             @ 0x000f0d3f
+ *   rodata_f0d3f                             @ 0x000f0d3f   [INLINED -- G6 literal batch]
  *   g_200039f8                               @ 0x200039f8
  *   g_2000a0d0                               @ 0x2000a0d0
  *   log_buffered_cnt                         @ 0x2000a0d8
@@ -41,7 +41,7 @@ void log_process_thread(void)
     uintptr_t const begin = ((unsigned long)&rodata_882a0) /*=0x882a0*/;
     uintptr_t const end = ((unsigned long)&__settings_handler_static_list_start) /*=0x882b0*/;
     if ((end - begin) / 16u == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0d3f) /*=0xf0d3f*/, ((unsigned long)&rodata_f0cae) /*=0xf0cae*/, 0x35cu);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"log_backend_count_get() > 0") /*=0xf0d3f*/, ((unsigned long)&rodata_f0cae) /*=0xf0cae*/, 0x35cu);
         assert_post_action(((unsigned long)&rodata_f0cae) /*=0xf0cae*/, 0x35cu);
     }
 

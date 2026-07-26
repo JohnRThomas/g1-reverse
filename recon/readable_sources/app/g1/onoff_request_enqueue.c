@@ -16,14 +16,14 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f0824                             @ 0x000f0824
- *   rodata_f08b1                             @ 0x000f08b1
+ *   rodata_f08b1                             @ 0x000f08b1   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0004b908 @ 0x4b908  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -46,8 +46,8 @@ unsigned int onoff_request_enqueue(int *param_1, int *param_2)
   int *puVar8 = param_1 + 5;
   int iVar4 = z_spin_lock_valid((int)puVar8);
   if (iVar4 == 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
-    printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,(int)puVar8);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
+    printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/,(int)puVar8);
     assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
     return 0;
   }
@@ -71,7 +71,7 @@ unsigned int onoff_request_enqueue(int *param_1, int *param_2)
         case 1: uVar7 = 0xfffffffb; break;
         case 5: uVar7 = 0xffffff7a; break;
         default:
-          printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08b1) /*=0xf08b1*/,((unsigned long)&rodata_f0824) /*=0xf0824*/,0x1c8);
+          printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"state == (1UL << (0))") /*=0xf08b1*/,((unsigned long)&rodata_f0824) /*=0xf0824*/,0x1c8);
           assert_post_action(((unsigned long)&rodata_f0824) /*=0xf0824*/,0x1c8);
           return 0;
       }
@@ -88,8 +88,8 @@ control_label_b9a6:;
     if (iVar4 != 0) notify_one((int)param_1, (int)param_2, uVar3, 0);
     return uVar7;
   }
-  printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
-  printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,(int)puVar8);
+  printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
+  printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/,(int)puVar8);
   assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
   return 0;
 }

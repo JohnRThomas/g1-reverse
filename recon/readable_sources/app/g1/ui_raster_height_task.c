@@ -10,9 +10,9 @@
  *   gui_screen_clear                         <= FUN_000431c0 @ 0x000431c0
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
- *   rodata_aa7f2                             @ 0x000aa7f2
- *   rodata_aa817                             @ 0x000aa817
- *   rodata_aa83f                             @ 0x000aa83f
+ *   rodata_aa7f2                             @ 0x000aa7f2   [INLINED -- G6 literal batch]
+ *   rodata_aa817                             @ 0x000aa817   [INLINED -- G6 literal batch]
+ *   rodata_aa83f                             @ 0x000aa83f   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_display_canvas_y_cache                 @ 0x2000253c
  *   g_display_canvas_x_cache                 @ 0x20002540
@@ -41,9 +41,9 @@ unsigned int ui_raster_height_task(unsigned int param_1, unsigned int param_2, i
     if (param_3 == 2) {
         if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_aa7f2) /*=0xaa7f2*/, ((unsigned long)&rodata_aa83f) /*=0xaa83f*/);
+                log_message(((unsigned long)"%s(): ui_raster_height_task exit...\n") /*=0xaa7f2*/, ((unsigned long)"ui_raster_height_task") /*=0xaa83f*/);
             } else {
-                debug_print(((unsigned long)&rodata_aa7f2) /*=0xaa7f2*/, ((unsigned long)&rodata_aa83f) /*=0xaa83f*/);
+                debug_print(((unsigned long)"%s(): ui_raster_height_task exit...\n") /*=0xaa7f2*/, ((unsigned long)"ui_raster_height_task") /*=0xaa83f*/);
             }
         }
         ui_DashBoard_task(param_1, param_2, 2);
@@ -55,9 +55,9 @@ unsigned int ui_raster_height_task(unsigned int param_1, unsigned int param_2, i
         if ((local_20 != *piVar2) || (local_1c != *piVar1)) {
             if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
                 if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                    log_message(((unsigned long)&rodata_aa817) /*=0xaa817*/, ((unsigned long)&rodata_aa83f) /*=0xaa83f*/);
+                    log_message(((unsigned long)"%s(): ui_raster_height_task reflash...\n") /*=0xaa817*/, ((unsigned long)"ui_raster_height_task") /*=0xaa83f*/);
                 } else {
-                    debug_print(((unsigned long)&rodata_aa817) /*=0xaa817*/, ((unsigned long)&rodata_aa83f) /*=0xaa83f*/);
+                    debug_print(((unsigned long)"%s(): ui_raster_height_task reflash...\n") /*=0xaa817*/, ((unsigned long)"ui_raster_height_task") /*=0xaa83f*/);
                 }
             }
             gui_screen_clear();

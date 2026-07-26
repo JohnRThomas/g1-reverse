@@ -17,9 +17,9 @@
  *   vdprintf_to_fd                           <= FUN_00086f00 @ 0x00086f00
  * address symbols (name @ address):
  *   rodata_aaaac                             @ 0x000aaaac
- *   rodata_aaab7                             @ 0x000aaab7
- *   rodata_aaad4                             @ 0x000aaad4
- *   rodata_aad0b                             @ 0x000aad0b
+ *   rodata_aaab7                             @ 0x000aaab7   [INLINED -- G6 literal batch]
+ *   rodata_aaad4                             @ 0x000aaad4   [INLINED -- G6 literal batch]
+ *   rodata_aad0b                             @ 0x000aad0b   [INLINED -- G6 literal batch]
  *   rodata_f02a3                             @ 0x000f02a3
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -91,8 +91,8 @@ undefined4 gui_clock_draw(undefined4 param_1,int param_2,undefined4 param_3,unde
         iVar4 = iVar4 + local_4c + 6;
       } else if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-          log_message(((unsigned long)&rodata_aaad4) /*=0xaaad4*/,((unsigned long)&rodata_aad0b) /*=0xaad0b*/,(uint)*pbVar9,((unsigned long)&rodata_aaab7) /*=0xaaab7*/);
-        } else { debug_print(((unsigned long)&rodata_aaad4) /*=0xaaad4*/,((unsigned long)&rodata_aad0b) /*=0xaad0b*/,(uint)*pbVar9,((unsigned long)&rodata_aaab7) /*=0xaaab7*/); }
+          log_message(((unsigned long)"%s(): The content cannot be found in the current font library,unicode content = %2d,font libray is %s\n") /*=0xaaad4*/,((unsigned long)"gui_clock_draw") /*=0xaad0b*/,(uint)*pbVar9,((unsigned long)"EVEN_DASHBOARD_CLOCK_32x_TTF") /*=0xaaab7*/);
+        } else { debug_print(((unsigned long)"%s(): The content cannot be found in the current font library,unicode content = %2d,font libray is %s\n") /*=0xaaad4*/,((unsigned long)"gui_clock_draw") /*=0xaad0b*/,(uint)*pbVar9,((unsigned long)"EVEN_DASHBOARD_CLOCK_32x_TTF") /*=0xaaab7*/); }
       }
       pbVar9 = pbVar9 + 1;
     }
@@ -115,8 +115,8 @@ undefined4 gui_clock_draw(undefined4 param_1,int param_2,undefined4 param_3,unde
         if (*pbVar9 == 0x3a) { iVar4 = iVar4 + 7; }
       } else if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-          log_message(((unsigned long)&rodata_aaad4) /*=0xaaad4*/,((unsigned long)&rodata_aad0b) /*=0xaad0b*/,(uint)*pbVar9,((unsigned long)&rodata_aaab7) /*=0xaaab7*/);
-        } else { debug_print(((unsigned long)&rodata_aaad4) /*=0xaaad4*/,((unsigned long)&rodata_aad0b) /*=0xaad0b*/,(uint)*pbVar9,((unsigned long)&rodata_aaab7) /*=0xaaab7*/); }
+          log_message(((unsigned long)"%s(): The content cannot be found in the current font library,unicode content = %2d,font libray is %s\n") /*=0xaaad4*/,((unsigned long)"gui_clock_draw") /*=0xaad0b*/,(uint)*pbVar9,((unsigned long)"EVEN_DASHBOARD_CLOCK_32x_TTF") /*=0xaaab7*/);
+        } else { debug_print(((unsigned long)"%s(): The content cannot be found in the current font library,unicode content = %2d,font libray is %s\n") /*=0xaaad4*/,((unsigned long)"gui_clock_draw") /*=0xaad0b*/,(uint)*pbVar9,((unsigned long)"EVEN_DASHBOARD_CLOCK_32x_TTF") /*=0xaaab7*/); }
       }
       pbVar9 = pbVar9 + 1;
     }

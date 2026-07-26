@@ -17,10 +17,10 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_88208                             @ 0x00088208
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f2561                             @ 0x000f2561
- *   rodata_f25c5                             @ 0x000f25c5
- *   rodata_f25e2                             @ 0x000f25e2
+ *   rodata_f25c5                             @ 0x000f25c5   [INLINED -- G6 literal batch]
+ *   rodata_f25e2                             @ 0x000f25e2   [INLINED -- G6 literal batch]
  *   rodata_f25fb                             @ 0x000f25fb
  *   rodata_f26e7                             @ 0x000f26e7
  *   g_img_mgmt_active_slot                   @ 0x2000ab7c
@@ -89,8 +89,8 @@ unsigned img_mgmt_upload_inspect(int *param_1, unsigned *param_2)
     if (iVar2 == -1) iVar2 = 0;
     uVar4 = img_mgmt_active_slot(iVar2);
     if (3 < uVar4) {
-        printk(0x00099cbd, 0x000f25c5, 0x000f2561, 0x71);
-        printk(0x000f25e2);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"slot >= 0 && slot < (2 << 1)"), 0x000f2561, 0x71);
+        printk(((unsigned long)"\tImpossible slot number\n"));
         assert_post_action(0x000f2561, 0x71);
     }
     uVar4 ^= 1;

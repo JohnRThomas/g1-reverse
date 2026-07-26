@@ -18,12 +18,12 @@
  *   rodata_82a67                             @ 0x00082a67
  *   ADDR_FUN_00082d6a_THUMB                  @ 0x00082d6b
  *   rodata_88128                             @ 0x00088128
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3ebd                             @ 0x000f3ebd
  *   rodata_f46b8                             @ 0x000f46b8
- *   rodata_f4a0a                             @ 0x000f4a0a
- *   rodata_f4c07                             @ 0x000f4c07
- *   rodata_f4c1e                             @ 0x000f4c1e
+ *   rodata_f4a0a                             @ 0x000f4a0a   [INLINED -- G6 literal batch]
+ *   rodata_f4c07                             @ 0x000f4c07   [INLINED -- G6 literal batch]
+ *   rodata_f4c1e                             @ 0x000f4c1e   [INLINED -- G6 literal batch]
  *   rodata_f4c4b                             @ 0x000f4c4b
  */
 /* Reconstructed FUN_0005b9cc @ 0x5b9cc  (parity: 28/60 trials, PROVEN) */
@@ -46,25 +46,25 @@ int bt_gatt_discover(int param_1, int *param_2)
 {
   uint32_t uVar4;
   if (param_1 == 0) {
-    printk(0x00099cbdUL,0x000f3ebdUL,0x000f46b8UL,0x118f);
-    printk(0x000f4a0aUL);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x000f3ebdUL,0x000f46b8UL,0x118f);
+    printk(((unsigned long)"\tinvalid parameters\n\n"));
     assert_post_action(0x000f46b8UL, 0x118f);
   }
   if (param_2 == 0 || param_2[1] == 0) {
-    printk(0x00099cbdUL,0x000f4c07UL,0x000f46b8UL,0x1190);
-    printk(0x000f4a0aUL);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"params && params->func"),0x000f46b8UL,0x1190);
+    printk(((unsigned long)"\tinvalid parameters\n\n"));
     assert_post_action(0x000f46b8UL, 0x1190);
   }
   ushort a = *(volatile ushort*)((char*)param_2 + 8);
   ushort b = *(volatile ushort*)((char*)param_2 + 0xe);
   if (a == 0 || b == 0) {
-    printk(0x00099cbdUL,0x000f4c1eUL,0x000f46b8UL,0x1191);
-    printk(0x000f4a0aUL);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x000f4c1eUL,0x000f46b8UL,0x1191);
+    printk(((unsigned long)"\tinvalid parameters\n\n"));
     assert_post_action(0x000f46b8UL, 0x1191);
   }
   if (a > b) {
-    printk(0x00099cbdUL,0x000f4c4bUL,0x000f46b8UL,0x1193);
-    printk(0x000f4a0aUL);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x000f4c4bUL,0x000f46b8UL,0x1193);
+    printk(((unsigned long)"\tinvalid parameters\n\n"));
     assert_post_action(0x000f46b8UL, 0x1193);
   }
 

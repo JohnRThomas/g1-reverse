@@ -10,7 +10,7 @@
  *   __nrfy_internal_twim_events_process      <= FUN_0008539a @ 0x0008539a
  * address symbols (name @ address):
  *   rodata_40000                             @ 0x00040000
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6e2c                             @ 0x000f6e2c
  *   rodata_f6fef                             @ 0x000f6fef
  */
@@ -57,7 +57,7 @@ static inline volatile uint32_t *register32(uintptr_t base, unsigned offset)
 void nrfx_twim_irq_handler(uintptr_t peripheral, struct callback_state *callback)
 {
   if (callback->handler == 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f6e2c) /*=0xf6e2c*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x297);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f6e2c) /*=0xf6e2c*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x297);
     assert_post_action(((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x297);
   }
 

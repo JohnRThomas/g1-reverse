@@ -5,8 +5,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   global_ipc_service_send                  <= FUN_00025b78 @ 0x00025b78
  * address symbols (name @ address):
- *   rodata_9957c                             @ 0x0009957c
- *   rodata_99bee                             @ 0x00099bee
+ *   rodata_9957c                             @ 0x0009957c   [INLINED -- G6 literal batch]
+ *   rodata_99bee                             @ 0x00099bee   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_esb_bringup_log_pending_flag           @ 0x20002fe0
  *   g_log_use_alt_sink                       @ 0x20007554

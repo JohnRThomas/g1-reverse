@@ -13,7 +13,7 @@
  *   fb_blit_rows_copy                        <= FUN_0007d53a @ 0x0007d53a
  * address symbols (name @ address):
  *   rodata_aa8eb                             @ 0x000aa8eb
- *   rodata_aadd0                             @ 0x000aadd0
+ *   rodata_aadd0                             @ 0x000aadd0   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_gui_active_canvas                      @ 0x2000a034
@@ -51,7 +51,7 @@ int gui_bmp_bitmap_draw(unsigned int param_1, int param_2, int param_3, int para
             if (iVar2 < 0) {
                 if (1 < *g5c0) {
                     if (*g5c4 == 0) {
-                        log_message(0x000aa8eb, 0x000aadd0);
+                        log_message(0x000aa8eb, ((unsigned long)"gui_bmp_bitmap_draw"));
                     } else {
                         debug_print(0);
                     }

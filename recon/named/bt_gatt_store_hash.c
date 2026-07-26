@@ -7,7 +7,7 @@
  *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  * address symbols (name @ address):
  *   rodata_88128                             @ 0x00088128
- *   rodata_f4849                             @ 0x000f4849
+ *   rodata_f4849                             @ 0x000f4849   [INLINED -- G6 literal batch]
  *   g_bt_gatt_db_hash                        @ 0x20006380
  */
 /* Reconstructed FUN_0005a250 @ 0x5a250  (parity: 300/300 trials, PROVEN) */

@@ -9,9 +9,9 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
  *   rodata_882a0                             @ 0x000882a0
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f0da7                             @ 0x000f0da7
- *   rodata_f0ddf                             @ 0x000f0ddf
+ *   rodata_f0ddf                             @ 0x000f0ddf   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0004d8f8 @ 0x4d8f8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -26,7 +26,7 @@ void log_msg_commit(int param_1, unsigned int param_2, unsigned char param_3)
         (unsigned char)(((param_1 - ((unsigned long)&rodata_882a0) /*=0x882a0*/) >> 4) + 1);
     if (param_1 == 0) {
         uint64_t assertion_result;
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0ddf) /*=0xf0ddf*/, ((unsigned long)&rodata_f0da7) /*=0xf0da7*/, 0xdf);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"backend != ((void *)0)") /*=0xf0ddf*/, ((unsigned long)&rodata_f0da7) /*=0xf0da7*/, 0xdf);
         assertion_result = assert_post_action(((unsigned long)&rodata_f0da7) /*=0xf0da7*/, 0xdf);
         param_1 = (int)assertion_result;
         /* The assertion backend is expected not to return.  The original has

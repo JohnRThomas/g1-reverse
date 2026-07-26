@@ -16,7 +16,7 @@
  *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
- *   rodata_a1895                             @ 0x000a1895
+ *   rodata_a1895                             @ 0x000a1895   [INLINED -- G6 literal batch]
  *   g_delay_deadline_ticks                   @ 0x200040c8
  *   g_misc_dispatch_ctx                      @ 0x20007b00
  *   g_misc_dispatch_pending_flag             @ 0x20018d88

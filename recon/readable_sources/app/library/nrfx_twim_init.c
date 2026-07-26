@@ -13,8 +13,8 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f6c00                             @ 0x000f6c00
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f6c00                             @ 0x000f6c00   [INLINED -- G6 literal batch]
  *   rodata_f6fef                             @ 0x000f6fef
  *   rodata_f702b                             @ 0x000f702b
  *   g_nrfx_twim_cb                           @ 0x2000b3cc
@@ -28,7 +28,7 @@ extern void twim_configure(int,int*);
 
 uint32_t nrfx_twim_init(int param_1, int *param_2, uint32_t param_3, uint32_t param_4){
     if (param_2 == 0){
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f6c00) /*=0xf6c00*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x102);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"p_config") /*=0xf6c00*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x102);
         assert_post_action(((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x102);
     }
     uint8_t bVar1 = *(volatile uint8_t*)(param_1+4);
@@ -58,7 +58,7 @@ uint32_t nrfx_twim_init(int param_1, int *param_2, uint32_t param_3, uint32_t pa
         }
         if (cVar2 == 0){
             if (param_2[0] == param_2[1]){
-                printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f702b) /*=0xf702b*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0xf3);
+                printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f702b) /*=0xf702b*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0xf3);
                 assert_post_action(((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0xf3);
             }
             nrf_gpio_pin_reconfigure(param_2[0], 0, 3, uVar4, param_4);

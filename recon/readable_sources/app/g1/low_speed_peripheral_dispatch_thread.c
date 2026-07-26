@@ -38,11 +38,11 @@
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
  *   rodata_87d70                             @ 0x00087d70
- *   rodata_9fc8b                             @ 0x0009fc8b
- *   rodata_a1914                             @ 0x000a1914
- *   rodata_a193c                             @ 0x000a193c
- *   rodata_a1962                             @ 0x000a1962
- *   rodata_a19c0                             @ 0x000a19c0
+ *   rodata_9fc8b                             @ 0x0009fc8b   [INLINED -- G6 literal batch]
+ *   rodata_a1914                             @ 0x000a1914   [INLINED -- G6 literal batch]
+ *   rodata_a193c                             @ 0x000a193c   [INLINED -- G6 literal batch]
+ *   rodata_a1962                             @ 0x000a1962   [INLINED -- G6 literal batch]
+ *   rodata_a19c0                             @ 0x000a19c0   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_flash_crc_active_flag                  @ 0x2000302c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -107,9 +107,9 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
     update_persist_task_status_to_idle(ctx);
     if (*log_level > 1) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            log_message(((unsigned long)&rodata_9fc8b) /*=0x9fc8b*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/);
+            log_message(((unsigned long)"%s(): #enter\n") /*=0x9fc8b*/, ((unsigned long)"low_speed_peripheral_dispatch_thread") /*=0xa19c0*/);
         else
-            debug_print(((unsigned long)&rodata_9fc8b) /*=0x9fc8b*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/);
+            debug_print(((unsigned long)"%s(): #enter\n") /*=0x9fc8b*/, ((unsigned long)"low_speed_peripheral_dispatch_thread") /*=0xa19c0*/);
     }
     *(volatile uint16_t *)(ctx + 0xfc4) = 0x8000;
     *(volatile uint16_t *)(ctx + 0xfc0) = 0;
@@ -127,9 +127,9 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
                 int error = g1_recon_bt_conn_set_security(connection, 2);
                 if (error != 0 && *log_level > 2) {
                     if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                        log_message(((unsigned long)&rodata_a1914) /*=0xa1914*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/, error);
+                        log_message(((unsigned long)"%s(): Failed to set security (err %d)\n\n") /*=0xa1914*/, ((unsigned long)"low_speed_peripheral_dispatch_thread") /*=0xa19c0*/, error);
                     else
-                        debug_print(((unsigned long)&rodata_a1914) /*=0xa1914*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/, error);
+                        debug_print(((unsigned long)"%s(): Failed to set security (err %d)\n\n") /*=0xa1914*/, ((unsigned long)"low_speed_peripheral_dispatch_thread") /*=0xa19c0*/, error);
                 }
                 connected_runs = -5;
             }
@@ -188,9 +188,9 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
                               *(volatile uint64_t *)(ctx + 0x1060)) > 0x927bf) {
                     if (*log_level > 0) {
                         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-                            debug_print(((unsigned long)&rodata_a193c) /*=0xa193c*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/);
+                            debug_print(((unsigned long)"%s(): reboot because dfu exceed time\n") /*=0xa193c*/, ((unsigned long)"low_speed_peripheral_dispatch_thread") /*=0xa19c0*/);
                         else
-                            log_message(((unsigned long)&rodata_a193c) /*=0xa193c*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/);
+                            log_message(((unsigned long)"%s(): reboot because dfu exceed time\n") /*=0xa193c*/, ((unsigned long)"low_speed_peripheral_dispatch_thread") /*=0xa19c0*/);
                     }
                     for (;;) {
                         k_msleep(500);
@@ -214,9 +214,9 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
                 uint32_t mode = rd8(ctx, 0xfea);
                 uint32_t value = check_charging_and_touch_flags();
                 if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                    log_message(((unsigned long)&rodata_a1962) /*=0xa1962*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/, mode, value, side);
+                    log_message(((unsigned long)"%s(): Global Working Mode: %d get_glasses_ble_status %d ble_is_connected %d\n") /*=0xa1962*/, ((unsigned long)"low_speed_peripheral_dispatch_thread") /*=0xa19c0*/, mode, value, side);
                 else
-                    debug_print(((unsigned long)&rodata_a1962) /*=0xa1962*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/, mode, value, side);
+                    debug_print(((unsigned long)"%s(): Global Working Mode: %d get_glasses_ble_status %d ble_is_connected %d\n") /*=0xa1962*/, ((unsigned long)"low_speed_peripheral_dispatch_thread") /*=0xa19c0*/, mode, value, side);
             }
             try_enter_low_power_mode();
             check_work_mode(power, thermal, side);

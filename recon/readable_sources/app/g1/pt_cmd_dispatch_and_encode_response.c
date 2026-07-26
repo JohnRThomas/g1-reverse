@@ -7,7 +7,7 @@
  *   buffer_append_sum_checksum               <= FUN_0007d16a @ 0x0007d16a
  * address symbols (name @ address):
  *   rodata_8a208                             @ 0x0008a208
- *   rodata_a74b9                             @ 0x000a74b9
+ *   rodata_a74b9                             @ 0x000a74b9   [INLINED -- G6 literal batch]
  *   g_pt_msg_encode_buf                      @ 0x20019ef5
  */
 /* Reconstructed FUN_00032b24 @ 0x32b24  (parity: 300/300 trials, PROVEN) */
@@ -17,7 +17,7 @@ extern int buffer_append_sum_checksum(void*,void*);
 typedef int (*fp5)(void*,int,void*,void*,uint32_t);
 uint32_t pt_cmd_dispatch_and_encode_response(int param_1, char* param_2, int param_3, uint32_t* param_4, uint8_t* param_5, uint32_t param_6){
     if(param_2==0 || param_3==0 || param_4==0 || param_5==0 || param_1==2){
-        log_message(((unsigned long)&rodata_a74b9) /*=0xa74b9*/); return 0xffffffff;
+        log_message(((unsigned long)"process_pt_protocol para is error\n") /*=0xa74b9*/); return 0xffffffff;
     }
     int iVar3=0;
     uint8_t cVar1=*(volatile uint8_t*)param_2;

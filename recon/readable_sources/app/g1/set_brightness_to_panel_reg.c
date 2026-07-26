@@ -11,8 +11,8 @@
  *   net_pkt_write_be16                       <= FUN_0007d696 @ 0x0007d696
  *   delay_ms                                 <= FUN_0007d772 @ 0x0007d772
  * address symbols (name @ address):
- *   rodata_d7251                             @ 0x000d7251
- *   rodata_d7310                             @ 0x000d7310
+ *   rodata_d7251                             @ 0x000d7251   [INLINED -- G6 literal batch]
+ *   rodata_d7310                             @ 0x000d7310   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -37,9 +37,9 @@ void set_brightness_to_panel_reg(unsigned int param_1)
 
     if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_d7251) /*=0xd7251*/, ((unsigned long)&rodata_d7310) /*=0xd7310*/, param_1);
+            log_message(((unsigned long)"%s(): set brightness level = %d\n") /*=0xd7251*/, ((unsigned long)"set_brightness_to_panel_reg") /*=0xd7310*/, param_1);
         } else {
-            debug_print(((unsigned long)&rodata_d7251) /*=0xd7251*/, ((unsigned long)&rodata_d7310) /*=0xd7310*/, param_1);
+            debug_print(((unsigned long)"%s(): set brightness level = %d\n") /*=0xd7251*/, ((unsigned long)"set_brightness_to_panel_reg") /*=0xd7310*/, param_1);
         }
     }
     thunk_FUN_0007d77c(6);

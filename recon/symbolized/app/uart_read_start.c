@@ -7,9 +7,9 @@
  *   k_mem_slab_alloc                         <= FUN_00071c20 @ 0x00071c20
  * address symbols (name @ address):
  *   ADDR_uart_callback_THUMB                 @ 0x00033385
- *   rodata_a7b13                             @ 0x000a7b13
- *   rodata_a7b29                             @ 0x000a7b29
- *   rodata_a7b41                             @ 0x000a7b41
+ *   rodata_a7b13                             @ 0x000a7b13   [INLINED -- G6 literal batch]
+ *   rodata_a7b29                             @ 0x000a7b29   [INLINED -- G6 literal batch]
+ *   rodata_a7b41                             @ 0x000a7b41   [INLINED -- G6 literal batch]
  *   g_uart_rx_mem_slab                       @ 0x200037b8
  */
 /* Reconstructed FUN_000336a0 @ 0x336a0  (parity: 300/300 trials, PROVEN) */
@@ -30,11 +30,11 @@ unsigned uart_read_start(int param_1, unsigned param_2, unsigned param_3){
         void **p2 = *(void***)(param_1+8);
         iVar1=((fp2)p2[3])(param_1,local_14,0x100,10000);
         if(iVar1==0) return 0;
-        log_message(((unsigned long)&rodata_a7b41) /*=0xa7b41*/); return 0xfffffffd;
+        log_message(((unsigned long)"Failed to enable RX\n") /*=0xa7b41*/); return 0xfffffffd;
       }
-      log_message(((unsigned long)&rodata_a7b29) /*=0xa7b29*/); return 0xfffffffe;
+      log_message(((unsigned long)"Failed to set callback\n") /*=0xa7b29*/); return 0xfffffffe;
     }
-    log_message(((unsigned long)&rodata_a7b13) /*=0xa7b13*/);
+    log_message(((unsigned long)"Failed to alloc slab\n") /*=0xa7b13*/);
   }
   return 0xffffffff;
 }

@@ -7,12 +7,12 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f5dfc                             @ 0x000f5dfc
- *   rodata_f5e38                             @ 0x000f5e38
- *   rodata_f5e41                             @ 0x000f5e41
- *   rodata_f5e50                             @ 0x000f5e50
- *   rodata_f5e62                             @ 0x000f5e62
+ *   rodata_f5e38                             @ 0x000f5e38   [INLINED -- G6 literal batch]
+ *   rodata_f5e41                             @ 0x000f5e41   [INLINED -- G6 literal batch]
+ *   rodata_f5e50                             @ 0x000f5e50   [INLINED -- G6 literal batch]
+ *   rodata_f5e62                             @ 0x000f5e62   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_000613c4 @ 0x613c4  (parity: 300/300 trials, PROVEN) */
 
@@ -20,8 +20,8 @@ extern void assert_post_action(int,int);
 extern int printk(int,...);
 int gpio_manage_callback(int param_1, int *param_2, int param_3){
   int iVar4=*(int*)(param_1+0x10);
-  if(param_2==0){ printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f5e38) /*=0xf5e38*/,((unsigned long)&rodata_f5dfc) /*=0xf5dfc*/,0x3a); printk(((unsigned long)&rodata_f5e41) /*=0xf5e41*/); assert_post_action(((unsigned long)&rodata_f5dfc) /*=0xf5dfc*/,0x3a); }
-  if(param_2[1]==0){ printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f5e50) /*=0xf5e50*/,((unsigned long)&rodata_f5dfc) /*=0xf5dfc*/,0x3b); printk(((unsigned long)&rodata_f5e62) /*=0xf5e62*/); assert_post_action(((unsigned long)&rodata_f5dfc) /*=0xf5dfc*/,0x3b); }
+  if(param_2==0){ printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"callback") /*=0xf5e38*/,((unsigned long)&rodata_f5dfc) /*=0xf5dfc*/,0x3a); printk(((unsigned long)"\tNo callback!\n") /*=0xf5e41*/); assert_post_action(((unsigned long)&rodata_f5dfc) /*=0xf5dfc*/,0x3a); }
+  if(param_2[1]==0){ printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"callback->handler") /*=0xf5e50*/,((unsigned long)&rodata_f5dfc) /*=0xf5dfc*/,0x3b); printk(((unsigned long)"\tNo callback handler!\n") /*=0xf5e62*/); assert_post_action(((unsigned long)&rodata_f5dfc) /*=0xf5dfc*/,0x3b); }
   int *puVar1=*(int**)(iVar4+4);
   if(puVar1==0){
   LAB:

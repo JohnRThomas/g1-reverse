@@ -13,8 +13,8 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_a7c9c                             @ 0x000a7c9c
- *   rodata_a89c8                             @ 0x000a89c8
- *   rodata_a8a6f                             @ 0x000a8a6f
+ *   rodata_a89c8                             @ 0x000a89c8   [INLINED -- G6 literal batch]
+ *   rodata_a8a6f                             @ 0x000a8a6f   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_whitelist_app_parse_buf                @ 0x20009fbc
  */
@@ -45,7 +45,7 @@ void put_whitelist_app_from_app(uint32_t param_1, uint32_t param_2, uint32_t par
         *piVar1 = iVar2;
         if (iVar2 == 0) {
             if (*(volatile uint32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_a7c9c) /*=0xa7c9c*/, ((unsigned long)&rodata_a8a6f) /*=0xa8a6f*/, 0x1caUL);
+                log_message(((unsigned long)&rodata_a7c9c) /*=0xa7c9c*/, ((unsigned long)"put_whitelist_app_from_app") /*=0xa8a6f*/, 0x1caUL);
             } else {
                 debug_print();
             }
@@ -69,7 +69,7 @@ void put_whitelist_app_from_app(uint32_t param_1, uint32_t param_2, uint32_t par
             iVar2 = store_whitelist();
             if (iVar2 == 0) goto LAB_cleanup;
             iVar2 = *(volatile uint32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
-            format_string = ((unsigned long)&rodata_a89c8) /*=0xa89c8*/;
+            format_string = ((unsigned long)"store_write#whitelist_app: FAIL") /*=0xa89c8*/;
         }
         if (iVar2 == 0) {
             log_message(format_string, 0, 0);

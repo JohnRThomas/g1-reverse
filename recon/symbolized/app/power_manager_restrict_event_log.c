@@ -9,12 +9,12 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
  *   rodata_880f0                             @ 0x000880f0
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f1885                             @ 0x000f1885
- *   rodata_f18bd                             @ 0x000f18bd
- *   rodata_f18e0                             @ 0x000f18e0
- *   rodata_f18ff                             @ 0x000f18ff
- *   rodata_f1920                             @ 0x000f1920
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f1885                             @ 0x000f1885   [INLINED -- G6 literal batch]
+ *   rodata_f18bd                             @ 0x000f18bd   [INLINED -- G6 literal batch]
+ *   rodata_f18e0                             @ 0x000f18e0   [INLINED -- G6 literal batch]
+ *   rodata_f18ff                             @ 0x000f18ff   [INLINED -- G6 literal batch]
+ *   rodata_f1920                             @ 0x000f1920   [INLINED -- G6 literal batch]
  *   rodata_faa2c                             @ 0x000faa2c
  */
 /* Full reconstruction of FUN_0004f92c @ 0x4f92c (240 bytes). */
@@ -49,16 +49,16 @@ void power_manager_restrict_event_log(const indexed_event *event)
         __builtin_trap();
 
     if (event->index >= 2) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f18bd) /*=0xf18bd*/, ((unsigned long)&rodata_f1885) /*=0xf1885*/, 0x15u);
-        assert_post_action(((unsigned long)&rodata_f1885) /*=0xf1885*/, 0x15u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"event->module_idx < module_count()") /*=0xf18bd*/, ((unsigned long)"WEST_TOPDIR/nrf/subsys/caf/events/power_manager_event.c") /*=0xf1885*/, 0x15u);
+        assert_post_action(((unsigned long)"WEST_TOPDIR/nrf/subsys/caf/events/power_manager_event.c") /*=0xf1885*/, 0x15u);
     }
     if (event->operation > 2) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f18e0) /*=0xf18e0*/, ((unsigned long)&rodata_f1885) /*=0xf1885*/, 0x16u);
-        assert_post_action(((unsigned long)&rodata_f1885) /*=0xf1885*/, 0x16u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"lvl <= POWER_MANAGER_LEVEL_MAX") /*=0xf18e0*/, ((unsigned long)"WEST_TOPDIR/nrf/subsys/caf/events/power_manager_event.c") /*=0xf1885*/, 0x16u);
+        assert_post_action(((unsigned long)"WEST_TOPDIR/nrf/subsys/caf/events/power_manager_event.c") /*=0xf1885*/, 0x16u);
     }
     if (event->operation < -1) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f18ff) /*=0xf18ff*/, ((unsigned long)&rodata_f1885) /*=0xf1885*/, 0x17u);
-        assert_post_action(((unsigned long)&rodata_f1885) /*=0xf1885*/, 0x17u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"lvl >= POWER_MANAGER_LEVEL_ALIVE") /*=0xf18ff*/, ((unsigned long)"WEST_TOPDIR/nrf/subsys/caf/events/power_manager_event.c") /*=0xf1885*/, 0x17u);
+        assert_post_action(((unsigned long)"WEST_TOPDIR/nrf/subsys/caf/events/power_manager_event.c") /*=0xf1885*/, 0x17u);
     }
 
     static const uintptr_t operation_names[3] = {
@@ -69,7 +69,7 @@ void power_manager_restrict_event_log(const indexed_event *event)
     const uintptr_t *values = (const uintptr_t *)((unsigned long)&rodata_faa2c) /*=0xfaa2c*/;
     dispatch_record record = {
         .kind = 0x03000005u,
-        .label = ((unsigned long)&rodata_f1920) /*=0xf1920*/,
+        .label = ((unsigned long)"e:%s module \"%s\" restricts to %s") /*=0xf1920*/,
         .owner_value = *event->owner,
         .indexed_value = values[event->index],
         .operation_name = operation_name,

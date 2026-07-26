@@ -14,13 +14,13 @@
  *   unschedule_locked                        <= FUN_0008656a @ 0x0008656a
  *   cancel_async_locked                      <= FUN_00086596 @ 0x00086596
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
- *   rodata_f3d75                             @ 0x000f3d75
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
+ *   rodata_f3d75                             @ 0x000f3d75   [INLINED -- G6 literal batch]
  *   rodata_f820f                             @ 0x000f820f
  *   rodata_f8291                             @ 0x000f8291
  *   rodata_f82df                             @ 0x000f82df
@@ -35,15 +35,15 @@ extern void unschedule_locked(void*); extern void cancel_async_locked(void*); ex
 extern void printk(uint32_t,...); extern void assert_post_action(uint32_t,uint32_t);
 bool k_work_cancel_delayable_sync(uint8_t *obj,uint8_t *request)
 {
-    if (!obj) { printk(0x99cbd,0xf82df,0xf820f,0x411); assert_post_action(0xf820f,0x411); }
-    if (!request) { printk(0x99cbd,0xf8291,0xf820f,0x412); assert_post_action(0xf820f,0x412); }
-    if (k_is_in_isr()) { printk(0x99cbd,0xf3d75,0xf820f,0x413); assert_post_action(0xf820f,0x413); }
+    if (!obj) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0xf82df,0xf820f,0x411); assert_post_action(0xf820f,0x411); }
+    if (!request) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0xf8291,0xf820f,0x412); assert_post_action(0xf820f,0x412); }
+    if (k_is_in_isr()) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"!k_is_in_isr()"),0xf820f,0x413); assert_post_action(0xf820f,0x413); }
     uint32_t bp=__get_BASEPRI(); __set_BASEPRI_MAX(0x20); __ISB();
-    if (!z_spin_lock_valid(0x2000b480)) { printk(0x99cbd,0xf0920,0xf08c7,0x72); printk(0xf0935,0x2000b480); assert_post_action(0xf08c7,0x72); }
+    if (!z_spin_lock_valid(0x2000b480)) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_lock_valid(l)"),0xf08c7,0x72); printk(((unsigned long)"\tInvalid spinlock %p\n"),0x2000b480); assert_post_action(0xf08c7,0x72); }
     z_spin_lock_set_owner(0x2000b480); bool active=(*(uint32_t *)(obj+0xc)&0xf)!=0; int notify=0;
     if (active) { unschedule_locked(obj); cancel_async_locked(obj); notify=cancel_sync_locked(obj,request); }
     uint64_t unlock=z_spin_unlock_valid(0x2000b480);
-    if (!(uint32_t)unlock) { printk(0x99cbd,0xf08f4,0xf08c7,0xf0); printk(0xf090b,0x2000b480); assert_post_action(0xf08c7,0xf0); }
+    if (!(uint32_t)unlock) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_unlock_valid(l)"),0xf08c7,0xf0); printk(((unsigned long)"\tNot my spinlock %p\n"),0x2000b480); assert_post_action(0xf08c7,0xf0); }
     __set_BASEPRI(bp); __ISB();
     if (notify) z_impl_k_sem_take(request+8,(uint32_t)(unlock>>32),UINT32_MAX,UINT32_MAX);
     return active;

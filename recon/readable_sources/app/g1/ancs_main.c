@@ -8,17 +8,17 @@
  *   k_msleep_ticks32768_d                    <= FUN_0007c0a8 @ 0x0007c0a8
  * address symbols (name @ address):
  *   ADDR_check_bonded_addr_THUMB             @ 0x000183e5
- *   rodata_9af3b                             @ 0x0009af3b
- *   rodata_9af75                             @ 0x0009af75
- *   rodata_9afa1                             @ 0x0009afa1
- *   rodata_9afc3                             @ 0x0009afc3
- *   rodata_9afed                             @ 0x0009afed
- *   rodata_9b019                             @ 0x0009b019
- *   rodata_9b04b                             @ 0x0009b04b
- *   rodata_9b060                             @ 0x0009b060
- *   rodata_9b089                             @ 0x0009b089
- *   rodata_9b0ae                             @ 0x0009b0ae
- *   rodata_9b135                             @ 0x0009b135
+ *   rodata_9af3b                             @ 0x0009af3b   [INLINED -- G6 literal batch]
+ *   rodata_9af75                             @ 0x0009af75   [INLINED -- G6 literal batch]
+ *   rodata_9afa1                             @ 0x0009afa1   [INLINED -- G6 literal batch]
+ *   rodata_9afc3                             @ 0x0009afc3   [INLINED -- G6 literal batch]
+ *   rodata_9afed                             @ 0x0009afed   [INLINED -- G6 literal batch]
+ *   rodata_9b019                             @ 0x0009b019   [INLINED -- G6 literal batch]
+ *   rodata_9b04b                             @ 0x0009b04b   [INLINED -- G6 literal batch]
+ *   rodata_9b060                             @ 0x0009b060   [INLINED -- G6 literal batch]
+ *   rodata_9b089                             @ 0x0009b089   [INLINED -- G6 literal batch]
+ *   rodata_9b0ae                             @ 0x0009b0ae   [INLINED -- G6 literal batch]
+ *   rodata_9b135                             @ 0x0009b135   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_20002320                               @ 0x20002320
  *   g_20002328                               @ 0x20002328
@@ -66,17 +66,17 @@ extern int ancs_notify_sync_init(void);
 #define CHECK_BONDED_ADDR_CB      ((const void *)ADDR_check_bonded_addr_THUMB /*=0x183e5*/) /* check_bonded_addr + Thumb bit */
 #define ADVERTISING_KIND          ((const char *)((unsigned long)&g_2000ff87) /*=0x2000ff87*/)
 
-#define STR_ANCS_START            ((const char *)((unsigned long)&rodata_9af3b) /*=0x9af3b*/)
-#define STR_ANCS_MAIN             ((const char *)((unsigned long)&rodata_9b135) /*=0x9b135*/)
-#define STR_BT_INIT_FAILED        ((const char *)((unsigned long)&rodata_9af75) /*=0x9af75*/)
-#define STR_ANCS_INIT_FAILED      ((const char *)((unsigned long)&rodata_9afa1) /*=0x9afa1*/)
-#define STR_INIT_REBOOT           ((const char *)((unsigned long)&rodata_9b089) /*=0x9b089*/)
-#define STR_REBOOT_REASON         ((const char *)((unsigned long)&rodata_9b0ae) /*=0x9b0ae*/)
-#define STR_DISCOVERY_INIT_FAILED ((const char *)((unsigned long)&rodata_9afc3) /*=0x9afc3*/)
-#define STR_AUTH_CB_FAILED        ((const char *)((unsigned long)&rodata_9afed) /*=0x9afed*/)
-#define STR_AUTH_INFO_FAILED      ((const char *)((unsigned long)&rodata_9b019) /*=0x9b019*/)
-#define STR_NOTIFY_INIT_FAILED    ((const char *)((unsigned long)&rodata_9b04b) /*=0x9b04b*/)
-#define STR_ADVERTISING_FAILED    ((const char *)((unsigned long)&rodata_9b060) /*=0x9b060*/)
+#define STR_ANCS_START            ((const char *)((unsigned long)"%s(): Starting Apple Notification Center Service client\n\n") /*=0x9af3b*/)
+#define STR_ANCS_MAIN             ((const char *)((unsigned long)"ancs_main") /*=0x9b135*/)
+#define STR_BT_INIT_FAILED        ((const char *)((unsigned long)"BLE init failed (err %d) bt_retry_count %d\n") /*=0x9af75*/)
+#define STR_ANCS_INIT_FAILED      ((const char *)((unsigned long)"ANCS client init failed (err %d)\n") /*=0x9afa1*/)
+#define STR_INIT_REBOOT           ((const char *)((unsigned long)"ancs or ncs init failure, reboot it\n") /*=0x9b089*/)
+#define STR_REBOOT_REASON         ((const char *)((unsigned long)"%s(): reboot because ancs start failed\r\n\n") /*=0x9b0ae*/)
+#define STR_DISCOVERY_INIT_FAILED ((const char *)((unsigned long)"GATT Service client init failed (err %d)\n") /*=0x9afc3*/)
+#define STR_AUTH_CB_FAILED        ((const char *)((unsigned long)"Failed to register authorization callbacks\n") /*=0x9afed*/)
+#define STR_AUTH_INFO_FAILED      ((const char *)((unsigned long)"Failed to register authorization info callbacks.\n") /*=0x9b019*/)
+#define STR_NOTIFY_INIT_FAILED    ((const char *)((unsigned long)"Failed to init nus.\n") /*=0x9b04b*/)
+#define STR_ADVERTISING_FAILED    ((const char *)((unsigned long)"Advertising %s failed to start (err %d)\n") /*=0x9b060*/)
 
 struct device_info_view {
     uint8_t opaque[0x1058];

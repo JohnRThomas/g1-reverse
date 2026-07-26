@@ -12,7 +12,7 @@
  *   posix_stub_zero                          <= FUN_00086418 @ 0x00086418
  * address symbols (name @ address):
  *   rodata_88258                             @ 0x00088258
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_ef596                             @ 0x000ef596
  *   rodata_f7c9c                             @ 0x000f7c9c
  *   rodata_f7cc4                             @ 0x000f7cc4
@@ -92,7 +92,7 @@ void z_fatal_error(uint32_t event, int context)
 
   fatal_log_and_reset(event, context);
   if (event == 4) {
-    printk(0x00099cbd, 0x000f7d1f, 0x000f7cfd, 0x93);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f7d1f, 0x000f7cfd, 0x93);
     printk(0x000f7d3c);
     assert_post_action(0x000f7cfd, 0x93);
   }

@@ -9,7 +9,7 @@
  *   k_work_submit_to_queue                   <= FUN_000865fc @ 0x000865fc
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
- *   rodata_f2ddb                             @ 0x000f2ddb
+ *   rodata_f2ddb                             @ 0x000f2ddb   [INLINED -- G6 literal batch]
  *   g_bt_hci_recv_fifo                       @ 0x20002144
  *   g_bt_hci_rx_work                         @ 0x20002980
  *   bt_workqueue                             @ 0x20005f08
@@ -29,7 +29,7 @@ void bt_hci_rx_work_submit(unsigned int param_1, unsigned int param_2, unsigned 
     net_buf_slist_put(((unsigned long)&g_bt_hci_recv_fifo) /*=0x20002144*/, param_1);
     iStack_18 = k_work_submit_to_queue(((unsigned long)&bt_workqueue) /*=0x20005f08*/, ((unsigned long)&g_bt_hci_rx_work) /*=0x20002980*/);
     if (iStack_18 < 0) {
-        local_1c = ((unsigned long)&rodata_f2ddb) /*=0xf2ddb*/;
+        local_1c = ((unsigned long)"Could not submit rx_work: %d") /*=0xf2ddb*/;
         local_20 = 3;
         bt_log_forward_3arg(((unsigned long)&rodata_88138) /*=0x88138*/, 0x1840, &local_20);
     }

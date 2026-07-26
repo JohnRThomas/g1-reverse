@@ -8,9 +8,9 @@
  *   revalidate_whitelist_json                <= FUN_000355b4 @ 0x000355b4
  *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  * address symbols (name @ address):
- *   rodata_a896c                             @ 0x000a896c
- *   rodata_a8994                             @ 0x000a8994
- *   rodata_a8ab7                             @ 0x000a8ab7
+ *   rodata_a896c                             @ 0x000a896c   [INLINED -- G6 literal batch]
+ *   rodata_a8994                             @ 0x000a8994   [INLINED -- G6 literal batch]
+ *   rodata_a8ab7                             @ 0x000a8ab7   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_app_whitelist_buffer                   @ 0x2001a22c
  */
@@ -33,14 +33,14 @@ int store_whitelist(void)
         }
         k_sleep(0xa4UL, 0UL);
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            log_message(((unsigned long)&rodata_a896c) /*=0xa896c*/);
+            log_message(((unsigned long)"write to flash failed, should retry ! \n") /*=0xa896c*/);
         else
             debug_print(0);
         cVar5 = cVar5 - 1;
     } while (cVar5 != 0);
     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-        log_message(((unsigned long)&rodata_a8994) /*=0xa8994*/, ((unsigned long)&rodata_a8ab7) /*=0xa8ab7*/, 0x24UL, iVar4);
+        log_message(((unsigned long)"[%s-%d] flash_settings_write_and_verify ret is %d \n") /*=0xa8994*/, ((unsigned long)"store_whitelist") /*=0xa8ab7*/, 0x24UL, iVar4);
     else
-        debug_print(((unsigned long)&rodata_a8994) /*=0xa8994*/, ((unsigned long)&rodata_a8ab7) /*=0xa8ab7*/, 0x24UL, iVar4);
+        debug_print(((unsigned long)"[%s-%d] flash_settings_write_and_verify ret is %d \n") /*=0xa8994*/, ((unsigned long)"store_whitelist") /*=0xa8ab7*/, 0x24UL, iVar4);
     return iVar4;
 }

@@ -8,7 +8,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f4240                             @ 0x000f4240
  *   rodata_f6df0                             @ 0x000f6df0
  *   rodata_f7a30                             @ 0x000f7a30
@@ -61,7 +61,7 @@ void nrfx_spim_configure(int *param_1, uint32_t *param_2)
   }
   goto SWITCH_DONE;
 FAIL:
-  printk(0x00099cbdUL,0x000f7a30UL,0x000f6df0UL,0x15c);
+  printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x000f7a30UL,0x000f6df0UL,0x15c);
   assert_post_action(0x000f6df0UL,0x15c);
   __builtin_unreachable();
 SWITCH_DONE:;

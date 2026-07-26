@@ -8,11 +8,11 @@
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  * address symbols (name @ address):
  *   rodata_87bf0                             @ 0x00087bf0
- *   rodata_9e9bf                             @ 0x0009e9bf
+ *   rodata_9e9bf                             @ 0x0009e9bf   [INLINED -- G6 literal batch]
  *   rodata_9e9ea                             @ 0x0009e9ea
  *   rodata_9ea0a                             @ 0x0009ea0a
- *   rodata_9ea58                             @ 0x0009ea58
- *   rodata_9ed09                             @ 0x0009ed09
+ *   rodata_9ea58                             @ 0x0009ea58   [INLINED -- G6 literal batch]
+ *   rodata_9ed09                             @ 0x0009ed09   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ui_mode_flag                           @ 0x20018462
@@ -39,10 +39,10 @@ unsigned char getDashboardStartUpModeInfofromFlash(unsigned int param_1, unsigne
 
     if (2 < *piVar1) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_9e9bf) /*=0x9e9bf*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, param_3,
+            log_message(((unsigned long)"%s(): read setting flash data to ram...\r\n\n") /*=0x9e9bf*/, ((unsigned long)"getDashboardStartUpModeInfofromFlash") /*=0x9ed09*/, param_3,
                         *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
         } else {
-            debug_print(((unsigned long)&rodata_9e9bf) /*=0x9e9bf*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, param_3,
+            debug_print(((unsigned long)"%s(): read setting flash data to ram...\r\n\n") /*=0x9e9bf*/, ((unsigned long)"getDashboardStartUpModeInfofromFlash") /*=0x9ed09*/, param_3,
                          *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
         }
     }
@@ -51,10 +51,10 @@ unsigned char getDashboardStartUpModeInfofromFlash(unsigned int param_1, unsigne
     if (iVar4 == 0) {
         if (0 < *piVar1) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_9e9ea) /*=0x9e9ea*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, *puVar2,
+                log_message(((unsigned long)&rodata_9e9ea) /*=0x9e9ea*/, ((unsigned long)"getDashboardStartUpModeInfofromFlash") /*=0x9ed09*/, *puVar2,
                             *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
             } else {
-                debug_print(((unsigned long)&rodata_9e9ea) /*=0x9e9ea*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, *puVar2,
+                debug_print(((unsigned long)&rodata_9e9ea) /*=0x9e9ea*/, ((unsigned long)"getDashboardStartUpModeInfofromFlash") /*=0x9ed09*/, *puVar2,
                              *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
             }
         }
@@ -77,10 +77,10 @@ unsigned char getDashboardStartUpModeInfofromFlash(unsigned int param_1, unsigne
             }
             if (0 < iVar7) {
                 if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                    log_message(((unsigned long)&rodata_9ea58) /*=0x9ea58*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, (unsigned int)*(unsigned char*)(intptr_t)(iVar4 + 2),
+                    log_message(((unsigned long)"%s(): dashboard startup mode = %d\n") /*=0x9ea58*/, ((unsigned long)"getDashboardStartUpModeInfofromFlash") /*=0x9ed09*/, (unsigned int)*(unsigned char*)(intptr_t)(iVar4 + 2),
                                 *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
                 } else {
-                    debug_print(((unsigned long)&rodata_9ea58) /*=0x9ea58*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, (unsigned int)*(unsigned char*)(intptr_t)(iVar4 + 2),
+                    debug_print(((unsigned long)"%s(): dashboard startup mode = %d\n") /*=0x9ea58*/, ((unsigned long)"getDashboardStartUpModeInfofromFlash") /*=0x9ed09*/, (unsigned int)*(unsigned char*)(intptr_t)(iVar4 + 2),
                                  *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
                 }
             }
@@ -88,10 +88,10 @@ unsigned char getDashboardStartUpModeInfofromFlash(unsigned int param_1, unsigne
         } else {
             if (0 < iVar7) {
                 if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                    log_message(((unsigned long)&rodata_9ea0a) /*=0x9ea0a*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, 0x13e000UL,
+                    log_message(((unsigned long)&rodata_9ea0a) /*=0x9ea0a*/, ((unsigned long)"getDashboardStartUpModeInfofromFlash") /*=0x9ed09*/, 0x13e000UL,
                                 *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
                 } else {
-                    debug_print(((unsigned long)&rodata_9ea0a) /*=0x9ea0a*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, 0x13e000UL,
+                    debug_print(((unsigned long)&rodata_9ea0a) /*=0x9ea0a*/, ((unsigned long)"getDashboardStartUpModeInfofromFlash") /*=0x9ed09*/, 0x13e000UL,
                                  *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
                 }
             }

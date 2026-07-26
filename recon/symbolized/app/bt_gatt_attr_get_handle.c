@@ -9,8 +9,8 @@
  * address symbols (name @ address):
  *   rodata_88058                             @ 0x00088058
  *   rodata_88070                             @ 0x00088070
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  *   rodata_f46b8                             @ 0x000f46b8
  *   rodata_f49a5                             @ 0x000f49a5
  */
@@ -25,8 +25,8 @@ unsigned int bt_gatt_attr_get_handle(unsigned int param_1){
     puVar2=(volatile unsigned int*)((unsigned long)&rodata_88058) /*=0x88058*/; uVar4=1;
     while(1){
       if((volatile unsigned int*)((unsigned long)&rodata_88070) /*=0x88070*/ < puVar2){
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f49a5) /*=0xf49a5*/,((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x713);
-        printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f49a5) /*=0xf49a5*/,((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x713);
+        printk(((unsigned long)"\tunexpected list end location\n") /*=0xf0d20*/);
         assert_post_action(((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x713);
       }
       if((volatile unsigned int*)((unsigned long)&rodata_88070) /*=0x88070*/ <= puVar2) break;

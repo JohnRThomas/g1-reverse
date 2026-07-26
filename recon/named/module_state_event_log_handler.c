@@ -8,13 +8,13 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
  *   rodata_880f0                             @ 0x000880f0
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_9a1dd                             @ 0x0009a1dd
- *   rodata_f176a                             @ 0x000f176a
- *   rodata_f17a1                             @ 0x000f17a1
- *   rodata_f17c3                             @ 0x000f17c3
- *   rodata_f17eb                             @ 0x000f17eb
- *   rodata_f1823                             @ 0x000f1823
+ *   rodata_f176a                             @ 0x000f176a   [INLINED -- G6 literal batch]
+ *   rodata_f17a1                             @ 0x000f17a1   [INLINED -- G6 literal batch]
+ *   rodata_f17c3                             @ 0x000f17c3   [INLINED -- G6 literal batch]
+ *   rodata_f17eb                             @ 0x000f17eb   [INLINED -- G6 literal batch]
+ *   rodata_f1823                             @ 0x000f1823   [INLINED -- G6 literal batch]
  *   rodata_fa9b4                             @ 0x000fa9b4
  */
 /* Full reconstruction of FUN_0004f860 @ 0x4f860 (204 bytes). */
@@ -49,7 +49,7 @@ void module_state_event_log_handler(const work_event *event)
         __builtin_trap();
 
     if (event->operation >= 4) {
-        printk(0x00099cbdu, 0x000f17a1u, 0x000f176au, 0x1cu);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f17a1u, 0x000f176au, 0x1cu);
         assert_post_action(0x000f176au, 0x1cu);
     }
 
@@ -58,11 +58,11 @@ void module_state_event_log_handler(const work_event *event)
     };
     uintptr_t operation_name = operation_names[event->operation];
     if (operation_name == 0) {
-        printk(0x00099cbdu, 0x000f17c3u, 0x000f176au, 0x1du);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f17c3u, 0x000f176au, 0x1du);
         assert_post_action(0x000f176au, 0x1du);
     }
     if (event->value == 0) {
-        printk(0x00099cbdu, 0x0009a1ddu, 0x000f17ebu, 0x51u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x0009a1ddu, 0x000f17ebu, 0x51u);
         assert_post_action(0x000f17ebu, 0x51u);
     }
 

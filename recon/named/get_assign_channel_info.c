@@ -9,13 +9,13 @@
  *   get_assign_channel_info                  <= FUN_00031fd8 @ 0x00031fd8
  *   k_msleep_ticks32768_b                    <= FUN_0007d14a @ 0x0007d14a
  * address symbols (name @ address):
- *   rodata_a672f                             @ 0x000a672f
- *   rodata_a723e                             @ 0x000a723e
- *   rodata_a7266                             @ 0x000a7266
- *   rodata_a7293                             @ 0x000a7293
- *   rodata_a72ab                             @ 0x000a72ab
- *   rodata_a72c6                             @ 0x000a72c6
- *   rodata_a76da                             @ 0x000a76da
+ *   rodata_a672f                             @ 0x000a672f   [INLINED -- G6 literal batch]
+ *   rodata_a723e                             @ 0x000a723e   [INLINED -- G6 literal batch]
+ *   rodata_a7266                             @ 0x000a7266   [INLINED -- G6 literal batch]
+ *   rodata_a7293                             @ 0x000a7293   [INLINED -- G6 literal batch]
+ *   rodata_a72ab                             @ 0x000a72ab   [INLINED -- G6 literal batch]
+ *   rodata_a72c6                             @ 0x000a72c6   [INLINED -- G6 literal batch]
+ *   rodata_a76da                             @ 0x000a76da   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_test_mode_flag                         @ 0x20019ef3
@@ -36,13 +36,13 @@ unsigned get_assign_channel_info(int param_1, unsigned param_2, unsigned *param_
     unsigned char auStack_9c[8]; char local_94; char local_47; char local_46;
     piVar1 = (volatile int*)0x2000230c;
     if(3 < *piVar1){
-        if(*(volatile int*)0x20007554 == 0){ log_message(0x000a723e, 0x000a76da); }
-        else { debug_print(0x000a723e, 0x000a76da); }
+        if(*(volatile int*)0x20007554 == 0){ log_message(((unsigned long)"%s(): join in get_assign_channel_info\n\n"), ((unsigned long)"get_assign_channel_info")); }
+        else { debug_print(((unsigned long)"%s(): join in get_assign_channel_info\n\n"), ((unsigned long)"get_assign_channel_info")); }
     }
     if(param_3 == 0 || param_4 == 0){
         if(0 < *piVar1){
-            if(*(volatile int*)0x20007554 == 0){ log_message(0x000a7266, 0x000a76da); }
-            else { debug_print(0x000a7266, 0x000a76da); }
+            if(*(volatile int*)0x20007554 == 0){ log_message(((unsigned long)"%s(): get_assign_channel_info para is NULL\n\n"), ((unsigned long)"get_assign_channel_info")); }
+            else { debug_print(((unsigned long)"%s(): get_assign_channel_info para is NULL\n\n"), ((unsigned long)"get_assign_channel_info")); }
         }
         uVar3 = 0xffffffff;
     } else if(*(volatile char*)0x20019ef3 == 1){
@@ -57,26 +57,26 @@ unsigned get_assign_channel_info(int param_1, unsigned param_2, unsigned *param_
         if(3 < *piVar1){
             if(*(volatile int*)0x20007554 == 0){
                 iVar4 = get_device_info(0);
-                log_message(0x000a7293, 0x000a76da, (uint)*(byte*)(iVar4 + 2));
+                log_message(((unsigned long)"%s(): esb_channel: %d\n\n"), ((unsigned long)"get_assign_channel_info"), (uint)*(byte*)(iVar4 + 2));
             } else {
                 iVar4 = get_device_info(0);
-                debug_print(0x000a7293, 0x000a76da, *(unsigned char*)(iVar4 + 2));
+                debug_print(((unsigned long)"%s(): esb_channel: %d\n\n"), ((unsigned long)"get_assign_channel_info"), *(unsigned char*)(iVar4 + 2));
             }
             if(3 < *piVar1){
                 if(*piVar2 == 0){
                     iVar4 = get_device_info(0);
-                    log_message(0x000a72ab, 0x000a76da, (uint)*(byte*)(iVar4 + 3));
+                    log_message(((unsigned long)"%s(): esb master addr:%d\n\n"), ((unsigned long)"get_assign_channel_info"), (uint)*(byte*)(iVar4 + 3));
                 } else {
                     iVar4 = get_device_info(0);
-                    debug_print(0x000a72ab, 0x000a76da, *(unsigned char*)(iVar4 + 3));
+                    debug_print(((unsigned long)"%s(): esb master addr:%d\n\n"), ((unsigned long)"get_assign_channel_info"), *(unsigned char*)(iVar4 + 3));
                 }
                 if(3 < *piVar1){
                     if(*piVar2 == 0){
                         iVar4 = get_device_info(0);
-                        log_message(0x000a72c6, 0x000a76da, (uint)*(byte*)(iVar4 + 4));
+                        log_message(((unsigned long)"%s(): esb slave addr: %d\n\n"), ((unsigned long)"get_assign_channel_info"), (uint)*(byte*)(iVar4 + 4));
                     } else {
                         iVar4 = get_device_info(0);
-                        debug_print(0x000a72c6, 0x000a76da, *(unsigned char*)(iVar4 + 4));
+                        debug_print(((unsigned long)"%s(): esb slave addr: %d\n\n"), ((unsigned long)"get_assign_channel_info"), *(unsigned char*)(iVar4 + 4));
                     }
                 }
             }
@@ -102,7 +102,7 @@ LAB_00032102:
         uVar3 = 0;
         *param_4 = 5;
     } else {
-        log_message(0x000a672f);
+        log_message(((unsigned long)"warning: not test mode,disable setting\n"));
         uVar3 = 0xfffffffe;
     }
     return uVar3;

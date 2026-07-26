@@ -3,12 +3,12 @@
  * public-name: clear_event_registrations
  * durable-map: recon/catalogs/function_names_app.json
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f7a30                             @ 0x000f7a30
  *   rodata_f871d                             @ 0x000f871d
  *   rodata_f875b                             @ 0x000f875b
@@ -45,14 +45,14 @@ enum {
 
 #define POLL_EVENT_TYPE(event) (((event)->flags >> 8) & 0x3fu)
 #define POLL_LOCK ((void *)((unsigned long)&poll_spinlock) /*=0x2000b4a0*/)
-#define ASSERT_FAILURE_FORMAT ((const char *)((unsigned long)&rodata_99cbd) /*=0x99cbd*/)
+#define ASSERT_FAILURE_FORMAT ((const char *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/)
 #define SPINLOCK_SOURCE_FILE ((const char *)((unsigned long)&rodata_f08c7) /*=0xf08c7*/)
 #define POLL_SOURCE_FILE ((const char *)((unsigned long)&rodata_f871d) /*=0xf871d*/)
 #define ASSERT_ZERO_EXPRESSION ((const char *)((unsigned long)&rodata_f7a30) /*=0xf7a30*/)
-#define ASSERT_SPIN_LOCK_VALID ((const char *)((unsigned long)&rodata_f0920) /*=0xf0920*/)
-#define ASSERT_SPIN_UNLOCK_VALID ((const char *)((unsigned long)&rodata_f08f4) /*=0xf08f4*/)
-#define INVALID_SPIN_LOCK_FORMAT ((const char *)((unsigned long)&rodata_f0935) /*=0xf0935*/)
-#define INVALID_SPIN_UNLOCK_FORMAT ((const char *)((unsigned long)&rodata_f090b) /*=0xf090b*/)
+#define ASSERT_SPIN_LOCK_VALID ((const char *)((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/)
+#define ASSERT_SPIN_UNLOCK_VALID ((const char *)((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/)
+#define INVALID_SPIN_LOCK_FORMAT ((const char *)((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/)
+#define INVALID_SPIN_UNLOCK_FORMAT ((const char *)((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/)
 #define ASSERT_SEMAPHORE_PRESENT ((const char *)((unsigned long)&rodata_f875b) /*=0xf875b*/)
 #define INVALID_SEMAPHORE_FORMAT ((const char *)((unsigned long)&rodata_f8775) /*=0xf8775*/)
 #define ASSERT_QUEUE_PRESENT ((const char *)((unsigned long)&rodata_f878a) /*=0xf878a*/)

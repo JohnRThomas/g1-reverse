@@ -12,12 +12,12 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f0692                             @ 0x000f0692
- *   rodata_f06b3                             @ 0x000f06b3
- *   rodata_f06c4                             @ 0x000f06c4
- *   rodata_f06fc                             @ 0x000f06fc
- *   rodata_f0722                             @ 0x000f0722
+ *   rodata_f06b3                             @ 0x000f06b3   [INLINED -- G6 literal batch]
+ *   rodata_f06c4                             @ 0x000f06c4   [INLINED -- G6 literal batch]
+ *   rodata_f06fc                             @ 0x000f06fc   [INLINED -- G6 literal batch]
+ *   rodata_f0722                             @ 0x000f0722   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction of FUN_0004b214 @ 0x4b214 (130-byte extent). */
 #include <stdint.h>
@@ -40,17 +40,17 @@ void sys_heap_free(const uint32_t *owner, uint32_t length,
     uint32_t object = *owner;
     uint32_t start = mem_to_chunkid(object, length, 1);
     if ((chunk_field(object, start, 1) & 1u) == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f06b3) /*=0xf06b3*/, ((unsigned long)&rodata_f0692) /*=0xf0692*/, 0xafu,
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"chunk_used(h, c)") /*=0xf06b3*/, ((unsigned long)&rodata_f0692) /*=0xf0692*/, 0xafu,
                      context);
-        printk(((unsigned long)&rodata_f06c4) /*=0xf06c4*/, length);
+        printk(((unsigned long)"\tunexpected heap state (double-free\?) for memory at %p\n") /*=0xf06c4*/, length);
         assert_post_action(((unsigned long)&rodata_f0692) /*=0xf0692*/, 0xafu);
     }
 
     uint32_t end = start + chunk_size(object, start);
     if (start != end - chunk_field(object, end, 0)) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f06fc) /*=0xf06fc*/, ((unsigned long)&rodata_f0692) /*=0xf0692*/, 0xb7u,
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"left_chunk(h, right_chunk(h, c)) == c") /*=0xf06fc*/, ((unsigned long)&rodata_f0692) /*=0xf0692*/, 0xb7u,
                      context);
-        printk(((unsigned long)&rodata_f0722) /*=0xf0722*/, length);
+        printk(((unsigned long)"\tcorrupted heap bounds (buffer overflow\?) for memory at %p\n") /*=0xf0722*/, length);
         assert_post_action(((unsigned long)&rodata_f0692) /*=0xf0692*/, 0xb7u);
     }
 

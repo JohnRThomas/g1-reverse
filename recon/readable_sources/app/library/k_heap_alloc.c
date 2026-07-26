@@ -14,12 +14,12 @@
  *   sys_timepoint_calc                       <= FUN_0008669c @ 0x0008669c
  *   sys_timepoint_timeout                    <= FUN_000866e4 @ 0x000866e4
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f53ff                             @ 0x000f53ff
  *   rodata_f7dbe                             @ 0x000f7dbe
  *   rodata_f7df6                             @ 0x000f7df6
@@ -53,8 +53,8 @@ int k_heap_alloc(int param_1, unsigned param_2, unsigned param_3, unsigned param
   uVar8 = gp(); spm(0x20); ib();
   int iVar3 = z_spin_lock_valid(iVar7);
   if(iVar3 == 0){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
-    printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,iVar7);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
+    printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/,iVar7);
     uVar5 = 0x72; uVar8 = ((unsigned long)&rodata_f08c7) /*=0xf08c7*/;
     goto EC;
   }
@@ -71,8 +71,8 @@ int k_heap_alloc(int param_1, unsigned param_2, unsigned param_3, unsigned param
       uVar8 = gp(); spm(0x20); ib();
       iVar3 = z_spin_lock_valid(iVar7);
       if(iVar3 == 0){
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
-        printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,iVar7);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
+        printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/,iVar7);
         uVar5 = 0x72; uVar8 = ((unsigned long)&rodata_f08c7) /*=0xf08c7*/;
         goto EC;
       }
@@ -83,11 +83,11 @@ int k_heap_alloc(int param_1, unsigned param_2, unsigned param_3, unsigned param
       sp(uVar8); ib();
       return (int)uVar9;
     }
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
-    printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,iVar7);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
+    printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/,iVar7);
     uVar5 = 0xf0; uVar8 = ((unsigned long)&rodata_f08c7) /*=0xf08c7*/;
   } else {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f7df6) /*=0xf7df6*/,((unsigned long)&rodata_f7dbe) /*=0xf7dbe*/,0x4a);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f7df6) /*=0xf7df6*/,((unsigned long)&rodata_f7dbe) /*=0xf7dbe*/,0x4a);
     printk(((unsigned long)&rodata_f53ff) /*=0xf53ff*/);
     uVar5 = 0x4a; uVar8 = ((unsigned long)&rodata_f7dbe) /*=0xf7dbe*/;
   }

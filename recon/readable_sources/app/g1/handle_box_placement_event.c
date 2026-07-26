@@ -31,7 +31,7 @@ extern int process_box_event(volatile void*, volatile void*, int, volatile void*
 extern int periodic_check_run(void);
 extern int is_battery_critical(void);
 extern int send_box_event_ipc(uint32_t, void*);
-extern int ipc_send_byte_cmd2002(uint32_t);
+extern int ipc_send_byte_cmd2002(uint32_t, uint32_t);
 
 uint32_t handle_box_placement_event(uint32_t param_1, uint32_t param_2) {
     volatile int *piVar1 = (volatile int*)((unsigned long)&g_box_mailbox_synced_flag) /*=0x200079fc*/;
@@ -48,7 +48,7 @@ uint32_t handle_box_placement_event(uint32_t param_1, uint32_t param_2) {
         iVar4 = send_box_event_ipc(*g_a44, (void*)&local7);
         if (iVar4 == 0) {
             local7 = local7 & 0xfe;
-            ipc_send_byte_cmd2002(*g_a44);
+            ipc_send_byte_cmd2002(*g_a44, local7);
         }
         st25dv_write_control_and_ack(0xff);
         iVar4 = st25dv_mailbox_set_enabled(0);

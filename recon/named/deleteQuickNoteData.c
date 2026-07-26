@@ -6,9 +6,9 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
- *   rodata_9edc2                             @ 0x0009edc2
- *   rodata_9ee23                             @ 0x0009ee23
- *   rodata_9f080                             @ 0x0009f080
+ *   rodata_9edc2                             @ 0x0009edc2   [INLINED -- G6 literal batch]
+ *   rodata_9ee23                             @ 0x0009ee23   [INLINED -- G6 literal batch]
+ *   rodata_9f080                             @ 0x0009f080   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_quicknote_flash_msgq                   @ 0x20003960
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -43,9 +43,9 @@ unsigned int deleteQuickNoteData(unsigned int param_1, unsigned int param_2, uns
     } else {
         if (0 < *(volatile int*)0x2000230cUL) {
             if (*(volatile int*)0x20007554UL == 0)
-                log_message(0x9edc2UL, 0x9f080UL);
+                log_message(((unsigned long)"%s(): quicknote flash store queue fill failed\r\n\n"), 0x9f080UL);
             else
-                debug_print(0x9edc2UL, 0x9f080UL);
+                debug_print(((unsigned long)"%s(): quicknote flash store queue fill failed\r\n\n"), 0x9f080UL);
         }
         uVar2 = 0xffffffffUL;
     }

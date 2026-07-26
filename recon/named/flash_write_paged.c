@@ -6,7 +6,7 @@
  *   flash_settings_write_and_verify          <= FUN_00022658 @ 0x00022658
  *   flash_write_paged                        <= FUN_000227d0 @ 0x000227d0
  * address symbols (name @ address):
- *   rodata_9e3db                             @ 0x0009e3db
+ *   rodata_9e3db                             @ 0x0009e3db   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  */
 /* Reconstructed FUN_000227d0 @ 0x227d0. */
@@ -26,9 +26,9 @@ int flash_write_paged(const uint8_t *source, uint8_t *destination,
     int total = 0;
 
     if (*(volatile int *)0x20007554u == 0)
-        log_message(0x0009e3db, byte_count);
+        log_message(((unsigned long)"size is %d\n"), byte_count);
     else
-        debug_print(0x0009e3db, byte_count);
+        debug_print(((unsigned long)"size is %d\n"), byte_count);
 
     while ((uint8_t)block < blocks) {
         int count = final_block <= (int)block ? final_count : 0x1000;

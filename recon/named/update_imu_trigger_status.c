@@ -5,9 +5,9 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
- *   rodata_a24a9                             @ 0x000a24a9
- *   rodata_a24c3                             @ 0x000a24c3
- *   rodata_a2530                             @ 0x000a2530
+ *   rodata_a24a9                             @ 0x000a24a9   [INLINED -- G6 literal batch]
+ *   rodata_a24c3                             @ 0x000a24c3   [INLINED -- G6 literal batch]
+ *   rodata_a2530                             @ 0x000a2530   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -27,18 +27,18 @@ unsigned int update_imu_trigger_status(unsigned int param_1, int param_2, int pa
         *(volatile int*)(param_2 + 0xee8) = param_3;
         if (2 < *(volatile int*)0x2000230cUL) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                log_message(0xa24a9, 0xa2530, param_1, param_3);
+                log_message(((unsigned long)"%s(): %s new status: %d\n\n"), ((unsigned long)"update_imu_trigger_status"), param_1, param_3);
             } else {
-                debug_print(0xa24a9, 0xa2530, param_1, param_3);
+                debug_print(((unsigned long)"%s(): %s new status: %d\n\n"), ((unsigned long)"update_imu_trigger_status"), param_1, param_3);
             }
         }
         if ((*(volatile unsigned char*)(param_2 + 0xfea) == 0xa) && (param_3 != 0) &&
             (*(volatile unsigned char*)(param_2 + 0xb0c) == 0)) {
             if (2 < *(volatile int*)0x2000230cUL) {
                 if (*(volatile unsigned int*)0x20007554UL == 0) {
-                    log_message(0xa24c3, 0xa2530, 0, 0);
+                    log_message(((unsigned long)"%s(): imu wakeup thd-> \n"), ((unsigned long)"update_imu_trigger_status"), 0, 0);
                 } else {
-                    debug_print(0xa24c3, 0xa2530, 0, 0);
+                    debug_print(((unsigned long)"%s(): imu wakeup thd-> \n"), ((unsigned long)"update_imu_trigger_status"), 0, 0);
                 }
             }
             *(volatile unsigned char*)(param_2 + 0xfe9) = 1;

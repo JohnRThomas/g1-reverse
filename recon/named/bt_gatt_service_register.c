@@ -17,14 +17,14 @@
  * address symbols (name @ address):
  *   rodata_825bb                             @ 0x000825bb
  *   rodata_88128                             @ 0x00088128
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f46b8                             @ 0x000f46b8
  *   rodata_f4a06                             @ 0x000f4a06
- *   rodata_f4a0a                             @ 0x000f4a0a
- *   rodata_f4a20                             @ 0x000f4a20
- *   rodata_f4a2b                             @ 0x000f4a2b
- *   rodata_f4a3b                             @ 0x000f4a3b
- *   rodata_f4a7d                             @ 0x000f4a7d
+ *   rodata_f4a0a                             @ 0x000f4a0a   [INLINED -- G6 literal batch]
+ *   rodata_f4a20                             @ 0x000f4a20   [INLINED -- G6 literal batch]
+ *   rodata_f4a2b                             @ 0x000f4a2b   [INLINED -- G6 literal batch]
+ *   rodata_f4a3b                             @ 0x000f4a3b   [INLINED -- G6 literal batch]
+ *   rodata_f4a7d                             @ 0x000f4a7d   [INLINED -- G6 literal batch]
  *   g_bt_gatt_flags                          @ 0x20006448
  *   gatt_service_init_guard                  @ 0x2000af04
  *   g_bt_gatt_dynamic_db                     @ 0x2000af08
@@ -67,21 +67,21 @@ struct uuid16_recovered { uint8_t type; uint8_t pad; uint16_t value; };
 int bt_gatt_service_register(struct gatt_service_recovered *service)
 {
     if (service == 0) {
-        printk((const char *)0x00099cbdU, (const char *)0x000f4a06U,
+        printk((const char *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (const char *)0x000f4a06U,
                      (const char *)0x000f46b8U, 0x670U);
-        printk((const char *)0x000f4a0aU);
+        printk((const char *)((unsigned long)"\tinvalid parameters\n\n"));
         assert_post_action((const char *)0x000f46b8U, 0x670U);
     }
     if (service->attrs == 0) {
-        printk((const char *)0x00099cbdU, (const char *)0x000f4a20U,
+        printk((const char *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (const char *)0x000f4a20U,
                      (const char *)0x000f46b8U, 0x671U);
-        printk((const char *)0x000f4a0aU);
+        printk((const char *)((unsigned long)"\tinvalid parameters\n\n"));
         assert_post_action((const char *)0x000f46b8U, 0x671U);
     }
     if (service->attr_count == 0) {
-        printk((const char *)0x00099cbdU, (const char *)0x000f4a2bU,
+        printk((const char *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (const char *)0x000f4a2bU,
                      (const char *)0x000f46b8U, 0x672U);
-        printk((const char *)0x000f4a0aU);
+        printk((const char *)((unsigned long)"\tinvalid parameters\n\n"));
         assert_post_action((const char *)0x000f46b8U, 0x672U);
     }
 

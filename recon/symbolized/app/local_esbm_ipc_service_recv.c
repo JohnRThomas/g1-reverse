@@ -31,7 +31,7 @@ extern void FUN_0007c010(void *object);          /* tail thunk -> k_sem_give */
 
 #define LOG_LEVEL   (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define LOG_SINK    (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define LOG_TAG     ((unsigned long)&rodata_99b6d) /*=0x99b6d*/
+#define LOG_TAG     ((unsigned long)"local_esbm_ipc_service_recv") /*=0x99b6d*/
 #define DEVICE_INFO (*(volatile uint8_t * volatile *)((unsigned long)&device_info) /*=0x200069fc*/)
 
 static uint32_t load_u32(const void *pointer)
@@ -119,9 +119,9 @@ int local_esbm_ipc_service_recv(uint8_t *context, const uint8_t *packet)
     case 6:
         if (LOG_LEVEL > 2) {
             if (LOG_SINK == 0)
-                log_message(((unsigned long)&rodata_99789) /*=0x99789*/, LOG_TAG);
+                log_message(((unsigned long)"%s(): received slave double click event\n") /*=0x99789*/, LOG_TAG);
             else
-                debug_print(((unsigned long)&rodata_99789) /*=0x99789*/, LOG_TAG);
+                debug_print(((unsigned long)"%s(): received slave double click event\n") /*=0x99789*/, LOG_TAG);
         }
         SlaveDoubleClickEventInject();
         return 0;
@@ -159,17 +159,17 @@ int local_esbm_ipc_service_recv(uint8_t *context, const uint8_t *packet)
     case 13:
         if (LOG_LEVEL > 2) {
             if (LOG_SINK == 0)
-                log_message(((unsigned long)&rodata_997b2) /*=0x997b2*/, LOG_TAG);
+                log_message(((unsigned long)"%s(): received SYNC_DISPLAY_FUNC_DATA\n") /*=0x997b2*/, LOG_TAG);
             else
-                debug_print(((unsigned long)&rodata_997b2) /*=0x997b2*/, LOG_TAG);
+                debug_print(((unsigned long)"%s(): received SYNC_DISPLAY_FUNC_DATA\n") /*=0x997b2*/, LOG_TAG);
         }
         if (context[0x6df] == 4) {
             if (LOG_LEVEL > 2) {
                 if (LOG_SINK == 0)
-                    log_message(((unsigned long)&rodata_997d9) /*=0x997d9*/, LOG_TAG,
+                    log_message(((unsigned long)"%s(): master sync onboarding action_cmd %d\n") /*=0x997d9*/, LOG_TAG,
                                 (uint32_t)context[0x6e0]);
                 else
-                    debug_print(((unsigned long)&rodata_997d9) /*=0x997d9*/, LOG_TAG,
+                    debug_print(((unsigned long)"%s(): master sync onboarding action_cmd %d\n") /*=0x997d9*/, LOG_TAG,
                                 (uint32_t)context[0x6e0]);
             }
             screen = *(uint8_t * volatile *)(DEVICE_INFO + 0x1014);
@@ -180,9 +180,9 @@ int local_esbm_ipc_service_recv(uint8_t *context, const uint8_t *packet)
             return 0;
         if (LOG_LEVEL > 2) {
             if (LOG_SINK == 0)
-                log_message(((unsigned long)&rodata_99805) /*=0x99805*/, LOG_TAG, (uint32_t)context[0x6e0]);
+                log_message(((unsigned long)"%s(): master sync not_disturb sub_step %d\n") /*=0x99805*/, LOG_TAG, (uint32_t)context[0x6e0]);
             else
-                debug_print(((unsigned long)&rodata_99805) /*=0x99805*/, LOG_TAG, (uint32_t)context[0x6e0]);
+                debug_print(((unsigned long)"%s(): master sync not_disturb sub_step %d\n") /*=0x99805*/, LOG_TAG, (uint32_t)context[0x6e0]);
         }
         device_info_set_mode(context[0x6e0]);
         return 0;

@@ -5,8 +5,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   k_msgq_get                               <= FUN_00072240 @ 0x00072240
  * address symbols (name @ address):
- *   rodata_a3f62                             @ 0x000a3f62
- *   rodata_a4908                             @ 0x000a4908
+ *   rodata_a3f62                             @ 0x000a3f62   [INLINED -- G6 literal batch]
+ *   rodata_a4908                             @ 0x000a4908   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_audio_msgq                             @ 0x20003890
  *   g_log_use_alt_sink                       @ 0x20007554

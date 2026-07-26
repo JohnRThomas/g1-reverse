@@ -12,8 +12,8 @@
  * address symbols (name @ address):
  *   rodata_ff41                              @ 0x0000ff41
  *   rodata_a1ce0                             @ 0x000a1ce0
- *   rodata_bbfee                             @ 0x000bbfee
- *   rodata_bc04c                             @ 0x000bc04c
+ *   rodata_bbfee                             @ 0x000bbfee   [INLINED -- G6 literal batch]
+ *   rodata_bc04c                             @ 0x000bc04c   [INLINED -- G6 literal batch]
  *   rodata_bc083                             @ 0x000bc083
  *   rodata_bc097                             @ 0x000bc097
  *   rodata_bc181                             @ 0x000bc181

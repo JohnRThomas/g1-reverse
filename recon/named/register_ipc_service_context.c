@@ -6,8 +6,8 @@
  * address symbols (name @ address):
  *   rodata_25ae9                             @ 0x00025ae9
  *   ADDR_global_ipc_service_send_THUMB       @ 0x00025b79
- *   rodata_9af2e                             @ 0x0009af2e
- *   rodata_9f6c6                             @ 0x0009f6c6
+ *   rodata_9af2e                             @ 0x0009af2e   [INLINED -- G6 literal batch]
+ *   rodata_9f6c6                             @ 0x0009f6c6   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ipc0_endpoint                          @ 0x20007a84
@@ -23,9 +23,9 @@ unsigned int register_ipc_service_context(int param_1,unsigned int param_2,unsig
     if(*(volatile int*)0x2000230cUL > 1){
         unsigned int sink=*(volatile unsigned int*)0x20007554UL;
         if(sink==0){
-            log_message(0x0009af2eUL,0x0009f6c6UL,param_3,sink,param_4);
+            log_message(((unsigned long)"%s(): exit\n\n"),0x0009f6c6UL,param_3,sink,param_4);
         } else {
-            debug_print(0x0009af2eUL,0x0009f6c6UL,param_3,sink,param_4);
+            debug_print(((unsigned long)"%s(): exit\n\n"),0x0009f6c6UL,param_3,sink,param_4);
         }
     }
     return 0;

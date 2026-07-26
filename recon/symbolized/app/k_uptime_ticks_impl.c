@@ -11,12 +11,12 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   g_curr_tick_lo                           @ 0x200069e0
  *   g_curr_tick_hi                           @ 0x200069e4
  *   g_timeout_list_spinlock                  @ 0x2000b498
@@ -33,8 +33,8 @@ unsigned long long k_uptime_ticks_impl(void){
   unsigned int uVar6=0;
   int iVar2=z_spin_lock_valid(((unsigned long)&g_timeout_list_spinlock) /*=0x2000b498*/);
   if(iVar2==0){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
-    printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,((unsigned long)&g_timeout_list_spinlock) /*=0x2000b498*/);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
+    printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/,((unsigned long)&g_timeout_list_spinlock) /*=0x2000b498*/);
     assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
   }
   z_spin_lock_set_owner(((unsigned long)&g_timeout_list_spinlock) /*=0x2000b498*/);
@@ -43,8 +43,8 @@ unsigned long long k_uptime_ticks_impl(void){
   unsigned int uVar5=*(volatile unsigned int*)((unsigned long)&g_curr_tick_hi) /*=0x200069e4*/;
   int iVar2b=z_spin_unlock_valid(((unsigned long)&g_timeout_list_spinlock) /*=0x2000b498*/);
   if(iVar2b==0){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
-    printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,((unsigned long)&g_timeout_list_spinlock) /*=0x2000b498*/);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
+    printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/,((unsigned long)&g_timeout_list_spinlock) /*=0x2000b498*/);
     assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
   }
   (void)uVar6;

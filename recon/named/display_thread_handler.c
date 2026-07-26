@@ -19,25 +19,25 @@
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
  *   rodata_7d86d                             @ 0x0007d86d
- *   rodata_efb2e                             @ 0x000efb2e
- *   rodata_efb50                             @ 0x000efb50
- *   rodata_efb7a                             @ 0x000efb7a
- *   rodata_efb9f                             @ 0x000efb9f
- *   rodata_efbb7                             @ 0x000efbb7
- *   rodata_efbe5                             @ 0x000efbe5
- *   rodata_efc00                             @ 0x000efc00
- *   rodata_efc2d                             @ 0x000efc2d
- *   rodata_efc62                             @ 0x000efc62
- *   rodata_efc92                             @ 0x000efc92
- *   rodata_efcdf                             @ 0x000efcdf
- *   rodata_efd03                             @ 0x000efd03
- *   rodata_efd2d                             @ 0x000efd2d
- *   rodata_efd6f                             @ 0x000efd6f
- *   rodata_efe74                             @ 0x000efe74
- *   rodata_efebc                             @ 0x000efebc
- *   rodata_eff70                             @ 0x000eff70
- *   rodata_effaf                             @ 0x000effaf
- *   rodata_f01aa                             @ 0x000f01aa
+ *   rodata_efb2e                             @ 0x000efb2e   [INLINED -- G6 literal batch]
+ *   rodata_efb50                             @ 0x000efb50   [INLINED -- G6 literal batch]
+ *   rodata_efb7a                             @ 0x000efb7a   [INLINED -- G6 literal batch]
+ *   rodata_efb9f                             @ 0x000efb9f   [INLINED -- G6 literal batch]
+ *   rodata_efbb7                             @ 0x000efbb7   [INLINED -- G6 literal batch]
+ *   rodata_efbe5                             @ 0x000efbe5   [INLINED -- G6 literal batch]
+ *   rodata_efc00                             @ 0x000efc00   [INLINED -- G6 literal batch]
+ *   rodata_efc2d                             @ 0x000efc2d   [INLINED -- G6 literal batch]
+ *   rodata_efc62                             @ 0x000efc62   [INLINED -- G6 literal batch]
+ *   rodata_efc92                             @ 0x000efc92   [INLINED -- G6 literal batch]
+ *   rodata_efcdf                             @ 0x000efcdf   [INLINED -- G6 literal batch]
+ *   rodata_efd03                             @ 0x000efd03   [INLINED -- G6 literal batch]
+ *   rodata_efd2d                             @ 0x000efd2d   [INLINED -- G6 literal batch]
+ *   rodata_efd6f                             @ 0x000efd6f   [INLINED -- G6 literal batch]
+ *   rodata_efe74                             @ 0x000efe74   [INLINED -- G6 literal batch]
+ *   rodata_efebc                             @ 0x000efebc   [INLINED -- G6 literal batch]
+ *   rodata_eff70                             @ 0x000eff70   [INLINED -- G6 literal batch]
+ *   rodata_effaf                             @ 0x000effaf   [INLINED -- G6 literal batch]
+ *   rodata_f01aa                             @ 0x000f01aa   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_dashboard_display_level                @ 0x20002544
  *   g_display_msgq                           @ 0x200038c4

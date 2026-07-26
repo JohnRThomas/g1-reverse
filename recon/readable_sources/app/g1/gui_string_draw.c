@@ -16,8 +16,8 @@
  *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
  *   fb_blit_rows_copy                        <= FUN_0007d53a @ 0x0007d53a
  * address symbols (name @ address):
- *   rodata_aac62                             @ 0x000aac62
- *   rodata_aac9f                             @ 0x000aac9f
+ *   rodata_aac62                             @ 0x000aac62   [INLINED -- G6 literal batch]
+ *   rodata_aac9f                             @ 0x000aac9f   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_gui_active_canvas                      @ 0x2000a034
@@ -51,9 +51,9 @@ int gui_string_draw(uint32_t font, const uint8_t *text, int32_t x, uint32_t y,
         if (*p < 0x20u) {
             if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
                 if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                    log_message(0x000aac83u, ((unsigned long)&rodata_aac9f) /*=0xaac9f*/);
+                    log_message(0x000aac83u, ((unsigned long)"gui_string_draw") /*=0xaac9f*/);
                 else
-                    debug_print(0x000aac83u, ((unsigned long)&rodata_aac9f) /*=0xaac9f*/);
+                    debug_print(0x000aac83u, ((unsigned long)"gui_string_draw") /*=0xaac9f*/);
             }
             continue;
         }
@@ -61,9 +61,9 @@ int gui_string_draw(uint32_t font, const uint8_t *text, int32_t x, uint32_t y,
         if (resource_manger_get(font, *p, &glyph_width, &glyph_height, &bitmap, 0) != 0 || bitmap == 0) {
             if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1) {
                 if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                    log_message(((unsigned long)&rodata_aac62) /*=0xaac62*/, ((unsigned long)&rodata_aac9f) /*=0xaac9f*/);
+                    log_message(((unsigned long)"%s(): find ascii postion failed\n") /*=0xaac62*/, ((unsigned long)"gui_string_draw") /*=0xaac9f*/);
                 else
-                    debug_print(((unsigned long)&rodata_aac62) /*=0xaac62*/, ((unsigned long)&rodata_aac9f) /*=0xaac9f*/);
+                    debug_print(((unsigned long)"%s(): find ascii postion failed\n") /*=0xaac62*/, ((unsigned long)"gui_string_draw") /*=0xaac9f*/);
             }
             continue;
         }

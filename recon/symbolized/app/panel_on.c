@@ -9,8 +9,8 @@
  *   opt3007_chip_init                        <= FUN_0002e67c @ 0x0002e67c
  *   panel_init                               <= FUN_00047538 @ 0x00047538
  * address symbols (name @ address):
- *   rodata_d723a                             @ 0x000d723a
- *   rodata_d72bb                             @ 0x000d72bb
+ *   rodata_d723a                             @ 0x000d723a   [INLINED -- G6 literal batch]
+ *   rodata_d72bb                             @ 0x000d72bb   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -27,7 +27,7 @@ int panel_on(int param_1){
   if(*(volatile int*)(param_1-0x48)==0){
     if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2){
       if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
-        log_message(((unsigned long)&rodata_d723a) /*=0xd723a*/, ((unsigned long)&rodata_d72bb) /*=0xd72bb*/);
+        log_message(((unsigned long)"%s(): panel_on enter!\n") /*=0xd723a*/, ((unsigned long)"panel_on") /*=0xd72bb*/);
       } else {
         debug_print();
       }

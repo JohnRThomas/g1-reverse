@@ -15,18 +15,18 @@
  * address symbols (name @ address):
  *   rodata_10000                             @ 0x00010000
  *   rodata_88258                             @ 0x00088258
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f1d11                             @ 0x000f1d11
- *   rodata_f1fa6                             @ 0x000f1fa6
- *   rodata_f1fd1                             @ 0x000f1fd1
- *   rodata_f1fe4                             @ 0x000f1fe4
- *   rodata_f2022                             @ 0x000f2022
- *   rodata_f2039                             @ 0x000f2039
- *   rodata_f205a                             @ 0x000f205a
- *   rodata_f2068                             @ 0x000f2068
+ *   rodata_f1fa6                             @ 0x000f1fa6   [INLINED -- G6 literal batch]
+ *   rodata_f1fd1                             @ 0x000f1fd1   [INLINED -- G6 literal batch]
+ *   rodata_f1fe4                             @ 0x000f1fe4   [INLINED -- G6 literal batch]
+ *   rodata_f2022                             @ 0x000f2022   [INLINED -- G6 literal batch]
+ *   rodata_f2039                             @ 0x000f2039   [INLINED -- G6 literal batch]
+ *   rodata_f205a                             @ 0x000f205a   [INLINED -- G6 literal batch]
+ *   rodata_f2068                             @ 0x000f2068   [INLINED -- G6 literal batch]
  *   rodata_f2087                             @ 0x000f2087
- *   rodata_f20a3                             @ 0x000f20a3
- *   rodata_f20c7                             @ 0x000f20c7
+ *   rodata_f20a3                             @ 0x000f20a3   [INLINED -- G6 literal batch]
+ *   rodata_f20c7                             @ 0x000f20c7   [INLINED -- G6 literal batch]
  *   rodata_f20f7                             @ 0x000f20f7
  *   rodata_f211b                             @ 0x000f211b
  */
@@ -111,7 +111,7 @@ void z_arm_fault(int first, int frame, uint32_t exc_return)
             break;
         }
         if ((int32_t)(scb[0x2c / 4] << 1) >= 0) {
-            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, UINT32_C(0x000f20a3),
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, UINT32_C(0x000f20a3),
                          UINT32_C(0x000f1d11), 0x32e);
             printk(UINT32_C(0x000f20c7));
             assert_post_action(UINT32_C(0x000f1d11), 0x32e);
@@ -136,7 +136,7 @@ void z_arm_fault(int first, int frame, uint32_t exc_return)
             } else if (scb[0x28 / 4] >= ((unsigned long)&rodata_10000) /*=0x10000*/) {
                 result = arm_usage_fault_helper();
             } else {
-                printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, UINT32_C(0x000f20f7),
+                printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, UINT32_C(0x000f20f7),
                              UINT32_C(0x000f1d11), 0x32a);
                 printk(UINT32_C(0x000f20c7));
                 assert_post_action(UINT32_C(0x000f1d11), 0x32a);
@@ -190,7 +190,7 @@ deliver:
     return;
 
 invalid:
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, UINT32_C(0x000f1fd1),
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, UINT32_C(0x000f1fd1),
                  UINT32_C(0x000f1d11), 0x458);
     printk(UINT32_C(0x000f1fe4));
     assert_post_action(UINT32_C(0x000f1d11), 0x458);

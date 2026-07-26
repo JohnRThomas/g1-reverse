@@ -8,8 +8,8 @@
  *   esb_send_command_and_wait_ack            <= FUN_00027448 @ 0x00027448
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
- *   rodata_a98de                             @ 0x000a98de
- *   rodata_a9935                             @ 0x000a9935
+ *   rodata_a98de                             @ 0x000a98de   [INLINED -- G6 literal batch]
+ *   rodata_a9935                             @ 0x000a9935   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -76,12 +76,12 @@ uint32_t not_disturb_sync_data(uint8_t *param_1, uint32_t param_2, uint32_t para
             return 0xffffffff;
         }
         iVar3 = *(volatile uint32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
-        uVar2 = ((unsigned long)&rodata_a98de) /*=0xa98de*/;
+        uVar2 = ((unsigned long)"%s(): not_disturb SYNC TO Slave failed...\n") /*=0xa98de*/;
     }
     if (iVar3 == 0) {
-        log_message(uVar2, ((unsigned long)&rodata_a9935) /*=0xa9935*/);
+        log_message(uVar2, ((unsigned long)"not_disturb_sync_data") /*=0xa9935*/);
     } else {
-        debug_print(uVar2, ((unsigned long)&rodata_a9935) /*=0xa9935*/);
+        debug_print(uVar2, ((unsigned long)"not_disturb_sync_data") /*=0xa9935*/);
     }
     return 0xffffffff;
 }

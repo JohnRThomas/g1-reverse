@@ -6,7 +6,7 @@
  *   buffer_append_sum_checksum               <= FUN_0007d16a @ 0x0007d16a
  * address symbols (name @ address):
  *   rodata_8a208                             @ 0x0008a208
- *   rodata_a74b9                             @ 0x000a74b9
+ *   rodata_a74b9                             @ 0x000a74b9   [INLINED -- G6 literal batch]
  *   g_pt_msg_encode_buf                      @ 0x20019ef5
  */
 /* Reconstructed FUN_00032b24 @ 0x32b24  (parity: 300/300 trials, PROVEN) */

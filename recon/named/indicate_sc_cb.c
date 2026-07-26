@@ -6,8 +6,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   bt_conn_disconnect_by_state              <= FUN_00056a68 @ 0x00056a68
  * address symbols (name @ address):
- *   rodata_9a8f9                             @ 0x0009a8f9
- *   rodata_9b1da                             @ 0x0009b1da
+ *   rodata_9a8f9                             @ 0x0009a8f9   [INLINED -- G6 literal batch]
+ *   rodata_9b1da                             @ 0x0009b1da   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_gatt_discovery_flags                   @ 0x20006ab4
  *   g_log_use_alt_sink                       @ 0x20007554

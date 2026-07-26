@@ -7,9 +7,9 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
- *   rodata_9edc2                             @ 0x0009edc2
- *   rodata_9edf3                             @ 0x0009edf3
- *   rodata_9f094                             @ 0x0009f094
+ *   rodata_9edc2                             @ 0x0009edc2   [INLINED -- G6 literal batch]
+ *   rodata_9edf3                             @ 0x0009edf3   [INLINED -- G6 literal batch]
+ *   rodata_9f094                             @ 0x0009f094   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_quicknote_flash_msgq                   @ 0x20003960
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -35,9 +35,9 @@ int upgradeQuickNoteDataToFlash(unsigned int param_1, unsigned int param_2, unsi
     if (iVar1 == 0) {
         if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_9edf3) /*=0x9edf3*/, ((unsigned long)&rodata_9f094) /*=0x9f094*/, param_1);
+                log_message(((unsigned long)"%s(): SEND QUICKNOTE TEXT Store(%d) Command...\n") /*=0x9edf3*/, ((unsigned long)"upgradeQuickNoteDataToFlash") /*=0x9f094*/, param_1);
             } else {
-                debug_print(((unsigned long)&rodata_9edf3) /*=0x9edf3*/, ((unsigned long)&rodata_9f094) /*=0x9f094*/, param_1);
+                debug_print(((unsigned long)"%s(): SEND QUICKNOTE TEXT Store(%d) Command...\n") /*=0x9edf3*/, ((unsigned long)"upgradeQuickNoteDataToFlash") /*=0x9f094*/, param_1);
             }
         }
         k_sem_give(((unsigned long)&g_app_language_msgq) /*=0x200079e4*/);
@@ -45,9 +45,9 @@ int upgradeQuickNoteDataToFlash(unsigned int param_1, unsigned int param_2, unsi
     } else {
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_9edc2) /*=0x9edc2*/, ((unsigned long)&rodata_9f094) /*=0x9f094*/);
+                log_message(((unsigned long)"%s(): quicknote flash store queue fill failed\r\n\n") /*=0x9edc2*/, ((unsigned long)"upgradeQuickNoteDataToFlash") /*=0x9f094*/);
             } else {
-                debug_print(((unsigned long)&rodata_9edc2) /*=0x9edc2*/, ((unsigned long)&rodata_9f094) /*=0x9f094*/);
+                debug_print(((unsigned long)"%s(): quicknote flash store queue fill failed\r\n\n") /*=0x9edc2*/, ((unsigned long)"upgradeQuickNoteDataToFlash") /*=0x9f094*/);
             }
         }
         uVar2 = -1;

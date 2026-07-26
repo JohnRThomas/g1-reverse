@@ -10,8 +10,8 @@
  *   app_msleep_thunk_a                       <= FUN_0007c038 @ 0x0007c038
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_9976b                             @ 0x0009976b
- *   rodata_99bb7                             @ 0x00099bb7
+ *   rodata_9976b                             @ 0x0009976b   [INLINED -- G6 literal batch]
+ *   rodata_99bb7                             @ 0x00099bb7   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   device_info                              @ 0x200069fc
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -57,7 +57,7 @@ void change_work_mode_to(uint mode)
   if ((uint)*(volatile byte *)(state + 1) != mode) {
     *(volatile byte *)(state + 1) = (byte)mode;
     if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
-      if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)&rodata_9976b) /*=0x9976b*/,((unsigned long)&rodata_99bb7) /*=0x99bb7*/,mode & 0xff);
+      if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)"%s(): change_work_mode to %d\n") /*=0x9976b*/,((unsigned long)"change_work_mode") /*=0x99bb7*/,mode & 0xff);
       else debug_print(0);
     }
     unsigned selected = *(volatile byte *)(*state_slot + 1);

@@ -11,11 +11,11 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
  *   rodata_4c38d                             @ 0x0004c38d
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_a7a10                             @ 0x000a7a10
- *   rodata_f0a2b                             @ 0x000f0a2b
- *   rodata_f0a5d                             @ 0x000f0a5d
- *   rodata_f0a90                             @ 0x000f0a90
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_a7a10                             @ 0x000a7a10   [INLINED -- G6 literal batch]
+ *   rodata_f0a2b                             @ 0x000f0a2b   [INLINED -- G6 literal batch]
+ *   rodata_f0a5d                             @ 0x000f0a5d   [INLINED -- G6 literal batch]
+ *   rodata_f0a90                             @ 0x000f0a90   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction of FUN_0004c418 @ 0x4c418 (184 bytes). */
 #include <stdint.h>
@@ -40,7 +40,7 @@ void nrf53_sync_rtc_ipc_channel_setup(void *object, uint32_t context, uint32_t d
     prepare_fn prepare = *(prepare_fn *)(vtable + 0x10);
 
     if (prepare == 0 || prepare(object, context, 0) != 0) {
-        printk(0x00099cbdu, 0x000a7a10u, 0x000f0a90u, 0xcbu);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"err == 0"), 0x000f0a90u, 0xcbu);
         assert_post_action(0x000f0a90u, 0xcbu);
     }
 
@@ -52,7 +52,7 @@ void nrf53_sync_rtc_ipc_channel_setup(void *object, uint32_t context, uint32_t d
     uint32_t slot = (descriptor >> 16) & 0xffu;
 
     if (slot >= 16) {
-        printk(0x00099cbdu, 0x000f0a5du, 0x000f0a2bu, 0x1e1u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f0a5du, 0x000f0a2bu, 0x1e1u);
         assert_post_action(0x000f0a2bu, 0x1e1u);
     }
 

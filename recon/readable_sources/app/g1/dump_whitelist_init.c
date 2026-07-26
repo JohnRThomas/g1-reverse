@@ -5,7 +5,7 @@
  * callees (readable <= raw @ address):
  *   dump_whitelist_init                      <= FUN_00035744 @ 0x00035744
  * address symbols (name @ address):
- *   rodata_a8a05                             @ 0x000a8a05
+ *   rodata_a8a05                             @ 0x000a8a05   [INLINED -- G6 literal batch]
  *   g_app_whitelist_buffer                   @ 0x2001a22c
  */
 /* Reconstructed FUN_00035744 @ 0x35744.
@@ -23,7 +23,7 @@ extern void revalidate_whitelist_json(void);
 void dump_whitelist_init(void)
 {
     memset_bytes((void *)((unsigned long)g_app_whitelist_buffer) /*=0x2001a22c*/, 0, 0x15e2U);
-    log_message(((unsigned long)&rodata_a8a05) /*=0xa8a05*/, 0x15e3U);
+    log_message(((unsigned long)"MAX_WHITE_LIST_BUF_LEN is %d \n") /*=0xa8a05*/, 0x15e3U);
     if (load_whitelist() == 0) {
         revalidate_whitelist_json();
     }

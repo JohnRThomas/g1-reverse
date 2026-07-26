@@ -37,77 +37,77 @@
  *   strstr                                   <= FUN_000870be @ 0x000870be
  * address symbols (name @ address):
  *   ADDR_ble_requeue_command_via_dispatch_THUMB @ 0x0007c245
- *   rodata_99899                             @ 0x00099899
+ *   rodata_99899                             @ 0x00099899   [INLINED -- G6 literal batch]
  *   rodata_9d7f7                             @ 0x0009d7f7
- *   rodata_9d7fa                             @ 0x0009d7fa
+ *   rodata_9d7fa                             @ 0x0009d7fa   [INLINED -- G6 literal batch]
  *   rodata_9d81e                             @ 0x0009d81e
- *   rodata_9d822                             @ 0x0009d822
+ *   rodata_9d822                             @ 0x0009d822   [INLINED -- G6 literal batch]
  *   rodata_9d857                             @ 0x0009d857
- *   rodata_9d85b                             @ 0x0009d85b
+ *   rodata_9d85b                             @ 0x0009d85b   [INLINED -- G6 literal batch]
  *   rodata_9d88c                             @ 0x0009d88c
- *   rodata_9d890                             @ 0x0009d890
+ *   rodata_9d890                             @ 0x0009d890   [INLINED -- G6 literal batch]
  *   rodata_9d8b1                             @ 0x0009d8b1
- *   rodata_9d8b5                             @ 0x0009d8b5
+ *   rodata_9d8b5                             @ 0x0009d8b5   [INLINED -- G6 literal batch]
  *   rodata_9d8da                             @ 0x0009d8da
- *   rodata_9d8de                             @ 0x0009d8de
- *   rodata_9d8ed                             @ 0x0009d8ed
- *   rodata_9d8fc                             @ 0x0009d8fc
- *   rodata_9d90a                             @ 0x0009d90a
- *   rodata_9d925                             @ 0x0009d925
- *   rodata_9d92b                             @ 0x0009d92b
- *   rodata_9d94a                             @ 0x0009d94a
- *   rodata_9d95b                             @ 0x0009d95b
- *   rodata_9d969                             @ 0x0009d969
- *   rodata_9d9a5                             @ 0x0009d9a5
- *   rodata_9d9ed                             @ 0x0009d9ed
- *   rodata_9da2f                             @ 0x0009da2f
+ *   rodata_9d8de                             @ 0x0009d8de   [INLINED -- G6 literal batch]
+ *   rodata_9d8ed                             @ 0x0009d8ed   [INLINED -- G6 literal batch]
+ *   rodata_9d8fc                             @ 0x0009d8fc   [INLINED -- G6 literal batch]
+ *   rodata_9d90a                             @ 0x0009d90a   [INLINED -- G6 literal batch]
+ *   rodata_9d925                             @ 0x0009d925   [INLINED -- G6 literal batch]
+ *   rodata_9d92b                             @ 0x0009d92b   [INLINED -- G6 literal batch]
+ *   rodata_9d94a                             @ 0x0009d94a   [INLINED -- G6 literal batch]
+ *   rodata_9d95b                             @ 0x0009d95b   [INLINED -- G6 literal batch]
+ *   rodata_9d969                             @ 0x0009d969   [INLINED -- G6 literal batch]
+ *   rodata_9d9a5                             @ 0x0009d9a5   [INLINED -- G6 literal batch]
+ *   rodata_9d9ed                             @ 0x0009d9ed   [INLINED -- G6 literal batch]
+ *   rodata_9da2f                             @ 0x0009da2f   [INLINED -- G6 literal batch]
  *   rodata_9da61                             @ 0x0009da61
- *   rodata_9db03                             @ 0x0009db03
- *   rodata_9db15                             @ 0x0009db15
- *   rodata_9db45                             @ 0x0009db45
- *   rodata_9db4f                             @ 0x0009db4f
- *   rodata_9db81                             @ 0x0009db81
- *   rodata_9db91                             @ 0x0009db91
- *   rodata_9dbb4                             @ 0x0009dbb4
- *   rodata_9dbc5                             @ 0x0009dbc5
- *   rodata_9dbec                             @ 0x0009dbec
+ *   rodata_9db03                             @ 0x0009db03   [INLINED -- G6 literal batch]
+ *   rodata_9db15                             @ 0x0009db15   [INLINED -- G6 literal batch]
+ *   rodata_9db45                             @ 0x0009db45   [INLINED -- G6 literal batch]
+ *   rodata_9db4f                             @ 0x0009db4f   [INLINED -- G6 literal batch]
+ *   rodata_9db81                             @ 0x0009db81   [INLINED -- G6 literal batch]
+ *   rodata_9db91                             @ 0x0009db91   [INLINED -- G6 literal batch]
+ *   rodata_9dbb4                             @ 0x0009dbb4   [INLINED -- G6 literal batch]
+ *   rodata_9dbc5                             @ 0x0009dbc5   [INLINED -- G6 literal batch]
+ *   rodata_9dbec                             @ 0x0009dbec   [INLINED -- G6 literal batch]
  *   rodata_9dc17                             @ 0x0009dc17
- *   rodata_9dc1a                             @ 0x0009dc1a
- *   rodata_9dc9c                             @ 0x0009dc9c
- *   rodata_9dcbb                             @ 0x0009dcbb
- *   rodata_9dd09                             @ 0x0009dd09
+ *   rodata_9dc1a                             @ 0x0009dc1a   [INLINED -- G6 literal batch]
+ *   rodata_9dc9c                             @ 0x0009dc9c   [INLINED -- G6 literal batch]
+ *   rodata_9dcbb                             @ 0x0009dcbb   [INLINED -- G6 literal batch]
+ *   rodata_9dd09                             @ 0x0009dd09   [INLINED -- G6 literal batch]
  *   rodata_9dd24                             @ 0x0009dd24
- *   rodata_9dd27                             @ 0x0009dd27
+ *   rodata_9dd27                             @ 0x0009dd27   [INLINED -- G6 literal batch]
  *   rodata_9dd4b                             @ 0x0009dd4b
- *   rodata_9dd4e                             @ 0x0009dd4e
+ *   rodata_9dd4e                             @ 0x0009dd4e   [INLINED -- G6 literal batch]
  *   rodata_9dd6a                             @ 0x0009dd6a
  *   rodata_9dd6d                             @ 0x0009dd6d
  *   rodata_9dd70                             @ 0x0009dd70
- *   rodata_9dd73                             @ 0x0009dd73
+ *   rodata_9dd73                             @ 0x0009dd73   [INLINED -- G6 literal batch]
  *   rodata_9dd91                             @ 0x0009dd91
- *   rodata_9dd94                             @ 0x0009dd94
+ *   rodata_9dd94                             @ 0x0009dd94   [INLINED -- G6 literal batch]
  *   rodata_9ddb9                             @ 0x0009ddb9
  *   rodata_9ddbc                             @ 0x0009ddbc
  *   rodata_9ddbf                             @ 0x0009ddbf
  *   rodata_9ddc8                             @ 0x0009ddc8
  *   rodata_9ddcb                             @ 0x0009ddcb
- *   rodata_9ddce                             @ 0x0009ddce
+ *   rodata_9ddce                             @ 0x0009ddce   [INLINED -- G6 literal batch]
  *   rodata_9ddd8                             @ 0x0009ddd8
  *   rodata_9dddb                             @ 0x0009dddb
- *   rodata_9ddde                             @ 0x0009ddde
+ *   rodata_9ddde                             @ 0x0009ddde   [INLINED -- G6 literal batch]
  *   rodata_9dde8                             @ 0x0009dde8
- *   rodata_9ddeb                             @ 0x0009ddeb
+ *   rodata_9ddeb                             @ 0x0009ddeb   [INLINED -- G6 literal batch]
  *   rodata_9de32                             @ 0x0009de32
- *   rodata_9de35                             @ 0x0009de35
+ *   rodata_9de35                             @ 0x0009de35   [INLINED -- G6 literal batch]
  *   rodata_9de4c                             @ 0x0009de4c
- *   rodata_9de4f                             @ 0x0009de4f
+ *   rodata_9de4f                             @ 0x0009de4f   [INLINED -- G6 literal batch]
  *   rodata_9de5e                             @ 0x0009de5e
- *   rodata_9de61                             @ 0x0009de61
+ *   rodata_9de61                             @ 0x0009de61   [INLINED -- G6 literal batch]
  *   rodata_9de63                             @ 0x0009de63
  *   rodata_9de6e                             @ 0x0009de6e
  *   rodata_9de71                             @ 0x0009de71
- *   rodata_9de74                             @ 0x0009de74
- *   rodata_9dfa9                             @ 0x0009dfa9
+ *   rodata_9de74                             @ 0x0009de74   [INLINED -- G6 literal batch]
+ *   rodata_9dfa9                             @ 0x0009dfa9   [INLINED -- G6 literal batch]
  *   rodata_9e235                             @ 0x0009e235
  *   rodata_a1f20                             @ 0x000a1f20
  *   rodata_f1031                             @ 0x000f1031
@@ -131,43 +131,43 @@ typedef uint32_t uint; typedef uint64_t ulonglong; typedef uint32_t code(uintptr
 #define DAT_0000f1e4 ((unsigned long)&rodata_9d7f7) /*=0x9d7f7*/
 #define DAT_0000f1e8 ((volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define DAT_0000f1ec ((volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_0000f1f0 ((unsigned long)&rodata_9dfa9) /*=0x9dfa9*/
+#define DAT_0000f1f0 ((unsigned long)"spec_ble_command_hook") /*=0x9dfa9*/
 #define DAT_0000f458 0x00000000u
 #define DAT_0000f46c ((volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define DAT_0000f470 ((volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_0000f474 ((unsigned long)&rodata_9d92b) /*=0x9d92b*/
+#define DAT_0000f474 ((unsigned long)"%s(): pos=%s, tx_data_len=%d\n\n") /*=0x9d92b*/
 #define DAT_0000f478 ((unsigned long)&rodata_a1f20) /*=0xa1f20*/
 #define DAT_0000f4a0 ((unsigned long)&rodata_f3c02) /*=0xf3c02*/
-#define DAT_0000f4a4 ((unsigned long)&rodata_9db03) /*=0x9db03*/
-#define DAT_0000f4a8 ((unsigned long)&rodata_9db91) /*=0x9db91*/
+#define DAT_0000f4a4 ((unsigned long)"teleprompter_info") /*=0x9db03*/
+#define DAT_0000f4a8 ((unsigned long)"%s(): simulator:SCHEDULE \350\247\246\345\217\221.\n\n") /*=0x9db91*/
 #define DAT_0000f76c ((volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_0000f770 ((unsigned long)&rodata_9dfa9) /*=0x9dfa9*/
+#define DAT_0000f770 ((unsigned long)"spec_ble_command_hook") /*=0x9dfa9*/
 #define DAT_0000f794 ((volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define DAT_0000fa50 ((unsigned long)&rodata_9dd70) /*=0x9dd70*/
 #define DAT_0000fa54 ((volatile int *)((unsigned long)&g_battery_percent) /*=0x200069e8*/)
-#define DAT_0000fa64 ((unsigned long)&rodata_9dd73) /*=0x9dd73*/
+#define DAT_0000fa64 ((unsigned long)"TX:%d,fail:%d,RX:%d,Signal:%d") /*=0x9dd73*/
 #define DAT_0000fa68 ((unsigned long)&rodata_9dd91) /*=0x9dd91*/
 #define DAT_0000fa6c ((volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define DAT_0000fa70 ((volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_0000fa74 ((unsigned long)&rodata_9dfa9) /*=0x9dfa9*/
+#define DAT_0000fa74 ((unsigned long)"spec_ble_command_hook") /*=0x9dfa9*/
 #define DAT_0000fa84 ((volatile int *)((unsigned long)&g_ble_switch_status_reason) /*=0x20007aac*/)
 #define DAT_0000fa88 ((unsigned long)&rodata_9ddbf) /*=0x9ddbf*/
 #define DAT_0000fa8c ((unsigned long)&rodata_9ddc8) /*=0x9ddc8*/
 #define DAT_0000faac ((volatile int *)((unsigned long)&g_panel_spi_id) /*=0x2000a074*/)
-#define DAT_0000fab0 ((unsigned long)&rodata_99899) /*=0x99899*/
+#define DAT_0000fab0 ((unsigned long)"2024-12-28 20:20:45") /*=0x99899*/
 #define DAT_0000fab4 ((unsigned long)&g_2000ff4e) /*=0x2000ff4e*/
 #define DAT_0000fca0 0x00000000u
 #define DAT_0000fca8 0x00000000u
 #define DAT_0000fcc8 ((volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
 #define DAT_0000fce0 ((unsigned long)&rodata_f1031) /*=0xf1031*/
 #define PTR_DAT_0000f1f8 ((unsigned long)&rodata_9d81e) /*=0x9d81e*/
-#define PTR_DAT_0000f1fc ((unsigned long)&rodata_9d822) /*=0x9d822*/
+#define PTR_DAT_0000f1fc ((unsigned long)"%s(): \346\250\241\346\213\237\346\216\245\346\224\266\345\210\260\346\226\260\351\200\232\347\237\245 title:%s, message:%s\n") /*=0x9d822*/
 #define PTR_DAT_0000f204 ((unsigned long)&rodata_9d857) /*=0x9d857*/
-#define PTR_DAT_0000f208 ((unsigned long)&rodata_9d85b) /*=0x9d85b*/
+#define PTR_DAT_0000f208 ((unsigned long)"%s(): \346\250\241\346\213\237\346\212\254\345\244\264/\344\275\216\345\244\264\350\247\246\345\217\221:pos:%s, val=%d\n\n") /*=0x9d85b*/
 #define PTR_DAT_0000f20c ((unsigned long)&rodata_9d88c) /*=0x9d88c*/
 #define PTR_DAT_0000f214 ((unsigned long)&rodata_9d8b1) /*=0x9d8b1*/
 #define PTR_DAT_0000f21c ((unsigned long)&rodata_9d8da) /*=0x9d8da*/
-#define PTR_DAT_0000f484 ((unsigned long)&rodata_9d969) /*=0x9d969*/
+#define PTR_DAT_0000f484 ((unsigned long)"%s(): BLE_REQ_PUT_NOTIFI_WHIHTLIST_APP\351\234\200\350\246\201\345\215\225\347\213\254\345\244\204\347\220\206.\n\n") /*=0x9d969*/
 #define PTR_DAT_0000f49c ((unsigned long)&rodata_9da61) /*=0x9da61*/
 #define PTR_DAT_0000f784 ((unsigned long)&rodata_9dc17) /*=0x9dc17*/
 #define PTR_DAT_0000f7a0 ((unsigned long)&rodata_9dd24) /*=0x9dd24*/
@@ -188,52 +188,52 @@ typedef uint32_t uint; typedef uint64_t ulonglong; typedef uint32_t code(uintptr
 #define PTR_DAT_0000fcb0 ((unsigned long)&rodata_9de5e) /*=0x9de5e*/
 #define PTR_DAT_0000fcbc ((unsigned long)&rodata_9de6e) /*=0x9de6e*/
 #define PTR_DAT_0000fcc0 ((unsigned long)&rodata_9de71) /*=0x9de71*/
-#define PTR_DAT_0000fcdc ((unsigned long)&rodata_9db4f) /*=0x9db4f*/
+#define PTR_DAT_0000fcdc ((unsigned long)"\345\211\215\351\235\242" "100\347\261\263\350\267\257\345\217\243\345\267\246\346\213\220\350\277\233\345\205\245\347\225\231\344\273\231\345\244\247\351\201\223\350\276\205\351\201\223.") /*=0x9db4f*/
 #define PTR_FUN_0007c244_1_0000f200 ADDR_ble_requeue_command_via_dispatch_THUMB /*=0x7c245*/
 #define PTR_FUN_0007c244_1_0000f490 ADDR_ble_requeue_command_via_dispatch_THUMB /*=0x7c245*/
 #define PTR_FUN_0007c244_1_0000f77c ADDR_ble_requeue_command_via_dispatch_THUMB /*=0x7c245*/
 #define PTR_FUN_0007c244_1_0000fcec ADDR_ble_requeue_command_via_dispatch_THUMB /*=0x7c245*/
-#define PTR_SIM_NAV_0000fcd0 ((unsigned long)&rodata_9db15) /*=0x9db15*/
-#define PTR_SIM_TEL_0000f494 ((unsigned long)&rodata_9da2f) /*=0x9da2f*/
-#define PTR_s_B__d__V__d__A__d__T__d_0000fac0 ((unsigned long)&rodata_9de35) /*=0x9de35*/
-#define PTR_s_VADC__d_TMR__d_0000fac8 ((unsigned long)&rodata_9de4f) /*=0x9de4f*/
-#define PTR_s______display_mode_______d_0000f7ac ((unsigned long)&rodata_9dd4e) /*=0x9dd4e*/
-#define PTR_s______start_upload_audio______0000f78c ((unsigned long)&rodata_9dc9c) /*=0x9dc9c*/
-#define PTR_s______test_callback_audio_data____0000f788 ((unsigned long)&rodata_9dc1a) /*=0x9dc1a*/
-#define PTR_s______test_set_esb_channel________0000f7a4 ((unsigned long)&rodata_9dd27) /*=0x9dd27*/
-#define PTR_s___whitelist_app___com_apple_Mobi_0000f488 ((unsigned long)&rodata_9d9a5) /*=0x9d9a5*/
-#define PTR_s__cmd__0000f468 ((unsigned long)&rodata_9d925) /*=0x9d925*/
-#define PTR_s__s____11_len__d_0000f47c ((unsigned long)&rodata_9d94a) /*=0x9d94a*/
-#define PTR_s__s____22_len__d_0000f774 ((unsigned long)&rodata_9dbb4) /*=0x9dbb4*/
-#define PTR_s__s______cmd_type__s__value__s__t_0000f780 ((unsigned long)&rodata_9dbec) /*=0x9dbec*/
-#define PTR_s__s_____cmd_type__s__title__s__ms_0000f778 ((unsigned long)&rodata_9dbc5) /*=0x9dbc5*/
-#define PTR_s__s____buf__s_0000f220 ((unsigned long)&rodata_9d8de) /*=0x9d8de*/
-#define PTR_s__s____cmd__d_0000f480 ((unsigned long)&rodata_9d95b) /*=0x9d95b*/
-#define PTR_s__s____cmd__s_0000f224 ((unsigned long)&rodata_9d8ed) /*=0x9d8ed*/
-#define PTR_s__s____cmd_type__s__value__s__tx__0000f48c ((unsigned long)&rodata_9d9ed) /*=0x9d9ed*/
-#define PTR_s__s____cmd_type__s__value__s__tx__0000fce8 ((unsigned long)&rodata_9d9ed) /*=0x9d9ed*/
-#define PTR_s__s____en__s_0000f228 ((unsigned long)&rodata_9d8fc) /*=0x9d8fc*/
-#define PTR_s__s____enable___d__sec__d_0000f22c ((unsigned long)&rodata_9d90a) /*=0x9d90a*/
-#define PTR_s__s____enable___d__sec__d_0000f464 ((unsigned long)&rodata_9d90a) /*=0x9d90a*/
-#define PTR_s__s____pos__s__new_log_level_set__0000f218 ((unsigned long)&rodata_9d8b5) /*=0x9d8b5*/
-#define PTR_s__s____pos__s__new_screen_id__d_0000f210 ((unsigned long)&rodata_9d890) /*=0x9d890*/
-#define PTR_s__s____sys_reboot_because_reboot_c_0000fa78 ((unsigned long)&rodata_9dd94) /*=0x9dd94*/
-#define PTR_s__s____test_BLE_REQ_POST_BT_UNPAI_0000f1f4 ((unsigned long)&rodata_9d7fa) /*=0x9d7fa*/
-#define PTR_s__s____unable_to_audio_transfer__d_0000f79c ((unsigned long)&rodata_9dcbb) /*=0x9dcbb*/
+#define PTR_SIM_NAV_0000fcd0 ((unsigned long)"%s(): simulator->BLE_REQ_PUT_NAVIGATION_INFO.\n\n") /*=0x9db15*/
+#define PTR_SIM_TEL_0000f494 ((unsigned long)"%s(): simulator->BLE_REQ_PUT_TELEPROMPTER_INFO.\n\n") /*=0x9da2f*/
+#define PTR_s_B__d__V__d__A__d__T__d_0000fac0 ((unsigned long)"B:%d, V:%d, A:%d, T:%d") /*=0x9de35*/
+#define PTR_s_VADC__d_TMR__d_0000fac8 ((unsigned long)"VADC:%d TMR:%d") /*=0x9de4f*/
+#define PTR_s______display_mode_______d_0000f7ac ((unsigned long)"\n*****display mode***** %d\n") /*=0x9dd4e*/
+#define PTR_s______start_upload_audio______0000f78c ((unsigned long)"\n*****start upload audio*****\n") /*=0x9dc9c*/
+#define PTR_s______test_callback_audio_data____0000f788 ((unsigned long)"\n*****test callback audio data*****\n") /*=0x9dc1a*/
+#define PTR_s______test_set_esb_channel________0000f7a4 ((unsigned long)"\n*****test set esb channel***** %d\n") /*=0x9dd27*/
+#define PTR_s___whitelist_app___com_apple_Mobi_0000f488 ((unsigned long)"{\"whitelist_app\":\"com.apple.MobileSMS:com.tencent.xin:com.tencent.mqq\"}") /*=0x9d9a5*/
+#define PTR_s__cmd__0000f468 ((unsigned long)"#cmd@") /*=0x9d925*/
+#define PTR_s__s____11_len__d_0000f47c ((unsigned long)"%s(): 11 len=%d\n") /*=0x9d94a*/
+#define PTR_s__s____22_len__d_0000f774 ((unsigned long)"%s(): 22 len=%d\n") /*=0x9dbb4*/
+#define PTR_s__s______cmd_type__s__value__s__t_0000f780 ((unsigned long)"%s(): **cmd_type:%s, value=%s, tx_len=%d\n\n") /*=0x9dbec*/
+#define PTR_s__s_____cmd_type__s__title__s__ms_0000f778 ((unsigned long)"%s(): #cmd_type:%s, title=%s, msg=%s\n\n") /*=0x9dbc5*/
+#define PTR_s__s____buf__s_0000f220 ((unsigned long)"%s(): buf:%s\n\n") /*=0x9d8de*/
+#define PTR_s__s____cmd__d_0000f480 ((unsigned long)"%s(): cmd=%d\n") /*=0x9d95b*/
+#define PTR_s__s____cmd__s_0000f224 ((unsigned long)"%s(): cmd:%s\n\n") /*=0x9d8ed*/
+#define PTR_s__s____cmd_type__s__value__s__tx__0000f48c ((unsigned long)"%s(): cmd_type:%s, value=%s, tx_len=%d, jstr_len=%d, jsonstr=%s\n\n") /*=0x9d9ed*/
+#define PTR_s__s____cmd_type__s__value__s__tx__0000fce8 ((unsigned long)"%s(): cmd_type:%s, value=%s, tx_len=%d, jstr_len=%d, jsonstr=%s\n\n") /*=0x9d9ed*/
+#define PTR_s__s____en__s_0000f228 ((unsigned long)"%s(): en:%s\n\n") /*=0x9d8fc*/
+#define PTR_s__s____enable___d__sec__d_0000f22c ((unsigned long)"%s(): enable: %d, sec:%d\n\n") /*=0x9d90a*/
+#define PTR_s__s____enable___d__sec__d_0000f464 ((unsigned long)"%s(): enable: %d, sec:%d\n\n") /*=0x9d90a*/
+#define PTR_s__s____pos__s__new_log_level_set__0000f218 ((unsigned long)"%s(): pos:%s, new log_level_set=%d\n\n") /*=0x9d8b5*/
+#define PTR_s__s____pos__s__new_screen_id__d_0000f210 ((unsigned long)"%s(): pos:%s, new screen_id=%d\n\n") /*=0x9d890*/
+#define PTR_s__s____sys_reboot_because_reboot_c_0000fa78 ((unsigned long)"%s(): sys reboot because reboot cmd\n") /*=0x9dd94*/
+#define PTR_s__s____test_BLE_REQ_POST_BT_UNPAI_0000f1f4 ((unsigned long)"%s(): test:BLE_REQ_POST_BT_UNPAIR\n\n") /*=0x9d7fa*/
+#define PTR_s__s____unable_to_audio_transfer__d_0000f79c ((unsigned long)"%s(): unable to audio transfer, due to no connected or notification disabled\n") /*=0x9dcbb*/
 #define PTR_s__s____unable_to_change_MTU_for_a_0000f798 0x0009dc3fu
-#define PTR_s_deinit_flash_0000fcb8 ((unsigned long)&rodata_9de61) /*=0x9de61*/
-#define PTR_s_direction_0000fcd8 ((unsigned long)&rodata_9db45) /*=0x9db45*/
+#define PTR_s_deinit_flash_0000fcb8 ((unsigned long)"deinit flash") /*=0x9de61*/
+#define PTR_s_direction_0000fcd8 ((unsigned long)"direction") /*=0x9db45*/
 #define PTR_s_enable_0000f498 ((unsigned long)&rodata_9e235) /*=0x9e235*/
 #define PTR_s_enable_0000fcd4 ((unsigned long)&rodata_9e235) /*=0x9e235*/
 #define PTR_s_init_flash_0000fcb4 ((unsigned long)&rodata_9de63) /*=0x9de63*/
-#define PTR_s_level___d_0000fa98 ((unsigned long)&rodata_9ddce) /*=0x9ddce*/
-#define PTR_s_master_mac___02X__02X__02X__02X__0000fcc4 ((unsigned long)&rodata_9de74) /*=0x9de74*/
-#define PTR_s_navigation_info_0000fce4 ((unsigned long)&rodata_9db81) /*=0x9db81*/
-#define PTR_s_net_build_time___s__app_build_ti_0000fab8 ((unsigned long)&rodata_9ddeb) /*=0x9ddeb*/
-#define PTR_s_pitch___d_0000faa4 ((unsigned long)&rodata_9ddde) /*=0x9ddde*/
-#define PTR_s_spec_ble_command_hook_0000f460 ((unsigned long)&rodata_9dfa9) /*=0x9dfa9*/
-#define PTR_s_spec_ble_command_hook_0000fccc ((unsigned long)&rodata_9dfa9) /*=0x9dfa9*/
-#define PTR_s_t0____d_error_count____d_0000f790 ((unsigned long)&rodata_9dd09) /*=0x9dd09*/
+#define PTR_s_level___d_0000fa98 ((unsigned long)"level: %d") /*=0x9ddce*/
+#define PTR_s_master_mac___02X__02X__02X__02X__0000fcc4 ((unsigned long)"master mac: %02X:%02X:%02X:%02X:%02X:%02X, slave mac: %02X:%02X:%02X:%02X:%02X:%02X") /*=0x9de74*/
+#define PTR_s_navigation_info_0000fce4 ((unsigned long)"navigation_info") /*=0x9db81*/
+#define PTR_s_net_build_time___s__app_build_ti_0000fab8 ((unsigned long)"net build time: %s, app build time %s, ver %d.%d.%d, JBD DeviceID %x\n\r") /*=0x9ddeb*/
+#define PTR_s_pitch___d_0000faa4 ((unsigned long)"pitch: %d") /*=0x9ddde*/
+#define PTR_s_spec_ble_command_hook_0000f460 ((unsigned long)"spec_ble_command_hook") /*=0x9dfa9*/
+#define PTR_s_spec_ble_command_hook_0000fccc ((unsigned long)"spec_ble_command_hook") /*=0x9dfa9*/
+#define PTR_s_t0____d_error_count____d_0000f790 ((unsigned long)"t0 = %d error count = %d \n") /*=0x9dd09*/
 extern uint32_t log_message(uintptr_t,...);
 extern uint32_t strcmp(uintptr_t,...);
 extern uint32_t strlen(uintptr_t,...);

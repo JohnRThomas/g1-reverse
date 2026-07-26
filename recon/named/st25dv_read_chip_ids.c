@@ -11,9 +11,9 @@
  *   nfc_ipc_send_op20                        <= FUN_0007c944 @ 0x0007c944
  *   st25dv_ipc_request                       <= FUN_0007c956 @ 0x0007c956
  * address symbols (name @ address):
- *   rodata_9f145                             @ 0x0009f145
- *   rodata_9f176                             @ 0x0009f176
- *   rodata_9f186                             @ 0x0009f186
+ *   rodata_9f145                             @ 0x0009f145   [INLINED -- G6 literal batch]
+ *   rodata_9f176                             @ 0x0009f176   [INLINED -- G6 literal batch]
+ *   rodata_9f186                             @ 0x0009f186   [INLINED -- G6 literal batch]
  *   g_st25dv_dev                             @ 0x20007a44
  *   g_board_rev_flag                         @ 0x20018c69
  */
@@ -39,7 +39,7 @@ int st25dv_read_chip_ids(void){
     (*(void(**)(void))((*(volatile int*)((*piVar1)+8))+8))();
     st25dv_ipc_request_chip_ids(*piVar1,&local_10);
     uVar4 = (local_10>>8)&0xff;
-    log_message(0x0009f145, local_10&0xff, uVar4, (local_10>>0x10)&0xff, local_10>>0x18, local_c&0xff, (local_c>>8)&0xff, (local_c>>0x10)&0xff, local_c>>0x18);
+    log_message(((unsigned long)"UUID = %02X %02X %02X %02X %02X %02X %02X %02X.\n"), local_10&0xff, uVar4, (local_10>>0x10)&0xff, local_10>>0x18, local_c&0xff, (local_c>>8)&0xff, (local_c>>0x10)&0xff, local_c>>0x18);
     uVar3 = (unsigned char)uVar4;
     puVar5 = ((local_c>>8)&0xff) - 0x50;
     puVar6 = (unsigned char*)puVar5;
@@ -47,9 +47,9 @@ int st25dv_read_chip_ids(void){
     iVar2 = *piVar1;
     if (puVar5 < 2){ *(volatile unsigned char*)puVar6 = uVar3; }
     nfc_ipc_send_op20(iVar2,&local_12);
-    log_message(0x0009f176,(unsigned)local_12);
+    log_message(((unsigned long)"REV_IC = %02X.\n"),(unsigned)local_12);
     st25dv_ipc_request(*piVar1,&local_11);
-    log_message(0x0009f186,(unsigned)local_11);
+    log_message(((unsigned long)"REF_IC = %02X.\n"),(unsigned)local_11);
     adc_nfc_init();
     clear_pending_state_flags();
   }

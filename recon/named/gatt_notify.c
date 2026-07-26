@@ -19,11 +19,11 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
  *   rodata_88128                             @ 0x00088128
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f46b8                             @ 0x000f46b8
  *   rodata_f4ad5                             @ 0x000f4ad5
  *   rodata_f4aeb                             @ 0x000f4aeb
- *   rodata_f4b3d                             @ 0x000f4b3d
+ *   rodata_f4b3d                             @ 0x000f4b3d   [INLINED -- G6 literal batch]
  *   rodata_f4b44                             @ 0x000f4b44
  *   rodata_f4bde                             @ 0x000f4bde
  */
@@ -64,7 +64,7 @@ unsigned gatt_notify(int param_1, unsigned short param_2, int param_3)
                 memcpy((int)(puVar4+1), *(unsigned*)(param_3+8), *(unsigned short*)(param_3+0xc));
                 bt_att_set_tx_meta_data(iVar2, *(unsigned*)(param_3+0x10), *(unsigned*)(param_3+0x14), 1);
                 if(param_1 == 0){
-                    printk(0x00099cbd, 0x000f4b3d, 0x000f46b8, 0xf22);
+                    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"params"), 0x000f46b8, 0xf22);
                     uVar3 = 0xf22;
                 } else {
                     if(iVar2 != 0){
@@ -96,7 +96,7 @@ LAB_00059a5a:
                         }
                         return uVar3;
                     }
-                    printk(0x00099cbd, 0x000f4b44, 0x000f46b8, 0xf23);
+                    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f4b44, 0x000f46b8, 0xf23);
                     uVar3 = 0xf23;
                 }
                 assert_post_action(0x000f46b8, uVar3);

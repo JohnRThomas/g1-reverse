@@ -7,8 +7,8 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
  *   rodata_885cc                             @ 0x000885cc
- *   rodata_a3f62                             @ 0x000a3f62
- *   rodata_a41d5                             @ 0x000a41d5
+ *   rodata_a3f62                             @ 0x000a3f62   [INLINED -- G6 literal batch]
+ *   rodata_a41d5                             @ 0x000a41d5   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_dmic_msgq                              @ 0x20007b7c

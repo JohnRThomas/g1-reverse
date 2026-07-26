@@ -5,7 +5,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6a09                             @ 0x000f6a09
  *   rodata_f6a4a                             @ 0x000f6a4a
  */
@@ -21,7 +21,7 @@ void nrfx_gppi_task_endpoint_setup(
 {
   unsigned int val = channel;
   if (task_endpoint == 0) {
-    printk(0x00099cbdUL, 0x000f6a4aUL, 0x000f6a09UL, 0x4a, param_4);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f6a4aUL, 0x000f6a09UL, 0x4a, param_4);
     val = assert_post_action(0x000f6a09UL, 0x4a);
   }
   *(volatile unsigned int *)(task_endpoint + 0x80) = val | 0x80000000UL;

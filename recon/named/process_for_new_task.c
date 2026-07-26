@@ -44,94 +44,94 @@
  *   rodata_a294a                             @ 0x000a294a
  *   rodata_a2a21                             @ 0x000a2a21
  *   rodata_a2a32                             @ 0x000a2a32
- *   rodata_a2a4d                             @ 0x000a2a4d
- *   rodata_a2a7e                             @ 0x000a2a7e
- *   rodata_a2aad                             @ 0x000a2aad
+ *   rodata_a2a4d                             @ 0x000a2a4d   [INLINED -- G6 literal batch]
+ *   rodata_a2a7e                             @ 0x000a2a7e   [INLINED -- G6 literal batch]
+ *   rodata_a2aad                             @ 0x000a2aad   [INLINED -- G6 literal batch]
  *   rodata_a2ad4                             @ 0x000a2ad4
- *   rodata_a2af2                             @ 0x000a2af2
- *   rodata_a2b22                             @ 0x000a2b22
+ *   rodata_a2af2                             @ 0x000a2af2   [INLINED -- G6 literal batch]
+ *   rodata_a2b22                             @ 0x000a2b22   [INLINED -- G6 literal batch]
  *   rodata_a2ba7                             @ 0x000a2ba7
- *   rodata_a2c0b                             @ 0x000a2c0b
+ *   rodata_a2c0b                             @ 0x000a2c0b   [INLINED -- G6 literal batch]
  *   rodata_a2c70                             @ 0x000a2c70
- *   rodata_a2c85                             @ 0x000a2c85
- *   rodata_a2cb2                             @ 0x000a2cb2
+ *   rodata_a2c85                             @ 0x000a2c85   [INLINED -- G6 literal batch]
+ *   rodata_a2cb2                             @ 0x000a2cb2   [INLINED -- G6 literal batch]
  *   rodata_a2ce2                             @ 0x000a2ce2
  *   rodata_a2cfc                             @ 0x000a2cfc
- *   rodata_a2d1a                             @ 0x000a2d1a
+ *   rodata_a2d1a                             @ 0x000a2d1a   [INLINED -- G6 literal batch]
  *   rodata_a2d5a                             @ 0x000a2d5a
- *   rodata_a2d6f                             @ 0x000a2d6f
- *   rodata_a2d97                             @ 0x000a2d97
+ *   rodata_a2d6f                             @ 0x000a2d6f   [INLINED -- G6 literal batch]
+ *   rodata_a2d97                             @ 0x000a2d97   [INLINED -- G6 literal batch]
  *   rodata_a2de3                             @ 0x000a2de3
- *   rodata_a2e31                             @ 0x000a2e31
+ *   rodata_a2e31                             @ 0x000a2e31   [INLINED -- G6 literal batch]
  *   rodata_a2e5b                             @ 0x000a2e5b
  *   rodata_a2e7c                             @ 0x000a2e7c
- *   rodata_a2e93                             @ 0x000a2e93
- *   rodata_a2ed8                             @ 0x000a2ed8
+ *   rodata_a2e93                             @ 0x000a2e93   [INLINED -- G6 literal batch]
+ *   rodata_a2ed8                             @ 0x000a2ed8   [INLINED -- G6 literal batch]
  *   rodata_a2f08                             @ 0x000a2f08
- *   rodata_a2f57                             @ 0x000a2f57
+ *   rodata_a2f57                             @ 0x000a2f57   [INLINED -- G6 literal batch]
  *   rodata_a2f7e                             @ 0x000a2f7e
  *   rodata_a2f9c                             @ 0x000a2f9c
- *   rodata_a2fb0                             @ 0x000a2fb0
- *   rodata_a301e                             @ 0x000a301e
+ *   rodata_a2fb0                             @ 0x000a2fb0   [INLINED -- G6 literal batch]
+ *   rodata_a301e                             @ 0x000a301e   [INLINED -- G6 literal batch]
  *   rodata_a3071                             @ 0x000a3071
- *   rodata_a30bd                             @ 0x000a30bd
+ *   rodata_a30bd                             @ 0x000a30bd   [INLINED -- G6 literal batch]
  *   rodata_a30e5                             @ 0x000a30e5
  *   rodata_a3104                             @ 0x000a3104
- *   rodata_a3119                             @ 0x000a3119
- *   rodata_a315d                             @ 0x000a315d
+ *   rodata_a3119                             @ 0x000a3119   [INLINED -- G6 literal batch]
+ *   rodata_a315d                             @ 0x000a315d   [INLINED -- G6 literal batch]
  *   rodata_a318d                             @ 0x000a318d
- *   rodata_a31da                             @ 0x000a31da
+ *   rodata_a31da                             @ 0x000a31da   [INLINED -- G6 literal batch]
  *   rodata_a3201                             @ 0x000a3201
  *   rodata_a3215                             @ 0x000a3215
  *   rodata_a3244                             @ 0x000a3244
- *   rodata_a3290                             @ 0x000a3290
- *   rodata_a32b6                             @ 0x000a32b6
+ *   rodata_a3290                             @ 0x000a3290   [INLINED -- G6 literal batch]
+ *   rodata_a32b6                             @ 0x000a32b6   [INLINED -- G6 literal batch]
  *   rodata_a32df                             @ 0x000a32df
  *   rodata_a32ef                             @ 0x000a32ef
  *   rodata_a3305                             @ 0x000a3305
  *   rodata_a3311                             @ 0x000a3311
  *   rodata_a3325                             @ 0x000a3325
- *   rodata_a3373                             @ 0x000a3373
+ *   rodata_a3373                             @ 0x000a3373   [INLINED -- G6 literal batch]
  *   rodata_a339b                             @ 0x000a339b
  *   rodata_a33aa                             @ 0x000a33aa
  *   rodata_a33bf                             @ 0x000a33bf
  *   rodata_a33de                             @ 0x000a33de
- *   rodata_a342b                             @ 0x000a342b
+ *   rodata_a342b                             @ 0x000a342b   [INLINED -- G6 literal batch]
  *   rodata_a3456                             @ 0x000a3456
  *   rodata_a3468                             @ 0x000a3468
  *   rodata_a3480                             @ 0x000a3480
  *   rodata_a34a2                             @ 0x000a34a2
- *   rodata_a34f2                             @ 0x000a34f2
- *   rodata_a3517                             @ 0x000a3517
- *   rodata_a3558                             @ 0x000a3558
- *   rodata_a35a2                             @ 0x000a35a2
+ *   rodata_a34f2                             @ 0x000a34f2   [INLINED -- G6 literal batch]
+ *   rodata_a3517                             @ 0x000a3517   [INLINED -- G6 literal batch]
+ *   rodata_a3558                             @ 0x000a3558   [INLINED -- G6 literal batch]
+ *   rodata_a35a2                             @ 0x000a35a2   [INLINED -- G6 literal batch]
  *   rodata_a35cd                             @ 0x000a35cd
  *   rodata_a35df                             @ 0x000a35df
  *   rodata_a35f7                             @ 0x000a35f7
  *   rodata_a3619                             @ 0x000a3619
- *   rodata_a3669                             @ 0x000a3669
- *   rodata_a3696                             @ 0x000a3696
- *   rodata_a36ff                             @ 0x000a36ff
+ *   rodata_a3669                             @ 0x000a3669   [INLINED -- G6 literal batch]
+ *   rodata_a3696                             @ 0x000a3696   [INLINED -- G6 literal batch]
+ *   rodata_a36ff                             @ 0x000a36ff   [INLINED -- G6 literal batch]
  *   rodata_a3758                             @ 0x000a3758
- *   rodata_a3770                             @ 0x000a3770
+ *   rodata_a3770                             @ 0x000a3770   [INLINED -- G6 literal batch]
  *   rodata_a37f6                             @ 0x000a37f6
- *   rodata_a3811                             @ 0x000a3811
+ *   rodata_a3811                             @ 0x000a3811   [INLINED -- G6 literal batch]
  *   rodata_a383d                             @ 0x000a383d
- *   rodata_a384c                             @ 0x000a384c
- *   rodata_a3875                             @ 0x000a3875
+ *   rodata_a384c                             @ 0x000a384c   [INLINED -- G6 literal batch]
+ *   rodata_a3875                             @ 0x000a3875   [INLINED -- G6 literal batch]
  *   rodata_a3886                             @ 0x000a3886
- *   rodata_a38a5                             @ 0x000a38a5
+ *   rodata_a38a5                             @ 0x000a38a5   [INLINED -- G6 literal batch]
  *   rodata_a38be                             @ 0x000a38be
  *   rodata_a38dd                             @ 0x000a38dd
  *   rodata_a38f9                             @ 0x000a38f9
- *   rodata_a3916                             @ 0x000a3916
+ *   rodata_a3916                             @ 0x000a3916   [INLINED -- G6 literal batch]
  *   rodata_a3930                             @ 0x000a3930
  *   rodata_a394b                             @ 0x000a394b
  *   rodata_a3967                             @ 0x000a3967
  *   rodata_a3982                             @ 0x000a3982
  *   rodata_a39a0                             @ 0x000a39a0
  *   rodata_a39bb                             @ 0x000a39bb
- *   rodata_a3a0f                             @ 0x000a3a0f
+ *   rodata_a3a0f                             @ 0x000a3a0f   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_20007b38                               @ 0x20007b38
@@ -289,8 +289,8 @@ LAB_0002c9b6:
 
 CASE0:
     if (2 < g_log_level) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a3669,0x000a3a0f);
-        else            debug_print(0x000a3669,0x000a3a0f);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): switch -> E_ID_SCREEN_IDLE\n"),((unsigned long)"process_for_new_task"));
+        else            debug_print(((unsigned long)"%s(): switch -> E_ID_SCREEN_IDLE\n"),((unsigned long)"process_for_new_task"));
     }
     puVar21 = *(u32 **)(param_1 + 0x1054);
     set_task_wake_state(1);
@@ -330,14 +330,14 @@ CASE0:
             } while (iVar18 != 0);
         }
         if (1 < *piVar10) {
-            if (g_log_use_alt_sink == 0) log_message(0x000a3696,0x000a3875,**(u32 **)(param_1 + 0x1054),uVar19, (u32)(u8)param_1[0xd5]);
-            else            debug_print(0x000a3696,0x000a3875,**(u32 **)(param_1 + 0x1054),uVar19, (u32)(u8)param_1[0xd5]);
+            if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): Now, I will goto run IDLE ^v^ g->persist_task->screen_id %d, persist->status %d pkg->screen_id %d\n"),((unsigned long)"process_for_IDLE"),**(u32 **)(param_1 + 0x1054),uVar19, (u32)(u8)param_1[0xd5]);
+            else            debug_print(((unsigned long)"%s(): Now, I will goto run IDLE ^v^ g->persist_task->screen_id %d, persist->status %d pkg->screen_id %d\n"),((unsigned long)"process_for_IDLE"),**(u32 **)(param_1 + 0x1054),uVar19, (u32)(u8)param_1[0xd5]);
         }
     }
     g_esb_notify_slave_role_guard = 0; /* *DAT_0002e0fc: same byte address */
     if (2 < *piVar10) {
-        if (g_log_use_alt_sink == 0) { iVar18 = get_device_info(); log_message(0x000a36ff,0x000a3875,(u32)*(u8 *)(iVar18 + 0xdd), (u32)(u8)param_1[0x1070]); }
-        else            { iVar18 = get_device_info(); debug_print(0x000a36ff,0x000a3875,(u32)*(u8 *)(iVar18 + 0xdd), (u32)(u8)param_1[0x1070]); }
+        if (g_log_use_alt_sink == 0) { iVar18 = get_device_info(); log_message(((unsigned long)"%s(): GLOBAL->master_sync_pkg.panel_data_pkg.unread_msg_num is %d,g->enable_ancs is %d \n"),((unsigned long)"process_for_IDLE"),(u32)*(u8 *)(iVar18 + 0xdd), (u32)(u8)param_1[0x1070]); }
+        else            { iVar18 = get_device_info(); debug_print(((unsigned long)"%s(): GLOBAL->master_sync_pkg.panel_data_pkg.unread_msg_num is %d,g->enable_ancs is %d \n"),((unsigned long)"process_for_IDLE"),(u32)*(u8 *)(iVar18 + 0xdd), (u32)(u8)param_1[0x1070]); }
     }
     puVar3 = g_20007b38;
     piVar2 = (volatile int *)0x20007554;
@@ -416,8 +416,8 @@ LAB_0002e084:
                             iVar18 = g_log_use_alt_sink;
                             uVar14 = 0xa37c8;
 LAB_0002e184:
-                            if (iVar18 == 0) log_message(uVar14,0x000a3875);
-                            else             debug_print(uVar14,0x000a3875);
+                            if (iVar18 == 0) log_message(uVar14,((unsigned long)"process_for_IDLE"));
+                            else             debug_print(uVar14,((unsigned long)"process_for_IDLE"));
                         }
                         goto LAB_0002cf58;
                     }
@@ -438,8 +438,8 @@ LAB_0002e184:
             } else {
                 uVar19 = uVar19 + 1;
                 if (((uVar19 & 0x1f) == 0) && (0 < *piVar10)) {
-                    if (g_log_use_alt_sink == 0) log_message(0x000a3770,0x000a3875);
-                    else            debug_print(0x000a3770,0x000a3875);
+                    if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): There is an unfinished task,skip the local tasks\n"),((unsigned long)"process_for_IDLE"));
+                    else            debug_print(((unsigned long)"%s(): There is an unfinished task,skip the local tasks\n"),((unsigned long)"process_for_IDLE"));
                 }
             }
         }
@@ -455,8 +455,8 @@ LAB_0002df66:
 
 CASE1:
     if (2 < g_log_level) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a3811,0x000a3a0f);
-        else            debug_print(0x000a3811,0x000a3a0f);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): switch -> E_ID_SCREEN_WAIT_BLOW_HEAD\n"),((unsigned long)"process_for_new_task"));
+        else            debug_print(((unsigned long)"%s(): switch -> E_ID_SCREEN_WAIT_BLOW_HEAD\n"),((unsigned long)"process_for_new_task"));
     }
     trigger_screen_state_change(0xa383d, param_1, 0);
     while ((*param_2 != 1 && (iVar18 = get_task_signal_mode(), iVar18 != 1))) {
@@ -476,16 +476,16 @@ LAB_0002cb9a:
 
 CASE2:
     if (2 < g_log_level) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a2c85,0x000a3a0f);
-        else            debug_print(0x000a2c85,0x000a3a0f);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): switch -> E_ID_SCREEN_COUNTDOWN_TIMER\n"),((unsigned long)"process_for_new_task"));
+        else            debug_print(((unsigned long)"%s(): switch -> E_ID_SCREEN_COUNTDOWN_TIMER\n"),((unsigned long)"process_for_new_task"));
     }
     piVar2 = (volatile int *)0x20007554;
     uVar19 = 0;
     while (1) {
         if ((*(char *)(*(int *)(param_1 + 0xff0) + 5) == '\0') || (param_1[0xfea] != '\n')) {
             if (2 < *piVar4) {
-                if (g_log_use_alt_sink == 0) log_message(0x000a2cb2,0x000a39a0,(u32)(u8)param_1[0xd5]);
-                else            debug_print(0x000a2cb2,0x000a39a0,(u32)(u8)param_1[0xd5]);
+                if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): #4 %d-%d: I will go to suspend, goodbye!\n"),0x000a39a0,(u32)(u8)param_1[0xd5]);
+                else            debug_print(((unsigned long)"%s(): #4 %d-%d: I will go to suspend, goodbye!\n"),0x000a39a0,(u32)(u8)param_1[0xd5]);
             }
             sync_to_slave(param_1, 8, 0);
             if (*param_2 == 2) update_persist_task_status_to_wait_blow_head();
@@ -510,8 +510,8 @@ CASE2:
         if (iVar18 == 0) {
             *(u8 *)(*(int *)(param_1 + 0xff0) + 5) = 0;
             if (2 < *piVar4) {
-                if (g_log_use_alt_sink == 0) log_message(0x000a2d1a,0x000a39a0,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(*(int *)(param_1 + 0xff0) + 5));
-                else            debug_print(0x000a2d1a,0x000a39a0,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(*(int *)(param_1 + 0xff0) + 5));
+                if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): #5 %d-%d: expect_ts == 0, I will go to suspend, goodbye!\n"),0x000a39a0,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(*(int *)(param_1 + 0xff0) + 5));
+                else            debug_print(((unsigned long)"%s(): #5 %d-%d: expect_ts == 0, I will go to suspend, goodbye!\n"),0x000a39a0,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(*(int *)(param_1 + 0xff0) + 5));
             }
             local_2c[0] = 0xa2d5a;
             update_persist_task_status(param_1, **(u32 **)(param_1 + 0x1054), 1);
@@ -521,8 +521,8 @@ CASE2:
         if (*param_2 == 2) break;
         uVar19 = uVar19 + 1;
         if (((uVar19 & 0xf) == 0) && (2 < *piVar4)) {
-            if (*piVar2 == 0) log_message(0x000a2d97,0x000a39a0,uVar19,iVar18,(u32)*param_2, (u32)(u8)param_1[0xdd]);
-            else              debug_print(0x000a2d97,0x000a39a0,uVar19,iVar18,(u32)*param_2, (u32)(u8)param_1[0xdd]);
+            if (*piVar2 == 0) log_message(((unsigned long)"%s(): [countdown]\347\255\211\345\276\205\351\200\200\345\207\272:%d, expect_ts: %d, imu:%d, unread_msg_num:%d\n"),0x000a39a0,uVar19,iVar18,(u32)*param_2, (u32)(u8)param_1[0xdd]);
+            else              debug_print(((unsigned long)"%s(): [countdown]\347\255\211\345\276\205\351\200\200\345\207\272:%d, expect_ts: %d, imu:%d, unread_msg_num:%d\n"),0x000a39a0,uVar19,iVar18,(u32)*param_2, (u32)(u8)param_1[0xdd]);
         }
         if (param_1[0xd5] == '\x01') {
             iVar13 = 0xa2ad4;
@@ -542,8 +542,8 @@ CASE2:
         reset_task_transition_state();
     }
     if (2 < *piVar4) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a2d6f,0x000a39a0,**(u32 **)(param_1 + 0x1054), (u32)(u8)param_1[0xd5]);
-        else            debug_print(0x000a2d6f,0x000a39a0,**(u32 **)(param_1 + 0x1054), (u32)(u8)param_1[0xd5]);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): \345\270\270\351\251\273\344\273\273\345\212\241:%d -> new screen:%d\n"),0x000a39a0,**(u32 **)(param_1 + 0x1054), (u32)(u8)param_1[0xd5]);
+        else            debug_print(((unsigned long)"%s(): \345\270\270\351\251\273\344\273\273\345\212\241:%d -> new screen:%d\n"),0x000a39a0,**(u32 **)(param_1 + 0x1054), (u32)(u8)param_1[0xd5]);
     }
     update_persist_task_status(param_1, **(u32 **)(param_1 + 0x1054), 3);
     goto LAB_0002cf58;
@@ -554,16 +554,16 @@ CASE_DEFAULT:
 
 CASE4:
     if (2 < g_log_level) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a2a7e,0x000a3a0f);
-        else            debug_print(0x000a2a7e,0x000a3a0f);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): switch -> E_ID_SCREEN_ANCS_NOTIFICATION\n"),((unsigned long)"process_for_new_task"));
+        else            debug_print(((unsigned long)"%s(): switch -> E_ID_SCREEN_ANCS_NOTIFICATION\n"),((unsigned long)"process_for_new_task"));
     }
     iVar18 = process_task_state_four(param_1, param_1 + 0xd4, param_2, local_2c);
     goto LAB_0002ca34;
 
 CASE5:
     if (2 < g_log_level) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a2a4d,0x000a3a0f);
-        else            debug_print(0x000a2a4d,0x000a3a0f);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): switch -> E_ID_SCREEN_NEW_MESSAGE_COME_ON\n"),((unsigned long)"process_for_new_task"));
+        else            debug_print(((unsigned long)"%s(): switch -> E_ID_SCREEN_NEW_MESSAGE_COME_ON\n"),((unsigned long)"process_for_new_task"));
     }
     iVar18 = process_task_state_five(param_1, param_1 + 0xd4, param_2, local_2c);
 LAB_0002ca34:
@@ -576,8 +576,8 @@ LAB_0002ca3c:
 
 CASE6:
     if (2 < g_log_level) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a2aad,0x000a3a0f);
-        else            debug_print(0x000a2aad,0x000a3a0f);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): switch -> E_ID_SCREEN_DASHBOARD\n"),((unsigned long)"process_for_new_task"));
+        else            debug_print(((unsigned long)"%s(): switch -> E_ID_SCREEN_DASHBOARD\n"),((unsigned long)"process_for_new_task"));
     }
     pcVar20 = (char *)&g_pending_message_flag;
     puVar3 = g_20007b38;
@@ -612,8 +612,8 @@ CASE6:
                 goto LAB_0002cbe8;
             }
             if (2 < *piVar2) {
-                if (g_log_use_alt_sink == 0) log_message(0x000a2af2,0x000a39bb,(u32)(u8)param_1[0xd5], **(u32 **)(param_1 + 0x1054));
-                else            debug_print(0x000a2af2,0x000a39bb,(u32)(u8)param_1[0xd5], **(u32 **)(param_1 + 0x1054));
+                if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): dashboard:%d -> \345\210\207\346\215\242\345\210\260\345\270\270\351\251\273\344\273\273\345\212\241:%d\n"),0x000a39bb,(u32)(u8)param_1[0xd5], **(u32 **)(param_1 + 0x1054));
+                else            debug_print(((unsigned long)"%s(): dashboard:%d -> \345\210\207\346\215\242\345\210\260\345\270\270\351\251\273\344\273\273\345\212\241:%d\n"),0x000a39bb,(u32)(u8)param_1[0xd5], **(u32 **)(param_1 + 0x1054));
             }
             uVar17 = **(u32 **)(param_1 + 0x1054) & 0xff;
             goto LAB_0002cb9a;
@@ -621,8 +621,8 @@ CASE6:
         iVar18 = now_has_persist_task(param_1, param_1[0xd5]);
         if (iVar18 == 1) {
             if (2 < *piVar2) {
-                if (g_log_use_alt_sink == 0) log_message(0x000a2b22,0x000a39bb,(u32)(u8)param_1[0xd5], *(u32 *)(param_1 + 0xdf),(u32)(u8)param_1[0xe3]);
-                else            debug_print(0x000a2b22,0x000a39bb,(u32)(u8)param_1[0xd5], *(u32 *)(param_1 + 0xdf),(u32)(u8)param_1[0xe3]);
+                if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): #2 %d: %d %d I will go to next screen, goodbye!\n"),0x000a39bb,(u32)(u8)param_1[0xd5], *(u32 *)(param_1 + 0xdf),(u32)(u8)param_1[0xe3]);
+                else            debug_print(((unsigned long)"%s(): #2 %d: %d %d I will go to next screen, goodbye!\n"),0x000a39bb,(u32)(u8)param_1[0xd5], *(u32 *)(param_1 + 0xdf),(u32)(u8)param_1[0xe3]);
             }
             uVar17 = *(u32 *)(param_1 + 0xdf);
             if (uVar17 == 0xb) goto LAB_0002cb9a;
@@ -673,8 +673,8 @@ CASE6:
         }
         uVar19 = uVar19 + 1;
         if (((uVar19 & 0xf) == 0) && (2 < *piVar2)) {
-            if (g_log_use_alt_sink == 0) log_message(0x000a2c0b,0x000a39bb,uVar19,**(u32 **)(param_1 + 0xff0), (u32)*param_2,(u32)(u8)param_1[0xdd],(u32)(u8)param_1[0xe3], *(u32 *)(param_1 + 0xdf),(u32)(u8)param_1[0xdc]);
-            else            debug_print(0x000a2c0b,0x000a39bb,uVar19,**(u32 **)(param_1 + 0xff0), (u32)*param_2,(u32)(u8)param_1[0xdd],(u32)(u8)param_1[0xe3], *(u32 *)(param_1 + 0xdf),(u32)(u8)param_1[0xdc]);
+            if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): [dashboard]\347\255\211\345\276\205\351\200\200\345\207\272:%d, expect_ts: %d, imu:%d, unread_msg_num:%d, persist_task:%d/%d - %d\n"),0x000a39bb,uVar19,**(u32 **)(param_1 + 0xff0), (u32)*param_2,(u32)(u8)param_1[0xdd],(u32)(u8)param_1[0xe3], *(u32 *)(param_1 + 0xdf),(u32)(u8)param_1[0xdc]);
+            else            debug_print(((unsigned long)"%s(): [dashboard]\347\255\211\345\276\205\351\200\200\345\207\272:%d, expect_ts: %d, imu:%d, unread_msg_num:%d, persist_task:%d/%d - %d\n"),0x000a39bb,uVar19,**(u32 **)(param_1 + 0xff0), (u32)*param_2,(u32)(u8)param_1[0xdd],(u32)(u8)param_1[0xe3], *(u32 *)(param_1 + 0xdf),(u32)(u8)param_1[0xdc]);
         }
         if ((*pcVar20 != '\0') && (iVar18 = should_finish_task_wait(), iVar18 != 0)) break;
         get_device_info();
@@ -690,8 +690,8 @@ LAB_0002cd8c:
 
 CASE7:
     if (2 < g_log_level) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a32b6,0x000a3a0f);
-        else            debug_print(0x000a32b6,0x000a3a0f);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): switch -> E_ID_SCREEN_NOT_DISTURB\n"),((unsigned long)"process_for_new_task"));
+        else            debug_print(((unsigned long)"%s(): switch -> E_ID_SCREEN_NOT_DISTURB\n"),((unsigned long)"process_for_new_task"));
     }
     uVar15 = 0xa3325;
     uVar14 = 0xa38f9;
@@ -701,8 +701,8 @@ CASE7:
 
 CASE8:
     if (2 < g_log_level) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a3290,0x000a3a0f);
-        else            debug_print(0x000a3290,0x000a3a0f);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): switch -> E_ID_SCREEN_SCHEDULE\n"),((unsigned long)"process_for_new_task"));
+        else            debug_print(((unsigned long)"%s(): switch -> E_ID_SCREEN_SCHEDULE\n"),((unsigned long)"process_for_new_task"));
     }
     param_1[0xb0d] = '\0';
     iVar18 = get_device_info();
@@ -712,8 +712,8 @@ CASE8:
         task_wait_ticks(0x667, 0);
     }
     if (2 < *piVar7) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a291d,0x000a3916,(u32)(u8)param_1[0xd5]);
-        else            debug_print(0x000a291d,0x000a3916,(u32)(u8)param_1[0xd5]);
+        if (g_log_use_alt_sink == 0) log_message(0x000a291d,((unsigned long)"process_for_schedule_show"),(u32)(u8)param_1[0xd5]);
+        else            debug_print(0x000a291d,((unsigned long)"process_for_schedule_show"),(u32)(u8)param_1[0xd5]);
     }
     sync_to_slave(param_1, 8, 0);
     update_persist_task_status_to_idle(param_1);
@@ -722,8 +722,8 @@ CASE8:
 
 CASE9:
     if (2 < g_log_level) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a2e31,0x000a3a0f);
-        else            debug_print(0x000a2e31,0x000a3a0f);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): switch -> E_ID_SCREEN_TELEPROMPTER\n"),((unsigned long)"process_for_new_task"));
+        else            debug_print(((unsigned long)"%s(): switch -> E_ID_SCREEN_TELEPROMPTER\n"),((unsigned long)"process_for_new_task"));
     }
     uVar15 = 0xa2f08;
     uVar14 = 0xa3982;
@@ -734,8 +734,8 @@ CASE9:
 
 CASE10:
     if (2 < g_log_level) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a30bd,0x000a3a0f);
-        else            debug_print(0x000a30bd,0x000a3a0f);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): switch -> E_ID_SCREEN_NAVIGATION\n"),((unsigned long)"process_for_new_task"));
+        else            debug_print(((unsigned long)"%s(): switch -> E_ID_SCREEN_NAVIGATION\n"),((unsigned long)"process_for_new_task"));
     }
     uVar15 = 0xa318d;
     uVar14 = 0xa394b;
@@ -746,8 +746,8 @@ CASE10:
 
 CASE11:
     if (2 < g_log_level) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a31da,0x000a3a0f);
-        else            debug_print(0x000a31da,0x000a3a0f);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): switch -> E_ID_SCREEN_TRANSLATE\n"),((unsigned long)"process_for_new_task"));
+        else            debug_print(((unsigned long)"%s(): switch -> E_ID_SCREEN_TRANSLATE\n"),((unsigned long)"process_for_new_task"));
     }
     uVar15 = 0xa3244;
     uVar14 = 0xa3590;
@@ -757,8 +757,8 @@ CASE11:
 
 CASE12:
     if (2 < g_log_level) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a2f57,0x000a3a0f);
-        else            debug_print(0x000a2f57,0x000a3a0f);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): switch -> E_ID_SCREEN_QUICKNOTE\n"),((unsigned long)"process_for_new_task"));
+        else            debug_print(((unsigned long)"%s(): switch -> E_ID_SCREEN_QUICKNOTE\n"),((unsigned long)"process_for_new_task"));
     }
     uVar15 = 0xa3071;
     uVar14 = 0xa3967;
@@ -768,8 +768,8 @@ CASE12:
 
 CASE14:
     if (2 < g_log_level) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a3373,0x000a3a0f);
-        else            debug_print(0x000a3373,0x000a3a0f);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): switch -> E_ID_SCREEN_ONBOARDING\n"),((unsigned long)"process_for_new_task"));
+        else            debug_print(((unsigned long)"%s(): switch -> E_ID_SCREEN_ONBOARDING\n"),((unsigned long)"process_for_new_task"));
     }
     uVar15 = 0xa33de;
     uVar14 = 0xa38dd;
@@ -779,8 +779,8 @@ CASE14:
 
 CASE15:
     if (2 < g_log_level) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a342b,0x000a3a0f);
-        else            debug_print(0x000a342b,0x000a3a0f);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): switch -> E_ID_SCREEN_RASTER_CONFIG\n"),((unsigned long)"process_for_new_task"));
+        else            debug_print(((unsigned long)"%s(): switch -> E_ID_SCREEN_RASTER_CONFIG\n"),((unsigned long)"process_for_new_task"));
     }
     uVar15 = 0xa34a2;
     uVar14 = 0xa38be;
@@ -790,8 +790,8 @@ CASE15:
 
 CASE16:
     if (2 < g_log_level) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a34f2,0x000a3a0f);
-        else            debug_print(0x000a34f2,0x000a3a0f);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): switch -> E_ID_SCREEN_EVEN_AI\n"),((unsigned long)"process_for_new_task"));
+        else            debug_print(((unsigned long)"%s(): switch -> E_ID_SCREEN_EVEN_AI\n"),((unsigned long)"process_for_new_task"));
     }
     piVar2 = (volatile int *)0x20007554;
     uVar19 = 0;
@@ -799,8 +799,8 @@ CASE16:
 
 CASE17:
     if (2 < g_log_level) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a35a2,0x000a3a0f);
-        else            debug_print(0x000a35a2,0x000a3a0f);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): switch -> E_ID_SCREEN_SET_IMU_PITCH\n"),((unsigned long)"process_for_new_task"));
+        else            debug_print(((unsigned long)"%s(): switch -> E_ID_SCREEN_SET_IMU_PITCH\n"),((unsigned long)"process_for_new_task"));
     }
     uVar15 = 0xa3619;
     uVar14 = 0xa3886;
@@ -863,8 +863,8 @@ LAB_0002dac0:
             iVar18 = g_log_use_alt_sink;
             uVar14 = 0xa2768;
 LAB_0002dc06:
-            if (iVar18 == 0) log_message(uVar14,0x000a38a5,(u32)bVar1);
-            else             debug_print(uVar14,0x000a38a5,(u32)bVar1);
+            if (iVar18 == 0) log_message(uVar14,((unsigned long)"process_for_even_ai_show"),(u32)bVar1);
+            else             debug_print(uVar14,((unsigned long)"process_for_even_ai_show"),(u32)bVar1);
         }
         goto LAB_0002db7c;
     }
@@ -891,8 +891,8 @@ LAB_0002dc06:
             }
         } else {
             if (2 < *piVar8) {
-                if (g_log_use_alt_sink == 0) log_message(0x000a294a,0x000a38a5,(u32)(u8)param_1[0xd5]);
-                else            debug_print(0x000a294a,0x000a38a5,(u32)(u8)param_1[0xd5]);
+                if (g_log_use_alt_sink == 0) log_message(0x000a294a,((unsigned long)"process_for_even_ai_show"),(u32)(u8)param_1[0xd5]);
+                else            debug_print(0x000a294a,((unsigned long)"process_for_even_ai_show"),(u32)(u8)param_1[0xd5]);
             }
             sync_to_slave(param_1, 8, 0);
         }
@@ -900,8 +900,8 @@ LAB_0002dc06:
     }
     if (param_1[0xd5] == '\x01') {
         if (2 < *piVar8) {
-            if (g_log_use_alt_sink == 0) log_message(0x000a2de3,0x000a38a5,(u32)(u8)param_1[0xd5]);
-            else            debug_print(0x000a2de3,0x000a38a5,(u32)(u8)param_1[0xd5]);
+            if (g_log_use_alt_sink == 0) log_message(0x000a2de3,((unsigned long)"process_for_even_ai_show"),(u32)(u8)param_1[0xd5]);
+            else            debug_print(0x000a2de3,((unsigned long)"process_for_even_ai_show"),(u32)(u8)param_1[0xd5]);
         }
         set_task_wake_state(1);
         iVar13 = 0xa2a32;
@@ -909,8 +909,8 @@ LAB_0002dc06:
     }
     uVar19 = uVar19 + 1;
     if (((uVar19 & 0xf) == 0) && (2 < *piVar8)) {
-        if (*piVar2 == 0) log_message(0x000a3558,0x000a38a5,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2 ,(u32)(u8)param_1[0xdd]);
-        else              debug_print(0x000a3558,0x000a38a5,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2 ,(u32)(u8)param_1[0xdd]);
+        if (*piVar2 == 0) log_message(((unsigned long)"%s(): [even ai]\347\255\211\345\276\205\351\200\200\345\207\272:%d, expect_ts: %d, imu:%d, unread_msg_num:%d\n"),((unsigned long)"process_for_even_ai_show"),uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2 ,(u32)(u8)param_1[0xdd]);
+        else              debug_print(((unsigned long)"%s(): [even ai]\347\255\211\345\276\205\351\200\200\345\207\272:%d, expect_ts: %d, imu:%d, unread_msg_num:%d\n"),((unsigned long)"process_for_even_ai_show"),uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2 ,(u32)(u8)param_1[0xdd]);
     }
     if ((*param_1 == '\x01') &&
         (((**(u8 **)(param_1 + 0x100c) - 7 < 2 || (**(u8 **)(param_1 + 0x100c) == 0xb)) &&
@@ -1022,14 +1022,14 @@ LAB_0002d1b4:
         local_2c[0] = 0xa2f9c;
         if (*param_2 != 2) {
             if (2 < *piVar5) {
-                if (g_log_use_alt_sink == 0) log_message(0x000a301e,0x000a3967,(u32)(u8)param_1[0xd5],0, (u32)(u8)param_1[0xfea],(u32)*param_2);
-                else            debug_print(0x000a301e,0x000a3967,(u32)(u8)param_1[0xd5],0, (u32)(u8)param_1[0xfea],(u32)*param_2);
+                if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): #0 %d-%d,display mode = %d: I will go to suspend, goodbye! imu->attitude %d\n"),0x000a3967,(u32)(u8)param_1[0xd5],0, (u32)(u8)param_1[0xfea],(u32)*param_2);
+                else            debug_print(((unsigned long)"%s(): #0 %d-%d,display mode = %d: I will go to suspend, goodbye! imu->attitude %d\n"),0x000a3967,(u32)(u8)param_1[0xd5],0, (u32)(u8)param_1[0xfea],(u32)*param_2);
             }
             goto LAB_0002d2da;
         }
         if (2 < *piVar5) {
-            if (g_log_use_alt_sink == 0) log_message(0x000a2fb0,0x000a3967,(u32)(u8)param_1[0xd5],0,(u32)(u8)param_1[0xfea] ,2);
-            else            debug_print(0x000a2fb0,0x000a3967,(u32)(u8)param_1[0xd5],0,(u32)(u8)param_1[0xfea] ,2);
+            if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): process_for_quicknote_show #0 %d-%d,display mode = %d: I will go to suspend, goodbye! imu->attitude %d\n"),0x000a3967,(u32)(u8)param_1[0xd5],0,(u32)(u8)param_1[0xfea] ,2);
+            else            debug_print(((unsigned long)"%s(): process_for_quicknote_show #0 %d-%d,display mode = %d: I will go to suspend, goodbye! imu->attitude %d\n"),0x000a3967,(u32)(u8)param_1[0xd5],0,(u32)(u8)param_1[0xfea] ,2);
         }
         sync_to_slave(param_1, 8, 0);
         if (*param_2 == 2) update_persist_task_status_to_wait_blow_head();
@@ -1126,8 +1126,8 @@ LAB_0002d37c:
         local_2c[0] = 0xa3104;
         if (*param_2 != 2) {
             if (2 < *piVar6) {
-                if (g_log_use_alt_sink == 0) log_message(0x000a315d,0x000a394b,(u32)(u8)param_1[0xd5],0);
-                else            debug_print(0x000a315d,0x000a394b,(u32)(u8)param_1[0xd5],0);
+                if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): #0 %d-%d: I will go to suspend, goodbye!\n"),0x000a394b,(u32)(u8)param_1[0xd5],0);
+                else            debug_print(((unsigned long)"%s(): #0 %d-%d: I will go to suspend, goodbye!\n"),0x000a394b,(u32)(u8)param_1[0xd5],0);
             }
 LAB_0002d2da:
             sync_to_slave(param_1, 8, 0);
@@ -1136,8 +1136,8 @@ LAB_0002d9fc:
             goto LAB_0002d118;
         }
         if (2 < *piVar6) {
-            if (g_log_use_alt_sink == 0) log_message(0x000a3119,0x000a394b,(u32)(u8)param_1[0xd5],0,(u32)(u8)param_1[1]);
-            else            debug_print(0x000a3119,0x000a394b,(u32)(u8)param_1[0xd5],0,(u32)(u8)param_1[1]);
+            if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): #0 %d-%d: I will go to suspend becasue workmode %d, goodbye!\n"),0x000a394b,(u32)(u8)param_1[0xd5],0,(u32)(u8)param_1[1]);
+            else            debug_print(((unsigned long)"%s(): #0 %d-%d: I will go to suspend becasue workmode %d, goodbye!\n"),0x000a394b,(u32)(u8)param_1[0xd5],0,(u32)(u8)param_1[1]);
         }
         sync_to_slave(param_1, 8, 0);
         update_persist_task_status_to_idle(param_1);
@@ -1172,8 +1172,8 @@ LAB_0002d03e:
             trigger_screen_state_change(0xa2733, param_1, 1);
             finish_task_audio();
             if (2 < *piVar5) {
-                if (g_log_use_alt_sink == 0) log_message(0x000a2e93,0x000a3982,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(iVar18 + 1),(u32)(u8)param_1[1]);
-                else            debug_print(0x000a2e93,0x000a3982,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(iVar18 + 1),(u32)(u8)param_1[1]);
+                if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): #2 %d-%d: I will go to suspend becasue workmode %d,, goodbye!\n"),0x000a3982,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(iVar18 + 1),(u32)(u8)param_1[1]);
+                else            debug_print(((unsigned long)"%s(): #2 %d-%d: I will go to suspend becasue workmode %d,, goodbye!\n"),0x000a3982,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(iVar18 + 1),(u32)(u8)param_1[1]);
             }
             sync_to_slave(param_1, 8, 0);
 LAB_0002d0b4:
@@ -1185,8 +1185,8 @@ LAB_0002d3ec:
             uVar14 = 0x2667;
         } else {
             if (2 < *piVar5) {
-                if (g_log_use_alt_sink == 0) log_message(0x000a2ed8,0x000a3982,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(iVar18 + 1));
-                else            debug_print(0x000a2ed8,0x000a3982,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(iVar18 + 1));
+                if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): #3 %d-%d: I will go to suspend, goodbye!\n"),0x000a3982,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(iVar18 + 1));
+                else            debug_print(((unsigned long)"%s(): #3 %d-%d: I will go to suspend, goodbye!\n"),0x000a3982,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(iVar18 + 1));
             }
             sync_to_slave(param_1, 8, 0);
             update_persist_task_status_to_idle(param_1);
@@ -1288,8 +1288,8 @@ LAB_0002cd00:
 
 code_r0x0002dac8:
     if (2 < *piVar8) {
-        if (g_log_use_alt_sink == 0) log_message(0x000a3517,0x000a38a5,(u32)(u8)param_1[0xd5],(u32)(u8)param_1[1]);
-        else            debug_print(0x000a3517,0x000a38a5,(u32)(u8)param_1[0xd5],(u32)(u8)param_1[1]);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): #0 %d: I will go to suspend becasue workmode %d, goodbye!\n"),((unsigned long)"process_for_even_ai_show"),(u32)(u8)param_1[0xd5],(u32)(u8)param_1[1]);
+        else            debug_print(((unsigned long)"%s(): #0 %d: I will go to suspend becasue workmode %d, goodbye!\n"),((unsigned long)"process_for_even_ai_show"),(u32)(u8)param_1[0xd5],(u32)(u8)param_1[1]);
     }
     sync_to_slave(param_1, 8, 0);
     if (*param_2 == 2) {
@@ -1305,8 +1305,8 @@ LAB_0002ce1c:
     iVar18 = local_2c[0];
     if (local_2c[0] != 0) {
         if (2 < g_log_level) {
-            if (g_log_use_alt_sink == 0) log_message(0x000a384c,0x000a3a0f,(u32)(u8)param_1[0xd5],local_2c[0]);
-            else            debug_print(0x000a384c,0x000a3a0f,(u32)(u8)param_1[0xd5],local_2c[0]);
+            if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): #6 %d: timeout_suspend reason: %s\n"),((unsigned long)"process_for_new_task"),(u32)(u8)param_1[0xd5],local_2c[0]);
+            else            debug_print(((unsigned long)"%s(): #6 %d: timeout_suspend reason: %s\n"),((unsigned long)"process_for_new_task"),(u32)(u8)param_1[0xd5],local_2c[0]);
         }
         trigger_screen_state_change(iVar18, param_1, 0);
         iVar18 = is_task_transition_ready();

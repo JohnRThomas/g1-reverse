@@ -12,9 +12,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f6abf                             @ 0x000f6abf
- *   rodata_f6c00                             @ 0x000f6c00
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f6abf                             @ 0x000f6abf   [INLINED -- G6 literal batch]
+ *   rodata_f6c00                             @ 0x000f6c00   [INLINED -- G6 literal batch]
  *   rodata_f6ceb                             @ 0x000f6ceb
  *   g_pdm_cb                                 @ 0x2000b330
  */
@@ -27,11 +27,11 @@ unsigned nrfx_pdm_init(int param_1, int param_2){
     unsigned r0v = (unsigned)param_1;
     unsigned r1v = (unsigned)param_2;
     if (r0v != 0) goto L_174;
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f6c00) /*=0xf6c00*/,((unsigned long)&rodata_f6ceb) /*=0xf6ceb*/,0x78);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"p_config") /*=0xf6c00*/,((unsigned long)&rodata_f6ceb) /*=0xf6ceb*/,0x78);
     { long long r=assert_post_action(((unsigned long)&rodata_f6ceb) /*=0xf6ceb*/,0x78); r0v=(unsigned)r; r1v=(unsigned)((unsigned long long)r>>32);}
 L_174:
     if (r1v != 0) goto L_186;
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f6abf) /*=0xf6abf*/,((unsigned long)&rodata_f6ceb) /*=0xf6ceb*/,0x79);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"event_handler") /*=0xf6abf*/,((unsigned long)&rodata_f6ceb) /*=0xf6ceb*/,0x79);
     { long long r=assert_post_action(((unsigned long)&rodata_f6ceb) /*=0xf6ceb*/,0x79); r0v=(unsigned)r; r1v=(unsigned)((unsigned long long)r>>32);}
     goto L_174;
 L_186:

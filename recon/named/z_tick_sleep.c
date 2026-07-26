@@ -15,12 +15,12 @@
  *   get_uptime_ms                            <= FUN_00086690 @ 0x00086690
  * address symbols (name @ address):
  *   rodata_86661                             @ 0x00086661
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f53ff                             @ 0x000f53ff
  *   rodata_f801f                             @ 0x000f801f
  *   rodata_f82f4                             @ 0x000f82f4
@@ -50,7 +50,7 @@ int32_t z_tick_sleep(uint32_t lo, int32_t hi)
 {
     uint32_t exception = __get_IPSR() & 0x1fU;
     if (exception != 0) {
-        printk(0x99cbd, 0xf801f, 0xf82f4, 0x596);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0xf801f, 0xf82f4, 0x596);
         printk(0xf53ff);
         assert_post_action(0xf82f4, 0x596);
     }
@@ -70,8 +70,8 @@ int32_t z_tick_sleep(uint32_t lo, int32_t hi)
     __set_BASEPRI_MAX(0x20);
     __ISB();
     if (z_spin_lock_valid(0x2000b490) == 0) {
-        printk(0x99cbd, 0xf0920, 0xf08c7, 0x72);
-        printk(0xf0935, 0x2000b490);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"z_spin_lock_valid(l)"), 0xf08c7, 0x72);
+        printk(((unsigned long)"\tInvalid spinlock %p\n"), 0x2000b490);
         assert_post_action(0xf08c7, 0x72);
     }
     z_spin_lock_set_owner(0x2000b490);
@@ -82,14 +82,14 @@ int32_t z_tick_sleep(uint32_t lo, int32_t hi)
     z_add_timeout((void *)(thread + 0x18), 0x86661, lo, hi);
     thread[0xd] |= 0x10;
     if (z_spin_unlock_valid(0x2000b490) == 0) {
-        printk(0x99cbd, 0xf08f4, 0xf08c7, 0x111);
-        printk(0xf090b, 0x2000b490);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"z_spin_unlock_valid(l)"), 0xf08c7, 0x111);
+        printk(((unsigned long)"\tNot my spinlock %p\n"), 0x2000b490);
         assert_post_action(0xf08c7, 0x111);
     }
     arch_swap(key);
     thread = *(volatile uint8_t * volatile *)(uintptr_t)(0x2000b448 + 8);
     if ((thread[0xd] & 0x10) != 0) {
-        printk(0x99cbd, 0xf8658, 0xf82f4, 0x5b2);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0xf8658, 0xf82f4, 0x5b2);
         printk(0xf53ff);
         assert_post_action(0xf82f4, 0x5b2);
     }

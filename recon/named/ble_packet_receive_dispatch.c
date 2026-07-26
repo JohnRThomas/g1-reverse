@@ -6,7 +6,7 @@
  *   debug_print_hex_dump                     <= FUN_0004a424 @ 0x0004a424
  *   ble_requeue_command_via_dispatch         <= FUN_0007c244 @ 0x0007c244
  * address symbols (name @ address):
- *   rodata_9dec8                             @ 0x0009dec8
+ *   rodata_9dec8                             @ 0x0009dec8   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00021d78 @ 0x21d78  (parity: 300/300 trials, PROVEN) */
 

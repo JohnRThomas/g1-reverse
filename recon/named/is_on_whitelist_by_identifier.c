@@ -17,12 +17,12 @@
  *   rodata_a835e                             @ 0x000a835e
  *   rodata_a8373                             @ 0x000a8373
  *   rodata_a844e                             @ 0x000a844e
- *   rodata_a8491                             @ 0x000a8491
+ *   rodata_a8491                             @ 0x000a8491   [INLINED -- G6 literal batch]
  *   rodata_a84a2                             @ 0x000a84a2
  *   rodata_a84c4                             @ 0x000a84c4
- *   rodata_a85c4                             @ 0x000a85c4
- *   rodata_a85d6                             @ 0x000a85d6
- *   rodata_a8a8a                             @ 0x000a8a8a
+ *   rodata_a85c4                             @ 0x000a85c4   [INLINED -- G6 literal batch]
+ *   rodata_a85d6                             @ 0x000a85d6   [INLINED -- G6 literal batch]
+ *   rodata_a8a8a                             @ 0x000a8a8a   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_app_whitelist_buffer                   @ 0x2001a22c
  */
@@ -47,8 +47,8 @@ int is_on_whitelist_by_identifier(int param_1){
     if(param_1 != 0){
         uVar4 = strlen((const void *)param_1);
         if(uVar4 < 0x28){
-            if(iVar6==0){ log_message(0x000a8491,param_1); }
-            else { debug_print(0x000a8491,param_1); }
+            if(iVar6==0){ log_message(((unsigned long)"pkg_name is %s \n"),param_1); }
+            else { debug_print(((unsigned long)"pkg_name is %s \n"),param_1); }
             chk = strncmp((const void *)0x000a81d0,param_1,0x15);
             int iVar7 = *g;
             int sh;
@@ -74,15 +74,15 @@ int is_on_whitelist_by_identifier(int param_1){
                     } else {
                         chk = strncmp((const void *)0x000a835e,param_1,0x14);
                         if(chk != 0){
-                            if(iVar7==0){ log_message(0x000a85c4,pb[1]); }
-                            else { debug_print(0x000a85c4,pb[1]); }
+                            if(iVar7==0){ log_message(((unsigned long)"appcounts is %d \n"),pb[1]); }
+                            else { debug_print(((unsigned long)"appcounts is %d \n"),pb[1]); }
                             if( ((int)((unsigned int)*pb << 0x1b) < 0) && (pb[1] != 0) ){
                                 unsigned char bVar9 = 0;
                                 while( (unsigned int)bVar9 < pb[1] ){
                                     unsigned char *entry = (unsigned char *)pb +
                                                            (unsigned int)bVar9 * 0x38 + 2;
-                                    if(*g==0){ log_message(0x000a85d6,(unsigned int)bVar9,entry); }
-                                    else { debug_print(0x000a85d6,(unsigned int)bVar9,entry); }
+                                    if(*g==0){ log_message(((unsigned long)"g_appWhiteListInfo.listAppInfo[%d].id is %s \n"),(unsigned int)bVar9,entry); }
+                                    else { debug_print(((unsigned long)"g_appWhiteListInfo.listAppInfo[%d].id is %s \n"),(unsigned int)bVar9,entry); }
                                     uVar4 = strlen(entry);
                                     chk = strncmp(entry,param_1,uVar4);
                                     bVar9 = bVar9 + 1;
@@ -112,7 +112,7 @@ int is_on_whitelist_by_identifier(int param_1){
         uVar3 = 0x000a844e;
         uVar5 = 0x46;
     }
-    if(iVar6==0){ log_message(uVar3,0x000a8a8a,uVar5); }
-    else { debug_print(uVar3,0x000a8a8a,uVar5); }
+    if(iVar6==0){ log_message(uVar3,((unsigned long)"is_on_whitelist_by_identifier"),uVar5); }
+    else { debug_print(uVar3,((unsigned long)"is_on_whitelist_by_identifier"),uVar5); }
     return 0;
 }

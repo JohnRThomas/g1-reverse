@@ -10,12 +10,12 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f53ff                             @ 0x000f53ff
  *   rodata_f8198                             @ 0x000f8198
  *   rodata_f81b8                             @ 0x000f81b8
@@ -35,7 +35,7 @@ int z_impl_k_sem_take(int param_1, uint32_t param_2, uint32_t param_3, uint32_t 
     uint32_t ipsr, bp, v; int iVar2; int r3;
     ipsr = __get_IPSR();
     if (ipsr != 0 && (param_3 | param_4) != 0){
-        printk(0x00099cbd,0x000f81b8,0x000f8198,0x80,(uint32_t)param_1,param_2,param_3);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x000f81b8,0x000f8198,0x80,(uint32_t)param_1,param_2,param_3);
         printk(0x000f53ff);
         assert_post_action(0x000f8198,0x80);
         goto L936;
@@ -47,8 +47,8 @@ int z_impl_k_sem_take(int param_1, uint32_t param_2, uint32_t param_3, uint32_t 
     __ISB();
     iVar2 = z_spin_lock_valid(0x2000b474);
     if (iVar2 == 0){
-        printk(0x00099cbd,0x000f0920,0x000f08c7,0x72,(uint32_t)param_1,param_2,param_3);
-        printk(0x000f0935,0x2000b474);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_lock_valid(l)"),0x000f08c7,0x72,(uint32_t)param_1,param_2,param_3);
+        printk(((unsigned long)"\tInvalid spinlock %p\n"),0x2000b474);
         assert_post_action(0x000f08c7,0x72);
         goto L936;
     }
@@ -73,8 +73,8 @@ int z_impl_k_sem_take(int param_1, uint32_t param_2, uint32_t param_3, uint32_t 
             return 0;
         }
     }
-    printk(0x00099cbd,0x000f08f4,0x000f08c7,0xf0,(uint32_t)param_1,param_2,param_3);
-    printk(0x000f090b,0x2000b474);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_unlock_valid(l)"),0x000f08c7,0xf0,(uint32_t)param_1,param_2,param_3);
+    printk(((unsigned long)"\tNot my spinlock %p\n"),0x2000b474);
     assert_post_action(0x000f08c7,0xf0);
     goto L936;
 }

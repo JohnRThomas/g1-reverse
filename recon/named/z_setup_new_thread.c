@@ -7,7 +7,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f7f4b                             @ 0x000f7f4b
  *   rodata_f7f6e                             @ 0x000f7f6e
  *   rodata_f7fee                             @ 0x000f7fee
@@ -27,7 +27,7 @@ uintptr_t z_setup_new_thread(uint8_t *object, uintptr_t buffer, uint32_t size,
 {
     if (!((offset == 15 && operation == 0x00072089u) ||
           (offset != 15 && (uint32_t)(offset + 16) <= 30u))) {
-        printk(0x00099cbdu, 0x000f7f6eu, 0x000f7f4bu, 0x21au,
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f7f6eu, 0x000f7f4bu, 0x21au,
                      object, buffer, size, operation);
         printk(0x000f7feeu, offset, 14u, 0xfffffff0u);
         assert_post_action(0x000f7f4bu, 0x21au);

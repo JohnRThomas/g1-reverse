@@ -7,8 +7,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   k_uptime_get_10                          <= FUN_0007daa4 @ 0x0007daa4
  * address symbols (name @ address):
- *   rodata_f0369                             @ 0x000f0369
- *   rodata_f0492                             @ 0x000f0492
+ *   rodata_f0369                             @ 0x000f0369   [INLINED -- G6 literal batch]
+ *   rodata_f0492                             @ 0x000f0492   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -44,9 +44,9 @@ long long get_dashboard_sum_time(void)
         unsigned int loP = (unsigned int)lVar8;
         unsigned int hiP = (unsigned int)((unsigned long long)lVar8 >> 32);
         if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_f0369) /*=0xf0369*/, ((unsigned long)&rodata_f0492) /*=0xf0492*/, loP, hiP);
+            log_message(((unsigned long)"%s(): get_dashboard_sum_time is %d\n") /*=0xf0369*/, ((unsigned long)"get_dashboard_sum_time") /*=0xf0492*/, loP, hiP);
         } else {
-            debug_print(((unsigned long)&rodata_f0369) /*=0xf0369*/, ((unsigned long)&rodata_f0492) /*=0xf0492*/, loP, hiP);
+            debug_print(((unsigned long)"%s(): get_dashboard_sum_time is %d\n") /*=0xf0369*/, ((unsigned long)"get_dashboard_sum_time") /*=0xf0492*/, loP, hiP);
         }
     }
     return lVar8;

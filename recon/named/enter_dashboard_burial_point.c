@@ -8,8 +8,8 @@
  *   k_uptime_get_10                          <= FUN_0007daa4 @ 0x0007daa4
  *   get_current_burial_point_type            <= FUN_0007dac0 @ 0x0007dac0
  * address symbols (name @ address):
- *   rodata_f038d                             @ 0x000f038d
- *   rodata_f0475                             @ 0x000f0475
+ *   rodata_f038d                             @ 0x000f038d   [INLINED -- G6 literal batch]
+ *   rodata_f0475                             @ 0x000f0475   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -34,11 +34,11 @@ void enter_dashboard_burial_point(void){
             if (1 < *(int*)0x2000230c){
                 if (*(int*)0x20007554 != 0){
                     iVar1=get_device_info();
-                    debug_print(0x000f038d,0x000f0475,*(unsigned*)(iVar1+0x1094),*(unsigned*)(iVar1+0x1098));
+                    debug_print(((unsigned long)"%s(): [enter_dashboard_burial_point] start_time is %d\n"),((unsigned long)"enter_dashboard_burial_point"),*(unsigned*)(iVar1+0x1094),*(unsigned*)(iVar1+0x1098));
                     return;
                 }
                 iVar1=get_device_info();
-                log_message(0x000f038d,0x000f0475,*(unsigned*)(iVar1+0x1094),*(unsigned*)(iVar1+0x1098));
+                log_message(((unsigned long)"%s(): [enter_dashboard_burial_point] start_time is %d\n"),((unsigned long)"enter_dashboard_burial_point"),*(unsigned*)(iVar1+0x1094),*(unsigned*)(iVar1+0x1098));
                 return;
             }
         }

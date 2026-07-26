@@ -16,11 +16,11 @@
  *   net_buf_get                              <= FUN_000836e8 @ 0x000836e8
  * address symbols (name @ address):
  *   rodata_88160                             @ 0x00088160
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3f55                             @ 0x000f3f55
- *   rodata_f3f8a                             @ 0x000f3f8a
- *   rodata_f3fc5                             @ 0x000f3fc5
- *   rodata_f3fe3                             @ 0x000f3fe3
+ *   rodata_f3f8a                             @ 0x000f3f8a   [INLINED -- G6 literal batch]
+ *   rodata_f3fc5                             @ 0x000f3fc5   [INLINED -- G6 literal batch]
+ *   rodata_f3fe3                             @ 0x000f3fe3   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction of FUN_0005774c @ 0x5774c (exact extent: 270 bytes). */
 #include <stdint.h>
@@ -70,14 +70,14 @@ extern void assert_post_action(uintptr_t message, uint32_t line);
 static __attribute__((always_inline)) inline void fatal_state(uintptr_t file,
                                                               uint32_t line)
 {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, file, ((unsigned long)&rodata_f3f55) /*=0xf3f55*/, line);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, file, ((unsigned long)&rodata_f3f55) /*=0xf3f55*/, line);
     assert_post_action(((unsigned long)&rodata_f3f55) /*=0xf3f55*/, line);
 }
 
 void l2cap_chan_send_disconnect(transfer_t *transfer, uint32_t reason)
 {
     if (transfer->state != 3) {
-        fatal_state(((unsigned long)&rodata_f3f8a) /*=0xf3f8a*/, 0x8f8u);
+        fatal_state(((unsigned long)"bt_l2cap_chan_get_state(&chan->chan) == BT_L2CAP_CONNECTED") /*=0xf3f8a*/, 0x8f8u);
         return;
     }
 
@@ -85,7 +85,7 @@ void l2cap_chan_send_disconnect(transfer_t *transfer, uint32_t reason)
     if (status != 0) {
         uint32_t old_owner = atomic_get_word(&transfer->pending_owner);
         if (old_owner != 0) {
-            fatal_state(((unsigned long)&rodata_f3fe3) /*=0xf3fe3*/, 0x905u);
+            fatal_state(((unsigned long)"atomic_get(&chan->rx.credits) == 0") /*=0xf3fe3*/, 0x905u);
             return;
         }
         (void)__atomic_exchange_n(&transfer->pending_owner, reason,
@@ -100,7 +100,7 @@ void l2cap_chan_send_disconnect(transfer_t *transfer, uint32_t reason)
     const struct {
         uint32_t count;
         uintptr_t message;
-    } notice = { 2u, ((unsigned long)&rodata_f3fc5) /*=0xf3fc5*/ };
+    } notice = { 2u, ((unsigned long)"Unable to send credits update") /*=0xf3fc5*/ };
     log_msg_3arg_thunk(((unsigned long)&rodata_88160) /*=0x88160*/, 0x1040u, &notice);
     (void)__atomic_fetch_or(&transfer->flags, 2u, __ATOMIC_ACQ_REL);
 

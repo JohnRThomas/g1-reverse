@@ -4,7 +4,7 @@
  * callees (readable <= raw @ address):
  *   debounce_read_pending_flag_2             <= FUN_0002eba0 @ 0x0002eba0
  * address symbols (name @ address):
- *   rodata_a3ec1                             @ 0x000a3ec1
+ *   rodata_a3ec1                             @ 0x000a3ec1   [INLINED -- G6 literal batch]
  *   g_confirmed_state_flag_2                 @ 0x20018da3
  *   g_ancs_inbox_flag_current                @ 0x20018da6
  */

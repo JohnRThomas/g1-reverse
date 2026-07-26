@@ -9,8 +9,8 @@
  *   bt_ancs_register_attr                    <= FUN_0007f772 @ 0x0007f772
  *   bt_ancs_register_app_attr                <= FUN_0007f79e @ 0x0007f79e
  * address symbols (name @ address):
- *   rodata_9ab0c                             @ 0x0009ab0c
- *   rodata_9b15e                             @ 0x0009b15e
+ *   rodata_9ab0c                             @ 0x0009ab0c   [INLINED -- G6 literal batch]
+ *   rodata_9b15e                             @ 0x0009b15e   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_ancs_client                            @ 0x20006ae8
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -65,7 +65,7 @@ int ancs_c_init(int param_1, unsigned param_2, unsigned param_3, unsigned param_
                             if(C8 < 1) return iVar1;
                             if(CC == 0){ uVar2 = 0x3dc;
 LAB_00019090:
-                                log_message(((unsigned long)&rodata_9ab0c) /*=0x9ab0c*/, ((unsigned long)&rodata_9b15e) /*=0x9b15e*/, uVar2, iVar1); return iVar1; }
+                                log_message(((unsigned long)"%s(): %d: err=%d\n") /*=0x9ab0c*/, ((unsigned long)"ancs_c_init") /*=0x9b15e*/, uVar2, iVar1); return iVar1; }
                             uVar2 = 0x3dc;
                         }
                     } else {
@@ -93,6 +93,6 @@ LAB_00019090:
         if(CC == 0){ uVar2 = 0x3b4; goto LAB_00019090; }
         uVar2 = 0x3b4;
     }
-    debug_print(((unsigned long)&rodata_9ab0c) /*=0x9ab0c*/, ((unsigned long)&rodata_9b15e) /*=0x9b15e*/, uVar2, iVar1);
+    debug_print(((unsigned long)"%s(): %d: err=%d\n") /*=0x9ab0c*/, ((unsigned long)"ancs_c_init") /*=0x9b15e*/, uVar2, iVar1);
     return iVar1;
 }

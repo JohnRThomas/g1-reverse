@@ -6,7 +6,7 @@
  *   set_test_mode                            <= FUN_00032ef0 @ 0x00032ef0
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  * address symbols (name @ address):
- *   rodata_a756a                             @ 0x000a756a
+ *   rodata_a756a                             @ 0x000a756a   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_test_mode_flag                         @ 0x20019ef3
  */

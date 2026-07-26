@@ -8,7 +8,7 @@
  *   arm_fault_forward_handler                <= FUN_00080780 @ 0x00080780
  * address symbols (name @ address):
  *   rodata_88258                             @ 0x00088258
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f1c39                             @ 0x000f1c39
  *   rodata_f1c4f                             @ 0x000f1c4f
  *   rodata_f1c82                             @ 0x000f1c82
@@ -17,8 +17,8 @@
  *   rodata_f1cc3                             @ 0x000f1cc3
  *   rodata_f1ce2                             @ 0x000f1ce2
  *   rodata_f1d11                             @ 0x000f1d11
- *   rodata_f1d4b                             @ 0x000f1d4b
- *   rodata_f1d95                             @ 0x000f1d95
+ *   rodata_f1d4b                             @ 0x000f1d4b   [INLINED -- G6 literal batch]
+ *   rodata_f1d95                             @ 0x000f1d95   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_000503d8 @ 0x503d8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -72,8 +72,8 @@ unsigned arm_mem_manage_fault_helper(int param_1, unsigned char *param_2)
     }
     iVar1 = G1_SCB_CPUID;
     if(((SCB28 << 0x1b < 0) || (SCB28 << 0x1e < 0)) && (SCB28 << 0x1b < 0)){
-        printk(0x00099cbd, 0x000f1d4b, 0x000f1d11, 0x163);
-        printk(0x000f1d95);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"!(((SCB_Type *) ((0xE000E000UL) + 0x0D00UL) )->CFSR & (1UL << (0U + 4U)))"), 0x000f1d11, 0x163);
+        printk(((unsigned long)"\tStacking or Data Access Violation error without stack guard, user-mode or null-pointer detection\n\n"));
         assert_post_action(0x000f1d11, 0x163);
     }
     uVar3 = SCB28 << 0x1a;

@@ -11,12 +11,12 @@
  *   idx_inc                                  <= FUN_0007e35c @ 0x0007e35c
  *   rd_idx_inc                               <= FUN_0007e378 @ 0x0007e378
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  */
 /* Reconstructed mpsc_pbuf_free @ 0x0004bfc8.
  *
@@ -83,8 +83,8 @@ void mpsc_pbuf_free(struct mpsc_pbuf_buffer *buffer,
     __set_BASEPRI_MAX(0x20);
     __ISB();
     if (z_spin_lock_valid(lock) == 0) {
-        printk(0x00099cbd, 0x000f0920, 0x000f08c7, 0x72);
-        printk(0x000f0935, lock);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"z_spin_lock_valid(l)"), 0x000f08c7, 0x72);
+        printk(((unsigned long)"\tInvalid spinlock %p\n"), lock);
         assert_post_action(0x000f08c7, 0x72);
     }
 
@@ -106,8 +106,8 @@ locked:
     }
 
     if (z_spin_unlock_valid(lock) == 0) {
-        printk(0x00099cbd, 0x000f08f4, 0x000f08c7, 0xf0);
-        printk(0x000f090b, lock);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"z_spin_unlock_valid(l)"), 0x000f08c7, 0xf0);
+        printk(((unsigned long)"\tNot my spinlock %p\n"), lock);
         assert_post_action(0x000f08c7, 0xf0);
         goto locked; /* shipped continuation if the fatal oracle returns */
     }

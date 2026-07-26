@@ -14,8 +14,8 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   strncpy_zero_pad                         <= FUN_0008705a @ 0x0008705a
  * address symbols (name @ address):
- *   rodata_9ad7c                             @ 0x0009ad7c
- *   rodata_9ad86                             @ 0x0009ad86
+ *   rodata_9ad7c                             @ 0x0009ad7c   [INLINED -- G6 literal batch]
+ *   rodata_9ad86                             @ 0x0009ad86   [INLINED -- G6 literal batch]
  *   rodata_9adaa                             @ 0x0009adaa
  *   g_ancs_notif_evt_id_latest               @ 0x20006aac
  *   g_20006ab2                               @ 0x20006ab2

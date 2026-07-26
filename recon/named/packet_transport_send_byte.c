@@ -5,7 +5,7 @@
  *   packet_transport_send_byte               <= FUN_0003364c @ 0x0003364c
  *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  * address symbols (name @ address):
- *   rodata_a7af2                             @ 0x000a7af2
+ *   rodata_a7af2                             @ 0x000a7af2   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0003364c @ 0x0003364c, extent 0x00000054.
  * Readable identity: packet_transport_send_byte.

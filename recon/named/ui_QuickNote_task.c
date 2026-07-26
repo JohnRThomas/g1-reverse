@@ -6,24 +6,24 @@
  *   gui_screen_fade_out_transition           <= FUN_0004382c @ 0x0004382c
  * address symbols (name @ address):
  *   rodata_a8c57                             @ 0x000a8c57
- *   rodata_a960d                             @ 0x000a960d
- *   rodata_a9629                             @ 0x000a9629
- *   rodata_a9654                             @ 0x000a9654
- *   rodata_a9679                             @ 0x000a9679
- *   rodata_a9690                             @ 0x000a9690
- *   rodata_a96ac                             @ 0x000a96ac
- *   rodata_a96c8                             @ 0x000a96c8
- *   rodata_a96e0                             @ 0x000a96e0
- *   rodata_a9709                             @ 0x000a9709
- *   rodata_a9727                             @ 0x000a9727
- *   rodata_a974b                             @ 0x000a974b
- *   rodata_a9775                             @ 0x000a9775
- *   rodata_a9797                             @ 0x000a9797
- *   rodata_a97bb                             @ 0x000a97bb
- *   rodata_a97e4                             @ 0x000a97e4
- *   rodata_a980b                             @ 0x000a980b
- *   rodata_a981a                             @ 0x000a981a
- *   rodata_a9831                             @ 0x000a9831
+ *   rodata_a960d                             @ 0x000a960d   [INLINED -- G6 literal batch]
+ *   rodata_a9629                             @ 0x000a9629   [INLINED -- G6 literal batch]
+ *   rodata_a9654                             @ 0x000a9654   [INLINED -- G6 literal batch]
+ *   rodata_a9679                             @ 0x000a9679   [INLINED -- G6 literal batch]
+ *   rodata_a9690                             @ 0x000a9690   [INLINED -- G6 literal batch]
+ *   rodata_a96ac                             @ 0x000a96ac   [INLINED -- G6 literal batch]
+ *   rodata_a96c8                             @ 0x000a96c8   [INLINED -- G6 literal batch]
+ *   rodata_a96e0                             @ 0x000a96e0   [INLINED -- G6 literal batch]
+ *   rodata_a9709                             @ 0x000a9709   [INLINED -- G6 literal batch]
+ *   rodata_a9727                             @ 0x000a9727   [INLINED -- G6 literal batch]
+ *   rodata_a974b                             @ 0x000a974b   [INLINED -- G6 literal batch]
+ *   rodata_a9775                             @ 0x000a9775   [INLINED -- G6 literal batch]
+ *   rodata_a9797                             @ 0x000a9797   [INLINED -- G6 literal batch]
+ *   rodata_a97bb                             @ 0x000a97bb   [INLINED -- G6 literal batch]
+ *   rodata_a97e4                             @ 0x000a97e4   [INLINED -- G6 literal batch]
+ *   rodata_a980b                             @ 0x000a980b   [INLINED -- G6 literal batch]
+ *   rodata_a981a                             @ 0x000a981a   [INLINED -- G6 literal batch]
+ *   rodata_a9831                             @ 0x000a9831   [INLINED -- G6 literal batch]
  *   rodata_aae20                             @ 0x000aae20
  *   g_log_level                              @ 0x2000230c
  *   g_quicknote_warn_offset_ms               @ 0x200024e8

@@ -18,14 +18,14 @@
  *   rodata_87bf0                             @ 0x00087bf0
  *   rodata_9e9ea                             @ 0x0009e9ea
  *   rodata_9ea0a                             @ 0x0009ea0a
- *   rodata_9ea7b                             @ 0x0009ea7b
- *   rodata_9ead2                             @ 0x0009ead2
- *   rodata_9eaf4                             @ 0x0009eaf4
- *   rodata_9eb2e                             @ 0x0009eb2e
+ *   rodata_9ea7b                             @ 0x0009ea7b   [INLINED -- G6 literal batch]
+ *   rodata_9ead2                             @ 0x0009ead2   [INLINED -- G6 literal batch]
+ *   rodata_9eaf4                             @ 0x0009eaf4   [INLINED -- G6 literal batch]
+ *   rodata_9eb2e                             @ 0x0009eb2e   [INLINED -- G6 literal batch]
  *   rodata_9eba7                             @ 0x0009eba7
  *   rodata_9ebc6                             @ 0x0009ebc6
- *   rodata_9ecd5                             @ 0x0009ecd5
- *   rodata_9ecf5                             @ 0x0009ecf5
+ *   rodata_9ecd5                             @ 0x0009ecd5   [INLINED -- G6 literal batch]
+ *   rodata_9ecf5                             @ 0x0009ecf5   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_flash_store_cmd_msgq                   @ 0x20003994
  *   g_log_use_alt_sink                       @ 0x20007554

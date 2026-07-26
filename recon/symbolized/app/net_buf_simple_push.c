@@ -7,9 +7,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f543a                             @ 0x000f543a
- *   rodata_f5484                             @ 0x000f5484
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f543a                             @ 0x000f543a   [INLINED -- G6 literal batch]
+ *   rodata_f5484                             @ 0x000f5484   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005f518 @ 0x5f518  (parity: 300/300 trials, PROVEN) */
 
@@ -22,8 +22,8 @@ void net_buf_simple_push(int *param_1, unsigned int param_2, unsigned int param_
     char *r3 = (char*)param_1;
     unsigned int r1 = param_2;
     if ((unsigned int)(r0 - param_1[2]) < param_2) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f5484) /*=0xf5484*/, ((unsigned long)&rodata_f543a) /*=0xf543a*/, 0x12dUL);
-        unsigned long long rv = assert_post_action(((unsigned long)&rodata_f543a) /*=0xf543a*/, 0x12dUL);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"net_buf_simple_headroom(buf) >= len") /*=0xf5484*/, ((unsigned long)"WEST_TOPDIR/zephyr/subsys/net/buf_simple.c") /*=0xf543a*/, 0x12dUL);
+        unsigned long long rv = assert_post_action(((unsigned long)"WEST_TOPDIR/zephyr/subsys/net/buf_simple.c") /*=0xf543a*/, 0x12dUL);
         r0 = (unsigned int)rv;
         r1 = (unsigned int)(rv >> 32);
         r3 = (char*)0x12dUL;

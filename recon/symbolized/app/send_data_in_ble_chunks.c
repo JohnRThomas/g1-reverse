@@ -11,8 +11,8 @@
  *   strncmp                                  <= FUN_00087036 @ 0x00087036
  * address symbols (name @ address):
  *   rodata_883c8                             @ 0x000883c8
- *   rodata_a7bf5                             @ 0x000a7bf5
- *   rodata_a833e                             @ 0x000a833e
+ *   rodata_a7bf5                             @ 0x000a7bf5   [INLINED -- G6 literal batch]
+ *   rodata_a833e                             @ 0x000a833e   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  */
 /* Full owned-CFG reconstruction FUN_0003384c @ 0x3384c. */
@@ -42,9 +42,9 @@ uint32_t send_data_in_ble_chunks(const uint8_t *request)
         uint32_t value = strlen(command_copy[i]);
         if (strncmp(command_copy[i], request + 0x10, value) == 0) {
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                return log_message(((unsigned long)&rodata_a7bf5) /*=0xa7bf5*/, ((unsigned long)&rodata_a833e) /*=0xa833e*/,
+                return log_message(((unsigned long)"[%s-%d] special package nane:%s,need not send to app !\n") /*=0xa7bf5*/, ((unsigned long)"send_whilelist_app_info_wrapper") /*=0xa833e*/,
                                    0x137, request + 0x10);
-            return debug_print(((unsigned long)&rodata_a7bf5) /*=0xa7bf5*/, ((unsigned long)&rodata_a833e) /*=0xa833e*/,
+            return debug_print(((unsigned long)"[%s-%d] special package nane:%s,need not send to app !\n") /*=0xa7bf5*/, ((unsigned long)"send_whilelist_app_info_wrapper") /*=0xa833e*/,
                                 0x137, request + 0x10);
         }
     }

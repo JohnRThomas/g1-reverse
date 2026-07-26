@@ -9,11 +9,11 @@
  *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  * address symbols (name @ address):
  *   rodata_87c08                             @ 0x00087c08
- *   rodata_9f5ec                             @ 0x0009f5ec
- *   rodata_9f611                             @ 0x0009f611
- *   rodata_9f63c                             @ 0x0009f63c
- *   rodata_9f67e                             @ 0x0009f67e
- *   rodata_9f6f1                             @ 0x0009f6f1
+ *   rodata_9f5ec                             @ 0x0009f5ec   [INLINED -- G6 literal batch]
+ *   rodata_9f611                             @ 0x0009f611   [INLINED -- G6 literal batch]
+ *   rodata_9f63c                             @ 0x0009f63c   [INLINED -- G6 literal batch]
+ *   rodata_9f67e                             @ 0x0009f67e   [INLINED -- G6 literal batch]
+ *   rodata_9f6f1                             @ 0x0009f6f1   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_serialization_ipc_ept_ctx              @ 0x200023dc
  *   g_serialization_ipc_mutex                @ 0x200039c8
@@ -38,9 +38,9 @@ unsigned int serialization_init(void)
 
     if (2 < *piVar1) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_9f5ec) /*=0x9f5ec*/, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
+            log_message(((unsigned long)"%s(): IPC-service HOST init started\n") /*=0x9f5ec*/, ((unsigned long)"serialization_init") /*=0x9f6f1*/);
         } else {
-            debug_print(((unsigned long)&rodata_9f5ec) /*=0x9f5ec*/, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
+            debug_print(((unsigned long)"%s(): IPC-service HOST init started\n") /*=0x9f5ec*/, ((unsigned long)"serialization_init") /*=0x9f6f1*/);
         }
     }
     iVar2 = ipc_service_open_instance(((unsigned long)&rodata_87c08) /*=0x87c08*/);
@@ -49,13 +49,13 @@ unsigned int serialization_init(void)
             return 0xffffffffUL;
         }
         iVar2 = *(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
-        format_string = ((unsigned long)&rodata_9f611) /*=0x9f611*/;
+        format_string = ((unsigned long)"%s(): ipc_service_open_instance() failure\n") /*=0x9f611*/;
     } else {
         if (2 < *piVar1) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_9f63c) /*=0x9f63c*/, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
+                log_message(((unsigned long)"%s(): ipc open %d\n") /*=0x9f63c*/, ((unsigned long)"serialization_init") /*=0x9f6f1*/);
             } else {
-                debug_print(((unsigned long)&rodata_9f63c) /*=0x9f63c*/, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
+                debug_print(((unsigned long)"%s(): ipc open %d\n") /*=0x9f63c*/, ((unsigned long)"serialization_init") /*=0x9f6f1*/);
             }
         }
         uVar3 = serialization_register_endpoint(((unsigned long)&rodata_87c08) /*=0x87c08*/, ((unsigned long)&g_serialization_ipc_ept) /*=0x20007a78*/, ((unsigned long)&g_serialization_ipc_ept_ctx) /*=0x200023dc*/);
@@ -64,9 +64,9 @@ unsigned int serialization_init(void)
             *(volatile int*)((unsigned long)&g_serialization_ipc_ready) /*=0x20007a80*/ = 1;
             if (1 < *piVar1) {
                 if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                    log_message(((unsigned long)&rodata_9f67e) /*=0x9f67e*/, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
+                    log_message(((unsigned long)"%s(): ipc_service[HOST] has ready!\n\n") /*=0x9f67e*/, ((unsigned long)"serialization_init") /*=0x9f6f1*/);
                 } else {
-                    debug_print(((unsigned long)&rodata_9f67e) /*=0x9f67e*/, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
+                    debug_print(((unsigned long)"%s(): ipc_service[HOST] has ready!\n\n") /*=0x9f67e*/, ((unsigned long)"serialization_init") /*=0x9f6f1*/);
                 }
             }
             return 0;
@@ -78,9 +78,9 @@ unsigned int serialization_init(void)
         format_string = 0x0009f64fUL;
     }
     if (iVar2 == 0) {
-        log_message(format_string, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
+        log_message(format_string, ((unsigned long)"serialization_init") /*=0x9f6f1*/);
     } else {
-        debug_print(format_string, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
+        debug_print(format_string, ((unsigned long)"serialization_init") /*=0x9f6f1*/);
     }
     return 0xffffffffUL;
 }

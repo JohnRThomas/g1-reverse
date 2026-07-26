@@ -11,8 +11,8 @@
  *   k_uptime_get_1                           <= FUN_0007cb2c @ 0x0007cb2c
  *   onboarding_clear_active_flag             <= FUN_0007d39e @ 0x0007d39e
  * address symbols (name @ address):
- *   rodata_9fcc1                             @ 0x0009fcc1
- *   rodata_a1aea                             @ 0x000a1aea
+ *   rodata_9fcc1                             @ 0x0009fcc1   [INLINED -- G6 literal batch]
+ *   rodata_a1aea                             @ 0x000a1aea   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   onboarding_pending_flag                  @ 0x20018d93
@@ -59,7 +59,7 @@ void check_disp_onboarding(int param_1, unsigned int param_2, unsigned int param
   iVar3=get_device_info(); (void)VB(VI(iVar3+0x1014)+2); (void)(*pg74);
   if (onboarding_sync_data((void*)0,3) != 0) return;
   if (0 < *pg78) {
-    if (*pg7c == 0) log_message(((unsigned long)&rodata_9fcc1) /*=0x9fcc1*/,((unsigned long)&rodata_a1aea) /*=0xa1aea*/);
+    if (*pg7c == 0) log_message(((unsigned long)"%s(): ready to show onboarding...\n") /*=0x9fcc1*/,((unsigned long)"check_disp_onboarding") /*=0xa1aea*/);
     else debug_print();
   }
   onboarding_retry_watchdog_update();

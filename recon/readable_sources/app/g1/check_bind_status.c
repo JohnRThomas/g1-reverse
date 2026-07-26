@@ -8,9 +8,9 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  * address symbols (name @ address):
- *   rodata_9fce4                             @ 0x0009fce4
- *   rodata_9fd02                             @ 0x0009fd02
- *   rodata_a1ad8                             @ 0x000a1ad8
+ *   rodata_9fce4                             @ 0x0009fce4   [INLINED -- G6 literal batch]
+ *   rodata_9fd02                             @ 0x0009fd02   [INLINED -- G6 literal batch]
+ *   rodata_a1ad8                             @ 0x000a1ad8   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_bind_status_log_debounce_cnt           @ 0x20018d83
@@ -40,9 +40,9 @@ void check_bind_status(int param_1, int param_2, int param_3)
         base[0x71] = 0;
         if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ <= 0) return;
         if (*(volatile u32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_9fd02) /*=0x9fd02*/, ((unsigned long)&rodata_a1ad8) /*=0xa1ad8*/);
+            log_message(((unsigned long)"%s(): disable allow bind mode\n") /*=0x9fd02*/, ((unsigned long)"check_bind_status") /*=0xa1ad8*/);
         } else {
-            debug_print(((unsigned long)&rodata_9fd02) /*=0x9fd02*/, ((unsigned long)&rodata_a1ad8) /*=0xa1ad8*/);
+            debug_print(((unsigned long)"%s(): disable allow bind mode\n") /*=0x9fd02*/, ((unsigned long)"check_bind_status") /*=0xa1ad8*/);
         }
         return;
     } else {
@@ -52,9 +52,9 @@ void check_bind_status(int param_1, int param_2, int param_3)
                 base[0x71] = 1;
                 if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
                     if (*(volatile u32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                        log_message(((unsigned long)&rodata_9fce4) /*=0x9fce4*/, ((unsigned long)&rodata_a1ad8) /*=0xa1ad8*/);
+                        log_message(((unsigned long)"%s(): enable allow bind mode\n") /*=0x9fce4*/, ((unsigned long)"check_bind_status") /*=0xa1ad8*/);
                     } else {
-                        debug_print(((unsigned long)&rodata_9fce4) /*=0x9fce4*/, ((unsigned long)&rodata_a1ad8) /*=0xa1ad8*/);
+                        debug_print(((unsigned long)"%s(): enable allow bind mode\n") /*=0x9fce4*/, ((unsigned long)"check_bind_status") /*=0xa1ad8*/);
                     }
                 }
             }

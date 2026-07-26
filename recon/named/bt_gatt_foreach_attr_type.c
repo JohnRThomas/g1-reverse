@@ -9,8 +9,8 @@
  * address symbols (name @ address):
  *   rodata_88058                             @ 0x00088058
  *   rodata_88070                             @ 0x00088070
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  *   rodata_f46b8                             @ 0x000f46b8
  *   rodata_f49a5                             @ 0x000f49a5
  *   g_bt_gatt_dynamic_db                     @ 0x2000af08
@@ -31,8 +31,8 @@ void bt_gatt_foreach_attr_type(unsigned int param_1, int param_2, int param_3, i
     unsigned int uVar2 = 0;
     while (1) {
       if ((int*)0x88070 < piVar4) {
-        printk(0x99cbd,0xf49a5,0xf46b8,0x7d7);
-        printk(0xf0d20);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0xf49a5,0xf46b8,0x7d7);
+        printk(((unsigned long)"\tunexpected list end location\n"));
         assert_post_action(0xf46b8,0x7d7);
       }
       if ((int*)0x88070 <= piVar4) break;

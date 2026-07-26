@@ -8,7 +8,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f7fee                             @ 0x000f7fee
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f85d2                             @ 0x000f85d2
@@ -20,7 +20,7 @@ extern void assert_post_action(int,int);
 extern int printk(int,...);
 void k_thread_priority_set(int param_1,int param_2){
   if((unsigned)(param_2+0x10) >= 0x1f){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f85d2) /*=0xf85d2*/,((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0x53d);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f85d2) /*=0xf85d2*/,((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0x53d);
     printk(((unsigned long)&rodata_f7fee) /*=0xf7fee*/,param_2,0xe,0xfffffff0);
     assert_post_action(((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0x53d);
   }

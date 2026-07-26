@@ -7,9 +7,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f075e                             @ 0x000f075e
- *   rodata_f0779                             @ 0x000f0779
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f075e                             @ 0x000f075e   [INLINED -- G6 literal batch]
+ *   rodata_f0779                             @ 0x000f0779   [INLINED -- G6 literal batch]
  *   rodata_f891e                             @ 0x000f891e
  *   rodata_f899c                             @ 0x000f899c
  *   rodata_f89d9                             @ 0x000f89d9
@@ -29,13 +29,13 @@ void *k_aligned_alloc(size_t alignment, size_t size)
 {
     if (alignment < sizeof(void *) ||
         (alignment & (sizeof(void *) - 1u)) != 0u) {
-        printk(0x00099cbdu, 0x000f899cu, 0x000f891eu, 0x42u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f899cu, 0x000f891eu, 0x42u);
         printk(0x000f89d9u);
         assert_post_action(0x000f891eu, 0x42u);
     }
     if ((alignment & (alignment - 1u)) != 0u) {
-        printk(0x00099cbdu, 0x000f075eu, 0x000f891eu, 0x46u);
-        printk(0x000f0779u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"(align & (align - 1)) == 0"), 0x000f891eu, 0x46u);
+        printk(((unsigned long)"\talign must be a power of 2\n"));
         assert_post_action(0x000f891eu, 0x46u);
     }
     return z_heap_aligned_alloc((void *)0x200037d8u, alignment, size);

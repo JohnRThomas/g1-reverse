@@ -11,12 +11,12 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   z_reschedule_irqlock                     <= FUN_00086634 @ 0x00086634
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f53ff                             @ 0x000f53ff
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f8553                             @ 0x000f8553
@@ -36,8 +36,8 @@ extern void z_reschedule_irqlock(unsigned);
 void k_sched_lock(void){
     int iVar3 = z_spin_lock_valid((void*)0x2000b490);
     if (iVar3 == 0){
-        printk(0x99cbd, 0x000f0920, 0x000f08c7, 0x72);
-        printk(0x000f0935, 0x2000b490);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"z_spin_lock_valid(l)"), 0x000f08c7, 0x72);
+        printk(((unsigned long)"\tInvalid spinlock %p\n"), 0x2000b490);
         assert_post_action(0x000f08c7, 0x72);
         return;
     }
@@ -46,7 +46,7 @@ void k_sched_lock(void){
     unsigned r2 = (unsigned)*(int*)(0x2000b448+8);
     unsigned r3 = (unsigned char)cVar1;
     if (cVar1 == 0){
-        printk(0x99cbd, 0x000f8553, 0x000f82f4, 0x3f8);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f8553, 0x000f82f4, 0x3f8);
         printk(0x000f53ff);
         assert_post_action(0x000f82f4, 0x3f8);
         r2 = 0x000f82f4;
@@ -60,7 +60,7 @@ void k_sched_lock(void){
         z_reschedule_irqlock(0);
         return;
     }
-    printk(0x99cbd, 0x000f08f4, 0x000f08c7, 0xf0);
-    printk(0x000f090b, 0x2000b490);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"z_spin_unlock_valid(l)"), 0x000f08c7, 0xf0);
+    printk(((unsigned long)"\tNot my spinlock %p\n"), 0x2000b490);
     assert_post_action(0x000f08c7, 0xf0);
 }

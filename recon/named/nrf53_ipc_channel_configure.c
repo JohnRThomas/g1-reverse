@@ -7,9 +7,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0a2b                             @ 0x000f0a2b
- *   rodata_f0a5d                             @ 0x000f0a5d
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0a2b                             @ 0x000f0a2b   [INLINED -- G6 literal batch]
+ *   rodata_f0a5d                             @ 0x000f0a5d   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0004c278 @ 0x4c278  (parity: 300/300 trials, PROVEN) */
 
@@ -25,7 +25,7 @@ void nrf53_ipc_channel_configure(unsigned int param_1, unsigned int param_2, uns
   volatile unsigned int *puVar2;
 
   if (param_3 > 0xf) {
-    printk((void*)0x99cbdUL, (void*)0xf0a5dUL, (void*)0xf0a2bUL, 0x1e7, param_4);
+    printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void*)0xf0a5dUL, (void*)0xf0a2bUL, 0x1e7, param_4);
     assert_post_action((void*)0xf0a2bUL, 0x1e7);
   }
   uVar1 = rtc_timer_cc_reg_get(param_2);

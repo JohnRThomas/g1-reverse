@@ -9,11 +9,11 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   kmutex_dlist_init                        <= FUN_000864c2 @ 0x000864c2
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f22d5                             @ 0x000f22d5
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f22d5                             @ 0x000f22d5   [INLINED -- G6 literal batch]
  *   rodata_f23d3                             @ 0x000f23d3
  *   rodata_f23d4                             @ 0x000f23d4
- *   rodata_f240f                             @ 0x000f240f
+ *   rodata_f240f                             @ 0x000f240f   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005109c @ 0x5109c  (parity: 300/300 trials, PROVEN) */
 
@@ -28,9 +28,9 @@ void retarget_lock_init(int *param_1)
   unsigned int uVar2;
 
   if (param_1 == 0) {
-    printk((void*)((unsigned long)&rodata_99cbd) /*=0x99cbd*/, (void*)((unsigned long)&rodata_f23d4) /*=0xf23d4*/, (void*)((unsigned long)&rodata_f22d5) /*=0xf22d5*/, 0x179);
+    printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void*)((unsigned long)&rodata_f23d4) /*=0xf23d4*/, (void*)((unsigned long)"WEST_TOPDIR/zephyr/lib/libc/newlib/libc-hooks.c") /*=0xf22d5*/, 0x179);
     uVar2 = 0x179;
-    assert_post_action((void*)((unsigned long)&rodata_f22d5) /*=0xf22d5*/, uVar2);
+    assert_post_action((void*)((unsigned long)"WEST_TOPDIR/zephyr/lib/libc/newlib/libc-hooks.c") /*=0xf22d5*/, uVar2);
   }
   iVar1 = malloc(0x14);
   *param_1 = iVar1;
@@ -38,8 +38,8 @@ void retarget_lock_init(int *param_1)
     kmutex_dlist_init();
     return;
   }
-  printk((void*)((unsigned long)&rodata_99cbd) /*=0x99cbd*/, (void*)((unsigned long)&rodata_f23d3) /*=0xf23d3*/, (void*)((unsigned long)&rodata_f22d5) /*=0xf22d5*/, 0x181);
-  printk((void*)((unsigned long)&rodata_f240f) /*=0xf240f*/, 0,0,0);
+  printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void*)((unsigned long)&rodata_f23d3) /*=0xf23d3*/, (void*)((unsigned long)"WEST_TOPDIR/zephyr/lib/libc/newlib/libc-hooks.c") /*=0xf22d5*/, 0x181);
+  printk((void*)((unsigned long)"\trecursive lock allocation failed\n") /*=0xf240f*/, 0,0,0);
   uVar2 = 0x181;
-  assert_post_action((void*)((unsigned long)&rodata_f22d5) /*=0xf22d5*/, uVar2);
+  assert_post_action((void*)((unsigned long)"WEST_TOPDIR/zephyr/lib/libc/newlib/libc-hooks.c") /*=0xf22d5*/, uVar2);
 }

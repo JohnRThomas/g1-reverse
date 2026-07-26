@@ -9,9 +9,9 @@
  *   k_is_in_isr                              <= FUN_00086406 @ 0x00086406
  * address symbols (name @ address):
  *   rodata_990cf                             @ 0x000990cf
- *   rodata_990dc                             @ 0x000990dc
- *   rodata_99105                             @ 0x00099105
- *   rodata_99b2a                             @ 0x00099b2a
+ *   rodata_990dc                             @ 0x000990dc   [INLINED -- G6 literal batch]
+ *   rodata_99105                             @ 0x00099105   [INLINED -- G6 literal batch]
+ *   rodata_99b2a                             @ 0x00099b2a   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   device_info                              @ 0x200069fc
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -48,7 +48,7 @@ void switch_to_dfu_mode(unsigned int param_1)
     if (iVar2 == 0) {
         if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile u32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ != 0) {
-                debug_print(((unsigned long)&rodata_99105) /*=0x99105*/, ((unsigned long)&rodata_99b2a) /*=0x99b2a*/, 0, *puVar1);
+                debug_print(((unsigned long)"%s(): sys reboot because system reset %d, %d\n") /*=0x99105*/, ((unsigned long)"switch_to_dfu_mode") /*=0x99b2a*/, 0, *puVar1);
                 goto loop_start;
             } else {
                 r2val = 0;
@@ -59,10 +59,10 @@ void switch_to_dfu_mode(unsigned int param_1)
     } else {
         if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ < 1) return;
         if (*(volatile u32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ != 0) {
-            debug_print(((unsigned long)&rodata_990dc) /*=0x990dc*/, ((unsigned long)&rodata_99b2a) /*=0x99b2a*/, (unsigned int)iVar2, 0);
+            debug_print(((unsigned long)"%s(): failed to switch to ble mode [%d]\n") /*=0x990dc*/, ((unsigned long)"switch_to_dfu_mode") /*=0x99b2a*/, (unsigned int)iVar2, 0);
             return;
         }
-        log_message(((unsigned long)&rodata_990dc) /*=0x990dc*/, ((unsigned long)&rodata_99b2a) /*=0x99b2a*/);
+        log_message(((unsigned long)"%s(): failed to switch to ble mode [%d]\n") /*=0x990dc*/, ((unsigned long)"switch_to_dfu_mode") /*=0x99b2a*/);
         return;
     }
 loop_start:
@@ -70,6 +70,6 @@ loop_start:
         app_msleep_thunk_a(500);
         r2val = (unsigned int)sys_reboot(1);
 print_lab:
-        log_message(((unsigned long)&rodata_99105) /*=0x99105*/, ((unsigned long)&rodata_99b2a) /*=0x99b2a*/, r2val);
+        log_message(((unsigned long)"%s(): sys reboot because system reset %d, %d\n") /*=0x99105*/, ((unsigned long)"switch_to_dfu_mode") /*=0x99b2a*/, r2val);
     }
 }

@@ -31,18 +31,18 @@
  *   rodata_582b4                             @ 0x000582b4
  *   rodata_816af                             @ 0x000816af
  *   rodata_88160                             @ 0x00088160
- *   rodata_f41a7                             @ 0x000f41a7
- *   rodata_f41c5                             @ 0x000f41c5
- *   rodata_f41e6                             @ 0x000f41e6
+ *   rodata_f41a7                             @ 0x000f41a7   [INLINED -- G6 literal batch]
+ *   rodata_f41c5                             @ 0x000f41c5   [INLINED -- G6 literal batch]
+ *   rodata_f41e6                             @ 0x000f41e6   [INLINED -- G6 literal batch]
  *   rodata_f4207                             @ 0x000f4207
  *   rodata_f4223                             @ 0x000f4223
- *   rodata_f4245                             @ 0x000f4245
- *   rodata_f426f                             @ 0x000f426f
- *   rodata_f4291                             @ 0x000f4291
- *   rodata_f42b3                             @ 0x000f42b3
- *   rodata_f42d4                             @ 0x000f42d4
- *   rodata_f42f9                             @ 0x000f42f9
- *   rodata_f431a                             @ 0x000f431a
+ *   rodata_f4245                             @ 0x000f4245   [INLINED -- G6 literal batch]
+ *   rodata_f426f                             @ 0x000f426f   [INLINED -- G6 literal batch]
+ *   rodata_f4291                             @ 0x000f4291   [INLINED -- G6 literal batch]
+ *   rodata_f42b3                             @ 0x000f42b3   [INLINED -- G6 literal batch]
+ *   rodata_f42d4                             @ 0x000f42d4   [INLINED -- G6 literal batch]
+ *   rodata_f42f9                             @ 0x000f42f9   [INLINED -- G6 literal batch]
+ *   rodata_f431a                             @ 0x000f431a   [INLINED -- G6 literal batch]
  *   rodata_f4346                             @ 0x000f4346
  */
 /* Reconstructed FUN_00057db0 @ 0x57db0  (parity: 30/30 trials, PROVEN) */

@@ -12,7 +12,7 @@
  *   projector_send_cmd_immediate             <= FUN_0007d77c @ 0x0007d77c
  * address symbols (name @ address):
  *   rodata_99969                             @ 0x00099969
- *   rodata_d741b                             @ 0x000d741b
+ *   rodata_d741b                             @ 0x000d741b   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

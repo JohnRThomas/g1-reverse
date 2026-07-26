@@ -10,9 +10,9 @@
  *   panel_on                                 <= FUN_00046dd8 @ 0x00046dd8
  *   set_brightness_to_panel_reg              <= FUN_00046e3c @ 0x00046e3c
  * address symbols (name @ address):
- *   rodata_d7272                             @ 0x000d7272
- *   rodata_d728d                             @ 0x000d728d
- *   rodata_d72c4                             @ 0x000d72c4
+ *   rodata_d7272                             @ 0x000d7272   [INLINED -- G6 literal batch]
+ *   rodata_d728d                             @ 0x000d728d   [INLINED -- G6 literal batch]
+ *   rodata_d72c4                             @ 0x000d72c4   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -43,9 +43,9 @@ int32_t panel_resume(uint8_t *context)
         return -1;
     if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_d7272) /*=0xd7272*/, ((unsigned long)&rodata_d72c4) /*=0xd72c4*/);
+            log_message(((unsigned long)"%s(): panel_resume enter!\n") /*=0xd7272*/, ((unsigned long)"panel_resume") /*=0xd72c4*/);
         } else {
-            debug_print(((unsigned long)&rodata_d7272) /*=0xd7272*/, ((unsigned long)&rodata_d72c4) /*=0xd72c4*/);
+            debug_print(((unsigned long)"%s(): panel_resume enter!\n") /*=0xd7272*/, ((unsigned long)"panel_resume") /*=0xd72c4*/);
         }
     }
     state = *(volatile int32_t *)(context + 0x35c);
@@ -60,9 +60,9 @@ int32_t panel_resume(uint8_t *context)
     if (spi_read_id() != 0x4010u) {
         if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_d728d) /*=0xd728d*/, ((unsigned long)&rodata_d72c4) /*=0xd72c4*/);
+                log_message(((unsigned long)"%s(): JBD PANEL init failure!\n") /*=0xd728d*/, ((unsigned long)"panel_resume") /*=0xd72c4*/);
             } else {
-                debug_print(((unsigned long)&rodata_d728d) /*=0xd728d*/, ((unsigned long)&rodata_d72c4) /*=0xd72c4*/);
+                debug_print(((unsigned long)"%s(): JBD PANEL init failure!\n") /*=0xd728d*/, ((unsigned long)"panel_resume") /*=0xd72c4*/);
             }
         }
     }

@@ -10,8 +10,8 @@
  *   fb_blit_rows_or                          <= FUN_0007d586 @ 0x0007d586
  * address symbols (name @ address):
  *   rodata_aa8eb                             @ 0x000aa8eb
- *   rodata_aaa01                             @ 0x000aaa01
- *   rodata_aacaf                             @ 0x000aacaf
+ *   rodata_aaa01                             @ 0x000aaa01   [INLINED -- G6 literal batch]
+ *   rodata_aacaf                             @ 0x000aacaf   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_gui_active_canvas                      @ 0x2000a034

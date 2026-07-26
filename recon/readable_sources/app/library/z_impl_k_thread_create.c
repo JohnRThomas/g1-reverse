@@ -11,7 +11,7 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
  *   rodata_86661                             @ 0x00086661
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f7f4b                             @ 0x000f7f4b
  *   rodata_f801f                             @ 0x000f801f
  *   rodata_f8031                             @ 0x000f8031
@@ -27,7 +27,7 @@ extern void assert_post_action(unsigned int,unsigned int) __attribute__((noretur
 int z_impl_k_thread_create(int param_1,int p2,int p3,int p4,int s0,int s1,int s2,int s3,int s4,int s5,int s6,int s7){
   unsigned int uVar2=__get_IPSR() & 0x1f;
   if (uVar2 != 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f801f) /*=0xf801f*/,((unsigned long)&rodata_f7f4b) /*=0xf7f4b*/,0x28c);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f801f) /*=0xf801f*/,((unsigned long)&rodata_f7f4b) /*=0xf7f4b*/,0x28c);
     printk(((unsigned long)&rodata_f8031) /*=0xf8031*/);
     assert_post_action(((unsigned long)&rodata_f7f4b) /*=0xf7f4b*/,0x28c);
   }

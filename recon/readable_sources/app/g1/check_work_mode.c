@@ -20,19 +20,19 @@
  *   clear_app_switch_pending_flag            <= FUN_0007dada @ 0x0007dada
  * address symbols (name @ address):
  *   rodata_27cf8                             @ 0x00027cf8
- *   rodata_a0132                             @ 0x000a0132
- *   rodata_a0169                             @ 0x000a0169
- *   rodata_a01c7                             @ 0x000a01c7
- *   rodata_a01ea                             @ 0x000a01ea
- *   rodata_a020e                             @ 0x000a020e
- *   rodata_a0231                             @ 0x000a0231
- *   rodata_a024a                             @ 0x000a024a
- *   rodata_a0266                             @ 0x000a0266
- *   rodata_a028c                             @ 0x000a028c
- *   rodata_a02ab                             @ 0x000a02ab
- *   rodata_a02cc                             @ 0x000a02cc
- *   rodata_a030d                             @ 0x000a030d
- *   rodata_a1b00                             @ 0x000a1b00
+ *   rodata_a0132                             @ 0x000a0132   [INLINED -- G6 literal batch]
+ *   rodata_a0169                             @ 0x000a0169   [INLINED -- G6 literal batch]
+ *   rodata_a01c7                             @ 0x000a01c7   [INLINED -- G6 literal batch]
+ *   rodata_a01ea                             @ 0x000a01ea   [INLINED -- G6 literal batch]
+ *   rodata_a020e                             @ 0x000a020e   [INLINED -- G6 literal batch]
+ *   rodata_a0231                             @ 0x000a0231   [INLINED -- G6 literal batch]
+ *   rodata_a024a                             @ 0x000a024a   [INLINED -- G6 literal batch]
+ *   rodata_a0266                             @ 0x000a0266   [INLINED -- G6 literal batch]
+ *   rodata_a028c                             @ 0x000a028c   [INLINED -- G6 literal batch]
+ *   rodata_a02ab                             @ 0x000a02ab   [INLINED -- G6 literal batch]
+ *   rodata_a02cc                             @ 0x000a02cc   [INLINED -- G6 literal batch]
+ *   rodata_a030d                             @ 0x000a030d   [INLINED -- G6 literal batch]
+ *   rodata_a1b00                             @ 0x000a1b00   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_check_work_mode_ed5_field_cache        @ 0x20003025
  *   g_glassbox_lid_debounced_state           @ 0x20003026
@@ -140,21 +140,21 @@ typedef long long (*log4_fn)(long long,long long,long long,long long);
 #define firmware_data_00027a70 ((volatile int*)((unsigned long)&onboarding_pending_flag) /*=0x20018d93*/)
 #define firmware_data_00027a74 ((volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define firmware_data_00027a78 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define firmware_data_00027a7c ((unsigned long)&rodata_a1b00) /*=0xa1b00*/
-#define firmware_data_00027a80 ((unsigned long)&rodata_a0132) /*=0xa0132*/
+#define firmware_data_00027a7c ((unsigned long)"check_work_mode") /*=0xa1b00*/
+#define firmware_data_00027a80 ((unsigned long)"%s(): MODE_NORMAL_STANBY_ID\n") /*=0xa0132*/
 #define firmware_data_00027a84 ((volatile int*)((unsigned long)&g_wear_state_debounce_cnt) /*=0x20018d87*/)
 #define firmware_data_00027a88 ((volatile int*)((unsigned long)&g_wear_off_confirm_cnt) /*=0x20018d92*/)
 #define firmware_data_00027a8c 0xa014fUL
 #define firmware_data_00027a90 ((volatile int*)((unsigned long)&g_nfc_link_retry_cnt) /*=0x20018d86*/)
-#define firmware_data_00027a94 ((unsigned long)&rodata_a01c7) /*=0xa01c7*/
-#define firmware_data_00027a98 ((unsigned long)&rodata_a0169) /*=0xa0169*/
+#define firmware_data_00027a94 ((unsigned long)"%s(): EVENT_GLASS_HAS_FINISH_BIND\n") /*=0xa01c7*/
+#define firmware_data_00027a98 ((unsigned long)"%s(): MODE_CHARGING_LOW_POWER_ID\n") /*=0xa0169*/
 #define firmware_data_00027a9c 0xa018bUL
 #define firmware_data_00027aa0 0xa01a7UL
-#define firmware_data_00027aa4 ((unsigned long)&rodata_a01ea) /*=0xa01ea*/
+#define firmware_data_00027aa4 ((unsigned long)"%s(): EVENT_PUT_IN_GLASS_BOX_CLOSE\n") /*=0xa01ea*/
 #define firmware_data_00027aa8 ((volatile int*)((unsigned long)&g_last_standby_event_id) /*=0x2000302d*/)
-#define firmware_data_00027aac ((unsigned long)&rodata_a020e) /*=0xa020e*/
-#define firmware_data_00027ab0 ((unsigned long)&rodata_a0231) /*=0xa0231*/
-#define firmware_data_00027ab4 ((unsigned long)&rodata_a024a) /*=0xa024a*/
+#define firmware_data_00027aac ((unsigned long)"%s(): EVENT_PUT_IN_GLASS_BOX_OPEN\n") /*=0xa020e*/
+#define firmware_data_00027ab0 ((unsigned long)"%s(): EVENT_ENTER_WARED\n") /*=0xa0231*/
+#define firmware_data_00027ab4 ((unsigned long)"%s(): EVENT_UNWARED_OUTBOX\n") /*=0xa024a*/
 #define firmware_data_00027ab8 ((volatile int*)((unsigned long)&g_last_reported_box_charge_pct) /*=0x20003029*/)
 #define firmware_data_00027abc ((volatile int*)((unsigned long)&g_last_reported_box_charge_status) /*=0x20003028*/)
 #define firmware_data_00027ac0 ((volatile int*)((unsigned long)&g_glassbox_status_debounce_cnt) /*=0x20018d85*/)
@@ -162,18 +162,18 @@ typedef long long (*log4_fn)(long long,long long,long long,long long);
 #define firmware_data_00027ac8 ((volatile int*)((unsigned long)&g_charge_notify_state_init_flag) /*=0x2000302a*/)
 #define firmware_data_00027cc0 ((volatile int*)((unsigned long)&g_last_reported_battery_pct) /*=0x20003027*/)
 #define firmware_data_00027cc4 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define firmware_data_00027cc8 ((unsigned long)&rodata_a1b00) /*=0xa1b00*/
-#define firmware_data_00027ccc ((unsigned long)&rodata_a0266) /*=0xa0266*/
+#define firmware_data_00027cc8 ((unsigned long)"check_work_mode") /*=0xa1b00*/
+#define firmware_data_00027ccc ((unsigned long)"%s(): EVENT_STATE_BATTERY_PERCENT %d\n") /*=0xa0266*/
 #define firmware_data_00027cd0 ((volatile int*)((unsigned long)&g_box_state_debounce_cnt) /*=0x20018d84*/)
 #define firmware_data_00027cd4 ((volatile int*)((unsigned long)&g_glassbox_lid_debounced_state) /*=0x20003026*/)
 #define firmware_data_00027cd8 ((volatile int*)((unsigned long)&g_last_reported_box_charge_status) /*=0x20003028*/)
 #define firmware_data_00027cdc ((volatile int*)((unsigned long)&g_glassbox_status_debounce_cnt) /*=0x20018d85*/)
 #define firmware_data_00027ce0 ((volatile int*)((unsigned long)&g_last_reported_box_charge_pct) /*=0x20003029*/)
-#define firmware_data_00027ce4 ((unsigned long)&rodata_a030d) /*=0xa030d*/
+#define firmware_data_00027ce4 ((unsigned long)"%s(): EVENT_GLASS_BOX_SOC %d\n") /*=0xa030d*/
 #define firmware_data_00027ce8 ((volatile int*)((unsigned long)&g_check_work_mode_ed5_field_cache) /*=0x20003025*/)
-#define firmware_data_00027cec ((unsigned long)&rodata_a028c) /*=0xa028c*/
-#define firmware_data_00027cf0 ((unsigned long)&rodata_a02ab) /*=0xa02ab*/
-#define _DAT_00027cf4 ((unsigned long)&rodata_a02cc) /*=0xa02cc*/
+#define firmware_data_00027cec ((unsigned long)"%s(): EVENT_STATE_CHARGING %d\n") /*=0xa028c*/
+#define firmware_data_00027cf0 ((unsigned long)"%s(): EVENT_GLASS_BOX_STATUS %d\n") /*=0xa02ab*/
+#define _DAT_00027cf4 ((unsigned long)"%s(): last_box_charging_status is %d, box_charging_status is %d\n") /*=0xa02cc*/
 #define _DAT_00027cf8 (*(volatile int*)((unsigned long)&rodata_27cf8) /*=0x27cf8*/)
 #define _event_id2 event_id2
 

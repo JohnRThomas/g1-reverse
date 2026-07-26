@@ -29,28 +29,28 @@
  *   rodata_87bf0                             @ 0x00087bf0
  *   rodata_9e9ea                             @ 0x0009e9ea
  *   rodata_9ea0a                             @ 0x0009ea0a
- *   rodata_a1027                             @ 0x000a1027
- *   rodata_a116d                             @ 0x000a116d
- *   rodata_a125e                             @ 0x000a125e
+ *   rodata_a1027                             @ 0x000a1027   [INLINED -- G6 literal batch]
+ *   rodata_a116d                             @ 0x000a116d   [INLINED -- G6 literal batch]
+ *   rodata_a125e                             @ 0x000a125e   [INLINED -- G6 literal batch]
  *   rodata_ef081                             @ 0x000ef081
- *   rodata_ef0a1                             @ 0x000ef0a1
- *   rodata_ef0c9                             @ 0x000ef0c9
+ *   rodata_ef0a1                             @ 0x000ef0a1   [INLINED -- G6 literal batch]
+ *   rodata_ef0c9                             @ 0x000ef0c9   [INLINED -- G6 literal batch]
  *   rodata_ef0fb                             @ 0x000ef0fb
- *   rodata_ef135                             @ 0x000ef135
- *   rodata_ef16d                             @ 0x000ef16d
- *   rodata_ef1a8                             @ 0x000ef1a8
- *   rodata_ef1ea                             @ 0x000ef1ea
+ *   rodata_ef135                             @ 0x000ef135   [INLINED -- G6 literal batch]
+ *   rodata_ef16d                             @ 0x000ef16d   [INLINED -- G6 literal batch]
+ *   rodata_ef1a8                             @ 0x000ef1a8   [INLINED -- G6 literal batch]
+ *   rodata_ef1ea                             @ 0x000ef1ea   [INLINED -- G6 literal batch]
  *   rodata_ef214                             @ 0x000ef214
- *   rodata_ef260                             @ 0x000ef260
+ *   rodata_ef260                             @ 0x000ef260   [INLINED -- G6 literal batch]
  *   rodata_ef29b                             @ 0x000ef29b
- *   rodata_ef2df                             @ 0x000ef2df
- *   rodata_ef2fc                             @ 0x000ef2fc
- *   rodata_ef338                             @ 0x000ef338
- *   rodata_ef377                             @ 0x000ef377
+ *   rodata_ef2df                             @ 0x000ef2df   [INLINED -- G6 literal batch]
+ *   rodata_ef2fc                             @ 0x000ef2fc   [INLINED -- G6 literal batch]
+ *   rodata_ef338                             @ 0x000ef338   [INLINED -- G6 literal batch]
+ *   rodata_ef377                             @ 0x000ef377   [INLINED -- G6 literal batch]
  *   rodata_ef3e2                             @ 0x000ef3e2
- *   rodata_ef40d                             @ 0x000ef40d
- *   rodata_ef437                             @ 0x000ef437
- *   rodata_ef472                             @ 0x000ef472
+ *   rodata_ef40d                             @ 0x000ef40d   [INLINED -- G6 literal batch]
+ *   rodata_ef437                             @ 0x000ef437   [INLINED -- G6 literal batch]
+ *   rodata_ef472                             @ 0x000ef472   [INLINED -- G6 literal batch]
  *   rodata_ef76f                             @ 0x000ef76f
  *   g_log_level                              @ 0x2000230c
  *   g_dashboard_response_msgq                @ 0x2000392c
@@ -210,7 +210,7 @@ control_label_00047c76:
                 case 0:
                     if (2 < *piVar1) {
                         if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                            log_message(((unsigned long)&rodata_ef0a1) /*=0xef0a1*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
+                            log_message(((unsigned long)"%s(): store app response data to cache\n") /*=0xef0a1*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                         } else {
                             debug_print();
                         }
@@ -227,7 +227,7 @@ control_label_00047c76:
                 case 1:
                     if (2 < *piVar1) {
                         if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                            log_message(((unsigned long)&rodata_ef0c9) /*=0xef0c9*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
+                            log_message(((unsigned long)"%s(): received send response data to app command\n") /*=0xef0c9*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                         } else {
                             debug_print();
                         }
@@ -247,11 +247,11 @@ control_label_00047c76:
                         get_proxy_timestamp(transfer_packet.bytes);
                         if (2 < *piVar1) {
                             if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                                log_message(((unsigned long)&rodata_ef135) /*=0xef135*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/,
+                                log_message(((unsigned long)"%s(): success send cache data to app ,diff_time = %lld\n") /*=0xef135*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/,
                                             transfer_packet.word.low,
                                             transfer_packet.word.high);
                             } else {
-                                debug_print(((unsigned long)&rodata_ef135) /*=0xef135*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
+                                debug_print(((unsigned long)"%s(): success send cache data to app ,diff_time = %lld\n") /*=0xef135*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                             }
                         }
                         *pcVar11 = '\0';
@@ -261,7 +261,7 @@ control_label_00047c76:
                 case 2:
                     if (2 < *piVar1) {
                         if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                            log_message(((unsigned long)&rodata_ef16d) /*=0xef16d*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
+                            log_message(((unsigned long)"%s(): running proxy thread,send audio stream data to app \n") /*=0xef16d*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                         } else {
                             debug_print();
                         }
@@ -293,7 +293,7 @@ control_label_00047c76:
                             }
                             if (2 < *piVar1) {
                                 if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                                    log_message(((unsigned long)&rodata_ef1a8) /*=0xef1a8*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
+                                    log_message(((unsigned long)"%s(): read voice manager block data,start send voice data to app\n") /*=0xef1a8*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 } else {
                                     debug_print();
                                 }
@@ -348,7 +348,7 @@ control_label_00047c76:
                                 while (iVar15 = (*(int (**)())(param_1 + 0x788))(puVar22, puVar10[1]), iVar15 < 0) {
                                     if (1 < *piVar1) {
                                         if (*piVar19 == 0) {
-                                            log_message(((unsigned long)&rodata_ef1ea) /*=0xef1ea*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
+                                            log_message(((unsigned long)"%s(): retry send audio data first packet\n") /*=0xef1ea*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                         } else {
                                             debug_print();
                                         }
@@ -389,7 +389,7 @@ control_label_00047e22:
                     if (*(char *)((unsigned long)&g_2001d262) /*=0x2001d262*/ == '\0') {
                         if (2 < *piVar1) {
                             if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                                log_message(((unsigned long)&rodata_ef260) /*=0xef260*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
+                                log_message(((unsigned long)"%s(): error packet order,can't send any audio data to app\n") /*=0xef260*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                             } else {
                                 debug_print();
                             }
@@ -446,7 +446,7 @@ control_label_0004820e:
                         while (iVar15 = (*(int (**)())(param_1 + 0x788))(puVar10, puVar10[1]), iVar15 < 0) {
                             if (1 < *piVar1) {
                                 if (*piVar19 == 0) {
-                                    log_message(((unsigned long)&rodata_ef2df) /*=0xef2df*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
+                                    log_message(((unsigned long)"%s(): retry send audio data\n") /*=0xef2df*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 } else {
                                     debug_print();
                                 }
@@ -464,7 +464,7 @@ control_label_0004820e:
                             }
                             if (1 < *piVar1) {
                                 if (*piVar19 == 0) {
-                                    log_message(((unsigned long)&rodata_ef2df) /*=0xef2df*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
+                                    log_message(((unsigned long)"%s(): retry send audio data\n") /*=0xef2df*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 } else {
                                     debug_print();
                                 }
@@ -473,9 +473,9 @@ control_label_0004820e:
                         *piVar4 = *piVar4 + iVar16;
                         if (2 < *piVar1) {
                             if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                                log_message(((unsigned long)&rodata_ef2fc) /*=0xef2fc*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16, *piVar4);
+                                log_message(((unsigned long)"%s(): send %d byte data to app,total send data length = %d\n") /*=0xef2fc*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16, *piVar4);
                             } else {
-                                debug_print(((unsigned long)&rodata_ef2fc) /*=0xef2fc*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16, *piVar4);
+                                debug_print(((unsigned long)"%s(): send %d byte data to app,total send data length = %d\n") /*=0xef2fc*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16, *piVar4);
                             }
                         }
 control_label_00048054:
@@ -508,7 +508,7 @@ control_label_00048054:
                 case 3:
                     if (2 < *piVar1) {
                         if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                            log_message(((unsigned long)&rodata_ef338) /*=0xef338*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
+                            log_message(((unsigned long)"%s(): running proxy thread,send audio infomation data to app \n") /*=0xef338*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                         } else {
                             debug_print();
                         }
@@ -555,7 +555,7 @@ control_label_00047de2:
                                     if (*(int *)(iVar15 + 8) != 2) {
                                         uVar9 = 0xef07c;
                                     }
-                                    log_message(((unsigned long)&rodata_ef377) /*=0xef377*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar21, uVar9, *(undefined4 *)(iVar15 + 0x14),
+                                    log_message(((unsigned long)"%s(): voice %d %s, timestamp = %d,crc32 = 0x%x start addr = %d,end addr = %d,total audio stream size = %d\n") /*=0xef377*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar21, uVar9, *(undefined4 *)(iVar15 + 0x14),
                                                 *(undefined4 *)(iVar15 + 0x18), iVar17, *(int *)(iVar15 + 0x10),
                                                 *(int *)(iVar15 + 0x10) - iVar17);
                                 } else {
@@ -563,7 +563,7 @@ control_label_00047de2:
                                     if (*(int *)(iVar15 + 8) != 2) {
                                         uVar9 = 0xef07c;
                                     }
-                                    debug_print(((unsigned long)&rodata_ef377) /*=0xef377*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar21, uVar9, *(undefined4 *)(iVar15 + 0x14),
+                                    debug_print(((unsigned long)"%s(): voice %d %s, timestamp = %d,crc32 = 0x%x start addr = %d,end addr = %d,total audio stream size = %d\n") /*=0xef377*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar21, uVar9, *(undefined4 *)(iVar15 + 0x14),
                                                  *(undefined4 *)(iVar15 + 0x18), iVar17, *(int *)(iVar15 + 0x10),
                                                  *(int *)(iVar15 + 0x10) - iVar17);
                                 }
@@ -627,7 +627,7 @@ control_label_000480f4:
                         if (iVar12 < 5000) {
                             if (2 < *piVar1) {
                                 if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                                    log_message(((unsigned long)&rodata_ef40d) /*=0xef40d*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
+                                    log_message(((unsigned long)"%s(): SEND power event to slave success.\n") /*=0xef40d*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 } else {
                                     debug_print();
                                 }
@@ -638,7 +638,7 @@ control_label_000480f4:
                         }
                         if (1 < *piVar1) {
                             if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                                log_message(((unsigned long)&rodata_a125e) /*=0xa125e*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
+                                log_message(((unsigned long)"%s(): SYNC TO Slave failed % times,don't exec quick note start function.\n") /*=0xa125e*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
                             } else {
                                 debug_print();
                             }
@@ -657,7 +657,7 @@ control_label_000480f4:
                         if (iVar12 < 5000) {
                             if (2 < *piVar1) {
                                 if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                                    log_message(((unsigned long)&rodata_ef437) /*=0xef437*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
+                                    log_message(((unsigned long)"%s(): Send app language upgrade msg to setting proxy task\n") /*=0xef437*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 } else {
                                     debug_print();
                                 }
@@ -667,7 +667,7 @@ control_label_000480f4:
                         }
                         if (1 < *piVar1) {
                             if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                                log_message(((unsigned long)&rodata_a125e) /*=0xa125e*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
+                                log_message(((unsigned long)"%s(): SYNC TO Slave failed % times,don't exec quick note start function.\n") /*=0xa125e*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
                             } else {
                                 debug_print();
                             }
@@ -685,7 +685,7 @@ control_label_000480f4:
                         if (iVar12 < 5000) {
                             if (2 < *piVar1) {
                                 if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                                    log_message(((unsigned long)&rodata_ef472) /*=0xef472*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
+                                    log_message(((unsigned long)"%s(): Send Dashboard startup  mode  msg to setting proxy task\n") /*=0xef472*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 } else {
                                     debug_print();
                                 }
@@ -710,7 +710,7 @@ control_label_000480f4:
                         }
                         if (1 < *piVar1) {
                             if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                                log_message(((unsigned long)&rodata_a125e) /*=0xa125e*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
+                                log_message(((unsigned long)"%s(): SYNC TO Slave failed % times,don't exec quick note start function.\n") /*=0xa125e*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
                             } else {
                                 debug_print();
                             }
@@ -740,7 +740,7 @@ control_label_000480f4:
                             if (iVar12 < 5000) {
                                 if (2 < *piVar1) {
                                     if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                                        log_message(((unsigned long)&rodata_a116d) /*=0xa116d*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
+                                        log_message(((unsigned long)"%s(): SEND DELAY CLOSE TO SLAVE SUCCESS,master start delay close function\n") /*=0xa116d*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                     } else {
                                         debug_print();
                                     }
@@ -750,7 +750,7 @@ control_label_000480f4:
                             }
                             if (1 < *piVar1) {
                                 if (*piVar19 == 0) {
-                                    log_message(((unsigned long)&rodata_a1027) /*=0xa1027*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
+                                    log_message(((unsigned long)"%s(): SYNC TO Slave failed % times,don't exec double click startup dashboard function.\n") /*=0xa1027*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
                                 } else {
                                     debug_print();
                                 }
@@ -772,7 +772,7 @@ control_label_000480f4:
                             if (iVar12 < 5000) {
                                 if (2 < *piVar1) {
                                     if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                                        log_message(((unsigned long)&rodata_a116d) /*=0xa116d*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
+                                        log_message(((unsigned long)"%s(): SEND DELAY CLOSE TO SLAVE SUCCESS,master start delay close function\n") /*=0xa116d*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                     } else {
                                         debug_print();
                                     }
@@ -782,7 +782,7 @@ control_label_000480f4:
                             }
                             if (1 < *piVar1) {
                                 if (*piVar19 == 0) {
-                                    log_message(((unsigned long)&rodata_a1027) /*=0xa1027*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
+                                    log_message(((unsigned long)"%s(): SYNC TO Slave failed % times,don't exec double click startup dashboard function.\n") /*=0xa1027*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
                                 } else {
                                     debug_print();
                                 }

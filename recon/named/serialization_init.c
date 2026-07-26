@@ -8,11 +8,11 @@
  *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  * address symbols (name @ address):
  *   rodata_87c08                             @ 0x00087c08
- *   rodata_9f5ec                             @ 0x0009f5ec
- *   rodata_9f611                             @ 0x0009f611
- *   rodata_9f63c                             @ 0x0009f63c
- *   rodata_9f67e                             @ 0x0009f67e
- *   rodata_9f6f1                             @ 0x0009f6f1
+ *   rodata_9f5ec                             @ 0x0009f5ec   [INLINED -- G6 literal batch]
+ *   rodata_9f611                             @ 0x0009f611   [INLINED -- G6 literal batch]
+ *   rodata_9f63c                             @ 0x0009f63c   [INLINED -- G6 literal batch]
+ *   rodata_9f67e                             @ 0x0009f67e   [INLINED -- G6 literal batch]
+ *   rodata_9f6f1                             @ 0x0009f6f1   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_serialization_ipc_ept_ctx              @ 0x200023dc
  *   g_serialization_ipc_mutex                @ 0x200039c8

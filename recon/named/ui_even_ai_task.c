@@ -19,10 +19,10 @@
  *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
  *   rodata_a8e98                             @ 0x000a8e98
- *   rodata_a9855                             @ 0x000a9855
- *   rodata_a9879                             @ 0x000a9879
- *   rodata_a989f                             @ 0x000a989f
- *   rodata_a98ce                             @ 0x000a98ce
+ *   rodata_a9855                             @ 0x000a9855   [INLINED -- G6 literal batch]
+ *   rodata_a9879                             @ 0x000a9879   [INLINED -- G6 literal batch]
+ *   rodata_a989f                             @ 0x000a989f   [INLINED -- G6 literal batch]
+ *   rodata_a98ce                             @ 0x000a98ce   [INLINED -- G6 literal batch]
  *   rodata_aae20                             @ 0x000aae20
  *   rodata_f7b6f                             @ 0x000f7b6f
  *   g_log_level                              @ 0x2000230c

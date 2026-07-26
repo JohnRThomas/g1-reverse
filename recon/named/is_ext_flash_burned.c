@@ -2,10 +2,10 @@
  * public-name: is_ext_flash_burned
  * durable-map: recon/catalogs/function_names_app.json
  * address symbols (name @ address):
- *   rodata_9e2f1                             @ 0x0009e2f1
- *   rodata_a74dc                             @ 0x000a74dc
- *   rodata_a7500                             @ 0x000a7500
- *   rodata_a766d                             @ 0x000a766d
+ *   rodata_9e2f1                             @ 0x0009e2f1   [INLINED -- G6 literal batch]
+ *   rodata_a74dc                             @ 0x000a74dc   [INLINED -- G6 literal batch]
+ *   rodata_a7500                             @ 0x000a7500   [INLINED -- G6 literal batch]
+ *   rodata_a766d                             @ 0x000a766d   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

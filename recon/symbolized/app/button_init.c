@@ -21,17 +21,17 @@
  *   rodata_88340                             @ 0x00088340
  *   rodata_889d0                             @ 0x000889d0
  *   rodata_889e0                             @ 0x000889e0
- *   rodata_99f81                             @ 0x00099f81
- *   rodata_99fd2                             @ 0x00099fd2
- *   rodata_99fe8                             @ 0x00099fe8
- *   rodata_9a016                             @ 0x0009a016
- *   rodata_9a044                             @ 0x0009a044
- *   rodata_9a072                             @ 0x0009a072
- *   rodata_9a0a0                             @ 0x0009a0a0
- *   rodata_9a0c6                             @ 0x0009a0c6
- *   rodata_9a119                             @ 0x0009a119
- *   rodata_9a126                             @ 0x0009a126
- *   rodata_9a132                             @ 0x0009a132
+ *   rodata_99f81                             @ 0x00099f81   [INLINED -- G6 literal batch]
+ *   rodata_99fd2                             @ 0x00099fd2   [INLINED -- G6 literal batch]
+ *   rodata_99fe8                             @ 0x00099fe8   [INLINED -- G6 literal batch]
+ *   rodata_9a016                             @ 0x0009a016   [INLINED -- G6 literal batch]
+ *   rodata_9a044                             @ 0x0009a044   [INLINED -- G6 literal batch]
+ *   rodata_9a072                             @ 0x0009a072   [INLINED -- G6 literal batch]
+ *   rodata_9a0a0                             @ 0x0009a0a0   [INLINED -- G6 literal batch]
+ *   rodata_9a0c6                             @ 0x0009a0c6   [INLINED -- G6 literal batch]
+ *   rodata_9a119                             @ 0x0009a119   [INLINED -- G6 literal batch]
+ *   rodata_9a126                             @ 0x0009a126   [INLINED -- G6 literal batch]
+ *   rodata_9a132                             @ 0x0009a132   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_button_irq_cb2                         @ 0x20006a04
  *   g_button_irq_cb2_handler                 @ 0x20006a08
@@ -102,10 +102,10 @@ unsigned char button_init(void)
     if (iVar5 == 0) {
         if (1 < *piVar2) {
             iVar5 = *(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
-            uVar15 = ((unsigned long)&rodata_99f81) /*=0x99f81*/;
+            uVar15 = ((unsigned long)"%s(): SW0 GPIO port device not ready\n\n") /*=0x99f81*/;
 LAB_b48_1:
             if (iVar5 == 0) {
-                log_message(uVar15, ((unsigned long)&rodata_9a126) /*=0x9a126*/, 0,0,0,0);
+                log_message(uVar15, ((unsigned long)"button_init") /*=0x9a126*/, 0,0,0,0);
             } else {
                 debug_print();
             }
@@ -135,7 +135,7 @@ LAB_b48_1:
                     gpio_pin_configure(((unsigned long)&g1_gpio1_pin9_spec)  /*was 0x889d0*/, 0x5c00000);
                     if (1 < *piVar2) {
                         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                            log_message(((unsigned long)&rodata_99fd2) /*=0x99fd2*/, ((unsigned long)&rodata_9a126) /*=0x9a126*/, 9,0,0,0);
+                            log_message(((unsigned long)"%s(): done, pin= %d\n\n") /*=0x99fd2*/, ((unsigned long)"button_init") /*=0x9a126*/, 9,0,0,0);
                         } else {
                             debug_print();
                         }
@@ -149,8 +149,8 @@ LAB_b48_1:
     if (iVar5 == 0) {
         if (*piVar2 < 2) goto LAB_c40;
         iVar16 = *(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
-        uVar15 = ((unsigned long)&rodata_99f81) /*=0x99f81*/;
-        uVar14 = ((unsigned long)&rodata_9a119) /*=0x9a119*/;
+        uVar15 = ((unsigned long)"%s(): SW0 GPIO port device not ready\n\n") /*=0x99f81*/;
+        uVar14 = ((unsigned long)"nfc_gpo_init") /*=0x9a119*/;
     } else {
         iVar6 = gpio_pin_configure_17688(((unsigned long)&g1_gpio1_pin10_spec) /*was 0x889e0*/, ((unsigned long)&rodata_10000) /*=0x10000*/);
         iVar5 = ((unsigned long)&g_button_irq_cb2) /*=0x20006a04*/;
@@ -170,7 +170,7 @@ LAB_b48_1:
                 gpio_pin_configure(((unsigned long)&g1_gpio1_pin10_spec) /*was 0x889e0*/, uVar15);
                 if (1 < *piVar2) {
                     if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                        log_message(((unsigned long)&rodata_9a0c6) /*=0x9a0c6*/, ((unsigned long)&rodata_9a119) /*=0x9a119*/, 10,0,0,0);
+                        log_message(((unsigned long)"%s(): panel_power_status %d tmr_status %d nfc_lpd_status %d touch_power_status %d\n") /*=0x9a0c6*/, ((unsigned long)"nfc_gpo_init") /*=0x9a119*/, 10,0,0,0);
                     } else {
                         debug_print();
                     }
@@ -181,7 +181,7 @@ LAB_b48_1:
         if (*piVar2 < 2) goto LAB_c40;
         iVar16 = *(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
         uVar15 = 0x00099fa8UL;
-        uVar14 = ((unsigned long)&rodata_9a119) /*=0x9a119*/;
+        uVar14 = ((unsigned long)"nfc_gpo_init") /*=0x9a119*/;
     }
     if (iVar16 == 0) {
         log_message(uVar15, uVar14, 0,0,0,0);
@@ -200,40 +200,40 @@ LAB_c40:
     if (1 < *piVar2) {
         uVar18 = bVar4;
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_99fe8) /*=0x99fe8*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, 0x1a, uVar18,0,0);
+            log_message(((unsigned long)"%s(): DEVICE_ID1_PIN: %d, device1_status: %d\n") /*=0x99fe8*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, 0x1a, uVar18,0,0);
         } else {
             debug_print();
         }
         if (1 < *piVar2) {
             uVar7 = uVar7 & 0xff;
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_9a016) /*=0x9a016*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, 0x19, uVar7,0,0);
+                log_message(((unsigned long)"%s(): DEVICE_ID2_PIN: %d, device2_status: %d\n") /*=0x9a016*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, 0x19, uVar7,0,0);
             } else {
                 debug_print();
             }
             if (1 < *piVar2) {
                 uVar8 = uVar8 & 0xff;
                 if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                    log_message(((unsigned long)&rodata_9a044) /*=0x9a044*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, 0x1c, uVar8,0,0);
+                    log_message(((unsigned long)"%s(): DEVICE_ID3_PIN: %d, device3_status: %d\n") /*=0x9a044*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, 0x1c, uVar8,0,0);
                 } else {
                     debug_print();
                 }
                 if (1 < *piVar2) {
                     uVar9 = uVar9 & 0xff;
                     if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                        log_message(((unsigned long)&rodata_9a072) /*=0x9a072*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, 0x1b, uVar9,0,0);
+                        log_message(((unsigned long)"%s(): DEVICE_ID4_PIN: %d, device4_status: %d\n") /*=0x9a072*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, 0x1b, uVar9,0,0);
                     } else {
                         debug_print();
                     }
                     if (1 < *piVar2) {
                         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                            log_message(((unsigned long)&rodata_9a0a0) /*=0x9a0a0*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, uVar18, uVar7, uVar8, uVar9);
+                            log_message(((unsigned long)"%s(): device_compat_val: %d %d %d %d\n") /*=0x9a0a0*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, uVar18, uVar7, uVar8, uVar9);
                         } else {
                             debug_print();
                         }
                         if (1 < *piVar2) {
                             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                                log_message(((unsigned long)&rodata_9a0c6) /*=0x9a0c6*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, uVar10 & 0xff, uVar11 & 0xff, uVar12 & 0xff, uVar13 & 0xff);
+                                log_message(((unsigned long)"%s(): panel_power_status %d tmr_status %d nfc_lpd_status %d touch_power_status %d\n") /*=0x9a0c6*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, uVar10 & 0xff, uVar11 & 0xff, uVar12 & 0xff, uVar13 & 0xff);
                             } else {
                                 debug_print();
                             }

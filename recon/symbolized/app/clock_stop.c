@@ -9,9 +9,9 @@
  *   thunk_FUN_00086384                       <= FUN_000850d8 @ 0x000850d8
  * address symbols (name @ address):
  *   rodata_10000                             @ 0x00010000
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6a4e                             @ 0x000f6a4e
- *   rodata_f6a8b                             @ 0x000f6a8b
+ *   rodata_f6a8b                             @ 0x000f6a8b   [INLINED -- G6 literal batch]
  *   rodata_f7a30                             @ 0x000f7a30
  */
 /* Reconstructed private nrfx clock_stop implementation @ 0x00065000.
@@ -42,7 +42,7 @@ enum clock_domain_raw {
 
 static void clock_domain_assert(uint32_t header, uint32_t line)
 {
-    nrfx_assert_report(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, header, line);
+    nrfx_assert_report(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, header, line);
     nrfx_assert_abort(header, line);
 }
 
@@ -98,7 +98,7 @@ void g1_clock_stop_impl(enum clock_domain_raw domain)
             state = CLOCK_REGISTER(0x454u);
             break;
         default:
-            clock_domain_assert(((unsigned long)&rodata_f6a8b) /*=0xf6a8b*/, 971u);
+            clock_domain_assert(((unsigned long)"WEST_TOPDIR/modules/hal/nordic/nrfx/hal/nrf_clock.h") /*=0xf6a8b*/, 971u);
         }
 
         if ((state & ((unsigned long)&rodata_10000) /*=0x10000*/) == 0u ||

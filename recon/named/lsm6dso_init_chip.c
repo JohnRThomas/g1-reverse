@@ -23,24 +23,24 @@
  *   rodata_9905e                             @ 0x0009905e
  *   rodata_f6292                             @ 0x000f6292
  *   rodata_f62ac                             @ 0x000f62ac
- *   rodata_f62c5                             @ 0x000f62c5
+ *   rodata_f62c5                             @ 0x000f62c5   [INLINED -- G6 literal batch]
  *   rodata_f62e6                             @ 0x000f62e6
  *   rodata_f62fd                             @ 0x000f62fd
  *   rodata_f6315                             @ 0x000f6315
- *   rodata_f6337                             @ 0x000f6337
- *   rodata_f6353                             @ 0x000f6353
- *   rodata_f6364                             @ 0x000f6364
+ *   rodata_f6337                             @ 0x000f6337   [INLINED -- G6 literal batch]
+ *   rodata_f6353                             @ 0x000f6353   [INLINED -- G6 literal batch]
+ *   rodata_f6364                             @ 0x000f6364   [INLINED -- G6 literal batch]
  *   rodata_f6378                             @ 0x000f6378
  *   rodata_f639f                             @ 0x000f639f
- *   rodata_f63b1                             @ 0x000f63b1
+ *   rodata_f63b1                             @ 0x000f63b1   [INLINED -- G6 literal batch]
  *   rodata_f63c1                             @ 0x000f63c1
- *   rodata_f63e6                             @ 0x000f63e6
+ *   rodata_f63e6                             @ 0x000f63e6   [INLINED -- G6 literal batch]
  *   rodata_f63f9                             @ 0x000f63f9
- *   rodata_f641c                             @ 0x000f641c
+ *   rodata_f641c                             @ 0x000f641c   [INLINED -- G6 literal batch]
  *   rodata_f642d                             @ 0x000f642d
  *   rodata_f644e                             @ 0x000f644e
  *   rodata_f6468                             @ 0x000f6468
- *   rodata_f6481                             @ 0x000f6481
+ *   rodata_f6481                             @ 0x000f6481   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_000622a0 @ 0x622a0  (parity: 300/300 trials, PROVEN) */
 extern void log_message(int fmt, ...);
@@ -82,7 +82,7 @@ int lsm6dso_init_chip(int param_1, unsigned int param_2, int param_3)
     uVar3 = 0x000f62ac;
     if (iVar2 < 0) goto LAB_622bc;
 
-    log_message(0x000f62c5, (uStack_24 >> 0x10) & 0xff);
+    log_message(((unsigned long)"lsm6dso_init_chip chip id 0x%x\r\n"), (uStack_24 >> 0x10) & 0xff);
     uVar5 = (uStack_24 >> 0x10) & 0xff;
     uVar3 = 0x000f62e6;
     if (uVar5 == 0x6c) {
@@ -93,19 +93,19 @@ int lsm6dso_init_chip(int param_1, unsigned int param_2, int param_3)
         uVar3 = 0x000f6315;
         if (iVar2 < 0) goto LAB_622bc;
         if (((uStack_24 >> 0x18) & 0xff) != 0) {
-            log_message(0x000f6337);
+            log_message(((unsigned long)"Disable shub before reset\r\n"));
             audio_codec_set_reg14_bit2(iVar7, 0);
             delay_scaled_busy_wait(300);
         }
         iVar2 = audio_codec_set_reg12_bit0(iVar7, 1);
         if (iVar2 < 0) goto LAB_622ec;
         delay_scaled_busy_wait(100);
-        log_message(0x000f6353, (unsigned int)(unsigned char)*(volatile unsigned char*)(iVar7+0x18));
+        log_message(((unsigned long)"accel pm is %d\r\n"), (unsigned int)(unsigned char)*(volatile unsigned char*)(iVar7+0x18));
         cVar4 = *(volatile signed char*)(iVar7+0x18);
         if ((cVar4 != 1) && (cVar4 != 2)) cVar4 = 0;
         audio_codec_set_dual_reg14_reg15(iVar7, cVar4);
         uVar5 = (*(volatile unsigned char*)(iVar7+0x1a)) & 0x3f;
-        log_message(0x000f6364, uVar5);
+        log_message(((unsigned long)"accel range is %d\r\n"), uVar5);
         iVar10 = *(int*)(param_1+0x10);
         iVar2 = audio_codec_set_reg10_field2(*(int*)(param_1+4), uVar5);
         uVar3 = 0x000f6378;
@@ -141,18 +141,18 @@ int lsm6dso_init_chip(int param_1, unsigned int param_2, int param_3)
             uVar3 = 0x000f63c1;
             if (iVar2 >= 0) {
                 *(volatile unsigned short*)(iVar10+0x1c) = uVar9;
-                log_message(0x000f63b1, (unsigned int)(unsigned char)*(volatile unsigned char*)(iVar7+0x1b));
+                log_message(((unsigned long)"gyro pm is %d\r\n"), (unsigned int)(unsigned char)*(volatile unsigned char*)(iVar7+0x1b));
                 cVar4 = *(volatile signed char*)(iVar7+0x1b);
                 if (cVar4 != 1) cVar4 = 0;
                 audio_codec_set_reg16_bit7(iVar7, cVar4);
                 uVar5 = (unsigned int)(unsigned char)*(volatile unsigned char*)(iVar7+0x1d);
-                log_message(0x000f63e6, uVar5);
+                log_message(((unsigned long)"gyro range is %d\r\n"), uVar5);
                 iVar2 = audio_codec_set_reg11_field1(*(int*)(param_1+4), uVar5);
                 uVar3 = 0x000f63f9;
                 if (iVar2 >= 0) {
                     *(volatile unsigned int*)(iVar8+0x18) = (unsigned int)(*(volatile unsigned short*)(0x00099042UL + (unsigned int)uVar5*2)) * 0x1117;
                     uVar5 = (unsigned int)(unsigned char)*(volatile unsigned char*)(iVar7+0x1c);
-                    log_message(0x000f641c, uVar5);
+                    log_message(((unsigned long)"gyro odr is %d\r\n"), uVar5);
                     if (uVar5 < 0xb) {
                         uVar9 = *(volatile unsigned short*)(0x00099066UL + (unsigned int)uVar5*2);
                     } else {
@@ -184,6 +184,6 @@ int lsm6dso_init_chip(int param_1, unsigned int param_2, int param_3)
 LAB_622bc:
     log_message(uVar3);
 LAB_622ec:
-    log_message(0x000f6481);
+    log_message(((unsigned long)"failed to initialize chip\r\n"));
     return 0;
 }

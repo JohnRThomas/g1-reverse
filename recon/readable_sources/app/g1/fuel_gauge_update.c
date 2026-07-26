@@ -25,11 +25,11 @@
  *   k_uptime_get_3                           <= FUN_0007ceda @ 0x0007ceda
  *   product_code_is_supported_egp_family     <= FUN_0007cefc @ 0x0007cefc
  * address symbols (name @ address):
- *   rodata_a3d37                             @ 0x000a3d37
- *   rodata_a3d62                             @ 0x000a3d62
- *   rodata_a3d83                             @ 0x000a3d83
- *   rodata_a3dae                             @ 0x000a3dae
- *   rodata_a3e08                             @ 0x000a3e08
+ *   rodata_a3d37                             @ 0x000a3d37   [INLINED -- G6 literal batch]
+ *   rodata_a3d62                             @ 0x000a3d62   [INLINED -- G6 literal batch]
+ *   rodata_a3d83                             @ 0x000a3d83   [INLINED -- G6 literal batch]
+ *   rodata_a3dae                             @ 0x000a3dae   [INLINED -- G6 literal batch]
+ *   rodata_a3e08                             @ 0x000a3e08   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_fuel_gauge_init_timestamp              @ 0x20004790
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -48,18 +48,18 @@ typedef uint8_t byte; typedef int64_t longlong; typedef uint64_t ulonglong; type
 #define firmware_data_00010be4 0.0f
 #define firmware_data_00010be8 1000.0f
 #define firmware_data_00010bec ((int64_t *)((unsigned long)&g_fuel_gauge_init_timestamp) /*=0x20004790*/)
-#define firmware_data_00010bf0 ((unsigned long)&rodata_a3d37) /*=0xa3d37*/
+#define firmware_data_00010bf0 ((unsigned long)"Error: Could not read from charger device\n") /*=0xa3d37*/
 #define firmware_data_00010bf4 100.0f
 #define firmware_data_00010f40 0xd2f1a9fcu
 #define firmware_data_00010f44 0x3fc0624du
 #define firmware_data_00010f48 ((int *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define firmware_data_00010f4c ((int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define firmware_data_00010f50 ((unsigned long)&rodata_a3e08) /*=0xa3e08*/
-#define firmware_data_00010f54 ((unsigned long)&rodata_a3d62) /*=0xa3d62*/
+#define firmware_data_00010f50 ((unsigned long)"fuel_gauge_update") /*=0xa3e08*/
+#define firmware_data_00010f54 ((unsigned long)"%s(): V: %.3f, I: %.3f, T: %.2f\n") /*=0xa3d62*/
 #define firmware_data_00010f58 100.0f
 #define firmware_data_00010f5c ((int *)((unsigned long)&g_20007b70) /*=0x20007b70*/)
 #define firmware_data_00010f60 ((float *)((unsigned long)&g_20007b74) /*=0x20007b74*/)
-#define firmware_data_00010f64 ((unsigned long)&rodata_a3d83) /*=0xa3d83*/
+#define firmware_data_00010f64 ((unsigned long)"%s(): Original soc %.2f, New Soc %.2f, %s\n") /*=0xa3d83*/
 #define firmware_data_00010f68 150.0f
 #define firmware_data_00010f6c 93.5f
 #define firmware_data_00010f70 94.0f
@@ -72,7 +72,7 @@ typedef uint8_t byte; typedef int64_t longlong; typedef uint64_t ulonglong; type
 #define firmware_data_00010f8c 60.0f
 #define firmware_data_00010f90 120.0f
 #define firmware_data_00010f94 (-50.0f)
-#define firmware_data_00010f98 ((unsigned long)&rodata_a3dae) /*=0xa3dae*/
+#define firmware_data_00010f98 ((unsigned long)"%s(): #############################Abnormal temperature################################\n\n") /*=0xa3dae*/
 #define firmware_data_00010f9c 0x0001d4bfu
 #define firmware_data_00010fa0 ((uint8_t *)((unsigned long)&g_flash_crc_skip_watchdog_flag) /*=0x20018d90*/)
 #define firmware_data_00010fa4 0.0f

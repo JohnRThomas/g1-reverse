@@ -6,8 +6,8 @@
  *   set_test_mode                            <= FUN_00032ef0 @ 0x00032ef0
  *   save_usr_setting                         <= FUN_0007c28e @ 0x0007c28e
  * address symbols (name @ address):
- *   rodata_9e5f3                             @ 0x0009e5f3
- *   rodata_9e7b7                             @ 0x0009e7b7
+ *   rodata_9e5f3                             @ 0x0009e5f3   [INLINED -- G6 literal batch]
+ *   rodata_9e7b7                             @ 0x0009e7b7   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

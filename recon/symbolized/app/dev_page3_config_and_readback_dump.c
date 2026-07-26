@@ -7,14 +7,14 @@
  *   dev_ctrl_read1                           <= FUN_00083dba @ 0x00083dba
  *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
  * address symbols (name @ address):
- *   rodata_9951c                             @ 0x0009951c
- *   rodata_99528                             @ 0x00099528
- *   rodata_99534                             @ 0x00099534
- *   rodata_99540                             @ 0x00099540
- *   rodata_9954c                             @ 0x0009954c
- *   rodata_99558                             @ 0x00099558
- *   rodata_99564                             @ 0x00099564
- *   rodata_99570                             @ 0x00099570
+ *   rodata_9951c                             @ 0x0009951c   [INLINED -- G6 literal batch]
+ *   rodata_99528                             @ 0x00099528   [INLINED -- G6 literal batch]
+ *   rodata_99534                             @ 0x00099534   [INLINED -- G6 literal batch]
+ *   rodata_99540                             @ 0x00099540   [INLINED -- G6 literal batch]
+ *   rodata_9954c                             @ 0x0009954c   [INLINED -- G6 literal batch]
+ *   rodata_99558                             @ 0x00099558   [INLINED -- G6 literal batch]
+ *   rodata_99564                             @ 0x00099564   [INLINED -- G6 literal batch]
+ *   rodata_99570                             @ 0x00099570   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00016110 @ 0x16110  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -42,20 +42,20 @@ int dev_page3_config_and_readback_dump(int param_1, unsigned int param_2, int pa
     dev_write_reg3(*(int *)(iVar1 + 0x1c), 3, 0x16, 0x2e);
     dev_write_reg3(*(int *)(iVar1 + 0x1c), 3, 0x17, 2);
     dev_ctrl_read1(*(int *)(iVar1 + 0x1c), 3, 0x10, (int)&uStack_14 + 3);
-    log_message(((unsigned long)&rodata_9951c) /*=0x9951c*/, uStack_14 >> 0x18);
+    log_message(((unsigned long)"0x10 is %x\n") /*=0x9951c*/, uStack_14 >> 0x18);
     dev_ctrl_read1(*(int *)(iVar1 + 0x1c), 3, 0x11, (int)&uStack_14 + 3);
-    log_message(((unsigned long)&rodata_99528) /*=0x99528*/, uStack_14 >> 0x18);
+    log_message(((unsigned long)"0x11 is %x\n") /*=0x99528*/, uStack_14 >> 0x18);
     dev_ctrl_read1(*(int *)(iVar1 + 0x1c), 3, 0x12, (int)&uStack_14 + 3);
-    log_message(((unsigned long)&rodata_99534) /*=0x99534*/, uStack_14 >> 0x18);
+    log_message(((unsigned long)"0x12 is %x\n") /*=0x99534*/, uStack_14 >> 0x18);
     dev_ctrl_read1(*(int *)(iVar1 + 0x1c), 3, 0x13, (int)&uStack_14 + 3);
-    log_message(((unsigned long)&rodata_99540) /*=0x99540*/, uStack_14 >> 0x18);
+    log_message(((unsigned long)"0x13 is %x\n") /*=0x99540*/, uStack_14 >> 0x18);
     dev_ctrl_read1(*(int *)(iVar1 + 0x1c), 3, 0x14, (int)&uStack_14 + 3);
-    log_message(((unsigned long)&rodata_9954c) /*=0x9954c*/, uStack_14 >> 0x18);
+    log_message(((unsigned long)"0x14 is %x\n") /*=0x9954c*/, uStack_14 >> 0x18);
     dev_ctrl_read1(*(int *)(iVar1 + 0x1c), 3, 0x15, (int)&uStack_14 + 3);
-    log_message(((unsigned long)&rodata_99558) /*=0x99558*/, uStack_14 >> 0x18);
+    log_message(((unsigned long)"0x15 is %x\n") /*=0x99558*/, uStack_14 >> 0x18);
     dev_ctrl_read1(*(int *)(iVar1 + 0x1c), 3, 0x16, (int)&uStack_14 + 3);
-    log_message(((unsigned long)&rodata_99564) /*=0x99564*/, uStack_14 >> 0x18);
+    log_message(((unsigned long)"0x16 is %x\n") /*=0x99564*/, uStack_14 >> 0x18);
     dev_ctrl_read1(*(int *)(iVar1 + 0x1c), 3, 0x17, (int)&uStack_14 + 3);
-    log_message(((unsigned long)&rodata_99570) /*=0x99570*/, uStack_14 >> 0x18);
+    log_message(((unsigned long)"0x17 is %x\n") /*=0x99570*/, uStack_14 >> 0x18);
     return 0;
 }

@@ -18,9 +18,9 @@
  * address symbols (name @ address):
  *   rodata_838cb                             @ 0x000838cb
  *   rodata_88270                             @ 0x00088270
- *   rodata_f5c49                             @ 0x000f5c49
- *   rodata_f5c59                             @ 0x000f5c59
- *   rodata_f5c6a                             @ 0x000f5c6a
+ *   rodata_f5c49                             @ 0x000f5c49   [INLINED -- G6 literal batch]
+ *   rodata_f5c59                             @ 0x000f5c59   [INLINED -- G6 literal batch]
+ *   rodata_f5c6a                             @ 0x000f5c6a   [INLINED -- G6 literal batch]
  *   NRF_I2S0_CONFIG_CHANNELS                 @ 0x500055b8
  */
 /* Reconstructed FUN_00060c00 @ 0x00060c00 (432-byte executable extent). */
@@ -86,7 +86,7 @@ log_transition_error(int error, uint32_t expected_state)
 {
     const struct transition_log record = {
         0x01000004u,
-        ((unsigned long)&rodata_f5c59) /*=0xf5c59*/,
+        ((unsigned long)"QE %s failed: %d") /*=0xf5c59*/,
         expected_state ? 0x000f3c77u : 0x000f5c43u,
         error,
         0x0200u,
@@ -125,7 +125,7 @@ int qspi_nor_configure(struct driver_context *context)
 
     result = qspi_rdsr(context);
     if (result < 0) {
-        const struct log3 record = {3, ((unsigned long)&rodata_f5c49) /*=0xf5c49*/, result};
+        const struct log3 record = {3, ((unsigned long)"RDSR failed: %d") /*=0xf5c49*/, result};
         qspi_log_forward(((unsigned long)&rodata_88270) /*=0x88270*/, 0x1840u, &record);
         return result;
     }
@@ -175,7 +175,7 @@ int qspi_nor_configure(struct driver_context *context)
 
             const struct mismatch_log record = {
                 8,
-                ((unsigned long)&rodata_f5c6a) /*=0xf5c6a*/,
+                ((unsigned long)"JEDEC id [%02x %02x %02x] expect [%02x %02x %02x]") /*=0xf5c6a*/,
                 {frame.response[0], frame.response[1], frame.response[2]},
                 {configuration[0x30], configuration[0x31], configuration[0x32]},
             };

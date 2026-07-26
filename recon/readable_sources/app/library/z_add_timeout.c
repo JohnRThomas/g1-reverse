@@ -16,12 +16,12 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f53ff                             @ 0x000f53ff
  *   rodata_f86d9                             @ 0x000f86d9
  *   rodata_f86fd                             @ 0x000f86fd
@@ -47,7 +47,7 @@ void z_add_timeout(uint32_t *timer, uintptr_t source, uint32_t lo, int32_t hi)
     int64_t delay = ((int64_t)hi << 32) | lo;
     if (delay == -1) return;
     if (timer[0] != 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f86fd) /*=0xf86fd*/, ((unsigned long)&rodata_f86d9) /*=0xf86d9*/, 0x6e);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f86fd) /*=0xf86fd*/, ((unsigned long)&rodata_f86d9) /*=0xf86d9*/, 0x6e);
         printk(((unsigned long)&rodata_f53ff) /*=0xf53ff*/);
         assert_post_action(((unsigned long)&rodata_f86d9) /*=0xf86d9*/, 0x6e);
     }
@@ -56,8 +56,8 @@ void z_add_timeout(uint32_t *timer, uintptr_t source, uint32_t lo, int32_t hi)
     __set_BASEPRI_MAX(0x20);
     __ISB();
     if (z_spin_lock_valid(((unsigned long)&g_timeout_list_spinlock) /*=0x2000b498*/) == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
-        printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, ((unsigned long)&g_timeout_list_spinlock) /*=0x2000b498*/);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
+        printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/, ((unsigned long)&g_timeout_list_spinlock) /*=0x2000b498*/);
         assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
     }
     z_spin_lock_set_owner(((unsigned long)&g_timeout_list_spinlock) /*=0x2000b498*/);
@@ -108,7 +108,7 @@ inserted:
         __ISB();
         return;
     }
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f08f4) /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0);
-    printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, ((unsigned long)&g_timeout_list_spinlock) /*=0x2000b498*/);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0);
+    printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/, ((unsigned long)&g_timeout_list_spinlock) /*=0x2000b498*/);
     assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0);
 }

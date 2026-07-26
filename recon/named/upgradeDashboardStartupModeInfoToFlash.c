@@ -6,9 +6,9 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
- *   rodata_9e903                             @ 0x0009e903
- *   rodata_9e98c                             @ 0x0009e98c
- *   rodata_9ed68                             @ 0x0009ed68
+ *   rodata_9e903                             @ 0x0009e903   [INLINED -- G6 literal batch]
+ *   rodata_9e98c                             @ 0x0009e98c   [INLINED -- G6 literal batch]
+ *   rodata_9ed68                             @ 0x0009ed68   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_flash_store_cmd_msgq                   @ 0x20003994
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -41,9 +41,9 @@ unsigned int upgradeDashboardStartupModeInfoToFlash(unsigned int param_1, unsign
     } else {
         if (0 < *(volatile int*)0x2000230cUL) {
             if (*(volatile int*)0x20007554UL == 0)
-                log_message(0x9e903UL, 0x9ed68UL);
+                log_message(((unsigned long)"%s(): setting flash store queue fill failed\r\n\n"), 0x9ed68UL);
             else
-                debug_print(0x9e903UL, 0x9ed68UL);
+                debug_print(((unsigned long)"%s(): setting flash store queue fill failed\r\n\n"), 0x9ed68UL);
         }
         uVar2 = 0xffffffffUL;
     }

@@ -6,9 +6,9 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef058                             @ 0x000ef058
- *   rodata_f00ea                             @ 0x000f00ea
- *   rodata_f0126                             @ 0x000f0126
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
+ *   rodata_f00ea                             @ 0x000f00ea   [INLINED -- G6 literal batch]
+ *   rodata_f0126                             @ 0x000f0126   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_display_msgq                           @ 0x200038c4
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -34,7 +34,7 @@ int display_powerEvent(int powered_on)
 
     result = k_msgq_put((void *)0x200038c4UL, packet, 0, 0);
     if (result != 0) {
-        log_message(0x000ef058UL, 0x000f0126UL);
+        log_message(((unsigned long)"message queue send failed %s\r\n"), 0x000f0126UL);
         return -1;
     }
 

@@ -22,9 +22,9 @@
  *   rodata_a866e                             @ 0x000a866e
  *   rodata_a869b                             @ 0x000a869b
  *   rodata_a870b                             @ 0x000a870b
- *   rodata_a8762                             @ 0x000a8762
- *   rodata_a886d                             @ 0x000a886d
- *   rodata_a8884                             @ 0x000a8884
+ *   rodata_a8762                             @ 0x000a8762   [INLINED -- G6 literal batch]
+ *   rodata_a886d                             @ 0x000a886d   [INLINED -- G6 literal batch]
+ *   rodata_a8884                             @ 0x000a8884   [INLINED -- G6 literal batch]
  *   rodata_f33e4                             @ 0x000f33e4
  *   rodata_f3630                             @ 0x000f3630
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -58,8 +58,8 @@ undefined4 verify_whitelist_json(void)
 
     iVar4 = cbor_decode_start_default();
     if (iVar4 == 0) {
-        if (*dbgp == 0) log_message(0xa8762);
-        else debug_print(0xa8762);
+        if (*dbgp == 0) log_message(((unsigned long)"error root JSON NODE !\n"));
+        else debug_print(((unsigned long)"error root JSON NODE !\n"));
         return 0;
     }
     iVar5 = sllist_find_by_name_ci(iVar4, 0xa862c);
@@ -173,8 +173,8 @@ LAB_000351c4:
                 }
             }
             if (uVar11 == uVar9) {
-                if (*dbgp == 0) log_message(0xa886d);
-                else debug_print(0xa886d);
+                if (*dbgp == 0) log_message(((unsigned long)"the same whitelist ! \n"));
+                else debug_print(((unsigned long)"the same whitelist ! \n"));
                 uVar8 = 1;
                 goto LAB_0003523e;
             }
@@ -183,7 +183,7 @@ LAB_000351c4:
     uVar8 = 0;
 LAB_0003523e:
     cjson_delete(iVar4);
-    if (*dbgp == 0) log_message(0xa8884, uVar8);
-    else debug_print(0xa8884, uVar8);
+    if (*dbgp == 0) log_message(((unsigned long)"is_the_same_whitelist_app ret is %d\n"), uVar8);
+    else debug_print(((unsigned long)"is_the_same_whitelist_app ret is %d\n"), uVar8);
     return uVar8;
 }

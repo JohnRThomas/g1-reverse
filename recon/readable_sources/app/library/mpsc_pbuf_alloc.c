@@ -17,12 +17,12 @@
  *   post_drop_action                         <= FUN_0007e4bc @ 0x0007e4bc
  *   k_is_in_isr                              <= FUN_00086406 @ 0x00086406
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0004bc8c @ 0x4bc8c (NCS mpsc_pbuf_alloc) */
 #include <stdint.h>
@@ -34,8 +34,8 @@ extern void post_drop_action(mpsc_buffer*,uint32_t,uint32_t); extern int free_sp
 extern uint32_t idx_inc(mpsc_buffer*,uint32_t,uint32_t); extern void add_skip_item(mpsc_buffer*,uint32_t);
 extern int k_is_in_isr(void); extern int z_impl_k_sem_take(void*,uint64_t);
 extern int drop_item_locked(mpsc_buffer*,uint32_t,void**,uint32_t*);
-__attribute__((always_inline)) static inline uint32_t checked_lock(mpsc_buffer *b){ uint32_t k=__get_BASEPRI(); __set_BASEPRI_MAX(0x20); __ISB(); if(!z_spin_lock_valid(&b->lock)){ printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,&b->lock); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); } z_spin_lock_set_owner(&b->lock); return k; }
-__attribute__((always_inline)) static inline void checked_unlock(mpsc_buffer *b,uint32_t k){ if(!z_spin_unlock_valid(&b->lock)){ printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0); printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,&b->lock); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0); } __set_BASEPRI(k); __ISB(); }
+__attribute__((always_inline)) static inline uint32_t checked_lock(mpsc_buffer *b){ uint32_t k=__get_BASEPRI(); __set_BASEPRI_MAX(0x20); __ISB(); if(!z_spin_lock_valid(&b->lock)){ printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/,&b->lock); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); } z_spin_lock_set_owner(&b->lock); return k; }
+__attribute__((always_inline)) static inline void checked_unlock(mpsc_buffer *b,uint32_t k){ if(!z_spin_unlock_valid(&b->lock)){ printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0); printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/,&b->lock); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0); } __set_BASEPRI(k); __ISB(); }
 void *mpsc_pbuf_alloc(mpsc_buffer *b,uint32_t wlen,uint32_t to_lo,uint32_t to_hi){
  struct { uint32_t pad0,to_lo,to_hi,saved,pad10; void *dropped; uint32_t free_wlen,shift; } l;
  l.to_lo=to_lo; l.to_hi=to_hi; l.dropped=0; l.shift=0;

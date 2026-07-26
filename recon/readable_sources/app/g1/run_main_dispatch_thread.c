@@ -25,8 +25,8 @@
  *   ADDR_touch_key_thread_THUMB              @ 0x0002a0d9
  *   ADDR_transport_dispatch_thread_THUMB     @ 0x0002a4f5
  *   ADDR_FUN_0002a8d8_THUMB                  @ 0x0002a8d9
- *   rodata_a18bf                             @ 0x000a18bf
- *   rodata_a1a98                             @ 0x000a1a98
+ *   rodata_a18bf                             @ 0x000a18bf   [INLINED -- G6 literal batch]
+ *   rodata_a1a98                             @ 0x000a1a98   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_200040d0                               @ 0x200040d0
  *   g_200041a8                               @ 0x200041a8
@@ -74,9 +74,9 @@ void run_main_dispatch_thread(char *dispatch_mode)
 
     if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            log_message(((unsigned long)&rodata_a18bf) /*=0xa18bf*/, ((unsigned long)&rodata_a1a98) /*=0xa1a98*/);
+            log_message(((unsigned long)"%s(): enter.\n") /*=0xa18bf*/, ((unsigned long)"run_main_dispatch_thread") /*=0xa1a98*/);
         else
-            debug_print(((unsigned long)&rodata_a18bf) /*=0xa18bf*/, ((unsigned long)&rodata_a1a98) /*=0xa1a98*/);
+            debug_print(((unsigned long)"%s(): enter.\n") /*=0xa18bf*/, ((unsigned long)"run_main_dispatch_thread") /*=0xa1a98*/);
     }
 
     kmutex_dlist_init(((unsigned long)&g_ui_state_mutex) /*=0x20007b3c*/);

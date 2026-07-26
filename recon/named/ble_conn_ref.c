@@ -6,7 +6,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3a5d                             @ 0x000f3a5d
  *   rodata_f3ebd                             @ 0x000f3ebd
  */
@@ -20,7 +20,7 @@ int ble_conn_ref(int param_1)
     int *counter;
     int old_value;
     if (param_1 == 0) {
-        printk(0x00099cbd, 0x000f3ebd, 0x000f3a5d, 0x509);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f3ebd, 0x000f3a5d, 0x509);
         assert_post_action(0x000f3a5d, 0x509);
         return 0x509;
     }

@@ -14,12 +14,12 @@
  *   unschedule_locked                        <= FUN_0008656a @ 0x0008656a
  * address symbols (name @ address):
  *   rodata_72dad                             @ 0x00072dad
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f820f                             @ 0x000f820f
  *   rodata_f82df                             @ 0x000f82df
  *   timer_spinlock                           @ 0x2000b480
@@ -51,7 +51,7 @@ int k_work_reschedule_for_queue(uint32_t queue, volatile uint32_t *delayable_wor
     int result;
 
     if (delayable_work == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f82df) /*=0xf82df*/, ((unsigned long)&rodata_f820f) /*=0xf820f*/, 0x3deUL);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f82df) /*=0xf82df*/, ((unsigned long)&rodata_f820f) /*=0xf820f*/, 0x3deUL);
         assert_post_action(((unsigned long)&rodata_f820f) /*=0xf820f*/, 0x3deUL);
     }
 
@@ -60,8 +60,8 @@ int k_work_reschedule_for_queue(uint32_t queue, volatile uint32_t *delayable_wor
     __ISB();
 
     if (z_spin_lock_valid(work_lock) == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72UL);
-        printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, work_lock);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72UL);
+        printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/, work_lock);
         assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72UL);
     }
     z_spin_lock_set_owner(work_lock);
@@ -80,8 +80,8 @@ int k_work_reschedule_for_queue(uint32_t queue, volatile uint32_t *delayable_wor
     }
 
     if (z_spin_unlock_valid(work_lock) == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f08f4) /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0UL);
-        printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, work_lock);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0UL);
+        printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/, work_lock);
         assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0UL);
     }
 

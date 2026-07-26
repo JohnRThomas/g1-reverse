@@ -5,8 +5,8 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
  *   rodata_a7993                             @ 0x000a7993
- *   rodata_a7aab                             @ 0x000a7aab
- *   rodata_a7ac1                             @ 0x000a7ac1
+ *   rodata_a7aab                             @ 0x000a7aab   [INLINED -- G6 literal batch]
+ *   rodata_a7ac1                             @ 0x000a7ac1   [INLINED -- G6 literal batch]
  *   rodata_f5400                             @ 0x000f5400
  *   g_uart_rx_frame_len                      @ 0x2001a128
  *   g_uart_rx_frame_buf                      @ 0x2001a129

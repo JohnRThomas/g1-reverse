@@ -3,12 +3,12 @@
  * public-name: local_esbs_ipc_service_recv
  * durable-map: recon/catalogs/function_names_app.json
  * address symbols (name @ address):
- *   rodata_99133                             @ 0x00099133
- *   rodata_99152                             @ 0x00099152
- *   rodata_99228                             @ 0x00099228
- *   rodata_99297                             @ 0x00099297
- *   rodata_992e1                             @ 0x000992e1
- *   rodata_99b89                             @ 0x00099b89
+ *   rodata_99133                             @ 0x00099133   [INLINED -- G6 literal batch]
+ *   rodata_99152                             @ 0x00099152   [INLINED -- G6 literal batch]
+ *   rodata_99228                             @ 0x00099228   [INLINED -- G6 literal batch]
+ *   rodata_99297                             @ 0x00099297   [INLINED -- G6 literal batch]
+ *   rodata_992e1                             @ 0x000992e1   [INLINED -- G6 literal batch]
+ *   rodata_99b89                             @ 0x00099b89   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   device_info                              @ 0x200069fc
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -34,7 +34,7 @@ extern void memset_bytes(void *destination, uint32_t value, uint32_t length);
 #define LOG_SINK        (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
 #define MASTER_CONTEXT  (*(volatile uint8_t **)((unsigned long)&device_info) /*=0x200069fc*/)
 #define EVEN_AI_STATE   (*(volatile uint8_t *)((unsigned long)&g_esb_notify_sync_substate) /*=0x20018d98*/)
-#define LOG_TAG         ((unsigned long)&rodata_99b89) /*=0x99b89*/
+#define LOG_TAG         ((unsigned long)"local_esbs_ipc_service_recv") /*=0x99b89*/
 
 static uint32_t load_u32(const void *pointer)
 {
@@ -83,11 +83,11 @@ uint32_t local_esbs_ipc_service_recv(uint8_t *context,
 
     if (sequence == context[0xda]) {
         if (LOG_LEVEL > 0)
-            log_simple(((unsigned long)&rodata_99133) /*=0x99133*/);
+            log_simple(((unsigned long)"%s(): slave recv same package\n") /*=0x99133*/);
         return 0;
     }
     if (sequence != (uint8_t)(context[0xda] + 1u) && LOG_LEVEL > 0)
-        log_simple(((unsigned long)&rodata_99152) /*=0x99152*/);
+        log_simple(((unsigned long)"%s(): ###############loss package new_data_pkg->package_id %d data_pkg->package_id %d\n") /*=0x99152*/);
 
     if (command == 1 && context[0xfe6] == 1) {
         context[0xda]++;
@@ -112,7 +112,7 @@ uint32_t local_esbs_ipc_service_recv(uint8_t *context,
         }
     } else if (context[0xd5] == 16 && context[0xce] != 0) {
         if (LOG_LEVEL > 0)
-            log_simple(((unsigned long)&rodata_99228) /*=0x99228*/);
+            log_simple(((unsigned long)"%s(): slave even ai recv down recving\n") /*=0x99228*/);
         context[0xda]++;
         return 0;
     }
@@ -180,9 +180,9 @@ uint32_t local_esbs_ipc_service_recv(uint8_t *context,
         message = find_message_pool_entry_by_id(message_id);
         if (LOG_LEVEL > 0) {
             if (LOG_SINK == 0)
-                log_message(((unsigned long)&rodata_99297) /*=0x99297*/, LOG_TAG, LOG_TAG, 0x2fdu);
+                log_message(((unsigned long)"%s(): ##########%s %d SYNC_DISPLAY_CMD_COMFIRM_NOTIFY_FIRST slave before\n") /*=0x99297*/, LOG_TAG, LOG_TAG, 0x2fdu);
             else
-                debug_print(((unsigned long)&rodata_99297) /*=0x99297*/, LOG_TAG, LOG_TAG, 0x2fdu);
+                debug_print(((unsigned long)"%s(): ##########%s %d SYNC_DISPLAY_CMD_COMFIRM_NOTIFY_FIRST slave before\n") /*=0x99297*/, LOG_TAG, LOG_TAG, 0x2fdu);
         }
         if (message != 0 && *((uint8_t *)message + 13) == 0)
             *((uint8_t *)message + 13) = 2;
@@ -193,9 +193,9 @@ uint32_t local_esbs_ipc_service_recv(uint8_t *context,
         message = find_message_pool_entry_by_id(message_id);
         if (LOG_LEVEL > 0) {
             if (LOG_SINK == 0)
-                log_message(((unsigned long)&rodata_992e1) /*=0x992e1*/, LOG_TAG, LOG_TAG, 0x30au);
+                log_message(((unsigned long)"%s(): ##########%s %d SYNC_DISPLAY_CMD_COMFIRM_NOTIFY_END slave before\n") /*=0x992e1*/, LOG_TAG, LOG_TAG, 0x30au);
             else
-                debug_print(((unsigned long)&rodata_992e1) /*=0x992e1*/, LOG_TAG, LOG_TAG, 0x30au);
+                debug_print(((unsigned long)"%s(): ##########%s %d SYNC_DISPLAY_CMD_COMFIRM_NOTIFY_END slave before\n") /*=0x992e1*/, LOG_TAG, LOG_TAG, 0x30au);
         }
         if (message != 0 && *((uint8_t *)message + 13) == 2) {
             *((uint8_t *)message + 13) = 4;

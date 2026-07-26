@@ -7,9 +7,9 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   value_in_bitmap_0_47                     <= FUN_000850f6 @ 0x000850f6
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f09d1                             @ 0x000f09d1
- *   rodata_f0a04                             @ 0x000f0a04
+ *   rodata_f0a04                             @ 0x000f0a04   [INLINED -- G6 literal batch]
  *   rodata_f7a30                             @ 0x000f7a30
  */
 /* Full reconstruction FUN_00065584 @ 0x65584, exact extent 80 bytes. */
@@ -20,9 +20,9 @@ extern __attribute__((noreturn)) void assert_post_action(uintptr_t,uint32_t);
 uintptr_t gpio_port_base_from_pin(uint32_t *descriptor,uint32_t a,uint32_t b,uint32_t context){
  (void)a;(void)b; uint32_t encoded=*descriptor;
  uint64_t slot=value_in_bitmap_0_47(encoded,descriptor,encoded,context,context);
- if((uint32_t)slot==0){printk(0x00099cbdu,0x000f0a04u,0x000f09d1u,0x32f);assert_post_action(0x000f09d1u,0x32f);}
+ if((uint32_t)slot==0){printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"nrf_gpio_pin_present_check(*p_pin)"),0x000f09d1u,0x32f);assert_post_action(0x000f09d1u,0x32f);}
  *(uint32_t*)(uintptr_t)(slot>>32)=encoded&0x1f;
  if((encoded>>5)==0)return 0x50842500u;
  if((encoded>>5)==1)return 0x50842800u;
- printk(0x00099cbdu,0x000f7a30u,0x000f09d1u,0x338);assert_post_action(0x000f09d1u,0x338);
+ printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x000f7a30u,0x000f09d1u,0x338);assert_post_action(0x000f09d1u,0x338);
 }

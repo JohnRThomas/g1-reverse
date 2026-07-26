@@ -10,8 +10,8 @@
  *   ext_flash_sync_noop                      <= FUN_0007c080 @ 0x0007c080
  *   ext_flash_bus_lock_stub                  <= FUN_0007c082 @ 0x0007c082
  * address symbols (name @ address):
- *   rodata_a3a5a                             @ 0x000a3a5a
- *   rodata_a3ab6                             @ 0x000a3ab6
+ *   rodata_a3a5a                             @ 0x000a3a5a   [INLINED -- G6 literal batch]
+ *   rodata_a3ab6                             @ 0x000a3ab6   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ext_flash_mutex                        @ 0x20007b54
@@ -47,9 +47,9 @@ int ext_flash_read(int param_1, unsigned param_2, unsigned param_3, unsigned par
     if (res == 0) return 0;
     if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ < 1) return res;
     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ != 0){
-        debug_print(((unsigned long)&rodata_a3a5a) /*=0xa3a5a*/, ((unsigned long)&rodata_a3ab6) /*=0xa3ab6*/);
+        debug_print(((unsigned long)"%s(): flash read fail!\n") /*=0xa3a5a*/, ((unsigned long)"ext_flash_read") /*=0xa3ab6*/);
         return res;
     }
-    log_message(((unsigned long)&rodata_a3a5a) /*=0xa3a5a*/, ((unsigned long)&rodata_a3ab6) /*=0xa3ab6*/);
+    log_message(((unsigned long)"%s(): flash read fail!\n") /*=0xa3a5a*/, ((unsigned long)"ext_flash_read") /*=0xa3ab6*/);
     return res;
 }

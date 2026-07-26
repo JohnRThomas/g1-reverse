@@ -7,9 +7,9 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
  *   rodata_99c53                             @ 0x00099c53
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_99de0                             @ 0x00099de0
- *   rodata_99e1e                             @ 0x00099e1e
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_99de0                             @ 0x00099de0   [INLINED -- G6 literal batch]
+ *   rodata_99e1e                             @ 0x00099e1e   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_000177c4 @ 0x177c4  (parity: 300/300 trials, PROVEN) */
 
@@ -22,8 +22,8 @@ int gpio_pin_get_raw_checked(char *param_1, unsigned int param_2)
   unsigned int uVar3 = 1u << (param_2 & 0xff);
   unsigned int local_c = param_2;
   if ((uVar3 & **(unsigned int**)(param_1+4)) == 0) {
-    printk(0x99cbd, 0x99de0, 0x99c53, 0x5d1);
-    printk(0x99e1e, 0, 0, 0);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"(cfg->port_pin_mask & (gpio_port_pins_t)(1UL << (pin))) != 0U"), 0x99c53, 0x5d1);
+    printk(((unsigned long)"\tUnsupported pin\n"), 0, 0, 0);
     assert_post_action(0x99c53, 0x5d1);
   }
   fnptr pcVar2 = *(fnptr*)(*(int*)(param_1+8)+4);

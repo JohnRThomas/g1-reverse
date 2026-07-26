@@ -11,8 +11,8 @@
  *   projector_send_cmd_immediate             <= FUN_0007d77c @ 0x0007d77c
  * address symbols (name @ address):
  *   rodata_aa891                             @ 0x000aa891
- *   rodata_d7383                             @ 0x000d7383
- *   rodata_d7426                             @ 0x000d7426
+ *   rodata_d7383                             @ 0x000d7383   [INLINED -- G6 literal batch]
+ *   rodata_d7426                             @ 0x000d7426   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_projector_bus_lock                     @ 0x2000a060
@@ -38,8 +38,8 @@ unsigned reflash_fb_data_to_lcd_ex(int param_1,int param_2,int param_3,int param
     iVar2 = get_projector_controller(0);
     if(*(int*)(iVar2+0x35c) == 0){
         if(0 < *(volatile int*)0x2000230c){
-            if(*(volatile int*)0x20007554 == 0){ log_message(0x000aa891,0x000d7426); }
-            else { debug_print(0x000aa891, 0x000d7426); }
+            if(*(volatile int*)0x20007554 == 0){ log_message(0x000aa891,((unsigned long)"_reflash_fb_data_to_lcd_ex")); }
+            else { debug_print(0x000aa891, ((unsigned long)"_reflash_fb_data_to_lcd_ex")); }
         }
         uVar3 = 0xffffffff;
     } else {
@@ -71,9 +71,9 @@ unsigned reflash_fb_data_to_lcd_ex(int param_1,int param_2,int param_3,int param
             uVar3 = (unsigned)((u64)ret >> 32);
             if(iVar4 != 0 && 0 < *(volatile int*)0x2000230c){
                 if(*(volatile int*)0x20007554 == 0){
-                    uVar3 = (unsigned)((u64)log_message(0x000d7383,0x000d7426) >> 32);
+                    uVar3 = (unsigned)((u64)log_message(((unsigned long)"%s(): spi transfer error....\n"),((unsigned long)"_reflash_fb_data_to_lcd_ex")) >> 32);
                 } else {
-                    uVar3 = (unsigned)((u64)debug_print(0x000d7383, 0x000d7426) >> 32);
+                    uVar3 = (unsigned)((u64)debug_print(((unsigned long)"%s(): spi transfer error....\n"), ((unsigned long)"_reflash_fb_data_to_lcd_ex")) >> 32);
                 }
             }
             *(unsigned char*)(iVar7+iVar9) = uVar1;

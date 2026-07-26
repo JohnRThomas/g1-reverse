@@ -13,7 +13,7 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   spim_abort                               <= FUN_000852ba @ 0x000852ba
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6df0                             @ 0x000f6df0
  *   rodata_f6e3a                             @ 0x000f6e3a
  *   g_nrfx_spim_cb                           @ 0x2000b384
@@ -33,7 +33,7 @@ extern void spim_abort(int, int);
 void nrfx_spim_uninit(int *param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4){
   uint uVar3 = *(uint8_t*)((char*)param_1 + 4);
   if (*(volatile char*)(((unsigned long)&g_nrfx_spim_cb) /*=0x2000b384*/ + uVar3*0x24 + 0x1c) == 0){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f6e3a) /*=0xf6e3a*/, ((unsigned long)&rodata_f6df0) /*=0xf6df0*/, 0x255, param_4);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f6e3a) /*=0xf6e3a*/, ((unsigned long)&rodata_f6df0) /*=0xf6df0*/, 0x255, param_4);
     assert_post_action(((unsigned long)&rodata_f6df0) /*=0xf6df0*/, 0x255);
   }
   arch_irq_disable((*param_1 << 0xc) >> 0x18);

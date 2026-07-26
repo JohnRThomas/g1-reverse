@@ -8,8 +8,8 @@
  *   send_response_data_to_ble                <= FUN_00047ba8 @ 0x00047ba8
  *   read_volatile_u32_a                      <= FUN_0007ca4e @ 0x0007ca4e
  * address symbols (name @ address):
- *   rodata_9f73d                             @ 0x0009f73d
- *   rodata_9fa9c                             @ 0x0009fa9c
+ *   rodata_9f73d                             @ 0x0009f73d   [INLINED -- G6 literal batch]
+ *   rodata_9fa9c                             @ 0x0009fa9c   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_dashboard_lock_sent_flags              @ 0x2000756c
@@ -41,7 +41,7 @@ void SendDashboardLockInfoToApp(unsigned p1, unsigned p2, unsigned p3){
           *(volatile uint16_t*)((char*)&buf[1]) = 0x101;
           if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2){
             if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0){
-              log_message(((unsigned long)&rodata_9f73d) /*=0x9f73d*/,((unsigned long)&rodata_9fa9c) /*=0x9fa9c*/,1);
+              log_message(((unsigned long)"%s(): send dashboard lock info to app ,status = %d\n \n") /*=0x9f73d*/,((unsigned long)"SendDashboardLockInfoToApp") /*=0x9fa9c*/,1);
             } else {
               debug_print();
             }

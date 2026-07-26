@@ -9,11 +9,11 @@
  *   getQuickNoteDataFromFlash                <= FUN_00024534 @ 0x00024534
  *   record_dashboard_startup_snapshot        <= FUN_0004a4b4 @ 0x0004a4b4
  * address symbols (name @ address):
- *   rodata_a8eee                             @ 0x000a8eee
- *   rodata_a8f19                             @ 0x000a8f19
- *   rodata_a8f46                             @ 0x000a8f46
- *   rodata_a8fb7                             @ 0x000a8fb7
- *   rodata_a95f9                             @ 0x000a95f9
+ *   rodata_a8eee                             @ 0x000a8eee   [INLINED -- G6 literal batch]
+ *   rodata_a8f19                             @ 0x000a8f19   [INLINED -- G6 literal batch]
+ *   rodata_a8f46                             @ 0x000a8f46   [INLINED -- G6 literal batch]
+ *   rodata_a8fb7                             @ 0x000a8fb7   [INLINED -- G6 literal batch]
+ *   rodata_a95f9                             @ 0x000a95f9   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -37,14 +37,14 @@ void init_dashboard_info(void){
   iVar3 = uarte_nrfx_irq_rx_ready();
   if (iVar3 == 0) {
     if (2 < *p40) {
-      if (*p44 == 0) { log_message(0x000a8eee, 0x000a95f9, 0); }
-      else { debug_print(0x000a8eee, 0x000a95f9); }
+      if (*p44 == 0) { log_message(((unsigned long)"%s(): system startup ,NCS memory is vaild\n"), ((unsigned long)"init_dashboard_info"), 0); }
+      else { debug_print(((unsigned long)"%s(): system startup ,NCS memory is vaild\n"), ((unsigned long)"init_dashboard_info")); }
     }
     init_dashboard_startup_mode_info_defaults();
   } else {
     if (2 < *p40) {
-      if (*p44 == 0) { log_message(0x000a8f19, 0x000a95f9, 0); }
-      else { debug_print(0x000a8f19, 0x000a95f9); }
+      if (*p44 == 0) { log_message(((unsigned long)"%s(): system startup ,NCS memory is invaild\n"), ((unsigned long)"init_dashboard_info"), 0); }
+      else { debug_print(((unsigned long)"%s(): system startup ,NCS memory is invaild\n"), ((unsigned long)"init_dashboard_info")); }
     }
     iVar3 = get_device_info();
     { unsigned int pb = VI(iVar3 + 0xfec);
@@ -67,19 +67,19 @@ void init_dashboard_info(void){
       iVar4 = get_device_info();
       VB(iVar3*0x143 + VI(iVar4+0x1020) + 3) = 0;
       if (2 < *p40) {
-        if (*p44 == 0) log_message(0x000a8f46, 0x000a95f9, iVar3);
-        else debug_print(0x000a8f46, 0x000a95f9, iVar3);
+        if (*p44 == 0) log_message(((unsigned long)"%s(): QuickNote %d is invaild,don't export\n"), ((unsigned long)"init_dashboard_info"), iVar3);
+        else debug_print(((unsigned long)"%s(): QuickNote %d is invaild,don't export\n"), ((unsigned long)"init_dashboard_info"), iVar3);
       }
     } else if (iVar4 == 0) {
       iVar4 = get_device_info();
       VB(iVar3*0x143 + VI(iVar4+0x1020) + 3) = 1;
       if (2 < *p40) {
-        if (*p44 == 0) log_message(0x000a8f72, 0x000a95f9, iVar3);
-        else debug_print(0x000a8f72, 0x000a95f9, iVar3);
+        if (*p44 == 0) log_message(0x000a8f72, ((unsigned long)"init_dashboard_info"), iVar3);
+        else debug_print(0x000a8f72, ((unsigned long)"init_dashboard_info"), iVar3);
       }
     } else if (0 < *p40) {
-      if (*p44 == 0) log_message(0x000a8fb7, 0x000a95f9, 0);
-      else debug_print(0x000a8fb7, 0x000a95f9);
+      if (*p44 == 0) log_message(((unsigned long)"%s(): !!!! getQuickNoteDataFromFlash return unknown value.\n"), ((unsigned long)"init_dashboard_info"), 0);
+      else debug_print(((unsigned long)"%s(): !!!! getQuickNoteDataFromFlash return unknown value.\n"), ((unsigned long)"init_dashboard_info"));
     }
     iVar3++;
     iVar7 += 0x143;

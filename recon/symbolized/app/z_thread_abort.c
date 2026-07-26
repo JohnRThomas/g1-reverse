@@ -16,12 +16,12 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f7a30                             @ 0x000f7a30
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f8698                             @ 0x000f8698
@@ -74,8 +74,8 @@ static inline __attribute__((always_inline)) int unlock_scheduler(void)
 
 static inline __attribute__((always_inline)) void assert_unlock_succeeded(void)
 {
-    assert_log(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f08f4) /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x00000111u);
-    assert_log(((unsigned long)&rodata_f090b) /*=0xf090b*/, ((unsigned long)&sched_spinlock) /*=0x2000b490*/);
+    assert_log(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x00000111u);
+    assert_log(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/, ((unsigned long)&sched_spinlock) /*=0x2000b490*/);
     assert_panic(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x00000111u);
 }
 
@@ -86,8 +86,8 @@ void z_thread_abort(void *thread_arg)
     uint32_t key = 0u; /* irq-lock key; original saves BASEPRI in r6 */
 
     if (z_spin_lock_valid(scheduler_lock) == 0) {
-        assert_log(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x00000072u);
-        assert_log(((unsigned long)&rodata_f0935) /*=0xf0935*/, ((unsigned long)&sched_spinlock) /*=0x2000b490*/);
+        assert_log(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x00000072u);
+        assert_log(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/, ((unsigned long)&sched_spinlock) /*=0x2000b490*/);
         assert_panic(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x00000072u);
     }
     z_spin_lock_set_owner(scheduler_lock);
@@ -96,7 +96,7 @@ void z_thread_abort(void *thread_arg)
         if (unlock_scheduler() == 0) {
             assert_unlock_succeeded();
         }
-        assert_log(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, ((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x000006d7u);
+        assert_log(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, ((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x000006d7u);
         assert_log(((unsigned long)&rodata_f8698) /*=0xf8698*/, (uint32_t)(uintptr_t)thread);
         assert_panic(((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x000006d7u);
         return;
@@ -144,7 +144,7 @@ void z_thread_abort(void *thread_arg)
             assert_unlock_succeeded();
         }
         z_swap(key);
-        assert_log(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, ((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x0000070du);
+        assert_log(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, ((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x0000070du);
         assert_log(((unsigned long)&rodata_f86b7) /*=0xf86b7*/);
         assert_panic(((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x0000070du);
         return;

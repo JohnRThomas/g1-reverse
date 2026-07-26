@@ -17,9 +17,9 @@
  *   log_forward_zero_arg                     <= FUN_000837a2 @ 0x000837a2
  * address symbols (name @ address):
  *   rodata_881a0                             @ 0x000881a0
- *   rodata_f5822                             @ 0x000f5822
- *   rodata_f5840                             @ 0x000f5840
- *   rodata_f585d                             @ 0x000f585d
+ *   rodata_f5822                             @ 0x000f5822   [INLINED -- G6 literal batch]
+ *   rodata_f5840                             @ 0x000f5840   [INLINED -- G6 literal batch]
+ *   rodata_f585d                             @ 0x000f585d   [INLINED -- G6 literal batch]
  *   g_pdm_mic_ctrl_blk                       @ 0x2000b008
  *   g_pdm_mic_rx_msgq                        @ 0x2000b024
  */
@@ -74,12 +74,12 @@ void pdm_mic_event_handler(struct notification *notification)
     if (notification->response_ready != 0) {
         struct decoded_status decoded;
         int status = k_mem_slab_alloc(STATE_WORD(0x14), &decoded, 0, 0);
-        uintptr_t diagnostic = ((unsigned long)&rodata_f5822) /*=0xf5822*/;
+        uintptr_t diagnostic = ((unsigned long)"Failed to allocate buffer: %d") /*=0xf5822*/;
 
         if (status >= 0) {
             status = nrfx_pdm_buffer_set(decoded.words[0],
                                   (STATE_WORD(0x18) >> 1) & 0xffffu);
-            diagnostic = ((unsigned long)&rodata_f5840) /*=0xf5840*/;
+            diagnostic = ((unsigned long)"Failed to set buffer: 0x%08x") /*=0xf5840*/;
         }
 
         if (status < 0 || status != 0x0bad0000) {
@@ -128,7 +128,7 @@ void pdm_mic_event_handler(struct notification *notification)
         wake_recovery = 0;
 transfer:
         if (k_msgq_put(((unsigned long)&g_pdm_mic_rx_msgq) /*=0x2000b024*/, &notification->payload, 0, 0) < 0) {
-            const struct log2 record = {2, ((unsigned long)&rodata_f585d) /*=0xf585d*/};
+            const struct log2 record = {2, ((unsigned long)"No room in RX queue") /*=0xf585d*/};
             log_forward_zero_arg(((unsigned long)&rodata_881a0) /*=0x881a0*/, 0x1040u, &record);
             k_mem_slab_free(STATE_WORD(0x14), notification->payload);
             goto recover;

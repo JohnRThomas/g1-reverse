@@ -9,12 +9,12 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f53ff                             @ 0x000f53ff
  *   rodata_f801f                             @ 0x000f801f
  *   rodata_f84f7                             @ 0x000f84f7
@@ -39,8 +39,8 @@ void k_sched_unlock(void){
     __ISB();
     int iVar3 = z_spin_lock_valid(0x2000b490);
     if (iVar3 == 0){
-        printk(0x00099cbd,0x000f0920,0x000f08c7,0x72);
-        printk(0x000f0935,0x2000b490,0,0);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_lock_valid(l)"),0x000f08c7,0x72);
+        printk(((unsigned long)"\tInvalid spinlock %p\n"),0x2000b490,0,0);
         assert_post_action(0x000f08c7,0x72);
         return;
     }
@@ -48,7 +48,7 @@ void k_sched_unlock(void){
     unsigned ipsr;
     ipsr = __get_IPSR();
     if (ipsr != 0){
-        printk(0x00099cbd,0x000f801f,0x000f84f7,0xfd);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x000f801f,0x000f84f7,0xfd);
         printk(0x000f53ff,0,0,0);
         assert_post_action(0x000f84f7,0xfd);
         return;
@@ -56,7 +56,7 @@ void k_sched_unlock(void){
     int r2 = *(volatile int*)(0x2000b448 + 8);
     unsigned char cVar1 = *(volatile unsigned char*)(r2 + 0xf);
     if (cVar1 == 1){
-        printk(0x00099cbd,0x000f8522,0x000f84f7,0xfe);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x000f8522,0x000f84f7,0xfe);
         printk(0x000f53ff,0,0,0);
         assert_post_action(0x000f84f7,0xfe);
         return;
@@ -64,8 +64,8 @@ void k_sched_unlock(void){
     *(volatile unsigned char*)(r2 + 0xf) = (unsigned char)(cVar1 - 1);
     int iv = z_spin_unlock_valid(0x2000b490);
     if (iv == 0){
-        printk(0x00099cbd,0x000f08f4,0x000f08c7,0xf0);
-        printk(0x000f090b,0x2000b490,0,0);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_unlock_valid(l)"),0x000f08c7,0xf0);
+        printk(((unsigned long)"\tNot my spinlock %p\n"),0x2000b490,0,0);
         assert_post_action(0x000f08c7,0xf0);
         return;
     }

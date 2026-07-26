@@ -12,8 +12,8 @@
  *   rodata_837a9                             @ 0x000837a9
  *   rodata_881a0                             @ 0x000881a0
  *   rodata_f5660                             @ 0x000f5660
- *   rodata_f56ae                             @ 0x000f56ae
- *   rodata_f56ca                             @ 0x000f56ca
+ *   rodata_f56ae                             @ 0x000f56ae   [INLINED -- G6 literal batch]
+ *   rodata_f56ca                             @ 0x000f56ca   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005fb8c @ 0x5fb8c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -56,7 +56,7 @@ uint pdm_trigger_command(int param_1, uint32_t param_2)
         int iStack_38 = onoff_request_enqueue(puVar4[0], puVar4 + 1);
         if (iStack_38 < 0) {
           *(volatile uint8_t*)((char*)puVar4 + 0x51) = 0;
-          struct { uint32_t a,b,c; } s = { 3, ((unsigned long)&rodata_f56ae) /*=0xf56ae*/, (uint32_t)iStack_38 };
+          struct { uint32_t a,b,c; } s = { 3, ((unsigned long)"Failed to request clock: %d") /*=0xf56ae*/, (uint32_t)iStack_38 };
           log_forward_zero_arg(((unsigned long)&rodata_881a0) /*=0x881a0*/, 0x1840, &s);
           return 0xfffffffbUL;
         }
@@ -64,7 +64,7 @@ uint pdm_trigger_command(int param_1, uint32_t param_2)
       break;
     }
     default: {
-      struct { uint32_t a,b,c; } s = { 3, ((unsigned long)&rodata_f56ca) /*=0xf56ca*/, param_2 };
+      struct { uint32_t a,b,c; } s = { 3, ((unsigned long)"Invalid command: %d") /*=0xf56ca*/, param_2 };
       log_forward_zero_arg(((unsigned long)&rodata_881a0) /*=0x881a0*/, 0x1840, &s);
       return 0xffffffeaUL;
     }

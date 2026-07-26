@@ -7,7 +7,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f84d6                             @ 0x000f84d6
  *   _kernel                                  @ 0x2000b448
@@ -25,7 +25,7 @@ void sched_ready_queue_insert(int *param_1){
   *(uint8_t*)((int)param_1+0xd) = *(uint8_t*)((int)param_1+0xd) | 0x80;
   int iVar1 = 0x2000b448;
   if(param_1 == (int*)0x20006720){
-    printk(0x99cbd,0xf84d6,0xf82f4,0xc1);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0xf84d6,0xf82f4,0xc1);
     assert_post_action(0xf82f4,0xc1);
   }
   unsigned *puVar2 = (unsigned*)(0x2000b448+0x1c);

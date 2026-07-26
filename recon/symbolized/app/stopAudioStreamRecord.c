@@ -9,8 +9,8 @@
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_a3f45                             @ 0x000a3f45
- *   rodata_a4959                             @ 0x000a4959
+ *   rodata_a3f45                             @ 0x000a3f45   [INLINED -- G6 literal batch]
+ *   rodata_a4959                             @ 0x000a4959   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_audio_msgq                             @ 0x20003890
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -38,9 +38,9 @@ unsigned int stopAudioStreamRecord(void)
     } else {
         if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_a3f45) /*=0xa3f45*/, ((unsigned long)&rodata_a4959) /*=0xa4959*/);
+                log_message(((unsigned long)"%s(): enqueue_dmic failed\r\n\n") /*=0xa3f45*/, ((unsigned long)"stopAudioStreamRecord") /*=0xa4959*/);
             } else {
-                debug_print(((unsigned long)&rodata_a3f45) /*=0xa3f45*/, ((unsigned long)&rodata_a4959) /*=0xa4959*/);
+                debug_print(((unsigned long)"%s(): enqueue_dmic failed\r\n\n") /*=0xa3f45*/, ((unsigned long)"stopAudioStreamRecord") /*=0xa4959*/);
             }
         }
         uVar2 = 0xffffffffUL;

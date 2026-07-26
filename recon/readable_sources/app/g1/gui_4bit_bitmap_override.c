@@ -11,8 +11,8 @@
  *   fb_blit_rows_or                          <= FUN_0007d586 @ 0x0007d586
  * address symbols (name @ address):
  *   rodata_aa8eb                             @ 0x000aa8eb
- *   rodata_aaa01                             @ 0x000aaa01
- *   rodata_aacaf                             @ 0x000aacaf
+ *   rodata_aaa01                             @ 0x000aaa01   [INLINED -- G6 literal batch]
+ *   rodata_aacaf                             @ 0x000aacaf   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_gui_active_canvas                      @ 0x2000a034
@@ -50,16 +50,16 @@ unsigned int gui_4bit_bitmap_override(unsigned int param_1, unsigned int param_2
         }
         if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_aa8eb) /*=0xaa8eb*/, ((unsigned long)&rodata_aacaf) /*=0xaacaf*/);
+                log_message(((unsigned long)&rodata_aa8eb) /*=0xaa8eb*/, ((unsigned long)"gui_4bit_bitmap_override") /*=0xaacaf*/);
             } else {
-                debug_print(((unsigned long)&rodata_aa8eb) /*=0xaa8eb*/, ((unsigned long)&rodata_aacaf) /*=0xaacaf*/);
+                debug_print(((unsigned long)&rodata_aa8eb) /*=0xaa8eb*/, ((unsigned long)"gui_4bit_bitmap_override") /*=0xaacaf*/);
             }
         }
     } else if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_aaa01) /*=0xaaa01*/, ((unsigned long)&rodata_aacaf) /*=0xaacaf*/, param_2, param_3);
+            log_message(((unsigned long)"%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\n") /*=0xaaa01*/, ((unsigned long)"gui_4bit_bitmap_override") /*=0xaacaf*/, param_2, param_3);
         } else {
-            debug_print(((unsigned long)&rodata_aaa01) /*=0xaaa01*/, ((unsigned long)&rodata_aacaf) /*=0xaacaf*/, param_2, param_3);
+            debug_print(((unsigned long)"%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\n") /*=0xaaa01*/, ((unsigned long)"gui_4bit_bitmap_override") /*=0xaacaf*/, param_2, param_3);
         }
     }
     return 0xffffffffUL;

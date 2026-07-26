@@ -10,13 +10,13 @@
  * address symbols (name @ address):
  *   rodata_a1f49                             @ 0x000a1f49
  *   rodata_a1f4d                             @ 0x000a1f4d
- *   rodata_a7ef6                             @ 0x000a7ef6
- *   rodata_a7f12                             @ 0x000a7f12
- *   rodata_a7f41                             @ 0x000a7f41
- *   rodata_a7f79                             @ 0x000a7f79
+ *   rodata_a7ef6                             @ 0x000a7ef6   [INLINED -- G6 literal batch]
+ *   rodata_a7f12                             @ 0x000a7f12   [INLINED -- G6 literal batch]
+ *   rodata_a7f41                             @ 0x000a7f41   [INLINED -- G6 literal batch]
+ *   rodata_a7f79                             @ 0x000a7f79   [INLINED -- G6 literal batch]
  *   rodata_a7fae                             @ 0x000a7fae
- *   rodata_a8300                             @ 0x000a8300
- *   rodata_a831f                             @ 0x000a831f
+ *   rodata_a8300                             @ 0x000a8300   [INLINED -- G6 literal batch]
+ *   rodata_a831f                             @ 0x000a831f   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

@@ -18,9 +18,9 @@
  *   rodata_88434                             @ 0x00088434
  *   rodata_8843e                             @ 0x0008843e
  *   rodata_aaa58                             @ 0x000aaa58
- *   rodata_aaa7f                             @ 0x000aaa7f
- *   rodata_aac1e                             @ 0x000aac1e
- *   rodata_aad35                             @ 0x000aad35
+ *   rodata_aaa7f                             @ 0x000aaa7f   [INLINED -- G6 literal batch]
+ *   rodata_aac1e                             @ 0x000aac1e   [INLINED -- G6 literal batch]
+ *   rodata_aad35                             @ 0x000aad35   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_gui_dark_light_dither_mask             @ 0x200034f6
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -120,7 +120,7 @@ u32 gui_utf_Wordwrap_draw(u32 param_1, u32 param_2, i32 param_3, i32 param_4, i3
           if (iVar3 < 0) {
             if (1 < *(volatile i32*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
               if (*(volatile i32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)&rodata_aad35) /*=0xaad35*/, uVar16);
+                log_message(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)"gui_utf_Wordwrap_draw") /*=0xaad35*/, uVar16);
               } else {
                 debug_print();
               }
@@ -172,10 +172,10 @@ LAB_00045422:
                 if (uVar18 == uVar16) {
                   if (1 < *(volatile i32*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
                     iVar3 = *(volatile i32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
-                    uVar13 = ((unsigned long)&rodata_aac1e) /*=0xaac1e*/;
+                    uVar13 = ((unsigned long)"%s(): !!! end_split_character_index == start_split_character_index\n") /*=0xaac1e*/;
 LAB_00045458:
                     if (iVar3 == 0) {
-                      log_message(uVar13, ((unsigned long)&rodata_aad35) /*=0xaad35*/);
+                      log_message(uVar13, ((unsigned long)"gui_utf_Wordwrap_draw") /*=0xaad35*/);
                     } else {
                       debug_print();
                     }
@@ -275,7 +275,7 @@ LAB_0004537c:
 LAB_0004558c:
   if (1 < *(volatile i32*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
     if (*(volatile i32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-      log_message(((unsigned long)&rodata_aaa7f) /*=0xaaa7f*/, ((unsigned long)&rodata_aad35) /*=0xaad35*/);
+      log_message(((unsigned long)"%s(): exex process effect callback function\n") /*=0xaaa7f*/, ((unsigned long)"gui_utf_Wordwrap_draw") /*=0xaad35*/);
     } else {
       debug_print();
     }

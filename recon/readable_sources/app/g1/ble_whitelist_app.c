@@ -11,9 +11,9 @@
  * address symbols (name @ address):
  *   rodata_990cf                             @ 0x000990cf
  *   rodata_9e1a8                             @ 0x0009e1a8
- *   rodata_9e1ba                             @ 0x0009e1ba
+ *   rodata_9e1ba                             @ 0x0009e1ba   [INLINED -- G6 literal batch]
  *   rodata_9e1de                             @ 0x0009e1de
- *   rodata_9e1eb                             @ 0x0009e1eb
+ *   rodata_9e1eb                             @ 0x0009e1eb   [INLINED -- G6 literal batch]
  *   rodata_9e201                             @ 0x0009e201
  *   rodata_9e20e                             @ 0x0009e20e
  *   rodata_9e21f                             @ 0x0009e21f
@@ -21,7 +21,7 @@
  *   rodata_9e23c                             @ 0x0009e23c
  *   rodata_9e249                             @ 0x0009e249
  *   rodata_9e259                             @ 0x0009e259
- *   rodata_9e53c                             @ 0x0009e53c
+ *   rodata_9e53c                             @ 0x0009e53c   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -44,8 +44,8 @@ control_label_2232:
     iVar6 = *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/;
 control_label_2270:
     if (iVar6 < 2) return iVar1;
-    if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) { log_message(((unsigned long)&rodata_9e1ba) /*=0x9e1ba*/,((unsigned long)&rodata_9e53c) /*=0x9e53c*/,param_1,iVar1); return iVar1; }
-    debug_print(((unsigned long)&rodata_9e1ba) /*=0x9e1ba*/,((unsigned long)&rodata_9e53c) /*=0x9e53c*/,param_1,iVar1);
+    if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) { log_message(((unsigned long)"%s(): Failed to read %s, error: %d\n") /*=0x9e1ba*/,((unsigned long)"sett_handler") /*=0x9e53c*/,param_1,iVar1); return iVar1; }
+    debug_print(((unsigned long)"%s(): Failed to read %s, error: %d\n") /*=0x9e1ba*/,((unsigned long)"sett_handler") /*=0x9e53c*/,param_1,iVar1);
     return iVar1;
   }
   iVar1 = strcmp(param_1,((unsigned long)&rodata_9e1de) /*=0x9e1de*/);
@@ -60,7 +60,7 @@ control_label_2270:
     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
       iVar1 = get_device_info(0); puVar4 = *(uint **)(iVar1 + 0xfec);
 control_label_22b4: uVar5 = *puVar4;
-control_label_22b6: log_message(((unsigned long)&rodata_9e1eb) /*=0x9e1eb*/,((unsigned long)&rodata_9e53c) /*=0x9e53c*/,param_1,uVar5); return 0;
+control_label_22b6: log_message(((unsigned long)"%s(): key:%s, val=%d\n") /*=0x9e1eb*/,((unsigned long)"sett_handler") /*=0x9e53c*/,param_1,uVar5); return 0;
     }
     iVar1 = get_device_info(0); puVar4 = *(uint **)(iVar1 + 0xfec);
   } else {
@@ -146,6 +146,6 @@ control_label_22b6: log_message(((unsigned long)&rodata_9e1eb) /*=0x9e1eb*/,((un
   }
   uVar5 = *puVar4;
 control_label_22a0:
-  debug_print(((unsigned long)&rodata_9e1eb) /*=0x9e1eb*/,((unsigned long)&rodata_9e53c) /*=0x9e53c*/,param_1,uVar5);
+  debug_print(((unsigned long)"%s(): key:%s, val=%d\n") /*=0x9e1eb*/,((unsigned long)"sett_handler") /*=0x9e53c*/,param_1,uVar5);
   return 0;
 }

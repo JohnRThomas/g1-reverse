@@ -6,8 +6,8 @@
  *   file_subsystem_queue_init                <= FUN_000234e8 @ 0x000234e8
  *   z_impl_k_msgq_alloc_init                 <= FUN_00086448 @ 0x00086448
  * address symbols (name @ address):
- *   rodata_9e7fd                             @ 0x0009e7fd
- *   rodata_9e810                             @ 0x0009e810
+ *   rodata_9e7fd                             @ 0x0009e7fd   [INLINED -- G6 literal batch]
+ *   rodata_9e810                             @ 0x0009e810   [INLINED -- G6 literal batch]
  *   g_file_msg_pipe                          @ 0x200079a0
  */
 /* Reconstructed FUN_000234e8 @ 0x234e8 */
@@ -21,7 +21,7 @@ int file_subsystem_queue_init(uint32_t inherited_r0, uint32_t inherited_r1,
 {
     uint64_t status = z_impl_k_msgq_alloc_init(((unsigned long)&g_file_msg_pipe) /*=0x200079a0*/, 0xc9u, 0x1eu,
                                    inherited_r3);
-    uint32_t format = (int32_t)status == 0 ? ((unsigned long)&rodata_9e810) /*=0x9e810*/ : ((unsigned long)&rodata_9e7fd) /*=0x9e7fd*/;
+    uint32_t format = (int32_t)status == 0 ? ((unsigned long)"file init success\r\n") /*=0x9e810*/ : ((unsigned long)"file init failed\r\n") /*=0x9e7fd*/;
     log_message(format, (uint32_t)(status >> 32), 0x1eu, inherited_r3);
     (void)inherited_r0;
     (void)inherited_r1;

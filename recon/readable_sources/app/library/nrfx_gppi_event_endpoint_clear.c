@@ -6,7 +6,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6a09                             @ 0x000f6a09
  *   rodata_f6a46                             @ 0x000f6a46
  */
@@ -21,7 +21,7 @@ void nrfx_gppi_event_endpoint_clear(
     unsigned int param_3, unsigned int param_4)
 {
   if (event_endpoint == 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f6a46) /*=0xf6a46*/,((unsigned long)&rodata_f6a09) /*=0xf6a09*/,0x5c);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f6a46) /*=0xf6a46*/,((unsigned long)&rodata_f6a09) /*=0xf6a09*/,0x5c);
     event_endpoint = (int)(assert_post_action(((unsigned long)&rodata_f6a09) /*=0xf6a09*/,0x5c) >> 32);
   }
   *(unsigned int *)(event_endpoint + 0x80) = 0;

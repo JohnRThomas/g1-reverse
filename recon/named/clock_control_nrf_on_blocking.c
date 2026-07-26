@@ -11,9 +11,9 @@
  *   k_is_in_isr                              <= FUN_00086406 @ 0x00086406
  * address symbols (name @ address):
  *   rodata_10000                             @ 0x00010000
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0f1b                             @ 0x000f0f1b
- *   rodata_f5ad9                             @ 0x000f5ad9
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0f1b                             @ 0x000f0f1b   [INLINED -- G6 literal batch]
+ *   rodata_f5ad9                             @ 0x000f5ad9   [INLINED -- G6 literal batch]
  *   rodata_f7a30                             @ 0x000f7a30
  *   g_2000b084                               @ 0x2000b084
  *   g_2000b094                               @ 0x2000b094
@@ -42,7 +42,7 @@ void clock_control_nrf_on_blocking(uint32_t mode)
         state[3] = 0;
         state[2] = 1;
         if (onoff_request_enqueue(0x2000b0b8u) < 0) {
-            printk(0x00099cbdu, 0x000f0f1bu, 0x000f5ad9u, 0x230u);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"err >= 0"), 0x000f5ad9u, 0x230u);
             assert_post_action(0x000f5ad9u, 0x230u);
         }
     }
@@ -50,7 +50,7 @@ void clock_control_nrf_on_blocking(uint32_t mode)
     if (mode == 0)
         return;
     if (mode > 2) {
-        printk(0x00099cbdu, 0x000f7a30u, 0x000f5ad9u, 0x242u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f7a30u, 0x000f5ad9u, 0x242u);
         assert_post_action(0x000f5ad9u, 0x242u);
     }
 

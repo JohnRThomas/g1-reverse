@@ -5,8 +5,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_d7347                             @ 0x000d7347
- *   rodata_d7374                             @ 0x000d7374
+ *   rodata_d7347                             @ 0x000d7347   [INLINED -- G6 literal batch]
+ *   rodata_d7374                             @ 0x000d7374   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

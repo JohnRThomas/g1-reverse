@@ -6,7 +6,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   msg_queue_debug_dump                     <= FUN_00033b0c @ 0x00033b0c
  * address symbols (name @ address):
- *   rodata_a7d1c                             @ 0x000a7d1c
+ *   rodata_a7d1c                             @ 0x000a7d1c   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_message_pool                           @ 0x20007dac
  */
@@ -17,7 +17,7 @@ extern void debug_print(unsigned int, ...);
 
 void msg_queue_debug_dump(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {
-    unsigned int format_string = ((unsigned long)&rodata_a7d1c) /*=0xa7d1c*/;
+    unsigned int format_string = ((unsigned long)"normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\n") /*=0xa7d1c*/;
     volatile int *piVar1 = (volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
     volatile unsigned int *puVar3 = (volatile unsigned int*)((unsigned long)g_message_pool) /*=0x20007dac*/;
     int iVar2 = 0;

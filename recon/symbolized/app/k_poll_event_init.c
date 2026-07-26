@@ -7,7 +7,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f871d                             @ 0x000f871d
  *   rodata_f8835                             @ 0x000f8835
  *   rodata_f8855                             @ 0x000f8855
@@ -28,15 +28,15 @@ void k_poll_event_init(uint8_t *object, uint32_t priority,
     uint32_t line;
 
     if (reserved != 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f8835) /*=0xf8835*/, ((unsigned long)&rodata_f871d) /*=0xf871d*/, 0x2du, handler);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f8835) /*=0xf8835*/, ((unsigned long)&rodata_f871d) /*=0xf871d*/, 0x2du, handler);
         printk(((unsigned long)&rodata_f8855) /*=0xf8855*/);
         line = 0x2d;
     } else if (priority >= 0x40) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f887b) /*=0xf887b*/, ((unsigned long)&rodata_f871d) /*=0xf871d*/, 0x2fu, handler);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f887b) /*=0xf887b*/, ((unsigned long)&rodata_f871d) /*=0xf871d*/, 0x2fu, handler);
         printk(((unsigned long)&rodata_f889f) /*=0xf889f*/);
         line = 0x2f;
     } else if (handler == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f88af) /*=0xf88af*/, ((unsigned long)&rodata_f871d) /*=0xf871d*/, 0x30u, handler);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f88af) /*=0xf88af*/, ((unsigned long)&rodata_f871d) /*=0xf871d*/, 0x30u, handler);
         printk(((unsigned long)&rodata_f88c2) /*=0xf88c2*/);
         line = 0x30;
     } else {

@@ -10,7 +10,7 @@
  *   ipc_ept_op_a_locked_retry                <= FUN_000256dc @ 0x000256dc
  *   sleep_fixed_33_ticks                     <= FUN_0007c87a @ 0x0007c87a
  * address symbols (name @ address):
- *   rodata_9f203                             @ 0x0009f203
+ *   rodata_9f203                             @ 0x0009f203   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_000256dc @ 0x256dc  (parity: 300/300 trials, PROVEN) */
 extern void thunk_FUN_000723b8(unsigned,unsigned,unsigned,unsigned,int,unsigned);
@@ -33,7 +33,7 @@ int ipc_ept_op_a_locked_retry(int param_1, unsigned param_2, unsigned param_3, i
             if (iVar1 == 0) break;
             iVar4 = iVar4 - 1;
             if (iVar4 == 0){
-                log_message(((unsigned long)&rodata_9f203) /*=0x9f203*/, *(unsigned short*)(iVar3 + 8), param_2, iVar1);
+                log_message(((unsigned long)"eeprom_st25dv_write addr %04X offset %04X failed %d\r\n") /*=0x9f203*/, *(unsigned short*)(iVar3 + 8), param_2, iVar1);
                 return iVar1;
             }
             lock_arg = (unsigned)(sleep_fixed_33_ticks() >> 32);

@@ -9,10 +9,10 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
- *   rodata_9b371                             @ 0x0009b371
- *   rodata_9b3b5                             @ 0x0009b3b5
- *   rodata_9b3e0                             @ 0x0009b3e0
- *   rodata_9e0d0                             @ 0x0009e0d0
+ *   rodata_9b371                             @ 0x0009b371   [INLINED -- G6 literal batch]
+ *   rodata_9b3b5                             @ 0x0009b3b5   [INLINED -- G6 literal batch]
+ *   rodata_9b3e0                             @ 0x0009b3e0   [INLINED -- G6 literal batch]
+ *   rodata_9e0d0                             @ 0x0009e0d0   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_pkcs7_pack_offset                      @ 0x2000d6f4
  *   g_pkcs7_pack_cmd_id                      @ 0x20010320
@@ -37,15 +37,15 @@ unsigned int parse_receiver_pack_pkcs7(int param_1, unsigned char *param_2, unsi
     if (param_2 == (unsigned char*)0) {
         uVar7 = 0xb0;
         iVar8 = *(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
-        uVar6 = ((unsigned long)&rodata_9b371) /*=0x9b371*/;
+        uVar6 = ((unsigned long)"[%s-%d]error, req is NULL ! \n") /*=0x9b371*/;
     } else {
         if (param_1 != 0) {
             if (param_3 < 3) {
                 if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ != 0) {
-                    debug_print(((unsigned long)&rodata_9b3b5) /*=0x9b3b5*/, ((unsigned long)&rodata_9e0d0) /*=0x9e0d0*/, 0xbbUL, param_3);
+                    debug_print(((unsigned long)"[%s-%d]error, req_len is %d, too short ! \n") /*=0x9b3b5*/, ((unsigned long)"parse_receiver_pack_pkcs7") /*=0x9e0d0*/, 0xbbUL, param_3);
                     return 0xca;
                 }
-                log_message(((unsigned long)&rodata_9b3b5) /*=0x9b3b5*/, ((unsigned long)&rodata_9e0d0) /*=0x9e0d0*/, 0xbbUL, param_3);
+                log_message(((unsigned long)"[%s-%d]error, req_len is %d, too short ! \n") /*=0x9b3b5*/, ((unsigned long)"parse_receiver_pack_pkcs7") /*=0x9e0d0*/, 0xbbUL, param_3);
                 return 0xca;
             }
             bVar1 = param_2[2];
@@ -57,10 +57,10 @@ unsigned int parse_receiver_pack_pkcs7(int param_1, unsigned char *param_2, unsi
             }
             if (*pbVar4 != uVar9) {
                 if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ != 0) {
-                    debug_print(((unsigned long)&rodata_9b3e0) /*=0x9b3e0*/, ((unsigned long)&rodata_9e0d0) /*=0x9e0d0*/);
+                    debug_print(((unsigned long)"[%s-%d]error, curCmd is %d, but parseCmd is %d ! \n") /*=0x9b3e0*/, ((unsigned long)"parse_receiver_pack_pkcs7") /*=0x9e0d0*/);
                     return 0xca;
                 }
-                log_message(((unsigned long)&rodata_9b3e0) /*=0x9b3e0*/, ((unsigned long)&rodata_9e0d0) /*=0x9e0d0*/, 0xd0UL, uVar9, (unsigned int)*pbVar4);
+                log_message(((unsigned long)"[%s-%d]error, curCmd is %d, but parseCmd is %d ! \n") /*=0x9b3e0*/, ((unsigned long)"parse_receiver_pack_pkcs7") /*=0x9e0d0*/, 0xd0UL, uVar9, (unsigned int)*pbVar4);
                 return 0xca;
             }
             uVar3 = *puVar5;
@@ -78,9 +78,9 @@ unsigned int parse_receiver_pack_pkcs7(int param_1, unsigned char *param_2, unsi
         uVar6 = 0x0009b38fUL;
     }
     if (iVar8 == 0) {
-        log_message(uVar6, ((unsigned long)&rodata_9e0d0) /*=0x9e0d0*/, uVar7);
+        log_message(uVar6, ((unsigned long)"parse_receiver_pack_pkcs7") /*=0x9e0d0*/, uVar7);
     } else {
-        debug_print(uVar6, ((unsigned long)&rodata_9e0d0) /*=0x9e0d0*/, uVar7);
+        debug_print(uVar6, ((unsigned long)"parse_receiver_pack_pkcs7") /*=0x9e0d0*/, uVar7);
     }
     return 0xca;
 }

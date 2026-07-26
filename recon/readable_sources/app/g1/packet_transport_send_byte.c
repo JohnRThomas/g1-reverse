@@ -6,7 +6,7 @@
  *   packet_transport_send_byte               <= FUN_0003364c @ 0x0003364c
  *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  * address symbols (name @ address):
- *   rodata_a7af2                             @ 0x000a7af2
+ *   rodata_a7af2                             @ 0x000a7af2   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0003364c @ 0x0003364c, extent 0x00000054.
  * Readable identity: packet_transport_send_byte.
@@ -28,7 +28,7 @@ int packet_transport_send_byte(void *transport, const uint8_t *value, const void
     vtable = *(uint32_t **)((uint8_t *)transport + 8);
     result = ((int (*)(uint32_t))vtable[1])(10000U);
     if (result != 0) {
-        log_message(((unsigned long)&rodata_a7af2) /*=0xa7af2*/);
+        log_message(((unsigned long)"Failed to initiate transmission\n") /*=0xa7af2*/);
         return -2;
     }
     k_sleep(0x4000U, 0U);

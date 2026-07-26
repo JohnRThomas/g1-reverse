@@ -8,7 +8,7 @@
  *   signal_persist_task_event                <= FUN_0007cdf8 @ 0x0007cdf8
  * address symbols (name @ address):
  *   rodata_a25d9                             @ 0x000a25d9
- *   rodata_a2625                             @ 0x000a2625
+ *   rodata_a2625                             @ 0x000a2625   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_persist_task_status_lock               @ 0x20018d9c

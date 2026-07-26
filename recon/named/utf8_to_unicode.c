@@ -6,10 +6,10 @@
  *   printf                                   <= FUN_000777f0 @ 0x000777f0
  *   puts                                     <= FUN_000778d4 @ 0x000778d4
  * address symbols (name @ address):
- *   rodata_d7499                             @ 0x000d7499
- *   rodata_d74af                             @ 0x000d74af
- *   rodata_d74bd                             @ 0x000d74bd
- *   rodata_d752a                             @ 0x000d752a
+ *   rodata_d7499                             @ 0x000d7499   [INLINED -- G6 literal batch]
+ *   rodata_d74af                             @ 0x000d74af   [INLINED -- G6 literal batch]
+ *   rodata_d74bd                             @ 0x000d74bd   [INLINED -- G6 literal batch]
+ *   rodata_d752a                             @ 0x000d752a   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

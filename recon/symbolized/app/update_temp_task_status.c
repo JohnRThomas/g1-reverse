@@ -10,7 +10,7 @@
  *   rodata_a2597                             @ 0x000a2597
  *   rodata_a25b9                             @ 0x000a25b9
  *   rodata_a25d9                             @ 0x000a25d9
- *   rodata_a2648                             @ 0x000a2648
+ *   rodata_a2648                             @ 0x000a2648   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_persist_task_status_lock               @ 0x20018d9c
@@ -50,9 +50,9 @@ LAB_0002c052:
             format_string = ((unsigned long)&rodata_a2597) /*=0xa2597*/;
 LAB_0002c0ac:
             if (iVar4 == 0) {
-                log_message(format_string, ((unsigned long)&rodata_a2648) /*=0xa2648*/, param_2);
+                log_message(format_string, ((unsigned long)"update_temp_task_status") /*=0xa2648*/, param_2);
             } else {
-                debug_print(format_string, ((unsigned long)&rodata_a2648) /*=0xa2648*/, param_2);
+                debug_print(format_string, ((unsigned long)"update_temp_task_status") /*=0xa2648*/, param_2);
             }
         }
     } else {

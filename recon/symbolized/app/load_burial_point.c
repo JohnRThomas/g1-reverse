@@ -8,8 +8,8 @@
  *   sys_rand32_get                           <= FUN_00052c40 @ 0x00052c40
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_9e67c                             @ 0x0009e67c
- *   rodata_9e777                             @ 0x0009e777
+ *   rodata_9e67c                             @ 0x0009e67c   [INLINED -- G6 literal batch]
+ *   rodata_9e777                             @ 0x0009e777   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -41,9 +41,9 @@ unsigned int load_burial_point(int param_1, unsigned int param_2, unsigned int p
     } else {
         if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_9e67c) /*=0x9e67c*/, ((unsigned long)&rodata_9e777) /*=0x9e777*/);
+                log_message(((unsigned long)"%s(): burial_point read error!\n") /*=0x9e67c*/, ((unsigned long)"load_burial_point") /*=0x9e777*/);
             } else {
-                debug_print(((unsigned long)&rodata_9e67c) /*=0x9e67c*/, ((unsigned long)&rodata_9e777) /*=0x9e777*/);
+                debug_print(((unsigned long)"%s(): burial_point read error!\n") /*=0x9e67c*/, ((unsigned long)"load_burial_point") /*=0x9e777*/);
             }
         }
         uVar3 = 0xffffffff;

@@ -19,7 +19,7 @@
  *   rodata_88180                             @ 0x00088180
  *   rodata_f4240                             @ 0x000f4240
  *   rodata_f4e7a                             @ 0x000f4e7a
- *   rodata_f4f5c                             @ 0x000f4f5c
+ *   rodata_f4f5c                             @ 0x000f4f5c   [INLINED -- G6 literal batch]
  *   rodata_f5248                             @ 0x000f5248
  *   g_smp_pair_method_unbonded               @ 0x2001d533
  *   g_smp_pair_method_bonded                 @ 0x2001d534

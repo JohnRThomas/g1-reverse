@@ -13,7 +13,7 @@
  *   atomic_and_2                             <= FUN_000813b4 @ 0x000813b4
  *   k_fifo_peek_head_impl                    <= FUN_0008652c @ 0x0008652c
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3a5d                             @ 0x000f3a5d
  *   rodata_f45be                             @ 0x000f45be
  *   g_bt_dev_hci_buf_ready                   @ 0x20002104
@@ -63,7 +63,7 @@ void bt_conn_tx_process(stream_owner_t *owner)
 
     void *queued = k_fifo_peek_head_impl(owner->queue);
     if (queued == 0) {
-        printk(0x00099cbdu, 0x000f45beu, 0x000f3a5du, 0x397u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f45beu, 0x000f3a5du, 0x397u);
         /* The following BASEPRI/SVC fatal path does not return in firmware. */
         return;
     }

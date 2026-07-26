@@ -8,8 +8,8 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  * address symbols (name @ address):
- *   rodata_9f4a1                             @ 0x0009f4a1
- *   rodata_9f6e3                             @ 0x0009f6e3
+ *   rodata_9f4a1                             @ 0x0009f4a1   [INLINED -- G6 literal batch]
+ *   rodata_9f6e3                             @ 0x0009f6e3   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ipc0_endpoint                          @ 0x20007a84
@@ -28,9 +28,9 @@ void ipc0_ept_recv(unsigned char *param_1,int param_2){
     if(iVar2<=iVar4){
       if(1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/){
         if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
-          log_message(((unsigned long)&rodata_9f4a1) /*=0x9f4a1*/,((unsigned long)&rodata_9f6e3) /*=0x9f6e3*/,uVar1,iVar2,param_2,uVar1,(unsigned)param_1[1],(unsigned)param_1[2],(unsigned)param_1[3],(unsigned)param_1[4],(unsigned)param_1[5],(unsigned)param_1[6],(unsigned)param_1[7]);
+          log_message(((unsigned long)"%s(): NOT MATCH(cmd=%x)! ipc_receiver_index: %d, len:%d, received_data: %02x,%02x,%02x,%02x,%02x,%02x,%02x,%02x\n") /*=0x9f4a1*/,((unsigned long)"ipc0_ept_recv") /*=0x9f6e3*/,uVar1,iVar2,param_2,uVar1,(unsigned)param_1[1],(unsigned)param_1[2],(unsigned)param_1[3],(unsigned)param_1[4],(unsigned)param_1[5],(unsigned)param_1[6],(unsigned)param_1[7]);
         } else {
-          debug_print(((unsigned long)&rodata_9f4a1) /*=0x9f4a1*/,((unsigned long)&rodata_9f6e3) /*=0x9f6e3*/,uVar1,iVar2,param_2,uVar1,
+          debug_print(((unsigned long)"%s(): NOT MATCH(cmd=%x)! ipc_receiver_index: %d, len:%d, received_data: %02x,%02x,%02x,%02x,%02x,%02x,%02x,%02x\n") /*=0x9f4a1*/,((unsigned long)"ipc0_ept_recv") /*=0x9f6e3*/,uVar1,iVar2,param_2,uVar1,
                        (unsigned)param_1[1],(unsigned)param_1[2],
                        (unsigned)param_1[3],(unsigned)param_1[4],
                        (unsigned)param_1[5],(unsigned)param_1[6],

@@ -9,9 +9,9 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
- *   rodata_a2470                             @ 0x000a2470
- *   rodata_a2486                             @ 0x000a2486
- *   rodata_a254a                             @ 0x000a254a
+ *   rodata_a2470                             @ 0x000a2470   [INLINED -- G6 literal batch]
+ *   rodata_a2486                             @ 0x000a2486   [INLINED -- G6 literal batch]
+ *   rodata_a254a                             @ 0x000a254a   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -26,9 +26,9 @@ unsigned int trigger_screen_state_change(unsigned int param_1, int param_2, unsi
     if ((unsigned int)(*(volatile unsigned char*)(param_2 + 0xfe8)) == param_3) {
         if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_a2470) /*=0xa2470*/, ((unsigned long)&rodata_a254a) /*=0xa254a*/, param_1, *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
+                log_message(((unsigned long)"%s(): %s: ignore:%d.\n") /*=0xa2470*/, ((unsigned long)"trigger_screen_state_change") /*=0xa254a*/, param_1, *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
             } else {
-                debug_print(((unsigned long)&rodata_a2470) /*=0xa2470*/, ((unsigned long)&rodata_a254a) /*=0xa254a*/, param_1,
+                debug_print(((unsigned long)"%s(): %s: ignore:%d.\n") /*=0xa2470*/, ((unsigned long)"trigger_screen_state_change") /*=0xa254a*/, param_1,
                              *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
             }
         }
@@ -42,9 +42,9 @@ unsigned int trigger_screen_state_change(unsigned int param_1, int param_2, unsi
         }
         if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_a2486) /*=0xa2486*/, ((unsigned long)&rodata_a254a) /*=0xa254a*/, param_1, *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
+                log_message(((unsigned long)"%s(): %s: trigger_on_screen -> %d\n") /*=0xa2486*/, ((unsigned long)"trigger_screen_state_change") /*=0xa254a*/, param_1, *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
             } else {
-                debug_print(((unsigned long)&rodata_a2486) /*=0xa2486*/, ((unsigned long)&rodata_a254a) /*=0xa254a*/, param_1,
+                debug_print(((unsigned long)"%s(): %s: trigger_on_screen -> %d\n") /*=0xa2486*/, ((unsigned long)"trigger_screen_state_change") /*=0xa254a*/, param_1,
                              *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
             }
         }

@@ -7,7 +7,7 @@
  *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  * address symbols (name @ address):
  *   rodata_88128                             @ 0x00088128
- *   rodata_f471e                             @ 0x000f471e
+ *   rodata_f471e                             @ 0x000f471e   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00059edc @ 0x59edc  (parity: 300/300 trials, PROVEN) */
 
@@ -16,7 +16,7 @@ unsigned int ccc_set_direct(unsigned int param_1,unsigned int param_2,unsigned i
 {
   unsigned int local[4];
   local[0]=2;
-  local[1]=((unsigned long)&rodata_f471e) /*=0xf471e*/;
+  local[1]=((unsigned long)"Invalid key") /*=0xf471e*/;
   log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/,0x1040,&local[0],2,param_1,param_2,param_3,param_4);
   return 0xffffffea;
 }

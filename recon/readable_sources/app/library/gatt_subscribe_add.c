@@ -15,13 +15,13 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   bt_addr_le_copy_828da                    <= FUN_000828da @ 0x000828da
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3ebd                             @ 0x000f3ebd
  *   rodata_f46b8                             @ 0x000f46b8
- *   rodata_f4a0a                             @ 0x000f4a0a
- *   rodata_f4d35                             @ 0x000f4d35
- *   rodata_f4d4e                             @ 0x000f4d4e
- *   rodata_f4d5c                             @ 0x000f4d5c
+ *   rodata_f4a0a                             @ 0x000f4a0a   [INLINED -- G6 literal batch]
+ *   rodata_f4d35                             @ 0x000f4d35   [INLINED -- G6 literal batch]
+ *   rodata_f4d4e                             @ 0x000f4d4e   [INLINED -- G6 literal batch]
+ *   rodata_f4d5c                             @ 0x000f4d5c   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005c3c4 @ 0x5c3c4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -34,23 +34,23 @@ extern void bt_addr_le_copy_828da(void*,int);
 
 int gatt_subscribe_add(int param_1,int *param_2){
   if(param_1 == 0){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f3ebd) /*=0xf3ebd*/,((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x147d);
-    printk(((unsigned long)&rodata_f4a0a) /*=0xf4a0a*/);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f3ebd) /*=0xf3ebd*/,((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x147d);
+    printk(((unsigned long)"\tinvalid parameters\n\n") /*=0xf4a0a*/);
     assert_post_action(((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x147d);
   }
   if(param_2 == 0 || *param_2 == 0){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f4d35) /*=0xf4d35*/,((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x147e);
-    printk(((unsigned long)&rodata_f4a0a) /*=0xf4a0a*/);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"params && params->notify") /*=0xf4d35*/,((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x147e);
+    printk(((unsigned long)"\tinvalid parameters\n\n") /*=0xf4a0a*/);
     assert_post_action(((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x147e);
   }
   if((short)param_2[4] == 0){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f4d4e) /*=0xf4d4e*/,((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x147f);
-    printk(((unsigned long)&rodata_f4a0a) /*=0xf4a0a*/);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"params->value") /*=0xf4d4e*/,((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x147f);
+    printk(((unsigned long)"\tinvalid parameters\n\n") /*=0xf4a0a*/);
     assert_post_action(((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x147f);
   }
   if(*(short*)((int)param_2 + 0xe) == 0){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f4d5c) /*=0xf4d5c*/,((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x1485);
-    printk(((unsigned long)&rodata_f4a0a) /*=0xf4a0a*/);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"params->ccc_handle") /*=0xf4d5c*/,((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x1485);
+    printk(((unsigned long)"\tinvalid parameters\n\n") /*=0xf4a0a*/);
     assert_post_action(((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x1485);
   }
   if(*(char*)(param_1 + 0xd) != 7) return -0x80;

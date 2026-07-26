@@ -8,11 +8,11 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef058                             @ 0x000ef058
- *   rodata_ef4fa                             @ 0x000ef4fa
- *   rodata_ef519                             @ 0x000ef519
- *   rodata_ef553                             @ 0x000ef553
- *   rodata_ef6f2                             @ 0x000ef6f2
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
+ *   rodata_ef4fa                             @ 0x000ef4fa   [INLINED -- G6 literal batch]
+ *   rodata_ef519                             @ 0x000ef519   [INLINED -- G6 literal batch]
+ *   rodata_ef553                             @ 0x000ef553   [INLINED -- G6 literal batch]
+ *   rodata_ef6f2                             @ 0x000ef6f2   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_dashboard_response_msgq                @ 0x2000392c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -49,32 +49,32 @@ unsigned int SendPowerInfoToSlave(int param_1)
             if (*piVar4 == 0) {
                 uVar6 = 0x000ef506UL;
                 if (param_1 == 1) {
-                    uVar6 = ((unsigned long)&rodata_ef4fa) /*=0xef4fa*/;
+                    uVar6 = ((unsigned long)"lower power") /*=0xef4fa*/;
                 }
-                log_message(((unsigned long)&rodata_ef519) /*=0xef519*/, ((unsigned long)&rodata_ef6f2) /*=0xef6f2*/, uVar6);
+                log_message(((unsigned long)"%s(): send power infomation to slave . power status = %s\n") /*=0xef519*/, ((unsigned long)"SendPowerInfoToSlave") /*=0xef6f2*/, uVar6);
             } else {
                 uVar6 = 0x000ef506UL;
                 if (param_1 == 1) {
-                    uVar6 = ((unsigned long)&rodata_ef4fa) /*=0xef4fa*/;
+                    uVar6 = ((unsigned long)"lower power") /*=0xef4fa*/;
                 }
-                debug_print(((unsigned long)&rodata_ef519) /*=0xef519*/, ((unsigned long)&rodata_ef6f2) /*=0xef6f2*/, uVar6);
+                debug_print(((unsigned long)"%s(): send power infomation to slave . power status = %s\n") /*=0xef519*/, ((unsigned long)"SendPowerInfoToSlave") /*=0xef6f2*/, uVar6);
             }
             if (2 < *piVar3) {
                 if (*piVar4 == 0) {
                     iVar5 = (int)get_device_info();
                     bVar2 = *(unsigned char*)(iVar5 + 0xfc0);
                     iVar5 = (int)get_device_info();
-                    log_message(((unsigned long)&rodata_ef553) /*=0xef553*/, ((unsigned long)&rodata_ef6f2) /*=0xef6f2*/, (unsigned int)bVar2, (unsigned int)*(unsigned char*)(iVar5 + 0xfc1));
+                    log_message(((unsigned long)"%s(): GLOBAL->battery_info[0] = %d , GLOBAL->battery_info[1] = %d\n") /*=0xef553*/, ((unsigned long)"SendPowerInfoToSlave") /*=0xef6f2*/, (unsigned int)bVar2, (unsigned int)*(unsigned char*)(iVar5 + 0xfc1));
                 } else {
                     iVar5 = (int)get_device_info();
                     uVar1 = *(unsigned char*)(iVar5 + 0xfc0);
                     iVar5 = (int)get_device_info();
-                    debug_print(((unsigned long)&rodata_ef553) /*=0xef553*/, ((unsigned long)&rodata_ef6f2) /*=0xef6f2*/, uVar1, *(unsigned char*)(iVar5 + 0xfc1));
+                    debug_print(((unsigned long)"%s(): GLOBAL->battery_info[0] = %d , GLOBAL->battery_info[1] = %d\n") /*=0xef553*/, ((unsigned long)"SendPowerInfoToSlave") /*=0xef6f2*/, uVar1, *(unsigned char*)(iVar5 + 0xfc1));
                 }
             }
         }
     } else {
-        log_message(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_ef6f2) /*=0xef6f2*/);
+        log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/, ((unsigned long)"SendPowerInfoToSlave") /*=0xef6f2*/);
         uVar7 = 0xffffffffUL;
     }
     return uVar7;

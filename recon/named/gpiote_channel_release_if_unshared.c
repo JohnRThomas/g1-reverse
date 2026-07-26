@@ -8,8 +8,8 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0ac7                             @ 0x000f0ac7
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0ac7                             @ 0x000f0ac7   [INLINED -- G6 literal batch]
  *   rodata_f6b00                             @ 0x000f6b00
  *   g_gpiote_cb                              @ 0x20002bc0
  *   g_nrfx_gpiote_channels_mask              @ 0x20002c34
@@ -38,7 +38,7 @@ void gpiote_channel_release_if_unshared(void){
     *(volatile uint32_t*)(iVar4+uVar5*8)=0;
     int iVar4b=nrfx_flag32_free(0x20002c34);
     if(iVar4b!=0x0bad0000){
-      printk(0x99cbd,0xf0ac7,0xf6b00,0x15f);
+      printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"err == NRFX_SUCCESS"),0xf6b00,0x15f);
       assert_post_action(0xf6b00,0x15f);
     }
   }

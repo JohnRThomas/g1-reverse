@@ -10,9 +10,9 @@
  * address symbols (name @ address):
  *   rodata_99329                             @ 0x00099329
  *   rodata_9940b                             @ 0x0009940b
- *   rodata_9949a                             @ 0x0009949a
- *   rodata_994b9                             @ 0x000994b9
- *   rodata_99c17                             @ 0x00099c17
+ *   rodata_9949a                             @ 0x0009949a   [INLINED -- G6 literal batch]
+ *   rodata_994b9                             @ 0x000994b9   [INLINED -- G6 literal batch]
+ *   rodata_99c17                             @ 0x00099c17   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -34,9 +34,9 @@ unsigned int power_down_panel(void)
     panel_pwr_gpio_deassert();
     if (0 < *piVar1) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_9949a) /*=0x9949a*/, ((unsigned long)&rodata_99c17) /*=0x99c17*/);
+            log_message(((unsigned long)"%s(): turn off -2v for panel.\n") /*=0x9949a*/, ((unsigned long)"power_down_panel") /*=0x99c17*/);
         } else {
-            debug_print(((unsigned long)&rodata_9949a) /*=0x9949a*/, ((unsigned long)&rodata_99c17) /*=0x99c17*/);
+            debug_print(((unsigned long)"%s(): turn off -2v for panel.\n") /*=0x9949a*/, ((unsigned long)"power_down_panel") /*=0x99c17*/);
         }
     }
     app_msleep_thunk_a(0x10);
@@ -50,9 +50,9 @@ unsigned int power_down_panel(void)
     } else {
         if (0 < *piVar1) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_994b9) /*=0x994b9*/, ((unsigned long)&rodata_99c17) /*=0x99c17*/);
+                log_message(((unsigned long)"%s(): disable buck2 1.2v\n") /*=0x994b9*/, ((unsigned long)"power_down_panel") /*=0x99c17*/);
             } else {
-                debug_print(((unsigned long)&rodata_994b9) /*=0x994b9*/, ((unsigned long)&rodata_99c17) /*=0x99c17*/);
+                debug_print(((unsigned long)"%s(): disable buck2 1.2v\n") /*=0x994b9*/, ((unsigned long)"power_down_panel") /*=0x99c17*/);
             }
         }
         app_msleep_thunk_a(5);
@@ -72,9 +72,9 @@ unsigned int power_down_panel(void)
         }
     }
     if (iVar2 == 0) {
-        log_message(format_string, ((unsigned long)&rodata_99c17) /*=0x99c17*/);
+        log_message(format_string, ((unsigned long)"power_down_panel") /*=0x99c17*/);
     } else {
-        debug_print(format_string, ((unsigned long)&rodata_99c17) /*=0x99c17*/);
+        debug_print(format_string, ((unsigned long)"power_down_panel") /*=0x99c17*/);
     }
     return 0;
 }

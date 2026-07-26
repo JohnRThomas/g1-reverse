@@ -8,9 +8,9 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
  *   rodata_885cc                             @ 0x000885cc
- *   rodata_a3f17                             @ 0x000a3f17
- *   rodata_a3f45                             @ 0x000a3f45
- *   rodata_a41e2                             @ 0x000a41e2
+ *   rodata_a3f17                             @ 0x000a3f17   [INLINED -- G6 literal batch]
+ *   rodata_a3f45                             @ 0x000a3f45   [INLINED -- G6 literal batch]
+ *   rodata_a41e2                             @ 0x000a41e2   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_dmic_msgq                              @ 0x20007b7c
@@ -33,9 +33,9 @@ int enqueue_dmic(unsigned int param_1)
         k_msgq_get(0x20007b7cUL, buf, 0, 0);
         if (0 < *(volatile int*)0x2000230cUL) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                log_message(0xa3f17, 0xa41e2, 8);
+                log_message(((unsigned long)"%s(): enqueue_dmic num is full, drop it %d\r\n\n"), ((unsigned long)"enqueue_dmic"), 8);
             } else {
-                debug_print(0xa3f17, 0xa41e2, 8);
+                debug_print(((unsigned long)"%s(): enqueue_dmic num is full, drop it %d\r\n\n"), ((unsigned long)"enqueue_dmic"), 8);
             }
         }
     }
@@ -43,9 +43,9 @@ int enqueue_dmic(unsigned int param_1)
     iVar1 = k_msgq_put(0x20007b7cUL, buf, 0, 0);
     if ((iVar1 != 0) && (0 < *(volatile int*)0x2000230cUL)) {
         if (*(volatile unsigned int*)0x20007554UL == 0) {
-            log_message(0xa3f45, 0xa41e2);
+            log_message(((unsigned long)"%s(): enqueue_dmic failed\r\n\n"), ((unsigned long)"enqueue_dmic"));
         } else {
-            debug_print(0xa3f45, 0xa41e2);
+            debug_print(((unsigned long)"%s(): enqueue_dmic failed\r\n\n"), ((unsigned long)"enqueue_dmic"));
         }
     }
     return iVar1;

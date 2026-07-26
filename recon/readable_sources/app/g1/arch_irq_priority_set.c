@@ -8,10 +8,10 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f1ba8                             @ 0x000f1ba8
- *   rodata_f1bde                             @ 0x000f1bde
- *   rodata_f1bf9                             @ 0x000f1bf9
+ *   rodata_f1bde                             @ 0x000f1bde   [INLINED -- G6 literal batch]
+ *   rodata_f1bf9                             @ 0x000f1bf9   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005010c @ 0x5010c  (parity: 300/300 trials, PROVEN) */
 
@@ -27,10 +27,10 @@ void arch_irq_priority_set(int param_1, unsigned int param_2, int param_3, int p
     int bVar5;
 
     if ((unsigned int)r3 > 7) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f1bde) /*=0xf1bde*/, ((unsigned long)&rodata_f1ba8) /*=0xf1ba8*/, 0x5c, param_4);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"prio <= ((1UL << (3)) - 1)") /*=0xf1bde*/, ((unsigned long)&rodata_f1ba8) /*=0xf1ba8*/, 0x5c, param_4);
         r3 = 7;
         r2 = param_1;
-        printk(((unsigned long)&rodata_f1bf9) /*=0xf1bf9*/, (int)param_2, r2, r3, 0);
+        printk(((unsigned long)"\tinvalid priority %d for %d irq! values must be less than %lu\n\n") /*=0xf1bf9*/, (int)param_2, r2, r3, 0);
         r0 = assert_post_action(((unsigned long)&rodata_f1ba8) /*=0xf1ba8*/, 0x5c);
     }
     r0 = (int)(signed char)r0;

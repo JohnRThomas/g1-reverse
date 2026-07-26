@@ -11,9 +11,9 @@
  *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
  *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  * address symbols (name @ address):
- *   rodata_a8bcd                             @ 0x000a8bcd
+ *   rodata_a8bcd                             @ 0x000a8bcd   [INLINED -- G6 literal batch]
  *   rodata_a8c57                             @ 0x000a8c57
- *   rodata_a8cd1                             @ 0x000a8cd1
+ *   rodata_a8cd1                             @ 0x000a8cd1   [INLINED -- G6 literal batch]
  *   rodata_aae20                             @ 0x000aae20
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -50,12 +50,12 @@ void render_ancs_notification_animation(uint8_t **framebuffer_rows,
     volatile int32_t *const use_alternate_log_sink =
         (volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
     if (!display_enabled || !framebuffer_rows) {
-        uintptr_t format = display_enabled ? 0x000a8c42u : ((unsigned long)&rodata_a8bcd) /*=0xa8bcd*/;
+        uintptr_t format = display_enabled ? 0x000a8c42u : ((unsigned long)"[%s-%d]curMsg is NULL !\n") /*=0xa8bcd*/;
         uint32_t line = display_enabled ? 0x157u : 0x152u;
         if (*use_alternate_log_sink)
-            debug_print(format, ((unsigned long)&rodata_a8cd1) /*=0xa8cd1*/, line);
+            debug_print(format, ((unsigned long)"draw_particle_effects") /*=0xa8cd1*/, line);
         else
-            log_message(format, ((unsigned long)&rodata_a8cd1) /*=0xa8cd1*/, line);
+            log_message(format, ((unsigned long)"draw_particle_effects") /*=0xa8cd1*/, line);
         return;
     }
 

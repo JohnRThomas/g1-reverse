@@ -10,10 +10,10 @@
  *   printf                                   <= FUN_000777f0 @ 0x000777f0
  *   puts                                     <= FUN_000778d4 @ 0x000778d4
  * address symbols (name @ address):
- *   rodata_d7499                             @ 0x000d7499
- *   rodata_d74af                             @ 0x000d74af
- *   rodata_d74bd                             @ 0x000d74bd
- *   rodata_d752a                             @ 0x000d752a
+ *   rodata_d7499                             @ 0x000d7499   [INLINED -- G6 literal batch]
+ *   rodata_d74af                             @ 0x000d74af   [INLINED -- G6 literal batch]
+ *   rodata_d74bd                             @ 0x000d74bd   [INLINED -- G6 literal batch]
+ *   rodata_d752a                             @ 0x000d752a   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -38,9 +38,9 @@ uint utf8_to_unicode(byte *param_1, int param_2)
         }
         if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 3) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_d7499) /*=0xd7499*/, ((unsigned long)&rodata_d752a) /*=0xd752a*/);
+                log_message(((unsigned long)"%s(): length error!\n\n") /*=0xd7499*/, ((unsigned long)"utf8_to_unicode") /*=0xd752a*/);
             } else {
-                debug_print(((unsigned long)&rodata_d7499) /*=0xd7499*/, ((unsigned long)&rodata_d752a) /*=0xd752a*/);
+                debug_print(((unsigned long)"%s(): length error!\n\n") /*=0xd7499*/, ((unsigned long)"utf8_to_unicode") /*=0xd752a*/);
             }
         }
     } else if ((uVar2 & 0xe0) == 0xc0) {
@@ -49,9 +49,9 @@ uint utf8_to_unicode(byte *param_1, int param_2)
             uVar2 = (uVar2 >> 2) & 7;
             return uVar1 | (uVar2 << 8);
         }
-        puts(((unsigned long)&rodata_d74af) /*=0xd74af*/);
+        puts(((unsigned long)"length error!") /*=0xd74af*/);
     } else {
-        printf(((unsigned long)&rodata_d74bd) /*=0xd74bd*/);
+        printf(((unsigned long)"maybe [%x] not unicode \?\n") /*=0xd74bd*/);
     }
     return 0;
 }

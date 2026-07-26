@@ -10,8 +10,8 @@
  *   net_pkt_write_be16                       <= FUN_0007d696 @ 0x0007d696
  *   delay_ms                                 <= FUN_0007d772 @ 0x0007d772
  * address symbols (name @ address):
- *   rodata_d7251                             @ 0x000d7251
- *   rodata_d7310                             @ 0x000d7310
+ *   rodata_d7251                             @ 0x000d7251   [INLINED -- G6 literal batch]
+ *   rodata_d7310                             @ 0x000d7310   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

@@ -8,9 +8,9 @@
  *   thunk_FUN_00086384                       <= FUN_000850d8 @ 0x000850d8
  * address symbols (name @ address):
  *   rodata_10000                             @ 0x00010000
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6a4e                             @ 0x000f6a4e
- *   rodata_f6a8b                             @ 0x000f6a8b
+ *   rodata_f6a8b                             @ 0x000f6a8b   [INLINED -- G6 literal batch]
  *   rodata_f7a30                             @ 0x000f7a30
  */
 /* Reconstructed private nrfx clock_stop implementation @ 0x00065000.

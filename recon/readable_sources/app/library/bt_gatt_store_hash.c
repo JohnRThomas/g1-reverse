@@ -8,7 +8,7 @@
  *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  * address symbols (name @ address):
  *   rodata_88128                             @ 0x00088128
- *   rodata_f4849                             @ 0x000f4849
+ *   rodata_f4849                             @ 0x000f4849   [INLINED -- G6 literal batch]
  *   g_bt_gatt_db_hash                        @ 0x20006380
  */
 /* Reconstructed FUN_0005a250 @ 0x5a250  (parity: 300/300 trials, PROVEN) */
@@ -23,7 +23,7 @@ void bt_gatt_store_hash(void)
     r = store_gatt_db_hash_setting(((unsigned long)&g_bt_gatt_db_hash) /*=0x20006380*/, 0x10);
     if (r != 0) {
         s.f0 = 3;
-        s.f1 = ((unsigned long)&rodata_f4849) /*=0xf4849*/;
+        s.f1 = ((unsigned long)"Failed to save Database Hash (err %d)") /*=0xf4849*/;
         s.f2 = r;
         log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1840, &s);
     }

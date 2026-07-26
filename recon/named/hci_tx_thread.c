@@ -19,11 +19,11 @@
  *   net_buf_get                              <= FUN_000836e8 @ 0x000836e8
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_a7a10                             @ 0x000a7a10
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_a7a10                             @ 0x000a7a10   [INLINED -- G6 literal batch]
  *   rodata_f2e84                             @ 0x000f2e84
  *   rodata_f3103                             @ 0x000f3103
- *   rodata_f313c                             @ 0x000f313c
+ *   rodata_f313c                             @ 0x000f313c   [INLINED -- G6 literal batch]
  *   rodata_f3157                             @ 0x000f3157
  *   rodata_f45be                             @ 0x000f45be
  *   g_20002128                               @ 0x20002128
@@ -90,7 +90,7 @@ void hci_tx_thread(void)
         uint32_t wait_result = z_impl_k_poll(0x20002944u, count,
                                            UINT32_MAX, UINT32_MAX);
         if (wait_result != 0) {
-            (void)printk(0x00099cbdu, 0x000a7a10u,
+            (void)printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"err == 0"),
                                0x000f2e84u, 0xadeu);
             ARCH_EXCEPT(3);
         }
@@ -108,7 +108,7 @@ void hci_tx_thread(void)
                     uintptr_t dequeued = net_buf_get(0x2000214cu, 0);
                     void *buffer = (void *)dequeued;
                     if (buffer == 0) {
-                        (void)printk(0x00099cbdu, 0x000f45beu,
+                        (void)printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f45beu,
                                           0x000f2e84u, 0xa70u);
                         ARCH_EXCEPT(3);
                     }

@@ -7,9 +7,9 @@
  *   bt_conn_disconnect_by_state              <= FUN_00056a68 @ 0x00056a68
  *   bt_conn_get_field_0x90                   <= FUN_00081526 @ 0x00081526
  * address symbols (name @ address):
- *   rodata_9a4e0                             @ 0x0009a4e0
- *   rodata_9a4f7                             @ 0x0009a4f7
- *   rodata_9b11a                             @ 0x0009b11a
+ *   rodata_9a4e0                             @ 0x0009a4e0   [INLINED -- G6 literal batch]
+ *   rodata_9a4f7                             @ 0x0009a4f7   [INLINED -- G6 literal batch]
+ *   rodata_9b11a                             @ 0x0009b11a   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

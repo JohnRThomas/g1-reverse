@@ -42,32 +42,32 @@
  *   rodata_a8eb5                             @ 0x000a8eb5
  *   rodata_a8ec6                             @ 0x000a8ec6
  *   rodata_a8edd                             @ 0x000a8edd
- *   rodata_a9009                             @ 0x000a9009
- *   rodata_a9014                             @ 0x000a9014
- *   rodata_a902d                             @ 0x000a902d
- *   rodata_a904c                             @ 0x000a904c
- *   rodata_a9078                             @ 0x000a9078
- *   rodata_a9082                             @ 0x000a9082
- *   rodata_a909f                             @ 0x000a909f
- *   rodata_a90b7                             @ 0x000a90b7
- *   rodata_a90de                             @ 0x000a90de
- *   rodata_a9100                             @ 0x000a9100
- *   rodata_a9121                             @ 0x000a9121
- *   rodata_a9127                             @ 0x000a9127
- *   rodata_a914d                             @ 0x000a914d
- *   rodata_a9155                             @ 0x000a9155
- *   rodata_a915b                             @ 0x000a915b
- *   rodata_a916c                             @ 0x000a916c
- *   rodata_a917d                             @ 0x000a917d
- *   rodata_a9195                             @ 0x000a9195
- *   rodata_a91a4                             @ 0x000a91a4
- *   rodata_a91c0                             @ 0x000a91c0
- *   rodata_a91db                             @ 0x000a91db
- *   rodata_a91f2                             @ 0x000a91f2
- *   rodata_a9206                             @ 0x000a9206
- *   rodata_a9219                             @ 0x000a9219
- *   rodata_a922b                             @ 0x000a922b
- *   rodata_a95e7                             @ 0x000a95e7
+ *   rodata_a9009                             @ 0x000a9009   [INLINED -- G6 literal batch]
+ *   rodata_a9014                             @ 0x000a9014   [INLINED -- G6 literal batch]
+ *   rodata_a902d                             @ 0x000a902d   [INLINED -- G6 literal batch]
+ *   rodata_a904c                             @ 0x000a904c   [INLINED -- G6 literal batch]
+ *   rodata_a9078                             @ 0x000a9078   [INLINED -- G6 literal batch]
+ *   rodata_a9082                             @ 0x000a9082   [INLINED -- G6 literal batch]
+ *   rodata_a909f                             @ 0x000a909f   [INLINED -- G6 literal batch]
+ *   rodata_a90b7                             @ 0x000a90b7   [INLINED -- G6 literal batch]
+ *   rodata_a90de                             @ 0x000a90de   [INLINED -- G6 literal batch]
+ *   rodata_a9100                             @ 0x000a9100   [INLINED -- G6 literal batch]
+ *   rodata_a9121                             @ 0x000a9121   [INLINED -- G6 literal batch]
+ *   rodata_a9127                             @ 0x000a9127   [INLINED -- G6 literal batch]
+ *   rodata_a914d                             @ 0x000a914d   [INLINED -- G6 literal batch]
+ *   rodata_a9155                             @ 0x000a9155   [INLINED -- G6 literal batch]
+ *   rodata_a915b                             @ 0x000a915b   [INLINED -- G6 literal batch]
+ *   rodata_a916c                             @ 0x000a916c   [INLINED -- G6 literal batch]
+ *   rodata_a917d                             @ 0x000a917d   [INLINED -- G6 literal batch]
+ *   rodata_a9195                             @ 0x000a9195   [INLINED -- G6 literal batch]
+ *   rodata_a91a4                             @ 0x000a91a4   [INLINED -- G6 literal batch]
+ *   rodata_a91c0                             @ 0x000a91c0   [INLINED -- G6 literal batch]
+ *   rodata_a91db                             @ 0x000a91db   [INLINED -- G6 literal batch]
+ *   rodata_a91f2                             @ 0x000a91f2   [INLINED -- G6 literal batch]
+ *   rodata_a9206                             @ 0x000a9206   [INLINED -- G6 literal batch]
+ *   rodata_a9219                             @ 0x000a9219   [INLINED -- G6 literal batch]
+ *   rodata_a922b                             @ 0x000a922b   [INLINED -- G6 literal batch]
+ *   rodata_a95e7                             @ 0x000a95e7   [INLINED -- G6 literal batch]
  *   rodata_f26c1                             @ 0x000f26c1
  *   rodata_f7b6f                             @ 0x000f7b6f
  *   g_log_level                              @ 0x2000230c
@@ -135,141 +135,141 @@ extern long long memset_bytes(int, ...);
 extern long long vdprintf_to_fd(int, ...);
 #define DAT_000374c0 ((volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define DAT_000374c4 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_000374c8 (((unsigned long)&rodata_a95e7) /*=0xa95e7*/)
-#define DAT_000374cc (((unsigned long)&rodata_a9014) /*=0xa9014*/)
+#define DAT_000374c8 (((unsigned long)"DashBoard_Reflash") /*=0xa95e7*/)
+#define DAT_000374cc (((unsigned long)"%s(): display_mode = %d\n") /*=0xa9014*/)
 #define DAT_000374d0 ((volatile int*)0xa900cUL)
-#define DAT_000374d4 ((volatile int*)((unsigned long)&rodata_a9009) /*=0xa9009*/)
-#define DAT_000374d8 (((unsigned long)&rodata_a902d) /*=0xa902d*/)
+#define DAT_000374d4 ((volatile int*)((unsigned long)"disconnect") /*=0xa9009*/)
+#define DAT_000374d8 (((unsigned long)"%s(): BLE Connect status : %s\n") /*=0xa902d*/)
 #define DAT_000374dc ((volatile int*)((unsigned long)&g_dashboard_widget_state) /*=0x20004950*/)
-#define DAT_000374e0 (((unsigned long)&rodata_a904c) /*=0xa904c*/)
-#define DAT_000374e4 (((unsigned long)&rodata_a9078) /*=0xa9078*/)
-#define DAT_000374e8 (((unsigned long)&rodata_a90de) /*=0xa90de*/)
-#define DAT_000374ec (((unsigned long)&rodata_a9100) /*=0xa9100*/)
+#define DAT_000374e0 (((unsigned long)"%s(): display_mode = %d ,exec screen clear\n") /*=0xa904c*/)
+#define DAT_000374e4 (((unsigned long)"%s, %s %d") /*=0xa9078*/)
+#define DAT_000374e8 (((unsigned long)"%s(): quick note num.%d is vaild\n") /*=0xa90de*/)
+#define DAT_000374ec (((unsigned long)"%s(): total quick note num = %d\n") /*=0xa9100*/)
 #define DAT_000374f0 (((unsigned long)&g_gui_canvas_flags) /*=0x2000a030*/)
-#define DAT_00037918 ((volatile int*)((unsigned long)&rodata_a9009) /*=0xa9009*/)
-#define DAT_0003791c (((unsigned long)&rodata_a95e7) /*=0xa95e7*/)
-#define DAT_00037920 (((unsigned long)&rodata_a902d) /*=0xa902d*/)
+#define DAT_00037918 ((volatile int*)((unsigned long)"disconnect") /*=0xa9009*/)
+#define DAT_0003791c (((unsigned long)"DashBoard_Reflash") /*=0xa95e7*/)
+#define DAT_00037920 (((unsigned long)"%s(): BLE Connect status : %s\n") /*=0xa902d*/)
 #define DAT_00037924 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_00037928 (((unsigned long)&rodata_a9082) /*=0xa9082*/)
-#define DAT_0003792c (((unsigned long)&rodata_a909f) /*=0xa909f*/)
+#define DAT_00037928 (((unsigned long)"%s(): weather icon num = %d\n") /*=0xa9082*/)
+#define DAT_0003792c (((unsigned long)"%s(): temperature = %d\n") /*=0xa909f*/)
 #define DAT_00037930 (((unsigned long)&rodata_f26c1) /*=0xf26c1*/)
-#define DAT_00037938 ((volatile int*)((unsigned long)&rodata_a914d) /*=0xa914d*/)
-#define DAT_0003793c ((volatile int*)((unsigned long)&rodata_a9155) /*=0xa9155*/)
+#define DAT_00037938 ((volatile int*)((unsigned long)"Loading") /*=0xa914d*/)
+#define DAT_0003793c ((volatile int*)((unsigned long)"Laden") /*=0xa9155*/)
 #define DAT_00037c0c ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_00037c10 (((unsigned long)&rodata_a95e7) /*=0xa95e7*/)
-#define DAT_00037c14 (((unsigned long)&rodata_a90b7) /*=0xa90b7*/)
+#define DAT_00037c10 (((unsigned long)"DashBoard_Reflash") /*=0xa95e7*/)
+#define DAT_00037c14 (((unsigned long)"%s(): fahrenheit_temperature = %d\n") /*=0xa90b7*/)
 #define DAT_00037c18 (((unsigned long)&rodata_f26c1) /*=0xf26c1*/)
-#define DAT_00037c1c ((volatile int*)((unsigned long)&rodata_a915b) /*=0xa915b*/)
-#define DAT_00037c20 ((volatile int*)((unsigned long)&rodata_a917d) /*=0xa917d*/)
-#define DAT_00037c24 ((volatile int*)((unsigned long)&rodata_a9219) /*=0xa9219*/)
-#define DAT_00037c28 ((volatile int*)((unsigned long)&rodata_a922b) /*=0xa922b*/)
+#define DAT_00037c1c ((volatile int*)((unsigned long)"No Data Selected") /*=0xa915b*/)
+#define DAT_00037c20 ((volatile int*)((unsigned long)"Keine Daten ausgew\303\244hlt") /*=0xa917d*/)
+#define DAT_00037c24 ((volatile int*)((unsigned long)"No Upcoming Event") /*=0xa9219*/)
+#define DAT_00037c28 ((volatile int*)((unsigned long)"Kein anstehender Termin") /*=0xa922b*/)
 #define DAT_00037c2c (((unsigned long)&g_2001197a) /*=0x2001197a*/)
 #define DAT_00037c30 (((unsigned long)&g_200119ba) /*=0x200119ba*/)
 #define DAT_00037c34 (((unsigned long)&g_200119da) /*=0x200119da*/)
-#define DAT_00037e9c (((unsigned long)&rodata_a9121) /*=0xa9121*/)
+#define DAT_00037e9c (((unsigned long)"%d/%d") /*=0xa9121*/)
 #define DAT_00037ea0 ((volatile int*)((unsigned long)&rodata_f7b6f) /*=0xf7b6f*/)
 #define DAT_00037ea4 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_00037ea8 (((unsigned long)&rodata_a95e7) /*=0xa95e7*/)
-#define DAT_00037eac (((unsigned long)&rodata_a9127) /*=0xa9127*/)
-#define DAT_00037eb0 ((volatile int*)((unsigned long)&rodata_a914d) /*=0xa914d*/)
-#define DAT_00037eb4 ((volatile int*)((unsigned long)&rodata_a9155) /*=0xa9155*/)
+#define DAT_00037ea8 (((unsigned long)"DashBoard_Reflash") /*=0xa95e7*/)
+#define DAT_00037eac (((unsigned long)"%s(): db_info->stocks_disp_mode = %d\n") /*=0xa9127*/)
+#define DAT_00037eb0 ((volatile int*)((unsigned long)"Loading") /*=0xa914d*/)
+#define DAT_00037eb4 ((volatile int*)((unsigned long)"Laden") /*=0xa9155*/)
 #define DAT_00037eb8 ((volatile int*)((unsigned long)&g_2000d716) /*=0x2000d716*/)
 #define DAT_00038268 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_0003826c (((unsigned long)&rodata_a95e7) /*=0xa95e7*/)
-#define DAT_00038270 (((unsigned long)&rodata_a9127) /*=0xa9127*/)
-#define DAT_00038274 (((unsigned long)&rodata_a915b) /*=0xa915b*/)
-#define DAT_00038278 ((volatile int*)((unsigned long)&rodata_a916c) /*=0xa916c*/)
-#define DAT_0003827c (((unsigned long)&rodata_a9121) /*=0xa9121*/)
+#define DAT_0003826c (((unsigned long)"DashBoard_Reflash") /*=0xa95e7*/)
+#define DAT_00038270 (((unsigned long)"%s(): db_info->stocks_disp_mode = %d\n") /*=0xa9127*/)
+#define DAT_00038274 (((unsigned long)"No Data Selected") /*=0xa915b*/)
+#define DAT_00038278 ((volatile int*)((unsigned long)"Please Customize") /*=0xa916c*/)
+#define DAT_0003827c (((unsigned long)"%d/%d") /*=0xa9121*/)
 #define DAT_00038600 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_00038604 (((unsigned long)&rodata_a95e7) /*=0xa95e7*/)
-#define DAT_00038608 (((unsigned long)&rodata_a91a4) /*=0xa91a4*/)
-#define DAT_0003860c (((unsigned long)&rodata_a917d) /*=0xa917d*/)
-#define DAT_00038610 ((volatile int*)((unsigned long)&rodata_a9195) /*=0xa9195*/)
-#define DAT_00038614 (((unsigned long)&rodata_a91c0) /*=0xa91c0*/)
+#define DAT_00038604 (((unsigned long)"DashBoard_Reflash") /*=0xa95e7*/)
+#define DAT_00038608 (((unsigned long)"%s(): news num.%d is vaild\n") /*=0xa91a4*/)
+#define DAT_0003860c (((unsigned long)"Keine Daten ausgew\303\244hlt") /*=0xa917d*/)
+#define DAT_00038610 ((volatile int*)((unsigned long)"Bitte anpassen") /*=0xa9195*/)
+#define DAT_00038614 (((unsigned long)"%s(): total news num = %d\n") /*=0xa91c0*/)
 #define DAT_00038618 (((unsigned long)&g_gui_canvas_flags) /*=0x2000a030*/)
 #define DAT_0003861c ((volatile int*)((unsigned long)&g_200107e3) /*=0x200107e3*/)
-#define DAT_00038748 (((unsigned long)&rodata_a9121) /*=0xa9121*/)
+#define DAT_00038748 (((unsigned long)"%d/%d") /*=0xa9121*/)
 #define DAT_0003874c ((volatile int*)((unsigned long)&rodata_f7b6f) /*=0xf7b6f*/)
-#define DAT_00038adc (((unsigned long)&rodata_a9078) /*=0xa9078*/)
+#define DAT_00038adc (((unsigned long)"%s, %s %d") /*=0xa9078*/)
 #define DAT_00038ae0 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_00038ae4 (((unsigned long)&rodata_a95e7) /*=0xa95e7*/)
-#define DAT_00038ae8 (((unsigned long)&rodata_a90de) /*=0xa90de*/)
-#define DAT_00038aec (((unsigned long)&rodata_a9100) /*=0xa9100*/)
+#define DAT_00038ae4 (((unsigned long)"DashBoard_Reflash") /*=0xa95e7*/)
+#define DAT_00038ae8 (((unsigned long)"%s(): quick note num.%d is vaild\n") /*=0xa90de*/)
+#define DAT_00038aec (((unsigned long)"%s(): total quick note num = %d\n") /*=0xa9100*/)
 #define DAT_00038af0 (((unsigned long)&g_gui_canvas_flags) /*=0x2000a030*/)
 #define DAT_00038af4 (((unsigned long)&rodata_a8ea1) /*=0xa8ea1*/)
 #define DAT_00038af8 ((volatile int*)((unsigned long)&rodata_a8eb5) /*=0xa8eb5*/)
 #define DAT_00038f4c (((unsigned long)&rodata_a8ec6) /*=0xa8ec6*/)
-#define DAT_00038f50 (((unsigned long)&rodata_a9121) /*=0xa9121*/)
+#define DAT_00038f50 (((unsigned long)"%d/%d") /*=0xa9121*/)
 #define DAT_00038f54 ((volatile int*)((unsigned long)&rodata_f7b6f) /*=0xf7b6f*/)
-#define DAT_00038f58 ((volatile int*)((unsigned long)&rodata_a91db) /*=0xa91db*/)
-#define DAT_00038f5c (((unsigned long)&rodata_a91f2) /*=0xa91f2*/)
-#define DAT_00038f60 ((volatile int*)((unsigned long)&rodata_a9206) /*=0xa9206*/)
+#define DAT_00038f58 ((volatile int*)((unsigned long)"Reconnect to Sync Data") /*=0xa91db*/)
+#define DAT_00038f5c (((unsigned long)"Verbinden, um Daten") /*=0xa91f2*/)
+#define DAT_00038f60 ((volatile int*)((unsigned long)"zu synchronisieren") /*=0xa9206*/)
 #define DAT_0003925c ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
 #define DAT_00039260 ((volatile int*)0xa900cUL)
-#define DAT_00039264 ((volatile int*)((unsigned long)&rodata_a9009) /*=0xa9009*/)
-#define DAT_00039268 (((unsigned long)&rodata_a95e7) /*=0xa95e7*/)
-#define DAT_0003926c (((unsigned long)&rodata_a902d) /*=0xa902d*/)
+#define DAT_00039264 ((volatile int*)((unsigned long)"disconnect") /*=0xa9009*/)
+#define DAT_00039268 (((unsigned long)"DashBoard_Reflash") /*=0xa95e7*/)
+#define DAT_0003926c (((unsigned long)"%s(): BLE Connect status : %s\n") /*=0xa902d*/)
 #define DAT_00039270 ((volatile int*)((unsigned long)&g_dashboard_widget_state) /*=0x20004950*/)
-#define DAT_00039274 (((unsigned long)&rodata_a904c) /*=0xa904c*/)
-#define DAT_00039278 (((unsigned long)&rodata_a9078) /*=0xa9078*/)
-#define DAT_0003927c (((unsigned long)&rodata_a90de) /*=0xa90de*/)
-#define DAT_00039280 (((unsigned long)&rodata_a9100) /*=0xa9100*/)
+#define DAT_00039274 (((unsigned long)"%s(): display_mode = %d ,exec screen clear\n") /*=0xa904c*/)
+#define DAT_00039278 (((unsigned long)"%s, %s %d") /*=0xa9078*/)
+#define DAT_0003927c (((unsigned long)"%s(): quick note num.%d is vaild\n") /*=0xa90de*/)
+#define DAT_00039280 (((unsigned long)"%s(): total quick note num = %d\n") /*=0xa9100*/)
 #define DAT_00039284 (((unsigned long)&g_gui_canvas_flags) /*=0x2000a030*/)
 #define DAT_00039614 (((unsigned long)&rodata_a8ea1) /*=0xa8ea1*/)
-#define DAT_00039618 ((volatile int*)((unsigned long)&rodata_a9009) /*=0xa9009*/)
-#define DAT_0003961c (((unsigned long)&rodata_a95e7) /*=0xa95e7*/)
-#define DAT_00039620 (((unsigned long)&rodata_a902d) /*=0xa902d*/)
+#define DAT_00039618 ((volatile int*)((unsigned long)"disconnect") /*=0xa9009*/)
+#define DAT_0003961c (((unsigned long)"DashBoard_Reflash") /*=0xa95e7*/)
+#define DAT_00039620 (((unsigned long)"%s(): BLE Connect status : %s\n") /*=0xa902d*/)
 #define DAT_00039624 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_00039628 (((unsigned long)&rodata_a9082) /*=0xa9082*/)
-#define DAT_0003962c (((unsigned long)&rodata_a909f) /*=0xa909f*/)
+#define DAT_00039628 (((unsigned long)"%s(): weather icon num = %d\n") /*=0xa9082*/)
+#define DAT_0003962c (((unsigned long)"%s(): temperature = %d\n") /*=0xa909f*/)
 #define DAT_00039630 (((unsigned long)&rodata_f26c1) /*=0xf26c1*/)
-#define DAT_00039638 (((unsigned long)&rodata_a90b7) /*=0xa90b7*/)
+#define DAT_00039638 (((unsigned long)"%s(): fahrenheit_temperature = %d\n") /*=0xa90b7*/)
 #define DAT_00039a14 (((unsigned long)&rodata_a8ec6) /*=0xa8ec6*/)
 #define DAT_00039a18 ((volatile int*)((unsigned long)&rodata_a8edd) /*=0xa8edd*/)
-#define DAT_00039a1c (((unsigned long)&rodata_a9121) /*=0xa9121*/)
+#define DAT_00039a1c (((unsigned long)"%d/%d") /*=0xa9121*/)
 #define DAT_00039a20 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_00039a24 (((unsigned long)&rodata_a95e7) /*=0xa95e7*/)
-#define DAT_00039a28 (((unsigned long)&rodata_a9127) /*=0xa9127*/)
-#define DAT_00039a2c (((unsigned long)&rodata_a915b) /*=0xa915b*/)
+#define DAT_00039a24 (((unsigned long)"DashBoard_Reflash") /*=0xa95e7*/)
+#define DAT_00039a28 (((unsigned long)"%s(): db_info->stocks_disp_mode = %d\n") /*=0xa9127*/)
+#define DAT_00039a2c (((unsigned long)"No Data Selected") /*=0xa915b*/)
 #define DAT_00039a30 ((volatile int*)((unsigned long)&g_2000d716) /*=0x2000d716*/)
-#define DAT_00039df4 (((unsigned long)&rodata_a9121) /*=0xa9121*/)
+#define DAT_00039df4 (((unsigned long)"%d/%d") /*=0xa9121*/)
 #define DAT_00039df8 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_00039dfc (((unsigned long)&rodata_a95e7) /*=0xa95e7*/)
-#define DAT_00039e00 (((unsigned long)&rodata_a91a4) /*=0xa91a4*/)
+#define DAT_00039dfc (((unsigned long)"DashBoard_Reflash") /*=0xa95e7*/)
+#define DAT_00039e00 (((unsigned long)"%s(): news num.%d is vaild\n") /*=0xa91a4*/)
 #define DAT_00039e04 ((volatile int*)((unsigned long)&g_200107e3) /*=0x200107e3*/)
-#define DAT_0003a184 (((unsigned long)&rodata_a917d) /*=0xa917d*/)
+#define DAT_0003a184 (((unsigned long)"Keine Daten ausgew\303\244hlt") /*=0xa917d*/)
 #define DAT_0003a188 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_0003a18c (((unsigned long)&rodata_a95e7) /*=0xa95e7*/)
-#define DAT_0003a190 (((unsigned long)&rodata_a91c0) /*=0xa91c0*/)
+#define DAT_0003a18c (((unsigned long)"DashBoard_Reflash") /*=0xa95e7*/)
+#define DAT_0003a190 (((unsigned long)"%s(): total news num = %d\n") /*=0xa91c0*/)
 #define DAT_0003a194 (((unsigned long)&g_gui_canvas_flags) /*=0x2000a030*/)
-#define DAT_0003a198 (((unsigned long)&rodata_a9121) /*=0xa9121*/)
+#define DAT_0003a198 (((unsigned long)"%d/%d") /*=0xa9121*/)
 #define DAT_0003a19c ((volatile int*)((unsigned long)&rodata_f7b6f) /*=0xf7b6f*/)
-#define DAT_0003a514 (((unsigned long)&rodata_a9078) /*=0xa9078*/)
+#define DAT_0003a514 (((unsigned long)"%s, %s %d") /*=0xa9078*/)
 #define DAT_0003a518 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_0003a51c (((unsigned long)&rodata_a95e7) /*=0xa95e7*/)
-#define DAT_0003a520 (((unsigned long)&rodata_a90de) /*=0xa90de*/)
-#define DAT_0003a524 (((unsigned long)&rodata_a9100) /*=0xa9100*/)
+#define DAT_0003a51c (((unsigned long)"DashBoard_Reflash") /*=0xa95e7*/)
+#define DAT_0003a520 (((unsigned long)"%s(): quick note num.%d is vaild\n") /*=0xa90de*/)
+#define DAT_0003a524 (((unsigned long)"%s(): total quick note num = %d\n") /*=0xa9100*/)
 #define DAT_0003a528 (((unsigned long)&g_gui_canvas_flags) /*=0x2000a030*/)
 #define DAT_0003a52c (((unsigned long)&rodata_a8ec6) /*=0xa8ec6*/)
-#define DAT_0003a874 (((unsigned long)&rodata_a9121) /*=0xa9121*/)
+#define DAT_0003a874 (((unsigned long)"%d/%d") /*=0xa9121*/)
 #define DAT_0003a878 ((volatile int*)((unsigned long)&rodata_f7b6f) /*=0xf7b6f*/)
-#define DAT_0003a87c (((unsigned long)&rodata_a91f2) /*=0xa91f2*/)
+#define DAT_0003a87c (((unsigned long)"Verbinden, um Daten") /*=0xa91f2*/)
 #define DAT_0003aba0 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
 #define DAT_0003aba4 ((volatile int*)0xa900cUL)
-#define DAT_0003aba8 ((volatile int*)((unsigned long)&rodata_a9009) /*=0xa9009*/)
-#define DAT_0003abac (((unsigned long)&rodata_a95e7) /*=0xa95e7*/)
-#define DAT_0003abb0 (((unsigned long)&rodata_a902d) /*=0xa902d*/)
+#define DAT_0003aba8 ((volatile int*)((unsigned long)"disconnect") /*=0xa9009*/)
+#define DAT_0003abac (((unsigned long)"DashBoard_Reflash") /*=0xa95e7*/)
+#define DAT_0003abb0 (((unsigned long)"%s(): BLE Connect status : %s\n") /*=0xa902d*/)
 #define DAT_0003abb4 ((volatile int*)((unsigned long)&g_dashboard_widget_state) /*=0x20004950*/)
-#define DAT_0003abb8 (((unsigned long)&rodata_a904c) /*=0xa904c*/)
-#define DAT_0003abbc (((unsigned long)&rodata_a9078) /*=0xa9078*/)
-#define DAT_0003abc0 (((unsigned long)&rodata_a9082) /*=0xa9082*/)
-#define DAT_0003abc4 (((unsigned long)&rodata_a909f) /*=0xa909f*/)
+#define DAT_0003abb8 (((unsigned long)"%s(): display_mode = %d ,exec screen clear\n") /*=0xa904c*/)
+#define DAT_0003abbc (((unsigned long)"%s, %s %d") /*=0xa9078*/)
+#define DAT_0003abc0 (((unsigned long)"%s(): weather icon num = %d\n") /*=0xa9082*/)
+#define DAT_0003abc4 (((unsigned long)"%s(): temperature = %d\n") /*=0xa909f*/)
 #define DAT_0003abc8 (((unsigned long)&rodata_f26c1) /*=0xf26c1*/)
 #define DAT_0003ae58 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_0003ae5c (((unsigned long)&rodata_a95e7) /*=0xa95e7*/)
-#define DAT_0003ae60 (((unsigned long)&rodata_a90b7) /*=0xa90b7*/)
+#define DAT_0003ae5c (((unsigned long)"DashBoard_Reflash") /*=0xa95e7*/)
+#define DAT_0003ae60 (((unsigned long)"%s(): fahrenheit_temperature = %d\n") /*=0xa90b7*/)
 #define DAT_0003ae64 (((unsigned long)&rodata_f26c1) /*=0xf26c1*/)
-#define DAT_0003ae68 (((unsigned long)&rodata_a9078) /*=0xa9078*/)
+#define DAT_0003ae68 (((unsigned long)"%s, %s %d") /*=0xa9078*/)
 
 void DashBoard_Reflash(int param_1,int param_2,int param_3,int param_4)
 

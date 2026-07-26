@@ -5,11 +5,11 @@
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  * address symbols (name @ address):
- *   rodata_a804b                             @ 0x000a804b
- *   rodata_a806c                             @ 0x000a806c
- *   rodata_a80bc                             @ 0x000a80bc
- *   rodata_a8221                             @ 0x000a8221
- *   rodata_a822e                             @ 0x000a822e
+ *   rodata_a804b                             @ 0x000a804b   [INLINED -- G6 literal batch]
+ *   rodata_a806c                             @ 0x000a806c   [INLINED -- G6 literal batch]
+ *   rodata_a80bc                             @ 0x000a80bc   [INLINED -- G6 literal batch]
+ *   rodata_a8221                             @ 0x000a8221   [INLINED -- G6 literal batch]
+ *   rodata_a822e                             @ 0x000a822e   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_message_pool                           @ 0x20007dac

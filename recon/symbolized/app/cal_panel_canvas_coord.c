@@ -3,9 +3,9 @@
  * public-name: cal_panel_canvas_coord
  * durable-map: recon/catalogs/function_names_app.json
  * address symbols (name @ address):
- *   rodata_aa7a2                             @ 0x000aa7a2
- *   rodata_aa7cb                             @ 0x000aa7cb
- *   rodata_aa855                             @ 0x000aa855
+ *   rodata_aa7a2                             @ 0x000aa7a2   [INLINED -- G6 literal batch]
+ *   rodata_aa7cb                             @ 0x000aa7cb   [INLINED -- G6 literal batch]
+ *   rodata_aa855                             @ 0x000aa855   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -26,9 +26,9 @@ extern void log_message(uintptr_t format, uintptr_t function_name,
 /* Fixed-address backmap retained for the standalone parity build. */
 #define g_log_level           (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define g_log_use_alt_sink    (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define LOG_CANVAS_GEAR_FMT   ((uintptr_t)((unsigned long)&rodata_aa7a2) /*=0xaa7a2*/)
-#define LOG_RASTER_GEAR_FMT   ((uintptr_t)((unsigned long)&rodata_aa7cb) /*=0xaa7cb*/)
-#define LOG_FUNCTION_NAME     ((uintptr_t)((unsigned long)&rodata_aa855) /*=0xaa855*/)
+#define LOG_CANVAS_GEAR_FMT   ((uintptr_t)((unsigned long)"%s(): canvas_distance_gear:%d, pos_x:%d\n") /*=0xaa7a2*/)
+#define LOG_RASTER_GEAR_FMT   ((uintptr_t)((unsigned long)"%s(): raster_height_gear:%d, pos_y:%d\n") /*=0xaa7cb*/)
+#define LOG_FUNCTION_NAME     ((uintptr_t)((unsigned long)"cal_panel_canvas_coord") /*=0xaa855*/)
 
 /* Only the fields consumed here are named.  The offsets are the recovered
  * device_info_t layout: device role/handedness at +0, raster-height gear at

@@ -11,10 +11,10 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
  *   __settings_handler_static_list_start     @ 0x000882b0
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  *   rodata_f1126                             @ 0x000f1126
- *   rodata_f1158                             @ 0x000f1158
+ *   rodata_f1158                             @ 0x000f1158   [INLINED -- G6 literal batch]
  *   g_settings_lock                          @ 0x20003868
  *   g_settings_handlers                      @ 0x2000a10c
  */
@@ -34,8 +34,8 @@ unsigned settings_register(unsigned *param_1, unsigned param_2){
         if (r4 <= r6){
             if (!(r4 < r6)) break;
         } else {
-            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f1158) /*=0xf1158*/,((unsigned long)&rodata_f1126) /*=0xf1126*/,0x2b);
-            printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/,0,0,0);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"ch <= _settings_handler_static_list_end") /*=0xf1158*/,((unsigned long)&rodata_f1126) /*=0xf1126*/,0x2b);
+            printk(((unsigned long)"\tunexpected list end location\n") /*=0xf0d20*/,0,0,0);
             assert_post_action(((unsigned long)&rodata_f1126) /*=0xf1126*/,0x2b);
         }
         unsigned long long uv = strcmp(*(volatile unsigned*)r5, *(volatile unsigned*)r4);

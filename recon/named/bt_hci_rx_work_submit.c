@@ -8,7 +8,7 @@
  *   k_work_submit_to_queue                   <= FUN_000865fc @ 0x000865fc
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
- *   rodata_f2ddb                             @ 0x000f2ddb
+ *   rodata_f2ddb                             @ 0x000f2ddb   [INLINED -- G6 literal batch]
  *   g_bt_hci_recv_fifo                       @ 0x20002144
  *   g_bt_hci_rx_work                         @ 0x20002980
  *   bt_workqueue                             @ 0x20005f08

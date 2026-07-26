@@ -14,10 +14,10 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f0692                             @ 0x000f0692
- *   rodata_f075e                             @ 0x000f075e
- *   rodata_f0779                             @ 0x000f0779
+ *   rodata_f075e                             @ 0x000f075e   [INLINED -- G6 literal batch]
+ *   rodata_f0779                             @ 0x000f0779   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0004b2b0 @ 0x4b2b0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -43,8 +43,8 @@ int sys_heap_aligned_alloc(int *param_1, unsigned int param_2, unsigned int para
     uVar8 = (0u - param_2) & param_2;
     if (uVar8 <= uVar3) uVar3 = uVar8;
     if (((uVar5 - 1) & uVar5) != 0) {
-      printk(0x00099cbd,0x000f075e,0x000f0692,0x144,param_4);
-      printk(0x000f0779,0,0,0,0);
+      printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"(align & (align - 1)) == 0"),0x000f0692,0x144,param_4);
+      printk(((unsigned long)"\talign must be a power of 2\n"),0,0,0,0);
       assert_post_action(0x000f0692,0x144);
       uVar8 = uVar5;
     } else {

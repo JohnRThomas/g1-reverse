@@ -10,8 +10,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   opt3001_read_lux_raw                     <= FUN_0002e648 @ 0x0002e648
  * address symbols (name @ address):
- *   rodata_a3c82                             @ 0x000a3c82
- *   rodata_a3d12                             @ 0x000a3d12
+ *   rodata_a3c82                             @ 0x000a3c82   [INLINED -- G6 literal batch]
+ *   rodata_a3d12                             @ 0x000a3d12   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_opt3007_chip_ready                     @ 0x20018da1
@@ -43,11 +43,11 @@ int opt3007_get_max_lux(unsigned int param_1, unsigned int param_2, unsigned int
             if (2 < *(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
                 if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                     iVar3 = get_device_info();
-                    log_message(((unsigned long)&rodata_a3c82) /*=0xa3c82*/, ((unsigned long)&rodata_a3d12) /*=0xa3d12*/, (unsigned int)iVar2, *(volatile unsigned int *)(iVar3 + 0xfb0),
+                    log_message(((unsigned long)"%s(): opt3007_get_max_lux %d %f luminance_curve_a0 %d\n") /*=0xa3c82*/, ((unsigned long)"opt3007_get_max_lux") /*=0xa3d12*/, (unsigned int)iVar2, *(volatile unsigned int *)(iVar3 + 0xfb0),
                                 (unsigned int)uVar5, (unsigned int)(uVar5 >> 32), *(volatile unsigned int *)(iVar3 + 0xfb0));
                 } else {
                     iVar3 = get_device_info();
-                    debug_print(((unsigned long)&rodata_a3c82) /*=0xa3c82*/, ((unsigned long)&rodata_a3d12) /*=0xa3d12*/, (unsigned int)iVar2, *(volatile unsigned int *)(iVar3 + 0xfb0), uVar5,
+                    debug_print(((unsigned long)"%s(): opt3007_get_max_lux %d %f luminance_curve_a0 %d\n") /*=0xa3c82*/, ((unsigned long)"opt3007_get_max_lux") /*=0xa3d12*/, (unsigned int)iVar2, *(volatile unsigned int *)(iVar3 + 0xfb0), uVar5,
                                  *(volatile unsigned int *)(iVar3 + 0xfb0));
                 }
             }

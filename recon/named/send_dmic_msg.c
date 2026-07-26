@@ -9,9 +9,9 @@
  *   set_shutdown_flag                        <= FUN_0007cbfe @ 0x0007cbfe
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_9b45e                             @ 0x0009b45e
- *   rodata_9b482                             @ 0x0009b482
- *   rodata_9e0a4                             @ 0x0009e0a4
+ *   rodata_9b45e                             @ 0x0009b45e   [INLINED -- G6 literal batch]
+ *   rodata_9b482                             @ 0x0009b482   [INLINED -- G6 literal batch]
+ *   rodata_9e0a4                             @ 0x0009e0a4   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_dmic_send_fail_cnt                     @ 0x20007558

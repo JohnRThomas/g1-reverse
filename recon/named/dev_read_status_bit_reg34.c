@@ -5,7 +5,7 @@
  *   dev_read_status_bit_reg34                <= FUN_0002ead8 @ 0x0002ead8
  *   dev_ctrl_read1                           <= FUN_00083dba @ 0x00083dba
  * address symbols (name @ address):
- *   rodata_a3e62                             @ 0x000a3e62
+ *   rodata_a3e62                             @ 0x000a3e62   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0002ead8 @ 0x2ead8  (parity: 300/300 trials, PROVEN) */
 
@@ -20,7 +20,7 @@ unsigned int dev_read_status_bit_reg34(int param_1, unsigned int param_2)
     int iVar1 = dev_ctrl_read1(arg0, 3, 0x34, &byte7, param_1);
     unsigned int uVar2;
     if (iVar1 < 0) {
-        log_message(0x000a3e62);
+        log_message(((unsigned long)"Could not get charger status\n"));
         uVar2 = 0xffffffff;
     } else {
         unsigned int combined = (byte7 >> 3) | (byte7 >> 2);

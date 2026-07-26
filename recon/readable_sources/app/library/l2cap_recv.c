@@ -36,18 +36,18 @@
  *   rodata_582b4                             @ 0x000582b4
  *   rodata_816af                             @ 0x000816af
  *   rodata_88160                             @ 0x00088160
- *   rodata_f41a7                             @ 0x000f41a7
- *   rodata_f41c5                             @ 0x000f41c5
- *   rodata_f41e6                             @ 0x000f41e6
+ *   rodata_f41a7                             @ 0x000f41a7   [INLINED -- G6 literal batch]
+ *   rodata_f41c5                             @ 0x000f41c5   [INLINED -- G6 literal batch]
+ *   rodata_f41e6                             @ 0x000f41e6   [INLINED -- G6 literal batch]
  *   rodata_f4207                             @ 0x000f4207
  *   rodata_f4223                             @ 0x000f4223
- *   rodata_f4245                             @ 0x000f4245
- *   rodata_f426f                             @ 0x000f426f
- *   rodata_f4291                             @ 0x000f4291
- *   rodata_f42b3                             @ 0x000f42b3
- *   rodata_f42d4                             @ 0x000f42d4
- *   rodata_f42f9                             @ 0x000f42f9
- *   rodata_f431a                             @ 0x000f431a
+ *   rodata_f4245                             @ 0x000f4245   [INLINED -- G6 literal batch]
+ *   rodata_f426f                             @ 0x000f426f   [INLINED -- G6 literal batch]
+ *   rodata_f4291                             @ 0x000f4291   [INLINED -- G6 literal batch]
+ *   rodata_f42b3                             @ 0x000f42b3   [INLINED -- G6 literal batch]
+ *   rodata_f42d4                             @ 0x000f42d4   [INLINED -- G6 literal batch]
+ *   rodata_f42f9                             @ 0x000f42f9   [INLINED -- G6 literal batch]
+ *   rodata_f431a                             @ 0x000f431a   [INLINED -- G6 literal batch]
  *   rodata_f4346                             @ 0x000f4346
  */
 /* Reconstructed FUN_00057db0 @ 0x57db0  (parity: 30/30 trials, PROVEN) */
@@ -145,20 +145,20 @@ extern long long att_send_simple(int, ...);
 extern long long bt_l2cap_le_lookup_tx_cid(int, ...);
 extern long long gatt_send_service_changed_ind(int, ...);
 extern long long net_buf_simple_add_mem(int, ...);
-#define firmware_data_00058054 ((unsigned long)&rodata_f41a7) /*=0xf41a7*/
+#define firmware_data_00058054 ((unsigned long)"Too small L2CAP signaling PDU") /*=0xf41a7*/
 #define firmware_data_00058058 ((unsigned long)&rodata_88160) /*=0x88160*/
-#define firmware_data_0005805c ((unsigned long)&rodata_f41c5) /*=0xf41c5*/
-#define firmware_data_00058060 ((unsigned long)&rodata_f41e6) /*=0xf41e6*/
+#define firmware_data_0005805c ((unsigned long)"L2CAP length mismatch (%u != %u)") /*=0xf41c5*/
+#define firmware_data_00058060 ((unsigned long)"Invalid ident value in L2CAP PDU") /*=0xf41e6*/
 #define firmware_data_00058064 ((unsigned long)&rodata_f4207) /*=0xf4207*/
 #define firmware_data_00058068 ((unsigned long)&rodata_f4223) /*=0xf4223*/
-#define firmware_data_0005806c ((unsigned long)&rodata_f4245) /*=0xf4245*/
-#define firmware_data_00058070 ((unsigned long)&rodata_f426f) /*=0xf426f*/
+#define firmware_data_0005806c ((unsigned long)"Invalid LE-Conn Req params: mtu %u mps %u") /*=0xf4245*/
+#define firmware_data_00058070 ((unsigned long)"Mandatory callback 'recv' missing") /*=0xf426f*/
 #define firmware_data_00058074 ((unsigned long)&rodata_816af) /*=0x816af*/
-#define firmware_data_00058078 ((unsigned long)&rodata_f4291) /*=0xf4291*/
-#define firmware_data_0005807c ((unsigned long)&rodata_f42b3) /*=0xf42b3*/
-#define firmware_data_000582a0 ((unsigned long)&rodata_f42d4) /*=0xf42d4*/
-#define firmware_data_000582a4 ((unsigned long)&rodata_f42f9) /*=0xf42f9*/
-#define firmware_data_000582a8 ((unsigned long)&rodata_f431a) /*=0xf431a*/
+#define firmware_data_00058078 ((unsigned long)"Too small LE conn rsp packet size") /*=0xf4291*/
+#define firmware_data_0005807c ((unsigned long)"Cannot find channel for ident %u") /*=0xf42b3*/
+#define firmware_data_000582a0 ((unsigned long)"Too small LE disconn rsp packet size") /*=0xf42d4*/
+#define firmware_data_000582a4 ((unsigned long)"Too small LE Credits packet size") /*=0xf42f9*/
+#define firmware_data_000582a8 ((unsigned long)"Unable to find channel of LE Credits packet") /*=0xf431a*/
 #define firmware_data_000582ac ((unsigned long)&rodata_f4346) /*=0xf4346*/
 #define firmware_data_000582b0 ((unsigned long)&rodata_88160) /*=0x88160*/
 #define firmware_data_000582b4 (*(volatile int*)((unsigned long)&rodata_582b4) /*=0x582b4*/)

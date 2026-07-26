@@ -20,25 +20,25 @@
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
  *   rodata_7d86d                             @ 0x0007d86d
- *   rodata_efb2e                             @ 0x000efb2e
- *   rodata_efb50                             @ 0x000efb50
- *   rodata_efb7a                             @ 0x000efb7a
- *   rodata_efb9f                             @ 0x000efb9f
- *   rodata_efbb7                             @ 0x000efbb7
- *   rodata_efbe5                             @ 0x000efbe5
- *   rodata_efc00                             @ 0x000efc00
- *   rodata_efc2d                             @ 0x000efc2d
- *   rodata_efc62                             @ 0x000efc62
- *   rodata_efc92                             @ 0x000efc92
- *   rodata_efcdf                             @ 0x000efcdf
- *   rodata_efd03                             @ 0x000efd03
- *   rodata_efd2d                             @ 0x000efd2d
- *   rodata_efd6f                             @ 0x000efd6f
- *   rodata_efe74                             @ 0x000efe74
- *   rodata_efebc                             @ 0x000efebc
- *   rodata_eff70                             @ 0x000eff70
- *   rodata_effaf                             @ 0x000effaf
- *   rodata_f01aa                             @ 0x000f01aa
+ *   rodata_efb2e                             @ 0x000efb2e   [INLINED -- G6 literal batch]
+ *   rodata_efb50                             @ 0x000efb50   [INLINED -- G6 literal batch]
+ *   rodata_efb7a                             @ 0x000efb7a   [INLINED -- G6 literal batch]
+ *   rodata_efb9f                             @ 0x000efb9f   [INLINED -- G6 literal batch]
+ *   rodata_efbb7                             @ 0x000efbb7   [INLINED -- G6 literal batch]
+ *   rodata_efbe5                             @ 0x000efbe5   [INLINED -- G6 literal batch]
+ *   rodata_efc00                             @ 0x000efc00   [INLINED -- G6 literal batch]
+ *   rodata_efc2d                             @ 0x000efc2d   [INLINED -- G6 literal batch]
+ *   rodata_efc62                             @ 0x000efc62   [INLINED -- G6 literal batch]
+ *   rodata_efc92                             @ 0x000efc92   [INLINED -- G6 literal batch]
+ *   rodata_efcdf                             @ 0x000efcdf   [INLINED -- G6 literal batch]
+ *   rodata_efd03                             @ 0x000efd03   [INLINED -- G6 literal batch]
+ *   rodata_efd2d                             @ 0x000efd2d   [INLINED -- G6 literal batch]
+ *   rodata_efd6f                             @ 0x000efd6f   [INLINED -- G6 literal batch]
+ *   rodata_efe74                             @ 0x000efe74   [INLINED -- G6 literal batch]
+ *   rodata_efebc                             @ 0x000efebc   [INLINED -- G6 literal batch]
+ *   rodata_eff70                             @ 0x000eff70   [INLINED -- G6 literal batch]
+ *   rodata_effaf                             @ 0x000effaf   [INLINED -- G6 literal batch]
+ *   rodata_f01aa                             @ 0x000f01aa   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_dashboard_display_level                @ 0x20002544
  *   g_display_msgq                           @ 0x200038c4
@@ -110,7 +110,7 @@ extern void memset_bytes(void *destination, int value, unsigned int length);
 #define g_display_timer          ((void *)((unsigned long)&g_some_k_timer) /*=0x20004ce0*/)
 
 #define DISPLAY_TIMER_EXPIRY     ((uintptr_t)((unsigned long)&rodata_7d86d) /*=0x7d86d*/)
-#define DISPLAY_LOG_FUNCTION     ((uintptr_t)((unsigned long)&rodata_f01aa) /*=0xf01aa*/)
+#define DISPLAY_LOG_FUNCTION     ((uintptr_t)((unsigned long)"display_thread_handler") /*=0xf01aa*/)
 
 struct display_reflash_state {
     volatile uint8_t phase;
@@ -204,16 +204,16 @@ void display_thread_handler(void *display)
     void *frame_state = context + 0xd4;
     uint8_t *current_panel = context + 0xd5;
 
-    display_log(2, ((unsigned long)&rodata_efb2e) /*=0xefb2e*/, 0);
+    display_log(2, ((unsigned long)"%s(): display thread startup... \n") /*=0xefb2e*/, 0);
     memset_bytes(&message, 0, sizeof(message));
-    display_log(2, ((unsigned long)&rodata_efb50) /*=0xefb50*/, 0);
+    display_log(2, ((unsigned long)"%s(): display thread handler start up...\n") /*=0xefb50*/, 0);
     k_timer_init(g_display_timer, DISPLAY_TIMER_EXPIRY, 0);
     gui_set_active_canvas(context + 0xb90);
     reset_reflash_state();
 
     for (;;) {
         while (context[1] == 1 || context[1] == 8) {
-            display_log(2, ((unsigned long)&rodata_efb7a) /*=0xefb7a*/, 0);
+            display_log(2, ((unsigned long)"%s(): display runtime mode = DFU_ID\n") /*=0xefb7a*/, 0);
             k_sleep_ticks(((unsigned long)&rodata_28000) /*=0x28000*/);
         }
 
@@ -232,7 +232,7 @@ void display_thread_handler(void *display)
                                              frame_state,
                                              DISPLAY_ACTION_RETRY);
                 } else {
-                    display_log(3, ((unsigned long)&rodata_efebc) /*=0xefebc*/, *current_panel);
+                    display_log(3, ((unsigned long)"%s(): no one call display_close function, UI don't draw anything ,screen id = %d\n") /*=0xefebc*/, *current_panel);
                     display_log(0, 0x000eff0eu, 0);
                     shutdown_display();
                 }
@@ -242,12 +242,12 @@ void display_thread_handler(void *display)
 
             switch (message.opcode) {
             case DISPLAY_MESSAGE_START:
-                display_log(2, ((unsigned long)&rodata_efcdf) /*=0xefcdf*/, 0);
+                display_log(2, ((unsigned long)"%s(): upgrade sync content area...\n") /*=0xefcdf*/, 0);
                 if (message.parameter_kind == 0)
-                    display_log(3, ((unsigned long)&rodata_efd03) /*=0xefd03*/, 0);
+                    display_log(3, ((unsigned long)"%s(): received command without screen ID\n") /*=0xefd03*/, 0);
                 else if (message.parameter_kind == 2 &&
                          (uint8_t)message.parameter == 1)
-                    display_log(3, ((unsigned long)&rodata_efd2d) /*=0xefd2d*/,
+                    display_log(3, ((unsigned long)"%s(): USE screen ID %d\n") /*=0xefd2d*/,
                                 (uint8_t)(message.parameter >> 8));
                 else
                     display_log(0, 0x000efd45u, 0);
@@ -257,13 +257,13 @@ void display_thread_handler(void *display)
                 break;
 
             case DISPLAY_MESSAGE_STOP:
-                display_log(2, ((unsigned long)&rodata_efd6f) /*=0xefd6f*/, 0);
+                display_log(2, ((unsigned long)"%s(): display thread switch display close ...\n") /*=0xefd6f*/, 0);
                 g_display_reflash_state.phase = DISPLAY_REFLASH_STOPPING;
                 if (message.parameter_kind == 0)
-                    display_log(3, ((unsigned long)&rodata_efd03) /*=0xefd03*/, 0);
+                    display_log(3, ((unsigned long)"%s(): received command without screen ID\n") /*=0xefd03*/, 0);
                 else if (message.parameter_kind == 2 &&
                          (uint8_t)message.parameter == 1)
-                    display_log(3, ((unsigned long)&rodata_efd2d) /*=0xefd2d*/,
+                    display_log(3, ((unsigned long)"%s(): USE screen ID %d\n") /*=0xefd2d*/,
                                 (uint8_t)(message.parameter >> 8));
                 else
                     display_log(0, 0x000efd45u, 0);
@@ -272,18 +272,18 @@ void display_thread_handler(void *display)
                 display_reflash_handler(display, panel, frame_state,
                                          DISPLAY_ACTION_STOP);
                 display_timer_stop();
-                display_log(2, ((unsigned long)&rodata_eff70) /*=0xeff70*/, 0);
+                display_log(2, ((unsigned long)"%s(): display thread switch display close ,release resouce...\n") /*=0xeff70*/, 0);
                 break;
 
             case DISPLAY_MESSAGE_SET_DELAY:
-                display_log(2, ((unsigned long)&rodata_efe74) /*=0xefe74*/, message.parameter);
+                display_log(2, ((unsigned long)"%s(): master send low power resume command ,UI framewrok handler it...\n") /*=0xefe74*/, message.parameter);
                 display_delay_set(message.parameter);
                 display_reflash_handler(display, *current_panel, frame_state,
                                          DISPLAY_ACTION_SET_DELAY);
                 break;
 
             case DISPLAY_MESSAGE_ACTION_4:
-                display_log(2, ((unsigned long)&rodata_efebc) /*=0xefebc*/, 0);
+                display_log(2, ((unsigned long)"%s(): no one call display_close function, UI don't draw anything ,screen id = %d\n") /*=0xefebc*/, 0);
                 display_reflash_handler(display, *current_panel, frame_state,
                                          DISPLAY_ACTION_4);
                 break;
@@ -309,7 +309,7 @@ void display_thread_handler(void *display)
                 break;
             }
         } else if (phase == DISPLAY_REFLASH_STOPPING) {
-            display_log(2, ((unsigned long)&rodata_eff70) /*=0xeff70*/, 0);
+            display_log(2, ((unsigned long)"%s(): display thread switch display close ,release resouce...\n") /*=0xeff70*/, 0);
         } else if (phase == DISPLAY_REFLASH_IDLE) {
             if (received && message.opcode == DISPLAY_MESSAGE_START) {
                 if (*current_panel == 0x10) {
@@ -318,15 +318,15 @@ void display_thread_handler(void *display)
                     if (*(uint8_t *)version < 12)
                         display_power_set(0);
                 }
-                display_log(2, ((unsigned long)&rodata_efb9f) /*=0xefb9f*/, 0);
+                display_log(2, ((unsigned long)"%s(): init LCD data...\n") /*=0xefb9f*/, 0);
                 if (message.parameter_kind == 0)
-                    display_log(3, ((unsigned long)&rodata_efbb7) /*=0xefbb7*/, 0);
+                    display_log(3, ((unsigned long)"%s(): ----received command without screen ID\n") /*=0xefbb7*/, 0);
                 else if (message.parameter_kind == 2 &&
                          (uint8_t)message.parameter == 1)
-                    display_log(3, ((unsigned long)&rodata_efbe5) /*=0xefbe5*/,
+                    display_log(3, ((unsigned long)"%s(): ---USE screen ID %d\n") /*=0xefbe5*/,
                                 (uint8_t)(message.parameter >> 8));
                 else
-                    display_log(0, ((unsigned long)&rodata_efc00) /*=0xefc00*/, 0);
+                    display_log(0, ((unsigned long)"%s(): ---screen ID message parampter error!\n") /*=0xefc00*/, 0);
                 if (message_panel(&message, *current_panel, &panel)) {
                     g_display_reflash_state.panel = panel;
                     display_reflash_handler(display, panel, frame_state,
@@ -334,13 +334,13 @@ void display_thread_handler(void *display)
                     g_display_reflash_state.phase = DISPLAY_REFLASH_ACTIVE;
                 }
             } else if (received && message.opcode == DISPLAY_MESSAGE_STOP) {
-                display_log(2, ((unsigned long)&rodata_efc2d) /*=0xefc2d*/, 0);
+                display_log(2, ((unsigned long)"%s(): exit .display thread switch display close ...\n") /*=0xefc2d*/, 0);
                 reset_reflash_state();
                 if (message.parameter_kind == 0)
-                    display_log(3, ((unsigned long)&rodata_efc62) /*=0xefc62*/, 0);
+                    display_log(3, ((unsigned long)"%s(): exit .received command without screen ID\n") /*=0xefc62*/, 0);
                 else if (message.parameter_kind == 2 &&
                          (uint8_t)message.parameter == 1)
-                    display_log(3, ((unsigned long)&rodata_efc92) /*=0xefc92*/,
+                    display_log(3, ((unsigned long)"%s(): exit.USE screen ID %d\n") /*=0xefc92*/,
                                 (uint8_t)(message.parameter >> 8));
                 else
                     display_log(0, 0x000efcafu, 0);
@@ -350,7 +350,7 @@ void display_thread_handler(void *display)
                                          DISPLAY_ACTION_STOP);
             }
         } else {
-            display_log(0, ((unsigned long)&rodata_effaf) /*=0xeffaf*/, 0);
+            display_log(0, ((unsigned long)"%s(): unknow display thread state\n") /*=0xeffaf*/, 0);
             display_reflash_handler(display, *current_panel, frame_state,
                                      DISPLAY_ACTION_STOP);
             shutdown_display();

@@ -5,7 +5,7 @@
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  * address symbols (name @ address):
  *   rodata_87bf0                             @ 0x00087bf0
- *   rodata_99726                             @ 0x00099726
+ *   rodata_99726                             @ 0x00099726   [INLINED -- G6 literal batch]
  *   rodata_a40ec                             @ 0x000a40ec
  */
 /* Reconstructed check_device_readiness @ 0x167b4  (parity: 300/300 trials, PROVEN) */

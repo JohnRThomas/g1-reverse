@@ -13,12 +13,12 @@
  *   unschedule_locked                        <= FUN_0008656a @ 0x0008656a
  * address symbols (name @ address):
  *   rodata_72dad                             @ 0x00072dad
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f820f                             @ 0x000f820f
  *   rodata_f82df                             @ 0x000f82df
  *   timer_spinlock                           @ 0x2000b480
@@ -50,7 +50,7 @@ int k_work_reschedule_for_queue(uint32_t queue, volatile uint32_t *delayable_wor
     int result;
 
     if (delayable_work == 0) {
-        printk(0x00099cbdUL, 0x000f82dfUL, 0x000f820fUL, 0x3deUL);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f82dfUL, 0x000f820fUL, 0x3deUL);
         assert_post_action(0x000f820fUL, 0x3deUL);
     }
 
@@ -59,8 +59,8 @@ int k_work_reschedule_for_queue(uint32_t queue, volatile uint32_t *delayable_wor
     __ISB();
 
     if (z_spin_lock_valid(work_lock) == 0) {
-        printk(0x00099cbdUL, 0x000f0920UL, 0x000f08c7UL, 0x72UL);
-        printk(0x000f0935UL, work_lock);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"z_spin_lock_valid(l)"), 0x000f08c7UL, 0x72UL);
+        printk(((unsigned long)"\tInvalid spinlock %p\n"), work_lock);
         assert_post_action(0x000f08c7UL, 0x72UL);
     }
     z_spin_lock_set_owner(work_lock);
@@ -79,8 +79,8 @@ int k_work_reschedule_for_queue(uint32_t queue, volatile uint32_t *delayable_wor
     }
 
     if (z_spin_unlock_valid(work_lock) == 0) {
-        printk(0x00099cbdUL, 0x000f08f4UL, 0x000f08c7UL, 0xf0UL);
-        printk(0x000f090bUL, work_lock);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"z_spin_unlock_valid(l)"), 0x000f08c7UL, 0xf0UL);
+        printk(((unsigned long)"\tNot my spinlock %p\n"), work_lock);
         assert_post_action(0x000f08c7UL, 0xf0UL);
     }
 

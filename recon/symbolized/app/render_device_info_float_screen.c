@@ -10,7 +10,7 @@
  *   float_to_ascii_signed_2dp                <= FUN_0004a300 @ 0x0004a300
  *   fb_blit_rows_wrap320                     <= FUN_0007d4f8 @ 0x0007d4f8
  * address symbols (name @ address):
- *   rodata_a8d20                             @ 0x000a8d20
+ *   rodata_a8d20                             @ 0x000a8d20   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction FUN_000361d8 @ 0x000361d8 (190-byte exact extent). */
 #include <stdint.h>
@@ -26,7 +26,7 @@ int render_device_info_float_screen(void *destination)
     uint16_t count;
     uint8_t decoded[10] = {0};
     uint32_t groups[3];
-    uint16_t *entries = utf8_string_to_utf16(((unsigned long)&rodata_a8d20) /*=0xa8d20*/, &count);
+    uint16_t *entries = utf8_string_to_utf16(((unsigned long)"\351\231\200\350\236\272\344\273\252\345\247\277\346\200\201\350\247\243\347\256\227:YPR") /*=0xa8d20*/, &count);
 
     for (uint32_t i = 0; i < count; ++i) {
         uintptr_t value = find_chinese_bitmap_by_unicode(entries[i], 12, 36);

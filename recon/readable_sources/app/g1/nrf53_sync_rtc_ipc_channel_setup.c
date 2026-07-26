@@ -12,11 +12,11 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
  *   rodata_4c38d                             @ 0x0004c38d
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_a7a10                             @ 0x000a7a10
- *   rodata_f0a2b                             @ 0x000f0a2b
- *   rodata_f0a5d                             @ 0x000f0a5d
- *   rodata_f0a90                             @ 0x000f0a90
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_a7a10                             @ 0x000a7a10   [INLINED -- G6 literal batch]
+ *   rodata_f0a2b                             @ 0x000f0a2b   [INLINED -- G6 literal batch]
+ *   rodata_f0a5d                             @ 0x000f0a5d   [INLINED -- G6 literal batch]
+ *   rodata_f0a90                             @ 0x000f0a90   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction of FUN_0004c418 @ 0x4c418 (184 bytes). */
 #include <stdint.h>
@@ -41,8 +41,8 @@ void nrf53_sync_rtc_ipc_channel_setup(void *object, uint32_t context, uint32_t d
     prepare_fn prepare = *(prepare_fn *)(vtable + 0x10);
 
     if (prepare == 0 || prepare(object, context, 0) != 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_a7a10) /*=0xa7a10*/, ((unsigned long)&rodata_f0a90) /*=0xf0a90*/, 0xcbu);
-        assert_post_action(((unsigned long)&rodata_f0a90) /*=0xf0a90*/, 0xcbu);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"err == 0") /*=0xa7a10*/, ((unsigned long)"WEST_TOPDIR/zephyr/soc/arm/nordic_nrf/nrf53/sync_rtc.c") /*=0xf0a90*/, 0xcbu);
+        assert_post_action(((unsigned long)"WEST_TOPDIR/zephyr/soc/arm/nordic_nrf/nrf53/sync_rtc.c") /*=0xf0a90*/, 0xcbu);
     }
 
     uint32_t channel = (descriptor >> 8) & 0xffu;
@@ -53,8 +53,8 @@ void nrf53_sync_rtc_ipc_channel_setup(void *object, uint32_t context, uint32_t d
     uint32_t slot = (descriptor >> 16) & 0xffu;
 
     if (slot >= 16) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0a5d) /*=0xf0a5d*/, ((unsigned long)&rodata_f0a2b) /*=0xf0a2b*/, 0x1e1u);
-        assert_post_action(((unsigned long)&rodata_f0a2b) /*=0xf0a2b*/, 0x1e1u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"index < 16") /*=0xf0a5d*/, ((unsigned long)"WEST_TOPDIR/modules/hal/nordic/nrfx/hal/nrf_ipc.h") /*=0xf0a2b*/, 0x1e1u);
+        assert_post_action(((unsigned long)"WEST_TOPDIR/modules/hal/nordic/nrfx/hal/nrf_ipc.h") /*=0xf0a2b*/, 0x1e1u);
     }
 
     *(volatile uint32_t *)(0x5002a080u + ((slot << 2) & 0xffu)) =

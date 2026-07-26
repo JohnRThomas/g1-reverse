@@ -8,8 +8,8 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef058                             @ 0x000ef058
- *   rodata_ef736                             @ 0x000ef736
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
+ *   rodata_ef736                             @ 0x000ef736   [INLINED -- G6 literal batch]
  *   g_dashboard_response_msgq                @ 0x2000392c
  */
 /* Reconstructed FUN_00047ba8 @ 0x47ba8  (parity: 300/300 trials, PROVEN) */
@@ -47,7 +47,7 @@ unsigned int send_response_data_to_ble(void)
     msg[0] = 1;
     int iVar2 = k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, msg, 0, 0);
     if (iVar2 != 0) {
-      log_message(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_ef736) /*=0xef736*/);
+      log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/, ((unsigned long)"send_response_data_to_ble") /*=0xef736*/);
       return 0xffffffff;
     }
   }

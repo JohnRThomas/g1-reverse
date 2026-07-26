@@ -30,26 +30,26 @@
  *   check_dashboard_device_status_range      <= FUN_0007d248 @ 0x0007d248
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_9f929                             @ 0x0009f929
- *   rodata_a0fad                             @ 0x000a0fad
- *   rodata_a0fe5                             @ 0x000a0fe5
+ *   rodata_9f929                             @ 0x0009f929   [INLINED -- G6 literal batch]
+ *   rodata_a0fad                             @ 0x000a0fad   [INLINED -- G6 literal batch]
+ *   rodata_a0fe5                             @ 0x000a0fe5   [INLINED -- G6 literal batch]
  *   rodata_a8c57                             @ 0x000a8c57
- *   rodata_a9127                             @ 0x000a9127
- *   rodata_a9243                             @ 0x000a9243
- *   rodata_a926f                             @ 0x000a926f
- *   rodata_a9292                             @ 0x000a9292
- *   rodata_a92b0                             @ 0x000a92b0
- *   rodata_a92ee                             @ 0x000a92ee
- *   rodata_a9318                             @ 0x000a9318
- *   rodata_a933c                             @ 0x000a933c
- *   rodata_a93da                             @ 0x000a93da
- *   rodata_a9437                             @ 0x000a9437
- *   rodata_a9465                             @ 0x000a9465
- *   rodata_a947f                             @ 0x000a947f
- *   rodata_a94c5                             @ 0x000a94c5
- *   rodata_a9529                             @ 0x000a9529
- *   rodata_a9551                             @ 0x000a9551
- *   rodata_a957d                             @ 0x000a957d
+ *   rodata_a9127                             @ 0x000a9127   [INLINED -- G6 literal batch]
+ *   rodata_a9243                             @ 0x000a9243   [INLINED -- G6 literal batch]
+ *   rodata_a926f                             @ 0x000a926f   [INLINED -- G6 literal batch]
+ *   rodata_a9292                             @ 0x000a9292   [INLINED -- G6 literal batch]
+ *   rodata_a92b0                             @ 0x000a92b0   [INLINED -- G6 literal batch]
+ *   rodata_a92ee                             @ 0x000a92ee   [INLINED -- G6 literal batch]
+ *   rodata_a9318                             @ 0x000a9318   [INLINED -- G6 literal batch]
+ *   rodata_a933c                             @ 0x000a933c   [INLINED -- G6 literal batch]
+ *   rodata_a93da                             @ 0x000a93da   [INLINED -- G6 literal batch]
+ *   rodata_a9437                             @ 0x000a9437   [INLINED -- G6 literal batch]
+ *   rodata_a9465                             @ 0x000a9465   [INLINED -- G6 literal batch]
+ *   rodata_a947f                             @ 0x000a947f   [INLINED -- G6 literal batch]
+ *   rodata_a94c5                             @ 0x000a94c5   [INLINED -- G6 literal batch]
+ *   rodata_a9529                             @ 0x000a9529   [INLINED -- G6 literal batch]
+ *   rodata_a9551                             @ 0x000a9551   [INLINED -- G6 literal batch]
+ *   rodata_a957d                             @ 0x000a957d   [INLINED -- G6 literal batch]
  *   rodata_aae20                             @ 0x000aae20
  *   g_log_level                              @ 0x2000230c
  *   g_dashboard_widget_state                 @ 0x20004950
@@ -136,52 +136,52 @@ extern uint64_t thunk_FUN_00074f68(void);
 #define firmware_data_0003b254 ((volatile char*)((unsigned long)&g_dashboard_widget_state) /*=0x20004950*/)
 #define firmware_data_0003b258 ((volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define firmware_data_0003b25c ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define firmware_data_0003b260 (((unsigned long)&rodata_a957d) /*=0xa957d*/)
-#define firmware_data_0003b264 (((unsigned long)&rodata_a9243) /*=0xa9243*/)
-#define firmware_data_0003b268 (((unsigned long)&rodata_a926f) /*=0xa926f*/)
+#define firmware_data_0003b260 (((unsigned long)"ui_DashBoard_task") /*=0xa957d*/)
+#define firmware_data_0003b264 (((unsigned long)"%s(): Enter DASHBOARD_INIT_STATUS task....\n") /*=0xa9243*/)
+#define firmware_data_0003b268 (((unsigned long)"%s(): dashboard function exit ...\n") /*=0xa926f*/)
 #define firmware_data_0003b26c ((volatile int*)((unsigned long)&g_dashboard_reset_pending_flags) /*=0x20007aa0*/)
-#define firmware_data_0003b270 (((unsigned long)&rodata_a9292) /*=0xa9292*/)
+#define firmware_data_0003b270 (((unsigned long)"%s(): DASHBOARD INIT .......\n") /*=0xa9292*/)
 #define firmware_data_0003b274 ((volatile byte*)((unsigned long)&g_widget0_index_raw) /*=0x2001b816*/)
 #define firmware_data_0003b278 ((volatile byte*)((unsigned long)&g_news_widget_index_raw) /*=0x2001b814*/)
 #define firmware_data_0003b27c ((volatile byte*)((unsigned long)&g_stocks_widget_index_raw) /*=0x2001b815*/)
-#define firmware_data_0003b280 (((unsigned long)&rodata_a92b0) /*=0xa92b0*/)
-#define firmware_data_0003b284 (((unsigned long)&rodata_a92ee) /*=0xa92ee*/)
-#define firmware_data_0003b288 (((unsigned long)&rodata_a9127) /*=0xa9127*/)
-#define firmware_data_0003b28c (((unsigned long)&rodata_a9318) /*=0xa9318*/)
-#define firmware_data_0003b290 (((unsigned long)&rodata_a933c) /*=0xa933c*/)
-#define firmware_data_0003b294 (((unsigned long)&rodata_a0fad) /*=0xa0fad*/)
+#define firmware_data_0003b280 (((unsigned long)"%s(): quicknote index = %d,stocks index = %d,news index = %d\n") /*=0xa92b0*/)
+#define firmware_data_0003b284 (((unsigned long)"%s(): db_info->schedule_disp_status = %d\n") /*=0xa92ee*/)
+#define firmware_data_0003b288 (((unsigned long)"%s(): db_info->stocks_disp_mode = %d\n") /*=0xa9127*/)
+#define firmware_data_0003b28c (((unsigned long)"%s(): db_info->news_disp_mode = %d\n") /*=0xa9318*/)
+#define firmware_data_0003b290 (((unsigned long)"%s(): master sync quicknote index to slave ,index = %d\n") /*=0xa933c*/)
+#define firmware_data_0003b294 (((unsigned long)"%s(): SYNC TO Slave failed...,don't exec key function.\n") /*=0xa0fad*/)
 #define firmware_data_0003b298 ((volatile int*)((unsigned long)&g_dashboard_reflash_frame_idx) /*=0x20009fd0*/)
 #define firmware_data_0003b29c (((unsigned long)&g_dashboard_lock_ready_flags) /*=0x20007570*/)
 #define firmware_data_0003b2a0 ((volatile int*)((unsigned long)&g_dashboard_lock_sent_flags) /*=0x2000756c*/)
-#define firmware_data_0003b2a4 (((unsigned long)&rodata_9f929) /*=0x9f929*/)
+#define firmware_data_0003b2a4 (((unsigned long)"%s(): send dashboard lock info to app ,status = %d \n") /*=0x9f929*/)
 #define firmware_data_0003b2a8 (0xa9374UL)
 #define firmware_data_0003b584 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define firmware_data_0003b588 (((unsigned long)&rodata_a957d) /*=0xa957d*/)
+#define firmware_data_0003b588 (((unsigned long)"ui_DashBoard_task") /*=0xa957d*/)
 #define firmware_data_0003b58c (0xa93a8UL)
-#define firmware_data_0003b590 (((unsigned long)&rodata_a0fe5) /*=0xa0fe5*/)
+#define firmware_data_0003b590 (((unsigned long)"%s(): sync to slave return value = %d,exec key function. ts = %d\n") /*=0xa0fe5*/)
 #define firmware_data_0003b594 (((unsigned long)&rodata_aae20) /*=0xaae20*/)
 #define firmware_data_0003b598 (((unsigned long)&g_dashboard_lock_ready_flags) /*=0x20007570*/)
 #define firmware_data_0003b59c ((volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define firmware_data_0003b5a0 ((volatile int*)((unsigned long)&g_dashboard_lock_sent_flags) /*=0x2000756c*/)
-#define firmware_data_0003b5a4 (((unsigned long)&rodata_9f929) /*=0x9f929*/)
-#define firmware_data_0003b5a8 (((unsigned long)&rodata_a93da) /*=0xa93da*/)
-#define firmware_data_0003b5ac (((unsigned long)&rodata_a9437) /*=0xa9437*/)
-#define firmware_data_0003b5b0 (((unsigned long)&rodata_a926f) /*=0xa926f*/)
+#define firmware_data_0003b5a4 (((unsigned long)"%s(): send dashboard lock info to app ,status = %d \n") /*=0x9f929*/)
+#define firmware_data_0003b5a8 (((unsigned long)"%s(): notify message count has changed,send message count to app. unread messgae count = %d\n") /*=0xa93da*/)
+#define firmware_data_0003b5ac (((unsigned long)"%s(): Enter DASHBOARD_RUNING_STATUS task....\n") /*=0xa9437*/)
+#define firmware_data_0003b5b0 (((unsigned long)"%s(): dashboard function exit ...\n") /*=0xa926f*/)
 #define firmware_data_0003b5b4 (((unsigned long)&g_dashboard_widget_state) /*=0x20004950*/)
 #define firmware_data_0003b5b8 ((volatile int*)((unsigned long)&g_dashboard_reset_pending_flags) /*=0x20007aa0*/)
-#define firmware_data_0003b5bc (((unsigned long)&rodata_a9465) /*=0xa9465*/)
+#define firmware_data_0003b5bc (((unsigned long)"%s(): current index = %d\n") /*=0xa9465*/)
 #define firmware_data_0003b5c0 ((volatile undefined4*)((unsigned long)&rodata_a8c57) /*=0xa8c57*/)
 #define firmware_data_0003b760 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define firmware_data_0003b764 (((unsigned long)&rodata_a957d) /*=0xa957d*/)
-#define firmware_data_0003b768 (((unsigned long)&rodata_a947f) /*=0xa947f*/)
+#define firmware_data_0003b764 (((unsigned long)"ui_DashBoard_task") /*=0xa957d*/)
+#define firmware_data_0003b768 (((unsigned long)"%s(): received key press event,_dashboard_prv_data.display_mode = %d\n") /*=0xa947f*/)
 #define firmware_data_0003b76c ((volatile byte*)((unsigned long)&g_widget0_index_raw) /*=0x2001b816*/)
-#define firmware_data_0003b770 (((unsigned long)&rodata_a94c5) /*=0xa94c5*/)
+#define firmware_data_0003b770 (((unsigned long)"%s(): current quicknote index = %d\n") /*=0xa94c5*/)
 #define firmware_data_0003b774 ((volatile byte*)((unsigned long)&g_stocks_widget_index_raw) /*=0x2001b815*/)
 #define firmware_data_0003b778 (0xa94e9UL)
 #define firmware_data_0003b77c ((volatile byte*)((unsigned long)&g_news_widget_index_raw) /*=0x2001b814*/)
 #define firmware_data_0003b780 (0xa950aUL)
-#define firmware_data_0003b784 (((unsigned long)&rodata_a9529) /*=0xa9529*/)
-#define firmware_data_0003b788 (((unsigned long)&rodata_a9551) /*=0xa9551*/)
+#define firmware_data_0003b784 (((unsigned long)"%s(): received system low power event.\n") /*=0xa9529*/)
+#define firmware_data_0003b788 (((unsigned long)"%s(): received system  power resume event.\n") /*=0xa9551*/)
 
 
 /* WARNING: Removing unreachable block (ram,0x0003b4c6) */

@@ -13,8 +13,8 @@
  *   ADDR_gatt_cancel_encode_THUMB            @ 0x0008278b
  *   ADDR_gatt_exec_encode_THUMB              @ 0x0008279d
  *   rodata_88128                             @ 0x00088128
- *   rodata_f4cdd                             @ 0x000f4cdd
- *   rodata_f4cff                             @ 0x000f4cff
+ *   rodata_f4cdd                             @ 0x000f4cdd   [INLINED -- G6 literal batch]
+ *   rodata_f4cff                             @ 0x000f4cff   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005c310 @ 0x0005c310 (gatt_prepare_write_rsp).
  * Raw/address backmap: FUN_0005c310 @ 0x0005c310, extent 0x0000009c.
@@ -38,7 +38,7 @@ void gatt_prepare_write_rsp(void *connection, const uint8_t *response,
 {
     uint16_t payload_length = (uint16_t)(response_length - 4U);
     if (payload_length > params->length) {
-        uint32_t package[2] = { 2U, ((unsigned long)&rodata_f4cdd) /*=0xf4cdd*/ };
+        uint32_t package[2] = { 2U, ((unsigned long)"Incorrect length, canceling write") /*=0xf4cdd*/ };
         log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1040U, package);
         if (gatt_req_send(connection, (void *)((unsigned long)&rodata_82603) /*=0x82603*/, params,
                          (void *)ADDR_gatt_cancel_encode_THUMB /*=0x8278b*/, 0x18U, 1U) != 0)
@@ -48,7 +48,7 @@ void gatt_prepare_write_rsp(void *connection, const uint8_t *response,
     int data_valid = memcmp(params->data, response + 4,
                                   payload_length) == 0;
     if (params->offset != *(const uint16_t *)(response + 2) || !data_valid) {
-        uint32_t package[2] = { 2U, ((unsigned long)&rodata_f4cff) /*=0xf4cff*/ };
+        uint32_t package[2] = { 2U, ((unsigned long)"Incorrect offset or data in response, canceling write") /*=0xf4cff*/ };
         log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1040U, package);
         if (gatt_req_send(connection, (void *)((unsigned long)&rodata_82603) /*=0x82603*/, params,
                          (void *)ADDR_gatt_cancel_encode_THUMB /*=0x8278b*/, 0x18U, 1U) != 0)

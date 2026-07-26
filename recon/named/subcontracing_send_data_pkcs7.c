@@ -8,14 +8,14 @@
  *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_9d6a1                             @ 0x0009d6a1
- *   rodata_9d6d8                             @ 0x0009d6d8
+ *   rodata_9d6a1                             @ 0x0009d6a1   [INLINED -- G6 literal batch]
+ *   rodata_9d6d8                             @ 0x0009d6d8   [INLINED -- G6 literal batch]
  *   rodata_9d6ee                             @ 0x0009d6ee
- *   rodata_9d6f3                             @ 0x0009d6f3
+ *   rodata_9d6f3                             @ 0x0009d6f3   [INLINED -- G6 literal batch]
  *   rodata_9d70f                             @ 0x0009d70f
- *   rodata_9d714                             @ 0x0009d714
- *   rodata_9d734                             @ 0x0009d734
- *   rodata_9e014                             @ 0x0009e014
+ *   rodata_9d714                             @ 0x0009d714   [INLINED -- G6 literal batch]
+ *   rodata_9d734                             @ 0x0009d734   [INLINED -- G6 literal batch]
+ *   rodata_9e014                             @ 0x0009e014   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -50,10 +50,10 @@ uint32_t subcontracing_send_data_pkcs7(const uint8_t *source, int byte_count,
 
     if (*log_level > 2) {
         if (*alternate_log == 0)
-            log_message(0x0009d6a1, 0x0009e014, record_count,
+            log_message(((unsigned long)"%s(): integer_num: %d, tail_len: %d, raw_data_len: %d\n"), ((unsigned long)"subcontracing_send_data_pkcs7"), record_count,
                         remainder, byte_count);
         else
-            debug_print(0x0009d6a1, 0x0009e014, record_count,
+            debug_print(((unsigned long)"%s(): integer_num: %d, tail_len: %d, raw_data_len: %d\n"), ((unsigned long)"subcontracing_send_data_pkcs7"), record_count,
                          remainder, byte_count);
     }
 
@@ -66,10 +66,10 @@ uint32_t subcontracing_send_data_pkcs7(const uint8_t *source, int byte_count,
         __builtin_memcpy(record + 3, source + index * 17, 17);
         if (level > 2) {
             if (*alternate_log == 0)
-                log_message(0x0009d6d8, 0x0009e014,
+                log_message(((unsigned long)"%s(): #\345\217\221\351\200\201: %d/%d\n"), ((unsigned long)"subcontracing_send_data_pkcs7"),
                             index + 1, record_count);
             else
-                debug_print(0x0009d6d8, 0x0009e014,
+                debug_print(((unsigned long)"%s(): #\345\217\221\351\200\201: %d/%d\n"), ((unsigned long)"subcontracing_send_data_pkcs7"),
                              index + 1, record_count);
         }
         debug_print_hex_dump(0x0009d6ee, record, sizeof(record));
@@ -82,10 +82,10 @@ uint32_t subcontracing_send_data_pkcs7(const uint8_t *source, int byte_count,
         memset_bytes(record + 3, 17, 17);
         if (level > 2) {
             if (*alternate_log == 0)
-                log_message(0x0009d6f3, 0x0009e014,
+                log_message(((unsigned long)"%s(): PKCS-7#\345\217\221\351\200\201: %d/%d\n"), ((unsigned long)"subcontracing_send_data_pkcs7"),
                             index + 1, record_count);
             else
-                debug_print(0x0009d6f3, 0x0009e014,
+                debug_print(((unsigned long)"%s(): PKCS-7#\345\217\221\351\200\201: %d/%d\n"), ((unsigned long)"subcontracing_send_data_pkcs7"),
                              index + 1, record_count);
         }
     } else {
@@ -95,10 +95,10 @@ uint32_t subcontracing_send_data_pkcs7(const uint8_t *source, int byte_count,
                      (unsigned int)remainder, 17);
         if (level > 2) {
             if (*alternate_log == 0)
-                log_message(0x0009d714, 0x0009e014,
+                log_message(((unsigned long)"%s(): PKCS-7#\345\217\221\351\200\201tail: %d/%d\n"), ((unsigned long)"subcontracing_send_data_pkcs7"),
                             index + 1, record_count);
             else
-                debug_print(0x0009d714, 0x0009e014,
+                debug_print(((unsigned long)"%s(): PKCS-7#\345\217\221\351\200\201tail: %d/%d\n"), ((unsigned long)"subcontracing_send_data_pkcs7"),
                              index + 1, record_count);
         }
     }
@@ -106,9 +106,9 @@ uint32_t subcontracing_send_data_pkcs7(const uint8_t *source, int byte_count,
     debug_print_hex_dump(0x0009d70f, record, sizeof(record));
     if (*log_level > 2) {
         if (*alternate_log == 0)
-            log_message(0x0009d734, 0x0009e014, byte_count);
+            log_message(((unsigned long)"%s(): total-size:%d\n"), ((unsigned long)"subcontracing_send_data_pkcs7"), byte_count);
         else
-            debug_print(0x0009d734, 0x0009e014, byte_count);
+            debug_print(((unsigned long)"%s(): total-size:%d\n"), ((unsigned long)"subcontracing_send_data_pkcs7"), byte_count);
     }
     send_record(record, sizeof(record));
     return 0;

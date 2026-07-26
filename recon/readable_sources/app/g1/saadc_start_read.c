@@ -17,12 +17,12 @@
  * address symbols (name @ address):
  *   rodata_880e0                             @ 0x000880e0
  *   rodata_f4240                             @ 0x000f4240
- *   rodata_f5571                             @ 0x000f5571
- *   rodata_f558f                             @ 0x000f558f
- *   rodata_f55a9                             @ 0x000f55a9
- *   rodata_f55ce                             @ 0x000f55ce
- *   rodata_f5600                             @ 0x000f5600
- *   rodata_f5623                             @ 0x000f5623
+ *   rodata_f5571                             @ 0x000f5571   [INLINED -- G6 literal batch]
+ *   rodata_f558f                             @ 0x000f558f   [INLINED -- G6 literal batch]
+ *   rodata_f55a9                             @ 0x000f55a9   [INLINED -- G6 literal batch]
+ *   rodata_f55ce                             @ 0x000f55ce   [INLINED -- G6 literal batch]
+ *   rodata_f5600                             @ 0x000f5600   [INLINED -- G6 literal batch]
+ *   rodata_f5623                             @ 0x000f5623   [INLINED -- G6 literal batch]
  *   adc_context                              @ 0x20002190
  *   g_adc_context_lock                       @ 0x200021d0
  *   g_adc_saadc_ctrl_mutex                   @ 0x200021e8
@@ -59,7 +59,7 @@ undefined4 saadc_start_read(undefined4 param_1, int *param_2)
   iVar7 = ((unsigned long)&m_adc_channel_input_cfg) /*=0x20002230*/;
   iVar5 = REG_5000e000 /*=0x5000e000*/;
   uVar10 = (u32)param_2[1];
-  uVar9 = ((unsigned long)&rodata_f5571) /*=0xf5571*/;
+  uVar9 = ((unsigned long)"Invalid selection of channels") /*=0xf5571*/;
   iVar11 = REG_5000e000 /*=0x5000e000*/;
 
   if (uVar10 - 1 < 0xff) {
@@ -71,7 +71,7 @@ undefined4 saadc_start_read(undefined4 param_1, int *param_2)
       } else {
         u8 bVar1 = *(volatile u8*)(long)(iVar7 + uVar4);
         if (bVar1 == 0) {
-          uVar9 = ((unsigned long)&rodata_f558f) /*=0xf558f*/;
+          uVar9 = ((unsigned long)"Channel %u not configured") /*=0xf558f*/;
           goto control_label_f7c6;
         }
         bVar12 = *(u8*)((long)param_2 + 0x11);
@@ -89,7 +89,7 @@ undefined4 saadc_start_read(undefined4 param_1, int *param_2)
     switch ((u32)*(u8*)(param_2 + 4)) {
       case 8: uVar9 = 0; break;
       default:
-        uVar9 = ((unsigned long)&rodata_f55a9) /*=0xf55a9*/;
+        uVar9 = ((unsigned long)"ADC resolution value %d is not valid") /*=0xf55a9*/;
         uVar4 = (u32)*(u8*)(param_2 + 4);
         goto control_label_f7c6;
       case 10: uVar9 = 1; break;
@@ -99,7 +99,7 @@ undefined4 saadc_start_read(undefined4 param_1, int *param_2)
     *(volatile u32*)(REG_5000e000 /*=0x5000e000*/ + 0x5f0) = (u32)uVar9;
     uVar4 = (u32)*(u8*)((long)param_2 + 0x11);
     if (1 < uVar6) {
-      uVar9 = ((unsigned long)&rodata_f55ce) /*=0xf55ce*/;
+      uVar9 = ((unsigned long)"Oversampling is supported for single channel only") /*=0xf55ce*/;
       if (uVar4 != 0) goto control_label_f782;
 control_label_f874:
       *(volatile u32*)(long)(iVar11 + 0x5f4) = uVar4;
@@ -111,7 +111,7 @@ control_label_f874:
       }
       if ((u32)param_2[3] < uVar10) {
         capacity_error[0] = 4;
-        capacity_error[1] = ((unsigned long)&rodata_f5623) /*=0xf5623*/;
+        capacity_error[1] = ((unsigned long)"Provided buffer is too small (%u/%u)") /*=0xf5623*/;
         capacity_error[2] = (u32)param_2[3];
         capacity_error[3] = uVar10;
         z_log_msg_runtime_create(((unsigned long)&rodata_880e0) /*=0x880e0*/, 0x2040u, capacity_error, 0);
@@ -162,7 +162,7 @@ control_label_f948:
       uVar9 = (u32)puVar3i[0x1c];
       goto control_label_f7d6;
     }
-    uVar9 = ((unsigned long)&rodata_f5600) /*=0xf5600*/;
+    uVar9 = ((unsigned long)"Oversampling value %d is not valid") /*=0xf5600*/;
     if (uVar4 < 9) goto control_label_f874;
 control_label_f7c6:
     validation_error[0] = 3;

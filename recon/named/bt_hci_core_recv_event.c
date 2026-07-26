@@ -6,14 +6,14 @@
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
  *   rodata_8b190                             @ 0x0008b190
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f2ddb                             @ 0x000f2ddb
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f2ddb                             @ 0x000f2ddb   [INLINED -- G6 literal batch]
  *   rodata_f2e84                             @ 0x000f2e84
- *   rodata_f2eb8                             @ 0x000f2eb8
- *   rodata_f2ed1                             @ 0x000f2ed1
- *   rodata_f2ef5                             @ 0x000f2ef5
- *   rodata_f2f17                             @ 0x000f2f17
- *   rodata_f2f45                             @ 0x000f2f45
+ *   rodata_f2eb8                             @ 0x000f2eb8   [INLINED -- G6 literal batch]
+ *   rodata_f2ed1                             @ 0x000f2ed1   [INLINED -- G6 literal batch]
+ *   rodata_f2ef5                             @ 0x000f2ef5   [INLINED -- G6 literal batch]
+ *   rodata_f2f17                             @ 0x000f2f17   [INLINED -- G6 literal batch]
+ *   rodata_f2f45                             @ 0x000f2f45   [INLINED -- G6 literal batch]
  *   g_bt_hci_recv_fifo                       @ 0x20002144
  *   g_bt_hci_rx_work                         @ 0x20002980
  *   bt_workqueue                             @ 0x20005f08
@@ -50,7 +50,7 @@ struct log_record4 {
 
 __attribute__((noreturn, always_inline)) static inline void fatal_packet_length(uint32_t line)
 {
-    printk(0x00099cbdu, 0x000f2eb8u, 0x000f2e84u, line);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f2eb8u, 0x000f2e84u, line);
     __asm__ volatile("movs r0, #0\n\tmsr basepri, r0\n\tmovs r0, #3\n\tsvc #2" ::: "r0", "memory");
     __builtin_unreachable();
 }
@@ -69,7 +69,7 @@ void bt_hci_core_recv_event(void)
         }
         uint8_t *event = net_buf_simple_pull((uint8_t *)buffer + 0x0c, 2);
         if ((bt_hci_evt_get_flags(*event) & 2) == 0) {
-            printk(0x00099cbdu, 0x000f2f17u, 0x000f2e84u, 0x0a61u);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f2f17u, 0x000f2e84u, 0x0a61u);
             __asm__ volatile("movs r0, #0\n\tmsr basepri, r0\n\tmovs r0, #3\n\tsvc #2" ::: "r0", "memory");
             __builtin_unreachable();
         }

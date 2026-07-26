@@ -13,8 +13,8 @@
  *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_a7a10                             @ 0x000a7a10
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_a7a10                             @ 0x000a7a10   [INLINED -- G6 literal batch]
  *   rodata_f0982                             @ 0x000f0982
  */
 /* Reconstructed FUN_0004bc28 @ 0x4bc28  (parity: 300/300 trials, PROVEN) */
@@ -38,7 +38,7 @@ void mpsc_pbuf_init(int param_1, uint32_t *param_2, uint32_t param_3, uint32_t p
   *(volatile uint32_t*)(param_1+0x10) = uVar2;
   int iVar1 = z_impl_k_sem_init(param_1+0x2c, 0, 1);
   if(iVar1 != 0){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_a7a10) /*=0xa7a10*/, ((unsigned long)&rodata_f0982) /*=0xf0982*/, 0x2e);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"err == 0") /*=0xa7a10*/, ((unsigned long)&rodata_f0982) /*=0xf0982*/, 0x2e);
     assert_post_action(((unsigned long)&rodata_f0982) /*=0xf0982*/, 0x2e);
   }
 }

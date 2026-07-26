@@ -6,8 +6,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   display_mode_globals_configure           <= FUN_0004372c @ 0x0004372c
  * address symbols (name @ address):
- *   rodata_aa951                             @ 0x000aa951
- *   rodata_aad1a                             @ 0x000aad1a
+ *   rodata_aa951                             @ 0x000aa951   [INLINED -- G6 literal batch]
+ *   rodata_aad1a                             @ 0x000aad1a   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -87,9 +87,9 @@ int display_mode_globals_configure(unsigned mode, ...)
     default:
         if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ != 0)
-                debug_print(((unsigned long)&rodata_aa951) /*=0xaa951*/, ((unsigned long)&rodata_aad1a) /*=0xaad1a*/);
+                debug_print(((unsigned long)"%s(): unkonown adv command\n") /*=0xaa951*/, ((unsigned long)"gui_utf_adv_draw_configure") /*=0xaad1a*/);
             else
-                log_message(((unsigned long)&rodata_aa951) /*=0xaa951*/, ((unsigned long)&rodata_aad1a) /*=0xaad1a*/);
+                log_message(((unsigned long)"%s(): unkonown adv command\n") /*=0xaa951*/, ((unsigned long)"gui_utf_adv_draw_configure") /*=0xaad1a*/);
         }
         break;
     }

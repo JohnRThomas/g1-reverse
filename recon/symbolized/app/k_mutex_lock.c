@@ -13,12 +13,12 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   k_mutex_owner_prio_check                 <= FUN_000864b2 @ 0x000864b2
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f801f                             @ 0x000f801f
  *   rodata_f813a                             @ 0x000f813a
  *   rodata_f815c                             @ 0x000f815c
@@ -54,15 +54,15 @@ static inline int item_priority(const void *item)
 
 static __attribute__((always_inline)) inline void lock_failure(uint32_t lock)
 {
-  printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
-  printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, lock);
+  printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
+  printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/, lock);
   assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
 }
 
 static __attribute__((always_inline)) inline void unlock_failure(uint32_t lock)
 {
-  printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f08f4) /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0);
-  printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, lock);
+  printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0);
+  printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/, lock);
   assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0);
 }
 
@@ -73,7 +73,7 @@ int k_mutex_lock(struct queue_entry *entry, uint32_t reserved,
   (void)reserved;
 
   if (__get_IPSR() != 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f801f) /*=0xf801f*/, ((unsigned long)&rodata_f813a) /*=0xf813a*/, 0x65);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f801f) /*=0xf801f*/, ((unsigned long)&rodata_f813a) /*=0xf813a*/, 0x65);
     printk(((unsigned long)&rodata_f815c) /*=0xf815c*/);
     assert_post_action(((unsigned long)&rodata_f813a) /*=0xf813a*/, 0x65);
   }

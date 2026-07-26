@@ -10,10 +10,10 @@
  * address symbols (name @ address):
  *   rodata_882a0                             @ 0x000882a0
  *   __settings_handler_static_list_start     @ 0x000882b0
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f0cae                             @ 0x000f0cae
- *   rodata_f0cff                             @ 0x000f0cff
- *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f0cff                             @ 0x000f0cff   [INLINED -- G6 literal batch]
+ *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  *   g_log_initialized_flag                   @ 0x2001d44c
  */
 /* Reconstructed g1_recon_z_impl_log_panic @ 0x4d678.
@@ -33,8 +33,8 @@ void g1_recon_z_impl_log_panic(void){
     uint32_t piVar2 = ((unsigned long)&__settings_handler_static_list_start) /*=0x882b0*/;
     while(1){
       if(piVar4 > piVar2){
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0cff) /*=0xf0cff*/, ((unsigned long)&rodata_f0cae) /*=0xf0cae*/, 0x188);
-        printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"backend <= _log_backend_list_end") /*=0xf0cff*/, ((unsigned long)&rodata_f0cae) /*=0xf0cae*/, 0x188);
+        printk(((unsigned long)"\tunexpected list end location\n") /*=0xf0d20*/);
         assert_post_action(((unsigned long)&rodata_f0cae) /*=0xf0cae*/, 0x188);
       }
       if(piVar4 == piVar2) break;

@@ -26,7 +26,7 @@ extern void checked_strncpy_zero_pad(void *destination, const void *source,
 
 #define LOG_LEVEL (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define LOG_SINK  (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define LOG_TAG   ((unsigned long)&rodata_99b56) /*=0x99b56*/
+#define LOG_TAG   ((unsigned long)"local_ipc_service_recv") /*=0x99b56*/
 
 static uint32_t load_u32(const void *pointer)
 {
@@ -77,14 +77,14 @@ int local_ipc_service_recv(uint8_t *context, const uint8_t *packet, int length)
         if (LOG_LEVEL > 1) {
             if (LOG_SINK == 0)
                 goto uptime_log;
-            debug_print(((unsigned long)&rodata_995d9) /*=0x995d9*/, LOG_TAG, uptime);
+            debug_print(((unsigned long)"%s(): cpunet request send info uptime %lld\n") /*=0x995d9*/, LOG_TAG, uptime);
         }
     uptime_check:
         if (uptime >= 0x2711ULL) {
             if (LOG_LEVEL > 0) {
                 if (LOG_SINK == 0)
                     goto reboot_log;
-                debug_print(((unsigned long)&rodata_99605) /*=0x99605*/, LOG_TAG);
+                debug_print(((unsigned long)"%s(): sys reboot because recv cpunet sync package\n") /*=0x99605*/, LOG_TAG);
             }
         reboot:
             app_msleep_thunk_a(500);
@@ -92,10 +92,10 @@ int local_ipc_service_recv(uint8_t *context, const uint8_t *packet, int length)
             /* The shipped code has no return path here: it falls through
              * into the out-of-line log blocks below. */
         uptime_log:
-            log_message(((unsigned long)&rodata_995d9) /*=0x995d9*/, LOG_TAG, uptime);
+            log_message(((unsigned long)"%s(): cpunet request send info uptime %lld\n") /*=0x995d9*/, LOG_TAG, uptime);
             goto uptime_check;
         reboot_log:
-            log_message(((unsigned long)&rodata_99605) /*=0x99605*/, LOG_TAG);
+            log_message(((unsigned long)"%s(): sys reboot because recv cpunet sync package\n") /*=0x99605*/, LOG_TAG);
             goto reboot;
         }
         runtime_info_sync(context);
@@ -114,10 +114,10 @@ int local_ipc_service_recv(uint8_t *context, const uint8_t *packet, int length)
         if (LOG_LEVEL > 1) {
             uptime = uptime_milliseconds(ticks);
             if (LOG_SINK == 0)
-                log_message(((unsigned long)&rodata_99638) /*=0x99638*/, LOG_TAG, uptime,
+                log_message(((unsigned long)"%s(): cpunet request update macaddr info uptime %lld bt macaddr esb_master_addr %02X esb_slave_addr %02X \n") /*=0x99638*/, LOG_TAG, uptime,
                             (uint32_t)context[3], (uint32_t)context[4]);
             else
-                debug_print(((unsigned long)&rodata_99638) /*=0x99638*/, LOG_TAG, uptime,
+                debug_print(((unsigned long)"%s(): cpunet request update macaddr info uptime %lld bt macaddr esb_master_addr %02X esb_slave_addr %02X \n") /*=0x99638*/, LOG_TAG, uptime,
                             (uint32_t)context[3], (uint32_t)context[4]);
         }
     notify_ready:
@@ -137,9 +137,9 @@ int local_ipc_service_recv(uint8_t *context, const uint8_t *packet, int length)
             context[0x1058] = 1;
         if (LOG_LEVEL > 1) {
             if (LOG_SINK == 0)
-                log_message(((unsigned long)&rodata_996a3) /*=0x996a3*/, LOG_TAG);
+                log_message(((unsigned long)"%s(): bt_ready\n") /*=0x996a3*/, LOG_TAG);
             else
-                debug_print(((unsigned long)&rodata_996a3) /*=0x996a3*/, LOG_TAG);
+                debug_print(((unsigned long)"%s(): bt_ready\n") /*=0x996a3*/, LOG_TAG);
         }
         if (*(volatile uint32_t *)(context + 0x10) == 0)
             FUN_0007c010(context + 8);
@@ -160,11 +160,11 @@ int local_ipc_service_recv(uint8_t *context, const uint8_t *packet, int length)
             *(volatile uint32_t *)((unsigned long)&g_battery_percent) /*=0x200069e8*/ = 0x46;
         if (LOG_LEVEL > 1) {
             if (LOG_SINK == 0)
-                log_message(((unsigned long)&rodata_996b3) /*=0x996b3*/, LOG_TAG, value, second,
+                log_message(((unsigned long)"%s(): IPC_RESP_CPUNET_ESB_PACKAGES %d %d %d %d\n") /*=0x996b3*/, LOG_TAG, value, second,
                             load_u32(packet + 9),
                             *(volatile uint32_t *)((unsigned long)&g_battery_percent) /*=0x200069e8*/);
             else
-                debug_print(((unsigned long)&rodata_996b3) /*=0x996b3*/, LOG_TAG, value, second,
+                debug_print(((unsigned long)"%s(): IPC_RESP_CPUNET_ESB_PACKAGES %d %d %d %d\n") /*=0x996b3*/, LOG_TAG, value, second,
                             load_u32(packet + 9),
                             *(volatile uint32_t *)((unsigned long)&g_battery_percent) /*=0x200069e8*/);
         }
@@ -177,9 +177,9 @@ int local_ipc_service_recv(uint8_t *context, const uint8_t *packet, int length)
     default:
         if (LOG_LEVEL > 1) {
             if (LOG_SINK == 0)
-                debug_print(((unsigned long)&rodata_996e3) /*=0x996e3*/, LOG_TAG, length, packet);
+                debug_print(((unsigned long)"%s(): sync fail! len: %d, data=%s\n\n") /*=0x996e3*/, LOG_TAG, length, packet);
             else
-                log_message(((unsigned long)&rodata_996e3) /*=0x996e3*/, LOG_TAG, length, packet);
+                log_message(((unsigned long)"%s(): sync fail! len: %d, data=%s\n\n") /*=0x996e3*/, LOG_TAG, length, packet);
         }
         return 0;
     }

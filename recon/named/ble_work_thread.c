@@ -16,13 +16,13 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_9ded0                             @ 0x0009ded0
- *   rodata_9dede                             @ 0x0009dede
- *   rodata_9deed                             @ 0x0009deed
- *   rodata_9df00                             @ 0x0009df00
- *   rodata_9df28                             @ 0x0009df28
- *   rodata_9df51                             @ 0x0009df51
- *   rodata_9df99                             @ 0x0009df99
+ *   rodata_9ded0                             @ 0x0009ded0   [INLINED -- G6 literal batch]
+ *   rodata_9dede                             @ 0x0009dede   [INLINED -- G6 literal batch]
+ *   rodata_9deed                             @ 0x0009deed   [INLINED -- G6 literal batch]
+ *   rodata_9df00                             @ 0x0009df00   [INLINED -- G6 literal batch]
+ *   rodata_9df28                             @ 0x0009df28   [INLINED -- G6 literal batch]
+ *   rodata_9df51                             @ 0x0009df51   [INLINED -- G6 literal batch]
+ *   rodata_9df99                             @ 0x0009df99   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_send_event_pending_id                  @ 0x2000302e
  *   g_ring_log_pending                       @ 0x20007550

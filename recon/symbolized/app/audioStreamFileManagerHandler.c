@@ -23,26 +23,26 @@
  *   rodata_9ea0a                             @ 0x0009ea0a
  *   rodata_9eba7                             @ 0x0009eba7
  *   rodata_9ebc6                             @ 0x0009ebc6
- *   rodata_a4395                             @ 0x000a4395
- *   rodata_a43b9                             @ 0x000a43b9
- *   rodata_a43f3                             @ 0x000a43f3
- *   rodata_a4413                             @ 0x000a4413
- *   rodata_a4439                             @ 0x000a4439
- *   rodata_a447d                             @ 0x000a447d
- *   rodata_a44bf                             @ 0x000a44bf
- *   rodata_a4511                             @ 0x000a4511
- *   rodata_a4558                             @ 0x000a4558
- *   rodata_a457d                             @ 0x000a457d
- *   rodata_a45c1                             @ 0x000a45c1
- *   rodata_a461a                             @ 0x000a461a
- *   rodata_a4675                             @ 0x000a4675
- *   rodata_a4690                             @ 0x000a4690
- *   rodata_a46cb                             @ 0x000a46cb
- *   rodata_a46fd                             @ 0x000a46fd
- *   rodata_a4739                             @ 0x000a4739
- *   rodata_a47a2                             @ 0x000a47a2
- *   rodata_a486b                             @ 0x000a486b
- *   rodata_a4926                             @ 0x000a4926
+ *   rodata_a4395                             @ 0x000a4395   [INLINED -- G6 literal batch]
+ *   rodata_a43b9                             @ 0x000a43b9   [INLINED -- G6 literal batch]
+ *   rodata_a43f3                             @ 0x000a43f3   [INLINED -- G6 literal batch]
+ *   rodata_a4413                             @ 0x000a4413   [INLINED -- G6 literal batch]
+ *   rodata_a4439                             @ 0x000a4439   [INLINED -- G6 literal batch]
+ *   rodata_a447d                             @ 0x000a447d   [INLINED -- G6 literal batch]
+ *   rodata_a44bf                             @ 0x000a44bf   [INLINED -- G6 literal batch]
+ *   rodata_a4511                             @ 0x000a4511   [INLINED -- G6 literal batch]
+ *   rodata_a4558                             @ 0x000a4558   [INLINED -- G6 literal batch]
+ *   rodata_a457d                             @ 0x000a457d   [INLINED -- G6 literal batch]
+ *   rodata_a45c1                             @ 0x000a45c1   [INLINED -- G6 literal batch]
+ *   rodata_a461a                             @ 0x000a461a   [INLINED -- G6 literal batch]
+ *   rodata_a4675                             @ 0x000a4675   [INLINED -- G6 literal batch]
+ *   rodata_a4690                             @ 0x000a4690   [INLINED -- G6 literal batch]
+ *   rodata_a46cb                             @ 0x000a46cb   [INLINED -- G6 literal batch]
+ *   rodata_a46fd                             @ 0x000a46fd   [INLINED -- G6 literal batch]
+ *   rodata_a4739                             @ 0x000a4739   [INLINED -- G6 literal batch]
+ *   rodata_a47a2                             @ 0x000a47a2   [INLINED -- G6 literal batch]
+ *   rodata_a486b                             @ 0x000a486b   [INLINED -- G6 literal batch]
+ *   rodata_a4926                             @ 0x000a4926   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_audio_msgq                             @ 0x20003890
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -62,53 +62,53 @@ typedef uint32_t uint; typedef uint64_t ulonglong; typedef uint32_t code(uintptr
 #define DAT_0002fbcc ((unsigned long)&g_audio_msgq) /*=0x20003890*/
 #define DAT_0002fbd0 ((volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define DAT_0002fbd4 ((volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_0002fbd8 ((unsigned long)&rodata_a4926) /*=0xa4926*/
+#define DAT_0002fbd8 ((unsigned long)"audioStreamFileManagerHandler") /*=0xa4926*/
 #define DAT_0002fbdc 0x000a4369u
-#define DAT_0002fbe0 ((unsigned long)&rodata_a4395) /*=0xa4395*/
+#define DAT_0002fbe0 ((unsigned long)"%s(): start audio stream record!\r\n\n") /*=0xa4395*/
 #define DAT_0002fbe4 ((unsigned long)&rodata_87bf0) /*=0x87bf0*/
 #define DAT_0002fbe8 ((unsigned long)&rodata_9e9ea) /*=0x9e9ea*/
 #define DAT_0002fbec ((unsigned long)&rodata_9ea0a) /*=0x9ea0a*/
 #define DAT_0002fbf0 0x5aa5aa5au
-#define DAT_0002fbf4 ((unsigned long)&rodata_a43b9) /*=0xa43b9*/
+#define DAT_0002fbf4 ((unsigned long)"%s(): filesystem need format,try to format,please wait..\n") /*=0xa43b9*/
 #define DAT_0002fbf8 ((unsigned long)&g_voice_block_dir_buf) /*=0x20018daa*/
 #define DAT_0002fbfc ((unsigned long)&rodata_8a050) /*=0x8a050*/
 #define DAT_0002fc00 ((unsigned long)&rodata_9eba7) /*=0x9eba7*/
 #define DAT_0002fc04 ((unsigned long)&rodata_9ebc6) /*=0x9ebc6*/
-#define DAT_0002fc08 ((unsigned long)&rodata_a43f3) /*=0xa43f3*/
-#define DAT_0002fc0c ((unsigned long)&rodata_a4413) /*=0xa4413*/
-#define DAT_0002fc10 ((unsigned long)&rodata_a4439) /*=0xa4439*/
-#define DAT_0002fc14 ((unsigned long)&rodata_a447d) /*=0xa447d*/
+#define DAT_0002fc08 ((unsigned long)"%s(): filesystem format sucess\n") /*=0xa43f3*/
+#define DAT_0002fc0c ((unsigned long)"%s(): find a free voice block(%d)!\r\n\n") /*=0xa4413*/
+#define DAT_0002fc10 ((unsigned long)"%s(): voice_block_store_timestamp = %d, voice_stream_block_ts = %d\n") /*=0xa4439*/
+#define DAT_0002fc14 ((unsigned long)"%s(): no free voice block,try to use the oldest voice block(%d)!\n") /*=0xa447d*/
 #define DAT_0002fc18 ((volatile int *)((unsigned long)&g_20019daa) /*=0x20019daa*/)
-#define DAT_0002fc1c ((unsigned long)&rodata_a44bf) /*=0xa44bf*/
+#define DAT_0002fc1c ((unsigned long)"%s(): audio manager start check success,will fill up audio stream to Num%d block\n") /*=0xa44bf*/
 #define DAT_0002fc20 ((volatile int *)((unsigned long)&g_20007bb8) /*=0x20007bb8*/)
 #define DAT_0002fc24 ((volatile int *)((unsigned long)&g_20007bb4) /*=0x20007bb4*/)
 #define DAT_0002fc28 ((volatile int *)((unsigned long)&g_20007bbc) /*=0x20007bbc*/)
 #define DAT_0002fe74 ((unsigned long)&g_audio_msgq) /*=0x20003890*/
 #define DAT_0002fe78 ((volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define DAT_0002fe7c ((volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_0002fe80 ((unsigned long)&rodata_a4926) /*=0xa4926*/
-#define DAT_0002fe84 ((unsigned long)&rodata_a4511) /*=0xa4511*/
+#define DAT_0002fe80 ((unsigned long)"audioStreamFileManagerHandler") /*=0xa4926*/
+#define DAT_0002fe84 ((unsigned long)"%s(): A start command occurred during recording to exit the recording\n") /*=0xa4511*/
 #define DAT_0002fe88 ((volatile int *)((unsigned long)&g_20007bb8) /*=0x20007bb8*/)
-#define DAT_0002fe8c ((unsigned long)&rodata_a4558) /*=0xa4558*/
-#define DAT_0002fe90 ((unsigned long)&rodata_a457d) /*=0xa457d*/
+#define DAT_0002fe8c ((unsigned long)"%s(): copy %d byte into audio cache\n") /*=0xa4558*/
+#define DAT_0002fe90 ((unsigned long)"%s(): To complete a sector of data, perform flash write operations\n") /*=0xa457d*/
 #define DAT_0002fe94 ((unsigned long)&rodata_87bf0) /*=0x87bf0*/
 #define DAT_0002fe98 ((volatile int *)((unsigned long)&g_20019daa) /*=0x20019daa*/)
-#define DAT_0002fe9c ((unsigned long)&rodata_a45c1) /*=0xa45c1*/
-#define DAT_0002fea0 ((unsigned long)&rodata_a461a) /*=0xa461a*/
-#define DAT_0002fea4 ((unsigned long)&rodata_a46fd) /*=0xa46fd*/
-#define DAT_0002fea8 ((unsigned long)&rodata_a4675) /*=0xa4675*/
+#define DAT_0002fe9c ((unsigned long)"%s(): the number of recording files exceeds the upper limit, system automatically stops\n") /*=0xa45c1*/
+#define DAT_0002fea0 ((unsigned long)"%s(): Catch touch release is not recognized, start QuickNote exception recovery mechanism\n") /*=0xa461a*/
+#define DAT_0002fea4 ((unsigned long)"%s(): received audio stop command,stop audio write process\n") /*=0xa46fd*/
+#define DAT_0002fea8 ((unsigned long)"%s(): wirte addr = 0x%08x\n") /*=0xa4675*/
 #define DAT_0002feac ((unsigned long)&g_voice_block_dir_buf) /*=0x20018daa*/
 #define DAT_0002feb0 ((volatile int *)((unsigned long)&g_20007bb4) /*=0x20007bb4*/)
 #define DAT_00030138 ((volatile int *)((unsigned long)&g_20007bbc) /*=0x20007bbc*/)
 #define DAT_0003013c ((unsigned long)&g_voice_block_dir_buf) /*=0x20018daa*/
 #define DAT_00030140 ((volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_00030144 ((unsigned long)&rodata_a4926) /*=0xa4926*/
-#define DAT_00030148 ((unsigned long)&rodata_a4690) /*=0xa4690*/
-#define DAT_0003014c ((unsigned long)&rodata_a46cb) /*=0xa46cb*/
+#define DAT_00030144 ((unsigned long)"audioStreamFileManagerHandler") /*=0xa4926*/
+#define DAT_00030148 ((unsigned long)"%s(): wirte 4k voice data to flash,write address = 0x%08x\n") /*=0xa4690*/
+#define DAT_0003014c ((unsigned long)"%s(): Copy remain %d byte data into cache memory\n") /*=0xa46cb*/
 #define DAT_00030150 ((volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/)
-#define DAT_00030154 ((unsigned long)&rodata_a486b) /*=0xa486b*/
-#define DAT_00030158 ((unsigned long)&rodata_a4739) /*=0xa4739*/
-#define DAT_0003015c ((unsigned long)&rodata_a47a2) /*=0xa47a2*/
+#define DAT_00030154 ((unsigned long)"%s(): A delete command occurred during the recording process. The recording was stopped and the deletion action was performed,Delete num = %d\n") /*=0xa486b*/
+#define DAT_00030158 ((unsigned long)"%s(): upgrade Num.%d voice manager block,total write sector num = %d, total write byte = %d ,crc32 = %d\n") /*=0xa4739*/
+#define DAT_0003015c ((unsigned long)"%s(): voice block start addr = voice block end addr\n") /*=0xa47a2*/
 #define DAT_00030160 0x000a47d7u
 #define DAT_00030164 0x000a4840u
 #define DAT_00030168 ((volatile int *)((unsigned long)&g_20007bb8) /*=0x20007bb8*/)

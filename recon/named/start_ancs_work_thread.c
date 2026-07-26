@@ -8,8 +8,8 @@
  *   z_impl_k_thread_create                   <= FUN_00071eac @ 0x00071eac
  * address symbols (name @ address):
  *   ADDR_ble_ancs_data_req_thread_THUMB      @ 0x00019719
- *   rodata_9af2e                             @ 0x0009af2e
- *   rodata_9b0f1                             @ 0x0009b0f1
+ *   rodata_9af2e                             @ 0x0009af2e   [INLINED -- G6 literal batch]
+ *   rodata_9b0f1                             @ 0x0009b0f1   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_ancs_work_thread                       @ 0x20003c50
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -35,7 +35,7 @@ void start_ancs_work_thread(unsigned param_1){
         debug_print();
         return;
       }
-      log_message(0x9af2e, 0x9b0f1);
+      log_message(((unsigned long)"%s(): exit\n\n"), ((unsigned long)"start_ancs_work_thread"));
       return;
     }
   }

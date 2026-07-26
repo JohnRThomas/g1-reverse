@@ -6,9 +6,9 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
- *   rodata_9e903                             @ 0x0009e903
- *   rodata_9e968                             @ 0x0009e968
- *   rodata_9ed8f                             @ 0x0009ed8f
+ *   rodata_9e903                             @ 0x0009e903   [INLINED -- G6 literal batch]
+ *   rodata_9e968                             @ 0x0009e968   [INLINED -- G6 literal batch]
+ *   rodata_9ed8f                             @ 0x0009ed8f   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_flash_store_cmd_msgq                   @ 0x20003994
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -34,9 +34,9 @@ int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
   if (iVar1 == 0) {
     if (*(int*)0x2000230cUL > 2) {
       if (*(int*)0x20007554UL == 0) {
-        log_message(0x9e968, 0x9ed8f);
+        log_message(((unsigned long)"%s(): SEND APP Language Command...\n"), ((unsigned long)"cleanAppLanguageInfo"));
       } else {
-        debug_print(0x9e968, 0x9ed8f);
+        debug_print(((unsigned long)"%s(): SEND APP Language Command...\n"), ((unsigned long)"cleanAppLanguageInfo"));
       }
     }
     k_sem_give((void*)0x200079e4UL);
@@ -44,9 +44,9 @@ int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
   } else {
     if (*(int*)0x2000230cUL > 0) {
       if (*(int*)0x20007554UL == 0) {
-        log_message(0x9e903, 0x9ed8f);
+        log_message(((unsigned long)"%s(): setting flash store queue fill failed\r\n\n"), ((unsigned long)"cleanAppLanguageInfo"));
       } else {
-        debug_print(0x9e903, 0x9ed8f);
+        debug_print(((unsigned long)"%s(): setting flash store queue fill failed\r\n\n"), ((unsigned long)"cleanAppLanguageInfo"));
       }
     }
     uVar2 = -1;

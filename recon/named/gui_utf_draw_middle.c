@@ -16,8 +16,8 @@
  *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
  *   rodata_aaa58                             @ 0x000aaa58
- *   rodata_aaa7f                             @ 0x000aaa7f
- *   rodata_aad64                             @ 0x000aad64
+ *   rodata_aaa7f                             @ 0x000aaa7f   [INLINED -- G6 literal batch]
+ *   rodata_aad64                             @ 0x000aad64   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_gui_dark_light_dither_mask             @ 0x200034f6
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -46,8 +46,8 @@ undefined4 gui_utf_draw_middle(undefined4 param_1,undefined4 param_2,int param_3
     if (param_11 != 0) {
 LAB_e7c:
       if (1 < *(volatile int*)0x2000230c) {
-        if (*(volatile int*)0x20007554 == 0) log_message(0xaaa7f,0xaad64);
-        else debug_print(0xaaa7f,0xaad64);
+        if (*(volatile int*)0x20007554 == 0) log_message(((unsigned long)"%s(): exex process effect callback function\n"),((unsigned long)"gui_utf_draw_middle"));
+        else debug_print(((unsigned long)"%s(): exex process effect callback function\n"),((unsigned long)"gui_utf_draw_middle"));
       }
       uVar9 = (*param_11)(0,param_2,param_3,param_4,param_5);
       return uVar9;
@@ -64,7 +64,7 @@ LAB_e7c:
             if (iVar3 == 0) {
               iVar3 = resource_manger_get(param_3,uVar15,(int)&local_2d4,(int)&local_2d0,(int)&local_2d8,0);
               if (iVar3 < 0) {
-                if (1 < *(volatile int*)0x2000230c) { if (*(volatile int*)0x20007554 == 0) log_message(0xaaa58,0xaad64,uVar15); else debug_print(0xaaa58,0xaad64,uVar15); }
+                if (1 < *(volatile int*)0x2000230c) { if (*(volatile int*)0x20007554 == 0) log_message(0xaaa58,((unsigned long)"gui_utf_draw_middle"),uVar15); else debug_print(0xaaa58,((unsigned long)"gui_utf_draw_middle"),uVar15); }
               } else uVar12 = local_2d4 + uVar12 & 0xffff;
             }
           }
@@ -76,7 +76,7 @@ LAB_e7c:
           iVar4 = resource_manger_get(param_3,uVar14,(int)&local_2d4,(int)&local_2d0,(int)&local_2d8,0);
           iVar1 = local_2d0; iVar3 = local_2d4;
           if (iVar4 < 0) {
-            if (1 < *(volatile int*)0x2000230c) { if (*(volatile int*)0x20007554 == 0) log_message(0xaaa58,0xaad64,uVar14); else debug_print(0xaaa58,0xaad64,uVar14); }
+            if (1 < *(volatile int*)0x2000230c) { if (*(volatile int*)0x20007554 == 0) log_message(0xaaa58,((unsigned long)"gui_utf_draw_middle"),uVar14); else debug_print(0xaaa58,((unsigned long)"gui_utf_draw_middle"),uVar14); }
           } else {
             iVar4 = local_2d4 / 2; iVar5 = local_2d0 * iVar4;
             safe_memcpy_checked((int)local_2cc,local_2d8,iVar5,0x2a4);

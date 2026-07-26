@@ -10,11 +10,11 @@
  *   dev_reg_modify_bits                      <= FUN_00083e0e @ 0x00083e0e
  * address symbols (name @ address):
  *   rodata_99329                             @ 0x00099329
- *   rodata_99345                             @ 0x00099345
+ *   rodata_99345                             @ 0x00099345   [INLINED -- G6 literal batch]
  *   rodata_9938c                             @ 0x0009938c
  *   rodata_9940b                             @ 0x0009940b
- *   rodata_99427                             @ 0x00099427
- *   rodata_99c3e                             @ 0x00099c3e
+ *   rodata_99427                             @ 0x00099427   [INLINED -- G6 literal batch]
+ *   rodata_99c3e                             @ 0x00099c3e   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   device_info                              @ 0x200069fc
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -40,8 +40,8 @@ unsigned power_for_panel(unsigned param_1, unsigned param_2)
         goto LAB_00015e1a;
     }
     if(0 < *(volatile int*)0x2000230c){
-        if(*(volatile int*)0x20007554 == 0){ log_message(0x00099345, 0x00099c3e); }
-        else { debug_print(0x00099345, 0x00099c3e); }
+        if(*(volatile int*)0x20007554 == 0){ log_message(((unsigned long)"%s(): enable ldsw1 1.8v for panel\n"), ((unsigned long)"power_for_panel")); }
+        else { debug_print(((unsigned long)"%s(): enable ldsw1 1.8v for panel\n"), ((unsigned long)"power_for_panel")); }
     }
     app_msleep_thunk_a(1);
     iVar2 = *(volatile int*)(0x00087d10+4);
@@ -57,8 +57,8 @@ unsigned power_for_panel(unsigned param_1, unsigned param_2)
             iVar4 = *(volatile int*)0x20007554;
             puVar3 = (unsigned char*)0x0009938c;
 LAB_00015e82:
-            if(iVar4 == 0){ log_message((int)puVar3, 0x00099c3e); }
-            else { debug_print((int)puVar3, 0x00099c3e); }
+            if(iVar4 == 0){ log_message((int)puVar3, ((unsigned long)"power_for_panel")); }
+            else { debug_print((int)puVar3, ((unsigned long)"power_for_panel")); }
         }
     } else {
         iVar4 = dev_write_reg3(*(unsigned*)(iVar2+0x1c), 4, 10, 2, param_1, param_2);
@@ -87,8 +87,8 @@ LAB_00015e82:
             puVar3 = (unsigned char*)0x0009940b;
         } else {
             if(0 < *piVar1){
-                if(*(volatile int*)0x20007554 == 0){ log_message(0x00099427, 0x00099c3e); }
-                else { debug_print(0x00099427, 0x00099c3e); }
+                if(*(volatile int*)0x20007554 == 0){ log_message(((unsigned long)"%s(): enable buck2.\n"), ((unsigned long)"power_for_panel")); }
+                else { debug_print(((unsigned long)"%s(): enable buck2.\n"), ((unsigned long)"power_for_panel")); }
             }
             app_msleep_thunk_a(1);
             gpio_dt_spec_activate(0);
@@ -99,7 +99,7 @@ LAB_00015e82:
         }
     }
 LAB_00015e1a:
-    if(iVar2 == 0){ log_message((int)puVar3, 0x00099c3e); }
-    else { debug_print((int)puVar3, 0x00099c3e); }
+    if(iVar2 == 0){ log_message((int)puVar3, ((unsigned long)"power_for_panel")); }
+    else { debug_print((int)puVar3, ((unsigned long)"power_for_panel")); }
     return 0;
 }

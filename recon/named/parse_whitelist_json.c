@@ -16,7 +16,7 @@
  *   rodata_9a1dd                             @ 0x0009a1dd
  *   rodata_9e1b6                             @ 0x0009e1b6
  *   rodata_9e235                             @ 0x0009e235
- *   rodata_a8604                             @ 0x000a8604
+ *   rodata_a8604                             @ 0x000a8604   [INLINED -- G6 literal batch]
  *   rodata_a862c                             @ 0x000a862c
  *   rodata_a8638                             @ 0x000a8638
  *   rodata_a864e                             @ 0x000a864e
@@ -65,9 +65,9 @@ uint32_t parse_whitelist_json(uint32_t request, uint32_t unused_2,
 
     if (root == 0) {
         if (*(volatile int *)0x20007554u == 0)
-            log_message(0x000a8604, request);
+            log_message(((unsigned long)"error root JSON NODE,json_buffer is %s\n"), request);
         else
-            debug_print(0x000a8604, request);
+            debug_print(((unsigned long)"error root JSON NODE,json_buffer is %s\n"), request);
         return 0;
     }
 

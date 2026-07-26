@@ -7,10 +7,10 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef058                             @ 0x000ef058
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
  *   rodata_ef5df                             @ 0x000ef5df
- *   rodata_ef603                             @ 0x000ef603
- *   rodata_ef6b0                             @ 0x000ef6b0
+ *   rodata_ef603                             @ 0x000ef603   [INLINED -- G6 literal batch]
+ *   rodata_ef6b0                             @ 0x000ef6b0   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_dashboard_response_msgq                @ 0x2000392c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -41,13 +41,13 @@ unsigned int SendDashBoardStartupModeInfoToSlave(int param_1)
                 uVar2 = ((unsigned long)&rodata_ef5df) /*=0xef5df*/;
             }
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_ef603) /*=0xef603*/, ((unsigned long)&rodata_ef6b0) /*=0xef6b0*/, uVar2, ((unsigned long)&rodata_ef5df) /*=0xef5df*/);
+                log_message(((unsigned long)"%s(): send dashboard startup mode to slave . startup mode  = %s\n") /*=0xef603*/, ((unsigned long)"SendDashBoardStartupModeInfoToSlave") /*=0xef6b0*/, uVar2, ((unsigned long)&rodata_ef5df) /*=0xef5df*/);
             } else {
-                debug_print(((unsigned long)&rodata_ef603) /*=0xef603*/, ((unsigned long)&rodata_ef6b0) /*=0xef6b0*/, uVar2, ((unsigned long)&rodata_ef5df) /*=0xef5df*/);
+                debug_print(((unsigned long)"%s(): send dashboard startup mode to slave . startup mode  = %s\n") /*=0xef603*/, ((unsigned long)"SendDashBoardStartupModeInfoToSlave") /*=0xef6b0*/, uVar2, ((unsigned long)&rodata_ef5df) /*=0xef5df*/);
             }
         }
     } else {
-        log_message(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_ef6b0) /*=0xef6b0*/);
+        log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/, ((unsigned long)"SendDashBoardStartupModeInfoToSlave") /*=0xef6b0*/);
         uVar3 = 0xffffffff;
     }
     return uVar3;

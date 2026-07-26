@@ -8,9 +8,9 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   bt_hci_disconnect                        <= FUN_00080ed8 @ 0x00080ed8
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3a5d                             @ 0x000f3a5d
- *   rodata_f3dad                             @ 0x000f3dad
+ *   rodata_f3dad                             @ 0x000f3dad   [INLINED -- G6 literal batch]
  *   rodata_f7a30                             @ 0x000f7a30
  */
 /* Reconstructed FUN_00056a68 @ 0x56a68  (parity: 300/300 trials, PROVEN) */
@@ -28,8 +28,8 @@ int bt_conn_disconnect_by_state(unsigned short* param_1, unsigned char param_2){
     break;
   case 6:
     if(*(char*)((int)param_1+2)==1) return 0;
-    printk(0x00099cbd,0x000f7a30,0x000f3a5d,0x5d9);
-    printk(0x000f3dad,*(unsigned char*)((int)param_1+2));
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x000f7a30,0x000f3a5d,0x5d9);
+    printk(((unsigned long)"\tInvalid conn type %u\n"),*(unsigned char*)((int)param_1+2));
     assert_post_action(0x000f3a5d,0x5d9);
     /* fallthrough */
   case 7:

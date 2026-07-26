@@ -414,10 +414,10 @@ BLE_PUT_ALWAYS_INLINE void ble_put_op08(struct ble_put_context *ctx,
     if (actual != advertised) {
         if (BLE_LOG_LEVEL > 1) {
             if (BLE_IS_DEBUG == 0)
-                log_message((const void *)((unsigned long)&rodata_9b8fd) /*=0x9b8fd*/, (const void *)0x0009e077,
+                log_message((const void *)((unsigned long)"%s(): packet length error,input data length = %d,packet data length = %d\n") /*=0x9b8fd*/, (const void *)0x0009e077,
                             advertised, actual);
             else
-                debug_print((const void *)((unsigned long)&rodata_9b8fd) /*=0x9b8fd*/, (const void *)0x0009e077,
+                debug_print((const void *)((unsigned long)"%s(): packet length error,input data length = %d,packet data length = %d\n") /*=0x9b8fd*/, (const void *)0x0009e077,
                              advertised, actual);
         }
         return;

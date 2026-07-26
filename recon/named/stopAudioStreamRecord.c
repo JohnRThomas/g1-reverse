@@ -8,8 +8,8 @@
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_a3f45                             @ 0x000a3f45
- *   rodata_a4959                             @ 0x000a4959
+ *   rodata_a3f45                             @ 0x000a3f45   [INLINED -- G6 literal batch]
+ *   rodata_a4959                             @ 0x000a4959   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_audio_msgq                             @ 0x20003890
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -37,9 +37,9 @@ unsigned int stopAudioStreamRecord(void)
     } else {
         if (*(volatile int*)0x2000230cUL > 0) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                log_message(0xa3f45U, 0xa4959U);
+                log_message(((unsigned long)"%s(): enqueue_dmic failed\r\n\n"), 0xa4959U);
             } else {
-                debug_print(0xa3f45U, 0xa4959U);
+                debug_print(((unsigned long)"%s(): enqueue_dmic failed\r\n\n"), 0xa4959U);
             }
         }
         uVar2 = 0xffffffffUL;

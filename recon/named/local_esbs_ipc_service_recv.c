@@ -2,12 +2,12 @@
  * public-name: local_esbs_ipc_service_recv
  * durable-map: recon/catalogs/function_names_app.json
  * address symbols (name @ address):
- *   rodata_99133                             @ 0x00099133
- *   rodata_99152                             @ 0x00099152
- *   rodata_99228                             @ 0x00099228
- *   rodata_99297                             @ 0x00099297
- *   rodata_992e1                             @ 0x000992e1
- *   rodata_99b89                             @ 0x00099b89
+ *   rodata_99133                             @ 0x00099133   [INLINED -- G6 literal batch]
+ *   rodata_99152                             @ 0x00099152   [INLINED -- G6 literal batch]
+ *   rodata_99228                             @ 0x00099228   [INLINED -- G6 literal batch]
+ *   rodata_99297                             @ 0x00099297   [INLINED -- G6 literal batch]
+ *   rodata_992e1                             @ 0x000992e1   [INLINED -- G6 literal batch]
+ *   rodata_99b89                             @ 0x00099b89   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   device_info                              @ 0x200069fc
  *   g_log_use_alt_sink                       @ 0x20007554

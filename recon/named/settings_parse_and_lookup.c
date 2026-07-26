@@ -8,10 +8,10 @@
  *   settings_name_steq                       <= FUN_0007f1a0 @ 0x0007f1a0
  * address symbols (name @ address):
  *   __settings_handler_static_list_start     @ 0x000882b0
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  *   rodata_f1126                             @ 0x000f1126
- *   rodata_f1158                             @ 0x000f1158
+ *   rodata_f1158                             @ 0x000f1158   [INLINED -- G6 literal batch]
  *   g_settings_handlers                      @ 0x2000a10c
  */
 /* Reconstructed FUN_0004e540 @ 0x4e540  (parity: 300/300 trials, PROVEN) */
@@ -37,8 +37,8 @@ uint32_t* settings_parse_and_lookup(uint32_t param_1, uint32_t *param_2, uint32_
   uStack_20 = param_3;
   while (1){
     if (puVar1 < puVar3){
-      printk(0x99cbd, 0xf1158, 0xf1126, 0x94, uVar7);
-      printk(0xf0d20);
+      printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"ch <= _settings_handler_static_list_end"), 0xf1126, 0x94, uVar7);
+      printk(((unsigned long)"\tunexpected list end location\n"));
       assert_post_action(0xf1126, 0x94);
     }
     if (puVar1 <= puVar3) break;

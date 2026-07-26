@@ -7,9 +7,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f09d1                             @ 0x000f09d1
- *   rodata_f0a04                             @ 0x000f0a04
+ *   rodata_f0a04                             @ 0x000f0a04   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction FUN_00066d1c @ 0x66d1c, exact extent 72 bytes. */
 #include <stdint.h>
@@ -21,5 +21,5 @@ uintptr_t nrf_gpio_pin_port_base_get(uint32_t *descriptor,uint32_t a,uint32_t b,
  else if((v>>5)==1){v=idx;bit=0xffffu>>idx;base=0x50842800u;}
  else goto invalid;
  if(bit&1){*descriptor=v;return base;}
-invalid:printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0a04) /*=0xf0a04*/,((unsigned long)&rodata_f09d1) /*=0xf09d1*/,0x32f,context);assert_post_action(((unsigned long)&rodata_f09d1) /*=0xf09d1*/,0x32f);
+invalid:printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"nrf_gpio_pin_present_check(*p_pin)") /*=0xf0a04*/,((unsigned long)&rodata_f09d1) /*=0xf09d1*/,0x32f,context);assert_post_action(((unsigned long)&rodata_f09d1) /*=0xf09d1*/,0x32f);
 }

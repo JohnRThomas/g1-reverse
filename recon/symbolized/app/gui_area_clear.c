@@ -11,8 +11,8 @@
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  * address symbols (name @ address):
  *   rodata_aa891                             @ 0x000aa891
- *   rodata_aa8c8                             @ 0x000aa8c8
- *   rodata_aae00                             @ 0x000aae00
+ *   rodata_aa8c8                             @ 0x000aa8c8   [INLINED -- G6 literal batch]
+ *   rodata_aae00                             @ 0x000aae00   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -35,7 +35,7 @@ uint32_t gui_area_clear(uint32_t param_1, uint32_t param_2, uint32_t param_3, ui
 
     if (*piVar1 > 2) {
         if (*(volatile uint32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_aa8c8) /*=0xaa8c8*/, ((unsigned long)&rodata_aae00) /*=0xaae00*/);
+            log_message(((unsigned long)"%s(): exec area clear command....\n") /*=0xaa8c8*/, ((unsigned long)"gui_area_clear") /*=0xaae00*/);
         } else {
             debug_print();
         }
@@ -44,7 +44,7 @@ uint32_t gui_area_clear(uint32_t param_1, uint32_t param_2, uint32_t param_3, ui
     if (*(uint32_t*)(iVar2 + 0x35c) == 0) {
         if (*piVar1 > 0) {
             if (*(volatile uint32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_aa891) /*=0xaa891*/, ((unsigned long)&rodata_aae00) /*=0xaae00*/);
+                log_message(((unsigned long)&rodata_aa891) /*=0xaa891*/, ((unsigned long)"gui_area_clear") /*=0xaae00*/);
             } else {
                 debug_print();
             }

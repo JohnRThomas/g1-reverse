@@ -17,9 +17,9 @@
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
  *   log_module_bt_conn                       @ 0x00088108
- *   rodata_f3c37                             @ 0x000f3c37
- *   rodata_f3c48                             @ 0x000f3c48
- *   rodata_f3c5f                             @ 0x000f3c5f
+ *   rodata_f3c37                             @ 0x000f3c37   [INLINED -- G6 literal batch]
+ *   rodata_f3c48                             @ 0x000f3c48   [INLINED -- G6 literal batch]
+ *   rodata_f3c5f                             @ 0x000f3c5f   [INLINED -- G6 literal batch]
  *   g_ble_dev_state                          @ 0x20002000
  *   g_ble_conn_poll_signal                   @ 0x20002990
  */

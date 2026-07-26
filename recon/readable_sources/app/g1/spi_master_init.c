@@ -13,13 +13,13 @@
  * address symbols (name @ address):
  *   rodata_883b0                             @ 0x000883b0
  *   rodata_883b4                             @ 0x000883b4
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_9fb89                             @ 0x0009fb89
- *   rodata_9fb9f                             @ 0x0009fb9f
- *   rodata_9fbfd                             @ 0x0009fbfd
- *   rodata_9fc15                             @ 0x0009fc15
- *   rodata_9fc2c                             @ 0x0009fc2c
- *   rodata_9fc4d                             @ 0x0009fc4d
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_9fb89                             @ 0x0009fb89   [INLINED -- G6 literal batch]
+ *   rodata_9fb9f                             @ 0x0009fb9f   [INLINED -- G6 literal batch]
+ *   rodata_9fbfd                             @ 0x0009fbfd   [INLINED -- G6 literal batch]
+ *   rodata_9fc15                             @ 0x0009fc15   [INLINED -- G6 literal batch]
+ *   rodata_9fc2c                             @ 0x0009fc2c   [INLINED -- G6 literal batch]
+ *   rodata_9fc4d                             @ 0x0009fc4d   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_20018c6c                               @ 0x20018c6c
@@ -58,23 +58,23 @@ unsigned spi_master_init(uintptr_t event)
     int level=*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/;
     struct spi_map *map;
     if(mode==3)map=&mode3; else if(mode==4)map=&mode4; else {
-        if(level>0){int alt=*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;if(alt)debug_print(((unsigned long)&rodata_9fb89) /*=0x9fb89*/,((unsigned long)&rodata_9fc4d) /*=0x9fc4d*/,mode,(uint32_t)alt);else log_message(((unsigned long)&rodata_9fb89) /*=0x9fb89*/,((unsigned long)&rodata_9fc4d) /*=0x9fc4d*/);} return 0;
+        if(level>0){int alt=*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;if(alt)debug_print(((unsigned long)"%s():  SPIM BUS ERR!\n") /*=0x9fb89*/,((unsigned long)"spi_master_init") /*=0x9fc4d*/,mode,(uint32_t)alt);else log_message(((unsigned long)"%s():  SPIM BUS ERR!\n") /*=0x9fb89*/,((unsigned long)"spi_master_init") /*=0x9fc4d*/);} return 0;
     }
     *(volatile uint32_t*)(event+0xc)=map->base;
     *(volatile uint32_t*)(event+0x10)=map->tag;
     if(level>2){
-        if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)debug_print(((unsigned long)&rodata_9fb9f) /*=0x9fb9f*/,((unsigned long)&rodata_9fc4d) /*=0x9fc4d*/,mode,*(uint8_t*)(event+0x1d),*(uint8_t*)(event+0x19),*(uint8_t*)(event+0x1a),*(uint8_t*)(event+0x1b),*(uint8_t*)(event+0x1c));
-        else log_message(((unsigned long)&rodata_9fb9f) /*=0x9fb9f*/,((unsigned long)&rodata_9fc4d) /*=0x9fc4d*/,mode,*(uint8_t*)(event+0x1d),*(uint8_t*)(event+0x19),*(uint8_t*)(event+0x1a),*(uint8_t*)(event+0x1b),*(uint8_t*)(event+0x1c));
+        if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)debug_print(((unsigned long)"%s(): *SPIM(%d)speed=%dM, sck=%d, mosi=%d, miso=%d, ss=%d\n") /*=0x9fb9f*/,((unsigned long)"spi_master_init") /*=0x9fc4d*/,mode,*(uint8_t*)(event+0x1d),*(uint8_t*)(event+0x19),*(uint8_t*)(event+0x1a),*(uint8_t*)(event+0x1b),*(uint8_t*)(event+0x1c));
+        else log_message(((unsigned long)"%s(): *SPIM(%d)speed=%dM, sck=%d, mosi=%d, miso=%d, ss=%d\n") /*=0x9fb9f*/,((unsigned long)"spi_master_init") /*=0x9fc4d*/,mode,*(uint8_t*)(event+0x1d),*(uint8_t*)(event+0x19),*(uint8_t*)(event+0x1a),*(uint8_t*)(event+0x1b),*(uint8_t*)(event+0x1c));
     }
     uintptr_t callback=mode==3?0x0007ca77u:0;
     uintptr_t callback_context=mode==3?event:0;
     if(nrfx_spim_init((void*)(event+0xc),&cfg,callback,callback_context)!=0x0bad0000u){
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_9fc15) /*=0x9fc15*/,((unsigned long)&rodata_9fbfd) /*=0x9fbfd*/,0x68);
-        assert_post_action(((unsigned long)&rodata_9fbfd) /*=0x9fbfd*/,0x68);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"status == NRFX_SUCCESS") /*=0x9fc15*/,((unsigned long)"../src/spim_spis/spim.c") /*=0x9fbfd*/,0x68);
+        assert_post_action(((unsigned long)"../src/spim_spis/spim.c") /*=0x9fbfd*/,0x68);
     }
     volatile uint8_t *once=(volatile uint8_t*)(mode==3?((unsigned long)&g_20018c6c) /*=0x20018c6c*/:((unsigned long)&g_20018c6d) /*=0x20018c6d*/);
     if(!*once){*once=1;arch_irq_priority_set(mode==3?12:10,6);}
-    if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/>2){if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)debug_print(((unsigned long)&rodata_9fc2c) /*=0x9fc2c*/,((unsigned long)&rodata_9fc4d) /*=0x9fc4d*/,mode);else log_message(((unsigned long)&rodata_9fc2c) /*=0x9fc2c*/,((unsigned long)&rodata_9fc4d) /*=0x9fc4d*/,mode);}
+    if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/>2){if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)debug_print(((unsigned long)"%s(): spim(bus=%d): init finish\n") /*=0x9fc2c*/,((unsigned long)"spi_master_init") /*=0x9fc4d*/,mode);else log_message(((unsigned long)"%s(): spim(bus=%d): init finish\n") /*=0x9fc2c*/,((unsigned long)"spi_master_init") /*=0x9fc4d*/,mode);}
     *(volatile uint32_t*)(event+0x14)=1;
     return 0;
 }

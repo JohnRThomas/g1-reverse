@@ -7,8 +7,8 @@
  *   esb_send_command_and_wait_ack            <= FUN_00027448 @ 0x00027448
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
- *   rodata_a98de                             @ 0x000a98de
- *   rodata_a9935                             @ 0x000a9935
+ *   rodata_a98de                             @ 0x000a98de   [INLINED -- G6 literal batch]
+ *   rodata_a9935                             @ 0x000a9935   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

@@ -12,8 +12,8 @@
  *   rodata_25dc5                             @ 0x00025dc5
  *   rodata_25df9                             @ 0x00025df9
  *   rodata_25fad                             @ 0x00025fad
- *   rodata_9af2e                             @ 0x0009af2e
- *   rodata_9fb15                             @ 0x0009fb15
+ *   rodata_9af2e                             @ 0x0009af2e   [INLINED -- G6 literal batch]
+ *   rodata_9fb15                             @ 0x0009fb15   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -31,9 +31,9 @@ unsigned int register_imu_funsion_context(unsigned char *param_1, unsigned int p
     if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1) {
         unsigned int sink = *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
         if (sink == 0) {
-            log_message(((unsigned long)&rodata_9af2e) /*=0x9af2e*/,((unsigned long)&rodata_9fb15) /*=0x9fb15*/,param_3,sink,param_4);
+            log_message(((unsigned long)"%s(): exit\n\n") /*=0x9af2e*/,((unsigned long)"register_imu_funsion_context") /*=0x9fb15*/,param_3,sink,param_4);
         } else {
-            debug_print(((unsigned long)&rodata_9af2e) /*=0x9af2e*/,((unsigned long)&rodata_9fb15) /*=0x9fb15*/,param_3,sink,param_4);
+            debug_print(((unsigned long)"%s(): exit\n\n") /*=0x9af2e*/,((unsigned long)"register_imu_funsion_context") /*=0x9fb15*/,param_3,sink,param_4);
         }
     }
     return 0;

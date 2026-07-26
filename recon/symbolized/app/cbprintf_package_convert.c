@@ -12,11 +12,11 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
  *   rodata_88188                             @ 0x00088188
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f04ef                             @ 0x000f04ef
- *   rodata_f0584                             @ 0x000f0584
+ *   rodata_f0584                             @ 0x000f0584   [INLINED -- G6 literal batch]
  *   rodata_f059f                             @ 0x000f059f
- *   rodata_f0642                             @ 0x000f0642
+ *   rodata_f0642                             @ 0x000f0642   [INLINED -- G6 literal batch]
  *   rodata_f0661                             @ 0x000f0661
  */
 /* Reconstructed FUN_0004abc0 @ 0x4abc0  (parity: 1/1 trials, PROVEN) */
@@ -62,7 +62,7 @@ int cbprintf_package_convert(byte *param_1,int param_2,int (*param_3)(byte*,int,
   local_60 = param_4;
   local_54 = param_3;
   if (param_1 == (byte *)0x0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0584) /*=0xf0584*/,((unsigned long)&rodata_f04ef) /*=0xf04ef*/,0x394);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"in_packaged != ((void *)0)") /*=0xf0584*/,((unsigned long)&rodata_f04ef) /*=0xf04ef*/,0x394);
     assert_post_action(((unsigned long)&rodata_f04ef) /*=0xf04ef*/,0x394);
   }
   bVar1 = v1[2];
@@ -277,7 +277,7 @@ LAB_0004adbe:
     } while ((local_68 != 0) && (uVar17 = is_ptr(local_5c,bVar8), bVar8 = (byte)((unsigned long long)uVar17 >> 0x20), ((int)uVar17) != 0));
     if (local_78 != 0) {
       if (uVar10 < 0x10) goto LAB_0004af48;
-      printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0642) /*=0xf0642*/,((unsigned long)&rodata_f04ef) /*=0xf04ef*/,0x448);
+      printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"scpy_cnt < sizeof(cpy_str_pos)") /*=0xf0642*/,((unsigned long)&rodata_f04ef) /*=0xf04ef*/,0x448);
       assert_post_action(((unsigned long)&rodata_f04ef) /*=0xf04ef*/,0x448);
     }
     if (0xf < uVar11) break;
@@ -286,13 +286,13 @@ LAB_0004adbe:
     uVar11 = uVar11 + 2 & 0xff;
     abStack_38[uVar7 & 0xff] = bVar2;
   }
-  printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0661) /*=0xf0661*/,((unsigned long)&rodata_f04ef) /*=0xf04ef*/,1099);
+  printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f0661) /*=0xf0661*/,((unsigned long)&rodata_f04ef) /*=0xf04ef*/,1099);
   assert_post_action(((unsigned long)&rodata_f04ef) /*=0xf04ef*/,1099);
 LAB_0004aede:
   if ((local_68 == 0) || (uVar17 = is_ptr(local_5c,bVar8), ((int)uVar17) == 0)) {
     if ((int)(param_5 << 0x1f) < 0) {
       if (0xf < uVar10) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0642) /*=0xf0642*/,((unsigned long)&rodata_f04ef) /*=0xf04ef*/,0x43e);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"scpy_cnt < sizeof(cpy_str_pos)") /*=0xf0642*/,((unsigned long)&rodata_f04ef) /*=0xf04ef*/,0x43e);
         assert_post_action(((unsigned long)&rodata_f04ef) /*=0xf04ef*/,0x43e);
       }
 LAB_0004af48:
@@ -301,7 +301,7 @@ LAB_0004af48:
     }
     else if ((int)(param_5 << 0x1d) < 0) {
       if (0xf < uVar11) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0661) /*=0xf0661*/,((unsigned long)&rodata_f04ef) /*=0xf04ef*/,0x441);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f0661) /*=0xf0661*/,((unsigned long)&rodata_f04ef) /*=0xf04ef*/,0x441);
         assert_post_action(((unsigned long)&rodata_f04ef) /*=0xf04ef*/,0x441);
       }
       abStack_38[uVar11] = bVar2;

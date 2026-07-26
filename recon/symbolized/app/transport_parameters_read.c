@@ -6,9 +6,9 @@
  *   ipc_send_len_prefixed_packet_locked_retry <= FUN_00025788 @ 0x00025788
  *   transport_parameters_read                <= FUN_000258b4 @ 0x000258b4
  * address symbols (name @ address):
- *   rodata_9f2f8                             @ 0x0009f2f8
- *   rodata_9f32d                             @ 0x0009f32d
- *   rodata_9f361                             @ 0x0009f361
+ *   rodata_9f2f8                             @ 0x0009f2f8   [INLINED -- G6 literal batch]
+ *   rodata_9f32d                             @ 0x0009f32d   [INLINED -- G6 literal batch]
+ *   rodata_9f361                             @ 0x0009f361   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_000258b4 @ 0x000258b4, extent 0x000000a0.
  * Readable identity: transport_parameters_read.
@@ -30,20 +30,20 @@ int transport_parameters_read(uint32_t transport, uint32_t *value, uint32_t *res
         return -1;
     result = ipc_send_len_prefixed_packet_locked_retry(transport, 0x2006U, &status, 1U);
     if (result != 0) {
-        log_message(((unsigned long)&rodata_9f2f8) /*=0x9f2f8*/);
+        log_message(((unsigned long)"eeprom_st25dv_read ST25DV_REG_MB_CTRL_DYN is failed\n") /*=0x9f2f8*/);
         return -2;
     }
     if ((status & 5U) != 5U)
         return -3;
     result = ipc_send_len_prefixed_packet_locked_retry(transport, 0x2007U, &received, 1U);
     if (result != 0) {
-        log_message(((unsigned long)&rodata_9f32d) /*=0x9f32d*/);
+        log_message(((unsigned long)"eeprom_st25dv_read ST25DV_REG_MB_LEN_DYN is failed\n") /*=0x9f32d*/);
         return -4;
     }
     *result_value = received;
     result = ipc_send_len_prefixed_packet_locked_retry(transport, 0x2008U, value, 0xffU);
     if (result != 0) {
-        log_message(((unsigned long)&rodata_9f361) /*=0x9f361*/);
+        log_message(((unsigned long)"eeprom_st25dv_read ST25DV_REG_MAILBOX_DYN is failed\n") /*=0x9f361*/);
         return -5;
     }
     return 0;

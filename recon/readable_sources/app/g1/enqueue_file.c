@@ -8,9 +8,9 @@
  *   k_msgq_get                               <= FUN_00072240 @ 0x00072240
  *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
- *   rodata_9e824                             @ 0x0009e824
- *   rodata_9e840                             @ 0x0009e840
- *   rodata_9e8f6                             @ 0x0009e8f6
+ *   rodata_9e824                             @ 0x0009e824   [INLINED -- G6 literal batch]
+ *   rodata_9e840                             @ 0x0009e840   [INLINED -- G6 literal batch]
+ *   rodata_9e8f6                             @ 0x0009e8f6   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_file_msg_pipe                          @ 0x200079a0
@@ -32,9 +32,9 @@ int enqueue_file(unsigned int param_1, unsigned int param_2)
         k_msgq_get(((unsigned long)&g_file_msg_pipe) /*=0x200079a0*/, buf, 0, 0);
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_9e824) /*=0x9e824*/, ((unsigned long)&rodata_9e8f6) /*=0x9e8f6*/);
+                log_message(((unsigned long)"%s(): enqueue_file is full\n") /*=0x9e824*/, ((unsigned long)"enqueue_file") /*=0x9e8f6*/);
             } else {
-                debug_print(((unsigned long)&rodata_9e824) /*=0x9e824*/, ((unsigned long)&rodata_9e8f6) /*=0x9e8f6*/);
+                debug_print(((unsigned long)"%s(): enqueue_file is full\n") /*=0x9e824*/, ((unsigned long)"enqueue_file") /*=0x9e8f6*/);
             }
         }
     }
@@ -43,9 +43,9 @@ int enqueue_file(unsigned int param_1, unsigned int param_2)
     iVar1 = k_msgq_put(((unsigned long)&g_file_msg_pipe) /*=0x200079a0*/, buf, 0, 0);
     if ((iVar1 != 0) && (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)) {
         if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_9e840) /*=0x9e840*/, ((unsigned long)&rodata_9e8f6) /*=0x9e8f6*/);
+            log_message(((unsigned long)"%s(): enqueue_file failed\r\n\n") /*=0x9e840*/, ((unsigned long)"enqueue_file") /*=0x9e8f6*/);
         } else {
-            debug_print(((unsigned long)&rodata_9e840) /*=0x9e840*/, ((unsigned long)&rodata_9e8f6) /*=0x9e8f6*/);
+            debug_print(((unsigned long)"%s(): enqueue_file failed\r\n\n") /*=0x9e840*/, ((unsigned long)"enqueue_file") /*=0x9e8f6*/);
         }
     }
     return iVar1;

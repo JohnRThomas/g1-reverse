@@ -6,7 +6,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6e3a                             @ 0x000f6e3a
  *   rodata_f6fef                             @ 0x000f6fef
  *   g_nrfx_twim_cb                           @ 0x2000b3cc
@@ -24,7 +24,7 @@ void nrfx_twim_disable(int *param_1, int param_2, int param_3, int param_4)
     int r0 = (int)param_1;
 
     if (*(volatile char *)(iVar2 + 0x22) == 0) {
-        printk(0x99cbd, 0xf6e3a, 0xf6fef, 0x176, param_4);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0xf6e3a, 0xf6fef, 0x176, param_4);
         r3 = 0x176;
         r0 = assert_post_action(0xf6fef, 0x176);
     }

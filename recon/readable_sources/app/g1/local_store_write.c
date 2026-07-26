@@ -8,9 +8,9 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   __strcat_chk                             <= FUN_00086fbe @ 0x00086fbe
  * address symbols (name @ address):
- *   rodata_9e161                             @ 0x0009e161
- *   rodata_9e187                             @ 0x0009e187
- *   rodata_9e553                             @ 0x0009e553
+ *   rodata_9e161                             @ 0x0009e161   [INLINED -- G6 literal batch]
+ *   rodata_9e187                             @ 0x0009e187   [INLINED -- G6 literal batch]
+ *   rodata_9e553                             @ 0x0009e553   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -46,18 +46,18 @@ uint32_t local_store_write(const char *key_suffix, const void *value,
         if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ < 3) {
             return 0;
         }
-        format = ((unsigned long)&rodata_9e187) /*=0x9e187*/;
+        format = ((unsigned long)"%s(): save success:[%s], len=%d\n") /*=0x9e187*/;
     } else {
         if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ < 1) {
             return 0;
         }
-        format = ((unsigned long)&rodata_9e161) /*=0x9e161*/;
+        format = ((unsigned long)"%s(): failed to store key: %s --- %d\n") /*=0x9e161*/;
     }
 
     if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-        log_message(format, ((unsigned long)&rodata_9e553) /*=0x9e553*/, key_suffix, length);
+        log_message(format, ((unsigned long)"local_store_write") /*=0x9e553*/, key_suffix, length);
     } else {
-        debug_print(format, ((unsigned long)&rodata_9e553) /*=0x9e553*/, key_suffix, length);
+        debug_print(format, ((unsigned long)"local_store_write") /*=0x9e553*/, key_suffix, length);
     }
     return 0;
 }

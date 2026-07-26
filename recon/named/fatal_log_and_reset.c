@@ -7,7 +7,7 @@
  *   fatal_log_and_reset                      <= FUN_00063b7c @ 0x00063b7c
  * address symbols (name @ address):
  *   rodata_881a8                             @ 0x000881a8
- *   rodata_f66f9                             @ 0x000f66f9
+ *   rodata_f66f9                             @ 0x000f66f9   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction FUN_00063b7c @ 0x00063b7c (44-byte exact extent). */
 #include <stdint.h>

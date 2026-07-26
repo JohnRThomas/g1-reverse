@@ -2,9 +2,9 @@
  * public-name: cal_panel_canvas_coord
  * durable-map: recon/catalogs/function_names_app.json
  * address symbols (name @ address):
- *   rodata_aa7a2                             @ 0x000aa7a2
- *   rodata_aa7cb                             @ 0x000aa7cb
- *   rodata_aa855                             @ 0x000aa855
+ *   rodata_aa7a2                             @ 0x000aa7a2   [INLINED -- G6 literal batch]
+ *   rodata_aa7cb                             @ 0x000aa7cb   [INLINED -- G6 literal batch]
+ *   rodata_aa855                             @ 0x000aa855   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

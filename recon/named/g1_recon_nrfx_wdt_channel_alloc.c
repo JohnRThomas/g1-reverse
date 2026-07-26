@@ -6,7 +6,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f7052                             @ 0x000f7052
  *   rodata_f79c8                             @ 0x000f79c8
  *   rodata_f7a32                             @ 0x000f7a32
@@ -20,12 +20,12 @@ extern void printk(uint32_t,uint32_t,uint32_t,uint32_t);
 uint32_t g1_recon_nrfx_wdt_channel_alloc(int* param_1, uint8_t* param_2){
   uint8_t r4byte=*(volatile uint8_t*)((char*)param_1+4);
   if(param_2==0){
-    printk(0x99cbd,0xf7a32,0xf79c8,0xa2);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0xf7a32,0xf79c8,0xa2);
     assert_post_action(0xf79c8,0xa2);
   }
   int iVar6=(int)(0x2000b41cUL + (uint)r4byte*8);
   while(*(volatile uint8_t*)iVar6 != 1){
-    printk(0x99cbd,0xf7052,0xf79c8,0xa3);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0xf7052,0xf79c8,0xa3);
     assert_post_action(0xf79c8,0xa3);
   }
   uint8_t bVar1=*(volatile uint8_t*)(iVar6+1);

@@ -9,10 +9,10 @@
  *   net_pkt_skip                             <= FUN_00086502 @ 0x00086502
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3b6f                             @ 0x000f3b6f
  *   rodata_f4388                             @ 0x000f4388
- *   rodata_f43b7                             @ 0x000f43b7
+ *   rodata_f43b7                             @ 0x000f43b7   [INLINED -- G6 literal batch]
  *   rodata_f43b8                             @ 0x000f43b8
  *   g_bt_att_pool                            @ 0x20003a28
  *   g_bt_gatt_indicate_ctx_pool              @ 0x2000add4
@@ -29,7 +29,7 @@ extern void memset_bytes(void *destination, uint32_t value, uint32_t length);
 void att_chan_req_free(uint32_t *item)
 {
     if (item == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f3b6f) /*=0xf3b6f*/, ((unsigned long)&rodata_f4388) /*=0xf4388*/, 0xc4u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f3b6f) /*=0xf3b6f*/, ((unsigned long)&rodata_f4388) /*=0xf4388*/, 0xc4u);
         assert_post_action(((unsigned long)&rodata_f4388) /*=0xf4388*/, 0xc4u);
         return;
     }
@@ -41,13 +41,13 @@ void att_chan_req_free(uint32_t *item)
             memset_bytes(item, 0u, 0x14u);
             return;
         }
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f43b8) /*=0xf43b8*/, ((unsigned long)&rodata_f4388) /*=0xf4388*/, 0xcdu);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f43b8) /*=0xf43b8*/, ((unsigned long)&rodata_f4388) /*=0xf4388*/, 0xcdu);
         assert_post_action(((unsigned long)&rodata_f4388) /*=0xf4388*/, 0xcdu);
         return;
     }
 
     if (owner_item == item) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f43b7) /*=0xf43b7*/, ((unsigned long)&rodata_f4388) /*=0xf4388*/, 0xcbu);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"!alloc_from_global") /*=0xf43b7*/, ((unsigned long)&rodata_f4388) /*=0xf4388*/, 0xcbu);
         assert_post_action(((unsigned long)&rodata_f4388) /*=0xf4388*/, 0xcbu);
         return;
     }

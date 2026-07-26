@@ -7,11 +7,11 @@
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  * address symbols (name @ address):
  *   rodata_87bf0                             @ 0x00087bf0
- *   rodata_9e9bf                             @ 0x0009e9bf
+ *   rodata_9e9bf                             @ 0x0009e9bf   [INLINED -- G6 literal batch]
  *   rodata_9e9ea                             @ 0x0009e9ea
  *   rodata_9ea0a                             @ 0x0009ea0a
- *   rodata_9ea58                             @ 0x0009ea58
- *   rodata_9ed09                             @ 0x0009ed09
+ *   rodata_9ea58                             @ 0x0009ea58   [INLINED -- G6 literal batch]
+ *   rodata_9ed09                             @ 0x0009ed09   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ui_mode_flag                           @ 0x20018462
@@ -38,10 +38,10 @@ unsigned char getDashboardStartUpModeInfofromFlash(unsigned int param_1, unsigne
 
     if (2 < *piVar1) {
         if (*(volatile int*)0x20007554UL == 0) {
-            log_message(0x0009e9bfUL, 0x0009ed09UL, param_3,
+            log_message(((unsigned long)"%s(): read setting flash data to ram...\r\n\n"), 0x0009ed09UL, param_3,
                         *(volatile unsigned int*)0x20007554UL);
         } else {
-            debug_print(0x0009e9bfUL, 0x0009ed09UL, param_3,
+            debug_print(((unsigned long)"%s(): read setting flash data to ram...\r\n\n"), 0x0009ed09UL, param_3,
                          *(volatile unsigned int*)0x20007554UL);
         }
     }

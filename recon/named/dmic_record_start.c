@@ -8,8 +8,8 @@
  *   startAudioStreamRecord                   <= FUN_0002f764 @ 0x0002f764
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
- *   rodata_9d30b                             @ 0x0009d30b
- *   rodata_a9843                             @ 0x000a9843
+ *   rodata_9d30b                             @ 0x0009d30b   [INLINED -- G6 literal batch]
+ *   rodata_a9843                             @ 0x000a9843   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_pending_event_word                     @ 0x20007b78

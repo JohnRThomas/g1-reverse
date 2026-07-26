@@ -8,7 +8,7 @@
  *   hci_set_ad                               <= FUN_00055534 @ 0x00055534
  * address symbols (name @ address):
  *   rodata_880f8                             @ 0x000880f8
- *   rodata_f3804                             @ 0x000f3804
+ *   rodata_f3804                             @ 0x000f3804   [INLINED -- G6 literal batch]
  */
 /* Reconstructed hci_set_ad @ 0x00055534 (FUN_00055534; NCS 2.5.1 adv.c). */
 #include <stddef.h>
@@ -62,7 +62,7 @@ int hci_set_ad(uint16_t opcode, const struct bt_ad *ad, size_t ad_len)
                 length = 0x1fu - value_offset;
                 if (type != 9u || (int32_t)length < 1) {
                     struct log_record record = {
-                        2u, (const char *)((unsigned long)&rodata_f3804) /*=0xf3804*/
+                        2u, (const char *)((unsigned long)"Too big advertising data") /*=0xf3804*/
                     };
                     log_message((const void *)((unsigned long)&rodata_880f8) /*=0x880f8*/, 0x1040u,
                                 &record, 0u);

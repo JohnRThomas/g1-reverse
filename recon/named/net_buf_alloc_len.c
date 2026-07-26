@@ -13,15 +13,15 @@
  *   sys_timepoint_calc                       <= FUN_0008669c @ 0x0008669c
  *   sys_timepoint_timeout                    <= FUN_000866e4 @ 0x000866e4
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f539a                             @ 0x000f539a
- *   rodata_f53e9                             @ 0x000f53e9
- *   rodata_f53ee                             @ 0x000f53ee
+ *   rodata_f53e9                             @ 0x000f53e9   [INLINED -- G6 literal batch]
+ *   rodata_f53ee                             @ 0x000f53ee   [INLINED -- G6 literal batch]
  *   rodata_f53ff                             @ 0x000f53ff
  *   acl_tx_pool                              @ 0x20003a7c
  */
@@ -47,15 +47,15 @@ int net_buf_alloc_len(int param_1, unsigned param_2, int param_3, int param_4)
 
     sys_timepoint_calc(frame);
     if (param_1 == 0) {
-        printk(0x99cbdu,0xf53e9u,0xf539au,0xf8u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0xf53e9u,0xf539au,0xf8u);
         assert_post_action(0xf539au,0xf8u);
         goto CONTINUE_AFTER_FATAL;
     }
     {
         int iVar6b = z_spin_lock_valid(param_1 + 0x1c);
         if (iVar6b == 0) {
-            printk(0x99cbdu,0xf0920u,0xf08c7u,0x72u);
-            printk(0xf0935u,param_1 + 0x1c);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_lock_valid(l)"),0xf08c7u,0x72u);
+            printk(((unsigned long)"\tInvalid spinlock %p\n"),param_1 + 0x1c);
             assert_post_action(0xf08c7u,0x72u);
             goto CONTINUE_AFTER_FATAL;
         }
@@ -116,7 +116,7 @@ EF60:
                 return 0;
             }
             if (r5v <= local_24) goto EF2E;
-            printk(0x99cbdu,0xf53eeu,0xf539au,0x14fu);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0xf53eeu,0xf539au,0x14fu);
             printk(0xf53ffu);
             assert_post_action(0xf539au,0x14fu);
             goto CONTINUE_AFTER_FATAL;
@@ -130,8 +130,8 @@ EF2E:
     *(volatile int*)(r4 + 0xc) = *(volatile int*)(r4 + 0x14);
     return r4;
 EF40:
-    printk(0x99cbdu,0xf08f4u,0xf08c7u,0xf0u);
-    printk(0xf090bu,param_1 + 0x1c);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_unlock_valid(l)"),0xf08c7u,0xf0u);
+    printk(((unsigned long)"\tNot my spinlock %p\n"),param_1 + 0x1c);
     assert_post_action(0xf08c7u,0xf0u);
     goto CONTINUE_AFTER_FATAL;
 }

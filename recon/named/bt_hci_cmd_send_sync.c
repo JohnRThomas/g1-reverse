@@ -15,10 +15,10 @@
  *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_a7a10                             @ 0x000a7a10
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_a7a10                             @ 0x000a7a10   [INLINED -- G6 literal batch]
  *   rodata_f2e84                             @ 0x000f2e84
- *   rodata_f301e                             @ 0x000f301e
+ *   rodata_f301e                             @ 0x000f301e   [INLINED -- G6 literal batch]
  *   rodata_f304a                             @ 0x000f304a
  *   hci_cmd_pool                             @ 0x2000214c
  *   bt_hci_cmd_data                          @ 0x2000abf4
@@ -59,7 +59,7 @@ int bt_hci_cmd_send_sync(uint32_t opcode, void *command, void **result)
     uint64_t inherited = net_buf_put(0x2000214cu, token, 1, 12);
     int wait_error = z_impl_k_sem_take(completion, (uint32_t)(inherited >> 32), 0x50000u, 0);
     if (wait_error != 0) {
-        printk(0x00099cbdu, 0x000a7a10u, 0x000f2e84u, 0x152u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"err == 0"), 0x000f2e84u, 0x152u);
         printk(0x000f301eu, opcode, wait_error);
         assert_post_action(0x00099cbdu, 0x152u);
     }

@@ -8,9 +8,9 @@
  * address symbols (name @ address):
  *   rodata_87c20                             @ 0x00087c20
  *   rodata_88a2a                             @ 0x00088a2a
- *   rodata_9f0b0                             @ 0x0009f0b0
- *   rodata_9f0db                             @ 0x0009f0db
- *   rodata_9f1cf                             @ 0x0009f1cf
+ *   rodata_9f0b0                             @ 0x0009f0b0   [INLINED -- G6 literal batch]
+ *   rodata_9f0db                             @ 0x0009f0db   [INLINED -- G6 literal batch]
+ *   rodata_9f1cf                             @ 0x0009f1cf   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

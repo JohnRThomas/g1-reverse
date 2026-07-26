@@ -10,9 +10,9 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_a893c                             @ 0x000a893c
- *   rodata_a8952                             @ 0x000a8952
- *   rodata_a8a33                             @ 0x000a8a33
+ *   rodata_a893c                             @ 0x000a893c   [INLINED -- G6 literal batch]
+ *   rodata_a8952                             @ 0x000a8952   [INLINED -- G6 literal batch]
+ *   rodata_a8a33                             @ 0x000a8a33   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  */
 /* Full reconstruction FUN_00035498 @ 0x35498 (268-byte extent; CFG PASS). */
@@ -30,8 +30,8 @@ void send_whitelist_json_chunked(int param_1,int param_2)
   volatile int *E = (volatile int*)0x20007554UL;
   int iVar1 = malloc(0x15e3);
   if (iVar1 == 0) {
-    if (*E != 0) { debug_print(0xa893c,0xa8a33,0x237); return; }
-    log_message(0xa893c,0xa8a33,0x237); return;
+    if (*E != 0) { debug_print(((unsigned long)"[%s-%d] buf is NULL \n"),((unsigned long)"get_whitelist_app_from_device"),0x237); return; }
+    log_message(((unsigned long)"[%s-%d] buf is NULL \n"),((unsigned long)"get_whitelist_app_from_device"),0x237); return;
   }
   *(volatile unsigned char*)(param_2+1) = 0x6a;
   memset_bytes(iVar1,0,0x15e3,0x6a,param_1);
@@ -71,6 +71,6 @@ void send_whitelist_json_chunked(int param_1,int param_2)
     free(iVar1);
     return;
   }
-  if (*E != 0) { debug_print(0xa8952,0xa8a33,0x23f,0); return; }
-  log_message(0xa8952,0xa8a33,0x23f);
+  if (*E != 0) { debug_print(((unsigned long)"[%s-%d] total_len is %d \n"),((unsigned long)"get_whitelist_app_from_device"),0x23f,0); return; }
+  log_message(((unsigned long)"[%s-%d] total_len is %d \n"),((unsigned long)"get_whitelist_app_from_device"),0x23f);
 }

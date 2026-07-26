@@ -5,7 +5,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   msg_queue_debug_dump                     <= FUN_00033b0c @ 0x00033b0c
  * address symbols (name @ address):
- *   rodata_a7d1c                             @ 0x000a7d1c
+ *   rodata_a7d1c                             @ 0x000a7d1c   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_message_pool                           @ 0x20007dac
  */

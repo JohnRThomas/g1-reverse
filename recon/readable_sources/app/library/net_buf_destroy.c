@@ -11,7 +11,7 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   net_pkt_skip                             <= FUN_00086502 @ 0x00086502
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3a5d                             @ 0x000f3a5d
  *   rodata_f3aa8                             @ 0x000f3aa8
  *   g_bt_conn_tx_pending_cnt                 @ 0x20003a60
@@ -28,7 +28,7 @@ void net_buf_destroy(int param_1, int param_2)
   fnptr_t UNRECOVERED_JUMPTABLE;
   int uVar1;
   if (param_2 == 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f3aa8) /*=0xf3aa8*/, ((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/, 0x46);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f3aa8) /*=0xf3aa8*/, ((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/, 0x46);
     param_2 = (int)(assert_post_action(((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/, 0x46) >> 32);
   }
   UNRECOVERED_JUMPTABLE = (fnptr_t)*(volatile uint32_t *)(param_2 + 4);

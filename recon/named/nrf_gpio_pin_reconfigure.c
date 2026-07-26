@@ -6,9 +6,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f09d1                             @ 0x000f09d1
- *   rodata_f0a04                             @ 0x000f0a04
+ *   rodata_f0a04                             @ 0x000f0a04   [INLINED -- G6 literal batch]
  */
 #include "../headers/g1_nrf_regs.h"
 /* Reconstructed FUN_00067548 @ 0x67548  (parity: 300/300 trials, PROVEN) */
@@ -20,7 +20,7 @@ void nrf_gpio_pin_reconfigure(unsigned param_1, unsigned param_2, unsigned param
     if ((param_1 >> 5) == 0) goto L_6a;
     if ((param_1 >> 5) == 1) goto L_94;
 L_52:
-    printk(0x99cbd,0xf0a04,0xf09d1,0x32f);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"nrf_gpio_pin_present_check(*p_pin)"),0xf09d1,0x32f);
     r2v = 0xf09d1; r3v = 0x32f;
     { long long r=assert_post_action(0xf09d1,0x32f); r0v=(unsigned)r; r1v=(unsigned)((unsigned long long)r>>32); }
 L_6a:

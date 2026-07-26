@@ -7,24 +7,24 @@
  *   gui_screen_fade_out_transition           <= FUN_0004382c @ 0x0004382c
  * address symbols (name @ address):
  *   rodata_a8c57                             @ 0x000a8c57
- *   rodata_a960d                             @ 0x000a960d
- *   rodata_a9629                             @ 0x000a9629
- *   rodata_a9654                             @ 0x000a9654
- *   rodata_a9679                             @ 0x000a9679
- *   rodata_a9690                             @ 0x000a9690
- *   rodata_a96ac                             @ 0x000a96ac
- *   rodata_a96c8                             @ 0x000a96c8
- *   rodata_a96e0                             @ 0x000a96e0
- *   rodata_a9709                             @ 0x000a9709
- *   rodata_a9727                             @ 0x000a9727
- *   rodata_a974b                             @ 0x000a974b
- *   rodata_a9775                             @ 0x000a9775
- *   rodata_a9797                             @ 0x000a9797
- *   rodata_a97bb                             @ 0x000a97bb
- *   rodata_a97e4                             @ 0x000a97e4
- *   rodata_a980b                             @ 0x000a980b
- *   rodata_a981a                             @ 0x000a981a
- *   rodata_a9831                             @ 0x000a9831
+ *   rodata_a960d                             @ 0x000a960d   [INLINED -- G6 literal batch]
+ *   rodata_a9629                             @ 0x000a9629   [INLINED -- G6 literal batch]
+ *   rodata_a9654                             @ 0x000a9654   [INLINED -- G6 literal batch]
+ *   rodata_a9679                             @ 0x000a9679   [INLINED -- G6 literal batch]
+ *   rodata_a9690                             @ 0x000a9690   [INLINED -- G6 literal batch]
+ *   rodata_a96ac                             @ 0x000a96ac   [INLINED -- G6 literal batch]
+ *   rodata_a96c8                             @ 0x000a96c8   [INLINED -- G6 literal batch]
+ *   rodata_a96e0                             @ 0x000a96e0   [INLINED -- G6 literal batch]
+ *   rodata_a9709                             @ 0x000a9709   [INLINED -- G6 literal batch]
+ *   rodata_a9727                             @ 0x000a9727   [INLINED -- G6 literal batch]
+ *   rodata_a974b                             @ 0x000a974b   [INLINED -- G6 literal batch]
+ *   rodata_a9775                             @ 0x000a9775   [INLINED -- G6 literal batch]
+ *   rodata_a9797                             @ 0x000a9797   [INLINED -- G6 literal batch]
+ *   rodata_a97bb                             @ 0x000a97bb   [INLINED -- G6 literal batch]
+ *   rodata_a97e4                             @ 0x000a97e4   [INLINED -- G6 literal batch]
+ *   rodata_a980b                             @ 0x000a980b   [INLINED -- G6 literal batch]
+ *   rodata_a981a                             @ 0x000a981a   [INLINED -- G6 literal batch]
+ *   rodata_a9831                             @ 0x000a9831   [INLINED -- G6 literal batch]
  *   rodata_aae20                             @ 0x000aae20
  *   g_log_level                              @ 0x2000230c
  *   g_quicknote_warn_offset_ms               @ 0x200024e8
@@ -95,25 +95,25 @@ extern void memset_bytes(void *destination, int value, unsigned int length);
 #define g_quicknote_warn_offset_ms (*(volatile int32_t *)((unsigned long)&g_quicknote_warn_offset_ms) /*=0x200024e8*/)
 #define g_quicknote_hint_shown   (*(volatile uint8_t *)((unsigned long)&g_quicknote_hint_shown) /*=0x2001b817*/)
 
-#define LOG_FUNCTION             ((uintptr_t)((unsigned long)&rodata_a9831) /*=0xa9831*/)
-#define LOG_INIT                 ((uintptr_t)((unsigned long)&rodata_a960d) /*=0xa960d*/)
-#define LOG_ENABLE               ((uintptr_t)((unsigned long)&rodata_a9629) /*=0xa9629*/)
-#define LOG_START                ((uintptr_t)((unsigned long)&rodata_a9654) /*=0xa9654*/)
-#define LOG_INIT_EXIT            ((uintptr_t)((unsigned long)&rodata_a96e0) /*=0xa96e0*/)
-#define LOG_RUNNING              ((uintptr_t)((unsigned long)&rodata_a9709) /*=0xa9709*/)
-#define LOG_FUNCTION_EXIT        ((uintptr_t)((unsigned long)&rodata_a9727) /*=0xa9727*/)
-#define LOG_DELAY_EXIT           ((uintptr_t)((unsigned long)&rodata_a974b) /*=0xa974b*/)
-#define LOG_LOGO_REFRESH         ((uintptr_t)((unsigned long)&rodata_a9775) /*=0xa9775*/)
-#define LOG_PROCESS              ((uintptr_t)((unsigned long)&rodata_a9797) /*=0xa9797*/)
-#define LOG_TIMEOUT_EXIT         ((uintptr_t)((unsigned long)&rodata_a97bb) /*=0xa97bb*/)
-#define LOG_EXIT_DISPLAY         ((uintptr_t)((unsigned long)&rodata_a97e4) /*=0xa97e4*/)
+#define LOG_FUNCTION             ((uintptr_t)((unsigned long)"ui_QuickNote_task") /*=0xa9831*/)
+#define LOG_INIT                 ((uintptr_t)((unsigned long)"%s(): QUICK NOTE INIT.....\n") /*=0xa960d*/)
+#define LOG_ENABLE               ((uintptr_t)((unsigned long)"%s(): GLOBAL->quicknote_info->enable = %d\n") /*=0xa9629*/)
+#define LOG_START                ((uintptr_t)((unsigned long)"%s(): quick note function start ...\n") /*=0xa9654*/)
+#define LOG_INIT_EXIT            ((uintptr_t)((unsigned long)"%s(): quick init,exec function exit ...\n") /*=0xa96e0*/)
+#define LOG_RUNNING              ((uintptr_t)((unsigned long)"%s(): QUICK NOTE RUNING.....\n") /*=0xa9709*/)
+#define LOG_FUNCTION_EXIT        ((uintptr_t)((unsigned long)"%s(): quick note function exit ...\n") /*=0xa9727*/)
+#define LOG_DELAY_EXIT           ((uintptr_t)((unsigned long)"%s(): quick note function delay exit ...\n") /*=0xa974b*/)
+#define LOG_LOGO_REFRESH         ((uintptr_t)((unsigned long)"%s(): exec even logo reflash....\n") /*=0xa9775*/)
+#define LOG_PROCESS              ((uintptr_t)((unsigned long)"%s(): quick note process exec.....\n") /*=0xa9797*/)
+#define LOG_TIMEOUT_EXIT         ((uintptr_t)((unsigned long)"%s(): quick note function exit -164 ...\n") /*=0xa97bb*/)
+#define LOG_EXIT_DISPLAY         ((uintptr_t)((unsigned long)"%s(): exec quick note exit display...\n") /*=0xa97e4*/)
 
-#define TEXT_RECORDING_EN        ((uintptr_t)((unsigned long)&rodata_a9679) /*=0xa9679*/)
-#define TEXT_RELEASE_EN          ((uintptr_t)((unsigned long)&rodata_a9690) /*=0xa9690*/)
-#define TEXT_RECORDING_DE        ((uintptr_t)((unsigned long)&rodata_a96ac) /*=0xa96ac*/)
-#define TEXT_RELEASE_DE          ((uintptr_t)((unsigned long)&rodata_a96c8) /*=0xa96c8*/)
-#define TEXT_SAVED_EN            ((uintptr_t)((unsigned long)&rodata_a980b) /*=0xa980b*/)
-#define TEXT_SAVED_DE            ((uintptr_t)((unsigned long)&rodata_a981a) /*=0xa981a*/)
+#define TEXT_RECORDING_EN        ((uintptr_t)((unsigned long)"QuickNote recording...") /*=0xa9679*/)
+#define TEXT_RELEASE_EN          ((uintptr_t)((unsigned long)"Release to Finish Recording") /*=0xa9690*/)
+#define TEXT_RECORDING_DE        ((uintptr_t)((unsigned long)"Kurznotizen-Aufzeichnung...") /*=0xa96ac*/)
+#define TEXT_RELEASE_DE          ((uintptr_t)((unsigned long)"Loslassen zum Abschluss") /*=0xa96c8*/)
+#define TEXT_SAVED_EN            ((uintptr_t)((unsigned long)"New Note Saved") /*=0xa980b*/)
+#define TEXT_SAVED_DE            ((uintptr_t)((unsigned long)"Neue Notiz gespeichert") /*=0xa981a*/)
 
 #define QUICKNOTE_STATE_ADDRESS  ((uintptr_t)((unsigned long)&g_quicknote_info) /*=0x20004978*/)
 #define QUICKNOTE_MASK_FRAMES    ((const uint8_t *)((unsigned long)&rodata_a8c57) /*=0xa8c57*/)

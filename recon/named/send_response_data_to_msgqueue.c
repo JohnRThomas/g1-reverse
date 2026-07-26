@@ -8,9 +8,9 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef01c                             @ 0x000ef01c
- *   rodata_ef058                             @ 0x000ef058
- *   rodata_ef750                             @ 0x000ef750
+ *   rodata_ef01c                             @ 0x000ef01c   [INLINED -- G6 literal batch]
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
+ *   rodata_ef750                             @ 0x000ef750   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_dashboard_response_msgq                @ 0x2000392c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -46,13 +46,13 @@ unsigned int send_response_data_to_msgqueue(void *param_1, unsigned int param_2)
         if (iVar3 == 0) {
             return 0;
         }
-        log_message(0xef058, 0xef750);
+        log_message(((unsigned long)"message queue send failed %s\r\n"), ((unsigned long)"send_response_data_to_msgqueue"));
     } else {
         if (0 < *(volatile int*)0x2000230cUL) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                log_message(0xef01c, 0xef750, 0x14);
+                log_message(((unsigned long)"%s(): send data length more than %d,can't load it,exit ...\n"), ((unsigned long)"send_response_data_to_msgqueue"), 0x14);
             } else {
-                debug_print(0xef01c, 0xef750, 0x14);
+                debug_print(((unsigned long)"%s(): send data length more than %d,can't load it,exit ...\n"), ((unsigned long)"send_response_data_to_msgqueue"), 0x14);
             }
         }
     }

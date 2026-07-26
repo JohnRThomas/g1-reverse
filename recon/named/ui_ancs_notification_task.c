@@ -13,9 +13,9 @@
  *   gui_canvas_flags_set_bit1                <= FUN_000432d0 @ 0x000432d0
  *   display_fade_out_mask_bands              <= FUN_000438d0 @ 0x000438d0
  * address symbols (name @ address):
- *   rodata_a8c60                             @ 0x000a8c60
- *   rodata_a8c80                             @ 0x000a8c80
- *   rodata_a8c97                             @ 0x000a8c97
+ *   rodata_a8c60                             @ 0x000a8c60   [INLINED -- G6 literal batch]
+ *   rodata_a8c80                             @ 0x000a8c80   [INLINED -- G6 literal batch]
+ *   rodata_a8c97                             @ 0x000a8c97   [INLINED -- G6 literal batch]
  *   g_200033d2                               @ 0x200033d2
  *   g_200033d3                               @ 0x200033d3
  *   g_log_use_alt_sink                       @ 0x20007554

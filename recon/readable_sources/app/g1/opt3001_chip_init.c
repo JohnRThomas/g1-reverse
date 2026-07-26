@@ -9,10 +9,10 @@
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  * address symbols (name @ address):
  *   rodata_88250                             @ 0x00088250
- *   rodata_f6521                             @ 0x000f6521
- *   rodata_f6539                             @ 0x000f6539
- *   rodata_f6552                             @ 0x000f6552
- *   rodata_f6565                             @ 0x000f6565
+ *   rodata_f6521                             @ 0x000f6521   [INLINED -- G6 literal batch]
+ *   rodata_f6539                             @ 0x000f6539   [INLINED -- G6 literal batch]
+ *   rodata_f6552                             @ 0x000f6552   [INLINED -- G6 literal batch]
+ *   rodata_f6565                             @ 0x000f6565   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction FUN_00062930 @ 0x62930, exact extent 222 bytes. */
 #include <stdint.h>
@@ -37,15 +37,15 @@ uint32_t opt3001_chip_init(uintptr_t request)
     uintptr_t instance=*(uintptr_t *)device;
     if(z_device_is_ready(instance)==0) {
         *(uint32_t *)(frame+24)=2;
-        *(uintptr_t *)(frame+28)=((unsigned long)&rodata_f6521) /*=0xf6521*/;
+        *(uintptr_t *)(frame+28)=((unsigned long)"Bus device is not ready") /*=0xf6521*/;
         z_log_msg_runtime_create(((unsigned long)&rodata_88250) /*=0x88250*/,0x1040,frame+24,0);
         return 0xffffffea;
     }
     uint16_t value;
     if(i2c_read_reg16_be(device,0x7e,&value,1)!=0) return 0xffffffea;
-    if(value!=0x5449) { report_descriptor(frame,3,((unsigned long)&rodata_f6539) /*=0xf6539*/,value); return 0xffffffea; }
+    if(value!=0x5449) { report_descriptor(frame,3,((unsigned long)"Bad manufacturer id 0x%x") /*=0xf6539*/,value); return 0xffffffea; }
     if(i2c_read_reg16_be(device,0x7f,&value,0)!=0) return 0xffffffea;
-    if(value!=0x3001) { report_descriptor(frame,3,((unsigned long)&rodata_f6552) /*=0xf6552*/,value); return 0xffffffea; }
+    if(value!=0x3001) { report_descriptor(frame,3,((unsigned long)"Bad device id 0x%x") /*=0xf6552*/,value); return 0xffffffea; }
     if(i2c_read_reg16_be(device,1,&value,0)==0) {
         frame[4]=1;
         frame[5]=(uint8_t)(((value&0xf9ffu)>>8)|6u);
@@ -60,7 +60,7 @@ uint32_t opt3001_chip_init(uintptr_t request)
             return 0;
     }
     *(uint32_t *)(frame+24)=2;
-    *(uintptr_t *)(frame+28)=((unsigned long)&rodata_f6565) /*=0xf6565*/;
+    *(uintptr_t *)(frame+28)=((unsigned long)"Failed to set mode to continuous conversion") /*=0xf6565*/;
     z_log_msg_runtime_create(((unsigned long)&rodata_88250) /*=0x88250*/,0x1040,frame+24,0);
     return 0xffffffea;
 }

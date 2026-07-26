@@ -8,8 +8,8 @@
  *   jbd_panel_suspend                        <= FUN_000475f0 @ 0x000475f0
  *   panel_off                                <= FUN_00046d2c @ 0x00046d2c
  * address symbols (name @ address):
- *   rodata_d721e                             @ 0x000d721e
- *   rodata_d72db                             @ 0x000d72db
+ *   rodata_d721e                             @ 0x000d721e   [INLINED -- G6 literal batch]
+ *   rodata_d72db                             @ 0x000d72db   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -32,9 +32,9 @@ uint32_t panel_suspend(uint8_t *context)
     *(void * volatile *)(context + 0x374) = (void *)(context - 0x5c);
     if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_d721e) /*=0xd721e*/, ((unsigned long)&rodata_d72db) /*=0xd72db*/);
+            log_message(((unsigned long)"%s(): panel_suspend enter!\n") /*=0xd721e*/, ((unsigned long)"panel_suspend") /*=0xd72db*/);
         } else {
-            debug_print(((unsigned long)&rodata_d721e) /*=0xd721e*/, ((unsigned long)&rodata_d72db) /*=0xd72db*/);
+            debug_print(((unsigned long)"%s(): panel_suspend enter!\n") /*=0xd721e*/, ((unsigned long)"panel_suspend") /*=0xd72db*/);
         }
     }
     jbd_panel_suspend();

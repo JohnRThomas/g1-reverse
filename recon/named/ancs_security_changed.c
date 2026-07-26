@@ -15,10 +15,10 @@
  *   bt_conn_get_field_0x90                   <= FUN_00081526 @ 0x00081526
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
- *   rodata_9a52b                             @ 0x0009a52b
- *   rodata_9a53f                             @ 0x0009a53f
- *   rodata_9a56b                             @ 0x0009a56b
- *   rodata_9b229                             @ 0x0009b229
+ *   rodata_9a52b                             @ 0x0009a52b   [INLINED -- G6 literal batch]
+ *   rodata_9a53f                             @ 0x0009a53f   [INLINED -- G6 literal batch]
+ *   rodata_9a56b                             @ 0x0009a56b   [INLINED -- G6 literal batch]
+ *   rodata_9b229                             @ 0x0009b229   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_ancs_security_fail_cnt                 @ 0x20006a34
  *   g_gatt_discovery_flags                   @ 0x20006ab4

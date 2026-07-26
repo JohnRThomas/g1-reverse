@@ -6,9 +6,9 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   pt_nfc_eeprom_link_start                 <= FUN_00030c90 @ 0x00030c90
  * address symbols (name @ address):
- *   rodata_a18cd                             @ 0x000a18cd
- *   rodata_a18ea                             @ 0x000a18ea
- *   rodata_a19af                             @ 0x000a19af
+ *   rodata_a18cd                             @ 0x000a18cd   [INLINED -- G6 literal batch]
+ *   rodata_a18ea                             @ 0x000a18ea   [INLINED -- G6 literal batch]
+ *   rodata_a19af                             @ 0x000a19af   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_sw0_irq_low_cnt                        @ 0x20007af0

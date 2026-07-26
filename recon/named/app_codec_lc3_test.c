@@ -21,10 +21,10 @@
  *   rodata_87bf8                             @ 0x00087bf8
  *   rodata_9e9ea                             @ 0x0009e9ea
  *   rodata_9ebc6                             @ 0x0009ebc6
- *   rodata_a3f7f                             @ 0x000a3f7f
- *   rodata_a3fbe                             @ 0x000a3fbe
- *   rodata_a3fdf                             @ 0x000a3fdf
- *   rodata_a41c2                             @ 0x000a41c2
+ *   rodata_a3f7f                             @ 0x000a3f7f   [INLINED -- G6 literal batch]
+ *   rodata_a3fbe                             @ 0x000a3fbe   [INLINED -- G6 literal batch]
+ *   rodata_a3fdf                             @ 0x000a3fdf   [INLINED -- G6 literal batch]
+ *   rodata_a41c2                             @ 0x000a41c2   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_audio_flash_write_offset               @ 0x20002404
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -71,8 +71,8 @@ void app_codec_lc3_test(int param_1, int param_2)
     iVar7 = malloc(iVar10);
     if (iVar5 == 0) {
         if (0 < *v) {
-            if (*dbg == 0) log_message(0xa3f7f, 0xa41c2);
-            else debug_print(0x000a3f7fUL, 0x000a41c2UL);
+            if (*dbg == 0) log_message(((unsigned long)"%s(): malloc error\r\n\n"), ((unsigned long)"app_codec_lc3_test"));
+            else debug_print(((unsigned long)"%s(): malloc error\r\n\n"), ((unsigned long)"app_codec_lc3_test"));
         }
 LAB_0002edf8:
         iVar5 = iVar6;
@@ -88,8 +88,8 @@ LAB_0002edf8:
                         iVar10 = *dbg;
                         uVar3 = 0x9e9ea;
 LAB_0002ee5a:
-                        if (iVar10 == 0) log_message(uVar3, 0xa41c2, iVar9);
-                        else debug_print(uVar3, 0x000a41c2UL, iVar9);
+                        if (iVar10 == 0) log_message(uVar3, ((unsigned long)"app_codec_lc3_test"), iVar9);
+                        else debug_print(uVar3, ((unsigned long)"app_codec_lc3_test"), iVar9);
                     }
                 } else {
                     uVar3 = lc3_setup_encoder(10000, 16000, 0, iVar5);
@@ -107,11 +107,11 @@ LAB_0002ee5a:
                                     get_synced_clock_time(&local_stats);
                                     if (2 < *v) {
                                         if (*dbg == 0) {
-                                            log_message(0xa3fdf, 0xa41c2,
+                                            log_message(((unsigned long)"%s(): send audio stream data to storage thread,timestemp = %lld\n"), ((unsigned long)"app_codec_lc3_test"),
                                                         local_stats.first,
                                                         local_stats.second);
                                         }
-                                        else debug_print(0x000a3fdfUL, 0x000a41c2UL,
+                                        else debug_print(((unsigned long)"%s(): send audio stream data to storage thread,timestemp = %lld\n"), ((unsigned long)"app_codec_lc3_test"),
                                                          local_stats.first,
                                                          local_stats.second);
                                     }
@@ -133,8 +133,8 @@ LAB_0002ee5a:
                                 goto LAB_0002ee5a;
                             }
                             if (0 < *v) {
-                                if (*dbg == 0) log_message(0xa3fbe, 0xa41c2, *puVar2);
-                                else debug_print(0x000a3fbeUL, 0x000a41c2UL,
+                                if (*dbg == 0) log_message(((unsigned long)"%s(): Flash write to addr 0x%x\n\n"), ((unsigned long)"app_codec_lc3_test"), *puVar2);
+                                else debug_print(((unsigned long)"%s(): Flash write to addr 0x%x\n\n"), ((unsigned long)"app_codec_lc3_test"),
                                                  *puVar2);
                             }
                             *puVar2 = *puVar2 + iVar10;
@@ -161,8 +161,8 @@ LAB_0002eeb6:
                 goto LAB_0002edce;
             }
 LAB_0002ee16:
-            if (*dbg == 0) log_message(0xa3f7f, 0xa41c2);
-            else debug_print(0x000a3f7fUL, 0x000a41c2UL);
+            if (*dbg == 0) log_message(((unsigned long)"%s(): malloc error\r\n\n"), ((unsigned long)"app_codec_lc3_test"));
+            else debug_print(((unsigned long)"%s(): malloc error\r\n\n"), ((unsigned long)"app_codec_lc3_test"));
             free(iVar5);
             goto LAB_0002edf8;
         }

@@ -6,7 +6,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6a09                             @ 0x000f6a09
  *   rodata_f6a46                             @ 0x000f6a46
  */
@@ -24,7 +24,7 @@ void nrfx_gppi_event_endpoint_setup(
     uint32_t channel, volatile uint8_t *event_endpoint)
 {
     if (event_endpoint == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f6a46) /*=0xf6a46*/, ((unsigned long)&rodata_f6a09) /*=0xf6a09*/, 0x44);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f6a46) /*=0xf6a46*/, ((unsigned long)&rodata_f6a09) /*=0xf6a09*/, 0x44);
         channel = assert_post_action(((unsigned long)&rodata_f6a09) /*=0xf6a09*/, 0x44);
         /* The original loaded r1 with the diagnostic line before the noreturn
          * call, so this is its continuation address if that call returns. */

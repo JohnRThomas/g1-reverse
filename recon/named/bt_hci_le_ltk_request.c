@@ -13,7 +13,7 @@
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
  *   rodata_f2db7                             @ 0x000f2db7
- *   rodata_f3125                             @ 0x000f3125
+ *   rodata_f3125                             @ 0x000f3125   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction FUN_00054444 @ 0x00054444 (214-byte exact extent). */
 #include <stdint.h>

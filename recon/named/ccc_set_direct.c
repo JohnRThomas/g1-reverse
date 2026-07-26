@@ -6,7 +6,7 @@
  *   log_msg_create_3arg                      <= FUN_00082a42 @ 0x00082a42
  * address symbols (name @ address):
  *   rodata_88128                             @ 0x00088128
- *   rodata_f471e                             @ 0x000f471e
+ *   rodata_f471e                             @ 0x000f471e   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00059edc @ 0x59edc  (parity: 300/300 trials, PROVEN) */
 

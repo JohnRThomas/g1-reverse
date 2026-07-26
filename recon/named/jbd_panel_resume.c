@@ -6,9 +6,9 @@
  *   set_brightness_to_panel_reg              <= FUN_00046e3c @ 0x00046e3c
  *   panel_init                               <= FUN_00047538 @ 0x00047538
  * address symbols (name @ address):
- *   rodata_d73bc                             @ 0x000d73bc
- *   rodata_d73e0                             @ 0x000d73e0
- *   rodata_d73f8                             @ 0x000d73f8
+ *   rodata_d73bc                             @ 0x000d73bc   [INLINED -- G6 literal batch]
+ *   rodata_d73e0                             @ 0x000d73e0   [INLINED -- G6 literal batch]
+ *   rodata_d73f8                             @ 0x000d73f8   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

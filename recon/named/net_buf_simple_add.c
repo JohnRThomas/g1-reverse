@@ -7,8 +7,8 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   net_buf_simple_tailroom                  <= FUN_00083730 @ 0x00083730
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f543a                             @ 0x000f543a
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f543a                             @ 0x000f543a   [INLINED -- G6 literal batch]
  *   rodata_f54a8                             @ 0x000f54a8
  */
 /* Reconstructed FUN_0005f5d0 @ 0x5f5d0  (parity: 300/300 trials, PROVEN) */
@@ -27,7 +27,7 @@ int net_buf_simple_add(int *param_1, unsigned int param_2, unsigned int param_3,
     iVar3 = *(volatile int*)param_1;
     uVar2 = net_buf_simple_tailroom();
     if (uVar2 < param_2) {
-        printk(0x00099cbdUL, 0x000f54a8UL, 0x000f543aUL, 0x3e);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f54a8UL, 0x000f543aUL, 0x3e);
         assert_post_action(0x000f543aUL, 0x3e);
     }
     *hp = uVar1 + (unsigned short)param_2;

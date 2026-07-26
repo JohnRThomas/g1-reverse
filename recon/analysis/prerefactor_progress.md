@@ -467,3 +467,446 @@ The plan lists regenerating over the 37 unpushed hand edits as a top risk; no
 generator was run, and every edit here was applied surgically per file, so no
 hand edit was overwritten. `symbolize.py` and `gen_linker.py` remain unrunnable
 (dead scratchpad path, missing `symbol_map.json`) and were not needed.
+
+## Pre-refactor batches G6-B3 then G6-B1 — APPLIED (with one half reverted)
+
+Steps 3 and 4 of `prerefactor_plan.md` §3: **G6-B3** (string heads the plan
+classified as having no canonical-tree site) then **G6-B1** (log-argument string
+literals). Neither is class T — withdrawing the backing object necessarily
+changes the image — so the gate is the flash/RAM delta plus the behavioural
+oracle, not a byte-identical `zephyr.bin`.
+
+**Headline honesty note, stated first because it changes what the batch is.**
+G6-B1's canonical-tree half was applied, **measured to break the parity proof,
+and reverted**. `tools/cfg_verify.py` compares the ordered call trace *including
+the recorded argument values*, and a logging call's format-string pointer is one
+of those arguments. Replacing the original-image `.rodata` address with a
+string-literal pointer therefore turns a PASSing canonical function into a
+FAILing one. This was measured, not assumed (§5). The image half of G6-B1 — the
+part that retires the pins and shrinks flash — is applied and gated; the
+canonical corpus is back to byte-for-byte what it was.
+
+### 0. Headline result
+
+| | G6-B3 | G6-B1 | cumulative |
+|---|---:|---:|---:|
+| candidates applied | **796** of 857 | **548** of 554 | **1,344** |
+| reference sites inlined (as delivered) | **2,842** | **5,938** | **8,780** |
+| numeric `PROVIDE` pins retired | **796** | **548** | **1,344** |
+| rodata objects withdrawn | 796 (27,318 B declared) | 548 (19,650 B declared) | 1,344 (**46,968 B**) |
+| app FLASH | 952,332 → **950,220 B** (**−2,112 B**) | 950,220 → **948,764 B** (**−1,456 B**) | **−3,568 B** |
+| app `.text` | 947,364 → 945,260 | 945,260 → 943,804 | −3,560 B |
+| app `.data` / `.bss` | 4,951 / 249,251 — **Δ 0** | **Δ 0** | **Δ 0** |
+| app RAM | 253,765 B — **Δ 0** | **Δ 0** | **Δ 0** |
+| net FLASH / RAM | untouched | untouched | **225,581 / 63,380 — Δ 0, `zephyr.bin` byte-identical to baseline** |
+
+**Both batches shrink the image; neither moves one byte of RAM.** App went from
+96.93 % to **96.56 %** of its 982,528 B partition — headroom 30,196 → **33,764 B**.
+`recon/symbols/g1_app_globals.ld` went from **2,593 `PROVIDE(rodata_…)` lines
+(2,392 numeric)** to **1,249 (1,046 numeric)**: **56 % of the numeric pin
+population retired**, and every one of them converted from a silent
+original-image-address resurrection hazard (`rodata_decode_report.md` §10) into
+a link error.
+
+RAM **layout** is identical too, not just the total: `nm -n` over every
+`0x2…`-addressed symbol diffs to **0 lines** against the baseline ELF in both
+batch builds. That is what keeps the oracle's probe addresses
+(`G1_CTX_FE8=0x20040F38`, `G1_CTX_105A=0x20040FAA`, `G1_SCREEN_ID=0x20040025`,
+`$rtinfo_pc=0x00015b8c`) valid for the ELFs actually booted.
+
+Baseline, built first from the working tree as found:
+
+```sh
+recon/application/build_cohesive.sh app /private/tmp/g1-b0-app
+recon/application/build_cohesive.sh net /private/tmp/g1-b0-net -- \
+    -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF -DG1_ESB_REAL_PAYLOAD_OBJECTS=ON
+```
+
+It measured **952,332 / 253,765** app and **225,581 / 63,380** net — 16 B of app
+flash above the 952,316 the previous batch recorded, which is the concurrent
+sensor-parity work, not this pass.
+
+**Attribution boundary.** A final verification build of the tree as left
+measures **948,828 B**, i.e. **+64 B** above this pass's 948,764. That 64 B is
+*not* this pass: while these batches ran, the concurrent P4 bring-up wired
+`recon/data/rodata_0x88570.c` (the SAADC `struct adc_channel_cfg`, iteration 38)
+into `recon/application/app/CMakeLists.txt` and
+`recon/generated/app_verified_data_sources.cmake` — 50,583 → 50,647 byte-exact
+data input bytes, exactly 64. The figures above are measured on
+`/private/tmp/g1-b3-app` and `/private/tmp/g1-b1-app`, built before that landed.
+
+---
+
+### 1. The transaction, and three live corrections to the plan
+
+Every candidate was applied as the **single transaction** `prerefactor_plan.md`
+§3.2 rule 5 demands, plus a fourth part the rule does not name but the link
+requires:
+
+1. every reference site becomes a C string literal,
+2. the backing object is deleted from `g1_app_string_rodata.c` /
+   `recon/application/rodata/g1_app_rodata_0N.c`,
+3. the `PROVIDE(rodata_X = 0x…)` line is deleted from `g1_app_globals.ld`,
+4. **the now-dangling `extern const unsigned char rodata_X[];` declaration is
+   deleted from `recon/symbols/g1_app_symbols.h` and
+   `recon/readable_sources/app/include/g1_app_symbols.h`** (1,344 and 1,313).
+
+Nothing was renamed and no `rodata_*` object **filename** was touched — only
+object *bodies*, each an independent C declaration in its own
+`.rodata.rodata_<hex>` section.
+
+#### 1.1 Correction — G6-B3's defining claim is false live
+
+The plan defines G6-B3 as *"string heads with no canonical-tree site …
+**no canonical body changes, so no parity re-proof is owed**"*. Re-derived live
+(comments and string bodies masked, every hex spelling accepted):
+
+> **All 857 G6-B3 addresses have canonical-tree sites — 1,527 of them.**
+
+The plan's scan missed them because the canonical trees spell the reference as a
+raw hex integer, not as `rodata_<hex>`, and its canonical pass evidently matched
+only the short spelling. The two app parity trees have themselves diverged in
+*form*: `recon/app/src/FUN_000536b8.c` carries
+`printk(0x00099cbdu, 0x000f2eb8u, …)` while `recon/verified/src/FUN_000536b8.c`
+still carries the raw Ghidra `FUN_0007e2fa(0x99cbd,0xf2eb8,…)`.
+
+It does not change what G6-B3 must do to the image — the canonical trees are
+never linked, only `recon/symbolized/{app,net}` is compiled — but the batch's
+"no parity obligation" property holds **only because G6-B3 was deliberately
+applied to the symbol-spelling trees and left every canonical raw-hex site
+alone.** Those 1,527 sites are deferred, not silently claimed.
+
+#### 1.2 Correction — `.inc` files are compiled sources, and the first link proved it
+
+The first G6-B3 link failed:
+
+```
+ld.bfd: app/libapp.a(ble_process_put_req.c.obj): in function `ble_put_op9_dispatch':
+  recon/symbolized/app/ble_process_put_ops_09_10.inc:1419: undefined reference to `rodata_9b8fd'
+```
+
+`recon/symbolized/app/*.inc` and `recon/readable_sources/app/include/*.inc`
+(20 files) are `#include`d into real translation units and contain reference
+sites, but every literal scan in this repository — and the first version of this
+batch's substituter — enumerates `*.c` and `*.h` only. Two sites in
+`ble_process_put_ops_01_08.inc` were missed.
+
+Worth recording twice over. The failure mode is **exactly** what
+`rodata_decode_report.md` §10 asks for: deleting the pin converted a silent
+original-image-address corruption into a hard link error. And **any future G6/G7
+batch must enumerate `.inc`**, or it will withdraw an object that is still
+referenced.
+
+#### 1.3 Correction — the harness DOES compare call arguments (see §5)
+
+`prerefactor_plan.md` §2.4 says the harness is "blind to dropped register/stack
+arguments", and §1.3 promises G6-B1 is re-provable by re-running it. Measured,
+the trace it compares contains the argument **values** of stubbed callees, so a
+format-string pointer change is fully visible. G6-B1's canonical half is
+therefore **not** re-provable, and was reverted.
+
+---
+
+### 2. G6-B3 — 796 of 857 candidates
+
+#### 2.1 Evidence re-derived before any edit
+
+Every candidate was re-verified against the shipped image through
+`tools/extract.py` — never by naive VA arithmetic — before it was allowed in:
+
+| check | result (app + net, 857 candidates) |
+|---|---|
+| the emitted object's bytes equal `app_update.bin` at the pin VA | **857 / 857 match, 0 differ** |
+| the byte *before* the VA is NUL, so the VA is a string **head** | **857 / 857** |
+| the object is **exactly** one NUL-terminated string (`len == strlen+1`) | 835 pass, **22 fail — deferred** |
+| the object is **> 4 B** (the §10 stub hazard) | **857 / 857 — zero short objects** |
+
+**The §10 stub hazard is not live in G6-B3 or G6-B1.** The plan's 60 app + 4 net
+`short_object_review` candidates are all in **G6-A**, not in either batch here.
+Nothing was inlined against an object of ≤ 4 B; the same check on G6-B1 returned
+554 / 554. No object had to be re-derived on suspicion, and none was trusted
+without the byte compare above.
+
+#### 2.2 What was substituted
+
+Only the symbol spelling `((unsigned long)&rodata_X) /*=0x…*/` (plus the one
+`(uint32_t)(uintptr_t)&rodata_X` variant in `recon/symbolized/net`) was
+rewritten, to `((unsigned long)"…")`. The `(unsigned long)` cast is kept
+deliberately: with C10's 384 distinct logging prototypes still in the corpus,
+preserving the exact argument type at every site is the only way the
+substitution cannot change how the argument is passed. The `/*=0x…*/`
+provenance comment is **kept**, and the per-file `*  rodata_X  @ 0x…` header
+lines are annotated `[INLINED -- G6 literal batch]` rather than deleted, so every
+literal remains traceable to its original VA.
+
+| tree | files with substitutions |
+|---|---:|
+| `recon/symbolized/app` (**build tree**) | 253 `.c` + 1 `.inc` |
+| `recon/readable_sources/app/g1` | 193 |
+| `recon/readable_sources/app/library` | 50 |
+| `recon/readable_sources/app/include` | 1 `.inc` |
+| `recon/named` | 7 |
+| **total** | **505 files, 2,842 sites** |
+
+`recon/application/src` is a symlink view into `recon/named` and inherits the
+change; it was never written to directly. `recon/app/src_sym` and
+`recon/verified/src_sym` hold no symbol-spelling site for this batch.
+
+Non-ASCII strings (Chinese UI text, German/French localisations) are emitted as
+**octal escapes**, with a `" "` concatenation break inserted whenever an octal
+escape is followed by an octal digit, so the bytes are exact regardless of the
+compiler's source/exec charset; `?` is escaped `\?` so no trigraph can form.
+**17 non-ASCII strings were inlined and all 17 appear byte-for-byte in the
+linked `zephyr.bin`** — e.g. `"Keine Daten ausgew\303\244hlt"` and
+`"\345\276\256\344\277\241"` (微信).
+
+#### 2.3 Deferred from G6-B3, with the reason
+
+| deferred | count | reason |
+|---|---:|---|
+| **all 49 net candidates** | 49 | **There is no net rodata object to withdraw.** `nm` on the net ELF reports **0** `rodata_*` symbols defined as objects and **142 absolute**: `recon/application/rodata/g1_net_rodata_0*.c` is not wired into `recon/application/net/CMakeLists.txt`. The transaction has no "withdraw" half on net, so inlining is pure growth (≤ 692 B over the 26 candidates with a live reference) on a core the brief freezes. Inlining them *would* be a correctness fix — those references currently resolve to absolute original-image addresses — but it cannot be paid for. **Highest-value net follow-up: wire the net rodata objects first, and this becomes a shrinking transaction.** |
+| string **pools** — one object spanning several strings | 11 app, 11 net | Withdrawing the object deletes bytes other pins address: `rodata_f304a` is a 147 B object whose first string is 28 B; `rodata_f2963` 226 B / 60 B; `rodata_a7fae` 105 B / 53 B; also `f3157`, `f327f`, `f3324`, `f4346`, `f540e`, `f0be7`, `f4eb1`, `f1105`. Splitting a pool is a region-shape change, not a literal inline. |
+| `rodata_f541c` | 1 | No object of its own — it is the interior of the `rodata_f540e` pool (`"parent->frags"` is 14 B, `0xf540e + 14 = 0xf541c`) and its pin is already non-numeric. |
+| the 1,527 **canonical-tree** raw-hex sites (§1.1) | 1,527 | Editing them makes G6-B3 a re-proof event, and §5 shows that re-proof cannot pass. Left as raw hex. |
+
+---
+
+### 3. G6-B1 — 548 of 554 candidates, image half applied
+
+#### 3.1 The symbol half (this is what changes the image, and it stands)
+
+Identical mechanism to G6-B3:
+
+| tree | files with substitutions |
+|---|---:|
+| `recon/symbolized/app` (**build tree**) | 424 |
+| `recon/readable_sources/app/g1` | 220 |
+| `recon/readable_sources/app/library` | 202 |
+| `recon/named` | 2 |
+| **total** | **848 files, 3,977 sites** |
+
+Deferred: the same **6 pool objects** — `rodata_f0661` (49 B object / 32 B
+string), `f2201` (212/47), `f402a` (79/39), `f4b44` (154/29), `f52c0` (147/20),
+`f6acd` (51/30). 548 of 554 applied, 548 pins retired.
+
+#### 3.2 The canonical half — applied, measured, reverted
+
+In `recon/{app,verified}/src`, `recon/named` and the two `_src_sym` snapshots the
+site is a **raw hex integer**, which carries no evidence of what it is. A site
+was rewritten only if the identifier owning the enclosing argument list is a
+variadic logging entry point read out of the corpus, not assumed:
+`FUN_0007e2fa(unsigned int, ...)` (its canonical body is `va_start` →
+`FUN_0004b1cc(fmt,args)` → `va_end`), `FUN_00019c70` (the symbolizer's own header
+records `debug_print <= FUN_00019c70 @ 0x00019c70`), `FUN_0007dda4(uintptr_t
+format, ...)`, `DEBUG_PRINT`, `debug_print`, `log_message`, `printk`,
+`assert_log`, `dmic_log`, `TASK_LOG`.
+
+That produced 1,967 sites in 416 files of `recon/app/src`, 1,966 in 415 of
+`recon/verified/src`, 1,961 in 414 of `recon/named`, and 241 in 115 files of each
+`_src_sym`. **100 sites were refused and left as raw hex:**
+
+| refused context | sites | reason |
+|---|---:|---|
+| `UINT32_C(…)` / `UINT64_C(…)` argument | **42** | `UINT32_C(c)` is `c ## U`; substituting there is a hard preprocessing error — the same defect G6-B4 hit (§2.4 above). The substituter now enforces the plan's "exclude token-pasting contexts" rule for strings as well as integers. |
+| `<none>` — parenthesised expression, no callee | 33 | no evidence the value is consumed as a string |
+| `<stmt>` — assignment / initialiser | 16 | as above; a stored pointer may be compared |
+| `fatal` / `nrfx_assert_report` / `FUN_0007e2ec` / `assert_post_action` | 3 / 3 / 2 / 1 | not read off a prologue; each needs a per-site disassembly read. The `assert_post_action` site passes the *assert format* as argument 0, which is not what that function takes — suspicious, so left alone. |
+
+**Then §5 happened, and all of `recon/app/src`, `recon/verified/src`,
+`recon/app/src_sym` and `recon/verified/src_sym` were restored byte-for-byte.**
+`grep -rl '((unsigned long)"'` returns **0 files** in each of those four trees,
+and `git diff --stat` over them shows only the **18 files a concurrent agent
+edited** (the `FUN_00024f40` / `FUN_00025528` / `FUN_00062644` / `FUN_0007c8fa` /
+`FUN_0007c8e8` / `FUN_0007fe72` dropped-argument fixes), which the restore was
+written to detect and skip: a file was reverted **only** if re-applying this
+batch's substitution to the backup reproduced the current file exactly. 428
+files failed that test and were left untouched.
+
+`recon/named` **keeps** its 1,961 inlined sites (422 files). It is the *readable*
+mirror — not compiled into either image, not read by `recon_kit`, `cfg_verify`,
+`reverify` or `check_thread_create_stack_args`, all of which resolve
+`recon/{app,net}/src` or `recon/verified/src`. Keeping it inlined is the owner's
+readability goal at zero parity cost. Caveat for whoever runs it next:
+`tools/apply_names.py` regenerates `recon/named` from the canonical tree and
+would overwrite this.
+
+---
+
+### 4. Gate ladder
+
+| gate | G6-B3 | G6-B1 | final tree |
+|---|---|---|---|
+| `gen_retained_sources.py --check` | **clean** | **clean** | **clean** |
+| app build | **exit 0** | **exit 0** | **exit 0** |
+| net build (`-DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF -DG1_ESB_REAL_PAYLOAD_OBJECTS=ON`) | untouched | untouched | **exit 0, `zephyr.bin` byte-identical to baseline** |
+| `nm -u` undefined | **0** | **0** | **0 app / 0 net** |
+| duplicate global definitions | **0** | **0** | **0 / 0** |
+| `--allow-multiple-definition` / `--defsym` | **0 occurrences** | **0** | **0 / 0** |
+| weak-symbol or numeric-root hacks | none | none | none |
+| compiler warnings | 1,798 → **1,798** | **1,798** | 1,798 app / 1,066 net — **unchanged** |
+| FLASH | **−2,112 B** | **−1,456 B** | see §0 attribution |
+| RAM (total **and** `nm` layout) | **Δ 0 / 0 diff lines** | **Δ 0 / 0 diff lines** | **Δ 0** |
+| `.rodata` read back out of the ELF PT_LOAD and byte-compared with `app_update.bin` | **1,875 match / 14 mismatch** | **1,422 / 14** | — |
+| `check_ram_pin_collisions.py` app | 0 inside a live object, 0 escaped (624 bound OK) | same | **0 / 0** |
+| `check_ram_pin_collisions.py --core net` | — | — | **0 / 0** (170 bound OK) |
+| `check_net_raw_literals.py` | — | — | **0 / 0**, 0 TUs failed to preprocess |
+| `check_thread_create_stack_args.py` | **10/10** | — | **10/10 PASS** |
+| `verify_net_stock_data_window.py` | — | — | **PROVEN** (256/349 equal, 93 flash pointers, **0 differing for any other reason**, 0 non-stock sections) |
+
+The 14 `.rodata` mismatches are **identical to the baseline's 14** and are
+pre-existing and documented: the eight localized-string pointer tables
+`rodata_8a3e0…8ab18`, `rodata_87d58`, and the five `rodata_0x27cc0`-class
+records — the "byte-exact **modulo relocation**" class of
+`rodata_decode_report.md` §4. The match count falls 2,558 → 1,875 → 1,422
+exactly as the 683 + 453 class-`R` objects are withdrawn; **no object that
+survived changed a byte.**
+
+**`tools/full_link.py app` FAILS, and it failed before this pass.** It stops at
+`COMPILE_FAIL recon/symbolized/app/spawn_display_thread.c` — `#include
+<zephyr/kernel.h>` is not on `full_link.py`'s bare-metal include path — and then
+reports UNKNOWN-audit drift naming `rodata_8a3e0…8ab18`, `rodata_9890c`,
+`98e3c`, `98fbc`, `98fe8`, `aae20`, `bb220`, `d753a`, `e123a`, `e5f62`,
+`a8ea0`, plus `imu_fusion_init`, `sqrtf_hw`, `update_cache` and others. **None
+of those symbols is in either batch's applied set** (checked: intersection is
+empty) and `spawn_display_thread.c` is untouched by this pass (`git diff` empty).
+The gate is stale with respect to the P4 bring-up, not broken by G6. Recorded,
+not worked around; the real link is the cohesive build, which passes with
+`nm -u` 0.
+
+---
+
+### 5. The measurement that reverted G6-B1's canonical half
+
+The plan asks for `recon_kit.prove` + `cfg_verify` on every canonical file
+G6-B1 touches. Run on the edited corpus, `cfg_verify` **fails**, and the reason
+is structural rather than a mistake in the edit.
+
+```
+main FAIL cases=48
+detail=[(3,'prefix',500,500,(125, ('C',68,629247,0,'S','F','T',None),
+                                  ('C',68, 96414,0,'S','F','T',None))), …]
+```
+
+Call #125 is a logging call. `629247` is `0x99A7F` — an original-image `.rodata`
+address; `96414` is the pointer our recompiled TU passes to its own
+`.rodata.str1.1` copy. **The trace `emu.compare` checks includes the argument
+values of stubbed callees**, so replacing a format-string address with a literal
+is a first-class trace difference.
+
+Controlled, both directions, same command:
+
+| function | canonical file inlined | canonical file restored |
+|---|---|---|
+| `main` | **FAIL** (27 mismatches) | **PASS** cases=48 |
+| `FUN_00019718` | **FAIL** | **PASS** |
+| `FUN_00021a40` | **FAIL** | **PASS** |
+| `FUN_00031fd8` | **FAIL** | **PASS** |
+| `opt3007_chip_init` | **FAIL** | **PASS** |
+| `flash_settings_read`, `proxy_thread_handler` | PASS | PASS |
+
+A 12-function probe on the restored corpus — `main`, `FUN_00019718`,
+`FUN_00021a40`, `flash_settings_read`, `FUN_00031fd8`, `proxy_thread_handler`,
+`opt3007_chip_init`, `FUN_000536b8`, `FUN_00048e28`, `process_for_new_task`,
+`FUN_00019b54`, `FUN_00025290` — returns **12 / 12 PASS**.
+
+**The rule this establishes, which the plan did not know:**
+
+> A `.rodata` address that reaches a **call argument** cannot be inlined in
+> `recon/{app,net}/src` or `recon/verified/src` while parity is proven against
+> the original image, because the proof compares that argument's value. String
+> inlining in the parity corpus is only possible after the harness is taught to
+> treat a `.rodata` pointer argument as an equivalence class — which is a
+> `tools/` change, and `tools/` is out of scope for this pass.
+
+That makes **G6-B2** (623 candidates, 614 pins) and the canonical halves of
+G6-B1/B3 blocked on the same prerequisite, and it is the single most useful
+thing this pass learned. Because the reverted half touched no canonical body in
+the tree as left, **no canonical function owes a re-proof and none was left in a
+FAILing state.**
+
+---
+
+### 6. Behavioural oracle — the acceptance bar, held
+
+Run end-to-end on the ELFs each batch actually produced, following
+`our_boot_bringup.md` §37 — `mkfifo` stdin pipe, `G1_HOOKS=0`,
+`$rtinfo_pc=0x00015b8c` (confirmed by `nm` on both ELFs),
+`G1_CTX_FE8=0x20040F38`, `G1_CTX_105A=0x20040FAA`, `G1_SCREEN_ID=0x20040025`,
+net `/private/tmp/g1-b0-net`.
+
+| stimulus / phase | expected | G6-B3 (`g1-b3-app`) | G6-B1 (`g1-b1-app`) |
+|---|---|---|---|
+| DASHBOARD `p2_render` (`G1_ATT_WRITE=""`) | `19b1f24a…`, 2,923 px, (78,211)–(564,338) | **`19b1f24a…` 2,923 == 2,923, bbox exact — PASS** | **identical — PASS** |
+| DASHBOARD `p1_boot` | `0c5cc90b…`, 0 px | **`0c5cc90b…` 0 == 0 — PASS** | **identical — PASS** |
+| NAVIGATION `p2_render` (`G1_ATT_WRITE` unset) | `b26c73b3…`, 1,098 px, (34,266)–(497,287) | **`b26c73b3…` 1,098 == 1,098 — PASS** | **identical — PASS** |
+| NAVIGATION `p1_boot` | `1d617c65…`, 656 px, (178,267)–(449,287) | **`1d617c65…` 656 == 656 — PASS** | **identical — PASS** |
+
+`cmp`-ed against the committed goldens, not only compared by hash: dashboard
+`p2_render` vs `golden_framebuffer_dashboard_p2_render.raw`, navigation
+`p2_render` vs `golden_framebuffer_p2_render.raw`, navigation `p1_boot` vs
+`golden_framebuffer_p1_boot.raw` — **no difference**, in both batches.
+
+Supporting counters also held in both: dashboard `spim_a` 9,246 transactions,
+navigation `spim_a` 235, `spim_b` 0, `pdm0` 2, `gpiote0` 25 / `gpiote1` 0 —
+every one identical to iteration 37. `saadc` reads 668 in this pass's runs
+against iteration 37's 95; that is the concurrent iteration-38 SAADC work
+visible in the shared `recon/` tree, not a change these batches made — they
+touch no sensor path, and all four framebuffers are byte-identical either way.
+
+**All four framebuffers byte-identical. The acceptance bar is held.**
+
+---
+
+### 7. Constraint compliance
+
+| constraint | status |
+|---|---|
+| keep-symbolic is absolute | **held** — every candidate is `class: string_literal`. No `ADDR_*_THUMB`, ptr_table/ptr_record, device pointer, RAM/`.text` address or section boundary touched. The substituter additionally refuses any symbol appearing on the RHS of **any** `PROVIDE` in **any** `.ld` in the tree, or in any hand-written `recon/application/**/src` source — the rule that protects `g1_bt_adv_objects.c`'s `rodata_9ac7c`. **0 of the 1,344 was blocked by it, i.e. none was load-bearing for the linker.** |
+| each string batch is ONE transaction | **held** — literal + object + pin + declaration in the same edit, gated on a build that must not grow |
+| flash must not grow | **held, and it shrank** — −2,112 B then −1,456 B, **−3,568 B**; RAM Δ 0 |
+| net effectively frozen | **held — net was not touched at all**; `zephyr.bin` byte-identical to baseline; its 49 candidates deferred (§2.3) |
+| no renames; no `rodata_*` object filename touched | **held** — no file added, removed, moved or renamed in any tree; only object *bodies* deleted |
+| `recon/{app,net}/src` flat and address-keyed | **held** — and, after §5, byte-for-byte unchanged |
+| no `tools/` logic edited | **held** |
+| no `recon/board/**`, no `recon/application/*/prj.conf`, no `recon/emulator/**`, no `armemul`, no build file | **held** — the `recon/application/app/CMakeLists.txt` and `recon/generated/app_verified_data_sources.cmake` changes in the tree are the concurrent agent's iteration 38 (§0) |
+| nothing committed | **held** |
+
+Both generated families that lost objects carry an in-file note saying so and
+why a regeneration reproduces them without those lines: `gen_app_string_rodata.py`
+and `gen_app_rodata_sources.py` both select a symbol **only if it still carries a
+numeric `PROVIDE` pin**, and the pin is gone. The withdrawal is therefore
+regeneration-stable — the same mechanism iterations 31/33/35 used for
+`rodata_8ac2c`, `rodata_8ad40` and `rodata_9890c`. `g1_app_string_rodata.c` is
+down from 1,787 to **562** emitted string objects.
+
+---
+
+### 8. Trees reconciled
+
+| tree | G6-B3 | G6-B1 | left carrying inlined literals |
+|---|---|---|---:|
+| `recon/symbolized/app` (**build**) | 253 `.c` + 1 `.inc` | 424 | **605 files** |
+| `recon/symbolized/net` (**build**) | deferred (§2.3) | n/a | 0 |
+| `recon/readable_sources/app/g1` | 193 | 220 | 370 |
+| `recon/readable_sources/app/library` | 50 | 202 | 223 |
+| `recon/readable_sources/app/include` | 1 `.inc` | — | 1 |
+| `recon/named` | 7 (symbol form) | 2 (symbol) + 414 (raw hex) | 422 |
+| `recon/net/named` | deferred | n/a | 0 |
+| `recon/app/src`, `recon/verified/src` (**parity corpus**) | untouched by design | applied then **reverted** (§5) | **0** |
+| `recon/app/src_sym`, `recon/verified/src_sym` | no site | applied then **reverted** | **0** |
+| `recon/application/src` | symlink view into `recon/named` — inherits, never written directly | | |
+
+---
+
+### 9. Deferred, in one list
+
+| deferred | count | reason |
+|---|---:|---|
+| G6-B3 net, all of it | 49 candidates / 49 pins | no net rodata object exists to withdraw; net is frozen (§2.3). Unblocks by wiring `recon/application/rodata/g1_net_rodata_0*.c`. |
+| string-pool objects | 11 app (B3) + 11 net (B3) + 6 app (B1) | withdrawing the object deletes bytes other pins address; splitting a pool is a region-shape change |
+| `rodata_f541c` | 1 | pool interior, pin already non-numeric |
+| canonical-tree inlining, **all batches** | 1,527 (B3) + 1,967 (B1, reverted) | §5 — the parity harness compares the call argument; blocked on a `tools/` change that is out of scope |
+| `UINT32_C()` / `UINT64_C()` argument sites | 42 | token pasting (§3.2) |
+| `<none>` / `<stmt>` / `fatal` / `nrfx_assert_report` / `FUN_0007e2ec` / `assert_post_action` sites | 58 | not provably a string consumer; needs a per-site disassembly read |
+| G6-B2, B5, B6, G6-A, G6-X | — | out of this pass by plan order; **G6-B2 is additionally blocked by §5** |
+| `full_link.py` UNKNOWN-audit drift | — | pre-existing, unrelated to G6 (§4) |

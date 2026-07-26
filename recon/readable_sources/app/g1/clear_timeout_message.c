@@ -11,8 +11,8 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_a7d87                             @ 0x000a7d87
- *   rodata_a8265                             @ 0x000a8265
+ *   rodata_a7d87                             @ 0x000a7d87   [INLINED -- G6 literal batch]
+ *   rodata_a8265                             @ 0x000a8265   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_message_pool                           @ 0x20007dac
@@ -122,9 +122,9 @@ control_label_00033e98:
     memset_bytes(iVar5, 0, 0x1b4);
     if (0 < *(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_a7d87) /*=0xa7d87*/, ((unsigned long)&rodata_a8265) /*=0xa8265*/, iVar7, iVar9);
+            log_message(((unsigned long)"%s(): ######clear_timeout_message copy data from %d to  i %d\n") /*=0xa7d87*/, ((unsigned long)"clear_timeout_message") /*=0xa8265*/, iVar7, iVar9);
         } else {
-            debug_print(((unsigned long)&rodata_a7d87) /*=0xa7d87*/, ((unsigned long)&rodata_a8265) /*=0xa8265*/, iVar7, iVar9);
+            debug_print(((unsigned long)"%s(): ######clear_timeout_message copy data from %d to  i %d\n") /*=0xa7d87*/, ((unsigned long)"clear_timeout_message") /*=0xa8265*/, iVar7, iVar9);
         }
     }
 control_label_00033dc8:

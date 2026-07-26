@@ -6,8 +6,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_d7347                             @ 0x000d7347
- *   rodata_d7374                             @ 0x000d7374
+ *   rodata_d7347                             @ 0x000d7347   [INLINED -- G6 literal batch]
+ *   rodata_d7374                             @ 0x000d7374   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -28,9 +28,9 @@ int clean_fb_data(int param_1, void *param_2, int param_3, int param_4, int para
     if ((param_5 < param_3) || (param_6 < param_4)) {
         if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_d7347) /*=0xd7347*/, ((unsigned long)&rodata_d7374) /*=0xd7374*/);
+                log_message(((unsigned long)"%s(): clean frame buffer parameter error!!!\n") /*=0xd7347*/, ((unsigned long)"_clean_fb_data") /*=0xd7374*/);
             } else {
-                debug_print(((unsigned long)&rodata_d7347) /*=0xd7347*/, ((unsigned long)&rodata_d7374) /*=0xd7374*/);
+                debug_print(((unsigned long)"%s(): clean frame buffer parameter error!!!\n") /*=0xd7347*/, ((unsigned long)"_clean_fb_data") /*=0xd7374*/);
             }
         }
         iVar1 = -1;

@@ -12,10 +12,10 @@
  *   read_struct_first_word                   <= FUN_0008270c @ 0x0008270c
  *   bt_addr_le_copy_828da                    <= FUN_000828da @ 0x000828da
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f1722                             @ 0x000f1722
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f1722                             @ 0x000f1722   [INLINED -- G6 literal batch]
  *   rodata_f46b8                             @ 0x000f46b8
- *   rodata_f46e8                             @ 0x000f46e8
+ *   rodata_f46e8                             @ 0x000f46e8   [INLINED -- G6 literal batch]
  *   g_bt_gatt_sc_cfg                         @ 0x20006328
  *   g_bt_gatt_sc_cfg0_flags                  @ 0x20006330
  *   g_bt_gatt_sc_cfg1_flags                  @ 0x2000633c
@@ -48,8 +48,8 @@ void gatt_delayed_store_enqueue(uint32_t param_1, uint32_t param_2, uint32_t par
       else {
         t = read_struct_first_word(0x20006348);
         if (t != 0){
-          printk(0x99cbd,0xf1722,0xf46b8,0x577);
-          printk(0xf46e8);
+          printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"el != ((void *)0)"),0xf46b8,0x577);
+          printk(((unsigned long)"\tCan't save CF / CCC to flash\n"));
           assert_post_action(0xf46b8,0x577);
         }
         iVar4 = 2; iVar2 = 0x18;

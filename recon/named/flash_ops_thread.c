@@ -8,8 +8,8 @@
  *   get_audio_msgq_used_count                <= FUN_0002f758 @ 0x0002f758
  *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  * address symbols (name @ address):
- *   rodata_9e7da                             @ 0x0009e7da
- *   rodata_9e8be                             @ 0x0009e8be
+ *   rodata_9e7da                             @ 0x0009e7da   [INLINED -- G6 literal batch]
+ *   rodata_9e8be                             @ 0x0009e8be   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_app_language_msgq                      @ 0x200079e4
@@ -55,9 +55,9 @@ static inline void log_thread_started(void)
 {
     if (*log_level_reg > 2) {
         if (*g_log_backend == 0)
-            log_message(0x0009e7da, 0x0009e8be);
+            log_message(((unsigned long)"%s(): flash op thread startup ...\n"), ((unsigned long)"flash_ops_thread"));
         else
-            debug_print(0x0009e7da, 0x0009e8be);
+            debug_print(((unsigned long)"%s(): flash op thread startup ...\n"), ((unsigned long)"flash_ops_thread"));
     }
 }
 

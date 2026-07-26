@@ -5,7 +5,7 @@
  *   device_reg3_init_config                  <= FUN_0002ea78 @ 0x0002ea78
  *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
  * address symbols (name @ address):
- *   rodata_a3e1a                             @ 0x000a3e1a
+ *   rodata_a3e1a                             @ 0x000a3e1a   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0002ea78 @ 0x2ea78  (parity: 300/300 trials, PROVEN) */
 
@@ -19,7 +19,7 @@ unsigned int device_reg3_init_config(void)
   unsigned int base = *(volatile unsigned int*)(0x00087ce0UL + 4);
   iVar1 = dev_write_reg3(*(volatile unsigned int*)(base + 0x1c), 3, 0xc, 8);
   if (iVar1 < 0) {
-    log_message(0x000a3e1a);
+    log_message(((unsigned long)"Could not change termination voltage to 4.2V\n"));
     uVar2 = 0xffffffff;
   } else {
     uVar2 = 0;

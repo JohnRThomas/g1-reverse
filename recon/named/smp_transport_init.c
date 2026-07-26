@@ -10,9 +10,9 @@
  *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
  * address symbols (name @ address):
  *   ADDR_smp_handle_reqs_THUMB               @ 0x00080ab5
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f2901                             @ 0x000f2901
- *   rodata_f293b                             @ 0x000f293b
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f2901                             @ 0x000f2901   [INLINED -- G6 literal batch]
+ *   rodata_f293b                             @ 0x000f293b   [INLINED -- G6 literal batch]
  *   rodata_f2963                             @ 0x000f2963
  */
 /* Reconstructed FUN_000526f4 @ 0x526f4  (parity: 300/300 trials, PROVEN) */
@@ -27,7 +27,7 @@ extern void z_impl_k_queue_init(void *queue);
 unsigned int smp_transport_init(int param_1)
 {
     if (*(volatile int *)(param_1 + 0x2c) == 0) {
-        printk(0x00099cbdUL, 0x000f293bUL, 0x000f2901UL, 0x92);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f293bUL, 0x000f2901UL, 0x92);
         printk(0x000f2963UL);
         assert_post_action(0x000f2901UL, 0x92);
     }

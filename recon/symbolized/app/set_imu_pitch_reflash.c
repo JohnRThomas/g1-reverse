@@ -14,8 +14,8 @@
  *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
  *   get_localized_weekday_name               <= FUN_0007d4b2 @ 0x0007d4b2
  * address symbols (name @ address):
- *   rodata_d7173                             @ 0x000d7173
- *   rodata_d71f9                             @ 0x000d71f9
+ *   rodata_d7173                             @ 0x000d7173   [INLINED -- G6 literal batch]
+ *   rodata_d71f9                             @ 0x000d71f9   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_imu_pitch_last_state                   @ 0x2001cf91
@@ -65,9 +65,9 @@ unsigned set_imu_pitch_reflash(void)
     if (mode >= 2) {
         if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                log_message(((unsigned long)&rodata_d7173) /*=0xd7173*/, ((unsigned long)&rodata_d71f9) /*=0xd71f9*/);
+                log_message(((unsigned long)"%s(): set_imu_pitch:horiz_step over E_IMU_PITCH_STEP_MAX\n") /*=0xd7173*/, ((unsigned long)"set_imu_pitch_reflash") /*=0xd71f9*/);
             else
-                debug_print(((unsigned long)&rodata_d7173) /*=0xd7173*/, ((unsigned long)&rodata_d71f9) /*=0xd71f9*/);
+                debug_print(((unsigned long)"%s(): set_imu_pitch:horiz_step over E_IMU_PITCH_STEP_MAX\n") /*=0xd7173*/, ((unsigned long)"set_imu_pitch_reflash") /*=0xd71f9*/);
         }
         return UINT32_MAX;
     }

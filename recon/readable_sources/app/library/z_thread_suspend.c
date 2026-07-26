@@ -17,12 +17,12 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   z_reschedule_unlocked                    <= FUN_0008664c @ 0x0008664c
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   _kernel                                  @ 0x2000b448
  *   g_sched_ready_runq                       @ 0x2000b464
  *   sched_spinlock                           @ 0x2000b490
@@ -44,8 +44,8 @@ void z_thread_suspend(uint8_t *param_1){
     z_abort_timeout(param_1+0x18);
     int iVar4 = z_spin_lock_valid((void*)((unsigned long)&sched_spinlock) /*=0x2000b490*/);
     if (iVar4==0){
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
-        printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,((unsigned long)&sched_spinlock) /*=0x2000b490*/);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
+        printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/,((unsigned long)&sched_spinlock) /*=0x2000b490*/);
         uVar6=0x72;
         assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,uVar6);
         return;
@@ -64,8 +64,8 @@ void z_thread_suspend(uint8_t *param_1){
         z_reschedule_unlocked();
         return;
     }
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
-    printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,((unsigned long)&sched_spinlock) /*=0x2000b490*/);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
+    printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/,((unsigned long)&sched_spinlock) /*=0x2000b490*/);
     uVar6=0xf0;
     assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,uVar6);
 }

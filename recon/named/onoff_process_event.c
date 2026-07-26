@@ -12,19 +12,19 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
  *   rodata_4b8a5                             @ 0x0004b8a5
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f0824                             @ 0x000f0824
- *   rodata_f0846                             @ 0x000f0846
- *   rodata_f0852                             @ 0x000f0852
- *   rodata_f0875                             @ 0x000f0875
- *   rodata_f088c                             @ 0x000f088c
- *   rodata_f08a2                             @ 0x000f08a2
- *   rodata_f08b1                             @ 0x000f08b1
+ *   rodata_f0846                             @ 0x000f0846   [INLINED -- G6 literal batch]
+ *   rodata_f0852                             @ 0x000f0852   [INLINED -- G6 literal batch]
+ *   rodata_f0875                             @ 0x000f0875   [INLINED -- G6 literal batch]
+ *   rodata_f088c                             @ 0x000f088c   [INLINED -- G6 literal batch]
+ *   rodata_f08a2                             @ 0x000f08a2   [INLINED -- G6 literal batch]
+ *   rodata_f08b1                             @ 0x000f08b1   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f7a30                             @ 0x000f7a30
  */
 /* Full reconstruction of FUN_0004b4fc @ 0x4b4fc (916-byte catalog extent). */
@@ -87,14 +87,14 @@ static __attribute__((always_inline)) inline void leave_critical(uint32_t saved)
 
 static __attribute__((always_inline)) inline void fatal(uintptr_t message, uint32_t line)
 {
-    printk(0x00099cbdu, message, 0x000f0824u, line);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), message, 0x000f0824u, line);
     assert_post_action(0x000f0824u, line);
 }
 
 static __attribute__((always_inline)) inline void unlock_failure(void *lock)
 {
-    printk(0x00099cbdu, 0x000f08f4u, 0x000f08c7u, 0xf0u);
-    printk(0x000f090bu, lock);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"z_spin_unlock_valid(l)"), 0x000f08c7u, 0xf0u);
+    printk(((unsigned long)"\tNot my spinlock %p\n"), lock);
     assert_post_action(0x000f08c7u, 0xf0u);
 }
 
@@ -242,8 +242,8 @@ process_current:
 
             saved_priority = enter_critical();
             if (z_spin_lock_valid(state->lock) == 0) {
-                printk(0x00099cbdu, 0x000f0920u, 0x000f08c7u, 0x72u);
-                printk(0x000f0935u, state->lock);
+                printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"z_spin_lock_valid(l)"), 0x000f08c7u, 0x72u);
+                printk(((unsigned long)"\tInvalid spinlock %p\n"), state->lock);
                 assert_post_action(0x000f08c7u, 0x72u);
             }
             z_spin_lock_set_owner(state->lock);

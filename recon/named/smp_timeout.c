@@ -8,7 +8,7 @@
  *   atomic_set_bit                           <= FUN_00083090 @ 0x00083090
  * address symbols (name @ address):
  *   rodata_88180                             @ 0x00088180
- *   rodata_f51ec                             @ 0x000f51ec
+ *   rodata_f51ec                             @ 0x000f51ec   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005e3e0 @ 0x5e3e0  (parity: 300/300 trials, PROVEN) */
 

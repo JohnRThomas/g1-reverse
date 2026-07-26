@@ -12,11 +12,11 @@
  * address symbols (name @ address):
  *   rodata_882a0                             @ 0x000882a0
  *   __settings_handler_static_list_start     @ 0x000882b0
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f0cae                             @ 0x000f0cae
- *   rodata_f0cdb                             @ 0x000f0cdb
- *   rodata_f0cff                             @ 0x000f0cff
- *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f0cdb                             @ 0x000f0cdb   [INLINED -- G6 literal batch]
+ *   rodata_f0cff                             @ 0x000f0cff   [INLINED -- G6 literal batch]
+ *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  *   z_log_process_guard                      @ 0x2000a0dc
  */
 /* Reconstructed FUN_0004d334 @ 0x4d334  (parity: 300/300 trials, PROVEN) */
@@ -53,11 +53,11 @@ unsigned log_msg_process(int param_1,int param_2){
         uVar6++;
       }
     }
-    printk(0x00099cbd,0x000f0cff,0x000f0cae,0x126);
-    printk(0x000f0d20);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"backend <= _log_backend_list_end"),0x000f0cae,0x126);
+    printk(((unsigned long)"\tunexpected list end location\n"));
     uVar4 = 0x126;
   } else {
-    printk(0x00099cbd,0x000f0cdb,0x000f0cae,0x119);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"log_backend_count_get() < (32 / 3U)"),0x000f0cae,0x119);
     uVar4 = 0x119;
   }
   assert_post_action(0x000f0cae,uVar4);

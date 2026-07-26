@@ -14,7 +14,7 @@
  *   rodata_9ff05                             @ 0x0009ff05
  *   rodata_9ff92                             @ 0x0009ff92
  *   rodata_a0102                             @ 0x000a0102
- *   rodata_a1ab1                             @ 0x000a1ab1
+ *   rodata_a1ab1                             @ 0x000a1ab1   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_esb_sync_inbound_status                @ 0x2000302b
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -126,10 +126,10 @@ control_label_00027008: ;
               log_format = ((unsigned long)&rodata_9ff05) /*=0x9ff05*/;
 control_label_000270b8:
               if (iVar8 == 0) {
-                log_message(log_format, ((unsigned long)&rodata_a1ab1) /*=0xa1ab1*/);
+                log_message(log_format, ((unsigned long)"sync_to_slave") /*=0xa1ab1*/);
               }
               else {
-                debug_print(log_format, ((unsigned long)&rodata_a1ab1) /*=0xa1ab1*/);
+                debug_print(log_format, ((unsigned long)"sync_to_slave") /*=0xa1ab1*/);
               }
             }
           }
@@ -192,10 +192,10 @@ control_label_0002708e:
             log_format = ((unsigned long)&rodata_9fede) /*=0x9fede*/;
 control_label_0002707a:
             if (iVar8 == 0) {
-              log_message(log_format, ((unsigned long)&rodata_a1ab1) /*=0xa1ab1*/, param_2);
+              log_message(log_format, ((unsigned long)"sync_to_slave") /*=0xa1ab1*/, param_2);
             }
             else {
-              debug_print(log_format, ((unsigned long)&rodata_a1ab1) /*=0xa1ab1*/, param_2);
+              debug_print(log_format, ((unsigned long)"sync_to_slave") /*=0xa1ab1*/, param_2);
             }
           }
           goto control_label_0002708e;
@@ -263,10 +263,10 @@ control_label_00027372:
               uVar16 = uVar17;
               if (0 < *piVar6) {
                 if (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                  log_message(0xa00d0, ((unsigned long)&rodata_a1ab1) /*=0xa1ab1*/, uVar17);
+                  log_message(0xa00d0, ((unsigned long)"sync_to_slave") /*=0xa1ab1*/, uVar17);
                 }
                 else {
-                  debug_print(0xa00d0, ((unsigned long)&rodata_a1ab1) /*=0xa1ab1*/, uVar17);
+                  debug_print(0xa00d0, ((unsigned long)"sync_to_slave") /*=0xa1ab1*/, uVar17);
                 }
                 if (param_1[0x105a] == '\x02') break;
               }
@@ -344,10 +344,10 @@ control_label_000273f0:
                 log_format = ((unsigned long)&rodata_a0102) /*=0xa0102*/;
 control_label_00027298:
                 if (iVar8 == 0) {
-                  log_message(log_format, ((unsigned long)&rodata_a1ab1) /*=0xa1ab1*/);
+                  log_message(log_format, ((unsigned long)"sync_to_slave") /*=0xa1ab1*/);
                 }
                 else {
-                  debug_print(log_format, ((unsigned long)&rodata_a1ab1) /*=0xa1ab1*/);
+                  debug_print(log_format, ((unsigned long)"sync_to_slave") /*=0xa1ab1*/);
                 }
               }
             }

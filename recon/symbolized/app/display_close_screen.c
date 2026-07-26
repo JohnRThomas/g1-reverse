@@ -10,8 +10,8 @@
  *   mutex_unlock_syscall_handler             <= FUN_000745c8 @ 0x000745c8
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_f006d                             @ 0x000f006d
- *   rodata_f0177                             @ 0x000f0177
+ *   rodata_f006d                             @ 0x000f006d   [INLINED -- G6 literal batch]
+ *   rodata_f0177                             @ 0x000f0177   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -32,9 +32,9 @@ int display_close_screen(int param_1, uint32_t param_2){
   if(param_1 != 0){
     if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0){
       if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
-        log_message(((unsigned long)&rodata_f006d) /*=0xf006d*/, ((unsigned long)&rodata_f0177) /*=0xf0177*/, param_1);
+        log_message(((unsigned long)"%s(): display_close_screen %d\n") /*=0xf006d*/, ((unsigned long)"display_close_screen") /*=0xf0177*/, param_1);
       } else {
-        debug_print(((unsigned long)&rodata_f006d) /*=0xf006d*/, ((unsigned long)&rodata_f0177) /*=0xf0177*/, param_1);
+        debug_print(((unsigned long)"%s(): display_close_screen %d\n") /*=0xf006d*/, ((unsigned long)"display_close_screen") /*=0xf0177*/, param_1);
       }
     }
     if(param_1 == 4){

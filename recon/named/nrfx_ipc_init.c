@@ -7,7 +7,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6bc5                             @ 0x000f6bc5
  *   rodata_f6e32                             @ 0x000f6e32
  *   g_nrfx_hal_init_flag                     @ 0x2000b324
@@ -24,7 +24,7 @@ unsigned int nrfx_ipc_init(unsigned int param_1, int param_2, int param_3)
 {
   unsigned int uVar2;
   if (param_2 == 0) {
-    printk(0x00099cbdU, 0x000f6e32U, 0x000f6bc5U, 0x34U);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f6e32U, 0x000f6bc5U, 0x34U);
     (void)assert_post_action(0x000f6bc5U, 0x34U);
   }
   {

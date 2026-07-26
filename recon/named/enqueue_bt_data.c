@@ -9,8 +9,8 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_9a18e                             @ 0x0009a18e
- *   rodata_9a1ae                             @ 0x0009a1ae
+ *   rodata_9a18e                             @ 0x0009a18e   [INLINED -- G6 literal batch]
+ *   rodata_9a1ae                             @ 0x0009a1ae   [INLINED -- G6 literal batch]
  *   g_bt_data_pipe                           @ 0x200038f8
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -28,15 +28,15 @@ int enqueue_bt_data(uint32_t param_1, uint8_t param_2){
   memset_bytes(local_114,0,0x101);
   if(*(volatile int*)(0x200038f8UL+0x24)==0x30){
     k_msgq_get(0x200038f8,local_114,0,0);
-    if(*(volatile int*)0x20007554UL==0) log_message(0x9a18e);
-    else debug_print(0x9a18e);
+    if(*(volatile int*)0x20007554UL==0) log_message(((unsigned long)"enqueue_bt_data drop package! \n"));
+    else debug_print(((unsigned long)"enqueue_bt_data drop package! \n"));
   }
   local_114[0]=param_2;
   memcpy(local_114+1,param_1,0x100);
   int iVar1=FUN_000720d0_i(0x200038f8,local_114,0,0);
   if(iVar1!=0){
-    if(*(volatile int*)0x20007554UL==0) log_message(0x9a1ae);
-    else debug_print(0x9a1ae);
+    if(*(volatile int*)0x20007554UL==0) log_message(((unsigned long)"enqueue_bt_data failed !\n"));
+    else debug_print(((unsigned long)"enqueue_bt_data failed !\n"));
   }
   return iVar1;
 }

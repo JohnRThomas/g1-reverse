@@ -11,7 +11,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6ceb                             @ 0x000f6ceb
  *   rodata_f6d26                             @ 0x000f6d26
  *   nrfx_pdm_drv_state                       @ 0x2000b340
@@ -30,7 +30,7 @@ unsigned int nrfx_pdm_stop(void)
     unsigned int uVar3;
 
     if (*(volatile unsigned char *)((unsigned long)&nrfx_pdm_drv_state) /*=0x2000b340*/ == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f6d26) /*=0xf6d26*/, ((unsigned long)&rodata_f6ceb) /*=0xf6ceb*/, 0x132, 0);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f6d26) /*=0xf6d26*/, ((unsigned long)&rodata_f6ceb) /*=0xf6ceb*/, 0x132, 0);
         assert_post_action(((unsigned long)&rodata_f6ceb) /*=0xf6ceb*/, 0x132);
     }
     bVar1 = *(volatile unsigned char *)((unsigned long)&nrfx_pdm_state) /*=0x2000b341*/;

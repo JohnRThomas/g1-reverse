@@ -18,8 +18,8 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_a8174                             @ 0x000a8174
- *   rodata_a8255                             @ 0x000a8255
+ *   rodata_a8174                             @ 0x000a8174   [INLINED -- G6 literal batch]
+ *   rodata_a8255                             @ 0x000a8255   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_message_pool                           @ 0x20007dac
@@ -51,7 +51,7 @@ void confirm_message(int param_1)
     pcVar6 = (char*)get_device_info(0);
     if ((*pcVar6 == 1) && (cVar1 == 0) && (iVar7 = message_table_contains_id(10,iVar13), iVar7 != 0)) {
       if (0 < *(volatile int*)0x2000230c) {
-        if (*(volatile int*)0x20007554 == 0) log_message(0xa8174,0xa8255,iVar13);
+        if (*(volatile int*)0x20007554 == 0) log_message(((unsigned long)"%s(): add found same message, uidtail %d\n"),((unsigned long)"confirm_message"),iVar13);
         else debug_print(0);
       }
       memset_bytes(0x20008eb4,0,0x1b4);

@@ -6,9 +6,9 @@
  *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  * address symbols (name @ address):
  *   g_watchdog_device                        @ 0x00087cc8
- *   rodata_a1c4e                             @ 0x000a1c4e
- *   rodata_a1c6a                             @ 0x000a1c6a
- *   rodata_a1c85                             @ 0x000a1c85
+ *   rodata_a1c4e                             @ 0x000a1c4e   [INLINED -- G6 literal batch]
+ *   rodata_a1c6a                             @ 0x000a1c6a   [INLINED -- G6 literal batch]
+ *   rodata_a1c85                             @ 0x000a1c85   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_wdt_channel_id                         @ 0x20007b50
@@ -29,9 +29,9 @@ int disable_watchdog(void)
     if (*piVar1 < 0) {
         if (3 < *(volatile int*)0x2000230cUL) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                log_message(0xa1c4e, 0xa1c85, *piVar1);
+                log_message(((unsigned long)"%s(): watchdog is disabled\n"), ((unsigned long)"disable_watchdog"), *piVar1);
             } else {
-                debug_print(0xa1c4e, 0xa1c85, *piVar1);
+                debug_print(((unsigned long)"%s(): watchdog is disabled\n"), ((unsigned long)"disable_watchdog"), *piVar1);
             }
         }
         iVar5 = 0;
@@ -40,10 +40,10 @@ int disable_watchdog(void)
         do {
             if (3 < *(volatile int*)0x2000230cUL) {
                 if (*(volatile unsigned int*)0x20007554UL == 0) {
-                    log_message(0xa1c6a, 0xa1c85, 0,
+                    log_message(((unsigned long)"%s(): disable watchdog...\n"), ((unsigned long)"disable_watchdog"), 0,
                                 *(volatile unsigned int*)0x20007554UL);
                 } else {
-                    debug_print(0xa1c6a, 0xa1c85, 0,
+                    debug_print(((unsigned long)"%s(): disable watchdog...\n"), ((unsigned long)"disable_watchdog"), 0,
                                  *(volatile unsigned int*)0x20007554UL);
                 }
             }

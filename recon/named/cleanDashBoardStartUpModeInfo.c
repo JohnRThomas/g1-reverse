@@ -6,9 +6,9 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
- *   rodata_9e903                             @ 0x0009e903
- *   rodata_9e968                             @ 0x0009e968
- *   rodata_9ed4a                             @ 0x0009ed4a
+ *   rodata_9e903                             @ 0x0009e903   [INLINED -- G6 literal batch]
+ *   rodata_9e968                             @ 0x0009e968   [INLINED -- G6 literal batch]
+ *   rodata_9ed4a                             @ 0x0009ed4a   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_flash_store_cmd_msgq                   @ 0x20003994
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -33,9 +33,9 @@ int cleanDashBoardStartUpModeInfo(void)
   if (k_msgq_put(0x20003994, &request, 0, 0) != 0) {
     if (*(volatile int32_t *)0x2000230c > 0) {
       if (*(volatile uint32_t *)0x20007554 == 0) {
-        log_message(0x0009e903, 0x0009ed4a);
+        log_message(((unsigned long)"%s(): setting flash store queue fill failed\r\n\n"), ((unsigned long)"cleanDashBoardStartUpModeInfo"));
       } else {
-        debug_print(0x0009e903, 0x0009ed4a);
+        debug_print(((unsigned long)"%s(): setting flash store queue fill failed\r\n\n"), ((unsigned long)"cleanDashBoardStartUpModeInfo"));
       }
     }
     return -1;
@@ -43,9 +43,9 @@ int cleanDashBoardStartUpModeInfo(void)
 
   if (*(volatile int32_t *)0x2000230c > 2) {
     if (*(volatile uint32_t *)0x20007554 == 0) {
-      log_message(0x0009e968, 0x0009ed4a);
+      log_message(((unsigned long)"%s(): SEND APP Language Command...\n"), ((unsigned long)"cleanDashBoardStartUpModeInfo"));
     } else {
-      debug_print(0x0009e968, 0x0009ed4a);
+      debug_print(((unsigned long)"%s(): SEND APP Language Command...\n"), ((unsigned long)"cleanDashBoardStartUpModeInfo"));
     }
   }
   k_sem_give(0x200079e4);

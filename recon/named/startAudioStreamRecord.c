@@ -10,9 +10,9 @@
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_a4304                             @ 0x000a4304
- *   rodata_a432a                             @ 0x000a432a
- *   rodata_a496f                             @ 0x000a496f
+ *   rodata_a4304                             @ 0x000a4304   [INLINED -- G6 literal batch]
+ *   rodata_a432a                             @ 0x000a432a   [INLINED -- G6 literal batch]
+ *   rodata_a496f                             @ 0x000a496f   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_audio_msgq                             @ 0x20003890
  *   g_log_use_alt_sink                       @ 0x20007554

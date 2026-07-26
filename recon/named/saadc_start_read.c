@@ -12,12 +12,12 @@
  * address symbols (name @ address):
  *   rodata_880e0                             @ 0x000880e0
  *   rodata_f4240                             @ 0x000f4240
- *   rodata_f5571                             @ 0x000f5571
- *   rodata_f558f                             @ 0x000f558f
- *   rodata_f55a9                             @ 0x000f55a9
- *   rodata_f55ce                             @ 0x000f55ce
- *   rodata_f5600                             @ 0x000f5600
- *   rodata_f5623                             @ 0x000f5623
+ *   rodata_f5571                             @ 0x000f5571   [INLINED -- G6 literal batch]
+ *   rodata_f558f                             @ 0x000f558f   [INLINED -- G6 literal batch]
+ *   rodata_f55a9                             @ 0x000f55a9   [INLINED -- G6 literal batch]
+ *   rodata_f55ce                             @ 0x000f55ce   [INLINED -- G6 literal batch]
+ *   rodata_f5600                             @ 0x000f5600   [INLINED -- G6 literal batch]
+ *   rodata_f5623                             @ 0x000f5623   [INLINED -- G6 literal batch]
  *   adc_context                              @ 0x20002190
  *   g_adc_context_lock                       @ 0x200021d0
  *   g_adc_saadc_ctrl_mutex                   @ 0x200021e8

@@ -6,9 +6,9 @@
  *   flash_settings_read                      <= FUN_000225b4 @ 0x000225b4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_9e60c                             @ 0x0009e60c
- *   rodata_9e708                             @ 0x0009e708
- *   rodata_9e72a                             @ 0x0009e72a
+ *   rodata_9e60c                             @ 0x0009e60c   [INLINED -- G6 literal batch]
+ *   rodata_9e708                             @ 0x0009e708   [INLINED -- G6 literal batch]
+ *   rodata_9e72a                             @ 0x0009e72a   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

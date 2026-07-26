@@ -11,9 +11,9 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
- *   rodata_9e873                             @ 0x0009e873
- *   rodata_9e88b                             @ 0x0009e88b
- *   rodata_9e8e5                             @ 0x0009e8e5
+ *   rodata_9e873                             @ 0x0009e873   [INLINED -- G6 literal batch]
+ *   rodata_9e88b                             @ 0x0009e88b   [INLINED -- G6 literal batch]
+ *   rodata_9e8e5                             @ 0x0009e8e5   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_font_total_size                        @ 0x200079d4
@@ -70,7 +70,7 @@ void try_to_save_file(int context)
                 debug_print();
                 return;
             }
-            log_message(((unsigned long)&rodata_9e88b) /*=0x9e88b*/, ((unsigned long)&rodata_9e8e5) /*=0x9e8e5*/, checksum);
+            log_message(((unsigned long)"%s(): crc cal end crc32_value %08X\n") /*=0x9e88b*/, ((unsigned long)"try_to_save_file") /*=0x9e8e5*/, checksum);
             return;
         }
         goto save_block;
@@ -118,7 +118,7 @@ save_block:
     FILE_CHECKSUM = checksum;
     if (LOG_LEVEL > 0) {
         if (LOG_SINK == 0)
-            log_message(((unsigned long)&rodata_9e873) /*=0x9e873*/, ((unsigned long)&rodata_9e8e5) /*=0x9e8e5*/, checksum);
+            log_message(((unsigned long)"%s(): crc32_value %08X\n") /*=0x9e873*/, ((unsigned long)"try_to_save_file") /*=0x9e8e5*/, checksum);
         else
             debug_print();
     }

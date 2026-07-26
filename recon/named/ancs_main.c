@@ -7,17 +7,17 @@
  *   k_msleep_ticks32768_d                    <= FUN_0007c0a8 @ 0x0007c0a8
  * address symbols (name @ address):
  *   ADDR_check_bonded_addr_THUMB             @ 0x000183e5
- *   rodata_9af3b                             @ 0x0009af3b
- *   rodata_9af75                             @ 0x0009af75
- *   rodata_9afa1                             @ 0x0009afa1
- *   rodata_9afc3                             @ 0x0009afc3
- *   rodata_9afed                             @ 0x0009afed
- *   rodata_9b019                             @ 0x0009b019
- *   rodata_9b04b                             @ 0x0009b04b
- *   rodata_9b060                             @ 0x0009b060
- *   rodata_9b089                             @ 0x0009b089
- *   rodata_9b0ae                             @ 0x0009b0ae
- *   rodata_9b135                             @ 0x0009b135
+ *   rodata_9af3b                             @ 0x0009af3b   [INLINED -- G6 literal batch]
+ *   rodata_9af75                             @ 0x0009af75   [INLINED -- G6 literal batch]
+ *   rodata_9afa1                             @ 0x0009afa1   [INLINED -- G6 literal batch]
+ *   rodata_9afc3                             @ 0x0009afc3   [INLINED -- G6 literal batch]
+ *   rodata_9afed                             @ 0x0009afed   [INLINED -- G6 literal batch]
+ *   rodata_9b019                             @ 0x0009b019   [INLINED -- G6 literal batch]
+ *   rodata_9b04b                             @ 0x0009b04b   [INLINED -- G6 literal batch]
+ *   rodata_9b060                             @ 0x0009b060   [INLINED -- G6 literal batch]
+ *   rodata_9b089                             @ 0x0009b089   [INLINED -- G6 literal batch]
+ *   rodata_9b0ae                             @ 0x0009b0ae   [INLINED -- G6 literal batch]
+ *   rodata_9b135                             @ 0x0009b135   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_20002320                               @ 0x20002320
  *   g_20002328                               @ 0x20002328

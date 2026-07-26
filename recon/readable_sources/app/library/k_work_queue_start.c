@@ -13,7 +13,7 @@
  *   posix_stub_enosys                        <= FUN_00086412 @ 0x00086412
  * address symbols (name @ address):
  *   rodata_72ab1                             @ 0x00072ab1
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f586b                             @ 0x000f586b
  *   rodata_f820f                             @ 0x000f820f
  *   rodata_f82a5                             @ 0x000f82a5
@@ -28,14 +28,14 @@ extern void firmware_function_0008641c(int);
 void k_work_queue_start(int param_1,int param_2,unsigned param_3,unsigned param_4,int *param_5){
   unsigned uVar1;
   if(param_1==0){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f586b) /*=0xf586b*/,((unsigned long)&rodata_f820f) /*=0xf820f*/,0x2c8); uVar1=0x2c8;
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f586b) /*=0xf586b*/,((unsigned long)&rodata_f820f) /*=0xf820f*/,0x2c8); uVar1=0x2c8;
     assert_post_action(((unsigned long)&rodata_f820f) /*=0xf820f*/,uVar1); return;
   } else if(param_2==0){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f82a5) /*=0xf82a5*/,((unsigned long)&rodata_f820f) /*=0xf820f*/,0x2c9); uVar1=0x2c9;
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f82a5) /*=0xf82a5*/,((unsigned long)&rodata_f820f) /*=0xf820f*/,0x2c9); uVar1=0x2c9;
     assert_post_action(((unsigned long)&rodata_f820f) /*=0xf820f*/,uVar1); return;
   } else {
     if((*(volatile unsigned*)(param_1+0xf0)&1)!=0){
-      printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f82ab) /*=0xf82ab*/,((unsigned long)&rodata_f820f) /*=0xf820f*/,0x2ca);
+      printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f82ab) /*=0xf82ab*/,((unsigned long)&rodata_f820f) /*=0xf820f*/,0x2ca);
       assert_post_action(((unsigned long)&rodata_f820f) /*=0xf820f*/,0x2ca);
     }
     *(volatile unsigned*)(param_1+0xd8)=0;

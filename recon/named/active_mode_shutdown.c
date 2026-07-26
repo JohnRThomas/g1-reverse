@@ -5,8 +5,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   active_mode_shutdown                     <= FUN_0002bdf0 @ 0x0002bdf0
  * address symbols (name @ address):
- *   rodata_a24eb                             @ 0x000a24eb
- *   rodata_a24f9                             @ 0x000a24f9
+ *   rodata_a24eb                             @ 0x000a24eb   [INLINED -- G6 literal batch]
+ *   rodata_a24f9                             @ 0x000a24f9   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

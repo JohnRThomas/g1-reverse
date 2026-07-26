@@ -9,10 +9,10 @@
  *   ipc_service_send                         <= FUN_0004cc50 @ 0x0004cc50
  *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  * address symbols (name @ address):
- *   rodata_9f576                             @ 0x0009f576
- *   rodata_9f5a9                             @ 0x0009f5a9
- *   rodata_9f5ce                             @ 0x0009f5ce
- *   rodata_9f704                             @ 0x0009f704
+ *   rodata_9f576                             @ 0x0009f576   [INLINED -- G6 literal batch]
+ *   rodata_9f5a9                             @ 0x0009f5a9   [INLINED -- G6 literal batch]
+ *   rodata_9f5ce                             @ 0x0009f5ce   [INLINED -- G6 literal batch]
+ *   rodata_9f704                             @ 0x0009f704   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ipc_send_fail_cnt                      @ 0x20007a74
@@ -48,20 +48,20 @@ int global_ipc_service_send(unsigned int param_1, unsigned int param_2)
                         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                             goto lab_debug_1;
                         }
-                        debug_print(((unsigned long)&rodata_9f576) /*=0x9f576*/, ((unsigned long)&rodata_9f704) /*=0x9f704*/, iVar3, *piVar1);
+                        debug_print(((unsigned long)"%s(): ipc_service_send data failed with ret %d %d\n") /*=0x9f576*/, ((unsigned long)"global_ipc_service_send") /*=0x9f704*/, iVar3, *piVar1);
                     }
                     while (iVar4 = *piVar1 + 1, *piVar1 = iVar4, 2 < iVar4) {
                         if (0 < *piVar2) {
                             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                                log_message(((unsigned long)&rodata_9f5a9) /*=0x9f5a9*/, ((unsigned long)&rodata_9f704) /*=0x9f704*/);
+                                log_message(((unsigned long)"%s(): sys reboot because ipc failed\n") /*=0x9f5a9*/, ((unsigned long)"global_ipc_service_send") /*=0x9f704*/);
                             } else {
-                                debug_print(((unsigned long)&rodata_9f5a9) /*=0x9f5a9*/, ((unsigned long)&rodata_9f704) /*=0x9f704*/);
+                                debug_print(((unsigned long)"%s(): sys reboot because ipc failed\n") /*=0x9f5a9*/, ((unsigned long)"global_ipc_service_send") /*=0x9f704*/);
                             }
                         }
                         k_sleep(0x4000, 0);
                         sys_reboot(1);
 lab_debug_1:
-                        log_message(((unsigned long)&rodata_9f576) /*=0x9f576*/, ((unsigned long)&rodata_9f704) /*=0x9f704*/, iVar3);
+                        log_message(((unsigned long)"%s(): ipc_service_send data failed with ret %d %d\n") /*=0x9f576*/, ((unsigned long)"global_ipc_service_send") /*=0x9f704*/, iVar3);
                     }
                     return iVar3;
                 }
@@ -72,9 +72,9 @@ lab_debug_1:
     }
     if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_9f5ce) /*=0x9f5ce*/, ((unsigned long)&rodata_9f704) /*=0x9f704*/);
+            log_message(((unsigned long)"%s(): ipc_service not ready!\n") /*=0x9f5ce*/, ((unsigned long)"global_ipc_service_send") /*=0x9f704*/);
         } else {
-            debug_print(((unsigned long)&rodata_9f5ce) /*=0x9f5ce*/, ((unsigned long)&rodata_9f704) /*=0x9f704*/);
+            debug_print(((unsigned long)"%s(): ipc_service not ready!\n") /*=0x9f5ce*/, ((unsigned long)"global_ipc_service_send") /*=0x9f704*/);
         }
     }
     return -1;

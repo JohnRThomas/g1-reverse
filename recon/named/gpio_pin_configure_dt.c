@@ -8,12 +8,12 @@
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  * address symbols (name @ address):
  *   rodata_99c53                             @ 0x00099c53
- *   rodata_99c84                             @ 0x00099c84
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_99cda                             @ 0x00099cda
- *   rodata_99dad                             @ 0x00099dad
- *   rodata_99de0                             @ 0x00099de0
- *   rodata_99e1e                             @ 0x00099e1e
+ *   rodata_99c84                             @ 0x00099c84   [INLINED -- G6 literal batch]
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_99cda                             @ 0x00099cda   [INLINED -- G6 literal batch]
+ *   rodata_99dad                             @ 0x00099dad   [INLINED -- G6 literal batch]
+ *   rodata_99de0                             @ 0x00099de0   [INLINED -- G6 literal batch]
+ *   rodata_99e1e                             @ 0x00099e1e   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_000639d4 @ 0x639d4  (parity: 300/300 trials, PROVEN) */
 
@@ -35,11 +35,11 @@ unsigned gpio_pin_configure_dt(int param_1){
       bVar1 = *(unsigned char *)(puVar5 + 2);
       puVar5 = *(unsigned **)(iVar2 + 8);
       if ((uVar7 & 0x30) == 0x30) {
-        printk(0x00099cbd,0x00099c84,0x00099c53,0x3ca);
-        printk(0x00099cda);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"(flags & ((1 << 4) | (1 << 5))) != ((1 << 4) | (1 << 5))"),0x00099c53,0x3ca);
+        printk(((unsigned long)"\tPull Up and Pull Down should not be enabled simultaneously\n"));
         uVar3 = 0x3ca;
       } else if ((uVar7 & 6) == 4) {
-        printk(0x00099cbd,0x00099dad,0x00099c53,0x3d1);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"(flags & (1 << 1)) != 0 || (flags & (1 << 2)) == 0"),0x00099c53,0x3d1);
         uVar3 = 0x3d1;
       } else {
         uVar6 = 1u << (unsigned)bVar1;
@@ -51,8 +51,8 @@ unsigned gpio_pin_configure_dt(int param_1){
           uVar3 = ((codep)*puVar5)(iVar2,(unsigned)bVar1,uVar7 | 0x400);
           return uVar3;
         }
-        printk(0x00099cbd,0x00099de0,0x00099c53,0x3e4);
-        printk(0x00099e1e);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"(cfg->port_pin_mask & (gpio_port_pins_t)(1UL << (pin))) != 0U"),0x00099c53,0x3e4);
+        printk(((unsigned long)"\tUnsupported pin\n"));
         uVar3 = 0x3e4;
       }
       assert_post_action(0x00099c53,uVar3);

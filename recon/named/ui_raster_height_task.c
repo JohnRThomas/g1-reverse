@@ -9,9 +9,9 @@
  *   gui_screen_clear                         <= FUN_000431c0 @ 0x000431c0
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
- *   rodata_aa7f2                             @ 0x000aa7f2
- *   rodata_aa817                             @ 0x000aa817
- *   rodata_aa83f                             @ 0x000aa83f
+ *   rodata_aa7f2                             @ 0x000aa7f2   [INLINED -- G6 literal batch]
+ *   rodata_aa817                             @ 0x000aa817   [INLINED -- G6 literal batch]
+ *   rodata_aa83f                             @ 0x000aa83f   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_display_canvas_y_cache                 @ 0x2000253c
  *   g_display_canvas_x_cache                 @ 0x20002540

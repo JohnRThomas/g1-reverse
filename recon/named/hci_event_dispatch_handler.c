@@ -7,7 +7,7 @@
  *   bt_log_forward_3arg                      <= FUN_00080ea2 @ 0x00080ea2
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
- *   rodata_f2e62                             @ 0x000f2e62
+ *   rodata_f2e62                             @ 0x000f2e62   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction FUN_00053658 @ 0x00053658 (88-byte exact extent). */
 #include <stdint.h>

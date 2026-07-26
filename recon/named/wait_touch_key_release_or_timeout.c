@@ -11,7 +11,7 @@
  *   set_message_pending_state                <= FUN_0003443c @ 0x0003443c
  *   is_msg_expiration                        <= FUN_0003444c @ 0x0003444c
  * address symbols (name @ address):
- *   rodata_a26cb                             @ 0x000a26cb
+ *   rodata_a26cb                             @ 0x000a26cb   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  */
 /* Reconstructed FUN_0002c2b0 @ 0x2c2b0  (parity: 300/300 trials, PROVEN) */

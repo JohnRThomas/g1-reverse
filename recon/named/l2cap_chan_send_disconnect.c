@@ -15,11 +15,11 @@
  *   net_buf_get                              <= FUN_000836e8 @ 0x000836e8
  * address symbols (name @ address):
  *   rodata_88160                             @ 0x00088160
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3f55                             @ 0x000f3f55
- *   rodata_f3f8a                             @ 0x000f3f8a
- *   rodata_f3fc5                             @ 0x000f3fc5
- *   rodata_f3fe3                             @ 0x000f3fe3
+ *   rodata_f3f8a                             @ 0x000f3f8a   [INLINED -- G6 literal batch]
+ *   rodata_f3fc5                             @ 0x000f3fc5   [INLINED -- G6 literal batch]
+ *   rodata_f3fe3                             @ 0x000f3fe3   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction of FUN_0005774c @ 0x5774c (exact extent: 270 bytes). */
 #include <stdint.h>
@@ -69,7 +69,7 @@ extern void assert_post_action(uintptr_t message, uint32_t line);
 static __attribute__((always_inline)) inline void fatal_state(uintptr_t file,
                                                               uint32_t line)
 {
-    printk(0x00099cbdu, file, 0x000f3f55u, line);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), file, 0x000f3f55u, line);
     assert_post_action(0x000f3f55u, line);
 }
 

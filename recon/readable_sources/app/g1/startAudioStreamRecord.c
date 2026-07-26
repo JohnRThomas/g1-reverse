@@ -14,9 +14,9 @@
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_a4304                             @ 0x000a4304
- *   rodata_a432a                             @ 0x000a432a
- *   rodata_a496f                             @ 0x000a496f
+ *   rodata_a4304                             @ 0x000a4304   [INLINED -- G6 literal batch]
+ *   rodata_a432a                             @ 0x000a432a   [INLINED -- G6 literal batch]
+ *   rodata_a496f                             @ 0x000a496f   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_audio_msgq                             @ 0x20003890
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -48,9 +48,9 @@ unsigned int startAudioStreamRecord(void)
     } else {
         if (0 < *(int *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_a4304) /*=0xa4304*/, ((unsigned long)&rodata_a496f) /*=0xa496f*/);
+                log_message(((unsigned long)"%s(): start up audio record failed\r\n\n") /*=0xa4304*/, ((unsigned long)"startAudioStreamRecord") /*=0xa496f*/);
             } else {
-                debug_print(((unsigned long)&rodata_a4304) /*=0xa4304*/, ((unsigned long)&rodata_a496f) /*=0xa496f*/);
+                debug_print(((unsigned long)"%s(): start up audio record failed\r\n\n") /*=0xa4304*/, ((unsigned long)"startAudioStreamRecord") /*=0xa496f*/);
             }
         }
         *(unsigned short *)buf = 1;
@@ -59,9 +59,9 @@ unsigned int startAudioStreamRecord(void)
         display_DelayClose(10000);
         if (0 < *(int *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_a432a) /*=0xa432a*/, ((unsigned long)&rodata_a496f) /*=0xa496f*/);
+                log_message(((unsigned long)"%s(): because startup auido record failed,exit quicknote ....\n") /*=0xa432a*/, ((unsigned long)"startAudioStreamRecord") /*=0xa496f*/);
             } else {
-                debug_print(((unsigned long)&rodata_a432a) /*=0xa432a*/, ((unsigned long)&rodata_a496f) /*=0xa496f*/);
+                debug_print(((unsigned long)"%s(): because startup auido record failed,exit quicknote ....\n") /*=0xa432a*/, ((unsigned long)"startAudioStreamRecord") /*=0xa496f*/);
             }
         }
         uVar3 = 0xffffffff;

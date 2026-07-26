@@ -5,8 +5,8 @@
  *   format_bt_addr_str                       <= FUN_00018334 @ 0x00018334
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  * address symbols (name @ address):
- *   rodata_9a46f                             @ 0x0009a46f
- *   rodata_9b108                             @ 0x0009b108
+ *   rodata_9a46f                             @ 0x0009a46f   [INLINED -- G6 literal batch]
+ *   rodata_9b108                             @ 0x0009b108   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_ancs_active_conn                       @ 0x20006ab8
  *   g_bonded_count                           @ 0x20007514

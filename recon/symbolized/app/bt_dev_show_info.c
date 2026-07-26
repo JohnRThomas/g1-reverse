@@ -8,10 +8,10 @@
  *   rodata_88138                             @ 0x00088138
  *   rodata_a8ea0                             @ 0x000a8ea0
  *   rodata_f31a5                             @ 0x000f31a5
- *   rodata_f31a9                             @ 0x000f31a9
- *   rodata_f31b8                             @ 0x000f31b8
- *   rodata_f31c9                             @ 0x000f31c9
- *   rodata_f3207                             @ 0x000f3207
+ *   rodata_f31a9                             @ 0x000f31a9   [INLINED -- G6 literal batch]
+ *   rodata_f31b8                             @ 0x000f31b8   [INLINED -- G6 literal batch]
+ *   rodata_f31c9                             @ 0x000f31c9   [INLINED -- G6 literal batch]
+ *   rodata_f3207                             @ 0x000f3207   [INLINED -- G6 literal batch]
  *   g_ble_dev_state                          @ 0x20002000
  *   g_ble_dev_ncmd_sem                       @ 0x200020d4
  */
@@ -67,7 +67,7 @@ void bt_dev_show_info(void)
 
     struct five_word_log_record identity = {
         .argument_count = 0x02000004u,
-        .format = ((unsigned long)&rodata_f31a9) /*=0xf31a9*/,
+        .format = ((unsigned long)"Identity%s: %s") /*=0xf31a9*/,
         .argument0 = address_count > 1 ? ((unsigned long)&rodata_f31a5) /*=0xf31a5*/ : ((unsigned long)&rodata_a8ea0) /*=0xa8ea0*/,
         .argument1 = bt_addr_le_str(controller),
         .argument2 = 0x03010200u,
@@ -78,7 +78,7 @@ void bt_dev_show_info(void)
     for (uint32_t index = 1; index < address_count; ++index) {
         struct address_log_record address = {
             .argument_count = 0x01000004u,
-            .format = ((unsigned long)&rodata_f31b8) /*=0xf31b8*/,
+            .format = ((unsigned long)"Identity[%d]: %s") /*=0xf31b8*/,
             .index = index,
             .address = bt_addr_le_str(controller + index * 7u),
             .kind = 0x0301u,
@@ -89,7 +89,7 @@ void bt_dev_show_info(void)
     uint8_t host_version = controller[0x70];
     struct version_log_record host = {
         .argument_count = 0x01000006u,
-        .format = ((unsigned long)&rodata_f31c9) /*=0xf31c9*/,
+        .format = ((unsigned long)"HCI: version %s (0x%02x) revision 0x%04x, manufacturer 0x%04x") /*=0xf31c9*/,
         .version_string = version_string(host_version),
         .version = host_version,
         .revision = *(const uint16_t *)(controller + 0x72),
@@ -101,7 +101,7 @@ void bt_dev_show_info(void)
     uint8_t controller_version = controller[0x71];
     struct controller_version_log_record radio = {
         .argument_count = 0x01000005u,
-        .format = ((unsigned long)&rodata_f3207) /*=0xf3207*/,
+        .format = ((unsigned long)"LMP: version %s (0x%02x) subver 0x%04x") /*=0xf3207*/,
         .version_string = version_string(controller_version),
         .version = controller_version,
         .revision = *(const uint16_t *)(controller + 0x74),

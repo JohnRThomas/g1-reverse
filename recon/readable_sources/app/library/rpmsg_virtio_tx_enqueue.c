@@ -15,7 +15,7 @@
  *   dma_xfer_end_handler                     <= FUN_000857e0 @ 0x000857e0
  *   mutex_lock_wait_forever_dup              <= FUN_000859b6 @ 0x000859b6
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f7ba6                             @ 0x000f7ba6
  *   rodata_f7be9                             @ 0x000f7be9
  *   rodata_f7c02                             @ 0x000f7c02
@@ -42,7 +42,7 @@ uint32_t rpmsg_virtio_tx_enqueue(uint8_t *owner, uint32_t a, uint32_t b,
     struct { uint32_t a, b, zero; uint16_t tag, pad; } key = {a, b, 0, (uint16_t)tag, 0};
     if (offset >= pool[2]) offset = UINT32_MAX;
     if (metal_io_block_write(pool, offset, &key, 16) != 16) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f7be9) /*=0xf7be9*/, ((unsigned long)&rodata_f7ba6) /*=0xf7ba6*/, 0x1af);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f7be9) /*=0xf7be9*/, ((unsigned long)&rodata_f7ba6) /*=0xf7ba6*/, 0x1af);
         assert_post_action(((unsigned long)&rodata_f7ba6) /*=0xf7ba6*/, 0x1af);
     }
     void *lock = owner + 0x58;
@@ -56,7 +56,7 @@ uint32_t rpmsg_virtio_tx_enqueue(uint8_t *owner, uint32_t a, uint32_t b,
     }
     struct { void *item; uint32_t value; } entry = {item, value};
     if (virtqueue_add_buffer(*(void **)(owner + 0xa8), &entry, 1, 0, item) != 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f7c02) /*=0xf7c02*/, ((unsigned long)&rodata_f7ba6) /*=0xf7ba6*/, 0x1bc);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f7c02) /*=0xf7c02*/, ((unsigned long)&rodata_f7ba6) /*=0xf7ba6*/, 0x1bc);
         assert_post_action(((unsigned long)&rodata_f7ba6) /*=0xf7ba6*/, 0x1bc);
     }
 done:

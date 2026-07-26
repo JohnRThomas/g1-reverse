@@ -10,9 +10,9 @@
  * address symbols (name @ address):
  *   rodata_9d759                             @ 0x0009d759
  *   rodata_9d790                             @ 0x0009d790
- *   rodata_a7b64                             @ 0x000a7b64
- *   rodata_a7b94                             @ 0x000a7b94
- *   rodata_a7bcc                             @ 0x000a7bcc
+ *   rodata_a7b64                             @ 0x000a7b64   [INLINED -- G6 literal batch]
+ *   rodata_a7b94                             @ 0x000a7b94   [INLINED -- G6 literal batch]
+ *   rodata_a7bcc                             @ 0x000a7bcc   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  */
 /* CPUAPP send_notification_app_whitelist @ 0x00033730.

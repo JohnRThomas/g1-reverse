@@ -13,9 +13,9 @@
  *   bt_smp_ah                                <= FUN_00080ca0 @ 0x00080ca0
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f5268                             @ 0x000f5268
- *   rodata_f52ac                             @ 0x000f52ac
+ *   rodata_f52ac                             @ 0x000f52ac   [INLINED -- G6 literal batch]
  *   bt_keys_pool                             @ 0x2000af4c
  *   bt_keys_pool_0_irk                       @ 0x2000af76
  *   bt_keys_pool_1_irk                       @ 0x2000afd2
@@ -32,7 +32,7 @@ uint8_t* bt_keys_find_irk(uint param_1, uint8_t* param_2, uint param_3, uint par
     volatile uint8_t* r4=(volatile uint8_t*)((unsigned long)&bt_keys_pool) /*=0x2000af4c*/;
     int r3int; uint8_t* r7;
     if(param_2==0){
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f52ac) /*=0xf52ac*/,((unsigned long)&rodata_f5268) /*=0xf5268*/,0xe9u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"addr != ((void *)0)") /*=0xf52ac*/,((unsigned long)&rodata_f5268) /*=0xf5268*/,0xe9u);
         assert_post_action(((unsigned long)&rodata_f5268) /*=0xf5268*/,0xe9);
     }
     if(*(volatile uint8_t*)param_2 != 1) return 0;

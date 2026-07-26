@@ -15,8 +15,8 @@
  * address symbols (name @ address):
  *   rodata_86661                             @ 0x00086661
  *   rodata_87fc8                             @ 0x00087fc8
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  *   rodata_f7f4b                             @ 0x000f7f4b
  *   rodata_f8056                             @ 0x000f8056
  */
@@ -40,8 +40,8 @@ void z_init_static_threads(void)
   piVar6 = (int*)((unsigned long)&rodata_87fc8) /*=0x87fc8*/;
   do {
     if (piVar2 < piVar6) {
-      printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f8056) /*=0xf8056*/,((unsigned long)&rodata_f7f4b) /*=0xf7f4b*/,0x2f3);
-      printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/,0,0,0);
+      printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f8056) /*=0xf8056*/,((unsigned long)&rodata_f7f4b) /*=0xf7f4b*/,0x2f3);
+      printk(((unsigned long)"\tunexpected list end location\n") /*=0xf0d20*/,0,0,0);
       uVar3 = 0x2f3;
 LAB:
       assert_post_action(((unsigned long)&rodata_f7f4b) /*=0xf7f4b*/,uVar3);
@@ -68,8 +68,8 @@ LAB:
           }
         }
       }
-      printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f8056) /*=0xf8056*/,((unsigned long)&rodata_f7f4b) /*=0xf7f4b*/,0x312);
-      printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/,0,0,0);
+      printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f8056) /*=0xf8056*/,((unsigned long)&rodata_f7f4b) /*=0xf7f4b*/,0x312);
+      printk(((unsigned long)"\tunexpected list end location\n") /*=0xf0d20*/,0,0,0);
       uVar3 = 0x312;
       goto LAB;
     }

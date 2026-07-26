@@ -10,7 +10,7 @@
  *   sleep_fixed_33_ticks                     <= FUN_0007c87a @ 0x0007c87a
  *   set_uart_line_ctrl_dtr                   <= FUN_0007c882 @ 0x0007c882
  * address symbols (name @ address):
- *   rodata_9f2be                             @ 0x0009f2be
+ *   rodata_9f2be                             @ 0x0009f2be   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00025850 @ 0x25850  (parity: 300/300 trials, PROVEN) */
 extern void firmware_function_0007c872(unsigned,unsigned,unsigned,unsigned);
@@ -33,7 +33,7 @@ int ipc_ept_op_c_locked_retry(int param_1, unsigned param_2, unsigned param_3, i
             if (iVar1 == 0) break;
             iVar3 = iVar3 - 1;
             if (iVar3 == 0){
-                log_message(((unsigned long)&rodata_9f2be) /*=0x9f2be*/, (*(unsigned short*)(iVar4 + 8)) | 4, param_2, iVar1);
+                log_message(((unsigned long)"eeprom_st25dv_write_sys addr %04X offset %04X failed %d\r\n") /*=0x9f2be*/, (*(unsigned short*)(iVar4 + 8)) | 4, param_2, iVar1);
                 return iVar1;
             }
             lock_arg = (unsigned)(sleep_fixed_33_ticks() >> 32);

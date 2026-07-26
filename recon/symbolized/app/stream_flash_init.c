@@ -10,7 +10,7 @@
  * address symbols (name @ address):
  *   rodata_7f071                             @ 0x0007f071
  *   rodata_880d8                             @ 0x000880d8
- *   rodata_f10ce                             @ 0x000f10ce
+ *   rodata_f10ce                             @ 0x000f10ce   [INLINED -- G6 literal batch]
  *   rodata_f1105                             @ 0x000f1105
  */
 /* Reconstructed FUN_0004e2b4 @ 0x4e2b4  owned extent: 0xae bytes */
@@ -63,7 +63,7 @@ int stream_flash_init(struct buffered_writer *writer, void *device,
 
     unit = stream_flash_vtable_get_value(device);
     if (capacity % unit != 0) {
-        message = ((unsigned long)&rodata_f10ce) /*=0xf10ce*/;
+        message = ((unsigned long)"Buffer size is not aligned to minimal write-block-size") /*=0xf10ce*/;
         goto invalid;
     }
 

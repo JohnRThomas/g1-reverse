@@ -12,7 +12,7 @@
  *   bt_conn_get_field_0x90                   <= FUN_00081526 @ 0x00081526
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
- *   rodata_9a638                             @ 0x0009a638
+ *   rodata_9a638                             @ 0x0009a638   [INLINED -- G6 literal batch]
  *   g_ancs_active_conn                       @ 0x20006ab8
  *   g_bonded_count                           @ 0x20007514
  */
@@ -55,7 +55,7 @@ void pairing_complete(unsigned param_1, unsigned param_2){
     *(int*)(iVar2+0x1069) = *(int*)puVar1;
     *(short*)(iVar2+0x106d) = *(short*)((char*)puVar1+4);
     *(unsigned char*)(iVar2+0x106f) = *(unsigned char*)((char*)puVar1+6);
-    log_message(((unsigned long)&rodata_9a638) /*=0x9a638*/, auStack_38, param_2, iVar2 + 0x1069);
+    log_message(((unsigned long)"Pairing completed: %s, bonded: %d\n") /*=0x9a638*/, auStack_38, param_2, iVar2 + 0x1069);
     *(int*)((unsigned long)&g_bonded_count) /*=0x20007514*/ += 1;
     *(unsigned char*)(*(int*)((unsigned long)&g_ancs_active_conn) /*=0x20006ab8*/ + 0x367) = 0;
 }

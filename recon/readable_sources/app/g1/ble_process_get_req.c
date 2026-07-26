@@ -21,8 +21,8 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   strcpy                                   <= FUN_00086fee @ 0x00086fee
  * address symbols (name @ address):
- *   rodata_9b5dd                             @ 0x0009b5dd
- *   rodata_9b98b                             @ 0x0009b98b
+ *   rodata_9b5dd                             @ 0x0009b5dd   [INLINED -- G6 literal batch]
+ *   rodata_9b98b                             @ 0x0009b98b   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ui_mode_flag                           @ 0x20018462
@@ -116,7 +116,7 @@ void ble_process_get_req(uint8_t *context, const uint8_t *packet,
     case 0x2d:
         audio_fw_load_get_wrapper(context, data, 0x0c);
         response[1] = 0x67;
-        debug_print_hex_dump((void *)((unsigned long)&rodata_9b5dd) /*=0x9b5dd*/, data, 0x0c);
+        debug_print_hex_dump((void *)((unsigned long)"get_mn_mac") /*=0x9b5dd*/, data, 0x0c);
         copy_bytes(response + 2, data, 12);
         LOG_AT(2);
         break;
@@ -232,7 +232,7 @@ void ble_process_get_req(uint8_t *context, const uint8_t *packet,
         LOG_AT(1);
         response[1] = 0xca;
         response[2] = 0x14;
-        strcpy(response + 2, (void *)((unsigned long)&rodata_9b98b) /*=0x9b98b*/);
+        strcpy(response + 2, (void *)((unsigned long)"error get req.") /*=0x9b98b*/);
         break;
     }
 

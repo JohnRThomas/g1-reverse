@@ -4,8 +4,8 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  * address symbols (name @ address):
- *   rodata_f02d2                             @ 0x000f02d2
- *   rodata_f02e7                             @ 0x000f02e7
+ *   rodata_f02d2                             @ 0x000f02d2   [INLINED -- G6 literal batch]
+ *   rodata_f02e7                             @ 0x000f02e7   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -21,9 +21,9 @@ unsigned int uint32_to_little_endian(unsigned char *param_1, unsigned int param_
         if (*(volatile int*)0x2000230cUL > 1) {
             unsigned int sink=*(volatile unsigned int*)0x20007554UL;
             if (sink == 0) {
-                log_message(0x000f02d2,0x000f02e7,param_3,sink,param_4);
+                log_message(((unsigned long)"%s(): buf is NULL !\n"),((unsigned long)"uint32_to_little_endian"),param_3,sink,param_4);
             } else {
-                debug_print(0x000f02d2,0x000f02e7,param_3,sink,param_4);
+                debug_print(((unsigned long)"%s(): buf is NULL !\n"),((unsigned long)"uint32_to_little_endian"),param_3,sink,param_4);
             }
         }
         uVar1 = 0;

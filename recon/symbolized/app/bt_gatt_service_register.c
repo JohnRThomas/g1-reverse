@@ -18,14 +18,14 @@
  * address symbols (name @ address):
  *   rodata_825bb                             @ 0x000825bb
  *   rodata_88128                             @ 0x00088128
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f46b8                             @ 0x000f46b8
  *   rodata_f4a06                             @ 0x000f4a06
- *   rodata_f4a0a                             @ 0x000f4a0a
- *   rodata_f4a20                             @ 0x000f4a20
- *   rodata_f4a2b                             @ 0x000f4a2b
- *   rodata_f4a3b                             @ 0x000f4a3b
- *   rodata_f4a7d                             @ 0x000f4a7d
+ *   rodata_f4a0a                             @ 0x000f4a0a   [INLINED -- G6 literal batch]
+ *   rodata_f4a20                             @ 0x000f4a20   [INLINED -- G6 literal batch]
+ *   rodata_f4a2b                             @ 0x000f4a2b   [INLINED -- G6 literal batch]
+ *   rodata_f4a3b                             @ 0x000f4a3b   [INLINED -- G6 literal batch]
+ *   rodata_f4a7d                             @ 0x000f4a7d   [INLINED -- G6 literal batch]
  *   g_bt_gatt_flags                          @ 0x20006448
  *   gatt_service_init_guard                  @ 0x2000af04
  *   g_bt_gatt_dynamic_db                     @ 0x2000af08
@@ -68,28 +68,28 @@ struct uuid16_recovered { uint8_t type; uint8_t pad; uint16_t value; };
 int bt_gatt_service_register(struct gatt_service_recovered *service)
 {
     if (service == 0) {
-        printk((const char *)((unsigned long)&rodata_99cbd) /*=0x99cbd*/, (const char *)((unsigned long)&rodata_f4a06) /*=0xf4a06*/,
+        printk((const char *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (const char *)((unsigned long)&rodata_f4a06) /*=0xf4a06*/,
                      (const char *)((unsigned long)&rodata_f46b8) /*=0xf46b8*/, 0x670U);
-        printk((const char *)((unsigned long)&rodata_f4a0a) /*=0xf4a0a*/);
+        printk((const char *)((unsigned long)"\tinvalid parameters\n\n") /*=0xf4a0a*/);
         assert_post_action((const char *)((unsigned long)&rodata_f46b8) /*=0xf46b8*/, 0x670U);
     }
     if (service->attrs == 0) {
-        printk((const char *)((unsigned long)&rodata_99cbd) /*=0x99cbd*/, (const char *)((unsigned long)&rodata_f4a20) /*=0xf4a20*/,
+        printk((const char *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (const char *)((unsigned long)"svc->attrs") /*=0xf4a20*/,
                      (const char *)((unsigned long)&rodata_f46b8) /*=0xf46b8*/, 0x671U);
-        printk((const char *)((unsigned long)&rodata_f4a0a) /*=0xf4a0a*/);
+        printk((const char *)((unsigned long)"\tinvalid parameters\n\n") /*=0xf4a0a*/);
         assert_post_action((const char *)((unsigned long)&rodata_f46b8) /*=0xf46b8*/, 0x671U);
     }
     if (service->attr_count == 0) {
-        printk((const char *)((unsigned long)&rodata_99cbd) /*=0x99cbd*/, (const char *)((unsigned long)&rodata_f4a2b) /*=0xf4a2b*/,
+        printk((const char *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (const char *)((unsigned long)"svc->attr_count") /*=0xf4a2b*/,
                      (const char *)((unsigned long)&rodata_f46b8) /*=0xf46b8*/, 0x672U);
-        printk((const char *)((unsigned long)&rodata_f4a0a) /*=0xf4a0a*/);
+        printk((const char *)((unsigned long)"\tinvalid parameters\n\n") /*=0xf4a0a*/);
         assert_post_action((const char *)((unsigned long)&rodata_f46b8) /*=0xf46b8*/, 0x672U);
     }
 
     volatile uint32_t *const flags = (volatile uint32_t *)((unsigned long)&gatt_service_init_guard) /*=0x2000af04*/;
     if ((read_struct_first_word(flags) & 1U) != 0U &&
         (read_struct_first_word((volatile uint32_t *)((unsigned long)&g_bt_gatt_flags) /*=0x20006448*/) & 4U) == 0U) {
-        const uint32_t package[2] = { 2U, ((unsigned long)&rodata_f4a3b) /*=0xf4a3b*/ };
+        const uint32_t package[2] = { 2U, ((unsigned long)"Can't register service after init and before settings are loaded.") /*=0xf4a3b*/ };
         log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1040U, package);
         return -22;
     }
@@ -128,7 +128,7 @@ int bt_gatt_service_register(struct gatt_service_recovered *service)
                          (void *)((unsigned long)&rodata_825bb) /*=0x825bb*/, &found);
             if (found != 0) {
                 const uint32_t package[3] = {
-                    3U, ((unsigned long)&rodata_f4a7d) /*=0xf4a7d*/, attr->handle,
+                    3U, ((unsigned long)"Unable to register handle 0x%04x") /*=0xf4a7d*/, attr->handle,
                 };
                 log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1840U, package);
                 k_sched_lock();

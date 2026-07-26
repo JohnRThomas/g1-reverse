@@ -21,9 +21,9 @@
  *   rodata_a0a7b                             @ 0x000a0a7b
  *   rodata_a2768                             @ 0x000a2768
  *   rodata_a2795                             @ 0x000a2795
- *   rodata_a27b1                             @ 0x000a27b1
+ *   rodata_a27b1                             @ 0x000a27b1   [INLINED -- G6 literal batch]
  *   rodata_a28d4                             @ 0x000a28d4
- *   rodata_a39ef                             @ 0x000a39ef
+ *   rodata_a39ef                             @ 0x000a39ef   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

@@ -7,8 +7,8 @@
  *   ipc_send_len_prefixed_packet_locked_retry <= FUN_00025788 @ 0x00025788
  *   transport_parameters_write               <= FUN_00025950 @ 0x00025950
  * address symbols (name @ address):
- *   rodata_9f2f8                             @ 0x0009f2f8
- *   rodata_9f396                             @ 0x0009f396
+ *   rodata_9f2f8                             @ 0x0009f2f8   [INLINED -- G6 literal batch]
+ *   rodata_9f396                             @ 0x0009f396   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00025950 @ 0x00025950, extent 0x0000007c.
  * Readable identity: transport_parameters_write.
@@ -31,11 +31,11 @@ int transport_parameters_write(uint32_t transport, const void *value, uint32_t l
         return -1;
     result = ipc_send_len_prefixed_packet_locked_retry(transport, 0x2006U, &status, 1U);
     if (result != 0) {
-        log_message(((unsigned long)&rodata_9f2f8) /*=0x9f2f8*/);
+        log_message(((unsigned long)"eeprom_st25dv_read ST25DV_REG_MB_CTRL_DYN is failed\n") /*=0x9f2f8*/);
         return -2;
     }
     if ((status & 6U) != 0U) {
-        log_message(((unsigned long)&rodata_9f396) /*=0x9f396*/);
+        log_message(((unsigned long)"eeprom_st25dv_write_i2c_mb_mailbox_ram no write\n") /*=0x9f396*/);
         return -3;
     }
     result = ipc_ept_op_a_locked_retry(transport, 0x2008U, value, length);
@@ -46,7 +46,7 @@ int transport_parameters_write(uint32_t transport, const void *value, uint32_t l
     status = 1U;
     result = ipc_send_len_prefixed_packet_locked_retry(transport, 0x2006U, &status, 1U);
     if (result != 0) {
-        log_message(((unsigned long)&rodata_9f2f8) /*=0x9f2f8*/);
+        log_message(((unsigned long)"eeprom_st25dv_read ST25DV_REG_MB_CTRL_DYN is failed\n") /*=0x9f2f8*/);
         return -2;
     }
     return 0;

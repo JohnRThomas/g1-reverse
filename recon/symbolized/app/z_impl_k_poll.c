@@ -13,12 +13,12 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f53ff                             @ 0x000f53ff
  *   rodata_f801f                             @ 0x000f801f
  *   rodata_f871d                             @ 0x000f871d
@@ -51,26 +51,26 @@ int z_impl_k_poll(int param_1,int param_2,unsigned int param_3,unsigned int para
   unsigned int exception_number;
   __asm__ volatile ("mrs %0, ipsr" : "=r" (exception_number));
   if (exception_number != 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f801f) /*=0xf801f*/,((unsigned long)&rodata_99cbd) /*=0x99cbd*/,0x12d);
-    printk(((unsigned long)&rodata_f53ff) /*=0xf53ff*/,((unsigned long)&rodata_f801f) /*=0xf801f*/,((unsigned long)&rodata_99cbd) /*=0x99cbd*/,0x12d);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f801f) /*=0xf801f*/,((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,0x12d);
+    printk(((unsigned long)&rodata_f53ff) /*=0xf53ff*/,((unsigned long)&rodata_f801f) /*=0xf801f*/,((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,0x12d);
     assert_post_action(((unsigned long)&rodata_f871d) /*=0xf871d*/,0x12d);
     return 0;
   }
   if (param_1 == 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f88dc) /*=0xf88dc*/,((unsigned long)&rodata_f871d) /*=0xf871d*/,0x12e);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f88dc) /*=0xf88dc*/,((unsigned long)&rodata_f871d) /*=0xf871d*/,0x12e);
     printk(((unsigned long)&rodata_f88f2) /*=0xf88f2*/,((unsigned long)&rodata_f88dc) /*=0xf88dc*/,((unsigned long)&rodata_f871d) /*=0xf871d*/,0x12e);
     assert_post_action(((unsigned long)&rodata_f871d) /*=0xf871d*/,0x12e);
     return 0;
   }
   if (param_2 < 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f8901) /*=0xf8901*/,((unsigned long)&rodata_f871d) /*=0xf871d*/,0x12f);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f8901) /*=0xf8901*/,((unsigned long)&rodata_f871d) /*=0xf871d*/,0x12f);
     printk(((unsigned long)&rodata_f8911) /*=0xf8911*/,((unsigned long)&rodata_f8901) /*=0xf8901*/,((unsigned long)&rodata_f871d) /*=0xf871d*/,0x12f);
     assert_post_action(((unsigned long)&rodata_f871d) /*=0xf871d*/,0x12f);
     return 0;
   }
   uVar3 = register_events(param_1,param_2,iVar5+0x60,(param_3==0&&param_4==0),param_1,param_2,(int)param_3);
   iVar2 = z_spin_lock_valid(((unsigned long)&poll_spinlock) /*=0x2000b4a0*/);
-  if (iVar2 == 0) { printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,((unsigned long)&poll_spinlock) /*=0x2000b4a0*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); return 0; }
+  if (iVar2 == 0) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/,((unsigned long)&poll_spinlock) /*=0x2000b4a0*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); return 0; }
   z_spin_lock_set_owner(((unsigned long)&poll_spinlock) /*=0x2000b4a0*/);
   if (VSC(iVar5+0x60) == 0) {
     clear_event_registrations(param_1,uVar3,uVar6);
@@ -82,12 +82,12 @@ int z_impl_k_poll(int param_1,int param_2,unsigned int param_3,unsigned int para
     } else {
       uVar6 = z_pend_curr(((unsigned long)&poll_spinlock) /*=0x2000b4a0*/,uVar6,((unsigned long)&g_audio_755f8_wait_obj) /*=0x20002d04*/,(int)(param_3|param_4),(int)param_3,(int)param_4);
       iVar5 = z_spin_lock_valid(((unsigned long)&poll_spinlock) /*=0x2000b4a0*/);
-      if (iVar5 == 0) { printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,((unsigned long)&poll_spinlock) /*=0x2000b4a0*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); return 0; }
+      if (iVar5 == 0) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/,((unsigned long)&poll_spinlock) /*=0x2000b4a0*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); return 0; }
       z_spin_lock_set_owner(((unsigned long)&poll_spinlock) /*=0x2000b4a0*/);
       clear_event_registrations(param_1,uVar3,uVar4);
       if (z_spin_unlock_valid(((unsigned long)&poll_spinlock) /*=0x2000b4a0*/) != 0) return uVar6;
     }
   }
-  printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,((unsigned long)&poll_spinlock) /*=0x2000b4a0*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
+  printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/,((unsigned long)&poll_spinlock) /*=0x2000b4a0*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
   return 0;
 }

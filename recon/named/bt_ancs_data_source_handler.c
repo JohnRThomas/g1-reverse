@@ -11,9 +11,9 @@
  *   k_uptime_get_32                          <= FUN_0007c0c8 @ 0x0007c0c8
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_9a992                             @ 0x0009a992
- *   rodata_9a9cd                             @ 0x0009a9cd
- *   rodata_9b20d                             @ 0x0009b20d
+ *   rodata_9a992                             @ 0x0009a992   [INLINED -- G6 literal batch]
+ *   rodata_9a9cd                             @ 0x0009a9cd   [INLINED -- G6 literal batch]
+ *   rodata_9b20d                             @ 0x0009b20d   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_ancs_last_cmd_id                       @ 0x2000231c
  *   g_ancs_notif_attr_id_latest              @ 0x20006aa0
@@ -46,9 +46,9 @@ void bt_ancs_data_source_handler(int param_1, unsigned char *param_2, int param_
     iVar6 = ancs_get_conn_ctx(param_1);
     if (0 < *piVar4) {
         if (*g_d70 == 0) {
-            log_message(0x9a992, 0x9b20d, (unsigned int)*param_2, 0, param_1, (int)param_2, param_3);
+            log_message(((unsigned long)"%s(): bt_ancs_data_source_handler response->command_id %d\n"), ((unsigned long)"bt_ancs_data_source_handler"), (unsigned int)*param_2, 0, param_1, (int)param_2, param_3);
         } else {
-            debug_print(0x9a992, 0x9b20d, (unsigned int)*param_2,
+            debug_print(((unsigned long)"%s(): bt_ancs_data_source_handler response->command_id %d\n"), ((unsigned long)"bt_ancs_data_source_handler"), (unsigned int)*param_2,
                          *(volatile unsigned int*)0x20007554, param_1,
                          (uintptr_t)param_2, param_3);
         }
@@ -83,10 +83,10 @@ void bt_ancs_data_source_handler(int param_1, unsigned char *param_2, int param_
                                     enqueue_ancs(iVar6 + 0x34);
                                     if (0 < *piVar4) {
                                         if (*g_d70 == 0) {
-                                            log_message(0x9a9cd, 0x9b20d, *piVar3, (unsigned int)*(unsigned char *)((int)piVar3 + 4),
+                                            log_message(((unsigned long)"%s(): =========================>bt_ancs_get_attr_data_sem %d evt_id %d action %d\n"), ((unsigned long)"bt_ancs_data_source_handler"), *piVar3, (unsigned int)*(unsigned char *)((int)piVar3 + 4),
                                                         *(uint32_t *)(iVar6 + 0x1e4));
                                         } else {
-                                            debug_print(0x9a9cd, 0x9b20d,
+                                            debug_print(((unsigned long)"%s(): =========================>bt_ancs_get_attr_data_sem %d evt_id %d action %d\n"), ((unsigned long)"bt_ancs_data_source_handler"),
                                                          *piVar3,
                                                          (unsigned int)*(unsigned char *)((int)piVar3 + 4),
                                                          *(uint32_t *)(iVar6 + 0x1e4));

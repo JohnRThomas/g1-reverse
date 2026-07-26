@@ -25,9 +25,9 @@
  *   rodata_1255c                             @ 0x0001255c
  *   rodata_1256c                             @ 0x0001256c
  *   rodata_88138                             @ 0x00088138
- *   rodata_f325b                             @ 0x000f325b
+ *   rodata_f325b                             @ 0x000f325b   [INLINED -- G6 literal batch]
  *   rodata_f327f                             @ 0x000f327f
- *   rodata_f32f7                             @ 0x000f32f7
+ *   rodata_f32f7                             @ 0x000f32f7   [INLINED -- G6 literal batch]
  *   rodata_f3324                             @ 0x000f3324
  *   g_sram_base_word                         @ 0x20000000
  *   g_ble_dev_state                          @ 0x20002000

@@ -10,11 +10,11 @@
  *   thunk_FUN_0007f7d2                       <= FUN_0007f7c4 @ 0x0007f7c4
  * address symbols (name @ address):
  *   rodata_1827d                             @ 0x0001827d
- *   rodata_9ab1e                             @ 0x0009ab1e
- *   rodata_9abbd                             @ 0x0009abbd
- *   rodata_9abdc                             @ 0x0009abdc
- *   rodata_9ac14                             @ 0x0009ac14
- *   rodata_9b148                             @ 0x0009b148
+ *   rodata_9ab1e                             @ 0x0009ab1e   [INLINED -- G6 literal batch]
+ *   rodata_9abbd                             @ 0x0009abbd   [INLINED -- G6 literal batch]
+ *   rodata_9abdc                             @ 0x0009abdc   [INLINED -- G6 literal batch]
+ *   rodata_9ac14                             @ 0x0009ac14   [INLINED -- G6 literal batch]
+ *   rodata_9b148                             @ 0x0009b148   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_ancs_notif_attr_id_latest              @ 0x20006aa0
  *   g_ancs_notif_evt_id_latest               @ 0x20006aac
@@ -48,9 +48,9 @@ int request_ancs_attr_ext(unsigned param_1, unsigned param_2, unsigned param_3)
     param_2 = (unsigned)*(unsigned char*)(iVar4+0x44);
     unsigned sink = *(int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
     if (sink == 0)
-      log_message(((unsigned long)&rodata_9ab1e) /*=0x9ab1e*/, ((unsigned long)&rodata_9b148) /*=0x9b148*/, *(unsigned*)(puVar3+2), (unsigned)*puVar3, param_1, param_2);
+      log_message(((unsigned long)"%s(): notif_attr_app_id_latest.attr_id %d notif_attr_app_id_latest.attr_len %d strlen(notif_attr_app_id_latest.attr_data) %d c->notifi_data.app_identifier %d\n") /*=0x9ab1e*/, ((unsigned long)"request_ancs_attr_ext") /*=0x9b148*/, *(unsigned*)(puVar3+2), (unsigned)*puVar3, param_1, param_2);
     else
-      debug_print(((unsigned long)&rodata_9ab1e) /*=0x9ab1e*/, ((unsigned long)&rodata_9b148) /*=0x9b148*/,
+      debug_print(((unsigned long)"%s(): notif_attr_app_id_latest.attr_id %d notif_attr_app_id_latest.attr_len %d strlen(notif_attr_app_id_latest.attr_data) %d c->notifi_data.app_identifier %d\n") /*=0x9ab1e*/, ((unsigned long)"request_ancs_attr_ext") /*=0x9b148*/,
                    *(unsigned*)(puVar3+2), (unsigned)*puVar3,
                    param_1, param_2);
   }
@@ -59,10 +59,10 @@ LAB_5a:
     if ((*puVar3 != 0) && (**(char**)(puVar3+4) != 0)) {
       unsigned sink = *(int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
       if (sink == 0) {
-        log_message(((unsigned long)&rodata_9abbd) /*=0x9abbd*/, *(char**)(puVar3+4), uVar6, sink, param_1, param_2, param_3);
+        log_message(((unsigned long)"Request for %s: retry_time %d\n") /*=0x9abbd*/, *(char**)(puVar3+4), uVar6, sink, param_1, param_2, param_3);
         uVar1 = ((unsigned long)&g_ancs_client) /*=0x20006ae8*/; uVar2 = ((unsigned long)&rodata_1827d) /*=0x1827d*/;
       } else {
-        debug_print(((unsigned long)&rodata_9abbd) /*=0x9abbd*/, *(char**)(puVar3+4), uVar6,
+        debug_print(((unsigned long)"Request for %s: retry_time %d\n") /*=0x9abbd*/, *(char**)(puVar3+4), uVar6,
                      sink, param_1, param_2, param_3);
         uVar1 = ((unsigned long)&g_ancs_client) /*=0x20006ae8*/; uVar2 = ((unsigned long)&rodata_1827d) /*=0x1827d*/;
       }
@@ -71,14 +71,14 @@ LAB_5a:
         if (iVar5 == 0) goto LAB_86;
         FUN_0007c0a4(0xa4, 0);
       }
-      if (iVar5 != 0) log_message(((unsigned long)&rodata_9abdc) /*=0x9abdc*/, iVar5);
+      if (iVar5 != 0) log_message(((unsigned long)"Failed requesting attributes for a given app (err: %d)\n") /*=0x9abdc*/, iVar5);
     }
   }
 LAB_86:
   if (*(int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-    log_message(((unsigned long)&rodata_9ac14) /*=0x9ac14*/, *(unsigned*)(puVar3+2), (unsigned)*puVar3, uVar6, param_1, param_2);
+    log_message(((unsigned long)"notif_attr_app_id_latest.attr_id (%d/%d) retry_time %d\n") /*=0x9ac14*/, *(unsigned*)(puVar3+2), (unsigned)*puVar3, uVar6, param_1, param_2);
   else
-    debug_print(((unsigned long)&rodata_9ac14) /*=0x9ac14*/, *(unsigned*)(puVar3+2),
+    debug_print(((unsigned long)"notif_attr_app_id_latest.attr_id (%d/%d) retry_time %d\n") /*=0x9ac14*/, *(unsigned*)(puVar3+2),
                  (unsigned)*puVar3, uVar6, param_1, param_2, param_3);
   return iVar5;
 }

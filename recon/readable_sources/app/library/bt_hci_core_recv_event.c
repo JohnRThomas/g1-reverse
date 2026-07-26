@@ -7,14 +7,14 @@
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
  *   rodata_8b190                             @ 0x0008b190
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f2ddb                             @ 0x000f2ddb
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f2ddb                             @ 0x000f2ddb   [INLINED -- G6 literal batch]
  *   rodata_f2e84                             @ 0x000f2e84
- *   rodata_f2eb8                             @ 0x000f2eb8
- *   rodata_f2ed1                             @ 0x000f2ed1
- *   rodata_f2ef5                             @ 0x000f2ef5
- *   rodata_f2f17                             @ 0x000f2f17
- *   rodata_f2f45                             @ 0x000f2f45
+ *   rodata_f2eb8                             @ 0x000f2eb8   [INLINED -- G6 literal batch]
+ *   rodata_f2ed1                             @ 0x000f2ed1   [INLINED -- G6 literal batch]
+ *   rodata_f2ef5                             @ 0x000f2ef5   [INLINED -- G6 literal batch]
+ *   rodata_f2f17                             @ 0x000f2f17   [INLINED -- G6 literal batch]
+ *   rodata_f2f45                             @ 0x000f2f45   [INLINED -- G6 literal batch]
  *   g_bt_hci_recv_fifo                       @ 0x20002144
  *   g_bt_hci_rx_work                         @ 0x20002980
  *   bt_workqueue                             @ 0x20005f08
@@ -51,7 +51,7 @@ struct log_record4 {
 
 __attribute__((noreturn, always_inline)) static inline void fatal_packet_length(uint32_t line)
 {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f2eb8) /*=0xf2eb8*/, ((unsigned long)&rodata_f2e84) /*=0xf2e84*/, line);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"buf->len >= sizeof(*hdr)") /*=0xf2eb8*/, ((unsigned long)&rodata_f2e84) /*=0xf2e84*/, line);
     __asm__ volatile("movs r0, #0\n\tmsr basepri, r0\n\tmovs r0, #3\n\tsvc #2" ::: "r0", "memory");
     __builtin_unreachable();
 }
@@ -70,7 +70,7 @@ void bt_hci_core_recv_event(void)
         }
         uint8_t *event = net_buf_simple_pull((uint8_t *)buffer + 0x0c, 2);
         if ((bt_hci_evt_get_flags(*event) & 2) == 0) {
-            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f2f17) /*=0xf2f17*/, ((unsigned long)&rodata_f2e84) /*=0xf2e84*/, 0x0a61u);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"bt_hci_evt_get_flags(hdr->evt) & (1UL << (1))") /*=0xf2f17*/, ((unsigned long)&rodata_f2e84) /*=0xf2e84*/, 0x0a61u);
             __asm__ volatile("movs r0, #0\n\tmsr basepri, r0\n\tmovs r0, #3\n\tsvc #2" ::: "r0", "memory");
             __builtin_unreachable();
         }
@@ -90,7 +90,7 @@ void bt_hci_core_recv_event(void)
         uint16_t actual_length = *(uint16_t *)((uint8_t *)buffer + 0x10);
         if (advertised_length != actual_length) {
             struct log_record4 mismatch = {
-                4, ((unsigned long)&rodata_f2ed1) /*=0xf2ed1*/, actual_length, advertised_length,
+                4, ((unsigned long)"ACL data length mismatch (%u != %u)") /*=0xf2ed1*/, actual_length, advertised_length,
             };
             log_message(((unsigned long)&rodata_88138) /*=0x88138*/, 0x2040u, &mismatch);
             net_buf_unref(buffer);
@@ -101,14 +101,14 @@ void bt_hci_core_recv_event(void)
                 ble_conn_unref(connection);
             } else {
                 struct log_record3 missing = {
-                    3, ((unsigned long)&rodata_f2ef5) /*=0xf2ef5*/, handles[net_buf_id(buffer)],
+                    3, ((unsigned long)"Unable to find conn for handle %u") /*=0xf2ef5*/, handles[net_buf_id(buffer)],
                 };
                 log_message(((unsigned long)&rodata_88138) /*=0x88138*/, 0x1840u, &missing);
                 net_buf_unref(buffer);
             }
         }
     } else {
-        struct log_record3 unexpected = {3, ((unsigned long)&rodata_f2f45) /*=0xf2f45*/, type};
+        struct log_record3 unexpected = {3, ((unsigned long)"Unknown buf type %u") /*=0xf2f45*/, type};
         log_message(((unsigned long)&rodata_88138) /*=0x88138*/, 0x1840u, &unexpected);
         net_buf_unref(buffer);
     }
@@ -117,7 +117,7 @@ void bt_hci_core_recv_event(void)
         int status = k_work_submit_to_queue((void *)((unsigned long)&bt_workqueue) /*=0x20005f08*/,
                                             (void *)((unsigned long)&g_bt_hci_rx_work) /*=0x20002980*/);
         if (status < 0) {
-            struct log_record3 failed = {3, ((unsigned long)&rodata_f2ddb) /*=0xf2ddb*/, (uint32_t)status};
+            struct log_record3 failed = {3, ((unsigned long)"Could not submit rx_work: %d") /*=0xf2ddb*/, (uint32_t)status};
             log_message(((unsigned long)&rodata_88138) /*=0x88138*/, 0x1840u, &failed);
         }
     }

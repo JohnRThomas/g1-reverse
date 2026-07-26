@@ -18,12 +18,12 @@
  *   ADDR_bt_le_adv_clear_pending_flag_THUMB  @ 0x00081081
  *   rodata_810ab                             @ 0x000810ab
  *   rodata_88150                             @ 0x00088150
- *   rodata_f35bf                             @ 0x000f35bf
+ *   rodata_f35bf                             @ 0x000f35bf   [INLINED -- G6 literal batch]
  *   rodata_f35e4                             @ 0x000f35e4
  *   rodata_f3615                             @ 0x000f3615
- *   rodata_f3635                             @ 0x000f3635
- *   rodata_f3655                             @ 0x000f3655
- *   rodata_f367f                             @ 0x000f367f
+ *   rodata_f3635                             @ 0x000f3635   [INLINED -- G6 literal batch]
+ *   rodata_f3655                             @ 0x000f3655   [INLINED -- G6 literal batch]
+ *   rodata_f367f                             @ 0x000f367f   [INLINED -- G6 literal batch]
  *   g_ble_dev_state                          @ 0x20002000
  *   g_ble_dev_ncmd_sem                       @ 0x200020d4
  */

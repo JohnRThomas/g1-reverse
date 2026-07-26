@@ -8,9 +8,9 @@
  *   bt_conn_disconnect_by_state              <= FUN_00056a68 @ 0x00056a68
  *   bt_conn_get_field_0x90                   <= FUN_00081526 @ 0x00081526
  * address symbols (name @ address):
- *   rodata_9a48b                             @ 0x0009a48b
- *   rodata_9a4af                             @ 0x0009a4af
- *   rodata_9b126                             @ 0x0009b126
+ *   rodata_9a48b                             @ 0x0009a48b   [INLINED -- G6 literal batch]
+ *   rodata_9a4af                             @ 0x0009a4af   [INLINED -- G6 literal batch]
+ *   rodata_9b126                             @ 0x0009b126   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -29,13 +29,13 @@ void pairing_failed(uint32_t connection, uint32_t error)
     uintptr_t active_connection = bt_conn_get_field_0x90();
 
     format_bt_addr_str((const void *)active_connection, description);
-    log_message(((unsigned long)&rodata_9a48b) /*=0x9a48b*/, description, error);
+    log_message(((unsigned long)"Pairing failed conn: %s, reason %d\n") /*=0x9a48b*/, description, error);
 
     if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            log_message(((unsigned long)&rodata_9a4af) /*=0x9a4af*/, ((unsigned long)&rodata_9b126) /*=0x9b126*/);
+            log_message(((unsigned long)"%s(): bt_conn_disconnect because Pairing failed\n") /*=0x9a4af*/, ((unsigned long)"pairing_failed") /*=0x9b126*/);
         else
-            debug_print(((unsigned long)&rodata_9a4af) /*=0x9a4af*/, ((unsigned long)&rodata_9b126) /*=0x9b126*/);
+            debug_print(((unsigned long)"%s(): bt_conn_disconnect because Pairing failed\n") /*=0x9a4af*/, ((unsigned long)"pairing_failed") /*=0x9b126*/);
     }
 
     bt_conn_disconnect_by_state(connection, 0x13);

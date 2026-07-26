@@ -14,10 +14,10 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   nrf_gpio_cfg_sense_set                   <= FUN_000851ca @ 0x000851ca
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6b00                             @ 0x000f6b00
- *   rodata_f6b87                             @ 0x000f6b87
- *   rodata_f6b9c                             @ 0x000f6b9c
+ *   rodata_f6b87                             @ 0x000f6b87   [INLINED -- G6 literal batch]
+ *   rodata_f6b9c                             @ 0x000f6b9c   [INLINED -- G6 literal batch]
  *   g_gpiote_cb                              @ 0x20002bc0
  */
 /* Reconstructed FUN_000659e4 @ 0x659e4  (parity: 300/300 trials, PROVEN) */
@@ -38,7 +38,7 @@ void gpiote_in_event_enable(uint32_t param_1, uint32_t param_2){
     uint32_t uVar2 = param_1;
     iVar1 = gpiote_pin_sense_is_enabled();
     if (iVar1 == 0){
-        printk(0x00099cbd,0x000f6b87,0x000f6b00,0x364,uVar2);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"pin_has_trigger(pin)"),0x000f6b00,0x364,uVar2);
         assert_post_action(0x000f6b00,0x364);
     }
   L_a08:
@@ -68,6 +68,6 @@ void gpiote_in_event_enable(uint32_t param_1, uint32_t param_2){
         nrf_gpio_cfg_sense_set(param_1, iv);
         return;
     }
-    printk(0x00099cbd,0x000f6b9c,0x000f6b00,0x373,uVar2);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"int_enable"),0x000f6b00,0x373,uVar2);
     assert_post_action(0x000f6b00,0x373);
 }

@@ -12,7 +12,7 @@
  *   rpmsg_get_endpoint                       <= FUN_00085900 @ 0x00085900
  *   mutex_lock_wait_forever_dup              <= FUN_000859b6 @ 0x000859b6
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f7ba6                             @ 0x000f7ba6
  *   rodata_f7c0e                             @ 0x000f7c0e
  */
@@ -36,7 +36,7 @@ void rpmsg_virtio_rx_notify(uint8_t **arg)
             uint32_t seq=*(uint32_t *)(dst+0x28)+1;
             if (!seq) *(uint32_t *)(dst+0x28)=msg[0];
             int rc=((send_fn)*(uintptr_t *)(dst+0x2c))(dst,msg+4,(uint16_t)msg[3],msg[0],*(uint32_t *)(dst+0x3c));
-            if (rc<0) { printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f7c0e) /*=0xf7c0e*/,((unsigned long)&rodata_f7ba6) /*=0xf7ba6*/,0x245); assert_post_action(((unsigned long)&rodata_f7ba6) /*=0xf7ba6*/,0x245); }
+            if (rc<0) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f7c0e) /*=0xf7c0e*/,((unsigned long)&rodata_f7ba6) /*=0xf7ba6*/,0x245); assert_post_action(((unsigned long)&rodata_f7ba6) /*=0xf7ba6*/,0x245); }
         }
         mutex_lock_wait_forever_dup(lock);
         if ((int32_t)msg[2]>=0) {

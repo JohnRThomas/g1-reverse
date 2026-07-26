@@ -8,7 +8,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f0959                             @ 0x000f0959
  *   rodata_f7a30                             @ 0x000f7a30
  */
@@ -38,7 +38,7 @@ int sys_notify_finalize(int *param_1,int param_2,unsigned int param_3,unsigned i
     param_1[1] = 0;
     return 0;
   } else {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, ((unsigned long)&rodata_f0959) /*=0xf0959*/, 0x45, param_4);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, ((unsigned long)&rodata_f0959) /*=0xf0959*/, 0x45, param_4);
     assert_post_action(((unsigned long)&rodata_f0959) /*=0xf0959*/, 0x45);
     poll_signal_event_locked(((unsigned long)&rodata_f0959) /*=0xf0959*/, 0x45);
     return 0;

@@ -9,7 +9,7 @@
  *   bt_gatt_dm_char_next                     <= FUN_0007f4d6 @ 0x0007f4d6
  *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f11bc                             @ 0x000f11bc
  *   rodata_f154a                             @ 0x000f154a
  */
@@ -32,7 +32,7 @@ uint32_t gatt_dm_char_by_uuid(uint32_t collection, const void *key)
 
         const uint32_t *candidate = bt_gatt_dm_attr_chrc_val();
         if (candidate == 0) {
-            printk(0x00099cbdu, 0x000f154au, 0x000f11bcu, 0x21cu);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f154au, 0x000f11bcu, 0x21cu);
             assert_post_action(0x000f11bcu, 0x21cu);
         }
         if (bt_uuid_cmp(key, *candidate) == 0)

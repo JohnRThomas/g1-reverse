@@ -6,7 +6,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f871d                             @ 0x000f871d
  *   rodata_f8835                             @ 0x000f8835
  *   rodata_f8855                             @ 0x000f8855
@@ -27,15 +27,15 @@ void k_poll_event_init(uint8_t *object, uint32_t priority,
     uint32_t line;
 
     if (reserved != 0) {
-        printk(0x00099cbdu, 0x000f8835u, 0x000f871du, 0x2du, handler);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f8835u, 0x000f871du, 0x2du, handler);
         printk(0x000f8855u);
         line = 0x2d;
     } else if (priority >= 0x40) {
-        printk(0x00099cbdu, 0x000f887bu, 0x000f871du, 0x2fu, handler);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f887bu, 0x000f871du, 0x2fu, handler);
         printk(0x000f889fu);
         line = 0x2f;
     } else if (handler == 0) {
-        printk(0x00099cbdu, 0x000f88afu, 0x000f871du, 0x30u, handler);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f88afu, 0x000f871du, 0x30u, handler);
         printk(0x000f88c2u);
         line = 0x30;
     } else {

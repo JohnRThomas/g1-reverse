@@ -7,10 +7,10 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef058                             @ 0x000ef058
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
  *   rodata_ef596                             @ 0x000ef596
- *   rodata_ef59e                             @ 0x000ef59e
- *   rodata_ef6d4                             @ 0x000ef6d4
+ *   rodata_ef59e                             @ 0x000ef59e   [INLINED -- G6 literal batch]
+ *   rodata_ef6d4                             @ 0x000ef6d4   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_translate_lang_string_table            @ 0x200024f4
  *   g_dashboard_response_msgq                @ 0x2000392c
@@ -48,13 +48,13 @@ u32 SendSystemLanguageInfoToSlave(int param_1)
                 uVar2 = ((unsigned long)&rodata_ef596) /*=0xef596*/;
             }
             if (*(volatile u32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_ef59e) /*=0xef59e*/, ((unsigned long)&rodata_ef6d4) /*=0xef6d4*/, uVar2);
+                log_message(((unsigned long)"%s(): send APP Language infomation to slave . app language = %s\n") /*=0xef59e*/, ((unsigned long)"SendSystemLanguageInfoToSlave") /*=0xef6d4*/, uVar2);
             } else {
-                debug_print(((unsigned long)&rodata_ef59e) /*=0xef59e*/, ((unsigned long)&rodata_ef6d4) /*=0xef6d4*/, uVar2);
+                debug_print(((unsigned long)"%s(): send APP Language infomation to slave . app language = %s\n") /*=0xef59e*/, ((unsigned long)"SendSystemLanguageInfoToSlave") /*=0xef6d4*/, uVar2);
             }
         }
     } else {
-        log_message(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_ef6d4) /*=0xef6d4*/);
+        log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/, ((unsigned long)"SendSystemLanguageInfoToSlave") /*=0xef6d4*/);
         uVar4 = 0xffffffffU;
     }
     return uVar4;

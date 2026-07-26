@@ -14,14 +14,14 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_87bf0                             @ 0x00087bf0
- *   rodata_9e2da                             @ 0x0009e2da
- *   rodata_9e324                             @ 0x0009e324
- *   rodata_9e345                             @ 0x0009e345
- *   rodata_9e36d                             @ 0x0009e36d
- *   rodata_9e385                             @ 0x0009e385
- *   rodata_9e3af                             @ 0x0009e3af
- *   rodata_9e3c6                             @ 0x0009e3c6
- *   rodata_9e508                             @ 0x0009e508
+ *   rodata_9e2da                             @ 0x0009e2da   [INLINED -- G6 literal batch]
+ *   rodata_9e324                             @ 0x0009e324   [INLINED -- G6 literal batch]
+ *   rodata_9e345                             @ 0x0009e345   [INLINED -- G6 literal batch]
+ *   rodata_9e36d                             @ 0x0009e36d   [INLINED -- G6 literal batch]
+ *   rodata_9e385                             @ 0x0009e385   [INLINED -- G6 literal batch]
+ *   rodata_9e3af                             @ 0x0009e3af   [INLINED -- G6 literal batch]
+ *   rodata_9e3c6                             @ 0x0009e3c6   [INLINED -- G6 literal batch]
+ *   rodata_9e508                             @ 0x0009e508   [INLINED -- G6 literal batch]
  *   rodata_a40ec                             @ 0x000a40ec
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -49,7 +49,7 @@ int flash_settings_write_and_verify(uint32_t address, const void *source,
     uint8_t *buffer = malloc(0x1000u);
     if (buffer == 0) {
         if (*(volatile uint32_t *)(uintptr_t)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0u)
-            log_message(((unsigned long)&rodata_9e324) /*=0x9e324*/, ((unsigned long)&rodata_9e508) /*=0x9e508*/, 0xd2u, 0u);
+            log_message(((unsigned long)"[%s-%d]error, have no memory ! \n") /*=0x9e324*/, ((unsigned long)"flash_settings_write_and_verify") /*=0x9e508*/, 0xd2u, 0u);
         else
             debug_print();
         return -1;
@@ -70,11 +70,11 @@ int flash_settings_write_and_verify(uint32_t address, const void *source,
     info = get_device_info();
     result = read(info, address, buffer, 0x1000u);
     if (result != 0) {
-        log_message(((unsigned long)&rodata_9e2da) /*=0x9e2da*/, result);
+        log_message(((unsigned long)"Flash read failed! %d\n") /*=0x9e2da*/, result);
         goto out;
     }
     if (memcmp(source, buffer, length) == 0) {
-        log_message(((unsigned long)&rodata_9e345) /*=0x9e345*/);
+        log_message(((unsigned long)"write data and read data is same, exit\n") /*=0x9e345*/);
         result = 0;
         goto out;
     }
@@ -84,7 +84,7 @@ int flash_settings_write_and_verify(uint32_t address, const void *source,
     info = get_device_info();
     int status = erase(info, address, 0x1000u);
     if (status != 0) {
-        log_message(((unsigned long)&rodata_9e36d) /*=0x9e36d*/, status);
+        log_message(((unsigned long)"Flash erase failed! %d\n") /*=0x9e36d*/, status);
         result = status;
         goto out;
     }
@@ -96,7 +96,7 @@ int flash_settings_write_and_verify(uint32_t address, const void *source,
     info = get_device_info();
     status = write(info, address, buffer, 0x1000u);
     if (status != 0) {
-        log_message(((unsigned long)&rodata_9e385) /*=0x9e385*/, status, address, length);
+        log_message(((unsigned long)"Flash write failed! %d addr %08X size %d\n") /*=0x9e385*/, status, address, length);
         result = status;
         goto out;
     }
@@ -106,16 +106,16 @@ int flash_settings_write_and_verify(uint32_t address, const void *source,
     info = get_device_info();
     status = read(info, address, buffer, 0x1000u);
     if (status != 0) {
-        log_message(((unsigned long)&rodata_9e2da) /*=0x9e2da*/, status);
+        log_message(((unsigned long)"Flash read failed! %d\n") /*=0x9e2da*/, status);
         result = status;
         goto out;
     }
     if (memcmp(source, buffer, length) != 0) {
-        log_message(((unsigned long)&rodata_9e3c6) /*=0x9e3c6*/);
+        log_message(((unsigned long)"flash verify failed\n") /*=0x9e3c6*/);
         result = 1;
         goto out;
     }
-    log_message(((unsigned long)&rodata_9e3af) /*=0x9e3af*/);
+    log_message(((unsigned long)"flash verify success!\n") /*=0x9e3af*/);
     result = 0;
 out:
     free(buffer);

@@ -6,7 +6,7 @@
  *   discovery_error_found_cb_ancs            <= FUN_000188b0 @ 0x000188b0
  *   atomic_and                               <= FUN_0007c08e @ 0x0007c08e
  * address symbols (name @ address):
- *   rodata_9a6c1                             @ 0x0009a6c1
+ *   rodata_9a6c1                             @ 0x0009a6c1   [INLINED -- G6 literal batch]
  *   g_gatt_discovery_flags                   @ 0x20006ab4
  */
 /* Reconstructed FUN_000188b0 @ 0x188b0  (parity: 300/300 trials, PROVEN) */

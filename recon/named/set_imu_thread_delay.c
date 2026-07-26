@@ -6,8 +6,8 @@
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  * address symbols (name @ address):
- *   rodata_9f721                             @ 0x0009f721
- *   rodata_9fb00                             @ 0x0009fb00
+ *   rodata_9f721                             @ 0x0009f721   [INLINED -- G6 literal batch]
+ *   rodata_9fb00                             @ 0x0009fb00   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -32,12 +32,12 @@ int set_imu_thread_delay(unsigned char *context, int delay_ms)
         if (LOG_LEVEL > 2) {
             int32_t sink = LOG_SINK;
             if (sink == 0) {
-                return log_message(((unsigned long)&rodata_9f721) /*=0x9f721*/,
-                                   ((unsigned long)&rodata_9fb00) /*=0x9fb00*/,
+                return log_message(((unsigned long)"%s(): %d(ms)\n") /*=0x9f721*/,
+                                   ((unsigned long)"set_imu_thread_delay") /*=0x9fb00*/,
                                    (uint32_t)delay_ms, (uint32_t)sink);
             }
-            return debug_print(((unsigned long)&rodata_9f721) /*=0x9f721*/,
-                               ((unsigned long)&rodata_9fb00) /*=0x9fb00*/,
+            return debug_print(((unsigned long)"%s(): %d(ms)\n") /*=0x9f721*/,
+                               ((unsigned long)"set_imu_thread_delay") /*=0x9fb00*/,
                                (uint32_t)delay_ms, (uint32_t)sink);
         }
     }

@@ -14,7 +14,7 @@
 
 extern int st25dv_ipc_send_byte(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern int ipc_ept_op_b_guarded(unsigned int a, void *b);
-extern void st25dv_reg_modify_low5(unsigned int a);
+extern void st25dv_reg_modify_low5(unsigned int a, unsigned int b);
 
 void st25dv_write_control_and_ack(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -29,7 +29,7 @@ void st25dv_write_control_and_ack(unsigned int param_1, unsigned int param_2, un
             unsigned char b = ((param_1 >> 8) & 3) | 0xc;
             localbuf[0] = b;
             val = *puVar1;
-            st25dv_reg_modify_low5(val);
+            st25dv_reg_modify_low5(val, b);
         }
     }
 }

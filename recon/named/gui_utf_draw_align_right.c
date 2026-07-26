@@ -3,8 +3,8 @@
  * durable-map: recon/catalogs/function_names_app.json
  * address symbols (name @ address):
  *   rodata_aaa58                             @ 0x000aaa58
- *   rodata_aaa7f                             @ 0x000aaa7f
- *   rodata_aad4b                             @ 0x000aad4b
+ *   rodata_aaa7f                             @ 0x000aaa7f   [INLINED -- G6 literal batch]
+ *   rodata_aad4b                             @ 0x000aad4b   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_gui_dark_light_dither_mask             @ 0x200034f6
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -244,7 +244,7 @@ uint32_t gui_utf_draw_align_right(uint32_t canvas, uint32_t utf8_text,
 invoke_callback:
     if (*log_level > 1) {
         if (*use_alternate_log_sink == 0) {
-            log_message(0x000aaa7fUL, 0x000aad4bUL, 0, 0);
+            log_message(((unsigned long)"%s(): exex process effect callback function\n"), 0x000aad4bUL, 0, 0);
         } else {
             debug_print();
         }

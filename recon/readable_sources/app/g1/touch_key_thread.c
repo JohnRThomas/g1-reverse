@@ -6,11 +6,11 @@
  * public-name: touch_key_thread
  * durable-map: recon/catalogs/function_names_app.json
  * address symbols (name @ address):
- *   rodata_a15d6                             @ 0x000a15d6
- *   rodata_a1626                             @ 0x000a1626
- *   rodata_a1681                             @ 0x000a1681
- *   rodata_a172a                             @ 0x000a172a
- *   rodata_a1a76                             @ 0x000a1a76
+ *   rodata_a15d6                             @ 0x000a15d6   [INLINED -- G6 literal batch]
+ *   rodata_a1626                             @ 0x000a1626   [INLINED -- G6 literal batch]
+ *   rodata_a1681                             @ 0x000a1681   [INLINED -- G6 literal batch]
+ *   rodata_a172a                             @ 0x000a172a   [INLINED -- G6 literal batch]
+ *   rodata_a1a76                             @ 0x000a1a76   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_touch_key_irq_pending                  @ 0x20006a00
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -130,7 +130,7 @@ check_stuck_key:
       if (click_count * 30000 < now) {
         if (0 < *log_level_ptr) {
           if (*alternate_sink_ptr == 0) {
-            log_message(((unsigned long)&rodata_a1626) /*=0xa1626*/, ((unsigned long)&rodata_a1a76) /*=0xa1a76*/, short_stuck_timeout);
+            log_message(((unsigned long)"%s(): #############################Long press timeout %d################################\n\n") /*=0xa1626*/, ((unsigned long)"touch_key_thread") /*=0xa1a76*/, short_stuck_timeout);
           }
           else {
             debug_print(0,0,0);
@@ -171,7 +171,7 @@ check_completed_press:
     if (15000 < now) {
       if (0 < *log_level_ptr) {
         if (*alternate_sink_ptr == 0) {
-          log_message(((unsigned long)&rodata_a15d6) /*=0xa15d6*/, ((unsigned long)&rodata_a1a76) /*=0xa1a76*/, now);
+          log_message(((unsigned long)"%s(): ########################turn on the mic and start to speak! holdtime %d\n\n") /*=0xa15d6*/, ((unsigned long)"touch_key_thread") /*=0xa1a76*/, now);
         }
         else {
           debug_print(0,0,0);
@@ -192,7 +192,7 @@ check_completed_press:
 emit_single_click:
     if (0 < *log_level_ptr) {
       if (*alternate_sink_ptr == 0) {
-        log_message(((unsigned long)&rodata_a172a) /*=0xa172a*/, ((unsigned long)&rodata_a1a76) /*=0xa1a76*/, *(uint32_t *)(context + 0x1078));
+        log_message(((unsigned long)"%s(): #############################single click %d################################\n\n") /*=0xa172a*/, ((unsigned long)"touch_key_thread") /*=0xa1a76*/, *(uint32_t *)(context + 0x1078));
       }
       else {
         debug_print(0,0,0);
@@ -209,7 +209,7 @@ check_long_hold:
     if (held_time <= (int32_t)0x11940) {
       if (0 < *log_level_ptr) {
         if (*alternate_sink_ptr == 0) {
-          log_message(((unsigned long)&rodata_a1626) /*=0xa1626*/, ((unsigned long)&rodata_a1a76) /*=0xa1a76*/);
+          log_message(((unsigned long)"%s(): #############################Long press timeout %d################################\n\n") /*=0xa1626*/, ((unsigned long)"touch_key_thread") /*=0xa1a76*/);
         }
         else {
           debug_print(0,0,0);
@@ -222,7 +222,7 @@ check_long_hold:
     }
     if (0 < *log_level_ptr) {
       if (*alternate_sink_ptr == 0) {
-        log_message(((unsigned long)&rodata_a1681) /*=0xa1681*/, ((unsigned long)&rodata_a1a76) /*=0xa1a76*/);
+        log_message(((unsigned long)"%s(): #############################Long press end################################\n\n") /*=0xa1681*/, ((unsigned long)"touch_key_thread") /*=0xa1a76*/);
       }
       else {
         debug_print(0,0,0);
@@ -235,7 +235,7 @@ check_long_hold:
   case 2:
     if (0 < *log_level_ptr) {
       if (*alternate_sink_ptr == 0) {
-        log_message(0xa177f, ((unsigned long)&rodata_a1a76) /*=0xa1a76*/);
+        log_message(0xa177f, ((unsigned long)"touch_key_thread") /*=0xa1a76*/);
       }
       else {
         debug_print(0,0,0);
@@ -246,7 +246,7 @@ check_long_hold:
   case 3:
     if (0 < *log_level_ptr) {
       if (*alternate_sink_ptr == 0) {
-        log_message(0xa17d1, ((unsigned long)&rodata_a1a76) /*=0xa1a76*/);
+        log_message(0xa17d1, ((unsigned long)"touch_key_thread") /*=0xa1a76*/);
       }
       else {
         debug_print(0,0,0);
@@ -266,7 +266,7 @@ publish_reset_reason:
     send_touch_click_event(10);
     if (0 < LOG_LEVEL) {
       if (LOG_ALTERNATE_SINK == 0) {
-        log_message(0xa1823, ((unsigned long)&rodata_a1a76) /*=0xa1a76*/, 0xf);
+        log_message(0xa1823, ((unsigned long)"touch_key_thread") /*=0xa1a76*/, 0xf);
       }
       else {
         debug_print(0,0,0);
@@ -280,13 +280,13 @@ five_click_reboot:
   if (0 < LOG_LEVEL) {
     format_string = 0xa184b;
     if (LOG_ALTERNATE_SINK == 0) goto log_directly;
-    debug_print(0xa184b, ((unsigned long)&rodata_a1a76) /*=0xa1a76*/, 5);
+    debug_print(0xa184b, ((unsigned long)"touch_key_thread") /*=0xa1a76*/, 5);
   }
   do {
     touch_pmic_reset_assert();
     if (0 < LOG_LEVEL) {
       if (LOG_ALTERNATE_SINK == 0) {
-        log_message(0xa1868, ((unsigned long)&rodata_a1a76) /*=0xa1a76*/);
+        log_message(0xa1868, ((unsigned long)"touch_key_thread") /*=0xa1a76*/);
       }
       else {
         debug_print(0,0,0);
@@ -295,14 +295,14 @@ five_click_reboot:
     touch_pmic_reset_deassert();
     if (0 < LOG_LEVEL) {
       if (LOG_ALTERNATE_SINK == 0) {
-        log_message(0xa187e, ((unsigned long)&rodata_a1a76) /*=0xa1a76*/);
+        log_message(0xa187e, ((unsigned long)"touch_key_thread") /*=0xa1a76*/);
       }
       else {
         debug_print(0,0,0);
       }
       if (0 < LOG_LEVEL) {
         if (LOG_ALTERNATE_SINK == 0) {
-          log_message(0xa0c6c, ((unsigned long)&rodata_a1a76) /*=0xa1a76*/, 5);
+          log_message(0xa0c6c, ((unsigned long)"touch_key_thread") /*=0xa1a76*/, 5);
         }
         else {
           debug_print(0,0,0);

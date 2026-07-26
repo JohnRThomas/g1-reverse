@@ -9,9 +9,9 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_a3f45                             @ 0x000a3f45
- *   rodata_a42cf                             @ 0x000a42cf
- *   rodata_a4986                             @ 0x000a4986
+ *   rodata_a3f45                             @ 0x000a3f45   [INLINED -- G6 literal batch]
+ *   rodata_a42cf                             @ 0x000a42cf   [INLINED -- G6 literal batch]
+ *   rodata_a4986                             @ 0x000a4986   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_audio_msgq                             @ 0x20003890
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -42,9 +42,9 @@ extern void memset_bytes(void *destination, int value, int length);
 #define LOG_LEVEL               (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define DEFERRED_LOGGER_ENABLED (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
 
-#define LOG_MODULE_AUDIO_CACHE  ((unsigned long)&rodata_a4986) /*=0xa4986*/
-#define LOG_CACHE_FULL          ((unsigned long)&rodata_a42cf) /*=0xa42cf*/
-#define LOG_CACHE_SEND_FAILED   ((unsigned long)&rodata_a3f45) /*=0xa3f45*/
+#define LOG_MODULE_AUDIO_CACHE  ((unsigned long)"sendAudioStram2Cache") /*=0xa4986*/
+#define LOG_CACHE_FULL          ((unsigned long)"%s(): enqueue dmic stream num is full, drop it %d\r\n\n") /*=0xa42cf*/
+#define LOG_CACHE_SEND_FAILED   ((unsigned long)"%s(): enqueue_dmic failed\r\n\n") /*=0xa3f45*/
 
 uint32_t sendAudioStram2Cache(const void *audio_stream)
 {

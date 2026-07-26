@@ -8,9 +8,9 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   k_calloc                                 <= FUN_000868ca @ 0x000868ca
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f11bc                             @ 0x000f11bc
- *   rodata_f11e7                             @ 0x000f11e7
+ *   rodata_f11e7                             @ 0x000f11e7   [INLINED -- G6 literal batch]
  *   cur_service_val                          @ 0x2000a154
  */
 /* Reconstructed FUN_0004e8e8 @ 0x4e8e8  (parity: 300/300 trials, PROVEN) */
@@ -22,7 +22,7 @@ extern int k_calloc(int,int);
 int gatt_dm_attr_alloc(int param_1,uint32_t param_2,uint32_t param_3,uint32_t param_4){
   int iVar1=((unsigned long)&cur_service_val) /*=0x2000a154*/;
   uint uVar5=((uint)param_1+3)&0xfffffffcu;
-  if(uVar5>0x74){ printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f11e7) /*=0xf11e7*/,((unsigned long)&rodata_f11bc) /*=0xf11bc*/,0x5b); assert_post_action(((unsigned long)&rodata_f11bc) /*=0xf11bc*/,0x5b); }
+  if(uVar5>0x74){ printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"len <= (128 - sizeof(struct k_mem_block_id) - sizeof(struct data_chunk_item *))") /*=0xf11e7*/,((unsigned long)&rodata_f11bc) /*=0xf11bc*/,0x5b); assert_post_action(((unsigned long)&rodata_f11bc) /*=0xf11bc*/,0x5b); }
   uint uVar3=*(volatile uint*)(((unsigned long)&cur_service_val) /*=0x2000a154*/+0x150);
   uint32_t* puVar2;
   if(uVar3==0 || (uVar3=*(volatile uint*)(((unsigned long)&cur_service_val) /*=0x2000a154*/+0x158)+uVar5, uVar3>0x74)){

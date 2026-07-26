@@ -14,15 +14,15 @@
  * address symbols (name @ address):
  *   rodata_10000                             @ 0x00010000
  *   rodata_881b8                             @ 0x000881b8
- *   rodata_f0af8                             @ 0x000f0af8
- *   rodata_f0b1a                             @ 0x000f0b1a
- *   rodata_f0b37                             @ 0x000f0b37
- *   rodata_f0b4f                             @ 0x000f0b4f
- *   rodata_f0b63                             @ 0x000f0b63
- *   rodata_f0b86                             @ 0x000f0b86
- *   rodata_f0b9d                             @ 0x000f0b9d
- *   rodata_f0baf                             @ 0x000f0baf
- *   rodata_f0bc0                             @ 0x000f0bc0
+ *   rodata_f0af8                             @ 0x000f0af8   [INLINED -- G6 literal batch]
+ *   rodata_f0b1a                             @ 0x000f0b1a   [INLINED -- G6 literal batch]
+ *   rodata_f0b37                             @ 0x000f0b37   [INLINED -- G6 literal batch]
+ *   rodata_f0b4f                             @ 0x000f0b4f   [INLINED -- G6 literal batch]
+ *   rodata_f0b63                             @ 0x000f0b63   [INLINED -- G6 literal batch]
+ *   rodata_f0b86                             @ 0x000f0b86   [INLINED -- G6 literal batch]
+ *   rodata_f0b9d                             @ 0x000f0b9d   [INLINED -- G6 literal batch]
+ *   rodata_f0baf                             @ 0x000f0baf   [INLINED -- G6 literal batch]
+ *   rodata_f0bc0                             @ 0x000f0bc0   [INLINED -- G6 literal batch]
  *   rodata_f0be7                             @ 0x000f0be7
  */
 /* Reconstructed FUN_0004c548 @ 0x4c548  (parity: 300/300 trials, PROVEN) */

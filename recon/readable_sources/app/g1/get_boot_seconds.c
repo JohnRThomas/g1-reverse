@@ -7,8 +7,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   k_uptime_get_9                           <= FUN_0007d9a4 @ 0x0007d9a4
  * address symbols (name @ address):
- *   rodata_f02ad                             @ 0x000f02ad
- *   rodata_f02ff                             @ 0x000f02ff
+ *   rodata_f02ad                             @ 0x000f02ad   [INLINED -- G6 literal batch]
+ *   rodata_f02ff                             @ 0x000f02ff   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_boot_uptime_s                          @ 0x2000a0b0
@@ -30,9 +30,9 @@ int get_boot_seconds(void)
     if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         unsigned int sink = *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
         if (sink == 0) {
-            log_message(((unsigned long)&rodata_f02ad) /*=0xf02ad*/,((unsigned long)&rodata_f02ff) /*=0xf02ff*/,(unsigned int)diff,sink);
+            log_message(((unsigned long)"%s(): [csh_debug] bootSeconds is %d\n") /*=0xf02ad*/,((unsigned long)"get_boot_seconds") /*=0xf02ff*/,(unsigned int)diff,sink);
         } else {
-            debug_print(((unsigned long)&rodata_f02ad) /*=0xf02ad*/,((unsigned long)&rodata_f02ff) /*=0xf02ff*/,(unsigned int)diff,sink);
+            debug_print(((unsigned long)"%s(): [csh_debug] bootSeconds is %d\n") /*=0xf02ad*/,((unsigned long)"get_boot_seconds") /*=0xf02ff*/,(unsigned int)diff,sink);
         }
     }
     return diff;

@@ -8,8 +8,8 @@
  *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
  *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
  * address symbols (name @ address):
- *   rodata_a9e91                             @ 0x000a9e91
- *   rodata_aa466                             @ 0x000aa466
+ *   rodata_a9e91                             @ 0x000a9e91   [INLINED -- G6 literal batch]
+ *   rodata_aa466                             @ 0x000aa466   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -32,9 +32,9 @@ void navigation_direction_img_display(int param_1, int param_2, int param_3)
         gui_bmp_bitmap_draw(param_1 + 0x55, uVar1, iVar2 + 0x39, 0, 0, 0, param_3);
     } else if (1 < *(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ != 0) {
-            debug_print(((unsigned long)&rodata_a9e91) /*=0xa9e91*/, ((unsigned long)&rodata_aa466) /*=0xaa466*/);
+            debug_print(((unsigned long)"%s(): navigation direction parampter error\n") /*=0xa9e91*/, ((unsigned long)"navigation_direction_img_display") /*=0xaa466*/);
         } else {
-            log_message(((unsigned long)&rodata_a9e91) /*=0xa9e91*/, ((unsigned long)&rodata_aa466) /*=0xaa466*/);
+            log_message(((unsigned long)"%s(): navigation direction parampter error\n") /*=0xa9e91*/, ((unsigned long)"navigation_direction_img_display") /*=0xaa466*/);
         }
     }
 }

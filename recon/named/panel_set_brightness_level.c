@@ -6,8 +6,8 @@
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  * address symbols (name @ address):
- *   rodata_d720f                             @ 0x000d720f
- *   rodata_d732c                             @ 0x000d732c
+ *   rodata_d720f                             @ 0x000d720f   [INLINED -- G6 literal batch]
+ *   rodata_d732c                             @ 0x000d732c   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -28,9 +28,9 @@ uint32_t panel_set_brightness_level(uint8_t *context, uint32_t level)
         *(volatile uint8_t *)(context + 0x369) = (uint8_t)level;
         if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_d720f) /*=0xd720f*/, ((unsigned long)&rodata_d732c) /*=0xd732c*/, level);
+                log_message(((unsigned long)"%s(): new: %d\n") /*=0xd720f*/, ((unsigned long)"panel_set_brightness_level") /*=0xd732c*/, level);
             } else {
-                debug_print(((unsigned long)&rodata_d720f) /*=0xd720f*/, ((unsigned long)&rodata_d732c) /*=0xd732c*/, level);
+                debug_print(((unsigned long)"%s(): new: %d\n") /*=0xd720f*/, ((unsigned long)"panel_set_brightness_level") /*=0xd732c*/, level);
             }
         }
     }

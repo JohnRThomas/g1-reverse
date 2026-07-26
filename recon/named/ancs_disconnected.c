@@ -9,8 +9,8 @@
  *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   bt_conn_get_field_0x90                   <= FUN_00081526 @ 0x00081526
  * address symbols (name @ address):
- *   rodata_9a92a                             @ 0x0009a92a
- *   rodata_9b1c8                             @ 0x0009b1c8
+ *   rodata_9a92a                             @ 0x0009a92a   [INLINED -- G6 literal batch]
+ *   rodata_9b1c8                             @ 0x0009b1c8   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_ancs_active_conn                       @ 0x20006ab8
  *   g_ancs_conn                              @ 0x20007518

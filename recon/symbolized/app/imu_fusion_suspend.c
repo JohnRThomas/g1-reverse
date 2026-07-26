@@ -6,8 +6,8 @@
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  * address symbols (name @ address):
- *   rodata_9f72f                             @ 0x0009f72f
- *   rodata_9faf1                             @ 0x0009faf1
+ *   rodata_9f72f                             @ 0x0009f72f   [INLINED -- G6 literal batch]
+ *   rodata_9faf1                             @ 0x0009faf1   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -31,11 +31,11 @@ int imu_fusion_suspend(uint32_t p1, uint32_t p2, uint32_t p3)
     if (LOG_LEVEL > 2) {
         int32_t sink = LOG_SINK;
         if (sink == 0) {
-            log_message(((unsigned long)&rodata_9f72f) /*=0x9f72f*/,
-                        ((unsigned long)&rodata_9faf1) /*=0x9faf1*/, p3, (uint32_t)sink);
+            log_message(((unsigned long)"%s(): enter!\n") /*=0x9f72f*/,
+                        ((unsigned long)"suspend") /*=0x9faf1*/, p3, (uint32_t)sink);
         } else {
-            debug_print(((unsigned long)&rodata_9f72f) /*=0x9f72f*/,
-                        ((unsigned long)&rodata_9faf1) /*=0x9faf1*/, p3, (uint32_t)sink);
+            debug_print(((unsigned long)"%s(): enter!\n") /*=0x9f72f*/,
+                        ((unsigned long)"suspend") /*=0x9faf1*/, p3, (uint32_t)sink);
         }
     }
     return 0;

@@ -13,7 +13,7 @@
  *   projector_send_cmd_immediate             <= FUN_0007d77c @ 0x0007d77c
  * address symbols (name @ address):
  *   rodata_99969                             @ 0x00099969
- *   rodata_d741b                             @ 0x000d741b
+ *   rodata_d741b                             @ 0x000d741b   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -34,9 +34,9 @@ void panel_init(void)
 {
     if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 3) {
         if (*(volatile uint32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_99969) /*=0x99969*/, ((unsigned long)&rodata_d741b) /*=0xd741b*/);
+            log_message(((unsigned long)&rodata_99969) /*=0x99969*/, ((unsigned long)"panel_init") /*=0xd741b*/);
         } else {
-            debug_print(((unsigned long)&rodata_99969) /*=0x99969*/, ((unsigned long)&rodata_d741b) /*=0xd741b*/);
+            debug_print(((unsigned long)&rodata_99969) /*=0x99969*/, ((unsigned long)"panel_init") /*=0xd741b*/);
         }
     }
     projector_reset_sequence();

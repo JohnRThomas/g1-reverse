@@ -15,7 +15,7 @@
  *   set_message_pending_state                <= FUN_0003443c @ 0x0003443c
  *   k_uptime_get_2                           <= FUN_0007ce40 @ 0x0007ce40
  * address symbols (name @ address):
- *   rodata_a26f7                             @ 0x000a26f7
+ *   rodata_a26f7                             @ 0x000a26f7   [INLINED -- G6 literal batch]
  *   rodata_a2733                             @ 0x000a2733
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_pending_message_flag                   @ 0x20018d9e
@@ -37,10 +37,10 @@ void update_touch_key_flag(void){
     k_uptime_get_2();
     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
         unsigned u = get_message_pending_state();
-        log_message(((unsigned long)&rodata_a26f7) /*=0xa26f7*/, u);
+        log_message(((unsigned long)"[csh_debug_msg] set touch key flag get_msg_show_state() %d\n") /*=0xa26f7*/, u);
     } else {
         unsigned u = get_message_pending_state();
-        debug_print(((unsigned long)&rodata_a26f7) /*=0xa26f7*/, u);
+        debug_print(((unsigned long)"[csh_debug_msg] set touch key flag get_msg_show_state() %d\n") /*=0xa26f7*/, u);
     }
     int iVar3 = get_message_pending_state();
     if (iVar3 == 2 || get_message_pending_state() == 4){

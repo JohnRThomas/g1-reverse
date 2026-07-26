@@ -7,11 +7,11 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   chan_req_send                            <= FUN_00082030 @ 0x00082030
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f4388                             @ 0x000f4388
- *   rodata_f457a                             @ 0x000f457a
- *   rodata_f457f                             @ 0x000f457f
- *   rodata_f4589                             @ 0x000f4589
+ *   rodata_f457a                             @ 0x000f457a   [INLINED -- G6 literal batch]
+ *   rodata_f457f                             @ 0x000f457f   [INLINED -- G6 literal batch]
+ *   rodata_f4589                             @ 0x000f4589   [INLINED -- G6 literal batch]
  *   rodata_f4590                             @ 0x000f4590
  */
 /* Full reconstruction FUN_00058b78 @ 0x58b78, exact extent 108 bytes. */
@@ -39,6 +39,6 @@ void att_chan_req_send_checked(uint8_t *context, uint32_t *object,
         chan_req_send();
         return;
     }
-    printk(0x00099cbdu, message, 0x000f4388u, line, arg3);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), message, 0x000f4388u, line, arg3);
     assert_post_action(0x000f4388u, line);
 }

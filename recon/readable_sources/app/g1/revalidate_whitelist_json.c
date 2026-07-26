@@ -11,7 +11,7 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_a7c9c                             @ 0x000a7c9c
- *   rodata_a8a24                             @ 0x000a8a24
+ *   rodata_a8a24                             @ 0x000a8a24   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  */
 /* Reconstructed FUN_000355b4 @ 0x355b4  (parity: 300/300 trials, PROVEN) */
@@ -38,6 +38,6 @@ void revalidate_whitelist_json(void)
     debug_print();
     return;
   }
-  log_message((const char*)((unsigned long)&rodata_a7c9c) /*=0xa7c9c*/,(const char*)((unsigned long)&rodata_a8a24) /*=0xa8a24*/,0x277);
+  log_message((const char*)((unsigned long)&rodata_a7c9c) /*=0xa7c9c*/,(const char*)((unsigned long)"dump_whitelist") /*=0xa8a24*/,0x277);
   return;
 }

@@ -10,10 +10,10 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f45be                             @ 0x000f45be
- *   rodata_f543a                             @ 0x000f543a
- *   rodata_f5465                             @ 0x000f5465
+ *   rodata_f543a                             @ 0x000f543a   [INLINED -- G6 literal batch]
+ *   rodata_f5465                             @ 0x000f5465   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005f4d4 @ 0x5f4d4  (parity: 300/300 trials, PROVEN) */
 
@@ -33,8 +33,8 @@ static void merge_tail(unsigned int r0, unsigned int r1)
 void net_buf_simple_reserve(int *param_1, int param_2, unsigned int param_3, unsigned int param_4)
 {
     if (param_1 == (int*)0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f45be) /*=0xf45be*/, ((unsigned long)&rodata_f543a) /*=0xf543a*/, 0x2bUL);
-        unsigned long long rv = assert_post_action(((unsigned long)&rodata_f543a) /*=0xf543a*/, 0x2bUL);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f45be) /*=0xf45be*/, ((unsigned long)"WEST_TOPDIR/zephyr/subsys/net/buf_simple.c") /*=0xf543a*/, 0x2bUL);
+        unsigned long long rv = assert_post_action(((unsigned long)"WEST_TOPDIR/zephyr/subsys/net/buf_simple.c") /*=0xf543a*/, 0x2bUL);
         merge_tail((unsigned int)rv, (unsigned int)(rv >> 32));
         return;
     }
@@ -43,7 +43,7 @@ void net_buf_simple_reserve(int *param_1, int param_2, unsigned int param_3, uns
         *param_1 = param_1[2] + param_2;
         return;
     }
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f5465) /*=0xf5465*/, ((unsigned long)&rodata_f543a) /*=0xf543a*/, 0x2cUL);
-    unsigned long long rv = assert_post_action(((unsigned long)&rodata_f543a) /*=0xf543a*/, 0x2cUL);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"buf->len == 0U") /*=0xf5465*/, ((unsigned long)"WEST_TOPDIR/zephyr/subsys/net/buf_simple.c") /*=0xf543a*/, 0x2cUL);
+    unsigned long long rv = assert_post_action(((unsigned long)"WEST_TOPDIR/zephyr/subsys/net/buf_simple.c") /*=0xf543a*/, 0x2cUL);
     merge_tail((unsigned int)rv, (unsigned int)(rv >> 32));
 }

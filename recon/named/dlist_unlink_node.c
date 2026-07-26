@@ -6,7 +6,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f84d6                             @ 0x000f84d6
  */
@@ -20,7 +20,7 @@ void dlist_unlink_node(unsigned int param_1, int *param_2, unsigned int param_3,
     int *base;
     if ((unsigned int)param_2 == 0x20006720UL) {
         unsigned long long r;
-        printk(0x00099cbdUL, 0x000f84d6UL, 0x000f82f4UL, 0x484);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f84d6UL, 0x000f82f4UL, 0x484);
         r = assert_post_action(0x000f82f4UL, 0x484);
         base = (int*)(unsigned int)(r >> 32);
     } else {

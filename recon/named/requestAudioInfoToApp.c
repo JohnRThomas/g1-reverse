@@ -6,9 +6,9 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef058                             @ 0x000ef058
- *   rodata_ef4d9                             @ 0x000ef4d9
- *   rodata_ef707                             @ 0x000ef707
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
+ *   rodata_ef4d9                             @ 0x000ef4d9   [INLINED -- G6 literal batch]
+ *   rodata_ef707                             @ 0x000ef707   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_dashboard_response_msgq                @ 0x2000392c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -35,13 +35,13 @@ int requestAudioInfoToApp(unsigned char param_1)
     uVar2 = 0;
     if (*(int*)0x2000230cUL > 2) {
       if (*(int*)0x20007554UL == 0) {
-        log_message(0xef4d9, 0xef707);
+        log_message(((unsigned long)"%s(): requestAudioInfoToApp ...\n"), ((unsigned long)"requestAudioInfoToApp"));
       } else {
         debug_print();
       }
     }
   } else {
-    log_message(0xef058, 0xef707);
+    log_message(((unsigned long)"message queue send failed %s\r\n"), ((unsigned long)"requestAudioInfoToApp"));
     uVar2 = -1;
   }
   return uVar2;

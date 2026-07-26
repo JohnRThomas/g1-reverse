@@ -5,8 +5,8 @@
  *   file_subsystem_queue_init                <= FUN_000234e8 @ 0x000234e8
  *   z_impl_k_msgq_alloc_init                 <= FUN_00086448 @ 0x00086448
  * address symbols (name @ address):
- *   rodata_9e7fd                             @ 0x0009e7fd
- *   rodata_9e810                             @ 0x0009e810
+ *   rodata_9e7fd                             @ 0x0009e7fd   [INLINED -- G6 literal batch]
+ *   rodata_9e810                             @ 0x0009e810   [INLINED -- G6 literal batch]
  *   g_file_msg_pipe                          @ 0x200079a0
  */
 /* Reconstructed FUN_000234e8 @ 0x234e8 */

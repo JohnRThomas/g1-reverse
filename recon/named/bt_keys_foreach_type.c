@@ -6,7 +6,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f5268                             @ 0x000f5268
  *   rodata_f52c0                             @ 0x000f52c0
  *   bt_keys_pool                             @ 0x2000af4c
@@ -21,7 +21,7 @@ extern void printk(uint32_t, uint32_t, uint32_t, uint32_t);
 void bt_keys_foreach_type(unsigned short param_1, fnptr param_2, unsigned int param_3)
 {
     if (param_2 == 0) {
-        printk(0x00099cbdU, 0x000f52c0U, 0x000f5268U, 0xb3U);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f52c0U, 0x000f5268U, 0xb3U);
         assert_post_action(0x000f5268U, 0xb3U);
         return;
     }

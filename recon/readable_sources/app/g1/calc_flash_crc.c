@@ -15,12 +15,12 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_87bf0                             @ 0x00087bf0
- *   rodata_9e484                             @ 0x0009e484
- *   rodata_9e4a3                             @ 0x0009e4a3
- *   rodata_9e4c7                             @ 0x0009e4c7
- *   rodata_9e4e3                             @ 0x0009e4e3
- *   rodata_9e4f0                             @ 0x0009e4f0
- *   rodata_9e4f9                             @ 0x0009e4f9
+ *   rodata_9e484                             @ 0x0009e484   [INLINED -- G6 literal batch]
+ *   rodata_9e4a3                             @ 0x0009e4a3   [INLINED -- G6 literal batch]
+ *   rodata_9e4c7                             @ 0x0009e4c7   [INLINED -- G6 literal batch]
+ *   rodata_9e4e3                             @ 0x0009e4e3   [INLINED -- G6 literal batch]
+ *   rodata_9e4f0                             @ 0x0009e4f0   [INLINED -- G6 literal batch]
+ *   rodata_9e4f9                             @ 0x0009e4f9   [INLINED -- G6 literal batch]
  *   rodata_a40ec                             @ 0x000a40ec
  *   g_log_level                              @ 0x2000230c
  *   g_flash_crc_active_flag                  @ 0x2000302c
@@ -54,17 +54,17 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
 
     if (*log_level >= 3) {
         if (*alternate_log == 0)
-            log_message(((unsigned long)&rodata_9e484) /*=0x9e484*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+            log_message(((unsigned long)"%s(): join in calc_flash_crc\n\n") /*=0x9e484*/, ((unsigned long)"calc_flash_crc") /*=0x9e4f9*/);
         else
-            debug_print(((unsigned long)&rodata_9e484) /*=0x9e484*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+            debug_print(((unsigned long)"%s(): join in calc_flash_crc\n\n") /*=0x9e484*/, ((unsigned long)"calc_flash_crc") /*=0x9e4f9*/);
     }
 
     if (crc == 0 || byte_count == 0) {
         if (*log_level >= 3) {
             if (*alternate_log == 0)
-                log_message(((unsigned long)&rodata_9e4a3) /*=0x9e4a3*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+                log_message(((unsigned long)"%s(): calc_flash_crc para is NULL\n\n") /*=0x9e4a3*/, ((unsigned long)"calc_flash_crc") /*=0x9e4f9*/);
             else
-                debug_print(((unsigned long)&rodata_9e4a3) /*=0x9e4a3*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+                debug_print(((unsigned long)"%s(): calc_flash_crc para is NULL\n\n") /*=0x9e4a3*/, ((unsigned long)"calc_flash_crc") /*=0x9e4f9*/);
         }
         return UINT32_MAX;
     }
@@ -98,7 +98,7 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
         context = get_device_info();
         status = read(context, cursor, buffer, chunk_size);
         if (status != 0) {
-            log_message(((unsigned long)&rodata_9e4c7) /*=0x9e4c7*/, cursor, status);
+            log_message(((unsigned long)"Flash read 0x%x failed: %d\n") /*=0x9e4c7*/, cursor, status);
             return UINT32_MAX;
         }
 
@@ -109,19 +109,19 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
                 break;
             if (level > 2) {
                 if (*alternate_log == 0)
-                    log_message(((unsigned long)&rodata_9e4e3) /*=0x9e4e3*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/,
+                    log_message(((unsigned long)"%s(): 0x%x \n") /*=0x9e4e3*/, ((unsigned long)"calc_flash_crc") /*=0x9e4f9*/,
                                 buffer[(uint8_t)dump_index]);
                 else
-                    debug_print(((unsigned long)&rodata_9e4e3) /*=0x9e4e3*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+                    debug_print(((unsigned long)"%s(): 0x%x \n") /*=0x9e4e3*/, ((unsigned long)"calc_flash_crc") /*=0x9e4f9*/);
             }
             ++dump_index;
         }
 
         if (level > 2) {
             if (*alternate_log == 0)
-                log_message(((unsigned long)&rodata_9e4f0) /*=0x9e4f0*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+                log_message(((unsigned long)"%s(): \n\n") /*=0x9e4f0*/, ((unsigned long)"calc_flash_crc") /*=0x9e4f9*/);
             else
-                debug_print(((unsigned long)&rodata_9e4f0) /*=0x9e4f0*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+                debug_print(((unsigned long)"%s(): \n\n") /*=0x9e4f0*/, ((unsigned long)"calc_flash_crc") /*=0x9e4f9*/);
         }
         *crc = g1_recon_crc16_ansi_seeded(*crc, buffer, chunk_size);
         cursor += 0x400;

@@ -10,8 +10,8 @@
  *   strncmp                                  <= FUN_00087036 @ 0x00087036
  * address symbols (name @ address):
  *   rodata_883c8                             @ 0x000883c8
- *   rodata_a7bf5                             @ 0x000a7bf5
- *   rodata_a833e                             @ 0x000a833e
+ *   rodata_a7bf5                             @ 0x000a7bf5   [INLINED -- G6 literal batch]
+ *   rodata_a833e                             @ 0x000a833e   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  */
 /* Full owned-CFG reconstruction FUN_0003384c @ 0x3384c. */

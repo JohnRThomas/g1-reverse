@@ -23,10 +23,10 @@
  * address symbols (name @ address):
  *   ADDR_convert_to_id_on_match_THUMB        @ 0x000831e3
  *   rodata_88180                             @ 0x00088180
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f50a7                             @ 0x000f50a7
- *   rodata_f50d6                             @ 0x000f50d6
- *   rodata_f512c                             @ 0x000f512c
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f50a7                             @ 0x000f50a7   [INLINED -- G6 literal batch]
+ *   rodata_f50d6                             @ 0x000f50d6   [INLINED -- G6 literal batch]
+ *   rodata_f512c                             @ 0x000f512c   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005de70 @ 0x5de70  (parity: 200/200 trials, PROVEN) */
 typedef unsigned int u32;
@@ -98,9 +98,9 @@ LAB_df2c:
         }
       }
       if ((int)((u32)(*(volatile u8*)(long)(param_1+0xe9)) << 0x1e) < 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f50d6) /*=0xf50d6*/, ((unsigned long)&rodata_f50a7) /*=0xf50a7*/, 0xec9u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"!(smp->remote_dist & 0x02)") /*=0xf50d6*/, ((unsigned long)"WEST_TOPDIR/zephyr/subsys/bluetooth/host/smp.c") /*=0xf50a7*/, 0xec9u);
         uVar3 = 0xec9;
-        assert_post_action(((unsigned long)&rodata_f50a7) /*=0xf50a7*/, uVar3);
+        assert_post_action(((unsigned long)"WEST_TOPDIR/zephyr/subsys/bluetooth/host/smp.c") /*=0xf50a7*/, uVar3);
       }
       iVar5 = bt_id_find_conflict(iVar1);
       if (iVar5 != 0) {
@@ -109,9 +109,9 @@ LAB_df2c:
       }
       iVar5 = bt_id_find_conflict(iVar1);
       if (iVar5 != 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f512c) /*=0xf512c*/, ((unsigned long)&rodata_f50a7) /*=0xf50a7*/, 0xee5u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"!bt_id_find_conflict(new_bond)") /*=0xf512c*/, ((unsigned long)"WEST_TOPDIR/zephyr/subsys/bluetooth/host/smp.c") /*=0xf50a7*/, 0xee5u);
         uVar3 = 0xee5;
-        assert_post_action(((unsigned long)&rodata_f50a7) /*=0xf50a7*/, uVar3);
+        assert_post_action(((unsigned long)"WEST_TOPDIR/zephyr/subsys/bluetooth/host/smp.c") /*=0xf50a7*/, uVar3);
       }
       bt_id_add(iVar1);
     }

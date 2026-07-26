@@ -8,8 +8,8 @@
  *   esb_send_command_and_wait_ack            <= FUN_00027448 @ 0x00027448
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
- *   rodata_aa679                             @ 0x000aa679
- *   rodata_aa763                             @ 0x000aa763
+ *   rodata_aa679                             @ 0x000aa679   [INLINED -- G6 literal batch]
+ *   rodata_aa763                             @ 0x000aa763   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -76,12 +76,12 @@ uint32_t onboarding_sync_data(uint8_t *param_1, uint32_t param_2, uint32_t param
             return 0xffffffff;
         }
         iVar3 = *(volatile uint32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
-        uVar2 = ((unsigned long)&rodata_aa679) /*=0xaa679*/;
+        uVar2 = ((unsigned long)"%s(): onboarding sync to Slave failed...\n") /*=0xaa679*/;
     }
     if (iVar3 == 0) {
-        log_message(uVar2, ((unsigned long)&rodata_aa763) /*=0xaa763*/);
+        log_message(uVar2, ((unsigned long)"onboarding_sync_data") /*=0xaa763*/);
     } else {
-        debug_print(uVar2, ((unsigned long)&rodata_aa763) /*=0xaa763*/);
+        debug_print(uVar2, ((unsigned long)"onboarding_sync_data") /*=0xaa763*/);
     }
     return 0xffffffff;
 }

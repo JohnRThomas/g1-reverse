@@ -24,8 +24,8 @@
  *   ADDR_touch_key_thread_THUMB              @ 0x0002a0d9
  *   ADDR_transport_dispatch_thread_THUMB     @ 0x0002a4f5
  *   ADDR_FUN_0002a8d8_THUMB                  @ 0x0002a8d9
- *   rodata_a18bf                             @ 0x000a18bf
- *   rodata_a1a98                             @ 0x000a1a98
+ *   rodata_a18bf                             @ 0x000a18bf   [INLINED -- G6 literal batch]
+ *   rodata_a1a98                             @ 0x000a1a98   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_200040d0                               @ 0x200040d0
  *   g_200041a8                               @ 0x200041a8

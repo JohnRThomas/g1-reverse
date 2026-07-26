@@ -11,7 +11,7 @@
  *   k_mutex_lock                             <= FUN_000723b8 @ 0x000723b8
  *   k_mutex_unlock                           <= FUN_00072558 @ 0x00072558
  * address symbols (name @ address):
- *   rodata_9a155                             @ 0x0009a155
+ *   rodata_9a155                             @ 0x0009a155   [INLINED -- G6 literal batch]
  *   g_settings_notify_mutex                  @ 0x20006a1c
  */
 /* Reconstructed FUN_00017e84 @ 0x17e84  (parity: 300/300 trials, PROVEN) */
@@ -39,7 +39,7 @@ L_work:
     r4 = gatt_notify_config_change(0, param_1, param_2);
     k_mutex_unlock(((unsigned long)&g_settings_notify_mutex) /*=0x20006a1c*/);
     if (r4 == 0) return 0;
-    log_message(((unsigned long)&rodata_9a155) /*=0x9a155*/, r4, param_2);
+    log_message(((unsigned long)"Failed to send data over BLE connection: ret %d len %d \n") /*=0x9a155*/, r4, param_2);
     goto L_dc;
 L_dc:
     r4 = -1;

@@ -6,8 +6,8 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
  *   rodata_a7993                             @ 0x000a7993
- *   rodata_a7aab                             @ 0x000a7aab
- *   rodata_a7ac1                             @ 0x000a7ac1
+ *   rodata_a7aab                             @ 0x000a7aab   [INLINED -- G6 literal batch]
+ *   rodata_a7ac1                             @ 0x000a7ac1   [INLINED -- G6 literal batch]
  *   rodata_f5400                             @ 0x000f5400
  *   g_uart_rx_frame_len                      @ 0x2001a128
  *   g_uart_rx_frame_buf                      @ 0x2001a129
@@ -53,7 +53,7 @@ uint32_t framed_serial_receive_parser(uint32_t transport, uint8_t **output,
         memcpy(*output, (const void *)(uintptr_t)
                      (((unsigned long)&g_2001a12d) /*=0x2001a12d*/ + offset), payload_size);
         *output_size = payload_size;
-        log_message(((unsigned long)&rodata_a7aab) /*=0xa7aab*/);
+        log_message(((unsigned long)"use read_serial_data:") /*=0xa7aab*/);
         for (index = 0u; index != payload_size; ++index)
             log_message(((unsigned long)&rodata_a7993) /*=0xa7993*/, (uint32_t)(*output)[index]);
         log_message(((unsigned long)&rodata_f5400) /*=0xf5400*/);
@@ -65,6 +65,6 @@ uint32_t framed_serial_receive_parser(uint32_t transport, uint8_t **output,
     }
 
     *received_size = 0u;
-    log_message(((unsigned long)&rodata_a7ac1) /*=0xa7ac1*/);
+    log_message(((unsigned long)"Err:serial recv data does not meet the protocol\n") /*=0xa7ac1*/);
     return 0xfffffffdu;
 }

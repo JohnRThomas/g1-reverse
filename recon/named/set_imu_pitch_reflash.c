@@ -13,8 +13,8 @@
  *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
  *   get_localized_weekday_name               <= FUN_0007d4b2 @ 0x0007d4b2
  * address symbols (name @ address):
- *   rodata_d7173                             @ 0x000d7173
- *   rodata_d71f9                             @ 0x000d71f9
+ *   rodata_d7173                             @ 0x000d7173   [INLINED -- G6 literal batch]
+ *   rodata_d71f9                             @ 0x000d71f9   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_imu_pitch_last_state                   @ 0x2001cf91

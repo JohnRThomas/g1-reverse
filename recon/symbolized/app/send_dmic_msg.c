@@ -10,9 +10,9 @@
  *   set_shutdown_flag                        <= FUN_0007cbfe @ 0x0007cbfe
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_9b45e                             @ 0x0009b45e
- *   rodata_9b482                             @ 0x0009b482
- *   rodata_9e0a4                             @ 0x0009e0a4
+ *   rodata_9b45e                             @ 0x0009b45e   [INLINED -- G6 literal batch]
+ *   rodata_9b482                             @ 0x0009b482   [INLINED -- G6 literal batch]
+ *   rodata_9e0a4                             @ 0x0009e0a4   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_dmic_send_fail_cnt                     @ 0x20007558
@@ -68,10 +68,10 @@ int send_dmic_msg(uint8_t *transport)
             set_shutdown_flag(get_device_info(), 1);
             if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
                 if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                    log_message(((unsigned long)&rodata_9b45e) /*=0x9b45e*/, ((unsigned long)&rodata_9e0a4) /*=0x9e0a4*/,
+                    log_message(((unsigned long)"%s(): BLE send failed for %d times\n") /*=0x9b45e*/, ((unsigned long)"send_dmic_msg") /*=0x9e0a4*/,
                                 *failure_count);
                 } else {
-                    debug_print(((unsigned long)&rodata_9b45e) /*=0x9b45e*/, ((unsigned long)&rodata_9e0a4) /*=0x9e0a4*/,
+                    debug_print(((unsigned long)"%s(): BLE send failed for %d times\n") /*=0x9b45e*/, ((unsigned long)"send_dmic_msg") /*=0x9e0a4*/,
                                  *failure_count);
                 }
             }
@@ -93,12 +93,12 @@ int send_dmic_msg(uint8_t *transport)
             if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
                 scaled_timestamp = (timestamp * 1000ULL + 0x7fffULL) >> 15;
                 if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                    log_message(((unsigned long)&rodata_9b482) /*=0x9b482*/, ((unsigned long)&rodata_9e0a4) /*=0x9e0a4*/,
+                    log_message(((unsigned long)"%s(): dmic_send_count %d send_fail_count %d time %lld\n") /*=0x9b482*/, ((unsigned long)"send_dmic_msg") /*=0x9e0a4*/,
                                 (report_count + 1) * 100, *failure_count,
                                 (uint32_t)scaled_timestamp,
                                 (uint32_t)(scaled_timestamp >> 32));
                 } else {
-                    debug_print(((unsigned long)&rodata_9b482) /*=0x9b482*/, ((unsigned long)&rodata_9e0a4) /*=0x9e0a4*/,
+                    debug_print(((unsigned long)"%s(): dmic_send_count %d send_fail_count %d time %lld\n") /*=0x9b482*/, ((unsigned long)"send_dmic_msg") /*=0x9e0a4*/,
                                  (report_count + 1) * 100, *failure_count,
                                  (uint32_t)scaled_timestamp,
                                  (uint32_t)(scaled_timestamp >> 32));

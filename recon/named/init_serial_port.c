@@ -9,11 +9,11 @@
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  * address symbols (name @ address):
  *   rodata_87bc0                             @ 0x00087bc0
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_a7892                             @ 0x000a7892
- *   rodata_a78b9                             @ 0x000a78b9
- *   rodata_a78d1                             @ 0x000a78d1
- *   rodata_a78eb                             @ 0x000a78eb
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_a7892                             @ 0x000a7892   [INLINED -- G6 literal batch]
+ *   rodata_a78b9                             @ 0x000a78b9   [INLINED -- G6 literal batch]
+ *   rodata_a78d1                             @ 0x000a78d1   [INLINED -- G6 literal batch]
+ *   rodata_a78eb                             @ 0x000a78eb   [INLINED -- G6 literal batch]
  *   g_serial_port_ready                      @ 0x2001a127
  */
 /* Reconstructed FUN_000332dc @ 0x332dc  (parity: 300/300 trials, PROVEN) */
@@ -32,7 +32,7 @@ unsigned int init_serial_port(void)
   if (*pcVar1 == 0) {
     iVar2 = z_device_is_ready((void*)0x87bc0UL);
     if (iVar2 == 0) {
-      printk((void*)0x99cbdUL, (void*)0xa78b9UL, (void*)0xa7892UL, 0x2e, 0);
+      printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void*)0xa78b9UL, (void*)0xa7892UL, 0x2e, 0);
       printk((void*)0xa78d1UL, 0, 0, 0, 0);
       assert_post_action((void*)0xa7892UL, 0x2e);
     }

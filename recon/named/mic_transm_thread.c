@@ -13,11 +13,11 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_87bf0                             @ 0x00087bf0
- *   rodata_9b45e                             @ 0x0009b45e
- *   rodata_9e2da                             @ 0x0009e2da
- *   rodata_a40e6                             @ 0x000a40e6
- *   rodata_a73e2                             @ 0x000a73e2
- *   rodata_a759e                             @ 0x000a759e
+ *   rodata_9b45e                             @ 0x0009b45e   [INLINED -- G6 literal batch]
+ *   rodata_9e2da                             @ 0x0009e2da   [INLINED -- G6 literal batch]
+ *   rodata_a40e6                             @ 0x000a40e6   [INLINED -- G6 literal batch]
+ *   rodata_a73e2                             @ 0x000a73e2   [INLINED -- G6 literal batch]
+ *   rodata_a759e                             @ 0x000a759e   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_20002420                               @ 0x20002420
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -54,8 +54,8 @@ void mic_transm_thread(void)
         if (!z_device_is_ready(object)) {
             if (*(volatile int *)0x2000230cu > 0) {
                 if (!*(volatile int *)0x20007554u)
-                    log_message(0x000a40e6u, 0x000a759eu, *(uint32_t *)object);
-                else debug_print(0x000a40e6u, 0x000a759eu, *(uint32_t *)object);
+                    log_message(((unsigned long)"%s():  [%s] device not ready.\n"), 0x000a759eu, *(uint32_t *)object);
+                else debug_print(((unsigned long)"%s():  [%s] device not ready.\n"), 0x000a759eu, *(uint32_t *)object);
             }
             message.code = 0xca00u;
             uint8_t *state = get_device_info();
@@ -68,7 +68,7 @@ void mic_transm_thread(void)
                     uint32_t address = *(volatile uint32_t *)0x20002420u + page * 200u;
                     log_message(0x000a73e2u, address, page);
                     if (device_api_call_slot0(object, address, message.data, 200)) {
-                        log_message(0x0009e2dau);
+                        log_message(((unsigned long)"Flash read failed! %d\n"));
                         message.code = (uint16_t)(0xca00u | (uint8_t)page);
                         state = get_device_info();
                         ((void (*)(void *, uint32_t))*(uintptr_t *)(state + 0x788))(&message, 10);

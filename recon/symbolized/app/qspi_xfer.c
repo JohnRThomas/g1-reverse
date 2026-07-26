@@ -9,7 +9,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6d5e                             @ 0x000f6d5e
  *   rodata_f6d9a                             @ 0x000f6d9a
  *   rodata_f6dc6                             @ 0x000f6dc6
@@ -39,11 +39,11 @@ uint32_t qspi_xfer(uint32_t buffer0, uint32_t buffer1,
     uint8_t state = controller[0x30];
 
     if (state == 0U) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f6d9a) /*=0xf6d9a*/, ((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/, 0x7aUL);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f6d9a) /*=0xf6d9a*/, ((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/, 0x7aUL);
         assert_post_action(((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/, 0x7aUL);
     }
     if (buffer0 == 0U) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f6dc6) /*=0xf6dc6*/, ((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/, 0x7bUL);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f6dc6) /*=0xf6dc6*/, ((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/, 0x7bUL);
         assert_post_action(((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/, 0x7bUL);
     }
 

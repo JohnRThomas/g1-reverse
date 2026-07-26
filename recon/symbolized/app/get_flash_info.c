@@ -10,12 +10,12 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
  *   rodata_87bf0                             @ 0x00087bf0
- *   rodata_9e2da                             @ 0x0009e2da
- *   rodata_a40e6                             @ 0x000a40e6
- *   rodata_a69f3                             @ 0x000a69f3
- *   rodata_a6a0b                             @ 0x000a6a0b
- *   rodata_a6aab                             @ 0x000a6aab
- *   rodata_a76cb                             @ 0x000a76cb
+ *   rodata_9e2da                             @ 0x0009e2da   [INLINED -- G6 literal batch]
+ *   rodata_a40e6                             @ 0x000a40e6   [INLINED -- G6 literal batch]
+ *   rodata_a69f3                             @ 0x000a69f3   [INLINED -- G6 literal batch]
+ *   rodata_a6a0b                             @ 0x000a6a0b   [INLINED -- G6 literal batch]
+ *   rodata_a6aab                             @ 0x000a6aab   [INLINED -- G6 literal batch]
+ *   rodata_a76cb                             @ 0x000a76cb   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_flash_info                             @ 0x20019daf
@@ -35,8 +35,8 @@ uint32_t get_flash_info(int param_1, uint32_t param_2, uint32_t *param_3, uint8_
     int iVar2;
     uint8_t uVar3;
     volatile uint8_t *puVar5 = (volatile uint8_t*)param_4;
-    log_message(((unsigned long)&rodata_a69f3) /*=0xa69f3*/);
-    if (param_3==0 || param_4==0){ log_message(((unsigned long)&rodata_a6a0b) /*=0xa6a0b*/); return 0xffffffff; }
+    log_message(((unsigned long)"join in get_flash_info\n") /*=0xa69f3*/);
+    if (param_3==0 || param_4==0){ log_message(((unsigned long)"get_flash_info para is NULL\n") /*=0xa6a0b*/); return 0xffffffff; }
     puVar4 = (volatile uint8_t*)*param_3;
     *puVar4 = 0x1e;
     uVar3 = *(volatile uint8_t*)(param_1+1);
@@ -46,8 +46,8 @@ uint32_t get_flash_info(int param_1, uint32_t param_2, uint32_t *param_3, uint8_
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/){
             uint32_t v = *(volatile uint32_t*)((unsigned long)&rodata_87bf0) /*=0x87bf0*/;
             int c = *(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
-            if (c==0){ log_message(((unsigned long)&rodata_a40e6) /*=0xa40e6*/,((unsigned long)&rodata_a76cb) /*=0xa76cb*/,v); }
-            else { debug_print(((unsigned long)&rodata_a40e6) /*=0xa40e6*/,((unsigned long)&rodata_a76cb) /*=0xa76cb*/,v); }
+            if (c==0){ log_message(((unsigned long)"%s():  [%s] device not ready.\n") /*=0xa40e6*/,((unsigned long)"get_flash_info") /*=0xa76cb*/,v); }
+            else { debug_print(((unsigned long)"%s():  [%s] device not ready.\n") /*=0xa40e6*/,((unsigned long)"get_flash_info") /*=0xa76cb*/,v); }
         }
         *puVar4=0x1e; puVar4[1]=*(volatile uint8_t*)(param_1+1); puVar4[2]=3; uVar3=1; puVar4[3]=1;
         puVar4[4]=uVar3; uVar3=5;
@@ -56,12 +56,12 @@ uint32_t get_flash_info(int param_1, uint32_t param_2, uint32_t *param_3, uint8_
         if (*(volatile int*)(iVar2+0x1030) != 0){
             iVar2 = device_api_call_slot0(((unsigned long)&rodata_87bf0) /*=0x87bf0*/, 0x002612d2, ((unsigned long)&g_flash_info) /*=0x20019daf*/, 0x4e, (void*)puVar5);
             if (iVar2 != 0){
-                log_message(((unsigned long)&rodata_9e2da) /*=0x9e2da*/, iVar2);
+                log_message(((unsigned long)"Flash read failed! %d\n") /*=0x9e2da*/, iVar2);
                 *puVar4=0x1e; uVar3=*(volatile uint8_t*)(param_1+1); puVar4[2]=3; puVar4[1]=uVar3; puVar4[3]=1; uVar3=2;
                 puVar4[4]=uVar3; uVar3=5;
                 *(volatile uint8_t*)param_4=uVar3; return 0;
             }
-            log_message(((unsigned long)&rodata_a6aab) /*=0xa6aab*/, 0);
+            log_message(((unsigned long)"flash read ok\n") /*=0xa6aab*/, 0);
         }
         memcpy((void*)(puVar4+4), ((unsigned long)&g_flash_info) /*=0x20019daf*/, 0x4e);
         uVar3=0x52;

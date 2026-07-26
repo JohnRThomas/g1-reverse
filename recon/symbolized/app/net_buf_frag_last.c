@@ -7,7 +7,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f45be                             @ 0x000f45be
  *   rodata_f539a                             @ 0x000f539a
  */
@@ -20,7 +20,7 @@ int net_buf_frag_last(int param_1, unsigned int param_2, unsigned int param_3, u
 {
   int iVar1;
   if (param_1 == 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f45be) /*=0xf45be*/, ((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x236, param_4);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f45be) /*=0xf45be*/, ((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x236, param_4);
     assert_post_action(((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x236);
     return 0x236;
   }

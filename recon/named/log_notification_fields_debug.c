@@ -5,9 +5,9 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   log_notification_fields_debug            <= FUN_0004a3d0 @ 0x0004a3d0
  * address symbols (name @ address):
- *   rodata_f0229                             @ 0x000f0229
- *   rodata_f024d                             @ 0x000f024d
- *   rodata_f028c                             @ 0x000f028c
+ *   rodata_f0229                             @ 0x000f0229   [INLINED -- G6 literal batch]
+ *   rodata_f024d                             @ 0x000f024d   [INLINED -- G6 literal batch]
+ *   rodata_f028c                             @ 0x000f028c   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  */
 /* Reconstructed FUN_0004a3d0 @ 0x4a3d0  (parity: 300/300 trials, PROVEN)
@@ -20,18 +20,18 @@ void log_notification_fields_debug(int param_1, int param_2, int param_3, int pa
 {
     volatile int *piVar1 = (volatile int*)0x20007554UL;
     if (*piVar1 == 0) {
-        log_message(0x000f0229, param_2 + 0x10);
+        log_message(((unsigned long)"app_identifier:(%s)\n"), param_2 + 0x10);
     } else {
-        debug_print(0x000f0229, param_2 + 0x10, param_3, param_4);
+        debug_print(((unsigned long)"app_identifier:(%s)\n"), param_2 + 0x10, param_3, param_4);
     }
     if (*piVar1 == 0) {
-        log_message(0x000f024d, param_2 + 0x90);
+        log_message(((unsigned long)"message:(%s)\n"), param_2 + 0x90);
     } else {
-        debug_print(0x000f024d, param_2 + 0x90, param_3, param_4);
+        debug_print(((unsigned long)"message:(%s)\n"), param_2 + 0x90, param_3, param_4);
     }
     if (*piVar1 != 0) {
-        debug_print(0x000f028c, *(volatile int*)(param_2+8), param_3, param_4);
+        debug_print(((unsigned long)"uid :(%d)\n"), *(volatile int*)(param_2+8), param_3, param_4);
         return;
     }
-    log_message(0x000f028c, *(volatile int*)(param_2+8), param_3, param_4);
+    log_message(((unsigned long)"uid :(%d)\n"), *(volatile int*)(param_2+8), param_3, param_4);
 }

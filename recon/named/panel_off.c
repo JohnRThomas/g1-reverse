@@ -7,8 +7,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   opt3007_chip_deinit                      <= FUN_0002e8b4 @ 0x0002e8b4
  * address symbols (name @ address):
- *   rodata_d721e                             @ 0x000d721e
- *   rodata_d72d1                             @ 0x000d72d1
+ *   rodata_d721e                             @ 0x000d721e   [INLINED -- G6 literal batch]
+ *   rodata_d72d1                             @ 0x000d72d1   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

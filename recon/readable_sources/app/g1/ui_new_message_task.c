@@ -16,8 +16,8 @@
  *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
  *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
  * address symbols (name @ address):
- *   rodata_a8e61                             @ 0x000a8e61
- *   rodata_a8e84                             @ 0x000a8e84
+ *   rodata_a8e61                             @ 0x000a8e61   [INLINED -- G6 literal batch]
+ *   rodata_a8e84                             @ 0x000a8e84   [INLINED -- G6 literal batch]
  *   rodata_a8e98                             @ 0x000a8e98
  *   rodata_aae20                             @ 0x000aae20
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -65,7 +65,7 @@ uint32_t ui_new_message_task(uint8_t *canvas, uint32_t unused, uint32_t phase)
     if (mode == 4u)
         return 0u;
     if (phase == 2u) {
-        TASK_LOG(((unsigned long)&rodata_a8e61) /*=0xa8e61*/);
+        TASK_LOG(((unsigned long)"ui_new_message_come_on_task exit !") /*=0xa8e61*/);
         gui_screen_clear();
         MESSAGE_TASK_ACTIVE = 0u;
         MESSAGE_TASK_RENDERED = 0u;
@@ -90,7 +90,7 @@ uint32_t ui_new_message_task(uint8_t *canvas, uint32_t unused, uint32_t phase)
     state = get_device_info();
     uint32_t message_type = notification_icon_type_from_package(
         (uint8_t)(*(volatile uint8_t *)(state + 0xddu) - 1u));
-    TASK_LOG(((unsigned long)&rodata_a8e84) /*=0xa8e84*/, message_type);
+    TASK_LOG(((unsigned long)"new msgType is %d \n") /*=0xa8e84*/, message_type);
     if (MESSAGE_TASK_RENDERED != 0u)
         return 0u;
 

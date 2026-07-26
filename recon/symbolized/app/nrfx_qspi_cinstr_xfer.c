@@ -12,7 +12,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6d5e                             @ 0x000f6d5e
  *   rodata_f6d9a                             @ 0x000f6d9a
  *   rodata_f6dde                             @ 0x000f6dde
@@ -39,7 +39,7 @@ int g1_recon_nrfx_qspi_cinstr_xfer(uint8_t *param_1, uint32_t param_2,
     uint32_t r0v;
     r0v = *(volatile uint8_t*)(sb+0x30);
     if (r0v == 0){
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f6d9a) /*=0xf6d9a*/,((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/,0x1dd,param_4);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f6d9a) /*=0xf6d9a*/,((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/,0x1dd,param_4);
         r0v = assert_post_action(((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/,0x1dd);
     }
   A20:
@@ -59,7 +59,7 @@ int g1_recon_nrfx_qspi_cinstr_xfer(uint8_t *param_1, uint32_t param_2,
     }
     if (qspi_ready_wait() == 0x0bad0007){
         if (param_1[4] != 0) return 0x0bad0007;
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f6dde) /*=0xf6dde*/,((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/,0x20a,param_4);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f6dde) /*=0xf6dde*/,((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/,0x20a,param_4);
         r0v = assert_post_action(((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/,0x20a);
         goto A20;
     } else {

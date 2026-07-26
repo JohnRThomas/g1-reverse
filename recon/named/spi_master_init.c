@@ -12,13 +12,13 @@
  * address symbols (name @ address):
  *   rodata_883b0                             @ 0x000883b0
  *   rodata_883b4                             @ 0x000883b4
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_9fb89                             @ 0x0009fb89
- *   rodata_9fb9f                             @ 0x0009fb9f
- *   rodata_9fbfd                             @ 0x0009fbfd
- *   rodata_9fc15                             @ 0x0009fc15
- *   rodata_9fc2c                             @ 0x0009fc2c
- *   rodata_9fc4d                             @ 0x0009fc4d
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_9fb89                             @ 0x0009fb89   [INLINED -- G6 literal batch]
+ *   rodata_9fb9f                             @ 0x0009fb9f   [INLINED -- G6 literal batch]
+ *   rodata_9fbfd                             @ 0x0009fbfd   [INLINED -- G6 literal batch]
+ *   rodata_9fc15                             @ 0x0009fc15   [INLINED -- G6 literal batch]
+ *   rodata_9fc2c                             @ 0x0009fc2c   [INLINED -- G6 literal batch]
+ *   rodata_9fc4d                             @ 0x0009fc4d   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_20018c6c                               @ 0x20018c6c
@@ -68,7 +68,7 @@ unsigned spi_master_init(uintptr_t event)
     uintptr_t callback=mode==3?0x0007ca77u:0;
     uintptr_t callback_context=mode==3?event:0;
     if(nrfx_spim_init((void*)(event+0xc),&cfg,callback,callback_context)!=0x0bad0000u){
-        printk(0x99cbdu,0x9fc15u,0x9fbfdu,0x68);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x9fc15u,0x9fbfdu,0x68);
         assert_post_action(0x9fbfdu,0x68);
     }
     volatile uint8_t *once=(volatile uint8_t*)(mode==3?0x20018c6cu:0x20018c6du);

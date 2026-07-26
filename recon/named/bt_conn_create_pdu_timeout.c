@@ -11,9 +11,9 @@
  *   k_is_in_isr                              <= FUN_00086406 @ 0x00086406
  * address symbols (name @ address):
  *   log_module_bt_conn                       @ 0x00088108
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3a5d                             @ 0x000f3a5d
- *   rodata_f3d75                             @ 0x000f3d75
+ *   rodata_f3d75                             @ 0x000f3d75   [INLINED -- G6 literal batch]
  *   rodata_f3d84                             @ 0x000f3d84
  *   acl_tx_pool                              @ 0x20003a7c
  */
@@ -29,7 +29,7 @@ int bt_conn_create_pdu_timeout(int param_1,int param_2,unsigned param_3,unsigned
   int iVar1; unsigned local_20, local_1c;
   iVar1 = k_is_in_isr();
   if(iVar1!=0){
-    printk(0x99cbd,0xf3d75,0xf3a5d,0x55f);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"!k_is_in_isr()"),0xf3a5d,0x55f);
     assert_post_action(0xf3a5d,0x55f);
   }
   if(param_1==0) param_1=0x20003a7c;

@@ -7,9 +7,9 @@
  *   opt3001_reg_read                         <= FUN_0002e594 @ 0x0002e594
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  * address symbols (name @ address):
- *   rodata_a3af8                             @ 0x000a3af8
- *   rodata_a3b17                             @ 0x000a3b17
- *   rodata_a3d26                             @ 0x000a3d26
+ *   rodata_a3af8                             @ 0x000a3af8   [INLINED -- G6 literal batch]
+ *   rodata_a3b17                             @ 0x000a3b17   [INLINED -- G6 literal batch]
+ *   rodata_a3d26                             @ 0x000a3d26   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_opt3007_bus_dev                        @ 0x200023fc
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -32,7 +32,7 @@ int opt3001_reg_read(uint8_t request, uint16_t *result)
     if (z_device_is_ready(device) == 0) {
         if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                log_message(((unsigned long)&rodata_a3af8) /*=0xa3af8*/, ((unsigned long)&rodata_a3d26) /*=0xa3d26*/);
+                log_message(((unsigned long)"%s(): Bus device is not ready\n") /*=0xa3af8*/, ((unsigned long)"opt3001_reg_read") /*=0xa3d26*/);
             else
                 debug_print();
         }
@@ -46,7 +46,7 @@ int opt3001_reg_read(uint8_t request, uint16_t *result)
     if (status < 0) {
         if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                log_message(((unsigned long)&rodata_a3b17) /*=0xa3b17*/, ((unsigned long)&rodata_a3d26) /*=0xa3d26*/, 0x45);
+                log_message(((unsigned long)"%s(): ERR: opt3007 i2c read addr=0x%x,\n") /*=0xa3b17*/, ((unsigned long)"opt3001_reg_read") /*=0xa3d26*/, 0x45);
             else
                 debug_print();
         }

@@ -7,7 +7,7 @@
  *   signal_persist_task_event                <= FUN_0007cdf8 @ 0x0007cdf8
  * address symbols (name @ address):
  *   rodata_a25d9                             @ 0x000a25d9
- *   rodata_a25f8                             @ 0x000a25f8
+ *   rodata_a25f8                             @ 0x000a25f8   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_persist_task_status_lock               @ 0x20018d9c
@@ -34,7 +34,7 @@ unsigned int update_persist_task_status_to_wait_blow_head(unsigned char *param_1
   }
   if (*(int*)0x2000230cUL > 0) {
     if (*(int*)0x20007554UL == 0) {
-      log_message(0xa25d9, 0xa25f8, 1, 0, param_4);
+      log_message(0xa25d9, ((unsigned long)"update_persist_task_status_to_wait_blow_head"), 1, 0, param_4);
     } else {
       debug_print();
     }

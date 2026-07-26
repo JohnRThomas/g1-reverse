@@ -7,7 +7,7 @@
  *   sleep_fixed_33_ticks                     <= FUN_0007c87a @ 0x0007c87a
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
- *   rodata_9f1eb                             @ 0x0009f1eb
+ *   rodata_9f1eb                             @ 0x0009f1eb   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00025670 @ 0x25670 CFG_VERIFY_CALL_ARITIES=3,4,0,2 */
 #include <stdint.h>
@@ -25,6 +25,6 @@ int dev_send_cmd16_payload(uint32_t *dev, uint32_t op, uint32_t command,
     struct part p = {bytes, n + 2, 2};
     int r = ipc_transport_ops_dispatch(*dev, &p, 1, op);
     sleep_fixed_33_ticks();
-    if (r < 0) log_message(0x9f1eb, r);
+    if (r < 0) log_message(((unsigned long)"_st25dv_write  ret %d \n"), r);
     return r;
 }

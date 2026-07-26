@@ -7,9 +7,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f5ad9                             @ 0x000f5ad9
- *   rodata_f5b16                             @ 0x000f5b16
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f5ad9                             @ 0x000f5ad9   [INLINED -- G6 literal batch]
+ *   rodata_f5b16                             @ 0x000f5b16   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction FUN_000604e4 @ 0x000604e4 (114-byte exact extent). */
 #include <stdint.h>
@@ -22,8 +22,8 @@ int clock_control_nrf_on(uint8_t *device, uint8_t type, uint32_t owner)
 {
     uint8_t *state = *(uint8_t **)(device + 0x10);
     if (type >= 4) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f5b16) /*=0xf5b16*/, ((unsigned long)&rodata_f5ad9) /*=0xf5ad9*/, 0x15du);
-        assert_post_action(((unsigned long)&rodata_f5ad9) /*=0xf5ad9*/, 0x15du);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"type < CLOCK_CONTROL_NRF_TYPE_COUNT") /*=0xf5b16*/, ((unsigned long)"WEST_TOPDIR/zephyr/drivers/clock_control/clock_control_nrf.c") /*=0xf5ad9*/, 0x15du);
+        assert_post_action(((unsigned long)"WEST_TOPDIR/zephyr/drivers/clock_control/clock_control_nrf.c") /*=0xf5ad9*/, 0x15du);
     }
 
     uint32_t saved = __get_BASEPRI();

@@ -7,9 +7,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f5268                             @ 0x000f5268
- *   rodata_f5298                             @ 0x000f5298
+ *   rodata_f5298                             @ 0x000f5298   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005e9a0 @ 0x5e9a0  (parity: 300/300 trials, PROVEN) */
 
@@ -20,7 +20,7 @@ void bt_keys_add_type(int param_1, unsigned short param_2, unsigned int param_3,
 {
   if (param_1 == 0) {
     unsigned long long r;
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f5298) /*=0xf5298*/, ((unsigned long)&rodata_f5268) /*=0xf5268*/, 0x12a);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"keys != ((void *)0)") /*=0xf5298*/, ((unsigned long)&rodata_f5268) /*=0xf5268*/, 0x12a);
     r = assert_post_action(((unsigned long)&rodata_f5268) /*=0xf5268*/, 0x12a);
     param_1 = (int)r;
     param_2 = (unsigned short)(r >> 32);

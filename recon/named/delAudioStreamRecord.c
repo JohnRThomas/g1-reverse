@@ -7,9 +7,9 @@
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_a3f45                             @ 0x000a3f45
+ *   rodata_a3f45                             @ 0x000a3f45   [INLINED -- G6 literal batch]
  *   rodata_a420e                             @ 0x000a420e
- *   rodata_a4944                             @ 0x000a4944
+ *   rodata_a4944                             @ 0x000a4944   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_audio_msgq                             @ 0x20003890
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -31,9 +31,9 @@ unsigned int delAudioStreamRecord(unsigned char param_1)
 
     if (2 < *(volatile int*)0x2000230cUL) {
         if (*(volatile unsigned int*)0x20007554UL == 0) {
-            log_message(0xa420e, 0xa4944);
+            log_message(0xa420e, ((unsigned long)"delAudioStreamRecord"));
         } else {
-            debug_print(0xa420e, 0xa4944);
+            debug_print(0xa420e, ((unsigned long)"delAudioStreamRecord"));
         }
     }
     memset_bytes(buf + 1, 0, 0xcb);
@@ -47,9 +47,9 @@ unsigned int delAudioStreamRecord(unsigned char param_1)
     } else {
         if (0 < *(volatile int*)0x2000230cUL) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                log_message(0xa3f45, 0xa4944);
+                log_message(((unsigned long)"%s(): enqueue_dmic failed\r\n\n"), ((unsigned long)"delAudioStreamRecord"));
             } else {
-                debug_print(0xa3f45, 0xa4944);
+                debug_print(((unsigned long)"%s(): enqueue_dmic failed\r\n\n"), ((unsigned long)"delAudioStreamRecord"));
             }
         }
         uVar3 = 0xffffffff;

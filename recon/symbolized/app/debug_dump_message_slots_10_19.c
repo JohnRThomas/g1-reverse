@@ -6,7 +6,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   debug_dump_message_slots_10_19           <= FUN_00033b4c @ 0x00033b4c
  * address symbols (name @ address):
- *   rodata_a7d55                             @ 0x000a7d55
+ *   rodata_a7d55                             @ 0x000a7d55   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_message_table_mirror                   @ 0x20008eb4
  */
@@ -18,7 +18,7 @@ extern void debug_print(uint32_t,uint32_t,uint32_t,uint32_t);
 
 void debug_dump_message_slots_10_19(void)
 {
-  uint32_t format_string = ((unsigned long)&rodata_a7d55) /*=0xa7d55*/;
+  uint32_t format_string = ((unsigned long)"PUSH: g_arrMsgContent[%d].uidTail is %d push %d \n") /*=0xa7d55*/;
   volatile int32_t *piVar1 = (volatile int32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
   int32_t iVar2 = 10;
   volatile uint32_t *puVar3 = (volatile uint32_t*)((unsigned long)g_message_table_mirror) /*=0x20008eb4*/;

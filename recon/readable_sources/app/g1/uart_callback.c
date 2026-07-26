@@ -15,18 +15,18 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_a797b                             @ 0x000a797b
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_a797b                             @ 0x000a797b   [INLINED -- G6 literal batch]
  *   rodata_a7993                             @ 0x000a7993
- *   rodata_a7999                             @ 0x000a7999
- *   rodata_a79ab                             @ 0x000a79ab
- *   rodata_a79bf                             @ 0x000a79bf
+ *   rodata_a7999                             @ 0x000a7999   [INLINED -- G6 literal batch]
+ *   rodata_a79ab                             @ 0x000a79ab   [INLINED -- G6 literal batch]
+ *   rodata_a79bf                             @ 0x000a79bf   [INLINED -- G6 literal batch]
  *   rodata_a79eb                             @ 0x000a79eb
- *   rodata_a7a10                             @ 0x000a7a10
- *   rodata_a7a19                             @ 0x000a7a19
- *   rodata_a7a33                             @ 0x000a7a33
- *   rodata_a7a52                             @ 0x000a7a52
- *   rodata_a7b56                             @ 0x000a7b56
+ *   rodata_a7a10                             @ 0x000a7a10   [INLINED -- G6 literal batch]
+ *   rodata_a7a19                             @ 0x000a7a19   [INLINED -- G6 literal batch]
+ *   rodata_a7a33                             @ 0x000a7a33   [INLINED -- G6 literal batch]
+ *   rodata_a7a52                             @ 0x000a7a52   [INLINED -- G6 literal batch]
+ *   rodata_a7b56                             @ 0x000a7b56   [INLINED -- G6 literal batch]
  *   rodata_f5400                             @ 0x000f5400
  *   g_log_level                              @ 0x2000230c
  *   g_uart_rx_mem_slab                       @ 0x200037b8
@@ -51,14 +51,14 @@ void uart_callback(int param_1,unsigned char *param_2,unsigned int param_3){
   int iVar2; unsigned int uVar5,uVar7; char cVar1; int iVar6; void *local_1c=param_2;
   switch (*param_2) {
   case 0:
-    if (2 < *lvl) { if(*g8==0) log_message(((unsigned long)&rodata_a797b) /*=0xa797b*/,((unsigned long)&rodata_a7b56) /*=0xa7b56*/,VI((int)param_2+8),0,param_1); else debug_print(); }
+    if (2 < *lvl) { if(*g8==0) log_message(((unsigned long)"%s(): Tx sent %d bytes\n") /*=0xa797b*/,((unsigned long)"uart_callback") /*=0xa7b56*/,VI((int)param_2+8),0,param_1); else debug_print(); }
     for (uVar5=0; uVar5 < (unsigned int)VI((int)param_2+8); uVar5++)
       log_message(((unsigned long)&rodata_a7993) /*=0xa7993*/, VB(VI((int)param_2+4)+uVar5));
     break;
   case 1:
     if (*lvl < 1) return;
     if (*g8 != 0) { debug_print(); return; }
-    log_message(((unsigned long)&rodata_a7999) /*=0xa7999*/,((unsigned long)&rodata_a7b56) /*=0xa7b56*/); return;
+    log_message(((unsigned long)"%s(): Tx aborted\n") /*=0xa7999*/,((unsigned long)"uart_callback") /*=0xa7b56*/); return;
   case 2:
     uVar5 = VI((int)param_2+8);
     for (uVar7 = uVar5 & 0xffff; (uVar7 & 0xffff) < 0xf8; uVar7++) {
@@ -78,26 +78,26 @@ void uart_callback(int param_1,unsigned char *param_2,unsigned int param_3){
         }
       }
     }
-    log_message(((unsigned long)&rodata_a79ab) /*=0xa79ab*/, VI((int)param_2+0xc), param_3, uVar7 & 0xffff, param_1);
+    log_message(((unsigned long)"recv data %d bytes:") /*=0xa79ab*/, VI((int)param_2+0xc), param_3, uVar7 & 0xffff, param_1);
     for (uVar7=0; uVar7 < (unsigned int)VI((int)param_2+0xc); uVar7++)
       log_message(((unsigned long)&rodata_a7993) /*=0xa7993*/, VB(VI((int)param_2+4)+uVar5+uVar7));
     break;
   case 3:
-    log_message(((unsigned long)&rodata_a79bf) /*=0xa79bf*/);
+    log_message(((unsigned long)"*************alloc new rx buf*************\n") /*=0xa79bf*/);
     iVar2 = k_mem_slab_alloc(((unsigned long)&g_uart_rx_mem_slab) /*=0x200037b8*/, &local_1c, 0, 0);
     if (iVar2 == 0) {
       iVar2 = ((int(*)(int,int,int))(VI(VI((int)param_3+8)+0x10)))((int)param_3,(int)local_1c,0x100);
       if (iVar2 == 0) return;
-      printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_a7a10) /*=0xa7a10*/,((unsigned long)&rodata_a79eb) /*=0xa79eb*/,0x54);
-      printk(((unsigned long)&rodata_a7a33) /*=0xa7a33*/);
+      printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"err == 0") /*=0xa7a10*/,((unsigned long)&rodata_a79eb) /*=0xa79eb*/,0x54);
+      printk(((unsigned long)"\tFailed to provide new buffer\n") /*=0xa7a33*/);
       assert_post_action(((unsigned long)&rodata_a79eb) /*=0xa79eb*/,0x54);
     } else {
-      printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_a7a10) /*=0xa7a10*/,((unsigned long)&rodata_a79eb) /*=0xa79eb*/,0x51);
-      printk(((unsigned long)&rodata_a7a19) /*=0xa7a19*/);
+      printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"err == 0") /*=0xa7a10*/,((unsigned long)&rodata_a79eb) /*=0xa79eb*/,0x51);
+      printk(((unsigned long)"\tFailed to allocate slab\n") /*=0xa7a19*/);
       assert_post_action(((unsigned long)&rodata_a79eb) /*=0xa79eb*/,0x51);
     }
   case 4:
-    log_message(((unsigned long)&rodata_a7a52) /*=0xa7a52*/);
+    log_message(((unsigned long)"****************************UART_RX_BUF_RELEASED***************************************\n") /*=0xa7a52*/);
     k_mem_slab_free(((unsigned long)&g_uart_rx_mem_slab) /*=0x200037b8*/, VI((int)param_2+4));
     return;
   default:

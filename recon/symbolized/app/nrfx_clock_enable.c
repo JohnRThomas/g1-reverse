@@ -9,7 +9,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6a4e                             @ 0x000f6a4e
  *   rodata_f6acd                             @ 0x000f6acd
  *   g_clock_cb                               @ 0x2000b31c
@@ -28,7 +28,7 @@ extern void arch_irq_enable(int);
 void nrfx_clock_enable(void)
 {
   if (*(volatile char*)(((unsigned long)&g_clock_cb) /*=0x2000b31c*/ + 4) == 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f6acd) /*=0xf6acd*/, ((unsigned long)&rodata_f6a4e) /*=0xf6a4e*/, 0x12e, 0);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f6acd) /*=0xf6acd*/, ((unsigned long)&rodata_f6a4e) /*=0xf6a4e*/, 0x12e, 0);
     assert_post_action(((unsigned long)&rodata_f6a4e) /*=0xf6a4e*/, 0x12e);
   }
   int iVar1 = arch_irq_is_enabled(5);

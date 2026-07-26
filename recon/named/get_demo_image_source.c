@@ -13,13 +13,13 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   strncmp                                  <= FUN_00087036 @ 0x00087036
  * address symbols (name @ address):
- *   rodata_a8d69                             @ 0x000a8d69
- *   rodata_a8d7f                             @ 0x000a8d7f
+ *   rodata_a8d69                             @ 0x000a8d69   [INLINED -- G6 literal batch]
+ *   rodata_a8d7f                             @ 0x000a8d7f   [INLINED -- G6 literal batch]
  *   rodata_a8da5                             @ 0x000a8da5
- *   rodata_a8da8                             @ 0x000a8da8
+ *   rodata_a8da8                             @ 0x000a8da8   [INLINED -- G6 literal batch]
  *   rodata_a8dc1                             @ 0x000a8dc1
- *   rodata_a8dde                             @ 0x000a8dde
- *   rodata_a8e02                             @ 0x000a8e02
+ *   rodata_a8dde                             @ 0x000a8dde   [INLINED -- G6 literal batch]
+ *   rodata_a8e02                             @ 0x000a8e02   [INLINED -- G6 literal batch]
  *   g_pixel4bit_bitpos                       @ 0x20009fc4
  *   g_pixel4bit_row_buf_off                  @ 0x20009fc8
  *   g_pixel4bit_row_buf                      @ 0x20009fcc
@@ -55,7 +55,7 @@ void get_demo_image_source(unsigned int mode)
 {
     uint8_t *buffer = (uint8_t *)malloc(0x50u);
     if (buffer == 0) {
-        log_message(0x000a8d69u, 0x000a8e02u, 0xd3u);
+        log_message(((unsigned long)"[%s-%d]malloc error \n"), 0x000a8e02u, 0xd3u);
         return;
     }
 
@@ -69,7 +69,7 @@ void get_demo_image_source(unsigned int mode)
     uintptr_t context = get_read_context();
     uint32_t address = mode * 0x3ebeu + 0x00180000u;
     if (read(context, address, buffer, 0x50u) != 0) {
-        log_message(0x000a8d7fu, 0x000a8e02u, 0xdfu);
+        log_message(((unsigned long)"[%s-%d] read pic from flash failed !\n"), 0x000a8e02u, 0xdfu);
         free(buffer);
         return;
     }
@@ -79,7 +79,7 @@ void get_demo_image_source(unsigned int mode)
         header[i] = buffer[i];
 
     if (strncmp(header, 0x000a8da5u, 2u) != 0) {
-        log_message(0x000a8da8u);
+        log_message(((unsigned long)"File is not BMP format \n"));
         free(buffer);
         return;
     }
@@ -121,7 +121,7 @@ void get_demo_image_source(unsigned int mode)
         read = get_read_callback();
         context = get_read_context();
         if (read(context, address, buffer, (unsigned int)row_bytes) != 0) {
-            log_message(0x000a8d7fu, 0x000a8e02u, 0x103u);
+            log_message(((unsigned long)"[%s-%d] read pic from flash failed !\n"), 0x000a8e02u, 0x103u);
             free(buffer);
             return;
         }

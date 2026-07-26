@@ -9,10 +9,10 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_880d8                             @ 0x000880d8
- *   rodata_f1052                             @ 0x000f1052
- *   rodata_f1080                             @ 0x000f1080
- *   rodata_f10a4                             @ 0x000f10a4
- *   rodata_f10ba                             @ 0x000f10ba
+ *   rodata_f1052                             @ 0x000f1052   [INLINED -- G6 literal batch]
+ *   rodata_f1080                             @ 0x000f1080   [INLINED -- G6 literal batch]
+ *   rodata_f10a4                             @ 0x000f10a4   [INLINED -- G6 literal batch]
+ *   rodata_f10ba                             @ 0x000f10ba   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0004e1ac @ 0x4e1ac  owned extent: 0xf4 bytes */
 

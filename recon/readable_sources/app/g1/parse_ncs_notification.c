@@ -23,12 +23,12 @@
  *   rodata_9d790                             @ 0x0009d790
  *   rodata_9d79d                             @ 0x0009d79d
  *   rodata_a81b7                             @ 0x000a81b7
- *   rodata_a838d                             @ 0x000a838d
- *   rodata_a83aa                             @ 0x000a83aa
+ *   rodata_a838d                             @ 0x000a838d   [INLINED -- G6 literal batch]
+ *   rodata_a83aa                             @ 0x000a83aa   [INLINED -- G6 literal batch]
  *   rodata_a83ca                             @ 0x000a83ca
  *   rodata_a83d1                             @ 0x000a83d1
  *   rodata_a83d8                             @ 0x000a83d8
- *   rodata_a83e9                             @ 0x000a83e9
+ *   rodata_a83e9                             @ 0x000a83e9   [INLINED -- G6 literal batch]
  *   rodata_f3fde                             @ 0x000f3fde
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -55,13 +55,13 @@ void parse_ncs_notification(int param_1, int *param_2){
   if (iVar1 == 0) {
     if (0 < *lvl) {
       if (*g8 != 0) { debug_print(); return; }
-      log_message(((unsigned long)&rodata_a838d) /*=0xa838d*/,((unsigned long)&rodata_a83e9) /*=0xa83e9*/); return;
+      log_message(((unsigned long)"%s(): error root JSON NODE!\n") /*=0xa838d*/,((unsigned long)"parse_ncs_notification") /*=0xa83e9*/); return;
     }
     return;
   }
   iVar2 = sllist_find_by_name_ci(iVar1, ((unsigned long)&rodata_9d79d) /*=0x9d79d*/);
   if (iVar2 == 0) {
-    if (0 < *lvl) { if (*g8==0) log_message(((unsigned long)&rodata_a83aa) /*=0xa83aa*/,((unsigned long)&rodata_a83e9) /*=0xa83e9*/); else debug_print(); }
+    if (0 < *lvl) { if (*g8==0) log_message(((unsigned long)"%s(): NOT FOUND NCS JSON NODE!\n") /*=0xa83aa*/,((unsigned long)"parse_ncs_notification") /*=0xa83e9*/); else debug_print(); }
     cjson_delete(iVar1);
     return;
   }

@@ -9,8 +9,8 @@
  *   startAudioStreamRecord                   <= FUN_0002f764 @ 0x0002f764
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
- *   rodata_9d30b                             @ 0x0009d30b
- *   rodata_a9843                             @ 0x000a9843
+ *   rodata_9d30b                             @ 0x0009d30b   [INLINED -- G6 literal batch]
+ *   rodata_a9843                             @ 0x000a9843   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_pending_event_word                     @ 0x20007b78
@@ -33,9 +33,9 @@ void dmic_record_start(void)
 
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_9d30b) /*=0x9d30b*/, ((unsigned long)&rodata_a9843) /*=0xa9843*/);
+            log_message(((unsigned long)"%s(): received open dmic command\n") /*=0x9d30b*/, ((unsigned long)"dmic_record_start") /*=0xa9843*/);
         } else {
-            debug_print(((unsigned long)&rodata_9d30b) /*=0x9d30b*/, ((unsigned long)&rodata_a9843) /*=0xa9843*/);
+            debug_print(((unsigned long)"%s(): received open dmic command\n") /*=0x9d30b*/, ((unsigned long)"dmic_record_start") /*=0xa9843*/);
         }
     }
 

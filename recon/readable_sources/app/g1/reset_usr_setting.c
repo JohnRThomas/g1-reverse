@@ -10,8 +10,8 @@
  *   set_test_mode                            <= FUN_00032ef0 @ 0x00032ef0
  *   save_usr_setting                         <= FUN_0007c28e @ 0x0007c28e
  * address symbols (name @ address):
- *   rodata_9e5f3                             @ 0x0009e5f3
- *   rodata_9e7b7                             @ 0x0009e7b7
+ *   rodata_9e5f3                             @ 0x0009e5f3   [INLINED -- G6 literal batch]
+ *   rodata_9e7b7                             @ 0x0009e7b7   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -28,9 +28,9 @@ uint32_t reset_usr_setting(uint8_t *settings)
 {
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_9e5f3) /*=0x9e5f3*/, ((unsigned long)&rodata_9e7b7) /*=0x9e7b7*/);
+            log_message(((unsigned long)"%s(): reset_usr_setting\n") /*=0x9e5f3*/, ((unsigned long)"reset_usr_setting") /*=0x9e7b7*/);
         } else {
-            debug_print(((unsigned long)&rodata_9e5f3) /*=0x9e5f3*/, ((unsigned long)&rodata_9e7b7) /*=0x9e7b7*/);
+            debug_print(((unsigned long)"%s(): reset_usr_setting\n") /*=0x9e5f3*/, ((unsigned long)"reset_usr_setting") /*=0x9e7b7*/);
         }
     }
 

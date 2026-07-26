@@ -21,13 +21,13 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_a8c57                             @ 0x000a8c57
- *   rodata_a9ebd                             @ 0x000a9ebd
+ *   rodata_a9ebd                             @ 0x000a9ebd   [INLINED -- G6 literal batch]
  *   rodata_a9ee1                             @ 0x000a9ee1
  *   rodata_a9eff                             @ 0x000a9eff
  *   rodata_a9f2a                             @ 0x000a9f2a
- *   rodata_a9f30                             @ 0x000a9f30
- *   rodata_a9f51                             @ 0x000a9f51
- *   rodata_aa446                             @ 0x000aa446
+ *   rodata_a9f30                             @ 0x000a9f30   [INLINED -- G6 literal batch]
+ *   rodata_a9f51                             @ 0x000a9f51   [INLINED -- G6 literal batch]
+ *   rodata_aa446                             @ 0x000aa446   [INLINED -- G6 literal batch]
  *   rodata_aae20                             @ 0x000aae20
  *   g_log_level                              @ 0x2000230c
  *   g_ipc_or_evt_ctx                         @ 0x20004bb8
@@ -81,7 +81,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
     if (*(volatile unsigned char*)(0x20004bb8 + 5) == 0) {
         if (2 < *(volatile int*)0x2000230c) {
             if (*(volatile int*)0x20007554 == 0)
-                log_message(0x000a9ebd, 0x000aa446);
+                log_message(((unsigned long)"%s(): reflash overview map && text\n"), ((unsigned long)"navigation_overview_map_display"));
             else
                 debug_print();
         }
@@ -116,7 +116,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
             if (*(volatile int*)(param_2 + 0xb1) == 0x1210) {
                 if (2 < *piVar2) {
                     if (*(volatile int*)0x20007554 == 0)
-                        log_message(0x000a9ee1, 0x000aa446);
+                        log_message(0x000a9ee1, ((unsigned long)"navigation_overview_map_display"));
                     else
                         debug_print();
                 }
@@ -126,7 +126,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
             } else {
                 if (2 < *piVar2) {
                     if (*(volatile int*)0x20007554 == 0)
-                        log_message(0x000a9eff, 0x000aa446);
+                        log_message(0x000a9eff, ((unsigned long)"navigation_overview_map_display"));
                     else
                         debug_print();
                 }
@@ -243,14 +243,14 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
         if (*(volatile unsigned char*)0x20010326 == 1) {
             if (2 < *piVar2) {
                 if (*(volatile int*)0x20007554 == 0)
-                    log_message(0x000a9f30, 0x000aa446);
+                    log_message(((unsigned long)"%s(): reflash overview map ....\n"), ((unsigned long)"navigation_overview_map_display"));
                 else
                     debug_print();
             }
             if (*(volatile int*)(param_2 + 0xb1) == 0x1210) {
                 if (2 < *piVar2) {
                     if (*(volatile int*)0x20007554 == 0)
-                        log_message(0x000a9ee1, 0x000aa446);
+                        log_message(0x000a9ee1, ((unsigned long)"navigation_overview_map_display"));
                     else
                         debug_print();
                 }
@@ -260,7 +260,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
             } else {
                 if (2 < *piVar2) {
                     if (*(volatile int*)0x20007554 == 0)
-                        log_message(0x000a9eff, 0x000aa446);
+                        log_message(0x000a9eff, ((unsigned long)"navigation_overview_map_display"));
                     else
                         debug_print();
                 }
@@ -288,7 +288,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
     if (*(volatile unsigned char*)0x20010324 == 1) {
         if (2 < *(volatile int*)0x2000230c) {
             if (*(volatile int*)0x20007554 == 0)
-                log_message(0x000a9f51, 0x000aa446);
+                log_message(((unsigned long)"%s(): reflash text info ....\n"), ((unsigned long)"navigation_overview_map_display"));
             else
                 debug_print();
         }

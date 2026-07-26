@@ -10,7 +10,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6ceb                             @ 0x000f6ceb
  *   rodata_f6d26                             @ 0x000f6d26
  *   g_pdm_cb                                 @ 0x2000b330
@@ -39,7 +39,7 @@ unsigned int nrfx_pdm_start(void)
         }
         return uVar2;
     }
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f6d26) /*=0xf6d26*/, ((unsigned long)&rodata_f6ceb) /*=0xf6ceb*/, 0xdd);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f6d26) /*=0xf6d26*/, ((unsigned long)&rodata_f6ceb) /*=0xf6ceb*/, 0xdd);
     assert_post_action(((unsigned long)&rodata_f6ceb) /*=0xf6ceb*/, 0xdd);
     return 0;
 }

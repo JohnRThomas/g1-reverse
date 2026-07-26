@@ -10,12 +10,12 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   sched_spinlock                           @ 0x2000b490
  */
 /* Reconstructed FUN_000738d4 @ 0x738d4  (parity: 300/300 trials, PROVEN) */
@@ -29,8 +29,8 @@ extern void printk(uint32_t,uint32_t,uint32_t,uint32_t,uint32_t);
 void z_ready_thread_locked(int param_1,uint32_t p2,uint32_t p3,uint32_t p4){
   int iVar3=z_spin_lock_valid(0x2000b490);
   if(iVar3==0){
-    printk(0x99cbd,0xf0920,0xf08c7,0x72,p4);
-    printk(0xf0935,0x2000b490,0,0,0);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_lock_valid(l)"),0xf08c7,0x72,p4);
+    printk(((unsigned long)"\tInvalid spinlock %p\n"),0x2000b490,0,0,0);
     assert_post_action(0xf08c7,0x72);
     return;
   }
@@ -38,7 +38,7 @@ void z_ready_thread_locked(int param_1,uint32_t p2,uint32_t p3,uint32_t p4){
   sched_ready_queue_insert(param_1);
   iVar3=z_spin_unlock_valid(0x2000b490);
   if(iVar3!=0){ return; }
-  printk(0x99cbd,0xf08f4,0xf08c7,0xf0,p4);
-  printk(0xf090b,0x2000b490,0,0,0);
+  printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_unlock_valid(l)"),0xf08c7,0xf0,p4);
+  printk(((unsigned long)"\tNot my spinlock %p\n"),0x2000b490,0,0,0);
   assert_post_action(0xf08c7,0xf0);
 }

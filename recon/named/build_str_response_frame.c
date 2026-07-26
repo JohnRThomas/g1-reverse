@@ -9,8 +9,8 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   vdprintf_to_fd                           <= FUN_00086f00 @ 0x00086f00
  * address symbols (name @ address):
- *   rodata_a701c                             @ 0x000a701c
- *   rodata_a7031                             @ 0x000a7031
+ *   rodata_a701c                             @ 0x000a701c   [INLINED -- G6 literal batch]
+ *   rodata_a7031                             @ 0x000a7031   [INLINED -- G6 literal batch]
  *   rodata_a8c37                             @ 0x000a8c37
  */
 /* Reconstructed FUN_00031b60 @ 0x31b60  (parity: 300/300 trials, PROVEN) */
@@ -29,9 +29,9 @@ uint32_t build_str_response_frame(int param_1,uint32_t param_2,uint32_t *param_3
   } workspace;
   workspace.payload = 0;
   memset_bytes(workspace.scratch,0,0x1c);
-  log_message(0xa701c);
+  log_message(((unsigned long)"join in get_sn_info\n"));
   if(param_3==0 || param_4==0){
-    log_message(0xa7031);
+    log_message(((unsigned long)"get_sn_info para is NULL\n"));
     uVar2=0xffffffff;
   } else {
     volatile uint8_t *puVar3=(volatile uint8_t*)(uintptr_t)*param_3;

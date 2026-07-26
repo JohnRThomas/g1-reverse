@@ -8,11 +8,11 @@
  *   read_sys_settting_from_flash             <= FUN_000232f8 @ 0x000232f8
  *   k_msleep_ticks32768_b                    <= FUN_0007d14a @ 0x0007d14a
  * address symbols (name @ address):
- *   rodata_a672f                             @ 0x000a672f
- *   rodata_a70a0                             @ 0x000a70a0
- *   rodata_a70c1                             @ 0x000a70c1
- *   rodata_a70e7                             @ 0x000a70e7
- *   rodata_a7655                             @ 0x000a7655
+ *   rodata_a672f                             @ 0x000a672f   [INLINED -- G6 literal batch]
+ *   rodata_a70a0                             @ 0x000a70a0   [INLINED -- G6 literal batch]
+ *   rodata_a70c1                             @ 0x000a70c1   [INLINED -- G6 literal batch]
+ *   rodata_a70e7                             @ 0x000a70e7   [INLINED -- G6 literal batch]
+ *   rodata_a7655                             @ 0x000a7655   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_test_mode_flag                         @ 0x20019ef3
@@ -31,9 +31,9 @@ unsigned set_brightness_lum_base(int param_1, unsigned param_2, unsigned **param
   int iVar6; unsigned uVar7, uVar8; unsigned char *puVar10;
   unsigned char auStack_9c[116];
   unsigned short local_28, local_26, local_24;
-  log_message(0x000a70a0);
+  log_message(((unsigned long)"join in set_brightness_lum_base\n"));
   if ((param_3 == 0) || (param_4 == 0)) {
-    log_message(0x000a70c1);
+    log_message(((unsigned long)"set_brightness_lum_base para is NULL\n"));
     uVar5 = 0xffffffff;
   } else if (*(char*)0x20019ef3 == 1) {
     puVar10 = (unsigned char*)*param_3;
@@ -45,8 +45,8 @@ unsigned set_brightness_lum_base(int param_1, unsigned param_2, unsigned **param
     cVar2 = *(char*)(param_1 + 4);
     uVar8 = (unsigned)*(unsigned short*)(param_1 + 5);
     if (2 < *piVar4) {
-      if (*(int*)0x20007554 == 0) log_message(0x000a70e7, 0x000a7655, uVar8);
-      else debug_print(0x000a70e7, 0x000a7655, uVar8);
+      if (*(int*)0x20007554 == 0) log_message(((unsigned long)"%s(): tmp_lum_value is:0x%x\n"), ((unsigned long)"set_brightness_lum_base"), uVar8);
+      else debug_print(((unsigned long)"%s(): tmp_lum_value is:0x%x\n"), ((unsigned long)"set_brightness_lum_base"), uVar8);
     }
     bVar1 = 0x3f < uVar8;
     if (bVar1) uVar8 = 0x3f;
@@ -76,7 +76,7 @@ LAB_7c:
     uVar5 = 0;
     *(volatile unsigned char*)param_4 = 6;
   } else {
-    log_message(0x000a672f);
+    log_message(((unsigned long)"warning: not test mode,disable setting\n"));
     uVar5 = 0xfffffffe;
   }
   return uVar5;

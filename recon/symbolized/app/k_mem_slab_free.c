@@ -13,12 +13,12 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f7e3c                             @ 0x000f7e3c
  *   rodata_f7e7e                             @ 0x000f7e7e
  *   rodata_f7f29                             @ 0x000f7f29
@@ -38,8 +38,8 @@ void k_mem_slab_free(int param_1, uint32_t* param_2){
     uint32_t uVar7=0;
     int iVar2=z_spin_lock_valid(iVar6);
     if(iVar2==0){
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
-        printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,iVar6);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
+        printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/,iVar6);
         assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
         goto mainp;
     }
@@ -56,7 +56,7 @@ void k_mem_slab_free(int param_1, uint32_t* param_2){
             else if((uint32_t*)(uVar4*(*(volatile int*)(param_1+0xc)-1)+(int)puVar5)<param_2) fail=1;
         }
         if(fail){
-            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f7e7e) /*=0xf7e7e*/,((unsigned long)&rodata_f7e3c) /*=0xf7e3c*/,0x98);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f7e7e) /*=0xf7e7e*/,((unsigned long)&rodata_f7e3c) /*=0xf7e3c*/,0x98);
             printk(((unsigned long)&rodata_f7f29) /*=0xf7f29*/);
             assert_post_action(((unsigned long)&rodata_f7e3c) /*=0xf7e3c*/,0x98);
             goto mainp;
@@ -80,8 +80,8 @@ mainp:;
         *(volatile int*)(param_1+0x1c)=*(volatile int*)(param_1+0x1c)-1;
         iVar2=z_spin_unlock_valid(iVar6);
         if(iVar2!=0) return;
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
-        printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,iVar6);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
+        printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/,iVar6);
         assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
     }
 }

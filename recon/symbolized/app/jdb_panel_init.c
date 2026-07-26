@@ -8,8 +8,8 @@
  *   panel_init                               <= FUN_00047538 @ 0x00047538
  *   spi_read_id                              <= FUN_00047724 @ 0x00047724
  * address symbols (name @ address):
- *   rodata_d728d                             @ 0x000d728d
- *   rodata_d72ac                             @ 0x000d72ac
+ *   rodata_d728d                             @ 0x000d728d   [INLINED -- G6 literal batch]
+ *   rodata_d72ac                             @ 0x000d72ac   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_panel_spi_id                           @ 0x2000a074
@@ -36,9 +36,9 @@ unsigned int jdb_panel_init(unsigned char *param_1)
     } else {
         if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_d728d) /*=0xd728d*/,((unsigned long)&rodata_d72ac) /*=0xd72ac*/);
+                log_message(((unsigned long)"%s(): JBD PANEL init failure!\n") /*=0xd728d*/,((unsigned long)"jdb_panel_init") /*=0xd72ac*/);
             } else {
-                debug_print(((unsigned long)&rodata_d728d) /*=0xd728d*/,((unsigned long)&rodata_d72ac) /*=0xd72ac*/);
+                debug_print(((unsigned long)"%s(): JBD PANEL init failure!\n") /*=0xd728d*/,((unsigned long)"jdb_panel_init") /*=0xd72ac*/);
             }
         }
         uVar2 = 0xffffffffUL;

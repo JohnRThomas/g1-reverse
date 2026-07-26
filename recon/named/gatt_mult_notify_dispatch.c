@@ -10,7 +10,7 @@
  *   net_buf_simple_init_with_data            <= FUN_000836ec @ 0x000836ec
  * address symbols (name @ address):
  *   rodata_88128                             @ 0x00088128
- *   rodata_f4d6f                             @ 0x000f4d6f
+ *   rodata_f4d6f                             @ 0x000f4d6f   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction FUN_0005c5f0 @ 0x5c5f0, exact extent 206 bytes. */
 #include <stdint.h>

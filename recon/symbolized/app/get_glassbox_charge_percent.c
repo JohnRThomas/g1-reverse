@@ -5,8 +5,8 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  * address symbols (name @ address):
- *   rodata_a742d                             @ 0x000a742d
- *   rodata_a7735                             @ 0x000a7735
+ *   rodata_a742d                             @ 0x000a742d   [INLINED -- G6 literal batch]
+ *   rodata_a7735                             @ 0x000a7735   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_glassbox_charge_status_byte            @ 0x20019ef4
@@ -23,9 +23,9 @@ uint8_t get_glassbox_charge_percent(void)
 
     if (2 < *(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            log_message(((unsigned long)&rodata_a742d) /*=0xa742d*/, ((unsigned long)&rodata_a7735) /*=0xa7735*/, percent);
+            log_message(((unsigned long)"%s(): batterPercent is :%d \n\n") /*=0xa742d*/, ((unsigned long)"get_glassbox_charge_percent") /*=0xa7735*/, percent);
         else
-            debug_print(((unsigned long)&rodata_a742d) /*=0xa742d*/, ((unsigned long)&rodata_a7735) /*=0xa7735*/, percent);
+            debug_print(((unsigned long)"%s(): batterPercent is :%d \n\n") /*=0xa742d*/, ((unsigned long)"get_glassbox_charge_percent") /*=0xa7735*/, percent);
     }
     /* The firmware deliberately reloads after the diagnostic call.  The
        status byte is volatile and may be updated while the logger runs. */

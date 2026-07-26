@@ -19,11 +19,11 @@
  *   rodata_9a1d6                             @ 0x0009a1d6
  *   rodata_9a1e0                             @ 0x0009a1e0
  *   rodata_9a1ea                             @ 0x0009a1ea
- *   rodata_9a20d                             @ 0x0009a20d
- *   rodata_9a275                             @ 0x0009a275
- *   rodata_9a295                             @ 0x0009a295
- *   rodata_9a2b1                             @ 0x0009a2b1
- *   rodata_9a2bf                             @ 0x0009a2bf
+ *   rodata_9a20d                             @ 0x0009a20d   [INLINED -- G6 literal batch]
+ *   rodata_9a275                             @ 0x0009a275   [INLINED -- G6 literal batch]
+ *   rodata_9a295                             @ 0x0009a295   [INLINED -- G6 literal batch]
+ *   rodata_9a2b1                             @ 0x0009a2b1   [INLINED -- G6 literal batch]
+ *   rodata_9a2bf                             @ 0x0009a2bf   [INLINED -- G6 literal batch]
  *   rodata_f5071                             @ 0x000f5071
  *   g_log_level                              @ 0x2000230c
  *   g_ble_conn_ctx_ptr                       @ 0x20006a30
@@ -110,7 +110,7 @@ LAB_00017fb6:
         uVar5 = (uint)param_2[4];
         puVar11 = (unsigned *)(uint)param_2[5];
         if (*dbg == 0) {
-            log_message(0x9a20d, 0x9a2bf, &log_record, param_3, uVar9, uVar8, uVar7, uVar6, uVar5, puVar11,
+            log_message(((unsigned long)"%s(): **Received data from: %s, len=%d,cmd 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x,receiver_thd_is_running is %d\n"), ((unsigned long)"bt_receive_cb"), &log_record, param_3, uVar9, uVar8, uVar7, uVar6, uVar5, puVar11,
                         (uint)*(unsigned char *)(*piVar1 + 0x248));
         } else {
             debug_print(0);
@@ -162,18 +162,18 @@ LAB_00017fb6:
                 debug_print(0);
                 return;
             }
-            log_message(0x9a295, 0x9a2bf);
+            log_message(((unsigned long)"%s(): enqueue because busy\n"), ((unsigned long)"bt_receive_cb"));
             return;
         }
         if (*dbg == 0) {
             uVar4 = 0x59;
 LAB_000180e2:
-            log_message(0x9a275, 0x9a2b1, uVar4, param_3, uVar9, uVar8, uVar7, uVar6, uVar5, puVar11);
+            log_message(((unsigned long)"[%s-%d]len is %d, too large ! \n"), ((unsigned long)"bt_receive_cb"), uVar4, param_3, uVar9, uVar8, uVar7, uVar6, uVar5, puVar11);
             return;
         }
         uVar4 = 0x59;
 LAB_000180d4:
-        debug_print(0x9a275, 0x9a2b1, uVar4, param_3);
+        debug_print(((unsigned long)"[%s-%d]len is %d, too large ! \n"), ((unsigned long)"bt_receive_cb"), uVar4, param_3);
     }
     return;
 }

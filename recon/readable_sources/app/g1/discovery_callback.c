@@ -24,19 +24,19 @@
  *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
  * address symbols (name @ address):
  *   rodata_88130                             @ 0x00088130
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f11bc                             @ 0x000f11bc
  *   rodata_f1299                             @ 0x000f1299
- *   rodata_f12bb                             @ 0x000f12bb
+ *   rodata_f12bb                             @ 0x000f12bb   [INLINED -- G6 literal batch]
  *   rodata_f13bc                             @ 0x000f13bc
- *   rodata_f13e5                             @ 0x000f13e5
+ *   rodata_f13e5                             @ 0x000f13e5   [INLINED -- G6 literal batch]
  *   rodata_f1404                             @ 0x000f1404
  *   rodata_f1432                             @ 0x000f1432
  *   rodata_f1459                             @ 0x000f1459
  *   rodata_f1484                             @ 0x000f1484
- *   rodata_f14c2                             @ 0x000f14c2
- *   rodata_f1541                             @ 0x000f1541
- *   rodata_f155e                             @ 0x000f155e
+ *   rodata_f14c2                             @ 0x000f14c2   [INLINED -- G6 literal batch]
+ *   rodata_f1541                             @ 0x000f1541   [INLINED -- G6 literal batch]
+ *   rodata_f155e                             @ 0x000f155e   [INLINED -- G6 literal batch]
  *   rodata_f7a30                             @ 0x000f7a30
  *   cur_service_val                          @ 0x2000a154
  *   g_gatt_dm_discover_params_uuid           @ 0x2000a15c
@@ -100,12 +100,12 @@ undefined4 discovery_callback(int param_1,undefined4 *param_2,int param_3)
     if (param_2 == 0) { control_label_ebe6: discovery_complete(); return 0; }
     frame.fallback.zero = 0; frame.fallback.uuid = 0x2803;
     iVar3 = bt_uuid_cmp(*param_2,(int)&frame.fallback);
-    if (iVar3 != 0) { printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f14c2) /*=0xf14c2*/,((unsigned long)&rodata_f11bc) /*=0xf11bc*/,0x19c); uVar9 = 0x19c; goto control_label_eb7e; }
+    if (iVar3 != 0) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"bt_uuid_cmp(attr->uuid, ((struct bt_uuid *) ((struct bt_uuid_16[]) {{ .uuid = { BT_UUID_TYPE_16 }, .val = (0x2803), }}))) == 0") /*=0xf14c2*/,((unsigned long)&rodata_f11bc) /*=0xf11bc*/,0x19c); uVar9 = 0x19c; goto control_label_eb7e; }
     iVar3 = attr_find_by_handle((int)piVar2,*(ushort*)(param_2 + 4));
     if (iVar3 == 0) { uVar8 = 0xfffffffd; goto control_label_eaa6; }
     piVar5 = (int*)param_2[3];
     piVar10 = (int*)bt_gatt_dm_attr_chrc_val(iVar3);
-    if (piVar10 == 0) { printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f1541) /*=0xf1541*/,((unsigned long)&rodata_f11bc) /*=0xf11bc*/,0x1a8); uVar9 = 0x1a8; goto control_label_eb7e; }
+    if (piVar10 == 0) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"cur_gatt_chrc != ((void *)0)") /*=0xf1541*/,((unsigned long)&rodata_f11bc) /*=0xf11bc*/,0x1a8); uVar9 = 0x1a8; goto control_label_eb7e; }
     *piVar10 = *piVar5; piVar10[1] = piVar5[1];
     iVar3 = uuid_store(*piVar10); *piVar10 = iVar3;
     if (iVar3 != 0) return 1;
@@ -125,7 +125,7 @@ control_label_eaa6:
       if (iVar4 != 0) {
         frame.fallback.zero = 0; frame.fallback.uuid = 0x2801;
         iVar4 = bt_uuid_cmp(*param_2,(int)&frame.fallback);
-        if (iVar4 != 0) { printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f12bb) /*=0xf12bb*/,((unsigned long)&rodata_f11bc) /*=0xf11bc*/,0x127); uVar9 = 0x127; goto control_label_eb7e; }
+        if (iVar4 != 0) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"bt_uuid_cmp(attr->uuid, ((struct bt_uuid *) ((struct bt_uuid_16[]) {{ .uuid = { BT_UUID_TYPE_16 }, .val = (0x2800), }}))) == 0 || bt_uuid_cmp(attr->uuid, ((struct bt_uuid *) ((struct bt_uuid_16[]) {{ .uuid = { BT_UUID_TYPE_16 }, .val = (0x2801), }}))) == 0") /*=0xf12bb*/,((unsigned long)&rodata_f11bc) /*=0xf11bc*/,0x127); uVar9 = 0x127; goto control_label_eb7e; }
       }
       uVar9 = ((unsigned long)&rodata_f13bc) /*=0xf13bc*/;
       if (iVar3 == 0) {
@@ -134,7 +134,7 @@ control_label_eb88:
         gatt_dm_log_helper(((unsigned long)&rodata_88130) /*=0x88130*/,0x1040,(int)&local_28);
       } else {
         piVar5 = (int*)bt_gatt_dm_attr_service_val(iVar3);
-        if (piVar5 == 0) { printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f13e5) /*=0xf13e5*/,((unsigned long)&rodata_f11bc) /*=0xf11bc*/,0x13b); uVar9 = 0x13b; goto control_label_eb7e; }
+        if (piVar5 == 0) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"cur_service_val != ((void *)0)") /*=0xf13e5*/,((unsigned long)&rodata_f11bc) /*=0xf11bc*/,0x13b); uVar9 = 0x13b; goto control_label_eb7e; }
         *piVar5 = *piVar10; piVar5[1] = piVar10[1];
         iVar4 = uuid_store(*piVar5); *piVar5 = iVar4;
         uVar9 = ((unsigned long)&rodata_f1404) /*=0xf1404*/;
@@ -176,8 +176,8 @@ control_label_eb88:
     LOG_WITH_U32(((unsigned long)&rodata_f1484) /*=0xf1484*/, uStack_48);
     goto control_label_ec80;
   }
-  printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f7a30) /*=0xf7a30*/,((unsigned long)&rodata_f11bc) /*=0xf11bc*/,0x1d2);
-  printk(((unsigned long)&rodata_f155e) /*=0xf155e*/);
+  printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f7a30) /*=0xf7a30*/,((unsigned long)&rodata_f11bc) /*=0xf11bc*/,0x1d2);
+  printk(((unsigned long)"\tUnknown param type.\n") /*=0xf155e*/);
   uVar9 = 0x1d2;
 control_label_eb7e:
   assert_post_action(((unsigned long)&rodata_f11bc) /*=0xf11bc*/,uVar9);

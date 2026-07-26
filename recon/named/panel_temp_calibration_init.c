@@ -86,7 +86,7 @@ int panel_temp_calibration_init(int param_1)
                 if (iVar4 != 0) return iVar4;
                 iVar4 = dev_write_reg3(*puVar8,5,0,1);
                 if (iVar4 != 0) return iVar4;
-                iVar4 = dev_write_reg3(*puVar8,5,1);
+                iVar4 = dev_write_reg3(*puVar8,5,1,1);
                 if (iVar4 != 0) return iVar4;
                 iVar4 = dev_write_reg3(*puVar8,5,0xc,1);
                 if (iVar4 != 0) return iVar4;

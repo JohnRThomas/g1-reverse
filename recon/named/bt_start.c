@@ -17,19 +17,19 @@
  *   __strcpy_chk                             <= FUN_00086ffe @ 0x00086ffe
  * address symbols (name @ address):
  *   rodata_8839c                             @ 0x0008839c
- *   rodata_9ac4c                             @ 0x0009ac4c
- *   rodata_9ac60                             @ 0x0009ac60
+ *   rodata_9ac4c                             @ 0x0009ac4c   [INLINED -- G6 literal batch]
+ *   rodata_9ac60                             @ 0x0009ac60   [INLINED -- G6 literal batch]
  *   rodata_9ac7c                             @ 0x0009ac7c
- *   rodata_9ac84                             @ 0x0009ac84
- *   rodata_9ac9d                             @ 0x0009ac9d
- *   rodata_9acb2                             @ 0x0009acb2
- *   rodata_9acc4                             @ 0x0009acc4
- *   rodata_9ace0                             @ 0x0009ace0
- *   rodata_9acf9                             @ 0x0009acf9
- *   rodata_9ad0e                             @ 0x0009ad0e
- *   rodata_9ad20                             @ 0x0009ad20
- *   rodata_9ad4b                             @ 0x0009ad4b
- *   rodata_9b13f                             @ 0x0009b13f
+ *   rodata_9ac84                             @ 0x0009ac84   [INLINED -- G6 literal batch]
+ *   rodata_9ac9d                             @ 0x0009ac9d   [INLINED -- G6 literal batch]
+ *   rodata_9acb2                             @ 0x0009acb2   [INLINED -- G6 literal batch]
+ *   rodata_9acc4                             @ 0x0009acc4   [INLINED -- G6 literal batch]
+ *   rodata_9ace0                             @ 0x0009ace0   [INLINED -- G6 literal batch]
+ *   rodata_9acf9                             @ 0x0009acf9   [INLINED -- G6 literal batch]
+ *   rodata_9ad0e                             @ 0x0009ad0e   [INLINED -- G6 literal batch]
+ *   rodata_9ad20                             @ 0x0009ad20   [INLINED -- G6 literal batch]
+ *   rodata_9ad4b                             @ 0x0009ad4b   [INLINED -- G6 literal batch]
+ *   rodata_9b13f                             @ 0x0009b13f   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_20002350                               @ 0x20002350
  *   g_20002358                               @ 0x20002358

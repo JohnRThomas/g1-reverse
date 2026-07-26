@@ -13,12 +13,12 @@
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  * address symbols (name @ address):
- *   rodata_9f773                             @ 0x0009f773
- *   rodata_9f797                             @ 0x0009f797
- *   rodata_9f7c3                             @ 0x0009f7c3
- *   rodata_9f812                             @ 0x0009f812
- *   rodata_9f851                             @ 0x0009f851
- *   rodata_9fae1                             @ 0x0009fae1
+ *   rodata_9f773                             @ 0x0009f773   [INLINED -- G6 literal batch]
+ *   rodata_9f797                             @ 0x0009f797   [INLINED -- G6 literal batch]
+ *   rodata_9f7c3                             @ 0x0009f7c3   [INLINED -- G6 literal batch]
+ *   rodata_9f812                             @ 0x0009f812   [INLINED -- G6 literal batch]
+ *   rodata_9f851                             @ 0x0009f851   [INLINED -- G6 literal batch]
+ *   rodata_9fae1                             @ 0x0009fae1   [INLINED -- G6 literal batch]
  *   rodata_87d58                             @ 0x00087d58   (LSM6DSO struct device)
  *   ADDR_imu_fusion_thread_THUMB             @ 0x0000fe89
  *   g_log_level                              @ 0x2000230c
@@ -48,7 +48,7 @@ extern int panel_level_calc_cached(void *context);
 
 #define LOG_LEVEL (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define LOG_SINK  (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define LOG_TAG   ((unsigned long)&rodata_9fae1) /*=0x9fae1*/
+#define LOG_TAG   ((unsigned long)"imu_fusion_init") /*=0x9fae1*/
 
 int imu_fusion_init(unsigned char *context, uint32_t p2, uint32_t p3)
 {
@@ -60,9 +60,9 @@ int imu_fusion_init(unsigned char *context, uint32_t p2, uint32_t p3)
         if (LOG_LEVEL > 1) {
             sink = LOG_SINK;
             if (sink == 0) {
-                log_message(((unsigned long)&rodata_9f773) /*=0x9f773*/, LOG_TAG, p3, (uint32_t)sink);
+                log_message(((unsigned long)"%s(): imu_fusion: algo is existed\n\n") /*=0x9f773*/, LOG_TAG, p3, (uint32_t)sink);
             } else {
-                debug_print(((unsigned long)&rodata_9f773) /*=0x9f773*/, LOG_TAG, p3, (uint32_t)sink);
+                debug_print(((unsigned long)"%s(): imu_fusion: algo is existed\n\n") /*=0x9f773*/, LOG_TAG, p3, (uint32_t)sink);
             }
         }
         return -1;
@@ -73,9 +73,9 @@ int imu_fusion_init(unsigned char *context, uint32_t p2, uint32_t p3)
     if (LOG_LEVEL > 1) {
         sink = LOG_SINK;
         if (sink == 0) {
-            log_message(((unsigned long)&rodata_9f797) /*=0x9f797*/, LOG_TAG, p3, (uint32_t)sink);
+            log_message(((unsigned long)"%s(): imu_fusion: sensor device is ready:\n\n") /*=0x9f797*/, LOG_TAG, p3, (uint32_t)sink);
         } else {
-            debug_print(((unsigned long)&rodata_9f797) /*=0x9f797*/, LOG_TAG, p3, (uint32_t)sink);
+            debug_print(((unsigned long)"%s(): imu_fusion: sensor device is ready:\n\n") /*=0x9f797*/, LOG_TAG, p3, (uint32_t)sink);
         }
     }
 
@@ -87,9 +87,9 @@ int imu_fusion_init(unsigned char *context, uint32_t p2, uint32_t p3)
         if (LOG_LEVEL > 1) {
             sink = LOG_SINK;
             if (sink == 0) {
-                log_message(((unsigned long)&rodata_9f7c3) /*=0x9f7c3*/, LOG_TAG, (uint32_t)rc, (uint32_t)sink);
+                log_message(((unsigned long)"%s(): c->imu_fusion: Cannot set sampling frequency for accelerometer ret %d.\n\n") /*=0x9f7c3*/, LOG_TAG, (uint32_t)rc, (uint32_t)sink);
             } else {
-                debug_print(((unsigned long)&rodata_9f7c3) /*=0x9f7c3*/, LOG_TAG, (uint32_t)rc, (uint32_t)sink);
+                debug_print(((unsigned long)"%s(): c->imu_fusion: Cannot set sampling frequency for accelerometer ret %d.\n\n") /*=0x9f7c3*/, LOG_TAG, (uint32_t)rc, (uint32_t)sink);
             }
         }
         return -3;
@@ -104,10 +104,10 @@ int imu_fusion_init(unsigned char *context, uint32_t p2, uint32_t p3)
         if (LOG_LEVEL > 1) {
             sink = LOG_SINK;
             if (sink == 0) {
-                log_message(((unsigned long)&rodata_9f812) /*=0x9f812*/, LOG_TAG,
+                log_message(((unsigned long)"%s(): c->imu_fusion: Cannot set sampling frequency for gyro.\n\n") /*=0x9f812*/, LOG_TAG,
                             (uint32_t)(unsigned long)(context + 0x20), (uint32_t)sink);
             } else {
-                debug_print(((unsigned long)&rodata_9f812) /*=0x9f812*/, LOG_TAG,
+                debug_print(((unsigned long)"%s(): c->imu_fusion: Cannot set sampling frequency for gyro.\n\n") /*=0x9f812*/, LOG_TAG,
                             (uint32_t)(unsigned long)(context + 0x20), (uint32_t)sink);
             }
         }
@@ -118,10 +118,10 @@ int imu_fusion_init(unsigned char *context, uint32_t p2, uint32_t p3)
     if (LOG_LEVEL > 1) {
         sink = LOG_SINK;
         if (sink == 0) {
-            log_message(((unsigned long)&rodata_9f851) /*=0x9f851*/, LOG_TAG,
+            log_message(((unsigned long)"%s(): sensor_fusion_init:\n\n") /*=0x9f851*/, LOG_TAG,
                         (uint32_t)(unsigned long)(context + 0x20), (uint32_t)sink);
         } else {
-            debug_print(((unsigned long)&rodata_9f851) /*=0x9f851*/, LOG_TAG,
+            debug_print(((unsigned long)"%s(): sensor_fusion_init:\n\n") /*=0x9f851*/, LOG_TAG,
                         (uint32_t)(unsigned long)(context + 0x20), (uint32_t)sink);
         }
     }

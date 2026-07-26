@@ -6,10 +6,10 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef058                             @ 0x000ef058
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
  *   rodata_ef596                             @ 0x000ef596
- *   rodata_ef59e                             @ 0x000ef59e
- *   rodata_ef6d4                             @ 0x000ef6d4
+ *   rodata_ef59e                             @ 0x000ef59e   [INLINED -- G6 literal batch]
+ *   rodata_ef6d4                             @ 0x000ef6d4   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_translate_lang_string_table            @ 0x200024f4
  *   g_dashboard_response_msgq                @ 0x2000392c
@@ -53,7 +53,7 @@ u32 SendSystemLanguageInfoToSlave(int param_1)
             }
         }
     } else {
-        log_message(0xef058U, 0xef6d4U);
+        log_message(((unsigned long)"message queue send failed %s\r\n"), 0xef6d4U);
         uVar4 = 0xffffffffU;
     }
     return uVar4;

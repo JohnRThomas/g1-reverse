@@ -11,10 +11,10 @@
  * address symbols (name @ address):
  *   ADDR_z_cbprintf_cpy_THUMB                @ 0x0007ee49
  *   rodata_881e0                             @ 0x000881e0
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0dff                             @ 0x000f0dff
- *   rodata_f0e3e                             @ 0x000f0e3e
- *   rodata_f0e6a                             @ 0x000f0e6a
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0dff                             @ 0x000f0dff   [INLINED -- G6 literal batch]
+ *   rodata_f0e3e                             @ 0x000f0e3e   [INLINED -- G6 literal batch]
+ *   rodata_f0e6a                             @ 0x000f0e6a   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction of FUN_0004d944 @ 0x4d944 (268 bytes). */
 #include <stdint.h>
@@ -72,7 +72,7 @@ void z_log_msg_runtime_create(uintptr_t owner, uint32_t descriptor, uintptr_t so
             int32_t rc = cbprintf_package_convert(source, requested, 0x0007ee49u, &state,
                                       10, scratch, 4);
             if (rc < 0) {
-                printk(0x00099cbdu, 0x000f0e6au, 0x000f0e3eu, 0x59u);
+                printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f0e6au, 0x000f0e3eu, 0x59u);
                 assert_post_action(0x000f0e3eu, 0x59u);
             }
         }

@@ -7,7 +7,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f891e                             @ 0x000f891e
  *   rodata_f8942                             @ 0x000f8942
  *   rodata_f8974                             @ 0x000f8974
@@ -41,7 +41,7 @@ void *z_heap_aligned_alloc(void *heap, size_t alignment, size_t size)
     void *result = (uint8_t *)allocation + sizeof(void *);
     if (alignment != 0u &&
         (((uintptr_t)result & (alignment - 1u)) != 0u)) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f8942) /*=0xf8942*/, ((unsigned long)&rodata_f891e) /*=0xf891e*/, 0x25u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f8942) /*=0xf8942*/, ((unsigned long)&rodata_f891e) /*=0xf891e*/, 0x25u);
         printk(((unsigned long)&rodata_f8974) /*=0xf8974*/, result, alignment);
         assert_post_action(((unsigned long)&rodata_f891e) /*=0xf891e*/, 0x25u);
         return 0;

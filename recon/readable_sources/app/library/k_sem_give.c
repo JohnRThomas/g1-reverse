@@ -16,10 +16,10 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   z_handle_obj_poll_events                 <= FUN_0008688e @ 0x0008688e
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   g_mutex_lock_spinlock                    @ 0x2000b474
  */
 /* Reconstructed FUN_00072880 @ 0x72880  (parity: 300/300 trials, PROVEN) */
@@ -40,8 +40,8 @@ void k_sem_give(int object)
   __ISB();
 
   if (z_spin_lock_valid(((unsigned long)&g_mutex_lock_spinlock) /*=0x2000b474*/) == 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
-    printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, ((unsigned long)&g_mutex_lock_spinlock) /*=0x2000b474*/);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
+    printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/, ((unsigned long)&g_mutex_lock_spinlock) /*=0x2000b474*/);
     assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
     return;
   }

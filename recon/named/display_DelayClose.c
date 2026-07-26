@@ -6,9 +6,9 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef058                             @ 0x000ef058
- *   rodata_f008c                             @ 0x000f008c
- *   rodata_f0164                             @ 0x000f0164
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
+ *   rodata_f008c                             @ 0x000f008c   [INLINED -- G6 literal batch]
+ *   rodata_f0164                             @ 0x000f0164   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_display_msgq                           @ 0x200038c4
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -42,7 +42,7 @@ unsigned int display_DelayClose(unsigned int param_1)
             }
         }
     } else {
-        log_message(0xef058U, 0xf0164U);
+        log_message(((unsigned long)"message queue send failed %s\r\n"), 0xf0164U);
         uVar2 = 0xffffffffU;
     }
     return uVar2;

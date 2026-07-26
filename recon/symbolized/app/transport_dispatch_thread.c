@@ -17,7 +17,7 @@
  *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
- *   rodata_a1895                             @ 0x000a1895
+ *   rodata_a1895                             @ 0x000a1895   [INLINED -- G6 literal batch]
  *   g_delay_deadline_ticks                   @ 0x200040c8
  *   g_misc_dispatch_ctx                      @ 0x20007b00
  *   g_misc_dispatch_pending_flag             @ 0x20018d88
@@ -60,7 +60,7 @@ void transport_dispatch_thread(uint32_t inherited_stack, uint32_t packed_status,
         *initialized = 1;
         stale_r2 = 1;
     }
-    log_message(((unsigned long)&rodata_a1895) /*=0xa1895*/, (uint32_t)*initialized, stale_r2, ((unsigned long)&g_misc_dispatch_pending_flag) /*=0x20018d88*/);
+    log_message(((unsigned long)"[csh_debug_nfc] g_nfcMsgSemInitOk is %d \n") /*=0xa1895*/, (uint32_t)*initialized, stale_r2, ((unsigned long)&g_misc_dispatch_pending_flag) /*=0x20018d88*/);
 
     for (;;) {
         if (*(volatile uint8_t *)(get_device_info() + 1) == 8) {

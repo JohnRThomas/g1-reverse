@@ -14,9 +14,9 @@
  *   rodata_9e9ea                             @ 0x0009e9ea
  *   rodata_9ea0a                             @ 0x0009ea0a
  *   rodata_9ee54                             @ 0x0009ee54
- *   rodata_9ee80                             @ 0x0009ee80
- *   rodata_9eeeb                             @ 0x0009eeeb
- *   rodata_9f066                             @ 0x0009f066
+ *   rodata_9ee80                             @ 0x0009ee80   [INLINED -- G6 literal batch]
+ *   rodata_9eeeb                             @ 0x0009eeeb   [INLINED -- G6 literal batch]
+ *   rodata_9f066                             @ 0x0009f066   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_quicknote_flash_page_buf               @ 0x20018465
@@ -41,9 +41,9 @@ unsigned getQuickNoteDataFromFlash(unsigned param_1, unsigned param_2, int param
   }
   if(*piVar1 > 2){
     if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-      log_message(((unsigned long)&rodata_9ee80) /*=0x9ee80*/,((unsigned long)&rodata_9f066) /*=0x9f066*/);
+      log_message(((unsigned long)"%s(): read quicknote flash data to ram...\r\n\n") /*=0x9ee80*/,((unsigned long)"getQuickNoteDataFromFlash") /*=0x9f066*/);
     else
-      debug_print(((unsigned long)&rodata_9ee80) /*=0x9ee80*/,((unsigned long)&rodata_9f066) /*=0x9f066*/);
+      debug_print(((unsigned long)"%s(): read quicknote flash data to ram...\r\n\n") /*=0x9ee80*/,((unsigned long)"getQuickNoteDataFromFlash") /*=0x9f066*/);
   }
   {
     int iVar3 = z_device_is_ready(((unsigned long)&rodata_87bf0) /*=0x87bf0*/);
@@ -69,10 +69,10 @@ unsigned getQuickNoteDataFromFlash(unsigned param_1, unsigned param_2, int param
           memcpy(param_4, off + 0x2a + iVar7, iVar6);
           if(*piVar1 > 2){
             if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
-              log_message(((unsigned long)&rodata_9eeeb) /*=0x9eeeb*/,((unsigned long)&rodata_9f066) /*=0x9f066*/);
+              log_message(((unsigned long)"%s(): export flash data to global ram...\n") /*=0x9eeeb*/,((unsigned long)"getQuickNoteDataFromFlash") /*=0x9f066*/);
               return 0;
             }
-            debug_print(((unsigned long)&rodata_9eeeb) /*=0x9eeeb*/,((unsigned long)&rodata_9f066) /*=0x9f066*/);
+            debug_print(((unsigned long)"%s(): export flash data to global ram...\n") /*=0x9eeeb*/,((unsigned long)"getQuickNoteDataFromFlash") /*=0x9f066*/);
             return 0;
           }
           return 0;
@@ -88,15 +88,15 @@ unsigned getQuickNoteDataFromFlash(unsigned param_1, unsigned param_2, int param
       uVar5 = 0x00403000;
     }
     if(iVar7 == 0)
-      log_message(uVar4, ((unsigned long)&rodata_9f066) /*=0x9f066*/, uVar5);
+      log_message(uVar4, ((unsigned long)"getQuickNoteDataFromFlash") /*=0x9f066*/, uVar5);
     else
-      debug_print(uVar4,((unsigned long)&rodata_9f066) /*=0x9f066*/,uVar5);
+      debug_print(uVar4,((unsigned long)"getQuickNoteDataFromFlash") /*=0x9f066*/,uVar5);
     return 0xffffffff;
   }
 LAB_2arg:
   if(iVar7 == 0)
-    log_message(uVar4, ((unsigned long)&rodata_9f066) /*=0x9f066*/);
+    log_message(uVar4, ((unsigned long)"getQuickNoteDataFromFlash") /*=0x9f066*/);
   else
-    debug_print(uVar4,((unsigned long)&rodata_9f066) /*=0x9f066*/);
+    debug_print(uVar4,((unsigned long)"getQuickNoteDataFromFlash") /*=0x9f066*/);
   return 0xffffffff;
 }

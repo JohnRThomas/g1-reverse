@@ -8,15 +8,15 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
  *   rodata_99c53                             @ 0x00099c53
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_99de0                             @ 0x00099de0
- *   rodata_99e1e                             @ 0x00099e1e
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_99de0                             @ 0x00099de0   [INLINED -- G6 literal batch]
+ *   rodata_99e1e                             @ 0x00099e1e   [INLINED -- G6 literal batch]
  *   rodata_99e30                             @ 0x00099e30
- *   rodata_99e71                             @ 0x00099e71
- *   rodata_99e9d                             @ 0x00099e9d
+ *   rodata_99e71                             @ 0x00099e71   [INLINED -- G6 literal batch]
+ *   rodata_99e9d                             @ 0x00099e9d   [INLINED -- G6 literal batch]
  *   rodata_99ec7                             @ 0x00099ec7
  *   rodata_99ef2                             @ 0x00099ef2
- *   rodata_99f3c                             @ 0x00099f3c
+ *   rodata_99f3c                             @ 0x00099f3c   [INLINED -- G6 literal batch]
  */
 /* app-core FUN_00017858 @ 0x00017858 */
 #include <stdint.h>
@@ -37,16 +37,16 @@ void gpio_pin_configure(const uint8_t *pin, uint32_t flags)
     pin_config_t configure;
 
     if (mode == 0x600000) {
-        printk((void *)((unsigned long)&rodata_99cbd) /*=0x99cbd*/, (void *)((unsigned long)&rodata_99e30) /*=0x99e30*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x36a);
-        printk((void *)((unsigned long)&rodata_99e71) /*=0x99e71*/);
+        printk((void *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)&rodata_99e30) /*=0x99e30*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x36a);
+        printk((void *)((unsigned long)"\tCannot both enable and disable interrupts\n") /*=0x99e71*/);
         assert_post_action((void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x36a);
     } else if (mode == 0) {
-        printk((void *)((unsigned long)&rodata_99cbd) /*=0x99cbd*/, (void *)((unsigned long)&rodata_99e9d) /*=0x99e9d*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x36e);
+        printk((void *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)"(flags & ((1U << 21) | (1U << 22))) != 0U") /*=0x99e9d*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x36e);
         printk((void *)((unsigned long)&rodata_99ec7) /*=0x99ec7*/);
         assert_post_action((void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x36e);
     } else if ((flags & 0x6400000) == 0x400000) {
-        printk((void *)((unsigned long)&rodata_99cbd) /*=0x99cbd*/, (void *)((unsigned long)&rodata_99ef2) /*=0x99ef2*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x378);
-        printk((void *)((unsigned long)&rodata_99f3c) /*=0x99f3c*/);
+        printk((void *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)&rodata_99ef2) /*=0x99ef2*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x378);
+        printk((void *)((unsigned long)"\tAt least one of GPIO_INT_LOW_0, GPIO_INT_HIGH_1 has to be enabled.\n") /*=0x99f3c*/);
         assert_post_action((void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x378);
     }
 
@@ -55,8 +55,8 @@ void gpio_pin_configure(const uint8_t *pin, uint32_t flags)
     output = **(volatile uint32_t ***)(dev + 16);
     bit = 1u << line;
     if ((*enabled & bit) == 0) {
-        printk((void *)((unsigned long)&rodata_99cbd) /*=0x99cbd*/, (void *)((unsigned long)&rodata_99de0) /*=0x99de0*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x382);
-        printk((void *)((unsigned long)&rodata_99e1e) /*=0x99e1e*/);
+        printk((void *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)"(cfg->port_pin_mask & (gpio_port_pins_t)(1UL << (pin))) != 0U") /*=0x99de0*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x382);
+        printk((void *)((unsigned long)"\tUnsupported pin\n") /*=0x99e1e*/);
         assert_post_action((void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x382);
     }
     if ((flags & 0x800000) && (*output & bit))

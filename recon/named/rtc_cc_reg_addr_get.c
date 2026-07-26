@@ -6,9 +6,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6659                             @ 0x000f6659
- *   rodata_f668a                             @ 0x000f668a
+ *   rodata_f668a                             @ 0x000f668a   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00063570 @ 0x63570  (parity: 300/300 trials, PROVEN) */
 
@@ -18,7 +18,7 @@ unsigned int rtc_cc_reg_addr_get(unsigned int param_1, unsigned int param_2, uns
 {
   unsigned int idx = param_1;
   if (1 < param_1) {
-    printk(0x00099cbdUL, 0x000f668aUL, 0x000f6659UL, 0x86, param_4);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"chan >= 0 && chan < (1 + 1)"), 0x000f6659UL, 0x86, param_4);
     idx = assert_post_action(0x000f6659UL, 0x86);
   }
   return 0x50015140UL + idx * 4;

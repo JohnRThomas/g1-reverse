@@ -9,9 +9,9 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f5268                             @ 0x000f5268
- *   rodata_f5298                             @ 0x000f5298
+ *   rodata_f5298                             @ 0x000f5298   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005ea18 @ 0x5ea18  (parity: 300/300 trials, PROVEN) */
 
@@ -25,7 +25,7 @@ void bt_keys_clear(unsigned char *param_1)
 {
   unsigned char *r0 = param_1;
   if (param_1 == 0) {
-    printk(0x00099cbd, 0x000f5298, 0x000f5268, 0x131);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"keys != ((void *)0)"), 0x000f5268, 0x131);
     r0 = assert_post_action(0x000f5268, 0x131);
   }
   unsigned char b8 = *(volatile unsigned char*)(r0 + 8);

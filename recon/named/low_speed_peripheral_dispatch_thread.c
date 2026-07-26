@@ -34,11 +34,11 @@
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
  *   rodata_87d70                             @ 0x00087d70
- *   rodata_9fc8b                             @ 0x0009fc8b
- *   rodata_a1914                             @ 0x000a1914
- *   rodata_a193c                             @ 0x000a193c
- *   rodata_a1962                             @ 0x000a1962
- *   rodata_a19c0                             @ 0x000a19c0
+ *   rodata_9fc8b                             @ 0x0009fc8b   [INLINED -- G6 literal batch]
+ *   rodata_a1914                             @ 0x000a1914   [INLINED -- G6 literal batch]
+ *   rodata_a193c                             @ 0x000a193c   [INLINED -- G6 literal batch]
+ *   rodata_a1962                             @ 0x000a1962   [INLINED -- G6 literal batch]
+ *   rodata_a19c0                             @ 0x000a19c0   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_flash_crc_active_flag                  @ 0x2000302c
  *   g_log_use_alt_sink                       @ 0x20007554

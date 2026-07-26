@@ -14,8 +14,8 @@
  * address symbols (name @ address):
  *   rodata_10000                             @ 0x00010000
  *   rodata_30000                             @ 0x00030000
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0ac7                             @ 0x000f0ac7
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0ac7                             @ 0x000f0ac7   [INLINED -- G6 literal batch]
  *   rodata_f5e79                             @ 0x000f5e79
  */
 /* Reconstructed FUN_00061624 @ 0x61624  (parity: 300/300 trials, PROVEN) */
@@ -43,7 +43,7 @@ unsigned gpio_nrfx_pin_configure(int param_1, unsigned param_2, unsigned param_3
         if(iVar2 == 0x0bad0000){
             iVar9 = gpiote_lock_release((unsigned char)(record.param2>>24));
             if(iVar9 != iVar2){
-                printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0ac7) /*=0xf0ac7*/, ((unsigned long)&rodata_f5e79) /*=0xf5e79*/, 0x6c);
+                printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"err == NRFX_SUCCESS") /*=0xf0ac7*/, ((unsigned long)&rodata_f5e79) /*=0xf5e79*/, 0x6c);
                 uVar4 = 0x6c;
 control_label_00061674:
                 assert_post_action(((unsigned long)&rodata_f5e79) /*=0xf5e79*/, uVar4);
@@ -58,7 +58,7 @@ control_label_00061734:
         if(iVar2 == iVar3){
             iVar3 = gpiote_lock_release((unsigned char)(record.param2>>24));
             if(iVar3 != iVar2){
-                printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0ac7) /*=0xf0ac7*/, ((unsigned long)&rodata_f5e79) /*=0xf5e79*/, 0x7f);
+                printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"err == NRFX_SUCCESS") /*=0xf0ac7*/, ((unsigned long)&rodata_f5e79) /*=0xf5e79*/, 0x7f);
                 uVar4 = 0x7f;
                 goto control_label_00061674;
             }

@@ -8,7 +8,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6d5e                             @ 0x000f6d5e
  *   rodata_f6d9a                             @ 0x000f6d9a
  *   g_qspi_cb                                @ 0x2000b348
@@ -29,7 +29,7 @@ int g1_recon_nrfx_qspi_erase(uint32_t param_1, uint32_t param_2,
                              uint32_t param_3, uint32_t param_4){
   uint8_t r4 = *(volatile uint8_t*)0x2000b378UL;
   if (r4 == 0){
-    printk(0x99cbd, 0xf6d9a, 0xf6d5e, 0x2e8, param_4);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0xf6d9a, 0xf6d5e, 0x2e8, param_4);
     assert_post_action(0xf6d5e, 0x2e8);
   }
   int iVar3 = 0x0bad000a;

@@ -23,8 +23,8 @@
  *   rodata_9e23c                             @ 0x0009e23c
  *   rodata_9e249                             @ 0x0009e249
  *   rodata_9e259                             @ 0x0009e259
- *   rodata_9e8af                             @ 0x0009e8af
- *   rodata_9e8cf                             @ 0x0009e8cf
+ *   rodata_9e8af                             @ 0x0009e8af   [INLINED -- G6 literal batch]
+ *   rodata_9e8cf                             @ 0x0009e8cf   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_200079c4                               @ 0x200079c4
@@ -133,9 +133,9 @@ void brightness_level(uintptr_t context)
             if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
                 int alternate=*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
                 if (alternate)
-                    debug_print(((unsigned long)&rodata_9e8af) /*=0x9e8af*/,((unsigned long)&rodata_9e8cf) /*=0x9e8cf*/,0,(uint32_t)alternate);
+                    debug_print(((unsigned long)"%s(): ignore.\n") /*=0x9e8af*/,((unsigned long)"storage_commit_thread") /*=0x9e8cf*/,0,(uint32_t)alternate);
                 else
-                    log_message(((unsigned long)&rodata_9e8af) /*=0x9e8af*/,((unsigned long)&rodata_9e8cf) /*=0x9e8cf*/,0,0);
+                    log_message(((unsigned long)"%s(): ignore.\n") /*=0x9e8af*/,((unsigned long)"storage_commit_thread") /*=0x9e8cf*/,0,0);
             }
         }
 

@@ -12,13 +12,13 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
  *   rodata_880f0                             @ 0x000880f0
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_9a1dd                             @ 0x0009a1dd
- *   rodata_f176a                             @ 0x000f176a
- *   rodata_f17a1                             @ 0x000f17a1
- *   rodata_f17c3                             @ 0x000f17c3
- *   rodata_f17eb                             @ 0x000f17eb
- *   rodata_f1823                             @ 0x000f1823
+ *   rodata_f176a                             @ 0x000f176a   [INLINED -- G6 literal batch]
+ *   rodata_f17a1                             @ 0x000f17a1   [INLINED -- G6 literal batch]
+ *   rodata_f17c3                             @ 0x000f17c3   [INLINED -- G6 literal batch]
+ *   rodata_f17eb                             @ 0x000f17eb   [INLINED -- G6 literal batch]
+ *   rodata_f1823                             @ 0x000f1823   [INLINED -- G6 literal batch]
  *   rodata_fa9b4                             @ 0x000fa9b4
  */
 /* Full reconstruction of FUN_0004f860 @ 0x4f860 (204 bytes). */
@@ -53,8 +53,8 @@ void module_state_event_log_handler(const work_event *event)
         __builtin_trap();
 
     if (event->operation >= 4) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f17a1) /*=0xf17a1*/, ((unsigned long)&rodata_f176a) /*=0xf176a*/, 0x1cu);
-        assert_post_action(((unsigned long)&rodata_f176a) /*=0xf176a*/, 0x1cu);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"event->state < MODULE_STATE_COUNT") /*=0xf17a1*/, ((unsigned long)"WEST_TOPDIR/nrf/subsys/caf/events/module_state_event.c") /*=0xf176a*/, 0x1cu);
+        assert_post_action(((unsigned long)"WEST_TOPDIR/nrf/subsys/caf/events/module_state_event.c") /*=0xf176a*/, 0x1cu);
     }
 
     static const uintptr_t operation_names[4] = {
@@ -62,17 +62,17 @@ void module_state_event_log_handler(const work_event *event)
     };
     uintptr_t operation_name = operation_names[event->operation];
     if (operation_name == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f17c3) /*=0xf17c3*/, ((unsigned long)&rodata_f176a) /*=0xf176a*/, 0x1du);
-        assert_post_action(((unsigned long)&rodata_f176a) /*=0xf176a*/, 0x1du);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"state_name[event->state] != ((void *)0)") /*=0xf17c3*/, ((unsigned long)"WEST_TOPDIR/nrf/subsys/caf/events/module_state_event.c") /*=0xf176a*/, 0x1du);
+        assert_post_action(((unsigned long)"WEST_TOPDIR/nrf/subsys/caf/events/module_state_event.c") /*=0xf176a*/, 0x1du);
     }
     if (event->value == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_9a1dd) /*=0x9a1dd*/, ((unsigned long)&rodata_f17eb) /*=0xf17eb*/, 0x51u);
-        assert_post_action(((unsigned long)&rodata_f17eb) /*=0xf17eb*/, 0x51u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_9a1dd) /*=0x9a1dd*/, ((unsigned long)"WEST_TOPDIR/nrf/include/caf/events/module_state_event.h") /*=0xf17eb*/, 0x51u);
+        assert_post_action(((unsigned long)"WEST_TOPDIR/nrf/include/caf/events/module_state_event.h") /*=0xf17eb*/, 0x51u);
     }
 
     dispatch_record record = {
         .kind = 0x03000005u,
-        .label = ((unsigned long)&rodata_f1823) /*=0xf1823*/,
+        .label = ((unsigned long)"e:%s module:%s state:%s") /*=0xf1823*/,
         .owner_value = *event->owner,
         .data_value = *event->value,
         .operation_name = operation_name,

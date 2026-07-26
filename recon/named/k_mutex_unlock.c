@@ -13,12 +13,12 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   k_mutex_owner_prio_check                 <= FUN_000864b2 @ 0x000864b2
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f801f                             @ 0x000f801f
  *   rodata_f813a                             @ 0x000f813a
  *   rodata_f815c                             @ 0x000f815c
@@ -43,7 +43,7 @@ unsigned k_mutex_unlock(int param_1)
   unsigned ipsr, basepri; int iVar4, r3;
   ipsr = __get_IPSR();
   if (ipsr != 0) {
-    printk(0x00099cbd,0x000f801f,0x000f813a,0xcd);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x000f801f,0x000f813a,0xcd);
     printk(0x000f815c,0,0,0);
     assert_post_action(0x000f813a,0xcd);
   }
@@ -52,7 +52,7 @@ unsigned k_mutex_unlock(int param_1)
   if (r3 != *(int*)(0x2000b448+8)) return 0xffffffff;
   iVar4 = *(int*)(param_1+0xc);
   if (iVar4 == 0) {
-    printk(0x00099cbd,0x000f8181,0x000f813a,0xe5);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x000f8181,0x000f813a,0xe5);
     assert_post_action(0x000f813a,0xe5);
   }
   if (iVar4 != 1) {
@@ -64,8 +64,8 @@ unsigned k_mutex_unlock(int param_1)
   __ISB();
   iVar4 = z_spin_lock_valid(0x2000b470);
   if (iVar4 == 0) {
-    printk(0x00099cbd,0x000f0920,0x000f08c7,0x72);
-    printk(0x000f0935,0x2000b470,0,0);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_lock_valid(l)"),0x000f08c7,0x72);
+    printk(((unsigned long)"\tInvalid spinlock %p\n"),0x2000b470,0,0);
     assert_post_action(0x000f08c7,0x72);
   }
   z_spin_lock_set_owner(0x2000b470);
@@ -76,8 +76,8 @@ unsigned k_mutex_unlock(int param_1)
     *(volatile int*)(param_1+0xc) = 0;
     iVar4 = z_spin_unlock_valid(0x2000b470);
     if (iVar4 == 0) {
-      printk(0x00099cbd,0x000f08f4,0x000f08c7,0xf0);
-      printk(0x000f090b,0x2000b470,0,0);
+      printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_unlock_valid(l)"),0x000f08c7,0xf0);
+      printk(((unsigned long)"\tNot my spinlock %p\n"),0x2000b470,0,0);
       assert_post_action(0x000f08c7,0xf0);
     }
     __set_BASEPRI(basepri);

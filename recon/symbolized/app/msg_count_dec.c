@@ -9,7 +9,7 @@
  *   clear_timeout_message                    <= FUN_00033d58 @ 0x00033d58
  *   msg_count_dec                            <= FUN_00034274 @ 0x00034274
  * address symbols (name @ address):
- *   rodata_a8017                             @ 0x000a8017
+ *   rodata_a8017                             @ 0x000a8017   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_message_pool                           @ 0x20007dac
  *   g_message_pool_index                     @ 0x2001a22a
@@ -33,7 +33,7 @@ unsigned char msg_count_dec(void){
             else cVar4 = (unsigned char)(bVar1 - 2);
             *(volatile unsigned char*)((unsigned long)&g_message_pool_index) /*=0x2001a22a*/ = cVar4;
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
-                log_message(((unsigned long)&rodata_a8017) /*=0xa8017*/, r5);
+                log_message(((unsigned long)"[csh_debug_msg]msg_count_dec unread_msg_num is %d \n") /*=0xa8017*/, r5);
             } else {
                 debug_print();
             }

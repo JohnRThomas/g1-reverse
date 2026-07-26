@@ -10,8 +10,8 @@
  * address symbols (name @ address):
  *   rodata_87fc8                             @ 0x00087fc8
  *   rodata_87fec                             @ 0x00087fec
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  *   rodata_f3f55                             @ 0x000f3f55
  *   rodata_f402a                             @ 0x000f402a
  */
@@ -26,7 +26,7 @@ void bt_l2cap_connected(int param_1,int param_2){
   uint16_t *puVar5=(uint16_t*)((unsigned long)&rodata_87fc8) /*=0x87fc8*/;
   int local_14=param_2;
   while(1){
-    if(puVar2<puVar5){ printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f402a) /*=0xf402a*/,((unsigned long)&rodata_f3f55) /*=0xf3f55*/,0x185,param_1); printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/); assert_post_action(((unsigned long)&rodata_f3f55) /*=0xf3f55*/,0x185); }
+    if(puVar2<puVar5){ printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f402a) /*=0xf402a*/,((unsigned long)&rodata_f3f55) /*=0xf3f55*/,0x185,param_1); printk(((unsigned long)"\tunexpected list end location\n") /*=0xf0d20*/); assert_post_action(((unsigned long)&rodata_f3f55) /*=0xf3f55*/,0x185); }
     if(puVar2<=puVar5) break;
     int iVar3 = (*(int(**)(int,void*))(puVar5+2))(param_1,&local_14);
     if(iVar3>=0){

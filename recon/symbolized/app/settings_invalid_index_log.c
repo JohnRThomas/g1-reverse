@@ -7,7 +7,7 @@
  *   gatt_dm_log_helper                       <= FUN_0007f406 @ 0x0007f406
  * address symbols (name @ address):
  *   rodata_88130                             @ 0x00088130
- *   rodata_f11a5                             @ 0x000f11a5
+ *   rodata_f11a5                             @ 0x000f11a5   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0004e8c0 @ 0x4e8c0
  * CFG_VERIFY_CALL_ARITIES=3
@@ -18,7 +18,7 @@
 extern void gatt_dm_log_helper(uint32_t, uint32_t, const void *);
 int settings_invalid_index_log(void)
 {
-    const uint32_t package[2] = { 2U, ((unsigned long)&rodata_f11a5) /*=0xf11a5*/ };
+    const uint32_t package[2] = { 2U, ((unsigned long)"Unsupported UUID type.") /*=0xf11a5*/ };
     gatt_dm_log_helper(((unsigned long)&rodata_88130) /*=0x88130*/, 0x1040U, package);
     return 0;
 }

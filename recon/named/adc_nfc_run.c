@@ -7,9 +7,9 @@
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  * address symbols (name @ address):
  *   rodata_87c20                             @ 0x00087c20
- *   rodata_9f104                             @ 0x0009f104
- *   rodata_9f120                             @ 0x0009f120
- *   rodata_9f1c3                             @ 0x0009f1c3
+ *   rodata_9f104                             @ 0x0009f104   [INLINED -- G6 literal batch]
+ *   rodata_9f120                             @ 0x0009f120   [INLINED -- G6 literal batch]
+ *   rodata_9f1c3                             @ 0x0009f1c3   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

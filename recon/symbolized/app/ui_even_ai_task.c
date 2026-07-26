@@ -20,10 +20,10 @@
  *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
  *   rodata_a8e98                             @ 0x000a8e98
- *   rodata_a9855                             @ 0x000a9855
- *   rodata_a9879                             @ 0x000a9879
- *   rodata_a989f                             @ 0x000a989f
- *   rodata_a98ce                             @ 0x000a98ce
+ *   rodata_a9855                             @ 0x000a9855   [INLINED -- G6 literal batch]
+ *   rodata_a9879                             @ 0x000a9879   [INLINED -- G6 literal batch]
+ *   rodata_a989f                             @ 0x000a989f   [INLINED -- G6 literal batch]
+ *   rodata_a98ce                             @ 0x000a98ce   [INLINED -- G6 literal batch]
  *   rodata_aae20                             @ 0x000aae20
  *   rodata_f7b6f                             @ 0x000f7b6f
  *   g_log_level                              @ 0x2000230c
@@ -105,10 +105,10 @@ extern uintptr_t memset_bytes(void *, int, unsigned);           /* FUN_00086c78 
 #define MASK_FRAME_SEQUENCE    ((const uint8_t *)((unsigned long)&rodata_a8e98) /*=0xa8e98*/)
 #define RENDER_STATE_INITIAL   ((uint32_t)((unsigned long)&g_even_ai_render_state_init_val) /*=0x2001cdd7*/)
 #define SPACE_TEXT             ((uintptr_t)((unsigned long)&rodata_f7b6f) /*=0xf7b6f*/)
-#define LOG_FUNCTION           ((uintptr_t)((unsigned long)&rodata_a98ce) /*=0xa98ce*/)
-#define LOG_INIT               ((uintptr_t)((unsigned long)&rodata_a9855) /*=0xa9855*/)
-#define LOG_SYNC_REFRESH       ((uintptr_t)((unsigned long)&rodata_a9879) /*=0xa9879*/)
-#define LOG_EXIT               ((uintptr_t)((unsigned long)&rodata_a989f) /*=0xa989f*/)
+#define LOG_FUNCTION           ((uintptr_t)((unsigned long)"ui_even_ai_task") /*=0xa98ce*/)
+#define LOG_INIT               ((uintptr_t)((unsigned long)"%s(): ENTER evenai INIT process...\n") /*=0xa9855*/)
+#define LOG_SYNC_REFRESH       ((uintptr_t)((unsigned long)"%s(): SYNC_AREA_REFALSH Upgrade ....\n") /*=0xa9879*/)
+#define LOG_EXIT               ((uintptr_t)((unsigned long)"%s(): evenai process received exit packet ...\n") /*=0xa989f*/)
 
 ALWAYS_INLINE uint8_t field8(uintptr_t device, unsigned offset)
 {

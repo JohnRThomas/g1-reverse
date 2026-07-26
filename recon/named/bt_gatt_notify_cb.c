@@ -14,10 +14,10 @@
  * address symbols (name @ address):
  *   ADDR_gatt_send_ccc_update_THUMB          @ 0x0005b891
  *   rodata_825fb                             @ 0x000825fb
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f46b8                             @ 0x000f46b8
- *   rodata_f4a0a                             @ 0x000f4a0a
- *   rodata_f4b3d                             @ 0x000f4b3d
+ *   rodata_f4a0a                             @ 0x000f4a0a   [INLINED -- G6 literal batch]
+ *   rodata_f4b3d                             @ 0x000f4b3d   [INLINED -- G6 literal batch]
  *   rodata_f4b44                             @ 0x000f4b44
  *   g_ble_dev_ncmd_sem                       @ 0x200020d4
  */
@@ -45,8 +45,8 @@ int bt_gatt_notify_cb(int param_1, int *param_2)
   int *local_14;
 
   if (param_2 == 0) {
-    printk(0x99cbd, 0xf4b3d, 0xf46b8, 0xae3);
-    printk(0xf4a0a);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"params"), 0xf46b8, 0xae3);
+    printk(((unsigned long)"\tinvalid parameters\n\n"));
     uVar2 = 0xae3;
     assert_post_action(0xf46b8, uVar2);
     param_2 = (int *)0xae3;
@@ -95,8 +95,8 @@ LAB:
       }
       return 0xfffffffe;
     }
-    printk(0x99cbd, 0xf4b44, 0xf46b8, 0xae4);
-    printk(0xf4a0a);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0xf4b44, 0xf46b8, 0xae4);
+    printk(((unsigned long)"\tinvalid parameters\n\n"));
     uVar2 = 0xae4;
     assert_post_action(0xf46b8, uVar2);
     param_2 = (int *)0xae4;

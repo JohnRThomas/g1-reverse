@@ -14,11 +14,11 @@
  * address symbols (name @ address):
  *   ADDR_bt_ancs_data_source_handler_THUMB   @ 0x00018c49
  *   rodata_18ef5                             @ 0x00018ef5
- *   rodata_9a6f2                             @ 0x0009a6f2
+ *   rodata_9a6f2                             @ 0x0009a6f2   [INLINED -- G6 literal batch]
  *   rodata_9a71e                             @ 0x0009a71e
- *   rodata_9a74c                             @ 0x0009a74c
+ *   rodata_9a74c                             @ 0x0009a74c   [INLINED -- G6 literal batch]
  *   rodata_9a788                             @ 0x0009a788
- *   rodata_9a7bc                             @ 0x0009a7bc
+ *   rodata_9a7bc                             @ 0x0009a7bc   [INLINED -- G6 literal batch]
  *   g_gatt_discovery_flags                   @ 0x20006ab4
  */
 /* Reconstructed FUN_000188d8 @ 0x188d8  (parity: 300/300 trials, PROVEN) */
@@ -34,13 +34,13 @@ extern int bt_gatt_dm_conn_get(int callback_object);
 extern int bt_gatt_dm_data_release(int,...);
 void discovery_completed_cb_ancs(void *param_1, void *param_2){
   int uVar1 = bt_gatt_dm_conn_get((int)param_1);
-  log_message(((unsigned long)&rodata_9a6f2) /*=0x9a6f2*/);
+  log_message(((unsigned long)"The discovery procedure for ANCS succeeded\n") /*=0x9a6f2*/);
   int iVar2 = ancs_gatt_dm_assign_handles((int)param_1,(int)param_2);
   unsigned fmt = ((unsigned long)&rodata_9a71e) /*=0x9a71e*/;
   if(iVar2==0){
     *(volatile uint32_t*)((unsigned long)&g_gatt_discovery_flags) /*=0x20006ab4*/ |= 2u;
     iVar2 = ancs_subscribe_notification_source((int)param_2, ((unsigned long)&rodata_18ef5) /*=0x18ef5*/);
-    if(iVar2!=0) log_message(((unsigned long)&rodata_9a74c) /*=0x9a74c*/, iVar2);
+    if(iVar2!=0) log_message(((unsigned long)"Failed to enable Notification Source notification (err %d)\n") /*=0x9a74c*/, iVar2);
     iVar2 = ancs_subscribe_data_source((int)param_2, ADDR_bt_ancs_data_source_handler_THUMB /*=0x18c49*/);
     fmt = ((unsigned long)&rodata_9a788) /*=0x9a788*/;
     if(iVar2==0) goto L;
@@ -48,7 +48,7 @@ void discovery_completed_cb_ancs(void *param_1, void *param_2){
   log_message(fmt, iVar2);
 L:
   iVar2 = bt_gatt_dm_data_release((int)param_1);
-  if(iVar2!=0) log_message(((unsigned long)&rodata_9a7bc) /*=0x9a7bc*/, iVar2);
+  if(iVar2!=0) log_message(((unsigned long)"Could not release the discovery data, error code: %d\n") /*=0x9a7bc*/, iVar2);
   atomic_and(((unsigned long)&g_gatt_discovery_flags) /*=0x20006ab4*/, 0xfffffffe);
   gatt_discover(uVar1, 1);
 }

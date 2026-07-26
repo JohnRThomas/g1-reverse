@@ -8,8 +8,8 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
  *   rodata_885cc                             @ 0x000885cc
- *   rodata_a3f62                             @ 0x000a3f62
- *   rodata_a41d5                             @ 0x000a41d5
+ *   rodata_a3f62                             @ 0x000a3f62   [INLINED -- G6 literal batch]
+ *   rodata_a41d5                             @ 0x000a41d5   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_dmic_msgq                              @ 0x20007b7c
@@ -33,9 +33,9 @@ int dequeue_dmic(void *param_1)
         memcpy(param_1, record, 200);
     } else if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
         if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_a3f62) /*=0xa3f62*/, ((unsigned long)&rodata_a41d5) /*=0xa41d5*/);
+            log_message(((unsigned long)"%s(): dequeue_dmic failed\r\n\n") /*=0xa3f62*/, ((unsigned long)"dequeue_dmic") /*=0xa41d5*/);
         } else {
-            debug_print(((unsigned long)&rodata_a3f62) /*=0xa3f62*/, ((unsigned long)&rodata_a41d5) /*=0xa41d5*/);
+            debug_print(((unsigned long)"%s(): dequeue_dmic failed\r\n\n") /*=0xa3f62*/, ((unsigned long)"dequeue_dmic") /*=0xa41d5*/);
         }
     }
     return iVar1;

@@ -8,8 +8,8 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f6c00                             @ 0x000f6c00
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f6c00                             @ 0x000f6c00   [INLINED -- G6 literal batch]
  *   rodata_f6df0                             @ 0x000f6df0
  *   g_nrfx_spim_cb                           @ 0x2000b384
  */
@@ -22,7 +22,7 @@ extern int printk(int,...);
 int nrfx_spim_init(int param_1, int param_2, uint32_t param_3, uint32_t param_4){
   int r0src = param_1;
   if(param_2 == 0){
-    printk(0x00099cbd, 0x000f6c00, 0x000f6df0, 0x1ff, param_4);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"p_config"), 0x000f6df0, 0x1ff, param_4);
     assert_post_action(0x000f6df0, 0x1ff);
     r0src = 0x000f6df0;
   }

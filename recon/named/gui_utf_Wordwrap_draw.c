@@ -17,9 +17,9 @@
  *   rodata_88434                             @ 0x00088434
  *   rodata_8843e                             @ 0x0008843e
  *   rodata_aaa58                             @ 0x000aaa58
- *   rodata_aaa7f                             @ 0x000aaa7f
- *   rodata_aac1e                             @ 0x000aac1e
- *   rodata_aad35                             @ 0x000aad35
+ *   rodata_aaa7f                             @ 0x000aaa7f   [INLINED -- G6 literal batch]
+ *   rodata_aac1e                             @ 0x000aac1e   [INLINED -- G6 literal batch]
+ *   rodata_aad35                             @ 0x000aad35   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_gui_dark_light_dither_mask             @ 0x200034f6
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -274,7 +274,7 @@ LAB_0004537c:
 LAB_0004558c:
   if (1 < *(volatile i32*)0x2000230cUL) {
     if (*(volatile i32*)0x20007554UL == 0) {
-      log_message(0x000aaa7fUL, 0x000aad35UL);
+      log_message(((unsigned long)"%s(): exex process effect callback function\n"), 0x000aad35UL);
     } else {
       debug_print();
     }

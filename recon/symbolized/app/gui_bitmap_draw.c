@@ -11,7 +11,7 @@
  *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
  * address symbols (name @ address):
  *   rodata_aa96d                             @ 0x000aa96d
- *   rodata_aacde                             @ 0x000aacde
+ *   rodata_aacde                             @ 0x000aacde   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_gui_active_canvas                      @ 0x2000a034
@@ -85,7 +85,7 @@ unsigned gui_bitmap_draw(uint param_1,int param_2,int param_3,int param_4,int pa
         iVar7 = *(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
         uVar10 = 0x000aa9a3;
     }
-    if(iVar7 == 0){ log_message(uVar10, ((unsigned long)&rodata_aacde) /*=0xaacde*/); }
-    else { debug_print(uVar10, ((unsigned long)&rodata_aacde) /*=0xaacde*/); }
+    if(iVar7 == 0){ log_message(uVar10, ((unsigned long)"gui_bitmap_draw") /*=0xaacde*/); }
+    else { debug_print(uVar10, ((unsigned long)"gui_bitmap_draw") /*=0xaacde*/); }
     return 0xffffffff;
 }

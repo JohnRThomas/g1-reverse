@@ -8,10 +8,10 @@
  *   ipc_service_send                         <= FUN_0004cc50 @ 0x0004cc50
  *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  * address symbols (name @ address):
- *   rodata_9f576                             @ 0x0009f576
- *   rodata_9f5a9                             @ 0x0009f5a9
- *   rodata_9f5ce                             @ 0x0009f5ce
- *   rodata_9f704                             @ 0x0009f704
+ *   rodata_9f576                             @ 0x0009f576   [INLINED -- G6 literal batch]
+ *   rodata_9f5a9                             @ 0x0009f5a9   [INLINED -- G6 literal batch]
+ *   rodata_9f5ce                             @ 0x0009f5ce   [INLINED -- G6 literal batch]
+ *   rodata_9f704                             @ 0x0009f704   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ipc_send_fail_cnt                      @ 0x20007a74

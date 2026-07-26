@@ -14,9 +14,9 @@
  *   gui_canvas_flags_set_bit1                <= FUN_000432d0 @ 0x000432d0
  *   display_fade_out_mask_bands              <= FUN_000438d0 @ 0x000438d0
  * address symbols (name @ address):
- *   rodata_a8c60                             @ 0x000a8c60
- *   rodata_a8c80                             @ 0x000a8c80
- *   rodata_a8c97                             @ 0x000a8c97
+ *   rodata_a8c60                             @ 0x000a8c60   [INLINED -- G6 literal batch]
+ *   rodata_a8c80                             @ 0x000a8c80   [INLINED -- G6 literal batch]
+ *   rodata_a8c97                             @ 0x000a8c97   [INLINED -- G6 literal batch]
  *   g_200033d2                               @ 0x200033d2
  *   g_200033d3                               @ 0x200033d3
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -61,7 +61,7 @@ uint32_t ui_ancs_notification_task(uint8_t *canvas, uint32_t unused,
 
     (void)unused;
     if (phase == 2u) {
-        TASK_LOG(((unsigned long)&rodata_a8c60) /*=0xa8c60*/);
+        TASK_LOG(((unsigned long)"ui_ancs_notificaton_task exit !") /*=0xa8c60*/);
         LAST_GROUP = 0xffu;
         LAST_INDEX = 0xffu;
         if (MESSAGE_ACTIVE == 0u)
@@ -86,7 +86,7 @@ uint32_t ui_ancs_notification_task(uint8_t *canvas, uint32_t unused,
     if (LAST_GROUP == (uint8_t)group && LAST_INDEX == (uint8_t)index)
         return 0u;
     if (pull_message(&message) > 9u) {
-        TASK_LOG(((unsigned long)&rodata_a8c80) /*=0xa8c80*/);
+        TASK_LOG(((unsigned long)"pull message error !\r\n") /*=0xa8c80*/);
         LAST_GROUP = 0xffu;
         LAST_INDEX = 0xffu;
         return 0u;
@@ -94,7 +94,7 @@ uint32_t ui_ancs_notification_task(uint8_t *canvas, uint32_t unused,
     if (*(volatile uint8_t *)(message + 0x0f) == 0u) {
         LAST_GROUP = 0xffu;
         LAST_INDEX = 0xffu;
-        TASK_LOG(((unsigned long)&rodata_a8c97) /*=0xa8c97*/);
+        TASK_LOG(((unsigned long)"message has not set to show!\r\n") /*=0xa8c97*/);
         return 0u;
     }
     if (*(volatile uint8_t *)(message + 0x0e) == 0u) {

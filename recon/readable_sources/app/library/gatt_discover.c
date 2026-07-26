@@ -11,7 +11,7 @@
  * address symbols (name @ address):
  *   rodata_88388                             @ 0x00088388
  *   rodata_88a0c                             @ 0x00088a0c
- *   rodata_9a65b                             @ 0x0009a65b
+ *   rodata_9a65b                             @ 0x0009a65b   [INLINED -- G6 literal batch]
  *   g_gatt_discovery_flags                   @ 0x20006ab4
  *   g_ancs_client                            @ 0x20006ae8
  */
@@ -50,7 +50,7 @@ void gatt_discover(u32 param_1, int param_2){
                 *(u8*)&local_2c[4] = *(u8*)(src+4);
                 iVar3 = gatt_dm_start(param_1, local_2c, ((unsigned long)&rodata_88a0c) /*=0x88a0c*/, ((unsigned long)&g_ancs_client) /*=0x20006ae8*/);
                 if(iVar3 != 0){
-                    log_message(((unsigned long)&rodata_9a65b) /*=0x9a65b*/, iVar3);
+                    log_message(((unsigned long)"Failed to start discovery for ANCS (err %d)\n") /*=0x9a65b*/, iVar3);
                     atomic_and(((unsigned long)&g_gatt_discovery_flags) /*=0x20006ab4*/, 0xfffffffe);
                 }
             }

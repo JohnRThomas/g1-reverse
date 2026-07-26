@@ -19,12 +19,12 @@
  *   rodata_9eba7                             @ 0x0009eba7
  *   rodata_9ebc6                             @ 0x0009ebc6
  *   rodata_9ee54                             @ 0x0009ee54
- *   rodata_9ef15                             @ 0x0009ef15
- *   rodata_9ef67                             @ 0x0009ef67
- *   rodata_9efaf                             @ 0x0009efaf
- *   rodata_9f010                             @ 0x0009f010
- *   rodata_9f032                             @ 0x0009f032
- *   rodata_9f050                             @ 0x0009f050
+ *   rodata_9ef15                             @ 0x0009ef15   [INLINED -- G6 literal batch]
+ *   rodata_9ef67                             @ 0x0009ef67   [INLINED -- G6 literal batch]
+ *   rodata_9efaf                             @ 0x0009efaf   [INLINED -- G6 literal batch]
+ *   rodata_9f010                             @ 0x0009f010   [INLINED -- G6 literal batch]
+ *   rodata_9f032                             @ 0x0009f032   [INLINED -- G6 literal batch]
+ *   rodata_9f050                             @ 0x0009f050   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_quicknote_flash_msgq                   @ 0x20003960
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -93,18 +93,18 @@ static inline __attribute__((always_inline)) void copy_default_header(
 static inline __attribute__((always_inline)) void log_fixed(uint32_t format)
 {
     if (*deferred_logger == 0)
-        log_message(format, ((unsigned long)&rodata_9f050) /*=0x9f050*/);
+        log_message(format, ((unsigned long)"QuickNoteStoreHandler") /*=0x9f050*/);
     else
-        debug_print(format, ((unsigned long)&rodata_9f050) /*=0x9f050*/);
+        debug_print(format, ((unsigned long)"QuickNoteStoreHandler") /*=0x9f050*/);
 }
 
 static inline __attribute__((always_inline)) void log_value(uint32_t format,
                                                             uint32_t value)
 {
     if (*deferred_logger == 0)
-        log_message(format, ((unsigned long)&rodata_9f050) /*=0x9f050*/, value);
+        log_message(format, ((unsigned long)"QuickNoteStoreHandler") /*=0x9f050*/, value);
     else
-        debug_print(format, ((unsigned long)&rodata_9f050) /*=0x9f050*/, value);
+        debug_print(format, ((unsigned long)"QuickNoteStoreHandler") /*=0x9f050*/, value);
 }
 
 static inline __attribute__((always_inline)) int read_slot_image(void)
@@ -147,9 +147,9 @@ int getQuickNoteBKPQueueCacheData(uint32_t operation, uint32_t slot, uint32_t va
         if (*log_level < 1)
             return -1;
         if (*deferred_logger == 0)
-            log_message(((unsigned long)&rodata_9ef15) /*=0x9ef15*/, ((unsigned long)&rodata_9f032) /*=0x9f032*/);
+            log_message(((unsigned long)"%s(): quick note file queue get failed\r\n\n") /*=0x9ef15*/, ((unsigned long)"getQuickNoteBKPQueueCacheData") /*=0x9f032*/);
         else
-            debug_print(((unsigned long)&rodata_9ef15) /*=0x9ef15*/, ((unsigned long)&rodata_9f032) /*=0x9f032*/);
+            debug_print(((unsigned long)"%s(): quick note file queue get failed\r\n\n") /*=0x9ef15*/, ((unsigned long)"getQuickNoteBKPQueueCacheData") /*=0x9f032*/);
         if (*log_level < 1)
             return -1;
         log_fixed(0x0009ef3fu);
@@ -169,7 +169,7 @@ int getQuickNoteBKPQueueCacheData(uint32_t operation, uint32_t slot, uint32_t va
     }
 
     if (*log_level > 2)
-        log_fixed(((unsigned long)&rodata_9ef67) /*=0x9ef67*/);
+        log_fixed(((unsigned long)"%s(): start quicknote text check...\r\n\n") /*=0x9ef67*/);
 
     if (operation == 2)
         reset_touch_selection_state();
@@ -216,7 +216,7 @@ int getQuickNoteBKPQueueCacheData(uint32_t operation, uint32_t slot, uint32_t va
                              default_record(slot_number) + 0x2d, 0x119);
             } else if (!header_changed) {
                 if (*log_level > 2)
-                    log_fixed(((unsigned long)&rodata_9efaf) /*=0x9efaf*/);
+                    log_fixed(((unsigned long)"%s(): The current quicknote text is stored the same as in flash and does not need to be updated\n") /*=0x9efaf*/);
                 return 0;
             }
         }
@@ -233,7 +233,7 @@ int getQuickNoteBKPQueueCacheData(uint32_t operation, uint32_t slot, uint32_t va
     }
 
     if (*log_level > 2)
-        log_value(operation == 1 ? 0x0009ef8eu : ((unsigned long)&rodata_9f010) /*=0x9f010*/,
+        log_value(operation == 1 ? 0x0009ef8eu : ((unsigned long)"%s(): quicknote %d delete sucess\n") /*=0x9f010*/,
                   slot_number);
     return 0;
 }

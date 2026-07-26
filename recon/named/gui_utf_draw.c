@@ -16,8 +16,8 @@
  *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
  *   rodata_aaa58                             @ 0x000aaa58
- *   rodata_aaa7f                             @ 0x000aaa7f
- *   rodata_aadac                             @ 0x000aadac
+ *   rodata_aaa7f                             @ 0x000aaa7f   [INLINED -- G6 literal batch]
+ *   rodata_aadac                             @ 0x000aadac   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_gui_dark_light_dither_mask             @ 0x200034f6
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -64,9 +64,9 @@ unsigned gui_utf_draw(unsigned unused, uintptr_t text, int font,
 invoke_callback:
         if (*(volatile int *)0x2000230cu > 1) {
             if (*(volatile int *)0x20007554u == 0)
-                log_message(0x000aaa7fu, 0x000aadacu);
+                log_message(((unsigned long)"%s(): exex process effect callback function\n"), 0x000aadacu);
             else
-                debug_print(0x000aaa7fu, 0x000aadacu);
+                debug_print(((unsigned long)"%s(): exex process effect callback function\n"), 0x000aadacu);
         }
         return callback(0, text, font, left, top);
     }

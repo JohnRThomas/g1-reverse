@@ -6,7 +6,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f45be                             @ 0x000f45be
  *   rodata_f539a                             @ 0x000f539a
  */
@@ -20,7 +20,7 @@ extern void printk(unsigned int a0, unsigned int a1, unsigned int a2, unsigned i
 void net_buf_ref(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
   if (param_1 == 0) {
-    printk(0x00099cbd, 0x000f45be, 0x000f539a, 0x202, param_4);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f45be, 0x000f539a, 0x202, param_4);
     param_1 = assert_post_action(0x000f539a, 0x202);
   }
   *(volatile unsigned char *)(param_1 + 8) = *(volatile unsigned char *)(param_1 + 8) + 1;

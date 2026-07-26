@@ -12,8 +12,8 @@
  *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
  *   fb_blit_rows_copy                        <= FUN_0007d53a @ 0x0007d53a
  * address symbols (name @ address):
- *   rodata_aac62                             @ 0x000aac62
- *   rodata_aac9f                             @ 0x000aac9f
+ *   rodata_aac62                             @ 0x000aac62   [INLINED -- G6 literal batch]
+ *   rodata_aac9f                             @ 0x000aac9f   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_gui_active_canvas                      @ 0x2000a034

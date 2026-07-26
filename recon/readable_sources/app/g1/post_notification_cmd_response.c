@@ -16,13 +16,13 @@
  * address symbols (name @ address):
  *   rodata_a1f49                             @ 0x000a1f49
  *   rodata_a1f4d                             @ 0x000a1f4d
- *   rodata_a7ef6                             @ 0x000a7ef6
- *   rodata_a7f12                             @ 0x000a7f12
- *   rodata_a7f41                             @ 0x000a7f41
- *   rodata_a7f79                             @ 0x000a7f79
+ *   rodata_a7ef6                             @ 0x000a7ef6   [INLINED -- G6 literal batch]
+ *   rodata_a7f12                             @ 0x000a7f12   [INLINED -- G6 literal batch]
+ *   rodata_a7f41                             @ 0x000a7f41   [INLINED -- G6 literal batch]
+ *   rodata_a7f79                             @ 0x000a7f79   [INLINED -- G6 literal batch]
  *   rodata_a7fae                             @ 0x000a7fae
- *   rodata_a8300                             @ 0x000a8300
- *   rodata_a831f                             @ 0x000a831f
+ *   rodata_a8300                             @ 0x000a8300   [INLINED -- G6 literal batch]
+ *   rodata_a831f                             @ 0x000a831f   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -69,11 +69,11 @@ int post_notification_cmd_response(uint8_t *context, uint8_t *notification,
         payload == 0 || output == 0) {
         if (*log_level > 1) {
             if (*deferred_logger == 0)
-                log_message(((unsigned long)&rodata_a7ef6) /*=0xa7ef6*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, payload,
+                log_message(((unsigned long)"%s(): input parm invalid !\n") /*=0xa7ef6*/, ((unsigned long)"post_notification_cmd_response") /*=0xa831f*/, payload,
                             *deferred_logger,
                             context, notification, response);
             else
-                debug_print(((unsigned long)&rodata_a7ef6) /*=0xa7ef6*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, payload,
+                debug_print(((unsigned long)"%s(): input parm invalid !\n") /*=0xa7ef6*/, ((unsigned long)"post_notification_cmd_response") /*=0xa831f*/, payload,
                               *deferred_logger,
                               context, notification, response);
         }
@@ -82,11 +82,11 @@ int post_notification_cmd_response(uint8_t *context, uint8_t *notification,
 
     if (*log_level > 2) {
         if (*deferred_logger == 0)
-            log_message(((unsigned long)&rodata_a7f12) /*=0xa7f12*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, command->opcode,
+            log_message(((unsigned long)"%s(): BLE_REQ_POST_NOTIFICATION_MSG source:%d\n") /*=0xa7f12*/, ((unsigned long)"post_notification_cmd_response") /*=0xa831f*/, command->opcode,
                         *deferred_logger,
                         context, notification, response);
         else
-            debug_print(((unsigned long)&rodata_a7f12) /*=0xa7f12*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, command->opcode,
+            debug_print(((unsigned long)"%s(): BLE_REQ_POST_NOTIFICATION_MSG source:%d\n") /*=0xa7f12*/, ((unsigned long)"post_notification_cmd_response") /*=0xa831f*/, command->opcode,
                           *deferred_logger,
                           context, notification, response);
     }
@@ -105,10 +105,10 @@ int post_notification_cmd_response(uint8_t *context, uint8_t *notification,
 
         if (*log_level > 2) {
             if (*deferred_logger == 0)
-                log_message(((unsigned long)&rodata_a7f41) /*=0xa7f41*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, state + 8, state + 0x19,
+                log_message(((unsigned long)"%s(): schedule_notif#title:%s, desc:%s, ts:%d, date:%s\n") /*=0xa7f41*/, ((unsigned long)"post_notification_cmd_response") /*=0xa831f*/, state + 8, state + 0x19,
                             *(uint32_t *)state, notification + 0x194);
             else
-                debug_print(((unsigned long)&rodata_a7f41) /*=0xa7f41*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, state + 8,
+                debug_print(((unsigned long)"%s(): schedule_notif#title:%s, desc:%s, ts:%d, date:%s\n") /*=0xa7f41*/, ((unsigned long)"post_notification_cmd_response") /*=0xa831f*/, state + 8,
                               state + 0x19, *(uint32_t *)state,
                               notification + 0x194);
         }
@@ -117,11 +117,11 @@ int post_notification_cmd_response(uint8_t *context, uint8_t *notification,
             if (*log_level < 1)
                 return 0;
             if (*deferred_logger != 0) {
-                debug_print(((unsigned long)&rodata_a7f79) /*=0xa7f79*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, ((unsigned long)&rodata_a8300) /*=0xa8300*/,
+                debug_print(((unsigned long)"%s(): [%s-%d] invliad  message len, data_len is %d\n\n") /*=0xa7f79*/, ((unsigned long)"post_notification_cmd_response") /*=0xa831f*/, ((unsigned long)"post_notification_cmd_response") /*=0xa8300*/,
                               0x158u, command->length, notification, response);
                 return 0;
             }
-            log_message(((unsigned long)&rodata_a7f79) /*=0xa7f79*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, ((unsigned long)&rodata_a8300) /*=0xa8300*/, 0x158u,
+            log_message(((unsigned long)"%s(): [%s-%d] invliad  message len, data_len is %d\n\n") /*=0xa7f79*/, ((unsigned long)"post_notification_cmd_response") /*=0xa831f*/, ((unsigned long)"post_notification_cmd_response") /*=0xa8300*/, 0x158u,
                         command->length, notification, response);
             return 0;
         }
@@ -142,15 +142,15 @@ int post_notification_cmd_response(uint8_t *context, uint8_t *notification,
     if (response->opcode == 4) {
         if (*log_level > 2) {
             if (*deferred_logger == 0)
-                log_message(((unsigned long)&rodata_a7fae) /*=0xa7fae*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/);
+                log_message(((unsigned long)&rodata_a7fae) /*=0xa7fae*/, ((unsigned long)"post_notification_cmd_response") /*=0xa831f*/);
             else
-                debug_print(((unsigned long)&rodata_a7fae) /*=0xa7fae*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/);
+                debug_print(((unsigned long)&rodata_a7fae) /*=0xa7fae*/, ((unsigned long)"post_notification_cmd_response") /*=0xa831f*/);
         }
     } else if (response->opcode == 6 && *log_level > 2) {
         if (*deferred_logger == 0)
-            log_message(0x000a7fe3u, ((unsigned long)&rodata_a831f) /*=0xa831f*/);
+            log_message(0x000a7fe3u, ((unsigned long)"post_notification_cmd_response") /*=0xa831f*/);
         else
-            debug_print(0x000a7fe3u, ((unsigned long)&rodata_a831f) /*=0xa831f*/);
+            debug_print(0x000a7fe3u, ((unsigned long)"post_notification_cmd_response") /*=0xa831f*/);
     }
 
     *(uint32_t *)output = read_u32((const void *)((unsigned long)&rodata_a1f49) /*=0xa1f49*/);

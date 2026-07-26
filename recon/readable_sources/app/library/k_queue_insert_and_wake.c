@@ -15,12 +15,12 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   z_handle_obj_poll_events                 <= FUN_0008688e @ 0x0008688e
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00072674 @ 0x72674  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -64,8 +64,8 @@ unsigned int k_queue_insert_and_wake(unsigned int *param_1, unsigned int *param_
   InstructionSynchronizationBarrier(0xf);
   iVar2 = z_spin_lock_valid(puVar5);
   if (iVar2 == 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
-    printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, puVar5);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
+    printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/, puVar5);
     uVar6 = 0x72;
 control_label_726b6:
     assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, uVar6);
@@ -95,8 +95,8 @@ control_label_726b6:
         InstructionSynchronizationBarrier(0xf);
         return 0xfffffff4;
       }
-      printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f08f4) /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0);
-      printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, puVar5);
+      printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0);
+      printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/, puVar5);
       uVar6 = 0xf0;
       goto control_label_726b6;
     }

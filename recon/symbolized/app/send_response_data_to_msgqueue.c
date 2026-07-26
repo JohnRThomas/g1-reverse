@@ -9,9 +9,9 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef01c                             @ 0x000ef01c
- *   rodata_ef058                             @ 0x000ef058
- *   rodata_ef750                             @ 0x000ef750
+ *   rodata_ef01c                             @ 0x000ef01c   [INLINED -- G6 literal batch]
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
+ *   rodata_ef750                             @ 0x000ef750   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_dashboard_response_msgq                @ 0x2000392c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -47,13 +47,13 @@ unsigned int send_response_data_to_msgqueue(void *param_1, unsigned int param_2)
         if (iVar3 == 0) {
             return 0;
         }
-        log_message(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_ef750) /*=0xef750*/);
+        log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/, ((unsigned long)"send_response_data_to_msgqueue") /*=0xef750*/);
     } else {
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_ef01c) /*=0xef01c*/, ((unsigned long)&rodata_ef750) /*=0xef750*/, 0x14);
+                log_message(((unsigned long)"%s(): send data length more than %d,can't load it,exit ...\n") /*=0xef01c*/, ((unsigned long)"send_response_data_to_msgqueue") /*=0xef750*/, 0x14);
             } else {
-                debug_print(((unsigned long)&rodata_ef01c) /*=0xef01c*/, ((unsigned long)&rodata_ef750) /*=0xef750*/, 0x14);
+                debug_print(((unsigned long)"%s(): send data length more than %d,can't load it,exit ...\n") /*=0xef01c*/, ((unsigned long)"send_response_data_to_msgqueue") /*=0xef750*/, 0x14);
             }
         }
     }

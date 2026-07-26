@@ -22,9 +22,9 @@
  *   rodata_a0a7b                             @ 0x000a0a7b
  *   rodata_a2768                             @ 0x000a2768
  *   rodata_a2795                             @ 0x000a2795
- *   rodata_a27b1                             @ 0x000a27b1
+ *   rodata_a27b1                             @ 0x000a27b1   [INLINED -- G6 literal batch]
  *   rodata_a28d4                             @ 0x000a28d4
- *   rodata_a39ef                             @ 0x000a39ef
+ *   rodata_a39ef                             @ 0x000a39ef   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -73,8 +73,8 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
         if (((param_1[1] == 1) || (iVar6 = get_device_info(), *(volatile char *)(iVar6 + 1) == '\b')) ||
             (iVar6 = get_device_info(), *(volatile char *)(iVar6 + 0xfea) == '\f')) {
             if (2 < *piVar1) {
-                if (*piVar2 == 0) log_message(((unsigned long)&rodata_a2768) /*=0xa2768*/, ((unsigned long)&rodata_a39ef) /*=0xa39ef*/, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
-                else debug_print(((unsigned long)&rodata_a2768) /*=0xa2768*/, ((unsigned long)&rodata_a39ef) /*=0xa39ef*/, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
+                if (*piVar2 == 0) log_message(((unsigned long)&rodata_a2768) /*=0xa2768*/, ((unsigned long)"process_for_new_message_come_on") /*=0xa39ef*/, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
+                else debug_print(((unsigned long)&rodata_a2768) /*=0xa2768*/, ((unsigned long)"process_for_new_message_come_on") /*=0xa39ef*/, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
             }
             update_persist_task_status_to_idle(param_1);
             *param_4 = ((unsigned long)&rodata_a2795) /*=0xa2795*/;
@@ -92,8 +92,8 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
         }
         if (*(volatile char *)(param_2 + 1) != '\x05') {
             if (*piVar1 < 1) return 0xb;
-            if (*piVar2 != 0) { debug_print(((unsigned long)&rodata_a27b1) /*=0xa27b1*/, ((unsigned long)&rodata_a39ef) /*=0xa39ef*/, (uint)*(volatile byte *)(param_2 + 1), *piVar2); return 0xb; }
-            log_message(((unsigned long)&rodata_a27b1) /*=0xa27b1*/, ((unsigned long)&rodata_a39ef) /*=0xa39ef*/, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
+            if (*piVar2 != 0) { debug_print(((unsigned long)"%s(): goto next screen, new screen %d !\r\n\n") /*=0xa27b1*/, ((unsigned long)"process_for_new_message_come_on") /*=0xa39ef*/, (uint)*(volatile byte *)(param_2 + 1), *piVar2); return 0xb; }
+            log_message(((unsigned long)"%s(): goto next screen, new screen %d !\r\n\n") /*=0xa27b1*/, ((unsigned long)"process_for_new_message_come_on") /*=0xa39ef*/, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
             return 0xb;
         }
         if ((*param_3 == '\x02') || (param_1[0xfea] == 0xb)) {

@@ -28,7 +28,7 @@
  * address symbols (name @ address):
  *   ADDR_l2cap_disconnect_tx_chan_THUMB      @ 0x00081a61
  *   ADDR_l2cap_chan_disconnected_cb_THUMB    @ 0x00081a77
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3f55                             @ 0x000f3f55
  *   rodata_f3f86                             @ 0x000f3f86
  */
@@ -137,7 +137,7 @@ int l2cap_chan_le_send_seg(transfer_t *transfer, packet_t *source, uint32_t rese
         if (transfer->ops->allocate != 0) {
             packet = transfer->ops->allocate(transfer);
             if (packet == 0) {
-                printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f3f86) /*=0xf3f86*/,
+                printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f3f86) /*=0xf3f86*/,
                              ((unsigned long)&rodata_f3f55) /*=0xf3f55*/, 0x70du);
                 assert_post_action(((unsigned long)&rodata_f3f55) /*=0xf3f55*/, 0x70du);
                 return -11;

@@ -18,9 +18,9 @@
  *   ui_raster_height_task                    <= FUN_000430c0 @ 0x000430c0
  *   ui_set_imu_pitch_task                    <= FUN_00046b80 @ 0x00046b80
  * address symbols (name @ address):
- *   rodata_ef784                             @ 0x000ef784
- *   rodata_ef7a0                             @ 0x000ef7a0
- *   rodata_f01eb                             @ 0x000f01eb
+ *   rodata_ef784                             @ 0x000ef784   [INLINED -- G6 literal batch]
+ *   rodata_ef7a0                             @ 0x000ef7a0   [INLINED -- G6 literal batch]
+ *   rodata_f01eb                             @ 0x000f01eb   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_2000a098                               @ 0x2000a098
@@ -50,13 +50,13 @@ extern int ui_set_imu_pitch_task(int,int,int);
 
 #define DBG1(ID) do { \
     int sink = *p_7554; \
-    if (sink == 0) log_message(0xef784, 0xf01eb, (ID), sink); \
-    else debug_print(0xef784, 0xf01eb, (ID), sink); \
+    if (sink == 0) log_message(((unsigned long)"%s(): enter screen_id = %d\n"), ((unsigned long)"ui_refalsh_warp"), (ID), sink); \
+    else debug_print(((unsigned long)"%s(): enter screen_id = %d\n"), ((unsigned long)"ui_refalsh_warp"), (ID), sink); \
 } while (0)
 #define DBG2(ID) do { \
     int sink = *p_7554; \
-    if (sink == 0) log_message(0xef7a0, 0xf01eb, (ID), sink); \
-    else debug_print(0xef7a0, 0xf01eb, (ID), sink); \
+    if (sink == 0) log_message(((unsigned long)"%s(): exit screen_id = %d\n"), ((unsigned long)"ui_refalsh_warp"), (ID), sink); \
+    else debug_print(((unsigned long)"%s(): exit screen_id = %d\n"), ((unsigned long)"ui_refalsh_warp"), (ID), sink); \
 } while (0)
 #define NORMAL(H,ID) do{ \
     if(*p_230c > 2) DBG1(ID); \

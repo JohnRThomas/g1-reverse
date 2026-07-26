@@ -9,9 +9,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f5268                             @ 0x000f5268
- *   rodata_f52ac                             @ 0x000f52ac
+ *   rodata_f52ac                             @ 0x000f52ac   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005e9d0 @ 0x5e9d0  (parity: 300/300 trials, PROVEN) */
 
@@ -24,7 +24,7 @@ int bt_keys_get_type(int param_1,int param_2,int param_3,int param_4)
 {
   int iVar1;
   if (param_3 == 0) {
-    printk(0x99cbd,0xf52ac,0xf5268,0xd2,param_4);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"addr != ((void *)0)"),0xf5268,0xd2,param_4);
     assert_post_action(0xf5268,0xd2);
   }
   iVar1 = bt_keys_find();

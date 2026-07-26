@@ -19,12 +19,12 @@
  *   z_handle_obj_poll_events                 <= FUN_0008688e @ 0x0008688e
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f53ff                             @ 0x000f53ff
  *   rodata_f7df6                             @ 0x000f7df6
  *   rodata_f80cc                             @ 0x000f80cc
@@ -77,8 +77,8 @@ unsigned k_msgq_put(int param_1, unsigned param_2, int param_3, int param_4)
         iVar4 = param_1; uVar2 = param_2; iVar9 = param_3;
         iVar1 = z_spin_lock_valid(iVar6);
         if(iVar1 == 0){
-            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72, iVar4, uVar2, iVar9);
-            printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, iVar6);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72, iVar4, uVar2, iVar9);
+            printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/, iVar6);
             uVar2 = 0x72; uVar7 = ((unsigned long)&rodata_f08c7) /*=0xf08c7*/;
         } else {
             z_spin_lock_set_owner(iVar6);
@@ -93,7 +93,7 @@ unsigned k_msgq_put(int param_1, unsigned param_2, int param_3, int param_4)
                 }
                 uVar3 = *(unsigned*)(param_1+0x20);
                 if(uVar3 < *(unsigned*)(param_1+0x14) || *(unsigned*)(param_1+0x18) <= uVar3){
-                    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f80ee) /*=0xf80ee*/, ((unsigned long)&rodata_f80cc) /*=0xf80cc*/, 0x90, iVar4, uVar2, iVar9);
+                    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f80ee) /*=0xf80ee*/, ((unsigned long)&rodata_f80cc) /*=0xf80cc*/, 0x90, iVar4, uVar2, iVar9);
                     uVar2 = 0x90; uVar7 = ((unsigned long)&rodata_f80cc) /*=0xf80cc*/;
                     goto control_label_00072134;
                 }
@@ -122,12 +122,12 @@ unsigned k_msgq_put(int param_1, unsigned param_2, int param_3, int param_4)
                 isb();
                 return uVar5;
             }
-            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f08f4) /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0, iVar4, uVar2, iVar9);
-            printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, iVar6);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0, iVar4, uVar2, iVar9);
+            printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/, iVar6);
             uVar2 = 0xf0; uVar7 = ((unsigned long)&rodata_f08c7) /*=0xf08c7*/;
         }
     } else {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f7df6) /*=0xf7df6*/, ((unsigned long)&rodata_f80cc) /*=0xf80cc*/, 0x76, param_1, param_2, param_3);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f7df6) /*=0xf7df6*/, ((unsigned long)&rodata_f80cc) /*=0xf80cc*/, 0x76, param_1, param_2, param_3);
         printk(((unsigned long)&rodata_f53ff) /*=0xf53ff*/);
         uVar2 = 0x76; uVar7 = ((unsigned long)&rodata_f80cc) /*=0xf80cc*/;
     }

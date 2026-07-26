@@ -7,7 +7,7 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f820f                             @ 0x000f820f
  *   rodata_f824d                             @ 0x000f824d
  */
@@ -21,7 +21,7 @@ void k_work_queue_init(int param_1, unsigned int param_2, unsigned int param_3, 
 {
   unsigned int r0 = (unsigned int)param_1;
   if (param_1 == 0) {
-    printk(0x99cbd, 0xf824d, 0xf820f, 0x2b9);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0xf824d, 0xf820f, 0x2b9);
     r0 = assert_post_action(0xf820f, 0x2b9);
   }
   memset_bytes(r0, 0, 0xf8, param_4, param_4);

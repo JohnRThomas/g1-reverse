@@ -7,7 +7,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f79c8                             @ 0x000f79c8
  *   rodata_f7a3f                             @ 0x000f7a3f
  *   m_dppi_channels                          @ 0x2000b41c
@@ -25,7 +25,7 @@ void nrfx_dppi_channel_slot_reset(int *param_1, int param_2, unsigned int param_
     int idxVal;
     if (*(volatile char*)(tbl+idx*8) != 2) {
         unsigned long long r;
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f7a3f) /*=0xf7a3f*/,((unsigned long)&rodata_f79c8) /*=0xf79c8*/,0xb8);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f7a3f) /*=0xf7a3f*/,((unsigned long)&rodata_f79c8) /*=0xf79c8*/,0xb8);
         r = assert_post_action(((unsigned long)&rodata_f79c8) /*=0xf79c8*/,0xb8);
         basePtr = (int*)(unsigned int)(r & 0xffffffffUL);
         idxVal = (int)(unsigned int)(r >> 32);

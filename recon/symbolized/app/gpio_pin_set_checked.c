@@ -8,9 +8,9 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
  *   rodata_99c53                             @ 0x00099c53
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_99de0                             @ 0x00099de0
- *   rodata_99e1e                             @ 0x00099e1e
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_99de0                             @ 0x00099de0   [INLINED -- G6 literal batch]
+ *   rodata_99e1e                             @ 0x00099e1e   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00017768 @ 0x17768  (parity: 300/300 trials, PROVEN) */
 
@@ -24,8 +24,8 @@ void gpio_pin_set_checked(int param_1, unsigned int param_2, unsigned int param_
 
   uVar1 = 1u << (param_2 & 0xff);
   if ((uVar1 & **(volatile unsigned int **)(param_1 + 4)) == 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_99de0) /*=0x99de0*/, ((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x64f);
-    printk(((unsigned long)&rodata_99e1e) /*=0x99e1e*/, 0, 0, 0);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"(cfg->port_pin_mask & (gpio_port_pins_t)(1UL << (pin))) != 0U") /*=0x99de0*/, ((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x64f);
+    printk(((unsigned long)"\tUnsupported pin\n") /*=0x99e1e*/, 0, 0, 0);
     assert_post_action(((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x64f);
   }
   if ((uVar1 & **(volatile unsigned int **)(param_1 + 0x10)) != 0) {

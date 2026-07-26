@@ -10,10 +10,10 @@
  * address symbols (name @ address):
  *   rodata_882a0                             @ 0x000882a0
  *   __settings_handler_static_list_start     @ 0x000882b0
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f0cae                             @ 0x000f0cae
- *   rodata_f0cff                             @ 0x000f0cff
- *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f0cff                             @ 0x000f0cff   [INLINED -- G6 literal batch]
+ *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  *   log_process_timestamp                    @ 0x200056a0
  *   log_backend_count                        @ 0x2000a0d4
  *   log_buffered_cnt                         @ 0x2000a0d8
@@ -49,9 +49,9 @@ int log_process(void)
         struct listener_entry *end = (struct listener_entry *)0x000882b0u;
         while (entry < end) {
             if (end < entry) {
-                printk(0x00099cbdu, 0x000f0cffu,
+                printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"backend <= _log_backend_list_end"),
                              0x000f0caeu, 0x1c5u);
-                printk(0x000f0d20u);
+                printk(((unsigned long)"\tunexpected list end location\n"));
                 assert_post_action(0x000f0caeu, 0x1c5u);
             }
             if (entry->state[5] != 0)

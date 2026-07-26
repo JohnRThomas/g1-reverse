@@ -12,9 +12,9 @@
  *   k_is_in_isr                              <= FUN_00086406 @ 0x00086406
  * address symbols (name @ address):
  *   rodata_10000                             @ 0x00010000
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0f1b                             @ 0x000f0f1b
- *   rodata_f5ad9                             @ 0x000f5ad9
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0f1b                             @ 0x000f0f1b   [INLINED -- G6 literal batch]
+ *   rodata_f5ad9                             @ 0x000f5ad9   [INLINED -- G6 literal batch]
  *   rodata_f7a30                             @ 0x000f7a30
  *   g_2000b084                               @ 0x2000b084
  *   g_2000b094                               @ 0x2000b094
@@ -43,16 +43,16 @@ void clock_control_nrf_on_blocking(uint32_t mode)
         state[3] = 0;
         state[2] = 1;
         if (onoff_request_enqueue(((unsigned long)&g_2000b0b8) /*=0x2000b0b8*/) < 0) {
-            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0f1b) /*=0xf0f1b*/, ((unsigned long)&rodata_f5ad9) /*=0xf5ad9*/, 0x230u);
-            assert_post_action(((unsigned long)&rodata_f5ad9) /*=0xf5ad9*/, 0x230u);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"err >= 0") /*=0xf0f1b*/, ((unsigned long)"WEST_TOPDIR/zephyr/drivers/clock_control/clock_control_nrf.c") /*=0xf5ad9*/, 0x230u);
+            assert_post_action(((unsigned long)"WEST_TOPDIR/zephyr/drivers/clock_control/clock_control_nrf.c") /*=0xf5ad9*/, 0x230u);
         }
     }
 
     if (mode == 0)
         return;
     if (mode > 2) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, ((unsigned long)&rodata_f5ad9) /*=0xf5ad9*/, 0x242u);
-        assert_post_action(((unsigned long)&rodata_f5ad9) /*=0xf5ad9*/, 0x242u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, ((unsigned long)"WEST_TOPDIR/zephyr/drivers/clock_control/clock_control_nrf.c") /*=0xf5ad9*/, 0x242u);
+        assert_post_action(((unsigned long)"WEST_TOPDIR/zephyr/drivers/clock_control/clock_control_nrf.c") /*=0xf5ad9*/, 0x242u);
     }
 
     volatile uint32_t *hw = (volatile uint32_t *)0x50005000u;

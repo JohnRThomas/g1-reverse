@@ -16,7 +16,7 @@
  *   ADDR_sc_restore_THUMB                    @ 0x0005b555
  *   rodata_88128                             @ 0x00088128
  *   rodata_f4aa1                             @ 0x000f4aa1
- *   rodata_f4d88                             @ 0x000f4d88
+ *   rodata_f4d88                             @ 0x000f4d88   [INLINED -- G6 literal batch]
  */
 /* Reconstructed ext5c6c8 @ 0x0005c6c8 (bt_gatt_connected).
  * Raw/address backmap: ext5c6c8/FUN_0005c6c8 @ 0x0005c6c8, extent 0x8e.
@@ -53,7 +53,7 @@ void bt_gatt_connected(uint8_t *connection)
     if (bt_conn_get_security(connection) < data.security) {
         int error = g1_recon_bt_conn_set_security(connection, data.security);
         if (error != 0) {
-            const uint32_t package[3] = { 3U, ((unsigned long)&rodata_f4d88) /*=0xf4d88*/, (uint32_t)error };
+            const uint32_t package[3] = { 3U, ((unsigned long)"Failed to set security for bonded peer (%d)") /*=0xf4d88*/, (uint32_t)error };
             log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1880U, package);
         }
     }

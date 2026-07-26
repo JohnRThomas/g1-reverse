@@ -9,15 +9,15 @@
  *   onboarding_retry_watchdog_update         <= FUN_00040708 @ 0x00040708
  *   k_uptime_get_8                           <= FUN_0007d382 @ 0x0007d382
  * address symbols (name @ address):
- *   rodata_aa611                             @ 0x000aa611
- *   rodata_aa63d                             @ 0x000aa63d
+ *   rodata_aa611                             @ 0x000aa611   [INLINED -- G6 literal batch]
+ *   rodata_aa63d                             @ 0x000aa63d   [INLINED -- G6 literal batch]
  *   rodata_aa661                             @ 0x000aa661
  *   rodata_aa665                             @ 0x000aa665
  *   rodata_aa669                             @ 0x000aa669
  *   rodata_aa66d                             @ 0x000aa66d
  *   rodata_aa671                             @ 0x000aa671
  *   rodata_aa675                             @ 0x000aa675
- *   rodata_aa778                             @ 0x000aa778
+ *   rodata_aa778                             @ 0x000aa778   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_onboarding_step_retry_cnt              @ 0x20004bf0
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -51,10 +51,10 @@ u32 onboarding_ble_process(u32 param_1, u32 param_2, u32 param_3, u32 param_4)
   if (0x17 < *(volatile u8*)(param_3 + 1)) {
     if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
       if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-        log_message(((unsigned long)&rodata_aa611) /*=0xaa611*/, ((unsigned long)&rodata_aa778) /*=0xaa778*/,
+        log_message(((unsigned long)"%s(): ble rcv unknown onboarding action:%d\n") /*=0xaa611*/, ((unsigned long)"onboarding_ble_process") /*=0xaa778*/,
                     (u32)*(volatile u8*)(param_3+1));
       } else {
-        debug_print(((unsigned long)&rodata_aa611) /*=0xaa611*/, ((unsigned long)&rodata_aa778) /*=0xaa778*/,
+        debug_print(((unsigned long)"%s(): ble rcv unknown onboarding action:%d\n") /*=0xaa611*/, ((unsigned long)"onboarding_ble_process") /*=0xaa778*/,
                      (u32)*(volatile u8*)(param_3+1));
       }
     }
@@ -82,10 +82,10 @@ u32 onboarding_ble_process(u32 param_1, u32 param_2, u32 param_3, u32 param_4)
   if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
     ctx = *(volatile u32*)(param_1 + 0x1014);
     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-      log_message(((unsigned long)&rodata_aa63d) /*=0xaa63d*/, ((unsigned long)&rodata_aa778) /*=0xaa778*/,
+      log_message(((unsigned long)"%s(): ble rcv onboarding action:%d\n") /*=0xaa63d*/, ((unsigned long)"onboarding_ble_process") /*=0xaa778*/,
                   (u32)*(volatile u8*)(ctx+2));
     } else {
-      debug_print(((unsigned long)&rodata_aa63d) /*=0xaa63d*/, ((unsigned long)&rodata_aa778) /*=0xaa778*/,
+      debug_print(((unsigned long)"%s(): ble rcv onboarding action:%d\n") /*=0xaa63d*/, ((unsigned long)"onboarding_ble_process") /*=0xaa778*/,
                    (u32)*(volatile u8*)(ctx+2));
     }
   }

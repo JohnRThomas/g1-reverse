@@ -19,8 +19,8 @@
  * address symbols (name @ address):
  *   rodata_a8e98                             @ 0x000a8e98
  *   rodata_aae20                             @ 0x000aae20
- *   rodata_d71ad                             @ 0x000d71ad
- *   rodata_d71e3                             @ 0x000d71e3
+ *   rodata_d71ad                             @ 0x000d71ad   [INLINED -- G6 literal batch]
+ *   rodata_d71e3                             @ 0x000d71e3   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_imu_pitch_task_state                   @ 0x2001cf8f
@@ -100,7 +100,7 @@ unsigned ui_set_imu_pitch_task(int param_1, unsigned param_2, int param_3)
         }
         if(param_3 != 2) return 0;
         if(2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/){
-            if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)&rodata_d71ad) /*=0xd71ad*/,((unsigned long)&rodata_d71e3) /*=0xd71e3*/);
+            if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)"%s(): set_imu_pitch process received exit packet ...\n") /*=0xd71ad*/,((unsigned long)"ui_set_imu_pitch_task") /*=0xd71e3*/);
             else debug_print(0);
         }
         gui_screen_clear(0);
@@ -109,7 +109,7 @@ unsigned ui_set_imu_pitch_task(int param_1, unsigned param_2, int param_3)
         if(param_3 == 1){ set_imu_pitch_reflash(0); return 0; }
         if(param_3 != 2) return 0;
         if(2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/){
-            if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)&rodata_d71ad) /*=0xd71ad*/,((unsigned long)&rodata_d71e3) /*=0xd71e3*/);
+            if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)"%s(): set_imu_pitch process received exit packet ...\n") /*=0xd71ad*/,((unsigned long)"ui_set_imu_pitch_task") /*=0xd71e3*/);
             else debug_print(0);
         }
         gui_screen_fade_out_transition(0);

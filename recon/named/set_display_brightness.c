@@ -9,8 +9,8 @@
  *   save_usr_setting                         <= FUN_0007c28e @ 0x0007c28e
  *   k_msleep_ticks32768_b                    <= FUN_0007d14a @ 0x0007d14a
  * address symbols (name @ address):
- *   rodata_a731c                             @ 0x000a731c
- *   rodata_a7336                             @ 0x000a7336
+ *   rodata_a731c                             @ 0x000a731c   [INLINED -- G6 literal batch]
+ *   rodata_a7336                             @ 0x000a7336   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00032254 @ 0x32254  (parity: 300/300 trials, PROVEN) */
 
@@ -22,9 +22,9 @@ extern void save_usr_setting(int a, int b);
 extern void k_msleep_ticks32768_b(int a);
 unsigned set_display_brightness(int param_1, unsigned param_2, unsigned *param_3, unsigned char *param_4){
     unsigned char stk[0x18];
-    log_message(0x000a731c);
+    log_message(((unsigned long)"join in set_charge_limit\n"));
     if (param_3 == 0 || param_4 == 0){
-        log_message(0x000a7336);
+        log_message(((unsigned long)"set_charge_limit para is NULL\n"));
         return 0xffffffffu;
     }
     volatile unsigned char *puVar5 = (volatile unsigned char*)*param_3;

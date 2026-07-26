@@ -10,7 +10,7 @@
  *   net_pkt_skip                             <= FUN_00086502 @ 0x00086502
  * address symbols (name @ address):
  *   log_module_bt_conn                       @ 0x00088108
- *   rodata_f3bad                             @ 0x000f3bad
+ *   rodata_f3bad                             @ 0x000f3bad   [INLINED -- G6 literal batch]
  *   rodata_f3bd2                             @ 0x000f3bd2
  *   rodata_f3be1                             @ 0x000f3be1
  *   g_bt_conn_tx_pending_cnt                 @ 0x20003a60

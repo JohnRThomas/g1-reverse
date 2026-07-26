@@ -15,7 +15,7 @@
  *   bt_le_adv_set_enable_legacy              <= FUN_000812d2 @ 0x000812d2
  * address symbols (name @ address):
  *   rodata_880f8                             @ 0x000880f8
- *   rodata_f3857                             @ 0x000f3857
+ *   rodata_f3857                             @ 0x000f3857   [INLINED -- G6 literal batch]
  *   g_bt_le_legacy_adv                       @ 0x20002018
  *   g_ble_adv_ctx_flags                      @ 0x20002028
  */
@@ -56,7 +56,7 @@ void legacy_advertising_connection_restart(void)
             int error = bt_id_set_adv_random_addr((void *)((unsigned long)g_bt_le_legacy_adv) /*=0x20002018*/, mode,
                                       directed, &option);
             if (error != 0) {
-                uint32_t package[3] = { 3U, ((unsigned long)&rodata_f3857) /*=0xf3857*/, (uint32_t)error };
+                uint32_t package[3] = { 3U, ((unsigned long)"Controller cannot resume connectable advertising (%d)") /*=0xf3857*/, (uint32_t)error };
                 z_log_msg_runtime_create(((unsigned long)&rodata_880f8) /*=0x880f8*/, 0x1840U, package, 0U);
                 return;
             }

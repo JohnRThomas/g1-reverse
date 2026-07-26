@@ -7,8 +7,8 @@
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_a8d69                             @ 0x000a8d69
- *   rodata_a8e18                             @ 0x000a8e18
+ *   rodata_a8d69                             @ 0x000a8d69   [INLINED -- G6 literal batch]
+ *   rodata_a8e18                             @ 0x000a8e18   [INLINED -- G6 literal batch]
  *   g_pixel4bit_bitpos                       @ 0x20009fc4
  *   g_pixel4bit_row_buf_off                  @ 0x20009fc8
  *   g_pixel4bit_row_buf                      @ 0x20009fcc
@@ -24,7 +24,7 @@ void pixelto4bithex(int param_1,int param_2,unsigned param_3,unsigned param_4){
   if(*piVar1==0){
     int iVar4 = malloc(0x140);
     *piVar1 = iVar4;
-    if(iVar4==0){ log_message(((unsigned long)&rodata_a8d69) /*=0xa8d69*/,((unsigned long)&rodata_a8e18) /*=0xa8e18*/,0xa7,param_4); return; }
+    if(iVar4==0){ log_message(((unsigned long)"[%s-%d]malloc error \n") /*=0xa8d69*/,((unsigned long)"pixelto4bithex") /*=0xa8e18*/,0xa7,param_4); return; }
     memset_bytes(iVar4,0,0x140);
   }
   volatile int *piVar3 = (volatile int*)((unsigned long)&g_pixel4bit_row_buf_off) /*=0x20009fc8*/;

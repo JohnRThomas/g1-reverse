@@ -7,10 +7,10 @@
  *   rodata_88138                             @ 0x00088138
  *   rodata_a8ea0                             @ 0x000a8ea0
  *   rodata_f31a5                             @ 0x000f31a5
- *   rodata_f31a9                             @ 0x000f31a9
- *   rodata_f31b8                             @ 0x000f31b8
- *   rodata_f31c9                             @ 0x000f31c9
- *   rodata_f3207                             @ 0x000f3207
+ *   rodata_f31a9                             @ 0x000f31a9   [INLINED -- G6 literal batch]
+ *   rodata_f31b8                             @ 0x000f31b8   [INLINED -- G6 literal batch]
+ *   rodata_f31c9                             @ 0x000f31c9   [INLINED -- G6 literal batch]
+ *   rodata_f3207                             @ 0x000f3207   [INLINED -- G6 literal batch]
  *   g_ble_dev_state                          @ 0x20002000
  *   g_ble_dev_ncmd_sem                       @ 0x200020d4
  */

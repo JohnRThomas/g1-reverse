@@ -7,7 +7,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f85bb                             @ 0x000f85bb
  */
@@ -22,7 +22,7 @@ void z_abort_thread_timeout(int param_1)
     int v8 = *(volatile int*)(param_1 + 8);
     int r0;
     if (v8 == 0) {
-        printk(0x99cbdUL, 0xf85bbUL, 0xf82f4UL, 0x2d2UL);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0xf85bbUL, 0xf82f4UL, 0x2d2UL);
         unsigned long long rv = assert_post_action(0xf82f4UL, 0x2d2UL);
         r0 = (int)rv;
     } else {

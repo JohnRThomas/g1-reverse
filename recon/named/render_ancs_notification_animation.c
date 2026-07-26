@@ -10,9 +10,9 @@
  *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
  *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  * address symbols (name @ address):
- *   rodata_a8bcd                             @ 0x000a8bcd
+ *   rodata_a8bcd                             @ 0x000a8bcd   [INLINED -- G6 literal batch]
  *   rodata_a8c57                             @ 0x000a8c57
- *   rodata_a8cd1                             @ 0x000a8cd1
+ *   rodata_a8cd1                             @ 0x000a8cd1   [INLINED -- G6 literal batch]
  *   rodata_aae20                             @ 0x000aae20
  *   g_log_use_alt_sink                       @ 0x20007554
  */

@@ -5,7 +5,7 @@
  *   gatt_discover                            <= FUN_000187e8 @ 0x000187e8
  *   discovery_error_found_cb_gatt            <= FUN_00018894 @ 0x00018894
  * address symbols (name @ address):
- *   rodata_9a688                             @ 0x0009a688
+ *   rodata_9a688                             @ 0x0009a688   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00018894 @ 0x18894  (parity: 300/300 trials, PROVEN) */
 

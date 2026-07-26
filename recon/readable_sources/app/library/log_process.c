@@ -14,10 +14,10 @@
  * address symbols (name @ address):
  *   rodata_882a0                             @ 0x000882a0
  *   __settings_handler_static_list_start     @ 0x000882b0
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f0cae                             @ 0x000f0cae
- *   rodata_f0cff                             @ 0x000f0cff
- *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f0cff                             @ 0x000f0cff   [INLINED -- G6 literal batch]
+ *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  *   log_process_timestamp                    @ 0x200056a0
  *   log_backend_count                        @ 0x2000a0d4
  *   log_buffered_cnt                         @ 0x2000a0d8
@@ -53,9 +53,9 @@ int log_process(void)
         struct listener_entry *end = (struct listener_entry *)((unsigned long)&__settings_handler_static_list_start) /*=0x882b0*/;
         while (entry < end) {
             if (end < entry) {
-                printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0cff) /*=0xf0cff*/,
+                printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"backend <= _log_backend_list_end") /*=0xf0cff*/,
                              ((unsigned long)&rodata_f0cae) /*=0xf0cae*/, 0x1c5u);
-                printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/);
+                printk(((unsigned long)"\tunexpected list end location\n") /*=0xf0d20*/);
                 assert_post_action(((unsigned long)&rodata_f0cae) /*=0xf0cae*/, 0x1c5u);
             }
             if (entry->state[5] != 0)

@@ -9,9 +9,9 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_9a964                             @ 0x0009a964
- *   rodata_9a981                             @ 0x0009a981
- *   rodata_9b19d                             @ 0x0009b19d
+ *   rodata_9a964                             @ 0x0009a964   [INLINED -- G6 literal batch]
+ *   rodata_9a981                             @ 0x0009a981   [INLINED -- G6 literal batch]
+ *   rodata_9b19d                             @ 0x0009b19d   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_ancs_msgq                              @ 0x20006a6c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -37,18 +37,18 @@ int enqueue_ancs(unsigned int param_1)
         if (*(volatile int*)(((unsigned long)&g_ancs_msgq) /*=0x20006a6c*/ + 0x24) == 10) {
             k_msgq_get(((unsigned long)&g_ancs_msgq) /*=0x20006a6c*/, buf, 0, 0);
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_9a964) /*=0x9a964*/);
+                log_message(((unsigned long)"enqueue ancs drop package! \n") /*=0x9a964*/);
             } else {
-                debug_print(((unsigned long)&rodata_9a964) /*=0x9a964*/);
+                debug_print(((unsigned long)"enqueue ancs drop package! \n") /*=0x9a964*/);
             }
         }
         memcpy(buf, param_1, 0x1b4);
         iVar1 = k_msgq_put(((unsigned long)&g_ancs_msgq) /*=0x20006a6c*/, buf, 0, 0);
         if ((iVar1 != 0) && (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_9a981) /*=0x9a981*/, ((unsigned long)&rodata_9b19d) /*=0x9b19d*/);
+                log_message(((unsigned long)"%s(): en ancs F\n") /*=0x9a981*/, ((unsigned long)"enqueue_ancs") /*=0x9b19d*/);
             } else {
-                debug_print(((unsigned long)&rodata_9a981) /*=0x9a981*/, ((unsigned long)&rodata_9b19d) /*=0x9b19d*/);
+                debug_print(((unsigned long)"%s(): en ancs F\n") /*=0x9a981*/, ((unsigned long)"enqueue_ancs") /*=0x9b19d*/);
             }
         }
     }

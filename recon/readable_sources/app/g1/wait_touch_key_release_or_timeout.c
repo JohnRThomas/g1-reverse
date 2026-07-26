@@ -12,7 +12,7 @@
  *   set_message_pending_state                <= FUN_0003443c @ 0x0003443c
  *   is_msg_expiration                        <= FUN_0003444c @ 0x0003444c
  * address symbols (name @ address):
- *   rodata_a26cb                             @ 0x000a26cb
+ *   rodata_a26cb                             @ 0x000a26cb   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  */
 /* Reconstructed FUN_0002c2b0 @ 0x2c2b0  (parity: 300/300 trials, PROVEN) */
@@ -29,7 +29,7 @@ void wait_touch_key_release_or_timeout(void){
   volatile int *piVar1 = (volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
   while(get_message_pending_state()==5 && is_msg_expiration()==2){
     if(*piVar1==0){
-      log_message(((unsigned long)&rodata_a26cb) /*=0xa26cb*/);
+      log_message(((unsigned long)"[csh_debug_msg] check showing msg timeout \n") /*=0xa26cb*/);
     } else {
       debug_print();
     }

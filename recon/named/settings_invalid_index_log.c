@@ -6,7 +6,7 @@
  *   gatt_dm_log_helper                       <= FUN_0007f406 @ 0x0007f406
  * address symbols (name @ address):
  *   rodata_88130                             @ 0x00088130
- *   rodata_f11a5                             @ 0x000f11a5
+ *   rodata_f11a5                             @ 0x000f11a5   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0004e8c0 @ 0x4e8c0
  * CFG_VERIFY_CALL_ARITIES=3

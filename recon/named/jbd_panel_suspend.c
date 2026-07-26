@@ -5,8 +5,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   projector_send_command                   <= FUN_0007d82e @ 0x0007d82e
  * address symbols (name @ address):
- *   rodata_d73a1                             @ 0x000d73a1
- *   rodata_d7409                             @ 0x000d7409
+ *   rodata_d73a1                             @ 0x000d73a1   [INLINED -- G6 literal batch]
+ *   rodata_d7409                             @ 0x000d7409   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -23,9 +23,9 @@ unsigned int jbd_panel_suspend(unsigned int param_1, unsigned int param_2, unsig
     if (*(volatile int*)0x2000230cUL > 2) {
         unsigned int sink = *(volatile unsigned int*)0x20007554UL;
         if (sink == 0) {
-            log_message(0x000d73a1,0x000d7409,param_3,sink,param_1,param_2);
+            log_message(((unsigned long)"%s(): SPI_DEEP_POWER_DOWN\n"),((unsigned long)"jbd_panel_suspend"),param_3,sink,param_1,param_2);
         } else {
-            debug_print(0x000d73a1,0x000d7409,param_3,sink,param_1,param_2);
+            debug_print(((unsigned long)"%s(): SPI_DEEP_POWER_DOWN\n"),((unsigned long)"jbd_panel_suspend"),param_3,sink,param_1,param_2);
         }
     }
     const unsigned char command = 0xff;

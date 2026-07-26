@@ -15,8 +15,8 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   strncpy_zero_pad                         <= FUN_0008705a @ 0x0008705a
  * address symbols (name @ address):
- *   rodata_9ad7c                             @ 0x0009ad7c
- *   rodata_9ad86                             @ 0x0009ad86
+ *   rodata_9ad7c                             @ 0x0009ad7c   [INLINED -- G6 literal batch]
+ *   rodata_9ad86                             @ 0x0009ad86   [INLINED -- G6 literal batch]
  *   rodata_9adaa                             @ 0x0009adaa
  *   g_ancs_notif_evt_id_latest               @ 0x20006aac
  *   g_20006ab2                               @ 0x20006ab2
@@ -72,7 +72,7 @@ void ancs_notification_forward(uint32_t channel)
     local.notification.uid[0] = 1;
   }
   local.notification.device_state = *(volatile uint32_t*)((unsigned long)&g_ancs_notif_evt_id_latest) /*=0x20006aac*/;
-  log_notification_fields_debug(((unsigned long)&rodata_9ad7c) /*=0x9ad7c*/, &local.notification);
+  log_notification_fields_debug(((unsigned long)"FROM:ancs") /*=0x9ad7c*/, &local.notification);
 
   if (local.notification.status < 2) {
     kind = is_on_whitelist_by_identifier(local.notification.text);
@@ -84,9 +84,9 @@ void ancs_notification_forward(uint32_t channel)
           return;
         }
         if (*(volatile uint32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-          log_message(((unsigned long)&rodata_9ad86) /*=0x9ad86*/, local.notification.text);
+          log_message(((unsigned long)"blocked! app(%s) not in whitelist \n") /*=0x9ad86*/, local.notification.text);
         } else {
-          debug_print(((unsigned long)&rodata_9ad86) /*=0x9ad86*/, local.notification.text);
+          debug_print(((unsigned long)"blocked! app(%s) not in whitelist \n") /*=0x9ad86*/, local.notification.text);
         }
         send_data_in_ble_chunks(&local.notification);
         return;

@@ -4,8 +4,8 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  * address symbols (name @ address):
- *   rodata_a3cb9                             @ 0x000a3cb9
- *   rodata_a3cda                             @ 0x000a3cda
+ *   rodata_a3cb9                             @ 0x000a3cb9   [INLINED -- G6 literal batch]
+ *   rodata_a3cda                             @ 0x000a3cda   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_opt3007_dev                            @ 0x20007b6c

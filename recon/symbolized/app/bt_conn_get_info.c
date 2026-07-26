@@ -8,9 +8,9 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   bt_conn_enc_key_size                     <= FUN_0008148a @ 0x0008148a
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3a5d                             @ 0x000f3a5d
- *   rodata_f3de7                             @ 0x000f3de7
+ *   rodata_f3de7                             @ 0x000f3de7   [INLINED -- G6 literal batch]
  *   rodata_f3e4e                             @ 0x000f3e4e
  *   rodata_f7a30                             @ 0x000f7a30
  *   g_ble_dev_state                          @ 0x20002000
@@ -31,8 +31,8 @@ uint32_t bt_conn_get_info(int param_1, uint8_t *param_2v){
     p2[2] = p1[8];
     uint32_t uVar5 = p1[0xd];
     if (uVar5 > 8){
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f7a30) /*=0xf7a30*/,((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/,0x9b0);
-        printk(((unsigned long)&rodata_f3de7) /*=0xf3de7*/, uVar5);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f7a30) /*=0xf7a30*/,((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/,0x9b0);
+        printk(((unsigned long)"\tInvalid conn state %u\n") /*=0xf3de7*/, uVar5);
         uint64_t re = assert_post_action(((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/, 0x9b0);
         pb = (volatile uint8_t*)(uint32_t)(re >> 32);
         pm = (volatile uint8_t*)((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/;   /* r2 clobbered to last e2fa arg */

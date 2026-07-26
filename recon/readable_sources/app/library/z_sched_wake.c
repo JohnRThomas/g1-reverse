@@ -13,12 +13,12 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   sched_spinlock                           @ 0x2000b490
  */
 /* Reconstructed FUN_00074a54 @ 0x74a54  (parity: 300/300 trials, PROVEN) */
@@ -42,8 +42,8 @@ int z_sched_wake(int *param_1, uint32_t param_2, uint32_t param_3, uint32_t para
   __asm volatile("isb sy");
   iVar3 = z_spin_lock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
   if (iVar3 == 0){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72, param_4);
-    printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, ((unsigned long)&sched_spinlock) /*=0x2000b490*/);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72, param_4);
+    printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/, ((unsigned long)&sched_spinlock) /*=0x2000b490*/);
     assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
   } else {
     z_spin_lock_set_owner(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
@@ -63,8 +63,8 @@ int z_sched_wake(int *param_1, uint32_t param_2, uint32_t param_3, uint32_t para
       __asm volatile("isb sy");
       return iVar3;
     }
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f08f4) /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0, param_4);
-    printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, ((unsigned long)&sched_spinlock) /*=0x2000b490*/);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0, param_4);
+    printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/, ((unsigned long)&sched_spinlock) /*=0x2000b490*/);
     assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0);
   }
   return iVar3;

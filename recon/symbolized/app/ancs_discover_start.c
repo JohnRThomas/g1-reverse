@@ -7,7 +7,7 @@
  *   gatt_dm_start                            <= FUN_0004ed8c @ 0x0004ed8c
  * address symbols (name @ address):
  *   rodata_88a00                             @ 0x00088a00
- *   rodata_9a401                             @ 0x0009a401
+ *   rodata_9a401                             @ 0x0009a401   [INLINED -- G6 literal batch]
  *   g_ancs_discover_params                   @ 0x20006abc
  */
 /* Reconstructed FUN_000182c8 @ 0x182c8  (parity: 300/300 trials, PROVEN) */
@@ -23,6 +23,6 @@ void ancs_discover_start(unsigned int param_1, unsigned short param_2, unsigned 
     request = 0x18010000U | (param_2 & 0xff00U);
     iVar1 = gatt_dm_start(param_1, &request, ((unsigned long)&rodata_88a00) /*=0x88a00*/, ((unsigned long)&g_ancs_discover_params) /*=0x20006abc*/, param_1);
     if (iVar1 != 0) {
-        log_message(((unsigned long)&rodata_9a401) /*=0x9a401*/, iVar1);
+        log_message(((unsigned long)"Failed to start discovery for GATT Service (err %d)\n") /*=0x9a401*/, iVar1);
     }
 }

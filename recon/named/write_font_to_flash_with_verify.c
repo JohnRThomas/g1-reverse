@@ -11,10 +11,10 @@
  * address symbols (name @ address):
  *   rodata_87bf0                             @ 0x00087bf0
  *   rodata_9e3e7                             @ 0x0009e3e7
- *   rodata_9e403                             @ 0x0009e403
+ *   rodata_9e403                             @ 0x0009e403   [INLINED -- G6 literal batch]
  *   rodata_9e430                             @ 0x0009e430
  *   rodata_9e44d                             @ 0x0009e44d
- *   rodata_9e46a                             @ 0x0009e46a
+ *   rodata_9e46a                             @ 0x0009e46a   [INLINED -- G6 literal batch]
  *   rodata_a40ec                             @ 0x000a40ec
  */
 /* Reconstructed FUN_00022834 @ 0x22834  (parity: 300/300 trials, PROVEN) */
@@ -56,7 +56,7 @@ int write_font_to_flash_with_verify(int param_1, int param_2, int param_3)
       if (iVar3 == 0) {
         iVar3 = memcmp(param_2, (int)&local_1028, param_3);
         if (iVar3 == 0) {
-          log_message(0x9e403);
+          log_message(((unsigned long)"write font data and read data is same, exit\n"));
           return 0;
         }
         iVar3 = get_device_info();
@@ -81,7 +81,7 @@ int write_font_to_flash_with_verify(int param_1, int param_2, int param_3)
               if (iVar3 == 0) {
                 return 0;
               }
-              log_message(0x9e46a);
+              log_message(((unsigned long)"flash verify font failed\n"));
               iVar3 = 1;
               goto LAB_874;
             }

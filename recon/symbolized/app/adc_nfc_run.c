@@ -8,9 +8,9 @@
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  * address symbols (name @ address):
  *   rodata_87c20                             @ 0x00087c20
- *   rodata_9f104                             @ 0x0009f104
- *   rodata_9f120                             @ 0x0009f120
- *   rodata_9f1c3                             @ 0x0009f1c3
+ *   rodata_9f104                             @ 0x0009f104   [INLINED -- G6 literal batch]
+ *   rodata_9f120                             @ 0x0009f120   [INLINED -- G6 literal batch]
+ *   rodata_9f1c3                             @ 0x0009f1c3   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -66,11 +66,11 @@ uint32_t adc_nfc_run(void)
     if (result < 0) {
         if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0u) {
-                log_message((const void *)((unsigned long)&rodata_9f104) /*=0x9f104*/,
-                             (const void *)((unsigned long)&rodata_9f1c3) /*=0x9f1c3*/);
+                log_message((const void *)((unsigned long)"%s(): Could not read (%d)\n\n") /*=0x9f104*/,
+                             (const void *)((unsigned long)"adc_nfc_run") /*=0x9f1c3*/);
             } else {
-                debug_print((const void *)((unsigned long)&rodata_9f104) /*=0x9f104*/,
-                             (const void *)((unsigned long)&rodata_9f1c3) /*=0x9f1c3*/);
+                debug_print((const void *)((unsigned long)"%s(): Could not read (%d)\n\n") /*=0x9f104*/,
+                             (const void *)((unsigned long)"adc_nfc_run") /*=0x9f1c3*/);
             }
         }
         return 0;
@@ -84,11 +84,11 @@ uint32_t adc_nfc_run(void)
     } else if (result < 0) {
         if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0u) {
-                log_message((const void *)((unsigned long)&rodata_9f120) /*=0x9f120*/,
-                             (const void *)((unsigned long)&rodata_9f1c3) /*=0x9f1c3*/);
+                log_message((const void *)((unsigned long)"%s():  (value in mV not available)\n\n") /*=0x9f120*/,
+                             (const void *)((unsigned long)"adc_nfc_run") /*=0x9f1c3*/);
             } else {
-                debug_print((const void *)((unsigned long)&rodata_9f120) /*=0x9f120*/,
-                             (const void *)((unsigned long)&rodata_9f1c3) /*=0x9f1c3*/);
+                debug_print((const void *)((unsigned long)"%s():  (value in mV not available)\n\n") /*=0x9f120*/,
+                             (const void *)((unsigned long)"adc_nfc_run") /*=0x9f1c3*/);
             }
         }
         return 0;

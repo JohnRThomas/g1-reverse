@@ -8,8 +8,8 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_9aa1f                             @ 0x0009aa1f
- *   rodata_9b190                             @ 0x0009b190
+ *   rodata_9aa1f                             @ 0x0009aa1f   [INLINED -- G6 literal batch]
+ *   rodata_9b190                             @ 0x0009b190   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_ancs_msgq                              @ 0x20006a6c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -37,9 +37,9 @@ int dequeue_ancs(void *param_1)
         memcpy(param_1, buf, 0x1b4);
     } else if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_9aa1f) /*=0x9aa1f*/, ((unsigned long)&rodata_9b190) /*=0x9b190*/);
+            log_message(((unsigned long)"%s(): D ancs F\n") /*=0x9aa1f*/, ((unsigned long)"dequeue_ancs") /*=0x9b190*/);
         } else {
-            debug_print(((unsigned long)&rodata_9aa1f) /*=0x9aa1f*/, ((unsigned long)&rodata_9b190) /*=0x9b190*/);
+            debug_print(((unsigned long)"%s(): D ancs F\n") /*=0x9aa1f*/, ((unsigned long)"dequeue_ancs") /*=0x9b190*/);
         }
     }
     return iVar1;

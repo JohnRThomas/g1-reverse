@@ -14,11 +14,11 @@
  * address symbols (name @ address):
  *   rodata_88100                             @ 0x00088100
  *   rodata_8b29c                             @ 0x0008b29c
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f4388                             @ 0x000f4388
- *   rodata_f445b                             @ 0x000f445b
- *   rodata_f452b                             @ 0x000f452b
- *   rodata_f453e                             @ 0x000f453e
+ *   rodata_f445b                             @ 0x000f445b   [INLINED -- G6 literal batch]
+ *   rodata_f452b                             @ 0x000f452b   [INLINED -- G6 literal batch]
+ *   rodata_f453e                             @ 0x000f453e   [INLINED -- G6 literal batch]
  *   rodata_f4557                             @ 0x000f4557
  *   rodata_f7a30                             @ 0x000f7a30
  */
@@ -53,13 +53,13 @@ int att_chan_send(uint32_t **context, struct packet_58a54 *packet)
 
     if ((__atomic_load_n((uint32_t *)((uint8_t *)context + 0x120),
                          __ATOMIC_ACQUIRE) & 4) == 0) {
-        struct { uint32_t count; uintptr_t message; } record = { 2, ((unsigned long)&rodata_f445b) /*=0xf445b*/ };
+        struct { uint32_t count; uintptr_t message; } record = { 2, ((unsigned long)"ATT channel not connected") /*=0xf445b*/ };
         att_log_emit_3arg(((unsigned long)&rodata_88100) /*=0x88100*/, 0x1040, &record);
         return -22;
     }
     if (*packet->cursor == 0xd2 &&
         (result = return_neg_notsup_stub(**context)) != 0) {
-        struct { uint32_t count; uintptr_t message; } record = { 2, ((unsigned long)&rodata_f452b) /*=0xf452b*/ };
+        struct { uint32_t count; uintptr_t message; } record = { 2, ((unsigned long)"Error signing data") /*=0xf452b*/ };
         att_log_emit_3arg(((unsigned long)&rodata_88100) /*=0x88100*/, 0x1040, &record);
         att_chan_req_free(packet->owner_slot);
         net_buf_unref(packet);
@@ -72,8 +72,8 @@ int att_chan_send(uint32_t **context, struct packet_58a54 *packet)
     uint32_t connection = **context;
     uint32_t opcode = att_op_get_type(*packet->cursor);
     if (opcode > 5) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, ((unsigned long)&rodata_f4388) /*=0xf4388*/, 0x28b);
-        printk(((unsigned long)&rodata_f453e) /*=0xf453e*/, opcode);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, ((unsigned long)&rodata_f4388) /*=0xf4388*/, 0x28b);
+        printk(((unsigned long)"\tUnknown op type 0x%02X\n") /*=0xf453e*/, opcode);
         assert_post_action(((unsigned long)&rodata_f4388) /*=0xf4388*/, 0x28b);
     }
     result = bt_conn_create_pdu(connection, 4, packet,

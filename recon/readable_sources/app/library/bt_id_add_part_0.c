@@ -19,12 +19,12 @@
  *   ADDR_bt_le_adv_clear_pending_flag_THUMB  @ 0x00081081
  *   rodata_810ab                             @ 0x000810ab
  *   rodata_88150                             @ 0x00088150
- *   rodata_f35bf                             @ 0x000f35bf
+ *   rodata_f35bf                             @ 0x000f35bf   [INLINED -- G6 literal batch]
  *   rodata_f35e4                             @ 0x000f35e4
  *   rodata_f3615                             @ 0x000f3615
- *   rodata_f3635                             @ 0x000f3635
- *   rodata_f3655                             @ 0x000f3655
- *   rodata_f367f                             @ 0x000f367f
+ *   rodata_f3635                             @ 0x000f3635   [INLINED -- G6 literal batch]
+ *   rodata_f3655                             @ 0x000f3655   [INLINED -- G6 literal batch]
+ *   rodata_f367f                             @ 0x000f367f   [INLINED -- G6 literal batch]
  *   g_ble_dev_state                          @ 0x20002000
  *   g_ble_dev_ncmd_sem                       @ 0x200020d4
  */
@@ -89,7 +89,7 @@ void bt_id_add_part_0(uint8_t *keys)
 
     bt_le_adv_legacy_invoke((void *)((unsigned long)&rodata_810ab) /*=0x810ab*/, 0);
     if (bt_dev[0x121] != 0U && addr_res_enable(0U) != 0) {
-        ID_LOG(0x1080U, ((unsigned long)&rodata_f35bf) /*=0xf35bf*/);
+        ID_LOG(0x1080U, ((unsigned long)"Failed to disable address resolution") /*=0xf35bf*/);
         goto resume;
     }
 
@@ -109,13 +109,13 @@ void bt_id_add_part_0(uint8_t *keys)
     {
         int error = hci_id_add(keys[0], keys + 1, keys + 0x2a);
         if (error != 0) {
-            ID_LOG(0x1040U, ((unsigned long)&rodata_f3635) /*=0xf3635*/);
+            ID_LOG(0x1040U, ((unsigned long)"Failed to add IRK to controller") /*=0xf3635*/);
             goto resume;
         }
         bt_dev[0x121]++;
         keys[8] |= 4U;
         if ((bt_dev[0xa7] & 4U) == 0U) {
-            ID_LOG(0x1080U, ((unsigned long)&rodata_f3655) /*=0xf3655*/);
+            ID_LOG(0x1080U, ((unsigned long)"Set privacy mode command is not supported") /*=0xf3655*/);
             goto resume;
         }
         {
@@ -125,12 +125,12 @@ void bt_id_add_part_0(uint8_t *keys)
             command[7] = 1U;
             packet = bt_hci_cmd_create(0x204eU, 8U);
             if (packet == 0) {
-                ID_LOG(0x1040U, ((unsigned long)&rodata_f367f) /*=0xf367f*/);
+                ID_LOG(0x1040U, ((unsigned long)"Failed to set privacy mode") /*=0xf367f*/);
                 goto resume;
             }
             net_buf_simple_add_mem(packet + 12, command, 8U);
             if (bt_hci_cmd_send_sync(0x204eU, packet, 0) != 0) {
-                ID_LOG(0x1040U, ((unsigned long)&rodata_f367f) /*=0xf367f*/);
+                ID_LOG(0x1040U, ((unsigned long)"Failed to set privacy mode") /*=0xf367f*/);
                 goto resume;
             }
         }

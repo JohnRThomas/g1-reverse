@@ -9,7 +9,7 @@
  *   float_to_ascii_signed_2dp                <= FUN_0004a300 @ 0x0004a300
  *   fb_blit_rows_wrap320                     <= FUN_0007d4f8 @ 0x0007d4f8
  * address symbols (name @ address):
- *   rodata_a8d20                             @ 0x000a8d20
+ *   rodata_a8d20                             @ 0x000a8d20   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction FUN_000361d8 @ 0x000361d8 (190-byte exact extent). */
 #include <stdint.h>

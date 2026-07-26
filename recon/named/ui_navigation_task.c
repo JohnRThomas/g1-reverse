@@ -31,26 +31,26 @@
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_a9b76                             @ 0x000a9b76
- *   rodata_a9c22                             @ 0x000a9c22
- *   rodata_a9c63                             @ 0x000a9c63
- *   rodata_a9dba                             @ 0x000a9dba
- *   rodata_aa0ae                             @ 0x000aa0ae
- *   rodata_aa0d7                             @ 0x000aa0d7
- *   rodata_aa112                             @ 0x000aa112
- *   rodata_aa138                             @ 0x000aa138
- *   rodata_aa166                             @ 0x000aa166
- *   rodata_aa1af                             @ 0x000aa1af
- *   rodata_aa204                             @ 0x000aa204
- *   rodata_aa23d                             @ 0x000aa23d
- *   rodata_aa265                             @ 0x000aa265
- *   rodata_aa297                             @ 0x000aa297
- *   rodata_aa2e9                             @ 0x000aa2e9
- *   rodata_aa341                             @ 0x000aa341
- *   rodata_aa370                             @ 0x000aa370
- *   rodata_aa3a8                             @ 0x000aa3a8
- *   rodata_aa3ed                             @ 0x000aa3ed
- *   rodata_aa412                             @ 0x000aa412
+ *   rodata_a9b76                             @ 0x000a9b76   [INLINED -- G6 literal batch]
+ *   rodata_a9c22                             @ 0x000a9c22   [INLINED -- G6 literal batch]
+ *   rodata_a9c63                             @ 0x000a9c63   [INLINED -- G6 literal batch]
+ *   rodata_a9dba                             @ 0x000a9dba   [INLINED -- G6 literal batch]
+ *   rodata_aa0ae                             @ 0x000aa0ae   [INLINED -- G6 literal batch]
+ *   rodata_aa0d7                             @ 0x000aa0d7   [INLINED -- G6 literal batch]
+ *   rodata_aa112                             @ 0x000aa112   [INLINED -- G6 literal batch]
+ *   rodata_aa138                             @ 0x000aa138   [INLINED -- G6 literal batch]
+ *   rodata_aa166                             @ 0x000aa166   [INLINED -- G6 literal batch]
+ *   rodata_aa1af                             @ 0x000aa1af   [INLINED -- G6 literal batch]
+ *   rodata_aa204                             @ 0x000aa204   [INLINED -- G6 literal batch]
+ *   rodata_aa23d                             @ 0x000aa23d   [INLINED -- G6 literal batch]
+ *   rodata_aa265                             @ 0x000aa265   [INLINED -- G6 literal batch]
+ *   rodata_aa297                             @ 0x000aa297   [INLINED -- G6 literal batch]
+ *   rodata_aa2e9                             @ 0x000aa2e9   [INLINED -- G6 literal batch]
+ *   rodata_aa341                             @ 0x000aa341   [INLINED -- G6 literal batch]
+ *   rodata_aa370                             @ 0x000aa370   [INLINED -- G6 literal batch]
+ *   rodata_aa3a8                             @ 0x000aa3a8   [INLINED -- G6 literal batch]
+ *   rodata_aa3ed                             @ 0x000aa3ed   [INLINED -- G6 literal batch]
+ *   rodata_aa412                             @ 0x000aa412   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_ipc_or_evt_ctx                         @ 0x20004bb8
  *   g_20004bbc                               @ 0x20004bbc

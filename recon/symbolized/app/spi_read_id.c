@@ -8,8 +8,8 @@
  *   projector_bus_unlock                     <= FUN_000476a8 @ 0x000476a8
  *   get_projector_controller                 <= FUN_0007d4ec @ 0x0007d4ec
  * address symbols (name @ address):
- *   rodata_d7459                             @ 0x000d7459
- *   rodata_d748d                             @ 0x000d748d
+ *   rodata_d7459                             @ 0x000d7459   [INLINED -- G6 literal batch]
+ *   rodata_d748d                             @ 0x000d748d   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -52,9 +52,9 @@ uint32_t spi_read_id(uint32_t unused, uint32_t options, uint32_t ignored)
         uint32_t b2 = (response >> 16) & 0xff;
         uint32_t b3 = (response >> 24) & 0xff;
         if (*(volatile uint32_t *)(uintptr_t)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            log_message(((unsigned long)&rodata_d7459) /*=0xd7459*/, ((unsigned long)&rodata_d748d) /*=0xd748d*/, b0, b1, b2, b3);
+            log_message(((unsigned long)"%s(): jbd panel devicve id: %02x, %02x, %02x, %02x\n") /*=0xd7459*/, ((unsigned long)"spi_read_id") /*=0xd748d*/, b0, b1, b2, b3);
         else
-            debug_print(((unsigned long)&rodata_d7459) /*=0xd7459*/, ((unsigned long)&rodata_d748d) /*=0xd748d*/, b0, b1, b2, b3);
+            debug_print(((unsigned long)"%s(): jbd panel devicve id: %02x, %02x, %02x, %02x\n") /*=0xd7459*/, ((unsigned long)"spi_read_id") /*=0xd748d*/, b0, b1, b2, b3);
     }
 
     return ((response >> 16) & 0xffu) << 8 | ((response >> 24) & 0xffu);

@@ -12,8 +12,8 @@
  *   ADDR_gatt_cancel_encode_THUMB            @ 0x0008278b
  *   ADDR_gatt_exec_encode_THUMB              @ 0x0008279d
  *   rodata_88128                             @ 0x00088128
- *   rodata_f4cdd                             @ 0x000f4cdd
- *   rodata_f4cff                             @ 0x000f4cff
+ *   rodata_f4cdd                             @ 0x000f4cdd   [INLINED -- G6 literal batch]
+ *   rodata_f4cff                             @ 0x000f4cff   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005c310 @ 0x0005c310 (gatt_prepare_write_rsp).
  * Raw/address backmap: FUN_0005c310 @ 0x0005c310, extent 0x0000009c.

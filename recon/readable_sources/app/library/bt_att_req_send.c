@@ -9,7 +9,7 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   att_req_send_process                     <= FUN_000820ae @ 0x000820ae
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3ebd                             @ 0x000f3ebd
  *   rodata_f4388                             @ 0x000f4388
  *   rodata_f4590                             @ 0x000f4590
@@ -25,13 +25,13 @@ unsigned bt_att_req_send(int param_1, unsigned* param_2){
     if (param_1 != 0){
         r1 = (unsigned)(uintptr_t)param_2;
     } else {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f3ebd) /*=0xf3ebd*/,((unsigned long)&rodata_f4388) /*=0xf4388*/,0xf38);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f3ebd) /*=0xf3ebd*/,((unsigned long)&rodata_f4388) /*=0xf4388*/,0xf38);
         long long r = assert_post_action(((unsigned long)&rodata_f4388) /*=0xf4388*/, 0xf38);
         r1 = (unsigned)((unsigned long long)r >> 32);
     }
 L_aae:
     if (r1 != 0) goto L_ac4;
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f4590) /*=0xf4590*/,((unsigned long)&rodata_f4388) /*=0xf4388*/,0xf39);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f4590) /*=0xf4590*/,((unsigned long)&rodata_f4388) /*=0xf4388*/,0xf39);
     { long long r = assert_post_action(((unsigned long)&rodata_f4388) /*=0xf4388*/, 0xf39);
       r1 = (unsigned)((unsigned long long)r >> 32); }
     goto L_aae;

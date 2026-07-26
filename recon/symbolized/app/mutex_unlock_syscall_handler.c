@@ -13,12 +13,12 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f53ff                             @ 0x000f53ff
  *   rodata_f801f                             @ 0x000f801f
  *   rodata_f82f4                             @ 0x000f82f4
@@ -40,7 +40,7 @@ extern int printk(int,...);
 void mutex_unlock_syscall_handler(void)
 {
   if (__get_IPSR() != 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f801f) /*=0xf801f*/,((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0x57a);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f801f) /*=0xf801f*/,((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0x57a);
     printk(((unsigned long)&rodata_f53ff) /*=0xf53ff*/);
     assert_post_action(((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0x57a);
     return;
@@ -51,8 +51,8 @@ void mutex_unlock_syscall_handler(void)
   int iVar2 = z_spin_lock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
   int iVar3 = ((unsigned long)&_kernel) /*=0x2000b448*/;
   if (iVar2 == 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
-    printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,((unsigned long)&sched_spinlock) /*=0x2000b490*/);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
+    printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/,((unsigned long)&sched_spinlock) /*=0x2000b490*/);
     assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
     return;
   }
@@ -63,7 +63,7 @@ void mutex_unlock_syscall_handler(void)
   int *piVar8 = *(int**)(iVar3+8);
   *(unsigned char*)((int)piVar8+0xd) |= 0x80;
   if (piVar8 == (int*)0x20006720) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f84d6) /*=0xf84d6*/,((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0xc1);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f84d6) /*=0xf84d6*/,((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0xc1);
     assert_post_action(((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0xc1);
     return;
   }
@@ -84,7 +84,7 @@ L:
   sched_update_cache(1);
   int r = z_spin_unlock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
   if (r != 0) { arch_swap(key); return; }
-  printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x111);
-  printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,((unsigned long)&sched_spinlock) /*=0x2000b490*/);
+  printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x111);
+  printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/,((unsigned long)&sched_spinlock) /*=0x2000b490*/);
   assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x111);
 }

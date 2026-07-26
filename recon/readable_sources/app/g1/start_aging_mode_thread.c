@@ -7,8 +7,8 @@
  *   z_impl_k_thread_create                   <= FUN_00071eac @ 0x00071eac
  * address symbols (name @ address):
  *   rodata_32421                             @ 0x00032421
- *   rodata_a757f                             @ 0x000a757f
- *   rodata_a75c2                             @ 0x000a75c2
+ *   rodata_a757f                             @ 0x000a757f   [INLINED -- G6 literal batch]
+ *   rodata_a75c2                             @ 0x000a75c2   [INLINED -- G6 literal batch]
  *   g_aging_mode_thread                      @ 0x20004870
  *   g_aging_mode_thread_started_flag         @ 0x20019ef1
  *   g_aging_mode_thread_stack                @ 0x20027a68
@@ -24,7 +24,7 @@ void start_aging_mode_thread(void)
   int iVar2;
 
   if (*pcVar1 != 0) {
-    log_message((void*)((unsigned long)&rodata_a757f) /*=0xa757f*/, (void*)((unsigned long)&rodata_a75c2) /*=0xa75c2*/, 0xab8);
+    log_message((void*)((unsigned long)"[%s-%d], thread has started !\n") /*=0xa757f*/, (void*)((unsigned long)"start_aging_mode_thread") /*=0xa75c2*/, 0xab8);
     return;
   }
   iVar2 = z_impl_k_thread_create((void*)((unsigned long)&g_aging_mode_thread) /*=0x20004870*/, (void*)((unsigned long)&g_aging_mode_thread_stack) /*=0x20027a68*/, 0xc00, (void*)((unsigned long)&rodata_32421) /*=0x32421*/, 0,0,0,0xfffffff4,0);

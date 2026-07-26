@@ -18,11 +18,11 @@
  * address symbols (name @ address):
  *   rodata_88160                             @ 0x00088160
  *   rodata_f4079                             @ 0x000f4079
- *   rodata_f4080                             @ 0x000f4080
- *   rodata_f4099                             @ 0x000f4099
- *   rodata_f40af                             @ 0x000f40af
- *   rodata_f40c2                             @ 0x000f40c2
- *   rodata_f40e4                             @ 0x000f40e4
+ *   rodata_f4080                             @ 0x000f4080   [INLINED -- G6 literal batch]
+ *   rodata_f4099                             @ 0x000f4099   [INLINED -- G6 literal batch]
+ *   rodata_f40af                             @ 0x000f40af   [INLINED -- G6 literal batch]
+ *   rodata_f40c2                             @ 0x000f40c2   [INLINED -- G6 literal batch]
+ *   rodata_f40e4                             @ 0x000f40e4   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction of FUN_00057b60 @ 0x57b60 (exact extent: 326 bytes). */
 #include <stdint.h>
@@ -75,7 +75,7 @@ void l2cap_le_recv_pdu(transfer_t *transfer, request_t *request)
     for (;;) {
         uint32_t old = atomic_get_word(&transfer->credits);
         if (old == 0) {
-            log_two(0x1040u, ((unsigned long)&rodata_f40e4) /*=0xf40e4*/);
+            log_two(0x1040u, ((unsigned long)"No credits to receive packet") /*=0xf40e4*/);
             gatt_send_service_changed_ind(transfer);
             return;
         }
@@ -93,7 +93,7 @@ void l2cap_le_recv_pdu(transfer_t *transfer, request_t *request)
             uintptr_t message;
             uint32_t requested;
             uint32_t limit;
-        } record = {4u, ((unsigned long)&rodata_f4080) /*=0xf4080*/, requested, transfer->fragment_size};
+        } record = {4u, ((unsigned long)"PDU size > MPS (%u > %u)") /*=0xf4080*/, requested, transfer->fragment_size};
         log_msg_3arg_thunk(((unsigned long)&rodata_88160) /*=0x88160*/, 0x2080u, &record);
         gatt_send_service_changed_ind(transfer);
         return;
@@ -103,14 +103,14 @@ void l2cap_le_recv_pdu(transfer_t *transfer, request_t *request)
         return;
     }
     if (requested < 2) {
-        log_two(0x1080u, ((unsigned long)&rodata_f4099) /*=0xf4099*/);
+        log_two(0x1080u, ((unsigned long)"Too short data packet") /*=0xf4099*/);
         gatt_send_service_changed_ind(transfer);
         return;
     }
 
     uint32_t used = net_buf_simple_pull_le16(request->cursor);
     if (used > transfer->capacity) {
-        log_two(0x1040u, ((unsigned long)&rodata_f40af) /*=0xf40af*/);
+        log_two(0x1040u, ((unsigned long)"Invalid SDU length") /*=0xf40af*/);
         gatt_send_service_changed_ind(transfer);
         return;
     }
@@ -118,7 +118,7 @@ void l2cap_le_recv_pdu(transfer_t *transfer, request_t *request)
     if (transfer->ops->allocate != 0) {
         transfer->packet = transfer->ops->allocate(transfer);
         if (transfer->packet == 0) {
-            log_two(0x1040u, ((unsigned long)&rodata_f40c2) /*=0xf40c2*/);
+            log_two(0x1040u, ((unsigned long)"Unable to allocate buffer for SDU") /*=0xf40c2*/);
             gatt_send_service_changed_ind(transfer);
             return;
         }

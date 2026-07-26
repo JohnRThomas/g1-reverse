@@ -8,9 +8,9 @@
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  * address symbols (name @ address):
  *   rodata_87bc0                             @ 0x00087bc0
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0f71                             @ 0x000f0f71
- *   rodata_f0faf                             @ 0x000f0faf
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0f71                             @ 0x000f0f71   [INLINED -- G6 literal batch]
+ *   rodata_f0faf                             @ 0x000f0faf   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0004df88 @ 0x4df88  (parity: 300/300 trials, PROVEN) */
 
@@ -22,7 +22,7 @@ void log_backend_uart_check_ready(void)
   int iVar1;
   iVar1 = z_device_is_ready(0x00087bc0UL);
   if (iVar1 == 0) {
-    printk(0x00099cbdUL,0x000f0fafUL,0x000f0f71UL,0x7f,0);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x000f0fafUL,0x000f0f71UL,0x7f,0);
     assert_post_action(0x000f0f71UL,0x7f);
   }
   return;

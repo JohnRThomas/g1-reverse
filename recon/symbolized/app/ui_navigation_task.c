@@ -32,26 +32,26 @@
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_a9b76                             @ 0x000a9b76
- *   rodata_a9c22                             @ 0x000a9c22
- *   rodata_a9c63                             @ 0x000a9c63
- *   rodata_a9dba                             @ 0x000a9dba
- *   rodata_aa0ae                             @ 0x000aa0ae
- *   rodata_aa0d7                             @ 0x000aa0d7
- *   rodata_aa112                             @ 0x000aa112
- *   rodata_aa138                             @ 0x000aa138
- *   rodata_aa166                             @ 0x000aa166
- *   rodata_aa1af                             @ 0x000aa1af
- *   rodata_aa204                             @ 0x000aa204
- *   rodata_aa23d                             @ 0x000aa23d
- *   rodata_aa265                             @ 0x000aa265
- *   rodata_aa297                             @ 0x000aa297
- *   rodata_aa2e9                             @ 0x000aa2e9
- *   rodata_aa341                             @ 0x000aa341
- *   rodata_aa370                             @ 0x000aa370
- *   rodata_aa3a8                             @ 0x000aa3a8
- *   rodata_aa3ed                             @ 0x000aa3ed
- *   rodata_aa412                             @ 0x000aa412
+ *   rodata_a9b76                             @ 0x000a9b76   [INLINED -- G6 literal batch]
+ *   rodata_a9c22                             @ 0x000a9c22   [INLINED -- G6 literal batch]
+ *   rodata_a9c63                             @ 0x000a9c63   [INLINED -- G6 literal batch]
+ *   rodata_a9dba                             @ 0x000a9dba   [INLINED -- G6 literal batch]
+ *   rodata_aa0ae                             @ 0x000aa0ae   [INLINED -- G6 literal batch]
+ *   rodata_aa0d7                             @ 0x000aa0d7   [INLINED -- G6 literal batch]
+ *   rodata_aa112                             @ 0x000aa112   [INLINED -- G6 literal batch]
+ *   rodata_aa138                             @ 0x000aa138   [INLINED -- G6 literal batch]
+ *   rodata_aa166                             @ 0x000aa166   [INLINED -- G6 literal batch]
+ *   rodata_aa1af                             @ 0x000aa1af   [INLINED -- G6 literal batch]
+ *   rodata_aa204                             @ 0x000aa204   [INLINED -- G6 literal batch]
+ *   rodata_aa23d                             @ 0x000aa23d   [INLINED -- G6 literal batch]
+ *   rodata_aa265                             @ 0x000aa265   [INLINED -- G6 literal batch]
+ *   rodata_aa297                             @ 0x000aa297   [INLINED -- G6 literal batch]
+ *   rodata_aa2e9                             @ 0x000aa2e9   [INLINED -- G6 literal batch]
+ *   rodata_aa341                             @ 0x000aa341   [INLINED -- G6 literal batch]
+ *   rodata_aa370                             @ 0x000aa370   [INLINED -- G6 literal batch]
+ *   rodata_aa3a8                             @ 0x000aa3a8   [INLINED -- G6 literal batch]
+ *   rodata_aa3ed                             @ 0x000aa3ed   [INLINED -- G6 literal batch]
+ *   rodata_aa412                             @ 0x000aa412   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_ipc_or_evt_ctx                         @ 0x20004bb8
  *   g_20004bbc                               @ 0x20004bbc
@@ -176,11 +176,11 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
   switch (NAV_STATE) {
   case 0:
     if (LOG_LEVEL > 2)
-      LOG_CALL(((unsigned long)&rodata_aa0ae) /*=0xaa0ae*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/); /* status/start */
+      LOG_CALL(((unsigned long)"%s(): ENTER NAVIGATION INIT status ....\n") /*=0xaa0ae*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/); /* status/start */
 
     if (event == 2u) {
       if (LOG_LEVEL > 2)
-        LOG_CALL(((unsigned long)&rodata_aa0d7) /*=0xaa0d7*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/); /* exit command */
+        LOG_CALL(((unsigned long)"%s(): running exit command..\n") /*=0xaa0d7*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/); /* exit command */
       gui_screen_clear();
       goto clear_navigation;
     }
@@ -194,7 +194,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
         uintptr_t shared = *(volatile uintptr_t *)(app + 0x1000u);
         if (V8(shared) == 1u) {
           if (LOG_LEVEL > 2)
-            LOG_CALL(((unsigned long)&rodata_aa112) /*=0xaa112*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+            LOG_CALL(((unsigned long)"%s(): INIT STATUS  SYNC ACTION ENTER\n") /*=0xaa112*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
           reset_ipc_evt_ctx();
           NAVIGATION_ACTIVE = 1u;
           LAST_SYNC_TIME = g1_sdk_uptime_get_7();
@@ -210,7 +210,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
         NAV_STATE = 1u;
         NAV_REFRESH_PENDING = 0u;
         if (LOG_LEVEL > 2)
-          LOG_CALL(((unsigned long)&rodata_aa138) /*=0xaa138*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+          LOG_CALL(((unsigned long)"%s(): switch NAVIGATION_RUNNING_STATUS .....\n") /*=0xaa138*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
         gui_screen_clear();
         NAV_BUFFER_VALID = 0u;
         SYNC_RETRIES = 10u;
@@ -230,7 +230,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
 
     if (event == 5u) {
       if (LOG_LEVEL > 2)
-        LOG_CALL(((unsigned long)&rodata_a9dba) /*=0xa9dba*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+        LOG_CALL(((unsigned long)"%s(): Received exit command from master, exit teleprompter mode\n") /*=0xa9dba*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
       goto exit_navigation;
     }
     return 0;
@@ -266,7 +266,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
       IMU_ACTION_STATUS = V8(app + 0xf6u);
       FUN_0007d37a(((unsigned long)&g_ui_state_mutex) /*=0x20007b3c*/);
       if (LOG_LEVEL > 2)
-        LOG_CALL(((unsigned long)&rodata_aa204) /*=0xaa204*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/,
+        LOG_CALL(((unsigned long)"%s(): arrived status = %d,  nav->imu_action_status = %d\n") /*=0xaa204*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/,
                  (unsigned)ARRIVAL_STATUS, (unsigned)V8(app + 0xf6u));
 
       if (ARRIVAL_STATUS == 2u) {
@@ -275,7 +275,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
         uintptr_t shared;
         uint8_t flip;
         if (LOG_LEVEL > 2)
-          LOG_CALL(((unsigned long)&rodata_aa23d) /*=0xaa23d*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+          LOG_CALL(((unsigned long)"%s(): received arrived complte command\n") /*=0xaa23d*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
         NAV_STATE = 3u;
         gui_screen_clear();
         xoff = (get_ui_mode_flag_byte1() == 6) ? 0xaa : 0xc4;
@@ -296,13 +296,13 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
         AUTO_EXIT_DELAY = 5000u;
       } else if (ARRIVAL_STATUS == 1u) {
         if (LOG_LEVEL > 2)
-          LOG_CALL(((unsigned long)&rodata_aa265) /*=0xaa265*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+          LOG_CALL(((unsigned long)"%s(): received arrived command,draw arrived page\n") /*=0xaa265*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
         if (IMU_ACTION_STATUS != 2u) {
           int xoff, a, b, c, d;
           uintptr_t shared;
           uint8_t flip;
           if (LOG_LEVEL > 2)
-            LOG_CALL(((unsigned long)&rodata_aa2e9) /*=0xaa2e9*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+            LOG_CALL(((unsigned long)"%s(): navigation arrived 1 rst reflash\n") /*=0xaa2e9*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
           if (ARRIVAL_PAGE_STARTED == 0u) {
             gui_screen_clear();
             ARRIVAL_PAGE_STARTED = 1u;
@@ -331,16 +331,16 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
           }
         } else {
           if (LOG_LEVEL > 2)
-            LOG_CALL(((unsigned long)&rodata_aa297) /*=0xaa297*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+            LOG_CALL(((unsigned long)"%s(): navigation arrived 2 rst reflash, navigation_panoramic_map_display reflash\n") /*=0xaa297*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
           navigation_panoramic_map_display(nav_root, nav_view);
         }
       } else if (IMU_ACTION_STATUS != 2u) {
         if (LOG_LEVEL > 2)
-          LOG_CALL(((unsigned long)&rodata_aa341) /*=0xaa341*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+          LOG_CALL(((unsigned long)"%s(): navigation_overview_map_display reflash\n") /*=0xaa341*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
         navigation_overview_map_display(nav_root, nav_view);
       } else {
         if (LOG_LEVEL > 2)
-          LOG_CALL(0x000aa311u, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+          LOG_CALL(0x000aa311u, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
         navigation_panoramic_map_display(nav_root, nav_view);
       }
       goto active_timeout_check;
@@ -371,18 +371,18 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
       goto sync_timeout;
     if (event == 5u) {
       if (LOG_LEVEL > 2)
-        LOG_CALL(((unsigned long)&rodata_a9dba) /*=0xa9dba*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+        LOG_CALL(((unsigned long)"%s(): Received exit command from master, exit teleprompter mode\n") /*=0xa9dba*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
       goto exit_navigation;
     }
     return 0;
 
   case 2:
     if (LOG_LEVEL > 1)
-      LOG_CALL(((unsigned long)&rodata_aa370) /*=0xaa370*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+      LOG_CALL(((unsigned long)"%s(): running navigation DISPLAY ABNORMAL EXIT STATUS.\n") /*=0xaa370*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
     now = g1_sdk_uptime_get_7();
     if ((int64_t)u64_sub(now, LAST_SYNC_TIME) >= 8001) {
       if (LOG_LEVEL > 1)
-        LOG_CALL(((unsigned long)&rodata_aa3a8) /*=0xaa3a8*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+        LOG_CALL(((unsigned long)"%s(): The navigation automatically shuts down due to disconnection.\n") /*=0xaa3a8*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
       gui_screen_fade_out_transition();
       memset_bytes((void *)(uintptr_t)((unsigned long)g_ipc_or_evt_ctx) /*=0x20004bb8*/, 0, 0x38u);
       memset_bytes((void *)(uintptr_t)((unsigned long)g_buf_2001ba2e) /*=0x2001ba2e*/, 0, 0x1210u);
@@ -393,7 +393,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
     if (event != 2u)
       return 0;
     if (LOG_LEVEL > 2)
-      LOG_CALL(((unsigned long)&rodata_a9b76) /*=0xa9b76*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+      LOG_CALL(((unsigned long)"%s(): received exit command,clear screen...\n") /*=0xa9b76*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
     goto exit_and_clear;
 
   case 3:
@@ -404,7 +404,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
     now = g1_sdk_uptime_get_7();
     if ((int64_t)(AUTO_EXIT_STARTED + AUTO_EXIT_DELAY) < (int64_t)now) {
       if (LOG_LEVEL > 2)
-        LOG_CALL(((unsigned long)&rodata_aa3ed) /*=0xaa3ed*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+        LOG_CALL(((unsigned long)"%s(): exec navigation auto exit ...\n") /*=0xaa3ed*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
       app = get_device_info();
       V8(*(volatile uintptr_t *)(app + 0x1000u)) = 0u;
       gui_screen_fade_out_transition();
@@ -432,19 +432,19 @@ sync_timeout:
   LAST_SYNC_TIME = g1_sdk_uptime_get_7();
   SYNC_RETRIES = (uint8_t)(SYNC_RETRIES - 1u);
   if (LOG_LEVEL > 2)
-    LOG_CALL(((unsigned long)&rodata_a9c22) /*=0xa9c22*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/, (unsigned)SYNC_RETRIES);
+    LOG_CALL(((unsigned long)"%s(): DECETED TIMEOUT ...... _tpm_thread_prv_data.sync_cnt = %d\n") /*=0xa9c22*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/, (unsigned)SYNC_RETRIES);
   if (SYNC_RETRIES != 0u)
     return 0;
   if (LOG_LEVEL > 1)
-    LOG_CALL(((unsigned long)&rodata_a9c63) /*=0xa9c63*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+    LOG_CALL(((unsigned long)"%s(): There is a disconnection between the AR Glasses and the Bluetooth application!\n") /*=0xa9c63*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
   if (LOG_LEVEL > 2)
-    LOG_CALL(((unsigned long)&rodata_aa166) /*=0xaa166*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+    LOG_CALL(((unsigned long)"%s(): bluetooth connect is break,Send Stop Navigation command to slave.\n") /*=0xaa166*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
   {
     uint16_t command = 0x0106u;
     int result = sync_to_slave(get_device_info(), 6, &command, 2);
     if (result > 4999) {
       if (LOG_LEVEL > 0)
-        LOG_CALL(((unsigned long)&rodata_aa1af) /*=0xaa1af*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
+        LOG_CALL(((unsigned long)"%s(): SYNC TO Slave failed...,don't exec Navigation exit action,master auto exit...\n") /*=0xaa1af*/, ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
       return 0;
     }
   }

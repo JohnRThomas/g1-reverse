@@ -13,8 +13,8 @@
  * address symbols (name @ address):
  *   rodata_ff41                              @ 0x0000ff41
  *   rodata_a1ce0                             @ 0x000a1ce0
- *   rodata_bbfee                             @ 0x000bbfee
- *   rodata_bc04c                             @ 0x000bc04c
+ *   rodata_bbfee                             @ 0x000bbfee   [INLINED -- G6 literal batch]
+ *   rodata_bc04c                             @ 0x000bc04c   [INLINED -- G6 literal batch]
  *   rodata_bc083                             @ 0x000bc083
  *   rodata_bc097                             @ 0x000bc097
  *   rodata_bc181                             @ 0x000bc181
@@ -181,7 +181,7 @@ extern void *memset_bytes(void *, int, uint32_t);
 #define firmware_data_00045bac ((volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define firmware_data_00045bb0 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
 #define firmware_data_00045bb4 (((unsigned long)&rodata_bc083) /*=0xbc083*/)
-#define firmware_data_00045bb8 (((unsigned long)&rodata_bbfee) /*=0xbbfee*/)
+#define firmware_data_00045bb8 (((unsigned long)"%s(): read flash fail\n\n") /*=0xbbfee*/)
 #define firmware_data_00045bbc (((unsigned long)&g_glyph_bitmap_cache_buf) /*=0x2001ce57*/)
 #define firmware_data_00045bc0 (((unsigned long)&rodata_a1ce0) /*=0xa1ce0*/)
 #define firmware_data_00045bc4 (0xa1be90UL)
@@ -203,7 +203,7 @@ extern void *memset_bytes(void *, int, uint32_t);
 #define firmware_data_0004627c ((volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define firmware_data_00046280 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
 #define firmware_data_00046284 (((unsigned long)&rodata_bc083) /*=0xbc083*/)
-#define firmware_data_00046288 (((unsigned long)&rodata_bc04c) /*=0xbc04c*/)
+#define firmware_data_00046288 (((unsigned long)"%s(): can't find resource ,exit .....\n") /*=0xbc04c*/)
 #define firmware_data_0004628c (((unsigned long)&rodata_c8162) /*=0xc8162*/)
 #define firmware_data_00046290 (((unsigned long)&rodata_c8f47) /*=0xc8f47*/)
 #define firmware_data_00046294 (((unsigned long)&rodata_c8e7f) /*=0xc8e7f*/)

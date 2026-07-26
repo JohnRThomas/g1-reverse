@@ -3,10 +3,10 @@
  * public-name: is_ext_flash_burned
  * durable-map: recon/catalogs/function_names_app.json
  * address symbols (name @ address):
- *   rodata_9e2f1                             @ 0x0009e2f1
- *   rodata_a74dc                             @ 0x000a74dc
- *   rodata_a7500                             @ 0x000a7500
- *   rodata_a766d                             @ 0x000a766d
+ *   rodata_9e2f1                             @ 0x0009e2f1   [INLINED -- G6 literal batch]
+ *   rodata_a74dc                             @ 0x000a74dc   [INLINED -- G6 literal batch]
+ *   rodata_a7500                             @ 0x000a7500   [INLINED -- G6 literal batch]
+ *   rodata_a766d                             @ 0x000a766d   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -22,10 +22,10 @@ extern void log_message(const char *format, ...); /* FUN_0007dda4 @ 0x0007dda4 *
 #define LOG_LEVEL        (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define LOG_USE_ALT_SINK (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
 
-#define STR_ENTER_CHECK ((const char *)((unsigned long)&rodata_a74dc) /*=0xa74dc*/)
-#define STR_REGION_CRC  ((const char *)((unsigned long)&rodata_a7500) /*=0xa7500*/)
-#define STR_READ_RETRY  ((const char *)((unsigned long)&rodata_9e2f1) /*=0x9e2f1*/)
-#define STR_FUNCTION    ((const char *)((unsigned long)&rodata_a766d) /*=0xa766d*/)
+#define STR_ENTER_CHECK ((const char *)((unsigned long)"%s(): join in is_ext_flash_burned\n\n") /*=0xa74dc*/)
+#define STR_REGION_CRC  ((const char *)((unsigned long)"%s(): read flash idx %d, calc crc is:0x%x\n") /*=0xa7500*/)
+#define STR_READ_RETRY  ((const char *)((unsigned long)"%s(): flash read fail, retry again, retry time %d\n") /*=0x9e2f1*/)
+#define STR_FUNCTION    ((const char *)((unsigned long)"is_ext_flash_burned") /*=0xa766d*/)
 
 enum flash_burn_check_result {
     FLASH_BURNED = 0,

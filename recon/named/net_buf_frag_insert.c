@@ -7,9 +7,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f539a                             @ 0x000f539a
- *   rodata_f5407                             @ 0x000f5407
+ *   rodata_f5407                             @ 0x000f5407   [INLINED -- G6 literal batch]
  *   rodata_f542d                             @ 0x000f542d
  */
 /* Full reconstruction FUN_0005f338 @ 0x5f338, exact extent 70 bytes. */
@@ -21,11 +21,11 @@ extern __attribute__((noreturn)) void assert_post_action(uintptr_t, uint32_t);
 void net_buf_frag_insert(void *owner, void *node)
 {
     if (!owner) {
-        printk(0x00099cbdu, 0x000f5407u, 0x000f539au, 0x241);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f5407u, 0x000f539au, 0x241);
         assert_post_action(0x000f539au, 0x241);
     }
     if (!node) {
-        printk(0x00099cbdu, 0x000f542du, 0x000f539au, 0x242);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f542du, 0x000f539au, 0x242);
         assert_post_action(0x000f539au, 0x242);
     }
     void *previous = *(void **)((uint8_t *)owner + 4);

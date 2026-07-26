@@ -6,7 +6,7 @@
  *   att_log_emit_3arg                        <= FUN_00081ddc @ 0x00081ddc
  * address symbols (name @ address):
  *   rodata_88100                             @ 0x00088100
- *   rodata_f4408                             @ 0x000f4408
+ *   rodata_f4408                             @ 0x000f4408   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00058568 @ 0x00058568 (send_err_rsp log helper).
  * Raw/address backmap: FUN_00058568 @ 0x00058568, extent 0x0000001c.

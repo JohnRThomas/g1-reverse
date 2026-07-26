@@ -9,10 +9,10 @@
  *   set_panel_voltage                        <= FUN_00032308 @ 0x00032308
  *   k_msleep_ticks32768_b                    <= FUN_0007d14a @ 0x0007d14a
  * address symbols (name @ address):
- *   rodata_a6711                             @ 0x000a6711
- *   rodata_a671e                             @ 0x000a671e
- *   rodata_a676d                             @ 0x000a676d
- *   rodata_a7712                             @ 0x000a7712
+ *   rodata_a6711                             @ 0x000a6711   [INLINED -- G6 literal batch]
+ *   rodata_a671e                             @ 0x000a671e   [INLINED -- G6 literal batch]
+ *   rodata_a676d                             @ 0x000a676d   [INLINED -- G6 literal batch]
+ *   rodata_a7712                             @ 0x000a7712   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  */
 /* Reconstructed FUN_00032308 @ 0x32308  (parity: 300/300 trials, PROVEN) */
@@ -26,9 +26,9 @@ extern void k_msleep_ticks32768_b(int);
 
 int set_panel_voltage(int param_1, unsigned param_2, uint32_t *param_3, uint8_t *param_4){
     unsigned char status_record[21];
-    log_message(0x000a6711, 0x000a7712);
+    log_message(((unsigned long)"join in %s \n"), ((unsigned long)"set_panel_voltage"));
     if (param_3==0 || param_4==0 || param_1==0 || param_2 < 5){
-        log_message(0x000a671e, 0x000a7712);
+        log_message(((unsigned long)"%s para is NULL\n"), ((unsigned long)"set_panel_voltage"));
         return 0xffffffff;
     }
     unsigned char *puVar6 = (unsigned char*)*param_3;
@@ -53,8 +53,8 @@ int set_panel_voltage(int param_1, unsigned param_2, uint32_t *param_3, uint8_t 
         }
         uVar4 = 4;
     } else {
-        if (*(int*)0x20007554 == 0) log_message(0x000a676d, 0x000a7712, 0x3c1);
-        else debug_print(0x000a676d, 0x000a7712, 0x3c1);
+        if (*(int*)0x20007554 == 0) log_message(((unsigned long)"[%s-%d]invalid vaule \n"), ((unsigned long)"set_panel_voltage"), 0x3c1);
+        else debug_print(((unsigned long)"[%s-%d]invalid vaule \n"), ((unsigned long)"set_panel_voltage"), 0x3c1);
         uVar4 = 3;
     }
     puVar6[4] = uVar4;

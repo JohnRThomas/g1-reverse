@@ -11,7 +11,7 @@
  *   rodata_9e580                             @ 0x0009e580
  *   rodata_9e5a6                             @ 0x0009e5a6
  *   rodata_9e5c8                             @ 0x0009e5c8
- *   rodata_9e7c9                             @ 0x0009e7c9
+ *   rodata_9e7c9                             @ 0x0009e7c9   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_product_code_buf                       @ 0x20002fe3
  *   g_device_serial_buf                      @ 0x20003003
@@ -66,9 +66,9 @@ log_settings_event(uint32_t message)
 {
     if (*(volatile int32_t *)0x2000230c > 1) {
         if (*(volatile uint32_t *)0x20007554 == 0)
-            log_message(message, 0x0009e7c9);
+            log_message(message, ((unsigned long)"load_sys_setting"));
         else
-            debug_print(message, 0x0009e7c9);
+            debug_print(message, ((unsigned long)"load_sys_setting"));
     }
 }
 

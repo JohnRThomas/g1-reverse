@@ -16,9 +16,9 @@
  * address symbols (name @ address):
  *   rodata_88100                             @ 0x00088100
  *   rodata_8b2b4                             @ 0x0008b2b4
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f4388                             @ 0x000f4388
- *   rodata_f45af                             @ 0x000f45af
+ *   rodata_f45af                             @ 0x000f45af   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00058cfc @ 0x58cfc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -88,7 +88,7 @@ int bt_att_recv(int param_1, int param_2)
     } while (iVar6 != 0x1e);
     if (*(volatile int*)(param_1 + 0x13c) != 0) {
     LAB_dbc:
-        printk(0x00099cbd, 0x000f45af, 0x000f4388, 0xb54);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"!att_chan->rsp_buf"), 0x000f4388, 0xb54);
         assert_post_action(0x000f4388, 0xb54);
     }
     {

@@ -9,10 +9,10 @@
  * address symbols (name @ address):
  *   rodata_87fec                             @ 0x00087fec
  *   rodata_88058                             @ 0x00088058
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  *   rodata_f3a5d                             @ 0x000f3a5d
- *   rodata_f3a8d                             @ 0x000f3a8d
+ *   rodata_f3a8d                             @ 0x000f3a8d   [INLINED -- G6 literal batch]
  *   g_ble_conn_cb_list_head                  @ 0x2000ad1c
  */
 /* Reconstructed FUN_00056da8 @ 0x56da8  (parity: 300/300 trials, PROVEN) */
@@ -36,8 +36,8 @@ void ble_notify_remote_info_available(int param_1, unsigned param_2, unsigned pa
     unsigned uVar1 = 0x88058;
     while (1){
         if (uVar1 < uVar4){
-            printk(0x99cbd, 0xf3a8d, 0xf3a5d, 0x8ca);
-            printk(0xf0d20);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"cb <= _bt_conn_cb_list_end"), 0xf3a5d, 0x8ca);
+            printk(((unsigned long)"\tunexpected list end location\n"));
             assert_post_action(0xf3a5d, 0x8ca);
         }
         if (uVar1 <= uVar4) break;

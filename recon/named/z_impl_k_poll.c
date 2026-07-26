@@ -12,12 +12,12 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f53ff                             @ 0x000f53ff
  *   rodata_f801f                             @ 0x000f801f
  *   rodata_f871d                             @ 0x000f871d
@@ -50,26 +50,26 @@ int z_impl_k_poll(int param_1,int param_2,unsigned int param_3,unsigned int para
   unsigned int exception_number;
   __asm__ volatile ("mrs %0, ipsr" : "=r" (exception_number));
   if (exception_number != 0) {
-    printk(0x99cbd,0xf801f,0x99cbd,0x12d);
-    printk(0xf53ff,0xf801f,0x99cbd,0x12d);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0xf801f,((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x12d);
+    printk(0xf53ff,0xf801f,((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x12d);
     assert_post_action(0xf871d,0x12d);
     return 0;
   }
   if (param_1 == 0) {
-    printk(0x99cbd,0xf88dc,0xf871d,0x12e);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0xf88dc,0xf871d,0x12e);
     printk(0xf88f2,0xf88dc,0xf871d,0x12e);
     assert_post_action(0xf871d,0x12e);
     return 0;
   }
   if (param_2 < 0) {
-    printk(0x99cbd,0xf8901,0xf871d,0x12f);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0xf8901,0xf871d,0x12f);
     printk(0xf8911,0xf8901,0xf871d,0x12f);
     assert_post_action(0xf871d,0x12f);
     return 0;
   }
   uVar3 = register_events(param_1,param_2,iVar5+0x60,(param_3==0&&param_4==0),param_1,param_2,(int)param_3);
   iVar2 = z_spin_lock_valid(0x2000b4a0);
-  if (iVar2 == 0) { printk(0x99cbd,0xf0920,0xf08c7,0x72);printk(0xf0935,0x2000b4a0,0xf08c7,0x72); assert_post_action(0xf08c7,0x72); return 0; }
+  if (iVar2 == 0) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_lock_valid(l)"),0xf08c7,0x72);printk(((unsigned long)"\tInvalid spinlock %p\n"),0x2000b4a0,0xf08c7,0x72); assert_post_action(0xf08c7,0x72); return 0; }
   z_spin_lock_set_owner(0x2000b4a0);
   if (VSC(iVar5+0x60) == 0) {
     clear_event_registrations(param_1,uVar3,uVar6);
@@ -81,12 +81,12 @@ int z_impl_k_poll(int param_1,int param_2,unsigned int param_3,unsigned int para
     } else {
       uVar6 = z_pend_curr(0x2000b4a0,uVar6,0x20002d04,(int)(param_3|param_4),(int)param_3,(int)param_4);
       iVar5 = z_spin_lock_valid(0x2000b4a0);
-      if (iVar5 == 0) { printk(0x99cbd,0xf0920,0xf08c7,0x72);printk(0xf0935,0x2000b4a0,0xf08c7,0x72); assert_post_action(0xf08c7,0x72); return 0; }
+      if (iVar5 == 0) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_lock_valid(l)"),0xf08c7,0x72);printk(((unsigned long)"\tInvalid spinlock %p\n"),0x2000b4a0,0xf08c7,0x72); assert_post_action(0xf08c7,0x72); return 0; }
       z_spin_lock_set_owner(0x2000b4a0);
       clear_event_registrations(param_1,uVar3,uVar4);
       if (z_spin_unlock_valid(0x2000b4a0) != 0) return uVar6;
     }
   }
-  printk(0x99cbd,0xf08f4,0xf08c7,0xf0);printk(0xf090b,0x2000b4a0,0xf08c7,0xf0); assert_post_action(0xf08c7,0xf0);
+  printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_unlock_valid(l)"),0xf08c7,0xf0);printk(((unsigned long)"\tNot my spinlock %p\n"),0x2000b4a0,0xf08c7,0xf0); assert_post_action(0xf08c7,0xf0);
   return 0;
 }

@@ -10,10 +10,10 @@
  *   settings_name_steq                       <= FUN_0007f1a0 @ 0x0007f1a0
  * address symbols (name @ address):
  *   __settings_handler_static_list_start     @ 0x000882b0
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  *   rodata_f1126                             @ 0x000f1126
- *   rodata_f1158                             @ 0x000f1158
+ *   rodata_f1158                             @ 0x000f1158   [INLINED -- G6 literal batch]
  *   g_settings_handlers                      @ 0x2000a10c
  */
 /* Reconstructed FUN_0004e6a8 @ 0x4e6a8  (parity: 300/300 trials, PROVEN) */
@@ -30,8 +30,8 @@ int settings_commit_subtree(int param_1,unsigned param_2,unsigned param_3,unsign
   int iVar5=0;
   while(1){
     if(puVar1 < puVar3){
-      printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f1158) /*=0xf1158*/,((unsigned long)&rodata_f1126) /*=0xf1126*/,0xf4,param_4);
-      printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/);
+      printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"ch <= _settings_handler_static_list_end") /*=0xf1158*/,((unsigned long)&rodata_f1126) /*=0xf1126*/,0xf4,param_4);
+      printk(((unsigned long)"\tunexpected list end location\n") /*=0xf0d20*/);
       assert_post_action(((unsigned long)&rodata_f1126) /*=0xf1126*/,0xf4);
     }
     if(puVar1 <= puVar3) break;

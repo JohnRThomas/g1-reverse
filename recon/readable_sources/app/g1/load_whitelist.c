@@ -10,7 +10,7 @@
  * address symbols (name @ address):
  *   rodata_a8400                             @ 0x000a8400
  *   rodata_a842e                             @ 0x000a842e
- *   rodata_a8aa8                             @ 0x000a8aa8
+ *   rodata_a8aa8                             @ 0x000a8aa8   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_app_whitelist_buffer                   @ 0x2001a22c
  */
@@ -39,7 +39,7 @@ unsigned int load_whitelist(void)
         if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ != 0) {
             uVar3 = 0x36;
             uVar2 = ((unsigned long)&rodata_a842e) /*=0xa842e*/;
-            debug_print(uVar2, ((unsigned long)&rodata_a8aa8) /*=0xa8aa8*/, uVar3, uVar1);
+            debug_print(uVar2, ((unsigned long)"load_whitelist") /*=0xa8aa8*/, uVar3, uVar1);
             return 0xffffffff;
         }
         uVar3 = 0x36;
@@ -48,12 +48,12 @@ unsigned int load_whitelist(void)
         if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ != 0) {
             uVar3 = 0x30;
             uVar2 = ((unsigned long)&rodata_a8400) /*=0xa8400*/;
-            debug_print(uVar2, ((unsigned long)&rodata_a8aa8) /*=0xa8aa8*/, uVar3, uVar1);
+            debug_print(uVar2, ((unsigned long)"load_whitelist") /*=0xa8aa8*/, uVar3, uVar1);
             return 0xffffffff;
         }
         uVar3 = 0x30;
         uVar2 = ((unsigned long)&rodata_a8400) /*=0xa8400*/;
     }
-    log_message(uVar2, ((unsigned long)&rodata_a8aa8) /*=0xa8aa8*/, uVar3, uVar1);
+    log_message(uVar2, ((unsigned long)"load_whitelist") /*=0xa8aa8*/, uVar3, uVar1);
     return 0xffffffff;
 }

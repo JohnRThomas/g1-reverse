@@ -5,7 +5,7 @@
  *   log_unhandled_hci_event                  <= FUN_00053580 @ 0x00053580
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
- *   rodata_f2df8                             @ 0x000f2df8
+ *   rodata_f2df8                             @ 0x000f2df8   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00053580 @ 0x00053580. */
 #include <stdint.h>

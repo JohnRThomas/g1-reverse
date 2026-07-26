@@ -24,7 +24,7 @@
  *   rodata_88180                             @ 0x00088180
  *   rodata_f4240                             @ 0x000f4240
  *   rodata_f4e7a                             @ 0x000f4e7a
- *   rodata_f4f5c                             @ 0x000f4f5c
+ *   rodata_f4f5c                             @ 0x000f4f5c   [INLINED -- G6 literal batch]
  *   rodata_f5248                             @ 0x000f5248
  *   g_smp_pair_method_unbonded               @ 0x2001d533
  *   g_smp_pair_method_bonded                 @ 0x2001d534
@@ -198,7 +198,7 @@ control_label_d80e:
   int iVar12b = bt_keys_find_addr(*(volatile uint8_t*)(iVar4b + 8), iVar4b + 0x90);
   uint uStack_40 = *(volatile uint8_t*)(param_1 + 8);
   if (iVar12b != 0 && (int8_t)(*(volatile uint8_t*)(iVar12b+0xd)) < 0 && uStack_40 == 0) {
-    struct { uint32_t a,b; } s = { 2, ((unsigned long)&rodata_f4f5c) /*=0xf4f5c*/ };
+    struct { uint32_t a,b; } s = { 2, ((unsigned long)"JustWorks failed, authenticated keys present") /*=0xf4f5c*/ };
     smp_log_message(((unsigned long)&rodata_88180) /*=0x88180*/, 0x1040, &s);
     return 8;
   }

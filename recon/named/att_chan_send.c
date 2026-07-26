@@ -9,11 +9,11 @@
  * address symbols (name @ address):
  *   rodata_88100                             @ 0x00088100
  *   rodata_8b29c                             @ 0x0008b29c
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f4388                             @ 0x000f4388
- *   rodata_f445b                             @ 0x000f445b
- *   rodata_f452b                             @ 0x000f452b
- *   rodata_f453e                             @ 0x000f453e
+ *   rodata_f445b                             @ 0x000f445b   [INLINED -- G6 literal batch]
+ *   rodata_f452b                             @ 0x000f452b   [INLINED -- G6 literal batch]
+ *   rodata_f453e                             @ 0x000f453e   [INLINED -- G6 literal batch]
  *   rodata_f4557                             @ 0x000f4557
  *   rodata_f7a30                             @ 0x000f7a30
  */
@@ -67,7 +67,7 @@ int att_chan_send(uint32_t **context, struct packet_58a54 *packet)
     uint32_t connection = **context;
     uint32_t opcode = att_op_get_type(*packet->cursor);
     if (opcode > 5) {
-        printk(0x00099cbdu, 0x000f7a30u, 0x000f4388u, 0x28b);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f7a30u, 0x000f4388u, 0x28b);
         printk(0x000f453eu, opcode);
         assert_post_action(0x000f4388u, 0x28b);
     }

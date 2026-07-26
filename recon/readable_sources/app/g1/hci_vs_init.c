@@ -29,9 +29,9 @@
  *   rodata_1255c                             @ 0x0001255c
  *   rodata_1256c                             @ 0x0001256c
  *   rodata_88138                             @ 0x00088138
- *   rodata_f325b                             @ 0x000f325b
+ *   rodata_f325b                             @ 0x000f325b   [INLINED -- G6 literal batch]
  *   rodata_f327f                             @ 0x000f327f
- *   rodata_f32f7                             @ 0x000f32f7
+ *   rodata_f32f7                             @ 0x000f32f7   [INLINED -- G6 literal batch]
  *   rodata_f3324                             @ 0x000f3324
  *   g_sram_base_word                         @ 0x20000000
  *   g_ble_dev_state                          @ 0x20002000
@@ -115,7 +115,7 @@ extern long long hci_vs_setup_stub(void);
 extern long long z_impl_k_sem_init(void *, int);
 #define firmware_data_00012388 ((unsigned long)&g_ble_dev_state) /*=0x20002000*/
 #define firmware_data_0001238c ((volatile int*)((unsigned long)&g_ble_dev_acl_buf_info) /*=0x20002078*/)
-#define firmware_data_00012390 ((unsigned long)&rodata_f325b) /*=0xf325b*/
+#define firmware_data_00012390 ((unsigned long)"Non-LE capable controller detected!") /*=0xf325b*/
 #define firmware_data_00012394 ((unsigned long)&rodata_88138) /*=0x88138*/
 #define firmware_data_00012398 ((volatile int*)((unsigned long)&g_ble_dev_le_features) /*=0x200020d8*/)
 #define firmware_data_0001239c ((unsigned long)&g_ble_dev_le_pkts_sem) /*=0x20002108*/
@@ -127,7 +127,7 @@ extern long long z_impl_k_sem_init(void *, int);
 #define firmware_data_00012564 ((unsigned long)&rodata_f3324) /*=0xf3324*/
 #define firmware_data_00012568 ((unsigned long)&g_ble_dev_state) /*=0x20002000*/
 #define firmware_data_0001256c (*(volatile int*)((unsigned long)&rodata_1256c) /*=0x1256c*/)
-#define firmware_data_00012578 ((unsigned long)&rodata_f32f7) /*=0xf32f7*/
+#define firmware_data_00012578 ((unsigned long)"Firmware: %s (0x%02x) Version %u.%u Build %u") /*=0xf32f7*/
 #define _UNK_00012570 (*(volatile int*)0x12570UL)
 #define _UNK_00012574 (*(volatile int*)0x12574UL)
 #define PTR_s_Vendor_HCI_extensions_not_availa_0001253c (*(volatile int*)((unsigned long)&rodata_1253c) /*=0x1253c*/)

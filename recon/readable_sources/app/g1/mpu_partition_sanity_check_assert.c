@@ -8,7 +8,7 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   arm_cmse_mpu_region_get                  <= FUN_00080786 @ 0x00080786
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f219e                             @ 0x000f219e
  *   rodata_f2201                             @ 0x000f2201
  *   rodata_f7a30                             @ 0x000f7a30
@@ -72,7 +72,7 @@ void mpu_partition_sanity_check_assert(int *param_1, int param_2, uint32_t param
         cur = cur + 3;
         continue;
       assert:
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, ((unsigned long)&rodata_f219e) /*=0xf219e*/, 0x12b, (uint32_t)param_1, (uint32_t)iVar5, param_3);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, ((unsigned long)&rodata_f219e) /*=0xf219e*/, 0x12b, (uint32_t)param_1, (uint32_t)iVar5, param_3);
         printk(((unsigned long)&rodata_f2201) /*=0xf2201*/, (uint32_t)param_2);
         assert_post_action(((unsigned long)&rodata_f219e) /*=0xf219e*/, 0x12b);
         goto L_ed8;

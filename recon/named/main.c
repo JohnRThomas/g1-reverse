@@ -20,38 +20,38 @@
  *   rodata_87cb0                             @ 0x00087cb0
  *   rodata_87d58                             @ 0x00087d58
  *   rodata_87d70                             @ 0x00087d70
- *   rodata_99830                             @ 0x00099830
- *   rodata_99835                             @ 0x00099835
- *   rodata_9985c                             @ 0x0009985c
- *   rodata_99899                             @ 0x00099899
- *   rodata_998ad                             @ 0x000998ad
- *   rodata_998b5                             @ 0x000998b5
+ *   rodata_99830                             @ 0x00099830   [INLINED -- G6 literal batch]
+ *   rodata_99835                             @ 0x00099835   [INLINED -- G6 literal batch]
+ *   rodata_9985c                             @ 0x0009985c   [INLINED -- G6 literal batch]
+ *   rodata_99899                             @ 0x00099899   [INLINED -- G6 literal batch]
+ *   rodata_998ad                             @ 0x000998ad   [INLINED -- G6 literal batch]
+ *   rodata_998b5                             @ 0x000998b5   [INLINED -- G6 literal batch]
  *   rodata_998da                             @ 0x000998da
  *   rodata_998e7                             @ 0x000998e7
  *   rodata_998fc                             @ 0x000998fc
  *   rodata_99908                             @ 0x00099908
- *   rodata_9992e                             @ 0x0009992e
- *   rodata_99942                             @ 0x00099942
- *   rodata_9995c                             @ 0x0009995c
+ *   rodata_9992e                             @ 0x0009992e   [INLINED -- G6 literal batch]
+ *   rodata_99942                             @ 0x00099942   [INLINED -- G6 literal batch]
+ *   rodata_9995c                             @ 0x0009995c   [INLINED -- G6 literal batch]
  *   rodata_99969                             @ 0x00099969
- *   rodata_99976                             @ 0x00099976
- *   rodata_9999c                             @ 0x0009999c
- *   rodata_999c2                             @ 0x000999c2
+ *   rodata_99976                             @ 0x00099976   [INLINED -- G6 literal batch]
+ *   rodata_9999c                             @ 0x0009999c   [INLINED -- G6 literal batch]
+ *   rodata_999c2                             @ 0x000999c2   [INLINED -- G6 literal batch]
  *   rodata_999e4                             @ 0x000999e4
- *   rodata_999ff                             @ 0x000999ff
+ *   rodata_999ff                             @ 0x000999ff   [INLINED -- G6 literal batch]
  *   rodata_99a23                             @ 0x00099a23
  *   rodata_99a3e                             @ 0x00099a3e
  *   rodata_99a60                             @ 0x00099a60
- *   rodata_99a7f                             @ 0x00099a7f
- *   rodata_99a94                             @ 0x00099a94
- *   rodata_99aa4                             @ 0x00099aa4
- *   rodata_99acf                             @ 0x00099acf
- *   rodata_99af4                             @ 0x00099af4
- *   rodata_99b1e                             @ 0x00099b1e
- *   rodata_99b3d                             @ 0x00099b3d
- *   rodata_99b4c                             @ 0x00099b4c
- *   rodata_99ba5                             @ 0x00099ba5
- *   rodata_99bb2                             @ 0x00099bb2
+ *   rodata_99a7f                             @ 0x00099a7f   [INLINED -- G6 literal batch]
+ *   rodata_99a94                             @ 0x00099a94   [INLINED -- G6 literal batch]
+ *   rodata_99aa4                             @ 0x00099aa4   [INLINED -- G6 literal batch]
+ *   rodata_99acf                             @ 0x00099acf   [INLINED -- G6 literal batch]
+ *   rodata_99af4                             @ 0x00099af4   [INLINED -- G6 literal batch]
+ *   rodata_99b1e                             @ 0x00099b1e   [INLINED -- G6 literal batch]
+ *   rodata_99b3d                             @ 0x00099b3d   [INLINED -- G6 literal batch]
+ *   rodata_99b4c                             @ 0x00099b4c   [INLINED -- G6 literal batch]
+ *   rodata_99ba5                             @ 0x00099ba5   [INLINED -- G6 literal batch]
+ *   rodata_99bb2                             @ 0x00099bb2   [INLINED -- G6 literal batch]
  *   rodata_fa9b4                             @ 0x000fa9b4
  *   rodata_faa2c                             @ 0x000faa2c
  *   g_log_level                              @ 0x2000230c
@@ -169,24 +169,24 @@ void main(void)
     log_record_submit((void *)log_record);
     if (g_log_level > 0) {
         if (g_log_use_alt_sink == 0)
-            log_message(0x00099835, 0x00099bb2, 0x00099830);
+            log_message(((unsigned long)"%s(): Synchronization using %s driver\n"), ((unsigned long)"main"), ((unsigned long)"mbox"));
         else
-            debug_print(0x00099835, 0x00099bb2, 0x00099830);
+            debug_print(((unsigned long)"%s(): Synchronization using %s driver\n"), ((unsigned long)"main"), ((unsigned long)"mbox"));
     }
 
     k_timer_start((void *)0x20003700UL, 0x667ULL, 0x667ULL);
     serialization_init();
     if (g_log_level > 1) {
         if (g_log_use_alt_sink == 0)
-            log_message(0x0009985c, 0x00099bb2, 1, 4, 5,
-                        0x000998ad, 0x00099899);
+            log_message(((unsigned long)"%s(): [Build Info: Ver:v%d.%d.%d Commit:%s] [Build Time:%s]\n"), ((unsigned long)"main"), 1, 4, 5,
+                        ((unsigned long)"1b85815"), ((unsigned long)"2024-12-28 20:20:45"));
         else
-            debug_print(0x0009985c, 0x00099bb2, 1, 4, 5,
-                        0x000998ad, 0x00099899);
+            debug_print(((unsigned long)"%s(): [Build Info: Ver:v%d.%d.%d Commit:%s] [Build Time:%s]\n"), ((unsigned long)"main"), 1, 4, 5,
+                        ((unsigned long)"1b85815"), ((unsigned long)"2024-12-28 20:20:45"));
         if (g_log_use_alt_sink == 0)
-            log_message(0x000998b5, 0x00099ba5);
+            log_message(((unsigned long)"%s(): [cpuapp] global context init\n\n"), ((unsigned long)"init_context"));
         else
-            debug_print(0x000998b5, 0x00099ba5);
+            debug_print(((unsigned long)"%s(): [cpuapp] global context init\n\n"), ((unsigned long)"init_context"));
     }
 
     uintptr_t context = (uintptr_t)malloc(0x1188);
@@ -302,18 +302,18 @@ void main(void)
     if (g_ambient_light_sensor_ready == 0) {
         B8(context, 0) = 1;
         if (g_log_level > 0) {
-            if (g_log_use_alt_sink == 0) log_message(0x00099919, 0x00099b4c);
-            else debug_print(0x00099919, 0x00099b4c);
+            if (g_log_use_alt_sink == 0) log_message(0x00099919, ((unsigned long)"role_init"));
+            else debug_print(0x00099919, ((unsigned long)"role_init"));
         }
     } else if (g_ambient_light_sensor_ready == 1) {
         B8(context, 0) = 2;
         if (g_log_level > 0) {
-            if (g_log_use_alt_sink == 0) log_message(0x0009992e, 0x00099b4c);
-            else debug_print(0x0009992e, 0x00099b4c);
+            if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): Slave!------\n"), ((unsigned long)"role_init"));
+            else debug_print(((unsigned long)"%s(): Slave!------\n"), ((unsigned long)"role_init"));
         }
     } else if (g_log_level > 0) {
-        if (g_log_use_alt_sink == 0) log_message(0x00099942, 0x00099b4c);
-        else debug_print(0x00099942, 0x00099b4c);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): error --hw_id:0x%x\n"), ((unsigned long)"role_init"));
+        else debug_print(((unsigned long)"%s(): error --hw_id:0x%x\n"), ((unsigned long)"role_init"));
     }
 
     uint64_t sync_result = runtime_info_sync((void *)context);
@@ -359,35 +359,35 @@ void main(void)
     }
 
     if (g_log_level > 1) {
-        if (g_log_use_alt_sink == 0) log_message(0x0009995c, 0x00099ba5);
-        else debug_print(0x0009995c, 0x00099ba5);
-        if (g_log_use_alt_sink == 0) log_message(0x00099969, 0x00099b3d);
-        else debug_print(0x00099969, 0x00099b3d);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): exit!\n"), ((unsigned long)"init_context"));
+        else debug_print(((unsigned long)"%s(): exit!\n"), ((unsigned long)"init_context"));
+        if (g_log_use_alt_sink == 0) log_message(0x00099969, ((unsigned long)"component_init"));
+        else debug_print(0x00099969, ((unsigned long)"component_init"));
     }
 
     device_info_register_persistent_fields((void *)context);
     int result = (int)call_hook(context, 0x77c, 0x77c);
     if (result != 0 && g_log_level > 1) {
-        if (g_log_use_alt_sink == 0) log_message(0x00099976, 0x00099b3d, result);
-        else debug_print(0x00099976, 0x00099b3d, result);
+        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): [ble_context init] fail: 0x%x\n\n"), ((unsigned long)"component_init"), result);
+        else debug_print(((unsigned long)"%s(): [ble_context init] fail: 0x%x\n\n"), ((unsigned long)"component_init"), result);
     }
     if (B8(context, 0) == 1) {
         result = (int)call_hook(context, 0xf70, 0xee4);
         if (result != 0 && g_log_level > 1) {
-            if (g_log_use_alt_sink == 0) log_message(0x0009999c, 0x00099b3d, result);
-            else debug_print(0x0009999c, 0x00099b3d, result);
+            if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): [imu_context init] fail: 0x%x\n\n"), ((unsigned long)"component_init"), result);
+            else debug_print(((unsigned long)"%s(): [imu_context init] fail: 0x%x\n\n"), ((unsigned long)"component_init"), result);
         }
         result = (int)call_hook(context, 0xf80, 0xf80);
         if (result != 0 && g_log_level > 1) {
-            if (g_log_use_alt_sink == 0) log_message(0x000999c2, 0x00099b3d, result);
-            else debug_print(0x000999c2, 0x00099b3d, result);
+            if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): [opt3007 init] fail: 0x%x\n\n"), ((unsigned long)"component_init"), result);
+            else debug_print(((unsigned long)"%s(): [opt3007 init] fail: 0x%x\n\n"), ((unsigned long)"component_init"), result);
         }
     }
 
     const void *fuel_gauge = (const void *)0x00087cb0UL;
     uintptr_t failure_message = 0x000999e4;
     if (z_device_is_ready(fuel_gauge)) {
-        log_message(0x000999ff, *(const uint32_t *)fuel_gauge);
+        log_message(((unsigned long)"pmic regulator %s is ready to use.\n"), *(const uint32_t *)fuel_gauge);
         const void *fuel_config = (const void *)0x00087d70UL;
         failure_message = 0x00099a23;
         if (z_device_is_ready(fuel_config)) {
@@ -395,28 +395,28 @@ void main(void)
             if (fuel_gauge_sample_init_timestamp(fuel_config) >= 0) {
                 failure_message = 0x00099a60;
                 if (fuel_gauge_configure(fuel_config) >= 0) {
-                    log_message(0x00099a7f);
-                    log_message(0x00099a94);
+                    log_message(((unsigned long)"Initialise charger.\n"));
+                    log_message(((unsigned long)"PMIC device ok\n"));
                     fuel_gauge_program_defaults();
                     if (product_code_is_supported_egp_family()) {
-                        log_message(0x00099aa4);
+                        log_message(((unsigned long)"Old board, need to restrain Vterm to 4.2V\n"));
                         fuel_gauge_enable_measurements();
                     }
                     result = (int)call_hook(context, 0xb10, 0xb10);
                     if (result != 0 && g_log_level > 1) {
-                        if (g_log_use_alt_sink == 0) log_message(0x00099acf, 0x00099b3d, result);
-                        else debug_print(0x00099acf, 0x00099b3d, result);
+                        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): [spi_master init] fail: 0x%x\n\n"), ((unsigned long)"component_init"), result);
+                        else debug_print(((unsigned long)"%s(): [spi_master init] fail: 0x%x\n\n"), ((unsigned long)"component_init"), result);
                     }
                     result = (int)call_hook(context, 0xb6c, 0xb6c);
                     if (result != 0 && g_log_level > 1) {
-                        if (g_log_use_alt_sink == 0) log_message(0x00099af4, 0x00099b3d, result);
-                        else debug_print(0x00099af4, 0x00099b3d, result);
+                        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): [panel_controler init] fail: 0x%x\n\n"), ((unsigned long)"component_init"), result);
+                        else debug_print(((unsigned long)"%s(): [panel_controler init] fail: 0x%x\n\n"), ((unsigned long)"component_init"), result);
                     }
                     pt_nfc_eeprom_link_start();
                     notification_system_init();
                     if (g_log_level > 1) {
-                        if (g_log_use_alt_sink == 0) log_message(0x00099b1e, 0x00099b3d);
-                        else debug_print(0x00099b1e, 0x00099b3d);
+                        if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): exit\n"), ((unsigned long)"component_init"));
+                        else debug_print(((unsigned long)"%s(): exit\n"), ((unsigned long)"component_init"));
                     }
                     W32(context, 0x1078) = 0;
                     read_rtc_counter_ms((void *)(context + 0x1078));

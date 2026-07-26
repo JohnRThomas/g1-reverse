@@ -6,14 +6,14 @@
  * public-name: draw_message
  * durable-map: recon/catalogs/function_names_app.json
  * address symbols (name @ address):
- *   rodata_a8bcd                             @ 0x000a8bcd
- *   rodata_a8be6                             @ 0x000a8be6
- *   rodata_a8c09                             @ 0x000a8c09
- *   rodata_a8c11                             @ 0x000a8c11
- *   rodata_a8c34                             @ 0x000a8c34
+ *   rodata_a8bcd                             @ 0x000a8bcd   [INLINED -- G6 literal batch]
+ *   rodata_a8be6                             @ 0x000a8be6   [INLINED -- G6 literal batch]
+ *   rodata_a8c09                             @ 0x000a8c09   [INLINED -- G6 literal batch]
+ *   rodata_a8c11                             @ 0x000a8c11   [INLINED -- G6 literal batch]
+ *   rodata_a8c34                             @ 0x000a8c34   [INLINED -- G6 literal batch]
  *   rodata_a8c37                             @ 0x000a8c37
- *   rodata_a8c3a                             @ 0x000a8c3a
- *   rodata_a8ce7                             @ 0x000a8ce7
+ *   rodata_a8c3a                             @ 0x000a8c3a   [INLINED -- G6 literal batch]
+ *   rodata_a8ce7                             @ 0x000a8ce7   [INLINED -- G6 literal batch]
  *   rodata_f4ca5                             @ 0x000f4ca5
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -83,15 +83,15 @@ enum notification_bitmap {
 
 #define DEBUG_SINK_MODE (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
 
-#define LOG_FUNCTION_NAME       ((uintptr_t)((unsigned long)&rodata_a8ce7) /*=0xa8ce7*/) /* "draw_message" */
-#define LOG_NULL_MESSAGE        ((uintptr_t)((unsigned long)&rodata_a8bcd) /*=0xa8bcd*/)
-#define LOG_MESSAGE_TYPE        ((uintptr_t)((unsigned long)&rodata_a8be6) /*=0xa8be6*/)
+#define LOG_FUNCTION_NAME       ((uintptr_t)((unsigned long)"draw_message") /*=0xa8ce7*/) /* "draw_message" */
+#define LOG_NULL_MESSAGE        ((uintptr_t)((unsigned long)"[%s-%d]curMsg is NULL !\n") /*=0xa8bcd*/)
+#define LOG_MESSAGE_TYPE        ((uintptr_t)((unsigned long)"show msgType is %d unReadCount %d\n") /*=0xa8be6*/)
 #define FORMAT_STRING           ((uintptr_t)((unsigned long)&rodata_a8c37) /*=0xa8c37*/) /* "%s" */
-#define FORMAT_TITLE_SUBTITLE   ((uintptr_t)((unsigned long)&rodata_a8c09) /*=0xa8c09*/) /* "%s | %s" */
-#define LOG_MESSAGE             ((uintptr_t)((unsigned long)&rodata_a8c11) /*=0xa8c11*/)
+#define FORMAT_TITLE_SUBTITLE   ((uintptr_t)((unsigned long)"%s | %s") /*=0xa8c09*/) /* "%s | %s" */
+#define LOG_MESSAGE             ((uintptr_t)((unsigned long)"recvTime is %u,curMsg->message %s\n") /*=0xa8c11*/)
 #define FORMAT_COUNTER          ((uintptr_t)((unsigned long)&rodata_f4ca5) /*=0xf4ca5*/) /* "%u" */
-#define FORMAT_BODY_PACKAGE_NL  ((uintptr_t)((unsigned long)&rodata_a8c34) /*=0xa8c34*/) /* "%s\n%s" */
-#define FORMAT_BODY_PACKAGE_DASH ((uintptr_t)((unsigned long)&rodata_a8c3a) /*=0xa8c3a*/) /* "%s - %s" */
+#define FORMAT_BODY_PACKAGE_NL  ((uintptr_t)((unsigned long)"%s\n%s") /*=0xa8c34*/) /* "%s\n%s" */
+#define FORMAT_BODY_PACKAGE_DASH ((uintptr_t)((unsigned long)"%s - %s") /*=0xa8c3a*/) /* "%s - %s" */
 
 void draw_message(uint32_t unread_count, struct notification_message *message)
 {

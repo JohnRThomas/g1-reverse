@@ -9,7 +9,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f53ff                             @ 0x000f53ff
  *   rodata_f801f                             @ 0x000f801f
  *   rodata_f82f4                             @ 0x000f82f4
@@ -25,7 +25,7 @@ uint32_t k_sleep(int param_1,int param_2,int param_3,int param_4){
   uint32_t ipsr;
   __asm volatile("mrs %0, ipsr":"=r"(ipsr));
   if(ipsr != 0){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f801f) /*=0xf801f*/, ((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x5c1, param_4);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f801f) /*=0xf801f*/, ((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x5c1, param_4);
     printk(((unsigned long)&rodata_f53ff) /*=0xf53ff*/);
     assert_post_action(((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x5c1);
   }

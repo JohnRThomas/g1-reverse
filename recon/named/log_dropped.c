@@ -9,10 +9,10 @@
  * address symbols (name @ address):
  *   rodata_882a0                             @ 0x000882a0
  *   __settings_handler_static_list_start     @ 0x000882b0
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f0cae                             @ 0x000f0cae
- *   rodata_f0cff                             @ 0x000f0cff
- *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f0cff                             @ 0x000f0cff   [INLINED -- G6 literal batch]
+ *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0004d4a8 @ 0x4d4a8  (parity: 300/300 trials, PROVEN) */
 
@@ -30,8 +30,8 @@ void log_dropped(void)
 
   for (;;) {
     if ((unsigned int)r4 > (unsigned int)r6) {
-      printk((void*)0x99cbdUL,(void*)0xf0cffUL,(void*)0xf0caeUL,0x1d1);
-      printk((void*)0xf0d20UL, 0, 0, 0);
+      printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),(void*)((unsigned long)"backend <= _log_backend_list_end"),(void*)0xf0caeUL,0x1d1);
+      printk((void*)((unsigned long)"\tunexpected list end location\n"), 0, 0, 0);
       assert_post_action((void*)0xf0caeUL,0x1d1);
     }
     if ((unsigned int)r4 >= (unsigned int)r6) break;

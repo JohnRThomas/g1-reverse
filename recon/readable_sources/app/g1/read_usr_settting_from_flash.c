@@ -10,9 +10,9 @@
  *   flash_settings_read                      <= FUN_000225b4 @ 0x000225b4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_9e60c                             @ 0x0009e60c
- *   rodata_9e708                             @ 0x0009e708
- *   rodata_9e72a                             @ 0x0009e72a
+ *   rodata_9e60c                             @ 0x0009e60c   [INLINED -- G6 literal batch]
+ *   rodata_9e708                             @ 0x0009e708   [INLINED -- G6 literal batch]
+ *   rodata_9e72a                             @ 0x0009e72a   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -32,9 +32,9 @@ unsigned int read_usr_settting_from_flash(unsigned char *param_1)
     if (iVar1 == 0) {
         if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                log_message(((unsigned long)&rodata_9e708) /*=0x9e708*/, ((unsigned long)&rodata_9e72a) /*=0x9e72a*/);
+                log_message(((unsigned long)"%s(): read usr settings success!\n") /*=0x9e708*/, ((unsigned long)"read_usr_settting_from_flash") /*=0x9e72a*/);
             else
-                debug_print(((unsigned long)&rodata_9e708) /*=0x9e708*/, ((unsigned long)&rodata_9e72a) /*=0x9e72a*/);
+                debug_print(((unsigned long)"%s(): read usr settings success!\n") /*=0x9e708*/, ((unsigned long)"read_usr_settting_from_flash") /*=0x9e72a*/);
         }
         param_1[0x15] = buf[0x15];
         *(unsigned short*)(param_1 + 0x16) = *(unsigned short*)(buf + 0x16);
@@ -42,9 +42,9 @@ unsigned int read_usr_settting_from_flash(unsigned char *param_1)
     } else {
         if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                log_message(((unsigned long)&rodata_9e60c) /*=0x9e60c*/, ((unsigned long)&rodata_9e72a) /*=0x9e72a*/);
+                log_message(((unsigned long)"%s(): usr_flash_settings_read error!\n") /*=0x9e60c*/, ((unsigned long)"read_usr_settting_from_flash") /*=0x9e72a*/);
             else
-                debug_print(((unsigned long)&rodata_9e60c) /*=0x9e60c*/, ((unsigned long)&rodata_9e72a) /*=0x9e72a*/);
+                debug_print(((unsigned long)"%s(): usr_flash_settings_read error!\n") /*=0x9e60c*/, ((unsigned long)"read_usr_settting_from_flash") /*=0x9e72a*/);
         }
         uVar2 = 0xffffffffUL;
     }

@@ -13,7 +13,7 @@
  *   rodata_40000                             @ 0x00040000
  *   rodata_40002                             @ 0x00040002
  *   rodata_40202                             @ 0x00040202
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6fef                             @ 0x000f6fef
  *   rodata_f707c                             @ 0x000f707c
  *   rodata_f78d1                             @ 0x000f78d1
@@ -51,7 +51,7 @@ int nrfx_twim_xfer(int param_1, int param_2, unsigned int param_3, int param_4)
     if (r3 < ((unsigned long)&rodata_10000) /*=0x10000*/) goto L6796e;
 
 L67956:
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f707c) /*=0xf707c*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x251, param_4);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f707c) /*=0xf707c*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x251, param_4);
     r1 = 0x251;
     goto L67968;
 
@@ -65,12 +65,12 @@ L6796e:
     if (r3 != 0) goto L679aa;
     r3 = R8(r1);
     if (r3 == 2) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f78d1) /*=0xf78d1*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x259, param_4);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f78d1) /*=0xf78d1*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x259, param_4);
         r1 = 0x259;
         goto L67968;
     }
     if (r3 == 3) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f7921) /*=0xf7921*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x25a, param_4);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f7921) /*=0xf7921*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x25a, param_4);
         r1 = 0x25a;
         goto L67968;
     }
@@ -140,17 +140,17 @@ L67a06:
     /* r3 == 3 */
     /* case 3 : L67a9a */
     if ((r8 & 0x10) != 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f7971) /*=0xf7971*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x1d4, param_4);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f7971) /*=0xf7971*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x1d4, param_4);
         r1 = 0x1d4;
         goto L67968;
     }
     if (r10 != 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f7987) /*=0xf7987*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x1d5, param_4);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f7987) /*=0xf7987*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x1d5, param_4);
         r1 = 0x1d5;
         goto L67968;
     }
     if ((r8 & 4) != 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f799d) /*=0xf799d*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x1d6, param_4);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f799d) /*=0xf799d*/, ((unsigned long)&rodata_f6fef) /*=0xf6fef*/, 0x1d6, param_4);
         r1 = 0x1d6;
         goto L67968;
     }

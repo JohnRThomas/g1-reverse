@@ -15,7 +15,7 @@
  *   ADDR_sc_restore_THUMB                    @ 0x0005b555
  *   rodata_88128                             @ 0x00088128
  *   rodata_f4aa1                             @ 0x000f4aa1
- *   rodata_f4d88                             @ 0x000f4d88
+ *   rodata_f4d88                             @ 0x000f4d88   [INLINED -- G6 literal batch]
  */
 /* Reconstructed ext5c6c8 @ 0x0005c6c8 (bt_gatt_connected).
  * Raw/address backmap: ext5c6c8/FUN_0005c6c8 @ 0x0005c6c8, extent 0x8e.

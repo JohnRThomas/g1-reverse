@@ -11,8 +11,8 @@
  *   rodata_837a9                             @ 0x000837a9
  *   rodata_881a0                             @ 0x000881a0
  *   rodata_f5660                             @ 0x000f5660
- *   rodata_f56ae                             @ 0x000f56ae
- *   rodata_f56ca                             @ 0x000f56ca
+ *   rodata_f56ae                             @ 0x000f56ae   [INLINED -- G6 literal batch]
+ *   rodata_f56ca                             @ 0x000f56ca   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005fb8c @ 0x5fb8c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>

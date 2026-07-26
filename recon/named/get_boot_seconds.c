@@ -6,8 +6,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   k_uptime_get_9                           <= FUN_0007d9a4 @ 0x0007d9a4
  * address symbols (name @ address):
- *   rodata_f02ad                             @ 0x000f02ad
- *   rodata_f02ff                             @ 0x000f02ff
+ *   rodata_f02ad                             @ 0x000f02ad   [INLINED -- G6 literal batch]
+ *   rodata_f02ff                             @ 0x000f02ff   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_boot_uptime_s                          @ 0x2000a0b0

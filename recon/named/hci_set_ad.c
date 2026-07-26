@@ -7,7 +7,7 @@
  *   hci_set_ad                               <= FUN_00055534 @ 0x00055534
  * address symbols (name @ address):
  *   rodata_880f8                             @ 0x000880f8
- *   rodata_f3804                             @ 0x000f3804
+ *   rodata_f3804                             @ 0x000f3804   [INLINED -- G6 literal batch]
  */
 /* Reconstructed hci_set_ad @ 0x00055534 (FUN_00055534; NCS 2.5.1 adv.c). */
 #include <stddef.h>

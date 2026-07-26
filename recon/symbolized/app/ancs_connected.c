@@ -13,10 +13,10 @@
  *   bt_conn_le_param_update                  <= FUN_0008157a @ 0x0008157a
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
- *   rodata_9a5ae                             @ 0x0009a5ae
- *   rodata_9a5d8                             @ 0x0009a5d8
- *   rodata_9a5f4                             @ 0x0009a5f4
- *   rodata_9b1b9                             @ 0x0009b1b9
+ *   rodata_9a5ae                             @ 0x0009a5ae   [INLINED -- G6 literal batch]
+ *   rodata_9a5d8                             @ 0x0009a5d8   [INLINED -- G6 literal batch]
+ *   rodata_9a5f4                             @ 0x0009a5f4   [INLINED -- G6 literal batch]
+ *   rodata_9b1b9                             @ 0x0009b1b9   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_ancs_conn_param                        @ 0x20002f60
  *   g_ancs_active_conn                       @ 0x20006ab8
@@ -46,7 +46,7 @@ void ancs_connected(int param_1, int param_2)
   bVar2 = *(unsigned char*)(param_1+3);
   iVar5 = get_device_info();
   uVar6 = (unsigned)*(unsigned char*)(iVar5+0x1071);
-  log_message(((unsigned long)&rodata_9a5ae) /*=0x9a5ae*/, auStack_38, (unsigned)bVar1, (unsigned)bVar2, uVar6);
+  log_message(((unsigned long)"%s -- type: 0x%x, role:0x%x force_bind %d") /*=0x9a5ae*/, auStack_38, (unsigned)bVar1, (unsigned)bVar2, uVar6);
   if (param_2 == 0) {
     iVar5 = is_battery_critical();
     if ((iVar5 == 0) && (iVar5 = get_device_info(), *(char*)(iVar5+0x1071) == 0)) {
@@ -55,10 +55,10 @@ void ancs_connected(int param_1, int param_2)
       if (iVar5 != 0) {
         if (0 < *(int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
           if (*(int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            log_message(((unsigned long)&rodata_9a5f4) /*=0x9a5f4*/, ((unsigned long)&rodata_9b1b9) /*=0x9b1b9*/, auStack_38,
+            log_message(((unsigned long)"%s(): disconnect because invalid mac %s -- type: 0x%x, role:0x%x \n\n") /*=0x9a5f4*/, ((unsigned long)"ancs_connected") /*=0x9b1b9*/, auStack_38,
                         (unsigned)*(unsigned char*)(param_1+2), (unsigned)*(unsigned char*)(param_1+3));
           else
-            debug_print(((unsigned long)&rodata_9a5f4) /*=0x9a5f4*/, ((unsigned long)&rodata_9b1b9) /*=0x9b1b9*/, auStack_38,
+            debug_print(((unsigned long)"%s(): disconnect because invalid mac %s -- type: 0x%x, role:0x%x \n\n") /*=0x9a5f4*/, ((unsigned long)"ancs_connected") /*=0x9b1b9*/, auStack_38,
                          (unsigned)*(unsigned char*)(param_1+2),
                          (unsigned)*(unsigned char*)(param_1+3));
         }
@@ -81,9 +81,9 @@ void ancs_connected(int param_1, int param_2)
   }
   else if (0 < *(int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
     if (*(int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-      log_message(((unsigned long)&rodata_9a5d8) /*=0x9a5d8*/, ((unsigned long)&rodata_9b1b9) /*=0x9b1b9*/, param_2, 0, uVar6);
+      log_message(((unsigned long)"%s(): failed (err 0x%02x)\n\n") /*=0x9a5d8*/, ((unsigned long)"ancs_connected") /*=0x9b1b9*/, param_2, 0, uVar6);
     else
-      debug_print(((unsigned long)&rodata_9a5d8) /*=0x9a5d8*/, ((unsigned long)&rodata_9b1b9) /*=0x9b1b9*/, param_2,
+      debug_print(((unsigned long)"%s(): failed (err 0x%02x)\n\n") /*=0x9a5d8*/, ((unsigned long)"ancs_connected") /*=0x9b1b9*/, param_2,
                    *(volatile unsigned*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/, uVar6);
   }
   return;

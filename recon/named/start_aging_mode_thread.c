@@ -6,8 +6,8 @@
  *   z_impl_k_thread_create                   <= FUN_00071eac @ 0x00071eac
  * address symbols (name @ address):
  *   rodata_32421                             @ 0x00032421
- *   rodata_a757f                             @ 0x000a757f
- *   rodata_a75c2                             @ 0x000a75c2
+ *   rodata_a757f                             @ 0x000a757f   [INLINED -- G6 literal batch]
+ *   rodata_a75c2                             @ 0x000a75c2   [INLINED -- G6 literal batch]
  *   g_aging_mode_thread                      @ 0x20004870
  *   g_aging_mode_thread_started_flag         @ 0x20019ef1
  *   g_aging_mode_thread_stack                @ 0x20027a68

@@ -12,9 +12,9 @@
  *   vdprintf_to_fd                           <= FUN_00086f00 @ 0x00086f00
  * address symbols (name @ address):
  *   rodata_9ddbf                             @ 0x0009ddbf
- *   rodata_a672f                             @ 0x000a672f
- *   rodata_a715d                             @ 0x000a715d
- *   rodata_a7173                             @ 0x000a7173
+ *   rodata_a672f                             @ 0x000a672f   [INLINED -- G6 literal batch]
+ *   rodata_a715d                             @ 0x000a715d   [INLINED -- G6 literal batch]
+ *   rodata_a7173                             @ 0x000a7173   [INLINED -- G6 literal batch]
  *   g_dashboard_lock_pending_flag            @ 0x20007aa4
  *   g_app_switch_pending_flag                @ 0x20007aa8
  *   g_ble_switch_status_reason               @ 0x20007aac
@@ -33,15 +33,15 @@ unsigned test_mode_apply_base_status_cmd(unsigned param_1, unsigned param_2, uns
 {
   int *piVar1; int iVar2, iVar4; unsigned uVar3; unsigned char *puVar5; unsigned char uVar6; char cVar7;
   unsigned local_b0; unsigned char auStack_ac[16]; unsigned char auStack_9c[12]; int local_90;
-  uint64_t debug_result = log_message(((unsigned long)&rodata_a715d) /*=0xa715d*/, param_2, (unsigned)param_3,
+  uint64_t debug_result = log_message(((unsigned long)"join in set_imu_base\n") /*=0xa715d*/, param_2, (unsigned)param_3,
                                       (unsigned)param_4);
   if ((param_3 == 0) || (param_4 == 0)) {
-    log_message(((unsigned long)&rodata_a7173) /*=0xa7173*/, (unsigned)(debug_result >> 32), (unsigned)param_3,
+    log_message(((unsigned long)"set_imu_base para is NULL\n") /*=0xa7173*/, (unsigned)(debug_result >> 32), (unsigned)param_3,
                 (unsigned)param_4);
     return 0xffffffff;
   }
   if (*(char*)((unsigned long)&g_test_mode_flag) /*=0x20019ef3*/ != 1) {
-    log_message(((unsigned long)&rodata_a672f) /*=0xa672f*/, (unsigned)(debug_result >> 32),
+    log_message(((unsigned long)"warning: not test mode,disable setting\n") /*=0xa672f*/, (unsigned)(debug_result >> 32),
                 (unsigned)param_3, ((unsigned long)&g_test_mode_flag) /*=0x20019ef3*/);
     return 0xfffffffe;
   }

@@ -14,9 +14,9 @@
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
  *   rodata_87d70                             @ 0x00087d70
- *   rodata_9fc8b                             @ 0x0009fc8b
- *   rodata_9fc99                             @ 0x0009fc99
- *   rodata_a19e5                             @ 0x000a19e5
+ *   rodata_9fc8b                             @ 0x0009fc8b   [INLINED -- G6 literal batch]
+ *   rodata_9fc99                             @ 0x0009fc99   [INLINED -- G6 literal batch]
+ *   rodata_a19e5                             @ 0x000a19e5   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_flash_crc_active_flag                  @ 0x2000302c
  *   g_log_use_alt_sink                       @ 0x20007554

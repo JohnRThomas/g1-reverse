@@ -11,8 +11,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   opt3007_chip_deinit                      <= FUN_0002e8b4 @ 0x0002e8b4
  * address symbols (name @ address):
- *   rodata_d721e                             @ 0x000d721e
- *   rodata_d72d1                             @ 0x000d72d1
+ *   rodata_d721e                             @ 0x000d721e   [INLINED -- G6 literal batch]
+ *   rodata_d72d1                             @ 0x000d72d1   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -35,9 +35,9 @@ uint32_t panel_off(uint8_t *context)
         *(uint32_t *)(context + 0x35c) = 0;
         if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_d721e) /*=0xd721e*/, ((unsigned long)&rodata_d72d1) /*=0xd72d1*/);
+                log_message(((unsigned long)"%s(): panel_suspend enter!\n") /*=0xd721e*/, ((unsigned long)"panel_off") /*=0xd72d1*/);
             } else {
-                debug_print(((unsigned long)&rodata_d721e) /*=0xd721e*/, ((unsigned long)&rodata_d72d1) /*=0xd72d1*/);
+                debug_print(((unsigned long)"%s(): panel_suspend enter!\n") /*=0xd721e*/, ((unsigned long)"panel_off") /*=0xd72d1*/);
             }
         }
         if (get_ambient_light_sensor_ready_flag() == 0)

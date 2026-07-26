@@ -15,15 +15,15 @@
  * address symbols (name @ address):
  *   rodata_10000                             @ 0x00010000
  *   rodata_881b8                             @ 0x000881b8
- *   rodata_f0af8                             @ 0x000f0af8
- *   rodata_f0b1a                             @ 0x000f0b1a
- *   rodata_f0b37                             @ 0x000f0b37
- *   rodata_f0b4f                             @ 0x000f0b4f
- *   rodata_f0b63                             @ 0x000f0b63
- *   rodata_f0b86                             @ 0x000f0b86
- *   rodata_f0b9d                             @ 0x000f0b9d
- *   rodata_f0baf                             @ 0x000f0baf
- *   rodata_f0bc0                             @ 0x000f0bc0
+ *   rodata_f0af8                             @ 0x000f0af8   [INLINED -- G6 literal batch]
+ *   rodata_f0b1a                             @ 0x000f0b1a   [INLINED -- G6 literal batch]
+ *   rodata_f0b37                             @ 0x000f0b37   [INLINED -- G6 literal batch]
+ *   rodata_f0b4f                             @ 0x000f0b4f   [INLINED -- G6 literal batch]
+ *   rodata_f0b63                             @ 0x000f0b63   [INLINED -- G6 literal batch]
+ *   rodata_f0b86                             @ 0x000f0b86   [INLINED -- G6 literal batch]
+ *   rodata_f0b9d                             @ 0x000f0b9d   [INLINED -- G6 literal batch]
+ *   rodata_f0baf                             @ 0x000f0baf   [INLINED -- G6 literal batch]
+ *   rodata_f0bc0                             @ 0x000f0bc0   [INLINED -- G6 literal batch]
  *   rodata_f0be7                             @ 0x000f0be7
  */
 /* Reconstructed FUN_0004c548 @ 0x4c548  (parity: 300/300 trials, PROVEN) */
@@ -85,18 +85,18 @@ extern long long nvs_add_gc_done_ate(long long);
 extern long long FUN_0007e83a(long long);
 extern long long flash_get_page_info_by_offs(long long, long long, long long);
 extern long long kmutex_dlist_init(long long);
-#define DAT_0004c7a0 ((unsigned long)&rodata_f0af8) /*=0xf0af8*/
+#define DAT_0004c7a0 ((unsigned long)"Could not obtain flash parameters") /*=0xf0af8*/
 #define DAT_0004c7a4 ((unsigned long)&rodata_881b8) /*=0x881b8*/
-#define DAT_0004c7a8 ((unsigned long)&rodata_f0b1a) /*=0xf0b1a*/
-#define DAT_0004c7ac ((unsigned long)&rodata_f0b37) /*=0xf0b37*/
-#define DAT_0004c7b0 ((unsigned long)&rodata_f0b4f) /*=0xf0b4f*/
-#define DAT_0004c7b4 ((unsigned long)&rodata_f0b63) /*=0xf0b63*/
-#define DAT_0004c7b8 ((unsigned long)&rodata_f0bc0) /*=0xf0bc0*/
+#define DAT_0004c7a8 ((unsigned long)"Unsupported write block size") /*=0xf0b1a*/
+#define DAT_0004c7ac ((unsigned long)"Unable to get page info") /*=0xf0b37*/
+#define DAT_0004c7b0 ((unsigned long)"Invalid sector size") /*=0xf0b4f*/
+#define DAT_0004c7b4 ((unsigned long)"Configuration error - sector count") /*=0xf0b63*/
+#define DAT_0004c7b8 ((unsigned long)"No GC Done marker found: restarting gc") /*=0xf0bc0*/
 #define DAT_0004c7bc 0xffff0000UL
-#define DAT_0004c8e0 ((unsigned long)&rodata_f0b86) /*=0xf0b86*/
+#define DAT_0004c8e0 ((unsigned long)"%d Sectors of %d bytes") /*=0xf0b86*/
 #define DAT_0004c8e4 ((unsigned long)&rodata_881b8) /*=0x881b8*/
-#define DAT_0004c8e8 ((unsigned long)&rodata_f0b9d) /*=0xf0b9d*/
-#define DAT_0004c8ec ((unsigned long)&rodata_f0baf) /*=0xf0baf*/
+#define DAT_0004c8e8 ((unsigned long)"alloc wra: %d, %x") /*=0xf0b9d*/
+#define DAT_0004c8ec ((unsigned long)"data wra: %d, %x") /*=0xf0baf*/
 #define DAT_0004c8f0 ((unsigned long)&rodata_f0be7) /*=0xf0be7*/
 #define DAT_0004c8f4 0xffff0000UL
 

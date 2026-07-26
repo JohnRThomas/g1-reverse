@@ -20,13 +20,13 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_9ded0                             @ 0x0009ded0
- *   rodata_9dede                             @ 0x0009dede
- *   rodata_9deed                             @ 0x0009deed
- *   rodata_9df00                             @ 0x0009df00
- *   rodata_9df28                             @ 0x0009df28
- *   rodata_9df51                             @ 0x0009df51
- *   rodata_9df99                             @ 0x0009df99
+ *   rodata_9ded0                             @ 0x0009ded0   [INLINED -- G6 literal batch]
+ *   rodata_9dede                             @ 0x0009dede   [INLINED -- G6 literal batch]
+ *   rodata_9deed                             @ 0x0009deed   [INLINED -- G6 literal batch]
+ *   rodata_9df00                             @ 0x0009df00   [INLINED -- G6 literal batch]
+ *   rodata_9df28                             @ 0x0009df28   [INLINED -- G6 literal batch]
+ *   rodata_9df51                             @ 0x0009df51   [INLINED -- G6 literal batch]
+ *   rodata_9df99                             @ 0x0009df99   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_send_event_pending_id                  @ 0x2000302e
  *   g_ring_log_pending                       @ 0x20007550
@@ -56,8 +56,8 @@ ble_log(uintptr_t format, uint32_t value, int threshold)
 {
     if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > threshold) {
         int alternate=*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
-        if (alternate) debug_print(format,((unsigned long)&rodata_9df99) /*=0x9df99*/,value,(uint32_t)alternate);
-        else log_message(format,((unsigned long)&rodata_9df99) /*=0x9df99*/,value,(uint32_t)alternate);
+        if (alternate) debug_print(format,((unsigned long)"ble_work_thread") /*=0x9df99*/,value,(uint32_t)alternate);
+        else log_message(format,((unsigned long)"ble_work_thread") /*=0x9df99*/,value,(uint32_t)alternate);
     }
 }
 
@@ -67,12 +67,12 @@ ble_log(uintptr_t format, uint32_t value, int threshold)
 void ble_work_thread(uintptr_t context, uintptr_t unused_p2, uint32_t p3)
 {
     (void)unused_p2;
-    ble_log(((unsigned long)&rodata_9ded0) /*=0x9ded0*/,p3,2);
+    ble_log(((unsigned long)"%s(): start\n\n") /*=0x9ded0*/,p3,2);
     int rc=ancs_main(context);
     debug_log_queue_init();
-    if(rc) ble_log(((unsigned long)&rodata_9dede) /*=0x9dede*/,(uint32_t)rc,2);
+    if(rc) ble_log(((unsigned long)"%s(): err:%d\n\n") /*=0x9dede*/,(uint32_t)rc,2);
     *(volatile uintptr_t*)(context+0x10)=malloc(0x2b8);
-    ble_log(((unsigned long)&rodata_9deed) /*=0x9deed*/,0x2b8,2);
+    ble_log(((unsigned long)"%s(): tx_size:%d\n\n") /*=0x9deed*/,0x2b8,2);
 
     uint8_t packet[260];
     for (;;) {
@@ -142,12 +142,12 @@ void ble_work_thread(uintptr_t context, uintptr_t unused_p2, uint32_t p3)
         } else {
             int state=device_resume_state_advance();
             if(state==0) {
-                ble_log(((unsigned long)&rodata_9df28) /*=0x9df28*/,0,2);
+                ble_log(((unsigned long)"%s(): charge plug off, call bt_start. \n\n") /*=0x9df28*/,0,2);
                 int error=bt_start();
-                if(error) log_message(((unsigned long)&rodata_9df51) /*=0x9df51*/,(uint32_t)error,0,
+                if(error) log_message(((unsigned long)"Advertising failed to start (err %d)\n") /*=0x9df51*/,(uint32_t)error,0,
                                       *(volatile uint32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
             } else {
-                ble_log(((unsigned long)&rodata_9df00) /*=0x9df00*/,(uint32_t)state,1);
+                ble_log(((unsigned long)"%s(): bt_le_adv_stop failed!!! err=%d\n\n") /*=0x9df00*/,(uint32_t)state,1);
             }
             *(volatile uint8_t*)(context+0x364)=0;
         }

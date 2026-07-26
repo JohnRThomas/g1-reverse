@@ -10,9 +10,9 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
  *   rodata_88158                             @ 0x00088158
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f5268                             @ 0x000f5268
- *   rodata_f5298                             @ 0x000f5298
+ *   rodata_f5298                             @ 0x000f5298   [INLINED -- G6 literal batch]
  *   rodata_f5353                             @ 0x000f5353
  */
 /* Reconstructed FUN_0005ec18 @ 0x5ec18  (parity: 300/300 trials, PROVEN) */
@@ -25,7 +25,7 @@ int bt_keys_store(unsigned char* param_1){
   int iVar1;
   struct{unsigned int a,b; int c;} log;
   if(param_1==0){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f5298) /*=0xf5298*/,((unsigned long)&rodata_f5268) /*=0xf5268*/,0x146);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"keys != ((void *)0)") /*=0xf5298*/,((unsigned long)&rodata_f5268) /*=0xf5268*/,0x146);
     assert_post_action(((unsigned long)&rodata_f5268) /*=0xf5268*/,0x146);
   }
   iVar1=bt_keys_settings_store(*param_1,param_1+1,param_1+0xc,0x50);

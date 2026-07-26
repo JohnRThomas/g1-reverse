@@ -7,7 +7,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6a4e                             @ 0x000f6a4e
  *   rodata_f6acd                             @ 0x000f6acd
  *   nrfx_clock_module_initialized            @ 0x2000b320
@@ -23,7 +23,7 @@ extern void clock_stop(int domain);
 void nrfx_clock_stop(int domain)
 {
     if (*(volatile uint8_t*)0x2000b320 == 0) {
-        printk(0x00099cbd, 0x000f6acd, 0x000f6a4e, 0x1ad);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f6acd, 0x000f6a4e, 0x1ad);
         assert_post_action(0x000f6a4e, 0x1ad);
     }
     clock_stop(domain);

@@ -11,9 +11,9 @@
  * address symbols (name @ address):
  *   rodata_9d759                             @ 0x0009d759
  *   rodata_9d790                             @ 0x0009d790
- *   rodata_a7b64                             @ 0x000a7b64
- *   rodata_a7b94                             @ 0x000a7b94
- *   rodata_a7bcc                             @ 0x000a7bcc
+ *   rodata_a7b64                             @ 0x000a7b64   [INLINED -- G6 literal batch]
+ *   rodata_a7b94                             @ 0x000a7b94   [INLINED -- G6 literal batch]
+ *   rodata_a7bcc                             @ 0x000a7bcc   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  */
 /* CPUAPP send_notification_app_whitelist @ 0x00033730.
@@ -46,13 +46,13 @@ uint32_t send_notification_app_whitelist(uint8_t *transport,
     *(uint32_t *)(void *)packet = 0u;
     memset_bytes(packet + 4, 0u, 0x11u);
     memset_bytes(text, 0u, sizeof(text));
-    text_size = vdprintf_to_fd(text, 0u, sizeof(text), ((unsigned long)&rodata_a7b64) /*=0xa7b64*/,
+    text_size = vdprintf_to_fd(text, 0u, sizeof(text), ((unsigned long)"{\"whitelist_app_add\": {\"%s\":  \"%s\",\"%s\": \"%s\"}}") /*=0xa7b64*/,
                              ((unsigned long)&rodata_9d759) /*=0x9d759*/, identifier,
                              ((unsigned long)&rodata_9d790) /*=0x9d790*/, display_name);
     if (LOG_ROUTE == 0u)
-        log_message(((unsigned long)&rodata_a7b94) /*=0xa7b94*/, text);
+        log_message(((unsigned long)"[csh_debug]:send_notifi_app_white_list app buf is: %s \n") /*=0xa7b94*/, text);
     else
-        debug_print(((unsigned long)&rodata_a7b94) /*=0xa7b94*/, text);
+        debug_print(((unsigned long)"[csh_debug]:send_notifi_app_white_list app buf is: %s \n") /*=0xa7b94*/, text);
 
     chunk_count = (uint8_t)((text_size & 0xffffu) / 0x11u);
     if ((text_size & 0xffffu) % 0x11u != 0u)
@@ -80,9 +80,9 @@ uint32_t send_notification_app_whitelist(uint8_t *transport,
             retry_count = (uint8_t)(retry_count + 1u);
             if (retry_count == 6u) {
                 if (LOG_ROUTE == 0u)
-                    log_message(((unsigned long)&rodata_a7bcc) /*=0xa7bcc*/);
+                    log_message(((unsigned long)"[csh_debug] failed to send whitelist !!\n") /*=0xa7bcc*/);
                 else
-                    debug_print(((unsigned long)&rodata_a7bcc) /*=0xa7bcc*/);
+                    debug_print(((unsigned long)"[csh_debug] failed to send whitelist !!\n") /*=0xa7bcc*/);
                 return 0u;
             }
         }

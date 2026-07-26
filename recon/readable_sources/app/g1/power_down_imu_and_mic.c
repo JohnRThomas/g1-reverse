@@ -6,8 +6,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
  * address symbols (name @ address):
- *   rodata_9945a                             @ 0x0009945a
- *   rodata_99c00                             @ 0x00099c00
+ *   rodata_9945a                             @ 0x0009945a   [INLINED -- G6 literal batch]
+ *   rodata_99c00                             @ 0x00099c00   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -27,9 +27,9 @@ unsigned int power_down_imu_and_mic(void)
     }
     int flag = *(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
     if (flag == 0) {
-        log_message(iVar1 < 0 ? ((unsigned long)&rodata_9945a) /*=0x9945a*/ : 0x000994f7, ((unsigned long)&rodata_99c00) /*=0x99c00*/);
+        log_message(iVar1 < 0 ? ((unsigned long)"%s(): Could not set ldsw2.\n") /*=0x9945a*/ : 0x000994f7, ((unsigned long)"power_down_imu_and_mic") /*=0x99c00*/);
     } else {
-        debug_print(iVar1 < 0 ? ((unsigned long)&rodata_9945a) /*=0x9945a*/ : 0x000994f7, ((unsigned long)&rodata_99c00) /*=0x99c00*/);
+        debug_print(iVar1 < 0 ? ((unsigned long)"%s(): Could not set ldsw2.\n") /*=0x9945a*/ : 0x000994f7, ((unsigned long)"power_down_imu_and_mic") /*=0x99c00*/);
     }
     return 0;
 }

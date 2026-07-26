@@ -22,20 +22,20 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   strcpy                                   <= FUN_00086fee @ 0x00086fee
  * address symbols (name @ address):
- *   rodata_9b8fd                             @ 0x0009b8fd
- *   rodata_9d4e4                             @ 0x0009d4e4
- *   rodata_9d518                             @ 0x0009d518
- *   rodata_9d546                             @ 0x0009d546
- *   rodata_9d587                             @ 0x0009d587
- *   rodata_9d5af                             @ 0x0009d5af
- *   rodata_9d5da                             @ 0x0009d5da
- *   rodata_9d64e                             @ 0x0009d64e
- *   rodata_9d671                             @ 0x0009d671
- *   rodata_9d681                             @ 0x0009d681
+ *   rodata_9b8fd                             @ 0x0009b8fd   [INLINED -- G6 literal batch]
+ *   rodata_9d4e4                             @ 0x0009d4e4   [INLINED -- G6 literal batch]
+ *   rodata_9d518                             @ 0x0009d518   [INLINED -- G6 literal batch]
+ *   rodata_9d546                             @ 0x0009d546   [INLINED -- G6 literal batch]
+ *   rodata_9d587                             @ 0x0009d587   [INLINED -- G6 literal batch]
+ *   rodata_9d5af                             @ 0x0009d5af   [INLINED -- G6 literal batch]
+ *   rodata_9d5da                             @ 0x0009d5da   [INLINED -- G6 literal batch]
+ *   rodata_9d64e                             @ 0x0009d64e   [INLINED -- G6 literal batch]
+ *   rodata_9d671                             @ 0x0009d671   [INLINED -- G6 literal batch]
+ *   rodata_9d681                             @ 0x0009d681   [INLINED -- G6 literal batch]
  *   rodata_9d69e                             @ 0x0009d69e
- *   rodata_9e032                             @ 0x0009e032
- *   rodata_9e04e                             @ 0x0009e04e
- *   rodata_9e08b                             @ 0x0009e08b
+ *   rodata_9e032                             @ 0x0009e032   [INLINED -- G6 literal batch]
+ *   rodata_9e04e                             @ 0x0009e04e   [INLINED -- G6 literal batch]
+ *   rodata_9e08b                             @ 0x0009e08b   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_ble_work_timer                         @ 0x20003d28
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -138,9 +138,9 @@ unsigned int ble_process_req_dispatch(uint8_t *param_1, uint8_t *packet, uint8_t
             if (0 < LVL_A) {
                 uint32_t backend_state = (uint32_t)LVL_B;
                 if (backend_state == 0) {
-                    log_message(((unsigned long)&rodata_9d681) /*=0x9d681*/, ((unsigned long)&rodata_9e08b) /*=0x9e08b*/, command_id);
+                    log_message(((unsigned long)"%s(): tx error req_type. %d\n") /*=0x9d681*/, ((unsigned long)"ble_process_req_dispatch") /*=0x9e08b*/, command_id);
                 } else {
-                    debug_print(((unsigned long)&rodata_9d681) /*=0x9d681*/, ((unsigned long)&rodata_9e08b) /*=0x9e08b*/, command_id);
+                    debug_print(((unsigned long)"%s(): tx error req_type. %d\n") /*=0x9d681*/, ((unsigned long)"ble_process_req_dispatch") /*=0x9e08b*/, command_id);
                 }
             }
             {
@@ -162,22 +162,22 @@ unsigned int ble_process_req_dispatch(uint8_t *param_1, uint8_t *packet, uint8_t
             if (1 < LVL_A) {
                 uint32_t backend_state = (uint32_t)LVL_B;
                 if (backend_state == 0) {
-                    log_message(((unsigned long)&rodata_9d64e) /*=0x9d64e*/, ((unsigned long)&rodata_9e032) /*=0x9e032*/, command_id);
+                    log_message(((unsigned long)"%s(): @tx error post req_type: %d\n") /*=0x9d64e*/, ((unsigned long)"ble_process_report_response") /*=0x9e032*/, command_id);
                 } else {
-                    debug_print(((unsigned long)&rodata_9d64e) /*=0x9d64e*/, ((unsigned long)&rodata_9e032) /*=0x9e032*/, command_id);
+                    debug_print(((unsigned long)"%s(): @tx error post req_type: %d\n") /*=0x9d64e*/, ((unsigned long)"ble_process_report_response") /*=0x9e032*/, command_id);
                 }
             }
         } else if (1 < LVL_A) {
             uint32_t backend_state = (uint32_t)LVL_B;
             if (backend_state == 0) {
-                log_message(((unsigned long)&rodata_9d64e) /*=0x9d64e*/, ((unsigned long)&rodata_9e032) /*=0x9e032*/, command_id);
+                log_message(((unsigned long)"%s(): @tx error post req_type: %d\n") /*=0x9d64e*/, ((unsigned long)"ble_process_report_response") /*=0x9e032*/, command_id);
             } else {
-                debug_print(((unsigned long)&rodata_9d64e) /*=0x9d64e*/, ((unsigned long)&rodata_9e032) /*=0x9e032*/, command_id);
+                debug_print(((unsigned long)"%s(): @tx error post req_type: %d\n") /*=0x9d64e*/, ((unsigned long)"ble_process_report_response") /*=0x9e032*/, command_id);
             }
         }
         transfer[1] = 0xca;
         transfer[2] = 0x15;
-        strcpy(transfer + 2, (const void *)((unsigned long)&rodata_9d671) /*=0x9d671*/);
+        strcpy(transfer + 2, (const void *)((unsigned long)"error post req.") /*=0x9d671*/);
         {
             response_callback_t pc = *(response_callback_t *)(param_1 + 0xc);
             pc(transfer, 20);
@@ -196,9 +196,9 @@ unsigned int ble_process_req_dispatch(uint8_t *param_1, uint8_t *packet, uint8_t
     case 0x47: {
         if (1 < LVL_A) {
             if (LVL_B == 0)
-                log_message(((unsigned long)&rodata_9d4e4) /*=0x9d4e4*/, ((unsigned long)&rodata_9e04e) /*=0x9e04e*/);
+                log_message(((unsigned long)"%s(): *****will unbond current bt connection*****\n\n") /*=0x9d4e4*/, ((unsigned long)"ble_process_post_req") /*=0x9e04e*/);
             else
-                debug_print(((unsigned long)&rodata_9d4e4) /*=0x9d4e4*/, ((unsigned long)&rodata_9e04e) /*=0x9e04e*/);
+                debug_print(((unsigned long)"%s(): *****will unbond current bt connection*****\n\n") /*=0x9d4e4*/, ((unsigned long)"ble_process_post_req") /*=0x9e04e*/);
         }
         {
             response_callback_t pc = *(response_callback_t *)(param_1 + 0xc);
@@ -209,9 +209,9 @@ unsigned int ble_process_req_dispatch(uint8_t *param_1, uint8_t *packet, uint8_t
         if (iVar13 == 0) { return 0; }
         if (0 < LVL_A) {
             if (LVL_B == 0)
-                log_message(((unsigned long)&rodata_9d518) /*=0x9d518*/, ((unsigned long)&rodata_9e04e) /*=0x9e04e*/);
+                log_message(((unsigned long)"%s(): bt_conn_disconnect because recv unpair\n") /*=0x9d518*/, ((unsigned long)"ble_process_post_req") /*=0x9e04e*/);
             else
-                debug_print(((unsigned long)&rodata_9d518) /*=0x9d518*/, ((unsigned long)&rodata_9e04e) /*=0x9e04e*/);
+                debug_print(((unsigned long)"%s(): bt_conn_disconnect because recv unpair\n") /*=0x9d518*/, ((unsigned long)"ble_process_post_req") /*=0x9e04e*/);
         }
         bt_conn_disconnect_by_state(iVar13, 0x13);
         return 0;
@@ -219,13 +219,13 @@ unsigned int ble_process_req_dispatch(uint8_t *param_1, uint8_t *packet, uint8_t
     default:
         if (1 < LVL_A) {
             if (LVL_B == 0)
-                log_message(((unsigned long)&rodata_9d64e) /*=0x9d64e*/, ((unsigned long)&rodata_9e04e) /*=0x9e04e*/, command_id);
+                log_message(((unsigned long)"%s(): @tx error post req_type: %d\n") /*=0x9d64e*/, ((unsigned long)"ble_process_post_req") /*=0x9e04e*/, command_id);
             else
-                debug_print(((unsigned long)&rodata_9d64e) /*=0x9d64e*/, ((unsigned long)&rodata_9e04e) /*=0x9e04e*/, command_id);
+                debug_print(((unsigned long)"%s(): @tx error post req_type: %d\n") /*=0x9d64e*/, ((unsigned long)"ble_process_post_req") /*=0x9e04e*/, command_id);
         }
         response[1] = 0xca;
         response[2] = 0x15;
-        strcpy(response + 2, (const void *)((unsigned long)&rodata_9d671) /*=0x9d671*/);
+        strcpy(response + 2, (const void *)((unsigned long)"error post req.") /*=0x9d671*/);
         break;
     case 0x49:
     case 0x4d:
@@ -242,9 +242,9 @@ unsigned int ble_process_req_dispatch(uint8_t *param_1, uint8_t *packet, uint8_t
     case 0x4c:
         if (2 < LVL_A) {
             if (LVL_B == 0)
-                log_message(((unsigned long)&rodata_9d546) /*=0x9d546*/, ((unsigned long)&rodata_9e04e) /*=0x9e04e*/);
+                log_message(((unsigned long)"%s(): ble_process_post_req BLE_REQ_POST_DELETE_NOTIFICATION_MSG\n") /*=0x9d546*/, ((unsigned long)"ble_process_post_req") /*=0x9e04e*/);
             else
-                debug_print(((unsigned long)&rodata_9d546) /*=0x9d546*/, ((unsigned long)&rodata_9e04e) /*=0x9e04e*/);
+                debug_print(((unsigned long)"%s(): ble_process_post_req BLE_REQ_POST_DELETE_NOTIFICATION_MSG\n") /*=0x9d546*/, ((unsigned long)"ble_process_post_req") /*=0x9e04e*/);
         }
         memcpy((uint8_t *)puVar15 + 4, param_3 + 1,
                      (uint32_t)load_u16(packet + 2) - 1);
@@ -401,9 +401,9 @@ LAB_000216b4:
             uint32_t error_format;
             if (2 < LVL_A) {
                 if (LVL_B == 0)
-                    log_message(((unsigned long)&rodata_9d587) /*=0x9d587*/, ((unsigned long)&rodata_9e04e) /*=0x9e04e*/);
+                    log_message(((unsigned long)"%s(): received Dashboard lock command.\n") /*=0x9d587*/, ((unsigned long)"ble_process_post_req") /*=0x9e04e*/);
                 else
-                    debug_print(((unsigned long)&rodata_9d587) /*=0x9d587*/, ((unsigned long)&rodata_9e04e) /*=0x9e04e*/);
+                    debug_print(((unsigned long)"%s(): received Dashboard lock command.\n") /*=0x9d587*/, ((unsigned long)"ble_process_post_req") /*=0x9e04e*/);
             }
             cVar1 = *(volatile int8_t *)(param_3 + 4);
             pcVar8 = (volatile int8_t *)(intptr_t)get_device_info();
@@ -414,9 +414,9 @@ LAB_000216b4:
                     if ((int32_t)(flags << 0x1e) < 0) { return 0; }
                     if (2 < LVL_A) {
                         if (LVL_B == 0)
-                            log_message(((unsigned long)&rodata_9d5af) /*=0x9d5af*/, ((unsigned long)&rodata_9e04e) /*=0x9e04e*/);
+                            log_message(((unsigned long)"%s(): master exec dashboard lock process.\n") /*=0x9d5af*/, ((unsigned long)"ble_process_post_req") /*=0x9e04e*/);
                         else
-                            debug_print(((unsigned long)&rodata_9d5af) /*=0x9d5af*/, ((unsigned long)&rodata_9e04e) /*=0x9e04e*/);
+                            debug_print(((unsigned long)"%s(): master exec dashboard lock process.\n") /*=0x9d5af*/, ((unsigned long)"ble_process_post_req") /*=0x9e04e*/);
                     }
                     (void)__atomic_fetch_or(P_20007570, 2,
                                             __ATOMIC_ACQ_REL);
@@ -430,7 +430,7 @@ LAB_000216b4:
                     return 0;
                 }
                 if (LVL_A < 1) { return 0; }
-                error_format = ((unsigned long)&rodata_9d5da) /*=0x9d5da*/;
+                error_format = ((unsigned long)"%s(): received error dashboard lock action command.\n") /*=0x9d5da*/;
                 iVar13x = LVL_B;
             } else {
                 if (LVL_A < 1) { return 0; }
@@ -438,19 +438,19 @@ LAB_000216b4:
                 iVar13x = LVL_B;
             }
             if (iVar13x != 0) {
-                debug_print(error_format, ((unsigned long)&rodata_9e04e) /*=0x9e04e*/);
+                debug_print(error_format, ((unsigned long)"ble_process_post_req") /*=0x9e04e*/);
                 return 0;
             }
-            log_message(error_format, ((unsigned long)&rodata_9e04e) /*=0x9e04e*/);
+            log_message(error_format, ((unsigned long)"ble_process_post_req") /*=0x9e04e*/);
             return 0;
         }
         if (LVL_A < 2) { return 0; }
         if (LVL_B != 0) {
-            debug_print(((unsigned long)&rodata_9b8fd) /*=0x9b8fd*/, ((unsigned long)&rodata_9e04e) /*=0x9e04e*/,
+            debug_print(((unsigned long)"%s(): packet length error,input data length = %d,packet data length = %d\n") /*=0x9b8fd*/, ((unsigned long)"ble_process_post_req") /*=0x9e04e*/,
                          load_u16(packet + 2), load_u16(param_3 + 1));
             return 0;
         }
-        log_message(((unsigned long)&rodata_9b8fd) /*=0x9b8fd*/, ((unsigned long)&rodata_9e04e) /*=0x9e04e*/,
+        log_message(((unsigned long)"%s(): packet length error,input data length = %d,packet data length = %d\n") /*=0x9b8fd*/, ((unsigned long)"ble_process_post_req") /*=0x9e04e*/,
                     load_u16(packet + 2), load_u16(param_3 + 1));
         return 0;
     }

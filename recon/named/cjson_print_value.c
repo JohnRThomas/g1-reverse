@@ -20,9 +20,9 @@
  *   strncpy_zero_pad                         <= FUN_0008705a @ 0x0008705a
  * address symbols (name @ address):
  *   rodata_f6977                             @ 0x000f6977
- *   rodata_f697c                             @ 0x000f697c
+ *   rodata_f697c                             @ 0x000f697c   [INLINED -- G6 literal batch]
  *   rodata_f6983                             @ 0x000f6983
- *   rodata_f6987                             @ 0x000f6987
+ *   rodata_f6987                             @ 0x000f6987   [INLINED -- G6 literal batch]
  *   rodata_f698e                             @ 0x000f698e
  *   rodata_f6994                             @ 0x000f6994
  */

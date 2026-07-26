@@ -10,14 +10,14 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f0824                             @ 0x000f0824
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
- *   rodata_f094b                             @ 0x000f094b
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
+ *   rodata_f094b                             @ 0x000f094b   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0004ba38 @ 0x4ba38  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -34,8 +34,8 @@ unsigned onoff_release(int param_1, unsigned param_2, unsigned param_3, unsigned
     int iVar4 = z_spin_lock_valid(iVar7);
     unsigned uVar5 = 0;
     if (iVar4 == 0){
-        printk(0x99cbd, 0x000f0920, 0x000f08c7, 0x72);
-        printk(0x000f0935, iVar7);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"z_spin_lock_valid(l)"), 0x000f08c7, 0x72);
+        printk(((unsigned long)"\tInvalid spinlock %p\n"), iVar7);
         uVar5=0x72; uVar8=0x000f08c7;
         assert_post_action(uVar8, uVar5);
         return uVar5;
@@ -45,7 +45,7 @@ unsigned onoff_release(int param_1, unsigned param_2, unsigned param_3, unsigned
     if (uVar6 == 2){
         short sVar1 = *(short*)(param_1+0x1e);
         if (sVar1 == 0){
-            printk(0x99cbd, 0x000f094b, 0x000f0824, 0x1ef);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"mgr->refs > 0"), 0x000f0824, 0x1ef);
             assert_post_action(0x000f0824, 0x1ef);
         }
         unsigned short nv = (unsigned short)(sVar1 - 1);
@@ -64,8 +64,8 @@ unsigned onoff_release(int param_1, unsigned param_2, unsigned param_3, unsigned
     if (iVar4 != 0){
         return uVar5;
     }
-    printk(0x99cbd, 0x000f08f4, 0x000f08c7, 0xf0);
-    printk(0x000f090b, iVar7);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"z_spin_unlock_valid(l)"), 0x000f08c7, 0xf0);
+    printk(((unsigned long)"\tNot my spinlock %p\n"), iVar7);
     uVar5=0xf0; uVar8=0x000f08c7;
     assert_post_action(uVar8, uVar5);
     return uVar5;

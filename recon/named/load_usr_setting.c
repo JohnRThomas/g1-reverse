@@ -10,9 +10,9 @@
  *   save_usr_setting                         <= FUN_0007c28e @ 0x0007c28e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_9e60c                             @ 0x0009e60c
- *   rodata_9e632                             @ 0x0009e632
- *   rodata_9e7a6                             @ 0x0009e7a6
+ *   rodata_9e60c                             @ 0x0009e60c   [INLINED -- G6 literal batch]
+ *   rodata_9e632                             @ 0x0009e632   [INLINED -- G6 literal batch]
+ *   rodata_9e7a6                             @ 0x0009e7a6   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

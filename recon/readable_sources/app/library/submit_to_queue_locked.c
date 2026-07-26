@@ -12,7 +12,7 @@
  *   k_is_in_isr                              <= FUN_00086406 @ 0x00086406
  *   notify_queue_locked                      <= FUN_00086588 @ 0x00086588
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f820f                             @ 0x000f820f
  *   rodata_f8247                             @ 0x000f8247
  *   _kernel                                  @ 0x2000b448
@@ -36,7 +36,7 @@ unsigned submit_to_queue_locked(volatile uint32_t *param_1, volatile int *param_
     if (!(r3 & 1)) goto L_d3a;
     v = param_1[2];
     if (v == 0){
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f8247) /*=0xf8247*/,((unsigned long)&rodata_f820f) /*=0xf820f*/,0x14e,param_4);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f8247) /*=0xf8247*/,((unsigned long)&rodata_f820f) /*=0xf820f*/,0x14e,param_4);
         assert_post_action(((unsigned long)&rodata_f820f) /*=0xf820f*/,0x14e);
     }
     uVar4 = 2;

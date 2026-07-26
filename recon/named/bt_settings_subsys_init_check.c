@@ -7,7 +7,7 @@
  *   bt_settings_subsys_init_check            <= FUN_00052edc @ 0x00052edc
  * address symbols (name @ address):
  *   rodata_88178                             @ 0x00088178
- *   rodata_f2c46                             @ 0x000f2c46
+ *   rodata_f2c46                             @ 0x000f2c46   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00052edc @ 0x52edc  (parity: 300/300 trials, PROVEN) */
 

@@ -8,7 +8,7 @@
  * address symbols (name @ address):
  *   rodata_9e580                             @ 0x0009e580
  *   rodata_9e5a6                             @ 0x0009e5a6
- *   rodata_9e747                             @ 0x0009e747
+ *   rodata_9e747                             @ 0x0009e747   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -30,8 +30,8 @@ unsigned read_sys_settting_from_flash(unsigned *param_1)
   iVar1 = flash_settings_read(0x130000, record, sizeof(record));
   if (iVar1 == 0) {
     if (1 < *(int*)0x2000230c) {
-      if (*(int*)0x20007554 == 0) log_message(0x0009e5a6, 0x0009e747);
-      else debug_print(0x0009e5a6, 0x0009e747);
+      if (*(int*)0x20007554 == 0) log_message(0x0009e5a6, ((unsigned long)"read_sys_settting_from_flash"));
+      else debug_print(0x0009e5a6, ((unsigned long)"read_sys_settting_from_flash"));
     }
     *(unsigned *)(output + 0x00) = *(unsigned *)(record + 0x00);
     output[0x08] = record[0x08];
@@ -60,8 +60,8 @@ unsigned read_sys_settting_from_flash(unsigned *param_1)
     uVar5 = 0;
   } else {
     if (1 < *(int*)0x2000230c) {
-      if (*(int*)0x20007554 == 0) log_message(0x0009e580, 0x0009e747);
-      else debug_print(0x0009e580, 0x0009e747);
+      if (*(int*)0x20007554 == 0) log_message(0x0009e580, ((unsigned long)"read_sys_settting_from_flash"));
+      else debug_print(0x0009e580, ((unsigned long)"read_sys_settting_from_flash"));
     }
     uVar5 = 0xffffffff;
   }

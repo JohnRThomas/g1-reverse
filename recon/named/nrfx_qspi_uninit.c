@@ -9,7 +9,7 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   nrf_gpio_cfg_default                     <= FUN_000851fa @ 0x000851fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6d5e                             @ 0x000f6d5e
  *   rodata_f6d9a                             @ 0x000f6d9a
  *   g_qspi_cb                                @ 0x2000b348
@@ -26,7 +26,7 @@ extern void assert_post_action(unsigned a,unsigned b);
 void nrfx_qspi_uninit(void){
     volatile unsigned char *g = (volatile unsigned char*)0x2000b348;
     if (g[0x30] == 0){
-        printk(0x00099cbd,0x000f6d9a,0x000f6d5e,0x2b1,0);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x000f6d9a,0x000f6d5e,0x2b1,0);
         assert_post_action(0x000f6d5e,0x2b1);
     }
     arch_irq_disable(0x2b);

@@ -20,17 +20,17 @@
  *   rodata_88340                             @ 0x00088340
  *   rodata_889d0                             @ 0x000889d0
  *   rodata_889e0                             @ 0x000889e0
- *   rodata_99f81                             @ 0x00099f81
- *   rodata_99fd2                             @ 0x00099fd2
- *   rodata_99fe8                             @ 0x00099fe8
- *   rodata_9a016                             @ 0x0009a016
- *   rodata_9a044                             @ 0x0009a044
- *   rodata_9a072                             @ 0x0009a072
- *   rodata_9a0a0                             @ 0x0009a0a0
- *   rodata_9a0c6                             @ 0x0009a0c6
- *   rodata_9a119                             @ 0x0009a119
- *   rodata_9a126                             @ 0x0009a126
- *   rodata_9a132                             @ 0x0009a132
+ *   rodata_99f81                             @ 0x00099f81   [INLINED -- G6 literal batch]
+ *   rodata_99fd2                             @ 0x00099fd2   [INLINED -- G6 literal batch]
+ *   rodata_99fe8                             @ 0x00099fe8   [INLINED -- G6 literal batch]
+ *   rodata_9a016                             @ 0x0009a016   [INLINED -- G6 literal batch]
+ *   rodata_9a044                             @ 0x0009a044   [INLINED -- G6 literal batch]
+ *   rodata_9a072                             @ 0x0009a072   [INLINED -- G6 literal batch]
+ *   rodata_9a0a0                             @ 0x0009a0a0   [INLINED -- G6 literal batch]
+ *   rodata_9a0c6                             @ 0x0009a0c6   [INLINED -- G6 literal batch]
+ *   rodata_9a119                             @ 0x0009a119   [INLINED -- G6 literal batch]
+ *   rodata_9a126                             @ 0x0009a126   [INLINED -- G6 literal batch]
+ *   rodata_9a132                             @ 0x0009a132   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_button_irq_cb2                         @ 0x20006a04
  *   g_button_irq_cb2_handler                 @ 0x20006a08

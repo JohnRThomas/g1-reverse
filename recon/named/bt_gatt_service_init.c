@@ -9,8 +9,8 @@
  * address symbols (name @ address):
  *   rodata_88058                             @ 0x00088058
  *   rodata_88070                             @ 0x00088070
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  *   rodata_f46b8                             @ 0x000f46b8
  *   rodata_f49ac                             @ 0x000f49ac
  *   gatt_service_init_guard                  @ 0x2000af04
@@ -39,8 +39,8 @@ void bt_gatt_service_init(void)
                 if (bVar3) {
                     *(volatile unsigned short *)0x2000ff3cUL = sVar2;
                 }
-                printk(0x99cbd, 0xf49ac, 0xf46b8, 0x5ad);
-                printk(0xf0d20, 0, 0, 0);
+                printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0xf49ac, 0xf46b8, 0x5ad);
+                printk(((unsigned long)"\tunexpected list end location\n"), 0, 0, 0);
                 assert_post_action(0xf46b8, 0x5ad);
             }
             if (0x88070 <= uVar4) break;

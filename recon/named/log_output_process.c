@@ -15,19 +15,19 @@
  *   ADDR_cbvprintf_wrapper_THUMB             @ 0x0007eec1
  *   rodata_8acc4                             @ 0x0008acc4
  *   rodata_8acd8                             @ 0x0008acd8
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_a7993                             @ 0x000a7993
  *   rodata_a8c37                             @ 0x000a8c37
  *   rodata_f0e73                             @ 0x000f0e73
  *   rodata_f0ed2                             @ 0x000f0ed2
- *   rodata_f0ed7                             @ 0x000f0ed7
+ *   rodata_f0ed7                             @ 0x000f0ed7   [INLINED -- G6 literal batch]
  *   rodata_f0ee3                             @ 0x000f0ee3
  *   rodata_f0ee7                             @ 0x000f0ee7
  *   rodata_f0ef0                             @ 0x000f0ef0
  *   rodata_f0f0c                             @ 0x000f0f0c
  *   rodata_f0f12                             @ 0x000f0f12
  *   rodata_f0f16                             @ 0x000f0f16
- *   rodata_f0f1b                             @ 0x000f0f1b
+ *   rodata_f0f1b                             @ 0x000f0f1b   [INLINED -- G6 literal batch]
  *   rodata_f0f24                             @ 0x000f0f24
  *   rodata_f0f26                             @ 0x000f0f26
  *   rodata_f7b6d                             @ 0x000f7b6d
@@ -76,7 +76,7 @@ void log_output_process(uint param_1,uint param_2,int param_3,int param_4,uint p
 LAB_dc74:
     iVar3 = cbpprintf_external(uVar6,0x0007eec1,param_1,param_7);
     if (iVar3 < 0) {
-      printk(0x00099cbd,0x000f0f1b,0x000f0e73,0x219);
+      printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"err >= 0"),0x000f0e73,0x219);
       uVar6 = 0x219;
 LAB_db3e:
       assert_post_action(0x000f0e73,uVar6);
@@ -123,7 +123,7 @@ LAB_dd74:
     if (uVar8 == 0) goto LAB_dd7a;
   } else {
     if (4 < uVar8) {
-      printk(0x00099cbd,0x000f0ed7,0x000f0e73,0x1bf);
+      printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"level <= 4U"),0x000f0e73,0x1bf);
       uVar6 = 0x1bf;
       goto LAB_db3e;
     }

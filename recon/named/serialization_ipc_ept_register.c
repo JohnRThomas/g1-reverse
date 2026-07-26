@@ -7,10 +7,10 @@
  *   kmutex_dlist_init                        <= FUN_000864c2 @ 0x000864c2
  * address symbols (name @ address):
  *   rodata_88a38                             @ 0x00088a38
- *   rodata_9f3fa                             @ 0x0009f3fa
- *   rodata_9f418                             @ 0x0009f418
- *   rodata_9f433                             @ 0x0009f433
- *   rodata_9f487                             @ 0x0009f487
+ *   rodata_9f3fa                             @ 0x0009f3fa   [INLINED -- G6 literal batch]
+ *   rodata_9f418                             @ 0x0009f418   [INLINED -- G6 literal batch]
+ *   rodata_9f433                             @ 0x0009f433   [INLINED -- G6 literal batch]
+ *   rodata_9f487                             @ 0x0009f487   [INLINED -- G6 literal batch]
  *   g_st25dv_i2c_dev                         @ 0x200023cc
  *   g_st25dv_i2c_cfg                         @ 0x20007a48
  *   g_eeprom_comm_mutex                      @ 0x20007a60

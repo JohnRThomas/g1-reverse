@@ -10,8 +10,8 @@
  *   projector_send_cmd1                      <= FUN_0007d642 @ 0x0007d642
  *   delay_ms                                 <= FUN_0007d772 @ 0x0007d772
  * address symbols (name @ address):
- *   rodata_d7251                             @ 0x000d7251
- *   rodata_d72e9                             @ 0x000d72e9
+ *   rodata_d7251                             @ 0x000d7251   [INLINED -- G6 literal batch]
+ *   rodata_d72e9                             @ 0x000d72e9   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

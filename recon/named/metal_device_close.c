@@ -6,7 +6,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f7a9f                             @ 0x000f7a9f
  *   rodata_f7ad6                             @ 0x000f7ad6
  */
@@ -26,6 +26,6 @@ void metal_device_close(int param_1)
         }
         return;
     }
-    printk(0x00099cbd, 0x000f7ad6, 0x000f7a9f, 0x51);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f7ad6, 0x000f7a9f, 0x51);
     assert_post_action(0x000f7a9f, 0x51);
 }

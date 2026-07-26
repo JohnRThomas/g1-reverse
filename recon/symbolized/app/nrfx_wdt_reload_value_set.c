@@ -9,7 +9,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f79c8                             @ 0x000f79c8
  *   rodata_f7a03                             @ 0x000f7a03
  *   m_dppi_channels                          @ 0x2000b41c
@@ -23,7 +23,7 @@ extern void arch_irq_enable(int32_t,uint32_t,uint32_t,uint32_t);
 void nrfx_wdt_reload_value_set(uintptr_t *device,const uint32_t *ticks){
  uint32_t upper=ticks[1]>>17;
  uint64_t scaled=__aeabi_uldivmod(ticks[1]<<15,upper,1000,0);
- if(upper>=1000){printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f7a03) /*=0xf7a03*/,((unsigned long)&rodata_f79c8) /*=0xf79c8*/,0x3f);assert_post_action(((unsigned long)&rodata_f79c8) /*=0xf79c8*/,0x3f);}
+ if(upper>=1000){printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f7a03) /*=0xf7a03*/,((unsigned long)&rodata_f79c8) /*=0xf79c8*/,0x3f);assert_post_action(((unsigned long)&rodata_f79c8) /*=0xf79c8*/,0x3f);}
  uintptr_t registers=*device;*(volatile uint32_t*)(registers+0x50c)=ticks[0];
  *(volatile uint32_t*)(registers+0x504)=(uint32_t)scaled;
  uint32_t channel=((const uint8_t*)device)[4];

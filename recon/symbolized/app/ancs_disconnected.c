@@ -10,8 +10,8 @@
  *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   bt_conn_get_field_0x90                   <= FUN_00081526 @ 0x00081526
  * address symbols (name @ address):
- *   rodata_9a92a                             @ 0x0009a92a
- *   rodata_9b1c8                             @ 0x0009b1c8
+ *   rodata_9a92a                             @ 0x0009a92a   [INLINED -- G6 literal batch]
+ *   rodata_9b1c8                             @ 0x0009b1c8   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_ancs_active_conn                       @ 0x20006ab8
  *   g_ancs_conn                              @ 0x20007518
@@ -41,9 +41,9 @@ void ancs_disconnected(uint32_t connection, uint32_t reason)
     format_bt_addr_str((const void *)active_connection, description);
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            log_message(((unsigned long)&rodata_9a92a) /*=0x9a92a*/, ((unsigned long)&rodata_9b1c8) /*=0x9b1c8*/, description, reason);
+            log_message(((unsigned long)"%s(): from %s (reason 0x%02x)\n") /*=0x9a92a*/, ((unsigned long)"ancs_disconnected") /*=0x9b1c8*/, description, reason);
         else
-            debug_print(((unsigned long)&rodata_9a92a) /*=0x9a92a*/, ((unsigned long)&rodata_9b1c8) /*=0x9b1c8*/, description, reason);
+            debug_print(((unsigned long)"%s(): from %s (reason 0x%02x)\n") /*=0x9a92a*/, ((unsigned long)"ancs_disconnected") /*=0x9b1c8*/, description, reason);
     }
 
     *(volatile uint8_t *)(*(volatile uintptr_t *)((unsigned long)&g_ancs_active_conn) /*=0x20006ab8*/ + 0x367u) = 0;

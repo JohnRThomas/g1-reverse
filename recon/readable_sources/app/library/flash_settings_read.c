@@ -10,9 +10,9 @@
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  * address symbols (name @ address):
  *   rodata_87bf0                             @ 0x00087bf0
- *   rodata_9e2da                             @ 0x0009e2da
- *   rodata_9e2f1                             @ 0x0009e2f1
- *   rodata_9e528                             @ 0x0009e528
+ *   rodata_9e2da                             @ 0x0009e2da   [INLINED -- G6 literal batch]
+ *   rodata_9e2f1                             @ 0x0009e2f1   [INLINED -- G6 literal batch]
+ *   rodata_9e528                             @ 0x0009e528   [INLINED -- G6 literal batch]
  *   rodata_a40ec                             @ 0x000a40ec
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -50,7 +50,7 @@ int flash_settings_read(uint32_t address, void *destination, uint32_t length)
             if (result == 0) {
                 return 0;
             }
-            log_message(((unsigned long)&rodata_9e2da) /*=0x9e2da*/, result);
+            log_message(((unsigned long)"Flash read failed! %d\n") /*=0x9e2da*/, result);
         }
 
         if (retry == 10U) {
@@ -61,7 +61,7 @@ int flash_settings_read(uint32_t address, void *destination, uint32_t length)
 
         if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0U) {
-                log_message(((unsigned long)&rodata_9e2f1) /*=0x9e2f1*/, ((unsigned long)&rodata_9e528) /*=0x9e528*/, retry);
+                log_message(((unsigned long)"%s(): flash read fail, retry again, retry time %d\n") /*=0x9e2f1*/, ((unsigned long)"flash_settings_read") /*=0x9e528*/, retry);
             } else {
                 debug_print();
             }

@@ -8,8 +8,8 @@
  *   get_current_burial_point_type            <= FUN_0007dac0 @ 0x0007dac0
  *   accumulate_burial_point_duration         <= FUN_0007db50 @ 0x0007db50
  * address symbols (name @ address):
- *   rodata_f03c4                             @ 0x000f03c4
- *   rodata_f0459                             @ 0x000f0459
+ *   rodata_f03c4                             @ 0x000f03c4   [INLINED -- G6 literal batch]
+ *   rodata_f0459                             @ 0x000f0459   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -45,10 +45,10 @@ unsigned int exit_dashboard_burial_point(void)
             if (1 < *(volatile int*)0x2000230cUL) {
                 if (*(volatile unsigned int*)0x20007554UL == 0) {
                     base = get_device_info() + 0x1000;
-                    r0v = log_message(0xf03c4, 0xf0459, (unsigned int)uVar4, uVar3, *(volatile unsigned int*)(base + 0xd2));
+                    r0v = log_message(((unsigned long)"%s(): [exit_dashboard_burial_point] sum_time is %d ms,dashboard_sum_time is %d s\n"), ((unsigned long)"exit_dashboard_burial_point"), (unsigned int)uVar4, uVar3, *(volatile unsigned int*)(base + 0xd2));
                 } else {
                     base = get_device_info() + 0x1000;
-                    r0v = debug_print(0xf03c4, 0xf0459, (unsigned int)uVar4, uVar3, *(volatile unsigned int*)(base + 0xd2));
+                    r0v = debug_print(((unsigned long)"%s(): [exit_dashboard_burial_point] sum_time is %d ms,dashboard_sum_time is %d s\n"), ((unsigned long)"exit_dashboard_burial_point"), (unsigned int)uVar4, uVar3, *(volatile unsigned int*)(base + 0xd2));
                 }
             }
         }

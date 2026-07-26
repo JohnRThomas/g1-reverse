@@ -29,13 +29,13 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_aa487                             @ 0x000aa487
+ *   rodata_aa487                             @ 0x000aa487   [INLINED -- G6 literal batch]
  *   rodata_aa4ea                             @ 0x000aa4ea
- *   rodata_aa4f0                             @ 0x000aa4f0
- *   rodata_aa517                             @ 0x000aa517
- *   rodata_aa53a                             @ 0x000aa53a
- *   rodata_aa56c                             @ 0x000aa56c
- *   rodata_aa599                             @ 0x000aa599
+ *   rodata_aa4f0                             @ 0x000aa4f0   [INLINED -- G6 literal batch]
+ *   rodata_aa517                             @ 0x000aa517   [INLINED -- G6 literal batch]
+ *   rodata_aa53a                             @ 0x000aa53a   [INLINED -- G6 literal batch]
+ *   rodata_aa56c                             @ 0x000aa56c   [INLINED -- G6 literal batch]
+ *   rodata_aa599                             @ 0x000aa599   [INLINED -- G6 literal batch]
  *   rodata_aae20                             @ 0x000aae20
  *   g_log_level                              @ 0x2000230c
  *   g_translate_lang_string_table            @ 0x200024f4
@@ -154,7 +154,7 @@ uint32_t ui_translate_task(uint8_t *canvas, uint32_t unused, uint32_t phase)
     if (TRANSLATE_STATE[0] == 0u) {
         if (phase == 1u) {
             if (LOG_LEVEL > 3)
-                TASK_LOG(0x000aa487u, 0x000aa599u);
+                TASK_LOG(((unsigned long)"%s(): translate language type error! trans_info->original_type %d trans_info->translation_type %d\n"), 0x000aa599u);
             if (TRANSLATE_STATE[1] != 0u)
                 return 0u;
             if (LOG_LEVEL > 2)

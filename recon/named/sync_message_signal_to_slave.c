@@ -6,8 +6,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   k_uptime_get_2                           <= FUN_0007ce40 @ 0x0007ce40
  * address symbols (name @ address):
- *   rodata_a26ae                             @ 0x000a26ae
- *   rodata_a3a24                             @ 0x000a3a24
+ *   rodata_a26ae                             @ 0x000a26ae   [INLINED -- G6 literal batch]
+ *   rodata_a3a24                             @ 0x000a3a24   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  */
 /* Reconstructed sync_message_signal_to_slave @ 0x2c224  (parity: 300/300 trials, PROVEN) */
@@ -39,14 +39,14 @@ unsigned int sync_message_signal_to_slave(unsigned int param_1, unsigned int par
         uVar4 = 0xa269c;
     }
     if (*(volatile unsigned int*)0x20007554UL == 0) {
-        log_message(uVar4, 0xa3a24);
+        log_message(uVar4, ((unsigned long)"sync_message_signal_to_slave"));
     } else {
         debug_print();
     }
     uVar8 = k_uptime_get_2();
     if ((long long)(lVar7 + 3000) < (long long)uVar8) {
         if (*(volatile unsigned int*)0x20007554UL == 0) {
-            log_message(0xa26ae);
+            log_message(((unsigned long)"retry sync_to_slave failed !"));
         } else {
             debug_print();
         }

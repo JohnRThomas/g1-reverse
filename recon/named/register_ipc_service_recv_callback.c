@@ -10,9 +10,9 @@
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  * address symbols (name @ address):
- *   rodata_9f512                             @ 0x0009f512
- *   rodata_9f540                             @ 0x0009f540
- *   rodata_9f6a3                             @ 0x0009f6a3
+ *   rodata_9f512                             @ 0x0009f512   [INLINED -- G6 literal batch]
+ *   rodata_9f540                             @ 0x0009f540   [INLINED -- G6 literal batch]
+ *   rodata_9f6a3                             @ 0x0009f6a3   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ipc0_endpoint                          @ 0x20007a84

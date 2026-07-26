@@ -6,17 +6,17 @@
  *   rodata_87d40                             @ 0x00087d40
  *   rodata_88694                             @ 0x00088694
  *   rodata_9ebc6                             @ 0x0009ebc6
- *   rodata_a3fbe                             @ 0x000a3fbe
- *   rodata_a4038                             @ 0x000a4038
- *   rodata_a404b                             @ 0x000a404b
- *   rodata_a4062                             @ 0x000a4062
- *   rodata_a4075                             @ 0x000a4075
- *   rodata_a40e6                             @ 0x000a40e6
- *   rodata_a4120                             @ 0x000a4120
- *   rodata_a4147                             @ 0x000a4147
- *   rodata_a417e                             @ 0x000a417e
- *   rodata_a41a0                             @ 0x000a41a0
- *   rodata_a41b0                             @ 0x000a41b0
+ *   rodata_a3fbe                             @ 0x000a3fbe   [INLINED -- G6 literal batch]
+ *   rodata_a4038                             @ 0x000a4038   [INLINED -- G6 literal batch]
+ *   rodata_a404b                             @ 0x000a404b   [INLINED -- G6 literal batch]
+ *   rodata_a4062                             @ 0x000a4062   [INLINED -- G6 literal batch]
+ *   rodata_a4075                             @ 0x000a4075   [INLINED -- G6 literal batch]
+ *   rodata_a40e6                             @ 0x000a40e6   [INLINED -- G6 literal batch]
+ *   rodata_a4120                             @ 0x000a4120   [INLINED -- G6 literal batch]
+ *   rodata_a4147                             @ 0x000a4147   [INLINED -- G6 literal batch]
+ *   rodata_a417e                             @ 0x000a417e   [INLINED -- G6 literal batch]
+ *   rodata_a41a0                             @ 0x000a41a0   [INLINED -- G6 literal batch]
+ *   rodata_a41b0                             @ 0x000a41b0   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_audio_flash_write_offset               @ 0x20002404
  *   g_low_battery_sync_flag                  @ 0x2000302f
@@ -156,7 +156,7 @@ u32 dmic_stream_start(void)
             if (is_battery_critical() == 1 &&
                 *(volatile u8 *)(get_device_info() + 0x108c) == 1U &&
                 z_device_is_ready(QSPI_DEVICE) == 0) {
-                dmic_log(0, 0x000a40e6U, 0x000a41a0U,
+                dmic_log(0, ((unsigned long)"%s():  [%s] device not ready.\n"), 0x000a41a0U,
                          *(volatile u32 *)QSPI_DEVICE, 1);
                 if (block != 0U) k_mem_slab_free(DMIC_SLAB, block);
                 dmic_log(0, 0x000a4120U, 0x000a41b0U, 0, 0);
@@ -187,7 +187,7 @@ u32 dmic_stream_start(void)
                         result = (u32)-1;
                         goto stop_stream;
                     }
-                    dmic_log(0, 0x000a3fbeU, 0x000a41a0U,
+                    dmic_log(0, ((unsigned long)"%s(): Flash write to addr 0x%x\n\n"), 0x000a41a0U,
                              g_audio_flash_offset, 1);
                     g_audio_flash_offset += bytes;
                 }

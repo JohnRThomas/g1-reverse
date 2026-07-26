@@ -8,10 +8,10 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6c32                             @ 0x000f6c32
- *   rodata_f6ca8                             @ 0x000f6ca8
- *   rodata_f6cc2                             @ 0x000f6cc2
+ *   rodata_f6ca8                             @ 0x000f6ca8   [INLINED -- G6 literal batch]
+ *   rodata_f6cc2                             @ 0x000f6cc2   [INLINED -- G6 literal batch]
  *   NRF_NVMC_S                               @ 0x50039000
  */
 /* Reconstructed FUN_00065f80 @ 0x65f80  (parity: 300/300 trials, PROVEN) */
@@ -23,11 +23,11 @@ void nrfx_nvmc_word_write(unsigned param_1, unsigned param_2, unsigned param_3, 
     unsigned r0v = param_1;
     if (param_1 < 0x100000) goto L_fae;
     if ((param_1 - 0xff8000) < 0x1000) goto L_fae;
-    printk(0x99cbd,0xf6ca8,0xf6c32,0x195,param_4);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"is_valid_address(addr, 1)"),0xf6c32,0x195,param_4);
     { long long r = assert_post_action(0xf6c32,0x195); r0v=(unsigned)r; }
 L_fae:
     if ((r0v & 3) == 0) goto L_fc6;
-    printk(0x99cbd,0xf6cc2,0xf6c32,0x196,param_4);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"nrfx_is_word_aligned((void const *)addr)"),0xf6c32,0x196,param_4);
     { long long r = assert_post_action(0xf6c32,0x196); r0v=(unsigned)r; }
     goto L_fae;
 L_fc6:

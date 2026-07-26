@@ -5,7 +5,7 @@
  *   rodata_a2597                             @ 0x000a2597
  *   rodata_a25b9                             @ 0x000a25b9
  *   rodata_a25d9                             @ 0x000a25d9
- *   rodata_a2660                             @ 0x000a2660
+ *   rodata_a2660                             @ 0x000a2660   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_persist_task_status_lock               @ 0x20018d9c
@@ -43,9 +43,9 @@ void log_task_status(u32 format, u32 task_id)
 {
     if (g_log_level > 0) {
         if (g_log_use_alt_sink == 0) {
-            log_message(format, 0x000a2660, task_id);
+            log_message(format, ((unsigned long)"update_persist_task_status"), task_id);
         } else {
-            debug_print(format, 0x000a2660, task_id);
+            debug_print(format, ((unsigned long)"update_persist_task_status"), task_id);
         }
     }
 }

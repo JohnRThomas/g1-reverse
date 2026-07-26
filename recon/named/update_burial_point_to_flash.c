@@ -8,9 +8,9 @@
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_9e655                             @ 0x0009e655
- *   rodata_9e67c                             @ 0x0009e67c
- *   rodata_9e789                             @ 0x0009e789
+ *   rodata_9e655                             @ 0x0009e655   [INLINED -- G6 literal batch]
+ *   rodata_9e67c                             @ 0x0009e67c   [INLINED -- G6 literal batch]
+ *   rodata_9e789                             @ 0x0009e789   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

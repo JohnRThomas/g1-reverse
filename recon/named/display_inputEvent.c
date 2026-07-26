@@ -6,9 +6,9 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef058                             @ 0x000ef058
- *   rodata_f00bb                             @ 0x000f00bb
- *   rodata_f0151                             @ 0x000f0151
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
+ *   rodata_f00bb                             @ 0x000f00bb   [INLINED -- G6 literal batch]
+ *   rodata_f0151                             @ 0x000f0151   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_display_msgq                           @ 0x200038c4
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -34,7 +34,7 @@ uint32_t display_inputEvent(uint8_t input, uint8_t state)
     command[5] = state;
 
     if (k_msgq_put(0x200038c4UL, command, 0, 0) != 0) {
-        log_message(0x000ef058UL, 0x000f0151UL);
+        log_message(((unsigned long)"message queue send failed %s\r\n"), 0x000f0151UL);
         return UINT32_MAX;
     }
 

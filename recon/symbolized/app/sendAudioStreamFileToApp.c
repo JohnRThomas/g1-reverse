@@ -7,8 +7,8 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef058                             @ 0x000ef058
- *   rodata_ef71d                             @ 0x000ef71d
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
+ *   rodata_ef71d                             @ 0x000ef71d   [INLINED -- G6 literal batch]
  *   g_dashboard_response_msgq                @ 0x2000392c
  */
 /* Reconstructed FUN_00047bf8 @ 0x47bf8  (parity: 300/300 trials, PROVEN) */
@@ -31,7 +31,7 @@ int sendAudioStreamFileToApp(unsigned char param_1, unsigned char param_2)
 
   int iVar1 = k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, message, 0, 0);
   if (iVar1 != 0) {
-    log_message(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_ef71d) /*=0xef71d*/);
+    log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/, ((unsigned long)"sendAudioStreamFileToApp") /*=0xef71d*/);
     iVar1 = -1;
   }
   return iVar1;

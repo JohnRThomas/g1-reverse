@@ -8,7 +8,7 @@
  *   bt_log_forward_3arg                      <= FUN_00080ea2 @ 0x00080ea2
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
- *   rodata_f322e                             @ 0x000f322e
+ *   rodata_f322e                             @ 0x000f322e   [INLINED -- G6 literal batch]
  *   g_ble_dev_state                          @ 0x20002000
  */
 /* Reconstructed FUN_000549ec @ 0x549ec  (parity: 300/300 trials, PROVEN) */

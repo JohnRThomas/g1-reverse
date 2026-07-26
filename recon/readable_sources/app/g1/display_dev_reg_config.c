@@ -6,7 +6,7 @@
  *   display_dev_reg_config                   <= FUN_0002eaa8 @ 0x0002eaa8
  *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
  * address symbols (name @ address):
- *   rodata_a3e48                             @ 0x000a3e48
+ *   rodata_a3e48                             @ 0x000a3e48   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0002eaa8 @ 0x2eaa8  (parity: 300/300 trials, PROVEN) */
 
@@ -20,7 +20,7 @@ unsigned int display_dev_reg_config(void)
   unsigned int base = *(volatile unsigned int*)(0x00087ce0UL + 4);
   iVar1 = dev_write_reg3(*(volatile unsigned int*)(base + 0x1c), 3, 4, 1);
   if (iVar1 < 0) {
-    log_message(((unsigned long)&rodata_a3e48) /*=0xa3e48*/);
+    log_message(((unsigned long)"Could not enable charger\n") /*=0xa3e48*/);
     uVar2 = 0xffffffff;
   } else {
     uVar2 = 0;

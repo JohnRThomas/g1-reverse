@@ -8,9 +8,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6b00                             @ 0x000f6b00
- *   rodata_f6b7d                             @ 0x000f6b7d
+ *   rodata_f6b7d                             @ 0x000f6b7d   [INLINED -- G6 literal batch]
  *   g_gpiote_cb                              @ 0x20002bc0
  */
 /* Reconstructed FUN_000658e8 @ 0x658e8  (parity: 300/300 trials, PROVEN) */
@@ -27,7 +27,7 @@ unsigned int gpiote_pin_channel_get(unsigned int param_1, int param_2)
   unsigned long long uVar3;
 
   if (param_2 == 0) {
-    printk(0x00099cbd, 0x000f6b7d, 0x000f6b00, 0x265);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"p_channel"), 0x000f6b00, 0x265);
     assert_post_action(0x000f6b00, 0x265);
   }
   iVar1 = pin_in_use_by_te();

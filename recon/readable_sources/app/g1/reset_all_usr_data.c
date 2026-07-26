@@ -18,8 +18,8 @@
  *   bt_unpair_all_or_addr                    <= FUN_0005420c @ 0x0005420c
  *   app_msleep_thunk_b                       <= FUN_0007c26e @ 0x0007c26e
  * address symbols (name @ address):
- *   rodata_9e6d7                             @ 0x0009e6d7
- *   rodata_9e764                             @ 0x0009e764
+ *   rodata_9e6d7                             @ 0x0009e6d7   [INLINED -- G6 literal batch]
+ *   rodata_9e764                             @ 0x0009e764   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -75,9 +75,9 @@ void reset_all_usr_data(uint8_t *user_data, int reset_radio)
     app_msleep_thunk_b(1000);
     if (LOG_LEVEL > 0) {
         if (LOG_BACKEND == 0)
-            log_message(((unsigned long)&rodata_9e6d7) /*=0x9e6d7*/);
+            log_message(((unsigned long)"%s(): sys reboot because enter ship mode failed\n") /*=0x9e6d7*/);
         else
-            debug_print(((unsigned long)&rodata_9e6d7) /*=0x9e6d7*/, ((unsigned long)&rodata_9e764) /*=0x9e764*/);
+            debug_print(((unsigned long)"%s(): sys reboot because enter ship mode failed\n") /*=0x9e6d7*/, ((unsigned long)"reset_all_usr_data") /*=0x9e764*/);
     }
     for (;;) {
         app_msleep_thunk_b(500);

@@ -14,13 +14,13 @@
  *   set_message_pending_state                <= FUN_0003443c @ 0x0003443c
  *   is_msg_expiration                        <= FUN_0003444c @ 0x0003444c
  * address symbols (name @ address):
- *   rodata_a28ee                             @ 0x000a28ee
+ *   rodata_a28ee                             @ 0x000a28ee   [INLINED -- G6 literal batch]
  *   rodata_a291d                             @ 0x000a291d
  *   rodata_a294a                             @ 0x000a294a
- *   rodata_a2977                             @ 0x000a2977
- *   rodata_a29be                             @ 0x000a29be
+ *   rodata_a2977                             @ 0x000a2977   [INLINED -- G6 literal batch]
+ *   rodata_a29be                             @ 0x000a29be   [INLINED -- G6 literal batch]
  *   rodata_a3311                             @ 0x000a3311
- *   rodata_a39d6                             @ 0x000a39d6
+ *   rodata_a39d6                             @ 0x000a39d6   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -78,8 +78,8 @@ undefined4 process_for_message_show(char *param_1,int param_2,byte *param_3,unde
          (iVar4 = get_device_info(), *(char *)(iVar4 + 0xfea) == '\f')) {
         if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
           if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_a294a) /*=0xa294a*/,((unsigned long)&rodata_a39d6) /*=0xa39d6*/,(uint)*(byte *)(param_2 + 1));
-          } else { debug_print(((unsigned long)&rodata_a294a) /*=0xa294a*/,((unsigned long)&rodata_a39d6) /*=0xa39d6*/,(uint)*(byte *)(param_2 + 1)); }
+            log_message(((unsigned long)&rodata_a294a) /*=0xa294a*/,((unsigned long)"process_for_message_show") /*=0xa39d6*/,(uint)*(byte *)(param_2 + 1));
+          } else { debug_print(((unsigned long)&rodata_a294a) /*=0xa294a*/,((unsigned long)"process_for_message_show") /*=0xa39d6*/,(uint)*(byte *)(param_2 + 1)); }
         }
         update_persist_task_status_to_idle(param_1);
         *param_4 = ((unsigned long)&rodata_a3311) /*=0xa3311*/;
@@ -89,8 +89,8 @@ undefined4 process_for_message_show(char *param_1,int param_2,byte *param_3,unde
       if (*(char *)(param_2 + 1) != '\x04') {
         if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
           if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_a2977) /*=0xa2977*/,((unsigned long)&rodata_a39d6) /*=0xa39d6*/,(uint)*(byte *)(param_2 + 1));
-          } else { debug_print(((unsigned long)&rodata_a2977) /*=0xa2977*/,((unsigned long)&rodata_a39d6) /*=0xa39d6*/,(uint)*(byte *)(param_2 + 1)); }
+            log_message(((unsigned long)"%s(): #3 %d: screen_id is changed, I will go to next screen, goodbye!\n") /*=0xa2977*/,((unsigned long)"process_for_message_show") /*=0xa39d6*/,(uint)*(byte *)(param_2 + 1));
+          } else { debug_print(((unsigned long)"%s(): #3 %d: screen_id is changed, I will go to next screen, goodbye!\n") /*=0xa2977*/,((unsigned long)"process_for_message_show") /*=0xa39d6*/,(uint)*(byte *)(param_2 + 1)); }
         }
         if (*(char *)(param_2 + 1) != '\0') { return 0xb; }
         goto LAB_0002c884;
@@ -98,13 +98,13 @@ undefined4 process_for_message_show(char *param_1,int param_2,byte *param_3,unde
       uVar9 = uVar9 + 1;
       if (((uVar9 & 0xf) == 0) && (2 < *piVar2)) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-          log_message(((unsigned long)&rodata_a29be) /*=0xa29be*/,((unsigned long)&rodata_a39d6) /*=0xa39d6*/,uVar9,
+          log_message(((unsigned long)"%s(): [message]\347\255\211\345\276\205\351\200\200\345\207\272:%d, expect_ts: %d, imu:%d, unread_msg_num:%d, persist_task:%d/%d - %d\n") /*=0xa29be*/,((unsigned long)"process_for_message_show") /*=0xa39d6*/,uVar9,
                       load_u32_le((const void *)(uintptr_t)load_u32_le(param_1 + 0xff0)),
                       (uint)*param_3,(uint)*(byte *)(param_2 + 9),(uint)*(byte *)(param_2 + 0xf),
                       load_u32_le((const void *)(uintptr_t)(param_2 + 0xb)),
                       (uint)*(byte *)(param_2 + 8));
         } else {
-          debug_print(((unsigned long)&rodata_a29be) /*=0xa29be*/,((unsigned long)&rodata_a39d6) /*=0xa39d6*/,uVar9,
+          debug_print(((unsigned long)"%s(): [message]\347\255\211\345\276\205\351\200\200\345\207\272:%d, expect_ts: %d, imu:%d, unread_msg_num:%d, persist_task:%d/%d - %d\n") /*=0xa29be*/,((unsigned long)"process_for_message_show") /*=0xa39d6*/,uVar9,
                       load_u32_le((const void *)(uintptr_t)load_u32_le(param_1 + 0xff0)),
                       (uint)*param_3,(uint)*(byte *)(param_2 + 9),(uint)*(byte *)(param_2 + 0xf),
                       load_u32_le((const void *)(uintptr_t)(param_2 + 0xb)),
@@ -136,8 +136,8 @@ LAB_0002c894:
       update_temp_task_status(uVar6,6,2);
       if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-          log_message(((unsigned long)&rodata_a28ee) /*=0xa28ee*/,((unsigned long)&rodata_a39d6) /*=0xa39d6*/,(uint)*(byte *)(param_2 + 1));
-        } else { debug_print(((unsigned long)&rodata_a28ee) /*=0xa28ee*/,((unsigned long)&rodata_a39d6) /*=0xa39d6*/,(uint)*(byte *)(param_2 + 1)); }
+          log_message(((unsigned long)"%s(): #0 %d: I will go to dashboard, goodbye!\n") /*=0xa28ee*/,((unsigned long)"process_for_message_show") /*=0xa39d6*/,(uint)*(byte *)(param_2 + 1));
+        } else { debug_print(((unsigned long)"%s(): #0 %d: I will go to dashboard, goodbye!\n") /*=0xa28ee*/,((unsigned long)"process_for_message_show") /*=0xa39d6*/,(uint)*(byte *)(param_2 + 1)); }
       }
       return 0xb;
     }
@@ -150,8 +150,8 @@ LAB_0002c894:
   } while (iVar4 == 4);
   if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-      log_message(((unsigned long)&rodata_a291d) /*=0xa291d*/,((unsigned long)&rodata_a39d6) /*=0xa39d6*/,(uint)*(byte *)(param_2 + 1));
-    } else { debug_print(((unsigned long)&rodata_a291d) /*=0xa291d*/,((unsigned long)&rodata_a39d6) /*=0xa39d6*/,(uint)*(byte *)(param_2 + 1)); }
+      log_message(((unsigned long)&rodata_a291d) /*=0xa291d*/,((unsigned long)"process_for_message_show") /*=0xa39d6*/,(uint)*(byte *)(param_2 + 1));
+    } else { debug_print(((unsigned long)&rodata_a291d) /*=0xa291d*/,((unsigned long)"process_for_message_show") /*=0xa39d6*/,(uint)*(byte *)(param_2 + 1)); }
   }
 LAB_0002c884:
   *param_4 = ((unsigned long)&rodata_a3311) /*=0xa3311*/;

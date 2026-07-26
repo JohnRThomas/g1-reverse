@@ -14,18 +14,18 @@
  * address symbols (name @ address):
  *   rodata_10000                             @ 0x00010000
  *   rodata_88258                             @ 0x00088258
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f1d11                             @ 0x000f1d11
- *   rodata_f1fa6                             @ 0x000f1fa6
- *   rodata_f1fd1                             @ 0x000f1fd1
- *   rodata_f1fe4                             @ 0x000f1fe4
- *   rodata_f2022                             @ 0x000f2022
- *   rodata_f2039                             @ 0x000f2039
- *   rodata_f205a                             @ 0x000f205a
- *   rodata_f2068                             @ 0x000f2068
+ *   rodata_f1fa6                             @ 0x000f1fa6   [INLINED -- G6 literal batch]
+ *   rodata_f1fd1                             @ 0x000f1fd1   [INLINED -- G6 literal batch]
+ *   rodata_f1fe4                             @ 0x000f1fe4   [INLINED -- G6 literal batch]
+ *   rodata_f2022                             @ 0x000f2022   [INLINED -- G6 literal batch]
+ *   rodata_f2039                             @ 0x000f2039   [INLINED -- G6 literal batch]
+ *   rodata_f205a                             @ 0x000f205a   [INLINED -- G6 literal batch]
+ *   rodata_f2068                             @ 0x000f2068   [INLINED -- G6 literal batch]
  *   rodata_f2087                             @ 0x000f2087
- *   rodata_f20a3                             @ 0x000f20a3
- *   rodata_f20c7                             @ 0x000f20c7
+ *   rodata_f20a3                             @ 0x000f20a3   [INLINED -- G6 literal batch]
+ *   rodata_f20c7                             @ 0x000f20c7   [INLINED -- G6 literal batch]
  *   rodata_f20f7                             @ 0x000f20f7
  *   rodata_f211b                             @ 0x000f211b
  */

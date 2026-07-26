@@ -13,14 +13,14 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_87bf0                             @ 0x00087bf0
- *   rodata_9e2da                             @ 0x0009e2da
- *   rodata_9e324                             @ 0x0009e324
- *   rodata_9e345                             @ 0x0009e345
- *   rodata_9e36d                             @ 0x0009e36d
- *   rodata_9e385                             @ 0x0009e385
- *   rodata_9e3af                             @ 0x0009e3af
- *   rodata_9e3c6                             @ 0x0009e3c6
- *   rodata_9e508                             @ 0x0009e508
+ *   rodata_9e2da                             @ 0x0009e2da   [INLINED -- G6 literal batch]
+ *   rodata_9e324                             @ 0x0009e324   [INLINED -- G6 literal batch]
+ *   rodata_9e345                             @ 0x0009e345   [INLINED -- G6 literal batch]
+ *   rodata_9e36d                             @ 0x0009e36d   [INLINED -- G6 literal batch]
+ *   rodata_9e385                             @ 0x0009e385   [INLINED -- G6 literal batch]
+ *   rodata_9e3af                             @ 0x0009e3af   [INLINED -- G6 literal batch]
+ *   rodata_9e3c6                             @ 0x0009e3c6   [INLINED -- G6 literal batch]
+ *   rodata_9e508                             @ 0x0009e508   [INLINED -- G6 literal batch]
  *   rodata_a40ec                             @ 0x000a40ec
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -69,7 +69,7 @@ int flash_settings_write_and_verify(uint32_t address, const void *source,
     info = get_device_info();
     result = read(info, address, buffer, 0x1000u);
     if (result != 0) {
-        log_message(0x0009e2dau, result);
+        log_message(((unsigned long)"Flash read failed! %d\n"), result);
         goto out;
     }
     if (memcmp(source, buffer, length) == 0) {
@@ -105,7 +105,7 @@ int flash_settings_write_and_verify(uint32_t address, const void *source,
     info = get_device_info();
     status = read(info, address, buffer, 0x1000u);
     if (status != 0) {
-        log_message(0x0009e2dau, status);
+        log_message(((unsigned long)"Flash read failed! %d\n"), status);
         result = status;
         goto out;
     }

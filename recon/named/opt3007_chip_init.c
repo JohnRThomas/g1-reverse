@@ -7,17 +7,17 @@
  *   opt3001_reg_read                         <= FUN_0002e594 @ 0x0002e594
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  * address symbols (name @ address):
- *   rodata_a3af8                             @ 0x000a3af8
- *   rodata_a3b3f                             @ 0x000a3b3f
+ *   rodata_a3af8                             @ 0x000a3af8   [INLINED -- G6 literal batch]
+ *   rodata_a3b3f                             @ 0x000a3b3f   [INLINED -- G6 literal batch]
  *   rodata_a3b5a                             @ 0x000a3b5a
- *   rodata_a3b7a                             @ 0x000a3b7a
+ *   rodata_a3b7a                             @ 0x000a3b7a   [INLINED -- G6 literal batch]
  *   rodata_a3b8e                             @ 0x000a3b8e
- *   rodata_a3bd6                             @ 0x000a3bd6
- *   rodata_a3c0c                             @ 0x000a3c0c
- *   rodata_a3c2d                             @ 0x000a3c2d
- *   rodata_a3c68                             @ 0x000a3c68
- *   rodata_a3cee                             @ 0x000a3cee
- *   rodata_a3d00                             @ 0x000a3d00
+ *   rodata_a3bd6                             @ 0x000a3bd6   [INLINED -- G6 literal batch]
+ *   rodata_a3c0c                             @ 0x000a3c0c   [INLINED -- G6 literal batch]
+ *   rodata_a3c2d                             @ 0x000a3c2d   [INLINED -- G6 literal batch]
+ *   rodata_a3c68                             @ 0x000a3c68   [INLINED -- G6 literal batch]
+ *   rodata_a3cee                             @ 0x000a3cee   [INLINED -- G6 literal batch]
+ *   rodata_a3d00                             @ 0x000a3d00   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_opt3007_bus_dev                        @ 0x200023fc
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -60,15 +60,15 @@ u32 opt3007_chip_init(int param_1){
     iVar5 = *piVar1;
     *piVar2 = param_1;
     if (2 < iVar5) {
-        if (FLAG == 0) log_message(0xa3b3f, 0xa3d00);
-        else debug_print(0xa3b3f, 0xa3d00);
+        if (FLAG == 0) log_message(((unsigned long)"%s(): opt3007 init start:\n"), ((unsigned long)"opt3007_chip_init"));
+        else debug_print(((unsigned long)"%s(): opt3007 init start:\n"), ((unsigned long)"opt3007_chip_init"));
     }
     iVar5 = opt3001_reg_read(0x7e, &frame.chip_id);
     if (iVar5 == 0) {
         uVar6 = frame.chip_id;
         if (1 < *piVar1) {
-            if (FLAG == 0) log_message(0xa3b7a, 0xa3d00, uVar6);
-            else debug_print(0xa3b7a, 0xa3d00, uVar6);
+            if (FLAG == 0) log_message(((unsigned long)"%s(): mfg_id=0x%x,\n"), ((unsigned long)"opt3007_chip_init"), uVar6);
+            else debug_print(((unsigned long)"%s(): mfg_id=0x%x,\n"), ((unsigned long)"opt3007_chip_init"), uVar6);
         }
         if (uVar6 == 0x5449) {
             iVar5 = opt3001_reg_read(0x7f, &frame.chip_id);
@@ -78,8 +78,8 @@ u32 opt3007_chip_init(int param_1){
             }
             uVar6 = frame.chip_id;
             if (1 < *piVar1) {
-                if (FLAG == 0) log_message(0xa3bd6, 0xa3d00, uVar6);
-                else debug_print(0xa3bd6, 0xa3d00, uVar6);
+                if (FLAG == 0) log_message(((unsigned long)"%s(): dev_id=0x%x,\n"), ((unsigned long)"opt3007_chip_init"), uVar6);
+                else debug_print(((unsigned long)"%s(): dev_id=0x%x,\n"), ((unsigned long)"opt3007_chip_init"), uVar6);
             }
             if (uVar6 == 0x3001) {
                 iVar5 = opt3001_reg_read(1, &frame.configuration);
@@ -92,8 +92,8 @@ u32 opt3007_chip_init(int param_1){
                     iVar5 = z_device_is_ready((u32)*piVar3);
                     if (iVar5 == 0) {
                         if (*piVar1 < 1) return 0xfffffffbUL;
-                        if (FLAG == 0) log_message(0xa3af8, 0xa3cee);
-                        else debug_print(0xa3af8, 0xa3cee);
+                        if (FLAG == 0) log_message(((unsigned long)"%s(): Bus device is not ready\n"), ((unsigned long)"opt3001_reg_write"));
+                        else debug_print(((unsigned long)"%s(): Bus device is not ready\n"), ((unsigned long)"opt3001_reg_write"));
                     } else {
                         int obj, vt; int (*f)(int,void*,int,int);
                         frame.transfer.data = frame.payload;
@@ -106,20 +106,20 @@ u32 opt3007_chip_init(int param_1){
                         if (-1 < iVar5) {
                             if (*piVar2 != 0) *(volatile u32*)(uintptr_t)(*piVar2 + 0x10) = 1;
                             if (2 < *piVar1) {
-                                if (FLAG == 0) log_message(0xa3c68, 0xa3d00);
-                                else debug_print(0xa3c68, 0xa3d00);
+                                if (FLAG == 0) log_message(((unsigned long)"%s(): opt3007 init done!\n"), ((unsigned long)"opt3007_chip_init"));
+                                else debug_print(((unsigned long)"%s(): opt3007 init done!\n"), ((unsigned long)"opt3007_chip_init"));
                             }
                             *(volatile byte*)0x20018da1UL = 1;
                             return 0;
                         }
                         if (*piVar1 < 1) return 0xfffffffbUL;
-                        if (FLAG == 0) log_message(0xa3c0c, 0xa3cee);
-                        else debug_print(0xa3c0c, 0xa3cee);
+                        if (FLAG == 0) log_message(((unsigned long)"%s(): opt3007 i2c write err=%d,\n"), ((unsigned long)"opt3001_reg_write"));
+                        else debug_print(((unsigned long)"%s(): opt3007 i2c write err=%d,\n"), ((unsigned long)"opt3001_reg_write"));
                     }
                 }
                 if (*piVar1 < 1) return 0xfffffffbUL;
-                if (FLAG != 0) { debug_print(0xa3c2d, 0xa3d00); return 0xfffffffbUL; }
-                log_message(0xa3c2d, 0xa3d00);
+                if (FLAG != 0) { debug_print(((unsigned long)"%s(): opt3007 Failed to set mode to continuous conversion\n"), ((unsigned long)"opt3007_chip_init")); return 0xfffffffbUL; }
+                log_message(((unsigned long)"%s(): opt3007 Failed to set mode to continuous conversion\n"), ((unsigned long)"opt3007_chip_init"));
                 return 0xfffffffbUL;
             }
             if (*piVar1 < 1) return 0xffffff7aUL;
@@ -128,14 +128,14 @@ u32 opt3007_chip_init(int param_1){
             if (*piVar1 < 1) return 0xffffff7aUL;
             iVar5 = FLAG; uVar4 = 0xa3b8e;
         }
-        if (iVar5 == 0) log_message(uVar4, 0xa3d00, uVar6);
-        else debug_print(uVar4, 0xa3d00, uVar6);
+        if (iVar5 == 0) log_message(uVar4, ((unsigned long)"opt3007_chip_init"), uVar6);
+        else debug_print(uVar4, ((unsigned long)"opt3007_chip_init"), uVar6);
         return 0xffffff7aUL;
     }
     if (*piVar1 < 1) return 0xfffffffbUL;
     iVar5 = FLAG; uVar4 = 0xa3b5a;
 LAB_0002e6c8:
-    if (iVar5 == 0) log_message(uVar4, 0xa3d00, (u32)frame.chip_id);
-    else debug_print(uVar4, 0xa3d00, (u32)frame.chip_id);
+    if (iVar5 == 0) log_message(uVar4, ((unsigned long)"opt3007_chip_init"), (u32)frame.chip_id);
+    else debug_print(uVar4, ((unsigned long)"opt3007_chip_init"), (u32)frame.chip_id);
     return 0xfffffffbUL;
 }

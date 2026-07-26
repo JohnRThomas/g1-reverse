@@ -21,9 +21,9 @@
  *   ADDR_bt_le_adv_clear_pending_flag_THUMB  @ 0x00081081
  *   rodata_810ab                             @ 0x000810ab
  *   rodata_88150                             @ 0x00088150
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3509                             @ 0x000f3509
- *   rodata_f369a                             @ 0x000f369a
+ *   rodata_f369a                             @ 0x000f369a   [INLINED -- G6 literal batch]
  *   rodata_f36b3                             @ 0x000f36b3
  *   rodata_f36e0                             @ 0x000f36e0
  *   g_ble_dev_state                          @ 0x20002000
@@ -54,7 +54,7 @@ void ble_privacy_id_remove(int param_1)
     bVar1 = *(volatile unsigned char*)((unsigned long)&g_ble_rl_entries_cnt) /*=0x20002121*/;
     if(*(volatile unsigned char*)((unsigned long)&g_ble_rl_entries_max) /*=0x20002120*/ == 0){
         if(bVar1==0){
-            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f369a) /*=0xf369a*/,((unsigned long)&rodata_f3509) /*=0xf3509*/,0x433);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"bt_dev.le.rl_entries > 0") /*=0xf369a*/,((unsigned long)&rodata_f3509) /*=0xf3509*/,0x433);
             assert_post_action(((unsigned long)&rodata_f3509) /*=0xf3509*/,0x433);
         }
     } else if((unsigned)bVar1 <= *(volatile unsigned char*)((unsigned long)&g_ble_rl_entries_max) /*=0x20002120*/ + 1){

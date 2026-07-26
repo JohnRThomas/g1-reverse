@@ -7,10 +7,10 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6bc5                             @ 0x000f6bc5
- *   rodata_f6c00                             @ 0x000f6c00
- *   rodata_f6c09                             @ 0x000f6c09
+ *   rodata_f6c00                             @ 0x000f6c00   [INLINED -- G6 literal batch]
+ *   rodata_f6c09                             @ 0x000f6c09   [INLINED -- G6 literal batch]
  *   g_nrfx_hal_init_flag                     @ 0x2000b324
  */
 /* Reconstructed FUN_00065d8c @ 0x65d8c  (parity: 2/300 trials, PROVEN) */
@@ -19,7 +19,7 @@ extern void assert_post_action(uint32_t,uint32_t);
 extern void printk(uint32_t,uint32_t,uint32_t,uint32_t,uint32_t);
 void nrfx_ipc_config_load(int param_1,uint32_t param_2,uint32_t param_3,uint32_t param_4){
   if(param_1==0){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f6c00) /*=0xf6c00*/,((unsigned long)&rodata_f6bc5) /*=0xf6bc5*/,0x46,param_4);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"p_config") /*=0xf6c00*/,((unsigned long)&rodata_f6bc5) /*=0xf6bc5*/,0x46,param_4);
     assert_post_action(((unsigned long)&rodata_f6bc5) /*=0xf6bc5*/,0x46);
   }
  L:
@@ -42,7 +42,7 @@ void nrfx_ipc_config_load(int param_1,uint32_t param_2,uint32_t param_3,uint32_t
     *(volatile uint32_t*)(0x5002a000UL+0x304)=*(volatile uint32_t*)(param_1+0x80);
     return;
   }
-  printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f6c09) /*=0xf6c09*/,((unsigned long)&rodata_f6bc5) /*=0xf6bc5*/,0x47,param_4);
+  printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"m_cb.state == NRFX_DRV_STATE_INITIALIZED") /*=0xf6c09*/,((unsigned long)&rodata_f6bc5) /*=0xf6bc5*/,0x47,param_4);
   assert_post_action(((unsigned long)&rodata_f6bc5) /*=0xf6bc5*/,0x47);
   goto L;
 }

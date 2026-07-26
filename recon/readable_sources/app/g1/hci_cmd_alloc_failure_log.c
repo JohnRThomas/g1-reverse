@@ -7,7 +7,7 @@
  *   bt_log_forward_3arg                      <= FUN_00080ea2 @ 0x00080ea2
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
- *   rodata_f2d9d                             @ 0x000f2d9d
+ *   rodata_f2d9d                             @ 0x000f2d9d   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_000534a8 @ 0x534a8
  * CFG_VERIFY_CALL_ARITIES=3
@@ -18,6 +18,6 @@
 extern void bt_log_forward_3arg(uint32_t, uint32_t, const void *);
 void hci_cmd_alloc_failure_log(void)
 {
-    const uint32_t package[2] = { 2U, ((unsigned long)&rodata_f2d9d) /*=0xf2d9d*/ };
+    const uint32_t package[2] = { 2U, ((unsigned long)"Unable to allocate buffer") /*=0xf2d9d*/ };
     bt_log_forward_3arg(((unsigned long)&rodata_88138) /*=0x88138*/, 0x1040U, package);
 }

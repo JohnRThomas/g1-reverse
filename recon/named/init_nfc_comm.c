@@ -6,7 +6,7 @@
  *   pt_comm_bind_device                      <= FUN_000330a8 @ 0x000330a8
  *   process_pt_data                          <= FUN_000330ec @ 0x000330ec
  * address symbols (name @ address):
- *   rodata_9f196                             @ 0x0009f196
+ *   rodata_9f196                             @ 0x0009f196   [INLINED -- G6 literal batch]
  *   g_st25dv_dev                             @ 0x20007a44
  */
 /* Reconstructed FUN_0002560c @ 0x2560c  (parity: 300/300 trials, PROVEN) */
@@ -24,7 +24,7 @@ int init_nfc_comm(void)
     iVar1 = process_pt_data();
     if (iVar1 != 0) { iVar1 = -2; }
   } else {
-    log_message(0x0009f196);
+    log_message(((unsigned long)"init_nfc_comm is failed\n"));
     iVar1 = -1;
   }
   return iVar1;

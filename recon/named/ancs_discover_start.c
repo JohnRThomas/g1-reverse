@@ -6,7 +6,7 @@
  *   gatt_dm_start                            <= FUN_0004ed8c @ 0x0004ed8c
  * address symbols (name @ address):
  *   rodata_88a00                             @ 0x00088a00
- *   rodata_9a401                             @ 0x0009a401
+ *   rodata_9a401                             @ 0x0009a401   [INLINED -- G6 literal batch]
  *   g_ancs_discover_params                   @ 0x20006abc
  */
 /* Reconstructed FUN_000182c8 @ 0x182c8  (parity: 300/300 trials, PROVEN) */

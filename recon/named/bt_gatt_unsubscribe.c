@@ -12,11 +12,11 @@
  *   sys_slist_find_and_remove_0              <= FUN_00082ab8 @ 0x00082ab8
  *   bt_gatt_cancel                           <= FUN_00082e24 @ 0x00082e24
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3ebd                             @ 0x000f3ebd
  *   rodata_f46b8                             @ 0x000f46b8
- *   rodata_f4a0a                             @ 0x000f4a0a
- *   rodata_f4b3d                             @ 0x000f4b3d
+ *   rodata_f4a0a                             @ 0x000f4a0a   [INLINED -- G6 literal batch]
+ *   rodata_f4b3d                             @ 0x000f4b3d   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005c4f0 @ 0x5c4f0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -33,13 +33,13 @@ int bt_gatt_unsubscribe(int param_1, int *param_2, unsigned param_3, unsigned pa
 {
   int iVar1, iVar2, bVar4, bVar6; int *piVar5;
   if (param_1 == 0) {
-    printk(0x00099cbd,0x000f3ebd,0x000f46b8,0x14dc,param_4);
-    printk(0x000f4a0a,0,0,0,0);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x000f3ebd,0x000f46b8,0x14dc,param_4);
+    printk(((unsigned long)"\tinvalid parameters\n\n"),0,0,0,0);
     assert_post_action(0x000f46b8,0x14dc);
   }
   if (param_2 == 0) {
-    printk(0x00099cbd,0x000f4b3d,0x000f46b8,0x14dd,param_4);
-    printk(0x000f4a0a,0,0,0,0);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"params"),0x000f46b8,0x14dd,param_4);
+    printk(((unsigned long)"\tinvalid parameters\n\n"),0,0,0,0);
     assert_post_action(0x000f46b8,0x14dd);
   }
   if (*(char*)(param_1+0xd) != 7) return -0x80;

@@ -7,9 +7,9 @@
  *   set_brightness_to_panel_reg              <= FUN_00046e3c @ 0x00046e3c
  *   panel_init                               <= FUN_00047538 @ 0x00047538
  * address symbols (name @ address):
- *   rodata_d73bc                             @ 0x000d73bc
- *   rodata_d73e0                             @ 0x000d73e0
- *   rodata_d73f8                             @ 0x000d73f8
+ *   rodata_d73bc                             @ 0x000d73bc   [INLINED -- G6 literal batch]
+ *   rodata_d73e0                             @ 0x000d73e0   [INLINED -- G6 literal batch]
+ *   rodata_d73f8                             @ 0x000d73f8   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -27,9 +27,9 @@ unsigned int jbd_panel_resume(int param_1, unsigned int param_2, unsigned int pa
   if (*piVar1 > 2) {
     unsigned int sink = *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
     if (sink == 0) {
-      log_message((void*)((unsigned long)&rodata_d73bc) /*=0xd73bc*/, (void*)((unsigned long)&rodata_d73f8) /*=0xd73f8*/, param_3, sink, param_4);
+      log_message((void*)((unsigned long)"%s(): release from deep power down\n") /*=0xd73bc*/, (void*)((unsigned long)"jbd_panel_resume") /*=0xd73f8*/, param_3, sink, param_4);
     } else {
-      debug_print((void*)((unsigned long)&rodata_d73bc) /*=0xd73bc*/, (void*)((unsigned long)&rodata_d73f8) /*=0xd73f8*/,
+      debug_print((void*)((unsigned long)"%s(): release from deep power down\n") /*=0xd73bc*/, (void*)((unsigned long)"jbd_panel_resume") /*=0xd73f8*/,
                    param_3, sink, param_4);
     }
   }
@@ -38,9 +38,9 @@ unsigned int jbd_panel_resume(int param_1, unsigned int param_2, unsigned int pa
   if (*piVar1 > 2) {
     unsigned int sink = *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
     if (sink == 0) {
-      log_message((void*)((unsigned long)&rodata_d73e0) /*=0xd73e0*/, (void*)((unsigned long)&rodata_d73f8) /*=0xd73f8*/, param_3, sink, param_4);
+      log_message((void*)((unsigned long)"%s(): resume completed\n") /*=0xd73e0*/, (void*)((unsigned long)"jbd_panel_resume") /*=0xd73f8*/, param_3, sink, param_4);
     } else {
-      debug_print((void*)((unsigned long)&rodata_d73e0) /*=0xd73e0*/, (void*)((unsigned long)&rodata_d73f8) /*=0xd73f8*/,
+      debug_print((void*)((unsigned long)"%s(): resume completed\n") /*=0xd73e0*/, (void*)((unsigned long)"jbd_panel_resume") /*=0xd73f8*/,
                    param_3, sink, param_4);
     }
   }

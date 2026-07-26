@@ -8,7 +8,7 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   k_queue_prepend                          <= FUN_00086518 @ 0x00086518
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f45be                             @ 0x000f45be
  *   rodata_f539a                             @ 0x000f539a
  *   acl_tx_pool                              @ 0x20003a7c
@@ -26,7 +26,7 @@ void net_buf_unref(int param_1){
   int next;
   release_fn_t release;
   if(param_1==0){
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f45be) /*=0xf45be*/,((unsigned long)&rodata_f539a) /*=0xf539a*/,0x1d3);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f45be) /*=0xf45be*/,((unsigned long)&rodata_f539a) /*=0xf539a*/,0x1d3);
     assert_post_action(((unsigned long)&rodata_f539a) /*=0xf539a*/,0x1d3);
     k_queue_prepend(((unsigned long)&acl_tx_pool) /*=0x20003a7c*/, 0);
     return;

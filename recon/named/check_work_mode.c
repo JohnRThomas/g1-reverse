@@ -19,19 +19,19 @@
  *   clear_app_switch_pending_flag            <= FUN_0007dada @ 0x0007dada
  * address symbols (name @ address):
  *   rodata_27cf8                             @ 0x00027cf8
- *   rodata_a0132                             @ 0x000a0132
- *   rodata_a0169                             @ 0x000a0169
- *   rodata_a01c7                             @ 0x000a01c7
- *   rodata_a01ea                             @ 0x000a01ea
- *   rodata_a020e                             @ 0x000a020e
- *   rodata_a0231                             @ 0x000a0231
- *   rodata_a024a                             @ 0x000a024a
- *   rodata_a0266                             @ 0x000a0266
- *   rodata_a028c                             @ 0x000a028c
- *   rodata_a02ab                             @ 0x000a02ab
- *   rodata_a02cc                             @ 0x000a02cc
- *   rodata_a030d                             @ 0x000a030d
- *   rodata_a1b00                             @ 0x000a1b00
+ *   rodata_a0132                             @ 0x000a0132   [INLINED -- G6 literal batch]
+ *   rodata_a0169                             @ 0x000a0169   [INLINED -- G6 literal batch]
+ *   rodata_a01c7                             @ 0x000a01c7   [INLINED -- G6 literal batch]
+ *   rodata_a01ea                             @ 0x000a01ea   [INLINED -- G6 literal batch]
+ *   rodata_a020e                             @ 0x000a020e   [INLINED -- G6 literal batch]
+ *   rodata_a0231                             @ 0x000a0231   [INLINED -- G6 literal batch]
+ *   rodata_a024a                             @ 0x000a024a   [INLINED -- G6 literal batch]
+ *   rodata_a0266                             @ 0x000a0266   [INLINED -- G6 literal batch]
+ *   rodata_a028c                             @ 0x000a028c   [INLINED -- G6 literal batch]
+ *   rodata_a02ab                             @ 0x000a02ab   [INLINED -- G6 literal batch]
+ *   rodata_a02cc                             @ 0x000a02cc   [INLINED -- G6 literal batch]
+ *   rodata_a030d                             @ 0x000a030d   [INLINED -- G6 literal batch]
+ *   rodata_a1b00                             @ 0x000a1b00   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_check_work_mode_ed5_field_cache        @ 0x20003025
  *   g_glassbox_lid_debounced_state           @ 0x20003026

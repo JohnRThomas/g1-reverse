@@ -11,7 +11,7 @@
  *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
  * address symbols (name @ address):
  *   rodata_aa96d                             @ 0x000aa96d
- *   rodata_aacee                             @ 0x000aacee
+ *   rodata_aacee                             @ 0x000aacee   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_gui_active_canvas                      @ 0x2000a034
@@ -49,8 +49,8 @@ uint32_t gui_verticalLine_process_bar(uint param_1,int param_2,uint param_3,int 
         gui_bmp_bitmap_draw(0x17,param_1-4,(int)(uVar4*((param_4-param_2)-0xd))/100+param_2,0,0,0);
     } else {
         if(*(volatile int*)0x2000230c>1){
-            if(*(volatile int*)0x20007554==0) log_message(0xaa96d,0xaacee,param_3,0,param_1,param_2,param_3);
-            else debug_print(0xaa96d,0xaacee,param_3,
+            if(*(volatile int*)0x20007554==0) log_message(0xaa96d,((unsigned long)"gui_verticalLine_process_bar"),param_3,0,param_1,param_2,param_3);
+            else debug_print(0xaa96d,((unsigned long)"gui_verticalLine_process_bar"),param_3,
                               *(volatile int*)0x20007554,
                               param_1,param_2,param_3);
         }

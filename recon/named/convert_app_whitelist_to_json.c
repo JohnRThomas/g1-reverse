@@ -23,8 +23,8 @@
  *   rodata_a869b                             @ 0x000a869b
  *   rodata_a88a9                             @ 0x000a88a9
  *   rodata_a88d8                             @ 0x000a88d8
- *   rodata_a892b                             @ 0x000a892b
- *   rodata_a8a51                             @ 0x000a8a51
+ *   rodata_a892b                             @ 0x000a892b   [INLINED -- G6 literal batch]
+ *   rodata_a8a51                             @ 0x000a8a51   [INLINED -- G6 literal batch]
  *   rodata_f33e4                             @ 0x000f33e4
  *   rodata_f3630                             @ 0x000f3630
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -70,7 +70,7 @@ int convert_app_whitelist_to_json(int param_1,int param_2,int param_3){
       cjson_add_item_to_object_thunk(iVar3,0x000f3630,iVar4);
       cjson_add_item_to_object_thunk(iVar9,0x0009e1b6,iVar3);
       uVar6 = cjson_print_unformatted(iVar9);
-      if (*g50==0) log_message(0x000a892b,uVar6); else debug_print(0x000a892b,uVar6);
+      if (*g50==0) log_message(((unsigned long)"cJsonStr is %s \n"),uVar6); else debug_print(((unsigned long)"cJsonStr is %s \n"),uVar6);
       strcpy(param_1,uVar6);
       uVar2 = strlen(uVar6);
       free(uVar6);
@@ -87,10 +87,10 @@ int convert_app_whitelist_to_json(int param_1,int param_2,int param_3){
   }
   uVar7=0x219; iVar3=*g50; uVar6=0x000a8912;
 inner:
-  if (iVar3 == 0) log_message(uVar6,0x000a8a51,uVar7); else debug_print(uVar6,0x000a8a51,uVar7);
+  if (iVar3 == 0) log_message(uVar6,((unsigned long)"convert_app_whitelist_to_json"),uVar7); else debug_print(uVar6,((unsigned long)"convert_app_whitelist_to_json"),uVar7);
   cjson_delete(iVar9);
   return 0;
 final:
-  if (iVar9 == 0) log_message(uVar7,0x000a8a51,uVar6,iVar9,iVar3,param_2,param_3); else debug_print(uVar7,0x000a8a51,uVar6,iVar9,iVar3,param_2,param_3);
+  if (iVar9 == 0) log_message(uVar7,((unsigned long)"convert_app_whitelist_to_json"),uVar6,iVar9,iVar3,param_2,param_3); else debug_print(uVar7,((unsigned long)"convert_app_whitelist_to_json"),uVar6,iVar9,iVar3,param_2,param_3);
   return 0;
 }

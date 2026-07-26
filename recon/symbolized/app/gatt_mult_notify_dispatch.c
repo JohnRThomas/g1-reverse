@@ -11,7 +11,7 @@
  *   net_buf_simple_init_with_data            <= FUN_000836ec @ 0x000836ec
  * address symbols (name @ address):
  *   rodata_88128                             @ 0x00088128
- *   rodata_f4d6f                             @ 0x000f4d6f
+ *   rodata_f4d6f                             @ 0x000f4d6f   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction FUN_0005c5f0 @ 0x5c5f0, exact extent 206 bytes. */
 #include <stdint.h>
@@ -45,7 +45,7 @@ void gatt_mult_notify_dispatch(uint8_t *context, const void *data, uint32_t leng
         uint16_t type = header[0], payload_length = header[1];
         if (cursor.remaining < payload_length) {
             struct { uint32_t count; uintptr_t message; uint32_t length; uint32_t total; } log =
-                { 4, ((unsigned long)&rodata_f4d6f) /*=0xf4d6f*/, payload_length, length };
+                { 4, ((unsigned long)"Invalid data len %u > %u") /*=0xf4d6f*/, payload_length, length };
             log_msg_create_3arg(((unsigned long)&rodata_88128) /*=0x88128*/, 0x2040, &log);
             return;
         }

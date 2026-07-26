@@ -18,19 +18,19 @@
  *   __strcpy_chk                             <= FUN_00086ffe @ 0x00086ffe
  * address symbols (name @ address):
  *   rodata_8839c                             @ 0x0008839c
- *   rodata_9ac4c                             @ 0x0009ac4c
- *   rodata_9ac60                             @ 0x0009ac60
+ *   rodata_9ac4c                             @ 0x0009ac4c   [INLINED -- G6 literal batch]
+ *   rodata_9ac60                             @ 0x0009ac60   [INLINED -- G6 literal batch]
  *   rodata_9ac7c                             @ 0x0009ac7c
- *   rodata_9ac84                             @ 0x0009ac84
- *   rodata_9ac9d                             @ 0x0009ac9d
- *   rodata_9acb2                             @ 0x0009acb2
- *   rodata_9acc4                             @ 0x0009acc4
- *   rodata_9ace0                             @ 0x0009ace0
- *   rodata_9acf9                             @ 0x0009acf9
- *   rodata_9ad0e                             @ 0x0009ad0e
- *   rodata_9ad20                             @ 0x0009ad20
- *   rodata_9ad4b                             @ 0x0009ad4b
- *   rodata_9b13f                             @ 0x0009b13f
+ *   rodata_9ac84                             @ 0x0009ac84   [INLINED -- G6 literal batch]
+ *   rodata_9ac9d                             @ 0x0009ac9d   [INLINED -- G6 literal batch]
+ *   rodata_9acb2                             @ 0x0009acb2   [INLINED -- G6 literal batch]
+ *   rodata_9acc4                             @ 0x0009acc4   [INLINED -- G6 literal batch]
+ *   rodata_9ace0                             @ 0x0009ace0   [INLINED -- G6 literal batch]
+ *   rodata_9acf9                             @ 0x0009acf9   [INLINED -- G6 literal batch]
+ *   rodata_9ad0e                             @ 0x0009ad0e   [INLINED -- G6 literal batch]
+ *   rodata_9ad20                             @ 0x0009ad20   [INLINED -- G6 literal batch]
+ *   rodata_9ad4b                             @ 0x0009ad4b   [INLINED -- G6 literal batch]
+ *   rodata_9b13f                             @ 0x0009b13f   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_20002350                               @ 0x20002350
  *   g_20002358                               @ 0x20002358
@@ -78,7 +78,7 @@ int bt_start(void)
     *(volatile uintptr_t *)(adv + 0x0cu) = (uintptr_t)name_data;
     *name_data = (uint8_t)device_kind;
     __strcpy_chk((void *)(name_data + 1u), (const void *)get_device_serial_buf(), 0x13u);
-    log_message(((unsigned long)&rodata_9ac4c) /*=0x9ac4c*/, INFO_BYTE(2u), 19u, device_kind);
+    log_message(((unsigned long)"c->esb_channel %d\r\n") /*=0x9ac4c*/, INFO_BYTE(2u), 19u, device_kind);
 
     int left = get_device_type() == 1;
     int critical = is_battery_critical() == 1;
@@ -90,36 +90,36 @@ int bt_start(void)
             if (id != 0xffu) {
                 id=INFO_BYTE(2u);
                 uint8_t a=INFO_BYTE(0xfdcu), b=INFO_BYTE(0xfdbu), c=INFO_BYTE(0xfdau);
-                vdprintf_to_fd(name,0u,0x20u,((unsigned long)&rodata_9ac60) /*=0x9ac60*/,base,1u,4u,5u,id,a,b,c);
+                vdprintf_to_fd(name,0u,0x20u,((unsigned long)"%sV%d%d%d_%d_R_%02X%02X%02X") /*=0x9ac60*/,base,1u,4u,5u,id,a,b,c);
             } else {
                 uint8_t a=INFO_BYTE(0xfdcu), b=INFO_BYTE(0xfdbu), c=INFO_BYTE(0xfdau);
-                vdprintf_to_fd(name,0u,0x20u,((unsigned long)&rodata_9ac84) /*=0x9ac84*/,base,1u,4u,5u,a,b,c);
+                vdprintf_to_fd(name,0u,0x20u,((unsigned long)"%sV%d%d%d_R_%02X%02X%02X") /*=0x9ac84*/,base,1u,4u,5u,a,b,c);
             }
         } else if (id != 0xffu) {
             id=INFO_BYTE(2u);
             uint8_t a=INFO_BYTE(0xfdcu), b=INFO_BYTE(0xfdbu), c=INFO_BYTE(0xfdau);
-            vdprintf_to_fd(name,0u,0x20u,((unsigned long)&rodata_9ac9d) /*=0x9ac9d*/,base,id,a,b,c);
+            vdprintf_to_fd(name,0u,0x20u,((unsigned long)"%s_%d_R_%02X%02X%02X") /*=0x9ac9d*/,base,id,a,b,c);
         } else {
             uint8_t a=INFO_BYTE(0xfdcu), b=INFO_BYTE(0xfdbu), c=INFO_BYTE(0xfdau);
-            vdprintf_to_fd(name,0u,0x20u,((unsigned long)&rodata_9acb2) /*=0x9acb2*/,base,a,b,c);
+            vdprintf_to_fd(name,0u,0x20u,((unsigned long)"%s_R_%02X%02X%02X") /*=0x9acb2*/,base,a,b,c);
         }
     } else {
         if (critical) {
             if (id != 0xffu) {
                 id=INFO_BYTE(2u);
                 uint8_t a=INFO_BYTE(0xfe2u), b=INFO_BYTE(0xfe1u), c=INFO_BYTE(0xfe0u);
-                vdprintf_to_fd(name,0u,0x20u,((unsigned long)&rodata_9acc4) /*=0x9acc4*/,base,1u,4u,5u,id,a,b,c);
+                vdprintf_to_fd(name,0u,0x20u,((unsigned long)"%sV%d%d%d_%d_L_%02X%02X%02X") /*=0x9acc4*/,base,1u,4u,5u,id,a,b,c);
             } else {
                 uint8_t a=INFO_BYTE(0xfe2u), b=INFO_BYTE(0xfe1u), c=INFO_BYTE(0xfe0u);
-                vdprintf_to_fd(name,0u,0x20u,((unsigned long)&rodata_9ace0) /*=0x9ace0*/,base,1u,4u,5u,a,b,c);
+                vdprintf_to_fd(name,0u,0x20u,((unsigned long)"%sV%d%d%d_L_%02X%02X%02X") /*=0x9ace0*/,base,1u,4u,5u,a,b,c);
             }
         } else if (id != 0xffu) {
             id=INFO_BYTE(2u);
             uint8_t a=INFO_BYTE(0xfe2u), b=INFO_BYTE(0xfe1u), c=INFO_BYTE(0xfe0u);
-            vdprintf_to_fd(name,0u,0x20u,((unsigned long)&rodata_9acf9) /*=0x9acf9*/,base,id,a,b,c);
+            vdprintf_to_fd(name,0u,0x20u,((unsigned long)"%s_%d_L_%02X%02X%02X") /*=0x9acf9*/,base,id,a,b,c);
         } else {
             uint8_t a=INFO_BYTE(0xfe2u), b=INFO_BYTE(0xfe1u), c=INFO_BYTE(0xfe0u);
-            vdprintf_to_fd(name,0u,0x20u,((unsigned long)&rodata_9ad0e) /*=0x9ad0e*/,base,a,b,c);
+            vdprintf_to_fd(name,0u,0x20u,((unsigned long)"%s_L_%02X%02X%02X") /*=0x9ad0e*/,base,a,b,c);
         }
     }
 
@@ -130,7 +130,7 @@ int bt_start(void)
     if (result != 0) {
         if (*(volatile int32_t *)(uintptr_t)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile uint32_t *)(uintptr_t)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0u)
-                log_message(((unsigned long)&rodata_9ad20) /*=0x9ad20*/,((unsigned long)&rodata_9b13f) /*=0x9b13f*/,result);
+                log_message(((unsigned long)"%s(): Failed to set device name (err %d)\n\n") /*=0x9ad20*/,((unsigned long)"bt_start") /*=0x9b13f*/,result);
             else debug_print();
         }
         goto out;
@@ -144,7 +144,7 @@ int bt_start(void)
         info=get_device_info();
         *(volatile uint8_t *)(info+0x1058u)=2u;
         uint64_t ms=(uptime_ticks_get()*1000u+0x7fffu)>>15;
-        log_message(((unsigned long)&rodata_9ad4b) /*=0x9ad4b*/,name,(uint32_t)ms,(uint32_t)(ms>>32));
+        log_message(((unsigned long)"Advertising %s successfully started uptime %lld\n") /*=0x9ad4b*/,name,(uint32_t)ms,(uint32_t)(ms>>32));
     }
 out:
     *busy=0u;

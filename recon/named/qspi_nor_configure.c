@@ -17,9 +17,9 @@
  * address symbols (name @ address):
  *   rodata_838cb                             @ 0x000838cb
  *   rodata_88270                             @ 0x00088270
- *   rodata_f5c49                             @ 0x000f5c49
- *   rodata_f5c59                             @ 0x000f5c59
- *   rodata_f5c6a                             @ 0x000f5c6a
+ *   rodata_f5c49                             @ 0x000f5c49   [INLINED -- G6 literal batch]
+ *   rodata_f5c59                             @ 0x000f5c59   [INLINED -- G6 literal batch]
+ *   rodata_f5c6a                             @ 0x000f5c6a   [INLINED -- G6 literal batch]
  *   NRF_I2S0_CONFIG_CHANNELS                 @ 0x500055b8
  */
 /* Reconstructed FUN_00060c00 @ 0x00060c00 (432-byte executable extent). */

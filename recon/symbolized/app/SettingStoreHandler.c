@@ -19,14 +19,14 @@
  *   rodata_87bf0                             @ 0x00087bf0
  *   rodata_9e9ea                             @ 0x0009e9ea
  *   rodata_9ea0a                             @ 0x0009ea0a
- *   rodata_9ea7b                             @ 0x0009ea7b
- *   rodata_9ead2                             @ 0x0009ead2
- *   rodata_9eaf4                             @ 0x0009eaf4
- *   rodata_9eb2e                             @ 0x0009eb2e
+ *   rodata_9ea7b                             @ 0x0009ea7b   [INLINED -- G6 literal batch]
+ *   rodata_9ead2                             @ 0x0009ead2   [INLINED -- G6 literal batch]
+ *   rodata_9eaf4                             @ 0x0009eaf4   [INLINED -- G6 literal batch]
+ *   rodata_9eb2e                             @ 0x0009eb2e   [INLINED -- G6 literal batch]
  *   rodata_9eba7                             @ 0x0009eba7
  *   rodata_9ebc6                             @ 0x0009ebc6
- *   rodata_9ecd5                             @ 0x0009ecd5
- *   rodata_9ecf5                             @ 0x0009ecf5
+ *   rodata_9ecd5                             @ 0x0009ecd5   [INLINED -- G6 literal batch]
+ *   rodata_9ecf5                             @ 0x0009ecf5   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_flash_store_cmd_msgq                   @ 0x20003994
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -98,13 +98,13 @@ extern int z_device_is_ready(unsigned int);
 #define DAT_0002418c ((unsigned long)&g_flash_store_cmd_msgq) /*=0x20003994*/
 #define DAT_00024190 ((volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define DAT_00024194 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_00024198 ((unsigned long)&rodata_9ecd5) /*=0x9ecd5*/
-#define DAT_0002419c ((unsigned long)&rodata_9ea7b) /*=0x9ea7b*/
-#define DAT_000241a0 ((unsigned long)&rodata_9ecf5) /*=0x9ecf5*/
+#define DAT_00024198 ((unsigned long)"getSettingStorageQueueCacheData") /*=0x9ecd5*/
+#define DAT_0002419c ((unsigned long)"%s(): setting storage queue get failed\r\n\n") /*=0x9ea7b*/
+#define DAT_000241a0 ((unsigned long)"SettingStoreHandler") /*=0x9ecf5*/
 #define DAT_000241a4 0x9eaa5UL
-#define DAT_000241a8 ((unsigned long)&rodata_9ead2) /*=0x9ead2*/
-#define DAT_000241ac ((unsigned long)&rodata_9eaf4) /*=0x9eaf4*/
-#define DAT_000241b0 ((unsigned long)&rodata_9eb2e) /*=0x9eb2e*/
+#define DAT_000241a8 ((unsigned long)"%s(): received setting command .\n") /*=0x9ead2*/
+#define DAT_000241ac ((unsigned long)"%s(): start setting  parameter check. language type = %d\n") /*=0x9eaf4*/
+#define DAT_000241b0 ((unsigned long)"%s(): Setting Task received error language parameters.\n") /*=0x9eb2e*/
 #define DAT_000241b4 ((unsigned long)&g_ui_mode_flag) /*=0x20018462*/
 #define DAT_000241b8 0x9eb66UL
 #define DAT_000241bc ((unsigned long)&rodata_87bf0) /*=0x87bf0*/

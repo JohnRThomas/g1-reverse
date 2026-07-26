@@ -14,14 +14,14 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f1681                             @ 0x000f1681
- *   rodata_f16be                             @ 0x000f16be
+ *   rodata_f16be                             @ 0x000f16be   [INLINED -- G6 literal batch]
  *   rodata_f1754                             @ 0x000f1754
  *   rodata_fa9b4                             @ 0x000fa9b4
  *   rodata_faa14                             @ 0x000faa14
@@ -43,11 +43,11 @@ extern void assert_post_action(uintptr_t file, uint32_t line) __attribute__((nor
 void app_event_manager_submit(uint32_t *item)
 {
     if (item == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f1754) /*=0xf1754*/, ((unsigned long)&rodata_f1681) /*=0xf1681*/, 0xd1u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f1754) /*=0xf1754*/, ((unsigned long)&rodata_f1681) /*=0xf1681*/, 0xd1u);
         assert_post_action(((unsigned long)&rodata_f1681) /*=0xf1681*/, 0xd1u);
     }
     if (item[1] < ((unsigned long)&rodata_fa9b4) /*=0xfa9b4*/ || item[1] >= ((unsigned long)&rodata_faa14) /*=0xfaa14*/) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f16be) /*=0xf16be*/, ((unsigned long)&rodata_f1681) /*=0xf1681*/, 0xd2u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"(aeh->type_id >= _event_type_list_start) && (aeh->type_id < _event_type_list_end)") /*=0xf16be*/, ((unsigned long)&rodata_f1681) /*=0xf1681*/, 0xd2u);
         assert_post_action(((unsigned long)&rodata_f1681) /*=0xf1681*/, 0xd2u);
     }
 
@@ -56,8 +56,8 @@ void app_event_manager_submit(uint32_t *item)
     __ISB();
 
     if (z_spin_lock_valid(((unsigned long)&g_notify_pending_lock) /*=0x2000a2c4*/) == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72u);
-        printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, ((unsigned long)&g_notify_pending_lock) /*=0x2000a2c4*/);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72u);
+        printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/, ((unsigned long)&g_notify_pending_lock) /*=0x2000a2c4*/);
         assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72u);
     }
 
@@ -73,8 +73,8 @@ void app_event_manager_submit(uint32_t *item)
     }
 
     if (z_spin_unlock_valid(((unsigned long)&g_notify_pending_lock) /*=0x2000a2c4*/) == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f08f4) /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0u);
-        printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, ((unsigned long)&g_notify_pending_lock) /*=0x2000a2c4*/);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0u);
+        printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/, ((unsigned long)&g_notify_pending_lock) /*=0x2000a2c4*/);
         assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0u);
     }
 

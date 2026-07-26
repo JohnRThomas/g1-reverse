@@ -7,9 +7,9 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef058                             @ 0x000ef058
- *   rodata_f008c                             @ 0x000f008c
- *   rodata_f0139                             @ 0x000f0139
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
+ *   rodata_f008c                             @ 0x000f008c   [INLINED -- G6 literal batch]
+ *   rodata_f0139                             @ 0x000f0139   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_display_msgq                           @ 0x200038c4
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -34,13 +34,13 @@ unsigned int display_MasterSendClose(void)
         uVar2 = 0;
         if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_f008c) /*=0xf008c*/, ((unsigned long)&rodata_f0139) /*=0xf0139*/);
+                log_message(((unsigned long)"%s(): send display delay close command.......\n") /*=0xf008c*/, ((unsigned long)"display_MasterSendClose") /*=0xf0139*/);
             } else {
-                debug_print(((unsigned long)&rodata_f008c) /*=0xf008c*/, ((unsigned long)&rodata_f0139) /*=0xf0139*/);
+                debug_print(((unsigned long)"%s(): send display delay close command.......\n") /*=0xf008c*/, ((unsigned long)"display_MasterSendClose") /*=0xf0139*/);
             }
         }
     } else {
-        log_message(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_f0139) /*=0xf0139*/);
+        log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/, ((unsigned long)"display_MasterSendClose") /*=0xf0139*/);
         uVar2 = 0xffffffffUL;
     }
     return uVar2;

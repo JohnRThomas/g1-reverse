@@ -36,77 +36,77 @@
  *   strstr                                   <= FUN_000870be @ 0x000870be
  * address symbols (name @ address):
  *   ADDR_ble_requeue_command_via_dispatch_THUMB @ 0x0007c245
- *   rodata_99899                             @ 0x00099899
+ *   rodata_99899                             @ 0x00099899   [INLINED -- G6 literal batch]
  *   rodata_9d7f7                             @ 0x0009d7f7
- *   rodata_9d7fa                             @ 0x0009d7fa
+ *   rodata_9d7fa                             @ 0x0009d7fa   [INLINED -- G6 literal batch]
  *   rodata_9d81e                             @ 0x0009d81e
- *   rodata_9d822                             @ 0x0009d822
+ *   rodata_9d822                             @ 0x0009d822   [INLINED -- G6 literal batch]
  *   rodata_9d857                             @ 0x0009d857
- *   rodata_9d85b                             @ 0x0009d85b
+ *   rodata_9d85b                             @ 0x0009d85b   [INLINED -- G6 literal batch]
  *   rodata_9d88c                             @ 0x0009d88c
- *   rodata_9d890                             @ 0x0009d890
+ *   rodata_9d890                             @ 0x0009d890   [INLINED -- G6 literal batch]
  *   rodata_9d8b1                             @ 0x0009d8b1
- *   rodata_9d8b5                             @ 0x0009d8b5
+ *   rodata_9d8b5                             @ 0x0009d8b5   [INLINED -- G6 literal batch]
  *   rodata_9d8da                             @ 0x0009d8da
- *   rodata_9d8de                             @ 0x0009d8de
- *   rodata_9d8ed                             @ 0x0009d8ed
- *   rodata_9d8fc                             @ 0x0009d8fc
- *   rodata_9d90a                             @ 0x0009d90a
- *   rodata_9d925                             @ 0x0009d925
- *   rodata_9d92b                             @ 0x0009d92b
- *   rodata_9d94a                             @ 0x0009d94a
- *   rodata_9d95b                             @ 0x0009d95b
- *   rodata_9d969                             @ 0x0009d969
- *   rodata_9d9a5                             @ 0x0009d9a5
- *   rodata_9d9ed                             @ 0x0009d9ed
- *   rodata_9da2f                             @ 0x0009da2f
+ *   rodata_9d8de                             @ 0x0009d8de   [INLINED -- G6 literal batch]
+ *   rodata_9d8ed                             @ 0x0009d8ed   [INLINED -- G6 literal batch]
+ *   rodata_9d8fc                             @ 0x0009d8fc   [INLINED -- G6 literal batch]
+ *   rodata_9d90a                             @ 0x0009d90a   [INLINED -- G6 literal batch]
+ *   rodata_9d925                             @ 0x0009d925   [INLINED -- G6 literal batch]
+ *   rodata_9d92b                             @ 0x0009d92b   [INLINED -- G6 literal batch]
+ *   rodata_9d94a                             @ 0x0009d94a   [INLINED -- G6 literal batch]
+ *   rodata_9d95b                             @ 0x0009d95b   [INLINED -- G6 literal batch]
+ *   rodata_9d969                             @ 0x0009d969   [INLINED -- G6 literal batch]
+ *   rodata_9d9a5                             @ 0x0009d9a5   [INLINED -- G6 literal batch]
+ *   rodata_9d9ed                             @ 0x0009d9ed   [INLINED -- G6 literal batch]
+ *   rodata_9da2f                             @ 0x0009da2f   [INLINED -- G6 literal batch]
  *   rodata_9da61                             @ 0x0009da61
- *   rodata_9db03                             @ 0x0009db03
- *   rodata_9db15                             @ 0x0009db15
- *   rodata_9db45                             @ 0x0009db45
- *   rodata_9db4f                             @ 0x0009db4f
- *   rodata_9db81                             @ 0x0009db81
- *   rodata_9db91                             @ 0x0009db91
- *   rodata_9dbb4                             @ 0x0009dbb4
- *   rodata_9dbc5                             @ 0x0009dbc5
- *   rodata_9dbec                             @ 0x0009dbec
+ *   rodata_9db03                             @ 0x0009db03   [INLINED -- G6 literal batch]
+ *   rodata_9db15                             @ 0x0009db15   [INLINED -- G6 literal batch]
+ *   rodata_9db45                             @ 0x0009db45   [INLINED -- G6 literal batch]
+ *   rodata_9db4f                             @ 0x0009db4f   [INLINED -- G6 literal batch]
+ *   rodata_9db81                             @ 0x0009db81   [INLINED -- G6 literal batch]
+ *   rodata_9db91                             @ 0x0009db91   [INLINED -- G6 literal batch]
+ *   rodata_9dbb4                             @ 0x0009dbb4   [INLINED -- G6 literal batch]
+ *   rodata_9dbc5                             @ 0x0009dbc5   [INLINED -- G6 literal batch]
+ *   rodata_9dbec                             @ 0x0009dbec   [INLINED -- G6 literal batch]
  *   rodata_9dc17                             @ 0x0009dc17
- *   rodata_9dc1a                             @ 0x0009dc1a
- *   rodata_9dc9c                             @ 0x0009dc9c
- *   rodata_9dcbb                             @ 0x0009dcbb
- *   rodata_9dd09                             @ 0x0009dd09
+ *   rodata_9dc1a                             @ 0x0009dc1a   [INLINED -- G6 literal batch]
+ *   rodata_9dc9c                             @ 0x0009dc9c   [INLINED -- G6 literal batch]
+ *   rodata_9dcbb                             @ 0x0009dcbb   [INLINED -- G6 literal batch]
+ *   rodata_9dd09                             @ 0x0009dd09   [INLINED -- G6 literal batch]
  *   rodata_9dd24                             @ 0x0009dd24
- *   rodata_9dd27                             @ 0x0009dd27
+ *   rodata_9dd27                             @ 0x0009dd27   [INLINED -- G6 literal batch]
  *   rodata_9dd4b                             @ 0x0009dd4b
- *   rodata_9dd4e                             @ 0x0009dd4e
+ *   rodata_9dd4e                             @ 0x0009dd4e   [INLINED -- G6 literal batch]
  *   rodata_9dd6a                             @ 0x0009dd6a
  *   rodata_9dd6d                             @ 0x0009dd6d
  *   rodata_9dd70                             @ 0x0009dd70
- *   rodata_9dd73                             @ 0x0009dd73
+ *   rodata_9dd73                             @ 0x0009dd73   [INLINED -- G6 literal batch]
  *   rodata_9dd91                             @ 0x0009dd91
- *   rodata_9dd94                             @ 0x0009dd94
+ *   rodata_9dd94                             @ 0x0009dd94   [INLINED -- G6 literal batch]
  *   rodata_9ddb9                             @ 0x0009ddb9
  *   rodata_9ddbc                             @ 0x0009ddbc
  *   rodata_9ddbf                             @ 0x0009ddbf
  *   rodata_9ddc8                             @ 0x0009ddc8
  *   rodata_9ddcb                             @ 0x0009ddcb
- *   rodata_9ddce                             @ 0x0009ddce
+ *   rodata_9ddce                             @ 0x0009ddce   [INLINED -- G6 literal batch]
  *   rodata_9ddd8                             @ 0x0009ddd8
  *   rodata_9dddb                             @ 0x0009dddb
- *   rodata_9ddde                             @ 0x0009ddde
+ *   rodata_9ddde                             @ 0x0009ddde   [INLINED -- G6 literal batch]
  *   rodata_9dde8                             @ 0x0009dde8
- *   rodata_9ddeb                             @ 0x0009ddeb
+ *   rodata_9ddeb                             @ 0x0009ddeb   [INLINED -- G6 literal batch]
  *   rodata_9de32                             @ 0x0009de32
- *   rodata_9de35                             @ 0x0009de35
+ *   rodata_9de35                             @ 0x0009de35   [INLINED -- G6 literal batch]
  *   rodata_9de4c                             @ 0x0009de4c
- *   rodata_9de4f                             @ 0x0009de4f
+ *   rodata_9de4f                             @ 0x0009de4f   [INLINED -- G6 literal batch]
  *   rodata_9de5e                             @ 0x0009de5e
- *   rodata_9de61                             @ 0x0009de61
+ *   rodata_9de61                             @ 0x0009de61   [INLINED -- G6 literal batch]
  *   rodata_9de63                             @ 0x0009de63
  *   rodata_9de6e                             @ 0x0009de6e
  *   rodata_9de71                             @ 0x0009de71
- *   rodata_9de74                             @ 0x0009de74
- *   rodata_9dfa9                             @ 0x0009dfa9
+ *   rodata_9de74                             @ 0x0009de74   [INLINED -- G6 literal batch]
+ *   rodata_9dfa9                             @ 0x0009dfa9   [INLINED -- G6 literal batch]
  *   rodata_9e235                             @ 0x0009e235
  *   rodata_a1f20                             @ 0x000a1f20
  *   rodata_f1031                             @ 0x000f1031

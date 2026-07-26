@@ -8,9 +8,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6659                             @ 0x000f6659
- *   rodata_f66a6                             @ 0x000f66a6
+ *   rodata_f66a6                             @ 0x000f66a6   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00063778 @ 0x63778  (parity: 300/300 trials, PROVEN) */
 
@@ -25,7 +25,7 @@ void nrf_rtc_set_alarm_channel(int param_1, unsigned int param_2, unsigned int p
                   unsigned int param_6)
 {
     if (param_1 != 1) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f66a6) /*=0xf66a6*/, ((unsigned long)&rodata_f6659) /*=0xf6659*/, 0x18dUL, param_1, param_2, param_3, param_4);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"chan > 0 && chan < (1 + 1)") /*=0xf66a6*/, ((unsigned long)&rodata_f6659) /*=0xf6659*/, 0x18dUL, param_1, param_2, param_3, param_4);
         assert_post_action(((unsigned long)&rodata_f6659) /*=0xf6659*/, 0x18dUL);
     }
     compare_set((unsigned int)param_1, param_5, param_3, param_4,

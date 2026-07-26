@@ -5,7 +5,7 @@
  *   ipc_service_send_with_retry              <= FUN_0002563c @ 0x0002563c
  *   ipc_send_packet_ch2005                   <= FUN_0007ca18 @ 0x0007ca18
  * address symbols (name @ address):
- *   rodata_9f1af                             @ 0x0009f1af
+ *   rodata_9f1af                             @ 0x0009f1af   [INLINED -- G6 literal batch]
  *   g_st25dv_dev                             @ 0x20007a44
  */
 /* Reconstructed FUN_0002563c @ 0x2563c  (parity: 300/300 trials, PROVEN) */
@@ -16,7 +16,7 @@ int ipc_service_send_with_retry(int param_1)
 {
     volatile int *piVar1 = (volatile int*)0x20007a44UL;
     if (param_1 == 0 || *piVar1 == 0) {
-        log_message(0x0009f1af);
+        log_message(((unsigned long)"input param valid \n"));
         return -1;
     }
     int iVar3 = 10;

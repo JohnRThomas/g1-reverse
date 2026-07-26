@@ -11,7 +11,7 @@
  *   net_pkt_skip                             <= FUN_00086502 @ 0x00086502
  * address symbols (name @ address):
  *   log_module_bt_conn                       @ 0x00088108
- *   rodata_f3bad                             @ 0x000f3bad
+ *   rodata_f3bad                             @ 0x000f3bad   [INLINED -- G6 literal batch]
  *   rodata_f3bd2                             @ 0x000f3bd2
  *   rodata_f3be1                             @ 0x000f3be1
  *   g_bt_conn_tx_pending_cnt                 @ 0x20003a60
@@ -39,7 +39,7 @@ int bt_conn_send_cb(uint8_t *connection, uint8_t *buffer,
                  void (*callback)(void *, void *, uint8_t), void *user_data)
 {
     if (buffer[0x0b] < 8U) {
-        uint32_t package[3] = { 4U, ((unsigned long)&rodata_f3bad) /*=0xf3bad*/, buffer[0x0b] };
+        uint32_t package[3] = { 4U, ((unsigned long)"not enough room in user_data %d < %d") /*=0xf3bad*/, buffer[0x0b] };
         bt_conn_call_4arg_zero(((unsigned long)&log_module_bt_conn) /*=0x88108*/, 0x2040U, package);
         return -22;
     }

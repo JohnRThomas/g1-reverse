@@ -4,7 +4,7 @@
  * callees (readable <= raw @ address):
  *   dump_whitelist_init                      <= FUN_00035744 @ 0x00035744
  * address symbols (name @ address):
- *   rodata_a8a05                             @ 0x000a8a05
+ *   rodata_a8a05                             @ 0x000a8a05   [INLINED -- G6 literal batch]
  *   g_app_whitelist_buffer                   @ 0x2001a22c
  */
 /* Reconstructed FUN_00035744 @ 0x35744.

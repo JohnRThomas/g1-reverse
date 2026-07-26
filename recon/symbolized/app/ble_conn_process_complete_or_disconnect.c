@@ -16,10 +16,10 @@
  *   rodata_87fec                             @ 0x00087fec
  *   rodata_88058                             @ 0x00088058
  *   log_module_bt_conn                       @ 0x00088108
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0d20                             @ 0x000f0d20   [INLINED -- G6 literal batch]
  *   rodata_f3a5d                             @ 0x000f3a5d
- *   rodata_f3a8d                             @ 0x000f3a8d
+ *   rodata_f3a8d                             @ 0x000f3a8d   [INLINED -- G6 literal batch]
  *   rodata_f3dff                             @ 0x000f3dff
  *   rodata_f3e24                             @ 0x000f3e24
  *   g_ble_conn_cb_list_head                  @ 0x2000ad1c
@@ -49,8 +49,8 @@ void ble_conn_process_complete_or_disconnect(int param_1){
     }
     while(1){
       if(uVar1 < uVar3){
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f3a8d) /*=0xf3a8d*/,((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/,0x5fe);
-        printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"cb <= _bt_conn_cb_list_end") /*=0xf3a8d*/,((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/,0x5fe);
+        printk(((unsigned long)"\tunexpected list end location\n") /*=0xf0d20*/);
         assert_post_action(((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/,0x5fe);
       }
       if(uVar1 <= uVar3) break;

@@ -8,8 +8,8 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f22d5                             @ 0x000f22d5
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f22d5                             @ 0x000f22d5   [INLINED -- G6 literal batch]
  *   rodata_f23d4                             @ 0x000f23d4
  */
 /* Retained asserting recursive-lock release hook @ 0x00051134.
@@ -26,8 +26,8 @@ extern int k_mutex_unlock(uintptr_t lock);
 void g1_recon_retarget_lock_release_recursive(uintptr_t lock)
 {
     if (lock == 0u) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f23d4) /*=0xf23d4*/, ((unsigned long)&rodata_f22d5) /*=0xf22d5*/, 0x1c2u);
-        assert_post_action(((unsigned long)&rodata_f22d5) /*=0xf22d5*/, 0x1c2u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f23d4) /*=0xf23d4*/, ((unsigned long)"WEST_TOPDIR/zephyr/lib/libc/newlib/libc-hooks.c") /*=0xf22d5*/, 0x1c2u);
+        assert_post_action(((unsigned long)"WEST_TOPDIR/zephyr/lib/libc/newlib/libc-hooks.c") /*=0xf22d5*/, 0x1c2u);
     }
     (void)k_mutex_unlock(lock);
 }

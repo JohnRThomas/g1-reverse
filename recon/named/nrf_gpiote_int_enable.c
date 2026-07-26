@@ -6,9 +6,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6bc5                             @ 0x000f6bc5
- *   rodata_f6c09                             @ 0x000f6c09
+ *   rodata_f6c09                             @ 0x000f6c09   [INLINED -- G6 literal batch]
  *   g_nrfx_gpiote_init_flag                  @ 0x2000b328
  *   REG_5002a304                             @ 0x5002a304
  */
@@ -21,7 +21,7 @@ void nrf_gpiote_int_enable(unsigned int param_1, unsigned int param_2, unsigned 
 {
     unsigned int r0 = param_1;
     if (*(volatile unsigned char*)0x2000b328UL != 1) {
-        printk(0x00099cbdUL, 0x000f6c09UL, 0x000f6bc5UL, 0x6c, param_4);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"m_cb.state == NRFX_DRV_STATE_INITIALIZED"), 0x000f6bc5UL, 0x6c, param_4);
         r0 = assert_post_action(0x000f6bc5UL, 0x6c);
     }
     *(volatile int*)0x5002a304UL = 1 << (r0 & 0xff);

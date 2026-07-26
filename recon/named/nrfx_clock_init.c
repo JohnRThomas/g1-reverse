@@ -6,9 +6,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6a4e                             @ 0x000f6a4e
- *   rodata_f6abf                             @ 0x000f6abf
+ *   rodata_f6abf                             @ 0x000f6abf   [INLINED -- G6 literal batch]
  *   g_clock_cb                               @ 0x2000b31c
  *   nrfx_clock_module_initialized            @ 0x2000b320
  */
@@ -27,7 +27,7 @@ uint32_t nrfx_clock_init(uintptr_t event_handler)
     volatile uint8_t *initialized = (volatile uint8_t *)0x2000b320UL;
 
     if (event_handler == 0) {
-        printk(0x00099cbdUL, 0x000f6abfUL, 0x000f6a4eUL, 0x115);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"event_handler"), 0x000f6a4eUL, 0x115);
         assert_post_action(0x000f6a4eUL, 0x115);
     }
 

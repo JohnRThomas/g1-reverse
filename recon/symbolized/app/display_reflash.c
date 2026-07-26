@@ -10,12 +10,12 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef01c                             @ 0x000ef01c
- *   rodata_ef058                             @ 0x000ef058
- *   rodata_effd2                             @ 0x000effd2
- *   rodata_efff4                             @ 0x000efff4
- *   rodata_f001c                             @ 0x000f001c
- *   rodata_f019a                             @ 0x000f019a
+ *   rodata_ef01c                             @ 0x000ef01c   [INLINED -- G6 literal batch]
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
+ *   rodata_effd2                             @ 0x000effd2   [INLINED -- G6 literal batch]
+ *   rodata_efff4                             @ 0x000efff4   [INLINED -- G6 literal batch]
+ *   rodata_f001c                             @ 0x000f001c   [INLINED -- G6 literal batch]
+ *   rodata_f019a                             @ 0x000f019a   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_display_msgq                           @ 0x200038c4
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -38,9 +38,9 @@ unsigned display_reflash(int param_1, unsigned param_2){
     long long lVar7 = thunk_FUN_00074f68();
     if(*piVar1 > 2){
       if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-        log_message(((unsigned long)&rodata_effd2) /*=0xeffd2*/,((unsigned long)&rodata_f019a) /*=0xf019a*/,0,0);
+        log_message(((unsigned long)"%s(): send reflash command......\n") /*=0xeffd2*/,((unsigned long)"display_reflash") /*=0xf019a*/,0,0);
       else
-        debug_print(((unsigned long)&rodata_effd2) /*=0xeffd2*/,((unsigned long)&rodata_f019a) /*=0xf019a*/);
+        debug_print(((unsigned long)"%s(): send reflash command......\n") /*=0xeffd2*/,((unsigned long)"display_reflash") /*=0xf019a*/);
     }
     memset_bytes(packet + 1,0,23);
     packet[0] = 2;
@@ -53,9 +53,9 @@ unsigned display_reflash(int param_1, unsigned param_2){
     if(iVar2 == 0){
       if(*piVar1 > 2){
         if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-          log_message(((unsigned long)&rodata_efff4) /*=0xefff4*/,((unsigned long)&rodata_f019a) /*=0xf019a*/,0,0);
+          log_message(((unsigned long)"%s(): send reflash command end .......\n") /*=0xefff4*/,((unsigned long)"display_reflash") /*=0xf019a*/,0,0);
         else
-          debug_print(((unsigned long)&rodata_efff4) /*=0xefff4*/,((unsigned long)&rodata_f019a) /*=0xf019a*/);
+          debug_print(((unsigned long)"%s(): send reflash command end .......\n") /*=0xefff4*/,((unsigned long)"display_reflash") /*=0xf019a*/);
       }
       long long lVar8 = thunk_FUN_00074f68();
       if(*piVar1 > 2){
@@ -64,22 +64,22 @@ unsigned display_reflash(int param_1, unsigned param_2){
         unsigned uVar4 = (unsigned)((uint64_t)lVar8 * UINT64_C(1000)) >> 0xf | uVar5*0x20000;
         unsigned uVar6 = (unsigned)((uint64_t)lVar7 * UINT64_C(1000)) >> 0xf | uVar3*0x20000;
         if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-          log_message(((unsigned long)&rodata_f001c) /*=0xf001c*/,((unsigned long)&rodata_f019a) /*=0xf019a*/, uVar4-uVar6,
+          log_message(((unsigned long)"%s(): send reflash command cost %lldMs\n") /*=0xf001c*/,((unsigned long)"display_reflash") /*=0xf019a*/, uVar4-uVar6,
                       ((uVar5>>0xf)-(uVar3>>0xf)) - (unsigned)(uVar4<uVar6));
         else
-          debug_print(((unsigned long)&rodata_f001c) /*=0xf001c*/,((unsigned long)&rodata_f019a) /*=0xf019a*/, uVar4-uVar6,
+          debug_print(((unsigned long)"%s(): send reflash command cost %lldMs\n") /*=0xf001c*/,((unsigned long)"display_reflash") /*=0xf019a*/, uVar4-uVar6,
                        ((uVar5>>0xf)-(uVar3>>0xf)) -
                            (unsigned)(uVar4<uVar6));
       }
       submit_display_reflash_work();
       return 0;
     }
-    log_message(((unsigned long)&rodata_ef058) /*=0xef058*/,((unsigned long)&rodata_f019a) /*=0xf019a*/,0,0);
+    log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/,((unsigned long)"display_reflash") /*=0xf019a*/,0,0);
   } else if(*piVar1 > 0){
     if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-      log_message(((unsigned long)&rodata_ef01c) /*=0xef01c*/,((unsigned long)&rodata_f019a) /*=0xf019a*/,10,0);
+      log_message(((unsigned long)"%s(): send data length more than %d,can't load it,exit ...\n") /*=0xef01c*/,((unsigned long)"display_reflash") /*=0xf019a*/,10,0);
     else
-      debug_print(((unsigned long)&rodata_ef01c) /*=0xef01c*/,((unsigned long)&rodata_f019a) /*=0xf019a*/,10);
+      debug_print(((unsigned long)"%s(): send data length more than %d,can't load it,exit ...\n") /*=0xef01c*/,((unsigned long)"display_reflash") /*=0xf019a*/,10);
   }
   return 0xffffffff;
 }

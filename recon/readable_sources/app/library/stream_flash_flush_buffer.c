@@ -13,10 +13,10 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_880d8                             @ 0x000880d8
- *   rodata_f1052                             @ 0x000f1052
- *   rodata_f1080                             @ 0x000f1080
- *   rodata_f10a4                             @ 0x000f10a4
- *   rodata_f10ba                             @ 0x000f10ba
+ *   rodata_f1052                             @ 0x000f1052   [INLINED -- G6 literal batch]
+ *   rodata_f1080                             @ 0x000f1080   [INLINED -- G6 literal batch]
+ *   rodata_f10a4                             @ 0x000f10a4   [INLINED -- G6 literal batch]
+ *   rodata_f10ba                             @ 0x000f10ba   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0004e1ac @ 0x4e1ac  owned extent: 0xf4 bytes */
 
@@ -65,7 +65,7 @@ int stream_flash_flush_buffer(struct buffered_writer *writer, uint32_t unused_2,
 {
     uint32_t offset;
     uint32_t padding = 0;
-    uintptr_t message = ((unsigned long)&rodata_f1052) /*=0xf1052*/;
+    uintptr_t message = ((unsigned long)"stream_flash_erase_page err %d offset=0x%08zx") /*=0xf1052*/;
     int status;
 
     (void)unused_2;
@@ -95,7 +95,7 @@ int stream_flash_flush_buffer(struct buffered_writer *writer, uint32_t unused_2,
                                         writer->buffer,
                                         writer->count + padding);
         }
-        message = ((unsigned long)&rodata_f1080) /*=0xf1080*/;
+        message = ((unsigned long)"flash_write error %d offset=0x%08zx") /*=0xf1080*/;
         if (status == 0) {
             if (writer->transform == 0)
                 goto complete;
@@ -107,11 +107,11 @@ int stream_flash_flush_buffer(struct buffered_writer *writer, uint32_t unused_2,
                 const struct writer_device *device = writer->device;
                 status = device->ops->reset(writer->device, offset);
             }
-            message = ((unsigned long)&rodata_f10a4) /*=0xf10a4*/;
+            message = ((unsigned long)"flash read failed: %d") /*=0xf10a4*/;
             if (status == 0) {
                 status = writer->transform(writer->buffer, writer->count,
                                            offset);
-                message = ((unsigned long)&rodata_f10ba) /*=0xf10ba*/;
+                message = ((unsigned long)"callback failed: %d") /*=0xf10ba*/;
                 if (status == 0)
                     goto complete;
             }

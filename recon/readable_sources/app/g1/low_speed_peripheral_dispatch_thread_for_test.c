@@ -18,9 +18,9 @@
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
  *   rodata_87d70                             @ 0x00087d70
- *   rodata_9fc8b                             @ 0x0009fc8b
- *   rodata_9fc99                             @ 0x0009fc99
- *   rodata_a19e5                             @ 0x000a19e5
+ *   rodata_9fc8b                             @ 0x0009fc8b   [INLINED -- G6 literal batch]
+ *   rodata_9fc99                             @ 0x0009fc99   [INLINED -- G6 literal batch]
+ *   rodata_a19e5                             @ 0x000a19e5   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_flash_crc_active_flag                  @ 0x2000302c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -46,9 +46,9 @@ void low_speed_peripheral_dispatch_thread_for_test(uintptr_t context)
     volatile int *const log_level = (volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/;
     if (*log_level > 1) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-            debug_print(((unsigned long)&rodata_9fc8b) /*=0x9fc8b*/, ((unsigned long)&rodata_a19e5) /*=0xa19e5*/);
+            debug_print(((unsigned long)"%s(): #enter\n") /*=0x9fc8b*/, ((unsigned long)"low_speed_peripheral_dispatch_thread_for_test") /*=0xa19e5*/);
         else
-            log_message(((unsigned long)&rodata_9fc8b) /*=0x9fc8b*/, ((unsigned long)&rodata_a19e5) /*=0xa19e5*/);
+            log_message(((unsigned long)"%s(): #enter\n") /*=0x9fc8b*/, ((unsigned long)"low_speed_peripheral_dispatch_thread_for_test") /*=0xa19e5*/);
     }
 
     *(volatile uint16_t *)(context + 0xfc0) = 0;
@@ -62,9 +62,9 @@ void low_speed_peripheral_dispatch_thread_for_test(uintptr_t context)
             if (count > 0x22) {
                 if (*log_level > 0) {
                     if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-                        debug_print(((unsigned long)&rodata_9fc99) /*=0x9fc99*/, ((unsigned long)&rodata_a19e5) /*=0xa19e5*/);
+                        debug_print(((unsigned long)"%s(): reboot because dfu exceed time\r\n\n") /*=0x9fc99*/, ((unsigned long)"low_speed_peripheral_dispatch_thread_for_test") /*=0xa19e5*/);
                     else
-                        log_message(((unsigned long)&rodata_9fc99) /*=0x9fc99*/, ((unsigned long)&rodata_a19e5) /*=0xa19e5*/);
+                        log_message(((unsigned long)"%s(): reboot because dfu exceed time\r\n\n") /*=0x9fc99*/, ((unsigned long)"low_speed_peripheral_dispatch_thread_for_test") /*=0xa19e5*/);
                 }
                 for (;;) {
                     k_msleep(500);

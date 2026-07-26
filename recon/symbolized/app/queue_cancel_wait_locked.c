@@ -13,10 +13,10 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   z_handle_obj_poll_events                 <= FUN_0008688e @ 0x0008688e
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   g_mutex_lock_spinlock                    @ 0x2000b474
  */
 /* Reconstructed FUN_000729fc @ 0x729fc
@@ -30,7 +30,7 @@ extern void printk(uint32_t,...); extern void assert_post_action(uint32_t,uint32
 void queue_cancel_wait_locked(uint8_t *queue)
 {
     uint32_t bp=__get_BASEPRI(); __set_BASEPRI_MAX(0x20); __ISB();
-    if (!z_spin_lock_valid(((unsigned long)&g_mutex_lock_spinlock) /*=0x2000b474*/)) { printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,((unsigned long)&g_mutex_lock_spinlock) /*=0x2000b474*/); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); }
+    if (!z_spin_lock_valid(((unsigned long)&g_mutex_lock_spinlock) /*=0x2000b474*/)) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/,((unsigned long)&g_mutex_lock_spinlock) /*=0x2000b474*/); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); }
     z_spin_lock_set_owner(((unsigned long)&g_mutex_lock_spinlock) /*=0x2000b474*/);
     uint8_t *p; while ((p=(uint8_t *)(uintptr_t)z_unpend_first_thread(queue)) != 0) { *(uint32_t *)(p+0x90)=0xfffffff5; z_ready_thread_locked(); }
     *(uint32_t *)(queue+8)=0; z_handle_obj_poll_events(queue+0x10,2); z_reschedule(((unsigned long)&g_mutex_lock_spinlock) /*=0x2000b474*/,bp);

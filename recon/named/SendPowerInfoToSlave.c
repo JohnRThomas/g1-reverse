@@ -7,11 +7,11 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef058                             @ 0x000ef058
- *   rodata_ef4fa                             @ 0x000ef4fa
- *   rodata_ef519                             @ 0x000ef519
- *   rodata_ef553                             @ 0x000ef553
- *   rodata_ef6f2                             @ 0x000ef6f2
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
+ *   rodata_ef4fa                             @ 0x000ef4fa   [INLINED -- G6 literal batch]
+ *   rodata_ef519                             @ 0x000ef519   [INLINED -- G6 literal batch]
+ *   rodata_ef553                             @ 0x000ef553   [INLINED -- G6 literal batch]
+ *   rodata_ef6f2                             @ 0x000ef6f2   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_dashboard_response_msgq                @ 0x2000392c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -73,7 +73,7 @@ unsigned int SendPowerInfoToSlave(int param_1)
             }
         }
     } else {
-        log_message(0x000ef058UL, 0x000ef6f2UL);
+        log_message(((unsigned long)"message queue send failed %s\r\n"), 0x000ef6f2UL);
         uVar7 = 0xffffffffUL;
     }
     return uVar7;

@@ -8,10 +8,10 @@
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef01c                             @ 0x000ef01c
- *   rodata_ef058                             @ 0x000ef058
- *   rodata_f0044                             @ 0x000f0044
- *   rodata_f018c                             @ 0x000f018c
+ *   rodata_ef01c                             @ 0x000ef01c   [INLINED -- G6 literal batch]
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
+ *   rodata_f0044                             @ 0x000f0044   [INLINED -- G6 literal batch]
+ *   rodata_f018c                             @ 0x000f018c   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_display_msgq                           @ 0x200038c4
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -45,9 +45,9 @@ int display_close(const void *payload, unsigned int payload_length)
     if (payload_length > 10) {
         if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_ef01c) /*=0xef01c*/, ((unsigned long)&rodata_f018c) /*=0xf018c*/, 10);
+                log_message(((unsigned long)"%s(): send data length more than %d,can't load it,exit ...\n") /*=0xef01c*/, ((unsigned long)"display_close") /*=0xf018c*/, 10);
             } else {
-                debug_print(((unsigned long)&rodata_ef01c) /*=0xef01c*/, ((unsigned long)&rodata_f018c) /*=0xf018c*/, 10);
+                debug_print(((unsigned long)"%s(): send data length more than %d,can't load it,exit ...\n") /*=0xef01c*/, ((unsigned long)"display_close") /*=0xf018c*/, 10);
             }
         }
         return -1;
@@ -61,15 +61,15 @@ int display_close(const void *payload, unsigned int payload_length)
 
     result = k_msgq_put((void *)((unsigned long)&g_display_msgq) /*=0x200038c4*/, &packet, 0, 0);
     if (result != 0) {
-        log_message(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_f018c) /*=0xf018c*/);
+        log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/, ((unsigned long)"display_close") /*=0xf018c*/);
         return -1;
     }
 
     if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_f0044) /*=0xf0044*/, ((unsigned long)&rodata_f018c) /*=0xf018c*/);
+            log_message(((unsigned long)"%s(): send display close command.......\n") /*=0xf0044*/, ((unsigned long)"display_close") /*=0xf018c*/);
         } else {
-            debug_print(((unsigned long)&rodata_f0044) /*=0xf0044*/, ((unsigned long)&rodata_f018c) /*=0xf018c*/);
+            debug_print(((unsigned long)"%s(): send display close command.......\n") /*=0xf0044*/, ((unsigned long)"display_close") /*=0xf018c*/);
         }
     }
     return 0;

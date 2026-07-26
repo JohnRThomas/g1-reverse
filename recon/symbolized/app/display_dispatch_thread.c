@@ -32,20 +32,20 @@
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
  *   rodata_99969                             @ 0x00099969
- *   rodata_a0ca9                             @ 0x000a0ca9
- *   rodata_a0cdf                             @ 0x000a0cdf
- *   rodata_a0d03                             @ 0x000a0d03
- *   rodata_a0d1d                             @ 0x000a0d1d
- *   rodata_a0d34                             @ 0x000a0d34
- *   rodata_a0d50                             @ 0x000a0d50
- *   rodata_a0d77                             @ 0x000a0d77
- *   rodata_a0d92                             @ 0x000a0d92
- *   rodata_a0dcb                             @ 0x000a0dcb
- *   rodata_a0e3d                             @ 0x000a0e3d
- *   rodata_a0e91                             @ 0x000a0e91
- *   rodata_a0ee6                             @ 0x000a0ee6
- *   rodata_a0f08                             @ 0x000a0f08
- *   rodata_a1a13                             @ 0x000a1a13
+ *   rodata_a0ca9                             @ 0x000a0ca9   [INLINED -- G6 literal batch]
+ *   rodata_a0cdf                             @ 0x000a0cdf   [INLINED -- G6 literal batch]
+ *   rodata_a0d03                             @ 0x000a0d03   [INLINED -- G6 literal batch]
+ *   rodata_a0d1d                             @ 0x000a0d1d   [INLINED -- G6 literal batch]
+ *   rodata_a0d34                             @ 0x000a0d34   [INLINED -- G6 literal batch]
+ *   rodata_a0d50                             @ 0x000a0d50   [INLINED -- G6 literal batch]
+ *   rodata_a0d77                             @ 0x000a0d77   [INLINED -- G6 literal batch]
+ *   rodata_a0d92                             @ 0x000a0d92   [INLINED -- G6 literal batch]
+ *   rodata_a0dcb                             @ 0x000a0dcb   [INLINED -- G6 literal batch]
+ *   rodata_a0e3d                             @ 0x000a0e3d   [INLINED -- G6 literal batch]
+ *   rodata_a0e91                             @ 0x000a0e91   [INLINED -- G6 literal batch]
+ *   rodata_a0ee6                             @ 0x000a0ee6   [INLINED -- G6 literal batch]
+ *   rodata_a0f08                             @ 0x000a0f08   [INLINED -- G6 literal batch]
+ *   rodata_a1a13                             @ 0x000a1a13   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_20007af4                               @ 0x20007af4
@@ -174,7 +174,7 @@ extern s64  unsigned_divide_64(int,int,int,int);
 #define W(o)  (*(volatile s32*)(display+(o)))
 #define PTR(o) ((u32)(*(volatile u32*)(display+(o))))
 
-#define DISPLAY_LOG_MODULE ((unsigned long)&rodata_a1a13) /*=0xa1a13*/
+#define DISPLAY_LOG_MODULE ((unsigned long)"display_dispatch_thread") /*=0xa1a13*/
 #define DISPLAY_LOG_2(format) do {                                      \
   if (g_log_use_alt_sink == 0)                                          \
     log_message((format), DISPLAY_LOG_MODULE);                          \
@@ -209,7 +209,7 @@ void display_dispatch_thread(char *display)
   *(volatile s32*)(display+0xecc) = 0x12;   /* str.w */
   B(0xfe8) = 0;
   if (0 < g_log_level)
-    DISPLAY_LOG_4(((unsigned long)&rodata_a0ca9) /*=0xa0ca9*/, B(0xec0), B(0xec1));
+    DISPLAY_LOG_4(((unsigned long)"%s(): raster_height_gear:%d, canvas_distance_gear:%d\n") /*=0xa0ca9*/, B(0xec0), B(0xec1));
   *(volatile s32*)(display+0xeb4) = 0;      /* str.w */
   iVar5 = get_device_info();
   iVar6 = get_device_info();
@@ -235,7 +235,7 @@ void display_dispatch_thread(char *display)
       wait_for_event(((unsigned long)&rodata_28000) /*=0x28000*/, 0);
     }
     if (B(0xfe8) == 0 && display_panel_is_secondary(display) == 0) {
-      if (1 < g_log_level) DISPLAY_LOG_2(((unsigned long)&rodata_a0cdf) /*=0xa0cdf*/);
+      if (1 < g_log_level) DISPLAY_LOG_2(((unsigned long)"%s(): master sync display suspend.\n") /*=0xa0cdf*/);
       B(0xcb) = B(0xed5);
       uVar17 = get_current_work_mode();
       if ((s32)uVar17 != 3) {
@@ -249,7 +249,7 @@ void display_dispatch_thread(char *display)
       if (B(0xfe8) == 0) {
         uVar17 = display_panel_is_secondary(display);
         if ((s32)uVar17 != 0) goto LAB_28d42;
-        if (1 < g_log_level) DISPLAY_LOG_2(((unsigned long)&rodata_a0d03) /*=0xa0d03*/);
+        if (1 < g_log_level) DISPLAY_LOG_2(((unsigned long)"%s(): thread goto sleep.\n") /*=0xa0d03*/);
         g_display_refresh_latch = 0;
         k_sem_take(display+0x50, 0, -1, -1);
         if (B(0) == 2) {
@@ -261,8 +261,8 @@ void display_dispatch_thread(char *display)
         while (W(0x58) != 0) k_sem_take(display+0x50, 0, -1, -1);
       }
       if (1 < g_log_level) {
-        DISPLAY_LOG_2(((unsigned long)&rodata_a0d1d) /*=0xa0d1d*/);
-        if (1 < g_log_level) DISPLAY_LOG_2(((unsigned long)&rodata_a0d34) /*=0xa0d34*/);
+        DISPLAY_LOG_2(((unsigned long)"%s(): thread wakeup!.\n") /*=0xa0d1d*/);
+        if (1 < g_log_level) DISPLAY_LOG_2(((unsigned long)"%s(): sync display resume.\n") /*=0xa0d34*/);
       }
       B(0xcb) = B(0xed5);
       change_work_mode_to(2);
@@ -298,7 +298,7 @@ void display_dispatch_thread(char *display)
       if (B(0xfea) == 0x0c && B(0xd5) != 7) goto LAB_290ca;
       uVar17 = display_panel_is_secondary(display);
       if ((s32)uVar17 == 0) {
-        if (0 < g_log_level) DISPLAY_LOG_2(((unsigned long)&rodata_a0d50) /*=0xa0d50*/);
+        if (0 < g_log_level) DISPLAY_LOG_2(((unsigned long)"%s(): no running task, goto next trun\n") /*=0xa0d50*/);
         goto LAB_290ca;
       }
       display_mutex_lock(((unsigned long)&g_ui_state_mutex) /*=0x20007b3c*/, (s32)(uVar17>>32), -1, -1);
@@ -353,7 +353,7 @@ void display_dispatch_thread(char *display)
         pbVar15 = (u8*)PTR(0xfec);
         break;
       case 6:
-        if (2 < g_log_level) DISPLAY_LOG_2(((unsigned long)&rodata_a0d77) /*=0xa0d77*/);
+        if (2 < g_log_level) DISPLAY_LOG_2(((unsigned long)"%s(): set dashboard data.\n") /*=0xa0d77*/);
         /* fallthrough */
       case 15:
         pbVar15 = (u8*)PTR(0xfec);
@@ -489,7 +489,7 @@ void display_dispatch_thread(char *display)
           iVar6 = sync_to_slave(display, 0, 0);
           cVar16 = 1;
           if (4999 < iVar6) {
-            if (0 < g_log_level) DISPLAY_LOG_3(((unsigned long)&rodata_a0d92) /*=0xa0d92*/, iVar6);
+            if (0 < g_log_level) DISPLAY_LOG_3(((unsigned long)"%s(): sync to slave exceed MAX_WAIT_COUNT, wait_time %d\n") /*=0xa0d92*/, iVar6);
             goto LAB_290ca;
           }
           if (iVar6 < 3000) {
@@ -498,18 +498,18 @@ void display_dispatch_thread(char *display)
               if (uVar7 == (u8)B(0xd5) || (u8)B(0xd5) < 7 || uVar7 < 7)
                 goto LAB_293fc;
               if (0 < g_log_level)
-                DISPLAY_LOG_4(((unsigned long)&rodata_a0e3d) /*=0xa0e3d*/, uVar7, B(0xd5));
+                DISPLAY_LOG_4(((unsigned long)"%s(): screen id was changed, g->master_sync_pkg.new_screen_id %d pkg->screen_id %d\n") /*=0xa0e3d*/, uVar7, B(0xd5));
               iVar6 = 0x46;
             } else if (0 < g_log_level)
               DISPLAY_LOG_3(0x000a0e04u, iVar6);
           } else if (0 < g_log_level)
-            DISPLAY_LOG_3(((unsigned long)&rodata_a0dcb) /*=0xa0dcb*/, iVar6);
+            DISPLAY_LOG_3(((unsigned long)"%s(): sync to slave exceed CMD_WAIT_COUNT, wait_time %d\n") /*=0xa0dcb*/, iVar6);
         } else {
           iVar6 = 0;
          LAB_293fc:
           iVar11 = display_panel_is_secondary(display);
           if (iVar11 == 0) {
-            if (0 < g_log_level) DISPLAY_LOG_2(((unsigned long)&rodata_a0e91) /*=0xa0e91*/);
+            if (0 < g_log_level) DISPLAY_LOG_2(((unsigned long)"%s(): task was closed!!!\n") /*=0xa0e91*/);
           } else if (B(0xd5) == cVar1) {
             if (B(0xfe8) != 0) {
               uVar12 = (u32)(u8)B(0xee4);
@@ -520,14 +520,14 @@ void display_dispatch_thread(char *display)
                   uVar7 = uVar12;
                   if (cVar13 != 1) {
                     uVar7 = uStack_30;
-                    if (1 < g_log_level) DISPLAY_LOG_2(((unsigned long)&rodata_a0ee6) /*=0xa0ee6*/);
+                    if (1 < g_log_level) DISPLAY_LOG_2(((unsigned long)"%s(): imu->attitude changed ....\n") /*=0xa0ee6*/);
                   }
                 }
               }
               uStack_30 = uVar7;
               notify_display_mode(B(0xd5));
               if (0 < g_log_level)
-                DISPLAY_LOG_3(((unsigned long)&rodata_a0f08) /*=0xa0f08*/, B(0xd5));
+                DISPLAY_LOG_3(((unsigned long)"%s(): display_reflash_screen %d done\n") /*=0xa0f08*/, B(0xd5));
               cVar16 = B(0xec);
               if (cVar16 != 6 && cVar16 == 0) goto LAB_2933e;
               goto LAB_29102;

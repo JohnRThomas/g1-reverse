@@ -9,8 +9,8 @@
  *   k_uptime_get_10                          <= FUN_0007daa4 @ 0x0007daa4
  *   get_current_burial_point_type            <= FUN_0007dac0 @ 0x0007dac0
  * address symbols (name @ address):
- *   rodata_f0337                             @ 0x000f0337
- *   rodata_f04a9                             @ 0x000f04a9
+ *   rodata_f0337                             @ 0x000f0337   [INLINED -- G6 literal batch]
+ *   rodata_f04a9                             @ 0x000f04a9   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -42,11 +42,11 @@ void enter_wear_burial_point(void){
       if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/){
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ != 0){
           iVar1 = get_device_info();
-          debug_print(((unsigned long)&rodata_f0337) /*=0xf0337*/,((unsigned long)&rodata_f04a9) /*=0xf04a9*/,*(volatile unsigned*)(iVar1+0x10ae),*(volatile unsigned*)(iVar1+0x10b2));
+          debug_print(((unsigned long)"%s(): [enter_wear_burial_point] start_time is %d\n") /*=0xf0337*/,((unsigned long)"enter_wear_burial_point") /*=0xf04a9*/,*(volatile unsigned*)(iVar1+0x10ae),*(volatile unsigned*)(iVar1+0x10b2));
           return;
         }
         iVar1 = get_device_info();
-        log_message(((unsigned long)&rodata_f0337) /*=0xf0337*/,((unsigned long)&rodata_f04a9) /*=0xf04a9*/,*(volatile unsigned*)(iVar1+0x10ae),*(volatile unsigned*)(iVar1+0x10b2));
+        log_message(((unsigned long)"%s(): [enter_wear_burial_point] start_time is %d\n") /*=0xf0337*/,((unsigned long)"enter_wear_burial_point") /*=0xf04a9*/,*(volatile unsigned*)(iVar1+0x10ae),*(volatile unsigned*)(iVar1+0x10b2));
         return;
       }
     }

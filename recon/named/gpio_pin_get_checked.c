@@ -8,9 +8,9 @@
  * address symbols (name @ address):
  *   g_gpio0_dev                              @ 0x00087b60
  *   rodata_99c53                             @ 0x00099c53
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_99de0                             @ 0x00099de0
- *   rodata_99e1e                             @ 0x00099e1e
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_99de0                             @ 0x00099de0   [INLINED -- G6 literal batch]
+ *   rodata_99e1e                             @ 0x00099e1e   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00017980 @ 0x17980  (parity: 300/300 trials, PROVEN) */
 
@@ -30,8 +30,8 @@ int gpio_pin_get_checked(unsigned int param_1, unsigned int param_2, unsigned in
   local_14 = param_2;
   uStack_10 = param_3;
   if ((uVar3 & *(volatile unsigned int *)(*(volatile unsigned int *)(0x87b60UL + 4))) == 0) {
-    printk(0x99cbd, 0x99de0, 0x99c53, 0x5f6);
-    printk(0x99e1e, 0, 0, 0);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"(cfg->port_pin_mask & (gpio_port_pins_t)(1UL << (pin))) != 0U"), 0x99c53, 0x5f6);
+    printk(((unsigned long)"\tUnsupported pin\n"), 0, 0, 0);
     assert_post_action(0x99c53, 0x5f6);
   }
   puVar4 = *(volatile unsigned int **)(0x87b60UL + 0x10);

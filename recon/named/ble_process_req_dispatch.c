@@ -21,20 +21,20 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  *   strcpy                                   <= FUN_00086fee @ 0x00086fee
  * address symbols (name @ address):
- *   rodata_9b8fd                             @ 0x0009b8fd
- *   rodata_9d4e4                             @ 0x0009d4e4
- *   rodata_9d518                             @ 0x0009d518
- *   rodata_9d546                             @ 0x0009d546
- *   rodata_9d587                             @ 0x0009d587
- *   rodata_9d5af                             @ 0x0009d5af
- *   rodata_9d5da                             @ 0x0009d5da
- *   rodata_9d64e                             @ 0x0009d64e
- *   rodata_9d671                             @ 0x0009d671
- *   rodata_9d681                             @ 0x0009d681
+ *   rodata_9b8fd                             @ 0x0009b8fd   [INLINED -- G6 literal batch]
+ *   rodata_9d4e4                             @ 0x0009d4e4   [INLINED -- G6 literal batch]
+ *   rodata_9d518                             @ 0x0009d518   [INLINED -- G6 literal batch]
+ *   rodata_9d546                             @ 0x0009d546   [INLINED -- G6 literal batch]
+ *   rodata_9d587                             @ 0x0009d587   [INLINED -- G6 literal batch]
+ *   rodata_9d5af                             @ 0x0009d5af   [INLINED -- G6 literal batch]
+ *   rodata_9d5da                             @ 0x0009d5da   [INLINED -- G6 literal batch]
+ *   rodata_9d64e                             @ 0x0009d64e   [INLINED -- G6 literal batch]
+ *   rodata_9d671                             @ 0x0009d671   [INLINED -- G6 literal batch]
+ *   rodata_9d681                             @ 0x0009d681   [INLINED -- G6 literal batch]
  *   rodata_9d69e                             @ 0x0009d69e
- *   rodata_9e032                             @ 0x0009e032
- *   rodata_9e04e                             @ 0x0009e04e
- *   rodata_9e08b                             @ 0x0009e08b
+ *   rodata_9e032                             @ 0x0009e032   [INLINED -- G6 literal batch]
+ *   rodata_9e04e                             @ 0x0009e04e   [INLINED -- G6 literal batch]
+ *   rodata_9e08b                             @ 0x0009e08b   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_ble_work_timer                         @ 0x20003d28
  *   g_log_use_alt_sink                       @ 0x20007554

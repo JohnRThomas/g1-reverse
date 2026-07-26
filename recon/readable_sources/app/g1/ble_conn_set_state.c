@@ -21,9 +21,9 @@
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
  *   log_module_bt_conn                       @ 0x00088108
- *   rodata_f3c37                             @ 0x000f3c37
- *   rodata_f3c48                             @ 0x000f3c48
- *   rodata_f3c5f                             @ 0x000f3c5f
+ *   rodata_f3c37                             @ 0x000f3c37   [INLINED -- G6 literal batch]
+ *   rodata_f3c48                             @ 0x000f3c48   [INLINED -- G6 literal batch]
+ *   rodata_f3c5f                             @ 0x000f3c5f   [INLINED -- G6 literal batch]
  *   g_ble_dev_state                          @ 0x20002000
  *   g_ble_conn_poll_signal                   @ 0x20002990
  */
@@ -57,7 +57,7 @@ void ble_conn_set_state(int param_1, uint param_2)
   uint uVar7 = *(volatile uint8_t*)(param_1 + 0xd);
   if (uVar7 == param_2) {
     uint32_t local_28 = 0x01000003UL;
-    uint32_t local_24 = ((unsigned long)&rodata_f3c37) /*=0xf3c37*/;
+    uint32_t local_24 = ((unsigned long)"no transition %s") /*=0xf3c37*/;
     uint32_t uStack_20 = (uVar7 < 9) ? *(volatile uint32_t*)(0x0008b220UL + uVar7*4) : 0x000f3c2dUL;
     uint16_t local_1c = 0x200;
     struct { uint32_t a,b,c; uint16_t d; } s = { local_28, local_24, uStack_20, local_1c };
@@ -77,7 +77,7 @@ void ble_conn_set_state(int param_1, uint param_2)
       }
       switch (uVar7) {
         case 0: case 7: case 8: {
-          struct { uint32_t a,b,c; } s = { 3, ((unsigned long)&rodata_f3c48) /*=0xf3c48*/, param_2 };
+          struct { uint32_t a,b,c; } s = { 3, ((unsigned long)"Invalid (%u) old state") /*=0xf3c48*/, param_2 };
           bt_conn_call_4arg_zero(((unsigned long)&log_module_bt_conn) /*=0x88108*/, 0x1880, &s);
           return;
         }
@@ -159,7 +159,7 @@ void ble_conn_set_state(int param_1, uint param_2)
       }
       break;
     default: {
-      struct { uint32_t a,b,c; } s = { 3, ((unsigned long)&rodata_f3c5f) /*=0xf3c5f*/, param_2 };
+      struct { uint32_t a,b,c; } s = { 3, ((unsigned long)"no valid (%u) state was set") /*=0xf3c5f*/, param_2 };
       bt_conn_call_4arg_zero(((unsigned long)&log_module_bt_conn) /*=0x88108*/, 0x1880, &s);
       return;
     }

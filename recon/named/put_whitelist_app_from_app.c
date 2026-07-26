@@ -12,8 +12,8 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_a7c9c                             @ 0x000a7c9c
- *   rodata_a89c8                             @ 0x000a89c8
- *   rodata_a8a6f                             @ 0x000a8a6f
+ *   rodata_a89c8                             @ 0x000a89c8   [INLINED -- G6 literal batch]
+ *   rodata_a8a6f                             @ 0x000a8a6f   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_whitelist_app_parse_buf                @ 0x20009fbc
  */

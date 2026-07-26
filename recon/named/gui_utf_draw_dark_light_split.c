@@ -16,10 +16,10 @@
  *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
  *   rodata_aaa58                             @ 0x000aaa58
- *   rodata_aaa7f                             @ 0x000aaa7f
+ *   rodata_aaa7f                             @ 0x000aaa7f   [INLINED -- G6 literal batch]
  *   rodata_aab3b                             @ 0x000aab3b
- *   rodata_aab85                             @ 0x000aab85
- *   rodata_aad8e                             @ 0x000aad8e
+ *   rodata_aab85                             @ 0x000aab85   [INLINED -- G6 literal batch]
+ *   rodata_aad8e                             @ 0x000aad8e   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_gui_dark_light_dither_mask             @ 0x200034f6
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -48,8 +48,8 @@ undefined4 gui_utf_draw_dark_light_split(undefined4 param_1,undefined4 param_2,i
     if (param_11 != 0) {
 LAB_a2:
       if (1 < *(volatile int*)0x2000230c) {
-        if (*(volatile int*)0x20007554 == 0) log_message(0xaaa7f,0xaad8e);
-        else debug_print(0xaaa7f,0xaad8e);
+        if (*(volatile int*)0x20007554 == 0) log_message(((unsigned long)"%s(): exex process effect callback function\n"),((unsigned long)"gui_utf_draw_dark_light_split"));
+        else debug_print(((unsigned long)"%s(): exex process effect callback function\n"),((unsigned long)"gui_utf_draw_dark_light_split"));
       }
       uVar9 = (*param_11)(0,param_2,param_3,param_4,param_5);
       return uVar9;
@@ -67,7 +67,7 @@ LAB_a2:
             if (*(volatile char*)0x2001cdd4 == 0) {
               *(volatile char*)0x2001cdd4 = 1;
               if (1 < iVar3) { iVar3 = *(volatile int*)0x20007554; uVar9 = 0xaab3b;
-LAB_2c: if (iVar3 == 0) log_message(uVar9,0xaad8e,uVar13); else debug_print(uVar9,0xaad8e,uVar13); }
+LAB_2c: if (iVar3 == 0) log_message(uVar9,((unsigned long)"gui_utf_draw_dark_light_split"),uVar13); else debug_print(uVar9,((unsigned long)"gui_utf_draw_dark_light_split"),uVar13); }
             } else {
               *(volatile char*)0x2001cdd4 = 0;
               if (1 < iVar3) { iVar3 = *(volatile int*)0x20007554; uVar9 = 0xaab60; goto LAB_2c; }
@@ -120,8 +120,8 @@ LAB_2c: if (iVar3 == 0) log_message(uVar9,0xaad8e,uVar13); else debug_print(uVar
   else if (param_11 != 0) goto LAB_a2;
   *(volatile char*)0x2001cdd4 = 0;
   if (1 < *(volatile int*)0x2000230c) {
-    if (*(volatile int*)0x20007554 == 0) log_message(0xaab85,0xaad8e);
-    else debug_print(0xaab85,0xaad8e);
+    if (*(volatile int*)0x20007554 == 0) log_message(((unsigned long)"%s(): dark_light_flag 0\n"),((unsigned long)"gui_utf_draw_dark_light_split"));
+    else debug_print(((unsigned long)"%s(): dark_light_flag 0\n"),((unsigned long)"gui_utf_draw_dark_light_split"));
   }
   return 0;
 }

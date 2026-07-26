@@ -16,10 +16,10 @@
  *   bt_conn_get_field_0x90                   <= FUN_00081526 @ 0x00081526
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
- *   rodata_9a52b                             @ 0x0009a52b
- *   rodata_9a53f                             @ 0x0009a53f
- *   rodata_9a56b                             @ 0x0009a56b
- *   rodata_9b229                             @ 0x0009b229
+ *   rodata_9a52b                             @ 0x0009a52b   [INLINED -- G6 literal batch]
+ *   rodata_9a53f                             @ 0x0009a53f   [INLINED -- G6 literal batch]
+ *   rodata_9a56b                             @ 0x0009a56b   [INLINED -- G6 literal batch]
+ *   rodata_9b229                             @ 0x0009b229   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_ancs_security_fail_cnt                 @ 0x20006a34
  *   g_gatt_discovery_flags                   @ 0x20006ab4
@@ -51,9 +51,9 @@ void ancs_security_changed(uint32_t connection, uint32_t level, int32_t error)
     if (error == 0) {
         if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
             if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                log_message(((unsigned long)&rodata_9a52b) /*=0x9a52b*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/, description, level);
+                log_message(((unsigned long)"%s(): %s level %u\n\n") /*=0x9a52b*/, ((unsigned long)"ancs_security_changed") /*=0x9b229*/, description, level);
             else
-                debug_print(((unsigned long)&rodata_9a52b) /*=0x9a52b*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/, description, level);
+                debug_print(((unsigned long)"%s(): %s level %u\n\n") /*=0x9a52b*/, ((unsigned long)"ancs_security_changed") /*=0x9b229*/, description, level);
         }
 
         if (bt_conn_get_security(connection) > 1u) {
@@ -77,9 +77,9 @@ void ancs_security_changed(uint32_t connection, uint32_t level, int32_t error)
 
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            log_message(((unsigned long)&rodata_9a53f) /*=0x9a53f*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/, description, level, error);
+            log_message(((unsigned long)"%s(): Security failed: %s level %u err %d\n\n") /*=0x9a53f*/, ((unsigned long)"ancs_security_changed") /*=0x9b229*/, description, level, error);
         else
-            debug_print(((unsigned long)&rodata_9a53f) /*=0x9a53f*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/, description, level, error);
+            debug_print(((unsigned long)"%s(): Security failed: %s level %u err %d\n\n") /*=0x9a53f*/, ((unsigned long)"ancs_security_changed") /*=0x9b229*/, description, level, error);
     }
 
     for (;;) {
@@ -90,13 +90,13 @@ void ancs_security_changed(uint32_t connection, uint32_t level, int32_t error)
 
         if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                log_message(((unsigned long)&rodata_9a56b) /*=0x9a56b*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/);
+                log_message(((unsigned long)"%s(): reboot because Security failed exceed 10 times, so reboot\r\n\n") /*=0x9a56b*/, ((unsigned long)"ancs_security_changed") /*=0x9b229*/);
             else
-                debug_print(((unsigned long)&rodata_9a56b) /*=0x9a56b*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/);
+                debug_print(((unsigned long)"%s(): reboot because Security failed exceed 10 times, so reboot\r\n\n") /*=0x9a56b*/, ((unsigned long)"ancs_security_changed") /*=0x9b229*/);
         }
         k_msleep_ticks32768_d(500u);
         sys_reboot(1u);
-        log_message(((unsigned long)&rodata_9a53f) /*=0x9a53f*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/, description, level, error);
+        log_message(((unsigned long)"%s(): Security failed: %s level %u err %d\n\n") /*=0x9a53f*/, ((unsigned long)"ancs_security_changed") /*=0x9b229*/, description, level, error);
     }
 
     g1_recon_bt_conn_set_security(connection, 2u);

@@ -17,8 +17,8 @@
  *   safe_memcpy_checked                      <= FUN_00086c1e @ 0x00086c1e
  * address symbols (name @ address):
  *   rodata_aaa58                             @ 0x000aaa58
- *   rodata_aaa7f                             @ 0x000aaa7f
- *   rodata_aadac                             @ 0x000aadac
+ *   rodata_aaa7f                             @ 0x000aaa7f   [INLINED -- G6 literal batch]
+ *   rodata_aadac                             @ 0x000aadac   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_gui_dark_light_dither_mask             @ 0x200034f6
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -65,9 +65,9 @@ unsigned gui_utf_draw(unsigned unused, uintptr_t text, int font,
 invoke_callback:
         if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1) {
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                log_message(((unsigned long)&rodata_aaa7f) /*=0xaaa7f*/, ((unsigned long)&rodata_aadac) /*=0xaadac*/);
+                log_message(((unsigned long)"%s(): exex process effect callback function\n") /*=0xaaa7f*/, ((unsigned long)"gui_utf_draw") /*=0xaadac*/);
             else
-                debug_print(((unsigned long)&rodata_aaa7f) /*=0xaaa7f*/, ((unsigned long)&rodata_aadac) /*=0xaadac*/);
+                debug_print(((unsigned long)"%s(): exex process effect callback function\n") /*=0xaaa7f*/, ((unsigned long)"gui_utf_draw") /*=0xaadac*/);
         }
         return callback(0, text, font, left, top);
     }
@@ -87,9 +87,9 @@ invoke_callback:
             if (rc < 0) {
                 if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1) {
                     if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                        log_message(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)&rodata_aadac) /*=0xaadac*/, ch);
+                        log_message(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)"gui_utf_draw") /*=0xaadac*/, ch);
                     else
-                        debug_print(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)&rodata_aadac) /*=0xaadac*/, ch);
+                        debug_print(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)"gui_utf_draw") /*=0xaadac*/, ch);
                 }
                 continue;
             }

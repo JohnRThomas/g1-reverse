@@ -15,12 +15,12 @@
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_40000                             @ 0x00040000
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f0692                             @ 0x000f0692
- *   rodata_f0796                             @ 0x000f0796
- *   rodata_f07b7                             @ 0x000f07b7
- *   rodata_f07d0                             @ 0x000f07d0
- *   rodata_f07f9                             @ 0x000f07f9
+ *   rodata_f0796                             @ 0x000f0796   [INLINED -- G6 literal batch]
+ *   rodata_f07b7                             @ 0x000f07b7   [INLINED -- G6 literal batch]
+ *   rodata_f07d0                             @ 0x000f07d0   [INLINED -- G6 literal batch]
+ *   rodata_f07f9                             @ 0x000f07f9   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0004b3c8 @ 0x4b3c8
  * Readable identity: sys_heap_init (Zephyr 3.4.99).
@@ -51,8 +51,8 @@ void sys_heap_init(uint32_t *heap, void *memory, uint32_t bytes)
     volatile uint32_t *state;
 
     if (bytes <= footer) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0796) /*=0xf0796*/, ((unsigned long)&rodata_f0692) /*=0xf0692*/, 0x1f2U);
-        printk(((unsigned long)&rodata_f07b7) /*=0xf07b7*/);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"bytes > heap_footer_bytes(bytes)") /*=0xf0796*/, ((unsigned long)&rodata_f0692) /*=0xf0692*/, 0x1f2U);
+        printk(((unsigned long)"\theap size is too small\n") /*=0xf07b7*/);
         assert_post_action(((unsigned long)&rodata_f0692) /*=0xf0692*/, 0x1f2U);
     }
 
@@ -62,8 +62,8 @@ void sys_heap_init(uint32_t *heap, void *memory, uint32_t bytes)
     heap_size = (uint32_t)((end - start) >> 3);
 
     if ((uint32_t)(end - start) <= 0x17U) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f07d0) /*=0xf07d0*/, ((unsigned long)&rodata_f0692) /*=0xf0692*/, 0x1fbU);
-        printk(((unsigned long)&rodata_f07b7) /*=0xf07b7*/);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"heap_sz > chunksz(sizeof(struct z_heap))") /*=0xf07d0*/, ((unsigned long)&rodata_f0692) /*=0xf0692*/, 0x1fbU);
+        printk(((unsigned long)"\theap size is too small\n") /*=0xf07b7*/);
         assert_post_action(((unsigned long)&rodata_f0692) /*=0xf0692*/, 0x1fbU);
     }
 
@@ -80,8 +80,8 @@ void sys_heap_init(uint32_t *heap, void *memory, uint32_t bytes)
     chunk0_size = (bucket_bytes + 7U) >> 3;
 
     if (chunk0_size + min_size > heap_size) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f07f9) /*=0xf07f9*/, ((unsigned long)&rodata_f0692) /*=0xf0692*/, 0x20cU);
-        printk(((unsigned long)&rodata_f07b7) /*=0xf07b7*/);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"chunk0_size + min_chunk_size(h) <= heap_sz") /*=0xf07f9*/, ((unsigned long)&rodata_f0692) /*=0xf0692*/, 0x20cU);
+        printk(((unsigned long)"\theap size is too small\n") /*=0xf07b7*/);
         assert_post_action(((unsigned long)&rodata_f0692) /*=0xf0692*/, 0x20cU);
     }
 

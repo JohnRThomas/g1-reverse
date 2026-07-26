@@ -6,10 +6,10 @@
  *   spim_select_instance_by_mode             <= FUN_00026338 @ 0x00026338
  *   nrfx_spim_uninit                         <= FUN_00067248 @ 0x00067248
  * address symbols (name @ address):
- *   rodata_9fb89                             @ 0x0009fb89
- *   rodata_9fb9f                             @ 0x0009fb9f
- *   rodata_9fbda                             @ 0x0009fbda
- *   rodata_9fc79                             @ 0x0009fc79
+ *   rodata_9fb89                             @ 0x0009fb89   [INLINED -- G6 literal batch]
+ *   rodata_9fb9f                             @ 0x0009fb9f   [INLINED -- G6 literal batch]
+ *   rodata_9fbda                             @ 0x0009fbda   [INLINED -- G6 literal batch]
+ *   rodata_9fc79                             @ 0x0009fc79   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

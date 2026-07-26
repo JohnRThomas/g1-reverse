@@ -8,9 +8,9 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6659                             @ 0x000f6659
- *   rodata_f668a                             @ 0x000f668a
+ *   rodata_f668a                             @ 0x000f668a   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_000635a4 @ 0x635a4  (parity: 300/300 trials, PROVEN) */
 
@@ -21,7 +21,7 @@ unsigned int rtc_timer_cc_reg_get(unsigned int param_1, unsigned int param_2, un
 {
   unsigned int uVar1;
   if (param_1 > 1) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f668a) /*=0xf668a*/, ((unsigned long)&rodata_f6659) /*=0xf6659*/, 0x8d, param_4);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"chan >= 0 && chan < (1 + 1)") /*=0xf668a*/, ((unsigned long)&rodata_f6659) /*=0xf6659*/, 0x8d, param_4);
     assert_post_action(((unsigned long)&rodata_f6659) /*=0xf6659*/, 0x8d);
   }
   uVar1 = (G1_NRF_RTC1_S_BASE + 0x44);

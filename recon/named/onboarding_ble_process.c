@@ -8,15 +8,15 @@
  *   onboarding_retry_watchdog_update         <= FUN_00040708 @ 0x00040708
  *   k_uptime_get_8                           <= FUN_0007d382 @ 0x0007d382
  * address symbols (name @ address):
- *   rodata_aa611                             @ 0x000aa611
- *   rodata_aa63d                             @ 0x000aa63d
+ *   rodata_aa611                             @ 0x000aa611   [INLINED -- G6 literal batch]
+ *   rodata_aa63d                             @ 0x000aa63d   [INLINED -- G6 literal batch]
  *   rodata_aa661                             @ 0x000aa661
  *   rodata_aa665                             @ 0x000aa665
  *   rodata_aa669                             @ 0x000aa669
  *   rodata_aa66d                             @ 0x000aa66d
  *   rodata_aa671                             @ 0x000aa671
  *   rodata_aa675                             @ 0x000aa675
- *   rodata_aa778                             @ 0x000aa778
+ *   rodata_aa778                             @ 0x000aa778   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_onboarding_step_retry_cnt              @ 0x20004bf0
  *   g_log_use_alt_sink                       @ 0x20007554

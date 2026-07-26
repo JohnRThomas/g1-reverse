@@ -10,7 +10,7 @@
  *   ipc_send_len_prefixed_packet_locked_retry <= FUN_00025788 @ 0x00025788
  *   sleep_fixed_33_ticks                     <= FUN_0007c87a @ 0x0007c87a
  * address symbols (name @ address):
- *   rodata_9f250                             @ 0x0009f250
+ *   rodata_9f250                             @ 0x0009f250   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00025788 @ 0x25788  (parity: 300/300 trials, PROVEN) */
 extern void thunk_FUN_000723b8(unsigned,unsigned,unsigned,unsigned,int,unsigned);
@@ -33,7 +33,7 @@ int ipc_send_len_prefixed_packet_locked_retry(int param_1, unsigned param_2, uns
             if (iVar1 == 0) break;
             iVar4 = iVar4 - 1;
             if (iVar4 == 0){
-                log_message(((unsigned long)&rodata_9f250) /*=0x9f250*/, *(unsigned short*)(iVar3 + 8), param_2, iVar1);
+                log_message(((unsigned long)"eeprom_st25dv_read addr %04X offset %04X failed %d\r\n") /*=0x9f250*/, *(unsigned short*)(iVar3 + 8), param_2, iVar1);
                 return iVar1;
             }
             lock_arg = (unsigned)(sleep_fixed_33_ticks() >> 32);

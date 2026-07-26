@@ -8,11 +8,11 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   kmutex_dlist_init                        <= FUN_000864c2 @ 0x000864c2
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f22d5                             @ 0x000f22d5
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f22d5                             @ 0x000f22d5   [INLINED -- G6 literal batch]
  *   rodata_f23d3                             @ 0x000f23d3
  *   rodata_f23d4                             @ 0x000f23d4
- *   rodata_f240f                             @ 0x000f240f
+ *   rodata_f240f                             @ 0x000f240f   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005109c @ 0x5109c  (parity: 300/300 trials, PROVEN) */
 
@@ -27,7 +27,7 @@ void retarget_lock_init(int *param_1)
   unsigned int uVar2;
 
   if (param_1 == 0) {
-    printk((void*)0x99cbdUL, (void*)0xf23d4UL, (void*)0xf22d5UL, 0x179);
+    printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void*)0xf23d4UL, (void*)0xf22d5UL, 0x179);
     uVar2 = 0x179;
     assert_post_action((void*)0xf22d5UL, uVar2);
   }
@@ -37,7 +37,7 @@ void retarget_lock_init(int *param_1)
     kmutex_dlist_init();
     return;
   }
-  printk((void*)0x99cbdUL, (void*)0xf23d3UL, (void*)0xf22d5UL, 0x181);
+  printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void*)0xf23d3UL, (void*)0xf22d5UL, 0x181);
   printk((void*)0xf240fUL, 0,0,0);
   uVar2 = 0x181;
   assert_post_action((void*)0xf22d5UL, uVar2);

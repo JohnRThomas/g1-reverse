@@ -10,12 +10,12 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f820f                             @ 0x000f820f
  *   rodata_f82e0                             @ 0x000f82e0
  *   timer_spinlock                           @ 0x2000b480
@@ -41,7 +41,7 @@ u32 z_work_submit_to_queue(u32 param_1, int param_2, u32 param_3){
     } key = { param_1, param_3 };
     u32 uVar4, uVar5;
     if(param_2==0){
-        printk(0x00099cbd, 0x000f82e0, 0x000f820f, 0x174, param_1);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f82e0, 0x000f820f, 0x174, param_1);
         assert_post_action(0x000f820f, 0x174);
     }
 
@@ -52,8 +52,8 @@ retry:
     {
         int iVar3 = z_spin_lock_valid(0x2000b480);
         if(iVar3==0){
-            printk(0x00099cbd, 0x000f0920, 0x000f08c7, 0x72, param_1);
-            printk(0x000f0935, 0x2000b480);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"z_spin_lock_valid(l)"), 0x000f08c7, 0x72, param_1);
+            printk(((unsigned long)"\tInvalid spinlock %p\n"), 0x2000b480);
             assert_post_action(0x000f08c7, 0x72);
             goto retry;
         }
@@ -65,8 +65,8 @@ retry:
             isb_();
             return uVar4;
         }
-        printk(0x00099cbd, 0x000f08f4, 0x000f08c7, 0xf0, param_1);
-        printk(0x000f090b, 0x2000b480);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"z_spin_unlock_valid(l)"), 0x000f08c7, 0xf0, param_1);
+        printk(((unsigned long)"\tNot my spinlock %p\n"), 0x2000b480);
         assert_post_action(0x000f08c7, 0xf0);
         goto retry;
     }

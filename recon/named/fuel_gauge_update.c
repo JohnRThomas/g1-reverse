@@ -21,11 +21,11 @@
  *   k_uptime_get_3                           <= FUN_0007ceda @ 0x0007ceda
  *   product_code_is_supported_egp_family     <= FUN_0007cefc @ 0x0007cefc
  * address symbols (name @ address):
- *   rodata_a3d37                             @ 0x000a3d37
- *   rodata_a3d62                             @ 0x000a3d62
- *   rodata_a3d83                             @ 0x000a3d83
- *   rodata_a3dae                             @ 0x000a3dae
- *   rodata_a3e08                             @ 0x000a3e08
+ *   rodata_a3d37                             @ 0x000a3d37   [INLINED -- G6 literal batch]
+ *   rodata_a3d62                             @ 0x000a3d62   [INLINED -- G6 literal batch]
+ *   rodata_a3d83                             @ 0x000a3d83   [INLINED -- G6 literal batch]
+ *   rodata_a3dae                             @ 0x000a3dae   [INLINED -- G6 literal batch]
+ *   rodata_a3e08                             @ 0x000a3e08   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_fuel_gauge_init_timestamp              @ 0x20004790
  *   g_log_use_alt_sink                       @ 0x20007554

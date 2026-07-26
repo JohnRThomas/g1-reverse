@@ -10,9 +10,9 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef058                             @ 0x000ef058
- *   rodata_f00ea                             @ 0x000f00ea
- *   rodata_f0126                             @ 0x000f0126
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
+ *   rodata_f00ea                             @ 0x000f00ea   [INLINED -- G6 literal batch]
+ *   rodata_f0126                             @ 0x000f0126   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_display_msgq                           @ 0x200038c4
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -38,15 +38,15 @@ int display_powerEvent(int powered_on)
 
     result = k_msgq_put((void *)((unsigned long)&g_display_msgq) /*=0x200038c4*/, packet, 0, 0);
     if (result != 0) {
-        log_message(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_f0126) /*=0xf0126*/);
+        log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/, ((unsigned long)"display_powerEvent") /*=0xf0126*/);
         return -1;
     }
 
     if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_f00ea) /*=0xf00ea*/, ((unsigned long)&rodata_f0126) /*=0xf0126*/, powered_on);
+            log_message(((unsigned long)"%s(): send display power event command , low_power_en = %d\n") /*=0xf00ea*/, ((unsigned long)"display_powerEvent") /*=0xf0126*/, powered_on);
         } else {
-            debug_print(((unsigned long)&rodata_f00ea) /*=0xf00ea*/, ((unsigned long)&rodata_f0126) /*=0xf0126*/, powered_on);
+            debug_print(((unsigned long)"%s(): send display power event command , low_power_en = %d\n") /*=0xf00ea*/, ((unsigned long)"display_powerEvent") /*=0xf0126*/, powered_on);
         }
     }
     return 0;

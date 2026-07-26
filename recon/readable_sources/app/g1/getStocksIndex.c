@@ -5,8 +5,8 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  * address symbols (name @ address):
- *   rodata_a8ff3                             @ 0x000a8ff3
- *   rodata_a95d8                             @ 0x000a95d8
+ *   rodata_a8ff3                             @ 0x000a8ff3   [INLINED -- G6 literal batch]
+ *   rodata_a95d8                             @ 0x000a95d8   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_dashboard_widget_state                 @ 0x20004950
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -25,9 +25,9 @@ unsigned char getStocksIndex(void)
     base[3] = b;
     if (iVar2 > 2) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_a8ff3) /*=0xa8ff3*/, ((unsigned long)&rodata_a95d8) /*=0xa95d8*/, ((unsigned long)&rodata_a95d8) /*=0xa95d8*/, b);
+            log_message(((unsigned long)"%s():  %s index = %d\n") /*=0xa8ff3*/, ((unsigned long)"getStocksIndex") /*=0xa95d8*/, ((unsigned long)"getStocksIndex") /*=0xa95d8*/, b);
         } else {
-            debug_print(((unsigned long)&rodata_a8ff3) /*=0xa8ff3*/, ((unsigned long)&rodata_a95d8) /*=0xa95d8*/, ((unsigned long)&rodata_a95d8) /*=0xa95d8*/, b);
+            debug_print(((unsigned long)"%s():  %s index = %d\n") /*=0xa8ff3*/, ((unsigned long)"getStocksIndex") /*=0xa95d8*/, ((unsigned long)"getStocksIndex") /*=0xa95d8*/, b);
         }
     }
     return base[3];

@@ -8,9 +8,9 @@
  *   k_is_in_isr                              <= FUN_00086406 @ 0x00086406
  * address symbols (name @ address):
  *   rodata_990cf                             @ 0x000990cf
- *   rodata_990dc                             @ 0x000990dc
- *   rodata_99105                             @ 0x00099105
- *   rodata_99b2a                             @ 0x00099b2a
+ *   rodata_990dc                             @ 0x000990dc   [INLINED -- G6 literal batch]
+ *   rodata_99105                             @ 0x00099105   [INLINED -- G6 literal batch]
+ *   rodata_99b2a                             @ 0x00099b2a   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   device_info                              @ 0x200069fc
  *   g_log_use_alt_sink                       @ 0x20007554

@@ -8,7 +8,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f53ff                             @ 0x000f53ff
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f84af                             @ 0x000f84af
@@ -34,7 +34,7 @@ void sched_update_cache(int param_1, int param_2, int param_3, int param_4)
 
     if (param_1 == 0) {
         if (r3 == 0) {
-            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f84af) /*=0xf84af*/, ((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x8f, param_4);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f84af) /*=0xf84af*/, ((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x8f, param_4);
             r3 = 0x8f;
             printk(((unsigned long)&rodata_f53ff) /*=0xf53ff*/, 0, 0, 0, 0);
             assert_post_action(((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x8f);

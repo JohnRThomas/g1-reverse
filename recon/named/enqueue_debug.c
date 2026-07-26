@@ -7,7 +7,7 @@
  *   k_msgq_get                               <= FUN_00072240 @ 0x00072240
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
- *   rodata_9b35a                             @ 0x0009b35a
+ *   rodata_9b35a                             @ 0x0009b35a   [INLINED -- G6 literal batch]
  *   g_debug_msg_pipe                         @ 0x2000751c
  *   g_debug_msg_scratch_buf                  @ 0x20010257
  */

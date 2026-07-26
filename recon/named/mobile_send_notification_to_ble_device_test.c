@@ -12,17 +12,17 @@
  *   cjson_add_string_to_object               <= FUN_0008509e @ 0x0008509e
  * address symbols (name @ address):
  *   rodata_9b257                             @ 0x0009b257
- *   rodata_9d749                             @ 0x0009d749
+ *   rodata_9d749                             @ 0x0009d749   [INLINED -- G6 literal batch]
  *   rodata_9d759                             @ 0x0009d759
  *   rodata_9d768                             @ 0x0009d768
  *   rodata_9d76c                             @ 0x0009d76c
  *   rodata_9d775                             @ 0x0009d775
- *   rodata_9d77d                             @ 0x0009d77d
- *   rodata_9d789                             @ 0x0009d789
+ *   rodata_9d77d                             @ 0x0009d77d   [INLINED -- G6 literal batch]
+ *   rodata_9d789                             @ 0x0009d789   [INLINED -- G6 literal batch]
  *   rodata_9d790                             @ 0x0009d790
  *   rodata_9d79d                             @ 0x0009d79d
- *   rodata_9d7ae                             @ 0x0009d7ae
- *   rodata_9dfe8                             @ 0x0009dfe8
+ *   rodata_9d7ae                             @ 0x0009d7ae   [INLINED -- G6 literal batch]
+ *   rodata_9dfe8                             @ 0x0009dfe8   [INLINED -- G6 literal batch]
  *   rodata_f3fde                             @ 0x000f3fde
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554

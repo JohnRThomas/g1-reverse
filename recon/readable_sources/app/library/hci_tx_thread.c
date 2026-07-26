@@ -20,11 +20,11 @@
  *   net_buf_get                              <= FUN_000836e8 @ 0x000836e8
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_a7a10                             @ 0x000a7a10
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_a7a10                             @ 0x000a7a10   [INLINED -- G6 literal batch]
  *   rodata_f2e84                             @ 0x000f2e84
  *   rodata_f3103                             @ 0x000f3103
- *   rodata_f313c                             @ 0x000f313c
+ *   rodata_f313c                             @ 0x000f313c   [INLINED -- G6 literal batch]
  *   rodata_f3157                             @ 0x000f3157
  *   rodata_f45be                             @ 0x000f45be
  *   g_20002128                               @ 0x20002128
@@ -91,7 +91,7 @@ void hci_tx_thread(void)
         uint32_t wait_result = z_impl_k_poll(((unsigned long)&g_20002944) /*=0x20002944*/, count,
                                            UINT32_MAX, UINT32_MAX);
         if (wait_result != 0) {
-            (void)printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_a7a10) /*=0xa7a10*/,
+            (void)printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"err == 0") /*=0xa7a10*/,
                                ((unsigned long)&rodata_f2e84) /*=0xf2e84*/, 0xadeu);
             ARCH_EXCEPT(3);
         }
@@ -109,7 +109,7 @@ void hci_tx_thread(void)
                     uintptr_t dequeued = net_buf_get(((unsigned long)&hci_cmd_pool) /*=0x2000214c*/, 0);
                     void *buffer = (void *)dequeued;
                     if (buffer == 0) {
-                        (void)printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f45be) /*=0xf45be*/,
+                        (void)printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f45be) /*=0xf45be*/,
                                           ((unsigned long)&rodata_f2e84) /*=0xf2e84*/, 0xa70u);
                         ARCH_EXCEPT(3);
                     }
@@ -118,7 +118,7 @@ void hci_tx_thread(void)
 
                     void **const pending = (void **)((unsigned long)&g_20002140) /*=0x20002140*/;
                     if (*pending != 0) {
-                        const struct log2 record = {2, ((unsigned long)&rodata_f313c) /*=0xf313c*/};
+                        const struct log2 record = {2, ((unsigned long)"Uncleared pending sent_cmd") /*=0xf313c*/};
                         bt_log_forward_3arg(((unsigned long)&rodata_88138) /*=0x88138*/, 0x1040u, &record);
                         net_buf_unref(*pending);
                         *pending = 0;

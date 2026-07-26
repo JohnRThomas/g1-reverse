@@ -7,9 +7,9 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
- *   rodata_9e903                             @ 0x0009e903
- *   rodata_9e932                             @ 0x0009e932
- *   rodata_9eda4                             @ 0x0009eda4
+ *   rodata_9e903                             @ 0x0009e903   [INLINED -- G6 literal batch]
+ *   rodata_9e932                             @ 0x0009e932   [INLINED -- G6 literal batch]
+ *   rodata_9eda4                             @ 0x0009eda4   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_flash_store_cmd_msgq                   @ 0x20003994
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -36,9 +36,9 @@ unsigned int upgradeAppLanguageInfoToFlash(unsigned int param_1, unsigned int pa
         if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             unsigned int sink = *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
             if (sink == 0)
-                log_message(((unsigned long)&rodata_9e932) /*=0x9e932*/, ((unsigned long)&rodata_9eda4) /*=0x9eda4*/, param_1, sink);
+                log_message(((unsigned long)"%s(): send app language store Command, language = %d\n") /*=0x9e932*/, ((unsigned long)"upgradeAppLanguageInfoToFlash") /*=0x9eda4*/, param_1, sink);
             else
-                debug_print(((unsigned long)&rodata_9e932) /*=0x9e932*/, ((unsigned long)&rodata_9eda4) /*=0x9eda4*/, param_1, sink);
+                debug_print(((unsigned long)"%s(): send app language store Command, language = %d\n") /*=0x9e932*/, ((unsigned long)"upgradeAppLanguageInfoToFlash") /*=0x9eda4*/, param_1, sink);
         }
         k_sem_give(((unsigned long)&g_app_language_msgq) /*=0x200079e4*/);
         uVar2 = 0;
@@ -46,9 +46,9 @@ unsigned int upgradeAppLanguageInfoToFlash(unsigned int param_1, unsigned int pa
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             unsigned int sink = *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
             if (sink == 0)
-                log_message(((unsigned long)&rodata_9e903) /*=0x9e903*/, ((unsigned long)&rodata_9eda4) /*=0x9eda4*/, 0UL, sink);
+                log_message(((unsigned long)"%s(): setting flash store queue fill failed\r\n\n") /*=0x9e903*/, ((unsigned long)"upgradeAppLanguageInfoToFlash") /*=0x9eda4*/, 0UL, sink);
             else
-                debug_print(((unsigned long)&rodata_9e903) /*=0x9e903*/, ((unsigned long)&rodata_9eda4) /*=0x9eda4*/, 0UL, sink);
+                debug_print(((unsigned long)"%s(): setting flash store queue fill failed\r\n\n") /*=0x9e903*/, ((unsigned long)"upgradeAppLanguageInfoToFlash") /*=0x9eda4*/, 0UL, sink);
         }
         uVar2 = 0xffffffffUL;
     }

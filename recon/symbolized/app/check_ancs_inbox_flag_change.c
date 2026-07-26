@@ -6,7 +6,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   check_ancs_inbox_flag_change             <= FUN_0002eb40 @ 0x0002eb40
  * address symbols (name @ address):
- *   rodata_a3e80                             @ 0x000a3e80
+ *   rodata_a3e80                             @ 0x000a3e80   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ancs_inbox_flag_cached                 @ 0x20018da5
  *   g_ancs_inbox_flag_current                @ 0x20018da6
@@ -25,9 +25,9 @@ unsigned int check_ancs_inbox_flag_change(unsigned int param_1, unsigned int par
   unsigned int uVar3 = bVar1;
   if (*p6c != uVar3) {
     if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-      log_message(((unsigned long)&rodata_a3e80) /*=0xa3e80*/, uVar3, param_3, 0, param_4);
+      log_message(((unsigned long)"[csh_debug_box]isInbox is %d \n") /*=0xa3e80*/, uVar3, param_3, 0, param_4);
     } else {
-      debug_print(((unsigned long)&rodata_a3e80) /*=0xa3e80*/, uVar3, param_3,
+      debug_print(((unsigned long)"[csh_debug_box]isInbox is %d \n") /*=0xa3e80*/, uVar3, param_3,
                     *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
     }
   }

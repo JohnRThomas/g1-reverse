@@ -10,7 +10,7 @@
  *   ipc_transport_ops_dispatch               <= FUN_0007c85e @ 0x0007c85e
  *   sleep_fixed_33_ticks                     <= FUN_0007c87a @ 0x0007c87a
  * address symbols (name @ address):
- *   rodata_9f239                             @ 0x0009f239
+ *   rodata_9f239                             @ 0x0009f239   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00025740 @ 0x25740  (parity: 300/300 trials, PROVEN) */
 
@@ -31,7 +31,7 @@ int ipc_send_len_prefixed_packet(int param_1, int param_2, unsigned int param_3,
   int iVar1 = ipc_transport_ops_dispatch(param_1, &local_20, 2, param_2);
   sleep_fixed_33_ticks();
   if (iVar1 < 0) {
-    log_message(((unsigned long)&rodata_9f239) /*=0x9f239*/, iVar1);
+    log_message(((unsigned long)"_st25dv_read  ret %d \n") /*=0x9f239*/, iVar1);
   }
   return iVar1;
 }

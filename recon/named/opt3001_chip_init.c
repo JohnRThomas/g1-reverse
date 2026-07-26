@@ -8,10 +8,10 @@
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  * address symbols (name @ address):
  *   rodata_88250                             @ 0x00088250
- *   rodata_f6521                             @ 0x000f6521
- *   rodata_f6539                             @ 0x000f6539
- *   rodata_f6552                             @ 0x000f6552
- *   rodata_f6565                             @ 0x000f6565
+ *   rodata_f6521                             @ 0x000f6521   [INLINED -- G6 literal batch]
+ *   rodata_f6539                             @ 0x000f6539   [INLINED -- G6 literal batch]
+ *   rodata_f6552                             @ 0x000f6552   [INLINED -- G6 literal batch]
+ *   rodata_f6565                             @ 0x000f6565   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction FUN_00062930 @ 0x62930, exact extent 222 bytes. */
 #include <stdint.h>

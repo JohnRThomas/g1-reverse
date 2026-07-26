@@ -9,8 +9,8 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   opt3001_read_lux_raw                     <= FUN_0002e648 @ 0x0002e648
  * address symbols (name @ address):
- *   rodata_a3c82                             @ 0x000a3c82
- *   rodata_a3d12                             @ 0x000a3d12
+ *   rodata_a3c82                             @ 0x000a3c82   [INLINED -- G6 literal batch]
+ *   rodata_a3d12                             @ 0x000a3d12   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_opt3007_chip_ready                     @ 0x20018da1

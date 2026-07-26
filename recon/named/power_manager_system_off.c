@@ -12,10 +12,10 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
  *   rodata_88268                             @ 0x00088268
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6716                             @ 0x000f6716
- *   rodata_f6749                             @ 0x000f6749
- *   rodata_f6769                             @ 0x000f6769
+ *   rodata_f6749                             @ 0x000f6749   [INLINED -- G6 literal batch]
+ *   rodata_f6769                             @ 0x000f6769   [INLINED -- G6 literal batch]
  *   rodata_f67a5                             @ 0x000f67a5
  *   g_caf_power_manager_system_off_flag      @ 0x2001d563
  */
@@ -32,13 +32,13 @@ void power_manager_system_off(void){
   int iVar1; unsigned local_18, local_14;
   unsigned char r5 = *(volatile unsigned char*)0x2001d563UL;
   if(r5 != 0){
-    printk(0x99cbd,0xf6749,0xf6716,0xab);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"power_state == POWER_STATE_IDLE"),0xf6716,0xab);
     assert_post_action(0xf6716,0xab);
   }
   L:
   iVar1 = ancs_notify_table_is_idle(r5);
   if(iVar1==0){
-    printk(0x99cbd,0xf6769,0xf6716,0xac);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"check_if_power_state_allowed(POWER_MANAGER_LEVEL_SUSPENDED)"),0xf6716,0xac);
     assert_post_action(0xf6716,0xac);
     goto L;
   }

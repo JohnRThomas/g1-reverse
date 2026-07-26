@@ -19,7 +19,7 @@
  *   strcpy                                   <= FUN_00086fee @ 0x00086fee
  * address symbols (name @ address):
  *   rodata_1274f                             @ 0x0001274f
- *   rodata_a8ac7                             @ 0x000a8ac7
+ *   rodata_a8ac7                             @ 0x000a8ac7   [INLINED -- G6 literal batch]
  *   rodata_a8afb                             @ 0x000a8afb
  *   rodata_a8b01                             @ 0x000a8b01
  *   rodata_a8b0d                             @ 0x000a8b0d
@@ -28,12 +28,12 @@
  *   rodata_a8b2b                             @ 0x000a8b2b
  *   rodata_a8b2f                             @ 0x000a8b2f
  *   rodata_a8b37                             @ 0x000a8b37
- *   rodata_a8b3f                             @ 0x000a8b3f
- *   rodata_a8b67                             @ 0x000a8b67
+ *   rodata_a8b3f                             @ 0x000a8b3f   [INLINED -- G6 literal batch]
+ *   rodata_a8b67                             @ 0x000a8b67   [INLINED -- G6 literal batch]
  *   rodata_a8b7e                             @ 0x000a8b7e
  *   rodata_a8b8a                             @ 0x000a8b8a
  *   rodata_a8b96                             @ 0x000a8b96
- *   rodata_a8ba0                             @ 0x000a8ba0
+ *   rodata_a8ba0                             @ 0x000a8ba0   [INLINED -- G6 literal batch]
  *   rodata_a9c18                             @ 0x000a9c18
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -73,8 +73,8 @@ void format_message_relative_time(undefined4 param_1,int param_2)
   uVar10 = iVar4 - param_2;
   memset_bytes(param_1,0,0x20);
   uVar9 = uVar10 & ~((int)uVar10 >> 0x1f);
-  if (*(volatile int*)piVar2 == 0) log_message(((unsigned long)&rodata_a8ac7) /*=0xa8ac7*/,iVar4,param_2,uVar9);
-  else debug_print(((unsigned long)&rodata_a8ac7) /*=0xa8ac7*/,iVar4,param_2,uVar9);
+  if (*(volatile int*)piVar2 == 0) log_message(((unsigned long)"currentTime is %d,recvTime is %d,unReadTime is %d \n") /*=0xa8ac7*/,iVar4,param_2,uVar9);
+  else debug_print(((unsigned long)"currentTime is %d,recvTime is %d,unReadTime is %d \n") /*=0xa8ac7*/,iVar4,param_2,uVar9);
   iVar4 = get_ui_mode_flag_byte1();
   if (iVar4 == 6) {
     uVar5 = ((unsigned long)&rodata_a8afb) /*=0xa8afb*/;
@@ -126,10 +126,10 @@ LAB_96a:
             calendar[0] = 0; calendar[1] = 0; calendar[2] = 0;
             unix_timestamp_to_datetime(param_2,calendar);
             if (*(volatile int*)piVar2 == 0)
-              log_message(((unsigned long)&rodata_a8b3f) /*=0xa8b3f*/,param_2,calendar[0] & 0xffff,calendar[0] >> 0x10,calendar[1] & 0xffff,calendar[1] >> 0x10,calendar[2] & 0xffff,calendar[2] >> 0x10);
-            else debug_print(((unsigned long)&rodata_a8b3f) /*=0xa8b3f*/,param_2,calendar[0] & 0xffff,calendar[0] >> 0x10);
-            if (*(volatile int*)piVar2 == 0) { iVar4 = get_device_info(); log_message(((unsigned long)&rodata_a8b67) /*=0xa8b67*/,(uint)*(byte *)(*(int *)(iVar4 + 0xfec) + 0x5e)); }
-            else { iVar4 = get_device_info(); debug_print(((unsigned long)&rodata_a8b67) /*=0xa8b67*/,*(byte *)(*(int *)(iVar4 + 0xfec) + 0x5e)); }
+              log_message(((unsigned long)"date: %u: %04d/%02d/%02d-%02d:%02d:%02d") /*=0xa8b3f*/,param_2,calendar[0] & 0xffff,calendar[0] >> 0x10,calendar[1] & 0xffff,calendar[1] >> 0x10,calendar[2] & 0xffff,calendar[2] >> 0x10);
+            else debug_print(((unsigned long)"date: %u: %04d/%02d/%02d-%02d:%02d:%02d") /*=0xa8b3f*/,param_2,calendar[0] & 0xffff,calendar[0] >> 0x10);
+            if (*(volatile int*)piVar2 == 0) { iVar4 = get_device_info(); log_message(((unsigned long)"time_disp_mode is %d \n") /*=0xa8b67*/,(uint)*(byte *)(*(int *)(iVar4 + 0xfec) + 0x5e)); }
+            else { iVar4 = get_device_info(); debug_print(((unsigned long)"time_disp_mode is %d \n") /*=0xa8b67*/,*(byte *)(*(int *)(iVar4 + 0xfec) + 0x5e)); }
             iVar4 = get_device_info();
             uVar9 = calendar[2] & 0xffff; uVar5 = ((unsigned long)&rodata_a9c18) /*=0xa9c18*/; uVar8 = (ushort)(calendar[1] >> 16);
             if (*(char *)(*(int *)(iVar4 + 0xfec) + 0x5e) != 0) {
@@ -159,7 +159,7 @@ LAB_85e:
   clean_fb_data(iVar3 + 0xb90,0,iVar4 + 0x196,uVar5,iVar6 + 0x200,iVar7 + 0x1b);
   iVar3 = device_info_text_width_get(); uVar5 = device_info_text_height_get_clamped(); iVar4 = device_info_text_width_get(); iVar6 = device_info_text_height_get_clamped();
   gui_utf_draw_align_right(0,param_1,0,iVar3 + 0x196,uVar5,iVar4 + 0x200,iVar6 + 0x1b,1,0,0,0,0);
-  if (*(volatile int*)piVar2 == 0) { uVar5 = device_info_text_width_get(); log_message(((unsigned long)&rodata_a8ba0) /*=0xa8ba0*/,uVar5,param_1); return; }
-  uVar5 = device_info_text_width_get(); debug_print(((unsigned long)&rodata_a8ba0) /*=0xa8ba0*/,uVar5,param_1);
+  if (*(volatile int*)piVar2 == 0) { uVar5 = device_info_text_width_get(); log_message(((unsigned long)"gui_getScreenoffset_x=%d,timeDiffBuf is %s \n") /*=0xa8ba0*/,uVar5,param_1); return; }
+  uVar5 = device_info_text_width_get(); debug_print(((unsigned long)"gui_getScreenoffset_x=%d,timeDiffBuf is %s \n") /*=0xa8ba0*/,uVar5,param_1);
   return;
 }

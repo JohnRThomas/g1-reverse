@@ -7,7 +7,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f84d6                             @ 0x000f84d6
  */
@@ -24,7 +24,7 @@ void add_thread_to_wait_queue(volatile int *param_1, volatile int *param_2, uint
   if(param_2!=0){
     param_1[2]=(int)param_2;
     if(param_1==piVar2){
-      printk(0x99cbd,0xf84d6,0xf82f4,0xc1,param_4);
+      printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0xf84d6,0xf82f4,0xc1,param_4);
       assert_post_action(0xf82f4,0xc1);
     }
     piVar2=(volatile int*)*param_2;

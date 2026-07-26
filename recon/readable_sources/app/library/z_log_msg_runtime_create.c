@@ -15,10 +15,10 @@
  * address symbols (name @ address):
  *   ADDR_z_cbprintf_cpy_THUMB                @ 0x0007ee49
  *   rodata_881e0                             @ 0x000881e0
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f0dff                             @ 0x000f0dff
- *   rodata_f0e3e                             @ 0x000f0e3e
- *   rodata_f0e6a                             @ 0x000f0e6a
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f0dff                             @ 0x000f0dff   [INLINED -- G6 literal batch]
+ *   rodata_f0e3e                             @ 0x000f0e3e   [INLINED -- G6 literal batch]
+ *   rodata_f0e6a                             @ 0x000f0e6a   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction of FUN_0004d944 @ 0x4d944 (268 bytes). */
 #include <stdint.h>
@@ -59,7 +59,7 @@ void z_log_msg_runtime_create(uintptr_t owner, uint32_t descriptor, uintptr_t so
             };
             struct overflow_log *log = __builtin_alloca(sizeof(*log));
             log->type = 0x01000004u;
-            log->string = ((unsigned long)&rodata_f0dff) /*=0xf0dff*/;
+            log->string = ((unsigned long)"Message (\"%s\") dropped because it exceeds size limitation (%u)") /*=0xf0dff*/;
             log->value = *(volatile uint32_t *)(source + 4);
             log->limit = 0x7ffu;
             log->code = 0x200u;
@@ -76,8 +76,8 @@ void z_log_msg_runtime_create(uintptr_t owner, uint32_t descriptor, uintptr_t so
             int32_t rc = cbprintf_package_convert(source, requested, ADDR_z_cbprintf_cpy_THUMB /*=0x7ee49*/, &state,
                                       10, scratch, 4);
             if (rc < 0) {
-                printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0e6a) /*=0xf0e6a*/, ((unsigned long)&rodata_f0e3e) /*=0xf0e3e*/, 0x59u);
-                assert_post_action(((unsigned long)&rodata_f0e3e) /*=0xf0e3e*/, 0x59u);
+                printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"len >= 0") /*=0xf0e6a*/, ((unsigned long)"WEST_TOPDIR/zephyr/subsys/logging/log_msg.c") /*=0xf0e3e*/, 0x59u);
+                assert_post_action(((unsigned long)"WEST_TOPDIR/zephyr/subsys/logging/log_msg.c") /*=0xf0e3e*/, 0x59u);
             }
         }
     }

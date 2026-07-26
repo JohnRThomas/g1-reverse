@@ -13,9 +13,9 @@
  *   ADDR_ext_flash_read_THUMB                @ 0x0002e399
  *   ADDR_ext_flash_write_THUMB               @ 0x0002e441
  *   rodata_87bf0                             @ 0x00087bf0
- *   rodata_a3a8b                             @ 0x000a3a8b
- *   rodata_a3aa6                             @ 0x000a3aa6
- *   rodata_a3ae5                             @ 0x000a3ae5
+ *   rodata_a3a8b                             @ 0x000a3a8b   [INLINED -- G6 literal batch]
+ *   rodata_a3aa6                             @ 0x000a3aa6   [INLINED -- G6 literal batch]
+ *   rodata_a3ae5                             @ 0x000a3ae5   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ext_flash_mutex                        @ 0x20007b54
@@ -42,9 +42,9 @@ unsigned int ext_flash_api_init(unsigned int *param_1, unsigned int *param_2, un
     if (iVar4 == 0) {
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_a3aa6) /*=0xa3aa6*/, ((unsigned long)&rodata_a3ae5) /*=0xa3ae5*/);
+                log_message(((unsigned long)"%s(): FAILURE!\n") /*=0xa3aa6*/, ((unsigned long)"ext_flash_api_init") /*=0xa3ae5*/);
             } else {
-                debug_print(((unsigned long)&rodata_a3aa6) /*=0xa3aa6*/, ((unsigned long)&rodata_a3ae5) /*=0xa3ae5*/);
+                debug_print(((unsigned long)"%s(): FAILURE!\n") /*=0xa3aa6*/, ((unsigned long)"ext_flash_api_init") /*=0xa3ae5*/);
             }
         }
         uVar5 = 0xffffffff;
@@ -56,9 +56,9 @@ unsigned int ext_flash_api_init(unsigned int *param_1, unsigned int *param_2, un
         *(volatile unsigned int*)((unsigned long)&g_ext_flash_dev) /*=0x20007b68*/ = uVar5;
         if (2 < iVar4) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)&rodata_a3a8b) /*=0xa3a8b*/, ((unsigned long)&rodata_a3ae5) /*=0xa3ae5*/, ((unsigned long)&g_ext_flash_dev) /*=0x20007b68*/, 0, param_4);
+                log_message(((unsigned long)"%s(): flash init success!\n") /*=0xa3a8b*/, ((unsigned long)"ext_flash_api_init") /*=0xa3ae5*/, ((unsigned long)&g_ext_flash_dev) /*=0x20007b68*/, 0, param_4);
             } else {
-                debug_print(((unsigned long)&rodata_a3a8b) /*=0xa3a8b*/, ((unsigned long)&rodata_a3ae5) /*=0xa3ae5*/, ((unsigned long)&g_ext_flash_dev) /*=0x20007b68*/, 0, param_4);
+                debug_print(((unsigned long)"%s(): flash init success!\n") /*=0xa3a8b*/, ((unsigned long)"ext_flash_api_init") /*=0xa3ae5*/, ((unsigned long)&g_ext_flash_dev) /*=0x20007b68*/, 0, param_4);
             }
         }
         uVar3 = z_impl_flash_get_page_count(((unsigned long)&rodata_87bf0) /*=0x87bf0*/);

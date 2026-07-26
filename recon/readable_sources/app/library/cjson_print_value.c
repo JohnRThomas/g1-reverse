@@ -26,9 +26,9 @@
  *   strncpy_zero_pad                         <= FUN_0008705a @ 0x0008705a
  * address symbols (name @ address):
  *   rodata_f6977                             @ 0x000f6977
- *   rodata_f697c                             @ 0x000f697c
+ *   rodata_f697c                             @ 0x000f697c   [INLINED -- G6 literal batch]
  *   rodata_f6983                             @ 0x000f6983
- *   rodata_f6987                             @ 0x000f6987
+ *   rodata_f6987                             @ 0x000f6987   [INLINED -- G6 literal batch]
  *   rodata_f698e                             @ 0x000f698e
  *   rodata_f6994                             @ 0x000f6994
  */
@@ -107,10 +107,10 @@ extern long long strncpy_zero_pad(int,int,int);
 #define firmware_data_00064990 ((volatile int*)((unsigned long)&rodata_f698e) /*=0xf698e*/)
 #define firmware_data_00064994 ((unsigned long)&rodata_f6994) /*=0xf6994*/
 #define firmware_data_00064998 0x7fefffffUL
-#define firmware_data_0006499c ((unsigned long)&rodata_f697c) /*=0xf697c*/
+#define firmware_data_0006499c ((unsigned long)"%1.15g") /*=0xf697c*/
 #define firmware_data_000649a0 ((unsigned long)&rodata_f6983) /*=0xf6983*/
 #define firmware_data_000649a4 0x3cb00000UL
-#define firmware_data_000649a8 ((unsigned long)&rodata_f6987) /*=0xf6987*/
+#define firmware_data_000649a8 ((unsigned long)"%1.17g") /*=0xf6987*/
 
 
 uint cjson_print_value(int param_1,int param_2)

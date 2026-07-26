@@ -9,7 +9,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f84d6                             @ 0x000f84d6
  *   _kernel                                  @ 0x2000b448
@@ -30,7 +30,7 @@ void sched_requeue_by_prio(int *param_1){
     p[0xd] = p[0xd] | 0x80;
     int iVar1 = ((unsigned long)&_kernel) /*=0x2000b448*/;
     if ((unsigned)param_1 == 0x20006720u){
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f84d6) /*=0xf84d6*/,((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0xc1);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)&rodata_f84d6) /*=0xf84d6*/,((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0xc1);
         assert_post_action(((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0xc1);
     }
     volatile int *puVar3 = (volatile int*)(iVar1 + 0x1c);

@@ -9,12 +9,12 @@
  *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
  *   bt_conn_is_peer_addr_le                  <= FUN_000814e6 @ 0x000814e6
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3ebd                             @ 0x000f3ebd
  *   rodata_f46b8                             @ 0x000f46b8
- *   rodata_f4aa5                             @ 0x000f4aa5
- *   rodata_f4aba                             @ 0x000f4aba
- *   rodata_f4abf                             @ 0x000f4abf
+ *   rodata_f4aa5                             @ 0x000f4aa5   [INLINED -- G6 literal batch]
+ *   rodata_f4aba                             @ 0x000f4aba   [INLINED -- G6 literal batch]
+ *   rodata_f4abf                             @ 0x000f4abf   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005b0dc @ 0x5b0dc  (parity: 296/300 trials, PROVEN) */
 extern int  bt_gatt_attr_next(int);
@@ -29,19 +29,19 @@ extern int  bt_conn_is_peer_addr_le(int,int,void*);
 int gatt_find_ccc_for_conn(int param_1,int param_2,unsigned int param_3,unsigned int param_4){
   int iVar2; int buf[4];
   (void)param_4;
-  if (param_1 == 0) { printk(0x99cbd,0xf3ebd,0xf46b8,0xd19);printk(0xf4aa5);assert_post_action(0xf46b8,0xd19); return 0; }
-  if (param_2 == 0) { printk(0x99cbd,0xf4aba,0xf46b8,0xd1a);printk(0xf4aa5);assert_post_action(0xf46b8,0xd1a); return 0; }
+  if (param_1 == 0) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0xf3ebd,0xf46b8,0xd19);printk(((unsigned long)"\tinvalid parameter\n\n"));assert_post_action(0xf46b8,0xd19); return 0; }
+  if (param_2 == 0) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"attr"),0xf46b8,0xd1a);printk(((unsigned long)"\tinvalid parameter\n\n"));assert_post_action(0xf46b8,0xd1a); return 0; }
   if (VB(param_1+0xd) != 7) return 0;
   iVar2 = bt_uuid_cmp(VI(param_2), buf);
   if (iVar2 == 0) {
     if ((VB(VI(param_2+0xc)+6) & 0x30) == 0) return 0;
     param_2 = bt_gatt_attr_next(param_2);
-    if (param_2 == 0) { printk(0x99cbd,0xf4aba,0xf46b8,0xd2b);printk(0xf4abf);assert_post_action(0xf46b8,0xd2b); return 0; }
+    if (param_2 == 0) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"attr"),0xf46b8,0xd2b);printk(((unsigned long)"\tNo more attributes\n\n"));assert_post_action(0xf46b8,0xd2b); return 0; }
   }
   iVar2 = bt_uuid_cmp(VI(param_2), buf);
   if (iVar2 != 0) {
     param_2 = bt_gatt_attr_next(param_2);
-    if (param_2 == 0) { printk(0x99cbd,0xf4aba,0xf46b8,0xd31);printk(0xf4abf);assert_post_action(0xf46b8,0xd31); return 0; }
+    if (param_2 == 0) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"attr"),0xf46b8,0xd31);printk(((unsigned long)"\tNo more attributes\n\n"));assert_post_action(0xf46b8,0xd31); return 0; }
   }
   for (;;) {
     iVar2 = bt_uuid_cmp(VI(param_2), buf);

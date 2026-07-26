@@ -10,7 +10,7 @@
  *   nrf_gpio_pin_outset                      <= FUN_000852e6 @ 0x000852e6
  *   nrf_gpio_pin_set                         <= FUN_000852fe @ 0x000852fe
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f6df0                             @ 0x000f6df0
  *   rodata_f6e3a                             @ 0x000f6e3a
  *   rodata_f6e66                             @ 0x000f6e66
@@ -33,7 +33,7 @@ extern void nrf_gpio_pin_set(void);
 
 static void fatal(uintptr_t message, uint32_t line)
 {
-    printk(0x00099cbdu, message, 0x000f6df0u, line);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), message, 0x000f6df0u, line);
     assert_post_action(0x000f6df0u, line);
 }
 

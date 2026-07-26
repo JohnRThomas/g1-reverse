@@ -7,8 +7,8 @@
  * address symbols (name @ address):
  *   rodata_25ae9                             @ 0x00025ae9
  *   ADDR_global_ipc_service_send_THUMB       @ 0x00025b79
- *   rodata_9af2e                             @ 0x0009af2e
- *   rodata_9f6c6                             @ 0x0009f6c6
+ *   rodata_9af2e                             @ 0x0009af2e   [INLINED -- G6 literal batch]
+ *   rodata_9f6c6                             @ 0x0009f6c6   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ipc0_endpoint                          @ 0x20007a84
@@ -30,9 +30,9 @@ unsigned int register_ipc_service_context(int param_1,unsigned int param_2,unsig
     if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1){
         unsigned int sink=*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
         if(sink==0){
-            log_message(((unsigned long)&rodata_9af2e) /*=0x9af2e*/,((unsigned long)&rodata_9f6c6) /*=0x9f6c6*/,param_3,sink,param_4);
+            log_message(((unsigned long)"%s(): exit\n\n") /*=0x9af2e*/,((unsigned long)"register_ipc_service_context") /*=0x9f6c6*/,param_3,sink,param_4);
         } else {
-            debug_print(((unsigned long)&rodata_9af2e) /*=0x9af2e*/,((unsigned long)&rodata_9f6c6) /*=0x9f6c6*/,param_3,sink,param_4);
+            debug_print(((unsigned long)"%s(): exit\n\n") /*=0x9af2e*/,((unsigned long)"register_ipc_service_context") /*=0x9f6c6*/,param_3,sink,param_4);
         }
     }
     return 0;

@@ -8,7 +8,7 @@
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   strncmp                                  <= FUN_00087036 @ 0x00087036
  * address symbols (name @ address):
- *   rodata_a8750                             @ 0x000a8750
+ *   rodata_a8750                             @ 0x000a8750   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_app_whitelist_buffer                   @ 0x2001a22c
  *   g_on_whitelist_by_identifier             @ 0x2001a22d
@@ -27,9 +27,9 @@ uint32_t whitelist_contains_app(const void *name, const void *identifier)
 
     if (name == 0 || identifier == 0) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message(((unsigned long)&rodata_a8750) /*=0xa8750*/);
+            log_message(((unsigned long)"invalid param ! \n") /*=0xa8750*/);
         } else {
-            debug_print(((unsigned long)&rodata_a8750) /*=0xa8750*/);
+            debug_print(((unsigned long)"invalid param ! \n") /*=0xa8750*/);
         }
         return 0;
     }

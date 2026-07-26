@@ -16,19 +16,19 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
  *   rodata_4b8a5                             @ 0x0004b8a5
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f0824                             @ 0x000f0824
- *   rodata_f0846                             @ 0x000f0846
- *   rodata_f0852                             @ 0x000f0852
- *   rodata_f0875                             @ 0x000f0875
- *   rodata_f088c                             @ 0x000f088c
- *   rodata_f08a2                             @ 0x000f08a2
- *   rodata_f08b1                             @ 0x000f08b1
+ *   rodata_f0846                             @ 0x000f0846   [INLINED -- G6 literal batch]
+ *   rodata_f0852                             @ 0x000f0852   [INLINED -- G6 literal batch]
+ *   rodata_f0875                             @ 0x000f0875   [INLINED -- G6 literal batch]
+ *   rodata_f088c                             @ 0x000f088c   [INLINED -- G6 literal batch]
+ *   rodata_f08a2                             @ 0x000f08a2   [INLINED -- G6 literal batch]
+ *   rodata_f08b1                             @ 0x000f08b1   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f7a30                             @ 0x000f7a30
  */
 /* Full reconstruction of FUN_0004b4fc @ 0x4b4fc (916-byte catalog extent). */
@@ -91,14 +91,14 @@ static __attribute__((always_inline)) inline void leave_critical(uint32_t saved)
 
 static __attribute__((always_inline)) inline void fatal(uintptr_t message, uint32_t line)
 {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, message, ((unsigned long)&rodata_f0824) /*=0xf0824*/, line);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, message, ((unsigned long)&rodata_f0824) /*=0xf0824*/, line);
     assert_post_action(((unsigned long)&rodata_f0824) /*=0xf0824*/, line);
 }
 
 static __attribute__((always_inline)) inline void unlock_failure(void *lock)
 {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f08f4) /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0u);
-    printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, lock);
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0u);
+    printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/, lock);
     assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0u);
 }
 
@@ -184,34 +184,34 @@ process_current:
             }
         } else if (action == 3) {
             if (next_mode != 0)
-                fatal(((unsigned long)&rodata_f0846) /*=0xf0846*/, 0x156u);
+                fatal(((unsigned long)"state == 0U") /*=0xf0846*/, 0x156u);
             if (state->head == 0)
-                fatal(((unsigned long)&rodata_f0852) /*=0xf0852*/, 0x157u);
+                fatal(((unsigned long)"!sys_slist_is_empty(&mgr->clients)") /*=0xf0852*/, 0x157u);
             completion = state->ops->start;
             if (!completion)
-                fatal(((unsigned long)&rodata_f0875) /*=0xf0875*/, 0x15au);
+                fatal(((unsigned long)"transit != ((void *)0)") /*=0xf0875*/, 0x15au);
             state->flags = (uint16_t)((state->flags & ~7u) | 6u);
             notify_mode = 6;
             operation = next_mode;
         } else if (action == 4) {
             if (next_mode != 2)
-                fatal(((unsigned long)&rodata_f088c) /*=0xf088c*/, 0x15du);
+                fatal(((unsigned long)"state == (1UL << (1))") /*=0xf088c*/, 0x15du);
             if (state->pending_count != 0)
-                fatal(((unsigned long)&rodata_f08a2) /*=0xf08a2*/, 0x15eu);
+                fatal(((unsigned long)"mgr->refs == 0") /*=0xf08a2*/, 0x15eu);
             completion = state->ops->drain;
             if (!completion)
-                fatal(((unsigned long)&rodata_f0875) /*=0xf0875*/, 0x161u);
+                fatal(((unsigned long)"transit != ((void *)0)") /*=0xf0875*/, 0x161u);
             state->flags = (uint16_t)((state->flags & ~7u) | 4u);
             notify_mode = 4;
             operation = 0;
         } else if (action == 5) {
             if (next_mode != 1)
-                fatal(((unsigned long)&rodata_f08b1) /*=0xf08b1*/, 0x164u);
+                fatal(((unsigned long)"state == (1UL << (0))") /*=0xf08b1*/, 0x164u);
             if (state->head == 0)
-                fatal(((unsigned long)&rodata_f0852) /*=0xf0852*/, 0x165u);
+                fatal(((unsigned long)"!sys_slist_is_empty(&mgr->clients)") /*=0xf0852*/, 0x165u);
             completion = state->ops->stop;
             if (!completion)
-                fatal(((unsigned long)&rodata_f0875) /*=0xf0875*/, 0x168u);
+                fatal(((unsigned long)"transit != ((void *)0)") /*=0xf0875*/, 0x168u);
             state->flags = (uint16_t)((state->flags & ~7u) | 5u);
             notify_mode = 5;
             operation = 0;
@@ -246,8 +246,8 @@ process_current:
 
             saved_priority = enter_critical();
             if (z_spin_lock_valid(state->lock) == 0) {
-                printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72u);
-                printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, state->lock);
+                printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72u);
+                printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/, state->lock);
                 assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72u);
             }
             z_spin_lock_set_owner(state->lock);

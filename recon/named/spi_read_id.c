@@ -7,8 +7,8 @@
  *   projector_bus_unlock                     <= FUN_000476a8 @ 0x000476a8
  *   get_projector_controller                 <= FUN_0007d4ec @ 0x0007d4ec
  * address symbols (name @ address):
- *   rodata_d7459                             @ 0x000d7459
- *   rodata_d748d                             @ 0x000d748d
+ *   rodata_d7459                             @ 0x000d7459   [INLINED -- G6 literal batch]
+ *   rodata_d748d                             @ 0x000d748d   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */

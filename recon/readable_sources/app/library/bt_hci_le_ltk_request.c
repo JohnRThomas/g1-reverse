@@ -14,7 +14,7 @@
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
  *   rodata_f2db7                             @ 0x000f2db7
- *   rodata_f3125                             @ 0x000f3125
+ *   rodata_f3125                             @ 0x000f3125   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction FUN_00054444 @ 0x00054444 (214-byte exact extent). */
 #include <stdint.h>
@@ -63,7 +63,7 @@ void bt_hci_le_ltk_request(const void *event)
         if (command) *(uint16_t *)net_buf_simple_add((uint8_t *)command + 12, 2) = handle;
     }
     if (!command) {
-        const uint32_t r[2] = {2, ((unsigned long)&rodata_f3125) /*=0xf3125*/};
+        const uint32_t r[2] = {2, ((unsigned long)"Out of command buffers") /*=0xf3125*/};
         bt_log_forward_3arg(((unsigned long)&rodata_88138) /*=0x88138*/, 0x1040u, r);
     } else {
         bt_hci_cmd_send_or_create(opcode, command);

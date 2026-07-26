@@ -10,7 +10,7 @@
  *   k_sleep                                  <= FUN_00074844 @ 0x00074844
  * address symbols (name @ address):
  *   rodata_87bc0                             @ 0x00087bc0
- *   rodata_a7907                             @ 0x000a7907
+ *   rodata_a7907                             @ 0x000a7907   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00033340 @ 0x33340  (parity: 300/300 trials, PROVEN) */
 
@@ -33,7 +33,7 @@ int init_serial_comm(void)
                 iVar1 = -3;
             }
         } else {
-            log_message(((unsigned long)&rodata_a7907) /*=0xa7907*/);
+            log_message(((unsigned long)"init_serial_comm is failed\n") /*=0xa7907*/);
             k_sleep(0x4000, 0);
             iVar1 = -2;
         }

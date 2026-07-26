@@ -8,7 +8,7 @@
  *   bt_settings_subsys_init_check            <= FUN_00052edc @ 0x00052edc
  * address symbols (name @ address):
  *   rodata_88178                             @ 0x00088178
- *   rodata_f2c46                             @ 0x000f2c46
+ *   rodata_f2c46                             @ 0x000f2c46   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_00052edc @ 0x52edc  (parity: 300/300 trials, PROVEN) */
 
@@ -21,7 +21,7 @@ int bt_settings_subsys_init_check(void)
     if (iVar1 != 0) {
         struct { unsigned int f0; unsigned int f1; unsigned int f2; } s;
         s.f0 = 3;
-        s.f1 = ((unsigned long)&rodata_f2c46) /*=0xf2c46*/;
+        s.f1 = ((unsigned long)"settings_subsys_init failed (err %d)") /*=0xf2c46*/;
         s.f2 = iVar1;
         z_log_msg_runtime_create(((unsigned long)&rodata_88178) /*=0x88178*/, 0x1840, &s, 0);
     }

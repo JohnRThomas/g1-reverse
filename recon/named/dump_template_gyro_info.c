@@ -6,8 +6,8 @@
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  * address symbols (name @ address):
- *   rodata_a8cf4                             @ 0x000a8cf4
- *   rodata_a8d3a                             @ 0x000a8d3a
+ *   rodata_a8cf4                             @ 0x000a8cf4   [INLINED -- G6 literal batch]
+ *   rodata_a8d3a                             @ 0x000a8d3a   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  */
@@ -32,9 +32,9 @@ void dump_template_gyro_info(int param_1){
     uVar3=__extendsfdf2(raw_y);
     uVar4=__extendsfdf2(raw_z);
     if(*(volatile int*)0x20007554UL==0){
-      log_message(0xa8cf4,0xa8d3a,(unsigned)*(uint8_t*)(param_1+1),uVar2,uVar3,uVar4);
+      log_message(((unsigned long)"%s(): screen_id: %d, ypr: %.2f, %.2f, %.2f\n"),((unsigned long)"dump_template_gyro_info"),(unsigned)*(uint8_t*)(param_1+1),uVar2,uVar3,uVar4);
     } else {
-      debug_print(0xa8cf4,0xa8d3a,(unsigned)*(uint8_t*)(param_1+1),uVar2,uVar3,uVar4);
+      debug_print(((unsigned long)"%s(): screen_id: %d, ypr: %.2f, %.2f, %.2f\n"),((unsigned long)"dump_template_gyro_info"),(unsigned)*(uint8_t*)(param_1+1),uVar2,uVar3,uVar4);
     }
   }
   return;

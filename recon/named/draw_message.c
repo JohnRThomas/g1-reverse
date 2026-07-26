@@ -2,14 +2,14 @@
  * public-name: draw_message
  * durable-map: recon/catalogs/function_names_app.json
  * address symbols (name @ address):
- *   rodata_a8bcd                             @ 0x000a8bcd
- *   rodata_a8be6                             @ 0x000a8be6
- *   rodata_a8c09                             @ 0x000a8c09
- *   rodata_a8c11                             @ 0x000a8c11
- *   rodata_a8c34                             @ 0x000a8c34
+ *   rodata_a8bcd                             @ 0x000a8bcd   [INLINED -- G6 literal batch]
+ *   rodata_a8be6                             @ 0x000a8be6   [INLINED -- G6 literal batch]
+ *   rodata_a8c09                             @ 0x000a8c09   [INLINED -- G6 literal batch]
+ *   rodata_a8c11                             @ 0x000a8c11   [INLINED -- G6 literal batch]
+ *   rodata_a8c34                             @ 0x000a8c34   [INLINED -- G6 literal batch]
  *   rodata_a8c37                             @ 0x000a8c37
- *   rodata_a8c3a                             @ 0x000a8c3a
- *   rodata_a8ce7                             @ 0x000a8ce7
+ *   rodata_a8c3a                             @ 0x000a8c3a   [INLINED -- G6 literal batch]
+ *   rodata_a8ce7                             @ 0x000a8ce7   [INLINED -- G6 literal batch]
  *   rodata_f4ca5                             @ 0x000f4ca5
  *   g_log_use_alt_sink                       @ 0x20007554
  */

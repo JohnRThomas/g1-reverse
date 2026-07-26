@@ -7,9 +7,9 @@
  *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
  *   set_device_sync_timestamp                <= FUN_0007d230 @ 0x0007d230
  * address symbols (name @ address):
- *   rodata_a80e3                             @ 0x000a80e3
- *   rodata_a8146                             @ 0x000a8146
- *   rodata_a820f                             @ 0x000a820f
+ *   rodata_a80e3                             @ 0x000a80e3   [INLINED -- G6 literal batch]
+ *   rodata_a8146                             @ 0x000a8146   [INLINED -- G6 literal batch]
+ *   rodata_a820f                             @ 0x000a820f   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_message_pool                           @ 0x20007dac

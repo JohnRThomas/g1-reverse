@@ -10,12 +10,12 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f08c7                             @ 0x000f08c7
- *   rodata_f08f4                             @ 0x000f08f4
- *   rodata_f090b                             @ 0x000f090b
- *   rodata_f0920                             @ 0x000f0920
- *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f08f4                             @ 0x000f08f4   [INLINED -- G6 literal batch]
+ *   rodata_f090b                             @ 0x000f090b   [INLINED -- G6 literal batch]
+ *   rodata_f0920                             @ 0x000f0920   [INLINED -- G6 literal batch]
+ *   rodata_f0935                             @ 0x000f0935   [INLINED -- G6 literal batch]
  *   rodata_f3630                             @ 0x000f3630
  *   rodata_f539a                             @ 0x000f539a
  *   g_net_buf_slist_lock                     @ 0x2000b004
@@ -36,7 +36,7 @@ static inline void isb_(void){ __ISB(); }
 u32* net_buf_slist_get(u32* param_1){
     u32 uVar4, uVar6;
     if(param_1 == 0){
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f3630) /*=0xf3630*/, ((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x1ba);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f3630) /*=0xf3630*/, ((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x1ba);
         uVar4=0x1ba; uVar6=((unsigned long)&rodata_f539a) /*=0xf539a*/;
     } else {
         uVar6 = rd_basepri();
@@ -44,8 +44,8 @@ u32* net_buf_slist_get(u32* param_1){
         isb_();
         int iVar3 = z_spin_lock_valid(((unsigned long)&g_net_buf_slist_lock) /*=0x2000b004*/);
         if(iVar3==0){
-            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
-            printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, ((unsigned long)&g_net_buf_slist_lock) /*=0x2000b004*/);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
+            printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/, ((unsigned long)&g_net_buf_slist_lock) /*=0x2000b004*/);
             uVar4=0x72; uVar6=((unsigned long)&rodata_f08c7) /*=0xf08c7*/;
         } else {
             z_spin_lock_set_owner(((unsigned long)&g_net_buf_slist_lock) /*=0x2000b004*/);
@@ -61,8 +61,8 @@ u32* net_buf_slist_get(u32* param_1){
                 isb_();
                 return puVar5;
             }
-            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f08f4) /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0);
-            printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, ((unsigned long)&g_net_buf_slist_lock) /*=0x2000b004*/);
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)"z_spin_unlock_valid(l)") /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0);
+            printk(((unsigned long)"\tNot my spinlock %p\n") /*=0xf090b*/, ((unsigned long)&g_net_buf_slist_lock) /*=0x2000b004*/);
             uVar4=0xf0; uVar6=((unsigned long)&rodata_f08c7) /*=0xf08c7*/;
         }
     }

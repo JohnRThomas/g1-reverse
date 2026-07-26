@@ -13,11 +13,11 @@
  * address symbols (name @ address):
  *   rodata_88160                             @ 0x00088160
  *   rodata_f4079                             @ 0x000f4079
- *   rodata_f4080                             @ 0x000f4080
- *   rodata_f4099                             @ 0x000f4099
- *   rodata_f40af                             @ 0x000f40af
- *   rodata_f40c2                             @ 0x000f40c2
- *   rodata_f40e4                             @ 0x000f40e4
+ *   rodata_f4080                             @ 0x000f4080   [INLINED -- G6 literal batch]
+ *   rodata_f4099                             @ 0x000f4099   [INLINED -- G6 literal batch]
+ *   rodata_f40af                             @ 0x000f40af   [INLINED -- G6 literal batch]
+ *   rodata_f40c2                             @ 0x000f40c2   [INLINED -- G6 literal batch]
+ *   rodata_f40e4                             @ 0x000f40e4   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction of FUN_00057b60 @ 0x57b60 (exact extent: 326 bytes). */
 #include <stdint.h>

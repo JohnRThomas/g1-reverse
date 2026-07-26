@@ -10,11 +10,11 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   bt_conn_reset_rx_state                   <= FUN_000813d6 @ 0x000813d6
  * address symbols (name @ address):
- *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
  *   rodata_f3a5d                             @ 0x000f3a5d
- *   rodata_f3abe                             @ 0x000f3abe
- *   rodata_f3ae4                             @ 0x000f3ae4
- *   rodata_f3af9                             @ 0x000f3af9
+ *   rodata_f3abe                             @ 0x000f3abe   [INLINED -- G6 literal batch]
+ *   rodata_f3ae4                             @ 0x000f3ae4   [INLINED -- G6 literal batch]
+ *   rodata_f3af9                             @ 0x000f3af9   [INLINED -- G6 literal batch]
  */
 /* Full reconstruction FUN_00056300 @ 0x00056300 (128-byte exact extent). */
 #include <stdint.h>
@@ -34,7 +34,7 @@ void bt_conn_tx_drain_and_reset(void *context, uint32_t inherited_r1)
         void *item = net_buf_get(base + 0x38, inherited_r1, 0, 0);
         if (!item) {
             if (*(uint32_t *)(base + 0x14)) {
-                printk(0x000f3abeu, 0x000f3a5du, 0x00099cbdu, 0x313u);
+                printk(0x000f3abeu, 0x000f3a5du, ((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x313u);
                 printk(0x000f3ae4u);
                 assert_post_action(0x000f3a5du, 0x313u);
             }

@@ -12,9 +12,9 @@
  *   log_forward_zero_arg                     <= FUN_000837a2 @ 0x000837a2
  * address symbols (name @ address):
  *   rodata_881a0                             @ 0x000881a0
- *   rodata_f5822                             @ 0x000f5822
- *   rodata_f5840                             @ 0x000f5840
- *   rodata_f585d                             @ 0x000f585d
+ *   rodata_f5822                             @ 0x000f5822   [INLINED -- G6 literal batch]
+ *   rodata_f5840                             @ 0x000f5840   [INLINED -- G6 literal batch]
+ *   rodata_f585d                             @ 0x000f585d   [INLINED -- G6 literal batch]
  *   g_pdm_mic_ctrl_blk                       @ 0x2000b008
  *   g_pdm_mic_rx_msgq                        @ 0x2000b024
  */

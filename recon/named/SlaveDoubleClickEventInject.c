@@ -6,9 +6,9 @@
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_ef058                             @ 0x000ef058
- *   rodata_ef644                             @ 0x000ef644
- *   rodata_ef694                             @ 0x000ef694
+ *   rodata_ef058                             @ 0x000ef058   [INLINED -- G6 literal batch]
+ *   rodata_ef644                             @ 0x000ef644   [INLINED -- G6 literal batch]
+ *   rodata_ef694                             @ 0x000ef694   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_dashboard_response_msgq                @ 0x2000392c
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -28,14 +28,14 @@ int SlaveDoubleClickEventInject(void)
   event[0] = 7;
 
   if (k_msgq_put(0x2000392c, event, 0, 0) != 0) {
-    log_message(0x000ef058, 0x000ef694);
+    log_message(((unsigned long)"message queue send failed %s\r\n"), ((unsigned long)"SlaveDoubleClickEventInject"));
     return -1;
   }
   if (*(volatile int32_t *)0x2000230c > 2) {
     if (*(volatile uint32_t *)0x20007554 == 0) {
-      log_message(0x000ef644, 0x000ef694);
+      log_message(((unsigned long)"%s(): received slave send double click event ,boot or close dashboard function\n"), ((unsigned long)"SlaveDoubleClickEventInject"));
     } else {
-      debug_print(0x000ef644, 0x000ef694);
+      debug_print(((unsigned long)"%s(): received slave send double click event ,boot or close dashboard function\n"), ((unsigned long)"SlaveDoubleClickEventInject"));
     }
   }
   return 0;

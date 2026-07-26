@@ -13,9 +13,9 @@
  *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
  *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
  * address symbols (name @ address):
- *   rodata_aa487                             @ 0x000aa487
+ *   rodata_aa487                             @ 0x000aa487   [INLINED -- G6 literal batch]
  *   rodata_aa4ea                             @ 0x000aa4ea
- *   rodata_aa5ab                             @ 0x000aa5ab
+ *   rodata_aa5ab                             @ 0x000aa5ab   [INLINED -- G6 literal batch]
  *   g_log_level                              @ 0x2000230c
  *   g_translate_lang_string_table            @ 0x200024f4
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -54,8 +54,8 @@ int draw_template_translate_screen(int param_1){
     iVar6 = device_info_text_height_get_clamped();
     gui_utf_draw(0,(int)local_24,3,uVar2,iVar4+0x6e,iVar5+0x50,iVar6+0x89,1,0,0,0,0);
   } else if (0 < *lvl) {
-    if (*g8==0) log_message(0x000aa487,0x000aa5ab,uVar8,*(volatile unsigned char*)(iVar1+0xef));
-    else debug_print(0x000aa487,0x000aa5ab,uVar8,
+    if (*g8==0) log_message(((unsigned long)"%s(): translate language type error! trans_info->original_type %d trans_info->translation_type %d\n"),((unsigned long)"draw_template_translate_screen"),uVar8,*(volatile unsigned char*)(iVar1+0xef));
+    else debug_print(((unsigned long)"%s(): translate language type error! trans_info->original_type %d trans_info->translation_type %d\n"),((unsigned long)"draw_template_translate_screen"),uVar8,
                       *(volatile unsigned char*)(iVar1+0xef));
   }
   uVar2 = get_timestamp();

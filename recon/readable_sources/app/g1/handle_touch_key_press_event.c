@@ -12,7 +12,7 @@
  *   msg_content_recalc_unread                <= FUN_00033cf8 @ 0x00033cf8
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
- *   rodata_a2748                             @ 0x000a2748
+ *   rodata_a2748                             @ 0x000a2748   [INLINED -- G6 literal batch]
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_new_notification_pending_flag          @ 0x20018d8d
  *   g_esb_notify_slave_role_guard            @ 0x20018d9f
@@ -70,9 +70,9 @@ unsigned handle_touch_key_press_event(unsigned inherited_r0, unsigned inherited_
         }
     }
     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-        log_message(((unsigned long)&rodata_a2748) /*=0xa2748*/);
+        log_message(((unsigned long)"#########timeout,should retry !") /*=0xa2748*/);
     else
-        debug_print(((unsigned long)&rodata_a2748) /*=0xa2748*/);
+        debug_print(((unsigned long)"#########timeout,should retry !") /*=0xa2748*/);
     uVar5 = 0xffffffffu;
 out:
     *puVar1 = 0;

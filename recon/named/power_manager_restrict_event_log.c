@@ -8,12 +8,12 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
  *   rodata_880f0                             @ 0x000880f0
- *   rodata_99cbd                             @ 0x00099cbd
- *   rodata_f1885                             @ 0x000f1885
- *   rodata_f18bd                             @ 0x000f18bd
- *   rodata_f18e0                             @ 0x000f18e0
- *   rodata_f18ff                             @ 0x000f18ff
- *   rodata_f1920                             @ 0x000f1920
+ *   rodata_99cbd                             @ 0x00099cbd   [INLINED -- G6 literal batch]
+ *   rodata_f1885                             @ 0x000f1885   [INLINED -- G6 literal batch]
+ *   rodata_f18bd                             @ 0x000f18bd   [INLINED -- G6 literal batch]
+ *   rodata_f18e0                             @ 0x000f18e0   [INLINED -- G6 literal batch]
+ *   rodata_f18ff                             @ 0x000f18ff   [INLINED -- G6 literal batch]
+ *   rodata_f1920                             @ 0x000f1920   [INLINED -- G6 literal batch]
  *   rodata_faa2c                             @ 0x000faa2c
  */
 /* Full reconstruction of FUN_0004f92c @ 0x4f92c (240 bytes). */
@@ -48,15 +48,15 @@ void power_manager_restrict_event_log(const indexed_event *event)
         __builtin_trap();
 
     if (event->index >= 2) {
-        printk(0x00099cbdu, 0x000f18bdu, 0x000f1885u, 0x15u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f18bdu, 0x000f1885u, 0x15u);
         assert_post_action(0x000f1885u, 0x15u);
     }
     if (event->operation > 2) {
-        printk(0x00099cbdu, 0x000f18e0u, 0x000f1885u, 0x16u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f18e0u, 0x000f1885u, 0x16u);
         assert_post_action(0x000f1885u, 0x16u);
     }
     if (event->operation < -1) {
-        printk(0x00099cbdu, 0x000f18ffu, 0x000f1885u, 0x17u);
+        printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f18ffu, 0x000f1885u, 0x17u);
         assert_post_action(0x000f1885u, 0x17u);
     }
 
