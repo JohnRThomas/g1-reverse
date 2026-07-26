@@ -1,7 +1,7 @@
 # Sensor + graphics parity status — OUR rebuilt firmware vs the shipped oracle
 
-**Twenty-first measurement** (iteration 34; previous measurements were
-iterations 14–33).  From iteration 34 there are **two** oracles and **two**
+**Twenty-second measurement** (iteration 35; previous measurements were
+iterations 14–34).  From iteration 34 there are **two** oracles and **two**
 criteria sets, both in force:
 
 | oracle | screen | stimulus | criteria |
@@ -9,7 +9,57 @@ criteria sets, both in force:
 | `display_sensor_oracle.json` | `E_ID_SCREEN_NAVIGATION` (id 10) | phone connects **and writes GATT `0a0600000000`**, then `don` gesture | G-1…G-6, S-* |
 | **`display_sensor_oracle_dashboard.json`** *(new)* | **`E_ID_SCREEN_DASHBOARD` (id 6)** | phone connects, **NO GATT command**, then `don` gesture | **D-1…D-7, S-D-*** |
 
-## READ THIS FIRST — iteration 34: the dashboard is reached by REAL STIMULUS
+## READ THIS FIRST — iteration 35: **THE DASHBOARD IS PAINTED**
+
+Build **`g1-i35b-app`**, net **unchanged** `g1-i30e-net`; captures
+`/private/tmp/g1_ours_dash_i35b` and `/private/tmp/g1_ours_nav_i35b`.
+Full detail and every measurement in `our_boot_bringup.md` §35.
+
+Iteration 34's `* buffer overflow detected *` reboot is **eliminated**.  It was
+not "the three font families are unrecovered" but three separate, provable
+holes, only one of which rodata batch 4 filled:
+
+* the glyph **counts** `rodata_8ac2c/_8ac30/_8ac34` were absolute pins into the
+  original image — they are elements [3]/[4]/[5] of the already byte-verified
+  `recon/data/rodata_0x8ac20.c` (0x60, 0x0b, 0x0b) and are now bound onto it;
+* the glyph **directories** `rodata_98e3c/_98fbc/_98fe8` were **2-byte string
+  stubs** — the identical mis-classification iteration 33 fixed for the default
+  font; all three are now byte-exact in `g1_app_font_rodata.c` (96 + 11 + 11
+  entries, extents proven by closure on their neighbours in both directions);
+* the glyph **bitmaps** live inside `rodata_d753a`, the byte-verified 59,944 B
+  blob of rodata batch 4, now wired with its four interior pins.
+
+**MEASURED, dashboard stimulus:** no fault anywhere in 20 s
+(`fortify_chk_fail` 0, `z_arm_fatal_error` 0, was 1 each), every glyph memcpy
+inside its 676-byte buffer, `spim_a` `p2_render` **0 → 2,665** transactions,
+`JBD FrameCounter` p2 `0x3` → **`0x0A1D`**, and the panel receives
+**1,499 lit pixels at peak, bbox (78,213)–(564,330)** against the oracle's
+2,923 in (78,211)–(564,338) — **1,346 of them exactly the right grey value and
+ZERO wrong pixels**.  This is the first dashboard render in the project.
+
+**D-1 is still FAIL** and the reason is now a different, named defect: the
+firmware **enters the dashboard, paints it in 190 ms, then returns to IDLE**
+(`ui_DashBoard_task` ×3, `DashBoard_Reflash` ×5 vs the oracle's 136), so the
+end-of-phase framebuffer — what D-1 grades — is blank again.
+**Dashboard score: 5 PASS / 2 PARTIAL / 4 FAIL** (was 4/2/4).
+D-2, **D-3** (`spim_a` `p1_boot` 34 == 34, `stream_sha256` identical), D-7,
+S-D-MIC and S-D-KEYS all PASS.
+
+**Navigation regression gate: HELD.**  `p1_boot` is **bit-identical** to the
+oracle in both i35a and i35b — `1d617c65a688f10e`, 656 lit px, **0 differing
+rows**; `spim_a` 126 / 109 transactions and `JBD` 0x40 / 0xAA / 0xEB all
+identical to iterations 33 and 34.  G-1's `p2_render` moved 544 → 351 (i35a)
+→ **116** lit px: reported as a change because it was measured, but scored
+pixel-by-pixel it is an **improvement** — i35b's 116 pixels are **all 116
+correct with zero wrong pixels**, where i35a drew 351 of which 249 were pixels
+the shipped firmware never lights.  G-1 remains FAIL (982 missing).
+
+Flash **737,504 → 921,576 B (93.80 % of 982,528)**; RAM unchanged 253,765 B;
+`nm -u` 0; 0 duplicate globals; all pin/thread/net gates unchanged.
+`g1_app_rodata_00.c` is withheld on a measured flash argument (it would reach
+990,265 B, over the partition).
+
+## Iteration 34: the dashboard is reached by REAL STIMULUS
 
 `E_ID_SCREEN_DASHBOARD` is **not phone-commandable** — a whole-image `BL` scan
 of the shipped app finds no `update_persist_task_status(_, 6, _)` call site at

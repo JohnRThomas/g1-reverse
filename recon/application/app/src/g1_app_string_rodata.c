@@ -15,7 +15,15 @@
 /* 0x8843e */ const unsigned char rodata_8843e[2] = { 0x20, 0x00 };
 /* 0x8a208 */ const unsigned char rodata_8a208[2] = { 0x22, 0x00 };
 /* 0x8ac20 */ const unsigned char rodata_8ac20[4] = { 0x3a, 0x79, 0x0d, 0x00 };
-/* 0x8ac2c */ const unsigned char rodata_8ac2c[2] = { 0x60, 0x00 };
+/* 0x8ac2c -- WITHDRAWN, P4 iteration 35.  Those bytes are not a string: they
+ * are element [3] of the byte-verified recon/data table rodata_0x8ac20, the
+ * 96-entry glyph count of font style 3 that get_font_style3_glyph_offset
+ * (0x457f4) loads with `*(volatile int*)`.  The 2-byte stub made that load
+ * read two bytes past the object.  The pin is now
+ * `PROVIDE(rodata_8ac2c = rodata_0x8ac20 + 0xc)` in
+ * recon/symbols/g1_app_globals.ld, so it is no longer a numeric literal and
+ * gen_app_string_rodata.py no longer selects it: a regeneration reproduces
+ * this file without the line. */
 /* 0x8ad40 -- WITHDRAWN, P4 iteration 31.  Those bytes are not a string: they
  * are the first word of the NUS TX value ATTRIBUTE (`uuid = 0x20003559`) in
  * the shipped `attrs_nus_svc[]` at 0x8ad18, and the pin is the `&attrs[2]`
@@ -31,9 +39,16 @@
  * recon/application/app/src/g1_app_font_rodata.c, and its numeric pin is gone
  * from recon/symbols/g1_app_globals.ld, so gen_app_string_rodata.py no longer
  * selects it: a regeneration reproduces this file without the line. */
-/* 0x98e3c */ const unsigned char rodata_98e3c[2] = { 0x20, 0x00 };
-/* 0x98fbc */ const unsigned char rodata_98fbc[2] = { 0x30, 0x00 };
-/* 0x98fe8 */ const unsigned char rodata_98fe8[2] = { 0x30, 0x00 };
+/* 0x98e3c, 0x98fbc, 0x98fe8 -- WITHDRAWN, P4 iteration 35, for exactly the
+ * reason 0x9890c was withdrawn in iteration 33: they are not strings, they are
+ * the glyph DIRECTORIES (u16 codepoint, u8 half width, u8 pad) of the three
+ * remaining font families -- style 3 (96 entries), the small clock digits (11)
+ * and the large clock digits (11).  All three are now emitted byte-exact,
+ * together with the bitmap run they index, by
+ * recon/application/app/src/g1_app_font_rodata.c +
+ * recon/application/rodata/g1_app_rodata_02.c, and their numeric pins are gone
+ * from recon/symbols/g1_app_globals.ld, so gen_app_string_rodata.py no longer
+ * selects them: a regeneration reproduces this file without the lines. */
 /* 0x990cf */ const unsigned char rodata_990cf[13] = { 0x72, 0x75, 0x6e, 0x74, 0x69, 0x6d, 0x65, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x00 };
 /* 0x990dc */ const unsigned char rodata_990dc[41] = { 0x25, 0x73, 0x28, 0x29, 0x3a, 0x20, 0x66, 0x61, 0x69, 0x6c, 0x65, 0x64, 0x20, 0x74, 0x6f, 0x20, 0x73, 0x77, 0x69, 0x74, 0x63, 0x68, 0x20, 0x74, 0x6f, 0x20, 0x62, 0x6c, 0x65, 0x20, 0x6d, 0x6f, 0x64, 0x65, 0x20, 0x5b, 0x25, 0x64, 0x5d, 0x0a, 0x00 };
 /* 0x99105 */ const unsigned char rodata_99105[46] = { 0x25, 0x73, 0x28, 0x29, 0x3a, 0x20, 0x73, 0x79, 0x73, 0x20, 0x72, 0x65, 0x62, 0x6f, 0x6f, 0x74, 0x20, 0x62, 0x65, 0x63, 0x61, 0x75, 0x73, 0x65, 0x20, 0x73, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x20, 0x72, 0x65, 0x73, 0x65, 0x74, 0x20, 0x25, 0x64, 0x2c, 0x20, 0x25, 0x64, 0x0a, 0x00 };

@@ -313,3 +313,85 @@ class; batch 4 is the one that changes the flash budget materially.
 * The 22 deferred pointer regions are conservative, not impossible: the ledger
   records, per region, how many words resolve, how many are SRAM, and the first
   unresolved value, so the follow-up is a work list rather than a re-analysis.
+
+---
+
+## 10. WIRED — P4 iteration 35 (measured; supersedes §9's "nothing was wired")
+
+`recon/emulator/reports/our_boot_bringup.md` §35.  Two builds, both linking
+with **0 undefined, 0 duplicate globals, no `--allow-multiple-definition`, no
+weak symbols**.
+
+| build | what was wired | FLASH | % of 982,528 B | Δ |
+|---|---|---:|---:|---:|
+| `g1-i34a-app` | nothing from this decode | 737,504 B | 75.06 % | — |
+| `g1-i35a-app` | `g1_app_rodata_02.c` — batch 4's `rodata_d753a` (59,944 B glyph bitmaps) + 4 interior pins | 800,264 B | 81.45 % | **+62,760 B** |
+| **`g1-i35b-app`** | **files 01–07** = batch 1 + batch 3 + batch 4's `rodata_c7956` and `rodata_bc097` + 148 interior pins | **921,576 B** | **93.80 %** | **+184,072 B** |
+
+RAM is **unchanged** (253,765 B) in both — the decode is all `.rodata`.
+
+### What this pass got right, and the one thing it missed
+
+Right: every wired object is byte-exact **in the linked ELF**, not just in the
+source.  Read back out of `zephyr.elf`'s PT_LOAD and compared with
+`app_update.bin`: `rodata_d753a` (59,944 B) **True**, and the interior
+arithmetic survives the link (`rodata_c7956 = 0x0b889d`,
+`rodata_c81a3 = 0x0b90ea` = `+0x84d`).  Wiring `rodata_d753a` is what
+eliminated iteration 34's `fortify_chk_fail` reboot and produced the project's
+**first dashboard render**.
+
+Missed: §2's region model treats an **already-emitted object** as a boundary,
+so where `gen_app_string_rodata.py` had wrongly emitted a **2-byte string
+stub** the decode recorded *no region at all* and the real data was never
+emitted.  Three of the four objects the dashboard needed were in exactly that
+state — `rodata_98e3c` / `_98fbc` / `_98fe8`, the glyph directories of font
+style 3 and both clock-digit families (384 + 44 + 44 B).  They had to be
+recovered by hand into `g1_app_font_rodata.c`.  **Any future pass should treat
+a suspiciously short "already emitted" object as a boundary to re-derive, not
+to trust.**  (`rodata_8ac2c` was the same stub over a region that
+`recon/data/rodata_0x8ac20.c` already owned byte-exactly; it is now
+`PROVIDE(rodata_8ac2c = rodata_0x8ac20 + 0xc)`.)
+
+### Correction to §8's flash estimate
+
+§8 predicted ~89 % on the basis of "referenced pins only" (240,044 B) and
+`--gc-sections` dropping the rest.  Measured, `--gc-sections` drops **nothing**
+here: `recon/application/app/g1_verified_rodata_keep.ld` contains
+`KEEP(*rodata_*.c.obj(".rodata.rodata_*"))`, and the generated file names
+`g1_app_rodata_0N.c` match `*rodata_*.c.obj`, so **every** object in a wired
+file is retained.  The real cost is the file's full declared size.  That is why
+`g1_app_rodata_00.c` (68,690 B) is **withheld**: it would put the image at
+**990,265 B against a 982,528 B partition**.  Wiring it needs either a
+narrower KEEP pattern or a per-object split of that file.
+
+### Corrections to §8's wiring mechanics
+
+* The 154-line `g1_app_rodata_interior.ld` **cannot be included as a unit**
+  unless files 00–07 *and* `g1_app_rodata_ptr.c` are all wired: 6 of its lines
+  re-pin onto `rodata_87fc8` / `rodata_88388` (batch 5) and `rodata_8af10` /
+  `rodata_a8e98` (file 00), and GNU ld rejects a `PROVIDE` whose expression
+  names an undefined symbol.  Iteration 35 wrote the **148 usable lines
+  directly into `g1_app_globals.ld`, in place of the numeric pins they
+  replace** — the same deletion the fragment's header demands, the same
+  expressions, one source of truth.
+* The numeric pin of a **run base** that is now a real object should be
+  **deleted, not left inert**: if the object is ever dropped, an inert
+  `PROVIDE(rodata_X = 0x…)` silently resurrects the original-image address and
+  the reader gets garbage again, whereas with the pin gone the link fails
+  loudly.  Done for `rodata_d753a`.
+* Duplicate check before wiring: 9 symbols (`rodata_9adaa`, `rodata_9d7b8`,
+  `rodata_a819e`, `_a81b7`, `_a81d0`, `_a81e6`, `_a81fa`, `_a835e`, `_a8373`)
+  are defined by **both** `g1_app_string_rodata.c` and `g1_app_rodata_00.c`.
+  They cost nothing today only because file 00 is withheld; wiring it must
+  withdraw those nine stubs first.
+
+### Status by batch
+
+| batch | status |
+|---|---|
+| 1 — app strings + string pools | **WIRED** (files 01–07 portion) |
+| 2 — net strings | not wired; net is still at ~97.3 % of its partition |
+| 3 — small blobs + zero-fill, app | **WIRED** (files 01–07 portion) |
+| 4 — the four font/bitmap blobs | **3 of 4 WIRED**: `rodata_d753a` (59,944 B), `rodata_c7956` (63,517 B), `rodata_bc097` (45,682 B).  `rodata_aae20` (66,560 B, file 00) does not fit — see above |
+| 5 — the two relocated `ptr_record` objects | not wired |
+| 6, 7 — deferred regions and the 96 kB unreferenced | unchanged |

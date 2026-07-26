@@ -175,6 +175,33 @@ target_sources(app PRIVATE
   # (the generator documents the load-image base proof and the pointer policy).
   src/g1_app_data_image.c
   src/g1_app_font_rodata.c
+  # P4 iteration 35, rodata decode BATCH 4 (recon/analysis/rodata_decode_report.md
+  # §8), the single blob the dashboard needs: g1_app_rodata_02.c owns
+  # `rodata_d753a`, the byte-verified 59,944-byte packed-4bpp glyph BITMAP run
+  # [0xd753a, 0xe5f62) that holds the glyph pixels of font style 3 and of both
+  # clock-digit families.  Its four interior pins (rodata_e123a / e17da / e4408
+  # / e5248 -- the same four lines recon/application/rodata/g1_app_rodata_interior.ld
+  # carries for this run) are re-pinned onto it in g1_app_globals.ld, whose
+  # numeric pins for them are gone, so a link that dropped the object fails
+  # loudly instead of reading our own relocated image again.  One blob per
+  # build, as the report recommends, so a raster change stays attributable.
+  #
+  # Iteration 35b then wired the REST of the decode except g1_app_rodata_00.c:
+  # measured (35.6), the glyph pixels alone leave the dashboard's ICONS blank,
+  # because `resource_manger_get` case 4 -- the image/icon resource class --
+  # returns literal pointers into rodata_bc097 (45,682 B, file 07) and
+  # rodata_c7956 (63,517 B, file 06), i.e. the other two batch-4 blobs, plus
+  # ~40 smaller ones in files 01/03/04/05.  g1_app_rodata_00.c is held back on
+  # a MEASURED flash argument, not a judgement: its 68,690 B would take the
+  # image to 990,265 B against a 982,528 B partition.  Its one large object,
+  # rodata_aae20 (66,560 B), has no reader on the dashboard path.
+  ${CMAKE_CURRENT_LIST_DIR}/../rodata/g1_app_rodata_01.c
+  ${CMAKE_CURRENT_LIST_DIR}/../rodata/g1_app_rodata_02.c
+  ${CMAKE_CURRENT_LIST_DIR}/../rodata/g1_app_rodata_03.c
+  ${CMAKE_CURRENT_LIST_DIR}/../rodata/g1_app_rodata_04.c
+  ${CMAKE_CURRENT_LIST_DIR}/../rodata/g1_app_rodata_05.c
+  ${CMAKE_CURRENT_LIST_DIR}/../rodata/g1_app_rodata_06.c
+  ${CMAKE_CURRENT_LIST_DIR}/../rodata/g1_app_rodata_07.c
   # Iteration 21: 2,128 of the `rodata_<hex>` PROVIDE pins in
   # recon/symbols/g1_app_globals.ld were still ABSOLUTE in the link (nm class
   # `A`), i.e. they named ORIGINAL-image flash addresses that hold unrelated
