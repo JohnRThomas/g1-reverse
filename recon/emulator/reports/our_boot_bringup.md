@@ -15014,3 +15014,496 @@ Every rodata object wired this iteration was byte-compared **against
 `rodata_d753a` 1,024 B, `rodata_e123a` 19,752 B — **all True** — and the eight
 relocated pointer tables were checked by dereferencing all 528 entries in the
 linked image against the strings the shipped tables name — **all 528 match**.
+
+## Iteration 37 — both D-1 blockers are **one instruction-decode defect each**,
+## and both are proven against the shipped bytes before a line was changed:
+## a `VNMLS` read as `VMLS` in the Mahony filter, and a literal-pool constant
+## read as a POINTER in the retained-state magic check.
+
+*(written incrementally as each finding was confirmed)*
+
+### 37.1 MEASURED FIRST — the head-state byte is not "stuck at 1", it
+### **oscillates**, because our fused pitch never converges
+
+Before touching anything, `g1-i36b-app` (the exact iteration-36 build) and the
+shipped image were both run under the iteration-36 stimulus with a read-only
+sampler: `emulation RunFor 0.1` x 140 after the `don` gesture, reading
+`device_ctx+0xee4` (head state), `device_ctx+0xd5` (screen id) and the fusion
+thread's own published pitch (`g_ble_switch_status_reason`, `*100`).
+Nothing is written; the only hook logs `send_event`.
+
+| virtual t | ours pitch*100 | ours `0xee4` | oracle pitch*100 | oracle `0xee4` |
+|---:|---:|---:|---:|---:|
+| 6.1 s | 885 | 1 | 880 | 1 |
+| 6.5 s | 464 | 1 | 356 | 1 |
+| 7.6 s | **+1605** | 1 | −866 | 1 |
+| 9.8 s | **+4806** | 1 | −4835 | 1 |
+| 10.9 s | −3527 | 1 | −6911 | **2** |
+| 11.3 s | −6712 | **2** | −7580 | 2 |
+| 11.7 s | **+1257** | 1 | −7815 | 2 |
+| 12.0 s | **+6831** | 1 | −7906 | 2 |
+| 13.4 s | −6955 | **2** | −8003 | 2 |
+| 14.3 s | **+6934** | 1 | −8008 | 2 |
+| 15.7 s | −6827 | **2** | −8009 | 2 |
+| 18.8 s | −7654 | **2** | −8009 | 2 |
+| 20.0 s | −407 | 1 | −8009 | 2 |
+
+The oracle's pitch **converges monotonically to −80.09 deg and stays there**.
+Ours is a **limit cycle**: a ±77 deg swing with a ~5 s period that never
+settles.  The head-up window is `device_ctx+0xef0 .. +0xeec` =
+**[−9650, −6650]** in *both* builds (read back live — the window itself is
+correct), so our pitch sweeps *through* the window four times in the 14-second
+phase.  Each sweep-in raises `0xee4` to 2, selects `E_ID_SCREEN_DASHBOARD`
+(`device_ctx+0xd5` = 6 was observed at t = 11.3 s) and paints; each sweep-out
+drops it back to 1, which is precisely the `*param_2 == 1` term of
+`process_for_new_task.c:601` (CASE6) that closes the screen 600 ms later.
+
+`send_event` pairs measured in our run: **2** (head-up) at 39.91 / 44.53 /
+49.11 / 55.29 s host, each followed by **3** (head-down) 0.5–0.9 s later.  The
+oracle sends **2 once** and never sends 3.
+
+So §36.9's "`device_ctx[0xee4] == 1` at the decision point" is a *symptom*.
+The defect is in the fusion, not in the task state machine.
+
+### 37.2 FINDING 1 — `imu_mahony_ahrs_update`: **five `VNMLS.F32`
+### instructions were reconstructed as `VMLS.F32`**, which negates the whole
+### accelerometer error vector and turns the filter's feedback POSITIVE
+
+`VMLS.F32 Sd,Sn,Sm` is `Sd = Sd − Sn*Sm`; `VNMLS.F32 Sd,Sn,Sm` is
+`Sd = −Sd + Sn*Sm`.  Disassembling the shipped `FUN_00026624 @ 0x26624`
+(hard-float AAPCS: `s0..s2` = gyro, `s3..s5` = accel, `s6` = dt, `r0` = state;
+`s17,s18,s16,s7` = `q0,q1,q2,q3`):
+
+```
+26680  vmul.f32  s13, s17, s16   ; s13 = q0*q2
+26684  vnmls.f32 s15, s17, s17   ; s15 = -0.5      + q0*q0
+26688  vnmls.f32 s13, s18, s7    ; s13 = -(q0*q2)  + q1*q3
+26694  vmla.f32  s15, s7,  s7    ; s15 =  q0*q0 - 0.5 + q3*q3
+26698  vmul.f32  s12, s5,  s14   ; s12 = az*a
+2669c  vnmls.f32 s12, s4,  s15   ; s12 = -(az*a)   + ay*c      <- ex
+266a0  vmul.f32  s4,  s4,  s13   ; s4  = ay*b
+266a4  vmul.f32  s15, s3,  s15   ; s15 = ax*c
+266a8  vnmls.f32 s4,  s3,  s14   ; s4  = -(ay*b)   + ax*a      <- ez
+266ac  vnmls.f32 s15, s5,  s13   ; s15 = -(ax*c)   + az*b      <- ey
+```
+
+i.e. the shipped firmware computes the **textbook Mahony half-gravity vector**
+
+```
+a = q0*q1 + q2*q3        b = q1*q3 - q0*q2        c = q0*q0 - 0.5 + q3*q3
+ex = ay*c - az*a         ey = az*b - ax*c         ez = ax*a - ay*b
+```
+
+Our reconstruction had every one of those five `vnmls` folded as `Sd - Sn*Sm`:
+
+```c
+float b  = q0 * q2 - q1 * q3;          /* = -b_true                     */
+float c  = (half - q0*q0) + q3*q3;     /* = 0.5 - q0^2 + q3^2, not c_true */
+float ex = az * a - ay * c;            /* = -ex_true                    */
+float ey = ay * b - ax * a;            /* = -ez_true (also mis-slotted) */
+float ez = ax * c - az * b;            /* = -ey_true                    */
+```
+
+The accumulator **slots** were right (`ex`→`gx`, the `ez` variable→`gy`, the
+`ey` variable→`gz`, matching `26702/26706/2670a`); only the **signs** were
+inverted.  With `Kp = 4.0` and `Ki = 0` (both read out of
+`imu_fusion_state_init @ 0x265b8`: `[+0]=0.1f`, `[+4]=4.0f` = Kp, `[+8]=0` = Ki,
+`q0=1`), the sole surviving correction term is `g += Kp * e`, so a negated `e`
+turns the complementary filter's **negative feedback into positive feedback**.
+That is exactly a ±77 deg limit cycle, and it is exactly what §37.1 measured.
+
+Everything else in the function was re-checked instruction-for-instruction and
+is correct: the `ax|ay|az != 0` guard (`26624..2665e`), the `Ki<=0` zeroing
+branch (`2679e`), the two `vnmla` in the quaternion integration
+(`2672a`, and `26732`'s `vnmls s10,s1,s17` — see below), the normalisation and
+`state->dirty = 0`.
+
+The whole rest of the fusion chain was re-verified against the shipped bytes
+this iteration and is **correct as reconstructed**:
+`fast_inverse_sqrt @ 0x265e8` (magic `0x5f3759df`, two Newton steps),
+`orientation_filter_update_dt @ 0x267ac` (`(ticks*1000)>>15`, `/1000.0f`,
+stores to `+0x38` *and* `+0x3c`), `orientation_get_pitch_deg/_yaw_deg @
+0x26808/0x267e8` (`*57.2958`), `orientation_get_heading_deg @ 0x26828`
+(`180.0f + x*57.2958`), and `quaternion_to_euler @ 0x7cab4` — whose own
+`vnmls` at `0x7caf8` **was** decoded correctly, which is what makes the
+`0x26624` cluster an isolated defect rather than a systematic one.
+`orientation_get_pitch_deg`'s `quaternion_to_euler()` call is declared
+`(void)` but our build emits `ldrb/mov r4,r0/bl` — **byte-identical to the
+shipped prologue**, so `r0` does reach the callee; left alone.
+
+### 37.3 FINDING 2 — the clock base: `uarte_nrfx_irq_rx_ready @ 0x165b4`
+### **dereferences the magic number instead of comparing against it**
+
+Shipped bytes at `0x165b4` (read through `tools/extract.py`):
+
+```
+000165b4  03 4b        ldr   r3, [pc,#12]      ; -> 0x2007fc00
+000165b6  58 6e        ldr   r0, [r3,#0x64]
+000165b8  03 4b        ldr   r3, [pc,#12]      ; -> literal 0x12345678
+000165ba  c0 1a        subs  r0, r0, r3
+000165bc  18 bf        it    ne
+000165be  4f f0 ff 30  mov.w r0, #-1
+000165c2  70 47        bx    lr
+000165c4  00 fc 07 20                          ; 0x2007fc00
+000165c8  78 56 34 12                          ; 0x12345678
+```
+
+`0x12345678` is a **literal-pool constant**, the validity magic of the retained
+`g_dashboard_startup_mode_info_defaults` block at `0x2007fc00`.  Our
+reconstruction read it as an address:
+
+```c
+int a = *(volatile int*)(0x2007fc00UL + 0x64);
+int b = *(volatile int*)0x12345678UL;      /* <-- WRONG: this is a constant  */
+int r = a - b;  if (r != 0) r = -1;  return r;
+```
+
+On a cold boot `0x2007fc64` is 0 and the bogus read of `0x12345678` also
+yields 0, so `r == 0` and `init_dashboard_info` takes the **"retained block is
+valid"** branch — measured directly, hook `H37 init_defaults_BRANCH` fired in
+our run — calling `init_dashboard_startup_mode_info_defaults()`, whose first
+statement is
+
+```c
+*(volatile int*)dst = *(volatile int*)0x2007fc00 + 1;   /* = 0 + 1 */
+```
+
+so the RTC record `*(u32*)*(u32*)(device_ctx+0xfec)` becomes **1**, not
+`0x65920080`.  Confirmed live: every `sync_to_slave` in our run logged
+`H37 set_sync_ts 0x1`, while `main()`'s own
+`set_device_sync_timestamp(0x65920080)` (logged once, `lr = 0x168cd`) is
+overwritten 2 s later.  `1` = 1970-01-01T00:00:01 = **Thu** — §36.7's exact
+symptom.
+
+The shipped firmware compares against the constant, gets `-1` on a cold boot,
+and takes the other branch of `init_dashboard_info`, which writes the bytes
+`80 00 92 65` = **`0x65920080` = 2024-01-01T00:00:00Z = Monday** into the same
+record.  `FUN_000165b4` has **exactly one caller** (`init_dashboard_info`), so
+the fix is contained.
+
+### 37.4 The fix, in nine source trees, at **zero flash and zero RAM cost**
+
+`imu_mahony_ahrs_update` — the five expressions re-derived from the `vnmls`
+semantics, and the three accumulator slots re-labelled to the registers the
+shipped code actually uses (`s12`->`gx`, `s15`->`gy`, `s4`->`gz`):
+
+```c
+float a  = q3 * q2 + q1 * q0;            /* s14  0x26670 / 0x26678 */
+float b  = q1 * q3 - q0 * q2;            /* s13  0x26680 / 0x26688 */
+float c  = (q0 * q0 - half) + q3 * q3;   /* s15  0x26684 / 0x26694 */
+float ex = ay * c - az * a;              /* s12  0x26698 / 0x2669c */
+float ez = ax * a - ay * b;              /* s4   0x266a0 / 0x266a8 */
+float ey = az * b - ax * c;              /* s15  0x266a4 / 0x266ac */
+...
+state->integral_x += ki*ex*dt;  state->integral_y += ki*ey*dt;  state->integral_z += ki*ez*dt;
+gx += kp*ex;                    gy += kp*ey;                    gz += kp*ez;
+```
+
+`uarte_nrfx_irq_rx_ready` — `int b = 0x12345678;` instead of
+`int b = *(volatile int*)0x12345678UL;`.
+
+Both are **pure expression edits**, so:
+
+| build | FLASH | % | RAM | `nm -u` | dup GLOBAL defs | weak |
+|---|---:|---:|---:|---:|---:|---:|
+| `g1-i36b-app` | 952,316 B | 96.93 % | 253,765 B | 0 | 0 | 17 |
+| **`g1-i37a-app`** | **952,316 B** | **96.93 %** | **253,765 B** | **0** | **0** | **17** |
+
+**Flash delta 0 B, RAM delta 0 B.**  Nothing was withheld, nothing was added.
+`_end` `0x2003ff45` and `runtime_info_sync` `0x00015b8c` are **unchanged**, so
+every `G1_CTX_*` probe address from iteration 36 still holds
+(`device_ctx` = `0x2003ff50`).  Net core **UNCHANGED** (`g1-i30e-net`).
+
+Trees touched (all nine kept in step; `recon/application/src/*.c` are symlinks
+into `recon/named/`, so patching `recon/named` covers that tree):
+
+| file | trees |
+|---|---|
+| `imu_mahony_ahrs_update.c` | `recon/named` (= `recon/application/src` via symlink), `recon/symbolized/app`, `recon/readable_sources/app/g1` |
+| `FUN_00026624.c` | `recon/app/src`, `recon/verified/src` |
+| `uarte_nrfx_irq_rx_ready.c` | `recon/named` (+ symlink), `recon/symbolized/app`, `recon/readable_sources/app/g1` |
+| `FUN_000165b4.c` | `recon/app/src`, `recon/app/src_sym`, `recon/verified/src`, `recon/verified/src_sym` |
+
+(`recon/net/src`, `recon/net/named`, `recon/symbolized/net` are net-core trees
+and contain neither function — the net core was not touched at all.)
+
+### 37.5 MEASURED — the fused pitch is now the oracle's, to a hundredth of a degree
+
+Same read-only 0.1 s sampler as §37.1, `g1-i37a-app`:
+
+| virtual t | i37a pitch*100 | oracle | i37a `0xee4` / screen | oracle `0xee4` / screen |
+|---:|---:|---:|---|---|
+| 6.1 s | 882 | 880 | 1 / 0 | 1 / 0 |
+| 7.5 s | −732 | −732 | 1 / 0 | 1 / 0 |
+| 9.5 s | −5029 | −5029 | 1 / 0 | 1 / 0 |
+| 10.7 s | −6459 | −6460 | 1 / 0 | 1 / 0 |
+| **10.9 s** | **−6910** | **−6911** | **2 / 6** | **2 / 6** |
+| 12.5 s | −7973 | −7973 | 2 / 6 | 2 / 6 |
+| 14.9 s | −8009 | −8009 | 2 / 6 | 2 / 6 |
+| 20.0 s | **−8009** | **−8009** | **2 / 6** | **2 / 6** |
+
+The head-up transition now happens **in the same 100 ms sample** as the
+oracle's, and `device_ctx+0xee4` stays at **2** and `device_ctx+0xd5` at
+**6** for the rest of the phase.  `send_event(3)` (head-down) is never emitted
+— it was emitted four times in `g1-i36b-app`.  CASE6's
+`*param_2 == 1` term is therefore never satisfied,
+`update_persist_task_status_to_idle` is never reached from
+`process_for_new_task.c:608`, and the screen is never closed.  The
+`process_for_new_task` CASE6 branch itself was **not modified** — it was never
+wrong.
+
+### 37.6 MEASURED — **the DASHBOARD framebuffer is BYTE-IDENTICAL to the
+### shipped firmware, and so is NAVIGATION.  All four framebuffers match.**
+
+`g1-i37a-app` + `g1-i30e-net`, both stimuli, iteration-36 determinism knobs
+(`G1_HOOKS=0`, quantum `0.000010`, CC312 seed `0x5340CC3105340CC3`, 6 s + 14 s).
+
+| stimulus / phase | ours sha256 | oracle sha256 | lit px | bbox | verdict |
+|---|---|---|---|---|---|
+| **DASHBOARD `p2_render`** | `19b1f24a09f97a8d…` | `19b1f24a09f97a8d…` | **2,923 == 2,923** | (78,211)–(564,338) == oracle | **PASS — 0 differing rows, 0 wrong, 0 missing** |
+| DASHBOARD `p1_boot` | `0c5cc90b079d0d9c…` | `0c5cc90b079d0d9c…` | 0 == 0 | — | **PASS** |
+| NAVIGATION `p2_render` | `b26c73b37d441fc8…` | `b26c73b37d441fc8…` | 1,098 == 1,098 | (34,266)–(497,287) | **PASS — regression HELD** |
+| NAVIGATION `p1_boot` | `1d617c65a688f10e…` | `1d617c65a688f10e…` | 656 == 656 | (178,267)–(449,287) | **PASS — regression HELD** |
+
+The dashboard match was **independently re-confirmed against a freshly
+re-captured shipped-firmware run** (`capture_display_sensor_oracle.sh` on
+`app_update.bin`/`netcore_image.bin`, dashboard stimulus, this session):
+that run also produced `19b1f24a09f97a8d…` / 2,923 lit px, so the match is
+against the firmware, not against a stale JSON.
+
+The date line now reads **`Mon, Jan 1`** — the three weekday glyphs that were
+§36's last wrong pixels (`x 78..167, y 213..228`, 236 wrong + 264 missing) are
+**gone**: `wrong = 0, missing = 0` over the whole 640x480 panel.
+
+### 37.7 Criterion scores — `g1-i37a-app`, both screens, every criterion
+
+#### DASHBOARD (`display_sensor_oracle_dashboard.json`, `G1_ATT_WRITE=""`)
+
+| id | verdict | measurement |
+|---|---|---|
+| **D-1** `p2_render` framebuffer | **PASS** | `19b1f24a09f97a8d…` **== oracle**. **2,923 == 2,923 lit px**, bbox (78,211)–(564,338) == oracle on all four edges, **0 differing rows, 0 wrong, 0 missing**. (iteration 36: 0 lit px at end of phase, FAIL.) |
+| **D-2** `p1_boot` framebuffer | **PASS** | `0c5cc90b079d0d9c…` == oracle, 0 == 0 lit px, 0 differing rows. |
+| **D-3** `spim_a` stream | **PARTIAL** | `p1_boot` **34 == 34 transactions, stream sha `f91505ab8dc0dd27…` IDENTICAL — PASS**. `p2_render` **9,212 vs 12,225** (iteration 36: 2,665). Content-wise our stream is a **strict subset**: **0** distinct pixel windows we emit are absent from the oracle's stream; see §37.8. |
+| **D-4** localiser | *n/a* | **no differing row and no differing pixel in either phase.** |
+| **D-5** `SCREEN_ID_ctx_d5 == 6` | **PASS** | ours **`0x06`** == oracle `0x06` at t = 20 s (iteration 36: `0x00`). |
+| **D-6** `DISPLAY_ON` / `ESB_SYNC` | **PASS** | `DISPLAY_ON_ctx_fe8` **`0x01` == `0x01`**; `ESB_SYNC_ctx_105a` **`0x02` == `0x02`**. (iteration 36: PARTIAL, `DISPLAY_ON` was `0x00`.) |
+| **D-7** `spim_b` unused | **PASS** | 0 == 0 transactions, stream sha EQ, both phases. |
+| **S-D-MIC** `pdm0` | **PASS** | 2 == 2 accesses, whole-run sha **EQ**. |
+| **S-D-KEYS** `gpiote0` / `gpiote1` | **PASS** | 25 == 25 and 0 == 0, whole-run shas **EQ**. |
+| **S-D-I2C** `twim1` | **PARTIAL** | `opt3001` `p1_boot` **14 == 14 sha EQ**, `p2_render` **59 == 59 sha EQ**; `npm1300` 279/514 vs 285/514 (p2 count equal, sha NE); `st25dv` 11+14 vs 25+22 and still absent in `p2_render` (0 vs 7+4). |
+| **S-D-IMU** `twim2` | **PARTIAL → p2 EXACT** | `p2_render` **1,206 == 1,206 transactions, device stream sha256 EQ — BYTE-IDENTICAL** (iteration 36: 766 vs 1,206). `p1_boot` 1,080 vs 1,075, sha NE. |
+| **S-D-ADC** `saadc` | **FAIL** | 95 vs 998 accesses, sha NE (unchanged since iteration 33). |
+
+**Dashboard score: 8 PASS / 3 PARTIAL / 1 FAIL** (iteration 36: 5 PASS / 2 PARTIAL / 4 FAIL).
+D-1, D-5 and D-6 all flipped to PASS this iteration, and S-D-IMU's `p2_render`
+stream became byte-identical.
+
+Other dashboard counters: `JBD_FRAMECOUNTER_P1` `0x3` **EQ**,
+`JBD_JOURNALCOUNT` `0x400` **EQ**, `VC_CONNECTED` / `VC_CONNECT_INDS`
+**True / 1 EQ**, `IMU_ACCEL_ENABLED` True **EQ**, `IMU_GYRO_ENABLED` False
+**EQ**, `OPT3001_CONVERSION_READY` / `NPM1300_CHARGING` **EQ**,
+`VTIME_P1`/`P2` **EQ**; `ESB_MASTER_FRAMES`/`ACKS` `0x176` vs `0x175`,
+`RADIO_TX` `0x233` vs `0x232`, `VC_DATA_EVENTS` `0x212` vs `0x214`,
+`JBD_FRAMECOUNTER_P2` `0x22D7` vs `0x2E65` — all on §34.5's explicitly
+not-a-gate list (the freshly re-captured shipped run gave `0x174`/`0x230`/
+`0x20B`/`0x2E27` for those same four, i.e. the oracle itself jitters there).
+
+#### NAVIGATION (`display_sensor_oracle.json`, `G1_ATT_WRITE=0a0600000000`)
+
+| id | verdict | measurement |
+|---|---|---|
+| **G-1** `p2_render` framebuffer | **PASS** | `b26c73b37d441fc8…` == oracle, **1,098 == 1,098 lit px**, bbox (34,266)–(497,287), **0 differing rows, 0 wrong, 0 missing** — **HELD**. |
+| **G-2** `p1_boot` framebuffer | **PASS** | `1d617c65a688f10e…` == oracle, **656 == 656 lit px**, bbox (178,267)–(449,287), **0 differing rows** — **HELD**. |
+| **G-3** `spim_a` stream | **FAIL** | p1 **126 vs 764**, p2 **109 vs 2,881** — unchanged from iteration 36. Content-wise a strict subset: **0** distinct windows are ours-only; see §37.8. |
+| **G-4** localiser | *n/a* | no differing row in either phase. |
+| **G-5** panel init sequence | **PASS** | `0x9F` ID probe answered `0x4010`; every non-pixel, non-refresh opcode count in `p1_boot` is identical term-for-term (`0x01` 2, `0x06` 4, `0x31` 4, `0x36` 2, `0x46` 4, `0x66` 2, `0x71` 2, `0x73` 2, `0x99` 2, `0x9F` 1, `0xA3` 4, `0xA9` 2, `0xB9` 1, `0xC0` 10 — all ==). The only two that differ are `0x02` (64 vs 673) and `0x97` display-refresh (20 vs 49), i.e. the §37.8 cadence gap, not the init sequence. |
+| **G-6** `spim_b` unused | **PASS** | 0 == 0 transactions, both phases. |
+| **S-MIC** `pdm0` | **PASS** | 2 == 2, whole-run sha **EQ**. |
+| **S-KEYS** `gpiote0` / `gpiote1` | **PASS** | 25 == 25 and 0 == 0, whole-run shas **EQ**. |
+| **S-ALS** `opt3001` | **PARTIAL** | `p2_render` **80 == 80, sha EQ**; `p1_boot` 35 vs 33, NE. |
+| **S-PMIC** `npm1300` | **PARTIAL** | 286/529 vs 291/508, sha NE both phases. |
+| **S-NFC** `st25dv` | **FAIL** | `p1_boot` 11+14 vs 25+22; absent in `p2_render` (0 vs 7+4). |
+| **S-IMU** `twim2` | **PARTIAL** | `p2_render` **1,200 == 1,200 transactions** (iteration 36: 744 vs 1,200), sha NE; `p1_boot` 1,094 vs 1,089, sha NE. |
+| **S-ADC** `saadc` | **FAIL** | 95 vs 998 accesses, sha NE. |
+| **S-ESB** (boolean) | **PASS** | `ESB_SYNC_ctx_105a` **`0x02`**, `DISPLAY_ON_ctx_fe8` **`0x01`**, `RADIO_TX` `0x230` **== `0x230` EQ**, ESB master frames `0x176` vs `0x175`. |
+
+**Navigation graphics score: G-1 PASS, G-2 PASS, G-3 FAIL, G-5 PASS,
+G-6 PASS — 4 of 5, both framebuffers byte-identical, no regression.**
+
+### 37.8 `G-3`/`D-3` characterised: a **repaint-cadence and window-granularity**
+### difference, provably NOT a content difference
+
+With D-1 passing, `G-3`/`D-3` is the **only remaining display gap**.  Comparing
+the two `spim_a` streams as ordered sets of `(x, y, n_pixel_bytes,
+sha256(pixel_bytes))` tuples:
+
+| stimulus / phase | our windows | oracle windows | **distinct windows ours-only** | oracle-only |
+|---|---:|---:|---:|---:|
+| DASH `p1_boot` | 3 | 3 | **0** | 0 (streams identical) |
+| DASH `p2_render` | 8,916 | 11,812 | **0** | 368 |
+| NAV `p1_boot` | 64 | 673 | **0** | 67 |
+| NAV `p2_render` | 106 | 2,752 | **0** | 67 |
+
+**Every pixel window our firmware emits — position, length and payload hash —
+is one the shipped firmware also emits.**  The whole difference is extra
+windows the original emits that we do not, and they are small and repetitive:
+
+* NAVIGATION: the gap is **exactly the 9-byte windows** — 609 of them in
+  `p1_boot` and 2,646 in `p2_render`, of which we emit **zero**.  Every other
+  size matches term-for-term: `213 B x55 == x55`, `10 B x21 == x21`,
+  `240 B x82 == x82`, `30720 B x1..3 == x1..3`, `61440 B x2..6 == x2..6`.
+* DASHBOARD `p2_render`: the `319 B` windows match **800 == 800** exactly and
+  the full-canvas `30720`/`61440` blits match **2 == 2** and **4 == 4**.  The
+  gap is the oracle's 1-byte (1,806), 10-byte (378), 89-byte (196) and 99-byte
+  (196) windows, which we never emit, plus 68/56/196 fewer of the 73/78/11-byte
+  ones.  Those are all inside the clock/status strip around `y 316..319`.
+
+The opcode histograms say the same thing: on **every** phase of **both**
+stimuli, the only two opcodes whose counts differ are `0x02`
+(`pixel_window_write`) and `0x97` (`display_update/refresh`) — dashboard
+`p2_render` 8,916/276 vs 11,812/329, navigation `p1_boot` 64/20 vs 673/49.
+Every panel-command opcode (`0x01 0x06 0x31 0x36 0x46 0x66 0x71 0x73 0x99
+0x9F 0xA3 0xA9 0xB9 0xC0`) matches term-for-term everywhere, and dashboard
+`p1_boot`'s histogram matches *including* `0x02` and `0x97`.
+
+So the original repaints a handful of tiny sub-regions on a periodic tick that
+our build does not run (the `DISPLAY_ACTION_RETRY` cadence of §36.9 —
+the oracle calls `DashBoard_Reflash` 136 times, we call it far fewer), and each
+such repaint writes **the same bytes that are already there**.  That is why the
+composed framebuffer is bit-exact while the transaction stream is not.
+`G-3`/`D-3` is therefore a **cadence** criterion, not a **content** criterion,
+and it is the only display criterion still open.
+
+### 37.9 Gates — all held
+
+| gate | result |
+|---|---|
+| `check_ram_pin_collisions.py` (app, `g1-i37a-app`) raw-in-object / raw-free | **0 / 0** |
+| `check_ram_pin_collisions.py` (app) bound OK / escaping | **624 / 0** |
+| `check_ram_pin_collisions.py --core net` raw-in-object / raw-free | **0 / 0** |
+| `check_net_raw_literals.py` distinct / in-object / in-RAM-free | **0 / 0 / 0** |
+| `check_thread_create_stack_args.py` | **10/10**, EXIT 0 |
+| `verify_net_stock_data_window.py` | **PROVEN** (0 OTHER words, 0 non-stock input sections) |
+| `gen_retained_sources.py --check` | **clean** |
+| app `nm -u` undefined / duplicate GLOBAL definitions | **0 / 0** |
+| link flags | no `--allow-multiple-definition`, no weak-symbol or numeric-root hacks |
+| weak symbols | **17, unchanged** — all pinned SDK/newlib/libgcc |
+| **navigation `p1_boot` pixel gate** | **`1d617c65a688f10e…`, 656 px, 0 differing rows — HELD** |
+| **navigation `p2_render` pixel gate** | **`b26c73b37d441fc8…`, 1,098 px, 0 differing rows — HELD** |
+| **dashboard `p2_render` pixel gate** | **`19b1f24a09f97a8d…`, 2,923 px, 0 differing rows — NEWLY PASSING** |
+
+Net core **UNCHANGED** (`g1-i30e-net`); `armemul` untouched; no `tools/` logic
+change; nothing committed.
+
+### 37.10 Open, named, and NOT fixed
+
+1. **`G-3`/`D-3` repaint cadence** (§37.8) — the only remaining *display* gap.
+   Provably a cadence difference: 0 ours-only windows on either stimulus.
+   Root: the periodic `DISPLAY_ACTION_RETRY` sub-region refresh
+   (`display_thread_handler`, timeout `g_dashboard_display_level` = 0x42 ms)
+   does not run at the original's rate.
+2. **`saadc` 95 vs 998** accesses — unchanged since iteration 33.
+3. **ST25DV** volumes (`11+14` vs `25+22` in `p1_boot`, absent in
+   `p2_render`) — unchanged.
+4. **`twim2` `p1_boot`** 1,080 vs 1,075 (dashboard) / 1,094 vs 1,089
+   (navigation) — a 5-transaction excess during boot, sha NE. The
+   `p2_render` dashboard stream is now byte-identical.
+5. **`npm1300`** `p2_render` count is exact (514 == 514) but the stream sha
+   differs; `p1_boot` 279 vs 285.
+6. **`g1_app_rodata_02.c`'s demo-image window `[0xd793a, 0xe123a)`, 39,680 B,
+   is still withheld** (§36.4) and `g1_app_rodata_00.c`'s remaining 40 objects
+   (2,130 B) plus batch 5 are still unwired.  Flash is at **96.93 %**
+   (952,316 / 982,528 B) — unchanged by this iteration.
+7. The five dead `K_MSGQ_DEFINE` queues are unchanged.
+
+### Regenerate (iteration 37)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+recon/application/build_cohesive.sh app /private/tmp/g1-i37a-app
+# net UNCHANGED from iteration 30 (g1-i30e-net)
+
+mkdir -p /private/tmp/g1-i37
+printf '$rtinfo_pc=0x00015b8c\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i37/ours-paired-i37.resc
+
+# ---- dashboard stimulus (G1_ATT_WRITE="" -> the IMU picks E_ID_SCREEN_DASHBOARD)
+bash -c 'F=$(mktemp -u); mkfifo $F; sleep 100000 > $F & W=$!
+G1_ATT_WRITE="" \
+G1_RESC=/private/tmp/g1-i37/ours-paired-i37.resc \
+G1_APP_ELF=/private/tmp/g1-i37a-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040F38 G1_CTX_105A=0x20040FAA G1_SCREEN_ID=0x20040025 \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_dash_i37a < $F
+kill $W; rm -f $F'
+# ---- NAVIGATION stimulus: identical with G1_ATT_WRITE left UNSET,
+#      into /private/tmp/g1_ours_nav_i37a
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_ours_dash_i37a /private/tmp/g1_dash_rep_i37a
+```
+
+The pitch/head-state tables of §37.1 and §37.5 come from a read-only sampler
+resc (`emulation RunFor 0.1` x 140 + `sysbus ReadByte/ReadDoubleWord`); it
+writes no memory and is not needed to reproduce the criterion scores.
+
+Files changed this iteration (**source only — no generated data, no `tools/`
+logic, no `armemul` change**):
+`recon/named/imu_mahony_ahrs_update.c` (= `recon/application/src/…`, symlink),
+`recon/symbolized/app/imu_mahony_ahrs_update.c`,
+`recon/readable_sources/app/g1/imu_mahony_ahrs_update.c`,
+`recon/app/src/FUN_00026624.c`, `recon/verified/src/FUN_00026624.c`,
+`recon/named/uarte_nrfx_irq_rx_ready.c` (= `recon/application/src/…`, symlink),
+`recon/symbolized/app/uarte_nrfx_irq_rx_ready.c`,
+`recon/readable_sources/app/g1/uarte_nrfx_irq_rx_ready.c`,
+`recon/app/src/FUN_000165b4.c`, `recon/app/src_sym/FUN_000165b4.c`,
+`recon/verified/src/FUN_000165b4.c`, `recon/verified/src_sym/FUN_000165b4.c`;
+`recon/emulator/reports/sensor_parity_status.md`; this report.
+
+### 37.11 Artifacts
+
+* `recon/emulator/reports/ours_framebuffer_dashboard_p2_render.{raw,png,_crop.png}`
+  — **our** `g1-i37a-app` dashboard render, 2,923 lit px, sha
+  `19b1f24a09f97a8d…`; `cmp` against
+  `golden_framebuffer_dashboard_p2_render.raw` reports **no difference**.
+* `recon/emulator/reports/ours_framebuffer_navigation_p2_render.{raw,png}`
+  — refreshed from `g1-i37a-app`; `cmp` against
+  `golden_framebuffer_p2_render.raw` reports **no difference**.
+
+**Both screens of the reconstructed firmware now paint pixel-for-pixel what the
+shipped firmware paints, and hold it.**
+
+### 37.12 Reproducibility
+
+The dashboard capture was run **twice end-to-end** from the same
+`g1-i37a-app`/`g1-i30e-net` pair.  Both runs produced a `p2_render`
+framebuffer that `cmp`s **byte-identical** to
+`recon/emulator/reports/golden_framebuffer_dashboard_p2_render.raw`, and both
+read back `SCREEN_ID_ctx_d5 = 0x06` at t = 20 s.  The shipped firmware was
+also re-captured under the same stimulus in this session and produced the same
+`19b1f24a09f97a8d…` / 2,923-lit-pixel frame, so the D-1 match is verified in
+both directions and is not a property of a single run.
+
+### 37.13 A NEW harness false-proof class, stated honestly
+
+`tools/cfg_verify.py app FUN_00026624` returns **`PASS cases=2`** on the fixed
+source — **and it returns exactly the same `PASS cases=2` on the BROKEN
+pre-iteration-37 source** (measured this session by checking out `HEAD`'s copy,
+re-running the verifier, and restoring).  `FUN_000165b4` likewise reports
+`PASS cases=0`.
+
+The reason is the same shape as AGENTS.md's finding #1, but for a different
+argument domain: `emu.make_args` seeds non-pointer arguments with integer bit
+patterns, and this is a **hard-float AAPCS** function whose seven arguments
+arrive in `s0..s6`.  Whatever the harness puts in the integer registers never
+reaches them, so both variants execute with the same (mostly zero/NaN) VFP
+state, take the same path, and produce the same side-effect trace.  A
+sign-inverted feedback term is invisible to it.
+
+**So neither of this iteration's two defects could have been caught by the
+existing parity harness**; both were caught by reading the shipped
+instructions, and confirmed by end-to-end pixel measurement.  Any function
+that takes or returns floats/doubles should be treated as **unproven by
+`emu`/`cfg_verify`** until the harness seeds `s0..s15`/`d0..d7` with realistic
+float values (small magnitudes, ±1, 0.5, and quaternion-scale values) rather
+than integer bit patterns.  A sweep of the corpus for VFP-argument functions
+is the obvious follow-up and is **not** done in this iteration.

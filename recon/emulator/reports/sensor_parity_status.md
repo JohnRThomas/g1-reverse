@@ -9,7 +9,14 @@ criteria sets, both in force:
 | `display_sensor_oracle.json` | `E_ID_SCREEN_NAVIGATION` (id 10) | phone connects **and writes GATT `0a0600000000`**, then `don` gesture | G-1…G-6, S-* |
 | **`display_sensor_oracle_dashboard.json`** *(new)* | **`E_ID_SCREEN_DASHBOARD` (id 6)** | phone connects, **NO GATT command**, then `don` gesture | **D-1…D-7, S-D-*** |
 
-## READ THIS FIRST — iteration 35: **THE DASHBOARD IS PAINTED**
+> ## ⇩ CURRENT STATE IS AT THE BOTTOM: **"UPDATE — P4 iteration 37"** ⇩
+> **Iteration 37 (`g1-i37a-app`) is the live measurement.  All four
+> framebuffers — dashboard and navigation, `p1_boot` and `p2_render` — are
+> BYTE-IDENTICAL to the shipped firmware.  D-1 PASSES.  Both screens work.**
+> Everything between here and that section is kept for provenance and is
+> superseded.
+
+## Iteration 35 record (kept) — **THE DASHBOARD IS PAINTED**
 
 Build **`g1-i35b-app`**, net **unchanged** `g1-i30e-net`; captures
 `/private/tmp/g1_ours_dash_i35b` and `/private/tmp/g1_ours_nav_i35b`.
@@ -1295,3 +1302,110 @@ fade-out.  Trigger measured by hook: `device_ctx[0xee4] == 1` with
 firmware has the same branch and never satisfies it inside the 14-second
 window, which is where its 136 `DashBoard_Reflash` calls (66 ms
 `DISPLAY_ACTION_RETRY`) come from.  **Named, not fixed.**
+
+---
+
+# UPDATE — P4 iteration 37 (supersedes every score above)
+
+# **ALL FOUR FRAMEBUFFERS ARE BYTE-IDENTICAL TO THE SHIPPED FIRMWARE.**
+# **D-1 PASSES.  Both screens work.**
+
+Build **`g1-i37a-app`** (952,316 B, **96.93 %** of the 982,528 B partition —
+**flash delta 0 B** vs `g1-i36b-app`; RAM 253,765 B, **delta 0 B**; `nm -u` 0;
+0 duplicate globals; 17 weak symbols, unchanged).  Net core **unchanged**
+(`g1-i30e-net`).  Full derivation in `our_boot_bringup.md` §37.
+
+## Graphics
+
+| id | iteration 36 | **iteration 37** |
+|---|---|---|
+| **D-1** dashboard `p2_render` framebuffer | FAIL (0 lit px at end of phase) | **PASS — `19b1f24a09f97a8d…` == oracle, 2,923 == 2,923 lit px, bbox (78,211)–(564,338) == oracle, 0 differing rows, 0 wrong, 0 missing** |
+| **D-2** dashboard `p1_boot` | PASS | **PASS** — `0c5cc90b079d0d9c…`, 0 == 0 lit px |
+| **D-3** dashboard `spim_a` | PASS (`p1_boot` 34 == 34, sha EQ) | **`p1_boot` PASS**; `p2_render` **9,212 vs 12,225** (was 2,665) — cadence only, **0 ours-only windows** |
+| **D-4** localiser | first differing row 211 | **no differing row, no differing pixel** |
+| **D-5** `SCREEN_ID_ctx_d5 == 6` | FAIL (`0x00`) | **PASS — `0x06`** |
+| **D-6** `DISPLAY_ON` / `ESB_SYNC` | PARTIAL (`0x00` / `0x02`) | **PASS — `0x01` / `0x02`** |
+| **D-7** `spim_b` unused | PASS | **PASS** |
+| **G-1** navigation `p2_render` | PASS | **PASS — `b26c73b37d441fc8…`, 1,098 px, 0 differing rows (regression HELD)** |
+| **G-2** navigation `p1_boot` | PASS | **PASS — `1d617c65a688f10e…`, 656 px, 0 differing rows (regression HELD)** |
+| **G-3** navigation `spim_a` stream | FAIL | **FAIL** — 126 vs 764 and 109 vs 2,881, unchanged; **0 ours-only windows** |
+| **G-5** panel init sequence | PASS | **PASS** |
+| **G-6** `spim_b` unused | PASS | **PASS** |
+
+**Dashboard score: 8 PASS / 3 PARTIAL / 1 FAIL** (iteration 36: 5 / 2 / 4).
+**Navigation graphics: 4 of 5**, unchanged, no regression.
+
+## The two root causes — both single instruction-decode defects
+
+1. **`imu_mahony_ahrs_update` (`FUN_00026624 @ 0x26624`): five `VNMLS.F32`
+   instructions had been reconstructed as `VMLS.F32`.**  `VNMLS` is
+   `Sd = −Sd + Sn*Sm`, `VMLS` is `Sd = Sd − Sn*Sm`, so the entire
+   accelerometer error vector `(ex, ey, ez)` came out negated and the
+   complementary filter's feedback became **positive**.  Measured consequence:
+   our fused pitch entered a **±77 deg limit cycle** with a ~5 s period instead
+   of converging, sweeping in and out of the head-up window
+   `[−9650, −6650]` four times per phase.  Each sweep-out set
+   `device_ctx+0xee4` back to 1, which is the `*param_2 == 1` term of
+   `process_for_new_task.c:601` (CASE6) — so §36's "the firmware closes the
+   screen" was a *symptom* of the fusion, not a task-state bug.  After the fix
+   the pitch tracks the oracle **to a hundredth of a degree** and settles at
+   **−80.09 deg == the oracle's −80.09 deg**; `0xee4` reaches 2 in the *same
+   100 ms sample* as the oracle and never returns to 1; `send_event(3)`
+   (head-down) is never emitted.  CASE6 itself was **not modified**.
+2. **`uarte_nrfx_irq_rx_ready` (`FUN_000165b4 @ 0x165b4`): the literal-pool
+   constant `0x12345678` had been reconstructed as a POINTER DEREFERENCE.**
+   `0x165b8 ldr r3,[pc,#12]` loads the retained-block validity magic;
+   `0x165ba subs r0,r0,r3` compares.  Reading it as memory made a cold boot
+   look like a valid retained block, so `init_dashboard_info` took the wrong
+   branch and never seeded the RTC record with **`0x65920080`** (2024-01-01,
+   a Monday); it got `0 + 1 = 1` instead (1970-01-01T00:00:01, a Thursday).
+   Measured: `H37 set_sync_ts 0x1` on every `sync_to_slave`.  With the fix the
+   date line renders **`Mon, Jan 1`** and the last 236 wrong + 264 missing
+   pixels of §36 are gone.
+
+Both fixes are **pure expression edits**: flash and RAM deltas are exactly 0 B,
+`_end` `0x2003ff45` and `runtime_info_sync` `0x00015b8c` unchanged.
+
+## Sensors
+
+| id | verdict | measurement (navigation / dashboard stimulus) |
+|---|---|---|
+| **S-MIC** `pdm0` | **PASS** | 2 == 2 accesses, whole-run sha **EQ**, both stimuli |
+| **S-KEYS** `gpiote0` / `gpiote1` | **PASS** | 25 == 25 and 0 == 0, shas **EQ**, both stimuli |
+| **S-ESB** | **PASS** | `ESB_SYNC_ctx_105a` `0x02` and `DISPLAY_ON_ctx_fe8` `0x01` on **both** stimuli (dashboard was `0x00` in iteration 36); nav `RADIO_TX` `0x230` == `0x230` |
+| **S-IMU** `twim2` | **PARTIAL — dashboard `p2_render` now BYTE-IDENTICAL** | dash `p2_render` **1,206 == 1,206, device stream sha EQ** (iteration 36: 766 vs 1,206); nav `p2_render` **1,200 == 1,200** count, sha NE (was 744 vs 1,200); `p1_boot` 1,080 vs 1,075 / 1,094 vs 1,089 |
+| **S-ALS** `opt3001` | **PARTIAL** | nav `p2_render` **80 == 80, sha EQ**; dash **14 == 14** and **59 == 59, sha EQ both phases**; nav `p1_boot` 35 vs 33 |
+| **S-PMIC** `npm1300` | **PARTIAL** | dash `p2_render` **514 == 514** (sha NE); `p1_boot` 279 vs 285 |
+| **S-NFC** `st25dv` | **FAIL** | `p1_boot` 11+14 vs 25+22; absent in `p2_render` (0 vs 7+4) |
+| **S-ADC** `saadc` | **FAIL** | 95 vs 998 accesses, sha NE (unchanged since iteration 33) |
+
+## The only remaining display gap: `G-3`/`D-3`, and it is **cadence, not content**
+
+Comparing the two `spim_a` streams as ordered sets of
+`(x, y, n_pixel_bytes, sha256(payload))`:
+
+| stimulus / phase | our windows | oracle windows | **ours-only distinct** | oracle-only |
+|---|---:|---:|---:|---:|
+| DASH `p1_boot` | 3 | 3 | **0** | 0 (streams identical) |
+| DASH `p2_render` | 8,916 | 11,812 | **0** | 368 |
+| NAV `p1_boot` | 64 | 673 | **0** | 67 |
+| NAV `p2_render` | 106 | 2,752 | **0** | 67 |
+
+**Zero** pixel windows we emit are absent from the shipped stream.  The gap is
+entirely extra small repeats the original emits: on navigation it is *exactly*
+the 9-byte windows (609 in `p1_boot`, 2,646 in `p2_render`, we emit none) with
+every other size matching term-for-term; on the dashboard the `319 B` windows
+match **800 == 800** and the full-canvas blits **2 == 2** / **4 == 4**, and the
+gap is the oracle's 1/10/89/99-byte sub-region refreshes around `y 316..319`.
+Each such write puts back bytes that are already there, which is why the
+composed framebuffer is bit-exact.  Root: the periodic `DISPLAY_ACTION_RETRY`
+sub-region refresh does not run at the original's rate.  **Named, not fixed.**
+
+## Gates
+
+`check_ram_pin_collisions.py` **0 / 0** both cores (app bound 624 / escaping 0);
+`check_net_raw_literals.py` **0 / 0 / 0**; `check_thread_create_stack_args.py`
+**10/10**; `verify_net_stock_data_window.py` **PROVEN**;
+`gen_retained_sources.py --check` clean; app `nm -u` **0**, duplicate GLOBAL
+definitions **0**; no `--allow-multiple-definition`, no weak-symbol or
+numeric-root hacks; `armemul` and `tools/` untouched; nothing committed.
