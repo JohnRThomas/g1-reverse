@@ -1,0 +1,10 @@
+# Stage trees are GENERATED: stage_N = transformer(stage_N-1), reproducible by
+#   PYTHONSAFEPATH=1 .venv/bin/python recon/refactor/driver.py materialize N
+# and fully pinned by the committed MANIFEST.json (every input path + input
+# SHA-256 + output SHA-256).  They are ~17 MB and ~1,800 relative symlinks each,
+# which would swamp every diff for zero information.
+#
+# Committed instead, and deliberately: MANIFEST.json, PARITY_MAP.json,
+# QUARANTINE.json -- the evidence that a stage produced what it says it produced.
+stage_*/tree/
+__pycache__/
