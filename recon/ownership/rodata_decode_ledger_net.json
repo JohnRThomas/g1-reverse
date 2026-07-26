@@ -1,0 +1,3160 @@
+{
+ "schema": 1,
+ "core": "net",
+ "generator": "recon/application/gen_app_rodata_sources.py",
+ "image": "netcore_image.bin",
+ "address_space": "CPUNET RUNTIME base 0x01008800 (net_extract.read_runtime); pins in g1_net_globals.ld are runtime addresses, function catalogue entries are analysis addresses",
+ "sector": {
+  "lo": "0x0103be56",
+  "hi": "0x0103ed24",
+  "bytes": 11982
+ },
+ "wired_into_build": false,
+ "totals": {
+  "regions": 122,
+  "emitted": 117,
+  "deferred": 5,
+  "bytes_emitted": 7796,
+  "bytes_deferred": 3860,
+  "pins_retired": 126,
+  "interior_repins": 9,
+  "absolute_pins_in_link": 142,
+  "absolute_pins_retired": 73
+ },
+ "sector_coverage": {
+  "sector_bytes": 11982,
+  "emitted_before_this_pass": 0,
+  "emitted_by_this_pass": 7796,
+  "deferred_by_this_pass": 3860,
+  "unreferenced_bytes": 326,
+  "unreferenced_regions": 2
+ },
+ "out_of_sector_pins": {
+  "in_text": [
+   "rodata_100f805",
+   "rodata_10100a1",
+   "rodata_10101cd",
+   "rodata_10102c1",
+   "rodata_101113d",
+   "rodata_1011869",
+   "rodata_1011add",
+   "rodata_1011f29",
+   "rodata_101205d",
+   "rodata_1016591",
+   "rodata_1017579",
+   "rodata_101b321",
+   "rodata_101ca79",
+   "rodata_101e0e9",
+   "rodata_101e879",
+   "rodata_101e961",
+   "rodata_101e9e1",
+   "rodata_101ec69",
+   "rodata_10203c9",
+   "rodata_10208e1",
+   "rodata_1029e3d",
+   "rodata_102a0f1",
+   "rodata_102a1bf",
+   "rodata_102a2c1",
+   "rodata_102a3b5",
+   "rodata_102a3b9",
+   "rodata_102a665",
+   "rodata_102b351",
+   "rodata_102b3ad",
+   "rodata_102b4f5",
+   "rodata_102b5ad",
+   "rodata_102b95d",
+   "rodata_102b9c9",
+   "rodata_102ba05",
+   "rodata_102d22d",
+   "rodata_102eca1",
+   "rodata_103024d",
+   "rodata_1031555",
+   "rodata_10320d9",
+   "rodata_1032fbd",
+   "rodata_1032fd9",
+   "rodata_103309d",
+   "rodata_10333a5",
+   "rodata_1035f6d",
+   "rodata_103704c",
+   "rodata_1037050",
+   "rodata_1037054",
+   "rodata_1037058",
+   "rodata_103a749",
+   "rodata_103aacd",
+   "rodata_103b6b3",
+   "rodata_103b6c1",
+   "rodata_103b6d3",
+   "rodata_103b7ad",
+   "rodata_103b7f3",
+   "rodata_103be3f"
+  ],
+  "in_data_load_image": [],
+  "in_text_count": 56,
+  "in_data_load_image_count": 0
+ },
+ "unreferenced_regions": [
+  {
+   "va": "0x0103be56",
+   "bytes": 282
+  },
+  {
+   "va": "0x0103c190",
+   "bytes": 44
+  }
+ ],
+ "regions": [
+  {
+   "va": 17022832,
+   "va_hex": "0x0103bf70",
+   "symbol": "rodata_103bf70",
+   "bytes": 544,
+   "kind": "ptr_record",
+   "detail": {
+    "words": 136,
+    "ptr_words": 62,
+    "density": 0.4559,
+    "tail_bytes": 0
+   },
+   "purpose": "opaque read-only blob",
+   "retires": [
+    "rodata_103bf70",
+    "rodata_103bfc0",
+    "rodata_103bfec",
+    "rodata_103c024",
+    "rodata_103c044",
+    "rodata_103c04c",
+    "rodata_103c05c",
+    "rodata_103c064",
+    "rodata_103c074",
+    "rodata_103c07c",
+    "rodata_103c094",
+    "rodata_103c0c4",
+    "rodata_103c0ec",
+    "rodata_103c0fc",
+    "rodata_103c11c"
+   ],
+   "interior": [
+    [
+     "rodata_103bfc0",
+     80
+    ],
+    [
+     "rodata_103bfec",
+     124
+    ],
+    [
+     "rodata_103c024",
+     180
+    ],
+    [
+     "rodata_103c044",
+     212
+    ],
+    [
+     "rodata_103c04c",
+     220
+    ],
+    [
+     "rodata_103c05c",
+     236
+    ],
+    [
+     "rodata_103c064",
+     244
+    ],
+    [
+     "rodata_103c074",
+     260
+    ],
+    [
+     "rodata_103c07c",
+     268
+    ],
+    [
+     "rodata_103c094",
+     292
+    ],
+    [
+     "rodata_103c0c4",
+     340
+    ],
+    [
+     "rodata_103c0ec",
+     380
+    ],
+    [
+     "rodata_103c0fc",
+     396
+    ],
+    [
+     "rodata_103c11c",
+     428
+    ]
+   ],
+   "status": "deferred",
+   "reason": "atomic EXCLUDE: 18/62 pointer words do not resolve to a symbol this project defines (13 of them are SRAM addresses; first unresolved 0x21000860)",
+   "ctype": "const unsigned long []",
+   "unresolved": [
+    "0x21000860",
+    "0x21004870",
+    "0x21000868",
+    "0x21000640",
+    "0x21000638",
+    "0x21000866",
+    "0x210048dc",
+    "0x210005f0",
+    "0x2100085c",
+    "0x21001f68",
+    "0x21001ed0",
+    "0x21007940",
+    "0x0102c011",
+    "0x21004678",
+    "0x01035b01",
+    "0x01032099"
+   ]
+  },
+  {
+   "va": 17023420,
+   "va_hex": "0x0103c1bc",
+   "symbol": "rodata_103c1bc",
+   "bytes": 144,
+   "kind": "blob",
+   "detail": {
+    "incidental_ptr_words": 0,
+    "words": 36
+   },
+   "purpose": "opaque read-only blob",
+   "retires": [
+    "rodata_103c1bc",
+    "rodata_103c1d4",
+    "rodata_103c1f8"
+   ],
+   "interior": [
+    [
+     "rodata_103c1d4",
+     24
+    ],
+    [
+     "rodata_103c1f8",
+     60
+    ]
+   ],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const unsigned char []",
+   "file": "g1_net_rodata_04.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17023564,
+   "va_hex": "0x0103c24c",
+   "symbol": "rodata_103c24c",
+   "bytes": 2772,
+   "kind": "ptr_record",
+   "detail": {
+    "words": 693,
+    "ptr_words": 120,
+    "density": 0.1732,
+    "tail_bytes": 0
+   },
+   "purpose": "opaque read-only blob",
+   "retires": [
+    "rodata_103c24c",
+    "rodata_103c254",
+    "rodata_103c290",
+    "rodata_103c3b0",
+    "rodata_103c4cc",
+    "rodata_103c4d0",
+    "rodata_103c578",
+    "rodata_103c5b0",
+    "rodata_103c5c4",
+    "rodata_103c798",
+    "rodata_103c900",
+    "rodata_103c924",
+    "rodata_103c938",
+    "rodata_103cad0",
+    "rodata_103cae8",
+    "rodata_103cafc",
+    "rodata_103cb30",
+    "rodata_103cc60"
+   ],
+   "interior": [
+    [
+     "rodata_103c254",
+     8
+    ],
+    [
+     "rodata_103c290",
+     68
+    ],
+    [
+     "rodata_103c3b0",
+     356
+    ],
+    [
+     "rodata_103c4cc",
+     640
+    ],
+    [
+     "rodata_103c4d0",
+     644
+    ],
+    [
+     "rodata_103c578",
+     812
+    ],
+    [
+     "rodata_103c5b0",
+     868
+    ],
+    [
+     "rodata_103c5c4",
+     888
+    ],
+    [
+     "rodata_103c798",
+     1356
+    ],
+    [
+     "rodata_103c900",
+     1716
+    ],
+    [
+     "rodata_103c924",
+     1752
+    ],
+    [
+     "rodata_103c938",
+     1772
+    ],
+    [
+     "rodata_103cad0",
+     2180
+    ],
+    [
+     "rodata_103cae8",
+     2204
+    ],
+    [
+     "rodata_103cafc",
+     2224
+    ],
+    [
+     "rodata_103cb30",
+     2276
+    ],
+    [
+     "rodata_103cc60",
+     2580
+    ]
+   ],
+   "status": "deferred",
+   "reason": "atomic EXCLUDE: 78/120 pointer words do not resolve to a symbol this project defines (12 of them are SRAM addresses; first unresolved 0x01010101)",
+   "ctype": "const unsigned long []",
+   "unresolved": [
+    "0x01010101",
+    "0x0102aa25",
+    "0x0102aa31",
+    "0x0102aa35",
+    "0x0102aa3d",
+    "0x0102aa41",
+    "0x0102e0ed",
+    "0x0103a95b",
+    "0x0103a659",
+    "0x0103a6cd",
+    "0x0103a661",
+    "0x0103a693",
+    "0x0103a67d",
+    "0x0103a667",
+    "0x0103a9dd",
+    "0x0103a9cd"
+   ]
+  },
+  {
+   "va": 17026336,
+   "va_hex": "0x0103cd20",
+   "symbol": "rodata_103cd20",
+   "bytes": 38,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 2,
+    "text_bytes": 36,
+    "utf8": false
+   },
+   "purpose": "2-string pool",
+   "retires": [
+    "rodata_103cd20"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_00.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17026374,
+   "va_hex": "0x0103cd46",
+   "symbol": "rodata_103cd46",
+   "bytes": 332,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 18,
+    "text_bytes": 314,
+    "utf8": false
+   },
+   "purpose": "18-string pool",
+   "retires": [
+    "rodata_103cd46"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17026706,
+   "va_hex": "0x0103ce92",
+   "symbol": "rodata_103ce92",
+   "bytes": 26,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 25,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103ce92"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_02.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17026732,
+   "va_hex": "0x0103ceac",
+   "symbol": "rodata_103ceac",
+   "bytes": 23,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 22,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103ceac"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_04.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17026755,
+   "va_hex": "0x0103cec3",
+   "symbol": "rodata_103cec3",
+   "bytes": 13,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 12,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103cec3"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17026768,
+   "va_hex": "0x0103ced0",
+   "symbol": "rodata_103ced0",
+   "bytes": 59,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 2,
+    "text_bytes": 57,
+    "utf8": false
+   },
+   "purpose": "2-string pool",
+   "retires": [
+    "rodata_103ced0",
+    "rodata_103cef6",
+    "rodata_103cf0a"
+   ],
+   "interior": [
+    [
+     "rodata_103cef6",
+     38
+    ],
+    [
+     "rodata_103cf0a",
+     58
+    ]
+   ],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_00.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17026827,
+   "va_hex": "0x0103cf0b",
+   "symbol": "rodata_103cf0b",
+   "bytes": 381,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 17,
+    "text_bytes": 364,
+    "utf8": false
+   },
+   "purpose": "17-string pool",
+   "retires": [
+    "rodata_103cf0b"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027208,
+   "va_hex": "0x0103d088",
+   "symbol": "rodata_103d088",
+   "bytes": 13,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 12,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d088"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_00.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027221,
+   "va_hex": "0x0103d095",
+   "symbol": "rodata_103d095",
+   "bytes": 13,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 12,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d095"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027234,
+   "va_hex": "0x0103d0a2",
+   "symbol": "rodata_103d0a2",
+   "bytes": 29,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 28,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d0a2"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_02.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027263,
+   "va_hex": "0x0103d0bf",
+   "symbol": "rodata_103d0bf",
+   "bytes": 28,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 27,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d0bf"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_07.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027291,
+   "va_hex": "0x0103d0db",
+   "symbol": "rodata_103d0db",
+   "bytes": 30,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 29,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d0db"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027321,
+   "va_hex": "0x0103d0f9",
+   "symbol": "rodata_103d0f9",
+   "bytes": 34,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 3,
+    "text_bytes": 31,
+    "utf8": false
+   },
+   "purpose": "3-string pool",
+   "retires": [
+    "rodata_103d0f9"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027355,
+   "va_hex": "0x0103d11b",
+   "symbol": "rodata_103d11b",
+   "bytes": 35,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 2,
+    "text_bytes": 33,
+    "utf8": false
+   },
+   "purpose": "2-string pool",
+   "retires": [
+    "rodata_103d11b"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027390,
+   "va_hex": "0x0103d13e",
+   "symbol": "rodata_103d13e",
+   "bytes": 12,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 11,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d13e"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027402,
+   "va_hex": "0x0103d14a",
+   "symbol": "rodata_103d14a",
+   "bytes": 66,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 3,
+    "text_bytes": 63,
+    "utf8": false
+   },
+   "purpose": "3-string pool",
+   "retires": [
+    "rodata_103d14a"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_02.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027468,
+   "va_hex": "0x0103d18c",
+   "symbol": "rodata_103d18c",
+   "bytes": 18,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 17,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d18c"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_04.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027486,
+   "va_hex": "0x0103d19e",
+   "symbol": "rodata_103d19e",
+   "bytes": 26,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 25,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d19e"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027512,
+   "va_hex": "0x0103d1b8",
+   "symbol": "rodata_103d1b8",
+   "bytes": 131,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 6,
+    "text_bytes": 125,
+    "utf8": false
+   },
+   "purpose": "6-string pool",
+   "retires": [
+    "rodata_103d1b8"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_00.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027643,
+   "va_hex": "0x0103d23b",
+   "symbol": "rodata_103d23b",
+   "bytes": 62,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 3,
+    "text_bytes": 59,
+    "utf8": false
+   },
+   "purpose": "3-string pool",
+   "retires": [
+    "rodata_103d23b"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027705,
+   "va_hex": "0x0103d279",
+   "symbol": "rodata_103d279",
+   "bytes": 46,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 45,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d279"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027751,
+   "va_hex": "0x0103d2a7",
+   "symbol": "rodata_103d2a7",
+   "bytes": 24,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 23,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d2a7"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_07.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027775,
+   "va_hex": "0x0103d2bf",
+   "symbol": "rodata_103d2bf",
+   "bytes": 180,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 2,
+    "text_bytes": 178,
+    "utf8": false
+   },
+   "purpose": "2-string pool",
+   "retires": [
+    "rodata_103d2bf"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_07.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027955,
+   "va_hex": "0x0103d373",
+   "symbol": "rodata_103d373",
+   "bytes": 33,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 32,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d373"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17027988,
+   "va_hex": "0x0103d394",
+   "symbol": "rodata_103d394",
+   "bytes": 34,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 33,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d394"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_04.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028022,
+   "va_hex": "0x0103d3b6",
+   "symbol": "rodata_103d3b6",
+   "bytes": 45,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 44,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d3b6"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028067,
+   "va_hex": "0x0103d3e3",
+   "symbol": "rodata_103d3e3",
+   "bytes": 35,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 34,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d3e3"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028102,
+   "va_hex": "0x0103d406",
+   "symbol": "rodata_103d406",
+   "bytes": 38,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 37,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d406"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028140,
+   "va_hex": "0x0103d42c",
+   "symbol": "rodata_103d42c",
+   "bytes": 273,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 8,
+    "text_bytes": 265,
+    "utf8": false
+   },
+   "purpose": "8-string pool",
+   "retires": [
+    "rodata_103d42c"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_04.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028413,
+   "va_hex": "0x0103d53d",
+   "symbol": "rodata_103d53d",
+   "bytes": 30,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 29,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d53d"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028443,
+   "va_hex": "0x0103d55b",
+   "symbol": "rodata_103d55b",
+   "bytes": 124,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 7,
+    "text_bytes": 117,
+    "utf8": false
+   },
+   "purpose": "7-string pool",
+   "retires": [
+    "rodata_103d55b"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028567,
+   "va_hex": "0x0103d5d7",
+   "symbol": "rodata_103d5d7",
+   "bytes": 94,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 3,
+    "text_bytes": 91,
+    "utf8": false
+   },
+   "purpose": "3-string pool",
+   "retires": [
+    "rodata_103d5d7"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_07.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028661,
+   "va_hex": "0x0103d635",
+   "symbol": "rodata_103d635",
+   "bytes": 65,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 2,
+    "text_bytes": 63,
+    "utf8": false
+   },
+   "purpose": "2-string pool",
+   "retires": [
+    "rodata_103d635"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028726,
+   "va_hex": "0x0103d676",
+   "symbol": "rodata_103d676",
+   "bytes": 63,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 62,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d676"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028789,
+   "va_hex": "0x0103d6b5",
+   "symbol": "rodata_103d6b5",
+   "bytes": 44,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 43,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d6b5"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028833,
+   "va_hex": "0x0103d6e1",
+   "symbol": "rodata_103d6e1",
+   "bytes": 52,
+   "kind": "blob",
+   "detail": {
+    "incidental_ptr_words": 0,
+    "words": 0
+   },
+   "purpose": "opaque read-only blob",
+   "retires": [
+    "rodata_103d6e1",
+    "rodata_103d710"
+   ],
+   "interior": [
+    [
+     "rodata_103d710",
+     47
+    ]
+   ],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const unsigned char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028885,
+   "va_hex": "0x0103d715",
+   "symbol": "rodata_103d715",
+   "bytes": 4,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 3,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d715"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028889,
+   "va_hex": "0x0103d719",
+   "symbol": "rodata_103d719",
+   "bytes": 9,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 8,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d719"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028898,
+   "va_hex": "0x0103d722",
+   "symbol": "rodata_103d722",
+   "bytes": 28,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 27,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d722"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_02.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028926,
+   "va_hex": "0x0103d73e",
+   "symbol": "rodata_103d73e",
+   "bytes": 3,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 2,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d73e"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028929,
+   "va_hex": "0x0103d741",
+   "symbol": "rodata_103d741",
+   "bytes": 6,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 5,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d741"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028935,
+   "va_hex": "0x0103d747",
+   "symbol": "rodata_103d747",
+   "bytes": 4,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 3,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d747"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_07.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028939,
+   "va_hex": "0x0103d74b",
+   "symbol": "rodata_103d74b",
+   "bytes": 5,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 4,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d74b"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028944,
+   "va_hex": "0x0103d750",
+   "symbol": "rodata_103d750",
+   "bytes": 6,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 5,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d750"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_00.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028950,
+   "va_hex": "0x0103d756",
+   "symbol": "rodata_103d756",
+   "bytes": 2,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 1,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d756"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17028952,
+   "va_hex": "0x0103d758",
+   "symbol": "rodata_103d758",
+   "bytes": 163,
+   "kind": "ptr_record",
+   "detail": {
+    "words": 40,
+    "ptr_words": 1,
+    "density": 0.025,
+    "tail_bytes": 3
+   },
+   "purpose": "opaque read-only blob",
+   "retires": [
+    "rodata_103d758"
+   ],
+   "interior": [],
+   "status": "deferred",
+   "reason": "pointer-bearing but not word-sized (163 bytes, 3-byte tail): the run's extent must be re-derived before its pointer words can be relocated",
+   "ctype": "const unsigned long []"
+  },
+  {
+   "va": 17029115,
+   "va_hex": "0x0103d7fb",
+   "symbol": "rodata_103d7fb",
+   "bytes": 47,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 46,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d7fb"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029162,
+   "va_hex": "0x0103d82a",
+   "symbol": "rodata_103d82a",
+   "bytes": 47,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 46,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d82a"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_02.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029209,
+   "va_hex": "0x0103d859",
+   "symbol": "rodata_103d859",
+   "bytes": 47,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 46,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d859"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029256,
+   "va_hex": "0x0103d888",
+   "symbol": "rodata_103d888",
+   "bytes": 15,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 14,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d888"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_00.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029271,
+   "va_hex": "0x0103d897",
+   "symbol": "rodata_103d897",
+   "bytes": 46,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 45,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d897"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_07.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029317,
+   "va_hex": "0x0103d8c5",
+   "symbol": "rodata_103d8c5",
+   "bytes": 54,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 53,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d8c5"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029371,
+   "va_hex": "0x0103d8fb",
+   "symbol": "rodata_103d8fb",
+   "bytes": 22,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 21,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d8fb"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029393,
+   "va_hex": "0x0103d911",
+   "symbol": "rodata_103d911",
+   "bytes": 17,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 16,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d911"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029410,
+   "va_hex": "0x0103d922",
+   "symbol": "rodata_103d922",
+   "bytes": 19,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 18,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d922"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_02.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029429,
+   "va_hex": "0x0103d935",
+   "symbol": "rodata_103d935",
+   "bytes": 25,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 24,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d935"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029454,
+   "va_hex": "0x0103d94e",
+   "symbol": "rodata_103d94e",
+   "bytes": 21,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 20,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d94e"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029475,
+   "va_hex": "0x0103d963",
+   "symbol": "rodata_103d963",
+   "bytes": 27,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 26,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103d963"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029502,
+   "va_hex": "0x0103d97e",
+   "symbol": "rodata_103d97e",
+   "bytes": 271,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 9,
+    "text_bytes": 262,
+    "utf8": false
+   },
+   "purpose": "9-string pool",
+   "retires": [
+    "rodata_103d97e"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029773,
+   "va_hex": "0x0103da8d",
+   "symbol": "rodata_103da8d",
+   "bytes": 22,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 21,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103da8d"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029795,
+   "va_hex": "0x0103daa3",
+   "symbol": "rodata_103daa3",
+   "bytes": 51,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 50,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103daa3"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029846,
+   "va_hex": "0x0103dad6",
+   "symbol": "rodata_103dad6",
+   "bytes": 24,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 23,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103dad6"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029870,
+   "va_hex": "0x0103daee",
+   "symbol": "rodata_103daee",
+   "bytes": 22,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 21,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103daee"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029892,
+   "va_hex": "0x0103db04",
+   "symbol": "rodata_103db04",
+   "bytes": 31,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 30,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103db04"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_04.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17029923,
+   "va_hex": "0x0103db23",
+   "symbol": "rodata_103db23",
+   "bytes": 662,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 23,
+    "text_bytes": 639,
+    "utf8": false
+   },
+   "purpose": "23-string pool",
+   "retires": [
+    "rodata_103db23"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17030585,
+   "va_hex": "0x0103ddb9",
+   "symbol": "rodata_103ddb9",
+   "bytes": 20,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 19,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103ddb9"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17030605,
+   "va_hex": "0x0103ddcd",
+   "symbol": "rodata_103ddcd",
+   "bytes": 20,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 19,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103ddcd"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17030625,
+   "va_hex": "0x0103dde1",
+   "symbol": "rodata_103dde1",
+   "bytes": 25,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 24,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103dde1"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17030650,
+   "va_hex": "0x0103ddfa",
+   "symbol": "rodata_103ddfa",
+   "bytes": 28,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 27,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103ddfa"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_02.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17030678,
+   "va_hex": "0x0103de16",
+   "symbol": "rodata_103de16",
+   "bytes": 41,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 2,
+    "text_bytes": 39,
+    "utf8": false
+   },
+   "purpose": "2-string pool",
+   "retires": [
+    "rodata_103de16"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17030719,
+   "va_hex": "0x0103de3f",
+   "symbol": "rodata_103de3f",
+   "bytes": 44,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 2,
+    "text_bytes": 42,
+    "utf8": false
+   },
+   "purpose": "2-string pool",
+   "retires": [
+    "rodata_103de3f"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_07.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17030763,
+   "va_hex": "0x0103de6b",
+   "symbol": "rodata_103de6b",
+   "bytes": 286,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 10,
+    "text_bytes": 276,
+    "utf8": false
+   },
+   "purpose": "10-string pool",
+   "retires": [
+    "rodata_103de6b"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17031049,
+   "va_hex": "0x0103df89",
+   "symbol": "rodata_103df89",
+   "bytes": 51,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 50,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103df89"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17031100,
+   "va_hex": "0x0103dfbc",
+   "symbol": "rodata_103dfbc",
+   "bytes": 72,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 3,
+    "text_bytes": 69,
+    "utf8": false
+   },
+   "purpose": "3-string pool",
+   "retires": [
+    "rodata_103dfbc"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_04.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17031172,
+   "va_hex": "0x0103e004",
+   "symbol": "rodata_103e004",
+   "bytes": 44,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 43,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e004"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_04.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17031216,
+   "va_hex": "0x0103e030",
+   "symbol": "rodata_103e030",
+   "bytes": 314,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 11,
+    "text_bytes": 303,
+    "utf8": false
+   },
+   "purpose": "11-string pool",
+   "retires": [
+    "rodata_103e030"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_00.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17031530,
+   "va_hex": "0x0103e16a",
+   "symbol": "rodata_103e16a",
+   "bytes": 29,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 2,
+    "text_bytes": 27,
+    "utf8": false
+   },
+   "purpose": "2-string pool",
+   "retires": [
+    "rodata_103e16a"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_02.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17031559,
+   "va_hex": "0x0103e187",
+   "symbol": "rodata_103e187",
+   "bytes": 109,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 2,
+    "text_bytes": 107,
+    "utf8": false
+   },
+   "purpose": "2-string pool",
+   "retires": [
+    "rodata_103e187"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_07.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17031668,
+   "va_hex": "0x0103e1f4",
+   "symbol": "rodata_103e1f4",
+   "bytes": 34,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 33,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e1f4"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_04.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17031702,
+   "va_hex": "0x0103e216",
+   "symbol": "rodata_103e216",
+   "bytes": 39,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 38,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e216"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17031741,
+   "va_hex": "0x0103e23d",
+   "symbol": "rodata_103e23d",
+   "bytes": 32,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 31,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e23d"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17031773,
+   "va_hex": "0x0103e25d",
+   "symbol": "rodata_103e25d",
+   "bytes": 297,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 10,
+    "text_bytes": 287,
+    "utf8": false
+   },
+   "purpose": "10-string pool",
+   "retires": [
+    "rodata_103e25d"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17032070,
+   "va_hex": "0x0103e386",
+   "symbol": "rodata_103e386",
+   "bytes": 57,
+   "kind": "blob",
+   "detail": {
+    "incidental_ptr_words": 0,
+    "words": 0
+   },
+   "purpose": "opaque read-only blob",
+   "retires": [
+    "rodata_103e386"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const unsigned char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17032127,
+   "va_hex": "0x0103e3bf",
+   "symbol": "rodata_103e3bf",
+   "bytes": 33,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 32,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e3bf"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_07.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17032160,
+   "va_hex": "0x0103e3e0",
+   "symbol": "rodata_103e3e0",
+   "bytes": 52,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 51,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e3e0"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_00.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17032212,
+   "va_hex": "0x0103e414",
+   "symbol": "rodata_103e414",
+   "bytes": 41,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 40,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e414"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_04.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17032253,
+   "va_hex": "0x0103e43d",
+   "symbol": "rodata_103e43d",
+   "bytes": 38,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 37,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e43d"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17032291,
+   "va_hex": "0x0103e463",
+   "symbol": "rodata_103e463",
+   "bytes": 25,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 24,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e463"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17032316,
+   "va_hex": "0x0103e47c",
+   "symbol": "rodata_103e47c",
+   "bytes": 51,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 50,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e47c"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_04.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17032367,
+   "va_hex": "0x0103e4af",
+   "symbol": "rodata_103e4af",
+   "bytes": 34,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 33,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e4af"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_07.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17032401,
+   "va_hex": "0x0103e4d1",
+   "symbol": "rodata_103e4d1",
+   "bytes": 36,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 35,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e4d1"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17032437,
+   "va_hex": "0x0103e4f5",
+   "symbol": "rodata_103e4f5",
+   "bytes": 307,
+   "kind": "blob",
+   "detail": {
+    "incidental_ptr_words": 0,
+    "words": 0
+   },
+   "purpose": "opaque read-only blob",
+   "retires": [
+    "rodata_103e4f5"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const unsigned char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17032744,
+   "va_hex": "0x0103e628",
+   "symbol": "rodata_103e628",
+   "bytes": 71,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 2,
+    "text_bytes": 69,
+    "utf8": false
+   },
+   "purpose": "2-string pool",
+   "retires": [
+    "rodata_103e628"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_00.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17032815,
+   "va_hex": "0x0103e66f",
+   "symbol": "rodata_103e66f",
+   "bytes": 62,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 61,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e66f"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_07.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17032877,
+   "va_hex": "0x0103e6ad",
+   "symbol": "rodata_103e6ad",
+   "bytes": 83,
+   "kind": "blob",
+   "detail": {
+    "incidental_ptr_words": 0,
+    "words": 0
+   },
+   "purpose": "opaque read-only blob",
+   "retires": [
+    "rodata_103e6ad",
+    "rodata_103e6e2",
+    "rodata_103e6f2"
+   ],
+   "interior": [
+    [
+     "rodata_103e6e2",
+     53
+    ],
+    [
+     "rodata_103e6f2",
+     69
+    ]
+   ],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const unsigned char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17032960,
+   "va_hex": "0x0103e700",
+   "symbol": "rodata_103e700",
+   "bytes": 59,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 58,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e700"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_00.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033019,
+   "va_hex": "0x0103e73b",
+   "symbol": "rodata_103e73b",
+   "bytes": 300,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 12,
+    "text_bytes": 288,
+    "utf8": false
+   },
+   "purpose": "12-string pool",
+   "retires": [
+    "rodata_103e73b",
+    "rodata_103e850",
+    "rodata_103e852"
+   ],
+   "interior": [
+    [
+     "rodata_103e850",
+     277
+    ],
+    [
+     "rodata_103e852",
+     279
+    ]
+   ],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033319,
+   "va_hex": "0x0103e867",
+   "symbol": "rodata_103e867",
+   "bytes": 34,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 33,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e867"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_07.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033353,
+   "va_hex": "0x0103e889",
+   "symbol": "rodata_103e889",
+   "bytes": 67,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 66,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e889"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033420,
+   "va_hex": "0x0103e8cc",
+   "symbol": "rodata_103e8cc",
+   "bytes": 6,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 5,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e8cc"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_04.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033426,
+   "va_hex": "0x0103e8d2",
+   "symbol": "rodata_103e8d2",
+   "bytes": 79,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 6,
+    "text_bytes": 73,
+    "utf8": false
+   },
+   "purpose": "6-string pool",
+   "retires": [
+    "rodata_103e8d2"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_02.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033505,
+   "va_hex": "0x0103e921",
+   "symbol": "rodata_103e921",
+   "bytes": 8,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 7,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e921"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033513,
+   "va_hex": "0x0103e929",
+   "symbol": "rodata_103e929",
+   "bytes": 40,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 39,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e929"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033553,
+   "va_hex": "0x0103e951",
+   "symbol": "rodata_103e951",
+   "bytes": 33,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 32,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e951"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033586,
+   "va_hex": "0x0103e972",
+   "symbol": "rodata_103e972",
+   "bytes": 24,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 23,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103e972"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_02.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033610,
+   "va_hex": "0x0103e98a",
+   "symbol": "rodata_103e98a",
+   "bytes": 116,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 8,
+    "text_bytes": 108,
+    "utf8": false
+   },
+   "purpose": "8-string pool",
+   "retires": [
+    "rodata_103e98a"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_02.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033726,
+   "va_hex": "0x0103e9fe",
+   "symbol": "rodata_103e9fe",
+   "bytes": 71,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 2,
+    "text_bytes": 69,
+    "utf8": false
+   },
+   "purpose": "2-string pool",
+   "retires": [
+    "rodata_103e9fe"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033797,
+   "va_hex": "0x0103ea45",
+   "symbol": "rodata_103ea45",
+   "bytes": 68,
+   "kind": "string_pool",
+   "detail": {
+    "strings": 2,
+    "text_bytes": 66,
+    "utf8": false
+   },
+   "purpose": "2-string pool",
+   "retires": [
+    "rodata_103ea45"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033865,
+   "va_hex": "0x0103ea89",
+   "symbol": "rodata_103ea89",
+   "bytes": 34,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 33,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103ea89"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033899,
+   "va_hex": "0x0103eaab",
+   "symbol": "rodata_103eaab",
+   "bytes": 34,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 33,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103eaab"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033933,
+   "va_hex": "0x0103eacd",
+   "symbol": "rodata_103eacd",
+   "bytes": 32,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 31,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103eacd"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033965,
+   "va_hex": "0x0103eaed",
+   "symbol": "rodata_103eaed",
+   "bytes": 33,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 32,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103eaed"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_05.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17033998,
+   "va_hex": "0x0103eb0e",
+   "symbol": "rodata_103eb0e",
+   "bytes": 34,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 33,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103eb0e"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_06.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17034032,
+   "va_hex": "0x0103eb30",
+   "symbol": "rodata_103eb30",
+   "bytes": 43,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 42,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103eb30"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_00.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17034075,
+   "va_hex": "0x0103eb5b",
+   "symbol": "rodata_103eb5b",
+   "bytes": 36,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 35,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103eb5b"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_03.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17034111,
+   "va_hex": "0x0103eb7f",
+   "symbol": "rodata_103eb7f",
+   "bytes": 33,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 32,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103eb7f"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_07.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17034144,
+   "va_hex": "0x0103eba0",
+   "symbol": "rodata_103eba0",
+   "bytes": 369,
+   "kind": "ptr_record",
+   "detail": {
+    "words": 92,
+    "ptr_words": 17,
+    "density": 0.1848,
+    "tail_bytes": 1
+   },
+   "purpose": "opaque read-only blob",
+   "retires": [
+    "rodata_103eba0",
+    "rodata_103ebf5",
+    "rodata_103ec0a",
+    "rodata_103ec11"
+   ],
+   "interior": [
+    [
+     "rodata_103ebf5",
+     85
+    ],
+    [
+     "rodata_103ec0a",
+     106
+    ],
+    [
+     "rodata_103ec11",
+     113
+    ]
+   ],
+   "status": "deferred",
+   "reason": "pointer-bearing but not word-sized (369 bytes, 1-byte tail): the run's extent must be re-derived before its pointer words can be relocated",
+   "ctype": "const unsigned long []"
+  },
+  {
+   "va": 17034513,
+   "va_hex": "0x0103ed11",
+   "symbol": "rodata_103ed11",
+   "bytes": 7,
+   "kind": "string",
+   "detail": {
+    "strings": 1,
+    "text_bytes": 6,
+    "utf8": false
+   },
+   "purpose": "C string",
+   "retires": [
+    "rodata_103ed11"
+   ],
+   "interior": [],
+   "status": "emitted",
+   "reason": "",
+   "ctype": "const char []",
+   "file": "g1_net_rodata_01.c",
+   "verification": "byte-exact",
+   "verification_detail": ""
+  },
+  {
+   "va": 17034520,
+   "va_hex": "0x0103ed18",
+   "symbol": "rodata_103ed18",
+   "bytes": 12,
+   "kind": "ptr_record",
+   "detail": {
+    "words": 3,
+    "ptr_words": 1,
+    "density": 0.3333,
+    "tail_bytes": 0
+   },
+   "purpose": "opaque read-only blob",
+   "retires": [
+    "rodata_103ed18"
+   ],
+   "interior": [],
+   "status": "deferred",
+   "reason": "atomic EXCLUDE: 1/1 pointer words do not resolve to a symbol this project defines (0 of them are SRAM addresses; first unresolved 0x01008800)",
+   "ctype": "const unsigned long []",
+   "unresolved": [
+    "0x01008800"
+   ]
+  }
+ ]
+}
