@@ -749,3 +749,231 @@ See `recon/analysis/stage04b_r7_validation.md` §8. The one thing that will bite
 **the shipped navigation reference must be regenerated from
 `/private/tmp/g1_ship_seed_q1`, not read from the committed
 `display_sensor_oracle.json`.**
+
+---
+
+## R7 GATE RECORD — THE PHASE-TOLERANT CRITERION, and stages 01-07 re-run, 2026-07-27
+
+The record above left stage 04 failing on eight navigation fields that are
+**content-identical and order-identical within each poll train**, and named two
+live options. The owner chose the **phase-tolerant criterion**, explicitly in
+preference to re-baselining the two `p1_boot` streams, on the ground that it
+**keeps both streams gated** rather than exempting them. It is now implemented,
+its bound is derived from measurement, and stages 01-07 are re-run against it.
+Full working: **`recon/analysis/phase_tolerant_criterion.md`**.
+
+**Inputs.** HEAD `3d3ee155`, working tree clean except the unrelated untracked
+`.xapk`. `driver.py status`: stages **00-08 all current** at the start. Stage
+trees as materialised by the stage04b pass (11:48-12:26). *The concurrent parity
+agent moved **104** inputs at 13:02:49 — after every build in this record
+completed (12:55:23 … 13:01:46). Stage 00 is stale again; regenerate before the
+next measurement.*
+
+**Three images cover stages 01-07** — measured with `cmp`, not assumed:
+
+| image | FLASH | `text` Δ vs in-tree | `runtime_info_sync` |
+|---|---:|---:|---|
+| in-tree base | 956,480 B | 0 | `0x00015c04` |
+| **stage 01 = 02 = 03** (`cmp`-identical) | 956,356 B | −4 | `0x00015c04` |
+| **stage 04-B = 05 = 06** (`cmp`-identical) | 956,276 B | −80 | `0x00016c14` |
+| **stage 07** | **955,996 B** | **−356** | `0x00016c14` (the *same* fifth value, not a sixth) |
+
+`size-gate 6` measured **byte-identical** as declared; `size-gate 7` measured
+`size-changing`, `text` **−276 B**, `rodata` **−8 B**, `oracle_required` true.
+Only stage 07 needed new Renode runs: three seeded captures (nav ×2, dash),
+`diff -r`-identical between the two navigation runs.
+
+### The criterion
+
+`recon/emulator/scripts/phase_tolerant_compare.py`, fed by an **additive**
+`peripherals/<bus>/whole_run_trains` block that
+`build_display_sensor_oracle.py` now writes. **No pre-existing oracle field
+changed value** — proved by regenerating the dashboard oracle and diffing:
+`CHANGED: 0`, `ADDED: 444`, all 444 in the new block.
+
+* **burst** — consecutive transactions on one `(bus, device)` at most
+  `BURST_GAP_NS = 5 ms` apart. The gap distribution is bimodal and the
+  separation is **asserted per capture** (`gap_separation.separated`), because
+  the valley is only ~1 ms wide on `spim_a` and `twim1` npm1300.
+* **train** — bursts sharing one **register-programme** key: every *write*
+  payload verbatim, every *read* reduced to `(register, payload length)`.
+  A write payload is the firmware talking; a read payload is the model talking.
+  Keying on full content instead put `npm1300` bursts in different trains as its
+  charger-state register stepped, and produced `δ = −3,706 ms` on a
+  population-equal train **between shipped and our accepted base**.
+* **P1** the set of train keys must be identical — a changed register, write
+  payload, read length or burst shape fails.
+* **P2** per-train burst populations must be equal, or differ only by bursts the
+  20 s observation wall clipped, checked by extrapolating **the train's own
+  measured median period** across the wall. This is the count effect handled by
+  construction, not by a widened tolerance.
+* **P3** `|starts_ns[i] ours − shipped| ≤ Δ`, on bursts whose correspondence is
+  unambiguous (`|δ_i|` below half the local period; above that the measurement
+  does not exist and is reported as such, with content and population still
+  gated).
+* **P4** cadence is gated **through** P3: a period error `e` accumulates to
+  `|δ| > Δ` after `⌈Δ/e⌉` bursts — on the 45-burst OPT3001 train that is a
+  **0.94 %** period error.
+* **P5** an order inversion between two bursts more than Δ apart in the shipped
+  run fails. Ordering is enforced through time, not through index.
+* **P0** (added after it fired) a train that appears only in ours and whose key
+  *begins* with another train's key is a **shared-bus burst merge** — a
+  criterion artifact — and is named as such rather than counted as content.
+
+### The bound, derived before any stage was compared
+
+> Δ = the maximum `|δ|` over **phase-measurable** trains between the **shipped
+> firmware** and **our in-tree build**, over both stimuli and every traced bus.
+
+**Δ = 145.440 ms.** It comes from four navigation display-animation trains of
+22-transaction pixel-window bursts with a **2,265.1 ms** minimum period, so the
+correspondence is forced, not chosen:
+
+```
+shipped 5.620470  7.885550  10.150620  12.588180
+ours    5.583150  7.848230  10.113330  12.442740
+delta    -37.320   -37.320    -37.290   -145.440 ms
+```
+
+Three cycles in lock-step, then one **−108.15 ms slip**. The justification for
+treating that as not-a-difference is the strongest in the project: on this very
+stream whole-run `spim_a` is **3,645 == 3,645** and **all four framebuffers are
+byte-identical to the goldens**. A 145 ms slip changes not one pixel.
+
+**Rejected derivations, with their numbers.** The codegen noise floor
+(base ↔ stage 03 = **1.226 ms**) makes the base itself fail every stream — a
+blind gate, not a strict one. A scheduler-quantum derivation was abandoned
+because the ≈100.5 ms step could not be tied to a mechanism:
+`CONFIG_SYS_CLOCK_TICKS_PER_SEC=32768` (30.5 µs), the virtual central's
+connection interval is 30 ms with `SweepDwell 4` = 120 ms, and **no traced
+peripheral has a ≈100.5 ms cadence**.
+
+**The bound is not rounded up**, so the base sits exactly at it with zero
+headroom, and §4.4 of the report publishes the whole ladder at the rejected
+Δ = 45.870 ms as well.
+
+### Result
+
+| stage | strict `cmp3` | **phase-tolerant, Δ = 145.440 ms** |
+|---|---|---|
+| **01 / 02 / 03** | 0 regressions | **PASS** — 0 regressions, 0 pre-existing-but-worse |
+| **04-B / 05 / 06** | 8 regressions nav, 1 dash | **PASS on every gated stream** — 0 regressions both stimuli; **2 pre-existing-but-worse on navigation** |
+| **07** | 9 regressions nav / 4 dash, **4 improvements each** | **PASS on every gated stream** — 0 regressions both stimuli; **2 pre-existing-but-worse on navigation** |
+
+**All four acceptance framebuffers byte-identical to the committed goldens on
+every image measured** (base, 03, 04-B, 07), 153,600 B each, `cmp` exit 0.
+
+**A criterion change that flipped a passing stage would be a bug in the
+criterion. It flips none:** stages 01/02/03 are clean under the new criterion,
+and the four streams the base passes — `twim1 opt3001`, both ST25DV ports and
+`twim2 lsm6dso` — still pass on every stage and both stimuli.
+
+**Seven of the eight stage-04-B strict regressions are absorbed as phase**
+(the OPT3001 wall-clipped burst, the LSM6DSO ODR block crossing one poll burst,
+and the merged `twim1` bus hash the oracle already flags as unstable).
+**The eighth, `counters/RADIO_TX`, is NOT absorbed — it is outside the
+criterion entirely** and stays strictly gated and failing.
+
+**What is not phase, and is charged:** on navigation, `spim_a` gains
+**21 `P3` failures** and its peak `|δ|` goes 145.440 → **245.780 ms** (stage
+04-B) / **281.670 ms** (stage 07), on a stream that already fails `P1 content`
+for the §41 one-extra-frame residue. The criterion says so rather than hiding
+it in a "pre-existing" bucket.
+
+### Stage 07 also CLOSES three long-standing gaps
+
+```
+counters/ESB_MASTER_FRAMES   ship 0x175  base 0x176  S07 0x175  == shipped (both stimuli)
+counters/ESB_ACKS            ship 0x175  base 0x176  S07 0x175  == shipped
+counters/JBD_FRAMECOUNTER_P2 ship 0x2E65 base 0x2EA3 S07 0x2E65 == shipped (dashboard)
+spim_a/p2_render/count       ship 12225  base 12289  S07 12225  == shipped (dashboard)
+```
+
+The `ESB_*` `+1` is iteration 43 §43.11's open item, left "untouched with its
+falsification test unrun" by the stage04b record. **A −276 B relink closes it.**
+Reported, not celebrated — the same mechanism moves everything else.
+
+### The §9 prediction: 5 of 6 confirmed, 1 falsified
+
+`stage04b_r7_validation.md` §9 predicted stage 07's capture in advance.
+Confirmed: `twim1 p1_boot` **373**, OPT3001 **35** and sha `b759ccc5…`,
+`twim2 p1_boot` sha `03537cda…` and `regprog` `6d3c4072…`, OPT3001 poll #13 in
+the **earlier slot** (`4.200620 s`, not ≈4.3042 s), all four framebuffers
+byte-identical. **Falsified: the merged `twim1 p1_boot` sha is `47a3cad0…`,
+not `4f49068a…`** — that hash covers the cross-device interleaving of four
+devices on one bus, which the oracle's own `determinism_verification` has always
+flagged as unstable; the prediction should not have included it.
+
+**One quantitative correction to §4 of that report.** It says the images past
+the threshold land in the earlier slot "within 0.5 ms of each other". Stage 07
+lands **3.02 ms** from stage 04-B — same slot, six times that spread. The slot
+is real; the tightness was a property of the three images then measured.
+
+### The stale shipped navigation oracle: REGENERATED
+
+`recon/emulator/reports/display_sensor_oracle.json` was regenerated from the
+seeded shipped capture. **0 fields removed; 8 corrected; 20 gained that the
+committed file never carried; 357 added by the new train block.** The four
+golden framebuffers are **byte-identical** after regeneration.
+
+| field | committed | regenerated | cause |
+|---|---|---|---|
+| `counters/RADIO_TX` (+ `radio_esb/ble_radio_transmitted_frames`) | `0x230` | `0x232` | staleness — predates `emulation SetSeed` |
+| `counters/VC_DATA_EVENTS` | `0x215` | `0x212` | staleness — seed |
+| `counters/SCREEN_ID_ctx_d5` | absent | `0x0A` | staleness — counter added later |
+| `twim1/p1_boot/stream_sha256` | `ef6fcb11…` | `33cbd8c1…` | staleness — seed (merged-bus interleaving) |
+| `twim1/p2_render/stream_sha256` | `f418e5ba…` | `329565e4…` | staleness — seed |
+| `jbd_journal_tail` | — | — | staleness — seed moves the sequence numbers |
+| `saadc/whole_run/stream_sha256` | `660cdf3b…` | `ebf06b30…` | **script change** — iteration 42's RAM-pointer canonicalisation |
+| 20 further fields | absent | present | **script change** — iteration 42's pointer + analogue-sample canonicalisations |
+
+**No criterion was retired, so there is no `WITHDRAWN_annotations` block.**
+`parity_criteria` (G-1…G-6, S-*) and `determinism_verification` carry through
+byte for byte; the new criterion is published beside them at
+`peripherals/<bus>/whole_run_trains/criterion`. The **dashboard** oracle
+regenerated with **0 of 69 fields changed**, confirming both that it was current
+and that the builder change is strictly additive.
+
+### What the criterion stops catching — published so the residue stays measurable
+
+1. absolute placement of a periodic train in wall time, up to **145.440 ms** —
+   a wrong sleep constant, a dropped tick or a priority inversion whose whole
+   effect is a sub-Δ displacement. *Kept visible by:* the strict per-phase
+   `transaction_count`/`stream_sha256`, and the per-stream `max|delta|` the
+   comparer prints for every stream including passing ones.
+2. **read payload bytes** are not in the train key. *Kept visible by:*
+   `stream_sha256`, `analogue_sample_payloads`, `stream_sha256_regprog`.
+3. **burst counts at the observation wall**, when the train's own period
+   predicts them. *Kept visible by:* the strict counts and the printed `note`.
+4. **phase on ambiguous trains** — on stage 07 navigation **199 of 547** LSM6DSO
+   poll bursts are excluded; on the dashboard **432 of 545**. *Kept visible by:*
+   the `????` lines, which state how many of how many and the largest excluded δ.
+5. **ordering inside a 145.440 ms window.** *Kept visible by:*
+   `worst_admissible_inversion_ms` and the strict `stream_sha256`.
+6. **`npm1300` phase is indeterminate** — three trains per stimulus with `|δ|`
+   up to 7,497.653 ms are ambiguous.
+7. **`RADIO_TX`, `ESB_*`, `VC_DATA_EVENTS`, `saadc`, `pdm0`, `gpiote*` are not
+   covered at all** — no train decomposition; still gated strictly.
+8. a shared bus can **merge two independent bursts** under `BURST_GAP_NS` once
+   one shifts (measured on stage 07: a `070401` write landing 3.100 ms before
+   the `080001…` init burst). That is a **false positive**, named `P0
+   segmentation`, still failing. The repair — calibrate the gap per device from
+   the shipped reference — is **not done**.
+
+### Two findings the strict criterion never surfaced
+
+* **The in-tree base fails `P5 order` on `twim1` npm1300**: "two bursts
+  9,904.330 ms apart in the shipped run swapped order". A pre-existing ordering
+  defect, invisible while the merged bus hash was already NE for other reasons.
+* **`spim_a` navigation fails `P1 content` on every image including the base** —
+  one animation-frame train in shipped that is absent from ours and one only in
+  ours. The `sensor_parity_status.md` §41 residue, now gated as *content*,
+  which no amount of phase tolerance will absorb.
+
+### Reproducing
+
+See `recon/analysis/phase_tolerant_criterion.md` §10. The one thing that has
+changed for the better: **the committed
+`recon/emulator/reports/display_sensor_oracle.json` may now be used directly as
+the shipped navigation reference** — the stage04b record's warning to regenerate
+it from `/private/tmp/g1_ship_seed_q1` no longer applies.

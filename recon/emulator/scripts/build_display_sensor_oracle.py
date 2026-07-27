@@ -531,6 +531,169 @@ def summarise_i2c(transactions):
 POINTER_REGS = {"saadc": {"ResultPtr"}}
 
 
+# ===========================================================================
+# P4 -- the PHASE-TOLERANT criterion (recon/analysis/phase_tolerant_criterion.md)
+#
+# Everything above this line is WALL-ANCHORED: a stream is cut at the 6 s phase
+# boundary and the two halves are counted and hashed.  That makes every field
+# above sensitive to the ABSOLUTE placement of a periodic train in wall time --
+# a train that shifts by one poll period gains or loses a burst inside the
+# window and every count and hash downstream of it moves, with no change to
+# what the firmware exchanged with the device.
+#
+# The block below is TRAIN-ANCHORED and ADDITIVE.  Nothing above changes.
+#
+#   burst   a maximal run of consecutive transactions on one (bus, device)
+#           separated by no more than BURST_GAP_NS.  The gap distribution is
+#           strongly bimodal (measured, shipped navigation capture: intra-burst
+#           gaps <= 1e6 ns, inter-burst gaps >= 1e7 ns) and the separation is
+#           ASSERTED per capture in `gap_separation`, so a future capture that
+#           violates it is reported rather than silently mis-segmented.
+#   train   the bursts sharing one key, in time order.  The key is the burst's
+#           REGISTER PROGRAMME: every write payload verbatim, every read reduced
+#           to (selected register, payload length).  A read payload is the
+#           MODEL talking, not the firmware; a write payload is the firmware
+#           talking.  Keying on writes is what makes a train's membership stable
+#           when a modelled sensor value crosses a threshold at a slightly
+#           different virtual time.
+#
+# `starts_ns` is published for every train so a comparer can measure the phase
+# offset directly.  The strict wall-anchored fields stay exactly as they were.
+# ===========================================================================
+BURST_GAP_NS = 5_000_000          # 5 ms; sits inside the measured bimodal void
+OBSERVATION_WALL_NS = 20_000_000_000
+
+
+def i2c_program_line(t, last_reg):
+    """Register-programme line: writes verbatim, reads as (register, length)."""
+    if t["dir"] == "W":
+        return "%02X|W|%s" % (t["dev"], t["data"].hex().upper())
+    reg = "%02X" % last_reg if last_reg is not None else "--"
+    return "%02X|R|%s|n%d" % (t["dev"], reg, len(t["data"]))
+
+
+def i2c_program_lines(txs):
+    last, out = {}, []
+    for t in txs:
+        key = (t["bus"], t["dev"])
+        if t["dir"] == "W" and t["data"]:
+            last[key] = t["data"][0]
+        out.append(i2c_program_line(t, last.get(key)))
+    return out
+
+
+def split_bursts(ticks, gap_ns=BURST_GAP_NS):
+    """Return (list of index ranges, max intra-burst gap, min inter-burst gap)."""
+    if not ticks:
+        return [], None, None
+    ranges, start = [], 0
+    max_intra, min_inter = None, None
+    for i in range(1, len(ticks)):
+        g = ticks[i] - ticks[i - 1]
+        if g > gap_ns:
+            ranges.append((start, i))
+            start = i
+            min_inter = g if min_inter is None else min(min_inter, g)
+        else:
+            max_intra = g if max_intra is None else max(max_intra, g)
+    ranges.append((start, len(ticks)))
+    return ranges, max_intra, min_inter
+
+
+def _train_block(ticks, lines, label):
+    ranges, max_intra, min_inter = split_bursts(ticks)
+    trains = {}
+    for a, b in ranges:
+        key = "|".join(lines[a:b])
+        trains.setdefault(key, []).append((ticks[a], b - a))
+    out = []
+    for key, members in trains.items():
+        starts = [t for t, _ in members]
+        periods = [starts[i + 1] - starts[i] for i in range(len(starts) - 1)]
+        out.append({
+            "key_sha256": sha(key.encode()),
+            "key_head": key[:96],
+            "key_chars": len(key),
+            "burst_transactions": members[0][1],
+            "count": len(members),
+            "starts_ns": starts,
+            "period_ns": ({"min": min(periods), "median": sorted(periods)[len(periods) // 2],
+                           "max": max(periods)} if periods else None),
+        })
+    out.sort(key=lambda e: (-e["count"], e["starts_ns"][0]))
+    return {
+        "label": label,
+        "transaction_count": len(ticks),
+        "burst_count": len(ranges),
+        "train_count": len(out),
+        "gap_separation": {
+            "burst_gap_ns": BURST_GAP_NS,
+            "max_intra_burst_gap_ns": max_intra,
+            "min_inter_burst_gap_ns": min_inter,
+            "separated": (max_intra is None or min_inter is None
+                          or (max_intra <= BURST_GAP_NS < min_inter)),
+        },
+        "trains": out,
+    }
+
+
+def summarise_i2c_trains(txs):
+    per_dev = {}
+    for t in txs:
+        name = I2C_DEVICES.get((t["bus"], t["dev"]), "unknown_0x%02X" % t["dev"])
+        per_dev.setdefault(name, []).append(t)
+    out = {}
+    for name, dtx in per_dev.items():
+        lines = i2c_program_lines(dtx)
+        out[name] = _train_block([t["tick"] for t in dtx], lines, name)
+    return out
+
+
+def summarise_spi_trains(txs, label):
+    if not txs:
+        return {}
+    lines = [spi_canonical_line(t) for t in txs]
+    return {label: _train_block([t["tick"] for t in txs], lines, label)}
+
+
+TRAIN_CRITERION_NOTE = {
+    "name": "phase-tolerant stream criterion (whole run, train-anchored)",
+    "why": (
+        "Every field under peripherals/<bus>/phases is cut at the 6 s wall, so a "
+        "periodic train that shifts in time gains or loses a burst inside the "
+        "window and its count and stream_sha256 both move with NO change to what "
+        "the firmware exchanged.  This block is anchored to the train instead."),
+    "burst": "consecutive transactions on one (bus,device) separated by <= burst_gap_ns",
+    "train_key": (
+        "the burst's REGISTER PROGRAMME -- every write payload verbatim, every "
+        "read reduced to (selected register, payload length).  I2C only; SPI "
+        "bursts are keyed on the full tx|rx content."),
+    "gates": [
+        "P1 train set: the set of key_sha256 must be identical",
+        "P2 population: per-train burst counts must be equal, or differ only by "
+        "bursts the observation wall clipped, which is checked by extrapolating "
+        "the train's own measured period across the wall",
+        "P3 phase: |starts_ns[i] ours - starts_ns[i] shipped| <= phase_bound for "
+        "every i, on trains whose alignment is unambiguous",
+        "P4 cadence: gated THROUGH P3 -- a period error e accumulates to "
+        "|delta| > bound after ceil(bound/e) bursts",
+        "P5 order: a reordering is admissible only when every burst involved "
+        "stays within phase_bound of its counterpart",
+    ],
+    "phase_measurable": (
+        "a train is phase-measurable iff max|delta| < min(period)/2; above that "
+        "the i-th-to-i-th correspondence is ambiguous and the train's phase "
+        "carries no information (its content and population are still gated)"),
+    "strict_fields_retained": [
+        "peripherals/<bus>/phases/<phase>/transaction_count",
+        "peripherals/<bus>/phases/<phase>/stream_sha256",
+        "peripherals/<bus>/phases/<phase>/stream_sha256_regprog",
+        "peripherals/<bus>/phases/<phase>/devices/<dev>/stream_sha256",
+        "peripherals/twim2/phases/<phase>/devices/lsm6dso_imu/analogue_sample_payloads",
+    ],
+}
+
+
 def summarise_regaccess(accesses, periph=None):
     if not accesses:
         return {"access_count": 0, "note": "peripheral never accessed by the firmware"}
@@ -980,14 +1143,24 @@ def main():
                            "SPIM3 @0x4000C000 (firmware label SPIM4)"),
             "device": "JBD_Display 640x480 4bpp micro-LED" if bus == "spim_a" else "(none attached)",
             "phases": per_phase,
+            "whole_run_trains": {
+                "criterion": TRAIN_CRITERION_NOTE,
+                "burst_gap_ns": BURST_GAP_NS,
+                "observation_wall_ns": OBSERVATION_WALL_NS,
+                "devices": summarise_spi_trains(
+                    all_spi.get(bus, []),
+                    "jbd_display" if bus == "spim_a" else "none"),
+            },
         }
 
     # ---------------- I2C / sensors --------------------------------------
+    all_i2c = {}
     for bus in ("twim1", "twim2"):
         per_phase = {}
         for ph in PHASES:
             txs = parse_i2c(os.path.join(outdir, "%s.%s.trace" %
                                          (bus, ph.split("_")[0])))
+            all_i2c.setdefault(bus, []).extend(txs)
             ordinals, samples = annotate_analogue_samples(txs)
             per_phase[ph] = {
                 "transaction_count": len(txs),
@@ -1006,6 +1179,12 @@ def main():
             "devices_on_bus": [v for (b, _), v in I2C_DEVICES.items()
                                if b == bus.upper().replace("TWIM", "TWIM")],
             "phases": per_phase,
+            "whole_run_trains": {
+                "criterion": TRAIN_CRITERION_NOTE,
+                "burst_gap_ns": BURST_GAP_NS,
+                "observation_wall_ns": OBSERVATION_WALL_NS,
+                "devices": summarise_i2c_trains(all_i2c.get(bus, [])),
+            },
         }
     oracle["peripherals"]["twim1"]["devices_on_bus"] = [
         v for (b, _), v in I2C_DEVICES.items() if b == "TWIM1"]
