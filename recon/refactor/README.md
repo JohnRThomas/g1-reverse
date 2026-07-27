@@ -703,7 +703,7 @@ tolerance was widened.** `"oracle_required": true` in stage 04's manifest is
 `byte-identical`, all sections Δ 0. Its composition work costs nothing
 observable and it **inherits stage 04's failure exactly**.
 
-### Two transient integrity failures, recorded because they happened
+### Two transient integrity failures — cause: a SECOND WRITER in this directory
 
 * `materialize 4` once produced a tree **missing merged-unit files its own
   manifest listed** — `"parity_rows": 2473` instead of 2,567 — and `materialize
@@ -716,8 +716,32 @@ observable and it **inherits stage 04's failure exactly**.
   is sha-identical across the stage 03/04/05 trees and carries the correct
   post-stage-03 path, the source is sha-identical across all three, and stages
   03 and 05 built it clean minutes either side. A clean rebuild of the same tree
-  gave exit 0. **Under C4 a stage compile failure is proof the transformer is
-  wrong; rebuild once from a clean build directory before invoking that rule.**
+  gave exit 0.
+
+**Both are explained, and the explanation is a gap in the contract.** `ls -lT`
+shows `transforms/t03_module_structure.py` rewritten at **11:56:15**, inside my
+stage-03/stage-04 build window — the failing build was the one running at that
+instant — with `stagelib.py`, `sdk_symbols.py`, `driver.py` and the new stages
+06–08 landing 12:03–12:22. **A second agent was editing this pipeline while it
+ran.** C1 protects the canonical trees *from* the pipeline; nothing protects the
+pipeline *from* a second writer, and the two failure modes it produced were a
+tree silently 94 functions short and a compile error that reads exactly like a
+transformer bug.
+
+Two consequences worth carrying forward:
+
+* **C4's "a compile failure in a stage tree is proof the transformer is wrong"
+  holds only when nobody else is writing the transformer.** Check `git status`
+  and file mtimes, and rebuild once from a clean build directory, before
+  invoking it.
+* **`materialize` should assert its own `parity_rows` against
+  `check-addresses`.** The 2,473-vs-2,567 corruption surfaced only because the
+  *next* stage crashed on it.
+
+Everything this record reports was re-verified afterwards: stages 4 and 5
+re-materialised **byte-identically** (manifest and whole tree), and stages 03
+and 04 were **rebuilt from the post-edit trees with `cmp`-identical
+`zephyr.bin`** — so the captured images are exactly what the trees produce.
 
 ### Reproducing
 
