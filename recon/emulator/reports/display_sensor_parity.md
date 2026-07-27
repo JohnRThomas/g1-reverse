@@ -62,6 +62,27 @@ head-up gesture the firmware initialises the panel but never paints the canvas.
 
 ### 2.1 Determinism actually verified (not assumed)
 
+> **CORRECTION — P4 iteration 41 (2026-07-27).**  Everything in this section was
+> measured **without** pinning Renode's emulation-wide PRNG seed, and is
+> therefore one draw of a random variable, not a verified property.
+> `platforms/nrf5340.repl:459` gives the net core a stock
+> `Miscellaneous.NRF52840_RNG` at 0x41009000 that draws from
+> `Emulation.RandomGenerator`, whose seed is chosen **freshly at every Renode
+> start** (measured on two bare launches: 2124439726, then 720424243).  Two
+> **shipped-image** navigation captures taken back to back gave
+> `spim_a` **786 / 2,859** and **764 / 2,881**, and `twim1 p1_boot` **373** and
+> **371** — i.e. the bullets below marked "bit-identical" are NOT.  Only the
+> whole-run totals are (`spim_a` 3,645 both).
+>
+> `capture_display_sensor_oracle.sh` now emits `emulation SetSeed $G1_SEED`
+> (default **305419896**) as the first line of the generated `capture.resc` and
+> echoes `ORACLE_EMULATION_SEED:` into `run.out`.  With that seed pinned, two
+> shipped runs are **byte-identical in every trace file including the tick
+> column**, and they reproduce exactly the numbers recorded in this document —
+> so no oracle JSON needs regenerating.  Detail and every measurement:
+> `our_boot_bringup.md` §41.6–41.8.
+
+
 The whole capture was run **twice end-to-end** and the two oracles diffed
 field-by-field.
 

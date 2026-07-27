@@ -9,27 +9,41 @@ criteria sets, both in force:
 | `display_sensor_oracle.json` | `E_ID_SCREEN_NAVIGATION` (id 10) | phone connects **and writes GATT `0a0600000000`**, then `don` gesture | G-1…G-6, S-* |
 | **`display_sensor_oracle_dashboard.json`** *(new)* | **`E_ID_SCREEN_DASHBOARD` (id 6)** | phone connects, **NO GATT command**, then `don` gesture | **D-1…D-7, S-D-*** |
 
-> ## ⇩ CURRENT STATE IS AT THE BOTTOM: **"UPDATE — P4 iteration 40"** ⇩
-> **Iteration 40 (`g1-i40d-app`) is the live measurement.  All four
-> framebuffers are still BYTE-IDENTICAL to the shipped firmware
-> (`cmp` vs the golden `.raw` files: NO DIFFERENCE on all three non-zero ones,
-> dashboard `p1_boot` all-zero).  §39.8's hang is GONE — the six NFC-Forum WLC
-> NDEF record ops behind `event_record_init` / `fill_record_type8` are
-> recovered and relocated — and with it:**
-> * **`S-D-ADC` 184 -> 998 == the oracle's 998 accesses** (the pre-regression
->   figure was 668; this is the count the shipped firmware makes, exactly);
-> * **`S-D-PMIC` `p1_boot` RESTORED to 285 == 285 with the stream sha EQUAL**,
->   after `FUN_0000e53c` was taken from FAIL 13/43 to PASS 43/43 and the
->   reported battery reached the shipped **100**;
-> * **the ST25DV NDEF/WLC write happens for the first time and is
->   BYTE-IDENTICAL**: `0x53` 25 == 25 with sha `51e8cde73aa9…` EQ, `0x57`
->   22 == 22 sha EQ — and therefore the WHOLE dashboard `twim1 p1_boot` bus is
->   **346 == 346 with the stream sha `0a8ed8502ccb…` EQUAL**, every OPT3001,
->   nPM1300 and ST25DV transaction of the boot phase at once.
+> ## ⇩ CURRENT STATE: **P4 iteration 41** (detail in `our_boot_bringup.md` §41) ⇩
+> **Iteration 41 (`g1-i41b-app`, net unchanged `g1-i30e-net`) is the live
+> measurement.  ALL FOUR framebuffers are still BYTE-IDENTICAL to the shipped
+> firmware (`cmp` vs the golden `.raw` files, 153,600 B each, exit 0; dashboard
+> `p1_boot` all-zero) — re-verified at HEAD `5337623a`, which the latent-defect
+> harvest had left ungated.**
 >
-> Still open: `G-3` (navigation `spim_a` repaint frequency, 126 vs 764), the
-> `saadc` stream sha (count now exact), dashboard `twim1 p2_render` 572 vs 584,
-> and `twim2 p2_render`.  Full accounting in `our_boot_bringup.md` §40.**
+> * **`G-3` CLOSED as a defect.**  `ui_navigation_task`'s missing `event == 0`
+>   arm is restored from the shipped Thumb: navigation `spim_a` `p1_boot`
+>   **126 -> 808** and `p2_render` **109 -> 2,859** (shipped 764 / 2,881;
+>   whole run **3,667 vs 3,645**).  The restored animation is the shipped one
+>   *cell for cell*: `x=32`, 9 pixel bytes, rows 265…285, 21 blits per refresh,
+>   at **66.62 ms = 15.0105 Hz**, identical to the shipped cadence to the
+>   nanosecond.  The whole residue is **one extra frame** because our
+>   `NAVIGATION_ACTIVE` transition is 110 ms early (3.981 s vs 4.091 s).
+> * **Collateral: the whole navigation `twim1 p1_boot` per-device set now
+>   matches** — 371 == 371, OPT3001 **33 == 33 sha EQ** (was 35), nPM1300
+>   291 == 291 sha EQ, both ST25DV ports sha EQ, `ESB_MASTER_FRAMES`/`ESB_ACKS`
+>   0x175 == 0x175.  The `33 <-> 35` puzzle of §40.13 item 5 and R7 §4.5 was
+>   the MISSING DISPLAY WORKLOAD, not jitter and not the NDEF change.
+> * **The capture's non-determinism is a HARNESS defect, now root-caused.**
+>   `platforms/nrf5340.repl:459` gives the net core a stock
+>   `Miscellaneous.NRF52840_RNG`, which draws from Renode's emulation-wide
+>   `RandomGenerator` — **re-seeded randomly at every Renode start**
+>   (measured: 2124439726, then 720424243).  The **shipped** images are
+>   therefore bistable too: two shipped runs gave `spim_a` 786/2,859 and
+>   764/2,881.  Whole-run totals are invariant; only the `RunFor "6"` split
+>   moves.  Fix: `emulation SetSeed <n>` before the platform is created.
+>   **Until a capture states its seed, gate on WHOLE-RUN totals and PER-DEVICE
+>   streams, never on a per-phase count or the merged `twim1` bus sha.**
+>
+> Still open: the `saadc` stream sha (count exact at 998), dashboard
+> `twim1 p2_render` 572 vs 584 with nPM1300 513 vs 514 and the ST25DV render
+> traffic absent, `twim2 p2_render` content, the `-ffp-contract=off` pin and the
+> `__extendsfdf2` log-gated ABI defect.
 > Everything between here and that section is kept for provenance and is
 > superseded.
 

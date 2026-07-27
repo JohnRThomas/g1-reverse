@@ -37,6 +37,7 @@
  *   rodata_a9dba                             @ 0x000a9dba   [INLINED -- G6 literal batch]
  *   rodata_aa0ae                             @ 0x000aa0ae   [INLINED -- G6 literal batch]
  *   rodata_aa0d7                             @ 0x000aa0d7   [INLINED -- G6 literal batch]
+ *   rodata_aa0f5                             @ 0x000aa0f5   [INLINED -- G6 literal batch]
  *   rodata_aa112                             @ 0x000aa112   [INLINED -- G6 literal batch]
  *   rodata_aa138                             @ 0x000aa138   [INLINED -- G6 literal batch]
  *   rodata_aa166                             @ 0x000aa166   [INLINED -- G6 literal batch]
@@ -183,6 +184,18 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
         LOG_CALL(0x000aa0d7u, 0x000aa412u); /* exit command */
       gui_screen_clear();
       goto clear_navigation;
+    }
+
+    if (event == 0u) {
+      if (NAVIGATION_ACTIVE == 1u) {
+        int w, h;
+        if (LOG_LEVEL > 2)
+          LOG_CALL(0x000aa0f5u, 0x000aa412u); /* dynamic image reflash */
+        w = device_info_text_width_get();
+        h = device_info_text_height_get_clamped();
+        gui_bmp_dynamic_bitmap_draw(8, w, h + 0x3a, 0, 0, 0, 0);
+        goto active_timeout_check;
+      }
     }
 
     if (event == 1u) {

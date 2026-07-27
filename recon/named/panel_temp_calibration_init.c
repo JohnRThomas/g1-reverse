@@ -23,7 +23,17 @@
 #include <stdint.h>
 typedef unsigned char byte; typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort;
 typedef unsigned long long undefined8;
-extern int __floatunsidf(int,...); extern unsigned long long __extendsfdf2(float);
+extern int __floatunsidf(int,...); extern unsigned long long __extendsfdf2(unsigned);
+
+/* ITERATION 41: `__extendsfdf2` == `__aeabi_f2d` is a SOFT-float helper -- raw
+ * float bits in r0, double out in r0:r1.  Declaring it `(float)` under
+ * -mfloat-abi=hard passes the value in s0 and the helper reads garbage from r0.
+ * Raw-bits convention + bit-cast, exactly as battery_model_state_update.c. */
+static inline unsigned g1_float_bits(float x)
+{
+  union { float f; unsigned u; } v = { x };
+  return v.u;
+}
 extern int __muldf3(int,...); extern int __fixunsdfsi(int,...);
 extern unsigned long long exp(unsigned long long); extern int dev_write_reg3(int,...);
 extern int dev_write_reg4(int,...); extern int flash_page_index_lookup(int,...);
@@ -45,8 +55,8 @@ int panel_temp_calibration_init(int param_1)
       do {
         piVar10 = piVar10 + 1;
         if (*piVar10 != 0x7fffffff) {
-          uVar5 = __extendsfdf2((1.0f / ((float)*piVar10 / fVar1 + fVar2) - fVar3) *
-                               (float)(uint)*(ushort *)((int)puVar8 + 0x2c));
+          uVar5 = __extendsfdf2(g1_float_bits((1.0f / ((float)*piVar10 / fVar1 + fVar2) - fVar3) *
+                               (float)(uint)*(ushort *)((int)puVar8 + 0x2c)));
           iVar7 = puVar8[10];
           uVar11 = exp(uVar5);
           uVar12 = __floatunsidf(iVar7);

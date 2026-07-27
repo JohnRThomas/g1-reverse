@@ -107,6 +107,18 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
       goto clear_navigation;
     }
 
+    if (event == 0u) {
+      if (NAVIGATION_ACTIVE == 1u) {
+        int w, h;
+        if (LOG_LEVEL > 2)
+          LOG_CALL(0x000aa0f5u, 0x000aa412u); /* dynamic image reflash */
+        w = FUN_0007d3ee();
+        h = FUN_0007d446();
+        FUN_0004334c(8, w, h + 0x3a, 0, 0, 0, 0);
+        goto active_timeout_check;
+      }
+    }
+
     if (event == 1u) {
       app = (uintptr_t)FUN_000167a8();
       if (V8(app) == 1u)

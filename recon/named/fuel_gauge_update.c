@@ -73,7 +73,17 @@ typedef uint8_t byte; typedef int64_t longlong; typedef uint64_t ulonglong; type
 #define DAT_00010f9c 0x0001d4bfu
 #define DAT_00010fa0 ((uint8_t *)0x20018d90u)
 #define DAT_00010fa4 0.0f
-extern uint64_t __aeabi_dadd(uint32_t,...); extern uint64_t __extendsfdf2(float);
+extern uint64_t __aeabi_dadd(uint32_t,...); extern uint64_t __extendsfdf2(unsigned);
+
+/* ITERATION 41: `__extendsfdf2` == `__aeabi_f2d` is a SOFT-float helper -- raw
+ * float bits in r0, double out in r0:r1.  Declaring it `(float)` under
+ * -mfloat-abi=hard passes the value in s0 and the helper reads garbage from r0.
+ * Raw-bits convention + bit-cast, exactly as battery_model_state_update.c. */
+static inline unsigned g1_float_bits(float x)
+{
+  union { float f; unsigned u; } v = { x };
+  return v.u;
+}
 extern uint64_t __muldf3(uint32_t,...); extern uint8_t __fixunsdfsi(uint32_t,...);
 /* ITERATION 39 DEFECT FIX (2 of 2) -- the 64-bit->float conversion had BOTH
  * its argument and its return register wrong.  Shipped:
@@ -170,10 +180,10 @@ int fuel_gauge_update(undefined4 param_1)
 LAB_00010c00:
   piVar5 = DAT_00010f48;
   if (0 < *DAT_00010f48) {
-    uVar17 = __extendsfdf2(local_44);
+    uVar17 = __extendsfdf2(g1_float_bits(local_44));
     uVar11 = (undefined4)((ulonglong)uVar17 >> 0x20);
-    uVar18 = __extendsfdf2(local_40);
-    uVar19 = __extendsfdf2(local_3c[0]);
+    uVar18 = __extendsfdf2(g1_float_bits(local_40));
+    uVar19 = __extendsfdf2(g1_float_bits(local_3c[0]));
     if (*DAT_00010f4c == 0) {
       log_message(DAT_00010f54,DAT_00010f50,(int)uVar17,uVar11,(int)uVar18,
                   (int)((ulonglong)uVar18 >> 0x20),(int)uVar19,(int)((ulonglong)uVar19 >> 0x20));
@@ -201,9 +211,9 @@ LAB_00010c00:
     fVar14 = fVar15 * 1.25;
   }
   if (0 < *piVar5) {
-    uVar17 = __extendsfdf2(fVar15);
+    uVar17 = __extendsfdf2(g1_float_bits(fVar15));
     uVar11 = (undefined4)((ulonglong)uVar17 >> 0x20);
-    uVar18 = __extendsfdf2(fVar14);
+    uVar18 = __extendsfdf2(g1_float_bits(fVar14));
     if (*DAT_00010f4c == 0) {
       uVar9 = get_product_code_buf();
       log_message(DAT_00010f64,DAT_00010f50,(int)uVar17,uVar11,(int)uVar18,
@@ -240,7 +250,7 @@ LAB_00010c00:
     bVar12 = *pbVar6 + 1;
     if (5 < bVar12) {
       *pbVar6 = 0;
-      uVar17 = __extendsfdf2(local_40);
+      uVar17 = __extendsfdf2(g1_float_bits(local_40));
       uVar17 = __aeabi_dadd((int)uVar17,(int)((ulonglong)uVar17 >> 0x20),DAT_00010f40,DAT_00010f44);
       uVar17 = __muldf3((int)uVar17,(int)((ulonglong)uVar17 >> 0x20),0,DAT_00010f84);
       iVar13 = get_device_info();
@@ -253,7 +263,7 @@ LAB_00010c00:
     }
   }
   else {
-    uVar17 = __extendsfdf2(local_40);
+    uVar17 = __extendsfdf2(g1_float_bits(local_40));
     uVar17 = __aeabi_dadd((int)uVar17,(int)((ulonglong)uVar17 >> 0x20),DAT_00010f40,DAT_00010f44);
     uVar17 = __muldf3((int)uVar17,(int)((ulonglong)uVar17 >> 0x20),0,DAT_00010f84);
     iVar13 = get_device_info();

@@ -17034,3 +17034,704 @@ counted as evidence.  Eight of the eleven defects this iteration fixed were
 found by disassembling the shipped bytes and OUR OWN LINKED IMAGE side by side,
 not by the harness; `cfg_verify` PASSed the broken body in every one of those
 eight cases, before and after.
+
+## Iteration 41 — G-3 CLOSED: `ui_navigation_task`'s missing `event == 0` arm is
+## restored from the shipped Thumb, and the navigation capture's
+## non-determinism is measured rather than assumed.
+
+Baseline for this iteration: **`g1-i41a-app`** — a clean in-tree build of the
+current HEAD (`5337623a`, the latent-defect harvest), paired with the unchanged
+**`g1-i30e-net`**.
+
+```
+recon/application/build_cohesive.sh app /private/tmp/g1-i41a-app
+FLASH: 956368 B / 982528 B  97.34%      RAM: 253765 B / 440 KB  56.32%
+nm zephyr.elf:  _end = 0x2003ff45   runtime_info_sync = 0x00015c10
+  => device ctx 0x2003ff50;  +0xd5 = 0x20040025, +0xfe8 = 0x20040F38,
+     +0x105a = 0x20040FAA
+```
+
+`runtime_info_sync` MOVED again (0x00015bc8 -> 0x00015c10) with the harvest, so
+every capture below re-reads it from the ELF it boots, as the harness requires.
+
+### 41.1 The G-3 diagnosis re-derived from `app_update.bin` before any edit
+
+The R7 report (§5.4) diagnosed G-3 without applying it.  Every claim in that
+diagnosis was re-checked here against the shipped image, through
+`tools/extract.py` + capstone, before a line was written.
+
+`ui_navigation_task` = `FUN_0003f410`, extent `0x3f410 .. 0x3fd44` (0x934 B).
+The `case 0` dispatch (`tbh [pc, r3, lsl #1]` at `0x3f438`) tests `event` in the
+order **2, 0, 1**; the reconstruction only ever had the **2** and **1** arms:
+
+```
+3fbe8  cmp    r5, #2   / beq.w 0x3f47a     ; event == 2 (log_level <= 2 shortcut)
+3fbee  cmp    r5, #0   / bne.w 0x3f4b4     ; event == 0 ?  else -> the event==1 arm
+3fbf4  ldrb   r3, [r4, #6] / cmp #1 / bne.w 0x3f57c   ; NAVIGATION_ACTIVE == 1 ?
+3fbfc  ldr    r3, [r7] / cmp #2 / ble 0x3fc14         ; if (LOG_LEVEL > 2)
+3fc02  ldr r3,[pc,#0x120] ldr r1,[pc,#0x120] ldr r0,[pc,#0x120]  ; routed log
+3fc14  bl     0x7d3ee                      ; device_info_text_width_get  -> r5
+3fc1a  bl     0x7d446                      ; device_info_text_height_get_clamped
+3fc1e  movs   r3, #0
+3fc20  add.w  r2, r0, #0x3a
+3fc24  mov    r1, r5
+3fc26  movs   r0, #8                       ; bitmap id 8
+3fc28  strd   r3, r3, [sp, #4]             ; args 6 and 7
+3fc2c  str    r3, [sp]                     ; arg 5
+3fc2e  bl     0x4334c                      ; gui_bmp_dynamic_bitmap_draw
+3fc32  bl     0x167a8                      ; falls through into active_timeout_check
+```
+
+Two facts the R7 report did not state, both measured here and both confirming it:
+
+1. **The literal pool names the block.**  The three `ldr rN,[pc,#0x120]` at
+   `0x3fc02/04/08` resolve to `0x3fd24/28/2c`, whose words are
+   `0x20007554` (`g_log_use_alt_sink` — the LOG_ROUTE selector), `0x000aa412`
+   (`"ui_navigation_task"`) and **`0x000aa0f5`**.  `tools/extract.py` at
+   `0x000aa0f5` reads **`"%s(): dynamic image reflash\n"`** — the shipped
+   firmware's own name for the block.
+2. **The argument count is 7, not 6.**  `r0..r3` plus `sp[0]`, `sp[4]`, `sp[8]`.
+   That matches our own reconstructed callee
+   `FUN_0004334c(unsigned, int, int, int, int, int, unsigned char)` and matches
+   the identical idiom already present in `ui_translate_task`
+   (`gui_bmp_dynamic_bitmap_draw(1u, x, y + 0x36u, 0u, 0u, 0u, 0u)`).  The
+   *static* twin at `0x3f5d2` writes only `sp[0]`/`sp[4]` (`strd r3,r3,[sp]`),
+   i.e. 6 arguments, which is exactly what our `exit_navigation` already emits.
+
+One correction to §5.4's account: the `bne.w 0x3f57c` fall-out is **not** the
+same basic block our reconstruction's default path uses (`0x3f5dc`).  They
+differ in that `0x3f57c` returns 0 immediately when `master != 1` while
+`0x3f5dc` first tests `event == 5`.  For `event == 0` the two are provably
+equivalent (event 0 can never be 5), so restoring the arm as a guarded early
+`goto active_timeout_check` and letting control fall into the existing
+master-enabled block is byte-faithful, not an approximation.
+
+### 41.2 TASK 4 — the four acceptance framebuffers, RE-MEASURED at HEAD
+
+The R7 verdict on record was measured at `a2f3303d`, before the latent-defect
+harvest (`5337623a`) changed 1,855 files and grew `.text` by 1,332 B, and that
+harvest explicitly did not run the framebuffer gate.  The gate was therefore
+unverified at HEAD.  It is now re-run on `g1-i41a-app`.
+
+**DASHBOARD** (`G1_ATT_WRITE=""`), compared field-by-field against
+`recon/emulator/reports/display_sensor_oracle_dashboard.json`:
+
+```
+framebuffer/p1_boot/sha256      0c5cc90b079d0d9c1ded1376357d23a9782a704a83e01731f50ccd162e246492  EQ  (all-zero, verified byte-wise)
+framebuffer/p1_boot/lit_pixels  0 == 0                                                            EQ
+framebuffer/p2_render/sha256    19b1f24a09f97a8d85f1572ac865c8fc61fe6d542af18247a5bcceeb7651b513  EQ
+framebuffer/p2_render/lit_px    2923 == 2923                                                      EQ
+  cmp golden_framebuffer_p2_render.raw  vs  recon/.../golden_framebuffer_dashboard_p2_render.raw
+  -> byte-identical (cmp exit 0, 153,600 B)
+spim_a  p1_boot   34 == 34,   sha f91505ab8dc0…  EQ      <- D-3 still PASSES
+twim2   p1_boot 1075 == 1075, sha f182314b34ff…  EQ      <- S-D-IMU still PASSES
+twim1   p1_boot  346 == 346,  sha 0a8ed8502ccb…  EQ, and every per-device stream EQ
+        (nPM1300 285, OPT3001 14, ST25DV 0x53 25, ST25DV 0x57 22)
+pdm0    whole run sha 255852a6c9e9… EQ ; gpiote0 sha 2f47878f41e0… EQ ; gpiote1 empty EQ
+counters DISPLAY_ON_ctx_fe8 0x01, ESB_SYNC_ctx_105a 0x02, SCREEN_ID_ctx_d5 0x06,
+         ESB_MASTER_FRAMES 0x175 == 0x175, ESB_ACKS 0x175 == 0x175  all EQ
+```
+
+**The latent-defect harvest did NOT regress the dashboard gate.**  Every
+criterion that passed at iteration 40 still passes, bit for bit.
+
+The pre-existing dashboard gaps are unchanged and are reproduced here for the
+record (all NE both before and after the harvest):
+
+```
+saadc  whole-run stream sha   977ee85341ad… vs 660cdf3bff15…   (998 == 998 accesses)
+twim1  p2_render              572 vs 584 ; nPM1300 513 vs 514 ;
+                              ST25DV 0x53 0 vs 7 and 0x57 0 vs 4  <- NEW DETAIL:
+                              the render-phase ST25DV traffic is entirely absent
+                              from our build, not merely one transaction short
+twim2  p2_render              1202 vs 1206
+spim_a p2_render              9212 vs 12225  (documented by the shipped oracle
+                              itself as NOT stable across runs; the framebuffer
+                              is the gate, and it matches)
+```
+
+### 41.3 TASK 4 — the NAVIGATION framebuffers, and TASK 2's measurement in one pass
+
+The navigation stimulus was captured **three times end to end on the identical
+`g1-i41a-app` image**, so the acceptance framebuffers and the R7 bistability
+claim are measured from the same data.
+
+**All four acceptance framebuffers HOLD at HEAD** (`cmp` against the golden
+`.raw` files, 153,600 B each, exit 0):
+
+```
+navigation p1_boot    1d617c65a688…   656 lit px   BYTE-IDENTICAL   (r1, r2, r3)
+navigation p2_render  b26c73b37d44…  1098 lit px   BYTE-IDENTICAL   (r1, r2, r3)
+dashboard  p1_boot    0c5cc90b079d…     0 lit px   BYTE-IDENTICAL
+dashboard  p2_render  19b1f24a09f9…  2923 lit px   BYTE-IDENTICAL
+```
+
+**The latent-defect harvest (`5337623a`) regressed none of the four.**
+
+Three-run stability of the navigation streams, same image, back to back:
+
+| criterion | r1 | r2 | r3 | shipped | stable? |
+|---|---|---|---|---|---|
+| `spim_a p1_boot` n / sha | 126 / `c0218aab` | 126 / `c0218aab` | 126 / `c0218aab` | 764 / `7c31927b` | **stable** |
+| `spim_a p2_render` n / sha | 109 / `c6f88935` | 109 / `c6f88935` | 109 / `c6f88935` | 2881 / `e6c49371` | **stable** |
+| `twim2 p1_boot` n / sha | 1089 / `03537cda` | 1089 / `03537cda` | 1089 / **`d7859c85`** | 1089 / `7ed8ddcd` | **UNSTABLE** |
+| `twim2 p2_render` n / sha | 1200 / `191ba08b` | 1200 / `191ba08b` | 1200 / `191ba08b` | 1200 / `191ba08b` | stable, **EQ** |
+| `twim1 p1_boot` nPM1300 sha | `d5a05b8a` | `d5a05b8a` | **`72b3383b`** | `d5a05b8a` | **UNSTABLE** |
+| `twim1 p1_boot` OPT3001 n | 35 | 35 | 35 | 33 | stable, NE |
+| `twim1 p1_boot` ST25DV 0x53/0x57 | 25 / 22 | 25 / 22 | 25 / 22 | 25 / 22 | stable, **EQ** |
+| `twim1 */*` MERGED bus sha | `4f49068a` | `e002cfea` | `255dc767` | `ef6fcb11` | **UNSTABLE** |
+| `saadc` whole-run sha | `977ee853` | `977ee853` | `977ee853` | `660cdf3b` | stable, NE |
+| `pdm0` / `gpiote0` sha | EQ | EQ | EQ | EQ | stable, EQ |
+| `ESB_MASTER_FRAMES` / `ESB_ACKS` | 0x176 | 0x176 | **0x175** | 0x175 | **UNSTABLE** |
+| `DISPLAY_ON_ctx_fe8` / `ESB_SYNC_ctx_105a` | 0x01 / 0x02 | 0x01 / 0x02 | 0x01 / 0x02 | 0x01 / 0x02 | stable, EQ |
+
+Three things this measurement establishes that R7 could not:
+
+1. **The bistability is real and it reproduces**, at HEAD, on an image that
+   nothing in this session had touched.  R7's reading was correct.
+2. **It is narrower than R7 described.**  The counts never move — `twim2` is
+   1089/1200 in every run, `twim1` per device is 291/35/25/22 in every run.
+   Only *content ordering* moves, and only in `p1_boot`.  R7's reported
+   `twim1 p1_boot` 371 -> 373 and OPT3001 33 -> 35 are **not** run jitter at
+   HEAD: 373 and 35 are what this build produces in all three runs.  Those two
+   are a real, stable difference from the shipped image.
+3. **Part of what R7 gated on must never be gated.**  The MERGED `twim1` bus
+   sha differed in all three runs — and the *shipped* oracle's own
+   `determinism_verification` block already says so verbatim: *"the MERGED bus
+   stream reorders between the three independent threads sharing twim1; every
+   PER-DEVICE sub-stream is identical.  Diff twim1 per device, never per bus."*
+   R7's §4.5 table reported `twim1 p1_boot merged bus` EQ/NE flips as evidence;
+   that row was never admissible.
+
+### 41.4 TASK 1 — the fix, applied mechanically to all five parallel trees
+
+Applied by `apply_g3_fix.py` (scratchpad; anchored string replacement, one
+anchor occurrence asserted per file, callee-declaration check per file — no
+hand edits):
+
+```
+PATCHED recon/app/src/FUN_0003f410.c
+PATCHED recon/verified/src/FUN_0003f410.c
+PATCHED recon/named/ui_navigation_task.c
+PATCHED recon/symbolized/app/ui_navigation_task.c          <- the COMPILED tree
+PATCHED recon/readable_sources/app/g1/ui_navigation_task.c
+```
+
+(`recon/app/src_sym` and `recon/verified/src_sym` have no `FUN_0003f410.c`, so
+five files, not seven.  `recon/application/src/ui_navigation_task.c` is a
+symlink into `recon/named/`; the tree the build actually compiles is
+`recon/symbolized/app/`, per `recon/generated/app_retained_sources.cmake:508`.)
+
+The restored arm, in the symbolized tree:
+
+```c
+    if (event == 0u) {
+      if (NAVIGATION_ACTIVE == 1u) {
+        int w, h;
+        if (LOG_LEVEL > 2)
+          LOG_CALL(((unsigned long)"%s(): dynamic image reflash\n") /*=0xaa0f5*/,
+                   ((unsigned long)"ui_navigation_task") /*=0xaa412*/);
+        w = device_info_text_width_get();
+        h = device_info_text_height_get_clamped();
+        gui_bmp_dynamic_bitmap_draw(8, w, h + 0x3a, 0, 0, 0, 0);
+        goto active_timeout_check;
+      }
+    }
+```
+
+Build `g1-i41b-app`:
+
+```
+FLASH: 956480 B / 982528 B  97.35%     (+112 B vs the i41a baseline; 26,048 B headroom)
+RAM:   253765 B  (unchanged)
+nm -u zephyr.elf | wc -l  ->  0
+_end = 0x2003ff45, runtime_info_sync = 0x00015c10   (both unchanged -> same probe addresses)
+```
+
+**`cfg_verify` cannot see this defect, in either direction.**  Measured, not
+assumed:
+
+```
+FUN_0003f410 (FIXED)      PASS cases=16  sel={2: [0,1,2,3,4,5,6]}
+FUN_0003f410 (PRE-FIX)    PASS cases=16  sel={2: [0,1,2,3,4,5,6]}   <- via source_override
+```
+
+The verifier derives its cases from *argument*-derived selectors.  The dropped
+arm's second guard is `NAVIGATION_ACTIVE`, a **RAM global**, so the harness
+never enters the arm and an entire missing branch — including a dropped
+seven-argument call — costs nothing.  This is a **new member of the documented
+blind-spot family**: not a dropped register argument but a whole *state-gated
+branch* — a branch whose guard is a RAM global rather than an argument.  Recorded
+here rather than in `AGENTS.md` to avoid colliding with the concurrent agent;
+it belongs on that list.
+
+### 41.5 TASK 1 — RESULT.  `spim_a` navigation **126 -> 808**, and the animation
+### is the shipped one cell for cell, row for row, at the shipped frequency.
+
+> **Read §41.9 for the definitive numbers.**  Everything in this section was
+> measured BEFORE the emulation seed was pinned (§41.7), so its `p1_boot` /
+> `p2_render` split carries one extra animation frame that the seed fix removes.
+> The shapes, rows, cadence and collateral gains below are unaffected.
+
+`g1-i41b-app` + `g1-i30e-net`, navigation stimulus, compared against
+`recon/emulator/reports/display_sensor_oracle.json`:
+
+| criterion | baseline `i41a` | **fixed `i41b`** | shipped |
+|---|---:|---:|---:|
+| `spim_a p1_boot` transactions | 126 | **808** | 764 |
+| `spim_a p2_render` transactions | 109 | **2,859** | 2,881 |
+| `spim_a` whole run | 235 | **3,667** | 3,645 |
+| `0x02` pixel windows, whole run | 173 | **3,446** | 3,425 |
+| `x=32`, **9 pixel bytes**, rows 265…285 | **0** | **3,276** | 3,255 |
+| `JBD FrameCounter` p1 / p2 | 0x40 / 0xAA | **0x2CB / 0xD76** | 0x2A1 / 0xD61 |
+
+The shape histogram is now **exactly** the shipped one:
+
+```
+                        OURS (i41b)                       SHIPPED
+p1_boot   (x=0,   61440):   6      (x=0,   30720):  3      6 / 3
+          (x=178,   213):  55                             55
+          (x=32,      9): 651                            609
+p2_render (x=0,   61440):   2      (x=0,   30720):  1      2 / 1
+          (x=120,   240):  82      (x=32,     10): 21     82 / 21
+          (x=32,      9): 2625                          2646
+x=32 rows                 265 … 285 (21 rows)          265 … 285 (21 rows)
+blits per refresh   p1: 21x31, 0x16, 3x3, 55      p1: 21x29, 0x16, 3x3, 55
+                    p2: 21x126, 3, 82             p2: 21x127, 3, 82
+```
+
+Every shape, every row, every group size matches.  Measured cadence of the
+restored animation, from our own trace ticks:
+
+```
+OURS    156 groups, first 3.98113 s, last 14.45559 s, span 10.47446 s
+        inter-group interval 66,620,000 ns on 147 of 155 intervals => 15.0105 Hz
+SHIPPED 155 groups, first 4.09145 s, last 14.52391 s, span 10.43246 s
+        inter-group interval 66,620,000 ns on 143 of 150 intervals => 15.01   Hz
+```
+
+**The frequency is identical to the nanosecond.**  The residue is that our
+`NAVIGATION_ACTIVE` transition happens **110 ms earlier** (3.981 vs 4.091 s),
+so one extra 66.62 ms frame fits inside the same countdown — 156 frames instead
+of 155, i.e. `+21` blits — and the 6 s phase boundary then splits them 31/126
+instead of 29/127.  `spim_a` whole-run is 3,667 vs 3,645: **+22 = one extra
+animation frame (21 blits) plus its `0x97` refresh.**  Nothing else differs.
+
+**Collateral gains that were not the target.**  Restoring the 15 Hz workload
+also repaired three navigation streams that had been NE since iteration 38:
+
+```
+twim1 p1_boot         373 -> 371 == 371                              EQ
+twim1 p1_boot OPT3001  35 ->  33 == 33,  sha ef88ae8b… == ef88ae8b…  EQ
+twim1 p1_boot nPM1300 291 == 291, sha d5a05b8a… == d5a05b8a…         EQ
+twim1 p1_boot ST25DV 0x53 / 0x57  25 / 22, both sha EQ               EQ
+ESB_MASTER_FRAMES / ESB_ACKS  0x176 -> 0x175 == 0x175                EQ
+```
+
+i.e. **the whole `twim1 p1_boot` per-device set now matches the shipped image
+bit for bit**, which the baseline did not.  This is direct evidence that the
+`33 -> 35` OPT3001 shift R7 and iteration 40 §40.13 item 5 both puzzled over
+was **the missing display workload**, not run jitter and not the NDEF change.
+
+**All four framebuffers remain BYTE-IDENTICAL** (`cmp`, exit 0, 153,600 B each,
+on both navigation runs and the dashboard run of `g1-i41b-app`):
+
+```
+navigation p1_boot   1d617c65…  656 px    navigation p2_render  b26c73b3…  1098 px
+dashboard  p1_boot   all-zero   0 px      dashboard  p2_render  19b1f24a…  2923 px
+```
+
+**The dashboard gate is unchanged by the fix** — every criterion that passed on
+`i41a` still passes on `i41b`, and `twim2 p2_render` transaction *count* moved
+1202 -> **1206 == 1206**.
+
+### 41.6 TASK 2 — the navigation capture's non-determinism is a property of the
+### HARNESS, not of our images.  Proven by running the SHIPPED firmware twice.
+
+R7 §4.5 called the navigation capture bistable *for our rebuilt images* and
+explicitly contrasted that with `display_sensor_parity.md` §2.1's claim that the
+shipped images are deterministic.  That contrast is **wrong**, and the way to
+see it is to stop diffing our builds against each other and run the **shipped**
+`app_update.bin` + `netcore_image.bin` through the unmodified oracle script
+twice, back to back:
+
+```
+SHIPPED navigation capture, run s1 vs run s2, same script, nothing changed
+                       s1        s2      (s2 == the recorded oracle)
+  twim1.p1 lines       373       371
+  spim_a.p1 lines      786       764
+  spim_a.p2 lines    2,859     2,881
+  spim_a whole run   3,645     3,645     <- INVARIANT
+  first TICK divergence   twim2.p1 index 858:  2.059831470 s vs 2.059831000 s
+                          (470 ns), amplifying to 100.1 ms by t = 3.87 s
+  first CONTENT divergence twim1.p1 index 316 (OPT3001 vs nPM1300 interleave)
+```
+
+**The shipped image produces 373 / 786 / 2,859 on one run and 371 / 764 / 2,881
+on the next.**  Those are precisely the two states R7 attributed to our builds —
+including the `371 <-> 373` flip its §4.5 table used as evidence.  The
+recorded oracle is one sample of a bistable pair, not a fixed point.
+
+What the two shipped runs establish about the *shape* of the jitter:
+
+1. **Whole-run totals are invariant.**  `spim_a` is 3,645 in both shipped runs;
+   our fixed build is 3,667 in both of its runs.  What moves is only **where
+   the `emulation RunFor "6"` boundary falls in the firmware's own timeline** —
+   one 66.62 ms animation frame lands in `p1_boot` in one run and in
+   `p2_render` in the next.  `+22` on one side is `-22` on the other, exactly.
+2. **The seed is sub-microsecond and it amplifies.**  The earliest measurable
+   divergence between the two shipped runs is **470 ns** at t = 2.0598 s on the
+   LSM6DSO bus; by t = 3.87 s it has become **100.1 ms**, one iteration of a
+   firmware 100 ms loop.  Our own baseline showed the same shape: a 10 ns
+   divergence at t = 1.5005 s growing to 29.05 ms at t = 1.48 s on `twim1`.
+3. **The merged `twim1` bus order is the loudest symptom and the least
+   admissible gate.**  The shipped oracle's own `determinism_verification`
+   block already says the merged bus stream reorders between the three threads
+   sharing `twim1` and must be diffed *per device*.
+
+Determinism knobs were verified to be actually in effect, not merely written
+down (Renode 1.16.1, probed live through the monitor's Python):
+
+```
+MASTER  AdvanceImmediately=False  ExecuteInSerial=True  Quantum=100 us (10 us once capture.resc runs)
+LOCAL   AdvanceImmediately=False  ExecuteInSerial=True   sinks=2
+cpuapp  PerformanceInMips=100  ExecutionMode=Continuous
+cpunet  PerformanceInMips=100  ExecutionMode=Continuous
+```
+
+`ExecuteInSerial` is already `True` on the machine's `LocalTimeSource`, not only
+on `MasterTimeSource` — so the "two cores race inside a quantum" hypothesis is
+**refuted by measurement**, and the CC312 seed and MIPS are pinned.  There is no
+host entropy in the peripheral models either: `grep` for `new Random`,
+`DateTime.`, `Stopwatch`, `Environment.TickCount`, `Task.Run`, `new Thread`,
+`ThreadPool`, `Guid.` over all of `~/Projects/armemul/models/*.cs` returns
+nothing; every model schedules through `machine.ClockSource` / `LimitTimer` /
+`ObtainManagedThread`, i.e. virtual time.
+
+### 41.7 TASK 2 — ROOT CAUSE FOUND: Renode's emulation-wide PRNG seed is
+### **random on every run**, and the CPUNET BLE controller draws from it.
+
+The two determinism knobs the harness sets are `emulation SetGlobalQuantum` and
+`sysbus.cc3xx_rng Seed`.  There is a **third** random source and nothing pins
+it.  `platforms/nrf5340.repl:459` instantiates a *second*, stock RNG for the
+net core:
+
+```
+rng: Miscellaneous.NRF52840_RNG @ sysbus 0x41009000
+    -> nvic_net@9
+```
+
+That is Renode's own model, and it draws from the emulation-wide
+`Emulation.RandomGenerator`, whose seed is chosen **freshly at every Renode
+start**.  Measured directly, two consecutive bare Renode launches:
+
+```
+python "... EmulationManager.Instance.CurrentEmulation.RandomGenerator.GetCurrentSeed()"
+  run 1 -> SEED=2124439726
+  run 2 -> SEED=720424243
+```
+
+The CPUNET SoftDevice Controller pulls entropy through that peripheral for the
+BLE link (and the ESB sync path rides the same radio), so every run gets a
+different random stream.  That is exactly the observed signature: a
+**sub-microsecond** divergence early in the run that amplifies into a 100 ms
+scheduling shift by t ≈ 3.9 s, with `RADIO_TX`, `VC_DATA_EVENTS` and
+`ESB_ANNOUNCE_RESP` wandering by a few frames.
+
+Two knobs were tested and **ruled out** before this one, by measurement, not by
+argument:
+
+* `MasterTimeSource.ExecuteInSerial` / `LocalTimeSource.ExecuteInSerial` — both
+  already `True`; the "cores race inside a quantum" hypothesis is refuted.
+* `AdvanceImmediately = True` on both time sources — **does not help**: two
+  shipped runs under it still gave `spim_a` 764/2,881 vs 742/2,903 (whole run
+  3,645 both).
+
+**The fix is one line:** `emulation SetSeed <n>` before the platform is created.
+
+### 41.8 TASK 2 — CLOSED.  Pinning the seed makes the capture BYTE-REPRODUCIBLE,
+### and the seed that does it reproduces the RECORDED oracle exactly.
+
+`emulation SetSeed 305419896` emitted **before** the platform is created; two
+full shipped-firmware navigation captures, nothing else changed:
+
+```
+spim_a.p1   IDENTICAL (  764 lines)      twim1.p1   IDENTICAL (  371 lines)
+spim_a.p2   IDENTICAL (2,881 lines)      twim1.p2   IDENTICAL (  599 lines)
+spim_b.p1   IDENTICAL (    0 lines)      twim2.p1   IDENTICAL (1,089 lines)
+spim_b.p2   IDENTICAL (    0 lines)      twim2.p2   IDENTICAL (1,200 lines)
+run.out: the ONLY difference in the entire console log is the host wall-clock
+         prefix on two lines.  Every register access, every counter, identical.
+```
+
+`cmp` byte-identical **including the nanosecond tick column**, which no previous
+pair of runs in this project has ever achieved.  And 764 / 2,881 / 371 / 599 /
+1,089 / 1,200 are **precisely the recorded oracle's numbers**, so pinning this
+particular seed costs nothing: `display_sensor_oracle.json` does not need
+regeneration.
+
+`recon/emulator/scripts/capture_display_sensor_oracle.sh` now emits
+`emulation SetSeed $G1_SEED` as the first line of the generated `capture.resc`
+(before `$app_elf`/`$net_elf` and before `i @$G1_RESC`, because the seed must be
+set before the platform is instantiated), with `G1_SEED` defaulting to
+`305419896`, and echoes `ORACLE_EMULATION_SEED:` into `run.out` so every future
+capture records the seed it ran under.  This is the only change to the harness.
+
+**Correction to `display_sensor_parity.md` §2.1 and to R7 §4.5.**  §2.1's
+"bit-identical across runs" list was measured on the shipped images *without* a
+pinned seed and therefore recorded one draw of a random variable; the shipped
+images are **not** deterministic on the navigation stimulus without
+`emulation SetSeed`.  R7 §4.5's conclusion — "run-to-run non-determinism of the
+navigation capture for our rebuilt images" — was right about the *effect* and
+wrong about the *scope*: it is not specific to our builds.
+
+### 41.9 TASK 1 + TASK 2 combined — the definitive G-3 measurement, on a capture
+### that is now byte-reproducible
+
+`g1-i41b-app` + `g1-i30e-net`, navigation stimulus, **`G1_SEED=305419896`**, two
+runs.  First: the capture of OUR build is now reproducible too —
+
+```
+spim_a.p1  IDENTICAL (786)   twim1.p1  IDENTICAL (371)   twim2.p1  IDENTICAL (1089)
+spim_a.p2  IDENTICAL (2859)  twim1.p2  IDENTICAL (588)   twim2.p2  IDENTICAL (1200)
+spim_b.p1/p2 IDENTICAL (0)   run.out identical but for the host clock
+```
+
+And the numbers move again, in our favour, because the un-pinned seed had been
+adding an extra animation frame:
+
+| criterion | baseline `i41a` | **fixed `i41b`, seeded** | shipped | verdict |
+|---|---:|---:|---:|---|
+| `spim_a` **whole run** | 235 | **3,645** | **3,645** | **EXACTLY EQUAL** |
+| `spim_a p1_boot` | 126 | 786 | 764 | ±22 = one frame across the 6 s split |
+| `spim_a p2_render` | 109 | 2,859 | 2,881 | ∓22, same frame |
+| `JBD FrameCounter p2` | 0x0AA | **0x0D61** | **0x0D61** | **EQ** |
+| **`twim2 p1_boot` LSM6DSO** | 1089 sha NE | **1089, sha `7ed8ddcd0c0d…`** | **1089, `7ed8ddcd0c0d…`** | **EQ — first time ever** |
+| `twim1 p1_boot` all four devices | OPT3001 35 NE | 371, every per-device sha | 371, same | **EQ** |
+| `twim1 p2_render` nPM1300 / OPT3001 | — | 508 / 80, both sha | 508 / 80 | **EQ** |
+| framebuffers ×4 | EQ | **EQ** | — | **BYTE-IDENTICAL** |
+
+**`spim_a` whole-run is 3,645 == 3,645.**  The 786/2,859 vs 764/2,881 split is
+one 66.62 ms animation frame landing on the other side of `RunFor "6"` — and the
+*shipped* image itself produced the 786/2,859 split on one of its own unseeded
+runs (§41.6), so this is not even a difference between the images, only between
+two seeds.  With the seed pinned the only remaining navigation gaps are the
+pre-existing ones:
+
+```
+twim1 p2_render   588 vs 599  -- the ST25DV render-phase traffic (7 + 4 txns)
+                                 is absent from our build entirely
+twim2 p2_render   1200 == 1200, content NE
+saadc             998 == 998 accesses, register stream NE
+ESB_MASTER_FRAMES / ESB_ACKS   0x176 vs 0x175   (+1)
+twim1 merged bus sha           inadmissible as a gate (see §41.3 item 3)
+```
+
+**G-3 is closed.**  `spim_a` navigation went **126 -> 786** with the whole-run
+count exact, the animation cell/rows/cadence exact, and every framebuffer held.
+
+### 41.10 TASK 3 — one of the five gaps closed: the `__extendsfdf2` hard-float
+### ABI defect, and it was NOT confined to a log gate
+
+`__extendsfdf2` is `__aeabi_f2d`: a **soft-float** helper that takes the raw
+float bits in **r0** and returns the double in `r0:r1`.  Under
+`-mfloat-abi=hard`, declaring it `extern ... __extendsfdf2(float)` makes GCC
+pass the value in **s0**, and the helper converts whatever happens to be in r0.
+
+Sweeping every soft-float helper declaration in the compiled tree
+(`grep -rn "extern.*__extendsfdf2\|__truncdfsf2\|__aeabi_f2d\|__floatsidf\|__floatunsidf" recon/symbolized/app/`)
+found the raw-bits convention used correctly in `battery_model_state_update.c`,
+`get_lux_info.c`, `imu_fusion_thread.c`, `dump_template_gyro_info.c`,
+`float_is_nan.c` and `compute_lux_brightness_bucket.c` — and **wrong in exactly
+two**:
+
+```
+recon/symbolized/app/fuel_gauge_update.c:77            extern uint64_t __extendsfdf2(float);
+recon/symbolized/app/panel_temp_calibration_init.c:27  extern unsigned long long __extendsfdf2(float);
+```
+
+**Correction to §39.9 item 7 and §40.13 item 6**, which both described this as a
+declaration "behind `if (0 < g_log_level)`".  Five of `fuel_gauge_update`'s
+seven `__extendsfdf2` sites are indeed log-gated, but **two are not**: the pair
+at the `*pbVar6 = 0;` battery-report branch and its `else` twin, both of which
+feed `__aeabi_dadd -> __muldf3 -> get_device_info()`.  Those execute on every
+run.  `panel_temp_calibration_init`'s single site is not gated either.
+
+Repaired mechanically (`fix_extendsfdf2.py`, scratchpad) with the donor pattern
+already proven in `battery_model_state_update.c` — declaration takes `unsigned`,
+every call site wrapped in a `g1_float_bits` union bit-cast — across
+`recon/symbolized/app`, `recon/named` and `recon/readable_sources/app/g1`:
+**8 call sites per tree, 24 in total.**  Build `g1-i41c-app`:
+`FLASH 956,480 B / 97.35 %` (unchanged from `i41b`), `nm -u` 0, 0 duplicate
+globals.
+
+`cfg_verify app FUN_00010b18` (`fuel_gauge_update`) returns
+**`PASS cases=0 sel={}`** — vacuous, the function exposes no argument-derived
+selector, so it is recorded as *no evidence* rather than counted.  The evidence
+that the repair is safe is the oracle, below.
+
+### 41.11 FINAL ACCEPTANCE — `g1-i41c-app` (G-3 fix + `__extendsfdf2` repair)
+
+```
+build            recon/application/build_cohesive.sh app /private/tmp/g1-i41c-app
+FLASH            956,480 B / 982,528 B  97.35 %      headroom 26,048 B  (+112 B vs HEAD)
+RAM              253,765 B / 440 KB     56.32 %      (unchanged)
+net              UNTOUCHED, g1-i30e-net, zephyr.bin 225,581 B  -- still FROZEN
+nm -u                                    0
+duplicate globals                        0
+check_ram_pin_collisions app  bound_pins_escaping_their_owner 0 / unknown_inside_a_live_object 0
+check_ram_pin_collisions net  bound_pins_escaping_their_owner 0 / unknown_inside_a_live_object 0
+check_thread_create_stack_args           10/10  (EXIT=0)
+verify_data                              995/995 files, 56,279/56,279 bytes, 100.00 %
+```
+
+**ALL FOUR FRAMEBUFFERS BYTE-IDENTICAL** (`cmp` against the golden `.raw`,
+153,600 B each, exit 0), on the seeded, reproducible captures:
+
+```
+navigation p1_boot   1d617c65…   656 lit px   BYTE-IDENTICAL
+navigation p2_render b26c73b3…  1098 lit px   BYTE-IDENTICAL
+dashboard  p1_boot   all-zero       0 lit px  BYTE-IDENTICAL (0c5cc90b…)
+dashboard  p2_render 19b1f24a…   2923 lit px  BYTE-IDENTICAL
+```
+
+**Capture reproducibility of the final build**, two navigation runs at
+`G1_SEED=305419896`: every trace file byte-identical
+(`spim_a` 786/2,859, `twim1` 371/588, `twim2` 1,089/1,200).
+
+**`g1-i41c` vs `g1-i41b` on the whole navigation oracle: not one field differs.**
+The `__extendsfdf2` repair is observably neutral on this stimulus while being
+ABI-correct; it changes no framebuffer, no stream and no counter.
+
+**Navigation verdicts against the shipped oracle, final:**
+
+| criterion | ours | shipped | verdict |
+|---|---|---|---|
+| `G-1` framebuffer `p2_render` | `b26c73b3…` 1,098 px | same | **PASS** |
+| `G-2` framebuffer `p1_boot` | `1d617c65…` 656 px | same | **PASS** |
+| **`G-3` `spim_a` whole run** | **3,645** | **3,645** | **count EXACT** (split 786/2,859 vs 764/2,881 = one frame across `RunFor "6"`) |
+| **`S-N-IMU` `twim2 p1_boot`** | **1,089, `7ed8ddcd0c0d…`** | same | **PASS — new** |
+| `twim1 p1_boot`, all four devices | 371; 291/33/25/22, every sha | same | **PASS — new** |
+| `twim1 p2_render` nPM1300 / OPT3001 | 508 / 80, both sha | same | **PASS** |
+| `pdm0` / `gpiote0` / `gpiote1` | sha EQ | same | **PASS** |
+| `JBD FrameCounter p2` | 0x0D61 | 0x0D61 | **PASS — new** |
+| `DISPLAY_ON` / `ESB_SYNC` / `spim_b` | 0x01 / 0x02 / empty | same | **PASS** |
+| `twim1 p2_render` bus count | 588 | 599 | NE — ST25DV render traffic absent |
+| `twim2 p2_render` content | 1,200 == 1,200, sha NE | | NE |
+| `saadc` | 998 == 998, sha NE | | NE |
+| `ESB_MASTER_FRAMES` / `ESB_ACKS` | 0x176 | 0x175 | NE (+1) |
+
+**Dashboard verdicts are unchanged from `i41a`** — every criterion that passed
+still passes; the NE set is exactly the pre-existing one
+(`spim_a p2_render` — which the shipped oracle itself declares unstable,
+`twim1 p2_render` 572 vs 584 with nPM1300 513 vs 514 and the ST25DV render
+traffic absent, `twim2 p2_render` content, `saadc`, and the radio counters).
+
+### 41.12 What is NOT closed, and why
+
+1. **`saadc` whole-run register-stream sha** (`977ee85341ad…` vs
+   `660cdf3bff15…`).  998 == 998 accesses since iteration 40; the ordering /
+   register content still differs.  **Not investigated this iteration** — the
+   oracle budget went to G-3 and to root-causing the capture's determinism.
+   It is now *reproducible*, which it was not before, so it is a tractable next
+   target: with `G1_SEED` pinned the two streams can be diffed access by access.
+2. **Dashboard `twim1 p2_render` 572 vs 584, nPM1300 513 vs 514, and — the
+   larger part, newly stated — the ST25DV render-phase traffic (7 txns on 0x53
+   and 4 on 0x57) is absent from our build entirely, on BOTH stimuli.**  The
+   boot-phase ST25DV work is byte-exact since iteration 40; something re-reads
+   the tag during the render phase and we never do.  Not investigated.
+3. **`twim2 p2_render` content** (1,200 == 1,200 navigation, 1,206 == 1,206
+   dashboard, sha NE on both).  Counts are now exact on both stimuli; only the
+   sampled IMU register content/order differs.  Not investigated.
+4. **The `-ffp-contract=off` pin for the five unfused float bodies**
+   (`FUN_00026624`, `FUN_000265e8`, `FUN_00026828`, `FUN_0007cab4`,
+   `fuel_gauge_update`).  Confirmed still absent: `grep -rn "fp-contract"` over
+   `recon/application/` and `recon/generated/` returns **nothing**, so those TUs
+   compile at GCC's default `-ffp-contract=fast` and emit `VFMA` where the
+   shipped image has `VMLA`.  **Deliberately not applied here.**  It is a
+   codegen-byte-match issue, not a semantics one (`cfg_verify` passes without
+   it), and it would change the arithmetic of `imu_mahony_ahrs_update` and
+   `imu_fusion_thread` — the code path that turns the `don` gesture into the
+   dashboard — so landing it needs its own build + full four-framebuffer gate,
+   which there was not budget for after three builds and eleven captures.
+   Note also the standing disagreement to resolve first: `AGENTS.md` §1b lists
+   `fuel_gauge_update` among the five *unfused* bodies, while §40.13 item 7
+   records `0xe53c` (`battery_soc_curve_model_init`) as *fused* (`VFMA`) and
+   therefore needing no pin.  Those are different functions; the five-body list
+   should be re-derived from the image before anyone pins anything.
+5. **The 22-transaction (one animation frame) `spim_a` phase split.**  Ours
+   786/2,859 vs the oracle's 764/2,881, whole run equal.  Closing it means
+   making `NAVIGATION_ACTIVE` flip at 4.091 s instead of 3.981 s — a 110 ms
+   difference in the ESB/BLE sync path, not in `ui_navigation_task`.  Since the
+   shipped image itself produced the 786/2,859 split under a different seed,
+   this may not be a defect at all.
+6. **`cfg_verify --self-test`** was not run (already broken at HEAD per
+   `AGENTS.md` §1b).  Per-function verification plus an explicit negative
+   control (§41.4) was used instead.
+7. **The 36 unsettled zero-argument call sites in `key_event_thread.c` and the
+   303 INVENTED argument sites** from the latent-defect harvest — the R8 pass —
+   were **not** started.  Tasks 1, 2 and 4 plus one Task 3 item consumed the
+   budget.
+8. **Nothing was committed.**  The tree is left dirty.
+9. **`recon/refactor/` was not touched** (concurrent agent), nor was
+   `recon/net/**`, any linker script, `recon/board/**`, or `tools/`.
+   `~/Projects/armemul` is byte-for-byte as it was found: the two uncommitted
+   `TraceFile` hooks in `models/NRF5340_{SPIM,TWIM}.cs` were verified present
+   before capturing and **nothing there was written** — the seed fix lives in
+   `recon/emulator/scripts/capture_display_sensor_oracle.sh`, in this repo.
+
+### 41.13 Footprint
+
+```
+ M recon/app/src/FUN_0003f410.c                          G-3: restored event==0 arm
+ M recon/verified/src/FUN_0003f410.c                     G-3
+ M recon/named/ui_navigation_task.c                      G-3
+ M recon/symbolized/app/ui_navigation_task.c             G-3  (the compiled tree)
+ M recon/readable_sources/app/g1/ui_navigation_task.c    G-3
+ M recon/symbolized/app/fuel_gauge_update.c              __extendsfdf2 ABI (7 sites)
+ M recon/symbolized/app/panel_temp_calibration_init.c    __extendsfdf2 ABI (1 site)
+ M recon/named/fuel_gauge_update.c                       __extendsfdf2 ABI
+ M recon/named/panel_temp_calibration_init.c             __extendsfdf2 ABI
+ M recon/readable_sources/app/g1/fuel_gauge_update.c     __extendsfdf2 ABI
+ M recon/readable_sources/app/g1/panel_temp_calibration_init.c   __extendsfdf2 ABI
+ M recon/emulator/scripts/capture_display_sensor_oracle.sh       G1_SEED / emulation SetSeed
+ M recon/emulator/reports/our_boot_bringup.md            this section
+ M recon/emulator/reports/sensor_parity_status.md        iteration-41 header
+ M recon/emulator/reports/display_sensor_parity.md       §2.1 CORRECTION
+```
+
+No new files, no deletions, no generated-file regeneration needed (no new
+symbols, no new rodata pins — the one new string literal
+`"%s(): dynamic image reflash\n"` is an ordinary `.rodata` literal, +112 B).
+
+### Regenerate (iteration 41)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+recon/application/build_cohesive.sh app /private/tmp/g1-i41c-app
+# net UNCHANGED from iteration 30 (g1-i30e-net)
+# runtime_info_sync MOVES on almost every build -- ALWAYS re-read it:
+#   arm-zephyr-eabi-nm zephyr.elf | grep -w runtime_info_sync   -> 0x00015c0c here
+# _end 0x2003ff45 -> ctx 0x2003ff50; +0xd5/+0xfe8/+0x105a =
+#   0x20040025 / 0x20040F38 / 0x20040FAA
+printf '$rtinfo_pc=0x00015c0c\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i41/ours-paired-i41c.resc
+bash -c 'F=$(mktemp -u); mkfifo $F; sleep 100000 > $F & W=$!
+G1_RESC=/private/tmp/g1-i41/ours-paired-i41c.resc \
+G1_APP_ELF=/private/tmp/g1-i41c-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040F38 G1_CTX_105A=0x20040FAA G1_SCREEN_ID=0x20040025 \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_i41c_nav < $F
+kill $W; rm -f $F'
+# dashboard: identical with G1_ATT_WRITE="" into /private/tmp/g1_i41c_dash
+# G1_SEED defaults to 305419896 -- the capture now PRINTS the seed it used
+# ("ORACLE_EMULATION_SEED:" in run.out).  Two runs at the same seed are
+# byte-identical; two runs at different seeds are NOT, for the shipped image
+# just as much as for ours.
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_i41c_nav /private/tmp/g1-i41/rep-nav-c
+cmp /private/tmp/g1-i41/rep-nav-c/golden_framebuffer_p1_boot.raw \
+    recon/emulator/reports/golden_framebuffer_p1_boot.raw
+# Renode probe runs MUST be started with cwd = ~/Projects/armemul and with
+# `--console --plain`; feed stdin from a mkfifo writer (ConsoleIOSource aborts).
+```
