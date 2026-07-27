@@ -87,9 +87,64 @@ DATA = os.path.join(REPO_ROOT, "recon", "refactor", "sdk_declared_symbols.json")
 #: ``census()`` and recorded in the data file's provenance.
 _ANGLE = re.compile(r'^[ \t]*#[ \t]*include[ \t]+<([^>]+)>', re.M)
 
-#: one -aux-info line looks like
-#:   /path/hdr.h:126:NC:extern int32_t k_sleep (k_timeout_t);
-_AUX = re.compile(r'^[^:]*:\d+:\d*:?[A-Z]*:?\s*(?P<decl>.*);\s*$')
+#: One ``-aux-info`` line is a LOCATION COMMENT, then the declaration, then --
+#: for a declaration that is also a DEFINITION in this translation unit -- a
+#: TRAILING COMMENT carrying the old-style parameter list::
+#:
+#:   /* /ncs251/zephyr/lib/libc/.../string.h:44:NF */ extern void *memcpy (void *, const void *, size_t);
+#:   /* /ncs251/modules/hal/cmsis/.../cmsis_gcc.h:269:NF */ static void __DSB (void); /* () */
+#:
+#: THE FIRST PARSER OF THIS FILE WAS ``^[^:]*:\d+:\d*:?[A-Z]*:?\s*(.*);\s*$`` --
+#: the terminating ``;`` anchored at END OF LINE.  The trailing ``/* () */``
+#: moves it, so **every line that was a definition rather than a bare prototype
+#: was silently dropped**, and the definitions are exactly the
+#: ``static __inline`` bodies.  That is why ``cmsis_gcc.h`` measured **0**
+#: identifiers in ``sdk_declared_symbols.json`` while its ``.aux`` file had 122
+#: lines: the stage 05 report recorded the symptom ("``-aux-info`` does not
+#: report ``__STATIC_FORCEINLINE`` bodies") and attributed it to GCC.  It is
+#: our regex.  Measured after the fix: ``cmsis_gcc.h`` 0 -> **121**,
+#: ``zephyr/kernel.h`` 467 -> **857** (``k_msleep``, ``k_uptime_get``,
+#: ``k_cycle_get_32``, the whole ``ARM_MPU_*`` family), ``zephyr/device.h``
+#: 53 -> **151**, and **0** identifiers are lost anywhere.
+#:
+#: This is the THIRD time in this pipeline that a line-anchored scan has been
+#: defeated by a trailing comment (stage 03's ``memset_bytes`` declaration,
+#: stage 04's multi-line declarations, and now this).  The parser below is
+#: therefore structural rather than anchored: take the text after the location
+#: comment, strip any trailing comments, and require what remains to end in
+#: ``;``.
+_AUX_LOC = re.compile(r'^/\*(?:[^*]|\*(?!/))*\*/\s*(?P<rest>.*)$')
+_AUX_TRAILING_COMMENT = re.compile(r'\s*/\*(?:[^*]|\*(?!/))*\*/\s*$')
+
+
+def parse_aux_line(line: str) -> str | None:
+    """The declaration text of one ``-aux-info`` line, or None."""
+    m = _AUX_LOC.match(line.rstrip("\n"))
+    if not m:
+        return None
+    rest = m.group("rest").strip()
+    while True:
+        stripped = _AUX_TRAILING_COMMENT.sub("", rest)
+        if stripped == rest:
+            break
+        rest = stripped.strip()
+    if not rest.endswith(";"):
+        return None
+    return rest[:-1]
+
+
+def aux_identifiers(path: str) -> set[str]:
+    """Every identifier declared by an ``-aux-info`` output file."""
+    out: set[str] = set()
+    with open(path, encoding="utf-8", errors="replace") as fh:
+        for line in fh:
+            decl = parse_aux_line(line)
+            if decl is None:
+                continue
+            ident = _declared_identifier(decl)
+            if ident:
+                out.add(ident)
+    return out
 
 #: Standard-library headers NO corpus file includes today, measured anyway.
 #: The justification is specific rather than "to be safe": stages 03-05 actively
@@ -101,6 +156,25 @@ _AUX = re.compile(r'^[^:]*:\d+:\d*:?[A-Z]*:?\s*(?P<decl>.*);\s*$')
 #: "'snprintf' is declared in header '<stdio.h>'" as a warning -- one #include
 #: away from being the k_sem_give error.
 EXTRA_HEADERS = ("stdio.h", "stdlib.h", "errno.h", "time.h", "assert.h")
+
+#: Headers whose macro NAMES are recorded individually, not just counted.
+#:
+#: The full macro census is 27,838 names, ~98,000 per-header entries, and it is
+#: dominated by the generated devicetree table: ``<zephyr/kernel.h>`` alone
+#: contributes 27,532 ``DT_N_S_soc_S_...`` names.  Writing all of those into a
+#: committed evidence file would add megabytes to answer a question nothing
+#: asks.  What DOES ask a question is stage 06 sub-batch H, which may only move
+#: an ``#include`` earlier in a translation unit if no identifier in the code it
+#: jumps over is a macro of that header -- and the only angle headers that ever
+#: appear after the first include block of a merged unit are, measured over all
+#: 249 merged units, ``<stdint.h>`` (88 occurrences) and ``<stddef.h>`` (8).
+#:
+#: So the individual names are recorded for the C standard's type/limit headers
+#: -- 822 names in total -- and every other header is recorded by count only.
+#: A consumer that needs a name-level answer for a header not on this list gets
+#: no evidence and must refuse, which is the correct failure direction.
+MACRO_DETAIL_HEADERS = ("stdint.h", "stddef.h", "stdbool.h", "stdarg.h",
+                        "limits.h", "inttypes.h", "sys/types.h")
 
 #: probe preludes tried in order when a header will not compile standalone.
 #: ``cmsis_gcc.h`` uses ``int32_t`` without including <stdint.h> itself.
@@ -125,13 +199,45 @@ def census(roots: list[str]) -> dict[str, int]:
 def _declared_identifier(decl: str) -> str | None:
     """The identifier a -aux-info declaration line declares."""
     d = decl.strip()
-    d = re.sub(r"\b(extern|static|inline|__inline__|register)\b", " ", d)
+    d = re.sub(r"\b(extern|static|inline|__inline__|__inline|register)\b", " ", d)
     # function declarator:  ... name (params)
     m = re.search(r"([A-Za-z_]\w*)\s*\(", d)
     if m:
         return m.group(1)
     ids = re.findall(r"[A-Za-z_]\w*", d)
     return ids[-1] if ids else None
+
+
+_DEFINE = re.compile(r'^#define[ \t]+([A-Za-z_]\w*)')
+
+
+def probe_macros(cc, flags, td, source: str) -> set[str]:
+    """Every macro NAME defined after preprocessing ``source``.
+
+    ``-aux-info`` reports declarations; it structurally cannot see a macro.
+    That residue is not hypothetical: CMSIS spells the NVIC API as
+    ``#define NVIC_EnableIRQ __NVIC_EnableIRQ`` over a ``static __inline``
+    definition, so the *function* the fixed parser now records is
+    ``__NVIC_EnableIRQ`` and the name a reconstructed declaration would
+    collide with is ``NVIC_EnableIRQ``.  A transformer that publishes
+    ``extern int NVIC_EnableIRQ(int);`` into a translation unit that includes
+    the CMSIS core header does not merely shadow a declaration -- the
+    preprocessor rewrites its own declaration to name a different symbol.
+
+    ``-dM -E`` makes GCC dump the macro table it ends with, which is the
+    ground truth for that question and needs no parsing of header text.
+    """
+    probe = os.path.join(td, "macro_probe.c")
+    with open(probe, "w", encoding="utf-8") as fh:
+        fh.write(source)
+    p = subprocess.run([cc] + flags + ["-dM", "-E", "-w", probe],
+                       capture_output=True, text=True)
+    out: set[str] = set()
+    for line in p.stdout.splitlines():
+        m = _DEFINE.match(line)
+        if m:
+            out.add(m.group(1))
+    return out
 
 
 def _probe_symbols(cc, flags, td, source: str) -> set[str]:
@@ -144,16 +250,7 @@ def _probe_symbols(cc, flags, td, source: str) -> set[str]:
         fh.write(source)
     subprocess.run([cc] + flags + ["-fsyntax-only", "-w", "-aux-info", aux, probe],
                    capture_output=True, text=True)
-    out: set[str] = set()
-    if os.path.exists(aux):
-        with open(aux, encoding="utf-8", errors="replace") as fh:
-            for line in fh:
-                m = _AUX.match(line)
-                if m:
-                    ident = _declared_identifier(m.group("decl"))
-                    if ident:
-                        out.add(ident)
-    return out
+    return aux_identifiers(aux) if os.path.exists(aux) else set()
 
 
 def generate(command_file: str, build_dir: str, roots: list[str]) -> dict:
@@ -184,7 +281,14 @@ def generate(command_file: str, build_dir: str, roots: list[str]) -> dict:
     by_header: dict[str, list[str]] = {}
     preluded: dict[str, str] = {}
     failed: dict[str, str] = {}
+    macros: set[str] = set()
+    macros_per_header: dict[str, int] = {}
+    macros_by_header: dict[str, list[str]] = {}
+    in_corpus_macros: set[str] = set()
     with tempfile.TemporaryDirectory() as td:
+        # the compiler's own built-in macros, present with no #include at all;
+        # they are not a header's contribution and are subtracted from each.
+        builtin_macros = probe_macros(cc, flags, td, "")
         for h in probe_list:
             probe = os.path.join(td, "probe.c")
             aux = os.path.join(td, "probe.aux")
@@ -200,15 +304,7 @@ def generate(command_file: str, build_dir: str, roots: list[str]) -> dict:
                 if not os.path.exists(aux):
                     err = (p.stderr.strip().splitlines() or ["(no output)"])[-1]
                     continue
-                got = set()
-                with open(aux, encoding="utf-8", errors="replace") as fh:
-                    for line in fh:
-                        m = _AUX.match(line)
-                        if not m:
-                            continue
-                        ident = _declared_identifier(m.group("decl"))
-                        if ident:
-                            got.add(ident)
+                got = aux_identifiers(aux)
                 if prelude:
                     preluded[h] = prelude.strip()
                     # a prelude contributes its OWN declarations; subtract them
@@ -222,6 +318,18 @@ def generate(command_file: str, build_dir: str, roots: list[str]) -> dict:
             symbols |= got
             if h in hdrs:
                 in_corpus_headers |= got
+            mine = probe_macros(cc, flags, td,
+                                preluded.get(h, "") + "\n#include <%s>\n" % h)
+            mine -= builtin_macros
+            if h in preluded:
+                mine -= (probe_macros(cc, flags, td, preluded[h] + "\n")
+                         - builtin_macros)
+            macros_per_header[h] = len(mine)
+            macros |= mine
+            if h in MACRO_DETAIL_HEADERS:
+                macros_by_header[h] = sorted(mine)
+            if h in hdrs:
+                in_corpus_macros |= mine
 
     doc = {
         "schema": "g1.refactor.sdk-declared-symbols/1",
@@ -234,6 +342,14 @@ def generate(command_file: str, build_dir: str, roots: list[str]) -> dict:
                    "reconstructed spelling would silently win.",
         "generated_by": "recon/refactor/sdk_symbols.py generate",
         "provenance": {
+            "aux_info_parser": "structural: strip the leading location comment, "
+                               "strip trailing comments, require a terminating "
+                               "`;'.  The previous parser anchored the `;' at "
+                               "end of line and therefore dropped every "
+                               "-aux-info line that was a DEFINITION (those "
+                               "carry a trailing `/* (params) */'), which is "
+                               "exactly the `static __inline' bodies -- the "
+                               "measured cause of the cmsis_gcc.h `gap'.",
             "compiler": cc,
             "flag_source": os.path.abspath(command_file),
             "build_dir": os.path.abspath(build_dir),
@@ -245,15 +361,44 @@ def generate(command_file: str, build_dir: str, roots: list[str]) -> dict:
             "headers_that_would_not_compile_standalone": failed,
             "symbols_from_corpus_headers_only": len(in_corpus_headers),
             "symbols_added_by_the_extra_headers": len(symbols - in_corpus_headers),
+            "macro_source": "gcc -dM -E per header, minus the compiler's built-in "
+                            "macro table and minus any prelude's own macros",
+            "macros_per_header": dict(sorted(macros_per_header.items())),
+            "macros_from_corpus_headers_only": len(in_corpus_macros),
+            "macro_names_recorded_individually_for": list(MACRO_DETAIL_HEADERS),
+            "macro_names_that_are_also_declared_identifiers":
+                len(macros & symbols),
         },
         "symbol_count": len(symbols),
         "symbols": sorted(symbols),
         "symbols_by_header": dict(sorted(by_header.items())),
+        "macro_count": len(macros),
+        "macros": sorted(macros),
+        "macros_by_header": dict(sorted(macros_by_header.items())),
     }
     return doc
 
 
 _cache: set[str] | None = None
+_macro_cache: set[str] | None = None
+
+
+def load_macros() -> set[str]:
+    """The measured MACRO names, or the empty set when absent (see ``load``).
+
+    A macro name is a different hazard from a declared identifier and is kept
+    in its own set so a consumer can report the two separately: shadowing a
+    declaration is a type conflict the compiler will usually catch, while
+    shadowing a macro silently rewrites the transformer's own output before the
+    compiler ever sees it.
+    """
+    global _macro_cache
+    if _macro_cache is None:
+        _macro_cache = set()
+        if os.path.exists(DATA):
+            with open(DATA, encoding="utf-8") as fh:
+                _macro_cache = set(json.load(fh).get("macros", []))
+    return _macro_cache
 
 
 def load() -> set[str]:
@@ -273,6 +418,25 @@ def load() -> set[str]:
         else:
             _cache = set()
     return _cache
+
+
+_macro_detail_cache: dict | None = None
+
+
+def load_macro_detail() -> dict:
+    """Per-header macro NAME lists, for the headers that record them.
+
+    Only the headers in ``MACRO_DETAIL_HEADERS`` appear.  A consumer asking
+    about any other header gets no key, which it must read as "no evidence" and
+    refuse -- never as "no macros".
+    """
+    global _macro_detail_cache
+    if _macro_detail_cache is None:
+        _macro_detail_cache = {}
+        if os.path.exists(DATA):
+            with open(DATA, encoding="utf-8") as fh:
+                _macro_detail_cache = json.load(fh).get("macros_by_header", {})
+    return _macro_detail_cache
 
 
 def main(argv=None):

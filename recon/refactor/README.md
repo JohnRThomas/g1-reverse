@@ -82,6 +82,16 @@ Build inputs that live inside a protected tree (the app CMakeLists compiles 2
 sources out of `recon/app/src`, the net CMakeLists 34 out of `recon/net/src`)
 are carried **by reference** and reported as `quarantined_protected`.
 
+**C2b — a transformer's EVIDENCE is an input, and staleness watches it.**
+`sdk_declared_symbols.json` and `link_referenced_symbols.json` are measurements
+a transformer consults to decide what it may do. They live inside the pipeline,
+so `input_set` never lists them — and before `stagelib.EVIDENCE_INPUTS` existed,
+`driver.py status` reported a stage as **current** after its evidence had been
+regenerated underneath it. Measured when it was added: correcting the SDK
+evidence moved stage 03's harvest (218 → 215 hoists, 267 → 300 refusals) while
+`status` went on reporting stages 03, 04 and 05 as current. `materialize` now
+records the evidence hashes in every MANIFEST and `staleness()` checks them.
+
 **C3 — one directory per step.** `stage_NN_<slug>/` holding `MANIFEST.json`,
 `PARITY_MAP.json`, an optional `QUARANTINE.json`, and `tree/`.
 
@@ -176,7 +186,26 @@ and reported a stage whose `.text` had moved 80 bytes as `size-neutral` with
 every delta `+0` — because the G1 Zephyr link names them `text`, `rodata`,
 `datas`, `bss`, `noinit`, with no leading dot, plus 20 further allocatable
 areas. A gate keyed on a name list is a gate that silently passes.
-`test_size_gate.py` pins all of this (25 tests); the suite is **105/105**.
+`test_size_gate.py` pins all of this (25 tests); the suite is **139/139**.
+
+**C7c — a rule keyed on a hand-maintained list of NAMES is a rule that silently
+stops covering what it was written for.** This has now happened four times, and
+the list is kept here because the fifth is coming:
+
+* the first size gate compared `(".text", ".rodata", …)` and passed a stage whose
+  `.text` had moved 80 bytes, because this link names them without a leading dot
+  (C7b above) — fixed by keying on `SHF_ALLOC`;
+* stage 03's declaration scanner anchored a `;` at end of line and could not see
+  `extern void memset_bytes(void *, int, size_t);  /* memset */`;
+* `sdk_symbols.py`'s `-aux-info` parser did the same and dropped **every**
+  `static inline` the SDK declares — 410 identifiers, reported for two passes as
+  a GCC limitation;
+* stage 07's pinned-symbol rule listed **three** linker fragments out of
+  **eighteen**, and the link failed on
+  `PROVIDE(prepare_new_task = wait_touch_key_release_or_timeout)`.
+
+The repair is always the same shape: **discover, or key on a structural property,
+never on a list of names.**
 
 **C8 — the one genuinely risky transformation class.**
 Inlining and macro substitution are invisible from outside the chip in almost
@@ -203,9 +232,12 @@ the end gives a pass/fail with no diagnostic value.
 | 03b (partly done, upstream) | **repair the declaration disagreements** in the CANONICAL trees (stage 03 `DEFECTS.json`). The parity agent's type-disagreement pass took the census from 1,014 to **833** (measured by re-running stage 03's own agreement test at HEAD `50929c5d`). | blocking prerequisite for a *blanket* cohesive-TU merge; still the single thing standing between stage 04's 695 translation units and 243. R1 means this work is the parity agent's, not the pipeline's. |
 | 04 | **scoped cohesive-TU merge, app core only — DEFAULT IS NOW SUB-BATCH `B`** — maximal ORDER-PRESERVING runs of consecutive retained sources inside one module that provably cannot collide. Seven refusal rules (`type`, `dupdef`, `static`, `typedef`, `macro`, `asmname`, `tag`/`enumconst`, `includes`); quoted repository headers are *read* and folded rather than refused. `A` and `B` now **partition** the clean runs and the R7 gate below charged 100 % of the damage to `A`, so `B` is the default: **1,615 → 700 TUs, 249 merged units, 1,164 files absorbed.** | **the first stage that CANNOT be gated on `cmp zephyr.bin`.** Declared codegen class **`size-changing`**, measured `.text` **−76 B** for `B` alone (−12 B for `A`, −88 B for `AB`) — so **an oracle run is REQUIRED and has NOT been done for `B`**. Reports: `recon/analysis/staged_refactor_stage04.md` (the original AB build), `recon/analysis/stage04_r7_validation.md` (the gate), `recon/analysis/staged_refactor_stage05.md` (the rework). |
 | 05 | **cohesive composition, app core only** — turns stage 04's concatenated units into composed ones: one include block per unit (repeats of *provably idempotent* headers withdrawn, never moved — 2,423 → 850 directives, worst unit 49 → 6), one declaration site per symbol per unit (146 duplicates withdrawn), one-line member banners, every `identity:` banner preserved byte for byte. Sub-batch `S` (internal linkage for TU-private symbols: 241 candidates) is opt-in and **not applied**. | declared `size-neutral`, **measured `byte-identical` — `zephyr.bin` `cmp`-identical to stage 04's, 956,276 B.** Needs no oracle of its own; inherits stage 04's unproven status. Report: `recon/analysis/staged_refactor_stage05.md` |
-| 06 (was 05) | MMIO accessor macros per width, with a signedness audit | **stage that can change codegen** by value; C8 applies. Stage 02 already reduced 84 accessor spellings to 52, which is the prerequisite. |
-| 07 | net renaming from upstream-identified symbols | 0 B, gated by a real link (C6) |
-| 08 | struct typing | the stage that can grow the image; budget it |
+| 06 | **composition depth (LANDED)** — module-private declaration demotion (a generated module-header declaration whose users have collapsed to ONE merged unit moves into that unit, at the include point) and include hoisting (a late `#include` moves to the unit's first block only when no preprocessor directive intervenes AND no identifier in the code it jumps over is a macro of that header, per the measured evidence; a header with no name-level macro evidence is refused). | declared `byte-identical`, **measured `byte-identical` — `cmp`-identical `zephyr.bin`, 956,276 B.** 251 of 285 late includes hoisted; units at exactly one include block **21 → 112**; 4 of 215 module-header declarations demoted (211 genuinely still have ≥2 users). Report: `recon/analysis/staged_refactor_stage06.md` |
+| 07 | **internal linkage (BUILT, NOT PROVEN)** — `static` for TU-private symbols, decided by **link evidence** (`recon/refactor/link_evidence.py`: `nm --undefined-only` over all 66 inputs of the app link, archives scanned whole) rather than by a source-text scan. The source scan was wrong on **58 of its 240 candidates**. 137 applied. | declared `size-changing`, measured `size-changing`, `.text` **−276 B**. **Gated by a real link (C6), which caught two hazards no `nm` evidence can see: a `PROVIDE()` in one of the 18 linker fragments the rule had listed 3 of, and 112 `-Wl,--undefined=` gc-roots reached through a `foreach(… IN LISTS …)`.** Side-finding: 120 recovered functions are now provably dead. **Oracle REQUIRED, not run.** |
+| 08 | **call-order reordering (LANDED AS A MEASURED NO-OP)** — stable topological sort of a merged unit's member blocks, callee before caller. | declared `size-changing` on principle. Result: **0 units reordered.** The 249 merged units contain **11 internal call edges in total**, all already callee-before-caller; stage 08's tree is byte-for-byte stage 07's. The finding is that stage 04 merges by link-order adjacency, which is nearly orthogonal to call structure. |
+| 09 (was 06) | MMIO accessor macros per width, with a signedness audit | **stage that can change codegen** by value; C8 applies. Stage 02 already reduced 84 accessor spellings to 52, which is the prerequisite. |
+| 10 | net renaming from upstream-identified symbols | 0 B, gated by a real link (C6) |
+| 11 | struct typing | the stage that can grow the image; budget it |
 
 ---
 
@@ -544,3 +576,152 @@ candidate **firmware defects** that the parity harness structurally cannot see
 Repairing them arity-first was already README stage-03b work for merge yield; it
 should be re-prioritised as a defect hunt. Full working and the falsifiable
 prediction for the fix: `recon/analysis/stage04_r7_validation.md` §8.
+
+---
+
+## R7 GATE RECORD — STAGE 04 SUB-BATCH **B** (and STAGE 05), run 2026-07-27
+
+The record above ends by making `B` the default on the evidence that 100 % of
+sub-batch A's damage was A's and that AB-against-A gave 0 regressions, while
+recording that **a B-only image had never been booted** and that its `.text`
+delta (−76 B) is five to six times the A delta that broke eight fields. It has
+now been booted. Full working: **`recon/analysis/stage04b_r7_validation.md`**.
+
+**Inputs.** HEAD `fc11c2c8` ("P4 iter-43: the frozen-clock fix lands"), working
+tree clean except the unrelated untracked `.xapk`. `driver.py status`: stage 00
+**stale** on **3** inputs — iteration 43 §43.13's four `memcpy`-length repairs in
+`clear_timeout_message.c`, `confirm_message.c`,
+`post_notification_cmd_process.c`. Stages 00 → 05 were **regenerated, never
+patched**, and **every transformer output is unchanged field for field**: 249
+merged units absorbing 1,164 files, 1,573 duplicate includes withdrawn, 146
+duplicate declarations, 218 hoists, 19 module headers.
+`DEFECTS.json` 930 → **940**. `check-addresses` 0-1 … 4-5 all identical at
+**2,567**; refactor suite **105/105**; stages 04 and 05 both byte-idempotent
+(manifest *and* whole tree).
+
+One consequence of iteration 43 is worth naming: `errno_wrapped_tick_call.c` and
+`rate_limited_elapsed_seconds_tick.c` are now in **one** merged unit
+(`ble/g1_ble_12.c`). The stage-04 `type` refusal rule had kept them apart, which
+is precisely why the compiler was never allowed to see the contradiction that
+froze the device clock. Repairing the declaration lapsed the refusal.
+
+**Four images**, all built with the repository's own entry point:
+
+| image | FLASH | `text` | `runtime_info_sync` |
+|---|---:|---:|---|
+| in-tree HEAD (`cmp`-identical to iteration 43's `g1-i43b-app`) | 956,480 B | 492,692 | `0x00015c04` |
+| stage 03 | 956,356 B | 492,688 | `0x00015c04` |
+| **stage 04 sub-batch B** | **956,276 B** | **492,612** | **`0x00016c14`** |
+| **stage 05** (`cmp`-identical to stage 04's `zephyr.bin`) | 956,276 B | 492,612 | `0x00016c14` |
+
+**`$rtinfo_pc` is `0x00016c14` for stage 04-B — a FIFTH distinct value.**
+`size-gate 4` measured `size-changing` as declared, `text` **−76 B**, everything
+else Δ 0; `size-gate 5` measured **`byte-identical`**, so the stage-04 capture
+covers stage 05 exactly — re-verified after regeneration rather than assumed.
+
+**Six seeded captures** (`G1_SEED=305419896`), `$rtinfo_pc` re-read per image:
+stage 04-B nav ×2 + dash, in-tree base nav + dash, and **stage 03 nav** (new —
+it is what brackets the threshold). Run 1 vs run 2 of stage 04-B navigation gave
+a `diff -r`-identical regenerated oracle directory.
+
+**A correction that had to be made first: the committed navigation shipped
+oracle is STALE.** `recon/emulator/reports/display_sensor_oracle.json` differs
+from a regeneration of the seeded shipped capture in **8 of 69 fields**
+(`RADIO_TX` `0x230` vs `0x232`, `VC_DATA_EVENTS`, `twim1 p1_boot`/`p2_render`
+sha, the `saadc` pointer canonicalisation, and three fields it does not carry at
+all). Comparing against it would have scored two of the failures below as
+pre-existing gaps. The **dashboard** oracle is current (0 of 69). Everything
+below is measured against the seeded regeneration. *The navigation oracle was
+deliberately NOT regenerated in this pass — see the report's §6 item 4.*
+
+### Result — **STAGE 04 SUB-BATCH B FAILS R7, ON THE SAME EIGHT FIELDS AS A**
+
+| | verdict |
+|---|---|
+| **all four acceptance framebuffers, both stimuli** | **PASS** — `1d617c65…` 656 px / `b26c73b3…` 1,098 px / `0c5cc90b…` all-zero / `19b1f24a…` 2,923 px, `cmp` exit 0, 153,600 B each |
+| `SCREEN_ID` `0x0A`/`0x06`, `DISPLAY_ON` `0x01`, `ESB_SYNC` `0x02` | **PASS** on every image |
+| navigation `spim_a` whole run 3,645; `twim1 p2_render` 599 with all four per-device streams; `JBD_FRAMECOUNTER_P2` `0x0D61`; every dashboard number iteration 43 moved (`spim_a p2_render` 12,289, `JBD_FRAMECOUNTER_P2` `0x2EA3`, `twim1 p2_render` 584 / nPM1300 514 — bit-identical between base and stage) | **HOLD** |
+| **navigation `twim1 p1_boot`** 371 → **373** (OPT3001 33 → **35**, its sha, the merged-bus sha) | **REGRESSION** |
+| **navigation `twim2 p1_boot`** 1,089 → 1,089 but `7ed8ddcd0c0d420d…` → **`03537cda890a2b7d…`** (and `regprog`) | **REGRESSION** |
+| **`counters/RADIO_TX`** `0x232` → **`0x234`** navigation, **`0x235`** dashboard | **REGRESSION** |
+| `twim2 p2_render` NE → byte-equal with shipped on both stimuli | improvement, reported not celebrated — same phase mechanism landing right |
+| every other NE | **pre-existing** — identical on base and stage, or moved toward shipped |
+
+**Every failing hash is byte-for-byte the value sub-batch A produced.** Not the
+same kind of failure — the same failure. AB-against-A had measured B's
+*incremental* effect on top of an A that had already moved the thread; B on its
+own moves it identically.
+
+### The mechanism, and why it retires two earlier recommendations
+
+The OPT3001 poll train's first steady-state poll, from `twim1.p1.trace` ticks:
+
+| image | `text` Δ vs in-tree | poll #13 | polls in `p1_boot` | whole-run |
+|---|---:|---|---:|---:|
+| shipped | — | 4.295530 s | 17 (33 tx) | 113 |
+| in-tree base | 0 | 4.304170 s | 17 (33) | 113 |
+| **stage 03** | **−4** | **4.304200 s** | 17 (33) | 113 |
+| stage 04 A | −16 | 4.203950 s | **18 (35)** | 115 |
+| **stage 04 B** | **−80** | **4.203650 s** | **18 (35)** | **115** |
+| stage 04 AB | −92 | 4.203460 s | **18 (35)** | 115 |
+
+**There are exactly two slots, 100.5 ms apart.** Three images spanning −16 B to
+−92 B land in the earlier one within **0.5 ms of each other**; stage 03 at −4 B
+stays in the base slot within 0.03 ms. The `twim2` regression is the *same*
+100.51 ms step of a periodic ODR-reconfiguration block (only 18 of 1,089
+canonical lines differ, all between indices 967 and 984; whole-run LSM6DSO is
+**2,289 on shipped and on every one of our images**). **The displacement is
+quantised, not proportional to linked size.**
+
+And the margin: the OPT3001 period is 350.31 ms, `p1_boot` ends at 6.000 s, so
+the in-tree build is **55.6 ms** from gaining an 18th poll — and **the shipped
+firmware itself is only 46.8 ms from it**, 0.78 % of the phase.
+
+> **The step (100.5 ms) is larger than the margin (55.6 ms). There is no landing
+> between the two slots.**
+
+1. **A size-compensating measure is refuted, not merely unattractive.** No pad
+   size lands between the slots; the only compensation that works is
+   byte-identity, which for a merge stage means not merging.
+2. **The A/AB record's recommendation 1 — "fix the boot-path timing gap first" —
+   is also refuted.** The gap is 3.45 ms and the step is 100.5 ms, a factor of
+   29; closing the whole gap moves the train under 4 % of one step. Iteration 43
+   showed the converse: a **+2 B** relink that moved 1,000 text symbols left all
+   69 navigation fields bit-identical.
+
+So the live options are the A/AB record's option 2 (re-baseline these streams
+deliberately, with the decoded diffs as the record of what was given up), or a
+phase-tolerant criterion published **together with the class of defect it would
+stop catching** (a wrong sleep constant / dropped tick / priority inversion is
+exactly a 100 ms-class phase move). **Neither was taken in this pass and no
+tolerance was widened.** `"oracle_required": true` in stage 04's manifest is
+**not** discharged: the oracle ran and the stage failed it.
+
+### Stage 05
+
+`zephyr.bin` `cmp`-identical to stage 04-B's at **956,276 B**, `size-gate 5`
+`byte-identical`, all sections Δ 0. Its composition work costs nothing
+observable and it **inherits stage 04's failure exactly**.
+
+### Two transient integrity failures, recorded because they happened
+
+* `materialize 4` once produced a tree **missing merged-unit files its own
+  manifest listed** — `"parity_rows": 2473` instead of 2,567 — and `materialize
+  5` died on the first missing file. It did not reproduce. `check-addresses 3 4`
+  would have caught it; `materialize` does not run that check itself, so a
+  last-in-chain stage would have been built and captured 94 functions short in
+  silence.
+* The first stage-04 `build_cohesive.sh` failed with `discovery_callback.c`
+  compiled at **`-std=c99`** — the exact C2 hazard — although `CMakeLists.txt`
+  is sha-identical across the stage 03/04/05 trees and carries the correct
+  post-stage-03 path, the source is sha-identical across all three, and stages
+  03 and 05 built it clean minutes either side. A clean rebuild of the same tree
+  gave exit 0. **Under C4 a stage compile failure is proof the transformer is
+  wrong; rebuild once from a clean build directory before invoking that rule.**
+
+### Reproducing
+
+See `recon/analysis/stage04b_r7_validation.md` §8. The one thing that will bite:
+**the shipped navigation reference must be regenerated from
+`/private/tmp/g1_ship_seed_q1`, not read from the committed
+`display_sensor_oracle.json`.**

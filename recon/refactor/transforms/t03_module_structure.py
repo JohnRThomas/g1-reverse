@@ -635,6 +635,16 @@ def batch_b(moves, text, stats, defects):
     # (recon/refactor/sdk_symbols.py).  Absent evidence yields the empty set,
     # which reproduces the pre-evidence behaviour exactly.
     sdk_syms = sdk_symbols.load()
+    #: measured MACRO names (``sdk_symbols.probe_macros``).  ``-aux-info``
+    #: structurally cannot see a macro, so the declaration evidence alone left a
+    #: second hole next to the one it closed: CMSIS spells its NVIC API as
+    #: ``#define NVIC_EnableIRQ __NVIC_EnableIRQ`` over a ``static __inline``
+    #: body, so the declared identifier is ``__NVIC_EnableIRQ`` and the name a
+    #: hoisted declaration would collide with is ``NVIC_EnableIRQ``.  Publishing
+    #: ``extern int NVIC_EnableIRQ(int);`` into a TU that includes the CMSIS core
+    #: header does not shadow a declaration -- the preprocessor rewrites the
+    #: transformer's own output to declare a DIFFERENT symbol.
+    sdk_macros = sdk_symbols.load_macros()
     sdk_refused: list[dict] = []
 
     stdlib_shadow: list[str] = []
@@ -692,7 +702,7 @@ def batch_b(moves, text, stats, defects):
         for sym, forms in decls.items():
             if sym in uncanon:
                 continue          # a form of this symbol could not be canonicalised
-            if sym in sdk_syms:
+            if sym in sdk_syms or sym in sdk_macros:
                 # ---- REFUSAL: the SDK already declares this symbol.
                 # Hoisting publishes a declaration into every module file that
                 # lost a copy of ANY hoisted symbol -- including files that
@@ -712,7 +722,9 @@ def batch_b(moves, text, stats, defects):
                 # It is reported as a defect instead.
                 sdk_refused.append({
                     "module_dir": d, "symbol": sym,
-                    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+                    "class": ("reconstructed_declaration_shadows_an_sdk_symbol"
+                              if sym in sdk_syms else
+                              "reconstructed_declaration_shadows_an_sdk_macro"),
                     "types": {c: sum(len(v) for v in sp.values())
                               for c, sp in sorted(forms.items())},
                     "files": sorted({os.path.basename(f)
@@ -848,7 +860,13 @@ def batch_b(moves, text, stats, defects):
         "symbols_refused_divergent_spelling": divergent_total,
         "sdk_evidence_present": bool(sdk_syms),
         "sdk_declared_symbol_count": len(sdk_syms),
-        "symbols_refused_shadowing_an_sdk_symbol": len(sdk_refused),
+        "sdk_macro_count": len(sdk_macros),
+        "symbols_refused_shadowing_an_sdk_symbol": sum(
+            1 for e in sdk_refused
+            if e["class"] == "reconstructed_declaration_shadows_an_sdk_symbol"),
+        "symbols_refused_shadowing_an_sdk_macro": sum(
+            1 for e in sdk_refused
+            if e["class"] == "reconstructed_declaration_shadows_an_sdk_macro"),
         "symbols_refused_shadowing_an_sdk_symbol_names": sorted(
             {e["symbol"] for e in sdk_refused}),
         "per_module": dict(sorted(per_module.items())),

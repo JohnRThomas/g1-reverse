@@ -1,0 +1,40 @@
+{
+ "schema": "g1.refactor.stage-quarantine/1",
+ "stage": 7,
+ "sub_batch": "S",
+ "internal_linkage_refusals": {
+  "referenced_by_a_relocation": 780,
+  "named_by_a_linker_fragment_or_the_symbols_header": 233,
+  "asm_named_or_macro_renamed": 4,
+  "declared_by_an_sdk_header": 4
+ },
+ "evidence": {
+  "link_evidence_present": true,
+  "link_evidence_build": "/private/tmp/g1-s6-base",
+  "link_referenced_symbols": 5420,
+  "external_linkage_definitions_in_merged_units": 1158,
+  "linker_fragments_and_build_pins_discovered": [
+   "--undefined= roots from 8 CMake files: 112 symbols",
+   "recon/application/app/g1_verified_rodata_keep.ld",
+   "recon/application/net/src/stock_call_aliases.ld",
+   "recon/application/rodata/g1_app_rodata_interior.ld",
+   "recon/application/rodata/g1_net_rodata_interior.ld",
+   "recon/generated/app_fixed_verified_rodata.ld",
+   "recon/symbols/g1_app_aliases.ld",
+   "recon/symbols/g1_app_function_aliases.ld",
+   "recon/symbols/g1_app_globals.ld",
+   "recon/symbols/g1_app_newlib_printf_aliases.ld",
+   "recon/symbols/g1_app_public_sdk_aliases.ld",
+   "recon/symbols/g1_app_readable_aliases.ld",
+   "recon/symbols/g1_app_sched_displacement_aliases.ld",
+   "recon/symbols/g1_app_sdk_state.ld",
+   "recon/symbols/g1_app_veneer_aliases.ld",
+   "recon/symbols/g1_net_aliases.ld",
+   "recon/symbols/g1_net_function_aliases.ld",
+   "recon/symbols/g1_net_globals.ld",
+   "recon/symbols/g1_net_readable_aliases.ld"
+  ],
+  "identifiers_pinned_by_the_build": 10126
+ },
+ "note": "A refusal here is a symbol left with external linkage, which is what it has today: refusing costs nothing but an opportunity.  Applying wrongly costs a link error at best and a silently rebound call at worst, so every rule fails closed."
+}

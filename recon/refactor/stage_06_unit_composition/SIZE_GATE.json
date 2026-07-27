@@ -1,11 +1,11 @@
 {
  "schema": "g1.refactor.size-gate/1",
- "declared_codegen_class": "size-changing",
- "measured_codegen_class": "size-changing",
+ "declared_codegen_class": "byte-identical",
+ "measured_codegen_class": "byte-identical",
  "pass": true,
- "image_byte_identical": false,
+ "image_byte_identical": true,
  "section_deltas": {
-  "text": -76,
+  "text": 0,
   "rodata": 0,
   "datas": 0,
   "bss": 0,
@@ -43,7 +43,7 @@
   "rom_start": 340,
   "settings_handler_static_area": 120,
   "sw_isr_table": 552,
-  "text": 492688
+  "text": 492612
  },
  "stage_sections": {
   "ARM.exidx": 8,
@@ -75,10 +75,10 @@
   "sw_isr_table": 552,
   "text": 492612
  },
- "oracle_required": true,
- "why_oracle_required": "Linked size moved.  Three independent measurements in this project (+60 B, +16 B, -16 B) show a size change of this order re-phases the boot path and can break byte-equality of a peripheral bus stream in EITHER direction.  R7 acceptance cannot be inferred; it must be captured.",
- "base_elf": "/private/tmp/g1-s4b-s03/zephyr/zephyr.elf",
- "stage_elf": "/private/tmp/g1-s4b-s04/zephyr/zephyr.elf",
- "stage": 4,
- "slug": "cohesive_tu"
+ "oracle_required": false,
+ "why_oracle_required": "Linked size did not move; every previously captured behavioural measurement carries over by construction, not by argument.",
+ "base_elf": "/private/tmp/g1-s6-evfix/zephyr/zephyr.elf",
+ "stage_elf": "/private/tmp/g1-s6-s06/zephyr/zephyr.elf",
+ "stage": 6,
+ "slug": "unit_composition"
 }

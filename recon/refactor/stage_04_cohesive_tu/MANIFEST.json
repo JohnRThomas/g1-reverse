@@ -2726,16 +2726,16 @@
   },
   "recon/symbolized/app/notify/clear_timeout_message.c": {
    "source": "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/clear_timeout_message.c",
-   "source_sha256": "2fd7acfe913b8d607bd086cda3ca0c12b03a60457c10d3dcffdcf0d34dfca5b1",
-   "output_sha256": "2fd7acfe913b8d607bd086cda3ca0c12b03a60457c10d3dcffdcf0d34dfca5b1",
-   "bytes": 5475,
+   "source_sha256": "7f6d2d7e9b867483d0a313db48630b3f1037b52faa574ff9cf2513a474bbc0c9",
+   "output_sha256": "7f6d2d7e9b867483d0a313db48630b3f1037b52faa574ff9cf2513a474bbc0c9",
+   "bytes": 5482,
    "transformations": {}
   },
   "recon/symbolized/app/notify/confirm_message.c": {
    "source": "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/confirm_message.c",
-   "source_sha256": "83ed5c8c8df6c8707f0deb640127e48b28bcdd9d39556cf5e551ce1d14910326",
-   "output_sha256": "83ed5c8c8df6c8707f0deb640127e48b28bcdd9d39556cf5e551ce1d14910326",
-   "bytes": 7724,
+   "source_sha256": "965956e1f26dfd962d2701ef4ad4e5c731a399115d579c888a01e5db7bab1ffe",
+   "output_sha256": "965956e1f26dfd962d2701ef4ad4e5c731a399115d579c888a01e5db7bab1ffe",
+   "bytes": 7738,
    "transformations": {}
   },
   "recon/symbolized/app/notify/const_return_zero_80d3a.c": {
@@ -13726,8 +13726,8 @@
   "recon/symbolized/app/notify/g1_notify_02.c": {
    "source": "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/ancs_security_changed.c",
    "source_sha256": "55ba1856952f5e8803889ea5d95cb01c47edf5f62616e9b62c0ecca5b6e67321",
-   "output_sha256": "ea0e37297932b06481b6df16acbb15a6108d2df8bdec206170d88c98eda09643",
-   "bytes": 17756,
+   "output_sha256": "bc0fd9c3986d62aee6fe602f99707cc938fde60ef516545fa8556d7bcec1113a",
+   "bytes": 17799,
    "transformations": {
     "merged_from": [
      "recon/symbolized/app/notify/ancs_security_changed.c",
@@ -13738,7 +13738,7 @@
     ]
    },
    "additional_sources": {
-    "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/ancs_connected.c": "7a67af3b51ad3602fca85f686be76f9b6bff9493100d506784a3d94f4b8baf9a",
+    "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/ancs_connected.c": "29ef89031589c7482ca068999b392bf2d52f96bc6bb4a8379a461971cf4b3ac0",
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/discovery_error_found_cb_ancs.c": "b891ce8cdc4c844aef0aa6b04d85a61d77c35ecc7531f197ca535d1db6d6963a",
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/discovery_completed_cb_ancs.c": "62393516387b7759f2ad2f6c1c9c9165ad175abd6d0d9bcb2f1100684103f716",
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/discovery_service_not_found_cb_ancs.c": "e8e9355b53efdddcf3a81750d4920595fd987a60a52ca5b06bb7990513aa585b"
@@ -13765,9 +13765,9 @@
   },
   "recon/symbolized/app/notify/g1_notify_04.c": {
    "source": "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/bt_ancs_data_source_handler.c",
-   "source_sha256": "c55e2d426a4522b1d5d67c9b6a541ffcfa788141f3dfce0137944c2453fdde3e",
-   "output_sha256": "818dc5eade61562f82e51a433a1ca958fa052bcf4dd822570898244ffa2df5d8",
-   "bytes": 15152,
+   "source_sha256": "5ccac5178510a86fe3614f571bbcdaf2df47bb898c41aa8193bbfd643f5c0e2f",
+   "output_sha256": "386533b68970e7deaddedd5aa665ab8bb49661e869764a3a35ad0f4261f1ab05",
+   "bytes": 15172,
    "transformations": {
     "merged_from": [
      "recon/symbolized/app/notify/bt_ancs_data_source_handler.c",
@@ -13866,8 +13866,8 @@
   "recon/symbolized/app/notify/g1_notify_10.c": {
    "source": "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/send_data_in_ble_chunks.c",
    "source_sha256": "fb05543589dbc73a02589a36e14bef7d4ed9f925edcd445e32486e3ddbaffd42",
-   "output_sha256": "c144a60fbaee453cbc4dcd02db7c1219719001dffc4f3e2ecb3bd0cf122d2fad",
-   "bytes": 10434,
+   "output_sha256": "c54defe7b39e987e5ea578ee21efea5819daada165b5071153cea2282c3c5d24",
+   "bytes": 10441,
    "transformations": {
     "merged_from": [
      "recon/symbolized/app/notify/send_data_in_ble_chunks.c",
@@ -13875,7 +13875,7 @@
     ]
    },
    "additional_sources": {
-    "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/post_notification_cmd_process.c": "0e0c294414e2585159d9e9c0f503943f15e8b0c54c501ef5e5fa50c4be57af35"
+    "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/post_notification_cmd_process.c": "240b81de24689336ecd90aad099a340a7bdb8b6d99cf55154666f1e72ad1899a"
    }
   },
   "recon/symbolized/app/notify/g1_notify_11.c": {
@@ -14013,8 +14013,8 @@
   "recon/symbolized/app/notify/g1_notify_19.c": {
    "source": "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/ui_ancs_notification_task.c",
    "source_sha256": "778572ff0338f6471a82e8ff66785e4633cfdd8a346d76fc64e791cf82e3bd14",
-   "output_sha256": "062798857536085e33ca70cd64da8239dd595476ab64a76344160c4fd220b192",
-   "bytes": 21453,
+   "output_sha256": "99b3f468c8d8e3023cfc866f738e1a0f36c11a894b9c86ce58a6db295925edbd",
+   "bytes": 21651,
    "transformations": {
     "merged_from": [
      "recon/symbolized/app/notify/ui_ancs_notification_task.c",
@@ -14032,8 +14032,8 @@
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/clear_notification_display_buffer.c": "e60c8096c09339f5b50ad7b5b05cccb76b9ccadd0be26e169d60aa49d4a8914e",
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/log_notification_fields_debug.c": "cfabe034c48cdc730e937511b535ee92709c8ccf1f11872e1c3b8549e8443ae1",
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/ancs_gatt_dm_assign_handles.c": "6351d932af4ec3966c872a7c97ad1f10f2403bf71509cae04705fdbb4ca3de69",
-    "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/ancs_subscribe_notification_source.c": "cb2fd1151f2090311df765592f18683cac1b58d81f9a9699f45ec27d7fcf2b7d",
-    "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/ancs_subscribe_data_source.c": "0640089172a950c71b4ceaa4d6f308c301ac8f27b0a22475bc9899efc306f940",
+    "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/ancs_subscribe_notification_source.c": "024293d753ee9df23b057668a343e144d35fe8124f35a6787d11b3e224c9a9a4",
+    "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/ancs_subscribe_data_source.c": "3803b29514c7045e7e2e4a1ad13ca24798bca527479bdcfdf3083796908e850e",
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/ancs_gatt_client_cb_set.c": "446848296243301f7135962a78d6566679fc25b858f67c31977e943e09b7db1e",
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/submit_ancs_notify_work.c": "2a82474e72254dabe0a9d0f9d5d7fd068c92742c42de1a35d8d849316100bac9",
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/id_find.c": "930ede2fa3aef742064b20ea9a7478b11714bc3fbcd6864dbe544b0086b94afc"
@@ -14042,8 +14042,8 @@
   "recon/symbolized/app/notify/g1_notify_20.c": {
    "source": "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/bt_setup_identities.c",
    "source_sha256": "def925a310fc81b65449c76f168b60121a8ffb638913ba9669a87f837401c647",
-   "output_sha256": "782c19395778bfe2434b4774d66c992a213607875b35cd077c08c88f4b691aa4",
-   "bytes": 9189,
+   "output_sha256": "c4f5cc31727280926bc609e3f09051cf08162f9cd2b0ea006e937f117f55d9e7",
+   "bytes": 9217,
    "transformations": {
     "merged_from": [
      "recon/symbolized/app/notify/bt_setup_identities.c",
@@ -14061,7 +14061,7 @@
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/set_ancs_notify_sync_fields.c": "dbf273e865490bebc1b51182a9536abff875d94d450566dbda8fbafd9dc55e1f",
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/format_log_timestamp_mmdd_hhmm.c": "c1f200c84465ede1dbe74aa301bb6b06def17d79664caa663092504be09d42ee",
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/get_timestamp.c": "a16f682e47a488206c61daca9e8613acb2ea6b23b95dcc3b4d96d7ca406486e0",
-    "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/bt_ancs_cp_write_callback.c": "9f083a2e3d22b9c2ed4d4b50d7e76f78be8e426e0c995c342e1bd7b172d1d9e6",
+    "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/bt_ancs_cp_write_callback.c": "4824faa310d8b8fbeb717c7081e2dc1d7742741dbe51a7d28685e86df651c530",
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/ancs_service_ctx_clear.c": "e239b98b0009f9c8a50dcd70a618015e914175bc3a21fe5cba15cf9a02f738ab",
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/notify/thunk_FUN_0007f7d2.c": "41cfcee27e1c63a902b8c5478c03ff861c9ac2661a50e8d9cc6236cdc2cbdb9c"
    }
@@ -15337,6 +15337,10 @@
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/unsorted/coredep_delay_cycles.c": "273659946a9914f185621b95183cde248f705fbcab54463d3528e2d73981ed3f"
    }
   }
+ },
+ "evidence_inputs": {
+  "recon/refactor/sdk_declared_symbols.json": "3b7c3558364b4b3bdb35504aed2c996f9356ee7a10777c3b411be6b25b078d31",
+  "recon/refactor/link_referenced_symbols.json": "05f7ff66d6937b8e7ab70c7d6b7a7f626a9fc098a507483a176d8bd02efb112e"
  },
  "declared_codegen_class": "size-changing",
  "oracle_required": true,

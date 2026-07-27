@@ -5,9 +5,9 @@
  "unguarded_headers_not_deduplicated": {},
  "internal_linkage_refusals": {
   "asm_named_or_macro_renamed": 6,
-  "declared_by_an_sdk_header": 26,
+  "declared_by_an_sdk_header": 35,
   "named_by_a_linker_fragment_or_the_symbols_header": 96,
-  "named_outside_the_translation_unit": 777,
+  "named_outside_the_translation_unit": 769,
   "reserved_identifier_the_implementation_may_call": 12
  },
  "note": "Sub-batch N removes only tokens the preprocessor was already discarding and declarations the compiler had already accepted identically earlier in the same TU.  Sub-batch S changes linkage and therefore codegen; it is opt-in and its candidate set is measured even when it is not applied."

@@ -89,6 +89,33 @@ STAGES = [
      "construction; sub-batch S (internal linkage for TU-private symbols) is "
      "opt-in and codegen-changing.",
      "t05_cohesive_composition", "size-neutral"),
+    (6, "unit_composition", "COMPOSITION DEPTH, app core only: move each "
+     "generated module-header declaration into the SINGLE translation unit "
+     "that still uses it (and delete outright one that no longer has any "
+     "user), and hoist a late `#include' to the unit's first include block "
+     "under two checks -- no intervening preprocessor directive, and no "
+     "identifier in the code it jumps over is a macro of that header.  "
+     "Neither rule emits an instruction; the stage declares byte-identical "
+     "and `size-gate 6' measures whether that held.",
+     "t06_unit_composition", "byte-identical"),
+    (7, "internal_linkage", "INTERNAL LINKAGE for translation-unit-private "
+     "symbols, app core only, decided by LINK EVIDENCE rather than by a "
+     "source-text scan: a symbol may become `static' only when no input of the "
+     "app link references it through a relocation (recon/refactor/"
+     "link_evidence.py, which reads newlib's own archive and therefore SEES "
+     "the `_sbrk_r' class the source scan structurally cannot).  `static' "
+     "unlocks inlining and lets --gc-sections delete an unreferenced body, so "
+     "this stage is size-changing BY CONSTRUCTION and an oracle run is "
+     "required.",
+     "t07_internal_linkage", "size-changing"),
+    (8, "call_order", "CALL-ORDER FUNCTION REORDERING within a merged unit: "
+     "emit each unit's functions in a call-structure order (definition before "
+     "use where the unit's own call graph is acyclic) instead of the link "
+     "order stage 04 inherited.  Reordering changes `.text' LAYOUT even at "
+     "identical total size, and layout is exactly what re-phases the boot "
+     "path, so this stage is size-changing by default and its declaration is "
+     "not weakened on the strength of a measured byte total.",
+     "t08_call_order", "size-changing"),
     (99, "defect_probe", "DIAGNOSTIC, NOT A STAGE: stage 02 with "
      "G1_STAGE02_FORCE_LOG_HEADER=1, which withdraws the local log externs in "
      "the files stage 02 quarantines.  This tree is EXPECTED NOT TO COMPILE; "
@@ -252,6 +279,7 @@ def materialize(number: int) -> dict:
     summary = mod.run(stage, source_root, relpaths)
 
     extra = {"input_stage": input_stage,
+             "evidence_inputs": stagelib.evidence_hashes(),
              "declared_codegen_class": codegen_class,
              "oracle_required": codegen_class == "size-changing",
              "inherited_generated_outputs": inherited}

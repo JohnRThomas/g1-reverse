@@ -202,12 +202,49 @@ def load_manifest(number: int, slug: str) -> dict | None:
         return json.load(fh)
 
 
+#: Files a TRANSFORMER reads that are not part of the transformed input set.
+#:
+#: ``recon/refactor/sdk_declared_symbols.json`` and
+#: ``link_referenced_symbols.json`` are evidence a transformer consults to
+#: decide what it may do.  They live inside the pipeline, so ``input_set``
+#: never lists them, so before this list ``driver.py status`` reported a stage
+#: as **current** after its evidence had been regenerated underneath it -- the
+#: single failure mode a staleness mechanism must not have, and the one this
+#: pipeline has already been bitten by from the other direction (README: "a
+#: staleness mechanism that watched only the first member would report
+#: 'current' while an upstream defect fix sat unnoticed inside member 7").
+#:
+#: Measured when it was added: regenerating the SDK evidence changed stage 03's
+#: harvest (218 -> 215 hoists, 267 -> 300 refusals) while ``status`` went on
+#: reporting stages 03, 04 and 05 as current.
+EVIDENCE_INPUTS = (
+    "recon/refactor/sdk_declared_symbols.json",
+    "recon/refactor/link_referenced_symbols.json",
+)
+
+
+def evidence_hashes() -> dict[str, str]:
+    out: dict[str, str] = {}
+    for rel in EVIDENCE_INPUTS:
+        p = os.path.join(REPO_ROOT, rel)
+        out[rel] = sha256_file(p) if os.path.exists(p) else "(absent)"
+    return out
+
+
 def staleness(number: int, slug: str) -> dict:
     """A stage is stale iff an input content hash changed."""
     man = load_manifest(number, slug)
     if man is None:
         return {"stage": number, "state": "absent"}
     changed, missing, ok = [], [], 0
+    recorded = man.get("evidence_inputs")
+    if recorded is not None:
+        now = evidence_hashes()
+        for rel, sha in sorted(recorded.items()):
+            if now.get(rel) != sha:
+                changed.append(rel)
+            else:
+                ok += 1
     for rel, rec in man["files"].items():
         watched = [(rec["source"], rec["source_sha256"])]
         watched += sorted(rec.get("additional_sources", {}).items())

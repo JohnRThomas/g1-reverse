@@ -1,7 +1,7 @@
 {
  "schema": "g1.refactor.stage-defects/1",
  "stage": 3,
- "count": 940,
+ "count": 949,
  "entries": [
   {
    "module_dir": "recon/symbolized/app/analytics",
@@ -1503,20 +1503,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/ble",
-   "symbol": "atomic_or",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern uint64_t atomic_or(void*,int);": 1,
-    "extern void atomic_or(int);": 1
-   },
-   "files": [
-    "hci_cmd_complete_handle.c",
-    "le_conn_param_update_handle.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
    "symbol": "atomic_and_3",
    "class": "return_type_differs",
    "distinct_types": 2,
@@ -2297,21 +2283,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/core",
-   "symbol": "k_msleep",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern void k_msleep(int);": 1,
-    "extern void k_msleep(uint32_t);": 2
-   },
-   "files": [
-    "low_speed_peripheral_dispatch_thread.c",
-    "low_speed_peripheral_dispatch_thread_for_test.c",
-    "send_event.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
    "symbol": "wait_for_event",
    "class": "parameter_type_differs",
    "distinct_types": 2,
@@ -2930,20 +2901,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/display",
-   "symbol": "k_msleep",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern void k_msleep(int);": 1,
-    "extern void k_msleep(uint32_t);": 1
-   },
-   "files": [
-    "display_dispatch_thread.c",
-    "master_display_thread.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/display",
    "symbol": "set_brightness_to_panel_reg_in_running",
    "class": "arity_differs",
    "distinct_types": 2,
@@ -3382,21 +3339,6 @@
    },
    "files": [
     "esb_send_command_and_wait_ack.c",
-    "sync_to_slave.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/esb",
-   "symbol": "k_msleep",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern void k_msleep(int);": 1,
-    "extern void k_msleep(int32_t);": 2
-   },
-   "files": [
-    "esb_send_command_and_wait_ack.c",
-    "process_task_sync_event.c",
     "sync_to_slave.c"
    ]
   },
@@ -4797,37 +4739,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "atomic_set_bit",
-   "class": "arity_differs",
-   "distinct_types": 6,
-   "types": {
-    "extern int atomic_set_bit(int,);": 1,
-    "extern int atomic_set_bit(int,int);": 1,
-    "extern int atomic_set_bit(unsigned int,unsigned int);": 1,
-    "extern unsigned int atomic_set_bit(int,unsigned int);": 1,
-    "extern void atomic_set_bit(int,int);": 10,
-    "extern void atomic_set_bit(void*,uint32_t);": 1
-   },
-   "files": [
-    "att_chan_reset.c",
-    "bt_smp_distribute_keys.c",
-    "smp_central_ident.c",
-    "smp_create_pdu.c",
-    "smp_dhkey_check_generate.c",
-    "smp_dhkey_generate.c",
-    "smp_dhkey_ready_cb.c",
-    "smp_ident_addr_info.c",
-    "smp_init.c",
-    "smp_pairing_confirm_send.c",
-    "smp_pairing_req.c",
-    "smp_public_key_central.c",
-    "smp_public_key_periph.c",
-    "smp_send_security_req.c",
-    "smp_timeout.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "att_log_emit_3arg",
    "class": "arity_differs",
    "distinct_types": 6,
@@ -5258,20 +5169,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "k_current_get",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int k_current_get(int,);": 1,
-    "extern int k_current_get(void);": 1
-   },
-   "files": [
-    "bt_att_accept.c",
-    "bt_att_chan_create_pdu.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "net_buf_ref",
    "class": "arity_differs",
    "distinct_types": 4,
@@ -5556,35 +5453,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "atomic_test_bit",
-   "class": "arity_differs",
-   "distinct_types": 5,
-   "types": {
-    "extern int atomic_test_bit(int,int);": 10,
-    "extern int atomic_test_bit(int,int,int,int,unsigned int);": 1,
-    "extern int atomic_test_bit(void*,uint32_t);": 1,
-    "extern uint64_t atomic_test_bit(int,int);": 1,
-    "extern unsigned int atomic_test_bit(int,int);": 1
-   },
-   "files": [
-    "bt_conn_security_sufficient.c",
-    "bt_smp_distribute_keys.c",
-    "bt_smp_recv.c",
-    "smp_alloc_pairing_keys.c",
-    "smp_central_ident.c",
-    "smp_create_pdu.c",
-    "smp_dhkey_ready_cb.c",
-    "smp_error.c",
-    "smp_ident_addr_info.c",
-    "smp_pairing_complete.c",
-    "smp_pairing_confirm_send.c",
-    "smp_pairing_req.c",
-    "smp_public_key_periph.c",
-    "smp_send_security_req.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "net_buf_destroy",
    "class": "parameter_type_differs",
    "distinct_types": 2,
@@ -5794,20 +5662,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "atomic_or",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int atomic_or(volatile long*,long);": 1,
-    "extern int atomic_or(volatile int32_t*,int32_t);": 1
-   },
-   "definition_file": "atomic_or.c",
-   "files": [
-    "bt_hci_driver_close.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "atomic_and_3",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -5978,20 +5832,6 @@
     "smp_pairing_confirm_send.c",
     "smp_public_key_periph.c",
     "smp_send_security_req.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "atomic_test_and_clear_bit",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int atomic_test_and_clear_bit(int);": 1,
-    "extern int atomic_test_and_clear_bit(int*,int);": 1
-   },
-   "files": [
-    "bt_smp_distribute_keys.c",
-    "bt_smp_recv.c"
    ]
   },
   {
@@ -6530,20 +6370,6 @@
     "gatt_disconnected.c",
     "gatt_remove_peer_from_attr.c",
     "gatt_store_ccc_cf.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "atomic_and",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern long atomic_and(volatile long*,long);": 1,
-    "extern int32_t atomic_and(volatile int32_t*,int32_t);": 1
-   },
-   "definition_file": "atomic_and.c",
-   "files": [
-    "gatt_discover.c"
    ]
   },
   {
@@ -7863,20 +7689,6 @@
    ]
   },
   {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "atomic_inc",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t atomic_inc(volatile uint32_t*);": 1,
-    "extern int32_t atomic_inc(volatile int32_t*);": 1
-   },
-   "definition_file": "atomic_inc.c",
-   "files": [
-    "z_log_msg_post_finalize.c"
-   ]
-  },
-  {
    "module_dir": "recon/symbolized/app/notify",
    "symbol": "ancs_service_ctx_clear",
    "class": "declaration_disagrees_with_definition",
@@ -7888,22 +7700,6 @@
    "definition_file": "ancs_service_ctx_clear.c",
    "files": [
     "ancs_c_init.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
-   "symbol": "atomic_and",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long atomic_and(volatile long*,long);": 3,
-    "extern void atomic_and(unsigned int,unsigned int);": 1
-   },
-   "files": [
-    "ancs_cancel_timers.c",
-    "discovery_completed_cb_ancs.c",
-    "discovery_error_found_cb_ancs.c",
-    "discovery_service_not_found_cb_ancs.c"
    ]
   },
   {
@@ -8713,21 +8509,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/sensors/input",
-   "symbol": "k_msleep",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern void k_msleep(int32_t);": 2,
-    "extern void k_msleep(void);": 1
-   },
-   "files": [
-    "click_event_dispatch_loop.c",
-    "key_event_thread.c",
-    "touch_key_thread.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/sensors/input",
    "symbol": "get_uptime_ms",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -9117,20 +8898,6 @@
     "pt_nfc_link_transfer_fw_packet.c",
     "wait_attr_0x4714_clear.c",
     "wait_for_attr_0x4410_set.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/storage",
-   "symbol": "atomic_or",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int atomic_or(volatile long*,long);": 1,
-    "extern void atomic_or(unsigned int,unsigned int,unsigned int,unsigned int);": 1
-   },
-   "files": [
-    "bt_dev_show_info.c",
-    "bt_id_addr_check_and_enable.c"
    ]
   },
   {
@@ -10866,6 +10633,19 @@
    ]
   },
   {
+   "module_dir": "recon/symbolized/app/ble",
+   "symbol": "atomic_or",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern uint64_t atomic_or(void*,int);": 1,
+    "extern void atomic_or(int);": 1
+   },
+   "files": [
+    "hci_cmd_complete_handle.c",
+    "le_conn_param_update_handle.c"
+   ]
+  },
+  {
    "module_dir": "recon/symbolized/app/core",
    "symbol": "k_msgq_put",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
@@ -11111,6 +10891,28 @@
   },
   {
    "module_dir": "recon/symbolized/app/core",
+   "symbol": "atomic_inc",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern int atomic_inc(int);": 1
+   },
+   "files": [
+    "log_msg_process.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/core",
+   "symbol": "k_current_get",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern uintptr_t k_current_get(void);": 1
+   },
+   "files": [
+    "log_process_thread.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/core",
    "symbol": "k_sem_give",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
@@ -11131,6 +10933,20 @@
    "files": [
     "log_process_thread.c",
     "serialization_init.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/core",
+   "symbol": "k_msleep",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern void k_msleep(int);": 1,
+    "extern void k_msleep(uint32_t);": 2
+   },
+   "files": [
+    "low_speed_peripheral_dispatch_thread.c",
+    "low_speed_peripheral_dispatch_thread_for_test.c",
+    "send_event.c"
    ]
   },
   {
@@ -11316,6 +11132,30 @@
   },
   {
    "module_dir": "recon/symbolized/app/display",
+   "symbol": "k_uptime_get",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern s64 k_uptime_get(void);": 1
+   },
+   "files": [
+    "display_dispatch_thread.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/display",
+   "symbol": "k_msleep",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern void k_msleep(int);": 1,
+    "extern void k_msleep(uint32_t);": 1
+   },
+   "files": [
+    "display_dispatch_thread.c",
+    "master_display_thread.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/display",
    "symbol": "k_msgq_get",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
@@ -11445,6 +11285,20 @@
    "files": [
     "trigger_screen_state_change.c",
     "ui_raster_height_task.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/esb",
+   "symbol": "k_msleep",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern void k_msleep(int);": 1,
+    "extern void k_msleep(int32_t);": 2
+   },
+   "files": [
+    "esb_send_command_and_wait_ack.c",
+    "process_task_sync_event.c",
+    "sync_to_slave.c"
    ]
   },
   {
@@ -11671,6 +11525,17 @@
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
     "extern void k_work_init(uintptr_t,uintptr_t);": 1
+   },
+   "files": [
+    "ipc_rpmsg_backend_register.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/ipc",
+   "symbol": "atomic_set",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern void atomic_set(volatile uint32_t*,uint32_t);": 1
    },
    "files": [
     "ipc_rpmsg_backend_register.c"
@@ -11937,6 +11802,36 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
+   "symbol": "atomic_set_bit",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern int atomic_set_bit(int,);": 1,
+    "extern int atomic_set_bit(int,int);": 1,
+    "extern int atomic_set_bit(unsigned int,unsigned int);": 1,
+    "extern unsigned int atomic_set_bit(int,unsigned int);": 1,
+    "extern void atomic_set_bit(int,int);": 10,
+    "extern void atomic_set_bit(void*,uint32_t);": 1
+   },
+   "files": [
+    "att_chan_reset.c",
+    "bt_smp_distribute_keys.c",
+    "smp_central_ident.c",
+    "smp_create_pdu.c",
+    "smp_dhkey_check_generate.c",
+    "smp_dhkey_generate.c",
+    "smp_dhkey_ready_cb.c",
+    "smp_ident_addr_info.c",
+    "smp_init.c",
+    "smp_pairing_confirm_send.c",
+    "smp_pairing_req.c",
+    "smp_public_key_central.c",
+    "smp_public_key_periph.c",
+    "smp_send_security_req.c",
+    "smp_timeout.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/lib",
    "symbol": "k_work_init_delayable",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
@@ -12039,6 +11934,19 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
+   "symbol": "k_current_get",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern int k_current_get(int,);": 1,
+    "extern int k_current_get(void);": 1
+   },
+   "files": [
+    "bt_att_accept.c",
+    "bt_att_chan_create_pdu.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/lib",
    "symbol": "z_impl_k_queue_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
@@ -12085,6 +11993,34 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
+   "symbol": "atomic_test_bit",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern int atomic_test_bit(int,int);": 10,
+    "extern int atomic_test_bit(int,int,int,int,unsigned int);": 1,
+    "extern int atomic_test_bit(void*,uint32_t);": 1,
+    "extern uint64_t atomic_test_bit(int,int);": 1,
+    "extern unsigned int atomic_test_bit(int,int);": 1
+   },
+   "files": [
+    "bt_conn_security_sufficient.c",
+    "bt_smp_distribute_keys.c",
+    "bt_smp_recv.c",
+    "smp_alloc_pairing_keys.c",
+    "smp_central_ident.c",
+    "smp_create_pdu.c",
+    "smp_dhkey_ready_cb.c",
+    "smp_error.c",
+    "smp_ident_addr_info.c",
+    "smp_pairing_complete.c",
+    "smp_pairing_confirm_send.c",
+    "smp_pairing_req.c",
+    "smp_public_key_periph.c",
+    "smp_send_security_req.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/lib",
    "symbol": "k_work_submit_to_queue",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
@@ -12093,6 +12029,17 @@
    "files": [
     "bt_hci_core_recv_event.c",
     "bt_hci_rx_work_submit.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/lib",
+   "symbol": "atomic_or",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern int atomic_or(volatile long*,long);": 1
+   },
+   "files": [
+    "bt_hci_driver_close.c"
    ]
   },
   {
@@ -12106,6 +12053,19 @@
    "files": [
     "bt_settings_set_name_identity.c",
     "cjson_parse_with_opts.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/lib",
+   "symbol": "atomic_test_and_clear_bit",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern int atomic_test_and_clear_bit(int);": 1,
+    "extern int atomic_test_and_clear_bit(int*,int);": 1
+   },
+   "files": [
+    "bt_smp_distribute_keys.c",
+    "bt_smp_recv.c"
    ]
   },
   {
@@ -12272,6 +12232,17 @@
    },
    "files": [
     "gatt_db_hash_process.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/lib",
+   "symbol": "atomic_and",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern long atomic_and(volatile long*,long);": 1
+   },
+   "files": [
+    "gatt_discover.c"
    ]
   },
   {
@@ -12566,6 +12537,28 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
+   "symbol": "k_fifo_put",
+   "class": "reconstructed_declaration_shadows_an_sdk_macro",
+   "types": {
+    "extern void k_fifo_put(void*,void*);": 1
+   },
+   "files": [
+    "tx_notify.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/lib",
+   "symbol": "atomic_inc",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern uint32_t atomic_inc(volatile uint32_t*);": 1
+   },
+   "files": [
+    "z_log_msg_post_finalize.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/lib",
    "symbol": "z_impl_k_timer_start",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
@@ -12588,6 +12581,21 @@
   },
   {
    "module_dir": "recon/symbolized/app/notify",
+   "symbol": "atomic_and",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern long atomic_and(volatile long*,long);": 3,
+    "extern void atomic_and(unsigned int,unsigned int);": 1
+   },
+   "files": [
+    "ancs_cancel_timers.c",
+    "discovery_completed_cb_ancs.c",
+    "discovery_error_found_cb_ancs.c",
+    "discovery_service_not_found_cb_ancs.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/notify",
    "symbol": "k_sem_give",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
@@ -12596,6 +12604,18 @@
    "files": [
     "ancs_conn_event_signal_and_mode.c",
     "ancs_set_notification_enabled.c",
+    "bt_ancs_data_source_handler.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/notify",
+   "symbol": "k_uptime_get_32",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern unsigned int k_uptime_get_32(void);": 2
+   },
+   "files": [
+    "ancs_connected.c",
     "bt_ancs_data_source_handler.c"
    ]
   },
@@ -12638,6 +12658,31 @@
     "post_notification_cmd_process.c",
     "revalidate_whitelist_json.c",
     "send_whitelist_json_chunked.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/notify",
+   "symbol": "atomic_test_and_set_bit",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern int atomic_test_and_set_bit(void*,int);": 2
+   },
+   "files": [
+    "ancs_subscribe_data_source.c",
+    "ancs_subscribe_notification_source.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/notify",
+   "symbol": "atomic_clear_bit",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern void atomic_clear_bit(volatile int*,int);": 3
+   },
+   "files": [
+    "ancs_subscribe_data_source.c",
+    "ancs_subscribe_notification_source.c",
+    "bt_ancs_cp_write_callback.c"
    ]
   },
   {
@@ -12910,6 +12955,20 @@
   },
   {
    "module_dir": "recon/symbolized/app/sensors/input",
+   "symbol": "k_msleep",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern void k_msleep(int32_t);": 2,
+    "extern void k_msleep(void);": 1
+   },
+   "files": [
+    "click_event_dispatch_loop.c",
+    "key_event_thread.c",
+    "touch_key_thread.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/sensors/input",
    "symbol": "k_sem_give",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
@@ -13025,6 +13084,19 @@
     "opt3001_chip_init.c",
     "opt3001_reg_read.c",
     "opt3007_chip_init.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/storage",
+   "symbol": "atomic_or",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern int atomic_or(volatile long*,long);": 1,
+    "extern void atomic_or(unsigned int,unsigned int,unsigned int,unsigned int);": 1
+   },
+   "files": [
+    "bt_dev_show_info.c",
+    "bt_id_addr_check_and_enable.c"
    ]
   },
   {
@@ -13769,6 +13841,17 @@
    },
    "files": [
     "g1_recon_k_free.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/unsorted",
+   "symbol": "atomic_test_bit",
+   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+   "types": {
+    "extern int atomic_test_bit(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);": 1
+   },
+   "files": [
+    "kobj_test_bit_get_ptr.c"
    ]
   },
   {
