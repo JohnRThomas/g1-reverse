@@ -38,8 +38,15 @@ void spline_interp_pair_2out(float param_1, float *param_2, unsigned int *param_
     fVar6 = ((fVar6 - local_58[1])/(fVar13 - fVar11) - fVar8)/(fVar13 - fVar14);
     fVar13 = ((fVar12 - local_58[4])/(fVar13 - fVar11) - fVar9)/(fVar13 - fVar14);
     param_1 = param_1 - fVar14;
-    fVar10 = fVar10 + (fVar8 + -fVar7*fVar6 + fVar6*param_1)*param_1;
-    fVar5 = fVar5 + (fVar9 + -fVar7*fVar13 + fVar13*param_1)*param_1;
+    /* shipped 0xea70: vfms.f32 x2, vfma.f32 x4 -- fused, so spell them fused. */
+    {
+        float a = __builtin_fmaf(-fVar7, fVar6, fVar8);
+        float b = __builtin_fmaf(-fVar7, fVar13, fVar9);
+        a = __builtin_fmaf(fVar6, param_1, a);
+        b = __builtin_fmaf(fVar13, param_1, b);
+        fVar10 = __builtin_fmaf(a, param_1, fVar10);
+        fVar5 = __builtin_fmaf(b, param_1, fVar5);
+    }
   } else {
     fVar10 = *(volatile float*)((unsigned long)&g_spline_nan_sentinel) /*=0x20002d1c*/;
     fVar5 = fVar10;

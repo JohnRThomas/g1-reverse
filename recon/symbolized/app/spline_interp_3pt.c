@@ -26,5 +26,11 @@ float spline_interp_3pt(float param_1, float *param_2, float *param_3){
     if (float_is_nan(param_1) != 0) return *(float*)((unsigned long)&g_spline_nan_sentinel) /*=0x20002d1c*/;
     float fVar4 = (fVar9-fVar8)/(fVar3-fVar7);
     fVar5 = ((fVar6-fVar9)/(fVar5-fVar3) - fVar4)/(fVar5-fVar7);
-    return fVar8 + (fVar4 + -(fVar3-fVar7)*fVar5 + fVar5*(param_1-fVar7))*(param_1-fVar7);
+    /* shipped 0xeb7c: vfms.f32 x1, vfma.f32 x2 -- fused, so spell them fused. */
+    {
+        const float dx = param_1 - fVar7, dr = fVar3 - fVar7;
+        float acc = __builtin_fmaf(-dr, fVar5, fVar4);   /* fVar4 - dr*fVar5 */
+        acc = __builtin_fmaf(fVar5, dx, acc);
+        return __builtin_fmaf(acc, dx, fVar8);
+    }
 }

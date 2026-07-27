@@ -43,10 +43,11 @@ float __ieee754_expf(float x)
         int table_offset = (sbits(x) >> 31) * -4;
         if (bits(ax) > 0x3f851591U) {
             float t;
-            reduction = (int)(*(volatile float *)(((unsigned long)&rodata_986ac) /*=0x986ac*/ + table_offset) +
-                              x * fp(0x3fb8aa3b));
+            /* shipped 0x762fa vfma.f32, 0x76308 vfms.f32 */
+            reduction = (int)__builtin_fmaf(x, fp(0x3fb8aa3b),
+                              *(volatile float *)(((unsigned long)&rodata_986ac) /*=0x986ac*/ + table_offset));
             t = (float)reduction;
-            high = x - t * fp(0x3f317180);
+            high = __builtin_fmaf(-t, fp(0x3f317180), x);
             low = t * fp(0x3717f7d1);
         } else {
             high = x - *(volatile float *)(((unsigned long)&rodata_986a4) /*=0x986a4*/ + table_offset);
@@ -63,11 +64,13 @@ float __ieee754_expf(float x)
         reduction = 0;
     }
 
+    /* shipped 0x76340..0x7635c: vfma.f32 x4 (Horner) then vfms.f32 (the x - P*s) */
     float square = x * x;
-    float poly = x - (fp(0x3e2aaaab) +
-                 (fp(0xbb360b61) +
-                 (fp(0x388ab355) +
-                 (fp(0xb5ddea0e) + square * fp(0x3331bb4c)) * square) * square) * square) * square;
+    float horner = __builtin_fmaf(square, fp(0x3331bb4c), fp(0xb5ddea0e));
+    horner = __builtin_fmaf(horner, square, fp(0x388ab355));
+    horner = __builtin_fmaf(horner, square, fp(0xbb360b61));
+    horner = __builtin_fmaf(horner, square, fp(0x3e2aaaab));
+    float poly = __builtin_fmaf(-horner, square, x);
 
     if (reduction != 0) {
         int overflow = signed_add_overflows(reduction, 0x7d);

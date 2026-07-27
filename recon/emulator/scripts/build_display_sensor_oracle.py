@@ -350,6 +350,61 @@ def i2c_canonical_line(t):
     return "%02X|%s|%s" % (t["dev"], t["dir"], t["data"].hex().upper())
 
 
+# ---------------------------------------------------------------------------
+# P4 iteration 42, TASK 4b -- the ANALOGUE-SAMPLE canonicalisation.
+#
+# `stream_sha256` hashes the payload the LSM6DSO MODEL returns for a read of
+# OUTX_L_A (0x28).  That payload is not firmware output: it is the modelled
+# `don` gesture waveform evaluated at the virtual time the poll happens.  Renode
+# charges virtual time per instruction, so any reconstruction whose `.text` is
+# not byte-identical reaches the first I2C write at a different virtual time
+# (measured at HEAD: +3.45 ms on twim1, +6.81 ms on twim2, +6.37 ms on spim_a)
+# and every accelerometer sample thereafter lands a few ms further along the
+# same ramp.  Measured consequence, navigation, seeded both sides: 3 of 1,200
+# transactions differ, ALL of them 0x28 reads, and OUR values interleave exactly
+# between consecutive shipped values (X: 3730 -> 37DD -> 39E2 -> 3A8E ...).
+#
+# `stream_sha256_regprog` therefore replaces the payload of an accelerometer
+# sample read with its ordinal, so it gates the REGISTER PROGRAMME -- which
+# device, which register, which direction, which write payload, in which order,
+# how many times -- and not the analogue value.  It is ADDITIVE: `stream_sha256`
+# is unchanged and still published.
+#
+# WHAT THIS DELIBERATELY STOPS CATCHING: a defect that keeps the poll cadence
+# and the register programme intact but reads the accelerometer at a
+# systematically different PHASE of the gesture.  `accel_sample_payloads` is
+# published so that class stays measurable -- a comparer can count how many
+# samples differ and check the implied offset against the polling period
+# (80.11 ms here); a phase error large enough to matter shows up as many
+# differing samples, not three.
+ACCEL_SAMPLE_REGS = {("TWIM2", 0x6B): {0x28}}
+
+
+def i2c_regprog_line(t, sample_ordinal):
+    """Canonical line with modelled-analogue read payloads replaced by ordinal."""
+    if sample_ordinal is not None:
+        return "%02X|%s|SAMPLE#%d" % (t["dev"], t["dir"], sample_ordinal)
+    return i2c_canonical_line(t)
+
+
+def annotate_analogue_samples(txs):
+    """Return (ordinals, payloads): ordinals[i] is the sample index for txs[i]
+    when it is an analogue sample read, else None."""
+    ordinals = [None] * len(txs)
+    payloads = []
+    last_reg = {}
+    for i, t in enumerate(txs):
+        key = (t["bus"], t["dev"])
+        if t["dir"] == "W" and t["data"]:
+            last_reg[key] = t["data"][0]
+        elif t["dir"] == "R":
+            reg = last_reg.get(key)
+            if reg is not None and reg in ACCEL_SAMPLE_REGS.get(key, ()):
+                ordinals[i] = len(payloads)
+                payloads.append(t["data"].hex().upper())
+    return ordinals, payloads
+
+
 def summarise_spi(transactions):
     """Compact, order-preserving, fully diffable SPI description."""
     entries = []
@@ -390,6 +445,7 @@ def summarise_i2c(transactions):
     for name, txs in per_dev.items():
         entries = [{"dev": "0x%02X" % t["dev"], "dir": t["dir"],
                     "data": t["data"].hex().upper()} for t in txs]
+        ordinals, samples = annotate_analogue_samples(txs)
         # register-access profile: for writes reg = data[0]; reads follow the
         # last write's register on this device (I2C register protocol).
         profile = {}
@@ -423,10 +479,59 @@ def summarise_i2c(transactions):
             "register_profile": dict(sorted(profile.items())),
             "transactions_rle": rle(entries),
         }
+        if samples:
+            out[name]["stream_sha256_regprog"] = sha("\n".join(
+                i2c_regprog_line(t, o) for t, o in zip(txs, ordinals)).encode())
+            out[name]["analogue_sample_reg"] = sorted(
+                "0x%02X" % r for r in ACCEL_SAMPLE_REGS[(txs[0]["bus"], txs[0]["dev"])])
+            out[name]["analogue_sample_count"] = len(samples)
+            out[name]["analogue_sample_payloads"] = samples
+            out[name]["analogue_sample_note"] = (
+                "MODELLED sensor output, not firmware output: the LSM6DSO model's "
+                "gesture waveform evaluated at the virtual time of each poll. "
+                "stream_sha256_regprog is the gate; this list is informational and "
+                "is what makes a real sampling-PHASE error measurable.")
     return out
 
 
-def summarise_regaccess(accesses):
+# ---------------------------------------------------------------------------
+# P4 iteration 42, TASK 4a -- the RAM-POINTER canonicalisation.
+#
+# `saadc/whole_run/stream_sha256` hashed three RAM ADDRESSES.  Measured on the
+# seeded navigation pair at HEAD: of 1,000 `saadc:` log lines exactly 45 differ
+# and every single one of them is `WriteUInt32 to 0x62C (ResultPtr)`; the diff
+# of everything else -- ChPselP, ChConfig, Resolution, Oversample, Enable,
+# TasksStart, TasksSample, every EventsEnd poll, TasksStop, and the ordering --
+# is EMPTY.  Those writes come from ONE pc inside `saadc_start_read`
+# (FUN_0005f760), which stores its caller-supplied `param_2` straight into
+# SAADC.RESULT.PTR.  The three distinct values, 15 uses each, in an identical
+# A,B,C,A,B,C... interleave on both sides:
+#     shipped 0x200275CE / 0x200275A6 / 0x200275BE
+#     ours    0x20028766 / 0x20028736 / 0x20028786   (+0x1198 / +0x1190 / +0x11C8)
+# They are STACK addresses -- `nm -n` puts all three between `g_20026a68`
+# (0x20027c08) and `g_aging_mode_aux_thread_stack` (0x20028808) with no symbol
+# in between, `g1_app_globals.ld` pins nothing in 0x20026000..0x20029000, they
+# are 2-byte aligned (an int16_t local, the SAADC one-shot result type), and
+# `saadc_start_read` is never reached by a direct BL anywhere in the image.
+# A differently-linked image can never reproduce them and nothing about the
+# register programme is different.
+#
+# So the hashed value of such a register becomes its FIRST-APPEARANCE INDEX.
+# The raw pointers are still published, un-hashed, because their DELTAS are
+# informative: the +0x1198 / +0x1190 / +0x11C8 spread says one reconstructed
+# caller's frame is 0x30 B deeper than the original's.
+#
+# WHAT THIS DELIBERATELY STOPS CATCHING: a defect that hands SAADC a *different
+# number* of distinct buffers, or the same buffers in a different ORDER, is
+# still caught (the index sequence changes).  What is no longer caught is a
+# defect that puts the DMA pointer in the wrong place while keeping the count
+# and order -- e.g. aiming RESULT.PTR at a static instead of a stack local, or
+# at an address of the wrong alignment.  `pointer_values_raw` and
+# `pointer_alignment` are published so that class stays inspectable by eye.
+POINTER_REGS = {"saadc": {"ResultPtr"}}
+
+
+def summarise_regaccess(accesses, periph=None):
     if not accesses:
         return {"access_count": 0, "note": "peripheral never accessed by the firmware"}
     entries = [{"op": a["op"], "reg": a["reg"], "offset": a["offset"],
@@ -434,15 +539,43 @@ def summarise_regaccess(accesses):
     reg_hist = {}
     for a in accesses:
         reg_hist[a["reg"]] = reg_hist.get(a["reg"], 0) + 1
-    return {
+
+    ptr_regs = POINTER_REGS.get(periph, set())
+    ptr_order = {}          # reg -> [raw values, first-appearance order]
+
+    def canon_value(a):
+        if a["reg"] in ptr_regs:
+            seq = ptr_order.setdefault(a["reg"], [])
+            if a["value"] not in seq:
+                seq.append(a["value"])
+            return "PTR#%d" % seq.index(a["value"])
+        return a["value"]
+
+    stream = "\n".join("%s|%s|%s" % (a["op"], a["offset"], canon_value(a))
+                       for a in accesses)
+    out = {
         "access_count": len(accesses),
-        "stream_sha256": sha("\n".join(
-            "%s|%s|%s" % (a["op"], a["offset"], a["value"]) for a in accesses
-        ).encode()),
+        "stream_sha256": sha(stream.encode()),
         "register_histogram": dict(sorted(reg_hist.items())),
         "distinct_pcs": sorted({a["pc"] for a in accesses}),
         "accesses_rle": rle(entries),
     }
+    if ptr_order:
+        out["stream_sha256_raw_pointers"] = sha("\n".join(
+            "%s|%s|%s" % (a["op"], a["offset"], a["value"])
+            for a in accesses).encode())
+        out["pointer_registers_canonicalised"] = sorted(ptr_order)
+        out["pointer_values_raw"] = {k: v for k, v in sorted(ptr_order.items())}
+        out["pointer_alignment"] = {
+            k: sorted({int(x, 16) & 3 for x in v})
+            for k, v in sorted(ptr_order.items())}
+        out["pointer_note"] = (
+            "These registers carry a RAM ADDRESS supplied by a caller (SAADC "
+            "RESULT.PTR is `saadc_start_read`'s param_2, a live stack frame). "
+            "stream_sha256 hashes their FIRST-APPEARANCE INDEX, not the address, "
+            "because a differently-linked image can never reproduce the address. "
+            "stream_sha256_raw_pointers keeps the old, non-portable hash.")
+    return out
 
 
 # --------------------------------------------------------------------------
@@ -579,12 +712,17 @@ def main():
         for ph in PHASES:
             txs = parse_i2c(os.path.join(outdir, "%s.%s.trace" %
                                          (bus, ph.split("_")[0])))
+            ordinals, samples = annotate_analogue_samples(txs)
             per_phase[ph] = {
                 "transaction_count": len(txs),
                 "stream_sha256": sha("\n".join(i2c_canonical_line(t)
                                                for t in txs).encode()),
                 "devices": summarise_i2c(txs),
             }
+            if samples:
+                per_phase[ph]["stream_sha256_regprog"] = sha("\n".join(
+                    i2c_regprog_line(t, o)
+                    for t, o in zip(txs, ordinals)).encode())
         oracle["peripherals"][bus] = {
             "controller": ("TWIM1 @0x40009000 (SDA P0.05 / SCL P0.04)"
                            if bus == "twim1" else
@@ -606,7 +744,7 @@ def main():
         oracle["peripherals"][periph] = {
             "description": label,
             "observation": "Renode `sysbus LogPeripheralAccess` (register level; whole run, not phase split)",
-            "whole_run": summarise_regaccess(reg_access.get(periph, [])),
+            "whole_run": summarise_regaccess(reg_access.get(periph, []), periph),
         }
 
     # ---------------- ESB / radio ----------------------------------------

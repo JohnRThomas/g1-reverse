@@ -1,5 +1,19 @@
 # Peripheral-stream divergence diagnosis — P4 iteration 41 residue
 
+> **SUPERSEDED IN PART by `recon/emulator/reports/our_boot_bringup.md` §42.
+> Read §42.1 and §42.3 before acting on anything below.** Iteration 42 captured
+> the seeded shipped dashboard oracle this document asks for (§0/§6) and three
+> of its dashboard numbers turned out to be one draw of a random variable:
+> `twim1 p2_render` is **597**, not 584; nPM1300 `p2_render` is **527**, not
+> 514; `spim_a p2_render` is **stable at 12,225**, not non-deterministic. So
+> §1's "584 − 572 = 12 = 7 + 4 + 1" and the whole of **ITEM 2** are withdrawn.
+> ITEM 1's localisation is right and is now CLOSED, but its causality was not:
+> the §1.7 probe shows **DEFECT A alone would not have restored the traffic**
+> (our deadline is a deterministic 1.0f, and the state machine cycles anyway);
+> the actual cause is a third defect this document does not contain, **DEFECT
+> C** — `case 3` hoists the `*g_2000f6e4` refresh out of the `d > 20` path
+> (§42.3). ITEMS 3, 4 and 5 stand as written and are applied in §42.7 / §42.8.
+
 **Status: DIAGNOSIS ONLY. No source file outside this document was modified.**
 Written to the §5.4 standard of `recon/analysis/staged_refactor_r7_validation.md`:
 every claim is cited to a shipped-image address + instruction, or to a command

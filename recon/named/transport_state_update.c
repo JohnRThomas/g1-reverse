@@ -33,6 +33,11 @@ void transport_state_update(uint8_t *context, uint8_t *state)
         state[3] = 0U;
         if (*(uint32_t *)(context + 8) >= 500U) {
             *active = 0U;
+            /* shipped 0x000253c2 STRB falls through into 0x000253c4
+             * `bl 0x7c398 ; str r0,[=0x20007a00]` -- the timestamp refresh.
+             * The `else if` arm at 0x000253ba..be returns via 0x000253c0
+             * WITHOUT it, which is why it is not duplicated below. */
+            *timestamp = thunk_FUN_00074f68();
         } else if (*active == 0U) {
             *active = 1U;
         }

@@ -17735,3 +17735,788 @@ cmp /private/tmp/g1-i41/rep-nav-c/golden_framebuffer_p1_boot.raw \
 # Renode probe runs MUST be started with cwd = ~/Projects/armemul and with
 # `--console --plain`; feed stdin from a mkfifo writer (ConsoleIOSource aborts).
 ```
+
+## Iteration 42 — the missing SEEDED shipped DASHBOARD oracle is captured, the
+## dashboard comparisons are re-derived on it, and the ST25DV render-phase
+## defects are applied.
+
+Work order: `recon/analysis/stream_divergence_diagnosis.md` (the R9 diagnosis).
+Baseline for this iteration: **`/private/tmp/g1-td-final2`** — the in-tree build
+of HEAD (`50929c5d`, the type-disagreement repair), paired with the unchanged
+**`g1-i30e-net`**.  `FLASH 956,480 B / 982,528 B  97.35 %`, `_end = 0x2003ff45`,
+`runtime_info_sync = 0x00015c0c` ⇒ probe addresses `0x20040F38 / 0x20040FAA /
+0x20040025`.
+
+### 42.1 TASK 1 — the seeded shipped DASHBOARD oracle now exists, and it is
+### byte-reproducible.  Three of the diagnosis's dashboard numbers were wrong.
+
+The diagnosis §0 was right: there was no seeded shipped dashboard capture on
+disk.  Two were taken, back to back, with the unmodified capture script:
+
+```sh
+G1_ATT_WRITE="" G1_SEED=305419896 \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ship_seed_dash_d1   # and _d2
+```
+
+**Determinism, measured — every trace file is byte-identical INCLUDING the
+nanosecond tick column** (`cmp`, exit 0):
+
+```
+spim_a.p1.trace  IDENTICAL (    34 lines)   twim1.p1.trace  IDENTICAL (  346)
+spim_a.p2.trace  IDENTICAL (12,225 lines)   twim1.p2.trace  IDENTICAL (  597)
+spim_b.p1/p2     IDENTICAL (     0 lines)   twim2.p1.trace  IDENTICAL (1,075)
+fb_p1_boot.ppm / fb_p2_render.ppm IDENTICAL twim2.p2.trace  IDENTICAL (1,206)
+run.out: 26 differing lines out of 2,4xx, ALL of them the host wall-clock
+         prefix, the capture directory name, or Renode's own host-load stats.
+         Not one register access, not one counter.
+```
+
+and the two regenerated oracle reports are byte-identical file for file
+(`display_sensor_oracle.json`, all four `golden_framebuffer_*`).
+
+**What the seeded shipped dashboard actually measures** (per-device, the only
+admissible granularity):
+
+```
+framebuffer p1_boot  0c5cc90b…    0 lit px      p2_render 19b1f24a…  2923 lit px
+spim_a   p1_boot     34  f91505ab…            p2_render 12,225  5bcdb835…
+spim_b   p1/p2        0                       (empty)
+twim1    p1_boot    346  0a8ed850…    nPM1300 285 / OPT3001 14 / ST25DV 25 + 22
+twim1    p2_render  597  8188ba1c…    nPM1300 527 / OPT3001 59 / ST25DV  7 +  4
+twim2    p1_boot  1,075  f182314b…            p2_render  1,206  fbc6ec68…
+saadc    998 660cdf3b…   pdm0 2 255852a6…     gpiote0 25 2f47878f…  gpiote1 empty
+counters JBD_FC_P1 0x03  JBD_FC_P2 0x2E65  ESB_MASTER 0x175  ESB_ACKS 0x175
+         VC_DATA_EVENTS 0x213  RADIO_TX 0x232  SCREEN_ID 0x06  DISPLAY_ON 0x01
+```
+
+**THREE CORRECTIONS to the diagnosis, all because the old dashboard baseline was
+one unseeded draw:**
+
+| claim | diagnosis (unseeded shipped) | measured (SEEDED shipped) |
+|---|---|---|
+| `twim1 p2_render` total | 584 | **597** |
+| nPM1300 `p2_render` | 514 | **527** |
+| `VC_DATA_EVENTS` | 0x214 | **0x213** |
+| `JBD_FRAMECOUNTER_P2` | 0x2E65 (run1) / 0x2E27 (run2) | **0x2E65, stable** |
+| `spim_a p2_render` | "NOT stable: 12225 / 12161" | **12,225 in both seeded runs — STABLE** |
+
+Consequences, each of which the diagnosis got wrong and which this section
+supersedes:
+
+1. **§1's "584 − 572 = 12 = 7 + 4 + 1" is arithmetically dead.** Against the
+   seeded shipped baseline the gap is **597 − 572 = 25**, and it decomposes
+   `7 (ST25DV 0x53) + 4 (ST25DV 0x57) + 14 (nPM1300)`. The ST25DV half (11) is
+   unchanged and real; the nPM1300 half is **14 transactions, not 1**.
+2. **ITEM 2 ("the 12th is a single nPM1300 write past the 20 s wall") is
+   withdrawn.** It was an artifact of comparing 513 against an unseeded 514.
+   The real shipped figure is 527.
+3. **`spim_a p2_render` on the dashboard is no longer excusable as
+   non-deterministic.** The recorded oracle's own
+   `determinism_verification/NOT_stable_across_runs` block lists it, but that
+   block was written from two *unseeded* runs. With the seed pinned the shipped
+   image gives 12,225 twice. Ours gives **9,212** — a real, stable, previously
+   masked gap of 3,013 transactions on the dashboard repaint path
+   (`JBD_FRAMECOUNTER_P2` 0x2E65 vs 0x22D7 says the same thing: 11,877 vs 8,919
+   panel refreshes). **This is a NEW open item, not closed here.**
+
+### 42.2 HEAD baseline, re-measured against the new seeded dashboard oracle
+
+`g1-td-final2` + `g1-i30e-net`, both stimuli, `G1_SEED=305419896`.
+
+**NAVIGATION** (the seeded shipped baseline `/private/tmp/g1_ship_seed_q1` is
+unchanged from iteration 41):
+
+```
+framebuffer p1_boot  1d617c65…  656 px  BYTE-IDENTICAL (cmp vs golden, 153,600 B)
+framebuffer p2_render b26c73b3… 1098 px BYTE-IDENTICAL
+spim_a  whole run 786 + 2,859 = 3,645 == 3,645           EQ
+twim2   p1_boot 1,089  7ed8ddcd0c0d420d == shipped       EQ
+twim1   p1_boot 371; nPM1300 291 / OPT3001 33 / ST25DV 25 + 22, every sha  EQ
+twim1   p2_render 588 vs 599   (ST25DV 7 + 4 absent)     NE
+twim2   p2_render 1,200 == 1,200, sha NE                 NE
+saadc   998 == 998, sha f997a997… vs 660cdf3b…           NE
+ESB_MASTER_FRAMES / ESB_ACKS 0x176 vs 0x175              NE (+1)
+```
+
+**DASHBOARD**, against the *new* seeded oracle:
+
+```
+framebuffer p1_boot  0c5cc90b…  0 px   EQ (all-zero)
+framebuffer p2_render 19b1f24a… 2923 px BYTE-IDENTICAL (cmp vs golden)
+spim_a  p1_boot     34  f91505ab…  ==  EQ
+spim_a  p2_render 9,212 vs 12,225      NE   <- newly admissible, see §42.1(3)
+twim1   p1_boot   346  0a8ed850…, every per-device sha  EQ
+twim1   p2_render 572 vs 597           NE   = 7 + 4 (ST25DV) + 14 (nPM1300)
+        OPT3001   59 == 59, sha 4e016ae0… EQ
+        nPM1300  513 vs 527, sha NE
+twim2   p1_boot 1,075  f182314b…  ==   EQ
+twim2   p2_render 1,206 == 1,206, sha NE
+saadc   998 == 998, sha NE ; pdm0 EQ ; gpiote0 EQ ; gpiote1 EQ
+counters DISPLAY_ON 0x01 EQ, ESB_SYNC 0x02 EQ, SCREEN_ID 0x06 EQ,
+         JBD_FC_P1 0x03 EQ, RADIO_TX 0x232 EQ, JBD_FC_P2 0x22D7 vs 0x2E65 NE,
+         ESB_MASTER/ACKS 0x176 vs 0x175 NE, VC_DATA_EVENTS 0x215 vs 0x213 NE
+```
+
+### 42.3 TASK 2 — the §1.7 probe, run FIRST.  It settles causality, and it
+### finds a THIRD defect that the diagnosis did not have: **DEFECT C**, which is
+### the actual proximate cause.  DEFECT A is real but is NOT the cause.
+
+Probe, navigation stimulus, `G1_SEED=305419896`, both images, hooks on the
+common `s[5] = next` store, on the `case 9` deadline store, and on both
+`st25dv_build_and_write_ndef_records` call sites (shipped `0xfd40 / 0xfde8 /
+0xfd74 / 0xfe4c`; ours `0xd450 / 0xd480 / 0xd420 / 0xd4e6`).
+
+```
+SHIPPED (app_update.bin)                       OURS (g1-td-final2)
+next=3  s1=0 s7=0 sb=9 sc=9 s13=100 flag=1     next=3  … flag=1
+NDEF-WRITE case3                        <---   NDEF-WRITE case3
+next=9  … flag=0                               next=9  … flag=0
+deadline=0x457CE000  (= 4046.0f)               deadline=0x3F800000  (= 1.0f)
+next=10 / next=11 s1=1 / next=2 / next=3       next=10 / next=11 s1=1 / next=2 / next=3
+NDEF-WRITE case3                        <---   (NO WRITE)
+next=9 / deadline=0x457CE000 / 10 / 11 / 2 / 3 next=9 / deadline=0x3F800000 / 10 / 11 / 2 / 3
+NDEF-WRITE case3                               (NO WRITE)
+box buffer 0x20002380, flag 0x20003023         box buffer 0x20003520, flag 0x200041C3
+```
+
+Three things this establishes, none of which could be settled statically:
+
+1. **The predicted shipped deadline is confirmed to the bit**: `0x457CE000`
+   = 4046.0f = `2^(9+3) − 50`. The diagnosis's arithmetic is right.
+2. **Our deadline is `0x3F800000` = 1.0f, not "garbage".** It is the
+   deterministic output of the five-error chain: `pow` is called with `d0`
+   holding whatever the caller left there and returns 1.0 for the observed
+   register state, `dcmp_negate_rhs` is passed `d0/d1` instead of `r0..r3`, and
+   `__truncdfsf2` is called with no argument. `*g_20007a04` = 1.0f ⇒ `case 10`'s
+   dwell is 1 ms instead of 4046 ms. **DEFECT A is certain and it is a real
+   behavioural change — but it does NOT stop the machine.** Our state machine
+   cycles `3 → 9 → 10 → 11 → 2 → 3` exactly like the shipped one.
+3. **The write is lost inside `case 3`, on the second and every later visit.**
+   Both builds write on the FIRST visit (`flag == 1`); only the shipped writes
+   on the second.
+
+#### DEFECT C — `case 3` hoists the `*last` refresh out of the `d > 20` path
+
+Shipped `0xfd44…0xfd7e`:
+
+```
+fd4c  ldrb r3,[r5]        ; *flag
+fd4e  cbnz r3, 0xfd68     ; flag  -> WRITE, jumping OVER 0xfd66
+fd50  ldrb r3,[r4,#0xb] / cmp r3,r1
+fd54  bne  0xfd68         ; s[0xb]!=s[0xc] -> WRITE, jumping OVER 0xfd66
+fd58  ldrb r3,[r4,#0x13] / ldrh r2,[r0] / subs r6 / it mi;submi / cmp r6,#0x14
+fd64  ble  0xfd7c         ; |d| <= 20 -> no write
+fd66  strh r3,[r0]        ; *last = s[0x13]   ** ONLY on the d>20 path **
+fd68  strb r1,[r4,#0xb]   ; s[0xb] = s[0xc] ; bl 0x250f8 ; *flag = 0
+```
+
+`*g_2000f6e4` is refreshed **iff the write was reached through the `d > 20`
+test** — the two early-outs skip the store. Our source:
+
+```c
+int d=(int)s[0x13]-(int)*last; if(d<0)d=-d;
+if(d>20)*last=s[0x13];                              /* <-- UNCONDITIONAL */
+if(*flag||s[0xb]!=s[0xc]||d>20){ …write… }
+```
+
+refreshes it whenever `d > 20`, **including on the `flag == 1` path**. Verified
+in our own linked image (`0x0000d3d6…0x0000d420`): GCC hoisted the `d > 20` test
+to the front, so `strh r2,[r1]` at `0xd410` runs on the *first* pass.
+
+Consequence, exactly as observed:
+
+| pass | `*flag` | `s[0xb]==s[0xc]` | `*last` before | `d` | shipped | ours |
+|---|---|---|---|---|---|---|
+| 1 | 1 | yes | 0 | 100 | **write**, `*last` stays **0** | **write**, `*last` := **100** |
+| 2 | 0 | yes | ship 0 / ours 100 | ship 100 / ours 0 | **write** (d>20) | **no write** (d==0) |
+| 3+ | 0 | yes | 100 / 100 | 0 / 0 | no write | no write |
+
+**This single hoisted store is the whole of ITEM 1.** It is a one-line
+reconstruction defect, it is invisible to `cfg_verify` (the guard is the RAM
+global `*g_20003023`, the state-gated-branch blind spot recorded in §41.4), and
+it explains why the boot-phase ST25DV traffic is byte-exact while the
+render-phase traffic is absent: the boot write is pass 1, which both builds make.
+
+**Correction to the diagnosis §1.7.** Its confidence that "fixing DEFECT A alone
+restores the traffic" was rated MEDIUM; the probe says **it would not have**.
+DEFECT A changes `case 10`'s dwell from 4046 ms to 1 ms and nothing else on this
+path. All three defects are fixed together below.
+
+### 42.4 TASK 2 — the fix, applied mechanically to all ten parallel copies
+
+`apply_task2.py` (scratchpad; anchored replacement, every anchor asserted to
+occur exactly once per file, dry-run first):
+
+```
+PATCHED recon/app/src/FUN_0000fcf0.c                          DEFECT A + C
+PATCHED recon/verified/src/FUN_0000fcf0.c                     DEFECT A + C
+PATCHED recon/named/box_placement_animation_step.c            DEFECT A + C
+PATCHED recon/symbolized/app/box_placement_animation_step.c   DEFECT A + C  (the COMPILED tree)
+PATCHED recon/readable_sources/app/g1/box_placement_animation_step.c
+PATCHED recon/app/src/FUN_0002538c.c                          DEFECT B
+PATCHED recon/verified/src/FUN_0002538c.c                     DEFECT B
+PATCHED recon/named/transport_state_update.c                  DEFECT B
+PATCHED recon/symbolized/app/transport_state_update.c         DEFECT B
+PATCHED recon/readable_sources/app/g1/transport_state_update.c
+```
+
+**Where DEFECT A came from** — worth recording, because the same trap is set for
+every other literal-pool function in the tree. `recon/data/rodata_fe68.c` splits
+the case-9 literal pool out as data and annotates each word with its **float**
+interpretation:
+
+```c
+0x40000000,  /* [1] imm  f32=2       */   <- actually the HIGH word of double 2.0
+0x40490000,  /* [7] imm  f32=3.14062 */   <- actually the HIGH word of double 50.0
+```
+
+Both words are the upper half of a **double**, and both annotations were read as
+if they were the whole constant. `pow`'s base became the *low* word `0` and the
+subtrahend became `3.140625`. The remaining three errors (`__floatsidf`'s result
+truncated to `r0`, `pow` called through the soft-float register pair while our
+`pow` is hard-float `d0/d1`, `__truncdfsf2` called with no argument) all follow
+from declaring soft-float helpers with float/double C prototypes — the identical
+class §41.10 repaired for `__extendsfdf2`.
+
+The declarations now state the real ABI, and the body uses the project's
+raw-bits union convention:
+
+```c
+extern uint64_t __floatsidf(int);                   /* soft: r0    -> r0:r1 */
+extern double   pow(double,double);                 /* hard: d0,d1 -> d0    */
+extern uint64_t dcmp_negate_rhs(uint64_t,uint64_t); /* soft: r0:r1,r2:r3    */
+extern uint32_t __truncdfsf2(uint64_t);             /* soft: r0:r1 -> r0    */
+...
+n.u=__floatsidf((int)s[0xb]+3); p.d=pow(2.0,n.d);
+r.u=dcmp_negate_rhs(p.u,0x4049000000000000ULL); o.u=__truncdfsf2(r.u); *deadline=o.f;
+```
+
+(GCC does **not** fold `pow(2.0,x)` into `exp2` here — that transform needs
+`-funsafe-math-optimizations`, which this build does not set. Verified in the
+linked image below, so no `__asm__` alias or `-fno-builtin` was needed.)
+
+**Codegen, verified instruction by instruction against the shipped image.**
+`case 9`, shipped `0xfdc2..0xfde8` vs ours `0xd454..0xd47a`:
+
+```
+ldrb r0,[r4,#0xb] / adds r0,#3 / bl __floatsidf
+vldr d0,[pc]  -> 0x4000000000000000 = 2.0        (was: r0 = s[7] = 0)
+vmov d1,r0,r1 / bl pow                            (was: low word only, in r1)
+ldr r3,[pc] -> 0x40490000 ; movs r2,#0            (was: vldr d1 = 3.140625)
+vmov r0,r1,d0 / bl dcmp_negate_rhs                (was: d0,d1)
+bl __truncdfsf2                                   (was: called with NO argument,
+str r0,[=deadline]                                 then a second time)
+```
+
+Ours emits `movs r2,#0` one instruction earlier than the shipped and has no
+`uxtb` — otherwise **the same instructions in the same order**. `case 3`, shipped
+`0xfd44..0xfd7e` vs ours `0xd3d2..0xd40e`, is the same story: identical
+instruction for instruction (`cbnz *flag` / `bne s[0xb]!=s[0xc]` / `ldrh` +
+`subs` + `it mi;submi` + `cmp #20` / `ble` / **`strh` on the d>20 path only** /
+`strb r1,[r4,#0xb]` / three arg setups / `bl`), plus one `uxth` that the
+`volatile uint16_t *` read costs. `transport_state_update`, shipped
+`0x253b0..0x253cc` vs ours `0x22b80..0x22b9e`: `bcc` to the `else if` arm,
+`strb r1` then **fall through** into `bl thunk ; str r0,[=timestamp] ; pop`,
+with the `else if` arm returning without it. Shipped shape exactly.
+
+**Build `g1-i42a-app`:**
+
+```
+FLASH   956,480 B / 982,528 B   97.35 %     headroom 26,048 B
+        *** delta vs the g1-td-final2 baseline: ZERO BYTES ***
+RAM     253,765 B / 440 KB      56.32 %     (unchanged)
+nm -u 0   duplicate globals 0
+box_placement_animation_step  0x188 -> 0x198 B (+16)
+transport_state_update        0x0a0 -> 0x0a4 B (+4)
+runtime_info_sync 0x00015c10 -> 0x00015c04   (re-read for the capture, as always)
+```
+
+The +20 B of function growth is absorbed inside the existing image; the linked
+`FLASH` figure and `app_update.bin` (957,328 B) are byte-for-byte the same size
+as the baseline. **The §7/Pass-1b timing hazard therefore does not arise**: the
+first-transaction virtual times are *identical* to the baseline's, measured
+below.
+
+### 42.5 TASK 2 — RESULT.  ITEM 1 is CLOSED on both stimuli.
+
+`g1-i42a-app` + `g1-i30e-net`, `G1_SEED=305419896`, both stimuli, compared
+against the seeded shipped oracles.
+
+**NAVIGATION — `twim1 p2_render` 588 -> 599 == 599, and ALL FOUR per-device
+streams are now byte-identical in BOTH phases:**
+
+| criterion | HEAD baseline | **`g1-i42a`** | shipped | verdict |
+|---|---:|---:|---:|---|
+| `twim1 p2_render` transactions | 588 | **599** | **599** | **count EXACT** |
+| ├ ST25DV `0x53` | 0 | **7**, sha `32caac084c57…` | 7, same | **EQ — new** |
+| ├ ST25DV `0x57` | 0 | **4**, sha `248e360fe163…` | 4, same | **EQ — new** |
+| ├ nPM1300 | 508 `873d77bd…` | 508 `873d77bd…` | same | EQ |
+| └ OPT3001 | 80 `30796e0f…` | 80 `30796e0f…` | same | EQ |
+| `twim1 p1_boot` all four devices | EQ | **EQ** | — | EQ (no regression) |
+| `spim_a` whole run | 3,645 | **3,645** | **3,645** | EQ |
+| `twim2 p1_boot` | 1,089 `7ed8ddcd0c0d…` | **same** | same | EQ |
+| `JBD FrameCounter P2` | 0x0D61 | **0x0D61** | 0x0D61 | EQ |
+| framebuffers ×4 | EQ | **EQ** | — | **BYTE-IDENTICAL** |
+
+The eleven restored transactions are **byte-identical to the shipped wire
+bytes**, including the NDEF payload (`diff` of the `dev=0x53`/`0x57` lines with
+tick and seq stripped is empty):
+
+```
+0x57 W 0014 / R 7F00      0x57 W 0016 / R 03
+0x53 W 0000 / R E1404001  0x53 W 0004 / R 031C9106  0x53 W 0004031C
+0x53 W 0006 91 06 06 "WLCCAP" 20 01 09 1E 03 0A 51 07 03 "WLCSTAI" 05 64 01
+0x53 W 0022FE
+```
+
+`05 64 01` = the WLCSTAI bitmap with **battery 100**, i.e. the same state byte
+the shipped firmware puts on the wire.
+
+**DASHBOARD — `twim1 p2_render` 572 -> 583, ST25DV both EQ:**
+
+```
+twim1 p2_render     572 -> 583   vs shipped 597
+  ST25DV 0x53         0 ->   7   ==   7   sha 32caac08…  EQ  (new)
+  ST25DV 0x57         0 ->   4   ==   4   sha 248e360f…  EQ  (new)
+  OPT3001            59      59  ==  59   sha 4e016ae0…  EQ
+  nPM1300           513     513  vs 527   sha NE               <- residual, 14 txns
+twim1 p1_boot   346, every per-device sha EQ (unchanged)
+twim2 p1_boot 1,075  f182314b…  EQ ; p2_render 1,206 == 1,206
+framebuffers  p1_boot all-zero EQ ; p2_render 19b1f24a… BYTE-IDENTICAL
+```
+
+**ITEM 1 is closed.** The remaining dashboard `twim1` gap is 597 − 583 = **14
+nPM1300 transactions**, which is the burst-phase item re-derived in §42.1 and is
+NOT the "one transaction past the 20 s wall" the diagnosis described. It did not
+move when the ST25DV work was restored, so the diagnosis's prediction that
+restoring the bus occupancy would take nPM1300 to parity as a collateral gain is
+**refuted by measurement**.
+
+### 42.6 TASK 2 — `cfg_verify` is blind to all three defects, measured
+
+```
+FUN_0000fcf0 (FIXED)                 PASS cases=14  sel={}  checked=54
+FUN_0000fcf0 (PRE-FIX, HEAD source)  PASS cases=14  sel={}  checked=54   <- source_override
+FUN_0002538c (FIXED)                 PASS cases=0   sel={}              <- VACUOUS, no evidence
+```
+
+The pre-fix body — which computes the deadline through five ABI/constant errors
+**and** loses every render-phase ST25DV write — passes all fourteen switch cases
+and 54 checks. Both of DEFECT C's guards (`*g_20003023`, `*g_2000f6e4`) are RAM
+globals, so the verifier's argument-derived case coverage never separates the
+`flag == 1` first pass from the `flag == 0` second pass. This is a **second
+instance of the state-gated-branch blind spot** first recorded in §41.4, and the
+first one where the guard is a RAM global the function itself *writes*. It
+belongs on the `AGENTS.md` blind-spot list next to the others.
+
+### 42.7 TASK 4 — the two gate artifacts, canonicalised in
+### `build_display_sensor_oracle.py`, with both residues re-measured first
+
+Both diagnoses were re-derived from *my own* seeded captures at HEAD before the
+gate was touched, not taken on trust.
+
+**4a. `saadc` — `RESULT.PTR` is a stack address.** Navigation, seeded both
+sides, `g1-td-final2` vs shipped:
+
+```
+$ grep 'saadc:' … | sed 's/host clock//; s/[cpuapp: 0x…]//'   1,000 lines each
+$ diff | grep -c '^[<>]'                     90   (= 45 changed accesses)
+$ diff | grep '^[<>]' | grep -vc ResultPtr    0   <- the ENTIRE difference
+shipped 0x200275CE / 0x200275A6 / 0x200275BE   (15 uses each)
+ours    0x20028766 / 0x20028736 / 0x20028786   (+0x1198 / +0x1190 / +0x11C8)
+interleave A,B,C,A,B,C… identical on both sides, all 15 rounds
+nm -n: all three of ours fall between g_20026a68 (0x20027c08) and
+       g_aging_mode_aux_thread_stack (0x20028808), with NO symbol between;
+       g1_app_globals.ld pins nothing in 0x20026000..0x20029000
+```
+
+`summarise_regaccess` now hashes the **first-appearance index** of any register
+in `POINTER_REGS` (`saadc: {ResultPtr}`) instead of its value, and publishes
+`stream_sha256_raw_pointers` (the old hash), `pointer_values_raw`,
+`pointer_alignment` and a note. Measured immediately, no rebuild needed:
+
+```
+saadc whole_run  canonicalised  ebf06b3002209e68 == ebf06b3002209e68   EQ  (both stimuli)
+                 raw pointers   660cdf3bff15837e vs f997a997c12b98af   NE  (kept, non-gating)
+```
+
+**What this deliberately stops catching:** a defect that hands SAADC the same
+*number* of distinct buffers in the same *order* but at wrong addresses — e.g.
+a static instead of a stack local. A different count or order still changes the
+index sequence and still fails. `pointer_values_raw` and `pointer_alignment`
+(both `[2]` here, i.e. 2-byte aligned, the `int16_t` one-shot result) are
+published so that class stays inspectable, and the `+0x1198 / +0x1190 / +0x11C8`
+spread is itself a live measurement: one reconstructed caller's frame is 0x30 B
+deeper than the original's.
+
+**4b. `twim2 p2_render` — a 7 ms sampling-phase offset, and the DECISION.**
+Re-measured at HEAD:
+
+```
+NAV  p2  ship 1200 ours 1200   differing indices 3   {217, 221, 225}  all 0x28 reads
+DASH p2  ship 1206 ours 1206   differing indices 1   {225}            0x28 read
+NAV  p1  1089/1089 differing 0     DASH p1 1075/1075 differing 0
+idx 213 R 7F340000421C both;  217 ship 30370000B117 / ours DD3700008C16
+221 ship E23900002013 / ours 8E3A0000FB11;  225 ship 933C00008E0E / ours 403D00006A0D
+229 R 453F0000FD09 both.   X ramp: 347F -> 3730(s) -> 37DD(o) -> 39E2(s) -> 3A8E(o) -> …
+tick offset +6.810 ms at p2 index 0, +10.590 ms at the end; poll period 80.11 ms
+```
+
+**Decision: this is a tolerance the gate should express, and here is why, with
+evidence — not because it makes a number go green.**
+
+1. **The payload is emulator output, not firmware output.** The 6 bytes are the
+   LSM6DSO model's `don` gesture waveform evaluated at the virtual time of the
+   poll. Nothing the firmware computes appears in them.
+2. **The offset is a deterministic function of our `.text` layout, and it is
+   invariant across builds that do not move the boot path.** Measured, first
+   transaction of each bus, navigation, versus the shipped:
+
+```
+                     twim1     twim2    spim_a
+   g1-i41b           +3.450   +6.390   +6.370
+   g1-i41c           +3.450   +6.390   +6.370
+   g1-td-p1          +3.450   +6.390   +6.370
+   g1-td-p1b         +3.450   +6.630   +6.640      <- boot path moved
+   g1-td-final2      +3.450   +6.390   +6.370
+   g1-i42a  (TASK 2) +3.450   +6.390   +6.370      <- .text delta 0
+   g1-i42b  (TASK 3, +16 B)  +3.450   +6.450   +6.430
+```
+
+   Six builds spanning four iterations give **exactly** +3.450 / +6.390 /
+   +6.370 ms; the two that moved the boot path moved it by 60 µs and 240 µs.
+   This is not noise and it is not closable by any change short of
+   byte-identical codegen for the whole boot path — which is the project's END
+   GOAL, not a per-iteration gate.
+3. **Everything the firmware actually emits is unchanged and stays hard-gated**:
+   every register address, every write payload, the transaction count
+   (1,200 == 1,200 / 1,206 == 1,206), the ordering, and the 80.11 ms poll period
+   are identical on both sides.
+
+`stream_sha256_regprog` is therefore added **alongside** `stream_sha256` (which
+is untouched and still published): it replaces the payload of a read that
+follows a `W 0x28` on the LSM6DSO with `SAMPLE#<n>`. Measured:
+
+```
+twim2 p1_boot   regprog EQ (both stimuli)   accel samples 249/249, 0 differ
+twim2 p2_render regprog EQ (both stimuli)   accel samples 300/300, 3 differ (nav)
+                                                          298/298, 1 differs (dash)
+```
+
+**What this deliberately stops catching:** a defect that keeps the register
+programme and the poll cadence but reads the accelerometer at a systematically
+different PHASE of the gesture. `analogue_sample_payloads` and
+`analogue_sample_count` are published precisely so that class stays measurable —
+3 differing samples of 300 is a 7 ms offset on an 80 ms period; a real phase
+error shows up as a large fraction of the 300, not as three.
+
+**The 6.4 ms boot lateness is NOT written off.** It is recorded here as an open,
+numbered item with its own measurement (§42.9 item 3), not absorbed into a
+tolerance.
+
+### 42.8 TASK 3 — four of the six bodies now match the shipped fused histogram
+### EXACTLY; the fifth was applied, MEASURED TO BREAK THREE GATES, and REVERTED;
+### the sixth was deliberately not attempted.
+
+The diagnosis §5 is confirmed in full, re-derived here rather than quoted.
+Whole-image scan of `app_update.bin` over each catalogued extent AND over
+`[entry, next_entry)` (so a Ghidra under-report cannot hide a hit) — identical
+counts both ways:
+
+```
+                              shipped                    ours (HEAD)
+battery_model_state_update    vfma 13 vfnms 1            vmla 29 vmls 3
+battery_soc_curve_model_init  vfma 10                    vmla 8
+spline_interp_pair_2out       vfma 4  vfms 2             vmla 4  vmls 2
+spline_interp_3pt             vfma 2  vfms 1             vmla 2  vmls 1
+__ieee754_expf                vfma 5  vfms 2             vmla 3 vmls 2 vnmls 2
+atanf                         vfma 12                    vmla 7  vnmls 4
+-- the five UNFUSED bodies, for control --
+imu_mahony_ahrs_update        vmla 16 vmls 3 vnmla 1 vnmls 6   IDENTICAL
+orientation_get_heading_deg   vmla 1                           IDENTICAL
+quaternion_to_euler           vmla 2 vmls 2 vnmls 1            IDENTICAL
+fuel_gauge_update             vnmls 1                          IDENTICAL
+fast_inverse_sqrt             vmls 2                    (none; different codegen)
+```
+
+**No build flag was added anywhere.** `grep -rn "fp-contract"` over
+`recon/application/` and `recon/generated/` still returns nothing; the tree is
+already at `-ffp-contract=off` via `-std=c99`, exactly as §5.2 says.
+
+**Result on the final build `g1-i42d-app`:**
+
+| body | shipped | **ours now** | verdict |
+|---|---|---|---|
+| `spline_interp_3pt` | vfma 2, vfms 1 | **vfma 2, vfms 1** | **EXACT** |
+| `spline_interp_pair_2out` | vfma 4, vfms 2 | **vfma 4, vfms 2** | **EXACT** |
+| `__ieee754_expf` | vfma 5, vfms 2 | **vfma 5, vfms 2** | **EXACT** |
+| `atanf` | vfma 12 | **vfma 12** | **EXACT** |
+| `battery_soc_curve_model_init` | vfma 10 | vmla 8 | **REVERTED — see below** |
+| `battery_model_state_update` | vfma 13, vfnms 1 | vmla 29, vmls 3 | **not attempted — see below** |
+| the five unfused control bodies | — | **byte-for-byte unchanged** | no collateral |
+
+`atanf` needed a second pass and the shipped instructions decided it. A naive
+per-site conversion gave `vfma 11, vfms 1, vfnms 1, vmla 1`. Reading the shipped
+VFP stream (`0x76958`..`0x76a34`) shows the sum is formed as
+`0x769be vmul s14,s14,s13` then **`0x769c2 vfma.f32 s14,s11,s12`** — i.e.
+`(odd + even)` is itself ONE fused op, `even + odd_inner*square`, and everything
+after it (`0x769c6 vmul`, `0x769cc vsub`, `0x76a22`/`0x76a26`/`0x76a2e vsub`) is
+**unfused**. Writing it that way gives **`vfma 12` and nothing else**.
+
+#### `battery_soc_curve_model_init` — applied, measured, REVERTED
+
+Eight sites converted (`base += scale*curve`; the 3-fma table blend; 2+2 in the
+two extrapolation arms). It worked as codegen — `vmla 8 -> vfma 8`, fused-only —
+but it is the **only function in the whole change whose size moved**:
+
+```
+$ nm -S diff, g1-i42a (TASK 2 only) vs g1-i42c (TASK 2 + all five conversions)
+battery_soc_curve_model_init   880 -> 888  (+8)        <- the ONLY one
+linked FLASH                   956,480 -> 956,496 B    (+16 after alignment)
+```
+
+and that +16 B **broke three acceptance criteria**, measured on a full seeded
+capture pair of `g1-i42b-app` (same +16 B):
+
+```
+                              g1-i42a (+0 B)          g1-i42b (+16 B)     shipped
+first twim2 transaction       +6.390 ms               +6.450 ms
+first spim_a transaction      +6.370 ms               +6.430 ms
+NAV  twim2 p1_boot sha        EQ 7ed8ddcd0c0d…        NE (18 txns reorder) EQ
+     regprog                  EQ                      NE
+NAV  twim1 p1_boot OPT3001    33 == 33, sha EQ        35, sha NE           33
+NAV  spim_a p1/p2 split       786 / 2,859             808 / 2,837          764 / 2,881
+DASH twim1 p2_render          583                     508                  597
+DASH twim2 p2_render          1,206 == 1,206          986                  1,206
+DASH spim_a p2_render         9,212                   7,228                12,225
+```
+
+The navigation damage is the §41.5 signature exactly — one 66.62 ms animation
+frame crossing the `RunFor "6"` boundary and the OPT3001/nPM1300 interleave on
+`twim1` reordering. The dashboard damage is far worse: phase 2 loses ~220 IMU
+polls and ~2,000 display transactions. Two causes are confounded in that single
+build and I did not separate them: this function is **both** the only size
+grower **and** the only arithmetic change on the battery/SoC path (fused vs
+unfused rounds differently, which is precisely the risk §5.4 flagged for the two
+battery bodies).
+
+**Reverted** (`git checkout` of the three copies). The rebuild `g1-i42d-app`
+returns to `FLASH 956,480 B` and to a `nm -S` diff against `g1-i42a` of
+**zero functions changed size**, and every gate returns to the `g1-i42a` values.
+This is the same decision the preceding pass made for its 109 fixes: a codegen
+gain is not worth a byte-equality gate.
+
+#### `battery_model_state_update` — deliberately not attempted
+
+Its MAC count is **32 (vmla 29 + vmls 3) against the shipped 14
+(vfma 13 + vfnms 1)** — more than twice. The body is structurally different from
+the shipped one, which is exactly why `AGENTS.md` §1b still lists
+`FUN_0000c358` as an OPEN defect. Fusing 32 sites would produce `vfma 32` versus
+`vfma 13` and move nothing toward parity, while changing the rounding of the
+battery EKF that feeds `device_info[0xfc0]` — the very byte whose value `0x64`
+this iteration just made byte-exact on the wire in the restored WLCSTAI record
+(§42.5). It must be **re-reconstructed** first; fusing it is a cosmetic edit on
+a known-wrong body. Recorded as open, not done.
+
+### 42.9 FINAL ACCEPTANCE — `g1-i42d-app`
+
+```
+build            recon/application/build_cohesive.sh app /private/tmp/g1-i42d-app
+FLASH            956,480 B / 982,528 B   97.35 %    headroom 26,048 B
+                 *** delta vs HEAD baseline g1-td-final2: ZERO ***
+                 nm -S diff vs g1-i42a: ZERO functions changed size
+RAM              253,765 B / 440 KB      56.32 %    (unchanged)
+net              UNTOUCHED, g1-i30e-net, zephyr.bin 225,581 B  -- still FROZEN
+nm -u                                     0
+duplicate globals                         0
+check_ram_pin_collisions app   escaping 0 / unknown_inside_a_live_object 0
+check_ram_pin_collisions net   escaping 0 / unknown_inside_a_live_object 0
+check_thread_create_stack_args            10/10   EXIT=0
+verify_data                               995/995 files, 56,279/56,279 bytes, 100.00 %
+cfg_verify  FUN_0000fcf0 PASS 14 | FUN_0002538c PASS 0 (vacuous) |
+            FUN_0000eb7c PASS 17 | FUN_0000ea70 PASS 17 |
+            FUN_00076290 PASS 17 | FUN_000768e0 PASS 14
+```
+
+**ALL FOUR FRAMEBUFFERS BYTE-IDENTICAL** (`cmp`, exit 0, 153,600 B each, seeded
+captures on both stimuli):
+
+```
+navigation p1_boot    1d617c65a688f10e   656 lit px   BYTE-IDENTICAL
+navigation p2_render  b26c73b37d441fc8  1098 lit px   BYTE-IDENTICAL
+dashboard  p1_boot    0c5cc90b079d0d9c     0 lit px   BYTE-IDENTICAL
+dashboard  p2_render  19b1f24a09f97a8d  2923 lit px   BYTE-IDENTICAL
+```
+
+**The four "do not regress" criteria, re-measured, all HOLD:**
+
+```
+navigation spim_a whole run   786 + 2,859 = 3,645  ==  764 + 2,881 = 3,645   EQ
+twim2 p1_boot                 1,089, sha 7ed8ddcd0c0d420db885bde48a10cbda…   EQ
+twim1 p1_boot per-device      291 d5a05b8a… / 33 ef88ae8b… / 25 51e8cde7… /
+                              22 11b0a774…  -- every one EQ                  EQ
+JBD_FRAMECOUNTER_P2 (nav)     0x00000D61 == 0x00000D61                       EQ
+```
+
+**Full verdict, navigation** (seeded shipped `g1_ship_seed_q1`):
+
+| criterion | ours | shipped | verdict |
+|---|---|---|---|
+| framebuffer p1/p2 | `1d617c65…` / `b26c73b3…` | same | **PASS** |
+| `spim_a` whole run | 3,645 | 3,645 | **count EXACT** (786/2,859 vs 764/2,881, one frame across `RunFor "6"`) |
+| `twim2 p1_boot` | 1,089 `7ed8ddcd…` | same | **PASS** |
+| `twim1 p1_boot`, four devices | 371, every sha | same | **PASS** |
+| **`twim1 p2_render`** | **599**, all four device sha | **599**, same | **PASS — NEW** |
+| `pdm0`/`gpiote0`/`gpiote1`/`spim_b` | sha EQ | same | **PASS** |
+| **`saadc` whole run** | 998, `ebf06b30…` | same | **PASS — NEW (gate fix)** |
+| **`twim2 p2_render` regprog** | 1,200, `regprog` EQ | same | **PASS — NEW (gate fix)** |
+| `twim2 p2_render` raw sha | 3 of 1,200 accel payloads differ | | NE, informational |
+| `ESB_MASTER_FRAMES`/`ACKS` | 0x176 | 0x175 | NE (+1) |
+| `spim_a` p1/p2 split | 786 / 2,859 | 764 / 2,881 | NE (±22 = one frame) |
+
+**Full verdict, dashboard** (seeded shipped `g1_ship_seed_dash_d1`, NEW this
+iteration):
+
+| criterion | ours | shipped | verdict |
+|---|---|---|---|
+| framebuffer p1/p2 | all-zero / `19b1f24a…` | same | **PASS** |
+| `spim_a p1_boot` | 34 `f91505ab…` | same | **PASS** |
+| `twim1 p1_boot`, four devices | 346, every sha | same | **PASS** |
+| `twim2 p1_boot` | 1,075 `f182314b…` | same | **PASS** |
+| **ST25DV `0x53` / `0x57` p2_render** | **7 / 4**, both sha | same | **PASS — NEW** |
+| OPT3001 `p2_render` | 59 `4e016ae0…` | same | **PASS** |
+| `saadc` / `pdm0` / `gpiote*` / `spim_b` | sha EQ | same | **PASS** |
+| `twim2 p2_render` regprog | 1,206, EQ | same | **PASS** |
+| nPM1300 `p2_render` | 513 | 527 | NE (−14, all at the capture tail) |
+| `spim_a p2_render` | 9,212 | 12,225 | NE |
+| `JBD_FRAMECOUNTER_P2` | 0x22D7 | 0x2E65 | NE |
+| `ESB_*` / `VC_DATA_EVENTS` | +1 / +2 | | NE |
+
+### 42.10 What is NOT closed, and why
+
+1. **Dashboard nPM1300 `p2_render` 513 vs 527.** Decomposed here rather than
+   guessed at: `difflib` over the content columns says **the first 513
+   transactions are identical and in order**, and the 14 missing ones are a
+   contiguous TAIL at `t = 19.796 … 19.996 s`, i.e. past our 20 s capture wall.
+   The cause is the poll-burst period, and it is a real firmware-timing
+   difference, not a window artifact: the `W 070401` poll runs 6 times at 200 ms
+   then pauses, and from `t ≈ 12.9 s` **the shipped pause settles at
+   0.4012–0.4026 s while ours stays at 0.4407–0.4522 s** — one ~50 ms scheduling
+   tick more per cycle, accumulating to +284 ms by the 64th poll. **The
+   diagnosis's prediction that restoring the ST25DV bus occupancy would take
+   this to parity as a collateral gain is REFUTED**: with the 11 ST25DV
+   transactions restored, the divergence onset moved only from index 26 to
+   index ~28 and the drift is unchanged (+284 ms vs the previously measured
+   +277 ms). Next place to look is the nPM1300 polling thread's own cycle, not
+   the transaction contents.
+2. **Dashboard `spim_a p2_render` 9,212 vs 12,225 (and `JBD_FRAMECOUNTER_P2`
+   0x22D7 vs 0x2E65).** **NEWLY ADMISSIBLE.** The recorded oracle's
+   `determinism_verification` block lists this stream as non-deterministic, but
+   that block was written from two *unseeded* runs; with `G1_SEED` pinned the
+   shipped image gives 12,225 in both runs. Our dashboard therefore repaints
+   8,919 times against the shipped 11,877 — a stable 25 % deficit that has been
+   masked by an inadmissible "not stable" annotation since iteration 34. The
+   framebuffer is byte-identical, so this is a repaint-cadence gap, not a
+   content gap. **Not investigated.**
+3. **Our boot is 6.4 ms late to the first `twim2` transaction** (+3.45 ms on
+   `twim1`, +6.37 ms on `spim_a`). Invariant across six builds, moves in
+   ~60–240 µs steps when the boot path's codegen moves. It is the whole cause of
+   the `twim2 p2_render` accel-payload residue (3 of 1,200) and is only closable
+   by byte-identical codegen of the boot path. **Recorded as a numbered open
+   item, deliberately not absorbed into the §42.7 tolerance.**
+4. **`ESB_MASTER_FRAMES`/`ESB_ACKS` 0x176 vs 0x175, `VC_DATA_EVENTS` +2..+4.**
+   Unchanged from iteration 41. Not investigated.
+5. **`spim_a` navigation p1/p2 split 786/2,859 vs 764/2,881.** Whole run exact;
+   the shipped image itself produced the 786/2,859 split under a different seed
+   (§41.6), so this may not be a defect. Unchanged.
+6. **`battery_soc_curve_model_init` fused-op conversion — applied, measured to
+   break three gates, REVERTED** (§42.8). Still `vmla 8` against the shipped
+   `vfma 10`; the 2-op shortfall is a *reconstruction* gap, not an fp-contract
+   one, and must be closed before fusion is worth attempting again.
+7. **`battery_model_state_update` (`FUN_0000c358`) not touched** — `vmla 29 +
+   vmls 3` against the shipped `vfma 13 + vfnms 1`. Still the open defect
+   `AGENTS.md` §1b names. Fusing it would be a cosmetic edit on a known-wrong
+   body and would perturb the battery EKF feeding the WLCSTAI byte this
+   iteration just made byte-exact.
+8. **`display_sensor_oracle_dashboard.json` was NOT regenerated.** The seeded
+   shipped dashboard oracle exists at
+   `/private/tmp/g1_i42/rep-ship-dash-d1/display_sensor_oracle.json` and every
+   dashboard number in this section is measured against it, but the recorded
+   report file still carries the unseeded 584/514/0x214 values and the
+   dashboard-specific prose (`schema g1.display_sensor_oracle_dashboard/1`,
+   the `screen`/`parity_criteria` D-* blocks) that `build_display_sensor_oracle.py`
+   does not emit. Regenerating it needs a dashboard-flavoured writer or a
+   hand-merge; doing it blind would delete the D-1..D-7 criteria. **Left for the
+   next pass, with the seeded capture on disk and reproducible in ~60 s.**
+9. **`cfg_verify --self-test` not run** (already broken at HEAD per `AGENTS.md`
+   §1b). Per-function verification plus the explicit negative control in §42.6
+   was used instead.
+10. **Nothing was committed.** The tree is left dirty.
+11. **`recon/refactor/` was not touched** (concurrent agent), nor was
+    `recon/net/**`, any linker script, `recon/board/**`, `recon/generated/**`, or
+    `tools/`. `~/Projects/armemul` is byte-for-byte as it was found — the probe
+    hooks of §42.3 live in throwaway `.resc` files under `/private/tmp/g1-i42/`,
+    not in the platform.
+
+### 42.11 Footprint
+
+```
+ M recon/app/src/FUN_0000fcf0.c                        DEFECT A + C
+ M recon/verified/src/FUN_0000fcf0.c                   DEFECT A + C
+ M recon/named/box_placement_animation_step.c          DEFECT A + C
+ M recon/symbolized/app/box_placement_animation_step.c DEFECT A + C  (compiled tree)
+ M recon/readable_sources/app/g1/box_placement_animation_step.c
+ M recon/app/src/FUN_0002538c.c                        DEFECT B
+ M recon/verified/src/FUN_0002538c.c                   DEFECT B
+ M recon/named/transport_state_update.c                DEFECT B
+ M recon/symbolized/app/transport_state_update.c       DEFECT B
+ M recon/readable_sources/app/g1/transport_state_update.c
+ M recon/{symbolized/app,named,readable_sources/app/g1}/spline_interp_3pt.c        __builtin_fmaf
+ M recon/{symbolized/app,named,readable_sources/app/g1}/spline_interp_pair_2out.c  __builtin_fmaf
+ M recon/{symbolized/app,named}/__ieee754_expf.c                                   __builtin_fmaf
+ M recon/{symbolized/app,named}/atanf.c                                            __builtin_fmaf
+ M recon/emulator/scripts/build_display_sensor_oracle.py   TASK 4 gate canonicalisation
+ M recon/emulator/reports/our_boot_bringup.md              this section
+```
+
+22 files, no new files, no deletions, no generated-file regeneration (no new
+symbols, no new rodata pins, `.text` delta 0).
+
+### Regenerate (iteration 42)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+recon/application/build_cohesive.sh app /private/tmp/g1-i42d-app
+# net UNCHANGED from iteration 30 (g1-i30e-net)
+# runtime_info_sync MOVES on almost every build -- ALWAYS re-read it:
+#   arm-zephyr-eabi-nm zephyr.elf | grep -w runtime_info_sync   -> 0x00015c04 here
+# _end 0x2003ff45 -> ctx 0x2003ff50; +0xd5/+0xfe8/+0x105a =
+#   0x20040025 / 0x20040F38 / 0x20040FAA
+
+# --- the SEEDED SHIPPED DASHBOARD oracle (new; the missing measurement) ------
+bash -c 'F=$(mktemp -u); mkfifo $F; sleep 100000 > $F & W=$!
+G1_ATT_WRITE="" G1_SEED=305419896 \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ship_seed_dash_d1 < $F
+kill $W; rm -f $F'          # run twice into _d1/_d2 to re-verify determinism
+
+# --- ours ------------------------------------------------------------------
+printf '$rtinfo_pc=0x00015c04\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i42/ours-paired-i42d.resc
+bash -c 'F=$(mktemp -u); mkfifo $F; sleep 100000 > $F & W=$!
+G1_RESC=/private/tmp/g1-i42/ours-paired-i42d.resc \
+G1_APP_ELF=/private/tmp/g1-i42d-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040F38 G1_CTX_105A=0x20040FAA G1_SCREEN_ID=0x20040025 \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_i42d_nav < $F
+kill $W; rm -f $F'          # dashboard: identical with G1_ATT_WRITE=""
+
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_i42d_nav /private/tmp/g1_i42/g4-i42d-nav
+cmp /private/tmp/g1_i42/g4-i42d-nav/golden_framebuffer_p1_boot.raw \
+    recon/emulator/reports/golden_framebuffer_p1_boot.raw
+
+# --- the §42.3 deadline/state probe (what settled ITEM 1's causality) -------
+# ours:    hooks at 0xd450 (s[5]=next), 0xd480 (deadline store), 0xd420 / 0xd4e6
+# shipped: hooks at 0xfd40,             0xfde8,                  0xfd74 / 0xfe4c
+# see /private/tmp/g1-i42/probe-{base,ship}.resc
+```

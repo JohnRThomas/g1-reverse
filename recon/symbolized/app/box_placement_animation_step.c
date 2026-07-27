@@ -23,15 +23,26 @@
 /* Reconstructed FUN_0000fcf0 @ 0xfcf0 */
 #include <stdint.h>
 extern void update_box_presence_flag(void*,void*),init_config_fields_default9(void*),k_sleep(int,int),st25dv_build_and_write_ndef_records(void*,void*,void*),set_time_mark(void);
-extern uint32_t get_elapsed_ms_since_mark(void),__floatsidf(uint32_t); extern double pow(uint32_t,uint32_t),__truncdfsf2(void);
-extern void dcmp_negate_rhs(double,double);
+extern uint32_t get_elapsed_ms_since_mark(void);
+extern uint64_t __floatsidf(int);                 /* soft: r0    -> r0:r1 */
+extern double   pow(double,double);               /* hard: d0,d1 -> d0    */
+extern uint64_t dcmp_negate_rhs(uint64_t,uint64_t); /* soft: r0:r1,r2:r3  */
+extern uint32_t __truncdfsf2(uint64_t);           /* soft: r0:r1 -> r0    */
 void box_placement_animation_step(uint8_t *s){volatile uint8_t*busy=(uint8_t*)((unsigned long)&g_20018c66) /*=0x20018c66*/,*flag=(uint8_t*)((unsigned long)&g_20003023) /*=0x20003023*/;volatile uint16_t*last=(uint16_t*)((unsigned long)&g_2000f6e4) /*=0x2000f6e4*/;volatile float*deadline=(float*)((unsigned long)&g_20007a04) /*=0x20007a04*/;
  update_box_presence_flag(s,(void*)busy);*busy=1;uint8_t next=s[5];
  switch(next){case 1:init_config_fields_default9(s);s[5]=2;*busy=1;s[2]=0;return;
  case 2:k_sleep(0x667,0);next=3;break;
- case 3:if(!s[2]){if(!s[7]){int d=(int)s[0x13]-(int)*last;if(d<0)d=-d;if(d>20)*last=s[0x13];if(*flag||s[0xb]!=s[0xc]||d>20){s[0xb]=s[0xc];st25dv_build_and_write_ndef_records(s+7,s+0x11,s+0x1c);*flag=0;}s[5]=4;}if(s[1])s[1]=0;*deadline=150.0f;set_time_mark();return;}next=12;break;
+ case 3:if(!s[2]){if(!s[7]){
+   /* shipped 0xfd4e (`cbnz *flag`) and 0xfd54 (`bne s[0xb]!=s[0xc]`)
+    * jump to 0xfd68, SKIPPING the `strh r3,[r0]` at 0xfd66: *last is
+    * refreshed ONLY when the write is reached through the d>20 test. */
+   if(*flag||s[0xb]!=s[0xc])goto st25dv_write_3;
+   {int d=(int)s[0x13]-(int)*last;if(d<0)d=-d;if(d<=20)goto no_write_3;}
+   *last=s[0x13];
+  st25dv_write_3:s[0xb]=s[0xc];st25dv_build_and_write_ndef_records(s+7,s+0x11,s+0x1c);*flag=0;
+  no_write_3:s[5]=4;}if(s[1])s[1]=0;*deadline=150.0f;set_time_mark();return;}next=12;break;
  case 4:if((float)get_elapsed_ms_since_mark()<=*deadline)return;next=s[7]?5:9;break;
- case 5:case 6:case 7:case 9:if(!s[7]){uint32_t x=__floatsidf((uint8_t)(s[0xb]+3));double y=pow(0,x);dcmp_negate_rhs(y,3.140625);*deadline=(float)__truncdfsf2();}set_time_mark();next=10;break;
+ case 5:case 6:case 7:case 9:if(!s[7]){union{double d;uint64_t u;}n,p,r;union{float f;uint32_t u;}o;n.u=__floatsidf((int)s[0xb]+3);p.d=pow(2.0,n.d);r.u=dcmp_negate_rhs(p.u,0x4049000000000000ULL);o.u=__truncdfsf2(r.u);*deadline=o.f;}set_time_mark();next=10;break;
  case 10:if(!s[1]&&(float)get_elapsed_ms_since_mark()<*deadline)return;next=11;break;
  case 11:if(!s[1]){if(s[7])return;next=3;}else if(s[2]){if(s[7])return;next=12;}else{if(s[7])return;next=2;}break;
  case 12:s[7]=2;s[0xb]=0x13;st25dv_build_and_write_ndef_records(s+7,s+0x11,s+0x1c);*flag=1;s[1]=0;set_time_mark();next=14;break;

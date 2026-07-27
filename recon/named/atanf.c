@@ -29,14 +29,14 @@ float atanf(float x)
                     reduced = -1.0f / reduced;
                 } else {
                     octant = 2;
-                    reduced = (reduced - 1.5f) / (reduced * 1.5f + 1.0f);
+                    reduced = (reduced - 1.5f) / __builtin_fmaf(reduced, 1.5f, 1.0f);
                 }
             } else if (bits(ax) > 0x3f2fffffU) {
                 octant = 1;
                 reduced = (reduced - 1.0f) / (reduced + 1.0f);
             } else {
                 octant = 0;
-                reduced = (reduced * 2.0f - 1.0f) / (reduced + 2.0f);
+                reduced = __builtin_fmaf(reduced, 2.0f, -1.0f) / (reduced + 2.0f);
             }
         } else {
             if (bits(ax) < 0x31000000U) {
@@ -50,18 +50,31 @@ float atanf(float x)
 
         square = reduced * reduced;
         fourth = square * square;
-        odd = square * (fp(0x3eaaaaab) + fourth *
-            (fp(0x3e124925) + fourth * (fp(0x3dba2e6e) + fourth *
-            (fp(0x3d886b35) + fourth * (fp(0x3d4bda59) + fourth * fp(0x3c8569d7))))));
-        even = fourth * (fp(0xbe4ccccd) + fourth *
-            (fp(0xbde38e38) + fourth * (fp(0xbd9d8795) + fourth *
-            (fp(0xbd6ef16b) + fourth * fp(0xbd15a221)))));
-        if (octant == -1) {
-            return reduced - reduced * (odd + even);
-        } else {
+        /* shipped 0x76966..0x769b6: both Horner chains are vfma.f32 */
+        odd = __builtin_fmaf(fourth, fp(0x3c8569d7), fp(0x3d4bda59));
+        odd = __builtin_fmaf(fourth, odd, fp(0x3d886b35));
+        odd = __builtin_fmaf(fourth, odd, fp(0x3dba2e6e));
+        odd = __builtin_fmaf(fourth, odd, fp(0x3e124925));
+        odd = __builtin_fmaf(fourth, odd, fp(0x3eaaaaab));
+        even = __builtin_fmaf(fourth, fp(0xbd15a221), fp(0xbd6ef16b));
+        even = __builtin_fmaf(fourth, even, fp(0xbd9d8795));
+        even = __builtin_fmaf(fourth, even, fp(0xbde38e38));
+        even = fourth * __builtin_fmaf(fourth, even, fp(0xbe4ccccd));
+        /* shipped 0x769be `vmul s14,s14,s13` then 0x769c2 `vfma.f32 s14,s11,s12`:
+         * the (odd + even) sum is itself ONE fused op, `even + odd_inner*square`,
+         * and `odd` is never multiplied out on its own.  Everything after it --
+         * 0x769c6 vmul / 0x769cc vsub / 0x76a22..0x76a2e vsub -- is UNFUSED in
+         * the shipped image, so those must stay plain `a - b*c`. */
+        {
+            const float sum = __builtin_fmaf(odd, square, even);
+            if (octant == -1) {
+                return reduced - reduced * sum;
+            }
             reduced = *(volatile float *)(0x000986cc + octant * 4) -
-                      ((reduced * (odd + even) -
+                      ((reduced * sum -
                         *(volatile float *)(0x000986bc + octant * 4)) - reduced);
+        }
+        {
             if (sbits(x) < 0)
                 reduced = -reduced;
         }
