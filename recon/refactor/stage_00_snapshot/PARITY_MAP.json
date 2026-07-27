@@ -3,7 +3,7 @@
  "stage": 0,
  "slug": "snapshot",
  "purpose": "Traceability and an integrity check, NOT the thing being proven. The acceptance bar is observable side-effect equivalence with the SHIPPED binaries (R7); this map exists so that when equivalence fails, an original address can be walked to the stage file that now carries it.",
- "row_count": 2561,
+ "row_count": 2567,
  "rows": [
   {
    "address": "0x0000c358",
@@ -1122,6 +1122,18 @@
    "stage_path": "recon/symbolized/app/getQuickNoteBKPQueueCacheData.c"
   },
   {
+   "address": "0x00024a40",
+   "canonical_name": "FUN_00024a40",
+   "symbol": "wlccap_record_next_fragment",
+   "stage_path": "recon/symbolized/app/wlccap_record_next_fragment.c"
+  },
+  {
+   "address": "0x00024ad8",
+   "canonical_name": "FUN_00024ad8",
+   "symbol": "wlcstai_record_next_fragment",
+   "stage_path": "recon/symbolized/app/wlcstai_record_next_fragment.c"
+  },
+  {
    "address": "0x00024b98",
    "canonical_name": "FUN_00024b98",
    "symbol": "adc_nfc_init",
@@ -1198,6 +1210,18 @@
    "canonical_name": "FUN_00024fe8",
    "symbol": "st25dv_mailbox_write_with_retry",
    "stage_path": "recon/symbolized/app/st25dv_mailbox_write_with_retry.c"
+  },
+  {
+   "address": "0x00025020",
+   "canonical_name": "FUN_00025020",
+   "symbol": "wlccap_record_encode",
+   "stage_path": "recon/symbolized/app/wlccap_record_encode.c"
+  },
+  {
+   "address": "0x00025058",
+   "canonical_name": "FUN_00025058",
+   "symbol": "wlcstai_record_encode",
+   "stage_path": "recon/symbolized/app/wlcstai_record_encode.c"
   },
   {
    "address": "0x00025090",
@@ -6466,6 +6490,18 @@
    "canonical_name": "FUN_0007c360",
    "symbol": "init_analytics_settings",
    "stage_path": "recon/symbolized/app/init_analytics_settings.c"
+  },
+  {
+   "address": "0x0007c38a",
+   "canonical_name": "FUN_0007c38a",
+   "symbol": "wlccap_record_value_len",
+   "stage_path": "recon/symbolized/app/wlccap_record_value_len.c"
+  },
+  {
+   "address": "0x0007c39c",
+   "canonical_name": "FUN_0007c39c",
+   "symbol": "wlcstai_record_value_len",
+   "stage_path": "recon/symbolized/app/wlcstai_record_value_len.c"
   },
   {
    "address": "0x0007c3c2",
