@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 /* readable reconstruction; identity: FUN_000243fc @ 0x000243fc
  * public-name: drain_quick_note_data_queue
  * durable-map: recon/catalogs/function_names_app.json
@@ -10,7 +11,7 @@
  */
 /* Reconstructed FUN_000243fc @ 0x243fc  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_get(int, unsigned int, int, int);
+extern int k_msgq_get(struct k_msgq *, void *, k_timeout_t);
 
 unsigned int drain_quick_note_data_queue(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {
@@ -25,7 +26,7 @@ unsigned int drain_quick_note_data_queue(unsigned int param_1, unsigned int para
   stk[1] = param_2;
   stk[2] = param_3;
   for (iVar3 = *(volatile int *)(((unsigned long)&g_quicknote_flash_msgq) /*=0x20003960*/ + 0x24); iVar3 > 0; iVar3--) {
-    uVar2 = k_msgq_get(uVar1, stk, 0, 0);
+    uVar2 = k_msgq_get(uVar1, stk, (k_timeout_t){ .ticks = 0LL });
   }
   return uVar2;
 }

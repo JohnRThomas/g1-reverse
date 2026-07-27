@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 struct k_mem_slab;
 /* readable reconstruction; identity: FUN_00033384 @ 0x00033384
  * public-name: uart_callback
@@ -34,7 +35,7 @@ struct k_mem_slab;
 /* Reconstructed uart_callback @ 0x33384  (parity: 295/300 trials, PROVEN) */
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
-extern int k_mem_slab_alloc(int, int*, int, int);
+extern int k_mem_slab_alloc(struct k_mem_slab *, void **, k_timeout_t);
 extern void k_mem_slab_free(struct k_mem_slab *, void *);
 extern void assert_post_action(const char *, unsigned int);
 extern void printk(unsigned long, ...);
@@ -81,7 +82,7 @@ void uart_callback(int param_1,unsigned char *param_2,unsigned int param_3){
     break;
   case 3:
     log_message(((unsigned long)"*************alloc new rx buf*************\n") /*=0xa79bf*/);
-    iVar2 = k_mem_slab_alloc(((unsigned long)&g_uart_rx_mem_slab) /*=0x200037b8*/, &local_1c, 0, 0);
+    iVar2 = k_mem_slab_alloc(((unsigned long)&g_uart_rx_mem_slab) /*=0x200037b8*/, &local_1c, (k_timeout_t){ .ticks = 0LL });
     if (iVar2 == 0) {
       iVar2 = ((int(*)(int,int,int))(VI(VI((int)param_3+8)+0x10)))((int)param_3,(int)local_1c,0x100);
       if (iVar2 == 0) return;

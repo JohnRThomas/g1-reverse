@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00048a3c @ 0x00048a3c
  * public-name: SendDashBoardStartupModeInfoToSlave
@@ -19,7 +20,7 @@
 /* Reconstructed SendDashBoardStartupModeInfoToSlave @ 0x48a3c  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*, int, int);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 
 unsigned int SendDashBoardStartupModeInfoToSlave(int param_1)
 {
@@ -31,7 +32,7 @@ unsigned int SendDashBoardStartupModeInfoToSlave(int param_1)
     buf[0] = 6;
     buf[4] = (unsigned char)param_1;
     *(unsigned short*)(buf + 2) = 1;
-    iVar1 = k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, buf, 0, 0);
+    iVar1 = k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, buf, (k_timeout_t){ .ticks = 0LL });
     if (iVar1 == 0) {
         uVar3 = 0;
         if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {

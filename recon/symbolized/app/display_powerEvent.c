@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 /* readable reconstruction; identity: FUN_00049a28 @ 0x00049a28
  * public-name: display_powerEvent
  * durable-map: recon/catalogs/function_names_app.json
@@ -19,7 +20,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 extern void memset_bytes(void*, int, int);
 
 int display_powerEvent(int powered_on)
@@ -30,7 +31,7 @@ int display_powerEvent(int powered_on)
     memset_bytes(packet, 0, sizeof(packet));
     packet[0] = powered_on == 1 ? 7 : 8;
 
-    result = k_msgq_put((void *)((unsigned long)&g_display_msgq) /*=0x200038c4*/, packet, 0, 0);
+    result = k_msgq_put((void *)((unsigned long)&g_display_msgq) /*=0x200038c4*/, packet, (k_timeout_t){ .ticks = 0LL });
     if (result != 0) {
         log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/, ((unsigned long)"display_powerEvent") /*=0xf0126*/);
         return -1;

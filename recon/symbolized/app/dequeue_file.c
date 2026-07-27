@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000235a4 @ 0x000235a4
  * public-name: dequeue_file
@@ -13,14 +14,14 @@
  */
 /* Reconstructed FUN_000235a4 @ 0x235a4  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_get(int, unsigned int, int, int);
+extern int k_msgq_get(struct k_msgq *, void *, k_timeout_t);
 extern void memcpy(int, int, int);
 
 int dequeue_file(unsigned int param_1)
 {
     /* The controller response is 201 bytes; retain three spare bytes. */
     unsigned char buf[204];
-    int iVar1 = k_msgq_get(((unsigned long)&g_file_msg_pipe) /*=0x200079a0*/, buf, 0, 0);
+    int iVar1 = k_msgq_get(((unsigned long)&g_file_msg_pipe) /*=0x200079a0*/, buf, (k_timeout_t){ .ticks = 0LL });
     if (iVar1 == 0) {
         memcpy(param_1, buf, 0xc9);
     } else {

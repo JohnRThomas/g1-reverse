@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 /* readable reconstruction; identity: FUN_0004967c @ 0x0004967c
  * public-name: display_reflash
  * durable-map: recon/catalogs/function_names_app.json
@@ -24,7 +25,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 extern void submit_display_reflash_work(void);
-extern int k_msgq_put(unsigned,void*,int,int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 extern void memcpy(int, int, int);
 extern void memset_bytes(void*, int, int);
 extern long long thunk_FUN_00074f68(void);
@@ -48,7 +49,7 @@ unsigned display_reflash(int param_1, unsigned param_2){
       packet[2] = (uint8_t)param_2;
       packet[3] = (uint8_t)(param_2 >> 8);
     }
-    int iVar2 = k_msgq_put(((unsigned long)&g_display_msgq) /*=0x200038c4*/,packet,0,0);
+    int iVar2 = k_msgq_put(((unsigned long)&g_display_msgq) /*=0x200038c4*/,packet, (k_timeout_t){ .ticks = 0LL });
     if(iVar2 == 0){
       if(*piVar1 > 2){
         if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)

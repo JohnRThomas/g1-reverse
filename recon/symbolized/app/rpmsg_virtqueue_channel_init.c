@@ -33,7 +33,7 @@ extern void metal_io_block_set(int *a0,unsigned int a1,int a2,int a3);
 extern int virtqueue_add_buffer(void*, const void*, int, int, void*);
 extern void virtqueue_ring_setup_flags(long*);
 extern int* rpmsg_virtio_shm_pool_get_buffer(unsigned int, unsigned int);
-extern void z_impl_k_sem_init(int a0,int a1);
+extern void z_impl_k_sem_init(int a0,int a1,int);
 extern void memset_bytes(void*, int, int);
 
 typedef int (*fn1_t)(int);
@@ -50,7 +50,7 @@ int rpmsg_virtqueue_channel_init(int param_1,int param_2,int param_3,int *param_
     if (param_4 == (int*)0) return (int)0xfffff82d;
 
     memset_bytes(param_1, 0, 0x94);
-    z_impl_k_sem_init(param_1 + 0x58, 1);
+    z_impl_k_sem_init(param_1 + 0x58, 1, 1);
     uVar1 = ADDR_rpmsg_virtio_send_copy_THUMB /*=0x71295*/;
     *(int*)(param_1 + 0xa0) = param_2;
     *(int*)(param_1 + 0x70) = param_3;

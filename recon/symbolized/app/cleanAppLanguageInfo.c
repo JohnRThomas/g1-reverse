@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 struct k_sem;
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00023b78 @ 0x00023b78
@@ -19,7 +20,7 @@ struct k_sem;
  */
 /* Reconstructed cleanAppLanguageInfo @ 0x23b78  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 extern void k_sem_give(struct k_sem *);
 
 int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
@@ -31,7 +32,7 @@ int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
   buf[0] = 2;
   *(unsigned int*)&buf[1] = 0;
   buf[5] = 0;
-  iVar1 = k_msgq_put((void*)((unsigned long)&g_flash_store_cmd_msgq) /*=0x20003994*/, buf, 0, 0);
+  iVar1 = k_msgq_put((void*)((unsigned long)&g_flash_store_cmd_msgq) /*=0x20003994*/, buf, (k_timeout_t){ .ticks = 0LL });
   if (iVar1 == 0) {
     if (*(int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
       if (*(int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {

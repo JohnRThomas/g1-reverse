@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002ec5c @ 0x0002ec5c
  * public-name: enqueue_dmic
@@ -20,8 +21,8 @@
 /* Reconstructed enqueue_dmic @ 0x2ec5c  (parity: 300/300 trials, PROVEN) */
 
 extern void memcpy(int, int, int);
-extern int k_msgq_get(int, unsigned int, int, int);
-extern unsigned int k_msgq_put(int, unsigned int, int, int);
+extern int k_msgq_get(struct k_msgq *, void *, k_timeout_t);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 
 int enqueue_dmic(unsigned int param_1)
 {
@@ -30,7 +31,7 @@ int enqueue_dmic(unsigned int param_1)
 
     memcpy(buf, ((unsigned long)&rodata_885cc) /*=0x885cc*/, 200);
     if (*(volatile int*)(((unsigned long)&g_dmic_msgq) /*=0x20007b7c*/ + 0x24) == 8) {
-        k_msgq_get(((unsigned long)&g_dmic_msgq) /*=0x20007b7c*/, buf, 0, 0);
+        k_msgq_get(((unsigned long)&g_dmic_msgq) /*=0x20007b7c*/, buf, (k_timeout_t){ .ticks = 0LL });
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                 log_message(((unsigned long)"%s(): enqueue_dmic num is full, drop it %d\r\n\n") /*=0xa3f17*/, ((unsigned long)"enqueue_dmic") /*=0xa41e2*/, 8);
@@ -40,7 +41,7 @@ int enqueue_dmic(unsigned int param_1)
         }
     }
     memcpy(buf, param_1, 200);
-    iVar1 = k_msgq_put(((unsigned long)&g_dmic_msgq) /*=0x20007b7c*/, buf, 0, 0);
+    iVar1 = k_msgq_put(((unsigned long)&g_dmic_msgq) /*=0x20007b7c*/, buf, (k_timeout_t){ .ticks = 0LL });
     if ((iVar1 != 0) && (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)) {
         if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
             log_message(((unsigned long)"%s(): enqueue_dmic failed\r\n\n") /*=0xa3f45*/, ((unsigned long)"enqueue_dmic") /*=0xa41e2*/);

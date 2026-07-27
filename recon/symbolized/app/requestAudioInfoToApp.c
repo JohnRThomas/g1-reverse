@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 /* readable reconstruction; identity: FUN_00048840 @ 0x00048840
  * public-name: requestAudioInfoToApp
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,7 +18,7 @@
 /* Reconstructed requestAudioInfoToApp @ 0x48840  (parity: 300/300 trials, PROVEN) */
 
 extern void debug_print(unsigned long, ...);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 extern void memset_bytes(void*, int, int);
 extern void log_message(unsigned long, ...);
 
@@ -31,7 +32,7 @@ int requestAudioInfoToApp(unsigned char param_1)
   buf[0] = 3;
   *(unsigned short*)&buf[2] = 1;
   buf[4] = param_1;
-  iVar1 = k_msgq_put((void*)((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, buf, 0, 0);
+  iVar1 = k_msgq_put((void*)((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, buf, (k_timeout_t){ .ticks = 0LL });
   if (iVar1 == 0) {
     uVar2 = 0;
     if (*(int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {

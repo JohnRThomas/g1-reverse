@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00023514 @ 0x00023514
  * public-name: enqueue_file
@@ -18,9 +19,9 @@
  */
 /* Reconstructed enqueue_file @ 0x23514  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_get(int, unsigned int, int, int);
+extern int k_msgq_get(struct k_msgq *, void *, k_timeout_t);
 extern void safe_memcpy_checked(void*, unsigned int, unsigned int, int);
-extern unsigned int k_msgq_put(int, unsigned int, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 
 int enqueue_file(unsigned int param_1, unsigned int param_2)
 {
@@ -28,7 +29,7 @@ int enqueue_file(unsigned int param_1, unsigned int param_2)
     unsigned char buf[201];
 
     if (*(volatile int*)(((unsigned long)&g_file_msg_pipe) /*=0x200079a0*/ + 0x24) == 0x1e) {
-        k_msgq_get(((unsigned long)&g_file_msg_pipe) /*=0x200079a0*/, buf, 0, 0);
+        k_msgq_get(((unsigned long)&g_file_msg_pipe) /*=0x200079a0*/, buf, (k_timeout_t){ .ticks = 0LL });
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                 log_message(((unsigned long)"%s(): enqueue_file is full\n") /*=0x9e824*/, ((unsigned long)"enqueue_file") /*=0x9e8f6*/);
@@ -39,7 +40,7 @@ int enqueue_file(unsigned int param_1, unsigned int param_2)
     }
     safe_memcpy_checked(buf, param_1, param_2, 0xc9);
     buf[200] = (unsigned char)param_2;
-    iVar1 = k_msgq_put(((unsigned long)&g_file_msg_pipe) /*=0x200079a0*/, buf, 0, 0);
+    iVar1 = k_msgq_put(((unsigned long)&g_file_msg_pipe) /*=0x200079a0*/, buf, (k_timeout_t){ .ticks = 0LL });
     if ((iVar1 != 0) && (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)) {
         if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
             log_message(((unsigned long)"%s(): enqueue_file failed\r\n\n") /*=0x9e840*/, ((unsigned long)"enqueue_file") /*=0x9e8f6*/);

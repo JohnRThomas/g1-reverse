@@ -19891,3 +19891,708 @@ capture in §44 and in the two preceding passes remains valid. The stage trees
 must be regenerated once more before the next *measurement*, but no measurement
 in §44 read a moving input: §44.1's regeneration and the base build both
 completed before 13:54, and the four `g1_rad_*` probes booted the same ELF.
+
+## Iteration 45 — the two QUARANTINED repair batches are LANDED against the
+## emulator instead of against the byte comparison.  Batch 1 (`k_timeout_t`)
+## costs **+16 B of linked flash** — inside the size window iteration 42 called
+## fatal — and **ALL FOUR ACCEPTANCE FRAMEBUFFERS COME BACK BYTE-IDENTICAL**
+## on two seeded captures.  Batch 2's 9 size-neutral sites land on top and are
+## observationally a NO-OP: every trace file of both stimuli is byte-identical
+## to batch 1's.  The whole navigation residue is the one BLE-response slot
+## §44.5 root-caused, measured at −99.9 ms.  And `RADIO_TX`'s BLE residue is
+## settled as a connection-event response count, from committed oracle fields
+## and with no new capture.
+
+Work order: land `type_disagreement_repair_4.md` §2 (batch 1, `k_timeout_t`)
+and `type_disagreement_repair_3.md` §3 (batch 2, the 51 constant-argument
+sites), each gated by a full seeded capture; then account for `RADIO_TX`'s
+residue.  HEAD at the start of this pass: **`e7f35727`** ("Type-disagreement
+repair 4"), working tree clean apart from the untracked `.xapk` and the
+concurrent refactor agent's stage JSONs.  Written incrementally as the work
+ran.
+
+### 45.0 Starting point, re-measured rather than inherited
+
+`type_disagreement_repair_4.md` says "nothing was committed, the tree is left
+dirty".  It **was** committed, as `e7f35727`, before this pass started.  So the
+repair-4 edits are in HEAD and the baseline below is the post-repair-4 image,
+not the pre-repair-4 one.
+
+```
+git log -1 --oneline                e7f35727  Type-disagreement repair 4
+git status (mine)                   clean
+git status (not mine)               20 recon/refactor/**/{MANIFEST,PARITY_MAP,
+                                    DEFECTS,QUARANTINE}.json  -- the concurrent
+                                    agent's; NOT touched by this pass
+```
+
+Baseline build, from scratch, `build_cohesive.sh app /private/tmp/g1-i45-base`:
+
+```
+exit 0
+FLASH  956,480 B / 982,528 B   97.35 %      RAM 253,765 B / 440 KB  56.32 %
+cmp  g1-i45-base/zephyr/zephyr.bin  g1-i44-base/zephyr/zephyr.bin       IDENTICAL
+cmp -n 957072  g1-i45-base/app_update.bin  g1-i44-base/app_update.bin   IDENTICAL
+nm:  runtime_info_sync 0x00015c04     _end 0x2003ff45      (both UNMOVED)
+```
+
+**So repair 4 really was payload-neutral**, confirmed by a fresh build rather
+than inherited: the image this pass starts from is byte-for-byte the image
+iteration 44 captured the four acceptance framebuffers from.  Iteration 44's
+`/private/tmp/g1-i44/rep_base_{nav1,dash}` oracles are therefore reused as the
+BASE reference and are not re-captured.
+
+### 45.1 Batch 1 applied — the measurement reproduces repair 4's exactly
+
+`<scratchpad>/i45/land.py` is repair 4's `timeoutfix.py` with one change: where
+`timeoutfix` reverted every file whose allocatable bytes moved (and so kept 0),
+`land.py` keeps an edit when the file **compiles** and records the gate verdict
+and the `nm -S` delta as data instead of using them as a filter.  Its
+`screen`/`gate` are pointed at `/private/tmp/g1-i45-base`, not at repair 4's
+`g1-td4-base`, so the baseline objects are HEAD's own.
+
+```
+plan                       92 files, 99 (file,symbol) pairs
+rewritten                  51 call sites
+skipped                    48  (38 `arity 4 vs decl 4 vs sdk 2`, 10 no rewritable site)
+objects LANDED             42
+TOTAL .text/.rodata/.data  +8 B
+non-zero-delta objects      2   dequeue_uid.c +4, dmic_read_block.c +4
+size-neutral at FUNCTION
+   granularity (nm -S)     40 of 42
+gate verdicts              FAIL 42   (allocatable bytes move, as repair 4 said)
+```
+
+Every number reproduces `type_disagreement_repair_4.md` §2.2 exactly (42
+objects, +8 B, 40 of 42 size-neutral, the same two files).  The measurement was
+re-derived on the current tree with an independent script
+(`<scratchpad>/i45/measure.py`, which compiles the tree as it stands and
+compares against the `g1-i45-base` objects), not copied from the report.
+
+The 48 skipped pairs are the shape repair 4 §2.1 used as its own proof —
+`att_req_sent`'s `k_work_reschedule(w, lo, hi, incidental_r1)`, 4 source
+arguments against the SDK's 2.  `timeoutfix.rewrite` only handles `np` or
+`np+1` arguments, so those are **not** in this batch.  Repair 4's headline
+"42 objects" is exactly this subset, and the pass is honest about it; but it
+means `att_req_sent` itself, the file whose disassembly is the evidence, is
+**not** repaired here.
+
+### 45.2 The linked cost is +16 B, NOT +8 B
+
+```
+recon/application/build_cohesive.sh app /private/tmp/g1-i45-b1     exit 0
+FLASH  956,496 B / 982,528 B  97.35 %      RAM 253,765 B  56.32 %
+zephyr.bin  956,496 B   vs baseline 956,480 B      delta  +16 B
+nm:  runtime_info_sync 0x00015c04   _end 0x2003ff45   (both UNMOVED)
+```
+
+The per-object sum is **+8 B**; the linked image grows **+16 B**.  The
+difference is link-time alignment padding, and it is reported because the
+per-object figure is the one repair 4 published and it under-states the cost by
+a factor of two.  **+16 B is precisely the delta iteration 42 measured as
+collapsing the dashboard**, so this batch lands in the middle of the size window
+this project has twice called fatal.  The point of the pass is that the window
+is a *measurement*, not a law — so the emulator decides.
+
+### 45.3 NAVIGATION, seeded — BOTH FRAMEBUFFERS BYTE-IDENTICAL
+
+`bash /private/tmp/g1-i45/cap.sh b1_nav1 /private/tmp/g1-i45-b1 0x00015c04 nav`,
+`G1_SEED=305419896`, `$rtinfo_pc` **re-read from the ELF actually booted**
+(`0x00015c04`, unmoved), frozen `g1-i30e-net` (225,581 B).
+
+```
+navigation p1_boot    1d617c65a688f10eefe139741b680164f09adcd960b18c3ec9ad1f0fb193b953   656 px   cmp exit 0
+navigation p2_render  b26c73b37d441fc8a6732c02e6d889a719677ec4c9ad2adc2d48f28deedb8131  1098 px   cmp exit 0
+```
+
+Both `cmp` against the committed `recon/emulator/reports/golden_framebuffer_*.raw`
+(153,600 B each) exit 0.  **The pixels do not move.**
+
+#### 45.3.1 Phase-tolerant gate, Δ = 145.440 ms (the bound as derived, untouched)
+
+```
+=== phase-tolerant three-way, bound 145.440 ms : shipped | base | B1_NAV ===
+BOTH_PASS            4   opt3001, st25dv_nfc_eeprom, st25dv_system_port, lsm6dso
+PRE_EXISTING_SAME    0
+PRE_EXISTING_WORSE   2   spim_a jbd_display      P3 phase  0 -> 8
+                         twim1 npm1300           P2 population 0 -> 3
+REGRESSION           0
+IMPROVED             0
+REFACTOR REGRESSIONS: 0   PRE-EXISTING-BUT-WORSE: 2
+```
+
+Both `PRE_EXISTING_WORSE` streams were **already FAIL on the base**; neither is
+a stream the batch makes fail that was passing.  What changed inside them:
+
+| stream | base | B1 |
+|---|---|---|
+| `spim_a` jbd_display | `max\|d\|` 145.440 ms, `{P1 content 2, P2 population 1}` | `max\|d\|` **262.200 ms**, `{P1 content 2, P3 phase 8, P2 population 1}` |
+| `twim1` npm1300 | `max\|d\|` **1198.549 ms**, `{P3 phase 1, P5 order 1}` | `max\|d\|` **92.330 ms**, `{P2 population 3}` |
+
+`npm1300` is strictly *better* on the phase axis — 1198.549 ms → 92.330 ms, and
+the `P5 order` inversion §44.3.1 spent a section on is **gone** — while gaining
+three `P2 population` failures at 18.823 s / 18.874 s / 19.075 s, i.e. the
+known §43.9/§44.9 tail against the 20 s wall.  That is the *same* segmentation
+artifact seen from its other side: §44.3.1 showed the 5 ms burst gap converts a
+sub-Δ relative phase into a train-identity change, and a phase shift of one slot
+flips which side of it this capture lands on.
+
+`spim_a`'s eight new `P3 phase` failures are **174.980 ms** and **162.070 ms**
+(bound 145.440 ms) on the `02042420FF…|00|020428` animation trains.  Those are
+**not** one 100.5 ms slot; they are between one and two.  See §45.5.
+
+#### 45.3.2 Strict `cmp3`, reported alongside as required
+
+```
+== B1_NAV : 69 fields
+   EQ on both (ours == shipped)                    49
+   pre-existing gap, IDENTICAL on both              2   ESB_MASTER_FRAMES, ESB_ACKS
+   pre-existing gap but DIFFERENT value             10
+   *** REFACTOR REGRESSION (base EQ, B1 NE)          8
+   refactor improvement                              0
+```
+
+The eight strict regressions, every one of them:
+
+```
+counters/RADIO_TX                                562 -> 563
+twim1/p1_boot/count                              371 -> 373
+twim1/p1_boot/dev:opt3001_ambient_light/count     33 ->  35
+twim1/p1_boot/dev:opt3001_ambient_light/sha      changed
+twim1/p1_boot/sha                                changed
+twim2/p1_boot/dev:lsm6dso_imu/sha                changed
+twim2/p1_boot/sha                                changed
+twim2/p1_boot/sha_regprog                        changed
+```
+
+**All eight are `p1_boot` fields, i.e. cut by the 6 s wall, plus one radio
+counter.**  Not one `p2_render` field regressed and not one framebuffer field
+moved.  The mechanism is visible in the pre-existing-gap block, where the whole
+run is conserved:
+
+```
+spim_a/p1_boot/count    ship 764   base 786   B1 808     (+22)
+spim_a/p2_render/count  ship 2881  base 2859  B1 2837    (-22)
+                                              whole run 3645 on all three
+```
+
+**Twenty-two `spim_a` transactions moved from `p2_render` to `p1_boot` and none
+were created or destroyed.**  The two extra OPT3001 polls inside the 6 s window
+(33 → 35) are the same thing on the other bus.  This is exactly the wall-anchored
+artifact the phase-tolerant criterion was built to separate out, which is why it
+scores 0 regressions on the same data.
+
+#### 45.3.3 The navigation difference IS the one-slot BLE shift — measured, not asserted
+
+`<scratchpad>/i45/shift.py` computes, per burst of every common train of every
+traced device, `(B1 − base)` using **the criterion's own decomposition**
+(`phase_tolerant_compare.blocks` / `trains_by_key`), so no new segmentation is
+introduced:
+
+```
+bus/device                   n     min        median      max      10 ms histogram
+spim_a  jbd_display         161  -117.160    -99.880     0.070   {-100:107, -80:17, -70:28, ...}
+twim1   opt3001             48   -101.807    -99.950     0.061   {-100:46, 0:2}
+twim2   lsm6dso             551   -99.970     -0.060     0.098   {0:550, -100:1}
+twim1   npm1300             245  -1201.599     0.060  2547.791   {0:183, 30:26, -10:16, ...}
+twim1   st25dv_nfc_eeprom     4    -6.810     -0.364     0.091
+twim1   st25dv_system_port    5    -6.780     -0.800     0.060
+```
+
+**The display and the ambient-light poll move by a median of −99.88 ms and
+−99.95 ms. The IMU and the charger do not move at all** (median −0.06 and
++0.06 ms).  That is not a global translation — it is exactly the signature
+§44.5 derived: the GATT sweep's acked write lands one DUT BLE connection-event
+response earlier, so the **navigation-startup cluster** fires one slot early
+while every stream running on its own cadence stays where it was.
+
+The slot's own width, measured against shipped on the OPT3001 poll train:
+
+```
+              median |d| vs shipped     train population
+in-tree base        +9.015 ms                 45
+B1                 -91.034 ms                 46      (one extra poll now fits
+                                                       inside the 20 s wall)
+                    -------
+              step -100.05 ms  ==  ONE SLOT (§44.5 measured 100.5 ms)
+```
+
+**So batch 1's navigation residue is the understood mechanism, and it is the
+whole of it.**
+
+One structural consequence has to be stated plainly, because it decides how the
+verdict should be read: **Δ = 145.440 ms was DERIVED as the maximum `|δ|` over
+shipped-vs-base**, so the base sits *exactly* on the bound by construction
+(`spim_a` base `max|d|` = 145.440 ms).  A further shift of one 100 ms slot
+therefore cannot fit inside Δ no matter what causes it.  The phase-tolerant
+criterion can absorb *base's* phase; it structurally cannot absorb *base's phase
+plus one slot*.  I did **not** widen the bound — it was derived before use and
+stays derived — and I record that the `P3 phase` failures here are the
+arithmetic consequence of that derivation meeting a one-slot shift, not an
+independent finding.
+
+### 45.4 DASHBOARD, seeded — BOTH FRAMEBUFFERS BYTE-IDENTICAL, and the gate is
+### CLEAN ON BOTH CRITERIA
+
+`bash /private/tmp/g1-i45/cap.sh b1_dash /private/tmp/g1-i45-b1 0x00015c04 dash`,
+same seed, same frozen net image.
+
+```
+dashboard p1_boot    0c5cc90b079d0d9c1ded1376357d23a9782a704a83e01731f50ccd162e246492     0 px  cmp exit 0
+dashboard p2_render  19b1f24a09f97a8d85f1572ac865c8fc61fe6d542af18247a5bcceeb7651b513  2923 px  cmp exit 0
+```
+
+```
+phase-tolerant, Δ = 145.440 ms
+   BOTH_PASS            4
+   PRE_EXISTING_SAME    2   spim_a jbd_display, twim1 npm1300  -- IDENTICAL profiles to base
+   PRE_EXISTING_WORSE   0
+   REGRESSION           0
+   REFACTOR REGRESSIONS: 0   PRE-EXISTING-BUT-WORSE: 0
+
+strict cmp3
+   EQ on both                                      56
+   pre-existing gap, IDENTICAL on both             10
+   pre-existing gap but DIFFERENT value             3
+   *** REFACTOR REGRESSION                          0
+```
+
+`max|d|` moves by less than 0.1 ms on every dashboard stream
+(`opt3001` 7.810 → 7.870, `st25dv_nfc` 28.260 → 28.199, `lsm6dso` 13.670 →
+13.579).  **On the dashboard stimulus, +16 B of linked flash does nothing at
+all.**
+
+This is a direct, measured **correction to iteration 42's headline**.  Iteration
+42 recorded that "+16 B collapsed the dashboard"; +16 B here leaves the
+dashboard framebuffer byte-identical and every dashboard stream field either
+EQ or unchanged from base.  **The collapse iteration 42 saw was not caused by
+the size delta as such** — it is the *phase* consequence of whatever moved, and
+on the dashboard stimulus §44.5 already showed the phase does not move
+(0.21 ms across images that differ by 100.5 ms on navigation).  The size window
+is not a law about bytes; it is a law about which stimulus you are running.
+
+### 45.5 BATCH 1 VERDICT
+
+| gate | navigation | dashboard |
+|---|---|---|
+| `p1_boot` framebuffer | **byte-identical** | **byte-identical** |
+| `p2_render` framebuffer | **byte-identical** | **byte-identical** |
+| phase-tolerant REGRESSION | **0** | **0** |
+| phase-tolerant PRE_EXISTING_WORSE | 2 | **0** |
+| strict `cmp3` REFACTOR REGRESSION | 8 | **0** |
+
+**All four acceptance framebuffers are byte-identical with a size-changing
+repair batch landed.**  That is the thing three consecutive passes could not
+say, and it is said here from two seeded captures rather than from an inference
+about byte-equality.
+
+The navigation residue is **entirely** the one-slot BLE-response shift measured
+in §45.3.3:
+
+* every strict regression is a `p1_boot` field cut by the 6 s wall, plus
+  `RADIO_TX`; `spim_a` moves 22 transactions from `p2_render` to `p1_boot` and
+  the whole run is conserved at 3,645 on shipped, base and B1 alike;
+* the shift is `−99.88 ms` (display) and `−99.95 ms` (ambient light) with the
+  IMU and charger at `−0.06 ms`, i.e. the navigation-startup cluster only;
+* the OPT3001 poll train's whole-run population goes 45 → 46 because the run
+  starts one slot earlier, which is the same arithmetic §44.5 published.
+
+**It is not something else.**  I looked for a content difference and there is
+none: `P1 content` on `spim_a` is the *same* two entries the base already fails
+(§44.3.2's segmentation artifact), and no `P1` failure appears on any stream
+that was passing.
+
+**I did not tune the criterion.**  Δ stays 145.440 ms as derived; the 5 ms burst
+gap stays 5 ms; the LSM6DSO ambiguity exclusion §44.7.1 measured as free to drop
+stays in place.  The `P3 phase` failures are reported as failures.
+
+### 45.6 BATCH 2 — the 9 size-neutral constant-argument sites, applied on top
+
+`type_disagreement_repair_3.md` §3.1's recommended first batch: 9 sites in 8
+files, every one measured there as `.text` delta 0 with `nm -S` reporting no
+function changing size.  Applied with `<scratchpad>/i45/applyconst.py` — repair
+3's own `applyconst.py` with the keep rule inverted (keep what compiles, record
+the screen verdict as data) and its `screen` pointed at `g1-i45-base`.
+
+```
+LANDED 8 files, 9 sites, 0 compile errors, 0 skipped
+TOTAL .text/.rodata/.data delta      +0 B
+non-zero delta objects                0
+objects with any nm -S size change    0
+size-neutral at FUNCTION granularity  8 of 8
+gate                                  FAIL 8   (allocatable bytes move)
+```
+
+**Repair 3's measurement reproduces exactly on the current baseline.**  The
+edits themselves (`git diff`):
+
+```
+-extern s32  sync_to_slave(void*,int,int);          display_dispatch_thread.c
++extern s32  sync_to_slave(void*,int,int,int);
+-        sync_to_slave(display, 1, 0);
++        sync_to_slave(display, 1, 0, 0);
+-extern uint64_t __divdf3(uint32_t,uint32_t);       pow.c
++extern uint64_t __divdf3(uint32_t,uint32_t,int,int);
+-        dbits n={.u=__divdf3(0,0)};
++        dbits n={.u=__divdf3(0,0, 0, 0)};
+-            set_pending_state_flag(1);             process_pt_data.c
++            set_pending_state_flag(1, 1);
+```
+
+Two of the nine are on `display_dispatch_thread.c`, the file repair 3 named as
+the reason it would not land the batch blind: it is on the display path the
+framebuffer gate measures and the repair **changes what the callee receives**,
+from whatever the compiler happened to leave in r3 to the shipped constant.
+That is precisely why it needed a capture and not an argument.
+
+### 45.7 `RADIO_TX` — the residue is a CONNECTION-EVENT RESPONSE COUNT on the
+### BLE half and a FIRMWARE PROPERTY on the ESB half.  Measured on both stimuli,
+### with no new capture.
+
+§44.4 root-caused `RADIO_TX = ESB_MASTER_FRAMES + BLE_link_layer_TX` from four
+special radio-logged captures, and asked for a `RADIO_TX − ESB_MASTER_FRAMES`
+field to be published.  **That field does not need a capture at all: both
+summands are already committed oracle counters**, so the decomposition can be
+read off every oracle any pass has ever written — including both stimuli, which
+§44.4 could not do because its radio probe only ran navigation.
+
+```
+image              stim  RADIO_TX      ESB      BLE   ESB_ACKS
+shipped            nav        562      373      189        373
+shipped            dash       562      373      189        373
+in-tree base       nav        562      374      188        374
+in-tree base       dash       562      374      188        374
+stage 03           nav        562      374      188        374
+stage 04-B         nav        564      374      190        374
+stage 04-B         dash       565      374      191        374
+stage 07           nav        560      373      187        373
+stage 07           dash       561      373      188        373
+stage 07 (nav2)    nav        560      373      187        373      <- determinism
+stage 04-B (nav2)  nav        564      374      190        374      <- determinism
+B1 (this pass)     nav        563      374      189        374
+B1 (this pass)     dash       562      374      188        374
+```
+
+**Finding 1 — the ESB half is STIMULUS-INVARIANT.**  Every image has the same
+`ESB_MASTER_FRAMES` on navigation and on the dashboard: shipped 373, base /
+stage 03 / stage 04-B 374, stage 07 373.  A count that does not care which
+screen is being driven is a property of the firmware.  **The ESB half is a real
+defect axis, and stage 07 closed it** (374 → 373 == shipped), exactly as §44.4
+said.
+
+**Finding 2 — the BLE half is STIMULUS-DEPENDENT, and that is decisive.**
+Stage 04-B is `190` on navigation and `191` on the dashboard; stage 07 is `187`
+and `188`; **the same binary gives a different BLE frame count under two
+different stimuli.**  A firmware defect that dropped or added link-layer PDUs
+would drop or add the same ones whichever screen is running.  A count of
+*answered connection-event windows inside a fixed 20 s wall* changes whenever
+anything moves in time.  **So stage 07's `−2` is a connection-event response
+count, not a firmware defect** — which is the answer §44.9 item 3 asked the next
+pass to establish, and it is established without the virtual-time RADIO hook
+that iteration 44 said would be needed.
+
+Corroboration from this pass's own images, which is the cleanest instance of the
+same thing: **B1 and base are the same firmware apart from 42 objects of pure
+argument respelling**, and
+
+```
+base  nav 188   dash 188
+B1    nav 189   dash 188
+```
+
+**The BLE count moves on navigation and does not move on the dashboard, for a
+change that cannot alter any BLE behaviour** (the ABI at every repaired call
+site is bit-identical — repair 4 §2.1 proved that from the shipped
+disassembly, and §45.1 reproduces the object measurement).  It moves on exactly
+the stimulus where §45.3.3 measures a one-slot shift, and does not move on the
+stimulus where §44.5 measured 0.21 ms.  **BLE `RADIO_TX` and the 100.5 ms slot
+are one measurement, confirmed a second way.**
+
+**Finding 3 — `RADIO_TX` as a single number is unusable, and the base's
+agreement with shipped is the cancellation §44.4 named.**  The base is
+`374 + 188 = 562 == shipped 562` with *both* halves wrong.  B1 is
+`374 + 189 = 563 ≠ 562` with the BLE half now *right* and the ESB half still
+wrong — so B1's one strict `RADIO_TX` "regression" is a summed counter losing a
+cancellation, and on the component that matters (ESB) B1 is neither better nor
+worse than base.  I am recording this as the concrete case §44.4 predicted:
+**the first `RADIO_TX` movement after that finding is a bookkeeping artifact,
+and reading it as a regression would be wrong.**
+
+**What this does NOT settle.**  It does not identify *which* connection event
+stage 07 fails to answer, and it does not run §44.5's stated falsification test
+(`SweepDwell 4 → 8` must leave the slot width unchanged; halving the connection
+interval must halve it).  Neither was run.  The stimulus-dependence argument is
+strong evidence about the *class* of the residue; it is not a per-event
+account.
+
+#### 45.6.1 Batch 2's linked cost is EXACTLY ZERO — and the image is not the same image
+
+```
+recon/application/build_cohesive.sh app /private/tmp/g1-i45-b2      exit 0
+FLASH  956,496 B / 982,528 B  97.35 %      RAM 253,765 B  56.32 %
+zephyr.bin  956,496 B  ==  B1's 956,496 B      delta from B1  +0 B
+cmp b2 vs b1                                   DIFFER at byte 5,251
+cmp -l  b2 vs b1                               389 bytes differ
+nm:  runtime_info_sync 0x00015c04   _end 0x2003ff45     (both UNMOVED)
+nm -u 0    duplicate GLOBAL definitions 0
+check_ram_pin_collisions --core app  627 bound OK / 0 escaping / 0 unknown
+```
+
+**Same length, 389 bytes different.**  That is the shape iteration 43's `memcpy`
+repair had (427 image bytes changed, `.text` delta 0, `nm -S` no function
+changed size), and that repair's framebuffers came back byte-identical.  Batch 2
+therefore tests something batch 1 does not: **content change at literally zero
+size change**, on a file that sits on the display path.
+
+#### 45.5.1 Determinism control on the B1 navigation capture
+
+The navigation result is the one carrying a phase shift, so it was re-run:
+`cap.sh b1_nav2`, same seed, same ELF, **and deliberately under different host
+load** (`b1_nav2` ran concurrently with a full from-scratch Zephyr build,
+`b1_nav1` did not).
+
+```
+spim_a.p1  spim_a.p2  spim_b.p1  spim_b.p2   IDENTICAL
+twim1.p1   twim1.p2   twim2.p1   twim2.p2    IDENTICAL
+fb_p1_boot.ppm      fb_p2_render.ppm         IDENTICAL
+```
+
+**Every trace file and both framebuffers are byte-identical across the two
+runs.**  So the one-slot shift is a property of the image, not a draw from
+§41.7's PRNG, and host load does not perturb the capture.
+
+### 45.8 BATCH 2 VERDICT — it is observationally a NO-OP, on both stimuli
+
+Two seeded captures on `g1-i45-b2` (`b2_nav1`, `b2_dash`, `$rtinfo_pc`
+`0x00015c04` re-read from that ELF, frozen net):
+
+```
+navigation p1_boot    1d617c65a688f10e…   656 px   cmp exit 0
+navigation p2_render  b26c73b37d441fc8…  1098 px   cmp exit 0
+dashboard  p1_boot    0c5cc90b079d0d9c…     0 px   cmp exit 0
+dashboard  p2_render  19b1f24a09f97a8d…  2923 px   cmp exit 0
+```
+
+And then the stronger statement, `cmp` between the B1 and B2 captures
+themselves:
+
+```
+                       navigation   dashboard
+spim_a.p1 / .p2        IDENTICAL    IDENTICAL
+spim_b.p1 / .p2        IDENTICAL    IDENTICAL
+twim1.p1  / .p2        IDENTICAL    IDENTICAL
+twim2.p1  / .p2        IDENTICAL    IDENTICAL
+fb_p1_boot.ppm         IDENTICAL    IDENTICAL
+fb_p2_render.ppm       IDENTICAL    IDENTICAL
+```
+
+**Every trace file of both stimuli is byte-identical between B1 and B2.**  389
+image bytes changed — including two calls on the display path that now pass the
+shipped constant instead of whatever the compiler left in r3 — and **not one
+observable event moved**.
+
+```
+                         phase-tolerant                strict cmp3
+B2 navigation   REGRESSION 0, PRE_EXISTING_WORSE 2     REFACTOR REGRESSION 8
+B2 dashboard    REGRESSION 0, PRE_EXISTING_WORSE 0     REFACTOR REGRESSION 0
+```
+
+Identical to B1's, field for field, which is the only outcome consistent with
+byte-identical traces.  So repair 3's caution about
+`display_dispatch_thread.c` — "the repair changes what the callee receives …
+correct in direction and unmeasurable here" — is now **measured**: the change is
+correct in direction and, on both stimuli this project can drive, has no
+observable consequence at all.
+
+I landed **only the 9 size-neutral sites**, not the other 42 of the 51.  The
+remaining 42 cost **+66 B** on top of batch 1's +16 B, and §45.3.3 shows that
++16 B already spends one BLE slot on navigation; there was no measurement
+justifying spending more, and the pass had no basis for predicting where the
+next slot boundary is.  They stay quarantined with repair 3's numbers.
+
+### 45.9 Static ladder at the final image `g1-i45-b2`
+
+| gate | required | measured |
+|---|---|---|
+| app build | links | **exit 0** |
+| app FLASH | 956,480 B / 97.35 % at HEAD | **956,496 B / 982,528 B = 97.35 %, +16 B, 26,032 B headroom** |
+| app RAM | 253,765 B | **253,765 B — Δ 0** |
+| `nm -u` app | 0 | **0** |
+| `nm -u` net | 0 | **0** |
+| duplicate GLOBAL definitions | 0 | **0** |
+| `check_ram_pin_collisions --core app` | 627 / 0 / 0 | **627 bound OK, 0 escaping, 0 unknown inside a live object** (20 raw-literal pins outside the RAM region, 3 abs symbols not in the linker scripts — both unchanged) |
+| `check_ram_pin_collisions --core net` | 170 / 0 / 0 | **170 bound OK, 0 escaping, 0 unknown** |
+| `check_net_raw_literals` (frozen net ELF) | — | **0 distinct raw literals, 0 inside a live object, 0 preprocess failures** — run this pass, which §44.9 item 8 recorded as not-run |
+| `check_thread_create_stack_args --trials 120` | 10/10 | **10 / 10 PASS, EXIT=0** |
+| `tools/verify_data.py` | 995/995 | **995 / 995 files, 56,279 / 56,279 B, 100.00 %** |
+| `runtime_info_sync` / `_end` | — | **0x00015c04 / 0x2003ff45 — UNMOVED from HEAD** |
+| net core | FROZEN 225,581 B | **UNTOUCHED** — `g1-i30e-net/zephyr/zephyr.bin` 225,581 B, booted in all five captures, no net source or build input written |
+| **all four acceptance framebuffers** | byte-identical | **byte-identical, `cmp` exit 0, 153,600 B each** |
+
+`cfg_verify` was **not run and is not cited anywhere in §45**.  It seeds r0..r3
+regardless of declared arity, so it is structurally blind to both of these
+repair classes; a green sweep would be evidence of nothing.  Every number above
+comes from a build, a `cmp`, an ELF symbol table, a seeded Renode capture, an
+object file, or a JSON diff.
+
+### 45.10 Controls run on this pass's own tooling
+
+Four probes were written or repointed this pass, and the obligation to control
+each was discharged:
+
+1. **`land.py`'s baseline is the right baseline.**  `screen.py`/`gate.py` were
+   copied and repointed from `/private/tmp/g1-td4-base` (the *pre*-repair-4
+   build) to `/private/tmp/g1-i45-base` (HEAD's own).  Using repair 4's
+   baseline would have conflated repair 4's own debug-only object differences
+   into this batch's measurement.
+2. **The measurement was re-derived by a second, independent script.**
+   `measure.py` reads the tree as it stands and compiles it against the
+   baseline objects; it does not share a code path with `land.py`'s in-loop
+   accounting.  Both give 42 objects, +8 B, 40 of 42 size-neutral, the same two
+   files — and both reproduce repair 4's independently-obtained figures.
+3. **The capture was controlled for determinism** (§45.5.1), including under
+   deliberately different host load.
+4. **`shift.py` uses the criterion's own decomposition**
+   (`phase_tolerant_compare.blocks`, `trains_by_key`) rather than re-segmenting,
+   so the one-slot attribution cannot be an artifact of a second segmentation
+   rule.  §44.6 showed exactly how a second rule goes wrong.
+
+**A correction to repair 4's own report:** its §2.2 publishes "+8 B" as the cost
+of the `k_timeout_t` class.  That is the per-object sum and it is right; but the
+**linked** cost is **+16 B** (§45.2).  Anyone reading "+8 B" as the flash cost
+would under-state it by a factor of two, and this pass's whole risk assessment
+turned on that number.
+
+### 45.11 What I did NOT close, and why
+
+1. **The 42 remaining constant-argument sites (+66 B) are still quarantined.**
+   Repair 3's numbers stand.  Batch 1 spent one BLE slot on navigation; nothing
+   this pass measured predicts where the *next* slot boundary is, so there was
+   no basis for spending more.  A pass that wants them should land them alone,
+   not on top of batch 1, so the two costs stay separable.
+2. **The 48 `k_timeout_t` pairs the rewriter skips are untouched** — the
+   `arity 4 vs decl 4 vs sdk 2` shape, which includes `att_req_sent` itself,
+   the function whose disassembly is repair 4 §2.1's evidence.
+   `timeoutfix.rewrite` handles `np` and `np+1` arguments only.  Extending it to
+   drop an incidental third argument is a *different* repair (it removes a value
+   the source passes) and was not attempted.
+3. **The mirrors were NOT updated.**  Repair 3 and repair 4 mirrored their
+   `recon/symbolized/app` edits into `recon/named`, `recon/readable_sources`,
+   `recon/app/src`, `recon/verified/src`.  This pass wrote **only**
+   `recon/symbolized/app` (50 files) and this report.  Repair 4 §7.1 found a
+   real defect in its own mirror before shipping it, and its `mirror.py` is
+   keyed to that pass's specific hunks; reusing it blind on different hunks is
+   exactly the kind of unvalidated tool reuse that has produced eight
+   calibration bugs here.  **Those trees now lag `recon/symbolized/app` by 50
+   files.  That is a real inconsistency and it is recorded, not hidden.**
+4. **Nothing in the criterion was changed** — Δ stays 145.440 ms as derived, the
+   5 ms burst gap stays 5 ms, §44.7.1's free LSM6DSO change stays unapplied, and
+   §44.4's `RADIO_TX − ESB` field was **computed** here (§45.7) but **not added
+   to the oracle's field set**, because adding a field is a criterion change.
+5. **§44.5's falsification test was still not run** (`SweepDwell 4 → 8`;
+   connection interval 30 → 15 ms).  §45.7 answers the same question by a
+   different route — stimulus-dependence — but the stated test remains not-run.
+6. **The `twim1` npm1300 tail against the 20 s wall is untouched** (§44.9
+   item 2), and B1/B2 make it visible as three `P2 population` failures at
+   18.823 / 18.874 / 19.075 s where the base showed it as a `P3/P5` pair.  Same
+   defect, different side of the 5 ms segmentation.
+7. **`saadc`, `pdm0`, `gpiote0/1` remain outside the criterion**, unchanged from
+   §44.7: the capture records no virtual time per register access.
+8. **The stage ladder was not re-gated and no stage was rebuilt.**  This pass
+   worked on the in-tree base only.
+9. **`battery_model_state_update` (`FUN_0000c358`)** — still the open float
+   defect `AGENTS.md` §1b names.  Untouched.
+10. **`recon/refactor/**` was not touched** and its stages are now stale on this
+    pass's 50 inputs; regenerating them is the concurrent agent's call, and
+    doing it here would have written into a tree this pass does not own.
+11. **Nothing was committed.**  The tree is left dirty.
+
+### 45.12 Footprint
+
+```
+ M recon/symbolized/app/*.c                       50 files
+      42  the k_timeout_t batch  (51 call sites)
+       8  the 9 size-neutral constant-argument sites
+ M recon/emulator/reports/our_boot_bringup.md     this section (§45)
+```
+
+**Not written:** `recon/refactor/**` (the concurrent agent's — its 20 dirty
+stage JSONs are not mine), `recon/net/**`, `recon/symbolized/net`,
+`recon/headers`, `recon/symbols`, `recon/application`, `recon/board`,
+`recon/generated`, `recon/wiring`, `recon/named`, `recon/readable_sources`,
+`recon/app/src`, `recon/verified/src`, `recon/data`, any linker script,
+`tools/`, `recon/emulator/scripts/*`, any golden framebuffer, any committed
+oracle JSON, and nothing under `~/Projects/armemul` — which is byte-for-byte as
+it was found.  **The net image is FROZEN by construction at 225,581 B.**
+
+Outside the repository:
+
+```
+/private/tmp/g1-i45-base            HEAD's own build (== g1-i44-base, byte-identical)
+/private/tmp/g1-i45-b1              + batch 1                    956,496 B
+/private/tmp/g1-i45-b2              + batch 1 + batch 2          956,496 B
+/private/tmp/g1-i45/cap.sh          capture driver (a copy of the g1-i44 one)
+/private/tmp/g1_i45_b1_{nav1,nav2,dash}   B1 captures (nav2 = determinism control)
+/private/tmp/g1_i45_b2_{nav1,dash}        B2 captures
+/private/tmp/g1-i45/rep_b{1,2}_{nav1,dash}  their oracles + framebuffers
+<scratchpad>/i45/{screen,gate,land,measure,why,applyconst,spimphase,shift}.py
+<scratchpad>/i45/bk_{land,const}    pre-edit backups of every file written
+```
+
+### Regenerate (iteration 45)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+V="PYTHONSAFEPATH=1 .venv/bin/python"
+S=<scratchpad>/i45
+
+recon/application/build_cohesive.sh app /private/tmp/g1-i45-base
+cmp /private/tmp/g1-i45-base/zephyr/zephyr.bin /private/tmp/g1-i44-base/zephyr/zephyr.bin
+
+$V $S/land.py plan            # 92 files, 99 pairs
+$V $S/land.py apply           # 42 objects, +8 B, 40 of 42 size-neutral
+$V $S/measure.py $S/bk_land $S/measure_b1.json      # independent re-measurement
+recon/application/build_cohesive.sh app /private/tmp/g1-i45-b1     # 956,496 B
+
+arm-zephyr-eabi-nm /private/tmp/g1-i45-b1/zephyr/zephyr.elf | grep -wE 'runtime_info_sync|_end'
+bash /private/tmp/g1-i45/cap.sh b1_nav1 /private/tmp/g1-i45-b1 0x00015c04 nav
+bash /private/tmp/g1-i45/cap.sh b1_nav2 /private/tmp/g1-i45-b1 0x00015c04 nav   # determinism
+bash /private/tmp/g1-i45/cap.sh b1_dash /private/tmp/g1-i45-b1 0x00015c04 dash
+$V recon/emulator/scripts/build_display_sensor_oracle.py            <cap> <rep>
+$V recon/emulator/scripts/build_display_sensor_oracle.py --screen=dashboard <cap> <rep>
+cmp <rep>/golden_framebuffer_*.raw recon/emulator/reports/golden_framebuffer_*.raw
+
+$V recon/emulator/scripts/phase_tolerant_compare.py compare --bound-ms=145.44 \
+   <ship.json> <base.json> <b1.json> B1_NAV
+$V /private/tmp/g1-s4r7/cmp3.py <ship.json> <base.json> <b1.json> B1_NAV
+$V $S/shift.py  <base.json> <b1.json>       # the one-slot attribution
+$V $S/spimphase.py <ship.json> <ours.json> spim_a jbd_display
+
+$V $S/applyconst.py display_dispatch_thread.c hci_le_generate_dhkey.c l2cap_recv.c \
+      local_esbs_ipc_service_recv.c pow.c process_for_new_message_come_on.c \
+      process_pt_data.c rpmsg_virtqueue_channel_init.c
+$V $S/measure.py $S/bk_const $S/measure_b2.json     # +0 B, 0 functions move
+recon/application/build_cohesive.sh app /private/tmp/g1-i45-b2     # 956,496 B, 389 B differ
+bash /private/tmp/g1-i45/cap.sh b2_nav1 /private/tmp/g1-i45-b2 0x00015c04 nav
+bash /private/tmp/g1-i45/cap.sh b2_dash /private/tmp/g1-i45-b2 0x00015c04 dash
+for f in *.trace fb_*.ppm; do cmp /private/tmp/g1_i45_b1_nav1/$f /private/tmp/g1_i45_b2_nav1/$f; done
+
+# revert either batch
+$V $S/land.py revert                                  # restores the 92 backed-up files
+cp <scratchpad>/i45/bk_const/*.c recon/symbolized/app/
+```
+
+### 45.13 Build currency — the measured image IS the image the tree builds
+
+The hazard §44.11 recorded (a concurrent pass rewriting `recon/symbolized/app`
+mid-measurement) was checked rather than assumed, at the end of the pass:
+
+```
+find recon/symbolized/app -name '*.c' -newermt '2026-07-27 14:00'   ->  99
+   = the 92 files land.py opened (50 of which it rewrote with identical text)
+   + the 8 applyconst files, minus the 1 in both.  No other writer.
+ninja -n in /private/tmp/g1-i45-b2  ->  0 object compiles, 14 always-run actions
+```
+
+**Zero pending object compiles**, so `g1-i45-b2` is exactly what the current
+tree builds, and the five captures booted that ELF.

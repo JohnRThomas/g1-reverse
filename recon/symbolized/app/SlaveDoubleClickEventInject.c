@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 /* readable reconstruction; identity: FUN_00048ad4 @ 0x00048ad4
  * public-name: SlaveDoubleClickEventInject
  * durable-map: recon/catalogs/function_names_app.json
@@ -19,7 +20,7 @@
 #include "../../headers/g1_log.h"
 
 extern void memset_bytes(void*, int, int);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 
 int SlaveDoubleClickEventInject(void)
 {
@@ -27,7 +28,7 @@ int SlaveDoubleClickEventInject(void)
   memset_bytes(event + 1, 0, 23);
   event[0] = 7;
 
-  if (k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, event, 0, 0) != 0) {
+  if (k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, event, (k_timeout_t){ .ticks = 0LL }) != 0) {
     log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/, ((unsigned long)"SlaveDoubleClickEventInject") /*=0xef694*/);
     return -1;
   }

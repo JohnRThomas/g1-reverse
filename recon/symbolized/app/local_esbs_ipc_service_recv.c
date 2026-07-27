@@ -26,7 +26,7 @@ extern void confirm_message(int);
 extern void reset_esb_sync_state(uint32_t reason);
 extern unsigned int set_device_sync_timestamp(unsigned long);
 extern void FUN_0007c010(void *state);
-extern void update_persist_task_status(void *context, uint32_t task);
+extern void update_persist_task_status(void *context, uint32_t task,int);
 extern void memset_bytes(void*, int, int);
 
 #define LOG_LEVEL       (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/)
@@ -208,7 +208,7 @@ uint32_t local_esbs_ipc_service_recv(uint8_t *context,
         reset_esb_sync_state(0);
         *screen_state = 2;
         if (**(uint32_t **)(master + 0x1054) != 16)
-            update_persist_task_status(master, 16);
+            update_persist_task_status(master, 16, 2);
         break;
     case 14: *screen_state = 4; break;
     case 15: *screen_state = 6; break;

@@ -22,14 +22,14 @@ struct k_msgq;
 #include "../../headers/g1_log.h"
 extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 extern int FUN_000720d0_i(uint32_t,void*,int,int);
-extern int k_msgq_get(int, unsigned int, int, int);
+extern int k_msgq_get(struct k_msgq *, void *, k_timeout_t);
 extern void memcpy(int, int, int);
 extern void memset_bytes(void*,int,int);
 int enqueue_bt_data(uint32_t param_1, uint8_t param_2){
   uint8_t local_114[0x101];
   memset_bytes(local_114,0,0x101);
   if(*(volatile int*)(((unsigned long)&g_bt_data_pipe) /*=0x200038f8*/+0x24)==0x30){
-    k_msgq_get(((unsigned long)&g_bt_data_pipe) /*=0x200038f8*/,local_114,0,0);
+    k_msgq_get(((unsigned long)&g_bt_data_pipe) /*=0x200038f8*/,local_114, (k_timeout_t){ .ticks = 0LL });
     if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0) log_message(((unsigned long)"enqueue_bt_data drop package! \n") /*=0x9a18e*/);
     else debug_print(((unsigned long)"enqueue_bt_data drop package! \n") /*=0x9a18e*/);
   }

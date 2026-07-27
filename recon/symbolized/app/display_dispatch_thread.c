@@ -149,7 +149,7 @@ extern s64  display_panel_is_secondary(void*);
 extern void cal_panel_canvas_coord(int,int);
 extern void wait_for_event(unsigned long, unsigned long);
 extern void k_sem_take(void*,int,int,int);
-extern s32  sync_to_slave(void*,int,int);
+extern s32  sync_to_slave(void*,int,int,int);
 extern u32  display_target_level_get(void*);
 extern void display_mutex_lock(int,int,int,int);
 extern void display_mode_two_update_timer(void*,int);
@@ -238,7 +238,7 @@ void display_dispatch_thread(char *display)
       B(0xcb) = B(0xed5);
       uVar17 = get_current_work_mode();
       if ((s32)uVar17 != 3) {
-        sync_to_slave(display, 1, 0);
+        sync_to_slave(display, 1, 0, 0);
         change_work_mode_to(3);
       }
       if (B(0) == 2) {
@@ -485,7 +485,7 @@ void display_dispatch_thread(char *display)
             set_brightness_to_panel_reg_in_running();
             B(0xcb) = B(0xed5);
           }
-          iVar6 = sync_to_slave(display, 0, 0);
+          iVar6 = sync_to_slave(display, 0, 0, 0);
           cVar16 = 1;
           if (4999 < iVar6) {
             if (0 < g_log_level) DISPLAY_LOG_3(((unsigned long)"%s(): sync to slave exceed MAX_WAIT_COUNT, wait_time %d\n") /*=0xa0d92*/, iVar6);

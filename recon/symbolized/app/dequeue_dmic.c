@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002ed00 @ 0x0002ed00
  * public-name: dequeue_dmic
@@ -17,7 +18,7 @@
  */
 /* Reconstructed dequeue_dmic @ 0x2ed00  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_get(int, unsigned int, int, int);
+extern int k_msgq_get(struct k_msgq *, void *, k_timeout_t);
 extern void memcpy(int, int, int);
 
 int dequeue_dmic(void *param_1)
@@ -25,7 +26,7 @@ int dequeue_dmic(void *param_1)
     unsigned char record[204];
 
     memcpy(record, (const void *)((unsigned long)&rodata_885cc) /*=0x885cc*/, 200);
-    int iVar1 = k_msgq_get(((unsigned long)&g_dmic_msgq) /*=0x20007b7c*/, record, 0, 0);
+    int iVar1 = k_msgq_get(((unsigned long)&g_dmic_msgq) /*=0x20007b7c*/, record, (k_timeout_t){ .ticks = 0LL });
     if (iVar1 == 0) {
         memcpy(param_1, record, 200);
     } else if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {

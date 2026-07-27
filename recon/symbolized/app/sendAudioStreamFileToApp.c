@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 /* readable reconstruction; identity: FUN_00047bf8 @ 0x00047bf8
  * public-name: sendAudioStreamFileToApp
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,7 +18,7 @@
 #include "../../headers/g1_log.h"
 
 extern void memset_bytes(void*, int, int);
-extern unsigned int k_msgq_put(int, unsigned int, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 
 int sendAudioStreamFileToApp(unsigned char param_1, unsigned char param_2)
 {
@@ -29,7 +30,7 @@ int sendAudioStreamFileToApp(unsigned char param_1, unsigned char param_2)
   message[4] = param_1;
   message[5] = param_2;
 
-  int iVar1 = k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, message, 0, 0);
+  int iVar1 = k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, message, (k_timeout_t){ .ticks = 0LL });
   if (iVar1 != 0) {
     log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/, ((unsigned long)"sendAudioStreamFileToApp") /*=0xef71d*/);
     iVar1 = -1;

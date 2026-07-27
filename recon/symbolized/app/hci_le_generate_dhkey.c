@@ -17,7 +17,7 @@
 /* Reconstructed FUN_00055e74 @ 0x55e74  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void z_log_msg_runtime_create(uint32_t,int,void*);
+extern void z_log_msg_runtime_create(uint32_t,int,void*,int);
 extern int bt_hci_cmd_create(int,int);
 extern int bt_hci_cmd_send_sync(int,int,int);
 extern void* net_buf_simple_add(int,int);
@@ -53,7 +53,7 @@ int hci_le_generate_dhkey(uint32_t *param_1, int param_2, uint32_t param_3, uint
     local_24 = ((unsigned long)&rodata_f39f4) /*=0xf39f4*/;
     local_28 = 3;
     iStack_20 = iVar2;
-    z_log_msg_runtime_create(((unsigned long)&rodata_88120) /*=0x88120*/, 0x1880, (void*)&local_28);
+    z_log_msg_runtime_create(((unsigned long)&rodata_88120) /*=0x88120*/, 0x1880, (void*)&local_28, 0);
     return iVar2;
   }
   return -0x10;

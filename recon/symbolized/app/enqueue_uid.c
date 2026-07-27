@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00018e48 @ 0x00018e48
  * public-name: enqueue_uid
@@ -18,8 +19,8 @@
  */
 /* Reconstructed enqueue_uid @ 0x18e48  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_get(int, unsigned int, int, int);
-extern unsigned int k_msgq_put(int, unsigned int, int, int);
+extern int k_msgq_get(struct k_msgq *, void *, k_timeout_t);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 int enqueue_uid(unsigned *param_1, unsigned param_2, unsigned param_3){
     unsigned local[3];
     local[0]=0; local[1]=0; local[2]=param_3;
@@ -27,7 +28,7 @@ int enqueue_uid(unsigned *param_1, unsigned param_2, unsigned param_3){
     if (g[0x10/4] == 0) return 1;
     int iVar2;
     if (g[0x24/4] == 10){
-        k_msgq_get(((unsigned long)&g_uid_pipe) /*=0x20006a38*/, local, 0, 0);
+        k_msgq_get(((unsigned long)&g_uid_pipe) /*=0x20006a38*/, local, (k_timeout_t){ .ticks = 0LL });
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)"enqueue uid drop package! \n") /*=0x9aa2f*/);
         else debug_print(((unsigned long)"enqueue uid drop package! \n") /*=0x9aa2f*/);
     }
@@ -37,7 +38,7 @@ int enqueue_uid(unsigned *param_1, unsigned param_2, unsigned param_3){
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)"%s(): local_data uid %d\n") /*=0x9aa4b*/,((unsigned long)"enqueue_uid") /*=0x9b176*/,local[0]);
         else debug_print(((unsigned long)"%s(): local_data uid %d\n") /*=0x9aa4b*/,((unsigned long)"enqueue_uid") /*=0x9b176*/,local[0]);
     }
-    iVar2 = k_msgq_put(((unsigned long)&g_uid_pipe) /*=0x20006a38*/, local, 0, 0);
+    iVar2 = k_msgq_put(((unsigned long)&g_uid_pipe) /*=0x20006a38*/, local, (k_timeout_t){ .ticks = 0LL });
     if (iVar2 != 0 && *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0){
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)"%s(): en uid F\n") /*=0x9aa64*/,((unsigned long)"enqueue_uid") /*=0x9b176*/);
         else debug_print(((unsigned long)"%s(): en uid F\n") /*=0x9aa64*/,((unsigned long)"enqueue_uid") /*=0x9b176*/);

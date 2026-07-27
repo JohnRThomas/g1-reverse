@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 struct k_sem;
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00023bfc @ 0x00023bfc
@@ -18,7 +19,7 @@ struct k_sem;
  *   g_app_language_msgq                      @ 0x200079e4
  */
 /* Reconstructed upgradeDashboardStartupModeInfoToFlash @ 0x23bfc  (parity: 300/300 trials, PROVEN) */
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 extern void k_sem_give(struct k_sem *);
 
 unsigned int upgradeDashboardStartupModeInfoToFlash(unsigned int param_1, unsigned int param_2, unsigned int param_3)
@@ -29,7 +30,7 @@ unsigned int upgradeDashboardStartupModeInfoToFlash(unsigned int param_1, unsign
     buf[0] = 0x00010003UL;
     buf[1] = (param_2 & 0xffff0000UL) | (param_1 & 0xffUL);
     buf[2] = param_3;
-    iVar1 = k_msgq_put(((unsigned long)&g_flash_store_cmd_msgq) /*=0x20003994*/, buf, 0UL, 0UL);
+    iVar1 = k_msgq_put(((unsigned long)&g_flash_store_cmd_msgq) /*=0x20003994*/, buf, (k_timeout_t){ .ticks = 0LL });
     if (iVar1 == 0) {
         if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)

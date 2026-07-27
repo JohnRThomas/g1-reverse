@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 /* readable reconstruction; identity: FUN_00049938 @ 0x00049938
  * public-name: display_inputEvent
  * durable-map: recon/catalogs/function_names_app.json
@@ -20,7 +21,7 @@
 #include "../../headers/g1_log.h"
 
 extern void memset_bytes(void*, int, int);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 
 uint32_t display_inputEvent(uint8_t input, uint8_t state)
 {
@@ -32,7 +33,7 @@ uint32_t display_inputEvent(uint8_t input, uint8_t state)
     command[4] = input;
     command[5] = state;
 
-    if (k_msgq_put(((unsigned long)&g_display_msgq) /*=0x200038c4*/, command, 0, 0) != 0) {
+    if (k_msgq_put(((unsigned long)&g_display_msgq) /*=0x200038c4*/, command, (k_timeout_t){ .ticks = 0LL }) != 0) {
         log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/, ((unsigned long)"display_inputEvent") /*=0xf0151*/);
         return UINT32_MAX;
     }

@@ -47,7 +47,7 @@ extern int get_message_entry(int a);
 extern void push_message_3439c(void);
 extern void set_message_pending_state(int a);
 extern void set_new_message_pending_flag(void);
-extern void sync_to_slave(byte *a, int b, int c);
+extern void sync_to_slave(byte *a, int b, int c,int);
 extern void FUN_0007ce5c(int a, int b);
 
 undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *param_3, unsigned *param_4)
@@ -138,7 +138,7 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
     if (*(volatile char *)(param_2 + 7) == '\0') {
         if (2 < *piVar1) { if (*piVar2 == 0) log_message(0, 0, (uint)*(volatile byte *)(param_2 + 1)); else debug_print(0, 0, (uint)*(volatile byte *)(param_2 + 1)); }
         *param_4 = ((unsigned long)&rodata_a28d4) /*=0xa28d4*/;
-        sync_to_slave(param_1, 8, 0);
+        sync_to_slave(param_1, 8, 0, 0);
         if (*param_3 == '\x02') update_persist_task_status_to_wait_blow_head();
         else update_persist_task_status_to_idle(param_1);
         set_message_pending_state(6);

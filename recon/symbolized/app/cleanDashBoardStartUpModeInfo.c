@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 struct k_sem;
 /* readable reconstruction; identity: FUN_00023c88 @ 0x00023c88
  * public-name: cleanDashBoardStartUpModeInfo
@@ -20,7 +21,7 @@ struct k_sem;
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 extern void k_sem_give(struct k_sem *);
 
 struct startup_request {
@@ -31,7 +32,7 @@ struct startup_request {
 int cleanDashBoardStartUpModeInfo(void)
 {
   const struct startup_request request = { .opcode = 4 };
-  if (k_msgq_put(((unsigned long)&g_flash_store_cmd_msgq) /*=0x20003994*/, &request, 0, 0) != 0) {
+  if (k_msgq_put(((unsigned long)&g_flash_store_cmd_msgq) /*=0x20003994*/, &request, (k_timeout_t){ .ticks = 0LL }) != 0) {
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
       if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
         log_message(((unsigned long)"%s(): setting flash store queue fill failed\r\n\n") /*=0x9e903*/, ((unsigned long)"cleanDashBoardStartUpModeInfo") /*=0x9ed4a*/);

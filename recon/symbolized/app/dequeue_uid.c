@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00018ff8 @ 0x00018ff8
  * public-name: dequeue_uid
@@ -15,7 +16,7 @@
  */
 /* Reconstructed dequeue_uid @ 0x18ff8  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_get(int, unsigned int, int, int);
+extern int k_msgq_get(struct k_msgq *, void *, k_timeout_t);
 
 int dequeue_uid(unsigned int *param_1, unsigned int param_2, unsigned int param_3)
 {
@@ -32,7 +33,7 @@ int dequeue_uid(unsigned int *param_1, unsigned int param_2, unsigned int param_
   if (*(volatile int *)(((unsigned long)&g_uid_pipe) /*=0x20006a38*/ + 0x10) == 0) {
     iVar1 = 1;
   } else {
-    iVar1 = k_msgq_get(((unsigned long)&g_uid_pipe) /*=0x20006a38*/, &record, 0, 0);
+    iVar1 = k_msgq_get(((unsigned long)&g_uid_pipe) /*=0x20006a38*/, &record, (k_timeout_t){ .ticks = 0LL });
     if (iVar1 == 0) {
       *param_1 = record.first;
       param_1[1] = record.second;

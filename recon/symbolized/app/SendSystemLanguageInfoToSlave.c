@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00048998 @ 0x00048998
  * public-name: SendSystemLanguageInfoToSlave
@@ -23,7 +24,7 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
 extern void memset_bytes(void*, int, int);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 
 u32 SendSystemLanguageInfoToSlave(int param_1)
 {
@@ -35,7 +36,7 @@ u32 SendSystemLanguageInfoToSlave(int param_1)
     local[0] = 5;
     local[4] = (u8)param_1;
     *(u16*)&local[2] = 1;
-    iVar1 = k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, local, 0, 0);
+    iVar1 = k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, local, (k_timeout_t){ .ticks = 0LL });
     if (iVar1 == 0) {
         uVar4 = 0;
         if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {

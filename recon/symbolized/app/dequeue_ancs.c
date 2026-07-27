@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00018d94 @ 0x00018d94
  * public-name: dequeue_ancs
@@ -17,7 +18,7 @@
  */
 /* Reconstructed dequeue_ancs @ 0x18d94  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_get(int, unsigned int, int, int);
+extern int k_msgq_get(struct k_msgq *, void *, k_timeout_t);
 extern void memcpy(int, int, int);
 extern void memset_bytes(void*, int, int);
 
@@ -31,7 +32,7 @@ int dequeue_ancs(void *param_1)
         return 1;
     }
 
-    int iVar1 = k_msgq_get((void *)base, buf, 0, 0);
+    int iVar1 = k_msgq_get((void *)base, buf, (k_timeout_t){ .ticks = 0LL });
     if (iVar1 == 0) {
         memcpy(param_1, buf, 0x1b4);
     } else if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {

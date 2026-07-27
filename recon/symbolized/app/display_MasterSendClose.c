@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000499b8 @ 0x000499b8
  * public-name: display_MasterSendClose
@@ -18,7 +19,7 @@
 /* Reconstructed display_MasterSendClose @ 0x499b8  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*, int, int);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 
 unsigned int display_MasterSendClose(void)
 {
@@ -26,7 +27,7 @@ unsigned int display_MasterSendClose(void)
 
     memset_bytes(record + 1, 0, 23);
     record[0] = 6;
-    int iVar1 = k_msgq_put(((unsigned long)&g_display_msgq) /*=0x200038c4*/, record, 0, 0);
+    int iVar1 = k_msgq_put(((unsigned long)&g_display_msgq) /*=0x200038c4*/, record, (k_timeout_t){ .ticks = 0LL });
     unsigned int uVar2;
     if (iVar1 == 0) {
         uVar2 = 0;

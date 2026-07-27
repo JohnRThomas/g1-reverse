@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00047b1c @ 0x00047b1c
  * public-name: send_response_data_to_msgqueue
@@ -22,7 +23,7 @@
 extern int get_device_info(void);
 extern void memset_bytes(void*, int, int);
 extern void memcpy(int, int, int);
-extern unsigned int k_msgq_put(int, unsigned int, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 
 unsigned int send_response_data_to_msgqueue(void *param_1, unsigned int param_2)
 {
@@ -42,7 +43,7 @@ unsigned int send_response_data_to_msgqueue(void *param_1, unsigned int param_2)
             memcpy(stackbuf + 4, param_1, param_2);
             *(unsigned short*)(stackbuf + 2) = (unsigned short)param_2;
         }
-        iVar3 = k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, stackbuf, 0, 0);
+        iVar3 = k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, stackbuf, (k_timeout_t){ .ticks = 0LL });
         if (iVar3 == 0) {
             return 0;
         }

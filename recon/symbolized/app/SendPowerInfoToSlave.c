@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 /* readable reconstruction; identity: FUN_000488bc @ 0x000488bc
  * public-name: SendPowerInfoToSlave
  * durable-map: recon/catalogs/function_names_app.json
@@ -21,7 +22,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 extern int get_device_info(void);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 extern void memset_bytes(void*, int, int);
 
 unsigned int SendPowerInfoToSlave(int param_1)
@@ -39,7 +40,7 @@ unsigned int SendPowerInfoToSlave(int param_1)
     request[0] = 4;
     request[4] = (unsigned char)param_1;
     *(unsigned short *)&request[2] = 1;
-    iVar5 = k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, request, 0, 0);
+    iVar5 = k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, request, (k_timeout_t){ .ticks = 0LL });
     piVar4 = (volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
     piVar3 = (volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/;
     if (iVar5 == 0) {

@@ -138,7 +138,7 @@ LAB_0003325a:
         }
         if (pbVar5[2] == 2) {
             *(volatile unsigned char *)((unsigned long)&g_low_power_mode_enabled) /*=0x20018d94*/ = 1;
-            set_pending_state_flag(1);
+            set_pending_state_flag(1, 1);
             set_delay_deadline(10000);
         } else {
             log_message(((unsigned long)&rodata_a77b5) /*=0xa77b5*/);

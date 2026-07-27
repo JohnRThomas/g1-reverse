@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 struct k_queue;
 /* readable reconstruction; identity: FUN_00058930 @ 0x00058930
  * public-name: bt_att_accept
@@ -19,7 +20,7 @@ struct k_queue;
  */
 /* Reconstructed FUN_00058930 @ 0x58930  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int k_mem_slab_alloc(int, int*, int, int);
+extern int k_mem_slab_alloc(struct k_mem_slab *, void **, k_timeout_t);
 extern int k_current_get(int,...);
 extern int att_log_emit_3arg(int,...);
 #define z_impl_k_queue_init z_impl_k_queue_init
@@ -29,7 +30,7 @@ unsigned int bt_att_accept(int param_1, int *param_2)
 {
   int *local_20, *local_1c;
   int dummy[16];
-  local_1c = (int*)k_mem_slab_alloc(((unsigned long)&g_bt_att_slab) /*=0x20003738*/, &local_20, 0, 0);
+  local_1c = (int*)k_mem_slab_alloc(((unsigned long)&g_bt_att_slab) /*=0x20003738*/, &local_20, (k_timeout_t){ .ticks = 0LL });
   if (local_1c == 0) {
     int uVar2 = k_current_get(0);
     int *puVar1 = local_20;
@@ -40,7 +41,7 @@ unsigned int bt_att_accept(int param_1, int *param_2)
     local_20[2] = 0;
     local_20[0xc] = 0;
     local_20[0xd] = 0;
-    int iVar3 = k_mem_slab_alloc(((unsigned long)&g_bt_att_chan_slab) /*=0x20003758*/, &local_1c, 0, 0);
+    int iVar3 = k_mem_slab_alloc(((unsigned long)&g_bt_att_chan_slab) /*=0x20003758*/, &local_1c, (k_timeout_t){ .ticks = 0LL });
     if (iVar3 == 0) {
       iVar3 = memset_bytes((int)local_1c, 0, 0x198);
       *(int*)(iVar3 + 0xc) = ((unsigned long)&g_bt_att_chan_ops) /*=0x200029ac*/;

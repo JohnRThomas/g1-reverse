@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 struct k_sem;
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002f80c @ 0x0002f80c
@@ -21,7 +22,7 @@ struct k_sem;
 /* Reconstructed stopAudioStreamRecord @ 0x2f80c  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*, int, int);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 extern void k_sem_give(struct k_sem *);
 
 unsigned int stopAudioStreamRecord(void)
@@ -29,7 +30,7 @@ unsigned int stopAudioStreamRecord(void)
     unsigned char record[208];
     memset_bytes(record + 5, 0, 203);
     record[4] = 3;
-    int iVar1 = k_msgq_put(((unsigned long)&g_audio_msgq) /*=0x20003890*/, record + 4, 0, 0);
+    int iVar1 = k_msgq_put(((unsigned long)&g_audio_msgq) /*=0x20003890*/, record + 4, (k_timeout_t){ .ticks = 0LL });
     unsigned int uVar2;
     if (iVar1 == 0) {
         k_sem_give((void *)((unsigned long)&g_app_language_msgq) /*=0x200079e4*/);

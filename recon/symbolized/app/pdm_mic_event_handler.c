@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 /* readable reconstruction; identity: FUN_0005ffa4 @ 0x0005ffa4
  * public-name: pdm_mic_event_handler
  * durable-map: recon/catalogs/function_names_app.json
@@ -25,9 +26,9 @@
 extern void onoff_release(uint32_t handle);
 extern int nrfx_pdm_buffer_set(uint32_t decoded, uint32_t selector);
 extern void nrfx_pdm_stop(void);
-extern int k_mem_slab_alloc(int, int*, int, int);
+extern int k_mem_slab_alloc(struct k_mem_slab *, void **, k_timeout_t);
 extern void k_mem_slab_free(uint32_t handle, ...);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 extern void log_forward_zero_arg(uintptr_t source, uint32_t level, const void *record);
 
 struct notification {
@@ -69,7 +70,7 @@ void pdm_mic_event_handler(struct notification *notification)
 
     if (notification->response_ready != 0) {
         struct decoded_status decoded;
-        int status = k_mem_slab_alloc(STATE_WORD(0x14), &decoded, 0, 0);
+        int status = k_mem_slab_alloc(STATE_WORD(0x14), &decoded, (k_timeout_t){ .ticks = 0LL });
         uintptr_t diagnostic = ((unsigned long)"Failed to allocate buffer: %d") /*=0xf5822*/;
 
         if (status >= 0) {
@@ -123,7 +124,7 @@ void pdm_mic_event_handler(struct notification *notification)
             return;
         wake_recovery = 0;
 transfer:
-        if (k_msgq_put(((unsigned long)&g_pdm_mic_rx_msgq) /*=0x2000b024*/, &notification->payload, 0, 0) < 0) {
+        if (k_msgq_put(((unsigned long)&g_pdm_mic_rx_msgq) /*=0x2000b024*/, &notification->payload, (k_timeout_t){ .ticks = 0LL }) < 0) {
             const struct log2 record = {2, ((unsigned long)"No room in RX queue") /*=0xf585d*/};
             log_forward_zero_arg(((unsigned long)&rodata_881a0) /*=0x881a0*/, 0x1040u, &record);
             k_mem_slab_free(STATE_WORD(0x14), notification->payload);

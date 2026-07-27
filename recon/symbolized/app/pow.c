@@ -20,7 +20,7 @@ extern double __ieee754_pow(void);
 extern int double_is_unordered(int, unsigned int, int, unsigned int);
 extern int __aeabi_dcmpeq(uint32_t,uint32_t,uint32_t,uint32_t);
 extern int __aeabi_dcmplt(uint32_t,uint32_t,uint32_t,uint32_t);
-extern uint64_t __divdf3(uint32_t,uint32_t);
+extern uint64_t __divdf3(uint32_t,uint32_t,int,int);
 extern unsigned int finite(double);
 extern double rint(double);
 extern int *thunk_FUN_00071678(void);
@@ -57,7 +57,7 @@ double pow(double x, double y)
     }
     if(eq(result,result)!=0) {
         *thunk_FUN_00071678()=0x21;
-        dbits n={.u=__divdf3(0,0)};
+        dbits n={.u=__divdf3(0,0, 0, 0)};
         return n.d;
     }
     *thunk_FUN_00071678()=0x22;

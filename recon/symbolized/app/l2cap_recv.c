@@ -365,7 +365,7 @@ LAB_00057f58:
 LAB_00057ed6:
         *(short *)(puVar8 + 2) = sVar20;
         local_58 = 0;
-        iVar21 = bt_conn_create_pdu(iVar21,5,iVar11);
+        iVar21 = bt_conn_create_pdu(iVar21,5,iVar11, 0);
         if (iVar21 != 0) {
           net_buf_unref(iVar11);
           return 0;

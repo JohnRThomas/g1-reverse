@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 struct k_sem;
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002f764 @ 0x0002f764
@@ -25,7 +26,7 @@ struct k_sem;
 
 extern int get_device_info(void);
 extern void display_DelayClose(unsigned int ms);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 extern void k_sem_give(struct k_sem *);
 extern void memset_bytes(void *dst, int val, int n);
 extern void sync_to_slave(unsigned int a, unsigned int b, void *c, unsigned int d);
@@ -38,7 +39,7 @@ unsigned int startAudioStreamRecord(void)
 
     memset_bytes(buf + 5, 0, 0xcb);
     buf[4] = 1;
-    iVar2 = k_msgq_put(((unsigned long)&g_audio_msgq) /*=0x20003890*/, buf + 4, 0, 0);
+    iVar2 = k_msgq_put(((unsigned long)&g_audio_msgq) /*=0x20003890*/, buf + 4, (k_timeout_t){ .ticks = 0LL });
     if (iVar2 == 0) {
         k_sem_give((void*)((unsigned long)&g_app_language_msgq) /*=0x200079e4*/);
         uVar3 = 0;

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 /* readable reconstruction; identity: FUN_000497b0 @ 0x000497b0
  * public-name: display_close
  * durable-map: recon/catalogs/function_names_app.json
@@ -28,7 +29,7 @@ struct display_close_packet {
     uint8_t payload[20];
 };
 
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 extern void memcpy(int, int, int);
 extern void memset_bytes(void*, int, int);
 
@@ -55,7 +56,7 @@ int display_close(const void *payload, unsigned int payload_length)
         packet.payload_length = (uint16_t)payload_length;
     }
 
-    result = k_msgq_put((void *)((unsigned long)&g_display_msgq) /*=0x200038c4*/, &packet, 0, 0);
+    result = k_msgq_put((void *)((unsigned long)&g_display_msgq) /*=0x200038c4*/, &packet, (k_timeout_t){ .ticks = 0LL });
     if (result != 0) {
         log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/, ((unsigned long)"display_close") /*=0xf018c*/);
         return -1;

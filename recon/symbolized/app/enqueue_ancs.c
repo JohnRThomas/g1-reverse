@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00018bb4 @ 0x00018bb4
  * public-name: enqueue_ancs
@@ -20,9 +21,9 @@
 /* Reconstructed enqueue_ancs @ 0x18bb4  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*, int, int);
-extern int k_msgq_get(int, unsigned int, int, int);
+extern int k_msgq_get(struct k_msgq *, void *, k_timeout_t);
 extern void memcpy(int, int, int);
-extern unsigned int k_msgq_put(int, unsigned int, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 
 int enqueue_ancs(unsigned int param_1)
 {
@@ -34,7 +35,7 @@ int enqueue_ancs(unsigned int param_1)
         iVar1 = 1;
     } else {
         if (*(volatile int*)(((unsigned long)&g_ancs_msgq) /*=0x20006a6c*/ + 0x24) == 10) {
-            k_msgq_get(((unsigned long)&g_ancs_msgq) /*=0x20006a6c*/, buf, 0, 0);
+            k_msgq_get(((unsigned long)&g_ancs_msgq) /*=0x20006a6c*/, buf, (k_timeout_t){ .ticks = 0LL });
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                 log_message(((unsigned long)"enqueue ancs drop package! \n") /*=0x9a964*/);
             } else {
@@ -42,7 +43,7 @@ int enqueue_ancs(unsigned int param_1)
             }
         }
         memcpy(buf, param_1, 0x1b4);
-        iVar1 = k_msgq_put(((unsigned long)&g_ancs_msgq) /*=0x20006a6c*/, buf, 0, 0);
+        iVar1 = k_msgq_put(((unsigned long)&g_ancs_msgq) /*=0x20006a6c*/, buf, (k_timeout_t){ .ticks = 0LL });
         if ((iVar1 != 0) && (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                 log_message(((unsigned long)"%s(): en ancs F\n") /*=0x9a981*/, ((unsigned long)"enqueue_ancs") /*=0x9b19d*/);

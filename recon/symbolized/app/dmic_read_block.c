@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 /* readable reconstruction; identity: FUN_0005fa94 @ 0x0005fa94
  * public-name: dmic_read_block
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,7 +16,7 @@
 /* Reconstructed FUN_0005fa94 @ 0x5fa94  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long __aeabi_uldivmod(int a,int b,int c,int d);
-extern int k_msgq_get(int, unsigned int, int, int);
+extern int k_msgq_get(struct k_msgq *, void *, k_timeout_t);
 extern void log_forward_zero_arg(unsigned a, unsigned b, void*c);
 int dmic_read_block(int param_1, unsigned param_2, unsigned param_3, unsigned *param_4, unsigned param_5){
     int iVar3 = *(volatile int*)(param_1 + 0x10);
@@ -34,7 +35,7 @@ int dmic_read_block(int param_1, unsigned param_2, unsigned param_3, unsigned *p
         long long lVar1 = (long long)r4c * 0x8000 + 999;
         uVar4 = __aeabi_uldivmod((int)lVar1, (int)((unsigned long long)lVar1 >> 32), 1000, 0);
     }
-    iVar2 = k_msgq_get(iVar3 + 0x1c, param_3, (int)(unsigned)uVar4, (int)(unsigned)(uVar4 >> 32));
+    iVar2 = k_msgq_get(iVar3 + 0x1c, param_3, (k_timeout_t){ .ticks = (long long)(unsigned int)((int)(unsigned)uVar4) | ((long long)(unsigned int)((int)(unsigned)(uVar4 >> 32)) << 32) });
     if (iVar2 == 0){
         *param_4 = *(volatile unsigned*)(iVar3 + 0x18);
     } else {

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00047ba8 @ 0x00047ba8
  * public-name: send_response_data_to_ble
@@ -17,7 +18,7 @@
 
 extern int get_device_info(void);
 extern void memset_bytes(void*, int, int);
-extern unsigned int k_msgq_put(int, unsigned int, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 
 /* P4 iteration 33 -- UNDERSIZED STACK FRAME FIXED (instance 18 of the class the
  * parity harness is structurally blind to).  Shipped bytes @ 0x47ba8:
@@ -45,7 +46,7 @@ unsigned int send_response_data_to_ble(void)
   if (*pcVar1 != 2) {
     memset_bytes(msg + 1, 0, 0x17);
     msg[0] = 1;
-    int iVar2 = k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, msg, 0, 0);
+    int iVar2 = k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, msg, (k_timeout_t){ .ticks = 0LL });
     if (iVar2 != 0) {
       log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/, ((unsigned long)"send_response_data_to_ble") /*=0xef736*/);
       return 0xffffffff;

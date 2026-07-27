@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 struct k_sem;
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002f878 @ 0x0002f878
@@ -21,7 +22,7 @@ struct k_sem;
 /* Reconstructed delAudioStreamRecord @ 0x2f878  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*, int, int);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 extern void k_sem_give(struct k_sem *);
 
 unsigned int delAudioStreamRecord(unsigned char param_1)
@@ -41,7 +42,7 @@ unsigned int delAudioStreamRecord(unsigned char param_1)
     *(unsigned short*)(buf + 2) = 1;
     buf[0] = 4;
     buf[4] = param_1;
-    iVar2 = k_msgq_put(((unsigned long)&g_audio_msgq) /*=0x20003890*/, buf, 0, 0);
+    iVar2 = k_msgq_put(((unsigned long)&g_audio_msgq) /*=0x20003890*/, buf, (k_timeout_t){ .ticks = 0LL });
     if (iVar2 == 0) {
         k_sem_give(((unsigned long)&g_app_language_msgq) /*=0x200079e4*/);
         uVar3 = 0;

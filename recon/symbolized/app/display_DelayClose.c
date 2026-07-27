@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
 /* readable reconstruction; identity: FUN_000498c0 @ 0x000498c0
  * public-name: display_DelayClose
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,7 +18,7 @@
 /* Reconstructed display_DelayClose @ 0x498c0  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*, int, int);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
 
@@ -30,7 +31,7 @@ unsigned int display_DelayClose(unsigned int param_1)
     *(unsigned int *)(buf + 4) = param_1;
 
     void *obj = (void *)((unsigned long)&g_display_msgq) /*=0x200038c4*/;
-    int iVar1 = k_msgq_put(obj, buf, 0, 0);
+    int iVar1 = k_msgq_put(obj, buf, (k_timeout_t){ .ticks = 0LL });
     unsigned int uVar2;
 
     if (iVar1 == 0) {
