@@ -38,25 +38,38 @@ from guard import REPO_ROOT, check_write  # noqa: E402
 
 # Stage registry.  Ordered most-mechanical / least-risky first, so that if
 # side-effect equivalence later breaks we learn WHICH stage broke it.
+#
+# The fifth field is the stage's DECLARED CODEGEN CLASS -- a first-class,
+# checkable property added after the Stage 04 R7 gate found the hard way that
+# a -16 B change of `.text` re-phases the boot path and breaks byte-equality of
+# two peripheral bus streams.  See `stagelib.CODEGEN_CLASSES` for the full
+# reasoning and `driver.py size-gate` for the check.
+#
+#   byte-identical  the linked image must be byte-identical to the input
+#                   stage's; gate is `cmp zephyr.bin`; no oracle run needed
+#   size-neutral    the image may differ but every allocatable section size is
+#                   unchanged
+#   size-changing   section sizes move; an ORACLE RUN IS REQUIRED and may not
+#                   be inferred, argued or borrowed from a previous stage
 STAGES = [
     (0, "snapshot", "verbatim snapshot of the compilable input set (identity transform)",
-     "t00_snapshot"),
+     "t00_snapshot", "byte-identical"),
     (1, "literal_inline", "inline byte-verified .rodata string literals whose every "
      "live reference is a string-consuming call argument, withdrawing the backing "
      "object, its PROVIDE pin and its extern declaration in the same transaction",
-     "t01_literal_inline"),
+     "t01_literal_inline", "byte-identical"),
     (2, "block_dedupe", "replace repeated code blocks with inlinable macros: "
      "volatile-accessor spelling normalisation (same C type only), the noreturn "
      "tail, the log-sink route, the assert expansion, and convergence of the "
      "per-file logging externs onto the one authoritative prototype",
-     "t02_block_dedupe"),
+     "t02_block_dedupe", "byte-identical"),
     (3, "module_structure", "FIRST STRUCTURAL STAGE, app core only: move every "
      "retained app source into a cohesive module directory (regenerating the "
      "two build artifacts that name sources by path, in the SAME transaction "
      "and with list order preserved exactly), then hoist each module's "
      "byte-identically-spelled extern declarations into a generated module "
      "header.  The net core is frozen and is not touched.",
-     "t03_module_structure"),
+     "t03_module_structure", "byte-identical"),
     (4, "cohesive_tu", "SCOPED cohesive translation-unit merge, app core only: "
      "concatenate each maximal ORDER-PRESERVING run of consecutive retained "
      "sources within one module directory that provably cannot collide (no "
@@ -65,13 +78,23 @@ STAGES = [
      "it, no duplicate assembler name), rewriting the generated source list in "
      "the same transaction.  This is the FIRST stage whose image cannot be "
      "byte-identical by construction: merging changes inlining opportunities.",
-     "t04_cohesive_tu"),
+     "t04_cohesive_tu", "size-changing"),
+    (5, "cohesive_composition", "COMPOSITION, app core only: turn stage 04's "
+     "concatenated merged units into composed translation units -- one include "
+     "block per unit (repeated includes of PROVABLY idempotent headers "
+     "withdrawn, never moved), one declaration site per symbol per unit "
+     "(repeated file-scope externs of identical canonical type withdrawn), and "
+     "one-line member banners, with every `identity:' provenance banner "
+     "preserved byte for byte.  Sub-batch N is preprocessor-identical by "
+     "construction; sub-batch S (internal linkage for TU-private symbols) is "
+     "opt-in and codegen-changing.",
+     "t05_cohesive_composition", "size-neutral"),
     (99, "defect_probe", "DIAGNOSTIC, NOT A STAGE: stage 02 with "
      "G1_STAGE02_FORCE_LOG_HEADER=1, which withdraws the local log externs in "
      "the files stage 02 quarantines.  This tree is EXPECTED NOT TO COMPILE; "
      "its compile errors are the measurement that turns stage 02's static "
      "prediction of latent defects into a compiler-confirmed count.",
-     "t02_block_dedupe"),
+     "t02_block_dedupe", "size-changing"),
 ]
 
 #: directories that must be REAL in a stage tree (not symlinks), because a
@@ -98,9 +121,9 @@ SKIP_ROOT_ENTRIES = {".git", ".venv"}
 
 
 def _stage(number: int):
-    for n, slug, desc, mod in STAGES:
-        if n == number:
-            return n, slug, desc, mod
+    for row in STAGES:
+        if row[0] == number:
+            return row
     raise SystemExit("no such stage: %d" % number)
 
 
@@ -163,7 +186,7 @@ def _place_symlink(link_abs: str, target_abs: str, stage) -> None:
 
 
 def materialize(number: int) -> dict:
-    n, slug, desc, modname = _stage(number)
+    n, slug, desc, modname, codegen_class = _stage(number)
     mod = __import__("transforms." + modname, fromlist=["run"])
     stage = stagelib.Stage(n, slug, desc)
 
@@ -183,7 +206,7 @@ def materialize(number: int) -> dict:
     else:
         # stage 99 is the diagnostic re-run of stage 02's transformer with the
         # forcing environment variable set; its input is stage 02's input.
-        pn, pslug, _, _ = _stage(1 if n == 99 else n - 1)
+        pn, pslug = _stage(1 if n == 99 else n - 1)[:2]
         prev = stagelib.Stage(pn, pslug, "")
         prev_man = stagelib.load_manifest(pn, pslug)
         if prev_man is None:
@@ -229,6 +252,8 @@ def materialize(number: int) -> dict:
     summary = mod.run(stage, source_root, relpaths)
 
     extra = {"input_stage": input_stage,
+             "declared_codegen_class": codegen_class,
+             "oracle_required": codegen_class == "size-changing",
              "inherited_generated_outputs": inherited}
     if iset is not None:
         extra["input_provenance"] = iset.provenance
@@ -238,19 +263,22 @@ def materialize(number: int) -> dict:
     rows = stagelib.parity_rows(stage.tree, sorted(stage.files))
     stage.write_parity_map(rows, summary.get("parity_extra"))
     return {"stage": n, "slug": slug, "files": len(stage.files),
+            "declared_codegen_class": codegen_class,
             "parity_rows": len(rows), **summary.get("report", {})}
 
 
 def status() -> list[dict]:
     out = []
-    for n, slug, desc, _ in STAGES:
-        out.append(stagelib.staleness(n, slug))
+    for row in STAGES:
+        st = stagelib.staleness(row[0], row[1])
+        st["declared_codegen_class"] = row[4]
+        out.append(st)
     return out
 
 
 def check_addresses(a: int, b: int) -> dict:
-    an, aslug, _, _ = _stage(a)
-    bn, bslug, _, _ = _stage(b)
+    an, aslug = _stage(a)[:2]
+    bn, bslug = _stage(b)[:2]
     sa = stagelib.address_set(an, aslug)
     sb = stagelib.address_set(bn, bslug)
     return {
@@ -260,6 +288,38 @@ def check_addresses(a: int, b: int) -> dict:
         "only_in_b": sorted(sb - sa),
         "identical": sa == sb,
     }
+
+
+def size_gate(number: int, base_build: str, stage_build: str,
+              write: bool = True) -> dict:
+    """Measure a stage's ACHIEVED codegen class against the one it declares.
+
+    ``base_build`` and ``stage_build`` are ``build_cohesive.sh`` output
+    directories.  The result is written to the stage directory as
+    ``SIZE_GATE.json`` so the claim, the measurement and the verdict are all
+    part of the stage's own record rather than a number in a report.
+    """
+    n, slug, _desc, _mod, declared = _stage(number)
+    st = stagelib.Stage(n, slug, "")
+
+    def _elf(d):
+        return os.path.join(d, "zephyr", "zephyr.elf")
+
+    def _bin(d):
+        return os.path.join(d, "zephyr", "zephyr.bin")
+
+    doc = stagelib.size_gate(declared, _elf(base_build), _elf(stage_build),
+                             _bin(base_build), _bin(stage_build))
+    doc["stage"] = n
+    doc["slug"] = slug
+    if write:
+        p = os.path.join(st.dir, "SIZE_GATE.json")
+        check_write(p, st.dir)
+        with open(p, "w", encoding="utf-8") as fh:
+            json.dump(doc, fh, indent=1)
+            fh.write("\n")
+        doc["written"] = os.path.relpath(p, REPO_ROOT)
+    return doc
 
 
 def main(argv=None):
@@ -272,6 +332,10 @@ def main(argv=None):
     c.add_argument("a", type=int)
     c.add_argument("b", type=int)
     sub.add_parser("input-set")
+    g = sub.add_parser("size-gate", help="declared vs achieved codegen class")
+    g.add_argument("stage", type=int)
+    g.add_argument("base_build")
+    g.add_argument("stage_build")
     args = ap.parse_args(argv)
 
     if args.cmd == "status":
@@ -282,6 +346,10 @@ def main(argv=None):
         r = check_addresses(args.a, args.b)
         print(json.dumps(r, indent=1))
         return 0 if r["identical"] else 1
+    elif args.cmd == "size-gate":
+        r = size_gate(args.stage, args.base_build, args.stage_build)
+        print(json.dumps(r, indent=1))
+        return 0 if r["pass"] else 1
     elif args.cmd == "input-set":
         s = input_set.derive()
         print(json.dumps({"transformable": len(s.transformable),

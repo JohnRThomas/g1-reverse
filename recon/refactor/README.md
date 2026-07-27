@@ -147,6 +147,37 @@ original addresses is identical between consecutive stages (an address that gain
 or loses an entry means a transformation dropped or duplicated a function). It is
 a debugging aid and an integrity check, **not** the thing being proven.
 
+**C7b — EVERY STAGE DECLARES A CODEGEN CLASS, AND THE CLASS IS CHECKED.**
+Added after the Stage 04 R7 gate, which learned from nine Renode captures
+something a `size -A` could have predicted. Three independent measurements in
+this project now agree: **+60 B**, **+16 B** and **−16 B** of `.text` each
+re-phased the boot path enough to break byte-equality of a peripheral bus
+stream. The third is the decisive one, because it points the other way:
+**shrinking the image is not safe either.**
+
+So `driver.STAGES` carries a fifth field:
+
+| class | meaning | gate |
+|---|---|---|
+| `byte-identical` | the linked image must be byte-identical to the input stage's | `cmp zephyr.bin` |
+| `size-neutral` | the image may differ, but every allocatable section size is unchanged | the section table |
+| `size-changing` | sections move; **an oracle run is REQUIRED** and may not be inferred, argued or borrowed from a previous stage | Renode |
+
+`materialize` records the class and `"oracle_required"` in the MANIFEST, so the
+obligation travels with the stage rather than living in a report.
+`driver.py size-gate N BASE_BUILD STAGE_BUILD` measures the class the stage
+ACTUALLY achieved, writes `SIZE_GATE.json` into the stage directory, and exits
+non-zero when the stage came out **worse** than it declared. Coming out better
+passes and is reported.
+
+The classifier keys on **`SHF_ALLOC` in the ELF section header**, never on a
+list of section names. Its first version compared `(".text", ".rodata", ...)`
+and reported a stage whose `.text` had moved 80 bytes as `size-neutral` with
+every delta `+0` — because the G1 Zephyr link names them `text`, `rodata`,
+`datas`, `bss`, `noinit`, with no leading dot, plus 20 further allocatable
+areas. A gate keyed on a name list is a gate that silently passes.
+`test_size_gate.py` pins all of this (25 tests); the suite is **105/105**.
+
 **C8 — the one genuinely risky transformation class.**
 Inlining and macro substitution are invisible from outside the chip in almost
 every case, but anything that **reorders or coalesces volatile MMIO accesses**,
@@ -170,10 +201,11 @@ the end gives a pass/fail with no diagnostic value.
 | 02 | **block dedupe (LANDED)** — volatile-accessor spelling normalisation (one type only), plus the `G1_NORETURN_CALL` / `G1_LOG_ROUTE` / `G1_ASSERT_FAIL` macros and the log-prototype convergence residue. Stage 03's `__ASSERT` / noreturn extraction was folded in here because it is the same class of token-identical statement macro. | textual, codegen-identical; gate is a byte-identical `.o`, and it held: both cores' `zephyr.bin` byte-identical to stage 01, 4,594/4,598 objects byte-identical. Report: `recon/analysis/staged_refactor_stage02.md` |
 | 03 | **module structure (LANDED, app core only)** — the `input_set.py` `.h`-fragment fix stage 02 filed as blocking, plus the first STRUCTURAL transform: 1,621 app sources moved into 22 cohesive module directories (build lists regenerated in the same transaction, list order preserved exactly), and 99 module-wide type-identical `extern` declarations hoisted into 16 generated module headers. Net untouched and therefore byte-identical by construction. | file layout + declaration siting only; gate is a byte-identical `zephyr.bin`, and it held on both cores. **Harvest: 1,014 symbol/module type disagreements, 446 of them against the symbol's own definition, 175 about arity.** Report: `recon/analysis/staged_refactor_stage03.md` |
 | 03b (partly done, upstream) | **repair the declaration disagreements** in the CANONICAL trees (stage 03 `DEFECTS.json`). The parity agent's type-disagreement pass took the census from 1,014 to **833** (measured by re-running stage 03's own agreement test at HEAD `50929c5d`). | blocking prerequisite for a *blanket* cohesive-TU merge; still the single thing standing between stage 04's 695 translation units and 243. R1 means this work is the parity agent's, not the pipeline's. |
-| 04 | **scoped cohesive-TU merge (LANDED, app core only)** — no module is disagreement-free, so the scope is finer: maximal ORDER-PRESERVING runs of consecutive retained sources inside one module that provably cannot collide. 1,615 app TUs → **695**, 318 cohesive units absorbing 1,238 files, build lists rewritten in the same transaction. Seven refusal rules (`type`, `dupdef`, `static`, `typedef`, `macro`, `asmname`, `tag`/`enumconst`, `includes`); quoted repository headers are *read* and folded rather than refused. | **the first stage that CANNOT be gated on `cmp zephyr.bin`** — merging changes inlining opportunities and archive-member pull order. `.text` −112 B, 9 functions changed size, 0 symbols added or removed, 1,600 of 1,601 comparable objects byte-identical. **ORACLE RUN 2026-07-27 — STAGE 04 FAILS R7.** All four acceptance framebuffers PASS on both sub-batches, but 8 navigation fields the in-tree build reproduces byte-exactly are broken (`twim1 p1_boot` 371→373, `twim2 p1_boot` re-ordered at identical count, `RADIO_TX` +1/+2), and **all of it is sub-batch A** — comparing AB against A gives 0 regressions and 2 improvements. Reports: `recon/analysis/staged_refactor_stage04.md` (the build) and `recon/analysis/stage04_r7_validation.md` (the gate). |
-| 05 | MMIO accessor macros per width, with a signedness audit | **stage that can change codegen** by value; C8 applies. Stage 02 already reduced 84 accessor spellings to 52, which is the prerequisite. |
-| 06 | net renaming from upstream-identified symbols | 0 B, gated by a real link (C6) |
-| 07 | struct typing | the stage that can grow the image; budget it |
+| 04 | **scoped cohesive-TU merge, app core only — DEFAULT IS NOW SUB-BATCH `B`** — maximal ORDER-PRESERVING runs of consecutive retained sources inside one module that provably cannot collide. Seven refusal rules (`type`, `dupdef`, `static`, `typedef`, `macro`, `asmname`, `tag`/`enumconst`, `includes`); quoted repository headers are *read* and folded rather than refused. `A` and `B` now **partition** the clean runs and the R7 gate below charged 100 % of the damage to `A`, so `B` is the default: **1,615 → 700 TUs, 249 merged units, 1,164 files absorbed.** | **the first stage that CANNOT be gated on `cmp zephyr.bin`.** Declared codegen class **`size-changing`**, measured `.text` **−76 B** for `B` alone (−12 B for `A`, −88 B for `AB`) — so **an oracle run is REQUIRED and has NOT been done for `B`**. Reports: `recon/analysis/staged_refactor_stage04.md` (the original AB build), `recon/analysis/stage04_r7_validation.md` (the gate), `recon/analysis/staged_refactor_stage05.md` (the rework). |
+| 05 | **cohesive composition, app core only** — turns stage 04's concatenated units into composed ones: one include block per unit (repeats of *provably idempotent* headers withdrawn, never moved — 2,423 → 850 directives, worst unit 49 → 6), one declaration site per symbol per unit (146 duplicates withdrawn), one-line member banners, every `identity:` banner preserved byte for byte. Sub-batch `S` (internal linkage for TU-private symbols: 241 candidates) is opt-in and **not applied**. | declared `size-neutral`, **measured `byte-identical` — `zephyr.bin` `cmp`-identical to stage 04's, 956,276 B.** Needs no oracle of its own; inherits stage 04's unproven status. Report: `recon/analysis/staged_refactor_stage05.md` |
+| 06 (was 05) | MMIO accessor macros per width, with a signedness audit | **stage that can change codegen** by value; C8 applies. Stage 02 already reduced 84 accessor spellings to 52, which is the prerequisite. |
+| 07 | net renaming from upstream-identified symbols | 0 B, gated by a real link (C6) |
+| 08 | struct typing | the stage that can grow the image; budget it |
 
 ---
 
@@ -430,7 +462,23 @@ Content-identical, order-different — and C7 gates order.
    `cmp`-identical to Stage 01's on both cores — but the reasoning it used is no
    longer available to a later stage.
 
-### Recommendation
+### ACTED ON, 2026-07-27 — the stage was reworked, not bisected
+
+`recon/analysis/staged_refactor_stage05.md` reworked stage 04 on this evidence
+**as a transformer change and a regeneration**, never a hand-edit: `A` and `B`
+now partition the clean runs and **`B` is the default**. Measured at HEAD
+`ff99f0c6` after regeneration (653 inputs had moved), `.text` is **−12 B for A,
+−76 B for B, −88 B for AB** — additive to the byte — so **a B-only stage is NOT
+size-neutral and the oracle is still REQUIRED**. B carries 918 of the 1,019 TU
+reduction (90 % of the yield) for a tenth of the units. The `volatile` token
+turned out to partition *shape*, not risk: this corpus models every global as a
+`volatile` pointer, so the files WITHOUT the token are the pure computational
+leaves and forwarding thunks — exactly the ones whose merging collapses a
+28-byte thunk into a 4-byte tail branch. See also **C7b**, which turns
+size-neutrality into a declared, checked stage property so the next such finding
+costs a build rather than nine Renode captures.
+
+### Original recommendation (superseded above for the A/B decision, still binding on everything else)
 
 **Do not land stage 04 in this form**, and do not bisect sub-batch A looking for
 a bad unit: there is no bad unit, the mechanism is the linked size of the boot

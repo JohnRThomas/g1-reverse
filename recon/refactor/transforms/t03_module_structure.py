@@ -107,6 +107,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import sdk_symbols  # noqa: E402
 import stagelib  # noqa: E402
 from guard import REPO_ROOT, check_write  # noqa: E402
 
@@ -316,6 +317,59 @@ def rewrite_app_cmakelists(text: str, moves: dict[str, str]) -> tuple[str, int]:
 
 # --------------------------------------------------------------- sub-batch B
 _DECL_LINE = re.compile(r'^[ \t]*extern[ \t].*;[ \t]*$', re.M)
+
+#: a line tail that is nothing but whitespace and COMPLETE comments.  Used to
+#: decide whether a declaration line may be withdrawn whole: a line whose tail
+#: opens a comment it does not close cannot be, or the removal would leave the
+#: next lines inside an unterminated comment.
+_COMMENT_TAIL = re.compile(r'^[ \t]*(?:/\*(?:[^*]|\*(?!/))*\*/[ \t]*|//.*)*$')
+
+
+def _blank_comments(text: str) -> str:
+    """Length- and newline-preserving comment blanking.
+
+    ``_DECL_LINE`` anchors the terminating ``;`` at end of line, so a
+    declaration carrying a trailing comment is INVISIBLE to it::
+
+        extern void memset_bytes(void *, int, size_t);   /* memset */
+
+    That is not hypothetical.  At HEAD ``ff99f0c6`` the concurrent agent's
+    canonicalisation left exactly that line in
+    ``ui/navigation/ui_navigation_task.c`` while the rest of the module agreed
+    on ``(void*,int,int)``.  Stage 03, unable to see it, judged the module
+    unanimous, hoisted ``(void*,int,int)`` into ``g1_navigation.h`` -- and the
+    build failed with ``conflicting types for 'memset_bytes'`` against the very
+    declaration the scanner could not read.
+
+    A declaration the safety rule cannot read is a declaration the safety rule
+    cannot protect.  Blanking rather than deleting keeps every offset and line
+    number aligned with the original text, so the two views can be zipped line
+    for line at withdrawal time.
+    """
+    out, i, n = [], 0, len(text)
+    while i < n:
+        c = text[i]
+        if c == "/" and i + 1 < n and text[i + 1] == "*":
+            j = text.find("*/", i + 2)
+            j = n if j < 0 else j + 2
+            out.append("".join("\n" if ch == "\n" else " " for ch in text[i:j]))
+            i = j
+            continue
+        if c == "/" and i + 1 < n and text[i + 1] == "/":
+            j = text.find("\n", i)
+            j = n if j < 0 else j
+            out.append(" " * (j - i))
+            i = j
+            continue
+        if c in "\"'":
+            m = re.compile(r'"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'').match(text, i)
+            if m:
+                out.append(m.group(0))
+                i = m.end()
+                continue
+        out.append(c)
+        i += 1
+    return "".join(out)
 _DECL_NAME = re.compile(r'\b([A-Za-z_][A-Za-z_0-9]*)[ \t]*(?:\[[^\]]*\])?[ \t]*'
                         r'(?:\(|;|__asm__)')
 
@@ -577,6 +631,12 @@ def batch_b(moves, text, stats, defects):
     divergent_total = 0
     multi_total = 0
 
+    # the measured set of identifiers the SDK angle headers declare
+    # (recon/refactor/sdk_symbols.py).  Absent evidence yields the empty set,
+    # which reproduces the pre-evidence behaviour exactly.
+    sdk_syms = sdk_symbols.load()
+    sdk_refused: list[dict] = []
+
     stdlib_shadow: list[str] = []
     for d in sorted(by_dir):
         files = []
@@ -594,12 +654,14 @@ def batch_b(moves, text, stats, defects):
         uncanon: set[str] = set()
         multi_decl_lines: set[str] = set()
         defined_here: dict[str, tuple[str, str]] = {}
+        # comment-blanked views, aligned line for line with the originals
+        blanked = {r: _blank_comments(text[r]) for r in files}
         for r in files:
             for name, canon in _definitions(text[r]).items():
                 defined_here[name] = (canon, r)
         for r in files:
             seen_here = set()
-            for m in _DECL_LINE.finditer(text[r]):
+            for m in _DECL_LINE.finditer(blanked[r]):
                 line = m.group(0)
                 # Some symbolized files put several declarations on ONE line.
                 # Treating such a line as a single declaration produces
@@ -630,6 +692,34 @@ def batch_b(moves, text, stats, defects):
         for sym, forms in decls.items():
             if sym in uncanon:
                 continue          # a form of this symbol could not be canonicalised
+            if sym in sdk_syms:
+                # ---- REFUSAL: the SDK already declares this symbol.
+                # Hoisting publishes a declaration into every module file that
+                # lost a copy of ANY hoisted symbol -- including files that
+                # never declared THIS one and that get the authoritative
+                # spelling from an angle header.  Measured, not predicted: at
+                # HEAD ff99f0c6 the concurrent agent's type-disagreement repair
+                # made `k_sem_give`, `k_sleep` and `strlen` newly type-identical
+                # across `unsorted/`, stage 03 hoisted all three unchanged, and
+                # the baseline build failed with `conflicting types for
+                # 'k_sem_give'` in `imu_fusion_init.c` -- which includes
+                # <zephyr/kernel.h> on line 1 and never declared it.
+                #
+                # The refusal is deliberately NOT "reconcile with the SDK
+                # prototype": that would rewrite a reconstructed declaration to
+                # match a header, which is inventing evidence about the shipped
+                # ABI in exactly the way this transformer refuses elsewhere.
+                # It is reported as a defect instead.
+                sdk_refused.append({
+                    "module_dir": d, "symbol": sym,
+                    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
+                    "types": {c: sum(len(v) for v in sp.values())
+                              for c, sp in sorted(forms.items())},
+                    "files": sorted({os.path.basename(f)
+                                     for sp in forms.values()
+                                     for v in sp.values() for f in v}),
+                })
+                continue
             if len(forms) == 1:
                 canon = next(iter(forms))
                 spellings = forms[canon]
@@ -722,9 +812,18 @@ def batch_b(moves, text, stats, defects):
             t = text[r]
             out_lines = []
             touched = False
-            for line in t.split("\n"):
-                s = line.strip()
+            # zip the original against its comment-blanked view so a
+            # declaration carrying a trailing comment is withdrawn too -- the
+            # comment belongs to the declaration and leaves with it.
+            for line, bline in zip(t.split("\n"), blanked[r].split("\n")):
+                s = bline.strip()
                 if s.startswith("extern") and s.endswith(";"):
+                    # refuse to drop a line whose tail opens a comment it does
+                    # not close: removing it would swallow the following lines.
+                    tail = line[len(bline.rstrip()):]
+                    if not _COMMENT_TAIL.match(tail):
+                        out_lines.append(line)
+                        continue
                     sym = _decl_symbol(s)
                     if sym in hoist and _canon_decl(s) is not None and \
                             _canon_decl(s) == _canon_decl(hoist[sym]):
@@ -739,6 +838,7 @@ def batch_b(moves, text, stats, defects):
                                         "per_file_copies_removed": removed,
                                         "files": len(files)}
 
+    defects.extend(sdk_refused)
     stats["B_module_headers"] = {
         "headers_generated": len(headers),
         "files_excluded_shadowing_a_stdlib_typedef": sorted(stdlib_shadow),
@@ -746,6 +846,11 @@ def batch_b(moves, text, stats, defects):
         "files_with_multi_declaration_lines": multi_total,
         "declarations_hoisted": hoisted_total,
         "symbols_refused_divergent_spelling": divergent_total,
+        "sdk_evidence_present": bool(sdk_syms),
+        "sdk_declared_symbol_count": len(sdk_syms),
+        "symbols_refused_shadowing_an_sdk_symbol": len(sdk_refused),
+        "symbols_refused_shadowing_an_sdk_symbol_names": sorted(
+            {e["symbol"] for e in sdk_refused}),
         "per_module": dict(sorted(per_module.items())),
     }
     return headers

@@ -150,10 +150,56 @@ measured in halves.
 ``G1_STAGE04_BATCH`` selects how much is merged:
 
     A   only runs in which NO member file contains the token ``volatile``.
-        No member performs a volatile access at all, so no inlining decision
-        inside such a TU can reorder, coalesce or drop one.  R8 exposure: nil.
-    AB  (default) every clean run.
+    B   (DEFAULT since the R7 gate) only runs in which AT LEAST ONE member
+        contains ``volatile`` -- the complement of A within the clean runs.
+    AB  every clean run (A united with B).
     off no merge at all -- the identity transform, for bisecting.
+
+--------------------------------------------------------------------------
+WHY THE DEFAULT IS **B** AND NOT **AB** -- the R7 gate reversed the ordering
+--------------------------------------------------------------------------
+
+The A/B split was ORIGINALLY an R8 risk ordering: A was chosen as the low-risk
+half because no member performs a volatile access at all, so no inlining
+decision inside a merged A unit can reorder, coalesce or drop one.  R8 exposure
+of A: nil.  B carried all of it.
+
+The oracle run of 2026-07-27 measured the opposite
+(``recon/analysis/stage04_r7_validation.md``, and the R7 gate record in
+``recon/refactor/README.md``).  Nine seeded Renode captures over three images:
+
+  * **All eight side-effect regressions are sub-batch A's**, identical field
+    for field on A and on AB: navigation ``twim1 p1_boot`` 371 -> 373
+    (OPT3001 33 -> 35), ``twim2 p1_boot`` 1,089 transactions re-ordered
+    (``7ed8ddcd...`` -> ``03537cda...``), ``counters/RADIO_TX`` 0x232 -> 0x233.
+  * Comparing **AB against A** gives **0 regressions and 2 improvements**: B's
+    271 further merged units, 1,087 further files, introduce not one new
+    divergence and take ``twim2 p2_render`` to byte-equality with shipped.
+
+The R8 argument was not refuted -- the failure is not a volatile reordering.
+It was **irrelevant**.  Both regressions decode to pure re-phasings: the OPT3001
+poll train's period is unchanged to 30 ns and its first 33 transactions are
+identical and in order, but its phase moves -100.7 ms, so one extra poll fits
+inside the 6 s wall.  The carrier is the **LINKED SIZE of the boot path**, and
+sub-batch A's entire codegen delta is **-16 B and two functions**
+(``k_uptime_get_3`` 28 -> 4 B, ``__ieee754_pow`` 2,480 -> 2,488 B).
+
+What the ``volatile`` token actually partitions, once that is understood, is not
+risk but SHAPE.  This corpus models every global as a ``volatile``
+absolute-address pointer, so a file WITHOUT the token is the unusual one: a pure
+computational leaf (libm) or a forwarding thunk that touches no global at all.
+Merging exactly those is what lets a 28-byte thunk collapse into a 4-byte tail
+branch.  A selected the files most likely to shrink; that is why the "safe" half
+moved the image and the "risky" half did not.
+
+Hence the default is B.  Note what this does NOT claim: AB-against-A measured
+B's INCREMENTAL effect **on top of A**.  A B-only image is a fourth image that
+has never been booted, and its ``.text`` delta is not zero (see the stage report).
+Per the general lesson this pipeline now encodes as a first-class stage property
+(``driver.CODEGEN_CLASS`` / ``driver.py size-gate``), **any transformation that
+changes linked size can break side-effect equivalence in either direction**, so
+this stage is declared ``size-changing`` and an oracle run is REQUIRED, not
+optional, before it is landed.
 """
 
 from __future__ import annotations
@@ -174,6 +220,13 @@ from transforms import t03_module_structure as t3  # noqa: E402
 APP_SRC = "recon/symbolized/app/"
 RETAINED_CMAKE = "recon/generated/app_retained_sources.cmake"
 APP_CMAKELISTS = "recon/application/app/CMakeLists.txt"
+
+#: ``G1_STAGE04_BATCH`` values.  A and B PARTITION the clean multi-member runs.
+BATCHES = frozenset(("A", "B", "AB", "OFF"))
+#: The R7 gate of 2026-07-27 charged 100 % of stage 04's eight side-effect
+#: regressions to sub-batch A and measured B as introducing none.  See the
+#: module docstring for why the ``volatile`` token partitions SHAPE, not risk.
+DEFAULT_BATCH = "B"
 
 #: bodies whose ``-ffp-contract`` is a per-TU contract recovered from the image
 #: (AGENTS.md critical finding 1b).  Never merged: the flag has no finer grain.
@@ -762,7 +815,10 @@ def run(stage, source_root: str, relpaths: list[str]) -> dict:
             src[rel] = fh.read()
         text[rel] = src[rel].decode("utf-8", errors="surrogateescape")
 
-    batch = os.environ.get("G1_STAGE04_BATCH", "AB").upper()
+    batch = os.environ.get("G1_STAGE04_BATCH", DEFAULT_BATCH).upper()
+    if batch not in BATCHES:
+        raise SystemExit("G1_STAGE04_BATCH must be one of %s, got %r"
+                         % (sorted(BATCHES), batch))
 
     # --- the ordered, retained app source list is the ONLY merge candidate set
     cmake = text.get(RETAINED_CMAKE, "")
@@ -872,11 +928,19 @@ def run(stage, source_root: str, relpaths: list[str]) -> dict:
             runs.append((mod, cur))
 
     # --- sub-batch selection ---------------------------------------------
+    # A and B PARTITION the clean multi-member runs; AB is their union.  The
+    # partition itself is identical in every batch -- only the SELECTION differs
+    # -- so a side-effect failure localises to one half and the two halves are
+    # directly comparable.  The default is B: the R7 gate of 2026-07-27 charged
+    # 100 % of stage 04's side-effect regressions to A (module docstring).
     def selected(members: list[str]) -> bool:
         if len(members) < 2 or batch == "OFF":
             return False
+        volatile_free = not any(info[m]["has_volatile"] for m in members)
         if batch == "A":
-            return not any(info[m]["has_volatile"] for m in members)
+            return volatile_free
+        if batch == "B":
+            return not volatile_free
         return True
 
     absorbed: dict[str, str] = {}      # first member -> merged path

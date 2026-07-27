@@ -232,6 +232,186 @@ def staleness(number: int, slug: str) -> dict:
     }
 
 
+# ------------------------------------------------------- codegen size class
+#
+# A FIRST-CLASS, CHECKABLE STAGE PROPERTY -- added after the Stage 04 R7 gate.
+#
+# Three independent measurements in this project now say the same thing:
+#
+#   * +60 B of `.text` reordered two firmware threads on the shared I2C bus and
+#     broke `twim2 p1_boot` byte-equality (type_disagreement_repair.md, pass 1b);
+#   * +16 B collapsed the dashboard (iteration 42);
+#   * **-16 B** moved the OPT3001 poll train's phase by -100.7 ms and gained it
+#     one extra poll inside the 6 s wall, breaking eight navigation fields the
+#     in-tree build reproduces byte-exactly (stage04_r7_validation.md §3.5).
+#
+# The third is the decisive one because it points the other way: the damage is
+# not "bigger image, slower boot".  **Any transformation that changes linked
+# size can break observable side-effect equivalence, in either direction.**
+#
+# That was discovered at the gate, after a build and nine Renode captures.  It
+# should not have been: whether a stage can change linked size is a property of
+# the stage, declarable in advance and checkable mechanically.  So every stage
+# now DECLARES a codegen class, the driver records it in the MANIFEST, and
+# ``driver.py size-gate`` measures the class actually achieved and refuses a
+# stage that came out worse than it declared.
+#
+#: ordered weakest-claim-last.  A stage may come out BETTER than it declared
+#: (that is information); it may never come out worse (that is a broken claim).
+CODEGEN_CLASSES = ("byte-identical", "size-neutral", "size-changing")
+CODEGEN_RANK = {c: i for i, c in enumerate(CODEGEN_CLASSES)}
+
+#: What decides ``size-neutral`` is **every section carrying SHF_ALLOC**, not a
+#: list of section names.
+#:
+#: The first version of this gate compared ``(".text", ".rodata", ".data",
+#: ".bss", ".noinit")`` and reported the Stage 04 image as ``size-neutral`` with
+#: every delta ``+0`` -- because the G1 Zephyr link names those sections
+#: **without a leading dot**: ``text`` 492,688, ``rodata`` 456,536, ``datas``
+#: 3,327, ``bss`` 189,230, ``noinit`` 60,021, plus 20 more allocatable areas
+#: (``device_area``, ``k_sem_area``, ``log_const_area``, ...).  A gate keyed on
+#: a name list is a gate that silently passes, which is worse than no gate.  The
+#: ALLOC flag is in the section header and cannot go stale.
+SHF_ALLOC = 0x2
+
+#: reported first in the delta table when present, purely for readability.
+PREFERRED_SECTION_ORDER = ("text", "rodata", "data", "datas", "bss", "noinit")
+
+
+def _canon_section(name: str) -> str:
+    return name[1:] if name.startswith(".") else name
+
+
+def elf_section_sizes(path: str, alloc_only: bool = False) -> dict[str, int]:
+    """Section name -> size, parsed from the ELF section header table.
+
+    Parsed here rather than shelled out to ``arm-zephyr-eabi-size`` so the gate
+    and its tests need no toolchain: a size gate that only runs where a
+    cross-compiler is installed is a gate that does not run.
+
+    ``alloc_only`` keeps just the sections whose header carries ``SHF_ALLOC``
+    -- the ones that occupy the device's flash or RAM and can therefore move a
+    bus transaction -- and canonicalises the name by dropping a leading dot, so
+    ``.text`` and Zephyr's ``text`` are the same key.
+    """
+    import struct as _struct                      # local: a repo-root struct.py
+    with open(path, "rb") as fh:                  # shadows the stdlib module,
+        data = fh.read()                          # hence PYTHONSAFEPATH=1
+    if data[:4] != b"\x7fELF":
+        raise ValueError("not an ELF file: %s" % path)
+    is64 = data[4] == 2
+    end = "<" if data[5] == 1 else ">"
+    if is64:
+        shoff, = _struct.unpack_from(end + "Q", data, 0x28)
+        shentsize, shnum, shstrndx = _struct.unpack_from(end + "HHH", data, 0x3A)
+        name_off, flag_off, size_off = 0x00, 0x08, 0x20
+        szfmt = end + "Q"
+        flagfmt = end + "Q"
+    else:
+        shoff, = _struct.unpack_from(end + "I", data, 0x20)
+        shentsize, shnum, shstrndx = _struct.unpack_from(end + "HHH", data, 0x2E)
+        name_off, flag_off, size_off = 0x00, 0x08, 0x14
+        szfmt = end + "I"
+        flagfmt = end + "I"
+
+    def hdr(i):
+        return shoff + i * shentsize
+
+    strtab_off, = _struct.unpack_from(end + ("Q" if is64 else "I"),
+                                      data, hdr(shstrndx) + (0x18 if is64 else 0x10))
+    strtab_sz, = _struct.unpack_from(szfmt, data, hdr(shstrndx) + size_off)
+    strtab = data[strtab_off:strtab_off + strtab_sz]
+
+    out: dict[str, int] = {}
+    for i in range(shnum):
+        base = hdr(i)
+        nm_idx, = _struct.unpack_from(end + "I", data, base + name_off)
+        flags, = _struct.unpack_from(flagfmt, data, base + flag_off)
+        sz, = _struct.unpack_from(szfmt, data, base + size_off)
+        j = strtab.find(b"\0", nm_idx)
+        name = strtab[nm_idx:j if j >= 0 else None].decode("utf-8", "replace")
+        if not name:
+            continue
+        if alloc_only:
+            if not (flags & SHF_ALLOC):
+                continue
+            name = _canon_section(name)
+        out[name] = out.get(name, 0) + sz
+    return out
+
+
+def classify_codegen(base_sizes: dict[str, int], stage_sizes: dict[str, int],
+                     image_identical: bool) -> str:
+    """The codegen class a stage ACTUALLY achieved.
+
+    ``base_sizes``/``stage_sizes`` are ALLOC-only section maps.  A section that
+    exists on one side and not the other counts as a change: appearing or
+    vanishing is exactly as observable as growing.
+    """
+    if image_identical:
+        return "byte-identical"
+    for s in set(base_sizes) | set(stage_sizes):
+        if base_sizes.get(s, 0) != stage_sizes.get(s, 0):
+            return "size-changing"
+    return "size-neutral"
+
+
+def size_deltas(base_sizes: dict[str, int], stage_sizes: dict[str, int]
+                ) -> dict[str, int]:
+    """Signed per-section deltas.  Unchanged sections are omitted; the
+    preferred sections are always reported so the table reads the same way
+    every time."""
+    keys = set(base_sizes) | set(stage_sizes)
+    out = {s: stage_sizes.get(s, 0) - base_sizes.get(s, 0) for s in keys}
+    ordered = [s for s in PREFERRED_SECTION_ORDER if s in out]
+    ordered += sorted(s for s in out
+                      if s not in PREFERRED_SECTION_ORDER and out[s])
+    return {s: out[s] for s in ordered}
+
+
+def size_gate(declared: str, base_elf: str, stage_elf: str,
+              base_bin: str | None = None, stage_bin: str | None = None) -> dict:
+    """Measure the achieved codegen class and judge it against the declared one.
+
+    The verdict is deliberately asymmetric.  Coming out BETTER than declared
+    passes and is reported (a stage that declared ``size-changing`` and turned
+    out byte-identical needs no oracle run).  Coming out WORSE fails: the stage
+    made a claim about observability that its own image refutes.
+    """
+    if declared not in CODEGEN_RANK:
+        raise ValueError("unknown codegen class %r" % declared)
+    bs = elf_section_sizes(base_elf, alloc_only=True)
+    ss = elf_section_sizes(stage_elf, alloc_only=True)
+    identical = False
+    if base_bin and stage_bin and os.path.exists(base_bin) and os.path.exists(stage_bin):
+        with open(base_bin, "rb") as a, open(stage_bin, "rb") as b:
+            identical = a.read() == b.read()
+    measured = classify_codegen(bs, ss, identical)
+    ok = CODEGEN_RANK[measured] <= CODEGEN_RANK[declared]
+    return {
+        "schema": "g1.refactor.size-gate/1",
+        "declared_codegen_class": declared,
+        "measured_codegen_class": measured,
+        "pass": ok,
+        "image_byte_identical": identical,
+        "section_deltas": size_deltas(bs, ss),
+        "alloc_section_count": [len(bs), len(ss)],
+        "base_sections": dict(sorted(bs.items())),
+        "stage_sections": dict(sorted(ss.items())),
+        "oracle_required": measured == "size-changing",
+        "why_oracle_required":
+            "Linked size moved.  Three independent measurements in this project "
+            "(+60 B, +16 B, -16 B) show a size change of this order re-phases the "
+            "boot path and can break byte-equality of a peripheral bus stream in "
+            "EITHER direction.  R7 acceptance cannot be inferred; it must be "
+            "captured." if measured == "size-changing" else
+            "Linked size did not move; every previously captured behavioural "
+            "measurement carries over by construction, not by argument.",
+        "base_elf": base_elf,
+        "stage_elf": stage_elf,
+    }
+
+
 def address_set(number: int, slug: str) -> set[str]:
     p = os.path.join(stage_dir(number, slug), "PARITY_MAP.json")
     if not os.path.exists(p):

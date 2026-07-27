@@ -1,7 +1,7 @@
 {
  "schema": "g1.refactor.stage-quarantine/1",
  "stage": 4,
- "sub_batch": "AB",
+ "sub_batch": "B",
  "shape_refusals": {
   "count": 30,
   "by_reason": {
@@ -46,21 +46,22 @@
   }
  },
  "pairwise_refusals": {
-  "adjacencies_blocked": 1084,
+  "adjacencies_blocked": 878,
   "by_rule": {
-   "enumconst": 5,
+   "enumconst": 6,
    "includes": 80,
-   "macro": 117,
+   "macro": 118,
    "static": 16,
-   "tag": 7,
-   "type": 830,
-   "typedef": 29
+   "tag": 5,
+   "type": 623,
+   "typedef": 30
   },
   "top_symbols_per_rule": {
    "enumconst": {
     "x3c": 2,
     "x0c": 1,
-    "x97": 1,
+    "x18": 1,
+    "xc0": 1,
     "x39": 1
    },
    "includes": {
@@ -87,6 +88,7 @@
     "g_ble_dispatch_pending_marker": 2,
     "g_dashboard_display_level": 2,
     "g_display_msgq": 2,
+    "LOG_TAG": 2,
     "g_20007b38": 2,
     "g_esb_notify_slave_role_guard": 2,
     "g_pending_message_flag": 2,
@@ -97,8 +99,7 @@
     "g_quicknote_warn_offset_ms": 2,
     "onboarding_attempt_counter": 2,
     "onboarding_retry_counter": 2,
-    "onboarding_secondary_reset_flag": 2,
-    "gatt_store_ccc_cf": 1
+    "onboarding_secondary_reset_flag": 2
    },
    "static": {
     "load_u16": 2,
@@ -114,8 +115,6 @@
     "bits": 1
    },
    "tag": {
-    "struct adc_api_raw": 1,
-    "struct device_raw": 1,
     "struct slist": 1,
     "struct slist_node": 1,
     "struct qspi_cmd": 1,
@@ -123,31 +122,31 @@
     "struct g1_opt_view": 1
    },
    "type": {
-    "get_device_info": 71,
-    "memset_bytes": 46,
-    "assert_post_action": 41,
-    "log_msg_create_3arg": 15,
-    "memcpy": 13,
-    "audio_codec_reg_op_dispatch": 13,
+    "assert_post_action": 31,
+    "get_device_info": 23,
+    "memset_bytes": 19,
+    "log_msg_create_3arg": 16,
+    "reflash_fb_data_to_lcd": 13,
     "smp_log_message": 12,
-    "reflash_fb_data_to_lcd": 12,
-    "k_msgq_put": 11,
-    "z_log_msg_runtime_create": 10,
     "bt_log_forward_3arg": 10,
-    "atomic_set_bit": 10,
-    "dev_write_reg3": 10,
-    "atomic_test_bit": 8,
+    "atomic_set_bit": 9,
+    "audio_codec_reg_op_dispatch": 9,
     "gui_utf_draw": 8,
     "clean_fb_data": 8,
     "get_pin_idx": 7,
+    "dev_write_reg3": 7,
     "net_buf_simple_add": 6,
-    "net_buf_unref": 6,
-    "z_spin_lock_set_owner": 6,
-    "z_spin_lock_valid": 6,
+    "z_log_msg_runtime_create": 6,
     "atomic_get_3_0": 6,
-    "is_battery_critical": 5,
-    "ble_conn_unref": 5,
-    "log_msg_3arg_thunk": 5
+    "log_msg_3arg_thunk": 5,
+    "sync_to_slave": 5,
+    "audio_codec_bus_write": 5,
+    "get_timestamp": 5,
+    "is_battery_critical": 4,
+    "att_log_emit_3arg": 4,
+    "memcpy": 4,
+    "atomic_test_bit": 4,
+    "z_spin_unlock_valid": 4
    },
    "typedef": {
     "uint32_t": 12,
@@ -155,12 +154,13 @@
     "int": 2,
     "uintptr_t": 2,
     "wchar_t": 2,
+    "fp": 1,
     "fp774_t": 1,
     "uint16_t": 1,
     "fn_t": 1
    }
   }
  },
- "runs_of_length_one": 377,
- "clean_runs_not_selected_by_this_sub_batch": 0
+ "runs_of_length_one": 303,
+ "clean_runs_not_selected_by_this_sub_batch": 46
 }
