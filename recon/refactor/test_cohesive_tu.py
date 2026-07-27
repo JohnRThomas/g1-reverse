@@ -277,3 +277,47 @@ class TestStalenessWatchesEveryMember(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class IncompleteTagForwardsTest(unittest.TestCase):
+    """The merge must give every struct/union tag it names FILE scope.
+
+    Regression test for the compile failure found at HEAD ``e7f35727``:
+    three members of ``lib/g1_lib_03.c`` each carried the character-for-character
+    identical declaration ``extern _Bool z_device_is_ready(const struct device
+    *);`` and the unit declared ``struct device`` nowhere at file scope, so each
+    declaration introduced its own parameter-scope incomplete type and GCC
+    rejected the second and third as ``conflicting types``.
+    """
+
+    def test_tag_named_only_inside_a_parameter_list_is_forward_declared(self):
+        out = t4.incomplete_tag_forwards(
+            ["extern _Bool z_device_is_ready(const struct device *);",
+             "extern _Bool z_device_is_ready(const struct device *);"])
+        self.assertEqual(out, ["struct device;"])
+
+    def test_unions_too_and_the_list_is_deduplicated_and_sorted(self):
+        out = t4.incomplete_tag_forwards(
+            ["union u_t a; struct b_t *p;", "struct b_t *q; union u_t c;"])
+        self.assertEqual(out, ["struct b_t;", "union u_t;"])
+
+    def test_a_tag_that_appears_only_in_a_comment_or_string_is_not_declared(self):
+        out = t4.incomplete_tag_forwards(
+            ['/* struct ghost is only mentioned here */\n'
+             'const char *s = "struct phantom";\nstruct real *p;'])
+        self.assertEqual(out, ["struct real;"])
+
+    def test_attribute_is_not_mistaken_for_a_tag(self):
+        out = t4.incomplete_tag_forwards(
+            ["struct __attribute__((packed)) packed_t { int a; };"])
+        self.assertEqual(out, ["struct packed_t;"])
+
+    def test_anonymous_struct_contributes_nothing(self):
+        self.assertEqual(t4.incomplete_tag_forwards(["typedef struct { int a; } X;"]), [])
+
+    def test_render_emits_the_block_before_the_first_member(self):
+        text = {"a.c": "extern _Bool f(const struct device *);\n",
+                "b.c": "extern _Bool f(const struct device *);\n"}
+        out = t4.render(t4.APP_SRC + "lib", ["a.c", "b.c"], text)
+        self.assertIn("struct device;", out)
+        self.assertLess(out.index("struct device;"), out.index("/* a.c */"))

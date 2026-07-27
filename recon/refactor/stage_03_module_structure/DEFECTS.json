@@ -1,7 +1,7 @@
 {
  "schema": "g1.refactor.stage-defects/1",
  "stage": 3,
- "count": 934,
+ "count": 932,
  "entries": [
   {
    "module_dir": "recon/symbolized/app/analytics",
@@ -82,8 +82,8 @@
    "distinct_types": 3,
    "types": {
     "extern int qspi_nor_send_cinstr(int,void*,int,int,int);": 1,
-    "extern int qspi_nor_send_cinstr(unsigned int,void*,unsigned int);": 1,
-    "extern int qspi_nor_send_cinstr(void*,uint8_t*,uint8_t);": 1
+    "extern int qspi_nor_send_cinstr(void*,uint8_t*,uint8_t);": 1,
+    "extern int qspi_nor_send_cinstr(void*,unsigned char*,unsigned char);": 1
    },
    "files": [
     "audio_apply_config_cmd_0xab.c",
@@ -843,11 +843,11 @@
   {
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "z_log_msg_runtime_create",
-   "class": "arity_differs",
+   "class": "parameter_type_differs",
    "distinct_types": 3,
    "types": {
     "extern void z_log_msg_runtime_create(u32,u32,const void*,u32);": 1,
-    "extern void z_log_msg_runtime_create(uint32_t,int,void*);": 1,
+    "extern void z_log_msg_runtime_create(uint32_t,int,void*,int);": 1,
     "extern void z_log_msg_runtime_create(unsigned int,unsigned int,unsigned int,unsigned int);": 6
    },
    "files": [
@@ -1088,8 +1088,8 @@
    "class": "parameter_type_differs",
    "distinct_types": 2,
    "types": {
-    "extern int bt_conn_lookup_state_le(uint32_t,uint32_t,uint32_t);": 1,
-    "extern int bt_conn_lookup_state_le(unsigned long,unsigned long,unsigned long);": 1
+    "extern int bt_conn_lookup_state_le(int,int,int);": 1,
+    "extern int bt_conn_lookup_state_le(uint32_t,uint32_t,uint32_t);": 1
    },
    "files": [
     "ble_privacy_id_remove.c",
@@ -1900,10 +1900,11 @@
    "module_dir": "recon/symbolized/app/core",
    "symbol": "dev_ctrl_read1",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 4,
    "types": {
     "extern int dev_ctrl_read1(int,int,int,void*,int);": 1,
-    "extern int dev_ctrl_read1(int,unsigned int,unsigned int,void*);": 2,
+    "extern int dev_ctrl_read1(int,unsigned char,unsigned char,unsigned int);": 1,
+    "extern int dev_ctrl_read1(int,unsigned int,unsigned int,void*);": 1,
     "extern int dev_ctrl_read1(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);": 1
    },
    "files": [
@@ -3334,11 +3335,11 @@
   {
    "module_dir": "recon/symbolized/app/esb",
    "symbol": "update_persist_task_status",
-   "class": "arity_differs",
+   "class": "parameter_type_differs",
    "distinct_types": 2,
    "types": {
     "extern void update_persist_task_status(unsigned int,int,int);": 1,
-    "extern void update_persist_task_status(void*,uint32_t);": 1
+    "extern void update_persist_task_status(void*,uint32_t,int);": 1
    },
    "files": [
     "local_esbs_ipc_service_recv.c",
@@ -4271,12 +4272,12 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "__divdf3",
-   "class": "arity_differs",
+   "class": "return_type_differs",
    "distinct_types": 3,
    "types": {
     "extern u64 __divdf3(u32,u32,u32,u32);": 1,
     "extern u64 __divdf3(u4,u4,u4,u4);": 1,
-    "extern uint64_t __divdf3(uint32_t,uint32_t);": 1
+    "extern uint64_t __divdf3(uint32_t,uint32_t,int,int);": 1
    },
    "files": [
     "__ieee754_exp.c",
@@ -4625,9 +4626,9 @@
    "class": "return_type_differs",
    "distinct_types": 3,
    "types": {
+    "extern int net_buf_simple_tailroom(int);": 1,
     "extern uint32_t net_buf_simple_tailroom(const void*);": 1,
-    "extern uint32_t net_buf_simple_tailroom(void*);": 1,
-    "extern unsigned long net_buf_simple_tailroom(void*);": 1
+    "extern uint32_t net_buf_simple_tailroom(void*);": 1
    },
    "files": [
     "att_chan_read.c",
@@ -5524,8 +5525,8 @@
    "distinct_types": 3,
    "types": {
     "extern int read_struct_first_word(uint32_t);": 1,
-    "extern int read_struct_first_word(unsigned long);": 2,
-    "extern int32_t read_struct_first_word(volatile int32_t*);": 1
+    "extern int32_t read_struct_first_word(volatile int32_t*);": 1,
+    "extern unsigned int read_struct_first_word(unsigned int*);": 2
    },
    "files": [
     "bt_gatt_store_cf.c",
@@ -5582,7 +5583,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void atomic_and_3(void*,unsigned long);": 1,
+    "extern long atomic_and_3(volatile long*,long);": 1,
     "extern int32_t atomic_and_3(volatile int32_t*,int32_t);": 1
    },
    "definition_file": "atomic_and_3.c",
@@ -6151,7 +6152,7 @@
    "distinct_types": 3,
    "types": {
     "extern void bt_addr_le_copy_828da(int,uint32_t,int);": 1,
-    "extern void bt_addr_le_copy_828da(unsigned long*,unsigned long*);": 7,
+    "extern void bt_addr_le_copy_828da(void*,const void*);": 7,
     "extern void bt_addr_le_copy_828da(void*,unsigned int,unsigned int,unsigned int);": 1
    },
    "files": [
@@ -8093,11 +8094,11 @@
   {
    "module_dir": "recon/symbolized/app/notify",
    "symbol": "sync_to_slave",
-   "class": "return_type_differs",
+   "class": "arity_differs",
    "distinct_types": 2,
    "types": {
     "extern int sync_to_slave(char*,int,int);": 1,
-    "extern void sync_to_slave(byte*,int,int);": 1
+    "extern void sync_to_slave(byte*,int,int,int);": 1
    },
    "files": [
     "process_for_new_message_come_on.c",
@@ -8139,7 +8140,7 @@
    "distinct_types": 2,
    "types": {
     "extern void draw_message(uint32_t,int);": 1,
-    "extern void draw_message(uint32_t,uintptr_t);": 1
+    "extern void draw_message(unsigned long,int);": 1
    },
    "files": [
     "render_ancs_notification_animation.c",
@@ -9060,7 +9061,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void bt_addr_le_copy_828da(unsigned long*,unsigned long*);": 2,
+    "extern void bt_addr_le_copy_828da(void*,const void*);": 2,
     "extern void bt_addr_le_copy_828da(uint32_t*,uint32_t*);": 1
    },
    "definition_file": "bt_addr_le_copy_828da.c",
@@ -9668,20 +9669,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/unsorted",
-   "symbol": "net_buf_simple_tailroom",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int net_buf_simple_tailroom(int);": 1,
-    "extern unsigned long net_buf_simple_tailroom(void*);": 1
-   },
-   "files": [
-    "bt_acl_data_recv.c",
-    "find_type_cb.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/unsorted",
    "symbol": "net_buf_simple_add_mem",
    "class": "return_type_differs",
    "distinct_types": 2,
@@ -9925,7 +9912,7 @@
    "symbol": "memcmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int memcmp(const void*,const void*,unsigned long);": 1
+    "extern int memcmp(const void*,const void*,size_t);": 1
    },
    "files": [
     "update_burial_point_to_flash.c"
@@ -9958,8 +9945,7 @@
    "symbol": "z_device_is_ready",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern _Bool z_device_is_ready(const struct device*);": 2,
-    "extern int z_device_is_ready(int);": 3
+    "extern _Bool z_device_is_ready(const struct device*);": 5
    },
    "files": [
     "app_codec_lc3_test.c",
@@ -9974,7 +9960,7 @@
    "symbol": "k_sem_give",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sem_give(int);": 10
+    "extern void k_sem_give(struct k_sem*);": 10
    },
    "files": [
     "audio_i2s_start_channels.c",
@@ -10011,7 +9997,7 @@
    "symbol": "strlen",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strlen(int);": 1
+    "extern size_t strlen(const char*);": 1
    },
    "files": [
     "build_str_response_frame.c"
@@ -10054,8 +10040,7 @@
    "symbol": "k_msgq_put",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_put(unsigned int,void*,int,int);": 5,
-    "extern unsigned int k_msgq_put(int,unsigned int,int,int);": 4
+    "extern int k_msgq_put(struct k_msgq*,const void*,k_timeout_t);": 9
    },
    "files": [
     "delAudioStreamRecord.c",
@@ -10074,7 +10059,7 @@
    "symbol": "k_msgq_get",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_get(int,unsigned int,int,int);": 8,
+    "extern int k_msgq_get(struct k_msgq*,void*,k_timeout_t);": 8,
     "extern int k_msgq_get(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);": 1
    },
    "files": [
@@ -10118,7 +10103,7 @@
    "symbol": "z_impl_k_msgq_alloc_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_impl_k_msgq_alloc_init(unsigned int,int,int);": 1
+    "extern int z_impl_k_msgq_alloc_init(struct k_msgq*,size_t,uint32_t);": 1
    },
    "files": [
     "init_dmic_msgq.c"
@@ -10151,7 +10136,7 @@
    "symbol": "k_mem_slab_alloc",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_mem_slab_alloc(int,int*,int,int);": 1
+    "extern int k_mem_slab_alloc(struct k_mem_slab*,void**,k_timeout_t);": 1
    },
    "files": [
     "pdm_mic_event_handler.c"
@@ -10162,7 +10147,7 @@
    "symbol": "memcmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int memcmp(const void*,const void*,uint32_t);": 1
+    "extern int memcmp(const void*,const void*,size_t);": 1
    },
    "files": [
     "qspi_nor_configure.c"
@@ -10173,8 +10158,7 @@
    "symbol": "k_sleep",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_sleep(int,int);": 1,
-    "extern void k_sleep(uint32_t,uint32_t);": 1
+    "extern int32_t k_sleep(k_timeout_t);": 2
    },
    "files": [
     "qspi_nor_suspend_bus.c",
@@ -10197,8 +10181,7 @@
    "symbol": "assert_post_action",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int assert_post_action(int,int);": 1,
-    "extern void assert_post_action(const char*,unsigned int);": 1
+    "extern void assert_post_action(const char*,unsigned int);": 2
    },
    "files": [
     "uarte_nrfx_pm_action.c",
@@ -10210,7 +10193,7 @@
    "symbol": "memcmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int memcmp(const void*,const void*,unsigned long);": 1,
+    "extern int memcmp(const void*,const void*,size_t);": 1,
     "extern int memcmp(int,int,int,int);": 1,
     "extern int memcmp(int,uint32_t,int);": 1,
     "extern int memcmp(unsigned int,unsigned int,int,unsigned int,unsigned int);": 1
@@ -10228,8 +10211,7 @@
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
     "__attribute__((noreturn))extern void assert_post_action(int,);": 1,
-    "extern int assert_post_action(int,int);": 1,
-    "extern void assert_post_action(const char*,unsigned int);": 7
+    "extern void assert_post_action(const char*,unsigned int);": 8
    },
    "files": [
     "ble_conn_process_complete_or_disconnect.c",
@@ -10248,7 +10230,7 @@
    "symbol": "k_sem_give",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sem_give(int);": 3,
+    "extern void k_sem_give(struct k_sem*);": 3,
     "extern void k_sem_give(void);": 1
    },
    "files": [
@@ -10275,9 +10257,7 @@
    "symbol": "k_work_cancel_delayable",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_work_cancel_delayable(struct k_work_delayable*);": 1,
-    "extern uint32_t k_work_cancel_delayable(int);": 1,
-    "extern void k_work_cancel_delayable(int);": 1
+    "extern int k_work_cancel_delayable(struct k_work_delayable*);": 3
    },
    "files": [
     "ble_conn_set_state.c",
@@ -10290,7 +10270,7 @@
    "symbol": "z_impl_k_queue_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void z_impl_k_queue_init(void*);": 1
+    "extern void z_impl_k_queue_init(struct k_queue*);": 1
    },
    "files": [
     "ble_conn_set_state.c"
@@ -10301,7 +10281,7 @@
    "symbol": "k_work_delayable_busy_get",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern uint32_t k_work_delayable_busy_get(int);": 1
+    "extern int k_work_delayable_busy_get(const struct k_work_delayable*);": 1
    },
    "files": [
     "ble_conn_set_state.c"
@@ -10312,7 +10292,7 @@
    "symbol": "strlen",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strlen(int);": 3
+    "extern size_t strlen(const char*);": 3
    },
    "files": [
     "ble_flush_queued_indications.c",
@@ -10384,7 +10364,7 @@
    "symbol": "k_mutex_unlock",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_mutex_unlock(unsigned int);": 1
+    "extern int k_mutex_unlock(struct k_mutex*);": 1
    },
    "files": [
     "ble_work_queue_unlock.c"
@@ -10395,7 +10375,7 @@
    "symbol": "malloc",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern uintptr_t malloc(uint32_t);": 1
+    "extern void*malloc(size_t);": 1
    },
    "files": [
     "ble_work_thread.c"
@@ -10406,7 +10386,7 @@
    "symbol": "k_sleep",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sleep(uint32_t,uint32_t);": 1
+    "extern int32_t k_sleep(k_timeout_t);": 1
    },
    "files": [
     "ble_work_thread.c"
@@ -10464,7 +10444,7 @@
    "symbol": "k_msgq_get",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_get(int,unsigned int,int,int);": 2
+    "extern int k_msgq_get(struct k_msgq*,void*,k_timeout_t);": 2
    },
    "files": [
     "dequeue_bt_data.c",
@@ -10489,8 +10469,7 @@
    "symbol": "k_msgq_put",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_put(unsigned int,void*,int,int);": 1,
-    "extern unsigned int k_msgq_put(int,unsigned int,int,int);": 1
+    "extern int k_msgq_put(struct k_msgq*,const void*,k_timeout_t);": 2
    },
    "files": [
     "SendPowerInfoToSlave.c",
@@ -10502,10 +10481,9 @@
    "symbol": "assert_post_action",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "__attribute__((noreturn))extern void assert_post_action(uint32_t,uint32_t);": 1,
     "__attribute__((noreturn))extern void assert_post_action(uintptr_t,uint32_t);": 2,
     "extern int assert_post_action(int,int);": 1,
-    "extern void assert_post_action(const char*,unsigned int);": 5
+    "extern void assert_post_action(const char*,unsigned int);": 6
    },
    "files": [
     "app_event_alloc.c",
@@ -10524,7 +10502,7 @@
    "symbol": "z_spin_lock_valid",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_spin_lock_valid(unsigned int*);": 1
+    "extern _Bool z_spin_lock_valid(struct k_spinlock*);": 1
    },
    "files": [
     "app_event_manager_submit.c"
@@ -10535,7 +10513,7 @@
    "symbol": "z_spin_unlock_valid",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_spin_unlock_valid(uintptr_t);": 1
+    "extern _Bool z_spin_unlock_valid(struct k_spinlock*);": 1
    },
    "files": [
     "app_event_manager_submit.c"
@@ -10546,7 +10524,7 @@
    "symbol": "z_spin_lock_set_owner",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_spin_lock_set_owner(unsigned int*);": 1
+    "extern void z_spin_lock_set_owner(struct k_spinlock*);": 1
    },
    "files": [
     "app_event_manager_submit.c"
@@ -10557,7 +10535,7 @@
    "symbol": "k_work_submit",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_work_submit(int);": 1
+    "extern int k_work_submit(struct k_work*);": 1
    },
    "files": [
     "app_event_manager_submit.c"
@@ -10568,10 +10546,8 @@
    "symbol": "k_sleep",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_sleep(int,int);": 1,
-    "extern void k_sleep(int,int);": 3,
-    "extern void k_sleep(unsigned int,unsigned int);": 3,
-    "extern void k_sleep(void);": 2
+    "extern int32_t k_sleep(k_timeout_t);": 8,
+    "extern void k_sleep(unsigned int,unsigned int);": 1
    },
    "files": [
     "app_msleep_thunk_a.c",
@@ -10624,7 +10600,7 @@
    "symbol": "z_impl_k_msgq_alloc_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_impl_k_msgq_alloc_init(void*,int,int);": 1,
+    "extern int z_impl_k_msgq_alloc_init(struct k_msgq*,size_t,uint32_t);": 1,
     "extern uint64_t z_impl_k_msgq_alloc_init(uint32_t,uint32_t,uint32_t,uint32_t);": 1
    },
    "files": [
@@ -10637,8 +10613,7 @@
    "symbol": "z_device_is_ready",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern _Bool z_device_is_ready(const struct device*);": 4,
-    "extern int z_device_is_ready(int);": 1,
+    "extern _Bool z_device_is_ready(const struct device*);": 5,
     "extern uint64_t z_device_is_ready(uint32_t);": 1
    },
    "files": [
@@ -10666,7 +10641,7 @@
    "symbol": "k_mutex_unlock",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_mutex_unlock(unsigned int);": 1
+    "extern int k_mutex_unlock(struct k_mutex*);": 1
    },
    "files": [
     "dev_reg_modify_bits.c"
@@ -10702,7 +10677,7 @@
    "symbol": "k_msgq_get",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_get(int,unsigned int,int,int);": 1
+    "extern int k_msgq_get(struct k_msgq*,void*,k_timeout_t);": 1
    },
    "files": [
     "enqueue_bt_data.c"
@@ -10747,7 +10722,7 @@
    "symbol": "k_current_get",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern uintptr_t k_current_get(void);": 1
+    "extern struct k_thread*k_current_get(void);": 1
    },
    "files": [
     "log_process_thread.c"
@@ -10758,7 +10733,7 @@
    "symbol": "k_sem_give",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sem_give(uintptr_t);": 1
+    "extern void k_sem_give(struct k_sem*);": 1
    },
    "files": [
     "log_process_thread.c"
@@ -10782,8 +10757,7 @@
    "symbol": "k_msleep",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_msleep(int);": 1,
-    "extern void k_msleep(uint32_t);": 2
+    "extern int32_t k_msleep(int32_t);": 3
    },
    "files": [
     "low_speed_peripheral_dispatch_thread.c",
@@ -10829,7 +10803,7 @@
    "symbol": "device_is_ready",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int device_is_ready();": 1
+    "extern _Bool device_is_ready(const struct device*);": 1
    },
    "files": [
     "proxy_thread_handler.c"
@@ -10855,7 +10829,7 @@
    "symbol": "printf",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int printf(int,int);": 2
+    "extern int printf(const char*,);": 2
    },
    "files": [
     "set_device_sn_info.c",
@@ -10867,7 +10841,7 @@
    "symbol": "memcmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int memcmp(const void*,const void*,unsigned long);": 2
+    "extern int memcmp(const void*,const void*,size_t);": 2
    },
    "files": [
     "set_device_sn_info.c",
@@ -10890,7 +10864,7 @@
    "symbol": "arch_irq_enable",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int arch_irq_enable(int);": 1
+    "extern void arch_irq_enable(unsigned int);": 1
    },
    "files": [
     "uarte_nrfx_init.c"
@@ -10923,7 +10897,7 @@
    "symbol": "k_sleep",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sleep(uint32_t,uint32_t);": 1
+    "extern int32_t k_sleep(k_timeout_t);": 1
    },
    "files": [
     "brightness_level.c"
@@ -10934,7 +10908,7 @@
    "symbol": "k_msgq_put",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_put(unsigned int,void*,int,int);": 6
+    "extern int k_msgq_put(struct k_msgq*,const void*,k_timeout_t);": 6
    },
    "files": [
     "display_DelayClose.c",
@@ -10977,7 +10951,7 @@
    "symbol": "k_uptime_get",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern s64 k_uptime_get(void);": 1
+    "extern int64_t k_uptime_get(void);": 1
    },
    "files": [
     "display_dispatch_thread.c"
@@ -10988,8 +10962,7 @@
    "symbol": "k_msleep",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_msleep(int);": 1,
-    "extern void k_msleep(uint32_t);": 1
+    "extern int32_t k_msleep(int32_t);": 2
    },
    "files": [
     "display_dispatch_thread.c",
@@ -11012,8 +10985,7 @@
    "symbol": "malloc",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void*malloc(size_t);": 1,
-    "extern void*malloc(unsigned int);": 1
+    "extern void*malloc(size_t);": 2
    },
    "files": [
     "get_demo_image_source.c",
@@ -11036,7 +11008,7 @@
    "symbol": "printf",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void printf(uint32_t);": 1
+    "extern int printf(const char*,);": 1
    },
    "files": [
     "get_demo_image_source.c"
@@ -11047,7 +11019,7 @@
    "symbol": "strncmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strncmp(const void*,uint32_t,unsigned int);": 1
+    "extern int strncmp(const char*,const char*,size_t);": 1
    },
    "files": [
     "get_demo_image_source.c"
@@ -11072,7 +11044,7 @@
    "symbol": "k_mutex_unlock",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_mutex_unlock(unsigned int);": 4
+    "extern int k_mutex_unlock(struct k_mutex*);": 4
    },
    "files": [
     "projector_bus_unlock.c",
@@ -11097,7 +11069,7 @@
    "symbol": "k_thread_priority_set",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_thread_priority_set(int,int);": 1,
+    "extern void k_thread_priority_set(struct k_thread*,int);": 1,
     "extern void k_thread_priority_set(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);": 1
    },
    "files": [
@@ -11110,8 +11082,7 @@
    "symbol": "k_sem_give",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sem_give(int);": 1,
-    "extern void k_sem_give(unsigned int);": 1
+    "extern void k_sem_give(struct k_sem*);": 2
    },
    "files": [
     "trigger_screen_state_change.c",
@@ -11123,8 +11094,7 @@
    "symbol": "k_msleep",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_msleep(int);": 1,
-    "extern void k_msleep(int32_t);": 2
+    "extern int32_t k_msleep(int32_t);": 3
    },
    "files": [
     "esb_send_command_and_wait_ack.c",
@@ -11137,7 +11107,7 @@
    "symbol": "memcmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int memcmp(const void*,const void*,unsigned long);": 1
+    "extern int memcmp(const void*,const void*,size_t);": 1
    },
    "files": [
     "esb_send_command_and_wait_ack.c"
@@ -11206,7 +11176,7 @@
    "symbol": "strlen",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strlen(int);": 3
+    "extern size_t strlen(const char*);": 3
    },
    "files": [
     "gui_clock_draw.c",
@@ -11230,7 +11200,7 @@
    "symbol": "k_mutex_unlock",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern uintptr_t k_mutex_unlock(void*);": 1
+    "extern int k_mutex_unlock(struct k_mutex*);": 1
    },
    "files": [
     "ui_even_ai_task.c"
@@ -11264,7 +11234,7 @@
    "symbol": "k_sleep",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_sleep(int,int);": 1
+    "extern int32_t k_sleep(k_timeout_t);": 1
    },
    "files": [
     "write_font_to_flash_with_verify.c"
@@ -11275,7 +11245,7 @@
    "symbol": "z_device_is_ready",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_device_is_ready(int);": 1
+    "extern _Bool z_device_is_ready(const struct device*);": 1
    },
    "files": [
     "write_font_to_flash_with_verify.c"
@@ -11286,7 +11256,7 @@
    "symbol": "memcmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int memcmp(const void*,const void*,unsigned long);": 1
+    "extern int memcmp(const void*,const void*,size_t);": 1
    },
    "files": [
     "write_font_to_flash_with_verify.c"
@@ -11309,8 +11279,8 @@
    "symbol": "k_sleep",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sleep(int,int);": 1,
-    "extern void k_sleep(unsigned int,unsigned int);": 1
+    "extern int32_t k_sleep(k_timeout_t);": 1,
+    "extern void k_sleep(int,int);": 1
    },
    "files": [
     "global_ipc_service_send.c",
@@ -11322,7 +11292,7 @@
    "symbol": "z_impl_k_msgq_alloc_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_impl_k_msgq_alloc_init(unsigned int,int,int);": 1
+    "extern int z_impl_k_msgq_alloc_init(struct k_msgq*,size_t,uint32_t);": 1
    },
    "files": [
     "init_msgq_uid.c"
@@ -11333,7 +11303,7 @@
    "symbol": "k_work_queue_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_work_queue_init(uintptr_t);": 1
+    "extern void k_work_queue_init(struct k_work_q*);": 1
    },
    "files": [
     "ipc_rpmsg_backend_register.c"
@@ -11345,17 +11315,6 @@
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
     "extern void k_work_queue_start(uintptr_t,uintptr_t,uint32_t,uint32_t,uint32_t);": 1
-   },
-   "files": [
-    "ipc_rpmsg_backend_register.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ipc",
-   "symbol": "k_work_init",
-   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
-   "types": {
-    "extern void k_work_init(uintptr_t,uintptr_t);": 1
    },
    "files": [
     "ipc_rpmsg_backend_register.c"
@@ -11377,7 +11336,7 @@
    "symbol": "k_msgq_put",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern unsigned int k_msgq_put(int,unsigned int,int,int);": 2
+    "extern int k_msgq_put(struct k_msgq*,const void*,k_timeout_t);": 2
    },
    "files": [
     "send_response_data_to_ble.c",
@@ -11460,9 +11419,7 @@
    "symbol": "__sinit",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void __sinit(int);": 1,
-    "extern void __sinit(struct _reent*);": 1,
-    "extern void __sinit(void*);": 2
+    "extern void __sinit(struct _reent*);": 4
    },
    "files": [
     "__swbuf_r.c",
@@ -11487,8 +11444,8 @@
    "symbol": "strlen",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strlen(int);": 3,
-    "extern size_t strlen(const char*);": 1
+    "extern int strlen(int);": 1,
+    "extern size_t strlen(const char*);": 3
    },
    "files": [
     "_puts_r.c",
@@ -11519,9 +11476,7 @@
    "symbol": "memcmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int memcmp(const void*,const void*,size_t);": 2,
-    "extern int memcmp(const void*,const void*,uint32_t);": 4,
-    "extern int memcmp(const void*,const void*,unsigned long);": 3,
+    "extern int memcmp(const void*,const void*,size_t);": 9,
     "extern int memcmp(int,);": 1
    },
    "files": [
@@ -11558,13 +11513,12 @@
     "__attribute__((noreturn))extern void assert_post_action(uint32_t,uint32_t);": 3,
     "__attribute__((noreturn))extern void assert_post_action(uintptr_t,uint32_t);": 8,
     "extern _Noreturn void assert_post_action(uintptr_t,uint32_t);": 1,
-    "extern int assert_post_action(int,int);": 7,
+    "extern int assert_post_action(int,int);": 2,
     "extern long long assert_post_action(unsigned int,unsigned int);": 1,
     "extern uint64_t assert_post_action(int,int);": 1,
     "extern unsigned long long assert_post_action(int,int);": 1,
     "extern unsigned long long assert_post_action(unsigned int,unsigned int);": 3,
-    "extern void assert_post_action(const char*,unsigned int);": 31,
-    "extern void assert_post_action(uint32_t,int);": 1
+    "extern void assert_post_action(const char*,unsigned int);": 37
    },
    "files": [
     "att_chan_req_free.c",
@@ -11715,8 +11669,8 @@
    "symbol": "snprintk",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void snprintk(void*,int,uint32_t,);": 1,
-    "extern void snprintk(void*,int,unsigned int,);": 1
+    "extern int snprintk(char*,size_t,const char*,);": 1,
+    "extern void snprintk(void*,int,uint32_t,);": 1
    },
    "files": [
     "att_timeout.c",
@@ -11741,7 +11695,7 @@
    "symbol": "k_mem_slab_alloc",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_mem_slab_alloc(int,int*,int,int);": 1
+    "extern int k_mem_slab_alloc(struct k_mem_slab*,void**,k_timeout_t);": 1
    },
    "files": [
     "bt_att_accept.c"
@@ -11753,7 +11707,7 @@
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
     "extern int k_current_get(int,);": 1,
-    "extern int k_current_get(void);": 1
+    "extern struct k_thread*k_current_get(void);": 1
    },
    "files": [
     "bt_att_accept.c",
@@ -11765,8 +11719,7 @@
    "symbol": "z_impl_k_queue_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void z_impl_k_queue_init(struct k_queue*);": 2,
-    "extern void z_impl_k_queue_init(void*);": 1
+    "extern void z_impl_k_queue_init(struct k_queue*);": 3
    },
    "files": [
     "bt_att_accept.c",
@@ -11790,7 +11743,7 @@
    "symbol": "z_impl_k_poll_signal_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void z_impl_k_poll_signal_init(int);": 1
+    "extern void z_impl_k_poll_signal_init(struct k_poll_signal*);": 1
    },
    "files": [
     "bt_conn_prepare_tx_events.c"
@@ -11801,7 +11754,7 @@
    "symbol": "k_poll_event_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_poll_event_init(unsigned char*,unsigned long,unsigned long,unsigned int);": 1
+    "extern void k_poll_event_init(struct k_poll_event*,uint32_t,int,void*);": 1
    },
    "files": [
     "bt_conn_prepare_tx_events.c"
@@ -11935,9 +11888,7 @@
    "symbol": "k_sleep",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_sleep(int,int);": 1,
-    "extern void k_sleep(uint32_t,uint32_t);": 1,
-    "extern void k_sleep(void);": 2
+    "extern int32_t k_sleep(k_timeout_t);": 4
    },
    "files": [
     "flash_settings_read.c",
@@ -11985,7 +11936,7 @@
    "symbol": "sys_heap_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void sys_heap_init(unsigned long*,void*,unsigned long);": 1
+    "extern void sys_heap_init(struct sys_heap*,void*,size_t);": 1
    },
    "files": [
     "g1_recon_k_heap_init.c"
@@ -12021,7 +11972,7 @@
    "symbol": "k_mutex_unlock",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_mutex_unlock(unsigned int);": 1
+    "extern int k_mutex_unlock(struct k_mutex*);": 1
    },
    "files": [
     "g1_recon_retarget_lock_release_recursive.c"
@@ -12102,9 +12053,7 @@
    "symbol": "z_spin_lock_valid",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern _Bool z_spin_lock_valid(struct k_spinlock*);": 5,
-    "extern int z_spin_lock_valid(int,);": 2,
-    "extern int z_spin_lock_valid(unsigned int*);": 3
+    "extern _Bool z_spin_lock_valid(struct k_spinlock*);": 10
    },
    "files": [
     "k_msgq_get.c",
@@ -12124,10 +12073,7 @@
    "symbol": "z_spin_unlock_valid",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern _Bool z_spin_unlock_valid(struct k_spinlock*);": 5,
-    "extern int z_spin_unlock_valid(int,);": 2,
-    "extern int z_spin_unlock_valid(unsigned int*);": 1,
-    "extern void z_spin_unlock_valid(void*);": 1
+    "extern _Bool z_spin_unlock_valid(struct k_spinlock*);": 9
    },
    "files": [
     "k_msgq_get.c",
@@ -12146,9 +12092,7 @@
    "symbol": "z_spin_lock_set_owner",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_spin_lock_set_owner(int,);": 2,
-    "extern int z_spin_lock_set_owner(unsigned int*);": 3,
-    "extern void z_spin_lock_set_owner(struct k_spinlock*);": 5
+    "extern void z_spin_lock_set_owner(struct k_spinlock*);": 10
    },
    "files": [
     "k_msgq_get.c",
@@ -12168,8 +12112,7 @@
    "symbol": "z_handle_obj_poll_events",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_handle_obj_poll_events(int,);": 1,
-    "extern int z_handle_obj_poll_events(unsigned int*,int);": 2
+    "extern void z_handle_obj_poll_events(sys_dlist_t*,uint32_t);": 3
    },
    "files": [
     "k_msgq_put.c",
@@ -12204,7 +12147,7 @@
    "symbol": "__swbuf_r",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern unsigned int __swbuf_r(int,unsigned int,int*);": 1
+    "extern int __swbuf_r(struct _reent*,int,FILE*);": 1
    },
    "files": [
     "libc_putc_buffered.c"
@@ -12238,7 +12181,7 @@
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
     "extern void z_impl_k_timer_stop(int,unsigned int,int,int,unsigned int);": 1,
-    "extern void z_impl_k_timer_stop(void*);": 1
+    "extern void z_impl_k_timer_stop(struct k_timer*);": 1
    },
    "files": [
     "nvs_timer_arm_and_mark_dirty.c",
@@ -12283,7 +12226,7 @@
    "symbol": "k_sem_give",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sem_give(int);": 2,
+    "extern void k_sem_give(struct k_sem*);": 2,
     "extern void k_sem_give(unsigned int,unsigned int,unsigned int,unsigned int);": 1
    },
    "files": [
@@ -12308,7 +12251,7 @@
    "symbol": "z_impl_k_sem_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void z_impl_k_sem_init(int,int);": 1
+    "extern void z_impl_k_sem_init(int,int,int);": 1
    },
    "files": [
     "rpmsg_virtqueue_channel_init.c"
@@ -12404,7 +12347,7 @@
    "symbol": "k_sem_give",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sem_give(int);": 3
+    "extern void k_sem_give(struct k_sem*);": 3
    },
    "files": [
     "ancs_conn_event_signal_and_mode.c",
@@ -12429,7 +12372,7 @@
    "symbol": "memcmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int memcmp(const void*,const void*,unsigned long);": 2
+    "extern int memcmp(const void*,const void*,size_t);": 2
    },
    "files": [
     "ancs_connected.c",
@@ -12441,7 +12384,7 @@
    "symbol": "z_impl_k_sem_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void z_impl_k_sem_init(void*,int,int init_msgq_ancs void init_msgq_uid void wait_for_event int,int);": 1,
+    "extern int z_impl_k_sem_init(struct k_sem*,unsigned int,unsigned int);": 1,
     "extern void z_impl_k_sem_init(void*,int,int);": 1
    },
    "files": [
@@ -12454,9 +12397,7 @@
    "symbol": "malloc",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int malloc(int,);": 2,
-    "extern unsigned int malloc(int);": 1,
-    "extern void*malloc(size_t);": 1
+    "extern void*malloc(size_t);": 4
    },
    "files": [
     "ancs_ctx_init.c",
@@ -12528,7 +12469,8 @@
    "symbol": "strlen",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strlen(int);": 5
+    "extern int strlen(int);": 1,
+    "extern size_t strlen(const char*);": 4
    },
    "files": [
     "convert_app_whitelist_to_json.c",
@@ -12543,8 +12485,7 @@
    "symbol": "free",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int free(int,);": 1,
-    "extern void free(void*);": 3
+    "extern void free(void*);": 4
    },
    "files": [
     "convert_app_whitelist_to_json.c",
@@ -12569,7 +12510,7 @@
    "symbol": "k_msgq_get",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_get(int,unsigned int,int,int);": 2
+    "extern int k_msgq_get(struct k_msgq*,void*,k_timeout_t);": 2
    },
    "files": [
     "dequeue_ancs.c",
@@ -12581,7 +12522,7 @@
    "symbol": "k_msgq_put",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern unsigned int k_msgq_put(int,unsigned int,int,int);": 1
+    "extern int k_msgq_put(struct k_msgq*,const void*,k_timeout_t);": 1
    },
    "files": [
     "enqueue_ancs.c"
@@ -12592,7 +12533,7 @@
    "symbol": "z_impl_k_msgq_alloc_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_impl_k_msgq_alloc_init(unsigned int,int,int);": 1
+    "extern int z_impl_k_msgq_alloc_init(struct k_msgq*,size_t,uint32_t);": 1
    },
    "files": [
     "init_msgq_ancs.c"
@@ -12603,7 +12544,8 @@
    "symbol": "strncmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strncmp(const void*,unsigned long,unsigned int);": 4
+    "extern int strncmp(const char*,const char*,size_t);": 1,
+    "extern int strncmp(const void*,unsigned long,unsigned int);": 3
    },
    "files": [
     "is_on_whitelist_by_identifier.c",
@@ -12617,7 +12559,7 @@
    "symbol": "strstr",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strstr(const void*,int);": 1
+    "extern char*strstr(const char*,const char*);": 1
    },
    "files": [
     "is_on_whitelist_by_identifier.c"
@@ -12639,7 +12581,7 @@
    "symbol": "k_mutex_unlock",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_mutex_unlock(unsigned int);": 1
+    "extern int k_mutex_unlock(struct k_mutex*);": 1
    },
    "files": [
     "notify_config_change_if_connected.c"
@@ -12661,7 +12603,7 @@
    "symbol": "k_sleep",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sleep(uint32_t,uint32_t);": 2,
+    "extern int32_t k_sleep(k_timeout_t);": 2,
     "extern void k_sleep(unsigned int,unsigned int);": 1
    },
    "files": [
@@ -12686,7 +12628,7 @@
    "symbol": "k_mem_slab_alloc",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_mem_slab_alloc(int,int*,int,int);": 1
+    "extern int k_mem_slab_alloc(struct k_mem_slab*,void**,k_timeout_t);": 1
    },
    "files": [
     "uart_callback.c"
@@ -12697,7 +12639,7 @@
    "symbol": "k_mem_slab_free",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_mem_slab_free(int,int);": 1
+    "extern void k_mem_slab_free(struct k_mem_slab*,void*);": 1
    },
    "files": [
     "uart_callback.c"
@@ -12708,7 +12650,7 @@
    "symbol": "assert_post_action",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int assert_post_action(int,int);": 1
+    "extern void assert_post_action(const char*,unsigned int);": 1
    },
    "files": [
     "uart_callback.c"
@@ -12730,7 +12672,7 @@
    "symbol": "k_sem_give",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sem_give(int);": 1
+    "extern void k_sem_give(struct k_sem*);": 1
    },
    "files": [
     "update_imu_trigger_status.c"
@@ -12741,7 +12683,7 @@
    "symbol": "k_msgq_put",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_put(unsigned int,void*,int,int);": 1
+    "extern int k_msgq_put(struct k_msgq*,const void*,k_timeout_t);": 1
    },
    "files": [
     "SlaveDoubleClickEventInject.c"
@@ -12763,7 +12705,7 @@
    "symbol": "k_msleep",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_msleep(int32_t);": 2,
+    "extern int32_t k_msleep(int32_t);": 2,
     "extern void k_msleep(void);": 1
    },
    "files": [
@@ -12777,7 +12719,7 @@
    "symbol": "k_sem_give",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sem_give(int);": 1
+    "extern void k_sem_give(struct k_sem*);": 1
    },
    "files": [
     "handle_touch_key_press_event.c"
@@ -12909,7 +12851,7 @@
    "symbol": "strlen",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strlen(int);": 1
+    "extern size_t strlen(const char*);": 1
    },
    "files": [
     "bt_set_name_internal.c"
@@ -12920,7 +12862,7 @@
    "symbol": "strcmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strcmp(unsigned int,unsigned int);": 1
+    "extern int strcmp(const char*,const char*);": 1
    },
    "files": [
     "bt_set_name_internal.c"
@@ -12949,8 +12891,7 @@
    "symbol": "z_device_is_ready",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern _Bool z_device_is_ready(const struct device*);": 2,
-    "extern int z_device_is_ready(int);": 1
+    "extern _Bool z_device_is_ready(const struct device*);": 3
    },
    "files": [
     "calc_flash_crc.c",
@@ -12963,7 +12904,7 @@
    "symbol": "k_msgq_get",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_get(int,unsigned int,int,int);": 1
+    "extern int k_msgq_get(struct k_msgq*,void*,k_timeout_t);": 1
    },
    "files": [
     "drain_setting_storage_queue.c"
@@ -12986,7 +12927,7 @@
    "symbol": "k_mutex_unlock",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_mutex_unlock(unsigned int);": 2
+    "extern int k_mutex_unlock(struct k_mutex*);": 2
    },
    "files": [
     "ext_flash_read.c",
@@ -12999,8 +12940,7 @@
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
     "extern int malloc(int);": 1,
-    "extern void*malloc(size_t);": 1,
-    "extern void*malloc(uint32_t);": 2
+    "extern void*malloc(size_t);": 3
    },
    "files": [
     "flash_firmware_update_transfer.c",
@@ -13040,7 +12980,7 @@
    "symbol": "memcmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int memcmp(const void*,const void*,unsigned long);": 1
+    "extern int memcmp(const void*,const void*,size_t);": 1
    },
    "files": [
     "flash_read_boot_swap_ate.c"
@@ -13051,7 +12991,7 @@
    "symbol": "printf",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void printf(int);": 1
+    "extern int printf(const char*,);": 1
    },
    "files": [
     "get_demo_image_source_from_flash.c"
@@ -13062,7 +13002,7 @@
    "symbol": "strncmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strncmp(const void*,unsigned long,unsigned int);": 1
+    "extern int strncmp(const char*,const char*,size_t);": 1
    },
    "files": [
     "get_demo_image_source_from_flash.c"
@@ -13084,7 +13024,7 @@
    "symbol": "k_sleep",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sleep(unsigned int,unsigned int);": 1
+    "extern int32_t k_sleep(k_timeout_t);": 1
    },
    "files": [
     "signal_persist_task_event.c"
@@ -13106,7 +13046,7 @@
    "symbol": "strlen",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern long long strlen(int,);": 1
+    "extern size_t strlen(const char*);": 1
    },
    "files": [
     "DashBoard_Reflash.c"
@@ -13139,7 +13079,7 @@
    "symbol": "k_msgq_put",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_put(unsigned int,void*,int,int);": 3
+    "extern int k_msgq_put(struct k_msgq*,const void*,k_timeout_t);": 3
    },
    "files": [
     "SendDashBoardStartupModeInfoToSlave.c",
@@ -13152,7 +13092,7 @@
    "symbol": "k_sem_give",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sem_give(int);": 2
+    "extern void k_sem_give(struct k_sem*);": 2
    },
    "files": [
     "cleanDashBoardStartUpModeInfo.c",
@@ -13208,7 +13148,7 @@
    "symbol": "memcmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int memcmp(const void*,const void*,unsigned long);": 1
+    "extern int memcmp(const void*,const void*,size_t);": 1
    },
    "files": [
     "device_addr_is_default.c"
@@ -13230,7 +13170,7 @@
    "symbol": "k_msgq_put",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_put(unsigned int,void*,int,int);": 2
+    "extern int k_msgq_put(struct k_msgq*,const void*,k_timeout_t);": 2
    },
    "files": [
     "deleteQuickNoteData.c",
@@ -13242,7 +13182,7 @@
    "symbol": "k_sem_give",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sem_give(int);": 2
+    "extern void k_sem_give(struct k_sem*);": 2
    },
    "files": [
     "deleteQuickNoteData.c",
@@ -13254,7 +13194,7 @@
    "symbol": "k_msgq_get",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_get(int,unsigned int,int,int);": 1
+    "extern int k_msgq_get(struct k_msgq*,void*,k_timeout_t);": 1
    },
    "files": [
     "drain_quick_note_data_queue.c"
@@ -13265,8 +13205,8 @@
    "symbol": "z_device_is_ready",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_device_is_ready(const void*);": 1,
-    "extern int z_device_is_ready(int);": 1
+    "extern _Bool z_device_is_ready(const struct device*);": 1,
+    "extern int z_device_is_ready(const void*);": 1
    },
    "files": [
     "getQuickNoteBKPQueueCacheData.c",
@@ -13278,7 +13218,7 @@
    "symbol": "memcmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int memcmp(const void*,const void*,uint32_t);": 1
+    "extern int memcmp(const void*,const void*,size_t);": 1
    },
    "files": [
     "getQuickNoteBKPQueueCacheData.c"
@@ -13346,7 +13286,7 @@
    "symbol": "k_mutex_unlock",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_mutex_unlock(unsigned int);": 1
+    "extern int k_mutex_unlock(struct k_mutex*);": 1
    },
    "files": [
     "ui_teleprompter_task.c"
@@ -13357,7 +13297,7 @@
    "symbol": "k_sleep",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sleep(unsigned int,unsigned int);": 1
+    "extern int32_t k_sleep(k_timeout_t);": 1
    },
    "files": [
     "ui_teleprompter_task.c"
@@ -13368,7 +13308,7 @@
    "symbol": "k_msgq_put",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_put(unsigned int,void*,int,int);": 3
+    "extern int k_msgq_put(struct k_msgq*,const void*,k_timeout_t);": 3
    },
    "files": [
     "SendSystemLanguageInfoToSlave.c",
@@ -13381,7 +13321,7 @@
    "symbol": "k_sem_give",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sem_give(int);": 2
+    "extern void k_sem_give(struct k_sem*);": 2
    },
    "files": [
     "cleanAppLanguageInfo.c",
@@ -13426,7 +13366,7 @@
    "symbol": "k_mutex_unlock",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern uint32_t k_mutex_unlock(void*);": 1
+    "extern int k_mutex_unlock(struct k_mutex*);": 1
    },
    "files": [
     "ui_translate_task.c"
@@ -13437,7 +13377,7 @@
    "symbol": "z_spin_lock_valid",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_spin_lock_valid(unsigned int*);": 1
+    "extern _Bool z_spin_lock_valid(struct k_spinlock*);": 1
    },
    "files": [
     "app_event_manager_process_events.c"
@@ -13448,7 +13388,7 @@
    "symbol": "z_spin_lock_set_owner",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_spin_lock_set_owner(unsigned int*);": 1
+    "extern void z_spin_lock_set_owner(struct k_spinlock*);": 1
    },
    "files": [
     "app_event_manager_process_events.c"
@@ -13459,7 +13399,7 @@
    "symbol": "z_spin_unlock_valid",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_spin_unlock_valid(int);": 1
+    "extern _Bool z_spin_unlock_valid(struct k_spinlock*);": 1
    },
    "files": [
     "app_event_manager_process_events.c"
@@ -13473,8 +13413,7 @@
     "__attribute__((noreturn))extern void assert_post_action(int,int);": 1,
     "__attribute__((noreturn))extern void assert_post_action(uintptr_t,uint32_t);": 3,
     "extern int assert_post_action(int,int);": 1,
-    "extern void assert_post_action(const char*,unsigned int);": 5,
-    "extern void assert_post_action(unsigned int,unsigned int);": 1
+    "extern void assert_post_action(const char*,unsigned int);": 6
    },
    "files": [
     "app_event_manager_process_events.c",
@@ -13495,8 +13434,7 @@
    "symbol": "memcmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int memcmp(const void*,const void*,uint32_t);": 1,
-    "extern int memcmp(const void*,const void*,unsigned long);": 1,
+    "extern int memcmp(const void*,const void*,size_t);": 2,
     "extern int memcmp(int,int);": 1,
     "extern int memcmp(int,void*,int);": 1,
     "extern int memcmp(uint32_t,uint32_t);": 1
@@ -13536,7 +13474,7 @@
    "symbol": "k_sleep",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sleep(uint32_t,uint32_t);": 2
+    "extern int32_t k_sleep(k_timeout_t);": 2
    },
    "files": [
     "clock_control_nrf_on_blocking.c",
@@ -13559,7 +13497,8 @@
    "symbol": "strlen",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strlen(int);": 2
+    "extern int strlen(int);": 1,
+    "extern size_t strlen(const char*);": 1
    },
    "files": [
     "cursor_advance_past_cstring.c",
@@ -13582,7 +13521,7 @@
    "symbol": "_malloc_r",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int _malloc_r(uint32_t,int);": 1
+    "extern void*_malloc_r(struct _reent*,size_t);": 1
    },
    "files": [
     "dynbuf_push_byte_grow.c"
@@ -13611,7 +13550,7 @@
    "symbol": "_realloc_r",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int _realloc_r(uint32_t,int,int);": 1
+    "extern void*_realloc_r(struct _reent*,void*,size_t);": 1
    },
    "files": [
     "dynbuf_push_byte_grow.c"
@@ -13622,7 +13561,7 @@
    "symbol": "k_msgq_put",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern unsigned int k_msgq_put(int,unsigned int,int,int);": 1
+    "extern int k_msgq_put(struct k_msgq*,const void*,k_timeout_t);": 1
    },
    "files": [
     "enqueue_debug.c"
@@ -13633,7 +13572,7 @@
    "symbol": "k_msgq_get",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_get(int,unsigned int,int,int);": 1
+    "extern int k_msgq_get(struct k_msgq*,void*,k_timeout_t);": 1
    },
    "files": [
     "enqueue_debug.c"
@@ -13666,7 +13605,7 @@
    "symbol": "k_sem_give",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_sem_give(int);": 2
+    "extern void k_sem_give(struct k_sem*);": 2
    },
    "files": [
     "nfc_field_event_signal_sem.c",

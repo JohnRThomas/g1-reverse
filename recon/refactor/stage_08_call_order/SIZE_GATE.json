@@ -1,6 +1,6 @@
 {
  "schema": "g1.refactor.size-gate/1",
- "declared_codegen_class": "byte-identical",
+ "declared_codegen_class": "size-changing",
  "measured_codegen_class": "byte-identical",
  "pass": true,
  "image_byte_identical": true,
@@ -39,11 +39,11 @@
   "net_buf_pool_area": 520,
   "noinit": 60021,
   "pm_device_slots_area": 96,
-  "rodata": 456536,
+  "rodata": 456528,
   "rom_start": 340,
   "settings_handler_static_area": 120,
   "sw_isr_table": 552,
-  "text": 492612
+  "text": 492336
  },
  "stage_sections": {
   "ARM.exidx": 8,
@@ -69,16 +69,16 @@
   "net_buf_pool_area": 520,
   "noinit": 60021,
   "pm_device_slots_area": 96,
-  "rodata": 456536,
+  "rodata": 456528,
   "rom_start": 340,
   "settings_handler_static_area": 120,
   "sw_isr_table": 552,
-  "text": 492612
+  "text": 492336
  },
  "oracle_required": false,
  "why_oracle_required": "Linked size did not move; every previously captured behavioural measurement carries over by construction, not by argument.",
- "base_elf": "/private/tmp/g1-cons-s05/zephyr/zephyr.elf",
- "stage_elf": "/private/tmp/g1-cons-s06/zephyr/zephyr.elf",
- "stage": 6,
- "slug": "unit_composition"
+ "base_elf": "/private/tmp/g1-cons-s07/zephyr/zephyr.elf",
+ "stage_elf": "/private/tmp/g1-cons-s08/zephyr/zephyr.elf",
+ "stage": 8,
+ "slug": "call_order"
 }

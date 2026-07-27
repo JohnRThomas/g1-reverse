@@ -46,15 +46,15 @@
   }
  },
  "pairwise_refusals": {
-  "adjacencies_blocked": 887,
+  "adjacencies_blocked": 893,
   "by_rule": {
    "enumconst": 5,
-   "includes": 80,
-   "macro": 119,
+   "includes": 134,
+   "macro": 118,
    "static": 16,
    "tag": 5,
-   "type": 632,
-   "typedef": 30
+   "type": 586,
+   "typedef": 29
   },
   "top_symbols_per_rule": {
    "enumconst": {
@@ -64,14 +64,22 @@
     "x39": 1
    },
    "includes": {
-    "<stdbool.h>": 29,
-    "<cmsis_gcc.h>": 21,
-    "<zephyr/kernel.h>": 18,
-    "<string.h>": 5,
+    "<zephyr/sys_clock.h>": 50,
+    "<stdbool.h>": 27,
+    "<cmsis_gcc.h>": 19,
+    "<zephyr/kernel.h>": 17,
+    "<string.h>": 4,
     "<stdarg.h>": 3,
     "<zephyr/device.h>,<zephyr/devicetree.h>,<zephyr/drivers/uart.h>": 2,
-    "<cmsis_gcc.h>,<stdbool.h>": 1,
-    "<stdbool.h>,<zephyr/kernel.h>": 1
+    "<zephyr/sys/dlist.h>": 2,
+    "<cmsis_gcc.h>,<zephyr/sys/dlist.h>": 2,
+    "<stdio.h>": 2,
+    "<stdbool.h>,<zephyr/sys_clock.h>": 1,
+    "<cmsis_gcc.h>,<stdbool.h>,<zephyr/sys/dlist.h>": 1,
+    "<stdbool.h>,<zephyr/sys/dlist.h>": 1,
+    "<stdbool.h>,<zephyr/kernel.h>": 1,
+    "<zephyr/kernel.h>,<zephyr/sys_clock.h>": 1,
+    "<string.h>,<zephyr/sys_clock.h>": 1
    },
    "macro": {
     "g_log_level": 16,
@@ -87,7 +95,6 @@
     "g_ble_dispatch_pending_marker": 2,
     "g_dashboard_display_level": 2,
     "g_display_msgq": 2,
-    "LOG_TAG": 2,
     "g_20007b38": 2,
     "g_esb_notify_slave_role_guard": 2,
     "g_pending_message_flag": 2,
@@ -98,7 +105,8 @@
     "g_quicknote_warn_offset_ms": 2,
     "onboarding_attempt_counter": 2,
     "onboarding_retry_counter": 2,
-    "onboarding_secondary_reset_flag": 2
+    "onboarding_secondary_reset_flag": 2,
+    "gatt_store_ccc_cf": 1
    },
    "static": {
     "load_u16": 2,
@@ -121,45 +129,45 @@
     "struct g1_opt_view": 1
    },
    "type": {
-    "assert_post_action": 36,
-    "get_device_info": 22,
-    "memset_bytes": 20,
+    "assert_post_action": 25,
+    "get_device_info": 21,
+    "memset_bytes": 19,
     "log_msg_create_3arg": 16,
     "reflash_fb_data_to_lcd": 13,
     "smp_log_message": 12,
     "bt_log_forward_3arg": 10,
     "atomic_set_bit": 9,
     "audio_codec_reg_op_dispatch": 9,
-    "gui_utf_draw": 8,
     "clean_fb_data": 8,
+    "memcpy": 7,
     "get_pin_idx": 7,
     "dev_write_reg3": 7,
+    "gui_utf_draw": 7,
     "net_buf_simple_add": 6,
-    "memcpy": 6,
     "z_log_msg_runtime_create": 6,
     "atomic_get_3_0": 6,
     "log_msg_3arg_thunk": 5,
-    "z_spin_lock_set_owner": 5,
-    "z_spin_lock_valid": 5,
-    "malloc": 5,
-    "sync_to_slave": 5,
     "audio_codec_bus_write": 5,
-    "get_timestamp": 5,
-    "is_battery_critical": 4
+    "is_battery_critical": 4,
+    "att_log_emit_3arg": 4,
+    "atomic_test_bit": 4,
+    "zcbor_backup_store_count": 4,
+    "sync_to_slave": 4,
+    "get_timestamp": 4
    },
    "typedef": {
     "uint32_t": 12,
     "uint8_t": 8,
     "int": 2,
-    "uintptr_t": 2,
     "wchar_t": 2,
     "fp": 1,
     "fp774_t": 1,
     "uint16_t": 1,
+    "uintptr_t": 1,
     "fn_t": 1
    }
   }
  },
- "runs_of_length_one": 306,
- "clean_runs_not_selected_by_this_sub_batch": 47
+ "runs_of_length_one": 337,
+ "clean_runs_not_selected_by_this_sub_batch": 48
 }

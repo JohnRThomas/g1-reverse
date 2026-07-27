@@ -744,6 +744,81 @@ def merged_name(module_dir: str, index: int) -> str:
     return "%s%s/g1_%s_%02d.c" % (APP_SRC, module_dir[len(APP_SRC):], slug, index)
 
 
+_TAG_MENTION = re.compile(r"\b(struct|union)\s+([A-Za-z_]\w*)")
+_ATTRIBUTE = re.compile(r"\b__attribute__\s*\(")
+
+
+def blank_attributes(t: str) -> str:
+    """Length-preserving blanking of ``__attribute__((...))`` spans.
+
+    The corpus writes ``struct __attribute__((packed)) user_settings_record``,
+    so a scanner that takes the token after ``struct`` as the tag would read
+    ``__attribute__``.  The parenthesis nesting is arbitrary
+    (``__attribute__((__aligned__(4)))``), so this counts parentheses instead of
+    trying to express the span as a regular expression.
+    """
+    out = list(t)
+    for m in _ATTRIBUTE.finditer(t):
+        i, depth = m.end() - 1, 0
+        while i < len(t):
+            if t[i] == "(":
+                depth += 1
+            elif t[i] == ")":
+                depth -= 1
+                if depth == 0:
+                    i += 1
+                    break
+            i += 1
+        for j in range(m.start(), min(i, len(t))):
+            if out[j] != "\n":
+                out[j] = " "
+    return "".join(out)
+
+
+def incomplete_tag_forwards(bodies: list[str]) -> list[str]:
+    """Every ``struct``/``union`` tag the merged unit names, forward-declared.
+
+    WHY THIS EXISTS -- a compile failure found it at HEAD ``e7f35727``, and it
+    is the C7c shape again: **identical declaration text is not identical
+    type.**
+
+    Three members of ``lib/g1_lib_03.c`` each carried, character for
+    character::
+
+        extern _Bool z_device_is_ready(const struct device *);
+
+    and the unit declared ``struct device`` nowhere at file scope.  A struct tag
+    whose first appearance is inside a parameter list has PARAMETER-LIST scope
+    (C11 6.2.1p7), so each of the three declarations introduced its OWN
+    incomplete ``struct device``; the three prototypes had three incompatible
+    types and GCC rejected the second and third with ``conflicting types for
+    'z_device_is_ready'`` -- pointing at a line spelled the same way.
+
+    Stage 04's ``type`` refusal rule compares declaration TEXT and structurally
+    cannot see this, so refusing is not the repair.  The repair is to give every
+    tag the unit names a FILE-SCOPE declaration, which makes every mention of it
+    refer to one type.
+
+    The rule is keyed on a structural property -- "the unit names this tag" --
+    and not on a list of tag names, per README C7c.  Emitting is unconditional
+    rather than conditional on "is it already declared?", because a conditional
+    version has to reason about ORDER (a member that names the tag BEFORE the
+    member that defines it is still broken) and about scope, and each of those
+    is a place for the rule to silently stop covering something.  A repeated or
+    redundant forward declaration of an incomplete struct is valid C and emits
+    no code, so the unconditional form is both sound and cheaper to audit.
+    """
+    seen, out = set(), []
+    for b in bodies:
+        for m in _TAG_MENTION.finditer(blank_attributes(strip_comments(b, True))):
+            kw, tag = m.group(1), m.group(2)
+            if (kw, tag) not in seen:
+                seen.add((kw, tag))
+                out.append("%s %s;" % (kw, tag))
+    out.sort()
+    return out
+
+
 def render(module_dir: str, members: list[str], text: dict[str, str]) -> str:
     """Concatenate members VERBATIM under one banner."""
     mod = module_dir[len(APP_SRC):]
@@ -769,6 +844,17 @@ def render(module_dir: str, members: list[str], text: dict[str, str]) -> str:
     for m in members:
         head.append(" *   %s" % os.path.basename(m))
     head += [" */", ""]
+    fwd = incomplete_tag_forwards([text[m] for m in members])
+    if fwd:
+        head += [
+            "/* File-scope forward declarations for every struct/union tag this",
+            " * unit names.  Without them a tag whose only appearance in a member",
+            " * is inside a parameter list has PARAMETER-LIST scope, so two",
+            " * textually IDENTICAL declarations in two members declare two",
+            " * different incomplete types and the second is a conflicting",
+            " * redeclaration (C11 6.2.1p7).  Incomplete-type forward",
+            " * declarations emit no code. */",
+        ] + fwd + [""]
     body = []
     for m in members:
         body.append("/* ---------------------------------------------------------------- */")

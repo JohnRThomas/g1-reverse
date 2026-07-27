@@ -226,7 +226,7 @@ the end gives a pass/fail with no diagnostic value.
 | stage | what | why here |
 |---|---|---|
 | 00 | verbatim snapshot | identity transform; proves the build mechanism |
-| 01 | literal inlining | value-preserving substitution in argument position; no control flow, no MMIO, no layout |
+| 01 | literal inlining | value-preserving substitution in argument position; no control flow, no MMIO, no layout. **Declared class corrected 2026-07-27 `byte-identical` -> `size-changing`:** its first-ever `size-gate` measured `text` -4 B / `rodata` -124 B, which is what withdrawing 100 backing objects worth 3,997 B does. See the consolidated verdict below. |
 | 02 | **block dedupe (LANDED)** — volatile-accessor spelling normalisation (one type only), plus the `G1_NORETURN_CALL` / `G1_LOG_ROUTE` / `G1_ASSERT_FAIL` macros and the log-prototype convergence residue. Stage 03's `__ASSERT` / noreturn extraction was folded in here because it is the same class of token-identical statement macro. | textual, codegen-identical; gate is a byte-identical `.o`, and it held: both cores' `zephyr.bin` byte-identical to stage 01, 4,594/4,598 objects byte-identical. Report: `recon/analysis/staged_refactor_stage02.md` |
 | 03 | **module structure (LANDED, app core only)** — the `input_set.py` `.h`-fragment fix stage 02 filed as blocking, plus the first STRUCTURAL transform: 1,621 app sources moved into 22 cohesive module directories (build lists regenerated in the same transaction, list order preserved exactly), and 99 module-wide type-identical `extern` declarations hoisted into 16 generated module headers. Net untouched and therefore byte-identical by construction. | file layout + declaration siting only; gate is a byte-identical `zephyr.bin`, and it held on both cores. **Harvest: 1,014 symbol/module type disagreements, 446 of them against the symbol's own definition, 175 about arity.** Report: `recon/analysis/staged_refactor_stage03.md` |
 | 03b (partly done, upstream) | **repair the declaration disagreements** in the CANONICAL trees (stage 03 `DEFECTS.json`). The parity agent's type-disagreement pass took the census from 1,014 to **833** (measured by re-running stage 03's own agreement test at HEAD `50929c5d`). | blocking prerequisite for a *blanket* cohesive-TU merge; still the single thing standing between stage 04's 695 translation units and 243. R1 means this work is the parity agent's, not the pipeline's. |
@@ -977,3 +977,177 @@ changed for the better: **the committed
 `recon/emulator/reports/display_sensor_oracle.json` may now be used directly as
 the shipped navigation reference** — the stage04b record's warning to regenerate
 it from `/private/tmp/g1_ship_seed_q1` no longer applies.
+
+---
+
+# ★ CONSOLIDATED GATE RECORD — the whole ladder at ONE head, 2026-07-27
+
+**Read this first; the four records above are the working, this is the verdict.**
+Full working: **`recon/analysis/refactor_consolidated_verdict.md`**.
+
+The four records above were written at three different HEADs against three
+different baselines, and answering "is the refactor proven?" required
+reconciling them. This record regenerates stages 00→08 at one head, rebuilds all
+nine images, measures every size gate, re-derives the phase bound, and states
+one verdict per stage.
+
+**Inputs.** HEAD `e7f35727` ("Type-disagreement repair 4"), working tree clean
+except the unrelated untracked `.xapk`. Stage 00 was **stale on 177 inputs**;
+stages 00→08 were **regenerated, never patched**, in zero transformer rounds.
+*The concurrent parity agent landed a further 50 inputs mid-pass; stage 00 is
+stale on those at the close. Every measurement below is at the generation stage
+00 captured, which is `cmp`-identical to the base image of the three preceding
+passes.*
+
+## The table
+
+| # | class declared → **measured** | strict `cmp3` | phase-tolerant, published 5 ms gap | **phase-tolerant, corrected segmentation** | evidence status at HEAD |
+|---|---|---|---|---|---|
+| 00 | `byte-identical` → identity | n/a | n/a | n/a | image `cmp`-identical to `g1-i44-base`, `g1-s4b-base`, `g1-td4-final` |
+| 01 | ~~`byte-identical`~~ → **`size-changing`** (`text` −4, `rodata` −124) | 0 regressions | **PASS** | **PASS** | **VALID** — image `cmp`-identical to `g1-pt-s01` |
+| 02 | `byte-identical` → **`byte-identical`** | 0 regressions | **PASS** | **PASS** | **VALID** (= 01) |
+| 03 | `byte-identical` → **`byte-identical`** | 0 regressions | **PASS** | **PASS** | **VALID** — `cmp`-identical to `g1-s4b-s03` |
+| 04 | `size-changing` → **`size-changing`** (`text` −76) | 8 regressions nav, 1 dash | PASS (0 REG, 2 pre-existing-worse) | **FAIL — 1 REGRESSION** | **INVALID** — image differs from `g1-s4b-s04` |
+| 05 | `size-neutral` → **`byte-identical`** | inherits 04 | inherits 04 | **inherits 04's FAIL** | INVALID (= 04) |
+| 06 | `byte-identical` → **`byte-identical`** | inherits 04 | inherits 04 | **inherits 04's FAIL** | INVALID (= 04) |
+| 07 | `size-changing` → **`size-changing`** (`text` −276, `rodata` −8) | 9 regressions nav / 4 dash, 4 improvements each | PASS (0 REG, 2 pre-existing-worse) | **FAIL — 1 REGRESSION** | **INVALID** — image differs from `g1-pt-s07` |
+| 08 | `size-changing` → **`byte-identical`** | inherits 07 | inherits 07 | **inherits 07's FAIL** | INVALID (= 07) |
+
+## The four things this record changes
+
+### 1. Stage 04 DID NOT COMPILE at HEAD, and the cause is C7c's FIFTH instance
+
+```
+lib/g1_lib_03.c:659: error: conflicting types for 'z_device_is_ready';
+                            have '_Bool(const struct device *)'
+      previous declaration ... with type '_Bool(const struct device *)'
+```
+
+The two declarations are **character-for-character identical**. Three members
+carried `extern _Bool z_device_is_ready(const struct device *);` and the unit
+declared `struct device` nowhere at file scope, so each declaration introduced
+its own **parameter-list-scoped** incomplete type (C11 6.2.1p7). Stage 04's
+`type` refusal rule compares declaration TEXT and structurally cannot see this.
+
+**Repaired as a transformer change** (`t04.incomplete_tag_forwards` +
+`blank_attributes`): every merged unit now emits a file-scope forward
+declaration for every `struct`/`union` tag it names — unconditionally, because a
+conditional form would have to reason about order and scope. **207
+declarations across 107 of the 249 merged units.** 6 new tests.
+
+Cost, named rather than left to be rediscovered: the block sits before the first
+member, and stage 06's include hoisting keys on "the unit's first include
+block", so its yield falls **268 -> 142 hoists**. Stages 05 and 07 are unchanged
+field for field and stage 06 still measures `byte-identical`, so nothing
+observable was paid.
+
+The same unit exposed a **latent reconstruction defect** the parity harness
+cannot see: three members pass three different things to that parameter
+(`const struct device_raw *`, `(const void *)&rodata_87bf0`,
+`(const void *)flash_device`).
+
+**Add to C7c's list:** *identical declaration TEXT is not identical TYPE.*
+
+### 2. The phase-tolerant PASS for stages 04–08 does not survive a corrected segmentation
+
+The published verdict scored stages 04-B/05/06/07 as "PASS on every gated
+stream, 0 regressions" — **but only because the BASE was failing the same stream
+for an unrelated segmentation reason.** Re-derived from the raw captures at 28
+burst-gap thresholds (no Renode; the builder is a pure function of a capture
+directory, and a 5 ms re-derivation reproduces the committed oracle with 0 of
+546 fields changed):
+
+| image | `spim_a` navigation peak displacement | at 5 ms | **at 0.700 / 0.790 / 0.800 / 2.300 ms** |
+|---|---:|---|---|
+| in-tree base | 145.440 ms | FAIL `P1 content` | **PASS** |
+| stage 03 | 145.380 ms | FAIL `P1 content` | **PASS** |
+| stage 04-B | **245.780 ms** | FAIL | **FAIL — `P3 phase` on 24 bursts** |
+| stage 07 | **281.670 ms** | FAIL | **FAIL — `P3 phase` on 22 bursts** |
+
+**Δ re-derives to exactly 145.440 ms at every threshold in that band** — the
+bound was not touched, and the change only ever makes a stage fail. The failing
+burst counts are 24 / 22 with the §6 equal-population rule on and 22 / 21 with
+the shipped rule; **the REGRESSION verdict is the same under both.** §44.3.4's
+proposed T = 2.580 ms is refuted on the *dashboard*, which that sweep never ran.
+No constant was adopted (the clean band is non-monotonic: T = 0.750 ms sits
+between two clean values and introduces an `opt3001` `P0 segmentation`), but the
+**verdict** must change regardless of the constant.
+
+### 3. Two criterion claims corrected, one criterion field adopted
+
+* **`our_boot_bringup.md` §44.7.1's "closable at zero cost" is FALSE as stated.**
+  Landing the equal-population ambiguity rule at the shipped 5 ms gap moves the
+  derived bound **145.440 ms → 7,498.630 ms** (a 51× widening), from an
+  `npm1300` train with n=6 on *both* sides: the §44.3.1 membership swap keeps
+  populations equal. It is free only in the corrected-segmentation band, where Δ
+  is unchanged and the `twim2 lsm6dso` exclusion goes 200/548 → **0**. The two
+  changes are **coupled**. Implemented, tested, off by default, in
+  `recon/refactor/criterion_probe.py`.
+* **`gap_separation.separated` is VACUOUS.** `max_intra <= BURST_GAP_NS <
+  min_inter` is true by construction of `split_bursts` — measured `True` for all
+  six devices, four captures, every threshold from 0.020 to 10 ms, including ones
+  that demonstrably mis-segment. Reported, not edited (another agent's file).
+* **`RADIO_TX` components ADOPTED at zero cost** — `BLE_link_TX := RADIO_TX −
+  ESB_MASTER_FRAMES`, arithmetic on two fields the oracle already publishes.
+  Reproduces §44.4's instrumented table exactly and extends it to the dashboard.
+  **The in-tree base does NOT hold `RADIO_TX`**: `374 + 188` vs shipped
+  `373 + 189` — both halves wrong, in opposite directions, recorded as EQ since
+  §43.11. Stage 07 **closes the ESB half** (373 == shipped, both stimuli).
+
+### 4. Every size gate now exists — and stage 01's was never run
+
+`SIZE_GATE.json` existed for stages 04–07 only. All nine now measure against
+their own predecessor's build. **Stage 08's is written and measures
+`byte-identical`** with `"oracle_required": false`. **Stage 01's, run for the
+first time, FAILED**: declared `byte-identical`, measured `size-changing`
+(`text` −4, `rodata` −124) — which is exactly what withdrawing 100 backing
+objects does. `driver.STAGES` row 1 is corrected to `size-changing`;
+`test_size_gate.Registry` caught the manifest lagging the row immediately.
+
+## Evidence status — read before quoting any R7 verdict
+
+`our_boot_bringup.md` §44.9 item 6 carried the stage captures forward by
+inference from base payload identity, and labelled it an inference. **The
+inference is false at HEAD.** The in-tree base is `zephyr.bin` +16 B / `text`
++4 B and byte-different from `g1-i44-base`; stage 04-B's and stage 07's images
+are byte-different from the ones the earlier passes booted (same sizes, different
+bytes). Stage 01/02/03's images ARE `cmp`-identical to what was booted, so those
+captures stand.
+
+> **At HEAD there is no valid behavioural evidence for stages 04–08, and no
+> valid base reference. Three captures per image are needed to close it.**
+
+## Static ladder, this pass
+
+```
+9 app builds (00..08 + base)  exit 0        (stage 04 only after the C7c repair)
+nm -u                         0 on all nine
+duplicate GLOBAL definitions  0 on all nine
+check_ram_pin_collisions app  596 bound OK / 0 escaping / 0 unknown (627 -> 596 upstream)
+check_thread_create_stack_args --trials 120   10/10, exit 0
+tools/verify_data.py          995/995 byte-exact, 56,279 B, 100.00 %
+check-addresses, 8 pairs      identical, 2,567
+stage trees 01..08            BYTE-IDEMPOTENT (content + symlink targets)
+refactor test suite           157 / 157   (was 139; +6 tag-forwards, +12 criterion_probe)
+net core                      NOT BUILT, NOT TOUCHED -- check_net_raw_literals and
+                              verify_net_stock_data_window NOT RUN
+```
+
+## The remaining structural work — measured, specified, NOT landed
+
+| | |
+|---|---:|
+| retained app TUs | 705 |
+| single-source | **454 (64.4 %)** |
+| intra-module call edges between distinct TUs | **1,216** |
+| call edges *inside* the 244 merged units (stage 08) | **11** |
+| call-cohesion grouping would absorb | 100 → 605 TUs |
+| **no-adjacency ceiling** would absorb | **523 → 182 TUs** |
+
+**1,216 against 11**: the call structure exists, it just falls between units
+stage 04 never considers, because they are not adjacent in the generated source
+list. Stage 09 `call_cohesion` is specified in the consolidated verdict §11.2
+and declared `size-changing` / `oracle_required`. **It was not built** — the
+oracle is unavailable this pass, the ladder it would sit on already fails R7
+from stage 04, and the construction budget went into the stage 04 repair.
+No oracle is claimed that cannot be run.

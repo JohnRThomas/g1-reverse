@@ -3,20 +3,18 @@
  "stage": 6,
  "sub_batch": "DH",
  "D_declarations_kept_in_the_module_header": {
-  "more_than_one_user": 216
+  "more_than_one_user": 218
  },
  "H_includes_refused": {
-  "intervening_preprocessor_directive": 29,
-  "intervening_code_names_a_macro_of_the_header": 5
+  "unit_has_no_leading_include_block": 107,
+  "intervening_preprocessor_directive": 10,
+  "intervening_code_names_a_macro_of_the_header": 1
  },
  "H_includes_refused_detail": {
-  "define": 24,
+  "define": 7,
   "define|else|endif|ifdef": 2,
   "ifdef": 1,
-  "macro-collision:\"../../../headers/g1_log.h\"": 1,
-  "macro-collision:\"g1_display.h\"": 1,
-  "macro-collision:\"g1_lib.h\"": 3,
-  "undef": 2
+  "macro-collision:\"../../../headers/g1_log.h\"": 1
  },
  "note": "Both rules emit nothing: a file-scope declaration and an #include directive are not instructions.  A refusal here costs a directive; a wrong hoist costs an image, so every refusal is in the safe direction and every one of them is counted."
 }

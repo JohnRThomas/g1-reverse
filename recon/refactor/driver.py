@@ -56,8 +56,16 @@ STAGES = [
      "t00_snapshot", "byte-identical"),
     (1, "literal_inline", "inline byte-verified .rodata string literals whose every "
      "live reference is a string-consuming call argument, withdrawing the backing "
-     "object, its PROVIDE pin and its extern declaration in the same transaction",
-     "t01_literal_inline", "byte-identical"),
+     "object, its PROVIDE pin and its extern declaration in the same transaction.  "
+     "DECLARED size-changing since 2026-07-27: it had been declared byte-identical "
+     "and NO SIZE GATE HAD EVER BEEN RUN FOR IT.  When one was, it measured "
+     "size-changing -- rodata -124 B, text -4 B -- which is exactly what the "
+     "transform does: withdrawing 100 backing objects worth 3,997 B cannot leave "
+     "the image byte-identical, and the stage's own harvest says so.  The "
+     "behavioural obligation IS discharged for this image (the phase-tolerant pass "
+     "captured stages 01/02/03 and the image is cmp-identical to the one it "
+     "booted), but it was discharged by accident rather than by the declaration.",
+     "t01_literal_inline", "size-changing"),
     (2, "block_dedupe", "replace repeated code blocks with inlinable macros: "
      "volatile-accessor spelling normalisation (same C type only), the noreturn "
      "tail, the log-sink route, the assert expansion, and convergence of the "
