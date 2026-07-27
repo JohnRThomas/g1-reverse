@@ -61,7 +61,7 @@ void post_notification_cmd_process(int param_1, unsigned char *param_2, int para
         uVar5 = (unsigned)(unsigned char)puVar4[1];
         if(uVar5==2 || uVar5==4){
             *(unsigned short*)(puVar4+2) = 0x1b4;
-            memcpy((int)(puVar4+4), param_3);
+            memcpy((int)(puVar4+4), param_3, 0x1b4);
             if(2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/){
                 if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
                     log_message(((unsigned long)&rodata_a7c4a) /*=0xa7c4a*/, ((unsigned long)&rodata_a82e2) /*=0xa82e2*/, uVar5);

@@ -18520,3 +18520,731 @@ cmp /private/tmp/g1_i42/g4-i42d-nav/golden_framebuffer_p1_boot.raw \
 # shipped: hooks at 0xfd40,             0xfde8,                  0xfd74 / 0xfe4c
 # see /private/tmp/g1-i42/probe-{base,ship}.resc
 ```
+
+## Iteration 43 — the frozen system clock is UNFROZEN by restoring one missing
+## argument.  Seven named screen regions repaint again, the dashboard timestamp
+## sequence becomes IDENTICAL to shipped, `param_3 == 1` goes 4 -> 11 == 11 —
+## and the prediction OVERSHOOTS by 64, which is reported as measured.
+
+Work order: `recon/analysis/stage04_r7_validation.md` §8 (the addendum that
+pinned §4.1's frozen clock to one line) plus its §8.2 falsifiable prediction.
+HEAD at the start of this pass: **`ff99f0c6`** ("Stage 04 FAILS R7 …"), working
+tree clean except `?? Even+Realities_1.9.0.xapk`.  `recon/refactor/` went dirty
+during this pass — that is the concurrent agent, not me; I did not write one
+byte under it.
+
+### 43.1 Baseline, rebuilt and proved to be the image the previous passes measured
+
+```
+recon/application/build_cohesive.sh app /private/tmp/g1-i43-base       exit 0
+FLASH 956,480 B / 982,528 B  97.35 %      RAM 253,765 B  56.32 %
+cmp zephyr.bin  vs  g1-s4r7-base-app/zephyr/zephyr.bin        -> IDENTICAL
+runtime_info_sync 0x00015c04     _end 0x2003ff45
+  => probes 0x20040025 / 0x20040F38 / 0x20040FAA   (unchanged)
+nm -u 0
+```
+
+So HEAD `ff99f0c6` builds the same bytes stage 04's `base`/iteration 42's
+`g1-i42d-app` did, and every recorded number carries over without re-deriving.
+
+### 43.2 The defect re-verified from the shipped bytes BEFORE anything was edited
+
+`tools/extract.py` at `0x0007d1d6`, 0x40 bytes, disassembled with
+`arm-zephyr-eabi-objdump -b binary -m armv7e-m -M force-thumb`:
+
+```
+7d1de:  4608        mov   r0, r1        <- param_1 = param_2 of the caller
+7d1e6:  f8d4 2fec   ldr.w r2, [r4, #0xfec]
+7d1ea:  6013        str   r3, [r2, #0]
+7d1ec:  2200        movs  r2, #0        <- param_3 = 0     ACCUMULATE
+7d1ee:  4611        mov   r1, r2        <- param_2 = 0
+7d1f0:  f7cd f93c   bl    0x4a46c
+```
+
+Three arguments, `(param_2, 0, 0)`.  Our pre-fix build emitted `movs r1,#0` and
+no `movs r2,#0`, so `r2` still held the payload pointer — never zero — and
+`rate_limited_elapsed_seconds_tick` took its RESET arm every time.  The callee
+(`recon/named/rate_limited_elapsed_seconds_tick.c`, `FUN_0004a46c`) contains the
+only `*param_1 += uVar5` in the image and it lives under `if (param_3 == 0)`.
+
+### 43.3 The fix, applied mechanically to seven files
+
+Anchored replacement, every anchor asserted to occur **exactly once** per file,
+dry-run first.  The canonical prototype is the one the definition and the two
+other call sites already use — `(int*, int, int)` — so this also closes the
+`DEFECTS.json` entry `declaration_disagrees_with_definition` /
+`rate_limited_elapsed_seconds_tick` rather than inventing an eighth spelling.
+
+```
+PATCH recon/symbolized/app/errno_wrapped_tick_call.c        <- the COMPILED tree
+PATCH recon/named/errno_wrapped_tick_call.c
+PATCH recon/readable_sources/app/g1/errno_wrapped_tick_call.c
+PATCH recon/app/src/FUN_0007d1d6.c
+PATCH recon/app/src_sym/FUN_0007d1d6.c
+PATCH recon/verified/src/FUN_0007d1d6.c
+PATCH recon/verified/src_sym/FUN_0007d1d6.c
+```
+
+`recon/application/src/errno_wrapped_tick_call.c` is a **symlink** to
+`recon/named/` (`ls -l` confirms), so it moved with the target and is not an
+eighth edit.  `recon/refactor/**` was not touched.
+
+```c
+-extern void rate_limited_elapsed_seconds_tick(unsigned int, unsigned int);
++extern void rate_limited_elapsed_seconds_tick(int *, int, int);
+-  rate_limited_elapsed_seconds_tick(param_2, 0);
++  rate_limited_elapsed_seconds_tick((int *)param_2, 0, 0);
+```
+
+### 43.4 `.text` delta — +2 B in ONE function, and the function becomes
+### BYTE-IDENTICAL to the shipped one
+
+```
+build   recon/application/build_cohesive.sh app /private/tmp/g1-i43a-app   exit 0
+FLASH   956,480 B / 982,528 B  97.35 %   headroom 26,048 B   (reported figure unchanged)
+RAM     253,765 B  56.32 %               _end 0x2003ff45     runtime_info_sync 0x00015c04
+text section size   0x00078494  ->  0x00078494     *** section delta 0 B ***
+nm -S diff, ONE symbol changed:
+        errno_wrapped_tick_call   0x3e -> 0x40   (+2 B)
+```
+
+The `.text` **section** does not grow (trailing alignment absorbs the two
+bytes), but the layout does move: 1,000 text symbols after `0x79d38` shift by
++2, and `zephyr.bin` differs in 50,350 bytes (branch displacements).  So the
+timing constraint applies in full and everything below was re-captured, not
+assumed.  `runtime_info_sync`, `DashBoard_Reflash` (`0x000325b0`) and
+`ui_DashBoard_task` (`0x00035ed8`) all sit *before* the shift point and did not
+move — the probe PCs and the capture recipe carry over unchanged.
+
+The rebuilt body against the shipped bytes, `objcopy -O binary --only-section=text`
+then byte compare over the 0x40-byte extent:
+
+```
+ship: 10b50446d4f8f43f0846d3f8643113b1d4f8ec2f136000221146cdf73cf9…
+ours: 10b50446d4f8f43f0846d3f8643113b1d4f8ec2f136000221146cbf753f8…
+differing byte offsets: 0x1a 0x1c 0x1d 0x3c 0x3e 0x3f
+```
+
+Six bytes differ and all six are inside the two PC-relative branch encodings
+(`bl` at 0x1a, `b.w` at 0x3c) — which *must* differ, because our image places
+the callees elsewhere.  **Every other byte, including the restored `0022`
+(`movs r2,#0`) at offset 0x16, is identical to the shipped image.**  The
+function is now byte-exact modulo relocation; before the fix it was two bytes
+short and semantically inverted.
+
+### 43.5 THE PREDICTION, MEASURED — two of three exact, one overshoots
+
+Seeded capture, `G1_SEED=305419896`, `G1_ATT_WRITE=""` (dashboard stimulus),
+frozen `g1-i30e-net`, `$rtinfo_pc=0x00015c04` re-read from this ELF.
+
+| stated in advance (§8.2) | predicted | **measured** | verdict |
+|---|---|---|---|
+| `DashBoard_Reflash` calls with `param_3 == 1` | 4 -> **11** | 4 -> **11** | **EXACT** |
+| dashboard framebuffer | unchanged | **byte-identical, `cmp` exit 0** | **EXACT** |
+| `spim_a p2_render` transactions | 9,212 -> **12,225** | 9,212 -> **12,289** | **OVERSHOOT +64** |
+| `JBD_FRAMECOUNTER_P2` | `0x22D7` -> **`0x2E65`** | `0x22D7` -> **`0x2EA3`** | **OVERSHOOT +62** |
+
+(The work order named `JBD_FRAMECOUNTER_P1`; the field that carries the
+dashboard repaint count and that §8.2 actually predicted is
+`JBD_FRAMECOUNTER_P2`.  `JBD_FRAMECOUNTER_P1` is `0x03` on shipped and on all of
+our dashboard images and did not move.)
+
+**The clock is unfrozen, and its value sequence is now identical to shipped.**
+The §4.1 probe, re-run on `g1-i43a-app` (hook `0x000325b0`, payload pointer
+`0x20040F3C`):
+
+```
+SHIPPED    1704067208 1704067210 1704067211 1704067212 1704067213 1704067214 1704067216 1704067217
+i43 (ours) 1704067208 1704067210 1704067211 1704067212 1704067213 1704067214 1704067216 1704067217
+base       1704067200 … 1704067200, every single call
+```
+
+Same eight values, **including the same two gaps** (209 and 215 absent, because
+two second-edges land in one 200.01 ms dispatch slot).  The `param_3` histogram:
+
+```
+shipped    136 calls   125x p3=0   11x p3=1
+base       133 calls   129x p3=0    4x p3=1
+i43 fix    137 calls   126x p3=0   11x p3=1
+```
+
+### 43.6 The seven named regions, region by region — ALL SEVEN RESTORED
+
+`regions.py` census of `0x02` pixel-window bursts, shipped vs base vs fixed:
+
+| region | shipped | base | **i43 fix** |
+|---|---|---|---|
+| x=244 y=211..339 (vertical divider) | 7× T=1.2003 s | ABSENT | **7× T=1.1998 s** |
+| x=564 y=211..339 (vertical divider) | 7× T=1.2003 s | ABSENT | **7× T=1.1998 s** |
+| x=312 y=247..274 ("Hold Right TouchBar") | 7× | ABSENT | **7×** |
+| x=326 y=274..301 ("to Add QuickNote") | 7× | ABSENT | **7×** |
+| x=78 y=316..342 | 7× | ABSENT | **7×** |
+| x=256 y=209..235 (note glyph) | 7× | ABSENT | **7×** |
+| x=174 y=316..343 (Bluetooth glyph) | 11× (4 boot + 7 periodic) | 4× (boot only) | **11×** |
+| x=78 y=259..292 (clock digits) | 132× T=0.0686 s | 129× | **133× T=0.0688 s** |
+| x=78 y=207..234 (date line) | 132× T=0.0686 s | 129× | **133× T=0.0688 s** |
+| x=0 y=175..374 (content block) | 4× | 4× | 4× |
+| x=0 y=0..384 (full-screen clear) | 2× | 2× | 2× |
+| **total** | 323 bursts / 11,874 windows | 268 / 8,916 | **325 / 11,936** |
+
+Even the 1.2 s repaint period is reproduced to 0.5 ms (1.1998 s vs 1.2003 s),
+which §4.1 correctly called a *consequence* of second-boundary quantisation
+rather than a timer.
+
+**The whole +64 residue is the clock/date train, not the restored regions.**
+133 − 132 = one extra iteration of the pair, `1 × 34 + 1 × 28 = 62` pixel
+windows, plus the two `0x97` panel-refresh commands that bracket the two extra
+bursts = **64 transactions**, and `12,289 − 12,225 = 64` with nothing left over.
+`JBD_FRAMECOUNTER_P2` moves by the 62 windows: `0x2EA3 − 0x2E65 = 0x3E = 62`.
+The `param_3` histogram says the same thing from the other side: our extra call
+is a `p3=0` (126 vs 125), i.e. a clock tick, not a full redraw.
+
+This is the §3.5(a) mechanism again with the sign flipped: the train's *period*
+is right, its *phase* fits one more iteration inside the 14 s render wall.  It
+is the boot-lateness / phase family of §4.3, not a defect in the repaired path.
+**I am reporting it as an overshoot rather than adjusting the story: the
+prediction said 12,225 and the measurement says 12,289.**
+
+### 43.7 Nothing regressed — three-way field comparison, both stimuli
+
+`cmp3.py` over 69 measured fields (counters, both framebuffers, every bus/phase
+count and stream sha, every `twim1` per-device sub-stream, the `regprog`
+canonicalisations, all four register-access peripherals).  Baselines: the seeded
+shipped oracles, and the in-tree build at HEAD (byte-identical to my `g1-i43-base`).
+
+| | **dashboard** | **navigation** |
+|---|---:|---:|
+| EQ to shipped on both base and i43 | 56 | 57 |
+| pre-existing gap, identical on both | 5 | 12 |
+| pre-existing gap, different value | 8 | 0 |
+| **REGRESSION** (base EQ, i43 NE) | **0** | **0** |
+| improvement (base NE, i43 EQ) | 0 | 0 |
+
+**Navigation is bit-for-bit what the baseline produced — all 69 fields, no
+field moved at all.** The +2 B did not perturb the navigation boot path.
+
+Dashboard, the eight fields whose *value* moved (all eight were already
+NE before this pass; none was EQ and broken):
+
+```
+spim_a/p2_render/count            ship 12,225   base  9,212   i43  12,289
+spim_a/p2_render/sha              5bcdb835…     0533c45d…     1c81e52e…
+counters/JBD_FRAMECOUNTER_P2      0x2E65        0x22D7        0x2EA3
+twim1/p2_render/count             597           583           584
+twim1/p2_render/dev:npm1300/count 527           513           514
+twim1/p2_render/dev:npm1300/sha   10548822…     9cae67fe…     595d8bc1…
+twim1/p2_render/sha               8188ba1c…     e594bcdc…     35e1302b…
+counters/ESB_ANNOUNCE_RESP        0x162         0x165         0x164
+```
+
+Seven of the eight moved **towards** shipped (`spim_a` 3,013 short → 64 over;
+nPM1300 −14 → −13; `ESB_ANNOUNCE_RESP` +3 → +2); one, the merged `twim1
+p2_render` bus sha, is the excused three-thread interleaving whose four
+per-device sub-streams are compared separately.
+
+**ALL FOUR FRAMEBUFFERS BYTE-IDENTICAL** (`cmp` vs the committed goldens,
+153,600 B each, exit 0):
+
+```
+navigation p1_boot    1d617c65…   656 lit px   IDENTICAL
+navigation p2_render  b26c73b3…  1098 lit px   IDENTICAL
+dashboard  p1_boot    0c5cc90b…     0 lit px   IDENTICAL
+dashboard  p2_render  19b1f24a…  2923 lit px   IDENTICAL
+```
+
+**The four "do not regress" criteria, re-measured on `g1-i43a-app`:**
+
+```
+navigation spim_a whole run   786 + 2,859 = 3,645  ==  764 + 2,881 = 3,645   EQ
+navigation twim1 p2_render    599 == 599, all four per-device sha EQ:
+      npm1300 508 873d77bd… / opt3001 80 30796e0f… /
+      st25dv_system_port 4 248e360f… / st25dv_nfc_eeprom 7 32caac08…       EQ
+navigation twim2 p1_boot      1,089  7ed8ddcd0c0d420d…                     EQ
+navigation JBD_FRAMECOUNTER_P2  0x00000D61 == 0x00000D61                   EQ
+dashboard  twim2 p1_boot 1,075 / twim1 p1_boot 346 / spim_a p1_boot 34     EQ
+```
+
+### 43.8 Static ladder on `g1-i43a-app`
+
+```
+app build                                 exit 0
+FLASH   956,480 B / 982,528 B  97.35 %    headroom 26,048 B
+RAM     253,765 B / 440 KB     56.32 %
+nm -u                                     0
+duplicate global definitions              0
+check_ram_pin_collisions app  escaping 0  unknown_inside_a_live_object 0
+check_ram_pin_collisions net  escaping 0  unknown_inside_a_live_object 0
+check_thread_create_stack_args            10/10   EXIT=0
+verify_data                               995/995 files, 56,279/56,279 bytes, 100.00 %
+net UNTOUCHED — g1-i30e-net zephyr.bin 225,581 B, still FROZEN
+```
+
+`cfg_verify` is **not** cited: it is structurally blind to this defect class
+(it seeds r0..r3 regardless of declared arity, so an argument slot the caller
+never plants is invisible to it — the file carried `parity: 300/300 trials,
+PROVEN` in its banner while the bug was live).  Every number above comes from a
+build, a `cmp`, a seeded Renode capture or a Renode PC hook.
+
+### 43.9 TASK 2 / §4.2 — the nPM1300 poll pause was NEVER a computed sleep.
+### It was the frozen clock, and it is now 0.4012 s == shipped.
+
+This corrects §4.2 of `stage04_r7_validation.md`, which concluded from the
+figure being identical across three differently-linked images that the pause
+"is therefore a computed sleep length, not a codegen-carried timing artifact".
+The inference was sound and the conclusion is wrong: the pause was identical
+across those three images because **all three had the same frozen clock**.
+
+Every `W 070401` fuel-gauge poll in `twim1.p2.trace`, same measurement as §4.2:
+
+| image | polls in p2 | first | last | pause min / median / max | last five pauses |
+|---|---:|---|---|---|---|
+| **shipped** | 68 | 6.0735 | 19.7960 | 0.4012 / 0.4093 / 0.5001 | 0.4012 0.4012 0.4012 0.4516 0.4015 |
+| in-tree base | 67 | 6.0774 | 19.8800 | 0.4085 / 0.4501 / 0.5001 | 0.4522 0.4492 0.4480 0.4993 0.4517 |
+| **i43 fix** | **68** | 6.0774 | **19.8001** | **0.4012** / **0.4085** / 0.5001 | **0.4037 0.4012 0.4012 0.4513 0.4028** |
+
+The minimum pause is now **0.4012 s, equal to shipped to 0.1 ms**; the median
+moves 0.4501 → 0.4085 against shipped 0.4093; the poll count in `p2_render`
+goes **67 → 68 == 68**; and the last poll lands at 19.8001 s against shipped
+19.7960 s — **+4.06 ms** where it used to be **+84 ms**.
+
+What is left of the −14 is now **−13, and it is purely the capture wall**.
+`difflib` over the canonical per-device stream:
+
+```
+EQUAL   ship[0:514] == ours[0:514]   (514)
+DELETE  ship[514:527]                 -- a contiguous TAIL
+```
+
+Shipped's transaction #514 is at **19.996060 s**; our #513 is at 19.800074 s
+against shipped's #513 at 19.796013 s.  Our next poll group would start at
+≈20.0001 s — **0.13 ms past the 20 s wall**.  So the entire residual −13 is the
+4.06 ms of accumulated lateness, which is §43.10's boot lateness, not a
+polling-cadence defect.  §4.2 is **closed as a diagnosis** and its cause is
+re-assigned.
+
+### 43.10 TASK 2 / §4.3 — the fixed +3.45 ms is ROOT-CAUSED to the
+### instruction: our `.bss` is 84,504 bytes larger than the shipped firmware's,
+### and `memset` is a byte loop in BOTH images.
+
+The lateness is unchanged by this pass — a fourth image now confirms the
+invariance §4.3 measured:
+
+| image | `twim1` first | `twim2` first | `spim_a` first |
+|---|---|---|---|
+| shipped | 0.049940 | 0.073300 | 0.101700 |
+| in-tree base | 0.053390 **+3.45 ms** | 0.079690 +6.39 ms | 0.108070 +6.37 ms |
+| **i43 fix** | 0.053390 **+3.45 ms** | 0.079690 +6.39 ms | 0.108070 +6.37 ms |
+
+**Step 1 — it is all accrued before the first CLOCK register write.**
+`sysbus AddWatchpointHook` on fixed hardware addresses (identical in both
+images, so no symbol correspondence is needed), logging
+`cpu.GetMachine().ElapsedVirtualTime`:
+
+| event | shipped | ours | Δ |
+|---|---|---|---|
+| CLOCK `0x50005518` first write | 0.004490 | 0.007940 | **+3.450 ms** |
+| CC3xx `0x50845A0C` first access | 0.004520 | 0.007970 | +3.450 ms |
+| CC3xx `0x50845A00` | 0.004526650 | 0.007976190 | +3.44954 ms |
+| QSPI `0x5002B000` TASKS_ACTIVATE | 0.009860 | 0.013310 | +3.450 ms |
+| TWIM1 `0x50009008` first STARTTX | 0.049940 | 0.053390 | +3.450 ms |
+
+Every interval *after* the first CLOCK write is identical: CLOCK→CC3xx 30.0 µs
+in both, CC3xx→QSPI 5.340 ms in both, QSPI→TWIM1 40.08 ms in both.  **The
+crypto init, the QSPI flash init and the PMIC init cost us exactly what they
+cost the shipped firmware.**  The whole deficit is the reset prologue.
+
+**Step 2 — it is 345,204 executed instructions, at exactly 100 MIPS.**
+Same watchpoint, logging `cpu.ExecutedInstructions`:
+
+```
+first CLOCK write   shipped  insn=449,754  pc=0x6520c
+                    ours     insn=794,958  pc=0x636a8
+                             Δ = +345,204 instructions  /  3.450 ms = 100.06 MIPS
+```
+
+So it is **not** a delay constant, a poll bound or a clock-ready wait, which is
+what §4.3 suspected.  We *execute* 345 K more instructions.
+
+**Step 3 — the instructions are in `z_bss_zero`.** PC hooks on our own boot
+symbols, with instruction counts:
+
+```
+SystemInit             insn=8
+z_bss_zero             insn=367
+z_data_copy            insn=757,309      <- z_bss_zero cost 756,942 instructions
+z_cstart               insn=780,122      <- z_data_copy cost  22,813
+g1_arena_data_init     insn=780,746
+clk_init               insn=794,890
+```
+
+`z_bss_zero` alone is **756,942 instructions = 7.57 ms** of our 7.94 ms
+pre-CLOCK boot.
+
+**Step 4 — `memset` is a byte loop, and that is FAITHFUL.** Our `memset`
+(`z_early_memset` → `memset` @ `0x83c90`, 16 B) is
+`cmp/bne/strb.w/b` — 4 instructions per byte.  `756,942 / 189,232 B = 4.00`.
+The shipped `memset_bytes` at `0x00086c78`, read straight out of the image with
+`tools/extract.py`, is **the same six instructions**:
+
+```
+86c7a: mov r3,r0   86c7c: cmp r3,r2   86c7e: bne 86c82
+86c80: bx lr       86c82: strb.w r1,[r3],#1   86c86: b 86c7c
+```
+
+`recon/symbolized/app/memset_bytes.c` reproduces it exactly and is aliased to
+`memset` (`recon/symbols/g1_app_function_aliases.ld:65`).  **The reconstruction
+is right; the byte loop is what the device really runs.**
+
+**Step 5 — so the difference is the NUMBER OF BYTES, and it is measured on both
+sides.** A hook on the shipped `memset_bytes` entry logging `r0`/`r2`:
+
+```
+SHIPPED   first call:  memset(dst=0x20003c50, 0, 104,728)   insn=374
+                       next call at insn=448,956  -> cost 448,582 instructions
+OURS      z_bss_zero:  memset(0x200031a0, 0, 189,232)       -> 756,942 instructions
+```
+
+**Δ = 84,504 bytes × 4 instructions = 338,016**, against the measured 345,204 —
+the remaining 7,188 are elsewhere in the prologue (our `z_data_copy` is 22,813).
+
+**Step 6 — where the 84,504 bytes are.** Our whole `.bss` is `0x2E32E`
+(189,232 B) and one object is `0x28400` of it:
+
+```
+.bss.g1_ram_arena   0x200031a0   0x28400 (165,888 B)   app/libapp.a(g1_app_ram_relocs.c.obj)
+```
+
+`g1_ram_arena` is the blanket reservation
+`G1_RAM_ARENA_ORIGIN 0x20002000 … G1_RAM_ARENA_LIMIT 0x2002a400` that gives
+linker-allocated storage to every recovered RAM pin (iteration 6/19).  It is
+plain `.bss`, so **all** of it is zeroed.  The shipped firmware zeroes only
+`0x20003c50 … 0x2001d568`.  Mapped onto the arena that is offsets
+`0x1c50 … 0x1b568`, so of the arena the shipped firmware does **not** zero:
+
+```
+below   0x20002000 .. 0x20003c50    0x1c50 =  7,248 B   (the original's .data)
+above   0x2001d568 .. 0x2002a400    0xce98 = 52,888 B   (thread stacks, pools)
+                                    total  = 60,136 B  == 240,544 instructions == 2.40 ms
+```
+
+The remaining ≈24 KB is SDK/Zephyr `.bss` our NCS 2.5.1 configuration has and
+the original did not (only 4,943 B of *named* `.bss` objects sit above the
+shipped bss end, so it is spread through the region, not one object).
+
+**This is a complete root cause, and it is actionable**: splitting
+`g1_ram_arena` into a `.bss` window `[0x1c50, 0x1b568)` and `noinit` remainders
+would remove 60,136 B of zeroing = **−2.40 ms** of the +3.45 ms, without moving
+a single pin (the arena base is fixed and the split is at fixed offsets).
+**I did not apply it in this pass** — see §43.12 for why, stated as a decision
+rather than an omission.
+
+`.bss` sizes are not a cosmetic difference: they are the only remaining cause of
+the nPM1300 −13 (§43.9, which needs 4.06 ms) and of §42.10 item 3's
+`twim2 p2_render` accel-payload residue.
+
+### 43.11 TASK 2 / ESB counters +1 — DOCUMENTED AS ACCEPTED, with the reason
+
+`ESB_MASTER_FRAMES` and `ESB_ACKS` are `0x176` against the shipped `0x175` on
+both stimuli, on the in-tree build **and** on `g1-i43a-app` — unchanged by a
++2 B relink that moved 1,000 text symbols and changed 64 SPI transactions.
+`RADIO_TX` is `0x232` == shipped on both of our builds (stage 04's sub-batches
+moved it to `0x233`/`0x234`; this pass does not).
+
+I am **not** closing it, and I am **not** widening anything.  The reason is
+evidence, not budget: every other ±1 in this capture — the extra clock/date
+burst (§43.6), the nPM1300 tail (§43.9), stage 04's extra OPT3001 poll — has
+been shown to be **a wall-boundary effect of boot phase**, and our boot phase is
+still +3.45 ms off (§43.10).  A radio counter that differs by one frame in a
+20 s window is a member of that family until the boot phase is equal, and
+closing it before then would mean tuning a radio parameter to compensate for a
+`memset` length.  **What would settle it:** re-measure `ESB_MASTER_FRAMES` after
+the §43.10 arena split.  If it stays `0x176` with the boot phase equal, it is a
+real ESB defect and deserves its own investigation; if it goes to `0x175`, it
+was never one.
+
+### 43.12 TASK 3 — the 366 missing-argument sites, reduced to a set whose
+### repair CANNOT invent a value: 60 sites where the image proves a CONSTANT
+
+`type_disagreement_repair_2.md` §9.3 left all 366 image-proven missing-argument
+call sites untouched on the correct principle that **a wrong argument is worse
+than a missing one** — every repair "needs a value *reconstructed*".  That is
+true in general and false for a measurable subset, and this pass measures it.
+
+Method (`scratchpad/td2/constargs.py`, `consttrace.py`, both new):
+
+1. For every caller file in `recon/symbolized/app`, pair its source calls to a
+   callee with the shipped `bl` sites in that caller targeting that callee, in
+   address order against line order. **If the counts do not match 1:1 the
+   caller/callee pair is refused outright** — no guessing. 366 → **299 paired**.
+2. At each paired shipped site, backward-walk the CFG for each missing
+   register (`r0..r3`).  Keep the site only if **every** path's sole writer is a
+   `mov/movs/movw/mvn` with an immediate, and all paths agree on the value.
+   Any path that reaches the function entry, a preceding `bl`, or a non-constant
+   writer disqualifies the site.
+
+**Result: 60 of 299 sites have a provably unique constant.** The value is not
+reconstructed, it is read out of the shipped instruction stream.
+
+```
+sync_to_slave            25  (r3=0 x24, r3=2 x1)     memcpy                 4  (r2=436)
+img_mgmt_read             3  (r3=4)                  gpiote_in_init         2  (r3=0)
+k_mutex_lock              4  (K_FOREVER)             z_impl_k_sem_take      3
+k_msleep                  2  (r0=10)                 display_DelayClose     2  (r0=10000)
+z_impl_k_sem_init         2  (r2=1)                  device_info_set_mode   2
+display_inputEvent 1 (r0=0,r1=1)  change_work_mode_to 1 (r0=2)  send_event 1 (r0=0)
+reset_esb_sync_state 1  set_pending_state_flag 1  update_persist_task_status 1
+esb_send_command_and_wait_ack 1  bt_conn_create_pdu 1  z_log_msg_runtime_create 1
+mem_find_byte 1  __divdf3 1  z_log/etc
+```
+
+The full ranked list with file, line, shipped site VA and constant is
+`scratchpad/td2/constargs_hits.json`.  Some of these are severe:
+`k_msleep();` with **no argument at all** (`key_event_thread.c:200,274` —
+shipped `movs r0,#10`), `display_inputEvent();` with none of its two,
+and four `memcpy(dst, src)` calls **with no length**.
+
+### 43.13 TASK 3 — the strongest cluster APPLIED and GATED: four `memcpy`
+### calls with a missing length, and the codegen turns out to be FREE
+
+The four length-less `memcpy` calls are the strongest evidence in the set and
+the worst defect: an unbounded copy into a 436-byte message record.
+
+```
+recon/symbolized/app/post_notification_cmd_process.c:60   memcpy((int)(puVar4+4), param_3)
+recon/symbolized/app/clear_timeout_message.c:120          memcpy(iVar2 + iVar9*0x1b4, iVar5)
+recon/symbolized/app/confirm_message.c:80                 memcpy(iVar13 + iVar14, iVar10+0x108)
+recon/symbolized/app/confirm_message.c:103                memcpy(uVar12*0x1b4 + g_message_pool, iVar10+0x108)
+```
+
+The constant is `436 = 0x1b4`, and it is corroborated four ways: the backward
+trace; the shipped instruction itself (`mov.w r2, #436` two instructions before
+the `bl` at `0x3470e` and `0x3395c`, and feeding the `mla`/`mul` at `0x33eac`
+and `0x345f4`); the *sibling* calls in the same files that already spell
+`0x1b4`; and `recon/symbols/g1_app_globals.ld:2108`, which records the original
+`msg_queue_init` doing `20 x 436` from `g_message_pool`.  The local prototype in
+each file is `extern int memcpy(int,...)`, so no declaration change is needed —
+which is exactly why the compiler never complained.
+
+**Build `g1-i43b-app`:**
+
+```
+FLASH   956,480 B / 982,528 B  97.35 %   headroom 26,048 B
+RAM     253,765 B  56.32 %   _end 0x2003ff45   runtime_info_sync 0x00015c04
+text section  0x00078494  ->  0x00078494        *** delta 0 B ***
+nm -S diff vs g1-i43a:  *** ZERO functions changed size ***
+zephyr.bin differs in 427 bytes                 nm -u 0
+```
+
+**The repair is free in codegen.** GCC already had `436` in `r2` at three of the
+four sites (it is the record size used by the adjacent `strh`/`mla`), so adding
+the argument only re-used a value that was already live.
+`post_notification_cmd_process` now emits the shipped sequence:
+
+```
+shipped 0x33952:  mov.w r2,#436 / mov r1,r7 / mov r0,r8 / strh r2,[r5,#2] / bl memcpy
+ours    0x2edc6:  mov.w r2,#436 / mov r1,r7 / strh r2,[r4,#2] / adds r0,r4,#4 / bl memcpy
+```
+
+**Gate — a full seeded capture on BOTH stimuli, compared not field-by-field but
+directory-by-directory:**
+
+```
+diff -r rep_a_nav1  rep_b_nav1   ->  no output   NAV  oracle dir BYTE-IDENTICAL
+diff -r rep_a_dash  rep_b_dash   ->  no output   DASH oracle dir BYTE-IDENTICAL
+cmp all four framebuffers vs the committed goldens  ->  exit 0 each
+```
+
+Every one of the 69 measured fields, every trace-derived stream hash, every
+per-device sub-stream and all four framebuffers are **bit-for-bit what
+`g1-i43a-app` produced**.  The 427 changed image bytes have no observable
+consequence in this capture — which is the honest statement: the repair is
+proven *safe*, and the capture cannot prove it *necessary*, because neither
+stimulus drives the ANCS/notification path where these four calls live.
+
+Mirrored to the parallel trees by anchored replacement, every anchor asserted
+unique: `recon/named` (3 files), `recon/readable_sources/app/g1` (3),
+`recon/app/src` (3 `FUN_*`), `recon/verified/src` (3).  16 hunks, 0 ambiguous,
+0 guessed.  `recon/app/src_sym` and `recon/verified/src_sym` have no file for
+these three functions.
+
+**The other 56 constant sites were NOT applied.** They are recorded, ranked and
+reproducible; several (`k_msleep`, `k_mutex_lock`'s `K_FOREVER`,
+`z_impl_k_sem_take`) change *timing or blocking behaviour*, and two
+(`k_mutex_lock`, `z_impl_k_sem_take`) need a 64-bit `k_timeout_t` argument
+rather than two `int`s, which is a different repair with a different proof
+obligation.  Landing them belongs in a pass that can afford one gated capture
+per batch.
+
+### 43.14 FINAL ACCEPTANCE — `g1-i43b-app`
+
+```
+build            recon/application/build_cohesive.sh app /private/tmp/g1-i43b-app   exit 0
+FLASH            956,480 B / 982,528 B   97.35 %    headroom 26,048 B
+RAM              253,765 B / 440 KB      56.32 %
+text section     0x00078494  (identical to the HEAD baseline)
+net              UNTOUCHED, g1-i30e-net, zephyr.bin 225,581 B  -- still FROZEN
+nm -u                                     0
+duplicate global definitions              0
+check_ram_pin_collisions app   escaping 0 / unknown_inside_a_live_object 0
+check_ram_pin_collisions net   escaping 0 / unknown_inside_a_live_object 0
+check_thread_create_stack_args            10/10   EXIT=0
+verify_data                               995/995 files, 56,279/56,279 bytes, 100.00 %
+```
+
+**ALL FOUR FRAMEBUFFERS BYTE-IDENTICAL** (`cmp` vs the committed goldens,
+153,600 B each, exit 0, seeded captures on both stimuli):
+
+```
+navigation p1_boot    1d617c65…   656 lit px
+navigation p2_render  b26c73b3…  1098 lit px
+dashboard  p1_boot    0c5cc90b…     0 lit px
+dashboard  p2_render  19b1f24a…  2923 lit px
+```
+
+**Hold criteria, all EQ to shipped:**
+
+```
+navigation spim_a whole run    786 + 2,859 = 3,645  ==  3,645
+navigation twim1 p2_render     599 == 599, all four per-device sha EQ
+navigation twim2 p1_boot       1,089  7ed8ddcd0c0d420d…
+navigation JBD_FRAMECOUNTER_P2 0x00000D61
+dashboard  twim2 p1_boot 1,075 f182314b… / twim1 p1_boot 346 0a8ed850… /
+           spim_a p1_boot 34 f91505ab… / OPT3001 p2_render 59 4e016ae0… /
+           ST25DV 7 + 4 / saadc 998 ebf06b30… / RADIO_TX 0x232
+SCREEN_ID 0x0A (nav) / 0x06 (dash), DISPLAY_ON 0x01, ESB_SYNC 0x02
+```
+
+**Moved towards shipped this iteration** (dashboard):
+
+```
+spim_a p2_render                 9,212  -> 12,289   (shipped 12,225, +64 over)
+JBD_FRAMECOUNTER_P2             0x22D7  -> 0x2EA3   (shipped 0x2E65, +62 over)
+twim1 p2_render                    583  ->    584   (shipped 597)
+  nPM1300                          513  ->    514   (shipped 527, tail past the wall)
+  nPM1300 inter-burst pause     0.4501s -> 0.4085s  (shipped 0.4093 s, min 0.4012 == 0.4012)
+  nPM1300 polls in p2                67 ->     68   ==  68
+ESB_ANNOUNCE_RESP               0x165   -> 0x164    (shipped 0x162)
+DashBoard_Reflash param_3==1         4  ->     11   ==  11
+the unix timestamp             FROZEN   -> the shipped 8-value sequence exactly
+```
+
+**Still NE** (unchanged by this pass): `ESB_MASTER_FRAMES`/`ESB_ACKS` `0x176`
+vs `0x175`; `VC_DATA_EVENTS` `0x215` vs `0x213`; dashboard `twim2 p2_render`
+raw sha (the `regprog` canonicalisation is EQ); navigation `spim_a` p1/p2 split
+786/2,859 vs 764/2,881 with the whole run exact; navigation `JBD_FRAMECOUNTER_P1`
+`0x2B6` vs `0x2A1`; the merged `twim1 p2_render` bus sha (all four per-device
+sub-streams EQ).
+
+### 43.15 What is NOT closed, and why
+
+1. **The `spim_a p2_render` +64 overshoot** (§43.6).  Decoded to one extra
+   iteration of the clock/date repaint pair — 62 pixel windows + 2 panel
+   refreshes — and to one extra `param_3 == 0` call (126 vs shipped 125).  It is
+   a wall-boundary effect of boot phase, so it belongs to §43.10 and cannot be
+   closed independently of it.  **The §8.2 prediction of 12,225 / `0x2E65` is
+   therefore wrong by +64 / +62 and I am recording it as wrong**, not
+   re-describing it as a success.
+2. **The +3.45 ms boot lateness is ROOT-CAUSED but NOT FIXED** (§43.10).  The
+   fix is to split `g1_ram_arena` so that only the window matching the shipped
+   `memset(0x20003c50, 0, 104728)` sits in `.bss` and the rest in `noinit`
+   (−60,136 B of zeroing = −2.40 ms).  I did not attempt it, deliberately:
+   * iteration 19 already measured what happens when the arena's **contiguity**
+     breaks — `g_display_thread_stack_buf` at `0x20028e68` runs 0x1400 bytes and
+     overran the arena end, corrupting `bt_workq`/`tx_thread_data` and faulting
+     at t = 5.14 s.  A two-object split needs a linker-script rule that keeps
+     the halves adjacent, and no prior pass has touched
+     `recon/application/app/*.ld`.
+   * the low 7,248 bytes of the arena are the original's **`.data`**, which has
+     non-zero initialisers we do not reproduce; moving that part to `noinit`
+     would be strictly worse than zeroing it, so only the upper 52,888 B is a
+     faithful candidate.
+   * a −2.40 ms boot shift re-phases every bus stream, and the precedent is that
+     −16 B of `.text` was enough to break eight navigation fields.  It needs its
+     own pass with its own capture budget, not the last hour of this one.
+3. **The nPM1300 −13** (§43.9) is now *entirely* item 2: our last poll group
+   would land 0.13 ms past the 20 s wall.  Nothing else remains of the −14.
+4. **`ESB_MASTER_FRAMES`/`ESB_ACKS` +1** — documented as accepted with the
+   reason and with a stated falsification test (§43.11).  No tolerance widened.
+5. **56 of the 60 constant-argument sites not applied** (§43.13), including the
+   25-site `sync_to_slave` cluster and the `k_timeout_t` group that needs 64-bit
+   argument reconstruction.
+6. **The 239 paired sites whose missing register is NOT a constant, and the 67
+   sites that could not be paired 1:1, are untouched.**  For those the original
+   objection stands: the value would have to be invented.
+7. **The 2 short definitions** (`z_impl_k_timer_start` 3 vs 6,
+   `main_dispatch_thread_tick` 7 vs 8) and the **303 invented-argument sites**
+   are untouched.  I owned Renode this pass and still did not spend it there,
+   because §43.10 turned out to be a bigger and better-evidenced target.
+8. **`cfg_verify` was not run and is not cited anywhere in §43.**  It is
+   structurally blind to caller-side argument defects — the very file this
+   iteration repaired carried `parity: 300/300 trials, PROVEN`.
+9. **`battery_model_state_update` (`FUN_0000c358`)** — still the open float
+   defect `AGENTS.md` §1b names.  Untouched.
+10. **Nothing was committed.**  The tree is left dirty.
+11. **`recon/refactor/` was not touched by me.**  It is dirty in `git status`
+    (MANIFEST/DEFECTS/PARITY_MAP JSONs and `t04_cohesive_tu.py`) — that is the
+    concurrent agent working in parallel, and none of it is mine.  Neither
+    `recon/net/**`, nor any linker script, nor `recon/board/**`, nor
+    `recon/generated/**`, nor `tools/` was written.  `~/Projects/armemul` is
+    byte-for-byte as it was found: every probe of §43.5/§43.10 lives in
+    throwaway `.resc` files under `/private/tmp/g1-i43/probe/`.
+
+### 43.16 Footprint
+
+```
+ M recon/symbolized/app/errno_wrapped_tick_call.c          (the COMPILED tree)
+ M recon/named/errno_wrapped_tick_call.c                   (= recon/application/src/… symlink)
+ M recon/readable_sources/app/g1/errno_wrapped_tick_call.c
+ M recon/app/src/FUN_0007d1d6.c
+ M recon/app/src_sym/FUN_0007d1d6.c
+ M recon/verified/src/FUN_0007d1d6.c
+ M recon/verified/src_sym/FUN_0007d1d6.c
+        rate_limited_elapsed_seconds_tick((int *)param_2, 0, 0) + the (int*,int,int)
+        prototype -- the missing third argument, and the DEFECTS.json entry closed
+
+ M recon/symbolized/app/post_notification_cmd_process.c    memcpy length 0x1b4
+ M recon/symbolized/app/clear_timeout_message.c            memcpy length 0x1b4
+ M recon/symbolized/app/confirm_message.c                  memcpy length 0x1b4 (x2)
+ M recon/named/{post_notification_cmd_process,clear_timeout_message,confirm_message}.c
+ M recon/readable_sources/app/g1/{same three}.c
+ M recon/app/src/{FUN_000338ec,FUN_00033d58,FUN_00034524}.c
+ M recon/verified/src/{FUN_000338ec,FUN_00033d58,FUN_00034524}.c
+
+ M recon/emulator/reports/our_boot_bringup.md              this section
+```
+
+**23 files, 0 new files, 0 deletions, no generated-file regeneration, `.text`
+section delta 0 B** (one function, `errno_wrapped_tick_call`, grew 0x3e → 0x40
+and is now byte-identical to the shipped one modulo two branch displacements).
+
+### Regenerate (iteration 43)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+recon/application/build_cohesive.sh app /private/tmp/g1-i43b-app
+arm-zephyr-eabi-nm zephyr.elf | grep -w runtime_info_sync    # 0x00015c04 here -- ALWAYS re-read
+# _end 0x2003ff45 -> ctx 0x2003ff50; probes 0x20040025 / 0x20040F38 / 0x20040FAA
+
+bash /private/tmp/g1-i43/cap.sh b_nav1 /private/tmp/g1-i43b-app 0x00015c04 nav
+bash /private/tmp/g1-i43/cap.sh b_dash /private/tmp/g1-i43b-app 0x00015c04 dash
+V="PYTHONSAFEPATH=1 .venv/bin/python"
+$V recon/emulator/scripts/build_display_sensor_oracle.py                    <cap> <rep>
+$V recon/emulator/scripts/build_display_sensor_oracle.py --screen=dashboard <cap> <rep>
+$V /private/tmp/g1-s4r7/cmp3.py <ship.json> <base.json> <ours.json> I43_FIX
+$V /private/tmp/g1-s4r7/regions.py <ship>/spim_a.p2.trace <base>/… <ours>/…
+$V /private/tmp/g1-i43/pause.py  <ship>/twim1.p2.trace <base>/… <ours>/…
+
+# the probes that root-caused the boot lateness (all throwaway, under /private/tmp/g1-i43/probe)
+#   vt-ladder.resc   43 SYS_INIT entries + main, cpu.GetMachine().ElapsedVirtualTime
+#   wp2-{ship,ours}.resc  sysbus AddWatchpointHook 0x50005518 / 0x50845A0C / 0x5002B000 / 0x50009008
+#   wp5-{ship,ours}.resc  the same, logging cpu.ExecutedInstructions
+#   wp6-ours.resc    z_bss_zero / z_data_copy / z_cstart / clk_init instruction budget
+#   ms-ship.resc     hook 0x00086c78 (memset_bytes) logging r0/r2  -> memset(0x20003c50,0,104728)
+# NB: in a Renode python hook use cpu.GetMachine().ElapsedVirtualTime --
+#     cpu.Machine and cpu.machine are both inaccessible, and TimeStamp has no
+#     TotalMicroseconds.
+
+# TASK 3 selector
+$V <scratchpad>/td2/constargs.py    # 366 -> 299 paired sites
+$V <scratchpad>/td2/consttrace.py   # 299 -> 60 with a provably unique constant
+```

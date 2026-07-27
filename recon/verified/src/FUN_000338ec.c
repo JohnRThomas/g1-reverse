@@ -32,7 +32,7 @@ void FUN_000338ec(int param_1, unsigned char *param_2, int param_3)
         uVar5 = (unsigned)(unsigned char)puVar4[1];
         if(uVar5==2 || uVar5==4){
             *(unsigned short*)(puVar4+2) = 0x1b4;
-            FUN_00086c04((int)(puVar4+4), param_3);
+            FUN_00086c04((int)(puVar4+4), param_3, 0x1b4);
             if(2 < *(volatile int*)0x2000230c){
                 if(*(volatile int*)0x20007554 == 0){
                     FUN_0007dda4(0x000a7c4a, 0x000a82e2, uVar5);

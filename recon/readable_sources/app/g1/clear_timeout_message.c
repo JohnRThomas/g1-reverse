@@ -117,7 +117,7 @@ control_label_00033e98:
         iVar11 = iVar11 + 1;
         goto control_label_00033d76;
     }
-    memcpy(iVar2 + iVar9 * 0x1b4, iVar5);
+    memcpy(iVar2 + iVar9 * 0x1b4, iVar5, 0x1b4);
     memset_bytes(iVar5, 0, 0x1b4);
     if (0 < *(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {

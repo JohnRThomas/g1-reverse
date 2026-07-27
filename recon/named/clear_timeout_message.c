@@ -116,7 +116,7 @@ LAB_00033e98:
         iVar11 = iVar11 + 1;
         goto LAB_00033d76;
     }
-    memcpy(iVar2 + iVar9 * 0x1b4, iVar5);
+    memcpy(iVar2 + iVar9 * 0x1b4, iVar5, 0x1b4);
     memset_bytes(iVar5, 0, 0x1b4);
     if (0 < *(volatile int *)0x2000230cUL) {
         if (*(volatile int *)0x20007554UL == 0) {

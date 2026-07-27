@@ -44,7 +44,7 @@ void FUN_00034524(int param_1)
         uVar8 = 9;
       }
       iVar14 = uVar8 * 0x1b4;
-      iVar10 = FUN_00086c04(iVar13 + iVar14, iVar10 + 0x108);
+      iVar10 = FUN_00086c04(iVar13 + iVar14, iVar10 + 0x108, 0x1b4);
       iVar7 = *(int*)(iVar13 + iVar14);
       *(char*)(iVar10 + 0xc) = (char)uVar8;
       if (iVar7 == 0) { *(undefined4*)(iVar13 + iVar14) = FUN_0007d224(0); }
@@ -67,7 +67,7 @@ void FUN_00034524(int param_1)
       uVar12 = 0; iVar7 = 0x20007dac;
       do {
         if (*(int*)(iVar7 + 8) == *(int*)(iVar10 + 0x110)) {
-          FUN_00086c04(uVar12 * 0x1b4 + 0x20007dac, iVar10 + 0x108); break;
+          FUN_00086c04(uVar12 * 0x1b4 + 0x20007dac, iVar10 + 0x108, 0x1b4); break;
         }
         uVar12 = uVar12 + 1; iVar7 = iVar7 + 0x1b4;
       } while ((uVar12 & 0xff) < uVar8);
