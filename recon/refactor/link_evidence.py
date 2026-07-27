@@ -211,6 +211,152 @@ def load() -> dict:
     return _cache
 
 
+_CMAKE_SRC = re.compile(r'\$\{CMAKE_CURRENT_LIST_DIR\}/\.\./symbolized/([^"\s)]+)')
+RETAINED_CMAKE = "recon/generated/app_retained_sources.cmake"
+APP_ARCHIVE = os.path.join("app", "libapp.a")
+
+
+def archive_members(nm: str, archive: str) -> set[str]:
+    """Object-file basenames inside an archive, via ``nm -A``.
+
+    ``ar t`` is not used: the archives this toolchain writes carry an extended
+    long-name table that ``ar t`` renders unusably on this host (measured --
+    it prints ``/``, ``//``, ``/0`` for most members), while ``nm -A`` prints
+    ``<archive>:<member>:<symbol line>`` for every symbol and is unambiguous.
+    """
+    p = subprocess.run([nm, "-A", archive], capture_output=True, text=True)
+    out: set[str] = set()
+    prefix = archive + ":"
+    for line in p.stdout.splitlines():
+        if not line.startswith(prefix):
+            continue
+        rest = line[len(prefix):]
+        i = rest.find(":")
+        if i > 0:
+            out.add(os.path.basename(rest[:i]))
+    return out
+
+
+def partition_diff(ev_objs: set[str], tree_objs: set[str],
+                   present_sources: set[str]) -> tuple[list[str], list[str]]:
+    """The pure set logic of ``check_partition``, so it is testable with no
+    toolchain: a gate that only runs where a cross-compiler is installed is a
+    gate that does not run (``stagelib.elf_section_sizes`` makes the same
+    argument and parses ELF by hand for the same reason).
+
+    Returns ``(retained sources with no object in the evidence, objects in the
+    evidence that are no longer retained but whose source still exists)``.
+    """
+    return (sorted(tree_objs - ev_objs),
+            sorted((ev_objs & present_sources) - tree_objs))
+
+
+def check_partition(tree_root: str, nm: str = DEFAULT_NM,
+                    data: str | None = None) -> dict:
+    """Does the recorded evidence still describe THIS tree's TU partition?
+
+    WHY THIS EXISTS -- a link failure at HEAD on 2026-07-27 found it, and it is
+    the project's recurring defect class expressed at the level of a build
+    artifact rather than a source line.
+
+    ``stagelib.EVIDENCE_INPUTS`` watches the CONTENT HASH of
+    ``link_referenced_symbols.json``.  The file had not changed.  The **tree it
+    describes** had: stage 04's merge partition moved, so
+    ``display_close_screen.c`` -- a member of ``g1_display_12.c`` in the build
+    the evidence was measured from -- became its own translation unit.  Its
+    call to ``display_close`` stopped being intra-object and became a
+    relocation, which is exactly the precondition stage 07 checks; but stage 07
+    was reading evidence that predated the move, so it gave ``display_close``
+    internal linkage and the app link failed with ``undefined reference to
+    `display_close'`` from stage 07 upward.  ``driver.py status`` reported every
+    one of those stages as **current** throughout.
+
+    A hash of the evidence cannot see this.  The object partition can, and it is
+    a set comparison: the evidence build's ``app/libapp.a`` members against the
+    consuming tree's own retained source list.  A non-empty symmetric difference
+    means the evidence describes a different partition and must be regenerated
+    BEFORE any stage consumes it.
+
+    Returns a report rather than raising, and reports ``"state":
+    "unverifiable"`` when the evidence build directory no longer exists -- an
+    absent build is not evidence of agreement.
+    """
+    path = data or DATA
+    if not os.path.exists(path):
+        return {"state": "unverifiable", "reason": "no evidence file", "path": path}
+    with open(path, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    build = doc["provenance"]["build_dir"]
+    archive = os.path.join(build, APP_ARCHIVE)
+    cmake = os.path.join(tree_root, RETAINED_CMAKE)
+    if not os.path.exists(archive):
+        return {"state": "unverifiable",
+                "reason": "evidence build directory is gone",
+                "evidence_build": build, "archive": archive}
+    if not os.path.exists(cmake):
+        return {"state": "unverifiable", "reason": "tree has no retained source list",
+                "tree": tree_root, "expected": cmake}
+    with open(cmake, encoding="utf-8") as fh:
+        text = fh.read()
+    tree_objs = {os.path.basename(m.group(1)) + ".obj"
+                 for m in _CMAKE_SRC.finditer(text)
+                 if m.group(1).startswith("app/")}
+    ev_objs = archive_members(nm, archive)
+
+    # The archive also carries the byte-verified rodata and fixed-data objects,
+    # which come from OTHER generated lists and are not app translation units.
+    # Comparing raw sets would drown the signal in ~1,000 `rodata_*.c.obj`
+    # names, so the check is stated in the one direction that is sound without
+    # enumerating every other list:
+    #
+    #   every retained source of THIS tree must have an object of that name in
+    #   the evidence archive.
+    #
+    # A retained source with no object then did not exist as a translation unit
+    # then -- either it was absorbed into a merged unit (its symbols were
+    # intra-object, so any reference to them was invisible to `nm`) or the merge
+    # partition has changed some other way.  Either is disqualifying.
+    #
+    # The reverse direction is reported for diagnosis, filtered to objects whose
+    # source still exists somewhere under `recon/symbolized/app/`, so a merged
+    # unit that has been renamed or dissolved is visible without the rodata
+    # noise.
+    app_root = os.path.join(tree_root, "recon", "symbolized", "app")
+    present_sources: set[str] = set()
+    for root, _dirs, names in os.walk(app_root):
+        for n in names:
+            if n.endswith(".c"):
+                present_sources.add(n + ".obj")
+    missing_from_evidence, gone_from_tree = partition_diff(
+        ev_objs, tree_objs, present_sources)
+    agree = not missing_from_evidence and not gone_from_tree
+    return {
+        "schema": "g1.refactor.link-evidence-partition/1",
+        "state": "agrees" if agree else "STALE",
+        "tree": tree_root,
+        "evidence": path,
+        "evidence_build": build,
+        "objects_in_evidence_archive": len(ev_objs),
+        "objects_in_tree_source_list": len(tree_objs),
+        "retained_sources_with_no_object_in_the_evidence": len(missing_from_evidence),
+        "objects_in_the_evidence_no_longer_retained": len(gone_from_tree),
+        "only_in_tree": missing_from_evidence[:200],
+        "only_in_evidence": gone_from_tree[:200],
+        "consequence":
+            "The evidence describes a DIFFERENT translation-unit partition from "
+            "the tree that is about to consume it.  A symbol that was "
+            "intra-object then and is cross-object now will be judged "
+            "unreferenced and given internal linkage, and the link will fail -- "
+            "or, worse, --gc-sections will delete the caller and it will not.  "
+            "Regenerate the evidence from a build of THIS tree before "
+            "materializing any stage that reads it."
+            if not agree else
+            "The evidence build's app archive and this tree's retained source "
+            "list name the same objects, so a symbol's translation unit is the "
+            "same in both.",
+    }
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -219,7 +365,18 @@ def main(argv=None):
     g.add_argument("--nm", default=DEFAULT_NM)
     g.add_argument("--map", default="zephyr.map")
     g.add_argument("--out", default=DATA)
+    c = sub.add_parser("check-partition",
+                       help="does the recorded evidence still describe this "
+                            "tree's translation-unit partition?")
+    c.add_argument("tree")
+    c.add_argument("--nm", default=DEFAULT_NM)
+    c.add_argument("--data", default=DATA)
     args = ap.parse_args(argv)
+
+    if args.cmd == "check-partition":
+        r = check_partition(args.tree, args.nm, args.data)
+        print(json.dumps(r, indent=1))
+        return 0 if r.get("state") == "agrees" else 1
 
     doc = generate(args.build, args.nm, args.map)
     with open(args.out, "w", encoding="utf-8") as fh:

@@ -124,6 +124,19 @@ STAGES = [
      "path, so this stage is size-changing by default and its declaration is "
      "not weakened on the strength of a measured byte total.",
      "t08_call_order", "size-changing"),
+    (9, "call_cohesion", "CALL-COHESION GROUPING, app core only: group "
+     "translation units that CALL ONE ANOTHER inside a module directory, "
+     "instead of stage 04's runs of link-order-adjacent sources.  Stage 08 "
+     "measured 11 call edges inside all 249 stage 04 units against 1,224 "
+     "intra-module edges between distinct units, which is the measurement "
+     "that says stage 04 groups on the wrong axis.  Candidates are visited "
+     "in generated-source-list order and placed first-fit into a group they "
+     "have a call edge into and that stage 04's seven refusal rules clear "
+     "them against, member by member.  Members were NOT adjacent, so every "
+     "member after the first moves position: the layout disturbance is "
+     "strictly larger than stage 04's and the declaration is not weakened "
+     "on any measured byte total.",
+     "t09_call_cohesion", "size-changing"),
     (99, "defect_probe", "DIAGNOSTIC, NOT A STAGE: stage 02 with "
      "G1_STAGE02_FORCE_LOG_HEADER=1, which withdraws the local log externs in "
      "the files stage 02 quarantines.  This tree is EXPECTED NOT TO COMPILE; "

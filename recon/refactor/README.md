@@ -235,9 +235,10 @@ the end gives a pass/fail with no diagnostic value.
 | 06 | **composition depth (LANDED)** — module-private declaration demotion (a generated module-header declaration whose users have collapsed to ONE merged unit moves into that unit, at the include point) and include hoisting (a late `#include` moves to the unit's first block only when no preprocessor directive intervenes AND no identifier in the code it jumps over is a macro of that header, per the measured evidence; a header with no name-level macro evidence is refused). | declared `byte-identical`, **measured `byte-identical` — `cmp`-identical `zephyr.bin`, 956,276 B.** 251 of 285 late includes hoisted; units at exactly one include block **21 → 112**; 4 of 215 module-header declarations demoted (211 genuinely still have ≥2 users). Report: `recon/analysis/staged_refactor_stage06.md` |
 | 07 | **internal linkage (BUILT, NOT PROVEN)** — `static` for TU-private symbols, decided by **link evidence** (`recon/refactor/link_evidence.py`: `nm --undefined-only` over all 66 inputs of the app link, archives scanned whole) rather than by a source-text scan. The source scan was wrong on **58 of its 240 candidates**. 137 applied. | declared `size-changing`, measured `size-changing`, `.text` **−276 B**. **Gated by a real link (C6), which caught two hazards no `nm` evidence can see: a `PROVIDE()` in one of the 18 linker fragments the rule had listed 3 of, and 112 `-Wl,--undefined=` gc-roots reached through a `foreach(… IN LISTS …)`.** Side-finding: 120 recovered functions are now provably dead. **Oracle REQUIRED, not run.** |
 | 08 | **call-order reordering (LANDED AS A MEASURED NO-OP)** — stable topological sort of a merged unit's member blocks, callee before caller. | declared `size-changing` on principle. Result: **0 units reordered.** The 249 merged units contain **11 internal call edges in total**, all already callee-before-caller; stage 08's tree is byte-for-byte stage 07's. The finding is that stage 04 merges by link-order adjacency, which is nearly orthogonal to call structure. |
-| 09 (was 06) | MMIO accessor macros per width, with a signedness audit | **stage that can change codegen** by value; C8 applies. Stage 02 already reduced 84 accessor spellings to 52, which is the prerequisite. |
-| 10 | net renaming from upstream-identified symbols | 0 B, gated by a real link (C6) |
-| 11 | struct typing | the stage that can grow the image; budget it |
+| 09 | **call cohesion (BUILT, NOT PROVEN)** — group translation units that CALL ONE ANOTHER inside a module, instead of stage 04's runs of link-order-adjacent sources. First-fit greedy, a call edge required, `t04.conflicts`'s seven rules unchanged and evaluated against every member already in the group. Sub-batch `M` (the no-adjacency ceiling) is opt-in and not the default. | declared `size-changing` / `oracle_required`. **742 → 659 TUs, 55 merged units, 138 absorbed; call edges inside a unit 11 → 85.** Compiles first try after one transformer round; **the link failure it hits is stage 08's own** (see the gate record). **Oracle REQUIRED, not run.** Report: `recon/analysis/staged_refactor_stage09.md` |
+| 10 (was 09, was 06) | MMIO accessor macros per width, with a signedness audit | **stage that can change codegen** by value; C8 applies. Stage 02 already reduced 84 accessor spellings to 52, which is the prerequisite. |
+| 11 (was 10) | net renaming from upstream-identified symbols | 0 B, gated by a real link (C6) |
+| 12 (was 11) | struct typing | the stage that can grow the image; budget it |
 
 ---
 
@@ -1133,21 +1134,142 @@ net core                      NOT BUILT, NOT TOUCHED -- check_net_raw_literals a
                               verify_net_stock_data_window NOT RUN
 ```
 
-## The remaining structural work — measured, specified, NOT landed
+## The remaining structural work — ~~measured, specified, NOT landed~~ **BUILT, 2026-07-27**
+
+**Superseded.** Stage 09 `call_cohesion` was **built, registered, tested and
+materialised** on 2026-07-27. Report:
+**`recon/analysis/staged_refactor_stage09.md`**. The numbers below are the
+verdict's §11.1 measurement and **every one of them was already stale when it
+was written** — the ladder was regenerated at 15:28, four minutes after the
+verdict was saved at 15:24. Both columns are kept so the drift is visible.
+
+| | verdict §11.1 | **re-measured on the live stage 08 tree** |
+|---|---:|---:|
+| retained app TUs | 705 | **742** |
+| single-source | 454 (64.4 %) | **493 (66.4 %)** |
+| intra-module call edges between distinct TUs | 1,216 | **1,224** |
+| call edges *inside* the merged units (stage 08) | 11 | **11** (249 units) |
+| call-cohesion grouping absorbs | 100 → 605 TUs | **83 → 659 TUs** |
+| no-adjacency ceiling absorbs | 523 → 182 TUs | **512 → 230 TUs** |
+
+**1,224 against 11** — the ratio the stage exists for survives the correction.
+Stage 04 groups on an axis nearly orthogonal to call structure.
+
+### Stage 09 as landed
 
 | | |
-|---|---:|
-| retained app TUs | 705 |
-| single-source | **454 (64.4 %)** |
-| intra-module call edges between distinct TUs | **1,216** |
-| call edges *inside* the 244 merged units (stage 08) | **11** |
-| call-cohesion grouping would absorb | 100 → 605 TUs |
-| **no-adjacency ceiling** would absorb | **523 → 182 TUs** |
+|---|---|
+| declared class | **`size-changing`**, **`oracle_required: true`** |
+| achieved class | **NOT MEASURABLE** — no linked image exists (see below) |
+| result, sub-batch `C` (default) | **742 → 659 TUs, 55 merged units, 138 absorbed** |
+| call edges now inside one unit | **85**, against stage 04's 11 — 0.044 → 1.55 per unit, **35×** |
+| single-source share | **66.4 % → 66.3 %** — 56 of the 138 absorbed members were single-source, the other 82 were already stage 04 units. This stage improves the QUALITY of the grouping, not the FRACTION of the tree that is grouped. |
+| `check-addresses 8 9` | **identical, 2,567** |
+| compile | **PASS, first try after ONE transformer round** (round 1 found a new defect, below) |
+| link | **FAIL — INHERITED. Stage 08's own tree fails identically at HEAD.** |
+| per-object comparison | **1,630 of 1,630 common objects have identical allocatable size**; whole-archive allocatable total −64 B |
+| idempotence | **PASS**, byte-identical tree and MANIFEST |
+| test suite | **203 / 203** (was 157; +40 stage 09, +6 `check-partition`) |
+| **outstanding obligation** | **the R7 oracle run. Not done, not inferred, not borrowed.** Renode was held by the concurrent agent. |
+| sub-batch `M` | the no-adjacency ceiling, opt-in, **not the default** — it produces a module bucket, not a cohesive unit |
 
-**1,216 against 11**: the call structure exists, it just falls between units
-stage 04 never considers, because they are not adjacent in the generated source
-list. Stage 09 `call_cohesion` is specified in the consolidated verdict §11.2
-and declared `size-changing` / `oracle_required`. **It was not built** — the
-oracle is unavailable this pass, the ladder it would sit on already fails R7
-from stage 04, and the construction budget went into the stage 04 repair.
-No oracle is claimed that cannot be run.
+### ⚠ THE LADDER DOES NOT LINK AT HEAD, from stage 07 upward
+
+Found while gating stage 09, and **not caused by it**: stage 08's own tree,
+built at the same HEAD, fails with the byte-identical message.
+
+```
+recon/symbolized/app/display/display_close_screen.c:39:
+    undefined reference to `display_close'
+```
+
+`display_close` was given internal linkage by **stage 07**, whose evidence
+(`link_referenced_symbols.json`, provenance `/private/tmp/g1-s6-base`) says
+nothing outside its object references it. In that build
+`display_close_screen.c` **was a member of `g1_display_12.c`** — the same
+object. Stage 04's merge partition has since moved, `display_close_screen.c` is
+its own translation unit, and the call is now a relocation. `stagelib`
+watches the evidence file's **content hash**; the file did not change, the
+**tree it describes** did, and `driver.py status` reported stage 07 `current`
+throughout. Same defect class as C7a–C7e: *a comparison that cannot see the
+difference that matters* — here a hash, and the difference is which objects
+exist.
+
+Measured repair: regenerating the evidence from a build of HEAD's stage 06 tree
+(which **does** link, exit 0) adds exactly **2** symbols to `referenced`
+(`display_close`, `_puts_r`) and removes none, and refuses exactly **1** of
+stage 07's 133 applied candidates. **Not run** — it is a shared evidence input
+and an agent was mid-gate.
+
+```sh
+./recon/refactor/stage_06_unit_composition/tree/recon/application/build_cohesive.sh \
+    app /private/tmp/g1-s06-base
+PYTHONSAFEPATH=1 .venv/bin/python recon/refactor/link_evidence.py generate \
+    --build /private/tmp/g1-s06-base
+for n in 7 8 9; do … driver.py materialize $n; done
+```
+
+**New, additive, and it makes this unrepresentable rather than unlikely:**
+
+```sh
+PYTHONSAFEPATH=1 .venv/bin/python recon/refactor/link_evidence.py \
+    check-partition recon/refactor/stage_06_unit_composition/tree
+#   -> STALE: 59 retained sources have no object in the evidence archive,
+#             9 objects in the evidence are no longer retained
+#   against evidence generated from HEAD's own stage 06 build -> "agrees", 0/0
+```
+
+Run it against the tree the consuming stage READS, before materializing any
+stage that consumes the evidence. Six unit tests, no toolchain required.
+
+### Consequence for every size gate in the table above
+
+All eight `SIZE_GATE.json` files were measured against `/private/tmp/g1-cons-s0N`,
+and those builds were made from the **pre-regeneration** ladder (their
+`g1_display_12.c.obj` still contains `display_close_screen`). The
+declared-vs-measured **contract** is sound and is now a test
+(`test_every_size_gate_on_disk_agrees_with_the_registry`: every declared class
+matches `driver.STAGES` and no stage came out worse than declared). The
+**numbers** are stale and must be re-measured after the evidence repair.
+
+### Sixth instance of the recurring defect class, found by stage 09's first build
+
+A file-scope `extern` statement with a **comma-separated declarator list**:
+
+```c
+extern void update_box_presence_flag(void*,void*),init_config_fields_default9(void*),
+            k_sleep(int,int),st25dv_build_and_write_ndef_records(void*,void*,void*),
+            set_time_mark(void);
+```
+
+One `;`, one `extern`, **five declarations**. Stage 04's shape rule is
+`line.count(";") > 1 or line.count("extern") > 1`, and `t03._decl_symbol`
+returns the name before the *first* `(` — so `k_sleep(int,int)` is invisible to
+every refusal rule in the pipeline, and it collided with
+`extern int32_t k_sleep(k_timeout_t);` when stage 09 grouped the two files.
+Repaired **fail-closed** in stage 09 (`t09.multi_declarator_externs`);
+**exposure is 2 files corpus-wide, 1 of them already quarantined by the old
+rule**, and `g1_core_01.c` proves stage 04 shipped a unit containing a
+declaration none of its rules could read. The exact `t04` patch is in the stage
+09 report §3.1 and was deliberately **not applied** while the ladder was being
+regenerated by another agent.
+
+### `gap_separation.separated` — vacuity confirmed, and now calibrated
+
+Re-derived from the source: `split_bursts` defines `max_intra` as the largest
+gap `<=` the threshold and `min_inter` as the smallest gap `>` it, so
+`max_intra <= BURST_GAP_NS < min_inter` is a **tautology** — `True` on 42 of 42
+blocks in the ten oracles on disk. New in this pass, from the raw captures and
+no Renode: the real void ratio `min_inter / max_intra` per device.
+
+| | at the shipped **5.000 ms** | at **0.790 ms** |
+|---|---|---|
+| devices with a ≥4× void | **1 of 6** (`opt3001` only) | **5 of 6** |
+| worst ratio | `lsm6dso` **1.05** | `npm1300` **1.50** |
+
+Five of six devices have **no bimodal void at all** at the shipped threshold —
+independent, static corroboration of the corrected-segmentation finding, and it
+identifies `npm1300` as the one genuinely mis-assigned train, which is the same
+device whose train-membership swap blows the ambiguity rule's Δ to 7,498.630 ms.
+The falsifiable replacement (`min_inter >= 4 × max_intra`) is written out in the
+stage 09 report §6.1; the file belongs to another agent and was **not edited**.

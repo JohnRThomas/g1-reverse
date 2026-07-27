@@ -137,3 +137,59 @@ class TestEvidenceStaleness(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestLinkEvidencePartitionCheck(unittest.TestCase):
+    """`link_evidence.check-partition' -- the detector for the failure that
+    broke the app link at HEAD on 2026-07-27: the evidence's content hash was
+    unchanged while the TREE IT DESCRIBES had been re-partitioned by stage 04,
+    so `driver.py status' reported stage 07 `current' while its `static'
+    decisions were being made against a link that no longer existed."""
+
+    def test_agreement_is_the_empty_symmetric_difference(self):
+        ev = {"a.c.obj", "b.c.obj"}
+        tree = {"a.c.obj", "b.c.obj"}
+        self.assertEqual(link_evidence.partition_diff(ev, tree, ev | tree),
+                         ([], []))
+
+    def test_a_source_absorbed_since_the_evidence_is_flagged(self):
+        """The real case: `display_close_screen.c' was INSIDE `g1_display_12.c'
+        when the evidence was measured and is its own TU now, so its call to
+        `display_close' became a relocation stage 07 could not see."""
+        ev = {"g1_display_12.c.obj"}
+        tree = {"g1_display_12.c.obj", "display_close_screen.c.obj"}
+        missing, gone = link_evidence.partition_diff(ev, tree, tree)
+        self.assertEqual(missing, ["display_close_screen.c.obj"])
+        self.assertEqual(gone, [])
+
+    def test_a_source_merged_away_since_the_evidence_is_flagged(self):
+        ev = {"a.c.obj", "b.c.obj"}
+        tree = {"g1_m_01.c.obj"}
+        missing, gone = link_evidence.partition_diff(
+            ev, tree, {"a.c.obj", "b.c.obj", "g1_m_01.c.obj"})
+        self.assertEqual(missing, ["g1_m_01.c.obj"])
+        self.assertEqual(gone, ["a.c.obj", "b.c.obj"])
+
+    def test_rodata_objects_do_not_create_false_alarms(self):
+        """The archive carries ~1,000 `rodata_*.c.obj' from a DIFFERENT
+        generated list.  They must not be reported as drift."""
+        ev = {"a.c.obj"} | {"rodata_%x.c.obj" % i for i in range(1000)}
+        tree = {"a.c.obj"}
+        self.assertEqual(link_evidence.partition_diff(ev, tree, tree), ([], []))
+
+    def test_absent_evidence_is_unverifiable_not_agreement(self):
+        r = link_evidence.check_partition(".", data="/nonexistent/evidence.json")
+        self.assertEqual(r["state"], "unverifiable")
+
+    def test_absent_evidence_build_is_unverifiable_not_agreement(self):
+        import json as _json
+        import tempfile
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as fh:
+            _json.dump({"provenance": {"build_dir": "/nonexistent/build"}}, fh)
+            p = fh.name
+        try:
+            r = link_evidence.check_partition(".", data=p)
+            self.assertEqual(r["state"], "unverifiable")
+            self.assertIn("gone", r["reason"])
+        finally:
+            os.unlink(p)
