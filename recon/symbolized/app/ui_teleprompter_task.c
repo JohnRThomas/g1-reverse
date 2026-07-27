@@ -105,7 +105,7 @@ extern void     clean_fb_data(unsigned,unsigned,unsigned,unsigned,unsigned,unsig
 extern void     reflash_fb_data_to_lcd(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
 extern void     k_sleep(unsigned,unsigned);
 extern unsigned int gui_reset_dynamic_bitmap_frame_state(void);
-extern void     gui_screen_fade_out_transition(void);
+extern unsigned int gui_screen_fade_out_transition(void);
 extern void     gui_canvas_flags_clear_bit1(void);
 extern void     gui_bmp_dynamic_bitmap_draw(unsigned,unsigned,unsigned,unsigned,unsigned);
 extern void     ui_render_scroll_text_frame(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);

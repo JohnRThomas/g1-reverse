@@ -10,7 +10,6 @@
 
 extern unsigned int display_mode_globals_configure(unsigned int mode);
 
-unsigned int gui_utf_adv_draw_configure(void)
-{
+void gui_utf_adv_draw_configure(void) {
     return display_mode_globals_configure(8);
 }

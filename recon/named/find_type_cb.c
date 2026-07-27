@@ -30,7 +30,7 @@ extern int bt_uuid_create(int, int, int);
 extern uint64_t net_buf_frags_len_0(int);
 extern void att_log_emit_3arg(int, int, int);
 extern int bt_conn_alloc_pdu_buf(int, int, int, int);
-extern int net_buf_simple_tailroom(int);
+extern unsigned long net_buf_simple_tailroom(void*);
 extern int memcmp(int, int);
 
 uint32_t find_type_cb(uint32_t *param_1, unsigned param_2, int *param_3)

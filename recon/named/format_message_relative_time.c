@@ -58,7 +58,7 @@ extern uint32_t get_timestamp(void);
 extern uint32_t device_info_text_width_get(void);
 extern uint32_t device_info_text_height_get_clamped(void);
 extern void memset_bytes(void*, int, int);
-extern void strcpy(uint32_t output, uintptr_t text);
+extern char *strcpy(char *, const char *);
 
 void format_message_relative_time(undefined4 param_1,int param_2)
 {

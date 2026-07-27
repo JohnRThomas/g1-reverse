@@ -36,14 +36,14 @@ extern int bt_settings_subsys_init_check(void);
 extern void z_impl_k_thread_create(unsigned,unsigned,int,unsigned,int,int,int,int);
 extern void k_work_submit(int);
 extern void k_work_queue_init(unsigned);
-extern void k_work_queue_start(unsigned,unsigned,int,int,int);
+extern void k_work_queue_start(unsigned int, unsigned int, unsigned long, unsigned long, unsigned long);
 extern int atomic_or(volatile long*, long);
 extern void bt_log_forward_3arg(unsigned,unsigned,void*);
 extern long atomic_and_3(volatile long*, long);
 extern void posix_stub_enosys(unsigned,unsigned);
 #define z_impl_k_queue_init z_impl_k_queue_init
 extern void z_impl_k_queue_init(void *queue);
-extern void z_impl_k_sem_init(int,int);
+extern int z_impl_k_sem_init(unsigned int, unsigned long, unsigned long);
 typedef int (*cf)(void);
 int bt_enable(int param_1)
 {
@@ -61,7 +61,7 @@ int bt_enable(int param_1)
       iVar3 = bt_settings_subsys_init_check();
       if (iVar3 == 0) {
         *(volatile int*)0x2000ac6c = param_1;
-        z_impl_k_sem_init(iVar1 + 0x128, 1);
+        z_impl_k_sem_init(iVar1 + 0x128, 1, 1);
         z_impl_k_queue_init((void *)(iVar1 + 0x14c));
         local_38 = 0; uStack_34 = 0; local_40 = iVar3;
         z_impl_k_thread_create(0x20005e30, 0x2002bb80, 0x400, 0x000545f1, 0, 0, 0, 0xfffffff7);

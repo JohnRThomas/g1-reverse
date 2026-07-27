@@ -15,7 +15,7 @@
  */
 /* Reconstructed FUN_00017768 @ 0x17768  (parity: 300/300 trials, PROVEN) */
 
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 typedef void (*jfn847)(void);
 void gpio_pin_set_checked(int param_1, unsigned int param_2, unsigned int param_3)
 {

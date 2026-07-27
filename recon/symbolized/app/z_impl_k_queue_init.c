@@ -11,8 +11,7 @@
  * This 28-byte layout includes the firmware's four-byte spinlock at +8.
  */
 
-void z_impl_k_queue_init(int *param_1)
-{
+void z_impl_k_queue_init(void*param_1) {
   *(volatile unsigned int *)(param_1) = 0;
   *(volatile unsigned int *)((int)param_1+4) = 0;
   *(volatile unsigned int *)((int)param_1+8) = 0;

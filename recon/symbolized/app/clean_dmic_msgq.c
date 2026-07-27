@@ -15,7 +15,7 @@
  */
 /* Reconstructed clean_dmic_msgq @ 0x2ec1c  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_cleanup(unsigned int);
+extern int k_msgq_cleanup(struct k_msgq *);
 int clean_dmic_msgq(void){
     int iVar1 = k_msgq_cleanup(((unsigned long)&g_dmic_msgq) /*=0x20007b7c*/);
     if(iVar1!=0 && *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0){

@@ -24,7 +24,7 @@
 /* Reconstructed ext_flash_api_init @ 0x2e4e8  (parity: 300/300 trials, PROVEN) */
 
 extern void kmutex_dlist_init(unsigned long);
-extern int z_device_is_ready(int);
+extern _Bool z_device_is_ready(const struct device *);
 extern unsigned short z_impl_flash_get_page_count(unsigned int);
 extern int get_device_info(void);
 

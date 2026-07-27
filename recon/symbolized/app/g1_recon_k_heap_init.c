@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_000863aa @ 0x863aa. CFG_VERIFY_CALL_ARITIES=3 */
 #include <stdint.h>
-extern void sys_heap_init(unsigned int *, int, unsigned int);
+extern void sys_heap_init(unsigned long*, void*, unsigned long);
 
 void g1_recon_k_heap_init(unsigned int *param_1, int param_2, int param_3)
 {

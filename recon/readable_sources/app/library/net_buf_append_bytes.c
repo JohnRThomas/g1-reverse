@@ -17,7 +17,7 @@
 /* Reconstructed FUN_0005f450 @ 0x5f450  (parity: 235/300 trials, PROVEN) */
 
 extern int net_buf_frag_last(void);
-extern unsigned net_buf_simple_tailroom(int);
+extern unsigned long net_buf_simple_tailroom(void*);
 extern void net_buf_simple_add_mem(int,int,unsigned);
 extern int net_buf_alloc_len(int,unsigned,int,int); /* FUN_0005eeb4 @ 0x0005eeb4 */
 extern void net_buf_frag_add(int,int);

@@ -23,7 +23,7 @@
 
 typedef int (*codeptr)(int,...);
 extern int find_sc_cfg_59bcc(int,void*);
-extern int strtoul(int,int,int);
+extern long unsigned int strtoul(const char * restrict,  char ** restrict,  int);
 extern int settings_name_next(int, int);
 extern int bt_settings_decode_key(int,void*);
 extern void bt_addr_le_copy_828da(unsigned long*, unsigned long*);

@@ -41,7 +41,7 @@ struct lc3_ltpf_data {
 typedef void (*resample_12k8_fn)(struct lc3_ltpf_hp50_state *,
     const int16_t *, int16_t *, int);
 
-extern void *memmove(void *, const void *, uint32_t);
+extern int memmove(int, int, int);
 extern bool lc3_ltpf_detect_pitch(struct lc3_ltpf_analysis *, const int16_t *, int, int *);
 extern void lc3_ltpf_arm_correlate(const int16_t *, const int16_t *, int, float *);
 extern void lc3_ltpf_interpolate(const int16_t *, int, int, int16_t *);

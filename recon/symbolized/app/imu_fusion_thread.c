@@ -94,7 +94,7 @@ extern int imu_fusion_state_init(void*);
 typedef int  (*qfn_t)(int,int);
 typedef void (*ffn_t)(int,int,void*);
 extern u64 __floatsidf(int); extern u64 __divdf3(u32,u32,u32,u32); extern u64 __aeabi_dadd(u32,u32,u32,u32);
-extern u64 __muldf3(u32,u32,u32,u32); extern u64 __extendsfdf2(u32); extern long long dcmp_negate_rhs(int, int, int, int);
+extern u64 __muldf3(u32,u32,u32,u32); extern u64 __extendsfdf2(u32); extern unsigned long long dcmp_negate_rhs(unsigned int, unsigned int, unsigned int, unsigned int);
 extern u32 __truncdfsf2(u32,u32);
 extern float orientation_filter_update_dt(int);
 extern void imu_mahony_ahrs_update(float,float,float,float,float,float,float,void*);

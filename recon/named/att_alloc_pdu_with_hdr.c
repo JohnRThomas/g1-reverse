@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_000573f4 @ 0x573f4  (parity: 300/300 trials, PROVEN) */
 
-extern int bt_conn_create_pdu_timeout(int,int,unsigned,int);
+extern int bt_conn_create_pdu_timeout(int, int, unsigned int, unsigned int);
 extern void* net_buf_simple_add(int,int);
 extern int log_bt_buf_alloc_failure(int);
 int att_alloc_pdu_with_hdr(int param_1, unsigned char param_2, unsigned short param_3, unsigned param_4){

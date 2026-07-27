@@ -30,7 +30,7 @@ extern int bt_gatt_foreach_attr_type(int,...);
 extern unsigned int gatt_notify(int, unsigned short, int);
 extern int assert_post_action(int, int);
 extern int bt_uuid_cmp(int, int);
-extern unsigned int read_struct_first_word(unsigned int*);
+extern int read_struct_first_word(unsigned long);
 extern int bt_gatt_attr_value_handle();
 
 int bt_gatt_notify_cb(int param_1, int *param_2)

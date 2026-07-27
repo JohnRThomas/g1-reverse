@@ -24,7 +24,7 @@
 extern void onoff_release(uint32_t handle);
 extern int nrfx_pdm_buffer_set(uint32_t decoded, uint32_t selector);
 extern void nrfx_pdm_stop(void);
-extern int k_mem_slab_alloc(uint32_t handle, void *decoded, uint32_t zero, uint32_t zero2);
+extern int k_mem_slab_alloc(int, int*, int, int);
 extern void k_mem_slab_free(uint32_t handle, ...);
 extern int k_msgq_put(unsigned int, void*, int, int);
 extern void log_forward_zero_arg(uintptr_t source, uint32_t level, const void *record);

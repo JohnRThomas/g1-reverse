@@ -26,7 +26,7 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 extern int z_spin_lock_valid(void*);
-extern int z_spin_unlock_valid(void*);
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);
 extern void z_spin_lock_set_owner(void*);
 extern int z_pend_curr(void*,unsigned,void*,unsigned,unsigned,unsigned,unsigned);
 extern uintptr_t g1_recon_tagged_heap_node_release(unsigned *node, int release);

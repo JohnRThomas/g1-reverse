@@ -12,7 +12,7 @@
 /* Reconstructed FUN_00063c14 @ 0x63c14  (parity: 300/300 trials, PROVEN) */
 
 extern void caf_power_manager_restart_timer(void);
-extern void k_work_cancel_delayable(unsigned int);
+extern int k_work_cancel_delayable(struct k_work_delayable *);
 void power_manager_set_system_off_flag(int param_1)
 {
   unsigned char b;

@@ -27,7 +27,7 @@
  * and referencing them here (rather than only PROVIDE-ing in the linker
  * script) is what pulls the archive members into the link. */
 extern void kmutex_dlist_init(unsigned long);
-extern int malloc(unsigned);
+extern void *malloc(size_t);
 void quicknote_buffer_pool_init(int* param_1){
     kmutex_dlist_init(((unsigned long)&g_projector_bus_lock) /*=0x2000a060*/);
     param_1[0] = ADDR_jdb_panel_init_THUMB /*=0x46fc1*/;

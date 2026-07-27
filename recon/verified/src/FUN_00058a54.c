@@ -6,7 +6,7 @@ extern int FUN_00083496(uint32_t);
 extern void FUN_00081ddc(uintptr_t, uint32_t, const void *);
 extern void FUN_0005833c(void *);
 extern void net_buf_unref(void *); /* FUN_0005f24c @ 0x0005f24c */
-extern uint32_t net_buf_simple_headroom(void *); /* FUN_00083728 @ 0x00083728 */
+extern unsigned long net_buf_simple_headroom(const void*); /* FUN_00083728 @ 0x00083728 */
 extern uint32_t att_op_get_type(uint8_t); /* FUN_000582b8 @ 0x000582b8 */
 extern int bt_conn_create_pdu(uint32_t, uint32_t, void *, uint32_t, void *); /* FUN_00081820 @ 0x00081820 */
 extern void printk(unsigned long, ...); /* FUN_0007e2fa @ 0x0007e2fa */

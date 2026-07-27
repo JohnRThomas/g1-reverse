@@ -23,12 +23,12 @@
  */
 /* Reconstructed FUN_0005b890 @ 0x5b890  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int ble_conn_unref(int);
+extern void ble_conn_unref(int);
 extern int bt_conn_lookup_addr_le(int,int);
 extern int bt_conn_lookup_state_le(int,int,int);
 extern int sc_save(int,int,int,int);
 extern int gatt_indicate(int,int,int);
-extern int gatt_notify(int,int,int);
+extern unsigned int gatt_notify(int, unsigned short, int);
 extern int bt_addr_le_eq_0(int,int);
 extern int log_msg_create_3arg(int,int,void*);
 extern int bt_gatt_check_perm(int,int,int);

@@ -18,7 +18,7 @@
  */
 /* Reconstructed FUN_00058930 @ 0x58930  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int k_mem_slab_alloc(int,...);
+extern int k_mem_slab_alloc(int, int*, int, int);
 extern int k_current_get(int,...);
 extern int att_log_emit_3arg(int,...);
 #define z_impl_k_queue_init z_impl_k_queue_init

@@ -18,7 +18,7 @@
 #include <stdint.h>
 
 extern void *malloc(uint32_t);
-extern void free(int);
+extern void free(void*);
 extern void memcpy(void *, const void *, uint32_t, uint32_t, uint32_t);
 extern int attr_store_set(uint32_t, uint32_t);
 extern void attr_store_retry_delay(uint32_t);

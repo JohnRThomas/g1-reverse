@@ -11,8 +11,8 @@
 /* Reconstructed FUN_000574ec @ 0x574ec  (parity: 300/300 trials, PROVEN) */
 
 #define z_impl_k_queue_init z_impl_k_queue_init
-extern void z_impl_k_queue_init(void *queue);
-extern void k_work_init_delayable(unsigned int a, unsigned int b);
+extern void z_impl_k_queue_init(struct k_queue *);
+extern void k_work_init_delayable(struct k_work_delayable *, void (*)(struct k_work *));
 
 void l2cap_chan_tx_init(int param_1)
 {

@@ -20,7 +20,7 @@
 /* Reconstructed FUN_000565c4 @ 0x565c4  (parity: 300/300 trials, PROVEN) */
 
 extern void z_impl_k_poll_signal_init(int);
-extern void k_poll_event_init(int,int,int,int);
+extern void k_poll_event_init(unsigned char*, unsigned long, unsigned long, unsigned int);
 extern void bt_conn_tx_drain_and_reset(void*);
 extern int atomic_and_2(volatile long*, long);
 int bt_conn_prepare_tx_events(int param_1){

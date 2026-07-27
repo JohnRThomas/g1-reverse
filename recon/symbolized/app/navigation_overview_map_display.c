@@ -68,8 +68,7 @@ extern unsigned long decode_rle_byte_pairs(const unsigned char*, unsigned long, 
 extern void FUN_0007d376(unsigned a, unsigned b, unsigned c, unsigned d);
 extern void FUN_0007d37a(unsigned a);
 
-void navigation_overview_map_display(unsigned param_1, int param_2)
-{
+void navigation_overview_map_display(unsigned int param_1, unsigned int param_2) {
     unsigned char bVar1;
     int iVar3, iVar6, iVar9, iVar10, iVar11, iVar14;
     unsigned uVar13, uVar12;

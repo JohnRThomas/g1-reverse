@@ -12,7 +12,7 @@
 /* Reconstructed FUN_000767c8 @ 0x767c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern long long __aeabi_dadd(unsigned, unsigned, unsigned, unsigned);
-extern long long dcmp_negate_rhs(int, int, int, int);
+extern unsigned long long dcmp_negate_rhs(unsigned int, unsigned int, unsigned int, unsigned int);
 double rint(double dd, unsigned param_1, unsigned param_2, unsigned param_3)
 {
   union { double d; unsigned long long u; struct{unsigned lo,hi;} w; } in, out;

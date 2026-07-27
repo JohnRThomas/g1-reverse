@@ -25,8 +25,8 @@
 
 extern int get_device_info(void);
 extern void trigger_screen_state_change(unsigned a, int b, int c);
-extern unsigned get_message_type_param(unsigned a, int b);
-extern int clear_timeout_message(int a);
+extern unsigned int get_message_type_param(int, unsigned int);
+extern void clear_timeout_message(int);
 extern int msg_count_dec(void);
 extern void push_message_3439c(void);
 extern unsigned long get_message_pending_state(void);

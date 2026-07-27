@@ -5,8 +5,8 @@ typedef unsigned undefined4;
 typedef unsigned char undefined1;
 #define g1_recon_retarget_lock_acquire_recursive FUN_000510fc
 #define g1_recon_retarget_lock_release_recursive FUN_00051134
-extern void g1_recon_retarget_lock_acquire_recursive(unsigned lock); /* FUN_000510fc@0x000510fc */
-extern void g1_recon_retarget_lock_release_recursive(unsigned lock); /* FUN_00051134@0x00051134 */
+extern void g1_recon_retarget_lock_acquire_recursive(unsigned long); /* FUN_000510fc@0x000510fc */
+extern void g1_recon_retarget_lock_release_recursive(unsigned long); /* FUN_00051134@0x00051134 */
 extern void FUN_00076bcc(unsigned long);
 extern int FUN_0007712c(int a, void *b, int c, unsigned d, void *e);
 extern int FUN_00077594(int a, void *b, int c, unsigned d, void *e);

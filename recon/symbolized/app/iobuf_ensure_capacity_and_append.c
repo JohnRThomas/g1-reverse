@@ -15,7 +15,7 @@
 extern int _free_r(void*,int);
 extern int _malloc_r(void*,unsigned);
 extern void memcpy(int, int, int);
-extern void memmove(int,unsigned,unsigned);
+extern int memmove(int, int, int);
 extern int _realloc_r(void*,int,unsigned);
 
 unsigned iobuf_ensure_capacity_and_append(uint32_t *param_1, int *param_2, unsigned param_3, unsigned param_4){

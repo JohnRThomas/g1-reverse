@@ -33,7 +33,7 @@
 /* Reconstructed parse_ncs_notification @ 0x34980  (parity: 300/300 trials, PROVEN) */
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
-extern int  strcmp(int,int);
+extern int strcmp(const char *, const char *);
 extern int  log_notification_fields_debug(int,int*);
 extern void cjson_delete(volatile int*);
 extern int  get_timestamp(void);

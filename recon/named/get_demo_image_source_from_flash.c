@@ -28,7 +28,7 @@
 extern int  get_device_info(void);
 extern void pixelto4bithex_for_flash(int,int);
 extern int  malloc(int);
-extern void free(int);
+extern void free(void*);
 extern void printf(int);
 extern unsigned int ptr_load_u32(unsigned int *);
 extern void memcpy(int, int, int);

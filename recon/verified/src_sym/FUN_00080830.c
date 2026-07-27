@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00080830 @ 0x80830  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_0005ee6c(unsigned int);
-extern int net_buf_simple_tailroom(int *);
+extern unsigned long net_buf_simple_tailroom(void*);
 extern void thunk_FUN_00085cf2(int *, int, int, int, int, int, unsigned int);
 
 void FUN_00080830(int *param_1, unsigned int param_2, unsigned int param_3)

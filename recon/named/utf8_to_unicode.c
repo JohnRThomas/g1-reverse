@@ -18,8 +18,8 @@
 
 typedef unsigned char byte;
 typedef unsigned int uint;
-extern void printf(unsigned int);
-extern void puts(unsigned int);
+extern int printf(const char *, ...);
+extern int puts(const char *);
 
 uint utf8_to_unicode(byte *param_1, int param_2)
 {

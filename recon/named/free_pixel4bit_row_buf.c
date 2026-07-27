@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_00047ab8 @ 0x47ab8  (parity: 300/300 trials, PROVEN) */
 
-extern void free(int);
+extern void free(void *);
 
 void free_pixel4bit_row_buf(void)
 {

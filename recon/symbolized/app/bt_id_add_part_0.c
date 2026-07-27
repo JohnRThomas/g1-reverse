@@ -34,7 +34,7 @@
  */
 #include <stdint.h>
 
-extern int bt_conn_lookup_state_le(int, int, int); /* bt_conn_lookup_state_le */
+extern int bt_conn_lookup_state_le(unsigned long, unsigned long, unsigned long); /* bt_conn_lookup_state_le */
 extern void ble_conn_unref(int); /* bt_conn_unref */
 extern void bt_le_adv_legacy_invoke(void *, void *); /* bt_le_ext_adv_foreach */
 extern int addr_res_enable(uint32_t); /* addr_res_enable */

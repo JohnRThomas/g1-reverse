@@ -8,7 +8,7 @@
  *   lc3_band_lim                             @ 0x00090c50
  */
 /* Reconstructed FUN_0006bfc8 @ 0x6bfc8  (parity: 300/300 trials, PROVEN void, nptr=3) */
-extern void *memmove(void *dst, void *src, int n);
+extern int memmove(int, int, int);
 
 #define local_124 buf[5]
 #define local_120 buf[6]

@@ -15,7 +15,7 @@
  */
 /* Reconstructed FUN_00063778 @ 0x63778  (parity: 300/300 trials, PROVEN) */
 
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 extern void compare_set(unsigned int, unsigned int, unsigned int,
                          unsigned int, unsigned int, unsigned int,
                          unsigned int);

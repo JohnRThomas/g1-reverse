@@ -16,8 +16,8 @@
  */
 /* Reconstructed FUN_0004df88 @ 0x4df88  (parity: 300/300 trials, PROVEN) */
 
-extern int z_device_is_ready(int);
-extern int assert_post_action(int, int);
+extern _Bool z_device_is_ready(const struct device *);
+extern void assert_post_action(const char *, unsigned int);
 void log_backend_uart_check_ready(void)
 {
   int iVar1;

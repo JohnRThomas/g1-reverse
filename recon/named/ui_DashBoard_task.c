@@ -115,7 +115,7 @@ extern unsigned int gui_set_active_canvas(unsigned int);
 extern int gui_screen_clear(void);
 extern int gui_canvas_flags_set_bit1(void);
 extern int gui_canvas_flags_clear_bit1(void);
-extern int gui_screen_fade_out_transition(void);
+extern unsigned int gui_screen_fade_out_transition(void);
 extern int reflash_fb_data_to_lcd(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
 extern unsigned int send_response_data_to_msgqueue(void*, unsigned int);
 extern void send_response_data_to_ble(void);

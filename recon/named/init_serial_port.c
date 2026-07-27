@@ -19,9 +19,9 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_000332dc @ 0x332dc  (parity: 300/300 trials, PROVEN) */
 
-extern int z_device_is_ready(int);
+extern _Bool z_device_is_ready(const struct device *);
 extern int uart_read_start(void*);
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 
 unsigned int init_serial_port(void)
 {

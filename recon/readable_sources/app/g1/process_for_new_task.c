@@ -173,7 +173,7 @@ extern int finish_task_media(void);                       /* FUN_0002efc0 */
 extern int is_battery_critical(void);                     /* FUN_00032ee4 */
 extern int should_finish_task_wait(void);                 /* FUN_00033cdc */
 extern int read_task_mode(void);                          /* FUN_00033cf8 */
-extern int clear_timeout_message(int);                    /* FUN_00033d58 */
+extern void clear_timeout_message(int);                    /* FUN_00033d58 */
 extern int finalize_task_transition(void);                /* FUN_0003439c */
 extern int is_task_transition_ready(void);                /* FUN_00034410 */
 extern int set_task_display_mode(int);                    /* FUN_0003443c */

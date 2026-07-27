@@ -35,11 +35,11 @@
 #include "../headers/g1_log.h"
 typedef unsigned int uint;
 typedef unsigned undefined4;
-extern void enqueue_dmic(int a);
+extern int enqueue_dmic(unsigned int);
 extern void sendAudioStram2Cache(int a);
 extern int is_battery_critical(void);
-extern void get_synced_clock_time(void *a);
-extern unsigned qspi_nor_write(void);
+extern void get_synced_clock_time(long long*);
+extern int qspi_nor_write(int, unsigned int, unsigned char*, unsigned int);
 extern int lc3_frame_samples(int a, int b);
 extern unsigned lc3_encoder_size(int a, int b);
 extern unsigned lc3_setup_encoder(int a, int b, int c, int d);

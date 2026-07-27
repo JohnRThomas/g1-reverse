@@ -58,7 +58,7 @@ extern void send_dmic_msg(void *);
 extern void build_status_notify_packet(void *, void *);
 extern unsigned int mark_master_or_low_battery_flag(void);
 extern void post_notification_cmd_process(void *, void *, void *);
-extern int bt_conn_disconnect_by_state(unsigned short*, unsigned char);
+extern void bt_conn_disconnect_by_state(unsigned int, int);
 extern void z_impl_k_timer_start(uint32_t, uint32_t, uint32_t, uint32_t,
                          uint32_t, uint32_t);
 extern void device_info_set_bytes_cc_ce(unsigned char, unsigned char);

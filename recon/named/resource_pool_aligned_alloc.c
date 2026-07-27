@@ -11,7 +11,7 @@
 /* Reconstructed FUN_00075944 @ 0x75944  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int k_is_in_isr(void);
+extern _Bool k_is_in_isr(void);
 extern void* z_heap_aligned_alloc(void*, unsigned int, unsigned int);
 int* resource_pool_aligned_alloc(unsigned p1, unsigned p2, unsigned p3, unsigned p4){
   int iVar2 = k_is_in_isr();

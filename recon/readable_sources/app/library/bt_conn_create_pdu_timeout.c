@@ -24,7 +24,7 @@
 extern int net_buf_simple_reserve(int,int);
 extern void assert_post_action(unsigned,unsigned);
 extern int bt_conn_call_4arg_zero(unsigned,unsigned,void*);
-extern int bt_conn_alloc_pdu_buf(int,unsigned,unsigned,unsigned);
+extern int bt_conn_alloc_pdu_buf(int, int, int, int);
 extern int k_is_in_isr(void);
 int bt_conn_create_pdu_timeout(int param_1,int param_2,unsigned param_3,unsigned param_4){
   int iVar1; unsigned local_20, local_1c;

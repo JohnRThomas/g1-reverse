@@ -19,7 +19,7 @@
 /* Reconstructed FUN_0004d4a8 @ 0x4d4a8  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long z_log_dropped_read_and_clear_0(void);
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 
 void log_dropped(void)
 {

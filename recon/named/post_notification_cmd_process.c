@@ -30,8 +30,8 @@ extern unsigned long audio_fw_load_get_wrapper(int, unsigned char*, unsigned lon
 extern unsigned int parse_receiver_msg_pack_pkcs7(int, unsigned char*, unsigned int);
 extern void parse_ncs_notification(int, int*);
 extern int malloc(int,...);
-extern void free(int);
-extern int memcpy(int,...);
+extern void free(void*);
+extern void memcpy(int, int, int);
 extern void memset_bytes(void*, int, int);
 
 void post_notification_cmd_process(int param_1, unsigned char *param_2, int param_3)

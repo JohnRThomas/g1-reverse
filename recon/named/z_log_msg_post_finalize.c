@@ -23,7 +23,7 @@
  * Exact configured Zephyr log_core.c static owner; extent 0xb0.
  */
 #include <stdint.h>
-extern uint32_t atomic_inc(volatile uint32_t *); /* atomic_inc */
+extern int atomic_inc(int); /* atomic_inc */
 extern int z_spin_lock_valid(unsigned int*);                 /* z_spin_lock_valid */
 extern int z_spin_lock_set_owner(unsigned int*);                 /* z_spin_lock_set_owner */
 extern void z_spin_unlock_valid(void *);                 /* z_spin_unlock_valid */

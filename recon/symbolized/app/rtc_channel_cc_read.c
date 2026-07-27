@@ -14,7 +14,7 @@
  */
 /* Reconstructed FUN_000635d8 @ 0x635d8  (parity: 300/300 trials, PROVEN) */
 
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 
 unsigned int rtc_channel_cc_read(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

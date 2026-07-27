@@ -19,10 +19,10 @@
  */
 /* Reconstructed FUN_00054308 @ 0x54308  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern unsigned char bt_security_err_lookup(unsigned int);
+extern int bt_security_err_lookup(int);
 extern void ble_conn_unref(int);
 extern int ble_conn_lookup_masked(unsigned,int);
-extern int bt_conn_disconnect_by_state(unsigned short*, unsigned char);
+extern void bt_conn_disconnect_by_state(unsigned int, int);
 extern void ble_notify_remote_info_available(int,int,int);
 extern void smp_alloc_pairing_keys(void);
 extern int update_sec_level(int);

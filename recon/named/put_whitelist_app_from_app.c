@@ -30,7 +30,7 @@ extern uint32_t parse_whitelist_json(uint32_t a);
 extern uint32_t verify_whitelist_json(uint32_t a);
 extern int store_whitelist(void);
 extern uint32_t malloc(uint32_t a);
-extern void free(int);
+extern void free(void*);
 extern void memset_bytes(void*, int, int);
 
 void put_whitelist_app_from_app(uint32_t param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4, uint32_t param_5)

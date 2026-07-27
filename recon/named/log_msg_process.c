@@ -25,7 +25,7 @@ extern int atomic_inc(int);
 extern unsigned int activate_foreach_backend(unsigned int);
 extern void log_msg_commit(int*,unsigned,int);
 extern void k_sleep(int,int);
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 unsigned int log_msg_process(unsigned long param_1, unsigned long param_2) {
   int *piVar1 = (int*)0x000882b0;
   int *piVar5 = (int*)0x000882a0;

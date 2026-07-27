@@ -56,7 +56,7 @@ LAB_000520f6:
         uVar7 = 0;
         uVar4 = iVar2 + 4U;
         while (uVar6 = uVar4 + 4, uVar6 <= uVar5) {
-            iVar1 = img_mgmt_read(param_1, uVar4, &local_44);
+            iVar1 = img_mgmt_read(param_1, uVar4, &local_44, 4);
             if (iVar1 != 0) return iVar1;
             uVar3 = (unsigned int)local_42;
             if (local_44 == 0xff) {

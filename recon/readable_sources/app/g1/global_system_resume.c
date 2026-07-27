@@ -34,7 +34,7 @@ extern int gpio_set_pin1_dt_wrapper(int,...);
 extern int gpio_set_fixed_pin_dt(int,...);
 extern int gpio_set_fixed_output_889f0(int,...);
 extern int subsystem_enable_gpio_pin_set_adapter(int,...);
-extern int send_touch_click_event(int,...);
+extern int send_touch_click_event(unsigned long);
 unsigned int global_system_resume(unsigned int param_1, int param_2)
 {
   volatile int *pp = (volatile int*)((unsigned long)&device_info) /*=0x200069fc*/;

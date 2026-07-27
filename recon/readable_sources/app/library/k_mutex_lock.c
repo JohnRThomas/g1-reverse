@@ -34,7 +34,7 @@
 #include "../../../headers/g1_log.h"
 
 extern int z_spin_lock_valid(uint32_t);
-extern int z_spin_unlock_valid(uint32_t);
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);
 extern void z_spin_lock_set_owner(uint32_t);
 extern void z_reschedule(uint32_t, uint32_t);
 extern int z_pend_curr(uint32_t, uint32_t, void *, uint32_t,

@@ -33,7 +33,7 @@
 extern int z_spin_lock_valid(unsigned int*);
 extern int z_spin_unlock_valid(uintptr_t lock);
 extern int z_spin_lock_set_owner(unsigned int*);
-extern void k_work_submit(uintptr_t object);
+extern void k_work_submit(int);
 extern void assert_post_action(uintptr_t file, uint32_t line) __attribute__((noreturn));
 
 void app_event_manager_submit(uint32_t *item)

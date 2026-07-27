@@ -35,7 +35,7 @@ extern int net_buf_simple_reserve(int,int);
 extern int net_buf_simple_add(int,int);
 extern int net_buf_pool_get_727ac(int);
 extern int k_current_get(void);
-extern int assert_post_action(int,int);
+extern void assert_post_action(const char *, unsigned int);
 extern int att_create_pdu_reserve4(int,int,int,int);
 extern int att_log_emit_3arg(int,int,void*);
 

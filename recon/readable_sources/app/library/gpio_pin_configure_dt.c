@@ -22,7 +22,7 @@
 #include "../../../headers/g1_log.h"
 typedef unsigned (*codep)(int,unsigned,unsigned);
 extern void assert_post_action(int,unsigned);
-extern int z_device_is_ready(int);
+extern _Bool z_device_is_ready(const struct device *);
 unsigned gpio_pin_configure_dt(int param_1){
   unsigned char bVar1; int iVar2; unsigned uVar3; unsigned uVar4; unsigned *puVar5; unsigned uVar6; unsigned uVar7;
   puVar5 = *(unsigned **)(param_1 + 4);

@@ -33,7 +33,7 @@
 /* Reconstructed uart_callback @ 0x33384  (parity: 295/300 trials, PROVEN) */
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
-extern int  k_mem_slab_alloc(int,void*,int,int);
+extern int k_mem_slab_alloc(int, int*, int, int);
 extern void k_mem_slab_free(int,int);
 extern int assert_post_action(int, int);
 extern void printk(unsigned long, ...);

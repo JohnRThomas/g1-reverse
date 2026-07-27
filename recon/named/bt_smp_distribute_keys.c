@@ -33,7 +33,7 @@ typedef unsigned char undefined1;
 typedef unsigned short undefined2;
 typedef unsigned undefined4;
 extern unsigned int bt_addr_le_str(const void *);
-extern unsigned char bt_security_err_lookup(unsigned int);
+extern int bt_security_err_lookup(int);
 extern int bt_rand(void *, int);
 extern void bt_smp_send_pdu(int, unsigned int, unsigned int);
 extern void smp_pairing_complete(int, unsigned int);

@@ -25,11 +25,11 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 #include "../headers/g1_log.h"
-extern int z_spin_lock_valid(unsigned int*);
-extern int z_spin_unlock_valid(uint32_t);
-extern int z_spin_lock_set_owner(unsigned int*);
+extern _Bool z_spin_lock_valid(struct k_spinlock *);
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);
+extern void z_spin_lock_set_owner(struct k_spinlock *);
 extern int z_pend_curr(uint32_t,uint32_t,int,uint32_t,uint32_t,uint32_t);
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 
 int z_impl_k_sem_take(int param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4){
     uint32_t ipsr, bp, v; int iVar2; int r3;

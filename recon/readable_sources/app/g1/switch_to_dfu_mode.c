@@ -22,7 +22,7 @@
 
 typedef unsigned char u8;
 typedef unsigned int u32;
-extern int k_is_in_isr(void);
+extern _Bool k_is_in_isr(void);
 extern void app_msleep_thunk_a(int);
 extern unsigned long sys_reboot(long);
 extern unsigned long process_sync_buffer(unsigned int, ...);

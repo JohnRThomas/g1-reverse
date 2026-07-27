@@ -17,7 +17,7 @@
 
 extern int get_device_info(void);
 extern void memset_bytes(void*, int, int);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern unsigned int k_msgq_put(int, unsigned int, int, int);
 
 /* P4 iteration 33 -- UNDERSIZED STACK FRAME FIXED (instance 18 of the class the
  * parity harness is structurally blind to).  Shipped bytes @ 0x47ba8:

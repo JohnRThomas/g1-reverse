@@ -22,7 +22,7 @@
  */
 #include <stdint.h>
 
-extern int bt_conn_call_4arg_zero(int, int, void*);
+extern void bt_conn_call_4arg_zero(unsigned int, unsigned int, unsigned int);
 extern int k_current_get(void);                 /* k_current_get */
 extern unsigned long net_buf_pool_get_727ac(unsigned int*, unsigned int, unsigned int, unsigned int); /* k_fifo_get */
 extern void net_pkt_skip(void *, void *);        /* k_fifo_put */

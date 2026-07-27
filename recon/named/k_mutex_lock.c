@@ -29,13 +29,13 @@
 #include <cmsis_gcc.h>
 #include "../headers/g1_log.h"
 
-extern int z_spin_lock_valid(unsigned int*);
-extern int z_spin_unlock_valid(uint32_t);
-extern int z_spin_lock_set_owner(unsigned int*);
+extern _Bool z_spin_lock_valid(struct k_spinlock *);
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);
+extern void z_spin_lock_set_owner(struct k_spinlock *);
 extern int z_reschedule(unsigned int*, int);
 extern int z_pend_curr(uint32_t, uint32_t, void *, uint32_t,
                        void *, uint32_t);
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 extern unsigned int k_mutex_owner_prio_check(int, int);
 
 struct queue_entry {

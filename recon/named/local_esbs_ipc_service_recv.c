@@ -18,7 +18,7 @@
 #include <string.h>
 #include "../headers/g1_log.h"
 
-extern void switch_to_dfu_mode(void *state);
+extern unsigned int switch_to_dfu_mode(void*);
 extern int find_message_pool_entry_by_id(int);
 extern void msg_queue_init(void);
 extern void confirm_message(int);

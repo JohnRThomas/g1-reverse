@@ -21,7 +21,7 @@
 /* Reconstructed FUN_0002e594 @ 0x2e594 */
 #include <stdint.h>
 
-extern int z_device_is_ready(int);
+extern _Bool z_device_is_ready(const struct device *);
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
 

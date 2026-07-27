@@ -30,10 +30,10 @@
 #include <stdint.h>
 #include <stddef.h>
 extern void *malloc(size_t);
-extern void free(int);
-extern int z_device_is_ready(int);
+extern void free(void *);
+extern _Bool z_device_is_ready(const struct device *);
 extern void memset_bytes(void*, int, int);
-extern int memcmp(const void*, const void*, unsigned long);
+extern int memcmp(const void *, const void *, size_t);
 extern void safe_memcpy_checked(void *, const void *, size_t, size_t);
 extern int get_device_info(void);
 extern void log_message(unsigned long, ...);

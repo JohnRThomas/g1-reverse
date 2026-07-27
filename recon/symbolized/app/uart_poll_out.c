@@ -16,7 +16,7 @@
 extern int k_sleep(int,int);
 extern void audio_dma_start_transfer(int,int,int);
 extern unsigned long long is_tx_ready(int,...);
-extern int k_is_in_isr(void);
+extern _Bool k_is_in_isr(void);
 extern void thunk_FUN_00086384(int);
 
 void uart_poll_out(int param_1, unsigned char param_2){

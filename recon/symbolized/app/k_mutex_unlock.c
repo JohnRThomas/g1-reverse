@@ -31,10 +31,10 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 #include "../../headers/g1_log.h"
-extern int assert_post_action(int, int);
-extern int z_spin_lock_valid(unsigned int*);
-extern int z_spin_unlock_valid(unsigned);
-extern int z_spin_lock_set_owner(unsigned int*);
+extern void assert_post_action(const char *, unsigned int);
+extern _Bool z_spin_lock_valid(struct k_spinlock *);
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);
+extern void z_spin_lock_set_owner(struct k_spinlock *);
 extern void z_ready_thread_locked(void);
 extern int z_reschedule(unsigned int*, int);
 extern int z_unpend_first_thread(unsigned int*);

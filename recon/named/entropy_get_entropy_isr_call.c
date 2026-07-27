@@ -15,7 +15,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_00052bf8 @ 0x52bf8  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int assert_post_action(unsigned int a, unsigned int b);
+extern int assert_post_action(int, int);
 
 void entropy_get_entropy_isr_call(unsigned int param_1, unsigned int param_2)
 {

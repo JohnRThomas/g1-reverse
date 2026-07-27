@@ -12,7 +12,7 @@
 /* Reconstructed FUN_00047844 @ 0x47844  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int utf8_to_unicode(unsigned char *, int);
-extern void printf(unsigned a, int b);
+extern int printf(const char *, ...);
 int utf8_decode_to_utf16_buffer(int param_1, int param_2, int param_3, int param_4){
     int iVar2 = 0, iVar3 = 0;
     for(;;){

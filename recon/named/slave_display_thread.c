@@ -90,7 +90,7 @@ extern void upgradeAppLanguageInfoToFlash(uint32_t language);
 extern void onboarding_retry_watchdog_update(void);
 extern unsigned long long k_uptime_get_1(void);
 extern unsigned int update_temp_task_status(int, unsigned int, unsigned int);
-extern void clear_timeout_message(uint32_t reason);
+extern void clear_timeout_message(int);
 extern void check_pending_messages_flag(void);
 extern void push_message_3439c(void);
 extern void msg_count_dec(void);

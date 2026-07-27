@@ -27,7 +27,7 @@ extern void FUN_000859b2(void *);
 extern unsigned long virtqueue_get_buffer_length(unsigned long, unsigned long);
 extern int virtqueue_add_buffer(void *, const void *, int, int, void *);
 extern void dma_xfer_end_handler(int*);
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 
 uint32_t rpmsg_virtio_tx_enqueue(uint8_t *owner, uint32_t a, uint32_t b,
                       uint8_t *item_end, uint32_t tag)

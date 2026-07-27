@@ -17,7 +17,7 @@
 #include "../../headers/g1_log.h"
 
 extern void memset_bytes(void*, int, int);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern unsigned int k_msgq_put(int, unsigned int, int, int);
 
 int sendAudioStreamFileToApp(unsigned char param_1, unsigned char param_2)
 {

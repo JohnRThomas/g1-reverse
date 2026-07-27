@@ -21,12 +21,12 @@
 /* Reconstructed FUN_000727ac @ 0x727ac  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../headers/g1_log.h"
-extern int z_spin_lock_valid(unsigned int*);
-extern int z_spin_unlock_valid(void*);
-extern int z_spin_lock_set_owner(unsigned int*);
+extern _Bool z_spin_lock_valid(struct k_spinlock *);
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);
+extern void z_spin_lock_set_owner(struct k_spinlock *);
 extern int z_pend_curr(void*,unsigned,void*,unsigned,unsigned,unsigned,unsigned);
 extern uintptr_t g1_recon_tagged_heap_node_release(unsigned *node, int release);
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 
 uint32_t net_buf_pool_get_727ac(unsigned *param_1, unsigned param_2, unsigned param_3, unsigned param_4){
     unsigned *puVar7 = param_1 + 2;

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000574ec @ 0x574ec  (parity: 300/300 trials, PROVEN) */
 
 #define z_impl_k_queue_init FUN_000864e8
-extern void z_impl_k_queue_init(void *queue);
+extern void z_impl_k_queue_init(struct k_queue *);
 extern void FUN_000732d4(unsigned int a, unsigned int b);
 
 void FUN_000574ec(int param_1)

@@ -7,7 +7,7 @@
  */
 /* Reconstructed FUN_00081320 @ 0x81320  (parity: 300/300 trials, PROVEN) */
 
-extern void k_work_cancel_delayable(int);
+extern int k_work_cancel_delayable(struct k_work_delayable *);
 void cancel_delayable_work_field18(int param_1)
 {
     k_work_cancel_delayable(param_1 + 0x18);

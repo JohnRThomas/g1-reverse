@@ -17,7 +17,7 @@
 
 extern int get_device_info(void);
 extern void memset_bytes(void*, int, int);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern unsigned int k_msgq_put(int, unsigned int, int, int);
 
 unsigned int send_response_data_to_ble(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

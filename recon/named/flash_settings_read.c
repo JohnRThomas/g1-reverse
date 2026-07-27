@@ -20,7 +20,7 @@
 
 #include <stdint.h>
 
-extern int z_device_is_ready(int);
+extern _Bool z_device_is_ready(const struct device *);
 extern int get_device_info(void);
 extern void log_message(unsigned long, ...);
 extern void k_sleep(uint32_t ticks, uint32_t unused);

@@ -15,7 +15,7 @@
  */
 /* Reconstructed FUN_00063898 @ 0x63898  (parity: 300/300 trials, PROVEN) */
 
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 
 void nrf_rtc_timer_chan_free(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

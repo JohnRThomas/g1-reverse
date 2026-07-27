@@ -28,7 +28,7 @@ extern uint64_t att_op_get_type(int);
 extern void net_buf_unref(int);
 extern int net_buf_ref(int);
 extern int net_buf_simple_pull_5f594(int, int);
-extern void assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 extern void att_log_emit_3arg(int, int, int);
 extern void att_send_error_rsp(int, int, int, int);
 extern int atomic_test_and_set_bit_0(int, int);

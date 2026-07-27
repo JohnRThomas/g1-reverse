@@ -10,7 +10,7 @@
 /* Reconstructed FUN_000530b4 @ 0x530b4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void k_work_submit(void*);
+extern int k_work_submit(struct k_work *);
 unsigned int submit_ancs_notify_work(void)
 {
   k_work_submit((void*)0x20002934UL);

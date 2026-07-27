@@ -6,8 +6,7 @@
 /* chunk_set @ 0x0007de02; raw FUN_0007de02 */
 #include <stdint.h>
 
-void chunk_set(uint8_t *heap, uint32_t chunk, uint32_t field, uint32_t value)
-{
+void chunk_set(unsigned char*heap, unsigned int chunk, unsigned int field, unsigned int value) {
     uint8_t *memory = heap + chunk * 8u;
 
     if (*(uint32_t *)(heap + 8) < 0x8000u) {

@@ -23,8 +23,7 @@ extern __attribute__((noreturn)) void assert_post_action(uint32_t, uint32_t);
 extern int k_mutex_unlock(unsigned int);
 
 #define g1_recon_retarget_lock_release_recursive g1_recon_retarget_lock_release_recursive
-void g1_recon_retarget_lock_release_recursive(uintptr_t lock)
-{
+void g1_recon_retarget_lock_release_recursive(unsigned long lock) {
     if (lock == 0u) {
         printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, ((unsigned long)&rodata_f23d4) /*=0xf23d4*/, ((unsigned long)"WEST_TOPDIR/zephyr/lib/libc/newlib/libc-hooks.c") /*=0xf22d5*/, 0x1c2u);
         assert_post_action(((unsigned long)"WEST_TOPDIR/zephyr/lib/libc/newlib/libc-hooks.c") /*=0xf22d5*/, 0x1c2u);

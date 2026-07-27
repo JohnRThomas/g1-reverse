@@ -168,7 +168,7 @@ extern int finish_task_media(void);                       /* FUN_0002efc0 */
 extern int is_battery_critical(void);                     /* FUN_00032ee4 */
 extern int should_finish_task_wait(void);                 /* FUN_00033cdc */
 extern int read_task_mode(void);                          /* FUN_00033cf8 */
-extern int clear_timeout_message(int);                    /* FUN_00033d58 */
+extern void clear_timeout_message(int);                    /* FUN_00033d58 */
 extern int finalize_task_transition(void);                /* FUN_0003439c */
 extern int is_task_transition_ready(void);                /* FUN_00034410 */
 extern int set_task_display_mode(int);                    /* FUN_0003443c */
@@ -182,7 +182,7 @@ extern int set_task_wake_state(int);                      /* FUN_0007ce60 */
 extern void memset_bytes(void*, int, int);                /* FUN_00086c78 */
 extern int send_event(int);
 extern int sync_to_slave(char *, int, int);               /* FUN_00026f74 */
-extern int FUN_0007ce5c(u32, u32);                        /* exact wait entry */
+extern void FUN_0007ce5c(unsigned int, int);                        /* exact wait entry */
 extern int update_persist_task_status(char *, u32, int);  /* FUN_0002bef4 */
 
 #define log_message log_message

@@ -28,7 +28,7 @@
 extern int  find_cf_cfg_by_addr(int,void*);
 extern int  find_cf_cfg(void);
 extern int  gatt_cf_cfg_clear(int);
-extern int  strtoul(int,int,int);
+extern long unsigned int strtoul(const char * restrict,  char ** restrict,  int);
 extern int settings_name_next(int, int);
 extern int  bt_settings_decode_key(int,void*);
 extern void bt_addr_le_copy_828da(unsigned long*, unsigned long*);

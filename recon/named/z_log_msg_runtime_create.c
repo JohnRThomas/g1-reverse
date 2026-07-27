@@ -24,7 +24,7 @@ extern uintptr_t g1_recon_z_log_msg_alloc(uint32_t words);
 extern int32_t cbprintf_package_convert(uintptr_t source, uint32_t count, uintptr_t callback,
                            void *state, uint32_t type, void *buffer, uint32_t width);
 extern void log_msg_finalize_commit(uintptr_t, uintptr_t, uint32_t, uintptr_t);
-extern void assert_post_action(uint32_t, uint32_t) __attribute__((noreturn));
+extern void assert_post_action(const char *, unsigned int);
 
 struct format_state {
     uintptr_t destination;

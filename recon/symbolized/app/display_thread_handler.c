@@ -100,7 +100,7 @@ extern void display_thread_service_abort(void);
 extern int k_msgq_get(void *queue, void *message, uint64_t timeout);
 extern uint32_t k_sleep_ticks(uint64_t timeout);
 extern void display_power_set(unsigned int enabled);
-extern void k_timer_init(void *timer, uintptr_t expiry, uintptr_t stop);
+extern void k_timer_init(struct k_timer *, void (*)(struct k_timer *), void (*)(struct k_timer *));
 extern void memset_bytes(void*, int, int);
 
 #define g_log_level              (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/)

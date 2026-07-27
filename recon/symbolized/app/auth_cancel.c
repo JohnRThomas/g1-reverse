@@ -20,7 +20,7 @@
 
 extern int bt_conn_get_field_0x90(int);
 extern void format_bt_addr_str(const void *connection, char *description);
-extern int bt_conn_disconnect_by_state(unsigned short*, unsigned char);
+extern void bt_conn_disconnect_by_state(unsigned int, int);
 
 void auth_cancel(uint32_t connection)
 {

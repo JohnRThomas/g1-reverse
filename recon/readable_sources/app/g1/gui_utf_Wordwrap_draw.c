@@ -56,14 +56,14 @@ typedef int i32;
 extern void log_message(unsigned long, ...);
 extern int get_device_info(void);
 extern void debug_print(unsigned long, ...);
-extern u32 get_display_atomic_state(void);
+extern unsigned long get_display_atomic_state(void);
 extern u32 get_glyph_spacing(u32,u32);
 extern i32 load_glyph_resource(u32,u32,void*,void*,void*,u32);
 extern void clear_framebuffer_region(u32,u32,u32,u32,u32,u32);
 extern void refresh_display_region(u32,u32,u32,u32,u32,u32);
 extern u16* decode_utf16_text(u32,void*);
 extern void draw_glyph_bitmap(u32,void*,u32,u32,u32,u32);
-extern u32 classify_text_character(u32);
+extern long classify_text_character(unsigned long);
 extern void copy_glyph_bitmap(void*,u32,u32,u32);
 
 typedef u32 (*fnptr_t)(u32,u32,u32,u32,u32);

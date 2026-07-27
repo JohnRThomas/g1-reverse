@@ -8,7 +8,7 @@
  * Raw/address back-map: FUN_0008323a / 0x0008323a.
  */
 #include <stdint.h>
-extern int bt_encrypt_le(const uint8_t *, const uint8_t *, uint8_t *); /* FUN_00081326 */
+extern unsigned int bt_encrypt_le(int, int, int); /* FUN_00081326 */
 #define smp_c1 smp_c1
 
 int smp_c1(const uint8_t key[16], const uint8_t random[16],

@@ -28,7 +28,7 @@ extern void cbor_encode_set_error(zcbor_state_prefix_t *state, int error);
 extern unsigned int cbor_min_encoded_size(char *, unsigned int);
 extern int cbor_encode_length_header(zcbor_state_prefix_t *state, unsigned int major_type,
                        const void *result, size_t max_result_len);
-extern void *memmove(void *destination, const void *source, size_t size);
+extern void *memmove(void *, const void *, size_t);
 
 int zcbor_str_encode(zcbor_state_prefix_t *state, const zcbor_string_t *input,
                  unsigned int major_type)

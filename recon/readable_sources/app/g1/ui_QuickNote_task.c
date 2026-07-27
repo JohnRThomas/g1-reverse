@@ -73,7 +73,7 @@ extern void gui_bmp_dynamic_bitmap_draw(unsigned int bitmap_id,
                                         int arg3, int arg4,
                                         int arg5, int arg6);
 extern int gui_bmp_bitmap_draw(unsigned int, int, int, int, int, int);
-extern void gui_screen_fade_out_transition(void);
+extern unsigned int gui_screen_fade_out_transition(void);
 extern void gui_utf_draw(int background, uintptr_t text, int style,
                          int x, int y, int right, int bottom,
                          int line_count, int arg8, int arg9,

@@ -25,10 +25,10 @@
 /* Reconstructed FUN_0005b378 @ 0x5b378  (parity: 300/300 trials, PROVEN) */
 extern int bt_gatt_attr_get_handle(int a0);
 extern int bt_gatt_foreach_attr_type(int a0,int a1,int a2,int a3,int a4,int a5,void *a6);
-extern int gatt_indicate(int, int, int);
+extern int gatt_indicate(unsigned int, unsigned short, int);
 extern int assert_post_action(int, int);
 extern int bt_uuid_cmp(int, int);
-extern unsigned int read_struct_first_word(unsigned int*);
+extern int read_struct_first_word(unsigned long);
 extern int bt_gatt_attr_value_handle(void);
 
 int bt_gatt_indicate(int param_1,int *param_2)

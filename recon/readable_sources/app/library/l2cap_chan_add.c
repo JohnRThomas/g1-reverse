@@ -23,10 +23,10 @@
 typedef uint32_t u32; typedef uint8_t u8; typedef uint16_t u16;
 extern uint64_t bt_l2cap_le_lookup_rx_cid(int,unsigned);
 extern void log_msg_3arg_thunk(u32,int,void*);
-extern void k_work_init_delayable(int,u32);
-extern void k_work_init(int,u32);
+extern void k_work_init_delayable(struct k_work_delayable *, void (*)(struct k_work *));
+extern void k_work_init(struct k_work *, void (*)(struct k_work *));
 #define z_impl_k_queue_init z_impl_k_queue_init
-extern void z_impl_k_queue_init(void *queue);
+extern void z_impl_k_queue_init(struct k_queue *);
 u32 l2cap_chan_add(int param_1, int param_2, int param_3){
     if(*(volatile short*)(param_2+0x14) == 0){
         unsigned uVar2 = 0x40;

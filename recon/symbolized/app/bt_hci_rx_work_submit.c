@@ -18,7 +18,7 @@
 
 extern void net_buf_slist_put(unsigned int a, unsigned int b);
 extern void bt_log_forward_3arg(unsigned int a, unsigned int b, void *c);
-extern int k_work_submit_to_queue(void*, void*);
+extern int k_work_submit_to_queue(struct k_work_q *, struct k_work *);
 
 void bt_hci_rx_work_submit(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

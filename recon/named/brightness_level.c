@@ -46,7 +46,7 @@ extern void get_demo_image_source_from_flash(void);
 extern void k_sleep(uint32_t,uint32_t);
 extern unsigned int change_work_mode_to(unsigned int);
 extern void set_shutdown_flag(uintptr_t,uint32_t);
-extern void rproc_virtio_negotiate_features(uintptr_t,uint32_t);
+extern unsigned int rproc_virtio_negotiate_features(void*, unsigned int);
 extern uint64_t thunk_FUN_00074f68(void);
 
 typedef void (*brightness_callback)(uintptr_t text, uintptr_t value,

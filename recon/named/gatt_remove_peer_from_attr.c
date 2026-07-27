@@ -19,7 +19,7 @@
 typedef uint32_t u32; typedef uint8_t u8; typedef uint16_t u16;
 typedef void (*fp)(int);
 extern void ble_conn_unref(void);
-extern int bt_conn_lookup_addr_le(int, int);
+extern int bt_conn_lookup_addr_le(int, void*);
 extern void sc_clear(int);
 extern int bt_addr_le_is_bonded(unsigned char, const void*);
 extern int bt_conn_is_peer_addr_le(int,int,void*);

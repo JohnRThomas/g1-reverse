@@ -64,7 +64,7 @@ extern uintptr_t net_buf_get(void *queue, uint32_t wait, uint32_t unused);
 extern uint32_t atomic_get_word(const uint32_t *value);
 extern stop_record_t *net_buf_simple_add(uintptr_t pool, uint32_t size);
 extern void att_send_simple(uintptr_t endpoint, int status);
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 
 static __attribute__((always_inline)) inline void fatal_state(uintptr_t file,
                                                               uint32_t line)

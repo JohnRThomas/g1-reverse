@@ -21,7 +21,7 @@ extern int assert_post_action(int, int);
 extern void z_impl_k_thread_create(int,int,unsigned,int,int,int,int,unsigned,int);
 extern void posix_stub_enosys(int);
 extern void FUN_0008641c(int);
-void k_work_queue_start(int param_1,int param_2,unsigned param_3,unsigned param_4,int *param_5){
+void k_work_queue_start(unsigned int param_1, unsigned int param_2, unsigned long param_3, unsigned long param_4, unsigned long param_5) {
   unsigned uVar1;
   if(param_1==0){
     printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0x000f586b,0x000f820f,0x2c8); uVar1=0x2c8;

@@ -10,7 +10,7 @@
 #include <stdint.h>
 
 #define g1_recon_retarget_lock_release_recursive g1_recon_retarget_lock_release_recursive
-extern void g1_recon_retarget_lock_release_recursive(void *lock); /* FUN_00051134@0x00051134 */
+extern void g1_recon_retarget_lock_release_recursive(unsigned long); /* FUN_00051134@0x00051134 */
 
 void __sinit_lock_release(void)
 {

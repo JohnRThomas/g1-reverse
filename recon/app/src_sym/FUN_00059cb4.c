@@ -2,7 +2,7 @@
 
 extern unsigned long long atomic_or_0(int a, int b);
 extern void printk(unsigned long, ...);
-extern void assert_post_action(int a, int b);
+extern void assert_post_action(const char *, unsigned int);
 
 void FUN_00059cb4(void)
 {

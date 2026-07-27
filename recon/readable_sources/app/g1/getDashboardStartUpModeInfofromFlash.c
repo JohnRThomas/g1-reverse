@@ -21,7 +21,7 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 extern int get_device_info(void);
-extern int z_device_is_ready(int);
+extern _Bool z_device_is_ready(const struct device *);
 
 unsigned char getDashboardStartUpModeInfofromFlash(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

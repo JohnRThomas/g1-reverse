@@ -29,7 +29,7 @@
 extern void ancs_disconnected(void);
 extern void ble_conn_unref(int);
 extern int send_conn_le_param_update(int,void*);
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 extern int atomic_and_2(volatile long*, long);
 extern void bt_conn_call_4arg_zero(unsigned int, unsigned int, unsigned int);
 extern void bt_l2cap_disconnected(int);

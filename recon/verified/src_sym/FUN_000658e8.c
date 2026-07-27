@@ -2,7 +2,7 @@
 
 extern unsigned long long get_pin_idx(unsigned int a);
 extern int pin_in_use_by_te(void);
-extern void assert_post_action(int a,int b);
+extern void assert_post_action(const char *, unsigned int);
 extern void printk(unsigned long, ...);
 
 unsigned int FUN_000658e8(unsigned int param_1, int param_2)

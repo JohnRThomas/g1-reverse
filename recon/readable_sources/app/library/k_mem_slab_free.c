@@ -36,7 +36,7 @@ extern void z_ready_thread_locked(void);
 extern void z_reschedule(int,uint32_t);
 extern int z_unpend_first_thread(int);
 extern void assert_post_action(uint32_t,int);
-void k_mem_slab_free(int param_1, uint32_t* param_2){
+void k_mem_slab_free(int param_1, int param_2) {
     int iVar6=param_1+8;
     uint32_t uVar7=0;
     int iVar2=z_spin_lock_valid(iVar6);

@@ -6,7 +6,7 @@ extern void FUN_00081746(u32,int,void*);
 extern void FUN_000732d4(int,u32);
 extern void FUN_00072e50(int,u32);
 #define z_impl_k_queue_init FUN_000864e8
-extern void z_impl_k_queue_init(void *queue);
+extern void z_impl_k_queue_init(struct k_queue *);
 u32 FUN_00057874(int param_1, int param_2, int param_3){
     if(*(volatile short*)(param_2+0x14) == 0){
         unsigned uVar2 = 0x40;

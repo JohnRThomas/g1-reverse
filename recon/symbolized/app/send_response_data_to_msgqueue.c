@@ -22,7 +22,7 @@
 extern int get_device_info(void);
 extern void memset_bytes(void*, int, int);
 extern void memcpy(int, int, int);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern unsigned int k_msgq_put(int, unsigned int, int, int);
 
 unsigned int send_response_data_to_msgqueue(void *param_1, unsigned int param_2)
 {

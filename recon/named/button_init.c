@@ -48,7 +48,7 @@ extern void gpio_pin_configure(unsigned int, unsigned int);
 extern unsigned int gpio_pin_get_checked(unsigned int);
 extern void debug_print(unsigned long, ...);
 extern unsigned char get_board_rev_flag(void);
-extern int z_device_is_ready(int);
+extern _Bool z_device_is_ready(const struct device *);
 
 unsigned char button_init(void)
 {

@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_000821f4 @ 0x821f4. */
 #include <stdint.h>
-extern int bt_att_chan_create_pdu(uintptr_t, unsigned, unsigned);
+extern int bt_att_chan_create_pdu(void*, int, int);
 extern void send_err_rsp_alloc_failure_log(void);
 extern unsigned char* net_buf_simple_add(int,int);
 extern void bt_att_chan_send_rsp(uintptr_t,int);

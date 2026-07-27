@@ -27,7 +27,7 @@ extern void app_event_manager_submit(unsigned long*);
 extern int ancs_notify_table_is_idle(int);
 extern int app_event_submit_power(void);
 extern void power_manager_set_system_off_flag(int);
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 void power_manager_system_off(void){
   int iVar1; unsigned local_18, local_14;
   unsigned char r5 = *(volatile unsigned char*)0x2001d563UL;

@@ -17,7 +17,7 @@
 
 #include <stdint.h>
 
-extern uint32_t atomic_inc(volatile uint32_t *value); /* atomic_inc */
+extern int atomic_inc(int); /* atomic_inc */
 
 uint32_t z_log_dropped(uint32_t buffered)
 {

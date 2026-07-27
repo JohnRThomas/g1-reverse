@@ -26,7 +26,7 @@
 
 extern uint32_t z_log_msg_local_claim(void);
 extern void g1_recon_z_log_msg_free(volatile unsigned long*);
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 extern uint64_t thunk_FUN_00074f68(void);
 extern void log_dropped(uint32_t low, uint32_t high);
 extern int g1_recon_z_log_msg_pending(void);

@@ -21,7 +21,7 @@ extern unsigned int gatt_settings_delete_key(unsigned char *, int);
 extern int find_cf_cfg_by_addr(unsigned,int);
 extern int bt_gatt_clear_sc(unsigned,int);
 extern void gatt_cf_cfg_clear(void);
-extern int bt_addr_le_eq_0(int, int);
+extern int bt_addr_le_eq_0(void*, unsigned int);
 extern void list_unlink_and_release(unsigned int, int, unsigned int *, unsigned int *);
 extern void bt_gatt_foreach_attr_0(unsigned short, unsigned short, void*, void*);
 int gatt_connected(unsigned param_1, int param_2, int param_3){

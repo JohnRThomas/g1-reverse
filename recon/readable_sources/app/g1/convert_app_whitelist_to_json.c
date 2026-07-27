@@ -38,7 +38,7 @@ extern int  strlen(int);
 extern void cjson_delete(volatile int*);
 extern int  cjson_create_array(void);
 extern int  cjson_create_object(void);
-extern void free(int);
+extern void free(void*);
 extern int  cjson_print_unformatted(int);
 extern void cjson_add_item_to_object_thunk(int,int,int);
 extern void cjson_add_bool_to_object(int,int,int);

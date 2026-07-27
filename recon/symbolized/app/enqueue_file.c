@@ -20,7 +20,7 @@
 
 extern int k_msgq_get(int, unsigned int, int, int);
 extern void safe_memcpy_checked(void*, unsigned int, unsigned int, int);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern unsigned int k_msgq_put(int, unsigned int, int, int);
 
 int enqueue_file(unsigned int param_1, unsigned int param_2)
 {

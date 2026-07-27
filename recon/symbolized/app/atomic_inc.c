@@ -8,7 +8,6 @@
  */
 #include <stdint.h>
 
-int32_t atomic_inc(volatile int32_t *target)
-{
+unsigned long atomic_inc(volatile unsigned long*target) {
     return __atomic_fetch_add(target, 1, __ATOMIC_SEQ_CST);
 }

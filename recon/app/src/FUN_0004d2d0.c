@@ -4,7 +4,7 @@
 #include <stdint.h>
 #define activate_foreach_backend FUN_0004d2d0
 typedef int (*backend_ready_fn)(const void *backend);
-extern void log_msg_commit(const void *backend,void *context,uint32_t level); /* log_backend_enable */
+extern void log_msg_commit(int, unsigned int, unsigned char); /* log_backend_enable */
 uint32_t activate_foreach_backend(uint32_t mask)
 {
  uint32_t pending=mask; volatile uint8_t *table=(volatile uint8_t*)0x000882a0u;

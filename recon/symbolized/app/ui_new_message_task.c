@@ -29,17 +29,16 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern uintptr_t get_device_info(void);
+extern int get_device_info(void);
 extern uint32_t get_message_pending_state(void);
 extern uint32_t notification_icon_type_from_package(uint32_t index);
 extern void gui_screen_clear(void);
-extern void gui_set_active_canvas(void *framebuffer);
+extern unsigned int gui_set_active_canvas(unsigned int);
 extern void gui_canvas_flags_set_bit1(void);
 extern void gui_canvas_flags_clear_bit1(void);
 extern uint32_t device_info_text_width_get(void);
 extern uint32_t device_info_text_height_get_clamped(void);
-extern void gui_bmp_bitmap_draw(uint32_t glyph, uint32_t x, uint32_t y,
-                         uint32_t a3, uint32_t a4, uint32_t a5);
+extern int gui_bmp_bitmap_draw(unsigned int, int, int, int, int, int);
 extern void reflash_fb_data_to_lcd(uintptr_t left, uintptr_t right, uint32_t x,
                          uint32_t y, uint32_t width, uint32_t height);
 

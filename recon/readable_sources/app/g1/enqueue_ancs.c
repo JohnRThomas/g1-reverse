@@ -25,7 +25,7 @@
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_get(int, unsigned int, int, int);
 extern void memcpy(int, int, int);
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern unsigned int k_msgq_put(int, unsigned int, int, int);
 
 int enqueue_ancs(unsigned int param_1)
 {

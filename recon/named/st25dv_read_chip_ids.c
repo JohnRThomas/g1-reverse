@@ -26,7 +26,7 @@ extern void nfc_ipc_send_op20(int,void*);
 extern void st25dv_ipc_request(int,void*);
 extern void adc_nfc_init(void);
 extern void clear_pending_state_flags(void);
-int st25dv_read_chip_ids(void){
+unsigned int st25dv_read_chip_ids(void) {
   unsigned local_10=0, local_c=0;
   unsigned char local_12=0, local_11;
   int iVar2;

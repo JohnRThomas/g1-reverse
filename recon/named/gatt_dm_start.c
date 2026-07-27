@@ -34,7 +34,7 @@
 extern int uuid_len_from_type(int);
 extern int bt_gatt_discover(int, int *);
 extern long atomic_and_0(volatile long*, long);
-extern int gatt_dm_log_helper(int, int, int);
+extern void gatt_dm_log_helper(unsigned int, unsigned int, unsigned int);
 extern int safe_memcpy_checked(void*,void*,uint32_t,int);
 
 int gatt_dm_start(uint32_t param_1, uint32_t *param_2, uint32_t param_3, uint32_t param_4){

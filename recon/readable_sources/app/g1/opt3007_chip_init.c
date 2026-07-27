@@ -31,7 +31,7 @@
 typedef uint32_t u32; typedef unsigned char byte;
 extern int get_device_info(void);
 extern int opt3001_reg_read(unsigned char, unsigned short*);
-extern int z_device_is_ready(int);
+extern _Bool z_device_is_ready(const struct device *);
 #define FLAG (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
 
 struct opt3007_transfer {

@@ -26,7 +26,7 @@
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
 extern int  k_sleep(int,int);
-extern int  z_device_is_ready(int);
+extern _Bool z_device_is_ready(const struct device *);
 extern void memset_bytes(void*,int,int);
 struct watchdog_window {
   uint32_t min;

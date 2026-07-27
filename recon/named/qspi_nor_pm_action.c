@@ -20,7 +20,7 @@
 #include <stdint.h>
 typedef unsigned int uint;
 extern int qspi_nor_acquire(int);
-extern int qspi_nor_suspend_bus(int);
+extern void qspi_nor_suspend_bus(unsigned char*);
 extern int qspi_nor_send_cinstr(int,void*,int,int,int);
 #define g1_recon_nrfx_qspi_init nrfx_qspi_init
 extern int g1_recon_nrfx_qspi_init(int,int,int);

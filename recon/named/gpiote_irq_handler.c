@@ -21,7 +21,7 @@ extern unsigned long get_pin_idx(unsigned long);
 extern void gpiote_pin_event_dispatch(uint32_t, uint32_t);
 extern uintptr_t gpio_port_base_from_pin(uint32_t *);
 extern uint32_t gpiote_read_and_clear_pending_events(uint32_t);
-extern void nrf_gpio_cfg_sense_set(unsigned long, int);
+extern void nrf_gpio_cfg_sense_set(unsigned long, unsigned char);
 
 static inline uint32_t configured_mode(uintptr_t table, uint32_t channel)
 {

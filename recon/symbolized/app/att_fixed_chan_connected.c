@@ -13,7 +13,7 @@
 #include <stdint.h>
 
 extern int gatt_recompute_max_mtu(void*);
-extern void k_work_init_delayable(void *object, uint32_t event);
+extern void k_work_init_delayable(struct k_work_delayable *, void (*)(struct k_work *));
 extern void bt_gatt_connected(void *object);
 
 void att_fixed_chan_connected(void **context)

@@ -29,7 +29,7 @@ extern int bt_conn_get_security(int,...);
 extern int bt_conn_is_peer_addr_le(int, int, void*);
 extern void gatt_ccc_changed(unsigned int, int);
 extern int log_msg_create_3arg(int,...);
-extern int bt_gatt_check_perm(int, int, int);
+extern int bt_gatt_check_perm(unsigned long, void*, unsigned long);
 unsigned int sc_restore(int param_1, int param_2, int *param_3)
 {
   int dummy[16];

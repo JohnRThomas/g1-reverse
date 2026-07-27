@@ -20,7 +20,7 @@
 /* Reconstructed FUN_00059cb4 @ 0x59cb4  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long atomic_or_0(int a, int b);
-extern void assert_post_action(int a, int b);
+extern void assert_post_action(const char *, unsigned int);
 
 void bt_gatt_service_init(void)
 {

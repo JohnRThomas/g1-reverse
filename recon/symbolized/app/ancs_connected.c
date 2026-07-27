@@ -29,7 +29,7 @@
 extern int get_device_info(void);
 extern void format_bt_addr_str(const void*, char*);
 extern int is_battery_critical(void);
-extern int bt_conn_disconnect_by_state(unsigned short*, unsigned char);
+extern void bt_conn_disconnect_by_state(unsigned int, int);
 extern unsigned int k_uptime_get_32(void);
 extern int bt_conn_get_field_0x90(int);
 extern void bt_conn_le_param_update(int,unsigned);

@@ -15,7 +15,7 @@
  */
 /* Reconstructed FUN_00019bfc @ 0x19bfc  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_put(unsigned int, void*, int, int);
+extern unsigned int k_msgq_put(int, unsigned int, int, int);
 extern int k_msgq_get(int, unsigned int, int, int);
 extern void memcpy(int, int, int);
 

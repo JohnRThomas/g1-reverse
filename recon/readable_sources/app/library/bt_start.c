@@ -50,7 +50,7 @@ extern void k_msleep_ticks32768_d(uint32_t);
 extern uintptr_t get_device_info(void);
 extern int get_device_type(void);
 extern uintptr_t get_device_serial_buf(void);
-extern void __strcpy_chk(void *, const void *, uint32_t);
+extern char *__strcpy_chk(char *, const char *, size_t);
 extern void log_message(uintptr_t, ...);
 extern void debug_print(void);
 extern int is_battery_critical(void);

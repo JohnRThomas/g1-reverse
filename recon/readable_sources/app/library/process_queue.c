@@ -9,7 +9,7 @@
 extern void *net_buf_get(void *queue, void *context,
                          uint32_t timeout_low, uint32_t timeout_high); /*=0x000836e8*/
 extern int bt_att_chan_send(void *channel, void *buffer); /*=0x00058a54*/
-extern void k_queue_prepend(void *queue, void *buffer); /*=0x00086518*/
+extern void k_queue_prepend(struct k_queue *, void *); /*=0x00086518*/
 int process_queue(void *channel, void *queue)
 {
     void *buffer = net_buf_get(queue, queue, 0, 0);

@@ -11,7 +11,6 @@
 /* Reconstructed FUN_00072fdc @ 0x72fdc  (parity: 300/300 trials, PROVEN) */
 
 extern int k_work_submit_to_queue(void*, void*);
-void k_work_submit(unsigned int param_1)
-{
+void k_work_submit(int param_1) {
     k_work_submit_to_queue(((unsigned long)&g_audio_module_spinlock) /*=0x200068d0*/, param_1);
 }

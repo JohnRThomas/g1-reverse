@@ -28,11 +28,11 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 
-extern uintptr_t get_device_info(void);
+extern int get_device_info(void);
 extern uint32_t get_message_pending_state(void);
 extern uint32_t notification_icon_type_from_package(uint32_t index);
 extern void gui_screen_clear(void);
-extern void gui_set_active_canvas(void *framebuffer);
+extern unsigned int gui_set_active_canvas(unsigned int);
 extern void gui_canvas_flags_set_bit1(void);
 extern void gui_canvas_flags_clear_bit1(void);
 extern uint32_t device_info_text_width_get(void);

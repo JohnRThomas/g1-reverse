@@ -12,7 +12,7 @@
  */
 /* Reconstructed FUN_0004c1f0 @ 0x4c1f0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int sys_clock_cycle_get_32(void);
+extern uint32_t sys_clock_cycle_get_32(void);
 uint32_t cpu_idle_wfi_gate_check(void){
   volatile uint8_t *pbVar2 = (volatile uint8_t*)0x2001d44aUL;
   uint32_t iVar3 = 0x2000a0b4;

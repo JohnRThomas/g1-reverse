@@ -86,15 +86,15 @@ extern long long dcmp_negate_rhs(int,int,int,int);
 extern long long __muldf3(int,int,int,int);
 extern long long __aeabi_dcmplt(int,int,int,int,int,int);
 extern long long __aeabi_dcmple(int,int,int,int);
-extern long long double_is_unordered(int,int,int,int);
+extern int double_is_unordered(int, unsigned int, int, unsigned int);
 extern long long strlen(void);
 extern long long cjson_print_string(int, ...);
 extern long long snprintf(int,int,int);
 extern long long vsnprintf_setup(int,int,int);
 extern long long cursor_advance_past_cstring(int);
 extern long long growbuf_ensure_capacity(int,int);
-extern long long memcpy(int,int,int);
-extern long long memset_bytes(int,int,int);
+extern void memcpy(int, int, int);
+extern void memset_bytes(void*, int, int);
 extern long long strcpy(int,int);
 extern long long strncpy_zero_pad(int,int,int);
 #define DAT_0006498c 0xf6977UL

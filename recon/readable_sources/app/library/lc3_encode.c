@@ -52,7 +52,7 @@ extern void lc3_spec_put_side(void *a, uint b, uint c, void *d);
 extern void lc3_spec_encode(void *a, uint b, uint c, unsigned d);
 extern void lc3_tns_analyze(uint a, unsigned b, int c, int d);
 extern void lc3_tns_put_data(void *a, void *b);
-extern void memmove(int a, int b, int c);
+extern int memmove(int, int, int);
 
 undefined4 lc3_encode(byte *param_1, int param_2, undefined4 param_3, undefined4 param_4, int param_5, undefined4 param_6)
 {

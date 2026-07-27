@@ -21,8 +21,7 @@ extern void reflash_fb_data_to_lcd(uint32_t left, uint32_t right, uint32_t x,
 extern void delay_scaled_busy_wait(int);
 extern void gui_screen_clear(void);
 
-int gui_screen_fade_out_transition(void)
-{
+unsigned int gui_screen_fade_out_transition(void) {
     int32_t mask_row = 0;
     do {
         uint32_t **rows = *(uint32_t ***)((unsigned long)&g_gui_active_canvas) /*=0x2000a034*/;

@@ -24,7 +24,7 @@
 #include "../../headers/g1_log.h"
 extern int log_msg_process(int);
 extern int log_process(void);
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 void g1_recon_z_impl_log_panic(void){
   volatile uint8_t *pcVar1 = (volatile uint8_t*)((unsigned long)&g_log_initialized_flag) /*=0x2001d44c*/;
   if(*pcVar1 == 0){

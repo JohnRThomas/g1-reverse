@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_000526e4 @ 0x526e4  (parity: 300/300 trials, PROVEN) */
 
-extern void bt_conn_alloc_pdu_buf(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3);
+extern void bt_conn_alloc_pdu_buf(int, unsigned int, unsigned int, unsigned int);
 void smp_packet_alloc(unsigned int param_1, unsigned int param_2)
 {
   bt_conn_alloc_pdu_buf(((unsigned long)&g_ancs_notify_3be8) /*=0x20003be8*/, param_2, 0, 0);

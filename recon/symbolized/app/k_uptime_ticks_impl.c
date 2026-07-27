@@ -24,11 +24,11 @@
 /* Reconstructed FUN_00074f68 @ 0x74f68  (parity: 80/80 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern int z_spin_lock_valid(unsigned int*);
-extern int z_spin_lock_set_owner(unsigned int*);
+extern _Bool z_spin_lock_valid(struct k_spinlock *);
+extern void z_spin_lock_set_owner(struct k_spinlock *);
 extern unsigned int rtc_get_elapsed_cycles_since_baseline(void);
-extern int z_spin_unlock_valid(unsigned int);
-extern int assert_post_action(int, int);
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);
+extern void assert_post_action(const char *, unsigned int);
 unsigned long long k_uptime_ticks_impl(void){
   unsigned int uVar6=0;
   int iVar2=z_spin_lock_valid(((unsigned long)&g_timeout_list_spinlock) /*=0x2000b498*/);

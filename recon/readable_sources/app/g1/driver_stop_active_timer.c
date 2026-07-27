@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_00084c2c @ 0x84c2c  (parity: 300/300 trials, PROVEN) */
 
-extern void z_impl_k_timer_stop(int);
+extern void z_impl_k_timer_stop(struct k_timer *);
 int driver_stop_active_timer(int param_1)
 {
     int iVar3 = *(int*)(param_1 + 0x10);

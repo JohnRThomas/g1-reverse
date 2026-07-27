@@ -26,12 +26,12 @@
 
 extern unsigned int deref_conn_field0(unsigned int*); /* atomic_get */
 extern unsigned int ble_conn_addr_resolve_or_create(unsigned char*, int*); /* connection lookup/create */
-extern int adv_is_directed(const void*); /* adv_is_directed */
-extern int bt_id_set_adv_random_addr(void *, uint32_t, uint32_t, void *); /* legacy advertising configure */
+extern int adv_is_directed(unsigned long); /* adv_is_directed */
+extern int bt_id_set_adv_random_addr(unsigned char*, int, int, unsigned char*); /* legacy advertising configure */
 extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern int bt_le_adv_set_enable_legacy(void *, unsigned int); /* bt_le_adv_set_enable_legacy */
 extern void ble_conn_unref(int); /* bt_conn_unref */
-extern void ble_conn_set_state(void *, uint32_t); /* bt_conn_set_state */
+extern void ble_conn_set_state(int, int); /* bt_conn_set_state */
 extern long atomic_and_1(volatile long*, long); /* atomic_and */
 
 void legacy_advertising_connection_restart(void)

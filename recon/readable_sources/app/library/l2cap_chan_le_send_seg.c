@@ -79,7 +79,7 @@ extern packet_t *net_buf_ref(packet_t *packet);
 extern uint64_t net_buf_pool_get(uint8_t kind);
 extern packet_t *bt_conn_alloc_pdu_buf(uint32_t a, uint32_t b, uint32_t c, uint32_t d);
 extern packet_t *bt_conn_create_pdu_timeout(uint32_t a, uint32_t b, uint32_t c, uint32_t d);
-extern void assert_post_action(uintptr_t message, unsigned line);
+extern void assert_post_action(const char *, unsigned int);
 extern void net_buf_simple_reserve(void *cursor, unsigned amount);
 extern void net_buf_push_le16(void *cursor, uint16_t amount);
 extern uint32_t net_buf_simple_tailroom(const void *cursor);

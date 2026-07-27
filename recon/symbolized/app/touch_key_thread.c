@@ -33,7 +33,7 @@ extern void read_rtc_counter_ms(void *destination);            /* FUN_0007d0aa *
 extern int32_t get_uptime_ms(void);                            /* FUN_00086690 */
 extern int k_sem_take(void *semaphore, int64_t timeout);       /* FUN_0007cb48 */
 extern void reset_all_usr_data(unsigned char *, int);  /* FUN_0002316c */
-extern void send_touch_click_event(int32_t event);             /* FUN_0007c058 */
+extern int send_touch_click_event(unsigned long);             /* FUN_0007c058 */
 extern void touch_pmic_reset_assert(void);                     /* FUN_00017a28 */
 extern void touch_pmic_reset_deassert(void);                   /* FUN_00017a34 */
 extern uint32_t sys_reboot(int32_t type);                      /* FUN_0004c0a8 */

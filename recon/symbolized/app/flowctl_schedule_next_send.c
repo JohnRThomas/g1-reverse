@@ -10,7 +10,7 @@
 /* Reconstructed FUN_00084b86 @ 0x84b86  (parity: 300/300 trials, PROVEN) */
 
 extern void post_event_tag2_from_node(int a,int b,int c,int d,unsigned e);
-extern void z_impl_k_timer_stop(int a);
+extern void z_impl_k_timer_stop(struct k_timer *);
 void flowctl_schedule_next_send(int param_1, unsigned p2, unsigned p3, unsigned param_4){
     int piVar6 = *(volatile int*)(param_1 + 0x34);
     if (*(volatile signed char*)(*(volatile int*)(piVar6+0xc) + 0xce) != 0) return;

@@ -29,7 +29,7 @@ extern unsigned int att_handle_rsp(unsigned int*, unsigned int, unsigned int, un
 extern void atomic_clear_bit_0(volatile int *, int);
 extern unsigned int* net_buf_slist_get(unsigned int*);
 extern void bt_att_req_free(int);
-extern void k_mem_slab_free(uintptr_t, void *);
+extern void k_mem_slab_free(struct k_mem_slab *, void *);
 extern void bt_gatt_disconnected(void *);
 
 struct node_59834 {

@@ -23,7 +23,7 @@
 /* Reconstructed FUN_0005af8c @ 0x5af8c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int ccc_set_direct(void);
-extern int strtoul(int,...);
+extern long unsigned int strtoul(const char * restrict,  char ** restrict,  int);
 extern int settings_name_steq(int,...);
 extern int settings_name_next(int,...);
 extern int bt_settings_decode_key(int,...);

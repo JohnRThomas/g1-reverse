@@ -22,7 +22,7 @@
 #include "../../../headers/g1_log.h"
 
 extern int get_device_info(void);
-extern int z_device_is_ready(int);
+extern _Bool z_device_is_ready(const struct device *);
 
 typedef int (*flash_read_fn)(void *context, uint32_t address,
                              void *destination, unsigned length);

@@ -21,7 +21,7 @@
 typedef struct { const uint8_t *start; uint32_t length, used, reserved; uint8_t work[12]; } parse_state_t;
 extern void memset_bytes(void*, int, int);
 extern uintptr_t alloc_zeroed_node(void);
-extern int strncmp(const void*, unsigned long, unsigned int);
+extern int strncmp(const char *, const char *, size_t);
 extern uintptr_t cjson_skip_whitespace(void*);
 extern unsigned int cjson_parse_value(int, int *);
 extern void cjson_delete(volatile int*);

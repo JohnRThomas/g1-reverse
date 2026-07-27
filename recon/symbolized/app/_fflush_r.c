@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_00076ad0 @ 0x76ad0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void __sinit(unsigned long);
+extern void __sinit(struct _reent *);
 #define g1_recon_retarget_lock_acquire_recursive g1_recon_retarget_lock_acquire_recursive
 extern void g1_recon_retarget_lock_acquire_recursive(uint32_t); /* FUN_000510fc@0x000510fc */
 extern unsigned int stdio_flush_write_buffer(int *, int *);

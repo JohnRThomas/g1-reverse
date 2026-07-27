@@ -12,8 +12,8 @@
  */
 /* Reconstructed FUN_000562a4 @ 0x562a4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int k_work_init(int,int);
-extern int k_work_init_delayable(int,int);
+extern void k_work_init(struct k_work *, void (*)(struct k_work *));
+extern void k_work_init_delayable(struct k_work_delayable *, void (*)(struct k_work *));
 extern void memset_bytes(void*, int, int);
 int ble_conn_pool_alloc(int param_1, int param_2, int param_3, int param_4){
   int iVar1 = 0;

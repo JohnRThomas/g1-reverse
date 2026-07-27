@@ -20,9 +20,9 @@
 /* Reconstructed FUN_00052c40 @ 0x52c40  (parity: 300/300 trials, PROVEN) */
 
 extern int entropy_get_entropy_isr_call(int*, int);
-extern int assert_post_action(int, int);
-extern int sys_clock_cycle_get_32(void);
-extern int z_device_is_ready(int);
+extern void assert_post_action(const char *, unsigned int);
+extern uint32_t sys_clock_cycle_get_32(void);
+extern _Bool z_device_is_ready(const struct device *);
 
 int sys_rand32_get(int param_1, int param_2)
 {

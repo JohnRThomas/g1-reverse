@@ -22,7 +22,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern void assert_post_action(unsigned long, unsigned long);
+extern void assert_post_action(const char *, unsigned int);
 extern void net_pkt_skip(uintptr_t queue, void *item);
 extern void memset_bytes(void*, int, int);
 

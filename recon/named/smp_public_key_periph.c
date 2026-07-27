@@ -48,7 +48,7 @@ struct log_record_three_raw {
 
 extern struct bt_conn_auth_cb_raw *conn_auth_cb_get_or_init(void *smp);
 extern int atomic_test_bit(void *bits, uint32_t bit);
-extern int memcmp(const void *left, const void *right, size_t size);
+extern int memcmp(const void *, const void *, size_t);
 extern void smp_log_message(uintptr_t source, uint32_t level,
                          const void *record);
 extern void *smp_create_pdu(void *smp, uint32_t command);

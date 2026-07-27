@@ -4,7 +4,7 @@
 extern uint64_t FUN_00083906(void *device);
 extern void FUN_00072908(void *object, uint32_t inherited_r1, uint32_t, uint32_t);
 #define g1_recon_nrfx_qspi_mem_busy_check FUN_00066ae0
-extern uintptr_t g1_recon_nrfx_qspi_mem_busy_check(void);
+extern int g1_recon_nrfx_qspi_mem_busy_check(void);
 extern void FUN_00074844(uint32_t, uint32_t);
 extern void FUN_00066b24(void);
 extern void FUN_0008392e(void *device);

@@ -30,7 +30,7 @@ struct adc_api_raw {
     int (*channel_setup)(const struct device_raw *, const void *);
 };
 
-extern int z_device_is_ready(int);
+extern _Bool z_device_is_ready(const struct device *);
 
 int adc_nfc_init(void)
 {

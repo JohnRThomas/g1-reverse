@@ -19,7 +19,7 @@
 extern uint64_t audio_i2s_stop_and_reset_channels(void *device);
 extern void z_impl_k_sem_take(void *object, uint32_t inherited_r1, uint32_t, uint32_t);
 #define g1_recon_nrfx_qspi_mem_busy_check nrfx_qspi_mem_busy_check
-extern uintptr_t g1_recon_nrfx_qspi_mem_busy_check(void);
+extern int g1_recon_nrfx_qspi_mem_busy_check(void);
 extern void k_sleep(uint32_t, uint32_t);
 extern void nrfx_qspi_uninit(void);
 extern void audio_i2s_start_channels(void *device);

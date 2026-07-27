@@ -36,7 +36,7 @@
 #include "../../../headers/g1_log.h"
 extern void assert_post_action(unsigned,unsigned);
 extern int z_spin_lock_valid(unsigned);
-extern int z_spin_unlock_valid(unsigned);
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);
 extern void z_spin_lock_set_owner(unsigned);
 extern void z_ready_thread_locked(void);
 extern void z_reschedule(unsigned,unsigned);

@@ -23,7 +23,7 @@
 extern int l2cap_chan_send_disconnect(int,int);
 extern void net_buf_unref(int);
 extern short net_buf_append_bytes(int,int,int);
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 extern long long net_buf_frags_len(int);
 extern unsigned long atomic_get_word(const unsigned long*);
 extern int log_msg_3arg_thunk(int,int,void*);

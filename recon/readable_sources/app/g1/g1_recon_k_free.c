@@ -9,7 +9,7 @@
  * Raw backmap: FUN_000868b4@0x000868b4. */
 
 #define k_heap_free k_heap_free
-extern void k_heap_free(void *heap, void *memory);
+extern void k_heap_free(struct k_heap *, void *);
 
 void g1_recon_k_free(void *allocation)
 {

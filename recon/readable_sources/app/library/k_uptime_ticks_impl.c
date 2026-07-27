@@ -27,7 +27,7 @@
 extern int z_spin_lock_valid(unsigned int);
 extern void z_spin_lock_set_owner(unsigned int);
 extern unsigned int rtc_get_elapsed_cycles_since_baseline(void);
-extern int z_spin_unlock_valid(unsigned int);
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);
 extern void assert_post_action(unsigned int,...);
 unsigned long long k_uptime_ticks_impl(void){
   unsigned int uVar6=0;

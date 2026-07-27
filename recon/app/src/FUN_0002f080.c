@@ -18,10 +18,10 @@ extern int ancs_get_conn_ctx(void);                       /* FUN_000181fc */
 extern void debug_print(unsigned long, ...);                  /* FUN_00019c70 */
 extern int init_dmic_msgq(void);                          /* FUN_0002ebd8 */
 extern int clean_dmic_msgq(void);                         /* FUN_0002ec1c */
-extern void app_codec_lc3_test(u32 samples, u32 bytes);   /* FUN_0002ed68 */
+extern void app_codec_lc3_test(int, int);   /* FUN_0002ed68 */
 extern int erase_audio_buffer(void);                      /* FUN_0002f008 */
 extern int is_battery_critical(void);                     /* FUN_00032ee4 */
-extern int k_mem_slab_free(u32 slab, u32 block);          /* FUN_00071cf4 */
+extern void k_mem_slab_free(struct k_mem_slab *, void *);          /* FUN_00071cf4 */
 extern int k_sem_give(u32 semaphore);                     /* FUN_00072880 */
 extern int z_device_is_ready(u32 device);                 /* FUN_0008638c */
 extern void *memset_bytes(void *dst, int value, u32 size);/* FUN_00086c78 */

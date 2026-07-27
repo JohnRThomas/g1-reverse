@@ -20,7 +20,7 @@
  */
 /* Reconstructed FUN_00047148 @ 0x47148  (parity: 300/300 trials, PROVEN) */
 extern void kmutex_dlist_init(unsigned long);
-extern int malloc(unsigned);
+extern void *malloc(size_t);
 void quicknote_buffer_pool_init(int* param_1){
     kmutex_dlist_init(0x2000a060);
     param_1[0] = 0x46fc1;

@@ -35,7 +35,7 @@ extern void *net_buf_simple_pull(void *buffer, uint32_t length); /* FUN_0005f594
 /* FUN_0007e2fa */
 extern unsigned int bt_hci_evt_get_flags(unsigned int); /* FUN_00080e14 */
 /* FUN_00080ea2 */
-extern int k_work_submit_to_queue(void *queue, void *work); /* FUN_000865fc */
+extern int k_work_submit_to_queue(struct k_work_q *, struct k_work *); /* FUN_000865fc */
 
 struct log_record3 {
     uint32_t argument_count;

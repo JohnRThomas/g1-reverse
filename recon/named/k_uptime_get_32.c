@@ -7,4 +7,4 @@
 
 #include <stdint.h>
 extern uint64_t uptime_ticks_get(void); /* FUN_00086698@0x00086698 */
-uint32_t k_uptime_get_32(void){ return (uint32_t)((uptime_ticks_get()*UINT64_C(1000))>>15); }
+unsigned int k_uptime_get_32(void) { return (uint32_t)((uptime_ticks_get()*UINT64_C(1000))>>15); }

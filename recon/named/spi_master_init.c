@@ -30,7 +30,7 @@
 #include "../headers/g1_log.h"
 extern void arch_irq_priority_set(uint32_t,uint32_t);
 extern uint32_t nrfx_spim_init(void*,void*,uintptr_t,uintptr_t);
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 extern void memset_bytes(void*, int, int);
 struct spi_map { uint32_t base, tag; };
 unsigned spi_master_init(uintptr_t event)
