@@ -20596,3 +20596,984 @@ ninja -n in /private/tmp/g1-i45-b2  ->  0 object compiles, 14 always-run actions
 
 **Zero pending object compiles**, so `g1-i45-b2` is exactly what the current
 tree builds, and the five captures booted that ELF.
+
+## Iteration 46 — the ladder RE-CAPTURED at HEAD.  **204 bytes of dead,
+## unreferenced, unexecutable `.rodata` — moving not one code address — shift the
+## navigation cluster by a WHOLE 100.5 ms BLE slot on stage 04, and by NOTHING on
+## the base.**  The `spim_a` navigation phase gate is a 1 ms knife-edge, not a
+## measurement of the refactor.  Δ re-derives to **262.200 ms**, not 145.440, and
+## the bound moved because ITERATION 45 MOVED THE BASE.  Stages 07 and 08 do not
+## link at all.  Every stage capture in the project was invalid, including the
+## three the consolidation certified.  And the "245–281 ms" is **one** slot plus a
+## −37 ms structural offset plus a ±108 ms within-train spread — not 2.5 slots.
+
+Work order: (1) re-capture the ladder at HEAD with the burst gap the
+consolidated verdict re-derived; (2) run the exact-size padding experiment the
+consolidation's "size compensation is refuted" paragraph does **not** cover;
+(3) decompose the 245–281 ms the way §45 decomposed its own one-slot move.
+
+HEAD at the start of this pass: **`da19df1a`** ("Consolidated verdict: stages
+00-03 defensible, 04-08 ARE NOT"), working tree clean apart from the untracked
+`.xapk`.  Written incrementally as the work ran.
+
+### 46.0 The ladder regenerated, and nine images built
+
+```
+driver.py materialize 0..8            all exit 0, zero transformer rounds
+driver.py status                      stages 0..8 ALL current, 0 inputs changed
+                                      (99 stale on 863 -- the retired probe)
+driver.py check-addresses, 8 pairs    identical: true, 2,567 == 2,567, all eight
+```
+
+Stage-04 harvest at this generation: **1,615 → 742 TUs, 249 merged units, 1,122
+files absorbed** — i.e. the *closing* generation the consolidated verdict §14.2
+measured but did **not** build.  This pass builds it.
+
+| image | `zephyr.bin` | `$rtinfo_pc` | `_end` |
+|---|---:|---|---|
+| in-tree base | **956,496** | `0x00015c04` | `0x2003ff45` |
+| stage 00 | 956,496 | `0x00015c04` | `0x2003ff45` |
+| stage 01 = 02 = 03 | 956,356 | `0x00015c04` | `0x2003ff45` |
+| stage 04 = 05 | **956,292** | `0x00016c14` | `0x2003ff45` |
+
+`cmp g1-i46-s00 g1-i46-base` → **IDENTICAL**: the snapshot stage still builds
+byte-for-byte the live repository, so the `FORCE_REAL_DIRS`/symlink mechanism is
+sound at this generation too.
+
+**Stage 04 is 956,292 B, not the 956,276 B every prior record publishes.** The
+consolidation measured `text −76`; at this generation it is **−204 B against the
+base**.  That number is what Task 2's pad is sized from, and it was measured, not
+carried.
+
+### 46.1 EVERY stage capture in the project was invalid at HEAD — including the
+### three the consolidated verdict certified as VALID
+
+The consolidation (§3.2) invalidated stages 04-B and 07 and carried stages 01,
+02 and 03 forward on the ground that their images are `cmp`-identical to the
+ones the phase-tolerant / stage04b passes booted.  **Re-measured here rather
+than inherited, that is no longer true:**
+
+```
+cmp g1-i46-s01/zephyr/zephyr.bin  g1-pt-s01/zephyr/zephyr.bin    -> DIFFER
+cmp g1-i46-s03/zephyr/zephyr.bin  g1-s4b-s03/zephyr/zephyr.bin   -> DIFFER
+cmp g1-i46-s03/zephyr/zephyr.bin  g1-cons-s03/zephyr/zephyr.bin  -> DIFFER
+                                            (all three at 956,356 B)
+```
+
+The cause is not mysterious and it is not the consolidation's fault: **iteration
+45 landed 50 `recon/symbolized/app/*.c` files after that pass measured** (commit
+`fb3d3edf`), so every stage tree moved.  The certification was true when it was
+written and false eight hours later.  *This is the third consecutive pass to
+discover that a capture no longer corresponds to its tree, and the second to
+discover it about a capture the previous pass had just certified.*
+
+The in-tree base is the exception, and for a measurable reason:
+
+```
+cmp g1-i46-base/zephyr/zephyr.bin  g1-i45-b2/zephyr/zephyr.bin   -> IDENTICAL
+cmp g1-i46-base/zephyr/zephyr.bin  g1-i45-b1/zephyr/zephyr.bin   -> DIFFER
+cmp g1-i46-base/zephyr/zephyr.bin  g1-cons-base/zephyr/zephyr.bin-> DIFFER
+cmp g1-i46-base/zephyr/zephyr.bin  g1-i44-base/zephyr/zephyr.bin -> DIFFER (956,480 B)
+```
+
+HEAD's base **is** iteration 45's final `g1-i45-b2` image, byte for byte — the
+image both landed batches were gated on.
+
+#### 46.1.1 A determinism control that came free
+
+`base_nav1` was captured fresh at HEAD, seeded, on a host that was running a
+full from-scratch Zephyr build at the same time.  Against iteration 45's
+`b2_nav1` — same bytes, different day, different host load:
+
+```
+spim_a.p1  spim_a.p2  spim_b.p1  spim_b.p2   IDENTICAL
+twim1.p1   twim1.p2   twim2.p1   twim2.p2    IDENTICAL
+fb_p1_boot.ppm        fb_p2_render.ppm       IDENTICAL
+```
+
+**Every trace file and both framebuffers are byte-identical.**  So the capture
+is a function of the image and the seed, re-confirmed across a day boundary.
+
+### 46.2 Δ RE-DERIVES TO 262.200 ms AT HEAD, NOT 145.440 ms — because the BASE
+### moved, not because anything in the criterion did
+
+Δ is derived by a fixed rule: max |δ| over phase-measurable trains, shipped vs
+the in-tree build, over both stimuli.  Applied at HEAD, at seven burst-gap
+thresholds spanning the consolidation's whole clean band:
+
+| burst gap T | **Δ re-derived at HEAD** |
+|---:|---:|
+| 0.700 ms | **262.200** |
+| 0.790 ms | **262.200** |
+| 0.800 ms | **262.200** |
+| 2.300 ms | **262.200** |
+| 2.400 ms | **262.200** |
+| 2.580 ms | **262.200** |
+| 5.000 ms (published) | **262.200** |
+
+It is flat across the band — the consolidation's central claim, that Δ does not
+depend on the segmentation threshold, **reproduces exactly**.  What changed is
+the *base*.  Running the identical derivation against the **pre-iteration-45**
+base captures (`g1_s4b_base_nav1` / `g1_s4b_base_dash`, unchanged on disk) at
+the same T = 0.790 ms:
+
+```
+shipped vs OLD base   spim_a jbd_display  max|d| = 145.440 ms   -> DERIVED BOUND 145.440 ms
+shipped vs HEAD base  spim_a jbd_display  max|d| = 262.200 ms   -> DERIVED BOUND 262.200 ms
+```
+
+**262.200 ms is not a new number.**  It is the exact figure iteration 45 §45.3.1
+published as batch 1's own `spim_a` `max|d|` — 145.440 → **262.200 ms** — and
+recorded as a `PRE_EXISTING_WORSE`.  §45 then held Δ at 145.440 ms "as derived",
+which was correct *for the base it was derived from* and is not the rule's
+answer once that base is the in-tree base.
+
+> **The bound is not a constant of this project. It is a function of how far
+> our own base sits from the shipped firmware, so every repair that moves the
+> base further from shipped LOOSENS the criterion that gates the refactor.**
+> Iteration 45 landed a repair worth one BLE slot and thereby widened Δ by
+> **116.760 ms**, i.e. by 80 %. Nobody chose that; it falls straight out of the
+> derivation rule. It is the sharpest structural objection to the criterion yet
+> found and it belongs on the record next to the consolidation's §13 item 2.
+
+**How this pass handles it, so that no result here can be read as tuning.**
+Every stage verdict below is reported at **both** bounds: the rule's answer at
+HEAD (262.200 ms) and the published, *stricter* 145.440 ms.  Where they
+disagree the disagreement is stated.  Nothing is reported only at the looser one.
+
+### 46.3 STAGE 07 AND STAGE 08 DO NOT LINK AT HEAD
+
+The consolidation found stage 04 did not compile and repaired the transformer.
+At this generation stage 04, 05 and 06 build clean and **stage 07 fails at the
+link**:
+
+```
+ld.bfd: app/libapp.a(display_close_screen.c.obj): in function `display_close_screen':
+        recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/display/
+        display_close_screen.c:39: undefined reference to `display_close'
+collect2: error: ld returned 1 exit status
+```
+
+Stage 08 fails identically (its tree is stage 07's).  So **seven of nine images
+build; stages 07 and 08 produce no image at all.**
+
+**Root cause, measured.**  Stage 07 makes a definition `static` when *no input of
+the app link references it*, and it reads that from a **frozen artifact**,
+`recon/refactor/link_referenced_symbols.json`:
+
+```
+provenance.build_dir     /private/tmp/g1-s6-base      <- a stage-06 build at an
+                                                         OLDER input generation
+referenced_count         5,420
+'display_close' in referenced        FALSE
+```
+
+At the generation that evidence was taken, `display_close_screen.c` was
+**absorbed into the same merged unit** as `display_close`, so the call was
+intra-unit, emitted no relocation, and the symbol correctly looked unreferenced.
+At HEAD's generation stage 04 leaves them in two different translation units
+(`display/display_close_screen.c` and `display/g1_display_12.c`), the call **is**
+a relocation, and `static` breaks the link.
+
+**Triage, per README C4: (a) transformer bug.**  Not a reconstruction defect —
+the sources are consistent, the evidence is stale. And it is the project's own
+recurring shape: `t07_internal_linkage.py`'s docstring warns at length that "a
+rule keyed on a hand-maintained list of filenames is a rule that silently stops
+covering the thing it was written for", and then keys the *whole stage* on a
+frozen JSON of link facts that stage 04's own output invalidates. The manifest's
+`evidence_inputs` hash tracks whether the FILE changed; nothing checks whether
+the file is still TRUE of the current stage-04 merge. **A regenerated ladder can
+therefore produce a stage 07 that cannot link, with `driver.py status` reporting
+every stage `current`** — which is exactly what it reports here.
+
+**Not repaired.** `recon/refactor/` transformers belong to a concurrent agent
+this pass (the work order is explicit). The defect is reported with its cause
+and its reproduction; `link_evidence.py generate` re-run against a **stage-06
+build at the current generation** is the obvious repair and is the concurrent
+agent's call, not mine.
+
+**Consequence for Task 1:** stage 07 could not be captured, because it could not
+be built. Its R7 evidence stays what the consolidation left it — **absent**.
+
+### 46.4 TASK 2 — the exact-size pad: how it is built, and why it cannot
+### perturb behaviour (each property CHECKED, none asserted)
+
+The earlier "size compensation is refuted" finding (`3d3ee155`, restated by §44.5)
+refutes a *different* proposition: that a **partial** compensation could land a
+merged image between two BLE slots, which fails because the step (100.5 ms)
+exceeds the margin (55.6 ms).  It says nothing about making the merged image
+**exactly** the base's length — zero displacement rather than a smaller one.
+That is what this section tests.
+
+#### 46.4.1 The pad
+
+Sized from a measurement, not a record:
+
+```
+base   zephyr.bin   956,496 B
+s04    zephyr.bin   956,292 B
+pad required            204 B
+```
+
+`size -A`, base → stage 04: `text` **−80**, `rodata` **−124**, everything else 0
+— and −80 = stage 04's own −76 plus stage 01's −4, −124 = stage 01's, which
+reproduces the consolidation's per-stage figures from a different direction.
+
+The pad is 204 bytes of unreferenced, unexecutable `.rodata`:
+
+```c
+__attribute__((section(".rodata.g1_i46_size_pad"), used, retain, aligned(4)))
+const unsigned char g1_i46_size_pad[204] = { 0 };
+```
+
+* **It enters through the repository's own documented hook**, not through a tree
+  edit: `app/CMakeLists.txt`'s `G1_AUDIT_EXTRA_SOURCES` ("Audit-only
+  pre-adoption probes may re-add an explicitly enumerated source set without
+  changing the generated retention ledger... prove exact before/after symbol
+  sets from otherwise-identical configurations").  **No stage tree was edited
+  and no transformer was touched**, which the work order requires.
+* **It emits no code.**  `readelf -S` on the object: `.text` size **0**, one
+  `.rodata.g1_i46_size_pad` of `0xcc` = 204 bytes, flags `AR` (the `R` is
+  `SHF_GNU_RETAIN`, which is why `--gc-sections` keeps a symbol nothing points at).
+* **Its name deliberately does not match `rodata_*`**, because
+  `g1_verified_rodata_keep.ld` keys its `KEEP` on the object FILENAME and a
+  match would place it inside the verified-data group.
+
+#### 46.4.2 The gate: what the pad moved, measured symbol by symbol
+
+```
+zephyr.bin        s04 956,292  ->  s04pad  956,496   ==  base 956,496   EXACTLY
+size -A           text +0   bss +0   noinit +0   rodata +204
+nm  runtime_info_sync   0x00016c14  UNMOVED        _end 0x2003ff45  UNMOVED
+nm  symbols          7,913 -> 7,914 (the pad itself)
+nm  symbols MOVED    1,064   (1,063 by exactly +204 B, one by +224 B)
+nm  TEXT-class symbols moved (T/t/W/w)          *** 0 ***
+    moved address range, unpadded image          0x000906fc .. 0x000f4800
+```
+
+**Not one code address moves.**  The pad lands at the tail of `app/libapp.a`'s
+`.rodata` contribution (right after the last verified-data object
+`rodata_ffc8`), so the read-only tail from `libzephyr.a` onward — plus the
+linker-computed `_flash_used`, `__data_load_start`, `__rom_region_end` and the
+127 rodata back-map aliases — sits 204 B higher.  That is a **real, bounded and
+enumerated** disturbance, and I am not going to claim it is nothing: it is
+`.rodata` relocation on top of the length change.
+
+**This is why the experiment ships with a control (§46.10).**  The same 204-byte
+pad is also applied to the **in-tree base**, which changes nothing else
+whatsoever.  Without that control a null result on stage 04 would be
+uninterpretable — it could mean "size is not causal" or merely "the pad did
+nothing".  *As it turns out the pad does something on stage 04 and nothing on the
+base, which is the whole finding, and only the control makes that legible.*
+
+### 46.5 TASK 1 — stages 01 = 02 = 03, re-captured at HEAD
+
+Four fresh seeded captures (`base_nav1`, `base_dash`, `s03_nav1`, `s03_dash1`),
+`$rtinfo_pc` re-read from each ELF, frozen `g1-i30e-net` (225,581 B) in all of
+them.  Stage 03's image is `cmp`-identical to stages 01 and 02's, so one capture
+pair covers all three — measured here, not assumed.
+
+**All four acceptance framebuffers, on the base AND on stage 03:**
+
+```
+navigation p1_boot    1d617c65a688f10e…   656 px   cmp exit 0
+navigation p2_render  b26c73b37d441fc8…  1098 px   cmp exit 0
+dashboard  p1_boot    0c5cc90b079d0d9c…     0 px   cmp exit 0
+dashboard  p2_render  19b1f24a09f97a8d…  2923 px   cmp exit 0
+```
+
+#### 46.5.1 Phase-tolerant, at BOTH bounds and BOTH burst gaps
+
+| stage | stimulus | T = 0.790 ms, Δ = 145.440 | T = 0.790, Δ = 262.200 | T = 5.000, Δ = 145.440 | T = 5.000, Δ = 262.200 |
+|---|---|---|---|---|---|
+| 03 | navigation | **1 REGRESSION** | **1 REGRESSION** | 0 REG, 1 PEW | 0 REG, 1 PEW |
+| 03 | dashboard | 0 REG, 0 PEW | 0 REG, 0 PEW | 0 REG, 0 PEW | 0 REG, 0 PEW |
+
+The single navigation regression is `twim1 npm1300`, and it is **exactly the
+three failures the consolidation §5.2 identified as the genuine residue** already
+root-caused by §43.9/§43.10 to the +3.45 ms boot lateness at the 20 s wall:
+
+```
+P2 population   5 -> 6    extra burst   at 18.827753 s
+P2 population 145 -> 144  missing burst at 19.054650 s
+P2 population  10 ->   9  missing burst at 17.573143 s
+```
+
+The consolidation measured those three **on the base** at T = 0.790 ms and
+correctly called them pre-existing.  At HEAD the *base* passes that stream and
+*stage 03* fails it — same three bursts, same timestamps, to the microsecond.
+Nothing about the residue changed; what changed is which image happens to sit on
+which side of the wall.
+
+> **Second instance of the §46.2 problem, from a different direction.** The
+> three-way comparer charges a stage with a REGRESSION whose only claim to being
+> one is that the base's own phase happened to move a slot in the other
+> direction. The base is used simultaneously as the *bound's* source and as the
+> *innocence* reference, and both roles are corrupted by the base's own error.
+
+#### 46.5.2 Strict `cmp3` — and stage 03 REPAIRS eight fields
+
+```
+                     EQ  pre-existing(same/diff)  REGRESSION  improvement
+S03 navigation       49        2 / 10                 0            8
+S03 dashboard        56       10 /  3                 0            0
+```
+
+**Zero strict regressions, eight strict improvements on navigation.**  The eight
+are the exact eight iteration 45 §45.3.2 booked as batch 1's strict regressions
+(`RADIO_TX`, the four `twim1 p1_boot` fields, the three `twim2 p1_boot` hashes).
+Stage 03 gives them all back.  §46.6 shows why: it is one BLE slot, returned.
+
+### 46.6 TASK 3 — the decomposition, and what "245–281 ms" actually is
+
+The work order's reading was that 245–281 ms is "roughly 2.5 slots, not one", so
+something larger than a one-slot move must be happening.  **That reading is
+wrong, and the reason is worth stating precisely, because it has been implicit
+in every report since §43.**
+
+`Δ` and the published peak `|δ|` figures are **maxima over a distribution that is
+itself ~154 ms wide**, not displacements.  Measured on `spim_a jbd_display`
+navigation, per-burst δ against shipped, with the criterion's own decomposition
+(`phase_tolerant_compare.blocks` / `trains_by_key`; no second segmentation rule,
+per §45.10 item 4):
+
+| image | n | **median δ** | min | max | **max\|δ\| (= the published number)** | spread |
+|---|---:|---:|---:|---:|---:|---:|
+| pre-i45 base | 166 | **−37.320** | −145.440 | +8.820 | **145.440** | 154.260 |
+| **HEAD base** | 166 | **−137.240** | −262.200 | +6.560 | **262.200** | 268.760 |
+| stage 03 | 166 | **−37.260** | −145.380 | +8.850 | **145.380** | 154.230 |
+
+**A displaced train is 37 ms out; the number the criterion publishes is 145.**
+The other 108 ms is the upper tail of the burst-to-burst spread *within* the
+same image — a spread that exists at zero slot offset and is a property of how
+the display's animation frames are emitted, not of any refactor.
+
+So the decomposition of every navigation displacement this project has measured is
+
+```
+    δ  =  a STRUCTURAL offset of about −37.3 ms   (our build vs shipped, always
+                                                   present, never yet explained)
+       +  k x 100.5 ms                            (k an integer number of DUT BLE
+                                                   connection-event response slots)
+       +  a within-train spread of up to ~108 ms  (present at k = 0; NOT a shift)
+```
+
+and `max|δ|` — the quantity Δ is derived from and stages are gated on — is
+dominated by the third term.  145.440 and 262.200 differ by 116.760 ms, but the
+*trains* differ by exactly **99.92 ms**, one slot; the extra 16.8 ms is the tail
+growing because the slot did not move every burst of the stream.
+
+#### 46.6.1 Per burst, per device, per phase — base → stage 03
+
+The §45 decomposition, run on this pass's own captures at T = 0.790 ms:
+
+| bus / device | n | min | **median** | max | **median / slot** | 10 ms histogram |
+|---|---:|---:|---:|---:|---:|---|
+| `spim_a` jbd_display | 166 | −0.070 | **+99.950** | +117.220 | **+0.995** | {100:77, 90:33, 60:28, 80:17, −10:4} |
+|   ↳ p1_boot | 40 | −0.070 | **+100.030** | +100.040 | +0.995 | {100:36, −10:4} |
+|   ↳ p2_render | 126 | +16.970 | +99.940 | +117.220 | +0.994 | {100:41, 90:33, 60:28, 80:17, 110:3} |
+| `twim1` opt3001 ambient | 48 | −0.061 | **+100.026** | +101.868 | **+0.995** | {100:27, 90:19, 0:1, −10:1} |
+| `twim2` lsm6dso IMU | 552 | −0.098 | **+0.120** | +100.040 | **+0.001** | {0:315, −10:236, 100:1} |
+| `twim1` npm1300 charger | 248 | −2547.852 | **−0.272** | +1201.509 | **−0.003** | {−10:168, 0:33, −30:26} |
+| `twim1` st25dv_nfc | 21 | −0.400 | −0.060 | +6.870 | −0.001 | |
+| `twim1` st25dv_sysport | 15 | −0.368 | −0.060 | +6.840 | −0.001 | |
+
+**Display +99.95 ms, ambient light +100.03 ms, IMU +0.12 ms, charger −0.27 ms.**
+That is §45.3.3's signature with the sign flipped — *the navigation-startup
+cluster moves one whole slot; every stream on its own cadence does not move at
+all.*  §45 measured display −99.88 / ambient −99.95 / IMU −0.06 / charger +0.06
+for one slot in the other direction, and stage 03 hands that slot back.
+
+**This also explains stage 03's eight strict `cmp3` improvements** (§46.5.2)
+without any further hypothesis: they are the same eight `p1_boot` fields that
+one slot of movement across the 6 s wall creates and destroys.
+
+**Which part is not slot-quantised.**  The `p1_boot` half of `spim_a` is clean —
+36 of 40 bursts at exactly +100.03 ms, 4 at −0.07 ms.  The `p2_render` half is
+*not*: 41 bursts at ~+100 but 33 at ~+90, 28 at ~+60, 17 at ~+80.  Those bursts
+are display animation frames, and a slot shift of the cluster's *start* does not
+propagate to them uniformly because their emission is throttled by something
+downstream of the trigger.  **That residue is real, it is up to 40 ms per burst,
+it is NOT a slot, and this pass does not identify what throttles it.**  It is
+named here rather than absorbed into "one slot".
+
+#### 46.6.2 The 245.780 ms and the 281.670 ms, decomposed on the CONSOLIDATION'S
+#### OWN CAPTURES
+
+The images those two numbers came from no longer exist in the tree (§46.1), but
+their raw captures do (`g1_s4b_base_nav1`, `g1_s4b_s04_nav1`, `g1_pt_s07_nav1`),
+and the decomposition is a pure function of a capture.  So the question "what is
+the 245–281 ms made of" can be answered exactly, on the same data the
+consolidation gated on.  At T = 0.790 ms, per-burst medians, **pre-i45 base →
+stage**:
+
+| bus / device | **base → stage 04-B** | slots | **base → stage 07** | slots |
+|---|---:|---:|---:|---:|
+| `spim_a` jbd_display | **−100.470** | **−1.000** | **−119.510** | −1.189 |
+|   ↳ p1_boot | −100.520 | −1.000 | −119.510 | −1.189 |
+|   ↳ p2_render | −100.460 | −1.000 | −119.510 | −1.189 |
+| `twim1` opt3001 ambient | **−100.694** | **−1.002** | **−104.614** | −1.041 |
+| `twim2` lsm6dso IMU | −0.340 | −0.003 | −0.580 | −0.006 |
+| `twim1` npm1300 charger | −0.368 | −0.004 | **+30.881** | **+0.307** |
+| `twim1` st25dv_nfc | −0.580 | −0.006 | **+30.820** | **+0.307** |
+| `twim1` st25dv_sysport | −0.340 | −0.003 | **+30.820** | **+0.307** |
+
+**Stage 04-B is EXACTLY ONE SLOT and nothing else.**  Display −100.470,
+ambient −100.694, IMU −0.340, charger −0.368 — the same four-way signature §45
+measured (−99.88 / −99.95 / −0.06 / +0.06), to better than 1 ms.  The premise
+that "245–281 ms is roughly 2.5 slots, so something larger is happening" is
+**refuted for stage 04-B: it is one slot, on the navigation-startup cluster
+only.**
+
+**Where 245.780 comes from, then.**  Against *shipped*, stage 04-B's `spim_a`
+median is −137.840 ms = −1.372 slots, of which −0.371 slots (−37.3 ms) is the
+structural offset every image carries.  The published 245.780 ms is the **single
+most extreme burst** of a distribution whose median is −137.8: the p2_render
+histogram is {−140:74, −170:30, −150:18, −180:5, **−250:1**}.  It is one burst,
+in the tail.
+
+#### 46.6.3 Stage 07 carries a SECOND quantum, and it is not the slot
+
+Stage 07's increment over stage 04-B, isolated (`old s04 → old s07`):
+
+```
+spim_a  jbd_display     median  -18.990 ms   (-0.189 slot)   p1 -18.980  p2 -19.010
+twim1   npm1300         median  +31.250 ms   on 234 of 248 bursts
+twim1   st25dv_nfc      median  +31.250 ms   on  21 of  21 bursts
+twim1   st25dv_sysport  median  +31.250 ms
+twim1   opt3001         median   -3.172 ms
+twim2   lsm6dso         median   -0.151 ms
+```
+
+**+31.250 ms lands identically on three independent `twim1` devices.**  It is
+not a slot (100.5 ms) and it is not zero.  It is within 4 % of the **30 ms BLE
+connection interval** the model drives (§44.5 measured 530 RX windows in 20 s ≈
+30.2 ms), i.e. stage 07 appears to move the slow-peripheral cadence by **one
+connection interval** rather than by one answered-response slot.
+
+I am recording that as a **hypothesis with its falsification test stated in
+advance, not as a finding**: if it is right, halving the modelled connection
+interval from 30 ms to 15 ms must halve this 31.25 ms while leaving the 100.5 ms
+slot alone.  **That test was not run** — it needs a `~/Projects/armemul` change
+and this pass did not make one.  What *is* measured is that the number is
+31.250 ms, that it is identical on three devices, and that it is not a multiple
+or a fraction of 100.5.
+
+The remaining −18.990 ms on the display is **neither quantum** and is not
+explained here.
+
+**So the honest total decomposition of stage 07's 281.670 ms:**
+
+```
+   -37.3 ms   structural offset, present in every image including the base
+  -100.5 ms   one BLE connection-event response slot   (shared with stage 04-B)
+   -19.0 ms   an unexplained display-only residue      (stage 07 only)
+  ---------
+  -156.8 ms   = the measured MEDIAN displacement
+  -124.8 ms   the upper tail of a within-train spread that exists at zero offset
+  ---------
+  -281.7 ms   = the published max|delta|
+```
+
+Two of the four terms are understood, one is named-and-open, and the largest
+single term is **not a displacement at all**.
+
+### 46.7 TASK 1, the direct question — DOES THE REPAIRED STAGE 04 STILL REGRESS?
+
+**No.  At HEAD, on this pass's own captures, it does not regress on either
+stimulus at either bound.**  Stated plainly because the consolidation's answer
+was the opposite and this contradicts it.
+
+```
+navigation p1_boot    1d617c65a688f10e…   656 px   cmp exit 0
+navigation p2_render  b26c73b37d441fc8…  1098 px   cmp exit 0
+```
+
+**Stage 04's navigation framebuffers are byte-identical to the committed
+goldens.**  That is new: no stage above 03 has ever produced a byte-identical
+framebuffer in this project.
+
+#### 46.7.1 Phase-tolerant, navigation, all four (threshold × bound) combinations
+
+| T | Δ | REGRESSION | PRE_EXISTING_WORSE | what |
+|---|---|---:|---:|---|
+| 0.790 ms | 145.440 | **0** | 1 | `spim_a` `P3 phase` 8 → 20 |
+| 0.790 ms | 262.200 | **0** | **0** | — |
+| 5.000 ms | 145.440 | **0** | 1 | `spim_a` `P3 phase` 8 → 20 |
+| 5.000 ms | 262.200 | **0** | **0** | — |
+
+And the number the consolidation's verdict turned on:
+
+| image | `spim_a` navigation **peak \|δ\|** |
+|---|---:|
+| shipped (reference) | — |
+| **HEAD base** | **262.200 ms** |
+| **stage 04 at HEAD** | **178.980 ms** |
+| stage 03 at HEAD | 145.380 ms |
+| *(consolidation, old images: base 145.440 → stage 04-B 245.780)* | |
+
+**Stage 04 is 83.220 ms CLOSER to the shipped firmware than the in-tree base
+is.**  The consolidation measured stage 04-B 100.3 ms *further* from shipped
+than its base.  Both measurements are correct; they are measurements of
+different pairs of images, and the difference is one BLE slot that iteration 45
+moved the base by (§46.2, §46.6.1).
+
+The one `PRE_EXISTING_WORSE` at Δ = 145.440 ms is `spim_a` `P3 phase` 8 → 20
+bursts over the bound — on a stream where the **base itself is 262.200 ms out**
+and stage 04 is 178.980 ms out.  Charging a stage with "more bursts over a
+bound" while it is strictly nearer the reference than the base is the
+`worse_than()` category-counting artifact the consolidation named in its §5.3,
+seen from the other side.
+
+#### 46.7.2 Strict `cmp3`, navigation
+
+```
+                     EQ  pre-existing(same/diff)  REGRESSION  improvement
+S04 navigation       49       17 /  1                 0            2
+```
+
+**Zero strict regressions, two improvements** (`twim2/p2_render/sha` and its
+`lsm6dso_imu` child, both back to shipped).  The consolidation carried "8
+regressions nav, 1 dash" for stage 04 from the stage04b pass; at HEAD the
+number is **0**.
+
+#### 46.7.3 What stage 04 does to the phase, decomposed (base → stage 04)
+
+| bus / device | n | **median δ** | median / slot |
+|---|---:|---:|---:|
+| `spim_a` jbd_display | 166 | **−0.370 ms** | −0.004 |
+| `twim1` opt3001 ambient | 49 | −0.427 | −0.004 |
+| `twim2` lsm6dso IMU | 552 | −0.310 | −0.003 |
+| `twim1` npm1300 charger | 250 | −0.458 | −0.005 |
+| `twim1` st25dv_nfc / sysport | 21 / 15 | −0.520 / −0.490 | −0.005 |
+
+**Stage 04 moves nothing by a slot at HEAD.**  Every device is inside 0.6 ms.
+The `spim_a` p2_render tail still spans −49.590 to +83.220 ms on a handful of
+animation bursts, which is the §46.6.1 residue and is not a slot either.
+
+For completeness, `stage 03 → stage 04` is **−100.340 ms on the display and
+−100.465 ms on the ambient light (−0.998 and −1.000 slot), IMU −0.429, charger
+−0.197**: the merge does cost exactly one slot *relative to stage 03*.  It is
+invisible against the base only because the base is already one slot out in the
+same direction.  **Both statements are true and both are reported**, because
+reporting only the flattering one is how this ladder got into trouble.
+
+#### 46.7.4 Stage 04, dashboard
+
+```
+dashboard p1_boot    0c5cc90b079d0d9c…     0 px   cmp exit 0
+dashboard p2_render  19b1f24a09f97a8d…  2923 px   cmp exit 0
+
+phase-tolerant   T=0.790/Δ=145.440   0 REG, 0 PEW
+                 T=0.790/Δ=262.200   0 REG, 0 PEW
+                 T=5.000/Δ=145.440   0 REG, 0 PEW
+                 T=5.000/Δ=262.200   0 REG, 0 PEW
+strict cmp3      EQ 55, pre-existing 10/1, REGRESSION 1, improvement 2
+```
+
+**All four of stage 04's framebuffers are byte-identical to the committed
+goldens** — the full acceptance set, on a merged image, for the first time in
+this project.
+
+The single strict dashboard regression is `counters/RADIO_TX` 562 → 564.  Under
+the component field the consolidation adopted (§7 there):
+
+| image | stim | `RADIO_TX` | **ESB** | **BLE** |
+|---|---|---:|---:|---:|
+| shipped | nav / dash | 562 / 562 | **373** | **189** |
+| HEAD base | nav / dash | 563 / 562 | 374 ✗ | 189 ✓ / 188 ✗ |
+| stage 03 | nav / dash | 562 / 562 | 374 ✗ | 188 ✗ |
+| stage 04 | nav / dash | 563 / 564 | 374 ✗ | 189 ✓ / 190 ✗ |
+
+`ESB_MASTER_FRAMES` is **374 on every one of our images and on both stimuli**,
+against shipped's 373 — the stimulus-invariant firmware defect §45.7 isolated,
+untouched by any stage here.  The dashboard `RADIO_TX` movement 562 → 564 is
+`BLE 188 → 190` with `ESB` unmoved, i.e. two more answered connection-event
+windows.  **It is the same phenomenon as the phase, counted a second way**, and
+booking it as an independent regression double-counts.  Equally: stage 03's
+`RADIO_TX` 563 → 562 "improvement" on navigation is the cancellation — `ESB 374`
+and `BLE 188`, *both* wrong, summing to the right total.
+
+### 46.8 A CORRECTION TO THIS SECTION, MADE BEFORE ITS RESULT WAS PUBLISHED
+
+The first oracle I built for `s04pad_nav` reported the whole run collapsing
+(`spim_a` 3,645 → 1,886) and a broken `p2_render` framebuffer, and I began
+writing that up as a functional failure of the pad.  **It was my own artifact:
+the oracle was built while Renode was still flushing the trace files** — the
+`fb_p2_render.ppm` the wait loop keys on appears before the traces are closed.
+Rebuilt from the complete captures, the whole run is 3,645 / 970 / 2,289,
+conserved, and the framebuffer is byte-identical.
+
+**Every oracle in this pass was then deleted and rebuilt from complete
+captures**, and a whole-run invariant is now printed for each
+(`spim_a` navigation must total 3,645; dashboard 12,323 on ours / 12,259 on
+shipped).  Every number in §46.2, §46.5, §46.6 and §46.7 above was re-derived
+from the rebuilt set and came back **unchanged**, so nothing published before
+this point was affected.  §46.9's pad table **was** affected and is published in
+its corrected form: the partial oracle gave the pad's effect over 88 common
+`spim_a` bursts instead of 166, and the small per-device figures moved (IMU
++0.860 → **+1.100 ms**, charger +0.915 → **+0.977**); *the headline +101.010 ms
+was identical in both*, which is why the partial run's conclusion survived its
+own data being wrong — a coincidence, not a defence.  The race is
+recorded because a wait condition that fires early is exactly the kind of
+tooling defect that has produced eight calibration bugs in this project, and
+because `build_display_sensor_oracle.py` will silently accept a short trace.
+
+### 46.9 TASK 2, THE RESULT — the displacement does NOT go to zero.
+### 204 bytes of DEAD DATA move it by a WHOLE SLOT.
+
+```
+s04pad  zephyr.bin  956,496 B  ==  base 956,496 B   EXACTLY, byte-length-identical
+        text delta 0, bss delta 0, noinit delta 0, rodata +204
+        0 TEXT-class symbol addresses moved (nm, 7,913 -> 7,914 symbols)
+navigation p1_boot    1d617c65a688f10e…   656 px   cmp exit 0
+navigation p2_render  b26c73b37d441fc8…  1098 px   cmp exit 0
+```
+
+`spim_a` navigation, per-burst δ against shipped, T = 0.790 ms:
+
+| image | n | **median δ** | min | max | **max\|δ\|** | spread |
+|---|---:|---:|---:|---:|---:|---:|
+| pre-i45 base | 166 | −37.320 | −145.440 | +8.820 | 145.440 | 154.260 |
+| **HEAD base** | 166 | −137.240 | −262.200 | +6.560 | **262.200** | 268.760 |
+| stage 03 | 166 | −37.260 | −145.380 | +8.850 | 145.380 | 154.230 |
+| stage 04 | 166 | −137.600 | −178.980 | +6.250 | **178.980** | 185.230 |
+| **stage 04 + 204 B pad** | 166 | **−36.590** | −128.040 | +9.500 | **128.040** | 137.540 |
+
+And the pad's own effect, isolated (`stage 04 → stage 04 + pad`, same sources,
+same compiler, same everything but 204 bytes of unreferenced `const`):
+
+| bus / device | n | **median δ** | **median / slot** |
+|---|---:|---:|---:|
+| `spim_a` jbd_display | 166 | **+101.010 ms** | **+1.005** |
+|   ↳ p1_boot | 40 | +101.010 | +1.005 |
+|   ↳ p2_render | 126 | +101.010 | +1.005 |
+| `twim1` opt3001 ambient | 48 | **+101.010** | **+1.005** |
+| `twim2` lsm6dso IMU | 552 | +1.100 | +0.011 |
+| `twim1` npm1300 charger | 248 | +0.977 | +0.010 |
+| `twim1` st25dv_nfc / sysport | 21 / 15 | +1.010 / +0.979 | +0.010 |
+
+> **Two hundred and four bytes of zero-filled, unreferenced, unexecutable
+> `.rodata`, which move not one code address, shift the navigation-startup
+> cluster by exactly one 100.5 ms BLE slot.**  Display +101.010 ms, ambient
+> +101.010 ms, IMU +1.10 ms, charger +0.98 ms — the same four-way signature as
+> every other slot move in this project.
+
+**So the answer to Task 2 is: no, the phase displacement does not go to zero
+when the image is made byte-length-identical to the base. It moves to a
+different slot.**  It happens to move to a *better* one — `max|δ|` 178.980 →
+**128.040 ms, the smallest of any image in the ladder including the base and
+stage 03** — but that is luck, not compensation, and it must not be read as a
+result in the pad's favour.
+
+**What this kills, and what it establishes.**
+
+1. **Size compensation is dead, and now for the right reason.** The previous
+   refutation was arithmetic ("the step exceeds the margin"). This one is
+   direct: an exactly-compensating pad does not cancel the shift, it *causes*
+   another one. Any scheme that tries to keep a merged image on the base's slot
+   by adjusting bytes is refuted, because the byte count is not the variable.
+2. **Neither is the displacement driven by layout of code.** No `.text` address
+   moved. No instruction changed. No inlining decision changed. The pad is
+   provably not on any path — nothing names it, and it survives `--gc-sections`
+   only via `SHF_GNU_RETAIN`.
+3. **What it IS: a threshold with no measurable sensitivity floor.** §44.5
+   established that the quantum is one *answered* DUT BLE connection-event
+   window. Whether the GATT sweep's acked write lands inside window *n* or
+   window *n+1* is decided by an arbitrarily small timing margin, and 204 bytes
+   at the tail of `.rodata` — which move `_flash_used`, `__data_load_start` and
+   `__rom_region_end`, and therefore the boot-time `.data` copy's source
+   address — are enough to cross it.
+4. **Therefore `spim_a` navigation phase cannot gate a refactor.** It is not
+   measuring the refactor. It is measuring which side of a knife-edge this
+   particular link landed on, and the knife-edge is reachable by a change that
+   is provably semantics-free. *A gate that a 204-byte inert pad can flip is not
+   a gate.* That is a stronger statement than the consolidation's §5.3, and it
+   is made from a deliberately-constructed control rather than from an
+   observation about which threshold was chosen.
+
+#### 46.9.1 The verdicts, for completeness — and why they should NOT be believed
+
+| image | T | Δ | phase REG / PEW | strict REG / improvement |
+|---|---|---|---|---|
+| stage 04 + pad, nav | 0.790 | 145.440 | 1 / 0 | 0 / 7 |
+| stage 04 + pad, nav | 0.790 | 262.200 | 1 / 0 | 0 / 7 |
+| stage 04 + pad, nav | 5.000 | 145.440 | **0 / 0** | 0 / 7 |
+| stage 04 + pad, nav | 5.000 | 262.200 | **0 / 0** | 0 / 7 |
+| stage 04 + pad, dash | 0.790 | 145.440 / 262.200 | 1 / 0 | 1 / 0 |
+| stage 04 + pad, dash | 5.000 | 145.440 / 262.200 | **0 / 0** | 1 / 0 |
+
+Its dashboard framebuffers are byte-identical too, and the dashboard whole run
+is 12,323 / 930 / 2,281 — the base's, exactly.
+
+The single T = 0.790 ms regression is `twim1 npm1300` `P1 content ×3`, and it is
+**a burst-splitting artifact of the 0.790 ms gap**, not content: shipped's
+two-burst train `6B|W|040A02|6B|W|040F|…` appears in the padded run as two
+trains, `6B|W|040A02` and `6B|W|040F|…`, because the two halves drifted more
+than 0.790 ms apart.  The comparer has a `P0 segmentation` category for the
+*merge* direction of exactly this artifact (`compare_block`'s `merges` set) and
+**no category for the split direction**, so a split is charged as `P1 content`.
+That is a real hole in the criterion, found here, and it is another instance of
+the family the consolidation's §6.2 named.
+
+**None of these verdicts should be believed as statements about stage 04**,
+because the image they grade differs from stage 04 only by data no instruction
+reads.
+
+### 46.10 THE CONTROL — the SAME pad on the BASE moves NOTHING.  The pad costs
+### ~1 ms, and one slot boundary is crossed only if the image was already
+### within 1 ms of it.
+
+The identical 204-byte object, added to the **in-tree base** (956,496 →
+956,700 B), through the identical `G1_AUDIT_EXTRA_SOURCES` hook, with the
+identical `nm` gate result (**0 `.text` symbols moved**, 1,162 rodata symbols
++204 B):
+
+```
+navigation p1_boot    1d617c65a688f10e…   656 px   cmp exit 0   (== base)
+navigation p2_render  b26c73b37d441fc8…  1098 px   cmp exit 0   (== base)
+whole run   spim_a 3,645 (808 + 2,837 -- the base's split EXACTLY)
+            twim1    972      twim2  2,289
+```
+
+Per-burst δ, `base → base + 204 B`:
+
+| bus / device | n | **median δ** | median / slot |
+|---|---:|---:|---:|
+| `spim_a` jbd_display | 166 | **+0.120 ms** | +0.001 |
+| `twim1` opt3001 ambient | 49 | **+1.160** | +0.012 |
+| `twim2` lsm6dso IMU | 552 | **+1.005** | +0.010 |
+| `twim1` npm1300 charger | 248 | +0.630 | +0.006 |
+| `twim1` st25dv_nfc / sysport | 21 / 15 | +0.730 / +0.760 | +0.007 |
+
+**Nothing moves by a slot.**  Every device is inside 1.2 ms, and the `p1_boot`
+transaction split is unchanged at 808 + 2,837.
+
+The **dashboard** control says the same thing a second time: `base + pad` vs
+`base`, both framebuffers `cmp` exit 0, whole run 12,323 / 930 / 2,281 unchanged,
+and per-burst medians `spim_a` **+1.010 ms**, `opt3001` +1.007, `lsm6dso` +0.869,
+`npm1300` +0.580, `st25dv` +0.640 / +0.730 — **the same ~1 ms, on every device,
+with no slot anywhere.**
+
+Put the two navigation experiments side by side — same pad, same hook, same 204
+bytes:
+
+| | `spim_a` display | opt3001 | lsm6dso | npm1300 | st25dv_nfc |
+|---|---:|---:|---:|---:|---:|
+| **base → base + pad** | **+0.120 ms** | +1.160 | +1.005 | +0.630 | +0.730 |
+| **stage 04 → stage 04 + pad** | **+101.010 ms** | **+101.010** | +1.100 | +0.977 | +1.010 |
+
+> **The pad costs about one millisecond of virtual time — visible identically in
+> both experiments on the streams that run on their own cadence (IMU +1.005 vs
+> +1.100, charger +0.630 vs +0.977, NFC +0.730 vs +1.010).  Whether that millisecond moves the
+> navigation-startup cluster by a whole 100.5 ms slot depends entirely on how
+> close the image already was to a connection-event boundary.  The base was not
+> close.  Stage 04 was within one millisecond of it.**
+
+That is the complete mechanism, and it settles Task 2 and Task 3 together:
+
+1. **The sensitivity floor of the `spim_a` navigation gate is about 1 ms of
+   accumulated boot-path time** — reachable by 204 bytes of data that no
+   instruction reads.  It is not a code-layout effect, not a size effect in any
+   monotone sense, and not a property of the merge.
+2. **Stage 04 at HEAD is metastable**: it sits within ~1 ms of a slot boundary,
+   so its slot assignment — and therefore its `spim_a` phase verdict, its eight
+   `p1_boot` strict fields and its `RADIO_TX` BLE component — is decided by
+   perturbations far below the resolution of anything the refactor is trying to
+   preserve.  §46.7 measured 0 regressions for stage 04; §46.9 measured a
+   one-slot move for the same sources plus dead data.  **Both are true, and that
+   is the finding.**
+3. **The right conclusion for the pipeline is not "stage 04 passes" or "stage 04
+   fails".**  It is that `spim_a` navigation *phase* is not a usable gate for a
+   size-changing stage, and that the gate that survived every experiment in this
+   pass is the one that did not move once: **the four framebuffers**, which are
+   byte-identical on the base, on stage 03, on stage 04, on stage 04 + pad and
+   on base + pad — five distinct images spanning 956,292 to 956,700 bytes and
+   two different slot assignments.
+
+### 46.11 THE LADDER AT HEAD — one table, this pass's own captures
+
+Every cell is a measurement from this pass.  `n/a` means the image could not be
+produced.  "phase" columns are `REGRESSION / PRE_EXISTING_WORSE`.
+
+| # | image | `zephyr.bin` | builds | 4 framebuffers | phase nav (T 0.790, Δ 145.440) | phase nav (T 0.790, Δ 262.200) | phase dash | strict nav REG / imp | strict dash REG / imp |
+|---|---|---:|---|---|---|---|---|---|---|
+| — | **in-tree base** | 956,496 | ✔ | **all four byte-identical** | (reference) | (reference) | (reference) | — | — |
+| 00 | snapshot | 956,496 | ✔ | `cmp` == base | identity | identity | identity | — | — |
+| 01 | literal_inline | 956,356 | ✔ | = stage 03 | = stage 03 | = stage 03 | = stage 03 | = 03 | = 03 |
+| 02 | block_dedupe | 956,356 | ✔ | = stage 03 | = stage 03 | = stage 03 | = stage 03 | = 03 | = 03 |
+| 03 | module_structure | 956,356 | ✔ | **all four byte-identical** | **1 / 0** | **1 / 0** | 0 / 0 | **0 / 8** | 0 / 0 |
+| 04 | cohesive_tu | **956,292** | ✔ | **all four byte-identical** | **0 / 1** | **0 / 0** | 0 / 0 | **0 / 2** | 1 / 2 |
+| 05 | cohesive_composition | 956,292 | ✔ | `cmp` == stage 04 | = 04 | = 04 | = 04 | = 04 | = 04 |
+| 06 | unit_composition | 956,292 | ✔ | `cmp` == stage 04 | = 04 | = 04 | = 04 | = 04 | = 04 |
+| **07** | internal_linkage | — | **✘ LINK FAILS** | n/a | n/a | n/a | n/a | n/a | n/a |
+| **08** | call_order | — | **✘ LINK FAILS** | n/a | n/a | n/a | n/a | n/a | n/a |
+| — | *stage 04 + 204 B inert pad* | 956,496 | ✔ | **all four byte-identical** | 1 / 0 | 1 / 0 | 1 / 0 | 0 / 7 | 1 / 0 |
+
+Stage 04's mutual `cmp` chain, re-measured: `s04 == s05 == s06`, and
+`s01 == s02 == s03`, so five captures cover seven images.
+
+**Read against the consolidated verdict's table, three rows change:**
+
+| stage | consolidated verdict (2026-07-27, HEAD `e7f35727`) | **this pass (HEAD `da19df1a`)** |
+|---|---|---|
+| 01/02/03 | evidence **VALID** | **INVALID** — image differs from `g1-pt-s01` / `g1-s4b-s03`; **re-captured here** |
+| 03 phase | **PASS** | **1 REGRESSION** on navigation at T = 0.790 ms (the known `npm1300` wall residue, now charged to the stage because the base moved) |
+| 04 phase | **FAIL — 1 REGRESSION**, peak \|δ\| 245.780 vs Δ 145.440 | **0 REGRESSIONS**, peak \|δ\| **178.980 vs base's 262.200** — stage 04 is *nearer* shipped than the base |
+| 04 strict | 8 regressions nav, 1 dash | **0 nav**, 1 dash (`RADIO_TX`, a component cancellation) |
+| 07/08 | evidence INVALID, oracle REQUIRED | **cannot be built at all** — stale link evidence (§46.3) |
+
+None of those changes came from touching the criterion.  Δ, the burst gap, the
+comparer and the oracle builder are exactly as the consolidation left them; the
+images moved.
+
+### 46.12 Static ladder at the in-tree base, HEAD `da19df1a`
+
+| gate | required | measured |
+|---|---|---|
+| app build | links | **exit 0** |
+| app FLASH | ~956,496 B / 97.35 % | **956,496 B / 982,528 B = 97.35 %** |
+| `nm -u` app / net | 0 / 0 | **0 / 0** |
+| duplicate GLOBAL definitions | 0 | **0** (also 0 on stage 04, stage 04+pad, base+pad) |
+| `check_ram_pin_collisions --core app` | 627 / 0 / 0 | **627 bound OK / 0 escaping / 0 unknown inside a live object** (20 raw-literal pins outside the RAM region, 3 abs symbols not in the linker scripts — unchanged; identical on stage 04, stage 04+pad, base+pad) |
+| `check_ram_pin_collisions --core net` | 170 / 0 / 0 | **170 / 0 / 0** |
+| `check_thread_create_stack_args --trials 120` | 10/10 | **10 / 10 PASS, EXIT=0** |
+| `tools/verify_data.py` | 995/995 | **995 / 995 files, 56,279 / 56,279 B, 100.00 %** |
+| `runtime_info_sync` / `_end` | — | **0x00015c04 / 0x2003ff45** |
+| net core | FROZEN 225,581 B | **UNTOUCHED — `g1-i30e-net/zephyr/zephyr.bin` 225,581 B, booted in all eleven captures; no net source or build input written** |
+| **all four acceptance framebuffers** | byte-identical | **byte-identical on the base, on stage 03, on stage 04 and on stage 04+pad** |
+
+`cfg_verify` was **not run and is not cited anywhere in §46.**  Every number here
+comes from a build, a `cmp`, an ELF section or symbol table, an object file, a
+seeded Renode capture, or a JSON diff.
+
+### 46.13 WHAT I DID NOT CLOSE, AND WHY
+
+1. **Stages 07 and 08 have NO evidence at all, because they do not link**
+   (§46.3).  I did not repair `t07_internal_linkage.py`'s stale link evidence:
+   `recon/refactor/` transformers belong to the concurrent agent this pass and
+   the work order says so explicitly.  The repair is to re-run
+   `link_evidence.py generate` against a **stage-06 build at the current input
+   generation** and re-materialise; it is one command plus a rebuild, and it is
+   that agent's call.  **`driver.py status` reports both stages `current` while
+   neither can be built** — the staleness mechanism hashes the evidence FILE and
+   cannot see that stage 04's merge invalidated its contents.
+2. **The `recon/refactor/README.md` CONSOLIDATED GATE RECORD is now wrong in
+   five cells** (§46.11) and I did not edit it — same ownership reason.  A
+   reader who trusts it today will believe stages 01–03 have valid evidence
+   (they do not, the images moved), that stage 04 fails R7 (at HEAD it does not),
+   and that stage 07 has an image (it does not).
+3. **Δ was not changed, and neither was the burst gap or any comparer.** Every
+   verdict is reported at both 145.440 ms and the rule's own answer at HEAD,
+   262.200 ms, and at both 0.790 ms and 5.000 ms.  I did not adopt a burst-gap
+   constant (the consolidation's §5.4 reasons still stand) and I did not switch
+   on the equal-population rule.
+4. **`gap_separation.separated` is still vacuous.**  The consolidation proved it
+   true by construction; this pass did not rely on it anywhere and did not
+   repair it.  It is in a file I own (`build_display_sensor_oracle.py`), so
+   unlike items 1–2 I have no ownership excuse: I did not fix it because
+   changing the oracle's published fields mid-measurement would have invalidated
+   my own captures.  It should be the next pass's first edit.
+5. **The comparer has no `P0 segmentation` category for the SPLIT direction**
+   (§46.9.1), so a burst that segments into two under a tighter gap is charged as
+   `P1 content`.  Found, measured on `twim1 npm1300`, **not repaired** — same
+   mid-measurement reason.
+6. **The +31.250 ms second quantum is a hypothesis, not a finding** (§46.6.3).
+   The stated falsification test — halve the modelled connection interval and it
+   must halve, while the 100.5 ms slot must not — **was not run**; it needs a
+   `~/Projects/armemul` change and this pass made none.  §44.5's original
+   falsification test (`SweepDwell 4 → 8`) is **still not run** either, for the
+   fourth pass running.
+7. **The −18.990 ms display-only residue in stage 07's increment is unexplained**
+   (§46.6.3), as is the −37.3 ms structural offset our builds carry against
+   shipped on every image (§46.6).  Neither is a slot; neither is identified.
+8. **I did not identify WHICH ~1 ms of boot-path work the 204-byte pad costs.**
+   The candidates are the boot-time `.data` copy from a shifted load address,
+   MCUboot/loader work proportional to image length, and `__rom_region_end`
+   arithmetic.  A single instrumented capture would settle it; I did not take
+   one, because the measurement that mattered (that the cost exists and is ~1 ms)
+   was already decisive.
+9. **One capture per image, except the base.**  Determinism was controlled on
+   the base against iteration 45's byte-identical image (§46.1.1, every trace and
+   both framebuffers identical across a day and different host load), and
+   iteration 45 §45.5.1 controlled it a second way.  I did **not** re-run any
+   stage capture, so a per-image determinism control for stages 03, 04, 04+pad
+   and base+pad is asserted from the base's, not measured on its own image.
+10. **The net core was not built and not touched.**  `check_net_raw_literals`
+    and `verify_net_stock_data_window` were **NOT RUN**.  The frozen net image
+    (225,581 B) was booted in all eleven captures and is byte-for-byte as found.
+11. **`cfg_verify` was not run and is not cited.**
+12. **`battery_model_state_update` (`FUN_0000c358`)** — still the open float
+    defect `AGENTS.md` §1b names.  Untouched, as in §45.
+13. **Nothing was committed.**  The tree is left dirty (one file: this report).
+
+### 46.14 Footprint
+
+```
+ M recon/emulator/reports/our_boot_bringup.md      this section (§46) -- the ONLY
+                                                   repository file this pass wrote
+```
+
+**Not written:** `recon/refactor/**` (transformers, stage trees, MANIFEST /
+SIZE_GATE / DEFECTS JSONs, README — all regenerated by `driver.py materialize`
+only, never hand-edited, and `git status` shows them clean), `recon/emulator/
+scripts/*` (the oracle builder, the comparer and the capture script are
+byte-for-byte as found — the burst-gap variant lives in this pass's scratch),
+any golden framebuffer, any committed oracle JSON, `recon/symbolized/**`,
+`recon/app/src`, `recon/named`, `recon/readable_sources`, `recon/verified`,
+`recon/net/**`, `recon/symbols`, `recon/headers`, `recon/application`,
+`recon/board`, `recon/generated`, `tools/`, any linker script, and nothing under
+`~/Projects/armemul`.
+
+**The pad never entered the repository.**  It is a single generated file in
+`/private/tmp` passed to the build through `G1_AUDIT_EXTRA_SOURCES`, the hook
+`app/CMakeLists.txt` documents for exactly this purpose.  No stage tree was
+edited to run Task 2.
+
+Outside the repository:
+
+```
+/private/tmp/g1-i46-base                    HEAD's own build   956,496 B  (== g1-i45-b2, cmp)
+/private/tmp/g1-i46-s0{0..8}                the nine stage builds (07, 08 FAIL to link)
+/private/tmp/g1-i46-s04pad                  stage 04 + 204 B   956,496 B  (== base length)
+/private/tmp/g1-i46-basepad                 base     + 204 B   956,700 B
+/private/tmp/g1-i46/{cap,queue,padbuild,mkpad,decomp,final}.sh
+/private/tmp/g1-i46/g1_pad.c                the 204-byte pad
+/private/tmp/g1-i46/nm_{base,basepad,s04,s04pad}.txt
+/private/tmp/g1_i46_{base_nav1,base_dash,s03_nav1,s03_dash1,s04_nav1,s04_dash1,
+                     s04pad_nav1,s04pad_dash1,basepad_nav1,basepad_dash1}
+<scratchpad>/i46/{bdso2,shift,sweep,analyse}.{py,sh}
+<scratchpad>/i46/T790000/**  T5000000/**    every oracle, rebuilt after §46.8
+```
+
+### Regenerate (iteration 46)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+V="PYTHONSAFEPATH=1 .venv/bin/python"
+S=<scratchpad>/i46
+
+# 1. the ladder, and the nine builds
+for n in 0 1 2 3 4 5 6 7 8; do $V recon/refactor/driver.py materialize $n; done
+./recon/application/build_cohesive.sh app /private/tmp/g1-i46-base
+for n in 00_snapshot 01_literal_inline 02_block_dedupe 03_module_structure \
+         04_cohesive_tu 05_cohesive_composition 06_unit_composition \
+         07_internal_linkage 08_call_order; do
+  ./recon/refactor/stage_$n/tree/recon/application/build_cohesive.sh \
+      app /private/tmp/g1-i46-s${n%%_*}          # 07 and 08 exit 1: display_close
+done
+
+# 2. the pad -- NO tree edit, the documented audit hook
+bash /private/tmp/g1-i46/padbuild.sh             # sizes the pad from a cmp, builds both
+
+# 3. eleven seeded captures, $rtinfo_pc re-read from EACH elf
+bash /private/tmp/g1-i46/queue.sh /private/tmp/g1-i46-base    base   nav,dash \
+                                 /private/tmp/g1-i46-s03      s03    nav,dash \
+                                 /private/tmp/g1-i46-s04      s04    nav,dash \
+                                 /private/tmp/g1-i46-s04pad   s04pad nav,dash \
+                                 /private/tmp/g1-i46-basepad  basepad nav,dash
+
+# 4. WAIT for renode to EXIT before building an oracle (section 46.8), then
+bash /private/tmp/g1-i46/final.sh                # every derivation and comparison
+bash /private/tmp/g1-i46/decomp.sh <pairs>       # the per-burst decomposition
+```
