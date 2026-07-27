@@ -1,6 +1,10 @@
 /* Reconstructed FUN_0007c5ba @ 0x7c5ba  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned FUN_0007c408(void);
+/* P4 iteration 40 -- DROPPED ARGUMENT.  Shipped 0007c5e0 `bl #0x7c408` is
+ * reached with r0 never rewritten since entry, so the value-length helper
+ * receives the node.  With no argument the candidate handed it whatever r0
+ * happened to hold. */
+extern unsigned FUN_0007c408(unsigned char *param_1);
 unsigned FUN_0007c5ba(unsigned char* param_1, int* param_2){
   unsigned uVar3; int iVar4,iVar5;
   if(param_1==0) return 7;
@@ -9,7 +13,7 @@ unsigned FUN_0007c5ba(unsigned char* param_1, int* param_2){
   if((unsigned)param_2[1] < 7){ param_2[1]=7; return 1; }
   *(unsigned char*)(*param_2) = *param_1;
   *(unsigned char*)(*param_2 + 1) = param_1[1];
-  uVar3 = FUN_0007c408();
+  uVar3 = FUN_0007c408(param_1);
   if(uVar3 <= 0xff){
     *(unsigned char*)(*param_2 + 2) = (unsigned char)uVar3;
     iVar5 = 3;

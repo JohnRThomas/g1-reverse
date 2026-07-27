@@ -16476,3 +16476,561 @@ fixture — no `armemul` change, no net-core change, nothing committed**):
 `recon/named`, `recon/symbolized/app` and `recon/readable_sources/app/g1`
 (each in whichever of those trees holds a copy; `recon/application/src/*` are
 symlinks into `recon/named`).  `recon/refactor/` was NOT touched.
+
+## Iteration 40 — the three unrelocated op-vtable pointers that §39.8 named are
+## the **type-7 half of a symmetric WLC NDEF record pair**.  All six are
+## recovered from the shipped bytes; the type-8 half was equally broken and is
+## fixed in the same pass.
+
+Baseline: **`g1-i39c-app`** + **`g1-i30e-net`**, i.e. exactly the pair §39.10
+gated (app 954,460 B / 97.14 %, `saadc` 184, nPM1300 `p1_boot` sha NE).
+
+### 40.1 The vtable is a PAIR, not a triple — proven from the shipped image
+
+`event_record_init` (`0x25090`) is one of two adjacent, identically-shaped
+constructors.  Disassembling `0x25090..0x250f8` (`tools/extract.py` + capstone)
+shows them back to back:
+
+```
+00025090  event_record_init      : *rec = 7 ; rec[1]=0x0007c38b rec[2]=0x00024a41 rec[3]=0x00025021
+000250c4  fill_record_type8      : *rec = 8 ; rec[1]=0x0007c39d rec[2]=0x00024ad9 rec[3]=0x00025059
+```
+
+Both constructors are already recovered; **all six op targets are not.**  §39.8
+named only the type-7 three because that is the one the hang trace reached
+first.  `st25dv_build_and_write_ndef_records` calls `fill_record_type8`
+whenever `secondary[0] != 0` and then `invoke_optional_op_offset12` on it, so
+the type-8 three are the *same* defect one branch later.  Catalog lookup
+(`recon/catalogs/function_names_app.json`, `by_address`) returns **NOT FOUND**
+for all six: `0x7c38a`, `0x7c39c`, `0x24a40`, `0x24ad8`, `0x25020`, `0x25058`.
+
+### 40.2 What they are: NFC Forum **Wireless Charging (WLC)** NDEF records
+
+The `0x25020` / `0x25058` ops each call
+`opt_field1_set(out, 1, <RAM descriptor>)` with the constants `0x200023c4` and
+`0x200023bc`.  Those are 8-byte `{const char *type; uint32_t len;}` descriptors
+in the shipped `.data`; read at their proven load address
+(`LMA(0x20000000+x) = 0xf6d64+x`, `gen_app_data_image.py` header):
+
+```
+0x200023bc  dcf10900 07000000   -> { 0x0009f1dc, 7 }
+0x200023c4  e4f10900 06000000   -> { 0x0009f1e4, 6 }
+```
+
+and `tools/extract.py` at `0x9f1d0` gives
+`"dc_nfc_init\0" "WLCSTAI\0" "WLCCAP\0" "_st25dv_write  ret %d"`, i.e.
+`0x9f1dc = "WLCSTAI"` (7) and `0x9f1e4 = "WLCCAP"` (6) — the NFC Forum
+Wireless-Charging **Status-and-Information** and **Capability** record type
+names.  So the type-7 family is the WLCCAP record and the type-8 family is the
+WLCSTAI record, which is exactly the ST25DV NDEF/WLC tail §38.6 and §39.9
+item 2 recorded as missing.
+
+### 40.3 The six recovered bodies, and the extents they were cut to
+
+Disassembled from `app_update.bin` through `tools/extract.py` + capstone; each
+extent stops at the last reachable branch/return, excluding the alignment
+halfword and the literal pool that follow.
+
+| VA | extent | role | cursor / literal |
+|---|---:|---|---|
+| `0x7c38a` | 14 B | WLCCAP `value_len` op (+4) | constant 6 |
+| `0x7c39c` | 38 B | WLCSTAI `value_len` op (+4) | `1 + popcount(rec[0x10])` |
+| `0x24a40` | 142 B | WLCCAP payload iterator (+8) | cursor `0x20007a0c`, staging byte `0x20018c67` |
+| `0x24ad8` | 186 B | WLCSTAI payload iterator (+8) | cursor `0x20007a08` |
+| `0x25020` | 50 B | WLCCAP encode op (+12) | type descriptor `0x200023c4` |
+| `0x25058` | 50 B | WLCSTAI encode op (+12) | type descriptor `0x200023bc` |
+
+The argument counts are read off the *invokers*, not guessed:
+`opt_node_value_len` (`0x7c408`) reaches the `+4` op with
+`ldr r0,[r0,#0x14] / ldr r2,[r0,#4] / bx r2` (one argument, the record);
+`serialization_read_or_copy` (`0x7c670`) reaches the `+8` op with
+`strd r5,r5,[r1] / ldr r5,[r0,#0x14] / ldr r6,[r5,#8] / mov r0,r5 / blx r6`
+(three: record, two-word out view, rewind flag — **r1 and r2 are live**); and
+`invoke_optional_op_offset12` (`0x7c3da`) reaches the `+12` op with
+`ldr r3,[r0,#0xc] / bx r3` (two: record and the caller's out node).
+
+`recon/app/src/FUN_0007c38a.c` compiles **byte-identical to the shipped
+function** (`tools/parity/recon.compile_func` at link VA `0x7c38a`, 14 bytes,
+same seven instructions).  `FUN_00025020` is instruction-for-instruction
+identical except that GCC emits `mov r5,r0 / mov r4,r1` where the original has
+them the other way round, and its literal pool word is the same `0x200023c4`.
+The other four are semantically identical with different scheduling (the two
+iterators become an if-chain rather than a `tbb`).
+
+### 40.4 The harness could not see the iterators at all — fixture added, and
+### the FIRST fixture I wrote was itself degenerate
+
+Both iterators select their arm from a **file-scope cursor**, not from an
+argument, so `cfg_verify`'s argument-derived selector search reached exactly
+none of the six / nine arms: it reported `PASS cases=6` with
+`sel={0:[0,1],1:[0,1],2:[0,1]}`, i.e. it only varied the three pointers between
+NULL and non-NULL.  A body implementing only the cursor-0 arm would have passed.
+
+`ADDITIONAL_STATE_CASES[("app", 0x00024a40)]` and `[..., 0x00024ad8]` were added
+to drive the cursor across its whole range plus one past it, with a
+production-shaped record and out view, and to exercise the rewind flag.
+
+**The first version of that fixture used ONE record image and did not bite.**
+Mutating the case-2 mask `rec[0x16] & 0x1f` to `& 0x3f` still returned
+`PASS 17/17`, because with `rec[0x15] = 0x0f` the term `rec[0x15] << 5` already
+sets bit 5 of the result, so the extra mask bit is invisible after the `strb`
+truncation.  That is the `imu_mahony_ahrs_update` degenerate-fixture failure
+mode exactly, caught here only because the mutation was tried.  The fixture now
+carries **four** payload images (a mixed pattern, all-ones, a bit-separable
+pattern, all-zeros) x eight cursor values.
+
+Negative controls, run this session against the corrected fixture
+(`cases=41` for `0x24a40`, `cases=59` for `0x24ad8`) — every one **FAILs**:
+
+| mutation | `0x24a40` | | mutation | `0x24ad8` |
+|---|---|---|---|---|
+| case-2 mask `0x1f`→`0x3f` | FAIL | | bit test off-by-one | FAIL |
+| case-1 field `[0x14]`→`[0x1a]` | FAIL | | fragment offset +1 | FAIL |
+| case-1 mask `0x3c`→`0x38` | FAIL | | next-cursor +1 | FAIL |
+| case-1 shift `<<6`→`<<5` | FAIL | | exhausted arm writes cursor | FAIL |
+| case-4 `+0x18`→`+0x1a` | FAIL | | loop bound 9→8 | FAIL |
+| cursor does not advance | FAIL | | rewind flag ignored | FAIL |
+| rewind flag ignored | FAIL | | cursor-0 next value | FAIL |
+| | | | presence field `[0x10]`→`[0x11]` | FAIL |
+
+All six bodies PASS: `FUN_0007c38a` 2/2, `FUN_0007c39c` 2/2, `FUN_00025020` 4/4,
+`FUN_00025058` 4/4, `FUN_00024a40` 41/41, `FUN_00024ad8` 59/59.
+
+### 40.5 THREE more dropped-argument defects, in the INVOKERS — found by
+### disassembling our own linked image, not by the harness
+
+Recovering the six ops made the argument lists of their three invokers matter
+for the first time.  All three were wrong, and all three are in `AGENTS.md`'s
+"dropped register arguments" blind class, so `cfg_verify` reports `PASS` on
+both the broken and the fixed body (the target is an order-keyed oracle whose
+arguments are never compared).  Measured against
+`/private/tmp/g1-i39c-app/zephyr/zephyr.elf`, i.e. against the code that was
+actually running:
+
+| function | shipped | ours (`g1-i39c`) | consequence |
+|---|---|---|---|
+| `opt_node_value_len` `0x7c408` | `ldr r0,[r0,#0x14]` then `bx r2` — r0 = the **descriptor** | `78a1e ldr r3,[r0,#20] / 78a22 ldr r3,[r3,#4] / 78a26 bx r3` — r0 = the **outer node** | the `value_len` op reads `*r0` expecting the type byte 7/8, sees the option-node header, answers 0 |
+| `serialization_read_or_copy` `0x7c670` | `blx r6` with r0 = descriptor, **r1 = out view, r2 = rewind flag** | `78c4c ldr r1,[r3,#8] … 78c5e ldr r2,[r3,#8] / 78c60 blx r2` — **r1 and r2 both hold the op pointer** | the iterator would `str` its two-word result into a flash code address and see a permanently non-zero rewind flag, pinning the cursor at 0 |
+| `invoke_optional_op_offset12` `0x7c3da` | `bx r3`, every argument forwarded | `bx r3` — correct, but only because this codegen happened to leave r1 alive; the source declared ONE parameter | latent |
+
+The C was `fn()` / `fp(iVar1)` / `callback(object)`.  All three now name every
+argument the shipped instructions prove is live.  After the fix
+`FUN_0007c3da` and `FUN_0007c408` compile **byte-identical to the shipped
+functions**, and in the rebuilt image `serialization_read_or_copy` reaches its
+`blx` with r1 = the out view and r2 = the flag by construction rather than by
+accident.  `cfg_verify` still PASSes all three (2/2, 6/6, 2/2) — before and
+after — which is the point.
+
+### 40.6 A fourth wiring gap on the same path: the WLC type-name descriptors
+
+The two encode ops pass `opt_field1_set` the constants `0x200023c4` /
+`0x200023bc`.  Those 8-byte `.data` objects hold **original-image flash
+pointers**, so `gen_app_data_image.py`'s pointer policy drops the whole group
+(the generated `g1_arena_data_runs` jumps arena `0x385 -> 0x3f4`, i.e. both
+descriptors stay ZERO), and neither `"WLCSTAI"` nor `"WLCCAP"` is emitted by
+`g1_app_string_rodata.c` nor pinned in `g1_app_globals.ld`.  Every WLC record
+would therefore have serialized with an EMPTY NDEF type name.
+`recon/application/app/src/g1_wlc_ndef_type_records.c` emits both descriptors
+and both strings, and the two pins are bound onto them — the same treatment
+`g1_st25dv_ops_table.c` gets.
+
+### 40.7 Wiring: what was rebound, and how
+
+* `recon/symbols/g1_app_globals.ld` — the six numeric pins
+  `rodata_7c38b / 7c39d / 24a41 / 24ad9 / 25021 / 25059` are **deleted**, so a
+  link that loses one of the six functions now fails loudly instead of `bx`ing
+  into our own `.text`.  Five new pins added: `g_wlccap_fragment_cursor`
+  (`g1_ram_arena + 0x5a0c`), `g_wlcstai_fragment_cursor` (`+0x5a08`),
+  `g_wlc_fragment_staging_byte` (`+0x16c67`), and the two type descriptors
+  bound onto the emitted objects.
+* `recon/symbols/g1_app_symbols.h` — six `__g1_fp_*` `__asm__`-labelled externs
+  plus six `ADDR_<name>_THUMB` macros, following the 78-pointer pattern already
+  in the file.  Taking the address in C also **roots the bodies against
+  `--gc-sections`**, which a lazy linker-script `PROVIDE` does not (the point
+  `g1_st25dv_ops_table.c` records).
+* `event_record_init` and `fill_record_type8` now store
+  `ADDR_wlccap_record_*_THUMB` / `ADDR_wlcstai_record_*_THUMB`.
+* `recon/generated/app_retained_sources.cmake` regenerated by
+  `tools/gen_retained_sources.py` (1609 -> **1615** retained; the six new
+  symbolized sources appear).  `tools/build_app_gc_roots.py` re-run: **no
+  change** (`complete_root_graph: true`, 19 named roots, 0 unresolved).
+  `tools/build_app_address_taken_roots.py` was NOT re-run — it requires a
+  pre-existing ELF at a stale path and its ledger is gated OFF
+  (`G1_ENABLE_ADDRESS_TAKEN_ROOTS`).
+
+**Verified in the rebuilt image** (`objdump` of
+`/private/tmp/g1-i40a-app/zephyr/zephyr.elf`): `event_record_init`'s literal
+pool now reads `0x00078b53 / 0x00022041 / 0x000225cd` =
+`wlccap_record_value_len|1` / `wlccap_record_next_fragment|1` /
+`wlccap_record_encode|1`, and `fill_record_type8`'s reads
+`0x00078b61 / 0x000220d9 / 0x00022605` — the type-8 trio.  No original-image
+address survives in either vtable.
+
+### 40.8 Measured: the hang is GONE, the ADC recovers past its best figure ever,
+### and the ST25DV NDEF tail is written for the first time
+
+Build **`g1-i40a-app`** (net unchanged `g1-i30e-net`), captures
+`/private/tmp/g1_ours_{dash,nav}_i40a`, reports `/private/tmp/g1-i40/rep-{dash,nav}-a`.
+
+| dashboard stimulus | oracle | `g1-i38d` | `g1-i39c` | **`g1-i40a`** |
+|---|---:|---:|---:|---:|
+| `saadc` whole run | 998 | 668 | 184 | **932** |
+| `twim1` ST25DV `0x53` `p1_boot` | 25 | 11 | 11 | **25** (count EQ, sha NE) |
+| `twim1` ST25DV `0x57` `p1_boot` | 22 | 14 | 14 | **22, sha EQ** |
+| `twim1` OPT3001 `p1` / `p2` | 14 / 59 | 14 / 59 | 14 / 59 | **14 / 59, both sha EQ** |
+| `twim1` nPM1300 `p1_boot` / `p2_render` | 285 / 514 | 285 / 514 | 535 / 6 | **684 / 1606** |
+| `twim2` LSM6DSO `p1_boot` | 1075 | 1075 | 1075 | **1075, sha EQ** |
+| `spim_a` `p1_boot` | 34 | 34 | 34 | **34, sha EQ** |
+| `pdm0` / `gpiote0` whole run | 2 / 25 | — | — | **2 / 25, both sha EQ** |
+
+The low-speed thread no longer stops: the ST25DV NDEF/WLC write that §38.6 and
+§39.9 item 2 recorded as never reached now happens, and its transaction count
+is **exactly the oracle's 25**.  The SAADC is **932 of 998** — past the 668
+that §39.9 set as the recovery bar, and the closest this project has come.
+
+**All four acceptance framebuffers HELD, byte-identical by `cmp` against the
+golden `.raw` files:** dashboard `p2_render` `19b1f24a09f97a8d…`, dashboard
+`p1_boot` `0c5cc90b079d0d9c…` (153,600 B, all zero), navigation `p2_render`
+`b26c73b37d441fc8…`, navigation `p1_boot` `1d617c65a688f10e…` — `cmp` reports
+NO DIFFERENCE on all three non-zero ones.
+
+### 40.9 The nPM1300 counter did NOT come back — and its cause is now proven to
+### be the LAST 8 % OF BATTERY, i.e. the still-open `FUN_0000e53c`
+
+`S-D-PMIC` `p1_boot` is **684 vs the oracle's 285** (i38d had 285 with the
+stream sha EQ).  This is not scheduling and not the hang; it is one branch.
+
+Renode call-count probes on `g1-i40a-app`
+(`/private/tmp/g1-i40/probe-{b,c,d}.{resc,out}`, dashboard stimulus, 20 s):
+
+```
+handle_box_placement_event            15      (shipped: 15)
+box_placement_animation_step          14      (shipped: 15; g1-i39c: 3)
+fuel_gauge_update                     15      (shipped: 15)
+st25dv_build_and_write_ndef_records    1  at t = 4.3768 s, and the run
+st25dv_mailbox_write_with_retry        1  at t = 4.3768 s   CONTINUES to 19.8 s
+fuel_gauge_read_voltage_current_temp  165     <<<
+npm1300_charger_sample_fetch          166
+npm1300_charger_channel_get           332
+```
+
+`fuel_gauge_update` is entered 15 times but reads the charger **165** times.
+A second probe reading LR at the callee entry attributes **165 of the 166**
+calls to one site, `lr = 0x13c35`, i.e. inside `fuel_gauge_update` itself —
+165 / 15 = **11 reads per call**, and 11 is the literal `iVar13 = 0xb` retry
+budget in the shipped body.  The loop exit test is
+
+```c
+if (   (I != 0.0f)                      /* charge current non-zero  */
+    || (--retries == 0)
+    || (-1 < (int)((uint)(soc < 100.0f) << 31))   /* i.e. soc >= 100.0f */
+    || (soc == 0.0f || soc < 0.0f != NAN(soc)))
+    break;
+k_sleep(0xa4, 0);
+```
+
+Both images read **I = 0.0** (§39.2 measured `00000000` on both sides), so the
+first disjunct never fires on either.  The **third** one does: the shipped
+firmware's state of charge is **100**, so `soc >= 100.0f` breaks the loop on
+the first iteration; ours is **92**, so it burns the whole 11-iteration budget
+every time.  That is exactly the ratio the register profile shows —
+`p2_render` nPM1300 register `0x02` is `w=121 r=121` against the oracle's
+`w=11 r=11`, and register `0x05` (the ADC burst) is `r=121` against `r=11`:
+**11x, on the nose.**
+
+**So the nPM1300 counter is a downstream symptom of §39.9 item 5**, the still-
+FAILing `FUN_0000e53c` / `battery_soc_curve_model_init`, and it cannot return
+to sha EQ until the reported SoC reaches 100.  It is NOT a new defect
+introduced by this iteration and it is not caused by the six recovered
+functions: it is the same missing 8 % of battery, made visible.
+
+### 40.10 §39.9 item 5 CLOSED — `FUN_0000e53c` PASSes 43/43, and the battery
+### reaches 100
+
+The nPM1300 finding above made `battery_soc_curve_model_init` the load-bearing
+item, so it was taken from FAIL 13/43 to PASS.  Three defects, all read
+directly off the shipped Thumb:
+
+**(a) The catalogued extent is 16 bytes SHORT.**  Ghidra reports `0x3ec`
+(0xe53c..0xe928), but `0xe92c` and `0xe936` hold two more reachable arms whose
+branches land back inside the function (`0xe92e -> 0xe644`, `0xe936 -> 0xe62c`).
+`float_is_nan`'s `push {r3, lr}` prologue starts at `0xe938`, so the true extent
+is **`0x3fc`** — which is also what the reconstruction's own header comment
+("exact extent 1020 bytes") always claimed.  Added to `TRUE_SIZE_OVERRIDES` in
+`tools/cfg_verify.py` and `tools/recon_kit.py`.
+
+**(b) The temperature break-point selection** (`0xe5d8..0xe644` plus the
+out-of-line arms at `0xe874 / 0xe892 / 0xe924 / 0xe930`).  `s14` is `t0` on
+every arm that does not overwrite it, and the final clamp assigns to `s18` (the
+`limit` argument), never to `s14`.  The previous body left `s14` at `t1` on the
+`t0 < t1` path and wrote `upper = limit` instead of `limit = upper`.  Those are
+exactly the two workspace words `cfg_verify` reported as differing — events 67
+and 68, workspace `+0x1744` and `+0x1748`, shifted by one against the original.
+
+**(c) The output interpolation** (`0xe700..0xe8f2`).  Three separate errors:
+* the range test.  `0xe72c bpl` / `0xe738 ble` send everything EXCEPT
+  `lower < base < upper` to `0xe87a`, and the in-range case then goes **straight
+  to the `floorf` arm at `0xe796`**, jumping over the `0xe794 cbz r2` that gates
+  it.  Both extrapolation arms reach that `cbz` with `r2 == 0`, so **`floorf`
+  runs only in range.**  The previous body ran the LOW extrapolation for the
+  in-range case and then ran the `floorf` arm as well — the
+  `direct-target (8, 0xe938, 0x868fc)` mismatch: the candidate called `floorf`
+  where the original goes straight to `float_is_nan`.  The `0xe91a` arm, reached
+  through `bhi` (true for UNORDERED), is the NaN case and yields exactly 0.
+* the sign of the upper extrapolation: `0xe780 vsub s14, s14, s13` forms
+  (value-at-knot - value-below), and `0xe78c`/`0xe790` add the at-knot value
+  back.  The previous body passed the pair in the order that negates the slope.
+* two table indices.  `0xe7de vldr s16,[r5,#0x38c]` with
+  `r5 = source + 4*right + 0x1000` is BYTE offset `0x138c`, float index
+  `0x4e3`; the previous body used `0x38c` as a float index (byte `0xe30`).
+  Same for `0x11a4` vs `0x1a4`.
+
+**`tools/cfg_verify.py app FUN_0000e53c`: FAIL 13/43 -> PASS 43/43.**  This
+function has been on `AGENTS.md`'s STILL-OPEN false-proof list since the
+float-argument harness work; it is now closed.
+
+**Measured (build `g1-i40b-app`, dashboard stimulus, probe
+`/private/tmp/g1-i40/probe-e.out`):**
+
+| | shipped | `g1-i39c` | `g1-i40a` | **`g1-i40b`** |
+|---|---:|---:|---:|---:|
+| `device_info[0xfc0]` (battery %) | 100 | 92 | 92 | **100** (x15) |
+| `box_placement_animation_step` | 15 | 3 | 14 | **15** |
+| `fuel_gauge_read_voltage_current_temp` | — | — | 165 | **16** |
+| `saadc` whole run | 998 | 184 | 932 | **998** |
+| `twim1` nPM1300 `p1_boot` | 285 | 535 | 684 | **285, stream sha EQ** |
+
+The battery percentage, the animation-step count and the SAADC access count are
+now **exactly** the shipped figures, and the nPM1300 boot stream is byte-
+identical again.
+
+### 40.11 The NDEF PAYLOAD goes byte-identical — a dropped `memcpy` length and
+### a stack object GCC was free to split
+
+`g1-i40b` still wrote the wrong 28 bytes to the ST25DV mailbox: 24 of the 25
+boot transactions matched the oracle exactly, and transaction 23 — the payload
+— was
+
+```
+oracle 0006 91 06 06 "WLCCAP"  20 01 09 1E 03 0A  51 07 03 "WLCSTAI" 05 64 01
+ours   0006 70 21 00 20 B7 F1 05 00 B6 F1 05 00 00 00 00 00 21 4C 00 20 ...
+```
+
+i.e. stale stack (`0x20002170`, `0x0005f1b7`, …), while the LENGTH was already
+right.  A right length with wrong bytes means `opt_list_total_len` worked and
+the serializer did not.  Four more defects, all in documented blind classes:
+
+1. **`opt_node_total_len` (`0x7c41c`)** called `opt_node_header_len` with no
+   argument; shipped `0007c41e mov r5,r0 / 0007c420 bl #0x7c3ea` leaves r0 = the
+   node.
+2. **`opt_node_serialize_7c5ba` (`0x7c5ba`)** called `opt_node_value_len` with
+   no argument; shipped `0007c5e0 bl #0x7c408` with r0 never rewritten since
+   entry.
+3. **`opt_node_serialize` (`0x7c6a0`)** called `memcpy` with **two** arguments
+   at all three sites — the record type name, the record id and every payload
+   fragment.  The shipped code loads the length each time
+   (`0007c6e4 ldrb r2,[r5,#1]`, `0007c6f8 ldrb r2,[r5,#2]`,
+   `0007c738 ldr r2,[sp,#0xc]`).  It also called `opt_node_total_len(0)` where
+   `0007c6ba` passes the node.
+4. **`opt_list_encode` (`0x7c77e`) — the actual blocker.**  The shipped body
+   hands `opt_node_serialize` a **two-word view object** at `sp+8/sp+0xc` and
+   reads the byte count back out of `sp+0xc` (`0007c7d0 ldr r3,[sp,#0xc]`).  The
+   reconstruction modelled it as **two separate locals**.  Measured in
+   `/private/tmp/g1-i40c-app/zephyr/zephyr.elf`, GCC therefore kept the length
+   in a register and emitted
+
+   ```
+   78f94  add r1, sp, #4
+   78f96  str r3, [sp, #4]        <- only the DATA word is written
+   78f98  bl  78e8c <opt_node_serialize>
+   ...
+   78faa  mov r8, r0              <- running offset = the callee's ZERO return
+   ```
+
+   so the callee compared its own total against a stale frame word, took its
+   `remaining < total` exit and returned 1 having serialized nothing; the caller
+   then wrote the total back into the view and the builder pushed 28 bytes of
+   uninitialised stack to the mailbox.  Both views are now explicit
+   `struct g1_opt_view { int data; int length; }` objects.
+
+`cfg_verify` PASSes every one of the four before AND after
+(`FUN_0007c41c` 0 cases, `FUN_0007c5ba` 4/4, `FUN_0007c6a0` 4/4,
+`FUN_0007c77e` 4/4) — dropped register arguments to order-keyed oracles, plus
+stack-object layout, are precisely the classes `AGENTS.md` lists as invisible.
+They were found by disassembling our own linked image and comparing it, site by
+site, with the shipped instructions.
+
+**Measured (build `g1-i40d-app`):** the ST25DV `0x53` boot stream is
+**25 == 25 transactions with `stream_sha256` `51e8cde73aa9…` EQUAL to the
+oracle, 0 of 25 transactions differing** — the WLCCAP + WLCSTAI NDEF message
+the shipped firmware writes, byte for byte.  And with it the WHOLE dashboard
+`twim1 p1_boot` bus goes **346 == 346, stream sha `0a8ed8502ccb…` EQUAL**:
+every OPT3001, nPM1300 and ST25DV transaction of the boot phase at once.
+
+### 40.12 Gates (build `g1-i40d-app`, net UNCHANGED `g1-i30e-net`)
+
+| gate | result |
+|---|---|
+| app FLASH | **955,048 B / 982,528 B = 97.20 %** (was 954,460 B / 97.14 %; **+588 B**) |
+| app RAM | **253,765 B — delta 0 B**; `_end` `0x2003ff45` unchanged |
+| net core | **UNTOUCHED**, still 225,581 B |
+| app `nm -u` / duplicate GLOBAL definitions | **0 / 0** |
+| `check_ram_pin_collisions.py` (app) raw-in-object / escaping | **0 / 0**; bound OK 627 |
+| `check_ram_pin_collisions.py --core net` | **0 / 0**; bound 170 |
+| `check_thread_create_stack_args.py` | **10/10, EXIT 0** |
+| `gen_app_data_image.py --selftest` | clean (0 FAIL/mismatch lines) |
+| `tools/verify_data.py` | **995 / 995 files byte-exact, 56,279 / 56,279 bytes, 100.00 %** |
+| `tools/gen_retained_sources.py --check` | "retained source lists are current" |
+| **dashboard `p2_render` pixel gate** | **`19b1f24a09f97a8d…` — `cmp` vs golden: NO DIFFERENCE** |
+| **dashboard `p1_boot` pixel gate** | **`0c5cc90b079d0d9c…`, 153,600 B all-zero — byte-checked** |
+| **navigation `p2_render` pixel gate** | **`b26c73b37d441fc8…` — `cmp` vs golden: NO DIFFERENCE** |
+| **navigation `p1_boot` pixel gate** | **`1d617c65a688f10e…` — `cmp` vs golden: NO DIFFERENCE** |
+| `cfg_verify` `FUN_0007c38a` / `FUN_0007c39c` | PASS 2/2 / PASS 2/2 |
+| `cfg_verify` `FUN_00024a40` / `FUN_00024ad8` | **PASS 41/41 / PASS 59/59** (directed cursor fixtures; 9 + 8 negative controls all FAIL) |
+| `cfg_verify` `FUN_00025020` / `FUN_00025058` | PASS 4/4 / PASS 4/4 |
+| `cfg_verify` `FUN_0000e53c` | **FAIL 13/43 -> PASS 43/43** — §39.9 item 5 CLOSED |
+| `cfg_verify` `FUN_0007c3da` / `0007c408` / `0007c670` | PASS 2/2 / 2/2 / 6/6 |
+| `cfg_verify` `FUN_0007c41c` / `0007c5ba` / `0007c6a0` / `0007c77e` | PASS 0 / 4/4 / 4/4 / 4/4 |
+| **`S-D-ADC`** | **998 == 998 accesses** (was 668 pre-regression, 184 in i39c); stream sha still NE |
+| **`S-D-PMIC` `p1_boot` (dashboard)** | **285 == 285, stream sha `4a5a7e113a23…` EQ — RESTORED** |
+| **ST25DV `0x53` `p1_boot` (both stimuli)** | **25 == 25, stream sha `51e8cde73aa9…` EQ — NEW** |
+| **ST25DV `0x57` `p1_boot` (both stimuli)** | **22 == 22, stream sha EQ** |
+| **whole `twim1` `p1_boot` (dashboard)** | **346 == 346, stream sha `0a8ed8502ccb…` EQ — NEW** |
+| `S-D-ALS` (dashboard) | `opt3001` 14 / 59, both phases sha **EQ** |
+| `S-D-IMU` `p1_boot` (dashboard) | `twim2` 1075 == 1075, stream sha **EQ** |
+| `S-D-MIC` / `S-D-KEYS` | `pdm0` 2, `gpiote0` 25, whole-run sha **EQ** |
+| **`D-3`** | `spim_a` `p1_boot` **34 == 34, stream sha EQ — PASS** |
+| `S-D-PMIC` `p2_render` (dashboard) | 513 vs 514 — NE, one transaction short |
+| `G-3` (navigation `spim_a`) | 126 vs 764 / 109 vs 2,881 — unchanged, still open |
+
+Behavioural probe (`/private/tmp/g1-i40/probe-g.out`, dashboard stimulus, 20 s):
+`handle_box_placement_event` 15, `box_placement_animation_step` **15** (shipped
+15), `fuel_gauge_update` 15, `fuel_gauge_read_voltage_current_temp` **16**
+(one per update plus the init), `st25dv_build_and_write_ndef_records` 1 and
+`st25dv_mailbox_write_with_retry` 1 at **t = 4.2337 s**, with the run continuing
+normally to 20 s.  `device_info[0xfc0]` reads **100** on all fifteen samples.
+**The §39.8 hang at t = 4.3882 s is gone.**
+
+### 40.13 What is NOT closed
+
+1. **`G-3` — navigation `spim_a` repaint frequency.**  126 vs 764 (`p1_boot`)
+   and 109 vs 2,881 (`p2_render`), with byte-identical framebuffers.  Untouched
+   this iteration; §39.9 item 4's evidence that it is a genuine reconstruction
+   difference and not a Renode artifact still stands.
+2. **`saadc` stream sha.**  The access COUNT is now exactly 998, but the
+   register stream hash differs (`977ee85341ad…` vs `660cdf3bff15…`).  Not
+   investigated; the count was the standing gate.
+3. **Dashboard `twim1` `p2_render`**: 572 vs 584, nPM1300 513 vs 514.  One
+   nPM1300 transaction short in the render phase.  Not investigated.
+4. **`twim2` `p2_render`** remains NE on both stimuli (1206 == 1206 and
+   1200 == 1200 transactions, different stream).  This is §38.2's sampling-phase
+   effect, unchanged.
+5. **A navigation-stimulus phase shift introduced between `g1-i40b` and
+   `g1-i40d`.**  Stated plainly because it moved the wrong way: on `g1-i40b`
+   the navigation `twim1 p1_boot` nPM1300 stream was **291 == 291 sha EQ** and
+   OPT3001 **33 == 33 sha EQ**; on `g1-i40d` — which differs only in that the
+   NDEF serializer now actually performs its three `memcpy`s — they are
+   **291 == 291 sha NE** and **35 vs 33**.  The dashboard stimulus went the
+   other way (whole-bus `p1_boot` EQ).  Doing real work shifts the sampling
+   phase against the gesture playback, exactly as §38.2 describes; the
+   `g1-i40d` behaviour is the more faithful one (the shipped firmware also
+   writes those bytes), so this was not reverted.
+6. **`__extendsfdf2` in `fuel_gauge_update`** still declares a hard-float
+   argument behind `if (0 < g_log_level)`; §39.9 item 7's latent defect is
+   unchanged.
+7. **The `-ffp-contract` pin for `0xe53c`** (§39.9 item 6): the shipped body
+   uses `VFMA`, so by `AGENTS.md` §1b it is a fused unit, and the cohesive build
+   still does not pin a per-TU contract for it.  `cfg_verify` PASSes 43/43
+   without it, so this affects byte-match of codegen, not semantics.  Not done.
+8. **`tools/build_app_address_taken_roots.py` was NOT re-run** — it reads an ELF
+   at a stale hard-coded path (`/private/tmp/g1-cohesive-app-head-f49a3b86`) and
+   its ledger is gated OFF (`G1_ENABLE_ADDRESS_TAKEN_ROOTS`), so the six new
+   functions are absent from it.  They are rooted by the `ADDR_*_THUMB` address
+   references instead, which the 0-undefined link and the measured vtable words
+   confirm.
+9. **`cfg_verify --self-test`** was not run (it is already broken at HEAD per
+   `AGENTS.md` §1b).  Per-function verification and hand-written negative
+   controls were used instead.
+
+### Regenerate (iteration 40)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+recon/application/build_cohesive.sh app /private/tmp/g1-i40d-app
+# net UNCHANGED from iteration 30 (g1-i30e-net)
+printf '$rtinfo_pc=0x00015bc8\ni @/Users/freedomcoder/Projects/armemul/g1-ours-paired.resc\n' \
+  > /private/tmp/g1-i40/ours-paired-i40d.resc
+# `_end` = 0x2003ff45 -> ctx 0x2003ff50; +0xd5/+0xfe8/+0x105a =
+# 0x20040025 / 0x20040F38 / 0x20040FAA.  TAKE THESE FROM THE ELF YOU BOOT, and
+# take $rtinfo_pc from `nm zephyr.elf | grep -w runtime_info_sync` (it MOVED
+# from 0x15b98 to 0x15bc8 in this iteration).
+bash -c 'F=$(mktemp -u); mkfifo $F; sleep 100000 > $F & W=$!
+G1_ATT_WRITE="" G1_RESC=/private/tmp/g1-i40/ours-paired-i40d.resc \
+G1_APP_ELF=/private/tmp/g1-i40d-app/zephyr/zephyr.elf \
+G1_NET_ELF=/private/tmp/g1-i30e-net/zephyr/zephyr.elf \
+G1_HOOKS=0 G1_CTX_FE8=0x20040F38 G1_CTX_105A=0x20040FAA G1_SCREEN_ID=0x20040025 \
+  recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_ours_dash_i40d < $F
+kill $W; rm -f $F'
+# navigation: identical with G1_ATT_WRITE left UNSET, into /private/tmp/g1_ours_nav_i40d
+PYTHONSAFEPATH=1 .venv/bin/python recon/emulator/scripts/build_display_sensor_oracle.py \
+  /private/tmp/g1_ours_dash_i40d /private/tmp/g1-i40/rep-dash-d
+# Renode probe runs MUST be started with cwd = ~/Projects/armemul (g1-ours-paired.resc
+# includes `g1-ours.resc` by RELATIVE path) and with `--console --plain`; without
+# those the include fails silently and the run produces no hook output.
+```
+
+Files changed this iteration (**nothing committed, net core and `armemul`
+untouched, `recon/refactor/` untouched**):
+
+* NEW reconstructions, in `recon/app/src/` + `recon/verified/src/` (raw) and
+  `recon/named/` + `recon/symbolized/app/` (named):
+  `FUN_0007c38a`/`wlccap_record_value_len`,
+  `FUN_0007c39c`/`wlcstai_record_value_len`,
+  `FUN_00024a40`/`wlccap_record_next_fragment`,
+  `FUN_00024ad8`/`wlcstai_record_next_fragment`,
+  `FUN_00025020`/`wlccap_record_encode`,
+  `FUN_00025058`/`wlcstai_record_encode`
+  (+ six symlinks in `recon/application/src/`).
+* FIXED reconstructions, across `recon/app/src`, `recon/verified/src`,
+  `recon/named`, `recon/symbolized/app` and `recon/readable_sources/app/g1`:
+  `FUN_0007c3da`/`invoke_optional_op_offset12`,
+  `FUN_0007c408`/`opt_node_value_len`,
+  `FUN_0007c41c`/`opt_node_total_len`,
+  `FUN_0007c5ba`/`opt_node_serialize_7c5ba`,
+  `FUN_0007c670`/`serialization_read_or_copy`,
+  `FUN_0007c6a0`/`opt_node_serialize`,
+  `FUN_0007c77e`/`opt_list_encode`,
+  `FUN_0000e53c`/`battery_soc_curve_model_init`.
+* REBOUND: `event_record_init` and `fill_record_type8` (symbolized + readable).
+* `recon/catalogs/function_names_app.json` — six new entries (2,534 -> 2,540).
+* `recon/symbols/g1_app_symbols.h` — six `__g1_fp_*` externs, six
+  `ADDR_*_THUMB` macros, five new global declarations.
+* `recon/symbols/g1_app_globals.ld` — six numeric code pins DELETED, five new
+  pins added.
+* NEW wiring TU `recon/application/app/src/g1_wlc_ndef_type_records.c` +
+  its entry in `recon/application/app/CMakeLists.txt`.
+* `recon/generated/app_retained_sources.cmake` — regenerated (1609 -> 1615).
+  `recon/generated/app_gc_roots.cmake` — regenerated, no change.
+* `tools/cfg_verify.py` — seven `TRUE_SIZE_OVERRIDES` entries (six new
+  functions + the `0xe53c` extent correction) and two
+  `ADDITIONAL_STATE_CASES` fixtures; `tools/recon_kit.py` — the mirrored
+  `TRUE_SIZE_OVERRIDES` entries.  No verifier logic changed.
+
+### 40.14 Final `cfg_verify` sweep of the whole touched family (build-final tree)
+
+```
+FUN_0007c38a PASS cases=2     FUN_0007c3da PASS cases=2     FUN_00025090 PASS cases=4
+FUN_0007c39c PASS cases=2     FUN_0007c408 PASS cases=2     FUN_000250c4 PASS cases=4
+FUN_00024a40 PASS cases=41    FUN_0007c41c PASS cases=0     FUN_000250f8 PASS cases=0
+FUN_00024ad8 PASS cases=59    FUN_0007c5ba PASS cases=4     FUN_0002ea28 PASS cases=3
+FUN_00025020 PASS cases=4     FUN_0007c670 PASS cases=6     FUN_0000e53c PASS cases=43
+FUN_00025058 PASS cases=4     FUN_0007c6a0 PASS cases=4
+                              FUN_0007c77e PASS cases=4
+```
+
+`cases=0` entries (`FUN_0007c41c`, `FUN_000250f8`) are vacuous — the function
+exposes no argument-derived selector — and are recorded as such rather than
+counted as evidence.  Eight of the eleven defects this iteration fixed were
+found by disassembling the shipped bytes and OUR OWN LINKED IMAGE side by side,
+not by the harness; `cfg_verify` PASSed the broken body in every one of those
+eight cases, before and after.

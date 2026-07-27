@@ -35,10 +35,16 @@ PROVIDE(rodata_243ec = 0x000243ec);
 PROVIDE(rodata_243f0 = 0x000243f0);
 PROVIDE(rodata_243f4 = 0x000243f4);
 PROVIDE(rodata_243f8 = 0x000243f8);
-PROVIDE(rodata_24a41 = 0x00024a41);
-PROVIDE(rodata_24ad9 = 0x00024ad9);
-PROVIDE(rodata_25021 = 0x00025021);
-PROVIDE(rodata_25059 = 0x00025059);
+/* CODE-POINTER REBIND (iteration 40): rodata_24a41 / rodata_24ad9 /
+ * rodata_25021 / rodata_25059 -- and rodata_7c38b / rodata_7c39d below --
+ * were the six odd (Thumb) op-vtable entries that event_record_init and
+ * fill_record_type8 plant at record+4/+8/+12.  All six targets are now
+ * recovered functions (recon/app/src/FUN_0007c38a.c, FUN_00024a40.c,
+ * FUN_00025020.c and their type-8 siblings), and the two constructors take
+ * their addresses through ADDR_<name>_THUMB in recon/symbols/g1_app_symbols.h,
+ * which also ROOTS them against --gc-sections (a lazy PROVIDE would not).
+ * The numeric pins are therefore gone, so a link that lost one of the six
+ * fails loudly instead of `bx`ing into our own relocated .text again. */
 /* CODE-POINTER REBIND (iteration 4): odd (Thumb) flash pin was the
  * original-image entry 0x25ae8 of the IPC-service registrar, stored raw into
  * ctx[0x64] by register_ipc_service_context and later called by main through
@@ -120,8 +126,7 @@ PROVIDE(rodata_76b91 = 0x00076b91);
 PROVIDE(rodata_79274 = 0x00079274);
 PROVIDE(rodata_7c00d = local_esbs_ctrl_ipc_service_recv | 1); /* iteration 8 rebind */
 PROVIDE(rodata_7c26b = 0x0007c26b);
-PROVIDE(rodata_7c38b = 0x0007c38b);
-PROVIDE(rodata_7c39d = 0x0007c39d);
+/* rodata_7c38b / rodata_7c39d: see the iteration-40 note above. */
 PROVIDE(rodata_7d4cb = projector_clear_canvas | 1); /* iteration 14 rebind */
 PROVIDE(rodata_7d4d7 = projector_flush_canvas | 1); /* iteration 14 rebind */
 PROVIDE(rodata_7d86d = 0x0007d86d);
@@ -464,6 +469,14 @@ PROVIDE(rodata_88a2a = g1_adc_nfc_channel_cfg);
  * to relocate, so the build emits it.  Storage:
  * recon/application/app/src/g1_st25dv_ops_table.c. */
 PROVIDE(rodata_88a38 = g1_st25dv_ops_table);
+/* P4 iteration 40: the two NFC-Forum WLC NDEF record TYPE descriptors
+ * (original .data 0x200023bc / 0x200023c4).  Their contents are
+ * original-image flash pointers to the "WLCSTAI"/"WLCCAP" type-name strings,
+ * which the arena .data restore drops and which nothing else emits, so like
+ * the ops table above the objects are emitted and the pins bound onto them:
+ * recon/application/app/src/g1_wlc_ndef_type_records.c. */
+PROVIDE(g_wlcstai_record_type = g1_wlcstai_ndef_type);
+PROVIDE(g_wlccap_record_type = g1_wlccap_ndef_type);
 PROVIDE(rodata_88a44 = 0x00088a44);
 /* RODATA EMISSION (iteration 39) — the battery state-of-charge model CURVE
  * TABLE, 5632 B (0x1600).  There was NO pin for it at all before this
@@ -2011,6 +2024,8 @@ PROVIDE(g_font_crc32 = g1_ram_arena + 0x59e0);
 PROVIDE(g_app_language_msgq = g1_ram_arena + 0x59e4);
 PROVIDE(g_box_mailbox_synced_flag = g1_ram_arena + 0x59fc);
 PROVIDE(g_20007a00 = g1_ram_arena + 0x5a00);
+PROVIDE(g_wlcstai_fragment_cursor = g1_ram_arena + 0x5a08);
+PROVIDE(g_wlccap_fragment_cursor = g1_ram_arena + 0x5a0c);
 PROVIDE(g_20007a04 = g1_ram_arena + 0x5a04);
 PROVIDE(g_box_last_seen_uptime = g1_ram_arena + 0x5a10);
 PROVIDE(g_st25dv_mailbox_msg = g1_ram_arena + 0x5a14);
@@ -2340,6 +2355,7 @@ PROVIDE(g_20018463 = g1_ram_arena + 0x16463);
 PROVIDE(g_quicknote_flash_page_buf = g1_ram_arena + 0x16465);
 PROVIDE(g_20018c65 = g1_ram_arena + 0x16c65);
 PROVIDE(g_20018c66 = g1_ram_arena + 0x16c66);
+PROVIDE(g_wlc_fragment_staging_byte = g1_ram_arena + 0x16c67);
 PROVIDE(g_box_present_flag = g1_ram_arena + 0x16c68);
 PROVIDE(g_board_rev_flag = g1_ram_arena + 0x16c69);
 PROVIDE(g_ndef_build_status_flag = g1_ram_arena + 0x16c6a);

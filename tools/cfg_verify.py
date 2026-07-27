@@ -527,6 +527,25 @@ TRUE_SIZE_OVERRIDES = {
     ("app", 0x00035744): 0x28,  # whitelist dump/init wrapper
     ("app", 0x0003cebc): 0x72,  # do-not-disturb state setter
     ("app", 0x00024e60): 0xa0,  # framed transport write
+    # P4 iteration 40: FUN_0000e53c battery_soc_curve_model_init.  The
+    # Ghidra catalog stops at 0x3ec, but 0xe924..0xe936 hold two more
+    # reachable arms of the temperature break-point selection (0xe92e
+    # branches back to 0xe644 and 0xe936 to 0xe62c).  float_is_nan's
+    # `push {r3, lr}` prologue starts at 0xe938, so 0x3fc is exact.
+    ("app", 0x0000e53c): 0x3fc,
+    # P4 iteration 40: the six catalog-missing NFC-Forum WLC NDEF record ops.
+    # Each is installed as an odd (Thumb) literal at offset +4/+8/+12 of the
+    # record built by event_record_init (type 7 = "WLCCAP") or
+    # fill_record_type8 (type 8 = "WLCSTAI"), and is reachable ONLY through
+    # that vtable, which is why the Ghidra export never catalogued them.  Each
+    # extent stops at the last reachable branch/return; the following aligned
+    # halfword is padding and the words after it are the literal pool.
+    ("app", 0x0007c38a): 0x0e,  # WLCCAP  value_len   (pool: none; next entry 0x7c398)
+    ("app", 0x0007c39c): 0x26,  # WLCSTAI value_len   (next entry 0x7c3c2)
+    ("app", 0x00024a40): 0x8e,  # WLCCAP  iterator    (pad 0x24ace, pool 0x24ad0)
+    ("app", 0x00024ad8): 0xba,  # WLCSTAI iterator    (pad 0x24b92, pool 0x24b94)
+    ("app", 0x00025020): 0x32,  # WLCCAP  encode      (pad 0x25052, pool 0x25054)
+    ("app", 0x00025058): 0x32,  # WLCSTAI encode      (pad 0x2508a, pool 0x2508c)
     ("app", 0x0004372c): 0xc8,  # display-mode globals dispatcher
     # Independently callable SDK/application entries missed by the Ghidra
     # function catalog.  Extents were reviewed directly from the shipped
@@ -15343,6 +15362,82 @@ ADDITIONAL_STATE_CASES[("app", 0x00075c2c)] = [
     ({}, [(0x200035af, b"\xff")]),
     ({}, [(0x200035af, b"\x00")]),
     ({}, [(0x200035af, b"\x00")]),
+]
+
+# P4 iteration 40.  The two WLC NDEF payload iterators (FUN_00024a40 for the
+# type-7 "WLCCAP" record, FUN_00024ad8 for the type-8 "WLCSTAI" record) select
+# their arm from a FILE-SCOPE CURSOR (0x20007a0c / 0x20007a08), not from an
+# argument, so the generic argument-derived selector search cannot reach a
+# single one of the six / nine arms: it only varies the three pointers.  These
+# cases drive the cursor across its whole range plus one value past it, with a
+# production-shaped record and out view, and additionally exercise the rewind
+# flag.  Without them a body that implements only the cursor-0 arm passes.
+_wlc_record = emu.SCRATCH + 0x1000
+_wlc_view = emu.SCRATCH + 0x2000
+def _wlccap_image(payload):
+    return bytes([7, 0, 0, 0]) + bytes(12) + bytes(payload)
+
+
+# Four payload images, deliberately NOT degenerate.  Cursor arms 1 and 2 pack
+# bit fields and then TRUNCATE with `strb`, so a single image can make a wrong
+# mask agree by accident: with record[0x15] = 0x0f the `(rec[0x16] & 0x1f)`
+# term is indistinguishable from `& 0x3f`, because bit 5 is already set by
+# `rec[0x15] << 5`.  Measured this session -- that exact mutation PASSed 17/17
+# on a one-image fixture.  Image C keeps every contributing bit separable, and
+# the all-ones / all-zeros images bracket it.
+_WLCCAP_PAYLOADS = (
+    (0x5a, 0xa5, 0xc3, 0x3c, 0xf0, 0x0f, 0x69, 0x96, 0x11, 0x22),
+    (0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff),
+    (0x00, 0x01, 0x0a, 0x01, 0x00, 0x0e, 0x69, 0x80, 0x7f, 0x40),
+    (0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00),
+)
+_wlccap_default = _wlccap_image(_WLCCAP_PAYLOADS[0])
+ADDITIONAL_STATE_CASES[("app", 0x00024a40)] = [
+    ({0: _wlc_record, 1: _wlc_view, 2: 0},
+     [(_wlc_record, _wlccap_image(payload)),
+      (_wlc_view, bytes(8)),
+      (0x20007a0c, cursor.to_bytes(4, "little")),
+      (0x20018c67, b"\x00")])
+    for payload in _WLCCAP_PAYLOADS
+    for cursor in (0, 1, 2, 3, 4, 5, 6, 7)
+] + [
+    # Rewind: a non-zero third argument must zero the cursor BEFORE it is read,
+    # so this case must behave exactly like cursor 0 no matter what it held.
+    ({0: _wlc_record, 1: _wlc_view, 2: 1},
+     [(_wlc_record, _wlccap_default),
+      (_wlc_view, bytes(8)),
+      (0x20007a0c, (4).to_bytes(4, "little")),
+      (0x20018c67, b"\x00")]),
+    # Wrong type byte and a NULL out view stay covered explicitly.
+    ({0: _wlc_record, 1: _wlc_view, 2: 0},
+     [(_wlc_record, b"\x08" + _wlccap_default[1:]),
+      (0x20007a0c, (1).to_bytes(4, "little"))]),
+    ({0: _wlc_record, 1: 0, 2: 0},
+     [(_wlc_record, _wlccap_default),
+      (0x20007a0c, (1).to_bytes(4, "little"))]),
+]
+ADDITIONAL_STATE_CASES[("app", 0x00024ad8)] = [
+    ({0: _wlc_record, 1: _wlc_view, 2: 0},
+     [(_wlc_record, bytes([8, 0, 0, 0]) + bytes(12) + bytes([bitmap]) +
+       bytes([0x5a, 0xa5, 0xc3, 0x3c, 0xf0, 0x0f, 0x69, 0x96, 0x11])),
+      (_wlc_view, bytes(8)),
+      (0x20007a08, cursor.to_bytes(4, "little"))])
+    for bitmap in (0xFF, 0x00, 0xA5, 0x80, 0x01)
+    for cursor in (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+] + [
+    ({0: _wlc_record, 1: _wlc_view, 2: 1},
+     [(_wlc_record, bytes([8, 0, 0, 0]) + bytes(12) + bytes([0xA5]) +
+       bytes([0x5a, 0xa5, 0xc3, 0x3c, 0xf0, 0x0f, 0x69, 0x96, 0x11])),
+      (_wlc_view, bytes(8)),
+      (0x20007a08, (6).to_bytes(4, "little"))]),
+    ({0: _wlc_record, 1: _wlc_view, 2: 0},
+     [(_wlc_record, bytes([7, 0, 0, 0]) + bytes(12) + bytes([0xA5]) +
+       bytes(9)),
+      (0x20007a08, (1).to_bytes(4, "little"))]),
+    ({0: _wlc_record, 1: 0, 2: 0},
+     [(_wlc_record, bytes([8, 0, 0, 0]) + bytes(12) + bytes([0xA5]) +
+       bytes(9)),
+      (0x20007a08, (1).to_bytes(4, "little"))]),
 ]
 _request_context = emu.SCRATCH + 0x1400
 _request_memory = [

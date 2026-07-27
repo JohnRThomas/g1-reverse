@@ -141,6 +141,18 @@ extern const unsigned char __g1_fp_transport_dispatch_thread[] __asm__("transpor
 extern const unsigned char __g1_fp_uart_callback[] __asm__("uart_callback");
 extern const unsigned char __g1_fp_virtqueue_return_rx_buffer[] __asm__("virtqueue_return_rx_buffer");
 extern const unsigned char __g1_fp_z_impl_net_if_ipv6_addr_rm_by_index[] __asm__("z_impl_net_if_ipv6_addr_rm_by_index");
+/* P4 iteration 40: the six uncatalogued NFC-Forum WLC NDEF record ops.  They
+ * are reachable ONLY through the op vtable that event_record_init (type 7,
+ * "WLCCAP") and fill_record_type8 (type 8, "WLCSTAI") plant at record+4/+8/+12,
+ * so every one of them was still a raw original-image Thumb literal and the
+ * `bx r3` in invoke_optional_op_offset12 jumped into our own relocated .text.
+ * Measured: the low-speed peripheral thread stopped at t = 4.3882 s. */
+extern const unsigned char __g1_fp_wlccap_record_value_len[] __asm__("wlccap_record_value_len");
+extern const unsigned char __g1_fp_wlccap_record_next_fragment[] __asm__("wlccap_record_next_fragment");
+extern const unsigned char __g1_fp_wlccap_record_encode[] __asm__("wlccap_record_encode");
+extern const unsigned char __g1_fp_wlcstai_record_value_len[] __asm__("wlcstai_record_value_len");
+extern const unsigned char __g1_fp_wlcstai_record_next_fragment[] __asm__("wlcstai_record_next_fragment");
+extern const unsigned char __g1_fp_wlcstai_record_encode[] __asm__("wlcstai_record_encode");
 
 #define ADDR_FUN_00021da8_THUMB (((unsigned long)&__g1_fp_FUN_00021da8) | 1u) /* FUN_00021da8 -> &ble_work_thread; was 0x21da9 */
 #define ADDR_FUN_00023844_THUMB (((unsigned long)&__g1_fp_FUN_00023844) | 1u) /* FUN_00023844 -> &brightness_level; was 0x23845 */
@@ -290,6 +302,12 @@ extern const unsigned char __g1_fp_z_impl_net_if_ipv6_addr_rm_by_index[] __asm__
 /* UNRESOLVED (no defined symbol for 0x7ee48) -- kept as original literal */
 #define ADDR_z_cbprintf_cpy_THUMB            0x7ee49 /* z_cbprintf_cpy */
 #define ADDR_z_impl_net_if_ipv6_addr_rm_by_index_THUMB (((unsigned long)&__g1_fp_z_impl_net_if_ipv6_addr_rm_by_index) | 1u) /* z_impl_net_if_ipv6_addr_rm_by_index -> &z_impl_net_if_ipv6_addr_rm_by_index; was 0x80c8d */
+#define ADDR_wlccap_record_value_len_THUMB (((unsigned long)&__g1_fp_wlccap_record_value_len) | 1u) /* wlccap_record_value_len -> &wlccap_record_value_len; was 0x7c38b */
+#define ADDR_wlccap_record_next_fragment_THUMB (((unsigned long)&__g1_fp_wlccap_record_next_fragment) | 1u) /* wlccap_record_next_fragment -> &wlccap_record_next_fragment; was 0x24a41 */
+#define ADDR_wlccap_record_encode_THUMB (((unsigned long)&__g1_fp_wlccap_record_encode) | 1u) /* wlccap_record_encode -> &wlccap_record_encode; was 0x25021 */
+#define ADDR_wlcstai_record_value_len_THUMB (((unsigned long)&__g1_fp_wlcstai_record_value_len) | 1u) /* wlcstai_record_value_len -> &wlcstai_record_value_len; was 0x7c39d */
+#define ADDR_wlcstai_record_next_fragment_THUMB (((unsigned long)&__g1_fp_wlcstai_record_next_fragment) | 1u) /* wlcstai_record_next_fragment -> &wlcstai_record_next_fragment; was 0x24ad9 */
+#define ADDR_wlcstai_record_encode_THUMB (((unsigned long)&__g1_fp_wlcstai_record_encode) | 1u) /* wlcstai_record_encode -> &wlcstai_record_encode; was 0x25059 */
 /* ---- RAM globals / kernel objects (738) ---- */
 extern volatile unsigned int g_sram_base_word; /* @0x20000000 */
 extern volatile unsigned int g_20000800; /* @0x20000800 */
@@ -574,6 +592,8 @@ extern volatile unsigned int g_font_flash_write_offset; /* @0x200079dc */
 extern volatile unsigned int g_font_crc32; /* @0x200079e0 */
 extern volatile unsigned int g_app_language_msgq; /* @0x200079e4 */
 extern volatile unsigned int g_box_mailbox_synced_flag; /* @0x200079fc */
+extern volatile unsigned int g_wlcstai_fragment_cursor; /* @0x20007a08 */
+extern volatile unsigned int g_wlccap_fragment_cursor; /* @0x20007a0c */
 extern volatile unsigned int g_20007a00; /* @0x20007a00 */
 extern volatile unsigned int g_20007a04; /* @0x20007a04 */
 extern volatile unsigned int g_box_last_seen_uptime; /* @0x20007a10 */
@@ -865,6 +885,14 @@ extern volatile unsigned int g_20018c65; /* @0x20018c65 */
 extern volatile unsigned int g_20018c66; /* @0x20018c66 */
 extern volatile unsigned int g_box_present_flag; /* @0x20018c68 */
 extern volatile unsigned char g_board_rev_flag; /* @0x20018c69 */
+extern volatile unsigned char g_wlc_fragment_staging_byte; /* @0x20018c67 */
+/* P4 iteration 40: the two shipped `.data` NDEF type descriptors
+ * { const char *type_name; unsigned int len; } that the WLC encode ops hand
+ * to opt_field1_set.  Their contents are original-image FLASH POINTERS, so
+ * (like g1_st25dv_ops_table) the object has to be EMITTED and the pin bound
+ * onto it -- recon/application/app/src/g1_wlc_ndef_type_records.c. */
+extern const unsigned int g_wlcstai_record_type[]; /* @0x200023bc -> "WLCSTAI", 7 */
+extern const unsigned int g_wlccap_record_type[]; /* @0x200023c4 -> "WLCCAP", 6 */
 extern volatile unsigned char g_ndef_build_status_flag; /* @0x20018c6a */
 extern volatile unsigned char g_level_calc_input_b_cache; /* @0x20018c6b */
 extern volatile unsigned int g_20018c6c; /* @0x20018c6c */

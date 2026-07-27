@@ -118,8 +118,12 @@ how the arguments vary).
   work flips none of them. Details + the list: `float_arg_harness_fix.md` §7.4.
 - Sweep + open items: `recon/analysis/float_arg_harness_fix.md`. Fixed defects: `finitef`
   (`FUN_000869f2`, was `return 1`), `battery_soc_from_curve` (`FUN_0000e340`, float compare
-  where the image does a sign-bit test). **STILL OPEN (real, previously invisible):**
-  `FUN_0000e53c` `batt_soc_curve_estimate` and `FUN_0000c358` `battery_model_state_update`.
+  where the image does a sign-bit test). `FUN_0000e53c` `battery_soc_curve_model_init`
+  **CLOSED in P4 iteration 40** (FAIL 13/43 -> PASS 43/43: a 16-byte-short catalogued
+  extent, the temperature break-point selection, and the range test / slope sign / two
+  table indices of the output interpolation — see `recon/emulator/reports/our_boot_bringup.md`
+  §40.10). **STILL OPEN (real, previously invisible):** `FUN_0000c358`
+  `battery_model_state_update`.
 
 ### 2. Ghidra data-inflation — many "huge" functions are small code + a trailing DATA table
 Ghidra folds a trailing rodata table into the function symbol. CFG-reachable analysis (BFS from

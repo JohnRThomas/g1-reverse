@@ -27671,6 +27671,72 @@
    "human": true,
    "source": "iteration 17: uncatalogued 4-byte `movs r0,#0 / bx lr` leaf folded into the tail of FUN_0007d37a (0x7d37a); handler slot of g_screen_render_table (shipped .data 0x20002430) for screen id 10; that table word is its only referrer in the image",
    "aliases": []
+  },
+  "0x0007c38a": {
+   "address": "0x0007c38a",
+   "raw_name": "FUN_0007c38a",
+   "name": "wlccap_record_value_len",
+   "display_name": "wlccap_record_value_len",
+   "human": true,
+   "source": "P4 iteration 40: uncatalogued WLCCAP (NFC Forum Wireless Charging Capability) NDEF record value_len op, reached only through the literal 0x0007c38b stored at +4 by event_record_init",
+   "aliases": [
+    "FUN_0007c38a"
+   ]
+  },
+  "0x0007c39c": {
+   "address": "0x0007c39c",
+   "raw_name": "FUN_0007c39c",
+   "name": "wlcstai_record_value_len",
+   "display_name": "wlcstai_record_value_len",
+   "human": true,
+   "source": "P4 iteration 40: uncatalogued WLCSTAI (NFC Forum Wireless Charging Status and Information) NDEF record value_len op, reached only through the literal 0x0007c39d stored at +4 by fill_record_type8",
+   "aliases": [
+    "FUN_0007c39c"
+   ]
+  },
+  "0x00024a40": {
+   "address": "0x00024a40",
+   "raw_name": "FUN_00024a40",
+   "name": "wlccap_record_next_fragment",
+   "display_name": "wlccap_record_next_fragment",
+   "human": true,
+   "source": "P4 iteration 40: uncatalogued WLCCAP payload iterator, reached only through the literal 0x00024a41 stored at +8 by event_record_init",
+   "aliases": [
+    "FUN_00024a40"
+   ]
+  },
+  "0x00024ad8": {
+   "address": "0x00024ad8",
+   "raw_name": "FUN_00024ad8",
+   "name": "wlcstai_record_next_fragment",
+   "display_name": "wlcstai_record_next_fragment",
+   "human": true,
+   "source": "P4 iteration 40: uncatalogued WLCSTAI payload iterator, reached only through the literal 0x00024ad9 stored at +8 by fill_record_type8",
+   "aliases": [
+    "FUN_00024ad8"
+   ]
+  },
+  "0x00025020": {
+   "address": "0x00025020",
+   "raw_name": "FUN_00025020",
+   "name": "wlccap_record_encode",
+   "display_name": "wlccap_record_encode",
+   "human": true,
+   "source": "P4 iteration 40: uncatalogued WLCCAP encode op, reached only through the literal 0x00025021 stored at +12 by event_record_init",
+   "aliases": [
+    "FUN_00025020"
+   ]
+  },
+  "0x00025058": {
+   "address": "0x00025058",
+   "raw_name": "FUN_00025058",
+   "name": "wlcstai_record_encode",
+   "display_name": "wlcstai_record_encode",
+   "human": true,
+   "source": "P4 iteration 40: uncatalogued WLCSTAI encode op, reached only through the literal 0x00025059 stored at +12 by fill_record_type8",
+   "aliases": [
+    "FUN_00025058"
+   ]
   }
  },
  "by_name": {
@@ -30207,7 +30273,19 @@
   "screen_render_ret0_7d244": "0x0007d244",
   "screen_render_ret0_7d2f4": "0x0007d2f4",
   "screen_render_ret0_7d356": "0x0007d356",
-  "screen_render_ret0_7d37e": "0x0007d37e"
+  "screen_render_ret0_7d37e": "0x0007d37e",
+  "wlccap_record_value_len": "0x0007c38a",
+  "FUN_0007c38a": "0x0007c38a",
+  "wlcstai_record_value_len": "0x0007c39c",
+  "FUN_0007c39c": "0x0007c39c",
+  "wlccap_record_next_fragment": "0x00024a40",
+  "FUN_00024a40": "0x00024a40",
+  "wlcstai_record_next_fragment": "0x00024ad8",
+  "FUN_00024ad8": "0x00024ad8",
+  "wlccap_record_encode": "0x00025020",
+  "FUN_00025020": "0x00025020",
+  "wlcstai_record_encode": "0x00025058",
+  "FUN_00025058": "0x00025058"
  },
  "conflicts": {
   "slave_display_thread": [

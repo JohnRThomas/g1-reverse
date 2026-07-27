@@ -128,6 +128,17 @@ TRUE_SIZE_OVERRIDES = {
     0x00035744: 0x28,  # whitelist dump/init wrapper; literals at 0x3576c
     0x0003cebc: 0x72,  # do-not-disturb state setter; alignment at 0x3cf2e
     0x00024e60: 0xa0,  # framed transport write; literals begin at 0x24f00
+    # P4 iteration 40: two more reachable arms at 0xe924..0xe936; the
+    # next function (float_is_nan) starts at 0xe938.
+    0x0000e53c: 0x3fc,
+    # P4 iteration 40: the six catalog-missing NFC-Forum WLC NDEF record ops
+    # (see the matching block in tools/cfg_verify.py for the derivation).
+    0x0007c38a: 0x0e,  # WLCCAP  value_len
+    0x0007c39c: 0x26,  # WLCSTAI value_len
+    0x00024a40: 0x8e,  # WLCCAP  iterator; pad 0x24ace, literals 0x24ad0
+    0x00024ad8: 0xba,  # WLCSTAI iterator; pad 0x24b92, literals 0x24b94
+    0x00025020: 0x32,  # WLCCAP  encode;   pad 0x25052, literals 0x25054
+    0x00025058: 0x32,  # WLCSTAI encode;   pad 0x2508a, literals 0x2508c
     0x0004372c: 0xc8,  # display-mode globals dispatcher; literals begin at 0x437f4
     # lc3_tns_analyze continues through the final quantizer/order backedge at
     # 0x709c4; its trailing threshold literals begin at 0x709c8.

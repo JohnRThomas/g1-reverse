@@ -7,7 +7,11 @@
  */
 /* Reconstructed FUN_0007c5ba @ 0x7c5ba  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned opt_node_value_len(void);
+/* P4 iteration 40 -- DROPPED ARGUMENT.  Shipped 0007c5e0 `bl #0x7c408` is
+ * reached with r0 never rewritten since entry, so the value-length helper
+ * receives the node.  With no argument the candidate handed it whatever r0
+ * happened to hold. */
+extern unsigned opt_node_value_len(unsigned char *param_1);
 unsigned opt_node_serialize_7c5ba(unsigned char* param_1, int* param_2){
   unsigned uVar3; int iVar4,iVar5;
   if(param_1==0) return 7;
@@ -16,7 +20,7 @@ unsigned opt_node_serialize_7c5ba(unsigned char* param_1, int* param_2){
   if((unsigned)param_2[1] < 7){ param_2[1]=7; return 1; }
   *(unsigned char*)(*param_2) = *param_1;
   *(unsigned char*)(*param_2 + 1) = param_1[1];
-  uVar3 = opt_node_value_len();
+  uVar3 = opt_node_value_len(param_1);
   if(uVar3 <= 0xff){
     *(unsigned char*)(*param_2 + 2) = (unsigned char)uVar3;
     iVar5 = 3;
@@ -35,3 +39,4 @@ unsigned opt_node_serialize_7c5ba(unsigned char* param_1, int* param_2){
   param_2[1] = iVar5;
   return 0;
 }
+

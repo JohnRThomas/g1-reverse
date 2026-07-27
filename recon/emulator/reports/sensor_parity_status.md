@@ -9,17 +9,27 @@ criteria sets, both in force:
 | `display_sensor_oracle.json` | `E_ID_SCREEN_NAVIGATION` (id 10) | phone connects **and writes GATT `0a0600000000`**, then `don` gesture | G-1…G-6, S-* |
 | **`display_sensor_oracle_dashboard.json`** *(new)* | **`E_ID_SCREEN_DASHBOARD` (id 6)** | phone connects, **NO GATT command**, then `don` gesture | **D-1…D-7, S-D-*** |
 
-> ## ⇩ CURRENT STATE IS AT THE BOTTOM: **"UPDATE — P4 iteration 39"** ⇩
-> **Iteration 39 (`g1-i39c-app`) is the live measurement.  All four
-> framebuffers are still BYTE-IDENTICAL to the shipped firmware.  The
-> battery-percentage gate that suppressed BOTH the SAADC's third call site and
-> the whole ST25DV NDEF/WLC write is FIXED at the source (three proven defects;
-> `device_info[0xfc0]` 0 -> 92, shipped 100) and `box_placement_animation_step`
-> runs for the first time in this project — but the newly-reachable
-> `st25dv_build_and_write_ndef_records` HANGS the low-speed peripheral thread on
-> three unrelocated original-image function pointers, so `saadc` went 668 -> 184
-> and the nPM1300 `p1_boot` stream regressed from sha-EQ to NE.  Full accounting
-> in `our_boot_bringup.md` §39.**
+> ## ⇩ CURRENT STATE IS AT THE BOTTOM: **"UPDATE — P4 iteration 40"** ⇩
+> **Iteration 40 (`g1-i40d-app`) is the live measurement.  All four
+> framebuffers are still BYTE-IDENTICAL to the shipped firmware
+> (`cmp` vs the golden `.raw` files: NO DIFFERENCE on all three non-zero ones,
+> dashboard `p1_boot` all-zero).  §39.8's hang is GONE — the six NFC-Forum WLC
+> NDEF record ops behind `event_record_init` / `fill_record_type8` are
+> recovered and relocated — and with it:**
+> * **`S-D-ADC` 184 -> 998 == the oracle's 998 accesses** (the pre-regression
+>   figure was 668; this is the count the shipped firmware makes, exactly);
+> * **`S-D-PMIC` `p1_boot` RESTORED to 285 == 285 with the stream sha EQUAL**,
+>   after `FUN_0000e53c` was taken from FAIL 13/43 to PASS 43/43 and the
+>   reported battery reached the shipped **100**;
+> * **the ST25DV NDEF/WLC write happens for the first time and is
+>   BYTE-IDENTICAL**: `0x53` 25 == 25 with sha `51e8cde73aa9…` EQ, `0x57`
+>   22 == 22 sha EQ — and therefore the WHOLE dashboard `twim1 p1_boot` bus is
+>   **346 == 346 with the stream sha `0a8ed8502ccb…` EQUAL**, every OPT3001,
+>   nPM1300 and ST25DV transaction of the boot phase at once.
+>
+> Still open: `G-3` (navigation `spim_a` repaint frequency, 126 vs 764), the
+> `saadc` stream sha (count now exact), dashboard `twim1 p2_render` 572 vs 584,
+> and `twim2 p2_render`.  Full accounting in `our_boot_bringup.md` §40.**
 > Everything between here and that section is kept for provenance and is
 > superseded.
 

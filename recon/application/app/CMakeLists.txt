@@ -243,6 +243,13 @@ target_sources(app PRIVATE
   # rodata_88a38).  Its contents are original-image Thumb function pointers, so
   # like the gpio_dt_spec tables it has to be emitted, not pinned.
   src/g1_st25dv_ops_table.c
+  # P4 iteration 40: the two NFC-Forum Wireless-Charging NDEF record TYPE
+  # descriptors (original .data 0x200023bc / 0x200023c4) and the "WLCSTAI" /
+  # "WLCCAP" type-name strings they point at.  Both descriptor words are
+  # ORIGINAL-IMAGE FLASH POINTERS, so the arena .data restore drops the group
+  # and both descriptors were all-zero; the WLC records would then serialize
+  # with an empty NDEF type name.  See the TU header for the proof.
+  src/g1_wlc_ndef_type_records.c
   # Iteration 15: the four nPM1300 charger `linear_range` tables (original
   # 0x8ba64..0x8baac).  Like the ops table above, the recovered code
   # DEREFERENCES the original address, so the block has to be emitted and the
