@@ -2,8 +2,8 @@
 
 typedef unsigned char byte;
 typedef unsigned int uint;
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(unsigned int, unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_000777f0(unsigned int);
 extern void FUN_000778d4(unsigned int);
 

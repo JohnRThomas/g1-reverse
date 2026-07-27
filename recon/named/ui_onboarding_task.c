@@ -85,7 +85,7 @@ undefined4 ui_onboarding_task(int param_1, undefined4 param_2, int param_3)
                 if (0x13 < *pbVar3) {
                     if (1 < *verbose) {
                         if (*dbg == 0) log_message(0, 0);
-                        else debug_print(0);
+                        else debug_print(0, 0);
                     }
                     *pbVar3 = 0x14;
                     iVar4 = get_device_info();

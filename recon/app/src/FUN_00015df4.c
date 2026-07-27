@@ -1,8 +1,8 @@
 /* Reconstructed FUN_00015df4 @ 0x15df4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000179ec(int,...);
-extern void FUN_00019c70(int, int);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0007c038(int,...);
 extern int FUN_00083dc8(int,...);
 extern int FUN_00083e0e(int,...);

@@ -2,8 +2,8 @@
 
 typedef unsigned char u8;
 typedef unsigned int u32;
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern int k_is_in_isr(void);
 extern void FUN_0007c038(int);
 extern int sys_reboot(int);
@@ -45,7 +45,7 @@ void switch_to_dfu_mode(unsigned int param_1)
             debug_print(0x990dcU, 0x99b2aU, (unsigned int)iVar2, 0);
             return;
         }
-        DEBUG_PRINT(0x990dcU, 0x99b2aU);
+        DEBUG_PRINT(0x990dcU, 0x99b2aU, (unsigned int)iVar2, 0);
         return;
     }
 loop_start:

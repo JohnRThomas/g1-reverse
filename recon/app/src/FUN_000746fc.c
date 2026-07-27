@@ -12,7 +12,7 @@ extern int FUN_0007205c(uintptr_t);
 extern void FUN_00073e88(void);
 extern void FUN_00074bf4(void *, uintptr_t, uint32_t, int32_t);
 extern void FUN_000501d4(uint32_t);
-extern void FUN_0007e2fa(uintptr_t, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t, uintptr_t);
 
 int32_t FUN_000746fc(uint32_t lo, int32_t hi)

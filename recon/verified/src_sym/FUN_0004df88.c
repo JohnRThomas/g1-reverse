@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0004df88 @ 0x4df88  (parity: 300/300 trials, PROVEN) */
 
 extern int z_device_is_ready(unsigned int);
-extern void printk(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
+extern void printk(unsigned long, ...);
 extern void assert_post_action(unsigned int,unsigned int);
 void FUN_0004df88(void)
 {

@@ -1,8 +1,8 @@
 /* Reconstructed FUN_00048e28 @ 0x48e28 */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(unsigned int, ...);
-extern void FUN_00019c70(unsigned int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00048b5c(unsigned int, unsigned int, unsigned int, int);
 
 unsigned int FUN_00048e28(unsigned int owner, unsigned int requested,

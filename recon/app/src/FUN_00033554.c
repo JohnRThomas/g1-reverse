@@ -3,7 +3,7 @@
 #include <stdint.h>
 
 extern void FUN_00086c04(void *destination, const void *source, uint32_t size);
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 uint32_t framed_serial_receive_parser(uint32_t transport, uint8_t **output,
                       uint32_t *output_size)

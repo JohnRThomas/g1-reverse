@@ -1,8 +1,8 @@
 /* Reconstructed burial_point_record_info_init @ 0x4ab3c */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, uint32_t);
-extern void FUN_00019c70(uint32_t, uint32_t);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern uint8_t *FUN_000167a8(void);
 extern void *FUN_00086c78(void *, int, uint32_t);
 

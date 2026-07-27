@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 
-extern void FUN_0007e2fa(uint32_t, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uint32_t, uint32_t);
 extern int FUN_00072040(uint32_t lock);
 extern void FUN_00072078(uint32_t lock);

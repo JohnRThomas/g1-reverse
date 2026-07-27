@@ -37,7 +37,7 @@ unsigned display_reflash(int param_1, unsigned param_2){
     long long lVar7 = thunk_FUN_00074f68();
     if(*piVar1 > 2){
       if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-        log_message(((unsigned long)"%s(): send reflash command......\n") /*=0xeffd2*/,((unsigned long)"display_reflash") /*=0xf019a*/,0,0);
+        log_message(((unsigned long)"%s(): send reflash command......\n") /*=0xeffd2*/,((unsigned long)"display_reflash") /*=0xf019a*/);
       else
         debug_print(((unsigned long)"%s(): send reflash command......\n") /*=0xeffd2*/,((unsigned long)"display_reflash") /*=0xf019a*/);
     }
@@ -52,7 +52,7 @@ unsigned display_reflash(int param_1, unsigned param_2){
     if(iVar2 == 0){
       if(*piVar1 > 2){
         if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-          log_message(((unsigned long)"%s(): send reflash command end .......\n") /*=0xefff4*/,((unsigned long)"display_reflash") /*=0xf019a*/,0,0);
+          log_message(((unsigned long)"%s(): send reflash command end .......\n") /*=0xefff4*/,((unsigned long)"display_reflash") /*=0xf019a*/);
         else
           debug_print(((unsigned long)"%s(): send reflash command end .......\n") /*=0xefff4*/,((unsigned long)"display_reflash") /*=0xf019a*/);
       }
@@ -76,7 +76,7 @@ unsigned display_reflash(int param_1, unsigned param_2){
     log_message(((unsigned long)"message queue send failed %s\r\n") /*=0xef058*/,((unsigned long)"display_reflash") /*=0xf019a*/,0,0);
   } else if(*piVar1 > 0){
     if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-      log_message(((unsigned long)"%s(): send data length more than %d,can't load it,exit ...\n") /*=0xef01c*/,((unsigned long)"display_reflash") /*=0xf019a*/,10,0);
+      log_message(((unsigned long)"%s(): send data length more than %d,can't load it,exit ...\n") /*=0xef01c*/,((unsigned long)"display_reflash") /*=0xf019a*/,10);
     else
       debug_print(((unsigned long)"%s(): send data length more than %d,can't load it,exit ...\n") /*=0xef01c*/,((unsigned long)"display_reflash") /*=0xf019a*/,10);
   }

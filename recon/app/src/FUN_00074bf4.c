@@ -8,7 +8,7 @@ extern int FUN_0007205c(uintptr_t);
 extern uint32_t FUN_00074b68(void);
 extern uint32_t FUN_00074b7c(void);
 extern void FUN_000638dc(uint32_t, uint32_t);
-extern void FUN_0007e2fa(uintptr_t, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t, uintptr_t);
 
 void FUN_00074bf4(uint32_t *timer, uintptr_t source, uint32_t lo, int32_t hi)

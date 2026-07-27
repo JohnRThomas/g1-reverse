@@ -1,7 +1,7 @@
 /* Reconstructed dequeue_ancs @ 0x18d94  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int fmt, unsigned int arg);
-extern void FUN_00019c70(unsigned int fmt, unsigned int arg, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00072240(void *a, void *b, unsigned int c, unsigned int d);
 extern void FUN_00086c04(void *dst, void *src, unsigned int len);
 extern void FUN_00086c78(void *dst, int val, unsigned int len);

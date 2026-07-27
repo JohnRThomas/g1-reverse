@@ -4,8 +4,8 @@ extern void FUN_000864c2(unsigned int);
 extern unsigned int FUN_0008638c(unsigned int);
 extern unsigned short FUN_00083a9a(unsigned int);
 extern unsigned int FUN_000167a8(void);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(unsigned int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 unsigned int ext_flash_api_init(unsigned int *param_1, unsigned int *param_2, unsigned int *param_3, unsigned int param_4)
 {

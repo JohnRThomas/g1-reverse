@@ -2,10 +2,10 @@
 
 #include <stdint.h>
 
-extern int debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern int FUN_000720d0(void*, void*, int, int);
 extern void memset_bytes(void*, int, int);
-extern int DEBUG_PRINT(int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 int display_powerEvent(int param_1)
 {
@@ -26,7 +26,7 @@ int display_powerEvent(int param_1)
       if (*(int*)0x20007554UL /* device_info.is_debug @+0xB58  (log sink select: 0=RTT DEBUG_PRINT) */ == 0) {
         DEBUG_PRINT(0xf00ea, 0xf0126, param_1);
       } else {
-        debug_print();
+        debug_print(0xf00ea, 0xf0126, param_1);
       }
     }
   } else {

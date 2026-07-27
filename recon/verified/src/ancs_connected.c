@@ -1,9 +1,9 @@
 /* Reconstructed ancs_connected @ 0x1861c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(unsigned,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
 extern void FUN_00018334(unsigned, void*);
-extern void FUN_00019c70(uintptr_t,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00032ee4(void);
 extern void FUN_00056a68(int,int);
 extern unsigned FUN_0007c0c8(void);

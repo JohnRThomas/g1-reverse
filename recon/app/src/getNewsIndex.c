@@ -1,7 +1,7 @@
 /* Reconstructed getNewsIndex @ 0x3719c  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void FUN_00019c70(unsigned int,unsigned int,unsigned int,unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 unsigned char getNewsIndex(void)
 {

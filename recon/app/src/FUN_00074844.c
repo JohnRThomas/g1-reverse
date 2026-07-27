@@ -3,7 +3,7 @@
 extern int FUN_000741a4(int);
 extern int FUN_000746fc(void);
 extern int FUN_0007e2ec(int,int);
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 uint32_t FUN_00074844(int param_1,int param_2,int param_3,int param_4){
   uint32_t ipsr;
   __asm volatile("mrs %0, ipsr":"=r"(ipsr));

@@ -130,7 +130,7 @@ check_stuck_key:
             log_message(((unsigned long)"%s(): #############################Long press timeout %d################################\n\n") /*=0xa1626*/, ((unsigned long)"touch_key_thread") /*=0xa1a76*/, short_stuck_timeout);
           }
           else {
-            debug_print(0,0,0);
+            debug_print(((unsigned long)"%s(): #############################Long press timeout %d################################\n\n") /*=0xa1626*/, ((unsigned long)"touch_key_thread") /*=0xa1a76*/, short_stuck_timeout);
           }
         }
         long_press_armed = 0;
@@ -171,7 +171,7 @@ check_completed_press:
           log_message(((unsigned long)"%s(): ########################turn on the mic and start to speak! holdtime %d\n\n") /*=0xa15d6*/, ((unsigned long)"touch_key_thread") /*=0xa1a76*/, now);
         }
         else {
-          debug_print(0,0,0);
+          debug_print(((unsigned long)"%s(): ########################turn on the mic and start to speak! holdtime %d\n\n") /*=0xa15d6*/, ((unsigned long)"touch_key_thread") /*=0xa1a76*/, now);
         }
       }
       TOUCH_RESET_REASON = 4;
@@ -206,7 +206,7 @@ check_long_hold:
     if (held_time <= (int32_t)0x11940) {
       if (0 < *log_level_ptr) {
         if (*alternate_sink_ptr == 0) {
-          log_message(((unsigned long)"%s(): #############################Long press timeout %d################################\n\n") /*=0xa1626*/, ((unsigned long)"touch_key_thread") /*=0xa1a76*/);
+          log_message(0,0,0);
         }
         else {
           debug_print(0,0,0);
@@ -222,7 +222,7 @@ check_long_hold:
         log_message(((unsigned long)"%s(): #############################Long press end################################\n\n") /*=0xa1681*/, ((unsigned long)"touch_key_thread") /*=0xa1a76*/);
       }
       else {
-        debug_print(0,0,0);
+        debug_print(((unsigned long)"%s(): #############################Long press end################################\n\n") /*=0xa1681*/, ((unsigned long)"touch_key_thread") /*=0xa1a76*/);
       }
     }
     reset_reason = 5;

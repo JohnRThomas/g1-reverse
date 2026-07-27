@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00017eec @ 0x17eec  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t);
-extern void FUN_00019c70(uint32_t diagnostic);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_000720d0(void);
 extern int FUN_000720d0_i(uint32_t,void*,int,int);
 extern void FUN_00072240(uint32_t,void*,int,int);

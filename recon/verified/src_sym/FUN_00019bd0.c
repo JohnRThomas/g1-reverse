@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00019bd0 @ 0x19bd0  (parity: 300/300 trials, PROVEN) */
 
 extern int z_impl_k_msgq_alloc_init(void *, int, int);
-extern void DEBUG_PRINT(unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 int FUN_00019bd0(void)
 {

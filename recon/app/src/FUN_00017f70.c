@@ -3,10 +3,10 @@
 typedef unsigned int uint;
 typedef unsigned char undefined1;
 typedef unsigned undefined4;
-extern void DEBUG_PRINT(unsigned, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern unsigned FUN_000167a8(void);
 extern void FUN_00017eec(void *a, uint b);
-extern void FUN_00019c70(unsigned, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00072880(int a);
 extern void FUN_0007cbfe(unsigned a, int b);
 extern void FUN_0007ddbe(void *a, int b, unsigned c, ...);
@@ -82,7 +82,8 @@ LAB_00017fb6:
             DEBUG_PRINT(0x9a20d, 0x9a2bf, &log_record, param_3, uVar9, uVar8, uVar7, uVar6, uVar5, puVar11,
                         (uint)*(unsigned char *)(*piVar1 + 0x248));
         } else {
-            FUN_00019c70(0);
+            FUN_00019c70(0x9a20d, 0x9a2bf, &log_record, param_3, uVar9, uVar8, uVar7, uVar6, uVar5, puVar11,
+                        (uint)*(unsigned char *)(*piVar1 + 0x248));
         }
     }
     iVar12 = *piVar1;
@@ -128,7 +129,7 @@ LAB_00017fb6:
             FUN_00017eec(forwarding.payload, param_3 & 0xff);
             if (*piVar2 < 1) return;
             if (*dbg != 0) {
-                FUN_00019c70(0);
+                FUN_00019c70(0x9a295, 0x9a2bf);
                 return;
             }
             DEBUG_PRINT(0x9a295, 0x9a2bf);

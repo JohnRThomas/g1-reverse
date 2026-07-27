@@ -44,7 +44,7 @@ int adc_nfc_init(void)
         if (result < 0 && *(volatile int32_t *)0x2000230cu > 0) {
             if (*(volatile uint32_t *)0x20007554u == 0u) {
                 log_message((const void *)0x0009f0dbu,
-                             (const void *)0x0009f1cfu);
+                             (const void *)0x0009f1cfu, 0);
             } else {
                 debug_print((const void *)0x0009f0dbu,
                              (const void *)0x0009f1cfu, 0);

@@ -47,8 +47,8 @@ extern uintptr_t get_device_info(void);
 extern int get_device_type(void);
 extern uintptr_t get_device_serial_buf(void);
 extern void __strcpy_chk(void *, const void *, uint32_t);
-extern void log_message(uintptr_t, ...);
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern int is_battery_critical(void);
 extern void vdprintf_to_fd(uintptr_t, ...);
 extern uint32_t strlen(uintptr_t);
@@ -130,7 +130,7 @@ int bt_start(void)
         if (*(volatile int32_t *)(uintptr_t)0x2000230cu > 0) {
             if (*(volatile uint32_t *)(uintptr_t)0x20007554u == 0u)
                 log_message(0x0009ad20u,0x0009b13fu,result);
-            else debug_print();
+            else debug_print(0x0009ad20u,0x0009b13fu,result);
         }
         goto out;
     }

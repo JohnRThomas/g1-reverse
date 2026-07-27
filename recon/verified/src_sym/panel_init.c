@@ -2,8 +2,8 @@
 
 typedef unsigned int uint32_t;
 
-extern void DEBUG_PRINT(uint32_t a, uint32_t b, uint32_t c);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern void FUN_0007d642(uint32_t a, uint32_t b);
 extern void FUN_0007d658(uint32_t a, uint32_t b);
 extern void FUN_0007d67e(uint32_t a);
@@ -18,7 +18,7 @@ void panel_init(uint32_t param_1, uint32_t param_2, uint32_t param_3, uint32_t p
         if (*(volatile uint32_t*)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
             DEBUG_PRINT(0x99969UL, 0xd741bUL, 0);
         } else {
-            debug_print();
+            debug_print(0x99969UL, 0xd741bUL, 0);
         }
     }
     FUN_0007d74e();

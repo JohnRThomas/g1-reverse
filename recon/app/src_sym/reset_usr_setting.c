@@ -1,7 +1,7 @@
 /* Reconstructed reset_usr_setting @ 0x22ddc  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int a, unsigned int b);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern void FUN_00032ef0(unsigned int a);
 extern void FUN_0007c28e(void *a, unsigned int b);
 
@@ -11,7 +11,7 @@ unsigned int reset_usr_setting(char *param_1)
         if (*(volatile int *)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
             DEBUG_PRINT(0x9e5f3U, 0x9e7b7U);
         } else {
-            debug_print();
+            debug_print(0x9e5f3U, 0x9e7b7U);
         }
     }
     *(volatile unsigned char *)(param_1 + 0xfea) = 10;

@@ -50,7 +50,7 @@ ble_put_op0c_11_12_13(struct ble_put_context *ctx, uint8_t response[20])
         if (BLE_IS_DEBUG == 0)
             log_message((const void *)0x0009ba22, (const void *)0x0009e077);
         else
-            debug_print();
+            debug_print((const void *)0x0009ba22, (const void *)0x0009e077);
     }
     response[1] = 0xca;
     response[2] = 0x15;
@@ -171,7 +171,7 @@ ble_put_op0e(struct ble_put_context *ctx, const uint8_t *request,
                 if (BLE_IS_DEBUG == 0)
                     log_message((const void *)0x0009bf34, (const void *)0x0009e077);
                 else
-                    debug_print();
+                    debug_print((const void *)0x0009bf34, (const void *)0x0009e077);
             }
             process_sync_buffer(base - 0x714);
             status = 0xc9;
@@ -183,7 +183,7 @@ ble_put_op0e(struct ble_put_context *ctx, const uint8_t *request,
             if (BLE_IS_DEBUG == 0)
                 log_message((const void *)0x0009bf5b, (const void *)0x0009e077);
             else
-                debug_print();
+                debug_print((const void *)0x0009bf5b, (const void *)0x0009e077);
         }
         mark_master_or_low_battery_flag();
         status = 0xc9;
@@ -213,7 +213,7 @@ ble_put_op10_media(struct ble_put_context *ctx, const uint8_t *packet,
                     if (BLE_IS_DEBUG == 0)
                         log_message((const void *)0x0009b9e4, (const void *)0x0009e077);
                     else
-                        debug_print();
+                        debug_print((const void *)0x0009b9e4, (const void *)0x0009e077);
                 }
                 root = (uint8_t *)(uintptr_t)get_device_info();
                 *(uint32_t *)(void *)(root + 0xf68) = 0;
@@ -235,7 +235,8 @@ ble_put_op10_media(struct ble_put_context *ctx, const uint8_t *packet,
                             log_message((const void *)0x0009ba06,
                                         (const void *)0x0009e077, OP0B18_AUDIO_OBJ);
                         else
-                            debug_print();
+                            debug_print((const void *)0x0009ba06,
+                                        (const void *)0x0009e077, OP0B18_AUDIO_OBJ);
                     }
                     root = (uint8_t *)(uintptr_t)get_device_info();
                     *(uint32_t *)(void *)(root + 0xf68) = OP0B18_AUDIO_OBJ;
@@ -276,7 +277,7 @@ ble_put_op15(struct ble_put_context *ctx, const uint8_t *packet,
             if (BLE_IS_DEBUG == 0)
                 log_message((const void *)0x0009bfa5, (const void *)0x0009e077);
             else
-                debug_print();
+                debug_print((const void *)0x0009bfa5, (const void *)0x0009e077);
         }
     }
     *(uint64_t *)(void *)(base + 0x8e4) = g1_sdk_uptime_get_0();

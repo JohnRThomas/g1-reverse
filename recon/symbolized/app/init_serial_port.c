@@ -32,14 +32,14 @@ unsigned int init_serial_port(void)
   if (*pcVar1 == 0) {
     iVar2 = z_device_is_ready((void*)((unsigned long)&rodata_87bc0) /*=0x87bc0*/);
     if (iVar2 == 0) {
-      printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void*)((unsigned long)"device_is_ready(lpuart)") /*=0xa78b9*/, (void*)((unsigned long)"../src/production_test/serial_thread.c") /*=0xa7892*/, 0x2e, 0);
-      printk((void*)((unsigned long)"\tLPUART device not ready\n") /*=0xa78d1*/, 0, 0, 0, 0);
+      printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void*)((unsigned long)"device_is_ready(lpuart)") /*=0xa78b9*/, (void*)((unsigned long)"../src/production_test/serial_thread.c") /*=0xa7892*/, 0x2e, 0);
+      printk((unsigned long)((unsigned long)"\tLPUART device not ready\n") /*=0xa78d1*/, 0, 0, 0, 0);
       assert_post_action((void*)((unsigned long)"../src/production_test/serial_thread.c") /*=0xa7892*/, 0x2e);
     }
     iVar2 = uart_read_start((void*)((unsigned long)&rodata_87bc0) /*=0x87bc0*/);
     if (iVar2 != 0) {
       *pcVar1 = 0;
-      log_message((void*)((unsigned long)"init_serial_port is failed\n") /*=0xa78eb*/);
+      log_message((unsigned long)((unsigned long)"init_serial_port is failed\n") /*=0xa78eb*/);
       return 0xffffffff;
     }
     *pcVar1 = 1;

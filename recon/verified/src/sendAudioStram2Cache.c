@@ -11,8 +11,8 @@ struct audio_cache_record {
     uint8_t payload[200];
 };
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t module);
-extern void FUN_00019c70(uint32_t format, uint32_t module);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000720d0(void *queue, const void *record, int timeout, int flags);
 extern void FUN_00072880(void *event);
 extern void FUN_00086c04(void *destination, const void *source, int length);

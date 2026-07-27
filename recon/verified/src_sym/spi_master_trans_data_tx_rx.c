@@ -1,8 +1,8 @@
 /* Reconstructed spi_master_trans_data_tx_rx @ 0x262ac  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_00067304(void*, void*, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print();
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int spi_master_trans_data_tx_rx(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4, unsigned int param_5)
 {
@@ -17,7 +17,7 @@ unsigned int spi_master_trans_data_tx_rx(int param_1, unsigned int param_2, unsi
             if (*(volatile unsigned int*)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
                 DEBUG_PRINT(0x9fb42, 0x9fc5d);
             } else {
-                debug_print();
+                debug_print(0x9fb42, 0x9fc5d);
             }
         }
     } else {
@@ -29,7 +29,7 @@ unsigned int spi_master_trans_data_tx_rx(int param_1, unsigned int param_2, unsi
             if (*(volatile unsigned int*)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
                 DEBUG_PRINT(0x9fb59, 0x9fc5d, *(volatile unsigned char*)(param_1+0x18), iVar1, 0x0bad0000);
             } else {
-                debug_print();
+                debug_print(0x9fb59, 0x9fc5d, *(volatile unsigned char*)(param_1+0x18), iVar1, 0x0bad0000);
             }
         }
     }

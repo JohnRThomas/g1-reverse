@@ -1,7 +1,7 @@
 /* Reconstructed ipc0_ept_recv @ 0x25a48  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(int,...);
-extern void FUN_00019c70(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 void ipc0_ept_recv(unsigned char *param_1,int param_2){
   int iVar4=0;
   unsigned uVar1=*param_1;

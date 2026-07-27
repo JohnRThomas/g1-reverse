@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00017768 @ 0x17768  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0007e2fa(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(unsigned int a, unsigned int b);
 typedef void (*jfn847)(void);
 void FUN_00017768(int param_1, unsigned int param_2, unsigned int param_3)

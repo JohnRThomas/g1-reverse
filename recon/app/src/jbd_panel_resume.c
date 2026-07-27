@@ -1,7 +1,7 @@
 /* Reconstructed jbd_panel_resume @ 0x47638  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(void*, void*, unsigned int, int, unsigned int);
-extern void FUN_00019c70(void*, void*, unsigned int, unsigned int, unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00046e3c(unsigned int);
 extern void FUN_00047538(void);
 
@@ -12,9 +12,9 @@ unsigned int jbd_panel_resume(int param_1, unsigned int param_2, unsigned int pa
   if (*piVar1 > 2) {
     unsigned int sink = *(volatile unsigned int*)0x20007554UL;
     if (sink == 0) {
-      DEBUG_PRINT((void*)0xd73bcUL, (void*)0xd73f8UL, param_3, sink, param_4);
+      DEBUG_PRINT((unsigned long)0xd73bcUL, (void*)0xd73f8UL, param_3, sink, param_4);
     } else {
-      FUN_00019c70((void*)0xd73bcUL, (void*)0xd73f8UL,
+      FUN_00019c70((unsigned long)0xd73bcUL, (void*)0xd73f8UL,
                    param_3, sink, param_4);
     }
   }
@@ -23,9 +23,9 @@ unsigned int jbd_panel_resume(int param_1, unsigned int param_2, unsigned int pa
   if (*piVar1 > 2) {
     unsigned int sink = *(volatile unsigned int*)0x20007554UL;
     if (sink == 0) {
-      DEBUG_PRINT((void*)0xd73e0UL, (void*)0xd73f8UL, param_3, sink, param_4);
+      DEBUG_PRINT((unsigned long)0xd73e0UL, (void*)0xd73f8UL, param_3, sink, param_4);
     } else {
-      FUN_00019c70((void*)0xd73e0UL, (void*)0xd73f8UL,
+      FUN_00019c70((unsigned long)0xd73e0UL, (void*)0xd73f8UL,
                    param_3, sink, param_4);
     }
   }

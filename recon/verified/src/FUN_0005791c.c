@@ -3,7 +3,7 @@
 #include <stdint.h>
 extern int FUN_00057874(int,int,int);
 extern void FUN_0007e2ec(int,int);
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 void FUN_0005791c(int param_1,int param_2){
   uint16_t *puVar2=(uint16_t*)0x87fec;
   uint16_t *puVar5=(uint16_t*)0x87fc8;

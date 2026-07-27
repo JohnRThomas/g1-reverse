@@ -7,7 +7,7 @@ extern void FUN_000737d8(int);
 extern void FUN_00073cdc(void*,void*);
 extern void FUN_00074d74(void*);
 extern void FUN_0007e2ec(unsigned,unsigned);
-extern void FUN_0007e2fa(unsigned,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0008664c(void);
 
 void FUN_000741a4(uint8_t *param_1){

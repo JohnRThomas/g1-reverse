@@ -25,8 +25,8 @@
  *   DEBUG_PRINT                                               @ 0x0007dda4
  */
 extern uintptr_t get_device_info(void);
-extern void debug_print(uintptr_t format, uintptr_t function_name, ...);
-extern void DEBUG_PRINT(uintptr_t format, uintptr_t function_name, ...);
+extern void debug_print(unsigned long, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern unsigned int FUN_00023ee0(void);
 extern void dmic_record_start(void);
 extern void consume_pending_event_and_refresh_flag(void);

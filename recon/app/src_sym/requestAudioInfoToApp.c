@@ -1,9 +1,9 @@
 /* Reconstructed requestAudioInfoToApp @ 0x48840  (parity: 300/300 trials, PROVEN) */
 
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern int FUN_000720d0(void*, void*, int, int);
 extern void memset_bytes(void*, int, int);
-extern int DEBUG_PRINT(int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 int requestAudioInfoToApp(unsigned char param_1)
 {
@@ -22,7 +22,7 @@ int requestAudioInfoToApp(unsigned char param_1)
       if (*(int*)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
         DEBUG_PRINT(0xef4d9, 0xef707);
       } else {
-        debug_print();
+        debug_print(0xef4d9, 0xef707);
       }
     }
   } else {

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0002e440 @ 0x2e440  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned a, unsigned b);
-extern void FUN_00019c70(unsigned a, unsigned b);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_000723b8(unsigned a, int b, unsigned c, unsigned d);
 extern void FUN_00072558(unsigned a);
 extern void FUN_0007c080(void);

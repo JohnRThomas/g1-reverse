@@ -2,8 +2,8 @@
 #include <stdint.h>
 #include <string.h>
 
-extern void log_message(uint32_t format, uint32_t function, ...);
-extern void debug_print(uint32_t format, uint32_t function, ...);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern void switch_to_dfu_mode(void *state);
 extern void *find_message_pool_entry_by_id(uint32_t id);
 extern void msg_queue_init(void);

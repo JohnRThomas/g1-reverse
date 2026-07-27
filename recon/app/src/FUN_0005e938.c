@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0005e938 @ 0x5e938  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_0007e2ec(int,int);
-extern int FUN_0007e2fa(int,int,int,int);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_00086be4(int,int,int);
 unsigned char *FUN_0005e938(uint32_t param_1, int param_2){
   unsigned char *pbVar1 = (unsigned char*)0x2000af4cUL;

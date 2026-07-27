@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 extern uint32_t bt_hex(uint32_t value, uint32_t length); /* FUN_00052c98 */
-extern void log_message(uint32_t source, uint32_t descriptor, const void *record); /* FUN_00080ea2 */
+extern void log_message(unsigned long, ...); /* FUN_00080ea2 */
 
 struct hci_command_log_record {
     uint32_t argument_count;

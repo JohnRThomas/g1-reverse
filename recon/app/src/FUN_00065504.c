@@ -4,7 +4,7 @@ typedef unsigned int uint;
 extern int FUN_00064ef8(uint32_t);
 extern int FUN_00065434(void);
 extern void FUN_0007e2ec(uint32_t,uint32_t);
-extern void FUN_0007e2fa(uint32_t,uint32_t,uint32_t,uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 void FUN_00065504(void){
   int iVar3=FUN_00065434();
   int iVar4=0x20002bc0;

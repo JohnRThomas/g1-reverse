@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0005f200 @ 0x5f200  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(unsigned int a, unsigned int b);
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
+extern void printk(unsigned long, ...);
 extern void net_pkt_skip(void);
 
 void FUN_0005f200(int param_1, int param_2, unsigned int param_3, unsigned int param_4)

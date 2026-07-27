@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00032ef0 @ 0x32ef0  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0007dda4(unsigned int, ...);
-extern void FUN_00019c70(unsigned int, ...);
+extern void FUN_0007dda4(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 void FUN_00032ef0(unsigned int param_1)
 {

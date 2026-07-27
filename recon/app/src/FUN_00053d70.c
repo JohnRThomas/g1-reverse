@@ -7,7 +7,7 @@ extern uint64_t FUN_0005ee18(void *);
 extern uintptr_t FUN_0005f2d4(void *, uint32_t, uint32_t, uint32_t);
 extern uint64_t FUN_0005f200(uintptr_t, uintptr_t, uint32_t, uint32_t);
 extern int FUN_00072908(void *, uint32_t, uint32_t, uint32_t);
-extern void FUN_0007e2fa(uintptr_t, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_00080ea2(uintptr_t, uint32_t, const void *);
 extern void FUN_0005f24c(void *);
 extern void FUN_0007e2ec(uintptr_t, uint32_t) __attribute__((noreturn));

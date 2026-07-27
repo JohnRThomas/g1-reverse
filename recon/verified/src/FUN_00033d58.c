@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00033d58 @ 0x33d58  (parity: 300/300 trials, PROVEN) */
-extern int DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(int,...);
-extern int FUN_00019c70(int,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00033cf8(int,...);
 extern unsigned FUN_0007d224(int,...);
 extern int FUN_00086c04(int,...);

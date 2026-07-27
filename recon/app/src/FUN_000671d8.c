@@ -3,7 +3,7 @@
 extern int FUN_00066d78(void);
 extern int FUN_00066ec0(int);
 extern int FUN_0007e2ec(int,int);
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 int FUN_000671d8(int param_1, int param_2, uint32_t param_3, uint32_t param_4){
   int r0src = param_1;
   if(param_2 == 0){

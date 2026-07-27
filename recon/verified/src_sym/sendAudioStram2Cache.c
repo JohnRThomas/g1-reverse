@@ -1,7 +1,7 @@
 /* Reconstructed sendAudioStram2Cache @ 0x2f6b0  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int a, unsigned int b);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern int FUN_000720d0(int a, void *b, int c, int d);
 extern void FUN_00072880(void *a);
 extern void memcpy(void *dst, void *src, int n);
@@ -19,7 +19,7 @@ unsigned int sendAudioStram2Cache(void *param_1)
             if (*(int *)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
                 DEBUG_PRINT(0xa42cfU, 0xa4986U);
             } else {
-                debug_print();
+                debug_print(0xa42cfU, 0xa4986U);
             }
         }
     } else {
@@ -36,7 +36,7 @@ unsigned int sendAudioStram2Cache(void *param_1)
             if (*(int *)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
                 DEBUG_PRINT(0xa3f45U, 0xa4986U);
             } else {
-                debug_print();
+                debug_print(0xa3f45U, 0xa4986U);
             }
         }
     }

@@ -1,8 +1,8 @@
 /* Reconstructed get_glassbox_charge_percent @ 0x327c4. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, uint32_t, ...);
-extern void FUN_00019c70(uint32_t, uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 uint8_t get_glassbox_charge_percent(void)
 {

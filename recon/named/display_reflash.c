@@ -36,7 +36,7 @@ unsigned display_reflash(int param_1, unsigned param_2){
     long long lVar7 = thunk_FUN_00074f68();
     if(*piVar1 > 2){
       if(*(volatile int*)0x20007554UL == 0)
-        log_message(((unsigned long)"%s(): send reflash command......\n"),((unsigned long)"display_reflash"),0,0);
+        log_message(((unsigned long)"%s(): send reflash command......\n"),((unsigned long)"display_reflash"));
       else
         debug_print(((unsigned long)"%s(): send reflash command......\n"),((unsigned long)"display_reflash"));
     }
@@ -51,7 +51,7 @@ unsigned display_reflash(int param_1, unsigned param_2){
     if(iVar2 == 0){
       if(*piVar1 > 2){
         if(*(volatile int*)0x20007554UL == 0)
-          log_message(((unsigned long)"%s(): send reflash command end .......\n"),((unsigned long)"display_reflash"),0,0);
+          log_message(((unsigned long)"%s(): send reflash command end .......\n"),((unsigned long)"display_reflash"));
         else
           debug_print(((unsigned long)"%s(): send reflash command end .......\n"),((unsigned long)"display_reflash"));
       }
@@ -75,7 +75,7 @@ unsigned display_reflash(int param_1, unsigned param_2){
     log_message(((unsigned long)"message queue send failed %s\r\n"),((unsigned long)"display_reflash"),0,0);
   } else if(*piVar1 > 0){
     if(*(volatile int*)0x20007554UL == 0)
-      log_message(((unsigned long)"%s(): send data length more than %d,can't load it,exit ...\n"),((unsigned long)"display_reflash"),10,0);
+      log_message(((unsigned long)"%s(): send data length more than %d,can't load it,exit ...\n"),((unsigned long)"display_reflash"),10);
     else
       debug_print(((unsigned long)"%s(): send data length more than %d,can't load it,exit ...\n"),((unsigned long)"display_reflash"),10);
   }

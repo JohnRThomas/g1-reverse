@@ -1,8 +1,8 @@
 /* Reconstructed update_persist_task_status_to_idle @ 0x2c0e8  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned char u8;
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern void display_close_screen(unsigned int);
 extern void FUN_0007cdf8(void);
 
@@ -22,7 +22,7 @@ int update_persist_task_status_to_idle(int param_1)
         }
         if (*(volatile int*)0x2000230cUL > 0) {
             if (*(volatile unsigned int*)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
-                DEBUG_PRINT(0xa25d9U, 0xa2625U);
+                DEBUG_PRINT(0xa25d9U, 0xa2625U, 0);
             } else {
                 debug_print(0xa25d9U, 0xa2625U, 0);
             }

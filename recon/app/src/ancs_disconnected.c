@@ -1,11 +1,11 @@
 /* Full ABI-faithful reconstruction ancs_disconnected @ 0x18adc. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern uint64_t FUN_000167a8(void);
 extern void FUN_00018334(const void *connection, char *description);
 extern void FUN_00018ab0(void);
-extern void FUN_00019c70(uintptr_t format, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00072908(uint32_t object_low, uint32_t object_high,
                         uint32_t timeout_low, uint32_t timeout_high);
 extern uintptr_t FUN_00081526(uint32_t connection);

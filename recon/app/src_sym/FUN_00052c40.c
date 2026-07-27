@@ -2,7 +2,7 @@
 
 extern int FUN_00052bf8(int*);
 extern void assert_post_action(int,int);
-extern void printk(int, ...);
+extern void printk(unsigned long, ...);
 extern int FUN_00084c76(void);
 extern int z_device_is_ready(int);
 

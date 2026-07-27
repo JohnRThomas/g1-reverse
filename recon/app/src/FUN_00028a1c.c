@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t a, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern uintptr_t get_device_info(void);
 extern void handle_touch_key_irq(void);
 extern void FUN_00032fd0(int32_t);
@@ -18,7 +18,7 @@ extern void FUN_0002893c(void);
 extern void on_triple_click(void);
 extern void FUN_00028964(void);
 extern uint32_t sys_reboot(int32_t a);
-extern void debug_print(uint32_t a, uint32_t b, uint32_t c, ...);
+extern void debug_print(unsigned long, ...);
 
 void FUN_00028a1c(char *param_1, int32_t param_2, uint32_t param_3)
 {

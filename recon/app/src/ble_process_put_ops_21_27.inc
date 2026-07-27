@@ -4,10 +4,10 @@
 #include <stdint.h>
 #include <stddef.h>
 
-extern int DEBUG_PRINT();
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_00016568();
 extern int FUN_00019b54();
-extern int FUN_00019c70();
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00032ee4();
 extern int FUN_00037060();
 extern int FUN_00047b1c();
@@ -72,20 +72,21 @@ int ble_put_ops_21_27(struct ble_put_context_21_27 *ctx, uint8_t command,
         if (advertised != actual) {
             if (OP21_LOG_LEVEL > 0) {
                 if (OP21_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): dashboard information packet length error,input data length = %d,packet data length = %d\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): dashboard information packet length error,input data length = %d,packet data length = %d\n"),
                                 "ble_process_put_req");
                 else
-                    FUN_00019c70("%s(): dashboard information packet length error,input data length = %d,packet data length = %d\n",
+                    FUN_00019c70(((unsigned long)"%s(): dashboard information packet length error,input data length = %d,packet data length = %d\n"),
                                  "ble_process_put_req");
             }
             return 1;
         }
         if (OP21_LOG_LEVEL > 2) {
             if (OP21_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): received sync id = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): received sync id = %d\n"),
                             "ble_process_put_req", (unsigned)payload[3]);
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): received sync id = %d\n"),
+                            "ble_process_put_req", (unsigned)payload[3]);
         }
         if (payload[4] == 1U) {
             for (unsigned i = 8; i != 20; ++i)
@@ -107,12 +108,12 @@ int ble_put_ops_21_27(struct ble_put_context_21_27 *ctx, uint8_t command,
             if (OP21_LOG_LEVEL < 1)
                 return 1;
             if (OP21_IS_DEBUG != 0) {
-                FUN_00019c70("%s(): teleprompter packet length error,input data length = %d,packet data length = %d\n",
+                FUN_00019c70(((unsigned long)"%s(): teleprompter packet length error,input data length = %d,packet data length = %d\n"),
                              "ble_process_put_req", (unsigned)actual,
                              (unsigned)advertised);
                 return 1;
             }
-            DEBUG_PRINT("%s(): teleprompter packet length error,input data length = %d,packet data length = %d\n",
+            DEBUG_PRINT(((unsigned long)"%s(): teleprompter packet length error,input data length = %d,packet data length = %d\n"),
                         "ble_process_put_req", (unsigned)actual,
                         (unsigned)advertised);
             return 1;
@@ -121,10 +122,11 @@ int ble_put_ops_21_27(struct ble_put_context_21_27 *ctx, uint8_t command,
             return 1;
         if (OP21_LOG_LEVEL > 2) {
             if (OP21_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): received teleprompter suspend packet ....\n",
+                DEBUG_PRINT(((unsigned long)"%s(): received teleprompter suspend packet ....\n"),
                             "ble_process_put_req");
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): received teleprompter suspend packet ....\n"),
+                            "ble_process_put_req");
         }
         *((uint8_t *)(void *)ctx - 0x6af) = payload[3];
         FUN_0007c1dc(payload[3], 0);
@@ -138,11 +140,13 @@ int ble_put_ops_21_27(struct ble_put_context_21_27 *ctx, uint8_t command,
             ble_put_21_rd32_explicit(payload + (uint32_t)advertised - 4U);
         if (OP21_LOG_LEVEL > 2) {
             if (OP21_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): SUSPEND status ,app send counter time = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): SUSPEND status ,app send counter time = %d\n"),
                             "ble_process_put_req",
                             *(uint32_t *)(void *)(tele + 0x11));
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): SUSPEND status ,app send counter time = %d\n"),
+                            "ble_process_put_req",
+                            *(uint32_t *)(void *)(tele + 0x11));
         }
         ctx->frame_length = (uint32_t)ble_put_21_rd16(ctx->rx + 2) + 4U;
         FUN_00086c78(response + 6, 0, 14);
@@ -154,10 +158,11 @@ int ble_put_ops_21_27(struct ble_put_context_21_27 *ctx, uint8_t command,
             ret = ctx->post_to_host(response, 6);
             if (ret < 0 && OP21_LOG_LEVEL > 0) {
                 if (OP21_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                                 "ble_process_put_req", ret);
                 else
-                    FUN_00019c70();
+                    FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                                "ble_process_put_req", ret);
             }
         }
         return 1;
@@ -169,10 +174,10 @@ int ble_put_ops_21_27(struct ble_put_context_21_27 *ctx, uint8_t command,
         if (advertised != actual) {
             if (OP21_LOG_LEVEL > 0) {
                 if (OP21_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): teleprompter packet length error,input data length = %d,packet data length = %d\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): teleprompter packet length error,input data length = %d,packet data length = %d\n"),
                                 "ble_process_put_req");
                 else
-                    FUN_00019c70("%s(): teleprompter packet length error,input data length = %d,packet data length = %d\n",
+                    FUN_00019c70(((unsigned long)"%s(): teleprompter packet length error,input data length = %d,packet data length = %d\n"),
                                  "ble_process_put_req");
             }
             return 1;
@@ -180,10 +185,11 @@ int ble_put_ops_21_27(struct ble_put_context_21_27 *ctx, uint8_t command,
         if (payload[4] == 4U) {
             if (OP21_LOG_LEVEL > 2) {
                 if (OP21_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): received app send sync packet ....\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): received app send sync packet ....\n"),
                                 "ble_process_put_req");
                 else
-                    FUN_00019c70();
+                    FUN_00019c70(((unsigned long)"%s(): received app send sync packet ....\n"),
+                                "ble_process_put_req");
             }
             OP25_SYNC_COUNT = OP25_SYNC_COUNT + 1U;
             ctx->frame_length = (uint32_t)ble_put_21_rd16(ctx->rx + 2) + 4U;
@@ -193,10 +199,11 @@ int ble_put_ops_21_27(struct ble_put_context_21_27 *ctx, uint8_t command,
             ret = ctx->post_to_host(response, 6);
             if (ret < 0 && OP21_LOG_LEVEL > 0) {
                 if (OP21_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                                 "ble_process_put_req", ret);
                 else
-                    FUN_00019c70();
+                    FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                                "ble_process_put_req", ret);
             }
         }
         return 1;
@@ -228,10 +235,11 @@ int ble_put_ops_21_27(struct ble_put_context_21_27 *ctx, uint8_t command,
             if (FUN_00032ee4() == 1) {
                 if (OP21_LOG_LEVEL > 2) {
                     if (OP21_IS_DEBUG == 0)
-                        DEBUG_PRINT("%s(): give mic_transm_sem\n",
+                        DEBUG_PRINT(((unsigned long)"%s(): give mic_transm_sem\n"),
                                     "ble_process_put_req");
                     else
-                        FUN_00019c70();
+                        FUN_00019c70(((unsigned long)"%s(): give mic_transm_sem\n"),
+                                    "ble_process_put_req");
                 }
                 thunk_FUN_00072880(OP26_MIC_SEM);
             }
@@ -239,10 +247,11 @@ int ble_put_ops_21_27(struct ble_put_context_21_27 *ctx, uint8_t command,
             uint8_t gear = payload[5];
             if (OP21_LOG_LEVEL > 1) {
                 if (OP21_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): ble set lum gear:%d\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): ble set lum gear:%d\n"),
                                 "ble_process_put_req", (unsigned)gear);
                 else
-                    FUN_00019c70();
+                    FUN_00019c70(((unsigned long)"%s(): ble set lum gear:%d\n"),
+                                "ble_process_put_req", (unsigned)gear);
             }
             if (gear < 0x40U &&
                 *(uint16_t *)(void *)((uint8_t *)(void *)ctx + 0x762) != gear) {

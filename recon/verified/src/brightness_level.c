@@ -13,8 +13,8 @@ extern void change_work_mode_to(uint32_t);
 extern void FUN_0007cbfe(uintptr_t,uint32_t);
 extern void FUN_0007c34a(uintptr_t,uint32_t);
 extern uint64_t thunk_FUN_00074f68(void);
-extern void DEBUG_PRINT(uintptr_t,...);
-extern void FUN_00019c70(uintptr_t,...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 typedef void (*brightness_callback)(uintptr_t text, uintptr_t value,
                                     uint32_t style);

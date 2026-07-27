@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000259d4 @ 0x259d4 */
 #include <stdint.h>
 
-extern uint64_t DEBUG_PRINT(uint32_t, uint32_t, uint32_t, uint32_t);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern uint64_t FUN_0008638c(uint32_t);
 extern void FUN_000864c2(uint32_t);
 

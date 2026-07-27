@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0005e7c8 @ 0x5e7c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void FUN_0007e2fa(unsigned int,unsigned int,unsigned int,int);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(unsigned int,int);
 extern int FUN_00086be4(unsigned int,int,int,unsigned int,unsigned int);
 unsigned char* FUN_0005e7c8(unsigned short param_1,unsigned int param_2,int param_3,unsigned int param_4){

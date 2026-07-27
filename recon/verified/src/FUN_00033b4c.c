@@ -1,8 +1,8 @@
 /* Reconstructed FUN_00033b4c @ 0x33b4c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t,uint32_t,uint32_t,uint32_t);
-extern void FUN_00019c70(uint32_t,uint32_t,uint32_t,uint32_t);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 void FUN_00033b4c(void)
 {

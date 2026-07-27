@@ -48,9 +48,9 @@ typedef int i32;
 #define classify_text_character index_in_range32_mask
 #define copy_glyph_bitmap safe_memcpy_checked
 
-extern void log_message();
+extern void log_message(unsigned long, ...);
 extern u32 get_device_info(void);
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern u32 get_display_atomic_state(void);
 extern u32 get_glyph_spacing(u32,u32);
 extern i32 load_glyph_resource(u32,u32,void*,void*,void*,u32);
@@ -121,7 +121,7 @@ u32 gui_utf_Wordwrap_draw(u32 param_1, u32 param_2, i32 param_3, i32 param_4, i3
               if (*(volatile i32*)0x20007554UL == 0) {
                 log_message(0x000aaa58UL, 0x000aad35UL, uVar16);
               } else {
-                debug_print();
+                debug_print(0x000aaa58UL, 0x000aad35UL, uVar16);
               }
             }
           } else {
@@ -176,7 +176,7 @@ LAB_00045458:
                     if (iVar3 == 0) {
                       log_message(uVar13, 0x000aad35UL);
                     } else {
-                      debug_print();
+                      debug_print(uVar13, 0x000aad35UL);
                     }
                   }
                 } else {
@@ -276,7 +276,7 @@ LAB_0004558c:
     if (*(volatile i32*)0x20007554UL == 0) {
       log_message(((unsigned long)"%s(): exex process effect callback function\n"), 0x000aad35UL);
     } else {
-      debug_print();
+      debug_print(((unsigned long)"%s(): exex process effect callback function\n"), 0x000aad35UL);
     }
   }
   uVar13x = (*param_11)(0, param_2, param_3, param_4, param_5);

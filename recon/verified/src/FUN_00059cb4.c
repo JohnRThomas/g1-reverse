@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00059cb4 @ 0x59cb4  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long FUN_000826e0(int a, int b);
-extern void FUN_0007e2fa(int a, int b, int c, int d);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(int a, int b);
 
 void FUN_00059cb4(void)

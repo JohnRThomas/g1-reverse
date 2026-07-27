@@ -11,8 +11,7 @@ extern void g1_recon_nrfx_gppi_event_endpoint_setup(uint32_t id,
                                                     uint32_t state);
 extern void FUN_00063778(uint32_t channel, uint32_t state, uint32_t length,
                         uint32_t zero, uintptr_t callback, uint32_t descriptor);
-extern void FUN_0007e2fa(uintptr_t domain, uintptr_t message,
-                        uintptr_t file, uint32_t line);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t file, uint32_t line) __attribute__((noreturn));
 
 void FUN_0004c418(void *object, uint32_t context, uint32_t descriptor)

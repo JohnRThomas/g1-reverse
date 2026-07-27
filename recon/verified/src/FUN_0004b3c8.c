@@ -4,7 +4,7 @@
  */
 #include <stdint.h>
 
-extern void FUN_0007e2fa(uint32_t, ...); /* printk */
+extern void FUN_0007e2fa(unsigned long, ...); /* printk */
 extern void FUN_0007e2ec(uint32_t, uint32_t); /* assert_post_action */
 extern uint32_t FUN_0007de82(uint32_t, uint32_t, uint32_t, uint32_t); /* bucket_idx */
 extern uint32_t FUN_0007de70(uint32_t, uint32_t); /* chunksz */

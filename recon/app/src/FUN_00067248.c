@@ -7,7 +7,7 @@ extern void FUN_000500c8(int);
  * an unused ABI hole in the shipped implementation. */
 extern void FUN_00067138(uint32_t handle, uint64_t context_word);
 extern void FUN_0007e2ec(uint32_t,int);
-extern void FUN_0007e2fa(uint32_t,uint32_t,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_000852ba(int, int);
 
 void FUN_00067248(int *param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4){

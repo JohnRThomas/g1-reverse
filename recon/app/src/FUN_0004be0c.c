@@ -3,7 +3,7 @@
 #include <cmsis_gcc.h>
 typedef uint32_t u32; typedef uint8_t u8;
 typedef u32 (*fp)(u8*);
-extern void FUN_0007e2fa(u32,u32,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(u32,u32);
 extern int FUN_00072040(int);
 extern void FUN_00072078(int);

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0003678c @ 0x3678c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_00076d6c(int,...);
 extern int FUN_00086c78(int,...);
 void FUN_0003678c(int param_1,int param_2,unsigned param_3,unsigned param_4){

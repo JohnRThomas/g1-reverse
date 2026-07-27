@@ -1,8 +1,8 @@
 /* Reconstructed getAppLanguageInfofromFlash @ 0x23d0c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern void *get_device_info(void);
-extern void debug_print(uint32_t, ...);
+extern void debug_print(unsigned long, ...);
 extern int z_device_is_ready(uint32_t);
 
 unsigned char getAppLanguageInfofromFlash(unsigned int param_1, unsigned int param_2, unsigned int param_3)

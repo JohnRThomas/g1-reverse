@@ -25,7 +25,7 @@ void start_aging_mode_thread(void)
   k_tid_t tid;
 
   if (*pcVar1 != 0) {
-    log_message((void*)((unsigned long)"[%s-%d], thread has started !\n") /*=0xa757f*/, (void*)((unsigned long)"start_aging_mode_thread") /*=0xa75c2*/, 0xab8);
+    log_message((unsigned long)((unsigned long)"[%s-%d], thread has started !\n") /*=0xa757f*/, (void*)((unsigned long)"start_aging_mode_thread") /*=0xa75c2*/, 0xab8);
     return;
   }
   tid = k_thread_create((struct k_thread *)((unsigned long)&g_aging_mode_thread) /*=0x20004870*/,

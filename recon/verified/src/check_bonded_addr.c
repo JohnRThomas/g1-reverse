@@ -2,8 +2,8 @@
 #include <stdint.h>
 
 extern void FUN_00018334(const void *connection, char description[36]);
-extern void DEBUG_PRINT(uintptr_t format, ...);
-extern void FUN_00019c70(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 void check_bonded_addr(const void *connection)
 {

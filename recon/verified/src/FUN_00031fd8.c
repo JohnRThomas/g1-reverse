@@ -1,9 +1,9 @@
 /* Reconstructed FUN_00031fd8 @ 0x31fd8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned uint; typedef unsigned char byte;
-extern int DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(int,...);
-extern int FUN_00019c70(int,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00022b00(int,...);
 extern int FUN_000232f8(int,...);
 extern int FUN_0007d14a(int,...);

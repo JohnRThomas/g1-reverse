@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000681cc @ 0x681cc  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(int,int);
-extern void printk(int,int,int,int);
+extern void printk(unsigned long, ...);
 typedef void (*fn2_t)(int,int);
 void FUN_000681cc(int param_1)
 {

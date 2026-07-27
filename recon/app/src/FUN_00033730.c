@@ -8,8 +8,8 @@ extern void FUN_00086c1e(void *destination, const void *source,
 extern uint32_t FUN_00086f00(void *destination, uint32_t append,
                              uint32_t capacity, uintptr_t format, ...);
 extern void FUN_00074844(uint32_t ticks, uint32_t unused);
-extern void DEBUG_PRINT(uintptr_t format, ...);
-extern void FUN_00019c70(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 #define LOG_ROUTE (*(volatile uint32_t *)0x20007554u)
 

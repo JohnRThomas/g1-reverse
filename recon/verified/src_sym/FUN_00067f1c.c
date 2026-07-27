@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00067f1c @ 0x67f1c  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long assert_post_action(unsigned int a,unsigned int b);
-extern void printk(unsigned int a,unsigned int b,unsigned int c,unsigned int d);
+extern void printk(unsigned long, ...);
 
 void FUN_00067f1c(int *param_1, int param_2, unsigned int param_3, unsigned int param_4)
 {

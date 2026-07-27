@@ -111,7 +111,8 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
                     log_message(((unsigned long)"%s(): 0x%x \n") /*=0x9e4e3*/, ((unsigned long)"calc_flash_crc") /*=0x9e4f9*/,
                                 buffer[(uint8_t)dump_index]);
                 else
-                    debug_print(((unsigned long)"%s(): 0x%x \n") /*=0x9e4e3*/, ((unsigned long)"calc_flash_crc") /*=0x9e4f9*/);
+                    debug_print(((unsigned long)"%s(): 0x%x \n") /*=0x9e4e3*/, ((unsigned long)"calc_flash_crc") /*=0x9e4f9*/,
+                                buffer[(uint8_t)dump_index]);
             }
             ++dump_index;
         }

@@ -7,7 +7,7 @@ extern void FUN_00072078(unsigned);
 extern void FUN_000737d8(int);
 extern void FUN_00073cdc(void*,int*,int,int,unsigned);
 extern void FUN_0007e2ec(unsigned,unsigned);
-extern void FUN_0007e2fa(unsigned,unsigned,unsigned,unsigned);
+extern void FUN_0007e2fa(unsigned long, ...);
 int FUN_00074060(int *param_1, char param_2, unsigned param_3, unsigned param_4)
 {
   unsigned basepri, uVar10, uVar5; int iVar3, iVar4;

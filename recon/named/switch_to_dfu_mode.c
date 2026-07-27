@@ -60,7 +60,7 @@ void switch_to_dfu_mode(unsigned int param_1)
             debug_print(0x990dcU, 0x99b2aU, (unsigned int)iVar2, 0);
             return;
         }
-        log_message(0x990dcU, 0x99b2aU);
+        log_message(0x990dcU, 0x99b2aU, (unsigned int)iVar2, 0);
         return;
     }
 loop_start:

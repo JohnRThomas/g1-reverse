@@ -1,7 +1,7 @@
 /* Reconstructed gui_screen_clear @ 0x431c0  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0007dda4(unsigned int message, unsigned int function);
-extern void FUN_00019c70(void);
+extern void FUN_0007dda4(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0007d4ec(void);
 extern void FUN_0007d6f4(int clear_value);
 
@@ -12,7 +12,7 @@ unsigned int gui_screen_clear(void)
         if (*(volatile unsigned int*)0x20007554UL == 0) {
             FUN_0007dda4(0xaa86c, 0xaae0f);
         } else {
-            FUN_00019c70();
+            FUN_00019c70(0xaa86c, 0xaae0f);
         }
     }
     int iVar2 = FUN_0007d4ec();
@@ -22,7 +22,7 @@ unsigned int gui_screen_clear(void)
             if (*(volatile unsigned int*)0x20007554UL == 0) {
                 FUN_0007dda4(0xaa891, 0xaae0f);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(0xaa891, 0xaae0f);
             }
         }
         uVar3 = 0xffffffffUL;

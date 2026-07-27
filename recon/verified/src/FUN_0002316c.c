@@ -13,8 +13,8 @@ extern void FUN_00016738(void);
 extern void FUN_0005420c(uint32_t, uint32_t);
 extern void FUN_000167f4(uint32_t);
 extern uint32_t FUN_0004c0a8(uint32_t);
-extern void DEBUG_PRINT(uint32_t, ...);
-extern void FUN_00019c70(uint32_t, uint32_t);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 #define LOG_LEVEL (*(volatile int32_t *)0x2000230c)
 #define LOG_BACKEND (*(volatile uint32_t *)0x20007554)
@@ -50,7 +50,7 @@ void FUN_0002316c(uint8_t *user_data, int reset_radio)
     FUN_0007c26e(1000);
     if (LOG_LEVEL > 0) {
         if (LOG_BACKEND == 0)
-            DEBUG_PRINT(0x0009e6d7);
+            DEBUG_PRINT(0x0009e6d7, 0x0009e764);
         else
             FUN_00019c70(0x0009e6d7, 0x0009e764);
     }

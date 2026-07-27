@@ -1,8 +1,8 @@
 /* Reconstructed FUN_00021a40 @ 0x21a40. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
-extern void FUN_00019c70(uint32_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_0004a424(uint32_t format, const void *record,
                          unsigned int record_size);
 extern void FUN_00086c1e(void *destination, const void *source,

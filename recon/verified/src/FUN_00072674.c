@@ -15,7 +15,7 @@ extern int FUN_000739f0(unsigned int*,int);
 extern int FUN_000744a4(unsigned int*);
 extern unsigned int* FUN_00075944(int,int);
 extern int FUN_0007e2ec(int,int);
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_0008688e(unsigned int*,int);
 
 unsigned int FUN_00072674(unsigned int *param_1, unsigned int *param_2, unsigned int *param_3, int param_4, char param_5)

@@ -7,7 +7,7 @@ extern void FUN_00050b8c(int);
 extern void FUN_00063b7c(uint32_t, int);
 extern int FUN_000748ac(void);
 extern void FUN_0007e2ec(uint32_t, uint32_t);
-extern void FUN_0007e2fa(uint32_t, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern char *FUN_00086418(int);
 
 struct event_log_record {

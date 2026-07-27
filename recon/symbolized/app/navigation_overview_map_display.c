@@ -47,9 +47,9 @@
 
 #include <stdint.h>
 
-extern void log_message(unsigned a, unsigned b);
+extern void log_message(unsigned long, ...);
 extern int  get_device_info(void);
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern void reflash_fb_data_to_lcd(unsigned a, unsigned b, int c, int d, int e, int f);
 extern void gui_canvas_flags_clear_bit1(void);
 extern void gui_canvas_flags_set_bit1(void);
@@ -84,7 +84,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
                 log_message(((unsigned long)"%s(): reflash overview map && text\n") /*=0xa9ebd*/, ((unsigned long)"navigation_overview_map_display") /*=0xaa446*/);
             else
-                debug_print();
+                debug_print(((unsigned long)"%s(): reflash overview map && text\n") /*=0xa9ebd*/, ((unsigned long)"navigation_overview_map_display") /*=0xaa446*/);
         }
         iVar6 = get_device_info();
         iVar11 = 0x640;
@@ -119,7 +119,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
                     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
                         log_message(((unsigned long)&rodata_a9ee1) /*=0xa9ee1*/, ((unsigned long)"navigation_overview_map_display") /*=0xaa446*/);
                     else
-                        debug_print();
+                        debug_print(((unsigned long)&rodata_a9ee1) /*=0xa9ee1*/, ((unsigned long)"navigation_overview_map_display") /*=0xaa446*/);
                 }
                 memset_bytes(((unsigned long)g_buf_2001ba2e) /*=0x2001ba2e*/, 0, 0x1210);
                 FUN_0007d376(((unsigned long)&g_ble_work_queue) /*=0x20007574*/, 0, 0xffffffff, 0xffffffff);
@@ -129,7 +129,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
                     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
                         log_message(((unsigned long)&rodata_a9eff) /*=0xa9eff*/, ((unsigned long)"navigation_overview_map_display") /*=0xaa446*/);
                     else
-                        debug_print();
+                        debug_print(((unsigned long)&rodata_a9eff) /*=0xa9eff*/, ((unsigned long)"navigation_overview_map_display") /*=0xaa446*/);
                 }
                 memset_bytes(((unsigned long)g_buf_2001ba2e) /*=0x2001ba2e*/, 0, 0x1210);
                 FUN_0007d376(((unsigned long)&g_ble_work_queue) /*=0x20007574*/, 0, 0xffffffff, 0xffffffff);
@@ -246,14 +246,14 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
                 if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
                     log_message(((unsigned long)"%s(): reflash overview map ....\n") /*=0xa9f30*/, ((unsigned long)"navigation_overview_map_display") /*=0xaa446*/);
                 else
-                    debug_print();
+                    debug_print(((unsigned long)"%s(): reflash overview map ....\n") /*=0xa9f30*/, ((unsigned long)"navigation_overview_map_display") /*=0xaa446*/);
             }
             if (*(volatile int*)(param_2 + 0xb1) == 0x1210) {
                 if (2 < *piVar2) {
                     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
                         log_message(((unsigned long)&rodata_a9ee1) /*=0xa9ee1*/, ((unsigned long)"navigation_overview_map_display") /*=0xaa446*/);
                     else
-                        debug_print();
+                        debug_print(((unsigned long)&rodata_a9ee1) /*=0xa9ee1*/, ((unsigned long)"navigation_overview_map_display") /*=0xaa446*/);
                 }
                 memset_bytes(((unsigned long)g_buf_2001ba2e) /*=0x2001ba2e*/, 0, 0x1210);
                 FUN_0007d376(((unsigned long)&g_ble_work_queue) /*=0x20007574*/, 0, 0xffffffff, 0xffffffff);
@@ -263,7 +263,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
                     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
                         log_message(((unsigned long)&rodata_a9eff) /*=0xa9eff*/, ((unsigned long)"navigation_overview_map_display") /*=0xaa446*/);
                     else
-                        debug_print();
+                        debug_print(((unsigned long)&rodata_a9eff) /*=0xa9eff*/, ((unsigned long)"navigation_overview_map_display") /*=0xaa446*/);
                 }
                 memset_bytes(((unsigned long)g_buf_2001ba2e) /*=0x2001ba2e*/, 0, 0x1210);
                 FUN_0007d376(((unsigned long)&g_ble_work_queue) /*=0x20007574*/, 0, 0xffffffff, 0xffffffff);
@@ -291,7 +291,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
                 log_message(((unsigned long)"%s(): reflash text info ....\n") /*=0xa9f51*/, ((unsigned long)"navigation_overview_map_display") /*=0xaa446*/);
             else
-                debug_print();
+                debug_print(((unsigned long)"%s(): reflash text info ....\n") /*=0xa9f51*/, ((unsigned long)"navigation_overview_map_display") /*=0xaa446*/);
         }
         memset_bytes(((unsigned long)g_buf_2001b9ac) /*=0x2001b9ac*/, 0, 0x80);
         snprintf(((unsigned long)g_buf_2001b9ac) /*=0x2001b9ac*/, 0x80, ((unsigned long)&rodata_a9f2a) /*=0xa9f2a*/, param_2 + 0xd, param_2 + 0x25);

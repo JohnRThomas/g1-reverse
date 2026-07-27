@@ -16,10 +16,10 @@ typedef uint64_t undefined8; typedef uint64_t ulonglong;
 typedef int64_t longlong;
 #define CONCAT11(a,b) ((ushort)(((ushort)(uint8_t)(a)<<8)|(uint8_t)(b)))
 #define CONCAT22(a,b) ((uint)(((uint)(ushort)(a)<<16)|(ushort)(b)))
-extern long long DEBUG_PRINT(int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern long long FUN_0000ef12(int, ...);
 extern long long FUN_000167a8(int, ...);
-extern long long FUN_00019c70(int, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern long long FUN_00023ee0(int, ...);
 extern long long FUN_00026c28(int, ...);
 extern long long FUN_00033cf8(int, ...);
@@ -964,7 +964,7 @@ LAB_0003803a:
           }
           if (2 < *piVar2) {
             if (*DAT_00037ea4 == 0) {
-              DEBUG_PRINT(DAT_00037eac,DAT_00037ea8);
+              DEBUG_PRINT(DAT_00037eac,DAT_00037ea8,0);
             }
             else {
               FUN_00019c70(DAT_00037eac,DAT_00037ea8,0);

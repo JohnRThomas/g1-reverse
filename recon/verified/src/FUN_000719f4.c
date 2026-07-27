@@ -7,7 +7,7 @@ extern int FUN_0007205c(int);
 extern long long FUN_0004b2b0(int,unsigned,unsigned);
 extern void FUN_000866e4(void*,int,int,int);
 extern void FUN_00073f6c(int,unsigned,int,int,int,int);
-extern void FUN_0007e2fa(unsigned,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(unsigned,unsigned);
 
 static inline unsigned gp(void){unsigned r;__asm volatile("mrs %0, basepri":"=r"(r));return r;}

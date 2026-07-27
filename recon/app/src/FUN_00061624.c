@@ -6,7 +6,7 @@ extern int FUN_000658e8(int,...);
 extern int FUN_000659cc(int,...);
 extern int FUN_00065b18(int,...);
 extern int FUN_0007e2ec(int,...) __attribute__((noreturn));
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 
 unsigned FUN_00061624(int param_1, unsigned param_2, unsigned param_3, unsigned param_4)
 {

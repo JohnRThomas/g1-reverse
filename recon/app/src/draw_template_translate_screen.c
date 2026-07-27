@@ -1,7 +1,7 @@
 /* Reconstructed draw_template_translate_screen @ 0x3fd44  (parity: 300/300 trials, PROVEN) */
-extern void DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int  FUN_000167a8(void);
-extern void FUN_00019c70(int,int,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_000431b4(int);
 extern void FUN_00043484(int,int,int,int,int,int);
 extern void FUN_00043e90(int,int,int,int,int,int,int,int,int,int,int,int);

@@ -1,7 +1,7 @@
 /* Reconstructed global_system_suspend @ 0x2bd7c  (parity: 296/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int fmt, unsigned int a1, unsigned int a2, unsigned int a3);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 typedef void (*fn2_t)(unsigned int);
 
 unsigned int global_system_suspend(void *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
@@ -13,7 +13,7 @@ unsigned int global_system_suspend(void *param_1, unsigned int param_2, unsigned
             if (*(volatile int *)0x20007554UL /* device_info.is_debug @+0xB58  (log sink select: 0=RTT DEBUG_PRINT) */ == 0) {
                 DEBUG_PRINT(0xa24ebU, 0xa251aU, param_3, 0U);
             } else {
-                debug_print();
+                debug_print(0xa24ebU, 0xa251aU, param_3, 0U);
             }
         }
         /* param_1 == device_info; +0xB6C == device_info.projector_controller.
@@ -24,7 +24,7 @@ unsigned int global_system_suspend(void *param_1, unsigned int param_2, unsigned
             if (*(volatile int *)0x20007554UL == 0) {
                 DEBUG_PRINT(0xa24f9U, 0xa251aU, param_3, 0U);
             } else {
-                debug_print();
+                debug_print(0xa24f9U, 0xa251aU, param_3, 0U);
             }
         }
         *(base + 0xfe6) = 1;

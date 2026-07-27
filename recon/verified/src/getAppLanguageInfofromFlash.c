@@ -1,8 +1,8 @@
 /* Reconstructed getAppLanguageInfofromFlash @ 0x23d0c. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
-extern void FUN_00019c70(uint32_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern uintptr_t FUN_000167a8(void);
 extern int FUN_0008638c(uint32_t device);
 

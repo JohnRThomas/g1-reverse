@@ -1,7 +1,7 @@
 /* Reconstructed clean_fb_data @ 0x471cc  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern void memset_bytes(int, void*, int);
 
 int clean_fb_data(int param_1, void *param_2, int param_3, int param_4, int param_5, int param_6)
@@ -15,7 +15,7 @@ int clean_fb_data(int param_1, void *param_2, int param_3, int param_4, int para
             if (*(volatile unsigned int*)0x20007554UL /* device_info.is_debug (+0xb58) */ == 0) {
                 DEBUG_PRINT(0xd7347U, 0xd7374U, param_3, 0, param_4);
             } else {
-                debug_print();
+                debug_print(0xd7347U, 0xd7374U, param_3, 0, param_4);
             }
         }
         iVar1 = -1;

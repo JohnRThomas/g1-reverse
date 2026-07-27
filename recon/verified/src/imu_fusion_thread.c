@@ -10,8 +10,8 @@ typedef long long i64; typedef unsigned long long u64;
 #define UB(a) (*(volatile unsigned char*)(a))
 #define F(a)  (*(volatile float*)(a))
 
-extern int DEBUG_PRINT(void);
-extern int FUN_00019c70(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00086c78(int,int,int);
 extern int FUN_0007ca72(int,int);
 extern i64 thunk_FUN_00074f68(void);
@@ -56,10 +56,10 @@ void imu_fusion_thread(char *p)
     FUN_00086c78((int)buf2, 0, 0x18);
 
     if (p[0x14] != 0) {
-        if (1 < I(0x2000230c)) { if (I(0x20007554)==0) DEBUG_PRINT(); else FUN_00019c70(); }
+        if (1 < I(0x2000230c)) { if (I(0x20007554)==0) DEBUG_PRINT(((unsigned long)"%s(): error\n\n"),((unsigned long)"imu_fusion_thread")); else FUN_00019c70(((unsigned long)"%s(): error\n\n"),((unsigned long)"imu_fusion_thread")); }
         return;
     }
-    if (1 < I(0x2000230c)) { if (I(0x20007554)==0) DEBUG_PRINT(); else FUN_00019c70(); }
+    if (1 < I(0x2000230c)) { if (I(0x20007554)==0) DEBUG_PRINT(((unsigned long)"%s(): start imu looper\n\n"),((unsigned long)"imu_fusion_thread")); else FUN_00019c70(((unsigned long)"%s(): start imu looper\n\n"),((unsigned long)"imu_fusion_thread")); }
     p[0] = 1;
 
     while (p[0x15] != 0) {
@@ -207,7 +207,7 @@ void imu_fusion_thread(char *p)
             if (iVar6 < 2) goto L1064c;
             I(0x20007a8c) = -3;
             B(0x20018d96) = 1;
-            if (I(0x20007554) == 0) DEBUG_PRINT(); else FUN_00019c70();
+            if (I(0x20007554) == 0) DEBUG_PRINT(((unsigned long)"bow head################################################\n")); else FUN_00019c70(((unsigned long)"bow head################################################\n"));
             FUN_000276ec(3);
             p[0] = 1;
             {
@@ -237,7 +237,7 @@ void imu_fusion_thread(char *p)
             u8 bv = (u8)p[0x10];
             if (p[-0xe0f]==0 && I(0x20007a88) <= iVar27) goto L1027a;
             B(0x20018d96) = 1;
-            if (I(0x20007554)==0) DEBUG_PRINT(); else FUN_00019c70();
+            if (I(0x20007554)==0) DEBUG_PRINT(((unsigned long)"look up################################################,screen_id is %d, pitch_y is %d, pitch_threshold_bow_head is %d, pitch_threshold_level is %d\n"),p[-0xe0f],iVar27,*(int*)(p+8),bv); else FUN_00019c70(((unsigned long)"look up################################################,screen_id is %d, pitch_y is %d, pitch_threshold_bow_head is %d, pitch_threshold_level is %d\n"),p[-0xe0f],iVar27,*(int*)(p+8),bv);
             k = 0x65;
             while (1) {
                 int iv = FUN_000167a8();
@@ -263,7 +263,7 @@ void imu_fusion_thread(char *p)
                 if (-1 < (iVar6 << 0x1e)) {
                     iVar6 = FUN_0007ca4e((void*)0x2000756c);
                     if (-1 < (iVar6 << 0x1e) && (FUN_0007ca4e((void*)0x20007570) << 0x1e) < 0) {
-                        if (2 < I(0x2000230c)) { if (I(0x20007554)==0) DEBUG_PRINT(); else FUN_00019c70(); }
+                        if (2 < I(0x2000230c)) { if (I(0x20007554)==0) DEBUG_PRINT(((unsigned long)"%s(): send dashboard lock info to app ,status = %d \n"),((unsigned long)"handle_attitude_trigger"),1); else FUN_00019c70(((unsigned long)"%s(): send dashboard lock info to app ,status = %d \n"),((unsigned long)"handle_attitude_trigger"),1); }
                         FUN_00047b1c(0,6);
                         FUN_00047ba8();
                         I(0x2000756c) |= 2;
@@ -273,7 +273,7 @@ void imu_fusion_thread(char *p)
                 /* bit1 clear: enter work-mode-2 path */
                 p[0] = 2; p[0x102] = 5; p[-0xe19] = p[-0xf];
                 if (p[-0xee4] == 1) {
-                    if (1 < I(0x2000230c)) { if (I(0x20007554)==0) DEBUG_PRINT(); else FUN_00019c70(); }
+                    if (1 < I(0x2000230c)) { if (I(0x20007554)==0) DEBUG_PRINT(((unsigned long)"%s(): master sync canvas_distance_gear:%d,raster_height_gear:%d\n"),((unsigned long)"handle_attitude_trigger"),p[-0x23],p[-0x24]); else FUN_00019c70(((unsigned long)"%s(): master sync canvas_distance_gear:%d,raster_height_gear:%d\n"),((unsigned long)"handle_attitude_trigger"),p[-0x23],p[-0x24]); }
                     sync_to_slave(q8,2,0,3);
                     FUN_00042fb0(p-0x20, p-0x2c);
                 }

@@ -1,7 +1,7 @@
 /* Reconstructed startAudioStreamRecord @ 0x2f764  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int a, unsigned int b);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern unsigned int get_device_info(void);
 extern void display_DelayClose(unsigned int ms);
 extern int FUN_000720d0(int a, void *b, int c, int d);
@@ -26,7 +26,7 @@ unsigned int startAudioStreamRecord(void)
             if (*(int *)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
                 DEBUG_PRINT(0xa4304U, 0xa496fU);
             } else {
-                debug_print();
+                debug_print(0xa4304U, 0xa496fU);
             }
         }
         *(unsigned short *)buf = 1;
@@ -37,7 +37,7 @@ unsigned int startAudioStreamRecord(void)
             if (*(int *)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
                 DEBUG_PRINT(0xa432aU, 0xa496fU);
             } else {
-                debug_print();
+                debug_print(0xa432aU, 0xa496fU);
             }
         }
         uVar3 = 0xffffffff;

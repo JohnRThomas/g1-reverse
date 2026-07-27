@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000566a4 @ 0x566a4  true code extent: 0x50 bytes */
 #include <stdint.h>
 
-extern void FUN_0007e2fa(uint32_t module, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uint32_t source, uint32_t line);
 extern void FUN_00055aac(void *object);
 

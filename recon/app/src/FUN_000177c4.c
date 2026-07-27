@@ -1,6 +1,6 @@
 /* Reconstructed FUN_000177c4 @ 0x177c4  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0007e2fa(unsigned int, unsigned int, unsigned int, unsigned int);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(unsigned int, unsigned int);
 typedef int (*fnptr)(int, unsigned int*, unsigned int, void*, int);
 

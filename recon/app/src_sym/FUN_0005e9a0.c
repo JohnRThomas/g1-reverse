@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0005e9a0 @ 0x5e9a0  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(unsigned int a0, unsigned int a1);
-extern void printk(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3, unsigned int a4);
+extern void printk(unsigned long, ...);
 
 void FUN_0005e9a0(int param_1, unsigned short param_2, unsigned int param_3, unsigned int param_4)
 {

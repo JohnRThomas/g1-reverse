@@ -1,7 +1,7 @@
 /* Reconstructed update_temp_task_status @ 0x2bffc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
-extern void FUN_00019c70(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00049858(unsigned char);
 extern void FUN_0007cdf8(void);
 

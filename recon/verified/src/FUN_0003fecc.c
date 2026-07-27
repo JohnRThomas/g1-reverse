@@ -38,8 +38,8 @@ extern void FUN_00047260(uintptr_t left, uintptr_t right, uint32_t x0,
                          uint32_t y0, uint32_t x1, uint32_t y1);
 extern void FUN_0004a1b8(uint32_t content, void *metrics);
 extern void FUN_0004382c(void);
-extern void FUN_00019c70(uintptr_t format, ...);
-extern void FUN_0007dda4(uintptr_t format, ...);
+extern void FUN_00019c70(unsigned long, ...);
+extern void FUN_0007dda4(unsigned long, ...);
 
 #define TRANSLATE_STATE ((volatile uint8_t *)0x2000f6ecu)
 #define TRANSLATE_TEXT ((char *)0x2001cc3eu)

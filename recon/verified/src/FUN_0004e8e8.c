@@ -2,7 +2,7 @@
 #include <stdint.h>
 typedef unsigned int uint;
 extern void FUN_0007e2ec(uint32_t,uint32_t);
-extern void FUN_0007e2fa(uint32_t,uint32_t,uint32_t,uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_000868ca(int,int);
 int FUN_0004e8e8(int param_1,uint32_t param_2,uint32_t param_3,uint32_t param_4){
   int iVar1=0x2000a154;

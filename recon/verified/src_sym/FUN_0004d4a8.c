@@ -2,7 +2,7 @@
 
 extern unsigned int z_log_dropped_read_and_clear_0(void);
 extern void assert_post_action(void*, int);
-extern void printk(void*, void*, void*, int);
+extern void printk(unsigned long, ...);
 
 void FUN_0004d4a8(void)
 {
@@ -14,8 +14,8 @@ void FUN_0004d4a8(void)
 
   for (;;) {
     if ((unsigned int)r4 > (unsigned int)r6) {
-      printk((void*)0x99cbdUL,(void*)0xf0cffUL,(void*)0xf0caeUL,0x1d1);
-      printk((void*)0xf0d20UL, 0, 0, 0);
+      printk((unsigned long)0x99cbdUL,(void*)0xf0cffUL,(void*)0xf0caeUL,0x1d1);
+      printk((unsigned long)0xf0d20UL, 0, 0, 0);
       assert_post_action((void*)0xf0caeUL,0x1d1);
     }
     if ((unsigned int)r4 >= (unsigned int)r6) break;

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000613c4 @ 0x613c4  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_0007e2ec(int,int);
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 int FUN_000613c4(int param_1, int *param_2, int param_3){
   int iVar4=*(int*)(param_1+0x10);
   if(param_2==0){ FUN_0007e2fa(0x99cbd,0xf5e38,0xf5dfc,0x3a); FUN_0007e2fa(0xf5e41); FUN_0007e2ec(0xf5dfc,0x3a); }

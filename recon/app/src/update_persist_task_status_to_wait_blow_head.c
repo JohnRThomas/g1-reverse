@@ -1,9 +1,9 @@
 /* Reconstructed update_persist_task_status_to_wait_blow_head @ 0x2c180  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00049858(unsigned char);
 extern void FUN_0007cdf8(void);
-extern int DEBUG_PRINT(int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 unsigned int update_persist_task_status_to_wait_blow_head(unsigned char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -22,7 +22,7 @@ unsigned int update_persist_task_status_to_wait_blow_head(unsigned char *param_1
     if (*(int*)0x20007554UL == 0) {
       DEBUG_PRINT(0xa25d9, 0xa25f8, 1, 0, param_4);
     } else {
-      FUN_00019c70();
+      FUN_00019c70(0xa25d9, 0xa25f8, 1, 0, param_4);
     }
   }
   param_1[0xd5] = 1;

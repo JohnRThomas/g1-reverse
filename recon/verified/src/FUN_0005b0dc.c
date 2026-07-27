@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0005b0dc @ 0x5b0dc  (parity: 296/300 trials, PROVEN) */
 extern int  FUN_0005b0b8(int);
 extern void FUN_0007e2ec(int,int);
-extern void FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int  FUN_00080d3e(int,void*);
 extern int  FUN_000814e6(int,int,void*);
 #define VI(a) (*(volatile int*)(a))

@@ -1,7 +1,7 @@
 /* Reconstructed deleteQuickNoteData @ 0x244a8  (parity: 300/300 trials, PROVEN) */
 extern int FUN_000720d0(unsigned int a0, void *a1, unsigned int a2, unsigned int a3);
-extern void DEBUG_PRINT(unsigned int a0, ...);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern void FUN_00072880(unsigned int a0);
 
 unsigned int deleteQuickNoteData(unsigned int param_1, unsigned int param_2, unsigned int param_3)
@@ -19,7 +19,7 @@ unsigned int deleteQuickNoteData(unsigned int param_1, unsigned int param_2, uns
             if (*(volatile int*)0x20007554UL /* device_info.is_debug (+0xb58) */ == 0)
                 DEBUG_PRINT(0x9ee23UL, 0x9f080UL, param_1);
             else
-                debug_print();
+                debug_print(0x9ee23UL, 0x9f080UL, param_1);
         }
         FUN_00072880(0x200079e4UL /* device_info+0xfe8 (gap near gap_0FDB+0x2, name best-effort) */);
         uVar2 = 0;
@@ -28,7 +28,7 @@ unsigned int deleteQuickNoteData(unsigned int param_1, unsigned int param_2, uns
             if (*(volatile int*)0x20007554UL /* device_info.is_debug (+0xb58) */ == 0)
                 DEBUG_PRINT(0x9edc2UL, 0x9f080UL);
             else
-                debug_print();
+                debug_print(0x9edc2UL, 0x9f080UL);
         }
         uVar2 = 0xffffffffUL;
     }

@@ -5,7 +5,7 @@ extern void FUN_0005f4d4(int,int);
 extern int FUN_0005ee18(int);
 extern int FUN_0005f5d0(int,int);
 extern void FUN_0007e2ec(int,int);
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 int FUN_00053cd4(short param_1,int param_2){
   int iVar2=FUN_000836de(0x20003b4c,param_2,-1,-1);
   if(iVar2==0){ FUN_0007e2fa(0x99cbd,0xf45be,0xf2e84,0x10a); FUN_0007e2ec(0xf2e84,0x10a); }

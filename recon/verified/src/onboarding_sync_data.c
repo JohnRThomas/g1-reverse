@@ -3,9 +3,9 @@
 typedef unsigned int uint32_t;
 typedef unsigned char uint8_t;
 
-extern void DEBUG_PRINT(uint32_t a, uint32_t b);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern uint32_t FUN_000167a8(void);
-extern void FUN_00019c70(uint32_t a, uint32_t b);
+extern void FUN_00019c70(unsigned long, ...);
 extern uint32_t FUN_00027448(uint32_t a, uint32_t b, void* c, uint32_t d, void* e);
 extern void FUN_00086c04(uint32_t dst, void* src, uint32_t len);
 extern uint32_t sync_to_slave(uint32_t a, uint32_t b, void* c, uint32_t d);

@@ -2,8 +2,8 @@
 
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t name, ...);
-extern void FUN_00019c70(uint32_t format, uint32_t name, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000720d0(void *owner, const void *packet,
                         int option_a, int option_b);
 extern void FUN_00086c78(void *destination, int value,

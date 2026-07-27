@@ -1,8 +1,8 @@
 /* Reconstructed panel_init @ 0x47538. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
-extern void FUN_00019c70(uint32_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_0007d642(uint32_t a, uint32_t b);
 extern void FUN_0007d658(uint32_t a, uint32_t b);
 extern void FUN_0007d67e(uint32_t a);

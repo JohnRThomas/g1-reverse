@@ -37,16 +37,16 @@ void gpio_pin_configure(const uint8_t *pin, uint32_t flags)
     pin_config_t configure;
 
     if (mode == 0x600000) {
-        printk((void *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)&rodata_99e30) /*=0x99e30*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x36a);
-        printk((void *)((unsigned long)"\tCannot both enable and disable interrupts\n") /*=0x99e71*/);
+        printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)&rodata_99e30) /*=0x99e30*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x36a);
+        printk((unsigned long)((unsigned long)"\tCannot both enable and disable interrupts\n") /*=0x99e71*/);
         assert_post_action((void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x36a);
     } else if (mode == 0) {
-        printk((void *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)"(flags & ((1U << 21) | (1U << 22))) != 0U") /*=0x99e9d*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x36e);
-        printk((void *)((unsigned long)&rodata_99ec7) /*=0x99ec7*/);
+        printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)"(flags & ((1U << 21) | (1U << 22))) != 0U") /*=0x99e9d*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x36e);
+        printk((unsigned long)((unsigned long)&rodata_99ec7) /*=0x99ec7*/);
         assert_post_action((void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x36e);
     } else if ((flags & 0x6400000) == 0x400000) {
-        printk((void *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)&rodata_99ef2) /*=0x99ef2*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x378);
-        printk((void *)((unsigned long)"\tAt least one of GPIO_INT_LOW_0, GPIO_INT_HIGH_1 has to be enabled.\n") /*=0x99f3c*/);
+        printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)&rodata_99ef2) /*=0x99ef2*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x378);
+        printk((unsigned long)((unsigned long)"\tAt least one of GPIO_INT_LOW_0, GPIO_INT_HIGH_1 has to be enabled.\n") /*=0x99f3c*/);
         assert_post_action((void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x378);
     }
 
@@ -63,8 +63,8 @@ void gpio_pin_configure(const uint8_t *pin, uint32_t flags)
     output = *(volatile uint32_t **)(dev + 16);   /* &data->invert */
     bit = 1u << line;
     if ((*enabled & bit) == 0) {
-        printk((void *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)"(cfg->port_pin_mask & (gpio_port_pins_t)(1UL << (pin))) != 0U") /*=0x99de0*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x382);
-        printk((void *)((unsigned long)"\tUnsupported pin\n") /*=0x99e1e*/);
+        printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)"(cfg->port_pin_mask & (gpio_port_pins_t)(1UL << (pin))) != 0U") /*=0x99de0*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x382);
+        printk((unsigned long)((unsigned long)"\tUnsupported pin\n") /*=0x99e1e*/);
         assert_post_action((void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x382);
     }
     if ((flags & 0x800000) && (*output & bit))

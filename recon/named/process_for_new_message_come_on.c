@@ -95,9 +95,9 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
             return 0xb;
         }
         if ((*param_3 == '\x02') || (param_1[0xfea] == 0xb)) {
-            if (2 < *piVar1) { if (*piVar2 == 0) log_message(0, 0); else debug_print(0); }
+            if (2 < *piVar1) { if (*piVar2 == 0) log_message(0, 0); else debug_print(0, 0); }
             set_new_message_pending_flag();
-            if (2 < *piVar1) { if (*piVar2 == 0) log_message(0, 0); else debug_print(0); }
+            if (2 < *piVar1) { if (*piVar2 == 0) log_message(0, 0); else debug_print(0, 0); }
             if (param_1[0xb0d] == 1) {
                 update_temp_task_status(param_1, 8, 2);
                 set_message_pending_state(4);
@@ -119,7 +119,7 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
         uVar9 = uVar9 + 1;
         if (((uVar9 & 0xf) == 0) && (2 < *piVar1)) {
             if (*piVar2 == 0) log_message(0, 0, (uint)*(volatile byte *)(param_2 + 7));
-            else debug_print(0);
+            else debug_print(0, 0, (uint)*(volatile byte *)(param_2 + 7));
         }
         FUN_0007ce5c(0x667, 0);
         if (*param_1 == 1) {
@@ -135,7 +135,7 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
     param_1[0xb0d] = 0;
     uVar3 = 0;
     if (*(volatile char *)(param_2 + 7) == '\0') {
-        if (2 < *piVar1) { if (*piVar2 == 0) log_message(0, 0, (uint)*(volatile byte *)(param_2 + 1)); else debug_print(0); }
+        if (2 < *piVar1) { if (*piVar2 == 0) log_message(0, 0, (uint)*(volatile byte *)(param_2 + 1)); else debug_print(0, 0, (uint)*(volatile byte *)(param_2 + 1)); }
         *param_4 = 0xa28d4;
         sync_to_slave(param_1, 8, 0);
         if (*param_3 == '\x02') update_persist_task_status_to_wait_blow_head();

@@ -1,8 +1,8 @@
 /* Reconstructed load_sys_setting @ 0x22bd0. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, uint32_t);
-extern void FUN_00019c70(uint32_t, uint32_t);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000225b4(uint32_t, void *, uint32_t);
 extern void FUN_00022b00(uintptr_t);
 extern void FUN_00086c78(void *, int, uint32_t);

@@ -1,6 +1,6 @@
 /* Full reconstruction FUN_00067e30 @ 0x67e30, exact extent 70 bytes. */
 #include <stdint.h>
-extern void FUN_0007e2fa(uintptr_t,uintptr_t,uintptr_t,uint32_t,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern __attribute__((noreturn)) void FUN_0007e2ec(uintptr_t,uint32_t);
 void FUN_00067e30(uintptr_t *device,uint32_t a,uint32_t b,uint32_t context){
  (void)a;(void)b;uint32_t ch=((uint8_t*)device)[4];volatile uint8_t *s=(volatile uint8_t*)(0x2000b41cu+ch*8u);

@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 
-extern void FUN_0007e2fa(uintptr_t, uintptr_t, uintptr_t, uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t, uint32_t) __attribute__((noreturn));
 
 int FUN_000604e4(uint8_t *device, uint8_t type, uint32_t owner)

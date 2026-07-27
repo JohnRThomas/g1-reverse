@@ -1,8 +1,8 @@
 /* Full reconstruction FUN_00026338 @ 0x26338, exact extent 190 bytes.
  * CFG_VERIFY_CALL_ARITIES=1 */
 #include <stdint.h>
-extern void DEBUG_PRINT(uintptr_t,...);
-extern void FUN_00019c70(uintptr_t,...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00067248(void*);
 unsigned FUN_00026338(uintptr_t event){
  struct mapping{uint32_t base,tag;};
@@ -13,7 +13,7 @@ unsigned FUN_00026338(uintptr_t event){
  uint32_t mode=*(volatile uint8_t*)(event+0x18);int level=*(volatile int*)0x2000230cu;
  const struct mapping *m;
  if(mode==3)m=&mode3;else if(mode==4)m=&mode4;else{
-  if(level>0){int alternate=*(volatile int*)0x20007554u;if(alternate)FUN_00019c70(0x0009fb89u,0x0009fc79u,mode,(uint32_t)alternate);else DEBUG_PRINT(0x0009fb89u,0x0009fc79u);}return 0;
+  if(level>0){int alternate=*(volatile int*)0x20007554u;if(alternate)FUN_00019c70(0x0009fb89u,0x0009fc79u,mode,(uint32_t)alternate);else DEBUG_PRINT(0x0009fb89u,0x0009fc79u,mode,(uint32_t)alternate);}return 0;
  }
  *(volatile uint32_t*)(event+0xc)=m->base;*(volatile uint32_t*)(event+0x10)=m->tag;
  if(level>2){

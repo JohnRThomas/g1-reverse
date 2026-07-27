@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0004967c @ 0x4967c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(unsigned,unsigned,unsigned,unsigned);
-extern void FUN_00019c70(unsigned,unsigned,...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_0004904c(void);
 extern int FUN_000720d0(unsigned,void*,int,int);
 extern void FUN_00086c04(void*,int,unsigned);
@@ -18,7 +18,7 @@ unsigned FUN_0004967c(int param_1, unsigned param_2){
       if(*(volatile int*)0x20007554UL == 0)
         DEBUG_PRINT(0x000effd2,0x000f019a,0,0);
       else
-        FUN_00019c70(0x000effd2,0x000f019a);
+        FUN_00019c70(0x000effd2,0x000f019a,0,0);
     }
     FUN_00086c78(packet + 1,0,23);
     packet[0] = 2;
@@ -33,7 +33,7 @@ unsigned FUN_0004967c(int param_1, unsigned param_2){
         if(*(volatile int*)0x20007554UL == 0)
           DEBUG_PRINT(0x000efff4,0x000f019a,0,0);
         else
-          FUN_00019c70(0x000efff4,0x000f019a);
+          FUN_00019c70(0x000efff4,0x000f019a,0,0);
       }
       long long lVar8 = thunk_FUN_00074f68();
       if(*piVar1 > 2){
@@ -57,7 +57,7 @@ unsigned FUN_0004967c(int param_1, unsigned param_2){
     if(*(volatile int*)0x20007554UL == 0)
       DEBUG_PRINT(0x000ef01c,0x000f019a,10,0);
     else
-      FUN_00019c70(0x000ef01c,0x000f019a,10);
+      FUN_00019c70(0x000ef01c,0x000f019a,10,0);
   }
   return 0xffffffff;
 }

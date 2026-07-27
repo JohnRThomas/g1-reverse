@@ -44,7 +44,7 @@ extern int get_device_info();
 extern int ble_work_queue_lock();
 extern int ble_work_queue_unlock();
 extern int audio_fw_load_get_wrapper();
-extern int debug_print();
+extern void debug_print(unsigned long, ...);
 extern int send_response_data_to_msgqueue();
 extern int get_ui_mode_flag2();
 extern int SendDashBoardStartupModeInfoToSlave();
@@ -61,7 +61,7 @@ extern int memcmp();
 extern int memcpy();
 extern int safe_memcpy_checked();
 extern int memset_bytes();
-extern int log_message();
+extern void log_message(unsigned long, ...);
 
 #define BLE_LOG_LEVEL (*(volatile int32_t *)(uintptr_t)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define BLE_IS_DEBUG  (*(volatile uint32_t *)(uintptr_t)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)

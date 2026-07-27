@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00056654 @ 0x56654  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_0007e2ec(int,int);
-extern void FUN_0007e2fa(int,int,int,int);
+extern void FUN_0007e2fa(unsigned long, ...);
 
 int FUN_00056654(int param_1)
 {

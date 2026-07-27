@@ -1,7 +1,7 @@
 /* Full reconstruction FUN_00061f64 @ 0x00061f64 (72-byte exact extent). */
 #include <stdint.h>
 
-extern void FUN_0007e2fa(uintptr_t, uintptr_t, uintptr_t, uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t, uint32_t) __attribute__((noreturn));
 
 uintptr_t FUN_00061f64(uint32_t *encoded_pin)

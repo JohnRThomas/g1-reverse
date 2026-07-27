@@ -1,9 +1,9 @@
 /* Reconstructed FUN_0002c714 @ 0x2c714  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char byte; typedef unsigned char undefined1; typedef uint32_t undefined4; typedef unsigned int uint;
-extern int DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
-extern int FUN_00019c70(int,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0002bffc(int,...);
 extern int FUN_0002c0e8(void*,...);
 extern int FUN_0002c30c(int,...);

@@ -1,8 +1,8 @@
 /* Reconstructed FUN_000338ec @ 0x338ec  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int FUN_0007dda4(int,...);
+extern void FUN_0007dda4(unsigned long, ...);
 extern int FUN_00019b54(int,...);
-extern int FUN_00019c70(int,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00019da4(int,...);
 extern int FUN_00034980(int,...);
 extern int FUN_00076d6c(int,...);

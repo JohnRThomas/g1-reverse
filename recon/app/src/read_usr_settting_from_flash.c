@@ -1,8 +1,8 @@
 /* Reconstructed read_usr_settting_from_flash @ 0x23400  (parity: 300/300 trials, PROVEN) */
 extern void FUN_00086c78(void *a0, unsigned int a1, unsigned int a2);
 extern int FUN_000225b4(unsigned int a0, void *a1, unsigned int a2);
-extern void DEBUG_PRINT(unsigned int a0, unsigned int a1);
-extern void FUN_00019c70(unsigned int, unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 unsigned int read_usr_settting_from_flash(unsigned char *param_1)
 {

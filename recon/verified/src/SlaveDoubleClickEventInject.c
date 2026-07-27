@@ -3,8 +3,8 @@
 
 extern void *FUN_00086c78(void *, int, uint32_t);
 extern int FUN_000720d0(uint32_t, const void *, uint32_t, uint32_t);
-extern void DEBUG_PRINT(uint32_t, uint32_t);
-extern void FUN_00019c70(uint32_t, uint32_t);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 int SlaveDoubleClickEventInject(void)
 {

@@ -26,8 +26,8 @@
 extern unsigned FUN_000167a8(void);
 extern void     FUN_000431b4(unsigned);
 extern void     FUN_000432d0(void);
-extern void     FUN_00019c70(unsigned,unsigned);
-extern void     FUN_0007dda4(unsigned,unsigned);
+extern void FUN_00019c70(unsigned long, ...);
+extern void FUN_0007dda4(unsigned long, ...);
 extern void     FUN_000431c0(void);
 extern void     FUN_00086c78(unsigned,unsigned,unsigned);
 extern void     FUN_00086c04(unsigned,unsigned,unsigned);

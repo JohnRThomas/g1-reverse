@@ -1,7 +1,7 @@
 /* Reconstructed register_imu_funsion_context @ 0x26250  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(void);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int register_imu_funsion_context(unsigned char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

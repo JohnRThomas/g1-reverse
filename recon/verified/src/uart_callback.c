@@ -1,10 +1,10 @@
 /* Reconstructed uart_callback @ 0x33384  (parity: 295/300 trials, PROVEN) */
-extern void DEBUG_PRINT(int,...);
-extern void FUN_00019c70(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int  FUN_00071c20(int,void*,int,int);
 extern void FUN_00071cf4(int,int);
 extern void FUN_0007e2ec(int,int);
-extern void FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_00086c04(int,...);
 extern void FUN_00086c78(void*,int,int);
 #define VI(a) (*(volatile int*)(a))
@@ -15,13 +15,13 @@ void uart_callback(int param_1,unsigned char *param_2,unsigned int param_3){
   int iVar2; unsigned int uVar5,uVar7; char cVar1; int iVar6; void *local_1c=param_2;
   switch (*param_2) {
   case 0:
-    if (2 < *lvl) { if(*g8==0) DEBUG_PRINT(0xa797b,0xa7b56,VI((int)param_2+8),0,param_1); else FUN_00019c70(); }
+    if (2 < *lvl) { if(*g8==0) DEBUG_PRINT(0xa797b,0xa7b56,VI((int)param_2+8),0,param_1); else FUN_00019c70(0xa797b,0xa7b56,VI((int)param_2+8),0,param_1); }
     for (uVar5=0; uVar5 < (unsigned int)VI((int)param_2+8); uVar5++)
       DEBUG_PRINT(0xa7993, VB(VI((int)param_2+4)+uVar5));
     break;
   case 1:
     if (*lvl < 1) return;
-    if (*g8 != 0) { FUN_00019c70(); return; }
+    if (*g8 != 0) { FUN_00019c70(0xa7999,0xa7b56); return; }
     DEBUG_PRINT(0xa7999,0xa7b56); return;
   case 2:
     uVar5 = VI((int)param_2+8);

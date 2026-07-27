@@ -25,9 +25,9 @@ unsigned int jbd_panel_resume(int param_1, unsigned int param_2, unsigned int pa
   if (*piVar1 > 2) {
     unsigned int sink = *(volatile unsigned int*)0x20007554UL;
     if (sink == 0) {
-      log_message((void*)0xd73bcUL, (void*)0xd73f8UL, param_3, sink, param_4);
+      log_message((unsigned long)0xd73bcUL, (void*)0xd73f8UL, param_3, sink, param_4);
     } else {
-      debug_print((void*)0xd73bcUL, (void*)0xd73f8UL,
+      debug_print((unsigned long)0xd73bcUL, (void*)0xd73f8UL,
                    param_3, sink, param_4);
     }
   }
@@ -36,9 +36,9 @@ unsigned int jbd_panel_resume(int param_1, unsigned int param_2, unsigned int pa
   if (*piVar1 > 2) {
     unsigned int sink = *(volatile unsigned int*)0x20007554UL;
     if (sink == 0) {
-      log_message((void*)0xd73e0UL, (void*)0xd73f8UL, param_3, sink, param_4);
+      log_message((unsigned long)0xd73e0UL, (void*)0xd73f8UL, param_3, sink, param_4);
     } else {
-      debug_print((void*)0xd73e0UL, (void*)0xd73f8UL,
+      debug_print((unsigned long)0xd73e0UL, (void*)0xd73f8UL,
                    param_3, sink, param_4);
     }
   }

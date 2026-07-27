@@ -31,7 +31,7 @@ unsigned spim_select_instance_by_mode(uintptr_t event){
  uint32_t mode=*(volatile uint8_t*)(event+0x18);int level=*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/;
  const struct mapping *m;
  if(mode==3)m=&mode3;else if(mode==4)m=&mode4;else{
-  if(level>0){int alternate=*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;if(alternate)debug_print(((unsigned long)"%s():  SPIM BUS ERR!\n") /*=0x9fb89*/,((unsigned long)"spi_master_deinit") /*=0x9fc79*/,mode,(uint32_t)alternate);else log_message(((unsigned long)"%s():  SPIM BUS ERR!\n") /*=0x9fb89*/,((unsigned long)"spi_master_deinit") /*=0x9fc79*/);}return 0;
+  if(level>0){int alternate=*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;if(alternate)debug_print(((unsigned long)"%s():  SPIM BUS ERR!\n") /*=0x9fb89*/,((unsigned long)"spi_master_deinit") /*=0x9fc79*/);else log_message(((unsigned long)"%s():  SPIM BUS ERR!\n") /*=0x9fb89*/,((unsigned long)"spi_master_deinit") /*=0x9fc79*/);}return 0;
  }
  *(volatile uint32_t*)(event+0xc)=m->base;*(volatile uint32_t*)(event+0x10)=m->tag;
  if(level>2){

@@ -34,7 +34,7 @@ int store_whitelist(void)
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
             log_message(((unsigned long)"write to flash failed, should retry ! \n") /*=0xa896c*/);
         else
-            debug_print(0);
+            debug_print(((unsigned long)"write to flash failed, should retry ! \n") /*=0xa896c*/);
         cVar5 = cVar5 - 1;
     } while (cVar5 != 0);
     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)

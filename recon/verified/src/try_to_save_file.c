@@ -2,9 +2,9 @@
 typedef unsigned char uint8_t;
 typedef unsigned int uint32_t;
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00022834(uint32_t address, uint32_t buffer, ...);
 extern void FUN_000235a4(void *packet);
 extern uint32_t FUN_0002360c(uint32_t checksum, uint32_t buffer, uint32_t length);
@@ -43,7 +43,7 @@ void try_to_save_file(int context)
             if (LOG_LEVEL < 1)
                 return;
             if (LOG_SINK != 0) {
-                FUN_00019c70();
+                FUN_00019c70(0x0009e88b, 0x0009e8e5, checksum);
                 return;
             }
             DEBUG_PRINT(0x0009e88b, 0x0009e8e5, checksum);
@@ -96,7 +96,7 @@ save_block:
         if (LOG_SINK == 0)
             DEBUG_PRINT(0x0009e873, 0x0009e8e5, checksum);
         else
-            FUN_00019c70();
+            FUN_00019c70(0x0009e873, 0x0009e8e5, checksum);
     }
     FILE_ADDRESS += 0x1000;
     buffered = BUFFERED_LENGTH;

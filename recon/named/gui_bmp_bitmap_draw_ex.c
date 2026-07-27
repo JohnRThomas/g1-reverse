@@ -21,9 +21,9 @@
  */
 /* Reconstructed gui_bmp_bitmap_draw_ex @ 0x435d4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(unsigned int message, unsigned int function);
+extern void log_message(unsigned long, ...);
 extern int get_device_info(void);
-extern int debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern int atomic_get_3_0(void);
 extern int resource_manger_get(int,...);
 extern int clean_fb_data(int,...);
@@ -83,7 +83,7 @@ unsigned int gui_bmp_bitmap_draw_ex(unsigned int param_1, int param_2, int param
     if (iVar3 == 0) {
         log_message(uVar5, 0x000aadb9);
     } else {
-        debug_print();
+        debug_print(uVar5, 0x000aadb9);
     }
     return 0xffffffff;
 }

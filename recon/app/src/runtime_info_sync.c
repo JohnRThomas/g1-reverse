@@ -9,8 +9,8 @@ struct __attribute__((packed)) runtime_sync_packet {
 };
 
 extern uint32_t FUN_00025b78(const void *packet, uint32_t length);
-extern void DEBUG_PRINT(uint32_t format, uint32_t function_name, ...);
-extern void FUN_00019c70(uint32_t format, uint32_t function_name, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 uint32_t runtime_info_sync(const uint8_t *runtime)
 {

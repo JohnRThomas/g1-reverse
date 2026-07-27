@@ -36,8 +36,8 @@ extern void memset_bytes(void *, int, size_t);
 extern int memcmp(const void *, const void *, size_t);
 extern void safe_memcpy_checked(void *, const void *, size_t, size_t);
 extern uintptr_t get_device_info(void);
-extern void log_message(uintptr_t, ...);
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 typedef int (*flash_read_t)(uintptr_t, uint32_t, void *, uint32_t);
 typedef int (*flash_erase_t)(uintptr_t, uint32_t, uint32_t);
 typedef int (*flash_write_t)(uintptr_t, uint32_t, const void *, uint32_t);
@@ -51,7 +51,7 @@ int flash_settings_write_and_verify(uint32_t address, const void *source,
         if (*(volatile uint32_t *)(uintptr_t)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0u)
             log_message(((unsigned long)"[%s-%d]error, have no memory ! \n") /*=0x9e324*/, ((unsigned long)"flash_settings_write_and_verify") /*=0x9e508*/, 0xd2u, 0u);
         else
-            debug_print();
+            debug_print(((unsigned long)"[%s-%d]error, have no memory ! \n") /*=0x9e324*/, ((unsigned long)"flash_settings_write_and_verify") /*=0x9e508*/, 0xd2u, 0u);
         return -1;
     }
 

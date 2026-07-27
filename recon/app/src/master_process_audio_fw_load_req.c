@@ -6,8 +6,8 @@ typedef unsigned int undefined4;
 typedef unsigned int uint;
 typedef void code;
 
-extern int DEBUG_PRINT(const char*, const char*, ...);
-extern int FUN_00019c70(const char*, const char*, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000167a8(void);
 extern int FUN_00019ac0(uint);
 extern int FUN_000232b0(void);

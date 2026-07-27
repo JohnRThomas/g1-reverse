@@ -14,8 +14,8 @@
 /* Reconstructed erase_audio_buffer @ 0x2f008  (parity: 300/300 trials, PROVEN) */
 
 typedef int (*fn3)(int,int,int);
-extern int log_message();
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 int erase_audio_buffer(void){
   int obj = ((unsigned long)&rodata_87bf0) /*=0x87bf0*/;
   fn3 f = *(volatile fn3*)((*(volatile int*)(obj+8)) + 8);
@@ -23,9 +23,9 @@ int erase_audio_buffer(void){
   if(iVar1==0){
     int iVar2 = *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/;
     *(volatile int*)((unsigned long)&g_audio_flash_write_offset) /*=0x20002404*/ = 0x400000;
-    if(2 < iVar2){ if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0) log_message(); else debug_print(); }
+    if(2 < iVar2){ if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0) log_message(((unsigned long)"%s(): Flash erase ok \n\n"),((unsigned long)"erase_audio_buffer")); else debug_print(((unsigned long)"%s(): Flash erase ok \n\n"),((unsigned long)"erase_audio_buffer")); }
   } else if(0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/){
-    if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0) log_message(); else debug_print();
+    if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0) log_message(((unsigned long)"%s(): Flash erase failed! %d\n\n"),((unsigned long)"erase_audio_buffer"),iVar1); else debug_print(((unsigned long)"%s(): Flash erase failed! %d\n\n"),((unsigned long)"erase_audio_buffer"),iVar1);
   }
   return iVar1;
 }

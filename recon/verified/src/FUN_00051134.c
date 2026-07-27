@@ -5,7 +5,7 @@
 #include <stdint.h>
 
 extern __attribute__((noreturn)) void FUN_0007e2ec(uint32_t, uint32_t);
-extern void FUN_0007e2fa(uint32_t, uint32_t, uint32_t, uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_00072558(uintptr_t lock);
 
 #define g1_recon_retarget_lock_release_recursive FUN_00051134

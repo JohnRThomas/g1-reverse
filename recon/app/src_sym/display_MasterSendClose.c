@@ -2,8 +2,8 @@
 
 extern void memset_bytes(void);
 extern int FUN_000720d0(void);
-extern void DEBUG_PRINT(void);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int display_MasterSendClose(void)
 {

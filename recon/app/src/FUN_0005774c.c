@@ -39,8 +39,7 @@ extern uintptr_t FUN_000836e8(void *queue, uint32_t wait, uint32_t unused);
 extern uint32_t FUN_000816a2(const uint32_t *value);
 extern stop_record_t *FUN_0005f5d0(uintptr_t pool, uint32_t size);
 extern void FUN_00081940(uintptr_t endpoint, int status);
-extern void FUN_0007e2fa(uintptr_t subsystem, uintptr_t file,
-                         uintptr_t message, uint32_t line);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t message, uint32_t line);
 
 static __attribute__((always_inline)) inline void fatal_state(uintptr_t file,

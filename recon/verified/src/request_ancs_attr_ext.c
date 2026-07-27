@@ -1,9 +1,9 @@
 /* Reconstructed request_ancs_attr_ext @ 0x191e4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(unsigned,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern unsigned FUN_0000ef12(unsigned);
 extern int FUN_000181fc(void);
-extern void FUN_00019c70(unsigned,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0007f6b6(unsigned,unsigned,unsigned);
 extern void FUN_0007c0a4(int,int);
 extern int FUN_0007f7c4(unsigned,unsigned,unsigned,unsigned);
@@ -53,7 +53,8 @@ LAB_5a:
   }
 LAB_86:
   if (*(int*)0x20007554 == 0)
-    DEBUG_PRINT(0x0009ac14, *(unsigned*)(puVar3+2), (unsigned)*puVar3, uVar6, param_1, param_2);
+    DEBUG_PRINT(0x0009ac14, *(unsigned*)(puVar3+2),
+                 (unsigned)*puVar3, uVar6, param_1, param_2, param_3);
   else
     FUN_00019c70(0x0009ac14, *(unsigned*)(puVar3+2),
                  (unsigned)*puVar3, uVar6, param_1, param_2, param_3);

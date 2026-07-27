@@ -1,6 +1,6 @@
 /* Reconstructed FUN_000330ec @ 0x330ec  (parity: 300/300 trials, PROVEN) */
-extern int FUN_0007dda4(int,...);
-extern int FUN_00019c70(int,...);
+extern void FUN_0007dda4(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0002a4d8(int,...);
 extern int FUN_0002eaa8(void);
 extern int FUN_0002eb28(int,...);

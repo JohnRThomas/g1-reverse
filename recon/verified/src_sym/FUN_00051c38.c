@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00051c38 @ 0x51c38  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
+extern void printk(unsigned long, ...);
 extern void assert_post_action(unsigned int, unsigned int) __attribute__((noreturn));
 
 void FUN_00051c38(void)

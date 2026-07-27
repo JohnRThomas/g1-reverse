@@ -1,9 +1,9 @@
 /* Reconstructed requestAudioInfoToApp @ 0x48840  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000720d0(void*, void*, int, int);
 extern void FUN_00086c78(void*, int, int);
-extern int DEBUG_PRINT(int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 int requestAudioInfoToApp(unsigned char param_1)
 {
@@ -22,7 +22,7 @@ int requestAudioInfoToApp(unsigned char param_1)
       if (*(int*)0x20007554UL == 0) {
         DEBUG_PRINT(0xef4d9, 0xef707);
       } else {
-        FUN_00019c70();
+        FUN_00019c70(0xef4d9, 0xef707);
       }
     }
   } else {

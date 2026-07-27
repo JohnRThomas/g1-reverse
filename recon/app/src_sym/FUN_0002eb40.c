@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0002eb40 @ 0x2eb40  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int FUN_0002eb40(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -14,7 +14,7 @@ unsigned int FUN_0002eb40(unsigned int param_1, unsigned int param_2, unsigned i
     if (*(volatile unsigned int*)0x20007554UL /* device_info.is_debug */ == 0) {
       DEBUG_PRINT(0xa3e80, uVar3, param_3, 0, param_4);
     } else {
-      debug_print();
+      debug_print(0xa3e80, uVar3, param_3, 0, param_4);
     }
   }
   *p6c = bVar1;

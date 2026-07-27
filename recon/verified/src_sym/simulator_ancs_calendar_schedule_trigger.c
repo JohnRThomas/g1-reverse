@@ -1,8 +1,8 @@
 /* Reconstructed simulator_ancs_calendar_schedule_trigger @ 0x21cd8  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int FUN_000181fc(void);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern void memset_bytes(unsigned int, int, int);
 extern void FUN_0008705a(unsigned int, unsigned int, int);
 extern void FUN_0004a3d0(unsigned int, unsigned int);
@@ -17,7 +17,7 @@ void simulator_ancs_calendar_schedule_trigger(void)
         if (*(volatile unsigned int*)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
             DEBUG_PRINT(0x99969, 0x9dfbf);
         } else {
-            debug_print();
+            debug_print(0x99969, 0x9dfbf);
         }
     }
     memset_bytes(iVar1 + 0x34, 0, 0x1b4);

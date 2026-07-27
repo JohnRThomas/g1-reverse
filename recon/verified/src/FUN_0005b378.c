@@ -3,7 +3,7 @@ extern int FUN_0005a9f4(int a0);
 extern int FUN_0005aa84(int a0,int a1,int a2,int a3,int a4,int a5,void *a6);
 extern int FUN_0005b270(int a0,int a1,int *a2);
 extern void FUN_0007e2ec(int a0,int a1);
-extern void FUN_0007e2fa(int a0,int a1,int a2,int a3);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_00080d3e(int a0,void *a1);
 extern int FUN_0008270c(int a0);
 extern int FUN_00082c0e(void);

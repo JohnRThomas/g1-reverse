@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 typedef uint32_t u32;
-extern void FUN_0007e2fa(u32,u32,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(u32,u32);
 extern int FUN_00072040(u32);
 extern void FUN_00072078(u32);

@@ -4,8 +4,8 @@ extern void *FUN_000167a8(void);
 extern void FUN_00086c78(void*, int, int);
 extern void FUN_00086c04(void*, void*, unsigned int);
 extern int FUN_000720d0(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(unsigned int, unsigned int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 unsigned int send_response_data_to_msgqueue(void *param_1, unsigned int param_2)
 {

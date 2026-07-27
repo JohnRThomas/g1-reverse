@@ -3,7 +3,7 @@
 extern char* get_device_info(void);
 extern void memset_bytes(void*, int, int);
 extern int FUN_000720d0(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 unsigned int FUN_00047ba8(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

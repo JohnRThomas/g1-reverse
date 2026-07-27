@@ -17,9 +17,9 @@
 /* Reconstructed check_sw0_status @ 0x2a868  (parity: 300/300 trials, PROVEN) */
 
 extern int read_sw0_pin(void);
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern void pt_nfc_eeprom_link_start(void);
-extern void log_message(unsigned int fmt, unsigned int arg);
+extern void log_message(unsigned long, ...);
 
 void check_sw0_status(void)
 {
@@ -32,7 +32,7 @@ void check_sw0_status(void)
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                 log_message(((unsigned long)"%s(): interrupt line low!!!\n") /*=0xa18cd*/, ((unsigned long)"check_sw0_status") /*=0xa19af*/);
             } else {
-                debug_print();
+                debug_print(((unsigned long)"%s(): interrupt line low!!!\n") /*=0xa18cd*/, ((unsigned long)"check_sw0_status") /*=0xa19af*/);
             }
         }
         iVar3 = *piVar1 + 1;
@@ -42,7 +42,7 @@ void check_sw0_status(void)
                 if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                     log_message(((unsigned long)"%s(): interrupt line abnormal, now reset\n") /*=0xa18ea*/, ((unsigned long)"check_sw0_status") /*=0xa19af*/);
                 } else {
-                    debug_print();
+                    debug_print(((unsigned long)"%s(): interrupt line abnormal, now reset\n") /*=0xa18ea*/, ((unsigned long)"check_sw0_status") /*=0xa19af*/);
                 }
             }
             pt_nfc_eeprom_link_start();

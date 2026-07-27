@@ -47,7 +47,7 @@ extern int z_spin_lock_valid(void *lock);
 extern int z_spin_unlock_valid(void *lock);
 extern void z_spin_lock_set_owner(void *lock);
 extern void k_sem_give(void *sem);
-extern void printk(uint32_t format, ...);
+extern void printk(unsigned long, ...);
 extern void assert_post_action(uint32_t file, uint32_t line);
 extern uint32_t idx_inc(struct mpsc_pbuf_buffer *buffer,
                         uint32_t index, uint32_t words);

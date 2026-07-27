@@ -57,7 +57,7 @@ void confirm_message(int param_1)
     if ((*pcVar6 == 1) && (cVar1 == 0) && (iVar7 = message_table_contains_id(10,iVar13), iVar7 != 0)) {
       if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)"%s(): add found same message, uidtail %d\n") /*=0xa8174*/,((unsigned long)"confirm_message") /*=0xa8255*/,iVar13);
-        else debug_print(0);
+        else debug_print(((unsigned long)"%s(): add found same message, uidtail %d\n") /*=0xa8174*/,((unsigned long)"confirm_message") /*=0xa8255*/,iVar13);
       }
       memset_bytes(((unsigned long)g_message_table_mirror) /*=0x20008eb4*/,0,0x1b4);
       return;

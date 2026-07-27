@@ -6,8 +6,8 @@ extern uint32_t FUN_00064ca4(void);
 extern void FUN_0008509e(uint32_t a, uint32_t b, uint32_t c);
 extern void FUN_00085046(uint32_t a, uint32_t b, uint32_t c);
 extern uint32_t FUN_00085014(uint32_t a);
-extern void DEBUG_PRINT(uint32_t a, uint32_t b, uint32_t c);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern uint32_t strlen(uint32_t a);
 extern void subcontracing_send_data_pkcs7(uint32_t a, uint32_t b, uint32_t c, uint32_t d);
 extern void FUN_00064b1c(uint32_t a);
@@ -32,7 +32,7 @@ uint32_t mobile_send_notification_to_ble_device_test(uint32_t param_1, uint32_t 
         if (*(volatile uint32_t*)0x20007554UL /* device_info.is_debug @+0xB58  (log sink select: 0=RTT DEBUG_PRINT) */ == 0) {
             DEBUG_PRINT(0x9d7aeUL, 0x9dfe8UL, uVar1);
         } else {
-            debug_print();
+            debug_print(0x9d7aeUL, 0x9dfe8UL, uVar1);
         }
     }
     uVar3 = strlen(uVar1);

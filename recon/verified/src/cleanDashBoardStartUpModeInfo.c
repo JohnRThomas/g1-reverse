@@ -1,8 +1,8 @@
 /* Reconstructed cleanDashBoardStartUpModeInfo @ 0x23c88 */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, uint32_t);
-extern void FUN_00019c70(uint32_t, uint32_t);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000720d0(uint32_t, const void *, uint32_t, uint32_t);
 extern void FUN_00072880(uint32_t);
 

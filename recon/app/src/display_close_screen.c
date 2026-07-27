@@ -1,8 +1,8 @@
 /* Reconstructed display_close_screen @ 0x49858  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
-extern int FUN_00019c70(int,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00036024(void);
 extern int FUN_000497b0(void*,int);
 extern int FUN_000745c8(void);

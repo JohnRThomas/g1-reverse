@@ -2,8 +2,8 @@
 #include <stdint.h>
 
 extern void FUN_0007cdf8(void);                                              /* signal_persist_task_event (spinlock body) */
-extern void FUN_0007dda4(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);  /* log_message */
-extern void FUN_00019c70(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);  /* debug_print */
+extern void FUN_0007dda4(unsigned long, ...);  /* log_message */
+extern void FUN_00019c70(unsigned long, ...);  /* debug_print */
 
 unsigned char now_has_persist_task(unsigned char *param_1, unsigned int param_2)
 {

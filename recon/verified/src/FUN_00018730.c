@@ -7,7 +7,7 @@ extern int FUN_00032ee4(void);
 extern int FUN_00086be4(int,void*,int);
 extern void FUN_0005420c(int,int);
 extern void FUN_00072880(int);
-extern void DEBUG_PRINT(unsigned, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 void FUN_00018730(unsigned param_1, unsigned param_2){
     unsigned char auStack_38[32];

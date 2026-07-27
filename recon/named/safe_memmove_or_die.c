@@ -7,8 +7,8 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  */
 /* Reconstructed FUN_00055ba0 @ 0x55ba0  (parity: 300/300 trials, PROVEN) */
-extern void assert_post_action(void);
-extern void printk(void);
+extern void assert_post_action(unsigned long, unsigned long);
+extern void printk(unsigned long, ...);
 
 void safe_memmove_or_die(unsigned char *param_1, unsigned char *param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -19,9 +19,9 @@ void safe_memmove_or_die(unsigned char *param_1, unsigned char *param_2, unsigne
         bVar2 = (puVar1 <= param_1);
     } else {
         if (param_1 == param_2) {
-            printk();
-            printk();
-            assert_post_action();
+            printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"((psrc < pdst && (psrc + length) <= pdst) || (psrc > pdst && (pdst + length) <= psrc))"), ((unsigned long)"WEST_TOPDIR/zephyr/include/zephyr/sys/byteorder.h"), 533);
+            printk(((unsigned long)"\tSource and destination buffers must not overlap\n"));
+            assert_post_action(((unsigned long)"WEST_TOPDIR/zephyr/include/zephyr/sys/byteorder.h"), 533);
             return;
         }
         bVar2 = ((param_1 + 0x10) <= param_2);
@@ -35,7 +35,7 @@ void safe_memmove_or_die(unsigned char *param_1, unsigned char *param_2, unsigne
         } while (puVar1 != param_2);
         return;
     }
-    printk();
-    printk();
-    assert_post_action();
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"((psrc < pdst && (psrc + length) <= pdst) || (psrc > pdst && (pdst + length) <= psrc))"), ((unsigned long)"WEST_TOPDIR/zephyr/include/zephyr/sys/byteorder.h"), 533);
+    printk(((unsigned long)"\tSource and destination buffers must not overlap\n"));
+    assert_post_action(((unsigned long)"WEST_TOPDIR/zephyr/include/zephyr/sys/byteorder.h"), 533);
 }

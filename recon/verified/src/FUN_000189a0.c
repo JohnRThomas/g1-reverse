@@ -1,6 +1,6 @@
 /* Reconstructed FUN_000189a0 @ 0x189a0  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern unsigned FUN_0007f4c8(unsigned callback_object);
 extern unsigned FUN_0007f4cc(unsigned);
 extern int FUN_0007f8dc(unsigned,unsigned);

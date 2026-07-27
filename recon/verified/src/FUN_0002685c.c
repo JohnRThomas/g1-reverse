@@ -1,8 +1,8 @@
 /* Full reconstruction FUN_0002685c @ 0x2685c, exact extent 176 bytes.
  * CFG_VERIFY_PREFIX_FIRST CFG_VERIFY_PREFIX_K=150 */
 #include <stdint.h>
-extern void DEBUG_PRINT(uintptr_t, ...);
-extern void FUN_00019c70(uintptr_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00025528(void);
 extern void FUN_0002ae84(void);
 extern void FUN_0002aeb4(void);

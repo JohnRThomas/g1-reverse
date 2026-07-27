@@ -1,10 +1,10 @@
 /* Reconstructed dump_template_gyro_info @ 0x36164  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
 extern unsigned long long FUN_0000d848(unsigned);
-extern void FUN_00019c70(int, ...);
+extern void FUN_00019c70(unsigned long, ...);
 void dump_template_gyro_info(int param_1){
   int iVar1; uint32_t raw_x,raw_y,raw_z; unsigned long long uVar2,uVar3,uVar4;
   iVar1=FUN_000167a8();

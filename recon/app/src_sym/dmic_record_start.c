@@ -1,11 +1,11 @@
 /* Reconstructed dmic_record_start @ 0x3b78c  (parity: 300/300 trials, PROVEN) */
 
 extern int get_device_info(int, int);
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern void FUN_0002f688(void);
 extern void startAudioStreamRecord(void);
 extern void FUN_00072880(int);
-extern int DEBUG_PRINT(int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 void dmic_record_start(void)
 {
@@ -18,7 +18,7 @@ void dmic_record_start(void)
     if (*(int*)0x20007554UL /* device_info.is_debug @+0xB58  (log sink select: 0=RTT DEBUG_PRINT) */ == 0) {
       DEBUG_PRINT(0x9d30b, 0xa9843);
     } else {
-      debug_print();
+      debug_print(0x9d30b, 0xa9843);
     }
   }
   FUN_0002f688();

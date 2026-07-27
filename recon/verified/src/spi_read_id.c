@@ -16,8 +16,8 @@ struct spi_state_47724 {
 extern struct spi_state_47724 *FUN_0007d4ec(void);
 extern void FUN_00047698(uint32_t a, uint32_t b);
 extern void FUN_000476a8(void);
-extern void DEBUG_PRINT(uintptr_t format, ...);
-extern void FUN_00019c70(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 uint32_t spi_read_id(uint32_t unused, uint32_t options, uint32_t ignored)
 {

@@ -2,8 +2,8 @@
 
 typedef unsigned char u8;
 typedef unsigned int u32;
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(unsigned int, unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 void check_bind_status(int param_1, int param_2, int param_3)
 {

@@ -1,8 +1,8 @@
 /* Reconstructed power_down_panel @ 0x15fdc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern void FUN_000179e0(void);
-extern void debug_print(uint32_t, ...);
+extern void debug_print(unsigned long, ...);
 extern int FUN_0007c038(int);
 extern int FUN_00083dc8(int, ...);
 

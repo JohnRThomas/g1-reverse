@@ -1,7 +1,7 @@
 /* Reconstructed convert_app_whitelist_to_json @ 0x352e8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(int,...);
-extern void FUN_00019c70(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int  FUN_0000ef12(int);
 extern int  FUN_00064b1c(int);
 extern int  FUN_00064c8c(void);

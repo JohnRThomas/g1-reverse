@@ -2,8 +2,8 @@
 #include <stdint.h>
 
 typedef void (*panel_callback_t)(void *panel);
-extern void DEBUG_PRINT(uint32_t format, ...);
-extern void FUN_00019c70(uint32_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0001655c(void);
 extern void FUN_0002e8b4(void);
 extern void FUN_00015fdc(void);

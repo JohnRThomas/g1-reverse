@@ -2,8 +2,8 @@
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned undefined4;
-extern void DEBUG_PRINT(unsigned, ...);
-extern void FUN_00019c70(unsigned, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00034ff0(void *a, void *b);
 extern void FUN_00064b1c(int a);
 extern int FUN_0008500c(void);

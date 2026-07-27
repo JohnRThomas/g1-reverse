@@ -2,8 +2,8 @@
 
 #include <stdint.h>
 
-extern uint32_t FUN_00019c70(uint32_t, uint32_t, uint32_t, uint32_t);
-extern uint32_t FUN_0007dda4(uint32_t, uint32_t, uint32_t, uint32_t);
+extern void FUN_00019c70(unsigned long, ...);
+extern void FUN_0007dda4(unsigned long, ...);
 extern uint32_t FUN_00032fd0(uint32_t);
 
 uint32_t FUN_0002893c(uint32_t unused0, uint32_t arg1,

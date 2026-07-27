@@ -36,13 +36,13 @@ void init_dashboard_info(void){
   iVar3 = uarte_nrfx_irq_rx_ready();
   if (iVar3 == 0) {
     if (2 < *p40) {
-      if (*p44 == 0) { log_message(((unsigned long)"%s(): system startup ,NCS memory is vaild\n"), ((unsigned long)"init_dashboard_info"), 0); }
+      if (*p44 == 0) { log_message(((unsigned long)"%s(): system startup ,NCS memory is vaild\n"), ((unsigned long)"init_dashboard_info")); }
       else { debug_print(((unsigned long)"%s(): system startup ,NCS memory is vaild\n"), ((unsigned long)"init_dashboard_info")); }
     }
     init_dashboard_startup_mode_info_defaults();
   } else {
     if (2 < *p40) {
-      if (*p44 == 0) { log_message(((unsigned long)"%s(): system startup ,NCS memory is invaild\n"), ((unsigned long)"init_dashboard_info"), 0); }
+      if (*p44 == 0) { log_message(((unsigned long)"%s(): system startup ,NCS memory is invaild\n"), ((unsigned long)"init_dashboard_info")); }
       else { debug_print(((unsigned long)"%s(): system startup ,NCS memory is invaild\n"), ((unsigned long)"init_dashboard_info")); }
     }
     iVar3 = get_device_info();
@@ -77,7 +77,7 @@ void init_dashboard_info(void){
         else debug_print(0x000a8f72, ((unsigned long)"init_dashboard_info"), iVar3);
       }
     } else if (0 < *p40) {
-      if (*p44 == 0) log_message(((unsigned long)"%s(): !!!! getQuickNoteDataFromFlash return unknown value.\n"), ((unsigned long)"init_dashboard_info"), 0);
+      if (*p44 == 0) log_message(((unsigned long)"%s(): !!!! getQuickNoteDataFromFlash return unknown value.\n"), ((unsigned long)"init_dashboard_info"));
       else debug_print(((unsigned long)"%s(): !!!! getQuickNoteDataFromFlash return unknown value.\n"), ((unsigned long)"init_dashboard_info"));
     }
     iVar3++;

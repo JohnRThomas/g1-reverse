@@ -21,7 +21,7 @@ typedef uint32_t (*text_draw_callback_t)(uint32_t canvas, uint32_t utf8_text,
                                         int32_t top);
 
 extern uint32_t get_device_info(void); /* FUN_000167a8 */
-extern void debug_print(void); /* FUN_00019c70 */
+extern void debug_print(unsigned long, ...); /* FUN_00019c70 */
 extern uint32_t get_display_atomic_state(void); /* FUN_000431a8 */
 extern uint32_t get_glyph_pair_spacing(uint32_t, uint32_t); /* FUN_00043e58 */
 extern int32_t resource_manger_get(uint32_t font, uint32_t codepoint,
@@ -42,8 +42,7 @@ extern void fb_blit_rows_copy(uint32_t framebuffer, void *pixels,
                               uint32_t x, uint32_t y); /* FUN_0007d53a */
 extern int32_t classify_text_character(uint32_t); /* FUN_0007d860 */
 extern void checked_bitmap_copy(void *, uint32_t, uint32_t, uint32_t); /* FUN_00086c1e */
-extern void log_message(uint32_t format, uint32_t function,
-                        uint32_t value, uint32_t unused); /* FUN_0007dda4 */
+extern void log_message(unsigned long, ...); /* FUN_0007dda4 */
 
 static volatile uint32_t *const active_canvas =
     (volatile uint32_t *)((unsigned long)&g_gui_active_canvas) /*=0x2000a034*/; /* g_gui_active_canvas */
@@ -111,7 +110,8 @@ uint32_t gui_utf_draw_align_right(uint32_t canvas, uint32_t utf8_text,
                                     log_message(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)"gui_utf_draw_align_right") /*=0xaad4b*/,
                                                 codepoint, 0);
                                 } else {
-                                    debug_print();
+                                    debug_print(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)"gui_utf_draw_align_right") /*=0xaad4b*/,
+                                                codepoint, 0);
                                 }
                             }
                         } else {
@@ -150,7 +150,8 @@ uint32_t gui_utf_draw_align_right(uint32_t canvas, uint32_t utf8_text,
                                 log_message(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)"gui_utf_draw_align_right") /*=0xaad4b*/,
                                             codepoint, 0);
                             } else {
-                                debug_print();
+                                debug_print(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)"gui_utf_draw_align_right") /*=0xaad4b*/,
+                                            codepoint, 0);
                             }
                         }
                     } else {
@@ -247,7 +248,7 @@ invoke_callback:
         if (*use_alternate_log_sink == 0) {
             log_message(((unsigned long)"%s(): exex process effect callback function\n") /*=0xaaa7f*/, ((unsigned long)"gui_utf_draw_align_right") /*=0xaad4b*/, 0, 0);
         } else {
-            debug_print();
+            debug_print(((unsigned long)"%s(): exex process effect callback function\n") /*=0xaaa7f*/, ((unsigned long)"gui_utf_draw_align_right") /*=0xaad4b*/, 0, 0);
         }
     }
     return callback(0, utf8_text, font, left, top);

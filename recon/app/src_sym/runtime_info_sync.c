@@ -1,8 +1,8 @@
 /* Reconstructed runtime_info_sync @ 0x16268  (parity: 300/300 trials, PROVEN) */
 
 extern int global_ipc_service_send(void*, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int runtime_info_sync(unsigned short *param_1)
 {
@@ -23,7 +23,10 @@ unsigned int runtime_info_sync(unsigned short *param_1)
                     local_14 & 0xff, uVar1,
                     (unsigned int)b[3], (unsigned int)b[4]);
             } else {
-                debug_print();
+                debug_print(0x9957c, 0x99bee,
+                    (local_18 >> 16) & 0xff, local_18 >> 24,
+                    local_14 & 0xff, uVar1,
+                    (unsigned int)b[3], (unsigned int)b[4]);
             }
         }
     }

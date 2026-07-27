@@ -73,7 +73,7 @@ void reset_all_usr_data(uint8_t *user_data, int reset_radio)
     app_msleep_thunk_b(1000);
     if (LOG_LEVEL > 0) {
         if (LOG_BACKEND == 0)
-            log_message(((unsigned long)"%s(): sys reboot because enter ship mode failed\n"));
+            log_message(((unsigned long)"%s(): sys reboot because enter ship mode failed\n"), ((unsigned long)"reset_all_usr_data"));
         else
             debug_print(((unsigned long)"%s(): sys reboot because enter ship mode failed\n"), ((unsigned long)"reset_all_usr_data"));
     }

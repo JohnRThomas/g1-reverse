@@ -3,7 +3,7 @@ extern void FUN_0007c872(unsigned,unsigned,unsigned,unsigned);
 extern int FUN_0007c898(int,unsigned,unsigned,int);
 extern void FUN_0007c876(unsigned);
 extern unsigned long long FUN_0007c87a(void);
-extern void DEBUG_PRINT(unsigned,unsigned,unsigned,int);
+extern void DEBUG_PRINT(unsigned long, ...);
 int FUN_000257ec(int param_1, unsigned param_2, unsigned param_3, int param_4){
     int iVar1;
     if (param_4 == 0){ iVar1 = 0; }

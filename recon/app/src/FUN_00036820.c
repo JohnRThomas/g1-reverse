@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00036820 @ 0x36820. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern uintptr_t FUN_000167a8(void);
 extern void FUN_0003678c(unsigned int inverted_byte, int glyph_width);
 extern void *FUN_00076d6c(unsigned int size);

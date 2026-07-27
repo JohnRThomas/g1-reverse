@@ -4,7 +4,7 @@
 extern int FUN_0006649c(void);
 extern int FUN_000664f0(int);
 extern void FUN_0007e2ec(uint32_t,int);
-extern void FUN_0007e2fa(uint32_t,uint32_t,uint32_t,int,uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 
 #define g1_recon_nrfx_qspi_erase FUN_00066bc4
 int g1_recon_nrfx_qspi_erase(uint32_t param_1, uint32_t param_2,

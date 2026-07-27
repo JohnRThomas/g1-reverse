@@ -4,7 +4,7 @@
 extern void *thunk_FUN_000727ac(void *, uint32_t, uint32_t, uint32_t);
 extern void FUN_0005f24c(void *);
 extern void FUN_00056080(void *, void *);
-extern void FUN_0007e2fa(uintptr_t, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t, uint32_t) __attribute__((noreturn));
 extern uint64_t FUN_000813d6(void *);
 extern void FUN_0007350c(void *, uint32_t, uint32_t, uint32_t);

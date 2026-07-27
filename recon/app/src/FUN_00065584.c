@@ -1,7 +1,7 @@
 /* Full reconstruction FUN_00065584 @ 0x65584, exact extent 80 bytes. */
 #include <stdint.h>
 extern uint64_t FUN_000850f6(uint32_t,void*,uint32_t,uint32_t,uint32_t);
-extern void FUN_0007e2fa(uintptr_t,uintptr_t,uintptr_t,uint32_t,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern __attribute__((noreturn)) void FUN_0007e2ec(uintptr_t,uint32_t);
 uintptr_t FUN_00065584(uint32_t *descriptor,uint32_t a,uint32_t b,uint32_t context){
  (void)a;(void)b; uint32_t encoded=*descriptor;

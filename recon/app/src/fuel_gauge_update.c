@@ -36,7 +36,7 @@ typedef uint8_t byte; typedef int64_t longlong; typedef uint64_t ulonglong; type
 #define DAT_00010f9c 0x0001d4bfu
 #define DAT_00010fa0 ((uint8_t *)0x20018d90u)
 #define DAT_00010fa4 0.0f
-extern uint32_t DEBUG_PRINT(uintptr_t,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern uint64_t FUN_0000d58c(uint32_t,...); extern uint64_t FUN_0000d848(float);
 extern uint64_t FUN_0000d8f8(uint32_t,...); extern uint8_t FUN_0000dea8(uint32_t,...);
 /* ITERATION 39 DEFECT FIX (2 of 2) -- the 64-bit->float conversion had BOTH
@@ -143,7 +143,8 @@ LAB_00010c00:
                   (int)((ulonglong)uVar18 >> 0x20),(int)uVar19,(int)((ulonglong)uVar19 >> 0x20));
     }
     else {
-      FUN_00019c70(DAT_00010f54,DAT_00010f50,(int)uVar17,uVar11);
+      FUN_00019c70(DAT_00010f54,DAT_00010f50,(int)uVar17,uVar11,(int)uVar18,
+                  (int)((ulonglong)uVar18 >> 0x20),(int)uVar19,(int)((ulonglong)uVar19 >> 0x20));
     }
   }
   iVar13 = FUN_0007ceda();

@@ -1,11 +1,11 @@
 /* Full reconstruction FUN_00026418 @ 0x26418, exact extent 320 bytes.
  * CFG_VERIFY_CALL_ARITIES=3,4,2 */
 #include <stdint.h>
-extern void DEBUG_PRINT(uintptr_t,...);
-extern void FUN_00019c70(uintptr_t,...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_0005010c(uint32_t,uint32_t);
 extern uint32_t FUN_000671d8(void*,void*,uintptr_t,uintptr_t);
-extern void FUN_0007e2fa(uintptr_t,uintptr_t,uintptr_t,uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t,uint32_t);
 extern void FUN_00086c78(void*,int,uint32_t);
 struct spi_map { uint32_t base, tag; };
@@ -31,7 +31,7 @@ unsigned FUN_00026418(uintptr_t event)
     int level=*(volatile int*)0x2000230cu;
     struct spi_map *map;
     if(mode==3)map=&mode3; else if(mode==4)map=&mode4; else {
-        if(level>0){int alt=*(volatile int*)0x20007554u;if(alt)FUN_00019c70(0x9fb89u,0x9fc4du,mode,(uint32_t)alt);else DEBUG_PRINT(0x9fb89u,0x9fc4du);} return 0;
+        if(level>0){int alt=*(volatile int*)0x20007554u;if(alt)FUN_00019c70(0x9fb89u,0x9fc4du);else DEBUG_PRINT(0x9fb89u,0x9fc4du);} return 0;
     }
     *(volatile uint32_t*)(event+0xc)=map->base;
     *(volatile uint32_t*)(event+0x10)=map->tag;

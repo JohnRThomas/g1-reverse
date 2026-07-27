@@ -6,7 +6,7 @@ extern uint32_t FUN_0007ddec(uint32_t object, uint32_t offset, uint32_t mode);
 extern uint32_t FUN_0007de18(uint32_t object, uint32_t offset);
 extern uint32_t FUN_0007de24(uint32_t object, uint32_t offset);
 extern void FUN_0007e0a6(uint32_t value, uint32_t offset);
-extern void FUN_0007e2fa(uintptr_t format, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern _Noreturn void FUN_0007e2ec(uintptr_t file, uint32_t line);
 
 void FUN_0004b214(const uint32_t *owner, uint32_t length,

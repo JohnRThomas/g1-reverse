@@ -9,8 +9,8 @@
  */
 #include <stdint.h>
 
-extern void log_message(uint32_t format, uint32_t function, ...);
-extern void debug_print(uint32_t format, uint32_t function, ...);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern void msg_queue_init(void);
 extern void msg_content_decrement_timer(void);
 extern void set_message_pending_state(uint32_t state);

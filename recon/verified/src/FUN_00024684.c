@@ -3,8 +3,8 @@
 
 extern int FUN_00072240(void *queue, void *request, uint32_t timeout,
                         uint32_t flags);
-extern void DEBUG_PRINT(uint32_t format, ...);
-extern void FUN_00019c70(uint32_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0008638c(const void *object);
 extern void FUN_00086c78(void *destination, int value, uint32_t length);
 extern int FUN_00086be4(const void *left, const void *right, uint32_t length);

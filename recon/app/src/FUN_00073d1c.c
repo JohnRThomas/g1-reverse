@@ -2,7 +2,7 @@
 
 extern void FUN_000737d8(int a);
 extern void FUN_00073cdc(unsigned a, int* b);
-extern void FUN_0007e2fa(unsigned a,unsigned b,unsigned c,unsigned d);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(unsigned a,unsigned b);
 void FUN_00073d1c(int *param_1){
     volatile unsigned char *p = (volatile unsigned char*)param_1;

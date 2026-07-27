@@ -12,7 +12,7 @@
 
 extern int FUN_00016568();
 extern int FUN_000167a8();
-extern int FUN_00019c70();
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00019b38();
 extern int FUN_00019b48();
 extern int FUN_00019b54();
@@ -22,7 +22,7 @@ extern int FUN_0007c1dc();
 extern int FUN_00086c1e();
 extern int FUN_00086c04();
 extern int FUN_00086c78();
-extern int DEBUG_PRINT();
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int update_persist_task_status();
 
 #define OP10_LOG_LEVEL (*(volatile int32_t *)(uintptr_t)0x2000230c)
@@ -148,10 +148,11 @@ int ble_put_op10_subcmd_0_1(struct ble_put_context_09_10 *ctx,
     if (subcmd == 0) {
         if (OP10_LOG_LEVEL > 2) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): received navigation func startup  packet ....\n",
+                DEBUG_PRINT(((unsigned long)"%s(): received navigation func startup  packet ....\n"),
                             "ble_process_put_req");
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): received navigation func startup  packet ....\n"),
+                            "ble_process_put_req");
         }
         root = (uint8_t *)(uintptr_t)FUN_000167a8();
         nav = *(uint8_t **)(void *)(root + 0x1000);
@@ -177,10 +178,11 @@ int ble_put_op10_subcmd_0_1(struct ble_put_context_09_10 *ctx,
             ret = ctx->post_to_host(response, 6);
             if (ret < 0 && OP10_LOG_LEVEL > 0) {
                 if (OP10_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                                 "ble_process_put_req", ret);
                 else
-                    FUN_00019c70();
+                    FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                                "ble_process_put_req", ret);
             }
         }
         return 1;
@@ -199,10 +201,10 @@ int ble_put_op10_subcmd_0_1(struct ble_put_context_09_10 *ctx,
         if ((ble_put_rd16(request + 6) > 0x1e8 ||
              ble_put_rd16(request + 8) > 0x88) && OP10_LOG_LEVEL > 0) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): app send x/y parameter overstep!!! x= %d,y= %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): app send x/y parameter overstep!!! x= %d,y= %d\n"),
                             "ble_process_put_req");
             else
-                FUN_00019c70("%s(): app send x/y parameter overstep!!! x= %d,y= %d\n",
+                FUN_00019c70(((unsigned long)"%s(): app send x/y parameter overstep!!! x= %d,y= %d\n"),
                              "ble_process_put_req");
         }
 
@@ -262,10 +264,11 @@ int ble_put_op10_subcmd_2(struct ble_put_context_09_10 *ctx,
     if (sequence == 1U) {
         if (OP10_LOG_LEVEL > 2) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): Received multiple initialization packets, currently the first packet of data,total packet = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): Received multiple initialization packets, currently the first packet of data,total packet = %d\n"),
                             "ble_process_put_req", (unsigned)total);
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): Received multiple initialization packets, currently the first packet of data,total packet = %d\n"),
+                            "ble_process_put_req", (unsigned)total);
         }
         OP10_OVERVIEW_TOTAL = total;
         OP10_OVERVIEW_PACKET = 0;
@@ -289,10 +292,11 @@ int ble_put_op10_subcmd_2(struct ble_put_context_09_10 *ctx,
             *(uint32_t *)(void *)(nav + 0xb1) = (uint32_t)OP10_OVERVIEW_SIZE;
             if (OP10_LOG_LEVEL > 2) {
                 if (OP10_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): Successfully received navigation data .Maps are compressed to only one pack!!!\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): Successfully received navigation data .Maps are compressed to only one pack!!!\n"),
                                 "ble_process_put_req");
                 else
-                    FUN_00019c70();
+                    FUN_00019c70(((unsigned long)"%s(): Successfully received navigation data .Maps are compressed to only one pack!!!\n"),
+                                "ble_process_put_req");
             }
             OP10_OVERVIEW_TOTAL = 0;
             OP10_OVERVIEW_PACKET = 0;
@@ -316,22 +320,22 @@ int ble_put_op10_subcmd_2(struct ble_put_context_09_10 *ctx,
                 OP10_OVERVIEW_SIZE = (uint16_t)pending;
                 if (OP10_LOG_LEVEL > 2) {
                     if (OP10_IS_DEBUG == 0)
-                        DEBUG_PRINT("%s(): Successfully received the subpackage content, the packet sequence is %d,total size = %d\n",
+                        DEBUG_PRINT(((unsigned long)"%s(): Successfully received the subpackage content, the packet sequence is %d,total size = %d\n"),
                                     "ble_process_put_req", (unsigned)sequence,
                                     (unsigned)OP10_OVERVIEW_SIZE);
                     else
-                        FUN_00019c70("%s(): Successfully received the subpackage content, the packet sequence is %d,total size = %d\n",
+                        FUN_00019c70(((unsigned long)"%s(): Successfully received the subpackage content, the packet sequence is %d,total size = %d\n"),
                                      "ble_process_put_req", (unsigned)sequence,
                                      (unsigned)OP10_OVERVIEW_SIZE);
                 }
                 OP10_OVERVIEW_PACKET = (uint16_t)(OP10_OVERVIEW_PACKET + 1U);
             } else if (OP10_LOG_LEVEL > 0) {
                 if (OP10_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): overview map : The data length of the current packet is too long, the current data length %d,wait write data length = %d\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): overview map : The data length of the current packet is too long, the current data length %d,wait write data length = %d\n"),
                                 "ble_process_put_req", (unsigned)OP10_OVERVIEW_SIZE,
                                 (unsigned)pending);
                 else
-                    FUN_00019c70("%s(): overview map : The data length of the current packet is too long, the current data length %d,wait write data length = %d\n",
+                    FUN_00019c70(((unsigned long)"%s(): overview map : The data length of the current packet is too long, the current data length %d,wait write data length = %d\n"),
                                  "ble_process_put_req", (unsigned)OP10_OVERVIEW_SIZE,
                                  (unsigned)pending);
             }
@@ -355,11 +359,11 @@ int ble_put_op10_subcmd_2(struct ble_put_context_09_10 *ctx,
                 OP10_OVERVIEW_SIZE = (uint16_t)pending;
                 if (OP10_LOG_LEVEL > 2) {
                     if (OP10_IS_DEBUG == 0)
-                        DEBUG_PRINT("%s(): Successfully received the last packet,packet length = %d,total packet size = %d\n",
+                        DEBUG_PRINT(((unsigned long)"%s(): Successfully received the last packet,packet length = %d,total packet size = %d\n"),
                                     "ble_process_put_req", (unsigned)sequence,
                                     (unsigned)OP10_OVERVIEW_SIZE);
                     else
-                        FUN_00019c70("%s(): Successfully received the last packet,packet length = %d,total packet size = %d\n",
+                        FUN_00019c70(((unsigned long)"%s(): Successfully received the last packet,packet length = %d,total packet size = %d\n"),
                                      "ble_process_put_req", (unsigned)sequence,
                                      (unsigned)OP10_OVERVIEW_SIZE);
                 }
@@ -381,19 +385,20 @@ int ble_put_op10_subcmd_2(struct ble_put_context_09_10 *ctx,
                     ret = ctx->post_to_host(response, 10);
                     if (ret < 0 && OP10_LOG_LEVEL > 0) {
                         if (OP10_IS_DEBUG == 0)
-                            DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+                            DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                                         "ble_process_put_req", ret);
                         else
-                            FUN_00019c70();
+                            FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                                        "ble_process_put_req", ret);
                     }
                 }
             } else if (OP10_LOG_LEVEL > 0) {
                 if (OP10_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): overview map : The data length of the current packet is too long, the current data length %d,wait write data length = %d\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): overview map : The data length of the current packet is too long, the current data length %d,wait write data length = %d\n"),
                                 "ble_process_put_req", (unsigned)OP10_OVERVIEW_SIZE,
                                 (unsigned)pending);
                 else
-                    FUN_00019c70("%s(): overview map : The data length of the current packet is too long, the current data length %d,wait write data length = %d\n",
+                    FUN_00019c70(((unsigned long)"%s(): overview map : The data length of the current packet is too long, the current data length %d,wait write data length = %d\n"),
                                  "ble_process_put_req", (unsigned)OP10_OVERVIEW_SIZE,
                                  (unsigned)pending);
             }
@@ -402,11 +407,11 @@ int ble_put_op10_subcmd_2(struct ble_put_context_09_10 *ctx,
 op10_overview_order_error_with_lookup:
         if (OP10_LOG_LEVEL > 1) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                             "ble_process_put_req", (unsigned)sequence,
                             (unsigned)(OP10_OVERVIEW_PACKET + 1U));
             else
-                FUN_00019c70("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+                FUN_00019c70(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                              "ble_process_put_req", (unsigned)sequence,
                              (unsigned)(OP10_OVERVIEW_PACKET + 1U));
         }
@@ -425,11 +430,11 @@ op10_overview_order_error_with_lookup:
 
     if (OP10_LOG_LEVEL > 1) {
         if (OP10_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+            DEBUG_PRINT(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                         "ble_process_put_req", (unsigned)sequence,
                         (unsigned)(OP10_OVERVIEW_PACKET + 1U));
         else
-            FUN_00019c70("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+            FUN_00019c70(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                          "ble_process_put_req", (unsigned)sequence,
                          (unsigned)(OP10_OVERVIEW_PACKET + 1U));
     }
@@ -460,10 +465,11 @@ int ble_put_op10_subcmd_3(struct ble_put_context_09_10 *ctx,
 
     if (OP10_LOG_LEVEL > 2) {
         if (OP10_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): received navigation panoramic map data packet ....\n",
+            DEBUG_PRINT(((unsigned long)"%s(): received navigation panoramic map data packet ....\n"),
                         "ble_process_put_req");
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): received navigation panoramic map data packet ....\n"),
+                        "ble_process_put_req");
     }
 
     if (sequence == 1U) {
@@ -481,11 +487,11 @@ int ble_put_op10_subcmd_3(struct ble_put_context_09_10 *ctx,
         OP10_PAN_SIZE = (uint16_t)first_length;
         if (OP10_LOG_LEVEL > 2) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): Successfully received multiple initialization packets, currently the first packet of data,received data size = %d,total packet len = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): Successfully received multiple initialization packets, currently the first packet of data,received data size = %d,total packet len = %d\n"),
                             "ble_process_put_req", (unsigned)(first_length & 0xffffU),
                             (unsigned)OP10_PAN_TOTAL);
             else
-                FUN_00019c70("%s(): Successfully received multiple initialization packets, currently the first packet of data,received data size = %d,total packet len = %d\n",
+                FUN_00019c70(((unsigned long)"%s(): Successfully received multiple initialization packets, currently the first packet of data,received data size = %d,total packet len = %d\n"),
                              "ble_process_put_req", (unsigned)(first_length & 0xffffU),
                              (unsigned)OP10_PAN_TOTAL);
         }
@@ -506,22 +512,22 @@ int ble_put_op10_subcmd_3(struct ble_put_context_09_10 *ctx,
                 OP10_PAN_SIZE = (uint16_t)pending;
                 if (OP10_LOG_LEVEL > 2) {
                     if (OP10_IS_DEBUG == 0)
-                        DEBUG_PRINT("%s(): Successfully received the subpackage content, the packet sequence is %d,total received size = %d\n",
+                        DEBUG_PRINT(((unsigned long)"%s(): Successfully received the subpackage content, the packet sequence is %d,total received size = %d\n"),
                                     "ble_process_put_req", (unsigned)sequence,
                                     (unsigned)OP10_PAN_SIZE);
                     else
-                        FUN_00019c70("%s(): Successfully received the subpackage content, the packet sequence is %d,total received size = %d\n",
+                        FUN_00019c70(((unsigned long)"%s(): Successfully received the subpackage content, the packet sequence is %d,total received size = %d\n"),
                                      "ble_process_put_req", (unsigned)sequence,
                                      (unsigned)OP10_PAN_SIZE);
                 }
                 OP10_PAN_PACKET = (uint16_t)(OP10_PAN_PACKET + 1U);
             } else if (OP10_LOG_LEVEL > 0) {
                 if (OP10_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): Panoramic map : The data length of the current packet is too long, the current data length %d,wait write data length = %d\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): Panoramic map : The data length of the current packet is too long, the current data length %d,wait write data length = %d\n"),
                                 "ble_process_put_req", (unsigned)OP10_PAN_SIZE,
                                 (unsigned)pending);
                 else
-                    FUN_00019c70("%s(): Panoramic map : The data length of the current packet is too long, the current data length %d,wait write data length = %d\n",
+                    FUN_00019c70(((unsigned long)"%s(): Panoramic map : The data length of the current packet is too long, the current data length %d,wait write data length = %d\n"),
                                  "ble_process_put_req", (unsigned)OP10_PAN_SIZE,
                                  (unsigned)pending);
             }
@@ -544,11 +550,11 @@ int ble_put_op10_subcmd_3(struct ble_put_context_09_10 *ctx,
                 OP10_PAN_PACKET = (uint16_t)(OP10_PAN_PACKET + 1U);
                 if (OP10_LOG_LEVEL > 2) {
                     if (OP10_IS_DEBUG == 0)
-                        DEBUG_PRINT("%s(): Successfully received panoramic map  last packet,Packet id = %d,total received size = %d\n",
+                        DEBUG_PRINT(((unsigned long)"%s(): Successfully received panoramic map  last packet,Packet id = %d,total received size = %d\n"),
                                     "ble_process_put_req", (unsigned)sequence,
                                     (unsigned)OP10_PAN_SIZE);
                     else
-                        FUN_00019c70("%s(): Successfully received panoramic map  last packet,Packet id = %d,total received size = %d\n",
+                        FUN_00019c70(((unsigned long)"%s(): Successfully received panoramic map  last packet,Packet id = %d,total received size = %d\n"),
                                      "ble_process_put_req", (unsigned)sequence,
                                      (unsigned)OP10_PAN_SIZE);
                 }
@@ -567,19 +573,20 @@ int ble_put_op10_subcmd_3(struct ble_put_context_09_10 *ctx,
                     ret = ctx->post_to_host(response, 11);
                     if (ret < 0 && OP10_LOG_LEVEL > 0) {
                         if (OP10_IS_DEBUG == 0)
-                            DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+                            DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                                         "ble_process_put_req", ret);
                         else
-                            FUN_00019c70();
+                            FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                                        "ble_process_put_req", ret);
                     }
                 }
             } else if (OP10_LOG_LEVEL > 0) {
                 if (OP10_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): Panoramic map : The data length of the current packet is too long, the current data length %d,wait write data length = %d\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): Panoramic map : The data length of the current packet is too long, the current data length %d,wait write data length = %d\n"),
                                 "ble_process_put_req", (unsigned)OP10_PAN_SIZE,
                                 (unsigned)pending);
                 else
-                    FUN_00019c70("%s(): Panoramic map : The data length of the current packet is too long, the current data length %d,wait write data length = %d\n",
+                    FUN_00019c70(((unsigned long)"%s(): Panoramic map : The data length of the current packet is too long, the current data length %d,wait write data length = %d\n"),
                                  "ble_process_put_req", (unsigned)OP10_PAN_SIZE,
                                  (unsigned)pending);
             }
@@ -588,11 +595,11 @@ int ble_put_op10_subcmd_3(struct ble_put_context_09_10 *ctx,
 op10_pan_order_error:
         if (OP10_LOG_LEVEL > 1) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                             "ble_process_put_req", (unsigned)sequence,
                             (unsigned)(OP10_PAN_PACKET + 1U));
             else
-                FUN_00019c70("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+                FUN_00019c70(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                              "ble_process_put_req", (unsigned)sequence,
                              (unsigned)(OP10_PAN_PACKET + 1U));
         }
@@ -609,11 +616,11 @@ op10_pan_order_error:
     (void)FUN_000167a8();
     if (OP10_LOG_LEVEL > 1) {
         if (OP10_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+            DEBUG_PRINT(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                         "ble_process_put_req", (unsigned)sequence,
                         (unsigned)(OP10_PAN_PACKET + 1U));
         else
-            FUN_00019c70("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+            FUN_00019c70(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                          "ble_process_put_req", (unsigned)sequence,
                          (unsigned)(OP10_PAN_PACKET + 1U));
     }
@@ -643,10 +650,11 @@ int ble_put_op10_subcmd_4_6(struct ble_put_context_09_10 *ctx,
     if (subcmd == 4U) {
         if (OP10_LOG_LEVEL > 2) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): received app send sync packet ....\n",
+                DEBUG_PRINT(((unsigned long)"%s(): received app send sync packet ....\n"),
                             "ble_process_put_req");
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): received app send sync packet ....\n"),
+                            "ble_process_put_req");
         }
         root = (uint8_t *)(uintptr_t)FUN_000167a8();
         nav = *(uint8_t **)(void *)(root + 0x1000);
@@ -658,10 +666,11 @@ int ble_put_op10_subcmd_4_6(struct ble_put_context_09_10 *ctx,
             response[5] = 0;
             if (OP10_LOG_LEVEL > 1) {
                 if (OP10_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): navigation don't startup, sync packet return\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): navigation don't startup, sync packet return\n"),
                                 "ble_process_put_req");
                 else
-                    FUN_00019c70();
+                    FUN_00019c70(((unsigned long)"%s(): navigation don't startup, sync packet return\n"),
+                                "ble_process_put_req");
             }
         } else {
             OP10_NAV_SYNC_COUNT = OP10_NAV_SYNC_COUNT + 1U;
@@ -673,10 +682,11 @@ int ble_put_op10_subcmd_4_6(struct ble_put_context_09_10 *ctx,
     if (subcmd == 5U) {
         if (OP10_LOG_LEVEL > 2) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): received navigation func exit packet ....\n",
+                DEBUG_PRINT(((unsigned long)"%s(): received navigation func exit packet ....\n"),
                             "ble_process_put_req");
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): received navigation func exit packet ....\n"),
+                            "ble_process_put_req");
         }
         root = (uint8_t *)(uintptr_t)FUN_000167a8();
         nav = *(uint8_t **)(void *)(root + 0x1000);
@@ -711,20 +721,21 @@ int ble_put_op10_subcmd_4_6(struct ble_put_context_09_10 *ctx,
                                        (uint32_t)advertised - 6U);
         if (OP10_LOG_LEVEL > 2) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): received arrived status packet. arrived status = %d ,arrived prompt word = %s\n",
+                DEBUG_PRINT(((unsigned long)"%s(): received arrived status packet. arrived status = %d ,arrived prompt word = %s\n"),
                             "ble_process_put_req", (unsigned)request[5], copied);
             else
-                FUN_00019c70("%s(): received arrived status packet. arrived status = %d ,arrived prompt word = %s\n",
-                             "ble_process_put_req", (unsigned)request[5]);
+                FUN_00019c70(((unsigned long)"%s(): received arrived status packet. arrived status = %d ,arrived prompt word = %s\n"),
+                            "ble_process_put_req", (unsigned)request[5], copied);
         }
         status = 0;
     } else {
         if (OP10_LOG_LEVEL > 0) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): app send prompt word oversize,drop it...\n",
+                DEBUG_PRINT(((unsigned long)"%s(): app send prompt word oversize,drop it...\n"),
                             "ble_process_put_req");
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): app send prompt word oversize,drop it...\n"),
+                            "ble_process_put_req");
         }
         status = 1;
     }
@@ -735,10 +746,11 @@ int ble_put_op10_subcmd_4_6(struct ble_put_context_09_10 *ctx,
         ret = ctx->post_to_host(response, 6);
         if (ret < 0 && OP10_LOG_LEVEL > 0) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                             "ble_process_put_req", ret);
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                            "ble_process_put_req", ret);
         }
     }
     return 1;
@@ -760,12 +772,12 @@ int ble_put_op10_dispatch(struct ble_put_context_09_10 *ctx,
         if (OP10_LOG_LEVEL < 2)
             return 1;
         if (OP10_IS_DEBUG != 0) {
-            FUN_00019c70("%s(): packet length error,input data length = %d,packet data length = %d\n",
+            FUN_00019c70(((unsigned long)"%s(): packet length error,input data length = %d,packet data length = %d\n"),
                          "ble_process_put_req", (unsigned)actual,
                          (unsigned)advertised);
             return 1;
         }
-        DEBUG_PRINT("%s(): packet length error,input data length = %d,packet data length = %d\n",
+        DEBUG_PRINT(((unsigned long)"%s(): packet length error,input data length = %d,packet data length = %d\n"),
                     "ble_process_put_req", (unsigned)actual,
                     (unsigned)advertised);
         return 1;
@@ -797,10 +809,11 @@ int ble_put_op9_action5_exit(struct ble_put_context_09_10 *ctx,
         return 0;
     if (OP10_LOG_LEVEL > 2) {
         if (OP10_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): received teleprompter func exit packet ....\n",
+            DEBUG_PRINT(((unsigned long)"%s(): received teleprompter func exit packet ....\n"),
                         "ble_process_put_req");
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): received teleprompter func exit packet ....\n"),
+                        "ble_process_put_req");
     }
     if (FUN_00016568() == 1) {
         *((uint8_t *)(void *)ctx - 0x6af) = request[3];
@@ -816,10 +829,11 @@ int ble_put_op9_action5_exit(struct ble_put_context_09_10 *ctx,
     ret = ctx->post_to_host(response, 6);
     if (ret < 0 && OP10_LOG_LEVEL > 0) {
         if (OP10_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+            DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                         "ble_process_put_req", ret);
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                        "ble_process_put_req", ret);
     }
     return 1;
 }
@@ -852,10 +866,11 @@ int ble_put_op9_action2_mark(struct ble_put_context_09_10 *ctx,
     *(uint32_t *)(void *)(teleprompter + 6) = timestamp_hi;
     if (OP10_LOG_LEVEL > 2) {
         if (OP10_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): MARK POSITION = %d\n", "ble_process_put_req",
+            DEBUG_PRINT(((unsigned long)"%s(): MARK POSITION = %d\n"), "ble_process_put_req",
                         (unsigned)*(uint16_t *)(void *)(teleprompter + 0x0e));
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): MARK POSITION = %d\n"), "ble_process_put_req",
+                        (unsigned)*(uint16_t *)(void *)(teleprompter + 0x0e));
     }
     FUN_00086c78(response + 5, 0, 15);
     *(uint32_t *)(void *)response = *(const uint32_t *)(const void *)request;
@@ -866,10 +881,11 @@ int ble_put_op9_action2_mark(struct ble_put_context_09_10 *ctx,
         ret = ctx->post_to_host(response, 6);
         if (ret < 0 && OP10_LOG_LEVEL > 0) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                             "ble_process_put_req", ret);
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                            "ble_process_put_req", ret);
         }
     }
     return 1;
@@ -897,19 +913,21 @@ int ble_put_op9_action1_single(struct ble_put_context_09_10 *ctx,
     sequence = ble_put_rd16(request + 7);
     if (OP10_LOG_LEVEL > 2) {
         if (OP10_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): received teleprompter init  packet ....\n",
+            DEBUG_PRINT(((unsigned long)"%s(): received teleprompter init  packet ....\n"),
                         "ble_process_put_req");
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): received teleprompter init  packet ....\n"),
+                        "ble_process_put_req");
     }
     FUN_00086c78(tele + 4, 0, 0x217);
     if (total == 1U) {
     if (OP10_LOG_LEVEL > 2) {
         if (OP10_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): received teleprompter init packet,total packet = 1\n",
+            DEBUG_PRINT(((unsigned long)"%s(): received teleprompter init packet,total packet = 1\n"),
                         "ble_process_put_req");
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): received teleprompter init packet,total packet = 1\n"),
+                        "ble_process_put_req");
     }
     *((uint8_t *)(void *)ctx - 0x6af) = request[3];
     FUN_0007c1dc(request[3], 0);
@@ -932,11 +950,13 @@ int ble_put_op9_action1_single(struct ble_put_context_09_10 *ctx,
     FUN_0004a4d0(system_time);
     if (OP10_LOG_LEVEL > 0) {
         if (OP10_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): *******************------ received app send timestamp = %lld,current system timestamp = %lld\n",
+            DEBUG_PRINT(((unsigned long)"%s(): *******************------ received app send timestamp = %lld,current system timestamp = %lld\n"),
                         "ble_process_put_req", app_time_lo, app_time_hi,
                         system_time[0], system_time[1]);
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): *******************------ received app send timestamp = %lld,current system timestamp = %lld\n"),
+                        "ble_process_put_req", app_time_lo, app_time_hi,
+                        system_time[0], system_time[1]);
     }
     *(uint16_t *)(void *)(tele + 2) = ble_put_rd16(packet + 2);
     ctx->frame_length = (uint32_t)ble_put_rd16(packet + 2) + 4U;
@@ -949,10 +969,11 @@ int ble_put_op9_action1_single(struct ble_put_context_09_10 *ctx,
         ret = ctx->post_to_host(response, 10);
         if (ret < 0 && OP10_LOG_LEVEL > 0) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                             "ble_process_put_req", ret);
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                            "ble_process_put_req", ret);
         }
     }
     return 1;
@@ -961,10 +982,11 @@ int ble_put_op9_action1_single(struct ble_put_context_09_10 *ctx,
     if (sequence == 1U) {
         if (OP10_LOG_LEVEL > 2) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): Action ID = 1,Received multiple initialization packets, currently the first packet of data\n",
+                DEBUG_PRINT(((unsigned long)"%s(): Action ID = 1,Received multiple initialization packets, currently the first packet of data\n"),
                             "ble_process_put_req");
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): Action ID = 1,Received multiple initialization packets, currently the first packet of data\n"),
+                            "ble_process_put_req");
         }
         OP10_OVERVIEW_TOTAL = total;
         OP10_OVERVIEW_PACKET = 0;
@@ -989,10 +1011,11 @@ int ble_put_op9_action1_single(struct ble_put_context_09_10 *ctx,
         ret = ctx->post_to_host(response, 10);
         if (ret < 0 && OP10_LOG_LEVEL > 0) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                             "ble_process_put_req", ret);
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                            "ble_process_put_req", ret);
         }
         return 1;
     }
@@ -1004,30 +1027,32 @@ int ble_put_op9_action1_single(struct ble_put_context_09_10 *ctx,
             OP9_TEXT_SIZE = (uint16_t)((uint32_t)OP9_TEXT_SIZE - 12U + advertised);
             if (OP10_LOG_LEVEL > 2) {
                 if (OP10_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): ACTION ID = 1,Successfully received the subpackage content, the packet sequence is %d\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): ACTION ID = 1,Successfully received the subpackage content, the packet sequence is %d\n"),
                                 "ble_process_put_req", (unsigned)sequence);
                 else
-                    FUN_00019c70();
+                    FUN_00019c70(((unsigned long)"%s(): ACTION ID = 1,Successfully received the subpackage content, the packet sequence is %d\n"),
+                                "ble_process_put_req", (unsigned)sequence);
             }
             OP10_OVERVIEW_PACKET = (uint16_t)(OP10_OVERVIEW_PACKET + 1U);
             ble_put_ack_copy9((struct ble_put_ack20 *)(void *)response, request, 0);
             ret = ctx->post_to_host(response, 10);
             if (ret < 0 && OP10_LOG_LEVEL > 0) {
                 if (OP10_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                                 "ble_process_put_req", ret);
                 else
-                    FUN_00019c70();
+                    FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                                "ble_process_put_req", ret);
             }
             return 1;
         }
         if (OP10_LOG_LEVEL > 1) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                             "ble_process_put_req", (unsigned)sequence,
                             (unsigned)(OP10_OVERVIEW_PACKET + 1U));
             else
-                FUN_00019c70("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+                FUN_00019c70(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                              "ble_process_put_req", (unsigned)sequence,
                              (unsigned)(OP10_OVERVIEW_PACKET + 1U));
         }
@@ -1039,10 +1064,11 @@ int ble_put_op9_action1_single(struct ble_put_context_09_10 *ctx,
         ret = ctx->post_to_host(response, 10);
         if (ret < 0 && OP10_LOG_LEVEL > 0) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                             "ble_process_put_req", ret);
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                            "ble_process_put_req", ret);
         }
         return 1;
     }
@@ -1065,13 +1091,17 @@ int ble_put_op9_action1_single(struct ble_put_context_09_10 *ctx,
             FUN_0004a4d0(system_final);
             if (OP10_LOG_LEVEL > 2) {
                 if (OP10_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): *******************------ received app send timestamp = %lld,current system timestamp = %lld\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): *******************------ received app send timestamp = %lld,current system timestamp = %lld\n"),
                                 "ble_process_put_req",
                                 *(uint32_t *)(void *)(OP9_ASSEMBLY + 2),
                                 *(uint32_t *)(void *)(OP9_ASSEMBLY + 6),
                                 system_final[0], system_final[1]);
                 else
-                    FUN_00019c70();
+                    FUN_00019c70(((unsigned long)"%s(): *******************------ received app send timestamp = %lld,current system timestamp = %lld\n"),
+                                "ble_process_put_req",
+                                *(uint32_t *)(void *)(OP9_ASSEMBLY + 2),
+                                *(uint32_t *)(void *)(OP9_ASSEMBLY + 6),
+                                system_final[0], system_final[1]);
             }
             OP10_OVERVIEW_PACKET = (uint16_t)(OP10_OVERVIEW_PACKET + 1U);
             OP9_ASSEMBLY[1] = 1;
@@ -1083,10 +1113,11 @@ int ble_put_op9_action1_single(struct ble_put_context_09_10 *ctx,
                                            9, 2);
             if (OP10_LOG_LEVEL > 2) {
                 if (OP10_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): ACTION ID = 1,Successfully assembled multiple packages of data, and updated the complete content to the UI thread for data update.\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): ACTION ID = 1,Successfully assembled multiple packages of data, and updated the complete content to the UI thread for data update.\n"),
                                 "ble_process_put_req");
                 else
-                    FUN_00019c70();
+                    FUN_00019c70(((unsigned long)"%s(): ACTION ID = 1,Successfully assembled multiple packages of data, and updated the complete content to the UI thread for data update.\n"),
+                                "ble_process_put_req");
             }
             OP10_OVERVIEW_TOTAL = 0;
             OP10_OVERVIEW_PACKET = 0;
@@ -1097,21 +1128,22 @@ int ble_put_op9_action1_single(struct ble_put_context_09_10 *ctx,
                 ret = ctx->post_to_host(response, 10);
                 if (ret < 0 && OP10_LOG_LEVEL > 0) {
                     if (OP10_IS_DEBUG == 0)
-                        DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+                        DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                                     "ble_process_put_req", ret);
                     else
-                        FUN_00019c70();
+                        FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                                    "ble_process_put_req", ret);
                 }
             }
             return 1;
         }
         if (OP10_LOG_LEVEL > 1) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                             "ble_process_put_req", (unsigned)sequence,
                             (unsigned)(OP10_OVERVIEW_PACKET + 1U));
             else
-                FUN_00019c70("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+                FUN_00019c70(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                              "ble_process_put_req", (unsigned)sequence,
                              (unsigned)(OP10_OVERVIEW_PACKET + 1U));
         }
@@ -1122,20 +1154,22 @@ int ble_put_op9_action1_single(struct ble_put_context_09_10 *ctx,
         ret = ctx->post_to_host(response, 10);
         if (ret < 0 && OP10_LOG_LEVEL > 0) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                             "ble_process_put_req", ret);
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                            "ble_process_put_req", ret);
         }
         return 1;
     }
 
     if (OP10_LOG_LEVEL > 0) {
         if (OP10_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): A serious packet order error occurred!\n",
+            DEBUG_PRINT(((unsigned long)"%s(): A serious packet order error occurred!\n"),
                         "ble_process_put_req");
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): A serious packet order error occurred!\n"),
+                        "ble_process_put_req");
     }
     OP10_OVERVIEW_TOTAL = 0;
     OP10_OVERVIEW_PACKET = 0;
@@ -1144,10 +1178,11 @@ int ble_put_op9_action1_single(struct ble_put_context_09_10 *ctx,
     ret = ctx->post_to_host(response, 10);
     if (ret < 0 && OP10_LOG_LEVEL > 0) {
         if (OP10_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+            DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                         "ble_process_put_req", ret);
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                        "ble_process_put_req", ret);
     }
     return 1;
 }
@@ -1166,10 +1201,11 @@ void ble_put_op9_ack9(struct ble_put_context_09_10 *ctx,
     ret = ctx->post_to_host(response, 10);
     if (ret < 0 && OP10_LOG_LEVEL > 0) {
         if (OP10_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+            DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                         "ble_process_put_req", ret);
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                        "ble_process_put_req", ret);
     }
 }
 
@@ -1190,10 +1226,11 @@ int ble_put_op9_action3_7(struct ble_put_context_09_10 *ctx,
         return 0;
     if (OP10_LOG_LEVEL > 2) {
         if (OP10_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): received teleprompter text upgrade packet ....\n",
+            DEBUG_PRINT(((unsigned long)"%s(): received teleprompter text upgrade packet ....\n"),
                         "ble_process_put_req");
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): received teleprompter text upgrade packet ....\n"),
+                        "ble_process_put_req");
     }
     total = ble_put_rd16(request + 5);
     sequence = ble_put_rd16(request + 7);
@@ -1202,10 +1239,11 @@ int ble_put_op9_action3_7(struct ble_put_context_09_10 *ctx,
     if (total == 1U) {
         if (OP10_LOG_LEVEL > 2) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): received TEXT UPGRADE Single PACKET ...\n",
+                DEBUG_PRINT(((unsigned long)"%s(): received TEXT UPGRADE Single PACKET ...\n"),
                             "ble_process_put_req");
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): received TEXT UPGRADE Single PACKET ...\n"),
+                            "ble_process_put_req");
         }
         *((uint8_t *)(void *)ctx - 0x6af) = request[3];
         FUN_0007c1dc(request[3], 0);
@@ -1224,12 +1262,15 @@ int ble_put_op9_action3_7(struct ble_put_context_09_10 *ctx,
         FUN_0004a4d0(now);
         if (OP10_LOG_LEVEL > 2) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): *******************------ received app send timestamp = %lld,current system timestamp = %lld\n",
+                DEBUG_PRINT(((unsigned long)"%s(): *******************------ received app send timestamp = %lld,current system timestamp = %lld\n"),
                             "ble_process_put_req",
                             *(uint32_t *)(void *)(tele + 2),
                             *(uint32_t *)(void *)(tele + 6), now[0], now[1]);
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): *******************------ received app send timestamp = %lld,current system timestamp = %lld\n"),
+                            "ble_process_put_req",
+                            *(uint32_t *)(void *)(tele + 2),
+                            *(uint32_t *)(void *)(tele + 6), now[0], now[1]);
         }
         if (action == 7U)
             OP9_ACTION7_FLAG = 1;
@@ -1243,10 +1284,11 @@ int ble_put_op9_action3_7(struct ble_put_context_09_10 *ctx,
             ret = ctx->post_to_host(response, 10);
             if (ret < 0 && OP10_LOG_LEVEL > 0) {
                 if (OP10_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
                                 "ble_process_put_req", ret);
                 else
-                    FUN_00019c70();
+                    FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"),
+                                "ble_process_put_req", ret);
             }
         }
         return 1;
@@ -1255,10 +1297,11 @@ int ble_put_op9_action3_7(struct ble_put_context_09_10 *ctx,
     if (sequence == 1U) {
         if (OP10_LOG_LEVEL > 2) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): ACTION ID = 3,Received multiple initialization packets, currently the first packet of data\n",
+                DEBUG_PRINT(((unsigned long)"%s(): ACTION ID = 3,Received multiple initialization packets, currently the first packet of data\n"),
                             "ble_process_put_req");
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): ACTION ID = 3,Received multiple initialization packets, currently the first packet of data\n"),
+                            "ble_process_put_req");
         }
         OP10_OVERVIEW_TOTAL = total;
         OP10_OVERVIEW_PACKET = 0;
@@ -1282,10 +1325,11 @@ int ble_put_op9_action3_7(struct ble_put_context_09_10 *ctx,
                 (uint16_t)((uint32_t)OP10_OVERVIEW_SIZE - 12U + advertised);
             if (OP10_LOG_LEVEL > 2) {
                 if (OP10_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): ACTION ID = 3,Successfully received the subpackage content, the packet sequence is %d\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): ACTION ID = 3,Successfully received the subpackage content, the packet sequence is %d\n"),
                                 "ble_process_put_req", (unsigned)sequence);
                 else
-                    FUN_00019c70();
+                    FUN_00019c70(((unsigned long)"%s(): ACTION ID = 3,Successfully received the subpackage content, the packet sequence is %d\n"),
+                                "ble_process_put_req", (unsigned)sequence);
             }
             OP10_OVERVIEW_PACKET = (uint16_t)(OP10_OVERVIEW_PACKET + 1U);
             ble_put_op9_ack9(ctx, request, response, 0, 0);
@@ -1313,10 +1357,11 @@ int ble_put_op9_action3_7(struct ble_put_context_09_10 *ctx,
             *(uint16_t *)(void *)(tele + 0x0e) = ble_put_rd16(request + 10);
             if (OP10_LOG_LEVEL > 2) {
                 if (OP10_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): ACTIION ID = 3,Successfully assembled multiple packages of data, and updated the complete content to the UI thread for data update.\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): ACTIION ID = 3,Successfully assembled multiple packages of data, and updated the complete content to the UI thread for data update.\n"),
                                 "ble_process_put_req");
                 else
-                    FUN_00019c70();
+                    FUN_00019c70(((unsigned long)"%s(): ACTIION ID = 3,Successfully assembled multiple packages of data, and updated the complete content to the UI thread for data update.\n"),
+                                "ble_process_put_req");
             }
             *(uint32_t *)(void *)(tele + 2) =
                 ble_put_rd32_explicit(request + (uint32_t)advertised - 8U);
@@ -1326,12 +1371,15 @@ int ble_put_op9_action3_7(struct ble_put_context_09_10 *ctx,
             FUN_0004a4d0(now);
             if (OP10_LOG_LEVEL > 2) {
                 if (OP10_IS_DEBUG == 0)
-                    DEBUG_PRINT("%s(): *******************------ received app send timestamp = %lld,current system timestamp = %lld\n",
+                    DEBUG_PRINT(((unsigned long)"%s(): *******************------ received app send timestamp = %lld,current system timestamp = %lld\n"),
                                 "ble_process_put_req",
                                 *(uint32_t *)(void *)(tele + 2),
                                 *(uint32_t *)(void *)(tele + 6), now[0], now[1]);
                 else
-                    FUN_00019c70();
+                    FUN_00019c70(((unsigned long)"%s(): *******************------ received app send timestamp = %lld,current system timestamp = %lld\n"),
+                                "ble_process_put_req",
+                                *(uint32_t *)(void *)(tele + 2),
+                                *(uint32_t *)(void *)(tele + 6), now[0], now[1]);
             }
             if (action == 7U)
                 OP9_ACTION7_FLAG = 1;
@@ -1342,11 +1390,11 @@ int ble_put_op9_action3_7(struct ble_put_context_09_10 *ctx,
         }
         if (OP10_LOG_LEVEL > 1) {
             if (OP10_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                             "ble_process_put_req", (unsigned)sequence,
                             (unsigned)(OP10_OVERVIEW_PACKET + 1U));
             else
-                FUN_00019c70("%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d\n",
+                FUN_00019c70(((unsigned long)"%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                              "ble_process_put_req", (unsigned)sequence,
                              (unsigned)(OP10_OVERVIEW_PACKET + 1U));
         }
@@ -1360,10 +1408,11 @@ int ble_put_op9_action3_7(struct ble_put_context_09_10 *ctx,
 
     if (OP10_LOG_LEVEL > 0) {
         if (OP10_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): ACTION ID = 3,A serious packet order error occurred!\n",
+            DEBUG_PRINT(((unsigned long)"%s(): ACTION ID = 3,A serious packet order error occurred!\n"),
                         "ble_process_put_req");
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): ACTION ID = 3,A serious packet order error occurred!\n"),
+                        "ble_process_put_req");
     }
     OP10_OVERVIEW_TOTAL = 0;
     OP10_OVERVIEW_PACKET = 0;
@@ -1375,11 +1424,11 @@ int ble_put_op9_action3_7(struct ble_put_context_09_10 *ctx,
 op9_action3_order_reset_zero_total:
     if (OP10_LOG_LEVEL > 1) {
         if (OP10_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d\n",
+            DEBUG_PRINT(((unsigned long)"%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                         "ble_process_put_req", (unsigned)sequence,
                         (unsigned)(OP10_OVERVIEW_PACKET + 1U));
         else
-            FUN_00019c70("%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d\n",
+            FUN_00019c70(((unsigned long)"%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                          "ble_process_put_req", (unsigned)sequence,
                          (unsigned)(OP10_OVERVIEW_PACKET + 1U));
     }
@@ -1405,12 +1454,12 @@ int ble_put_op9_dispatch(struct ble_put_context_09_10 *ctx,
         if (OP10_LOG_LEVEL < 1)
             return 1;
         if (OP10_IS_DEBUG != 0) {
-            FUN_00019c70("%s(): teleprompter packet length error,input data length = %d,packet data length = %d\n",
+            FUN_00019c70(((unsigned long)"%s(): teleprompter packet length error,input data length = %d,packet data length = %d\n"),
                          "ble_process_put_req", (unsigned)actual,
                          (unsigned)advertised);
             return 1;
         }
-        DEBUG_PRINT("%s(): teleprompter packet length error,input data length = %d,packet data length = %d\n",
+        DEBUG_PRINT(((unsigned long)"%s(): teleprompter packet length error,input data length = %d,packet data length = %d\n"),
                     "ble_process_put_req", (unsigned)actual,
                     (unsigned)advertised);
         return 1;

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00065d3c @ 0x65d3c  (parity: 300/300 trials, PROVEN) */
 
 extern void arch_irq_enable(int);
-extern int printk(void);
+extern void printk(unsigned long, ...);
 extern int assert_post_action(void);
 
 unsigned int FUN_00065d3c(unsigned int param_1, int param_2, int param_3)

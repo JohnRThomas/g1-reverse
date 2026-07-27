@@ -33,8 +33,8 @@ extern int net_buf_simple_push(void);
 extern void net_buf_simple_pull_5f558(void);
 extern void k_sem_give(void);
 extern int z_impl_k_sem_take(void);
-extern void assert_post_action(void);
-extern void printk(void);
+extern void assert_post_action(unsigned long, unsigned long);
+extern void printk(unsigned long, ...);
 extern void sys_slist_find_and_remove(void);
 extern void bt_conn_call_4arg_zero(void);
 extern int net_buf_simple_tailroom(void);
@@ -108,8 +108,8 @@ unsigned conn_tx_send_to_driver(int param_1, int param_2, int param_3, unsigned 
         bt_conn_call_4arg_zero();
         if (puVar9 == 0) {
             if (I32(unaff_r10) == 0) {
-                printk();
-                assert_post_action();
+                printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"*pending_no_cb > 0"), ((unsigned long)"WEST_TOPDIR/zephyr/subsys/bluetooth/host/conn.c"), 627);
+                assert_post_action(((unsigned long)"WEST_TOPDIR/zephyr/subsys/bluetooth/host/conn.c"), 627);
             }
             I32(unaff_r10) = I32(unaff_r10) - 1;
         } else {

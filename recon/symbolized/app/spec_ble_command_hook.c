@@ -664,7 +664,7 @@ LAB_0000effe:
                 }
                 else {
                   debug_print(PTR_s__s______cmd_type__s__value__s__t_0000f780,DAT_0000f770,
-                               &local_5c4);
+                              &local_5c4,&local_5a0,2);
                 }
               }
               uVar12 = 2;
@@ -694,7 +694,7 @@ LAB_0000effe:
             }
             else {
               debug_print(PTR_s__s____cmd_type__s__value__s__tx__0000f48c,
-                           PTR_s_spec_ble_command_hook_0000f460,&local_5c4,&local_5a0,0);
+                          PTR_s_spec_ble_command_hook_0000f460,&local_5c4,&local_5a0,0,uVar9,uVar8);
             }
           }
           uVar15 = 9;

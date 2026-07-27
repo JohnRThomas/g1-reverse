@@ -2,8 +2,8 @@
 
 extern void FUN_00086c78(void *dst, int val, unsigned int len);
 extern int FUN_000720d0(void *obj, void *msg, unsigned int a, unsigned int b);
-extern void DEBUG_PRINT(unsigned int fmt, unsigned int arg);
-extern void FUN_00019c70(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 unsigned int display_DelayClose(unsigned int param_1)
 {
@@ -23,7 +23,7 @@ unsigned int display_DelayClose(unsigned int param_1)
             if (*(volatile int *)0x20007554UL == 0) {
                 DEBUG_PRINT(0xf008cU, 0xf0164U);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(0xf008cU, 0xf0164U);
             }
         }
     } else {

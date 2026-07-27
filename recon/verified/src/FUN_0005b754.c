@@ -4,7 +4,7 @@ extern int FUN_0005a9f4();
 extern int FUN_0005aa84(int,...);
 extern int FUN_0005b680(int,...);
 extern int FUN_0007e2ec(int,...);
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_00080d3e(int,...);
 extern int FUN_0008270c(int,...);
 extern int FUN_00082c0e();

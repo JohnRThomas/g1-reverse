@@ -53,9 +53,9 @@ typedef int i32;
 #define classify_text_character index_in_range32_mask
 #define copy_glyph_bitmap safe_memcpy_checked
 
-extern void log_message();
+extern void log_message(unsigned long, ...);
 extern u32 get_device_info(void);
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern u32 get_display_atomic_state(void);
 extern u32 get_glyph_spacing(u32,u32);
 extern i32 load_glyph_resource(u32,u32,void*,void*,void*,u32);
@@ -126,7 +126,7 @@ u32 gui_utf_Wordwrap_draw(u32 param_1, u32 param_2, i32 param_3, i32 param_4, i3
               if (*(volatile i32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                 log_message(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)"gui_utf_Wordwrap_draw") /*=0xaad35*/, uVar16);
               } else {
-                debug_print();
+                debug_print(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)"gui_utf_Wordwrap_draw") /*=0xaad35*/, uVar16);
               }
             }
           } else {
@@ -181,7 +181,7 @@ control_label_00045458:
                     if (iVar3 == 0) {
                       log_message(uVar13, ((unsigned long)"gui_utf_Wordwrap_draw") /*=0xaad35*/);
                     } else {
-                      debug_print();
+                      debug_print(uVar13, ((unsigned long)"gui_utf_Wordwrap_draw") /*=0xaad35*/);
                     }
                   }
                 } else {
@@ -281,7 +281,7 @@ control_label_0004558c:
     if (*(volatile i32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
       log_message(((unsigned long)"%s(): exex process effect callback function\n") /*=0xaaa7f*/, ((unsigned long)"gui_utf_Wordwrap_draw") /*=0xaad35*/);
     } else {
-      debug_print();
+      debug_print(((unsigned long)"%s(): exex process effect callback function\n") /*=0xaaa7f*/, ((unsigned long)"gui_utf_Wordwrap_draw") /*=0xaad35*/);
     }
   }
   uVar13x = (*param_11)(0, param_2, param_3, param_4, param_5);

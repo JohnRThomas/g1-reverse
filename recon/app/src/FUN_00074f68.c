@@ -4,7 +4,7 @@ extern int FUN_00072040(unsigned int);
 extern void FUN_00072078(unsigned int);
 extern unsigned int FUN_00074b68(void);
 extern int FUN_0007205c(unsigned int);
-extern void FUN_0007e2fa(unsigned int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(unsigned int,...);
 unsigned long long FUN_00074f68(void){
   unsigned int uVar6=0;

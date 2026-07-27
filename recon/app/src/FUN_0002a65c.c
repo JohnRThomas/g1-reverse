@@ -1,8 +1,8 @@
 /* Reconstructed FUN_0002a65c @ 0x2a65c */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, uint32_t);
-extern void FUN_00019c70(uint32_t, uint32_t);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00023a54(void *);
 extern void FUN_0002ace0(void);
 extern int FUN_00032ee4(void);

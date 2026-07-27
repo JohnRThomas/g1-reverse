@@ -7,7 +7,7 @@ extern void FUN_000738d4(void);
 extern void FUN_000739f0(int,int);
 extern int FUN_000744a4(int);
 extern void FUN_0007e2ec(int,int);
-extern void FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0008688e(int,int);
 void FUN_00072880(int object)
 {

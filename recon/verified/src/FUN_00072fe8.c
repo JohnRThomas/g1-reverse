@@ -5,7 +5,7 @@ extern int FUN_00072040(uint32_t);
 extern int FUN_0007205c(uint32_t);
 extern void FUN_00072078(uint32_t);
 extern void FUN_0007e2ec(uint32_t,uint32_t);
-extern void FUN_0007e2fa(uint32_t,uint32_t,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern uint32_t FUN_00086596(int);
 
 uint32_t FUN_00072fe8(int param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4){

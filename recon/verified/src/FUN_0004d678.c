@@ -6,7 +6,7 @@
 extern int FUN_0004d334(int);
 extern int FUN_0004d594(void);
 extern int FUN_0007e2ec(int,int);
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 void g1_recon_z_impl_log_panic(void){
   volatile uint8_t *pcVar1 = (volatile uint8_t*)0x2001d44cUL;
   if(*pcVar1 == 0){

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00019b54 @ 0x19b54  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
-extern void DEBUG_PRINT(uint32_t,uint32_t,uint,uint,uint,uint,uint,uint,uint,uint);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern uint32_t FUN_0002af4c(int,uint32_t,uint8_t*,uint32_t);
 uint32_t FUN_00019b54(int param_1,uint8_t* param_2,uint32_t param_3){
   if(*(volatile int*)0x2000230cUL==5){

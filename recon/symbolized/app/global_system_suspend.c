@@ -13,8 +13,8 @@
  */
 /* Reconstructed global_system_suspend @ 0x2bd7c  (parity: 296/300 trials, PROVEN) */
 
-extern void log_message(unsigned int fmt, unsigned int a1, unsigned int a2, unsigned int a3);
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 typedef void (*fn2_t)(unsigned int);
 
 unsigned int global_system_suspend(void *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
@@ -26,7 +26,7 @@ unsigned int global_system_suspend(void *param_1, unsigned int param_2, unsigned
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                 log_message(((unsigned long)"%s(): begin.\n") /*=0xa24eb*/, ((unsigned long)"global_system_suspend") /*=0xa251a*/, param_3, 0U);
             } else {
-                debug_print();
+                debug_print(((unsigned long)"%s(): begin.\n") /*=0xa24eb*/, ((unsigned long)"global_system_suspend") /*=0xa251a*/, param_3, 0U);
             }
         }
         fn2_t fn = *(fn2_t *)(base + 0xb70);
@@ -35,7 +35,7 @@ unsigned int global_system_suspend(void *param_1, unsigned int param_2, unsigned
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                 log_message(((unsigned long)"%s(): end.\n") /*=0xa24f9*/, ((unsigned long)"global_system_suspend") /*=0xa251a*/, param_3, 0U);
             } else {
-                debug_print();
+                debug_print(((unsigned long)"%s(): end.\n") /*=0xa24f9*/, ((unsigned long)"global_system_suspend") /*=0xa251a*/, param_3, 0U);
             }
         }
         *(base + 0xfe6) = 1;

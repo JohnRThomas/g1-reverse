@@ -129,7 +129,7 @@ check_stuck_key:
             log_message(((unsigned long)"%s(): #############################Long press timeout %d################################\n\n"), ((unsigned long)"touch_key_thread"), short_stuck_timeout);
           }
           else {
-            debug_print(0,0,0);
+            debug_print(((unsigned long)"%s(): #############################Long press timeout %d################################\n\n"), ((unsigned long)"touch_key_thread"), short_stuck_timeout);
           }
         }
         long_press_armed = 0;
@@ -170,7 +170,7 @@ check_completed_press:
           log_message(((unsigned long)"%s(): ########################turn on the mic and start to speak! holdtime %d\n\n"), ((unsigned long)"touch_key_thread"), now);
         }
         else {
-          debug_print(0,0,0);
+          debug_print(((unsigned long)"%s(): ########################turn on the mic and start to speak! holdtime %d\n\n"), ((unsigned long)"touch_key_thread"), now);
         }
       }
       TOUCH_RESET_REASON = 4;
@@ -205,7 +205,7 @@ check_long_hold:
     if (held_time <= (int32_t)0x11940) {
       if (0 < *log_level_ptr) {
         if (*alternate_sink_ptr == 0) {
-          log_message(((unsigned long)"%s(): #############################Long press timeout %d################################\n\n"), ((unsigned long)"touch_key_thread"));
+          log_message(0,0,0);
         }
         else {
           debug_print(0,0,0);
@@ -221,7 +221,7 @@ check_long_hold:
         log_message(((unsigned long)"%s(): #############################Long press end################################\n\n"), ((unsigned long)"touch_key_thread"));
       }
       else {
-        debug_print(0,0,0);
+        debug_print(((unsigned long)"%s(): #############################Long press end################################\n\n"), ((unsigned long)"touch_key_thread"));
       }
     }
     reset_reason = 5;

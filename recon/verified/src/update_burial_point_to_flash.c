@@ -1,7 +1,7 @@
 /* Reconstructed update_burial_point_to_flash @ 0x23014  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int a, unsigned int b);
-extern void FUN_00019c70(unsigned int,unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000225b4(unsigned int a, void *b, unsigned int n);
 extern int FUN_00022658(unsigned int a, void *b, unsigned int n);
 extern int FUN_00086be4(void *a, void *b, unsigned int n);

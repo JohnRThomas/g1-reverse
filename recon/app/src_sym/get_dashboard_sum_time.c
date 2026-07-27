@@ -2,8 +2,8 @@
 
 extern unsigned long long k_uptime_get_10(void);
 extern unsigned int get_device_info(void);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 long long get_dashboard_sum_time(void)
 {

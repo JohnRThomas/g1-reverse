@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00056654 @ 0x56654  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(int,int) __attribute__((noreturn));
-extern void printk(int,int,int,int);
+extern void printk(unsigned long, ...);
 
 int FUN_00056654(int param_1)
 {

@@ -4,9 +4,9 @@
 typedef int (*flash_read_fn)(int context, int address, void *destination,
                              int count);
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
-extern void FUN_00019c70(uint32_t format, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_0002ae84(void);
 extern unsigned int FUN_0007da4a(unsigned int crc,
         const unsigned char *data, int count);
@@ -83,7 +83,8 @@ uint32_t FUN_00022974(uint16_t *crc, int start_address,
                     DEBUG_PRINT(0x0009e4e3, 0x0009e4f9,
                                 buffer[(uint8_t)dump_index]);
                 else
-                    FUN_00019c70(0x0009e4e3, 0x0009e4f9);
+                    FUN_00019c70(0x0009e4e3, 0x0009e4f9,
+                                buffer[(uint8_t)dump_index]);
             }
             ++dump_index;
         }

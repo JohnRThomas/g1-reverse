@@ -5,7 +5,7 @@ extern uintptr_t FUN_0004d55c(uint32_t words);
 extern int32_t FUN_0004abc0(uintptr_t source, uint32_t count, uintptr_t callback,
                            void *state, uint32_t type, void *buffer, uint32_t width);
 extern void FUN_0007ee74(uintptr_t, uintptr_t, uint32_t, uintptr_t);
-extern void FUN_0007e2fa(uint32_t, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uint32_t, uint32_t) __attribute__((noreturn));
 
 struct format_state {

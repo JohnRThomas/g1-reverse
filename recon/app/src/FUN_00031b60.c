@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00031b60 @ 0x31b60  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_0000ef12(void*);
 extern int FUN_000232b0(void);
 extern void FUN_00086c04(void*,void*,int);

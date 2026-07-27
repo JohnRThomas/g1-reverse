@@ -1,6 +1,6 @@
 /* Reconstructed parse_ncs_notification @ 0x34980  (parity: 300/300 trials, PROVEN) */
-extern void DEBUG_PRINT(int,...);
-extern void FUN_00019c70(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int  FUN_0000eefe(int,int);
 extern int  FUN_0004a3d0(int,int*);
 extern int  FUN_00064b1c(int);
@@ -19,14 +19,14 @@ void parse_ncs_notification(int param_1, int *param_2){
   iVar1 = FUN_0008500c();
   if (iVar1 == 0) {
     if (0 < *lvl) {
-      if (*g8 != 0) { FUN_00019c70(); return; }
+      if (*g8 != 0) { FUN_00019c70(0x000a838d,0x000a83e9); return; }
       DEBUG_PRINT(0x000a838d,0x000a83e9); return;
     }
     return;
   }
   iVar2 = FUN_0008503c(iVar1, 0x0009d79d);
   if (iVar2 == 0) {
-    if (0 < *lvl) { if (*g8==0) DEBUG_PRINT(0x000a83aa,0x000a83e9); else FUN_00019c70(); }
+    if (0 < *lvl) { if (*g8==0) DEBUG_PRINT(0x000a83aa,0x000a83e9); else FUN_00019c70(0x000a83aa,0x000a83e9); }
     FUN_00064b1c(iVar1);
     return;
   }

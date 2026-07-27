@@ -2,7 +2,7 @@
 
 extern void FUN_00072e50(int a, unsigned int b);
 extern void assert_post_action(unsigned int a, unsigned int b);
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
+extern void printk(unsigned long, ...);
 extern void FUN_00080b28(void);
 extern void z_impl_k_queue_init(int a);
 

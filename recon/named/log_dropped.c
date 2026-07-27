@@ -30,8 +30,8 @@ void log_dropped(void)
 
   for (;;) {
     if ((unsigned int)r4 > (unsigned int)r6) {
-      printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),(void*)((unsigned long)"backend <= _log_backend_list_end"),(void*)0xf0caeUL,0x1d1);
-      printk((void*)((unsigned long)"\tunexpected list end location\n"), 0, 0, 0);
+      printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),(void*)((unsigned long)"backend <= _log_backend_list_end"),(void*)0xf0caeUL,0x1d1);
+      printk((unsigned long)((unsigned long)"\tunexpected list end location\n"), 0, 0, 0);
       assert_post_action((void*)0xf0caeUL,0x1d1);
     }
     if ((unsigned int)r4 >= (unsigned int)r6) break;

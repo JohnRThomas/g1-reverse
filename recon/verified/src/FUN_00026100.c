@@ -6,8 +6,8 @@ extern int32_t FUN_00016568(void);
 extern int32_t FUN_0007ca54(uintptr_t device, uint32_t attribute,
                             void *configuration);
 extern void thunk_FUN_00074844(uint32_t ticks, uint32_t unused);
-extern void DEBUG_PRINT(uintptr_t format, ...);
-extern void FUN_00019c70(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 #define LOG_LEVEL (*(volatile int32_t *)0x2000230cu)
 #define LOG_ROUTE (*(volatile uint32_t *)0x20007554u)

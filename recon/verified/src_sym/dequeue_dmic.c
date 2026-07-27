@@ -1,7 +1,7 @@
 /* Reconstructed dequeue_dmic @ 0x2ed00  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(void);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern int FUN_00072240(void);
 extern void memcpy(void);
 

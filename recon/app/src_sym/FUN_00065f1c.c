@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00065f1c @ 0x65f1c  (parity: 300/300 trials, PROVEN) */
 
 extern void nvmc_readonly_mode_set(void);
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
+extern void printk(unsigned long, ...);
 extern void assert_post_action(unsigned int a, unsigned int b);
 
 unsigned int FUN_00065f1c(unsigned int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

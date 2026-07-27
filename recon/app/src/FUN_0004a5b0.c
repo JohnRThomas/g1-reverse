@@ -1,8 +1,8 @@
 /* Reconstructed FUN_0004a5b0 @ 0x4a5b0. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(int,...);
-extern void FUN_00019c70(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_0004a1b8(uint32_t,void *);
 extern uint32_t FUN_0007d216(void);
 extern uintptr_t FUN_000167a8(void);
@@ -30,7 +30,7 @@ int FUN_0004a5b0(uint32_t context,uint32_t unused_2,
       if (*(volatile int *)0x20007554 == 0)
         DEBUG_PRINT(0xf0310,0xf04c1,day,0,context);
       else
-        FUN_00019c70();
+        FUN_00019c70(0xf0310,0xf04c1,day,0,context);
     }
     return -1;
   }

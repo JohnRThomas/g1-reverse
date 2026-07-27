@@ -4,9 +4,9 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 typedef unsigned long long u64;
 
-extern void DEBUG_PRINT(u32,u32,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern u32 FUN_000167a8(void);
-extern void FUN_00019c70(u32,u32,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern u32 FUN_0002eb40(void);
 extern void FUN_00040708(void);
 extern u64 FUN_0007d382(void);

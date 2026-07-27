@@ -1,8 +1,8 @@
 /* Reconstructed SendPowerInfoToSlave @ 0x488bc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern void *get_device_info(void);
-extern void debug_print(uint32_t, ...);
+extern void debug_print(unsigned long, ...);
 extern int FUN_000720d0(uint32_t, void*, int, int);
 extern void memset_bytes(void*, int, int);
 

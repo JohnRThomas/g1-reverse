@@ -21,12 +21,12 @@ void log_notification_fields_debug(int param_1, int param_2, int param_3, int pa
     if (*piVar1 == 0) {
         log_message(((unsigned long)"app_identifier:(%s)\n"), param_2 + 0x10);
     } else {
-        debug_print(((unsigned long)"app_identifier:(%s)\n"), param_2 + 0x10, param_3, param_4);
+        debug_print(((unsigned long)"app_identifier:(%s)\n"), param_2 + 0x10);
     }
     if (*piVar1 == 0) {
         log_message(((unsigned long)"message:(%s)\n"), param_2 + 0x90);
     } else {
-        debug_print(((unsigned long)"message:(%s)\n"), param_2 + 0x90, param_3, param_4);
+        debug_print(((unsigned long)"message:(%s)\n"), param_2 + 0x90);
     }
     if (*piVar1 != 0) {
         debug_print(((unsigned long)"uid :(%d)\n"), *(volatile int*)(param_2+8), param_3, param_4);

@@ -1,7 +1,7 @@
 /* Full reconstruction FUN_00035498 @ 0x35498 (268-byte extent; CFG PASS). */
 #include <stdint.h>
-extern int DEBUG_PRINT(int,...);
-extern int FUN_00019c70(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000352e8(int,...);
 extern int FUN_00076d6c(int,...);
 extern int FUN_00076d7c(int,...);
@@ -55,5 +55,5 @@ void FUN_00035498(int param_1,int param_2)
     return;
   }
   if (*E != 0) { FUN_00019c70(0xa8952,0xa8a33,0x23f,0); return; }
-  DEBUG_PRINT(0xa8952,0xa8a33,0x23f);
+  DEBUG_PRINT(0xa8952,0xa8a33,0x23f,0);
 }

@@ -1,8 +1,8 @@
 /* Reconstructed getAudioMessageQueueCacheData @ 0x2f460  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_00072240(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
-extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void FUN_00019c70(unsigned int,unsigned int,unsigned int,unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 int getAudioMessageQueueCacheData(unsigned int param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4){
     (void)param_2;
     (void)param_3;

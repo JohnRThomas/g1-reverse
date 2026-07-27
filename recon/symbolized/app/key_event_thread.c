@@ -38,8 +38,8 @@ extern void some_module_sem_init(void);
 extern u8  *get_device_info(void);
 extern void wait_for_event(uint32_t timeout, uint32_t flags);
 extern int  k_sem_take(void *object, uint64_t timeout);
-extern void debug_print(void);
-extern void log_message(void);
+extern void debug_print(unsigned long, ...);
+extern void log_message(unsigned long, ...);
 extern void send_event(unsigned int event);
 extern int  onboarding_sync_data(void);
 extern int  get_dashboard_disp_mode(void);
@@ -77,7 +77,24 @@ extern void update_persist_task_status(void);
 #define G_D98 (*(volatile u8*)((unsigned long)&g_esb_notify_sync_substate) /*=0x20018d98*/)
 #define G_D89 (*(volatile u8*)((unsigned long)&g_touch_key_press_active) /*=0x20018d89*/)
 
-#define LOG() do { if (SINK==0) log_message(); else debug_print(); } while (0)
+/* ---------------------------------------------------------------------------
+ * NOT CLOSED -- latent reconstruction defect, see
+ * recon/analysis/latent_defect_harvest.md.
+ *
+ * These 36 LOG() uses expand to 72 calls that drop EVERY argument in BOTH
+ * halves of the log-sink gate, so unlike the other 1,300+ sites fixed in that
+ * pass there is no surviving branch to copy from: each one needs its own
+ * per-site recovery of the format string and arguments out of app_update.bin
+ * (key_event_thread @ 0x0002955c).  Inventing them would be worse than leaving
+ * them, so the pre-existing zero-argument shape is preserved here EXPLICITLY,
+ * behind two asm-renamed no-argument declarations.  The authoritative variadic
+ * prototypes of log_message/debug_print above are left intact and correct; only
+ * this file's own placeholder calls are unprototyped, which keeps the defect
+ * contained, visible and greppable.
+ * ------------------------------------------------------------------------- */
+extern void g1_log_message_argless(void) __asm__("log_message");
+extern void g1_debug_print_argless(void) __asm__("debug_print");
+#define LOG() do { if (SINK==0) g1_log_message_argless(); else g1_debug_print_argless(); } while (0)
 
 void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
 {

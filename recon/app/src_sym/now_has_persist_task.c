@@ -1,8 +1,8 @@
 /* Reconstructed now_has_persist_task @ 0x2be64  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_0007cdf8(void);
-extern void DEBUG_PRINT(void);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned char now_has_persist_task(unsigned char *param_1, unsigned int param_2)
 {

@@ -513,8 +513,8 @@ ble_put_op06_04_single(struct ble_put_context *ctx,
     config = *(uint8_t **)(uintptr_t)(get_device_info() + 0xfec);
     config[0x68] = request[11];
     if (BLE_LOG_LEVEL > 2) {
+        uint8_t *shown = *(uint8_t **)((uint8_t *)ctx + 0x870);
         if (BLE_IS_DEBUG == 0) {
-            uint8_t *shown = *(uint8_t **)((uint8_t *)ctx + 0x870);
             log_message("%s(): Dashboard display mode :%d  custom display Area value : %d\n",
                         "ble_process_put_req", shown[0x64], shown[0x65]);
         } else {
@@ -708,8 +708,8 @@ ble_put_op06_04_assembled(struct ble_put_context *ctx,
     config = *(uint8_t **)(uintptr_t)(get_device_info() + 0xfec);
     config[0x68] = data[2];
     if (BLE_LOG_LEVEL > 2) {
+        uint8_t *shown = *(uint8_t **)((uint8_t *)ctx + 0x870);
         if (BLE_IS_DEBUG == 0) {
-            uint8_t *shown = *(uint8_t **)((uint8_t *)ctx + 0x870);
             log_message("%s(): Dashboard display mode :%d  custom display Area value : %d\n",
                         "ble_process_put_req", shown[0x64], shown[0x65]);
         } else
@@ -1003,8 +1003,8 @@ ble_put_op06_05_single(struct ble_put_context *ctx,
     config = *(uint8_t **)(uintptr_t)(get_device_info() + 0xfec);
     config[0x69] = request[11];
     if (BLE_LOG_LEVEL > 2) {
+        uint8_t *shown = *(uint8_t **)((uint8_t *)ctx + 0x870);
         if (BLE_IS_DEBUG == 0) {
-            uint8_t *shown = *(uint8_t **)((uint8_t *)ctx + 0x870);
             log_message("%s(): Dashboard display mode :%d  custom display Area value : %d\n",
                         "ble_process_put_req", shown[0x64], shown[0x65]);
         } else {
@@ -1169,8 +1169,8 @@ ble_put_op06_05_assembled(struct ble_put_context *ctx,
     config = *(uint8_t **)(uintptr_t)(get_device_info() + 0xfec);
     config[0x69] = data[2];
     if (BLE_LOG_LEVEL > 2) {
+        uint8_t *shown = *(uint8_t **)((uint8_t *)ctx + 0x870);
         if (BLE_IS_DEBUG == 0) {
-            uint8_t *shown = *(uint8_t **)((uint8_t *)ctx + 0x870);
             log_message("%s(): Dashboard display mode :%d  custom display Area value : %d\n",
                         "ble_process_put_req", shown[0x64], shown[0x65]);
         } else debug_print("%s(): Dashboard display mode :%d  custom display Area value : %d\n",

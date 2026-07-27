@@ -38,10 +38,10 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define NAN (__builtin_nanf(""))
 #define INFINITY (__builtin_inff())
 
-extern int DEBUG_PRINT(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_0001672c(void);
 extern uintptr_t FUN_000167a8(void);
-extern int FUN_00019c70(...);
+extern void FUN_00019c70(unsigned long, ...);
 extern uint32_t FUN_00033cf8(void);
 extern uint32_t FUN_00037060(void);
 extern uint32_t FUN_000370bc(void);

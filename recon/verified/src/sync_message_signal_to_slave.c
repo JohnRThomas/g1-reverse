@@ -3,8 +3,8 @@
 extern unsigned long long FUN_0007ce40(void);
 extern unsigned int FUN_000167a8(void);
 extern unsigned int sync_to_slave(unsigned int, int, void*, int, unsigned int);
-extern void DEBUG_PRINT(unsigned int, ...);
-extern void FUN_00019c70(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 unsigned int sync_message_signal_to_slave(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {
@@ -29,14 +29,14 @@ unsigned int sync_message_signal_to_slave(unsigned int param_1, unsigned int par
     if (*(volatile unsigned int*)0x20007554UL == 0) {
         DEBUG_PRINT(uVar4, 0xa3a24);
     } else {
-        FUN_00019c70();
+        FUN_00019c70(uVar4, 0xa3a24);
     }
     uVar8 = FUN_0007ce40();
     if ((long long)(lVar7 + 3000) < (long long)uVar8) {
         if (*(volatile unsigned int*)0x20007554UL == 0) {
             DEBUG_PRINT(0xa26ae);
         } else {
-            FUN_00019c70();
+            FUN_00019c70(0xa26ae);
         }
     }
     return uVar2;

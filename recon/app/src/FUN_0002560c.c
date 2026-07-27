@@ -2,7 +2,7 @@
 
 extern int FUN_000330a8(unsigned int a0);
 extern int FUN_000330ec(void);
-extern void DEBUG_PRINT(unsigned int a0);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 int FUN_0002560c(void)
 {

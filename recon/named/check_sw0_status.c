@@ -16,9 +16,9 @@
 /* Reconstructed check_sw0_status @ 0x2a868  (parity: 300/300 trials, PROVEN) */
 
 extern int read_sw0_pin(void);
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern void pt_nfc_eeprom_link_start(void);
-extern void log_message(unsigned int fmt, unsigned int arg);
+extern void log_message(unsigned long, ...);
 
 void check_sw0_status(void)
 {
@@ -31,7 +31,7 @@ void check_sw0_status(void)
             if (*(volatile int *)0x20007554UL == 0) {
                 log_message(0xa18cdU, 0xa19afU);
             } else {
-                debug_print();
+                debug_print(0xa18cdU, 0xa19afU);
             }
         }
         iVar3 = *piVar1 + 1;
@@ -41,7 +41,7 @@ void check_sw0_status(void)
                 if (*(volatile int *)0x20007554UL == 0) {
                     log_message(0xa18eaU, 0xa19afU);
                 } else {
-                    debug_print();
+                    debug_print(0xa18eaU, 0xa19afU);
                 }
             }
             pt_nfc_eeprom_link_start();

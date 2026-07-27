@@ -1,7 +1,7 @@
 /* Full reconstruction FUN_00067d84 @ 0x67d84, exact extent 102 bytes. */
 #include <stdint.h>
 extern uint64_t FUN_0000e244(uint32_t,uint32_t,uint32_t,uint32_t);
-extern void FUN_0007e2fa(uintptr_t,uintptr_t,uintptr_t,uint32_t,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern __attribute__((noreturn)) void FUN_0007e2ec(uintptr_t,uint32_t);
 extern void FUN_000500ac(int32_t,uint32_t,uint32_t,uint32_t);
 void FUN_00067d84(uintptr_t *device,const uint32_t *ticks){

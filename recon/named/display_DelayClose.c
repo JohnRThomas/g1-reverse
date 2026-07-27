@@ -17,8 +17,8 @@
 
 extern void memset_bytes(void *dst, int val, unsigned int len);
 extern int k_msgq_put(void *obj, void *msg, unsigned int a, unsigned int b);
-extern void log_message(unsigned int fmt, unsigned int arg);
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int display_DelayClose(unsigned int param_1)
 {
@@ -38,7 +38,7 @@ unsigned int display_DelayClose(unsigned int param_1)
             if (*(volatile int *)0x20007554UL == 0) {
                 log_message(0xf008cU, 0xf0164U);
             } else {
-                debug_print();
+                debug_print(0xf008cU, 0xf0164U);
             }
         }
     } else {

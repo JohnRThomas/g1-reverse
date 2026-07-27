@@ -4,10 +4,10 @@
 extern int FUN_000165b4(void);
 extern void FUN_00016658(void);
 extern int FUN_000167a8(void);
-extern void FUN_00019c70(int, int, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00024534(int,int,int,int,int);
 extern void FUN_0004a4b4(int,int);
-extern void DEBUG_PRINT(int,int,int);
+extern void DEBUG_PRINT(unsigned long, ...);
 #define VB(a) (*(volatile unsigned char*)(a))
 #define VI(a) (*(volatile int*)(a))
 
@@ -19,13 +19,13 @@ void init_dashboard_info(void){
   if (iVar3 == 0) {
     if (2 < *p40) {
       if (*p44 == 0) { DEBUG_PRINT(0x000a8eee, 0x000a95f9, 0); }
-      else { FUN_00019c70(0x000a8eee, 0x000a95f9); }
+      else { FUN_00019c70(0x000a8eee, 0x000a95f9, 0); }
     }
     FUN_00016658();
   } else {
     if (2 < *p40) {
       if (*p44 == 0) { DEBUG_PRINT(0x000a8f19, 0x000a95f9, 0); }
-      else { FUN_00019c70(0x000a8f19, 0x000a95f9); }
+      else { FUN_00019c70(0x000a8f19, 0x000a95f9, 0); }
     }
     iVar3 = FUN_000167a8();
     { unsigned int pb = VI(iVar3 + 0xfec);
@@ -60,7 +60,7 @@ void init_dashboard_info(void){
       }
     } else if (0 < *p40) {
       if (*p44 == 0) DEBUG_PRINT(0x000a8fb7, 0x000a95f9, 0);
-      else FUN_00019c70(0x000a8fb7, 0x000a95f9);
+      else FUN_00019c70(0x000a8fb7, 0x000a95f9, 0);
     }
     iVar3++;
     iVar7 += 0x143;

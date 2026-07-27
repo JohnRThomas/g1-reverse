@@ -1,8 +1,8 @@
 /* Reconstructed dequeue_uid @ 0x18ff8  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_00072240(unsigned int a, void *b, unsigned int c, unsigned int d);
-extern void DEBUG_PRINT(unsigned int a, unsigned int b);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 int dequeue_uid(unsigned int *param_1, unsigned int param_2, unsigned int param_3)
 {
@@ -25,7 +25,7 @@ int dequeue_uid(unsigned int *param_1, unsigned int param_2, unsigned int param_
       if (*(volatile int *)0x20007554UL /* device_info.is_debug @+0xB58  (log sink select: 0=RTT DEBUG_PRINT) */ == 0) {
         DEBUG_PRINT(0x9aafd, 0x9b16a);
       } else {
-        debug_print();
+        debug_print(0x9aafd, 0x9b16a);
       }
     }
   }

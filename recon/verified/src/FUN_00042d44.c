@@ -4,9 +4,9 @@ typedef unsigned int uint;
 typedef unsigned undefined4;
 typedef unsigned char byte;
 typedef unsigned char undefined1;
-extern void DEBUG_PRINT(unsigned, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
-extern void FUN_00019c70(unsigned, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00040708(void);
 extern void FUN_00040794(int a);
 extern void FUN_000417f8(int a);
@@ -61,7 +61,7 @@ undefined4 FUN_00042d44(int param_1, undefined4 param_2, int param_3)
                 if (0x13 < *pbVar3) {
                     if (1 < *verbose) {
                         if (*dbg == 0) DEBUG_PRINT(0, 0);
-                        else FUN_00019c70(0);
+                        else FUN_00019c70(0, 0);
                     }
                     *pbVar3 = 0x14;
                     iVar4 = FUN_000167a8();

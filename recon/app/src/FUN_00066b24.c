@@ -4,7 +4,7 @@
 extern void FUN_000500c8(int a);
 extern void FUN_00066478(void);
 extern void FUN_000851fa(unsigned a);
-extern void FUN_0007e2fa(unsigned a,unsigned b,unsigned c,unsigned d,unsigned e);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(unsigned a,unsigned b);
 void FUN_00066b24(void){
     volatile unsigned char *g = (volatile unsigned char*)0x2000b348;

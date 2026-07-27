@@ -5,8 +5,8 @@
  */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uintptr_t format, ...);
-extern void FUN_00019c70(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 int FUN_0004372c(unsigned mode, ...)
 {

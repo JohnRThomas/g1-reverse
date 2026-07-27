@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00073cdc @ 0x73cdc  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int a,unsigned int b,unsigned int c,unsigned int d);
+extern void printk(unsigned long, ...);
 extern unsigned long long assert_post_action(unsigned int a,unsigned int b);
 
 void FUN_00073cdc(unsigned int param_1, int *param_2, unsigned int param_3, unsigned int param_4)

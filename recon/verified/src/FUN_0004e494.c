@@ -4,7 +4,7 @@ extern unsigned long long FUN_0000eefe(unsigned a, unsigned b);
 extern void FUN_000723b8(unsigned a, unsigned b, unsigned c, unsigned d);
 extern void FUN_00072558(unsigned a);
 extern void FUN_0007e2ec(unsigned a, unsigned b);
-extern void FUN_0007e2fa(unsigned a, unsigned b, unsigned c, unsigned d);
+extern void FUN_0007e2fa(unsigned long, ...);
 
 unsigned FUN_0004e494(unsigned *param_1, unsigned param_2){
     unsigned r5 = (unsigned)param_1;

@@ -1,7 +1,7 @@
 /* Reconstructed handle_stocks_action @ 0x371e8  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(unsigned int, unsigned int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 unsigned int handle_stocks_action(unsigned int param_1, unsigned int param_2,
                                   unsigned int param_3, unsigned int param_4)
@@ -15,7 +15,7 @@ unsigned int handle_stocks_action(unsigned int param_1, unsigned int param_2,
                         action, param_4);
         } else {
             FUN_00019c70(0x000a8ff3UL, 0x000a959eUL, 0x000a959eUL,
-                         action);
+                        action, param_4);
         }
     }
     return 0;

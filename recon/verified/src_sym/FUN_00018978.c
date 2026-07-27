@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00018978 @ 0x18978  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern void atomic_and(void *, unsigned int);
 extern void FUN_000187e8(unsigned int, unsigned int);
 

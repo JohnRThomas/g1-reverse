@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0005c22c @ 0x5c22c  (parity: 300/300 trials, PROVEN) */
 extern void FUN_0007e2ec(int,...);
-extern void FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_000823fa(int);
 extern int FUN_00082aee(int,int,int*,int,int,unsigned);
 int FUN_0005c22c(int param_1, int *param_2){

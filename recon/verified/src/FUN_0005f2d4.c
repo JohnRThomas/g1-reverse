@@ -3,7 +3,7 @@
 /* Hardware never returns; the return type describes the verifier's otherwise
  * unreachable r0 continuation. */
 extern int FUN_0007e2ec(unsigned int a0, unsigned int a1);
-extern void FUN_0007e2fa(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3, unsigned int a4);
+extern void FUN_0007e2fa(unsigned long, ...);
 
 void FUN_0005f2d4(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

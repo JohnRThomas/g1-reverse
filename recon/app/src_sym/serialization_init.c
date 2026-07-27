@@ -1,7 +1,7 @@
 /* Reconstructed serialization_init @ 0x25c54  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
-extern void debug_print(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern int ipc_service_open_instance(uint32_t);
 extern unsigned long long FUN_0004cbec(uint32_t, uint32_t, uint32_t);
 extern void FUN_00072908(uint32_t, int, int, int);

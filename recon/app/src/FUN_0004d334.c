@@ -3,7 +3,7 @@ extern int FUN_0007ee2c(int);
 extern unsigned FUN_0004d2d0(unsigned);
 extern void FUN_0004d8f8(int*,unsigned,int);
 extern void FUN_00074844(int,int);
-extern void FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(int,...);
 unsigned FUN_0004d334(int param_1,int param_2){
   int *piVar1 = (int*)0x000882b0;

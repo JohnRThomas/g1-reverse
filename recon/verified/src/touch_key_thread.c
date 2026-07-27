@@ -5,10 +5,9 @@
  */
 #include <stdint.h>
 
-extern void log_message(uint32_t format, ...);                 /* FUN_0007dda4 */
+extern void log_message(unsigned long, ...);                 /* FUN_0007dda4 */
 extern uintptr_t get_device_info(void);                        /* FUN_000167a8 */
-extern void debug_print(uint32_t format, uint32_t module,
-                        uint32_t value, ...);                  /* FUN_00019c70 */
+extern void debug_print(unsigned long, ...);                  /* FUN_00019c70 */
 extern void trigger_touch_key_hw_reset(void);                  /* FUN_0002a0c0 */
 extern void handle_touch_key_irq(void);                        /* FUN_00030af0 */
 extern void k_msleep(int32_t milliseconds);                    /* FUN_0007cb8e */
@@ -113,7 +112,7 @@ check_stuck_key:
             log_message(0xa1626, 0xa1a76, short_stuck_timeout);
           }
           else {
-            debug_print(0,0,0);
+            debug_print(0xa1626, 0xa1a76, short_stuck_timeout);
           }
         }
         long_press_armed = 0;
@@ -154,7 +153,7 @@ check_completed_press:
           log_message(0xa15d6, 0xa1a76, now);
         }
         else {
-          debug_print(0,0,0);
+          debug_print(0xa15d6, 0xa1a76, now);
         }
       }
       TOUCH_RESET_REASON = 4;
@@ -189,7 +188,7 @@ check_long_hold:
     if (held_time <= (int32_t)0x11940) {
       if (0 < *log_level_ptr) {
         if (*alternate_sink_ptr == 0) {
-          log_message(0xa1626, 0xa1a76);
+          log_message(0,0,0);
         }
         else {
           debug_print(0,0,0);
@@ -205,7 +204,7 @@ check_long_hold:
         log_message(0xa1681, 0xa1a76);
       }
       else {
-        debug_print(0,0,0);
+        debug_print(0xa1681, 0xa1a76);
       }
     }
     reset_reason = 5;

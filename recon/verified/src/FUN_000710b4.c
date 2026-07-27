@@ -7,7 +7,7 @@ extern void FUN_000859b2(void *);
 extern uint32_t FUN_000857a8(void *, uint16_t);
 extern int FUN_0008567c(void *, const void *, int, int, void *);
 extern void FUN_000857e0(void *);
-extern void FUN_0007e2fa(uint32_t, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uint32_t, uint32_t);
 
 uint32_t FUN_000710b4(uint8_t *owner, uint32_t a, uint32_t b,

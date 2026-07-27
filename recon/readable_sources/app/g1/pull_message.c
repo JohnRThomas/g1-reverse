@@ -28,7 +28,7 @@ unsigned char pull_message(int *param_1, unsigned int param_2, unsigned int para
     if (param_1 == (int *)0) {
         if (0 < *(int *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                log_message(((unsigned long)"%s(): [%s-%d] message is NULL \n\n") /*=0xa804b*/, ((unsigned long)"pull_message") /*=0xa822e*/, ((unsigned long)"pull_message") /*=0xa8221*/, 0x3bdU, param_4);
+                log_message(((unsigned long)"%s(): [%s-%d] message is NULL \n\n") /*=0xa804b*/, ((unsigned long)"pull_message") /*=0xa822e*/, ((unsigned long)"pull_message") /*=0xa8221*/, 0x3bdU);
             } else {
                 debug_print(((unsigned long)"%s(): [%s-%d] message is NULL \n\n") /*=0xa804b*/, ((unsigned long)"pull_message") /*=0xa822e*/, ((unsigned long)"pull_message") /*=0xa8221*/, 0x3bdU);
             }

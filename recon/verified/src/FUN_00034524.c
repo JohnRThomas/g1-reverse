@@ -21,7 +21,7 @@ void FUN_00034524(int param_1)
     if ((*pcVar6 == 1) && (cVar1 == 0) && (iVar7 = FUN_00033f24(10,iVar13), iVar7 != 0)) {
       if (0 < *(volatile int*)0x2000230c) {
         if (*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0xa8174,0xa8255,iVar13);
-        else FUN_00019c70(0);
+        else FUN_00019c70(0xa8174,0xa8255,iVar13);
       }
       FUN_00086c78(0x20008eb4,0,0x1b4);
       return;

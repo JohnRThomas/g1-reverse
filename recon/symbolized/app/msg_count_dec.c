@@ -17,8 +17,8 @@
 /* Reconstructed FUN_00034274 @ 0x34274  (parity: 300/300 trials, PROVEN) */
 extern int get_device_info(void);
 extern void clear_timeout_message(int);
-extern void log_message(unsigned,int);
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern unsigned char msg_content_recalc_unread(void);
 unsigned char msg_count_dec(void){
     int iVar3 = get_device_info();
@@ -35,7 +35,7 @@ unsigned char msg_count_dec(void){
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
                 log_message(((unsigned long)"[csh_debug_msg]msg_count_dec unread_msg_num is %d \n") /*=0xa8017*/, r5);
             } else {
-                debug_print();
+                debug_print(((unsigned long)"[csh_debug_msg]msg_count_dec unread_msg_num is %d \n") /*=0xa8017*/, r5);
             }
             iVar3 = get_device_info();
             unsigned char uVar2 = msg_content_recalc_unread();

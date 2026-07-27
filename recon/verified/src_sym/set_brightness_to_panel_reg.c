@@ -1,8 +1,8 @@
 /* Reconstructed set_brightness_to_panel_reg @ 0x46e3c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern void *get_device_info(void);
-extern void debug_print(uint32_t, ...);
+extern void debug_print(unsigned long, ...);
 extern void FUN_0007d642(int, int);
 extern void FUN_0007d67e(unsigned int);
 extern void net_pkt_write_be16(int);

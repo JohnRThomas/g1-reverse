@@ -1,7 +1,7 @@
 /* Full reconstruction FUN_00067304 @ 0x00067304 (498-byte exact extent). */
 #include <stdint.h>
 
-extern void FUN_0007e2fa(uintptr_t, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t, uint32_t) __attribute__((noreturn));
 extern void FUN_0008523e(void *, uint32_t, const void *);
 extern void FUN_000852ba(void *, void *);

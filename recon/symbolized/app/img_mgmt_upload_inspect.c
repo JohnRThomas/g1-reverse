@@ -32,7 +32,7 @@
 extern int flash_area_open(unsigned, void **);
 extern unsigned img_mgmt_flash_area_id(unsigned);
 extern void assert_post_action(uint32_t, uint32_t);
-extern void printk();
+extern void printk(unsigned long, ...);
 extern void nullsub_3(void);
 extern void z_log_msg_static_create_img_mgmt(uint32_t, uint32_t, const void *);
 extern int img_mgmt_vercmp(void *, void *);

@@ -1,12 +1,12 @@
 /* Reconstructed ble_process_req_dispatch @ 0x21460  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int  FUN_00016568(void);
 extern uintptr_t FUN_000167a8(void);
 extern int  FUN_00019b2c(void);
 extern void FUN_00019b54(void *, void *, uint32_t);
-extern void FUN_00019c70(uint32_t, uint32_t, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00019ed4(void *);
 extern void FUN_00021334(void *, void *);
 extern void FUN_0002efc0(void);

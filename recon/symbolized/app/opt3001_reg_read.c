@@ -18,8 +18,8 @@
 #include <stdint.h>
 
 extern int z_device_is_ready(uint32_t);
-extern void log_message(uint32_t, ...);
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 struct io_part { void *data; uint32_t length; uint8_t type; };
 typedef int (*transfer_fn)(uint32_t, struct io_part *, uint32_t, uint32_t);
@@ -34,7 +34,7 @@ int opt3001_reg_read(uint8_t request, uint16_t *result)
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
                 log_message(((unsigned long)"%s(): Bus device is not ready\n") /*=0xa3af8*/, ((unsigned long)"opt3001_reg_read") /*=0xa3d26*/);
             else
-                debug_print();
+                debug_print(((unsigned long)"%s(): Bus device is not ready\n") /*=0xa3af8*/, ((unsigned long)"opt3001_reg_read") /*=0xa3d26*/);
         }
         return -19;
     }
@@ -48,7 +48,7 @@ int opt3001_reg_read(uint8_t request, uint16_t *result)
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
                 log_message(((unsigned long)"%s(): ERR: opt3007 i2c read addr=0x%x,\n") /*=0xa3b17*/, ((unsigned long)"opt3001_reg_read") /*=0xa3d26*/, 0x45);
             else
-                debug_print();
+                debug_print(((unsigned long)"%s(): ERR: opt3007 i2c read addr=0x%x,\n") /*=0xa3b17*/, ((unsigned long)"opt3001_reg_read") /*=0xa3d26*/, 0x45);
         }
         return -2;
     }

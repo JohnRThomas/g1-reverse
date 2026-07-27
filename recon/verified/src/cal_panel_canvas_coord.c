@@ -7,10 +7,8 @@
  *   DEBUG_PRINT                         @ 0x0007dda4
  */
 extern uintptr_t get_device_info(void);
-extern void debug_print(uintptr_t format, uintptr_t function_name,
-                        unsigned int gear, int coordinate);
-extern void DEBUG_PRINT(uintptr_t format, uintptr_t function_name,
-                        unsigned int gear, int coordinate);
+extern void debug_print(unsigned long, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 /* Fixed-address backmap retained for the standalone parity build. */
 #define g_log_level           (*(volatile int *)0x2000230cUL)

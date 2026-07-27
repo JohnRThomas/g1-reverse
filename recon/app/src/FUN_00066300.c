@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00066300 @ 0x66300  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0007e2fa(int a, int b, int c, int d, int e);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(int a, int b);
 
 unsigned int FUN_00066300(void)

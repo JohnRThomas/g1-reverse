@@ -15,8 +15,8 @@
  */
 /* Reconstructed gui_screen_clear @ 0x431c0  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(unsigned int message, unsigned int function);
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern int get_projector_controller(void);
 extern void projector_fill_and_sync(int clear_value);
 
@@ -27,7 +27,7 @@ unsigned int gui_screen_clear(void)
         if (*(volatile unsigned int*)0x20007554UL == 0) {
             log_message(0xaa86c, 0xaae0f);
         } else {
-            debug_print();
+            debug_print(0xaa86c, 0xaae0f);
         }
     }
     int iVar2 = get_projector_controller();
@@ -37,7 +37,7 @@ unsigned int gui_screen_clear(void)
             if (*(volatile unsigned int*)0x20007554UL == 0) {
                 log_message(0xaa891, 0xaae0f);
             } else {
-                debug_print();
+                debug_print(0xaa891, 0xaae0f);
             }
         }
         uVar3 = 0xffffffffUL;

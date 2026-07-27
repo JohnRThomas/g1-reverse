@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include "../../headers/g1_nrf_regs.h"
 extern int FUN_0007e2ec(int,...) __attribute__((noreturn));
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_00080780(int,...);
 #define SCB28 (*(volatile int*)G1_SCB_CFSR)
 

@@ -1,9 +1,9 @@
 /* Reconstructed panel_on @ 0x46dd8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_00015df4(void);
 extern int FUN_0001655c(void);
-extern int FUN_00019c70(void);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0002e67c(void);
 extern int FUN_00047538(void);
 int panel_on(int param_1){
@@ -13,7 +13,7 @@ int panel_on(int param_1){
       if(*(volatile int*)0x20007554UL == 0){
         DEBUG_PRINT(0x000d723a, 0x000d72bb);
       } else {
-        FUN_00019c70();
+        FUN_00019c70(0x000d723a, 0x000d72bb);
       }
     }
     FUN_00015df4();

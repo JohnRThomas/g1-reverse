@@ -1,8 +1,8 @@
 /* Reconstructed FUN_00034dbc @ 0x34dbc. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
-extern void FUN_00019c70(uint32_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00064b1c(int object);
 extern int FUN_0008500c(void);
 extern unsigned int FUN_00085020(int object);

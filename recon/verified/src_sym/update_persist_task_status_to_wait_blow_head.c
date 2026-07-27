@@ -1,9 +1,9 @@
 /* Reconstructed update_persist_task_status_to_wait_blow_head @ 0x2c180  (parity: 300/300 trials, PROVEN) */
 
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern void display_close_screen(unsigned char);
 extern void FUN_0007cdf8(void);
-extern int DEBUG_PRINT(int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 unsigned int update_persist_task_status_to_wait_blow_head(unsigned char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -22,7 +22,7 @@ unsigned int update_persist_task_status_to_wait_blow_head(unsigned char *param_1
     if (*(int*)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
       DEBUG_PRINT(0xa25d9, 0xa25f8, 1, 0, param_4);
     } else {
-      debug_print();
+      debug_print(0xa25d9, 0xa25f8, 1, 0, param_4);
     }
   }
   param_1[0xd5] = 1;

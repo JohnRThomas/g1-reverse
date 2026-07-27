@@ -3,7 +3,7 @@
 #include <stdint.h>
 
 extern int FUN_00086534(uintptr_t object, uint32_t flags, uint32_t count);
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern uintptr_t FUN_000167a8(void);
 extern void FUN_0002a4d8(uint32_t delay);
 extern void FUN_00032c0c(void);

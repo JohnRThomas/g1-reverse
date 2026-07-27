@@ -7,8 +7,8 @@ extern uintptr_t FUN_000167a8(void);
 extern int FUN_00016568(void);
 extern uintptr_t FUN_000232b0(void);
 extern void FUN_00086ffe(void *, const void *, uint32_t);
-extern void FUN_0007dda4(uintptr_t, ...);
-extern void FUN_00019c70(void);
+extern void FUN_0007dda4(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00032ee4(void);
 extern void FUN_00086f00(uintptr_t, ...);
 extern uint32_t FUN_0000ef12(uintptr_t);
@@ -90,7 +90,7 @@ int bt_start(void)
         if (*(volatile int32_t *)(uintptr_t)0x2000230cu > 0) {
             if (*(volatile uint32_t *)(uintptr_t)0x20007554u == 0u)
                 FUN_0007dda4(0x0009ad20u,0x0009b13fu,result);
-            else FUN_00019c70();
+            else FUN_00019c70(0x0009ad20u,0x0009b13fu,result);
         }
         goto out;
     }

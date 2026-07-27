@@ -1,8 +1,8 @@
 /* Reconstructed getDashboardStartUpModeInfofromFlash @ 0x23df4  (parity: 100/100 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern void *FUN_000167a8(void);
-extern void FUN_00019c70(uint32_t, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0008638c(uint32_t);
 
 unsigned char getDashboardStartUpModeInfofromFlash(unsigned int param_1, unsigned int param_2, unsigned int param_3)

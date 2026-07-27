@@ -3,9 +3,9 @@
 
 extern int calc_flash_crc(uint16_t *crc, uint32_t flash_address,
                           uint32_t byte_count); /* FUN_00022974 @ 0x00022974 */
-extern void debug_print(const char *format, ...); /* FUN_00019c70 @ 0x00019c70 */
+extern void debug_print(unsigned long, ...); /* FUN_00019c70 @ 0x00019c70 */
 extern void k_msleep_ticks32768_b(uint32_t milliseconds); /* FUN_0007d14a @ 0x0007d14a */
-extern void log_message(const char *format, ...); /* FUN_0007dda4 @ 0x0007dda4 */
+extern void log_message(unsigned long, ...); /* FUN_0007dda4 @ 0x0007dda4 */
 
 #define LOG_LEVEL        (*(volatile int *)0x2000230cu)
 #define LOG_USE_ALT_SINK (*(volatile uint32_t *)0x20007554u)

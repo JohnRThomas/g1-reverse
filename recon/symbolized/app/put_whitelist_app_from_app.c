@@ -24,8 +24,8 @@ typedef unsigned int uint32_t;
 typedef unsigned char uint8_t;
 typedef void (*fn2_t)(uint32_t, uint32_t);
 
-extern void log_message(uint32_t a, uint32_t b, uint32_t c);
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern uint32_t parse_receiver_pack_pkcs7(uint32_t a, uint32_t b, uint32_t c);
 extern uint32_t parse_whitelist_json(uint32_t a);
 extern uint32_t verify_whitelist_json(uint32_t a);
@@ -47,7 +47,7 @@ void put_whitelist_app_from_app(uint32_t param_1, uint32_t param_2, uint32_t par
             if (*(volatile uint32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                 log_message(((unsigned long)&rodata_a7c9c) /*=0xa7c9c*/, ((unsigned long)"put_whitelist_app_from_app") /*=0xa8a6f*/, 0x1caUL);
             } else {
-                debug_print();
+                debug_print(((unsigned long)&rodata_a7c9c) /*=0xa7c9c*/, ((unsigned long)"put_whitelist_app_from_app") /*=0xa8a6f*/, 0x1caUL);
             }
         } else {
             memset_bytes(iVar2, 0, 0x1800);
@@ -74,7 +74,7 @@ void put_whitelist_app_from_app(uint32_t param_1, uint32_t param_2, uint32_t par
         if (iVar2 == 0) {
             log_message(format_string, 0, 0);
         } else {
-            debug_print();
+            debug_print(format_string, 0, 0);
         }
         *(uint8_t*)(param_5 + 1) = 0xca;
     }

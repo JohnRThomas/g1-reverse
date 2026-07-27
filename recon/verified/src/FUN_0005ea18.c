@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0005ea18 @ 0x5ea18  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0007e2fa(int a,int b,int c,int d);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern unsigned char *FUN_0007e2ec(int a,int b);
 extern void FUN_00055094(void);
 extern void FUN_00053184(unsigned char a, unsigned char *b);

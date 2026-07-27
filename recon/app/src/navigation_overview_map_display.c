@@ -2,9 +2,9 @@
 
 #include <stdint.h>
 
-extern void DEBUG_PRINT(unsigned a, unsigned b);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int  FUN_000167a8(void);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00047260(unsigned a, unsigned b, int c, int d, int e, int f);
 extern void FUN_000432ec(void);
 extern void FUN_000432d0(void);
@@ -39,7 +39,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
             if (*(volatile int*)0x20007554 == 0)
                 DEBUG_PRINT(0x000a9ebd, 0x000aa446);
             else
-                FUN_00019c70();
+                FUN_00019c70(0x000a9ebd, 0x000aa446);
         }
         iVar6 = FUN_000167a8();
         iVar11 = 0x640;
@@ -74,7 +74,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
                     if (*(volatile int*)0x20007554 == 0)
                         DEBUG_PRINT(0x000a9ee1, 0x000aa446);
                     else
-                        FUN_00019c70();
+                        FUN_00019c70(0x000a9ee1, 0x000aa446);
                 }
                 FUN_00086c78(0x2001ba2e, 0, 0x1210);
                 FUN_0007d376(0x20007574, 0, 0xffffffff, 0xffffffff);
@@ -84,7 +84,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
                     if (*(volatile int*)0x20007554 == 0)
                         DEBUG_PRINT(0x000a9eff, 0x000aa446);
                     else
-                        FUN_00019c70();
+                        FUN_00019c70(0x000a9eff, 0x000aa446);
                 }
                 FUN_00086c78(0x2001ba2e, 0, 0x1210);
                 FUN_0007d376(0x20007574, 0, 0xffffffff, 0xffffffff);
@@ -201,14 +201,14 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
                 if (*(volatile int*)0x20007554 == 0)
                     DEBUG_PRINT(0x000a9f30, 0x000aa446);
                 else
-                    FUN_00019c70();
+                    FUN_00019c70(0x000a9f30, 0x000aa446);
             }
             if (*(volatile int*)(param_2 + 0xb1) == 0x1210) {
                 if (2 < *piVar2) {
                     if (*(volatile int*)0x20007554 == 0)
                         DEBUG_PRINT(0x000a9ee1, 0x000aa446);
                     else
-                        FUN_00019c70();
+                        FUN_00019c70(0x000a9ee1, 0x000aa446);
                 }
                 FUN_00086c78(0x2001ba2e, 0, 0x1210);
                 FUN_0007d376(0x20007574, 0, 0xffffffff, 0xffffffff);
@@ -218,7 +218,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
                     if (*(volatile int*)0x20007554 == 0)
                         DEBUG_PRINT(0x000a9eff, 0x000aa446);
                     else
-                        FUN_00019c70();
+                        FUN_00019c70(0x000a9eff, 0x000aa446);
                 }
                 FUN_00086c78(0x2001ba2e, 0, 0x1210);
                 FUN_0007d376(0x20007574, 0, 0xffffffff, 0xffffffff);
@@ -246,7 +246,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
             if (*(volatile int*)0x20007554 == 0)
                 DEBUG_PRINT(0x000a9f51, 0x000aa446);
             else
-                FUN_00019c70();
+                FUN_00019c70(0x000a9f51, 0x000aa446);
         }
         FUN_00086c78(0x2001b9ac, 0, 0x80);
         FUN_00077914(0x2001b9ac, 0x80, 0x000a9f2a, param_2 + 0xd, param_2 + 0x25);

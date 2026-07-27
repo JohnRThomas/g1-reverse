@@ -8,7 +8,7 @@ extern int FUN_000654ac(uint32_t);
 extern int FUN_00065584(void*);
 extern int FUN_000655ec(void);
 extern __attribute__((noreturn)) void FUN_0007e2ec(uint32_t,uint32_t);
-extern void FUN_0007e2fa(uint32_t,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_000851ca(uint32_t,int);
 
 void FUN_000659e4(uint32_t param_1, uint32_t param_2){

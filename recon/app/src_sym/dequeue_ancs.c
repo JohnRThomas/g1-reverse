@@ -1,7 +1,7 @@
 /* Reconstructed dequeue_ancs @ 0x18d94  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int fmt, unsigned int arg);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern int FUN_00072240(void *a, void *b, unsigned int c, unsigned int d);
 extern void memcpy(void *dst, void *src, unsigned int len);
 extern void memset_bytes(void *dst, int val, unsigned int len);
@@ -23,7 +23,7 @@ int dequeue_ancs(void *param_1)
         if (*(volatile int *)0x20007554UL /* device_info.is_debug (+0xb58) */ == 0) {
             DEBUG_PRINT(0x9aa1fU, 0x9b190U);
         } else {
-            debug_print();
+            debug_print(0x9aa1fU, 0x9b190U);
         }
     }
     return iVar1;

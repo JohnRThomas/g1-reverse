@@ -20,8 +20,7 @@ typedef struct {
 extern int FUN_000813b4(const void *object, int selector);
 extern void FUN_00056300(stream_owner_t *owner);
 extern void *FUN_0008652c(void *queue);
-extern void FUN_0007e2fa(uintptr_t subsystem, uintptr_t file,
-                         uintptr_t message, unsigned line);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern stream_fragment_t *FUN_0005f2d4(void *object);
 extern stream_fragment_t *FUN_000571dc(unsigned kind, int a, int b, int c);
 extern int FUN_000560cc(stream_owner_t *owner, stream_fragment_t *source,

@@ -102,10 +102,10 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define NAN (__builtin_nanf(""))
 #define INFINITY (__builtin_inff())
 
-extern int log_message(uint32_t, ...);
+extern void log_message(unsigned long, ...);
 extern int set_dashboard_startup_default_language(void);
 extern uintptr_t get_device_info(void);
-extern int debug_print();
+extern void debug_print(unsigned long, ...);
 extern uint32_t msg_content_recalc_unread(void);
 extern uint32_t sync_dashboard_default_language(void);
 extern uint32_t getStocksIndex(void);

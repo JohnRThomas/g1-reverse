@@ -1,10 +1,10 @@
 /* Reconstructed change_work_mode_to @ 0x1694c  (parity: 296/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char byte; typedef unsigned int uint;
-extern int DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167f4(int,...);
 extern int FUN_00016854(int,...);
-extern int FUN_00019c70(int,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00025b78(int,...);
 extern int FUN_0007c038(int,...);
 extern int FUN_00086c78(int,...);
@@ -39,7 +39,7 @@ void change_work_mode_to(uint mode)
     *(volatile byte *)(state + 1) = (byte)mode;
     if (0 < *(volatile int*)0x2000230c) {
       if (*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0x9976b,0x99bb7,mode & 0xff);
-      else FUN_00019c70(0);
+      else FUN_00019c70(0x9976b,0x99bb7,mode & 0xff);
     }
     unsigned selected = *(volatile byte *)(*state_slot + 1);
     if (selected < 10) {

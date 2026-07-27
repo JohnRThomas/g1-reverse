@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0005ec84 @ 0x5ec84, exact extent 70 bytes. */
 #include <stdint.h>
 
-extern void FUN_0007e2fa(uintptr_t format, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t file, uint32_t line);
 
 void FUN_0005ec84(uint8_t *destination, const uint8_t *source, uint32_t length)

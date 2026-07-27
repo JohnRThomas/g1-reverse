@@ -5,7 +5,7 @@ extern int FUN_000167a8(void);
 extern int FUN_00032ee4(void);
 extern int FUN_0007c08e(u32,u32);
 extern int FUN_0004ed8c(u32,void*,u32,u32);
-extern void DEBUG_PRINT(u32,int);
+extern void DEBUG_PRINT(unsigned long, ...);
 void FUN_000187e8(u32 param_1, int param_2){
     volatile u32* puVar1 = (volatile u32*)0x20006ab4UL;
     char* pcVar2 = (char*)(uintptr_t)FUN_000167a8();

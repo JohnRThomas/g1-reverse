@@ -1,9 +1,9 @@
 /* Reconstructed opt3007_chip_init @ 0x2e67c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32; typedef unsigned char byte;
-extern void DEBUG_PRINT(u32 a,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
-extern void FUN_00019c70(u32 format,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0002e594(int a, void* b);
 extern int FUN_0008638c(u32 a);
 #define FLAG (*(volatile int*)0x20007554UL)

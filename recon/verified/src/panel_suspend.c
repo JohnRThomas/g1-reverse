@@ -1,8 +1,8 @@
 /* Reconstructed panel_suspend @ 0x46d8c  (CFG-directed candidate) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t format, ...);
-extern void FUN_00019c70(uint32_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_000475f0(void);
 extern uint32_t FUN_00046d2c(uint8_t *context);
 

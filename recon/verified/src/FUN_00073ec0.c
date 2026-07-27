@@ -2,7 +2,7 @@
 #include <stdint.h>
 extern void FUN_00073e88(void);
 extern void FUN_0007e2ec(uint32_t,uint32_t);
-extern void FUN_0007e2fa(uint32_t,uint32_t,uint32_t,uint32_t,uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 void FUN_00073ec0(volatile int *param_1, volatile int *param_2, uint32_t param_3, uint32_t param_4){
   volatile int *piVar1,*piVar2;
   FUN_00073e88();

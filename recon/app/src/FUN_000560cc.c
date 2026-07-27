@@ -6,8 +6,8 @@ extern int FUN_0005f518(void);
 extern void FUN_0005f558(void);
 extern void FUN_00072880(void);
 extern int FUN_00072908(void);
-extern void FUN_0007e2ec(void);
-extern void FUN_0007e2fa(void);
+extern void FUN_0007e2ec(unsigned long, unsigned long);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0008137e(void);
 extern void FUN_000813ca(void);
 extern int FUN_00083730(void);
@@ -81,8 +81,8 @@ unsigned FUN_000560cc(int param_1, int param_2, int param_3, unsigned param_4)
         FUN_000813ca();
         if (puVar9 == 0) {
             if (I32(unaff_r10) == 0) {
-                FUN_0007e2fa();
-                FUN_0007e2ec();
+                FUN_0007e2fa(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"*pending_no_cb > 0"), ((unsigned long)"WEST_TOPDIR/zephyr/subsys/bluetooth/host/conn.c"), 627);
+                FUN_0007e2ec(((unsigned long)"WEST_TOPDIR/zephyr/subsys/bluetooth/host/conn.c"), 627);
             }
             I32(unaff_r10) = I32(unaff_r10) - 1;
         } else {

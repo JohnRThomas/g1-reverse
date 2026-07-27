@@ -3,7 +3,7 @@
 
 extern void FUN_000502c4(uintptr_t, uintptr_t, uintptr_t, uintptr_t,
                          uintptr_t, uintptr_t, uintptr_t);
-extern void FUN_0007e2fa(uintptr_t, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t, uint32_t) __attribute__((noreturn));
 
 uintptr_t FUN_00071df8(uint8_t *object, uintptr_t buffer, uint32_t size,

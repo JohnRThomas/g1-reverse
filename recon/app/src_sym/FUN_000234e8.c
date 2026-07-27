@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000234e8 @ 0x234e8  (parity: 300/300 trials, PROVEN) */
 
 extern int z_impl_k_msgq_alloc_init(void *, int, int);
-extern void DEBUG_PRINT(unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 int FUN_000234e8(void)
 {

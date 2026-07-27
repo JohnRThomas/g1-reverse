@@ -6,8 +6,8 @@ typedef uint32_t undefined4; typedef uint32_t uint;
 typedef uint64_t undefined8; typedef uint64_t ulonglong;
 typedef int64_t longlong;
 
-extern long long DEBUG_PRINT(int, ...);
-extern long long FUN_00019c70(int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern long long FUN_000167a8(int, ...);
 extern long long FUN_00047260(int, ...);
 extern long long FUN_000432ec(int, ...);

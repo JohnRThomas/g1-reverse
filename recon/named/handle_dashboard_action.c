@@ -25,7 +25,7 @@ unsigned int handle_dashboard_action(unsigned int param_1, unsigned int param_2,
                         action, param_4);
         } else {
             debug_print(0x000a8ff3UL, 0x000a95c9UL, 0x000a95c9UL,
-                         action);
+                        action, param_4);
         }
     }
     return 0;

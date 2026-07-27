@@ -1,9 +1,9 @@
 /* Reconstructed FUN_0001965c @ 0x1965c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_00018d94(void*);
-extern void FUN_00019c70(uint32_t, void*);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00021460(uint32_t, void*, void*);
 extern void FUN_0003384c(void*);
 extern int FUN_00034bd4(void*);

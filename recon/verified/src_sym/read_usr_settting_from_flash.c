@@ -1,8 +1,8 @@
 /* Reconstructed read_usr_settting_from_flash @ 0x23400  (parity: 300/300 trials, PROVEN) */
 extern void memset_bytes(void *a0, unsigned int a1, unsigned int a2);
 extern int flash_settings_read(unsigned int a0, void *a1, unsigned int a2);
-extern void DEBUG_PRINT(unsigned int a0, unsigned int a1);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int read_usr_settting_from_flash(unsigned char *param_1)
 {
@@ -16,7 +16,7 @@ unsigned int read_usr_settting_from_flash(unsigned char *param_1)
             if (*(volatile int*)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0)
                 DEBUG_PRINT(0x9e60cUL, 0x9e72aUL);
             else
-                debug_print();
+                debug_print(0x9e60cUL, 0x9e72aUL);
         }
         param_1[0x15] = buf[0x15];
         *(unsigned short*)(param_1 + 0x16) = *(unsigned short*)(buf + 0x16);
@@ -26,7 +26,7 @@ unsigned int read_usr_settting_from_flash(unsigned char *param_1)
             if (*(volatile int*)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0)
                 DEBUG_PRINT(0x9e708UL, 0x9e72aUL);
             else
-                debug_print();
+                debug_print(0x9e708UL, 0x9e72aUL);
         }
         uVar2 = 0xffffffffUL;
     }

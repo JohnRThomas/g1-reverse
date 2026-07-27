@@ -28,8 +28,8 @@ struct adc_sequence_raw {
 };
 
 extern int FUN_0005f60c(int32_t whole, int32_t *fraction);
-extern void FUN_00019c70(const void *, const void *, ...);
-extern void FUN_0007dda4(const void *, const void *, ...);
+extern void FUN_00019c70(unsigned long, ...);
+extern void FUN_0007dda4(unsigned long, ...);
 
 uint32_t adc_nfc_run(void)
 {

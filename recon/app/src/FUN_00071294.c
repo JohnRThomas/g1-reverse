@@ -3,7 +3,7 @@
 typedef unsigned int uint;
 extern int FUN_000710b4(int,uint32_t,uint32_t,int,int);
 extern void FUN_0007e2ec(uint32_t,uint32_t);
-extern void FUN_0007e2fa(uint32_t,uint32_t,uint32_t,uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_00085508(int*,uint,int,int);
 extern int FUN_00085b0c(int,int*,uint32_t,int,int,uint32_t,uint32_t);
 uint32_t FUN_00071294(int param_1,uint32_t param_2,uint32_t param_3,int param_4,int param_5,uint32_t param_6){

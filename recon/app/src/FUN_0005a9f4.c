@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0005a9f4 @ 0x5a9f4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void FUN_0007e2fa(unsigned int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(unsigned int,...);
 unsigned int FUN_0005a9f4(unsigned int param_1){
   unsigned int uVar1=param_1; volatile unsigned int* puVar2;

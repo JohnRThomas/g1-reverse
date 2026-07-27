@@ -1,9 +1,9 @@
 /* Reconstructed check_sw0_status @ 0x2a868  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_00017e30(void);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00030c90(void);
-extern void DEBUG_PRINT(unsigned int fmt, unsigned int arg);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 void check_sw0_status(void)
 {
@@ -16,7 +16,7 @@ void check_sw0_status(void)
             if (*(volatile int *)0x20007554UL == 0) {
                 DEBUG_PRINT(0xa18cdU, 0xa19afU);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(0xa18cdU, 0xa19afU);
             }
         }
         iVar3 = *piVar1 + 1;
@@ -26,7 +26,7 @@ void check_sw0_status(void)
                 if (*(volatile int *)0x20007554UL == 0) {
                     DEBUG_PRINT(0xa18eaU, 0xa19afU);
                 } else {
-                    FUN_00019c70();
+                    FUN_00019c70(0xa18eaU, 0xa19afU);
                 }
             }
             FUN_00030c90();

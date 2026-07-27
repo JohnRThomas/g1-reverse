@@ -2,8 +2,8 @@
 extern int FUN_000167a8(void);
 extern unsigned FUN_0007dac0(void);
 extern unsigned long long FUN_0007daa4(void);
-extern void DEBUG_PRINT(int,...);
-extern void FUN_00019c70(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 void FUN_0004a890(void){
   int iVar1; unsigned uVar2; unsigned long long uVar3;
   iVar1 = FUN_000167a8();

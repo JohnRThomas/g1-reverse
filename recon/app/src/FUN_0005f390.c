@@ -4,7 +4,7 @@ extern int FUN_0005f2d4(int a, int b, unsigned int c, unsigned int d);
 extern unsigned int FUN_0005f304(void);
 extern void FUN_0005f338(unsigned int a, int b);
 extern void FUN_0007e2ec(unsigned int a, unsigned int b);
-extern void FUN_0007e2fa(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
+extern void FUN_0007e2fa(unsigned long, ...);
 
 int FUN_0005f390(int param_1, int param_2, unsigned int param_3, unsigned int param_4)
 {

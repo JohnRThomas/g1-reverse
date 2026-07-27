@@ -1,8 +1,8 @@
 /* Reconstructed clean_fb_data @ 0x471cc  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(unsigned int, unsigned int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00086c78(int, void*, int);
 
 int clean_fb_data(int param_1, void *param_2, int param_3, int param_4, int param_5, int param_6)

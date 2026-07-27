@@ -1,7 +1,7 @@
 /* Reconstructed pull_message @ 0x342e0  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int,...);
-extern void FUN_00019c70(unsigned int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern unsigned int FUN_000167a8(void);
 
 unsigned char pull_message(int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
@@ -13,7 +13,7 @@ unsigned char pull_message(int *param_1, unsigned int param_2, unsigned int para
             if (*(int *)0x20007554UL == 0) {
                 DEBUG_PRINT(0xa804bU, 0xa822eU, 0xa8221U, 0x3bdU, param_4);
             } else {
-                FUN_00019c70(0xa804bU, 0xa822eU, 0xa8221U, 0x3bdU);
+                FUN_00019c70(0xa804bU, 0xa822eU, 0xa8221U, 0x3bdU, param_4);
             }
         }
     } else {

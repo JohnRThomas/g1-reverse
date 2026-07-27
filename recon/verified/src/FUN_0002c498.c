@@ -3,9 +3,9 @@
 typedef unsigned int uint;
 typedef unsigned char byte;
 typedef unsigned char undefined1;
-extern void DEBUG_PRINT(unsigned, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
-extern void FUN_00019c70(unsigned, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_0002bc2c(unsigned a, byte *b, uint c);
 extern void FUN_0002bffc(byte *a, int b, int c);
 extern void FUN_0002c0e8(byte *a);
@@ -67,9 +67,9 @@ undefined1 FUN_0002c498(byte *param_1, int param_2, char *param_3, unsigned *par
             return 0xb;
         }
         if ((*param_3 == '\x02') || (param_1[0xfea] == 0xb)) {
-            if (2 < *piVar1) { if (*piVar2 == 0) DEBUG_PRINT(0, 0); else FUN_00019c70(0); }
+            if (2 < *piVar1) { if (*piVar2 == 0) DEBUG_PRINT(0, 0); else FUN_00019c70(0, 0); }
             FUN_00036030();
-            if (2 < *piVar1) { if (*piVar2 == 0) DEBUG_PRINT(0, 0); else FUN_00019c70(0); }
+            if (2 < *piVar1) { if (*piVar2 == 0) DEBUG_PRINT(0, 0); else FUN_00019c70(0, 0); }
             if (param_1[0xb0d] == 1) {
                 FUN_0002bffc(param_1, 8, 2);
                 FUN_0003443c(4);
@@ -91,7 +91,7 @@ undefined1 FUN_0002c498(byte *param_1, int param_2, char *param_3, unsigned *par
         uVar9 = uVar9 + 1;
         if (((uVar9 & 0xf) == 0) && (2 < *piVar1)) {
             if (*piVar2 == 0) DEBUG_PRINT(0, 0, (uint)*(volatile byte *)(param_2 + 7));
-            else FUN_00019c70(0);
+            else FUN_00019c70(0, 0, (uint)*(volatile byte *)(param_2 + 7));
         }
         FUN_0007ce5c(0x667, 0);
         if (*param_1 == 1) {
@@ -107,7 +107,7 @@ undefined1 FUN_0002c498(byte *param_1, int param_2, char *param_3, unsigned *par
     param_1[0xb0d] = 0;
     uVar3 = 0;
     if (*(volatile char *)(param_2 + 7) == '\0') {
-        if (2 < *piVar1) { if (*piVar2 == 0) DEBUG_PRINT(0, 0, (uint)*(volatile byte *)(param_2 + 1)); else FUN_00019c70(0); }
+        if (2 < *piVar1) { if (*piVar2 == 0) DEBUG_PRINT(0, 0, (uint)*(volatile byte *)(param_2 + 1)); else FUN_00019c70(0, 0, (uint)*(volatile byte *)(param_2 + 1)); }
         *param_4 = 0xa28d4;
         sync_to_slave(param_1, 8, 0);
         if (*param_3 == '\x02') FUN_0002c180();

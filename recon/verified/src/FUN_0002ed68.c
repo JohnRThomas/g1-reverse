@@ -2,8 +2,8 @@
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned undefined4;
-extern void DEBUG_PRINT(unsigned, ...);
-extern void FUN_00019c70(unsigned, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_0002ec5c(int a);
 extern void FUN_0002f6b0(int a);
 extern int FUN_00032ee4(void);
@@ -40,7 +40,7 @@ void FUN_0002ed68(int param_1, int param_2)
     if (iVar5 == 0) {
         if (0 < *v) {
             if (*dbg == 0) DEBUG_PRINT(0xa3f7f, 0xa41c2);
-            else FUN_00019c70(0x000a3f7fUL, 0x000a41c2UL);
+            else FUN_00019c70(0xa3f7f, 0xa41c2);
         }
 LAB_0002edf8:
         iVar5 = iVar6;
@@ -79,9 +79,9 @@ LAB_0002ee5a:
                                                         local_stats.first,
                                                         local_stats.second);
                                         }
-                                        else FUN_00019c70(0x000a3fdfUL, 0x000a41c2UL,
-                                                         local_stats.first,
-                                                         local_stats.second);
+                                        else FUN_00019c70(0xa3fdf, 0xa41c2,
+                                                        local_stats.first,
+                                                        local_stats.second);
                                     }
                                     FUN_0002f6b0(iVar7);
                                 }
@@ -102,8 +102,7 @@ LAB_0002ee5a:
                             }
                             if (0 < *v) {
                                 if (*dbg == 0) DEBUG_PRINT(0xa3fbe, 0xa41c2, *puVar2);
-                                else FUN_00019c70(0x000a3fbeUL, 0x000a41c2UL,
-                                                 *puVar2);
+                                else FUN_00019c70(0xa3fbe, 0xa41c2, *puVar2);
                             }
                             *puVar2 = *puVar2 + iVar10;
                             goto LAB_0002eeb6;
@@ -130,7 +129,7 @@ LAB_0002eeb6:
             }
 LAB_0002ee16:
             if (*dbg == 0) DEBUG_PRINT(0xa3f7f, 0xa41c2);
-            else FUN_00019c70(0x000a3f7fUL, 0x000a41c2UL);
+            else FUN_00019c70(0xa3f7f, 0xa41c2);
             FUN_00076d7c(iVar5);
             goto LAB_0002edf8;
         }

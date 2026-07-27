@@ -2,8 +2,8 @@
 
 extern void FUN_00018334(void);
 extern unsigned int FUN_00081526(void);
-extern void DEBUG_PRINT(void);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern void FUN_00056a68(void);
 
 void pairing_failed(unsigned int param_1, unsigned int param_2)

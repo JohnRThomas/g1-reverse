@@ -1,9 +1,7 @@
 /* Reconstructed jbd_panel_suspend @ 0x475f0  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int,
-                        unsigned int,unsigned int);
-extern void FUN_00019c70(unsigned int,unsigned int,unsigned int,unsigned int,
-                         unsigned int,unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_0007d82e(unsigned int,const void *,unsigned int);
 
 unsigned int jbd_panel_suspend(unsigned int param_1, unsigned int param_2, unsigned int param_3)

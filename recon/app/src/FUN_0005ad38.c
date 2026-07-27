@@ -2,7 +2,7 @@
  * Raw/address backmap: FUN_0005ad38 @ 0x0005ad38, extent 0x0000021c.
  */
 #include <stdint.h>
-extern void FUN_0007e2fa(const char *, ...); /* printk */
+extern void FUN_0007e2fa(unsigned long, ...); /* printk */
 extern void FUN_0007e2ec(const char *, uint32_t); /* assert_post_action */
 extern uint32_t FUN_0008270c(volatile uint32_t *); /* atomic_get */
 extern void FUN_00059cb4(void); /* bt_gatt_service_init */

@@ -1,8 +1,8 @@
 /* Reconstructed FUN_00034274 @ 0x34274  (parity: 300/300 trials, PROVEN) */
 extern int FUN_000167a8(void);
 extern void FUN_00033d58(int);
-extern void DEBUG_PRINT(unsigned,int);
-extern void FUN_00019c70(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern unsigned char FUN_00033cf8(void);
 unsigned char FUN_00034274(void){
     int iVar3 = FUN_000167a8();
@@ -19,7 +19,7 @@ unsigned char FUN_00034274(void){
             if (*(volatile int*)0x20007554UL == 0){
                 DEBUG_PRINT(0xa8017, r5);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(0xa8017, r5);
             }
             iVar3 = FUN_000167a8();
             unsigned char uVar2 = FUN_00033cf8();

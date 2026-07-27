@@ -26,7 +26,7 @@ void start_aging_mode_thread(void)
   int iVar2;
 
   if (*pcVar1 != 0) {
-    log_message((void*)0xa757fUL, (void*)0xa75c2UL, 0xab8);
+    log_message((unsigned long)0xa757fUL, (void*)0xa75c2UL, 0xab8);
     return;
   }
   iVar2 = z_impl_k_thread_create((void*)0x20004870UL, (void*)0x20027a68UL, 0xc00, (void*)0x32421UL, 0,0,0,0xfffffff4,0,0ULL);

@@ -1,8 +1,8 @@
 /* Reconstructed FUN_00033b4c @ 0x33b4c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t,uint32_t,uint32_t,uint32_t);
-extern void debug_print(uint32_t,uint32_t);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 void FUN_00033b4c(void)
 {
@@ -14,7 +14,7 @@ void FUN_00033b4c(void)
     if (*piVar1 == 0) {
       DEBUG_PRINT(format_string, (uint32_t)iVar2, puVar3[2], puVar3[0]);
     } else {
-      debug_print(format_string, (uint32_t)iVar2);
+      debug_print(format_string, (uint32_t)iVar2, puVar3[2], puVar3[0]);
     }
     iVar2 = iVar2 + 1;
     puVar3 = puVar3 + 0x6d;

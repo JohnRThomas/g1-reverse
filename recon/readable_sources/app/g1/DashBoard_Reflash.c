@@ -1052,7 +1052,7 @@ control_label_0003803a:
           }
           if (2 < *piVar2) {
             if (*firmware_data_00037ea4 == 0) {
-              log_message(firmware_data_00037eac,firmware_data_00037ea8);
+              log_message(firmware_data_00037eac,firmware_data_00037ea8,0);
             }
             else {
               debug_print(firmware_data_00037eac,firmware_data_00037ea8,0);

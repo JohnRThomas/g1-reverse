@@ -3,8 +3,8 @@
 extern void memset_bytes(void*, int, int);
 extern unsigned int flash_settings_read(unsigned int, void*, int);
 extern void memcpy(unsigned int, void*, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, unsigned int, unsigned int);
-extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int load_whitelist(void)
 {

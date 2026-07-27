@@ -9,8 +9,8 @@ struct dmic_message {
 
 typedef int (*dmic_send_fn)(const void *message, unsigned int length);
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t name, ...);
-extern void FUN_00019c70(uint32_t format, uint32_t name, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void *FUN_000167a8(void);
 extern int FUN_0002ecf4(void);
 extern int FUN_0002ed00(void *payload);

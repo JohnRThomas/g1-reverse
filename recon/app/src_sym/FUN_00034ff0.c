@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00034ff0 @ 0x34ff0  (parity: 300/300 trials, PROVEN) */
 
-extern void debug_print(void);
-extern void log_message(int a);
+extern void debug_print(unsigned long, ...);
+extern void log_message(unsigned long, ...);
 extern int strncmp(int a, int b, int c);
 
 unsigned int FUN_00034ff0(int param_1, int param_2)
@@ -12,7 +12,7 @@ unsigned int FUN_00034ff0(int param_1, int param_2)
         if (*(volatile int *)0x20007554UL /* device_info.is_debug */ == 0) {
             log_message(0xa8750);
         } else {
-            debug_print();
+            debug_print(0xa8750);
         }
     } else {
         iVar3 = 0x2001a22c + (unsigned int)(*(volatile unsigned char *)0x2001a22dUL) * 0x38;

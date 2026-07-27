@@ -86,8 +86,8 @@
 #define k_timer_init                  k_timer_init
 #define memset_bytes                 memset_bytes
 
-extern void log_message(uintptr_t message, uintptr_t function_name, ...);
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern uint64_t unsigned_divide_64(uint64_t dividend, uint64_t divisor);
 extern uintptr_t get_device_info(void);
 extern unsigned int gui_set_active_canvas(void *canvas);
@@ -162,7 +162,7 @@ display_log(int minimum_level, uintptr_t message, unsigned int argument)
         if (g_log_use_alt_sink == 0)
             log_message(message, DISPLAY_LOG_FUNCTION, argument);
         else
-            debug_print();
+            debug_print(message, DISPLAY_LOG_FUNCTION, argument);
     }
 }
 

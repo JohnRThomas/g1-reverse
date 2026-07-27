@@ -53,7 +53,7 @@ int gui_bmp_bitmap_draw(unsigned int param_1, int param_2, int param_3, int para
                     if (*g5c4 == 0) {
                         log_message(((unsigned long)&rodata_aa8eb) /*=0xaa8eb*/, ((unsigned long)"gui_bmp_bitmap_draw") /*=0xaadd0*/);
                     } else {
-                        debug_print(0);
+                        debug_print(((unsigned long)&rodata_aa8eb) /*=0xaa8eb*/, ((unsigned long)"gui_bmp_bitmap_draw") /*=0xaadd0*/);
                     }
                 }
                 return 0xffffffff;

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0005e6d4 @ 0x5e6d4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void FUN_0007e2ec(uint32_t,uint32_t);
-extern void FUN_0007e2fa(uint32_t,uint32_t,uint32_t,uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 void FUN_0005e6d4(uint32_t param_1, void* param_2, uint32_t param_3){
   volatile uint32_t local_20; volatile uint8_t local_1c[8];
   (void)local_1c;

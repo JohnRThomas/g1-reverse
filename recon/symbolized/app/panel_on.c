@@ -16,10 +16,10 @@
  */
 /* Reconstructed panel_on @ 0x46dd8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void log_message(int,...);
+extern void log_message(unsigned long, ...);
 extern int power_for_panel(void);
 extern int get_ambient_light_sensor_ready_flag(void);
-extern int debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern int opt3007_chip_init(void);
 extern int panel_init(void);
 int panel_on(int param_1){
@@ -29,7 +29,7 @@ int panel_on(int param_1){
       if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
         log_message(((unsigned long)"%s(): panel_on enter!\n") /*=0xd723a*/, ((unsigned long)"panel_on") /*=0xd72bb*/);
       } else {
-        debug_print();
+        debug_print(((unsigned long)"%s(): panel_on enter!\n") /*=0xd723a*/, ((unsigned long)"panel_on") /*=0xd72bb*/);
       }
     }
     power_for_panel();

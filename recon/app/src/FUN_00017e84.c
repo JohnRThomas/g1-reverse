@@ -5,7 +5,7 @@ extern int FUN_000167a8(void);
 extern void FUN_000723b8(unsigned,unsigned,unsigned,unsigned);
 extern int FUN_0004f518(int,unsigned,unsigned);
 extern void FUN_00072558(unsigned);
-extern void DEBUG_PRINT(unsigned,int,unsigned);
+extern void DEBUG_PRINT(unsigned long, ...);
 unsigned FUN_00017e84(unsigned param_1, unsigned param_2){
     int r6 = FUN_00019b2c();
     long long uVar3 = FUN_00032ee4();

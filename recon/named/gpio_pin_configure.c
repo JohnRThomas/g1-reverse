@@ -36,16 +36,16 @@ void gpio_pin_configure(const uint8_t *pin, uint32_t flags)
     pin_config_t configure;
 
     if (mode == 0x600000) {
-        printk((void *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void *)0x99e30, (void *)0x99c53, 0x36a);
-        printk((void *)((unsigned long)"\tCannot both enable and disable interrupts\n"));
+        printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void *)0x99e30, (void *)0x99c53, 0x36a);
+        printk((unsigned long)((unsigned long)"\tCannot both enable and disable interrupts\n"));
         assert_post_action((void *)0x99c53, 0x36a);
     } else if (mode == 0) {
-        printk((void *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void *)((unsigned long)"(flags & ((1U << 21) | (1U << 22))) != 0U"), (void *)0x99c53, 0x36e);
-        printk((void *)0x99ec7);
+        printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void *)((unsigned long)"(flags & ((1U << 21) | (1U << 22))) != 0U"), (void *)0x99c53, 0x36e);
+        printk((unsigned long)0x99ec7);
         assert_post_action((void *)0x99c53, 0x36e);
     } else if ((flags & 0x6400000) == 0x400000) {
-        printk((void *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void *)0x99ef2, (void *)0x99c53, 0x378);
-        printk((void *)((unsigned long)"\tAt least one of GPIO_INT_LOW_0, GPIO_INT_HIGH_1 has to be enabled.\n"));
+        printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void *)0x99ef2, (void *)0x99c53, 0x378);
+        printk((unsigned long)((unsigned long)"\tAt least one of GPIO_INT_LOW_0, GPIO_INT_HIGH_1 has to be enabled.\n"));
         assert_post_action((void *)0x99c53, 0x378);
     }
 
@@ -54,8 +54,8 @@ void gpio_pin_configure(const uint8_t *pin, uint32_t flags)
     output = **(volatile uint32_t ***)(dev + 16);
     bit = 1u << line;
     if ((*enabled & bit) == 0) {
-        printk((void *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void *)((unsigned long)"(cfg->port_pin_mask & (gpio_port_pins_t)(1UL << (pin))) != 0U"), (void *)0x99c53, 0x382);
-        printk((void *)((unsigned long)"\tUnsupported pin\n"));
+        printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void *)((unsigned long)"(cfg->port_pin_mask & (gpio_port_pins_t)(1UL << (pin))) != 0U"), (void *)0x99c53, 0x382);
+        printk((unsigned long)((unsigned long)"\tUnsupported pin\n"));
         assert_post_action((void *)0x99c53, 0x382);
     }
     if ((flags & 0x800000) && (*output & bit))

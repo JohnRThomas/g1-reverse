@@ -1,7 +1,7 @@
 /* Reconstructed on_triple_click @ 0x289e4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t);
-extern void FUN_00019c70(uint32_t);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00028964(void);
 extern void FUN_000289b0(void);
 void on_triple_click(void){

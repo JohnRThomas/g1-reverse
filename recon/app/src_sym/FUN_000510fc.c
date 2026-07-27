@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000510fc @ 0x510fc  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(int,int);
-extern void printk(int,int,int,int);
+extern void printk(unsigned long, ...);
 extern void FUN_000723b8(int,int,int,int);
 void FUN_000510fc(int param_1, int param_2)
 {

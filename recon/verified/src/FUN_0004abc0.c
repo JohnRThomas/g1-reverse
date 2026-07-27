@@ -8,7 +8,7 @@ extern int FUN_0000ef12(void *);
 extern int FUN_0004d944(uint,uint,void*,int);
 extern long long FUN_0007dc00(uint,uint);
 extern void FUN_0007e2ec(uint,uint) __attribute__((noreturn));
-extern void FUN_0007e2fa(uint,uint,uint,uint);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_00086c04(void*,void*,uint);
 
 int FUN_0004abc0(byte *param_1,int param_2,int (*param_3)(byte*,int,uint),

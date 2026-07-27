@@ -1,7 +1,7 @@
 /* Reconstructed enqueue_uid @ 0x18e48  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned a, ...);
-extern void FUN_00019c70(unsigned a, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00072240(unsigned a, void*b, int c, int d);
 extern int  FUN_000720d0(unsigned a, void*b, int c, int d);
 int enqueue_uid(unsigned *param_1, unsigned param_2, unsigned param_3){

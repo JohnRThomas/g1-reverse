@@ -4,7 +4,7 @@ extern void* FUN_00059c70(void);
 extern void FUN_00059e78(void*);
 extern int FUN_0005a540(int,int*);
 extern void FUN_0007e2ec(unsigned,unsigned);
-extern void FUN_0007e2fa(unsigned,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_000828da(void*,int);
 
 int FUN_0005c3c4(int param_1,int *param_2){

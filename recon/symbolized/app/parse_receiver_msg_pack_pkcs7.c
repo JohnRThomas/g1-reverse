@@ -35,7 +35,7 @@ unsigned int parse_receiver_msg_pack_pkcs7(int param_1, unsigned char *param_2, 
   }
   if (param_1 == 0) {
     if (*E == 0) log_message(0x9b38f,((unsigned long)"parse_receiver_msg_pack_pkcs7") /*=0x9e0b2*/,0xe9);
-    else debug_print(0);
+    else debug_print(0x9b38f,((unsigned long)"parse_receiver_msg_pack_pkcs7") /*=0x9e0b2*/,0xe9);
     return 0xca;
   }
   if (param_3 < 4) {
@@ -55,13 +55,13 @@ unsigned int parse_receiver_msg_pack_pkcs7(int param_1, unsigned char *param_2, 
     }
     unsigned int pb = *P;
     if (pb != b0) {
-      if (*E != 0) debug_print(((unsigned long)"[%s-%d]error, curCmd is %d, but parseCmd is %d ! \n") /*=0x9b3e0*/,((unsigned long)"parse_receiver_msg_pack_pkcs7") /*=0x9e0b2*/,0x109,b0);
+      if (*E != 0) debug_print(((unsigned long)"[%s-%d]error, curCmd is %d, but parseCmd is %d ! \n") /*=0x9b3e0*/,((unsigned long)"parse_receiver_msg_pack_pkcs7") /*=0x9e0b2*/,0x109,b0,pb);
       else log_message(((unsigned long)"[%s-%d]error, curCmd is %d, but parseCmd is %d ! \n") /*=0x9b3e0*/,((unsigned long)"parse_receiver_msg_pack_pkcs7") /*=0x9e0b2*/,0x109,b0,pb);
       return 0xca;
     }
     unsigned int h0 = *H6f0;
     if (bVar1 != h0) {
-      if (*E != 0) debug_print(((unsigned long)"[%s-%d]error, curMsgId is %d, but parseMsgId is %d ! \n") /*=0x9b413*/,((unsigned long)"parse_receiver_msg_pack_pkcs7") /*=0x9e0b2*/,0x10f,bVar1);
+      if (*E != 0) debug_print(((unsigned long)"[%s-%d]error, curMsgId is %d, but parseMsgId is %d ! \n") /*=0x9b413*/,((unsigned long)"parse_receiver_msg_pack_pkcs7") /*=0x9e0b2*/,0x10f,bVar1,h0);
       else log_message(((unsigned long)"[%s-%d]error, curMsgId is %d, but parseMsgId is %d ! \n") /*=0x9b413*/,((unsigned long)"parse_receiver_msg_pack_pkcs7") /*=0x9e0b2*/,0x10f,bVar1,h0);
       return 0xca;
     }
@@ -71,7 +71,7 @@ unsigned int parse_receiver_msg_pack_pkcs7(int param_1, unsigned char *param_2, 
       *H6f2 = (unsigned short)(param_3 + (uVar4 - 4));
       if ((int)bVar3 != (int)bVar2 - 1) return 0xcb;
       if (*E == 0) log_message(((unsigned long)"origin_data is %s \n") /*=0x9b44a*/, param_1);
-      else debug_print(0);
+      else debug_print(((unsigned long)"origin_data is %s \n") /*=0x9b44a*/, param_1);
       return 0xc9;
     }
   }

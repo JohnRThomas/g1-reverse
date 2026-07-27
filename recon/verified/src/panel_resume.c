@@ -1,8 +1,8 @@
 /* Reconstructed panel_resume @ 0x46f20  (CFG-directed candidate) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t format, ...);
-extern void FUN_00019c70(uint32_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00047638(uint8_t *context);
 extern uint32_t FUN_00047724(void);
 extern void FUN_00046dd8(uint8_t *context);

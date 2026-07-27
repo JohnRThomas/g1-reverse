@@ -2,7 +2,7 @@
 
 extern int FUN_00076d6c(int);
 extern void FUN_00086c78(int,int,int);
-extern void DEBUG_PRINT(int,int,int,int);
+extern void DEBUG_PRINT(unsigned long, ...);
 void FUN_00036558(int param_1,int param_2,int param_3,int param_4){
   if(*(volatile int*)0x20009fccUL==0){
     int iVar4=FUN_00076d6c(0x140);

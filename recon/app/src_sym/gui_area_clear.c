@@ -2,9 +2,9 @@
 
 typedef unsigned int uint32_t;
 
-extern void DEBUG_PRINT(uint32_t a, uint32_t b, uint32_t c, uint32_t d, uint32_t e, uint32_t f);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern uint32_t get_device_info(void);
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern void clean_fb_data(uint32_t a, uint32_t b, uint32_t c, uint32_t d, uint32_t e, uint32_t f);
 extern void reflash_fb_data_to_lcd(uint32_t a, uint32_t b, uint32_t c, uint32_t d, uint32_t e, uint32_t f);
 extern uint32_t FUN_0007d4ec(void);
@@ -19,7 +19,7 @@ uint32_t gui_area_clear(uint32_t param_1, uint32_t param_2, uint32_t param_3, ui
         if (*(volatile uint32_t*)0x20007554UL /* device_info.is_debug @+0xB58  (log sink select: 0=RTT DEBUG_PRINT) */ == 0) {
             DEBUG_PRINT(0xaa8c8UL, 0xaae00UL, param_3, 0, param_1, param_2);
         } else {
-            debug_print();
+            debug_print(0xaa8c8UL, 0xaae00UL, param_3, 0, param_1, param_2);
         }
     }
     iVar2 = FUN_0007d4ec();
@@ -28,7 +28,7 @@ uint32_t gui_area_clear(uint32_t param_1, uint32_t param_2, uint32_t param_3, ui
             if (*(volatile uint32_t*)0x20007554UL == 0) {
                 DEBUG_PRINT(0xaa891UL, 0xaae00UL, 0,0,0,0);
             } else {
-                debug_print();
+                debug_print(0xaa891UL, 0xaae00UL, 0,0,0,0);
             }
         }
         uVar3 = 0xffffffff;

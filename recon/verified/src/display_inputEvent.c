@@ -5,8 +5,8 @@
 extern void FUN_00086c78(void *destination, int value, uint32_t length);
 extern int FUN_000720d0(uint32_t queue, const void *record,
                        uint32_t wait, uint32_t flags);
-extern void DEBUG_PRINT(uint32_t format, uint32_t argument);
-extern void FUN_00019c70(uint32_t format, uint32_t argument, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 uint32_t display_inputEvent(uint8_t input, uint8_t state)
 {

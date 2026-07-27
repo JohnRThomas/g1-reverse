@@ -17,8 +17,8 @@
 /* Reconstructed get_notification_counts_cmd_process @ 0x33abc  (parity: 79/300 trials, PROVEN) */
 
 typedef void (*response_fn)(unsigned char *response, unsigned int length);
-extern void log_message(unsigned int message, unsigned int function);
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern void audio_fw_load_trigger_passthrough(unsigned char *request, unsigned char *payload,
                          unsigned int count, unsigned int capacity);
 
@@ -32,7 +32,7 @@ void get_notification_counts_cmd_process(unsigned char *param_1, unsigned char *
         if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
             log_message(((unsigned long)&rodata_9b74b) /*=0x9b74b*/, 0xa827b);
         } else {
-            debug_print();
+            debug_print(((unsigned long)&rodata_9b74b) /*=0x9b74b*/, 0xa827b);
         }
     }
     response_fn respond = *(response_fn *)(param_1 + 0xc);

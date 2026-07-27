@@ -1,8 +1,8 @@
 /* Reconstructed FUN_00034ff0 @ 0x34ff0 (strict CFG parity). */
 #include <stdint.h>
 
-extern void FUN_00019c70(uintptr_t format);
-extern void FUN_0007dda4(uintptr_t format);
+extern void FUN_00019c70(unsigned long, ...);
+extern void FUN_0007dda4(unsigned long, ...);
 extern int FUN_00087036(const void *left, const void *right, uint32_t length);
 
 uint32_t FUN_00034ff0(const void *name, const void *identifier)

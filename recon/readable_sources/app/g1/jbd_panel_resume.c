@@ -26,9 +26,9 @@ unsigned int jbd_panel_resume(int param_1, unsigned int param_2, unsigned int pa
   if (*piVar1 > 2) {
     unsigned int sink = *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
     if (sink == 0) {
-      log_message((void*)((unsigned long)"%s(): release from deep power down\n") /*=0xd73bc*/, (void*)((unsigned long)"jbd_panel_resume") /*=0xd73f8*/, param_3, sink, param_4);
+      log_message((unsigned long)((unsigned long)"%s(): release from deep power down\n") /*=0xd73bc*/, (void*)((unsigned long)"jbd_panel_resume") /*=0xd73f8*/, param_3, sink, param_4);
     } else {
-      debug_print((void*)((unsigned long)"%s(): release from deep power down\n") /*=0xd73bc*/, (void*)((unsigned long)"jbd_panel_resume") /*=0xd73f8*/,
+      debug_print((unsigned long)((unsigned long)"%s(): release from deep power down\n") /*=0xd73bc*/, (void*)((unsigned long)"jbd_panel_resume") /*=0xd73f8*/,
                    param_3, sink, param_4);
     }
   }
@@ -37,9 +37,9 @@ unsigned int jbd_panel_resume(int param_1, unsigned int param_2, unsigned int pa
   if (*piVar1 > 2) {
     unsigned int sink = *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
     if (sink == 0) {
-      log_message((void*)((unsigned long)"%s(): resume completed\n") /*=0xd73e0*/, (void*)((unsigned long)"jbd_panel_resume") /*=0xd73f8*/, param_3, sink, param_4);
+      log_message((unsigned long)((unsigned long)"%s(): resume completed\n") /*=0xd73e0*/, (void*)((unsigned long)"jbd_panel_resume") /*=0xd73f8*/, param_3, sink, param_4);
     } else {
-      debug_print((void*)((unsigned long)"%s(): resume completed\n") /*=0xd73e0*/, (void*)((unsigned long)"jbd_panel_resume") /*=0xd73f8*/,
+      debug_print((unsigned long)((unsigned long)"%s(): resume completed\n") /*=0xd73e0*/, (void*)((unsigned long)"jbd_panel_resume") /*=0xd73f8*/,
                    param_3, sink, param_4);
     }
   }

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00065d8c @ 0x65d8c  (parity: 2/300 trials, PROVEN) */
 #include <stdint.h>
 extern void FUN_0007e2ec(uint32_t,uint32_t);
-extern void FUN_0007e2fa(uint32_t,uint32_t,uint32_t,uint32_t,uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 void FUN_00065d8c(int param_1,uint32_t param_2,uint32_t param_3,uint32_t param_4){
   if(param_1==0){
     FUN_0007e2fa(0x99cbd,0xf6c00,0xf6bc5,0x46,param_4);

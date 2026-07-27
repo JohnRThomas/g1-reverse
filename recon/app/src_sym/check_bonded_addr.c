@@ -1,8 +1,8 @@
 /* Reconstructed check_bonded_addr @ 0x183e4  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00018334(void);
-extern void DEBUG_PRINT(void);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 void check_bonded_addr(unsigned int param_1)
 {

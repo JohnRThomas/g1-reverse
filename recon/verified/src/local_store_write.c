@@ -2,10 +2,8 @@
 
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t function_name,
-                        const char *key_suffix, uint32_t length);
-extern void FUN_00019c70(uint32_t format, uint32_t function_name,
-                         const char *key_suffix, uint32_t length);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0004e374(const char *key, const void *value, uint32_t length);
 extern void FUN_00086c78(void *destination, int value, uint32_t length);
 extern void FUN_00086fbe(char *destination, const char *source,

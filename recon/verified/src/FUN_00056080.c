@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 typedef int (*fnptr_t)(int,int,int);
-extern void FUN_0007e2fa(int a,int b,int c,int d);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern unsigned long long FUN_0007e2ec(int a,int b);
 extern void FUN_00086502(int a);
 void FUN_00056080(int param_1, int param_2)

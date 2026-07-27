@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00030cd0 @ 0x30cd0  true code extent: 0x3a bytes */
 #include <stdint.h>
 
-extern int DEBUG_PRINT(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern uint32_t FUN_00025950(int, uint8_t *, int, int);
 extern uint32_t FUN_0003364c(int, uint8_t *, int, int);
 

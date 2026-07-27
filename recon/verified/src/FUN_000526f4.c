@@ -2,7 +2,7 @@
 
 extern void FUN_00072e50(int a, unsigned int b);
 extern void FUN_0007e2ec(unsigned int a, unsigned int b);
-extern void FUN_0007e2fa(unsigned int a, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_00080b28(void);
 #define z_impl_k_queue_init FUN_000864e8
 extern void z_impl_k_queue_init(void *queue);

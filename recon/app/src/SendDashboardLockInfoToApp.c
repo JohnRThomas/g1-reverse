@@ -1,8 +1,8 @@
 /* Reconstructed SendDashboardLockInfoToApp @ 0x25e2c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int DEBUG_PRINT(int,...);
-extern int FUN_00019c70(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00047b1c(void*,...);
 extern int FUN_00047ba8(void);
 extern int FUN_0007ca4e(int,...);
@@ -25,7 +25,7 @@ void SendDashboardLockInfoToApp(unsigned p1, unsigned p2, unsigned p3){
             if(*(volatile int*)0x20007554==0){
               DEBUG_PRINT(0x9f73d,0x9fa9c,1);
             } else {
-              FUN_00019c70();
+              FUN_00019c70(0x9f73d,0x9fa9c,1);
             }
           }
           FUN_00047b1c((void*)buf,6);

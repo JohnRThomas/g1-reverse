@@ -6,8 +6,8 @@
 
 extern void change_work_mode_to(uint32_t);
 extern void FUN_0002c0e8(uint8_t *);
-extern void DEBUG_PRINT(uintptr_t, ...);
-extern void FUN_00019c70(uintptr_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int sync_to_slave(uint8_t *, uint32_t, uint32_t);
 extern int FUN_00019b2c(void);
 extern int FUN_0008149a(int, uint32_t);

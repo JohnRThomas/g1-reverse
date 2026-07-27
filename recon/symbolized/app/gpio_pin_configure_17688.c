@@ -34,15 +34,15 @@ void gpio_pin_configure_17688(const uint8_t *pin, uint32_t flags)
     void (**api)(void);
 
     if ((combined & 0x30) == 0x30) {
-        printk((void *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)"(flags & ((1 << 4) | (1 << 5))) != ((1 << 4) | (1 << 5))") /*=0x99c84*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x3ca);
-        printk((void *)((unsigned long)"\tPull Up and Pull Down should not be enabled simultaneously\n") /*=0x99cda*/);
+        printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)"(flags & ((1 << 4) | (1 << 5))) != ((1 << 4) | (1 << 5))") /*=0x99c84*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x3ca);
+        printk((unsigned long)((unsigned long)"\tPull Up and Pull Down should not be enabled simultaneously\n") /*=0x99cda*/);
         assert_post_action((void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x3ca);
     } else if ((combined & 0x30002) == 0x10002) {
-        printk((void *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)&rodata_99d17) /*=0x99d17*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x3ce);
-        printk((void *)((unsigned long)"\tInput cannot be enabled for 'Open Drain', 'Open Source' modes without Output\n") /*=0x99d5e*/);
+        printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)&rodata_99d17) /*=0x99d17*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x3ce);
+        printk((unsigned long)((unsigned long)"\tInput cannot be enabled for 'Open Drain', 'Open Source' modes without Output\n") /*=0x99d5e*/);
         assert_post_action((void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x3ce);
     } else if ((combined & 6) == 4) {
-        printk((void *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)"(flags & (1 << 1)) != 0 || (flags & (1 << 2)) == 0") /*=0x99dad*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x3d1);
+        printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)"(flags & (1 << 1)) != 0 || (flags & (1 << 2)) == 0") /*=0x99dad*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x3d1);
         assert_post_action((void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x3d1);
     }
 
@@ -74,8 +74,8 @@ void gpio_pin_configure_17688(const uint8_t *pin, uint32_t flags)
     output = *(volatile uint32_t **)(dev + 16);   /* &data->invert */
     bit = 1u << line;
     if ((*enabled & bit) == 0) {
-        printk((void *)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)"(cfg->port_pin_mask & (gpio_port_pins_t)(1UL << (pin))) != 0U") /*=0x99de0*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x3e4);
-        printk((void *)((unsigned long)"\tUnsupported pin\n") /*=0x99e1e*/);
+        printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void *)((unsigned long)"(cfg->port_pin_mask & (gpio_port_pins_t)(1UL << (pin))) != 0U") /*=0x99de0*/, (void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x3e4);
+        printk((unsigned long)((unsigned long)"\tUnsupported pin\n") /*=0x99e1e*/);
         assert_post_action((void *)((unsigned long)&rodata_99c53) /*=0x99c53*/, 0x3e4);
     }
     if (combined & 1)

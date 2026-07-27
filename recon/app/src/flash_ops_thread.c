@@ -6,8 +6,8 @@
  */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uintptr_t format, ...); /* alias of FUN_0007dda4 */
-extern void debug_print(uintptr_t format, ...); /* FUN_00019c70 @ 0x19c70 */
+extern void DEBUG_PRINT(unsigned long, ...); /* alias of FUN_0007dda4 */
+extern void debug_print(unsigned long, ...); /* FUN_00019c70 @ 0x19c70 */
 
 /* Semantic aliases retain the exact raw linker identities. */
 #define wait_for_flash_work FUN_00072908

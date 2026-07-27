@@ -11,8 +11,8 @@ extern uint32_t FUN_00033cf8(void);
 extern uint32_t FUN_000342e0(uintptr_t *message);
 extern void FUN_00035f28(void *framebuffer, uint32_t message_index);
 extern void FUN_00035afc(uint32_t message_index, uintptr_t message);
-extern void DEBUG_PRINT(uintptr_t format, ...);
-extern void FUN_00019c70(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 #define LOG_ROUTE (*(volatile uint32_t *)0x20007554u)
 #define LAST_GROUP (*(volatile uint8_t *)0x200033d3u)

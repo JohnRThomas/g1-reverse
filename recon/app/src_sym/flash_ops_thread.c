@@ -1,7 +1,7 @@
 /* Reconstructed flash_ops_thread @ 0x23480  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(void);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern int FUN_0002f758(void);
 extern void audioStreamFileManagerHandler(void);
 extern int FUN_00024678(void);

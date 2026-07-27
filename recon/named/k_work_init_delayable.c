@@ -23,7 +23,7 @@ void k_work_init_delayable(int param_1, int param_2, unsigned int param_3, unsig
   unsigned int uVar1;
 
   if (param_1 == 0) {
-    printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),(void*)0xf82dfUL,(void*)0xf820fUL,0x340);
+    printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),(void*)0xf82dfUL,(void*)0xf820fUL,0x340);
     uVar1 = 0x340;
   } else {
     if (param_2 != 0) {
@@ -32,7 +32,7 @@ void k_work_init_delayable(int param_1, int param_2, unsigned int param_3, unsig
       *(volatile unsigned int*)(param_1 + 0xc) = 0x100;
       return;
     }
-    printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),(void*)0xf8230UL,(void*)0xf820fUL,0x341);
+    printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),(void*)0xf8230UL,(void*)0xf820fUL,0x341);
     uVar1 = 0x341;
   }
   assert_post_action((void*)0xf820fUL,uVar1);

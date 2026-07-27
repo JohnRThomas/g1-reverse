@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00047260 @ 0x47260  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int DEBUG_PRINT(int,...);
-extern int FUN_00019c70(int, int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000723b8(int,...);
 extern int FUN_00072558(int,...);
 extern long long FUN_0007d4ec(void);

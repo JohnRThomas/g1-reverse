@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00017980 @ 0x17980  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
+extern void printk(unsigned long, ...);
 extern void assert_post_action(unsigned int a, unsigned int b);
 typedef int (*ifn5)(unsigned int, void*, unsigned int, unsigned int, unsigned int);
 int FUN_00017980(unsigned int param_1, unsigned int param_2, unsigned int param_3)

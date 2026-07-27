@@ -1,8 +1,8 @@
 /* Reconstructed post_notification_cmd_response @ 0x340c4. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
-extern void FUN_00019c70(uint32_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_0003384c(void *notification);
 extern void FUN_00033f54(void *notification);
 extern int FUN_00034bd4(const void *classification);

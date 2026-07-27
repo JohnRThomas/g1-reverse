@@ -41,13 +41,13 @@
  */
 /* Reconstructed button_init @ 0x17a40  (parity: 200/200 trials, PROVEN) */
 #include <stdint.h>
-extern int log_message(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
+extern void log_message(unsigned long, ...);
 extern int gpio_pin_configure_17688(unsigned int, unsigned int);
 extern void gpio_pin_set_checked(unsigned int, unsigned int, unsigned int);
 extern unsigned int gpio_pin_get_raw_checked(unsigned int, unsigned int);
 extern void gpio_pin_configure(unsigned int, unsigned int);
 extern unsigned int gpio_pin_get_checked(unsigned int);
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern int get_board_rev_flag(void);
 extern int z_device_is_ready(unsigned int);
 
@@ -94,7 +94,7 @@ LAB_b48_1:
             if (iVar5 == 0) {
                 log_message(uVar15, ((unsigned long)"button_init") /*=0x9a126*/, 0,0,0,0);
             } else {
-                debug_print();
+                debug_print(uVar15, ((unsigned long)"button_init") /*=0x9a126*/, 0,0,0,0);
             }
         }
     } else {
@@ -124,7 +124,7 @@ LAB_b48_1:
                         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                             log_message(((unsigned long)"%s(): done, pin= %d\n\n") /*=0x99fd2*/, ((unsigned long)"button_init") /*=0x9a126*/, 9,0,0,0);
                         } else {
-                            debug_print();
+                            debug_print(((unsigned long)"%s(): done, pin= %d\n\n") /*=0x99fd2*/, ((unsigned long)"button_init") /*=0x9a126*/, 9,0,0,0);
                         }
                     }
                 }
@@ -159,7 +159,7 @@ LAB_b48_1:
                     if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                         log_message(((unsigned long)"%s(): panel_power_status %d tmr_status %d nfc_lpd_status %d touch_power_status %d\n") /*=0x9a0c6*/, ((unsigned long)"nfc_gpo_init") /*=0x9a119*/, 10,0,0,0);
                     } else {
-                        debug_print();
+                        debug_print(((unsigned long)"%s(): panel_power_status %d tmr_status %d nfc_lpd_status %d touch_power_status %d\n") /*=0x9a0c6*/, ((unsigned long)"nfc_gpo_init") /*=0x9a119*/, 10,0,0,0);
                     }
                 }
                 goto LAB_c40;
@@ -173,7 +173,7 @@ LAB_b48_1:
     if (iVar16 == 0) {
         log_message(uVar15, uVar14, 0,0,0,0);
     } else {
-        debug_print();
+        debug_print(uVar15, uVar14, 0,0,0,0);
     }
 LAB_c40:
     bVar4 = (unsigned char)gpio_pin_get_checked(0x1a);
@@ -189,40 +189,40 @@ LAB_c40:
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
             log_message(((unsigned long)"%s(): DEVICE_ID1_PIN: %d, device1_status: %d\n") /*=0x99fe8*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, 0x1a, uVar18,0,0);
         } else {
-            debug_print();
+            debug_print(((unsigned long)"%s(): DEVICE_ID1_PIN: %d, device1_status: %d\n") /*=0x99fe8*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, 0x1a, uVar18,0,0);
         }
         if (1 < *piVar2) {
             uVar7 = uVar7 & 0xff;
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                 log_message(((unsigned long)"%s(): DEVICE_ID2_PIN: %d, device2_status: %d\n") /*=0x9a016*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, 0x19, uVar7,0,0);
             } else {
-                debug_print();
+                debug_print(((unsigned long)"%s(): DEVICE_ID2_PIN: %d, device2_status: %d\n") /*=0x9a016*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, 0x19, uVar7,0,0);
             }
             if (1 < *piVar2) {
                 uVar8 = uVar8 & 0xff;
                 if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                     log_message(((unsigned long)"%s(): DEVICE_ID3_PIN: %d, device3_status: %d\n") /*=0x9a044*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, 0x1c, uVar8,0,0);
                 } else {
-                    debug_print();
+                    debug_print(((unsigned long)"%s(): DEVICE_ID3_PIN: %d, device3_status: %d\n") /*=0x9a044*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, 0x1c, uVar8,0,0);
                 }
                 if (1 < *piVar2) {
                     uVar9 = uVar9 & 0xff;
                     if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                         log_message(((unsigned long)"%s(): DEVICE_ID4_PIN: %d, device4_status: %d\n") /*=0x9a072*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, 0x1b, uVar9,0,0);
                     } else {
-                        debug_print();
+                        debug_print(((unsigned long)"%s(): DEVICE_ID4_PIN: %d, device4_status: %d\n") /*=0x9a072*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, 0x1b, uVar9,0,0);
                     }
                     if (1 < *piVar2) {
                         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                             log_message(((unsigned long)"%s(): device_compat_val: %d %d %d %d\n") /*=0x9a0a0*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, uVar18, uVar7, uVar8, uVar9);
                         } else {
-                            debug_print();
+                            debug_print(((unsigned long)"%s(): device_compat_val: %d %d %d %d\n") /*=0x9a0a0*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, uVar18, uVar7, uVar8, uVar9);
                         }
                         if (1 < *piVar2) {
                             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                                 log_message(((unsigned long)"%s(): panel_power_status %d tmr_status %d nfc_lpd_status %d touch_power_status %d\n") /*=0x9a0c6*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, uVar10 & 0xff, uVar11 & 0xff, uVar12 & 0xff, uVar13 & 0xff);
                             } else {
-                                debug_print();
+                                debug_print(((unsigned long)"%s(): panel_power_status %d tmr_status %d nfc_lpd_status %d touch_power_status %d\n") /*=0x9a0c6*/, ((unsigned long)"get_device_hw_id") /*=0x9a132*/, uVar10 & 0xff, uVar11 & 0xff, uVar12 & 0xff, uVar13 & 0xff);
                             }
                         }
                     }

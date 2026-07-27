@@ -1,7 +1,7 @@
 /* Reconstructed startAudioStreamRecord @ 0x2f764  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0007dda4(unsigned int message, unsigned int function);
-extern void FUN_00019c70(unsigned int message, unsigned int function);
+extern void FUN_0007dda4(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern unsigned int FUN_000167a8(void);
 extern void FUN_000498c0(unsigned int ms);
 extern int FUN_000720d0(int a, void *b, int c, int d);

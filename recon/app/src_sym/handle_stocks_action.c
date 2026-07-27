@@ -1,7 +1,7 @@
 /* Reconstructed handle_stocks_action @ 0x371e8  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(void);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int handle_stocks_action(unsigned char param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

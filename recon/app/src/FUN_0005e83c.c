@@ -2,7 +2,7 @@
 #include <stdint.h>
 typedef unsigned int uint;
 extern void FUN_0007e2ec(uint,int);
-extern void FUN_0007e2fa(uint,uint,uint,uint);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_00080ca0(uint,void*);
 extern int FUN_00086be4(void*,uint,int);
 uint8_t* FUN_0005e83c(uint param_1, uint8_t* param_2, uint param_3, uint param_4){

@@ -1,12 +1,12 @@
 /* Reconstructed button_init @ 0x17a40  (parity: 200/200 trials, PROVEN) */
 #include <stdint.h>
-extern int DEBUG_PRINT(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_00017688(unsigned int, unsigned int);
 extern void FUN_00017768(unsigned int, unsigned int, unsigned int);
 extern unsigned int FUN_000177c4(unsigned int, unsigned int);
 extern void FUN_00017858(unsigned int, unsigned int);
 extern unsigned int FUN_00017980(unsigned int);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00025284(void);
 extern int FUN_0008638c(unsigned int);
 
@@ -53,7 +53,7 @@ LAB_b48_1:
             if (iVar5 == 0) {
                 DEBUG_PRINT(uVar15, 0x0009a126UL, 0,0,0,0);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(uVar15, 0x0009a126UL, 0,0,0,0);
             }
         }
     } else {
@@ -83,7 +83,7 @@ LAB_b48_1:
                         if (*(volatile int *)0x20007554UL == 0) {
                             DEBUG_PRINT(0x00099fd2UL, 0x0009a126UL, 9,0,0,0);
                         } else {
-                            FUN_00019c70();
+                            FUN_00019c70(0x00099fd2UL, 0x0009a126UL, 9,0,0,0);
                         }
                     }
                 }
@@ -118,7 +118,7 @@ LAB_b48_1:
                     if (*(volatile int *)0x20007554UL == 0) {
                         DEBUG_PRINT(0x0009a0c6UL, 0x0009a119UL, 10,0,0,0);
                     } else {
-                        FUN_00019c70();
+                        FUN_00019c70(0x0009a0c6UL, 0x0009a119UL, 10,0,0,0);
                     }
                 }
                 goto LAB_c40;
@@ -132,7 +132,7 @@ LAB_b48_1:
     if (iVar16 == 0) {
         DEBUG_PRINT(uVar15, uVar14, 0,0,0,0);
     } else {
-        FUN_00019c70();
+        FUN_00019c70(uVar15, uVar14, 0,0,0,0);
     }
 LAB_c40:
     bVar4 = (unsigned char)FUN_00017980(0x1a);
@@ -148,40 +148,40 @@ LAB_c40:
         if (*(volatile int *)0x20007554UL == 0) {
             DEBUG_PRINT(0x00099fe8UL, 0x0009a132UL, 0x1a, uVar18,0,0);
         } else {
-            FUN_00019c70();
+            FUN_00019c70(0x00099fe8UL, 0x0009a132UL, 0x1a, uVar18,0,0);
         }
         if (1 < *piVar2) {
             uVar7 = uVar7 & 0xff;
             if (*(volatile int *)0x20007554UL == 0) {
                 DEBUG_PRINT(0x0009a016UL, 0x0009a132UL, 0x19, uVar7,0,0);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(0x0009a016UL, 0x0009a132UL, 0x19, uVar7,0,0);
             }
             if (1 < *piVar2) {
                 uVar8 = uVar8 & 0xff;
                 if (*(volatile int *)0x20007554UL == 0) {
                     DEBUG_PRINT(0x0009a044UL, 0x0009a132UL, 0x1c, uVar8,0,0);
                 } else {
-                    FUN_00019c70();
+                    FUN_00019c70(0x0009a044UL, 0x0009a132UL, 0x1c, uVar8,0,0);
                 }
                 if (1 < *piVar2) {
                     uVar9 = uVar9 & 0xff;
                     if (*(volatile int *)0x20007554UL == 0) {
                         DEBUG_PRINT(0x0009a072UL, 0x0009a132UL, 0x1b, uVar9,0,0);
                     } else {
-                        FUN_00019c70();
+                        FUN_00019c70(0x0009a072UL, 0x0009a132UL, 0x1b, uVar9,0,0);
                     }
                     if (1 < *piVar2) {
                         if (*(volatile int *)0x20007554UL == 0) {
                             DEBUG_PRINT(0x0009a0a0UL, 0x0009a132UL, uVar18, uVar7, uVar8, uVar9);
                         } else {
-                            FUN_00019c70();
+                            FUN_00019c70(0x0009a0a0UL, 0x0009a132UL, uVar18, uVar7, uVar8, uVar9);
                         }
                         if (1 < *piVar2) {
                             if (*(volatile int *)0x20007554UL == 0) {
                                 DEBUG_PRINT(0x0009a0c6UL, 0x0009a132UL, uVar10 & 0xff, uVar11 & 0xff, uVar12 & 0xff, uVar13 & 0xff);
                             } else {
-                                FUN_00019c70();
+                                FUN_00019c70(0x0009a0c6UL, 0x0009a132UL, uVar10 & 0xff, uVar11 & 0xff, uVar12 & 0xff, uVar13 & 0xff);
                             }
                         }
                     }

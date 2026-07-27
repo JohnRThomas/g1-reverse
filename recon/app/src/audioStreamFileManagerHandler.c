@@ -57,9 +57,9 @@ typedef uint32_t uint; typedef uint64_t ulonglong; typedef uint32_t code(uintptr
 #define DAT_00030160 0x000a47d7u
 #define DAT_00030164 0x000a4840u
 #define DAT_00030168 ((volatile int *)0x20007bb8u)
-extern uint32_t DEBUG_PRINT(uintptr_t,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern uint32_t FUN_000167a8(uintptr_t,...);
-extern uint32_t FUN_00019c70(uintptr_t,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern uint32_t FUN_0002360c(uintptr_t,...);
 extern uint32_t FUN_0002f460(uintptr_t,...);
 extern uint32_t FUN_0002f4a8(uintptr_t,...);

@@ -3,7 +3,7 @@
 extern unsigned long long FUN_00065434(unsigned int a);
 extern int FUN_00065460(void);
 extern void FUN_0007e2ec(int a,int b);
-extern void FUN_0007e2fa(int a,int b,int c,int d);
+extern void FUN_0007e2fa(unsigned long, ...);
 
 unsigned int FUN_000658e8(unsigned int param_1, int param_2)
 {

@@ -9,8 +9,8 @@ extern void FUN_00047260(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint3
 extern int FUN_0004588c(uint32_t, uint32_t, int32_t *, int32_t *, uint32_t *, uint32_t);
 extern void FUN_0007d53a(uint32_t, uint32_t, int32_t, int32_t, int32_t, uint32_t);
 extern int FUN_00043e58(uint32_t, uint32_t);
-extern void DEBUG_PRINT(uint32_t, uint32_t);
-extern void FUN_00019c70(uint32_t, uint32_t);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 int gui_string_draw(uint32_t font, const uint8_t *text, int32_t x, uint32_t y,
                     uint32_t arg5, uint32_t arg6, int32_t *width_out)

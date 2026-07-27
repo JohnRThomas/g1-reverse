@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00018894 @ 0x18894  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int fmt);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern void FUN_000187e8(unsigned int a, unsigned int b);
 
 void FUN_00018894(unsigned int param_1)

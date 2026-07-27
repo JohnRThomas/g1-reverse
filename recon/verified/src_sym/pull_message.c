@@ -1,7 +1,7 @@
 /* Reconstructed pull_message @ 0x342e0  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
-extern void debug_print(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern unsigned int get_device_info(void);
 
 unsigned char pull_message(int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
@@ -13,7 +13,7 @@ unsigned char pull_message(int *param_1, unsigned int param_2, unsigned int para
             if (*(int *)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
                 DEBUG_PRINT(0xa804bU, 0xa822eU, 0xa8221U, 0x3bdU, param_4);
             } else {
-                debug_print(0xa804bU, 0xa822eU, 0xa8221U, 0x3bdU);
+                debug_print(0xa804bU, 0xa822eU, 0xa8221U, 0x3bdU, param_4);
             }
         }
     } else {
@@ -23,7 +23,7 @@ unsigned char pull_message(int *param_1, unsigned int param_2, unsigned int para
             if (*(int *)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
                 DEBUG_PRINT(0xa80bcU, 0, 0, 0, 0);
             } else {
-                debug_print(0xa80bcU, 0, 0, 0);
+                debug_print(0xa80bcU, 0, 0, 0, 0);
             }
             return *(unsigned char *)0x2001a22aUL;
         }

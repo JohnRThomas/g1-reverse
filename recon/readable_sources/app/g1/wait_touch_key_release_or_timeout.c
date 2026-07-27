@@ -19,19 +19,19 @@
 #include <stdint.h>
 extern int get_message_pending_state(void);
 extern int is_msg_expiration(void);
-extern int debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern int sync_message_signal_to_slave(int);
 extern int msg_count_dec(void);
 extern int get_device_info(void);
 extern int set_message_pending_state(int);
-extern void log_message(int,...);
+extern void log_message(unsigned long, ...);
 void wait_touch_key_release_or_timeout(void){
   volatile int *piVar1 = (volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
   while(get_message_pending_state()==5 && is_msg_expiration()==2){
     if(*piVar1==0){
       log_message(((unsigned long)"[csh_debug_msg] check showing msg timeout \n") /*=0xa26cb*/);
     } else {
-      debug_print();
+      debug_print(((unsigned long)"[csh_debug_msg] check showing msg timeout \n") /*=0xa26cb*/);
     }
     int iVar2 = sync_message_signal_to_slave(2);
     if(iVar2 <= 3000){

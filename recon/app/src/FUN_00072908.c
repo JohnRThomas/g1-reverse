@@ -6,7 +6,7 @@ extern int FUN_0007205c(uint32_t);
 extern void FUN_00072078(uint32_t);
 extern int FUN_00073f6c(uint32_t,uint32_t,int,uint32_t,uint32_t,uint32_t);
 extern void FUN_0007e2ec(uint32_t,uint32_t);
-extern void FUN_0007e2fa(uint32_t,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 
 int FUN_00072908(int param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4){
     uint32_t ipsr, bp, v; int iVar2; int r3;

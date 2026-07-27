@@ -57,7 +57,7 @@ void change_work_mode_to(uint mode)
     *(volatile byte *)(state + 1) = (byte)mode;
     if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
       if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)"%s(): change_work_mode to %d\n") /*=0x9976b*/,((unsigned long)"change_work_mode") /*=0x99bb7*/,mode & 0xff);
-      else debug_print(0);
+      else debug_print(((unsigned long)"%s(): change_work_mode to %d\n") /*=0x9976b*/,((unsigned long)"change_work_mode") /*=0x99bb7*/,mode & 0xff);
     }
     unsigned selected = *(volatile byte *)(*state_slot + 1);
     if (selected < 10) {

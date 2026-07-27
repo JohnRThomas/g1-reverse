@@ -26,9 +26,9 @@
 typedef unsigned char uint8_t;
 typedef unsigned int uint32_t;
 
-extern void log_message(uint32_t format, ...);
+extern void log_message(unsigned long, ...);
 extern int get_device_info(void);
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern void write_font_to_flash_with_verify(uint32_t address, uint32_t buffer, ...);
 extern void dequeue_file(void *packet);
 extern uint32_t crc32_update(uint32_t checksum, uint32_t buffer, uint32_t length);
@@ -67,7 +67,7 @@ void try_to_save_file(int context)
             if (LOG_LEVEL < 1)
                 return;
             if (LOG_SINK != 0) {
-                debug_print();
+                debug_print(((unsigned long)"%s(): crc cal end crc32_value %08X\n") /*=0x9e88b*/, ((unsigned long)"try_to_save_file") /*=0x9e8e5*/, checksum);
                 return;
             }
             log_message(((unsigned long)"%s(): crc cal end crc32_value %08X\n") /*=0x9e88b*/, ((unsigned long)"try_to_save_file") /*=0x9e8e5*/, checksum);
@@ -120,7 +120,7 @@ save_block:
         if (LOG_SINK == 0)
             log_message(((unsigned long)"%s(): crc32_value %08X\n") /*=0x9e873*/, ((unsigned long)"try_to_save_file") /*=0x9e8e5*/, checksum);
         else
-            debug_print();
+            debug_print(((unsigned long)"%s(): crc32_value %08X\n") /*=0x9e873*/, ((unsigned long)"try_to_save_file") /*=0x9e8e5*/, checksum);
     }
     FILE_ADDRESS += 0x1000;
     buffered = BUFFERED_LENGTH;

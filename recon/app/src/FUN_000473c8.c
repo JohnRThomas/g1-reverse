@@ -1,8 +1,8 @@
 /* Reconstructed FUN_000473c8 @ 0x473c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned long long u64;
-extern void DEBUG_PRINT(int,...);
-extern void FUN_00019c70(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000723b8(int,...);
 extern int FUN_00072558(int,...);
 extern int FUN_0007d4ec(int,...);

@@ -46,9 +46,9 @@
 
 #include <stdint.h>
 
-extern void log_message(unsigned a, unsigned b);
+extern void log_message(unsigned long, ...);
 extern int  get_device_info(void);
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern void reflash_fb_data_to_lcd(unsigned a, unsigned b, int c, int d, int e, int f);
 extern void gui_canvas_flags_clear_bit1(void);
 extern void gui_canvas_flags_set_bit1(void);
@@ -83,7 +83,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
             if (*(volatile int*)0x20007554 == 0)
                 log_message(((unsigned long)"%s(): reflash overview map && text\n"), ((unsigned long)"navigation_overview_map_display"));
             else
-                debug_print();
+                debug_print(((unsigned long)"%s(): reflash overview map && text\n"), ((unsigned long)"navigation_overview_map_display"));
         }
         iVar6 = get_device_info();
         iVar11 = 0x640;
@@ -118,7 +118,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
                     if (*(volatile int*)0x20007554 == 0)
                         log_message(0x000a9ee1, ((unsigned long)"navigation_overview_map_display"));
                     else
-                        debug_print();
+                        debug_print(0x000a9ee1, ((unsigned long)"navigation_overview_map_display"));
                 }
                 memset_bytes(0x2001ba2e, 0, 0x1210);
                 FUN_0007d376(0x20007574, 0, 0xffffffff, 0xffffffff);
@@ -128,7 +128,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
                     if (*(volatile int*)0x20007554 == 0)
                         log_message(0x000a9eff, ((unsigned long)"navigation_overview_map_display"));
                     else
-                        debug_print();
+                        debug_print(0x000a9eff, ((unsigned long)"navigation_overview_map_display"));
                 }
                 memset_bytes(0x2001ba2e, 0, 0x1210);
                 FUN_0007d376(0x20007574, 0, 0xffffffff, 0xffffffff);
@@ -245,14 +245,14 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
                 if (*(volatile int*)0x20007554 == 0)
                     log_message(((unsigned long)"%s(): reflash overview map ....\n"), ((unsigned long)"navigation_overview_map_display"));
                 else
-                    debug_print();
+                    debug_print(((unsigned long)"%s(): reflash overview map ....\n"), ((unsigned long)"navigation_overview_map_display"));
             }
             if (*(volatile int*)(param_2 + 0xb1) == 0x1210) {
                 if (2 < *piVar2) {
                     if (*(volatile int*)0x20007554 == 0)
                         log_message(0x000a9ee1, ((unsigned long)"navigation_overview_map_display"));
                     else
-                        debug_print();
+                        debug_print(0x000a9ee1, ((unsigned long)"navigation_overview_map_display"));
                 }
                 memset_bytes(0x2001ba2e, 0, 0x1210);
                 FUN_0007d376(0x20007574, 0, 0xffffffff, 0xffffffff);
@@ -262,7 +262,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
                     if (*(volatile int*)0x20007554 == 0)
                         log_message(0x000a9eff, ((unsigned long)"navigation_overview_map_display"));
                     else
-                        debug_print();
+                        debug_print(0x000a9eff, ((unsigned long)"navigation_overview_map_display"));
                 }
                 memset_bytes(0x2001ba2e, 0, 0x1210);
                 FUN_0007d376(0x20007574, 0, 0xffffffff, 0xffffffff);
@@ -290,7 +290,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
             if (*(volatile int*)0x20007554 == 0)
                 log_message(((unsigned long)"%s(): reflash text info ....\n"), ((unsigned long)"navigation_overview_map_display"));
             else
-                debug_print();
+                debug_print(((unsigned long)"%s(): reflash text info ....\n"), ((unsigned long)"navigation_overview_map_display"));
         }
         memset_bytes(0x2001b9ac, 0, 0x80);
         snprintf(0x2001b9ac, 0x80, 0x000a9f2a, param_2 + 0xd, param_2 + 0x25);

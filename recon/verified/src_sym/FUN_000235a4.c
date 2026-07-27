@@ -2,7 +2,7 @@
 
 extern int FUN_00072240(unsigned int, void*, int, int);
 extern void memcpy(unsigned int, void*, int);
-extern void DEBUG_PRINT(unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 int FUN_000235a4(unsigned int param_1)
 {

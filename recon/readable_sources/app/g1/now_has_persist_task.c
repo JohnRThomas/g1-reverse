@@ -16,8 +16,8 @@
 /* Reconstructed now_has_persist_task @ 0x2be64  (parity: 300/300 trials, PROVEN) */
 
 extern void signal_persist_task_event(void);
-extern void log_message(void);
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned char now_has_persist_task(unsigned char *param_1, unsigned int param_2)
 {

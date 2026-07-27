@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00063778 @ 0x63778  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
+extern void printk(unsigned long, ...);
 extern void assert_post_action(unsigned int, unsigned int);
 extern void compare_set(void);
 

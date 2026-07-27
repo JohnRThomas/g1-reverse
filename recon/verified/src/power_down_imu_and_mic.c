@@ -1,8 +1,8 @@
 /* Reconstructed power_down_imu_and_mic @ 0x160b4  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_00083dc8(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void DEBUG_PRINT(unsigned int,...);
-extern void FUN_00019c70(unsigned int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 unsigned int power_down_imu_and_mic(void)
 {

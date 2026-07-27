@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0005833c @ 0x5833c, exact extent 118 bytes. */
 #include <stdint.h>
 
-extern void FUN_0007e2fa(uintptr_t format, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t file, uint32_t line);
 extern void FUN_00086502(uintptr_t queue, void *item);
 extern void FUN_00086c78(void *destination, uint32_t value, uint32_t length);

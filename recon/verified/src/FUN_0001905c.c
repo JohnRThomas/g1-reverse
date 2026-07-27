@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0001905c @ 0x1905c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int DEBUG_PRINT(int,...);
-extern int FUN_00019c70(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0007f69e(int,...);
 extern int FUN_0007f772(int,...);
 extern int FUN_0007f79e(int,...);

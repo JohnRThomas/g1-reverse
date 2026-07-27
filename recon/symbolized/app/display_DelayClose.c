@@ -18,8 +18,8 @@
 
 extern void memset_bytes(void *dst, int val, unsigned int len);
 extern int k_msgq_put(void *obj, void *msg, unsigned int a, unsigned int b);
-extern void log_message(unsigned int fmt, unsigned int arg);
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int display_DelayClose(unsigned int param_1)
 {
@@ -39,7 +39,7 @@ unsigned int display_DelayClose(unsigned int param_1)
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                 log_message(((unsigned long)"%s(): send display delay close command.......\n") /*=0xf008c*/, ((unsigned long)"display_DelayClose") /*=0xf0164*/);
             } else {
-                debug_print();
+                debug_print(((unsigned long)"%s(): send display delay close command.......\n") /*=0xf008c*/, ((unsigned long)"display_DelayClose") /*=0xf0164*/);
             }
         }
     } else {

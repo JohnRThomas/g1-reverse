@@ -56,7 +56,7 @@ unsigned spi_master_init(uintptr_t event)
     int level=*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/;
     struct spi_map *map;
     if(mode==3)map=&mode3; else if(mode==4)map=&mode4; else {
-        if(level>0){int alt=*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;if(alt)debug_print(((unsigned long)"%s():  SPIM BUS ERR!\n") /*=0x9fb89*/,((unsigned long)"spi_master_init") /*=0x9fc4d*/,mode,(uint32_t)alt);else log_message(((unsigned long)"%s():  SPIM BUS ERR!\n") /*=0x9fb89*/,((unsigned long)"spi_master_init") /*=0x9fc4d*/);} return 0;
+        if(level>0){int alt=*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;if(alt)debug_print(((unsigned long)"%s():  SPIM BUS ERR!\n") /*=0x9fb89*/,((unsigned long)"spi_master_init") /*=0x9fc4d*/);else log_message(((unsigned long)"%s():  SPIM BUS ERR!\n") /*=0x9fb89*/,((unsigned long)"spi_master_init") /*=0x9fc4d*/);} return 0;
     }
     *(volatile uint32_t*)(event+0xc)=map->base;
     *(volatile uint32_t*)(event+0x10)=map->tag;

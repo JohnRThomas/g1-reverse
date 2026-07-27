@@ -3,7 +3,7 @@
  */
 
 extern unsigned long long FUN_0007e2ec(unsigned int,unsigned int);
-extern void FUN_0007e2fa(unsigned int,unsigned int,unsigned int,unsigned int);
+extern void FUN_0007e2fa(unsigned long, ...);
 void g1_recon_nrfx_gppi_task_endpoint_clear(
     unsigned int channel, int task_endpoint,
     unsigned int param_3, unsigned int param_4)

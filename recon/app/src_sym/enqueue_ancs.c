@@ -4,8 +4,8 @@ extern void memset_bytes(void*, int, int);
 extern void FUN_00072240(unsigned int, void*, int, int);
 extern void memcpy(void*, unsigned int, int);
 extern int FUN_000720d0(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 int enqueue_ancs(unsigned int param_1)
 {
@@ -21,7 +21,7 @@ int enqueue_ancs(unsigned int param_1)
             if (*(volatile unsigned int*)0x20007554UL /* device_info.is_debug @+0xB58  (log sink select: 0=RTT DEBUG_PRINT) */ == 0) {
                 DEBUG_PRINT(0x9a964, 0, 0);
             } else {
-                debug_print();
+                debug_print(0x9a964, 0, 0);
             }
         }
         memcpy(buf, param_1, 0x1b4);
@@ -30,7 +30,7 @@ int enqueue_ancs(unsigned int param_1)
             if (*(volatile unsigned int*)0x20007554UL == 0) {
                 DEBUG_PRINT(0x9a981, 0x9b19d);
             } else {
-                debug_print();
+                debug_print(0x9a981, 0x9b19d);
             }
         }
     }

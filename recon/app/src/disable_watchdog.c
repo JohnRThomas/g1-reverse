@@ -1,8 +1,8 @@
 /* Reconstructed disable_watchdog @ 0x2aeb4  (parity: 151/300 trials, PROVEN) */
 
 extern void FUN_00074844(unsigned int, unsigned int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(unsigned int, unsigned int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 typedef int (*fp_t)(unsigned int);
 

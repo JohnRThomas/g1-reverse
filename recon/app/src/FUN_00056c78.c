@@ -2,7 +2,7 @@
 
 extern int FUN_00080f14(int);
 extern void FUN_0007e2ec(int,int);
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 int FUN_00056c78(int param_1,int param_2){
   int iVar2=FUN_00080f14(param_2);
   if(iVar2==0) return 0;

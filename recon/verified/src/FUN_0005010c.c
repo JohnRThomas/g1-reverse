@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0005010c @ 0x5010c  (parity: 300/300 trials, PROVEN) */
 #include "../../headers/g1_nrf_regs.h"
 
-extern int FUN_0007e2fa(int a, int b, int c, int d, int e);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_0007e2ec(int a, int b);
 
 void FUN_0005010c(int param_1, unsigned int param_2, int param_3, int param_4)

@@ -2,7 +2,7 @@
 
 extern void FUN_00074184(int,int);
 extern void FUN_0007e2ec(int,int);
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 void FUN_00074554(int param_1,int param_2){
   if((unsigned)(param_2+0x10) >= 0x1f){
     FUN_0007e2fa(0x99cbd,0xf85d2,0xf82f4,0x53d);

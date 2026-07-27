@@ -1,14 +1,14 @@
 /* Reconstructed FUN_00010fc8 @ 0x10fc8 */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern uint64_t FUN_0000d804(uint32_t);
 extern uint64_t FUN_0000d848(uint32_t);
 extern void FUN_0000d8f8(uint32_t, uint32_t, uint32_t, uint32_t);
 extern uint64_t FUN_0000db4c(uint32_t, uint32_t, uint32_t, uint32_t);
 extern uint32_t FUN_0000dea8(void);
 extern uintptr_t FUN_000167a8(void);
-extern void FUN_00019c70(uint32_t, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern uint32_t FUN_0002e648(uint32_t);
 
 uint32_t FUN_00010fc8(uint32_t request, uint32_t context,

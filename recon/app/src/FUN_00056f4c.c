@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00056f4c @ 0x56f4c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void FUN_0007e2fa(uint32_t,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern uint64_t FUN_0007e2ec(uint32_t,uint32_t);
 extern uint64_t FUN_0008148a(void);
 

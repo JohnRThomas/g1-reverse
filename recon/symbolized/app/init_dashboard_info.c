@@ -37,13 +37,13 @@ void init_dashboard_info(void){
   iVar3 = uarte_nrfx_irq_rx_ready();
   if (iVar3 == 0) {
     if (2 < *p40) {
-      if (*p44 == 0) { log_message(((unsigned long)"%s(): system startup ,NCS memory is vaild\n") /*=0xa8eee*/, ((unsigned long)"init_dashboard_info") /*=0xa95f9*/, 0); }
+      if (*p44 == 0) { log_message(((unsigned long)"%s(): system startup ,NCS memory is vaild\n") /*=0xa8eee*/, ((unsigned long)"init_dashboard_info") /*=0xa95f9*/); }
       else { debug_print(((unsigned long)"%s(): system startup ,NCS memory is vaild\n") /*=0xa8eee*/, ((unsigned long)"init_dashboard_info") /*=0xa95f9*/); }
     }
     init_dashboard_startup_mode_info_defaults();
   } else {
     if (2 < *p40) {
-      if (*p44 == 0) { log_message(((unsigned long)"%s(): system startup ,NCS memory is invaild\n") /*=0xa8f19*/, ((unsigned long)"init_dashboard_info") /*=0xa95f9*/, 0); }
+      if (*p44 == 0) { log_message(((unsigned long)"%s(): system startup ,NCS memory is invaild\n") /*=0xa8f19*/, ((unsigned long)"init_dashboard_info") /*=0xa95f9*/); }
       else { debug_print(((unsigned long)"%s(): system startup ,NCS memory is invaild\n") /*=0xa8f19*/, ((unsigned long)"init_dashboard_info") /*=0xa95f9*/); }
     }
     iVar3 = get_device_info();
@@ -78,7 +78,7 @@ void init_dashboard_info(void){
         else debug_print(0x000a8f72, ((unsigned long)"init_dashboard_info") /*=0xa95f9*/, iVar3);
       }
     } else if (0 < *p40) {
-      if (*p44 == 0) log_message(((unsigned long)"%s(): !!!! getQuickNoteDataFromFlash return unknown value.\n") /*=0xa8fb7*/, ((unsigned long)"init_dashboard_info") /*=0xa95f9*/, 0);
+      if (*p44 == 0) log_message(((unsigned long)"%s(): !!!! getQuickNoteDataFromFlash return unknown value.\n") /*=0xa8fb7*/, ((unsigned long)"init_dashboard_info") /*=0xa95f9*/);
       else debug_print(((unsigned long)"%s(): !!!! getQuickNoteDataFromFlash return unknown value.\n") /*=0xa8fb7*/, ((unsigned long)"init_dashboard_info") /*=0xa95f9*/);
     }
     iVar3++;

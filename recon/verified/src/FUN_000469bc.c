@@ -12,8 +12,8 @@ extern uintptr_t FUN_0007d4b2(unsigned id);
 extern void FUN_00043484(int, int, int, int, int, int);
 extern unsigned FUN_00043e90(unsigned, uintptr_t, unsigned, int, int, int, int,
                             unsigned, unsigned, int, void *, int);
-extern void DEBUG_PRINT(uintptr_t, ...);
-extern void FUN_00019c70(uintptr_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 static __attribute__((always_inline)) inline void draw_pair(uintptr_t text, int x, unsigned second_id)
 {

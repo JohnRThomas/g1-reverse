@@ -1,5 +1,5 @@
 /* Reconstructed FUN_00065f80 @ 0x65f80  (parity: 300/300 trials, PROVEN) */
-extern void FUN_0007e2fa(unsigned,unsigned,unsigned,unsigned,unsigned);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern long long FUN_0007e2ec(unsigned,unsigned);
 extern void FUN_00065f04(void);
 extern void FUN_00065ef0(void);

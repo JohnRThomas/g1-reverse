@@ -19,9 +19,9 @@
 
 typedef unsigned int uint32_t;
 
-extern void log_message(uint32_t message, uint32_t function);
+extern void log_message(unsigned long, ...);
 extern uint32_t get_device_info(void);
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern void clean_fb_data(uint32_t a, uint32_t b, uint32_t c, uint32_t d, uint32_t e, uint32_t f);
 extern void reflash_fb_data_to_lcd(uint32_t a, uint32_t b, uint32_t c, uint32_t d, uint32_t e, uint32_t f);
 extern uint32_t get_projector_controller(void);
@@ -36,7 +36,7 @@ uint32_t gui_area_clear(uint32_t param_1, uint32_t param_2, uint32_t param_3, ui
         if (*(volatile uint32_t*)0x20007554UL == 0) {
             log_message(0xaa8c8UL, 0xaae00UL);
         } else {
-            debug_print();
+            debug_print(0xaa8c8UL, 0xaae00UL);
         }
     }
     iVar2 = get_projector_controller();
@@ -45,7 +45,7 @@ uint32_t gui_area_clear(uint32_t param_1, uint32_t param_2, uint32_t param_3, ui
             if (*(volatile uint32_t*)0x20007554UL == 0) {
                 log_message(0xaa891UL, 0xaae00UL);
             } else {
-                debug_print();
+                debug_print(0xaa891UL, 0xaae00UL);
             }
         }
         uVar3 = 0xffffffff;

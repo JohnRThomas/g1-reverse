@@ -1,8 +1,8 @@
 /* Reconstructed SendPowerInfoToSlave @ 0x488bc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern void *FUN_000167a8(void);
-extern void FUN_00019c70(uint32_t, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000720d0(uint32_t, void*, int, int);
 extern void FUN_00086c78(void*, int, int);
 

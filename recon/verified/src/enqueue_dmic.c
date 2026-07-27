@@ -3,8 +3,8 @@
 extern void FUN_00086c04(void*, unsigned int, int);
 extern void FUN_00072240(unsigned int, void*, int, int);
 extern int FUN_000720d0(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(unsigned int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 int enqueue_dmic(unsigned int param_1)
 {

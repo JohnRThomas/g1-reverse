@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0002ead8 @ 0x2ead8  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(int);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_00083dba(int,int,int,void*,int);
 
 unsigned int FUN_0002ead8(int param_1, unsigned int param_2)

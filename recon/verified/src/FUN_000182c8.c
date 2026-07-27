@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000182c8 @ 0x182c8  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_0004ed8c(unsigned int a, void *b, unsigned int c, unsigned int d, unsigned int e);
-extern void DEBUG_PRINT(unsigned int a, int b);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 void FUN_000182c8(unsigned int param_1, unsigned short param_2, unsigned int param_3)
 {

@@ -3,7 +3,7 @@
 
 extern uint32_t FUN_0004d56c(void);
 extern void g1_recon_z_log_msg_free(uint32_t item);
-extern void FUN_0007e2fa(uintptr_t, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t, uint32_t);
 extern uint64_t thunk_FUN_00074f68(void);
 extern void FUN_0004d4a8(uint32_t low, uint32_t high);

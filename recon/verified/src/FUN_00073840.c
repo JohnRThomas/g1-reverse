@@ -3,7 +3,7 @@
 #include <stdint.h>
 extern void FUN_000737d8(int,...);
 extern void FUN_0007e2ec(int,...);
-extern void FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 void FUN_00073840(int *param_1){
   if( *(int8_t*)((int)param_1+0xd) < 0
       || (*(uint8_t*)((int)param_1+0xd) & 0x1f)!=0

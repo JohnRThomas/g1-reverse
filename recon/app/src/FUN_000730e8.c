@@ -1,5 +1,5 @@
 /* Reconstructed FUN_000730e8 @ 0x730e8  (parity: 300/300 trials, PROVEN) */
-extern void FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(int,...);
 extern void FUN_00071eac(int,int,unsigned,int,int,int,int,unsigned,int);
 extern void FUN_00086412(int);

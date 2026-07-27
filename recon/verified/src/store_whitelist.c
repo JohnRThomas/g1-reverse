@@ -2,8 +2,8 @@
 extern int FUN_000227d0(unsigned int a0, unsigned int a1, unsigned int a2);
 extern void FUN_000355b4(void);
 extern void FUN_00074844(unsigned int a0, unsigned int a1);
-extern void DEBUG_PRINT(unsigned int a0, ...);
-extern void FUN_00019c70(unsigned int a0, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 int store_whitelist(void)
 {

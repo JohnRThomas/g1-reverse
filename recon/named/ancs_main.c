@@ -36,7 +36,7 @@ extern int ancs_c_init(void *client);                   /* FUN_0001905c @ 0x0001
 extern int ancs_discover_params_reset(void);            /* FUN_000191d8 @ 0x000191d8 */
 extern int bt_start(void);                              /* FUN_00019308 @ 0x00019308 */
 extern void start_ancs_work_thread(uintptr_t context);  /* FUN_000198cc @ 0x000198cc */
-extern void debug_print(void);                          /* FUN_00019c70 @ 0x00019c70 */
+extern void debug_print(unsigned long, ...);                          /* FUN_00019c70 @ 0x00019c70 */
 extern void sys_reboot(int type);                       /* FUN_0004c0a8 @ 0x0004c0a8 */
 extern int bt_enable(void *ready_cb);                   /* FUN_00054a44 @ 0x00054a44 */
 extern void bt_hci_driver_close(void);                  /* FUN_00054b70 @ 0x00054b70 */
@@ -44,7 +44,7 @@ extern int bt_conn_auth_info_cb_register(const void *); /* FUN_00057330 @ 0x0005
 extern void bt_gatt_cb_register(const void *);          /* FUN_0005a9d8 @ 0x0005a9d8 */
 extern void bt_foreach_bond(unsigned int, const void *, void *);/* FUN_0005e6d4 @ 0x0005e6d4 */
 extern int settings_load(void);                         /* FUN_0007f192 @ 0x0007f192 */
-extern int log_message(const char *format, ...);        /* FUN_0007dda4 @ 0x0007dda4 */
+extern void log_message(unsigned long, ...);        /* FUN_0007dda4 @ 0x0007dda4 */
 
 extern void k_msleep_ticks32768_d(unsigned int milliseconds);
 extern int bt_conn_auth_cb_register(const void *callbacks);
@@ -88,7 +88,7 @@ static inline __attribute__((always_inline)) void log_start_if_enabled(void)
         if (LOG_USE_ALT_SINK == 0) {
             log_message(STR_ANCS_START, STR_ANCS_MAIN);
         } else {
-            debug_print();
+            debug_print(STR_ANCS_START, STR_ANCS_MAIN);
         }
     }
 }
@@ -102,7 +102,7 @@ static inline __attribute__((always_inline)) void reboot_after_ancs_failure(void
         if (LOG_USE_ALT_SINK == 0) {
             log_message(STR_REBOOT_REASON, STR_ANCS_MAIN);
         } else {
-            debug_print();
+            debug_print(STR_REBOOT_REASON, STR_ANCS_MAIN);
         }
     }
 

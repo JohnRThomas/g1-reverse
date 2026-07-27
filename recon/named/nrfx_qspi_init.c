@@ -42,7 +42,7 @@ int g1_recon_nrfx_qspi_init(int param_1, unsigned int param_2,
     }
     return iVar2;
   }
-  printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void*)((unsigned long)"p_config"), (void*)0xf6d5eUL, 0x19b, param_4);
+  printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void*)((unsigned long)"p_config"), (void*)0xf6d5eUL, 0x19b, param_4);
   assert_post_action((void*)0xf6d5eUL, 0x19b);
   /* The diagnostic is noreturn in production, but the parity oracle returns.
      Preserve the live argument registers at the continuation. */

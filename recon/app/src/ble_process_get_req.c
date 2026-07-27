@@ -1,11 +1,11 @@
 /* Reconstructed ble_process_get_req @ 0x1a064 */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int  FUN_00016568(void);
 extern int  FUN_000167a8(void);
 extern void FUN_00019b54(void *, void *, uint32_t);
-extern void FUN_00019c70(uint32_t, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00033abc(void *, void *, void *);
 extern void FUN_00035498(void *, void *);
 extern void FUN_00048998(uint32_t);

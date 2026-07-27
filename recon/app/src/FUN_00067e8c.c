@@ -2,7 +2,7 @@
 #include <stdint.h>
 typedef unsigned int uint;
 extern void FUN_0007e2ec(uint32_t,uint32_t);
-extern void FUN_0007e2fa(uint32_t,uint32_t,uint32_t,uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 uint32_t FUN_00067e8c(int* param_1, uint8_t* param_2){
   uint8_t r4byte=*(volatile uint8_t*)((char*)param_1+4);
   if(param_2==0){

@@ -1,8 +1,8 @@
 /* Full ABI-faithful reconstruction bt_send_enabled @ 0x17e3c. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uintptr_t format, ...);
-extern void FUN_00019c70(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 void bt_send_enabled(int32_t error)
 {

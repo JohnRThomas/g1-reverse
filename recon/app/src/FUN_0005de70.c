@@ -14,7 +14,7 @@ extern int FUN_0005e938(u32 a, void *b);
 extern int FUN_0005e9d0(int a, u32 b, int c);
 extern void FUN_0005ea18(int a);
 extern void FUN_0007e2ec(u32 a, u32 b);
-extern void FUN_0007e2fa(u32 a, u32 b, u32 c, u32 d);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_00082ff6(void *a, int b);
 extern int FUN_00083002(int a, int b);
 extern void FUN_00083062(int a, void *b);

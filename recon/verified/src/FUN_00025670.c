@@ -3,7 +3,7 @@
 extern void FUN_00086c04(uint8_t *, const uint8_t *, uint32_t);
 extern int FUN_0007c85e(uint32_t, void *, uint32_t, uint32_t);
 extern void FUN_0007c87a(void);
-extern void DEBUG_PRINT(uint32_t, int);
+extern void DEBUG_PRINT(unsigned long, ...);
 struct part { uint8_t *data; uint32_t length; uint8_t type; };
 int FUN_00025670(uint32_t *dev, uint32_t op, uint32_t command,
                  uint32_t value, uint32_t n)

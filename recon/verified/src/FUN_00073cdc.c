@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00073cdc @ 0x73cdc  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0007e2fa(unsigned int a,unsigned int b,unsigned int c,unsigned int d);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern unsigned long long FUN_0007e2ec(unsigned int a,unsigned int b);
 
 void FUN_00073cdc(unsigned int param_1, int *param_2, unsigned int param_3, unsigned int param_4)

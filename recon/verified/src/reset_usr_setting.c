@@ -2,8 +2,8 @@
 
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t function_name);
-extern void FUN_00019c70(uint32_t format, uint32_t function_name, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00032ef0(uint32_t mode);
 extern void FUN_0007c28e(void *settings, uint32_t value);
 

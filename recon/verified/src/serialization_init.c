@@ -1,7 +1,7 @@
 /* Reconstructed serialization_init @ 0x25c54  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
-extern void FUN_00019c70(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0004cb90(uint32_t);
 extern unsigned long long FUN_0004cbec(uint32_t, uint32_t, uint32_t);
 extern void FUN_00072908(uint32_t, int, int, int);

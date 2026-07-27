@@ -1,8 +1,8 @@
 /* Reconstructed global_ipc_service_send @ 0x25b78  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern void *FUN_000167a8(void);
-extern void FUN_00019c70(uint32_t, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0004c0a8(int);
 extern int FUN_0004cc50(uint32_t, uint32_t, uint32_t);
 extern void FUN_00074844(int, int);

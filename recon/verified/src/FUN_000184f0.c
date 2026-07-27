@@ -1,11 +1,11 @@
 /* Full ABI-faithful reconstruction FUN_000184f0 @ 0x184f0. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern uintptr_t FUN_000167a8(void);
 extern void FUN_000182c8(uint32_t connection);
 extern void FUN_00018334(const void *connection, char *description);
-extern void FUN_00019c70(uintptr_t format, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int32_t FUN_00032ee4(void);
 extern void FUN_0004c0a8(uint32_t enabled);
 extern void FUN_0007c0a8(uint32_t milliseconds);

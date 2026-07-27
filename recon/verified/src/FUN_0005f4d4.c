@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0005f4d4 @ 0x5f4d4  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0007e2fa(unsigned int, unsigned int, unsigned int, unsigned int);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern unsigned long long FUN_0007e2ec(unsigned int, unsigned int);
 
 static void merge_tail(unsigned int r0, unsigned int r1)

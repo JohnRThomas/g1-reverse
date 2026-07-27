@@ -3,7 +3,7 @@
 #include <stdint.h>
 typedef unsigned (*codep)(int,unsigned,unsigned);
 extern void FUN_0007e2ec(int,unsigned);
-extern void FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_0008638c(int);
 unsigned FUN_000639d4(int param_1){
   unsigned char bVar1; int iVar2; unsigned uVar3; unsigned uVar4; unsigned *puVar5; unsigned uVar6; unsigned uVar7;

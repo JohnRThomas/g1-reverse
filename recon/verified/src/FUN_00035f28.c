@@ -14,8 +14,8 @@
 #define get_device_info FUN_000167a8
 #define reflash_fb_data_to_lcd FUN_00047260
 
-extern void log_message(uintptr_t, ...);
-extern void debug_print(uintptr_t, ...);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern void gui_canvas_flags_clear_bit1(void);
 extern void gui_canvas_flags_set_bit1(void);
 extern void draw_message(uint32_t, int);

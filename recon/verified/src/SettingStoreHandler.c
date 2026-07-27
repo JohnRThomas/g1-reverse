@@ -62,9 +62,9 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern void DEBUG_PRINT(unsigned int format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern unsigned int FUN_000167a8(void);
-extern void FUN_00019c70(unsigned int format, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00072240(unsigned int,void*,unsigned int,unsigned int);
 extern int FUN_0008638c(unsigned int);
 #define DAT_0002418c 0x20003994UL

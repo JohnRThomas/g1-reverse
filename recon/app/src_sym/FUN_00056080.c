@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 typedef int (*fnptr_t)(int,int,int);
-extern void printk(int a,int b,int c,int d);
+extern void printk(unsigned long, ...);
 extern void assert_post_action(int a,int b);
 extern void net_pkt_skip(int a);
 void FUN_00056080(int param_1, int param_2)

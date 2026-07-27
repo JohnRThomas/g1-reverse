@@ -1,7 +1,7 @@
 /* Reconstructed register_ipc_service_recv_callback @ 0x25ae8  (CFG-directed candidate) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
-extern void FUN_00019c70(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 int register_ipc_service_recv_callback(unsigned int param_1)
 {

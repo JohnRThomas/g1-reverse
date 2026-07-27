@@ -44,7 +44,7 @@ extern int FUN_000167a8();
 extern int FUN_00019b38();
 extern int FUN_00019b48();
 extern int FUN_00019b54();
-extern int FUN_00019c70();
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00047b1c();
 extern int FUN_00023eec();
 extern int FUN_00048a3c();
@@ -61,7 +61,7 @@ extern int FUN_00086be4();
 extern int FUN_00086c04();
 extern int FUN_00086c1e();
 extern int FUN_00086c78();
-extern int DEBUG_PRINT();
+extern void DEBUG_PRINT(unsigned long, ...);
 
 #define BLE_LOG_LEVEL (*(volatile int32_t *)(uintptr_t)0x2000230c)
 #define BLE_IS_DEBUG  (*(volatile uint32_t *)(uintptr_t)0x20007554)

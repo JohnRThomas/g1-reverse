@@ -44,8 +44,7 @@ extern packet_t *FUN_0005f2d4(packet_t *packet);
 extern uint64_t FUN_0005ee08(uint8_t kind);
 extern packet_t *FUN_000836de(uint32_t a, uint32_t b, uint32_t c, uint32_t d);
 extern packet_t *FUN_000569ec(uint32_t a, uint32_t b, uint32_t c, uint32_t d);
-extern void FUN_0007e2fa(uintptr_t subsystem, uintptr_t file,
-                         uintptr_t message, unsigned line);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t message, unsigned line);
 extern void FUN_0005f4d4(void *cursor, unsigned amount);
 extern void FUN_00083766(void *cursor, uint16_t amount);

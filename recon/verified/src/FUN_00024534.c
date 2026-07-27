@@ -1,8 +1,8 @@
 /* Reconstructed FUN_00024534 @ 0x24534  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(unsigned,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
-extern void FUN_00019c70(unsigned,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0008638c(unsigned);
 extern void FUN_00086c04(unsigned,int,int);
 extern void FUN_00086c78(unsigned,int,int);

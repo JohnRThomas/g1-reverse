@@ -1,5 +1,5 @@
 /* Reconstructed FUN_000365ec @ 0x365ec  (parity: 300/300 trials, PROVEN) */
-extern void DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int  FUN_000167a8(void);
 extern void FUN_00036558(int,int);
 extern int  FUN_00076d6c(int);

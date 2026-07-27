@@ -1,10 +1,10 @@
 /* Reconstructed FUN_00018c48 @ 0x18c48  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int DEBUG_PRINT(int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
 extern int FUN_000181fc(int);
 extern int FUN_00018bb4(int);
-extern int FUN_00019c70(uintptr_t, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00072880(int);
 extern int FUN_0007c0c8(void);
 extern int FUN_00086c78(int,int,int);

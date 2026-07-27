@@ -1044,7 +1044,7 @@ LAB_0003803a:
           }
           if (2 < *piVar2) {
             if (*DAT_00037ea4 == 0) {
-              log_message(DAT_00037eac,DAT_00037ea8);
+              log_message(DAT_00037eac,DAT_00037ea8,0);
             }
             else {
               debug_print(DAT_00037eac,DAT_00037ea8,0);

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00067938 @ 0x67938  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 
-extern int FUN_0007e2fa(int,int,int,int,int);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_0007e2ec(int,int);
 extern int FUN_0008539a(int,int);
 extern int FUN_00085316(int,int);

@@ -18,8 +18,8 @@
 /* Reconstructed SendDashboardLockInfoToApp @ 0x25e2c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int log_message(int,...);
-extern int debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern int send_response_data_to_msgqueue(void*,...);
 extern int send_response_data_to_ble(void);
 extern int read_volatile_u32_a(int,...);
@@ -42,7 +42,7 @@ void SendDashboardLockInfoToApp(unsigned p1, unsigned p2, unsigned p3){
             if(*(volatile int*)0x20007554==0){
               log_message(((unsigned long)"%s(): send dashboard lock info to app ,status = %d\n \n"),((unsigned long)"SendDashboardLockInfoToApp"),1);
             } else {
-              debug_print();
+              debug_print(((unsigned long)"%s(): send dashboard lock info to app ,status = %d\n \n"),((unsigned long)"SendDashboardLockInfoToApp"),1);
             }
           }
           send_response_data_to_msgqueue((void*)buf,6);

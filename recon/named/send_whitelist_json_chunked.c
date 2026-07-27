@@ -71,5 +71,5 @@ void send_whitelist_json_chunked(int param_1,int param_2)
     return;
   }
   if (*E != 0) { debug_print(((unsigned long)"[%s-%d] total_len is %d \n"),((unsigned long)"get_whitelist_app_from_device"),0x23f,0); return; }
-  log_message(((unsigned long)"[%s-%d] total_len is %d \n"),((unsigned long)"get_whitelist_app_from_device"),0x23f);
+  log_message(((unsigned long)"[%s-%d] total_len is %d \n"),((unsigned long)"get_whitelist_app_from_device"),0x23f,0);
 }

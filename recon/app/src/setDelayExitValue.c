@@ -1,7 +1,7 @@
 /* Reconstructed setDelayExitValue @ 0x49000  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int);
-extern void FUN_00019c70(unsigned int,unsigned int,unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 unsigned int setDelayExitValue(unsigned int param_1){
     if(*(volatile int*)0x2000230cUL > 2){
         if(*(volatile unsigned int*)0x20007554UL==0){

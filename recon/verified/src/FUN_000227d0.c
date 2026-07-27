@@ -1,8 +1,8 @@
 /* Reconstructed FUN_000227d0 @ 0x227d0. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
-extern void FUN_00019c70(uint32_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00022658(const void *source, void *destination, int count);
 
 int FUN_000227d0(const uint8_t *source, uint8_t *destination,

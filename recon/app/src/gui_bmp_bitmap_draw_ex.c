@@ -1,8 +1,8 @@
 /* Reconstructed gui_bmp_bitmap_draw_ex @ 0x435d4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void FUN_0007dda4(unsigned int message, unsigned int function);
+extern void FUN_0007dda4(unsigned long, ...);
 extern int FUN_000167a8(void);
-extern int FUN_00019c70(void);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000431a8(void);
 extern int FUN_0004588c(int,...);
 extern int FUN_000471cc(int,...);
@@ -62,7 +62,7 @@ unsigned int gui_bmp_bitmap_draw_ex(unsigned int param_1, int param_2, int param
     if (iVar3 == 0) {
         FUN_0007dda4(uVar5, 0x000aadb9);
     } else {
-        FUN_00019c70();
+        FUN_00019c70(uVar5, 0x000aadb9);
     }
     return 0xffffffff;
 }

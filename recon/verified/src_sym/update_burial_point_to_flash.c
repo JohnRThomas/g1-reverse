@@ -1,7 +1,7 @@
 /* Reconstructed update_burial_point_to_flash @ 0x23014  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int a, unsigned int b);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern int flash_settings_read(unsigned int a, void *b, unsigned int n);
 extern int flash_settings_write_and_verify(unsigned int a, void *b, unsigned int n);
 extern int memcmp(void *a, void *b, unsigned int n);
@@ -18,7 +18,7 @@ unsigned int update_burial_point_to_flash(char *param_1)
         if (*(volatile int *)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
             DEBUG_PRINT(0x9e655U, 0x9e789U);
         } else {
-            debug_print();
+            debug_print(0x9e655U, 0x9e789U);
         }
     }
     iVar2 = flash_settings_read(0x135000U, buf, 0xc0);
@@ -47,7 +47,7 @@ unsigned int update_burial_point_to_flash(char *param_1)
     if (iVar2 == 0) {
         DEBUG_PRINT(format_string, 0x9e789U);
     } else {
-        debug_print();
+        debug_print(format_string, 0x9e789U);
     }
     return 0xffffffff;
 }

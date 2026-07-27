@@ -8,7 +8,7 @@ extern void FUN_00073b1c(void);
 extern void FUN_00073bf4(void);
 extern void FUN_00074bf4(int,unsigned,int,int);
 extern void FUN_0007e2ec(unsigned,unsigned);
-extern void FUN_0007e2fa(unsigned,unsigned,unsigned,unsigned);
+extern void FUN_0007e2fa(unsigned long, ...);
 void FUN_00071f38(void)
 {
   i64 lVar1; u64 uVar8;

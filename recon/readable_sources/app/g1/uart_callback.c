@@ -35,12 +35,12 @@
  *   g_uart_rx_frame_buf                      @ 0x2001a129
  */
 /* Reconstructed uart_callback @ 0x33384  (parity: 295/300 trials, PROVEN) */
-extern void log_message(int,...);
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern int  k_mem_slab_alloc(int,void*,int,int);
 extern void k_mem_slab_free(int,int);
 extern void assert_post_action(int,int);
-extern void printk(int,...);
+extern void printk(unsigned long, ...);
 extern void memcpy(int,...);
 extern void memset_bytes(void*,int,int);
 #define VI(a) (*(volatile int*)(a))
@@ -51,13 +51,13 @@ void uart_callback(int param_1,unsigned char *param_2,unsigned int param_3){
   int iVar2; unsigned int uVar5,uVar7; char cVar1; int iVar6; void *local_1c=param_2;
   switch (*param_2) {
   case 0:
-    if (2 < *lvl) { if(*g8==0) log_message(((unsigned long)"%s(): Tx sent %d bytes\n") /*=0xa797b*/,((unsigned long)"uart_callback") /*=0xa7b56*/,VI((int)param_2+8),0,param_1); else debug_print(); }
+    if (2 < *lvl) { if(*g8==0) log_message(((unsigned long)"%s(): Tx sent %d bytes\n") /*=0xa797b*/,((unsigned long)"uart_callback") /*=0xa7b56*/,VI((int)param_2+8),0,param_1); else debug_print(((unsigned long)"%s(): Tx sent %d bytes\n") /*=0xa797b*/,((unsigned long)"uart_callback") /*=0xa7b56*/,VI((int)param_2+8),0,param_1); }
     for (uVar5=0; uVar5 < (unsigned int)VI((int)param_2+8); uVar5++)
       log_message(((unsigned long)&rodata_a7993) /*=0xa7993*/, VB(VI((int)param_2+4)+uVar5));
     break;
   case 1:
     if (*lvl < 1) return;
-    if (*g8 != 0) { debug_print(); return; }
+    if (*g8 != 0) { debug_print(((unsigned long)"%s(): Tx aborted\n") /*=0xa7999*/,((unsigned long)"uart_callback") /*=0xa7b56*/); return; }
     log_message(((unsigned long)"%s(): Tx aborted\n") /*=0xa7999*/,((unsigned long)"uart_callback") /*=0xa7b56*/); return;
   case 2:
     uVar5 = VI((int)param_2+8);

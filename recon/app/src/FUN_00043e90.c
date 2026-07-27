@@ -15,8 +15,8 @@ extern void FUN_0007d53a(uintptr_t display, const void *bitmap, int half_width,
 extern uintptr_t FUN_000167a8(void);
 extern void FUN_000471cc(uintptr_t, int, int, int, int, int);
 extern void FUN_00047260(uintptr_t, uintptr_t, int, int, int, int);
-extern void DEBUG_PRINT(uintptr_t, ...);
-extern void FUN_00019c70(uintptr_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 unsigned FUN_00043e90(unsigned unused, uintptr_t text, int font,
                       int left, int top, int right, int bottom,

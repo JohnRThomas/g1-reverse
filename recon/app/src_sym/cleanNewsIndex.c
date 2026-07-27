@@ -1,8 +1,8 @@
 /* Reconstructed cleanNewsIndex @ 0x37234  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t,uint32_t,uint32_t,uint32_t);
-extern void debug_print(uint32_t,uint32_t);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 void cleanNewsIndex(void)
 {
@@ -12,7 +12,7 @@ void cleanNewsIndex(void)
     return;
   }
   if (*(volatile int32_t*)0x20007554UL /* device_info.is_debug (+0xb58) */ != 0) {
-    debug_print(0xa8ff3UL, 0xa958fUL);
+    debug_print(0xa8ff3UL, 0xa958fUL, 0xa958fUL, 0);
     return;
   }
   DEBUG_PRINT(0xa8ff3UL, 0xa958fUL, 0xa958fUL, 0);

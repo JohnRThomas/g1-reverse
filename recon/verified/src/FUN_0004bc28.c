@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0004bc28 @ 0x4bc28  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_0007e2ec(int,int);
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_00086534(int,int,int);
 extern int FUN_00086c78(int,int,int);
 void FUN_0004bc28(int param_1, uint32_t *param_2, uint32_t param_3, uint32_t param_4){

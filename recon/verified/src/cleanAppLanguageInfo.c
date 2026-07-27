@@ -1,9 +1,9 @@
 /* Reconstructed cleanAppLanguageInfo @ 0x23b78  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_00019c70(int, int);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000720d0(void*, void*, int, int);
 extern void FUN_00072880(void*);
-extern int DEBUG_PRINT(int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
 {

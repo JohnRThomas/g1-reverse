@@ -6,7 +6,7 @@ extern void FUN_00072078(void*);
 extern int FUN_00073f6c(void*,unsigned,void*,unsigned,unsigned,unsigned,unsigned);
 extern uintptr_t g1_recon_tagged_heap_node_release(unsigned *node, int release);
 extern void FUN_0007e2ec(unsigned,unsigned);
-extern void FUN_0007e2fa(unsigned,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 
 uint32_t FUN_000727ac(unsigned *param_1, unsigned param_2, unsigned param_3, unsigned param_4){
     unsigned *puVar7 = param_1 + 2;

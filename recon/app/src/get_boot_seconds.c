@@ -2,8 +2,8 @@
 
 extern unsigned long long FUN_0007d9a4(void);
 extern int FUN_0000e1a4(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void FUN_00019c70(unsigned int,unsigned int,unsigned int,unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 int get_boot_seconds(void)
 {

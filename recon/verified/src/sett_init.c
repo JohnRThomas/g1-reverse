@@ -2,8 +2,8 @@
 
 extern int FUN_0004e744(void);
 extern int FUN_0004e494(unsigned int);
-extern void FUN_0007dda4(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(unsigned int, unsigned int, ...);
+extern void FUN_0007dda4(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 void sett_init(int *param_1)
 {

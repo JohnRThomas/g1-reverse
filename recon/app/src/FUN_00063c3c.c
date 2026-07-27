@@ -6,7 +6,7 @@ extern int FUN_00063ba8(int);
 extern int FUN_00063bcc(void);
 extern int FUN_00063c14(int);
 extern void FUN_0007e2ec(unsigned,unsigned);
-extern void FUN_0007e2fa(unsigned,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 void FUN_00063c3c(void){
   int iVar1; unsigned local_18, local_14;
   unsigned char r5 = *(volatile unsigned char*)0x2001d563UL;

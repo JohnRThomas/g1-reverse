@@ -129,9 +129,9 @@ typedef struct {
 #define clear_bytes memset_bytes
 
 /* K&R prototypes are retained only at variadic/decompiler boundaries. */
-extern int log_message();
+extern void log_message(unsigned long, ...);
 extern int get_device_info();
-extern int debug_print();
+extern void debug_print(unsigned long, ...);
 extern int upgrade_language_setting();
 extern int upgrade_dashboard_start_mode();
 extern int get_pending_language_code();
@@ -189,7 +189,7 @@ LAB_00047c6a:
     if (iVar16 == 0) {
         log_message(uVar9, uVar13);
     } else {
-        debug_print();
+        debug_print(uVar9, uVar13);
     }
 LAB_00047c76:
     do {
@@ -208,7 +208,7 @@ LAB_00047c76:
                         if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                             log_message(((unsigned long)"%s(): store app response data to cache\n") /*=0xef0a1*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                         } else {
-                            debug_print();
+                            debug_print(((unsigned long)"%s(): store app response data to cache\n") /*=0xef0a1*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                         }
                     }
                     clear_bytes((void *)((unsigned long)&g_2001d432) /*=0x2001d432*/, 0, 0x14);
@@ -225,7 +225,7 @@ LAB_00047c76:
                         if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                             log_message(((unsigned long)"%s(): received send response data to app command\n") /*=0xef0c9*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                         } else {
-                            debug_print();
+                            debug_print(((unsigned long)"%s(): received send response data to app command\n") /*=0xef0c9*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                         }
                     }
                     pcVar11 = (char *)((unsigned long)&g_2001d431) /*=0x2001d431*/;
@@ -236,7 +236,7 @@ LAB_00047c76:
                             if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                                 log_message(((unsigned long)&rodata_ef0fb) /*=0xef0fb*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                             } else {
-                                debug_print();
+                                debug_print(((unsigned long)&rodata_ef0fb) /*=0xef0fb*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                             }
                         }
                         transfer_packet.value = 0;
@@ -259,7 +259,7 @@ LAB_00047c76:
                         if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                             log_message(((unsigned long)"%s(): running proxy thread,send audio stream data to app \n") /*=0xef16d*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                         } else {
-                            debug_print();
+                            debug_print(((unsigned long)"%s(): running proxy thread,send audio stream data to app \n") /*=0xef16d*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                         }
                     }
                     pcVar8 = (char *)((unsigned long)&g_2001d263) /*=0x2001d263*/;
@@ -291,7 +291,7 @@ LAB_00047c76:
                                 if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                                     log_message(((unsigned long)"%s(): read voice manager block data,start send voice data to app\n") /*=0xef1a8*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 } else {
-                                    debug_print();
+                                    debug_print(((unsigned long)"%s(): read voice manager block data,start send voice data to app\n") /*=0xef1a8*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 }
                             }
                             clear_bytes((void *)((unsigned long)&g_2001d34b) /*=0x2001d34b*/, 0, 0xe6);
@@ -346,7 +346,7 @@ LAB_00047c76:
                                         if (*piVar19 == 0) {
                                             log_message(((unsigned long)"%s(): retry send audio data first packet\n") /*=0xef1ea*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                         } else {
-                                            debug_print();
+                                            debug_print(((unsigned long)"%s(): retry send audio data first packet\n") /*=0xef1ea*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                         }
                                     }
                                     iVar16 = iVar16 + -1;
@@ -361,7 +361,7 @@ LAB_00047c76:
                                         if (*piVar19 == 0) {
                                             log_message(((unsigned long)&rodata_ef214) /*=0xef214*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                         } else {
-                                            debug_print();
+                                            debug_print(((unsigned long)&rodata_ef214) /*=0xef214*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                         }
                                     }
                                 }
@@ -387,7 +387,7 @@ LAB_00047e22:
                             if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                                 log_message(((unsigned long)"%s(): error packet order,can't send any audio data to app\n") /*=0xef260*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                             } else {
-                                debug_print();
+                                debug_print(((unsigned long)"%s(): error packet order,can't send any audio data to app\n") /*=0xef260*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                             }
                         }
 LAB_00048082:
@@ -429,7 +429,7 @@ LAB_00048082:
                                 if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                                     log_message(((unsigned long)&rodata_9ea0a) /*=0x9ea0a*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, 0x400000);
                                 } else {
-                                    debug_print();
+                                    debug_print(((unsigned long)&rodata_9ea0a) /*=0x9ea0a*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, 0x400000);
                                 }
                             }
 LAB_0004820e:
@@ -444,7 +444,7 @@ LAB_0004820e:
                                 if (*piVar19 == 0) {
                                     log_message(((unsigned long)"%s(): retry send audio data\n") /*=0xef2df*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 } else {
-                                    debug_print();
+                                    debug_print(((unsigned long)"%s(): retry send audio data\n") /*=0xef2df*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 }
                             }
                             iVar12 = iVar12 + -1;
@@ -453,7 +453,7 @@ LAB_0004820e:
                                     if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                                         log_message(((unsigned long)&rodata_ef214) /*=0xef214*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                     } else {
-                                        debug_print();
+                                        debug_print(((unsigned long)&rodata_ef214) /*=0xef214*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                     }
                                 }
                                 goto LAB_0004820e;
@@ -462,7 +462,7 @@ LAB_0004820e:
                                 if (*piVar19 == 0) {
                                     log_message(((unsigned long)"%s(): retry send audio data\n") /*=0xef2df*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 } else {
-                                    debug_print();
+                                    debug_print(((unsigned long)"%s(): retry send audio data\n") /*=0xef2df*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 }
                             }
                         }
@@ -506,7 +506,7 @@ LAB_00048054:
                         if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                             log_message(((unsigned long)"%s(): running proxy thread,send audio infomation data to app \n") /*=0xef338*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                         } else {
-                            debug_print();
+                            debug_print(((unsigned long)"%s(): running proxy thread,send audio infomation data to app \n") /*=0xef338*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                         }
                     }
                     piVar19 = (int *)((unsigned long)&rodata_87bf0) /*=0x87bf0*/;
@@ -625,7 +625,7 @@ LAB_000480f4:
                                 if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                                     log_message(((unsigned long)"%s(): SEND power event to slave success.\n") /*=0xef40d*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 } else {
-                                    debug_print();
+                                    debug_print(((unsigned long)"%s(): SEND power event to slave success.\n") /*=0xef40d*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 }
                             }
                             display_power_event(cVar23);
@@ -636,7 +636,7 @@ LAB_000480f4:
                             if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                                 log_message(((unsigned long)"%s(): SYNC TO Slave failed % times,don't exec quick note start function.\n") /*=0xa125e*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
                             } else {
-                                debug_print();
+                                debug_print(((unsigned long)"%s(): SYNC TO Slave failed % times,don't exec quick note start function.\n") /*=0xa125e*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
                             }
                         }
                         iVar16 = iVar16 + 1;
@@ -655,7 +655,7 @@ LAB_000480f4:
                                 if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                                     log_message(((unsigned long)"%s(): Send app language upgrade msg to setting proxy task\n") /*=0xef437*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 } else {
-                                    debug_print();
+                                    debug_print(((unsigned long)"%s(): Send app language upgrade msg to setting proxy task\n") /*=0xef437*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 }
                             }
                             upgrade_language_setting(cVar23);
@@ -665,7 +665,7 @@ LAB_000480f4:
                             if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                                 log_message(((unsigned long)"%s(): SYNC TO Slave failed % times,don't exec quick note start function.\n") /*=0xa125e*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
                             } else {
-                                debug_print();
+                                debug_print(((unsigned long)"%s(): SYNC TO Slave failed % times,don't exec quick note start function.\n") /*=0xa125e*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
                             }
                         }
                         iVar16 = iVar16 + 1;
@@ -683,7 +683,7 @@ LAB_000480f4:
                                 if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                                     log_message(((unsigned long)"%s(): Send Dashboard startup  mode  msg to setting proxy task\n") /*=0xef472*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 } else {
-                                    debug_print();
+                                    debug_print(((unsigned long)"%s(): Send Dashboard startup  mode  msg to setting proxy task\n") /*=0xef472*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 }
                             }
                             transfer_packet.word.low =
@@ -698,7 +698,7 @@ LAB_000480f4:
                                 if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                                     log_message(((unsigned long)&rodata_ef0fb) /*=0xef0fb*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 } else {
-                                    debug_print();
+                                    debug_print(((unsigned long)&rodata_ef0fb) /*=0xef0fb*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                 }
                             }
                             upgrade_dashboard_start_mode(cVar23);
@@ -708,7 +708,7 @@ LAB_000480f4:
                             if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                                 log_message(((unsigned long)"%s(): SYNC TO Slave failed % times,don't exec quick note start function.\n") /*=0xa125e*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
                             } else {
-                                debug_print();
+                                debug_print(((unsigned long)"%s(): SYNC TO Slave failed % times,don't exec quick note start function.\n") /*=0xa125e*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
                             }
                         }
                         iVar16 = iVar16 + 1;
@@ -738,7 +738,7 @@ LAB_000480f4:
                                     if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                                         log_message(((unsigned long)"%s(): SEND DELAY CLOSE TO SLAVE SUCCESS,master start delay close function\n") /*=0xa116d*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                     } else {
-                                        debug_print();
+                                        debug_print(((unsigned long)"%s(): SEND DELAY CLOSE TO SLAVE SUCCESS,master start delay close function\n") /*=0xa116d*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                     }
                                 }
                                 *(int *)((unsigned long)&g_20007b38) /*=0x20007b38*/ = *(int *)((unsigned long)&g_20007b38) /*=0x20007b38*/ | 2;
@@ -748,7 +748,7 @@ LAB_000480f4:
                                 if (*piVar19 == 0) {
                                     log_message(((unsigned long)"%s(): SYNC TO Slave failed % times,don't exec double click startup dashboard function.\n") /*=0xa1027*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
                                 } else {
-                                    debug_print();
+                                    debug_print(((unsigned long)"%s(): SYNC TO Slave failed % times,don't exec double click startup dashboard function.\n") /*=0xa1027*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
                                 }
                             }
                             iVar16 = iVar16 + 1;
@@ -770,7 +770,7 @@ LAB_000480f4:
                                     if (*(int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                                         log_message(((unsigned long)"%s(): SEND DELAY CLOSE TO SLAVE SUCCESS,master start delay close function\n") /*=0xa116d*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                     } else {
-                                        debug_print();
+                                        debug_print(((unsigned long)"%s(): SEND DELAY CLOSE TO SLAVE SUCCESS,master start delay close function\n") /*=0xa116d*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/);
                                     }
                                 }
                                 *(int *)((unsigned long)&g_20007b38) /*=0x20007b38*/ = *(int *)((unsigned long)&g_20007b38) /*=0x20007b38*/ | 2;
@@ -780,7 +780,7 @@ LAB_000480f4:
                                 if (*piVar19 == 0) {
                                     log_message(((unsigned long)"%s(): SYNC TO Slave failed % times,don't exec double click startup dashboard function.\n") /*=0xa1027*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
                                 } else {
-                                    debug_print();
+                                    debug_print(((unsigned long)"%s(): SYNC TO Slave failed % times,don't exec double click startup dashboard function.\n") /*=0xa1027*/, ((unsigned long)&rodata_ef76f) /*=0xef76f*/, iVar16);
                                 }
                             }
                             iVar16 = iVar16 + 1;

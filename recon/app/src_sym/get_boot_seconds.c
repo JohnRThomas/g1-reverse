@@ -2,8 +2,8 @@
 
 extern unsigned long long k_uptime_get_9(void);
 extern int __aeabi_ldivmod(void);
-extern void DEBUG_PRINT(void);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 int get_boot_seconds(void)
 {

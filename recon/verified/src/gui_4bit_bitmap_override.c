@@ -1,8 +1,8 @@
 /* Reconstructed gui_4bit_bitmap_override @ 0x43d78  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern void *FUN_000167a8(void);
-extern void FUN_00019c70(uint32_t, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000431a8(void);
 extern int FUN_0004588c(int, uint32_t, int*, int*, uint32_t*, int);
 extern void FUN_00047260(uint32_t, uint32_t, unsigned int, unsigned int, int, int);

@@ -18,7 +18,7 @@ extern void FUN_00073840(void *thread);
 extern void FUN_000737d8(int reschedule);
 extern void FUN_00050304(void *thread);
 extern void FUN_000501d4(uint32_t key);
-extern void FUN_0007e2fa(uint32_t, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uint32_t, uint32_t);
 
 #define z_spin_lock_valid FUN_00072040

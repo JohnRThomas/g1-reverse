@@ -3,8 +3,8 @@
 extern int flash_settings_read(unsigned int, void*, int, unsigned int, unsigned int);
 extern unsigned int FUN_00052c40(void);
 extern void memset_bytes(void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int load_burial_point(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -28,7 +28,7 @@ unsigned int load_burial_point(int param_1, unsigned int param_2, unsigned int p
             if (*(volatile unsigned int*)0x20007554UL /* device_info.is_debug @+0xB58  (log sink select: 0=RTT DEBUG_PRINT) */ == 0) {
                 DEBUG_PRINT(0x9e67c, 0x9e777);
             } else {
-                debug_print();
+                debug_print(0x9e67c, 0x9e777);
             }
         }
         uVar3 = 0xffffffff;

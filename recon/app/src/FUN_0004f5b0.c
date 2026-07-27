@@ -2,7 +2,7 @@
 extern int  FUN_00072040(int);
 extern void FUN_00072078(int);
 extern int  FUN_0007205c(int);
-extern void FUN_0007e2fa(int,int,int,int);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(int,int) __attribute__((noreturn));
 extern void FUN_0004d944(int,int,void*);
 extern void thunk_FUN_000868b4(int);

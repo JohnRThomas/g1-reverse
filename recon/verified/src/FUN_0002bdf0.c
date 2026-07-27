@@ -5,8 +5,8 @@
  */
 #include <stdint.h>
 
-extern int FUN_00019c70(uintptr_t format, ...);
-extern int DEBUG_PRINT(uintptr_t format, ...);
+extern void FUN_00019c70(unsigned long, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 int FUN_0002bdf0(uint8_t *device)
 {

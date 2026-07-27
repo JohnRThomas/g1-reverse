@@ -15,8 +15,8 @@
 extern unsigned long long k_uptime_get_2(void);
 extern unsigned int get_device_info(void);
 extern unsigned int sync_to_slave(unsigned int, int, void*, int, unsigned int);
-extern void log_message(unsigned int, ...);
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int sync_message_signal_to_slave(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {
@@ -41,14 +41,14 @@ unsigned int sync_message_signal_to_slave(unsigned int param_1, unsigned int par
     if (*(volatile unsigned int*)0x20007554UL == 0) {
         log_message(uVar4, ((unsigned long)"sync_message_signal_to_slave"));
     } else {
-        debug_print();
+        debug_print(uVar4, ((unsigned long)"sync_message_signal_to_slave"));
     }
     uVar8 = k_uptime_get_2();
     if ((long long)(lVar7 + 3000) < (long long)uVar8) {
         if (*(volatile unsigned int*)0x20007554UL == 0) {
             log_message(((unsigned long)"retry sync_to_slave failed !"));
         } else {
-            debug_print();
+            debug_print(((unsigned long)"retry sync_to_slave failed !"));
         }
     }
     return uVar2;

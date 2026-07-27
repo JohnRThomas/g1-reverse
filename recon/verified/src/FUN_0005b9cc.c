@@ -9,7 +9,7 @@ struct attr_value {
 };
 
 extern __attribute__((noreturn)) void FUN_0007e2ec(uint32_t,uint32_t);
-extern void FUN_0007e2fa(uint32_t,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_00080d3e(void*,void*);
 extern void FUN_00082a42(uint32_t,uint32_t,void*);
 extern uint32_t FUN_00082aee(int,uint32_t,int*,uint32_t,uint32_t,uint32_t);

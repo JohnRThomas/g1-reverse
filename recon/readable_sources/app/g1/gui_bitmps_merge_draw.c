@@ -20,9 +20,9 @@
  *   g_gui_active_canvas                      @ 0x2000a034
  */
 /* Reconstructed gui_bitmps_merge_draw @ 0x43bd8  (parity: 300/300 trials, PROVEN) */
-extern void log_message(unsigned int message, unsigned int function);
+extern void log_message(unsigned long, ...);
 extern int  get_device_info(void);
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern unsigned long long atomic_get_3_0(void);
 extern void clean_fb_data(int,int,int,int,int,int);
 extern void reflash_fb_data_to_lcd(int,int,int,int,int,int);
@@ -82,6 +82,6 @@ int gui_bitmps_merge_draw(unsigned int param_1,int param_2,int param_3,int param
     if (*lvl < 2) return -1;
     iVar4 = *g8; uVar9 = 0xaa9a3;
   }
-  if (iVar4 == 0) log_message(uVar9, ((unsigned long)&rodata_aacc8) /*=0xaacc8*/); else debug_print();
+  if (iVar4 == 0) log_message(uVar9, ((unsigned long)&rodata_aacc8) /*=0xaacc8*/); else debug_print(uVar9, ((unsigned long)&rodata_aacc8) /*=0xaacc8*/);
   return -1;
 }

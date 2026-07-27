@@ -110,12 +110,12 @@ typedef uint32_t uint; typedef uint64_t ulonglong; typedef uint32_t code(uintptr
 #define PTR_s_spec_ble_command_hook_0000f460 0x0009dfa9u
 #define PTR_s_spec_ble_command_hook_0000fccc 0x0009dfa9u
 #define PTR_s_t0____d_error_count____d_0000f790 0x0009dd09u
-extern uint32_t DEBUG_PRINT(uintptr_t,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern uint32_t FUN_0000eefe(uintptr_t,...);
 extern uint32_t FUN_0000ef12(uintptr_t,...);
 extern uint32_t FUN_00010a68(uintptr_t,...);
 extern uint32_t FUN_000181fc(uintptr_t,...);
-extern uint32_t FUN_00019c70(uintptr_t,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern uint32_t FUN_00021a40(uintptr_t,...);
 extern uint32_t FUN_00021c04(uintptr_t,...);
 extern uint32_t FUN_00021cd8(uintptr_t,...);
@@ -541,7 +541,7 @@ LAB_0000effe:
                 }
                 else {
                   FUN_00019c70(PTR_s__s______cmd_type__s__value__s__t_0000f780,DAT_0000f770,
-                               &local_5c4);
+                              &local_5c4,&local_5a0,2);
                 }
               }
               uVar12 = 2;
@@ -571,7 +571,7 @@ LAB_0000effe:
             }
             else {
               FUN_00019c70(PTR_s__s____cmd_type__s__value__s__tx__0000f48c,
-                           PTR_s_spec_ble_command_hook_0000f460,&local_5c4,&local_5a0,0);
+                          PTR_s_spec_ble_command_hook_0000f460,&local_5c4,&local_5a0,0,uVar9,uVar8);
             }
           }
           uVar15 = 9;

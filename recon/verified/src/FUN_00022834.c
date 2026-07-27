@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00022834 @ 0x22834  (parity: 300/300 trials, PROVEN) */
 
 typedef int (*codeptr)(int,...);
-extern int DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
 extern int FUN_00074844(int,int);
 extern int FUN_0008638c(int);

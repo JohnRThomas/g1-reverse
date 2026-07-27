@@ -2,7 +2,7 @@
 
 extern int FUN_00066850(void);
 extern void FUN_0007e2ec(void*, int);
-extern void FUN_0007e2fa(void*, void*, void*, int, unsigned int);
+extern void FUN_0007e2fa(unsigned long, ...);
 
 #define g1_recon_nrfx_qspi_init FUN_00066994
 int g1_recon_nrfx_qspi_init(int param_1, unsigned int param_2,
@@ -26,7 +26,7 @@ int g1_recon_nrfx_qspi_init(int param_1, unsigned int param_2,
     }
     return iVar2;
   }
-  FUN_0007e2fa((void*)0x99cbdUL, (void*)0xf6c00UL, (void*)0xf6d5eUL, 0x19b, param_4);
+  FUN_0007e2fa((unsigned long)0x99cbdUL, (void*)0xf6c00UL, (void*)0xf6d5eUL, 0x19b, param_4);
   FUN_0007e2ec((void*)0xf6d5eUL, 0x19b);
   /* The diagnostic is noreturn in production, but the parity oracle returns.
      Preserve the live argument registers at the continuation. */

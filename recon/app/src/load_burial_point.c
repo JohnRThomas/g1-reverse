@@ -3,8 +3,8 @@
 extern int FUN_000225b4(unsigned int, void*, int, unsigned int, unsigned int);
 extern unsigned int FUN_00052c40(void);
 extern void FUN_00086c78(void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(unsigned int,unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 unsigned int load_burial_point(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

@@ -38,9 +38,9 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define NAN (__builtin_nanf(""))
 #define INFINITY (__builtin_inff())
 
-extern long long DEBUG_PRINT(uintptr_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
-extern void FUN_00019c70(uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00045764(uint16_t, uint32_t *, uint32_t *);
 extern int FUN_000457b0(uint16_t, uint32_t *, uint32_t *);
 extern int FUN_000457f4(uint16_t, uint32_t *, uint32_t *);
@@ -1049,7 +1049,7 @@ LAB_00045902:
     uVar7 = DAT_00046284;
 LAB_00045912:
     if (iVar8 == 0) {
-      DEBUG_PRINT(uVar4,uVar7);
+      DEBUG_PRINT(uVar4,uVar7,(uintptr_t)param_3,iVar8);
     }
     else {
       FUN_00019c70(uVar4,uVar7,(uintptr_t)param_3,iVar8);

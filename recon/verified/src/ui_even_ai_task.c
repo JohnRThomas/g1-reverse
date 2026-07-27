@@ -8,8 +8,8 @@
 
 /* Callee provenance (readable local name <- raw identity @ address). */
 extern uintptr_t get_device_info(void);                         /* FUN_000167a8 @ 0x000167a8 */
-extern int log_message(uintptr_t, uintptr_t, int, int);         /* FUN_0007dda4 @ 0x0007dda4 */
-extern int debug_print(uintptr_t, uintptr_t, int, int);         /* FUN_00019c70 @ 0x00019c70 */
+extern void log_message(unsigned long, ...);         /* FUN_0007dda4 @ 0x0007dda4 */
+extern void debug_print(unsigned long, ...);         /* FUN_00019c70 @ 0x00019c70 */
 extern int FUN_00023ee0(void);                                  /* @ 0x00023ee0 */
 extern uintptr_t FUN_0003be18(void *, ...);                     /* @ 0x0003be18 */
 extern uintptr_t FUN_000431b4(uintptr_t);                       /* @ 0x000431b4 */

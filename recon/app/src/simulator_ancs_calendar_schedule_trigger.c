@@ -1,8 +1,8 @@
 /* Reconstructed simulator_ancs_calendar_schedule_trigger @ 0x21cd8  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int FUN_000181fc(void);
-extern void FUN_0007dda4(unsigned int, unsigned int);
-extern void FUN_00019c70(unsigned int, unsigned int);
+extern void FUN_0007dda4(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00086c78(unsigned int, int, int);
 extern void FUN_0008705a(unsigned int, unsigned int, int);
 extern void FUN_0004a3d0(unsigned int, unsigned int);

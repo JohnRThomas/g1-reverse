@@ -2,8 +2,8 @@
 
 extern void memset_bytes(void*, int, int);
 extern int FUN_000720d0(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(unsigned int, unsigned int, unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int SendDashBoardStartupModeInfoToSlave(int param_1)
 {

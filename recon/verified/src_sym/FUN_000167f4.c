@@ -4,7 +4,7 @@ extern void power_down_panel(void);
 extern void power_down_imu_and_mic(void);
 extern void FUN_0007c038(unsigned int a);
 extern int FUN_00083dc8(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
-extern void DEBUG_PRINT(unsigned int a);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 unsigned int FUN_000167f4(void)
 {

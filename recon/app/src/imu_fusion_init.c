@@ -12,8 +12,8 @@
  */
 #include <stdint.h>
 
-extern int FUN_0007dda4(uint32_t format, uint32_t function, uint32_t a, uint32_t b);
-extern int FUN_00019c70(uint32_t format, uint32_t function, uint32_t a, uint32_t b);
+extern void FUN_0007dda4(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00016568(void);                                   /* get_device_type */
 extern int FUN_0007ca54(uint32_t device, int slot, void *value); /* dev_api_call_slot0 */
 extern void FUN_000265b8(void *state);                           /* imu_fusion_state_init */

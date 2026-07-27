@@ -1,8 +1,8 @@
 /* Reconstructed upgradeQuickNoteDataToFlash @ 0x24420  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_000720d0(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern void FUN_00072880(unsigned int);
 
 int upgradeQuickNoteDataToFlash(unsigned int param_1, unsigned int param_2, unsigned int param_3)
@@ -22,7 +22,7 @@ int upgradeQuickNoteDataToFlash(unsigned int param_1, unsigned int param_2, unsi
             if (*(volatile unsigned int*)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
                 DEBUG_PRINT(0x9edf3, 0x9f094, param_1);
             } else {
-                debug_print();
+                debug_print(0x9edf3, 0x9f094, param_1);
             }
         }
         FUN_00072880(*(volatile unsigned int*)0x200079e4UL /* device_info_t+0xfe8 (unmapped region) */);
@@ -32,7 +32,7 @@ int upgradeQuickNoteDataToFlash(unsigned int param_1, unsigned int param_2, unsi
             if (*(volatile unsigned int*)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
                 DEBUG_PRINT(0x9edc2, 0x9f094);
             } else {
-                debug_print();
+                debug_print(0x9edc2, 0x9f094);
             }
         }
         uVar2 = -1;

@@ -28,7 +28,7 @@ void retarget_lock_init(int *param_1)
   unsigned int uVar2;
 
   if (param_1 == 0) {
-    printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void*)((unsigned long)&rodata_f23d4) /*=0xf23d4*/, (void*)((unsigned long)"WEST_TOPDIR/zephyr/lib/libc/newlib/libc-hooks.c") /*=0xf22d5*/, 0x179);
+    printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void*)((unsigned long)&rodata_f23d4) /*=0xf23d4*/, (void*)((unsigned long)"WEST_TOPDIR/zephyr/lib/libc/newlib/libc-hooks.c") /*=0xf22d5*/, 0x179);
     uVar2 = 0x179;
     assert_post_action((void*)((unsigned long)"WEST_TOPDIR/zephyr/lib/libc/newlib/libc-hooks.c") /*=0xf22d5*/, uVar2);
   }
@@ -38,8 +38,8 @@ void retarget_lock_init(int *param_1)
     kmutex_dlist_init();
     return;
   }
-  printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void*)((unsigned long)&rodata_f23d3) /*=0xf23d3*/, (void*)((unsigned long)"WEST_TOPDIR/zephyr/lib/libc/newlib/libc-hooks.c") /*=0xf22d5*/, 0x181);
-  printk((void*)((unsigned long)"\trecursive lock allocation failed\n") /*=0xf240f*/, 0,0,0);
+  printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/, (void*)((unsigned long)&rodata_f23d3) /*=0xf23d3*/, (void*)((unsigned long)"WEST_TOPDIR/zephyr/lib/libc/newlib/libc-hooks.c") /*=0xf22d5*/, 0x181);
+  printk((unsigned long)((unsigned long)"\trecursive lock allocation failed\n") /*=0xf240f*/, 0,0,0);
   uVar2 = 0x181;
   assert_post_action((void*)((unsigned long)"WEST_TOPDIR/zephyr/lib/libc/newlib/libc-hooks.c") /*=0xf22d5*/, uVar2);
 }

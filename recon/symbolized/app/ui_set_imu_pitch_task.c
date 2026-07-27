@@ -100,7 +100,7 @@ unsigned ui_set_imu_pitch_task(int param_1, unsigned param_2, int param_3)
         if(param_3 != 2) return 0;
         if(2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/){
             if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)"%s(): set_imu_pitch process received exit packet ...\n") /*=0xd71ad*/,((unsigned long)"ui_set_imu_pitch_task") /*=0xd71e3*/);
-            else debug_print(0);
+            else debug_print(((unsigned long)"%s(): set_imu_pitch process received exit packet ...\n") /*=0xd71ad*/,((unsigned long)"ui_set_imu_pitch_task") /*=0xd71e3*/);
         }
         gui_screen_clear(0);
     } else {
@@ -109,7 +109,7 @@ unsigned ui_set_imu_pitch_task(int param_1, unsigned param_2, int param_3)
         if(param_3 != 2) return 0;
         if(2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/){
             if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)"%s(): set_imu_pitch process received exit packet ...\n") /*=0xd71ad*/,((unsigned long)"ui_set_imu_pitch_task") /*=0xd71e3*/);
-            else debug_print(0);
+            else debug_print(((unsigned long)"%s(): set_imu_pitch process received exit packet ...\n") /*=0xd71ad*/,((unsigned long)"ui_set_imu_pitch_task") /*=0xd71e3*/);
         }
         gui_screen_fade_out_transition(0);
     }

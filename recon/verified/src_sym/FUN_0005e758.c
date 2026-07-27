@@ -2,7 +2,7 @@
 #include <stdint.h>
 typedef void (*fnptr)(unsigned int, unsigned int);
 extern void assert_post_action(void);
-extern void printk(void);
+extern void printk(unsigned long, ...);
 
 void FUN_0005e758(unsigned short param_1, fnptr param_2, unsigned int param_3)
 {

@@ -1,7 +1,7 @@
 /* Reconstructed gui_bitmps_merge_draw @ 0x43bd8  (parity: 300/300 trials, PROVEN) */
-extern void FUN_0007dda4(unsigned int message, unsigned int function);
+extern void FUN_0007dda4(unsigned long, ...);
 extern int  FUN_000167a8(void);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned long, ...);
 extern unsigned long long FUN_000431a8(void);
 extern void FUN_000471cc(int,int,int,int,int,int);
 extern void FUN_00047260(int,int,int,int,int,int);
@@ -61,6 +61,6 @@ int gui_bitmps_merge_draw(unsigned int param_1,int param_2,int param_3,int param
     if (*lvl < 2) return -1;
     iVar4 = *g8; uVar9 = 0xaa9a3;
   }
-  if (iVar4 == 0) FUN_0007dda4(uVar9, 0xaacc8); else FUN_00019c70();
+  if (iVar4 == 0) FUN_0007dda4(uVar9, 0xaacc8); else FUN_00019c70(uVar9, 0xaacc8);
   return -1;
 }

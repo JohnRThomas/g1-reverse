@@ -2,7 +2,7 @@
  * Raw identity/back-map: FUN_00064f78.  Parity: 300/300 trials, PROVEN.
  */
 
-extern void FUN_0007e2fa(int a, int b, int c, int d, int e);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern unsigned int FUN_0007e2ec(int a, int b);
 void g1_recon_nrfx_gppi_task_endpoint_setup(
     unsigned int channel, int task_endpoint,

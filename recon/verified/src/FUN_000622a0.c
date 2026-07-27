@@ -1,5 +1,5 @@
 /* Reconstructed FUN_000622a0 @ 0x622a0  (parity: 300/300 trials, PROVEN) */
-extern void DEBUG_PRINT(int fmt, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_0007f998(int a0,int a1);
 extern int FUN_0007f9c6(int a0,int a1);
 extern int FUN_0007f9f4(int a0,int a1);

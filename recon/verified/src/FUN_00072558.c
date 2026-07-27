@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00072558 @ 0x72558  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include <cmsis_gcc.h>
-extern void FUN_0007e2fa(unsigned,unsigned,unsigned,unsigned);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(unsigned,unsigned);
 extern int FUN_00072040(unsigned);
 extern int FUN_0007205c(unsigned);

@@ -1,7 +1,7 @@
 /* Reconstructed parse_receiver_pack_pkcs7 @ 0x19cd0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
-extern void FUN_00019c70(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00086c04(int, ...);
 
 unsigned int parse_receiver_pack_pkcs7(int param_1, unsigned char *param_2, unsigned int param_3)

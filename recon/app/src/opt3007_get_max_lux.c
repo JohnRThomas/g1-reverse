@@ -1,11 +1,11 @@
 /* Reconstructed opt3007_get_max_lux @ 0x10a68  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e, unsigned int f, unsigned int g);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern unsigned long long FUN_0000d89c(unsigned int lo, unsigned int hi);
 extern unsigned long long FUN_0000db4c(unsigned int lo, unsigned int hi, unsigned int c1, unsigned int c2, unsigned int p1, unsigned int p2, unsigned int p3, unsigned int p4);
 extern int FUN_0000de58(unsigned int lo, unsigned int hi);
 extern unsigned int FUN_000167a8(void);
-extern void FUN_00019c70(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned long long e, unsigned int f);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0002e648(unsigned int a);
 
 int opt3007_get_max_lux(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

@@ -3,7 +3,7 @@
 #include <cmsis_gcc.h>
 
 extern int FUN_0004b908(uintptr_t);
-extern void FUN_0007e2fa(uintptr_t, uintptr_t, uintptr_t, uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t, uint32_t) __attribute__((noreturn));
 extern int FUN_00086406(void);
 extern void FUN_0004ff38(uint32_t);

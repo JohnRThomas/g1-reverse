@@ -1,8 +1,8 @@
 /* Reconstructed FUN_0004792c @ 0x4792c */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(unsigned int, ...);
-extern void FUN_00019c70(unsigned int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void *FUN_000167a8(void);
 extern unsigned int FUN_0004790c(void *, unsigned int, unsigned int);
 extern unsigned int FUN_0007d84c(unsigned int, unsigned int);

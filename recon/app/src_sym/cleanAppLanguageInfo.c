@@ -1,9 +1,9 @@
 /* Reconstructed cleanAppLanguageInfo @ 0x23b78  (parity: 300/300 trials, PROVEN) */
 
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern int FUN_000720d0(void*, void*, int, int);
 extern void FUN_00072880(void*);
-extern int DEBUG_PRINT(int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
 {
@@ -20,7 +20,7 @@ int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
       if (*(int*)0x20007554UL /* device_info.is_debug (+0xb58) */ == 0) {
         DEBUG_PRINT(0x9e968, 0x9ed8f);
       } else {
-        debug_print();
+        debug_print(0x9e968, 0x9ed8f);
       }
     }
     FUN_00072880((void*)0x200079e4UL /* device_info+0xfe8 (gap near gap_0FDB+0x2, name best-effort) */);
@@ -30,7 +30,7 @@ int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
       if (*(int*)0x20007554UL /* device_info.is_debug (+0xb58) */ == 0) {
         DEBUG_PRINT(0x9e903, 0x9ed8f);
       } else {
-        debug_print();
+        debug_print(0x9e903, 0x9ed8f);
       }
     }
     uVar2 = -1;

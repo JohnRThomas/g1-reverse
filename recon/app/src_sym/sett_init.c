@@ -2,8 +2,8 @@
 
 extern int settings_subsys_init(void);
 extern int FUN_0004e494(unsigned int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 void sett_init(int *param_1)
 {
@@ -21,7 +21,7 @@ void sett_init(int *param_1)
                 if (*(volatile unsigned int*)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
                     DEBUG_PRINT(0x9e2cb, 0x9e549);
                 } else {
-                    debug_print();
+                    debug_print(0x9e2cb, 0x9e549);
                 }
             }
             iVar2 = 1;
@@ -38,7 +38,7 @@ void sett_init(int *param_1)
     if (iVar3 == 0) {
         DEBUG_PRINT(format_string, 0x9e549, iVar2);
     } else {
-        debug_print();
+        debug_print(format_string, 0x9e549, iVar2);
     }
 LAB:
     param_1[0] = iVar2;

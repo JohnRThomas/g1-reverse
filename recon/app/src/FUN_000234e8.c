@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 extern uint64_t FUN_00086448(uint32_t, uint32_t, uint32_t, uint32_t);
-extern void DEBUG_PRINT(uint32_t, uint32_t, uint32_t, uint32_t);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 int FUN_000234e8(uint32_t inherited_r0, uint32_t inherited_r1,
                  uint32_t inherited_r2, uint32_t inherited_r3)

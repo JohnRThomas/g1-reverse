@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00019bfc @ 0x19bfc  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int a);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000720d0(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern void FUN_00072240(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern void FUN_00086c04(unsigned int a, unsigned int b, unsigned int c);

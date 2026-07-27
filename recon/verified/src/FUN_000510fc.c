@@ -9,7 +9,7 @@ typedef struct {
 } g1_k_timeout_t;
 
 extern __attribute__((noreturn)) void FUN_0007e2ec(uint32_t, uint32_t);
-extern void FUN_0007e2fa(uint32_t, uint32_t, uint32_t, uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_000723b8(uintptr_t lock, g1_k_timeout_t timeout);
 
 #define g1_recon_retarget_lock_acquire_recursive FUN_000510fc

@@ -2,9 +2,9 @@
 #include <stdint.h>
 
 extern void FUN_000187e8(uint32_t connection, uint32_t enabled);
-extern void FUN_00019c70(uintptr_t format, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00056a68(uint32_t connection, uint32_t reason);
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 void indicate_sc_cb(const uint32_t *connection_ref, uint32_t security_level,
                     int32_t error)

@@ -126,7 +126,7 @@ LAB_96a:
             unix_timestamp_to_datetime(param_2,calendar);
             if (*(volatile int*)piVar2 == 0)
               log_message(((unsigned long)"date: %u: %04d/%02d/%02d-%02d:%02d:%02d") /*=0xa8b3f*/,param_2,calendar[0] & 0xffff,calendar[0] >> 0x10,calendar[1] & 0xffff,calendar[1] >> 0x10,calendar[2] & 0xffff,calendar[2] >> 0x10);
-            else debug_print(((unsigned long)"date: %u: %04d/%02d/%02d-%02d:%02d:%02d") /*=0xa8b3f*/,param_2,calendar[0] & 0xffff,calendar[0] >> 0x10);
+            else debug_print(((unsigned long)"date: %u: %04d/%02d/%02d-%02d:%02d:%02d") /*=0xa8b3f*/,param_2,calendar[0] & 0xffff,calendar[0] >> 0x10,calendar[1] & 0xffff,calendar[1] >> 0x10,calendar[2] & 0xffff,calendar[2] >> 0x10);
             if (*(volatile int*)piVar2 == 0) { iVar4 = get_device_info(); log_message(((unsigned long)"time_disp_mode is %d \n") /*=0xa8b67*/,(uint)*(byte *)(*(int *)(iVar4 + 0xfec) + 0x5e)); }
             else { iVar4 = get_device_info(); debug_print(((unsigned long)"time_disp_mode is %d \n") /*=0xa8b67*/,*(byte *)(*(int *)(iVar4 + 0xfec) + 0x5e)); }
             iVar4 = get_device_info();

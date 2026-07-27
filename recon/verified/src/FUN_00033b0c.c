@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00033b0c @ 0x33b0c  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int, int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
-extern void FUN_00019c70(unsigned int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 void FUN_00033b0c(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

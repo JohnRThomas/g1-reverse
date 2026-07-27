@@ -5,7 +5,7 @@ extern int FUN_0007205c(int);
 extern void FUN_00072078(int);
 extern int FUN_00073f6c(int,unsigned,int,int,int,int,int);
 extern void FUN_0007e2ec(unsigned,unsigned);
-extern void FUN_0007e2fa(unsigned,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 
 int FUN_00071c20(int param_1, int *param_2, int param_3, int param_4){
     int iVar6 = param_1 + 8;

@@ -1,6 +1,6 @@
 /* Full reconstruction FUN_00066d1c @ 0x66d1c, exact extent 72 bytes. */
 #include <stdint.h>
-extern void FUN_0007e2fa(uintptr_t,uintptr_t,uintptr_t,uint32_t,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern __attribute__((noreturn)) void FUN_0007e2ec(uintptr_t,uint32_t);
 uintptr_t FUN_00066d1c(uint32_t *descriptor,uint32_t a,uint32_t b,uint32_t context){
  (void)a;(void)b; uint32_t v=*descriptor,bit,idx=v&31; uintptr_t base;

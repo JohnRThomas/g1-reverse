@@ -4,9 +4,9 @@
 
 extern int FUN_0008638c(const void *device);
 extern uintptr_t FUN_000167a8(void);
-extern void FUN_0007dda4(uintptr_t format, ...);
+extern void FUN_0007dda4(unsigned long, ...);
 extern void FUN_00074844(uint32_t ticks, uint32_t unused);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned long, ...);
 
 typedef int (*flash_read_api_t)(uintptr_t device, uint32_t address,
                                 void *destination, uint32_t length);
@@ -44,7 +44,7 @@ int flash_settings_read(uint32_t address, void *destination, uint32_t length)
             if (*(volatile uint32_t *)0x20007554UL == 0U) {
                 FUN_0007dda4(0x0009e2f1UL, 0x0009e528UL, retry);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(0x0009e2f1UL, 0x0009e528UL, retry);
             }
         }
     }

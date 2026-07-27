@@ -5,8 +5,8 @@
 
 #include <stdint.h>
 
-extern int log_message(uintptr_t format, ...);
-extern int FUN_00019c70(uintptr_t format, ...);
+extern void log_message(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 #define debug_print FUN_00019c70
 
 uint32_t FUN_00033a5c(const uint8_t *notification,

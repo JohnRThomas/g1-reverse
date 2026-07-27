@@ -2,7 +2,7 @@
 
 extern void FUN_0005e614(void);
 extern void assert_post_action(unsigned int,unsigned int);
-extern void printk(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
+extern void printk(unsigned long, ...);
 void FUN_0005e6a8(unsigned int param_1,int param_2,unsigned int param_3,unsigned int param_4)
 {
   if (param_2 == 0) {

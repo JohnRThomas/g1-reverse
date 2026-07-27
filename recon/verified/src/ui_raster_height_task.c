@@ -1,8 +1,8 @@
 /* Reconstructed ui_raster_height_task @ 0x430c0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern void *FUN_000167a8(void);
-extern void FUN_00019c70(uint32_t, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_0003af78(uint32_t, uint32_t, int);
 extern void FUN_00042fb0(int*, int*);
 extern void FUN_000431c0(void);

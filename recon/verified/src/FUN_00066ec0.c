@@ -5,7 +5,7 @@ typedef unsigned int uint;
 extern void FUN_000500ac(int);
 extern void FUN_00066e70(uint32_t,int,int,uint32_t,int);
 extern void FUN_0007e2ec(uint32_t,uint32_t) __attribute__((noreturn));
-extern void FUN_0007e2fa(uint32_t,uint32_t,uint32_t,uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 
 void FUN_00066ec0(int *param_1, uint32_t *param_2)
 {

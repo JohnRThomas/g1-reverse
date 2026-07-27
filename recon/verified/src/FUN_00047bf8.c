@@ -4,7 +4,7 @@
 
 extern void FUN_00086c78(void*, int, int);
 extern int FUN_000720d0(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 int FUN_00047bf8(unsigned char param_1, unsigned char param_2)
 {

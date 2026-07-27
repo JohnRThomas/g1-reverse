@@ -5,8 +5,8 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 extern void FUN_00086c78(void*, int, int);
 extern int FUN_000720d0(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(unsigned int, unsigned int, unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 u32 SendSystemLanguageInfoToSlave(int param_1)
 {

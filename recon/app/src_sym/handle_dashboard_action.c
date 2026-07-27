@@ -1,7 +1,7 @@
 /* Reconstructed handle_dashboard_action @ 0x37108  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int,unsigned int);
-extern void debug_print(unsigned int,unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 unsigned int handle_dashboard_action(unsigned char param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4){
     *(volatile unsigned char*)(0x20004950UL+3) = param_1;
     *(volatile unsigned char*)0x2001b815UL = param_1;

@@ -25,7 +25,7 @@ void nrf53_ipc_channel_configure(unsigned int param_1, unsigned int param_2, uns
   volatile unsigned int *puVar2;
 
   if (param_3 > 0xf) {
-    printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void*)0xf0a5dUL, (void*)0xf0a2bUL, 0x1e7, param_4);
+    printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void*)0xf0a5dUL, (void*)0xf0a2bUL, 0x1e7, param_4);
     assert_post_action((void*)0xf0a2bUL, 0x1e7);
   }
   uVar1 = rtc_timer_cc_reg_get(param_2);

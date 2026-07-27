@@ -13,8 +13,8 @@ extern int FUN_0007c108(void);
 extern int FUN_00019308(void);
 extern void FUN_00086c04(void*,const void*,uint32_t);
 extern void FUN_00086c78(void*,int,uint32_t);
-extern void DEBUG_PRINT(uintptr_t,...);
-extern void FUN_00019c70(uintptr_t,...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 static __attribute__((always_inline)) inline void
 ble_log(uintptr_t format, uint32_t value, int threshold)

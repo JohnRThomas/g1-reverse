@@ -1,9 +1,9 @@
 /* Reconstructed FUN_0004396c @ 0x4396c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
-extern void DEBUG_PRINT(int,int,uint,int,uint,int,uint);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
-extern void FUN_00019c70(int,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int64_t FUN_000431a8(void);
 extern void FUN_00043484(int,int,int,int,int,int);
 extern void FUN_000471cc(int,int,int,int,int,int);

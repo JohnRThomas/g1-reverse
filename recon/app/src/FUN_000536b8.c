@@ -9,9 +9,9 @@ extern uint32_t net_buf_id(void *buffer); /* FUN_0005ee18 */
 extern void *net_buf_slist_get(void *list); /* FUN_0005f148 */
 extern void net_buf_unref(void *buffer); /* FUN_0005f24c */
 extern void *net_buf_simple_pull(void *buffer, uint32_t length); /* FUN_0005f594 */
-extern void printk(uint32_t format, uint32_t file, uint32_t function, uint32_t line); /* FUN_0007e2fa */
+extern void printk(unsigned long, ...); /* FUN_0007e2fa */
 extern int bt_hci_evt_get_flags(uint32_t event); /* FUN_00080e14 */
-extern void log_message(uint32_t source, uint32_t descriptor, const void *record); /* FUN_00080ea2 */
+extern void log_message(unsigned long, ...); /* FUN_00080ea2 */
 extern int k_work_submit_to_queue(void *queue, void *work); /* FUN_000865fc */
 
 struct log_record3 {

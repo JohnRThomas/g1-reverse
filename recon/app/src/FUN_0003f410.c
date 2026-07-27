@@ -47,8 +47,8 @@ extern int FUN_0007d3ee(void);
 extern int FUN_0007d446(void);
 extern int FUN_0004a1b8(int, void *);
 extern void FUN_00086c78(void *, int, size_t);                /* memset */
-extern void FUN_00019c70(uintptr_t, ...);                    /* routed log */
-extern void FUN_0007dda4(uintptr_t, ...);                    /* direct log */
+extern void FUN_00019c70(unsigned long, ...);                    /* routed log */
+extern void FUN_0007dda4(unsigned long, ...);                    /* direct log */
 
 #define V8(a)  (*(volatile uint8_t  *)(uintptr_t)(a))
 #define V16(a) (*(volatile uint16_t *)(uintptr_t)(a))

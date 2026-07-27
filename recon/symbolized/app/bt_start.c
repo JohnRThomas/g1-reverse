@@ -48,8 +48,8 @@ extern uintptr_t get_device_info(void);
 extern int get_device_type(void);
 extern uintptr_t get_device_serial_buf(void);
 extern void __strcpy_chk(void *, const void *, uint32_t);
-extern void log_message(uintptr_t, ...);
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern int is_battery_critical(void);
 extern void vdprintf_to_fd(uintptr_t, ...);
 extern uint32_t strlen(uintptr_t);
@@ -131,7 +131,7 @@ int bt_start(void)
         if (*(volatile int32_t *)(uintptr_t)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile uint32_t *)(uintptr_t)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0u)
                 log_message(((unsigned long)"%s(): Failed to set device name (err %d)\n\n") /*=0x9ad20*/,((unsigned long)"bt_start") /*=0x9b13f*/,result);
-            else debug_print();
+            else debug_print(((unsigned long)"%s(): Failed to set device name (err %d)\n\n") /*=0x9ad20*/,((unsigned long)"bt_start") /*=0x9b13f*/,result);
         }
         goto out;
     }

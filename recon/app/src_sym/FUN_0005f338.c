@@ -2,7 +2,7 @@
 #include <stdint.h>
 extern void* FUN_0005f304(void*);
 extern void assert_post_action(void);
-extern void printk(void);
+extern void printk(unsigned long, ...);
 
 void FUN_0005f338(int *param_1, int *param_2)
 {

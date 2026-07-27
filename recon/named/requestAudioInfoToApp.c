@@ -15,10 +15,10 @@
  */
 /* Reconstructed requestAudioInfoToApp @ 0x48840  (parity: 300/300 trials, PROVEN) */
 
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern int k_msgq_put(void*, void*, int, int);
 extern void memset_bytes(void*, int, int);
-extern int log_message(int, ...);
+extern void log_message(unsigned long, ...);
 
 int requestAudioInfoToApp(unsigned char param_1)
 {
@@ -37,7 +37,7 @@ int requestAudioInfoToApp(unsigned char param_1)
       if (*(int*)0x20007554UL == 0) {
         log_message(((unsigned long)"%s(): requestAudioInfoToApp ...\n"), ((unsigned long)"requestAudioInfoToApp"));
       } else {
-        debug_print();
+        debug_print(((unsigned long)"%s(): requestAudioInfoToApp ...\n"), ((unsigned long)"requestAudioInfoToApp"));
       }
     }
   } else {

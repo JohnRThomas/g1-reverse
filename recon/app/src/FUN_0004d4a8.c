@@ -2,7 +2,7 @@
 
 extern unsigned int FUN_0004d490(void);
 extern void FUN_0007e2ec(void*, int);
-extern void FUN_0007e2fa(void*, void*, void*, int);
+extern void FUN_0007e2fa(unsigned long, ...);
 
 void FUN_0004d4a8(void)
 {
@@ -14,8 +14,8 @@ void FUN_0004d4a8(void)
 
   for (;;) {
     if ((unsigned int)r4 > (unsigned int)r6) {
-      FUN_0007e2fa((void*)0x99cbdUL,(void*)0xf0cffUL,(void*)0xf0caeUL,0x1d1);
-      FUN_0007e2fa((void*)0xf0d20UL, 0, 0, 0);
+      FUN_0007e2fa((unsigned long)0x99cbdUL,(void*)0xf0cffUL,(void*)0xf0caeUL,0x1d1);
+      FUN_0007e2fa((unsigned long)0xf0d20UL, 0, 0, 0);
       FUN_0007e2ec((void*)0xf0caeUL,0x1d1);
     }
     if ((unsigned int)r4 >= (unsigned int)r6) break;

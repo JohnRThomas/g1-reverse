@@ -3,8 +3,8 @@
 extern void panel_init(void);
 extern void set_brightness_to_panel_reg(void);
 extern int spi_read_id(void);
-extern void DEBUG_PRINT(void);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int jdb_panel_init(unsigned char *param_1)
 {

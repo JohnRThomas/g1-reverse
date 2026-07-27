@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00031bd8 @ 0x31bd8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
 unsigned FUN_00031bd8(int param_1, unsigned param_2, uint32_t *param_3, uint8_t *param_4){
   int iVar1; uint16_t uVar2; uint8_t *puVar3;

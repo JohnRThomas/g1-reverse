@@ -4,8 +4,8 @@
  */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uintptr_t, ...);
-extern void debug_print(uintptr_t, ...); /* FUN_00019c70 @ 0x00019c70 */
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...); /* FUN_00019c70 @ 0x00019c70 */
 extern uint32_t k_uptime_get_4(void);     /* FUN_0007d12e */
 extern void k_msleep_ticks32768_b(uint32_t); /* FUN_0007d14a */
 extern void set_display_page_index(uint32_t); /* FUN_000369dc */

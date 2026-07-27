@@ -24,7 +24,7 @@ void k_work_init_delayable(int param_1, int param_2, unsigned int param_3, unsig
   unsigned int uVar1;
 
   if (param_1 == 0) {
-    printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,(void*)((unsigned long)&rodata_f82df) /*=0xf82df*/,(void*)((unsigned long)&rodata_f820f) /*=0xf820f*/,0x340);
+    printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,(void*)((unsigned long)&rodata_f82df) /*=0xf82df*/,(void*)((unsigned long)&rodata_f820f) /*=0xf820f*/,0x340);
     uVar1 = 0x340;
   } else {
     if (param_2 != 0) {
@@ -33,7 +33,7 @@ void k_work_init_delayable(int param_1, int param_2, unsigned int param_3, unsig
       *(volatile unsigned int*)(param_1 + 0xc) = 0x100;
       return;
     }
-    printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,(void*)((unsigned long)&rodata_f8230) /*=0xf8230*/,(void*)((unsigned long)&rodata_f820f) /*=0xf820f*/,0x341);
+    printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,(void*)((unsigned long)&rodata_f8230) /*=0xf8230*/,(void*)((unsigned long)&rodata_f820f) /*=0xf820f*/,0x341);
     uVar1 = 0x341;
   }
   assert_post_action((void*)((unsigned long)&rodata_f820f) /*=0xf820f*/,uVar1);

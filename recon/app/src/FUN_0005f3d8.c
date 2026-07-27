@@ -7,7 +7,7 @@ typedef struct list_node {
 } list_node_t;
 
 extern void FUN_0005f24c(list_node_t *node);
-extern void FUN_0007e2fa(uintptr_t format, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t file, uint32_t line);
 
 list_node_t *FUN_0005f3d8(list_node_t *previous, list_node_t *node)

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000681cc @ 0x681cc  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_0007e2ec(int,int);
-extern void FUN_0007e2fa(int,int,int,int);
+extern void FUN_0007e2fa(unsigned long, ...);
 typedef void (*fn2_t)(int,int);
 void FUN_000681cc(int param_1)
 {

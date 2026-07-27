@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0006615c @ 0x6615c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void FUN_0007e2fa(unsigned,unsigned,unsigned,unsigned);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern long long FUN_0007e2ec(unsigned,unsigned);
 extern void FUN_00066050(void);
 unsigned FUN_0006615c(int param_1, int param_2){

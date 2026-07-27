@@ -5,7 +5,7 @@
 
 #include <stdint.h>
 
-extern void FUN_0007e2fa(uint32_t, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uint32_t, uint32_t);
 extern uint32_t FUN_000664f0(uint32_t enable);
 extern uint32_t FUN_0006649c(void);

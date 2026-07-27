@@ -4,8 +4,8 @@ extern void *get_device_info(void);
 extern void memset_bytes(void*, int, int);
 extern void memcpy(void*, void*, unsigned int);
 extern int FUN_000720d0(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int send_response_data_to_msgqueue(void *param_1, unsigned int param_2)
 {
@@ -35,7 +35,7 @@ unsigned int send_response_data_to_msgqueue(void *param_1, unsigned int param_2)
             if (*(volatile unsigned int*)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
                 DEBUG_PRINT(0xef01c, 0xef750, 0x14);
             } else {
-                debug_print();
+                debug_print(0xef01c, 0xef750, 0x14);
             }
         }
     }

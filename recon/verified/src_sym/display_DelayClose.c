@@ -2,8 +2,8 @@
 
 extern void memset_bytes(void *dst, int val, unsigned int len);
 extern int FUN_000720d0(void *obj, void *msg, unsigned int a, unsigned int b);
-extern void DEBUG_PRINT(unsigned int fmt, unsigned int arg);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int display_DelayClose(unsigned int param_1)
 {
@@ -23,7 +23,7 @@ unsigned int display_DelayClose(unsigned int param_1)
             if (*(volatile int *)0x20007554UL /* device_info.is_debug @+0xB58  (log sink select: 0=RTT DEBUG_PRINT) */ == 0) {
                 DEBUG_PRINT(0xf008cU, 0xf0164U);
             } else {
-                debug_print();
+                debug_print(0xf008cU, 0xf0164U);
             }
         }
     } else {

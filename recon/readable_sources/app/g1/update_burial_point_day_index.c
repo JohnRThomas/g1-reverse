@@ -17,8 +17,8 @@
 /* Reconstructed FUN_0004a5b0 @ 0x4a5b0. */
 #include <stdint.h>
 
-extern void log_message(int,...);
-extern void debug_print(void);
+extern void log_message(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern void unix_timestamp_to_datetime(uint32_t,void *);
 extern uint32_t get_system_unix_time(void);
 extern uintptr_t get_device_info(void);
@@ -46,7 +46,7 @@ int update_burial_point_day_index(uint32_t context,uint32_t unused_2,
       if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
         log_message(((unsigned long)"%s(): burial point date was not init!\n") /*=0xf0310*/,((unsigned long)"update_burial_point_day_index") /*=0xf04c1*/,day,0,context);
       else
-        debug_print();
+        debug_print(((unsigned long)"%s(): burial point date was not init!\n") /*=0xf0310*/,((unsigned long)"update_burial_point_day_index") /*=0xf04c1*/,day,0,context);
     }
     return -1;
   }

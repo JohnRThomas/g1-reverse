@@ -112,7 +112,8 @@ LAB_00017fb6:
             log_message(((unsigned long)"%s(): **Received data from: %s, len=%d,cmd 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x,receiver_thd_is_running is %d\n"), ((unsigned long)"bt_receive_cb"), &log_record, param_3, uVar9, uVar8, uVar7, uVar6, uVar5, puVar11,
                         (uint)*(unsigned char *)(*piVar1 + 0x248));
         } else {
-            debug_print(0);
+            debug_print(((unsigned long)"%s(): **Received data from: %s, len=%d,cmd 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x,receiver_thd_is_running is %d\n"), ((unsigned long)"bt_receive_cb"), &log_record, param_3, uVar9, uVar8, uVar7, uVar6, uVar5, puVar11,
+                        (uint)*(unsigned char *)(*piVar1 + 0x248));
         }
     }
     iVar12 = *piVar1;
@@ -158,7 +159,7 @@ LAB_00017fb6:
             enqueue_bt_data(forwarding.payload, param_3 & 0xff);
             if (*piVar2 < 1) return;
             if (*dbg != 0) {
-                debug_print(0);
+                debug_print(((unsigned long)"%s(): enqueue because busy\n"), ((unsigned long)"bt_receive_cb"));
                 return;
             }
             log_message(((unsigned long)"%s(): enqueue because busy\n"), ((unsigned long)"bt_receive_cb"));

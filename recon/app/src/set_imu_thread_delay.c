@@ -6,8 +6,8 @@
  */
 #include <stdint.h>
 
-extern void FUN_0007dda4(uint32_t format, ...);
-extern void FUN_00019c70(uint32_t format, ...);
+extern void FUN_0007dda4(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 #define LOG_LEVEL (*(volatile int32_t *)0x2000230cUL)
 #define LOG_SINK  (*(volatile int32_t *)0x20007554UL)

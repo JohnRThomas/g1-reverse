@@ -25,8 +25,8 @@ struct __attribute__((packed)) user_settings_record {
     uint32_t counter;
 };
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t function_name);
-extern void FUN_00019c70(uint32_t format, uint32_t function_name, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000225b4(uint32_t address, void *destination, uint32_t length);
 extern void FUN_00022ddc(void *settings);
 extern int FUN_00032ee4(void);

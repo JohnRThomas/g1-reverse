@@ -4,7 +4,7 @@ extern void FUN_00018adc(void);
 extern void FUN_000566a4(int);
 extern int FUN_00057038(int,void*);
 extern void FUN_0007e2ec(unsigned,unsigned);
-extern void FUN_0007e2fa(unsigned,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_000813b4(volatile unsigned*,unsigned);
 extern void FUN_000813ca(unsigned,unsigned,void*);
 extern void FUN_000817ea(int);

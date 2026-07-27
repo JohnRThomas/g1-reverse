@@ -1,8 +1,8 @@
 /* Reconstructed panel_off @ 0x46d2c  (parity: 300/300 trials, PROVEN) */
 
 typedef void (*fn_t)(int);
-extern void DEBUG_PRINT(int a, int b);
-extern int debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern int FUN_0001655c(void);
 extern int opt3007_chip_deinit(void);
 extern int power_down_panel(void);
@@ -18,7 +18,7 @@ unsigned int panel_off(int param_1)
             if (*(volatile int *)0x20007554UL /* device_info.is_debug @+0xb58 */ == 0) {
                 DEBUG_PRINT(0xd721e, 0xd72d1);
             } else {
-                debug_print();
+                debug_print(0xd721e, 0xd72d1);
             }
         }
         iVar1 = FUN_0001655c();

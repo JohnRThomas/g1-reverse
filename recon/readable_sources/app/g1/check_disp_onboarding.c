@@ -21,9 +21,9 @@
 /* Reconstructed check_disp_onboarding @ 0x26a08  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void log_message(int,int);
+extern void log_message(unsigned long, ...);
 extern int get_device_info(void);
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern void onboarding_retry_watchdog_update(void);
 extern int onboarding_sync_data(void*,int);
 extern int device_addr_is_default(void);
@@ -60,7 +60,7 @@ void check_disp_onboarding(int param_1, unsigned int param_2, unsigned int param
   if (onboarding_sync_data((void*)0,3) != 0) return;
   if (0 < *pg78) {
     if (*pg7c == 0) log_message(((unsigned long)"%s(): ready to show onboarding...\n") /*=0x9fcc1*/,((unsigned long)"check_disp_onboarding") /*=0xa1aea*/);
-    else debug_print();
+    else debug_print(((unsigned long)"%s(): ready to show onboarding...\n") /*=0x9fcc1*/,((unsigned long)"check_disp_onboarding") /*=0xa1aea*/);
   }
   onboarding_retry_watchdog_update();
   iVar3=get_device_info(); VB(VI(iVar3+0x1014))=1;

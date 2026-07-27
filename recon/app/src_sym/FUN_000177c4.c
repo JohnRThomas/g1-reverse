@@ -1,6 +1,6 @@
 /* Reconstructed FUN_000177c4 @ 0x177c4  (parity: 300/300 trials, PROVEN) */
 
-extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
+extern void printk(unsigned long, ...);
 extern void assert_post_action(unsigned int, unsigned int);
 typedef int (*fnptr)(int, unsigned int*, unsigned int, void*, int);
 

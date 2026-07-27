@@ -50,9 +50,9 @@ ble_put_op19_1a_1b_1d(struct ble_put_context *ctx, uint8_t response[20])
 {
     if (BLE_LOG_LEVEL > 1) {
         if (BLE_IS_DEBUG == 0)
-            log_message("%s(): @tx error put req_type: %d\n", "ble_process_put_req");
+            log_message(((unsigned long)"%s(): @tx error put req_type: %d\n"), "ble_process_put_req");
         else
-            debug_print();
+            debug_print(((unsigned long)"%s(): @tx error put req_type: %d\n"), "ble_process_put_req");
     }
     response[1] = 0xca;
     response[2] = 0x15;
@@ -76,10 +76,11 @@ ble_put_op1c(struct ble_put_context *ctx, const uint8_t *request,
     set_box_link_state_flag(request[1]);
     if (BLE_LOG_LEVEL > 2) {
         if (BLE_IS_DEBUG == 0)
-            log_message("%s(): received start/Pause command,origin language type = %d,translate origin language type = %d,Suspend status = %d\n",
+            log_message(((unsigned long)"%s(): received start/Pause command,origin language type = %d,translate origin language type = %d,Suspend status = %d\n"),
                         "ble_process_put_req", right[1], right[0], left[2]);
         else
-            debug_print("%s(): received start/Pause command,origin language type = %d,translate origin language type = %d,Suspend status = %d\n");
+            debug_print(((unsigned long)"%s(): received start/Pause command,origin language type = %d,translate origin language type = %d,Suspend status = %d\n"),
+                        "ble_process_put_req", right[1], right[0], left[2]);
     }
     response[1] = 0xc9;
     ctx->post_to_host(response, 20);
@@ -105,9 +106,10 @@ ble_put_op1e_note(struct ble_put_context *ctx, const uint8_t *request,
             note[3] = 0;
             if (BLE_LOG_LEVEL > 2) {
                 if (BLE_IS_DEBUG == 0)
-                    log_message("%s(): received empty quick note data ,delete quick note num.%d\n",
+                    log_message(((unsigned long)"%s(): received empty quick note data ,delete quick note num.%d\n"),
                                 "ble_process_put_req", slot);
-                else debug_print();
+                else debug_print(((unsigned long)"%s(): received empty quick note data ,delete quick note num.%d\n"),
+                                "ble_process_put_req", slot);
             }
             ble_put_ack10(ctx, request, response, 0);
             deleteQuickNoteData(slot_index);
@@ -121,18 +123,18 @@ ble_put_op1e_note(struct ble_put_context *ctx, const uint8_t *request,
         memcpy(note + 0x2d, request + 14 + title_length, text_copy);
         if (BLE_LOG_LEVEL > 2) {
             if (BLE_IS_DEBUG == 0)
-                log_message("%s(): title length = %d,text length = %d\n",
+                log_message(((unsigned long)"%s(): title length = %d,text length = %d\n"),
                             "ble_process_put_req", title_length, text_length);
-            else debug_print("%s(): title length = %d,text length = %d\n",
+            else debug_print(((unsigned long)"%s(): title length = %d,text length = %d\n"),
                               "ble_process_put_req", title_length, text_length);
         }
         note[3] = 1;
         if (BLE_LOG_LEVEL > 2) {
             if (BLE_IS_DEBUG == 0)
-                log_message("%s(): Quick Note Title = %s,TXET = %s\n",
+                log_message(((unsigned long)"%s(): Quick Note Title = %s,TXET = %s\n"),
                             "ble_process_put_req", note + 4, note + 0x2d);
-            else debug_print("%s(): Quick Note Title = %s,TXET = %s\n",
-                              "ble_process_put_req");
+            else debug_print(((unsigned long)"%s(): Quick Note Title = %s,TXET = %s\n"),
+                            "ble_process_put_req", note + 4, note + 0x2d);
         }
         upgradeQuickNoteDataToFlash(slot_index);
         ble_put_ack10(ctx, request, response, 0);
@@ -162,9 +164,9 @@ ble_put_op1e_note(struct ble_put_context *ctx, const uint8_t *request,
         } else {
             if (BLE_LOG_LEVEL > 0) {
                 if (BLE_IS_DEBUG == 0)
-                    log_message("%s(): app send parameter error,qucik note num = %d\n",
+                    log_message(((unsigned long)"%s(): app send parameter error,qucik note num = %d\n"),
                                 "ble_process_put_req", OP19_NOTE_SLOT);
-                else debug_print("%s(): app send parameter error,qucik note num = %d\n",
+                else debug_print(((unsigned long)"%s(): app send parameter error,qucik note num = %d\n"),
                                   "ble_process_put_req", OP19_NOTE_SLOT);
             }
             ble_put_ack10(ctx, request, response, 1);
@@ -182,10 +184,10 @@ ble_put_op1e_note(struct ble_put_context *ctx, const uint8_t *request,
         } else {
             if (BLE_LOG_LEVEL > 1) {
                 if (BLE_IS_DEBUG == 0)
-                    log_message("%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d\n",
+                    log_message(((unsigned long)"%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                                 "ble_process_put_req", seq, OP19_BAD_EXPECT + 1u);
-                else debug_print("%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d\n",
-                                  "ble_process_put_req");
+                else debug_print(((unsigned long)"%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d\n"),
+                                "ble_process_put_req", seq, OP19_BAD_EXPECT + 1u);
             }
             ble_put_note_reset();
             ble_put_ack10(ctx, request, response, 1);
@@ -227,10 +229,10 @@ ble_put_op1e_note(struct ble_put_context *ctx, const uint8_t *request,
             destination[3] = 1;
             if (BLE_LOG_LEVEL > 2) {
                 if (BLE_IS_DEBUG == 0)
-                    log_message("%s(): Quick Note Title =%s,QuickNote TXET =%s\n",
+                    log_message(((unsigned long)"%s(): Quick Note Title =%s,QuickNote TXET =%s\n"),
                                 "ble_process_put_req", destination + 4,
                                 destination + 0x2d);
-                else debug_print("%s(): Quick Note Title =%s,QuickNote TXET =%s\n",
+                else debug_print(((unsigned long)"%s(): Quick Note Title =%s,QuickNote TXET =%s\n"),
                                   "ble_process_put_req", destination + 4,
                                   destination + 0x2d);
             }
@@ -242,10 +244,10 @@ ble_put_op1e_note(struct ble_put_context *ctx, const uint8_t *request,
         } else {
             if (BLE_LOG_LEVEL > 1) {
                 if (BLE_IS_DEBUG == 0)
-                    log_message("%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d\n",
+                    log_message(((unsigned long)"%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                                 "ble_process_put_req", seq, OP19_BAD_EXPECT + 1u);
-                else debug_print("%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d\n",
-                                  "ble_process_put_req");
+                else debug_print(((unsigned long)"%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d\n"),
+                                "ble_process_put_req", seq, OP19_BAD_EXPECT + 1u);
             }
             memset_bytes(OP19_NOTE_TEXT, 0, 0x119);
             memset_bytes(OP19_NOTE_TITLE, 0, 0x29);
@@ -266,9 +268,9 @@ ble_put_op1e(struct ble_put_context *ctx, const uint8_t *packet,
     if (actual != advertised) {
         if (BLE_LOG_LEVEL > 1) {
             if (BLE_IS_DEBUG == 0)
-                log_message("%s(): packet length error,input data length = %d,packet data length = %d\n",
+                log_message(((unsigned long)"%s(): packet length error,input data length = %d,packet data length = %d\n"),
                             "ble_process_put_req", advertised, actual);
-            else debug_print("%s(): packet length error,input data length = %d,packet data length = %d\n",
+            else debug_print(((unsigned long)"%s(): packet length error,input data length = %d,packet data length = %d\n"),
                               "ble_process_put_req", advertised, actual);
         }
         return;
@@ -283,38 +285,40 @@ ble_put_op1e(struct ble_put_context *ctx, const uint8_t *packet,
             if (actual == 6) {
                 if (BLE_LOG_LEVEL > 2) {
                     if (BLE_IS_DEBUG == 0)
-                        log_message("%s(): received request voice data commmand\n", "ble_process_put_req");
-                    else debug_print();
+                        log_message(((unsigned long)"%s(): received request voice data commmand\n"), "ble_process_put_req");
+                    else debug_print(((unsigned long)"%s(): received request voice data commmand\n"), "ble_process_put_req");
                 }
                 sendAudioStreamFileToApp(0, request[5]);
             } else if (actual == 11) {
                 if (request[10] == 0) {
                     if (BLE_LOG_LEVEL > 2) {
                         if (BLE_IS_DEBUG == 0)
-                            log_message("%s(): received request voice data next data\n", "ble_process_put_req");
-                        else debug_print();
+                            log_message(((unsigned long)"%s(): received request voice data next data\n"), "ble_process_put_req");
+                        else debug_print(((unsigned long)"%s(): received request voice data next data\n"), "ble_process_put_req");
                     }
                 } else if (request[10] == 0xaa) {
                     if (BLE_LOG_LEVEL > 2) {
                         if (BLE_IS_DEBUG == 0)
-                            log_message("%s(): APP success received audio data ,delete voice block num %d\n",
+                            log_message(((unsigned long)"%s(): APP success received audio data ,delete voice block num %d\n"),
                                         "ble_process_put_req", request[9]);
-                        else debug_print();
+                        else debug_print(((unsigned long)"%s(): APP success received audio data ,delete voice block num %d\n"),
+                                        "ble_process_put_req", request[9]);
                     }
                     if (get_device_type() == 1) {
                         if ((uint8_t)(request[9] - 1u) < 4)
                             delAudioStreamRecord(request[9]);
                         else if (BLE_LOG_LEVEL > 1) {
                             if (BLE_IS_DEBUG == 0)
-                                log_message("%s(): APP delete voice block num error %d\n",
+                                log_message(((unsigned long)"%s(): APP delete voice block num error %d\n"),
                                             "ble_process_put_req");
-                            else debug_print();
+                            else debug_print(((unsigned long)"%s(): APP delete voice block num error %d\n"),
+                                            "ble_process_put_req");
                         }
                     }
                 } else if (BLE_LOG_LEVEL > 0) {
                     if (BLE_IS_DEBUG == 0)
-                        log_message("%s(): app return error response information\n", "ble_process_put_req");
-                    else debug_print();
+                        log_message(((unsigned long)"%s(): app return error response information\n"), "ble_process_put_req");
+                    else debug_print(((unsigned long)"%s(): app return error response information\n"), "ble_process_put_req");
                 }
             }
         }
@@ -326,17 +330,19 @@ ble_put_op1e(struct ble_put_context *ctx, const uint8_t *packet,
         if (request[5] < 5) {
             if (BLE_LOG_LEVEL > 2) {
                 if (BLE_IS_DEBUG == 0)
-                    log_message("%s(): delete audio record num = %d\n",
+                    log_message(((unsigned long)"%s(): delete audio record num = %d\n"),
                                 "ble_process_put_req", request[5] - 1u);
-                else debug_print();
+                else debug_print(((unsigned long)"%s(): delete audio record num = %d\n"),
+                                "ble_process_put_req", request[5] - 1u);
             }
             if (get_device_type() == 1) delAudioStreamRecord(request[5]);
         } else {
             if (BLE_LOG_LEVEL > 2) {
                 if (BLE_IS_DEBUG == 0)
-                    log_message("%s(): received delete all quick note audio file command .\n",
+                    log_message(((unsigned long)"%s(): received delete all quick note audio file command .\n"),
                                 "ble_process_put_req");
-                else debug_print();
+                else debug_print(((unsigned long)"%s(): received delete all quick note audio file command .\n"),
+                                "ble_process_put_req");
             }
             if (get_device_type() == 1) delAudioStreamRecord(0xff);
         }
@@ -347,8 +353,8 @@ ble_put_op1e(struct ble_put_context *ctx, const uint8_t *packet,
     case 5:
         if (BLE_LOG_LEVEL > 2) {
             if (BLE_IS_DEBUG == 0)
-                log_message("%s(): received clean audio voice command\n", "ble_process_put_req");
-            else debug_print();
+                log_message(((unsigned long)"%s(): received clean audio voice command\n"), "ble_process_put_req");
+            else debug_print(((unsigned long)"%s(): received clean audio voice command\n"), "ble_process_put_req");
         }
         if (get_device_type() == 1) {
             delAudioStreamRecord(0xff);
@@ -371,8 +377,8 @@ ble_put_op1f(struct ble_put_context *ctx, const uint8_t *packet,
     int ret;
     if (BLE_LOG_LEVEL > 2) {
         if (BLE_IS_DEBUG == 0)
-            log_message("%s(): received onboarding init packet ....\n", "ble_process_put_req");
-        else debug_print();
+            log_message(((unsigned long)"%s(): received onboarding init packet ....\n"), "ble_process_put_req");
+        else debug_print(((unsigned long)"%s(): received onboarding init packet ....\n"), "ble_process_put_req");
     }
     length = onboarding_ble_process(base - 0x77c, packet, request, response);
     if (length > 0) {
@@ -380,8 +386,8 @@ ble_put_op1f(struct ble_put_context *ctx, const uint8_t *packet,
         ret = ctx->post_to_host(response, (uint16_t)length);
         if (ret < 0 && BLE_LOG_LEVEL > 0) {
             if (BLE_IS_DEBUG == 0)
-                log_message("%s(): onboarding post_to_host failed ret = %d\n", "ble_process_put_req");
-            else debug_print();
+                log_message(((unsigned long)"%s(): onboarding post_to_host failed ret = %d\n"), "ble_process_put_req");
+            else debug_print(((unsigned long)"%s(): onboarding post_to_host failed ret = %d\n"), "ble_process_put_req");
         }
     }
 }
@@ -398,8 +404,8 @@ ble_put_op20(struct ble_put_context *ctx, const uint8_t *packet,
         process_sync_buffer(base - 0x6fc);
         if (BLE_LOG_LEVEL > 0) {
             if (BLE_IS_DEBUG == 0)
-                log_message("%s(): recv upgrade font success\n", "ble_process_put_req");
-            else debug_print();
+                log_message(((unsigned long)"%s(): recv upgrade font success\n"), "ble_process_put_req");
+            else debug_print(((unsigned long)"%s(): recv upgrade font success\n"), "ble_process_put_req");
         }
         response[1] = 0xc9;
         ctx->post_to_host(response, 20);
@@ -408,8 +414,8 @@ ble_put_op20(struct ble_put_context *ctx, const uint8_t *packet,
         ctx->post_to_host(response, 20);
         if (BLE_LOG_LEVEL > 0) {
             if (BLE_IS_DEBUG == 0)
-                log_message("%s(): recv upgrade font failed\n", "ble_process_put_req");
-            else debug_print();
+                log_message(((unsigned long)"%s(): recv upgrade font failed\n"), "ble_process_put_req");
+            else debug_print(((unsigned long)"%s(): recv upgrade font failed\n"), "ble_process_put_req");
         }
     }
     OP20_PACKET_ID = 0xff;

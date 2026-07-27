@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00018300 @ 0x18300  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(int);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern void FUN_00072880(int);
 extern void change_work_mode_to(int);
 void FUN_00018300(int param_1, unsigned int param_2)

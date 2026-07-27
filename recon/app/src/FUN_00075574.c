@@ -1,7 +1,7 @@
 /* FUN_00075574 @ 0x00075574 — complete 98-byte reconstruction. */
 #include <stdint.h>
 
-extern void FUN_0007e2fa(uintptr_t, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t, uint32_t) __attribute__((noreturn));
 
 void FUN_00075574(uint8_t *object, uint32_t priority,

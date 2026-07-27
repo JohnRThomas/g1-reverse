@@ -6,7 +6,7 @@ extern int FUN_00072040(unsigned a);
 extern int FUN_0007205c(unsigned a);
 extern void FUN_00072078(unsigned a);
 extern void FUN_0007e2ec(unsigned a, unsigned b);
-extern void FUN_0007e2fa(unsigned a, unsigned b, unsigned c, unsigned d);
+extern void FUN_0007e2fa(unsigned long, ...);
 void FUN_00073b1c(void){
     unsigned r4;
     r4 = __get_BASEPRI();

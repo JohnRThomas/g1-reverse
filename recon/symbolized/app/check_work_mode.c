@@ -107,11 +107,11 @@ typedef long long(*code)();
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long log_message(long long format, ...);
+extern void log_message(unsigned long, ...);
 extern long long compute_lux_brightness_bucket(long long);
 extern long long get_device_info(void);
 extern long long get_current_work_mode(void);
-extern long long debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern long long esb_send_command_and_wait_ack(long long,long long,long long,long long);
 extern long long display_panel_is_secondary(void);
 extern long long debounce_read_pending_flag_2(void);
@@ -281,7 +281,7 @@ LAB_00027964:
               log_message(_event_id2,DAT_00027a7c);
             }
             else {
-              debug_print();
+              debug_print(_event_id2,DAT_00027a7c);
             }
           }
         }
@@ -313,7 +313,7 @@ LAB_0002782c:
           log_message(_event_id2,DAT_00027a7c);
         }
         else {
-          debug_print();
+          debug_print(_event_id2,DAT_00027a7c);
         }
       }
     }
@@ -362,7 +362,7 @@ LAB_00027844:
         log_message(DAT_00027a94,DAT_00027a7c);
       }
       else {
-        debug_print();
+        debug_print(DAT_00027a94,DAT_00027a7c);
       }
     }
     send_event(0x11);
@@ -377,7 +377,7 @@ LAB_00027844:
           log_message(DAT_00027ab0,DAT_00027a7c);
         }
         else {
-          debug_print();
+          debug_print(DAT_00027ab0,DAT_00027a7c);
         }
       }
       event_id = 0x6;
@@ -388,7 +388,7 @@ LAB_00027844:
           log_message(DAT_00027ab4,DAT_00027a7c);
         }
         else {
-          debug_print();
+          debug_print(DAT_00027ab4,DAT_00027a7c);
         }
       }
       event_id = 0x7;
@@ -404,7 +404,7 @@ LAB_00027844:
         log_message(DAT_00027aac,DAT_00027a7c);
       }
       else {
-        debug_print();
+        debug_print(DAT_00027aac,DAT_00027a7c);
       }
     }
     event_id = 0x8;
@@ -415,7 +415,7 @@ LAB_00027844:
         log_message(DAT_00027aa4,DAT_00027a7c);
       }
       else {
-        debug_print();
+        debug_print(DAT_00027aa4,DAT_00027a7c);
       }
     }
     event_id = 0xb;
@@ -437,7 +437,7 @@ LAB_00027844:
         log_message(DAT_00027ccc,DAT_00027cc8);
       }
       else {
-        debug_print();
+        debug_print(DAT_00027ccc,DAT_00027cc8);
       }
     }
     _event_id2 = 0xa;
@@ -464,7 +464,7 @@ LAB_00027b72:
         log_message(DAT_00027cec,DAT_00027cc8,uVar4);
         return;
       }
-      debug_print();
+      debug_print(DAT_00027cec,DAT_00027cc8,uVar4);
       return;
     }
     *DAT_00027cd0 = 0;
@@ -494,7 +494,7 @@ LAB_00027b72:
             log_message(DAT_00027cf0,DAT_00027cc8,new_box_charging_status);
           }
           else {
-            debug_print();
+            debug_print(DAT_00027cf0,DAT_00027cc8,new_box_charging_status);
           }
         }
         send_event(0xe);

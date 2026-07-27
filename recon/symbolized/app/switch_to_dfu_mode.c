@@ -61,7 +61,7 @@ void switch_to_dfu_mode(unsigned int param_1)
             debug_print(((unsigned long)"%s(): failed to switch to ble mode [%d]\n") /*=0x990dc*/, ((unsigned long)"switch_to_dfu_mode") /*=0x99b2a*/, (unsigned int)iVar2, 0);
             return;
         }
-        log_message(((unsigned long)"%s(): failed to switch to ble mode [%d]\n") /*=0x990dc*/, ((unsigned long)"switch_to_dfu_mode") /*=0x99b2a*/);
+        log_message(((unsigned long)"%s(): failed to switch to ble mode [%d]\n") /*=0x990dc*/, ((unsigned long)"switch_to_dfu_mode") /*=0x99b2a*/, (unsigned int)iVar2, 0);
         return;
     }
 loop_start:

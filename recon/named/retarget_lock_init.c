@@ -27,7 +27,7 @@ void retarget_lock_init(int *param_1)
   unsigned int uVar2;
 
   if (param_1 == 0) {
-    printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void*)0xf23d4UL, (void*)0xf22d5UL, 0x179);
+    printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void*)0xf23d4UL, (void*)0xf22d5UL, 0x179);
     uVar2 = 0x179;
     assert_post_action((void*)0xf22d5UL, uVar2);
   }
@@ -37,8 +37,8 @@ void retarget_lock_init(int *param_1)
     kmutex_dlist_init();
     return;
   }
-  printk((void*)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void*)0xf23d3UL, (void*)0xf22d5UL, 0x181);
-  printk((void*)0xf240fUL, 0,0,0);
+  printk((unsigned long)((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), (void*)0xf23d3UL, (void*)0xf22d5UL, 0x181);
+  printk((unsigned long)0xf240fUL, 0,0,0);
   uVar2 = 0x181;
   assert_post_action((void*)0xf22d5UL, uVar2);
 }

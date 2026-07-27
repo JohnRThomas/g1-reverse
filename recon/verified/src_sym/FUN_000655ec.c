@@ -1,6 +1,6 @@
 /* Reconstructed FUN_000655ec @ 0x655ec  (parity: 300/300 trials, PROVEN) */
 
-extern int printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
+extern void printk(unsigned long, ...);
 extern int assert_post_action(unsigned int a, unsigned int b);
 
 int FUN_000655ec(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

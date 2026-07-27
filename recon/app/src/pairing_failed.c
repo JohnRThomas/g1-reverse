@@ -3,8 +3,8 @@
 
 extern uintptr_t FUN_00081526(void);
 extern void FUN_00018334(const void *connection, char description[36]);
-extern void DEBUG_PRINT(uintptr_t format, ...);
-extern void FUN_00019c70(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00056a68(uint32_t connection, uint32_t reason);
 
 void pairing_failed(uint32_t connection, uint32_t error)

@@ -53,7 +53,7 @@ void confirm_message(int param_1)
     if ((*pcVar6 == 1) && (cVar1 == 0) && (iVar7 = message_table_contains_id(10,iVar13), iVar7 != 0)) {
       if (0 < *(volatile int*)0x2000230c) {
         if (*(volatile int*)0x20007554 == 0) log_message(((unsigned long)"%s(): add found same message, uidtail %d\n"),((unsigned long)"confirm_message"),iVar13);
-        else debug_print(0);
+        else debug_print(((unsigned long)"%s(): add found same message, uidtail %d\n"),((unsigned long)"confirm_message"),iVar13);
       }
       memset_bytes(0x20008eb4,0,0x1b4);
       return;

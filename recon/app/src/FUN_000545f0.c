@@ -4,8 +4,7 @@
 extern uint32_t FUN_000565c4(uintptr_t poll_events);
 extern uint32_t FUN_000755f8(uintptr_t events, uint32_t count,
                             uint32_t timeout_lo, uint32_t timeout_hi);
-extern uint64_t FUN_0007e2fa(uintptr_t module, uintptr_t file,
-                            uintptr_t condition, uint32_t line);
+extern void FUN_0007e2fa(unsigned long, ...);
 /* Stock Zephyr 3.4 ARMv8-M Mainline ARCH_EXCEPT().  These instructions are
  * embedded at 0x54634..0x5463e and 0x5467e..0x54688 in the shipped function;
  * 0x5463e/0x54688 are SVC sites, not callable function entries. */

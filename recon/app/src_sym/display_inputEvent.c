@@ -1,7 +1,7 @@
 /* Reconstructed display_inputEvent @ 0x49938  (parity: 300/300 trials, PROVEN) */
 extern void memset_bytes(void *a0, unsigned int a1, unsigned int a2);
-extern void DEBUG_PRINT(unsigned int a0, unsigned int a1);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern int FUN_000720d0(unsigned int a0, void *a1, unsigned int a2, unsigned int a3);
 
 unsigned int display_inputEvent(unsigned char param_1, unsigned char param_2)
@@ -21,7 +21,7 @@ unsigned int display_inputEvent(unsigned char param_1, unsigned char param_2)
             if (*(volatile int*)0x20007554UL /* device_info.is_debug @+0xB58  (log sink select: 0=RTT DEBUG_PRINT) */ == 0)
                 DEBUG_PRINT(0xf00bbUL, 0xf0151UL);
             else
-                debug_print();
+                debug_print(0xf00bbUL, 0xf0151UL);
         }
     } else {
         DEBUG_PRINT(0xef058UL, 0xf0151UL);

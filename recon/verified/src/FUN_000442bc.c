@@ -1,10 +1,10 @@
 /* Reconstructed FUN_000442bc @ 0x442bc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char byte; typedef uint32_t undefined4; typedef uint16_t undefined2; typedef unsigned int uint; typedef unsigned short ushort;
-extern int DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_0000ef12(int,...);
 extern int FUN_000167a8(int,...);
-extern int FUN_00019c70(int,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000431a8(int,...);
 extern int FUN_00043e90(int,...);
 extern int FUN_0004588c(int,...);

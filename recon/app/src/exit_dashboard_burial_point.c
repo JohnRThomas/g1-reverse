@@ -4,8 +4,8 @@ extern unsigned int FUN_000167a8(void);
 extern unsigned int FUN_0007dac0(void);
 extern long long FUN_0004a960(void);
 extern unsigned int FUN_0007db50(void);
-extern void DEBUG_PRINT(unsigned int, ...);
-extern void FUN_00019c70(unsigned int, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 /* G7-B2: both sinks are void; every exit is `add sp,#0xc; pop {r4,r5,pc}` at
  * 0x4ab0a with r0 left holding the last callee's scratch, and the sole

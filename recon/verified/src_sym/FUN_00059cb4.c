@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00059cb4 @ 0x59cb4  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long atomic_or_0(int a, int b);
-extern void printk(int a, int b, int c, int d);
+extern void printk(unsigned long, ...);
 extern void assert_post_action(int a, int b);
 
 void FUN_00059cb4(void)

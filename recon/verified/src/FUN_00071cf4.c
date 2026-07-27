@@ -7,7 +7,7 @@ extern void FUN_000738d4(void);
 extern void FUN_000739f0(int,uint32_t);
 extern int FUN_000744a4(int);
 extern void FUN_0007e2ec(uint32_t,int);
-extern void FUN_0007e2fa(uint32_t,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 void FUN_00071cf4(int param_1, uint32_t* param_2){
     int iVar6=param_1+8;
     uint32_t uVar7=0;

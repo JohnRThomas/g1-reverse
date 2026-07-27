@@ -9,7 +9,7 @@ extern int FUN_000739f0(int,...);
 extern int FUN_00073f6c(int,...);
 extern int FUN_000744a4(int,...);
 extern int FUN_0007e2ec(int,...) __attribute__((noreturn));
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_00086c04(int,...);
 static inline int ipsr(void){return (int)__get_IPSR();}
 static inline int rd_basepri(void){return (int)__get_BASEPRI();}

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00072cd4 @ 0x72cd4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void FUN_0007e2fa(uint32_t,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uint32_t,uint32_t);
 extern int FUN_00086406(void);
 extern void FUN_00086588(int);

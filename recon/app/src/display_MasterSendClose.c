@@ -3,8 +3,8 @@
 extern void FUN_00086c78(void *destination, int value, unsigned int length);
 extern int FUN_000720d0(unsigned int queue, void *record,
                        unsigned int wait, unsigned int flags);
-extern void DEBUG_PRINT(unsigned int format, unsigned int context);
-extern void FUN_00019c70(unsigned int format, unsigned int context, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 unsigned int display_MasterSendClose(void)
 {

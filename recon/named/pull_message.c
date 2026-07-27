@@ -29,7 +29,7 @@ unsigned char pull_message(int *param_1, unsigned int param_2, unsigned int para
             if (*(int *)0x20007554UL == 0) {
                 log_message(0xa804bU, 0xa822eU, 0xa8221U, 0x3bdU, param_4);
             } else {
-                debug_print(0xa804bU, 0xa822eU, 0xa8221U, 0x3bdU);
+                debug_print(0xa804bU, 0xa822eU, 0xa8221U, 0x3bdU, param_4);
             }
         }
     } else {

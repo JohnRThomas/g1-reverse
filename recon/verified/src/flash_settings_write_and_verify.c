@@ -9,8 +9,8 @@ extern void FUN_00086c78(void *, int, size_t);
 extern int FUN_00086be4(const void *, const void *, size_t);
 extern void FUN_00086c1e(void *, const void *, size_t, size_t);
 extern uintptr_t FUN_000167a8(void);
-extern void FUN_0007dda4(uintptr_t, ...);
-extern void FUN_00019c70(void);
+extern void FUN_0007dda4(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 typedef int (*flash_read_t)(uintptr_t, uint32_t, void *, uint32_t);
 typedef int (*flash_erase_t)(uintptr_t, uint32_t, uint32_t);
 typedef int (*flash_write_t)(uintptr_t, uint32_t, const void *, uint32_t);
@@ -24,7 +24,7 @@ int flash_settings_write_and_verify(uint32_t address, const void *source,
         if (*(volatile uint32_t *)(uintptr_t)0x20007554u == 0u)
             FUN_0007dda4(0x0009e324u, 0x0009e508u, 0xd2u, 0u);
         else
-            FUN_00019c70();
+            FUN_00019c70(0x0009e324u, 0x0009e508u, 0xd2u, 0u);
         return -1;
     }
 

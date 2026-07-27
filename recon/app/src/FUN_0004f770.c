@@ -6,7 +6,7 @@ extern int FUN_00072040(uintptr_t lock);
 extern int FUN_0007205c(uintptr_t lock);
 extern void FUN_00072078(uintptr_t lock);
 extern void FUN_00072fdc(uintptr_t object);
-extern void FUN_0007e2fa(uintptr_t domain, uintptr_t message, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t file, uint32_t line) __attribute__((noreturn));
 
 void FUN_0004f770(uint32_t *item)

@@ -3,8 +3,8 @@
 extern void FUN_00086c78(void*, int, int);
 extern unsigned int FUN_000225b4(unsigned int, void*, int);
 extern void FUN_00086c04(unsigned int, void*, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, unsigned int, unsigned int);
-extern void FUN_00019c70(unsigned int, unsigned int, unsigned int, unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 unsigned int load_whitelist(void)
 {

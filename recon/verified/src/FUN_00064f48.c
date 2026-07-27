@@ -3,8 +3,7 @@
  */
 #include <stdint.h>
 
-extern void FUN_0007e2fa(uint32_t subsystem, uint32_t message,
-                         uint32_t source, uint32_t line);
+extern void FUN_0007e2fa(unsigned long, ...);
 /* The real routine is noreturn.  The return type models unreachable r0 only. */
 extern uint32_t FUN_0007e2ec(uint32_t source, uint32_t line);
 

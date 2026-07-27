@@ -1,7 +1,7 @@
 /* Reconstructed dequeue_dmic @ 0x2ed00  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int fmt, unsigned int arg);
-extern void FUN_00019c70(unsigned int fmt, unsigned int arg, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00072240(unsigned int queue, void *record,
                        unsigned int wait, unsigned int flags);
 extern void FUN_00086c04(void *destination, const void *source,

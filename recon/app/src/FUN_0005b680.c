@@ -8,7 +8,7 @@ extern int FUN_0005f200(int,...);
 extern int FUN_0005f24c(int,...);
 extern int FUN_0005f5d0(int,...);
 extern int FUN_0007e2ec(int,...) __attribute__((noreturn));
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_00082114(int,...);
 extern int FUN_000825ac(int,...);
 extern int FUN_00082a42(int,...);

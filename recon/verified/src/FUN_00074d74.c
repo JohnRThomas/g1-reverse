@@ -5,7 +5,7 @@ extern int FUN_0007205c(int);
 extern void FUN_00072078(int);
 extern void FUN_00074bbc(int);
 extern void FUN_0007e2ec(int,int);
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 int FUN_00074d74(int *param_1,int param_2,int param_3,int param_4){
   int uVar4;
   int r=FUN_00072040(0x2000b498);

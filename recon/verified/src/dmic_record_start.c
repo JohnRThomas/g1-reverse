@@ -3,8 +3,8 @@
 #include <stdint.h>
 
 extern uint8_t *FUN_000167a8(void);
-extern void DEBUG_PRINT(uint32_t format, uint32_t argument);
-extern void FUN_00019c70(uint32_t format, uint32_t argument, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_0002f688(void);
 extern void FUN_0002f764(void);
 extern void FUN_00072880(void *event);

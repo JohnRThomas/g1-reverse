@@ -15,8 +15,8 @@ extern void FUN_00043484(uint32_t glyph, uint32_t x, uint32_t y,
                          uint32_t a3, uint32_t a4, uint32_t a5);
 extern void FUN_00047260(uintptr_t left, uintptr_t right, uint32_t x,
                          uint32_t y, uint32_t width, uint32_t height);
-extern void DEBUG_PRINT(uintptr_t format, ...);
-extern void FUN_00019c70(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 #define LOG_ROUTE (*(volatile uint32_t *)0x20007554u)
 #define MESSAGE_TASK_ACTIVE (*(volatile uint8_t *)0x2001b813u)

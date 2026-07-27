@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000183ac @ 0x183ac  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00018334(int, int);
-extern void DEBUG_PRINT(int, int);
+extern void DEBUG_PRINT(unsigned long, ...);
 void FUN_000183ac(int param_1, int param_2)
 {
     char auStack_28[32];

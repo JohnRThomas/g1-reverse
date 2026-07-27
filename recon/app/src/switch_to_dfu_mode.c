@@ -2,8 +2,8 @@
 
 typedef unsigned char u8;
 typedef unsigned int u32;
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(unsigned int, unsigned int, unsigned int, unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00086406(void);
 extern void FUN_0007c038(int);
 extern int FUN_0004c0a8(int);
@@ -43,7 +43,7 @@ void switch_to_dfu_mode(unsigned int param_1)
             FUN_00019c70(0x990dcU, 0x99b2aU, (unsigned int)iVar2, 0);
             return;
         }
-        DEBUG_PRINT(0x990dcU, 0x99b2aU);
+        DEBUG_PRINT(0x990dcU, 0x99b2aU, (unsigned int)iVar2, 0);
         return;
     }
 loop_start:

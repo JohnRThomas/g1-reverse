@@ -5,9 +5,9 @@ typedef uint32_t uint;
 typedef uint16_t ushort;
 typedef uint8_t byte;
 
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern uintptr_t FUN_000167a8(void);
-extern void FUN_00019c70(uintptr_t format, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00023ee0(void);
 extern void FUN_00044ec4(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t,
                         uint32_t, uint32_t, uint32_t, uint32_t, uint32_t,
@@ -88,7 +88,7 @@ LAB_96a:
             FUN_0004a1b8(param_2,calendar);
             if (*(volatile int*)piVar2 == 0)
               DEBUG_PRINT(0xa8b3f,param_2,calendar[0] & 0xffff,calendar[0] >> 0x10,calendar[1] & 0xffff,calendar[1] >> 0x10,calendar[2] & 0xffff,calendar[2] >> 0x10);
-            else FUN_00019c70(0xa8b3f,param_2,calendar[0] & 0xffff,calendar[0] >> 0x10);
+            else FUN_00019c70(0xa8b3f,param_2,calendar[0] & 0xffff,calendar[0] >> 0x10,calendar[1] & 0xffff,calendar[1] >> 0x10,calendar[2] & 0xffff,calendar[2] >> 0x10);
             if (*(volatile int*)piVar2 == 0) { iVar4 = FUN_000167a8(); DEBUG_PRINT(0xa8b67,(uint)*(byte *)(*(int *)(iVar4 + 0xfec) + 0x5e)); }
             else { iVar4 = FUN_000167a8(); FUN_00019c70(0xa8b67,*(byte *)(*(int *)(iVar4 + 0xfec) + 0x5e)); }
             iVar4 = FUN_000167a8();

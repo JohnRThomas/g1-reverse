@@ -4,7 +4,7 @@
  */
 #include <stdint.h>
 
-extern int DEBUG_PRINT(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_00025788(uint32_t transport, uint32_t key,
                         void *value, uint32_t length);
 

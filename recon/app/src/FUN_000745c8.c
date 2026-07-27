@@ -8,7 +8,7 @@ extern int FUN_00072078(int,...);
 extern int FUN_000737d8(int,...);
 extern int FUN_00073cdc(int,...);
 extern int FUN_0007e2ec(int,...);
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 void FUN_000745c8(void)
 {
   if (__get_IPSR() != 0) {

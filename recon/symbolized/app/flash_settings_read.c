@@ -23,9 +23,9 @@
 
 extern int z_device_is_ready(const void *device);
 extern uintptr_t get_device_info(void);
-extern void log_message(uintptr_t format, ...);
+extern void log_message(unsigned long, ...);
 extern void k_sleep(uint32_t ticks, uint32_t unused);
-extern void debug_print(void);
+extern void debug_print(unsigned long, ...);
 
 typedef int (*flash_read_api_t)(uintptr_t device, uint32_t address,
                                 void *destination, uint32_t length);
@@ -63,7 +63,7 @@ int flash_settings_read(uint32_t address, void *destination, uint32_t length)
             if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0U) {
                 log_message(((unsigned long)"%s(): flash read fail, retry again, retry time %d\n") /*=0x9e2f1*/, ((unsigned long)"flash_settings_read") /*=0x9e528*/, retry);
             } else {
-                debug_print();
+                debug_print(((unsigned long)"%s(): flash read fail, retry again, retry time %d\n") /*=0x9e2f1*/, ((unsigned long)"flash_settings_read") /*=0x9e528*/, retry);
             }
         }
     }

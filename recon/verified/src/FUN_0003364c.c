@@ -5,7 +5,7 @@
  */
 #include <stdint.h>
 
-extern int DEBUG_PRINT(uintptr_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern void FUN_00074844(uint32_t delay, uint32_t flags);
 
 int FUN_0003364c(void *transport, const uint8_t *value, const void *required)

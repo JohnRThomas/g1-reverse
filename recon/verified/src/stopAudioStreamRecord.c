@@ -4,8 +4,8 @@ extern void FUN_00086c78(void *destination, int value, unsigned int length);
 extern int FUN_000720d0(unsigned int queue, void *record,
                         unsigned int wait, unsigned int flags);
 extern void FUN_00072880(void *work);
-extern void FUN_0007dda4(unsigned int message, unsigned int function);
-extern void FUN_00019c70(unsigned int message, unsigned int function);
+extern void FUN_0007dda4(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 unsigned int stopAudioStreamRecord(void)
 {

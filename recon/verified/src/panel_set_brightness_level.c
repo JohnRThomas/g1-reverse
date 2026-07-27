@@ -1,8 +1,8 @@
 /* Reconstructed panel_set_brightness_level @ 0x46ce8  (CFG-directed candidate) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t format, ...);
-extern void FUN_00019c70(uint32_t format, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 uint32_t panel_set_brightness_level(uint8_t *context, uint32_t level)
 {

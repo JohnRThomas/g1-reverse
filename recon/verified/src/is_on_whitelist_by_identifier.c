@@ -1,9 +1,9 @@
 /* Reconstructed is_on_whitelist_by_identifier @ 0x34bd4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern unsigned int FUN_0000ef12(const void *);
-extern void FUN_00019c70(uint32_t,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00087036(const void *,int,unsigned int);
 extern int FUN_000870be(const void *,int);
 

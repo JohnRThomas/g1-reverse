@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0004a424 @ 0x4a424  (parity: 166/300 trials, PROVEN) */
 
-extern int DEBUG_PRINT(int fmt, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 void FUN_0004a424(int param_1, int param_2, int param_3)
 {
   unsigned int uVar1;

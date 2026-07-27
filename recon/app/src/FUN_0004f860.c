@@ -20,8 +20,7 @@ typedef struct {
 
 extern void FUN_0004d944(uintptr_t target, uint32_t command,
                         const dispatch_record *record, uint32_t zero);
-extern void FUN_0007e2fa(uintptr_t domain, uintptr_t message,
-                        uintptr_t file, uint32_t line);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t file, uint32_t line) __attribute__((noreturn));
 
 void FUN_0004f860(const work_event *event)

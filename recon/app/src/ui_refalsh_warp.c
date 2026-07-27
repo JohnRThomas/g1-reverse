@@ -6,8 +6,8 @@
 
 extern int FUN_00032ee4(void);
 extern int FUN_00036a18(int,int,int);
-extern int DEBUG_PRINT(int,int,int,int);
-extern int FUN_00019c70(int,int,int,int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0003603c(int,int,int);
 extern int FUN_00036b3c(int,int,int);
 extern int FUN_0003f410(int,int,int);

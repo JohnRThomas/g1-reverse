@@ -5,7 +5,7 @@ extern int FUN_0004da6c(unsigned,...);
 extern int FUN_0004da90(unsigned,unsigned);
 extern int FUN_0007db9e(unsigned,unsigned,unsigned,int);
 extern int FUN_0007e2ec(unsigned,unsigned);
-extern int FUN_0007e2fa(unsigned,unsigned,unsigned,int);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_0007ee44(void);
 extern int FUN_0007eece(unsigned);
 #define U8(a)  (*(volatile uint8_t*)(uintptr_t)(a))

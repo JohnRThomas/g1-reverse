@@ -32,7 +32,7 @@ extern void FUN_00072078(void *lock);
 extern uint64_t FUN_0007e18e(transition_state *state, ...);
 extern void FUN_0007e1e6(transition_state *state, pending_node *node,
                          uint32_t mode, uint32_t operation);
-extern void FUN_0007e2fa(uintptr_t format, ...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t file, uint32_t line) __attribute__((noreturn));
 
 static __attribute__((always_inline)) inline uint32_t enter_critical(void)

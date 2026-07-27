@@ -2,7 +2,7 @@
 
 extern int FUN_00066850(void);
 extern void assert_post_action(void*, int);
-extern void printk(void*, void*, void*, int, unsigned int);
+extern void printk(unsigned long, ...);
 
 int FUN_00066994(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -24,7 +24,7 @@ int FUN_00066994(int param_1, unsigned int param_2, unsigned int param_3, unsign
     }
     return iVar2;
   }
-  printk((void*)0x99cbdUL, (void*)0xf6c00UL, (void*)0xf6d5eUL, 0x19b, param_4);
+  printk((unsigned long)0x99cbdUL, (void*)0xf6c00UL, (void*)0xf6d5eUL, 0x19b, param_4);
   assert_post_action((void*)0xf6d5eUL, 0x19b);
   return 0;
 }

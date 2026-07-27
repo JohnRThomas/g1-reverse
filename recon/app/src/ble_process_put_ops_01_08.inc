@@ -15,7 +15,9 @@ BLE_PUT_ALWAYS_INLINE void ble_put_copy_ack(struct ble_put_context *ctx,
                         ctx->transfer[4], ctx->transfer[5],
                         ctx->transfer[6], ctx->transfer[7]);
         } else {
-            FUN_00019c70();
+            FUN_00019c70((const void *)0x0009b9bd, (const void *)0x0009e077,
+                        ctx->transfer[4], ctx->transfer[5],
+                        ctx->transfer[6], ctx->transfer[7]);
         }
     }
     FUN_00019b54(ctx, sync_state, 8);
@@ -58,7 +60,8 @@ ble_put_op06_01_02(struct ble_put_context *ctx,
             DEBUG_PRINT((const void *)0x0009bb5d,
                         (const void *)0x0009e077, request[3]);
         else
-            FUN_00019c70();
+            FUN_00019c70((const void *)0x0009bb5d,
+                        (const void *)0x0009e077, request[3]);
     }
 
     if (request[4] == 1) {
@@ -76,7 +79,8 @@ ble_put_op06_01_02(struct ble_put_context *ctx,
                             left, right, primary);
             else
                 FUN_00019c70((const void *)0x0009bb7a,
-                             (const void *)0x0009e077, left, right);
+                            (const void *)0x0009e077,
+                            left, right, primary);
         }
 
         config[4] = request[17];
@@ -93,7 +97,11 @@ ble_put_op06_01_02(struct ble_put_context *ctx,
                             axes[1] & 0xffffu, axes[1] >> 16,
                             axes[2] & 0xffffu, axes[2] >> 16);
             else
-                FUN_00019c70();
+                FUN_00019c70((const void *)0x0009bbb9,
+                            (const void *)0x0009e077, primary,
+                            axes[0] & 0xffffu, axes[0] >> 16,
+                            axes[1] & 0xffffu, axes[1] >> 16,
+                            axes[2] & 0xffffu, axes[2] >> 16);
         }
         FUN_0004a46c(config, 0, 1);
         config[0x5d] = request[19];
@@ -134,7 +142,8 @@ ble_put_op06_01_02(struct ble_put_context *ctx,
                             config[0x64], config[0x65]);
             else
                 FUN_00019c70((const void *)0x0009bc2d,
-                             (const void *)0x0009e077);
+                            (const void *)0x0009e077,
+                            config[0x64], config[0x65]);
         }
         FUN_000165cc();
         FUN_000165a4();
@@ -300,7 +309,8 @@ ble_put_op06_03(struct ble_put_context *ctx,
                                 (uint32_t)*(volatile uint16_t *)(uintptr_t)0x2000d706 + 1u);
                 else
                     FUN_00019c70((const void *)0x0009b967,
-                                 (const void *)0x0009e077);
+                                (const void *)0x0009e077, current,
+                                (uint32_t)*(volatile uint16_t *)(uintptr_t)0x2000d706 + 1u);
             }
             *packet_count = 0;
             *packet_index = 0;
@@ -354,7 +364,8 @@ ble_put_op06_03(struct ble_put_context *ctx,
                                 (uint32_t)*(volatile uint16_t *)(uintptr_t)0x2000d706 + 1u);
                 else
                     FUN_00019c70((const void *)0x0009b967,
-                                 (const void *)0x0009e077);
+                                (const void *)0x0009e077, current,
+                                (uint32_t)*(volatile uint16_t *)(uintptr_t)0x2000d706 + 1u);
             }
             FUN_00086c78(assembled_text, 0, 0x119);
             FUN_00086c78(assembled_title, 0, 0x29);
@@ -377,7 +388,7 @@ BLE_PUT_ALWAYS_INLINE void ble_put_op07(struct ble_put_context *ctx,
         if (BLE_IS_DEBUG == 0)
             DEBUG_PRINT((const void *)0x0009ba85, (const void *)0x0009e077);
         else
-            FUN_00019c70();
+            FUN_00019c70((const void *)0x0009ba85, (const void *)0x0009e077);
     }
     *(uint32_t *)(void *)(ctx->transfer + 4) =
         *(const uint32_t *)(const void *)(request + 1);
@@ -389,14 +400,17 @@ BLE_PUT_ALWAYS_INLINE void ble_put_op07(struct ble_put_context *ctx,
             DEBUG_PRINT((const void *)0x0009baaa, (const void *)0x0009e077,
                         *(uint32_t *)(ctx->transfer + 4), ctx->transfer[8]);
         else
-            FUN_00019c70((const void *)0x0009baaa, (const void *)0x0009e077);
+            FUN_00019c70((const void *)0x0009baaa, (const void *)0x0009e077,
+                        *(uint32_t *)(ctx->transfer + 4), ctx->transfer[8]);
         if (BLE_LOG_LEVEL > 2) {
             if (BLE_IS_DEBUG == 0)
                 DEBUG_PRINT((const void *)0x0009bad3, (const void *)0x0009e077,
                             ctx->transfer[4], ctx->transfer[5],
                             ctx->transfer[6], ctx->transfer[7], ctx->transfer[8]);
             else
-                FUN_00019c70();
+                FUN_00019c70((const void *)0x0009bad3, (const void *)0x0009e077,
+                            ctx->transfer[4], ctx->transfer[5],
+                            ctx->transfer[6], ctx->transfer[7], ctx->transfer[8]);
         }
     }
     FUN_00019b54(ctx, sync_state, 8);
@@ -426,7 +440,7 @@ BLE_PUT_ALWAYS_INLINE void ble_put_op08(struct ble_put_context *ctx,
         if (BLE_IS_DEBUG == 0)
             DEBUG_PRINT((const void *)0x0009ba29, (const void *)0x0009e077);
         else
-            FUN_00019c70();
+            FUN_00019c70((const void *)0x0009ba29, (const void *)0x0009e077);
     }
     if (request[4] == 3) {
         if (request[5] < 3) {
@@ -442,7 +456,7 @@ BLE_PUT_ALWAYS_INLINE void ble_put_op08(struct ble_put_context *ctx,
             if (BLE_IS_DEBUG == 0)
                 DEBUG_PRINT((const void *)0x0009ba52, (const void *)0x0009e077);
             else
-                FUN_00019c70();
+                FUN_00019c70((const void *)0x0009ba52, (const void *)0x0009e077);
         }
     } else if (request[4] == 4) {
         FUN_00086c78(response, 0, 20);
@@ -477,10 +491,10 @@ ble_put_op06_04_single(struct ble_put_context *ctx,
         ret = ctx->post_to_host(response, 10);                              \
         if (ret < 0 && BLE_LOG_LEVEL > 0) {                                \
             if (BLE_IS_DEBUG == 0)                                         \
-                DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",       \
+                DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),       \
                             "ble_process_put_req", ret);                   \
             else                                                            \
-                FUN_00019c70();                                             \
+                FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"), "ble_process_put_req", ret);                                             \
         }                                                                   \
     } while (0)
 #define BLE_STOCK_REJECT(message_) do {                                    \
@@ -488,7 +502,7 @@ ble_put_op06_04_single(struct ble_put_context *ctx,
             if (BLE_IS_DEBUG == 0)                                         \
                 DEBUG_PRINT((message_), "ble_process_put_req");            \
             else                                                            \
-                FUN_00019c70();                                             \
+                FUN_00019c70((message_), "ble_process_put_req");                                             \
         }                                                                   \
         BLE_STOCK_REPLY(1);                                                 \
         return BLE_PUT_HANDLER_RETURN;                                      \
@@ -498,7 +512,7 @@ ble_put_op06_04_single(struct ble_put_context *ctx,
             if (BLE_IS_DEBUG == 0)                                         \
                 DEBUG_PRINT((message_), "ble_process_put_req");            \
             else                                                            \
-                FUN_00019c70();                                             \
+                FUN_00019c70((message_), "ble_process_put_req");                                             \
         }                                                                   \
         BLE_STOCK_REPLY(1);                                                 \
     } while (0)
@@ -513,22 +527,22 @@ ble_put_op06_04_single(struct ble_put_context *ctx,
     config = *(uint8_t **)(uintptr_t)(FUN_000167a8() + 0xfec);
     config[0x68] = request[11];
     if (BLE_LOG_LEVEL > 2) {
+        uint8_t *shown = *(uint8_t **)((uint8_t *)ctx + 0x870);
         if (BLE_IS_DEBUG == 0) {
-            uint8_t *shown = *(uint8_t **)((uint8_t *)ctx + 0x870);
-            DEBUG_PRINT("%s(): Dashboard display mode :%d  custom display Area value : %d\n",
+            DEBUG_PRINT(((unsigned long)"%s(): Dashboard display mode :%d  custom display Area value : %d\n"),
                         "ble_process_put_req", shown[0x64], shown[0x65]);
         } else {
-            FUN_00019c70("%s(): Dashboard display mode :%d  custom display Area value : %d\n",
-                         "ble_process_put_req");
+            FUN_00019c70(((unsigned long)"%s(): Dashboard display mode :%d  custom display Area value : %d\n"),
+                        "ble_process_put_req", shown[0x64], shown[0x65]);
         }
         if (BLE_LOG_LEVEL > 2) {
             config = *(uint8_t **)(uintptr_t)(FUN_000167a8() + 0xfec);
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): stocks display mode = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): stocks display mode = %d\n"),
                             "ble_process_put_req", config[0x68]);
             else {
                 config = *(uint8_t **)(uintptr_t)(FUN_000167a8() + 0xfec);
-                FUN_00019c70("%s(): stocks display mode = %d\n",
+                FUN_00019c70(((unsigned long)"%s(): stocks display mode = %d\n"),
                              "ble_process_put_req", config[0x68]);
             }
         }
@@ -543,29 +557,32 @@ ble_put_op06_04_single(struct ble_put_context *ctx,
     if (slot >= 5) {
         if (BLE_LOG_LEVEL > 0) {
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): stocks data oversize!!!!\n",
+                DEBUG_PRINT(((unsigned long)"%s(): stocks data oversize!!!!\n"),
                             "ble_process_put_req");
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): stocks data oversize!!!!\n"),
+                            "ble_process_put_req");
         }
         BLE_STOCK_REPLY(1);
         return BLE_PUT_HANDLER_BREAK;
     }
     if (BLE_LOG_LEVEL > 2) {
         if (BLE_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): current stocks index num = %d\n",
+            DEBUG_PRINT(((unsigned long)"%s(): current stocks index num = %d\n"),
                         "ble_process_put_req", slot);
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): current stocks index num = %d\n"),
+                        "ble_process_put_req", slot);
     }
     record = (uint8_t *)(uintptr_t)(0x2000d716u + (slot - 1u) * 0x7f2u);
     if ((int8_t)request[13] == 2) {
         if (BLE_LOG_LEVEL > 2) {
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): delete stocks index num = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): delete stocks index num = %d\n"),
                             "ble_process_put_req", slot);
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): delete stocks index num = %d\n"),
+                            "ble_process_put_req", slot);
         }
         FUN_00086c78(record, 0);
         FUN_00037154();
@@ -675,10 +692,10 @@ ble_put_op06_04_assembled(struct ble_put_context *ctx,
         ret = ctx->post_to_host(response, 10);                              \
         if (ret < 0 && BLE_LOG_LEVEL > 0) {                                \
             if (BLE_IS_DEBUG == 0)                                         \
-                DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",       \
+                DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),       \
                             "ble_process_put_req", ret);                   \
             else                                                            \
-                FUN_00019c70();                                             \
+                FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"), "ble_process_put_req", ret);                                             \
         }                                                                   \
     } while (0)
 #define BLE_STOCK_FINAL_BAD(message_) do {                                 \
@@ -686,7 +703,7 @@ ble_put_op06_04_assembled(struct ble_put_context *ctx,
             if (BLE_IS_DEBUG == 0)                                         \
                 DEBUG_PRINT((message_), "ble_process_put_req");           \
             else                                                            \
-                FUN_00019c70();                                             \
+                FUN_00019c70((message_), "ble_process_put_req");                                             \
         }                                                                   \
         BLE_STOCK_FINAL_ACK(1);                                             \
         return BLE_PUT_HANDLER_RETURN;                                      \
@@ -696,7 +713,7 @@ ble_put_op06_04_assembled(struct ble_put_context *ctx,
             if (BLE_IS_DEBUG == 0)                                         \
                 DEBUG_PRINT((message_), "ble_process_put_req");           \
             else                                                            \
-                FUN_00019c70();                                             \
+                FUN_00019c70((message_), "ble_process_put_req");                                             \
         }                                                                   \
         BLE_STOCK_FINAL_ACK(1);                                             \
     } while (0)
@@ -708,21 +725,21 @@ ble_put_op06_04_assembled(struct ble_put_context *ctx,
     config = *(uint8_t **)(uintptr_t)(FUN_000167a8() + 0xfec);
     config[0x68] = data[2];
     if (BLE_LOG_LEVEL > 2) {
+        uint8_t *shown = *(uint8_t **)((uint8_t *)ctx + 0x870);
         if (BLE_IS_DEBUG == 0) {
-            uint8_t *shown = *(uint8_t **)((uint8_t *)ctx + 0x870);
-            DEBUG_PRINT("%s(): Dashboard display mode :%d  custom display Area value : %d\n",
+            DEBUG_PRINT(((unsigned long)"%s(): Dashboard display mode :%d  custom display Area value : %d\n"),
                         "ble_process_put_req", shown[0x64], shown[0x65]);
         } else
-            FUN_00019c70("%s(): Dashboard display mode :%d  custom display Area value : %d\n",
-                         "ble_process_put_req");
+            FUN_00019c70(((unsigned long)"%s(): Dashboard display mode :%d  custom display Area value : %d\n"),
+                        "ble_process_put_req", shown[0x64], shown[0x65]);
         if (BLE_LOG_LEVEL > 2) {
             config = *(uint8_t **)(uintptr_t)(FUN_000167a8() + 0xfec);
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): stocks display mode = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): stocks display mode = %d\n"),
                             "ble_process_put_req", config[0x68]);
             else {
                 config = *(uint8_t **)(uintptr_t)(FUN_000167a8() + 0xfec);
-                FUN_00019c70("%s(): stocks display mode = %d\n",
+                FUN_00019c70(((unsigned long)"%s(): stocks display mode = %d\n"),
                              "ble_process_put_req", config[0x68]);
             }
         }
@@ -737,25 +754,27 @@ ble_put_op06_04_assembled(struct ble_put_context *ctx,
     if (slot >= 5) {
         if (BLE_LOG_LEVEL > 0) {
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): stocks data oversize!!!!\n", "ble_process_put_req");
-            else FUN_00019c70();
+                DEBUG_PRINT(((unsigned long)"%s(): stocks data oversize!!!!\n"), "ble_process_put_req");
+            else FUN_00019c70(((unsigned long)"%s(): stocks data oversize!!!!\n"), "ble_process_put_req");
         }
         BLE_STOCK_FINAL_ACK(1);
         return BLE_PUT_HANDLER_BREAK;
     }
     if (BLE_LOG_LEVEL > 2) {
         if (BLE_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): current stocks index num = %d\n",
+            DEBUG_PRINT(((unsigned long)"%s(): current stocks index num = %d\n"),
                         "ble_process_put_req", slot);
-        else FUN_00019c70();
+        else FUN_00019c70(((unsigned long)"%s(): current stocks index num = %d\n"),
+                        "ble_process_put_req", slot);
     }
     record = (uint8_t *)(uintptr_t)(0x2000d716u + (slot - 1u) * 0x7f2u);
     if ((int8_t)data[4] == 2) {
         if (BLE_LOG_LEVEL > 2) {
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): delete stocks index num = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): delete stocks index num = %d\n"),
                             "ble_process_put_req", slot);
-            else FUN_00019c70();
+            else FUN_00019c70(((unsigned long)"%s(): delete stocks index num = %d\n"),
+                            "ble_process_put_req", slot);
         }
         FUN_00037154();
         FUN_00086c78(record, 0);
@@ -808,8 +827,8 @@ ble_put_op06_04_assembled(struct ble_put_context *ctx,
     record[1] = data[p + 2];
     if (BLE_LOG_LEVEL > 2) {
         if (BLE_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): stock change status : %d\n", "ble_process_put_req");
-        else FUN_00019c70();
+            DEBUG_PRINT(((unsigned long)"%s(): stock change status : %d\n"), "ble_process_put_req");
+        else FUN_00019c70(((unsigned long)"%s(): stock change status : %d\n"), "ble_process_put_req");
     }
     p += 3;
     if ((int8_t)data[p] != 7)
@@ -823,11 +842,13 @@ ble_put_op06_04_assembled(struct ble_put_context *ctx,
     record[0] = 1;
     if (BLE_LOG_LEVEL > 2) {
         if (BLE_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): We received %d byte of data from the App\n",
+            DEBUG_PRINT(((unsigned long)"%s(): We received %d byte of data from the App\n"),
                         "ble_process_put_req",
                         (uint32_t)*(uint16_t *)(void *)(record + 2));
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): We received %d byte of data from the App\n"),
+                        "ble_process_put_req",
+                        (uint32_t)*(uint16_t *)(void *)(record + 2));
     }
     *expected_total = 0;
     *accepted_count = 0;
@@ -869,10 +890,10 @@ ble_put_op06_04_multipart_assemble(struct ble_put_context *ctx,
         ret = ctx->post_to_host(response, 10);                              \
         if (ret < 0 && BLE_LOG_LEVEL > 0) {                                \
             if (BLE_IS_DEBUG == 0)                                         \
-                DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",       \
+                DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),       \
                             "ble_process_put_req", ret);                   \
             else                                                            \
-                FUN_00019c70();                                             \
+                FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"), "ble_process_put_req", ret);                                             \
         }                                                                   \
     } while (0)
 
@@ -882,10 +903,11 @@ ble_put_op06_04_multipart_assemble(struct ble_put_context *ctx,
     if (current == 1) {
         if (BLE_LOG_LEVEL > 2) {
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): Action ID = 1,Received schedule multiple initialization packets, currently the first packet of data\n",
+                DEBUG_PRINT(((unsigned long)"%s(): Action ID = 1,Received schedule multiple initialization packets, currently the first packet of data\n"),
                             "ble_process_put_req");
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): Action ID = 1,Received schedule multiple initialization packets, currently the first packet of data\n"),
+                            "ble_process_put_req");
         }
         *accepted_count = 0;
         *expected_total = 0;
@@ -911,12 +933,13 @@ ble_put_op06_04_multipart_assemble(struct ble_put_context *ctx,
         }
         if (BLE_LOG_LEVEL > 1) {
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                             "ble_process_put_req", current,
                             (uint32_t)*diagnostic_count + 1u);
             else
-                FUN_00019c70("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
-                             "ble_process_put_req");
+                FUN_00019c70(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
+                            "ble_process_put_req", current,
+                            (uint32_t)*diagnostic_count + 1u);
         }
         *expected_total = 0;
         *accepted_count = 0;
@@ -937,12 +960,13 @@ ble_put_op06_04_multipart_assemble(struct ble_put_context *ctx,
         }
         if (BLE_LOG_LEVEL > 1) {
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                             "ble_process_put_req", current,
                             (uint32_t)*accepted_count + 1u);
             else
-                FUN_00019c70("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
-                             "ble_process_put_req");
+                FUN_00019c70(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
+                            "ble_process_put_req", current,
+                            (uint32_t)*accepted_count + 1u);
         }
         *expected_total = 0;
         *accepted_count = 0;
@@ -976,10 +1000,10 @@ ble_put_op06_05_single(struct ble_put_context *ctx,
         ret = ctx->post_to_host(response, 10);                              \
         if (ret < 0 && BLE_LOG_LEVEL > 0) {                                \
             if (BLE_IS_DEBUG == 0)                                         \
-                DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",       \
+                DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),       \
                             "ble_process_put_req", ret);                   \
             else                                                            \
-                FUN_00019c70();                                             \
+                FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"), "ble_process_put_req", ret);                                             \
         }                                                                   \
     } while (0)
 #define BLE_NEWS_BAD(message_) do {                                        \
@@ -987,7 +1011,7 @@ ble_put_op06_05_single(struct ble_put_context *ctx,
             if (BLE_IS_DEBUG == 0)                                         \
                 DEBUG_PRINT((message_), "ble_process_put_req");           \
             else                                                            \
-                FUN_00019c70();                                             \
+                FUN_00019c70((message_), "ble_process_put_req");                                             \
         }                                                                   \
         BLE_NEWS_ACK(1);                                                    \
         return BLE_PUT_HANDLER_RETURN;                                      \
@@ -1003,22 +1027,22 @@ ble_put_op06_05_single(struct ble_put_context *ctx,
     config = *(uint8_t **)(uintptr_t)(FUN_000167a8() + 0xfec);
     config[0x69] = request[11];
     if (BLE_LOG_LEVEL > 2) {
+        uint8_t *shown = *(uint8_t **)((uint8_t *)ctx + 0x870);
         if (BLE_IS_DEBUG == 0) {
-            uint8_t *shown = *(uint8_t **)((uint8_t *)ctx + 0x870);
-            DEBUG_PRINT("%s(): Dashboard display mode :%d  custom display Area value : %d\n",
+            DEBUG_PRINT(((unsigned long)"%s(): Dashboard display mode :%d  custom display Area value : %d\n"),
                         "ble_process_put_req", shown[0x64], shown[0x65]);
         } else {
-            FUN_00019c70("%s(): Dashboard display mode :%d  custom display Area value : %d\n",
-                         "ble_process_put_req");
+            FUN_00019c70(((unsigned long)"%s(): Dashboard display mode :%d  custom display Area value : %d\n"),
+                        "ble_process_put_req", shown[0x64], shown[0x65]);
         }
         if (BLE_LOG_LEVEL > 2) {
             config = *(uint8_t **)(uintptr_t)(FUN_000167a8() + 0xfec);
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): news display mode = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): news display mode = %d\n"),
                             "ble_process_put_req", config[0x69]);
             else {
                 config = *(uint8_t **)(uintptr_t)(FUN_000167a8() + 0xfec);
-                FUN_00019c70("%s(): news display mode = %d\n",
+                FUN_00019c70(((unsigned long)"%s(): news display mode = %d\n"),
                              "ble_process_put_req", config[0x69]);
             }
         }
@@ -1034,30 +1058,33 @@ ble_put_op06_05_single(struct ble_put_context *ctx,
     if (slot >= 5) {
         if (BLE_LOG_LEVEL > 0) {
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): news index num  oversize!!!!\n",
+                DEBUG_PRINT(((unsigned long)"%s(): news index num  oversize!!!!\n"),
                             "ble_process_put_req");
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): news index num  oversize!!!!\n"),
+                            "ble_process_put_req");
         }
         BLE_NEWS_ACK(1);
         return BLE_PUT_HANDLER_BREAK;
     }
     if (BLE_LOG_LEVEL > 2) {
         if (BLE_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): current news index num = %d\n",
+            DEBUG_PRINT(((unsigned long)"%s(): current news index num = %d\n"),
                         "ble_process_put_req", slot);
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): current news index num = %d\n"),
+                        "ble_process_put_req", slot);
     }
 
     record = (uint8_t *)(uintptr_t)(0x200107e3u + (slot - 1u) * 0x159u);
     if ((int8_t)request[13] == 2) {
         if (BLE_LOG_LEVEL > 2) {
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): delete news index num = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): delete news index num = %d\n"),
                             "ble_process_put_req", slot);
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): delete news index num = %d\n"),
+                            "ble_process_put_req", slot);
         }
         FUN_00086c78(record, 0);
         FUN_00037234();
@@ -1071,10 +1098,11 @@ ble_put_op06_05_single(struct ble_put_context *ctx,
     if (source_length > 0x40) {
         if (BLE_LOG_LEVEL > 1) {
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): news source oversize !!!\n",
+                DEBUG_PRINT(((unsigned long)"%s(): news source oversize !!!\n"),
                             "ble_process_put_req");
             else
-                FUN_00019c70();
+                FUN_00019c70(((unsigned long)"%s(): news source oversize !!!\n"),
+                            "ble_process_put_req");
         }
         BLE_NEWS_ACK(1);
     }
@@ -1087,10 +1115,11 @@ ble_put_op06_05_single(struct ble_put_context *ctx,
                  source_length > 0x3f ? 0x40 : source_length);
     if (BLE_LOG_LEVEL > 2) {
         if (BLE_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): news source : %s\n",
+            DEBUG_PRINT(((unsigned long)"%s(): news source : %s\n"),
                         "ble_process_put_req", record + 1);
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): news source : %s\n"),
+                        "ble_process_put_req", record + 1);
     }
 
     text_tag = source_length + 16u;
@@ -1111,10 +1140,11 @@ ble_put_op06_05_single(struct ble_put_context *ctx,
     record[0] = 1;
     if (BLE_LOG_LEVEL > 2) {
         if (BLE_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): We received %d byte of data from the News App\n",
+            DEBUG_PRINT(((unsigned long)"%s(): We received %d byte of data from the News App\n"),
                         "ble_process_put_req", text_length);
         else
-            FUN_00019c70();
+            FUN_00019c70(((unsigned long)"%s(): We received %d byte of data from the News App\n"),
+                        "ble_process_put_req", text_length);
     }
     BLE_NEWS_ACK(0);
 
@@ -1147,16 +1177,16 @@ ble_put_op06_05_assembled(struct ble_put_context *ctx,
         ret = ctx->post_to_host(response, 10);                              \
         if (ret < 0 && BLE_LOG_LEVEL > 0) {                                \
             if (BLE_IS_DEBUG == 0)                                         \
-                DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",       \
+                DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),       \
                             "ble_process_put_req", ret);                   \
-            else FUN_00019c70();                                            \
+            else FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"), "ble_process_put_req", ret);                                            \
         }                                                                   \
     } while (0)
 #define BLE_NEWS_FINAL_BAD(message_) do {                                  \
         if (BLE_LOG_LEVEL > 0) {                                           \
             if (BLE_IS_DEBUG == 0)                                         \
                 DEBUG_PRINT((message_), "ble_process_put_req");           \
-            else FUN_00019c70();                                            \
+            else FUN_00019c70((message_), "ble_process_put_req");                                            \
         }                                                                   \
         BLE_NEWS_FINAL_ACK(1);                                              \
         return BLE_PUT_HANDLER_RETURN;                                      \
@@ -1169,20 +1199,20 @@ ble_put_op06_05_assembled(struct ble_put_context *ctx,
     config = *(uint8_t **)(uintptr_t)(FUN_000167a8() + 0xfec);
     config[0x69] = data[2];
     if (BLE_LOG_LEVEL > 2) {
+        uint8_t *shown = *(uint8_t **)((uint8_t *)ctx + 0x870);
         if (BLE_IS_DEBUG == 0) {
-            uint8_t *shown = *(uint8_t **)((uint8_t *)ctx + 0x870);
-            DEBUG_PRINT("%s(): Dashboard display mode :%d  custom display Area value : %d\n",
+            DEBUG_PRINT(((unsigned long)"%s(): Dashboard display mode :%d  custom display Area value : %d\n"),
                         "ble_process_put_req", shown[0x64], shown[0x65]);
-        } else FUN_00019c70("%s(): Dashboard display mode :%d  custom display Area value : %d\n",
-                            "ble_process_put_req");
+        } else FUN_00019c70(((unsigned long)"%s(): Dashboard display mode :%d  custom display Area value : %d\n"),
+                        "ble_process_put_req", shown[0x64], shown[0x65]);
         if (BLE_LOG_LEVEL > 2) {
             config = *(uint8_t **)(uintptr_t)(FUN_000167a8() + 0xfec);
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): news display mode = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): news display mode = %d\n"),
                             "ble_process_put_req", config[0x69]);
             else {
                 config = *(uint8_t **)(uintptr_t)(FUN_000167a8() + 0xfec);
-                FUN_00019c70("%s(): news display mode = %d\n",
+                FUN_00019c70(((unsigned long)"%s(): news display mode = %d\n"),
                              "ble_process_put_req", config[0x69]);
             }
         }
@@ -1196,25 +1226,27 @@ ble_put_op06_05_assembled(struct ble_put_context *ctx,
     if (slot >= 5) {
         if (BLE_LOG_LEVEL > 0) {
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): stocks data oversize!!!!\n", "ble_process_put_req");
-            else FUN_00019c70();
+                DEBUG_PRINT(((unsigned long)"%s(): stocks data oversize!!!!\n"), "ble_process_put_req");
+            else FUN_00019c70(((unsigned long)"%s(): stocks data oversize!!!!\n"), "ble_process_put_req");
         }
         BLE_NEWS_FINAL_ACK(1);
         return BLE_PUT_HANDLER_BREAK;
     }
     if (BLE_LOG_LEVEL > 2) {
         if (BLE_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): current news index num = %d\n",
+            DEBUG_PRINT(((unsigned long)"%s(): current news index num = %d\n"),
                         "ble_process_put_req", slot);
-        else FUN_00019c70();
+        else FUN_00019c70(((unsigned long)"%s(): current news index num = %d\n"),
+                        "ble_process_put_req", slot);
     }
     record = (uint8_t *)(uintptr_t)(0x200107e3u + (slot - 1u) * 0x159u);
     if ((int8_t)data[4] == 2) {
         if (BLE_LOG_LEVEL > 2) {
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): delete news index num = %d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): delete news index num = %d\n"),
                             "ble_process_put_req", slot);
-            else FUN_00019c70();
+            else FUN_00019c70(((unsigned long)"%s(): delete news index num = %d\n"),
+                            "ble_process_put_req", slot);
         }
         FUN_00086c78(record, 0);
         BLE_NEWS_FINAL_ACK(0);
@@ -1226,8 +1258,8 @@ ble_put_op06_05_assembled(struct ble_put_context *ctx,
     if (source_length > 0x40) {
         if (BLE_LOG_LEVEL > 1) {
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): news source oversize !!!\n", "ble_process_put_req");
-            else FUN_00019c70();
+                DEBUG_PRINT(((unsigned long)"%s(): news source oversize !!!\n"), "ble_process_put_req");
+            else FUN_00019c70(((unsigned long)"%s(): news source oversize !!!\n"), "ble_process_put_req");
         }
         BLE_NEWS_FINAL_ACK(1);
     }
@@ -1240,9 +1272,10 @@ ble_put_op06_05_assembled(struct ble_put_context *ctx,
                  source_length > 0x3f ? 0x40 : source_length);
     if (BLE_LOG_LEVEL > 2) {
         if (BLE_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): stock code name : %s\n",
+            DEBUG_PRINT(((unsigned long)"%s(): stock code name : %s\n"),
                         "ble_process_put_req", record + 1);
-        else FUN_00019c70();
+        else FUN_00019c70(((unsigned long)"%s(): stock code name : %s\n"),
+                        "ble_process_put_req", record + 1);
     }
     text_tag = source_length + 7u;
     if ((int8_t)data[text_tag] != 2)
@@ -1259,9 +1292,10 @@ ble_put_op06_05_assembled(struct ble_put_context *ctx,
     record[0] = 1;
     if (BLE_LOG_LEVEL > 2) {
         if (BLE_IS_DEBUG == 0)
-            DEBUG_PRINT("%s(): We received %d byte of data from the News App\n",
+            DEBUG_PRINT(((unsigned long)"%s(): We received %d byte of data from the News App\n"),
                         "ble_process_put_req", text_length);
-        else FUN_00019c70();
+        else FUN_00019c70(((unsigned long)"%s(): We received %d byte of data from the News App\n"),
+                        "ble_process_put_req", text_length);
     }
     *expected_total = 0;
     *accepted_count = 0;
@@ -1299,9 +1333,9 @@ ble_put_op06_05_multipart_assemble(struct ble_put_context *ctx,
         ret = ctx->post_to_host(response, 10);                              \
         if (ret < 0 && BLE_LOG_LEVEL > 0) {                                \
             if (BLE_IS_DEBUG == 0)                                         \
-                DEBUG_PRINT("%s(): post_to_host failed ret = %d\n",       \
+                DEBUG_PRINT(((unsigned long)"%s(): post_to_host failed ret = %d\n"),       \
                             "ble_process_put_req", ret);                   \
-            else FUN_00019c70();                                            \
+            else FUN_00019c70(((unsigned long)"%s(): post_to_host failed ret = %d\n"), "ble_process_put_req", ret);                                            \
         }                                                                   \
     } while (0)
 
@@ -1310,9 +1344,10 @@ ble_put_op06_05_multipart_assemble(struct ble_put_context *ctx,
     if (current == 1) {
         if (BLE_LOG_LEVEL > 2) {
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): Action ID = 1,Received schedule multiple initialization packets, currently the first packet of data\n",
+                DEBUG_PRINT(((unsigned long)"%s(): Action ID = 1,Received schedule multiple initialization packets, currently the first packet of data\n"),
                             "ble_process_put_req");
-            else FUN_00019c70();
+            else FUN_00019c70(((unsigned long)"%s(): Action ID = 1,Received schedule multiple initialization packets, currently the first packet of data\n"),
+                            "ble_process_put_req");
         }
         *accepted_count = 0;
         *expected_total = 0;
@@ -1337,10 +1372,10 @@ ble_put_op06_05_multipart_assemble(struct ble_put_context *ctx,
         }
         if (BLE_LOG_LEVEL > 1) {
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                             "ble_process_put_req", current,
                             (uint32_t)*accepted_count + 1u);
-            else FUN_00019c70("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+            else FUN_00019c70(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                               "ble_process_put_req", current,
                               (uint32_t)*accepted_count + 1u);
         }
@@ -1362,10 +1397,10 @@ ble_put_op06_05_multipart_assemble(struct ble_put_context *ctx,
         }
         if (BLE_LOG_LEVEL > 1) {
             if (BLE_IS_DEBUG == 0)
-                DEBUG_PRINT("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+                DEBUG_PRINT(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                             "ble_process_put_req", current,
                             (uint32_t)*accepted_count + 1u);
-            else FUN_00019c70("%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n",
+            else FUN_00019c70(((unsigned long)"%s(): There is a packet order error, current packet order = %d, expected packet order =%d\n"),
                               "ble_process_put_req", current,
                               (uint32_t)*accepted_count + 1u);
         }

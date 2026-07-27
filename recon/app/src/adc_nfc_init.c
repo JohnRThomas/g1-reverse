@@ -14,8 +14,8 @@ struct adc_api_raw {
 };
 
 extern int FUN_0008638c(const struct device_raw *device);
-extern void FUN_00019c70(const void *, const void *, ...);
-extern void FUN_0007dda4(const void *, const void *, ...);
+extern void FUN_00019c70(unsigned long, ...);
+extern void FUN_0007dda4(unsigned long, ...);
 
 int adc_nfc_init(void)
 {
@@ -29,7 +29,7 @@ int adc_nfc_init(void)
         if (result < 0 && *(volatile int32_t *)0x2000230cu > 0) {
             if (*(volatile uint32_t *)0x20007554u == 0u) {
                 FUN_0007dda4((const void *)0x0009f0dbu,
-                             (const void *)0x0009f1cfu);
+                             (const void *)0x0009f1cfu, 0);
             } else {
                 FUN_00019c70((const void *)0x0009f0dbu,
                              (const void *)0x0009f1cfu, 0);

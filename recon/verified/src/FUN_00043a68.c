@@ -1,9 +1,9 @@
 /* Reconstructed FUN_00043a68 @ 0x43a68  (parity: 299/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned uint; typedef unsigned char byte; typedef unsigned long long ulonglong;
-extern int DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(int,...);
-extern int FUN_00019c70(int,...);
+extern void FUN_00019c70(unsigned long, ...);
 extern unsigned FUN_000431a8(void);
 extern int FUN_000471cc(int,...);
 extern int FUN_00047260(int,...);

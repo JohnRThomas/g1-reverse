@@ -1,7 +1,7 @@
 /* Reconstructed gui_screen_clear @ 0x431c0  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(void);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 extern int FUN_0007d4ec(void);
 extern void FUN_0007d6f4(void);
 

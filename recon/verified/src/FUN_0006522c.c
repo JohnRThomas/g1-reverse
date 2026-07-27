@@ -5,7 +5,7 @@
 
 #define CLOCK ((volatile uint32_t *)0x50005000UL)
 extern void FUN_00065000(int domain);
-extern void FUN_0007e2fa(uint32_t, uint32_t, uint32_t, uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern __attribute__((noreturn)) void FUN_0007e2ec(uint32_t, uint32_t);
 
 void FUN_0006522c(unsigned domain)

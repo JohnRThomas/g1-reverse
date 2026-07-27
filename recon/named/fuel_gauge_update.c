@@ -179,7 +179,8 @@ LAB_00010c00:
                   (int)((ulonglong)uVar18 >> 0x20),(int)uVar19,(int)((ulonglong)uVar19 >> 0x20));
     }
     else {
-      debug_print(DAT_00010f54,DAT_00010f50,(int)uVar17,uVar11);
+      debug_print(DAT_00010f54,DAT_00010f50,(int)uVar17,uVar11,(int)uVar18,
+                  (int)((ulonglong)uVar18 >> 0x20),(int)uVar19,(int)((ulonglong)uVar19 >> 0x20));
     }
   }
   iVar13 = k_uptime_get_3();

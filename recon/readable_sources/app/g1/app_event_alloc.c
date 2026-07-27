@@ -12,8 +12,8 @@
 /* Reconstructed FUN_0004f564 @ 0x4f564  (parity: 300/300 trials, PROVEN) */
 
 extern void z_log_msg_runtime_create(void);
-extern void printk(void);
-extern void assert_post_action(void);
+extern void printk(unsigned long, ...);
+extern void assert_post_action(unsigned long, unsigned long);
 extern int malloc_impl(void);
 
 void app_event_alloc(int param_1,int param_2,int param_3,int param_4)
@@ -22,7 +22,7 @@ void app_event_alloc(int param_1,int param_2,int param_3,int param_4)
   iVar1 = malloc_impl();
   if (iVar1 == 0) {
     z_log_msg_runtime_create();
-    printk();
-    assert_post_action();
+    printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"0"), ((unsigned long)"WEST_TOPDIR/nrf/subsys/app_event_manager/app_event_manager.c"), 123);
+    assert_post_action(((unsigned long)"WEST_TOPDIR/nrf/subsys/app_event_manager/app_event_manager.c"), 123);
   }
 }

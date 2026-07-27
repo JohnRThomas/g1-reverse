@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00067548 @ 0x67548  (parity: 300/300 trials, PROVEN) */
 #include "../../headers/g1_nrf_regs.h"
-extern void FUN_0007e2fa(unsigned,unsigned,unsigned,unsigned);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern long long FUN_0007e2ec(unsigned,unsigned);
 void FUN_00067548(unsigned param_1, unsigned param_2, unsigned param_3, unsigned param_4){
     unsigned r0v=param_1, r1v=param_2, r2v=param_3, r3v=param_4;

@@ -18,9 +18,9 @@
  */
 /* Reconstructed start_ancs_work_thread @ 0x198cc  (parity: 300/300 trials, PROVEN) */
 
-extern void log_message(int,...);
+extern void log_message(unsigned long, ...);
 extern int get_device_info(void);
-extern int debug_print(void);
+extern void debug_print(unsigned long, ...);
 extern int is_battery_critical(void);
 extern int z_impl_k_thread_create(unsigned,unsigned,int,unsigned,unsigned,int,int,int,int);
 void start_ancs_work_thread(unsigned param_1){
@@ -30,7 +30,7 @@ void start_ancs_work_thread(unsigned param_1){
     z_impl_k_thread_create(((unsigned long)&g_ancs_work_thread) /*=0x20003c50*/, ((unsigned long)&g_ancs_work_thread_stack) /*=0x2001d568*/, 0x1400, ADDR_ble_ancs_data_req_thread_THUMB /*=0x19719*/, param_1, 0,0,0xfffffff5,0);
     if(2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/){
       if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ != 0){
-        debug_print();
+        debug_print(((unsigned long)"%s(): exit\n\n") /*=0x9af2e*/, ((unsigned long)"start_ancs_work_thread") /*=0x9b0f1*/);
         return;
       }
       log_message(((unsigned long)"%s(): exit\n\n") /*=0x9af2e*/, ((unsigned long)"start_ancs_work_thread") /*=0x9b0f1*/);

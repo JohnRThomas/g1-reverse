@@ -4,7 +4,7 @@
 extern void FUN_00071df8(int,int,int,int,int,int,int,int,int);
 extern void FUN_00073a78(int);
 extern void FUN_00074bf4(int,unsigned int,int,int,int,int,int,int,int,unsigned int);
-extern void FUN_0007e2fa(unsigned int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(unsigned int,unsigned int) __attribute__((noreturn));
 int FUN_00071eac(int param_1,int p2,int p3,int p4,int s0,int s1,int s2,int s3,int s4,int s5,int s6,int s7){
   unsigned int uVar2=__get_IPSR() & 0x1f;

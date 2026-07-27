@@ -1,7 +1,7 @@
 /* Full reconstruction FUN_0005f338 @ 0x5f338, exact extent 70 bytes. */
 #include <stdint.h>
 extern void *FUN_0005f304(void *node);
-extern void FUN_0007e2fa(uintptr_t, uintptr_t, uintptr_t, uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern __attribute__((noreturn)) void FUN_0007e2ec(uintptr_t, uint32_t);
 
 void FUN_0005f338(void *owner, void *node)

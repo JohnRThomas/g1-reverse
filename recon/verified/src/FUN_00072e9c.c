@@ -4,7 +4,7 @@ extern int FUN_00072040(uint32_t);
 extern int FUN_0007205c(uint32_t);
 extern void FUN_00072078(uint32_t);
 extern void FUN_0007e2ec(uint32_t,uint32_t);
-extern void FUN_0007e2fa(uint32_t,uint32_t,uint32_t,uint32_t,uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 unsigned FUN_00072e9c(int param_1,uint32_t p2,uint32_t p3,uint32_t p4){
   int iVar2=FUN_00072040(0x2000b480);
   if(iVar2==0){

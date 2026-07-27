@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000188d8 @ 0x188d8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int DEBUG_PRINT(int,...);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000187e8(int,...);
 extern int FUN_0004ee68(int,...);
 extern int FUN_0004f040(int,...);

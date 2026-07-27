@@ -37,7 +37,7 @@ int update_persist_task_status_to_idle(int param_1)
         }
         if (*(volatile int*)0x2000230cUL > 0) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                log_message(0xa25d9U, 0xa2625U);
+                log_message(0xa25d9U, 0xa2625U, 0);
             } else {
                 debug_print(0xa25d9U, 0xa2625U, 0);
             }

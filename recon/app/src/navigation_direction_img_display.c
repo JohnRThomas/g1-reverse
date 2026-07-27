@@ -3,8 +3,8 @@
 extern int FUN_0007d3ee(void);
 extern int FUN_0007d446(void);
 extern void FUN_00043484(int a, int b, int c, int d, int e, int f, int g);
-extern void FUN_00019c70(int a, int b);
-extern void DEBUG_PRINT(int a, int b);
+extern void FUN_00019c70(unsigned long, ...);
+extern void DEBUG_PRINT(unsigned long, ...);
 
 void navigation_direction_img_display(int param_1, int param_2, int param_3)
 {

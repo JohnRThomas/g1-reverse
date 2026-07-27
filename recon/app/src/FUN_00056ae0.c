@@ -3,7 +3,7 @@
 typedef uint32_t u32; typedef uint16_t u16;
 typedef void (*fp)(int,u32,u32,u32);
 extern void FUN_000813b4(int*,u32,int,int,u32);
-extern void FUN_0007e2fa(u32,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(u32,u32);
 void FUN_00056ae0(int param_1, u32 p2, u32 p3, u32 p4){
     if( ((int)(*(volatile u32*)(param_1+4) << 0x16) < 0)

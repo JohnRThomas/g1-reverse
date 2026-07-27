@@ -4,8 +4,8 @@
 typedef unsigned char u8;
 typedef unsigned int  u32;
 
-extern void log_message(u32 format, u32 source, u32 task_id); /* FUN_0007dda4 */
-extern void debug_print(u32 format, u32 source, u32 task_id); /* FUN_00019c70 */
+extern void log_message(unsigned long, ...); /* FUN_0007dda4 */
+extern void debug_print(unsigned long, ...); /* FUN_00019c70 */
 extern void display_close_screen(u32 screen_id);              /* FUN_00049858 */
 extern void wait_for_persist_task_status_lock(void);          /* FUN_0007cdf8 */
 

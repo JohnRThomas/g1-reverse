@@ -3,8 +3,8 @@
 extern void FUN_00047538(void);
 extern void FUN_00046e3c(unsigned int);
 extern int FUN_00047724(void);
-extern void DEBUG_PRINT(unsigned int,unsigned int);
-extern void FUN_00019c70(unsigned int,unsigned int);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void FUN_00019c70(unsigned long, ...);
 
 unsigned int jdb_panel_init(unsigned char *param_1)
 {

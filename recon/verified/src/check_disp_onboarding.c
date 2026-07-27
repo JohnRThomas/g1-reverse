@@ -1,9 +1,9 @@
 /* Reconstructed check_disp_onboarding @ 0x26a08  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(int,int);
+extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00040708(void);
 extern int FUN_00042c8c(void*,int);
 extern int FUN_0007c132(void);
@@ -40,7 +40,7 @@ void check_disp_onboarding(int param_1, unsigned int param_2, unsigned int param
   if (FUN_00042c8c((void*)0,3) != 0) return;
   if (0 < *pg78) {
     if (*pg7c == 0) DEBUG_PRINT(0x0009fcc1,0x000a1aea);
-    else FUN_00019c70();
+    else FUN_00019c70(0x0009fcc1,0x000a1aea);
   }
   FUN_00040708();
   iVar3=FUN_000167a8(); VB(VI(iVar3+0x1014))=1;

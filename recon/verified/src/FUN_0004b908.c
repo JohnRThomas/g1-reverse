@@ -8,7 +8,7 @@ extern int FUN_00072078(int);
 extern int FUN_0007e1c6(int,int);
 extern int FUN_0007e1e6(int,int,unsigned int,int);
 extern int FUN_0007e2ec(int,...);
-extern int FUN_0007e2fa(int,...);
+extern void FUN_0007e2fa(unsigned long, ...);
 unsigned int FUN_0004b908(int *param_1, int *param_2)
 {
   unsigned int uVar3 = (unsigned int)FUN_0007e1c6((int)param_1,(int)param_2);

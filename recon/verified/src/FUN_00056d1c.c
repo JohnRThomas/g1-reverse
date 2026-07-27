@@ -2,7 +2,7 @@
 #include <stdint.h>
 typedef unsigned int uint;
 extern void FUN_0007e2ec(uint32_t,uint32_t);
-extern void FUN_0007e2fa(uint32_t,uint32_t,uint32_t,uint32_t);
+extern void FUN_0007e2fa(unsigned long, ...);
 void FUN_00056d1c(int param_1){
   int iVar4 = (*(volatile int8_t*)(param_1+3)==0) ? param_1+0x9e : param_1+0x97;
   int iVar2=*(volatile int*)0x2000ad1cUL;

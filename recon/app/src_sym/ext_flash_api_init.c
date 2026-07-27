@@ -4,8 +4,8 @@ extern void FUN_000864c2(unsigned int);
 extern unsigned int z_device_is_ready(unsigned int);
 extern unsigned short z_impl_flash_get_page_count(unsigned int);
 extern unsigned int get_device_info(void);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 unsigned int ext_flash_api_init(unsigned int *param_1, unsigned int *param_2, unsigned int *param_3, unsigned int param_4)
 {
@@ -21,7 +21,7 @@ unsigned int ext_flash_api_init(unsigned int *param_1, unsigned int *param_2, un
             if (*(volatile unsigned int*)0x20007554UL /* device_info.is_debug @+0xB58  (log sink select: 0=RTT DEBUG_PRINT) */ == 0) {
                 DEBUG_PRINT(0xa3aa6, 0xa3ae5);
             } else {
-                debug_print();
+                debug_print(0xa3aa6, 0xa3ae5);
             }
         }
         uVar5 = 0xffffffff;
@@ -35,7 +35,7 @@ unsigned int ext_flash_api_init(unsigned int *param_1, unsigned int *param_2, un
             if (*(volatile unsigned int*)0x20007554UL == 0) {
                 DEBUG_PRINT(0xa3a8b, 0xa3ae5, 0x87bf0, 0, param_4);
             } else {
-                debug_print();
+                debug_print(0xa3a8b, 0xa3ae5, 0x87bf0, 0, param_4);
             }
         }
         uVar3 = z_impl_flash_get_page_count(0x87bf0);

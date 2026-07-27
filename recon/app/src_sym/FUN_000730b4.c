@@ -1,6 +1,6 @@
 /* Reconstructed FUN_000730b4 @ 0x730b4  (parity: 300/300 trials, PROVEN) */
 
-extern int printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
+extern void printk(unsigned long, ...);
 extern int assert_post_action(unsigned int a, unsigned int b);
 extern void memset_bytes(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 

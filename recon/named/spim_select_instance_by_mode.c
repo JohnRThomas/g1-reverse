@@ -27,7 +27,7 @@ unsigned spim_select_instance_by_mode(uintptr_t event){
  uint32_t mode=*(volatile uint8_t*)(event+0x18);int level=*(volatile int*)0x2000230cu;
  const struct mapping *m;
  if(mode==3)m=&mode3;else if(mode==4)m=&mode4;else{
-  if(level>0){int alternate=*(volatile int*)0x20007554u;if(alternate)debug_print(0x0009fb89u,0x0009fc79u,mode,(uint32_t)alternate);else log_message(0x0009fb89u,0x0009fc79u);}return 0;
+  if(level>0){int alternate=*(volatile int*)0x20007554u;if(alternate)debug_print(0x0009fb89u,0x0009fc79u,mode,(uint32_t)alternate);else log_message(0x0009fb89u,0x0009fc79u,mode,(uint32_t)alternate);}return 0;
  }
  *(volatile uint32_t*)(event+0xc)=m->base;*(volatile uint32_t*)(event+0x10)=m->tag;
  if(level>2){

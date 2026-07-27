@@ -1,8 +1,8 @@
 /* Reconstructed disable_watchdog @ 0x2aeb4  (parity: 151/300 trials, PROVEN) */
 
 extern void FUN_00074844(unsigned int, unsigned int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned long, ...);
+extern void debug_print(unsigned long, ...);
 
 typedef int (*fp_t)(unsigned int);
 
@@ -16,7 +16,7 @@ int disable_watchdog(void)
             if (*(volatile unsigned int*)0x20007554UL /* device_info.is_debug @+0xB58  (log sink select: 0=RTT DEBUG_PRINT) */ == 0) {
                 DEBUG_PRINT(0xa1c4e, 0xa1c85, *piVar1, 0, 0);
             } else {
-                debug_print();
+                debug_print(0xa1c4e, 0xa1c85, *piVar1, 0, 0);
             }
         }
         iVar5 = 0;
@@ -27,7 +27,7 @@ int disable_watchdog(void)
                 if (*(volatile unsigned int*)0x20007554UL == 0) {
                     DEBUG_PRINT(0xa1c6a, 0xa1c85);
                 } else {
-                    debug_print();
+                    debug_print(0xa1c6a, 0xa1c85);
                 }
             }
             /* Zephyr driver-vtable dispatch: dev->api->method (api ptr @dev+8, method @api+4);

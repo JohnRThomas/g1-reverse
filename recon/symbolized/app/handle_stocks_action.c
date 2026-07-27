@@ -25,7 +25,7 @@ unsigned int handle_stocks_action(unsigned int param_1, unsigned int param_2,
     if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
             log_message(((unsigned long)"%s():  %s index = %d\n") /*=0xa8ff3*/, ((unsigned long)"setNewsIndex") /*=0xa959e*/, ((unsigned long)"setNewsIndex") /*=0xa959e*/,
-                        action, param_4);
+                         action);
         } else {
             debug_print(((unsigned long)"%s():  %s index = %d\n") /*=0xa8ff3*/, ((unsigned long)"setNewsIndex") /*=0xa959e*/, ((unsigned long)"setNewsIndex") /*=0xa959e*/,
                          action);

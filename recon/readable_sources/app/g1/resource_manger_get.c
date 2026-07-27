@@ -1179,7 +1179,7 @@ control_label_00045902:
     uVar7 = firmware_data_00046284;
 control_label_00045912:
     if (iVar8 == 0) {
-      log_message(uVar4,uVar7);
+      log_message(uVar4,uVar7,(uintptr_t)param_3,iVar8);
     }
     else {
       debug_print(uVar4,uVar7,(uintptr_t)param_3,iVar8);
