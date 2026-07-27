@@ -9,10 +9,19 @@ The tree that compiles is *not* the canonical evidence tree.  It is:
     and encode 677 app / 312 net manifest exclusions.  A directory glob over
     ``recon/symbolized/app`` would pick up 532 files the build deliberately does
     NOT compile, so the list is the authority, never the directory.
-  * the ``*.inc`` fragments those sources ``#include`` (the G6-B3 link failure
-    proved these are compiled content: every literal scan in the repository
-    enumerated ``*.c``/``*.h`` only, and an object was withdrawn while an
-    ``.inc`` still referenced it);
+  * the ``*.inc`` **and** ``*.h`` fragments those sources ``#include``, computed
+    as a transitive closure and resolved the way the compiler resolves them:
+    relative to the including file first, then along the ``-I`` search path the
+    two CMakeLists actually pass (``INCLUDE_SEARCH_DIRS`` below).  The ``.inc``
+    half was proved compiled content by the G6-B3 link failure (every literal
+    scan in the repository enumerated ``*.c``/``*.h`` only, and an object was
+    withdrawn while an ``.inc`` still referenced it).  The ``.h`` half was the
+    mirror-image gap, found by stage 02 §5.3: ``ble_process_put_common.h``
+    declares ``extern int log_message();`` / ``extern int debug_print();`` --
+    K&R-unprototyped and returning ``int`` where the authority says
+    ``void f(uintptr_t, ...)`` -- and that header was invisible to the pipeline
+    because only ``.inc`` fragments were enumerated.  A declaration is compiled
+    content exactly as much as a definition is;
   * the hand-written integration TUs in ``recon/application/{app,net}/src``;
   * the generated ``.rodata`` TUs in ``recon/application/rodata``;
   * the pin/declaration artifacts the withdraw-transaction has to edit in the
@@ -41,7 +50,25 @@ from guard import REPO_ROOT, is_protected  # noqa: E402
 
 GENERATED = os.path.join(REPO_ROOT, "recon", "generated")
 _CMAKE_SRC = re.compile(r'"?\$\{CMAKE_CURRENT_LIST_DIR\}/([^"\s)]+)"?')
-_INCLUDE_INC = re.compile(r'#\s*include\s+"([^"]+\.inc)"')
+#: quoted includes only.  ``#include <...>`` is the toolchain/Zephyr search
+#: path and is never repository content we may transform.
+_INCLUDE_QUOTED = re.compile(r'#\s*include\s+"([^"]+)"')
+
+#: the ``-I`` directories the two CMakeLists pass that can name repository
+#: content, in the order the compiler searches them.  Anything a source spells
+#: as ``#include "g1_app_symbols.h"`` (1,615 sources do) resolves here, not
+#: relative to the including file.
+INCLUDE_SEARCH_DIRS = (
+    "recon/application/app/src",
+    "recon/application/net/src",
+    "recon/app/src",
+    "recon/headers",
+    "recon/symbols",
+    "recon/wiring",
+)
+
+#: extensions that are compiled content when included
+_FRAGMENT_EXT = (".inc", ".h")
 
 
 def _cmake_paths(cmake_file: str) -> list[str]:
@@ -68,6 +95,62 @@ def rel(path: str) -> str:
     return os.path.relpath(os.path.abspath(path), REPO_ROOT).replace(os.sep, "/")
 
 
+def _resolve_include(spelling: str, including_abs: str) -> str | None:
+    """Resolve one quoted include the way the compiler does, or None."""
+    cand = os.path.normpath(os.path.join(os.path.dirname(including_abs), spelling))
+    if os.path.isfile(cand):
+        return cand
+    for d in INCLUDE_SEARCH_DIRS:
+        cand = os.path.normpath(os.path.join(REPO_ROOT, d, spelling))
+        if os.path.isfile(cand):
+            return cand
+    return None
+
+
+def _include_closure(seeds: list[str]) -> tuple[set[str], set[str], set[str]]:
+    """Transitive closure of quoted ``.inc``/``.h`` includes from ``seeds``.
+
+    Returns ``(transformable_fragments, protected_fragments, unresolved)``.
+    A fragment inside a protected evidence tree (R1) is reported separately and
+    is NEVER added to the transformable set -- it is carried by reference,
+    exactly like the 36 build inputs the CMakeLists pull out of the canonical
+    trees.
+    """
+    seen: set[str] = set()
+    frag: set[str] = set()
+    prot: set[str] = set()
+    unresolved: set[str] = set()
+    queue = [os.path.join(REPO_ROOT, s) for s in seeds]
+    while queue:
+        ap = queue.pop()
+        if ap in seen or not ap.endswith((".c", ".inc", ".h")):
+            continue
+        seen.add(ap)
+        try:
+            with open(ap, encoding="utf-8", errors="replace") as fh:
+                text = fh.read()
+        except OSError:
+            continue
+        for m in _INCLUDE_QUOTED.finditer(text):
+            spelling = m.group(1)
+            target = _resolve_include(spelling, ap)
+            if target is None:
+                # a quoted include the toolchain satisfies from the Zephyr /
+                # SDK search path; not repository content.
+                unresolved.add(spelling)
+                continue
+            if not target.endswith(_FRAGMENT_EXT):
+                continue          # `#include "lsm6dso.c"` -- a Zephyr driver TU
+            r = rel(target)
+            if is_protected(target):
+                prot.add(r)
+                continue          # carried by reference, never transformed
+            if r not in frag:
+                frag.add(r)
+                queue.append(target)
+    return frag, prot, unresolved
+
+
 def derive() -> InputSet:
     transformable: set[str] = set()
     protected: set[str] = set()
@@ -81,21 +164,6 @@ def derive() -> InputSet:
         for p in paths:
             (protected if is_protected(p) else transformable).add(rel(p))
     prov["retained_sources"] = retained_counts
-
-    # .inc fragments reachable from the retained sources
-    inc: set[str] = set()
-    for r in sorted(transformable):
-        ap = os.path.join(REPO_ROOT, r)
-        if not ap.endswith(".c"):
-            continue
-        with open(ap, encoding="utf-8", errors="replace") as fh:
-            text = fh.read()
-        for m in _INCLUDE_INC.finditer(text):
-            cand = os.path.normpath(os.path.join(os.path.dirname(ap), m.group(1)))
-            if os.path.exists(cand):
-                inc.add(rel(cand))
-    transformable |= inc
-    prov["inc_fragments"] = sorted(inc)
 
     # sources named directly by the two CMakeLists (hand-written wiring, the
     # canonical files the build pulls in, and anything else spelled inline)
@@ -136,6 +204,38 @@ def derive() -> InputSet:
         if os.path.exists(os.path.join(REPO_ROOT, a)):
             transformable.add(a)
     prov["pin_artifacts"] = artefacts
+
+    # Build machinery that a STRUCTURAL transaction must edit in the same
+    # breath as the files it moves (C6).  ``gen_retained_sources.py`` spells
+    # every source as one flat relative prefix + basename, and the app
+    # CMakeLists names ``symbolized/app/discovery_callback.c`` by path to give
+    # it ``-std=gnu99``; CMake does NOT error when that path stops existing --
+    # the flag silently disappears and the TU fails to compile.  A stage that
+    # moves a file without owning these two artifacts is broken by
+    # construction.
+    machinery = [
+        "recon/generated/app_retained_sources.cmake",
+        "recon/generated/net_retained_sources.cmake",
+        "recon/application/app/CMakeLists.txt",
+        "recon/application/net/CMakeLists.txt",
+    ]
+    for a in machinery:
+        if os.path.exists(os.path.join(REPO_ROOT, a)):
+            transformable.add(a)
+    prov["build_machinery"] = machinery
+
+    # .inc / .h fragments reachable from EVERY compiled source above,
+    # transitively, resolved the way the compiler resolves them.  Runs last so
+    # the seed set is complete: the CMakeLists-direct TUs and the generated
+    # .rodata TUs include fragments too, and g1_net_symbols.h (a pin artifact)
+    # pulls in g1_net_ram_reloc.h.
+    frag, frag_protected, unresolved = _include_closure(sorted(transformable))
+    transformable |= frag
+    protected |= frag_protected
+    prov["inc_fragments"] = sorted(f for f in frag if f.endswith(".inc"))
+    prov["header_fragments"] = sorted(f for f in frag if f.endswith(".h"))
+    prov["header_fragments_protected"] = sorted(frag_protected)
+    prov["unresolved_quoted_includes"] = sorted(unresolved)
 
     return InputSet(
         transformable=sorted(transformable),

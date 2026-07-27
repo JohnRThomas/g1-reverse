@@ -50,6 +50,13 @@ STAGES = [
      "tail, the log-sink route, the assert expansion, and convergence of the "
      "per-file logging externs onto the one authoritative prototype",
      "t02_block_dedupe"),
+    (3, "module_structure", "FIRST STRUCTURAL STAGE, app core only: move every "
+     "retained app source into a cohesive module directory (regenerating the "
+     "two build artifacts that name sources by path, in the SAME transaction "
+     "and with list order preserved exactly), then hoist each module's "
+     "byte-identically-spelled extern declarations into a generated module "
+     "header.  The net core is frozen and is not touched.",
+     "t03_module_structure"),
     (99, "defect_probe", "DIAGNOSTIC, NOT A STAGE: stage 02 with "
      "G1_STAGE02_FORCE_LOG_HEADER=1, which withdraws the local log externs in "
      "the files stage 02 quarantines.  This tree is EXPECTED NOT TO COMPILE; "
@@ -178,9 +185,42 @@ def materialize(number: int) -> dict:
         input_stage = {"stage": pn, "slug": pslug,
                        "tree": os.path.relpath(prev.tree, REPO_ROOT)}
 
+    # A transformer may emit GENERATED artifacts that are outputs, not inputs
+    # (stage 02's recon/headers/g1_dedupe.h, stage 03's module headers).  They
+    # are deliberately absent from MANIFEST["files"] -- staleness would
+    # otherwise hunt for a source that never existed -- so the next stage would
+    # not see them in `relpaths` and its tree would be missing a header 235
+    # sources include.  Inherit them explicitly: any REAL file in the previous
+    # stage's tree that its manifest does not list is a generated artifact of
+    # that stage, and it is carried forward verbatim.
+    inherited = []
+    if n != 0:
+        known = set(relpaths)
+        for root, dirs, names in os.walk(source_root):
+            dirs[:] = [d for d in dirs if not os.path.islink(os.path.join(root, d))]
+            for name in names:
+                ap = os.path.join(root, name)
+                if os.path.islink(ap):
+                    continue
+                rel = os.path.relpath(ap, source_root).replace(os.sep, "/")
+                if rel in known:
+                    continue
+                dst = os.path.join(stage.tree, rel)
+                check_write(dst, stage.dir)
+                os.makedirs(os.path.dirname(dst), exist_ok=True)
+                if os.path.islink(dst):
+                    os.unlink(dst)
+                with open(ap, "rb") as fh:
+                    data = fh.read()
+                with open(dst, "wb") as fh:
+                    fh.write(data)
+                inherited.append(rel)
+        inherited.sort()
+
     summary = mod.run(stage, source_root, relpaths)
 
-    extra = {"input_stage": input_stage}
+    extra = {"input_stage": input_stage,
+             "inherited_generated_outputs": inherited}
     if iset is not None:
         extra["input_provenance"] = iset.provenance
         extra["quarantined_protected_build_inputs"] = iset.quarantined_protected

@@ -35,13 +35,42 @@ consumes their output and reports a stage as *stale* when they land.
 **C2 — the pipeline operates on the COMPILABLE sources only.**
 The tree that compiles is `recon/symbolized/{app,net}`, and the authority for
 *which* of its files compile is `recon/generated/{app,net}_retained_sources.cmake`
-(1,609 app / 923 net, encoding 677 + 312 manifest exclusions), **never a
-directory glob**. `input_set.py` derives the set from those lists, plus the
-`.inc` fragments the retained sources `#include`, the hand-written integration
-TUs in `recon/application/{app,net}/src`, the generated
-`recon/application/rodata/*.c`, and the pin/declaration artifacts
-`recon/symbols/g1_{app,net}_{globals.ld,symbols.h}` that a withdraw-transaction
-has to edit in the same breath as an inline.
+(1,615 app / 923 net, encoding 677 + 312 manifest exclusions), **never a
+directory glob**. `input_set.py` derives the set from those lists, plus:
+
+* the `.inc` **and `.h`** fragments the sources `#include`, as a transitive
+  closure resolved the way the compiler resolves them — relative to the
+  including file first, then along `INCLUDE_SEARCH_DIRS` (the `-I` directories
+  the two CMakeLists actually pass). *Stage 03 added the `.h` half and the
+  `-I` resolution; stage 02 §5.3 had found two wrong declarations in
+  `ble_process_put_common.h` that were invisible to the pipeline because only
+  relative `.inc` includes were enumerated. A declaration is compiled content
+  exactly as much as a definition is.*
+* the hand-written integration TUs in `recon/application/{app,net}/src`;
+* the generated `recon/application/rodata/*.c`;
+* the pin/declaration artifacts
+  `recon/symbols/g1_{app,net}_{globals.ld,symbols.h}` that a
+  withdraw-transaction has to edit in the same breath as an inline;
+* the **build machinery** a STRUCTURAL transaction has to edit in the same
+  breath as a move (C6): `recon/generated/{app,net}_retained_sources.cmake` and
+  `recon/application/{app,net}/CMakeLists.txt`. *Added by stage 03. The app
+  CMakeLists is in the set because it names
+  `symbolized/app/discovery_callback.c` by path to give it `-std=gnu99`, and
+  **CMake does not error when a `set_source_files_properties` path stops
+  existing** — the flag silently disappears and the TU then fails under strict
+  C99.*
+
+Total: **2,629** transformable, 36 quarantined-protected.
+
+A transformer may also emit **generated artifacts** that are outputs rather
+than inputs (stage 02's `recon/headers/g1_dedupe.h`, stage 03's 16 module
+headers). They are deliberately absent from `MANIFEST["files"]` — staleness
+would otherwise hunt for a source that never existed — so `driver.materialize`
+carries them forward explicitly: any *real* file in stage N−1's tree that its
+manifest does not list is inherited verbatim and recorded as
+`inherited_generated_outputs`. *Added by stage 03, after a compile failure: the
+defect only appears at the third stage in a chain, so stages 01 and 02 could
+not have exposed it.*
 
 Build inputs that live inside a protected tree (the app CMakeLists compiles 2
 sources out of `recon/app/src`, the net CMakeLists 34 out of `recon/net/src`)
@@ -133,8 +162,10 @@ the end gives a pass/fail with no diagnostic value.
 | 00 | verbatim snapshot | identity transform; proves the build mechanism |
 | 01 | literal inlining | value-preserving substitution in argument position; no control flow, no MMIO, no layout |
 | 02 | **block dedupe (LANDED)** — volatile-accessor spelling normalisation (one type only), plus the `G1_NORETURN_CALL` / `G1_LOG_ROUTE` / `G1_ASSERT_FAIL` macros and the log-prototype convergence residue. Stage 03's `__ASSERT` / noreturn extraction was folded in here because it is the same class of token-identical statement macro. | textual, codegen-identical; gate is a byte-identical `.o`, and it held: both cores' `zephyr.bin` byte-identical to stage 01, 4,594/4,598 objects byte-identical. Report: `recon/analysis/staged_refactor_stage02.md` |
-| 03 (next) | authoritative `assert_post_action` / `assert_print` prototype (160 declarations, 58 spellings), read off the shipped prologues; and enumerate `.h` fragments in `input_set.py` (stage 02 §5.3 found two wrong declarations invisible to the pipeline) | decides 160 declarations at once; will change codegen where the local one was wrong |
-| 04 | MMIO accessor macros per width, with a signedness audit | **first stage that can change codegen**; C8 applies. Stage 02 already reduced 84 accessor spellings to 52, which is the prerequisite. |
+| 03 | **module structure (LANDED, app core only)** — the `input_set.py` `.h`-fragment fix stage 02 filed as blocking, plus the first STRUCTURAL transform: 1,621 app sources moved into 22 cohesive module directories (build lists regenerated in the same transaction, list order preserved exactly), and 99 module-wide type-identical `extern` declarations hoisted into 16 generated module headers. Net untouched and therefore byte-identical by construction. | file layout + declaration siting only; gate is a byte-identical `zephyr.bin`, and it held on both cores. **Harvest: 1,014 symbol/module type disagreements, 446 of them against the symbol's own definition, 175 about arity.** Report: `recon/analysis/staged_refactor_stage03.md` |
+| 03b (next) | **repair the 1,014 declaration disagreements** in the CANONICAL trees (stage 03 `DEFECTS.json`), arity first | blocking prerequisite for any cohesive-TU merge: today several hundred TUs would fail to compile at once. R1 means this work is the parity agent's, not the pipeline's. |
+| 03c | cohesive-TU merge (many functions per `.c`) | **the first transformation that cannot be gated on `cmp zephyr.bin`** — merging changes archive member granularity and therefore section layout. Oracle per sub-batch. Blocked on 03b. |
+| 04 | MMIO accessor macros per width, with a signedness audit | **first stage that can change codegen** by value; C8 applies. Stage 02 already reduced 84 accessor spellings to 52, which is the prerequisite. |
 | 05 | net renaming from upstream-identified symbols | 0 B, gated by a real link (C6) |
 | 06 | module materialisation / directory move | file-layout only; both builds must emit byte-identical images |
 | 07 | struct typing | the stage that can grow the image; budget it |

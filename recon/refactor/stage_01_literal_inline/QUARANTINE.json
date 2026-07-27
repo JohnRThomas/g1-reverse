@@ -861,7 +861,7 @@
    "symbol": "rodata_9ea0a",
    "batch": "G6-B2",
    "core": "app",
-   "sites": 11,
+   "sites": 12,
    "reason": "unproven consumer context",
    "detail": [
     "callee not proven to read the value as bytes: log_value",
@@ -1802,7 +1802,7 @@
    "symbol": "rodata_aa8eb",
    "batch": "G6-B2",
    "core": "app",
-   "sites": 6,
+   "sites": 7,
    "reason": "unproven consumer context",
    "detail": [
     "via_assign_stmt:"
@@ -1896,7 +1896,7 @@
    "symbol": "rodata_aaa58",
    "batch": "G6-B2",
    "core": "app",
-   "sites": 12,
+   "sites": 17,
    "reason": "unproven consumer context",
    "detail": [
     "via_assign_stmt:"
@@ -6889,7 +6889,7 @@
    "symbol": "rodata_ef76f",
    "batch": "G6-B2",
    "core": "app",
-   "sites": 39,
+   "sites": 63,
    "reason": "unproven consumer context",
    "detail": [
     "callee not proven to read the value as bytes: checked_copy_bytes",
@@ -6916,7 +6916,7 @@
    "symbol": "rodata_ef0fb",
    "batch": "G6-B2",
    "core": "app",
-   "sites": 3,
+   "sites": 5,
    "reason": "unproven consumer context",
    "detail": [
     "via_assign_assign:iVar16",
@@ -6955,7 +6955,7 @@
    "symbol": "rodata_ef214",
    "batch": "G6-B2",
    "core": "app",
-   "sites": 3,
+   "sites": 5,
    "reason": "unproven consumer context",
    "detail": [
     "via_assign_stmt:"
@@ -7569,7 +7569,7 @@
    "symbol": "rodata_a25d9",
    "batch": "G6-B2",
    "core": "app",
-   "sites": 5,
+   "sites": 6,
    "reason": "unproven consumer context",
    "detail": [
     "callee not proven to read the value as bytes: log_task_status",
