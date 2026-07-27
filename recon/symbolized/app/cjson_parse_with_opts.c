@@ -23,7 +23,7 @@ extern void memset_bytes(void*,int,size_t);
 extern uintptr_t alloc_zeroed_node(void);
 extern int strncmp(const void*,uintptr_t,size_t);
 extern uintptr_t cjson_skip_whitespace(void*);
-extern int cjson_parse_value(uintptr_t,uintptr_t);
+extern unsigned int cjson_parse_value(int, int *);
 extern void cjson_delete(uintptr_t);
 int cjson_parse_with_opts(const uint8_t *input,uint32_t length,const uint8_t **end,int require_end){
  parse_state_t s;volatile uint32_t *error=(volatile uint32_t*)((unsigned long)&g_2000b314) /*=0x2000b314*/;

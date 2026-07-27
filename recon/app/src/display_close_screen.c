@@ -4,7 +4,7 @@ extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_000167a8(void);
 extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00036024(void);
-extern int FUN_000497b0(void*,int);
+extern int FUN_000497b0(const void *, unsigned int);
 extern int FUN_000745c8(void);
 extern int FUN_00086c78(int,int,int);
 int display_close_screen(int param_1, uint32_t param_2){

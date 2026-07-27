@@ -34,7 +34,7 @@
 /* Reconstructed FUN_0002ea28 @ 0x2ea28  (parity: 300/300 trials, PROVEN) */
 
 extern int batt_soc_curve_estimate(void*, int);
-extern int fuel_gauge_read_voltage_current_temp(int, void*, void*, void*);
+extern int fuel_gauge_read_voltage_current_temp(int, float*, float*, float*);
 extern unsigned long long k_uptime_get_3(void);
 extern void sensor_channel_get_trampoline(int, int, void*);
 

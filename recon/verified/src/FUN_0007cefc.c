@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0007cefc @ 0x7cefc  (parity: 300/300 trials, PROVEN) */
 
-extern char *FUN_000232b8(void);
+extern unsigned int FUN_000232b8(void);
 
 int FUN_0007cefc(void)
 {

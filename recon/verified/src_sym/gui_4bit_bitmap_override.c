@@ -6,7 +6,7 @@ extern void debug_print(unsigned long, ...);
 extern int atomic_get_3_0(void);
 extern int resource_manger_get(int, uint32_t, int*, int*, uint32_t*, int);
 extern void reflash_fb_data_to_lcd(uint32_t, uint32_t, unsigned int, unsigned int, int, int);
-extern void FUN_0007d586(uint32_t, uint32_t, int, int, unsigned int, unsigned int);
+extern void FUN_0007d586(int, int, int, int, int, int);
 
 unsigned int gui_4bit_bitmap_override(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

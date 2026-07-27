@@ -21,10 +21,10 @@
 typedef unsigned char byte;
 typedef unsigned int uint;
 
-extern int vfprintf_field_scan_match(int, void*, void*, void*);
+extern unsigned vfprintf_field_scan_match(int, unsigned *, int *, unsigned **);
 extern int scanf_convert_integer_field(int, void*, void*, void*);
 extern int mem_find_byte(int, int, int);
-extern void *stdio_reset_ungetc_buffer(void*, void*);
+extern int stdio_reset_ungetc_buffer(int, unsigned int *);
 extern void *fnmatch_build_class_table(void*, void*);
 typedef int (*fnptr)(int, void*);
 

@@ -13,7 +13,7 @@
 /* Reconstructed FUN_0004e780 @ 0x4e780  (parity: 100/100 trials, PROVEN) */
 #include <stdint.h>
 extern int settings_nvs_read_latest(int,int,void*,int);
-extern void settings_nvs_delete_id(int,int);
+extern void settings_nvs_delete_id(unsigned int, unsigned int);
 extern void nvs_write(int,int,void*,int);
 extern int settings_call_set_handler(void*,int,unsigned,void*,unsigned);
 

@@ -29,7 +29,7 @@ struct spi_state_47724 {
 };
 
 extern struct spi_state_47724 *get_projector_controller(void);
-extern void projector_bus_lock(uint32_t a, uint32_t b);
+extern void projector_bus_lock(unsigned int, unsigned int);
 extern void projector_bus_unlock(void);
 
 uint32_t spi_read_id(uint32_t unused, uint32_t options, uint32_t ignored)

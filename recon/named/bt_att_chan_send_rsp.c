@@ -8,11 +8,11 @@
  */
 /* Reconstructed FUN_000821a4 @ 0x821a4  (parity: 300/300 trials, PROVEN) */
 
-extern int att_chan_send(void);
+extern int att_chan_send(unsigned long, unsigned long);
 extern void net_buf_put(unsigned int,unsigned int,unsigned int,unsigned int);
 void bt_att_chan_send_rsp(int param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4)
 {
-  int iVar1 = att_chan_send();
+  int iVar1 = att_chan_send(param_1, param_2);
   if (iVar1 != 0) {
     net_buf_put(param_1 + 0x128, param_2, param_3, param_4);
   }

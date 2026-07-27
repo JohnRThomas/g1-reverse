@@ -53,8 +53,8 @@ typedef struct {
 extern uint32_t atomic_get_word(const uint32_t *value);
 extern void log_msg_3arg_thunk(uintptr_t sink, uint32_t level, const void *record);
 extern void gatt_send_service_changed_ind(transfer_t *transfer);
-extern void l2cap_chan_le_recv_seg(transfer_t *transfer, request_t *request);
-extern uint32_t net_buf_simple_pull_le16(const void *cursor);
+extern void l2cap_chan_le_recv_seg(int, int);
+extern int net_buf_simple_pull_le16(int);
 extern uint32_t net_buf_simple_tailroom(const void *cursor);
 extern void l2cap_chan_send_disconnect(transfer_t *transfer, uint32_t reason);
 

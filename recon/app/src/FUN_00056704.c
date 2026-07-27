@@ -12,10 +12,10 @@ static inline void InstructionSynchronizationBarrier(int x){ (void)x; __ISB(); }
 extern void FUN_00055fb4(int);
 extern void FUN_00056020(int);
 extern void FUN_00056080(int,void*,uint32_t,uint32_t);
-extern void FUN_00056654(void);
+extern void FUN_00056654(unsigned long);
 extern uint32_t FUN_000566a4(int);
 extern void FUN_00072880(int);
-extern void FUN_00073418(int,uint32_t,uint32_t,uint32_t);
+extern void FUN_00073418(unsigned int, unsigned int, unsigned int, unsigned int);
 extern uint32_t FUN_00073518(int);
 extern void FUN_000757b0(uint32_t,int);
 extern void FUN_000813ca(uint32_t,uint32_t,void*);
@@ -37,7 +37,7 @@ void FUN_00056704(int param_1, uint param_2)
   }
   *(volatile uint8_t*)(param_1 + 0xd) = (uint8_t)param_2;
   if (uVar7 == 0 && *(volatile uint8_t*)(param_1+2) != 8) {
-    FUN_00056654();
+    FUN_00056654(param_1);
   }
   uint8_t newv = *(volatile uint8_t*)(param_1 + 0xd);
   switch (newv) {

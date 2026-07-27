@@ -6,7 +6,7 @@
 
 extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_00016568();
-extern int FUN_00019b54();
+extern int FUN_00019b54(unsigned long, unsigned long, unsigned long);
 extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00032ee4();
 extern int FUN_00037060();

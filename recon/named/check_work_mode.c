@@ -125,7 +125,7 @@ extern long long pt_nfc_eeprom_link_start(void);
 extern long long get_glassbox_charge_status(void);
 extern long long get_glassbox_charge_percent(void);
 extern long long enter_wear_burial_point(void);
-extern long long k_uptime_get_1(void);
+extern unsigned long long k_uptime_get_1(void);
 extern long long set_shutdown_flag(long long,long long);
 extern long long clear_app_switch_pending_flag(void);
 extern long long change_work_mode_to(long long);

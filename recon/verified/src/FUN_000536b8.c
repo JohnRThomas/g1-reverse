@@ -4,11 +4,11 @@ extern void FUN_00056394(int,int,int);
 extern void FUN_000566a4(int);
 extern int  FUN_00056908(int,int);
 extern int  FUN_0005ee18(int);
-extern int  FUN_0005f148(int);
+extern unsigned int* FUN_0005f148(unsigned int*);
 extern void FUN_0005f24c(int);
 extern int  FUN_0005f594(int,int);
 extern void FUN_0007e2fa(unsigned long, ...);
-extern int  FUN_00080e14(int);
+extern unsigned int FUN_00080e14(unsigned int);
 extern void FUN_00080ea2(int,int,void*);
 extern int  FUN_000865fc(int,int);
 #define VI(a) (*(volatile int*)(a))

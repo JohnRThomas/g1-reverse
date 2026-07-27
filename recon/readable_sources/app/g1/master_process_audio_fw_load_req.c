@@ -91,8 +91,8 @@ typedef void code;
 
 extern int get_device_info(void);
 extern int ancs_set_notification_enabled(uint);
-extern int get_device_serial_buf(void);
-extern int get_product_code_buf(void);
+extern unsigned int get_device_serial_buf(void);
+extern unsigned int get_product_code_buf(void);
 extern int get_last_standby_event_id(void);
 extern int imu_set_enabled(int, char*, uint);
 extern int get_low_battery_flag_if_master(void);

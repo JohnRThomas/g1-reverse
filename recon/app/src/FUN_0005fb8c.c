@@ -3,7 +3,7 @@
 typedef unsigned int uint;
 
 extern int FUN_0004b908(uint32_t,void*);
-extern uint32_t FUN_0005fb30(void*);
+extern unsigned int FUN_0005fb30(unsigned int *);
 extern void FUN_00066300(void);
 extern void FUN_000837a2(uint32_t,uint32_t,void*);
 

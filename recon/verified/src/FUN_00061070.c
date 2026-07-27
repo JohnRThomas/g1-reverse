@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00061070 @ 0x61070  (parity: 300/300 trials, PROVEN) */
 extern int  FUN_00060990(int);
 extern int  FUN_000609f4(int,int);
-extern int  FUN_00060a10(void);
+extern int FUN_00060a10(unsigned long);
 extern int  FUN_00060a5c(int);
 extern void FUN_00083906(int);
 extern void FUN_0008392e(int);
@@ -21,7 +21,7 @@ int FUN_00061070(int param_1,int param_2,unsigned int param_3,unsigned int param
     FUN_000838d6(0x00088270,0x2040,st);
     return -0x16;
   }
-  iVar1 = FUN_00060a10();
+  iVar1 = FUN_00060a10(param_1);
   if (iVar1 != 0) goto LAB_611cc;
   FUN_00083906(param_1);
   uVar6 = (unsigned int)(-param_2) & 3u;

@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_000654c4 @ 0x654c4  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned long long get_pin_idx(void);
+extern unsigned long long get_pin_idx(unsigned long);
 
 void gpiote_pin_event_dispatch(unsigned int param_1)
 {
@@ -19,7 +19,7 @@ void gpiote_pin_event_dispatch(unsigned int param_1)
     void (*UNRECOVERED_JUMPTABLE)(unsigned int, unsigned int, unsigned int);
     unsigned long long uVar4;
 
-    uVar4 = get_pin_idx();
+    uVar4 = get_pin_idx(param_1);
     iVar1 = 0x20002bc0;
     uVar2 = (unsigned int)(uVar4 >> 0x20);
     uVar3 = (unsigned int)*(volatile unsigned short *)(0x20002bc0UL + ((int)uVar4 + 8) * 2);

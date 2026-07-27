@@ -6,7 +6,7 @@ extern int FUN_0004e048(int, void*);
 extern int FUN_0005160c(int,int,uint32_t);
 extern void FUN_0007ef7e(int);
 extern int FUN_0007efd4(int,int,uint32_t,int);
-extern int FUN_0007f00e(int);
+extern unsigned int FUN_0007f00e(char *);
 
 uint32_t FUN_00052604(int param_1){
   int iVar1;

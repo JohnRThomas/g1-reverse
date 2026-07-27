@@ -32,8 +32,8 @@
 
 struct g1_opt_view { int data; int length; };
 
-extern int opt_node_serialize(int a, void* b);
-extern int opt_list_total_len(int* a, void* b);
+extern int opt_node_serialize(int, int *);
+extern int opt_list_total_len(int *, int *);
 
 int opt_list_encode(int *param_1, int *param_2, int param_3, unsigned param_4){
     struct g1_opt_view total;

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0004f418 @ 0x4f418  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int FUN_0005c3c4(uint32_t, void*);
+extern int FUN_0005c3c4(int, int *);
 extern void FUN_0004d944(uint32_t, int, void*, int);
 
 int FUN_0004f418(volatile int *param_1, int param_2, uint32_t param_3, uint32_t param_4){

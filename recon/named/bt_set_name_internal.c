@@ -15,13 +15,13 @@
  *   g_bt_dev_name                            @ 0x2000216c
  */
 /* Reconstructed FUN_00054c74 @ 0x54c74  (parity: 300/300 trials, PROVEN) */
-extern unsigned strlen(void);
+extern unsigned strlen(unsigned long);
 extern int strcmp(unsigned a, unsigned b);
 extern void memcpy(unsigned a, unsigned b, unsigned c);
 extern int bt_settings_store_name(int a, unsigned b);
 extern void bt_log_forward_3arg(unsigned a, int b, void* c);
 unsigned bt_set_name_internal(unsigned param_1){
-    unsigned uVar1 = strlen();
+    unsigned uVar1 = strlen(param_1);
     unsigned uVar3;
     if (uVar1 < 0x1d){
         int iVar2 = strcmp(0x2000216c, param_1);

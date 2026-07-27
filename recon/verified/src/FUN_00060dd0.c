@@ -1,9 +1,9 @@
 /* Reconstructed FUN_00060dd0 @ 0x60dd0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_00060990(int);
-extern int FUN_000609c4(int,int);
+extern unsigned int FUN_000609c4(unsigned int, unsigned int);
 extern int FUN_000609f4(int,int);
-extern int FUN_00060a10(void);
+extern int FUN_00060a10(unsigned long);
 extern int FUN_00060a5c(int);
 #define g1_recon_nrfx_qspi_erase FUN_00066bc4
 extern int g1_recon_nrfx_qspi_erase(int,int);
@@ -34,7 +34,7 @@ int FUN_00060dd0(int param_1, unsigned int param_2, unsigned int param_3, int pa
     if ((param_3 == 0) || (((param_3 | param_2) & 0xfff) != 0)) {
         return -0x16;
     }
-    iVar1 = FUN_00060a10();
+    iVar1 = FUN_00060a10(param_1);
     if (iVar1 == 0) {
         FUN_000838fa(*(int *)(param_1 + 0x10));
         iVar1 = FUN_00083954(param_1, 0);

@@ -13,7 +13,7 @@
 /* Reconstructed FUN_00064c5c @ 0x64c5c  (parity: 300/300 trials, PROVEN) */
 
 extern int alloc_zeroed_node(unsigned int a);
-extern int cjson_strdup(unsigned int a);
+extern int cjson_strdup(int);
 extern void cjson_delete(unsigned int a);
 
 int cjson_create_string(unsigned int param_1)

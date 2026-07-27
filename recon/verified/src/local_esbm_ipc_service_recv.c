@@ -20,7 +20,7 @@ extern void update_persist_task_status_to_idle(void *context);
 extern void change_work_mode_to(uint32_t mode);
 extern void SlaveDoubleClickEventInject(void);
 extern void *get_message_entry(uint32_t id);
-extern void *pt_queue_get_free_slot(void);
+extern unsigned int pt_queue_get_free_slot(void);
 extern void device_info_set_mode(uint32_t mode);
 extern void reset_esb_sync_state(uint32_t reason);
 extern void FUN_0007c010(void *object);          /* tail thunk -> k_sem_give */

@@ -65,8 +65,8 @@ extern uint64_t FUN_0000d8f8(uint32_t,...); extern uint8_t FUN_0000dea8(uint32_t
  * battery_model_state_update already uses for __extendsfdf2). */
 extern uint32_t FUN_0000e128(int64_t); /* soft-float: r0:r1 in, raw float bits out in r0 */ extern float FUN_0000e340(float,float,float,float,uint32_t);
 extern uint32_t FUN_000167a8(void); extern uint32_t FUN_00019c70(uintptr_t,...);
-extern uint32_t FUN_000232b8(void); extern uint32_t FUN_00027448(uintptr_t,...);
-extern int FUN_0002e988(uint32_t,float*,float*,float*); extern int FUN_00030cac(void);
+extern unsigned int FUN_000232b8(void); extern uint32_t FUN_00027448(uintptr_t,...);
+extern int FUN_0002e988(int, float*, float*, float*); extern int FUN_00030cac(void);
 extern void FUN_000330c4(void); extern void FUN_000330d8(void);
 extern uint32_t FUN_00074844(uintptr_t,...); extern uint32_t FUN_0007cbfe(uintptr_t,...);
 extern int64_t FUN_0007ceda(void); extern uint32_t FUN_0007cefc(void);

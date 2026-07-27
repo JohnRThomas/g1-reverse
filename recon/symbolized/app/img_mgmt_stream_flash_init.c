@@ -11,7 +11,7 @@
 /* Reconstructed FUN_0007f150 @ 0x7f150  (parity: 300/300 trials, PROVEN) */
 
 extern int flash_area_open(unsigned int, void*);
-extern unsigned int storage_ctx_get_field0c(unsigned int);
+extern unsigned int storage_ctx_get_field0c(char *);
 extern int stream_flash_init(void*, unsigned int, void*, unsigned int, unsigned int, unsigned int, unsigned int);
 
 int img_mgmt_stream_flash_init(char *param_1, unsigned int param_2)

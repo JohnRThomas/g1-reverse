@@ -1,7 +1,7 @@
 /* Full reconstruction FUN_0005c5f0 @ 0x5c5f0, exact extent 206 bytes. */
 #include <stdint.h>
 
-extern uint8_t *FUN_00059c70(void);
+extern uint8_t * FUN_00059c70(unsigned long);
 extern void FUN_000836ec(void *, const void *, uint32_t);
 extern void *FUN_0005f594(void *, uint32_t);
 extern void FUN_00082a42(uintptr_t, uint32_t, const void *);
@@ -20,7 +20,7 @@ struct handler_5c5f0 {
 
 void FUN_0005c5f0(uint8_t *context, const void *data, uint32_t length)
 {
-    uint8_t *group = FUN_00059c70();
+    uint8_t *group = FUN_00059c70(context);
     struct cursor_5c5f0 cursor;
     if (group == 0)
         return;

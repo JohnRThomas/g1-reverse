@@ -26,7 +26,7 @@ struct spi_state_476b4 {
 };
 
 extern struct spi_state_476b4 *get_projector_controller(void);
-extern void projector_bus_lock(uint32_t a, uint32_t b);
+extern void projector_bus_lock(unsigned int, unsigned int);
 extern void projector_bus_unlock(void);
 
 void projector_transfer_pixel_chunk(uint32_t x, uint32_t y, uint32_t value, uint32_t length)

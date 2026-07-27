@@ -7,7 +7,7 @@ extern void FUN_00056080(void *, void *);
 extern void FUN_0007e2fa(unsigned long, ...);
 extern void FUN_0007e2ec(uintptr_t, uint32_t) __attribute__((noreturn));
 extern uint64_t FUN_000813d6(void *);
-extern void FUN_0007350c(void *, uint32_t, uint32_t, uint32_t);
+extern void FUN_0007350c(unsigned int, unsigned int, unsigned int, unsigned int);
 
 void FUN_00056300(void *context, uint32_t inherited_r1)
 {

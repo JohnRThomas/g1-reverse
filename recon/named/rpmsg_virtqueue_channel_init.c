@@ -30,8 +30,8 @@ extern int virtio_create_virtqueues(int a0,int a1,int a2,void *a3,void *a4);
 extern int rpmsg_register_endpoint(int a0,int a1,int a2,int a3,int a4,int a5,int a6);
 extern void metal_io_block_set(int *a0,unsigned int a1,int a2,int a3);
 extern int virtqueue_add_buffer(int a0,void *a1,int a2,int a3,int a4);
-extern void virtqueue_ring_setup_flags(int a0);
-extern int rpmsg_virtio_shm_pool_get_buffer(int a0,int a1);
+extern void virtqueue_ring_setup_flags(int *);
+extern int* rpmsg_virtio_shm_pool_get_buffer(unsigned int, unsigned int);
 extern void z_impl_k_sem_init(int a0,int a1);
 extern void memset_bytes(int a0,int a1,int a2);
 

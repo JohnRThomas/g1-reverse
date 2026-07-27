@@ -13,11 +13,11 @@
 /* Reconstructed FUN_00058eb0 @ 0x58eb0  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int att_get(void);
+extern int att_get(unsigned long);
 extern int bt_att_chan_create_pdu(void*,int,int);
 extern void att_log_emit_3arg(int,int,void*);
 int bt_att_create_pdu(int param_1,int param_2,int param_3){
-  int iVar1=att_get();
+  int iVar1=att_get(param_1);
   if(iVar1==0) return 0;
   int *piVar2,*piVar5,*piVar6;
   unsigned int uStack_20; unsigned int uVar4;

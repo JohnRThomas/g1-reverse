@@ -7,7 +7,7 @@ extern uint32_t chunk_size(void *, uint32_t); /* FUN_0007de18 */
 extern uint32_t next_free_chunk(void *, uint32_t, uint32_t); /* FUN_0007ddec */
 #ifdef G1_APP_SDK_INLINE_COHESION
 extern uint32_t chunk_field(const void *, uint32_t, uint32_t); /* FUN_0007ddec */
-extern void chunk_set(void *, uint32_t, uint32_t, uint32_t); /* FUN_0007de02 */
+extern void chunk_set(unsigned char *, unsigned int, unsigned int, unsigned int); /* FUN_0007de02 */
 
 /* Exact Zephyr 3.4.99 heap.c local owner; raw FUN_0007de9a @ 0x0007de9a.
  * This stays TU-local in the cohesive build.  The parity build below retains

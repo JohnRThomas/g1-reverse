@@ -1,14 +1,14 @@
 /* Reconstructed FUN_000559fc @ 0x559fc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
-extern void FUN_00081320(uint32_t);
+extern void FUN_00081320(int);
 extern void FUN_00081180(uint32_t,uint32_t);
 extern int FUN_0008117a(uint32_t);
 extern int FUN_00055698(uint32_t);
 extern int FUN_00056f08(uint32_t,uint32_t,uint32_t);
 extern void FUN_00056704(void);
 extern void FUN_000566a4(int);
-extern uint FUN_000812d2(uint32_t,int);
+extern int FUN_000812d2(void *, unsigned int);
 uint FUN_000559fc(void){
   int iVar1; uint uVar2; uint32_t uVar3;
   FUN_00081320(0x20002018);

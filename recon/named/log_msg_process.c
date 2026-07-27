@@ -22,7 +22,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_0004d334 @ 0x4d334  (parity: 300/300 trials, PROVEN) */
 extern int atomic_inc(int);
-extern unsigned activate_foreach_backend(unsigned);
+extern unsigned int activate_foreach_backend(unsigned int);
 extern void log_msg_commit(int*,unsigned,int);
 extern void k_sleep(int,int);
 extern void assert_post_action(int,...);

@@ -10,7 +10,7 @@
 /* Reconstructed FUN_00084db2 @ 0x84db2  (parity: 300/300 trials, PROVEN) */
 
 extern int flash_area_read(int a, int b, char *c, int d, int e);
-extern int flash_region_is_erased(int a, char *b, int c);
+extern unsigned int flash_region_is_erased(unsigned int, unsigned char *, int);
 
 unsigned int flash_write_byte_and_verify(int param_1, char *param_2, int param_3, int param_4)
 {

@@ -37,10 +37,10 @@ static inline void InstructionSynchronizationBarrier(int x){ (void)x; __ISB(); }
 extern void bt_conn_notify_connected(int);
 extern void tx_notify(int);
 extern void net_buf_destroy(int,void*,uint32_t,uint32_t);
-extern void ble_conn_ref(void);
+extern void ble_conn_ref(unsigned long);
 extern uint32_t ble_conn_unref(int);
 extern void k_sem_give(int);
-extern void k_work_schedule(int,uint32_t,uint32_t,uint32_t);
+extern void k_work_schedule(unsigned int, unsigned int, unsigned int, unsigned int);
 extern uint32_t k_work_cancel_delayable(int);
 extern void poll_signal_event_locked(uint32_t,int);
 extern void bt_conn_call_4arg_zero(uint32_t,uint32_t,void*);
@@ -62,7 +62,7 @@ void ble_conn_set_state(int param_1, uint param_2)
   }
   *(volatile uint8_t*)(param_1 + 0xd) = (uint8_t)param_2;
   if (uVar7 == 0 && *(volatile uint8_t*)(param_1+2) != 8) {
-    ble_conn_ref();
+    ble_conn_ref(param_1);
   }
   uint8_t newv = *(volatile uint8_t*)(param_1 + 0xd);
   switch (newv) {

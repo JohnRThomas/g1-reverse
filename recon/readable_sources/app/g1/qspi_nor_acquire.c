@@ -22,7 +22,7 @@ extern int qspi_get_zephyr_ret_code(void);
 #define g1_recon_nrfx_qspi_init nrfx_qspi_init
 extern void g1_recon_nrfx_qspi_init(int,int,int,int,int);
 extern void k_sem_give(int);
-extern void audio_i2s_stop_and_reset_channels(void);
+extern void audio_i2s_stop_and_reset_channels(unsigned long);
 extern void audio_i2s_start_channels(int);
 
 int qspi_nor_acquire(int param_1, int param_2, int param_3, int param_4)
@@ -30,7 +30,7 @@ int qspi_nor_acquire(int param_1, int param_2, int param_3, int param_4)
     int iVar3 = *(volatile int*)(param_1+0x10);
     int iVar2;
     if (*(volatile char*)(iVar3+0x60) == 0) {
-        audio_i2s_stop_and_reset_channels();
+        audio_i2s_stop_and_reset_channels(param_1);
         volatile char *pcVar1 = (volatile char*)((unsigned long)&g_qspi_nor_initialized) /*=0x2001d535*/;
         k_sem_give(iVar3+0x48);
         iVar2 = 0;

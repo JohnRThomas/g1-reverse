@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 extern void FUN_00085d70(int*, uint32_t);
-extern int FUN_00085d82(void);
+extern int FUN_00085d82(unsigned long);
 extern void FUN_00086c78(uint8_t*, int, uint32_t);
 
 int FUN_00085e1a(int *param_1, uint8_t *param_2, uint32_t param_3){
@@ -11,7 +11,7 @@ int FUN_00085e1a(int *param_1, uint8_t *param_2, uint32_t param_3){
   if (param_3 == 0 || param_2 == 0){
     uVar2 = 0xe;
   } else {
-    iVar1 = FUN_00085d82();
+    iVar1 = FUN_00085d82(param_1);
     if (iVar1 == 0) return 0;
     if (param_1[2] == 0){
       uVar2 = 3;

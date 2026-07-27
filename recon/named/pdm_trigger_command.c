@@ -19,7 +19,7 @@
 typedef unsigned int uint;
 
 extern int onoff_request_enqueue(uint32_t,void*);
-extern uint32_t pdm_start_and_check(void*);
+extern unsigned int pdm_start_and_check(unsigned int *);
 extern void nrfx_pdm_stop(void);
 extern void log_forward_zero_arg(uint32_t,uint32_t,void*);
 

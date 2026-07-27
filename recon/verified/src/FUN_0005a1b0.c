@@ -5,7 +5,7 @@ typedef void (*fp)(u32,void*,int,int);
 typedef void (*jp)(u32,int,u32*);
 extern void FUN_000826f6(u32*,u32);
 extern int FUN_00059c70(u32);
-extern void FUN_000828e8(u32,int,u32*,u32*);
+extern void FUN_000828e8(unsigned int, int, unsigned int *, unsigned int *);
 extern void FUN_00082a42(u32,int,void*);
 void FUN_0005a1b0(u32 param_1,int param_2,u32 param_3,u32 param_4,u32* param_5){
     FUN_000826f6(param_5+5, 0xfffffffb);

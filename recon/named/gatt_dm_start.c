@@ -32,7 +32,7 @@
 
 #include <stdint.h>
 extern int uuid_len_from_type(int);
-extern int bt_gatt_discover(uint32_t,uint32_t);
+extern int bt_gatt_discover(int, int *);
 extern int atomic_and_0(uint32_t,uint32_t);
 extern int gatt_dm_log_helper(uint32_t,uint32_t,void*);
 extern int safe_memcpy_checked(void*,void*,uint32_t,int);

@@ -18,7 +18,7 @@ extern int FUN_0003cf44(int,int,int);
 extern int FUN_0003b824(int,int,int);
 extern int FUN_00042d44(int,int,int);
 extern int FUN_000430c0(int,int,int);
-extern int FUN_0003bfe0(int,int,int);
+extern unsigned long FUN_0003bfe0(unsigned int *, unsigned long, int);
 extern int FUN_00046b80(int,int,int);
 
 #define DBG1(ID) do { \

@@ -12,7 +12,7 @@
 /* Reconstructed FUN_00026c28 @ 0x26c28  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int get_device_info(void);
-extern int get_ancs_conn_handle(void);
+extern unsigned int get_ancs_conn_handle(void);
 int check_charging_and_touch_flags(void){
   int iVar2 = get_device_info();
   int iVar3 = get_device_info();

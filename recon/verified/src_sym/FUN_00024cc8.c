@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00024cc8 @ 0x24cc8  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0007ca24(int a, void *b);
-extern void FUN_0007c99e(int a, void *b);
+extern void FUN_0007ca24(int, unsigned char *);
+extern void FUN_0007c99e(int, unsigned int *);
 
 char FUN_00024cc8(int param_1)
 {

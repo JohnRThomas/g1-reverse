@@ -10,7 +10,7 @@
 /* Reconstructed FUN_00084516 @ 0x84516  (parity: 300/300 trials, PROVEN) */
 
 extern void us_to_ticks_scaled(int a, int b, unsigned c, unsigned d, unsigned e);
-extern void us_to_ticks_scaled_v2(int a, int b, unsigned c);
+extern void us_to_ticks_scaled_v2(unsigned int *, unsigned int, unsigned int);
 unsigned timing_channel_dispatch(int param_1, unsigned param_2, int param_3, unsigned param_4){
     int iVar2 = *(volatile int*)(param_1 + 0x10);
     unsigned uVar4;

@@ -12,7 +12,7 @@
  */
 /* Reconstructed FUN_00058f34 @ 0x58f34  (parity: 300/300 trials, PROVEN) */
 
-extern int bt_att_chan_create_pdu(void);
+extern int bt_att_chan_create_pdu(unsigned long, unsigned long, unsigned long);
 extern void att_log_emit_3arg(int,int,void*);
 
 int bt_att_create_rsp_pdu(int param_1, int param_2, int param_3, int param_4)
@@ -32,6 +32,6 @@ int bt_att_create_rsp_pdu(int param_1, int param_2, int param_3, int param_4)
         att_log_emit_3arg(((unsigned long)&rodata_88100) /*=0x88100*/, 0x2880, &s);
         return 0;
     } else {
-        return bt_att_chan_create_pdu();
+        return bt_att_chan_create_pdu(param_1, param_2, param_3);
     }
 }

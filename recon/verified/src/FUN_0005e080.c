@@ -3,7 +3,7 @@
 #include <stdint.h>
 extern int FUN_00082ff6(int,int);
 extern int FUN_0005e9d0(int,int,int,int);
-extern uint32_t FUN_00052cdc(int);
+extern unsigned int FUN_00052cdc(const void *);
 extern void FUN_00083074(uint32_t,int,void*);
 extern void FUN_00083090(int,uint32_t);
 extern void FUN_0005daf0(int);

@@ -1,8 +1,8 @@
 /* Reconstructed FUN_00024f40 @ 0x24f40  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_0007c8d0(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
-extern int FUN_0007c8e8(unsigned int a, void *b);
-extern void FUN_0007c8fa(unsigned int a, unsigned int b);
+extern unsigned int FUN_0007c8e8(unsigned int, int);
+extern void FUN_0007c8fa(int, int);
 
 void FUN_00024f40(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

@@ -25,12 +25,12 @@
 #include <stdint.h>
 
 extern int st25dv_mailbox_write_with_retry(void *, unsigned int);
-extern int event_record_init(void *, const void *);
-extern int fill_record_type8(void *, const void *);
-extern int invoke_optional_op_offset12(void *, void *);
-extern int opt_record_decode(void *, void *);
-extern int opt_list_encode(void *, void *, void *, unsigned int);
-extern int opt_list_append_node(void *, const void *);
+extern unsigned int event_record_init(unsigned char *, unsigned int *);
+extern unsigned int fill_record_type8(unsigned char *, unsigned int *);
+extern unsigned int invoke_optional_op_offset12(unsigned char *, void *);
+extern unsigned opt_record_decode(int *, unsigned char *);
+extern int opt_list_encode(int *, int *, int, unsigned);
+extern unsigned int opt_list_append_node(unsigned int *, unsigned char *);
 
 struct encoded_record {
     uint32_t words[7];

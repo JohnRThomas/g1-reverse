@@ -34,7 +34,7 @@ extern uint32_t heap_bucket_index(uint32_t, uint32_t, uint32_t, uint32_t); /* bu
 extern uint32_t log_msg_compute_wlen(uint32_t, uint32_t); /* chunksz */
 extern void *memset_bytes(void *, uint32_t, uint32_t); /* memset */
 extern void chunk_set_used_flag(void *, uint32_t, uint32_t); /* set_left_chunk_size */
-extern void chunk_set(void *, uint32_t, uint32_t, uint32_t); /* chunk_set */
+extern void chunk_set(unsigned char *, unsigned int, unsigned int, unsigned int); /* chunk_set */
 extern void set_chunk_used(void *, uint32_t, uint32_t); /* set_chunk_used */
 extern void free_list_add(void *, uint32_t); /* free_list_add */
 

@@ -58,12 +58,12 @@ extern int FUN_00047260(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32
 extern int FUN_00047b1c(const void *, uint32_t);
 extern int FUN_00047ba8(void);
 extern int FUN_000488bc(uint32_t);
-extern int FUN_00048b44(uint32_t);
+extern unsigned int FUN_00048b44(int);
 extern int FUN_0004a9ec(void);
 extern int FUN_0004aab0(void);
 extern uint32_t FUN_0007d1d0(uintptr_t);
 extern uint32_t FUN_0007d224(void);
-extern uint32_t FUN_0007d248(void);
+extern int FUN_0007d248(void);
 extern void *FUN_00086c78(void *, int, uint32_t);
 extern int send_event_status(uint32_t);
 extern int sync_to_slave(uintptr_t, uint32_t, const void *, uint32_t);

@@ -13,8 +13,8 @@
 /* Reconstructed FUN_00075d5c @ 0x75d5c  (parity: 300/300 trials, PROVEN) */
 
 extern float __ieee754_log10f(void);
-extern unsigned* thunk_FUN_00071678(void);
-extern float nanf(unsigned);
+extern int *thunk_FUN_00071678(void);
+extern float nanf(const char *);
 float log10f(float param_1){
   float result = __ieee754_log10f();
   if((*(signed char*)0x200035afUL != -1) && (param_1 <= 0.0f)){

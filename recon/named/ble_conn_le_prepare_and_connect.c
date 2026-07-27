@@ -41,19 +41,19 @@ extern int bt_hci_cmd_send_sync(u32 key, int object, u32 flags);
 extern int bt_id_set_adv_random_addr(u8 *output, u32 flags, int mode, u8 *details);
 extern int ble_conn_addr_and_params_valid(u8 *resource, u8 *preserved_resource,
                         u32 preserved_argument, u32 zero);
-extern int ble_conn_addr_resolve_or_create(u8 *output, int *allocation);
+extern unsigned int ble_conn_addr_resolve_or_create(unsigned char*, int*);
 extern void ble_conn_unref(int allocation);
 extern void ble_conn_set_state(int allocation, int reason);
-extern int normalize_to_bool(u8 *resource);
+extern int normalize_to_bool(int);
 extern u32 get_adv_channel_map(u32 value, u32 mask);
 extern uint64_t deref_conn_field0(const void *object);
 extern void atomic_and_1(const void *object);
-extern void bt_addr_le_copy(void *destination, u32 value);
+extern void bt_addr_le_copy(unsigned int *, unsigned int *);
 extern void atomic_assign_bit(u8 *object, u32 field, u32 value);
 extern int le_adv_update(u8 *output, u32 argument3, u32 argument4,
                         int argument5, u32 argument6, int state, int kind);
 extern int get_adv_name_type_param(u8 *resource);
-extern int bt_le_adv_set_enable_legacy(u8 *output, int enabled);
+extern int bt_le_adv_set_enable_legacy(void *, unsigned int);
 extern void net_buf_simple_add_mem(void *destination, const void *source, u32 size);
 
 struct __attribute__((packed)) operation_record {

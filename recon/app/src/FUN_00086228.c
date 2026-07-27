@@ -15,7 +15,7 @@ typedef struct {
 } zcbor_string_t;
 
 extern void FUN_000861c2(zcbor_state_prefix_t *state, int error);
-extern size_t FUN_0007158c(const void *input, size_t max_result_len);
+extern unsigned int FUN_0007158c(char *, unsigned int);
 extern int FUN_00086208(zcbor_state_prefix_t *state, unsigned int major_type,
                        const void *result, size_t max_result_len);
 extern void *FUN_00086c44(void *destination, const void *source, size_t size);

@@ -6,7 +6,7 @@ extern int FUN_000181fc(int);
 extern int FUN_00018bb4(int);
 extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00072880(int);
-extern int FUN_0007c0c8(void);
+extern unsigned int FUN_0007c0c8(void);
 extern int FUN_00086c78(int,int,int);
 
 void FUN_00018c48(int param_1, unsigned char *param_2, int param_3)

@@ -7,7 +7,7 @@
 
 extern void *memset_bytes(void *destination, int value, uint32_t length);
 extern void log_message(unsigned long, ...);
-extern int load_whitelist(void);
+extern unsigned int load_whitelist(void);
 extern void revalidate_whitelist_json(void);
 
 void FUN_00035744(void)

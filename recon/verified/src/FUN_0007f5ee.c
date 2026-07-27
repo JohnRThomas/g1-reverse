@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0007f5ee @ 0x7f5ee  (parity: 300/300 trials, PROVEN) */
 
 typedef void (*fn_t)(int, unsigned int);
-extern void FUN_0007f5d8(int a0, unsigned int a1);
+extern void FUN_0007f5d8(volatile int *, int);
 
 void FUN_0007f5ee(unsigned int param_1, unsigned int param_2, int param_3)
 {

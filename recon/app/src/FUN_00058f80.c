@@ -2,7 +2,7 @@
 #include <stdint.h>
 extern int FUN_00058c34(int, ...);
 extern int FUN_00058f34(int,int,int);
-extern int FUN_0005f148(int);
+extern unsigned int* FUN_0005f148(unsigned int*);
 extern int FUN_0005f24c(int);
 extern int FUN_000821a4(int,int);
 extern int FUN_000821f4(int, ...);

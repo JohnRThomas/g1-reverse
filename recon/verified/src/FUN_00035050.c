@@ -4,12 +4,12 @@ typedef unsigned int uint;
 typedef unsigned undefined4;
 extern void DEBUG_PRINT(unsigned long, ...);
 extern void FUN_00019c70(unsigned long, ...);
-extern int FUN_00034ff0(void *a, void *b);
+extern unsigned int FUN_00034ff0(const void *, const void *);
 extern void FUN_00064b1c(int a);
 extern int FUN_0008500c(void);
-extern int FUN_00085020(int a);
+extern int FUN_00085020(int *);
 extern int FUN_00085030(int a, uint b);
-extern int FUN_0008503c(int a, unsigned b);
+extern int FUN_0008503c(int, int);
 extern int FUN_000850c8(void);
 extern void FUN_0008705a(void *a, unsigned b, int c);
 

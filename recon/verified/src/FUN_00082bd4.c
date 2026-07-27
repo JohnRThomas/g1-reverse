@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00082bd4 @ 0x82bd4  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_0008256e(void);
+extern unsigned int FUN_0008256e(void);
 extern void *FUN_00059c04(int a);
 extern void FUN_00082bb8(void *a, int b);
 extern void *FUN_00059bcc(unsigned char a, int b);

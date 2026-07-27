@@ -23,7 +23,7 @@ extern int bt_hci_cmd_create(int pool, int size);
 extern void bt_hci_cmd_send_or_create(int queue, int packet);
 extern void ble_conn_unref(int connection);
 extern int ble_conn_lookup_masked(unsigned int identifier, int selector);
-extern int ble_notify_disconnected(int connection, const void *fields);
+extern int ble_notify_disconnected(int, int);
 extern uint16_t *net_buf_simple_add(int packet_data, int size);
 extern void bt_log_forward_3arg(int source, int level, const void *record);
 extern void le_conn_param_neg_reply(unsigned int identifier, int status);

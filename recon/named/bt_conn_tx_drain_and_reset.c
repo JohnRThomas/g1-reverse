@@ -25,7 +25,7 @@ extern void net_buf_unref(void *);
 extern void net_buf_destroy(void *, void *);
 extern void assert_post_action(uintptr_t, uint32_t) __attribute__((noreturn));
 extern uint64_t bt_conn_reset_rx_state(void *);
-extern void k_work_reschedule(void *, uint32_t, uint32_t, uint32_t);
+extern void k_work_reschedule(unsigned int, unsigned int, unsigned int, unsigned int);
 
 void bt_conn_tx_drain_and_reset(void *context, uint32_t inherited_r1)
 {

@@ -34,9 +34,9 @@
  */
 #include <stdint.h>
 extern int opt_node_value_len(int);
-extern int opt_node_total_len(int);
-extern int opt_node_serialize_7c5ba(int, void*);
-extern int serialization_read_or_copy(int, void*, int);
+extern int opt_node_total_len(unsigned int);
+extern unsigned opt_node_serialize_7c5ba(unsigned char*, int*);
+extern int serialization_read_or_copy(int, int *, int);
 extern void memcpy(int dst, int src, unsigned length);
 
 /* The shipped code passes sp+0/sp+4 and sp+8/sp+0xc as ONE two-word object

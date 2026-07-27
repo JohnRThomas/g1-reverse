@@ -3,7 +3,7 @@
 extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_00033088(unsigned int a);
 extern int process_pt_data(void);
-extern int FUN_000332dc(void);
+extern unsigned int FUN_000332dc(void);
 extern void FUN_00074844(unsigned int a, unsigned int b);
 
 int FUN_00033340(void)

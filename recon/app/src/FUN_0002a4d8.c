@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0002a4d8 @ 0x2a4d8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern uint64_t FUN_0007cb2c(void);
+extern unsigned long long FUN_0007cb2c(void);
 
 void FUN_0002a4d8(unsigned int param_1)
 {

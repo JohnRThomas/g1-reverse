@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_00082282 @ 0x82282  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int net_buf_simple_pull_le16(int);
+extern int net_buf_simple_pull_le16(int);
 extern void gatt_notify_or_indicate(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 
 void att_write_req_recv(unsigned int param_1, int param_2)

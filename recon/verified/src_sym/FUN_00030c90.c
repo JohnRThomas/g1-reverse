@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00030c90 @ 0x30c90  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_00030b3c(unsigned int a);
+extern int FUN_00030b3c(int *);
 
 void FUN_00030c90(void)
 {

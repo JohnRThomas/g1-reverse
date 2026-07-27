@@ -13,7 +13,7 @@
 /* Reconstructed FUN_00032b24 @ 0x32b24  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern int buffer_append_sum_checksum(void*,void*);
+extern int buffer_append_sum_checksum(int *, unsigned char *);
 typedef int (*fp5)(void*,int,void*,void*,uint32_t);
 uint32_t pt_cmd_dispatch_and_encode_response(int param_1, char* param_2, int param_3, uint32_t* param_4, uint8_t* param_5, uint32_t param_6){
     if(param_2==0 || param_3==0 || param_4==0 || param_5==0 || param_1==2){

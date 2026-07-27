@@ -28,7 +28,7 @@
 
 extern void reset_touch_selection_state(void);
 extern void delAudioStreamRecord(uint32_t);
-extern void app_msleep_thunk_b(uint32_t);
+extern void app_msleep_thunk_b(int);
 extern void deleteQuickNoteData(uint32_t);
 extern void cleanAppLanguageInfo(void);
 extern void cleanDashBoardStartUpModeInfo(void);

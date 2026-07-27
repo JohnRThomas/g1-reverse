@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00081720 @ 0x81720  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long FUN_000816a2(int a, int b);
-extern void FUN_0007350c(int a, int b, int c, int d);
+extern void FUN_0007350c(unsigned int, unsigned int, unsigned int, unsigned int);
 
 void FUN_00081720(int param_1)
 {

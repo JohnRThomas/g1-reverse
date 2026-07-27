@@ -27,7 +27,7 @@ extern int flash_area_open(int, void*);
 extern int smp_add_cmd_err(int,int,uint32_t);
 extern void nullsub_3(int);
 extern int flash_area_erase(int,int,uint32_t,int);
-extern int storage_ctx_get_field0c(int);
+extern unsigned int storage_ctx_get_field0c(char *);
 
 uint32_t storage_erase_handler(int param_1){
   int iVar1;

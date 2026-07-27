@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_00025474 @ 0x25474  (parity: 300/300 trials, PROVEN) */
 
-extern int is_box_field_timer_expired(void);
+extern unsigned int is_box_field_timer_expired(void);
 extern int thunk_FUN_00074f68(void);
 
 unsigned int update_box_field_debounce(void)

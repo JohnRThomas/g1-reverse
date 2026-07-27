@@ -25,11 +25,11 @@
 #include <stdint.h>
 
 extern uint32_t deref_conn_field0(volatile uint32_t *); /* atomic_get */
-extern int ble_conn_addr_resolve_or_create(void *, void *); /* connection lookup/create */
+extern unsigned int ble_conn_addr_resolve_or_create(unsigned char*, int*); /* connection lookup/create */
 extern uint32_t adv_is_directed(void *); /* adv_is_directed */
 extern int bt_id_set_adv_random_addr(void *, uint32_t, uint32_t, void *); /* legacy advertising configure */
 extern void z_log_msg_runtime_create(uint32_t, uint32_t, const void *, uint32_t);
-extern int bt_le_adv_set_enable_legacy(void *, uint32_t); /* bt_le_adv_set_enable_legacy */
+extern int bt_le_adv_set_enable_legacy(void *, unsigned int); /* bt_le_adv_set_enable_legacy */
 extern void ble_conn_unref(void *); /* bt_conn_unref */
 extern void ble_conn_set_state(void *, uint32_t); /* bt_conn_set_state */
 extern uint32_t atomic_and_1(volatile uint32_t *, uint32_t); /* atomic_and */

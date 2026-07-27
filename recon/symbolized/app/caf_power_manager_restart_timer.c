@@ -14,7 +14,7 @@
 /* Reconstructed FUN_00063be0 @ 0x63be0  (parity: 300/300 trials, PROVEN) */
 
 extern long long ancs_notify_table_is_idle(int a0);
-extern void k_work_reschedule(unsigned int a0, int a1, unsigned int a2, unsigned int a3);
+extern void k_work_reschedule(unsigned int, unsigned int, unsigned int, unsigned int);
 
 void caf_power_manager_restart_timer(void)
 {

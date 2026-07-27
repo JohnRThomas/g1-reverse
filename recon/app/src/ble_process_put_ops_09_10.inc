@@ -15,7 +15,7 @@ extern int FUN_000167a8();
 extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00019b38();
 extern int FUN_00019b48();
-extern int FUN_00019b54();
+extern int FUN_00019b54(unsigned long, unsigned long, unsigned long);
 extern int FUN_00047b1c();
 extern int FUN_0004a4d0();
 extern int FUN_0007c1dc();

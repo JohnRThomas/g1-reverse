@@ -17,7 +17,7 @@
  */
 /* Reconstructed FUN_0005e47c @ 0x5e47c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int bt_addr_le_str(int);
+extern unsigned int bt_addr_le_str(const void *);
 extern int smp_error(int,int);
 extern int bt_keys_get_addr(int,int);
 extern int bt_keys_add_type(int,int);

@@ -11,7 +11,7 @@
 /* Reconstructed FUN_00012580 @ 0x12580 */
 #include <stdint.h>
 
-extern uint64_t __floatdidf(uint32_t, uint32_t);
+extern unsigned long long __floatdidf(unsigned int, unsigned int);
 extern uint64_t __muldf3(uint32_t, uint32_t, uint32_t, uint32_t);
 extern uint64_t __fixdfdi(void);
 extern uint32_t __aeabi_ldivmod(uint32_t, uint32_t, uint32_t, uint32_t);

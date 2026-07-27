@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_00063ff8 @ 0x63ff8  (parity: 300/300 trials, PROVEN) */
 
-extern void flash_area_erased_val(void);
+extern void flash_area_erased_val(unsigned long);
 extern int flash_area_write(int a, unsigned int b, void *c, int d);
 
 int boot_write_image_trailer_magic(int param_1)
@@ -20,7 +20,7 @@ int boot_write_image_trailer_magic(int param_1)
   unsigned int i;
   volatile unsigned int *src = (volatile unsigned int*)0x0009907cUL;
   int r;
-  flash_area_erased_val();
+  flash_area_erased_val(param_1);
   for (i = 0; i < 4; i++) {
     local_28[i] = src[i];
   }

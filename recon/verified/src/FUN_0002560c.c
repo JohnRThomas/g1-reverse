@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0002560c @ 0x2560c  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_000330a8(unsigned int a0);
+extern unsigned int FUN_000330a8(unsigned int);
 extern int FUN_000330ec(void);
 extern void DEBUG_PRINT(unsigned long, ...);
 

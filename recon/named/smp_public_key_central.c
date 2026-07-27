@@ -16,7 +16,7 @@
  */
 /* Reconstructed FUN_0005cff0 @ 0x5cff0  owned extent: 0xae bytes */
 
-extern int  conn_auth_cb_get_or_init(void);
+extern int conn_auth_cb_get_or_init(unsigned long);
 extern int  bt_pub_key_is_debug(void);
 extern void smp_log_message(unsigned a, unsigned b, void *c);
 extern int  atomic_set_bit(unsigned a, unsigned b);
@@ -26,7 +26,7 @@ extern int  smp_public_key_periph(int p);
 int smp_public_key_central(int param_1, int param_2){
     unsigned *src, *dst, *end;
     int iVar4;
-    conn_auth_cb_get_or_init();
+    conn_auth_cb_get_or_init(param_1);
     src = *(unsigned **)(param_2 + 0xc);
     dst = (unsigned *)(param_1 + 0x57);
     end = src + 8;

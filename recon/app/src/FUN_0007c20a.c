@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0007c20a @ 0x7c20a  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00086c78(void *a, unsigned int b, unsigned int c);
-extern int FUN_00019c44(void *a);
+extern int FUN_00019c44(unsigned int);
 extern short FUN_0000ef12(void *a);
 
 unsigned int FUN_0007c20a(int param_1)

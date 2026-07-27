@@ -28,7 +28,7 @@ extern unsigned strlen(unsigned);
 extern int ancs_get_conn_ctx(void);
 extern int bt_ancs_request_attrs(unsigned,unsigned,unsigned);
 extern void FUN_0007c0a4(int,int);
-extern int thunk_FUN_0007f7d2(unsigned,unsigned,unsigned,unsigned);
+extern int thunk_FUN_0007f7d2(void *, const unsigned char *, unsigned int, void *);
 int request_ancs_attr_ext(unsigned param_1, unsigned param_2, unsigned param_3)
 {
   unsigned uVar1, uVar2; unsigned short *puVar3; int iVar4, iVar5; unsigned uVar6;

@@ -11,7 +11,7 @@
 
 #include <stdint.h>
 extern void zcbor_backup_store_count(int*, uint32_t);
-extern int cbor_decode_precheck(void);
+extern int cbor_decode_precheck(unsigned long);
 extern void memset_bytes(uint8_t*, int, uint32_t);
 
 int cbor_decode_extract_value(int *param_1, uint8_t *param_2, uint32_t param_3){
@@ -20,7 +20,7 @@ int cbor_decode_extract_value(int *param_1, uint8_t *param_2, uint32_t param_3){
   if (param_3 == 0 || param_2 == 0){
     uVar2 = 0xe;
   } else {
-    iVar1 = cbor_decode_precheck();
+    iVar1 = cbor_decode_precheck(param_1);
     if (iVar1 == 0) return 0;
     if (param_1[2] == 0){
       uVar2 = 3;

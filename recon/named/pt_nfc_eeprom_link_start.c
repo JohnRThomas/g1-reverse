@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_00030c90 @ 0x30c90  (parity: 300/300 trials, PROVEN) */
 
-extern int pt_nfc_eeprom_link_init(unsigned int a);
+extern int pt_nfc_eeprom_link_init(int *);
 
 void pt_nfc_eeprom_link_start(void)
 {

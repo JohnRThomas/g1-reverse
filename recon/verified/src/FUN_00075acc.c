@@ -5,9 +5,9 @@ extern int FUN_0000de2c(uint32_t,uint32_t,uint32_t,uint32_t);
 extern int FUN_0000ddc8(uint32_t,uint32_t,uint32_t,uint32_t);
 extern int FUN_0000dddc(uint32_t,uint32_t,uint32_t,uint32_t);
 extern uint64_t FUN_0000db4c(uint32_t,uint32_t);
-extern int FUN_000869dc(double);
+extern unsigned int FUN_000869dc(double);
 extern double FUN_000767c8(double);
-extern uint32_t *thunk_FUN_00071678(void);
+extern int *thunk_FUN_00071678(void);
 typedef union { double d; struct { uint32_t lo,hi; }; uint64_t u; } dbits;
 static inline int eq(dbits a,dbits b){return FUN_0000de2c(a.lo,a.hi,b.lo,b.hi);}
 static inline int gt(dbits a,dbits b){return FUN_0000ddc8(a.lo,a.hi,b.lo,b.hi);}

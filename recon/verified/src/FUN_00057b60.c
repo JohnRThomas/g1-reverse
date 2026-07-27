@@ -32,8 +32,8 @@ typedef struct {
 extern uint32_t FUN_000816a2(const uint32_t *value);
 extern void FUN_00081746(uintptr_t sink, uint32_t level, const void *record);
 extern void FUN_00081b30(transfer_t *transfer);
-extern void FUN_00057a04(transfer_t *transfer, request_t *request);
-extern uint32_t FUN_00083718(const void *cursor);
+extern void FUN_00057a04(int, int);
+extern int FUN_00083718(int);
 extern uint32_t FUN_00083730(const void *cursor);
 extern void FUN_0005774c(transfer_t *transfer, uint32_t reason);
 

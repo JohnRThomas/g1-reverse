@@ -7,7 +7,7 @@
  *   opt_record_bind_value                    <= FUN_0007c61e @ 0x0007c61e
  */
 /* Reconstructed FUN_0007c61e @ 0x7c61e  (parity: 300/300 trials, PROVEN) */
-extern unsigned int opt_node_value_len(void);
+extern unsigned int opt_node_value_len(unsigned long);
 
 unsigned int opt_record_bind_value(unsigned char *param_1, unsigned char *param_2)
 {
@@ -20,7 +20,7 @@ unsigned int opt_record_bind_value(unsigned char *param_1, unsigned char *param_
         uVar2 = 7;
     } else {
         *(unsigned char **)(param_1 + 0x14) = param_2;
-        uVar1 = opt_node_value_len();
+        uVar1 = opt_node_value_len(param_1);
         uVar2 = 0;
         *param_1 = (*param_1 & 0xef) | ((uVar1 < 0x100) << 4);
     }

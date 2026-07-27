@@ -5,8 +5,8 @@
  * r1 half is deliberately represented as part of the call result so the
  * compiler observes the original r1:r0 return ABI. */
 extern uint64_t FUN_0005caa4(uint32_t kind);
-extern int32_t FUN_0005cc68(void *object);
-extern int32_t FUN_0005d0ac(void *object);
+extern int FUN_0005cc68(int);
+extern int FUN_0005d0ac(int);
 extern void FUN_0005dc2c(void *object, int32_t reason);
 extern uint32_t FUN_00082ff6(const void *bits, uint32_t bit);
 extern void FUN_0008304c(void *bits, uint32_t bit);

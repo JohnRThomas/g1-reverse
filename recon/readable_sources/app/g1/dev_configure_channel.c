@@ -19,7 +19,7 @@ typedef uint32_t u32; typedef uint8_t u8;
 extern int regulator_uv_to_reg_selector(int,int,void*);
 extern int dev_write_reg3(u32,int,int,int,int);
 extern int dev_channel_validate_and_set(int,int);
-extern int dev_write_channel_mode(int,int,int);
+extern unsigned dev_write_channel_mode(int, int*, int);
 extern int z_device_is_ready(u32);
 int dev_configure_channel(int param_1, u32 param_2, u32 param_3){
     int iVar4 = *(int*)(param_1+4);

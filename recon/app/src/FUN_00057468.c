@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00057468 @ 0x57468  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern uint32_t FUN_00057438(uint32_t);
+extern unsigned int FUN_00057438(unsigned int);
 
 uint32_t FUN_00057468(uint32_t param_1, int *param_2)
 {

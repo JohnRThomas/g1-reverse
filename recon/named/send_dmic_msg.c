@@ -32,7 +32,7 @@ struct dmic_message {
 typedef int (*dmic_send_fn)(const void *message, unsigned int length);
 
 extern void *get_device_info(void);
-extern int get_dmic_msgq_count(void);
+extern unsigned int get_dmic_msgq_count(void);
 extern int dequeue_dmic(void *payload);
 extern void set_shutdown_flag(void *state, int enabled);
 extern void memset_bytes(void *destination, int value, unsigned int length);

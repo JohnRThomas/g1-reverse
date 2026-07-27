@@ -44,7 +44,7 @@ extern int ui_teleprompter_task(int,int,int);
 extern int ui_QuickNote_task(int,int,int);
 extern int ui_onboarding_task(int,int,int);
 extern int ui_raster_height_task(int,int,int);
-extern int ui_even_ai_task(int,int,int);
+extern unsigned long ui_even_ai_task(unsigned int *, unsigned long, int);
 extern int ui_set_imu_pitch_task(int,int,int);
 
 #define DBG1(ID) do { \

@@ -14,7 +14,7 @@
  */
 /* Reconstructed FUN_00054828 @ 0x54828  (parity: 300/300 trials, PROVEN) */
 extern void bt_hci_rx_work_submit(int);
-extern int bt_hci_evt_get_flags(unsigned);
+extern unsigned int bt_hci_evt_get_flags(unsigned int);
 extern void hci_event_prio(int);
 extern void net_buf_unref(int);
 extern void bt_log_forward_3arg(unsigned,int,void*);

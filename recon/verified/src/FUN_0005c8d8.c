@@ -1,11 +1,11 @@
 /* Reconstructed FUN_0005c8d8 @ 0x5c8d8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int FUN_0005306c(unsigned,int);
+extern unsigned int FUN_0005306c(unsigned char *, int);
 extern int FUN_00059b5c(unsigned,int);
 extern int FUN_0005a044(unsigned,int);
 extern void FUN_0005a39c(void);
 extern int FUN_000826b2(int,int);
-extern void FUN_000828e8(int,int,int,void*);
+extern void FUN_000828e8(unsigned int, int, unsigned int *, unsigned int *);
 extern void FUN_00082c9c(int,int,int,void*);
 int FUN_0005c8d8(unsigned param_1, int param_2, int param_3){
   uint32_t context[3] = {

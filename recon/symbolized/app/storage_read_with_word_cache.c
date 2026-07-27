@@ -20,7 +20,7 @@
 /* Reconstructed FUN_00061070 @ 0x61070  (parity: 300/300 trials, PROVEN) */
 extern int  qspi_get_zephyr_ret_code(int);
 extern int  qspi_nor_lock_if_magic(int,int);
-extern int  qspi_nor_acquire(void);
+extern int qspi_nor_acquire(unsigned long);
 extern int  qspi_nor_suspend_bus(int);
 extern void audio_i2s_stop_and_reset_channels(int);
 extern void audio_i2s_start_channels(int);
@@ -40,7 +40,7 @@ int storage_read_with_word_cache(int param_1,int param_2,unsigned int param_3,un
     qspi_log_forward(((unsigned long)&rodata_88270) /*=0x88270*/,0x2040,st);
     return -0x16;
   }
-  iVar1 = qspi_nor_acquire();
+  iVar1 = qspi_nor_acquire(param_1);
   if (iVar1 != 0) goto LAB_611cc;
   audio_i2s_stop_and_reset_channels(param_1);
   uVar6 = (unsigned int)(-param_2) & 3u;

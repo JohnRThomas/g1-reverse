@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00026c28 @ 0x26c28  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_000167a8(void);
-extern int FUN_00019b2c(void);
+extern unsigned int FUN_00019b2c(void);
 int FUN_00026c28(void){
   int iVar2 = FUN_000167a8();
   int iVar3 = FUN_000167a8();

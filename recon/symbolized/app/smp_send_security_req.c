@@ -25,7 +25,7 @@
 extern int conn_auth_cb_get_or_init(int);
 extern int smp_auth_get_pairing_method(int);
 extern int smp_init(int);
-extern int smp_build_auth_flags(int, int);
+extern unsigned int smp_build_auth_flags(int, unsigned int);
 extern int bt_keys_get_addr(int, int);
 extern int bt_keys_find(int, int, int);
 extern void net_buf_unref(int);

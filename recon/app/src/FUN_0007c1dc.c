@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0007c1dc @ 0x7c1dc  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_000167a8(void);
-extern void FUN_0007c176(void);
+extern void FUN_0007c176(unsigned long, unsigned long);
 unsigned int FUN_0007c1dc(unsigned char param_1, unsigned char param_2, int param_3)
 {
   int iVar1;
@@ -11,7 +11,7 @@ unsigned int FUN_0007c1dc(unsigned char param_1, unsigned char param_2, int para
     iVar1 = FUN_000167a8();
     *(volatile unsigned char *)(iVar1 + 0xcd) = param_1;
   } else {
-    FUN_0007c176();
+    FUN_0007c176(param_1, param_2);
   }
   return 0;
 }

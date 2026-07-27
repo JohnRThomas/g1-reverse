@@ -9,13 +9,13 @@
  */
 /* Reconstructed FUN_00082346 @ 0x82346  (parity: 300/300 trials, PROVEN) */
 
-extern void att_optional_sent_cb_dispatch(void);
-extern void atomic_clear_bit_0(int,unsigned int);
+extern void att_optional_sent_cb_dispatch(unsigned long, unsigned long);
+extern void atomic_clear_bit_0(volatile int *, int);
 extern void att_chan_req_free(int*);
 void att_cfm_sent(unsigned int param_1,int *param_2,int param_3)
 {
   if (param_3 == 0) {
-    att_optional_sent_cb_dispatch();
+    att_optional_sent_cb_dispatch(param_1, param_2);
   }
   atomic_clear_bit_0(*param_2 + 0x120,0);
   att_chan_req_free(param_2);

@@ -29,9 +29,9 @@
 /* Reconstructed FUN_00060dd0 @ 0x60dd0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int qspi_get_zephyr_ret_code(int);
-extern int qspi_nor_log_erase_range_error(int,int);
+extern unsigned int qspi_nor_log_erase_range_error(unsigned int, unsigned int);
 extern int qspi_nor_lock_if_magic(int,int);
-extern int qspi_nor_acquire(void);
+extern int qspi_nor_acquire(unsigned long);
 extern int qspi_nor_suspend_bus(int);
 #define g1_recon_nrfx_qspi_erase nrfx_qspi_erase
 extern int g1_recon_nrfx_qspi_erase(int,int);
@@ -62,7 +62,7 @@ int qspi_nor_erase(int param_1, unsigned int param_2, unsigned int param_3, int 
     if ((param_3 == 0) || (((param_3 | param_2) & 0xfff) != 0)) {
         return -0x16;
     }
-    iVar1 = qspi_nor_acquire();
+    iVar1 = qspi_nor_acquire(param_1);
     if (iVar1 == 0) {
         audio_stream_stop_and_wait(*(int *)(param_1 + 0x10));
         iVar1 = qspi_nor_write_protection_set(param_1, 0);

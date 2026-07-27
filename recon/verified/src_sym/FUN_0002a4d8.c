@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0002a4d8 @ 0x2a4d8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern uint64_t k_uptime_get_1(void);
+extern unsigned long long k_uptime_get_1(void);
 
 void FUN_0002a4d8(unsigned int param_1)
 {

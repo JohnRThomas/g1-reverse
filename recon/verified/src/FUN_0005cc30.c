@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0005cc30 @ 0x5cc30  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00086c78(void *a, int b, unsigned int c, unsigned int d, unsigned int e);
-extern int FUN_00055cb4(unsigned int a, unsigned int b);
+extern int FUN_00055cb4(void *, int);
 extern void FUN_00083090(void *a, unsigned int b);
 extern unsigned int FUN_00055e58(void);
 

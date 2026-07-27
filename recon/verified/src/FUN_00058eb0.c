@@ -1,11 +1,11 @@
 /* Reconstructed FUN_00058eb0 @ 0x58eb0  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int FUN_0005858c(void);
+extern int FUN_0005858c(unsigned long);
 extern int FUN_000585f0(void*,int,int);
 extern void FUN_00081ddc(int,int,void*);
 int FUN_00058eb0(int param_1,int param_2,int param_3){
-  int iVar1=FUN_0005858c();
+  int iVar1=FUN_0005858c(param_1);
   if(iVar1==0) return 0;
   int *piVar2,*piVar5,*piVar6;
   unsigned int uStack_20; unsigned int uVar4;

@@ -26,7 +26,7 @@ typedef void (*ffn_t)(int,int,void*);
 extern u64 FUN_0000d824(int); extern u64 FUN_0000db4c(u32,u32,u32,u32); extern u64 FUN_0000d58c(u32,u32,u32,u32);
 extern u64 FUN_0000d8f8(u32,u32,u32,u32); extern u64 FUN_0000d848(u32); extern u64 FUN_0000d588(u32,u32,u32,u32);
 extern u32 FUN_0000dee8(u32,u32);
-extern float FUN_000267ac(void*);
+extern float FUN_000267ac(int);
 extern void FUN_00026624(float,float,float,float,float,float,float,void*);
 extern float FUN_00026828(void*); extern float FUN_00026808(void*); extern float FUN_000267e8(void*);
 extern int FUN_00025ecc(void*); extern int FUN_00025e2c(void);

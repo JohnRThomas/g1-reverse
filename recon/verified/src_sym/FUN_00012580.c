@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00012580 @ 0x12580  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern uint64_t __floatdidf(int32_t, int32_t);
+extern unsigned long long __floatdidf(unsigned int, unsigned int);
 extern void __muldf3(int32_t, int32_t, uint32_t, uint32_t);
 extern void __fixdfdi(void);
 extern uint32_t __aeabi_ldivmod(void);

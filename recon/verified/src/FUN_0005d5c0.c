@@ -5,11 +5,11 @@ typedef unsigned char byte;
 typedef unsigned char undefined1;
 typedef unsigned int undefined4;
 
-extern int FUN_00055cb4(void*,int);
+extern int FUN_00055cb4(void *, int);
 extern int FUN_0005cac0(void);
 extern int FUN_0005caec(int);
 extern uint32_t FUN_0005cc30(int);
-extern int FUN_0005d568(int,uint);
+extern unsigned int FUN_0005d568(int, unsigned int);
 extern int FUN_0005e6a8(uint8_t,int);
 extern int FUN_0005e938(uint8_t,int);
 /* The concrete helper leaves a decision byte in r1 on the feature-test path.

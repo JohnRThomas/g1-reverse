@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 extern void FUN_00086c04(void *destination, const void *source, uint32_t length);
-extern void FUN_00049acc(void *state, const void *block);
+extern void FUN_00049acc(volatile unsigned int *, void *);
 
 /* Feed bytes into a 64-byte block hash state while maintaining bit count. */
 void FUN_0007d8f4(uint32_t *state, const uint8_t *input, uint32_t length)

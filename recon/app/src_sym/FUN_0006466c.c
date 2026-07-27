@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0006466c @ 0x6466c  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_00064640(int a);
+extern int FUN_00064640(int);
 extern int FUN_00084f2e(int a, int b);
 
 typedef void (*fn0_t)(void);

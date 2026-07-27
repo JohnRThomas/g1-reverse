@@ -32,7 +32,7 @@ extern int get_device_info(void);
 extern int ancs_get_conn_ctx(int);
 extern int enqueue_ancs(int);
 extern int k_sem_give(int);
-extern int k_uptime_get_32(void);
+extern unsigned int k_uptime_get_32(void);
 extern int memset_bytes(int,int,int);
 
 void bt_ancs_data_source_handler(int param_1, unsigned char *param_2, int param_3)

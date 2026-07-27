@@ -33,7 +33,7 @@ extern void pixelto4bithex(unsigned int inverted_byte, int glyph_width);
 extern void *malloc(unsigned int size);
 extern void free(void *allocation);
 extern void printf(uint32_t message);
-extern int ptr_load_u32(const void *field);
+extern unsigned int ptr_load_u32(unsigned int *);
 extern void memcpy(uintptr_t destination, int source, unsigned int size);
 extern void memset_bytes(void *destination, int value, unsigned int size);
 extern int strncmp(const void *header, uint32_t descriptor, unsigned int count);

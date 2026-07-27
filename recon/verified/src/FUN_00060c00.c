@@ -12,7 +12,7 @@ extern int g1_recon_nrfx_qspi_init(void *device, uintptr_t callback,
 extern void FUN_000838d6(uintptr_t source, uint32_t level, const void *record);
 extern int FUN_000838dc(uintptr_t transport, void *result,
                         uintptr_t unused, void *owner);
-extern int FUN_0008397e(void *context);
+extern int FUN_0008397e(unsigned int);
 extern int FUN_000839a6(void *context);
 extern int FUN_00086be4(const void *expected, const void *actual, uint32_t length);
 

@@ -47,7 +47,7 @@ extern void bt_foreach_bond(unsigned int, const void *, void *);/* FUN_0005e6d4 
 extern int settings_load(void);                         /* FUN_0007f192 @ 0x0007f192 */
 extern void log_message(unsigned long, ...);        /* FUN_0007dda4 @ 0x0007dda4 */
 
-extern void k_msleep_ticks32768_d(unsigned int milliseconds);
+extern void k_msleep_ticks32768_d(int);
 extern int bt_conn_auth_cb_register(const void *callbacks);
 extern int ancs_notify_sync_init(void);
 

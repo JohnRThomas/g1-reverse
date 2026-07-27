@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_0006466c @ 0x6466c  (parity: 300/300 trials, PROVEN) */
 
-extern int cjson_strdup(int a);
+extern int cjson_strdup(int);
 extern int sllist_insert_after(int a, int b);
 
 typedef void (*fn0_t)(void);

@@ -3,7 +3,7 @@
 #include <stdint.h>
 
 extern void FUN_0005f24c(uintptr_t);
-extern void FUN_00073418(uintptr_t, unsigned, unsigned, unsigned);
+extern void FUN_00073418(unsigned int, unsigned int, unsigned int, unsigned int);
 extern uint64_t FUN_00081852(uintptr_t, int *, unsigned);
 extern int thunk_FUN_000727ac(uintptr_t, unsigned, unsigned, unsigned);
 

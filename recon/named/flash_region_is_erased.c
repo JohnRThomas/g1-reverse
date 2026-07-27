@@ -7,13 +7,13 @@
  */
 /* Reconstructed FUN_00084d8c @ 0x84d8c  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int flash_area_erased_val(void);
+extern unsigned int flash_area_erased_val(unsigned long);
 
 unsigned int flash_region_is_erased(unsigned int param_1, unsigned char *param_2, int param_3)
 {
   (void)param_1;
   if (param_2 == 0 || param_3 == 0) return 0;
-  unsigned int uVar1 = flash_area_erased_val();
+  unsigned int uVar1 = flash_area_erased_val(param_1);
   unsigned char *pbVar4 = param_2;
   unsigned char *pbVar3;
   do {

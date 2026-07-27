@@ -30,7 +30,7 @@
 
 extern void assert_post_action(uint32_t, uint32_t) __attribute__((noreturn));
 extern uintptr_t log_msg_process(uint32_t, uint32_t);
-extern uintptr_t activate_foreach_backend(uintptr_t);
+extern unsigned int activate_foreach_backend(unsigned int);
 extern uintptr_t k_current_get(void);
 extern void k_sem_give(uintptr_t);
 extern uint64_t log_process(void);

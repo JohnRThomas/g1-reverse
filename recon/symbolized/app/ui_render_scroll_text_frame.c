@@ -32,7 +32,7 @@ extern void clean_fb_data(uintptr_t, int, int, int, int, int);
 extern unsigned gui_utf_draw(unsigned, uintptr_t, unsigned, int, int, int, int,
                             unsigned, unsigned, int, void *, int);
 extern void reflash_fb_data_to_lcd_ex(uintptr_t, uintptr_t, int, int, int, int, uint32_t);
-extern void fb_blit_rows_halved(uintptr_t, int, int, int, int, int, int);
+extern void fb_blit_rows_halved(int, int, int, int, int, int, int);
 
 static uintptr_t display(void) { return *(volatile uintptr_t *)((unsigned long)&g_gui_active_canvas) /*=0x2000a034*/; }
 

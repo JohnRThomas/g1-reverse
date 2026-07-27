@@ -10,7 +10,7 @@
 /* Reconstructed FUN_00081720 @ 0x81720  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long atomic_get_word(int a, int b);
-extern void k_work_reschedule(int a, int b, int c, int d);
+extern void k_work_reschedule(unsigned int, unsigned int, unsigned int, unsigned int);
 
 void conn_ctx_cleanup_if_pending(int param_1)
 {

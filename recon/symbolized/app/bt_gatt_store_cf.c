@@ -14,7 +14,7 @@
  */
 /* Reconstructed FUN_0005a8bc @ 0x5a8bc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern unsigned long long find_cf_cfg_by_addr(void);
+extern unsigned long long find_cf_cfg_by_addr(unsigned long, unsigned long);
 extern int read_struct_first_word(int);
 extern int bt_settings_store_cf(unsigned int,unsigned int,void*,unsigned int);
 extern void log_msg_create_3arg(unsigned int,unsigned int,void*);
@@ -22,7 +22,7 @@ void bt_gatt_store_cf(unsigned int param_1,unsigned int param_2){
   unsigned long long uVar4; int iVar1; unsigned char* puVar2; unsigned int uVar3;
   unsigned char local_14; unsigned char local_13; int iStack_20;
   struct{unsigned int a,b; int c;} s;
-  uVar4=find_cf_cfg_by_addr(); iVar1=(int)uVar4;
+  uVar4=find_cf_cfg_by_addr(param_1, param_2); iVar1=(int)uVar4;
   if(iVar1==0){ puVar2=0; uVar3=0; }
   else{
     local_14=*(volatile unsigned char*)(iVar1+8);

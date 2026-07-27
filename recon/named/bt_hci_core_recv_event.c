@@ -28,11 +28,11 @@ extern void process_number_completed_packets(void *connection, void *buffer, uin
 extern void ble_conn_unref(void *connection); /* FUN_000566a4 */
 extern void *ble_conn_lookup_masked(uint32_t handle, uint32_t mask); /* FUN_00056908 */
 extern uint32_t net_buf_id(void *buffer); /* FUN_0005ee18 */
-extern void *net_buf_slist_get(void *list); /* FUN_0005f148 */
+extern unsigned int* net_buf_slist_get(unsigned int*); /* FUN_0005f148 */
 extern void net_buf_unref(void *buffer); /* FUN_0005f24c */
 extern void *net_buf_simple_pull(void *buffer, uint32_t length); /* FUN_0005f594 */
 /* FUN_0007e2fa */
-extern int bt_hci_evt_get_flags(uint32_t event); /* FUN_00080e14 */
+extern unsigned int bt_hci_evt_get_flags(unsigned int); /* FUN_00080e14 */
 /* FUN_00080ea2 */
 extern int k_work_submit_to_queue(void *queue, void *work); /* FUN_000865fc */
 

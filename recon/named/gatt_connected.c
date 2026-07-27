@@ -17,12 +17,12 @@
  */
 /* Reconstructed FUN_0005c8d8 @ 0x5c8d8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int gatt_settings_delete_key(unsigned,int);
+extern unsigned int gatt_settings_delete_key(unsigned char *, int);
 extern int find_cf_cfg_by_addr(unsigned,int);
 extern int bt_gatt_clear_sc(unsigned,int);
 extern void gatt_cf_cfg_clear(void);
 extern int bt_addr_le_eq_0(int,int);
-extern void list_unlink_and_release(int,int,int,void*);
+extern void list_unlink_and_release(unsigned int, int, unsigned int *, unsigned int *);
 extern void bt_gatt_foreach_attr_0(int,int,int,void*);
 int gatt_connected(unsigned param_1, int param_2, int param_3){
   uint32_t context[3] = {

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0004e780 @ 0x4e780  (parity: 100/100 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_0007e9dc(int,int,void*,int);
-extern void FUN_0007e9d4(int,int);
+extern void FUN_0007e9d4(unsigned int, unsigned int);
 extern void FUN_0004c8f8(int,int,void*,int);
 extern int FUN_0004e604(void*,int,unsigned,void*,unsigned);
 

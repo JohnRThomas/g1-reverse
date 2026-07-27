@@ -14,7 +14,7 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 extern void memcpy(uint8_t *, const uint8_t *, uint32_t);
-extern int ipc_transport_ops_dispatch(uint32_t, void *, uint32_t, uint32_t);
+extern int ipc_transport_ops_dispatch(unsigned char *, void *, unsigned int, unsigned int);
 extern void sleep_fixed_33_ticks(void);
 struct part { uint8_t *data; uint32_t length; uint8_t type; };
 int dev_send_cmd16_payload(uint32_t *dev, uint32_t op, uint32_t command,

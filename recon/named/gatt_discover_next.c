@@ -8,7 +8,7 @@
 /* Pinned Zephyr 3.4.99 owner: subsys/bluetooth/host/gatt.c. */
 #include <stdint.h>
 typedef void (*discover_cb_t)(void *, const void *, void *);
-extern int bt_gatt_discover(void *, void *);
+extern int bt_gatt_discover(int, int *);
 void gatt_discover_next(void *conn, uint16_t last_handle, void *opaque)
 {
     volatile uint8_t *params = (volatile uint8_t *)opaque;

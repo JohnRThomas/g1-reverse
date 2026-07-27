@@ -16,10 +16,10 @@
  */
 /* Reconstructed FUN_00030528 @ 0x30528  (parity: 300/300 trials, PROVEN) */
 extern int attr_store_set(int a0,int a1,int a2,int a3,int a4);
-extern int attr_store_init_sequence(int a0);
-extern int flash_data_checksum_neg_sum(int a0,int a1,int a2);
+extern int attr_store_init_sequence(int);
+extern unsigned int flash_data_checksum_neg_sum(const unsigned char *, unsigned int, unsigned int);
 extern int wait_attr_0x4714_clear(void);
-extern int attr_configure_pair(int a0,int a1);
+extern int attr_configure_pair(unsigned int, unsigned int);
 extern int attr_configure_pair_with_init(int a0,int a1,int a2);
 extern int attr_configure_mode3_readback(void *a0,int a1);
 

@@ -5,7 +5,7 @@ extern uintptr_t FUN_000596c0(uint32_t timeout, uint32_t unused);
 extern void FUN_00059708(uintptr_t req);
 extern uintptr_t FUN_00058eb0(uintptr_t conn, uint32_t op, uint32_t len);
 extern void FUN_000825ac(uintptr_t buf, uintptr_t cb, uintptr_t user, uint32_t option);
-extern int FUN_00059a90(uintptr_t conn, uintptr_t req);
+extern unsigned FUN_00059a90(int, unsigned*);
 typedef int (*encode_t)(uintptr_t buf, uint32_t len, uintptr_t params);
 int gatt_req_send(uintptr_t conn, uintptr_t callback, uintptr_t params,
                   encode_t encode, uint32_t op, uint32_t len)

@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0005cff0 @ 0x5cff0  owned extent: 0xae bytes */
 
-extern int  FUN_0005cac0(void);
+extern int FUN_0005cac0(unsigned long);
 extern int  FUN_00055cf0(void);
 extern void FUN_00083074(unsigned a, unsigned b, void *c);
 extern int  FUN_00083090(unsigned a, unsigned b);
@@ -10,7 +10,7 @@ extern int  FUN_0005ce6c(int p);
 int FUN_0005cff0(int param_1, int param_2){
     unsigned *src, *dst, *end;
     int iVar4;
-    FUN_0005cac0();
+    FUN_0005cac0(param_1);
     src = *(unsigned **)(param_2 + 0xc);
     dst = (unsigned *)(param_1 + 0x57);
     end = src + 8;

@@ -8,7 +8,7 @@
 
 extern uint32_t chunk_size(uint8_t *, uint32_t); /* FUN_0007de18 */
 extern void set_chunk_size(uint8_t *, uint32_t, uint32_t); /* FUN_0007de54 */
-extern void chunk_set(uint8_t *, uint32_t, uint32_t, uint32_t); /* FUN_0007de02 */
+extern void chunk_set(unsigned char *, unsigned int, unsigned int, unsigned int); /* FUN_0007de02 */
 
 void split_chunks(uint8_t *heap, uint32_t left, uint32_t right)
 {

@@ -16,7 +16,7 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 
-extern void set_test_mode(uint32_t mode);
+extern void set_test_mode(unsigned int);
 extern void save_usr_setting(void *settings, uint32_t value);
 
 uint32_t reset_usr_setting(uint8_t *settings)

@@ -2,7 +2,7 @@
 
 extern unsigned long long FUN_00081820(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e, unsigned int f, unsigned int g);
 extern void FUN_0005f24c(unsigned int a);
-extern void FUN_0007350c(unsigned int *a, unsigned int b, unsigned int c, unsigned int d);
+extern void FUN_0007350c(unsigned int, unsigned int, unsigned int, unsigned int);
 
 void FUN_00081962(unsigned int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

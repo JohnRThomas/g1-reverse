@@ -18,7 +18,7 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 typedef unsigned int uint;
-extern uint32_t master_process_audio_fw_load_req(int,uint32_t,uint8_t*,uint32_t);
+extern int master_process_audio_fw_load_req(char *, unsigned char *, unsigned char *, unsigned int);
 uint32_t audio_fw_load_get_wrapper(int param_1,uint8_t* param_2,uint32_t param_3){
   if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/==5){
     volatile uint8_t* pbVar3=*(volatile uint8_t* volatile*)(param_1+0x10);

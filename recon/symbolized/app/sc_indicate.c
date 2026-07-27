@@ -15,7 +15,7 @@
 
 extern int atomic_or_0(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 extern long long read_struct_first_word(unsigned int a);
-extern void k_work_reschedule(unsigned int a, int b, unsigned int c, unsigned int d);
+extern void k_work_reschedule(unsigned int, unsigned int, unsigned int, unsigned int);
 
 void sc_indicate(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

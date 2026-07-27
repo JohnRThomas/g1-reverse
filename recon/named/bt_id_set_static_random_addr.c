@@ -19,10 +19,10 @@
 
 extern int submit_ancs_notify_work(void);
 extern int id_find(void *operation);
-extern int const_return_zero_80d3a(void);
+extern unsigned int const_return_zero_80d3a(void);
 extern int bt_addr_le_create_static(void *operation);
 extern int bt_addr_le_eq(int handle, unsigned int key);
-extern int ptr_read_u32(unsigned int state);
+extern unsigned int ptr_read_u32(unsigned int *);
 extern int bt_addr_le_copy_80fc4(int destination, int value);
 
 struct operation_descriptor {

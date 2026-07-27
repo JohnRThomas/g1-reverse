@@ -10,7 +10,7 @@
 #include <stdint.h>
 
 extern void memcpy(void *destination, const void *source, uint32_t length);
-extern void md5_process_block(void *state, const void *block);
+extern void md5_process_block(volatile unsigned int *, void *);
 
 /* Feed bytes into a 64-byte block hash state while maintaining bit count. */
 void md5_update(uint32_t *state, const uint8_t *input, uint32_t length)

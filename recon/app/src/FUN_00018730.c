@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00018730 @ 0x18730  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern uint32_t FUN_00081526(void);
+extern uint32_t FUN_00081526(unsigned long);
 extern void FUN_00018334(void*,void*);
 extern int FUN_000167a8(void);
 extern int FUN_00032ee4(void);
@@ -11,7 +11,7 @@ extern void DEBUG_PRINT(unsigned long, ...);
 
 void FUN_00018730(unsigned param_1, unsigned param_2){
     unsigned char auStack_38[32];
-    uint32_t *puVar1 = (uint32_t*)FUN_00081526();
+    uint32_t *puVar1 = (uint32_t*)FUN_00081526(param_1);
     FUN_00018334(puVar1, auStack_38);
     int iVar2 = FUN_000167a8();
     if (*(char*)(iVar2+0x1071) != 0){

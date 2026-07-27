@@ -3,8 +3,7 @@
 #include <stdint.h>
 
 extern int32_t FUN_00016568(void);
-extern int32_t FUN_0007ca54(uintptr_t device, uint32_t attribute,
-                            void *configuration);
+extern int32_t FUN_0007ca54(uintptr_t device, uint32_t attribute, void *configuration);
 extern void thunk_FUN_00074844(uint32_t ticks, uint32_t unused);
 extern void DEBUG_PRINT(unsigned long, ...);
 extern void FUN_00019c70(unsigned long, ...);

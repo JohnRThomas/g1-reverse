@@ -20,7 +20,7 @@
  */
 
 extern int FUN_0000e2b4(void*, int);
-extern int FUN_0002e988(int, void*, void*, void*);
+extern int FUN_0002e988(int, float*, float*, float*);
 extern unsigned long long FUN_0007ceda(void);
 extern void FUN_0007cef6(int, int, void*);
 

@@ -1,10 +1,10 @@
 /* Reconstructed FUN_0004dfb8 @ 0x4dfb8  (parity: 300/300 trials, PROVEN) */
 
-extern long long FUN_0007ef6e(void);
+extern long long FUN_0007ef6e(unsigned long);
 int FUN_0004dfb8(int param_1,int param_2){
   int iVar3=*(int*)(param_1+0x14);
   if(iVar3==0) return -0x58;
-  long long uVar4=FUN_0007ef6e();
+  long long uVar4=FUN_0007ef6e(param_1);
   int lo=(int)uVar4; int hi=(int)((unsigned long long)uVar4>>0x20);
   if(lo!=0) return -1;
   char cVar1=*(char*)(0xf0ff1 + hi);

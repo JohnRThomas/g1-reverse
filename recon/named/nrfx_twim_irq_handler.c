@@ -19,7 +19,7 @@
 
 extern void assert_post_action(uint32_t, uint32_t);
 extern int xfer_completeness_check(uintptr_t, void *);
-extern int __nrfy_internal_twim_events_process(uintptr_t, uint32_t);
+extern unsigned int __nrfy_internal_twim_events_process(unsigned long, unsigned int);
 
 struct callback_payload {
   uint8_t event;

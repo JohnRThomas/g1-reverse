@@ -13,7 +13,7 @@
 /* Reconstructed FUN_0007d7b6 @ 0x7d7b6  (parity: 60/60 trials, PROVEN) */
 #include <stdint.h>
 extern int get_projector_controller(void);
-extern void projector_bus_lock(unsigned int,unsigned int);
+extern void projector_bus_lock(unsigned int, unsigned int);
 extern void projector_bus_unlock(void);
 void projector_spi_write_chunked(int param_1,unsigned int param_2){
   int iVar1=get_projector_controller();

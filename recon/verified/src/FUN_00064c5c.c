@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00064c5c @ 0x64c5c  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_00084fd4(unsigned int a);
-extern int FUN_00064640(unsigned int a);
+extern int FUN_00064640(int);
 extern void FUN_00064b1c(unsigned int a);
 
 int FUN_00064c5c(unsigned int param_1)

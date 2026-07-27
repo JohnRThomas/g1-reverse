@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_0007d02a @ 0x7d02a  (parity: 300/300 trials, PROVEN) */
 
-extern int attr_store_init_sequence(unsigned int);
+extern int attr_store_init_sequence(int);
 extern int attr_configure_pair(unsigned int, unsigned int);
 extern int attr_store_set(unsigned int, unsigned int);
 

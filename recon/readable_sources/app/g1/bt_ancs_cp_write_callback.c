@@ -9,7 +9,7 @@
 /* Reconstructed FUN_0007f5ee @ 0x7f5ee  (parity: 300/300 trials, PROVEN) */
 
 typedef void (*fn_t)(int, unsigned int);
-extern void atomic_clear_bit(int a0, unsigned int a1);
+extern void atomic_clear_bit(volatile int *, int);
 
 void bt_ancs_cp_write_callback(unsigned int param_1, unsigned int param_2, int param_3)
 {

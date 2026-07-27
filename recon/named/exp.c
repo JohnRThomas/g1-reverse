@@ -15,10 +15,10 @@
 #include <stdint.h>
 
 extern double __ieee754_exp(uint32_t, uint32_t, uint32_t, uint32_t);
-extern int finite(double);
+extern unsigned int finite(double);
 extern int __aeabi_dcmpgt(uint32_t, uint32_t, uint32_t, uint32_t);
 extern int __aeabi_dcmplt(uint32_t, uint32_t, uint32_t, uint32_t);
-extern uint32_t *thunk_FUN_00071678(void);
+extern int *thunk_FUN_00071678(void);
 
 double exp(uint32_t r0, uint32_t r1, uint32_t r2, uint32_t r3,
                     double argument)

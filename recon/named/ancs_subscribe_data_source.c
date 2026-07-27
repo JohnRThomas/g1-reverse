@@ -16,8 +16,8 @@
 
 #include <stdint.h>
 extern int atomic_test_and_set_bit(void*, int);
-extern int gatt_subscribe_add(uint32_t, void*);
-extern void atomic_clear_bit(void*, int);
+extern int gatt_subscribe_add(int, int *);
+extern void atomic_clear_bit(volatile int *, int);
 extern void z_log_msg_runtime_create(uint32_t, int, void*, int);
 
 int ancs_subscribe_data_source(volatile uint32_t *param_1, int param_2, uint32_t param_3, uint32_t param_4){

@@ -14,7 +14,7 @@
 extern uint32_t chunk_size(void *heap,void *chunk);
 extern uint32_t heap_bucket_index(uint32_t heap_size,uint32_t chunk_size); /* bucket index */
 extern uintptr_t chunk_field(void *heap,void *chunk,uint32_t field);
-extern void chunk_set(void *heap,void *chunk,uint32_t field,void *value);
+extern void chunk_set(unsigned char *, unsigned int, unsigned int, unsigned int);
 void free_list_add(void *heap_arg,void *chunk)
 {
  uint8_t *heap=(uint8_t*)heap_arg;uint32_t heap_size=*(uint32_t*)(heap+8u);uint32_t size=chunk_size(heap_arg,chunk);

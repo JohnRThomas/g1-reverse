@@ -1,7 +1,7 @@
 /* Full ABI-faithful reconstruction auth_cancel @ 0x1849c. */
 #include <stdint.h>
 
-extern uintptr_t FUN_00081526(void);
+extern uintptr_t FUN_00081526(unsigned long);
 extern void FUN_00018334(const void *connection, char *description);
 extern void DEBUG_PRINT(unsigned long, ...);
 extern void FUN_00019c70(unsigned long, ...);
@@ -10,7 +10,7 @@ extern void FUN_00056a68(uint32_t connection, uint32_t reason);
 void auth_cancel(uint32_t connection)
 {
     char description[32];
-    uintptr_t active_connection = FUN_00081526();
+    uintptr_t active_connection = FUN_00081526(connection);
 
     FUN_00018334((const void *)active_connection, description);
     DEBUG_PRINT(0x0009a4e0u, description);

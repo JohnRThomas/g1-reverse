@@ -18,7 +18,7 @@
 #include <stdint.h>
 extern int gatt_notify_or_indicate(int, ...);
 extern int bt_att_create_rsp_pdu(int,int,int);
-extern int net_buf_slist_get(int);
+extern unsigned int* net_buf_slist_get(unsigned int*);
 extern int net_buf_unref(int);
 extern int bt_att_chan_send_rsp(int,int);
 extern int att_send_error_rsp(int, ...);

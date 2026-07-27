@@ -26,7 +26,7 @@
 extern uint8_t *get_device_info(void);
 extern int32_t get_current_work_mode(void);
 extern int32_t is_battery_critical(void);
-extern int64_t k_uptime_get_1(void);
+extern unsigned long long k_uptime_get_1(void);
 extern void k_msleep(int32_t);
 extern void set_device_sync_timestamp(uint32_t);
 extern void memcpy(void *dst, void *src, uint32_t n);

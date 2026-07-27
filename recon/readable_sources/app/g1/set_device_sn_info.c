@@ -30,7 +30,7 @@
 #include "../../../headers/g1_log.h"
 extern int get_device_info(void);
 extern int build_and_send_device_status_report(int,int);
-extern int get_device_serial_buf(void);
+extern unsigned int get_device_serial_buf(void);
 extern int format_device_serial_to_buf(int);
 extern int read_sys_settting_from_flash(void*);
 extern int printf(int,int);

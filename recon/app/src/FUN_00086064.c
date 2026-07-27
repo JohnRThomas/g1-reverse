@@ -2,7 +2,7 @@
 #include <stdint.h>
 extern int FUN_00085d36(int,...);
 extern int FUN_00085d70(int,...);
-extern int FUN_00085d82(void);
+extern int FUN_00085d82(unsigned long);
 extern int FUN_00085dd2(int,...);
 extern int FUN_00085e1a(void *, void *, unsigned int);
 extern int FUN_0008603c(int,...);
@@ -20,7 +20,7 @@ int FUN_00086064(unsigned *param_1, int param_2)
 #define local_24 (local_30[3])
 
     if(param_2 != 0){ uVar5 = 0xe; goto LAB_0008606e; }
-    iVar2 = FUN_00085d82();
+    iVar2 = FUN_00085d82(param_1);
     if(iVar2 == 0) return 0;
     local_38 = 0;
     local_34 = 0;

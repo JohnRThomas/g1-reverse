@@ -28,7 +28,7 @@ typedef unsigned char undefined1;
 #define g1_recon_retarget_lock_release_recursive g1_recon_retarget_lock_release_recursive
 extern void g1_recon_retarget_lock_acquire_recursive(unsigned lock); /* FUN_000510fc@0x000510fc */
 extern void g1_recon_retarget_lock_release_recursive(unsigned lock); /* FUN_00051134@0x00051134 */
-extern void __sinit(void);
+extern void __sinit(unsigned long);
 extern int printf_render_float(int a, void *b, int c, unsigned d, void *e);
 extern int vfprintf_format_engine(int a, void *b, int c, unsigned d, void *e);
 extern int stdio_fclose(int a, int b);
@@ -52,7 +52,7 @@ int _vfprintf_r(int param_1, int param_2, unsigned char *param_3, uint *param_4)
     undefined4 local_30;
 
     if ((param_1 != 0) && (*(volatile int *)(param_1 + 0x18) == 0)) {
-        __sinit();
+        __sinit(param_1);
     }
     if (param_2 == 0x9871c) param_2 = *(volatile int *)(param_1 + 4);
     else if (param_2 == 0x986fc) param_2 = *(volatile int *)(param_1 + 8);

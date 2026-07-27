@@ -18,7 +18,7 @@ extern void bt_foreach_bond(unsigned int, const void *, void *);/* FUN_0005e6d4 
 extern int settings_load(void);                         /* FUN_0007f192 @ 0x0007f192 */
 extern void log_message(unsigned long, ...);        /* FUN_0007dda4 @ 0x0007dda4 */
 
-extern void FUN_0007c0a8(unsigned int milliseconds);
+extern void FUN_0007c0a8(int);
 extern int FUN_000572fc(const void *callbacks);
 extern int FUN_000181f0(void);
 

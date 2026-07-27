@@ -10,7 +10,7 @@ extern uint32_t FUN_0007de82(uint32_t, uint32_t, uint32_t, uint32_t); /* bucket_
 extern uint32_t FUN_0007de70(uint32_t, uint32_t); /* chunksz */
 extern void *FUN_00086c78(void *, uint32_t, uint32_t); /* memset */
 extern void FUN_0007de54(void *, uint32_t, uint32_t); /* set_left_chunk_size */
-extern void FUN_0007de02(void *, uint32_t, uint32_t, uint32_t); /* chunk_set */
+extern void FUN_0007de02(unsigned char *, unsigned int, unsigned int, unsigned int); /* chunk_set */
 extern void FUN_0007de24(void *, uint32_t, uint32_t); /* set_chunk_used */
 extern void FUN_0007e022(void *, uint32_t); /* free_list_add */
 

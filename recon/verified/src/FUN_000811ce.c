@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000811ce @ 0x811ce. */
 #include <stdint.h>
 extern uint8_t FUN_0000ef12(int);
-extern int FUN_00054ce0(void);
+extern unsigned int FUN_00054ce0(void);
 extern int FUN_00055534(int,void*,int);
 extern void FUN_00086c78(void*,int,int);
 

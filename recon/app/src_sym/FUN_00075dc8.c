@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 extern float FUN_000869c6(void);
-extern unsigned int* thunk_FUN_00071678(void);
+extern int *thunk_FUN_00071678(void);
 
 float FUN_00075dc8(float param_1)
 {

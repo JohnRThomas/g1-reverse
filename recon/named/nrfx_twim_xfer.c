@@ -28,7 +28,7 @@
 #include "../headers/g1_log.h"
 
 extern int assert_post_action(int,int);
-extern int __nrfy_internal_twim_events_process(int,int);
+extern unsigned int __nrfy_internal_twim_events_process(unsigned long, unsigned int);
 extern int xfer_completeness_check(int,int);
 
 #define R32(a) (*(volatile uint32_t*)(uintptr_t)(uint32_t)(a))

@@ -11,16 +11,16 @@
  */
 /* Reconstructed FUN_00076ad0 @ 0x76ad0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void __sinit(void);
+extern void __sinit(unsigned long);
 #define g1_recon_retarget_lock_acquire_recursive g1_recon_retarget_lock_acquire_recursive
 extern void g1_recon_retarget_lock_acquire_recursive(uint32_t); /* FUN_000510fc@0x000510fc */
-extern uint32_t stdio_flush_write_buffer(int,int);
+extern unsigned int stdio_flush_write_buffer(int *, int *);
 #define g1_recon_retarget_lock_release_recursive g1_recon_retarget_lock_release_recursive
 extern void g1_recon_retarget_lock_release_recursive(uint32_t); /* FUN_00051134@0x00051134 */
 uint32_t _fflush_r(int param_1,int param_2){
   uint32_t uVar1;
   if(*(volatile int*)(param_2+0x10)!=0){
-    if(param_1!=0 && *(volatile int*)(param_1+0x18)==0) __sinit();
+    if(param_1!=0 && *(volatile int*)(param_1+0x18)==0) __sinit(param_1);
     if(param_2==0x9871c) param_2=*(volatile int*)(param_1+4);
     else if(param_2==0x986fc) param_2=*(volatile int*)(param_1+8);
     else if(param_2==0x986dc) param_2=*(volatile int*)(param_1+0xc);

@@ -6,7 +6,7 @@
 
 extern void log_message(unsigned long, ...);
 extern int get_device_type();
-extern int audio_fw_load_get_wrapper();
+extern int audio_fw_load_get_wrapper(unsigned long, unsigned long, unsigned long);
 extern void debug_print(unsigned long, ...);
 extern int is_battery_critical();
 extern int sync_dashboard_default_language();

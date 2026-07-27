@@ -1,6 +1,6 @@
 /* Reconstructed update_display_status @ 0x7cce8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int check_battery_critical(void);
+extern int check_battery_critical(unsigned long);
 extern void FUN_0002efc0(void);
 extern void FUN_0007ce60(int);
 extern void memset_bytes(void*, int, int);
@@ -12,7 +12,7 @@ void update_display_status(int param_1, int param_2)
     char *pcVar2;
     char cVar3 = 0;
 
-    iVar1 = check_battery_critical();
+    iVar1 = check_battery_critical(param_1);
     if (iVar1 == 0) {
         return;
     }

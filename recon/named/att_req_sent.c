@@ -11,14 +11,14 @@
  */
 /* Reconstructed FUN_000822fc @ 0x822fc  (parity: 300/300 trials, PROVEN) */
 
-extern void att_optional_sent_cb_dispatch(void);
-extern void k_work_reschedule(int,int*,int,int);
+extern void att_optional_sent_cb_dispatch(unsigned long, unsigned long);
+extern void k_work_reschedule(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void att_chan_req_free(int*);
 void att_req_sent(int param_1,int *param_2,int param_3)
 {
     int *piVar1 = param_2;
     if (param_3 == 0) {
-        att_optional_sent_cb_dispatch();
+        att_optional_sent_cb_dispatch(param_1, param_2);
     }
     if (*(int*)(*param_2 + 0x124) != 0) {
         k_work_reschedule(*param_2 + 0x160, piVar1, 0xf0000, 0);

@@ -13,7 +13,7 @@
 extern int k_sleep(int,int);
 extern int* virtqueue_get_buffer(uint32_t,int*,void*,uint32_t,int);
 extern void mutex_lock_wait_forever_dup(int);
-extern int* rpmsg_virtio_shm_pool_get_buffer(uint32_t,uint32_t);
+extern int* rpmsg_virtio_shm_pool_get_buffer(unsigned int, unsigned int);
 extern void process_sync_buffer(int);
 typedef int (*fp0)(void);
 int* rpmsg_virtio_get_tx_buffer_wait(int param_1, int* param_2, int param_3){

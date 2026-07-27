@@ -1,8 +1,8 @@
 /* Reconstructed FUN_00024cc8 @ 0x24cc8 */
 #include <stdint.h>
 
-extern void FUN_0007ca24(uint32_t, void *);
-extern void FUN_0007c99e(uint32_t, void *);
+extern void FUN_0007ca24(int, unsigned char *);
+extern void FUN_0007c99e(int, unsigned int *);
 
 struct controller_mode_frame {
     uint8_t reserved[11];

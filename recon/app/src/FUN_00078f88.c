@@ -3,10 +3,10 @@
 typedef unsigned char byte;
 typedef unsigned int uint;
 
-extern int FUN_00079278(int, void*, void*, void*);
+extern unsigned FUN_00079278(int, unsigned *, int *, unsigned **);
 extern int FUN_0007932c(int, void*, void*, void*);
 extern int FUN_00086bc8(int, int, int);
-extern void *FUN_00087862(void*, void*);
+extern int FUN_00087862(int, unsigned int *);
 extern void *FUN_0008789c(void*, void*);
 typedef int (*fnptr)(int, void*);
 

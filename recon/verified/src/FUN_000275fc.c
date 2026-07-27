@@ -3,7 +3,7 @@
 typedef unsigned int uint;
 extern int FUN_000167a8(void);
 extern void FUN_00027448(int,int,int,int);
-extern int FUN_00033b88(void);
+extern unsigned int FUN_00033b88(void);
 extern void FUN_00033bf0(int,int);
 extern void FUN_00034524(int);
 extern int sync_to_slave(int,int,int,int);

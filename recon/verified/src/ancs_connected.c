@@ -6,7 +6,7 @@ extern void FUN_00018334(unsigned, void*);
 extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_00032ee4(void);
 extern void FUN_00056a68(int,int);
-extern unsigned FUN_0007c0c8(void);
+extern unsigned int FUN_0007c0c8(void);
 extern int FUN_00081526(int);
 extern void FUN_0008157a(int,unsigned);
 extern int FUN_00086be4(int,unsigned,int);

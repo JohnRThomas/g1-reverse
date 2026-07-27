@@ -24,9 +24,9 @@
 #include "../../../headers/g1_log.h"
 
 extern void switch_to_dfu_mode(void *state);
-extern void *find_message_pool_entry_by_id(uint32_t id);
+extern int find_message_pool_entry_by_id(int);
 extern void msg_queue_init(void);
-extern void confirm_message(uint32_t id);
+extern void confirm_message(int);
 extern void reset_esb_sync_state(uint32_t reason);
 extern void set_device_sync_timestamp(uint32_t timestamp);
 extern void firmware_function_0007c010(void *state);

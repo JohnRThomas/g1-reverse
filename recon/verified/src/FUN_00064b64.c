@@ -6,7 +6,7 @@ extern void FUN_00086c78(void*,int,size_t);
 extern uintptr_t FUN_00084fd4(void);
 extern int FUN_00087036(const void*,uintptr_t,size_t);
 extern uintptr_t FUN_00084ed8(void*);
-extern int FUN_00012910(uintptr_t,uintptr_t);
+extern unsigned int FUN_00012910(int, int *);
 extern void FUN_00064b1c(uintptr_t);
 int FUN_00064b64(const uint8_t *input,uint32_t length,const uint8_t **end,int require_end){
  parse_state_t s;volatile uint32_t *error=(volatile uint32_t*)0x2000b314u;

@@ -12,7 +12,7 @@
 /* P4 iteration 40 -- DROPPED ARGUMENT.  Shipped 0007c41e `mov r5,r0` then
  * 0007c420 `bl #0x7c3ea` with r0 STILL the node; the header-length op is a
  * one-argument function (see opt_node_header_len, which dereferences r0). */
-extern int opt_node_header_len(unsigned int param_1);
+extern unsigned char * opt_node_header_len(unsigned char *);
 extern int opt_node_value_len(unsigned int param_1);
 
 int opt_node_total_len(unsigned int param_1)

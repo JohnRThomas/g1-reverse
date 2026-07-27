@@ -13,7 +13,7 @@
 /* Reconstructed FUN_0004f418 @ 0x4f418  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int gatt_subscribe_add(uint32_t, void*);
+extern int gatt_subscribe_add(int, int *);
 extern void z_log_msg_runtime_create(uint32_t, int, void*, int);
 
 int gatt_subscribe_service_changed(volatile int *param_1, int param_2, uint32_t param_3, uint32_t param_4){

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00032b24 @ 0x32b24  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(unsigned long, ...);
-extern int FUN_0007d16a(void*,void*);
+extern int FUN_0007d16a(int *, unsigned char *);
 typedef int (*fp5)(void*,int,void*,void*,uint32_t);
 uint32_t FUN_00032b24(int param_1, char* param_2, int param_3, uint32_t* param_4, uint8_t* param_5, uint32_t param_6){
     if(param_2==0 || param_3==0 || param_4==0 || param_5==0 || param_1==2){

@@ -31,11 +31,11 @@ typedef unsigned char byte;
 typedef unsigned char undefined1;
 typedef unsigned int undefined4;
 
-extern int bt_rand(void*,int);
+extern int bt_rand(void *, int);
 extern int conn_auth_cb_get_or_init(void);
 extern int smp_auth_get_pairing_method(int);
 extern uint32_t smp_init(int);
-extern int smp_build_auth_flags(int,uint);
+extern unsigned int smp_build_auth_flags(int, unsigned int);
 extern int bt_keys_get_addr(uint8_t,int);
 extern int bt_keys_find_addr(uint8_t,int);
 /* The concrete helper leaves a decision byte in r1 on the feature-test path.

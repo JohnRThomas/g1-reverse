@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00081080 @ 0x81080  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void bt_le_adv_set_enable_legacy(int, uint32_t);
+extern int bt_le_adv_set_enable_legacy(void *, unsigned int);
 
 void FUN_00081080(int param_1)
 {

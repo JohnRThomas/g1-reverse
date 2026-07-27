@@ -2,7 +2,7 @@
 
 extern void DEBUG_PRINT(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
-extern void FUN_00032ef0(unsigned int a);
+extern void FUN_00032ef0(unsigned int);
 extern void FUN_0007c28e(void *a, unsigned int b);
 
 unsigned int reset_usr_setting(char *param_1)

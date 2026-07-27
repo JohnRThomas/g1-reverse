@@ -20,7 +20,7 @@ typedef uint32_t u32; typedef uint8_t u8;
 extern int id_find(char*);
 extern unsigned bt_id_set_static_random_addr(unsigned,char*);
 extern int bt_addr_le_eq(char*,u32);
-extern int ptr_read_u32(int);
+extern unsigned int ptr_read_u32(unsigned int *);
 extern void bt_id_addr_update_thunk(u32,int,void*);
 unsigned bt_id_create(char* param_1, int param_2){
     u32 local_18[2];

@@ -2,7 +2,7 @@
 #include <stdint.h>
 typedef unsigned char byte; typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort;
 extern void FUN_0004e964(void); extern int FUN_0004e9a0(int,int); extern int FUN_0004ea28(int);
-extern int FUN_0005b9cc(int,int); extern void FUN_0007e2ec(int,int); extern int FUN_0007e2fa(int,...);
+extern int FUN_0005b9cc(int, int *); extern void FUN_0007e2ec(int,int); extern int FUN_0007e2fa(int,...);
 extern int FUN_0007f386(int,int); extern int FUN_0007f406(int,int,int); extern int FUN_0007f40c(int,int);
 extern int FUN_0007f438(int); extern int FUN_0007f460(int); extern int FUN_0007f4a0(int);
 extern int FUN_00080d3e(int,int);

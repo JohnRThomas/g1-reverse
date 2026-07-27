@@ -8,7 +8,7 @@ extern int FUN_0001658c();
 extern int FUN_00023514();
 extern int FUN_0002efc0();
 extern int thunk_FUN_00072880();
-extern int FUN_0007c176();
+extern int FUN_0007c176(unsigned long, unsigned long);
 #ifdef G1_APP_SDK_INLINE_COHESION
 extern int64_t z_impl_k_uptime_ticks(void);
 /* Exact configured kernel.h/time_units.h owner: floor(ticks * 1000 / 32768). */
@@ -24,7 +24,7 @@ extern int FUN_0007c1aa();
 extern int FUN_0007c1dc();
 extern int FUN_0007cbfe();
 extern int FUN_0007cce8();
-extern int FUN_0007ce00();
+extern int FUN_0007ce00(void);
 extern int FUN_00086fee();
 extern int update_persist_task_status();
 

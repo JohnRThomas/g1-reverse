@@ -43,10 +43,10 @@
 /* Firmware application Bluetooth-start owner; prior LIBRARY class was incorrect. */
 #include <stdint.h>
 #include <stddef.h>
-extern void k_msleep_ticks32768_d(uint32_t);
+extern void k_msleep_ticks32768_d(int);
 extern uintptr_t get_device_info(void);
 extern int get_device_type(void);
-extern uintptr_t get_device_serial_buf(void);
+extern unsigned int get_device_serial_buf(void);
 extern void __strcpy_chk(void *, const void *, uint32_t);
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);

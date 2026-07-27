@@ -15,7 +15,7 @@
 #include <stdint.h>
 extern int cbor_decode_is_break(int,...);
 extern int zcbor_backup_store_count(int,...);
-extern int cbor_decode_precheck(void);
+extern int cbor_decode_precheck(unsigned long);
 extern int cbor_decode_expect_break(int,...);
 extern int cbor_decode_extract_value(void *, void *, unsigned int);
 extern int cbor_decode_tag(int,...);
@@ -33,7 +33,7 @@ int cbor_decode_skip_value(unsigned *param_1, int param_2)
 #define local_24 (local_30[3])
 
     if(param_2 != 0){ uVar5 = 0xe; goto LAB_0008606e; }
-    iVar2 = cbor_decode_precheck();
+    iVar2 = cbor_decode_precheck(param_1);
     if(iVar2 == 0) return 0;
     local_38 = 0;
     local_34 = 0;

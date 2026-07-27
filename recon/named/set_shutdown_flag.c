@@ -10,7 +10,7 @@
  */
 /* Reconstructed set_shutdown_flag @ 0x7cbfe  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int display_panel_is_secondary(void);
+extern int display_panel_is_secondary(unsigned long);
 extern void update_persist_task_status_to_idle(int);
 extern void mark_master_or_low_battery_flag(void);
 extern void reset_esb_sync_state(int);
@@ -19,7 +19,7 @@ extern void send_event(int);
 void set_shutdown_flag(int param_1, int param_2)
 {
   int iVar1; char *pcVar2; char cVar3;
-  iVar1 = display_panel_is_secondary();
+  iVar1 = display_panel_is_secondary(param_1);
   if (iVar1 == 0) return;
   if ((*(volatile char*)(*(int*)(param_1+0x1004)+6) != 0) ||
       (cVar3 = *(volatile char*)(*(int*)(param_1+0x1008)+6), cVar3 != 0)) {

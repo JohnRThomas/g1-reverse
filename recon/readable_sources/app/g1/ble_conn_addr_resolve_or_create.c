@@ -14,7 +14,7 @@
  */
 /* Reconstructed FUN_000556b0 @ 0x556b0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int adv_is_directed(void);
+extern int adv_is_directed(unsigned long);
 extern int ble_conn_set_state(int,unsigned int);
 extern int ble_conn_le_alloc(unsigned int,unsigned int);
 extern int bt_conn_lookup_and_log_valid(unsigned int,void*);
@@ -22,7 +22,7 @@ unsigned int ble_conn_addr_resolve_or_create(unsigned char* param_1,int* param_2
   unsigned char uVar1=*param_1;
   int iVar2; unsigned int uVar3;
   *(volatile unsigned char*)(((unsigned long)&g_ble_dev_state) /*=0x20002000*/+0x6f)=uVar1;
-  iVar2=adv_is_directed();
+  iVar2=adv_is_directed(param_1);
   if(iVar2==0){
     iVar2=ble_conn_le_alloc(uVar1,((unsigned long)&rodata_f2b33) /*=0xf2b33*/);
     if(iVar2!=0){ uVar3=4; ble_conn_set_state(iVar2,uVar3); *param_2=iVar2; return 0; }

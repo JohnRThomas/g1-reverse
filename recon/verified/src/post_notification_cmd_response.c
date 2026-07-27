@@ -3,9 +3,9 @@
 
 extern void DEBUG_PRINT(unsigned long, ...);
 extern void FUN_00019c70(unsigned long, ...);
-extern void FUN_0003384c(void *notification);
+extern void FUN_0003384c(const unsigned char *);
 extern void FUN_00033f54(void *notification);
-extern int FUN_00034bd4(const void *classification);
+extern int FUN_00034bd4(int);
 extern void FUN_0008705a(void *destination, const void *source, uint32_t length);
 
 struct notification_command {

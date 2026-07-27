@@ -12,7 +12,7 @@
 #include <stdint.h>
 extern void md5_init(void *workspace,uint32_t a,uint32_t b);
 extern void md5_update(void);
-extern void md5_final(void *workspace,void *result);
+extern void md5_final(int *, void *);
 uint32_t md5_compute_digest(uint32_t a,uint32_t b,uint32_t *out){
   uint32_t result[4]; uint32_t workspace[22];
   md5_init(workspace,a,b); md5_update(); md5_final(workspace,result);

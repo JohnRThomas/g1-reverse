@@ -19,9 +19,9 @@
  */
 #include <stdint.h>
 extern int FUN_0007c408(int);
-extern int FUN_0007c41c(int);
-extern int FUN_0007c5ba(int, void*);
-extern int FUN_0007c670(int, void*, int);
+extern int FUN_0007c41c(unsigned int);
+extern unsigned FUN_0007c5ba(unsigned char*, int*);
+extern int FUN_0007c670(int, int *, int);
 extern void FUN_00086c04(int dst, int src, unsigned length);
 
 /* The shipped code passes sp+0/sp+4 and sp+8/sp+0xc as ONE two-word object

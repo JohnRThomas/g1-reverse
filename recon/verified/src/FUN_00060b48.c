@@ -9,9 +9,9 @@ extern int g1_recon_nrfx_qspi_init(int,int,int);
 #define g1_recon_nrfx_qspi_mem_busy_check FUN_00066ae0
 extern int g1_recon_nrfx_qspi_mem_busy_check(void);
 extern void FUN_00066b24(void);
-extern int FUN_0007ef2e(void);
+extern int FUN_0007ef2e(unsigned long);
 extern int FUN_000838dc(int,int);
-extern int FUN_0008397e(int);
+extern int FUN_0008397e(unsigned int);
 extern void FUN_00086384(int);
 
 uint FUN_00060b48(int param_1, int param_2, unsigned param_3, unsigned param_4){
@@ -19,7 +19,7 @@ uint FUN_00060b48(int param_1, int param_2, unsigned param_3, unsigned param_4){
     int iVar4 = *(int*)(param_1+4);
     int iVar3 = param_1;
     volatile int local[3];
-    int iVar1 = FUN_0007ef2e();
+    int iVar1 = FUN_0007ef2e(param_1);
     if (iVar1 == 0){
         uint uVar2;
         if (param_2 != 0){

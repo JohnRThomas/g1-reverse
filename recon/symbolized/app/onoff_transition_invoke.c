@@ -11,11 +11,11 @@
  */
 /* Reconstructed FUN_0004dfb8 @ 0x4dfb8  (parity: 300/300 trials, PROVEN) */
 
-extern long long audio_hw_lock_get_aux_flag(void);
+extern long long audio_hw_lock_get_aux_flag(unsigned long);
 int onoff_transition_invoke(int param_1,int param_2){
   int iVar3=*(int*)(param_1+0x14);
   if(iVar3==0) return -0x58;
-  long long uVar4=audio_hw_lock_get_aux_flag();
+  long long uVar4=audio_hw_lock_get_aux_flag(param_1);
   int lo=(int)uVar4; int hi=(int)((unsigned long long)uVar4>>0x20);
   if(lo!=0) return -1;
   char cVar1=*(char*)(((unsigned long)&rodata_f0ff1) /*=0xf0ff1*/ + hi);

@@ -2,8 +2,8 @@
 
 #include <stdint.h>
 extern int FUN_0007f612(void*, int);
-extern int FUN_0005c3c4(uint32_t, void*);
-extern void FUN_0007f5d8(void*, int);
+extern int FUN_0005c3c4(int, int *);
+extern void FUN_0007f5d8(volatile int *, int);
 extern void FUN_0004d944(uint32_t, int, void*, int);
 
 int FUN_0004f040(volatile uint32_t *param_1, int param_2){

@@ -7,7 +7,7 @@
  */
 /* Reconstructed FUN_0007c7de @ 0x7c7de  (parity: 300/300 trials, PROVEN) */
 
-extern int opt_node_total_len(unsigned char *a);
+extern int opt_node_total_len(unsigned int);
 
 unsigned int opt_list_append_node(unsigned int *param_1, unsigned char *param_2)
 {

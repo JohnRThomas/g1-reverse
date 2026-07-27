@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00024f78 @ 0x24f78 */
 #include <stdint.h>
 
-extern int FUN_00024f08(void *, uint32_t, uint32_t, uint32_t);
+extern int FUN_00024f08(int, unsigned int, unsigned int, unsigned int);
 extern int FUN_000256dc(uint32_t, uint32_t, void *, uint32_t);
 
 struct transport_probe_frame {

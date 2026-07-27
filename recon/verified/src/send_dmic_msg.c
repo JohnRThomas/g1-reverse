@@ -12,7 +12,7 @@ typedef int (*dmic_send_fn)(const void *message, unsigned int length);
 extern void DEBUG_PRINT(unsigned long, ...);
 extern void FUN_00019c70(unsigned long, ...);
 extern void *FUN_000167a8(void);
-extern int FUN_0002ecf4(void);
+extern unsigned int FUN_0002ecf4(void);
 extern int FUN_0002ed00(void *payload);
 extern void FUN_0007cbfe(void *state, int enabled);
 extern void FUN_00086c78(void *destination, int value, unsigned int length);

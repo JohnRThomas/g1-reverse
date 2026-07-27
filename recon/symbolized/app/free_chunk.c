@@ -20,8 +20,7 @@ extern uint32_t chunk_size(void *heap, uint32_t chunk);
 extern uint32_t chunk_field(void *heap, uint32_t chunk, uint32_t side);
 #ifdef G1_APP_SDK_INLINE_COHESION
 extern int heap_bucket_index(uint32_t end_chunk, uint32_t size);
-extern void chunk_set(void *heap, uint32_t chunk, uint32_t field,
-                         uint32_t value);
+extern void chunk_set(unsigned char *, unsigned int, unsigned int, unsigned int);
 extern void chunk_set_used_flag(void *heap, uint32_t chunk, uint32_t size);
 
 /* Exact Zephyr 3.4.99 heap.c locals.  They are always-inline and TU-local so

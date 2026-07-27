@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00012580 @ 0x12580 */
 #include <stdint.h>
 
-extern uint64_t FUN_0000d89c(uint32_t, uint32_t);
+extern unsigned long long FUN_0000d89c(unsigned int, unsigned int);
 extern uint64_t FUN_0000d8f8(uint32_t, uint32_t, uint32_t, uint32_t);
 extern uint64_t FUN_0000ec34(void);
 extern uint32_t FUN_0000e1a4(uint32_t, uint32_t, uint32_t, uint32_t);

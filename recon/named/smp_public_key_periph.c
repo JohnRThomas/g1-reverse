@@ -55,10 +55,10 @@ extern void *smp_create_pdu(void *smp, uint32_t command);
 extern void *net_buf_simple_add(void *buffer_data, size_t size);
 extern void bt_smp_send_pdu(void *smp, void *buffer, void *user_data);
 extern void atomic_set_bit(void *bits, uint32_t bit);
-extern int bt_smp_send_pairing_confirm(void *smp);
-extern int bt_rand(void *destination, size_t size);
+extern unsigned int bt_smp_send_pairing_confirm(int);
+extern int bt_rand(void *, int);
 extern void *kobj_test_bit_get_ptr(uint32_t flag);
-extern int smp_dhkey_generate(void *smp);
+extern int smp_dhkey_generate(int);
 
 #define latch_auth_cb                 conn_auth_cb_get_or_init /* 0x0005cac0 */
 #define atomic_test_bit_raw           atomic_test_bit /* 0x00082ff6 */

@@ -1,6 +1,6 @@
 /* Reconstructed set_shutdown_flag @ 0x7cbfe  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int FUN_0002bed0(void);
+extern int FUN_0002bed0(unsigned long);
 extern void FUN_0002c0e8(int);
 extern void FUN_0002efc0(void);
 extern void FUN_0007ce60(int);
@@ -9,7 +9,7 @@ extern void send_event_status(int);
 void set_shutdown_flag(int param_1, int param_2)
 {
   int iVar1; char *pcVar2; char cVar3;
-  iVar1 = FUN_0002bed0();
+  iVar1 = FUN_0002bed0(param_1);
   if (iVar1 == 0) return;
   if ((*(volatile char*)(*(int*)(param_1+0x1004)+6) != 0) ||
       (cVar3 = *(volatile char*)(*(int*)(param_1+0x1008)+6), cVar3 != 0)) {

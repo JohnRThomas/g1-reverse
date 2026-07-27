@@ -3,7 +3,7 @@
 extern int FUN_00074844(int,int);
 extern int* FUN_00085734(uint32_t,int*,void*,uint32_t,int);
 extern void FUN_000859b6(int);
-extern int* FUN_00085aee(uint32_t,uint32_t);
+extern int* FUN_00085aee(unsigned int, unsigned int);
 extern void thunk_FUN_00072880(int);
 typedef int (*fp0)(void);
 int* FUN_00085b0c(int param_1, int* param_2, int param_3){

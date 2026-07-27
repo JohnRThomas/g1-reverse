@@ -9,13 +9,13 @@
  */
 /* Reconstructed FUN_00085dd2 @ 0x85dd2  (parity: 300/300 trials, PROVEN) */
 
-extern int cbor_decode_precheck(void);
+extern int cbor_decode_precheck(unsigned long);
 extern void zcbor_backup_store_count(unsigned int *a0, int a1);
 
 int cbor_decode_expect_break(unsigned int *param_1)
 {
   int iVar1;
-  iVar1 = cbor_decode_precheck();
+  iVar1 = cbor_decode_precheck(param_1);
   if (iVar1 != 0) {
     unsigned char *p = (unsigned char *)*param_1;
     if (*p == 0xff) {

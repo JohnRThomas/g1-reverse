@@ -3,7 +3,7 @@
 
 extern void FUN_00037098(void);
 extern void FUN_0002f878(uint32_t);
-extern void FUN_0007c26e(uint32_t);
+extern void FUN_0007c26e(int);
 extern void FUN_000244a8(uint32_t);
 extern void FUN_00023b78(void);
 extern void FUN_00023c88(void);

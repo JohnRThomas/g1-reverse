@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0007d7b6 @ 0x7d7b6  (parity: 60/60 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_0007d4ec(void);
-extern void FUN_00047698(unsigned int,unsigned int);
+extern void FUN_00047698(unsigned int, unsigned int);
 extern void FUN_000476a8(void);
 void FUN_0007d7b6(int param_1,unsigned int param_2){
   int iVar1=FUN_0007d4ec();

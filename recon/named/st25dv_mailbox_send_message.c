@@ -12,7 +12,7 @@
 /* Reconstructed FUN_00024f78 @ 0x24f78 */
 #include <stdint.h>
 
-extern int st25dv_write_reg_pair(void *, uint32_t, uint32_t, uint32_t);
+extern int st25dv_write_reg_pair(int, unsigned int, unsigned int, unsigned int);
 extern int ipc_ept_op_a_locked_retry(uint32_t, uint32_t, void *, uint32_t);
 
 struct transport_probe_frame {

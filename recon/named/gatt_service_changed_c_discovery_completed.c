@@ -12,7 +12,7 @@
  */
 /* Reconstructed FUN_0007f8dc @ 0x7f8dc  (parity: 300/300 trials, PROVEN) */
 
-extern int gatt_dm_char_by_uuid(unsigned a, void*b);
+extern unsigned int gatt_dm_char_by_uuid(unsigned int, const void *);
 extern unsigned bt_gatt_dm_attr_service_val(void);
 extern unsigned bt_gatt_dm_conn_get(unsigned a);
 extern void bt_gatt_dm_service_get(void);

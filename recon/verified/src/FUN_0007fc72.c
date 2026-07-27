@@ -2,7 +2,7 @@
 #include <stdint.h>
 extern int FUN_0007f97c(uint32_t,int,void*,int);
 extern int FUN_0007f98a(uint32_t,int,void*,int);
-extern int FUN_0007fc04(uint32_t,void*);
+extern int FUN_0007fc04(unsigned int, unsigned int);
 extern int FUN_0007fc2c(uint32_t,void*);
 int FUN_0007fc72(uint32_t param_1, uint32_t param_2){
     uint32_t local_18 = param_1;

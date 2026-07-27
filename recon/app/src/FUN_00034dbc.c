@@ -5,9 +5,9 @@ extern void DEBUG_PRINT(unsigned long, ...);
 extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00064b1c(int object);
 extern int FUN_0008500c(void);
-extern unsigned int FUN_00085020(int object);
+extern int FUN_00085020(int *);
 extern int FUN_00085030(int object);
-extern int FUN_0008503c(int object, uint32_t key);
+extern int FUN_0008503c(int, int);
 extern int FUN_000850c8(void);
 extern void FUN_00086c78(void *destination, int value, unsigned int count);
 extern void FUN_0008705a(void *destination, const void *source,

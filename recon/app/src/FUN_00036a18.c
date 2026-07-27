@@ -1,10 +1,10 @@
 /* Reconstructed FUN_00036a18 @ 0x36a18  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_000167a8(void);
-extern void FUN_00036820(int);
+extern void FUN_00036820(unsigned int);
 extern void FUN_000431c0(void);
 extern void FUN_00047260(unsigned,unsigned,unsigned,unsigned,int,int);
-extern unsigned FUN_00047a84(int,int*,int*);
+extern int FUN_00047a84(int, int *, int *);
 extern void FUN_0007d53a(int,unsigned,int,int,unsigned,unsigned);
 
 unsigned FUN_00036a18(int param_1,unsigned param_2,int param_3,int param_4){

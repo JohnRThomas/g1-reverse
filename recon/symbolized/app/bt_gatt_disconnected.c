@@ -28,7 +28,7 @@ extern int bt_addr_le_is_bonded(uint8_t, const void *); /* bt_addr_le_is_bonded 
 extern void *gatt_find_conn_in_known_table(void *); /* gatt_sub_find */
 extern uint32_t atomic_and_4(volatile uint32_t *, uint32_t); /* atomic_and */
 extern uint32_t read_struct_first_word(volatile uint32_t *); /* atomic_get */
-extern void list_unlink_and_release(void *, void *, void *, void *); /* gatt_sub_remove */
+extern void list_unlink_and_release(unsigned int, int, unsigned int *, unsigned int *); /* gatt_sub_remove */
 extern void bt_addr_le_copy_828da(void *, const void *); /* bt_addr_le_copy */
 extern void *find_cf_cfg(void *); /* find_cf_cfg */
 extern void gatt_cf_cfg_clear(void *); /* reset cf cfg */

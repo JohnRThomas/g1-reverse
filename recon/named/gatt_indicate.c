@@ -26,7 +26,7 @@
 extern int bt_att_create_pdu(unsigned,int,int);
 extern int bt_att_req_alloc(int,int);
 extern void bt_att_req_free(int);
-extern int bt_att_req_send(unsigned,int);
+extern unsigned bt_att_req_send(int, unsigned*);
 extern int gatt_find_ccc_for_conn(unsigned,unsigned,int);
 extern unsigned net_buf_simple_add(int,int);
 extern void bt_att_set_tx_meta_data(int,int,int,int);

@@ -4,7 +4,7 @@ typedef uint32_t u32; typedef uint8_t u8;
 extern int FUN_00054ce8(char*);
 extern unsigned FUN_00054d18(unsigned,char*);
 extern int FUN_00080fa4(char*,u32);
-extern int FUN_00080fb4(int);
+extern unsigned int FUN_00080fb4(unsigned int *);
 extern void FUN_0008104a(u32,int,void*);
 unsigned FUN_00055204(char* param_1, int param_2){
     u32 local_18[2];

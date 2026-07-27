@@ -33,10 +33,10 @@ extern void *FUN_000830b0(void *smp, uint32_t command);
 extern void *FUN_0005f5d0(void *buffer_data, size_t size);
 extern void FUN_0005cb38(void *smp, void *buffer, void *user_data);
 extern void FUN_00083090(void *bits, uint32_t bit);
-extern int FUN_0005cdc4(void *smp);
-extern int FUN_00055cb4(void *destination, size_t size);
+extern unsigned int FUN_0005cdc4(int);
+extern int FUN_00055cb4(void *, int);
 extern void *FUN_0005caa4(uint32_t flag);
-extern int FUN_0005cc68(void *smp);
+extern int FUN_0005cc68(int);
 
 #define latch_auth_cb                 FUN_0005cac0 /* 0x0005cac0 */
 #define atomic_test_bit_raw           FUN_00082ff6 /* 0x00082ff6 */

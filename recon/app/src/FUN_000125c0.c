@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000125c0 @ 0x125c0  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern uint64_t FUN_0000d89c(int32_t, int32_t);
+extern unsigned long long FUN_0000d89c(unsigned int, unsigned int);
 extern uint64_t FUN_0000d8f8(uint32_t, uint32_t, uint32_t, uint32_t);
 extern int64_t FUN_0000ec34(uint32_t, uint32_t);
 

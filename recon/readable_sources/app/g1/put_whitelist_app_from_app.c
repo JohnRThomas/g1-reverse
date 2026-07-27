@@ -26,10 +26,10 @@ typedef void (*fn2_t)(uint32_t, uint32_t);
 
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
-extern uint32_t parse_receiver_pack_pkcs7(uint32_t a, uint32_t b, uint32_t c);
+extern unsigned int parse_receiver_pack_pkcs7(int, unsigned char *, unsigned int);
 extern uint32_t parse_whitelist_json(uint32_t a);
 extern uint32_t verify_whitelist_json(uint32_t a);
-extern uint32_t store_whitelist(void);
+extern int store_whitelist(void);
 extern uint32_t malloc(uint32_t a);
 extern void free(uint32_t a);
 extern void memset_bytes(uint32_t a, uint32_t b, uint32_t c);

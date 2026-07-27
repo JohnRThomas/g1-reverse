@@ -4,7 +4,7 @@ typedef uint32_t u32; typedef uint8_t u8;
 extern int FUN_00062070(int,int,void*);
 extern int FUN_00083dc8(u32,int,int,int,int);
 extern int FUN_000840cc(int,int);
-extern int FUN_000843ba(int,int,int);
+extern unsigned FUN_000843ba(int, int*, int);
 extern int FUN_0008638c(u32);
 int FUN_00084418(int param_1, u32 param_2, u32 param_3){
     int iVar4 = *(int*)(param_1+4);

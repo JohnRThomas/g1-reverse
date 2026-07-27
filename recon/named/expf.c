@@ -11,7 +11,7 @@
 /* Reconstructed FUN_00075c90 @ 0x75c90  (parity: 300/300 trials, PROVEN) */
 
 extern float __ieee754_expf(void);
-extern unsigned* thunk_FUN_00071678(void);
+extern int *thunk_FUN_00071678(void);
 extern int finitef(float);
 float expf(float param_1){
   float uVar3 = __ieee754_expf();

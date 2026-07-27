@@ -2,10 +2,10 @@
 /* Firmware application Bluetooth-start owner; prior LIBRARY class was incorrect. */
 #include <stdint.h>
 #include <stddef.h>
-extern void FUN_0007c0a8(uint32_t);
+extern void FUN_0007c0a8(int);
 extern uintptr_t FUN_000167a8(void);
 extern int FUN_00016568(void);
-extern uintptr_t FUN_000232b0(void);
+extern unsigned int FUN_000232b0(void);
 extern void FUN_00086ffe(void *, const void *, uint32_t);
 extern void FUN_0007dda4(unsigned long, ...);
 extern void FUN_00019c70(unsigned long, ...);

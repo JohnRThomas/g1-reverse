@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00025740 @ 0x25740  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_0007c85e(int, void*, int, int);
+extern int FUN_0007c85e(unsigned char *, void *, unsigned int, unsigned int);
 extern void FUN_0007c87a(void);
 extern void DEBUG_PRINT(unsigned long, ...);
 

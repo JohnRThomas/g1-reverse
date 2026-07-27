@@ -41,7 +41,7 @@ extern uintptr_t get_device_info(void);
 extern void k_sleep(uint32_t,uint32_t);
 extern uint64_t dequeue_bt_data(void*);
 extern void z_impl_k_sem_take(uintptr_t,uint32_t,uint32_t,uint32_t);
-extern void ble_packet_receive_dispatch(void*,uint32_t,uint32_t);
+extern void ble_packet_receive_dispatch(unsigned int, unsigned int, int);
 extern int device_resume_state_advance(void);
 extern int bt_start(void);
 extern void memcpy(void*,const void*,uint32_t);

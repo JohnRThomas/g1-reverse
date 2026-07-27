@@ -11,7 +11,7 @@
 
 #include <stdint.h>
 extern float sqrtf_hw(void);
-extern unsigned int* thunk_FUN_00071678(void);
+extern int *thunk_FUN_00071678(void);
 
 float sqrtf(float param_1)
 {

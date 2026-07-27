@@ -95,7 +95,7 @@ typedef void (*ffn_t)(int,int,void*);
 extern u64 __floatsidf(int); extern u64 __divdf3(u32,u32,u32,u32); extern u64 __aeabi_dadd(u32,u32,u32,u32);
 extern u64 __muldf3(u32,u32,u32,u32); extern u64 __extendsfdf2(u32); extern u64 dcmp_negate_rhs(u32,u32,u32,u32);
 extern u32 __truncdfsf2(u32,u32);
-extern float orientation_filter_update_dt(void*);
+extern float orientation_filter_update_dt(int);
 extern void imu_mahony_ahrs_update(float,float,float,float,float,float,float,void*);
 extern float orientation_get_heading_deg(void*); extern float orientation_get_pitch_deg(void*); extern float orientation_get_yaw_deg(void*);
 extern int panel_level_calc_cached(void*); extern int SendDashboardLockInfoToApp(void);

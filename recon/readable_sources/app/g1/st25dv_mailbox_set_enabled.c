@@ -12,8 +12,8 @@
 /* Reconstructed FUN_00024cc8 @ 0x24cc8 */
 #include <stdint.h>
 
-extern void read_bool_attr_0x2004(uint32_t, void *);
-extern void st25dv_mailbox_send_id_pair(uint32_t, void *);
+extern void read_bool_attr_0x2004(int, unsigned char *);
+extern void st25dv_mailbox_send_id_pair(int, unsigned int *);
 
 struct controller_mode_frame {
     uint8_t reserved[11];

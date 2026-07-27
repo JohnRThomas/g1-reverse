@@ -34,7 +34,7 @@ extern void ancs_discover_start(uint32_t connection);
 extern void format_bt_addr_str(const void *connection, char *description);
 extern int32_t is_battery_critical(void);
 extern void sys_reboot(uint32_t enabled);
-extern void k_msleep_ticks32768_d(uint32_t milliseconds);
+extern void k_msleep_ticks32768_d(int);
 extern void g1_recon_bt_conn_set_security(uint32_t connection, uint32_t state);
 extern uint32_t bt_conn_get_security(uint32_t connection);
 extern uintptr_t bt_conn_get_field_0x90(uint32_t connection);

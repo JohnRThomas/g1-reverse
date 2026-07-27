@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0004f198 @ 0x4f198  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_0005c22c(unsigned int, void*, unsigned int, void*, unsigned int);
-extern void FUN_0007f5d8(void*, int);
+extern void FUN_0007f5d8(volatile int *, int);
 
 int FUN_0004f198(unsigned int *param_1, unsigned short param_2, unsigned int param_3, unsigned int param_4)
 {

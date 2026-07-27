@@ -9,7 +9,7 @@
 /* Reconstructed FUN_0007d82e @ 0x7d82e  (parity: 300/300 trials, PROVEN) */
 
 extern void safe_memcpy_checked(void *, const void *, unsigned int, unsigned int);
-extern void projector_spi_write_chunked(const void *, unsigned int);
+extern void projector_spi_write_chunked(int, unsigned int);
 
 void projector_send_command(unsigned int opcode, const void *payload,
                   unsigned int payload_length)

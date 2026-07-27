@@ -11,7 +11,7 @@ extern void thunk_FUN_00074844(uint32_t ticks, uint32_t flags);
 extern uint64_t FUN_00032ee4(void);
 extern int thunk_FUN_00072908(uintptr_t object, uint32_t high,
                              uint32_t timeout, uint32_t flags);
-extern uint64_t FUN_0007cb2c(void);
+extern unsigned long long FUN_0007cb2c(void);
 extern void FUN_0002563c(uint8_t *status);
 extern int FUN_0002560c(void);
 extern void FUN_0002eb28(uint32_t channel, uint32_t enabled);

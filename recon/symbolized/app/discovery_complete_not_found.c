@@ -9,14 +9,14 @@
  */
 /* Reconstructed FUN_0007f438 @ 0x7f438  (parity: 300/300 trials, PROVEN) */
 
-extern void svc_attr_memory_release(void);
+extern void svc_attr_memory_release(unsigned long);
 extern void atomic_and_0(void *a, unsigned int b);
 
 void discovery_complete_not_found(unsigned int *param_1)
 {
     unsigned int base;
     unsigned int fptr;
-    svc_attr_memory_release();
+    svc_attr_memory_release(param_1);
     atomic_and_0(param_1 + 0x4e, 0xfffffffeUL);
     base = param_1[0x57];
     fptr = *(volatile unsigned int*)(base + 4);

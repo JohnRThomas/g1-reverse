@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0005cc30 @ 0x5cc30  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void *a, int b, unsigned int c, unsigned int d, unsigned int e);
-extern int bt_rand(unsigned int a, unsigned int b);
+extern int bt_rand(void *, int);
 extern void atomic_set_bit(void *a, unsigned int b);
 extern unsigned int bt_pub_key_get(void);
 

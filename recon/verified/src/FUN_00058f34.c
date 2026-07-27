@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00058f34 @ 0x58f34  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_000585f0(void);
+extern int FUN_000585f0(unsigned long, unsigned long, unsigned long);
 extern void FUN_00081ddc(int,int,void*);
 
 int FUN_00058f34(int param_1, int param_2, int param_3, int param_4)
@@ -20,7 +20,7 @@ int FUN_00058f34(int param_1, int param_2, int param_3, int param_4)
         FUN_00081ddc(0x00088100, 0x2880, &s);
         return 0;
     } else {
-        return FUN_000585f0();
+        return FUN_000585f0(param_1, param_2, param_3);
     }
 }
 

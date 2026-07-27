@@ -18,14 +18,14 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 
-extern uintptr_t bt_conn_get_field_0x90(void);
+extern uintptr_t bt_conn_get_field_0x90(unsigned long);
 extern void format_bt_addr_str(const void *connection, char *description);
 extern void bt_conn_disconnect_by_state(uint32_t connection, uint32_t reason);
 
 void auth_cancel(uint32_t connection)
 {
     char description[32];
-    uintptr_t active_connection = bt_conn_get_field_0x90();
+    uintptr_t active_connection = bt_conn_get_field_0x90(connection);
 
     format_bt_addr_str((const void *)active_connection, description);
     log_message(((unsigned long)"Pairing cancelled: %s\n") /*=0x9a4e0*/, description);

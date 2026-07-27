@@ -21,7 +21,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern int metal_io_block_write(void *, uint32_t, const void *, uint32_t);
+extern int metal_io_block_write(int*, unsigned int, int, int);
 extern void mutex_lock_wait_forever_dup(void *);
 extern void FUN_000859b2(void *);
 extern uint32_t virtqueue_get_buffer_length(void *, uint16_t);

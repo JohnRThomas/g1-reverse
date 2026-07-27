@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00082572 @ 0x82572  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_0005858c(void);
-extern void FUN_00081e14(int *a, int b);
+extern void FUN_00081e14(volatile int *, int);
 void FUN_00082572(void)
 {
   int iVar1;

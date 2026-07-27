@@ -6,7 +6,7 @@ extern int FUN_000181fc(void);
 extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_0007f6b6(unsigned,unsigned,unsigned);
 extern void FUN_0007c0a4(int,int);
-extern int FUN_0007f7c4(unsigned,unsigned,unsigned,unsigned);
+extern int FUN_0007f7c4(void *, const unsigned char *, unsigned int, void *);
 int request_ancs_attr_ext(unsigned param_1, unsigned param_2, unsigned param_3)
 {
   unsigned uVar1, uVar2; unsigned short *puVar3; int iVar4, iVar5; unsigned uVar6;

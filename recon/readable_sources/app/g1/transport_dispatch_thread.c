@@ -36,7 +36,7 @@ extern void wait_for_event(uint32_t ticks, uint32_t flags);
 extern uint64_t is_battery_critical(void);
 extern int k_sem_take(uintptr_t object, uint32_t high,
                              uint32_t timeout, uint32_t flags);
-extern uint64_t k_uptime_get_1(void);
+extern unsigned long long k_uptime_get_1(void);
 extern void ipc_service_send_with_retry(uint8_t *status);
 extern int init_nfc_comm(void);
 extern void set_pending_state_flag(uint32_t channel, uint32_t enabled);

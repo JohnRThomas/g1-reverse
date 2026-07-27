@@ -16,7 +16,7 @@
  *   g_settings_notify_mutex                  @ 0x20006a1c
  */
 /* Reconstructed FUN_00017e84 @ 0x17e84  (parity: 300/300 trials, PROVEN) */
-extern int get_ancs_conn_handle(void);
+extern unsigned int get_ancs_conn_handle(void);
 extern long long is_battery_critical(void);
 extern int get_device_info(void);
 extern void k_mutex_lock(unsigned,unsigned,unsigned,unsigned);

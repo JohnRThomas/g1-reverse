@@ -3,7 +3,7 @@
 extern int FUN_00058eb0(unsigned,int,int);
 extern int FUN_000596c0(int,int);
 extern void FUN_00059708(int);
-extern int FUN_00059a90(unsigned,int);
+extern unsigned FUN_00059a90(int, unsigned*);
 extern int FUN_0005b0dc(unsigned,unsigned,int);
 extern unsigned FUN_0005f5d0(int,int);
 extern void FUN_000825ac(int,int,int,int);

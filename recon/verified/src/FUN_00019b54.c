@@ -2,7 +2,7 @@
 #include <stdint.h>
 typedef unsigned int uint;
 extern void DEBUG_PRINT(unsigned long, ...);
-extern uint32_t FUN_0002af4c(int,uint32_t,uint8_t*,uint32_t);
+extern int FUN_0002af4c(char *, unsigned char *, unsigned char *, unsigned int);
 uint32_t FUN_00019b54(int param_1,uint8_t* param_2,uint32_t param_3){
   if(*(volatile int*)0x2000230cUL==5){
     volatile uint8_t* pbVar3=*(volatile uint8_t* volatile*)(param_1+0x10);

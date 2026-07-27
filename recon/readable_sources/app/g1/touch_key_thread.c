@@ -35,7 +35,7 @@ extern void k_msleep(int32_t milliseconds);                    /* FUN_0007cb8e *
 extern void read_rtc_counter_ms(void *destination);            /* FUN_0007d0aa */
 extern int32_t get_uptime_ms(void);                            /* FUN_00086690 */
 extern int k_sem_take(void *semaphore, int64_t timeout);       /* FUN_0007cb48 */
-extern void reset_all_usr_data(void *context, int32_t erase);  /* FUN_0002316c */
+extern void reset_all_usr_data(unsigned char *, int);  /* FUN_0002316c */
 extern void send_touch_click_event(int32_t event);             /* FUN_0007c058 */
 extern void touch_pmic_reset_assert(void);                     /* FUN_00017a28 */
 extern void touch_pmic_reset_deassert(void);                   /* FUN_00017a34 */

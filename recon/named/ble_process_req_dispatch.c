@@ -51,7 +51,7 @@
 
 extern int  get_device_type(void);
 extern uintptr_t get_device_info(void);
-extern int  get_ancs_conn_handle(void);
+extern unsigned int get_ancs_conn_handle(void);
 extern void audio_fw_load_get_wrapper(void *, void *, uint32_t);
 extern void send_dmic_msg(void *);
 extern void build_status_notify_packet(void *, void *);

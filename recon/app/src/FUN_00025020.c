@@ -36,7 +36,7 @@
  * class that opt_field1_set ORs into the node header.
  */
 
-extern unsigned int FUN_0007c4b6(unsigned char *param_1);
+extern unsigned int FUN_0007c4b6(unsigned char *);
 extern unsigned int FUN_0007c430(unsigned char *param_1, unsigned int param_2,
                                  int *param_3);
 extern unsigned int FUN_0007c61e(unsigned char *param_1, unsigned char *param_2);

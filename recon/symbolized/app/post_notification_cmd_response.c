@@ -25,9 +25,9 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern void send_data_in_ble_chunks(void *notification);
+extern void send_data_in_ble_chunks(const unsigned char *);
 extern void push_message(void *notification);
-extern int is_on_whitelist_by_identifier(const void *classification);
+extern int is_on_whitelist_by_identifier(int);
 extern void strncpy_zero_pad(void *destination, const void *source, uint32_t length);
 
 struct notification_command {

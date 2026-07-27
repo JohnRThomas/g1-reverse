@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00084e72 @ 0x84e72  (parity: 300/300 trials, PROVEN) */
 
 extern int flash_area_open(unsigned int a, void *b, unsigned int c, unsigned int d, unsigned int e);
-extern unsigned int FUN_0006403c(unsigned int a, unsigned int b);
+extern unsigned int FUN_0006403c(int, unsigned char *);
 extern void nullsub_3(unsigned int a);
 
 unsigned int FUN_00084e72(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

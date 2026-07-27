@@ -6,7 +6,7 @@ extern int  FUN_0004a3d0(int,int*);
 extern int  FUN_00064b1c(int);
 extern int  FUN_0007d224(void);
 extern int  FUN_0008500c(void);
-extern int  FUN_0008503c(int,int);
+extern int FUN_0008503c(int, int);
 extern void FUN_00086c78(int*,int,int);
 extern void FUN_0008705a(int,int,int);
 #define VI(a) (*(volatile int*)(a))

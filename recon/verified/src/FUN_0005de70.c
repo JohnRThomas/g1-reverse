@@ -4,7 +4,7 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int undefined4;
 
-extern int FUN_00052cdc(int a);
+extern unsigned int FUN_00052cdc(const void *);
 extern int FUN_0005503c(int a);
 extern void bt_id_add(int a); /* SDK public wrapper; FUN_0005505c @ 0x0005505c */
 extern void FUN_00056960(int a, u32 b, void *c);
@@ -17,7 +17,7 @@ extern void FUN_0007e2ec(u32 a, u32 b);
 extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_00082ff6(void *a, int b);
 extern int FUN_00083002(int a, int b);
-extern void FUN_00083062(int a, void *b);
+extern void FUN_00083062(unsigned int *, unsigned int *);
 extern void FUN_00083074(u32 a, u32 b, void *c);
 extern void FUN_00083090(int a, int b);
 extern int FUN_00086be4(int a, void *b, int c);

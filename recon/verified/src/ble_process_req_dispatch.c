@@ -4,7 +4,7 @@
 extern void DEBUG_PRINT(unsigned long, ...);
 extern int  FUN_00016568(void);
 extern uintptr_t FUN_000167a8(void);
-extern int  FUN_00019b2c(void);
+extern unsigned int FUN_00019b2c(void);
 extern void FUN_00019b54(void *, void *, uint32_t);
 extern void FUN_00019c70(unsigned long, ...);
 extern void FUN_00019ed4(void *);

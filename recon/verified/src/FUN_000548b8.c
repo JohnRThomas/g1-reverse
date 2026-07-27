@@ -1,6 +1,6 @@
 /* Reconstructed FUN_000548b8 @ 0x548b8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern unsigned FUN_00052cdc(int);
+extern unsigned int FUN_00052cdc(const void *);
 extern unsigned FUN_00053344(unsigned);
 extern void FUN_00080e6a(unsigned,int);
 extern void FUN_00080ea2(unsigned,unsigned,void*);

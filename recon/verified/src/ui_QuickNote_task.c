@@ -49,7 +49,7 @@ extern void gui_utf_draw(int background, uintptr_t text, int style,
 extern void reflash_fb_data_to_lcd(uintptr_t left_framebuffer,
                                    uintptr_t right_framebuffer,
                                    int x, int y, int width, int height);
-extern int32_t getDelayExitValue(void);
+extern unsigned int getDelayExitValue(void);
 extern int device_info_text_width_get(void);
 extern int device_info_text_height_get_clamped(void);
 extern uint64_t uptime_ticks_get(void); /* FUN_00086698 @ 0x00086698 */

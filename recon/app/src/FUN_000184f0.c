@@ -8,7 +8,7 @@ extern void FUN_00018334(const void *connection, char *description);
 extern void FUN_00019c70(unsigned long, ...);
 extern int32_t FUN_00032ee4(void);
 extern void FUN_0004c0a8(uint32_t enabled);
-extern void FUN_0007c0a8(uint32_t milliseconds);
+extern void FUN_0007c0a8(int);
 extern void FUN_0008149a(uint32_t connection, uint32_t state);
 extern uint32_t FUN_000814e2(uint32_t connection);
 extern uintptr_t FUN_00081526(uint32_t connection);

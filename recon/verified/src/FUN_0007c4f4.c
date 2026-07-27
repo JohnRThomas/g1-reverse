@@ -1,5 +1,5 @@
 /* Reconstructed FUN_0007c4f4 @ 0x7c4f4  (parity: 300/300 trials, PROVEN) */
-extern int FUN_0007c4b6(unsigned char*);
+extern unsigned int FUN_0007c4b6(unsigned char *);
 unsigned FUN_0007c4f4(int *param_1, unsigned char *param_2){
   unsigned char bVar1;
   unsigned uVar3, uVar4, uVar5, uVar6, uVar7;

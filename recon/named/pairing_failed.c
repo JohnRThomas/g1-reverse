@@ -17,14 +17,14 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 
-extern uintptr_t bt_conn_get_field_0x90(void);
+extern uintptr_t bt_conn_get_field_0x90(unsigned long);
 extern void format_bt_addr_str(const void *connection, char description[36]);
 extern void bt_conn_disconnect_by_state(uint32_t connection, uint32_t reason);
 
 void pairing_failed(uint32_t connection, uint32_t error)
 {
     char description[36];
-    uintptr_t active_connection = bt_conn_get_field_0x90();
+    uintptr_t active_connection = bt_conn_get_field_0x90(connection);
 
     format_bt_addr_str((const void *)active_connection, description);
     log_message(0x0009a48bu, description, error);

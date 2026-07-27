@@ -1,7 +1,7 @@
 /* Reconstructed bt_ancs_cp_write @ 0x4f198  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_0005c22c(unsigned int, void*, unsigned int, void*, unsigned int);
-extern void atomic_clear_bit(void*, int);
+extern void atomic_clear_bit(volatile int *, int);
 
 int bt_ancs_cp_write(unsigned int *param_1, unsigned short param_2, unsigned int param_3, unsigned int param_4)
 {

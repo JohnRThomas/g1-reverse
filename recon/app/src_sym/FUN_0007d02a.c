@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0007d02a @ 0x7d02a  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_00030288(unsigned int);
+extern int FUN_00030288(int);
 extern int FUN_0007cfdc(unsigned int, unsigned int);
 extern int FUN_00030178(unsigned int, unsigned int);
 

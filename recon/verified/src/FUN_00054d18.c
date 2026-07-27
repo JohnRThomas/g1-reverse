@@ -2,10 +2,10 @@
 
 extern int FUN_000530b4(void);
 extern int FUN_00054ce8(void *operation);
-extern int FUN_00080d3a(void);
+extern unsigned int FUN_00080d3a(void);
 extern int FUN_00080dda(void *operation);
 extern int FUN_00080fa4(int handle, unsigned int key);
-extern int FUN_00080fb4(unsigned int state);
+extern unsigned int FUN_00080fb4(unsigned int *);
 extern int FUN_00080fc4(int destination, int value);
 
 struct operation_descriptor {

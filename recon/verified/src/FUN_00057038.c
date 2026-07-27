@@ -9,7 +9,7 @@ struct bt_le_conn_param_view {
     uint16_t latency;
     uint16_t timeout;
 };
-extern int bt_le_conn_params_valid(const struct bt_le_conn_param_view *param);
+extern int bt_le_conn_params_valid(int);
 extern int bt_conn_le_conn_update(void *conn, const struct bt_le_conn_param_view *param);
 extern int FUN_00081adc(void *conn, const struct bt_le_conn_param_view *param); /* bt_l2cap_update_conn_param */
 int send_conn_le_param_update(void *conn_arg, const struct bt_le_conn_param_view *param)

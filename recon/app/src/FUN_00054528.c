@@ -5,7 +5,7 @@ extern int FUN_00053cd4(int pool, int size);
 extern void FUN_000543d8(int queue, int packet);
 extern void FUN_000566a4(int connection);
 extern int FUN_00056908(unsigned int identifier, int selector);
-extern int FUN_00056c78(int connection, const void *fields);
+extern int FUN_00056c78(int, int);
 extern uint16_t *FUN_0005f5d0(int packet_data, int size);
 extern void FUN_00080ea2(int source, int level, const void *record);
 extern void FUN_00080f56(unsigned int identifier, int status);

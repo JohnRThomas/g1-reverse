@@ -7,7 +7,7 @@ extern void FUN_0003678c(unsigned int inverted_byte, int glyph_width);
 extern void *FUN_00076d6c(unsigned int size);
 extern void FUN_00076d7c(void *allocation);
 extern void FUN_000777f0(uint32_t message);
-extern int FUN_0007d1c8(const void *field);
+extern unsigned int FUN_0007d1c8(unsigned int *);
 extern void FUN_00086c04(uintptr_t destination, int source, unsigned int size);
 extern void FUN_00086c78(void *destination, int value, unsigned int size);
 extern int FUN_00087036(const void *header, uint32_t descriptor, unsigned int count);

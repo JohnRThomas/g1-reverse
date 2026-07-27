@@ -21,9 +21,9 @@ extern int double_is_unordered(uint32_t,uint32_t,uint32_t,uint32_t);
 extern int __aeabi_dcmpeq(uint32_t,uint32_t,uint32_t,uint32_t);
 extern int __aeabi_dcmplt(uint32_t,uint32_t,uint32_t,uint32_t);
 extern uint64_t __divdf3(uint32_t,uint32_t);
-extern int finite(double);
+extern unsigned int finite(double);
 extern double rint(double);
-extern uint32_t *thunk_FUN_00071678(void);
+extern int *thunk_FUN_00071678(void);
 typedef union { double d; struct { uint32_t lo,hi; }; uint64_t u; } dbits;
 static inline int eq(dbits a,dbits b){return double_is_unordered(a.lo,a.hi,b.lo,b.hi);}
 static inline int gt(dbits a,dbits b){return __aeabi_dcmpeq(a.lo,a.hi,b.lo,b.hi);}

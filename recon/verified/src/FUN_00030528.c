@@ -1,9 +1,9 @@
 /* Reconstructed FUN_00030528 @ 0x30528  (parity: 300/300 trials, PROVEN) */
 extern int FUN_00030178(int a0,int a1,int a2,int a3,int a4);
-extern int FUN_00030288(int a0);
-extern int FUN_0007cf34(int a0,int a1,int a2);
+extern int FUN_00030288(int);
+extern unsigned int FUN_0007cf34(const unsigned char *, unsigned int, unsigned int);
 extern int FUN_0007cfac(void);
-extern int FUN_0007cfdc(int a0,int a1);
+extern int FUN_0007cfdc(unsigned int, unsigned int);
 extern int FUN_0007d02a(int a0,int a1,int a2);
 extern int FUN_0007d05e(void *a0,int a1);
 

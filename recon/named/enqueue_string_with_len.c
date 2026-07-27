@@ -8,13 +8,13 @@
  */
 /* Reconstructed FUN_00084fec @ 0x84fec  (parity: 300/300 trials, PROVEN) */
 
-extern int strlen(void);
+extern int strlen(unsigned long);
 extern void cjson_parse_with_opts(int,int,unsigned int,unsigned int);
 void enqueue_string_with_len(int param_1,unsigned int param_2,unsigned int param_3)
 {
   int iVar1;
   if (param_1 != 0) {
-    iVar1 = strlen();
+    iVar1 = strlen(param_1);
     cjson_parse_with_opts(param_1,iVar1+1,param_2,param_3);
     return;
   }

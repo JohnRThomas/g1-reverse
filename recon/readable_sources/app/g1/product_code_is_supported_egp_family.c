@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_0007cefc @ 0x7cefc  (parity: 300/300 trials, PROVEN) */
 
-extern char *get_product_code_buf(void);
+extern unsigned int get_product_code_buf(void);
 
 int product_code_is_supported_egp_family(void)
 {

@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00025474 @ 0x25474  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_00025458(void);
+extern unsigned int FUN_00025458(void);
 extern int thunk_FUN_00074f68(void);
 
 unsigned int FUN_00025474(void)

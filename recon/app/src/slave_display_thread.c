@@ -36,7 +36,7 @@ extern void display_MasterSendClose(void);
 extern void display_powerEvent(uint32_t event);
 extern void upgradeAppLanguageInfoToFlash(uint32_t language);
 extern void onboarding_retry_watchdog_update(void);
-extern uint64_t k_uptime_get_1(void);
+extern unsigned long long k_uptime_get_1(void);
 extern void update_temp_task_status(void *context, uint32_t task,
                                     uint32_t state);
 extern void clear_timeout_message(uint32_t reason);

@@ -1,8 +1,8 @@
 /* Reconstructed FUN_00086976 @ 0x86976  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_000869f2(void);
-extern float FUN_00075a0c(float a, unsigned int b);
-extern int* thunk_FUN_00071678(void);
+extern float FUN_00075a0c(float, int);
+extern int *thunk_FUN_00071678(void);
 
 float FUN_00086976(float param_1, unsigned int param_2)
 {

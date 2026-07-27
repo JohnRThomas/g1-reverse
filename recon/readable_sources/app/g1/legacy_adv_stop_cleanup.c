@@ -21,14 +21,14 @@
 /* Reconstructed FUN_000559fc @ 0x559fc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
-extern void cancel_delayable_work_field18(uint32_t);
+extern void cancel_delayable_work_field18(int);
 extern void atomic_and_1(uint32_t,uint32_t);
 extern int deref_conn_field0(uint32_t);
 extern int adv_is_directed(uint32_t);
 extern int bt_conn_lookup_state_le(uint32_t,uint32_t,uint32_t);
 extern void ble_conn_set_state(void);
 extern void ble_conn_unref(int);
-extern uint bt_le_adv_set_enable_legacy(uint32_t,int);
+extern int bt_le_adv_set_enable_legacy(void *, unsigned int);
 uint legacy_adv_stop_cleanup(void){
   int iVar1; uint uVar2; uint32_t uVar3;
   cancel_delayable_work_field18(((unsigned long)g_bt_le_legacy_adv) /*=0x20002018*/);

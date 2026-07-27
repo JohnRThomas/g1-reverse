@@ -30,7 +30,7 @@ extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000225b4(uint32_t address, void *destination, uint32_t length);
 extern void FUN_00022ddc(void *settings);
 extern int FUN_00032ee4(void);
-extern void FUN_00032ef0(uint32_t mode);
+extern void FUN_00032ef0(unsigned int);
 extern void FUN_0007c28e(void *settings, uint32_t value);
 extern void FUN_00086c78(void *destination, int value, uint32_t length);
 

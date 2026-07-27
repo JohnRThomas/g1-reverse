@@ -28,10 +28,10 @@
 #include "../../headers/g1_log.h"
 extern int dequeue_ancs(void*);
 extern void ble_process_req_dispatch(uint32_t, void*, void*);
-extern void send_data_in_ble_chunks(void*);
-extern int is_on_whitelist_by_identifier(void*);
+extern void send_data_in_ble_chunks(const unsigned char *);
+extern int is_on_whitelist_by_identifier(int);
 extern void log_notification_fields_debug(uint32_t, void*);
-extern int format_log_timestamp_mmdd_hhmm(void*);
+extern int format_log_timestamp_mmdd_hhmm(unsigned char *);
 extern int get_timestamp(void);
 extern void memset_bytes(void*, int, int);
 extern void strncpy_zero_pad(void*, uint32_t, int);

@@ -25,7 +25,7 @@ typedef struct {
 } zcbor_string_t;
 
 extern void cbor_encode_set_error(zcbor_state_prefix_t *state, int error);
-extern size_t cbor_min_encoded_size(const void *input, size_t max_result_len);
+extern unsigned int cbor_min_encoded_size(char *, unsigned int);
 extern int cbor_encode_length_header(zcbor_state_prefix_t *state, unsigned int major_type,
                        const void *result, size_t max_result_len);
 extern void *memmove(void *destination, const void *source, size_t size);

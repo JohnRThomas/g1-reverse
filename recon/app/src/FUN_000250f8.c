@@ -2,12 +2,12 @@
 #include <stdint.h>
 
 extern int FUN_00024fe8(void *, unsigned int);
-extern int FUN_00025090(void *, const void *);
-extern int FUN_000250c4(void *, const void *);
-extern int FUN_0007c3da(void *, void *);
-extern int FUN_0007c4f4(void *, void *);
-extern int FUN_0007c77e(void *, void *, void *, unsigned int);
-extern int FUN_0007c7de(void *, const void *);
+extern unsigned int FUN_00025090(unsigned char *, unsigned int *);
+extern unsigned int FUN_000250c4(unsigned char *, unsigned int *);
+extern unsigned int FUN_0007c3da(unsigned char *, void *);
+extern unsigned FUN_0007c4f4(int *, unsigned char *);
+extern int FUN_0007c77e(int *, int *, int, unsigned);
+extern unsigned int FUN_0007c7de(unsigned int *, unsigned char *);
 
 struct encoded_record {
     uint32_t words[7];

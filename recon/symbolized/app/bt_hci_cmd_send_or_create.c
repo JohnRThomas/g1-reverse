@@ -15,7 +15,7 @@
  *   hci_cmd_pool                             @ 0x2000214c
  */
 /* Reconstructed FUN_000543d8 @ 0x543d8  (parity: 300/300 trials, PROVEN) */
-extern int bt_hci_cmd_create(void);
+extern int bt_hci_cmd_create(unsigned long, unsigned long);
 extern int bt_hci_driver_send(int);
 extern void net_buf_put(unsigned,int);
 extern void net_buf_unref(int);
@@ -23,7 +23,7 @@ extern void bt_log_forward_3arg(unsigned,int,void*);
 int bt_hci_cmd_send_or_create(int param_1, int param_2, unsigned param_3, unsigned param_4){
     int r4 = param_2;
     if (param_2 == 0){
-        r4 = bt_hci_cmd_create();
+        r4 = bt_hci_cmd_create(param_1, param_2);
         if (r4 == 0) return -0x69;
     }
     if (param_1 == 0xc35){

@@ -13,7 +13,7 @@
 #include <stdint.h>
 
 extern void net_buf_unref(uintptr_t);
-extern void k_work_schedule(uintptr_t, unsigned, unsigned, unsigned);
+extern void k_work_schedule(unsigned int, unsigned int, unsigned int, unsigned int);
 extern uint64_t att_send_data_frags(uintptr_t, int *, unsigned);
 extern int net_buf_get(uintptr_t, unsigned, unsigned, unsigned);
 

@@ -5,11 +5,11 @@
 #include <stdint.h>
 
 extern uint32_t FUN_0008117a(volatile uint32_t *); /* atomic_get */
-extern int FUN_000556b0(void *, void *); /* connection lookup/create */
+extern unsigned int FUN_000556b0(unsigned char*, int*); /* connection lookup/create */
 extern uint32_t FUN_00055698(void *); /* adv_is_directed */
 extern int FUN_00055454(void *, uint32_t, uint32_t, void *); /* legacy advertising configure */
 extern void FUN_0004d944(uint32_t, uint32_t, const void *, uint32_t);
-extern int FUN_000812d2(void *, uint32_t); /* bt_le_adv_set_enable_legacy */
+extern int FUN_000812d2(void *, unsigned int); /* bt_le_adv_set_enable_legacy */
 extern void FUN_000566a4(void *); /* bt_conn_unref */
 extern void FUN_00056704(void *, uint32_t); /* bt_conn_set_state */
 extern uint32_t FUN_00081180(volatile uint32_t *, uint32_t); /* atomic_and */

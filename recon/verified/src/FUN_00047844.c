@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00047844 @ 0x47844  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_000477a0(int a, int b);
+extern unsigned int FUN_000477a0(unsigned char *, int);
 extern void FUN_000777f0(unsigned a, int b);
 int FUN_00047844(int param_1, int param_2, int param_3, int param_4){
     int iVar2 = 0, iVar3 = 0;

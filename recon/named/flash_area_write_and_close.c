@@ -10,7 +10,7 @@
 /* Reconstructed FUN_00084e72 @ 0x84e72  (parity: 300/300 trials, PROVEN) */
 
 extern int flash_area_open(unsigned int a, void *b, unsigned int c, unsigned int d, unsigned int e);
-extern unsigned int flash_read_boot_swap_ate(unsigned int a, unsigned int b);
+extern unsigned int flash_read_boot_swap_ate(int, unsigned char *);
 extern void nullsub_3(unsigned int a);
 
 unsigned int flash_area_write_and_close(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

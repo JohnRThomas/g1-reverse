@@ -23,8 +23,8 @@
 
 struct g1_opt_view { int data; int length; };
 
-extern int FUN_0007c6a0(int a, void* b);
-extern int FUN_0007c754(int* a, void* b);
+extern int FUN_0007c6a0(int, int *);
+extern int FUN_0007c754(int *, int *);
 
 int FUN_0007c77e(int *param_1, int *param_2, int param_3, unsigned param_4){
     struct g1_opt_view total;

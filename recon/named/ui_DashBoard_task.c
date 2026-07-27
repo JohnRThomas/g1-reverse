@@ -120,12 +120,12 @@ extern int reflash_fb_data_to_lcd(uint32_t, uint32_t, uint32_t, uint32_t, uint32
 extern int send_response_data_to_msgqueue(const void *, uint32_t);
 extern int send_response_data_to_ble(void);
 extern int SendPowerInfoToSlave(uint32_t);
-extern int set_dashboard_display_level_clamped(uint32_t);
+extern unsigned int set_dashboard_display_level_clamped(int);
 extern int enter_dashboard_burial_point(void);
 extern int exit_dashboard_burial_point(void);
 extern uint32_t dashboard_read_word(uintptr_t);
 extern uint32_t get_timestamp(void);
-extern uint32_t check_dashboard_device_status_range(void);
+extern int check_dashboard_device_status_range(void);
 extern void *memset_bytes(void *, int, uint32_t);
 extern int send_event(uint32_t);
 extern int sync_to_slave(uintptr_t, uint32_t, const void *, uint32_t);

@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0004b01c @ 0x4b01c  (parity: 300/300 trials, PROVEN) */
 
-extern void *thunk_FUN_00071678(void);
+extern int *thunk_FUN_00071678(void);
 
 unsigned int FUN_0004b01c(unsigned int param_1)
 {

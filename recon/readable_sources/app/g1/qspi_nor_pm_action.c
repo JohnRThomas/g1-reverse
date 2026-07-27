@@ -31,9 +31,9 @@ extern int g1_recon_nrfx_qspi_init(int,int,int);
 #define g1_recon_nrfx_qspi_mem_busy_check nrfx_qspi_mem_busy_check
 extern int g1_recon_nrfx_qspi_mem_busy_check(void);
 extern void nrfx_qspi_uninit(void);
-extern int audio_hw_lock_is_busy(void);
+extern int audio_hw_lock_is_busy(unsigned long);
 extern int qspi_pinctrl_apply_state(int,int);
-extern int audio_apply_config_cmd_0xab(int);
+extern int audio_apply_config_cmd_0xab(unsigned int);
 extern void delay_scaled_busy_wait(int);
 
 uint qspi_nor_pm_action(int param_1, int param_2, unsigned param_3, unsigned param_4){
@@ -41,7 +41,7 @@ uint qspi_nor_pm_action(int param_1, int param_2, unsigned param_3, unsigned par
     int iVar4 = *(int*)(param_1+4);
     int iVar3 = param_1;
     volatile int local[3];
-    int iVar1 = audio_hw_lock_is_busy();
+    int iVar1 = audio_hw_lock_is_busy(param_1);
     if (iVar1 == 0){
         uint uVar2;
         if (param_2 != 0){

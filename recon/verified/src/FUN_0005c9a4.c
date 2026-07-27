@@ -8,7 +8,7 @@ extern int FUN_00080f92(uint8_t, const void *); /* bt_addr_le_is_bonded */
 extern void *FUN_00059c70(void *); /* gatt_sub_find */
 extern uint32_t FUN_000826f6(volatile uint32_t *, uint32_t); /* atomic_and */
 extern uint32_t FUN_0008270c(volatile uint32_t *); /* atomic_get */
-extern void FUN_000828e8(void *, void *, void *, void *); /* gatt_sub_remove */
+extern void FUN_000828e8(unsigned int, int, unsigned int *, unsigned int *); /* gatt_sub_remove */
 extern void FUN_000828da(void *, const void *); /* bt_addr_le_copy */
 extern void *FUN_00059c04(void *); /* find_cf_cfg */
 extern void FUN_0005a39c(void *); /* reset cf cfg */

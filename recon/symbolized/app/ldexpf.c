@@ -10,8 +10,8 @@
 /* Reconstructed FUN_00086976 @ 0x86976  (parity: 300/300 trials, PROVEN) */
 
 extern int finitef(void);
-extern float scalbnf(float a, unsigned int b);
-extern int* thunk_FUN_00071678(void);
+extern float scalbnf(float, int);
+extern int *thunk_FUN_00071678(void);
 
 float ldexpf(float param_1, unsigned int param_2)
 {

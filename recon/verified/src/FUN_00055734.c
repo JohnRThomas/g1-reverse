@@ -11,19 +11,19 @@ extern int FUN_00053d70(u32 key, int object, u32 flags);
 extern int FUN_00055454(u8 *output, u32 flags, int mode, u8 *details);
 extern int FUN_00055614(u8 *resource, u8 *preserved_resource,
                         u32 preserved_argument, u32 zero);
-extern int FUN_000556b0(u8 *output, int *allocation);
+extern unsigned int FUN_000556b0(unsigned char*, int*);
 extern void FUN_000566a4(int allocation);
 extern void FUN_00056704(int allocation, int reason);
-extern int FUN_00081130(u8 *resource);
+extern int FUN_00081130(int);
 extern u32 FUN_0008115c(u32 value, u32 mask);
 extern uint64_t FUN_0008117a(const void *object);
 extern void FUN_00081180(const void *object);
-extern void FUN_00081196(void *destination, u32 value);
+extern void FUN_00081196(unsigned int *, unsigned int *);
 extern void FUN_000811a4(u8 *object, u32 field, u32 value);
 extern int FUN_000811ce(u8 *output, u32 argument3, u32 argument4,
                         int argument5, u32 argument6, int state, int kind);
 extern int FUN_000812b2(u8 *resource);
-extern int FUN_000812d2(u8 *output, int enabled);
+extern int FUN_000812d2(void *, unsigned int);
 extern void FUN_00083740(void *destination, const void *source, u32 size);
 
 struct __attribute__((packed)) operation_record {

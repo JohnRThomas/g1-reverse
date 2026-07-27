@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0005a8bc @ 0x5a8bc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern unsigned long long FUN_00059b5c(void);
+extern unsigned long long FUN_00059b5c(unsigned long, unsigned long);
 extern int FUN_0008270c(int);
 extern int FUN_00053034(unsigned int,unsigned int,void*,unsigned int);
 extern void FUN_00082a42(unsigned int,unsigned int,void*);
@@ -8,7 +8,7 @@ void FUN_0005a8bc(unsigned int param_1,unsigned int param_2){
   unsigned long long uVar4; int iVar1; unsigned char* puVar2; unsigned int uVar3;
   unsigned char local_14; unsigned char local_13; int iStack_20;
   struct{unsigned int a,b; int c;} s;
-  uVar4=FUN_00059b5c(); iVar1=(int)uVar4;
+  uVar4=FUN_00059b5c(param_1, param_2); iVar1=(int)uVar4;
   if(iVar1==0){ puVar2=0; uVar3=0; }
   else{
     local_14=*(volatile unsigned char*)(iVar1+8);

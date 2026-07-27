@@ -7,7 +7,7 @@
  */
 /* Reconstructed FUN_0007c754 @ 0x7c754  (parity: 300/300 trials, PROVEN) */
 
-extern int opt_node_total_len(int);
+extern int opt_node_total_len(unsigned int);
 int opt_list_total_len(int *param_1, int *param_2)
 {
     if (param_1 == 0 || param_2 == 0) {

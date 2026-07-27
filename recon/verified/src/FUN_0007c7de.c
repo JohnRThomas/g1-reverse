@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0007c7de @ 0x7c7de  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_0007c41c(unsigned char *a);
+extern int FUN_0007c41c(unsigned int);
 
 unsigned int FUN_0007c7de(unsigned int *param_1, unsigned char *param_2)
 {

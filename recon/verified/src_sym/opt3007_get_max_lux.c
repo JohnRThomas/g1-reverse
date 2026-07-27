@@ -1,7 +1,7 @@
 /* Reconstructed opt3007_get_max_lux @ 0x10a68  (parity: 300/300 trials, PROVEN) */
 
 extern void DEBUG_PRINT(unsigned long, ...);
-extern unsigned long long __floatdidf(unsigned int lo, unsigned int hi);
+extern unsigned long long __floatdidf(unsigned int, unsigned int);
 extern unsigned long long __divdf3(unsigned int lo, unsigned int hi, unsigned int c1, unsigned int c2, unsigned int p1, unsigned int p2, unsigned int p3, unsigned int p4);
 extern int __fixdfsi(unsigned int lo, unsigned int hi);
 extern unsigned int get_device_info(void);

@@ -13,7 +13,7 @@
 #include <stdint.h>
 extern int audio_codec_reg_op_dispatch(uint32_t,int,void*,int);
 extern int audio_codec_bus_write(uint32_t,int,void*,int);
-extern int audio_codec_read_trim_word(uint32_t,void*);
+extern int audio_codec_read_trim_word(unsigned int, unsigned int);
 extern int audio_codec_read_gain_step_mode(uint32_t,void*);
 int audio_codec_set_gain_ch0(uint32_t param_1, uint32_t param_2){
     uint32_t local_18 = param_1;

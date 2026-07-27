@@ -8,7 +8,7 @@ extern int set_dashboard_startup_mode_field63();
 extern int enqueue_file();
 extern int mark_master_or_low_battery_flag();
 extern int process_sync_buffer();
-extern int device_info_set_bytes_cc_ce();
+extern int device_info_set_bytes_cc_ce(unsigned long, unsigned long);
 #ifdef G1_APP_SDK_INLINE_COHESION
 extern int64_t z_impl_k_uptime_ticks(void);
 /* Exact configured kernel.h/time_units.h owner: floor(ticks * 1000 / 32768). */
@@ -24,7 +24,7 @@ extern int device_info_store_chunk();
 extern int store_device_info_bytes_cd_cf();
 extern int set_shutdown_flag();
 extern int update_display_status();
-extern int is_system_idle_ready();
+extern int is_system_idle_ready(void);
 extern int strcpy();
 extern int update_persist_task_status();
 

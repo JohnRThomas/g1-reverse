@@ -2,7 +2,7 @@
 #include <stdint.h>
 extern void DEBUG_PRINT(unsigned long, ...);
 extern int FUN_0000ef12(void*);
-extern int FUN_000232b0(void);
+extern unsigned int FUN_000232b0(void);
 extern void FUN_00086c04(void*,void*,int);
 extern void FUN_00086c78(void*,int,int);
 extern void FUN_00086f00(void*,int,int,uint32_t,int);

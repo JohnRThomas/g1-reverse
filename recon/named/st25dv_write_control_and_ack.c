@@ -12,8 +12,8 @@
 /* Reconstructed FUN_00024f40 @ 0x24f40  (parity: 300/300 trials, PROVEN) */
 
 extern int st25dv_ipc_send_byte(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
-extern int ipc_ept_op_b_guarded(unsigned int a, void *b);
-extern void st25dv_reg_modify_low5(unsigned int a, unsigned int b);
+extern unsigned int ipc_ept_op_b_guarded(unsigned int, int);
+extern void st25dv_reg_modify_low5(int, int);
 
 void st25dv_write_control_and_ack(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

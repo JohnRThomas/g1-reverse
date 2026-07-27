@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00082572 @ 0x82572  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_0005858c(void);
-extern void atomic_clear_bit_0(int *a, int b);
+extern void atomic_clear_bit_0(volatile int *, int);
 void FUN_00082572(void)
 {
   int iVar1;

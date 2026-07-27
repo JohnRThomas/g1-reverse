@@ -24,7 +24,7 @@
  * Status-and-Information record type name.
  */
 
-extern unsigned int opt_record_init(unsigned char *param_1);
+extern unsigned int opt_record_init(unsigned char *);
 extern unsigned int opt_field1_set(unsigned char *param_1, unsigned int param_2,
                                  int *param_3);
 extern unsigned int opt_record_bind_value(unsigned char *param_1, unsigned char *param_2);

@@ -3,7 +3,7 @@
 extern long long FUN_00081820(unsigned,int,unsigned,unsigned,int);
 extern void FUN_0005f24c(unsigned);
 extern void FUN_00083074(unsigned,unsigned,void*);
-extern void FUN_0007350c(int,int,unsigned,int);
+extern void FUN_0007350c(unsigned int, unsigned int, unsigned int, unsigned int);
 
 void FUN_0005cb38(int param_1, unsigned param_2, unsigned param_3){
   long long uVar1 = FUN_00081820(*(volatile unsigned*)(param_1+0xf0), 6, param_2, param_3, 0);

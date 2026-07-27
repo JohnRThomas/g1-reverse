@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0007d82e @ 0x7d82e  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00086c1e(void *, const void *, unsigned int, unsigned int);
-extern void FUN_0007d7b6(const void *, unsigned int);
+extern void FUN_0007d7b6(int, unsigned int);
 
 void FUN_0007d82e(unsigned int opcode, const void *payload,
                   unsigned int payload_length)

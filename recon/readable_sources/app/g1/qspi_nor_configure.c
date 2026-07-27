@@ -40,7 +40,7 @@ extern int g1_recon_nrfx_qspi_init(void *device, uintptr_t callback,
 extern void qspi_log_forward(uintptr_t source, uint32_t level, const void *record);
 extern int qspi_pinctrl_apply_state(uintptr_t transport, void *result,
                         uintptr_t unused, void *owner);
-extern int audio_apply_config_cmd_0xab(void *context);
+extern int audio_apply_config_cmd_0xab(unsigned int);
 extern int qspi_rdsr(void *context);
 extern int memcmp(const void *expected, const void *actual, uint32_t length);
 

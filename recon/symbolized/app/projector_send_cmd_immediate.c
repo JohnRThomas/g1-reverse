@@ -11,7 +11,7 @@
 /* Reconstructed FUN_0007d77c @ 0x7d77c  (parity: 300/300 trials, PROVEN) */
 
 extern int get_projector_controller(void);
-extern void projector_bus_lock(unsigned int a, unsigned int b);
+extern void projector_bus_lock(unsigned int, unsigned int);
 extern void projector_bus_unlock(void);
 
 void projector_send_cmd_immediate(unsigned char param_1)

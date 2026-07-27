@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0005e47c @ 0x5e47c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int FUN_00052cdc(int);
+extern unsigned int FUN_00052cdc(const void *);
 extern int FUN_0005dc2c(int,int);
 extern int FUN_0005e6a8(int,int);
 extern int FUN_0005e9a0(int,int);

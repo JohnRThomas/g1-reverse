@@ -3,7 +3,7 @@
 
 extern void FUN_0007e2fa(unsigned long, ...);
 extern int FUN_0007e2ec(int,int);
-extern int FUN_0008539a(int,int);
+extern unsigned int FUN_0008539a(unsigned long, unsigned int);
 extern int FUN_00085316(int,int);
 
 #define R32(a) (*(volatile uint32_t*)(uintptr_t)(uint32_t)(a))

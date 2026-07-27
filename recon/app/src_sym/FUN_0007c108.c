@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0007c108 @ 0x7c108  (parity: 300/300 trials, PROVEN) */
 
 extern int get_device_info(void);
-extern int FUN_000559fc(void);
+extern unsigned int FUN_000559fc(void);
 int FUN_0007c108(void)
 {
     int iVar1 = get_device_info();

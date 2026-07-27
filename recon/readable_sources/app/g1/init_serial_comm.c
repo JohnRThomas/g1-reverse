@@ -17,7 +17,7 @@
 
 extern int fuel_gauge_dev_register(unsigned int a);
 extern int process_pt_data(void);
-extern int init_serial_port(void);
+extern unsigned int init_serial_port(void);
 extern void k_sleep(unsigned int a, unsigned int b);
 
 int init_serial_comm(void)

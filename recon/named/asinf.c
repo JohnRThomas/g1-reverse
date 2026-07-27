@@ -15,7 +15,7 @@
 extern float __ieee754_asinf(void);
 extern float fabsf(float);
 extern int *thunk_FUN_00071678(void);
-extern float nanf(unsigned int descriptor);
+extern float nanf(const char *);
 
 float asinf(float value)
 {

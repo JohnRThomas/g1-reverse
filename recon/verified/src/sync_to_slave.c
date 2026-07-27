@@ -6,7 +6,7 @@ extern void debug_print(unsigned long, ...);
 extern uint8_t *get_device_info(void);
 extern int32_t get_current_work_mode(void);
 extern int32_t is_battery_critical(void);
-extern int64_t k_uptime_get_1(void);
+extern unsigned long long k_uptime_get_1(void);
 extern void FUN_0007cb8e(int32_t);
 extern void FUN_0007d230(uint32_t);
 extern void FUN_00086c04(void *dst, void *src, uint32_t n);

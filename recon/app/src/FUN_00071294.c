@@ -1,10 +1,10 @@
 /* Reconstructed FUN_00071294 @ 0x71294  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
-extern int FUN_000710b4(int,uint32_t,uint32_t,int,int);
+extern unsigned int FUN_000710b4(unsigned char *, unsigned int, unsigned int, unsigned char *, unsigned int);
 extern void FUN_0007e2ec(uint32_t,uint32_t);
 extern void FUN_0007e2fa(unsigned long, ...);
-extern int FUN_00085508(int*,uint,int,int);
+extern int FUN_00085508(int*, unsigned int, int, int);
 extern int FUN_00085b0c(int,int*,uint32_t,int,int,uint32_t,uint32_t);
 uint32_t FUN_00071294(int param_1,uint32_t param_2,uint32_t param_3,int param_4,int param_5,uint32_t param_6){
   int local_24=param_4;

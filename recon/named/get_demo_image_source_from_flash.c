@@ -30,7 +30,7 @@ extern void pixelto4bithex_for_flash(int,int);
 extern int  malloc(int);
 extern void free(int);
 extern void printf(int);
-extern int  ptr_load_u32(void*);
+extern unsigned int ptr_load_u32(unsigned int *);
 extern void memcpy(int,int,int);
 extern void memset_bytes(void*,int,int);
 extern int  strncmp(void*,int,int);

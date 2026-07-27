@@ -1,5 +1,5 @@
 /* Reconstructed FUN_0007c61e @ 0x7c61e  (parity: 300/300 trials, PROVEN) */
-extern unsigned int FUN_0007c408(void);
+extern unsigned int FUN_0007c408(unsigned long);
 
 unsigned int FUN_0007c61e(unsigned char *param_1, unsigned char *param_2)
 {
@@ -12,7 +12,7 @@ unsigned int FUN_0007c61e(unsigned char *param_1, unsigned char *param_2)
         uVar2 = 7;
     } else {
         *(unsigned char **)(param_1 + 0x14) = param_2;
-        uVar1 = FUN_0007c408();
+        uVar1 = FUN_0007c408(param_1);
         uVar2 = 0;
         *param_1 = (*param_1 & 0xef) | ((uVar1 < 0x100) << 4);
     }

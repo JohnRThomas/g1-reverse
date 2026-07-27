@@ -15,7 +15,7 @@ extern int get_device_info();
 extern void debug_print(unsigned long, ...);
 extern int ble_work_queue_lock();
 extern int ble_work_queue_unlock();
-extern int audio_fw_load_get_wrapper();
+extern int audio_fw_load_get_wrapper(unsigned long, unsigned long, unsigned long);
 extern int send_response_data_to_msgqueue();
 extern int get_synced_clock_time();
 extern int store_device_info_bytes_cd_cf();

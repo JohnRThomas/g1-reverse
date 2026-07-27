@@ -12,7 +12,7 @@
 /* Reconstructed FUN_0008392e @ 0x8392e  (parity: 300/300 trials, PROVEN) */
 
 extern void k_sem_give(int a);
-extern void audio_hw_lock_release(int a);
+extern void audio_hw_lock_release(unsigned char *);
 
 void audio_i2s_start_channels(int param_1)
 {

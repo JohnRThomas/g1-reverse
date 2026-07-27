@@ -12,7 +12,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_0002560c @ 0x2560c  (parity: 300/300 trials, PROVEN) */
 
-extern int pt_comm_bind_device(unsigned int a0);
+extern unsigned int pt_comm_bind_device(unsigned int);
 extern int process_pt_data(void);
 
 int init_nfc_comm(void)

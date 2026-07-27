@@ -35,9 +35,9 @@
 
 extern void cjson_delete(int object);
 extern int cbor_decode_start_default(void);
-extern unsigned int sllist_count_nodes(int object);
+extern int sllist_count_nodes(int *);
 extern int sllist_node_at_index(int object);
-extern int sllist_find_by_name_ci(int object, uint32_t key);
+extern int sllist_find_by_name_ci(int, int);
 extern int cjson_is_array(void);
 extern void memset_bytes(void *destination, int value, unsigned int count);
 extern void strncpy_zero_pad(void *destination, const void *source,

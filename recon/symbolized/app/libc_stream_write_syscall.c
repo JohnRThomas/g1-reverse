@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_00086f5a @ 0x86f5a  (parity: 300/300 trials, PROVEN) */
 extern void lseek_r_capture_errno(int* a, int b, int c, int d);
-extern int _write_r(int* a, int b, int c, int d);
+extern int _write_r(int *, int, const void *, unsigned int);
 void libc_stream_write_syscall(int* param_1, int param_2, int param_3, int param_4){
     unsigned short v = *(unsigned short*)(param_2 + 0xc);
     if ((int)((unsigned)v << 0x17) < 0){

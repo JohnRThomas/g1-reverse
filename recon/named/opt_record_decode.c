@@ -6,7 +6,7 @@
  *   opt_record_decode                        <= FUN_0007c4f4 @ 0x0007c4f4
  */
 /* Reconstructed FUN_0007c4f4 @ 0x7c4f4  (parity: 300/300 trials, PROVEN) */
-extern int opt_record_init(unsigned char*);
+extern unsigned int opt_record_init(unsigned char *);
 unsigned opt_record_decode(int *param_1, unsigned char *param_2){
   unsigned char bVar1;
   unsigned uVar3, uVar4, uVar5, uVar6, uVar7;

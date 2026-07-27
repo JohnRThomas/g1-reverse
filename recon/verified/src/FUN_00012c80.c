@@ -2,10 +2,10 @@
 #include <stdint.h>
 
 extern double FUN_00012db0(uint32_t, uint32_t, uint32_t, uint32_t);
-extern int FUN_000869dc(double);
+extern unsigned int FUN_000869dc(double);
 extern int FUN_0000de18(uint32_t, uint32_t, uint32_t, uint32_t);
 extern int FUN_0000dddc(uint32_t, uint32_t, uint32_t, uint32_t);
-extern uint32_t *FUN_000807f2(void);
+extern int *FUN_000807f2(void);
 
 double FUN_00012c80(uint32_t r0, uint32_t r1, uint32_t r2, uint32_t r3,
                     double argument)

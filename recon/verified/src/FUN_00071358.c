@@ -3,8 +3,8 @@ extern int FUN_00070e28(int a0,int a1,int a2,void *a3,void *a4);
 extern int FUN_00070f74(int a0,int a1,int a2,int a3,int a4,int a5,int a6);
 extern void FUN_0008557c(int *a0,unsigned int a1,int a2,int a3);
 extern int FUN_0008567c(int a0,void *a1,int a2,int a3,int a4);
-extern void FUN_000857b2(int a0);
-extern int FUN_00085aee(int a0,int a1);
+extern void FUN_000857b2(int *);
+extern int* FUN_00085aee(unsigned int, unsigned int);
 extern void FUN_00086534(int a0,int a1);
 extern void FUN_00086c78(int a0,int a1,int a2);
 

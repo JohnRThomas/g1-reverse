@@ -19,7 +19,7 @@
 
 #include <stdint.h>
 extern int boot_write_image_trailer_magic(char*);
-extern int flash_read_boot_swap_ate(char*, void*);
+extern unsigned int flash_read_boot_swap_ate(int, unsigned char *);
 extern int boot_write_swap_info(char*, uint32_t, int);
 extern void __assert_func(uint32_t,int,uint32_t,uint32_t);
 extern void flash_area_erase(char*, int, uint32_t);

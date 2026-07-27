@@ -8,7 +8,7 @@ extern uintptr_t FUN_000167a8(void);
 extern void FUN_00074844(uint32_t,uint32_t);
 extern uint64_t FUN_000181b8(void*);
 extern void FUN_00072908(uintptr_t,uint32_t,uint32_t,uint32_t);
-extern void FUN_00021d78(void*,uint32_t,uint32_t);
+extern void FUN_00021d78(unsigned int, unsigned int, int);
 extern int FUN_0007c108(void);
 extern int FUN_00019308(void);
 extern void FUN_00086c04(void*,const void*,uint32_t);

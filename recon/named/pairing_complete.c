@@ -18,7 +18,7 @@
 /* Reconstructed FUN_00018730 @ 0x18730  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../headers/g1_log.h"
-extern uint32_t bt_conn_get_field_0x90(void);
+extern uint32_t bt_conn_get_field_0x90(unsigned long);
 extern void format_bt_addr_str(void*,void*);
 extern int get_device_info(void);
 extern int is_battery_critical(void);
@@ -28,7 +28,7 @@ extern void k_sem_give(int);
 
 void pairing_complete(unsigned param_1, unsigned param_2){
     unsigned char auStack_38[32];
-    uint32_t *puVar1 = (uint32_t*)bt_conn_get_field_0x90();
+    uint32_t *puVar1 = (uint32_t*)bt_conn_get_field_0x90(param_1);
     format_bt_addr_str(puVar1, auStack_38);
     int iVar2 = get_device_info();
     if (*(char*)(iVar2+0x1071) != 0){

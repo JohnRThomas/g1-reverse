@@ -10,7 +10,7 @@
 /* Reconstructed FUN_0007c108 @ 0x7c108  (parity: 300/300 trials, PROVEN) */
 
 extern int get_device_info(void);
-extern int legacy_adv_stop_cleanup(void);
+extern unsigned int legacy_adv_stop_cleanup(void);
 int device_resume_state_advance(void)
 {
     int iVar1 = get_device_info();

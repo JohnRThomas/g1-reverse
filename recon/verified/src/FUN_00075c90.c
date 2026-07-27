@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00075c90 @ 0x75c90  (parity: 300/300 trials, PROVEN) */
 
 extern float FUN_00076290(void);
-extern unsigned* thunk_FUN_00071678(void);
+extern int *thunk_FUN_00071678(void);
 extern int FUN_000869f2(float);
 float FUN_00075c90(float param_1){
   float uVar3 = FUN_00076290();

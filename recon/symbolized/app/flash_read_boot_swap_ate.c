@@ -17,7 +17,7 @@
 
 #include <stdint.h>
 extern int flash_area_read(int, int, void*, ...);
-extern int flash_region_is_erased(int, void*, int);
+extern unsigned int flash_region_is_erased(unsigned int, unsigned char *, int);
 extern int memcmp(void*, uint32_t, int);
 extern uint32_t flash_calc_prev_ate_offset(int);
 extern int flash_write_byte_and_verify(int, void*, int);

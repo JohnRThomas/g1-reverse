@@ -1,12 +1,12 @@
 /* Reconstructed FUN_00085dd2 @ 0x85dd2  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_00085d82(void);
+extern int FUN_00085d82(unsigned long);
 extern void FUN_00085d70(unsigned int *a0, int a1);
 
 int FUN_00085dd2(unsigned int *param_1)
 {
   int iVar1;
-  iVar1 = FUN_00085d82();
+  iVar1 = FUN_00085d82(param_1);
   if (iVar1 != 0) {
     unsigned char *p = (unsigned char *)*param_1;
     if (*p == 0xff) {

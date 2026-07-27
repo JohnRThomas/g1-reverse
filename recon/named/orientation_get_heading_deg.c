@@ -8,11 +8,11 @@
 /* Reconstructed FUN_00026828 @ 0x26828 */
 #include <stdint.h>
 
-extern void quaternion_to_euler(void);
+extern void quaternion_to_euler(unsigned long);
 
 float orientation_get_heading_deg(uint8_t *state)
 {
     if (state[0x28] == 0)
-        quaternion_to_euler();
+        quaternion_to_euler(state);
     return 180.0f + *(volatile float *)(state + 0x34) * 57.295f;
 }

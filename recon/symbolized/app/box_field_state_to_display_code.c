@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_0007c842 @ 0x7c842  (parity: 300/300 trials, PROVEN) */
 
-extern int get_box_field_state(void);
+extern unsigned int get_box_field_state(void);
 void box_field_state_to_display_code(int param_1)
 {
   int iVar1 = get_box_field_state();

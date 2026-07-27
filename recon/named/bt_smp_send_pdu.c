@@ -17,7 +17,7 @@
 extern long long bt_conn_create_pdu(unsigned,int,unsigned,unsigned,int);
 extern void net_buf_unref(unsigned);
 extern void smp_log_message(unsigned,unsigned,void*);
-extern void k_work_reschedule(int,int,unsigned,int);
+extern void k_work_reschedule(unsigned int, unsigned int, unsigned int, unsigned int);
 
 void bt_smp_send_pdu(int param_1, unsigned param_2, unsigned param_3){
   long long uVar1 = bt_conn_create_pdu(*(volatile unsigned*)(param_1+0xf0), 6, param_2, param_3, 0);

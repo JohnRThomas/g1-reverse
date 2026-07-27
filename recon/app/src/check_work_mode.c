@@ -74,7 +74,7 @@ extern long long FUN_00030c90(void);
 extern long long FUN_00032784(void);
 extern long long FUN_000327c4(void);
 extern long long FUN_0004a890(void);
-extern long long FUN_0007cb2c(void);
+extern unsigned long long FUN_0007cb2c(void);
 extern long long FUN_0007cbfe(long long,long long);
 extern long long FUN_0007dada(void);
 extern long long change_work_mode_to(long long);

@@ -17,7 +17,7 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 extern int strlen(void*);
-extern int get_device_serial_buf(void);
+extern unsigned int get_device_serial_buf(void);
 extern void memcpy(void*,void*,int);
 extern void memset_bytes(void*,int,int);
 extern void vdprintf_to_fd(void*,int,int,uint32_t,int);

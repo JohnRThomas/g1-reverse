@@ -12,7 +12,7 @@
  */
 /* Reconstructed FUN_00025740 @ 0x25740  (parity: 300/300 trials, PROVEN) */
 
-extern int ipc_transport_ops_dispatch(int, void*, int, int);
+extern int ipc_transport_ops_dispatch(unsigned char *, void *, unsigned int, unsigned int);
 extern void sleep_fixed_33_ticks(void);
 
 int ipc_send_len_prefixed_packet(int param_1, int param_2, unsigned int param_3, int param_4, int param_5)

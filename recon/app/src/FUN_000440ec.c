@@ -12,7 +12,7 @@ extern void FUN_000471cc(uintptr_t, int, int, int, int, int);
 extern unsigned FUN_00043e90(unsigned, uintptr_t, unsigned, int, int, int, int,
                             unsigned, unsigned, int, void *, int);
 extern void FUN_000473c8(uintptr_t, uintptr_t, int, int, int, int, uint32_t);
-extern void FUN_0007d5f2(uintptr_t, int, int, int, int, int, int);
+extern void FUN_0007d5f2(int, int, int, int, int, int, int);
 
 static uintptr_t display(void) { return *(volatile uintptr_t *)0x2000a034u; }
 

@@ -4,7 +4,7 @@
 
 extern void DEBUG_PRINT(unsigned long, ...);
 extern void FUN_00019c70(unsigned long, ...);
-extern void FUN_00032ef0(uint32_t mode);
+extern void FUN_00032ef0(unsigned int);
 extern void FUN_0007c28e(void *settings, uint32_t value);
 
 uint32_t reset_usr_setting(uint8_t *settings)

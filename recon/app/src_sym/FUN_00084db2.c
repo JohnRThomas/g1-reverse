@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00084db2 @ 0x84db2  (parity: 300/300 trials, PROVEN) */
 
 extern int flash_area_read(int a, int b, char *c, int d, int e);
-extern int FUN_00084d8c(int a, char *b, int c);
+extern unsigned int FUN_00084d8c(unsigned int, unsigned char *, int);
 
 unsigned int FUN_00084db2(int param_1, char *param_2, int param_3, int param_4)
 {

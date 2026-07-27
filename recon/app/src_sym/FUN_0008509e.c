@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0008509e @ 0x8509e  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_00064c5c(int);
+extern int FUN_00064c5c(unsigned int);
 extern int FUN_0006466c(int,int,int,int);
 extern void FUN_00064b1c(int);
 int FUN_0008509e(int param_1,int param_2,int param_3)

@@ -9,7 +9,7 @@
 /* Reconstructed FUN_00086208 @ 0x86208  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8;
-extern int cbor_min_encoded_size(u8*,u32);
+extern unsigned int cbor_min_encoded_size(char *, unsigned int);
 extern int value_encode_len(int*,u32,u8*,int);
 int cbor_encode_length_header(int* param_1, u32 param_2, u8* param_3, u32 param_4){
     int iVar2 = cbor_min_encoded_size(param_3, param_4);

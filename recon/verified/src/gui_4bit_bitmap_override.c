@@ -6,7 +6,7 @@ extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000431a8(void);
 extern int FUN_0004588c(int, uint32_t, int*, int*, uint32_t*, int);
 extern void FUN_00047260(uint32_t, uint32_t, unsigned int, unsigned int, int, int);
-extern void FUN_0007d586(uint32_t, uint32_t, int, int, unsigned int, unsigned int);
+extern void FUN_0007d586(int, int, int, int, int, int);
 
 unsigned int gui_4bit_bitmap_override(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

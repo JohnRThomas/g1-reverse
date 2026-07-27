@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000710b4 @ 0x710b4 */
 #include <stdint.h>
 
-extern int FUN_00085508(void *, uint32_t, const void *, uint32_t);
+extern int FUN_00085508(int*, unsigned int, int, int);
 extern void FUN_000859b6(void *);
 extern void FUN_000859b2(void *);
 extern uint32_t FUN_000857a8(void *, uint16_t);

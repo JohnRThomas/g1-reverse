@@ -22,7 +22,7 @@
 extern void ble_conn_unref(int);
 extern uint64_t ble_conn_lookup_masked(uint32_t,int);
 extern void ble_notify_le_param_updated(int);
-extern void k_work_schedule(int,uint32_t,int,int);
+extern void k_work_schedule(unsigned int, unsigned int, unsigned int, unsigned int);
 extern uint64_t atomic_or(void*,int);
 extern void bt_log_forward_3arg(uint32_t,int,void*);
 extern void atomic_and_3(void*,uint32_t);

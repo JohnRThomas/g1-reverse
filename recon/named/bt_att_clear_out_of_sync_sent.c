@@ -9,7 +9,7 @@
 /* Reconstructed FUN_00082572 @ 0x82572  (parity: 300/300 trials, PROVEN) */
 
 extern int att_get(void);
-extern void atomic_clear_bit_0(int *a, int b);
+extern void atomic_clear_bit_0(volatile int *, int);
 void bt_att_clear_out_of_sync_sent(void)
 {
   int iVar1;

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000548b8 @ 0x000548b8. */
 #include <stdint.h>
 
-extern uint32_t bt_addr_le_str(const void *address); /* FUN_00052cdc */
+extern unsigned int bt_addr_le_str(const void *); /* FUN_00052cdc */
 extern uint32_t version_string(uint32_t version); /* FUN_00053344 */
 extern void atomic_or(uint32_t *target, uint32_t bits); /* FUN_00080e6a */
 extern void log_message(unsigned long, ...); /* FUN_00080ea2 */

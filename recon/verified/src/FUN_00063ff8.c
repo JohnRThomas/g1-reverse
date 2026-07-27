@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00063ff8 @ 0x63ff8  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0007f012(void);
+extern void FUN_0007f012(unsigned long);
 extern int FUN_0007efaa(int a, unsigned int b, void *c, int d);
 
 int FUN_00063ff8(int param_1)
@@ -10,7 +10,7 @@ int FUN_00063ff8(int param_1)
   unsigned int i;
   volatile unsigned int *src = (volatile unsigned int*)0x0009907cUL;
   int r;
-  FUN_0007f012();
+  FUN_0007f012(param_1);
   for (i = 0; i < 4; i++) {
     local_28[i] = src[i];
   }

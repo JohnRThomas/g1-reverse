@@ -18,7 +18,7 @@
  */
 /* Reconstructed FUN_0004ee68 @ 0x4ee68  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int gatt_dm_char_by_uuid(int a0, void *a1);
+extern unsigned int gatt_dm_char_by_uuid(unsigned int, const void *);
 extern int bt_gatt_dm_attr_service_val(void);
 extern int bt_gatt_dm_conn_get(int a0);
 extern int bt_gatt_dm_service_get(void);

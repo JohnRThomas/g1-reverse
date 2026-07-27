@@ -17,7 +17,7 @@ struct spi_state_476b4 {
 };
 
 extern struct spi_state_476b4 *FUN_0007d4ec(void);
-extern void FUN_00047698(uint32_t a, uint32_t b);
+extern void FUN_00047698(unsigned int, unsigned int);
 extern void FUN_000476a8(void);
 
 void FUN_000476b4(uint32_t x, uint32_t y, uint32_t value, uint32_t length)

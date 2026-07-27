@@ -18,8 +18,8 @@
  * r1 half is deliberately represented as part of the call result so the
  * compiler observes the original r1:r0 return ABI. */
 extern uint64_t kobj_test_bit_get_ptr(uint32_t kind);
-extern int32_t smp_dhkey_generate(void *object);
-extern int32_t smp_dhkey_check_generate(void *object);
+extern int smp_dhkey_generate(int);
+extern int smp_dhkey_check_generate(int);
 extern void smp_error(void *object, int32_t reason);
 extern uint32_t atomic_test_bit(const void *bits, uint32_t bit);
 extern void atomic_clear_bit_1(void *bits, uint32_t bit);
