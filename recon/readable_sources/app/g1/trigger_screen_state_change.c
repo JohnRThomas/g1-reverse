@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_sem;
 #include "../../../headers/g1_log.h"
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_2          => struct g1_layout_g1_device_runtime_state__param_0027    [param_0027; G1-original]
@@ -18,7 +19,7 @@
  */
 /* Reconstructed trigger_screen_state_change @ 0x2bc2c  (parity: 300/300 trials, PROVEN) */
 
-extern void k_sem_give(unsigned int);
+extern void k_sem_give(struct k_sem *);
 
 unsigned int trigger_screen_state_change(unsigned int param_1, int param_2, unsigned int param_3, unsigned int param_4)
 {

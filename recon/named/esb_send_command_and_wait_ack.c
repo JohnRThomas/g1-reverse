@@ -1,3 +1,4 @@
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00027448 @ 0x00027448
  * public-name: esb_send_command_and_wait_ack
  * durable-map: recon/catalogs/function_names_app.json
@@ -19,8 +20,8 @@
 #include <stdint.h>
 
 extern int is_battery_critical(void);
-extern void k_msleep(int32_t);
-extern int memcmp(const void*, const void*, unsigned long);
+extern int32_t k_msleep(int32_t);
+extern int memcmp(const void *, const void *, size_t);
 extern void memcpy(int, int, int);
 extern void safe_memcpy_checked(void *a, void *b, uint32_t c, uint32_t d);
 extern void memset_bytes(void*, int, int);

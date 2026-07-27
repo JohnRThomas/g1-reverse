@@ -1,3 +1,4 @@
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00080fa4 @ 0x00080fa4
  * public-name: bt_addr_le_eq
  * durable-map: recon/catalogs/function_names_app.json
@@ -8,7 +9,7 @@
 /* Pinned Zephyr 3.4.99 owner: include/zephyr/bluetooth/addr.h. */
 #include <stdbool.h>
 #include <stdint.h>
-extern int memcmp(const void *, const void *, uint32_t);
+extern int memcmp(const void *, const void *, size_t);
 int bt_addr_le_eq(int a, int b) {
     return memcmp(a, b, 7u) == 0;
 }

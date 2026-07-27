@@ -1,3 +1,4 @@
+struct device;
 /* readable reconstruction; identity: FUN_000324bc @ 0x000324bc
  * public-name: mic_transm_thread
  * durable-map: recon/catalogs/function_names_app.json
@@ -30,7 +31,7 @@
 extern void memset_bytes(void*, int, int);
 extern uint64_t z_impl_k_sem_init(void *, uint32_t, uint32_t);
 extern uint64_t z_impl_k_sem_take(void *, uint32_t, uint32_t, uint32_t);
-extern int z_device_is_ready(int);
+extern _Bool z_device_is_ready(const struct device *);
 extern int get_device_info(void);
 extern int device_api_call_slot0(void *, uint32_t, void *, uint32_t);
 extern void k_msleep_ticks32768_b(int);

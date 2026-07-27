@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_sem;
 /* readable reconstruction; identity: FUN_000538f8 @ 0x000538f8
  * public-name: hci_cmd_complete_handle
  * durable-map: recon/catalogs/function_names_app.json
@@ -24,7 +25,7 @@
 extern int net_buf_pool_get(unsigned);
 extern int net_buf_id(int);
 extern void net_buf_unref(void);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 extern void atomic_or(int);
 extern void bt_log_forward_3arg(unsigned,unsigned,void*);
 extern long atomic_and_3(volatile long*, long);

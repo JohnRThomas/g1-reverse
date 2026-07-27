@@ -1,3 +1,4 @@
+struct device;
 /* readable reconstruction; identity: FUN_00024534 @ 0x00024534
  * public-name: getQuickNoteDataFromFlash
  * durable-map: recon/catalogs/function_names_app.json
@@ -24,7 +25,7 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 extern int get_device_info(void);
-extern int z_device_is_ready(int);
+extern _Bool z_device_is_ready(const struct device *);
 extern void memcpy(int, int, int);
 extern void memset_bytes(void*, int, int);
 

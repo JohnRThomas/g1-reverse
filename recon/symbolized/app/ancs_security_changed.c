@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_000184f0 @ 0x000184f0
  * public-name: ancs_security_changed
  * durable-map: recon/catalogs/function_names_app.json
@@ -39,7 +40,7 @@ extern void k_msleep_ticks32768_d(int);
 extern void g1_recon_bt_conn_set_security(uint32_t connection, uint32_t state);
 extern uint32_t bt_conn_get_security(uint32_t connection);
 extern int bt_conn_get_field_0x90(int);
-extern int memcmp(const void*, const void*, unsigned long);
+extern int memcmp(const void *, const void *, size_t);
 
 void ancs_security_changed(uint32_t connection, uint32_t level, int32_t error)
 {

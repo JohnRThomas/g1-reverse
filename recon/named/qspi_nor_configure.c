@@ -1,3 +1,4 @@
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00060c00 @ 0x00060c00
  * public-name: qspi_nor_configure
  * durable-map: recon/catalogs/function_names_app.json
@@ -38,7 +39,7 @@ extern int qspi_pinctrl_apply_state(uintptr_t transport, void *result,
                         uintptr_t unused, void *owner);
 extern int audio_apply_config_cmd_0xab(unsigned int);
 extern int qspi_rdsr(void *context);
-extern int memcmp(const void *expected, const void *actual, uint32_t length);
+extern int memcmp(const void *, const void *, size_t);
 
 struct driver_context {
     uint32_t reserved0;

@@ -1,3 +1,4 @@
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_000352e8 @ 0x000352e8
  * public-name: convert_app_whitelist_to_json
  * durable-map: recon/catalogs/function_names_app.json
@@ -33,11 +34,11 @@
 /* Reconstructed convert_app_whitelist_to_json @ 0x352e8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../headers/g1_log.h"
-extern int  strlen(int);
+extern size_t strlen(const char *);
 extern void cjson_delete(volatile int*);
 extern int  cjson_create_array(void);
 extern int  cjson_create_object(void);
-extern void free(void*);
+extern void free(void *);
 extern int  cjson_print_unformatted(int);
 extern void cjson_add_item_to_object_thunk(int,int,int);
 extern void cjson_add_bool_to_object(int,int,int);

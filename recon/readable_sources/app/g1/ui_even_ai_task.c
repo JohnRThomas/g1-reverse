@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_mutex;
 /* readable reconstruction; identity: FUN_0003bfe0 @ 0x0003bfe0
  * public-name: ui_even_ai_task
  * durable-map: recon/catalogs/function_names_app.json
@@ -67,7 +68,7 @@ extern uintptr_t gui_utf_draw_middle(int, ...);                 /* FUN_00044bd8 
 extern uintptr_t clean_fb_data(int, ...);                       /* FUN_000471cc @ 0x000471cc */
 extern uintptr_t reflash_fb_data_to_lcd(int, ...);              /* FUN_00047260 @ 0x00047260 */
 extern int k_mutex_lock(void *, int64_t);                       /* @ 0x000723b8 */
-extern uintptr_t k_mutex_unlock(void *);                          /* @ 0x00072558 */
+extern int k_mutex_unlock(struct k_mutex *);                          /* @ 0x00072558 */
 extern uintptr_t gui_utf_adv_draw_configure(void);                            /* @ 0x0007d3dc */
 extern int device_info_text_width_get(void);                                  /* @ 0x0007d3ee */
 extern int device_info_text_height_get_clamped(void);                                  /* @ 0x0007d446 */

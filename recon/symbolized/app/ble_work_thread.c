@@ -36,9 +36,9 @@
 #include "../../headers/g1_log.h"
 extern int ancs_main(uintptr_t);
 extern void debug_log_queue_init(void);
-extern uintptr_t malloc(uint32_t);
+extern void *malloc(size_t);
 extern int get_device_info(void);
-extern void k_sleep(uint32_t,uint32_t);
+extern int32_t k_sleep(k_timeout_t);
 extern uint64_t dequeue_bt_data(void*);
 extern void z_impl_k_sem_take(uintptr_t,uint32_t,uint32_t,uint32_t);
 extern void ble_packet_receive_dispatch(unsigned int, unsigned int, int);

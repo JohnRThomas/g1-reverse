@@ -1,10 +1,11 @@
+struct k_queue;
 /* Reconstructed FUN_00058930 @ 0x58930  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_00071c20(int,...);
 extern int FUN_000748ac(int,...);
 extern int FUN_00081ddc(int,...);
 #define z_impl_k_queue_init FUN_000864e8
-extern void z_impl_k_queue_init(void *queue);
+extern void z_impl_k_queue_init(struct k_queue *);
 extern int FUN_00086c78(int,...);
 unsigned int FUN_00058930(int param_1, int *param_2)
 {

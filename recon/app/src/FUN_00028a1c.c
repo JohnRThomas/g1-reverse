@@ -8,7 +8,7 @@ extern uintptr_t get_device_info(void);
 extern void handle_touch_key_irq(void);
 extern void FUN_00032fd0(int32_t);
 extern int64_t FUN_00032fdc(void);
-extern void k_msleep(int32_t milliseconds); /* FUN_0007cb8e@0x0007cb8e */
+extern int32_t k_msleep(int32_t); /* FUN_0007cb8e@0x0007cb8e */
 #define k_msleep_ticks32768_a k_msleep
 extern void read_rtc_counter_ms(void *a);
 extern int32_t get_uptime_ms(void);

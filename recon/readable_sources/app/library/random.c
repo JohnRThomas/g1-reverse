@@ -1,4 +1,6 @@
 #include "g1_app_symbols.h"
+struct k_sem;
+#include <stddef.h>
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_2          => struct g1_layout_app_shared_ctx_blob__param_0007        [param_0007; G1-original]
  * Raw function identity: 0x00017f70.  See ../include/g1_recovered_layouts.h. */
@@ -41,9 +43,9 @@ typedef unsigned char undefined1;
 typedef unsigned undefined4;
 extern unsigned get_device_info(void);
 extern void enqueue_bt_data(void *a, uint b);
-extern void k_sem_give(int a);
+extern void k_sem_give(struct k_sem *);
 extern void set_shutdown_flag(unsigned a, int b);
-extern void snprintk(void *a, int b, unsigned c, ...);
+extern int snprintk(char *, size_t,  const char *, ...);
 extern void FUN_00081526_dummy(void);
 extern unsigned char *bt_conn_get_field_0x90(unsigned a);
 extern void memcpy(void *a, void *b, uint c);

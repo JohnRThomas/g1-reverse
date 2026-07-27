@@ -1,3 +1,5 @@
+struct k_msgq;
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00018e04 @ 0x00018e04
  * public-name: init_msgq_uid
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,7 +16,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed init_msgq_uid @ 0x18e04  (parity: 300/300 trials, PROVEN) */
 
-extern int z_impl_k_msgq_alloc_init(unsigned int,int,int);
+extern int z_impl_k_msgq_alloc_init(struct k_msgq *, size_t,  uint32_t);
 int init_msgq_uid(void){
     int iVar1 = z_impl_k_msgq_alloc_init(0x20006a38UL,8,10);
     if(iVar1!=0 && *(volatile int*)0x2000230cUL>0){

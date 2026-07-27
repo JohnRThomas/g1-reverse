@@ -1,3 +1,4 @@
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_000442bc @ 0x000442bc
  * public-name: gui_clock_draw
  * durable-map: recon/catalogs/function_names_app.json
@@ -28,7 +29,7 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 typedef unsigned char byte; typedef uint32_t undefined4; typedef uint16_t undefined2; typedef unsigned int uint; typedef unsigned short ushort;
-extern int strlen(int);
+extern size_t strlen(const char *);
 extern int get_device_info(int,...);
 extern int atomic_get_3_0(int,...);
 extern int gui_utf_draw(int,...);

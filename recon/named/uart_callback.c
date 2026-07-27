@@ -1,3 +1,4 @@
+struct k_mem_slab;
 /* readable reconstruction; identity: FUN_00033384 @ 0x00033384
  * public-name: uart_callback
  * durable-map: recon/catalogs/function_names_app.json
@@ -33,8 +34,8 @@
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
 extern int k_mem_slab_alloc(int, int*, int, int);
-extern void k_mem_slab_free(int,int);
-extern int assert_post_action(int, int);
+extern void k_mem_slab_free(struct k_mem_slab *, void *);
+extern void assert_post_action(const char *, unsigned int);
 extern void printk(unsigned long, ...);
 extern void memcpy(int, int, int);
 extern void memset_bytes(void*,int,int);

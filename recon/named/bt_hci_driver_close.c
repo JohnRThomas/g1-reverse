@@ -32,7 +32,7 @@ extern int bt_conn_cleanup_all(void);
 extern int atomic_or(volatile long*, long);
 extern int bt_addr_le_copy_80e94(int,int);
 extern int bt_log_forward_3arg(int,int,void*);
-extern void atomic_and_3(void*, unsigned long);
+extern long atomic_and_3(volatile long*, long);
 extern void memset_bytes(void*, int, int);
 
 int bt_hci_driver_close(void)

@@ -40,7 +40,7 @@ extern void update_touch_key_flag(void);
 extern int get_low_battery_flag_if_master(void);
 extern unsigned int mark_master_or_low_battery_flag(void);
 extern int msg_content_recalc_unread(void);
-extern void k_msleep(int a);
+extern int32_t k_msleep(int32_t);
 extern void prepare_quick_note_mode(unsigned a, int b);
 extern void reset_esb_sync_state(int a);
 extern void send_event(int a);

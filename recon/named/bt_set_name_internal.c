@@ -1,3 +1,4 @@
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00054c74 @ 0x00054c74
  * public-name: bt_set_name_internal
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,8 +16,8 @@
  *   g_bt_dev_name                            @ 0x2000216c
  */
 /* Reconstructed FUN_00054c74 @ 0x54c74  (parity: 300/300 trials, PROVEN) */
-extern int strlen(int);
-extern int strcmp(unsigned a, unsigned b);
+extern size_t strlen(const char *);
+extern int strcmp(const char *, const char *);
 extern void memcpy(int, int, int);
 extern int bt_settings_store_name(int a, unsigned b);
 extern void bt_log_forward_3arg(unsigned a, int b, void* c);

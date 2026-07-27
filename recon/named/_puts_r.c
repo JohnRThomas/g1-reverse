@@ -1,3 +1,5 @@
+struct _reent;
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00077820 @ 0x00077820
  * public-name: _puts_r
  * durable-map: recon/catalogs/function_names_app.json
@@ -13,12 +15,12 @@
  * puts starts at 0x000778d4. Raw backmap: FUN_00077820@0x00077820. */
 #include <stdint.h>
 
-extern int strlen(int); /* FUN_0000ef12@0x0000ef12 */
+extern size_t strlen(const char *); /* FUN_0000ef12@0x0000ef12 */
 #define g1_recon_retarget_lock_acquire_recursive g1_recon_retarget_lock_acquire_recursive
 #define g1_recon_retarget_lock_release_recursive g1_recon_retarget_lock_release_recursive
 extern void g1_recon_retarget_lock_acquire_recursive(uint32_t lock); /* FUN_000510fc@0x000510fc */
 extern void g1_recon_retarget_lock_release_recursive(uint32_t lock); /* FUN_00051134@0x00051134 */
-extern void __sinit(void *reent); /* FUN_00076bcc@0x00076bcc */
+extern void __sinit(struct _reent *); /* FUN_00076bcc@0x00076bcc */
 extern int __sfvwrite_r(void *reent, void *stream, void *uio); /* FUN_00077e70@0x00077e70 */
 
 struct __siov_local {

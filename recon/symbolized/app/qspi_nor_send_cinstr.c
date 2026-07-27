@@ -23,7 +23,7 @@ extern u32 g1_recon_nrfx_qspi_cinstr_xfer(void*,u32,u32);
 extern void qspi_log_forward(u32,u32,void*);
 extern void audio_i2s_stop_and_reset_channels(u32);
 extern void audio_i2s_start_channels(void*);
-u32 qspi_nor_send_cinstr(u32 param_1, u8* param_2, u8 param_3){
+int qspi_nor_send_cinstr(void*param_1, unsigned char*param_2, unsigned char param_3) {
     int iVar1, iVar2; u32 uVar4, uVar5, uVar6; u32 local_24;
     u32 *puVar3;
     puVar3 = *(u32**)(param_2+4);

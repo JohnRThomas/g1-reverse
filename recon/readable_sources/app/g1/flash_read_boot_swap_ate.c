@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_flash_area__param_0319                 [param_0319; library]
  *   param_2          => struct g1_layout_flash_boot_swap_ate__param_0320        [param_0320; G1-original]
@@ -22,7 +23,7 @@
 #include <stdint.h>
 extern int flash_area_read(unsigned int, int, unsigned int, unsigned int);
 extern unsigned int flash_region_is_erased(unsigned int, unsigned char *, int);
-extern int memcmp(const void*, const void*, unsigned long);
+extern int memcmp(const void *, const void *, size_t);
 extern int flash_calc_prev_ate_offset(int);
 extern int flash_write_byte_and_verify(int, void*, int);
 extern uint32_t flash_verify_write_at_current_offset(int, void*);

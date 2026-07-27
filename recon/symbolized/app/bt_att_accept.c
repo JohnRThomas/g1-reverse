@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_queue;
 /* readable reconstruction; identity: FUN_00058930 @ 0x00058930
  * public-name: bt_att_accept
  * durable-map: recon/catalogs/function_names_app.json
@@ -22,7 +23,7 @@ extern int k_mem_slab_alloc(int, int*, int, int);
 extern int k_current_get(int,...);
 extern int att_log_emit_3arg(int,...);
 #define z_impl_k_queue_init z_impl_k_queue_init
-extern void z_impl_k_queue_init(void *queue);
+extern void z_impl_k_queue_init(struct k_queue *);
 extern int memset_bytes(int,...);
 unsigned int bt_att_accept(int param_1, int *param_2)
 {

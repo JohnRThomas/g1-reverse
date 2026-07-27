@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_00085b0c @ 0x85b0c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int k_sleep(int,int);
+extern int32_t k_sleep(k_timeout_t);
 extern int* virtqueue_get_buffer(uint32_t,int*,void*,uint32_t,int);
 extern void mutex_lock_wait_forever_dup(int);
 extern int* rpmsg_virtio_shm_pool_get_buffer(unsigned int, unsigned int);

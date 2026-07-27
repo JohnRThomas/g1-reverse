@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_sem;
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_3          => struct g1_layout_net_buf__param_0172                    [param_0172; library]
  * Raw function identity: 0x000538f8.  See ../include/g1_recovered_layouts.h. */
@@ -27,7 +28,7 @@
 extern int net_buf_pool_get(unsigned);
 extern int net_buf_id(int);
 extern void net_buf_unref(void);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 extern void atomic_or(int);
 extern void bt_log_forward_3arg(unsigned,unsigned,void*);
 extern long atomic_and_3(volatile long*, long);

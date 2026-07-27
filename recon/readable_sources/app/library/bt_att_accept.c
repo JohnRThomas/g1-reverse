@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_queue;
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   local_1c         => struct g1_layout_bt_att_accept_locals__stack_1196       [stack_1196; G1-original]
  *   local_20         => struct g1_layout_bt_att_accept_local__stack_1197        [stack_1197; library]
@@ -26,7 +27,7 @@ extern int k_mem_slab_alloc(int, int*, int, int);
 extern int k_current_get(int,...);
 extern int att_log_emit_3arg(int,...);
 #define z_impl_k_queue_init z_impl_k_queue_init
-extern void z_impl_k_queue_init(void *queue);
+extern void z_impl_k_queue_init(struct k_queue *);
 extern int memset_bytes(int,...);
 unsigned int bt_att_accept(int param_1, int *param_2)
 {

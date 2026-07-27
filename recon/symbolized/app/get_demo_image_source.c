@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00036820 @ 0x00036820
  * public-name: get_demo_image_source
  * durable-map: recon/catalogs/function_names_app.json
@@ -31,13 +32,13 @@
 
 extern int get_device_info(void);
 extern void pixelto4bithex(unsigned int inverted_byte, int glyph_width);
-extern void *malloc(unsigned int size);
-extern void free(void *allocation);
-extern void printf(uint32_t message);
+extern void *malloc(size_t);
+extern void free(void *);
+extern int printf(const char *, ...);
 extern unsigned int ptr_load_u32(unsigned int *);
 extern void memcpy(int, int, int);
 extern void memset_bytes(void*, int, int);
-extern int strncmp(const void *header, uint32_t descriptor, unsigned int count);
+extern int strncmp(const char *, const char *, size_t);
 
 typedef int (*read_callback_t)(uintptr_t context, uint32_t address,
                                void *destination, unsigned int size);

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_sem;
 /* readable reconstruction; identity: FUN_00023c88 @ 0x00023c88
  * public-name: cleanDashBoardStartUpModeInfo
  * durable-map: recon/catalogs/function_names_app.json
@@ -20,7 +21,7 @@
 #include "../../../headers/g1_log.h"
 
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 
 struct startup_request {
   uint8_t opcode;

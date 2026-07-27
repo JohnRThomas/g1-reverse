@@ -1,3 +1,4 @@
+struct k_sem;
 /* readable reconstruction; identity: FUN_00018300 @ 0x00018300
  * public-name: ancs_conn_event_signal_and_mode
  * durable-map: recon/catalogs/function_names_app.json
@@ -11,7 +12,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_00018300 @ 0x18300  (parity: 300/300 trials, PROVEN) */
 
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 extern unsigned int change_work_mode_to(unsigned int);
 void ancs_conn_event_signal_and_mode(int param_1, unsigned int param_2)
 {

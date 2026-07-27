@@ -1,3 +1,4 @@
+struct k_sem;
 /* readable reconstruction; identity: FUN_00024420 @ 0x00024420
  * public-name: upgradeQuickNoteDataToFlash
  * durable-map: recon/catalogs/function_names_app.json
@@ -18,7 +19,7 @@
 /* Reconstructed upgradeQuickNoteDataToFlash @ 0x24420  (parity: 300/300 trials, PROVEN) */
 
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 
 int upgradeQuickNoteDataToFlash(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_0005c310 @ 0x0005c310
  * public-name: gatt_prepare_write_rsp
  * durable-map: recon/catalogs/function_names_app.json
@@ -22,7 +23,7 @@
 #include <stdint.h>
 extern void log_msg_create_3arg(uint32_t, uint32_t, const void *); /* logger */
 extern int gatt_req_send(void *, void *, void *, void *, uint32_t, uint32_t);
-extern int memcmp(const void *, const void *, uint32_t); /* memcmp */
+extern int memcmp(const void *, const void *, size_t); /* memcmp */
 extern int bt_gatt_write(void *, void *); /* bt_gatt_write */
 
 struct write_params_recovered {

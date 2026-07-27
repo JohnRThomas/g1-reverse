@@ -11,7 +11,7 @@
 /* Reconstructed FUN_0002ae84 @ 0x2ae84  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void k_sleep(unsigned int a, unsigned int b);
+extern int32_t k_sleep(k_timeout_t);
 typedef int (*fnptr)(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 
 int watchdog_feed_retry(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

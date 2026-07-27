@@ -1,3 +1,5 @@
+struct k_thread;
+struct k_sem;
 /* readable reconstruction; identity: FUN_0004d6ec @ 0x0004d6ec
  * public-name: log_process_thread
  * durable-map: recon/catalogs/function_names_app.json
@@ -27,11 +29,11 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 
-extern void assert_post_action(uint32_t, uint32_t) __attribute__((noreturn));
+extern void assert_post_action(const char *, unsigned int);
 extern uintptr_t log_msg_process(uint32_t, uint32_t);
 extern unsigned int activate_foreach_backend(unsigned int);
-extern uintptr_t k_current_get(void);
-extern void k_sem_give(uintptr_t);
+extern struct k_thread *k_current_get(void);
+extern void k_sem_give(struct k_sem *);
 extern uint64_t log_process(void);
 extern void z_impl_k_sem_take(uintptr_t, uint32_t, uint32_t, uint32_t);
 

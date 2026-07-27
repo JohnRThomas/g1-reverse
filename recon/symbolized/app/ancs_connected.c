@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_0001861c @ 0x0001861c
  * public-name: ancs_connected
  * durable-map: recon/catalogs/function_names_app.json
@@ -33,7 +34,7 @@ extern void bt_conn_disconnect_by_state(unsigned int, int);
 extern unsigned int k_uptime_get_32(void);
 extern int bt_conn_get_field_0x90(int);
 extern void bt_conn_le_param_update(int,unsigned);
-extern int memcmp(const void*, const void*, unsigned long);
+extern int memcmp(const void *, const void *, size_t);
 void ancs_connected(int param_1, int param_2)
 {
   unsigned char bVar1, bVar2;

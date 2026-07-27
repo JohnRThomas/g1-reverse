@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_bt_conn__param_0034                    [param_0034; library]
  * Raw function identity: 0x0001861c.  See ../include/g1_recovered_layouts.h. */
@@ -36,7 +37,7 @@ extern void bt_conn_disconnect_by_state(unsigned int, int);
 extern unsigned int k_uptime_get_32(void);
 extern int bt_conn_get_field_0x90(int);
 extern void bt_conn_le_param_update(int,unsigned);
-extern int memcmp(const void*, const void*, unsigned long);
+extern int memcmp(const void *, const void *, size_t);
 void ancs_connected(int param_1, int param_2)
 {
   unsigned char bVar1, bVar2;

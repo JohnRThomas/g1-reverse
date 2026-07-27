@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_thread;
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_bt_att_chan__param_0227                [param_0227; library]
  * Raw function identity: 0x000585f0.  See ../include/g1_recovered_layouts.h. */
@@ -38,7 +39,7 @@ extern int net_buf_ref(void);
 extern int net_buf_simple_reserve(int,int);
 extern int net_buf_simple_add(int,int);
 extern int net_buf_pool_get_727ac(int);
-extern int k_current_get(void);
+extern struct k_thread *k_current_get(void);
 extern void assert_post_action(const char *, unsigned int);
 extern int att_create_pdu_reserve4(int,int,int,int);
 extern int att_log_emit_3arg(int,int,void*);

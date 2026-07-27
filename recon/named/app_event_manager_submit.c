@@ -1,3 +1,5 @@
+struct k_spinlock;
+struct k_work;
 /* readable reconstruction; identity: FUN_0004f770 @ 0x0004f770
  * public-name: app_event_manager_submit
  * durable-map: recon/catalogs/function_names_app.json
@@ -30,10 +32,10 @@
 #include <cmsis_gcc.h>
 #include "../headers/g1_log.h"
 
-extern int z_spin_lock_valid(unsigned int*);
-extern int z_spin_unlock_valid(uintptr_t lock);
-extern int z_spin_lock_set_owner(unsigned int*);
-extern void k_work_submit(int);
+extern _Bool z_spin_lock_valid(struct k_spinlock *);
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);
+extern void z_spin_lock_set_owner(struct k_spinlock *);
+extern int k_work_submit(struct k_work *);
 extern void assert_post_action(uintptr_t file, uint32_t line) __attribute__((noreturn));
 
 void app_event_manager_submit(uint32_t *item)

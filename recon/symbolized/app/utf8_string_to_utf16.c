@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_000478d8 @ 0x000478d8
  * public-name: utf8_string_to_utf16
  * durable-map: recon/catalogs/function_names_app.json
@@ -13,7 +14,7 @@
 /* Reconstructed FUN_000478d8 @ 0x478d8  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*, int, int);
-extern int strlen(int);
+extern size_t strlen(const char *);
 extern int utf8_decode_to_utf16_buffer(int, int, int, int);
 
 void* utf8_string_to_utf16(unsigned int param_1, unsigned short*param_2) {

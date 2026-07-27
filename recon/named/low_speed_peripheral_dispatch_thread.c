@@ -69,7 +69,7 @@ extern int disable_watchdog(void);
 extern void watchdog_feed_retry(void);
 extern void errno_wrapped_tick_call(uint8_t *, uint32_t);
 extern unsigned long long k_uptime_get_1(void);
-extern void k_msleep(uint32_t);
+extern int32_t k_msleep(int32_t);
 extern unsigned long sys_reboot(long);
 extern void wait_for_event(uint32_t, uint32_t);
 extern int get_dashboard_startup_mode_field63(void);

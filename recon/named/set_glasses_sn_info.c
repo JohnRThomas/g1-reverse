@@ -1,3 +1,4 @@
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00031ee8 @ 0x00031ee8
  * public-name: set_glasses_sn_info
  * durable-map: recon/catalogs/function_names_app.json
@@ -32,9 +33,9 @@ extern int build_and_send_device_status_report(int,int);
 extern unsigned int get_product_code_buf(void);
 extern int store_product_code_info(int);
 extern int read_sys_settting_from_flash(void*);
-extern int printf(int,int);
+extern int printf(const char *, ...);
 extern void k_msleep_ticks32768_b(int);
-extern int memcmp(const void*, const void*, unsigned long);
+extern int memcmp(const void *, const void *, size_t);
 
 uint32_t set_glasses_sn_info(int param_1, uint32_t param_2, uint32_t *param_3, uint8_t *param_4){
     uint32_t uVar1;

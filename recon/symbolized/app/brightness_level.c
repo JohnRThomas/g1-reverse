@@ -44,7 +44,7 @@ extern void z_impl_k_sem_take(uintptr_t,uintptr_t,uint32_t,uint32_t);
 extern int get_device_info(void);
 extern void update_burial_point_to_flash(void);
 extern void get_demo_image_source_from_flash(void);
-extern void k_sleep(uint32_t,uint32_t);
+extern int32_t k_sleep(k_timeout_t);
 extern unsigned int change_work_mode_to(unsigned int);
 extern void set_shutdown_flag(uintptr_t,uint32_t);
 extern unsigned int rproc_virtio_negotiate_features(void*, unsigned int);

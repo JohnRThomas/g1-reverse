@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00064640 @ 0x00064640
  * public-name: cjson_strdup
  * durable-map: recon/catalogs/function_names_app.json
@@ -11,7 +12,7 @@
  */
 /* Reconstructed FUN_00064640 @ 0x64640  (parity: 300/300 trials, PROVEN) */
 
-extern int strlen(int);
+extern size_t strlen(const char *);
 extern void memcpy(int, int, int);
 
 int cjson_strdup(int param_1)

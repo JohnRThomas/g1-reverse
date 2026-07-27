@@ -1,4 +1,7 @@
 #include "g1_app_symbols.h"
+struct k_sem;
+struct k_work_delayable;
+struct k_queue;
 /* readable reconstruction; identity: FUN_00056704 @ 0x00056704
  * public-name: ble_conn_set_state
  * durable-map: recon/catalogs/function_names_app.json
@@ -37,14 +40,14 @@ extern void tx_notify(int);
 extern void net_buf_destroy(int,void*,uint32_t,uint32_t);
 extern void ble_conn_ref(unsigned long);
 extern void ble_conn_unref(int);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 extern void k_work_schedule(unsigned int, unsigned int, unsigned int, unsigned int);
-extern uint32_t k_work_cancel_delayable(int);
+extern int k_work_cancel_delayable(struct k_work_delayable *);
 extern void poll_signal_event_locked(uint32_t,int);
 extern void bt_conn_call_4arg_zero(uint32_t,uint32_t,void*);
 #define z_impl_k_queue_init z_impl_k_queue_init
-extern void z_impl_k_queue_init(void *queue);
-extern uint32_t k_work_delayable_busy_get(int);
+extern void z_impl_k_queue_init(struct k_queue *);
+extern int k_work_delayable_busy_get(const struct k_work_delayable *);
 
 void ble_conn_set_state(int param_1, uint param_2)
 {

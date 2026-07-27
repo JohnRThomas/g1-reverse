@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_mutex;
 /* readable reconstruction; identity: FUN_000476a8 @ 0x000476a8
  * public-name: projector_bus_unlock
  * durable-map: recon/catalogs/function_names_app.json
@@ -11,7 +12,7 @@
 /* Reconstructed FUN_000476a8 @ 0x476a8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int k_mutex_unlock(unsigned int);
+extern int k_mutex_unlock(struct k_mutex *);
 void projector_bus_unlock(void) {
     k_mutex_unlock(((unsigned long)&g_projector_bus_lock) /*=0x2000a060*/);
 }

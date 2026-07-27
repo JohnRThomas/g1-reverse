@@ -1,3 +1,4 @@
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00034bd4 @ 0x00034bd4
  * public-name: is_on_whitelist_by_identifier
  * durable-map: recon/catalogs/function_names_app.json
@@ -30,9 +31,9 @@
 
 #include <stdint.h>
 #include "../headers/g1_log.h"
-extern int strlen(int);
+extern size_t strlen(const char *);
 extern int strncmp(const void*, unsigned long, unsigned int);
-extern int strstr(const void *,int);
+extern char *strstr(const char *, const char *);
 
 int is_on_whitelist_by_identifier(int param_1){
     volatile int *g = (volatile int*)0x20007554UL;

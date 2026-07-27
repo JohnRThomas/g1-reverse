@@ -1,3 +1,4 @@
+struct _reent;
 /* readable reconstruction; identity: FUN_00077c8c @ 0x00077c8c
  * public-name: __swbuf_r
  * durable-map: recon/catalogs/function_names_app.json
@@ -16,7 +17,7 @@ struct newlib_file {
     int32_t line_buffer_size;
 };
 
-extern void __sinit(void *reent); /* FUN_00076bcc */
+extern void __sinit(struct _reent *); /* FUN_00076bcc */
 extern int __swsetup_r(void *reent, struct newlib_file *file); /* FUN_00077d54 */
 extern int _fflush_r(void *reent, struct newlib_file *file); /* FUN_00076ad0 */
 

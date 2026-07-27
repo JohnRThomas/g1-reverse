@@ -1,4 +1,6 @@
 #include "g1_app_symbols.h"
+struct sys_heap;
+#include <stddef.h>
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_k_heap_init_ctx__param_0724            [param_0724; G1-original]
  * Raw function identity: 0x000863aa.  See ../include/g1_recovered_layouts.h. */
@@ -11,7 +13,7 @@
  */
 /* Reconstructed FUN_000863aa @ 0x863aa. CFG_VERIFY_CALL_ARITIES=3 */
 #include <stdint.h>
-extern void sys_heap_init(unsigned long*, void*, unsigned long);
+extern void sys_heap_init(struct sys_heap *, void *, size_t);
 
 void g1_recon_k_heap_init(unsigned int *param_1, int param_2, int param_3)
 {

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_sem;
 #include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00023bfc @ 0x00023bfc
  * public-name: upgradeDashboardStartupModeInfoToFlash
@@ -18,7 +19,7 @@
  */
 /* Reconstructed upgradeDashboardStartupModeInfoToFlash @ 0x23bfc  (parity: 300/300 trials, PROVEN) */
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 
 unsigned int upgradeDashboardStartupModeInfoToFlash(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

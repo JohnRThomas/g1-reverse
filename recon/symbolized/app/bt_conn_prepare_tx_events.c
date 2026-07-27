@@ -1,4 +1,7 @@
 #include "g1_app_symbols.h"
+struct k_poll_signal;
+struct k_poll_event;
+#include <stdint.h>
 /* readable reconstruction; identity: FUN_000565c4 @ 0x000565c4
  * public-name: bt_conn_prepare_tx_events
  * durable-map: recon/catalogs/function_names_app.json
@@ -19,8 +22,8 @@
  */
 /* Reconstructed FUN_000565c4 @ 0x565c4  (parity: 300/300 trials, PROVEN) */
 
-extern void z_impl_k_poll_signal_init(int);
-extern void k_poll_event_init(unsigned char*, unsigned long, unsigned long, unsigned int);
+extern void z_impl_k_poll_signal_init(struct k_poll_signal *);
+extern void k_poll_event_init(struct k_poll_event *, uint32_t,  int,  void *);
 extern void bt_conn_tx_drain_and_reset(void*);
 extern int atomic_and_2(volatile long*, long);
 int bt_conn_prepare_tx_events(int param_1){

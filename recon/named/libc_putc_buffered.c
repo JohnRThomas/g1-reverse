@@ -1,3 +1,5 @@
+struct _reent;
+#include <stdio.h>
 /* readable reconstruction; identity: FUN_00086c88 @ 0x00086c88
  * public-name: libc_putc_buffered
  * durable-map: recon/catalogs/function_names_app.json
@@ -5,7 +7,7 @@
  *   libc_putc_buffered                       <= FUN_00086c88 @ 0x00086c88
  */
 /* Reconstructed FUN_00086c88 @ 0x86c88  (parity: 300/300 trials, PROVEN) */
-extern unsigned __swbuf_r(int,unsigned,int*);
+extern int __swbuf_r(struct _reent *, int,  FILE *);
 unsigned libc_putc_buffered(int param_1, unsigned param_2, int *param_3){
   int iVar4 = param_3[2] - 1;
   *(volatile int*)(param_3 + 2) = iVar4;

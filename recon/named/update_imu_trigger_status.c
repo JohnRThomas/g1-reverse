@@ -1,3 +1,4 @@
+struct k_sem;
 /* readable reconstruction; identity: FUN_0002bcbc @ 0x0002bcbc
  * public-name: update_imu_trigger_status
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,7 +15,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed update_imu_trigger_status @ 0x2bcbc  (parity: 300/300 trials, PROVEN) */
 
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 
 unsigned int update_imu_trigger_status(unsigned int param_1, int param_2, int param_3)
 {

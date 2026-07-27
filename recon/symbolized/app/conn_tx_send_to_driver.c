@@ -28,7 +28,7 @@ extern int net_buf_simple_push(void);
 extern void net_buf_simple_pull_5f558(void);
 extern void k_sem_give(void);
 extern int z_impl_k_sem_take(void);
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 extern void printk(unsigned long, ...);
 extern void sys_slist_find_and_remove(void);
 extern void bt_conn_call_4arg_zero(void);

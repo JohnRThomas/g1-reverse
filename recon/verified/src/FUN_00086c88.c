@@ -1,5 +1,7 @@
+struct _reent;
+#include <stdio.h>
 /* Reconstructed FUN_00086c88 @ 0x86c88  (parity: 300/300 trials, PROVEN) */
-extern unsigned __swbuf_r(int,unsigned,int*);
+extern int __swbuf_r(struct _reent *, int,  FILE *);
 unsigned FUN_00086c88(int param_1, unsigned param_2, int *param_3){
   int iVar4 = param_3[2] - 1;
   *(volatile int*)(param_3 + 2) = iVar4;

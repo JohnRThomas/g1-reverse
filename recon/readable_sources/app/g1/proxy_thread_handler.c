@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct device;
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_proxy_thread_ctx__param_0122           [param_0122; G1-original]
  *   local_40         => struct g1_layout_proxy_thread_locals__stack_1042        [stack_1042; G1-original]
@@ -147,7 +148,7 @@ extern int get_proxy_timestamp();
 extern int receive_proxy_message();
 extern int reschedule_after_power_event();
 extern int wait_for_proxy_event();
-extern int device_is_ready();
+extern _Bool device_is_ready(const struct device *);
 extern int copy_bytes();
 extern int checked_copy_bytes();
 extern int clear_bytes();

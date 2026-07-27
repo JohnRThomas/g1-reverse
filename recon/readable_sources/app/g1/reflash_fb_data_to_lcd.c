@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_mutex;
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   local_38         => struct g1_layout_lcd_fb_xfer_local__stack_1036          [stack_1036; G1-original]
  * Raw function identity: 0x00047260.  See ../include/g1_recovered_layouts.h. */
@@ -25,7 +26,7 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 extern int k_mutex_lock(int,...);
-extern int k_mutex_unlock(unsigned int);
+extern int k_mutex_unlock(struct k_mutex *);
 extern long long get_projector_controller(void);
 extern void delay_ms(int);
 extern int projector_send_cmd_immediate(int,...);

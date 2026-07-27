@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_000826b2 @ 0x000826b2
  * public-name: bt_addr_le_eq_0
  * durable-map: recon/catalogs/function_names_app.json
@@ -8,7 +9,7 @@
 /* Reconstructed bt_addr_le_eq_0 @ 0x826b2  (CFG-directed candidate) */
 #include <stdbool.h>
 #include <stdint.h>
-extern int memcmp(const void *a, const void *b, uint32_t len);
+extern int memcmp(const void *, const void *, size_t);
 int bt_addr_le_eq_0(void*a, unsigned int b) {
     return memcmp(a, b, 7u) == 0;
 }

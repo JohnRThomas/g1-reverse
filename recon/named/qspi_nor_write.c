@@ -1,3 +1,4 @@
+struct k_sem;
 /* readable reconstruction; identity: FUN_00060f20 @ 0x00060f20
  * public-name: qspi_nor_write
  * durable-map: recon/catalogs/function_names_app.json
@@ -27,7 +28,7 @@ extern int qspi_get_zephyr_ret_code(int);
 extern void qspi_nor_lock_if_magic(unsigned int, unsigned int);
 extern int qspi_nor_acquire(int,...);
 extern void qspi_nor_suspend_bus(unsigned char*);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 extern int qspi_log_forward(int,...);
 extern int audio_stream_stop_and_wait(int,...);
 extern int audio_i2s_stop_and_reset_channels(int,...);

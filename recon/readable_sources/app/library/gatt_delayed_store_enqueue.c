@@ -29,7 +29,7 @@
 #include "../../../headers/g1_log.h"
 extern int find_sc_cfg_59b94(uint32_t,uint32_t);
 extern void k_work_reschedule(uint32_t,uint32_t,int,int);
-extern void assert_post_action(uint32_t,int);
+extern void assert_post_action(const char *, unsigned int);
 extern int bt_addr_le_is_bonded(void);
 extern uint64_t atomic_or_0(int,uint32_t);
 extern int read_struct_first_word(uint32_t);

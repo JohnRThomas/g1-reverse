@@ -16,7 +16,7 @@
 
 #include <stdint.h>
 extern uint8_t* find_cf_cfg(void);
-extern void bt_addr_le_copy_828da(unsigned long*, unsigned long*);
+extern void bt_addr_le_copy_828da(void*, const void*);
 extern void log_msg_create_3arg(uint32_t, int, void*);
 extern void set_change_aware(void*, int);
 

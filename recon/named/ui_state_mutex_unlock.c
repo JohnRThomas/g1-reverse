@@ -1,3 +1,4 @@
+struct k_mutex;
 /* readable reconstruction; identity: FUN_00026850 @ 0x00026850
  * public-name: ui_state_mutex_unlock
  * durable-map: recon/catalogs/function_names_app.json
@@ -9,7 +10,7 @@
  */
 /* Reconstructed FUN_00026850 @ 0x26850  (parity: 300/300 trials, PROVEN) */
 
-extern int k_mutex_unlock(unsigned int);
+extern int k_mutex_unlock(struct k_mutex *);
 void ui_state_mutex_unlock(void) {
     k_mutex_unlock(0x20007b3cUL);
 }

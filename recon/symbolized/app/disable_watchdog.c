@@ -17,7 +17,7 @@
  */
 /* Reconstructed disable_watchdog @ 0x2aeb4  (parity: 151/300 trials, PROVEN) */
 
-extern void k_sleep(unsigned int, unsigned int);
+extern int32_t k_sleep(k_timeout_t);
 
 typedef int (*fp_t)(unsigned int);
 

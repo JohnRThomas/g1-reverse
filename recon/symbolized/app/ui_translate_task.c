@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_mutex;
 /* readable reconstruction; identity: FUN_0003fecc @ 0x0003fecc
  * public-name: ui_translate_task
  * durable-map: recon/catalogs/function_names_app.json
@@ -64,7 +65,7 @@ extern uint64_t memset_bytes(void *destination, uint32_t value, uint32_t length)
 extern void *memcpy(void *destination, const void *source, uint32_t length);
 extern uint32_t k_mutex_lock(void *lock, uint32_t key, uint32_t timeout_low,
                             uint32_t timeout_high);
-extern uint32_t k_mutex_unlock(void *lock);
+extern int k_mutex_unlock(struct k_mutex *);
 extern int snprintf(void *destination, uint32_t length,
                        const char *format, ...);
 extern uint32_t get_timestamp(void);

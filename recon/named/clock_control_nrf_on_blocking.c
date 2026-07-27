@@ -29,7 +29,7 @@ extern int onoff_request_enqueue(uintptr_t);
 extern void assert_post_action(uintptr_t, uint32_t) __attribute__((noreturn));
 extern int k_is_in_isr(void);
 extern void arch_cpu_atomic_idle(uint32_t);
-extern void k_sleep(uint32_t, uint32_t);
+extern int32_t k_sleep(k_timeout_t);
 
 void clock_control_nrf_on_blocking(uint32_t mode)
 {

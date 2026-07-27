@@ -36,7 +36,7 @@ extern uint32_t get_message_pool_index(void);
 extern uint32_t msg_content_recalc_unread(void);
 extern uint32_t pull_message(uintptr_t *message);
 extern void render_ancs_notification_animation(void *framebuffer, uint32_t message_index);
-extern void draw_message(uint32_t message_index, uintptr_t message);
+extern void draw_message(unsigned long, int);
 
 #define LOG_ROUTE (*(volatile uint32_t *)0x20007554u)
 #define LAST_GROUP (*(volatile uint8_t *)0x200033d3u)

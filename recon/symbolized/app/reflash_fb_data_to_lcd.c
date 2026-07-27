@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_mutex;
 /* readable reconstruction; identity: FUN_00047260 @ 0x00047260
  * public-name: reflash_fb_data_to_lcd
  * durable-map: recon/catalogs/function_names_app.json
@@ -22,7 +23,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 extern int k_mutex_lock(int,...);
-extern int k_mutex_unlock(unsigned int);
+extern int k_mutex_unlock(struct k_mutex *);
 extern long long get_projector_controller(void);
 extern void delay_ms(int);
 extern int projector_send_cmd_immediate(int,...);

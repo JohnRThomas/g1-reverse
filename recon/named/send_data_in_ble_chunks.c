@@ -1,3 +1,4 @@
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_0003384c @ 0x0003384c
  * public-name: send_data_in_ble_chunks
  * durable-map: recon/catalogs/function_names_app.json
@@ -18,10 +19,10 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 
-extern int strlen(int);
+extern size_t strlen(const char *);
 extern int get_device_info(void);
 extern unsigned long send_notification_app_whitelist(unsigned char*, const char*, const char*, unsigned long);
-extern int strncmp(const void*, unsigned long, unsigned int);
+extern int strncmp(const char *, const char *, size_t);
 
 void send_data_in_ble_chunks(const uint8_t *request)
 {

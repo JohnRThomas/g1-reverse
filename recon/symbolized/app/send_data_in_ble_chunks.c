@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_0003384c @ 0x0003384c
  * public-name: send_data_in_ble_chunks
  * durable-map: recon/catalogs/function_names_app.json
@@ -19,10 +20,10 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern int strlen(int);
+extern size_t strlen(const char *);
 extern int get_device_info(void);
 extern unsigned long send_notification_app_whitelist(unsigned char*, const char*, const char*, unsigned long);
-extern int strncmp(const void*, unsigned long, unsigned int);
+extern int strncmp(const char *, const char *, size_t);
 
 /* G7-B2 defect fix.  The body was `uint32_t` and `return`ed the result of the
  * logging call.  Both sinks are `void` (recon/headers/g1_log.h), and the

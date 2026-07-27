@@ -1,3 +1,5 @@
+struct device;
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00022834 @ 0x00022834
  * public-name: write_font_to_flash_with_verify
  * durable-map: recon/catalogs/function_names_app.json
@@ -22,9 +24,9 @@
 
 typedef int (*codeptr)(int,...);
 extern int get_device_info(void);
-extern int k_sleep(int,int);
-extern int z_device_is_ready(int);
-extern int memcmp(const void*, const void*, unsigned long);
+extern int32_t k_sleep(k_timeout_t);
+extern _Bool z_device_is_ready(const struct device *);
+extern int memcmp(const void *, const void *, size_t);
 extern void memset_bytes(void*, int, int);
 
 int write_font_to_flash_with_verify(int param_1, int param_2, int param_3)

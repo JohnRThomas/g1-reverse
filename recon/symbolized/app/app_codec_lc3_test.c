@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct device;
 /* readable reconstruction; identity: FUN_0002ed68 @ 0x0002ed68
  * public-name: app_codec_lc3_test
  * durable-map: recon/catalogs/function_names_app.json
@@ -47,7 +48,7 @@ extern unsigned lc3_setup_encoder(int a, int b, int c, int d);
 extern int lc3_encode(unsigned a, int b, int c, int d, int e, int f, unsigned g, int h);
 extern int malloc(unsigned a);
 extern void free(int a);
-extern int z_device_is_ready(int a);
+extern _Bool z_device_is_ready(const struct device *);
 
 void app_codec_lc3_test(int param_1, int param_2)
 {

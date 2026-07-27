@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00024684 @ 0x00024684
  * public-name: getQuickNoteBKPQueueCacheData
  * durable-map: recon/catalogs/function_names_app.json
@@ -38,7 +39,7 @@ extern int k_msgq_get(void *queue, void *request, uint32_t timeout,
                         uint32_t flags);
 extern int z_device_is_ready(const void *object);
 extern void memset_bytes(void *destination, int value, uint32_t length);
-extern int memcmp(const void *left, const void *right, uint32_t length);
+extern int memcmp(const void *, const void *, size_t);
 extern void memcpy(void *destination, const void *source, uint32_t length);
 extern uint8_t *get_device_info(void);
 extern void reset_touch_selection_state(void);

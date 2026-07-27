@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_mem_slab;
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_3          => struct g1_layout_audio_fw_load_msg__param_0039          [param_0039; G1-original]
  *   param_2          => struct g1_layout_uart_event_data__param_0095            [param_0095; G1-original]
@@ -38,8 +39,8 @@
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
 extern int k_mem_slab_alloc(int, int*, int, int);
-extern void k_mem_slab_free(int,int);
-extern int assert_post_action(int, int);
+extern void k_mem_slab_free(struct k_mem_slab *, void *);
+extern void assert_post_action(const char *, unsigned int);
 extern void printk(unsigned long, ...);
 extern void memcpy(int, int, int);
 extern void memset_bytes(void*,int,int);

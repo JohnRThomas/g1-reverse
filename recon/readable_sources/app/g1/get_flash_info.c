@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct device;
 /* readable reconstruction; identity: FUN_00032628 @ 0x00032628
  * public-name: get_flash_info
  * durable-map: recon/catalogs/function_names_app.json
@@ -26,7 +27,7 @@
 #include "../../../headers/g1_log.h"
 extern int get_device_info(void);
 extern int device_api_call_slot0(int,int,int,int,void*);
-extern int z_device_is_ready(int);
+extern _Bool z_device_is_ready(const struct device *);
 extern void memcpy(int, int, int);
 
 uint32_t get_flash_info(int param_1, uint32_t param_2, uint32_t *param_3, uint8_t *param_4){

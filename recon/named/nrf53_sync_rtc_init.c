@@ -22,7 +22,7 @@ extern void nrf53_ipc_channel_configure(uint32_t,uint32_t,uint32_t,int);
 extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern int rtc_timer_channel_alloc(void);
 extern void nrfx_gppi_channels_enable(uint32_t);
-extern int flag32_channel_alloc_wrapper(void*);
+extern int flag32_channel_alloc_wrapper(int);
 extern void dppi_channel_disable_and_free(uint32_t);
 
 typedef int (*rtc_setup_callback_t)(void *, uint32_t, uintptr_t, uint32_t);

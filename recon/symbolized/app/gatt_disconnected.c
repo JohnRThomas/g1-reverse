@@ -19,7 +19,7 @@ extern int find_cf_cfg_by_addr(int,int);
 extern void bt_gatt_store_cf(unsigned int, unsigned int);
 extern int bt_gatt_store_ccc(unsigned int, unsigned int);
 extern int bt_addr_le_is_bonded(unsigned char, const void*);
-extern void bt_addr_le_copy_828da(unsigned long*, unsigned long*);
+extern void bt_addr_le_copy_828da(void*, const void*);
 extern void bt_gatt_foreach_attr_0(unsigned short, unsigned short, void*, void*);
 void gatt_disconnected(int param_1, uint32_t param_2, uint32_t param_3){
   int iVar3 = param_1 + 0x90;

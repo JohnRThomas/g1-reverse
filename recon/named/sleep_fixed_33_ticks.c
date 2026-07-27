@@ -1,3 +1,4 @@
+#include <stdint.h>
 /* readable reconstruction; identity: FUN_0007c87a @ 0x0007c87a
  * public-name: sleep_fixed_33_ticks
  * durable-map: recon/catalogs/function_names_app.json
@@ -7,7 +8,7 @@
  */
 /* Reconstructed FUN_0007c87a @ 0x7c87a  (parity: 300/300 trials, PROVEN) */
 
-extern void k_sleep(unsigned int, unsigned int);
+extern int32_t k_sleep(k_timeout_t);
 void sleep_fixed_33_ticks(void)
 {
     k_sleep(0x21, 0);

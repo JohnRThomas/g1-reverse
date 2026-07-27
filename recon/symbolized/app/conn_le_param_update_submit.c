@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_work_delayable;
 /* readable reconstruction; identity: FUN_00080c46 @ 0x00080c46
  * public-name: conn_le_param_update_submit
  * durable-map: recon/catalogs/function_names_app.json
@@ -14,7 +15,7 @@
 extern int* active_transfer_conn_match(int);
 extern long long bt_conn_le_param_update(unsigned int);
 extern void k_work_reschedule(unsigned int, unsigned int, unsigned int, unsigned int);
-extern void k_work_cancel_delayable(int);
+extern int k_work_cancel_delayable(struct k_work_delayable *);
 
 void conn_le_param_update_submit(unsigned int param_1)
 {

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_0007c20a @ 0x0007c20a
  * public-name: ble_flush_queued_indications
  * durable-map: recon/catalogs/function_names_app.json
@@ -12,7 +13,7 @@
 
 extern void memset_bytes(void*, int, int);
 extern int dequeue_debug(unsigned int);
-extern int strlen(int);
+extern size_t strlen(const char *);
 
 unsigned int ble_flush_queued_indications(int param_1)
 {

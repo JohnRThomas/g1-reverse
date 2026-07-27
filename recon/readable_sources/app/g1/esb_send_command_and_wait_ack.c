@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_g1_device_runtime_state__param_0027    [param_0027; G1-original]
  * Raw function identity: 0x00027448.  See ../include/g1_recovered_layouts.h. */
@@ -23,8 +24,8 @@
 #include <stdint.h>
 
 extern int is_battery_critical(void);
-extern void k_msleep(int32_t);
-extern int memcmp(const void*, const void*, unsigned long);
+extern int32_t k_msleep(int32_t);
+extern int memcmp(const void *, const void *, size_t);
 extern void memcpy(int, int, int);
 extern void safe_memcpy_checked(void *a, void *b, uint32_t c, uint32_t d);
 extern void memset_bytes(void*, int, int);

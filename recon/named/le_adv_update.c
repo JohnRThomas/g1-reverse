@@ -1,3 +1,4 @@
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_000811ce @ 0x000811ce
  * public-name: le_adv_update
  * durable-map: recon/catalogs/function_names_app.json
@@ -10,7 +11,7 @@
  */
 /* Reconstructed FUN_000811ce @ 0x811ce. */
 #include <stdint.h>
-extern int strlen(int);
+extern size_t strlen(const char *);
 extern unsigned int bt_dev_get(void);
 extern int hci_set_ad(int,void*,int);
 extern void memset_bytes(void*,int,int);

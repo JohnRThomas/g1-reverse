@@ -1,3 +1,4 @@
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_0003727c @ 0x0003727c
  * public-name: DashBoard_Reflash
  * durable-map: recon/catalogs/function_names_app.json
@@ -98,7 +99,7 @@ typedef uint64_t undefined8; typedef uint64_t ulonglong;
 typedef int64_t longlong;
 #define CONCAT11(a,b) ((ushort)(((ushort)(uint8_t)(a)<<8)|(uint8_t)(b)))
 #define CONCAT22(a,b) ((uint)(((uint)(ushort)(a)<<16)|(ushort)(b)))
-extern long long strlen(int, ...);
+extern size_t strlen(const char *);
 extern long long get_device_info(int, ...);
 extern long long get_ui_mode_flag_byte1(int, ...);
 extern long long check_charging_and_touch_flags(int, ...);

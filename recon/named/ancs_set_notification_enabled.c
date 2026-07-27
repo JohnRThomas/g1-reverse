@@ -1,3 +1,4 @@
+struct k_sem;
 /* readable reconstruction; identity: FUN_00019ac0 @ 0x00019ac0
  * public-name: ancs_set_notification_enabled
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,7 +16,7 @@
 extern int get_device_info(void);
 extern void ancs_discover_start(uint32_t);
 extern void ancs_cancel_timers(void);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 int ancs_set_notification_enabled(int param_1){
   int iVar1;
   ancs_cancel_timers();

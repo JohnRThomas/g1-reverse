@@ -1,3 +1,5 @@
+struct _reent;
+#include <stddef.h>
 /* app-core _puts_r @ 0x00077820.
  * Exact reachable code is [0x00077820,0x000778c2), 162 bytes. The NOP at
  * 0x000778c2 is alignment; literals occupy [0x000778c4,0x000778d4), and
@@ -9,7 +11,7 @@ extern uint32_t strlen(const char *text); /* FUN_0000ef12@0x0000ef12 */
 #define g1_recon_retarget_lock_release_recursive FUN_00051134
 extern void g1_recon_retarget_lock_acquire_recursive(uint32_t lock); /* FUN_000510fc@0x000510fc */
 extern void g1_recon_retarget_lock_release_recursive(uint32_t lock); /* FUN_00051134@0x00051134 */
-extern void __sinit(void *reent); /* FUN_00076bcc@0x00076bcc */
+extern void __sinit(struct _reent *); /* FUN_00076bcc@0x00076bcc */
 extern int __sfvwrite_r(void *reent, void *stream, void *uio); /* FUN_00077e70@0x00077e70 */
 
 struct __siov_local {

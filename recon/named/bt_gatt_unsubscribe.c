@@ -25,7 +25,7 @@ extern int assert_post_action(int, int);
 extern int gatt_find_conn_in_known_table(void);
 extern int gatt_sub_free(int);
 extern int gatt_write_ccc(void *, unsigned char *);
-extern int read_struct_first_word(unsigned long);
+extern unsigned int read_struct_first_word(unsigned int*);
 extern void sys_slist_find_and_remove_0(int,int*);
 extern void bt_gatt_cancel(int,int*);
 typedef int (*codef)(int,int*,int);

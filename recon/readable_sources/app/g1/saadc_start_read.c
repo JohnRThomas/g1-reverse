@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_sem;
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   0x0005f95c       => struct g1_layout_saadc_read_state__global_1271          [global_1271; G1-original]
  *   param_2          => struct g1_layout_conn_tx_saadc_ctx__param_0205          [param_0205; G1-original]
@@ -39,7 +40,7 @@ typedef unsigned int undefined4;
 extern u64 __aeabi_uldivmod(int a, int b, u32 c, u32 d);
 extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern u64 adc_context_start_sampling(u32 a);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 extern int z_impl_k_sem_take(u32 a, void *b, u32 c, u32 d);
 extern u64 z_impl_k_timer_start(void *a, int b, u32 c, u32 d);
 

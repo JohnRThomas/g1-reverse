@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   local_2c         => struct g1_layout_gui_draw_point__stack_1033             [stack_1033; G1-original]
  * Raw function identity: 0x000455cc.  See ../include/g1_recovered_layouts.h. */
@@ -26,7 +27,7 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 
-extern int strlen(int);
+extern size_t strlen(const char *);
 extern int atomic_get_3_0(void);
 extern int get_device_info(void);
 extern void clean_fb_data(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);

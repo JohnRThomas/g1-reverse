@@ -1,3 +1,4 @@
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00023014 @ 0x00023014
  * public-name: update_burial_point_to_flash
  * durable-map: recon/catalogs/function_names_app.json
@@ -19,7 +20,7 @@
 
 extern int flash_settings_read(unsigned long, void*, unsigned long);
 extern int flash_settings_write_and_verify(unsigned int a, void *b, unsigned int n);
-extern int memcmp(const void*, const void*, unsigned long);
+extern int memcmp(const void *, const void *, size_t);
 extern void memset_bytes(void *dst, int val, int n);
 
 unsigned int update_burial_point_to_flash(char *param_1)

@@ -1,3 +1,5 @@
+struct k_sem;
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00017f70 @ 0x00017f70
  * public-name: random
  * durable-map: recon/catalogs/function_names_app.json
@@ -37,9 +39,9 @@ typedef unsigned char undefined1;
 typedef unsigned undefined4;
 extern int get_device_info(void);
 extern void enqueue_bt_data(void *a, uint b);
-extern void k_sem_give(int a);
+extern void k_sem_give(struct k_sem *);
 extern void set_shutdown_flag(unsigned a, int b);
-extern void snprintk(void *a, int b, unsigned c, ...);
+extern int snprintk(char *, size_t,  const char *, ...);
 extern void FUN_00081526_dummy(void);
 extern int bt_conn_get_field_0x90(int);
 extern void memcpy(int, int, int);

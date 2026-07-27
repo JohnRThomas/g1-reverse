@@ -28,7 +28,7 @@ extern int get_device_info(void);                        /* FUN_000167a8 */
 /* FUN_00019c70 */
 extern void trigger_touch_key_hw_reset(void);                  /* FUN_0002a0c0 */
 extern void handle_touch_key_irq(void);                        /* FUN_00030af0 */
-extern void k_msleep(int32_t milliseconds);                    /* FUN_0007cb8e */
+extern int32_t k_msleep(int32_t);                    /* FUN_0007cb8e */
 extern void read_rtc_counter_ms(void *destination);            /* FUN_0007d0aa */
 extern int32_t get_uptime_ms(void);                            /* FUN_00086690 */
 extern int k_sem_take(void *semaphore, int64_t timeout);       /* FUN_0007cb48 */

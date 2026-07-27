@@ -1,3 +1,4 @@
+struct k_sem;
 /* readable reconstruction; identity: FUN_000430c0 @ 0x000430c0
  * public-name: ui_raster_height_task
  * durable-map: recon/catalogs/function_names_app.json
@@ -24,7 +25,7 @@ extern int get_device_info(void);
 extern void ui_DashBoard_task(uint32_t, uint32_t, int);
 extern void cal_panel_canvas_coord(int, int);
 extern void gui_screen_clear(void);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 
 unsigned int ui_raster_height_task(unsigned int param_1, unsigned int param_2, int param_3)
 {

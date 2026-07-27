@@ -1,3 +1,4 @@
+struct k_thread;
 /* readable reconstruction; identity: FUN_000585f0 @ 0x000585f0
  * public-name: bt_att_chan_create_pdu
  * durable-map: recon/catalogs/function_names_app.json
@@ -34,7 +35,7 @@ extern int net_buf_ref(void);
 extern int net_buf_simple_reserve(int,int);
 extern int net_buf_simple_add(int,int);
 extern int net_buf_pool_get_727ac(int);
-extern int k_current_get(void);
+extern struct k_thread *k_current_get(void);
 extern void assert_post_action(const char *, unsigned int);
 extern int att_create_pdu_reserve4(int,int,int,int);
 extern int att_log_emit_3arg(int,int,void*);

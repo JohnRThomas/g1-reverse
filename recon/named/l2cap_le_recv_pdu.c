@@ -55,7 +55,7 @@ extern void log_msg_3arg_thunk(uintptr_t sink, uint32_t level, const void *recor
 extern void gatt_send_service_changed_ind(transfer_t *transfer);
 extern void l2cap_chan_le_recv_seg(int, int);
 extern int net_buf_simple_pull_le16(int);
-extern unsigned long net_buf_simple_tailroom(void*);
+extern int net_buf_simple_tailroom(int);
 extern void l2cap_chan_send_disconnect(transfer_t *transfer, uint32_t reason);
 
 static __attribute__((always_inline)) inline void log_two(uint32_t level,

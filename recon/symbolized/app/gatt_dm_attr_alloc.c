@@ -17,7 +17,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 typedef unsigned int uint;
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 extern int k_calloc(int,int);
 int gatt_dm_attr_alloc(int param_1,uint32_t param_2,uint32_t param_3,uint32_t param_4){
   int iVar1=((unsigned long)&cur_service_val) /*=0x2000a154*/;

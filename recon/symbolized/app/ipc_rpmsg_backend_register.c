@@ -1,4 +1,6 @@
 #include "g1_app_symbols.h"
+struct k_work_q;
+struct k_work;
 /* readable reconstruction; identity: FUN_0004cd4c @ 0x0004cd4c
  * public-name: ipc_rpmsg_backend_register
  * durable-map: recon/catalogs/function_names_app.json
@@ -25,9 +27,9 @@
 
 extern uint64_t shm_size(uint32_t, uint32_t);
 extern int32_t ipc_static_vrings_init(uintptr_t, uint32_t);
-extern void k_work_queue_init(uintptr_t);
+extern void k_work_queue_init(struct k_work_q *);
 extern void k_work_queue_start(uintptr_t, uintptr_t, uint32_t, uint32_t, uint32_t);
-extern void k_work_init(uintptr_t, uintptr_t);
+extern void k_work_init(struct k_work *, void (*)(struct k_work *));
 extern int32_t rpmsg_virtio_init_vdev(uintptr_t, uint32_t, uint32_t, uint32_t,
                            uintptr_t, uint32_t, uint32_t, uintptr_t);
 extern int32_t sync_buffer_available_space(uintptr_t);

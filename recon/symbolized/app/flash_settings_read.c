@@ -24,7 +24,7 @@
 extern _Bool z_device_is_ready(const struct device *);
 extern int get_device_info(void);
 extern void log_message(unsigned long, ...);
-extern void k_sleep(uint32_t ticks, uint32_t unused);
+extern int32_t k_sleep(k_timeout_t);
 extern void debug_print(unsigned long, ...);
 
 typedef int (*flash_read_api_t)(uintptr_t device, uint32_t address,

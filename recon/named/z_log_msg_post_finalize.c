@@ -1,3 +1,6 @@
+struct k_spinlock;
+struct k_timer;
+struct k_sem;
 /* readable reconstruction; identity: FUN_0004d7d8 @ 0x0004d7d8
  * public-name: z_log_msg_post_finalize
  * durable-map: recon/catalogs/function_names_app.json
@@ -24,13 +27,13 @@
  */
 #include <stdint.h>
 extern int atomic_inc(int); /* atomic_inc */
-extern int z_spin_lock_valid(unsigned int*);                 /* z_spin_lock_valid */
-extern int z_spin_lock_set_owner(unsigned int*);                 /* z_spin_lock_set_owner */
-extern void z_spin_unlock_valid(void *);                 /* z_spin_unlock_valid */
+extern _Bool z_spin_lock_valid(struct k_spinlock *);                 /* z_spin_lock_valid */
+extern void z_spin_lock_set_owner(struct k_spinlock *);                 /* z_spin_lock_set_owner */
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);                 /* z_spin_unlock_valid */
 extern int log_process(void);                   /* log_process */
 extern void z_impl_k_timer_start(void *, uint32_t, uint32_t, uint32_t); /* k_timer_start */
-extern void z_impl_k_timer_stop(void *);                 /* k_timer_stop */
-extern void k_sem_give(int);                 /* k_sem_give */
+extern void z_impl_k_timer_stop(struct k_timer *);                 /* k_timer_stop */
+extern void k_sem_give(struct k_sem *);                 /* k_sem_give */
 
 void z_log_msg_post_finalize(void)
 {

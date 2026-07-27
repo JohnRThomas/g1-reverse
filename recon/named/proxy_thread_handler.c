@@ -1,3 +1,4 @@
+struct device;
 /* readable reconstruction; identity: FUN_00047c48 @ 0x00047c48
  * public-name: proxy_thread_handler
  * durable-map: recon/catalogs/function_names_app.json
@@ -142,7 +143,7 @@ extern int get_proxy_timestamp();
 extern int receive_proxy_message();
 extern int reschedule_after_power_event();
 extern int wait_for_proxy_event();
-extern int device_is_ready();
+extern _Bool device_is_ready(const struct device *);
 extern int copy_bytes();
 extern int checked_copy_bytes();
 extern int clear_bytes();

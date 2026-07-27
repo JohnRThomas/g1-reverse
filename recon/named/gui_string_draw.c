@@ -1,3 +1,4 @@
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_000455cc @ 0x000455cc
  * public-name: gui_string_draw
  * durable-map: recon/catalogs/function_names_app.json
@@ -22,7 +23,7 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 
-extern int strlen(int);
+extern size_t strlen(const char *);
 extern int atomic_get_3_0(void);
 extern int get_device_info(void);
 extern void clean_fb_data(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);

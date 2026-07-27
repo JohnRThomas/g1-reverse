@@ -1,4 +1,6 @@
 #include "g1_app_symbols.h"
+struct k_spinlock;
+#include <zephyr/sys/dlist.h>
 /* readable reconstruction; identity: FUN_00072880 @ 0x00072880
  * public-name: k_sem_give
  * durable-map: recon/catalogs/function_names_app.json
@@ -23,13 +25,13 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 #include "../../headers/g1_log.h"
-extern int z_spin_lock_valid(unsigned int*);
-extern int z_spin_lock_set_owner(unsigned int*);
+extern _Bool z_spin_lock_valid(struct k_spinlock *);
+extern void z_spin_lock_set_owner(struct k_spinlock *);
 extern void z_ready_thread_locked(void);
 extern int z_reschedule(unsigned int*, int);
 extern int z_unpend_first_thread(unsigned int*);
-extern int assert_post_action(int, int);
-extern int z_handle_obj_poll_events(unsigned int*, int);
+extern void assert_post_action(const char *, unsigned int);
+extern void z_handle_obj_poll_events(sys_dlist_t *, uint32_t);
 void k_sem_give(int object)
 {
   unsigned int previous_priority = __get_BASEPRI();

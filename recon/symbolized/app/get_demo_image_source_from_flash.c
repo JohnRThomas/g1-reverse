@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_000365ec @ 0x000365ec
  * public-name: get_demo_image_source_from_flash
@@ -29,12 +30,12 @@
 extern int  get_device_info(void);
 extern void pixelto4bithex_for_flash(int,int);
 extern int  malloc(int);
-extern void free(void*);
-extern void printf(int);
+extern void free(void *);
+extern int printf(const char *, ...);
 extern unsigned int ptr_load_u32(unsigned int *);
 extern void memcpy(int, int, int);
 extern void memset_bytes(void*,int,int);
-extern int strncmp(const void*, unsigned long, unsigned int);
+extern int strncmp(const char *, const char *, size_t);
 #define VI(a) (*(volatile int*)(a))
 #define VB(a) (*(volatile unsigned char*)(a))
 typedef int (*fp_t)(int,int,void*,int);

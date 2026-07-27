@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_sem;
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_app_ble_ctx_block__param_0038          [param_0038; G1-original]
  * Raw function identity: 0x00019718.  See ../include/g1_recovered_layouts.h. */
@@ -35,7 +36,7 @@
 /* Reconstructed FUN_00019718 @ 0x19718 CFG_VERIFY_PREFIX_FIRST */
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
-extern void z_impl_k_sem_init(void*,int,int),init_msgq_ancs(void),init_msgq_uid(void),wait_for_event(int,int);
+extern int z_impl_k_sem_init(struct k_sem *, unsigned int,  unsigned int);
 extern int get_device_info(void); extern void k_msleep_ticks32768_d(int);
 extern void z_impl_k_sem_take(void*,int64_t);
 extern int dequeue_uid(void*); extern int request_ancs_attr_ext(void); extern void enqueue_ancs(void*),memset_bytes(void*,int,int),ancs_notification_forward(void*);

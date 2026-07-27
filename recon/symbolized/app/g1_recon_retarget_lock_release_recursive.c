@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_mutex;
 /* readable reconstruction; identity: FUN_00051134 @ 0x00051134
  * public-name: g1_recon_retarget_lock_release_recursive
  * durable-map: recon/catalogs/function_names_app.json
@@ -20,7 +21,7 @@
 #include "../../headers/g1_log.h"
 
 extern __attribute__((noreturn)) void assert_post_action(uint32_t, uint32_t);
-extern int k_mutex_unlock(unsigned int);
+extern int k_mutex_unlock(struct k_mutex *);
 
 #define g1_recon_retarget_lock_release_recursive g1_recon_retarget_lock_release_recursive
 void g1_recon_retarget_lock_release_recursive(unsigned long lock) {

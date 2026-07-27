@@ -12,7 +12,7 @@
 /* Reconstructed FUN_00059dec @ 0x59dec  (parity: 300/300 trials, PROVEN) */
 
 extern int ccc_find_cfg(int,...);
-extern void bt_addr_le_copy_828da(unsigned long*, unsigned long*);
+extern void bt_addr_le_copy_828da(void*, const void*);
 int gatt_ccc_write_store_cb(int param_1, unsigned param_2, int *param_3){
   if(*(int*)(param_1+8) != 0x5a465) return 1;
   int r6=*(int*)(param_1+0xc);

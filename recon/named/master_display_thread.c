@@ -16,7 +16,7 @@
 
 /* FUN_00019c70 @ 0x00019c70 */
 extern void *memset_bytes(void *, int, uint32_t); /* FUN_00086c78 */
-extern void k_msleep(uint32_t);                   /* FUN_0007cb8e */
+extern int32_t k_msleep(int32_t);                   /* FUN_0007cb8e */
 extern void wait_for_event(uint32_t, uint32_t);   /* FUN_0007cb8a */
 extern void process_for_new_task(void *, void *); /* FUN_0002c99c */
 extern uint8_t *get_device_info(void);            /* FUN_000167a8 */

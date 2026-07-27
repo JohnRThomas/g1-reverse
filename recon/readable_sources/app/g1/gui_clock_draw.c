@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   local_38         => struct g1_layout_clock_digit_buf__stack_1021            [stack_1021; G1-original]
  * Raw function identity: 0x000442bc.  See ../include/g1_recovered_layouts.h. */
@@ -32,7 +33,7 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 typedef unsigned char byte; typedef uint32_t undefined4; typedef uint16_t undefined2; typedef unsigned int uint; typedef unsigned short ushort;
-extern int strlen(int);
+extern size_t strlen(const char *);
 extern int get_device_info(int,...);
 extern int atomic_get_3_0(int,...);
 extern int gui_utf_draw(int,...);

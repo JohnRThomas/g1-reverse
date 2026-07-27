@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00054d88 @ 0x00054d88
  * public-name: set_random_address
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,7 +18,7 @@
  * Raw/address backmap: set_random_address <= tail_54d88 @ 0x00054d88.
  */
 #include <stdint.h>
-extern int memcmp(const void *, const void *, uint32_t); /* memcmp */
+extern int memcmp(const void *, const void *, size_t); /* memcmp */
 extern uint8_t *bt_hci_cmd_create(uint32_t, uint32_t); /* bt_hci_cmd_create */
 extern void *net_buf_simple_add_mem(void *, const void *, uint32_t); /* memcpy */
 extern int bt_hci_cmd_send_sync(uint32_t, void *, void *); /* bt_hci_cmd_send_sync */

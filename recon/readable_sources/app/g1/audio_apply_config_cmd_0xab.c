@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_0008397e @ 0x8397e  (parity: 300/300 trials, PROVEN) */
 
-extern int qspi_nor_send_cinstr(unsigned int a, void *b, unsigned int c);
+extern int qspi_nor_send_cinstr(void*, unsigned char*, unsigned char);
 extern void delay_scaled_busy_wait(int);
 
 int audio_apply_config_cmd_0xab(unsigned int param_1)

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_spinlock;
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_kernel_obj_shared_param__param_0167    [param_0167; library]
  * Raw function identity: 0x00072240.  See ../include/g1_recovered_layouts.h. */
@@ -34,9 +35,9 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 #include "../../../headers/g1_log.h"
-extern int z_spin_lock_valid(int,...);
-extern int z_spin_unlock_valid(int,...);
-extern int z_spin_lock_set_owner(int,...);
+extern _Bool z_spin_lock_valid(struct k_spinlock *);
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);
+extern void z_spin_lock_set_owner(struct k_spinlock *);
 extern int z_ready_thread_locked(int,...);
 extern int z_reschedule(int,...);
 extern int z_pend_curr(int,...);

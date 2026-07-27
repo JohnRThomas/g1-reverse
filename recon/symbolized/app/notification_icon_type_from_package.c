@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_0003483c @ 0x0003483c
  * public-name: notification_icon_type_from_package
  * durable-map: recon/catalogs/function_names_app.json
@@ -19,7 +20,7 @@
 /* Reconstructed FUN_0003483c @ 0x3483c (strict CFG parity). */
 #include <stdint.h>
 
-extern int strlen(int);
+extern size_t strlen(const char *);
 extern int get_device_info(void);
 extern int strncmp(const void*, unsigned long, unsigned int);
 

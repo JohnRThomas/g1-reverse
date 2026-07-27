@@ -1,3 +1,4 @@
+struct k_sem;
 /* readable reconstruction; identity: FUN_0001793c @ 0x0001793c
  * public-name: nfc_field_event_signal_sem
  * durable-map: recon/catalogs/function_names_app.json
@@ -15,7 +16,7 @@
 
 extern int get_device_info(void);
 extern void gpio_pin_configure(int, int);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 
 void nfc_field_event_signal_sem(int param_1, int param_2, int param_3)
 {

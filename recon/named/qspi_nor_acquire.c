@@ -1,3 +1,4 @@
+struct k_sem;
 /* readable reconstruction; identity: FUN_00060a10 @ 0x00060a10
  * public-name: qspi_nor_acquire
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,7 +18,7 @@
 extern int qspi_get_zephyr_ret_code(void);
 #define g1_recon_nrfx_qspi_init nrfx_qspi_init
 extern void g1_recon_nrfx_qspi_init(int,int,int,int,int);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 extern void audio_i2s_stop_and_reset_channels(unsigned long);
 extern void audio_i2s_start_channels(void*);
 

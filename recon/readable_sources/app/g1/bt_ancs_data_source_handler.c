@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_sem;
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_2          => struct g1_layout_bt_ancs_attr_data__param_0035          [param_0035; library]
  * Raw function identity: 0x00018c48.  See ../include/g1_recovered_layouts.h. */
@@ -31,7 +32,7 @@
 extern int get_device_info(void);
 extern int ancs_get_conn_ctx(int);
 extern int enqueue_ancs(unsigned int);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 extern unsigned int k_uptime_get_32(void);
 extern void memset_bytes(void*, int, int);
 

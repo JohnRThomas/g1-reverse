@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00080ca0 @ 0x00080ca0
  * public-name: bt_smp_ah
  * durable-map: recon/catalogs/function_names_app.json
@@ -12,7 +13,7 @@
 
 extern void memset_bytes(void *a, int b, int c);
 extern int bt_encrypt_le(int a, void *b);
-extern int memcmp(const void*, const void*, unsigned long);
+extern int memcmp(const void *, const void *, size_t);
 
 int bt_smp_ah(int param_1, int param_2)
 {

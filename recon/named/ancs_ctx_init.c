@@ -18,7 +18,7 @@
 #include <stdint.h>
 extern void kmutex_dlist_init(unsigned);
 extern void z_impl_k_sem_init(void*,int,int);
-extern unsigned malloc(int);
+extern void *malloc(size_t);
 extern void memset_bytes(unsigned,int,int,unsigned);
 void ancs_ctx_init(uint32_t *param_1,unsigned param_2,unsigned param_3,unsigned param_4){
   uint32_t *puVar1; unsigned uVar2;

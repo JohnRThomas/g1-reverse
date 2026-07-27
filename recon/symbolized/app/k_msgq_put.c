@@ -1,4 +1,6 @@
 #include "g1_app_symbols.h"
+struct k_spinlock;
+#include <zephyr/sys/dlist.h>
 /* readable reconstruction; identity: FUN_000720d0 @ 0x000720d0
  * public-name: k_msgq_put
  * durable-map: recon/catalogs/function_names_app.json
@@ -33,15 +35,15 @@
 #include <stdbool.h>
 #include <cmsis_gcc.h>
 #include "../../headers/g1_log.h"
-extern int z_spin_lock_valid(int,...);
-extern int z_spin_unlock_valid(int,...);
-extern int z_spin_lock_set_owner(int,...);
+extern _Bool z_spin_lock_valid(struct k_spinlock *);
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);
+extern void z_spin_lock_set_owner(struct k_spinlock *);
 extern int z_ready_thread_locked(int,...);
 extern int z_reschedule(int,...);
 extern int z_pend_curr(int,...);
 extern int z_unpend_first_thread(int,...);
 extern int assert_post_action(int,...) __attribute__((noreturn));
-extern int z_handle_obj_poll_events(int,...);
+extern void z_handle_obj_poll_events(sys_dlist_t *, uint32_t);
 extern int memcpy(int,...);
 
 /* This firmware entry is invoked in thread mode by its recovered callers. */

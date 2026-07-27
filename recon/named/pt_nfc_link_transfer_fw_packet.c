@@ -17,8 +17,8 @@
 /* Full reconstruction FUN_00030340 @ 0x00030340 (408-byte exact extent). CFG_VERIFY_CALL_ARITIES=1,2,1,2 */
 #include <stdint.h>
 
-extern void *malloc(uint32_t);
-extern void free(void*);
+extern void *malloc(size_t);
+extern void free(void *);
 extern void memcpy(void *, const void *, uint32_t, uint32_t, uint32_t);
 extern int attr_store_set(uint32_t, uint32_t);
 extern void attr_store_retry_delay(uint32_t);

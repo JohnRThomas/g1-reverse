@@ -1,4 +1,6 @@
 #include "g1_app_symbols.h"
+struct k_work_q;
+struct k_work;
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_ipc_rpmsg_backend_ctx__param_0141      [param_0141; G1-original]
  * Raw function identity: 0x0004cd4c.  See ../include/g1_recovered_layouts.h. */
@@ -28,9 +30,9 @@
 
 extern uint64_t shm_size(uint32_t, uint32_t);
 extern int32_t ipc_static_vrings_init(uintptr_t, uint32_t);
-extern void k_work_queue_init(uintptr_t);
+extern void k_work_queue_init(struct k_work_q *);
 extern void k_work_queue_start(uintptr_t, uintptr_t, uint32_t, uint32_t, uint32_t);
-extern void k_work_init(uintptr_t, uintptr_t);
+extern void k_work_init(struct k_work *, void (*)(struct k_work *));
 extern int32_t rpmsg_virtio_init_vdev(uintptr_t, uint32_t, uint32_t, uint32_t,
                            uintptr_t, uint32_t, uint32_t, uintptr_t);
 extern int32_t sync_buffer_available_space(uintptr_t);

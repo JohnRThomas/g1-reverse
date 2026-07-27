@@ -1,3 +1,4 @@
+struct k_sem;
 /* readable reconstruction; identity: FUN_0002f080 @ 0x0002f080
  * public-name: dmic_stream_start
  * durable-map: recon/catalogs/function_names_app.json
@@ -50,7 +51,7 @@ extern void app_codec_lc3_test(int, int);   /* FUN_0002ed68 */
 extern int erase_audio_buffer(void);                      /* FUN_0002f008 */
 extern int is_battery_critical(void);                     /* FUN_00032ee4 */
 extern void k_mem_slab_free(struct k_mem_slab *, void *);          /* FUN_00071cf4 */
-extern void k_sem_give(int);                     /* FUN_00072880 */
+extern void k_sem_give(struct k_sem *);                     /* FUN_00072880 */
 extern _Bool z_device_is_ready(const struct device *);                 /* FUN_0008638c */
 extern void memset_bytes(void*, int, int);/* FUN_00086c78 */
 

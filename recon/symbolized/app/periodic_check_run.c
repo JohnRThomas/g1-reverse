@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stdint.h>
 /* readable reconstruction; identity: FUN_0003271c @ 0x0003271c
  * public-name: periodic_check_run
  * durable-map: recon/catalogs/function_names_app.json
@@ -16,7 +17,7 @@
 /* Reconstructed FUN_0003271c @ 0x3271c  (parity: 300/300 trials, PROVEN) */
 extern int dev_read_status_bit_reg34(void);
 extern void display_dev_reg_config(void);
-extern void k_sleep(int,int);
+extern int32_t k_sleep(k_timeout_t);
 #ifdef G1_APP_SDK_INLINE_COHESION
 #include <stdint.h>
 extern int64_t z_impl_k_uptime_ticks(void);

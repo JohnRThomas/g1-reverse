@@ -1,4 +1,6 @@
 #include "g1_app_symbols.h"
+struct _reent;
+#include <stdio.h>
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_3          => struct g1_layout___sFILE__param_0417                    [param_0417; library]
  *   param_1          => struct g1_layout_libc_FILE__param_0418                  [param_0418; library]
@@ -10,7 +12,7 @@
  *   libc_putc_buffered                       <= FUN_00086c88 @ 0x00086c88
  */
 /* Reconstructed FUN_00086c88 @ 0x86c88  (parity: 300/300 trials, PROVEN) */
-extern unsigned __swbuf_r(int,unsigned,int*);
+extern int __swbuf_r(struct _reent *, int,  FILE *);
 unsigned libc_putc_buffered(int param_1, unsigned param_2, int *param_3){
   int iVar4 = param_3[2] - 1;
   *(volatile int*)(param_3 + 2) = iVar4;

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct _reent;
 /* readable reconstruction; identity: FUN_00077d54 @ 0x00077d54
  * public-name: stdio_fclose
  * durable-map: recon/catalogs/function_names_app.json
@@ -11,7 +12,7 @@
  *   g_libc_heap_ctrl                         @ 0x20002d20
  */
 /* Reconstructed FUN_00077d54 @ 0x77d54  (parity: 300/300 trials, PROVEN) */
-extern void __sinit(int);
+extern void __sinit(struct _reent *);
 extern void smakebuf_r(void*,void*);
 extern void _free_r(void*);
 int stdio_fclose(int *param_1, int *param_2){

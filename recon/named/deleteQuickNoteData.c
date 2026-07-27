@@ -1,3 +1,4 @@
+struct k_sem;
 /* readable reconstruction; identity: FUN_000244a8 @ 0x000244a8
  * public-name: deleteQuickNoteData
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,7 +18,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed deleteQuickNoteData @ 0x244a8  (parity: 300/300 trials, PROVEN) */
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 
 unsigned int deleteQuickNoteData(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

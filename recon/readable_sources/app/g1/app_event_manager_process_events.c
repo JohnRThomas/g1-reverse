@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_spinlock;
 #include "../../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0004f5b0 @ 0x0004f5b0
  * public-name: app_event_manager_process_events
@@ -32,9 +33,9 @@
  *   g_notify_pending_flags_bitmap            @ 0x2000a2d0
  */
 /* Reconstructed FUN_0004f5b0 @ 0x4f5b0  (parity: 300/300 trials, PROVEN) */
-extern int z_spin_lock_valid(unsigned int*);
-extern int z_spin_lock_set_owner(unsigned int*);
-extern int  z_spin_unlock_valid(int);
+extern _Bool z_spin_lock_valid(struct k_spinlock *);
+extern void z_spin_lock_set_owner(struct k_spinlock *);
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);
 extern void assert_post_action(int,int) __attribute__((noreturn));
 extern void z_log_msg_runtime_create(int,int,void*);
 extern void thunk_FUN_000868b4(int);

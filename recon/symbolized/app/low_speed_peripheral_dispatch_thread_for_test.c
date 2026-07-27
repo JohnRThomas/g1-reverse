@@ -33,7 +33,7 @@ extern int disable_watchdog(void);
 extern unsigned int mark_master_or_low_battery_flag(void);
 extern void set_click_dispatch_flag(long);
 extern unsigned long sys_reboot(long);
-extern void k_msleep(uint32_t);
+extern int32_t k_msleep(int32_t);
 extern void fuel_gauge_update(uintptr_t, uint32_t);
 extern void wait_for_event(uint32_t, uint32_t);
 

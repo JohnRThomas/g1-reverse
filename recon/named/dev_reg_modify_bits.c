@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_mutex;
 /* readable reconstruction; identity: FUN_00083e0e @ 0x00083e0e
  * public-name: dev_reg_modify_bits
  * durable-map: recon/catalogs/function_names_app.json
@@ -36,7 +37,7 @@
 typedef struct { long long ticks; } g1_k_timeout_t;
 
 extern int k_mutex_lock(unsigned int mutex, g1_k_timeout_t timeout);
-extern int k_mutex_unlock(unsigned int mutex);
+extern int k_mutex_unlock(struct k_mutex *);
 extern int dev_ctrl_read1(int dev, unsigned int a, unsigned int b, void *out);
 extern int dev_write_reg3(unsigned int, unsigned int, unsigned int, unsigned int);
 

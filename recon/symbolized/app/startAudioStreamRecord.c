@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_sem;
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002f764 @ 0x0002f764
  * public-name: startAudioStreamRecord
@@ -25,7 +26,7 @@
 extern int get_device_info(void);
 extern void display_DelayClose(unsigned int ms);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 extern void memset_bytes(void *dst, int val, int n);
 extern void sync_to_slave(unsigned int a, unsigned int b, void *c, unsigned int d);
 

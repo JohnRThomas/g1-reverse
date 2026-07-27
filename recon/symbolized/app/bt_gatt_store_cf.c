@@ -15,7 +15,7 @@
 /* Reconstructed FUN_0005a8bc @ 0x5a8bc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern unsigned long long find_cf_cfg_by_addr(unsigned long, unsigned long);
-extern int read_struct_first_word(unsigned long);
+extern unsigned int read_struct_first_word(unsigned int*);
 extern int bt_settings_store_cf(unsigned int,unsigned int,void*,unsigned int);
 extern void log_msg_create_3arg(unsigned int,unsigned int,void*);
 void bt_gatt_store_cf(unsigned int param_1, unsigned int param_2) {

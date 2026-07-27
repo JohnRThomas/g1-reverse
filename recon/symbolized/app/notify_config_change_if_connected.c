@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_mutex;
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_00017e84 @ 0x00017e84
  * public-name: notify_config_change_if_connected
@@ -21,7 +22,7 @@ extern long long is_battery_critical(void);
 extern int get_device_info(void);
 extern void k_mutex_lock(unsigned,unsigned,unsigned,unsigned);
 extern int gatt_notify_config_change(int,unsigned,unsigned);
-extern void k_mutex_unlock(unsigned);
+extern int k_mutex_unlock(struct k_mutex *);
 unsigned notify_config_change_if_connected(unsigned param_1, unsigned param_2){
     int r6 = get_ancs_conn_handle();
     long long uVar3 = is_battery_critical();

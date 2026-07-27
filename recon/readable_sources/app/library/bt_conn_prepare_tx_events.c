@@ -1,4 +1,7 @@
 #include "g1_app_symbols.h"
+struct k_poll_signal;
+struct k_poll_event;
+#include <stdint.h>
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   0x0005664c       => struct g1_layout_bt_conn__global_1185                   [global_1185; library]
  *   param_1          => struct g1_layout_k_poll_event__param_0207               [param_0207; library]
@@ -23,8 +26,8 @@
  */
 /* Reconstructed FUN_000565c4 @ 0x565c4  (parity: 300/300 trials, PROVEN) */
 
-extern void z_impl_k_poll_signal_init(int);
-extern void k_poll_event_init(unsigned char*, unsigned long, unsigned long, unsigned int);
+extern void z_impl_k_poll_signal_init(struct k_poll_signal *);
+extern void k_poll_event_init(struct k_poll_event *, uint32_t,  int,  void *);
 extern void bt_conn_tx_drain_and_reset(void*);
 extern int atomic_and_2(void*,int);
 int bt_conn_prepare_tx_events(int param_1){

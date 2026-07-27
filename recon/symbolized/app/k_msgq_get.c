@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_spinlock;
 /* readable reconstruction; identity: FUN_00072240 @ 0x00072240
  * public-name: k_msgq_get
  * durable-map: recon/catalogs/function_names_app.json
@@ -31,9 +32,9 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 #include "../../headers/g1_log.h"
-extern int z_spin_lock_valid(int,...);
-extern int z_spin_unlock_valid(int,...);
-extern int z_spin_lock_set_owner(int,...);
+extern _Bool z_spin_lock_valid(struct k_spinlock *);
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);
+extern void z_spin_lock_set_owner(struct k_spinlock *);
 extern int z_ready_thread_locked(int,...);
 extern int z_reschedule(int,...);
 extern int z_pend_curr(int,...);

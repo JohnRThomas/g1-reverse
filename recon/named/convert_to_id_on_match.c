@@ -1,3 +1,4 @@
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_000831e2 @ 0x000831e2
  * public-name: convert_to_id_on_match
  * durable-map: recon/catalogs/function_names_app.json
@@ -8,7 +9,7 @@
  */
 /* Reconstructed FUN_000831e2 @ 0x831e2  (parity: 300/300 trials, PROVEN) */
 
-extern int memcmp(const void*, const void*, unsigned long);
+extern int memcmp(const void *, const void *, size_t);
 extern void bt_addr_le_copy_83062(unsigned int *, unsigned int *);
 void convert_to_id_on_match(int param_1, int *param_2)
 {

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00031b60 @ 0x00031b60
  * public-name: build_str_response_frame
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,7 +18,7 @@
 /* Reconstructed FUN_00031b60 @ 0x31b60  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
-extern int strlen(int);
+extern size_t strlen(const char *);
 extern unsigned int get_device_serial_buf(void);
 extern void memcpy(int, int, int);
 extern void memset_bytes(void*,int,int);

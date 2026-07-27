@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_0006403c @ 0x0006403c
  * public-name: flash_read_boot_swap_ate
  * durable-map: recon/catalogs/function_names_app.json
@@ -18,7 +19,7 @@
 #include <stdint.h>
 extern int flash_area_read(unsigned int, int, unsigned int, unsigned int);
 extern unsigned int flash_region_is_erased(unsigned int, unsigned char *, int);
-extern int memcmp(const void*, const void*, unsigned long);
+extern int memcmp(const void *, const void *, size_t);
 extern int flash_calc_prev_ate_offset(int);
 extern int flash_write_byte_and_verify(int, void*, int);
 extern uint32_t flash_verify_write_at_current_offset(int, void*);

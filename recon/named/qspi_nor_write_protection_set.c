@@ -8,7 +8,7 @@
 /* Pinned Zephyr 3.4.99 owner: drivers/flash/nrf_qspi_nor.c. */
 #include <stdbool.h>
 #include <stdint.h>
-extern int qspi_nor_send_cinstr(void *dev, void *cmd, bool lock);
+extern int qspi_nor_send_cinstr(void*, unsigned char*, unsigned char);
 struct qspi_cmd { uint8_t op_code; uint8_t pad[3]; const void *tx; const void *rx; };
 int qspi_nor_write_protection_set(void *dev, bool write_protect)
 {

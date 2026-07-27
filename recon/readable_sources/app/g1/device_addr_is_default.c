@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_0007c132 @ 0x0007c132
  * public-name: device_addr_is_default
  * durable-map: recon/catalogs/function_names_app.json
@@ -10,7 +11,7 @@
 /* Reconstructed FUN_0007c132 @ 0x7c132  (parity: 300/300 trials, PROVEN) */
 
 extern int get_device_info(void);
-extern int memcmp(const void*, const void*, unsigned long);
+extern int memcmp(const void *, const void *, size_t);
 
 int device_addr_is_default(unsigned int param_1, unsigned int param_2)
 {

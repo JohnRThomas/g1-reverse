@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_sem;
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_param_0299_driver_data_collision__param_0299 [param_0299; G1-original]
  * Raw function identity: 0x00060f20.  See ../include/g1_recovered_layouts.h. */
@@ -31,7 +32,7 @@ extern int qspi_get_zephyr_ret_code(int);
 extern void qspi_nor_lock_if_magic(unsigned int, unsigned int);
 extern int qspi_nor_acquire(int,...);
 extern void qspi_nor_suspend_bus(unsigned char*);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 extern int qspi_log_forward(int,...);
 extern int audio_stream_stop_and_wait(int,...);
 extern int audio_i2s_stop_and_reset_channels(int,...);

@@ -1,3 +1,4 @@
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_0005d0ac @ 0x0005d0ac
  * public-name: smp_dhkey_check_generate
  * durable-map: recon/catalogs/function_names_app.json
@@ -24,7 +25,7 @@ extern int smp_log_message(int, int, int);
 extern void atomic_set_bit(int, int);
 extern int smp_create_pdu(int, int);
 extern int bt_crypto_f6(int, int, int, int);
-extern int memcmp(const void*, const void*, unsigned long);
+extern int memcmp(const void *, const void *, size_t);
 extern void memset_bytes(void*, int, int);
 
 int smp_dhkey_check_generate(int param_1)

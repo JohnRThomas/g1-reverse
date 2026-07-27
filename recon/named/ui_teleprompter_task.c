@@ -1,3 +1,4 @@
+struct k_mutex;
 /* readable reconstruction; identity: FUN_0003cf44 @ 0x0003cf44
  * public-name: ui_teleprompter_task
  * durable-map: recon/catalogs/function_names_app.json
@@ -95,14 +96,14 @@ extern int      sync_to_slave(unsigned,unsigned,unsigned);
 extern void     send_response_data_to_ble(void);
 extern unsigned int mark_master_or_low_battery_flag(void);
 extern void     k_mutex_lock(unsigned,unsigned,unsigned);
-extern int k_mutex_unlock(unsigned int);
+extern int k_mutex_unlock(struct k_mutex *);
 extern void     gui_utf_draw(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
 extern void     gui_clock_draw(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
 extern void     gui_verticalLine_process_bar(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
 extern int gui_bmp_bitmap_draw(unsigned int, int, int, int, int, int);
 extern void     clean_fb_data(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
 extern void     reflash_fb_data_to_lcd(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
-extern void     k_sleep(unsigned,unsigned);
+extern int32_t k_sleep(k_timeout_t);
 extern unsigned int gui_reset_dynamic_bitmap_frame_state(void);
 extern unsigned int gui_screen_fade_out_transition(void);
 extern void     gui_canvas_flags_clear_bit1(void);

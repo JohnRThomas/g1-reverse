@@ -1,3 +1,5 @@
+struct k_sem;
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00018730 @ 0x00018730
  * public-name: pairing_complete
  * durable-map: recon/catalogs/function_names_app.json
@@ -22,9 +24,9 @@ extern int bt_conn_get_field_0x90(int);
 extern void format_bt_addr_str(const void*, char*);
 extern int get_device_info(void);
 extern int is_battery_critical(void);
-extern int memcmp(const void*, const void*, unsigned long);
+extern int memcmp(const void *, const void *, size_t);
 extern void bt_unpair_all_or_addr(int,int);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 
 void pairing_complete(unsigned param_1, unsigned param_2){
     unsigned char auStack_38[32];

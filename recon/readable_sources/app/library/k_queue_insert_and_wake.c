@@ -1,4 +1,6 @@
 #include "g1_app_symbols.h"
+struct k_spinlock;
+#include <zephyr/sys/dlist.h>
 /* readable reconstruction; identity: FUN_00072674 @ 0x00072674
  * public-name: k_queue_insert_and_wake
  * durable-map: recon/catalogs/function_names_app.json
@@ -32,15 +34,15 @@ static inline int getBasePriority(void){return (int)__get_BASEPRI();}
 static inline void setBasePriority(int p){__set_BASEPRI((uint32_t)p);}
 static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
 
-extern int z_spin_lock_valid(unsigned int*);
-extern int z_spin_unlock_valid(unsigned int*);
-extern int z_spin_lock_set_owner(unsigned int*);
+extern _Bool z_spin_lock_valid(struct k_spinlock *);
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);
+extern void z_spin_lock_set_owner(struct k_spinlock *);
 extern int z_ready_thread_locked();
 extern int z_reschedule(unsigned int*,int);
 extern int z_unpend_first_thread(unsigned int*);
 extern unsigned int* resource_pool_aligned_alloc(int,int);
-extern int assert_post_action(int,int);
-extern int z_handle_obj_poll_events(unsigned int*,int);
+extern void assert_post_action(const char *, unsigned int);
+extern void z_handle_obj_poll_events(sys_dlist_t *, uint32_t);
 
 unsigned int k_queue_insert_and_wake(unsigned int *param_1, unsigned int *param_2, unsigned int *param_3, int param_4, char param_5)
 {

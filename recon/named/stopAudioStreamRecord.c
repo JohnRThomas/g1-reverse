@@ -1,3 +1,4 @@
+struct k_sem;
 /* readable reconstruction; identity: FUN_0002f80c @ 0x0002f80c
  * public-name: stopAudioStreamRecord
  * durable-map: recon/catalogs/function_names_app.json
@@ -20,7 +21,7 @@
 
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 
 unsigned int stopAudioStreamRecord(void)
 {

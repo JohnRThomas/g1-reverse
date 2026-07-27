@@ -1,3 +1,5 @@
+struct sys_heap;
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_000863aa @ 0x000863aa
  * public-name: g1_recon_k_heap_init
  * durable-map: recon/catalogs/function_names_app.json
@@ -7,7 +9,7 @@
  */
 /* Reconstructed FUN_000863aa @ 0x863aa. CFG_VERIFY_CALL_ARITIES=3 */
 #include <stdint.h>
-extern void sys_heap_init(unsigned long*, void*, unsigned long);
+extern void sys_heap_init(struct sys_heap *, void *, size_t);
 
 void g1_recon_k_heap_init(unsigned int *param_1, int param_2, int param_3)
 {

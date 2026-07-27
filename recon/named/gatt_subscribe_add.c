@@ -25,7 +25,7 @@ extern void* gatt_find_conn_in_known_table(void);
 extern void gatt_sub_free(void*);
 extern int gatt_write_ccc(void *, unsigned char *);
 extern void assert_post_action(const char *, unsigned int);
-extern void bt_addr_le_copy_828da(unsigned long*, unsigned long*);
+extern void bt_addr_le_copy_828da(void*, const void*);
 
 int gatt_subscribe_add(int param_1,int *param_2){
   if(param_1 == 0){

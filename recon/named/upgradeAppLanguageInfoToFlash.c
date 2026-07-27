@@ -1,3 +1,4 @@
+struct k_sem;
 /* readable reconstruction; identity: FUN_00023af0 @ 0x00023af0
  * public-name: upgradeAppLanguageInfoToFlash
  * durable-map: recon/catalogs/function_names_app.json
@@ -17,7 +18,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed upgradeAppLanguageInfoToFlash @ 0x23af0  (parity: 300/300 trials, PROVEN) */
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 
 unsigned int upgradeAppLanguageInfoToFlash(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

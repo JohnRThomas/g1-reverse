@@ -36,7 +36,7 @@
 extern void gui_canvas_flags_clear_bit1(void);
 extern void gui_canvas_flags_set_bit1(void);
 extern void draw_message(uint32_t, int);
-extern void k_sleep(uint32_t, uint32_t);
+extern int32_t k_sleep(k_timeout_t);
 extern int get_device_info(void);
 extern void reflash_fb_data_to_lcd(uint32_t, uint32_t, uint32_t, uint32_t,
                                    uint32_t, uint32_t);

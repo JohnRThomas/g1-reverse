@@ -15,7 +15,7 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 
-extern void k_sleep(uint32_t delay, uint32_t flags);
+extern int32_t k_sleep(k_timeout_t);
 
 int packet_transport_send_byte(void *transport, const uint8_t *value, const void *required)
 {

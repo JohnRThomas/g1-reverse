@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_sem;
 /* readable reconstruction; identity: FUN_0007c0e2 @ 0x0007c0e2
  * public-name: post_uid_event_mode2
  * durable-map: recon/catalogs/function_names_app.json
@@ -12,7 +13,7 @@
 
 extern int ancs_get_conn_ctx(void);
 extern int enqueue_uid(void *p);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 
 void post_uid_event_mode2(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

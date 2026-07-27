@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stdint.h>
 /* readable reconstruction; identity: FUN_0007c26e @ 0x0007c26e
  * public-name: app_msleep_thunk_b
  * durable-map: recon/catalogs/function_names_app.json
@@ -10,7 +11,7 @@
 /* Reconstructed FUN_0007c26e @ 0x7c26e  (parity: 300/300 trials, PROVEN) */
 
 extern void __aeabi_uldivmod(int,int,int,int);
-extern void k_sleep(void);
+extern int32_t k_sleep(k_timeout_t);
 void app_msleep_thunk_b(int param_1)
 {
   __aeabi_uldivmod(param_1 * 0x8000 + 999, param_1 >> 0x11, 1000, 0);

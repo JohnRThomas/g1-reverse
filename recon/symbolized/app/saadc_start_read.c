@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_sem;
 /* readable reconstruction; identity: FUN_0005f760 @ 0x0005f760
  * public-name: saadc_start_read
  * durable-map: recon/catalogs/function_names_app.json
@@ -35,7 +36,7 @@ typedef unsigned int undefined4;
 extern u64 __aeabi_uldivmod(int a, int b, u32 c, u32 d);
 extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern u64 adc_context_start_sampling(u32 a);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 extern int z_impl_k_sem_take(u32 a, void *b, u32 c, u32 d);
 extern u64 z_impl_k_timer_start(void *a, int b, u32 c, u32 d);
 

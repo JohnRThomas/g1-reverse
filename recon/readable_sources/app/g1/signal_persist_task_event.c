@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stdint.h>
 /* readable reconstruction; identity: FUN_0007cdf8 @ 0x0007cdf8
  * public-name: signal_persist_task_event
  * durable-map: recon/catalogs/function_names_app.json
@@ -8,7 +9,7 @@
  */
 /* Reconstructed FUN_0007cdf8 @ 0x7cdf8  (parity: 300/300 trials, PROVEN) */
 
-extern void k_sleep(unsigned int, unsigned int);
+extern int32_t k_sleep(k_timeout_t);
 void signal_persist_task_event(void)
 {
     k_sleep(0x21, 0);

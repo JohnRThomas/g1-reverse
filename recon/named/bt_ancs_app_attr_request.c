@@ -14,7 +14,7 @@
  */
 #include <stdint.h>
 extern void net_buf_simple_init_with_data(void *, void *, uint32_t); /* net_buf_simple_init_with_data */
-extern unsigned long net_buf_simple_tailroom(void*);               /* net_buf_simple_tailroom */
+extern int net_buf_simple_tailroom(int);               /* net_buf_simple_tailroom */
 extern void net_buf_push_u8(void *, uint8_t);          /* net_buf_simple_add_u8 */
 extern void net_buf_simple_add_mem(void *, const void *, uint32_t); /* net_buf_simple_add_mem */
 extern int bt_ancs_cp_write(void *, uint16_t, void *);  /* bt_ancs_cp_write */

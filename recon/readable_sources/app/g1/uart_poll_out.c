@@ -16,7 +16,7 @@
  */
 /* Reconstructed FUN_00062f28 @ 0x62f28  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int k_sleep(int,int);
+extern int32_t k_sleep(k_timeout_t);
 extern void audio_dma_start_transfer(int,int,int);
 extern unsigned long long is_tx_ready(int,...);
 extern _Bool k_is_in_isr(void);

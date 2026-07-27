@@ -1,6 +1,8 @@
+struct k_msgq;
+#include <stddef.h>
 /* Reconstructed FUN_00019bd0 @ 0x19bd0  (parity: 300/300 trials, PROVEN) */
 
-extern int z_impl_k_msgq_alloc_init(void *, int, int);
+extern int z_impl_k_msgq_alloc_init(struct k_msgq *, size_t,  uint32_t);
 extern void DEBUG_PRINT(unsigned long, ...);
 
 int FUN_00019bd0(void)

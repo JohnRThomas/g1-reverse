@@ -1,3 +1,4 @@
+struct k_mutex;
 /* readable reconstruction; identity: FUN_00019b48 @ 0x00019b48
  * public-name: ble_work_queue_unlock
  * durable-map: recon/catalogs/function_names_app.json
@@ -9,7 +10,7 @@
  */
 /* Reconstructed FUN_00019b48 @ 0x19b48  (parity: 300/300 trials, PROVEN) */
 
-extern int k_mutex_unlock(unsigned int);
+extern int k_mutex_unlock(struct k_mutex *);
 void ble_work_queue_unlock(void) {
     k_mutex_unlock(0x20007574UL);
 }

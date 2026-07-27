@@ -1,3 +1,4 @@
+struct k_sem;
 /* readable reconstruction; identity: FUN_0002c3dc @ 0x0002c3dc
  * public-name: handle_touch_key_press_event
  * durable-map: recon/catalogs/function_names_app.json
@@ -24,7 +25,7 @@ extern unsigned long long esb_send_command_and_wait_ack(unsigned a, int b, int c
 extern void update_touch_key_flag(void);
 extern int get_message_entry(int a);
 extern unsigned char msg_content_recalc_unread(void);
-extern void k_sem_give(int a);
+extern void k_sem_give(struct k_sem *);
 extern void FUN_0007ce5c(unsigned a, int b);
 unsigned handle_touch_key_press_event(unsigned inherited_r0, unsigned inherited_r1,
                       unsigned inherited_r2, unsigned inherited_r3){

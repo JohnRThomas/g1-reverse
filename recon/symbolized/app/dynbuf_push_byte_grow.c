@@ -1,4 +1,6 @@
 #include "g1_app_symbols.h"
+struct _reent;
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_0008790e @ 0x0008790e
  * public-name: dynbuf_push_byte_grow
  * durable-map: recon/catalogs/function_names_app.json
@@ -10,9 +12,9 @@
  */
 /* Reconstructed FUN_0008790e @ 0x8790e  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int _malloc_r(uint32_t,int);
+extern void *_malloc_r(struct _reent *, size_t);
 extern void memcpy(int, int, int);
-extern int _realloc_r(uint32_t,int,int);
+extern void *_realloc_r(struct _reent *, void *, size_t);
 uint32_t dynbuf_push_byte_grow(uint32_t param_1,volatile int* param_2){
   int iVar1,iVar2;
   if((int*)param_2[0xd]==(int*)(param_2+0x11)){

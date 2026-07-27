@@ -1,3 +1,6 @@
+struct k_sem;
+struct k_work_delayable;
+struct k_queue;
 /* Reconstructed FUN_00056704 @ 0x56704  (parity: 199/200 trials, PROVEN) */
 /* CFG_VERIFY_PREFIX_FIRST: event-state 1 is an intentional scheduler loop. */
 #include <stdint.h>
@@ -20,7 +23,7 @@ extern uint32_t FUN_00073518(int);
 extern void FUN_000757b0(uint32_t,int);
 extern void FUN_000813ca(uint32_t,uint32_t,void*);
 #define z_impl_k_queue_init FUN_000864e8
-extern void z_impl_k_queue_init(void *queue);
+extern void z_impl_k_queue_init(struct k_queue *);
 extern uint32_t thunk_FUN_00072e9c(int);
 
 void FUN_00056704(int param_1, uint param_2)

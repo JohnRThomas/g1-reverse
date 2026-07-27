@@ -1,4 +1,6 @@
 #include "g1_app_symbols.h"
+struct k_spinlock;
+struct k_work;
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   0x0004f850       => struct g1_layout_app_event_header__global_1096          [global_1096; library]
  * Raw function identity: 0x0004f770.  See ../include/g1_recovered_layouts.h. */
@@ -34,10 +36,10 @@
 #include <cmsis_gcc.h>
 #include "../../../headers/g1_log.h"
 
-extern int z_spin_lock_valid(unsigned int*);
-extern int z_spin_unlock_valid(uintptr_t lock);
-extern int z_spin_lock_set_owner(unsigned int*);
-extern void k_work_submit(int);
+extern _Bool z_spin_lock_valid(struct k_spinlock *);
+extern _Bool z_spin_unlock_valid(struct k_spinlock *);
+extern void z_spin_lock_set_owner(struct k_spinlock *);
+extern int k_work_submit(struct k_work *);
 extern void assert_post_action(uintptr_t file, uint32_t line) __attribute__((noreturn));
 
 void app_event_manager_submit(uint32_t *item)

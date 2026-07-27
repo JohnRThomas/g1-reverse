@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   0x0003abb4       => struct g1_layout_dashboard_reflash_state__global_0997   [global_0997; G1-original]
  *   0x000374dc       => struct g1_layout_dashboard_reflash_state__global_0998   [global_0998; G1-original]
@@ -106,7 +107,7 @@ typedef uint64_t undefined8; typedef uint64_t ulonglong;
 typedef int64_t longlong;
 #define CONCAT11(a,b) ((ushort)(((ushort)(uint8_t)(a)<<8)|(uint8_t)(b)))
 #define CONCAT22(a,b) ((uint)(((uint)(ushort)(a)<<16)|(ushort)(b)))
-extern long long strlen(int, ...);
+extern size_t strlen(const char *);
 extern long long get_device_info(int, ...);
 extern long long get_ui_mode_flag_byte1(int, ...);
 extern long long check_charging_and_touch_flags(int, ...);

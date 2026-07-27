@@ -18,9 +18,7 @@ struct qspi_cmd {
     struct qspi_buf *rx;
 };
 
-extern int qspi_nor_send_cinstr(const void *device,
-                                const struct qspi_cmd *command,
-                                uint32_t asynchronous); /* FUN_00060ab0 */
+extern int qspi_nor_send_cinstr(void*, unsigned char*, unsigned char); /* FUN_00060ab0 */
 
 int qspi_rdsr(const void *device)
 {

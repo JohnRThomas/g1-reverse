@@ -38,7 +38,7 @@
 #include "../headers/g1_log.h"
 /* printk */
 extern int assert_post_action(int, int); /* assert_post_action */
-extern int read_struct_first_word(unsigned long); /* atomic_get */
+extern unsigned int read_struct_first_word(unsigned int*); /* atomic_get */
 extern void bt_gatt_service_init(void); /* bt_gatt_service_init */
 extern int bt_uuid_cmp(int, int); /* bt_uuid_cmp */
 extern void k_sched_unlock(void); /* k_sched_lock */

@@ -1,3 +1,5 @@
+struct k_msgq;
+#include <stddef.h>
 /* readable reconstruction; identity: FUN_00019bd0 @ 0x00019bd0
  * public-name: debug_log_queue_init
  * durable-map: recon/catalogs/function_names_app.json
@@ -12,7 +14,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_00019bd0 @ 0x19bd0  (parity: 300/300 trials, PROVEN) */
 
-extern int z_impl_k_msgq_alloc_init(void *, int, int);
+extern int z_impl_k_msgq_alloc_init(struct k_msgq *, size_t,  uint32_t);
 
 int debug_log_queue_init(void)
 {

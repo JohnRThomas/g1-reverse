@@ -19,7 +19,7 @@
 /* Reconstructed FUN_00016110 @ 0x16110  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
-extern int dev_ctrl_read1(int, unsigned int, unsigned int, void*);
+extern int dev_ctrl_read1(int, unsigned char, unsigned char, unsigned int);
 extern int dev_write_reg3(int, ...);
 
 int dev_page3_config_and_readback_dump(int param_1, unsigned int param_2, int param_3)

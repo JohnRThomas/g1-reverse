@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0005de70 @ 0x0005de70
  * public-name: smp_ident_addr_info
@@ -44,13 +45,13 @@ extern void smp_pairing_complete(int, unsigned int);
 extern int bt_keys_find_addr(unsigned char, int);
 extern int bt_keys_get_type(int a, u32 b, int c);
 extern void bt_keys_clear(void*);
-extern int assert_post_action(int, int);
+extern void assert_post_action(const char *, unsigned int);
 extern int atomic_test_bit(int, int);
 extern int bt_conn_security_sufficient(int a, int b);
 extern void bt_addr_le_copy_83062(unsigned int *, unsigned int *);
 extern void smp_log_message(u32 a, u32 b, void *c);
 extern void atomic_set_bit(int a, int b);
-extern int memcmp(const void*, const void*, unsigned long);
+extern int memcmp(const void *, const void *, size_t);
 
 undefined4 smp_ident_addr_info(int param_1, int param_2)
 {

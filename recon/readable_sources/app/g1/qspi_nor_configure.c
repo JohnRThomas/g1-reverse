@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_param_0299_driver_data_collision__param_0299 [param_0299; G1-original]
  * Raw function identity: 0x00060c00.  See ../include/g1_recovered_layouts.h. */
@@ -42,7 +43,7 @@ extern int qspi_pinctrl_apply_state(uintptr_t transport, void *result,
                         uintptr_t unused, void *owner);
 extern int audio_apply_config_cmd_0xab(unsigned int);
 extern int qspi_rdsr(void *context);
-extern int memcmp(const void *expected, const void *actual, uint32_t length);
+extern int memcmp(const void *, const void *, size_t);
 
 struct driver_context {
     uint32_t reserved0;

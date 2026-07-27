@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_sem;
 #include "../../headers/g1_log.h"
 /* readable reconstruction; identity: FUN_0002f878 @ 0x0002f878
  * public-name: delAudioStreamRecord
@@ -21,7 +22,7 @@
 
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 
 unsigned int delAudioStreamRecord(unsigned char param_1)
 {

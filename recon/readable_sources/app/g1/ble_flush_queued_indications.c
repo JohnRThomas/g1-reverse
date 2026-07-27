@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_app_ble_ctx_block__param_0038          [param_0038; G1-original]
  * Raw function identity: 0x0007c20a.  See ../include/g1_recovered_layouts.h. */
@@ -15,7 +16,7 @@
 
 extern void memset_bytes(void*, int, int);
 extern int dequeue_debug(unsigned int);
-extern int strlen(int);
+extern size_t strlen(const char *);
 
 unsigned int ble_flush_queued_indications(int param_1)
 {

@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+struct k_sem;
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   param_1          => struct g1_layout_param_0299_driver_data_collision__param_0299 [param_0299; G1-original]
  * Raw function identity: 0x0008392e.  See ../include/g1_recovered_layouts.h. */
@@ -14,7 +15,7 @@
  */
 /* Reconstructed FUN_0008392e @ 0x8392e  (parity: 300/300 trials, PROVEN) */
 
-extern void k_sem_give(int a);
+extern void k_sem_give(struct k_sem *);
 extern void audio_hw_lock_release(unsigned char *);
 
 void audio_i2s_start_channels(void*param_1) {

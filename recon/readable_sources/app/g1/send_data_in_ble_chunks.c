@@ -1,4 +1,5 @@
 #include "g1_app_symbols.h"
+#include <stddef.h>
 /* Recovered layout bindings (presentation-only; Ghidra-grounded):
  *   0x000338dc       => struct g1_layout_ble_chunk_param_table__global_0965     [global_0965; G1-original]
  *   local_3c         => struct g1_layout_ble_chunk_scratch5__stack_0964         [stack_0964; G1-original]
@@ -23,10 +24,10 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 
-extern int strlen(int);
+extern size_t strlen(const char *);
 extern int get_device_info(void);
 extern unsigned long send_notification_app_whitelist(unsigned char*, const char*, const char*, unsigned long);
-extern int strncmp(const void*, unsigned long, unsigned int);
+extern int strncmp(const char *, const char *, size_t);
 
 void send_data_in_ble_chunks(const uint8_t *request)
 {

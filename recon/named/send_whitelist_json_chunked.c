@@ -19,8 +19,8 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 extern int convert_app_whitelist_to_json(int,...);
-extern int malloc(int,...);
-extern int free(int,...);
+extern void *malloc(size_t);
+extern void free(void *);
 extern int memcpy(int,...);
 extern int memset_bytes(int,...);
 typedef int (*codeptr)(int,...);

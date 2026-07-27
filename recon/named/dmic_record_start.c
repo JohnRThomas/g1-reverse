@@ -1,3 +1,4 @@
+struct k_sem;
 /* readable reconstruction; identity: FUN_0003b78c @ 0x0003b78c
  * public-name: dmic_record_start
  * durable-map: recon/catalogs/function_names_app.json
@@ -22,7 +23,7 @@
 extern int get_device_info(void);
 extern unsigned int drain_audio_msgq(void);
 extern unsigned int startAudioStreamRecord(void);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 
 void dmic_record_start(void)
 {

@@ -1,3 +1,4 @@
+struct k_sem;
 /* readable reconstruction; identity: FUN_00023b78 @ 0x00023b78
  * public-name: cleanAppLanguageInfo
  * durable-map: recon/catalogs/function_names_app.json
@@ -18,7 +19,7 @@
 /* Reconstructed cleanAppLanguageInfo @ 0x23b78  (parity: 300/300 trials, PROVEN) */
 
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void k_sem_give(int);
+extern void k_sem_give(struct k_sem *);
 
 int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
 {

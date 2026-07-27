@@ -10,7 +10,7 @@
 /* Reconstructed FUN_00080830 @ 0x80830  (parity: 300/300 trials, PROVEN) */
 
 extern void net_buf_reset(unsigned int);
-extern unsigned long net_buf_simple_tailroom(void*);
+extern int net_buf_simple_tailroom(int);
 extern void thunk_FUN_00085cf2(int *, int, int, int, int, int, unsigned int);
 
 void cbor_nb_writer_init(int *param_1, unsigned int param_2, unsigned int param_3)

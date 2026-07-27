@@ -25,7 +25,7 @@ extern void safe_memcpy_checked(void *destination, const void *source,
                          uint32_t size, uint32_t destination_size);
 extern uint32_t vdprintf_to_fd(void *destination, uint32_t append,
                              uint32_t capacity, uintptr_t format, ...);
-extern void k_sleep(uint32_t ticks, uint32_t unused);
+extern int32_t k_sleep(k_timeout_t);
 
 #define LOG_ROUTE (*(volatile uint32_t *)0x20007554u)
 
