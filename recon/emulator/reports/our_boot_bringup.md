@@ -19248,3 +19248,646 @@ $V /private/tmp/g1-i43/pause.py  <ship>/twim1.p2.trace <base>/… <ours>/…
 $V <scratchpad>/td2/constargs.py    # 366 -> 299 paired sites
 $V <scratchpad>/td2/consttrace.py   # 299 -> 60 with a provably unique constant
 ```
+
+## Iteration 44 — the re-baseline is a NO-OP on the image; `RADIO_TX` has
+## CHANGED SIGN since it was last measured; and the two "real defects the new
+## criterion surfaced" are ONE criterion defect and ONE firmware defect,
+## not two firmware defects.
+
+Work order: `recon/analysis/phase_tolerant_criterion.md` §8 (its NOT-CLOSED
+list). HEAD at the start of this pass: **`49caeb66`** ("Type-disagreement
+repair 3"), working tree dirty with the concurrent parity agent's files.
+Written incrementally as the work ran; corrections to my own claims are made in
+place with a note.
+
+### 44.1 THE RE-BASELINE — stages 00→08 regenerated, and the payload really is unchanged
+
+`driver.py status` at HEAD, before anything: **stage 00 stale on 203 inputs**
+(the criterion report §0 recorded 104; two further concurrent passes had landed
+since). Stages 01–08 were reported stale by cascade with 0 inputs of their own
+changed. Regenerated, never patched:
+
+```
+for n in 0 1 2 3 4 5 6 7 8; do driver.py materialize $n; done
+```
+
+| stage | harvest at this regeneration |
+|---|---|
+| 00 snapshot | 2,629 files copied, 2,567 parity rows, 0 transformations |
+| 01 literal_inline | 100 rodata objects withdrawn, 3,997 B, 100 PROVIDE pins retired |
+| 02 block_dedupe | 92 `E` declarations withdrawn, **44 latent defects found**, 739 files changed |
+| 03 module_structure | 709 files changed, 19 module headers, 220 declarations hoisted, **639 divergent declaration symbols** |
+| 04 cohesive_tu | refusals incl. 29 typedef / 35 macro / 17 static collisions |
+| 05 cohesive_composition | 1,578 duplicate includes withdrawn, 146 duplicate declarations, 1,158 banners |
+| 06 unit_composition | 247 merged units, 4 declarations demoted, 248 of 282 late includes hoisted |
+| 07 internal_linkage | **135** definitions given internal linkage (was 137), 18 in-unit externs made `static` |
+| 08 call_order | 59 + 70 units refused; no reordering |
+
+```
+driver.py status  ->  stages 0..8 ALL "current"   (2,631 / 1,720 inputs, 0 changed)
+                      stage 99 (retired probe) stale on 824, as expected
+```
+
+**And the payload is unchanged. Measured, not inferred:**
+
+```
+recon/application/build_cohesive.sh app /private/tmp/g1-i44-base       exit 0
+FLASH 956,480 B / 982,528 B  97.35 %      RAM 253,765 B  56.32 %
+cmp  g1-i44-base/zephyr/zephyr.bin   g1-s4b-base/zephyr/zephyr.bin   -> IDENTICAL
+cmp -n 957072  g1-i44-base/app_update.bin  g1-s4b-base/app_update.bin -> IDENTICAL
+cmp -n 957072  g1-i44-base/app_update.bin  g1-td3-final/app_update.bin -> IDENTICAL
+nm: runtime_info_sync 0x00015c04    _end 0x2003ff45     (both UNMOVED)
+```
+
+So the in-tree build at HEAD `49caeb66` is **byte-for-byte the base image the
+stage04b pass and the phase-tolerant pass measured**, `type_disagreement_repair_3`'s
+byte-identity claim is confirmed independently, and `$rtinfo_pc` is still
+`0x00015c04` with device-ctx probes `0x20040025 / 0x20040F38 / 0x20040FAA`.
+**Every capture taken by those two passes remains valid at this HEAD** — which
+is why the stage captures below are reused rather than re-run.
+
+### 44.2 THE FOUR ACCEPTANCE FRAMEBUFFERS, RE-RUN AT HEAD
+
+Two consecutive passes declined to claim these because Renode was held
+elsewhere. They are claimed here, from two fresh seeded captures on
+`g1-i44-base` (`G1_SEED=305419896`, `$rtinfo_pc=0x00015c04` re-read from the
+ELF actually booted, frozen `g1-i30e-net`):
+
+```
+navigation p1_boot    1d617c65a688f10eefe139741b680164f09adcd960b18c3ec9ad1f0fb193b953   656 px  IDENTICAL
+navigation p2_render  b26c73b37d441fc8a6732c02e6d889a719677ec4c9ad2adc2d48f28deedb8131  1098 px  IDENTICAL
+dashboard  p1_boot    0c5cc90b079d0d9c1ded1376357d23a9782a704a83e01731f50ccd162e246492     0 px  IDENTICAL (all-zero)
+dashboard  p2_render  19b1f24a09f97a8d85f1572ac865c8fc61fe6d542af18247a5bcceeb7651b513  2923 px  IDENTICAL
+```
+
+`cmp` against the committed `recon/emulator/reports/golden_framebuffer_*.raw`,
+153,600 B each, **exit 0 on all four**.
+
+### 44.3 TASK 2 — the two "real defects the new criterion surfaced" are ONE
+### CRITERION DEFECT, not two firmware defects. Both are the 5 ms burst gap.
+
+This corrects `phase_tolerant_criterion.md` §4.1, §8 item 4 and §8 item 5. Both
+failures are re-derived below from the raw trace ticks, not from the oracle's
+summary fields.
+
+#### 44.3.1 `twim1` npm1300 `P5 order` on the BASE — the "two bursts 9,904 ms
+#### apart swapped order" is ONE burst that never moved
+
+`phase_tolerant_compare.py pair` on the shipped navigation oracle vs the
+in-tree base reproduces it exactly:
+
+```
+twim1 npm1300  FAIL  max|d|=1198.549 ms  measurable=11/12
+   FAIL P3 phase: |delta| 1198.549 ms > bound on 1/6 bursts of the n=6 train
+   FAIL P5 order: two bursts 9904.330 ms apart in the shipped run swapped order
+```
+
+**Every one of the 352 reported inversions involves the same single burst.**
+Enumerated:
+
+```
+gap 9904.330 ms   A ship 3.979880 s  ours 11.478510 s   burst 1/6 of the n=6 train
+                  B ship 13.884210 s ours 10.177610 s   burst 6/9 of the n=9 train
+gap 7514.010 ms   A (the same burst 1/6) ...            B burst 78/144
+gap 7293.550 ms   A (the same burst 1/6) ...            B burst 35/64
+```
+
+So P5 is reporting **one** displacement, 352 times. The two trains involved
+share a 96-character key head; the full keys are 108 and 141 characters. Merged
+in time order and tagged by train:
+
+| slot | shipped | ours |
+|---:|---|---|
+| 1 | 1.463 (n=9) | 1.470 (n=9) |
+| **2** | **2.720 (n=6)** | **2.692 (n=9)** |
+| 3–12 | identical types | identical types |
+| **13** | **16.333 (n=9)** | **16.330 (n=6)** |
+| 14–15 | identical types | identical types |
+
+**Exactly two slots differ in type, and the two trains keep their populations
+(9 and 6) on both sides.** Read out of the raw ticks, `key_chars` 141 = 108 + 1
++ 32 — the 141-char key is the 108-char key concatenated with the 32-char key.
+And the raw trace says why:
+
+```
+SHIPPED, twim1 npm1300 around 2.72 s
+  2.720210  6B|W|0334        <- the 10-transaction fuel-gauge/charger programme
+  ...
+  2.720290  6B|R|02|n1
+  2.722620  6B|W|0334   gap = 2.330 ms   <- the 3-transaction 20 ms poll
+  2.722640  6B|W|030401                      INSIDE BURST_GAP_NS -> ONE burst of 13
+  2.742700  6B|W|0334   gap = 20.060 ms
+
+OURS (in-tree base) around 2.69 s
+  2.691950  6B|W|0334        <- the SAME 10-transaction programme
+  ...
+  2.692030  6B|R|02|n1
+  2.726530  6B|W|0334   gap = 34.500 ms  <- OUTSIDE BURST_GAP_NS -> two bursts
+```
+
+The 20 ms poll train runs at 20.06 ms in both runs; our copy of it is **+3.91 ms**
+in phase (consistent with the §43.10 boot lateness), and the 200 ms fuel-gauge
+train is **−28.26 ms**. Whether the programme lands 2.3 ms or 34.5 ms before the
+next poll is decided by that sub-Δ relative phase, and the 5 ms constant then
+turns it into a different **train identity**.
+
+**There is no ordering defect. Nothing in our firmware runs out of order.**
+§8 item 5's "it deserves a look" is discharged: it was the segmentation.
+
+#### 44.3.2 `spim_a` navigation `P1 content` on EVERY image — the same mechanism
+
+```
+FAIL P1 content: shipped train absent from ours (n=1) 02042420FF...  (48 transactions)
+FAIL P1 content: train present only in ours   (n=1) 02000000FF...  (26 transactions)
+FAIL P2 population 33 -> 34 on 02042420FF...: extra burst 33 at 14.520160 s
+```
+
+`key_chars`: the animation frame is **719**, our 26-transaction burst is
+**308,015**, the shipped 48-transaction burst is **308,735 = 719 + 1 + 308,015**.
+Raw ticks:
+
+```
+SHIPPED   14.520160 .. 14.520280   the 34th animation frame (22 tx, ends 97)
+          14.524440              gap = 4.160 ms   -> INSIDE 5 ms -> ONE burst of 48
+OURS      14.458390 .. 14.458520   the same 34th animation frame
+          14.479270              gap = 20.750 ms  -> two bursts
+```
+
+**Both runs emit 34 animation frames of that key.** The criterion says 33 and 34
+because shipped's 34th is hidden inside a merged burst. This is *not* the §41
+one-extra-frame residue — that was closed in iteration 41 and `spim_a` whole-run
+is 3,645 == 3,645 on this base. What remains is the 786/2,859 vs 764/2,881 phase
+split, which is a strict-criterion field and is untouched here.
+
+#### 44.3.3 The repair `phase_tolerant_criterion.md` §8 item 1 proposes CANNOT work
+
+§8 item 1 proposes deriving the threshold from "the shipped capture's own
+maximum intra-burst gap". Measured, shipped navigation:
+
+| device | shipped max intra-burst gap | the accidental merge it must split |
+|---|---:|---:|
+| `twim1` npm1300 | **2.330 ms** | **2.330 ms** (the 2.72 s merge) |
+| `spim_a` jbd_display | **4.270 ms** | **4.160 ms** (the 14.52 s merge) |
+
+**The shipped maximum intra-burst gap IS the accidental merge.** Calibrating to
+it leaves both merges merged. The proposal is circular and is refuted, not
+deferred. (It would still fix §6.8's named `P0 segmentation` false positive,
+whose merge gap is 3.100 ms **in ours only** — but that is one of three.)
+
+#### 44.3.4 What a correct threshold would be — measured by exhaustive sweep
+
+Every distinct inter-transaction gap ≤ 20 ms was tried as the threshold, on both
+sides, and the resulting train sets and populations compared (shipped nav vs
+in-tree base):
+
+| device | thresholds with P1 = 0 AND P2 = 0 | at the 5 ms constant |
+|---|---|---|
+| `spim_a` jbd_display | **7 values, 0.020 … 2.580 ms** | P1 mismatch **2**, P2 mismatch **1** |
+| `twim1` npm1300 | 5 values, 0.000 … 6.840 ms | 0, 0 |
+| `twim1` opt3001 | 4 values, 0.000 … 0.790 ms | 0, 0 |
+| `twim1` st25dv_nfc_eeprom | 5 values, 0.010 … 5.219 ms | 0, 0 |
+| `twim1` st25dv_system_port | 6 values, 0.010 … 6.250 ms | 0, 0 |
+| `twim2` lsm6dso | 8 values, 0.020 … 10.330 ms | 0, 0 |
+
+Running the **full P0–P5 gate** as a function of the threshold, shipped vs base,
+navigation, Δ = 145.440 ms:
+
+```
+T = 5.000 ms (today)  spim_a FAIL {P1 content:2, P2 population:1}   npm1300 FAIL {P3:1, P5:1}
+T = 2.580 ms          spim_a PASS/INDETERMINATE-PHASE (31 trains)   npm1300 FAIL {P3:1, P5:1}
+T = 1.500 ms          spim_a PASS/INDETERMINATE-PHASE (32 trains)   npm1300 FAIL {P1:3, P2:3}
+T = 0.790 ms          spim_a PASS/INDETERMINATE-PHASE (32 trains)   npm1300 FAIL {P2 population:3}
+T = 0.020 ms          spim_a FAIL {P1:2, P2:1}                      npm1300 FAIL {P1:5, P0:1}
+```
+
+**`spim_a` navigation passes cleanly at T = 2.580 ms** — the §8 item 4 failure is
+a threshold artifact and nothing else. **`twim1` npm1300 fails at every
+threshold**: coarse thresholds give the segmentation artifact above, fine ones
+expose a genuine residue that is the known §43.9 tail —
+
+```
+T = 0.790 ms:  P2 population 145 -> 144  missing burst at 19.054650 s
+               P2 population  10 ->   9  missing burst at 17.573143 s
+               P2 population   5 ->   6  extra burst at 18.827820 s
+```
+
+i.e. bursts near the 20 s wall, which §43.9 root-caused to the +3.45 ms boot
+lateness (§43.10) and not to the polling cadence.
+
+**I did NOT change the threshold.** Doing so would change the criterion's
+segmentation on every stream and require the bound to be re-derived and every
+stage re-gated; and a per-capture data-derived threshold is a rule keyed on an
+unstable quantity, which is the C7c failure mode. The measurement is published
+so the next pass can decide with numbers instead of a proposal. A structural
+alternative I tried and **rejected on measurement** is in §44.6.
+
+### 44.4 TASK 1 — `RADIO_TX` ROOT-CAUSED: it is TWO counters added together,
+### and the base's apparent agreement with shipped is a CANCELLATION
+
+`radio TransmittedFrames` counts **every** frame the DUT's net-core RADIO
+(`Wireless.NRF5340_RADIO @ sysbus 0x41008000`) puts on the air. The G1 shares
+that one radio between the BLE peripheral link and the ESB L↔R sync, so
+`counters/RADIO_TX` is a **sum of two independent subsystems** and the oracle
+never separated them.
+
+Four fresh seeded navigation captures (`ship`, `base`, stage 04-B, stage 07),
+identical to the acceptance capture except for `logLevel -1 sysbus.radio`,
+`logLevel -1 vcentral` and five extra counter reads at the 6 s phase boundary
+(observation only — the framebuffers and every trace file are unaffected).
+The shipped run's TX frames decompose cleanly by `(channel, length)`:
+
+```
+(34, 41 bytes) x373     <- ESB master frames == ESB_MASTER_FRAMES 0x175 exactly
+(everything else) 189   <- 186 x 9-byte empty BLE data PDUs, one 18 B, one 25 B,
+                           one 40 B, spread over 37 data channels
+```
+
+So `RADIO_TX = ESB_MASTER_FRAMES + BLE_link_layer_TX`, exactly, on every image:
+
+| image | `RADIO_TX` | **ESB** | **BLE** | `RADIO_TX` p1 | ESB p1 | **BLE p1** | BLE p2 | mean BLE spacing in p2 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| **shipped** | **562** | **373** | **189** | **140** | **93** | **47** | 142 | 98.59 ms |
+| in-tree base | 562 | **374** | **188** | 141 | 94 | 47 | 141 | 99.29 ms |
+| stage 04-B | 564 | 374 | 190 | 142 | 94 | 48 | 142 | 98.59 ms |
+| **stage 07** | 560 | **373** | **187** | **140** | **93** | **47** | 140 | 100.00 ms |
+
+**Findings, in order of importance.**
+
+1. **The in-tree base's `RADIO_TX = 0x232 == shipped` is a coincidence.** It is
+   `374 + 188` against shipped's `373 + 189`: **both components are wrong, by
+   one, in opposite directions.** Every previous pass — §43.11 and §43.14
+   included — recorded `RADIO_TX 0x232` as a *hold criterion that was EQ*. It
+   was not. I am correcting my predecessors' claim and my own reading of it.
+2. **Stage 07's ESB improvement carried `RADIO_TX` with it, exactly as the work
+   order suspected.** The ESB component goes `374 -> 373 == shipped`, and
+   **stage 07's entire phase-1 radio is now bit-exact to shipped**: `RADIO_TX_P1`
+   140 == 140, ESB 93 == 93, BLE 47 == 47. The `0x232 -> 0x230` "regression" is
+   **the ESB half becoming correct while the BLE half stays two frames short in
+   the render phase only** (140 vs 142).
+3. **The residue is smaller and differently shaped than when it was first
+   measured.** Stage 04-B was `+2` and was `+1 ESB, +1 BLE`; stage 07 is `−2`
+   and is `0 ESB, −2 BLE`, all of it after 6 s. Measured on `RADIO_TX` alone the
+   two look symmetric; decomposed, stage 07 is strictly better — it fixes the
+   ESB half outright and leaves one subsystem's phase.
+4. **The remaining `RADIO_TX` difference is not an ESB defect and not a BLE
+   protocol defect. It is a count of connection-event responses, and its unit is
+   ≈99–100 ms** (last column: 14,000 ms of render phase divided by the number of
+   BLE frames in it). `±2` frames is `±2` slots of a ~100 ms grid inside a 14 s
+   window — i.e. it is the same phase family as everything else in §43.15 item 1,
+   and §44.5 shows the grid is the *stimulus's*, not the firmware's.
+
+**What `RADIO_TX` should be replaced by.** A single summed counter cannot be
+gated: it scored the base EQ while both halves were wrong. The oracle already
+publishes `peripherals/radio_esb/ble_radio_transmitted_frames`, which is the
+same sum. **The two components must be published separately** —
+`ESB_MASTER_FRAMES` already exists, so the missing field is
+`RADIO_TX − ESB_MASTER_FRAMES`, plus its p1/p2 split. I did **not** add it: it
+changes the oracle's field set, which is a criterion change, and the numbers are
+published here so the next pass can add it with the reference values already
+measured.
+
+### 44.5 TASK 4 — the ≈100.5 ms quantum is NOT a firmware period. It is one
+### DUT BLE connection-event RESPONSE, and it appears only under the
+### NAVIGATION stimulus.
+
+`stage04b_r7_validation.md` §4 measured "exactly two slots, 100.5 ms apart" and
+`phase_tolerant_criterion.md` §3.1(b) ruled out the 32,768 Hz system tick, the
+30 ms connection interval and the 120 ms sweep dwell, then declined to derive a
+bound from it. Four measurements settle what it is.
+
+**(1) It does not exist on the dashboard stimulus.** The OPT3001 result-register
+poll train, first poll, same three images, both stimuli:
+
+| image | navigation | dashboard |
+|---|---|---|
+| shipped | 3.935920 s | 10.892830 s |
+| in-tree base | 3.944650 s | 10.900610 s |
+| stage 04-B | **3.844150 s  (−100.500 ms)** | **10.900400 s  (−0.210 ms)** |
+| stage 07 | 3.841750 s  (−102.900 ms) | 10.898490 s  (−2.120 ms) |
+
+**The same three images that differ by 100.5 ms on navigation differ by 0.2 ms
+on the dashboard.** The nPM1300 rail-enable burst
+(`080001|040A02|040F|040F02|040201`) says the same thing: navigation
+3.914020 → 3.813670 (−100.350 ms); dashboard 10.871060 → 10.870820
+(−0.240 ms). A firmware period would not care which stimulus is running.
+
+**(2) The step happens at exactly one event and everything before it is in
+lock-step.** Aligning the base's and stage 04-B's *entire* canonical event
+streams (`spim_a` + `twim1` + `twim2`, 3,645 + 799 + 2,289 transactions) with
+`difflib` and printing every displacement change above 5 ms:
+
+```
+at 3.914020 s   displacement −0.280 ms → −100.350 ms   (step −100.070 ms)
+                the event: twim1 6B|W|080001   (the nPM1300 rail enable)
+```
+
+For the first 3.9 seconds the two images agree to **0.28 ms**. One event moves
+100 ms, and every later difference is a consequence.
+
+**(3) That event is triggered by the virtual central's GATT handle sweep, and
+the sweep's unit is measured, not assumed.** With `logLevel -1 vcentral` the
+capture logs every `swept handle 0xNN done`. Counting the DUT's own BLE frames
+between consecutive completions:
+
+```
+per-handle DUT BLE responses: [5, 4, 4, 4, 4, 4, 4, 4, ...]   == SweepDwell 4
+NUS RX value handle = 0x14; it is the 6th handle completed; DUT responses up to
+that completion = 25 on ALL FOUR images (shipped, base, stage 04-B, stage 07)
+```
+
+So the trigger is not reached at a different *ack index* — it is reached at the
+same 25th response, at a different **virtual time**.
+
+**(4) The unit of that virtual time is the DUT's own BLE response spacing, and
+it is ≈100 ms.** From §44.4's table, the render phase contains 140–142 DUT BLE
+frames in 14.000 s:
+
+```
+shipped      142 frames / 14.000 s  =  98.59 ms per frame
+in-tree base 141 frames / 14.000 s  =  99.29 ms
+stage 04-B   142 frames / 14.000 s  =  98.59 ms
+stage 07     140 frames / 14.000 s  = 100.00 ms
+```
+
+The central injects a data PDU on **every** RX window the DUT opens
+(530 in 20 s ≈ 30.2 ms == the 30 ms connection interval), but the DUT only
+**answers** about one window in 3⅓. **One answered window ≈ 100 ms, and that is
+the slot.** A perturbation that makes the peripheral answer one window earlier
+or later moves the sweep's acked write — and therefore the whole
+navigation-startup cluster — by exactly one such slot.
+
+**Consequences, stated plainly.**
+
+* The quantum is **a property of the emulation stimulus and of the DUT's BLE
+  link-layer response cadence, not of any computed period in our code.** The
+  hope in the work order — "if the quantum is a computed period in our own code,
+  it may be a defect" — is **refuted**: it is not, and there is no defect to fix
+  there.
+* This makes §4.3 of `stage04b_r7_validation.md` ("a size-compensating measure is
+  refuted, the step is larger than the margin") a statement about the
+  *navigation stimulus*, not about the firmware. On the dashboard the same
+  images are within 0.24 ms and there is no slot problem at all.
+* **`RADIO_TX` and the 100.5 ms quantum are the same phenomenon seen twice.**
+  The BLE component of `RADIO_TX` *is* the count of these slots; the slot width
+  is that count divided into the phase length. `±2` frames and `±100 ms` are one
+  measurement.
+
+**The falsification test, stated in advance.** If this is right, changing
+`vcentral SweepDwell` from 4 to 8 must **not** change the slot width (it is one
+response, not one dwell), while halving the modelled connection interval from
+30 ms to 15 ms **must** roughly halve it. Neither run was made — recorded as
+not-run, not as passed.
+
+### 44.6 A structural repair for the segmentation defect that I TRIED and REJECTED
+
+Before publishing §44.3 as "measured but unrepaired" I implemented the obvious
+structural alternative to a threshold, so the rejection is on measurement:
+
+> A burst is DECOMPOSABLE iff it has an internal split point where **both**
+> halves' keys are themselves observed as complete bursts in the same capture.
+> `G_intra` := the largest internal gap over the NON-decomposable bursts — the
+> largest gap this capture PROVES to be intra-programme. Re-segment at
+> `G_intra`; iterate to a fixed point.
+
+It converges in one iteration and it does not work:
+
+```
+spim_a  ship G_intra=4.270 ms  ours 4.490 ms  ->  segmentation UNCHANGED,
+        P1 ship-only=1 ours-only=1, P2 popdiff=1   (identical to the 5 ms constant)
+npm1300 ship G_intra=1.102 ms  ours 2.101 ms  ->  WORSE: P2 popdiff 0 -> 3
+```
+
+Two reasons, both measured. On `spim_a` the 26-transaction burst's key is not
+observed anywhere in the **shipped** capture (it exists only in ours), so
+shipped's 48-transaction merge is classified non-decomposable and its 4.270 ms
+gap *sets* `G_intra` — the rule certifies the very merge it should split. On
+`npm1300` the two sides derive **different** `G_intra` (1.102 vs 2.101 ms)
+because the shipped run's genuine `080001 → 040A02` intra-programme gap is
+1.102 ms while ours has an accidental 2.101 ms merge elsewhere; an asymmetric
+threshold then splits one side and not the other.
+
+**A rule whose threshold is derived independently on each side is not a
+comparison.** Recorded as tried and refuted rather than proposed.
+
+### 44.7 TASK 3 — where the criterion CAN be extended, and where it structurally cannot
+
+§8 item 2 lists five uncovered buses. They are two different cases and the
+difference is structural, not a matter of effort.
+
+| bus | what the capture actually records | can the burst/train decomposition apply? |
+|---|---|---|
+| `RADIO_TX`, `ESB_MASTER_FRAMES`, `ESB_ACKS`, `ESB_ANNOUNCE_RESP`, `VC_DATA_EVENTS` | **a single scalar read at the end of the run** (`radio TransmittedFrames`, `esbslave MasterFramesSeen`, …) | **No — there is no per-event record at all.** The right extension is *component* decomposition, and §44.4 does it: `RADIO_TX = ESB + BLE`, each with a p1/p2 split. |
+| `saadc`, `pdm0`, `gpiote0`, `gpiote1` | an **ordered, untimed** register-access stream from `sysbus LogPeripheralAccess` | **No — there is no virtual time.** `ACCESS_RE` in `build_display_sensor_oracle.py:260` matches a `HH:MM:SS.ffff` prefix which is Renode's **host wall clock**, and it is not even captured into the record. Every gate of this criterion (burst gap, `starts_ns`, P3, P4, P5) is a function of virtual time. Extending it needs the *capture* to carry virtual time per access — a capture-script and parser change, not a criterion change. |
+
+So `RADIO_TX`/`ESB_*` are now covered by measurement (§44.4) but by a different
+decomposition than the one §8 imagined, and `saadc`/`pdm0`/`gpiote*` cannot be
+covered at all until the capture format changes. **I did not change the capture
+format**: it would invalidate every recorded oracle field that hashes those
+streams.
+
+#### 44.7.1 §8 item 7 — the LSM6DSO bursts with no phase gate: CLOSABLE AT ZERO COST
+
+The ambiguity rule excludes burst *i* when `|δ_i|` exceeds half the local period.
+Its stated justification is that "burst *i* in one run is nearer to burst *i±1*
+of the other". **That is true and irrelevant when the populations are equal**:
+`starts_ns` is sorted on both sides, so `i ↔ i` is the *unique order-preserving
+bijection*, and P5 already fails any run whose order changed. There is no
+alternative correspondence to be ambiguous with.
+
+Measured — `max |δ|` over the criterion's gated subset vs over **every** burst
+of every common train (`i ↔ i` on the common prefix):
+
+| image / stimulus | `twim2 lsm6dso` excluded | gated `max\|δ\|` | **ALL bursts `max\|δ\|`** |
+|---|---:|---:|---:|
+| base, navigation | 199 / 551 | 10.620 ms | **10.620 ms** |
+| base, dashboard | 199 / 549 | 13.670 ms | **13.670 ms** |
+| stage 04-B, navigation | 199 / 551 | 91.720 ms | **91.720 ms** |
+| stage 07, navigation | 199 / 551 | 94.160 ms | **94.160 ms** |
+| stage 07, dashboard | **432 / 548** | 14.070 ms | **39.000 ms** |
+
+Every value is **inside Δ = 145.440 ms**. Four of the five are *identical* — the
+excluded bursts carry no larger displacement than the gated ones — and the fifth
+(§8 item 7's own `432/545`, measured here as 432/548) rises to 39.000 ms and
+still passes. **Dropping the exclusion on this stream closes the hole and
+changes no verdict on any image measured.** That is a strengthening, not a
+widening, and it is what §8 item 7 asked for.
+
+It does **not** generalise to the other streams, and the reason is §44.3:
+
+```
+twim1 npm1300, base nav   gated 1198.549 ms   ALL 7498.630 ms
+twim1 npm1300, base dash  gated   28.260 ms   ALL 8807.530 ms
+spim_a,        base dash  gated   45.040 ms   ALL 1205.510 ms
+```
+
+Those multi-second values are the **segmentation artifact**, not phase: they are
+the n=6/n=9 train-membership swap of §44.3.1 and its `spim_a` analogue. So §8
+item 6's "`npm1300` phase is indeterminate" has a cause now — it is not a
+property of the charger state register, it is the 5 ms burst gap — and it cannot
+be fixed by touching the ambiguity rule.
+
+**I did not apply the change.** It edits `phase_tolerant_compare.py`'s gate,
+which would require re-deriving Δ (the bound is itself a max over gated bursts)
+and re-running the whole ladder. The measurement is published with the exact
+before/after so the next pass can land it in one step.
+
+### 44.8 Static ladder, at HEAD `49caeb66` on `g1-i44-base`
+
+```
+app build                                   exit 0
+FLASH   956,480 B / 982,528 B  97.35 %      RAM 253,765 B / 440 KB  56.32 %
+zephyr.bin  cmp vs g1-s4b-base              IDENTICAL
+app_update.bin payload cmp -n 957072        IDENTICAL to g1-s4b-base and g1-td3-final
+nm -u  (app)                                0
+nm -u  (net, frozen g1-i30e-net)            0
+duplicate GLOBAL definitions                0
+check_ram_pin_collisions --core app         bound 627 OK / 0 escaping / 0 unknown inside a live object
+                                            (20 raw-literal pins outside the RAM region, 3 abs symbols
+                                             not in the linker scripts -- both unchanged)
+check_ram_pin_collisions --core net         bound 170 OK / 0 escaping / 0 unknown inside a live object
+check_thread_create_stack_args --trials 120 10 / 10 PASS, exit 0
+tools/verify_data.py                        995 / 995 byte-exact, 56,279 / 56,279 B (100.00 %)
+recon/refactor test suite                   139 / 139 PASS
+net core                                    UNTOUCHED -- g1-i30e-net zephyr.bin 225,581 B, still FROZEN
+recon/refactor/driver.py status             stages 0..8 ALL current
+```
+
+`cfg_verify` was **not run and is not cited**. Every number in §44 comes from a
+build, a `cmp`, an ELF symbol table, a seeded Renode capture, a trace file, or a
+JSON diff.
+
+### 44.9 What is NOT closed, and why
+
+1. **Nothing in the criterion was changed.** §44.3.4 measures a threshold window
+   in which `spim_a` navigation passes; §44.7.1 measures that the LSM6DSO
+   ambiguity exclusion can be dropped for free; §44.4 names the missing
+   `RADIO_TX` component field. **None of the three was applied.** Each is a
+   change to the segmentation, the gate or the oracle's field set, and any of
+   them requires Δ to be re-derived and the whole ladder re-gated — a capture
+   budget this pass spent on measurement instead. The numbers are published so
+   the next pass lands them in one step rather than discovering them again.
+2. **The `twim1` npm1300 residue is real at fine granularity and is untouched.**
+   At T = 0.790 ms the failures are `P2 population 145 → 144` (a burst missing
+   at 19.054650 s), `10 → 9` (17.573143 s) and `5 → 6` (18.827820 s) — the
+   §43.9 tail, whose cause is the +3.45 ms boot lateness of §43.10. The
+   `g1_ram_arena` split that would close it was **not** attempted here either.
+3. **The `RADIO_TX` BLE residue is not closed.** Stage 07 is `140/93/47` in
+   phase 1 — bit-exact to shipped — and `140` vs `142` BLE frames in phase 2.
+   §44.5 shows the unit is ≈100 ms of the emulated BLE link, so it belongs to
+   the phase family; but I did not prove *which* connection event is missed, and
+   doing so needs a virtual-time hook on the RADIO peripheral that I did not
+   write.
+4. **The TASK 4 falsification test was not run** (§44.5): `SweepDwell 4 → 8`
+   must leave the slot width unchanged, halving the connection interval must
+   halve it. Recorded as not-run.
+5. **`saadc`, `pdm0`, `gpiote0/1` remain outside the criterion and cannot enter
+   it** until the capture records virtual time per register access (§44.7).
+6. **The stage ladder was not re-gated.** The stage trees were regenerated
+   (§44.1) but no stage was rebuilt or re-captured: stages 04-B/05/06/07 build
+   from inputs whose payload is byte-identical to the ones the phase-tolerant
+   pass measured, and that pass's captures are therefore still current. **I did
+   not verify this by rebuilding a stage** — it is an inference from the base
+   payload identity, and it is stated as one.
+7. **Stage 08 still has no `SIZE_GATE.json`** (§8 item 8), unchanged.
+8. **The net core was not touched** and `check_net_raw_literals` /
+   `verify_net_stock_data_window` were **not run** — recorded as not-run.
+9. **`battery_model_state_update` (`FUN_0000c358`)** — still the open float
+   defect `AGENTS.md` §1b names. Untouched, as in §43.15 item 9.
+10. **Nothing was committed.** The tree is left dirty.
+
+### 44.10 Footprint
+
+```
+ M recon/emulator/reports/our_boot_bringup.md     this section (§44) -- the ONLY
+                                                  repository file this pass wrote
+```
+
+Regenerated (mechanically, by their own driver, no hand edits):
+
+```
+ recon/refactor/stage_0{0..8}_*/{MANIFEST,PARITY_MAP,DEFECTS}.json and tree/
+       -- driver.py materialize 0..8; stages 0..8 now report "current"
+```
+
+Everything else lives outside the repository:
+
+```
+/private/tmp/g1-i44-base            the in-tree app build at HEAD
+/private/tmp/g1_i44_base_{nav1,dash}   the two acceptance captures
+/private/tmp/g1-i44/rep_base_{nav1,dash}  their oracles + framebuffers
+/private/tmp/g1-i44/cap.sh          capture driver (copy of the g1-pt one)
+/private/tmp/g1-i44/cap_radio.sh    the capture script + `logLevel -1 sysbus.radio`,
+                                    `logLevel -1 vcentral` and five phase-1 counter reads
+/private/tmp/g1-i44/caprad.sh       its driver
+/private/tmp/g1_rad_{ship,base,s04,s07}  the four radio-decomposition captures
+<scratchpad>/{p5,trains,npm,npm2,spi,align,reseg,reseg_run,thrsweep,thrgate,allphase,allphase2}.py
+```
+
+**Not written:** no canonical tree, no `recon/symbols`, no `recon/application`,
+no `tools/` module, no linker script, no `recon/board/**`, no
+`recon/emulator/scripts/*` (the radio probe is a *copy* under `/private/tmp`),
+no oracle JSON, no golden framebuffer, and nothing under `~/Projects/armemul` —
+which is byte-for-byte as it was found.
+
+### Regenerate (iteration 44)
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+V="PYTHONSAFEPATH=1 .venv/bin/python"
+for n in 0 1 2 3 4 5 6 7 8; do $V recon/refactor/driver.py materialize $n; done
+$V recon/refactor/driver.py status                     # all "current"
+
+recon/application/build_cohesive.sh app /private/tmp/g1-i44-base
+cmp /private/tmp/g1-i44-base/zephyr/zephyr.bin /private/tmp/g1-s4b-base/zephyr/zephyr.bin
+arm-zephyr-eabi-nm zephyr.elf | grep -wE 'runtime_info_sync|_end'   # ALWAYS re-read
+
+bash /private/tmp/g1-i44/cap.sh base_nav1 /private/tmp/g1-i44-base 0x00015c04 nav
+bash /private/tmp/g1-i44/cap.sh base_dash /private/tmp/g1-i44-base 0x00015c04 dash
+$V recon/emulator/scripts/build_display_sensor_oracle.py            <cap> <rep>
+$V recon/emulator/scripts/build_display_sensor_oracle.py --screen=dashboard <cap> <rep>
+cmp <rep>/golden_framebuffer_*.raw recon/emulator/reports/golden_framebuffer_*.raw
+
+# the radio decomposition (TASK 1 / TASK 4)
+bash /private/tmp/g1-i44/caprad.sh ship SHIP - nav
+bash /private/tmp/g1-i44/caprad.sh base /private/tmp/g1-i44-base 0x00015c04 nav
+bash /private/tmp/g1-i44/caprad.sh s04  /private/tmp/g1-s4b-s04  0x00016c14 nav
+bash /private/tmp/g1-i44/caprad.sh s07  /private/tmp/g1-pt-s07   0x00016c14 nav
+#   classify:  grep 'radio: TX frame on channel N (L bytes' ; (34,41) == ESB, else BLE
+#   sweep unit: grep 'swept handle 0xNN done' and count BLE frames between them
+
+# the segmentation measurements (TASK 2 / TASK 3), no Renode needed
+$V <scratchpad>/p5.py        <ship.json> <base.json> twim1 npm1300_charger_fuelgauge 145.44
+$V <scratchpad>/npm2.py      /private/tmp/g1_ship_seed_q1 2.715 2.750
+$V <scratchpad>/spi.py       /private/tmp/g1_ship_seed_q1 14.515 14.535
+$V <scratchpad>/align.py     /private/tmp/g1_s4b_base_nav1 /private/tmp/g1_s4b_s04_nav1
+$V <scratchpad>/thrsweep.py  /private/tmp/g1_ship_seed_q1  /private/tmp/g1_s4b_base_nav1
+$V <scratchpad>/thrgate.py   /private/tmp/g1_ship_seed_q1  /private/tmp/g1_s4b_base_nav1 145.44 5.0 2.58 1.5 0.79 0.02
+$V <scratchpad>/allphase2.py <ship.json> <ours.json> LABEL
+```
+
+### 44.11 ADDENDUM — a second concurrent landing arrived MID-PASS, and it is
+### also payload-neutral (measured, not assumed)
+
+Taken at the end of the pass, in the same spirit as `phase_tolerant_criterion.md`
+§0: the concurrent parity agent rewrote **2,147** `recon/symbolized/app/*.c`
+files at **13:54**, after `g1-i44-base` finished linking at **13:30** and after
+both acceptance captures had started. `driver.py status` reports **stage 00
+stale on 177 inputs** again; stages 01–08 remain current. That is the staleness
+mechanism working, exactly as §44.1's regeneration was.
+
+So the question §44.1 answered for the *first* landing had to be answered again
+for the second. It was, by rebuilding rather than by argument:
+
+```
+recon/application/build_cohesive.sh app /private/tmp/g1-i44-post     exit 0
+cmp  g1-i44-post/zephyr/zephyr.bin      g1-i44-base/zephyr/zephyr.bin      IDENTICAL
+cmp -n 957072  g1-i44-post/app_update.bin  g1-i44-base/app_update.bin      IDENTICAL
+```
+
+**The image that produced the four framebuffers in §44.2 is still the image the
+tree builds.** Both of today's landings — `49caeb66`'s 203 inputs and the
+13:54 pass's 2,147 files — are byte-neutral on the linked payload, so every
+capture in §44 and in the two preceding passes remains valid. The stage trees
+must be regenerated once more before the next *measurement*, but no measurement
+in §44 read a moving input: §44.1's regeneration and the base build both
+completed before 13:54, and the four `g1_rad_*` probes booted the same ELF.

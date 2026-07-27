@@ -1,7 +1,7 @@
 {
  "schema": "g1.refactor.stage-defects/1",
  "stage": 3,
- "count": 949,
+ "count": 934,
  "entries": [
   {
    "module_dir": "recon/symbolized/app/analytics",
@@ -73,34 +73,6 @@
     "load_burial_point.c",
     "load_sys_setting.c",
     "update_burial_point_to_flash.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "enqueue_dmic",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void enqueue_dmic(int);": 1,
-    "extern int enqueue_dmic(unsigned int);": 1
-   },
-   "definition_file": "enqueue_dmic.c",
-   "files": [
-    "app_codec_lc3_test.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "qspi_nor_write",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern unsigned int qspi_nor_write(void);": 1,
-    "extern int qspi_nor_write(int,unsigned int,unsigned char*,unsigned int);": 1
-   },
-   "definition_file": "qspi_nor_write.c",
-   "files": [
-    "app_codec_lc3_test.c"
    ]
   },
   {
@@ -355,20 +327,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/audio",
-   "symbol": "app_codec_lc3_test",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void app_codec_lc3_test(u32,u32);": 1,
-    "extern void app_codec_lc3_test(int,int);": 1
-   },
-   "definition_file": "app_codec_lc3_test.c",
-   "files": [
-    "dmic_stream_start.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
    "symbol": "uarte_blocking_transfer",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -611,12 +569,13 @@
   {
    "module_dir": "recon/symbolized/app/audio",
    "symbol": "qspi_nor_suspend_bus",
-   "class": "return_type_differs",
+   "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int qspi_nor_suspend_bus(int);": 1,
-    "extern void qspi_nor_suspend_bus(unsigned char*);": 3
+    "extern void qspi_nor_suspend_bus(unsigned char*);": 4,
+    "extern void qspi_nor_suspend_bus(uint8_t*);": 1
    },
+   "definition_file": "qspi_nor_suspend_bus.c",
    "files": [
     "qspi_nor_configure.c",
     "qspi_nor_erase.c",
@@ -670,20 +629,6 @@
    "files": [
     "qspi_nor_erase.c",
     "qspi_nor_write.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "g1_recon_nrfx_qspi_mem_busy_check",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int g1_recon_nrfx_qspi_mem_busy_check(void);": 1,
-    "extern uintptr_t g1_recon_nrfx_qspi_mem_busy_check(void);": 1
-   },
-   "files": [
-    "qspi_nor_pm_action.c",
-    "qspi_nor_suspend_bus.c"
    ]
   },
   {
@@ -840,11 +785,10 @@
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "adv_is_directed",
    "class": "parameter_type_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
-    "extern int adv_is_directed(const void*);": 1,
     "extern int adv_is_directed(uint32_t);": 1,
-    "extern int adv_is_directed(unsigned long);": 1
+    "extern int adv_is_directed(unsigned long);": 2
    },
    "files": [
     "ble_conn_addr_resolve_or_create.c",
@@ -856,11 +800,10 @@
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "ble_conn_set_state",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
-    "extern void ble_conn_set_state(int,int);": 2,
-    "extern void ble_conn_set_state(void);": 1,
-    "extern void ble_conn_set_state(void*,uint32_t);": 1
+    "extern void ble_conn_set_state(int,int);": 3,
+    "extern void ble_conn_set_state(void);": 1
    },
    "files": [
     "ble_conn_addr_resolve_or_create.c",
@@ -925,7 +868,7 @@
    "distinct_types": 2,
    "types": {
     "extern int bt_id_set_adv_random_addr(u8*,u32,int,u8*);": 1,
-    "extern int bt_id_set_adv_random_addr(void*,uint32_t,uint32_t,void*);": 1
+    "extern int bt_id_set_adv_random_addr(unsigned char*,int,int,unsigned char*);": 1
    },
    "files": [
     "ble_conn_le_prepare_and_connect.c",
@@ -1145,8 +1088,8 @@
    "class": "parameter_type_differs",
    "distinct_types": 2,
    "types": {
-    "extern int bt_conn_lookup_state_le(int,int,int);": 1,
-    "extern int bt_conn_lookup_state_le(uint32_t,uint32_t,uint32_t);": 1
+    "extern int bt_conn_lookup_state_le(uint32_t,uint32_t,uint32_t);": 1,
+    "extern int bt_conn_lookup_state_le(unsigned long,unsigned long,unsigned long);": 1
    },
    "files": [
     "ble_privacy_id_remove.c",
@@ -1577,7 +1520,7 @@
    "class": "return_type_differs",
    "distinct_types": 2,
    "types": {
-    "extern int l2cap_send_conn_param_req(void*,const struct bt_le_conn_param_view*);": 1,
+    "extern int l2cap_send_conn_param_req(int,int);": 1,
     "extern void l2cap_send_conn_param_req(int,void*);": 1
    },
    "files": [
@@ -1707,8 +1650,8 @@
    "class": "parameter_type_differs",
    "distinct_types": 2,
    "types": {
-    "extern void log_msg_commit(const void*,void*,uint32_t);": 1,
-    "extern void log_msg_commit(int*,unsigned int,int);": 1
+    "extern void log_msg_commit(int*,unsigned int,int);": 1,
+    "extern void log_msg_commit(int,unsigned int,unsigned char);": 1
    },
    "files": [
     "activate_foreach_backend.c",
@@ -2304,7 +2247,7 @@
    "distinct_types": 2,
    "types": {
     "extern uintptr_t check_device_readiness(void);": 1,
-    "extern void check_device_readiness(void);": 1
+    "extern unsigned int check_device_readiness(void);": 1
    },
    "files": [
     "low_speed_peripheral_dispatch_thread.c",
@@ -2376,7 +2319,7 @@
    "distinct_types": 2,
    "types": {
     "extern uintptr_t sem_init_zero(void*,unsigned int);": 1,
-    "extern void sem_init_zero(unsigned int,unsigned int);": 1
+    "extern unsigned int sem_init_zero(void*,unsigned int);": 1
    },
    "definition_file": "sem_init_zero.c",
    "files": [
@@ -2404,7 +2347,7 @@
    "distinct_types": 2,
    "types": {
     "extern uintptr_t st25dv_read_chip_ids(void);": 1,
-    "extern int st25dv_read_chip_ids(void);": 1
+    "extern unsigned int st25dv_read_chip_ids(void);": 1
    },
    "definition_file": "st25dv_read_chip_ids.c",
    "files": [
@@ -2504,7 +2447,7 @@
    "distinct_types": 2,
    "types": {
     "extern uintptr_t rproc_virtio_negotiate_features(void*,unsigned int);": 1,
-    "extern unsigned int rproc_virtio_negotiate_features(unsigned int,unsigned int);": 1
+    "extern unsigned int rproc_virtio_negotiate_features(void*,unsigned int);": 1
    },
    "definition_file": "rproc_virtio_negotiate_features.c",
    "files": [
@@ -3813,8 +3756,8 @@
    "class": "return_type_differs",
    "distinct_types": 2,
    "types": {
-    "extern u32 get_display_atomic_state(void);": 1,
-    "extern uint32_t get_display_atomic_state(void);": 2
+    "extern uint32_t get_display_atomic_state(void);": 2,
+    "extern unsigned long get_display_atomic_state(void);": 1
    },
    "files": [
     "gui_utf_Wordwrap_draw.c",
@@ -3829,7 +3772,7 @@
    "distinct_types": 2,
    "types": {
     "extern int32_t classify_text_character(uint32_t);": 2,
-    "extern u32 classify_text_character(u32);": 1
+    "extern long classify_text_character(unsigned long);": 1
    },
    "files": [
     "gui_utf_Wordwrap_draw.c",
@@ -3928,7 +3871,7 @@
    "distinct_types": 2,
    "types": {
     "extern uintptr_t gui_screen_fade_out_transition(void);": 1,
-    "extern int gui_screen_fade_out_transition(void);": 1
+    "extern unsigned int gui_screen_fade_out_transition(void);": 1
    },
    "definition_file": "gui_screen_fade_out_transition.c",
    "files": [
@@ -3984,7 +3927,7 @@
    "distinct_types": 2,
    "types": {
     "extern uintptr_t gui_utf_adv_draw_configure(void);": 1,
-    "extern unsigned int gui_utf_adv_draw_configure(void);": 1
+    "extern void gui_utf_adv_draw_configure(void);": 1
    },
    "definition_file": "gui_utf_adv_draw_configure.c",
    "files": [
@@ -4275,28 +4218,13 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "dcmp_negate_rhs",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long dcmp_negate_rhs(int,int,int,int);": 1,
-    "extern unsigned long long dcmp_negate_rhs(unsigned int,unsigned int,unsigned int,unsigned int);": 2
-   },
-   "files": [
-    "__ieee754_exp.c",
-    "__ieee754_pow.c",
-    "rint.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "__aeabi_dadd",
    "class": "arity_differs",
    "distinct_types": 5,
    "types": {
     "extern long long __aeabi_dadd(unsigned int,unsigned int,unsigned int,unsigned int);": 1,
     "extern u64 __aeabi_dadd(u32,u32,u32,u32);": 1,
-    "extern u8 __aeabi_dadd(u4,u4,u4,u4);": 1,
+    "extern u64 __aeabi_dadd(u4,u4,u4,u4);": 1,
     "extern uint64_t __aeabi_dadd(uint32_t,uint32_t,uint32_t);": 1,
     "extern unsigned long long __aeabi_dadd(unsigned int,unsigned int,unsigned int,unsigned int);": 1
    },
@@ -4315,7 +4243,7 @@
    "distinct_types": 2,
    "types": {
     "extern u64 __floatsidf(int);": 1,
-    "extern u8 __floatsidf(void);": 1
+    "extern u64 __floatsidf(void);": 1
    },
    "files": [
     "__ieee754_exp.c",
@@ -4329,7 +4257,7 @@
    "distinct_types": 4,
    "types": {
     "extern u64 __muldf3(u32,u32,u32,u32);": 1,
-    "extern u8 __muldf3(u4,u4,u4,u4);": 1,
+    "extern u64 __muldf3(u4,u4,u4,u4);": 1,
     "extern uint64_t __muldf3(uint32_t,uint32_t,uint32_t,uint32_t);": 1,
     "extern unsigned long long __muldf3(unsigned int,unsigned int,unsigned int,unsigned int);": 1
    },
@@ -4347,7 +4275,7 @@
    "distinct_types": 3,
    "types": {
     "extern u64 __divdf3(u32,u32,u32,u32);": 1,
-    "extern u8 __divdf3(u4,u4,u4,u4);": 1,
+    "extern u64 __divdf3(u4,u4,u4,u4);": 1,
     "extern uint64_t __divdf3(uint32_t,uint32_t);": 1
    },
    "files": [
@@ -4363,7 +4291,7 @@
    "distinct_types": 2,
    "types": {
     "extern int __aeabi_dcmplt(uint32_t,uint32_t,uint32_t,uint32_t);": 2,
-    "extern u8 __aeabi_dcmplt(u4,u4,u4,u4);": 1
+    "extern u64 __aeabi_dcmplt(u4,u4,u4,u4);": 1
    },
    "files": [
     "__ieee754_exp.c",
@@ -4379,7 +4307,7 @@
    "types": {
     "extern int __aeabi_dcmpgt(uint32_t,uint32_t,uint32_t,uint32_t);": 1,
     "extern u32 __aeabi_dcmpgt(u32,u32,u32,u32);": 1,
-    "extern u8 __aeabi_dcmpgt(u4,u4,u4,u4);": 1
+    "extern u64 __aeabi_dcmpgt(u4,u4,u4,u4);": 1
    },
    "files": [
     "__ieee754_exp.c",
@@ -4394,7 +4322,7 @@
    "distinct_types": 2,
    "types": {
     "extern int __fixdfsi(int,int);": 1,
-    "extern u8 __fixdfsi(void);": 1
+    "extern u64 __fixdfsi(void);": 1
    },
    "files": [
     "__ieee754_exp.c",
@@ -4422,7 +4350,7 @@
    "distinct_types": 2,
    "types": {
     "extern void g1_recon_retarget_lock_acquire_recursive(uint32_t);": 3,
-    "extern void g1_recon_retarget_lock_acquire_recursive(uintptr_t);": 1
+    "extern void g1_recon_retarget_lock_acquire_recursive(unsigned long);": 1
    },
    "definition_file": "g1_recon_retarget_lock_acquire_recursive.c",
    "files": [
@@ -4438,7 +4366,7 @@
    "distinct_types": 2,
    "types": {
     "extern void g1_recon_retarget_lock_release_recursive(uint32_t);": 2,
-    "extern void g1_recon_retarget_lock_release_recursive(void*);": 1
+    "extern void g1_recon_retarget_lock_release_recursive(unsigned long);": 1
    },
    "files": [
     "__malloc_unlock.c",
@@ -4483,21 +4411,6 @@
     "extern uint32_t chunk_size(void*,uint32_t);": 1,
     "extern unsigned long chunk_size(void*,unsigned long);": 1
    },
-   "files": [
-    "alloc_chunk.c",
-    "split_chunks.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "chunk_set",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void chunk_set(unsigned char*,unsigned int,unsigned int,unsigned int);": 2,
-    "extern void chunk_set(uint8_t*,uint32_t,uint32_t,uint32_t);": 1
-   },
-   "definition_file": "chunk_set.c",
    "files": [
     "alloc_chunk.c",
     "split_chunks.c"
@@ -4564,7 +4477,7 @@
    "class": "arity_differs",
    "distinct_types": 4,
    "types": {
-    "extern int bt_conn_create_pdu_timeout(int,int,unsigned int,int);": 1,
+    "extern int bt_conn_create_pdu_timeout(int,int,unsigned int,unsigned int);": 1,
     "extern packet_t*bt_conn_create_pdu_timeout(uint32_t,uint32_t,uint32_t,uint32_t);": 1,
     "extern void bt_conn_create_pdu_timeout(unsigned int,int);": 1,
     "extern void bt_conn_create_pdu_timeout(unsigned int,unsigned int);": 1
@@ -4709,11 +4622,12 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "net_buf_simple_tailroom",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
+   "class": "return_type_differs",
+   "distinct_types": 3,
    "types": {
-    "extern uint32_t net_buf_simple_tailroom(const void*);": 2,
-    "extern uint32_t net_buf_simple_tailroom(void*);": 1
+    "extern uint32_t net_buf_simple_tailroom(const void*);": 1,
+    "extern uint32_t net_buf_simple_tailroom(void*);": 1,
+    "extern unsigned long net_buf_simple_tailroom(void*);": 1
    },
    "files": [
     "att_chan_read.c",
@@ -4804,11 +4718,11 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "net_buf_simple_headroom",
-   "class": "parameter_type_differs",
+   "class": "return_type_differs",
    "distinct_types": 2,
    "types": {
     "extern uint32_t net_buf_simple_headroom(const void*);": 1,
-    "extern uint32_t net_buf_simple_headroom(void*);": 1
+    "extern unsigned long net_buf_simple_headroom(const void*);": 1
    },
    "files": [
     "att_chan_send.c",
@@ -5041,8 +4955,8 @@
    "distinct_types": 3,
    "types": {
     "extern int bt_gatt_check_perm(int,);": 1,
-    "extern int bt_gatt_check_perm(int,int,int);": 2,
-    "extern int bt_gatt_check_perm(unsigned long,void*,unsigned long);": 1
+    "extern int bt_gatt_check_perm(int,int,int);": 1,
+    "extern int bt_gatt_check_perm(unsigned long,void*,unsigned long);": 2
    },
    "files": [
     "att_read_type_iter_cb.c",
@@ -5110,12 +5024,13 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "bt_att_chan_create_pdu",
-   "class": "parameter_type_differs",
+   "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int bt_att_chan_create_pdu(uintptr_t,unsigned int,unsigned int);": 1,
-    "extern int bt_att_chan_create_pdu(void*,int,int);": 1
+    "extern int bt_att_chan_create_pdu(void*,int,int);": 2,
+    "extern int bt_att_chan_create_pdu(unsigned int,unsigned int,int);": 1
    },
+   "definition_file": "bt_att_chan_create_pdu.c",
    "files": [
     "att_send_error_rsp.c",
     "gatt_notify_or_indicate.c"
@@ -5289,12 +5204,13 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "bt_security_err_lookup",
-   "class": "return_type_differs",
+   "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int bt_security_err_lookup(int);": 1,
-    "extern unsigned char bt_security_err_lookup(unsigned int);": 2
+    "extern int bt_security_err_lookup(int);": 3,
+    "extern uint8_t bt_security_err_lookup(unsigned int);": 1
    },
+   "definition_file": "bt_security_err_lookup.c",
    "files": [
     "bt_conn_encrypt_change_handle_generic.c",
     "bt_conn_encrypt_change_handle_le.c",
@@ -5305,10 +5221,9 @@
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "ble_conn_unref",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
-    "extern int ble_conn_unref(int);": 1,
-    "extern void ble_conn_unref(int);": 6,
+    "extern void ble_conn_unref(int);": 7,
     "extern void ble_conn_unref(void);": 1
    },
    "files": [
@@ -5341,12 +5256,13 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "bt_conn_disconnect_by_state",
-   "class": "return_type_differs",
+   "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int bt_conn_disconnect_by_state(unsigned short*,unsigned char);": 1,
-    "extern void bt_conn_disconnect_by_state(unsigned int,int);": 2
+    "extern void bt_conn_disconnect_by_state(unsigned int,int);": 3,
+    "extern int bt_conn_disconnect_by_state(unsigned short*,unsigned char);": 1
    },
+   "definition_file": "bt_conn_disconnect_by_state.c",
    "files": [
     "bt_conn_encrypt_change_handle_generic.c",
     "bt_conn_encrypt_change_handle_le.c",
@@ -5411,8 +5327,8 @@
    "class": "arity_differs",
    "distinct_types": 3,
    "types": {
-    "extern int bt_conn_lookup_addr_le(int,int);": 2,
-    "extern int bt_conn_lookup_addr_le(int,void*);": 1,
+    "extern int bt_conn_lookup_addr_le(int,int);": 1,
+    "extern int bt_conn_lookup_addr_le(int,void*);": 2,
     "extern int bt_conn_lookup_addr_le(void);": 1
    },
    "files": [
@@ -5608,8 +5524,8 @@
    "distinct_types": 3,
    "types": {
     "extern int read_struct_first_word(uint32_t);": 1,
-    "extern int32_t read_struct_first_word(volatile int32_t*);": 1,
-    "extern unsigned int read_struct_first_word(unsigned int*);": 2
+    "extern int read_struct_first_word(unsigned long);": 2,
+    "extern int32_t read_struct_first_word(volatile int32_t*);": 1
    },
    "files": [
     "bt_gatt_store_cf.c",
@@ -5666,7 +5582,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern long atomic_and_3(volatile long*,long);": 1,
+    "extern void atomic_and_3(void*,unsigned long);": 1,
     "extern int32_t atomic_and_3(volatile int32_t*,int32_t);": 1
    },
    "definition_file": "atomic_and_3.c",
@@ -5723,8 +5639,8 @@
    "class": "arity_differs",
    "distinct_types": 2,
    "types": {
-    "extern int bt_encrypt_le(const uint8_t*,const uint8_t*,uint8_t*);": 1,
-    "extern int bt_encrypt_le(int,void*);": 1
+    "extern int bt_encrypt_le(int,void*);": 1,
+    "extern unsigned int bt_encrypt_le(int,int,int);": 1
    },
    "files": [
     "bt_smp_ah.c",
@@ -6316,8 +6232,8 @@
    "class": "parameter_type_differs",
    "distinct_types": 2,
    "types": {
-    "extern int bt_addr_le_eq_0(int,int);": 2,
-    "extern int bt_addr_le_eq_0(void*,unsigned int);": 3
+    "extern int bt_addr_le_eq_0(int,int);": 1,
+    "extern int bt_addr_le_eq_0(void*,unsigned int);": 4
    },
    "files": [
     "gatt_cf_store_all.c",
@@ -6398,21 +6314,6 @@
    "definition_file": "gatt_dm_attr_alloc.c",
    "files": [
     "gatt_dm_data_add_attribute.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "gatt_dm_log_helper",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int gatt_dm_log_helper(int,int,int);": 2,
-    "extern void gatt_dm_log_helper(unsigned int,unsigned int,unsigned int);": 1
-   },
-   "files": [
-    "gatt_dm_data_add_attribute.c",
-    "gatt_dm_start.c",
-    "settings_invalid_index_log.c"
    ]
   },
   {
@@ -6685,20 +6586,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "gatt_notify",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int gatt_notify(int,int,int);": 1,
-    "extern unsigned int gatt_notify(int,unsigned short,int);": 1
-   },
-   "definition_file": "gatt_notify.c",
-   "files": [
-    "gatt_send_ccc_update.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "gatt_store_ccc_cf",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -6815,11 +6702,10 @@
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "pin_in_use_by_te",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
-    "extern int pin_in_use_by_te(uint32_t);": 1,
     "extern int pin_in_use_by_te(void);": 1,
-    "extern unsigned int pin_in_use_by_te(unsigned int);": 1
+    "extern unsigned int pin_in_use_by_te(unsigned int);": 2
    },
    "files": [
     "gpio_pin_check_output_available.c",
@@ -6898,7 +6784,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void nrf_gpio_cfg_sense_set(uint32_t,int);": 1,
+    "extern void nrf_gpio_cfg_sense_set(unsigned long,unsigned char);": 1,
     "extern void nrf_gpio_cfg_sense_set(uint32_t,uint8_t);": 1
    },
    "definition_file": "nrf_gpio_cfg_sense_set.c",
@@ -8108,21 +7994,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/notify",
-   "symbol": "clear_timeout_message",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int clear_timeout_message(int);": 1,
-    "extern void clear_timeout_message(int);": 2
-   },
-   "files": [
-    "msg_count_dec.c",
-    "process_for_new_message_come_on.c",
-    "process_for_new_task.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
    "symbol": "sllist_node_at_index",
    "class": "arity_differs",
    "distinct_types": 2,
@@ -8236,11 +8107,11 @@
   {
    "module_dir": "recon/symbolized/app/notify",
    "symbol": "FUN_0007ce5c",
-   "class": "return_type_differs",
+   "class": "parameter_type_differs",
    "distinct_types": 2,
    "types": {
-    "extern int FUN_0007ce5c(u32,u32);": 1,
-    "extern void FUN_0007ce5c(int,int);": 1
+    "extern void FUN_0007ce5c(int,int);": 1,
+    "extern void FUN_0007ce5c(unsigned int,int);": 1
    },
    "files": [
     "process_for_new_message_come_on.c",
@@ -8627,7 +8498,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void send_touch_click_event(int32_t);": 1,
+    "extern int send_touch_click_event(unsigned long);": 1,
     "extern int send_touch_click_event(uint32_t);": 1
    },
    "definition_file": "send_touch_click_event.c",
@@ -8661,20 +8532,6 @@
    "definition_file": "touch_pmic_reset_deassert.c",
    "files": [
     "touch_key_thread.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/sensors/input",
-   "symbol": "get_message_type_param",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern unsigned int get_message_type_param(unsigned int,int);": 1,
-    "extern unsigned int get_message_type_param(int,unsigned int);": 1
-   },
-   "definition_file": "get_message_type_param.c",
-   "files": [
-    "update_touch_key_flag.c"
    ]
   },
   {
@@ -9537,7 +9394,7 @@
    "distinct_types": 2,
    "types": {
     "extern void navigation_overview_map_display(uintptr_t,uintptr_t);": 1,
-    "extern void navigation_overview_map_display(unsigned int,int);": 1
+    "extern void navigation_overview_map_display(unsigned int,unsigned int);": 1
    },
    "definition_file": "navigation_overview_map_display.c",
    "files": [
@@ -9811,6 +9668,20 @@
   },
   {
    "module_dir": "recon/symbolized/app/unsorted",
+   "symbol": "net_buf_simple_tailroom",
+   "class": "return_type_differs",
+   "distinct_types": 2,
+   "types": {
+    "extern int net_buf_simple_tailroom(int);": 1,
+    "extern unsigned long net_buf_simple_tailroom(void*);": 1
+   },
+   "files": [
+    "bt_acl_data_recv.c",
+    "find_type_cb.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/unsorted",
    "symbol": "net_buf_simple_add_mem",
    "class": "return_type_differs",
    "distinct_types": 2,
@@ -9953,21 +9824,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/unsorted",
-   "symbol": "get_device_info",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int get_device_info(void);": 2,
-    "extern uintptr_t get_device_info(void);": 1
-   },
-   "files": [
-    "nfc_field_event_signal_sem.c",
-    "not_disturb_disable_pending.c",
-    "ui_new_message_task.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/unsorted",
    "symbol": "invoke_object_callback_864",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -10102,7 +9958,8 @@
    "symbol": "z_device_is_ready",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_device_is_ready(int);": 5
+    "extern _Bool z_device_is_ready(const struct device*);": 2,
+    "extern int z_device_is_ready(int);": 3
    },
    "files": [
     "app_codec_lc3_test.c",
@@ -10186,7 +10043,7 @@
    "symbol": "k_msgq_cleanup",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_cleanup(unsigned int);": 1
+    "extern int k_msgq_cleanup(struct k_msgq*);": 1
    },
    "files": [
     "clean_dmic_msgq.c"
@@ -10197,7 +10054,8 @@
    "symbol": "k_msgq_put",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_put(unsigned int,void*,int,int);": 9
+    "extern int k_msgq_put(unsigned int,void*,int,int);": 5,
+    "extern unsigned int k_msgq_put(int,unsigned int,int,int);": 4
    },
    "files": [
     "delAudioStreamRecord.c",
@@ -10236,7 +10094,7 @@
    "symbol": "k_mem_slab_free",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_mem_slab_free(u32,u32);": 1,
+    "extern void k_mem_slab_free(struct k_mem_slab*,void*);": 1,
     "extern void k_mem_slab_free(uint32_t,);": 1
    },
    "files": [
@@ -10249,7 +10107,7 @@
    "symbol": "z_impl_k_timer_stop",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void z_impl_k_timer_stop(int);": 1
+    "extern void z_impl_k_timer_stop(struct k_timer*);": 1
    },
    "files": [
     "flowctl_schedule_next_send.c"
@@ -10293,7 +10151,7 @@
    "symbol": "k_mem_slab_alloc",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_mem_slab_alloc(uint32_t,void*,uint32_t,uint32_t);": 1
+    "extern int k_mem_slab_alloc(int,int*,int,int);": 1
    },
    "files": [
     "pdm_mic_event_handler.c"
@@ -10328,7 +10186,7 @@
    "symbol": "k_is_in_isr",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_is_in_isr(void);": 1
+    "extern _Bool k_is_in_isr(void);": 1
    },
    "files": [
     "uart_poll_out.c"
@@ -10339,7 +10197,8 @@
    "symbol": "assert_post_action",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int assert_post_action(int,int);": 2
+    "extern int assert_post_action(int,int);": 1,
+    "extern void assert_post_action(const char*,unsigned int);": 1
    },
    "files": [
     "uarte_nrfx_pm_action.c",
@@ -10365,34 +10224,12 @@
   },
   {
    "module_dir": "recon/symbolized/app/ble",
-   "symbol": "k_work_init",
-   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
-   "types": {
-    "extern int k_work_init(int,int);": 1
-   },
-   "files": [
-    "ble_conn_pool_alloc.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
-   "symbol": "k_work_init_delayable",
-   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
-   "types": {
-    "extern int k_work_init_delayable(int,int);": 1
-   },
-   "files": [
-    "ble_conn_pool_alloc.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
    "symbol": "assert_post_action",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
     "__attribute__((noreturn))extern void assert_post_action(int,);": 1,
-    "extern int assert_post_action(int,int);": 7,
-    "extern void assert_post_action(unsigned long,unsigned long);": 1
+    "extern int assert_post_action(int,int);": 1,
+    "extern void assert_post_action(const char*,unsigned int);": 7
    },
    "files": [
     "ble_conn_process_complete_or_disconnect.c",
@@ -10438,8 +10275,9 @@
    "symbol": "k_work_cancel_delayable",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
+    "extern int k_work_cancel_delayable(struct k_work_delayable*);": 1,
     "extern uint32_t k_work_cancel_delayable(int);": 1,
-    "extern void k_work_cancel_delayable(int);": 2
+    "extern void k_work_cancel_delayable(int);": 1
    },
    "files": [
     "ble_conn_set_state.c",
@@ -10488,7 +10326,8 @@
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
     "extern int memcpy();": 2,
-    "extern void memcpy(int,int,int);": 6
+    "extern void memcpy(int,int,int);": 5,
+    "extern void*memcpy(void*,const void*,size_t);": 1
    },
    "files": [
     "ble_process_get_req.c",
@@ -10591,7 +10430,7 @@
    "symbol": "strtol",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strtol(int,);": 1
+    "extern long int strtol(const char*restrict,char**restrict,int);": 1
    },
    "files": [
     "check_is_release_mode.c"
@@ -10650,7 +10489,8 @@
    "symbol": "k_msgq_put",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_put(unsigned int,void*,int,int);": 2
+    "extern int k_msgq_put(unsigned int,void*,int,int);": 1,
+    "extern unsigned int k_msgq_put(int,unsigned int,int,int);": 1
    },
    "files": [
     "SendPowerInfoToSlave.c",
@@ -10664,7 +10504,8 @@
    "types": {
     "__attribute__((noreturn))extern void assert_post_action(uint32_t,uint32_t);": 1,
     "__attribute__((noreturn))extern void assert_post_action(uintptr_t,uint32_t);": 2,
-    "extern int assert_post_action(int,int);": 6
+    "extern int assert_post_action(int,int);": 1,
+    "extern void assert_post_action(const char*,unsigned int);": 5
    },
    "files": [
     "app_event_alloc.c",
@@ -10716,7 +10557,7 @@
    "symbol": "k_work_submit",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_work_submit(uintptr_t);": 1
+    "extern void k_work_submit(int);": 1
    },
    "files": [
     "app_event_manager_submit.c"
@@ -10796,7 +10637,8 @@
    "symbol": "z_device_is_ready",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_device_is_ready(int);": 5,
+    "extern _Bool z_device_is_ready(const struct device*);": 4,
+    "extern int z_device_is_ready(int);": 1,
     "extern uint64_t z_device_is_ready(uint32_t);": 1
    },
    "files": [
@@ -10835,7 +10677,7 @@
    "symbol": "k_is_in_isr",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_is_in_isr(void);": 2
+    "extern _Bool k_is_in_isr(void);": 2
    },
    "files": [
     "dev_write_config_word.c",
@@ -10883,7 +10725,7 @@
    "symbol": "free",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void free(int);": 1
+    "extern void free(void*);": 1
    },
    "files": [
     "free_pixel4bit_row_buf.c"
@@ -10976,7 +10818,7 @@
    "symbol": "k_work_cancel_delayable",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_work_cancel_delayable(unsigned int);": 1
+    "extern int k_work_cancel_delayable(struct k_work_delayable*);": 1
    },
    "files": [
     "power_manager_set_system_off_flag.c"
@@ -10998,9 +10840,9 @@
    "symbol": "z_impl_k_sem_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
+    "extern int z_impl_k_sem_init(struct k_sem*,unsigned int,unsigned int);": 1,
     "extern int z_impl_k_sem_init(uintptr_t,uint32_t,uint32_t);": 1,
-    "extern int z_impl_k_sem_init(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);": 1,
-    "extern int z_impl_k_sem_init(unsigned int,unsigned long,unsigned long);": 1
+    "extern int z_impl_k_sem_init(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);": 1
    },
    "files": [
     "sem_init_zero.c",
@@ -11167,21 +11009,10 @@
   },
   {
    "module_dir": "recon/symbolized/app/display",
-   "symbol": "k_timer_init",
-   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
-   "types": {
-    "extern void k_timer_init(void*,uintptr_t,uintptr_t);": 1
-   },
-   "files": [
-    "display_thread_handler.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/display",
    "symbol": "malloc",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int malloc(int,);": 1,
+    "extern void*malloc(size_t);": 1,
     "extern void*malloc(unsigned int);": 1
    },
    "files": [
@@ -11255,7 +11086,7 @@
    "symbol": "z_impl_k_timer_stop",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void z_impl_k_timer_stop(uint32_t);": 1
+    "extern void z_impl_k_timer_stop(struct k_timer*);": 1
    },
    "files": [
     "stop_some_timer.c"
@@ -11333,7 +11164,8 @@
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
     "__attribute__((noreturn))extern void assert_post_action(uintptr_t,uint32_t);": 1,
-    "extern int assert_post_action(int,int);": 4
+    "extern int assert_post_action(int,int);": 1,
+    "extern void assert_post_action(const char*,unsigned int);": 3
    },
    "files": [
     "nrf53_sync_rtc_ipc_channel_setup.c",
@@ -11363,7 +11195,7 @@
    "symbol": "strcpy",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void strcpy(uint32_t,uintptr_t);": 1
+    "extern char*strcpy(char*,const char*);": 1
    },
    "files": [
     "format_message_relative_time.c"
@@ -11409,8 +11241,7 @@
    "symbol": "printf",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void printf(unsigned int);": 1,
-    "extern void printf(unsigned int,int);": 1
+    "extern int printf(const char*,);": 2
    },
    "files": [
     "utf8_decode_to_utf16_buffer.c",
@@ -11422,7 +11253,7 @@
    "symbol": "puts",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void puts(unsigned int);": 1
+    "extern int puts(const char*);": 1
    },
    "files": [
     "utf8_to_unicode.c"
@@ -11546,7 +11377,7 @@
    "symbol": "k_msgq_put",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_put(unsigned int,void*,int,int);": 2
+    "extern unsigned int k_msgq_put(int,unsigned int,int,int);": 2
    },
    "files": [
     "send_response_data_to_ble.c",
@@ -11630,7 +11461,7 @@
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
     "extern void __sinit(int);": 1,
-    "extern void __sinit(unsigned long);": 1,
+    "extern void __sinit(struct _reent*);": 1,
     "extern void __sinit(void*);": 2
    },
    "files": [
@@ -11656,7 +11487,8 @@
    "symbol": "strlen",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strlen(int);": 4
+    "extern int strlen(int);": 3,
+    "extern size_t strlen(const char*);": 1
    },
    "files": [
     "_puts_r.c",
@@ -11670,7 +11502,7 @@
    "symbol": "z_device_is_ready",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_device_is_ready(int);": 5,
+    "extern _Bool z_device_is_ready(const struct device*);": 5,
     "extern int z_device_is_ready(void);": 1
    },
    "files": [
@@ -11687,9 +11519,9 @@
    "symbol": "memcmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int memcmp(const void*,const void*,size_t);": 1,
+    "extern int memcmp(const void*,const void*,size_t);": 2,
     "extern int memcmp(const void*,const void*,uint32_t);": 4,
-    "extern int memcmp(const void*,const void*,unsigned long);": 4,
+    "extern int memcmp(const void*,const void*,unsigned long);": 3,
     "extern int memcmp(int,);": 1
    },
    "files": [
@@ -11723,18 +11555,16 @@
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
     "__attribute__((noreturn))extern int assert_post_action(int,);": 4,
-    "__attribute__((noreturn))extern void assert_post_action(uint32_t,uint32_t);": 4,
+    "__attribute__((noreturn))extern void assert_post_action(uint32_t,uint32_t);": 3,
     "__attribute__((noreturn))extern void assert_post_action(uintptr_t,uint32_t);": 8,
     "extern _Noreturn void assert_post_action(uintptr_t,uint32_t);": 1,
-    "extern int assert_post_action(int,int);": 31,
+    "extern int assert_post_action(int,int);": 7,
     "extern long long assert_post_action(unsigned int,unsigned int);": 1,
     "extern uint64_t assert_post_action(int,int);": 1,
     "extern unsigned long long assert_post_action(int,int);": 1,
     "extern unsigned long long assert_post_action(unsigned int,unsigned int);": 3,
-    "extern void assert_post_action(int,int);": 3,
-    "extern void assert_post_action(uint32_t,int);": 1,
-    "extern void assert_post_action(uintptr_t,unsigned int);": 1,
-    "extern void assert_post_action(unsigned long,unsigned long);": 2
+    "extern void assert_post_action(const char*,unsigned int);": 31,
+    "extern void assert_post_action(uint32_t,int);": 1
    },
    "files": [
     "att_chan_req_free.c",
@@ -11832,21 +11662,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "k_work_init_delayable",
-   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
-   "types": {
-    "extern void k_work_init_delayable(int,u32);": 1,
-    "extern void k_work_init_delayable(unsigned int,unsigned int);": 1,
-    "extern void k_work_init_delayable(void*,uint32_t);": 1
-   },
-   "files": [
-    "att_fixed_chan_connected.c",
-    "l2cap_chan_add.c",
-    "l2cap_chan_tx_init.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "k_work_cancel_delayable",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
@@ -11926,7 +11741,7 @@
    "symbol": "k_mem_slab_alloc",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_mem_slab_alloc(int,);": 1
+    "extern int k_mem_slab_alloc(int,int*,int,int);": 1
    },
    "files": [
     "bt_att_accept.c"
@@ -11950,7 +11765,8 @@
    "symbol": "z_impl_k_queue_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void z_impl_k_queue_init(void*);": 3
+    "extern void z_impl_k_queue_init(struct k_queue*);": 2,
+    "extern void z_impl_k_queue_init(void*);": 1
    },
    "files": [
     "bt_att_accept.c",
@@ -11963,7 +11779,7 @@
    "symbol": "k_mem_slab_free",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_mem_slab_free(uintptr_t,void*);": 1
+    "extern void k_mem_slab_free(struct k_mem_slab*,void*);": 1
    },
    "files": [
     "bt_att_disconnected.c"
@@ -11985,7 +11801,7 @@
    "symbol": "k_poll_event_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_poll_event_init(int,int,int,int);": 1
+    "extern void k_poll_event_init(unsigned char*,unsigned long,unsigned long,unsigned int);": 1
    },
    "files": [
     "bt_conn_prepare_tx_events.c"
@@ -12024,7 +11840,7 @@
    "symbol": "k_work_submit_to_queue",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_work_submit_to_queue(void*,void*);": 2
+    "extern int k_work_submit_to_queue(struct k_work_q*,struct k_work*);": 2
    },
    "files": [
     "bt_hci_core_recv_event.c",
@@ -12047,7 +11863,7 @@
    "symbol": "strncmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strncmp(const void*,unsigned long,unsigned int);": 1,
+    "extern int strncmp(const char*,const char*,size_t);": 1,
     "extern int strncmp(int,);": 1
    },
    "files": [
@@ -12074,8 +11890,9 @@
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
     "extern int memcpy(int,);": 3,
-    "extern void memcpy(int,int,int);": 6,
-    "extern void memcpy(void*,const void*,uint32_t);": 2
+    "extern void memcpy(int,int,int);": 5,
+    "extern void memcpy(void*,const void*,uint32_t);": 2,
+    "extern void*memcpy(void*,const void*,size_t);": 1
    },
    "files": [
     "bt_smp_distribute_keys.c",
@@ -12096,7 +11913,7 @@
    "symbol": "__strcpy_chk",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void __strcpy_chk(void*,const void*,uint32_t);": 1
+    "extern char*__strcpy_chk(char*,const char*,size_t);": 1
    },
    "files": [
     "bt_start.c"
@@ -12145,7 +11962,7 @@
    "symbol": "free",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void free(int);": 1
+    "extern void free(void*);": 1
    },
    "files": [
     "flash_settings_write_and_verify.c"
@@ -12168,7 +11985,7 @@
    "symbol": "sys_heap_init",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void sys_heap_init(unsigned int*,int,unsigned int);": 1
+    "extern void sys_heap_init(unsigned long*,void*,unsigned long);": 1
    },
    "files": [
     "g1_recon_k_heap_init.c"
@@ -12179,8 +11996,8 @@
    "symbol": "arch_irq_enable",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int arch_irq_enable(int);": 2,
-    "extern void arch_irq_enable(int32_t,uint32_t,uint32_t,uint32_t);": 1
+    "extern void arch_irq_enable(int32_t,uint32_t,uint32_t,uint32_t);": 1,
+    "extern void arch_irq_enable(unsigned int);": 2
    },
    "files": [
     "g1_recon_nrfx_gpiote_init.c",
@@ -12215,8 +12032,7 @@
    "symbol": "strtoul",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strtoul(int,);": 1,
-    "extern int strtoul(int,int,int);": 1
+    "extern long unsigned int strtoul(const char*restrict,char**restrict,int);": 2
    },
    "files": [
     "gatt_ccc_settings_set.c",
@@ -12286,8 +12102,9 @@
    "symbol": "z_spin_lock_valid",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
+    "extern _Bool z_spin_lock_valid(struct k_spinlock*);": 5,
     "extern int z_spin_lock_valid(int,);": 2,
-    "extern int z_spin_lock_valid(unsigned int*);": 8
+    "extern int z_spin_lock_valid(unsigned int*);": 3
    },
    "files": [
     "k_msgq_get.c",
@@ -12307,11 +12124,9 @@
    "symbol": "z_spin_unlock_valid",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
+    "extern _Bool z_spin_unlock_valid(struct k_spinlock*);": 5,
     "extern int z_spin_unlock_valid(int,);": 2,
-    "extern int z_spin_unlock_valid(uint32_t);": 2,
-    "extern int z_spin_unlock_valid(unsigned int);": 2,
     "extern int z_spin_unlock_valid(unsigned int*);": 1,
-    "extern int z_spin_unlock_valid(void*);": 1,
     "extern void z_spin_unlock_valid(void*);": 1
    },
    "files": [
@@ -12332,7 +12147,8 @@
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
     "extern int z_spin_lock_set_owner(int,);": 2,
-    "extern int z_spin_lock_set_owner(unsigned int*);": 8
+    "extern int z_spin_lock_set_owner(unsigned int*);": 3,
+    "extern void z_spin_lock_set_owner(struct k_spinlock*);": 5
    },
    "files": [
     "k_msgq_get.c",
@@ -12370,17 +12186,6 @@
    },
    "files": [
     "k_work_schedule_at_ticks.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "k_work_init",
-   "class": "reconstructed_declaration_shadows_an_sdk_symbol",
-   "types": {
-    "extern void k_work_init(int,u32);": 1
-   },
-   "files": [
-    "l2cap_chan_add.c"
    ]
   },
   {
@@ -12456,7 +12261,7 @@
    "symbol": "k_queue_prepend",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_queue_prepend(void*,void*);": 1
+    "extern void k_queue_prepend(struct k_queue*,void*);": 1
    },
    "files": [
     "process_queue.c"
@@ -12467,7 +12272,7 @@
    "symbol": "_puts_r",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int _puts_r(void*,const char*);": 1
+    "extern int _puts_r(struct _reent*,const char*);": 1
    },
    "files": [
     "puts.c"
@@ -12492,7 +12297,7 @@
    "symbol": "k_is_in_isr",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_is_in_isr(void);": 1
+    "extern _Bool k_is_in_isr(void);": 1
    },
    "files": [
     "resource_pool_aligned_alloc.c"
@@ -12529,7 +12334,7 @@
    "symbol": "sys_clock_cycle_get_32",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int sys_clock_cycle_get_32(void);": 1
+    "extern uint32_t sys_clock_cycle_get_32(void);": 1
    },
    "files": [
     "sys_rand32_get.c"
@@ -12551,7 +12356,7 @@
    "symbol": "atomic_inc",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern uint32_t atomic_inc(volatile uint32_t*);": 1
+    "extern int atomic_inc(int);": 1
    },
    "files": [
     "z_log_msg_post_finalize.c"
@@ -12649,9 +12454,9 @@
    "symbol": "malloc",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int malloc(int);": 1,
     "extern int malloc(int,);": 2,
-    "extern unsigned int malloc(int);": 1
+    "extern unsigned int malloc(int);": 1,
+    "extern void*malloc(size_t);": 1
    },
    "files": [
     "ancs_ctx_init.c",
@@ -12701,9 +12506,9 @@
    "symbol": "memcpy",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int memcpy(int,);": 5,
+    "extern int memcpy(int,);": 3,
     "extern void memcpy(int,);": 1,
-    "extern void memcpy(int,int,int);": 4
+    "extern void memcpy(int,int,int);": 6
    },
    "files": [
     "clear_timeout_message.c",
@@ -12739,7 +12544,7 @@
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
     "extern int free(int,);": 1,
-    "extern void free(int);": 3
+    "extern void free(void*);": 3
    },
    "files": [
     "convert_app_whitelist_to_json.c",
@@ -12776,7 +12581,7 @@
    "symbol": "k_msgq_put",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_put(unsigned int,void*,int,int);": 1
+    "extern unsigned int k_msgq_put(int,unsigned int,int,int);": 1
    },
    "files": [
     "enqueue_ancs.c"
@@ -12845,7 +12650,7 @@
    "symbol": "strcmp",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strcmp(int,int);": 1
+    "extern int strcmp(const char*,const char*);": 1
    },
    "files": [
     "parse_ncs_notification.c"
@@ -12870,7 +12675,7 @@
    "symbol": "k_work_submit",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_work_submit(void*);": 1
+    "extern int k_work_submit(struct k_work*);": 1
    },
    "files": [
     "submit_ancs_notify_work.c"
@@ -12881,7 +12686,7 @@
    "symbol": "k_mem_slab_alloc",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_mem_slab_alloc(int,void*,int,int);": 1
+    "extern int k_mem_slab_alloc(int,int*,int,int);": 1
    },
    "files": [
     "uart_callback.c"
@@ -12947,7 +12752,7 @@
    "symbol": "z_device_is_ready",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_device_is_ready(int);": 1
+    "extern _Bool z_device_is_ready(const struct device*);": 1
    },
    "files": [
     "button_init.c"
@@ -13078,7 +12883,7 @@
    "symbol": "z_device_is_ready",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_device_is_ready(int);": 3
+    "extern _Bool z_device_is_ready(const struct device*);": 3
    },
    "files": [
     "opt3001_chip_init.c",
@@ -13144,7 +12949,8 @@
    "symbol": "z_device_is_ready",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_device_is_ready(int);": 3
+    "extern _Bool z_device_is_ready(const struct device*);": 2,
+    "extern int z_device_is_ready(int);": 1
    },
    "files": [
     "calc_flash_crc.c",
@@ -13192,7 +12998,8 @@
    "symbol": "malloc",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int malloc(int);": 2,
+    "extern int malloc(int);": 1,
+    "extern void*malloc(size_t);": 1,
     "extern void*malloc(uint32_t);": 2
    },
    "files": [
@@ -13207,7 +13014,7 @@
    "symbol": "free",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void free(int);": 3
+    "extern void free(void*);": 3
    },
    "files": [
     "flash_firmware_update_transfer.c",
@@ -13266,7 +13073,7 @@
    "symbol": "strtoul",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int strtoul(int,int,int);": 1
+    "extern long unsigned int strtoul(const char*restrict,char**restrict,int);": 1
    },
    "files": [
     "sc_set.c"
@@ -13357,7 +13164,7 @@
    "symbol": "z_device_is_ready",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_device_is_ready(int);": 1
+    "extern _Bool z_device_is_ready(const struct device*);": 1
    },
    "files": [
     "getDashboardStartUpModeInfofromFlash.c"
@@ -13495,7 +13302,7 @@
    "symbol": "malloc",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int malloc(unsigned int);": 1
+    "extern void*malloc(size_t);": 1
    },
    "files": [
     "quicknote_buffer_pool_init.c"
@@ -13597,7 +13404,7 @@
    "symbol": "z_device_is_ready",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int z_device_is_ready(int);": 1
+    "extern _Bool z_device_is_ready(const struct device*);": 1
    },
    "files": [
     "getAppLanguageInfofromFlash.c"
@@ -13665,8 +13472,8 @@
    "types": {
     "__attribute__((noreturn))extern void assert_post_action(int,int);": 1,
     "__attribute__((noreturn))extern void assert_post_action(uintptr_t,uint32_t);": 3,
-    "extern int assert_post_action(int,int);": 5,
-    "extern unsigned int assert_post_action(unsigned int,unsigned int);": 1,
+    "extern int assert_post_action(int,int);": 1,
+    "extern void assert_post_action(const char*,unsigned int);": 5,
     "extern void assert_post_action(unsigned int,unsigned int);": 1
    },
    "files": [
@@ -13741,7 +13548,7 @@
    "symbol": "sys_clock_cycle_get_32",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int sys_clock_cycle_get_32(void);": 1
+    "extern uint32_t sys_clock_cycle_get_32(void);": 1
    },
    "files": [
     "cpu_idle_wfi_gate_check.c"
@@ -13764,7 +13571,7 @@
    "symbol": "z_impl_k_timer_stop",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void z_impl_k_timer_stop(int);": 1
+    "extern void z_impl_k_timer_stop(struct k_timer*);": 1
    },
    "files": [
     "driver_stop_active_timer.c"
@@ -13815,7 +13622,7 @@
    "symbol": "k_msgq_put",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern int k_msgq_put(unsigned int,void*,int,int);": 1
+    "extern unsigned int k_msgq_put(int,unsigned int,int,int);": 1
    },
    "files": [
     "enqueue_debug.c"
@@ -13837,7 +13644,7 @@
    "symbol": "k_heap_free",
    "class": "reconstructed_declaration_shadows_an_sdk_symbol",
    "types": {
-    "extern void k_heap_free(void*,void*);": 1
+    "extern void k_heap_free(struct k_heap*,void*);": 1
    },
    "files": [
     "g1_recon_k_free.c"

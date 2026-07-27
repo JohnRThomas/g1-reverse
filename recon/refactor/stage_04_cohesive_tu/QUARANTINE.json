@@ -46,21 +46,20 @@
   }
  },
  "pairwise_refusals": {
-  "adjacencies_blocked": 878,
+  "adjacencies_blocked": 887,
   "by_rule": {
-   "enumconst": 6,
+   "enumconst": 5,
    "includes": 80,
-   "macro": 118,
+   "macro": 119,
    "static": 16,
    "tag": 5,
-   "type": 623,
+   "type": 632,
    "typedef": 30
   },
   "top_symbols_per_rule": {
    "enumconst": {
     "x3c": 2,
     "x0c": 1,
-    "x18": 1,
     "xc0": 1,
     "x39": 1
    },
@@ -122,9 +121,9 @@
     "struct g1_opt_view": 1
    },
    "type": {
-    "assert_post_action": 31,
-    "get_device_info": 23,
-    "memset_bytes": 19,
+    "assert_post_action": 36,
+    "get_device_info": 22,
+    "memset_bytes": 20,
     "log_msg_create_3arg": 16,
     "reflash_fb_data_to_lcd": 13,
     "smp_log_message": 12,
@@ -136,17 +135,17 @@
     "get_pin_idx": 7,
     "dev_write_reg3": 7,
     "net_buf_simple_add": 6,
+    "memcpy": 6,
     "z_log_msg_runtime_create": 6,
     "atomic_get_3_0": 6,
     "log_msg_3arg_thunk": 5,
+    "z_spin_lock_set_owner": 5,
+    "z_spin_lock_valid": 5,
+    "malloc": 5,
     "sync_to_slave": 5,
     "audio_codec_bus_write": 5,
     "get_timestamp": 5,
-    "is_battery_critical": 4,
-    "att_log_emit_3arg": 4,
-    "memcpy": 4,
-    "atomic_test_bit": 4,
-    "z_spin_unlock_valid": 4
+    "is_battery_critical": 4
    },
    "typedef": {
     "uint32_t": 12,
@@ -161,6 +160,6 @@
    }
   }
  },
- "runs_of_length_one": 303,
- "clean_runs_not_selected_by_this_sub_batch": 46
+ "runs_of_length_one": 306,
+ "clean_runs_not_selected_by_this_sub_batch": 47
 }

@@ -11,7 +11,7 @@
  "generated_by": "recon/refactor/driver.py",
  "reproduce": "PYTHONSAFEPATH=1 .venv/bin/python recon/refactor/driver.py materialize 8",
  "repair_policy": "A stale or failing stage is REGENERATED, never hand-edited. A compile failure in a stage tree is proof the transformer is wrong, not a task to hand-fix.",
- "file_count": 1714,
+ "file_count": 1718,
  "files": {
   "recon/application/app/CMakeLists.txt": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/application/app/CMakeLists.txt",
@@ -330,9 +330,9 @@
   },
   "recon/generated/app_retained_sources.cmake": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/generated/app_retained_sources.cmake",
-   "source_sha256": "3510c4106c76a1d94adb49f42c48737f7d392d08cb62ec2d400adff9f50bf883",
-   "output_sha256": "3510c4106c76a1d94adb49f42c48737f7d392d08cb62ec2d400adff9f50bf883",
-   "bytes": 52464,
+   "source_sha256": "48195db54cd1bf1f2807a7d47c0c87d6af953f13d8e71e6ffc12fc2f2f094ae4",
+   "output_sha256": "48195db54cd1bf1f2807a7d47c0c87d6af953f13d8e71e6ffc12fc2f2f094ae4",
+   "bytes": 52772,
    "transformations": {}
   },
   "recon/generated/net_retained_sources.cmake": {
@@ -512,23 +512,23 @@
   },
   "recon/symbolized/app/audio/dmic_stream_start.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/dmic_stream_start.c",
-   "source_sha256": "232faa12e1f83807e69a5a81d87f169f55b710531e755403d40839ebcddfbb70",
-   "output_sha256": "232faa12e1f83807e69a5a81d87f169f55b710531e755403d40839ebcddfbb70",
-   "bytes": 11341,
+   "source_sha256": "3e45b0e4ca7ba0ade134f9270f942a85718f9976fad4be12043e88a022eba092",
+   "output_sha256": "3e45b0e4ca7ba0ade134f9270f942a85718f9976fad4be12043e88a022eba092",
+   "bytes": 11356,
    "transformations": {}
   },
   "recon/symbolized/app/audio/g1_audio_01.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/g1_audio_01.c",
-   "source_sha256": "389b279496cb892cc377fa1d2ea98451e8ff1991a61e9d71092c22a53c4d2ccd",
-   "output_sha256": "389b279496cb892cc377fa1d2ea98451e8ff1991a61e9d71092c22a53c4d2ccd",
-   "bytes": 16532,
+   "source_sha256": "5c87cc6bc00d6732248838637d1cdfb06f50ddbfe7acbbef81e99c54e9cf126e",
+   "output_sha256": "5c87cc6bc00d6732248838637d1cdfb06f50ddbfe7acbbef81e99c54e9cf126e",
+   "bytes": 16559,
    "transformations": {}
   },
   "recon/symbolized/app/audio/g1_audio_02.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/g1_audio_02.c",
-   "source_sha256": "360adcefbf2793d51c26701965b9e05dcf371864b569b22ed13897305bd4fd69",
-   "output_sha256": "360adcefbf2793d51c26701965b9e05dcf371864b569b22ed13897305bd4fd69",
-   "bytes": 8238,
+   "source_sha256": "fcb88d44bd3d427549dbc7d75c0f8c7dafa516bd271623f3b8d3d91a56022d17",
+   "output_sha256": "fcb88d44bd3d427549dbc7d75c0f8c7dafa516bd271623f3b8d3d91a56022d17",
+   "bytes": 8245,
    "transformations": {}
   },
   "recon/symbolized/app/audio/g1_audio_03.c": {
@@ -540,58 +540,58 @@
   },
   "recon/symbolized/app/audio/g1_audio_04.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/g1_audio_04.c",
-   "source_sha256": "dfa57ece3fbbf388652afd6b6af9a9e8cb708e9e0f140cbd693b699b26fa0e4f",
-   "output_sha256": "dfa57ece3fbbf388652afd6b6af9a9e8cb708e9e0f140cbd693b699b26fa0e4f",
-   "bytes": 41566,
+   "source_sha256": "a349880444666160e7e478a2a3e2b15f3b3e58f4d8c9a21187748606b76f5b5d",
+   "output_sha256": "a349880444666160e7e478a2a3e2b15f3b3e58f4d8c9a21187748606b76f5b5d",
+   "bytes": 52957,
    "transformations": {}
   },
   "recon/symbolized/app/audio/g1_audio_05.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/g1_audio_05.c",
-   "source_sha256": "05727cadb77fbe747cc7473a7923b176b812954356d45dffe0806388511da427",
-   "output_sha256": "05727cadb77fbe747cc7473a7923b176b812954356d45dffe0806388511da427",
-   "bytes": 12182,
-   "transformations": {}
-  },
-  "recon/symbolized/app/audio/g1_audio_06.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/g1_audio_06.c",
    "source_sha256": "06d8696ffb68630681ab50e9cb1f8b0fed6f619bee0408c540f88f6865458587",
    "output_sha256": "06d8696ffb68630681ab50e9cb1f8b0fed6f619bee0408c540f88f6865458587",
    "bytes": 8745,
    "transformations": {}
   },
-  "recon/symbolized/app/audio/g1_audio_07.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/g1_audio_07.c",
+  "recon/symbolized/app/audio/g1_audio_06.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/g1_audio_06.c",
    "source_sha256": "7201095ac9f0f3a9c0bc8ae2ddfa1a6eb46e6d204b58cbef2cf7d6f9fdb0934c",
    "output_sha256": "7201095ac9f0f3a9c0bc8ae2ddfa1a6eb46e6d204b58cbef2cf7d6f9fdb0934c",
    "bytes": 5737,
    "transformations": {}
   },
-  "recon/symbolized/app/audio/g1_audio_08.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/g1_audio_08.c",
+  "recon/symbolized/app/audio/g1_audio_07.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/g1_audio_07.c",
    "source_sha256": "e4a40c7935802bb5013bb460a70a12013bfb10aea1a47fce766ab532d2e784e9",
    "output_sha256": "e4a40c7935802bb5013bb460a70a12013bfb10aea1a47fce766ab532d2e784e9",
    "bytes": 8895,
    "transformations": {}
   },
-  "recon/symbolized/app/audio/g1_audio_09.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/g1_audio_09.c",
+  "recon/symbolized/app/audio/g1_audio_08.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/g1_audio_08.c",
    "source_sha256": "3ad0b4be8d83d653903387b23e507dea7501d9257c1bd0d37116b0267d1ff765",
    "output_sha256": "3ad0b4be8d83d653903387b23e507dea7501d9257c1bd0d37116b0267d1ff765",
    "bytes": 14098,
    "transformations": {}
   },
+  "recon/symbolized/app/audio/g1_audio_09.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/g1_audio_09.c",
+   "source_sha256": "b97517d24fe3a6e9f686e5ce7ab722356cc042c44eb56d7a107238b00dfb339d",
+   "output_sha256": "b97517d24fe3a6e9f686e5ce7ab722356cc042c44eb56d7a107238b00dfb339d",
+   "bytes": 8283,
+   "transformations": {}
+  },
   "recon/symbolized/app/audio/g1_audio_10.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/g1_audio_10.c",
-   "source_sha256": "11ac602d375ce60ef2d452c0e5124872f7db3d5f8e78198d8beb7f51ead11123",
-   "output_sha256": "11ac602d375ce60ef2d452c0e5124872f7db3d5f8e78198d8beb7f51ead11123",
-   "bytes": 17154,
+   "source_sha256": "a184745936a9fef8b1ebe465fddd190efe967aebec7bafacedb901f0c96709e9",
+   "output_sha256": "a184745936a9fef8b1ebe465fddd190efe967aebec7bafacedb901f0c96709e9",
+   "bytes": 9801,
    "transformations": {}
   },
   "recon/symbolized/app/audio/g1_audio_11.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/g1_audio_11.c",
-   "source_sha256": "e817e1ba18e3604961606ef810a666b1fcc5f41081eb5fe4848db25146a24365",
-   "output_sha256": "e817e1ba18e3604961606ef810a666b1fcc5f41081eb5fe4848db25146a24365",
-   "bytes": 9086,
+   "source_sha256": "2f9b52cceb5c4aa5431495f3dc59f971cae3966d362c493a11ac441c6798c2b0",
+   "output_sha256": "2f9b52cceb5c4aa5431495f3dc59f971cae3966d362c493a11ac441c6798c2b0",
+   "bytes": 9044,
    "transformations": {}
   },
   "recon/symbolized/app/audio/g1_audio_12.c": {
@@ -666,9 +666,9 @@
   },
   "recon/symbolized/app/audio/g1_audio_22.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/g1_audio_22.c",
-   "source_sha256": "70c5593e09fa5ea47d044d3ea2db7dfd801a626fe29b76ef6040b40a09cd3ee1",
-   "output_sha256": "70c5593e09fa5ea47d044d3ea2db7dfd801a626fe29b76ef6040b40a09cd3ee1",
-   "bytes": 8211,
+   "source_sha256": "5d15d8f956800832c7310254e48310c0f37b30196800e774a00eff3e63b890f2",
+   "output_sha256": "5d15d8f956800832c7310254e48310c0f37b30196800e774a00eff3e63b890f2",
+   "bytes": 8222,
    "transformations": {}
   },
   "recon/symbolized/app/audio/is_tx_ready.c": {
@@ -715,9 +715,9 @@
   },
   "recon/symbolized/app/audio/qspi_nor_pm_action.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/qspi_nor_pm_action.c",
-   "source_sha256": "01fc9ed913ab1b14214c8e3f8609f5735e0585d0ab8c3c8b369fa5421ffe90e5",
-   "output_sha256": "01fc9ed913ab1b14214c8e3f8609f5735e0585d0ab8c3c8b369fa5421ffe90e5",
-   "bytes": 3270,
+   "source_sha256": "6304a02d3a88d0f1809e9ab137067f556dd46869872d8a6d49e72c1af6ad97d1",
+   "output_sha256": "6304a02d3a88d0f1809e9ab137067f556dd46869872d8a6d49e72c1af6ad97d1",
+   "bytes": 3230,
    "transformations": {}
   },
   "recon/symbolized/app/audio/qspi_nor_send_cinstr.c": {
@@ -729,9 +729,9 @@
   },
   "recon/symbolized/app/audio/qspi_nor_suspend_bus.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/qspi_nor_suspend_bus.c",
-   "source_sha256": "fa6e0860a17517d8c42de1ef34b1472838308103d12d7a796167f04d4a00b7da",
-   "output_sha256": "fa6e0860a17517d8c42de1ef34b1472838308103d12d7a796167f04d4a00b7da",
-   "bytes": 1909,
+   "source_sha256": "1c522c5f5056b0ccc9817474cb00b1a59275b143044419cae2879fae538aac00",
+   "output_sha256": "1c522c5f5056b0ccc9817474cb00b1a59275b143044419cae2879fae538aac00",
+   "bytes": 1851,
    "transformations": {}
   },
   "recon/symbolized/app/audio/qspi_nor_write.c": {
@@ -750,9 +750,9 @@
   },
   "recon/symbolized/app/audio/uart_poll_out.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/uart_poll_out.c",
-   "source_sha256": "1a1f2f0741aa908c2fd88ba12efa3f89551cf810a5d156bae285d8fac244fc1f",
-   "output_sha256": "1a1f2f0741aa908c2fd88ba12efa3f89551cf810a5d156bae285d8fac244fc1f",
-   "bytes": 2161,
+   "source_sha256": "7f56bb9d13119ebdc57bdd12f6cd410777f10fc8e37a3e9bbdf392296716f9a6",
+   "output_sha256": "7f56bb9d13119ebdc57bdd12f6cd410777f10fc8e37a3e9bbdf392296716f9a6",
+   "bytes": 2163,
    "transformations": {}
   },
   "recon/symbolized/app/audio/uarte_blocking_transfer.c": {
@@ -771,9 +771,9 @@
   },
   "recon/symbolized/app/audio/uarte_nrfx_pm_action.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/audio/uarte_nrfx_pm_action.c",
-   "source_sha256": "8644820b978e9d8f5831951f01a557fd271b4d042334b97f6f43ae16883cca5e",
-   "output_sha256": "8644820b978e9d8f5831951f01a557fd271b4d042334b97f6f43ae16883cca5e",
-   "bytes": 3486,
+   "source_sha256": "e795d6b32d769c6672fb189dadbcc14164700c6c287168ae1a39fa4ee20909eb",
+   "output_sha256": "e795d6b32d769c6672fb189dadbcc14164700c6c287168ae1a39fa4ee20909eb",
+   "bytes": 3505,
    "transformations": {}
   },
   "recon/symbolized/app/audio/uarte_nrfx_tx_start.c": {
@@ -804,25 +804,11 @@
    "bytes": 8352,
    "transformations": {}
   },
-  "recon/symbolized/app/ble/ble_conn_ref.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ble/ble_conn_ref.c",
-   "source_sha256": "e4df72f498214073874f40bce0ab1ae863dd2a60daec2410ce0d5f65b6704f72",
-   "output_sha256": "e4df72f498214073874f40bce0ab1ae863dd2a60daec2410ce0d5f65b6704f72",
-   "bytes": 1743,
-   "transformations": {}
-  },
   "recon/symbolized/app/ble/ble_conn_set_state.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ble/ble_conn_set_state.c",
    "source_sha256": "b2a9c3929285b41e907ccb607347fc5954a2a35504187e657ecf59dd5eb4de3e",
    "output_sha256": "b2a9c3929285b41e907ccb607347fc5954a2a35504187e657ecf59dd5eb4de3e",
    "bytes": 7144,
-   "transformations": {}
-  },
-  "recon/symbolized/app/ble/ble_conn_unref.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ble/ble_conn_unref.c",
-   "source_sha256": "df656846341d55da6ce091800a456ecc8517682c89a094eb71cb3dbb496f7ea2",
-   "output_sha256": "df656846341d55da6ce091800a456ecc8517682c89a094eb71cb3dbb496f7ea2",
-   "bytes": 1867,
    "transformations": {}
   },
   "recon/symbolized/app/ble/ble_privacy_request_random_address.c": {
@@ -904,16 +890,16 @@
   },
   "recon/symbolized/app/ble/cancel_delayable_work_field18.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ble/cancel_delayable_work_field18.c",
-   "source_sha256": "89bbcc7508cce33915e4e5443a491952339005958a8d3a709933ef4a3bc23f1a",
-   "output_sha256": "89bbcc7508cce33915e4e5443a491952339005958a8d3a709933ef4a3bc23f1a",
-   "bytes": 604,
+   "source_sha256": "4910cf3fa9dab881b93682401c50fe83d98a2d1ca3e7221b997fd9b6ebee9c2c",
+   "output_sha256": "4910cf3fa9dab881b93682401c50fe83d98a2d1ca3e7221b997fd9b6ebee9c2c",
+   "bytes": 625,
    "transformations": {}
   },
   "recon/symbolized/app/ble/check_is_release_mode.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ble/check_is_release_mode.c",
-   "source_sha256": "c371d90d5a5d02ed4ea7fff77723ea16027f291d0d792bf49401c891e3055058",
-   "output_sha256": "c371d90d5a5d02ed4ea7fff77723ea16027f291d0d792bf49401c891e3055058",
-   "bytes": 570,
+   "source_sha256": "766a3e9683519d4304775dc6e1a7e8e90527304585197a83a6d2ea832b709bf1",
+   "output_sha256": "766a3e9683519d4304775dc6e1a7e8e90527304585197a83a6d2ea832b709bf1",
+   "bytes": 614,
    "transformations": {}
   },
   "recon/symbolized/app/ble/checked_strncpy_zero_pad.c": {
@@ -981,55 +967,62 @@
   },
   "recon/symbolized/app/ble/g1_ble_06.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ble/g1_ble_06.c",
-   "source_sha256": "7b9e23a70e8da9453a3c199c3b3c66e5143d02436d7c3fb750f59fd1216f1b36",
-   "output_sha256": "7b9e23a70e8da9453a3c199c3b3c66e5143d02436d7c3fb750f59fd1216f1b36",
-   "bytes": 7194,
+   "source_sha256": "3acef75667690837964454069475d34b0037be0e9d28f66aa29834187970ddad",
+   "output_sha256": "3acef75667690837964454069475d34b0037be0e9d28f66aa29834187970ddad",
+   "bytes": 7224,
    "transformations": {}
   },
   "recon/symbolized/app/ble/g1_ble_07.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ble/g1_ble_07.c",
-   "source_sha256": "30619dd8d9b768be7954d0d775d09b5a908132db15b667971688f493abbce28c",
-   "output_sha256": "30619dd8d9b768be7954d0d775d09b5a908132db15b667971688f493abbce28c",
-   "bytes": 7921,
+   "source_sha256": "0832207a7fa115c93b711b48d20b7d2554960e98bd2ddbbe782bb2707fb3ae91",
+   "output_sha256": "0832207a7fa115c93b711b48d20b7d2554960e98bd2ddbbe782bb2707fb3ae91",
+   "bytes": 7937,
    "transformations": {}
   },
   "recon/symbolized/app/ble/g1_ble_08.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ble/g1_ble_08.c",
-   "source_sha256": "307a1968f83a5a99c124b20f9cc79065aca7fff6bf1ef4a4503dc2d51b43fbd7",
-   "output_sha256": "307a1968f83a5a99c124b20f9cc79065aca7fff6bf1ef4a4503dc2d51b43fbd7",
+   "source_sha256": "018406b0753e33423cf0295e0da71b223f26e859e2f20a5490fb7314461abf71",
+   "output_sha256": "018406b0753e33423cf0295e0da71b223f26e859e2f20a5490fb7314461abf71",
    "bytes": 8327,
    "transformations": {}
   },
   "recon/symbolized/app/ble/g1_ble_09.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ble/g1_ble_09.c",
-   "source_sha256": "584a46451e48b419a4ad54cd9da4c0ae3f887efd81f01c964bb1def525aa3b1f",
-   "output_sha256": "584a46451e48b419a4ad54cd9da4c0ae3f887efd81f01c964bb1def525aa3b1f",
-   "bytes": 10047,
+   "source_sha256": "caf1120913c418aba0c01d970eb61f43d010c752d65926a8a9c91db137cf2230",
+   "output_sha256": "caf1120913c418aba0c01d970eb61f43d010c752d65926a8a9c91db137cf2230",
+   "bytes": 10129,
    "transformations": {}
   },
   "recon/symbolized/app/ble/g1_ble_10.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ble/g1_ble_10.c",
-   "source_sha256": "79966602b5e9354d5efc031380778ce81727fee7e7fb1ec6c3f7b190f1c6bf4c",
-   "output_sha256": "79966602b5e9354d5efc031380778ce81727fee7e7fb1ec6c3f7b190f1c6bf4c",
-   "bytes": 11252,
+   "source_sha256": "549e201b645275042cb5b928490f3ac7b7fd23697132224a4ab0090fd74c4b97",
+   "output_sha256": "549e201b645275042cb5b928490f3ac7b7fd23697132224a4ab0090fd74c4b97",
+   "bytes": 4329,
    "transformations": {}
   },
   "recon/symbolized/app/ble/g1_ble_11.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ble/g1_ble_11.c",
-   "source_sha256": "29ae9c9b3a255f9a17061dc0b35badf07de84930ddf331f8bd2a4404629536ce",
-   "output_sha256": "29ae9c9b3a255f9a17061dc0b35badf07de84930ddf331f8bd2a4404629536ce",
-   "bytes": 6912,
+   "source_sha256": "6f4a2ab3c61442e499803568fc7910cec22c37425901f2beaea8d37ca9e6dfb0",
+   "output_sha256": "6f4a2ab3c61442e499803568fc7910cec22c37425901f2beaea8d37ca9e6dfb0",
+   "bytes": 11271,
    "transformations": {}
   },
   "recon/symbolized/app/ble/g1_ble_12.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ble/g1_ble_12.c",
-   "source_sha256": "8ea679bdc86e7c5431c21b8a425d1c89ad162296453c8d255c96682e81174dde",
-   "output_sha256": "8ea679bdc86e7c5431c21b8a425d1c89ad162296453c8d255c96682e81174dde",
-   "bytes": 15909,
+   "source_sha256": "e8071dcf9df9a7c942afcd8be250ac5226c5c75fb6c505988ede52d8a335788c",
+   "output_sha256": "e8071dcf9df9a7c942afcd8be250ac5226c5c75fb6c505988ede52d8a335788c",
+   "bytes": 6886,
    "transformations": {}
   },
   "recon/symbolized/app/ble/g1_ble_13.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ble/g1_ble_13.c",
+   "source_sha256": "f6189a19d31f17f3983b73ad04bd5f5f5cddf94e01b2a8b10ced7038b95157b1",
+   "output_sha256": "f6189a19d31f17f3983b73ad04bd5f5f5cddf94e01b2a8b10ced7038b95157b1",
+   "bytes": 15939,
+   "transformations": {}
+  },
+  "recon/symbolized/app/ble/g1_ble_14.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ble/g1_ble_14.c",
    "source_sha256": "e34e9939f33d0ffd56c395768162454901985dd68d4733a7150b20a73d42b595",
    "output_sha256": "e34e9939f33d0ffd56c395768162454901985dd68d4733a7150b20a73d42b595",
    "bytes": 5894,
@@ -1156,23 +1149,23 @@
   },
   "recon/symbolized/app/core/activate_foreach_backend.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/activate_foreach_backend.c",
-   "source_sha256": "e3453a33f987ff5773f0789b94b17e5f6d24f16683868b086d0c6a931e86b84a",
-   "output_sha256": "e3453a33f987ff5773f0789b94b17e5f6d24f16683868b086d0c6a931e86b84a",
-   "bytes": 1470,
+   "source_sha256": "ec4c81c29b2ce8b46e73447ca555f99e58b8075748d4faf8ea5e7aeb09d685b0",
+   "output_sha256": "ec4c81c29b2ce8b46e73447ca555f99e58b8075748d4faf8ea5e7aeb09d685b0",
+   "bytes": 1454,
    "transformations": {}
   },
   "recon/symbolized/app/core/app_event_alloc.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/app_event_alloc.c",
-   "source_sha256": "2980b9b1ca163a71b7a9a47b06752584a104d78831070309785f703b48dafae1",
-   "output_sha256": "2980b9b1ca163a71b7a9a47b06752584a104d78831070309785f703b48dafae1",
-   "bytes": 1305,
+   "source_sha256": "fa5bb7d9a6f6202ae831d7ca85f20f22aa735a6e711673effcd97681dc85dbb4",
+   "output_sha256": "fa5bb7d9a6f6202ae831d7ca85f20f22aa735a6e711673effcd97681dc85dbb4",
+   "bytes": 1324,
    "transformations": {}
   },
   "recon/symbolized/app/core/app_event_manager_submit.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/app_event_manager_submit.c",
-   "source_sha256": "17b6e56d8a524f844be11def625eb2d454ed968666640ade9c6546644e76a92a",
-   "output_sha256": "17b6e56d8a524f844be11def625eb2d454ed968666640ade9c6546644e76a92a",
-   "bytes": 4569,
+   "source_sha256": "df9d0a6b724556c5a23440d929df43b00e74eb6ee8717fbe15272faa817486f0",
+   "output_sha256": "df9d0a6b724556c5a23440d929df43b00e74eb6ee8717fbe15272faa817486f0",
+   "bytes": 4556,
    "transformations": {}
   },
   "recon/symbolized/app/core/arch_irq_priority_set.c": {
@@ -1198,9 +1191,9 @@
   },
   "recon/symbolized/app/core/dev_configure_channel.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/dev_configure_channel.c",
-   "source_sha256": "bbd56260d1394c6563b8751ed2abe92e5f3c7e27d5d208e5c468372a13fa1614",
-   "output_sha256": "bbd56260d1394c6563b8751ed2abe92e5f3c7e27d5d208e5c468372a13fa1614",
-   "bytes": 2267,
+   "source_sha256": "00b69807c3465f716d492fc3870988842287c82cf008591059c191b79d3d2c76",
+   "output_sha256": "00b69807c3465f716d492fc3870988842287c82cf008591059c191b79d3d2c76",
+   "bytes": 2287,
    "transformations": {}
   },
   "recon/symbolized/app/core/dev_write_channel_mode.c": {
@@ -1226,9 +1219,9 @@
   },
   "recon/symbolized/app/core/g1_core_01.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/g1_core_01.c",
-   "source_sha256": "9783693764b0b33dc283892f2c51d3a38d8ec07397a13704083de9df8bd7a5b0",
-   "output_sha256": "9783693764b0b33dc283892f2c51d3a38d8ec07397a13704083de9df8bd7a5b0",
-   "bytes": 10998,
+   "source_sha256": "7ab14bfe6cfe2b29c2ae0b47c6f0a6514911a60996c72188032897f8a6a85e06",
+   "output_sha256": "7ab14bfe6cfe2b29c2ae0b47c6f0a6514911a60996c72188032897f8a6a85e06",
+   "bytes": 11000,
    "transformations": {}
   },
   "recon/symbolized/app/core/g1_core_02.c": {
@@ -1240,16 +1233,16 @@
   },
   "recon/symbolized/app/core/g1_core_03.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/g1_core_03.c",
-   "source_sha256": "1f1b8a0db7df3052776daeb5081e6455224bb6344fd19b249284d89be9dcc24f",
-   "output_sha256": "1f1b8a0db7df3052776daeb5081e6455224bb6344fd19b249284d89be9dcc24f",
-   "bytes": 5402,
+   "source_sha256": "5d6eb800b3efa503da15b8c36347f12754b70333533533729619136f33bf1013",
+   "output_sha256": "5d6eb800b3efa503da15b8c36347f12754b70333533533729619136f33bf1013",
+   "bytes": 5408,
    "transformations": {}
   },
   "recon/symbolized/app/core/g1_core_04.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/g1_core_04.c",
-   "source_sha256": "2cf24c6797b545f90b597dffff5731fec3c85b8f5f7bfc81812e32eaca1df8a3",
-   "output_sha256": "2cf24c6797b545f90b597dffff5731fec3c85b8f5f7bfc81812e32eaca1df8a3",
-   "bytes": 5674,
+   "source_sha256": "cb9c2315ffc2b239c3c28fcdcee5264c8dfd247fb4ba48605996ba1444cdd50c",
+   "output_sha256": "cb9c2315ffc2b239c3c28fcdcee5264c8dfd247fb4ba48605996ba1444cdd50c",
+   "bytes": 5681,
    "transformations": {}
   },
   "recon/symbolized/app/core/g1_core_05.c": {
@@ -1268,16 +1261,16 @@
   },
   "recon/symbolized/app/core/g1_core_07.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/g1_core_07.c",
-   "source_sha256": "4282640bc2f7e66577809827af5d3e960b1c7d9b37cb343ba39305e96345bcc1",
-   "output_sha256": "4282640bc2f7e66577809827af5d3e960b1c7d9b37cb343ba39305e96345bcc1",
-   "bytes": 18378,
+   "source_sha256": "0da5ee4db39d77681394e8be3f03c5b06b7acb7600e9581c868aefc6658762f7",
+   "output_sha256": "0da5ee4db39d77681394e8be3f03c5b06b7acb7600e9581c868aefc6658762f7",
+   "bytes": 18388,
    "transformations": {}
   },
   "recon/symbolized/app/core/g1_core_08.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/g1_core_08.c",
-   "source_sha256": "87e3295314890c262e3af5b369721a3a151fc4fd193d034a3c21bb6b35143e08",
-   "output_sha256": "87e3295314890c262e3af5b369721a3a151fc4fd193d034a3c21bb6b35143e08",
-   "bytes": 7664,
+   "source_sha256": "7c9c1a55b0f5a87fda2ce088113358730326c3f55624e69c0b3adc6a1ead3db6",
+   "output_sha256": "7c9c1a55b0f5a87fda2ce088113358730326c3f55624e69c0b3adc6a1ead3db6",
+   "bytes": 7655,
    "transformations": {}
   },
   "recon/symbolized/app/core/g1_core_09.c": {
@@ -1289,16 +1282,16 @@
   },
   "recon/symbolized/app/core/g1_core_10.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/g1_core_10.c",
-   "source_sha256": "6c094df571829931f2a248f56bc3710bbbea5e506a698f0a6973a5ea59f5af75",
-   "output_sha256": "6c094df571829931f2a248f56bc3710bbbea5e506a698f0a6973a5ea59f5af75",
-   "bytes": 19884,
+   "source_sha256": "c47f372b1ee5c87458a9ef8cf8ce0ff24f582ab5a91cda3d6080ec39db455f84",
+   "output_sha256": "c47f372b1ee5c87458a9ef8cf8ce0ff24f582ab5a91cda3d6080ec39db455f84",
+   "bytes": 19899,
    "transformations": {}
   },
   "recon/symbolized/app/core/g1_core_11.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/g1_core_11.c",
-   "source_sha256": "64b40a6385d02f3897dcdd16c4867e923da72fbfd02cde49a8fcb93bc06a6268",
-   "output_sha256": "64b40a6385d02f3897dcdd16c4867e923da72fbfd02cde49a8fcb93bc06a6268",
-   "bytes": 34540,
+   "source_sha256": "325175514d6c95603d7839bdf792c8224e73a64243fcf9711bb6e876bf87f59d",
+   "output_sha256": "325175514d6c95603d7839bdf792c8224e73a64243fcf9711bb6e876bf87f59d",
+   "bytes": 34559,
    "transformations": {}
   },
   "recon/symbolized/app/core/g1_core_12.c": {
@@ -1324,9 +1317,9 @@
   },
   "recon/symbolized/app/core/g1_core_15.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/g1_core_15.c",
-   "source_sha256": "908a6108a18a45c3994e3973dbf9350a0f27e6bf8dc9515c8854030317e5c0ad",
-   "output_sha256": "908a6108a18a45c3994e3973dbf9350a0f27e6bf8dc9515c8854030317e5c0ad",
-   "bytes": 12596,
+   "source_sha256": "7177128611e2bd9f7bd9eb3015daf4fc03d644ad9847a1c39804a2f87e497f54",
+   "output_sha256": "7177128611e2bd9f7bd9eb3015daf4fc03d644ad9847a1c39804a2f87e497f54",
+   "bytes": 12635,
    "transformations": {}
   },
   "recon/symbolized/app/core/g1_core_16.c": {
@@ -1345,9 +1338,9 @@
   },
   "recon/symbolized/app/core/g1_core_18.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/g1_core_18.c",
-   "source_sha256": "dbf30f74c4f897f2c3783a58adfed8d19d7d80f4a473bb456616dc4a1b8d022f",
-   "output_sha256": "dbf30f74c4f897f2c3783a58adfed8d19d7d80f4a473bb456616dc4a1b8d022f",
-   "bytes": 2394,
+   "source_sha256": "2572e3424b0abc85f9f1e0ce112e366270117d38af7e8c2d9d22b481d6432af6",
+   "output_sha256": "2572e3424b0abc85f9f1e0ce112e366270117d38af7e8c2d9d22b481d6432af6",
+   "bytes": 2397,
    "transformations": {}
   },
   "recon/symbolized/app/core/g1_core_19.c": {
@@ -1373,16 +1366,16 @@
   },
   "recon/symbolized/app/core/g1_core_22.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/g1_core_22.c",
-   "source_sha256": "5e97701fa95435b0c48a144b8284e0489f0802bc0cbd1d171fa56fd8cea3d384",
-   "output_sha256": "5e97701fa95435b0c48a144b8284e0489f0802bc0cbd1d171fa56fd8cea3d384",
-   "bytes": 5837,
+   "source_sha256": "49d39a23025aa2845e96887e57018f22e2fc6e34587b806b45ea0f31c33fa2c3",
+   "output_sha256": "49d39a23025aa2845e96887e57018f22e2fc6e34587b806b45ea0f31c33fa2c3",
+   "bytes": 5849,
    "transformations": {}
   },
   "recon/symbolized/app/core/g1_core_23.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/g1_core_23.c",
-   "source_sha256": "ac35dff73b99448b80fe58495ecdbabd133b904cb2c7a6bc75826de4bd911335",
-   "output_sha256": "ac35dff73b99448b80fe58495ecdbabd133b904cb2c7a6bc75826de4bd911335",
-   "bytes": 12691,
+   "source_sha256": "833c262af8f8e91e840565d5b21ab17c64febeb9c3cbbdda10068c4eac67387f",
+   "output_sha256": "833c262af8f8e91e840565d5b21ab17c64febeb9c3cbbdda10068c4eac67387f",
+   "bytes": 12703,
    "transformations": {}
   },
   "recon/symbolized/app/core/g1_core_24.c": {
@@ -1394,9 +1387,9 @@
   },
   "recon/symbolized/app/core/g1_core_25.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/g1_core_25.c",
-   "source_sha256": "eb72ffa6fe36411cbc4b95ff21b385979d6b22badff112e78f3290fcefb06851",
-   "output_sha256": "eb72ffa6fe36411cbc4b95ff21b385979d6b22badff112e78f3290fcefb06851",
-   "bytes": 10224,
+   "source_sha256": "0e180d068316e68e25f847e5cdc6e269b5b3e9f396b0c33d5129778b24984f2e",
+   "output_sha256": "0e180d068316e68e25f847e5cdc6e269b5b3e9f396b0c33d5129778b24984f2e",
+   "bytes": 10226,
    "transformations": {}
   },
   "recon/symbolized/app/core/g1_core_26.c": {
@@ -1443,16 +1436,16 @@
   },
   "recon/symbolized/app/core/log_backend_uart_check_ready.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/log_backend_uart_check_ready.c",
-   "source_sha256": "83f5912ba96247bf31481a74488b8eab0e2282461c39a297785b3f4244d82b6c",
-   "output_sha256": "83f5912ba96247bf31481a74488b8eab0e2282461c39a297785b3f4244d82b6c",
-   "bytes": 1647,
+   "source_sha256": "9c61839eb6afb71e1a82192e0d77bdc65403106e93f71ff87b5945038a901004",
+   "output_sha256": "9c61839eb6afb71e1a82192e0d77bdc65403106e93f71ff87b5945038a901004",
+   "bytes": 1686,
    "transformations": {}
   },
   "recon/symbolized/app/core/log_msg_process.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/log_msg_process.c",
-   "source_sha256": "dd3226928c40eef61d26514f8f0fceec965e8d99a12d0f5edc8714e377f17696",
-   "output_sha256": "dd3226928c40eef61d26514f8f0fceec965e8d99a12d0f5edc8714e377f17696",
-   "bytes": 3412,
+   "source_sha256": "f6b1875216073b9855378668b2bd5b414babf42dbde6c922d77cde98581b31e9",
+   "output_sha256": "f6b1875216073b9855378668b2bd5b414babf42dbde6c922d77cde98581b31e9",
+   "bytes": 3431,
    "transformations": {}
   },
   "recon/symbolized/app/core/log_process_thread.c": {
@@ -1569,9 +1562,9 @@
   },
   "recon/symbolized/app/display/display_thread_handler.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/display/display_thread_handler.c",
-   "source_sha256": "98c9eb6626791dc439895998e9bc0245e9abc7820304de443ca4a2e0309d70e1",
-   "output_sha256": "98c9eb6626791dc439895998e9bc0245e9abc7820304de443ca4a2e0309d70e1",
-   "bytes": 17875,
+   "source_sha256": "0d49ef7d2388c7ef5bc2e3185cf3d8c5ad57be998b3d3b134b6737ef3c805bb6",
+   "output_sha256": "0d49ef7d2388c7ef5bc2e3185cf3d8c5ad57be998b3d3b134b6737ef3c805bb6",
+   "bytes": 17902,
    "transformations": {}
   },
   "recon/symbolized/app/display/g1_display_01.c": {
@@ -1583,9 +1576,9 @@
   },
   "recon/symbolized/app/display/g1_display_02.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/display/g1_display_02.c",
-   "source_sha256": "e5357a017a48e57729bf5c9f6fb1d902daee6e540a61befbd4903ff08c5aa0e2",
-   "output_sha256": "e5357a017a48e57729bf5c9f6fb1d902daee6e540a61befbd4903ff08c5aa0e2",
-   "bytes": 10069,
+   "source_sha256": "ad08f7bc71cd79eb42781611d8f3a524c5680700c1510a1788165c2f3ed669ac",
+   "output_sha256": "ad08f7bc71cd79eb42781611d8f3a524c5680700c1510a1788165c2f3ed669ac",
+   "bytes": 10078,
    "transformations": {}
   },
   "recon/symbolized/app/display/g1_display_03.c": {
@@ -1611,9 +1604,9 @@
   },
   "recon/symbolized/app/display/g1_display_06.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/display/g1_display_06.c",
-   "source_sha256": "9e62b1b436f0ea8572ee8fddeaf27b381643cf062821929ad11afa2197e08ec5",
-   "output_sha256": "9e62b1b436f0ea8572ee8fddeaf27b381643cf062821929ad11afa2197e08ec5",
-   "bytes": 13676,
+   "source_sha256": "487dd58145f19d3ed0dcbd9667704f7f053b51f92dcf9f0887aa0193aaf3ccd1",
+   "output_sha256": "487dd58145f19d3ed0dcbd9667704f7f053b51f92dcf9f0887aa0193aaf3ccd1",
+   "bytes": 13677,
    "transformations": {}
   },
   "recon/symbolized/app/display/g1_display_07.c": {
@@ -1646,9 +1639,9 @@
   },
   "recon/symbolized/app/display/g1_display_11.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/display/g1_display_11.c",
-   "source_sha256": "c78cf6fca78e0ecbc961250fa6feed33f5fb92a60a6698749983efffd1478d70",
-   "output_sha256": "c78cf6fca78e0ecbc961250fa6feed33f5fb92a60a6698749983efffd1478d70",
-   "bytes": 16602,
+   "source_sha256": "2bbbe772f76d3a5c3f6aeb3b37a8f059343cd9a69c546d113d2e2431f1df3a7e",
+   "output_sha256": "2bbbe772f76d3a5c3f6aeb3b37a8f059343cd9a69c546d113d2e2431f1df3a7e",
+   "bytes": 16610,
    "transformations": {}
   },
   "recon/symbolized/app/display/g1_display_12.c": {
@@ -1751,9 +1744,9 @@
   },
   "recon/symbolized/app/display/slave_display_thread.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/display/slave_display_thread.c",
-   "source_sha256": "dd6ff7ab49eea37451590bb7b3109a0f201e0081110ff9a07fba4d501922912f",
-   "output_sha256": "dd6ff7ab49eea37451590bb7b3109a0f201e0081110ff9a07fba4d501922912f",
-   "bytes": 24969,
+   "source_sha256": "d326d49b96d5c17dbb557a8273e9b9654b6145c20df4dc25f2e1d0ff33065128",
+   "output_sha256": "d326d49b96d5c17dbb557a8273e9b9654b6145c20df4dc25f2e1d0ff33065128",
+   "bytes": 24957,
    "transformations": {}
   },
   "recon/symbolized/app/display/spawn_display_thread.c": {
@@ -1800,9 +1793,9 @@
   },
   "recon/symbolized/app/esb/g1_esb_01.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/esb/g1_esb_01.c",
-   "source_sha256": "a61dc55408109c9cac67aa52fd2c45c3e253f1ba4b8a5ebdc132cc7d21e87edd",
-   "output_sha256": "a61dc55408109c9cac67aa52fd2c45c3e253f1ba4b8a5ebdc132cc7d21e87edd",
-   "bytes": 11691,
+   "source_sha256": "1533cf56f9ed296fa1e9b4a7bf175136b3c0c31a566773879cc2577e4a4caccd",
+   "output_sha256": "1533cf56f9ed296fa1e9b4a7bf175136b3c0c31a566773879cc2577e4a4caccd",
+   "bytes": 11710,
    "transformations": {}
   },
   "recon/symbolized/app/esb/g1_esb_02.c": {
@@ -1821,16 +1814,16 @@
   },
   "recon/symbolized/app/esb/g1_esb_04.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/esb/g1_esb_04.c",
-   "source_sha256": "ccafbf92c103b9110634b4f89437da0c955c7e3caeb8924b5542ae59c81a04ff",
-   "output_sha256": "ccafbf92c103b9110634b4f89437da0c955c7e3caeb8924b5542ae59c81a04ff",
-   "bytes": 9116,
+   "source_sha256": "45502c833e6d0adeb14658b41261136bcaae6593272100d3c13b90a09320e7e8",
+   "output_sha256": "45502c833e6d0adeb14658b41261136bcaae6593272100d3c13b90a09320e7e8",
+   "bytes": 7799,
    "transformations": {}
   },
   "recon/symbolized/app/esb/local_esbs_ipc_service_recv.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/esb/local_esbs_ipc_service_recv.c",
-   "source_sha256": "32ed46ad63ad6488b95459f1eef0c61a6d775ca037fd0eac5d5a9d7fda64c450",
-   "output_sha256": "32ed46ad63ad6488b95459f1eef0c61a6d775ca037fd0eac5d5a9d7fda64c450",
-   "bytes": 8711,
+   "source_sha256": "697f92f9bab5fa9d5ba112119b3f75df4414853e4e6b79c0449b8570b1e2eec6",
+   "output_sha256": "697f92f9bab5fa9d5ba112119b3f75df4414853e4e6b79c0449b8570b1e2eec6",
+   "bytes": 8713,
    "transformations": {}
   },
   "recon/symbolized/app/esb/not_disturb_sync_data.c": {
@@ -1845,6 +1838,13 @@
    "source_sha256": "77a910af3237a4ef48eeb0fecbf9485ef1704fa7b8cc42723597dd68e2f107a5",
    "output_sha256": "77a910af3237a4ef48eeb0fecbf9485ef1704fa7b8cc42723597dd68e2f107a5",
    "bytes": 3731,
+   "transformations": {}
+  },
+  "recon/symbolized/app/esb/rtc_cc_reg_addr_get.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/esb/rtc_cc_reg_addr_get.c",
+   "source_sha256": "46d6b1b008f6cac44e8c3363733d33dbb995586301fd283b7e94e167a08356dc",
+   "output_sha256": "46d6b1b008f6cac44e8c3363733d33dbb995586301fd283b7e94e167a08356dc",
+   "bytes": 1376,
    "transformations": {}
   },
   "recon/symbolized/app/esb/sync_to_slave.c": {
@@ -1898,9 +1898,9 @@
   },
   "recon/symbolized/app/gui/format_message_relative_time.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/gui/format_message_relative_time.c",
-   "source_sha256": "7eb580737528fe092c711e6836c1419050f7d8608c45a1e6ba5e7c2e277f2e6c",
-   "output_sha256": "7eb580737528fe092c711e6836c1419050f7d8608c45a1e6ba5e7c2e277f2e6c",
-   "bytes": 9440,
+   "source_sha256": "f0b609beb32ddb89ba61b3de6fa4fce21ce5379d702547d0181f2629247daddf",
+   "output_sha256": "f0b609beb32ddb89ba61b3de6fa4fce21ce5379d702547d0181f2629247daddf",
+   "bytes": 9430,
    "transformations": {}
   },
   "recon/symbolized/app/gui/g1_gui_01.c": {
@@ -1940,23 +1940,23 @@
   },
   "recon/symbolized/app/gui/g1_gui_06.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/gui/g1_gui_06.c",
-   "source_sha256": "f84a51a79537c7cf6bffea89b84533f3ad071e7ca39250e6da660e92d749d2e4",
-   "output_sha256": "f84a51a79537c7cf6bffea89b84533f3ad071e7ca39250e6da660e92d749d2e4",
-   "bytes": 5590,
+   "source_sha256": "ffd31653d980886f5cdaf7becc3e17daf5e05b280f1626423aff7633aba8532a",
+   "output_sha256": "ffd31653d980886f5cdaf7becc3e17daf5e05b280f1626423aff7633aba8532a",
+   "bytes": 5593,
    "transformations": {}
   },
   "recon/symbolized/app/gui/g1_gui_07.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/gui/g1_gui_07.c",
-   "source_sha256": "dc79d035713243d9545a7733c96a881a80093e94d7617267e71f791f3328fb19",
-   "output_sha256": "dc79d035713243d9545a7733c96a881a80093e94d7617267e71f791f3328fb19",
-   "bytes": 5074,
+   "source_sha256": "2832bfe9613a84863d28413bcc104e8f6d7ac1f79a53047ca689481c7a2d25f4",
+   "output_sha256": "2832bfe9613a84863d28413bcc104e8f6d7ac1f79a53047ca689481c7a2d25f4",
+   "bytes": 5073,
    "transformations": {}
   },
   "recon/symbolized/app/gui/g1_gui_08.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/gui/g1_gui_08.c",
-   "source_sha256": "89f95215642d98fb989da258419c38f6e49d130ca6f43f3ec2513386aeffa436",
-   "output_sha256": "89f95215642d98fb989da258419c38f6e49d130ca6f43f3ec2513386aeffa436",
-   "bytes": 18561,
+   "source_sha256": "1a81e2b83c03c57dd14b53582c72d2e371faede187d1a78917f88d04c377153a",
+   "output_sha256": "1a81e2b83c03c57dd14b53582c72d2e371faede187d1a78917f88d04c377153a",
+   "bytes": 18553,
    "transformations": {}
   },
   "recon/symbolized/app/gui/gui_area_clear.c": {
@@ -2010,16 +2010,16 @@
   },
   "recon/symbolized/app/gui/gui_screen_fade_out_transition.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/gui/gui_screen_fade_out_transition.c",
-   "source_sha256": "a027221c62d3cd766894195facd9f82ae7dfe4675ba827fdcab27ac664afb8ef",
-   "output_sha256": "a027221c62d3cd766894195facd9f82ae7dfe4675ba827fdcab27ac664afb8ef",
-   "bytes": 2200,
+   "source_sha256": "a8cb69078be17c5fcdbb21951c2f68b6291240883f6747e892fd7691ff144b85",
+   "output_sha256": "a8cb69078be17c5fcdbb21951c2f68b6291240883f6747e892fd7691ff144b85",
+   "bytes": 2209,
    "transformations": {}
   },
   "recon/symbolized/app/gui/gui_utf_Wordwrap_draw.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/gui/gui_utf_Wordwrap_draw.c",
-   "source_sha256": "64c85dfcf687e6993d2997344e258c843e911cccc74e31cdc4ebb3ccfd14909d",
-   "output_sha256": "64c85dfcf687e6993d2997344e258c843e911cccc74e31cdc4ebb3ccfd14909d",
-   "bytes": 11666,
+   "source_sha256": "a749d6a07755659cb6cf7bc0e7d1b5fc2126c95de800b0832aecb4057aaae099",
+   "output_sha256": "a749d6a07755659cb6cf7bc0e7d1b5fc2126c95de800b0832aecb4057aaae099",
+   "bytes": 11687,
    "transformations": {}
   },
   "recon/symbolized/app/gui/gui_utf_draw.c": {
@@ -2108,9 +2108,9 @@
   },
   "recon/symbolized/app/ipc/g1_ipc_04.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ipc/g1_ipc_04.c",
-   "source_sha256": "8163ce7f9c8b05da6a064d6d9bc252bc0bbf9c403cdb256a8c4788d981877bc7",
-   "output_sha256": "8163ce7f9c8b05da6a064d6d9bc252bc0bbf9c403cdb256a8c4788d981877bc7",
-   "bytes": 35449,
+   "source_sha256": "9969562c43d16a8ff044b704c391afe87c37b7cf77a640ad9f2dbccd898e4454",
+   "output_sha256": "9969562c43d16a8ff044b704c391afe87c37b7cf77a640ad9f2dbccd898e4454",
+   "bytes": 35456,
    "transformations": {}
   },
   "recon/symbolized/app/ipc/g1_ipc_05.c": {
@@ -2185,16 +2185,16 @@
   },
   "recon/symbolized/app/lib/__ieee754_exp.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/__ieee754_exp.c",
-   "source_sha256": "46d6def34472335c856e92db4eac56e06f057931c2148d2027c7d41dcaa18cf4",
-   "output_sha256": "46d6def34472335c856e92db4eac56e06f057931c2148d2027c7d41dcaa18cf4",
-   "bytes": 6816,
+   "source_sha256": "24b484114489a50f01c66c40eafe302fc05a25e178063d7dd2e378082d8acfc9",
+   "output_sha256": "24b484114489a50f01c66c40eafe302fc05a25e178063d7dd2e378082d8acfc9",
+   "bytes": 6755,
    "transformations": {}
   },
   "recon/symbolized/app/lib/__ieee754_pow.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/__ieee754_pow.c",
-   "source_sha256": "b408557c18d9505359bc4b91fb13b7c6570df4a37d522703b48b2b439e59a9f3",
-   "output_sha256": "b408557c18d9505359bc4b91fb13b7c6570df4a37d522703b48b2b439e59a9f3",
-   "bytes": 16831,
+   "source_sha256": "adbe3cf950e4fcf0dfb7d70e18136eb87d8bc9c42cc6bf7b862cbcbd732467e8",
+   "output_sha256": "adbe3cf950e4fcf0dfb7d70e18136eb87d8bc9c42cc6bf7b862cbcbd732467e8",
+   "bytes": 16752,
    "transformations": {}
   },
   "recon/symbolized/app/lib/__nrfy_internal_twim_event_handle.c": {
@@ -2218,6 +2218,13 @@
    "bytes": 6719,
    "transformations": {}
   },
+  "recon/symbolized/app/lib/_puts_r.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/_puts_r.c",
+   "source_sha256": "0d89a8027b97bf8fa8da7e7a0fa05013777b85ae1e16d3e4e8b717bbd4cec48c",
+   "output_sha256": "0d89a8027b97bf8fa8da7e7a0fa05013777b85ae1e16d3e4e8b717bbd4cec48c",
+   "bytes": 4118,
+   "transformations": {}
+  },
   "recon/symbolized/app/lib/adc_nfc_run.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/adc_nfc_run.c",
    "source_sha256": "bd3e2f600723b7d18760370534a64a160174f4d26d8b57d3aedd557bf62f63b8",
@@ -2227,9 +2234,9 @@
   },
   "recon/symbolized/app/lib/alloc_chunk.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/alloc_chunk.c",
-   "source_sha256": "8997c10e1511ac0ef19bce07835ce38b277ff9283fe75b4cbd94afc74b6c47ad",
-   "output_sha256": "8997c10e1511ac0ef19bce07835ce38b277ff9283fe75b4cbd94afc74b6c47ad",
-   "bytes": 2549,
+   "source_sha256": "bdbdadf6f3468ff2ae73d968b4ba18f23fdcf6f28d1875f110f7826026acaca3",
+   "output_sha256": "bdbdadf6f3468ff2ae73d968b4ba18f23fdcf6f28d1875f110f7826026acaca3",
+   "bytes": 2448,
    "transformations": {}
   },
   "recon/symbolized/app/lib/arm_mpu_configure_partition_region.c": {
@@ -2237,6 +2244,13 @@
    "source_sha256": "c54bb60980562e83b32cbc5db2acf741246b47a8ccf308d877d4ffc349cf0878",
    "output_sha256": "c54bb60980562e83b32cbc5db2acf741246b47a8ccf308d877d4ffc349cf0878",
    "bytes": 1115,
+   "transformations": {}
+  },
+  "recon/symbolized/app/lib/atomic_clear_bit.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/atomic_clear_bit.c",
+   "source_sha256": "1de3aad5485bb1105d7f892feb57db7768b43bd6208170026108cf3775722593",
+   "output_sha256": "1de3aad5485bb1105d7f892feb57db7768b43bd6208170026108cf3775722593",
+   "bytes": 477,
    "transformations": {}
   },
   "recon/symbolized/app/lib/atomic_set_bit.c": {
@@ -2318,9 +2332,9 @@
   },
   "recon/symbolized/app/lib/att_read_type_iter_cb.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/att_read_type_iter_cb.c",
-   "source_sha256": "1f7aad17256f808830c3abd175a1f1bc674dd724f590667baf1f0013b2c29ac8",
-   "output_sha256": "1f7aad17256f808830c3abd175a1f1bc674dd724f590667baf1f0013b2c29ac8",
-   "bytes": 2747,
+   "source_sha256": "163941a40584c9be594c87fd56c6980a3c508baf37fc82cbd3e3548c06afe483",
+   "output_sha256": "163941a40584c9be594c87fd56c6980a3c508baf37fc82cbd3e3548c06afe483",
+   "bytes": 2769,
    "transformations": {}
   },
   "recon/symbolized/app/lib/att_req_sent.c": {
@@ -2339,9 +2353,9 @@
   },
   "recon/symbolized/app/lib/att_send_error_rsp.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/att_send_error_rsp.c",
-   "source_sha256": "2c3732426b02afeaa311fed7b28c19c0b55235ed52f5c9ef359e19c40eccdd01",
-   "output_sha256": "2c3732426b02afeaa311fed7b28c19c0b55235ed52f5c9ef359e19c40eccdd01",
-   "bytes": 1430,
+   "source_sha256": "3060170df9618242c45c154d0c2ff202b2949816dc14d4271feb5e79079f77ce",
+   "output_sha256": "3060170df9618242c45c154d0c2ff202b2949816dc14d4271feb5e79079f77ce",
+   "bytes": 1416,
    "transformations": {}
   },
   "recon/symbolized/app/lib/att_write_cmd.c": {
@@ -2367,30 +2381,30 @@
   },
   "recon/symbolized/app/lib/bt_addr_le_eq_0.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/bt_addr_le_eq_0.c",
-   "source_sha256": "bffd8091de591a2de24005ac7a94a6d952a9e016184d66cb0b6e7154f1aa1985",
-   "output_sha256": "bffd8091de591a2de24005ac7a94a6d952a9e016184d66cb0b6e7154f1aa1985",
-   "bytes": 546,
+   "source_sha256": "625488adcf443e73a74423b937a4551d4afdd13575c4f9126818555e21be9820",
+   "output_sha256": "625488adcf443e73a74423b937a4551d4afdd13575c4f9126818555e21be9820",
+   "bytes": 556,
    "transformations": {}
   },
   "recon/symbolized/app/lib/bt_att_accept.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/bt_att_accept.c",
-   "source_sha256": "c014254664a63e2155a895cb8477ac9d8d984569043cc112f2752a9865445d4c",
-   "output_sha256": "c014254664a63e2155a895cb8477ac9d8d984569043cc112f2752a9865445d4c",
-   "bytes": 2967,
+   "source_sha256": "3a911a77a8336313ec17bc2b60d834b67b075be3bd5fc2e4b7d98e39a399d1e3",
+   "output_sha256": "3a911a77a8336313ec17bc2b60d834b67b075be3bd5fc2e4b7d98e39a399d1e3",
+   "bytes": 2979,
    "transformations": {}
   },
   "recon/symbolized/app/lib/bt_att_chan_create_pdu.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/bt_att_chan_create_pdu.c",
-   "source_sha256": "2923884c2a568770a53483ca04526cf2dcd9c78def86cc91f3cfd666762a137e",
-   "output_sha256": "2923884c2a568770a53483ca04526cf2dcd9c78def86cc91f3cfd666762a137e",
-   "bytes": 4947,
+   "source_sha256": "9a72481bc2410563c3ff6595f071af69d1a5b3fc78460c3c9932dddc1049a9fa",
+   "output_sha256": "9a72481bc2410563c3ff6595f071af69d1a5b3fc78460c3c9932dddc1049a9fa",
+   "bytes": 4967,
    "transformations": {}
   },
   "recon/symbolized/app/lib/bt_att_recv.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/bt_att_recv.c",
-   "source_sha256": "2a3a561f7c24ec1bcbcd0c8e2319caf5ee5ef1883fdcd98357a702706d78b5a5",
-   "output_sha256": "2a3a561f7c24ec1bcbcd0c8e2319caf5ee5ef1883fdcd98357a702706d78b5a5",
-   "bytes": 5092,
+   "source_sha256": "7095679bcb1005be05fe78a9ba1d362e4f35c302ad25cb0773078de7d9729663",
+   "output_sha256": "7095679bcb1005be05fe78a9ba1d362e4f35c302ad25cb0773078de7d9729663",
+   "bytes": 5110,
    "transformations": {}
   },
   "recon/symbolized/app/lib/bt_att_status.c": {
@@ -2444,9 +2458,9 @@
   },
   "recon/symbolized/app/lib/bt_smp_distribute_keys.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/bt_smp_distribute_keys.c",
-   "source_sha256": "a4c80a98ef626a41d39923c96f4a9b3b0df6bbcd7d8e049ee442a87b58e31d85",
-   "output_sha256": "a4c80a98ef626a41d39923c96f4a9b3b0df6bbcd7d8e049ee442a87b58e31d85",
-   "bytes": 7398,
+   "source_sha256": "1c824ae3e6a9ca0f8d889b511fe43b38dda4eac57d4cd2ec162520fd6b598023",
+   "output_sha256": "1c824ae3e6a9ca0f8d889b511fe43b38dda4eac57d4cd2ec162520fd6b598023",
+   "bytes": 7379,
    "transformations": {}
   },
   "recon/symbolized/app/lib/bt_smp_recv.c": {
@@ -2619,9 +2633,9 @@
   },
   "recon/symbolized/app/lib/chunk_set.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/chunk_set.c",
-   "source_sha256": "b403208bebd228f001015b52ed5aa63cc045472ad6a3cd3841b5eb6a94b276b0",
-   "output_sha256": "b403208bebd228f001015b52ed5aa63cc045472ad6a3cd3841b5eb6a94b276b0",
-   "bytes": 533,
+   "source_sha256": "d0807c1b3470ea00b351189e55a5ff95a4573a86c0961e37f98fe457d981698f",
+   "output_sha256": "d0807c1b3470ea00b351189e55a5ff95a4573a86c0961e37f98fe457d981698f",
+   "bytes": 550,
    "transformations": {}
   },
   "recon/symbolized/app/lib/chunk_size.c": {
@@ -2640,16 +2654,16 @@
   },
   "recon/symbolized/app/lib/cjson_parse_with_opts.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/cjson_parse_with_opts.c",
-   "source_sha256": "2d8d96aeecb40f2fdfcb0d26d632d844509aaee6493fbf6631bb810cf965a58b",
-   "output_sha256": "2d8d96aeecb40f2fdfcb0d26d632d844509aaee6493fbf6631bb810cf965a58b",
-   "bytes": 2654,
+   "source_sha256": "8cfee998e4963ff22879f955d4afb7545efcffc43ce54639026c50bb7b2d6db4",
+   "output_sha256": "8cfee998e4963ff22879f955d4afb7545efcffc43ce54639026c50bb7b2d6db4",
+   "bytes": 2648,
    "transformations": {}
   },
   "recon/symbolized/app/lib/cjson_print_value.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/cjson_print_value.c",
-   "source_sha256": "8558367e3269cca212a63e2a2407fdc9f10832fd779d25f950f457c24a0a8e81",
-   "output_sha256": "8558367e3269cca212a63e2a2407fdc9f10832fd779d25f950f457c24a0a8e81",
-   "bytes": 14616,
+   "source_sha256": "9b5a7e6b863861c011c768c07213931cb0c6708f0cde27bc95130b1e125d66b0",
+   "output_sha256": "9b5a7e6b863861c011c768c07213931cb0c6708f0cde27bc95130b1e125d66b0",
+   "bytes": 14627,
    "transformations": {}
   },
   "recon/symbolized/app/lib/fnmatch_build_class_table.c": {
@@ -2661,9 +2675,9 @@
   },
   "recon/symbolized/app/lib/g1_lib_01.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_01.c",
-   "source_sha256": "ccb4e5600a349a17e9e9b20eecb08118a11b17508c70df564ac7e0a9e4d84790",
-   "output_sha256": "ccb4e5600a349a17e9e9b20eecb08118a11b17508c70df564ac7e0a9e4d84790",
-   "bytes": 3340,
+   "source_sha256": "44d3677d5170b9af8c9c6fd4b5ba805b7c8b8e08fb845fd3b882f9195064e29e",
+   "output_sha256": "44d3677d5170b9af8c9c6fd4b5ba805b7c8b8e08fb845fd3b882f9195064e29e",
+   "bytes": 3385,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_02.c": {
@@ -2675,9 +2689,9 @@
   },
   "recon/symbolized/app/lib/g1_lib_03.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_03.c",
-   "source_sha256": "958272cfe231c75a374ad07db5ab69ca55e0c396176673dd28ac58922a5fa24c",
-   "output_sha256": "958272cfe231c75a374ad07db5ab69ca55e0c396176673dd28ac58922a5fa24c",
-   "bytes": 38368,
+   "source_sha256": "a41cf0fc2695e5a86eebcdcc2ec2e2d637db332da056598dbe17b02a1fabab2c",
+   "output_sha256": "a41cf0fc2695e5a86eebcdcc2ec2e2d637db332da056598dbe17b02a1fabab2c",
+   "bytes": 38416,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_04.c": {
@@ -2689,23 +2703,23 @@
   },
   "recon/symbolized/app/lib/g1_lib_05.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_05.c",
-   "source_sha256": "499a7d2d71d11737ec36af68371d4d431532ded6523b448f0b30221804723b64",
-   "output_sha256": "499a7d2d71d11737ec36af68371d4d431532ded6523b448f0b30221804723b64",
-   "bytes": 5019,
+   "source_sha256": "30e1ef3c734e68ac6b34e686a594b6c0e9dd257c8385ae285fe804e0de73f999",
+   "output_sha256": "30e1ef3c734e68ac6b34e686a594b6c0e9dd257c8385ae285fe804e0de73f999",
+   "bytes": 5038,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_06.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_06.c",
-   "source_sha256": "455f920065afdd28eb5ae35ae02f41f7f1226183d82002e6e6b40dd7d00b2f1e",
-   "output_sha256": "455f920065afdd28eb5ae35ae02f41f7f1226183d82002e6e6b40dd7d00b2f1e",
-   "bytes": 10014,
+   "source_sha256": "ef59ad4adb9d978c3b8ab8aba2e909bb34bbf88caf16568e8875bbb795e662c8",
+   "output_sha256": "ef59ad4adb9d978c3b8ab8aba2e909bb34bbf88caf16568e8875bbb795e662c8",
+   "bytes": 10012,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_07.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_07.c",
-   "source_sha256": "b5bc39d58428756524b78c76159c2516416547818e530dba273743a7068b687f",
-   "output_sha256": "b5bc39d58428756524b78c76159c2516416547818e530dba273743a7068b687f",
-   "bytes": 13138,
+   "source_sha256": "4bb87984d3cb512769319b2edacd21260db3d49c09ad50ea268bbe6fac5e7cd3",
+   "output_sha256": "4bb87984d3cb512769319b2edacd21260db3d49c09ad50ea268bbe6fac5e7cd3",
+   "bytes": 13094,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_08.c": {
@@ -2717,177 +2731,177 @@
   },
   "recon/symbolized/app/lib/g1_lib_09.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_09.c",
-   "source_sha256": "3cc76b31d9c4e13e82cc7a23adcf238c4b648bc175c2ae98d96039dc15bb7c30",
-   "output_sha256": "3cc76b31d9c4e13e82cc7a23adcf238c4b648bc175c2ae98d96039dc15bb7c30",
-   "bytes": 5001,
+   "source_sha256": "37d4171e51d7716fd5da1b49410510b4120d6add8c5a2f41df7c525941e5a82c",
+   "output_sha256": "37d4171e51d7716fd5da1b49410510b4120d6add8c5a2f41df7c525941e5a82c",
+   "bytes": 13775,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_10.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_10.c",
-   "source_sha256": "9d571456bafab7241a400b309c0dae99c592322906dc4066f259c0ce54c5caf1",
-   "output_sha256": "9d571456bafab7241a400b309c0dae99c592322906dc4066f259c0ce54c5caf1",
-   "bytes": 9721,
+   "source_sha256": "58137d71797872ae33ce7d989b73cac159ea545d6050d708c31b70294141b5f9",
+   "output_sha256": "58137d71797872ae33ce7d989b73cac159ea545d6050d708c31b70294141b5f9",
+   "bytes": 22721,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_11.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_11.c",
-   "source_sha256": "c9992f5db1997b70926f11f498c21e4a9f527b9bf4e668c71b8eed2e73a3ad95",
-   "output_sha256": "c9992f5db1997b70926f11f498c21e4a9f527b9bf4e668c71b8eed2e73a3ad95",
-   "bytes": 22655,
+   "source_sha256": "bdb2f7b2c0e1dcf02a3bab9e02b0c2b01710e0b0d63a2a01b3cbd4b054c271fa",
+   "output_sha256": "bdb2f7b2c0e1dcf02a3bab9e02b0c2b01710e0b0d63a2a01b3cbd4b054c271fa",
+   "bytes": 4604,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_12.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_12.c",
-   "source_sha256": "bd539ac58d7b88530e9d3b48ac33b90d7ea3dc1b804895ab89bd34d0160a33e9",
-   "output_sha256": "bd539ac58d7b88530e9d3b48ac33b90d7ea3dc1b804895ab89bd34d0160a33e9",
-   "bytes": 4635,
+   "source_sha256": "6ff97553e3da976e333c21b1dd1eacbf28fc6364bfa35e9335ffe9a3bd72b617",
+   "output_sha256": "6ff97553e3da976e333c21b1dd1eacbf28fc6364bfa35e9335ffe9a3bd72b617",
+   "bytes": 10264,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_13.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_13.c",
-   "source_sha256": "c4d0124c95019074e47223170b0240fa63a51b61a7b8df16988adb6d4a581e05",
-   "output_sha256": "c4d0124c95019074e47223170b0240fa63a51b61a7b8df16988adb6d4a581e05",
-   "bytes": 10264,
+   "source_sha256": "8f9cbdb871c36fbe78e0927eaec65bf3b9976a4334048c9b6f2fa9c70c5e75b5",
+   "output_sha256": "8f9cbdb871c36fbe78e0927eaec65bf3b9976a4334048c9b6f2fa9c70c5e75b5",
+   "bytes": 8103,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_14.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_14.c",
-   "source_sha256": "a09f355e71b3366f2b84bac48ff81eae4b99942b4c7b8cee06d1607e43cfaec7",
-   "output_sha256": "a09f355e71b3366f2b84bac48ff81eae4b99942b4c7b8cee06d1607e43cfaec7",
-   "bytes": 8072,
+   "source_sha256": "b0ecfb60e64e97aec90cf4c47be13e2b6b121a58355f270d946504fe0906a6ce",
+   "output_sha256": "b0ecfb60e64e97aec90cf4c47be13e2b6b121a58355f270d946504fe0906a6ce",
+   "bytes": 10355,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_15.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_15.c",
-   "source_sha256": "8111581acaf2876824497fca265ec4b4a0eb22a0280ff92f2e95a88dc03a1f13",
-   "output_sha256": "8111581acaf2876824497fca265ec4b4a0eb22a0280ff92f2e95a88dc03a1f13",
-   "bytes": 10339,
+   "source_sha256": "a6372c5ad4330e89bb436cd29feb3e77fe83318499f1a4f6fa74804ab6904d63",
+   "output_sha256": "a6372c5ad4330e89bb436cd29feb3e77fe83318499f1a4f6fa74804ab6904d63",
+   "bytes": 11210,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_16.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_16.c",
-   "source_sha256": "d18275b8c316cc3eee7e44fba62665aed0b694e0d9c5e5fb4224ef1de00c354c",
-   "output_sha256": "d18275b8c316cc3eee7e44fba62665aed0b694e0d9c5e5fb4224ef1de00c354c",
-   "bytes": 11189,
+   "source_sha256": "8fde699967c5ebeed682a6b0b67460a9a631ac1ebbd62a3ea2669869e4c2da8d",
+   "output_sha256": "8fde699967c5ebeed682a6b0b67460a9a631ac1ebbd62a3ea2669869e4c2da8d",
+   "bytes": 4580,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_17.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_17.c",
-   "source_sha256": "ce5ccff53ba02fe596eed2445d6630f12c964d2f6b14204cc0c46f60a8103f0e",
-   "output_sha256": "ce5ccff53ba02fe596eed2445d6630f12c964d2f6b14204cc0c46f60a8103f0e",
-   "bytes": 4495,
+   "source_sha256": "16490901b791a36db89be5b8b3c66c31916012f8c6c881b9ec40766e3e746ec4",
+   "output_sha256": "16490901b791a36db89be5b8b3c66c31916012f8c6c881b9ec40766e3e746ec4",
+   "bytes": 5986,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_18.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_18.c",
-   "source_sha256": "f266748212876321e052caab60365aa9c20d2a44a13a2f453d978b15b6d22b7d",
-   "output_sha256": "f266748212876321e052caab60365aa9c20d2a44a13a2f453d978b15b6d22b7d",
-   "bytes": 5988,
+   "source_sha256": "0e4d19954a8e51c84c3435d104e92152a6120dabc85cb76698641215cadc290d",
+   "output_sha256": "0e4d19954a8e51c84c3435d104e92152a6120dabc85cb76698641215cadc290d",
+   "bytes": 11186,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_19.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_19.c",
-   "source_sha256": "26f7f1b35878b1fad0b8a714a7f7729e68fdbb211e7e1a78282dd28f2d63fc7c",
-   "output_sha256": "26f7f1b35878b1fad0b8a714a7f7729e68fdbb211e7e1a78282dd28f2d63fc7c",
-   "bytes": 11152,
+   "source_sha256": "a8c4829239df8e512c5c1528bc4339ce7b882c37c4f27836f570969bc55c2222",
+   "output_sha256": "a8c4829239df8e512c5c1528bc4339ce7b882c37c4f27836f570969bc55c2222",
+   "bytes": 8510,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_20.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_20.c",
-   "source_sha256": "015b382a97d4804d024ab7461a1b223aca42ac961105d740cd26b31db2abf174",
-   "output_sha256": "015b382a97d4804d024ab7461a1b223aca42ac961105d740cd26b31db2abf174",
-   "bytes": 8500,
+   "source_sha256": "406f9116ef92b83b70068d33303dd4406787a04ec73b33255140829bf90806cd",
+   "output_sha256": "406f9116ef92b83b70068d33303dd4406787a04ec73b33255140829bf90806cd",
+   "bytes": 7885,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_21.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_21.c",
-   "source_sha256": "def7524a79cd69ef4ef4a9682dc74523dc6059b1202c1b5b2105dade9a3c2f2e",
-   "output_sha256": "def7524a79cd69ef4ef4a9682dc74523dc6059b1202c1b5b2105dade9a3c2f2e",
-   "bytes": 7871,
+   "source_sha256": "c9b8baa18dd3fee6ac8e80fd0bfa451136e927f2cfb762f2037f54ede17fc091",
+   "output_sha256": "c9b8baa18dd3fee6ac8e80fd0bfa451136e927f2cfb762f2037f54ede17fc091",
+   "bytes": 4101,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_22.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_22.c",
-   "source_sha256": "d3dbe6901753830d57614198411065cfdd9846d0f6743a0272a0e3eccad878a3",
-   "output_sha256": "d3dbe6901753830d57614198411065cfdd9846d0f6743a0272a0e3eccad878a3",
-   "bytes": 4082,
-   "transformations": {}
-  },
-  "recon/symbolized/app/lib/g1_lib_23.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_23.c",
    "source_sha256": "10d17dc0054f90f1c5efad4d0a1e0b2e57c0490c08f23d9112e89ba86b6860be",
    "output_sha256": "10d17dc0054f90f1c5efad4d0a1e0b2e57c0490c08f23d9112e89ba86b6860be",
    "bytes": 4617,
    "transformations": {}
   },
+  "recon/symbolized/app/lib/g1_lib_23.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_23.c",
+   "source_sha256": "cac1def970d9777fdc796f2b7165a401ed823964337d989f55d3033f8a343498",
+   "output_sha256": "cac1def970d9777fdc796f2b7165a401ed823964337d989f55d3033f8a343498",
+   "bytes": 9845,
+   "transformations": {}
+  },
   "recon/symbolized/app/lib/g1_lib_24.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_24.c",
-   "source_sha256": "cb8247d293b9468889ed56e52a4a964928a4a0dfd384616d91ed3b27421ff693",
-   "output_sha256": "cb8247d293b9468889ed56e52a4a964928a4a0dfd384616d91ed3b27421ff693",
-   "bytes": 9843,
+   "source_sha256": "ed6cce93a1b545a6780543c16559ccea28385eb9422f4bd2817ff122604df191",
+   "output_sha256": "ed6cce93a1b545a6780543c16559ccea28385eb9422f4bd2817ff122604df191",
+   "bytes": 4252,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_25.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_25.c",
-   "source_sha256": "88ef32a0c70cedc06416b473ae96fe57639adb9f0303949cffc873336d8b24dc",
-   "output_sha256": "88ef32a0c70cedc06416b473ae96fe57639adb9f0303949cffc873336d8b24dc",
-   "bytes": 4261,
+   "source_sha256": "7b6f381ec5b6f3ac6b06fb73a0204f90cb36170d5aab0a469664f0374111940b",
+   "output_sha256": "7b6f381ec5b6f3ac6b06fb73a0204f90cb36170d5aab0a469664f0374111940b",
+   "bytes": 11606,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_26.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_26.c",
-   "source_sha256": "3a1ecbfe41d60f56a3855614033fde99377f1387406009fecfae4aba1e5c31ca",
-   "output_sha256": "3a1ecbfe41d60f56a3855614033fde99377f1387406009fecfae4aba1e5c31ca",
-   "bytes": 11543,
-   "transformations": {}
-  },
-  "recon/symbolized/app/lib/g1_lib_27.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_27.c",
    "source_sha256": "e609603f73e4303bfc6a06ff893160598da819ae3504f7b10e0bbee581229a8a",
    "output_sha256": "e609603f73e4303bfc6a06ff893160598da819ae3504f7b10e0bbee581229a8a",
    "bytes": 5983,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_28.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_28.c",
-   "source_sha256": "d39e05165d878cc1d888169485731c9d44734616287266bfa0489be7eae2d5fb",
-   "output_sha256": "d39e05165d878cc1d888169485731c9d44734616287266bfa0489be7eae2d5fb",
-   "bytes": 9566,
+  "recon/symbolized/app/lib/g1_lib_27.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_27.c",
+   "source_sha256": "6b54b2e4c5a7db65c106aae23d4138cea64e07f1473277ccb524bdd236c9ac8f",
+   "output_sha256": "6b54b2e4c5a7db65c106aae23d4138cea64e07f1473277ccb524bdd236c9ac8f",
+   "bytes": 9577,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_29.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_29.c",
+  "recon/symbolized/app/lib/g1_lib_28.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_28.c",
    "source_sha256": "9630fa1af85b50bbf4afc84b68f6986397f40dbc666a2d2ca2a166a4522250d5",
    "output_sha256": "9630fa1af85b50bbf4afc84b68f6986397f40dbc666a2d2ca2a166a4522250d5",
    "bytes": 7187,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_30.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_30.c",
+  "recon/symbolized/app/lib/g1_lib_29.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_29.c",
    "source_sha256": "9571030fbf1aefbb1fac9c88835c8943704ce1d94468fd500b00a3bf761be296",
    "output_sha256": "9571030fbf1aefbb1fac9c88835c8943704ce1d94468fd500b00a3bf761be296",
    "bytes": 11056,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_31.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_31.c",
+  "recon/symbolized/app/lib/g1_lib_30.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_30.c",
    "source_sha256": "5d7e8b49c5558ee423f2f922397095f6906b5abc84d442f6147fadfab36597f7",
    "output_sha256": "5d7e8b49c5558ee423f2f922397095f6906b5abc84d442f6147fadfab36597f7",
    "bytes": 13387,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_32.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_32.c",
+  "recon/symbolized/app/lib/g1_lib_31.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_31.c",
    "source_sha256": "03f915676120d6c76ecabb4791e8ba4a8dcbe32c2028a3c071b3e6b8e3345715",
    "output_sha256": "03f915676120d6c76ecabb4791e8ba4a8dcbe32c2028a3c071b3e6b8e3345715",
    "bytes": 11908,
    "transformations": {}
   },
+  "recon/symbolized/app/lib/g1_lib_32.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_32.c",
+   "source_sha256": "503a36f0e76e874b792f6eee7fa44f73b33f084eb7e07a09e91c35550d112116",
+   "output_sha256": "503a36f0e76e874b792f6eee7fa44f73b33f084eb7e07a09e91c35550d112116",
+   "bytes": 15745,
+   "transformations": {}
+  },
   "recon/symbolized/app/lib/g1_lib_33.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_33.c",
-   "source_sha256": "0813e31f46f5f8361fdf5ceb080e061e566477de385eb1c98736a50be82627d6",
-   "output_sha256": "0813e31f46f5f8361fdf5ceb080e061e566477de385eb1c98736a50be82627d6",
-   "bytes": 18438,
+   "source_sha256": "27adf35bf563198ff8960a7cd16d6b41b2bca24e6279fa3bdb6df3057ab5dda5",
+   "output_sha256": "27adf35bf563198ff8960a7cd16d6b41b2bca24e6279fa3bdb6df3057ab5dda5",
+   "bytes": 3570,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_34.c": {
@@ -2906,9 +2920,9 @@
   },
   "recon/symbolized/app/lib/g1_lib_36.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_36.c",
-   "source_sha256": "4c1ab21a295021d7368da1efb93b1f68e22370656b8aea468ffb9a6832390753",
-   "output_sha256": "4c1ab21a295021d7368da1efb93b1f68e22370656b8aea468ffb9a6832390753",
-   "bytes": 6263,
+   "source_sha256": "45e298163534e6976e74fec2a994fca037a582235b7e66027d2a38064e95f622",
+   "output_sha256": "45e298163534e6976e74fec2a994fca037a582235b7e66027d2a38064e95f622",
+   "bytes": 6288,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_37.c": {
@@ -2920,9 +2934,9 @@
   },
   "recon/symbolized/app/lib/g1_lib_38.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_38.c",
-   "source_sha256": "bd4f85d27855ff9572d8b465910ca80d69c43ee61336bd406c193a33d76ebaf3",
-   "output_sha256": "bd4f85d27855ff9572d8b465910ca80d69c43ee61336bd406c193a33d76ebaf3",
-   "bytes": 4557,
+   "source_sha256": "4484fd34664cd3e7c530df4dcab5afcf26b5eb24211b4cf59ff1269bfa40bacd",
+   "output_sha256": "4484fd34664cd3e7c530df4dcab5afcf26b5eb24211b4cf59ff1269bfa40bacd",
+   "bytes": 4567,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_39.c": {
@@ -2941,30 +2955,30 @@
   },
   "recon/symbolized/app/lib/g1_lib_41.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_41.c",
-   "source_sha256": "f6fcb830b80fb6f033bb766913b4a06de0dd51365f22cea05b2d6525fa2f8371",
-   "output_sha256": "f6fcb830b80fb6f033bb766913b4a06de0dd51365f22cea05b2d6525fa2f8371",
-   "bytes": 10444,
+   "source_sha256": "06b021ad82906c1857a7de8ec4cf09523331ba50ca1f9d9b8163c07bef678826",
+   "output_sha256": "06b021ad82906c1857a7de8ec4cf09523331ba50ca1f9d9b8163c07bef678826",
+   "bytes": 10463,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_42.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_42.c",
-   "source_sha256": "0421a951c601715ad655c9153ea7772867bacbc5840d5783bacf672f5913e9f1",
-   "output_sha256": "0421a951c601715ad655c9153ea7772867bacbc5840d5783bacf672f5913e9f1",
-   "bytes": 8023,
+   "source_sha256": "2e5f22f4f97bcaa3ddec5031a2098756e2ba15bb742cdf8e6a89061a09541dfa",
+   "output_sha256": "2e5f22f4f97bcaa3ddec5031a2098756e2ba15bb742cdf8e6a89061a09541dfa",
+   "bytes": 11782,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_43.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_43.c",
-   "source_sha256": "60716af4d3d5644caf54368efcac5346aad53836a5c778132635157d6d96d779",
-   "output_sha256": "60716af4d3d5644caf54368efcac5346aad53836a5c778132635157d6d96d779",
-   "bytes": 6894,
+   "source_sha256": "1bd87a4078ff5b470a1c622e45f3d33269fc8e42a529a9e4154a5d98f37fd2e4",
+   "output_sha256": "1bd87a4078ff5b470a1c622e45f3d33269fc8e42a529a9e4154a5d98f37fd2e4",
+   "bytes": 6937,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_44.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_44.c",
-   "source_sha256": "030c7c62617d1b75b954b858b7e216c5cde607a7bf0fdd07b27c01b4a001e65b",
-   "output_sha256": "030c7c62617d1b75b954b858b7e216c5cde607a7bf0fdd07b27c01b4a001e65b",
-   "bytes": 15834,
+   "source_sha256": "5c3f1293bf8e61ccdd8b864568d6dca5359f65e78bd4b647b4b63be4cdbc07d1",
+   "output_sha256": "5c3f1293bf8e61ccdd8b864568d6dca5359f65e78bd4b647b4b63be4cdbc07d1",
+   "bytes": 15836,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_45.c": {
@@ -2976,216 +2990,209 @@
   },
   "recon/symbolized/app/lib/g1_lib_46.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_46.c",
-   "source_sha256": "74bda07a4adca8d0dbb3e66a1071ca42b4e6e7b1bbc3441443287beb9da79afb",
-   "output_sha256": "74bda07a4adca8d0dbb3e66a1071ca42b4e6e7b1bbc3441443287beb9da79afb",
-   "bytes": 9338,
+   "source_sha256": "70d551d0d6d9012ac210e6a709a2a057e7397535450fca93166d514d54decd8d",
+   "output_sha256": "70d551d0d6d9012ac210e6a709a2a057e7397535450fca93166d514d54decd8d",
+   "bytes": 9304,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_47.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_47.c",
-   "source_sha256": "ed07c1f8af9a15747a1a532f1788d5f02060906c52f536552f47495ddb666a10",
-   "output_sha256": "ed07c1f8af9a15747a1a532f1788d5f02060906c52f536552f47495ddb666a10",
-   "bytes": 5296,
+   "source_sha256": "d11680fa94e2541c4e1fff3149fc1f37951ae0105cdd2bfd81de489671ee6d2e",
+   "output_sha256": "d11680fa94e2541c4e1fff3149fc1f37951ae0105cdd2bfd81de489671ee6d2e",
+   "bytes": 5298,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_48.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_48.c",
-   "source_sha256": "048031362e993e691dbe2e0bdb8bcbca61cdd529c06f3d949f50ae296c9b2117",
-   "output_sha256": "048031362e993e691dbe2e0bdb8bcbca61cdd529c06f3d949f50ae296c9b2117",
-   "bytes": 9031,
+   "source_sha256": "550cbbe2b83c4f886f99ad64dc306b8bad25f888667c80044bbfddf16a27f33b",
+   "output_sha256": "550cbbe2b83c4f886f99ad64dc306b8bad25f888667c80044bbfddf16a27f33b",
+   "bytes": 7679,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_49.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_49.c",
-   "source_sha256": "650a65429afca1bd8a359cde3502c4cee617f9935d7a9983f698c0cb13be120d",
-   "output_sha256": "650a65429afca1bd8a359cde3502c4cee617f9935d7a9983f698c0cb13be120d",
-   "bytes": 3543,
-   "transformations": {}
-  },
-  "recon/symbolized/app/lib/g1_lib_50.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_50.c",
    "source_sha256": "1f8d5ddc5c3ec19fb6b5a7dc4b8ba58cf01889b02aeb71081c0c61e5d3a1e7d1",
    "output_sha256": "1f8d5ddc5c3ec19fb6b5a7dc4b8ba58cf01889b02aeb71081c0c61e5d3a1e7d1",
    "bytes": 3937,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_51.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_51.c",
-   "source_sha256": "1f63700dafca2d454a186fc636115b55b9a9528ce6f88ac708aa720ec3abee44",
-   "output_sha256": "1f63700dafca2d454a186fc636115b55b9a9528ce6f88ac708aa720ec3abee44",
-   "bytes": 17629,
+  "recon/symbolized/app/lib/g1_lib_50.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_50.c",
+   "source_sha256": "34cea64c2724b32a70a639ff3d5d60357b71b7d44e82bbc1a3cec77e67fb092e",
+   "output_sha256": "34cea64c2724b32a70a639ff3d5d60357b71b7d44e82bbc1a3cec77e67fb092e",
+   "bytes": 17637,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_52.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_52.c",
+  "recon/symbolized/app/lib/g1_lib_51.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_51.c",
    "source_sha256": "601f8daa60158f622fd7cce49def660d4294f4a3e5ef604624dd00d46fcc1ef5",
    "output_sha256": "601f8daa60158f622fd7cce49def660d4294f4a3e5ef604624dd00d46fcc1ef5",
    "bytes": 5088,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_53.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_53.c",
+  "recon/symbolized/app/lib/g1_lib_52.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_52.c",
    "source_sha256": "61355a50f8c4b94647f5c0d2870feb2337a80b74b674d98cd8898f88cf9fae56",
    "output_sha256": "61355a50f8c4b94647f5c0d2870feb2337a80b74b674d98cd8898f88cf9fae56",
    "bytes": 4693,
    "transformations": {}
   },
+  "recon/symbolized/app/lib/g1_lib_53.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_53.c",
+   "source_sha256": "38a93d79a691ea05edab7c45b0d4a9d82c8a3aa76c2d3c774bf6b20d6ed8a9f6",
+   "output_sha256": "38a93d79a691ea05edab7c45b0d4a9d82c8a3aa76c2d3c774bf6b20d6ed8a9f6",
+   "bytes": 7604,
+   "transformations": {}
+  },
   "recon/symbolized/app/lib/g1_lib_54.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_54.c",
-   "source_sha256": "37d11e3deea575b900c3f3e589f16c21c99ecd56fb9ba3394d25342a3cb1966e",
-   "output_sha256": "37d11e3deea575b900c3f3e589f16c21c99ecd56fb9ba3394d25342a3cb1966e",
-   "bytes": 7694,
+   "source_sha256": "c8a7a9bf0d1125efeb5518d7227b6b2fb3fd280c7f596d3ec2f15b88333910cf",
+   "output_sha256": "c8a7a9bf0d1125efeb5518d7227b6b2fb3fd280c7f596d3ec2f15b88333910cf",
+   "bytes": 2132,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_lib_55.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_55.c",
-   "source_sha256": "c259c464d525588f8ec9b34bb093ae27fedd0d586fe4acfa5ac60b2d0bf44793",
-   "output_sha256": "c259c464d525588f8ec9b34bb093ae27fedd0d586fe4acfa5ac60b2d0bf44793",
-   "bytes": 3248,
-   "transformations": {}
-  },
-  "recon/symbolized/app/lib/g1_lib_56.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_56.c",
    "source_sha256": "a73aea99b04c13e02d21f051c809b3b6c4bbd41858c455727440b1224d43955d",
    "output_sha256": "a73aea99b04c13e02d21f051c809b3b6c4bbd41858c455727440b1224d43955d",
    "bytes": 7281,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_57.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_57.c",
+  "recon/symbolized/app/lib/g1_lib_56.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_56.c",
    "source_sha256": "d5a4cceda6f5933bff993d2ab27f6abd89681f9ce6eafa8b6b900395263de59b",
    "output_sha256": "d5a4cceda6f5933bff993d2ab27f6abd89681f9ce6eafa8b6b900395263de59b",
    "bytes": 2331,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_58.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_58.c",
+  "recon/symbolized/app/lib/g1_lib_57.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_57.c",
    "source_sha256": "a103737d3e385f88eb8941d6c8645b7a4847616c5a507f878b0ba2f51fbf612d",
    "output_sha256": "a103737d3e385f88eb8941d6c8645b7a4847616c5a507f878b0ba2f51fbf612d",
    "bytes": 2143,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_59.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_59.c",
+  "recon/symbolized/app/lib/g1_lib_58.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_58.c",
    "source_sha256": "1b849234b5766c506956a2c8b762cdfa104b2fac4a56ee1ae8b22fcfd35a1fe6",
    "output_sha256": "1b849234b5766c506956a2c8b762cdfa104b2fac4a56ee1ae8b22fcfd35a1fe6",
    "bytes": 2611,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_60.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_60.c",
+  "recon/symbolized/app/lib/g1_lib_59.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_59.c",
    "source_sha256": "0d9384a12ec69e5d95781e2b0e01820e314ecdba965f4a04a88080ff0d34d188",
    "output_sha256": "0d9384a12ec69e5d95781e2b0e01820e314ecdba965f4a04a88080ff0d34d188",
    "bytes": 4134,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_61.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_61.c",
+  "recon/symbolized/app/lib/g1_lib_60.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_60.c",
    "source_sha256": "f7ceda5fe11ad342a4228999f2846d0aac4259fa34b69fde22032cbd770dca81",
    "output_sha256": "f7ceda5fe11ad342a4228999f2846d0aac4259fa34b69fde22032cbd770dca81",
    "bytes": 4120,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_62.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_62.c",
+  "recon/symbolized/app/lib/g1_lib_61.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_61.c",
    "source_sha256": "1d3b623e3284995b43d37f03cf9158a6f798f3ad1d79721a91064c3e31c40383",
    "output_sha256": "1d3b623e3284995b43d37f03cf9158a6f798f3ad1d79721a91064c3e31c40383",
    "bytes": 3413,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_63.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_63.c",
+  "recon/symbolized/app/lib/g1_lib_62.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_62.c",
    "source_sha256": "5c57dcd2dd3c97f3999b42c7333c449e1d1d19eff55f43e21e4c5b933d3bd860",
    "output_sha256": "5c57dcd2dd3c97f3999b42c7333c449e1d1d19eff55f43e21e4c5b933d3bd860",
    "bytes": 4246,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_64.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_64.c",
+  "recon/symbolized/app/lib/g1_lib_63.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_63.c",
    "source_sha256": "840a70d54f24fd32c5935876409671a7a0f278c54b65664cdd29d03be1eef6b9",
    "output_sha256": "840a70d54f24fd32c5935876409671a7a0f278c54b65664cdd29d03be1eef6b9",
    "bytes": 4002,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_65.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_65.c",
+  "recon/symbolized/app/lib/g1_lib_64.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_64.c",
    "source_sha256": "1172cda926c7dd4befb03aabb937a8b0a00d19d0399d95594a8d3ddbc7e0adbd",
    "output_sha256": "1172cda926c7dd4befb03aabb937a8b0a00d19d0399d95594a8d3ddbc7e0adbd",
    "bytes": 7403,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_66.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_66.c",
+  "recon/symbolized/app/lib/g1_lib_65.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_65.c",
    "source_sha256": "5f13b28542e7401720e0371bd81f3bf088419f6b0c2fd9b1f8443e1c86db1aa3",
    "output_sha256": "5f13b28542e7401720e0371bd81f3bf088419f6b0c2fd9b1f8443e1c86db1aa3",
    "bytes": 2460,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_67.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_67.c",
-   "source_sha256": "09e1ae4e63c67fec15a895396c72a4f88a053e1e6281f552907bfb50b17e3a49",
-   "output_sha256": "09e1ae4e63c67fec15a895396c72a4f88a053e1e6281f552907bfb50b17e3a49",
-   "bytes": 4261,
+  "recon/symbolized/app/lib/g1_lib_66.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_66.c",
+   "source_sha256": "1fc09de8456a0053e36c21a8d739ea6ff169d0a8d4b9ad4793844f5ba578d78a",
+   "output_sha256": "1fc09de8456a0053e36c21a8d739ea6ff169d0a8d4b9ad4793844f5ba578d78a",
+   "bytes": 4260,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_68.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_68.c",
+  "recon/symbolized/app/lib/g1_lib_67.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_67.c",
    "source_sha256": "3dc2472e06225b7e6a87467bb3ef3f0036f3fb679040b977d1720497d7de391c",
    "output_sha256": "3dc2472e06225b7e6a87467bb3ef3f0036f3fb679040b977d1720497d7de391c",
    "bytes": 8613,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_69.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_69.c",
+  "recon/symbolized/app/lib/g1_lib_68.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_68.c",
    "source_sha256": "ac2c1c6de83c671ef4d053106338c9e3ef747b66a7a1fe6b28b55e0d512cfc35",
    "output_sha256": "ac2c1c6de83c671ef4d053106338c9e3ef747b66a7a1fe6b28b55e0d512cfc35",
    "bytes": 3141,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_70.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_70.c",
+  "recon/symbolized/app/lib/g1_lib_69.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_69.c",
    "source_sha256": "05a7134a526679c213d88785fe9749b5b290eca0bc3671e76f67df9d7231c795",
    "output_sha256": "05a7134a526679c213d88785fe9749b5b290eca0bc3671e76f67df9d7231c795",
    "bytes": 3483,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_71.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_71.c",
-   "source_sha256": "03a24d5f36833fbd804d7091cccf3809ffa7bdc6178b34727fced9dfd900b180",
-   "output_sha256": "03a24d5f36833fbd804d7091cccf3809ffa7bdc6178b34727fced9dfd900b180",
-   "bytes": 3433,
+  "recon/symbolized/app/lib/g1_lib_70.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_70.c",
+   "source_sha256": "235cec4880572e24cd1608e57bb3c3cd13df478ac0f5527f3a5cea4b7b7f4f98",
+   "output_sha256": "235cec4880572e24cd1608e57bb3c3cd13df478ac0f5527f3a5cea4b7b7f4f98",
+   "bytes": 3412,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_72.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_72.c",
+  "recon/symbolized/app/lib/g1_lib_71.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_71.c",
    "source_sha256": "f86437c1ad63e56f7ca9e8f54579adb13dcfa143d5b560eba5925817b4e9e23c",
    "output_sha256": "f86437c1ad63e56f7ca9e8f54579adb13dcfa143d5b560eba5925817b4e9e23c",
    "bytes": 6383,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_73.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_73.c",
+  "recon/symbolized/app/lib/g1_lib_72.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_72.c",
    "source_sha256": "2f9f0069bb912b706bdf148d53ad1779b3c9be19dd0bd25bb6c710600d301139",
    "output_sha256": "2f9f0069bb912b706bdf148d53ad1779b3c9be19dd0bd25bb6c710600d301139",
    "bytes": 16853,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_74.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_74.c",
+  "recon/symbolized/app/lib/g1_lib_73.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_73.c",
    "source_sha256": "19f6091633c2e8007e888894b4d744fb5b8a25a11d8442a9b051312393556bab",
    "output_sha256": "19f6091633c2e8007e888894b4d744fb5b8a25a11d8442a9b051312393556bab",
    "bytes": 4330,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_75.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_75.c",
+  "recon/symbolized/app/lib/g1_lib_74.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_74.c",
    "source_sha256": "2b8d963464029b6ef0ac2ecef3e2528ff32224bfc44daf4a065875a22f44af57",
    "output_sha256": "2b8d963464029b6ef0ac2ecef3e2528ff32224bfc44daf4a065875a22f44af57",
    "bytes": 5418,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/g1_lib_76.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_76.c",
+  "recon/symbolized/app/lib/g1_lib_75.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_lib_75.c",
    "source_sha256": "41bd0ba89d0ca93febe5963d514311234c63939262e885116a8c5e054fdf8802",
    "output_sha256": "41bd0ba89d0ca93febe5963d514311234c63939262e885116a8c5e054fdf8802",
    "bytes": 7960,
@@ -3200,30 +3207,30 @@
   },
   "recon/symbolized/app/lib/g1_recon_k_heap_init.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_recon_k_heap_init.c",
-   "source_sha256": "9c0ed5c4275647067f04cb7585894bdb5c1fc1ee8af6122e892db7d496db8593",
-   "output_sha256": "9c0ed5c4275647067f04cb7585894bdb5c1fc1ee8af6122e892db7d496db8593",
-   "bytes": 748,
+   "source_sha256": "e2e2040145bb5ea4ad1a50eb1039c6e1e3c6b6e924eb44f5617b5b2607fe3fd2",
+   "output_sha256": "e2e2040145bb5ea4ad1a50eb1039c6e1e3c6b6e924eb44f5617b5b2607fe3fd2",
+   "bytes": 751,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_recon_nrfx_wdt_channel_alloc.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_recon_nrfx_wdt_channel_alloc.c",
-   "source_sha256": "d7a86375f44eff616c3fd2a3071faba7fd7175f2dd69e77b882e55059a9e1ed7",
-   "output_sha256": "d7a86375f44eff616c3fd2a3071faba7fd7175f2dd69e77b882e55059a9e1ed7",
-   "bytes": 2142,
+   "source_sha256": "f58b2c21cda0f2afc5081dc6f6fa805f3856c28b5a0b21b1c4a234da493f0a55",
+   "output_sha256": "f58b2c21cda0f2afc5081dc6f6fa805f3856c28b5a0b21b1c4a234da493f0a55",
+   "bytes": 2161,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_recon_retarget_lock_acquire_recursive.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_recon_retarget_lock_acquire_recursive.c",
-   "source_sha256": "151aebeab331c075a3825041feb98f5dd589bde8a6fffd88c6fc5907bef867ed",
-   "output_sha256": "151aebeab331c075a3825041feb98f5dd589bde8a6fffd88c6fc5907bef867ed",
-   "bytes": 1875,
+   "source_sha256": "9dfac94a665ca438732671c560fc10b3a9858a1513e3603cb9fafb0505305cd0",
+   "output_sha256": "9dfac94a665ca438732671c560fc10b3a9858a1513e3603cb9fafb0505305cd0",
+   "bytes": 1879,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_recon_retarget_lock_release_recursive.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/g1_recon_retarget_lock_release_recursive.c",
-   "source_sha256": "3e60c914aa17a7e7c41290b860f606decd9b9f2ce18f072053605d153b332f4c",
-   "output_sha256": "3e60c914aa17a7e7c41290b860f606decd9b9f2ce18f072053605d153b332f4c",
-   "bytes": 1765,
+   "source_sha256": "103f4a205293c72eab581fd8de63da2a6d0b6ae4c4903b148a07c2fde54f5e28",
+   "output_sha256": "103f4a205293c72eab581fd8de63da2a6d0b6ae4c4903b148a07c2fde54f5e28",
+   "bytes": 1769,
    "transformations": {}
   },
   "recon/symbolized/app/lib/g1_recon_tagged_heap_node_release.c": {
@@ -3256,9 +3263,9 @@
   },
   "recon/symbolized/app/lib/gatt_cf_settings_set.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/gatt_cf_settings_set.c",
-   "source_sha256": "c6d700e838156d26c71e0a4d1c90609a75a2b2d8cb2e6627f63afd278b238477",
-   "output_sha256": "c6d700e838156d26c71e0a4d1c90609a75a2b2d8cb2e6627f63afd278b238477",
-   "bytes": 4822,
+   "source_sha256": "a0eb6be4c0081e07d07c9adfdec722b64d86bd3af29649668fea2fca6cacb813",
+   "output_sha256": "a0eb6be4c0081e07d07c9adfdec722b64d86bd3af29649668fea2fca6cacb813",
+   "bytes": 4870,
    "transformations": {}
   },
   "recon/symbolized/app/lib/gatt_db_hash_gen.c": {
@@ -3273,6 +3280,13 @@
    "source_sha256": "c8302bd5ec08e9fd43e712b890b337d20e9a1eb5a25911be9fae0f84641527fb",
    "output_sha256": "c8302bd5ec08e9fd43e712b890b337d20e9a1eb5a25911be9fae0f84641527fb",
    "bytes": 3649,
+   "transformations": {}
+  },
+  "recon/symbolized/app/lib/gatt_dm_log_helper.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/gatt_dm_log_helper.c",
+   "source_sha256": "568f6fbf8031682cad17eda5c973dfc4a127f345381eb5686663b38e0649a116",
+   "output_sha256": "568f6fbf8031682cad17eda5c973dfc4a127f345381eb5686663b38e0649a116",
+   "bytes": 586,
    "transformations": {}
   },
   "recon/symbolized/app/lib/gatt_indicate.c": {
@@ -3354,9 +3368,9 @@
   },
   "recon/symbolized/app/lib/gatt_send_ccc_update.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/gatt_send_ccc_update.c",
-   "source_sha256": "fd560c879272fa40d6f389d649616543aea50cb0eacee1c2375c52195a9e83f9",
-   "output_sha256": "fd560c879272fa40d6f389d649616543aea50cb0eacee1c2375c52195a9e83f9",
-   "bytes": 5126,
+   "source_sha256": "54efd0f3dfd65980102157958b7d5c8dc5d89489968da76940e4cd07b5a984e4",
+   "output_sha256": "54efd0f3dfd65980102157958b7d5c8dc5d89489968da76940e4cd07b5a984e4",
+   "bytes": 5149,
    "transformations": {}
   },
   "recon/symbolized/app/lib/gatt_store_ccc_cf.c": {
@@ -3375,9 +3389,9 @@
   },
   "recon/symbolized/app/lib/gatt_subscribe_add.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/gatt_subscribe_add.c",
-   "source_sha256": "cd4b0b02052ad29a6b4c741ee813d98af3b544cc5716c48b540c4ec608afb23f",
-   "output_sha256": "cd4b0b02052ad29a6b4c741ee813d98af3b544cc5716c48b540c4ec608afb23f",
-   "bytes": 4269,
+   "source_sha256": "531133884cc2f30ff3e771e6e29aabf9bb4bce70cdd45026daa3018cae2ef7df",
+   "output_sha256": "531133884cc2f30ff3e771e6e29aabf9bb4bce70cdd45026daa3018cae2ef7df",
+   "bytes": 4288,
    "transformations": {}
   },
   "recon/symbolized/app/lib/gatt_write_ccc_rsp.c": {
@@ -3389,9 +3403,9 @@
   },
   "recon/symbolized/app/lib/gpio_manage_callback.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/gpio_manage_callback.c",
-   "source_sha256": "88122a943c6b74a6095cedb9620792e7e397b4efae21847a9484457b88a68ba7",
-   "output_sha256": "88122a943c6b74a6095cedb9620792e7e397b4efae21847a9484457b88a68ba7",
-   "bytes": 2702,
+   "source_sha256": "ef3235797e1c49d145c03df600f11116bd6c071d13f17ea799d6d713236ca22d",
+   "output_sha256": "ef3235797e1c49d145c03df600f11116bd6c071d13f17ea799d6d713236ca22d",
+   "bytes": 2721,
    "transformations": {}
   },
   "recon/symbolized/app/lib/gpio_nrfx_pin_configure.c": {
@@ -3403,9 +3417,9 @@
   },
   "recon/symbolized/app/lib/gpiote_in_event_enable.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/gpiote_in_event_enable.c",
-   "source_sha256": "047cf973b9d2c2b6d1d7f7e41c336c2f82042ae9f6fc3927f81dfcdb30d42e53",
-   "output_sha256": "047cf973b9d2c2b6d1d7f7e41c336c2f82042ae9f6fc3927f81dfcdb30d42e53",
-   "bytes": 3806,
+   "source_sha256": "a1de1865dfe385d7ac93db8637f8593b5259cbeb42934783fbcd74945d51ed5c",
+   "output_sha256": "a1de1865dfe385d7ac93db8637f8593b5259cbeb42934783fbcd74945d51ed5c",
+   "bytes": 3835,
    "transformations": {}
   },
   "recon/symbolized/app/lib/gpiote_in_init.c": {
@@ -3457,13 +3471,6 @@
    "bytes": 1201,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/k_mutex_lock.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/k_mutex_lock.c",
-   "source_sha256": "34562963ea9487beb4360d6adf4b37c1718494299e9aed00054ed7ba2d59dc71",
-   "output_sha256": "34562963ea9487beb4360d6adf4b37c1718494299e9aed00054ed7ba2d59dc71",
-   "bytes": 6276,
-   "transformations": {}
-  },
   "recon/symbolized/app/lib/k_mutex_owner_prio_check.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/k_mutex_owner_prio_check.c",
    "source_sha256": "22f34288886e8cd4de982dd278f2622632eff319f8d9edd70479dec207f34bad",
@@ -3471,18 +3478,18 @@
    "bytes": 694,
    "transformations": {}
   },
-  "recon/symbolized/app/lib/k_mutex_unlock.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/k_mutex_unlock.c",
-   "source_sha256": "755dd940c725bca4526f350973510932eea6ca742a88a10cbc70659980b8d49b",
-   "output_sha256": "755dd940c725bca4526f350973510932eea6ca742a88a10cbc70659980b8d49b",
-   "bytes": 4982,
-   "transformations": {}
-  },
   "recon/symbolized/app/lib/k_queue_insert_and_wake.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/k_queue_insert_and_wake.c",
    "source_sha256": "75739b4ebc0054fad22547242c79c8fc1f5c0b49593adbd779c6d987995af9de",
    "output_sha256": "75739b4ebc0054fad22547242c79c8fc1f5c0b49593adbd779c6d987995af9de",
    "bytes": 5105,
+   "transformations": {}
+  },
+  "recon/symbolized/app/lib/k_sem_give.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/k_sem_give.c",
+   "source_sha256": "699c0417bc1b403f5362ea65c03c2ce9cf7e8c7c41a7963ea1ccd50b14ca1daa",
+   "output_sha256": "699c0417bc1b403f5362ea65c03c2ce9cf7e8c7c41a7963ea1ccd50b14ca1daa",
+   "bytes": 3038,
    "transformations": {}
   },
   "recon/symbolized/app/lib/k_uptime_get_2.c": {
@@ -3501,23 +3508,23 @@
   },
   "recon/symbolized/app/lib/l2cap_chan_le_recv_seg.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/l2cap_chan_le_recv_seg.c",
-   "source_sha256": "5a9bbc6bb49cdd990a900b8cbcb3642396457c476185494637c50c3100a3e46a",
-   "output_sha256": "5a9bbc6bb49cdd990a900b8cbcb3642396457c476185494637c50c3100a3e46a",
-   "bytes": 4859,
+   "source_sha256": "b945ff443e8d88c8e134912946d5f3ffc603d418565840e3e418fd36952e4454",
+   "output_sha256": "b945ff443e8d88c8e134912946d5f3ffc603d418565840e3e418fd36952e4454",
+   "bytes": 4878,
    "transformations": {}
   },
   "recon/symbolized/app/lib/l2cap_chan_send_disconnect.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/l2cap_chan_send_disconnect.c",
-   "source_sha256": "24582ffc2d182bd8b36ab7d0642d94baf2208456f9e1c6764e202baaf3d19fcd",
-   "output_sha256": "24582ffc2d182bd8b36ab7d0642d94baf2208456f9e1c6764e202baaf3d19fcd",
-   "bytes": 5469,
+   "source_sha256": "be78837f88c7fa897c9430738083f6ac683e6cd1e1ae3545ab52065e87899c0c",
+   "output_sha256": "be78837f88c7fa897c9430738083f6ac683e6cd1e1ae3545ab52065e87899c0c",
+   "bytes": 5488,
    "transformations": {}
   },
   "recon/symbolized/app/lib/l2cap_le_recv_pdu.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/l2cap_le_recv_pdu.c",
-   "source_sha256": "7c0525e8e0e5c2c7aa0431baaafda42aaf92ac142095a7bd387bd6ce384edf68",
-   "output_sha256": "7c0525e8e0e5c2c7aa0431baaafda42aaf92ac142095a7bd387bd6ce384edf68",
-   "bytes": 6208,
+   "source_sha256": "37d15331f4d33cc2acb44eb924f4c17f5699a5e8cb7bf5f9c2ca3192ffa28a7a",
+   "output_sha256": "37d15331f4d33cc2acb44eb924f4c17f5699a5e8cb7bf5f9c2ca3192ffa28a7a",
+   "bytes": 6200,
    "transformations": {}
   },
   "recon/symbolized/app/lib/l2cap_recv.c": {
@@ -3585,9 +3592,9 @@
   },
   "recon/symbolized/app/lib/net_buf_pool_get_727ac.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/net_buf_pool_get_727ac.c",
-   "source_sha256": "29cee81f482168ea757edab7768f32b5fd7ddd6ed6cdd7e5e40164e871465f04",
-   "output_sha256": "29cee81f482168ea757edab7768f32b5fd7ddd6ed6cdd7e5e40164e871465f04",
-   "bytes": 3563,
+   "source_sha256": "1d4e1b8d1e66711d44627f1028760a349d6c07d9583524c12e993cd28183de03",
+   "output_sha256": "1d4e1b8d1e66711d44627f1028760a349d6c07d9583524c12e993cd28183de03",
+   "bytes": 3613,
    "transformations": {}
   },
   "recon/symbolized/app/lib/net_buf_push_le16.c": {
@@ -3620,9 +3627,9 @@
   },
   "recon/symbolized/app/lib/nrfx_twim_irq_handler.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/nrfx_twim_irq_handler.c",
-   "source_sha256": "ac89f052a99c31cc22876ee72759b13c81de2973315a1b13521a586022b4f065",
-   "output_sha256": "ac89f052a99c31cc22876ee72759b13c81de2973315a1b13521a586022b4f065",
-   "bytes": 5025,
+   "source_sha256": "fd66987eb94791416060cfe60f55d480b1330c50f9820cb399d8bd187d2ce700",
+   "output_sha256": "fd66987eb94791416060cfe60f55d480b1330c50f9820cb399d8bd187d2ce700",
+   "bytes": 5044,
    "transformations": {}
   },
   "recon/symbolized/app/lib/pin_in_use_by_te.c": {
@@ -3683,16 +3690,16 @@
   },
   "recon/symbolized/app/lib/rpmsg_virtio_rx_notify.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/rpmsg_virtio_rx_notify.c",
-   "source_sha256": "7a4ac06168becc635541bfb4201dbc358abfa709b005c264db9766d5019f4987",
-   "output_sha256": "7a4ac06168becc635541bfb4201dbc358abfa709b005c264db9766d5019f4987",
-   "bytes": 3202,
+   "source_sha256": "cc44e7873166bcda5f85a7cf470781941f2648341e9a028800d7d6435a8789e7",
+   "output_sha256": "cc44e7873166bcda5f85a7cf470781941f2648341e9a028800d7d6435a8789e7",
+   "bytes": 3221,
    "transformations": {}
   },
   "recon/symbolized/app/lib/rpmsg_virtio_tx_enqueue.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/rpmsg_virtio_tx_enqueue.c",
-   "source_sha256": "6809e76fdb89a14c92182f32629d4562a9b05e56590479ec6a0ae99c4015cb5b",
-   "output_sha256": "6809e76fdb89a14c92182f32629d4562a9b05e56590479ec6a0ae99c4015cb5b",
-   "bytes": 3179,
+   "source_sha256": "b26b5691f739d850d396793e4e76702f94c5a5d1d0017453958e67116a050b61",
+   "output_sha256": "b26b5691f739d850d396793e4e76702f94c5a5d1d0017453958e67116a050b61",
+   "bytes": 3198,
    "transformations": {}
   },
   "recon/symbolized/app/lib/set_chunk_used.c": {
@@ -3767,9 +3774,9 @@
   },
   "recon/symbolized/app/lib/smp_public_key_periph.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/smp_public_key_periph.c",
-   "source_sha256": "13a14acfe3f5c9156f2467a06f78ad3db7cee1237605c6c0a173c1e989ace27a",
-   "output_sha256": "13a14acfe3f5c9156f2467a06f78ad3db7cee1237605c6c0a173c1e989ace27a",
-   "bytes": 7058,
+   "source_sha256": "8fdb6d6b20ee2abde871f23515a53f5918caa3076bf3e029d2b39647c170fdf2",
+   "output_sha256": "8fdb6d6b20ee2abde871f23515a53f5918caa3076bf3e029d2b39647c170fdf2",
+   "bytes": 7044,
    "transformations": {}
   },
   "recon/symbolized/app/lib/smp_reassembly_finalize_zero.c": {
@@ -3856,6 +3863,13 @@
    "bytes": 677,
    "transformations": {}
   },
+  "recon/symbolized/app/lib/z_impl_k_sem_take.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/z_impl_k_sem_take.c",
+   "source_sha256": "c3dbc395c0c2c62be0779163d7c057f77a976cfad6d303c50cc352d1b4a6d4a1",
+   "output_sha256": "c3dbc395c0c2c62be0779163d7c057f77a976cfad6d303c50cc352d1b4a6d4a1",
+   "bytes": 4446,
+   "transformations": {}
+  },
   "recon/symbolized/app/lib/z_log_dropped_read_and_clear_0.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/z_log_dropped_read_and_clear_0.c",
    "source_sha256": "e111e6ccac14a9eb85910aaf3ac4851db4d391b610da1069a7c2ccc4d9f4fa4d",
@@ -3886,9 +3900,9 @@
   },
   "recon/symbolized/app/lib/zcbor_str_encode.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/lib/zcbor_str_encode.c",
-   "source_sha256": "021c77586ecd9e93beacd4ff04339b7b1fa37df452f5729ebbc36672376a63dd",
-   "output_sha256": "021c77586ecd9e93beacd4ff04339b7b1fa37df452f5729ebbc36672376a63dd",
-   "bytes": 2262,
+   "source_sha256": "cf821472b6f0b6666bea9b7a7faebb228ab3a7569820343be2aa2c4f3b99e0ca",
+   "output_sha256": "cf821472b6f0b6666bea9b7a7faebb228ab3a7569820343be2aa2c4f3b99e0ca",
+   "bytes": 2240,
    "transformations": {}
   },
   "recon/symbolized/app/notify/ancs_discover_ctx_clear.c": {
@@ -3928,9 +3942,9 @@
   },
   "recon/symbolized/app/notify/clear_timeout_message.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/notify/clear_timeout_message.c",
-   "source_sha256": "7f6d2d7e9b867483d0a313db48630b3f1037b52faa574ff9cf2513a474bbc0c9",
-   "output_sha256": "7f6d2d7e9b867483d0a313db48630b3f1037b52faa574ff9cf2513a474bbc0c9",
-   "bytes": 5482,
+   "source_sha256": "0cbc4423da22a21c39463e4343228a379ed909b928659325dcb8c5a375ea66f9",
+   "output_sha256": "0cbc4423da22a21c39463e4343228a379ed909b928659325dcb8c5a375ea66f9",
+   "bytes": 5489,
    "transformations": {}
   },
   "recon/symbolized/app/notify/confirm_message.c": {
@@ -3963,16 +3977,16 @@
   },
   "recon/symbolized/app/notify/g1_notify_02.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/notify/g1_notify_02.c",
-   "source_sha256": "0a1f5da61af029dfd82ef5dd99885f8c4b005aaaf703a0dabaead66db4dd41a0",
-   "output_sha256": "0a1f5da61af029dfd82ef5dd99885f8c4b005aaaf703a0dabaead66db4dd41a0",
-   "bytes": 16483,
+   "source_sha256": "5fc1f597785048e3df7ccd4ed130302ec02d4b52928a7cae9d3e49e10a4553eb",
+   "output_sha256": "5fc1f597785048e3df7ccd4ed130302ec02d4b52928a7cae9d3e49e10a4553eb",
+   "bytes": 16471,
    "transformations": {}
   },
   "recon/symbolized/app/notify/g1_notify_03.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/notify/g1_notify_03.c",
-   "source_sha256": "25cee58119f4e4d4eab24448d4842459ea1a407de9935da0bed7f288bde906fb",
-   "output_sha256": "25cee58119f4e4d4eab24448d4842459ea1a407de9935da0bed7f288bde906fb",
-   "bytes": 8595,
+   "source_sha256": "fa47d248329958caf9ed98577b8bc0e46fc56321019aa282e479dfa2b8acee6b",
+   "output_sha256": "fa47d248329958caf9ed98577b8bc0e46fc56321019aa282e479dfa2b8acee6b",
+   "bytes": 8602,
    "transformations": {}
   },
   "recon/symbolized/app/notify/g1_notify_04.c": {
@@ -4012,16 +4026,16 @@
   },
   "recon/symbolized/app/notify/g1_notify_09.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/notify/g1_notify_09.c",
-   "source_sha256": "39e0f8e6f1d0a50218d369e26fb23eca88193caf0224245806d795601b2d57cd",
-   "output_sha256": "39e0f8e6f1d0a50218d369e26fb23eca88193caf0224245806d795601b2d57cd",
-   "bytes": 13181,
+   "source_sha256": "21db1e29ba703871031614c2bacd462a956a2f183e152870f385e837e33e0640",
+   "output_sha256": "21db1e29ba703871031614c2bacd462a956a2f183e152870f385e837e33e0640",
+   "bytes": 13182,
    "transformations": {}
   },
   "recon/symbolized/app/notify/g1_notify_10.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/notify/g1_notify_10.c",
-   "source_sha256": "348b7726b2e880552343f5bb4f9d864b3228dd352c123cbe3e04927e5cdefea6",
-   "output_sha256": "348b7726b2e880552343f5bb4f9d864b3228dd352c123cbe3e04927e5cdefea6",
-   "bytes": 10092,
+   "source_sha256": "01d12c12808e1b4e7cae4541dc3aa930793638268b8bb1f70c7477045e25de4e",
+   "output_sha256": "01d12c12808e1b4e7cae4541dc3aa930793638268b8bb1f70c7477045e25de4e",
+   "bytes": 10101,
    "transformations": {}
   },
   "recon/symbolized/app/notify/g1_notify_11.c": {
@@ -4033,9 +4047,9 @@
   },
   "recon/symbolized/app/notify/g1_notify_12.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/notify/g1_notify_12.c",
-   "source_sha256": "259d246d5aec5a4d1e6b29e50f6f3159d7b699a7a02745b8f0a927ba546155c7",
-   "output_sha256": "259d246d5aec5a4d1e6b29e50f6f3159d7b699a7a02745b8f0a927ba546155c7",
-   "bytes": 10477,
+   "source_sha256": "a54a8b7180b7e5899df7cf7ca713899e4942c4051094e356bd71eb998f27d5f9",
+   "output_sha256": "a54a8b7180b7e5899df7cf7ca713899e4942c4051094e356bd71eb998f27d5f9",
+   "bytes": 10437,
    "transformations": {}
   },
   "recon/symbolized/app/notify/g1_notify_13.c": {
@@ -4047,9 +4061,9 @@
   },
   "recon/symbolized/app/notify/g1_notify_14.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/notify/g1_notify_14.c",
-   "source_sha256": "1fe0ded7b3e8c20fa9a65c130fa085441c5ac89520842676a29931c0697ef9ea",
-   "output_sha256": "1fe0ded7b3e8c20fa9a65c130fa085441c5ac89520842676a29931c0697ef9ea",
-   "bytes": 15645,
+   "source_sha256": "c353563f010e8be38a8c189e58f119ad86bb570b2b02b6821c9b2ea5adb2cc24",
+   "output_sha256": "c353563f010e8be38a8c189e58f119ad86bb570b2b02b6821c9b2ea5adb2cc24",
+   "bytes": 15663,
    "transformations": {}
   },
   "recon/symbolized/app/notify/g1_notify_15.c": {
@@ -4061,16 +4075,16 @@
   },
   "recon/symbolized/app/notify/g1_notify_16.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/notify/g1_notify_16.c",
-   "source_sha256": "e9b512c7c8258e149d951641b009dda38de5b2a8a3cb26bd9019ff703e228e4a",
-   "output_sha256": "e9b512c7c8258e149d951641b009dda38de5b2a8a3cb26bd9019ff703e228e4a",
-   "bytes": 14660,
+   "source_sha256": "82afa4f0601f8ecfa636ec6a772571a2aa9ced89796b701827c1f98976ab4ee2",
+   "output_sha256": "82afa4f0601f8ecfa636ec6a772571a2aa9ced89796b701827c1f98976ab4ee2",
+   "bytes": 14662,
    "transformations": {}
   },
   "recon/symbolized/app/notify/g1_notify_17.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/notify/g1_notify_17.c",
-   "source_sha256": "f922bb6029f01f3f79e58c87f74f7fdf2c53a31c115358b50e3a63aa1083567d",
-   "output_sha256": "f922bb6029f01f3f79e58c87f74f7fdf2c53a31c115358b50e3a63aa1083567d",
-   "bytes": 5043,
+   "source_sha256": "8001a2a3a184d4ef32b72375a7045e4cd70d44b36baddff67796e21227efb87d",
+   "output_sha256": "8001a2a3a184d4ef32b72375a7045e4cd70d44b36baddff67796e21227efb87d",
+   "bytes": 5051,
    "transformations": {}
   },
   "recon/symbolized/app/notify/g1_notify_18.c": {
@@ -4082,9 +4096,9 @@
   },
   "recon/symbolized/app/notify/g1_notify_19.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/notify/g1_notify_19.c",
-   "source_sha256": "d802b00c9408c8ee558e77d58d07a8e65ee55e15031a198eaa206fe7e86b7824",
-   "output_sha256": "d802b00c9408c8ee558e77d58d07a8e65ee55e15031a198eaa206fe7e86b7824",
-   "bytes": 19914,
+   "source_sha256": "e82e8e79aadb72a311fcf394fdf298235ff0cdadcfec0b5fbe719e6e7e0b7c1c",
+   "output_sha256": "e82e8e79aadb72a311fcf394fdf298235ff0cdadcfec0b5fbe719e6e7e0b7c1c",
+   "bytes": 19923,
    "transformations": {}
   },
   "recon/symbolized/app/notify/g1_notify_20.c": {
@@ -4131,16 +4145,16 @@
   },
   "recon/symbolized/app/notify/process_for_new_message_come_on.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/notify/process_for_new_message_come_on.c",
-   "source_sha256": "3d03271e214228e825fd1a9c3eb8f426cb540f05ac136a7790987e48fdcb0e9e",
-   "output_sha256": "3d03271e214228e825fd1a9c3eb8f426cb540f05ac136a7790987e48fdcb0e9e",
-   "bytes": 7845,
+   "source_sha256": "38b625e1777f0f44e14d6bb9f65aa4fd6beec8cb74442515c21963d1431b9720",
+   "output_sha256": "38b625e1777f0f44e14d6bb9f65aa4fd6beec8cb74442515c21963d1431b9720",
+   "bytes": 7826,
    "transformations": {}
   },
   "recon/symbolized/app/notify/process_for_new_task.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/notify/process_for_new_task.c",
-   "source_sha256": "0661bd17aa72506bb8a1ec1253febd49df12d8210838d0cf9fe8731b63f8545f",
-   "output_sha256": "0661bd17aa72506bb8a1ec1253febd49df12d8210838d0cf9fe8731b63f8545f",
-   "bytes": 74212,
+   "source_sha256": "bc336ecf44d1494878a1c34fe6615e30d9d0e1d3c70ca0af0bef6ac6e549809a",
+   "output_sha256": "bc336ecf44d1494878a1c34fe6615e30d9d0e1d3c70ca0af0bef6ac6e549809a",
+   "bytes": 74168,
    "transformations": {}
   },
   "recon/symbolized/app/notify/ptr_read_u32.c": {
@@ -4166,9 +4180,9 @@
   },
   "recon/symbolized/app/notify/put_whitelist_app_from_app.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/notify/put_whitelist_app_from_app.c",
-   "source_sha256": "3e2fe5c7619e136e9ed21fe34452dc2ce8e9f44a4e33c9326b94ae7e5e4fd682",
-   "output_sha256": "3e2fe5c7619e136e9ed21fe34452dc2ce8e9f44a4e33c9326b94ae7e5e4fd682",
-   "bytes": 3553,
+   "source_sha256": "1cba0e6c49aab12b573080a49e2ffd162f0c1b7039122dad8e09fcadfb974bfc",
+   "output_sha256": "1cba0e6c49aab12b573080a49e2ffd162f0c1b7039122dad8e09fcadfb974bfc",
+   "bytes": 3555,
    "transformations": {}
   },
   "recon/symbolized/app/notify/send_whitelist_json_chunked.c": {
@@ -4257,9 +4271,9 @@
   },
   "recon/symbolized/app/sensors/imu/imu_fusion_thread.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/sensors/imu/imu_fusion_thread.c",
-   "source_sha256": "bcc8e10a615d56bb423acf7047b0df1ebf7f272b4805f2246dba9d23cabef407",
-   "output_sha256": "bcc8e10a615d56bb423acf7047b0df1ebf7f272b4805f2246dba9d23cabef407",
-   "bytes": 24074,
+   "source_sha256": "ffd59473e7acbb49a7bbb9c53d8a762081ca8f349397de2a0fa9152fc8dd3d2b",
+   "output_sha256": "ffd59473e7acbb49a7bbb9c53d8a762081ca8f349397de2a0fa9152fc8dd3d2b",
+   "bytes": 24119,
    "transformations": {}
   },
   "recon/symbolized/app/sensors/imu/imu_mahony_ahrs_update.c": {
@@ -4306,9 +4320,9 @@
   },
   "recon/symbolized/app/sensors/input/g1_sensors_input_01.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/sensors/input/g1_sensors_input_01.c",
-   "source_sha256": "606373a525032ea6fcab4470d6a634f5f20c5d91f5b95ca261742b8075f4532a",
-   "output_sha256": "606373a525032ea6fcab4470d6a634f5f20c5d91f5b95ca261742b8075f4532a",
-   "bytes": 16513,
+   "source_sha256": "3652e73ef2514190461ca86b7eff0175089f8f0f87bdad65e08738e6c1c7fa93",
+   "output_sha256": "3652e73ef2514190461ca86b7eff0175089f8f0f87bdad65e08738e6c1c7fa93",
+   "bytes": 16533,
    "transformations": {}
   },
   "recon/symbolized/app/sensors/input/g1_sensors_input_02.c": {
@@ -4320,9 +4334,9 @@
   },
   "recon/symbolized/app/sensors/input/g1_sensors_input_03.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/sensors/input/g1_sensors_input_03.c",
-   "source_sha256": "e2fc865c78147f7f17e9d23fea0e18bbd9a6b5d0b58150082ed2e05069694a1b",
-   "output_sha256": "e2fc865c78147f7f17e9d23fea0e18bbd9a6b5d0b58150082ed2e05069694a1b",
-   "bytes": 16681,
+   "source_sha256": "ea306a32328cbf95bb46ef7a194a39052829ad66316f9fea7b39e8b295465667",
+   "output_sha256": "ea306a32328cbf95bb46ef7a194a39052829ad66316f9fea7b39e8b295465667",
+   "bytes": 16680,
    "transformations": {}
   },
   "recon/symbolized/app/sensors/input/g1_sensors_input_04.c": {
@@ -4362,9 +4376,9 @@
   },
   "recon/symbolized/app/sensors/input/update_touch_key_flag.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/sensors/input/update_touch_key_flag.c",
-   "source_sha256": "8770153d18abce4737ec3c8d6232bf5ee561fbc44d2611255bcab91a14c6fe9f",
-   "output_sha256": "8770153d18abce4737ec3c8d6232bf5ee561fbc44d2611255bcab91a14c6fe9f",
-   "bytes": 3379,
+   "source_sha256": "18edf97c1ee13492516c7f49a5fbb9ad4d766e463e155e6bf335977dbd356c59",
+   "output_sha256": "18edf97c1ee13492516c7f49a5fbb9ad4d766e463e155e6bf335977dbd356c59",
+   "bytes": 3382,
    "transformations": {}
   },
   "recon/symbolized/app/sensors/power/array_max_skip_nan_a.c": {
@@ -4411,16 +4425,16 @@
   },
   "recon/symbolized/app/sensors/power/g1_sensors_power_03.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/sensors/power/g1_sensors_power_03.c",
-   "source_sha256": "e5389e7c8083bf5492262fe93f2cedaf63bd6b54369c2e93bb31424ed1a389f1",
-   "output_sha256": "e5389e7c8083bf5492262fe93f2cedaf63bd6b54369c2e93bb31424ed1a389f1",
-   "bytes": 20070,
+   "source_sha256": "c702c52f477e0765963072a81309d85a34399115dec068d871a68a01d3bc0380",
+   "output_sha256": "c702c52f477e0765963072a81309d85a34399115dec068d871a68a01d3bc0380",
+   "bytes": 20090,
    "transformations": {}
   },
   "recon/symbolized/app/sensors/power/g1_sensors_power_04.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/sensors/power/g1_sensors_power_04.c",
-   "source_sha256": "6153b94f422b3f61608cb696f4eeda85ce29c0992035a9ec4ca5e43a06c73c61",
-   "output_sha256": "6153b94f422b3f61608cb696f4eeda85ce29c0992035a9ec4ca5e43a06c73c61",
-   "bytes": 17046,
+   "source_sha256": "70c2fe969636d106d58ee18da4f2f1de2dcce387cb7acff1c52d1a8e58666279",
+   "output_sha256": "70c2fe969636d106d58ee18da4f2f1de2dcce387cb7acff1c52d1a8e58666279",
+   "bytes": 17066,
    "transformations": {}
   },
   "recon/symbolized/app/sensors/power/g1_sensors_power_05.c": {
@@ -4432,9 +4446,9 @@
   },
   "recon/symbolized/app/sensors/power/g1_sensors_power_06.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/sensors/power/g1_sensors_power_06.c",
-   "source_sha256": "4ac04bbaaa933ebd447174458be2b4c02ebca5f51a9a97b5ebdeb0c8f51d09ff",
-   "output_sha256": "4ac04bbaaa933ebd447174458be2b4c02ebca5f51a9a97b5ebdeb0c8f51d09ff",
-   "bytes": 10677,
+   "source_sha256": "41dfcfdf964acc23a4a2dbeeed0a3c9dfecf725b429f625acc01463226594752",
+   "output_sha256": "41dfcfdf964acc23a4a2dbeeed0a3c9dfecf725b429f625acc01463226594752",
+   "bytes": 10697,
    "transformations": {}
   },
   "recon/symbolized/app/sensors/power/i2c_read_reg16_be.c": {
@@ -4600,9 +4614,9 @@
   },
   "recon/symbolized/app/storage/g1_storage_01.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/storage/g1_storage_01.c",
-   "source_sha256": "901972d141a21b7507dfc3d46cf27669bc7aaae223eb9e662edb3c6e2c34b52a",
-   "output_sha256": "901972d141a21b7507dfc3d46cf27669bc7aaae223eb9e662edb3c6e2c34b52a",
-   "bytes": 11156,
+   "source_sha256": "8570c99762a7fd3df9e951b4526f04bc335e932cfa188ca7e960c286169ead00",
+   "output_sha256": "8570c99762a7fd3df9e951b4526f04bc335e932cfa188ca7e960c286169ead00",
+   "bytes": 11176,
    "transformations": {}
   },
   "recon/symbolized/app/storage/g1_storage_02.c": {
@@ -4621,9 +4635,9 @@
   },
   "recon/symbolized/app/storage/g1_storage_04.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/storage/g1_storage_04.c",
-   "source_sha256": "145c4d9b2113a11beb7a6d5d7355baa3ab2a417966878abfb128a9be38f2a670",
-   "output_sha256": "145c4d9b2113a11beb7a6d5d7355baa3ab2a417966878abfb128a9be38f2a670",
-   "bytes": 12002,
+   "source_sha256": "052539af83cfee431d8673803946f643abb8e0487e167edeb63be98de92e9419",
+   "output_sha256": "052539af83cfee431d8673803946f643abb8e0487e167edeb63be98de92e9419",
+   "bytes": 12022,
    "transformations": {}
   },
   "recon/symbolized/app/storage/g1_storage_05.c": {
@@ -4635,16 +4649,16 @@
   },
   "recon/symbolized/app/storage/g1_storage_06.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/storage/g1_storage_06.c",
-   "source_sha256": "c6932d6e248952688ee640672256976baacda2e702d351ea1a629a582c61fd99",
-   "output_sha256": "c6932d6e248952688ee640672256976baacda2e702d351ea1a629a582c61fd99",
-   "bytes": 18621,
+   "source_sha256": "9d07ab6e753f5367002b0766758d0276dcc2db5313ca1ae89b42d5445082b0f7",
+   "output_sha256": "9d07ab6e753f5367002b0766758d0276dcc2db5313ca1ae89b42d5445082b0f7",
+   "bytes": 18623,
    "transformations": {}
   },
   "recon/symbolized/app/storage/g1_storage_07.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/storage/g1_storage_07.c",
-   "source_sha256": "f06e87a29cf54fd8e14f668642168f8ce8f9fc9a65bfcaa53943af60f38fcc6a",
-   "output_sha256": "f06e87a29cf54fd8e14f668642168f8ce8f9fc9a65bfcaa53943af60f38fcc6a",
-   "bytes": 17217,
+   "source_sha256": "70aa8ee9352907b28938288a247ebe3c4797a63b9567ea81396b9a4187814b02",
+   "output_sha256": "70aa8ee9352907b28938288a247ebe3c4797a63b9567ea81396b9a4187814b02",
+   "bytes": 17219,
    "transformations": {}
   },
   "recon/symbolized/app/storage/g1_storage_08.c": {
@@ -4656,9 +4670,9 @@
   },
   "recon/symbolized/app/storage/g1_storage_09.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/storage/g1_storage_09.c",
-   "source_sha256": "39d473f81e2d5eaa85e8fc48a024683ca92c3b3741277339f286a9c3e61858d6",
-   "output_sha256": "39d473f81e2d5eaa85e8fc48a024683ca92c3b3741277339f286a9c3e61858d6",
-   "bytes": 15568,
+   "source_sha256": "95d7a146abf0ddd8a8661e927f06e2d8215c5753728dd68e4fe3cac0ce2aae63",
+   "output_sha256": "95d7a146abf0ddd8a8661e927f06e2d8215c5753728dd68e4fe3cac0ce2aae63",
+   "bytes": 15590,
    "transformations": {}
   },
   "recon/symbolized/app/storage/g1_storage_10.c": {
@@ -4705,16 +4719,16 @@
   },
   "recon/symbolized/app/storage/pixelto4bithex_for_flash.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/storage/pixelto4bithex_for_flash.c",
-   "source_sha256": "ffd31416f1425e2fff0cc23485af30f486e9d96c71b2b3f7738e0b6fef0cfd06",
-   "output_sha256": "ffd31416f1425e2fff0cc23485af30f486e9d96c71b2b3f7738e0b6fef0cfd06",
-   "bytes": 2385,
+   "source_sha256": "66949dcf6b045e5186b2058a7ebbdde308733146b984226e7477d4694365a120",
+   "output_sha256": "66949dcf6b045e5186b2058a7ebbdde308733146b984226e7477d4694365a120",
+   "bytes": 2390,
    "transformations": {}
   },
   "recon/symbolized/app/storage/pt_nfc_link_transfer_fw_packet.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/storage/pt_nfc_link_transfer_fw_packet.c",
-   "source_sha256": "52747c0f0d4dad6f939d3ea13cbe669bc4170c1d70f9327ec6b90673141b99a5",
-   "output_sha256": "52747c0f0d4dad6f939d3ea13cbe669bc4170c1d70f9327ec6b90673141b99a5",
-   "bytes": 4294,
+   "source_sha256": "d73c2d2d62839138b87809c1a5311b5662f8626be89c9e78bf87283e93bb0d22",
+   "output_sha256": "d73c2d2d62839138b87809c1a5311b5662f8626be89c9e78bf87283e93bb0d22",
+   "bytes": 4296,
    "transformations": {}
   },
   "recon/symbolized/app/storage/save_usr_setting.c": {
@@ -4740,9 +4754,9 @@
   },
   "recon/symbolized/app/storage/sc_set.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/storage/sc_set.c",
-   "source_sha256": "8221ef1963d87bad74a3eba85d7df684db49ce1d063d0a82da37716fa45736ad",
-   "output_sha256": "8221ef1963d87bad74a3eba85d7df684db49ce1d063d0a82da37716fa45736ad",
-   "bytes": 4029,
+   "source_sha256": "ef42f9c79212fb7a03f767bb439a6ee1f281a330fb7c61bf7dc370d5c045cfcd",
+   "output_sha256": "ef42f9c79212fb7a03f767bb439a6ee1f281a330fb7c61bf7dc370d5c045cfcd",
+   "bytes": 4078,
    "transformations": {}
   },
   "recon/symbolized/app/storage/set_change_aware.c": {
@@ -4789,9 +4803,9 @@
   },
   "recon/symbolized/app/ui/dashboard/g1_ui_dashboard_01.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ui/dashboard/g1_ui_dashboard_01.c",
-   "source_sha256": "98790cec18f907892442b3b5d7d57dbb270d50afb3bdbe703f3ae51d2fe0eed5",
-   "output_sha256": "98790cec18f907892442b3b5d7d57dbb270d50afb3bdbe703f3ae51d2fe0eed5",
-   "bytes": 23137,
+   "source_sha256": "a9458dd133fcde7b1d0205e1c7941344d128bb395a7916fd6fde67b2e5a88d3c",
+   "output_sha256": "a9458dd133fcde7b1d0205e1c7941344d128bb395a7916fd6fde67b2e5a88d3c",
+   "bytes": 23157,
    "transformations": {}
   },
   "recon/symbolized/app/ui/dashboard/g1_ui_dashboard_02.c": {
@@ -4824,9 +4838,9 @@
   },
   "recon/symbolized/app/ui/dashboard/ui_DashBoard_task.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ui/dashboard/ui_DashBoard_task.c",
-   "source_sha256": "500ebad5593167a00a26ed15bb6cfd73380c92bfed72f384977f6699cd344e64",
-   "output_sha256": "500ebad5593167a00a26ed15bb6cfd73380c92bfed72f384977f6699cd344e64",
-   "bytes": 25089,
+   "source_sha256": "54a962a0b05baa5ec31c9e4e03bae7146be178f72391300dc09aec71c17bc35b",
+   "output_sha256": "54a962a0b05baa5ec31c9e4e03bae7146be178f72391300dc09aec71c17bc35b",
+   "bytes": 25098,
    "transformations": {}
   },
   "recon/symbolized/app/ui/navigation/decode_rle_byte_pairs.c": {
@@ -4845,9 +4859,9 @@
   },
   "recon/symbolized/app/ui/navigation/navigation_overview_map_display.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ui/navigation/navigation_overview_map_display.c",
-   "source_sha256": "c8002d620e98b33ed2f295ae7cc338648c4002b2b45df7cc198c169b1410d745",
-   "output_sha256": "c8002d620e98b33ed2f295ae7cc338648c4002b2b45df7cc198c169b1410d745",
-   "bytes": 20217,
+   "source_sha256": "f84b7b2d5383600d05fe0378547b6a676b7321bfaf6e8b99bd5973177f01b5e9",
+   "output_sha256": "f84b7b2d5383600d05fe0378547b6a676b7321bfaf6e8b99bd5973177f01b5e9",
+   "bytes": 20230,
    "transformations": {}
   },
   "recon/symbolized/app/ui/navigation/navigation_panoramic_map_display.c": {
@@ -4936,8 +4950,8 @@
   },
   "recon/symbolized/app/ui/quicknote/g1_ui_quicknote_02.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ui/quicknote/g1_ui_quicknote_02.c",
-   "source_sha256": "c068b32a7feb355998b22546c38416fa0cfe19c8ed7abc5bdc66f7f2000e4a93",
-   "output_sha256": "c068b32a7feb355998b22546c38416fa0cfe19c8ed7abc5bdc66f7f2000e4a93",
+   "source_sha256": "a9fcb4e90f42bd569ef35246c730248223467d40862efc3a6b6d9e38af37c397",
+   "output_sha256": "a9fcb4e90f42bd569ef35246c730248223467d40862efc3a6b6d9e38af37c397",
    "bytes": 5382,
    "transformations": {}
   },
@@ -4950,9 +4964,9 @@
   },
   "recon/symbolized/app/ui/quicknote/ui_QuickNote_task.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ui/quicknote/ui_QuickNote_task.c",
-   "source_sha256": "06ef1eb31d7068fa29c9e21524099818b4d735c525c7f653fedee57a64eac398",
-   "output_sha256": "06ef1eb31d7068fa29c9e21524099818b4d735c525c7f653fedee57a64eac398",
-   "bytes": 17701,
+   "source_sha256": "f3d049820f8bc174fae3d7797a4099f4b3a1452c775bdd9ec4e3fff0b378ee84",
+   "output_sha256": "f3d049820f8bc174fae3d7797a4099f4b3a1452c775bdd9ec4e3fff0b378ee84",
+   "bytes": 17709,
    "transformations": {}
   },
   "recon/symbolized/app/ui/teleprompt/u64_sub.c": {
@@ -4964,9 +4978,9 @@
   },
   "recon/symbolized/app/ui/teleprompt/ui_teleprompter_task.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ui/teleprompt/ui_teleprompter_task.c",
-   "source_sha256": "a8ef723b2b1f691c5f2358475f0fd2f6dfb61f80cb5b8451e52a73b8bfa25b2a",
-   "output_sha256": "a8ef723b2b1f691c5f2358475f0fd2f6dfb61f80cb5b8451e52a73b8bfa25b2a",
-   "bytes": 24774,
+   "source_sha256": "05bfa1557ec72a0b71d715cbf93ba16aa5492e07d9ffccee72371abc2a3116a0",
+   "output_sha256": "05bfa1557ec72a0b71d715cbf93ba16aa5492e07d9ffccee72371abc2a3116a0",
+   "bytes": 24778,
    "transformations": {}
   },
   "recon/symbolized/app/ui/translate/SendSystemLanguageInfoToSlave.c": {
@@ -4978,9 +4992,9 @@
   },
   "recon/symbolized/app/ui/translate/g1_ui_translate_01.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/ui/translate/g1_ui_translate_01.c",
-   "source_sha256": "3b78d27ed605ff47b530dae3045d95f13c6c6b37d25ea404e0f3dac0e1464e7a",
-   "output_sha256": "3b78d27ed605ff47b530dae3045d95f13c6c6b37d25ea404e0f3dac0e1464e7a",
-   "bytes": 10595,
+   "source_sha256": "05013a26aa5e9c7b7e0c3ccfd5e4e09895bbd3bda9eeea346eea747671d333bb",
+   "output_sha256": "05013a26aa5e9c7b7e0c3ccfd5e4e09895bbd3bda9eeea346eea747671d333bb",
+   "bytes": 10615,
    "transformations": {}
   },
   "recon/symbolized/app/ui/translate/g1_ui_translate_02.c": {
@@ -5002,6 +5016,13 @@
    "source_sha256": "2834132e0978bd95298f76b6a1feeceb9c0ccf9393f7e4d0d435aad6aaf79288",
    "output_sha256": "2834132e0978bd95298f76b6a1feeceb9c0ccf9393f7e4d0d435aad6aaf79288",
    "bytes": 7054,
+   "transformations": {}
+  },
+  "recon/symbolized/app/unsorted/bt_acl_data_recv.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/bt_acl_data_recv.c",
+   "source_sha256": "c30442e3a9b52f53bb48475b06f16f64dc8e2a386b310cfd682ef7ada6963636",
+   "output_sha256": "c30442e3a9b52f53bb48475b06f16f64dc8e2a386b310cfd682ef7ada6963636",
+   "bytes": 4118,
    "transformations": {}
   },
   "recon/symbolized/app/unsorted/bt_addr_le_copy_83062.c": {
@@ -5083,8 +5104,8 @@
   },
   "recon/symbolized/app/unsorted/discovery_callback.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/discovery_callback.c",
-   "source_sha256": "27d4f45b18121720d4654c854071c0be0f219e73bcf9b5d658766299bd3340cc",
-   "output_sha256": "27d4f45b18121720d4654c854071c0be0f219e73bcf9b5d658766299bd3340cc",
+   "source_sha256": "8ad6c6c1fd90f7d7a62bc0f9f181878e3b202a1698ec16c0bd994de9fe13d35a",
+   "output_sha256": "8ad6c6c1fd90f7d7a62bc0f9f181878e3b202a1698ec16c0bd994de9fe13d35a",
    "bytes": 10277,
    "transformations": {}
   },
@@ -5093,6 +5114,13 @@
    "source_sha256": "d62e210ff5a03860ef276438cacdc1d9d6ea7fac16066068be6bdc9e005f2bb0",
    "output_sha256": "d62e210ff5a03860ef276438cacdc1d9d6ea7fac16066068be6bdc9e005f2bb0",
    "bytes": 1287,
+   "transformations": {}
+  },
+  "recon/symbolized/app/unsorted/find_type_cb.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/find_type_cb.c",
+   "source_sha256": "5bf5b10a674970f453de66713c613e09ba12af0c34c83e8d23d1991afa11ce83",
+   "output_sha256": "5bf5b10a674970f453de66713c613e09ba12af0c34c83e8d23d1991afa11ce83",
+   "bytes": 5735,
    "transformations": {}
   },
   "recon/symbolized/app/unsorted/g1_unsorted_01.c": {
@@ -5104,9 +5132,9 @@
   },
   "recon/symbolized/app/unsorted/g1_unsorted_02.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_02.c",
-   "source_sha256": "6cdc45dd89d1b711c1232a4ac21d6c14348e71c1777d596fe38451fce55e70fc",
-   "output_sha256": "6cdc45dd89d1b711c1232a4ac21d6c14348e71c1777d596fe38451fce55e70fc",
-   "bytes": 46286,
+   "source_sha256": "05b779606b59d8093a1f5e3804292ddfccd3c9e93ec22bffac0483de1f23ad88",
+   "output_sha256": "05b779606b59d8093a1f5e3804292ddfccd3c9e93ec22bffac0483de1f23ad88",
+   "bytes": 46259,
    "transformations": {}
   },
   "recon/symbolized/app/unsorted/g1_unsorted_03.c": {
@@ -5118,93 +5146,79 @@
   },
   "recon/symbolized/app/unsorted/g1_unsorted_04.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_04.c",
-   "source_sha256": "4e8815f1913d10fd0953a88fb6d2f988df229f8540a995a798d07edfad6fd256",
-   "output_sha256": "4e8815f1913d10fd0953a88fb6d2f988df229f8540a995a798d07edfad6fd256",
-   "bytes": 17359,
+   "source_sha256": "4d1b8065917a32403c447f3572183acd7e14e82eb15405fd1efdace50dd19da1",
+   "output_sha256": "4d1b8065917a32403c447f3572183acd7e14e82eb15405fd1efdace50dd19da1",
+   "bytes": 34979,
    "transformations": {}
   },
   "recon/symbolized/app/unsorted/g1_unsorted_05.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_05.c",
-   "source_sha256": "f3accccd18a3d84b5344e5fdd03d63e79110bb08c2b18ed3b0e243ae0dc9357a",
-   "output_sha256": "f3accccd18a3d84b5344e5fdd03d63e79110bb08c2b18ed3b0e243ae0dc9357a",
-   "bytes": 18616,
-   "transformations": {}
-  },
-  "recon/symbolized/app/unsorted/g1_unsorted_06.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_06.c",
    "source_sha256": "6c7b57d196a6d561af7108e63340e9215692893f54b0379fa1d255ef69d9b902",
    "output_sha256": "6c7b57d196a6d561af7108e63340e9215692893f54b0379fa1d255ef69d9b902",
    "bytes": 2736,
    "transformations": {}
   },
+  "recon/symbolized/app/unsorted/g1_unsorted_06.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_06.c",
+   "source_sha256": "3d0ce62f7611d5104c3aa765a69a8d4e4b03ede995957f7ebe6e1128e8aadde1",
+   "output_sha256": "3d0ce62f7611d5104c3aa765a69a8d4e4b03ede995957f7ebe6e1128e8aadde1",
+   "bytes": 10021,
+   "transformations": {}
+  },
   "recon/symbolized/app/unsorted/g1_unsorted_07.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_07.c",
-   "source_sha256": "04ef49de5aa647cf0f42b199c77c3b1244ade3c80ea0a058715012f1aba01136",
-   "output_sha256": "04ef49de5aa647cf0f42b199c77c3b1244ade3c80ea0a058715012f1aba01136",
-   "bytes": 10052,
+   "source_sha256": "d8e14ee6e12a088e7377dfd35328a26054955311f9037c990798e69ef2d41afc",
+   "output_sha256": "d8e14ee6e12a088e7377dfd35328a26054955311f9037c990798e69ef2d41afc",
+   "bytes": 13675,
    "transformations": {}
   },
   "recon/symbolized/app/unsorted/g1_unsorted_08.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_08.c",
-   "source_sha256": "bfec0b6d15d887676d8440d82fe402263e94346fa38c05a9ea56ffda2a5c834d",
-   "output_sha256": "bfec0b6d15d887676d8440d82fe402263e94346fa38c05a9ea56ffda2a5c834d",
-   "bytes": 13969,
-   "transformations": {}
-  },
-  "recon/symbolized/app/unsorted/g1_unsorted_09.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_09.c",
-   "source_sha256": "127bcc5546ea7a29a3ad09ce0769875066531077d9cdadb1fba846fc688742fc",
-   "output_sha256": "127bcc5546ea7a29a3ad09ce0769875066531077d9cdadb1fba846fc688742fc",
-   "bytes": 13656,
-   "transformations": {}
-  },
-  "recon/symbolized/app/unsorted/g1_unsorted_10.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_10.c",
    "source_sha256": "872036ae064892c3c79d84c4bb4da82d3c2e4c345b2aa0d3a2d6dece9c0efda1",
    "output_sha256": "872036ae064892c3c79d84c4bb4da82d3c2e4c345b2aa0d3a2d6dece9c0efda1",
    "bytes": 3459,
    "transformations": {}
   },
-  "recon/symbolized/app/unsorted/g1_unsorted_11.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_11.c",
-   "source_sha256": "0ae396244f6b51552f27f5ea7355f1231828aa6ed4b7ff7113ded7518b5b5dcb",
-   "output_sha256": "0ae396244f6b51552f27f5ea7355f1231828aa6ed4b7ff7113ded7518b5b5dcb",
-   "bytes": 10074,
+  "recon/symbolized/app/unsorted/g1_unsorted_09.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_09.c",
+   "source_sha256": "3fb281f86c18676060e8128c5aa35462f35e14ac27acb811a503d73d4e1dd163",
+   "output_sha256": "3fb281f86c18676060e8128c5aa35462f35e14ac27acb811a503d73d4e1dd163",
+   "bytes": 10093,
    "transformations": {}
   },
-  "recon/symbolized/app/unsorted/g1_unsorted_12.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_12.c",
+  "recon/symbolized/app/unsorted/g1_unsorted_10.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_10.c",
    "source_sha256": "10faf0c7e2c2bd0751992b67d1d25402e4681b846aa0e444b111c594ca735afc",
    "output_sha256": "10faf0c7e2c2bd0751992b67d1d25402e4681b846aa0e444b111c594ca735afc",
    "bytes": 18470,
    "transformations": {}
   },
-  "recon/symbolized/app/unsorted/g1_unsorted_13.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_13.c",
+  "recon/symbolized/app/unsorted/g1_unsorted_11.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_11.c",
    "source_sha256": "d9484e556bc207ffafcaa32ff9a5e515b113b8603901e7db2df0e01a9ad4b953",
    "output_sha256": "d9484e556bc207ffafcaa32ff9a5e515b113b8603901e7db2df0e01a9ad4b953",
    "bytes": 12733,
    "transformations": {}
   },
-  "recon/symbolized/app/unsorted/g1_unsorted_14.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_14.c",
+  "recon/symbolized/app/unsorted/g1_unsorted_12.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_12.c",
    "source_sha256": "3584718252db03d89f59ce48366ed35ab791ac14802dab892ed7eedec3a531c2",
    "output_sha256": "3584718252db03d89f59ce48366ed35ab791ac14802dab892ed7eedec3a531c2",
    "bytes": 14496,
    "transformations": {}
   },
-  "recon/symbolized/app/unsorted/g1_unsorted_15.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_15.c",
-   "source_sha256": "76663445b0a3d5af9c930bd7e6a1bf1225415c206710233c7cc2c5a935dfa5f7",
-   "output_sha256": "76663445b0a3d5af9c930bd7e6a1bf1225415c206710233c7cc2c5a935dfa5f7",
-   "bytes": 22264,
+  "recon/symbolized/app/unsorted/g1_unsorted_13.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_13.c",
+   "source_sha256": "31eab70f31b77130d0ad939faf4f24f9db467eadfa3baf0385560558884a315a",
+   "output_sha256": "31eab70f31b77130d0ad939faf4f24f9db467eadfa3baf0385560558884a315a",
+   "bytes": 22277,
    "transformations": {}
   },
-  "recon/symbolized/app/unsorted/g1_unsorted_16.c": {
-   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_16.c",
-   "source_sha256": "72e53ae11484ac7a2a9a9766cc74508bccebcc8bc9fcc4696a16b16b8b046efb",
-   "output_sha256": "72e53ae11484ac7a2a9a9766cc74508bccebcc8bc9fcc4696a16b16b8b046efb",
-   "bytes": 13881,
+  "recon/symbolized/app/unsorted/g1_unsorted_14.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/g1_unsorted_14.c",
+   "source_sha256": "3d22d72f6aa276ef342aa954efc55dceaf6fd6fcfcfb72c804f50b9a64c8f599",
+   "output_sha256": "3d22d72f6aa276ef342aa954efc55dceaf6fd6fcfcfb72c804f50b9a64c8f599",
+   "bytes": 13880,
    "transformations": {}
   },
   "recon/symbolized/app/unsorted/heap_bucket_index.c": {
@@ -5233,6 +5247,13 @@
    "source_sha256": "a8d2824d68437327ba37889d1c517aa29ecfff138f13a0259f7c90bcc4400f01",
    "output_sha256": "a8d2824d68437327ba37889d1c517aa29ecfff138f13a0259f7c90bcc4400f01",
    "bytes": 1348,
+   "transformations": {}
+  },
+  "recon/symbolized/app/unsorted/log_bt_buf_alloc_failure.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/log_bt_buf_alloc_failure.c",
+   "source_sha256": "6c8d44093fd2d6e09d1ce72a2ca550415d9c1f2f7582c33b4f2e8245ad9c9729",
+   "output_sha256": "6c8d44093fd2d6e09d1ce72a2ca550415d9c1f2f7582c33b4f2e8245ad9c9729",
+   "bytes": 1158,
    "transformations": {}
   },
   "recon/symbolized/app/unsorted/log_msg_3arg_thunk.c": {
@@ -5265,9 +5286,9 @@
   },
   "recon/symbolized/app/unsorted/queue_cancel_wait_locked.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/queue_cancel_wait_locked.c",
-   "source_sha256": "ad73c73d04bc4252719b06b7f9347c003427c755533399ce4e6f31336c8d9bff",
-   "output_sha256": "ad73c73d04bc4252719b06b7f9347c003427c755533399ce4e6f31336c8d9bff",
-   "bytes": 2842,
+   "source_sha256": "a5626d9893b7dc7655dda08855b3ee26c85e66778e6a40ae8d63d9e24ba86a0f",
+   "output_sha256": "a5626d9893b7dc7655dda08855b3ee26c85e66778e6a40ae8d63d9e24ba86a0f",
+   "bytes": 2861,
    "transformations": {}
   },
   "recon/symbolized/app/unsorted/read_struct_first_word.c": {
@@ -5282,6 +5303,13 @@
    "source_sha256": "4a5c652be645af4a2c690a8b2f01d88837193dce7e0b011cd68b2710bfc8f9dc",
    "output_sha256": "4a5c652be645af4a2c690a8b2f01d88837193dce7e0b011cd68b2710bfc8f9dc",
    "bytes": 7433,
+   "transformations": {}
+  },
+  "recon/symbolized/app/unsorted/safe_memmove_or_die.c": {
+   "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/unsorted/safe_memmove_or_die.c",
+   "source_sha256": "a5ace29e61b8d0aad949a9dc145dc854ec93807b1e1415eb7c6a597c0ece7c34",
+   "output_sha256": "a5ace29e61b8d0aad949a9dc145dc854ec93807b1e1415eb7c6a597c0ece7c34",
+   "bytes": 2143,
    "transformations": {}
   },
   "recon/symbolized/app/unsorted/thunk_FUN_000823fa.c": {
@@ -12043,13 +12071,13 @@
  "transform": "call-order function reordering inside merged units (app core only)",
  "sub_batch": "R",
  "call_order": {
-  "merged_units_seen": 249,
+  "merged_units_seen": 247,
   "units_reordered": 0,
   "units_already_in_call_order": 118,
   "member_blocks_moved": 0,
   "refused": {
-   "member_block_carries_a_preprocessor_directive": 60,
-   "member_block_declares_a_file_scope_static": 71
+   "member_block_carries_a_preprocessor_directive": 59,
+   "member_block_declares_a_file_scope_static": 70
   },
   "per_unit_blocks_moved": {}
  }

@@ -2,7 +2,7 @@
  "schema": "g1.refactor.stage-hazards/1",
  "note": "A local typedef/macro redefinition is harmless in its own translation unit and becomes wrong only when two files share one.  No gate in this project observes this class; stage 04 rules 3-5 refuse it structurally.",
  "totals": {
-  "typedef_names_with_incompatible_definitions": 30,
+  "typedef_names_with_incompatible_definitions": 29,
   "macro_names_with_differing_bodies": 35,
   "static_names_used_in_more_than_one_file": 17
  },
@@ -227,42 +227,6 @@
     "l2cap_recv.c",
     "uarte_nrfx_isr.c",
     "cjson_print_value.c"
-   ]
-  },
-  "u8": {
-   "unsigned char @": [
-    "imu_fusion_thread.c",
-    "switch_to_dfu_mode.c",
-    "get_current_work_mode.c",
-    "gatt_discover.c",
-    "check_bind_status.c",
-    "display_dispatch_thread.c",
-    "key_event_thread.c",
-    "update_persist_task_status.c",
-    "update_persist_task_status_to_idle.c",
-    "process_for_new_task.c",
-    "dmic_stream_start.c",
-    "is_battery_critical.c",
-    "message_table_contains_id.c",
-    "handle_touch_single_click.c",
-    "send_dashboard_status_sync.c",
-    "onboarding_ble_process.c",
-    "gui_utf_Wordwrap_draw.c",
-    "SendSystemLanguageInfoToSlave.c",
-    "bt_dev_settings_commit.c",
-    "hci_read_static_addresses.c",
-    "ble_conn_le_prepare_and_connect.c",
-    "l2cap_chan_add.c",
-    "gatt_remove_peer_from_attr.c",
-    "bt_smp_send_pairing_confirm.c",
-    "smp_ident_addr_info.c",
-    "saadc_start_read.c",
-    "qspi_nor_send_cinstr.c",
-    "dev_configure_channel.c",
-    "cbor_encode_length_header.c"
-   ],
-   "unsigned long long @": [
-    "__ieee754_exp.c"
    ]
   },
   "u32": {
