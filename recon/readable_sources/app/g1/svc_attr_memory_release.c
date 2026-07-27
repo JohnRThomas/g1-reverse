@@ -12,8 +12,7 @@
 
 extern void g1_recon_k_free(void *allocation);
 
-void svc_attr_memory_release(int param_1)
-{
+void svc_attr_memory_release(unsigned long param_1) {
     unsigned int *puVar1;
     unsigned int uVar2;
     *(unsigned int*)(param_1 + 0x134) = 0;

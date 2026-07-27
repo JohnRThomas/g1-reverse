@@ -22,7 +22,7 @@ struct output_buffer {
 };
 
 extern uint8_t *growbuf_ensure_capacity(struct output_buffer *, uint32_t);
-extern void memcpy(void *, const void *, size_t);
+extern void memcpy(int, int, int);
 extern void strncpy_zero_pad(uint8_t *, const void *, size_t);
 extern void snprintf(uint8_t *, size_t, uintptr_t);
 

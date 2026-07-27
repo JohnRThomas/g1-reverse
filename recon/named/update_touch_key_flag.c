@@ -28,7 +28,7 @@ extern unsigned get_message_type_param(unsigned a, int b);
 extern int clear_timeout_message(int a);
 extern int msg_count_dec(void);
 extern void push_message_3439c(void);
-extern int get_message_pending_state(void);
+extern unsigned long get_message_pending_state(void);
 extern void set_message_pending_state(int a);
 extern void k_uptime_get_2(void);
 void update_touch_key_flag(void){

@@ -29,12 +29,12 @@
 #include <stdint.h>
 #include <stddef.h>
 extern void *malloc(size_t);
-extern void free(void *);
-extern int z_device_is_ready(const void *);
-extern void memset_bytes(void *, int, size_t);
-extern int memcmp(const void *, const void *, size_t);
+extern void free(int);
+extern int z_device_is_ready(int);
+extern void memset_bytes(void*, int, int);
+extern int memcmp(const void*, const void*, unsigned long);
 extern void safe_memcpy_checked(void *, const void *, size_t, size_t);
-extern uintptr_t get_device_info(void);
+extern int get_device_info(void);
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
 typedef int (*flash_read_t)(uintptr_t, uint32_t, void *, uint32_t);

@@ -29,9 +29,9 @@
 extern void ancs_disconnected(void);
 extern void ble_conn_unref(int);
 extern int send_conn_le_param_update(int,void*);
-extern void assert_post_action(unsigned,unsigned);
-extern int atomic_and_2(volatile unsigned*,unsigned);
-extern void bt_conn_call_4arg_zero(unsigned,unsigned,void*);
+extern int assert_post_action(int, int);
+extern int atomic_and_2(volatile long*, long);
+extern void bt_conn_call_4arg_zero(unsigned int, unsigned int, unsigned int);
 extern void bt_l2cap_disconnected(int);
 
 void ble_conn_process_complete_or_disconnect(int param_1){

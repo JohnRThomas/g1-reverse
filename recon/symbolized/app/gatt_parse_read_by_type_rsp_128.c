@@ -18,7 +18,7 @@
 typedef int (*codep)(int,void*,int*);
 extern int bt_uuid_cmp(void);
 extern void log_msg_create_3arg(int,int,void*);
-extern void gatt_discover_next(int,short,int*);
+extern void gatt_discover_next(unsigned long, unsigned long, void*);
 extern void memset_bytes(void*,int,int);
 void gatt_parse_read_by_type_rsp_128(int param_1,int param_2,unsigned *param_3,int param_4,int *param_5){
   int iVar1; int iVar2; unsigned *puVar3; unsigned *puVar5; unsigned *puVar4;

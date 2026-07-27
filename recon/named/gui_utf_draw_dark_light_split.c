@@ -31,9 +31,9 @@
 #include "../headers/g1_log.h"
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort; typedef unsigned char byte;
 extern int get_device_info(int,...);
-extern int atomic_get_3_0(int,...); extern int count_chars_in_default_font_table(int,...); extern int resource_manger_get(int,...);
+extern int atomic_get_3_0(int,...); extern int count_chars_in_default_font_table(int,...); extern long resource_manger_get(unsigned long, unsigned long, long*, long*, unsigned long*, unsigned long);
 extern int clean_fb_data(int,...); extern int reflash_fb_data_to_lcd(int,...); extern int utf8_string_to_utf16(int,...);
-extern int fb_blit_rows_copy(int,...); extern int index_in_range32_mask(int,...); extern int safe_memcpy_checked(int,...);
+extern int fb_blit_rows_copy(int, int, int, int, int, int); extern int index_in_range32_mask(int,...); extern int safe_memcpy_checked(int,...);
 typedef undefined4 (*codeptr)(int,...);
 
 undefined4 gui_utf_draw_dark_light_split(undefined4 param_1,undefined4 param_2,int param_3,int param_4,int param_5,int param_6,

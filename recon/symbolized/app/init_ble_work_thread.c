@@ -19,7 +19,7 @@
  */
 /* Reconstructed FUN_0002201c @ 0x2201c  (parity: 300/300 trials, PROVEN) */
 
-extern void kmutex_dlist_init(int);
+extern void kmutex_dlist_init(unsigned long);
 
 int init_ble_work_thread(int param_1)
 {

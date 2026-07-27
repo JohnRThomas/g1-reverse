@@ -18,7 +18,7 @@
 extern void *utf8_string_to_utf16(uintptr_t, uint16_t *);
 extern uintptr_t find_chinese_bitmap_by_unicode(uint32_t, uint32_t, uint32_t);
 extern void fb_blit_rows_wrap320(void *, uintptr_t, uint32_t, uint32_t, uint32_t, uint32_t);
-extern uint8_t *get_device_info(void);
+extern int get_device_info(void);
 extern int float_to_ascii_signed_2dp(uint32_t, void *);
 
 int render_device_info_float_screen(void *destination)

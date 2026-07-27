@@ -45,11 +45,11 @@ struct __attribute__((packed)) user_settings_record {
 };
 
 extern int flash_settings_read(uint32_t address, void *destination, uint32_t length);
-extern void reset_usr_setting(void *settings);
+extern unsigned long reset_usr_setting(unsigned char*);
 extern int is_battery_critical(void);
 extern void set_test_mode(unsigned int);
 extern void save_usr_setting(void *settings, uint32_t value);
-extern void memset_bytes(void *destination, int value, uint32_t length);
+extern void memset_bytes(void*, int, int);
 
 int load_usr_setting(uint8_t *settings)
 {

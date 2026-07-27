@@ -51,10 +51,8 @@ struct diagnostic_record {
 
 extern int stream_flash_erase_page(struct buffered_writer *writer, uint32_t last_offset);
 extern uint32_t stream_flash_vtable_get_value(void *device);
-extern void memset_bytes(void *destination, uint8_t value, uint32_t length);
-extern void z_log_msg_runtime_create(uintptr_t source, uint32_t event,
-                         const struct diagnostic_record *record,
-                         uint32_t reserved);
+extern void memset_bytes(void*, int, int);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 
 int stream_flash_flush_buffer(struct buffered_writer *writer, uint32_t unused_2,
                  uint32_t unused_3, uint32_t unused_4)

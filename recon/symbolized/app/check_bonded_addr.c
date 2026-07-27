@@ -17,7 +17,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern void format_bt_addr_str(const void *connection, char description[36]);
+extern void format_bt_addr_str(const void*, char*);
 
 void check_bonded_addr(const void *connection)
 {

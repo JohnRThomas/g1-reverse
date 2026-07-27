@@ -22,11 +22,11 @@
 #include "../headers/g1_log.h"
 /* Reconstructed simulator_ancs_calendar_schedule_trigger @ 0x21cd8  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int ancs_get_conn_ctx(void);
-extern void memset_bytes(unsigned int, int, int);
+extern int ancs_get_conn_ctx(void);
+extern void memset_bytes(void*, int, int);
 extern void strncpy_zero_pad(unsigned int, unsigned int, int);
 extern void log_notification_fields_debug(unsigned int, unsigned int);
-extern void process_sync_buffer(unsigned int);
+extern unsigned long process_sync_buffer(unsigned int, ...);
 
 void simulator_ancs_calendar_schedule_trigger(void)
 {

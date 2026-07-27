@@ -9,8 +9,7 @@
  */
 /* Reconstructed FUN_00057394 @ 0x57394  (parity: 300/300 trials, PROVEN) */
 
-void smp_pairing_event_cnt_inc(void)
-{
+int smp_pairing_event_cnt_inc(void) {
     unsigned char v = *(volatile unsigned char*)((unsigned long)&g_smp_pairing_event_cnt) /*=0x2001d531*/;
     v = v + 1;
     if (v < 1) v = 1;

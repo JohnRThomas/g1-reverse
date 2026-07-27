@@ -16,8 +16,8 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern uint8_t *get_device_info(void);
-extern void *memset_bytes(void *, int, uint32_t);
+extern int get_device_info(void);
+extern void memset_bytes(void*, int, int);
 
 void burial_point_record_info_init(void)
 {

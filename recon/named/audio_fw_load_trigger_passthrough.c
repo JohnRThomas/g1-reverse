@@ -8,7 +8,7 @@
 /* Reconstructed FUN_0007c1fe @ 0x7c1fe  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void audio_fw_load_get_wrapper(unsigned long, unsigned long, unsigned long);
+extern unsigned long audio_fw_load_get_wrapper(int, unsigned char*, unsigned long);
 unsigned int audio_fw_load_trigger_passthrough(unsigned int param_1,unsigned int param_2,unsigned int param_3)
 {
   audio_fw_load_get_wrapper(param_1, param_2, param_3);

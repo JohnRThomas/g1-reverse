@@ -10,4 +10,4 @@
 
 #include <stdint.h>
 extern int memcmp(const void*,const void*,uint32_t);
-int adv_is_directed(const void *advertisement){return memcmp((const uint8_t*)advertisement+9u,(const void*)((unsigned long)&rodata_f2b3a) /*=0xf2b3a*/,7u)!=0;}
+int adv_is_directed(unsigned long advertisement) {return memcmp((const uint8_t*)advertisement+9u,(const void*)((unsigned long)&rodata_f2b3a) /*=0xf2b3a*/,7u)!=0;}

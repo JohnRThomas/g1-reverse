@@ -12,7 +12,7 @@
 /* Reconstructed FUN_00082bd4 @ 0x82bd4  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int const_return_one(void);
-extern void *find_cf_cfg(int a);
+extern unsigned char* find_cf_cfg(int);
 extern void set_change_aware(void *a, int b);
 extern void *find_sc_cfg_59bcc(unsigned char a, int b);
 extern void log_gatt_sc_store_failure(void *a);

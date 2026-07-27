@@ -27,12 +27,9 @@ struct display_close_packet {
     uint8_t payload[20];
 };
 
-extern int k_msgq_put(void *owner, const void *packet,
-                        int option_a, int option_b);
-extern void memcpy(void *destination, const void *source,
-                         unsigned int length);
-extern void memset_bytes(void *destination, int value,
-                         unsigned int length);
+extern int k_msgq_put(unsigned int, void*, int, int);
+extern void memcpy(int, int, int);
+extern void memset_bytes(void*, int, int);
 
 int display_close(const void *payload, unsigned int payload_length)
 {

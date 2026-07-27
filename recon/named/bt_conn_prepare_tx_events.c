@@ -21,7 +21,7 @@
 extern void z_impl_k_poll_signal_init(int);
 extern void k_poll_event_init(int,int,int,int);
 extern void bt_conn_tx_drain_and_reset(void*);
-extern int atomic_and_2(void*,int);
+extern int atomic_and_2(volatile long*, long);
 int bt_conn_prepare_tx_events(int param_1){
   z_impl_k_poll_signal_init(0x20002990);
   k_poll_event_init(param_1,1,0,0x20002990);

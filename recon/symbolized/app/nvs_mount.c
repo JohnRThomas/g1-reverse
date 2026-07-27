@@ -73,7 +73,7 @@ typedef signed char sbyte; typedef long long(*code)();
 
 extern long long FUN_0004c4e4(long long, long long);
 extern long long k_mutex_lock(long long, long long, long long, long long);
-extern long long k_mutex_unlock(long long);
+extern int k_mutex_unlock(unsigned int);
 extern long long FUN_0007e53e(long long, long long, long long, long long);
 extern long long nvs_sector_advance(long long, long long);
 extern long long FUN_0007e5da(long long, long long, long long, long long);
@@ -84,7 +84,7 @@ extern long long FUN_0007e672(long long, long long);
 extern long long nvs_add_gc_done_ate(long long);
 extern long long FUN_0007e83a(long long);
 extern long long flash_get_page_info_by_offs(long long, long long, long long);
-extern long long kmutex_dlist_init(long long);
+extern void kmutex_dlist_init(unsigned long);
 #define DAT_0004c7a0 ((unsigned long)"Could not obtain flash parameters") /*=0xf0af8*/
 #define DAT_0004c7a4 ((unsigned long)&rodata_881b8) /*=0x881b8*/
 #define DAT_0004c7a8 ((unsigned long)"Unsupported write block size") /*=0xf0b1a*/

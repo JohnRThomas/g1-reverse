@@ -13,8 +13,7 @@
 #define activate_foreach_backend activate_foreach_backend
 typedef int (*backend_ready_fn)(const void *backend);
 extern void log_msg_commit(const void *backend,void *context,uint32_t level); /* log_backend_enable */
-uint32_t activate_foreach_backend(uint32_t mask)
-{
+unsigned int activate_foreach_backend(unsigned int mask) {
  uint32_t pending=mask; volatile uint8_t *table=(volatile uint8_t*)0x000882a0u;
  while(pending!=0u){
   uint32_t index=(uint32_t)__builtin_ctz(pending);uint32_t bit=1u<<index;

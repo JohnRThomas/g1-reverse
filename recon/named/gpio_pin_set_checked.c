@@ -14,7 +14,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_00017768 @ 0x17768  (parity: 300/300 trials, PROVEN) */
 
-extern void assert_post_action(unsigned int a, unsigned int b);
+extern int assert_post_action(int, int);
 typedef void (*jfn847)(void);
 void gpio_pin_set_checked(int param_1, unsigned int param_2, unsigned int param_3)
 {

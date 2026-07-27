@@ -2,8 +2,7 @@
 /* Owner: NCS 2.5.1 Bluetooth host hci_core.c; raw backmap FUN_00080e38@0x00080e38. */
 #include <stdint.h>
 #include <stdbool.h>
-bool update_sec_level(void *connection_arg)
-{
+int update_sec_level(int connection_arg) {
     uint8_t *connection = (uint8_t *)connection_arg;
     const uint8_t *keys = *(const uint8_t * const *)(connection + 0xc0u);
     uint8_t level;

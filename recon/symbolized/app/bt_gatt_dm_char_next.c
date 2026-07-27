@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_0007f4d6 @ 0x7f4d6  (parity: 178/300 trials, PROVEN) */
 
-extern int bt_uuid_cmp(void*, int);
+extern int bt_uuid_cmp(int, int);
 
 void* bt_gatt_dm_char_next(int param_1, unsigned int *param_2, int param_3)
 {

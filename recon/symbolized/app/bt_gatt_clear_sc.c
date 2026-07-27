@@ -15,9 +15,9 @@
 /* Reconstructed FUN_0005a044 @ 0x5a044  (parity: 300/300 trials, PROVEN) */
 
 extern void* find_sc_cfg_59bcc(void);
-extern int gatt_sc_settings_delete(unsigned char, void*);
+extern unsigned int gatt_sc_settings_delete(unsigned char*, int);
 extern void log_msg_create_3arg(unsigned int, unsigned int, void*);
-extern void gatt_sc_ctx_clear(void*);
+extern void gatt_sc_ctx_clear(unsigned int*);
 
 unsigned int bt_gatt_clear_sc(void){
   unsigned char *puVar1 = (unsigned char*)find_sc_cfg_59bcc();

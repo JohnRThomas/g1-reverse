@@ -21,7 +21,7 @@
 /* Reconstructed FUN_00059920 @ 0x59920  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern uint8_t* bt_conn_get_field_0x90(uint32_t);
+extern int bt_conn_get_field_0x90(int);
 extern void snprintk(void*, int, uint32_t, ...);
 extern void strcpy(void*, uint32_t);
 extern void att_log_emit_3arg(uint32_t, int, void*);

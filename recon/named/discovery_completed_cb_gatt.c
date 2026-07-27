@@ -25,7 +25,7 @@ extern unsigned bt_gatt_dm_attr_cnt(unsigned);
 extern int gatt_service_changed_c_discovery_completed(unsigned,unsigned);
 extern int gatt_subscribe_service_changed(unsigned,unsigned);
 extern int bt_gatt_dm_data_release(unsigned);
-extern void gatt_discover(unsigned,int);
+extern void gatt_discover(unsigned int, unsigned int);
 void discovery_completed_cb_gatt(unsigned param_1, unsigned param_2){
   unsigned uVar1, uVar2; int iVar3; unsigned fmt;
   uVar1 = bt_gatt_dm_conn_get(param_1);

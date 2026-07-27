@@ -15,7 +15,7 @@
 /* Reconstructed FUN_0005f654 @ 0x5f654  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_nrf_regs.h"
-extern int z_log_msg_runtime_create(unsigned,unsigned,void*,int);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 unsigned adc_channel_config(unsigned param_1, unsigned char *param_2)
 {
   unsigned short uVar1;

@@ -28,9 +28,9 @@
  */
 /* Reconstructed FUN_000518a8 @ 0x518a8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int flash_area_open(unsigned, void **);
+extern int flash_area_open(unsigned int, void*);
 extern unsigned img_mgmt_flash_area_id(unsigned);
-extern void assert_post_action(uint32_t, uint32_t);
+extern int assert_post_action(int, int);
 extern void printk(unsigned long, ...);
 extern void nullsub_3(void);
 extern void z_log_msg_static_create_img_mgmt(uint32_t, uint32_t, const void *);
@@ -39,7 +39,7 @@ extern unsigned img_mgmt_slot_in_use(unsigned);
 extern unsigned img_mgmt_active_slot(int);
 extern int img_mgmt_my_version(void *);
 extern int memcmp(void *, int);
-extern void memset_bytes(void *, int, unsigned);
+extern void memset_bytes(void*, int, int);
 
 #define P1(k) (*(volatile int*)((char*)param_1 + (k)))
 #define P2u(k) (*(volatile uint32_t*)((char*)param_2 + (k)))

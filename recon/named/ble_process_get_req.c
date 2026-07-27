@@ -28,15 +28,15 @@
 
 extern int  get_device_type(void);
 extern int  get_device_info(void);
-extern void audio_fw_load_get_wrapper(void *, void *, uint32_t);
+extern unsigned long audio_fw_load_get_wrapper(int, unsigned char*, unsigned long);
 extern void get_notification_counts_cmd_process(void *, void *, void *);
 extern void send_whitelist_json_chunked(void *, void *);
 extern void SendSystemLanguageInfoToSlave(uint32_t);
-extern void debug_print_hex_dump(void *, void *, uint32_t);
+extern void debug_print_hex_dump(int, int, int);
 extern int  is_system_idle_ready(void);
-extern void memcpy(void *, uintptr_t, uint32_t);
+extern void memcpy(int, int, int);
 extern void safe_memcpy_checked(void *, const void *, uint32_t, uint32_t);
-extern void memset_bytes(void *, uint32_t, uint32_t);
+extern void memset_bytes(void*, int, int);
 extern void strcpy(void *, const void *);
 
 #define LOG_LEVEL (*(volatile int32_t *)0x2000230cu)

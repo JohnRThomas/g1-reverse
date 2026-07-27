@@ -17,7 +17,7 @@ extern unsigned bt_gatt_dm_attr_service_val(void);
 extern unsigned bt_gatt_dm_conn_get(unsigned a);
 extern void bt_gatt_dm_service_get(void);
 extern int bt_gatt_dm_desc_by_uuid(unsigned a, int b, void*c);
-extern int bt_uuid_cmp(unsigned a, void*b);
+extern int bt_uuid_cmp(int, int);
 unsigned gatt_service_changed_c_discovery_completed(unsigned param_1, unsigned *param_2, unsigned param_3, unsigned param_4){
     unsigned char local_24[4], local_20[4], local_1c[4];
     volatile unsigned *p2 = (volatile unsigned*)param_2;

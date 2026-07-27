@@ -7,7 +7,7 @@
  *   libc_stream_write_syscall                <= FUN_00086f5a @ 0x00086f5a
  */
 /* Reconstructed FUN_00086f5a @ 0x86f5a  (parity: 300/300 trials, PROVEN) */
-extern void lseek_r_capture_errno(int* a, int b, int c, int d);
+extern void lseek_r_capture_errno(int*, unsigned int, unsigned int, unsigned int);
 extern int _write_r(int *, int, const void *, unsigned int);
 void libc_stream_write_syscall(int* param_1, int param_2, int param_3, int param_4){
     unsigned short v = *(unsigned short*)(param_2 + 0xc);

@@ -18,8 +18,8 @@
 /* Reconstructed load_whitelist @ 0x34b34  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*, int, int);
-extern unsigned int flash_settings_read(unsigned int, void*, int);
-extern void memcpy(unsigned int, void*, int);
+extern int flash_settings_read(unsigned long, void*, unsigned long);
+extern void memcpy(int, int, int);
 
 unsigned int load_whitelist(void)
 {

@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_000811ce @ 0x811ce. */
 #include <stdint.h>
-extern uint8_t strlen(int);
+extern int strlen(int);
 extern unsigned int bt_dev_get(void);
 extern int hci_set_ad(int,void*,int);
 extern void memset_bytes(void*,int,int);

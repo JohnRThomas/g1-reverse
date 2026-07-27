@@ -23,7 +23,7 @@
 
 extern int tx_notify();
 extern int bt_l2cap_recv(int,int,int);
-extern int net_buf_unref(int);
+extern void net_buf_unref(int);
 extern int bt_conn_call_4arg_zero(int,int,void*);
 extern int bt_conn_reset_rx_state(int);
 extern int net_buf_simple_tailroom(int);

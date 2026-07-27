@@ -12,7 +12,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_000183ac @ 0x183ac  (parity: 300/300 trials, PROVEN) */
 
-extern void format_bt_addr_str(int, int);
+extern void format_bt_addr_str(const void*, char*);
 void bond_deleted_cb(int param_1, int param_2)
 {
     char auStack_28[32];

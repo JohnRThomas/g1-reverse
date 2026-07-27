@@ -17,8 +17,8 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_00065d3c @ 0x65d3c  (parity: 300/300 trials, PROVEN) */
 
-extern void arch_irq_enable(int);
-extern unsigned int assert_post_action(unsigned int, unsigned int);
+extern int arch_irq_enable(int);
+extern int assert_post_action(int, int);
 
 unsigned int nrfx_ipc_init(unsigned int param_1, int param_2, int param_3)
 {

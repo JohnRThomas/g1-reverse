@@ -31,8 +31,8 @@
 
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
-extern unsigned int strlen(const void *);
-extern int strncmp(const void *,int,unsigned int);
+extern int strlen(int);
+extern int strncmp(const void*, unsigned long, unsigned int);
 extern int strstr(const void *,int);
 
 int is_on_whitelist_by_identifier(int param_1){

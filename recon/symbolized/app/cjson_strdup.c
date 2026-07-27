@@ -11,8 +11,8 @@
  */
 /* Reconstructed FUN_00064640 @ 0x64640  (parity: 300/300 trials, PROVEN) */
 
-extern int strlen(unsigned long);
-extern int memcpy(int a, int b, int c);
+extern int strlen(int);
+extern void memcpy(int, int, int);
 
 int cjson_strdup(int param_1)
 {

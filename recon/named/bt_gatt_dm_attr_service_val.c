@@ -7,7 +7,7 @@
  */
 /* Reconstructed FUN_0007f460 @ 0x7f460  (parity: 300/300 trials, PROVEN) */
 
-extern int bt_uuid_cmp(void*, int);
+extern int bt_uuid_cmp(int, int);
 
 int bt_gatt_dm_attr_service_val(int *param_1, int param_2, int param_3)
 {

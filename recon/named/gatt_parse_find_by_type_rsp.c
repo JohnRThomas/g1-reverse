@@ -13,7 +13,7 @@
 /* Reconstructed FUN_0005bbf4 @ 0x5bbf4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void log_msg_create_3arg(unsigned,unsigned,void*);
-extern void gatt_discover_next(unsigned,unsigned,void*);
+extern void gatt_discover_next(unsigned long, unsigned long, void*);
 extern void memset_bytes(void*,int,int);
 typedef int (*fp_t)(unsigned,void*,void*);
 

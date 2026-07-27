@@ -12,7 +12,7 @@
 /* Reconstructed FUN_00052edc @ 0x52edc  (parity: 300/300 trials, PROVEN) */
 
 extern int settings_subsys_init(void);
-extern void z_log_msg_runtime_create(unsigned int a, unsigned int b, void *c, unsigned int d);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 
 int bt_settings_subsys_init_check(void)
 {

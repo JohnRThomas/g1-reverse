@@ -20,7 +20,7 @@
 #include "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/sns.h"
 #include "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/tables.h"
 extern float frexpf(float, int *);
-extern void *memcpy(void *, const void *, unsigned);
+extern void memcpy(int, int, int);
 extern void lc3_sns_unquantize(enum lc3_dt, enum lc3_srate, const float *, int, int, float *);
 extern void lc3_sns_spectral_shaping(enum lc3_dt, enum lc3_srate, const float *, bool, const float *, float *);
 #undef LC3_HOT

@@ -19,10 +19,9 @@
 
 extern int  bt_uuid_cmp(void *packet);
 extern void log_msg_create_3arg(uint32_t module, uint32_t event, void *detail);
-extern int  gatt_req_send(uint32_t, uint32_t, void *, uint32_t,
-                         uint32_t, uint32_t);
+extern int gatt_req_send(void*, void*, void*, void*, unsigned long, unsigned long);
 extern void gatt_discover_next(uint32_t context, uint32_t last_id, void *consumer);
-extern void memset_bytes(void *destination, int value, uint32_t size);
+extern void memset_bytes(void*, int, int);
 
 typedef int (*record_consumer_t)(uint32_t, void *, void *);
 

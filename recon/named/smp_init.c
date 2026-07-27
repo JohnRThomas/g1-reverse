@@ -14,7 +14,7 @@
 
 extern void memset_bytes(void *a, int b, unsigned int c, unsigned int d, unsigned int e);
 extern int bt_rand(void *, int);
-extern void atomic_set_bit(void *a, unsigned int b);
+extern void atomic_set_bit(int, int);
 extern unsigned int bt_pub_key_get(void);
 
 unsigned int smp_init(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

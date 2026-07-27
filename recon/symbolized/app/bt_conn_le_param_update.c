@@ -11,7 +11,7 @@
 
 #include <stdint.h>
 extern int send_conn_le_param_update(int);
-extern void atomic_and_2(void*,int);
+extern int atomic_and_2(volatile long*, long);
 unsigned bt_conn_le_param_update(int param_1, uint16_t *param_2){
   volatile unsigned *puVar1=(volatile unsigned*)(param_1+4);
   unsigned uVar2;

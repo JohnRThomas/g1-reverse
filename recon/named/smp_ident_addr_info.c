@@ -39,17 +39,17 @@ extern int bt_id_find_conflict(int a);
 extern void bt_id_add(int a); /* SDK public wrapper; FUN_0005505c @ 0x0005505c */
 extern void ble_conn_visit_by_fixed_index(int a, u32 b, void *c);
 extern void ble_notify_identity_resolved(int a);
-extern void smp_pairing_complete(int a, int event);
-extern int bt_keys_find_addr(u32 a, void *b);
+extern void smp_pairing_complete(int, unsigned int);
+extern int bt_keys_find_addr(unsigned char, int);
 extern int bt_keys_get_type(int a, u32 b, int c);
-extern void bt_keys_clear(int a);
-extern void assert_post_action(u32 a, u32 b);
-extern int atomic_test_bit(void *a, int b);
+extern void bt_keys_clear(void*);
+extern int assert_post_action(int, int);
+extern int atomic_test_bit(int, int);
 extern int bt_conn_security_sufficient(int a, int b);
 extern void bt_addr_le_copy_83062(unsigned int *, unsigned int *);
 extern void smp_log_message(u32 a, u32 b, void *c);
 extern void atomic_set_bit(int a, int b);
-extern int memcmp(int a, void *b, int c);
+extern int memcmp(const void*, const void*, unsigned long);
 
 undefined4 smp_ident_addr_info(int param_1, int param_2)
 {

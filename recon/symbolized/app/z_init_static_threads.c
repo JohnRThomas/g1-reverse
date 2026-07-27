@@ -30,7 +30,7 @@ extern void sched_thread_ready(int);
 extern void k_sched_unlock(void);
 extern void k_sched_lock(void);
 extern void z_add_timeout(int,unsigned,int,int);
-extern void assert_post_action(unsigned,unsigned);
+extern int assert_post_action(int, int);
 void z_init_static_threads(void)
 {
   i64 lVar1; u64 uVar8;

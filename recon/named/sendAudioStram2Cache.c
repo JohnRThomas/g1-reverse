@@ -30,9 +30,9 @@ struct audio_cache_record {
     uint8_t payload[200];
 };
 
-extern int k_msgq_put(void *queue, const void *record, int timeout, int flags);
-extern void k_sem_give(void *event);
-extern void memcpy(void *destination, const void *source, int length);
+extern int k_msgq_put(unsigned int, void*, int, int);
+extern void k_sem_give(int);
+extern void memcpy(int, int, int);
 extern void memset_bytes(void *destination, int value, int length);
 
 #define AUDIO_CACHE_QUEUE       ((void *)0x20003890u)

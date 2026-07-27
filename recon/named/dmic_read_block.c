@@ -14,7 +14,7 @@
 /* Reconstructed FUN_0005fa94 @ 0x5fa94  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long __aeabi_uldivmod(int a,int b,int c,int d);
-extern int k_msgq_get(int a, unsigned b, int c, int d);
+extern int k_msgq_get(int, unsigned int, int, int);
 extern void log_forward_zero_arg(unsigned a, unsigned b, void*c);
 int dmic_read_block(int param_1, unsigned param_2, unsigned param_3, unsigned *param_4, unsigned param_5){
     int iVar3 = *(volatile int*)(param_1 + 0x10);

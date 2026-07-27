@@ -18,7 +18,7 @@
 /* Reconstructed FUN_00050e64 @ 0x50e64  (parity: 147/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
-extern void assert_post_action(uint32_t,uint32_t);
+extern int assert_post_action(int, int);
 extern int arm_cmse_mpu_region_get(int);
 
 void mpu_partition_sanity_check_assert(int *param_1, int param_2, uint32_t param_3){

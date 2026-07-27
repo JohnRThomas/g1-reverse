@@ -20,8 +20,8 @@
 extern int get_device_info(void);
 extern int set_dashboard_close_pending_flag(void);
 extern int display_close(const void *, unsigned int);
-extern int mutex_unlock_syscall_handler(void);
-extern int memset_bytes(int,int,int);
+extern void mutex_unlock_syscall_handler(void);
+extern void memset_bytes(void*, int, int);
 int display_close_screen(int param_1, uint32_t param_2){
   uint8_t loc[2];
   (void)param_2;

@@ -15,7 +15,7 @@
  */
 /* Reconstructed FUN_00055c64 @ 0x55c64  (parity: 300/300 trials, PROVEN) */
 
-extern int z_log_msg_runtime_create(int,int,void*,int);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern int bt_hci_le_rand(void*,int);
 extern int ble_rng_seed_from_uptime(void);
 extern int tc_hmac_prng_init(int,void*,int);

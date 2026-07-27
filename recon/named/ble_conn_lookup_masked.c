@@ -14,7 +14,7 @@
 /* Reconstructed FUN_00056908 @ 0x56908  (parity: 300/300 trials, PROVEN) */
 
 extern int conn_lookup_handle(unsigned int a, unsigned int b, unsigned int c);
-extern void bt_conn_call_4arg_zero(unsigned int a, unsigned int b, void *c);
+extern void bt_conn_call_4arg_zero(unsigned int, unsigned int, unsigned int);
 extern void ble_conn_unref(int a);
 
 int ble_conn_lookup_masked(unsigned int param_1, unsigned char param_2, unsigned int param_3, unsigned int param_4)

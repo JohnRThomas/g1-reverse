@@ -26,7 +26,7 @@
 /* Reconstructed FUN_00051ac0 @ 0x51ac0  (parity: 200/200 trials, PROVEN) */
 
 #include <stdint.h>
-extern int strlen(void*);
+extern int strlen(int);
 extern int img_mgmt_ver_str(void*,void*);
 extern int img_mgmt_read_info(unsigned,void*,void*,void*);
 extern int zcbor_tstr_encode_ptr(unsigned,void*,int);

@@ -22,14 +22,14 @@
 /* Reconstructed FUN_0004b2b0 @ 0x4b2b0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../headers/g1_log.h"
-extern int chunk_size(int,int);
+extern unsigned long chunk_size(void*, unsigned long);
 extern int set_chunk_used(int,int,int);
 extern int mem_to_chunkid(int,int);
-extern int log_msg_compute_wlen(int,int);
+extern unsigned int log_msg_compute_wlen(unsigned int, int);
 extern int alloc_chunk(int,int);
 extern int split_chunks(int,int,int);
 extern int free_list_add(int,int);
-extern void assert_post_action(int,int);
+extern int assert_post_action(int, int);
 extern int sys_heap_alloc(void);
 
 int sys_heap_aligned_alloc(int *param_1, unsigned int param_2, unsigned int param_3, int param_4){

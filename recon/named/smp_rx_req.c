@@ -11,7 +11,7 @@
 /* Reconstructed FUN_00052744 @ 0x52744  (parity: 300/300 trials, PROVEN) */
 
 extern void net_buf_put(unsigned int a);
-extern void k_work_submit_to_queue(unsigned int a, unsigned int b);
+extern int k_work_submit_to_queue(void*, void*);
 
 void smp_rx_req(int param_1)
 {

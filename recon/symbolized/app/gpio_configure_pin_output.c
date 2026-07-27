@@ -14,7 +14,7 @@
  *   rodata_f0a04                             @ 0x000f0a04   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0006666c @ 0x6666c  (parity: 300/300 trials, PROVEN) */
-extern long long assert_post_action(unsigned,unsigned);
+extern int assert_post_action(int, int);
 void gpio_configure_pin_output(unsigned param_1, int param_2, unsigned param_3, unsigned param_4){
     unsigned r0v = param_1;
     unsigned r1v = (unsigned)param_2;

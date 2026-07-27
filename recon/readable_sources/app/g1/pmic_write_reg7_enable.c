@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_00084cb0 @ 0x84cb0  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int dev_write_reg3(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3);
+extern int dev_write_reg3(unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned int pmic_write_reg7_enable(int param_1)
 {

@@ -24,9 +24,9 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 extern int get_device_info(void);
-extern int z_device_is_ready(unsigned);
-extern void memcpy(unsigned,int,int);
-extern void memset_bytes(unsigned,int,int);
+extern int z_device_is_ready(int);
+extern void memcpy(int, int, int);
+extern void memset_bytes(void*, int, int);
 
 unsigned getQuickNoteDataFromFlash(unsigned param_1, unsigned param_2, int param_3, unsigned param_4, int param_5){
   volatile int *piVar1 = (volatile int*)0x2000230cUL;

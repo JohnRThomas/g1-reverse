@@ -23,11 +23,10 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 
-extern uint32_t strlen(uint32_t command);
-extern uintptr_t get_device_info(void);
-extern uint32_t send_notification_app_whitelist(void *transport, const void *name,
-                             const void *payload, uint32_t reserved);
-extern int strncmp(uint32_t command, const void *name, uint32_t value);
+extern int strlen(int);
+extern int get_device_info(void);
+extern unsigned long send_notification_app_whitelist(unsigned char*, const char*, const char*, unsigned long);
+extern int strncmp(const void*, unsigned long, unsigned int);
 
 void send_data_in_ble_chunks(const uint8_t *request)
 {

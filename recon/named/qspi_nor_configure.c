@@ -28,7 +28,7 @@
 extern void arch_irq_priority_set(uint32_t irq, int priority, int flags);
 extern int qspi_get_zephyr_ret_code(int registration_result);
 extern int qspi_nor_acquire(void *context);
-extern void qspi_nor_suspend_bus(void *context);
+extern void qspi_nor_suspend_bus(unsigned char*);
 extern int qspi_nor_send_cinstr(void *context, uint8_t *command, uint8_t mode);
 #define g1_recon_nrfx_qspi_init nrfx_qspi_init
 extern int g1_recon_nrfx_qspi_init(void *device, uintptr_t callback,

@@ -13,7 +13,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_00063570 @ 0x63570  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int assert_post_action(int a, int b);
+extern int assert_post_action(int, int);
 unsigned int rtc_cc_reg_addr_get(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
   unsigned int idx = param_1;

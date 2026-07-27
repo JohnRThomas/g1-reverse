@@ -9,7 +9,6 @@
  */
 /* Reconstructed FUN_000181fc @ 0x181fc  (parity: 300/300 trials, PROVEN) */
 
-unsigned int ancs_get_conn_ctx(void)
-{
+int ancs_get_conn_ctx(void) {
     return *(volatile unsigned int *)((unsigned long)&g_ble_conn_ctx_ptr) /*=0x20006a30*/;
 }

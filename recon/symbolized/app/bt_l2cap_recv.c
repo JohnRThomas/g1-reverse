@@ -24,7 +24,7 @@ extern void net_buf_put(int,int);
 extern void net_buf_unref(int);
 extern int  net_buf_simple_pull_5f594(int,int);
 extern void k_work_submit(int);
-extern int  atomic_get_word(int);
+extern unsigned long atomic_get_word(const unsigned long*);
 extern void log_msg_3arg_thunk(int,int,void*);
 extern int  bt_l2cap_le_lookup_rx_cid(uint32_t,uint16_t);
 extern void gatt_send_service_changed_ind(void);

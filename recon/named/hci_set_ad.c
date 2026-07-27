@@ -29,12 +29,11 @@ struct log_record {
 
 extern void *bt_hci_cmd_create(uint16_t opcode, uint32_t payload_size); /* FUN_00053cd4 */
 extern uint8_t *net_buf_simple_add(void *simple, uint32_t length); /* FUN_0005f5d0 */
-extern void memset_bytes(void *destination, uint32_t value, uint32_t length); /* FUN_00086c78 */
-extern void *memcpy(void *destination, const void *source, size_t length); /* FUN_00086c04 */
-extern void net_buf_unref(void *buffer); /* FUN_0005f24c */
+extern void memset_bytes(void*, int, int); /* FUN_00086c78 */
+extern void memcpy(int, int, int); /* FUN_00086c04 */
+extern void net_buf_unref(int); /* FUN_0005f24c */
 extern int bt_hci_cmd_send_sync(uint16_t opcode, void *buffer, void *response);
-extern void z_log_msg_runtime_create(const void *domain, uint32_t level,
-                         const struct log_record *record, uint32_t flags);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 #define bt_hci_cmd_send_sync bt_hci_cmd_send_sync
 #define log_message z_log_msg_runtime_create
 #define hci_set_ad hci_set_ad

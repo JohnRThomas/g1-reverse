@@ -57,14 +57,14 @@ extern void clean_fb_data(int a, int b, int c, int d, int e, int f);
 extern int  device_info_text_width_get(void);
 extern int  device_info_text_height_get_clamped(void);
 extern int  get_timestamp(void);
-extern void gui_bitmps_merge_draw(int a, int b, int c, int d, int e, int f, int g, int h);
-extern void memset_bytes(unsigned a, int b, int c);
-extern void memcpy(unsigned a, unsigned b, int c);
+extern int gui_bitmps_merge_draw(unsigned int, int, int, int, int, int, unsigned char, unsigned char);
+extern void memset_bytes(void*, int, int);
+extern void memcpy(int, int, int);
 extern void snprintf(unsigned a, int b, unsigned c, int d, int e);
 extern void gui_utf_draw(int a, unsigned b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l);
 extern void gui_clock_draw(int a, int b, int c, int d, int e, int f, int g);
 extern void navigation_direction_img_display(unsigned char a);
-extern void decode_rle_byte_pairs(unsigned a, unsigned b, unsigned c);
+extern unsigned long decode_rle_byte_pairs(const unsigned char*, unsigned long, unsigned char*);
 extern void FUN_0007d376(unsigned a, unsigned b, unsigned c, unsigned d);
 extern void FUN_0007d37a(unsigned a);
 

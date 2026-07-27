@@ -15,7 +15,7 @@
 /* Full reconstruction FUN_0005c5f0 @ 0x5c5f0, exact extent 206 bytes. */
 #include <stdint.h>
 
-extern uint8_t * gatt_find_conn_in_known_table(unsigned long);
+extern unsigned char* gatt_find_conn_in_known_table(int);
 extern void net_buf_simple_init_with_data(void *, const void *, uint32_t);
 extern void *net_buf_simple_pull_5f594(void *, uint32_t);
 extern void log_msg_create_3arg(uintptr_t, uint32_t, const void *);

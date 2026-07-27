@@ -16,7 +16,7 @@
 
 /* Hardware never returns; the return type describes the verifier's otherwise
  * unreachable r0 continuation. */
-extern int assert_post_action(unsigned int a0, unsigned int a1);
+extern int assert_post_action(int, int);
 
 void net_buf_ref(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

@@ -9,9 +9,7 @@
 #include <stdint.h>
 typedef int32_t (*callback_t)(uint32_t, uint32_t, uint32_t, uint32_t);
 
-int32_t audio_codec_reg_op_dispatch(uint8_t *object, uint32_t arg1, uint32_t arg2,
-                     uint32_t arg3)
-{
+int audio_codec_reg_op_dispatch(unsigned int object, unsigned int arg1, void*arg2, unsigned int arg3) {
     callback_t callback = *(callback_t *)(object + 4);
     return callback(*(uint32_t *)(object + 12), arg1, arg2, arg3);
 }

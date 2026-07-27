@@ -11,7 +11,7 @@
 
 extern void memset_bytes(void *a, int b, int c);
 extern int bt_encrypt_le(int a, void *b);
-extern int memcmp(int a, void *b, int c);
+extern int memcmp(const void*, const void*, unsigned long);
 
 int bt_smp_ah(int param_1, int param_2)
 {

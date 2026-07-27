@@ -2,7 +2,7 @@
 
 extern void DEBUG_PRINT(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
-extern void memset_bytes(void *dst, int val, unsigned int len);
+extern void memset_bytes(void*, int, int);
 
 void reset_all_static_info(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

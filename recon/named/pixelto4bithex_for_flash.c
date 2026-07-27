@@ -16,7 +16,7 @@
 /* Reconstructed FUN_00036558 @ 0x36558  (parity: 300/300 trials, PROVEN) */
 
 extern int malloc(int);
-extern void memset_bytes(int,int,int);
+extern void memset_bytes(void*, int, int);
 void pixelto4bithex_for_flash(int param_1,int param_2,int param_3,int param_4){
   if(*(volatile int*)0x20009fccUL==0){
     int iVar4=malloc(0x140);

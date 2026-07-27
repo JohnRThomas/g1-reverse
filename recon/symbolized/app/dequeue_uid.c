@@ -15,7 +15,7 @@
  */
 /* Reconstructed dequeue_uid @ 0x18ff8  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_get(unsigned int a, void *b, unsigned int c, unsigned int d);
+extern int k_msgq_get(int, unsigned int, int, int);
 
 int dequeue_uid(unsigned int *param_1, unsigned int param_2, unsigned int param_3)
 {

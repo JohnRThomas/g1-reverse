@@ -18,10 +18,10 @@
 typedef uint32_t u32; typedef uint8_t u8;
 extern int get_device_info(void);
 extern int msg_content_recalc_unread(void);
-extern int sync_dashboard_default_language(void);
-extern int getStocksIndex(void);
-extern int getNewsIndex(void);
-extern void send_response_data_to_msgqueue(void*,int);
+extern unsigned long sync_dashboard_default_language(void);
+extern unsigned long getStocksIndex(void);
+extern unsigned long getNewsIndex(void);
+extern unsigned int send_response_data_to_msgqueue(void*, unsigned int);
 extern void send_response_data_to_ble(void);
 void send_dashboard_status_sync(u32 param_1,u32 param_2,u32 param_3,u32 param_4){
     u32 local[4];

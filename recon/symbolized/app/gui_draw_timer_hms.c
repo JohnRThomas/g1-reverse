@@ -19,11 +19,11 @@
 #include <stdint.h>
 typedef unsigned char byte; typedef uint32_t undefined4; typedef uint16_t undefined2; typedef unsigned int uint; typedef unsigned short ushort;
 extern int get_device_info(int,...);
-extern int utf8_string_to_utf16(int,...);
-extern int find_chinese_bitmap_by_unicode(int,...);
+extern void* utf8_string_to_utf16(unsigned int, unsigned short*);
+extern unsigned int find_chinese_bitmap_by_unicode(unsigned int, short, short);
 extern int load_icon_bitmap_expanded(int,...);
 extern int nullsub_2(int,...);
-extern int fb_blit_rows_wrap320(int,...);
+extern int fb_blit_rows_wrap320(int*, int, int, int, int, int);
 extern int font_glyph_pixel_offset(int,...);
 
 undefined4 gui_draw_timer_hms(int param_1,undefined4 param_2)

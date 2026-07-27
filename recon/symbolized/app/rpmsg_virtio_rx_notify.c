@@ -21,8 +21,8 @@
 #include "../../headers/g1_log.h"
 extern void mutex_lock_wait_forever_dup(void *); extern void FUN_000859b2(void *);
 extern void *virtqueue_get_buffer(void *,uint32_t *,uint16_t *); extern void *rpmsg_get_endpoint(void *,int,uint32_t,uint32_t);
-extern int virtqueue_add_buffer(void *,const void *,int,int,void *); extern void dma_xfer_end_handler(void *);
-extern void assert_post_action(uint32_t,uint32_t);
+extern int virtqueue_add_buffer(void *,const void *,int,int,void *); extern void dma_xfer_end_handler(int*);
+extern int assert_post_action(int, int);
 typedef int (*send_fn)(void *,void *,uint16_t,uint32_t,uint32_t);
 void rpmsg_virtio_rx_notify(uint8_t **arg)
 {

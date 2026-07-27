@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_00019b48 @ 0x19b48  (parity: 300/300 trials, PROVEN) */
 
-extern void k_mutex_unlock(unsigned int);
+extern int k_mutex_unlock(unsigned int);
 void ble_work_queue_unlock(void) {
     k_mutex_unlock(((unsigned long)&g_ble_work_queue) /*=0x20007574*/);
 }

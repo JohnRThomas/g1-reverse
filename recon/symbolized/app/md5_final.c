@@ -12,7 +12,7 @@
 /* Reconstructed FUN_0004a16c @ 0x4a16c  (parity: 300/300 trials, PROVEN) */
 
 extern void u32_to_bytes_le_array(void *dst, void *src, int n);
-extern void md5_update(void *dst, void *src, int n);
+extern void md5_update(unsigned long*, const unsigned char*, unsigned long);
 
 void md5_final(int *param_1, void *param_2)
 {

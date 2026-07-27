@@ -11,11 +11,11 @@
  */
 /* Reconstructed smp_create_pdu @ 0x830b0  (CFG-directed candidate) */
 #include <stdint.h>
-extern int atomic_test_bit(void *flags, uint32_t bit);
-extern void atomic_set_bit(void *flags, uint32_t bit);
-extern void *att_create_pdu_reserve4(void *pool, uint32_t reserve, uint32_t timeout_lo, uint32_t timeout_hi);
+extern int atomic_test_bit(int, int);
+extern void atomic_set_bit(int, int);
+extern int att_create_pdu_reserve4(int, int, int, int);
 extern void *net_buf_simple_add(void *buf, uint32_t len);
-void *smp_create_pdu(void *smp, uint8_t op) {
+int smp_create_pdu(int smp, int op) {
     void *flags = (uint8_t *)smp + 4;
     uint32_t timeout_lo = atomic_test_bit(flags, 4u) ? 0u : 0x000f0000u;
     void *buf = att_create_pdu_reserve4(0, 0, timeout_lo, 0);

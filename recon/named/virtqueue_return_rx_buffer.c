@@ -11,7 +11,7 @@
 /* Reconstructed FUN_00085a9c @ 0x85a9c (exact 82-byte extent). */
 #include <stdint.h>
 
-extern void mutex_lock_wait_forever_dup(void *lock, void *record);
+extern void mutex_lock_wait_forever_dup(unsigned int, unsigned int);
 extern uint32_t virtqueue_get_buffer_length(uint32_t object, uint32_t tag);
 extern void virtqueue_add_buffer(uint32_t object, uint32_t item[2], uint32_t zero,
                          uint32_t one);

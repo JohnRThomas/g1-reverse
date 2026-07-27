@@ -10,7 +10,7 @@
 /* Reconstructed FUN_0007f9c6 @ 0x7f9c6  (parity: 300/300 trials, PROVEN) */
 
 extern int audio_codec_reg_op_dispatch(unsigned int, unsigned int, void*, unsigned int, unsigned int);
-extern void audio_codec_bus_write(unsigned int, unsigned int, void*, unsigned int);
+extern void audio_codec_bus_write(unsigned long*, unsigned long, unsigned long, unsigned long);
 
 void audio_codec_set_reg11_field1(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

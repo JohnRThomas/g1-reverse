@@ -8,6 +8,6 @@
  */
 /* Reconstructed FUN_00034410 @ 0x34410  (parity: 300/300 trials, PROVEN) */
 
-unsigned char get_message_pending_state(void) {
+unsigned long get_message_pending_state(void) {
     return *(volatile unsigned char*)0x2001a229UL;
 }

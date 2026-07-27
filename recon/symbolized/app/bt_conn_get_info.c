@@ -18,7 +18,7 @@
 /* Reconstructed FUN_00056f4c @ 0x56f4c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern uint64_t assert_post_action(uint32_t,uint32_t);
+extern int assert_post_action(int, int);
 extern uint64_t bt_conn_enc_key_size(void);
 
 uint32_t bt_conn_get_info(int param_1, uint8_t *param_2v){

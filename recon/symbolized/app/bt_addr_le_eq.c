@@ -10,7 +10,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 extern int memcmp(const void *, const void *, uint32_t);
-bool bt_addr_le_eq(const void *a, const void *b)
-{
+int bt_addr_le_eq(int a, int b) {
     return memcmp(a, b, 7u) == 0;
 }

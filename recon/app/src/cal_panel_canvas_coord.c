@@ -6,7 +6,7 @@
  *   debug_print      <- FUN_00019c70 @ 0x00019c70
  *   DEBUG_PRINT                         @ 0x0007dda4
  */
-extern uintptr_t get_device_info(void);
+extern int get_device_info(void);
 extern void debug_print(unsigned long, ...);
 extern void DEBUG_PRINT(unsigned long, ...);
 

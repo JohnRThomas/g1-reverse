@@ -19,8 +19,7 @@
 
 extern int ipc_send_len_prefixed_packet_locked_retry(uint32_t transport, uint32_t key,
                         void *value, uint32_t length);
-extern int ipc_ept_op_a_locked_retry(uint32_t transport, uint32_t key,
-                        const void *value, uint32_t length);
+extern int ipc_ept_op_a_locked_retry(int, unsigned int, unsigned int, int);
 
 int transport_parameters_write(uint32_t transport, const void *value, uint32_t length)
 {

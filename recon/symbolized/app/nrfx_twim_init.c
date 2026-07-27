@@ -18,7 +18,7 @@
 /* Reconstructed FUN_00067794 @ 0x67794  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern void assert_post_action(uint32_t,uint32_t);
+extern int assert_post_action(int, int);
 extern void nrf_gpio_pin_reconfigure(int,int,int,uint32_t,...);
 extern void twim_configure(int,int*);
 

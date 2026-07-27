@@ -11,7 +11,7 @@
 /* Reconstructed FUN_00081962 @ 0x81962  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long bt_conn_create_pdu(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e, unsigned int f, unsigned int g);
-extern void net_buf_unref(unsigned int a);
+extern void net_buf_unref(int);
 extern void k_work_reschedule(unsigned int, unsigned int, unsigned int, unsigned int);
 
 void att_send_and_schedule_tx(unsigned int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)

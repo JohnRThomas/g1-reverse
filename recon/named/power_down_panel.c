@@ -20,7 +20,7 @@
 #include "../headers/g1_log.h"
 extern void panel_pwr_gpio_deassert(void);
 extern int app_msleep_thunk_a(int);
-extern int dev_write_reg3(int, ...);
+extern int dev_write_reg3(unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned int power_down_panel(void)
 {

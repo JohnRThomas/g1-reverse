@@ -12,8 +12,8 @@
  */
 /* Reconstructed FUN_00084880 @ 0x84880  (parity: 300/300 trials, PROVEN) */
 
-extern void memset_bytes(void *a, int b, unsigned int c);
-extern void transport_notify_callback(unsigned int a, void *b);
+extern void memset_bytes(void*, int, int);
+extern int transport_notify_callback(unsigned char*, unsigned long);
 
 void post_event_tag4_and_clear(unsigned int param_1, int *param_2)
 {

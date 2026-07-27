@@ -27,12 +27,8 @@ typedef struct {
     uint32_t word[16];
 } interpolation_table_t;
 
-extern void memset_bytes(void *workspace, uint32_t value, uint32_t size);
-extern void battery_soc_curve_model_init(float sample_0, float sample_1, float sample_2,
-                         float charge_high, float charge_low,
-                         const interpolation_table_t *table,
-                         uint32_t sample_count, void *workspace,
-                         float *result);
+extern void memset_bytes(void*, int, int);
+extern void battery_soc_curve_model_init(float, float, float, float, float, const void*, const float*, volatile float*, float*);
 
 int batt_soc_curve_estimate(const fuel_curve_request_t *request, float *result)
 {

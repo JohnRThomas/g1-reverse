@@ -18,7 +18,7 @@
  *   rodata_f82ab                             @ 0x000f82ab
  */
 /* Reconstructed FUN_000730e8 @ 0x730e8  (parity: 300/300 trials, PROVEN) */
-extern void assert_post_action(int,...);
+extern int assert_post_action(int, int);
 extern void z_impl_k_thread_create(int,int,unsigned,int,int,int,int,unsigned,int);
 extern void posix_stub_enosys(int);
 extern void FUN_0008641c(int);

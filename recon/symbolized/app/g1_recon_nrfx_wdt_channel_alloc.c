@@ -17,7 +17,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 typedef unsigned int uint;
-extern void assert_post_action(uint32_t,uint32_t);
+extern int assert_post_action(int, int);
 uint32_t g1_recon_nrfx_wdt_channel_alloc(int* param_1, uint8_t* param_2){
   uint8_t r4byte=*(volatile uint8_t*)((char*)param_1+4);
   if(param_2==0){

@@ -7,7 +7,7 @@ typedef uint32_t (*text_draw_callback_t)(uint32_t canvas, uint32_t utf8_text,
                                         int32_t font, uint32_t left,
                                         int32_t top);
 
-extern uint32_t get_device_info(void); /* FUN_000167a8 */
+extern int get_device_info(void); /* FUN_000167a8 */
 extern void debug_print(unsigned long, ...); /* FUN_00019c70 */
 extern uint32_t get_display_atomic_state(void); /* FUN_000431a8 */
 extern uint32_t get_glyph_pair_spacing(uint32_t, uint32_t); /* FUN_00043e58 */
@@ -22,11 +22,8 @@ extern void reflash_fb_data_to_lcd(uint32_t front, uint32_t back,
                                    uint32_t left, int32_t top,
                                    int32_t right, int32_t bottom);
     /* FUN_00047260 */
-extern uint16_t *utf8_string_to_utf16(uint32_t utf8_text,
-                                      uint16_t *count); /* FUN_000478d8 */
-extern void fb_blit_rows_copy(uint32_t framebuffer, void *pixels,
-                              uint32_t width_bytes, uint32_t height,
-                              uint32_t x, uint32_t y); /* FUN_0007d53a */
+extern void* utf8_string_to_utf16(unsigned int, unsigned short*); /* FUN_000478d8 */
+extern int fb_blit_rows_copy(int, int, int, int, int, int); /* FUN_0007d53a */
 extern int32_t classify_text_character(uint32_t); /* FUN_0007d860 */
 extern void checked_bitmap_copy(void *, uint32_t, uint32_t, uint32_t); /* FUN_00086c1e */
 extern void log_message(unsigned long, ...); /* FUN_0007dda4 */

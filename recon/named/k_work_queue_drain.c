@@ -27,9 +27,9 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 #include "../headers/g1_log.h"
-extern int k_is_in_isr(void); extern int z_spin_lock_valid(uint32_t); extern void z_spin_lock_set_owner(uint32_t); extern int z_spin_unlock_valid(uint32_t);
+extern int k_is_in_isr(void); extern int z_spin_lock_valid(unsigned int*); extern int z_spin_lock_set_owner(unsigned int*); extern int z_spin_unlock_valid(uint32_t);
 extern void notify_queue_locked(void *); extern uint32_t z_sched_wait(uint32_t,uint32_t,void*,uint32_t,uint32_t,uint32_t,uint32_t);
-extern void assert_post_action(uint32_t,uint32_t);
+extern int assert_post_action(int, int);
 uint32_t k_work_queue_drain(uint8_t *obj, int requested, uint32_t a, uint32_t b)
 {
     if (!obj) { printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),0xf586b,0xf820f,0x2ed,0,requested,a,b); assert_post_action(0xf820f,0x2ed); }

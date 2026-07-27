@@ -22,12 +22,11 @@
 extern unsigned int flash_nrf_get_page_size(void);
 extern unsigned long long is_regular_addr_valid(unsigned int address,
                                        unsigned int length);
-extern void z_log_msg_runtime_create(unsigned int source, unsigned int level,
-                         const unsigned int *arguments, unsigned int flags);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void z_impl_k_sem_take(unsigned int lock, unsigned int context,
                          unsigned int timeout_low,
                          unsigned int timeout_high);
-extern void k_sem_give(unsigned int lock);
+extern void k_sem_give(int);
 extern unsigned int nrfx_nvmc_page_erase(unsigned int address);
 
 unsigned int flash_nrf_erase(unsigned int unused, unsigned int address,

@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_000779bc @ 0x779bc  (parity: 300/300 trials, PROVEN) */
 
-extern int strlen(const char *text);
+extern int strlen(int);
 extern void vfprintf_core(unsigned int a, void* b, unsigned int c, void* d);
 
 struct format_record {

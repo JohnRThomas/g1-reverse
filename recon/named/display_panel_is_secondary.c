@@ -9,7 +9,7 @@
 /* Reconstructed check_battery_critical @ 0x2bed0  (parity: 300/300 trials, PROVEN) */
 
 extern void signal_persist_task_event(void);
-unsigned int display_panel_is_secondary(int param_1){
+int display_panel_is_secondary(unsigned long param_1) {
     volatile unsigned char *pcVar1 = (volatile unsigned char*)0x20018d9cUL;
     while(*pcVar1 != 0){
         signal_persist_task_event();

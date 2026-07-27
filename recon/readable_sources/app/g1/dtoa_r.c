@@ -57,7 +57,7 @@ typedef unsigned long long u64;
 #define P64(a) (*(volatile u64*)(uintptr_t)(u32)(a))
 #define PC8(a) (*(volatile char*)(uintptr_t)(u32)(a))
 
-extern u64 dcmp_negate_rhs();
+extern long long dcmp_negate_rhs(int, int, int, int);
 extern u64 __aeabi_dadd();
 extern u64 __floatunsidf();
 extern u64 __floatsidf();
@@ -79,7 +79,7 @@ extern u64 pow5mult();
 extern u64 lshift();
 extern u64 bigint_diff();
 extern u64 d2b_decompose();
-extern u64 memcpy();
+extern void memcpy(int, int, int);
 extern u64 bignum_div_trial_subtract();
 extern u64 clz32();
 extern u64 bignum_compare_abs();

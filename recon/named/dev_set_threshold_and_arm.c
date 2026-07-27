@@ -9,7 +9,7 @@
 /* Reconstructed FUN_00083e70 @ 0x83e70  (parity: 300/300 trials, PROVEN) */
 
 extern int dev_ctrl_write1(unsigned int, void*, int, unsigned int);
-extern int dev_write_reg3(int, int, int, int);
+extern int dev_write_reg3(unsigned int, unsigned int, unsigned int, unsigned int);
 
 int dev_set_threshold_and_arm(int param_1, unsigned int param_2)
 {

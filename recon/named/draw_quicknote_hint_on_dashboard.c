@@ -19,7 +19,7 @@
  */
 /* Reconstructed FUN_00036d38 @ 0x36d38  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern unsigned get_ui_mode_flag_byte1(void);
+extern int get_ui_mode_flag_byte1(void);
 extern int get_device_info(void);
 extern int device_info_text_width_get(void);
 extern int device_info_text_height_get_clamped(void);

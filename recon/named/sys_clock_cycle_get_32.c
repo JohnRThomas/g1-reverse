@@ -7,7 +7,7 @@
  */
 /* Reconstructed FUN_00084c76 @ 0x84c76  (parity: 300/300 trials, PROVEN) */
 
-extern void rtc_read_extended_cycle_count(void);
+extern unsigned long long rtc_read_extended_cycle_count(void);
 void sys_clock_cycle_get_32(void)
 {
     rtc_read_extended_cycle_count();

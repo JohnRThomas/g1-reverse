@@ -14,7 +14,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed update_imu_trigger_status @ 0x2bcbc  (parity: 300/300 trials, PROVEN) */
 
-extern void k_sem_give(unsigned int);
+extern void k_sem_give(int);
 
 unsigned int update_imu_trigger_status(unsigned int param_1, int param_2, int param_3)
 {

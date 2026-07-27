@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_00053184 @ 0x53184  (parity: 300/300 trials, PROVEN) */
 
-extern int bt_settings_delete(unsigned int format, unsigned char *data, int mode);
+extern unsigned int bt_settings_delete(unsigned int, unsigned char*, int);
 
 int bt_settings_save_or_delete_key(unsigned char *param_1, int param_2)
 {

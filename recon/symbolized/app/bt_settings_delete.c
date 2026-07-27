@@ -22,13 +22,10 @@
 extern void u8_to_dec(char *buffer, size_t buffer_size, uint8_t value);
 extern void bt_settings_encode_key(char *path, size_t path_size, const char *subsystem,
                          const void *address, const char *key);
-extern int snprintk(char *buffer, size_t buffer_size,
-                        const char *format, ...);
+extern int snprintk(char*, unsigned long, const char*, ...);
 extern int settings_delete(const char *name);
 
-int bt_settings_delete(const char *subsystem, uint8_t identity,
-                 const void *address)
-{
+unsigned int bt_settings_delete(unsigned int subsystem, unsigned char*identity, int address) {
     char identity_string[4];
     char settings_path[36];
 

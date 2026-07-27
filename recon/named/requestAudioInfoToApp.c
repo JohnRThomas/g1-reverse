@@ -16,7 +16,7 @@
 /* Reconstructed requestAudioInfoToApp @ 0x48840  (parity: 300/300 trials, PROVEN) */
 
 extern void debug_print(unsigned long, ...);
-extern int k_msgq_put(void*, void*, int, int);
+extern int k_msgq_put(unsigned int, void*, int, int);
 extern void memset_bytes(void*, int, int);
 extern void log_message(unsigned long, ...);
 

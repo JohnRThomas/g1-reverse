@@ -35,10 +35,10 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 typedef unsigned long long u64;
 
-extern u32 get_device_info(void);
+extern int get_device_info(void);
 extern u32 check_ancs_inbox_flag_change(void);
 extern void onboarding_retry_watchdog_update(void);
-extern u64 k_uptime_get_8(void);
+extern unsigned long long k_uptime_get_8(void);
 extern void thunk_FUN_00043308(void);
 extern void update_persist_task_status(u32,u32,u32);
 

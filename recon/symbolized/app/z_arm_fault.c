@@ -38,9 +38,9 @@ extern void arm_fault_dump_esf_registers(int, void *);
 extern int arm_mem_manage_fault_helper(int, uint8_t *);
 extern int arm_bus_fault_helper(int, uint8_t *);
 extern int arm_usage_fault_helper(void);
-extern void assert_post_action(uint32_t, uint32_t);
+extern int assert_post_action(int, int);
 extern void arm_fault_forward_handler(uint32_t, uint32_t, void *);
-extern void memcpy(void *, const void *, uint32_t);
+extern void memcpy(int, int, int);
 
 struct log2 { uint32_t count, message; };
 

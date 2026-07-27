@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_00085da2 @ 0x85da2  (parity: 300/300 trials, PROVEN) */
 
-extern int cbor_decode_precheck(unsigned long);
+extern int cbor_decode_precheck(unsigned int*);
 extern void zcbor_backup_store_count(int *a, int b, int c, unsigned char d, int e);
 int cbor_decode_check_major_type(int **param_1, unsigned int param_2, int param_3, int param_4)
 {

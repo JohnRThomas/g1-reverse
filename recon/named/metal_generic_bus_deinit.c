@@ -11,7 +11,7 @@
 /* Reconstructed FUN_00068280 @ 0x68280  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void metal_generic_bus_unregister(void);
+extern unsigned int metal_generic_bus_unregister(void);
 extern void memset_bytes(void *dst, int val, int len);
 
 void metal_generic_bus_deinit(void)

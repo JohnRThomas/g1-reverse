@@ -21,8 +21,8 @@
 /* Reconstructed global_ipc_service_send @ 0x25b78  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../headers/g1_log.h"
-extern void *get_device_info(void);
-extern int sys_reboot(int);
+extern int get_device_info(void);
+extern unsigned long sys_reboot(long);
 extern int ipc_service_send(uint32_t, uint32_t, uint32_t);
 extern void k_sleep(int, int);
 

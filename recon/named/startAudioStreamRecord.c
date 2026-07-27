@@ -21,10 +21,10 @@
 #include "../headers/g1_log.h"
 /* Reconstructed startAudioStreamRecord @ 0x2f764  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int get_device_info(void);
+extern int get_device_info(void);
 extern void display_DelayClose(unsigned int ms);
-extern int k_msgq_put(int a, void *b, int c, int d);
-extern void k_sem_give(void *a);
+extern int k_msgq_put(unsigned int, void*, int, int);
+extern void k_sem_give(int);
 extern void memset_bytes(void *dst, int val, int n);
 extern void sync_to_slave(unsigned int a, unsigned int b, void *c, unsigned int d);
 

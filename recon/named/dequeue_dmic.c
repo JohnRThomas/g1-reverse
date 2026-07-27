@@ -16,10 +16,8 @@
 #include "../headers/g1_log.h"
 /* Reconstructed dequeue_dmic @ 0x2ed00  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_get(unsigned int queue, void *record,
-                       unsigned int wait, unsigned int flags);
-extern void memcpy(void *destination, const void *source,
-                        unsigned int length);
+extern int k_msgq_get(int, unsigned int, int, int);
+extern void memcpy(int, int, int);
 
 int dequeue_dmic(void *param_1)
 {

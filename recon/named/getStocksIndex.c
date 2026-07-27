@@ -15,8 +15,7 @@
 /* Reconstructed getStocksIndex @ 0x370bc  (parity: 300/300 trials, PROVEN) */
 
 
-unsigned char getStocksIndex(void)
-{
+unsigned long getStocksIndex(void) {
     volatile unsigned char *base = (volatile unsigned char*)0x20004950UL;
     int iVar2 = *(volatile int*)0x2000230cUL;
     unsigned char b = *(volatile unsigned char*)0x2001b815UL;

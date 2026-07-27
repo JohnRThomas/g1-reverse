@@ -34,7 +34,7 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 extern int  strlen(int);
-extern int  cjson_delete(int);
+extern void cjson_delete(volatile int*);
 extern int  cjson_create_array(void);
 extern int  cjson_create_object(void);
 extern void free(int);

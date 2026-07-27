@@ -19,11 +19,11 @@
 typedef uint32_t u32; typedef uint8_t u8; typedef uint16_t u16;
 typedef void (*fp)(int);
 extern void ble_conn_unref(void);
-extern int bt_conn_lookup_addr_le(int,void*);
+extern int bt_conn_lookup_addr_le(int, int);
 extern void sc_clear(int);
-extern int bt_addr_le_is_bonded(int,int);
+extern int bt_addr_le_is_bonded(unsigned char, const void*);
 extern int bt_conn_is_peer_addr_le(int,int,void*);
-extern void bt_addr_le_copy_828da(void*,u32);
+extern void bt_addr_le_copy_828da(unsigned long*, unsigned long*);
 u32 gatt_remove_peer_from_attr(int param_1, u32 param_2, int param_3){
     if( (*(int*)(param_1+8) == 0x0005a465)
         && (({u8* puVar2 = *(u8**)(param_1+0xc); *(short*)(puVar2+10) != 0;})) ){

@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_00084c7e @ 0x84c7e  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int dev_write_reg3(unsigned int, unsigned int, unsigned int, unsigned int);
+extern int dev_write_reg3(unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned int wdt_feed(void *param_1, int param_2)
 {

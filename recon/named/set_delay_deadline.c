@@ -12,8 +12,7 @@
 #include <stdint.h>
 extern unsigned long long k_uptime_get_1(void);
 
-void set_delay_deadline(unsigned int param_1)
-{
+void set_delay_deadline(unsigned long param_1) {
     uint64_t lVar1 = k_uptime_get_1();
     *(volatile uint64_t *)0x200040c8UL = lVar1 + (uint64_t)param_1;
 }

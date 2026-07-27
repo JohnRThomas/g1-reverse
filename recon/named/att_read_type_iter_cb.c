@@ -17,7 +17,7 @@
 #include <stdbool.h>
 
 extern int bt_uuid_cmp(uint32_t, uint32_t, void *, uint32_t);
-extern int bt_gatt_check_perm(uint32_t, void *, uint32_t);
+extern int bt_gatt_check_perm(int, int, int);
 extern uint32_t net_buf_frag_last(uint32_t);
 extern void *net_buf_simple_add(uint32_t, uint32_t);
 extern int32_t att_chan_read(void *, void *, uint32_t, uint32_t, uintptr_t, void *);

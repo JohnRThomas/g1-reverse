@@ -15,8 +15,8 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_0004df88 @ 0x4df88  (parity: 300/300 trials, PROVEN) */
 
-extern int z_device_is_ready(unsigned int);
-extern void assert_post_action(unsigned int,unsigned int);
+extern int z_device_is_ready(int);
+extern int assert_post_action(int, int);
 void log_backend_uart_check_ready(void)
 {
   int iVar1;

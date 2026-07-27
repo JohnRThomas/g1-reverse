@@ -16,8 +16,8 @@
 #include <stdint.h>
 extern uintptr_t bt_att_req_alloc(uint32_t timeout, uint32_t unused);
 extern void bt_att_req_free(uintptr_t req);
-extern uintptr_t bt_att_create_pdu(uintptr_t conn, uint32_t op, uint32_t len);
-extern void bt_att_set_tx_meta_data(uintptr_t buf, uintptr_t cb, uintptr_t user, uint32_t option);
+extern int bt_att_create_pdu(int, int, int);
+extern void bt_att_set_tx_meta_data(int, int, int, int);
 extern unsigned bt_att_req_send(int, unsigned*);
 typedef int (*encode_t)(uintptr_t buf, uint32_t len, uintptr_t params);
 int gatt_req_send(uintptr_t conn, uintptr_t callback, uintptr_t params,

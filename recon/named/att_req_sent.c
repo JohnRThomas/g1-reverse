@@ -13,7 +13,7 @@
 
 extern void att_optional_sent_cb_dispatch(unsigned long, unsigned long);
 extern void k_work_reschedule(unsigned int, unsigned int, unsigned int, unsigned int);
-extern void att_chan_req_free(int*);
+extern int att_chan_req_free(int);
 void att_req_sent(int param_1,int *param_2,int param_3)
 {
     int *piVar1 = param_2;

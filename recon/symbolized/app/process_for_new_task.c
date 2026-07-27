@@ -156,7 +156,7 @@ extern int is_task_transport_blocked(void);               /* FUN_00026c28 */
 extern int trigger_screen_state_change(u32, char *, int); /* FUN_0002bc2c */
 extern long long now_has_persist_task(char *, int);       /* FUN_0002be64 */
 extern int update_temp_task_status(char *, int, ...);     /* FUN_0002bffc */
-extern int update_persist_task_status_to_idle(char *);    /* FUN_0002c0e8 */
+extern int update_persist_task_status_to_idle(int);    /* FUN_0002c0e8 */
 extern int update_persist_task_status_to_wait_blow_head(void); /* FUN_0002c180 */
 extern int reset_task_transition_state(void);             /* FUN_0002c1fc */
 extern int publish_task_transition(void);                 /* FUN_0002c214 */
@@ -180,7 +180,7 @@ extern int finish_task_audio(void);                       /* FUN_0003cf34 */
 extern int submit_task_work(int work_item_address);       /* FUN_00072880 */
 extern int peer_address_is_uninitialized(u32, u32);       /* FUN_0007c132 */
 extern int set_task_wake_state(int);                      /* FUN_0007ce60 */
-extern int memset_bytes(void *, int, u32);                /* FUN_00086c78 */
+extern void memset_bytes(void*, int, int);                /* FUN_00086c78 */
 extern int send_event(int);
 extern int sync_to_slave(char *, int, int);               /* FUN_00026f74 */
 extern int FUN_0007ce5c(u32, u32);                        /* exact wait entry */

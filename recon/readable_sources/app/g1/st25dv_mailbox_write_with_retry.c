@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_00024fe8 @ 0x24fe8  (parity: 300/300 trials, PROVEN) */
 
-extern int pt_write_frame_type3(unsigned short, unsigned int);
+extern int pt_write_frame_type3(unsigned int, unsigned int);
 extern unsigned int st25dv_mailbox_send_message(void);
 
 unsigned int st25dv_mailbox_write_with_retry(unsigned int param_1, unsigned int param_2)

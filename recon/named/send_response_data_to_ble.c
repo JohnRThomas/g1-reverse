@@ -14,7 +14,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_00047ba8 @ 0x47ba8  (parity: 300/300 trials, PROVEN) */
 
-extern char* get_device_info(void);
+extern int get_device_info(void);
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
 

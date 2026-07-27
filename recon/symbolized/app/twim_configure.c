@@ -27,7 +27,7 @@ struct nrfx_twim_config_raw {
     uint8_t skip_psel_cfg;
 };
 
-extern void arch_irq_enable(uint32_t instance_index);
+extern int arch_irq_enable(int);
 
 void twim_configure(const struct nrfx_twim_instance_raw *instance,
                     const struct nrfx_twim_config_raw *config)

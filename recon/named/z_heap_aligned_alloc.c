@@ -20,7 +20,7 @@
 
 extern void *k_heap_alloc(void *heap, size_t alignment, size_t size,
                           uint64_t timeout);
-extern void assert_post_action(uint32_t, uint32_t);
+extern int assert_post_action(int, int);
 
 #define k_heap_aligned_alloc k_heap_alloc
 void *z_heap_aligned_alloc(void *heap, size_t alignment, size_t size)

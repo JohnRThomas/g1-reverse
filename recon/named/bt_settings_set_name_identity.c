@@ -18,8 +18,8 @@
  */
 /* Reconstructed FUN_00052d58 @ 0x52d58  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int z_log_msg_runtime_create(int,...);
-extern int settings_name_next(int,...);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
+extern int settings_name_next(int, int);
 extern int strncmp(int,...);
 typedef int (*codeptr)(int, uintptr_t, unsigned int);
 struct unaligned_u32 { unsigned int value; } __attribute__((packed));

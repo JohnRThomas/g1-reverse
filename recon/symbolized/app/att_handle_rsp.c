@@ -16,10 +16,10 @@
 /* Reconstructed FUN_00059730 @ 0x59730  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int bt_att_req_free(void *);
+extern void bt_att_req_free(int);
 extern int k_work_cancel_delayable(void *, unsigned, unsigned, unsigned);
 extern int att_log_emit_3arg(int,...);
-extern int att_req_send_process(int,...);
+extern void att_req_send_process(void*);
 typedef void (*codep)(unsigned,...);
 unsigned att_handle_rsp(unsigned *param_1, unsigned param_2, unsigned param_3, unsigned param_4){
   volatile unsigned local[2];

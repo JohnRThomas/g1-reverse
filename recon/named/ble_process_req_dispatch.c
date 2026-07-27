@@ -50,22 +50,22 @@
 #include "../headers/g1_log.h"
 
 extern int  get_device_type(void);
-extern uintptr_t get_device_info(void);
+extern int get_device_info(void);
 extern unsigned int get_ancs_conn_handle(void);
-extern void audio_fw_load_get_wrapper(void *, void *, uint32_t);
+extern unsigned long audio_fw_load_get_wrapper(int, unsigned char*, unsigned long);
 extern void send_dmic_msg(void *);
 extern void build_status_notify_packet(void *, void *);
-extern void mark_master_or_low_battery_flag(void);
+extern unsigned int mark_master_or_low_battery_flag(void);
 extern void post_notification_cmd_process(void *, void *, void *);
-extern void bt_conn_disconnect_by_state(int, uint32_t);
+extern int bt_conn_disconnect_by_state(unsigned short*, unsigned char);
 extern void z_impl_k_timer_start(uint32_t, uint32_t, uint32_t, uint32_t,
                          uint32_t, uint32_t);
-extern void device_info_set_bytes_cc_ce(uint32_t, uint32_t);
-extern void device_info_store_chunk(uintptr_t, uint32_t, uint32_t, uint32_t);
-extern void ble_flush_queued_indications(void *);
-extern void memcpy(void *, const void *, uint32_t);
+extern void device_info_set_bytes_cc_ce(unsigned char, unsigned char);
+extern unsigned int device_info_store_chunk(unsigned int, unsigned int, unsigned char, int);
+extern unsigned int ble_flush_queued_indications(int);
+extern void memcpy(int, int, int);
 extern void safe_memcpy_checked(void *, const void *, uint32_t, uint32_t);
-extern void memset_bytes(void *, int, uint32_t);
+extern void memset_bytes(void*, int, int);
 extern void strcpy(char *, const char *);
 extern void ble_process_get_req(uint8_t *context, uint8_t *packet,
                                 uint8_t *request_state);

@@ -25,8 +25,8 @@
 #include "../../../headers/g1_log.h"
 extern void submit_display_reflash_work(void);
 extern int k_msgq_put(unsigned,void*,int,int);
-extern void memcpy(void*,int,unsigned);
-extern void memset_bytes(void*,int,unsigned);
+extern void memcpy(int, int, int);
+extern void memset_bytes(void*, int, int);
 extern long long thunk_FUN_00074f68(void);
 
 unsigned display_reflash(int param_1, unsigned param_2){

@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_0007c34a @ 0x7c34a  (parity: 300/300 trials, PROVEN) */
 
-extern void build_and_send_device_status_report(unsigned long);
+extern int build_and_send_device_status_report(const unsigned char*);
 extern void save_usr_setting(unsigned int, unsigned int);
 
 unsigned int rproc_virtio_negotiate_features(unsigned int param_1, unsigned int param_2)

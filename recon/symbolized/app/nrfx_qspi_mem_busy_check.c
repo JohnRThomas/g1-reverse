@@ -22,8 +22,7 @@ extern uint32_t g1_recon_nrfx_qspi_cinstr_xfer(
     const struct g1_qspi_cinstr_config *, const void *, void *, uint32_t);
 
 #define g1_recon_nrfx_qspi_mem_busy_check nrfx_qspi_mem_busy_check
-uint32_t g1_recon_nrfx_qspi_mem_busy_check(void)
-{
+int g1_recon_nrfx_qspi_mem_busy_check(void) {
     uint8_t status = 0;
     const struct g1_qspi_cinstr_config config = {
         .command = 0x01000205u,

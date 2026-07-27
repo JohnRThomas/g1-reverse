@@ -13,7 +13,7 @@
 /* Reconstructed FUN_0004e434 @ 0x4e434  (parity: 300/300 trials, PROVEN) */
 
 extern int k_mutex_lock(void *, long long);
-extern void k_mutex_unlock(void *);
+extern int k_mutex_unlock(unsigned int);
 typedef int (*settings_load_direct_cb)(const char *, unsigned int,
                                       void *, void *, void *);
 struct settings_load_arg_recon {

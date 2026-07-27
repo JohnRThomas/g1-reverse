@@ -14,7 +14,7 @@
  * Raw identity/back-map: FUN_00064fa8.  Parity: 300/300 trials, PROVEN.
  */
 
-extern unsigned long long assert_post_action(unsigned int,unsigned int);
+extern int assert_post_action(int, int);
 void nrfx_gppi_event_endpoint_clear(
     unsigned int channel, int event_endpoint,
     unsigned int param_3, unsigned int param_4)

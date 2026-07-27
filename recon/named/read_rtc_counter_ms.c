@@ -9,8 +9,7 @@
 
 extern void attr_store_get(unsigned int, int*);
 
-void read_rtc_counter_ms(int *param_1)
-{
+void read_rtc_counter_ms(void*param_1) {
     attr_store_get(0x1c04, param_1);
     *(volatile int*)param_1 = *(volatile int*)param_1 >> 10;
 }

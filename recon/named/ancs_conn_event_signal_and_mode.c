@@ -12,7 +12,7 @@
 /* Reconstructed FUN_00018300 @ 0x18300  (parity: 300/300 trials, PROVEN) */
 
 extern void k_sem_give(int);
-extern void change_work_mode_to(int);
+extern unsigned int change_work_mode_to(unsigned int);
 void ancs_conn_event_signal_and_mode(int param_1, unsigned int param_2)
 {
     log_message(((unsigned long)"Updated MTU: TX: %d RX: %d bytes\n"));

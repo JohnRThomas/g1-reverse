@@ -14,7 +14,7 @@
 /* Reconstructed FUN_000556b0 @ 0x556b0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int adv_is_directed(unsigned long);
-extern int ble_conn_set_state(int,unsigned int);
+extern void ble_conn_set_state(int, int);
 extern int ble_conn_le_alloc(unsigned int,unsigned int);
 extern int bt_conn_lookup_and_log_valid(unsigned int,void*);
 unsigned int ble_conn_addr_resolve_or_create(unsigned char* param_1,int* param_2){

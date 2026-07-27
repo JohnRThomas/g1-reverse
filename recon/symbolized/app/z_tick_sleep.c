@@ -39,13 +39,13 @@
 
 extern void mutex_unlock_syscall_handler(void);
 extern int32_t get_uptime_ms(uint32_t, int32_t, ...);
-extern int z_spin_lock_valid(uintptr_t);
-extern void z_spin_lock_set_owner(uintptr_t);
+extern int z_spin_lock_valid(unsigned int*);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern int z_spin_unlock_valid(uintptr_t);
 extern void unready_thread(void *thread);
 extern void z_add_timeout(void *, uintptr_t, uint32_t, int32_t);
 extern void arch_swap(uint32_t);
-extern void assert_post_action(uintptr_t, uintptr_t);
+extern int assert_post_action(int, int);
 
 int32_t z_tick_sleep(uint32_t lo, int32_t hi)
 {

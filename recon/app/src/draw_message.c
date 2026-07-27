@@ -9,8 +9,7 @@ extern void buffered_debug_log(uintptr_t format, ...) __asm__("FUN_00019c70");
 extern uint8_t current_notification_slot(void) __asm__("FUN_00034390");
 extern int notification_icon_type_from_package(uint32_t slot);
 extern void format_message_relative_time(unsigned int, int);
-extern void gui_bmp_bitmap_draw(uint32_t bitmap, uint32_t x, uint32_t y,
-                                uint32_t, uint32_t, uint32_t);
+extern int gui_bmp_bitmap_draw(unsigned int, int, int, int, int, int);
 extern void gui_utf_draw(uint32_t, const char *, uint32_t, uint32_t, uint32_t,
                          uint32_t, uint32_t, uint32_t, uint32_t, uint32_t,
                          uint32_t, uint32_t);

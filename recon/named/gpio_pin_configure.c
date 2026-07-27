@@ -21,7 +21,7 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 
-extern void assert_post_action(const void *, unsigned);
+extern int assert_post_action(int, int);
 
 typedef void (*pin_config_t)(uintptr_t, unsigned, uint32_t, uint32_t);
 

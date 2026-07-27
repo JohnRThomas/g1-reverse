@@ -17,8 +17,8 @@
 #include "../headers/g1_log.h"
 /* Reconstructed enqueue_uid @ 0x18e48  (parity: 300/300 trials, PROVEN) */
 
-extern void k_msgq_get(unsigned a, void*b, int c, int d);
-extern int  k_msgq_put(unsigned a, void*b, int c, int d);
+extern int k_msgq_get(int, unsigned int, int, int);
+extern int k_msgq_put(unsigned int, void*, int, int);
 int enqueue_uid(unsigned *param_1, unsigned param_2, unsigned param_3){
     unsigned local[3];
     local[0]=0; local[1]=0; local[2]=param_3;

@@ -15,7 +15,7 @@
 
 extern int bt_addr_le_eq_0(void *a, unsigned int b);
 extern void set_change_aware_no_store(void *a, unsigned int b);
-extern void bt_gatt_store_cf(unsigned int a, void *b);
+extern void bt_gatt_store_cf(unsigned int, unsigned int);
 
 void gatt_cf_store_all(void)
 {

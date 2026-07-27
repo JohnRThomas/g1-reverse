@@ -16,7 +16,7 @@
 
 extern int gatt_ccc_bt_settings_store(unsigned,unsigned,void*,int);
 extern int log_msg_create_3arg(unsigned,unsigned,void*);
-extern int bt_gatt_foreach_attr_0(int,unsigned,unsigned,void*);
+extern void bt_gatt_foreach_attr_0(unsigned short, unsigned short, void*, void*);
 int bt_gatt_store_ccc(unsigned param_1, unsigned param_2){
   unsigned char* puVar1; int iVar2;
   struct request_frame {

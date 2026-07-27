@@ -11,7 +11,7 @@
 /* Reconstructed handle_touch_single_click @ 0x3707c  (parity: 300/300 trials, PROVEN) */
 typedef unsigned char u8;
 
-extern void set_dashboard_startup_default_language(unsigned int action);
+extern void set_dashboard_startup_default_language(unsigned char);
 
 int handle_touch_single_click(unsigned int param_1)
 {

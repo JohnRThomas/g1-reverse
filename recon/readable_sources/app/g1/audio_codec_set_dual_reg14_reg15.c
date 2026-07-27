@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_0007fa22 @ 0x7fa22  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int audio_codec_reg_op_dispatch(unsigned param_1, int, void*, int);
+extern int audio_codec_reg_op_dispatch(unsigned int, unsigned int, void*, unsigned int);
 extern int audio_codec_bus_write(unsigned param_1, int, void*, int);
 void audio_codec_set_dual_reg14_reg15(unsigned param_1, unsigned param_2, unsigned param_3){
     unsigned local_18 = param_1;

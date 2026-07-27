@@ -17,7 +17,7 @@
 /* Full hard-float reconstruction FUN_00075acc @ 0x75acc, exact extent 334 bytes. */
 #include <stdint.h>
 extern double __ieee754_pow(void);
-extern int double_is_unordered(uint32_t,uint32_t,uint32_t,uint32_t);
+extern int double_is_unordered(int, unsigned int, int, unsigned int);
 extern int __aeabi_dcmpeq(uint32_t,uint32_t,uint32_t,uint32_t);
 extern int __aeabi_dcmplt(uint32_t,uint32_t,uint32_t,uint32_t);
 extern uint64_t __divdf3(uint32_t,uint32_t);

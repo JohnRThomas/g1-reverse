@@ -17,7 +17,7 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 extern int malloc(int,...);
-extern int memset_bytes(int,...);
+extern void memset_bytes(void*, int, int);
 void pixelto4bithex(int param_1,int param_2,unsigned param_3,unsigned param_4){
   volatile int *piVar1 = (volatile int*)0x20009fccUL;
   if(*piVar1==0){

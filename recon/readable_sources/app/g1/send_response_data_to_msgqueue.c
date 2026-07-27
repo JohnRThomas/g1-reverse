@@ -19,9 +19,9 @@
  */
 /* Reconstructed send_response_data_to_msgqueue @ 0x47b1c  (parity: 300/300 trials, PROVEN) */
 
-extern void *get_device_info(void);
+extern int get_device_info(void);
 extern void memset_bytes(void*, int, int);
-extern void memcpy(void*, void*, unsigned int);
+extern void memcpy(int, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
 
 unsigned int send_response_data_to_msgqueue(void *param_1, unsigned int param_2)

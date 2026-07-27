@@ -32,11 +32,11 @@
  *   poll_spinlock                            @ 0x2000b4a0
  */
 /* Reconstructed FUN_000755f8 @ 0x755f8  (parity: 300/300 trials, PROVEN) */
-extern void assert_post_action(int,int);
+extern int assert_post_action(int, int);
 extern int  register_events(int,int,int,int,int,int,int);
 extern void clear_event_registrations(int,int,int);
-extern int  z_spin_lock_valid(int);
-extern void z_spin_lock_set_owner(int);
+extern int z_spin_lock_valid(unsigned int*);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern int  z_spin_unlock_valid(int);
 extern int  z_pend_curr(int,int,int,int,int,int);
 #define VI(a) (*(volatile int*)(a))

@@ -19,7 +19,7 @@
 #define S98 (*(volatile uint32_t*)0xe000ed98UL)
 #define S9c (*(volatile uint32_t*)0xe000ed9cUL)
 #define Sa0 (*(volatile uint32_t*)0xe000eda0UL)
-extern void z_log_msg_runtime_create(uint32_t, uint32_t, const void *, uint32_t);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern int region_init(unsigned, int);
 extern int mpu_region_alloc_fail_log(unsigned);
 extern unsigned arm_cmse_mpu_region_get(unsigned);

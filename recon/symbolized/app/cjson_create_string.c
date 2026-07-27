@@ -14,7 +14,7 @@
 
 extern int alloc_zeroed_node(unsigned int a);
 extern int cjson_strdup(int);
-extern void cjson_delete(unsigned int a);
+extern void cjson_delete(volatile int*);
 
 int cjson_create_string(unsigned int param_1)
 {

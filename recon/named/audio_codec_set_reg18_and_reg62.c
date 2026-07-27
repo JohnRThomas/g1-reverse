@@ -7,7 +7,7 @@
  *   audio_codec_set_reg18_and_reg62          <= FUN_0007fb7a @ 0x0007fb7a
  */
 /* Reconstructed FUN_0007fb7a @ 0x7fb7a  (parity: 300/300 trials, PROVEN) */
-extern int audio_codec_reg_op_dispatch(unsigned,int,void*,int);
+extern int audio_codec_reg_op_dispatch(unsigned int, unsigned int, void*, unsigned int);
 extern int audio_codec_bus_write(unsigned,int,void*,int);
 int audio_codec_set_reg18_and_reg62(unsigned param_1, unsigned param_2){
     unsigned local_18 = param_1;

@@ -7,7 +7,7 @@
  */
 /* Reconstructed FUN_00083cb4 @ 0x83cb4  (parity: 300/300 trials, PROVEN) */
 
-extern int z_device_is_ready(unsigned int);
+extern int z_device_is_ready(int);
 
 unsigned int flash_area_has_driver(void *param_1)
 {

@@ -90,8 +90,8 @@
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
 extern uint64_t unsigned_divide_64(uint64_t dividend, uint64_t divisor);
-extern uintptr_t get_device_info(void);
-extern unsigned int gui_set_active_canvas(void *canvas);
+extern int get_device_info(void);
+extern unsigned int gui_set_active_canvas(unsigned int);
 extern void display_reflash_handler(void *display, unsigned int panel,
                                     void *frame_state, unsigned int action);
 extern void display_timer_stop(void);
@@ -101,7 +101,7 @@ extern int k_msgq_get(void *queue, void *message, uint64_t timeout);
 extern uint32_t k_sleep_ticks(uint64_t timeout);
 extern void display_power_set(unsigned int enabled);
 extern void k_timer_init(void *timer, uintptr_t expiry, uintptr_t stop);
-extern void memset_bytes(void *destination, int value, unsigned int length);
+extern void memset_bytes(void*, int, int);
 
 #define g_log_level              (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/)
 #define g_log_use_alt_sink       (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)

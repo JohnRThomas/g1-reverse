@@ -13,7 +13,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_0005f304 @ 0x5f304  (parity: 300/300 trials, PROVEN) */
 
-extern int assert_post_action(unsigned int a,unsigned int b);
+extern int assert_post_action(int, int);
 
 int net_buf_frag_last(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

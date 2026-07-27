@@ -26,7 +26,7 @@ extern int uarte_nrfx_irq_rx_ready(void);
 extern void init_dashboard_startup_mode_info_defaults(void);
 extern int get_device_info(void);
 extern int getQuickNoteDataFromFlash(int,int,int,int,int);
-extern void record_dashboard_startup_snapshot(int,int);
+extern void record_dashboard_startup_snapshot(unsigned int, unsigned int);
 #define VB(a) (*(volatile unsigned char*)(a))
 #define VI(a) (*(volatile int*)(a))
 

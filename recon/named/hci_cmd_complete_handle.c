@@ -23,10 +23,10 @@
 extern int net_buf_pool_get(unsigned);
 extern int net_buf_id(int);
 extern void net_buf_unref(void);
-extern void k_sem_give(unsigned);
+extern void k_sem_give(int);
 extern void atomic_or(int);
 extern void bt_log_forward_3arg(unsigned,unsigned,void*);
-extern void atomic_and_3(int,int);
+extern long atomic_and_3(volatile long*, long);
 
 void hci_cmd_complete_handle(unsigned param_1, int param_2, int param_3, unsigned param_4){
   int iVar3 = net_buf_pool_get(*(unsigned char*)(param_3 + 10));

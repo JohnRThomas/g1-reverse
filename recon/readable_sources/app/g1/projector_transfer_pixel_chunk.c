@@ -30,8 +30,7 @@ extern struct spi_state_476b4 *get_projector_controller(void);
 extern void projector_bus_lock(unsigned int, unsigned int);
 extern void projector_bus_unlock(void);
 
-void projector_transfer_pixel_chunk(uint32_t x, uint32_t y, uint32_t value, uint32_t length)
-{
+void projector_transfer_pixel_chunk(unsigned short x, unsigned short y, unsigned long value, long length) {
     uint32_t received = 0;
     struct spi_state_476b4 *state = get_projector_controller();
     volatile uint8_t *packet = state->cursor - 5;

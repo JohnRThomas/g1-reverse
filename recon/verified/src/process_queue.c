@@ -1,8 +1,7 @@
 /* process_queue @ 0x00082114; raw FUN_00082114.
  * NCS 2.5.1 Bluetooth ATT queue helper, CONFIG_BT_EATT=n. */
 #include <stdint.h>
-extern void *net_buf_get(void *queue, void *context,
-                         uint32_t timeout_low, uint32_t timeout_high); /*=0x000836e8*/
+extern void* net_buf_get(void*, unsigned long, unsigned long, unsigned long); /*=0x000836e8*/
 extern int bt_att_chan_send(void *channel, void *buffer); /*=0x00058a54*/
 extern void k_queue_prepend(void *queue, void *buffer); /*=0x00086518*/
 int process_queue(void *channel, void *queue)

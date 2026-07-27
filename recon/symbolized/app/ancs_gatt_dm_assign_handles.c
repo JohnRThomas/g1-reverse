@@ -23,7 +23,7 @@ extern int bt_gatt_dm_attr_service_val(void);
 extern int bt_gatt_dm_conn_get(int a0);
 extern int bt_gatt_dm_service_get(void);
 extern int bt_gatt_dm_desc_by_uuid(int a0, int a1, void *a2);
-extern int bt_uuid_cmp(int a0, void *a1);
+extern int bt_uuid_cmp(int, int);
 
 static __attribute__((always_inline)) inline
 void copy17(unsigned char *destination, uintptr_t source)

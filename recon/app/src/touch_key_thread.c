@@ -6,7 +6,7 @@
 #include <stdint.h>
 
 extern void log_message(unsigned long, ...);                 /* FUN_0007dda4 */
-extern uintptr_t get_device_info(void);                        /* FUN_000167a8 */
+extern int get_device_info(void);                        /* FUN_000167a8 */
 extern void debug_print(unsigned long, ...);                  /* FUN_00019c70 */
 extern void trigger_touch_key_hw_reset(void);                  /* FUN_0002a0c0 */
 extern void handle_touch_key_irq(void);                        /* FUN_00030af0 */

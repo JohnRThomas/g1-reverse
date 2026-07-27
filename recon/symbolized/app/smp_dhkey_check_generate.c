@@ -18,14 +18,14 @@
  */
 /* Reconstructed FUN_0005d0ac @ 0x5d0ac  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void bt_smp_send_pdu(int, int, int);
+extern void bt_smp_send_pdu(int, unsigned int, unsigned int);
 extern int bt_crypto_f5(int, int, int, int);
 extern int net_buf_simple_add(int, int);
 extern int smp_log_message(int, int, int);
 extern void atomic_set_bit(int, int);
 extern int smp_create_pdu(int, int);
 extern int bt_crypto_f6(int, int, int, int);
-extern int memcmp(int, int, int);
+extern int memcmp(const void*, const void*, unsigned long);
 extern void memset_bytes(void*, int, int);
 
 int smp_dhkey_check_generate(int param_1)

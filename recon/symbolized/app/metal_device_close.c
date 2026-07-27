@@ -14,7 +14,7 @@
  */
 /* Reconstructed FUN_000681cc @ 0x681cc  (parity: 300/300 trials, PROVEN) */
 
-extern void assert_post_action(int,int);
+extern int assert_post_action(int, int);
 typedef void (*fn2_t)(int,int);
 void metal_device_close(int param_1)
 {

@@ -12,7 +12,7 @@
 
 extern int smp_create_pdu(int, int, unsigned int, unsigned int, unsigned int);
 extern void *net_buf_simple_add(int, int);
-extern void bt_smp_send_pdu(int, int, int);
+extern void bt_smp_send_pdu(int, unsigned int, unsigned int);
 
 unsigned int send_pairing_rsp(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

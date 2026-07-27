@@ -20,10 +20,10 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 
-extern uint8_t *get_device_info(void);
-extern void drain_audio_msgq(void);
-extern void startAudioStreamRecord(void);
-extern void k_sem_give(void *event);
+extern int get_device_info(void);
+extern unsigned int drain_audio_msgq(void);
+extern unsigned int startAudioStreamRecord(void);
+extern void k_sem_give(int);
 
 void dmic_record_start(void)
 {

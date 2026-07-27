@@ -23,8 +23,8 @@ typedef unsigned char u8;
 typedef unsigned int u32;
 extern int k_is_in_isr(void);
 extern void app_msleep_thunk_a(int);
-extern int sys_reboot(int);
-extern void process_sync_buffer(unsigned int);
+extern unsigned long sys_reboot(long);
+extern unsigned long process_sync_buffer(unsigned int, ...);
 
 void switch_to_dfu_mode(unsigned int param_1)
 {

@@ -12,8 +12,8 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_000235a4 @ 0x235a4  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_get(unsigned int, void*, int, int);
-extern void memcpy(unsigned int, void*, int);
+extern int k_msgq_get(int, unsigned int, int, int);
+extern void memcpy(int, int, int);
 
 int dequeue_file(unsigned int param_1)
 {

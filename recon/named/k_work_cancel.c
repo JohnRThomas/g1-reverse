@@ -25,10 +25,10 @@
 
 #include <stdint.h>
 #include "../headers/g1_log.h"
-extern int z_spin_lock_valid(uint32_t);
+extern int z_spin_lock_valid(unsigned int*);
 extern int z_spin_unlock_valid(uint32_t);
-extern void z_spin_lock_set_owner(uint32_t);
-extern void assert_post_action(uint32_t,uint32_t);
+extern int z_spin_lock_set_owner(unsigned int*);
+extern int assert_post_action(int, int);
 extern uint32_t cancel_async_locked(int);
 
 uint32_t k_work_cancel(int param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4){

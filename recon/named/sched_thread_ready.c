@@ -22,12 +22,12 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_00073a78 @ 0x73a78  (parity: 300/300 trials, PROVEN) */
 
-extern int z_spin_lock_valid(int);
+extern int z_spin_lock_valid(unsigned int*);
 extern int z_spin_unlock_valid(int);
-extern void z_spin_lock_set_owner(int);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern void sched_ready_queue_insert(int);
-extern void z_reschedule(int,int);
-extern void assert_post_action(int,int);
+extern int z_reschedule(unsigned int*, int);
+extern int assert_post_action(int, int);
 void sched_thread_ready(int param_1,int param_2,int param_3,int param_4){
   int r=z_spin_lock_valid(0x2000b490);
   if(r==0){ printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"),((unsigned long)"z_spin_lock_valid(l)"),0xf08c7,0x72,param_4); printk(((unsigned long)"\tInvalid spinlock %p\n"),0x2000b490); assert_post_action(0xf08c7,0x72); }

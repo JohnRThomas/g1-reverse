@@ -16,7 +16,7 @@
 /* Reconstructed FUN_0005f24c @ 0x5f24c  (parity: 60/60 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern void assert_post_action(unsigned int,...);
+extern int assert_post_action(int, int);
 extern void k_queue_prepend(int,int);
 typedef void (*release_fn_t)(int object);
 

@@ -29,7 +29,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 extern int get_device_info(int,...);
-extern int gui_set_active_canvas(int,...);
+extern unsigned int gui_set_active_canvas(unsigned int);
 extern int gui_screen_clear(int,...);
 extern int gui_canvas_flags_set_bit1(int,...);
 extern int gui_canvas_flags_clear_bit1(int,...);

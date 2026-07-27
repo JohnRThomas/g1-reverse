@@ -16,7 +16,7 @@
  */
 /* Reconstructed FUN_00065e10 @ 0x65e10  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int assert_post_action(unsigned int a, unsigned int b);
+extern int assert_post_action(int, int);
 
 void nrf_gpiote_int_enable(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

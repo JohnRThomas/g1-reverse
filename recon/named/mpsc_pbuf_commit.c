@@ -24,9 +24,9 @@
 #include "../headers/g1_log.h"
 typedef uint32_t u32; typedef uint8_t u8;
 typedef u32 (*fp)(u8*);
-extern void assert_post_action(u32,u32);
-extern int z_spin_lock_valid(int);
-extern void z_spin_lock_set_owner(int);
+extern int assert_post_action(int, int);
+extern int z_spin_lock_valid(unsigned int*);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern int z_spin_unlock_valid(int);
 extern u32 idx_inc(int,u32,u32);
 extern void max_utilization_update(int);

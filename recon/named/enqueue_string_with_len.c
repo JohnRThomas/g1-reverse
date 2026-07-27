@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_00084fec @ 0x84fec  (parity: 300/300 trials, PROVEN) */
 
-extern int strlen(unsigned long);
+extern int strlen(int);
 extern void cjson_parse_with_opts(int,int,unsigned int,unsigned int);
 void enqueue_string_with_len(int param_1,unsigned int param_2,unsigned int param_3)
 {

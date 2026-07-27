@@ -11,7 +11,7 @@
 /* Reconstructed FUN_0008790e @ 0x8790e  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int _malloc_r(uint32_t,int);
-extern void memcpy(int,int,int);
+extern void memcpy(int, int, int);
 extern int _realloc_r(uint32_t,int,int);
 uint32_t dynbuf_push_byte_grow(uint32_t param_1,volatile int* param_2){
   int iVar1,iVar2;

@@ -16,7 +16,7 @@
 #include <stdint.h>
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort;
 extern int _fflush_r(int,...); extern int _free_r(int,...); extern int _malloc_r(int,...);
-extern int stdio_fclose(int,...); extern int mem_find_byte(int,...); extern int memcpy(int,...);
+extern int stdio_fclose(int,...); extern char* mem_find_byte(char*, unsigned int, int); extern void memcpy(int, int, int);
 extern int memmove(int,...); extern int _realloc_r(int,...);
 typedef uint (*codeptr)(int,...);
 #define PH(p) (*(volatile ushort*)((char*)(p)+0xc))

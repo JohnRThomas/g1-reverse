@@ -17,9 +17,9 @@
 /* Reconstructed FUN_00031b60 @ 0x31b60  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
-extern int strlen(void*);
+extern int strlen(int);
 extern unsigned int get_device_serial_buf(void);
-extern void memcpy(void*,void*,int);
+extern void memcpy(int, int, int);
 extern void memset_bytes(void*,int,int);
 extern void vdprintf_to_fd(void*,int,int,uint32_t,int);
 uint32_t build_str_response_frame(int param_1,uint32_t param_2,uint32_t *param_3,char *param_4){

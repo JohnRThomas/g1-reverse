@@ -16,7 +16,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern void assert_post_action(uintptr_t file, uint32_t line);
+extern int assert_post_action(int, int);
 
 void sys_memcpy_swap(uint8_t *destination, const uint8_t *source, uint32_t length)
 {

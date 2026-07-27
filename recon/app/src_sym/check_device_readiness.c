@@ -1,6 +1,6 @@
 /* Reconstructed check_device_readiness @ 0x167b4  (parity: 300/300 trials, PROVEN) */
 
-extern int z_device_is_ready(unsigned int);
+extern int z_device_is_ready(int);
 extern void DEBUG_PRINT(unsigned long, ...);
 unsigned int check_device_readiness(void){
     unsigned int *puVar1 = (unsigned int*)0x00087bf0UL;

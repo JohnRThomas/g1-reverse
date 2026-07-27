@@ -14,7 +14,7 @@
  *   g_pdm_cb                                 @ 0x2000b330
  */
 /* Reconstructed FUN_00066214 @ 0x66214  (parity: 300/300 trials, PROVEN) */
-extern void assert_post_action(unsigned int a0, unsigned int a1);
+extern int assert_post_action(int, int);
 
 unsigned int nrfx_pdm_start(void)
 {

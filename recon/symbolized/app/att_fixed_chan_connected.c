@@ -12,7 +12,7 @@
 /* Reconstructed FUN_00058bfc @ 0x58bfc */
 #include <stdint.h>
 
-extern void gatt_recompute_max_mtu(void *object);
+extern int gatt_recompute_max_mtu(void*);
 extern void k_work_init_delayable(void *object, uint32_t event);
 extern void bt_gatt_connected(void *object);
 

@@ -2,7 +2,7 @@
  * Raw backmap: FUN_0006649c@0x0006649c. */
 
 #include <stdint.h>
-extern void thunk_FUN_00086384(uint32_t microseconds); /* k_busy_wait thunk */
+extern void thunk_FUN_00086384(int); /* k_busy_wait thunk */
 uint32_t qspi_ready_wait(void)
 {
  volatile uint8_t *state=(volatile uint8_t*)0x2000b348u;

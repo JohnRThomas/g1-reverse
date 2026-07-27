@@ -2,7 +2,7 @@
 
 extern void DEBUG_PRINT(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
-extern unsigned int get_device_info(void);
+extern int get_device_info(void);
 
 unsigned char pull_message(int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

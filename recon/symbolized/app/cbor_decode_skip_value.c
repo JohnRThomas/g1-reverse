@@ -15,9 +15,9 @@
 #include <stdint.h>
 extern int cbor_decode_is_break(int,...);
 extern int zcbor_backup_store_count(int,...);
-extern int cbor_decode_precheck(unsigned long);
-extern int cbor_decode_expect_break(int,...);
-extern int cbor_decode_extract_value(void *, void *, unsigned int);
+extern int cbor_decode_precheck(unsigned int*);
+extern int cbor_decode_expect_break(unsigned int*);
+extern int cbor_decode_extract_value(int*, unsigned char*, unsigned long);
 extern int cbor_decode_tag(int,...);
 
 int cbor_decode_skip_value(unsigned *param_1, int param_2)

@@ -19,9 +19,8 @@
 /* Reconstructed FUN_00051d8c @ 0x51d8c. */
 #include <stdint.h>
 
-extern void z_log_msg_runtime_create(uint32_t channel, uint32_t flags,
-                         const void *record, int context);
-extern int flash_area_open(unsigned int selector, uint32_t *handle);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
+extern int flash_area_open(unsigned int, void*);
 extern unsigned int img_mgmt_flash_area_id(unsigned int request);
 extern unsigned int img_mgmt_slot_to_image(void);
 extern int boot_set_next(uint32_t handle, unsigned int is_selected, int mode);

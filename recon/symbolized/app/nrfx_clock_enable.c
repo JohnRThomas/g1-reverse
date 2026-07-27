@@ -21,9 +21,9 @@
 
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern void assert_post_action(unsigned int, unsigned int);
+extern int assert_post_action(int, int);
 extern int arch_irq_is_enabled(int);
-extern void arch_irq_enable(int);
+extern int arch_irq_enable(int);
 
 void nrfx_clock_enable(void)
 {

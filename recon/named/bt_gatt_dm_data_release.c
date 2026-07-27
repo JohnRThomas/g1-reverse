@@ -9,7 +9,7 @@
 /* Reconstructed FUN_0007f594 @ 0x7f594  (parity: 300/300 trials, PROVEN) */
 
 extern int atomic_and_0(void *a, int b, unsigned int c, unsigned int d);
-extern void svc_attr_memory_release(void *a);
+extern void svc_attr_memory_release(unsigned long);
 
 unsigned int bt_gatt_dm_data_release(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

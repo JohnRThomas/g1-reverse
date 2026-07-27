@@ -21,8 +21,8 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 
-extern uintptr_t get_device_info(void);
-extern int z_device_is_ready(uint32_t device);
+extern int get_device_info(void);
+extern int z_device_is_ready(int);
 
 typedef int (*flash_read_fn)(void *context, uint32_t address,
                              void *destination, unsigned length);

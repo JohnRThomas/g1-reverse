@@ -13,7 +13,7 @@
 /* Reconstructed FUN_0005e3e0 @ 0x5e3e0  (parity: 300/300 trials, PROVEN) */
 
 extern void smp_log_message(unsigned int, int, void*);
-extern void smp_pairing_complete(int, int);
+extern void smp_pairing_complete(int, unsigned int);
 extern void atomic_set_bit(int, int);
 
 void smp_timeout(int param_1)

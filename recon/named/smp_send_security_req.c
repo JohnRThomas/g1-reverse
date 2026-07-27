@@ -21,7 +21,7 @@
  */
 /* Reconstructed FUN_0005d964 @ 0x5d964  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int conn_auth_cb_get_or_init(int);
+extern int conn_auth_cb_get_or_init(unsigned long);
 extern int smp_auth_get_pairing_method(int);
 extern int smp_init(int);
 extern unsigned int smp_build_auth_flags(int, unsigned int);
@@ -29,7 +29,7 @@ extern int bt_keys_get_addr(int, int);
 extern int bt_keys_find(int, int, int);
 extern void net_buf_unref(int);
 extern int net_buf_simple_add(int, int);
-extern int bt_conn_create_pdu(int, int, int, int, int);
+extern unsigned int bt_conn_create_pdu(int, short, int, int, unsigned int);
 extern int atomic_test_bit(int, int);
 extern int smp_chan_lookup(void);
 extern void atomic_set_bit(int, int);

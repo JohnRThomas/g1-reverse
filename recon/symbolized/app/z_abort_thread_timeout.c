@@ -16,7 +16,7 @@
 /* Reconstructed FUN_00074274 @ 0x74274  (parity: 300/300 trials, PROVEN) */
 
 extern void dlist_unlink_node(int, int);
-extern unsigned long long assert_post_action(unsigned int, unsigned int);
+extern int assert_post_action(int, int);
 
 void z_abort_thread_timeout(int param_1)
 {

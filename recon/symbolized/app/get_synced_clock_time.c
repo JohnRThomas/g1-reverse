@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_0004a4d0 @ 0x4a4d0  (parity: 300/300 trials, PROVEN) */
 
-extern long long k_uptime_get_9(void);
+extern unsigned long long k_uptime_get_9(void);
 
 void get_synced_clock_time(long long *param_1)
 {

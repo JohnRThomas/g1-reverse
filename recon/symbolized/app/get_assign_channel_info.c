@@ -27,8 +27,8 @@
 typedef unsigned uint; typedef unsigned char byte;
 extern int get_device_info(int,...);
 extern int build_and_send_device_status_report(int,...);
-extern int read_sys_settting_from_flash(int,...);
-extern int k_msleep_ticks32768_b(int,...);
+extern int read_sys_settting_from_flash(void*);
+extern void k_msleep_ticks32768_b(int);
 
 unsigned get_assign_channel_info(int param_1, unsigned param_2, unsigned *param_3, unsigned char *param_4)
 {

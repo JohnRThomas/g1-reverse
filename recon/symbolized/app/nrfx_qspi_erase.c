@@ -23,7 +23,7 @@
 #include "../../headers/g1_log.h"
 extern int qspi_ready_wait(void);
 extern int qspi_activate(int);
-extern void assert_post_action(uint32_t,int);
+extern int assert_post_action(int, int);
 
 #define g1_recon_nrfx_qspi_erase nrfx_qspi_erase
 int g1_recon_nrfx_qspi_erase(uint32_t param_1, uint32_t param_2,

@@ -11,7 +11,7 @@
 
 extern int cjson_create_bool(int);
 extern int cjson_add_item_to_object(int,int,int,int);
-extern void cjson_delete(int);
+extern void cjson_delete(volatile int*);
 int cjson_add_bool_to_object(int param_1,int param_2,int param_3)
 {
     int uVar1 = cjson_create_bool(param_3);

@@ -11,7 +11,7 @@
 /* Reconstructed FUN_00063984 @ 0x63984  (parity: 300/300 trials, PROVEN) */
 
 extern int dev_set_threshold_and_arm(unsigned int a, int b, unsigned int c, unsigned int d, unsigned int e);
-extern int dev_write_reg3(unsigned int a, int b, int c, unsigned char d);
+extern int dev_write_reg3(unsigned int, unsigned int, unsigned int, unsigned int);
 
 int wdt_install_timeout(int param_1, int *param_2, unsigned int param_3, unsigned int param_4)
 {

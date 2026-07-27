@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_0007d6f4 @ 0x7d6f4  (parity: 300/300 trials, PROVEN) */
 
-extern void projector_fill_framebuffer(unsigned long);
+extern void projector_fill_framebuffer(unsigned int);
 extern unsigned long long projector_send_cmd_immediate(unsigned int);
 extern void delay_ms(unsigned int, unsigned int, unsigned int, unsigned int);
 

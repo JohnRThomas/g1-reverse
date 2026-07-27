@@ -36,12 +36,12 @@ extern void onboarding_render_step_screen(int a);
 extern void render_onboarding_screen(int a);
 extern void onboarding_mark_retry_if_reset(void);
 extern int onboarding_sync_data(void *a, int b);
-extern void gui_set_active_canvas(int a);
+extern unsigned int gui_set_active_canvas(unsigned int);
 extern void gui_screen_clear(void);
 extern void gui_canvas_flags_set_bit1(void);
 extern void send_response_data_to_ble(void);
 extern unsigned long long k_uptime_get_8(void);
-extern unsigned long long u64_sub(int a, int b, unsigned c, unsigned d);
+extern long long u64_sub(unsigned int, int, unsigned int, int);
 extern void thunk_FUN_00043308(void);
 
 undefined4 ui_onboarding_task(int param_1, undefined4 param_2, int param_3)

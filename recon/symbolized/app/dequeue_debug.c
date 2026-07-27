@@ -11,8 +11,8 @@
  */
 /* Reconstructed FUN_00019c44 @ 0x19c44  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_get(unsigned int a0, void *a1, unsigned int a2, unsigned int a3);
-extern void memcpy(unsigned int a0, void *a1, unsigned int a2);
+extern int k_msgq_get(int, unsigned int, int, int);
+extern void memcpy(int, int, int);
 
 int dequeue_debug(unsigned int param_1)
 {

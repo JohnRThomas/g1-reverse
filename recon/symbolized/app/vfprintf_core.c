@@ -23,9 +23,9 @@ typedef unsigned int uint;
 
 extern unsigned vfprintf_field_scan_match(int, unsigned *, int *, unsigned **);
 extern int scanf_convert_integer_field(int, void*, void*, void*);
-extern int mem_find_byte(int, int, int);
+extern char* mem_find_byte(char*, unsigned int, int);
 extern int stdio_reset_ungetc_buffer(int, unsigned int *);
-extern void *fnmatch_build_class_table(void*, void*);
+extern unsigned char* fnmatch_build_class_table(int, unsigned char*);
 typedef int (*fnptr)(int, void*);
 
 int vfprintf_core(int param_1, int *param_2, byte *param_3, int *param_4)

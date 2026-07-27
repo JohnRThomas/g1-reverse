@@ -26,7 +26,7 @@ typedef unsigned int undefined4;
 extern int _malloc_r(void *a, int b);
 extern int printf_render_float(void *a, void *b, void *c, u32 d, void *e);
 extern int vfprintf_format_engine(void *a, void *b, void *c, u32 d, void *e);
-extern int mem_find_byte(u32 a, u32 b, int c);
+extern char* mem_find_byte(char*, unsigned int, int);
 extern int iobuf_ensure_capacity_and_append(void *a, void *b, void *c, int d);
 
 int printf_parse_format(undefined4 *param_1, int *param_2, byte *param_3, uint *param_4)

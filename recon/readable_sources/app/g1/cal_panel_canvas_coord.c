@@ -18,7 +18,7 @@
  *   debug_print      <- FUN_00019c70 @ 0x00019c70
  *   DEBUG_PRINT                         @ 0x0007dda4
  */
-extern uintptr_t get_device_info(void);
+extern int get_device_info(void);
 
 /* Fixed-address backmap retained for the standalone parity build. */
 #define g_log_level           (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/)

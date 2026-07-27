@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_00043308 @ 0x43308  (parity: 300/300 trials, PROVEN) */
 
-void gui_reset_dynamic_bitmap_frame_state(void) {
+unsigned int gui_reset_dynamic_bitmap_frame_state(void) {
   *(volatile unsigned short*)((unsigned long)&g_gui_dynbmp_frame_limit) /*=0x2000f702*/ = 0;
   *(volatile unsigned short*)((unsigned long)&g_gui_dynbmp_frame_index) /*=0x2000f700*/ = 0;
   *(volatile unsigned short*)((unsigned long)&g_gui_dynbmp_cycle_count) /*=0x2000f6fe*/ = 0;

@@ -27,13 +27,13 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 
-extern void memset_bytes(void *, uint32_t, uint32_t);
+extern void memset_bytes(void*, int, int);
 extern uint64_t z_impl_k_sem_init(void *, uint32_t, uint32_t);
 extern uint64_t z_impl_k_sem_take(void *, uint32_t, uint32_t, uint32_t);
-extern int z_device_is_ready(void *);
-extern uint8_t *get_device_info(void);
+extern int z_device_is_ready(int);
+extern int get_device_info(void);
 extern int device_api_call_slot0(void *, uint32_t, void *, uint32_t);
-extern void k_msleep_ticks32768_b(uint32_t);
+extern void k_msleep_ticks32768_b(int);
 
 struct message { uint32_t tag; uint16_t code; uint8_t data[204]; };
 

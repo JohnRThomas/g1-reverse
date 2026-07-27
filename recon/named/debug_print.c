@@ -14,11 +14,11 @@
 #include <stdarg.h>
 #include <stdint.h>
 
-extern uintptr_t ancs_get_conn_ctx(void);
-extern void memset_bytes(void *dst, int val, unsigned int len);
+extern int ancs_get_conn_ctx(void);
+extern void memset_bytes(void*, int, int);
 extern void vsnprintf_impl(void *dst, unsigned int size, unsigned int fmt, va_list args);
 extern void enqueue_debug(void *buf);
-extern void process_sync_buffer(uintptr_t arg);
+extern unsigned long process_sync_buffer(unsigned int, ...);
 
 void debug_print(unsigned int format, ...)
 {

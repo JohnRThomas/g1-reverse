@@ -13,8 +13,8 @@
 typedef uint32_t u32;
 typedef unsigned char byte;
 typedef u32 (*fn)(u32,...);
-extern int mem_find_byte(u32 a, u32 b, u32 c);
-extern void fnmatch_build_class_table(u32 a, u32 b);
+extern char* mem_find_byte(char*, unsigned int, int);
+extern unsigned char* fnmatch_build_class_table(int, unsigned char*);
 
 u32 scanf_convert_integer_field(u32 param_1, u32 *param_2, int *param_3, u32 *param_4){
     int iVar1; u32 uVar2; u32 uVar4; byte *pbVar5; u32 uVar6;

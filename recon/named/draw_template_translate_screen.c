@@ -23,8 +23,8 @@
 #include "../headers/g1_log.h"
 /* Reconstructed draw_template_translate_screen @ 0x3fd44  (parity: 300/300 trials, PROVEN) */
 extern int  get_device_info(void);
-extern void gui_set_active_canvas(int);
-extern void gui_bmp_bitmap_draw(int,int,int,int,int,int);
+extern unsigned int gui_set_active_canvas(unsigned int);
+extern int gui_bmp_bitmap_draw(unsigned int, int, int, int, int, int);
 extern void gui_utf_draw(int,int,int,int,int,int,int,int,int,int,int,int);
 extern void gui_clock_draw(int,int,int,int,int,int,int);
 extern void snprintf(int*,int,int,int,int);

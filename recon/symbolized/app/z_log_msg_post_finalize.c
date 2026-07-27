@@ -25,13 +25,13 @@
  */
 #include <stdint.h>
 extern uint32_t atomic_inc(volatile uint32_t *); /* atomic_inc */
-extern void z_spin_lock_valid(void *);                 /* z_spin_lock_valid */
-extern void z_spin_lock_set_owner(void *);                 /* z_spin_lock_set_owner */
+extern int z_spin_lock_valid(unsigned int*);                 /* z_spin_lock_valid */
+extern int z_spin_lock_set_owner(unsigned int*);                 /* z_spin_lock_set_owner */
 extern void z_spin_unlock_valid(void *);                 /* z_spin_unlock_valid */
-extern void log_process(void);                   /* log_process */
+extern int log_process(void);                   /* log_process */
 extern void z_impl_k_timer_start(void *, uint32_t, uint32_t, uint32_t); /* k_timer_start */
 extern void z_impl_k_timer_stop(void *);                 /* k_timer_stop */
-extern void k_sem_give(void *);                 /* k_sem_give */
+extern void k_sem_give(int);                 /* k_sem_give */
 
 void z_log_msg_post_finalize(void)
 {

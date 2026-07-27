@@ -18,9 +18,9 @@
 
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
-extern void unix_timestamp_to_datetime(uint32_t,void *);
+extern int unix_timestamp_to_datetime(int, void*);
 extern uint32_t get_system_unix_time(void);
-extern uintptr_t get_device_info(void);
+extern int get_device_info(void);
 
 #define STATE() ((volatile uint8_t *)get_device_info())
 

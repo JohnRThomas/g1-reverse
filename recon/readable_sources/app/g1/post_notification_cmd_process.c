@@ -31,13 +31,13 @@
 /* Reconstructed FUN_000338ec @ 0x338ec  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
-extern int audio_fw_load_get_wrapper(int,...);
-extern int parse_receiver_msg_pack_pkcs7(int,...);
-extern int parse_ncs_notification(int,...);
+extern unsigned long audio_fw_load_get_wrapper(int, unsigned char*, unsigned long);
+extern unsigned int parse_receiver_msg_pack_pkcs7(int, unsigned char*, unsigned int);
+extern void parse_ncs_notification(int, int*);
 extern int malloc(int,...);
-extern int free(int,...);
+extern void free(int);
 extern int memcpy(int,...);
-extern int memset_bytes(int,...);
+extern void memset_bytes(void*, int, int);
 
 void post_notification_cmd_process(int param_1, unsigned char *param_2, int param_3)
 {

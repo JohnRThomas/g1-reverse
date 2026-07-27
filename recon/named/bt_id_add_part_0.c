@@ -33,13 +33,13 @@
  */
 #include <stdint.h>
 
-extern void *bt_conn_lookup_state_le(uint32_t, const void *, uint32_t); /* bt_conn_lookup_state_le */
-extern void ble_conn_unref(void *); /* bt_conn_unref */
+extern int bt_conn_lookup_state_le(int, int, int); /* bt_conn_lookup_state_le */
+extern void ble_conn_unref(int); /* bt_conn_unref */
 extern void bt_le_adv_legacy_invoke(void *, void *); /* bt_le_ext_adv_foreach */
 extern int addr_res_enable(uint32_t); /* addr_res_enable */
-extern void bt_id_addr_update_thunk(uint32_t, uint32_t, const void *); /* log frontend */
+extern void bt_id_addr_update_thunk(unsigned long, int, void*); /* log frontend */
 extern int bt_hci_cmd_send_sync(uint32_t, void *, void *); /* bt_hci_cmd_send_sync */
-extern void *bt_addr_le_copy_80fc4(void *, const void *); /* bt_addr_le_copy */
+extern void bt_addr_le_copy_80fc4(unsigned long*, unsigned long*); /* bt_addr_le_copy */
 extern uint8_t *bt_hci_cmd_create(uint32_t, uint32_t); /* bt_hci_cmd_create */
 #ifdef G1_APP_SDK_INLINE_COHESION
 extern uintptr_t net_buf_simple_add(void *, uint32_t); /* net_buf_simple_add */

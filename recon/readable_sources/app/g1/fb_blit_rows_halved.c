@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_0007d5f2 @ 0x7d5f2  (parity: 154/300 trials, PROVEN) */
 
-extern void memcpy(int a, int b, int c);
+extern void memcpy(int, int, int);
 void fb_blit_rows_halved(int param_1,int param_2,int param_3,int param_4,int param_5,int param_6,int param_7)
 {
   int *piVar1;

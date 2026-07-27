@@ -41,9 +41,7 @@ struct diagnostic_record {
 extern uint32_t stream_flash_vtable_get_value(void *device);
 extern void flash_page_foreach(void *device, uintptr_t query,
                          struct device_geometry *geometry);
-extern void z_log_msg_runtime_create(uintptr_t source, uint32_t event,
-                         const struct diagnostic_record *record,
-                         uint32_t reserved);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 
 int stream_flash_init(struct buffered_writer *writer, void *device,
                  uint8_t *buffer, uint32_t capacity, uint32_t base,

@@ -23,7 +23,7 @@ extern void tc_cmac_final(void); /*unused decl replaced*/
 extern int FUN_00080294_i(uint32_t,void*);
 extern void atomic_or_0(uint32_t);
 extern void log_msg_create_3arg(uint32_t,int,void*);
-extern void bt_gatt_foreach_attr_0(int,int,uint32_t,void*);
+extern void bt_gatt_foreach_attr_0(unsigned short, unsigned short, void*, void*);
 void gatt_db_hash_gen(void){
   struct {
     uint32_t header[4];

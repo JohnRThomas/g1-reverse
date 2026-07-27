@@ -22,7 +22,7 @@ struct display_state_438d0 {
     uint32_t destination_stride;
 };
 
-extern struct display_state_438d0 *get_device_info(void);
+extern int get_device_info(void);
 extern void reflash_fb_data_to_lcd(void *destination, uint32_t stride,
                          uint32_t x, uint32_t y, uint32_t width,
                          uint32_t height, uint32_t flags);

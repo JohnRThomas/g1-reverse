@@ -11,7 +11,7 @@
 
 #include <stdint.h>
 
-extern uint8_t *get_device_info(void);
+extern int get_device_info(void);
 extern int not_disturb_sync_data(const uint8_t *value, uint32_t length);
 extern void update_not_disturb_settings(void);
 extern void update_persist_task_status(void *device, uint32_t kind,

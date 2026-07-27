@@ -28,7 +28,7 @@
 #include "../headers/g1_log.h"
 
 extern void *bt_hci_cmd_create(uint32_t opcode, uint32_t reserve);
-extern void z_impl_k_sem_init(void *, uint32_t, uint32_t);
+extern int z_impl_k_sem_init(unsigned int, unsigned long, unsigned long);
 extern uint64_t net_buf_id(void *);
 extern uintptr_t net_buf_ref(void *, uint32_t, uint32_t, uint32_t);
 extern uint64_t net_buf_put(uintptr_t, uintptr_t, uint32_t, uint32_t);

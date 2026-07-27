@@ -14,7 +14,7 @@
  * Raw/address backmap: FUN_0004e8c0 @ 0x0004e8c0.
  */
 #include <stdint.h>
-extern void gatt_dm_log_helper(uint32_t, uint32_t, const void *);
+extern int gatt_dm_log_helper(int, int, int);
 int settings_invalid_index_log(void)
 {
     const uint32_t package[2] = { 2U, 0x000f11a5UL };

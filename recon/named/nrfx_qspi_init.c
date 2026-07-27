@@ -18,7 +18,7 @@
 /* Reconstructed FUN_00066994 @ 0x66994  (parity: 300/300 trials, PROVEN) */
 
 extern int qspi_configure_pins_and_interface(void);
-extern void assert_post_action(void*, int);
+extern int assert_post_action(int, int);
 
 #define g1_recon_nrfx_qspi_init nrfx_qspi_init
 int g1_recon_nrfx_qspi_init(int param_1, unsigned int param_2,

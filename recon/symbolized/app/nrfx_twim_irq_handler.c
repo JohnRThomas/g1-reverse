@@ -18,7 +18,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern void assert_post_action(uint32_t, uint32_t);
+extern int assert_post_action(int, int);
 extern int xfer_completeness_check(uintptr_t, void *);
 extern unsigned int __nrfy_internal_twim_events_process(unsigned long, unsigned int);
 

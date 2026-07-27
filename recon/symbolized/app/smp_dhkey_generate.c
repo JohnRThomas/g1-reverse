@@ -17,7 +17,7 @@
 
 extern void atomic_set_bit(int a, int b);
 extern int hci_le_generate_dhkey(int a, int b);
-extern void atomic_clear_bit_1(int a, int b);
+extern void atomic_clear_bit_1(volatile long*, int);
 extern void smp_log_message(int a, int b, void *c);
 
 int smp_dhkey_generate(int param_1)

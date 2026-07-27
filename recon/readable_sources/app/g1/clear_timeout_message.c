@@ -24,7 +24,7 @@ extern int get_device_info(int,...);
 extern int msg_content_recalc_unread(int,...);
 extern unsigned get_timestamp(int,...);
 extern int memcpy(int,...);
-extern int memset_bytes(int,...);
+extern void memset_bytes(void*, int, int);
 
 void clear_timeout_message(int param_1)
 {

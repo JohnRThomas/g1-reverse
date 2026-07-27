@@ -10,8 +10,7 @@
 #include <stdint.h>
 typedef void (*discover_cb_t)(void *, const void *, void *);
 extern int bt_gatt_discover(int, int *);
-void gatt_discover_next(void *conn, uint16_t last_handle, void *opaque)
-{
+void gatt_discover_next(unsigned long conn, unsigned long last_handle, void*opaque) {
     volatile uint8_t *params = (volatile uint8_t *)opaque;
     if (last_handle != 0) {
         if (last_handle == UINT16_MAX) {

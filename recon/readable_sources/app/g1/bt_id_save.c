@@ -15,7 +15,7 @@
 /* Reconstructed FUN_00052f68 @ 0x52f68  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_settings_store(int,int);
-extern void z_log_msg_runtime_create(int,int,void*,int);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 
 void bt_id_save(void)
 {

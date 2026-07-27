@@ -15,7 +15,7 @@
 extern int bt_hci_le_rand(void*, int);
 extern long long thunk_FUN_00074f68(void);
 extern int tc_hmac_prng_reseed(unsigned, void*, int, void*, int);
-extern void z_log_msg_runtime_create(unsigned, int, void*, int);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 int ble_rng_seed_from_uptime(void){
     unsigned char auStack_30[36];
     unsigned local_50, uStack_4c, local_38, local_34;

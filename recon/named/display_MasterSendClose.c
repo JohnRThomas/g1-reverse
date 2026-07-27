@@ -16,9 +16,8 @@
 #include "../headers/g1_log.h"
 /* Reconstructed display_MasterSendClose @ 0x499b8  (parity: 300/300 trials, PROVEN) */
 
-extern void memset_bytes(void *destination, int value, unsigned int length);
-extern int k_msgq_put(unsigned int queue, void *record,
-                       unsigned int wait, unsigned int flags);
+extern void memset_bytes(void*, int, int);
+extern int k_msgq_put(unsigned int, void*, int, int);
 
 unsigned int display_MasterSendClose(void)
 {

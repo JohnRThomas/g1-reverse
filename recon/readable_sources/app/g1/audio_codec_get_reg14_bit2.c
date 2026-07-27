@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_0007fe72 @ 0x7fe72  (parity: 300/300 trials, PROVEN) */
 
-extern int audio_codec_reg_op_dispatch(int, int, void*, int);
+extern int audio_codec_reg_op_dispatch(unsigned int, unsigned int, void*, unsigned int);
 extern int audio_codec_select_page(int, int, ...);
 
 int audio_codec_get_reg14_bit2(int param_1, unsigned char *param_2, int param_3, int param_4)

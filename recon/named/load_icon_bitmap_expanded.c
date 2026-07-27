@@ -13,7 +13,7 @@
 /* Reconstructed FUN_00047a4c @ 0x47a4c  (parity: 300/300 trials, PROVEN) */
 
 extern void expand_bytes_via_lut32(int,int,int,int,int);
-extern void memcpy(int,int,int);
+extern void memcpy(int, int, int);
 int load_icon_bitmap_expanded(int param_1, int param_2, int param_3, int param_4)
 {
     if (param_1 == 4) {

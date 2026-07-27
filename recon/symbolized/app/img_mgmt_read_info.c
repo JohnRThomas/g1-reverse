@@ -12,7 +12,7 @@
 #include <stdint.h>
 extern int img_mgmt_read(int, int, void*, ...);
 extern int img_mgmt_erased_val(int, void*);
-extern int memset_bytes(void*, int, int);
+extern void memset_bytes(void*, int, int);
 
 int img_mgmt_read_info(int param_1, uint32_t *param_2, int param_3, uint32_t *param_4)
 {

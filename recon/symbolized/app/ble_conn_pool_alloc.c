@@ -15,7 +15,7 @@
 #include <stdint.h>
 extern int k_work_init(int,int);
 extern int k_work_init_delayable(int,int);
-extern void memset_bytes(void *,int,unsigned);
+extern void memset_bytes(void*, int, int);
 int ble_conn_pool_alloc(int param_1, int param_2, int param_3, int param_4){
   int iVar1 = 0;
   volatile int *piVar2;

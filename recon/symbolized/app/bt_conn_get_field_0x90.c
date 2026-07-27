@@ -7,7 +7,6 @@
  */
 /* Reconstructed FUN_00081526 @ 0x81526  (parity: 300/300 trials, PROVEN) */
 
-int bt_conn_get_field_0x90(int param_1)
-{
+int bt_conn_get_field_0x90(int param_1) {
     return param_1 + 0x90;
 }

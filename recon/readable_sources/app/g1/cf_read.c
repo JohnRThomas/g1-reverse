@@ -12,7 +12,7 @@
  */
 /* Reconstructed FUN_000829c0 @ 0x829c0  (parity: 300/300 trials, PROVEN) */
 
-extern int find_cf_cfg(unsigned long);
+extern unsigned char* find_cf_cfg(int);
 extern void bt_gatt_attr_read(unsigned int a, unsigned int b, unsigned short c, void *d, int e);
 
 void cf_read(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4, unsigned short param_5)

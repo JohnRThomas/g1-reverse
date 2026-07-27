@@ -18,7 +18,7 @@
 extern int atomic_test_and_set_bit(void*, int);
 extern int gatt_subscribe_add(int, int *);
 extern void atomic_clear_bit(volatile int *, int);
-extern void z_log_msg_runtime_create(uint32_t, int, void*, int);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 
 int ancs_subscribe_notification_source(volatile uint32_t *param_1, int param_2){
   int iVar1;

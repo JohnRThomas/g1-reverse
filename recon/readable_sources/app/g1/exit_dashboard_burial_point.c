@@ -17,7 +17,7 @@
  */
 /* Reconstructed exit_dashboard_burial_point @ 0x4aab0  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int get_device_info(void);
+extern int get_device_info(void);
 extern unsigned int get_current_burial_point_type(void);
 extern long long get_dashboard_sum_time(void);
 extern unsigned int accumulate_burial_point_duration(void);

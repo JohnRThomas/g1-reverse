@@ -12,8 +12,7 @@
 
 extern uint32_t get_pin_idx(uint32_t pin); /* FUN_00065434 @ 0x00065434 */
 
-bool pin_in_use_by_te(uint32_t pin)
-{
+unsigned int pin_in_use_by_te(unsigned int pin) {
     volatile const uint16_t *pin_flags =
         (volatile const uint16_t *)(uintptr_t)0x20002bc0;
     return (pin_flags[get_pin_idx(pin) + 8u] & UINT16_C(0x20)) != 0u;

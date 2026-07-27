@@ -23,11 +23,11 @@
 
 extern void msg_queue_init(void);
 extern void msg_content_decrement_timer(void);
-extern void set_message_pending_state(uint32_t state);
+extern void set_message_pending_state(int);
 extern void set_shutdown_flag(void *context, uint32_t flag);
 extern void get_ui_mode_flag2(void);
-extern void update_persist_task_status_to_idle(void *context);
-extern void change_work_mode_to(uint32_t mode);
+extern int update_persist_task_status_to_idle(int);
+extern unsigned int change_work_mode_to(unsigned int);
 extern void SlaveDoubleClickEventInject(void);
 extern void *get_message_entry(uint32_t id);
 extern unsigned int pt_queue_get_free_slot(void);

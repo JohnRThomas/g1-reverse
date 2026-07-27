@@ -16,7 +16,7 @@
  */
 /* Reconstructed FUN_00055d08 @ 0x55d08  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void z_log_msg_runtime_create(unsigned,unsigned,void*,int);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern int bt_hci_cmd_send_sync(unsigned,int,int);
 int bt_pub_key_gen(int param_1)
 {

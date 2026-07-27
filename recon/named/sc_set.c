@@ -23,9 +23,9 @@
 typedef int (*codeptr)(int,...);
 extern int find_sc_cfg_59bcc(int,void*);
 extern int strtoul(int,int,int);
-extern int settings_name_next(int,int*);
+extern int settings_name_next(int, int);
 extern int bt_settings_decode_key(int,void*);
-extern int bt_addr_le_copy_828da(void*,void*);
+extern void bt_addr_le_copy_828da(unsigned long*, unsigned long*);
 extern int log_msg_create_3arg(int,int,void*);
 
 int sc_set(int param_1, int param_2, codeptr param_3, int param_4)

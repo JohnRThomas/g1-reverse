@@ -82,19 +82,19 @@ typedef long long i64; typedef unsigned long long u64;
 
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
-extern int memset_bytes(int,int,int);
+extern void memset_bytes(void*, int, int);
 extern int FUN_0007ca72(int,int);
 extern i64 thunk_FUN_00074f68(void);
 extern int is_battery_critical(void);
 extern int set_shutdown_flag(void*,int);
 extern int sync_to_slave(void*,int,int,int);
 extern int get_current_work_mode(void);
-extern int change_work_mode_to(int);
+extern unsigned int change_work_mode_to(unsigned int);
 extern int imu_fusion_state_init(void*);
 typedef int  (*qfn_t)(int,int);
 typedef void (*ffn_t)(int,int,void*);
 extern u64 __floatsidf(int); extern u64 __divdf3(u32,u32,u32,u32); extern u64 __aeabi_dadd(u32,u32,u32,u32);
-extern u64 __muldf3(u32,u32,u32,u32); extern u64 __extendsfdf2(u32); extern u64 dcmp_negate_rhs(u32,u32,u32,u32);
+extern u64 __muldf3(u32,u32,u32,u32); extern u64 __extendsfdf2(u32); extern long long dcmp_negate_rhs(int, int, int, int);
 extern u32 __truncdfsf2(u32,u32);
 extern float orientation_filter_update_dt(int);
 extern void imu_mahony_ahrs_update(float,float,float,float,float,float,float,void*);
@@ -103,8 +103,8 @@ extern int panel_level_calc_cached(void*); extern int SendDashboardLockInfoToApp
 extern int now_has_persist_task(void*,int); extern int is_msg_expiration(void); extern int get_ui_mode_flag2(void);
 extern int prepare_quick_note_mode(void*,int); extern int send_event(int);
 extern int get_device_info(void); extern int read_volatile_u32_a(void*);
-extern int send_response_data_to_msgqueue(int,int); extern int send_response_data_to_ble(void);
-extern int cal_panel_canvas_coord(void*,void*);
+extern unsigned int send_response_data_to_msgqueue(void*, unsigned int); extern void send_response_data_to_ble(void);
+extern void cal_panel_canvas_coord(int, int);
 
 static inline float as_f(u32 x){ float f; __builtin_memcpy(&f,&x,4); return f; }
 #define LO64(v) ((u32)(v))

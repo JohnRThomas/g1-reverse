@@ -21,8 +21,7 @@ struct flash_address_log_record_raw {
     size_t length;
 };
 
-extern void z_log_msg_runtime_create(uintptr_t source, uint32_t level,
-                         const void *record, uint32_t reserved);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 
 #define log_output_record               z_log_msg_runtime_create /* 0x0004d944 */
 int flash_nrf_read_invalid_address(int32_t address, size_t length)

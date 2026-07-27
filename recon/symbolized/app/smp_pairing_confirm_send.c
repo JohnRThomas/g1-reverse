@@ -16,14 +16,14 @@
 /* Reconstructed FUN_000832f0 @ 0x832f0  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int bt_smp_send_pdu(int,...);
-extern int net_buf_unref(int,...);
+extern void bt_smp_send_pdu(int, unsigned int, unsigned int);
+extern void net_buf_unref(int);
 extern int net_buf_simple_add(int,...);
-extern int atomic_test_bit(int,...);
-extern int atomic_clear_bit_1(int,...);
+extern int atomic_test_bit(int, int);
+extern void atomic_clear_bit_1(volatile long*, int);
 extern int atomic_set_bit(int,...);
-extern int smp_create_pdu(int,...);
-extern int smp_c1(int,...);
+extern int smp_create_pdu(int, int);
+extern int smp_c1(const unsigned char[16], const unsigned char[16], const unsigned char[7], const unsigned char[7], const unsigned char*, const unsigned char*, unsigned char[16]);
 unsigned smp_pairing_confirm_send(int param_1){
   int iVar4 = param_1+4;
   int iVar1 = atomic_test_bit(iVar4,10);

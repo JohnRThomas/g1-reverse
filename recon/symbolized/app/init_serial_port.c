@@ -20,9 +20,9 @@
  */
 /* Reconstructed FUN_000332dc @ 0x332dc  (parity: 300/300 trials, PROVEN) */
 
-extern int z_device_is_ready(void*);
+extern int z_device_is_ready(int);
 extern int uart_read_start(void*);
-extern void assert_post_action(void*, int);
+extern int assert_post_action(int, int);
 
 unsigned int init_serial_port(void)
 {

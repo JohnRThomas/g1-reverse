@@ -14,7 +14,7 @@ extern int flash_area_write(unsigned,unsigned,void*,unsigned);
 extern unsigned flash_area_align(void);
 extern unsigned flash_area_erased_val(unsigned);
 extern void safe_memcpy_checked(void*,unsigned,int,int);
-extern void memset_bytes(void*,unsigned,unsigned);
+extern void memset_bytes(void*, int, int);
 int flash_write_padded_entry(unsigned param_1, unsigned param_2, unsigned param_3, int param_4){
     unsigned auStack_28[3];
     auStack_28[0]=param_1; auStack_28[1]=param_2; auStack_28[2]=param_3;

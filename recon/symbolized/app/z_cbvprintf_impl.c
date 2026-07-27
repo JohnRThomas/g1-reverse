@@ -350,7 +350,7 @@ struct conversion {
 };
 
 
-extern size_t strlen(const char *s);
+extern int strlen(int);
 extern size_t extract_decimal(const char **text);
 extern char *encode_uint(uint_value_type value, struct conversion *conv,
                          char *begin, const char *end);
@@ -358,7 +358,7 @@ extern void _ldiv5(uint64_t *value);
 extern char _get_digit(uint64_t *fraction, int *digit_count);
 extern int outs(cbprintf_cb out, void *ctx,
                 const char *start, const char *end);
-extern void *memset_bytes(void *dst, int value, size_t length);
+extern void memset_bytes(void*, int, int);
 extern size_t strnlen(const char *s, size_t maximum);
 
 static inline void _ldiv10(uint64_t *value)

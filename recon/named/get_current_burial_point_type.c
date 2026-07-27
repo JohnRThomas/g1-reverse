@@ -10,8 +10,7 @@
 
 extern int update_burial_point_day_index(void);
 extern int get_device_info(void);
-unsigned char get_current_burial_point_type(void)
-{
+unsigned int get_current_burial_point_type(void) {
   unsigned char uVar1;
   int iVar2;
   iVar2 = update_burial_point_day_index();

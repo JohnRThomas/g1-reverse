@@ -10,7 +10,7 @@
 
 #include <stdint.h>
 extern int audio_codec_reg_op_dispatch(uint32_t,uint32_t,void*,uint32_t,uint32_t);
-extern void audio_codec_bus_write(uint32_t,uint32_t,void*,uint32_t);
+extern void audio_codec_bus_write(unsigned long*, unsigned long, unsigned long, unsigned long);
 
 void audio_codec_set_reg12_bit0(uint32_t param_1,uint32_t param_2,uint32_t param_3)
 {

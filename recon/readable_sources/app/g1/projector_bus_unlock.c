@@ -11,7 +11,7 @@
 /* Reconstructed FUN_000476a8 @ 0x476a8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void k_mutex_unlock(uint32_t);
+extern int k_mutex_unlock(unsigned int);
 void projector_bus_unlock(void) {
     k_mutex_unlock(((unsigned long)&g_projector_bus_lock) /*=0x2000a060*/);
 }

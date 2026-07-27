@@ -4,10 +4,10 @@ typedef unsigned int uint32_t;
 typedef unsigned char uint8_t;
 
 extern void DEBUG_PRINT(unsigned long, ...);
-extern uint32_t get_device_info(void);
+extern int get_device_info(void);
 extern void debug_print(unsigned long, ...);
 extern uint32_t FUN_00027448(uint32_t a, uint32_t b, void* c, uint32_t d, void* e);
-extern void memcpy(uint32_t dst, void* src, uint32_t len);
+extern void memcpy(int, int, int);
 extern uint32_t sync_to_slave(uint32_t a, uint32_t b, void* c, uint32_t d);
 
 uint32_t onboarding_sync_data(uint8_t *param_1, uint32_t param_2, uint32_t param_3)

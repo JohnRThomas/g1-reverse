@@ -14,9 +14,9 @@
 
 #include <stdint.h>
 
-extern int enqueue_bt_data(const void *event, unsigned int length);
-extern void *ancs_get_conn_ctx(void);
-extern void process_sync_buffer(void *work);
+extern int enqueue_bt_data(unsigned long, unsigned char);
+extern int ancs_get_conn_ctx(void);
+extern unsigned long process_sync_buffer(unsigned int, ...);
 extern void k_msleep(int enabled);
 
 void send_event(int event_id, unsigned int unused_2, unsigned int unused_3)

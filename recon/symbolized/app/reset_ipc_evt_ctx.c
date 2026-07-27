@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_0003dfe4 @ 0x3dfe4  (parity: 300/300 trials, PROVEN) */
 
-extern void memset_bytes(unsigned int a, unsigned int b, unsigned int c);
+extern void memset_bytes(void*, int, int);
 unsigned int reset_ipc_evt_ctx(void) {
   memset_bytes(((unsigned long)g_ipc_or_evt_ctx) /*=0x20004bb8*/, 0, 0x38);
   return 0;

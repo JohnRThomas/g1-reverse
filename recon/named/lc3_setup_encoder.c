@@ -8,7 +8,7 @@
 /* Reconstructed FUN_00068f94 @ 0x68f94  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char undefined1; typedef unsigned int uint;
-extern int memset_bytes(int,...);
+extern void memset_bytes(void*, int, int);
 
 undefined1 * lc3_setup_encoder(int param_1,int param_2,int param_3,undefined1 *param_4)
 {

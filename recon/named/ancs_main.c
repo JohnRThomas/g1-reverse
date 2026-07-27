@@ -31,13 +31,13 @@
 
 /* Callee back-map: every semantic alias retains the firmware identity used by
  * the parity linker. */
-extern uintptr_t get_device_info(void);                 /* FUN_000167a8 @ 0x000167a8 */
+extern int get_device_info(void);                 /* FUN_000167a8 @ 0x000167a8 */
 extern int ancs_c_init(void *client);                   /* FUN_0001905c @ 0x0001905c */
 extern int ancs_discover_params_reset(void);            /* FUN_000191d8 @ 0x000191d8 */
 extern int bt_start(void);                              /* FUN_00019308 @ 0x00019308 */
 extern void start_ancs_work_thread(uintptr_t context);  /* FUN_000198cc @ 0x000198cc */
 extern void debug_print(unsigned long, ...);                          /* FUN_00019c70 @ 0x00019c70 */
-extern void sys_reboot(int type);                       /* FUN_0004c0a8 @ 0x0004c0a8 */
+extern unsigned long sys_reboot(long);                       /* FUN_0004c0a8 @ 0x0004c0a8 */
 extern int bt_enable(void *ready_cb);                   /* FUN_00054a44 @ 0x00054a44 */
 extern void bt_hci_driver_close(void);                  /* FUN_00054b70 @ 0x00054b70 */
 extern int bt_conn_auth_info_cb_register(const void *); /* FUN_00057330 @ 0x00057330 */

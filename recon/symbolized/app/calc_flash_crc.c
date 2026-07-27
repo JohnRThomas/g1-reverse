@@ -35,8 +35,8 @@ extern int get_device_info(void);
 extern void watchdog_feed_retry(void);
 extern unsigned int g1_recon_crc16_ansi_seeded(unsigned int crc,
         const unsigned char *data, int count);
-extern int z_device_is_ready(const void *device);
-extern void memset_bytes(void *destination, int value, unsigned int count);
+extern int z_device_is_ready(int);
+extern void memset_bytes(void*, int, int);
 
 uint32_t calc_flash_crc(uint16_t *crc, int start_address,
                       uint32_t byte_count)

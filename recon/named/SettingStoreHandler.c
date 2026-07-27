@@ -96,9 +96,9 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern unsigned int get_device_info(void);
+extern int get_device_info(void);
 extern int k_msgq_get(unsigned int,void*,unsigned int,unsigned int);
-extern int z_device_is_ready(unsigned int);
+extern int z_device_is_ready(int);
 #define DAT_0002418c 0x20003994UL
 #define DAT_00024190 ((volatile int*)0x2000230cUL)
 #define DAT_00024194 ((volatile int*)0x20007554UL)

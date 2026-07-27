@@ -15,7 +15,7 @@
  */
 /* Reconstructed FUN_0005ee6c @ 0x5ee6c  (parity: 300/300 trials, PROVEN) */
 
-extern int assert_post_action(unsigned int, unsigned int);
+extern int assert_post_action(int, int);
 
 void net_buf_reset(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

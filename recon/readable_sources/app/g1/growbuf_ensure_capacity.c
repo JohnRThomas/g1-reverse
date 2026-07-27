@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_00084f58 @ 0x84f58  (parity: 300/300 trials, PROVEN) */
 
-extern void memcpy(int,int,int);
+extern void memcpy(int, int, int);
 int growbuf_ensure_capacity(int *param_1,int param_2){
   int iVar1,iVar4,iVar5; unsigned uVar2,uVar3;
   if(param_1==0) return 0;

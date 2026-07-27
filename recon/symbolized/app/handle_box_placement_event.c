@@ -23,12 +23,12 @@
 /* Reconstructed FUN_00025528 @ 0x25528  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int box_placement_animation_step(volatile void*);
+extern void box_placement_animation_step(unsigned char*);
 extern int get_device_info(void);
 extern int st25dv_mailbox_set_enabled(int);
 extern int st25dv_write_control_and_ack(int);
 extern int process_box_event(volatile void*, volatile void*, int, volatile void*, uint32_t, uint32_t);
-extern int periodic_check_run(void);
+extern void periodic_check_run(void);
 extern int is_battery_critical(void);
 extern int send_box_event_ipc(uint32_t, void*);
 extern int ipc_send_byte_cmd2002(uint32_t, uint32_t);

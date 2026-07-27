@@ -8,11 +8,11 @@
 
 extern void DEBUG_PRINT(unsigned long, ...);
 extern void debug_print(unsigned long, ...); /* FUN_00019c70 @ 0x19c70 */
-extern uintptr_t get_device_info(void);         /* get_device_info @ 0x167a8 */
+extern int get_device_info(void);         /* get_device_info @ 0x167a8 */
 extern int is_battery_critical(void);            /* is_battery_critical @ 0x32ee4 */
-extern void change_work_mode_to(uint32_t mode);
+extern unsigned int change_work_mode_to(unsigned int);
 extern int update_sync_buffer(void *object, uint64_t timeout); /* 0x7cb48 */
-extern void process_sync_buffer(void *object);                  /* 0x7cb4c */
+extern unsigned long process_sync_buffer(unsigned int, ...);                  /* 0x7cb4c */
 extern void process_touch_event(void);                          /* 0x7cb50 */
 extern void wait_for_event(uint32_t timeout, uint32_t flags);   /* 0x7cb8a */
 extern void set_brightness_to_panel_reg_in_running(uint32_t level);
@@ -20,32 +20,31 @@ extern int check_battery_critical(void *context);
 extern void set_shutdown_flag(void *context, uint32_t publish);
 extern void trigger_screen_state_change(uintptr_t reason, void *context,
                                         uint32_t enabled);
-extern void cal_panel_canvas_coord(void *panel, void *canvas);
+extern void cal_panel_canvas_coord(int, int);
 extern void upgradeDashboardStartupModeInfoToFlash(uint32_t mode);
-extern void display_DelayClose(uint32_t delay_ms);
+extern unsigned int display_DelayClose(unsigned int);
 extern void prepare_quick_note_mode(void *context, uint32_t side);
 extern void update_persist_task_status(void *context, uint32_t task,
                                        uint32_t state);
 extern void handle_touch_single_click(uint32_t side);
-extern void display_inputEvent(uint32_t event, uint32_t pressed);
+extern unsigned long display_inputEvent(unsigned char, unsigned char);
 extern uint32_t get_timestamp(void);
 extern void handle_dashboard_action(uint32_t side);
 extern void handle_stocks_action(uint32_t side);
-extern void display_MasterSendClose(void);
-extern void display_powerEvent(uint32_t event);
+extern unsigned int display_MasterSendClose(void);
+extern int display_powerEvent(int);
 extern void upgradeAppLanguageInfoToFlash(uint32_t language);
 extern void onboarding_retry_watchdog_update(void);
 extern unsigned long long k_uptime_get_1(void);
-extern void update_temp_task_status(void *context, uint32_t task,
-                                    uint32_t state);
+extern unsigned int update_temp_task_status(int, unsigned int, unsigned int);
 extern void clear_timeout_message(uint32_t reason);
 extern void check_pending_messages_flag(void);
 extern void push_message_3439c(void);
 extern void msg_count_dec(void);
 extern int msg_content_recalc_unread(void);
-extern void update_display_status(void *context, uint32_t status);
+extern void update_display_status(int, int);
 extern void msg_content_decrement_timer(void);
-extern void update_persist_task_status_to_idle(void *context);
+extern int update_persist_task_status_to_idle(int);
 extern void update_not_disturb_settings(void);
 
 /* Readable aliases for still-unnamed raw identities. */

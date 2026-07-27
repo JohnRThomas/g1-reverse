@@ -14,8 +14,7 @@
  */
 /* Reconstructed FUN_000436f8 @ 0x436f8  (parity: 300/300 trials, PROVEN) */
 
-void imu_pitch_task_reset_render_state(void)
-{
+unsigned int imu_pitch_task_reset_render_state(void) {
   *(volatile unsigned int *)((unsigned long)&g_imu_pitch_render_state5) /*=0x2000a02c*/ = 0;
   *(volatile unsigned int *)((unsigned long)&g_imu_pitch_render_state4) /*=0x2000a028*/ = 0;
   *(volatile unsigned int *)((unsigned long)&g_imu_pitch_render_state3) /*=0x2000a024*/ = 0;

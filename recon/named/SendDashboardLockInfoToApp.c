@@ -20,8 +20,8 @@
 #include <stdint.h>
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
-extern int send_response_data_to_msgqueue(void*,...);
-extern int send_response_data_to_ble(void);
+extern unsigned int send_response_data_to_msgqueue(void*, unsigned int);
+extern void send_response_data_to_ble(void);
 extern int read_volatile_u32_a(int,...);
 void SendDashboardLockInfoToApp(unsigned p1, unsigned p2, unsigned p3){
   volatile unsigned buf[3];

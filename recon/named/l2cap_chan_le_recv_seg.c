@@ -21,11 +21,11 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 extern int l2cap_chan_send_disconnect(int,int);
-extern int net_buf_unref(int);
+extern void net_buf_unref(int);
 extern short net_buf_append_bytes(int,int,int);
-extern int assert_post_action(int,int);
+extern int assert_post_action(int, int);
 extern long long net_buf_frags_len(int);
-extern int atomic_get_word(int);
+extern unsigned long atomic_get_word(const unsigned long*);
 extern int log_msg_3arg_thunk(int,int,void*);
 extern int gatt_send_service_changed_ind(int);
 

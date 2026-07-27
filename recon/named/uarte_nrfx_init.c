@@ -19,8 +19,8 @@
  *   rodata_f6607                             @ 0x000f6607
  */
 /* Reconstructed FUN_00062d9c @ 0x62d9c  (parity: 300/300 trials, PROVEN) */
-extern void z_log_msg_runtime_create(int,int,void*,int);
-extern void arch_irq_enable(int);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
+extern int arch_irq_enable(int);
 extern void arch_irq_priority_set(int,int,int);
 extern int  uarte_nrfx_configure(int,int);
 extern void nrfx_gppi_channels_enable(int);

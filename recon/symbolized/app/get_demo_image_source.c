@@ -29,14 +29,14 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern uintptr_t get_device_info(void);
+extern int get_device_info(void);
 extern void pixelto4bithex(unsigned int inverted_byte, int glyph_width);
 extern void *malloc(unsigned int size);
 extern void free(void *allocation);
 extern void printf(uint32_t message);
 extern unsigned int ptr_load_u32(unsigned int *);
-extern void memcpy(uintptr_t destination, int source, unsigned int size);
-extern void memset_bytes(void *destination, int value, unsigned int size);
+extern void memcpy(int, int, int);
+extern void memset_bytes(void*, int, int);
 extern int strncmp(const void *header, uint32_t descriptor, unsigned int count);
 
 typedef int (*read_callback_t)(uintptr_t context, uint32_t address,

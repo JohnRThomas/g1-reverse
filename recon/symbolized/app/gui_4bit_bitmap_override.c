@@ -20,9 +20,9 @@
 /* Reconstructed gui_4bit_bitmap_override @ 0x43d78  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern void *get_device_info(void);
+extern int get_device_info(void);
 extern int atomic_get_3_0(void);
-extern int resource_manger_get(int, uint32_t, int*, int*, uint32_t*, int);
+extern long resource_manger_get(unsigned long, unsigned long, long*, long*, unsigned long*, unsigned long);
 extern void reflash_fb_data_to_lcd(uint32_t, uint32_t, unsigned int, unsigned int, int, int);
 extern void fb_blit_rows_or(int, int, int, int, int, int);
 

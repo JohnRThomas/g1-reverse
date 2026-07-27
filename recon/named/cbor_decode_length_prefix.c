@@ -10,7 +10,7 @@
 /* Reconstructed FUN_00085ebc @ 0x85ebc  (parity: 300/300 trials, PROVEN) */
 
 extern int cbor_decode_check_major_type(int *, unsigned int, unsigned int, unsigned int, unsigned int);
-extern int cbor_decode_extract_value(int *, int *, unsigned int);
+extern int cbor_decode_extract_value(int*, unsigned char*, unsigned long);
 extern void cbor_decode_undo_and_fail(int *, int);
 
 int cbor_decode_length_prefix(int *param_1, int *param_2, unsigned int param_3, unsigned int param_4)

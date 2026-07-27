@@ -25,7 +25,7 @@
 extern int gpio_dt_spec_activate(int,...);
 extern int app_msleep_thunk_a(int,...);
 extern int dev_write_reg3(int,...);
-extern int dev_reg_modify_bits(int,...);
+extern int dev_reg_modify_bits(int, unsigned int, unsigned int, unsigned int, unsigned char);
 
 unsigned power_for_panel(unsigned param_1, unsigned param_2)
 {

@@ -17,9 +17,9 @@
 #include "../headers/g1_log.h"
 /* Reconstructed update_burial_point_to_flash @ 0x23014  (parity: 300/300 trials, PROVEN) */
 
-extern int flash_settings_read(unsigned int a, void *b, unsigned int n);
+extern int flash_settings_read(unsigned long, void*, unsigned long);
 extern int flash_settings_write_and_verify(unsigned int a, void *b, unsigned int n);
-extern int memcmp(void *a, void *b, unsigned int n);
+extern int memcmp(const void*, const void*, unsigned long);
 extern void memset_bytes(void *dst, int val, int n);
 
 unsigned int update_burial_point_to_flash(char *param_1)

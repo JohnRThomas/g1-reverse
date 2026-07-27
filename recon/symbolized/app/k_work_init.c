@@ -16,7 +16,7 @@
  */
 /* Reconstructed FUN_00072e50 @ 0x72e50  (parity: 300/300 trials, PROVEN) */
 
-extern void assert_post_action(unsigned int a, unsigned int b);
+extern int assert_post_action(int, int);
 extern void memset_bytes(int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 
 void k_work_init(int param_1, int param_2, unsigned int param_3, unsigned int param_4)

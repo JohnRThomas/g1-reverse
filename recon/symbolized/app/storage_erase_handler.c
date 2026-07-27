@@ -19,8 +19,8 @@
 /* Reconstructed FUN_00052604 @ 0x52604  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void z_log_msg_runtime_create(uint32_t,int,void*,...);
-extern int flash_area_open(int, void*);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
+extern int flash_area_open(unsigned int, void*);
 extern int smp_add_cmd_err(int,int,uint32_t);
 extern void nullsub_3(int);
 extern int flash_area_erase(int,int,uint32_t,int);

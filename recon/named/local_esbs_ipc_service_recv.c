@@ -23,10 +23,10 @@ extern int find_message_pool_entry_by_id(int);
 extern void msg_queue_init(void);
 extern void confirm_message(int);
 extern void reset_esb_sync_state(uint32_t reason);
-extern void set_device_sync_timestamp(uint32_t timestamp);
+extern unsigned int set_device_sync_timestamp(unsigned long);
 extern void FUN_0007c010(void *state);
 extern void update_persist_task_status(void *context, uint32_t task);
-extern void memset_bytes(void *destination, uint32_t value, uint32_t length);
+extern void memset_bytes(void*, int, int);
 
 #define LOG_LEVEL       (*(volatile int32_t *)0x2000230c)
 #define LOG_SINK        (*(volatile int32_t *)0x20007554)

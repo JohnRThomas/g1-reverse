@@ -38,8 +38,7 @@ typedef struct { long long ticks; } g1_k_timeout_t;
 extern int k_mutex_lock(unsigned int mutex, g1_k_timeout_t timeout);
 extern int k_mutex_unlock(unsigned int mutex);
 extern int dev_ctrl_read1(int dev, unsigned int a, unsigned int b, void *out);
-extern int dev_write_reg3(int dev, unsigned int a, unsigned int b,
-                        unsigned int value);
+extern int dev_write_reg3(unsigned int, unsigned int, unsigned int, unsigned int);
 
 int dev_reg_modify_bits(int param_1, unsigned int param_2, unsigned int param_3,
                  unsigned int param_4, unsigned char param_5)

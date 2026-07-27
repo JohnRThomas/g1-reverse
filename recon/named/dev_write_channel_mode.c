@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_000843ba @ 0x843ba  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int dev_write_reg3(unsigned a, int b, int c, int d);
+extern int dev_write_reg3(unsigned int, unsigned int, unsigned int, unsigned int);
 extern int dev_set_mode_register(int a, int b, int c, int d, int e, void* f, int g);
 unsigned dev_write_channel_mode(int param_1, int* param_2, int param_3){
     if (*param_2 == 0) return 0;

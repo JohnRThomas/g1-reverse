@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_000573ac @ 0x573ac  (parity: 300/300 trials, PROVEN) */
 
-extern void memset_bytes(unsigned int, unsigned int, unsigned int);
+extern void memset_bytes(void*, int, int);
 extern void net_pkt_skip(unsigned int, unsigned int);
 
 void l2cap_tx_meta_free(unsigned int param_1)

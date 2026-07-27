@@ -29,8 +29,8 @@
 #include "../../../headers/g1_log.h"
 
 extern int flash_settings_read(uint32_t, void *, uint32_t);
-extern void build_and_send_device_status_report(uintptr_t);
-extern void memset_bytes(void *, int, uint32_t);
+extern int build_and_send_device_status_report(const unsigned char*);
+extern void memset_bytes(void*, int, int);
 
 struct __attribute__((packed)) persisted_system_settings {
     uint32_t version;

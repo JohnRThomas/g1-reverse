@@ -12,10 +12,10 @@
 
 #include <stdint.h>
 
-extern void net_buf_unref(uintptr_t);
+extern void net_buf_unref(int);
 extern void k_work_schedule(unsigned int, unsigned int, unsigned int, unsigned int);
 extern uint64_t att_send_data_frags(uintptr_t, int *, unsigned);
-extern int net_buf_get(uintptr_t, unsigned, unsigned, unsigned);
+extern void* net_buf_get(void*, unsigned long, unsigned long, unsigned long);
 
 void att_send_with_retry(uintptr_t owner, unsigned inherited_wait, unsigned unused)
 {

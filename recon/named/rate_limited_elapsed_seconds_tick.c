@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_0004a46c @ 0x4a46c  (parity: 300/300 trials, PROVEN) */
 
-extern int k_uptime_get_9(void);
+extern unsigned long long k_uptime_get_9(void);
 
 void rate_limited_elapsed_seconds_tick(int *param_1, int param_2, int param_3)
 {

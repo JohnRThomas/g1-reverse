@@ -25,11 +25,11 @@ extern void log_message(unsigned long, ...);
 extern int get_device_info(void);
 extern void debug_print(unsigned long, ...);
 extern int atomic_get_3_0(void);
-extern int resource_manger_get(int,...);
+extern long resource_manger_get(unsigned long, unsigned long, long*, long*, unsigned long*, unsigned long);
 extern int clean_fb_data(int,...);
 extern int reflash_fb_data_to_lcd(int,...);
-extern int fb_blit_rows_copy(int,...);
-extern int memcpy(int,...);
+extern int fb_blit_rows_copy(int, int, int, int, int, int);
+extern void memcpy(int, int, int);
 
 unsigned int gui_bmp_bitmap_draw_ex(unsigned int param_1, int param_2, int param_3, int param_4, unsigned char param_5)
 {

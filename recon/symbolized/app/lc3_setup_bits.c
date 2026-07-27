@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_000684a8 @ 0x684a8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void memset_bytes(unsigned char*, int, int);
+extern void memset_bytes(void*, int, int);
 #define WU(off) (*(volatile unsigned*)(param_1+(off)))
 void lc3_setup_bits(unsigned char *param_1,int param_2,unsigned char *param_3,int param_4)
 {

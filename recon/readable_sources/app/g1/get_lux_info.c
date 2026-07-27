@@ -25,7 +25,7 @@ extern uint64_t __extendsfdf2(uint32_t);
 extern void __muldf3(uint32_t, uint32_t, uint32_t, uint32_t);
 extern uint64_t __divdf3(uint32_t, uint32_t, uint32_t, uint32_t);
 extern uint32_t __fixunsdfsi(void);
-extern uintptr_t get_device_info(void);
+extern int get_device_info(void);
 extern uint32_t opt3001_read_lux_raw(uint32_t);
 
 uint32_t get_lux_info(uint32_t request, uint32_t context,

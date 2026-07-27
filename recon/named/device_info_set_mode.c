@@ -7,7 +7,7 @@
  */
 /* Reconstructed FUN_0007d2f8 @ 0x7d2f8  (parity: 300/300 trials, PROVEN) */
 
-extern void* get_device_info(void);
+extern int get_device_info(void);
 
 void device_info_set_mode(unsigned int param_1)
 {

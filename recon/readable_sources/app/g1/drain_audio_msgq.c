@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_0002f688 @ 0x2f688  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int k_msgq_get(int a, void *b, int c, int d);
+extern int k_msgq_get(int, unsigned int, int, int);
 unsigned int drain_audio_msgq(void)
 {
   int iVar1;

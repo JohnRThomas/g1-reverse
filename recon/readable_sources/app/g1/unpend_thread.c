@@ -26,12 +26,12 @@
  */
 /* Reconstructed FUN_000742b4 @ 0x742b4  (parity: 300/300 trials, PROVEN) */
 
-extern int z_spin_lock_valid(int);
+extern int z_spin_lock_valid(unsigned int*);
 extern int z_spin_unlock_valid(int);
-extern void z_spin_lock_set_owner(int);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern void z_abort_thread_timeout(int);
 extern void z_abort_timeout(int);
-extern void assert_post_action(int,int);
+extern int assert_post_action(int, int);
 void unpend_thread(int param_1,int param_2,int param_3,int param_4){
   int r=z_spin_lock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
   if(r==0){ printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"z_spin_lock_valid(l)") /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72,param_4); printk(((unsigned long)"\tInvalid spinlock %p\n") /*=0xf0935*/,((unsigned long)&sched_spinlock) /*=0x2000b490*/); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); }

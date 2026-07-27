@@ -11,8 +11,7 @@
 typedef unsigned int uint;
 extern void bytes_to_u32le_array(unsigned char*, void*, int);
 
-void md5_process_block(volatile uint *param_1, void *param_2)
-{
+void md5_process_block(volatile unsigned int*param_1, void*param_2) {
   int *piVar1;
   int iVar2,iVar3,iVar4,iVar5,iVar6,iVar9,iVar14,iVar15,iVar16,iVar17,iVar18,iVar19,iVar20,iVar23,iVar24,iVar25,iVar26;
   uint uVar7,uVar8,uVar10,uVar11,uVar12,uVar13,uVar21,uVar22;

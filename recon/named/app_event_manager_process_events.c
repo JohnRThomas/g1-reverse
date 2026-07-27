@@ -31,8 +31,8 @@
  */
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_0004f5b0 @ 0x4f5b0  (parity: 300/300 trials, PROVEN) */
-extern int  z_spin_lock_valid(int);
-extern void z_spin_lock_set_owner(int);
+extern int z_spin_lock_valid(unsigned int*);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern int  z_spin_unlock_valid(int);
 extern void assert_post_action(int,int) __attribute__((noreturn));
 extern void z_log_msg_runtime_create(int,int,void*);

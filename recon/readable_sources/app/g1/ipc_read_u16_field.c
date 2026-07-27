@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_0007c968 @ 0x7c968  (parity: 300/300 trials, PROVEN) */
 
-extern int ipc_ept_op_b_locked_retry(unsigned int, unsigned int, void *, unsigned int);
+extern int ipc_ept_op_b_locked_retry(int, unsigned int, unsigned int, int);
 
 int ipc_read_u16_field(unsigned int param_1, unsigned int *param_2, unsigned int param_3)
 {

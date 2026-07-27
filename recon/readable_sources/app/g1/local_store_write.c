@@ -20,7 +20,7 @@
 #include "../../../headers/g1_log.h"
 
 extern int settings_save_one(const char *key, const void *value, uint32_t length);
-extern void memset_bytes(void *destination, int value, uint32_t length);
+extern void memset_bytes(void*, int, int);
 extern void __strcat_chk(char *destination, const char *source,
                          uint32_t capacity);
 

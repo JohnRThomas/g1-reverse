@@ -9,7 +9,7 @@
 /* Reconstructed FUN_00082bb8 @ 0x82bb8  (parity: 300/300 trials, PROVEN) */
 
 extern int set_change_aware_no_store(void);
-extern void gatt_delayed_store_enqueue(unsigned char,unsigned char*,unsigned int);
+extern void gatt_delayed_store_enqueue(unsigned long, unsigned long, unsigned long);
 void set_change_aware(unsigned char *param_1)
 {
   int iVar1 = set_change_aware_no_store();

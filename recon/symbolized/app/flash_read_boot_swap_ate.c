@@ -16,14 +16,14 @@
 /* Reconstructed FUN_0006403c @ 0x6403c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int flash_area_read(int, int, void*, ...);
+extern int flash_area_read(unsigned int, int, unsigned int, unsigned int);
 extern unsigned int flash_region_is_erased(unsigned int, unsigned char *, int);
-extern int memcmp(void*, uint32_t, int);
-extern uint32_t flash_calc_prev_ate_offset(int);
+extern int memcmp(const void*, const void*, unsigned long);
+extern int flash_calc_prev_ate_offset(int);
 extern int flash_write_byte_and_verify(int, void*, int);
 extern uint32_t flash_verify_write_at_current_offset(int, void*);
 
-uint32_t flash_read_boot_swap_ate(int param_1, uint8_t *param_2){
+unsigned int flash_read_boot_swap_ate(int param_1, unsigned char*param_2) {
   int iVar1;
   uint32_t uVar2;
   uint8_t uVar3;

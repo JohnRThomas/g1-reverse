@@ -23,7 +23,7 @@ extern int qspi_get_zephyr_ret_code(void);
 extern void g1_recon_nrfx_qspi_init(int,int,int,int,int);
 extern void k_sem_give(int);
 extern void audio_i2s_stop_and_reset_channels(unsigned long);
-extern void audio_i2s_start_channels(int);
+extern void audio_i2s_start_channels(void*);
 
 int qspi_nor_acquire(int param_1, int param_2, int param_3, int param_4)
 {

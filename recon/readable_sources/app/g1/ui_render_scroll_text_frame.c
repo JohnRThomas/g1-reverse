@@ -31,7 +31,7 @@ extern int device_info_text_height_get_clamped(void);
 extern int atomic_get_3_0(void);
 extern void gui_canvas_flags_clear_bit1(void);
 extern void gui_canvas_flags_set_bit1(void);
-extern uintptr_t get_device_info(void);
+extern int get_device_info(void);
 extern void clean_fb_data(uintptr_t, int, int, int, int, int);
 extern unsigned gui_utf_draw(unsigned, uintptr_t, unsigned, int, int, int, int,
                             unsigned, unsigned, int, void *, int);

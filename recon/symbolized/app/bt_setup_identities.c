@@ -16,7 +16,7 @@
 extern int bt_id_set_static_random_addr(int,void*);
 extern int bt_id_create(int);
 extern int hci_read_static_addresses(void*,int);
-extern int bt_addr_copy(void*,void*);
+extern void bt_addr_copy(int, int);
 int bt_setup_identities(void){
   uint8_t local30;
   uint8_t stack2f[7];

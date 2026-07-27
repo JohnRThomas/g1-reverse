@@ -20,7 +20,7 @@ struct auth_listener {
 
 extern uint8_t *bt_conn_lookup_addr_le(uint8_t, const void *); /* FUN_00056e74 */
 extern int bt_conn_disconnect(void *, uint8_t); /* FUN_00056a68 */
-extern void ble_conn_unref(void *); /* FUN_000566a4 */
+extern void ble_conn_unref(int); /* FUN_000566a4 */
 extern void *bt_keys_find_addr(uint8_t, const void *); /* FUN_0005e938 */
 extern void bt_keys_clear(void *); /* FUN_0005ea18 */
 extern void bt_gatt_clear(uint8_t, const void *); /* FUN_0005c8d8 */

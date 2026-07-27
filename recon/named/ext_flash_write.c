@@ -20,7 +20,7 @@
 /* Reconstructed FUN_0002e440 @ 0x2e440  (parity: 300/300 trials, PROVEN) */
 
 extern void k_mutex_lock(unsigned a, int b, unsigned c, unsigned d);
-extern void k_mutex_unlock(unsigned a);
+extern int k_mutex_unlock(unsigned int);
 extern void ext_flash_sync_noop(void);
 extern void ext_flash_bus_lock_stub(void);
 int ext_flash_write(int param_1, unsigned param_2, unsigned param_3, unsigned param_4){

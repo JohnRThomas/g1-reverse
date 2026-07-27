@@ -10,7 +10,7 @@
 
 typedef void (*fn_t)(unsigned int, unsigned int, unsigned int);
 extern void svc_attr_memory_release(unsigned long);
-extern void atomic_and_0(unsigned int*, unsigned int);
+extern long atomic_and_0(volatile long*, long);
 
 void discovery_complete_error(unsigned int *param_1, unsigned int param_2)
 {

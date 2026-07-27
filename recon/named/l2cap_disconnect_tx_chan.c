@@ -9,7 +9,7 @@
 /* Reconstructed FUN_00081a60 @ 0x81a60  (parity: 300/300 trials, PROVEN) */
 
 extern void conn_ctx_cleanup_if_pending(void);
-extern int bt_l2cap_le_lookup_tx_cid(unsigned int, unsigned short);
+extern int bt_l2cap_le_lookup_tx_cid(int, int);
 
 void l2cap_disconnect_tx_chan(unsigned int param_1, void *param_2, int param_3)
 {

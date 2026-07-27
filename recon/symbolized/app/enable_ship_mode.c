@@ -12,8 +12,8 @@
  */
 /* Reconstructed FUN_000167f4 @ 0x167f4  (parity: 300/300 trials, PROVEN) */
 
-extern void power_down_panel(void);
-extern void power_down_imu_and_mic(void);
+extern unsigned int power_down_panel(void);
+extern unsigned int power_down_imu_and_mic(void);
 extern void app_msleep_thunk_a(unsigned int a);
 extern int dev_write_reg3(unsigned int a, unsigned int b,
                         unsigned int c, unsigned int d);

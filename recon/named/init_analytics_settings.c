@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_0007c360 @ 0x7c360  (parity: 300/300 trials, PROVEN) */
 
-extern int load_sys_setting(unsigned long);
+extern int load_sys_setting(unsigned int);
 extern int load_usr_setting(int);
 extern int load_burial_point(int);
 extern int get_device_info(void);

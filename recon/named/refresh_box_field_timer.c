@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_0002542c @ 0x2542c  (parity: 300/300 trials, PROVEN) */
 
-extern void read_nfc_adc_scaled(unsigned int);
+extern unsigned int read_nfc_adc_scaled(int*);
 void refresh_box_field_timer(void)
 {
   unsigned int *puVar1 = (unsigned int *)0x20007a34UL;

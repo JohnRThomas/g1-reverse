@@ -13,7 +13,7 @@
  *   g_level_calc_input_b_cache               @ 0x20018c6b
  */
 /* Reconstructed FUN_00025ecc @ 0x25ecc  (parity: 300/300 trials, PROVEN) */
-extern void get_device_type(void);
+extern int get_device_type(void);
 int panel_level_calc_cached(char *param_1){
   int iVar10 = *(int*)(param_1+0x84);
   int iVar8  = *(int*)(param_1+0x88);

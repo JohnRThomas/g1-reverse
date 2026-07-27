@@ -9,7 +9,7 @@
 /* Reconstructed FUN_0007fa7a @ 0x7fa7a  (parity: 300/300 trials, PROVEN) */
 
 extern int audio_codec_reg_op_dispatch(unsigned int, unsigned int, void*, unsigned int, unsigned int);
-extern void audio_codec_bus_write(unsigned int, unsigned int, void*, unsigned int);
+extern void audio_codec_bus_write(unsigned long*, unsigned long, unsigned long, unsigned long);
 
 void audio_codec_set_reg16_bit7(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

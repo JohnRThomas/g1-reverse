@@ -14,7 +14,7 @@
 typedef unsigned int uint;
 typedef unsigned char undefined1;
 typedef unsigned undefined4;
-extern void z_log_msg_runtime_create(unsigned a, int b, void *c, int d);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void invoke_object_callback_864(int a, int b);
 
 #define B8(o)  (*(volatile unsigned char*)(param_1 + (o)))

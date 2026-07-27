@@ -10,7 +10,6 @@
 /* Reconstructed FUN_00076d7c @ 0x76d7c  (parity: 300/300 trials, PROVEN) */
 
 extern void _free_r(unsigned int a0, unsigned int a1);
-void free(unsigned int param_1)
-{
+void free(int param_1) {
   _free_r(*(volatile unsigned int*)0x20002d20UL, param_1);
 }

@@ -12,7 +12,7 @@
  */
 /* Reconstructed FUN_00076b48 @ 0x76b48  (parity: 300/300 trials, PROVEN) */
 
-extern void memset_bytes(unsigned int *, unsigned int, unsigned int);
+extern void memset_bytes(void*, int, int);
 
 void newlib_stdio_init_stream(unsigned int *param_1, unsigned int param_2, unsigned int param_3)
 {

@@ -2,7 +2,7 @@
 
 extern void DEBUG_PRINT(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
-extern unsigned int get_device_info(void);
+extern int get_device_info(void);
 extern void display_DelayClose(unsigned int ms);
 extern int FUN_000720d0(int a, void *b, int c, int d);
 extern void FUN_00072880(void *a);

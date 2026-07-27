@@ -7,7 +7,7 @@
  *   is_system_idle_ready                     <= FUN_0007ce00 @ 0x0007ce00
  */
 /* Reconstructed FUN_0007cbae @ 0x7cbae  (parity: 300/300 trials, PROVEN) */
-extern char* get_device_info(void);
+extern int get_device_info(void);
 extern int is_system_idle_ready(void);
 extern char* not_disturb_disable_pending(void);
 char* resolve_not_disturb_context(int p1,int p2,int p3){

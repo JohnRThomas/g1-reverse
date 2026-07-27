@@ -14,7 +14,7 @@
  */
 /* Reconstructed FUN_00063ff8 @ 0x63ff8  (parity: 300/300 trials, PROVEN) */
 
-extern void flash_area_erased_val(unsigned long);
+extern unsigned int flash_area_erased_val(unsigned int);
 extern int flash_area_write(int a, unsigned int b, void *c, int d);
 
 int boot_write_image_trailer_magic(int param_1)

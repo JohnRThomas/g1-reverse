@@ -15,10 +15,10 @@
 /* Full reconstruction of FUN_0004382c @ 0x4382c (164 bytes). */
 #include <stdint.h>
 
-extern void *get_device_info(void);
+extern int get_device_info(void);
 extern void reflash_fb_data_to_lcd(uint32_t left, uint32_t right, uint32_t x,
                         uint32_t y, uint32_t width, uint32_t height);
-extern void delay_scaled_busy_wait(uint32_t delay);
+extern void delay_scaled_busy_wait(int);
 extern void gui_screen_clear(void);
 
 int gui_screen_fade_out_transition(void)

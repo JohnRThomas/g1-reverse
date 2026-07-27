@@ -29,8 +29,8 @@
 #include "../headers/g1_log.h"
 typedef uint32_t u32; typedef unsigned char byte;
 extern int get_device_info(void);
-extern int opt3001_reg_read(int a, void* b);
-extern int z_device_is_ready(u32 a);
+extern int opt3001_reg_read(unsigned char, unsigned short*);
+extern int z_device_is_ready(int);
 #define FLAG (*(volatile int*)0x20007554UL)
 
 struct opt3007_transfer {

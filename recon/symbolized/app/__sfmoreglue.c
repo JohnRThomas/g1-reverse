@@ -10,7 +10,7 @@
 /* Reconstructed FUN_00086b14 @ 0x86b14  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int* _malloc_r(unsigned int, int);
-extern void memset_bytes(unsigned int*, int, int);
+extern void memset_bytes(void*, int, int);
 
 unsigned int* __sfmoreglue(unsigned int param_1, int param_2)
 {

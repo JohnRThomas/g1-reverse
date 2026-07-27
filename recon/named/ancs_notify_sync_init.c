@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_000181f0 @ 0x181f0  (parity: 300/300 trials, PROVEN) */
 
-extern int ancs_gatt_client_cb_set(const unsigned int *);
+extern int ancs_gatt_client_cb_set(const unsigned long*);
 int ancs_notify_sync_init(void) {
     return ancs_gatt_client_cb_set((void*)0x20002310UL);
 }

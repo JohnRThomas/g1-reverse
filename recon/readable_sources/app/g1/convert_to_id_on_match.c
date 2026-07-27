@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_000831e2 @ 0x831e2  (parity: 300/300 trials, PROVEN) */
 
-extern int memcmp(int a, int b, int c);
+extern int memcmp(const void*, const void*, unsigned long);
 extern void bt_addr_le_copy_83062(unsigned int *, unsigned int *);
 void convert_to_id_on_match(int param_1, int *param_2)
 {

@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_0007c1aa @ 0x7c1aa  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int get_device_info(void);
+extern int get_device_info(void);
 extern unsigned int memcpy(unsigned int, unsigned int, unsigned int);
 
 unsigned int device_info_store_chunk(unsigned int param_1, unsigned int param_2, unsigned char param_3, int param_4)

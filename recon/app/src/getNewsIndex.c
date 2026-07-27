@@ -3,8 +3,7 @@
 extern void DEBUG_PRINT(unsigned long, ...);
 extern void FUN_00019c70(unsigned long, ...);
 
-unsigned char getNewsIndex(void)
-{
+unsigned long getNewsIndex(void) {
     volatile unsigned char *base = (volatile unsigned char*)0x20004950UL;
     int iVar2 = *(volatile int*)0x2000230cUL;
     unsigned char b = *(volatile unsigned char*)0x2001b814UL;

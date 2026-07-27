@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_000243fc @ 0x243fc  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int k_msgq_get(unsigned int, void *, unsigned int, unsigned int);
+extern int k_msgq_get(int, unsigned int, int, int);
 
 unsigned int drain_quick_note_data_queue(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

@@ -34,9 +34,9 @@
 #include <cmsis_gcc.h>
 #include "../../../headers/g1_log.h"
 
-extern int z_spin_lock_valid(uintptr_t lock);
+extern int z_spin_lock_valid(unsigned int*);
 extern int z_spin_unlock_valid(uintptr_t lock);
-extern void z_spin_lock_set_owner(uintptr_t lock);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern void k_work_submit(uintptr_t object);
 extern void assert_post_action(uintptr_t file, uint32_t line) __attribute__((noreturn));
 

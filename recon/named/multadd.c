@@ -16,7 +16,7 @@
 
 extern int Balloc(int,int);
 extern int __assert_func(int,int,int,int);
-extern void memcpy(int,int,int);
+extern void memcpy(int, int, int);
 extern void Bfree(int,int);
 int multadd(int param_1,int param_2,int param_3,unsigned param_4){
   int iVar5=*(int*)(param_2+0x10);

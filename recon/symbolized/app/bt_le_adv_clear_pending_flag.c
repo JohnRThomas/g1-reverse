@@ -9,7 +9,7 @@
 /* Reconstructed FUN_00081080 @ 0x81080  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void bt_le_adv_set_enable_legacy_veneer(int, uint32_t);
+extern int bt_le_adv_set_enable_legacy_veneer(void*, unsigned long);
 
 void bt_le_adv_clear_pending_flag(int param_1)
 {

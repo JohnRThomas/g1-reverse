@@ -12,8 +12,7 @@
 
 extern void set_dashboard_startup_default_language(unsigned char);
 
-unsigned char sync_dashboard_default_language(void)
-{
+unsigned long sync_dashboard_default_language(void) {
   unsigned int base = 0x20004950UL;
   unsigned char value = *(volatile unsigned char *)0x2001b816UL;
   *(volatile unsigned char *)(base + 1) = value;

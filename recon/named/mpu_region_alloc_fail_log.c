@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_00050c24 @ 0x50c24  (parity: 300/300 trials, PROVEN) */
 
-extern void z_log_msg_runtime_create(unsigned int a, unsigned int b, void *c, unsigned int d);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned int mpu_region_alloc_fail_log(unsigned int param_1)
 {

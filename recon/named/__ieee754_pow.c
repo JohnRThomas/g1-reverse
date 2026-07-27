@@ -22,7 +22,7 @@
 /* Reconstructed FUN_000133f8 @ 0x133f8  (parity: 300/300 trials, PROVEN) */
 typedef unsigned int u32;
 typedef unsigned long long u64;
-extern u64 dcmp_negate_rhs(u32, u32, u32, u32);
+extern unsigned long long dcmp_negate_rhs(unsigned int, unsigned int, unsigned int, unsigned int);
 extern u64 __aeabi_dadd(u32, u32, u32, u32);
 extern u64 __floatsidf(int);
 extern u64 __muldf3(u32, u32, u32, u32);

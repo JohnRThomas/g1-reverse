@@ -15,7 +15,7 @@
 
 #include <stdint.h>
 extern int gatt_subscribe_add(int, int *);
-extern void z_log_msg_runtime_create(uint32_t, int, void*, int);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 
 int gatt_subscribe_service_changed(volatile int *param_1, int param_2, uint32_t param_3, uint32_t param_4){
   int iVar1;

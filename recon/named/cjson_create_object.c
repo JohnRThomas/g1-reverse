@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_00064ca4 @ 0x64ca4  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int alloc_zeroed_node(unsigned int a);
+extern int alloc_zeroed_node(unsigned int);
 
 void cjson_create_object(void)
 {

@@ -12,7 +12,7 @@
 
 extern void att_optional_sent_cb_dispatch(unsigned long, unsigned long);
 extern void atomic_clear_bit_0(volatile int *, int);
-extern void att_chan_req_free(int*);
+extern int att_chan_req_free(int);
 void att_chan_tx_complete(unsigned int param_1,int *param_2,int param_3)
 {
   if (param_3 == 0) {

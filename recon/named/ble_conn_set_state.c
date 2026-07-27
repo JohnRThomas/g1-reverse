@@ -38,7 +38,7 @@ extern void bt_conn_notify_connected(int);
 extern void tx_notify(int);
 extern void net_buf_destroy(int,void*,uint32_t,uint32_t);
 extern void ble_conn_ref(unsigned long);
-extern uint32_t ble_conn_unref(int);
+extern void ble_conn_unref(int);
 extern void k_sem_give(int);
 extern void k_work_schedule(unsigned int, unsigned int, unsigned int, unsigned int);
 extern uint32_t k_work_cancel_delayable(int);

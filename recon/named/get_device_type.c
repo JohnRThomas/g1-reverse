@@ -8,7 +8,6 @@
  */
 /* Reconstructed FUN_00016568 @ 0x16568  (parity: 300/300 trials, PROVEN) */
 
-unsigned char get_device_type(void)
-{
+int get_device_type(void) {
   return *(volatile unsigned char *)(*(volatile unsigned int *)0x200069fcUL);
 }

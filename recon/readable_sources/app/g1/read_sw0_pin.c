@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_00017e30 @ 0x17e30  (parity: 300/300 trials, PROVEN) */
 
-extern void gpio_pin_get_raw_checked(unsigned int a, unsigned int b);
+extern int gpio_pin_get_raw_checked(char*, unsigned int);
 void read_sw0_pin(void)
 {
     gpio_pin_get_raw_checked(((unsigned long)&g_gpio1_dev) /*=0x87b48*/, 9);

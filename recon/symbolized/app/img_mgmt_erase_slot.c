@@ -20,13 +20,13 @@
  */
 /* Reconstructed FUN_000516ac @ 0x516ac  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int flash_area_open(int,...);
+extern int flash_area_open(unsigned int, void*);
 extern int img_mgmt_flash_area_id(int);
 extern int __assert_func(int,...);
 extern int nullsub_3(int,...);
-extern int flash_area_read(int,...);
+extern int flash_area_read(unsigned int, int, unsigned int, unsigned int);
 extern int flash_area_erase(int,...);
-extern int flash_area_erased_val(int,...);
+extern unsigned int flash_area_erased_val(unsigned int);
 extern int z_log_msg_static_create_img_mgmt(int,...);
 int img_mgmt_erase_slot(int param_1)
 {

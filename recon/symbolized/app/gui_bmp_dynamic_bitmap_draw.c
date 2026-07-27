@@ -25,11 +25,11 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 extern int get_device_info(void);
-extern unsigned atomic_get_3_0(void);
-extern int resource_manger_get(int,unsigned,int*,int*,int*,unsigned char*);
+extern int atomic_get_3_0(void);
+extern long resource_manger_get(unsigned long, unsigned long, long*, long*, unsigned long*, unsigned long);
 extern void clean_fb_data(unsigned,int,int,int,int,int);
 extern void reflash_fb_data_to_lcd(unsigned,unsigned,int,int,int,int);
-extern void fb_blit_rows_copy(unsigned,int,int,int,int,int);
+extern int fb_blit_rows_copy(int, int, int, int, int, int);
 
 unsigned gui_bmp_dynamic_bitmap_draw(unsigned param_1,int param_2,int param_3,int p4,int p5,int p6,unsigned char in_stack8){
   struct __attribute__((packed, aligned(4))) {

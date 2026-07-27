@@ -20,7 +20,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 extern int l2cap_chan_add(int,int,int);
-extern void assert_post_action(int,int);
+extern int assert_post_action(int, int);
 void bt_l2cap_connected(int param_1,int param_2){
   uint16_t *puVar2=(uint16_t*)((unsigned long)&rodata_87fec) /*=0x87fec*/;
   uint16_t *puVar5=(uint16_t*)((unsigned long)&rodata_87fc8) /*=0x87fc8*/;

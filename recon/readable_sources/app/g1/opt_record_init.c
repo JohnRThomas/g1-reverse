@@ -12,9 +12,9 @@
  *   opt_record_init                          <= FUN_0007c4b6 @ 0x0007c4b6
  */
 /* Reconstructed FUN_0007c4b6 @ 0x7c4b6  (parity: 300/300 trials, PROVEN) */
-extern void opt_field1_set(unsigned char *a0, unsigned int a1, void *a2);
-extern void opt_field3_set(unsigned char *a0, void *a1);
-extern void opt_field2_set(unsigned char *a0, void *a1);
+extern unsigned int opt_field1_set(unsigned char*, unsigned int, int*);
+extern unsigned int opt_field3_set(unsigned char*, int*);
+extern int opt_field2_set(unsigned char*, int*);
 
 unsigned int opt_record_init(unsigned char *param_1)
 {

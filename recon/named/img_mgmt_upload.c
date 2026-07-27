@@ -34,7 +34,7 @@
 typedef unsigned int uint;
 typedef unsigned char undefined1;
 typedef unsigned undefined4;
-extern void z_log_msg_runtime_create(unsigned a, unsigned b, void *c, unsigned d);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern int smp_add_cmd_err(uintptr_t a, int b, uint c);
 extern uint img_mgmt_write_image_data(int a, int b, int c, int d);
 struct decode_result {

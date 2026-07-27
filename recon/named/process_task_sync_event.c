@@ -33,19 +33,19 @@ extern int get_device_info(void);
 extern void esb_send_command_and_wait_ack(unsigned a, int b, int c);
 extern void esb_pairing_sync_step(void);
 extern void trigger_screen_state_change(unsigned a, unsigned b, int c);
-extern void update_temp_task_status(unsigned a, int b, int c);
+extern unsigned int update_temp_task_status(int, unsigned int, unsigned int);
 extern void check_pending_messages_flag(void);
 extern void sync_message_signal_to_slave(int a);
 extern void update_touch_key_flag(void);
 extern int get_low_battery_flag_if_master(void);
-extern void mark_master_or_low_battery_flag(void);
+extern unsigned int mark_master_or_low_battery_flag(void);
 extern int msg_content_recalc_unread(void);
 extern void k_msleep(int a);
 extern void prepare_quick_note_mode(unsigned a, int b);
 extern void reset_esb_sync_state(int a);
 extern void send_event(int a);
 extern int sync_to_slave(unsigned a, int b, int c);
-extern void wait_for_event(int a, int b);
+extern void wait_for_event(unsigned long, unsigned long);
 extern void update_persist_task_status(unsigned a, int b, int c);
 
 void process_task_sync_event(unsigned param_1)

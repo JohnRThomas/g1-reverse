@@ -20,7 +20,7 @@
 /* Reconstructed FUN_00056c78 @ 0x56c78  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_le_conn_params_valid(int);
-extern void assert_post_action(int,int);
+extern int assert_post_action(int, int);
 int ble_notify_disconnected(int param_1,int param_2){
   int iVar2=bt_le_conn_params_valid(param_2);
   if(iVar2==0) return 0;

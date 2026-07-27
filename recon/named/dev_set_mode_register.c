@@ -25,7 +25,7 @@
  *     84236  b.w   0x83e0e
  */
 #include <stdint.h>
-extern int dev_reg_modify_bits(int, int, int, int, unsigned char);
+extern int dev_reg_modify_bits(int, unsigned int, unsigned int, unsigned int, unsigned char);
 uint32_t dev_set_mode_register(int param_1, int param_2, char param_3, uint32_t param_4,
                       char param_5)
 {

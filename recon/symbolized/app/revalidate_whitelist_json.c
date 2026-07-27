@@ -20,8 +20,8 @@ extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
 extern int convert_app_whitelist_to_json(int);
 extern int malloc(int);
-extern int free(int);
-extern int memset_bytes(int, int, int);
+extern void free(int);
+extern void memset_bytes(void*, int, int);
 
 void revalidate_whitelist_json(void)
 {

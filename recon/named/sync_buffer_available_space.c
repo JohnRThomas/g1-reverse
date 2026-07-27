@@ -8,7 +8,7 @@
 /* Reconstructed FUN_00071314 @ 0x71314  (parity: 300/300 trials, PROVEN) */
 
 extern void mutex_lock_wait_forever_dup(int a);
-extern void process_sync_buffer(int a);
+extern unsigned long process_sync_buffer(unsigned int, ...);
 
 int sync_buffer_available_space(int param_1)
 {

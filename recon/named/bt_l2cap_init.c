@@ -15,7 +15,7 @@
 #define z_impl_k_queue_init z_impl_k_queue_init
 extern void z_impl_k_queue_init(void *queue);
 extern void net_pkt_skip(int,int);
-extern void memset_bytes(int,int,int);
+extern void memset_bytes(void*, int, int);
 void bt_l2cap_init(void)
 {
     z_impl_k_queue_init((void *)0x20003a44);

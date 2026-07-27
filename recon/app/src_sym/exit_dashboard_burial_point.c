@@ -1,6 +1,6 @@
 /* Reconstructed exit_dashboard_burial_point @ 0x4aab0  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int get_device_info(void);
+extern int get_device_info(void);
 extern unsigned int FUN_0007dac0(void);
 extern long long get_dashboard_sum_time(void);
 extern unsigned int FUN_0007db50(void);

@@ -22,7 +22,7 @@ struct work_canceller {
     uint8_t semaphore[16];
 };
 
-extern int z_impl_k_sem_init(void *, unsigned int, unsigned int); /* FUN_00086534 */
+extern int z_impl_k_sem_init(unsigned int, unsigned long, unsigned long); /* FUN_00086534 */
 
 int cancel_sync_locked(uint8_t *work, struct work_canceller *canceller)
 {

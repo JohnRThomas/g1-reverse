@@ -12,7 +12,7 @@
  */
 /* Reconstructed FUN_000256dc @ 0x256dc  (parity: 300/300 trials, PROVEN) */
 extern void thunk_FUN_000723b8(unsigned,unsigned,unsigned,unsigned,int,unsigned);
-extern int dev_send_cmd16_payload(int,unsigned,unsigned,unsigned,int);
+extern int dev_send_cmd16_payload(unsigned long*, unsigned long, unsigned long, unsigned long, unsigned long);
 extern void thunk_FUN_00072558(unsigned);
 extern unsigned long long sleep_fixed_33_ticks(void);
 int ipc_ept_op_a_locked_retry(int param_1, unsigned param_2, unsigned param_3, int param_4){

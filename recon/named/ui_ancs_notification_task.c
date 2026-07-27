@@ -30,7 +30,7 @@
 
 extern void gui_screen_clear(void);
 extern void display_fade_out_mask_bands(void);
-extern void gui_set_active_canvas(void *framebuffer);
+extern unsigned int gui_set_active_canvas(unsigned int);
 extern void gui_canvas_flags_set_bit1(void);
 extern uint32_t get_message_pool_index(void);
 extern uint32_t msg_content_recalc_unread(void);

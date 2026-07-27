@@ -9,9 +9,9 @@
  */
 /* Reconstructed FUN_00084300 @ 0x84300  (parity: 300/300 trials, PROVEN) */
 
-extern int regulator_uv_to_reg_selector(unsigned int, unsigned int, void*);
-extern int dev_write_reg3(unsigned int, int, int, int);
-extern void dev_reg_modify_bits(unsigned int, int, int, unsigned int, unsigned int);
+extern unsigned int regulator_uv_to_reg_selector(int, int, unsigned short*);
+extern int dev_write_reg3(unsigned int, unsigned int, unsigned int, unsigned int);
+extern int dev_reg_modify_bits(int, unsigned int, unsigned int, unsigned int, unsigned char);
 
 void regulator_set_voltage_range(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

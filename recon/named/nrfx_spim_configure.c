@@ -20,7 +20,7 @@
 #include "../headers/g1_log.h"
 typedef unsigned int uint;
 
-extern void arch_irq_enable(int);
+extern int arch_irq_enable(int);
 extern void pin_init(uint32_t,int,int,uint32_t,int);
 extern void assert_post_action(uint32_t,uint32_t) __attribute__((noreturn));
 

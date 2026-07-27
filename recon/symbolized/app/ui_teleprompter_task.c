@@ -78,12 +78,12 @@
 #define U32(a) (*(volatile uint32_t*)(uintptr_t)(a))
 #define S32(a) (*(volatile int32_t *)(uintptr_t)(a))
 
-extern unsigned get_device_info(void);
-extern void     gui_set_active_canvas(unsigned);
+extern int get_device_info(void);
+extern unsigned int gui_set_active_canvas(unsigned int);
 extern void     gui_canvas_flags_set_bit1(void);
 extern void     gui_screen_clear(void);
-extern void     memset_bytes(unsigned,unsigned,unsigned);
-extern void     memcpy(unsigned,unsigned,unsigned);
+extern void memset_bytes(void*, int, int);
+extern void memcpy(int, int, int);
 extern long long k_uptime_get_6(void);
 extern long long u64_sub(void);
 extern long long __aeabi_ldivmod(unsigned,unsigned,unsigned,unsigned);
@@ -91,20 +91,20 @@ extern unsigned device_info_text_width_get(void);
 extern unsigned device_info_text_height_get_clamped(void);
 extern unsigned get_timestamp(void);
 extern int      get_ui_mode_flag_byte1(void);
-extern int      snprintf(unsigned,unsigned,unsigned,unsigned);
+extern int snprintf(unsigned char*, int, unsigned long, unsigned long);
 extern int      sync_to_slave(unsigned,unsigned,unsigned);
 extern void     send_response_data_to_ble(void);
-extern void     mark_master_or_low_battery_flag(void);
+extern unsigned int mark_master_or_low_battery_flag(void);
 extern void     k_mutex_lock(unsigned,unsigned,unsigned);
-extern void     k_mutex_unlock(unsigned);
+extern int k_mutex_unlock(unsigned int);
 extern void     gui_utf_draw(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
 extern void     gui_clock_draw(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
 extern void     gui_verticalLine_process_bar(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
-extern void     gui_bmp_bitmap_draw(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
+extern int gui_bmp_bitmap_draw(unsigned int, int, int, int, int, int);
 extern void     clean_fb_data(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
 extern void     reflash_fb_data_to_lcd(unsigned,unsigned,unsigned,unsigned,unsigned,unsigned);
 extern void     k_sleep(unsigned,unsigned);
-extern void     gui_reset_dynamic_bitmap_frame_state(void);
+extern unsigned int gui_reset_dynamic_bitmap_frame_state(void);
 extern void     gui_screen_fade_out_transition(void);
 extern void     gui_canvas_flags_clear_bit1(void);
 extern void     gui_bmp_dynamic_bitmap_draw(unsigned,unsigned,unsigned,unsigned,unsigned);

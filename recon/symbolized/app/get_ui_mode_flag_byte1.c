@@ -9,6 +9,6 @@
  */
 /* Reconstructed FUN_00023ee0 @ 0x23ee0  (parity: 300/300 trials, PROVEN) */
 
-unsigned char get_ui_mode_flag_byte1(void) {
+int get_ui_mode_flag_byte1(void) {
     return *(volatile unsigned char*)(((unsigned long)&g_ui_mode_flag) /*=0x20018462*/ + 1);
 }

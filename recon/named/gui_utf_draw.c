@@ -29,16 +29,14 @@
 #include "../headers/g1_log.h"
 
 typedef unsigned (*render_callback_t)(unsigned, uintptr_t, int, int, int);
-extern uint16_t *utf8_string_to_utf16(uintptr_t text, uint16_t *count);
+extern void* utf8_string_to_utf16(unsigned int, unsigned short*);
 extern int atomic_get_3_0(void);
-extern int index_in_range32_mask(uint16_t character);
-extern int resource_manger_get(int font, uint16_t character, int *width,
-                        int *height, uintptr_t *bitmap, int flags);
+extern unsigned int index_in_range32_mask(unsigned int);
+extern long resource_manger_get(unsigned long, unsigned long, long*, long*, unsigned long*, unsigned long);
 extern void safe_memcpy_checked(void *dst, uintptr_t src, int bytes, int limit);
-extern int count_chars_in_default_font_table(uint16_t current, uint16_t next);
-extern void fb_blit_rows_copy(uintptr_t display, const void *bitmap, int half_width,
-                         int height, int x, int y);
-extern uintptr_t get_device_info(void);
+extern int count_chars_in_default_font_table(unsigned int, unsigned int);
+extern int fb_blit_rows_copy(int, int, int, int, int, int);
+extern int get_device_info(void);
 extern void clean_fb_data(uintptr_t, int, int, int, int, int);
 extern void reflash_fb_data_to_lcd(uintptr_t, uintptr_t, int, int, int, int);
 

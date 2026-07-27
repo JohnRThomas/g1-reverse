@@ -24,9 +24,9 @@
 extern void projector_send_cmd1(uint32_t a, uint32_t b);
 extern void projector_send_cmd_c0(uint32_t a, uint32_t b);
 extern void projector_send_cmd_0x46(uint32_t a);
-extern void projector_fill_framebuffer(uint32_t a);
+extern void projector_fill_framebuffer(unsigned int);
 extern void projector_reset_sequence(void);
-extern void delay_ms(uint32_t a);
+extern void delay_ms(int);
 extern void projector_send_cmd_immediate(uint32_t a);
 
 void panel_init(void)

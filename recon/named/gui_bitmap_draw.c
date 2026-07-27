@@ -20,7 +20,7 @@
 #include "../headers/g1_log.h"
 typedef unsigned uint; typedef unsigned char byte; typedef unsigned long long ulonglong;
 extern int get_device_info(int,...);
-extern unsigned atomic_get_3_0(void);
+extern int atomic_get_3_0(void);
 extern int clean_fb_data(int,...);
 extern int reflash_fb_data_to_lcd(int,...);
 

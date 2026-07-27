@@ -12,7 +12,7 @@
  */
 /* Reconstructed FUN_00066270 @ 0x66270  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void arch_irq_enable(int);
+extern int arch_irq_enable(int);
 extern void arch_irq_disable(int);
 unsigned int nrfx_pdm_buffer_set(int param_1,int param_2){
   int iVar1=((unsigned long)&g_pdm_cb) /*=0x2000b330*/; unsigned int uVar4; int iVar3;

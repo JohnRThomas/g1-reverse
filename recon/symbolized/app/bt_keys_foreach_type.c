@@ -17,7 +17,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 typedef void (*fnptr)(unsigned int, unsigned int);
-extern void assert_post_action(uint32_t, uint32_t);
+extern int assert_post_action(int, int);
 
 void bt_keys_foreach_type(unsigned short param_1, fnptr param_2, unsigned int param_3)
 {

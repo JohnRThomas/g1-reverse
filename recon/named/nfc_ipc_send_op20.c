@@ -7,7 +7,7 @@
  */
 /* Reconstructed FUN_0007c944 @ 0x7c944  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int ipc_ept_op_b_locked_retry(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
+extern int ipc_ept_op_b_locked_retry(int, unsigned int, unsigned int, int);
 
 unsigned int nfc_ipc_send_op20(unsigned int param_1, int param_2)
 {

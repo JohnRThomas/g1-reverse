@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_0005571c @ 0x5571c  (parity: 300/300 trials, PROVEN) */
 
-extern void memset_bytes(unsigned int a0, unsigned int a1, unsigned int a2);
+extern void memset_bytes(void*, int, int);
 void clear_legacy_adv_state(void)
 {
   memset_bytes(((unsigned long)g_bt_le_legacy_adv) /*=0x20002018*/, 0, 0x50);

@@ -9,7 +9,7 @@
 /* Reconstructed FUN_000842cc @ 0x842cc  (parity: 300/300 trials, PROVEN) */
 
 extern int regulator_uv_to_reg_selector(unsigned int, unsigned int, void *, unsigned int, int);
-extern int dev_write_reg3(unsigned int, int, unsigned int, unsigned char);
+extern int dev_write_reg3(unsigned int, unsigned int, unsigned int, unsigned int);
 
 void regulator_write_voltage_reg(int param_1, int param_2, unsigned int param_3, unsigned int param_4)
 {

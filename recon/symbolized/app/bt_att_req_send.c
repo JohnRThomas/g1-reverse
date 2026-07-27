@@ -17,7 +17,7 @@
 /* Reconstructed FUN_00059a90 @ 0x59a90  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern long long assert_post_action(unsigned,unsigned);
+extern int assert_post_action(int, int);
 extern int att_get(void);
 extern void att_req_send_process(void);
 unsigned bt_att_req_send(int param_1, unsigned* param_2){

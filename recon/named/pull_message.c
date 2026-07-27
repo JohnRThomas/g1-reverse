@@ -18,7 +18,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed pull_message @ 0x342e0  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int get_device_info(void);
+extern int get_device_info(void);
 
 unsigned char pull_message(int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

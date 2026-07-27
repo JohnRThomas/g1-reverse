@@ -11,7 +11,7 @@
 /* Reconstructed FUN_0003b800 @ 0x3b800  (parity: 300/300 trials, PROVEN) */
 
 extern void stopAudioStreamRecord(unsigned int, unsigned int);
-extern void mark_master_or_low_battery_flag(void);
+extern unsigned int mark_master_or_low_battery_flag(void);
 
 void consume_pending_event_and_refresh_flag(void)
 {

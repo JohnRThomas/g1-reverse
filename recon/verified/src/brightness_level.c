@@ -9,7 +9,7 @@ extern uintptr_t FUN_000167a8(void);
 extern void FUN_00023014(void);
 extern void FUN_000365ec(void);
 extern void FUN_00074844(uint32_t,uint32_t);
-extern void change_work_mode_to(uint32_t);
+extern unsigned int change_work_mode_to(unsigned int);
 extern void FUN_0007cbfe(uintptr_t,uint32_t);
 extern void FUN_0007c34a(uintptr_t,uint32_t);
 extern uint64_t thunk_FUN_00074f68(void);

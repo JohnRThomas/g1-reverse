@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_0007faa8 @ 0x7faa8  (parity: 300/300 trials, PROVEN) */
 
-extern void audio_codec_reg_op_dispatch(unsigned int a,int b,void *c,int d);
+extern int audio_codec_reg_op_dispatch(unsigned int, unsigned int, void*, unsigned int);
 void read_6byte_id_words(unsigned int param_1, unsigned short *param_2)
 {
   unsigned int local_10 = param_1;

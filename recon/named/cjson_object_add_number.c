@@ -10,8 +10,8 @@
 /* Reconstructed FUN_00085076 @ 0x85076  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int cjson_create_number(void);
-extern int cjson_add_item_to_object(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
-extern void cjson_delete(unsigned int a);
+extern int cjson_add_item_to_object(int, int, int, int);
+extern void cjson_delete(volatile int*);
 
 unsigned int cjson_object_add_number(unsigned int param_1, unsigned int param_2)
 {

@@ -21,7 +21,7 @@
 #include "../headers/g1_log.h"
 
 extern void *net_buf_get(void *, uint32_t, uint32_t, uint32_t);
-extern void net_buf_unref(void *);
+extern void net_buf_unref(int);
 extern void net_buf_destroy(void *, void *);
 extern void assert_post_action(uintptr_t, uint32_t) __attribute__((noreturn));
 extern uint64_t bt_conn_reset_rx_state(void *);

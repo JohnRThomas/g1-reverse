@@ -14,7 +14,7 @@
  */
 /* Reconstructed FUN_000655ec @ 0x655ec  (parity: 300/300 trials, PROVEN) */
 
-extern int assert_post_action(unsigned int a, unsigned int b);
+extern int assert_post_action(int, int);
 
 int gpiote_in_event_reg_offset(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

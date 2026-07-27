@@ -14,9 +14,9 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_00019bfc @ 0x19bfc  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_put(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
-extern void k_msgq_get(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
-extern void memcpy(unsigned int a, unsigned int b, unsigned int c);
+extern int k_msgq_put(unsigned int, void*, int, int);
+extern int k_msgq_get(int, unsigned int, int, int);
+extern void memcpy(int, int, int);
 
 int enqueue_debug(unsigned int param_1)
 {

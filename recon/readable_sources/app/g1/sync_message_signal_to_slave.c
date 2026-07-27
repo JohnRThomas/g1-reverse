@@ -14,7 +14,7 @@
 /* Reconstructed sync_message_signal_to_slave @ 0x2c224  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long k_uptime_get_2(void);
-extern unsigned int get_device_info(void);
+extern int get_device_info(void);
 extern unsigned int sync_to_slave(unsigned int, int, void*, int, unsigned int);
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);

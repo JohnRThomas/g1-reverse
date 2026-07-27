@@ -24,7 +24,7 @@ extern void get_demo_image_source(unsigned int);
 extern void gui_screen_clear(void);
 extern void reflash_fb_data_to_lcd(unsigned,unsigned,unsigned,unsigned,int,int);
 extern int demo_image_get_position(int, int *, int *);
-extern void fb_blit_rows_copy(int,unsigned,int,int,unsigned,unsigned);
+extern int fb_blit_rows_copy(int, int, int, int, int, int);
 
 unsigned update_demo_image_display(int param_1,unsigned param_2,int param_3,int param_4){
   int local_18 = param_3;

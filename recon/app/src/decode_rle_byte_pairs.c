@@ -2,7 +2,7 @@
  * Reviewed executable extent: 0x34 bytes, ending before FUN_0007daa4. */
 #include <stdint.h>
 
-extern void memset_bytes(void *destination, uint32_t value, uint32_t length);
+extern void memset_bytes(void*, int, int);
 
 uint32_t decode_rle_byte_pairs(const uint8_t *encoded,
                                uint32_t encoded_byte_count,

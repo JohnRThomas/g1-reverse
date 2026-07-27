@@ -30,12 +30,12 @@
 #include <cmsis_gcc.h>
 #include "../headers/g1_log.h"
 extern int arch_swap(int,...);
-extern int z_spin_lock_valid(int,...);
+extern int z_spin_lock_valid(unsigned int*);
 extern int z_spin_unlock_valid(int,...);
-extern int z_spin_lock_set_owner(int,...);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern int sched_update_cache(int,...);
 extern int dlist_unlink_node(int,...);
-extern int assert_post_action(int,...);
+extern int assert_post_action(int, int);
 void mutex_unlock_syscall_handler(void)
 {
   if (__get_IPSR() != 0) {

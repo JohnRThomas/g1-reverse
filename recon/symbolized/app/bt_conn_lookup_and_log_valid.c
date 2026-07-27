@@ -14,7 +14,7 @@
 /* Reconstructed FUN_00056ea8 @ 0x56ea8  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_conn_lookup_addr_le(void);
-extern void bt_conn_call_4arg_zero(unsigned int a, unsigned int b, void* c);
+extern void bt_conn_call_4arg_zero(unsigned int, unsigned int, unsigned int);
 extern void ble_conn_unref(int a);
 
 int bt_conn_lookup_and_log_valid(void)

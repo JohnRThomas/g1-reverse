@@ -29,13 +29,13 @@ extern int attr_store_retry_delay(uint32_t);
 extern int attr_store_set(uint32_t, uint32_t);
 extern int verify_image_checksum(void);
 extern int attr_store_get(uint32_t, void *);
-extern int pt_nfc_link_transfer_fw_packet(unsigned int, unsigned int, const unsigned char *, unsigned int);
+extern int pt_nfc_link_transfer_fw_packet(unsigned long, unsigned long, const unsigned char*, unsigned long);
 extern void *malloc(uint32_t);
-extern void free(void *);
+extern void free(int);
 extern unsigned int flash_data_checksum_neg_sum(const unsigned char *, unsigned int, unsigned int);
 extern int attr_configure_mode3_readback(void *, uint32_t);
-extern void memcpy(void *, const void *, uint32_t);
-extern void memset_bytes(void *, int, uint32_t);
+extern void memcpy(int, int, int);
+extern void memset_bytes(void*, int, int);
 
 #define PHASE (*(volatile uint8_t *)UINT32_C(0x20019dad))
 

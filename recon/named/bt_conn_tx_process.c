@@ -38,14 +38,14 @@ typedef struct {
     uint8_t tag;
 } stream_fragment_t;
 
-extern int atomic_and_2(const void *object, int selector);
+extern int atomic_and_2(volatile long*, long);
 extern void bt_conn_tx_drain_and_reset(stream_owner_t *owner);
 extern void *k_fifo_peek_head_impl(void *queue);
 extern stream_fragment_t *net_buf_ref(void *object);
 extern stream_fragment_t *bt_conn_frag_buf_destroy(unsigned kind, int a, int b, int c);
 extern int conn_tx_send_to_driver(stream_owner_t *owner, stream_fragment_t *source,
                         stream_fragment_t *destination, unsigned mode);
-extern void net_buf_unref(void *object);
+extern void net_buf_unref(int);
 extern void net_buf_destroy(stream_owner_t *owner, void *pending);
 
 void bt_conn_tx_process(stream_owner_t *owner)

@@ -27,7 +27,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 extern int dequeue_ancs(void*);
-extern void ble_process_req_dispatch(uint32_t, void*, void*);
+extern unsigned int ble_process_req_dispatch(unsigned char*, unsigned char*, unsigned char*);
 extern void send_data_in_ble_chunks(const unsigned char *);
 extern int is_on_whitelist_by_identifier(int);
 extern void log_notification_fields_debug(uint32_t, void*);

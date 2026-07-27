@@ -15,7 +15,7 @@
  */
 /* Reconstructed FUN_0003be18 @ 0x3be18  (parity: 300/300 trials, PROVEN) */
 extern int get_device_info(void);
-extern void gui_reset_dynamic_bitmap_frame_state(void);
+extern unsigned int gui_reset_dynamic_bitmap_frame_state(void);
 extern void gui_clear_icon_box_40(int a0,int a1);
 extern void gui_bmp_dynamic_bitmap_draw(int a0,int a1,int a2,int a3,int a4,int a5,int a6,int a7);
 extern void reflash_fb_data_to_lcd(int a0,int a1,int a2,int a3,int a4,int a5);

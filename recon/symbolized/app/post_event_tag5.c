@@ -10,7 +10,7 @@
 /* Reconstructed FUN_000848b0 @ 0x848b0  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void *a, int b, int c);
-extern void transport_notify_callback(int a, void *b);
+extern int transport_notify_callback(unsigned char*, unsigned long);
 void post_event_tag5(int param_1)
 {
   unsigned char local_1c[20];

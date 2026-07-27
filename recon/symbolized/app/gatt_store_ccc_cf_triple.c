@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_00082fa6 @ 0x82fa6  (parity: 300/300 trials, PROVEN) */
 
-extern void gatt_store_ccc_cf(unsigned char, int);
+extern void gatt_store_ccc_cf(unsigned long, const void*);
 
 void gatt_store_ccc_cf_triple(int param_1)
 {

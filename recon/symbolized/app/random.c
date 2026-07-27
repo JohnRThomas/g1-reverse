@@ -36,14 +36,14 @@
 typedef unsigned int uint;
 typedef unsigned char undefined1;
 typedef unsigned undefined4;
-extern unsigned get_device_info(void);
+extern int get_device_info(void);
 extern void enqueue_bt_data(void *a, uint b);
 extern void k_sem_give(int a);
 extern void set_shutdown_flag(unsigned a, int b);
 extern void snprintk(void *a, int b, unsigned c, ...);
 extern void FUN_00081526_dummy(void);
-extern unsigned char *bt_conn_get_field_0x90(unsigned a);
-extern void memcpy(void *a, void *b, uint c);
+extern int bt_conn_get_field_0x90(int);
+extern void memcpy(int, int, int);
 extern void memset_bytes(void *a, int b, int c);
 extern void strcpy(void *a, unsigned b);
 extern long long thunk_FUN_00074f68(void);

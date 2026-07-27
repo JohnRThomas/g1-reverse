@@ -13,7 +13,7 @@
 #include <stdint.h>
 extern float thunk_FUN_00076154(float y,float x);
 extern float asinf(float value);
-void quaternion_to_euler(uint8_t *object){
+void quaternion_to_euler(unsigned long object) {
   float q1=*(float*)(object+0x10),q2=*(float*)(object+0x14);
   float q3=*(float*)(object+0x18),q0=*(float*)(object+0x0c);
   *(volatile float*)(object+0x2c)=thunk_FUN_00076154(q2*q3+q0*q1,(0.5f-q1*q1)-q2*q2);

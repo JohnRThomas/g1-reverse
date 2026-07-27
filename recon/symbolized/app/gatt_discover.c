@@ -21,9 +21,9 @@
 typedef uint32_t u32; typedef uint8_t u8;
 extern int get_device_info(void);
 extern int is_battery_critical(void);
-extern int atomic_and(u32,u32);
-extern int gatt_dm_start(u32,void*,u32,u32);
-void gatt_discover(u32 param_1, int param_2){
+extern long atomic_and(volatile long*, long);
+extern int gatt_dm_start(unsigned long, unsigned long*, unsigned long, unsigned long);
+void gatt_discover(unsigned int param_1, unsigned int param_2) {
     volatile u32* puVar1 = (volatile u32*)((unsigned long)&g_gatt_discovery_flags) /*=0x20006ab4*/;
     char* pcVar2 = (char*)(uintptr_t)get_device_info();
     if(*pcVar2 == 2){

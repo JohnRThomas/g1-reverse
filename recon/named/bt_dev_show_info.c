@@ -20,7 +20,7 @@
 
 extern unsigned int bt_addr_le_str(const void *); /* FUN_00052cdc */
 extern uint32_t version_string(uint32_t version); /* FUN_00053344 */
-extern void atomic_or(uint32_t *target, uint32_t bits); /* FUN_00080e6a */
+extern int atomic_or(volatile long*, long); /* FUN_00080e6a */
 /* FUN_00080ea2 */
 
 struct five_word_log_record {

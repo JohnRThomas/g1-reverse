@@ -10,8 +10,7 @@
 /* Reconstructed FUN_0005cac0 @ 0x5cac0, exact extent 34 bytes. */
 #include <stdint.h>
 
-uintptr_t conn_auth_cb_get_or_init(uintptr_t object)
-{
+int conn_auth_cb_get_or_init(unsigned long object) {
     volatile uintptr_t *slot = (volatile uintptr_t *)(object + 0x238u);
     uintptr_t expected = 0x20006450u;
     uintptr_t replacement = *(volatile uintptr_t *)((unsigned long)&g_bt_conn_auth_cb) /*=0x2000ad28*/;

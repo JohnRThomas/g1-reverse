@@ -11,7 +11,7 @@
 
 #include <stdint.h>
 extern int get_pin_idx(void);
-unsigned short gpiote_pin_sense_is_enabled(void) {
+int gpiote_pin_sense_is_enabled(void) {
     int iVar3 = get_pin_idx();
     unsigned short uVar1 = *(volatile uint16_t*)(0x20002bc0UL + (uint32_t)((iVar3 + 8) * 2));
     unsigned short uVar2 = uVar1 & 0x1c;

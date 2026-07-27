@@ -17,11 +17,11 @@
 /* Reconstructed FUN_00062fe8 @ 0x62fe8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
-extern int assert_post_action(int,int);
+extern int assert_post_action(int, int);
 extern int post_event_tag2_from_node(int,int);
-extern int post_event_tag4_and_clear(int,int);
+extern void post_event_tag4_and_clear(unsigned int, int*);
 extern int post_event_tag5(int);
-extern int memcpy(int,int,int);
+extern void memcpy(int, int, int);
 
 int uarte_nrfx_tx_start(int param_1, int param_2, unsigned int param_3, int param_4)
 {

@@ -20,7 +20,7 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 extern int bt_dev_settings_commit(int,...);
-extern void assert_post_action(int,...);
+extern int assert_post_action(int, int);
 extern int settings_name_steq(int,...);
 int settings_commit_subtree(int param_1,unsigned param_2,unsigned param_3,unsigned param_4){
   unsigned *puVar1 = (unsigned*)0x88328UL;

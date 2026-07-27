@@ -9,7 +9,7 @@
  *   rodata_10000                             @ 0x00010000
  */
 /* Reconstructed FUN_00083bf0 @ 0x83bf0  (parity: 300/300 trials, PROVEN) */
-extern int dev_write_reg3(int,int,unsigned,unsigned);
+extern int dev_write_reg3(unsigned int, unsigned int, unsigned int, unsigned int);
 extern int k_is_in_isr(void);
 int dev_write_config_word(int param_1, unsigned param_2, int param_3){
   int iVar3 = *(int*)(param_1 + 4);

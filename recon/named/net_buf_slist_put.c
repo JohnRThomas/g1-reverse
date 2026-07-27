@@ -24,10 +24,10 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 #include "../headers/g1_log.h"
-extern int z_spin_lock_valid(void*);
+extern int z_spin_lock_valid(unsigned int*);
 extern int z_spin_unlock_valid(void*);
-extern void z_spin_lock_set_owner(void*);
-extern void assert_post_action(unsigned,unsigned);
+extern int z_spin_lock_set_owner(unsigned int*);
+extern int assert_post_action(int, int);
 
 void net_buf_slist_put(uint32_t *param_1, uint32_t *param_2){
     if (param_1 == 0){

@@ -19,7 +19,7 @@ typedef unsigned int uint;
 extern int get_device_info(void);
 extern void esb_send_command_and_wait_ack(int,int,int,int);
 extern unsigned int stage_pending_message_for_resend(void);
-extern void set_message_pool_entry_status(int,int);
+extern void set_message_pool_entry_status(int, unsigned char);
 extern void confirm_message(int);
 extern int sync_to_slave(int,int,int,int);
 void esb_pairing_sync_step(void){

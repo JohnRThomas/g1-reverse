@@ -12,8 +12,8 @@
 /* Reconstructed FUN_0007d6ae @ 0x7d6ae  (parity: 300/300 trials, PROVEN) */
 
 extern int get_projector_controller(void);
-extern void memset_bytes(unsigned int, unsigned int, unsigned int);
-extern void projector_transfer_pixel_chunk(unsigned int, unsigned int, unsigned int, unsigned int);
+extern void memset_bytes(void*, int, int);
+extern void projector_transfer_pixel_chunk(unsigned short, unsigned short, unsigned long, long);
 
 void projector_fill_framebuffer(unsigned int param_1)
 {

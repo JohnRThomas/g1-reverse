@@ -17,7 +17,7 @@
  */
 /* Reconstructed FUN_000613c4 @ 0x613c4  (parity: 300/300 trials, PROVEN) */
 
-extern void assert_post_action(int,int);
+extern int assert_post_action(int, int);
 int gpio_manage_callback(int param_1, int *param_2, int param_3){
   int iVar4=*(int*)(param_1+0x10);
   if(param_2==0){ printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n") /*=0x99cbd*/,((unsigned long)"callback") /*=0xf5e38*/,((unsigned long)&rodata_f5dfc) /*=0xf5dfc*/,0x3a); printk(((unsigned long)"\tNo callback!\n") /*=0xf5e41*/); assert_post_action(((unsigned long)&rodata_f5dfc) /*=0xf5dfc*/,0x3a); }

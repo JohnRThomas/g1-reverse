@@ -20,8 +20,8 @@
 /* Reconstructed enqueue_ancs @ 0x18bb4  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*, int, int);
-extern void k_msgq_get(unsigned int, void*, int, int);
-extern void memcpy(void*, unsigned int, int);
+extern int k_msgq_get(int, unsigned int, int, int);
+extern void memcpy(int, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
 
 int enqueue_ancs(unsigned int param_1)

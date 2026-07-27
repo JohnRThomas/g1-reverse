@@ -15,7 +15,7 @@
 
 extern int memcmp(int a,int b,int c,int d);
 extern void bt_foreach_bond(int a,int b,void *c);
-extern void unpair(int a,int b);
+extern void unpair(unsigned char, const void*);
 int bt_unpair_all_or_addr(int param_1,int param_2,int param_3,int param_4)
 {
   int iVar1;

@@ -16,7 +16,7 @@
  */
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_00065f80 @ 0x65f80  (parity: 300/300 trials, PROVEN) */
-extern long long assert_post_action(unsigned,unsigned);
+extern int assert_post_action(int, int);
 extern void nvmc_word_write(void);
 extern void nvmc_readonly_mode_set(void);
 void nrfx_nvmc_word_write(unsigned param_1, unsigned param_2, unsigned param_3, unsigned param_4){

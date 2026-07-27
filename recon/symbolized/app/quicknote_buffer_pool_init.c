@@ -26,7 +26,7 @@
  * the tail of the preceding symbol.  They are now reconstructed functions,
  * and referencing them here (rather than only PROVIDE-ing in the linker
  * script) is what pulls the archive members into the link. */
-extern void kmutex_dlist_init(unsigned);
+extern void kmutex_dlist_init(unsigned long);
 extern int malloc(unsigned);
 void quicknote_buffer_pool_init(int* param_1){
     kmutex_dlist_init(((unsigned long)&g_projector_bus_lock) /*=0x2000a060*/);

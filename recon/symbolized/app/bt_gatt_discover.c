@@ -39,9 +39,9 @@ struct attr_value {
 };
 
 extern __attribute__((noreturn)) void assert_post_action(uint32_t,uint32_t);
-extern int bt_uuid_cmp(void*,void*);
+extern int bt_uuid_cmp(int, int);
 extern void log_msg_create_3arg(uint32_t,uint32_t,void*);
-extern uint32_t gatt_req_send(int,uint32_t,int*,uint32_t,uint32_t,uint32_t);
+extern int gatt_req_send(void*, void*, void*, void*, unsigned long, unsigned long);
 
 int bt_gatt_discover(int param_1, int *param_2)
 {

@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_0002efe4 @ 0x2efe4  (parity: 300/300 trials, PROVEN) */
 
-extern void *get_device_info(void);
+extern int get_device_info(void);
 
 unsigned int set_box_link_state_flag(int param_1)
 {

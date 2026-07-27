@@ -20,7 +20,7 @@ extern void __sfp_lock_release(void);
 extern void __sinit(void *);
 extern void retarget_lock_init(void *);
 extern void *__sfmoreglue(void *, uint32_t);
-extern void *memset_bytes(void *, int, size_t);
+extern void memset_bytes(void*, int, int);
 
 void *__sfp(uint32_t *error)
 {

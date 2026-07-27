@@ -23,7 +23,7 @@
  */
 /* Reconstructed FUN_0005b270 @ 0x5b270  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int bt_att_create_pdu(unsigned,int,int);
+extern int bt_att_create_pdu(int, int, int);
 extern int bt_att_req_alloc(int,int);
 extern void bt_att_req_free(int);
 extern unsigned bt_att_req_send(int, unsigned*);
@@ -31,8 +31,8 @@ extern int gatt_find_ccc_for_conn(unsigned,unsigned,int);
 extern unsigned net_buf_simple_add(int,int);
 extern void bt_att_set_tx_meta_data(int,int,int,int);
 extern void log_msg_create_3arg(unsigned,int,void*);
-extern int bt_gatt_check_perm(unsigned,unsigned,int);
-extern void memcpy(void*,unsigned,unsigned);
+extern int bt_gatt_check_perm(unsigned long, void*, unsigned long);
+extern void memcpy(int, int, int);
 int gatt_indicate(unsigned param_1, unsigned short param_2, int param_3)
 {
   unsigned short uVar1; unsigned uVar2; int iVar3, iVar5; unsigned short *puVar4;

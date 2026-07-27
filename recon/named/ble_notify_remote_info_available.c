@@ -19,7 +19,7 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 extern void gatt_process_listener_notifications(void);
-extern void assert_post_action(unsigned,unsigned);
+extern int assert_post_action(int, int);
 typedef void (*fp)(int,...);
 void ble_notify_remote_info_available(int param_1, unsigned param_2, unsigned param_3, unsigned param_4){
     *(unsigned char*)(param_1 + 10) = *(unsigned char*)(param_1 + 9);

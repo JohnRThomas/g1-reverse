@@ -19,7 +19,7 @@
 /* Reconstructed FUN_0005aa84 @ 0x5aa84  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../headers/g1_log.h"
-extern int assert_post_action(int,...);
+extern int assert_post_action(int, int);
 extern int gatt_foreach_iter(int,...);
 void bt_gatt_foreach_attr_type(unsigned int param_1, int param_2, int param_3, int param_4, short param_5, int param_6, int param_7)
 {

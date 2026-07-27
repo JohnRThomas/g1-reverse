@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_0007d53a @ 0x7d53a  (parity: 145/300 trials, PROVEN) */
 
-extern void memcpy(int a, int b, int c);
+extern void memcpy(int, int, int);
 int fb_blit_rows_copy(int param_1,int param_2,int param_3,int param_4,int param_5,int param_6)
 {
   int *piVar1;

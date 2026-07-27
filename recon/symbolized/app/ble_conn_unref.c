@@ -17,11 +17,10 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern void assert_post_action(uint32_t source, uint32_t line);
+extern int assert_post_action(int, int);
 extern void legacy_advertising_connection_restart(void *object);
 
-void ble_conn_unref(uint8_t *object)
-{
+void ble_conn_unref(int object) {
     uint32_t *references = (uint32_t *)(object + 0xd0);
     uint32_t previous = __atomic_fetch_sub(references, 1, __ATOMIC_ACQ_REL);
 

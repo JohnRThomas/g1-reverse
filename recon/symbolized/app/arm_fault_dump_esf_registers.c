@@ -17,7 +17,7 @@
  */
 /* Reconstructed FUN_0004ff6c @ 0x4ff6c  (parity: 300/300 trials, PROVEN) */
 
-extern int z_log_msg_runtime_create(int,int,void*,int);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern int z_fatal_error(int,int*);
 
 void arm_fault_dump_esf_registers(int param_1, int *param_2, int param_3, int param_4)

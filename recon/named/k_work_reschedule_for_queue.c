@@ -32,9 +32,9 @@
 #include <cmsis_gcc.h>
 #include "../headers/g1_log.h"
 
-extern void assert_post_action(uint32_t, uint32_t);
-extern int z_spin_lock_valid(uint32_t lock);
-extern void z_spin_lock_set_owner(uint32_t lock);
+extern int assert_post_action(int, int);
+extern int z_spin_lock_valid(unsigned int*);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern int z_spin_unlock_valid(uint32_t lock);
 extern void unschedule_locked(volatile uint32_t *delayable_work);
 extern int submit_to_queue_locked(volatile uint32_t *work, uint32_t *queue,

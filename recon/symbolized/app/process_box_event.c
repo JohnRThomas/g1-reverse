@@ -12,7 +12,7 @@
  */
 /* Reconstructed FUN_000254d8 @ 0x254d8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void read_nfc_adc_scaled(int);
+extern unsigned int read_nfc_adc_scaled(int*);
 extern int get_device_info(void);
 extern void transport_state_update(int,char*);
 void process_box_event(int param_1, char* param_2){

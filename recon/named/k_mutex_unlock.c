@@ -30,16 +30,15 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 #include "../headers/g1_log.h"
-extern void assert_post_action(unsigned,unsigned);
-extern int z_spin_lock_valid(unsigned);
+extern int assert_post_action(int, int);
+extern int z_spin_lock_valid(unsigned int*);
 extern int z_spin_unlock_valid(unsigned);
-extern void z_spin_lock_set_owner(unsigned);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern void z_ready_thread_locked(void);
-extern void z_reschedule(unsigned,unsigned);
-extern int z_unpend_first_thread(int);
-extern void k_mutex_owner_prio_check(unsigned,unsigned);
-unsigned k_mutex_unlock(int param_1)
-{
+extern int z_reschedule(unsigned int*, int);
+extern int z_unpend_first_thread(unsigned int*);
+extern unsigned int k_mutex_owner_prio_check(int, int);
+int k_mutex_unlock(unsigned int param_1) {
   unsigned ipsr, basepri; int iVar4, r3;
   ipsr = __get_IPSR();
   if (ipsr != 0) {

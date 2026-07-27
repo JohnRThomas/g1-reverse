@@ -22,9 +22,9 @@
  */
 #include <stdint.h>
 
-extern void bt_conn_call_4arg_zero(uint32_t, uint32_t, const void *);
-extern void *k_current_get(void);                 /* k_current_get */
-extern void *net_buf_pool_get_727ac(void *, uint32_t, uint32_t, uint32_t); /* k_fifo_get */
+extern int bt_conn_call_4arg_zero(int, int, void*);
+extern int k_current_get(void);                 /* k_current_get */
+extern unsigned long net_buf_pool_get_727ac(unsigned int*, unsigned int, unsigned int, unsigned int); /* k_fifo_get */
 extern void net_pkt_skip(void *, void *);        /* k_fifo_put */
 extern void net_buf_put(void *, void *);        /* net_buf_put */
 

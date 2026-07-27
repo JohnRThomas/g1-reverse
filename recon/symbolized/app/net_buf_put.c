@@ -16,7 +16,7 @@
  */
 /* Reconstructed FUN_0005f200 @ 0x5f200  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned long long assert_post_action(unsigned int a, unsigned int b);
+extern int assert_post_action(int, int);
 extern void net_pkt_skip(int);
 
 void net_buf_put(int param_1, int param_2, unsigned int param_3, unsigned int param_4)

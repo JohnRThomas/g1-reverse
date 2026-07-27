@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_0002efa8 @ 0x2efa8  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned char *get_device_info(void);
+extern int get_device_info(void);
 
 unsigned char get_low_battery_flag_if_master(void)
 {

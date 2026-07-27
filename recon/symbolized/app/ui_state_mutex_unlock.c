@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_00026850 @ 0x26850  (parity: 300/300 trials, PROVEN) */
 
-extern void k_mutex_unlock(unsigned int);
+extern int k_mutex_unlock(unsigned int);
 void ui_state_mutex_unlock(void) {
     k_mutex_unlock(((unsigned long)&g_ui_state_mutex) /*=0x20007b3c*/);
 }

@@ -9,7 +9,7 @@
 /* Reconstructed FUN_0007c132 @ 0x7c132  (parity: 300/300 trials, PROVEN) */
 
 extern int get_device_info(void);
-extern int memcmp(int a, void *b, int c);
+extern int memcmp(const void*, const void*, unsigned long);
 
 int device_addr_is_default(unsigned int param_1, unsigned int param_2)
 {

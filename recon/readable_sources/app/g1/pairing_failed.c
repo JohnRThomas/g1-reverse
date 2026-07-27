@@ -18,9 +18,9 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 
-extern uintptr_t bt_conn_get_field_0x90(unsigned long);
-extern void format_bt_addr_str(const void *connection, char description[36]);
-extern void bt_conn_disconnect_by_state(uint32_t connection, uint32_t reason);
+extern int bt_conn_get_field_0x90(int);
+extern void format_bt_addr_str(const void*, char*);
+extern int bt_conn_disconnect_by_state(unsigned short*, unsigned char);
 
 void pairing_failed(uint32_t connection, uint32_t error)
 {

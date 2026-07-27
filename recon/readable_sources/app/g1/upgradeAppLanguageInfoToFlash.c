@@ -17,8 +17,8 @@
  *   g_app_language_msgq                      @ 0x200079e4
  */
 /* Reconstructed upgradeAppLanguageInfoToFlash @ 0x23af0  (parity: 300/300 trials, PROVEN) */
-extern int k_msgq_put(unsigned int a0, void *a1, unsigned int a2, unsigned int a3);
-extern void k_sem_give(unsigned int a0);
+extern int k_msgq_put(unsigned int, void*, int, int);
+extern void k_sem_give(int);
 
 unsigned int upgradeAppLanguageInfoToFlash(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

@@ -11,7 +11,7 @@
 /* Reconstructed FUN_0002efc0 @ 0x2efc0  (parity: 300/300 trials, PROVEN) */
 
 extern int is_battery_critical(void);
-extern char *get_device_info(void);
+extern int get_device_info(void);
 unsigned int mark_master_or_low_battery_flag(void)
 {
   int iVar1;

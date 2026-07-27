@@ -46,8 +46,7 @@ extern struct net_buf *net_buf_get(struct k_fifo *fifo,
                                    k_timeout_t timeout); /* FUN_000836e8 */
 extern void net_buf_put(struct k_fifo *fifo, struct net_buf *buf); /* FUN_0005f200 */
 extern void smp_free_buf(void *buf, void *arg); /* FUN_00080b0e */
-extern int k_work_submit_to_queue(struct k_work_q *queue,
-                                  struct k_work *work); /* FUN_000865fc */
+extern int k_work_submit_to_queue(void*, void*); /* FUN_000865fc */
 
 #define smp_work_queue (*(struct k_work_q *)0x20005bb8u) /* address back-map */
 

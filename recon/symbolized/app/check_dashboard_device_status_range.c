@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_0007d248 @ 0x7d248  (parity: 300/300 trials, PROVEN) */
 
-extern char *get_device_info(void);
+extern int get_device_info(void);
 
 int check_dashboard_device_status_range(void)
 {

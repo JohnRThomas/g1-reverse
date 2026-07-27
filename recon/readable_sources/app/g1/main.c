@@ -108,7 +108,7 @@ extern uintptr_t getAppLanguageInfofromFlash(void);              /* FUN_00023d0c
 extern uintptr_t drain_setting_storage_queue(void);              /* FUN_00023acc @ 0x23acc */
 extern uintptr_t drain_quick_note_data_queue(void);              /* FUN_000243fc @ 0x243fc */
 extern uintptr_t device_info_register_persistent_fields(void *); /* FUN_00023230 @ 0x23230 */
-extern int z_device_is_ready(const void *);                      /* FUN_0008638c @ 0x8638c */
+extern int z_device_is_ready(int);                      /* FUN_0008638c @ 0x8638c */
 extern int fuel_gauge_sample_init_timestamp(const void *);       /* FUN_0002ea28 @ 0x2ea28 */
 extern int panel_temp_calibration_init(const void *);                           /* @ 0x62644 */
 extern uintptr_t dev_page3_config_and_readback_dump(void);                             /* @ 0x16110 */

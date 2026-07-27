@@ -12,7 +12,7 @@
 
 extern int ancs_get_conn_ctx(void);
 extern int enqueue_uid(void *p);
-extern void k_sem_give(unsigned int a);
+extern void k_sem_give(int);
 
 void post_uid_event_mode2(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {

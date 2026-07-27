@@ -26,13 +26,13 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern uintptr_t get_device_info(void);
+extern int get_device_info(void);
 extern void gui_screen_clear(void);
 extern int get_ui_mode_flag_byte1(void);
 extern int device_info_text_width_get(void);
 extern int device_info_text_height_get_clamped(void);
 extern uintptr_t get_localized_weekday_name(unsigned id);
-extern void gui_bmp_bitmap_draw(int, int, int, int, int, int);
+extern int gui_bmp_bitmap_draw(unsigned int, int, int, int, int, int);
 extern unsigned gui_utf_draw(unsigned, uintptr_t, unsigned, int, int, int, int,
                             unsigned, unsigned, int, void *, int);
 

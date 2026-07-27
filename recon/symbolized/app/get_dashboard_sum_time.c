@@ -16,7 +16,7 @@
 /* Reconstructed get_dashboard_sum_time @ 0x4a960  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long k_uptime_get_10(void);
-extern unsigned int get_device_info(void);
+extern int get_device_info(void);
 
 long long get_dashboard_sum_time(void)
 {

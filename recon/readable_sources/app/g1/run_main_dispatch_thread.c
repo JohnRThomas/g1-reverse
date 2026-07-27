@@ -56,7 +56,7 @@ extern void init_watchdog(void);
 extern int is_battery_critical(void);
 extern void start_aging_mode_thread(void);
 extern void spawn_aging_mode_aux_thread(void);
-extern void spawn_proxy_thread(void *);
+extern int spawn_proxy_thread(int);
 extern void spawn_display_thread(void *);
 extern void main_dispatch_thread_tick(uint32_t, uint32_t, uint32_t, uint32_t,
                          void *, int32_t, uint32_t, uint32_t);

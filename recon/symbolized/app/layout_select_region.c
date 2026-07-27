@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_00084774 @ 0x84774  (parity: 300/300 trials, PROVEN) */
 
-extern int flash_page_index_lookup(int *, int, int, unsigned short *);
+extern unsigned int flash_page_index_lookup(int*, int, unsigned int, unsigned short*);
 
 /* ARGUMENT-PASSTHROUGH DEFECT, fixed in P4 iteration 15.
  * The original (0x84774) is a TAIL CALL that forwards ALL FOUR arguments to

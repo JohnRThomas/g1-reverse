@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_0007fc72 @ 0x7fc72  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int audio_codec_reg_op_dispatch(uint32_t,int,void*,int);
+extern int audio_codec_reg_op_dispatch(unsigned int, unsigned int, void*, unsigned int);
 extern int audio_codec_bus_write(uint32_t,int,void*,int);
 extern int audio_codec_read_trim_word(unsigned int, unsigned int);
 extern int audio_codec_read_gain_step_mode(uint32_t,void*);

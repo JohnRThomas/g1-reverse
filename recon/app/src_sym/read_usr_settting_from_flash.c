@@ -1,6 +1,6 @@
 /* Reconstructed read_usr_settting_from_flash @ 0x23400  (parity: 300/300 trials, PROVEN) */
-extern void memset_bytes(void *a0, unsigned int a1, unsigned int a2);
-extern int flash_settings_read(unsigned int a0, void *a1, unsigned int a2);
+extern void memset_bytes(void*, int, int);
+extern int flash_settings_read(unsigned long, void*, unsigned long);
 extern void DEBUG_PRINT(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
 

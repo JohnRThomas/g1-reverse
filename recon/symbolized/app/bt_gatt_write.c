@@ -22,9 +22,9 @@
  *   rodata_f4cce                             @ 0x000f4cce   [INLINED -- G6 literal batch]
  */
 /* Reconstructed FUN_0005c22c @ 0x5c22c  (parity: 300/300 trials, PROVEN) */
-extern void assert_post_action(int,...);
+extern int assert_post_action(int, int);
 extern int bt_att_get_mtu(int);
-extern int gatt_req_send(int,int,int*,int,int,unsigned);
+extern int gatt_req_send(void*, void*, void*, void*, unsigned long, unsigned long);
 int bt_gatt_write(int param_1, int *param_2){
   short sVar1; int iVar2; int uVar3; unsigned short uVar4; unsigned uVar5; int uVar6; int uVar7;
   if (param_1==0){

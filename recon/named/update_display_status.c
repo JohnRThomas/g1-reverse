@@ -10,7 +10,7 @@
 /* Reconstructed update_display_status @ 0x7cce8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int display_panel_is_secondary(unsigned long);
-extern void mark_master_or_low_battery_flag(void);
+extern unsigned int mark_master_or_low_battery_flag(void);
 extern void reset_esb_sync_state(int);
 extern void memset_bytes(void*, int, int);
 extern void send_event(int);

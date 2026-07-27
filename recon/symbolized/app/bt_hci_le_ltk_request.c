@@ -24,7 +24,7 @@ extern int bt_smp_request_ltk(void *, uint32_t, uint32_t, uint32_t, uint32_t, vo
 extern void *bt_hci_cmd_create(uint32_t, uint32_t);
 extern void *net_buf_simple_add(void *, uint32_t);
 extern void bt_hci_cmd_send_or_create(uint32_t, void *);
-extern void ble_conn_unref(void *);
+extern void ble_conn_unref(int);
 extern void bt_log_forward_3arg(uintptr_t, uint32_t, const void *);
 
 struct log3 { uint32_t count, format, value; };

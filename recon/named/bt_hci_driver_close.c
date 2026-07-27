@@ -25,15 +25,15 @@
 /* Reconstructed FUN_00054b70 @ 0x54b70  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int arm_mpu_configure_partition_region(int);
+extern void arm_mpu_configure_partition_region(int);
 extern int clear_legacy_adv_state(void);
 extern int bt_pub_key_hci_disrupted(void);
 extern int bt_conn_cleanup_all(void);
-extern int atomic_or(int,int);
+extern int atomic_or(volatile long*, long);
 extern int bt_addr_le_copy_80e94(int,int);
 extern int bt_log_forward_3arg(int,int,void*);
-extern int atomic_and_3(int,int);
-extern int memset_bytes(int,int,int);
+extern long atomic_and_3(volatile long*, long);
+extern void memset_bytes(void*, int, int);
 
 int bt_hci_driver_close(void)
 {

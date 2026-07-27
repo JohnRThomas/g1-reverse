@@ -19,13 +19,13 @@
  */
 /* Reconstructed FUN_0005ac30 @ 0x5ac30  (parity: 300/300 trials, PROVEN) */
 
-extern int find_cf_cfg(unsigned);
-extern int bt_gatt_store_hash(void);
-extern int gatt_cf_store_all(void);
-extern int gatt_db_hash_gen(void);
+extern unsigned char* find_cf_cfg(int);
+extern void bt_gatt_store_hash(void);
+extern void gatt_cf_store_all(void);
+extern void gatt_db_hash_gen(void);
 extern int k_work_cancel_delayable_sync(int);
-extern int atomic_or_0(int,int);
-extern int read_struct_first_word(int);
+extern int atomic_or_0(volatile long*, long);
+extern unsigned int read_struct_first_word(unsigned int*);
 extern int bt_gatt_attr_read(unsigned,unsigned,unsigned,unsigned);
 void gatt_db_hash_process(unsigned p1,unsigned p2,unsigned p3,unsigned p4,unsigned short p5){
   int iVar1,iVar2;

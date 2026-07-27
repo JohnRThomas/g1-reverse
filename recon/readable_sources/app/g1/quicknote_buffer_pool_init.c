@@ -23,7 +23,7 @@
  *   g_projector_bus_lock                     @ 0x2000a060
  */
 /* Reconstructed FUN_00047148 @ 0x47148  (parity: 300/300 trials, PROVEN) */
-extern void kmutex_dlist_init(unsigned);
+extern void kmutex_dlist_init(unsigned long);
 extern int malloc(unsigned);
 void quicknote_buffer_pool_init(int* param_1){
     kmutex_dlist_init(((unsigned long)&g_projector_bus_lock) /*=0x2000a060*/);

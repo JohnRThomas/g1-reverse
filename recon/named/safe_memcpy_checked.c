@@ -11,8 +11,7 @@
 #include <stdint.h>
 
 extern void fortify_chk_fail(void) __attribute__((noreturn));
-extern void memcpy(void *destination, const void *source,
-                         unsigned int length);
+extern void memcpy(int, int, int);
 
 void safe_memcpy_checked(void *destination, const void *source,
                   unsigned int length, unsigned int destination_size)

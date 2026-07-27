@@ -15,10 +15,10 @@
  */
 /* Reconstructed FUN_0005a090 @ 0x5a090  (parity: 300/300 trials, PROVEN) */
 
-extern int bt_addr_le_is_bonded(unsigned char a, int b);
+extern int bt_addr_le_is_bonded(unsigned char, const void*);
 extern int find_sc_cfg_59bcc(unsigned char a, int b);
 extern void gatt_sc_ctx_clear(void);
-extern int bt_gatt_clear_sc(void);
+extern unsigned int bt_gatt_clear_sc(void);
 extern void log_msg_create_3arg(int a, int b, void *c);
 
 void sc_clear(int param_1)

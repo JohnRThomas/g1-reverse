@@ -10,7 +10,7 @@
 /* Reconstructed FUN_00080ae6 @ 0x80ae6  (parity: 300/300 trials, PROVEN) */
 
 extern int smp_packet_alloc(void);
-extern void memcpy(int a, int b, int c);
+extern void memcpy(int, int, int);
 
 int smp_alloc_rsp(char *param_1, char *param_2)
 {

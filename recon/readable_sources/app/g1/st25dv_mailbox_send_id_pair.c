@@ -9,8 +9,8 @@
  */
 /* Reconstructed FUN_0007c99e @ 0x7c99e  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int ipc_ept_op_c_locked_retry(int,int,void*,int);
-extern int memset_bytes(void*,int,int);
+extern int ipc_ept_op_c_locked_retry(int, unsigned int, unsigned int, int);
+extern void memset_bytes(void*, int, int);
 void st25dv_mailbox_send_id_pair(int param_1, uint32_t *param_2){
   uint8_t s[28];
   *(volatile uint32_t*)(s+0) = 0;

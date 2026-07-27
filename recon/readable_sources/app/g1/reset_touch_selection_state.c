@@ -12,7 +12,7 @@
 /* Reconstructed FUN_00037098 @ 0x37098  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void set_dashboard_startup_default_language(uint32_t argument);
+extern void set_dashboard_startup_default_language(unsigned char);
 void reset_touch_selection_state(void)
 {
   *(volatile uint8_t*)(((unsigned long)&g_dashboard_widget_state) /*=0x20004950*/ + 1) = 0;

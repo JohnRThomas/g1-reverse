@@ -16,7 +16,7 @@
 /* Reconstructed FUN_00065f1c @ 0x65f1c  (parity: 300/300 trials, PROVEN) */
 
 extern void nvmc_readonly_mode_set(void);
-extern void assert_post_action(unsigned int a, unsigned int b);
+extern int assert_post_action(int, int);
 
 unsigned int nrfx_nvmc_page_erase(unsigned int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

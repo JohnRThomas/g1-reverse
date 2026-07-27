@@ -9,7 +9,7 @@
 /* Reconstructed FUN_00085df6 @ 0x85df6 */
 #include <stdint.h>
 
-extern int cbor_decode_expect_break(void *);
+extern int cbor_decode_expect_break(unsigned int*);
 extern int zcbor_process_backup(void *, uint32_t, uint32_t, uint32_t);
 
 int cbor_decode_leave_container(void *decoder, uint32_t reserved_1,

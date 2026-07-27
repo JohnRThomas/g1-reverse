@@ -32,9 +32,9 @@ extern int  malloc(int);
 extern void free(int);
 extern void printf(int);
 extern unsigned int ptr_load_u32(unsigned int *);
-extern void memcpy(int,int,int);
+extern void memcpy(int, int, int);
 extern void memset_bytes(void*,int,int);
-extern int  strncmp(void*,int,int);
+extern int strncmp(const void*, unsigned long, unsigned int);
 #define VI(a) (*(volatile int*)(a))
 #define VB(a) (*(volatile unsigned char*)(a))
 typedef int (*fp_t)(int,int,void*,int);

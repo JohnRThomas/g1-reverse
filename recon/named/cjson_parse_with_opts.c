@@ -18,12 +18,12 @@
 #include <stdint.h>
 #include <stddef.h>
 typedef struct { const uint8_t *start; uint32_t length, used, reserved; uint8_t work[12]; } parse_state_t;
-extern void memset_bytes(void*,int,size_t);
+extern void memset_bytes(void*, int, int);
 extern uintptr_t alloc_zeroed_node(void);
-extern int strncmp(const void*,uintptr_t,size_t);
+extern int strncmp(const void*, unsigned long, unsigned int);
 extern uintptr_t cjson_skip_whitespace(void*);
 extern unsigned int cjson_parse_value(int, int *);
-extern void cjson_delete(uintptr_t);
+extern void cjson_delete(volatile int*);
 int cjson_parse_with_opts(const uint8_t *input,uint32_t length,const uint8_t **end,int require_end){
  parse_state_t s;volatile uint32_t *error=(volatile uint32_t*)0x2000b314u;
  memset_bytes(&s,0,sizeof(s));error[0]=0;error[1]=0;

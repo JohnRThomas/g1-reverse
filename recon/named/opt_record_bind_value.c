@@ -6,7 +6,7 @@
  *   opt_record_bind_value                    <= FUN_0007c61e @ 0x0007c61e
  */
 /* Reconstructed FUN_0007c61e @ 0x7c61e  (parity: 300/300 trials, PROVEN) */
-extern unsigned int opt_node_value_len(unsigned long);
+extern unsigned int opt_node_value_len(int);
 
 unsigned int opt_record_bind_value(unsigned char *param_1, unsigned char *param_2)
 {

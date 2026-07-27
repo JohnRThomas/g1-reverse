@@ -28,11 +28,11 @@
 /* Reconstructed FUN_0005eeb4 @ 0x5eeb4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../headers/g1_log.h"
-extern int z_spin_lock_valid(int);
+extern int z_spin_lock_valid(unsigned int*);
 extern int z_spin_unlock_valid(int);
-extern void z_spin_lock_set_owner(int);
-extern int net_buf_pool_get_727ac(int,int,int,int);
-extern void assert_post_action(uint32_t,uint32_t);
+extern int z_spin_lock_set_owner(unsigned int*);
+extern unsigned long net_buf_pool_get_727ac(unsigned int*, unsigned int, unsigned int, unsigned int);
+extern int assert_post_action(int, int);
 extern void k_queue_prepend(int,int);
 extern void sys_timepoint_calc(void *);
 extern void sys_timepoint_timeout(void *,int,int,unsigned);

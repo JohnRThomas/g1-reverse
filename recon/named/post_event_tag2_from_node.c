@@ -9,7 +9,7 @@
 /* Reconstructed FUN_0008484e @ 0x8484e  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*, int, int);
-extern void transport_notify_callback(int, void*);
+extern int transport_notify_callback(unsigned char*, unsigned long);
 
 void post_event_tag2_from_node(int param_1, unsigned int param_2)
 {

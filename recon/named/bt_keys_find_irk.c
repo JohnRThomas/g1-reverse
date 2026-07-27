@@ -20,9 +20,9 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 typedef unsigned int uint;
-extern void assert_post_action(uint,int);
+extern int assert_post_action(int, int);
 extern int bt_smp_ah(uint,void*);
-extern int memcmp(void*,uint,int);
+extern int memcmp(const void*, const void*, unsigned long);
 uint8_t* bt_keys_find_irk(uint param_1, uint8_t* param_2, uint param_3, uint param_4){
     volatile uint8_t* r4=(volatile uint8_t*)0x2000af4c;
     int r3int; uint8_t* r7;

@@ -11,8 +11,7 @@
 extern int settings_name_next(int, int);
 extern void hex2bin(int, int, void*, int);
 
-int bt_settings_decode_key(int param_1, unsigned char *param_2)
-{
+int bt_settings_decode_key(int param_1, void*param_2) {
   int iVar1;
   int uVar2;
   unsigned char uVar3;

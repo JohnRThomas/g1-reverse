@@ -26,12 +26,12 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 #include "../headers/g1_log.h"
-extern int z_spin_lock_valid(unsigned);
+extern int z_spin_lock_valid(unsigned int*);
 extern int z_spin_unlock_valid(unsigned);
-extern void z_spin_lock_set_owner(unsigned);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern void sched_update_cache(int);
 extern void dlist_unlink_node(void*,int*,int,int,unsigned);
-extern void assert_post_action(unsigned,unsigned);
+extern int assert_post_action(int, int);
 int z_sched_set_prio_and_requeue(int *param_1, char param_2, unsigned param_3, unsigned param_4)
 {
   unsigned basepri, uVar10, uVar5; int iVar3, iVar4;

@@ -22,8 +22,8 @@
 #include <stdint.h>
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned char byte; typedef unsigned long long undefined8;
 extern int __aeabi_dcmple(int,...); extern int __aeabi_dcmpge(int,...); extern int __fixdfsi(int,...);
-extern int cjson_parse_string(int,...); extern int cjson_delete(int,...); extern unsigned long long strtod(int,...);
-extern int cjson_skip_whitespace(int,...); extern int alloc_zeroed_node(int,...); extern int strncmp(int,...);
+extern int cjson_parse_string(int,...); extern void cjson_delete(volatile int*); extern unsigned long long strtod(int,...);
+extern int cjson_skip_whitespace(int,...); extern int alloc_zeroed_node(unsigned int); extern int strncmp(const void*, unsigned long, unsigned int);
 
 undefined4 cjson_parse_value(int param_1,int *param_2)
 {

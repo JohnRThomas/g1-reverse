@@ -33,13 +33,13 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern void cjson_delete(int object);
+extern void cjson_delete(volatile int*);
 extern int cbor_decode_start_default(void);
 extern int sllist_count_nodes(int *);
 extern int sllist_node_at_index(int object);
 extern int sllist_find_by_name_ci(int, int);
 extern int cjson_is_array(void);
-extern void memset_bytes(void *destination, int value, unsigned int count);
+extern void memset_bytes(void*, int, int);
 extern void strncpy_zero_pad(void *destination, const void *source,
                          unsigned int limit);
 

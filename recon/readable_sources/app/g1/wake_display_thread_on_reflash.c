@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_0004906c @ 0x4906c  (parity: 300/300 trials, PROVEN) */
 
-extern void k_thread_priority_set(unsigned int,unsigned int);
+extern void k_thread_priority_set(int, int);
 void wake_display_thread_on_reflash(void)
 {
   if (*(volatile unsigned char *)((unsigned long)&g_display_reflash_pending) /*=0x2001d446*/ == 1) {

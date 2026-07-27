@@ -9,7 +9,7 @@
 /* Reconstructed FUN_0007fc04 @ 0x7fc04  (parity: 300/300 trials, PROVEN) */
 
 extern int audio_codec_select_page(unsigned int a, unsigned int b);
-extern int audio_codec_reg_op_dispatch(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
+extern int audio_codec_reg_op_dispatch(unsigned int, unsigned int, void*, unsigned int);
 
 int audio_codec_read_trim_word(unsigned int param_1, unsigned int param_2)
 {

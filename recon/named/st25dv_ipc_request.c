@@ -7,7 +7,7 @@
  */
 /* Reconstructed FUN_0007c956 @ 0x7c956  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int ipc_ept_op_b_locked_retry(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
+extern int ipc_ept_op_b_locked_retry(int, unsigned int, unsigned int, int);
 
 unsigned int st25dv_ipc_request(unsigned int param_1, int param_2)
 {

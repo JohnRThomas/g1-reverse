@@ -38,7 +38,7 @@ typedef unsigned char u8;
 
 /* callees (opaque oracles; order-keyed) */
 extern void some_module_sem_init(void);
-extern u8  *get_device_info(void);
+extern int get_device_info(void);
 extern void wait_for_event(uint32_t timeout, uint32_t flags);
 extern int  k_sem_take(void *object, uint64_t timeout);
 extern void debug_print(unsigned long, ...);
@@ -46,9 +46,9 @@ extern void log_message(unsigned long, ...);
 extern void send_event(unsigned int event);
 extern int  onboarding_sync_data(void);
 extern int  get_dashboard_disp_mode(void);
-extern void sync_dashboard_default_language(void);
-extern void getStocksIndex(void);
-extern void getNewsIndex(void);
+extern unsigned long sync_dashboard_default_language(void);
+extern unsigned long getStocksIndex(void);
+extern unsigned long getNewsIndex(void);
 extern int  sync_to_slave(void);
 extern void display_inputEvent(void);
 extern void process_touch_event(void);

@@ -21,7 +21,7 @@
 
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void k_sem_give(unsigned int);
+extern void k_sem_give(int);
 
 unsigned int delAudioStreamRecord(unsigned char param_1)
 {

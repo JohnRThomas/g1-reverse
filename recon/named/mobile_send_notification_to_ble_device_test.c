@@ -36,9 +36,9 @@ extern uint32_t cjson_create_object(void);
 extern void cjson_add_string_to_object(uint32_t a, uint32_t b, uint32_t c);
 extern void cjson_add_item_to_object_thunk(uint32_t a, uint32_t b, uint32_t c);
 extern uint32_t cjson_print_pretty(uint32_t a);
-extern uint32_t strlen(uint32_t a);
+extern int strlen(int);
 extern void subcontracing_send_data_pkcs7(uint32_t a, uint32_t b, uint32_t c, uint32_t d);
-extern void cjson_delete(uint32_t a);
+extern void cjson_delete(volatile int*);
 
 uint32_t mobile_send_notification_to_ble_device_test(uint32_t param_1, uint32_t param_2, uint32_t param_3)
 {

@@ -9,7 +9,7 @@
 /* Reconstructed FUN_000876d0 @ 0x876d0  (parity: 300/300 trials, PROVEN) */
 
 extern int _malloc_r(unsigned int, int, int, unsigned int, unsigned int);
-extern void memset_bytes(int, int, int);
+extern void memset_bytes(void*, int, int);
 
 int _calloc_r(unsigned int param_1,int param_2,int param_3,unsigned int param_4)
 {

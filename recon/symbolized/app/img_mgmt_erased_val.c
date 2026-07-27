@@ -17,7 +17,7 @@
 #include <stdint.h>
 extern long long img_mgmt_flash_area_id(void);
 extern int flash_area_open(unsigned a, void* b);
-extern unsigned char flash_area_erased_val(unsigned a);
+extern unsigned int flash_area_erased_val(unsigned int);
 extern void nullsub_3(unsigned a);
 extern void z_log_msg_static_create_img_mgmt(unsigned a, int b, void* c);
 unsigned img_mgmt_erased_val(void){

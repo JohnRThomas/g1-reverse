@@ -23,19 +23,19 @@
  */
 /* Reconstructed FUN_00060f20 @ 0x60f20  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int qspi_get_zephyr_ret_code(int,...);
-extern int qspi_nor_lock_if_magic(int,...);
+extern int qspi_get_zephyr_ret_code(int);
+extern void qspi_nor_lock_if_magic(unsigned int, unsigned int);
 extern int qspi_nor_acquire(int,...);
-extern int qspi_nor_suspend_bus(int,...);
-extern int k_sem_give(int,...);
+extern void qspi_nor_suspend_bus(unsigned char*);
+extern void k_sem_give(int);
 extern int qspi_log_forward(int,...);
 extern int audio_stream_stop_and_wait(int,...);
 extern int audio_i2s_stop_and_reset_channels(int,...);
-extern int audio_i2s_start_channels(int,...);
+extern void audio_i2s_start_channels(void*);
 extern int qspi_nor_write_protection_set(int,...);
 extern int nrfx_qspi_write(int,...);
 extern int nrfx_qspi_read(int,...);
-extern int memcpy(int,...);
+extern void memcpy(int, int, int);
 
 int qspi_nor_write(int param_1, unsigned param_2, unsigned char *param_3, unsigned param_4)
 {

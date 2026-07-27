@@ -19,7 +19,7 @@
 
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern void assert_post_action(uint32_t,int);
+extern int assert_post_action(int, int);
 extern int settings_name_steq(uint32_t,uint32_t,void*);
 
 uint32_t* settings_parse_and_lookup(uint32_t param_1, uint32_t *param_2, uint32_t param_3){

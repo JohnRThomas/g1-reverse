@@ -16,7 +16,7 @@
 #include <stdint.h>
 
 extern uint32_t chunk_size(void *heap, uint32_t chunk);
-extern uint32_t chunk_field(void *heap, uint32_t chunk, uint32_t side);
+extern unsigned long chunk_field(const void*, unsigned long, unsigned long);
 #ifdef G1_APP_SDK_INLINE_COHESION
 extern int heap_bucket_index(uint32_t end_chunk, uint32_t size);
 extern void chunk_set(unsigned char *, unsigned int, unsigned int, unsigned int);

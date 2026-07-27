@@ -151,7 +151,7 @@ extern int device_is_ready();
 extern int copy_bytes();
 extern int checked_copy_bytes();
 extern int clear_bytes();
-extern int change_work_mode_to();
+extern unsigned int change_work_mode_to(unsigned int);
 extern int sync_to_slave();
 
 void proxy_thread_handler(int param_1)

@@ -18,10 +18,10 @@
 /* Reconstructed FUN_000530c4 @ 0x530c4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8;
-extern int z_log_msg_runtime_create(u32,int,void*,int);
-extern void submit_ancs_notify_work(void);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
+extern unsigned int submit_ancs_notify_work(void);
 extern void bt_dev_show_info(void);
-extern void bt_set_name_internal(u32);
+extern unsigned int bt_set_name_internal(unsigned int);
 extern int bt_setup_public_id_addr(void);
 extern int bt_setup_identities(void);
 int bt_dev_settings_commit(void){

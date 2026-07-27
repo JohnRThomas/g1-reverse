@@ -24,12 +24,12 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 typedef uint32_t u32;
-extern void assert_post_action(u32,u32);
-extern int z_spin_lock_valid(u32);
-extern void z_spin_lock_set_owner(u32);
+extern int assert_post_action(int, int);
+extern int z_spin_lock_valid(unsigned int*);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern int z_spin_unlock_valid(u32);
 extern u32 signal_poll_event(void*,u32);
-extern void z_reschedule(u32,u32);
+extern int z_reschedule(unsigned int*, int);
 #include "../../headers/g1_cmsis_shim.h"
 #include "../../headers/g1_log.h"
 u32 poll_signal_event_locked(int* param_1, int param_2){

@@ -13,11 +13,10 @@
 /* Reconstructed FUN_000478d8 @ 0x478d8  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*, int, int);
-extern unsigned int strlen(unsigned int);
-extern unsigned short utf8_decode_to_utf16_buffer(unsigned int, unsigned int, unsigned int, int);
+extern int strlen(int);
+extern int utf8_decode_to_utf16_buffer(int, int, int, int);
 
-unsigned int utf8_string_to_utf16(unsigned int param_1, unsigned short *param_2)
-{
+void* utf8_string_to_utf16(unsigned int param_1, unsigned short*param_2) {
     unsigned int uVar1 = ((unsigned long)&g_utf16_conv_buf) /*=0x2000f704*/;
     unsigned short uVar2;
     unsigned int uVar3;

@@ -12,10 +12,10 @@
 /* Reconstructed set_shutdown_flag @ 0x7cbfe  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int display_panel_is_secondary(unsigned long);
-extern void update_persist_task_status_to_idle(int);
-extern void mark_master_or_low_battery_flag(void);
+extern int update_persist_task_status_to_idle(int);
+extern unsigned int mark_master_or_low_battery_flag(void);
 extern void reset_esb_sync_state(int);
-extern void memset_bytes(int,int,int);
+extern void memset_bytes(void*, int, int);
 extern void send_event(int);
 void set_shutdown_flag(int param_1, int param_2)
 {

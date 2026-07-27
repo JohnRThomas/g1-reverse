@@ -22,9 +22,9 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 extern int k_mutex_lock(int,...);
-extern int k_mutex_unlock(int,...);
+extern int k_mutex_unlock(unsigned int);
 extern long long get_projector_controller(void);
-extern int delay_ms(int,...);
+extern void delay_ms(int);
 extern int projector_send_cmd_immediate(int,...);
 
 unsigned reflash_fb_data_to_lcd(int param_1,int param_2,int param_3,int param_4,int param_5,int param_6)

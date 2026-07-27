@@ -16,8 +16,8 @@
  */
 /* Reconstructed display_DelayClose @ 0x498c0  (parity: 300/300 trials, PROVEN) */
 
-extern void memset_bytes(void *dst, int val, unsigned int len);
-extern int k_msgq_put(void *obj, void *msg, unsigned int a, unsigned int b);
+extern void memset_bytes(void*, int, int);
+extern int k_msgq_put(unsigned int, void*, int, int);
 extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
 

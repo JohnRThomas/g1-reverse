@@ -20,7 +20,7 @@
 /* Reconstructed FUN_000526f4 @ 0x526f4  (parity: 300/300 trials, PROVEN) */
 
 extern void k_work_init(int a, unsigned int b);
-extern void assert_post_action(unsigned int a, unsigned int b);
+extern int assert_post_action(int, int);
 extern void smp_reassembly_init(void);
 #define z_impl_k_queue_init z_impl_k_queue_init
 extern void z_impl_k_queue_init(void *queue);

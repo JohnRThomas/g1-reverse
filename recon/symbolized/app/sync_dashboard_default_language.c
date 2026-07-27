@@ -13,8 +13,7 @@
 
 extern void set_dashboard_startup_default_language(unsigned char);
 
-unsigned char sync_dashboard_default_language(void)
-{
+unsigned long sync_dashboard_default_language(void) {
   unsigned int base = ((unsigned long)&g_dashboard_widget_state) /*=0x20004950*/;
   unsigned char value = *(volatile unsigned char *)((unsigned long)&g_widget0_index_raw) /*=0x2001b816*/;
   *(volatile unsigned char *)(base + 1) = value;

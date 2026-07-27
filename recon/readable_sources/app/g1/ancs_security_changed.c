@@ -30,16 +30,16 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 
-extern uintptr_t get_device_info(void);
+extern int get_device_info(void);
 extern void ancs_discover_start(uint32_t connection);
 extern void format_bt_addr_str(const void *connection, char *description);
-extern int32_t is_battery_critical(void);
-extern void sys_reboot(uint32_t enabled);
+extern int is_battery_critical(void);
+extern unsigned long sys_reboot(long);
 extern void k_msleep_ticks32768_d(int);
 extern void g1_recon_bt_conn_set_security(uint32_t connection, uint32_t state);
 extern uint32_t bt_conn_get_security(uint32_t connection);
-extern uintptr_t bt_conn_get_field_0x90(uint32_t connection);
-extern int32_t memcmp(void *destination, uintptr_t source, uint32_t length);
+extern int bt_conn_get_field_0x90(int);
+extern int memcmp(const void*, const void*, unsigned long);
 
 void ancs_security_changed(uint32_t connection, uint32_t level, int32_t error)
 {

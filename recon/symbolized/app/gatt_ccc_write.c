@@ -19,7 +19,7 @@
 extern int ccc_match_conn_cfg(int,int);
 extern void gatt_delayed_store_enqueue(int,int,int);
 extern void gatt_ccc_changed(int,int);
-extern void bt_addr_le_copy_828da(void*,int);
+extern void bt_addr_le_copy_828da(unsigned long*, unsigned long*);
 extern void log_msg_create_3arg(uint32_t,int,void*);
 
 int gatt_ccc_write(int param_1, int param_2, uint16_t *param_3, int param_4, short param_5){

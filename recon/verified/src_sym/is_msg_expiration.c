@@ -1,7 +1,7 @@
 /* Reconstructed is_msg_expiration @ 0x3444c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(unsigned long, ...);
-extern void *get_device_info(void);
+extern int get_device_info(void);
 extern void debug_print(unsigned long, ...);
 extern unsigned int get_timestamp(void);
 extern void FUN_0007d230(unsigned int);

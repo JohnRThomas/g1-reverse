@@ -21,12 +21,11 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 
-extern void assert_post_action(uintptr_t file, uint32_t line);
+extern void assert_post_action(unsigned long, unsigned long);
 extern void net_pkt_skip(uintptr_t queue, void *item);
-extern void memset_bytes(void *destination, uint32_t value, uint32_t length);
+extern void memset_bytes(void*, int, int);
 
-void att_chan_req_free(uint32_t *item)
-{
+void att_chan_req_free(int*item) {
     if (item == 0) {
         printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), 0x000f3b6fu, 0x000f4388u, 0xc4u);
         assert_post_action(0x000f4388u, 0xc4u);

@@ -2,7 +2,7 @@
 
 extern void DEBUG_PRINT(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
-extern void memset_bytes(int, void*, int);
+extern void memset_bytes(void*, int, int);
 
 int clean_fb_data(int param_1, void *param_2, int param_3, int param_4, int param_5, int param_6)
 {

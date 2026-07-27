@@ -22,7 +22,7 @@
 extern void arch_irq_disable(int a);
 extern void qspi_deactivate(void);
 extern void nrf_gpio_cfg_default(unsigned a);
-extern void assert_post_action(unsigned a,unsigned b);
+extern int assert_post_action(int, int);
 void nrfx_qspi_uninit(void){
     volatile unsigned char *g = (volatile unsigned char*)((unsigned long)&g_qspi_cb) /*=0x2000b348*/;
     if (g[0x30] == 0){

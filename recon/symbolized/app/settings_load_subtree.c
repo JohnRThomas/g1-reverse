@@ -20,7 +20,7 @@
 
 extern int k_mutex_lock(void *, int64_t); /* k_mutex_lock */
 extern int settings_commit_subtree(const char *); /* settings_commit_subtree */
-extern void k_mutex_unlock(void *); /* k_mutex_unlock */
+extern int k_mutex_unlock(unsigned int); /* k_mutex_unlock */
 
 struct settings_load_arg_recon {
     const char *subtree;

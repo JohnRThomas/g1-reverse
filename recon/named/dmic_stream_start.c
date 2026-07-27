@@ -41,7 +41,7 @@ typedef int (*device_call)(u32 device, ...);
 
 /* FUN_0007dda4 */
 extern int get_device_info(void);                         /* FUN_000167a8 */
-extern int enqueue_bt_data(const void *data, u32 length); /* FUN_00017eec */
+extern int enqueue_bt_data(unsigned long, unsigned char); /* FUN_00017eec */
 extern int ancs_get_conn_ctx(void);                       /* FUN_000181fc */
 /* FUN_00019c70 */
 extern int init_dmic_msgq(void);                          /* FUN_0002ebd8 */
@@ -50,9 +50,9 @@ extern void app_codec_lc3_test(u32 samples, u32 bytes);   /* FUN_0002ed68 */
 extern int erase_audio_buffer(void);                      /* FUN_0002f008 */
 extern int is_battery_critical(void);                     /* FUN_00032ee4 */
 extern int k_mem_slab_free(u32 slab, u32 block);          /* FUN_00071cf4 */
-extern int k_sem_give(u32 semaphore);                     /* FUN_00072880 */
-extern int z_device_is_ready(u32 device);                 /* FUN_0008638c */
-extern void *memset_bytes(void *dst, int value, u32 size);/* FUN_00086c78 */
+extern void k_sem_give(int);                     /* FUN_00072880 */
+extern int z_device_is_ready(int);                 /* FUN_0008638c */
+extern void memset_bytes(void*, int, int);/* FUN_00086c78 */
 
 #define g_log_level              (*(volatile int *)0x2000230cU)
 #define g_log_use_alt_sink       (*(volatile int *)0x20007554U)

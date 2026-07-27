@@ -28,7 +28,7 @@
  * to an order-keyed oracle.
  */
 
-extern void serialization_copy_fields_0c_10(int param_1, int *param_2);
+extern unsigned int serialization_copy_fields_0c_10(int, unsigned int*);
 
 int serialization_read_or_copy(int param_1, int *param_2, int param_3)
 {

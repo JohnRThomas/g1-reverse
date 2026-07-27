@@ -37,9 +37,9 @@ typedef unsigned short u16;
 typedef unsigned int undefined4;
 
 extern u64 __aeabi_uldivmod(int a, int b, u32 c, u32 d);
-extern void z_log_msg_runtime_create(u32 a, u32 b, void *c, u32 d);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern u64 adc_context_start_sampling(u32 a);
-extern int k_sem_give(u32 a);
+extern void k_sem_give(int);
 extern int z_impl_k_sem_take(u32 a, void *b, u32 c, u32 d);
 extern u64 z_impl_k_timer_start(void *a, int b, u32 c, u32 d);
 

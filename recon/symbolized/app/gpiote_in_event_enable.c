@@ -24,7 +24,7 @@
 /* Reconstructed FUN_000659e4 @ 0x659e4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern int get_pin_idx(uint32_t);
+extern unsigned long get_pin_idx(unsigned long);
 extern int pin_in_use_by_te(uint32_t);
 extern int gpiote_pin_sense_is_enabled(void);
 extern int pin_is_output(uint32_t);

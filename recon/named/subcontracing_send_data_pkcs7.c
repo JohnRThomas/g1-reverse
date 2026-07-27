@@ -23,11 +23,10 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 
-extern void debug_print_hex_dump(uint32_t format, const void *record,
-                         unsigned int record_size);
+extern void debug_print_hex_dump(int, int, int);
 extern void safe_memcpy_checked(void *destination, const void *source,
                          unsigned int count, unsigned int record_size);
-extern void memset_bytes(void *destination, int value, unsigned int count);
+extern void memset_bytes(void*, int, int);
 
 uint32_t subcontracing_send_data_pkcs7(const uint8_t *source, int byte_count,
                       uint8_t record_type,

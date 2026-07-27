@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_00021d78 @ 0x21d78  (parity: 300/300 trials, PROVEN) */
 
-extern void debug_print_hex_dump(unsigned int a, unsigned int b, unsigned int c);
+extern void debug_print_hex_dump(int, int, int);
 extern int spec_ble_command_hook(unsigned int a, unsigned int b);
 extern void ble_requeue_command_via_dispatch(unsigned int a, unsigned int b);
 

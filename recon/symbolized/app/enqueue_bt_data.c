@@ -18,10 +18,10 @@
 /* Reconstructed FUN_00017eec @ 0x17eec  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern void k_msgq_put(void);
+extern int k_msgq_put(unsigned int, void*, int, int);
 extern int FUN_000720d0_i(uint32_t,void*,int,int);
-extern void k_msgq_get(uint32_t,void*,int,int);
-extern void memcpy(void*,uint32_t,int);
+extern int k_msgq_get(int, unsigned int, int, int);
+extern void memcpy(int, int, int);
 extern void memset_bytes(void*,int,int);
 int enqueue_bt_data(uint32_t param_1, uint8_t param_2){
   uint8_t local_114[0x101];

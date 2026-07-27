@@ -43,13 +43,13 @@
 #include <stdint.h>
 extern void log_message(unsigned long, ...);
 extern int gpio_pin_configure_17688(unsigned int, unsigned int);
-extern void gpio_pin_set_checked(unsigned int, unsigned int, unsigned int);
-extern unsigned int gpio_pin_get_raw_checked(unsigned int, unsigned int);
+extern void gpio_pin_set_checked(int, unsigned int, unsigned int);
+extern int gpio_pin_get_raw_checked(char*, unsigned int);
 extern void gpio_pin_configure(unsigned int, unsigned int);
 extern unsigned int gpio_pin_get_checked(unsigned int);
 extern void debug_print(unsigned long, ...);
-extern int get_board_rev_flag(void);
-extern int z_device_is_ready(unsigned int);
+extern unsigned char get_board_rev_flag(void);
+extern int z_device_is_ready(int);
 
 unsigned char button_init(void)
 {

@@ -20,7 +20,7 @@
 typedef void (*panel_callback_t)(void *panel);
 extern int get_ambient_light_sensor_ready_flag(void);
 extern void opt3007_chip_deinit(void);
-extern void power_down_panel(void);
+extern unsigned int power_down_panel(void);
 
 uint32_t panel_off(uint8_t *context)
 {

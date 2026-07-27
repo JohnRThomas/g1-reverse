@@ -52,8 +52,8 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 
-extern void change_work_mode_to(uint32_t);
-extern void update_persist_task_status_to_idle(uint8_t *);
+extern unsigned int change_work_mode_to(unsigned int);
+extern int update_persist_task_status_to_idle(int);
 extern int sync_to_slave(uint8_t *, uint32_t, uint32_t);
 extern unsigned int get_ancs_conn_handle(void);
 extern int g1_recon_bt_conn_set_security(int, uint32_t);
@@ -65,12 +65,12 @@ extern void runtime_info_sync(uint8_t *);
 extern uint32_t esb_send_command_and_wait_ack(uint8_t *, uint32_t, uint32_t);
 extern void msg_queue_init(void);
 extern void handle_box_placement_event(void);
-extern void disable_watchdog(void);
+extern int disable_watchdog(void);
 extern void watchdog_feed_retry(void);
 extern void errno_wrapped_tick_call(uint8_t *, uint32_t);
 extern unsigned long long k_uptime_get_1(void);
 extern void k_msleep(uint32_t);
-extern uint32_t sys_reboot(uint32_t);
+extern unsigned long sys_reboot(long);
 extern void wait_for_event(uint32_t, uint32_t);
 extern int get_dashboard_startup_mode_field63(void);
 extern void check_device_readiness(void);
@@ -79,8 +79,8 @@ extern uint32_t check_charging_and_touch_flags(void);
 extern void try_enter_low_power_mode(void);
 extern void check_work_mode(uint32_t, uint32_t, uint32_t);
 extern void check_disp_onboarding(uint32_t);
-extern void bt_conn_disconnect_by_state(int, uint32_t);
-extern uintptr_t get_device_info(void);
+extern int bt_conn_disconnect_by_state(unsigned short*, unsigned char);
+extern int get_device_info(void);
 extern void set_shutdown_flag(uintptr_t, uint32_t);
 extern void reset_all_usr_data(unsigned char *, int);
 extern void check_sw0_status(void);

@@ -29,8 +29,8 @@
 #include "../headers/g1_log.h"
 extern int get_device_info(void);
 extern int z_device_is_ready(int);
-extern void memcpy(uintptr_t, int, int);
-extern void memset_bytes(uintptr_t, int, int);
+extern void memcpy(int, int, int);
+extern void memset_bytes(void*, int, int);
 
 #define PUVAR3 0x20018daaUL
 #define LOG_MODE (*mode_address)

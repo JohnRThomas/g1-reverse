@@ -64,11 +64,11 @@ struct mpsc_pbuf_buffer {
     uint8_t sem[0x10];                           /* +0x2c */
 };
 
-extern int z_spin_lock_valid(void *lock);
+extern int z_spin_lock_valid(unsigned int*);
 extern int z_spin_unlock_valid(void *lock);
-extern void z_spin_lock_set_owner(void *lock);
-extern void k_sem_give(void *sem);
-extern void assert_post_action(uint32_t file, uint32_t line);
+extern int z_spin_lock_set_owner(unsigned int*);
+extern void k_sem_give(int);
+extern int assert_post_action(int, int);
 extern uint32_t idx_inc(struct mpsc_pbuf_buffer *buffer,
                         uint32_t index, uint32_t words);
 extern void rd_idx_inc(struct mpsc_pbuf_buffer *buffer, uint32_t words);

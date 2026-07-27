@@ -21,7 +21,7 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 
-extern void memset_bytes(void *destination, uint32_t value, uint32_t size);
+extern void memset_bytes(void*, int, int);
 extern void safe_memcpy_checked(void *destination, const void *source,
                          uint32_t size, uint32_t destination_size);
 extern uint32_t vdprintf_to_fd(void *destination, uint32_t append,

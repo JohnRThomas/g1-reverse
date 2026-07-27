@@ -28,15 +28,15 @@
 #include "../headers/g1_log.h"
 typedef unsigned char byte; typedef unsigned char undefined1; typedef uint32_t undefined4; typedef unsigned int uint;
 extern int get_device_info(void);
-extern int update_temp_task_status(int,...);
-extern int update_persist_task_status_to_idle(void*,...);
+extern unsigned int update_temp_task_status(int, unsigned int, unsigned int);
+extern int update_persist_task_status_to_idle(int);
 extern int get_message_type_param(int,...);
-extern int message_pool_read_byte_0xd(int,...);
-extern int get_message_pending_state(void);
-extern int set_message_pending_state(int,...);
+extern unsigned char message_pool_read_byte_0xd(int);
+extern unsigned long get_message_pending_state(void);
+extern void set_message_pending_state(int);
 extern int is_msg_expiration(void);
 extern int sync_to_slave(void*,...);
-extern int wait_for_event(int,...);
+extern void wait_for_event(unsigned long, unsigned long);
 
 static inline __attribute__((always_inline)) uint32_t load_u32_le(const void *address)
 {

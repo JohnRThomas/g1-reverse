@@ -6,7 +6,7 @@
  */
 /* Reconstructed FUN_0007cf34 @ 0x7cf34 */
 #include <stdint.h>
-uint32_t flash_data_checksum_neg_sum(const uint8_t *data,uint32_t length,uint32_t padded_length){
+unsigned int flash_data_checksum_neg_sum(const unsigned char*data, unsigned int length, unsigned int padded_length) {
   uint32_t sum=0,offset=0;
   for(uint32_t pos=0;pos<padded_length;pos+=4){
     uint32_t word=UINT32_MAX;

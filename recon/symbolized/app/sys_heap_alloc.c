@@ -9,7 +9,7 @@
 
 extern uint32_t bytes_to_chunksz(uint32_t heap_bytes, uint32_t bytes); /* FUN_0007de70 */
 extern uint32_t alloc_chunk(uint8_t *heap, uint32_t chunks); /* FUN_0007df24 */
-extern uint32_t chunk_size(uint8_t *heap, uint32_t chunk); /* FUN_0007de18 */
+extern unsigned long chunk_size(void*, unsigned long); /* FUN_0007de18 */
 extern void split_chunks(uint8_t *heap, uint32_t left, uint32_t right); /* FUN_0007df98 */
 extern void free_list_add(uint8_t *heap, uint32_t chunk); /* FUN_0007e022 */
 extern void set_chunk_used(uint8_t *heap, uint32_t chunk, int used); /* FUN_0007de24 */

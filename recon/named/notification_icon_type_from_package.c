@@ -18,9 +18,9 @@
 /* Reconstructed FUN_0003483c @ 0x3483c (strict CFG parity). */
 #include <stdint.h>
 
-extern uint8_t strlen(const char *text);
-extern uintptr_t get_device_info(void);
-extern int strncmp(const void *left, const void *right, uint32_t length);
+extern int strlen(int);
+extern int get_device_info(void);
+extern int strncmp(const void*, unsigned long, unsigned int);
 
 static uint32_t bounded_length(const char *text)
 {

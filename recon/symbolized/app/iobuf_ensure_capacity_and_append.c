@@ -14,7 +14,7 @@
 #include <stdint.h>
 extern int _free_r(void*,int);
 extern int _malloc_r(void*,unsigned);
-extern void memcpy(int,int,int);
+extern void memcpy(int, int, int);
 extern void memmove(int,unsigned,unsigned);
 extern int _realloc_r(void*,int,unsigned);
 

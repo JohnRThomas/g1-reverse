@@ -16,7 +16,7 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 
-extern int strncmp(const void *left, const void *right, uint32_t length);
+extern int strncmp(const void*, unsigned long, unsigned int);
 
 uint32_t whitelist_contains_app(const void *name, const void *identifier)
 {

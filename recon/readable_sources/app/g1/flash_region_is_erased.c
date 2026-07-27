@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_00084d8c @ 0x84d8c  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int flash_area_erased_val(unsigned long);
+extern unsigned int flash_area_erased_val(unsigned int);
 
 unsigned int flash_region_is_erased(unsigned int param_1, unsigned char *param_2, int param_3)
 {

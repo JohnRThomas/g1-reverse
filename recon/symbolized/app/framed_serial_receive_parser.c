@@ -18,7 +18,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern void memcpy(void *destination, const void *source, uint32_t size);
+extern void memcpy(int, int, int);
 
 uint32_t framed_serial_receive_parser(uint32_t transport, uint8_t **output,
                       uint32_t *output_size)

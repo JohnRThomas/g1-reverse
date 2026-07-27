@@ -7,7 +7,6 @@
  */
 /* Reconstructed FUN_000816a2 @ 0x816a2  (parity: 300/300 trials, PROVEN) */
 
-unsigned int atomic_get_word(unsigned int *param_1)
-{
+unsigned long atomic_get_word(const unsigned long*param_1) {
     return *param_1;
 }

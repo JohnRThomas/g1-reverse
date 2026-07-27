@@ -16,7 +16,7 @@
  */
 /* Reconstructed FUN_000569a0 @ 0x569a0  (parity: 300/300 trials, PROVEN) */
 
-extern void assert_post_action(unsigned int, unsigned int);
+extern int assert_post_action(int, int);
 
 unsigned int bt_conn_index(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

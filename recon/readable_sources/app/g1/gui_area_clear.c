@@ -21,7 +21,7 @@
 typedef unsigned int uint32_t;
 
 extern void log_message(unsigned long, ...);
-extern uint32_t get_device_info(void);
+extern int get_device_info(void);
 extern void debug_print(unsigned long, ...);
 extern void clean_fb_data(uint32_t a, uint32_t b, uint32_t c, uint32_t d, uint32_t e, uint32_t f);
 extern void reflash_fb_data_to_lcd(uint32_t a, uint32_t b, uint32_t c, uint32_t d, uint32_t e, uint32_t f);

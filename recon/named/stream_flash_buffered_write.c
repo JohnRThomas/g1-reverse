@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_0007f088 @ 0x7f088  (parity: 300/300 trials, PROVEN) */
 
-extern void memcpy(int,int,unsigned);
+extern void memcpy(int, int, int);
 extern int stream_flash_flush_buffer(int*);
 int stream_flash_buffered_write(int *param_1,int param_2,unsigned param_3,int param_4){
   int iVar1;

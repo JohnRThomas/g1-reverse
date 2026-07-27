@@ -16,7 +16,7 @@
 /* Reconstructed FUN_0005a9f4 @ 0x5a9f4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../headers/g1_log.h"
-extern void assert_post_action(unsigned int,...);
+extern int assert_post_action(int, int);
 unsigned int bt_gatt_attr_get_handle(unsigned int param_1){
   unsigned int uVar1=param_1; volatile unsigned int* puVar2;
   unsigned int uVar3,uVar4,uVar5,uVar6,uVar7;

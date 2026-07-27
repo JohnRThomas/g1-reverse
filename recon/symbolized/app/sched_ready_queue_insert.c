@@ -18,7 +18,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 extern void sched_update_cache(int,...);
-extern void assert_post_action(int,...);
+extern int assert_post_action(int, int);
 void sched_ready_queue_insert(int *param_1){
   if( *(int8_t*)((int)param_1+0xd) < 0
       || (*(uint8_t*)((int)param_1+0xd) & 0x1f)!=0

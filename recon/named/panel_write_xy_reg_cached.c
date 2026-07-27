@@ -12,7 +12,7 @@
 /* Reconstructed FUN_00047028 @ 0x47028  (parity: 300/300 trials, PROVEN) */
 
 extern void projector_send_cmd_0x46(int a0);
-extern void net_pkt_write_be16(unsigned long);
+extern void net_pkt_write_be16(unsigned int);
 
 void panel_write_xy_reg_cached(int param_1, int param_2)
 {

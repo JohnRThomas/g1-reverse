@@ -12,7 +12,7 @@
 
 extern void projector_send_command(unsigned int a, void *b, unsigned int c, unsigned int d, unsigned int e);
 extern void projector_send_cmd_immediate(unsigned int a);
-extern void delay_ms(unsigned int a);
+extern void delay_ms(int);
 
 void projector_send_cmd_c0(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

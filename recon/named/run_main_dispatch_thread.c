@@ -55,7 +55,7 @@ extern void init_watchdog(void);
 extern int is_battery_critical(void);
 extern void start_aging_mode_thread(void);
 extern void spawn_aging_mode_aux_thread(void);
-extern void spawn_proxy_thread(void *);
+extern int spawn_proxy_thread(int);
 extern void spawn_display_thread(void *);
 /* The 7th parameter is a 64-bit k_timeout_t delay; the two trailing zero
  * words the macro passes are exactly that value (K_NO_WAIT). */

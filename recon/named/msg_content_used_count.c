@@ -8,8 +8,7 @@
  */
 /* Reconstructed FUN_00033cdc @ 0x33cdc  (parity: 300/300 trials, PROVEN) */
 
-unsigned int msg_content_used_count(void)
-{
+int msg_content_used_count(void) {
     unsigned int uVar1 = 0;
     unsigned int base = 0x20007dacUL;
     while (1) {

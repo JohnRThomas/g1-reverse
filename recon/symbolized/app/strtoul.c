@@ -11,7 +11,6 @@
 /* Reconstructed FUN_00077c1c @ 0x77c1c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern unsigned _strtoul_r(int, unsigned char*, void*, unsigned);
-unsigned strtoul(unsigned char *param_1, void *param_2, unsigned param_3)
-{
+int strtoul(int param_1, int param_2, int param_3) {
   return _strtoul_r(*(volatile int*)((unsigned long)&g_libc_heap_ctrl) /*=0x20002d20*/, param_1, param_2, param_3);
 }

@@ -42,8 +42,8 @@
 #include <cmsis_gcc.h>
 #include "../../headers/g1_log.h"
 
-extern int z_spin_lock_valid(void *lock);
-extern void z_spin_lock_set_owner(void *lock);
+extern int z_spin_lock_valid(unsigned int*);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern int z_spin_unlock_valid(void *lock);
 extern void z_abort_thread_timeout(void *thread);
 extern void z_abort_timeout(void *timeout);
@@ -52,7 +52,7 @@ extern void sched_ready_queue_insert(void *thread);
 extern void sched_update_cache(int reschedule);
 extern void mpu_region_index_lookup(void *thread);
 extern void arch_swap(uint32_t key);
-extern void assert_post_action(uint32_t, uint32_t);
+extern int assert_post_action(int, int);
 
 #define z_spin_lock_valid z_spin_lock_valid
 #define z_spin_lock_set_owner z_spin_lock_set_owner

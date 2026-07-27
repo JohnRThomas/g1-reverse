@@ -24,11 +24,11 @@
 
 #include <stdint.h>
 #include "../headers/g1_log.h"
-extern int gatt_discover(int,...);
-extern int ancs_gatt_dm_assign_handles(int,...);
-extern int ancs_subscribe_notification_source(int,...);
+extern void gatt_discover(unsigned int, unsigned int);
+extern int ancs_gatt_dm_assign_handles(int, int*);
+extern int ancs_subscribe_notification_source(volatile unsigned long*, int);
 extern int ancs_subscribe_data_source(int,...);
-extern int atomic_and(int,...);
+extern long atomic_and(volatile long*, long);
 extern int bt_gatt_dm_conn_get(int callback_object);
 extern int bt_gatt_dm_data_release(int,...);
 void discovery_completed_cb_ancs(void *param_1, void *param_2){

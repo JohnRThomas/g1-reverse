@@ -23,10 +23,10 @@
 extern int metal_io_block_write(int*, unsigned int, int, int);
 extern void mutex_lock_wait_forever_dup(void *);
 extern void FUN_000859b2(void *);
-extern uint32_t virtqueue_get_buffer_length(void *, uint16_t);
+extern unsigned long virtqueue_get_buffer_length(unsigned long, unsigned long);
 extern int virtqueue_add_buffer(void *, const void *, int, int, void *);
-extern void dma_xfer_end_handler(void *);
-extern void assert_post_action(uint32_t, uint32_t);
+extern void dma_xfer_end_handler(int*);
+extern int assert_post_action(int, int);
 
 uint32_t rpmsg_virtio_tx_enqueue(uint8_t *owner, uint32_t a, uint32_t b,
                       uint8_t *item_end, uint32_t tag)

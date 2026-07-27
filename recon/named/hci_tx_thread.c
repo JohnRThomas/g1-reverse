@@ -56,11 +56,11 @@ extern uint32_t z_impl_k_poll(uintptr_t events, uint32_t count,
 extern uintptr_t net_buf_get(uintptr_t queue, uint64_t timeout);
 extern int z_impl_k_sem_take(uintptr_t event, uint64_t timeout);
 extern void bt_log_forward_3arg(uintptr_t source, uint32_t level, const void *record);
-extern void net_buf_unref(void *buffer);
+extern void net_buf_unref(int);
 extern uintptr_t net_buf_ref(void *buffer);
 extern uint32_t bt_hci_driver_send(void *buffer);
 extern uint32_t net_buf_id(void *buffer);
-extern void k_sem_give(uintptr_t event);
+extern void k_sem_give(int);
 extern void hci_cmd_complete_handle(uint16_t handle, uint32_t reason, void *buffer);
 extern void bt_conn_tx_process(void *connection);
 extern void mutex_unlock_syscall_handler(uint32_t inherited);

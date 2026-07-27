@@ -15,7 +15,7 @@
  */
 /* Reconstructed FUN_0005f4d4 @ 0x5f4d4  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned long long assert_post_action(unsigned int, unsigned int);
+extern int assert_post_action(int, int);
 
 static void merge_tail(unsigned int r0, unsigned int r1)
 {

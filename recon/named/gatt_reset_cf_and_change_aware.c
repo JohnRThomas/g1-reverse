@@ -19,7 +19,7 @@
 /* Reconstructed FUN_0005a6b0 @ 0x5a6b0  (parity: 300/300 trials, PROVEN) */
 
 extern int reschedule_on_sys_work_q(unsigned,unsigned,int,int);
-extern int ble_conn_unref(int);
+extern void ble_conn_unref(int);
 extern int bt_conn_lookup_addr_le(int,void*);
 extern int bt_att_clear_out_of_sync_sent(void);
 extern int bt_addr_le_eq_0(void*,unsigned);

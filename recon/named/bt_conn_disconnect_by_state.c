@@ -16,7 +16,7 @@
 /* Reconstructed FUN_00056a68 @ 0x56a68  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../headers/g1_log.h"
-extern void assert_post_action(unsigned int,...);
+extern void assert_post_action(unsigned long, unsigned long);
 extern int bt_hci_disconnect(unsigned int);
 extern void ble_conn_set_state(void*,unsigned int);
 int bt_conn_disconnect_by_state(unsigned short* param_1, unsigned char param_2){

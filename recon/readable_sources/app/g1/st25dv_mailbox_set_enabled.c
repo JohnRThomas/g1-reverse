@@ -13,7 +13,7 @@
 #include <stdint.h>
 
 extern void read_bool_attr_0x2004(int, unsigned char *);
-extern void st25dv_mailbox_send_id_pair(int, unsigned int *);
+extern void st25dv_mailbox_send_id_pair(int, unsigned long*);
 
 struct controller_mode_frame {
     uint8_t reserved[11];

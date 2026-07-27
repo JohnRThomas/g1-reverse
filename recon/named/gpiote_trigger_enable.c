@@ -15,8 +15,8 @@
 #include <stdint.h>
 #include "../headers/g1_nrf_regs.h"
 typedef unsigned long long u64;
-extern u64 get_pin_idx(unsigned);
-extern int pin_in_use_by_te(unsigned);
+extern unsigned long get_pin_idx(unsigned long);
+extern unsigned int pin_in_use_by_te(unsigned int);
 extern u64 gpiote_pin_sense_is_enabled(unsigned);
 extern int pin_is_output(unsigned);
 extern void gpio_pin_cnf_build_fields(unsigned,void*,int,int,int,int);

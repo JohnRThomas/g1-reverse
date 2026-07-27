@@ -28,15 +28,15 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 typedef unsigned char byte; typedef uint32_t undefined4; typedef uint16_t undefined2; typedef unsigned int uint; typedef unsigned short ushort;
-extern int strlen(int,...);
+extern int strlen(int);
 extern int get_device_info(int,...);
 extern int atomic_get_3_0(int,...);
 extern int gui_utf_draw(int,...);
-extern int resource_manger_get(int,...);
+extern long resource_manger_get(unsigned long, unsigned long, long*, long*, unsigned long*, unsigned long);
 extern int clean_fb_data(int,...);
 extern int reflash_fb_data_to_lcd(int,...);
-extern int unix_timestamp_to_datetime(int,...);
-extern int fb_blit_rows_copy(int,...);
+extern int unix_timestamp_to_datetime(int, void*);
+extern int fb_blit_rows_copy(int, int, int, int, int, int);
 extern int vdprintf_to_fd(int,...);
 
 undefined4 gui_clock_draw(undefined4 param_1,int param_2,undefined4 param_3,undefined4 param_4,

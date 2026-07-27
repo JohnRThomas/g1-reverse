@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_00059708 @ 0x59708  (parity: 300/300 trials, PROVEN) */
 
-extern void att_chan_req_free(int a);
+extern int att_chan_req_free(int);
 extern void net_buf_unref(int a);
 extern void k_mem_slab_free(int a, int b);
 void bt_att_req_free(int param_1)

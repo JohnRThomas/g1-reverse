@@ -37,10 +37,10 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 /* printk */
-extern void assert_post_action(const char *, uint32_t); /* assert_post_action */
-extern uint32_t read_struct_first_word(volatile uint32_t *); /* atomic_get */
+extern int assert_post_action(int, int); /* assert_post_action */
+extern unsigned int read_struct_first_word(unsigned int*); /* atomic_get */
 extern void bt_gatt_service_init(void); /* bt_gatt_service_init */
-extern int bt_uuid_cmp(const void *, const void *); /* bt_uuid_cmp */
+extern int bt_uuid_cmp(int, int); /* bt_uuid_cmp */
 extern void k_sched_unlock(void); /* k_sched_lock */
 extern void k_sched_lock(void); /* k_sched_unlock */
 extern void bt_gatt_foreach_attr_0(uint16_t, uint16_t, void *, void *); /* foreach attr */

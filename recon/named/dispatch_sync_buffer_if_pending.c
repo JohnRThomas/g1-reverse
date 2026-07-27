@@ -10,7 +10,7 @@
 /* Reconstructed FUN_0002a4c0 @ 0x2a4c0  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void process_sync_buffer(void *arg);
+extern unsigned long process_sync_buffer(unsigned int, ...);
 
 void dispatch_sync_buffer_if_pending(void)
 {

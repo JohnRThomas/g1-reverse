@@ -20,7 +20,7 @@
  * 64-bit k_timeout_t delay, AAPCS-placed 8-byte aligned at sp+0x18.
  * The original writes it (strd r,r,[sp,#0x18]); it must be passed. */
 extern int z_impl_k_thread_create(int,int,int,int,int,int,int,int,int,unsigned long long);
-extern void kmutex_dlist_init(int);
+extern void kmutex_dlist_init(unsigned long);
 extern void k_timer_init(int,int,int);
 
 int init_ble_work_thread(int param_1)

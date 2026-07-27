@@ -14,7 +14,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_000635a4 @ 0x635a4  (parity: 300/300 trials, PROVEN) */
 
-extern void assert_post_action(unsigned int a0, unsigned int a1);
+extern int assert_post_action(int, int);
 
 unsigned int rtc_timer_cc_reg_get(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

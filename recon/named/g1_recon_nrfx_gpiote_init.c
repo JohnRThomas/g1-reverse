@@ -13,9 +13,9 @@
 #include <stdint.h>
 #include "../headers/g1_nrf_regs.h"
 typedef unsigned int uint;
-extern void arch_irq_enable(int);
+extern int arch_irq_enable(int);
 extern int gpiote_in_event_reg_offset(uint32_t);
-extern void memset_bytes(uint32_t,int,int);
+extern void memset_bytes(void*, int, int);
 uint32_t g1_recon_nrfx_gpiote_init(void){
   int iVar1=0x20002bc0;
   uint32_t uVar3=0x0bad0005;

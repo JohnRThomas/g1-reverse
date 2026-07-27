@@ -20,7 +20,7 @@ extern int atomic_test_bit(int,int);
 extern int bt_keys_get_type(int,int,int,int);
 extern unsigned int bt_addr_le_str(const void *);
 extern void smp_log_message(uint32_t,int,void*);
-extern void atomic_set_bit(int,uint32_t);
+extern void atomic_set_bit(int, int);
 extern void smp_pairing_complete(int);
 
 uint32_t smp_central_ident(int param_1, int param_2){

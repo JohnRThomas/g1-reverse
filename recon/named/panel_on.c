@@ -20,7 +20,7 @@ extern int power_for_panel(void);
 extern int get_ambient_light_sensor_ready_flag(void);
 extern void debug_print(unsigned long, ...);
 extern int opt3007_chip_init(void);
-extern int panel_init(void);
+extern void panel_init(void);
 int panel_on(int param_1){
   *(volatile int*)(param_1+0x374) = param_1 - 0x5c;
   if(*(volatile int*)(param_1-0x48)==0){

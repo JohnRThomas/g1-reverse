@@ -8,7 +8,7 @@ extern void FUN_00085046(uint32_t a, uint32_t b, uint32_t c);
 extern uint32_t FUN_00085014(uint32_t a);
 extern void DEBUG_PRINT(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
-extern uint32_t strlen(uint32_t a);
+extern int strlen(int);
 extern void subcontracing_send_data_pkcs7(uint32_t a, uint32_t b, uint32_t c, uint32_t d);
 extern void FUN_00064b1c(uint32_t a);
 

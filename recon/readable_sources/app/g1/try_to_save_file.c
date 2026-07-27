@@ -35,7 +35,7 @@ extern void debug_print(unsigned long, ...);
 extern void write_font_to_flash_with_verify(uint32_t address, uint32_t buffer, ...);
 extern void dequeue_file(void *packet);
 extern uint32_t crc32_update(uint32_t checksum, uint32_t buffer, uint32_t length);
-extern void memcpy(void *destination, const void *source, uint32_t length);
+extern void memcpy(int, int, int);
 extern void safe_memcpy_checked(void *destination, const void *source,
                          uint32_t length, uint32_t capacity);
 extern void update_persist_task_status(uint32_t context, int type, int status);

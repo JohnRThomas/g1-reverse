@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_00082258 @ 0x82258  (parity: 300/300 trials, PROVEN) */
 
-extern void gatt_notify_or_indicate(int,int,int,int,int,int,short);
+extern char gatt_notify_or_indicate(int*, int, int, int, short, int, short);
 extern int net_buf_simple_pull_le16(int);
 void att_write_cmd(int param_1,int param_2)
 {

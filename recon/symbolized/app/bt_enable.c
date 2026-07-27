@@ -38,9 +38,9 @@ extern void z_impl_k_thread_create(unsigned,unsigned,int,unsigned,int,int,int,in
 extern void k_work_submit(int);
 extern void k_work_queue_init(unsigned);
 extern void k_work_queue_start(unsigned,unsigned,int,int,int);
-extern int atomic_or(unsigned,int);
+extern int atomic_or(volatile long*, long);
 extern void bt_log_forward_3arg(unsigned,unsigned,void*);
-extern unsigned atomic_and_3(int,unsigned);
+extern long atomic_and_3(volatile long*, long);
 extern void posix_stub_enosys(unsigned,unsigned);
 #define z_impl_k_queue_init z_impl_k_queue_init
 extern void z_impl_k_queue_init(void *queue);

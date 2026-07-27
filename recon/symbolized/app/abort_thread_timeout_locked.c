@@ -22,11 +22,11 @@
 /* Reconstructed FUN_00073960 @ 0x73960  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern int z_spin_lock_valid(uint32_t);
+extern int z_spin_lock_valid(unsigned int*);
 extern int z_spin_unlock_valid(uint32_t);
-extern void z_spin_lock_set_owner(uint32_t);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern void z_abort_thread_timeout(int);
-extern void assert_post_action(uint32_t,uint32_t);
+extern int assert_post_action(int, int);
 void abort_thread_timeout_locked(int param_1,uint32_t p2,uint32_t p3,uint32_t p4){
   int iVar3=z_spin_lock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
   if(iVar3==0){

@@ -34,20 +34,20 @@ typedef unsigned char undefined1;
 typedef unsigned short undefined2;
 typedef unsigned undefined4;
 extern unsigned int bt_addr_le_str(const void *);
-extern int bt_security_err_lookup(int a);
+extern unsigned char bt_security_err_lookup(unsigned int);
 extern int bt_rand(void *, int);
-extern void bt_smp_send_pdu(int *a, int b, unsigned c);
-extern void smp_pairing_complete(int *a, unsigned char b);
+extern void bt_smp_send_pdu(int, unsigned int, unsigned int);
+extern void smp_pairing_complete(int, unsigned int);
 extern void bt_keys_add_type(int a, int b);
 extern int net_buf_simple_add(int a, int b);
-extern int atomic_test_bit(int *a, int b);
+extern int atomic_test_bit(int, int);
 extern void smp_log_message(unsigned a, int b, void *c);
 extern unsigned atomic_set_bit(int a, unsigned b);
-extern int smp_create_pdu(int *a, int b);
+extern int smp_create_pdu(int, int);
 extern int atomic_test_and_clear_bit(int *a, int b);
 extern void att_chan_reset(int *a);
-extern void memcpy(int a, void *b, unsigned c);
-extern void memset_bytes(int a, int b, int c);
+extern void memcpy(int, int, int);
+extern void memset_bytes(void*, int, int);
 
 void bt_smp_distribute_keys(int *param_1, int param_2)
 {

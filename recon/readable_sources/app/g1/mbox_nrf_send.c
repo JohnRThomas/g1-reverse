@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_00061c40 @ 0x61c40  (parity: 300/300 trials, PROVEN) */
 
-extern void z_log_msg_runtime_create(void*, int, void*, int);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned int mbox_nrf_send(int param_1, unsigned int param_2, int param_3)
 {

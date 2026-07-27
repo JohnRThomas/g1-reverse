@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_000811a4 @ 0x811a4  (parity: 300/300 trials, PROVEN) */
 
-extern void atomic_and_1(unsigned int*, unsigned int);
+extern long atomic_and_1(volatile long*, long);
 void atomic_assign_bit(unsigned int *param_1, unsigned int param_2, int param_3)
 {
     unsigned int uVar1 = 1u << (param_2 & 0xff);

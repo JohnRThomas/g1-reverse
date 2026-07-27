@@ -18,16 +18,16 @@
  */
 /* Reconstructed FUN_00052880 @ 0x52880  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int active_transfer_conn_match(int,...);
+extern int* active_transfer_conn_match(int);
 extern int bt_conn_get_info(int,...);
-extern int bt_gatt_notify_cb(int,...);
+extern int bt_gatt_notify_cb(int, int*);
 extern int z_impl_k_sem_take(int,...);
 extern int queue_cancel_wait_locked(int,...);
 extern int mutex_unlock_syscall_handler(int,...);
 extern int clear_transfer_conn_slot(int,...);
-extern int att_get_max_payload_len(int,...);
-extern int memset_bytes(int,...);
-extern int smp_packet_free(int,...);
+extern unsigned int att_get_max_payload_len(unsigned char*);
+extern void memset_bytes(void*, int, int);
+extern int smp_packet_free(int);
 unsigned int gatt_notify_send_chunked(int param_1)
 {
   struct {

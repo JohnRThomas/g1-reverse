@@ -16,9 +16,9 @@
  *   g_bt_dev_name                            @ 0x2000216c
  */
 /* Reconstructed FUN_00054c74 @ 0x54c74  (parity: 300/300 trials, PROVEN) */
-extern unsigned strlen(unsigned long);
+extern int strlen(int);
 extern int strcmp(unsigned a, unsigned b);
-extern void memcpy(unsigned a, unsigned b, unsigned c);
+extern void memcpy(int, int, int);
 extern int bt_settings_store_name(int a, unsigned b);
 extern void bt_log_forward_3arg(unsigned a, int b, void* c);
 unsigned bt_set_name_internal(unsigned param_1){

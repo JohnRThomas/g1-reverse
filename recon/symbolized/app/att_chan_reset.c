@@ -11,7 +11,7 @@
 
 extern void k_work_cancel_delayable(unsigned int *, unsigned int, unsigned int,
                          unsigned int *exchange_word);
-extern void atomic_set_bit(unsigned int *, unsigned int);
+extern void atomic_set_bit(int, int);
 
 void att_chan_reset(unsigned int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

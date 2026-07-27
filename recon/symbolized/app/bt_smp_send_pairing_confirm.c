@@ -19,15 +19,15 @@
 /* Reconstructed FUN_0005cdc4 @ 0x5cdc4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8;
-extern int bt_smp_send_pdu(int,int,int);
+extern void bt_smp_send_pdu(int, unsigned int, unsigned int);
 extern void net_buf_unref(int);
 extern u32 net_buf_simple_add(int,int);
-extern void atomic_clear_bit_1(int,int);
+extern void atomic_clear_bit_1(volatile long*, int);
 extern void smp_log_message(u32,int,void*);
 extern int smp_create_pdu(int,int);
 extern int bt_crypto_f4(u32,int,int,unsigned);
 static inline u32 lsr(u32 v, u32 n){ n&=0xff; return n>=32?0:v>>n; }
-u32 bt_smp_send_pairing_confirm(int param_1){
+unsigned int bt_smp_send_pairing_confirm(int param_1) {
     unsigned uVar3 = *(u8*)(param_1+8);
     if(uVar3 < 3){
         if(uVar3 != 0){

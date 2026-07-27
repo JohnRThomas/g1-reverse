@@ -16,8 +16,8 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 
-extern int32_t get_device_type(void);
-extern int32_t dev_api_call_slot0(uintptr_t device, uint32_t attribute, void *configuration);
+extern int get_device_type(void);
+extern unsigned int dev_api_call_slot0(int, unsigned int, unsigned int);
 extern void wait_for_event(uint32_t ticks, uint32_t unused);
 
 #define LOG_LEVEL (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/)

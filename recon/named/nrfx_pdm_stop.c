@@ -17,7 +17,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_00066300 @ 0x66300  (parity: 300/300 trials, PROVEN) */
 
-extern void assert_post_action(int a, int b);
+extern int assert_post_action(int, int);
 
 unsigned int nrfx_pdm_stop(void)
 {

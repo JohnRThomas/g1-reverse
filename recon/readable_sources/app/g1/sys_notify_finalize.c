@@ -19,7 +19,7 @@
 /* Reconstructed FUN_0004bb0c @ 0x4bb0c  (parity: 300/300 trials, PROVEN) */
 
 extern void poll_signal_event_locked(unsigned int, unsigned int);
-extern void assert_post_action(unsigned int a, unsigned int b);
+extern int assert_post_action(int, int);
 int sys_notify_finalize(int *param_1,int param_2,unsigned int param_3,unsigned int param_4)
 {
   unsigned int uVar1;

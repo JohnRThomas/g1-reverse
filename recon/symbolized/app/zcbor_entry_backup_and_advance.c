@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_00085c38 @ 0x85c38  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned long long cbor_decoder_at_end(int iVar2);
+extern int cbor_decoder_at_end(int);
 extern void cbor_finalize_backup_count(int *param_1, int param_2);
 
 int zcbor_entry_backup_and_advance(int *param_1)

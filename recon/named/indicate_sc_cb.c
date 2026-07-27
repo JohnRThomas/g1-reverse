@@ -17,8 +17,8 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 
-extern void gatt_discover(uint32_t connection, uint32_t enabled);
-extern void bt_conn_disconnect_by_state(uint32_t connection, uint32_t reason);
+extern void gatt_discover(unsigned int, unsigned int);
+extern int bt_conn_disconnect_by_state(unsigned short*, unsigned char);
 
 void indicate_sc_cb(const uint32_t *connection_ref, uint32_t security_level,
                     int32_t error)

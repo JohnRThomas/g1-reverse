@@ -32,8 +32,7 @@ struct format_state {
     uint32_t zero;
 };
 
-void z_log_msg_runtime_create(uintptr_t owner, uint32_t descriptor, uintptr_t source, uintptr_t arg4)
-{
+void z_log_msg_runtime_create(unsigned int owner, unsigned int descriptor, unsigned int source, unsigned int arg4) {
     uint32_t encoded = (descriptor >> 9) & 0x7ffu;
     uint32_t requested = encoded;
     uint32_t upper = descriptor >> 20;

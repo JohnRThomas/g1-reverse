@@ -45,7 +45,7 @@ typedef uint32_t uint;
 typedef uint16_t ushort;
 typedef uint8_t byte;
 
-extern uintptr_t get_device_info(void);
+extern int get_device_info(void);
 extern int get_ui_mode_flag_byte1(void);
 extern void gui_utf_draw_align_right(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t,
                         uint32_t, uint32_t, uint32_t, uint32_t, uint32_t,
@@ -58,7 +58,7 @@ extern void format_string_to_buffer(uint32_t output, uintptr_t format, ...);
 extern uint32_t get_timestamp(void);
 extern uint32_t device_info_text_width_get(void);
 extern uint32_t device_info_text_height_get_clamped(void);
-extern void memset_bytes(uint32_t destination, uint32_t value, uint32_t length);
+extern void memset_bytes(void*, int, int);
 extern void strcpy(uint32_t output, uintptr_t text);
 
 void format_message_relative_time(undefined4 param_1,int param_2)

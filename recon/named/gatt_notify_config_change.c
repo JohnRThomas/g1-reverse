@@ -14,7 +14,7 @@
 
 extern void memset_bytes(void*,int,int);
 extern int gatt_find_ccc_for_conn(int,int,int);
-extern int bt_gatt_notify_cb(int,void*);
+extern int bt_gatt_notify_cb(int, int*);
 
 int gatt_notify_config_change(int param_1, int param_2, short param_3)
 {

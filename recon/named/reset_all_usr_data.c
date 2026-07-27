@@ -32,12 +32,12 @@ extern void app_msleep_thunk_b(int);
 extern void deleteQuickNoteData(uint32_t);
 extern void cleanAppLanguageInfo(void);
 extern void cleanDashBoardStartUpModeInfo(void);
-extern void reset_usr_setting(void *);
+extern unsigned long reset_usr_setting(unsigned char*);
 extern void flash_erase_settings_record(void *);
 extern void reset_all_static_info(void);
 extern void bt_unpair_all_or_addr(uint32_t, uint32_t);
 extern void enable_ship_mode(uint32_t);
-extern uint32_t sys_reboot(uint32_t);
+extern unsigned long sys_reboot(long);
 
 #define LOG_LEVEL (*(volatile int32_t *)0x2000230c)
 #define LOG_BACKEND (*(volatile uint32_t *)0x20007554)

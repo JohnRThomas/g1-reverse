@@ -56,7 +56,7 @@ typedef struct {
     uint16_t reason;
 } stop_record_t;
 
-extern uintptr_t smp_pairing_event_cnt_inc(void);
+extern int smp_pairing_event_cnt_inc(void);
 extern int att_alloc_pdu_with_hdr(uint32_t type, uintptr_t object, uint32_t count);
 extern void log_msg_3arg_thunk(uintptr_t sink, uint32_t level, const void *record);
 extern void net_buf_unref(uintptr_t packet);
@@ -64,7 +64,7 @@ extern uintptr_t net_buf_get(void *queue, uint32_t wait, uint32_t unused);
 extern uint32_t atomic_get_word(const uint32_t *value);
 extern stop_record_t *net_buf_simple_add(uintptr_t pool, uint32_t size);
 extern void att_send_simple(uintptr_t endpoint, int status);
-extern void assert_post_action(uintptr_t message, uint32_t line);
+extern int assert_post_action(int, int);
 
 static __attribute__((always_inline)) inline void fatal_state(uintptr_t file,
                                                               uint32_t line)

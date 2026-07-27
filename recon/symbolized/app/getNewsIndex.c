@@ -16,8 +16,7 @@
 /* Reconstructed getNewsIndex @ 0x3719c  (parity: 300/300 trials, PROVEN) */
 
 
-unsigned char getNewsIndex(void)
-{
+unsigned long getNewsIndex(void) {
     volatile unsigned char *base = (volatile unsigned char*)((unsigned long)&g_dashboard_widget_state) /*=0x20004950*/;
     int iVar2 = *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/;
     unsigned char b = *(volatile unsigned char*)((unsigned long)&g_news_widget_index_raw) /*=0x2001b814*/;

@@ -23,8 +23,8 @@ typedef struct list_node {
     struct list_node *next;
 } list_node_t;
 
-extern void net_buf_unref(list_node_t *node);
-extern void assert_post_action(uintptr_t file, uint32_t line);
+extern void net_buf_unref(int);
+extern int assert_post_action(int, int);
 
 list_node_t *net_buf_frag_del(list_node_t *previous, list_node_t *node)
 {

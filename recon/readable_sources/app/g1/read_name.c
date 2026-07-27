@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_000829f0 @ 0x829f0  (parity: 300/300 trials, PROVEN) */
 
-extern int strlen(const void *);
+extern int strlen(int);
 extern unsigned int bt_dev_get(void);
 extern void bt_gatt_attr_read(int,int,int,unsigned int,unsigned short);
 void read_name(int param_1, int param_2, int param_3, int param_4,

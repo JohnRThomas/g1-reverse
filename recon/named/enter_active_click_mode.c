@@ -19,8 +19,8 @@
 
 #include <stdint.h>
 
-extern void change_work_mode_to(uint32_t mode);
-extern uint8_t *get_device_info(void);
+extern unsigned int change_work_mode_to(unsigned int);
+extern int get_device_info(void);
 extern void active_mode_shutdown(void);
 extern void projector_reflash_and_release(uint32_t mode);
 

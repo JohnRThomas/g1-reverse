@@ -11,7 +11,7 @@
  * reached with r0 never rewritten since entry, so the value-length helper
  * receives the node.  With no argument the candidate handed it whatever r0
  * happened to hold. */
-extern unsigned opt_node_value_len(unsigned char *param_1);
+extern unsigned int opt_node_value_len(int);
 unsigned opt_node_serialize_7c5ba(unsigned char* param_1, int* param_2){
   unsigned uVar3; int iVar4,iVar5;
   if(param_1==0) return 7;

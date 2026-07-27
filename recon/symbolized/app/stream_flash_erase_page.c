@@ -13,7 +13,7 @@
  */
 /* Reconstructed FUN_0004e124 @ 0x4e124  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void z_log_msg_runtime_create(unsigned int,unsigned int,void*,int);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern int flash_get_page_info_by_offs(unsigned int,unsigned int,void*);
 struct property_result { int selected; unsigned int context, count; };
 _Static_assert(sizeof(struct property_result) == 12, "property result layout");

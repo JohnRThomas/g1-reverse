@@ -16,7 +16,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_0005e9d0 @ 0x5e9d0  (parity: 300/300 trials, PROVEN) */
 
-extern void assert_post_action(int a,int b);
+extern int assert_post_action(int, int);
 extern int bt_keys_find(void);
 extern int bt_keys_get_addr(int a,int b);
 extern void bt_keys_add_type(int a,int b);

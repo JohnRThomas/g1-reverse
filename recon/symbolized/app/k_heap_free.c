@@ -16,11 +16,11 @@
 
 #include <stdint.h>
 
-extern int z_spin_lock_valid(void *lock);
-extern void z_spin_lock_set_owner(void *lock);
+extern int z_spin_lock_valid(unsigned int*);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern void sys_heap_free(void *heap, void *memory);
 extern int z_unpend_all(void *wait_queue);
-extern void z_reschedule(void *lock, uint32_t key);
+extern int z_reschedule(unsigned int*, int);
 extern int z_spin_unlock_valid(void *lock);
 #define z_spin_lock_valid z_spin_lock_valid
 #define z_spin_lock_set_owner z_spin_lock_set_owner

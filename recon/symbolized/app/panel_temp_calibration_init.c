@@ -36,9 +36,9 @@ static inline unsigned g1_float_bits(float x)
   return v.u;
 }
 extern int __muldf3(int,...); extern int __fixunsdfsi(int,...);
-extern unsigned long long exp(unsigned long long); extern int dev_write_reg3(int,...);
-extern int dev_write_reg4(int,...); extern int flash_page_index_lookup(int,...);
-extern int layout_select_region(int,...); extern int z_device_is_ready(int,...);
+extern unsigned long long exp(unsigned long long); extern int dev_write_reg3(unsigned int, unsigned int, unsigned int, unsigned int);
+extern int dev_write_reg4(int,...); extern unsigned int flash_page_index_lookup(int*, int, unsigned int, unsigned short*);
+extern int layout_select_region(int,...); extern int z_device_is_ready(int);
 
 int panel_temp_calibration_init(int param_1)
 {

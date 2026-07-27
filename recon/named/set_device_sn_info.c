@@ -33,8 +33,8 @@ extern unsigned int get_device_serial_buf(void);
 extern int format_device_serial_to_buf(int);
 extern int read_sys_settting_from_flash(void*);
 extern int printf(int,int);
-extern int k_msleep_ticks32768_b(int);
-extern int memcmp(int,void*,int);
+extern void k_msleep_ticks32768_b(int);
+extern int memcmp(const void*, const void*, unsigned long);
 
 uint32_t set_device_sn_info(int param_1, uint32_t param_2, uint32_t *param_3, uint8_t *param_4){
     uint32_t uVar1;

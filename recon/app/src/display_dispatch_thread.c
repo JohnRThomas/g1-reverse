@@ -80,16 +80,16 @@ typedef long long s64;
 /* callee oracles (keyed on call order by the harness) */
 extern void debug_print(unsigned long, ...);
 extern void log_message(unsigned long, ...);
-extern s32  get_device_info(void);
+extern int get_device_info(void);
 extern s32  get_current_work_mode(void);
 extern void change_work_mode_to(int);
-extern s32  is_battery_critical(void);
+extern int is_battery_critical(void);
 extern void enter_critical_battery_display(void);
 /* The shipped caller forwards the otherwise-unused r1 return lane into the
  * four-register mutex boundary; retain that pair-shaped ABI for trace parity. */
 extern s64  display_panel_is_secondary(void*);
 extern void cal_panel_canvas_coord(int,int);
-extern void wait_for_event(int,int);
+extern void wait_for_event(unsigned long, unsigned long);
 extern void k_sem_take(void*,int,int,int);
 extern s32  sync_to_slave(void*,int,int);
 extern u32  display_target_level_get(void*);

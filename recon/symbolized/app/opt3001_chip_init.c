@@ -18,7 +18,7 @@
 #include <stdint.h>
 extern int z_log_msg_runtime_create(uintptr_t,uint32_t,void*,...);
 extern int i2c_read_reg16_be(void*,uint32_t,void*,int);
-extern int z_device_is_ready(uintptr_t);
+extern int z_device_is_ready(int);
 typedef int (*transfer_fn)(uintptr_t,void*,uint32_t,int16_t);
 
 static __attribute__((always_inline)) inline void

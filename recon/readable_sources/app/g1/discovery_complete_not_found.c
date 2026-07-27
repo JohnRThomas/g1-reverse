@@ -13,7 +13,7 @@
 /* Reconstructed FUN_0007f438 @ 0x7f438  (parity: 300/300 trials, PROVEN) */
 
 extern void svc_attr_memory_release(unsigned long);
-extern void atomic_and_0(void *a, unsigned int b);
+extern long atomic_and_0(volatile long*, long);
 
 void discovery_complete_not_found(unsigned int *param_1)
 {

@@ -16,7 +16,7 @@
 /* Reconstructed FUN_0004e83c @ 0x4e83c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int flash_area_open(int,void*);
+extern int flash_area_open(unsigned int, void*);
 extern int flash_area_get_sectors(int,void*,void*);
 extern int settings_src_register(void*);
 extern int settings_dst_register(void*);

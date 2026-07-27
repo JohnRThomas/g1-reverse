@@ -28,7 +28,7 @@
  * Raw/address backmap: FUN_0005a954 @ 0x0005a954, extent 0x00000058.
  */
 #include <stdint.h>
-extern uint32_t atomic_or_0(volatile uint32_t *, uint32_t); /* atomic_or */
+extern int atomic_or_0(volatile long*, long); /* atomic_or */
 extern void bt_gatt_service_init(void);                              /* bt_gatt_service_init */
 extern void k_work_init_delayable(void *, void *);                    /* k_work_init_delayable */
 /* k_work_schedule(dwork, k_timeout_t).  The 64-bit timeout is aligned to

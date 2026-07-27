@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_0007c176 @ 0x7c176  (parity: 300/300 trials, PROVEN) */
 
-extern char *get_device_info(void);
+extern int get_device_info(void);
 void device_info_set_bytes_cc_ce(unsigned char param_1, unsigned char param_2) {
     char *p1 = get_device_info();
     *(volatile unsigned char*)(p1 + 0xce) = param_2;

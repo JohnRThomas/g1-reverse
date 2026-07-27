@@ -19,8 +19,8 @@
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8; typedef uint16_t u16;
 extern int bt_hci_cmd_send_sync(int,int,void*);
-extern void net_buf_unref(void*);
-extern void bt_id_addr_update_thunk(u32,int,void*);
+extern void net_buf_unref(int);
+extern void bt_id_addr_update_thunk(unsigned long, int, void*);
 unsigned hci_read_static_addresses(int param_1, unsigned param_2){
     u32 local_34[5];
     u32 local_20[2];

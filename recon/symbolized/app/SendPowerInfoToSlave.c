@@ -20,8 +20,8 @@
 /* Reconstructed SendPowerInfoToSlave @ 0x488bc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern void *get_device_info(void);
-extern int k_msgq_put(uint32_t, void*, int, int);
+extern int get_device_info(void);
+extern int k_msgq_put(unsigned int, void*, int, int);
 extern void memset_bytes(void*, int, int);
 
 unsigned int SendPowerInfoToSlave(int param_1)

@@ -24,7 +24,7 @@
 extern int64_t uptime_ticks_get(void);
 extern void FUN_0007c010(void *object);          /* tail thunk -> k_sem_give */
 extern void app_msleep_thunk_a(uint32_t milliseconds);
-extern int sys_reboot(int type);
+extern unsigned long sys_reboot(long);
 extern void runtime_info_sync(void *context);
 extern void checked_strncpy_zero_pad(void *destination, const void *source,
                                      unsigned int length,

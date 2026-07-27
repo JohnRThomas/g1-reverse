@@ -3,8 +3,7 @@
 
 extern uint32_t get_pin_idx(uint32_t pin); /* FUN_00065434 */
 
-uint8_t pin_te_get(uint32_t pin)
-{
+int pin_te_get(unsigned long pin) {
     volatile const uint16_t *const pin_flags =
         (volatile const uint16_t *)0x20002bc0u;
     return (uint8_t)(pin_flags[get_pin_idx(pin) + 8u] >> 13);

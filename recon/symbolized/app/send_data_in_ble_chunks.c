@@ -19,11 +19,10 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 
-extern uint32_t strlen(uint32_t command);
-extern uintptr_t get_device_info(void);
-extern uint32_t send_notification_app_whitelist(void *transport, const void *name,
-                             const void *payload, uint32_t reserved);
-extern int strncmp(uint32_t command, const void *name, uint32_t value);
+extern int strlen(int);
+extern int get_device_info(void);
+extern unsigned long send_notification_app_whitelist(unsigned char*, const char*, const char*, unsigned long);
+extern int strncmp(const void*, unsigned long, unsigned int);
 
 /* G7-B2 defect fix.  The body was `uint32_t` and `return`ed the result of the
  * logging call.  Both sinks are `void` (recon/headers/g1_log.h), and the

@@ -19,8 +19,7 @@
 
 extern uint32_t st25dv_read_area_size(uint32_t type);
 extern int st25dv_mailbox_poll_message(uint32_t cursor);
-extern int ipc_ept_op_a_locked_retry(void *transport, uint32_t offset,
-                        const void *data, uint32_t length);
+extern int ipc_ept_op_a_locked_retry(int, unsigned int, unsigned int, int);
 
 int packet_transport_write_frame(uint32_t type, uint32_t length, const void *payload)
 {

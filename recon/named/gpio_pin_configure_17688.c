@@ -20,7 +20,7 @@
 #include <stdint.h>
 #include "../headers/g1_log.h"
 
-extern void assert_post_action(const void *, unsigned);
+extern int assert_post_action(int, int);
 
 void gpio_pin_configure_17688(const uint8_t *pin, uint32_t flags)
 {

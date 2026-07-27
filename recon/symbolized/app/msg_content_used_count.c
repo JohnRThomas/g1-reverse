@@ -9,8 +9,7 @@
  */
 /* Reconstructed FUN_00033cdc @ 0x33cdc  (parity: 300/300 trials, PROVEN) */
 
-unsigned int msg_content_used_count(void)
-{
+int msg_content_used_count(void) {
     unsigned int uVar1 = 0;
     unsigned int base = ((unsigned long)g_message_pool) /*=0x20007dac*/;
     while (1) {

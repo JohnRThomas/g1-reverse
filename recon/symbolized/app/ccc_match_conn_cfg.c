@@ -12,7 +12,7 @@
 /* Reconstructed FUN_00059c48 @ 0x59c48  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_conn_is_peer_addr_le(int a, unsigned char b);
-extern int bt_addr_le_eq_0(unsigned char *a, int b);
+extern int bt_addr_le_eq_0(int, int);
 unsigned char *ccc_match_conn_cfg(int param_1, unsigned char *param_2)
 {
   int iVar1;

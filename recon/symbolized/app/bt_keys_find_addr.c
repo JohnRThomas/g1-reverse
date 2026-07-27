@@ -17,9 +17,9 @@
 /* Reconstructed FUN_0005e938 @ 0x5e938  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern int assert_post_action(int,int);
-extern int memcmp(int,int,int);
-unsigned char *bt_keys_find_addr(uint32_t param_1, int param_2){
+extern int assert_post_action(int, int);
+extern int memcmp(const void*, const void*, unsigned long);
+int bt_keys_find_addr(unsigned char param_1, int param_2) {
   unsigned char *pbVar1 = (unsigned char*)((unsigned long)&bt_keys_pool) /*=0x2000af4c*/;
   int iVar2;
   if(param_2==0){

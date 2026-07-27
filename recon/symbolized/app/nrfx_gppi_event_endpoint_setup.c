@@ -17,7 +17,7 @@
 #include "../../headers/g1_log.h"
 
 /* The real routine is noreturn.  The return type models unreachable r0 only. */
-extern uint32_t assert_post_action(uint32_t source, uint32_t line);
+extern int assert_post_action(int, int);
 
 void nrfx_gppi_event_endpoint_setup(
     uint32_t channel, volatile uint8_t *event_endpoint)

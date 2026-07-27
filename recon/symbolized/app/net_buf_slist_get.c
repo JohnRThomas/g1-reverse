@@ -24,9 +24,9 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 typedef uint32_t u32;
-extern void assert_post_action(u32,u32);
-extern int z_spin_lock_valid(u32);
-extern void z_spin_lock_set_owner(u32);
+extern int assert_post_action(int, int);
+extern int z_spin_lock_valid(unsigned int*);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern int z_spin_unlock_valid(u32);
 #include "../../headers/g1_cmsis_shim.h"
 #include "../../headers/g1_log.h"

@@ -21,7 +21,7 @@
 /* Reconstructed FUN_0005dce0 @ 0x5dce0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef int (* volatile codeptr)(int,int);
-extern int smp_error(int,int);
+extern unsigned int smp_error(int, unsigned int);
 extern int net_buf_simple_pull_5f594(int,int);
 extern int atomic_test_bit(int,int);
 extern int smp_log_message(int,int,void*);

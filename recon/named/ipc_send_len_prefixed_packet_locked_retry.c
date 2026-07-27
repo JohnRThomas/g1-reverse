@@ -11,10 +11,10 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_00025788 @ 0x25788  (parity: 300/300 trials, PROVEN) */
 extern void thunk_FUN_000723b8(unsigned,unsigned,unsigned,unsigned,int,unsigned);
-extern int ipc_send_len_prefixed_packet(int,unsigned,unsigned,unsigned,int);
+extern int ipc_send_len_prefixed_packet(int, int, unsigned int, int, int);
 extern void thunk_FUN_00072558(unsigned);
 extern unsigned long long sleep_fixed_33_ticks(void);
-int ipc_send_len_prefixed_packet_locked_retry(int param_1, unsigned param_2, unsigned param_3, int param_4){
+int ipc_send_len_prefixed_packet_locked_retry(unsigned long param_1, unsigned long param_2, void*param_3, unsigned long param_4) {
     int iVar1;
     if (param_4 == 0){ iVar1 = 0; }
     else {

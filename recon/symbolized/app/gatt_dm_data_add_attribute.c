@@ -18,8 +18,8 @@
 #include <stdint.h>
 extern int gatt_dm_attr_alloc(int);
 extern int uuid_len_from_type(int);
-extern void gatt_dm_log_helper(unsigned int,unsigned int,void*);
-extern void memcpy(int,unsigned int,int);
+extern void gatt_dm_log_helper(unsigned int, unsigned int, unsigned int);
+extern void memcpy(int, int, int);
 int gatt_dm_data_add_attribute(unsigned int* param_1,int param_2){
   int iVar2=((unsigned long)&cur_service_val) /*=0x2000a154*/; int iVar3,iVar4,iVar5,iVar6; short uVar1;
   struct{unsigned int a,b;} s;

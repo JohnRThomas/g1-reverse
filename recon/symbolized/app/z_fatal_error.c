@@ -27,11 +27,11 @@
 #include <cmsis_gcc.h>
 #include "../../headers/g1_log.h"
 
-extern void z_log_msg_runtime_create(uint32_t, uint32_t, const void *, uint32_t);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void arm_mpu_configure_partition_region(int);
 extern void fatal_log_and_reset(uint32_t, int);
 extern int k_current_get(void);
-extern void assert_post_action(uint32_t, uint32_t);
+extern int assert_post_action(int, int);
 extern char *posix_stub_zero(int);
 
 struct event_log_record {

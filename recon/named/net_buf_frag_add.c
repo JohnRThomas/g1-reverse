@@ -19,7 +19,7 @@
 extern int net_buf_ref(int a, int b, unsigned int c, unsigned int d);
 extern unsigned int net_buf_frag_last(void);
 extern void net_buf_frag_insert(unsigned int a, int b);
-extern void assert_post_action(unsigned int a, unsigned int b);
+extern int assert_post_action(int, int);
 
 int net_buf_frag_add(int param_1, int param_2, unsigned int param_3, unsigned int param_4)
 {

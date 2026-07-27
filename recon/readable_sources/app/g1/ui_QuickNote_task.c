@@ -59,21 +59,20 @@
  *   memset_bytes                          <- FUN_00086c78 @ 0x00086c78
  *   DEBUG_PRINT                                               @ 0x0007dda4
  */
-extern uintptr_t get_device_info(void);
-extern unsigned int get_ui_mode_flag_byte1(void);
+extern int get_device_info(void);
+extern int get_ui_mode_flag_byte1(void);
 extern void dmic_record_start(void);
 extern void consume_pending_event_and_refresh_flag(void);
-extern void gui_set_active_canvas(void *canvas_rows);
+extern unsigned int gui_set_active_canvas(unsigned int);
 extern void gui_screen_clear(void);
 extern void gui_canvas_flags_set_bit1(void);
 extern void gui_canvas_flags_clear_bit1(void);
-extern void gui_reset_dynamic_bitmap_frame_state(void);
+extern unsigned int gui_reset_dynamic_bitmap_frame_state(void);
 extern void gui_bmp_dynamic_bitmap_draw(unsigned int bitmap_id,
                                         int x, int y,
                                         int arg3, int arg4,
                                         int arg5, int arg6);
-extern void gui_bmp_bitmap_draw(unsigned int bitmap_id, int x, int y,
-                                int arg3, int arg4, int arg5);
+extern int gui_bmp_bitmap_draw(unsigned int, int, int, int, int, int);
 extern void gui_screen_fade_out_transition(void);
 extern void gui_utf_draw(int background, uintptr_t text, int style,
                          int x, int y, int right, int bottom,
@@ -82,11 +81,11 @@ extern void gui_utf_draw(int background, uintptr_t text, int style,
 extern void reflash_fb_data_to_lcd(uintptr_t left_framebuffer,
                                    uintptr_t right_framebuffer,
                                    int x, int y, int width, int height);
-extern unsigned int getDelayExitValue(void);
+extern unsigned long getDelayExitValue(void);
 extern int device_info_text_width_get(void);
 extern int device_info_text_height_get_clamped(void);
 extern uint64_t uptime_ticks_get(void); /* FUN_00086698 @ 0x00086698 */
-extern void memset_bytes(void *destination, int value, unsigned int length);
+extern void memset_bytes(void*, int, int);
 
 #define ui_language_get          get_ui_mode_flag_byte1
 #define quicknote_exit_animation gui_screen_fade_out_transition

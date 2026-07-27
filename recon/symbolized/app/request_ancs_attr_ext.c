@@ -24,11 +24,11 @@
 /* Reconstructed request_ancs_attr_ext @ 0x191e4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern unsigned strlen(unsigned);
+extern int strlen(int);
 extern int ancs_get_conn_ctx(void);
 extern int bt_ancs_request_attrs(unsigned,unsigned,unsigned);
 extern void FUN_0007c0a4(int,int);
-extern int thunk_FUN_0007f7d2(void *, const unsigned char *, unsigned int, void *);
+extern int thunk_FUN_0007f7d2(void*, const unsigned char*, unsigned long, void*);
 int request_ancs_attr_ext(unsigned param_1, unsigned param_2, unsigned param_3)
 {
   unsigned uVar1, uVar2; unsigned short *puVar3; int iVar4, iVar5; unsigned uVar6;

@@ -19,7 +19,7 @@ extern int FUN_00032ee4(void);
 extern int FUN_0007cbfe(void*,int);
 extern int sync_to_slave(void*,int,int,int);
 extern int FUN_00016940(void);
-extern int change_work_mode_to(int);
+extern unsigned int change_work_mode_to(unsigned int);
 extern int FUN_000265b8(void*);
 typedef int  (*qfn_t)(int,int);
 typedef void (*ffn_t)(int,int,void*);

@@ -13,7 +13,7 @@
  * puts starts at 0x000778d4. Raw backmap: FUN_00077820@0x00077820. */
 #include <stdint.h>
 
-extern uint32_t strlen(const char *text); /* FUN_0000ef12@0x0000ef12 */
+extern int strlen(int); /* FUN_0000ef12@0x0000ef12 */
 #define g1_recon_retarget_lock_acquire_recursive g1_recon_retarget_lock_acquire_recursive
 #define g1_recon_retarget_lock_release_recursive g1_recon_retarget_lock_release_recursive
 extern void g1_recon_retarget_lock_acquire_recursive(uint32_t lock); /* FUN_000510fc@0x000510fc */

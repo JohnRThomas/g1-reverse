@@ -13,7 +13,7 @@
 /* Reconstructed FUN_00062c54 @ 0x62c54  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern int assert_post_action(int,int);
+extern int assert_post_action(int, int);
 extern int is_tx_ready(int);
 extern int pinctrl_apply_state(int,int);
 extern void thunk_FUN_00086384(int);

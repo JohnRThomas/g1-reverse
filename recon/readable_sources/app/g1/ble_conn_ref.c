@@ -14,7 +14,7 @@
  */
 /* Reconstructed FUN_00056654 @ 0x56654  (parity: 300/300 trials, PROVEN) */
 
-extern void assert_post_action(int,int);
+extern void assert_post_action(unsigned long, unsigned long);
 
 int ble_conn_ref(int param_1)
 {

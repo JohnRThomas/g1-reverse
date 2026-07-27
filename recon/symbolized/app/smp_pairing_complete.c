@@ -22,14 +22,13 @@
 #include <stdint.h>
 extern int ble_notify_remote_info_available(int,int,int);
 extern int smp_send_security_req(int);
-extern int bt_keys_clear(int);
+extern void bt_keys_clear(void*);
 extern int bt_keys_store(int);
 extern int atomic_test_bit(int,int);
 extern int smp_log_message(int,int,void*);
 extern int att_chan_reset(int);
 
-void smp_pairing_complete(int param_1, int param_2)
-{
+void smp_pairing_complete(int param_1, unsigned int param_2) {
     int iVar1;
     unsigned char uVar2;
     unsigned int uVar3;

@@ -7,7 +7,7 @@
 extern void DEBUG_PRINT(unsigned long, ...);
 extern void debug_print(unsigned long, ...); /* FUN_00019c70 @ 0x00019c70 */
 extern uint32_t k_uptime_get_4(void);     /* FUN_0007d12e */
-extern void k_msleep_ticks32768_b(uint32_t); /* FUN_0007d14a */
+extern void k_msleep_ticks32768_b(int); /* FUN_0007d14a */
 extern void set_display_page_index(uint32_t); /* FUN_000369dc */
 extern void advance_display_page_index(void); /* FUN_000369f8 */
 extern void check_sw0_status(void);           /* FUN_0002a868 */

@@ -4,8 +4,7 @@ extern void DEBUG_PRINT(unsigned long, ...);
 extern void FUN_00019c70(unsigned long, ...);
 extern int FUN_000225b4(int,void*,int);
 extern void FUN_00086c78(void*,int,int);
-unsigned read_sys_settting_from_flash(unsigned *param_1)
-{
+int read_sys_settting_from_flash(void*param_1) {
   unsigned char record[0x84];
   unsigned char *output = (unsigned char *)param_1;
   unsigned uVar5;

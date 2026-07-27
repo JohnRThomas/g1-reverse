@@ -10,9 +10,9 @@
 
 #include <stdint.h>
 #define free_list_add free_list_add
-extern uint32_t chunk_size(void *heap,void *chunk);
+extern unsigned long chunk_size(void*, unsigned long);
 extern uint32_t heap_bucket_index(uint32_t heap_size,uint32_t chunk_size); /* bucket index */
-extern uintptr_t chunk_field(void *heap,void *chunk,uint32_t field);
+extern unsigned long chunk_field(const void*, unsigned long, unsigned long);
 extern void chunk_set(unsigned char *, unsigned int, unsigned int, unsigned int);
 void free_list_add(void *heap_arg,void *chunk)
 {

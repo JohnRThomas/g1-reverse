@@ -17,7 +17,7 @@
  */
 /* Reconstructed FUN_000737d8 @ 0x737d8  (parity: 300/300 trials, PROVEN) */
 
-extern void assert_post_action(int a, int b);
+extern int assert_post_action(int, int);
 extern void sched_switch_handle_timeout(int *a);
 
 void sched_update_cache(int param_1, int param_2, int param_3, int param_4)

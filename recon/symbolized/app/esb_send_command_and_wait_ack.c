@@ -19,12 +19,12 @@
 /* Reconstructed FUN_00027448 @ 0x27448  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 
-extern int32_t is_battery_critical(void);
+extern int is_battery_critical(void);
 extern void k_msleep(int32_t);
-extern int32_t memcmp(void *a, void *b, uint32_t n);
-extern void memcpy(void *dst, void *src, uint32_t n);
+extern int memcmp(const void*, const void*, unsigned long);
+extern void memcpy(int, int, int);
 extern void safe_memcpy_checked(void *a, void *b, uint32_t c, uint32_t d);
-extern void memset_bytes(void *dst, int32_t val, uint32_t n);
+extern void memset_bytes(void*, int, int);
 
 typedef void (*fp774_t)(void *, uint32_t);
 

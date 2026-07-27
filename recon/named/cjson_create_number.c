@@ -15,7 +15,7 @@
 extern int __aeabi_dcmple(int,int,int,int);
 extern int __aeabi_dcmpge(int,int,int,int);
 extern int __fixdfsi(int,int);
-extern int alloc_zeroed_node(int);
+extern int alloc_zeroed_node(unsigned int);
 int cjson_create_number(double darg){
   union { double d; uint32_t w[2]; } u; u.d = darg;
   uint32_t param_1 = u.w[0];

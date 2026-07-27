@@ -13,8 +13,7 @@
 extern void k_sem_give(int a);
 extern void audio_hw_lock_release(unsigned char *);
 
-void audio_i2s_start_channels(int param_1)
-{
+void audio_i2s_start_channels(void*param_1) {
   int base = *(int*)(param_1+0x10);
   if (*(char*)(base+0x60) == 0) {
     *(volatile unsigned int*)0x500055b8UL = 2;

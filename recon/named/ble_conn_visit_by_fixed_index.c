@@ -10,8 +10,8 @@
  */
 /* Reconstructed FUN_00056960 @ 0x56960  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int ble_conn_ref(unsigned int a);
-extern void ble_conn_unref(unsigned int a);
+extern int ble_conn_ref(int);
+extern void ble_conn_unref(int);
 
 void ble_conn_visit_by_fixed_index(unsigned char param_1, void (*param_2)(unsigned int, unsigned int), unsigned int param_3)
 {

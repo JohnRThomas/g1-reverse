@@ -19,8 +19,8 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 
-extern int k_msgq_put(uint32_t, const void *, uint32_t, uint32_t);
-extern void k_sem_give(uint32_t);
+extern int k_msgq_put(unsigned int, void*, int, int);
+extern void k_sem_give(int);
 
 struct startup_request {
   uint8_t opcode;

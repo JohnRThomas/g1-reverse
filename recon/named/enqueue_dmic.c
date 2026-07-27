@@ -18,8 +18,8 @@
 #include "../headers/g1_log.h"
 /* Reconstructed enqueue_dmic @ 0x2ec5c  (parity: 300/300 trials, PROVEN) */
 
-extern void memcpy(void*, unsigned int, int);
-extern void k_msgq_get(unsigned int, void*, int, int);
+extern void memcpy(int, int, int);
+extern int k_msgq_get(int, unsigned int, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
 
 int enqueue_dmic(unsigned int param_1)

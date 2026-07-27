@@ -15,10 +15,10 @@
  */
 /* Reconstructed FUN_00065b18 @ 0x65b18  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int get_pin_idx(int);
+extern unsigned long get_pin_idx(unsigned long);
 extern int gpiote_pin_is_used(void);
-extern int pin_in_use_by_te(int);
-extern int pin_te_get(int);
+extern unsigned int pin_in_use_by_te(unsigned int);
+extern int pin_te_get(unsigned long);
 extern void gpiote_channel_release_if_unshared(int);
 extern int gpio_port_base_from_pin(int*);
 extern void nrfx_gpiote_trigger_disable(int);

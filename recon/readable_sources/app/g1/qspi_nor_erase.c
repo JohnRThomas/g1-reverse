@@ -30,16 +30,16 @@
 #include <stdint.h>
 extern int qspi_get_zephyr_ret_code(int);
 extern unsigned int qspi_nor_log_erase_range_error(unsigned int, unsigned int);
-extern int qspi_nor_lock_if_magic(int,int);
+extern void qspi_nor_lock_if_magic(unsigned int, unsigned int);
 extern int qspi_nor_acquire(unsigned long);
-extern int qspi_nor_suspend_bus(int);
+extern void qspi_nor_suspend_bus(unsigned char*);
 #define g1_recon_nrfx_qspi_erase nrfx_qspi_erase
 extern int g1_recon_nrfx_qspi_erase(int,int);
-extern int k_sem_give(int);
+extern void k_sem_give(int);
 extern int qspi_log_forward(int,int,void*);
 extern int audio_stream_stop_and_wait(int);
 extern int audio_i2s_stop_and_reset_channels(int);
-extern int audio_i2s_start_channels(int);
+extern void audio_i2s_start_channels(void*);
 extern int qspi_nor_write_protection_set(int,int);
 #define g1_recon_nrfx_qspi_chip_erase nrfx_qspi_chip_erase
 extern int g1_recon_nrfx_qspi_chip_erase(void);

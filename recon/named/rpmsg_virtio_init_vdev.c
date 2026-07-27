@@ -12,7 +12,7 @@
 /* Reconstructed FUN_0004d100 @ 0x4d100  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32;
-extern u32 rpmsg_virtqueue_channel_init(int,...);
+extern int rpmsg_virtqueue_channel_init(int, int, int, int*, int, int*);
 extern u32 rpmsg_init_vdev(int,...);
 extern void rpmsg_virtio_init_shm_pool(int,int,u32);
 u32 rpmsg_virtio_init_vdev(int p1,int p2,int* p3,u32 p4,u32 p5,int p6,u32 p7,int p8){

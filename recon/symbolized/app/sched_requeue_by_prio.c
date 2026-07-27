@@ -20,7 +20,7 @@
 
 extern void sched_update_cache(int a);
 extern void dlist_unlink_node(unsigned a, int* b);
-extern void assert_post_action(unsigned a,unsigned b);
+extern int assert_post_action(int, int);
 void sched_requeue_by_prio(int *param_1){
     volatile unsigned char *p = (volatile unsigned char*)param_1;
     if ((signed char)p[0xd] < 0){

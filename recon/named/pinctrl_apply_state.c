@@ -9,7 +9,7 @@
 /* Reconstructed FUN_00084b14 @ 0x84b14  (parity: 300/300 trials, PROVEN) */
 
 extern int pinctrl_lookup_state(unsigned int *, unsigned int *, unsigned int **, unsigned int, unsigned int *);
-extern void dppi_apply_channel_config_table(unsigned int, unsigned char, unsigned int);
+extern int dppi_apply_channel_config_table(const unsigned long*, unsigned int, unsigned int);
 
 void pinctrl_apply_state(unsigned int *param_1, unsigned int *param_2, unsigned int param_3, unsigned int param_4)
 {

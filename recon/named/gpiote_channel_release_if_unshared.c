@@ -20,7 +20,7 @@
 typedef unsigned int uint;
 extern int nrfx_flag32_free(uint32_t);
 extern int get_pin_idx(void);
-extern void assert_post_action(uint32_t,uint32_t);
+extern int assert_post_action(int, int);
 void gpiote_channel_release_if_unshared(void){
   int iVar3=get_pin_idx();
   int iVar4=0x20002bc0;

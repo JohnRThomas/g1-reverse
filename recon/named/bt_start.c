@@ -43,7 +43,7 @@
 #include <stdint.h>
 #include <stddef.h>
 extern void k_msleep_ticks32768_d(int);
-extern uintptr_t get_device_info(void);
+extern int get_device_info(void);
 extern int get_device_type(void);
 extern unsigned int get_device_serial_buf(void);
 extern void __strcpy_chk(void *, const void *, uint32_t);
@@ -51,8 +51,8 @@ extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
 extern int is_battery_critical(void);
 extern void vdprintf_to_fd(uintptr_t, ...);
-extern uint32_t strlen(uintptr_t);
-extern int bt_set_name_internal(uintptr_t);
+extern int strlen(int);
+extern unsigned int bt_set_name_internal(unsigned int);
 extern int bt_le_adv_start(void *, uintptr_t, uint32_t, uintptr_t, uint32_t);
 extern uint64_t uptime_ticks_get(void);
 

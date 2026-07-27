@@ -17,8 +17,8 @@
 #include "../headers/g1_log.h"
 /* Reconstructed cleanAppLanguageInfo @ 0x23b78  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_put(void*, void*, int, int);
-extern void k_sem_give(void*);
+extern int k_msgq_put(unsigned int, void*, int, int);
+extern void k_sem_give(int);
 
 int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
 {

@@ -17,7 +17,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed enqueue_file @ 0x23514  (parity: 300/300 trials, PROVEN) */
 
-extern void k_msgq_get(unsigned int, void*, int, int);
+extern int k_msgq_get(int, unsigned int, int, int);
 extern void safe_memcpy_checked(void*, unsigned int, unsigned int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
 

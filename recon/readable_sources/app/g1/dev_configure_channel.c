@@ -16,11 +16,11 @@
 /* Reconstructed FUN_00084418 @ 0x84418  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8;
-extern int regulator_uv_to_reg_selector(int,int,void*);
+extern unsigned int regulator_uv_to_reg_selector(int, int, unsigned short*);
 extern int dev_write_reg3(u32,int,int,int,int);
 extern int dev_channel_validate_and_set(int,int);
 extern unsigned dev_write_channel_mode(int, int*, int);
-extern int z_device_is_ready(u32);
+extern int z_device_is_ready(int);
 int dev_configure_channel(int param_1, u32 param_2, u32 param_3){
     int iVar4 = *(int*)(param_1+4);
     int iVar3 = param_1;

@@ -60,9 +60,9 @@ typedef struct transition_state {
     int16_t pending_count;
 } transition_state;
 
-extern int z_spin_lock_valid(void *lock);
+extern int z_spin_lock_valid(unsigned int*);
 extern int z_spin_unlock_valid(void *lock, ...);
-extern void z_spin_lock_set_owner(void *lock);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern uint64_t process_recheck(transition_state *state, ...);
 extern void notify_one(transition_state *state, pending_node *node,
                          uint32_t mode, uint32_t operation);

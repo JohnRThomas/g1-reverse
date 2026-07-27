@@ -9,7 +9,7 @@
 /* Reconstructed FUN_00080a4e @ 0x80a4e  (parity: 300/300 trials, PROVEN) */
 
 extern int img_mgmt_read_info(int, unsigned int, void *, int);
-extern int memcmp(void *, unsigned int, int);
+extern int memcmp(const void*, const void*, unsigned long);
 
 int img_mgmt_find_by_hash(unsigned int param_1, unsigned int param_2)
 {

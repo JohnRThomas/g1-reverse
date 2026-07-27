@@ -23,12 +23,12 @@
 
 extern uint64_t sys_slist_find_and_remove_2(void *, void *);
 extern void *net_buf_get(void *, uint32_t, uint32_t, uint32_t);
-extern void att_chan_req_free(void *);
-extern void net_buf_unref(void *);
-extern void att_handle_rsp(void *, uint32_t, uint32_t, uint32_t);
+extern int att_chan_req_free(int);
+extern void net_buf_unref(int);
+extern unsigned int att_handle_rsp(unsigned int*, unsigned int, unsigned int, unsigned int);
 extern void atomic_clear_bit_0(volatile int *, int);
 extern unsigned int* net_buf_slist_get(unsigned int*);
-extern void bt_att_req_free(void *);
+extern void bt_att_req_free(int);
 extern void k_mem_slab_free(uintptr_t, void *);
 extern void bt_gatt_disconnected(void *);
 

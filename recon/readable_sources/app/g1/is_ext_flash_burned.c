@@ -17,7 +17,7 @@
 extern int calc_flash_crc(uint16_t *crc, uint32_t flash_address,
                           uint32_t byte_count); /* FUN_00022974 @ 0x00022974 */
 /* FUN_00019c70 @ 0x00019c70 */
-extern void k_msleep_ticks32768_b(uint32_t milliseconds); /* FUN_0007d14a @ 0x0007d14a */
+extern void k_msleep_ticks32768_b(int); /* FUN_0007d14a @ 0x0007d14a */
 /* FUN_0007dda4 @ 0x0007dda4 */
 
 #define LOG_LEVEL        (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/)

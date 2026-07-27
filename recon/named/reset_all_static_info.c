@@ -14,7 +14,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed reset_all_static_info @ 0x16738  (parity: 300/300 trials, PROVEN) */
 
-extern void memset_bytes(void *dst, int val, unsigned int len);
+extern void memset_bytes(void*, int, int);
 
 void reset_all_static_info(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

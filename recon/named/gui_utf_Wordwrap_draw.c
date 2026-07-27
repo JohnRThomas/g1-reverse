@@ -49,7 +49,7 @@ typedef int i32;
 #define copy_glyph_bitmap safe_memcpy_checked
 
 extern void log_message(unsigned long, ...);
-extern u32 get_device_info(void);
+extern int get_device_info(void);
 extern void debug_print(unsigned long, ...);
 extern u32 get_display_atomic_state(void);
 extern u32 get_glyph_spacing(u32,u32);

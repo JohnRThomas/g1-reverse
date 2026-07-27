@@ -6,8 +6,7 @@
  */
 /* Reconstructed FUN_00086534 @ 0x86534  (parity: 300/300 trials, PROVEN) */
 
-unsigned int z_impl_k_sem_init(int param_1, unsigned int param_2, unsigned int param_3)
-{
+int z_impl_k_sem_init(unsigned int param_1, unsigned long param_2, unsigned long param_3) {
   if ((param_3 != 0) && (param_2 <= param_3)) {
     *(unsigned int *)(param_1 + 8) = param_2;
     *(unsigned int *)(param_1 + 0xc) = param_3;

@@ -38,11 +38,11 @@ extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
 extern int  strcmp(int,int);
 extern int  log_notification_fields_debug(int,int*);
-extern int  cjson_delete(int);
+extern void cjson_delete(volatile int*);
 extern int  get_timestamp(void);
 extern int  cbor_decode_start_default(void);
 extern int sllist_find_by_name_ci(int, int);
-extern void memset_bytes(int*,int,int);
+extern void memset_bytes(void*, int, int);
 extern void strncpy_zero_pad(int,int,int);
 #define VI(a) (*(volatile int*)(a))
 

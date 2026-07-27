@@ -4,7 +4,7 @@ typedef unsigned char u8;
 
 /* callees (opaque oracles; order-keyed) */
 extern void FUN_0002953c(void);
-extern u8  *get_device_info(void);
+extern int get_device_info(void);
 extern void wait_for_event(uint32_t timeout, uint32_t flags);
 extern int  update_sync_buffer(void *object, uint64_t timeout);
 extern void debug_print(unsigned long, ...);

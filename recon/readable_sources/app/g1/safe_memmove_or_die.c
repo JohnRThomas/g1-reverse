@@ -8,7 +8,7 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  */
 /* Reconstructed FUN_00055ba0 @ 0x55ba0  (parity: 300/300 trials, PROVEN) */
-extern void assert_post_action(unsigned long, unsigned long);
+extern int assert_post_action(int, int);
 extern void printk(unsigned long, ...);
 
 void safe_memmove_or_die(unsigned char *param_1, unsigned char *param_2, unsigned int param_3, unsigned int param_4)

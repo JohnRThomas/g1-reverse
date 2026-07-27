@@ -13,7 +13,7 @@ extern void projector_transfer_pixel_chunk(uint16_t x, uint16_t y,
                                            uint32_t transfer_value,
                                            int32_t byte_count);
 extern void projector_send_cmd_immediate(uint8_t command);
-extern void delay_ms(uint32_t milliseconds);
+extern void delay_ms(int);
 
 enum {
     PROJECTOR_MAX_TRANSFER_BYTES = (0xf0u << 8),

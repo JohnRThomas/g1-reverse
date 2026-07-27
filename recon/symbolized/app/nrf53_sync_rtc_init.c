@@ -20,7 +20,7 @@
 
 #include <stdint.h>
 extern void nrf53_ipc_channel_configure(uint32_t,uint32_t,uint32_t,int);
-extern void z_log_msg_runtime_create(uint32_t,int,void*,...);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern int rtc_timer_channel_alloc(void);
 extern void nrfx_gppi_channels_enable(uint32_t);
 extern int flag32_channel_alloc_wrapper(void*);

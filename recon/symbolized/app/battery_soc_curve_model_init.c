@@ -19,29 +19,7 @@
 /* Reconstructed FUN_0000e53c @ 0x0000e53c, exact extent 1020 bytes. */
 #include <stdint.h>
 
-extern /* ITERATION 39 DEFECT FIX -- WRONG PARAMETER.  Everything below the
- * `workspace[0x13] = charge_low` store operates on the THIRD float argument
- * (s2, the temperature `limit`), NOT on the fifth (s4, `charge_low`).  The
- * shipped prologue moves s2 into s18 (`0000e572 vmov.f32 s18, s2`) and s4 into
- * s16 (`0000e552 vmov.f32 s16, s4`); s16 is dead after `0000e580 vstr s16,
- * [r4,#0x4c]` (workspace[0x13]) and is immediately reused as scratch at
- * `0000e674 vmov.f32 s16, s0`.  Every later site reads s18:
- *     0000e62c vcmpe.f32 s18, s14  / 0000e638 vcmp.f32 s18, s15
- *     0000e640 vselgt.f32 s18, s15, s18      <- the clamp
- *     0000e66a vmov.f32  s0, s18   ; 0000e66e bl #0x8693c   <- fminf's 1st arg
- *     0000e774 / 0000e778 / 0000e790 / 0000e806 vfma.f32 ..., s18, ...
- * The reconstruction read `charge_low` at all of them, so with the shipped
- * runtime values (limit = 25.0 degC, charge_low = 0.3) it clamped and
- * interpolated with 0.3 where the firmware uses 25.0 clamped to the curve's
- * temperature break-points {17.0, 0.0, 0.0} -> 0.0.  Measured end to end:
- * `battery_soc_curve_model_init` wrote NaN into `*result` where the shipped
- * firmware writes 4.4985 (the pack voltage), the EKF started from NaN and the
- * reported state of charge never rose above 5 %% against the shipped 100 %%.
- * The differential that pinned it: a Renode hook on the instruction after each
- * image's own `bl battery_soc_curve_model_init` read `[sp+4]` --
- * ours 0x7fc00000, shipped 0x408fe76d.
- */
-void memcpy(void *destination, const void *source, uint32_t size);
+extern void memcpy(int, int, int);
 extern int float_is_nan(float value);
 extern float array_max_skip_nan_a(float *values);
 extern float array_max_skip_nan_b(float *values);

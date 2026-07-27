@@ -15,7 +15,7 @@
 extern unsigned int settings_save_one(void* a, unsigned int b, unsigned int c);
 extern void bt_settings_encode_key(void* a, unsigned int b, unsigned int c, int d, void* e);
 extern void u8_to_dec(void* a, unsigned int b, void* c);
-extern int snprintk(void* a, unsigned int b, unsigned int c, unsigned int d);
+extern int snprintk(char*, unsigned long, const char*, ...);
 
 unsigned int bt_settings_store(unsigned int param_1, unsigned char *param_2, int param_3, unsigned int param_4, unsigned int param_5)
 {

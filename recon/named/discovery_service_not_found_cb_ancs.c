@@ -12,7 +12,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_00018978 @ 0x18978  (parity: 300/300 trials, PROVEN) */
 
-extern void atomic_and(void *, unsigned int);
+extern long atomic_and(volatile long*, long);
 extern void gatt_discover(unsigned int, unsigned int);
 
 void discovery_service_not_found_cb_ancs(unsigned int param_1)

@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_00082fd2 @ 0x82fd2  (parity: 300/300 trials, PROVEN) */
 
-extern void bt_gatt_store_ccc(unsigned char,int);
+extern int bt_gatt_store_ccc(unsigned int, unsigned int);
 extern void bt_gatt_store_cf(unsigned char,int,unsigned int,unsigned int);
 void bt_gatt_pairing_complete(int param_1,int param_2,unsigned int param_3,unsigned int param_4)
 {

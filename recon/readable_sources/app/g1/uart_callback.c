@@ -39,9 +39,9 @@ extern void log_message(unsigned long, ...);
 extern void debug_print(unsigned long, ...);
 extern int  k_mem_slab_alloc(int,void*,int,int);
 extern void k_mem_slab_free(int,int);
-extern void assert_post_action(int,int);
+extern int assert_post_action(int, int);
 extern void printk(unsigned long, ...);
-extern void memcpy(int,...);
+extern void memcpy(int, int, int);
 extern void memset_bytes(void*,int,int);
 #define VI(a) (*(volatile int*)(a))
 #define VB(a) (*(volatile unsigned char*)(a))

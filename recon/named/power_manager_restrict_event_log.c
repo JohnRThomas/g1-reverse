@@ -37,8 +37,7 @@ typedef struct {
     uint16_t encoding_size;
 } dispatch_record;
 
-extern void z_log_msg_runtime_create(uintptr_t target, uint32_t command,
-                        const dispatch_record *record, uint32_t zero);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void assert_post_action(uintptr_t file, uint32_t line) __attribute__((noreturn));
 
 void power_manager_restrict_event_log(const indexed_event *event)

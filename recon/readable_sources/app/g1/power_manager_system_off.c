@@ -23,12 +23,12 @@
  */
 /* Reconstructed FUN_00063c3c @ 0x63c3c  (parity: 300/300 trials, PROVEN) */
 
-extern int z_log_msg_runtime_create(unsigned,int,void*,int);
-extern int app_event_manager_submit(int);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
+extern void app_event_manager_submit(unsigned long*);
 extern int ancs_notify_table_is_idle(int);
 extern int app_event_submit_power(void);
-extern int power_manager_set_system_off_flag(int);
-extern void assert_post_action(unsigned,unsigned);
+extern void power_manager_set_system_off_flag(int);
+extern int assert_post_action(int, int);
 void power_manager_system_off(void){
   int iVar1; unsigned local_18, local_14;
   unsigned char r5 = *(volatile unsigned char*)((unsigned long)&g_caf_power_manager_system_off_flag) /*=0x2001d563*/;

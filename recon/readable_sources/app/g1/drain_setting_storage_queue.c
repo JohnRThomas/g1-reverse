@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_00023acc @ 0x23acc  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int k_msgq_get(unsigned int, void *, unsigned int, unsigned int);
+extern int k_msgq_get(int, unsigned int, int, int);
 
 unsigned int drain_setting_storage_queue(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int p4, unsigned int p5, unsigned int p6, unsigned int p7, int count)
 {

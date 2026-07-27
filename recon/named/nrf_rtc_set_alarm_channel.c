@@ -14,7 +14,7 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_00063778 @ 0x63778  (parity: 300/300 trials, PROVEN) */
 
-extern void assert_post_action(unsigned int, unsigned int);
+extern int assert_post_action(int, int);
 extern void compare_set(unsigned int, unsigned int, unsigned int,
                          unsigned int, unsigned int, unsigned int,
                          unsigned int);

@@ -3,7 +3,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 extern int FUN_00086be4(const void *, const void *, uint32_t);
-bool bt_addr_le_eq(const void *a, const void *b)
-{
+int bt_addr_le_eq(int a, int b) {
     return FUN_00086be4(a, b, 7u) == 0;
 }

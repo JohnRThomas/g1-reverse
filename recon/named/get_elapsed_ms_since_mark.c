@@ -10,8 +10,7 @@
 
 #include <stdint.h>
 extern int thunk_FUN_00074f68(void);
-int get_elapsed_ms_since_mark(void)
-{
+unsigned long get_elapsed_ms_since_mark(void) {
   int iVar1;
   iVar1 = thunk_FUN_00074f68();
   return iVar1 - *(volatile int32_t*)0x20007a28UL;

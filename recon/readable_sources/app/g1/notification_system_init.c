@@ -16,7 +16,7 @@
 /* Reconstructed FUN_00034944 @ 0x34944  (parity: 300/300 trials, PROVEN) */
 
 extern int msg_content_decrement_timer(void);
-extern void memset_bytes(int a, int b, int c);
+extern void memset_bytes(void*, int, int);
 extern void dump_whitelist_init(void);
 
 void notification_system_init(void)

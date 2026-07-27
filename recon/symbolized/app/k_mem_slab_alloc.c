@@ -22,11 +22,11 @@
 /* Reconstructed FUN_00071c20 @ 0x71c20  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern int z_spin_lock_valid(int);
+extern int z_spin_lock_valid(unsigned int*);
 extern int z_spin_unlock_valid(int);
-extern void z_spin_lock_set_owner(int);
+extern int z_spin_lock_set_owner(unsigned int*);
 extern int z_pend_curr(int,unsigned,int,int,int,int,int);
-extern void assert_post_action(unsigned,unsigned);
+extern int assert_post_action(int, int);
 
 int k_mem_slab_alloc(int param_1, int *param_2, int param_3, int param_4){
     int iVar6 = param_1 + 8;

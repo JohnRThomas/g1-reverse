@@ -13,7 +13,7 @@
 
 extern void z_log_msg_runtime_create(void);
 extern void printk(unsigned long, ...);
-extern void assert_post_action(unsigned long, unsigned long);
+extern int assert_post_action(int, int);
 extern int malloc_impl(void);
 
 void app_event_alloc(int param_1,int param_2,int param_3,int param_4)

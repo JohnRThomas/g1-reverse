@@ -12,7 +12,7 @@
 
 extern void _free_r(unsigned int a, int b);
 extern int _malloc_r(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
-extern void memcpy(int a, int b, unsigned int c);
+extern void memcpy(int, int, int);
 extern unsigned int _malloc_usable_size_r(void);
 int _realloc_r(unsigned int param_1,int param_2,unsigned int param_3,unsigned int param_4)
 {

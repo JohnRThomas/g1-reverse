@@ -20,10 +20,10 @@
 extern uint64_t kobj_test_bit_get_ptr(uint32_t kind);
 extern int smp_dhkey_generate(int);
 extern int smp_dhkey_check_generate(int);
-extern void smp_error(void *object, int32_t reason);
-extern uint32_t atomic_test_bit(const void *bits, uint32_t bit);
-extern void atomic_clear_bit_1(void *bits, uint32_t bit);
-extern void atomic_set_bit(void *bits, uint32_t bit);
+extern unsigned int smp_error(int, unsigned int);
+extern int atomic_test_bit(int, int);
+extern void atomic_clear_bit_1(volatile long*, int);
+extern void atomic_set_bit(int, int);
 
 static inline void *low_pointer(uint64_t result)
 {

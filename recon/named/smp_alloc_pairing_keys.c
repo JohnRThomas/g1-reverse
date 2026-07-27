@@ -18,10 +18,10 @@
 /* Reconstructed FUN_0005e47c @ 0x5e47c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern unsigned int bt_addr_le_str(const void *);
-extern int smp_error(int,int);
+extern unsigned int smp_error(int, unsigned int);
 extern int bt_keys_get_addr(int,int);
 extern int bt_keys_add_type(int,int);
-extern void bt_keys_clear(int record);
+extern void bt_keys_clear(void*);
 extern int atomic_test_bit(int,int);
 extern int smp_log_message(int,int,void*);
 extern int smp_chan_lookup(void);

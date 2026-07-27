@@ -36,8 +36,8 @@
 #include "../../headers/g1_log.h"
 typedef unsigned int uint;
 typedef unsigned undefined4;
-extern unsigned int whitelist_contains_app(const void *, const void *);
-extern void cjson_delete(int a);
+extern unsigned long whitelist_contains_app(const void*, const void*);
+extern void cjson_delete(volatile int*);
 extern int cbor_decode_start_default(void);
 extern int sllist_count_nodes(int *);
 extern int sllist_node_at_index(int a, uint b);

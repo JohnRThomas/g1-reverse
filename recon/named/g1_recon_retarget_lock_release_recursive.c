@@ -19,7 +19,7 @@
 #include "../headers/g1_log.h"
 
 extern __attribute__((noreturn)) void assert_post_action(uint32_t, uint32_t);
-extern int k_mutex_unlock(uintptr_t lock);
+extern int k_mutex_unlock(unsigned int);
 
 #define g1_recon_retarget_lock_release_recursive g1_recon_retarget_lock_release_recursive
 void g1_recon_retarget_lock_release_recursive(uintptr_t lock)

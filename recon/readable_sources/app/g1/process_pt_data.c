@@ -40,18 +40,18 @@
  *   g_pt_status_msg_buf                      @ 0x2001a0f5
  */
 /* Reconstructed FUN_000330ec @ 0x330ec  (parity: 300/300 trials, PROVEN) */
-extern int set_delay_deadline(int,...);
+extern void set_delay_deadline(unsigned long);
 extern int display_dev_reg_config(void);
 extern int set_pending_state_flag(int,...);
 extern int erase_audio_buffer(void);
-extern int nfc_eeprom_comm_lock(void);
-extern int nfc_eeprom_comm_unlock(void);
+extern void nfc_eeprom_comm_lock(void);
+extern void nfc_eeprom_comm_unlock(void);
 extern int pt_comm_transport_write(int,...);
 extern int pt_cmd_dispatch_and_encode_response(int,...);
-extern int sys_reboot(int,...);
+extern unsigned long sys_reboot(long);
 extern int serial_data_read_dispatch(int,...);
 extern int k_msleep_ticks32768_c(int,...);
-extern int change_work_mode_to(int,...);
+extern unsigned int change_work_mode_to(unsigned int);
 
 unsigned process_pt_data(unsigned param_1)
 {

@@ -18,8 +18,8 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 typedef unsigned int uint;
-extern unsigned int rpmsg_virtio_tx_enqueue(unsigned char *, unsigned int, unsigned int, unsigned char *, unsigned int);
-extern void assert_post_action(uint32_t,uint32_t);
+extern unsigned long rpmsg_virtio_tx_enqueue(unsigned char*, unsigned long, unsigned long, unsigned char*, unsigned long);
+extern int assert_post_action(int, int);
 extern int metal_io_block_write(int*, unsigned int, int, int);
 extern int rpmsg_virtio_get_tx_buffer_wait(int,int*,uint32_t,int,int,uint32_t,uint32_t);
 uint32_t rpmsg_virtio_send_copy(int param_1,uint32_t param_2,uint32_t param_3,int param_4,int param_5,uint32_t param_6){

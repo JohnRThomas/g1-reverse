@@ -16,7 +16,7 @@
 
 #include <stdint.h>
 
-extern void k_sem_give(void *sem); /* k_sem_give */
+extern void k_sem_give(int); /* k_sem_give */
 
 void z_log_notify_backend_enabled(void)
 {

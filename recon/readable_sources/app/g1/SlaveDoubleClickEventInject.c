@@ -18,8 +18,8 @@
 #include <stdint.h>
 #include "../../../headers/g1_log.h"
 
-extern void *memset_bytes(void *, int, uint32_t);
-extern int k_msgq_put(uint32_t, const void *, uint32_t, uint32_t);
+extern void memset_bytes(void*, int, int);
+extern int k_msgq_put(unsigned int, void*, int, int);
 
 int SlaveDoubleClickEventInject(void)
 {

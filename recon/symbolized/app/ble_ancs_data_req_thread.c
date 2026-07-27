@@ -33,7 +33,7 @@
 #include <stdint.h>
 #include "../../headers/g1_log.h"
 extern void z_impl_k_sem_init(void*,int,int),init_msgq_ancs(void),init_msgq_uid(void),wait_for_event(int,int);
-extern uint8_t *get_device_info(void); extern void k_msleep_ticks32768_d(int);
+extern int get_device_info(void); extern void k_msleep_ticks32768_d(int);
 extern void z_impl_k_sem_take(void*,int64_t);
 extern int dequeue_uid(void*); extern int request_ancs_attr_ext(void); extern void enqueue_ancs(void*),memset_bytes(void*,int,int),ancs_notification_forward(void*);
 void ble_ancs_data_req_thread(uint8_t *c,uint32_t p2,uint32_t p3,uint32_t p4){

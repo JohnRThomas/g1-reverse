@@ -17,8 +17,8 @@
 typedef uint32_t u32;
 typedef void (*fp)(u32,void*,int,int);
 typedef void (*jp)(u32,int,u32*);
-extern void atomic_and_4(u32*,u32);
-extern int gatt_find_conn_in_known_table(u32);
+extern long atomic_and_4(volatile long*, long);
+extern unsigned char* gatt_find_conn_in_known_table(int);
 extern void list_unlink_and_release(unsigned int, int, unsigned int *, unsigned int *);
 extern void log_msg_create_3arg(u32,int,void*);
 void gatt_write_ccc_rsp(u32 param_1,int param_2,u32 param_3,u32 param_4,u32* param_5){

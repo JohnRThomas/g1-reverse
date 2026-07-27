@@ -22,7 +22,7 @@ typedef int i32;
 #define copy_glyph_bitmap FUN_00086c1e
 
 extern void DEBUG_PRINT(unsigned long, ...);
-extern u32 get_device_info(void);
+extern int get_device_info(void);
 extern void debug_print(unsigned long, ...);
 extern u32 get_display_atomic_state(void);
 extern u32 get_glyph_spacing(u32,u32);

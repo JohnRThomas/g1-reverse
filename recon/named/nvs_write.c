@@ -16,7 +16,7 @@
 /* Reconstructed FUN_0004c8f8 @ 0x4c8f8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern unsigned k_mutex_lock(int,...);
-extern unsigned k_mutex_unlock(int,...);
+extern int k_mutex_unlock(unsigned int);
 extern unsigned nvs_sector_advance(int,...);
 extern unsigned FUN_0007e574(int,...);
 extern unsigned nvs_ate_crc8_update(int,...);

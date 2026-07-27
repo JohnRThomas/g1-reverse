@@ -16,13 +16,12 @@
 #include "../headers/g1_log.h"
 /* Reconstructed FUN_0005ea18 @ 0x5ea18  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned char *assert_post_action(int a,int b);
+extern int assert_post_action(int, int);
 extern void ble_privacy_id_remove(void);
 extern void bt_settings_save_or_delete_key(unsigned char a, unsigned char *b);
 extern void memset_bytes(void *a, int b, int c);
 
-void bt_keys_clear(unsigned char *param_1)
-{
+void bt_keys_clear(void*param_1) {
   unsigned char *r0 = param_1;
   if (param_1 == 0) {
     printk(((unsigned long)"ASSERTION FAIL [%s] @ %s:%d\n"), ((unsigned long)"keys != ((void *)0)"), 0x000f5268, 0x131);

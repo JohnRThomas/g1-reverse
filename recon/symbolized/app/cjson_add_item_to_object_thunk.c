@@ -8,7 +8,7 @@
  */
 /* Reconstructed FUN_00085046 @ 0x85046  (parity: 300/300 trials, PROVEN) */
 
-extern void cjson_add_item_to_object(unsigned int, unsigned int, unsigned int, unsigned int);
+extern int cjson_add_item_to_object(int, int, int, int);
 void cjson_add_item_to_object_thunk(unsigned int a, unsigned int b, unsigned int c, unsigned int unused)
 {
     (void)unused;

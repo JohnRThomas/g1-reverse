@@ -24,7 +24,7 @@
 
 #include <stdint.h>
 #include "../headers/g1_log.h"
-extern uint32_t assert_post_action(uint32_t,uint32_t);
+extern int assert_post_action(int, int);
 extern uint32_t qspi_activate(void);
 extern uint32_t qspi_ready_wait(void);
 extern void qspi_workaround_apply(void);

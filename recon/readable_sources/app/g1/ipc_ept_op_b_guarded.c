@@ -12,7 +12,7 @@
  * and the read LENGTH; 0x257ec `cbz r3` rejects a zero one and forwards it
  * as the i2c_msg len.  Fixed in recon/app/src in iteration 32; this mirror
  * was never synced. */
-extern unsigned int ipc_ept_op_b_locked_retry(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
+extern int ipc_ept_op_b_locked_retry(int, unsigned int, unsigned int, int);
 
 unsigned int ipc_ept_op_b_guarded(unsigned int param_1, int param_2)
 {

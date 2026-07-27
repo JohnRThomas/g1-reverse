@@ -22,9 +22,9 @@
 /* Reconstructed FUN_0003cb58 @ 0x3cb58  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned long long undefined8;
-extern int get_device_info(int,...); extern int gui_set_active_canvas(int,...); extern int gui_screen_clear(int,...);
+extern int get_device_info(int,...); extern unsigned int gui_set_active_canvas(unsigned int); extern int gui_screen_clear(int,...);
 extern int gui_canvas_flags_set_bit1(int,...); extern int gui_reset_dynamic_bitmap_frame_state(int,...); extern int gui_bmp_dynamic_bitmap_draw(int,...);
-extern int gui_bmp_bitmap_draw(int,...); extern int gui_utf_draw(int,...);
+extern int gui_bmp_bitmap_draw(unsigned int, int, int, int, int, int); extern int gui_utf_draw(int,...);
 extern unsigned long long k_uptime_get_5(int,...);
 extern int device_info_text_width_get(int,...); extern int device_info_text_height_get_clamped(int,...); extern int get_localized_weekday_name(int,...);
 

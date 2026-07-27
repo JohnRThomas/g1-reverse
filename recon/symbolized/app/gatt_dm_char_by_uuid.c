@@ -20,11 +20,10 @@
 
 extern uint32_t bt_gatt_dm_char_next(uint32_t collection, uint32_t previous);
 extern const uint32_t *bt_gatt_dm_attr_chrc_val(void);
-extern int bt_uuid_cmp(const void *key, uint32_t candidate);
+extern int bt_uuid_cmp(int, int);
 extern _Noreturn void assert_post_action(uintptr_t file, uint32_t line);
 
-uint32_t gatt_dm_char_by_uuid(uint32_t collection, const void *key)
-{
+unsigned int gatt_dm_char_by_uuid(unsigned int collection, const void*key) {
     uint32_t current = 0;
     for (;;) {
         current = bt_gatt_dm_char_next(collection, current);

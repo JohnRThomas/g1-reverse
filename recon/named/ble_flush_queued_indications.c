@@ -9,9 +9,9 @@
  */
 /* Reconstructed FUN_0007c20a @ 0x7c20a  (parity: 300/300 trials, PROVEN) */
 
-extern void memset_bytes(void *a, unsigned int b, unsigned int c);
+extern void memset_bytes(void*, int, int);
 extern int dequeue_debug(unsigned int);
-extern short strlen(void *a);
+extern int strlen(int);
 
 unsigned int ble_flush_queued_indications(int param_1)
 {

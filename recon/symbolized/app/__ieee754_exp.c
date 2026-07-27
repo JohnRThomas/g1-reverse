@@ -20,7 +20,7 @@
 /* Reconstructed FUN_00012db0 @ 0x12db0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u4; typedef int32_t i4; typedef uint64_t u8; typedef int64_t i8;
-extern u8 dcmp_negate_rhs(u4,u4,u4,u4);
+extern unsigned long long dcmp_negate_rhs(unsigned int, unsigned int, unsigned int, unsigned int);
 extern u8 __aeabi_dadd(u4,u4,u4,u4);
 extern u8 __floatsidf(void);
 extern u8 __muldf3(u4,u4,u4,u4);

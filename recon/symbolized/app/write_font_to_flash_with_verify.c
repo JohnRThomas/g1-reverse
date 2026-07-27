@@ -25,8 +25,8 @@ typedef int (*codeptr)(int,...);
 extern int get_device_info(void);
 extern int k_sleep(int,int);
 extern int z_device_is_ready(int);
-extern int memcmp(int,int,int);
-extern int memset_bytes(void*,int,int);
+extern int memcmp(const void*, const void*, unsigned long);
+extern void memset_bytes(void*, int, int);
 
 int write_font_to_flash_with_verify(int param_1, int param_2, int param_3)
 {

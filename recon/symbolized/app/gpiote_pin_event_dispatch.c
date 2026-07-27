@@ -10,7 +10,7 @@
  */
 /* Reconstructed FUN_000654c4 @ 0x654c4  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned long long get_pin_idx(unsigned long);
+extern unsigned long get_pin_idx(unsigned long);
 
 void gpiote_pin_event_dispatch(unsigned int param_1)
 {

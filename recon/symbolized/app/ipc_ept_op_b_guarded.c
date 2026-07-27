@@ -16,7 +16,7 @@
  * garbage length tripped NRFX_ASSERT(TWIM_LENGTH_VALIDATE) at
  * nrfx_twim.c:593 on the ST25DV system-port register-1 read.  The parity
  * harness cannot see this: the callee is an order-keyed oracle. */
-extern unsigned int ipc_ept_op_b_locked_retry(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
+extern int ipc_ept_op_b_locked_retry(int, unsigned int, unsigned int, int);
 
 unsigned int ipc_ept_op_b_guarded(unsigned int param_1, int param_2)
 {

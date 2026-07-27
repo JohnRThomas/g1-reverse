@@ -26,11 +26,11 @@ typedef unsigned int uint;
 typedef unsigned short ushort;
 typedef unsigned long uintptr_t;
 
-extern int strlen(void *);
-extern int z_log_msg_runtime_create(uint,uint,void*,int);
+extern int strlen(int);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 extern long long is_ptr(uint,uint);
 extern void assert_post_action(uint,uint) __attribute__((noreturn));
-extern void memcpy(void*,void*,uint);
+extern void memcpy(int, int, int);
 
 int cbprintf_package_convert(byte *param_1,int param_2,int (*param_3)(byte*,int,uint),
                  uint param_4,uint param_5,int param_6,uint param_7)

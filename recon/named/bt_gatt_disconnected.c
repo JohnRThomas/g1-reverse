@@ -22,15 +22,15 @@
  */
 #include <stdint.h>
 extern void bt_gatt_foreach_attr_0(uint16_t, uint16_t, void *, void *); /* foreach attr */
-extern void gatt_store_ccc_cf(uint8_t, const void *); /* gatt_store_ccc_cf */
+extern void gatt_store_ccc_cf(unsigned long, const void*); /* gatt_store_ccc_cf */
 extern int bt_addr_le_is_bonded(uint8_t, const void *); /* bt_addr_le_is_bonded */
-extern void *gatt_find_conn_in_known_table(void *); /* gatt_sub_find */
-extern uint32_t atomic_and_4(volatile uint32_t *, uint32_t); /* atomic_and */
-extern uint32_t read_struct_first_word(volatile uint32_t *); /* atomic_get */
+extern unsigned char* gatt_find_conn_in_known_table(int); /* gatt_sub_find */
+extern long atomic_and_4(volatile long*, long); /* atomic_and */
+extern unsigned int read_struct_first_word(unsigned int*); /* atomic_get */
 extern void list_unlink_and_release(unsigned int, int, unsigned int *, unsigned int *); /* gatt_sub_remove */
 extern void bt_addr_le_copy_828da(void *, const void *); /* bt_addr_le_copy */
-extern void *find_cf_cfg(void *); /* find_cf_cfg */
-extern void gatt_cf_cfg_clear(void *); /* reset cf cfg */
+extern unsigned char* find_cf_cfg(int); /* find_cf_cfg */
+extern int gatt_cf_cfg_clear(int); /* reset cf cfg */
 
 struct gatt_subscription_recovered {
     uint8_t identity;

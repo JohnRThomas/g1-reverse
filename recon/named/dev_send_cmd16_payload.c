@@ -12,7 +12,7 @@
 /* Reconstructed FUN_00025670 @ 0x25670 CFG_VERIFY_CALL_ARITIES=3,4,0,2 */
 #include <stdint.h>
 #include "../headers/g1_log.h"
-extern void memcpy(uint8_t *, const uint8_t *, uint32_t);
+extern void memcpy(int, int, int);
 extern int ipc_transport_ops_dispatch(unsigned char *, void *, unsigned int, unsigned int);
 extern void sleep_fixed_33_ticks(void);
 struct part { uint8_t *data; uint32_t length; uint8_t type; };

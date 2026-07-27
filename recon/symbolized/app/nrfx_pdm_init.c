@@ -17,7 +17,7 @@
 /* Reconstructed FUN_0006615c @ 0x6615c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../../headers/g1_log.h"
-extern long long assert_post_action(unsigned,unsigned);
+extern int assert_post_action(int, int);
 extern void pdm_configure_pins(void);
 unsigned nrfx_pdm_init(int param_1, int param_2){
     unsigned r0v = (unsigned)param_1;

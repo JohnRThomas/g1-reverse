@@ -21,7 +21,7 @@
 extern int bt_security_err_lookup(int a);
 extern void ble_conn_unref(int a);
 extern int ble_conn_lookup_masked(unsigned a, int b);
-extern void bt_conn_disconnect_by_state(int a, int b);
+extern void bt_conn_disconnect_by_state(unsigned int, int);
 extern void ble_notify_remote_info_available(int a, int b, int c);
 extern void smp_alloc_pairing_keys(void);
 extern int update_sec_level(int a);

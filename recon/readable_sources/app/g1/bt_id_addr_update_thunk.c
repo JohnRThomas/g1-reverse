@@ -9,7 +9,6 @@
 /* Reconstructed FUN_0008104a @ 0x8104a  (parity: 300/300 trials, PROVEN) */
 
 extern void z_log_msg_runtime_create(unsigned, unsigned, unsigned, unsigned);
-void bt_id_addr_update_thunk(unsigned r0, unsigned r1, unsigned r2)
-{
+void bt_id_addr_update_thunk(unsigned long r0, int r1, void*r2) {
   z_log_msg_runtime_create(r0, r1, r2, 0);
 }

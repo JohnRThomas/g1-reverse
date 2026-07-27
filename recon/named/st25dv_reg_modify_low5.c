@@ -9,7 +9,7 @@
 /* Reconstructed FUN_0007c8fa @ 0x7c8fa  (parity: 300/300 trials, PROVEN) */
 
 extern int ipc_ept_op_b_locked_retry(int, int, void*, int, int, int);
-extern void ipc_ept_op_c_locked_retry(int, int, void*, int);
+extern int ipc_ept_op_c_locked_retry(int, unsigned int, unsigned int, int);
 
 void st25dv_reg_modify_low5(int param_1, int param_2)
 {

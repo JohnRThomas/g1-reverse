@@ -17,7 +17,7 @@ typedef u32 (*fp4)(u32,u32,u32,u32);
 typedef u32 (*fp5)(u32,u32,u32,u32,u32);
 extern int settings_name_steq(u32,int,void*);
 extern int settings_parse_and_lookup(u32,void*);
-extern void z_log_msg_runtime_create(u32,int,void*,int);
+extern void z_log_msg_runtime_create(unsigned int, unsigned int, unsigned int, unsigned int);
 u32 settings_call_set_handler(u32 param_1,u32 param_2,u32 param_3,u32 param_4,int* param_5){
     u32 local_24 = param_1;
     if(param_5 != 0){

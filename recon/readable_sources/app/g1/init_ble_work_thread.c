@@ -18,7 +18,7 @@
 /* Reconstructed FUN_0002201c @ 0x2201c  (parity: 300/300 trials, PROVEN) */
 
 extern int z_impl_k_thread_create(int,int,int,int,int,int,int,int,int);
-extern void kmutex_dlist_init(int);
+extern void kmutex_dlist_init(unsigned long);
 extern void k_timer_init(int,int,int);
 
 int init_ble_work_thread(int param_1)

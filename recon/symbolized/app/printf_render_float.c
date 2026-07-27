@@ -21,8 +21,8 @@ typedef unsigned int u32;
 typedef int (*outfn)(u32, u32, u32, int);
 
 extern u32 *get_static_ctx_ptr(void);
-extern u32  strlen(u32);
-extern int  double_is_unordered(u32, u32, u32, u32);
+extern int strlen(int);
+extern int double_is_unordered(int, unsigned int, int, unsigned int);
 extern int  __aeabi_dcmple(u32, u32, u32, u32);
 extern int  __aeabi_dcmplt(u32, u32, u32, u32);
 extern int  __aeabi_dcmpeq(u32, u32, u32, u32);

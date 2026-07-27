@@ -10,7 +10,7 @@
 /* Reconstructed FUN_0008603c @ 0x8603c  (parity: 300/300 trials, PROVEN) */
 
 extern int cbor_decode_check_major_type(void *a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
-extern int cbor_decode_extract_value(void *a, unsigned int b, unsigned int c);
+extern int cbor_decode_extract_value(int*, unsigned char*, unsigned long);
 
 int cbor_decode_tag(char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {

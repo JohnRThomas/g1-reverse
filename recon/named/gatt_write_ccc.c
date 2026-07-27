@@ -8,7 +8,7 @@
 /* gatt_write_ccc @ 0x0005a540; raw FUN_0005a540 */
 #include <stdint.h>
 
-extern void atomic_or_0(uint32_t *, uint32_t); /* FUN_000826e0 */
+extern int atomic_or_0(volatile long*, long); /* FUN_000826e0 */
 extern int gatt_req_send(void *, void *, void *, void *, uint32_t, uint32_t); /* FUN_00082aee */
 
 int gatt_write_ccc(void *connection, uint8_t *params)

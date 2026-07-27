@@ -41,8 +41,8 @@
 #include "../../headers/g1_log.h"
 
 extern int get_device_type(void);
-extern int dev_api_call_slot0(uint32_t device, int slot, void *value);
-extern void imu_fusion_state_init(void *state);
+extern unsigned int dev_api_call_slot0(int, unsigned int, unsigned int);
+extern void imu_fusion_state_init(volatile unsigned int*);
 extern int panel_level_calc_cached(void *context);
 
 #define LOG_LEVEL (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/)

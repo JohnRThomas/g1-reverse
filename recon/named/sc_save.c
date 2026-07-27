@@ -16,9 +16,9 @@
 /* Reconstructed FUN_0005a128 @ 0x5a128  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void* find_sc_cfg_59bcc(int,int);
-extern void bt_addr_le_copy_828da(void*,unsigned);
+extern void bt_addr_le_copy_828da(unsigned long*, unsigned long*);
 extern void log_msg_create_3arg(int,int,void*);
-extern int bt_addr_le_is_bonded(int,void*);
+extern int bt_addr_le_is_bonded(unsigned char, const void*);
 extern void log_gatt_sc_store_failure(void *entry);
 
 void sc_save(unsigned char param_1, unsigned param_2, unsigned param_3, unsigned param_4){

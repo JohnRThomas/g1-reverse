@@ -14,7 +14,7 @@
 #include <stdint.h>
 
 extern int st25dv_write_reg_pair(int, unsigned int, unsigned int, unsigned int);
-extern int ipc_ept_op_a_locked_retry(uint32_t, uint32_t, void *, uint32_t);
+extern int ipc_ept_op_a_locked_retry(int, unsigned int, unsigned int, int);
 
 struct transport_probe_frame {
     uint8_t reserved[7];

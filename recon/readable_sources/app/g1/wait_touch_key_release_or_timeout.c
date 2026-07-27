@@ -17,13 +17,13 @@
  */
 /* Reconstructed FUN_0002c2b0 @ 0x2c2b0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int get_message_pending_state(void);
+extern unsigned long get_message_pending_state(void);
 extern int is_msg_expiration(void);
 extern void debug_print(unsigned long, ...);
 extern int sync_message_signal_to_slave(int);
 extern int msg_count_dec(void);
 extern int get_device_info(void);
-extern int set_message_pending_state(int);
+extern void set_message_pending_state(int);
 extern void log_message(unsigned long, ...);
 void wait_touch_key_release_or_timeout(void){
   volatile int *piVar1 = (volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;

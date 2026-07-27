@@ -12,7 +12,7 @@
 /* Reconstructed FUN_000406e4 @ 0x406e4  (parity: 300/300 trials, PROVEN) */
 
 extern int get_device_info(void);
-extern void memset_bytes(unsigned int, unsigned int, unsigned int);
+extern void memset_bytes(void*, int, int);
 
 unsigned int arm_onboarding_watchdog(void)
 {

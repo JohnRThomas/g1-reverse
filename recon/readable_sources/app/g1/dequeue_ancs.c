@@ -17,9 +17,9 @@
  */
 /* Reconstructed dequeue_ancs @ 0x18d94  (parity: 300/300 trials, PROVEN) */
 
-extern int k_msgq_get(void *a, void *b, unsigned int c, unsigned int d);
-extern void memcpy(void *dst, void *src, unsigned int len);
-extern void memset_bytes(void *dst, int val, unsigned int len);
+extern int k_msgq_get(int, unsigned int, int, int);
+extern void memcpy(int, int, int);
+extern void memset_bytes(void*, int, int);
 
 int dequeue_ancs(void *param_1)
 {

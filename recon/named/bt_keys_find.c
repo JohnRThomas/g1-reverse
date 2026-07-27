@@ -16,7 +16,7 @@
 /* Reconstructed FUN_0005e7c8 @ 0x5e7c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 #include "../headers/g1_log.h"
-extern void assert_post_action(unsigned int,int);
+extern int assert_post_action(int, int);
 extern int memcmp(unsigned int,int,int,unsigned int,unsigned int);
 unsigned char* bt_keys_find(unsigned short param_1,unsigned int param_2,int param_3,unsigned int param_4){
   unsigned char* pbVar1=(unsigned char*)0x2000af4c;

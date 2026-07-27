@@ -14,7 +14,7 @@
  */
 /* Reconstructed FUN_0005e9a0 @ 0x5e9a0  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned long long assert_post_action(unsigned int a0, unsigned int a1);
+extern int assert_post_action(int, int);
 
 void bt_keys_add_type(int param_1, unsigned short param_2, unsigned int param_3, unsigned int param_4)
 {

@@ -111,7 +111,7 @@ extern uint64_t __muldf3(uint32_t,...); extern uint8_t __fixunsdfsi(uint32_t,...
  * declaration below uses the project's raw-bits convention (the same one
  * battery_model_state_update already uses for __extendsfdf2). */
 extern uint32_t __floatdisf(int64_t); /* soft-float: r0:r1 in, raw float bits out in r0 */ extern float battery_soc_from_curve(float,float,float,float,uint32_t);
-extern uint32_t get_device_info(void);
+extern int get_device_info(void);
 extern unsigned int get_product_code_buf(void); extern uint32_t esb_send_command_and_wait_ack(uintptr_t,...);
 extern int fuel_gauge_read_voltage_current_temp(int, float*, float*, float*); extern int fuel_gauge_poll_should_stop(void);
 extern void fuel_gauge_lock(void); extern void fuel_gauge_unlock(void);
