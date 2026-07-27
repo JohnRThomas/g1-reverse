@@ -579,10 +579,298 @@ def summarise_regaccess(accesses, periph=None):
 
 
 # --------------------------------------------------------------------------
+# SCREEN PROFILES.  The same capture machinery produces two oracles that differ
+# ONLY in the stimulus (the navigation one writes the GATT command
+# `0a0600000000`; the dashboard one writes nothing at all and lets the firmware's
+# own IMU:wakeup branch pick E_ID_SCREEN_DASHBOARD).  Everything measured is
+# identical in shape, so only the PROSE, the OUTPUT FILE NAMES and the
+# PARITY-CRITERIA prefix are per-screen.  Before this existed the script emitted
+# the navigation schema unconditionally, and regenerating the dashboard oracle
+# would have silently deleted its D-1..D-7 criteria and its `screen` block
+# (our_boot_bringup.md sec.42.10 item 8).
+#
+# Select with `--screen=dashboard` (default `navigation`).
+SCREEN_PROFILES = {
+    "navigation": {
+        "schema": "g1.display_sensor_oracle/1",
+        "outfile": "display_sensor_oracle.json",
+        "fb_prefix": "golden_framebuffer_%s",
+        "what": ("Peripheral-transaction oracle of the SHIPPED Even G1 firmware: "
+                 "every display (SPI/JBD) and sensor (I2C/PDM/SAADC/GPIOTE/ESB) "
+                 "transaction the original performs, captured in Renode under "
+                 "the same determinism knobs as golden_boot_trace.json."),
+        "regenerate": (
+            "recon/emulator/scripts/capture_display_sensor_oracle.sh /tmp/g1_oracle && "
+            "PYTHONSAFEPATH=1 .venv/bin/python "
+            "recon/emulator/scripts/build_display_sensor_oracle.py /tmp/g1_oracle"),
+        "phases": {
+            "p1_boot": "t=0..6 s — autonomous boot + virtual BLE central connect/GATT",
+            "p2_render": "t=6..20 s — 'don' head-up gesture on the real LSM6DSO model -> display START -> ESB L/R sync -> dashboard blit",
+        },
+        "stimulus": ("identical to armemul/scripts/g1-selfdrive.sh: "
+                     "vcentral (virtual phone, real radio CONNECT_IND + NUS ATT write "
+                     "'0a0600000000'), esbslave (virtual right lens, AnnounceResponse), "
+                     "lsm6dso PlayGesture 'don'"),
+    },
+    "dashboard": {
+        "schema": "g1.display_sensor_oracle_dashboard/1",
+        "outfile": "display_sensor_oracle_dashboard.json",
+        "fb_prefix": "golden_framebuffer_dashboard_%s",
+        "what": ("Peripheral-transaction oracle of the SHIPPED Even G1 firmware driven "
+                 "to E_ID_SCREEN_DASHBOARD (screen id 6) by REAL STIMULUS ONLY -- no "
+                 "memory pokes, no forced state. Sibling of display_sensor_oracle.json "
+                 "(which captures E_ID_SCREEN_NAVIGATION). The ONLY difference in "
+                 "stimulus is that the virtual phone sends NO GATT command at all: with "
+                 "the navigation-startup command 0a0600000000 suppressed, nothing "
+                 "installs a persist task, so process_for_new_task stays in case 0 "
+                 "(IDLE) and the 'don' head-up gesture takes the firmware's own "
+                 "IMU:wakeup:dashboard branch (update_temp_task_status(device_ctx, 6, 2) "
+                 "at 0x0002e1a2) into the dashboard."),
+        "regenerate": (
+            "G1_ATT_WRITE=\"\" G1_SEED=305419896 "
+            "recon/emulator/scripts/capture_display_sensor_oracle.sh /private/tmp/g1_oracle_dash && "
+            "PYTHONSAFEPATH=1 .venv/bin/python "
+            "recon/emulator/scripts/build_display_sensor_oracle.py --screen=dashboard "
+            "/private/tmp/g1_oracle_dash"),
+        "phases": {
+            "p1_boot": ("t=0..6 s -- autonomous boot + virtual BLE central connect. NO "
+                        "GATT command is written. The panel is initialised and cleared; "
+                        "NOTHING is painted (framebuffer stays all-zero)."),
+            "p2_render": ("t=6..20 s -- 'don' head-up gesture on the real LSM6DSO model "
+                          "-> imu_fusion_thread sets device_ctx[0xee4]=2 -> "
+                          "process_for_new_task case 0 takes the IMU:wakeup:dashboard "
+                          "branch -> ctx[0xd5]=6 -> ui_refalsh_warp case 6 -> "
+                          "ui_DashBoard_task -> continuous dashboard repaint."),
+        },
+        "stimulus": ("vcentral (virtual phone, real radio CONNECT_IND, handle sweep, NO "
+                     "ATT write), esbslave (virtual right lens, AnnounceResponse), "
+                     "lsm6dso PlayGesture 'don' at t=6 s. NO memory write, NO register "
+                     "poke, NO forced state anywhere."),
+        "screen": {
+            "screen_id_ctx_d5": 6,
+            "name": "E_ID_SCREEN_DASHBOARD",
+            "evidence": [
+                "process_for_new_task FUN_0002c99c case 6 log 0xa2aad = '%s(): switch -> E_ID_SCREEN_DASHBOARD\\n', tag 0xa39bb = 'process_for_DASHBOARD_show'",
+                "ui_refalsh_warp 0x00048b5c case 6 -> ui_DashBoard_task 0x0003af78",
+                "selected at 0x0002e1a2: movs r2,#2 / movs r1,#6 / bl 0x2bffc (update_temp_task_status) then trigger_screen_state_change with reason string 0xa2733 = 'IMU:wakeup:dashboard'",
+                "a whole-image BL scan finds NO update_persist_task_status(_,6,_) call site: the dashboard is not phone-commandable",
+            ],
+            "renders": ("date 'Mon, Jan 1', large '00:00' clock, Bluetooth glyph, "
+                        "vertical divider, note glyph, 'Hold Right TouchBar / to Add "
+                        "QuickNote' hint"),
+        },
+    },
+}
+
+
+def dashboard_determinism_verification(oracle):
+    """Dashboard `determinism_verification`, derived from the SEEDED measurement.
+
+    The block this replaces was written from two UNSEEDED runs and listed
+    `spim_a/p2_render`, `twim2/p2_render` and `JBD_FRAMECOUNTER_P2` as
+    non-deterministic.  Iteration 41 proved the net core's stock RNG is
+    re-seeded randomly per launch when `emulation SetSeed` is not issued, and
+    iteration 42 measured those three streams byte-identical across two SEEDED
+    shipped runs.  The old annotation was therefore excusing a real 3,013-
+    transaction gap on our build.  It is gone, and what replaces it is a
+    statement of what was actually measured.
+    """
+    fb = oracle["framebuffer"]
+    spim = oracle["peripherals"]["spim_a"]["phases"]
+    return {
+        "method": ("the whole dashboard capture was run twice end-to-end WITH "
+                   "`emulation SetSeed 305419896` (G1_SEED) and the two capture "
+                   "directories compared with `cmp` file by file, including the "
+                   "nanosecond tick column of every trace"),
+        "seed": "0x12345678 (305419896) — `emulation SetSeed` before platform creation",
+        "bit_identical_across_runs": [
+            "EVERY trace file byte-for-byte: spim_a.p{1,2}, spim_b.p{1,2}, "
+            "twim1.p{1,2}, twim2.p{1,2}, fb_p1_boot.ppm, fb_p2_render.ppm",
+            "framebuffer/*/sha256 and every row_sha256",
+            "peripherals/spim_a/phases/*/stream_sha256 AND transaction_count "
+            "(p1_boot %d, p2_render %d)" % (
+                spim["p1_boot"]["transaction_count"],
+                spim["p2_render"]["transaction_count"]),
+            "peripherals/twim2/phases/*/stream_sha256 AND transaction_count",
+            "peripherals/twim1/phases/*/devices/*/stream_sha256",
+            "peripherals/{pdm0,saadc,gpiote0,gpiote1}/whole_run/stream_sha256",
+            "counters/* — including JBD_FRAMECOUNTER_P2, RADIO_TX, "
+            "VC_DATA_EVENTS, ESB_MASTER_FRAMES and ESB_ACKS",
+            "firmware_events",
+        ],
+        "NOT_stable_across_runs": {
+            "peripherals/twim1/phases/*/stream_sha256": (
+                "the MERGED twim1 bus stream. The per-device sub-streams are "
+                "identical; only the interleaving between OPT3001 / nPM1300 / "
+                "ST25DV (three independent firmware threads sharing one bus) "
+                "reorders. Diff twim1 PER DEVICE, not per bus."),
+        },
+        "WITHDRAWN_annotations": {
+            "peripherals/spim_a/phases/p2_render": (
+                "PREVIOUSLY annotated 'run1 12225, run2 12161 -- not stable, gate on "
+                "the framebuffer instead'. WITHDRAWN: those two runs were UNSEEDED. "
+                "Seeded, the shipped image gives %d in both runs, and the annotation "
+                "was masking a real, stable deficit on our rebuilt image "
+                "(our_boot_bringup.md sec.42.1 item 3)." % spim["p2_render"]["transaction_count"]),
+            "peripherals/twim2/phases/p2_render": (
+                "PREVIOUSLY 'run1 1206, run2 1202'. WITHDRAWN for the same reason; "
+                "seeded it is %d in both runs." % oracle["peripherals"]["twim2"][
+                    "phases"]["p2_render"]["transaction_count"]),
+            "counters/JBD_FRAMECOUNTER_P2": (
+                "PREVIOUSLY 'run1 0x2E65, run2 0x2E27'. WITHDRAWN; seeded it is %s "
+                "in both runs." % counters_get(oracle, "JBD_FRAMECOUNTER_P2")),
+            "counters/RADIO_TX, VC_DATA_EVENTS, ESB_MASTER_FRAMES, ESB_ACKS, ESB_ANNOUNCE_RESP": (
+                "PREVIOUSLY '+/- 1-11 frames of radio-model cadence'. WITHDRAWN as a "
+                "DETERMINISM statement: seeded, every one of them is identical across "
+                "two shipped runs. A tolerance may still be justified when comparing a "
+                "DIFFERENTLY-LINKED image, but that is a comparison tolerance and must "
+                "be argued on its own; it is not licensed by run-to-run noise, because "
+                "there is none."),
+        },
+        "what_this_now_FAILS_to_catch": (
+            "Nothing in the shipped capture is excused any more except the merged "
+            "twim1 bus interleaving, which is genuinely a three-thread arbitration "
+            "order on one bus and is fully covered by the per-device sub-streams. "
+            "The residue that remains unmeasured is what the per-device split "
+            "deliberately drops: the RELATIVE ORDER of transactions belonging to "
+            "different devices on twim1. A defect that reorders OPT3001 against "
+            "nPM1300 without changing either device's own stream is invisible here."),
+        "fb_%s" % "p2_render": {
+            "sha256": fb["p2_render"]["sha256"],
+            "lit_pixels": fb["p2_render"]["lit_pixels"],
+        },
+    }
+
+
+def counters_get(oracle, key):
+    v = oracle.get("counters", {}).get(key)
+    return v if v is not None else "(absent)"
+
+
+def dashboard_parity_criteria(oracle):
+    """The D-* criteria, regenerated from the measurement in hand.
+
+    Every criterion of the recorded oracle is preserved.  D-1/D-2/D-3 carry
+    their oracle VALUES inline, so they are formatted from this capture rather
+    than copied, which is what keeps a regenerated file self-consistent.  The
+    one change of substance is the final bullet: the "NOT A GATE (measured
+    non-deterministic)" line is replaced by D-8/D-9, which promote
+    `spim_a p2_render` and `JBD_FRAMECOUNTER_P2` to real gates.
+    """
+    fb = oracle["framebuffer"]
+    spim = oracle["peripherals"]["spim_a"]["phases"]
+    bb = fb["p2_render"]["bbox"] or {}
+    bbtxt = ("bbox (%d,%d)-(%d,%d) %dx%d" % (
+        bb.get("x0", 0), bb.get("y0", 0), bb.get("x1", 0), bb.get("y1", 0),
+        bb.get("w", 0), bb.get("h", 0))) if bb else "bbox (empty)"
+    return {
+        "note": ("These are the DASHBOARD criteria (prefix D-). They are INDEPENDENT "
+                 "of and ADDITIVE to the navigation criteria G-1..G-6 / S-* in "
+                 "display_sensor_oracle.json, which remain in force unchanged."),
+        "graphics": [
+            "D-1 PASS/FAIL (THE ACCEPTANCE BAR): framebuffer/p2_render/sha256 must "
+            "match byte-for-byte (640x480x4bpp = 153600 B). Oracle = %s, %d lit "
+            "pixels, %s." % (fb["p2_render"]["sha256"],
+                             fb["p2_render"]["lit_pixels"], bbtxt),
+            "D-2 PASS/FAIL: framebuffer/p1_boot/sha256 must match byte-for-byte. "
+            "Oracle = %s (all-zero: with no GATT command nothing is painted in the "
+            "first 6 s)." % fb["p1_boot"]["sha256"],
+            "D-3 PASS/FAIL: peripherals/spim_a/phases/p1_boot/stream_sha256 must "
+            "match (%d transactions: panel ID probe, brightness/gear registers, the "
+            "three full-screen clears). Oracle = %s." % (
+                spim["p1_boot"]["transaction_count"],
+                spim["p1_boot"]["stream_sha256"]),
+            "D-4 (localiser, not an extra gate): on a D-1 failure, "
+            "framebuffer/p2_render/row_sha256 identifies the first differing panel "
+            "row, and the first differing pixel inside it.",
+            "D-5 PASS/FAIL: counters/SCREEN_ID_ctx_d5 must be 0x06 "
+            "(E_ID_SCREEN_DASHBOARD). This is the honest-stimulus gate: it proves "
+            "the firmware SELECTED the dashboard itself.",
+            "D-6 PASS/FAIL: counters/DISPLAY_ON_ctx_fe8 == 0x01 and "
+            "counters/ESB_SYNC_ctx_105a == 0x02.",
+            "D-7 PASS/FAIL: peripherals/spim_b must be empty (0 transactions, both "
+            "phases).",
+            "D-8 PASS/FAIL (NEW, and it REPLACES a withdrawn exemption): "
+            "peripherals/spim_a/phases/p2_render/transaction_count == %d and its "
+            "stream_sha256 must match. The recorded oracle used to exempt this "
+            "stream as non-deterministic; that annotation came from two UNSEEDED "
+            "runs and is withdrawn (see determinism_verification/"
+            "WITHDRAWN_annotations). Seeded, it is identical across shipped runs, "
+            "and it is the repaint-cadence gate: the dashboard is a continuously "
+            "repainting screen and this count is how many pixel windows the "
+            "firmware completes in the 14 s phase." % spim["p2_render"]["transaction_count"],
+            "D-9 PASS/FAIL (NEW, same provenance as D-8): "
+            "counters/JBD_FRAMECOUNTER_P2 == %s. It is the panel-side view of the "
+            "same repaint cadence and moves with D-8." % counters_get(
+                oracle, "JBD_FRAMECOUNTER_P2"),
+        ],
+        "sensors": [
+            "S-D-IMU: peripherals/twim2/phases/p1_boot/stream_sha256 must match "
+            "(p2_render is cadence-dependent; compare volume with tolerance).",
+            "S-D-I2C: peripherals/twim1/phases/*/devices/*/stream_sha256 must match "
+            "PER DEVICE (never per bus).",
+            "S-D-MIC/KEYS/ADC: peripherals/{pdm0,gpiote0,gpiote1,saadc}/whole_run/"
+            "stream_sha256 must match.",
+        ],
+    }
+
+
+def dashboard_screen_events(run_out, fw_events):
+    """The `screen/observed_firmware_events` block, MEASURED from run.out.
+
+    The recorded oracle carried these four numbers hand-derived; they are read
+    off the consequence-hook lines here instead, so a regenerated file cannot
+    silently keep a stale count.  Note that these lines only exist when the
+    capture ran with G1_HOOKS=1 (i.e. against the SHIPPED image, whose PCs the
+    hooks are written for); against a rebuilt image they are all absent and the
+    block reports zeroes, which is correct and not a defect.
+    """
+    blit_screens = {}
+    start_actions = []
+    navtask = 0
+    if os.path.exists(run_out):
+        with open(run_out, "r", errors="replace") as fh:
+            for line in fh:
+                m = re.search(r"ORACLE BLIT notify_display_mode screen=(\d+)", line)
+                if m:
+                    k = int(m.group(1))
+                    blit_screens[k] = blit_screens.get(k, 0) + 1
+                    continue
+                m = re.search(r"ORACLE display_START action=(\d+)", line)
+                if m:
+                    start_actions.append(int(m.group(1)))
+                    continue
+                if re.search(r"ORACLE ui_navigation_task", line):
+                    navtask += 1
+    return {
+        "DashBoard_Reflash": fw_events.get("DashBoard_Reflash", 0),
+        "notify_display_mode_by_screen_id": {str(k): v for k, v
+                                             in sorted(blit_screens.items())},
+        "display_START_actions_in_order": start_actions,
+        "ui_navigation_task": navtask,
+        "measured_from": "the G1_HOOKS=1 cpuapp consequence hooks in run.out",
+    }
+
+
 def main():
-    outdir = sys.argv[1] if len(sys.argv) > 1 else "/tmp/g1_oracle"
+    argv = [a for a in sys.argv[1:]]
+    screen = "navigation"
+    rest = []
+    for a in argv:
+        if a.startswith("--screen="):
+            screen = a.split("=", 1)[1]
+        elif a in ("--dashboard", "--navigation"):
+            screen = a[2:]
+        else:
+            rest.append(a)
+    if screen not in SCREEN_PROFILES:
+        sys.exit("unknown --screen=%s (known: %s)"
+                 % (screen, ", ".join(sorted(SCREEN_PROFILES))))
+    profile = SCREEN_PROFILES[screen]
+
+    outdir = rest[0] if len(rest) > 0 else "/tmp/g1_oracle"
     repo = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
-    reports = sys.argv[2] if len(sys.argv) > 2 else os.path.join(
+    reports = rest[1] if len(rest) > 1 else os.path.join(
         repo, "recon", "emulator", "reports")
     os.makedirs(reports, exist_ok=True)
 
@@ -590,11 +878,8 @@ def main():
         os.path.join(outdir, "run.out"))
 
     oracle = {
-        "schema": "g1.display_sensor_oracle/1",
-        "what": ("Peripheral-transaction oracle of the SHIPPED Even G1 firmware: "
-                 "every display (SPI/JBD) and sensor (I2C/PDM/SAADC/GPIOTE/ESB) "
-                 "transaction the original performs, captured in Renode under "
-                 "the same determinism knobs as golden_boot_trace.json."),
+        "schema": profile["schema"],
+        "what": profile["what"],
         "images": {},
         "determinism": {
             "emulator": "Renode (armemul g1.resc, shipped images)",
@@ -602,14 +887,8 @@ def main():
             "core_scheduling": "serial (MasterTimeSource.ExecuteInSerial=True in g1.resc)",
             "cc312_seed": "0x5340CC3105340CC3",
             "virtual_time_budget_s": 20.0,
-            "phases": {
-                "p1_boot": "t=0..6 s — autonomous boot + virtual BLE central connect/GATT",
-                "p2_render": "t=6..20 s — 'don' head-up gesture on the real LSM6DSO model -> display START -> ESB L/R sync -> dashboard blit",
-            },
-            "stimulus": ("identical to armemul/scripts/g1-selfdrive.sh: "
-                         "vcentral (virtual phone, real radio CONNECT_IND + NUS ATT write "
-                         "'0a0600000000'), esbslave (virtual right lens, AnnounceResponse), "
-                         "lsm6dso PlayGesture 'don'"),
+            "phases": profile["phases"],
+            "stimulus": profile["stimulus"],
             "observation_method": {
                 "spim_a/spim_b": "additive opt-in TraceFile hook in armemul/models/NRF5340_SPIM.cs (logs the tx/rx buffers the model already built; default off)",
                 "twim1/twim2": "additive opt-in TraceFile hook in armemul/models/NRF5340_TWIM.cs (logs the EasyDMA payloads; default off)",
@@ -617,10 +896,7 @@ def main():
                 "radio/esb": "existing model counters (radio TransmittedFrames, esbslave MasterFramesSeen/AcksInjected/AnnounceResponsesInjected, esbslave DumpFirstN)",
             },
         },
-        "regenerate": (
-            "recon/emulator/scripts/capture_display_sensor_oracle.sh /tmp/g1_oracle && "
-            "PYTHONSAFEPATH=1 .venv/bin/python "
-            "recon/emulator/scripts/build_display_sensor_oracle.py /tmp/g1_oracle"),
+        "regenerate": profile["regenerate"],
         "determinism_verification": {
             "method": "the whole capture was run twice end-to-end and the two oracles diffed field-by-field",
             "bit_identical_across_runs": [
@@ -768,7 +1044,8 @@ def main():
         snapshot = bytes(fb)
         cumulative[ph] = (snapshot, nwin)
 
-        base = os.path.join(reports, "golden_framebuffer_%s" % ph)
+        fbname = profile["fb_prefix"] % ph
+        base = os.path.join(reports, fbname)
         with open(base + ".raw", "wb") as f:
             f.write(snapshot)
         gray = fb_to_gray(snapshot)
@@ -799,10 +1076,10 @@ def main():
             "bbox": st["bbox"],
             "row_sha256": {},
             "artifacts": {
-                "raw": "recon/emulator/reports/golden_framebuffer_%s.raw" % ph,
-                "pgm": "recon/emulator/reports/golden_framebuffer_%s.pgm" % ph,
-                "png": "recon/emulator/reports/golden_framebuffer_%s.png" % ph,
-                "crop_png": "recon/emulator/reports/golden_framebuffer_%s_crop.png (lit bbox, 3x upscale, human-viewable only)" % ph,
+                "raw": "recon/emulator/reports/%s.raw" % fbname,
+                "pgm": "recon/emulator/reports/%s.pgm" % fbname,
+                "png": "recon/emulator/reports/%s.png" % fbname,
+                "crop_png": "recon/emulator/reports/%s_crop.png (lit bbox, 3x upscale, human-viewable only)" % fbname,
             },
         }
         # per-row hashes for non-blank rows -> pinpoints a pixel divergence
@@ -824,7 +1101,18 @@ def main():
 
     oracle["jbd_journal_tail"] = journal[-40:]
 
-    outfile = os.path.join(reports, "display_sensor_oracle.json")
+    if screen == "dashboard":
+        # Everything below is derived from the measurement in hand, so a
+        # regenerated dashboard oracle stays self-consistent instead of
+        # carrying values from a previous (unseeded) capture.
+        oracle["determinism_verification"] = dashboard_determinism_verification(oracle)
+        oracle["parity_criteria"] = dashboard_parity_criteria(oracle)
+        scr = dict(profile["screen"])
+        scr["observed_firmware_events"] = dashboard_screen_events(
+            os.path.join(outdir, "run.out"), fw_events)
+        oracle["screen"] = scr
+
+    outfile = os.path.join(reports, profile["outfile"])
     with open(outfile, "w") as fh:
         json.dump(oracle, fh, indent=1, sort_keys=False)
     print("wrote %s (%d bytes)" % (outfile, os.path.getsize(outfile)))

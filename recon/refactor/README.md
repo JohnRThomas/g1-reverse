@@ -170,7 +170,7 @@ the end gives a pass/fail with no diagnostic value.
 | 02 | **block dedupe (LANDED)** — volatile-accessor spelling normalisation (one type only), plus the `G1_NORETURN_CALL` / `G1_LOG_ROUTE` / `G1_ASSERT_FAIL` macros and the log-prototype convergence residue. Stage 03's `__ASSERT` / noreturn extraction was folded in here because it is the same class of token-identical statement macro. | textual, codegen-identical; gate is a byte-identical `.o`, and it held: both cores' `zephyr.bin` byte-identical to stage 01, 4,594/4,598 objects byte-identical. Report: `recon/analysis/staged_refactor_stage02.md` |
 | 03 | **module structure (LANDED, app core only)** — the `input_set.py` `.h`-fragment fix stage 02 filed as blocking, plus the first STRUCTURAL transform: 1,621 app sources moved into 22 cohesive module directories (build lists regenerated in the same transaction, list order preserved exactly), and 99 module-wide type-identical `extern` declarations hoisted into 16 generated module headers. Net untouched and therefore byte-identical by construction. | file layout + declaration siting only; gate is a byte-identical `zephyr.bin`, and it held on both cores. **Harvest: 1,014 symbol/module type disagreements, 446 of them against the symbol's own definition, 175 about arity.** Report: `recon/analysis/staged_refactor_stage03.md` |
 | 03b (partly done, upstream) | **repair the declaration disagreements** in the CANONICAL trees (stage 03 `DEFECTS.json`). The parity agent's type-disagreement pass took the census from 1,014 to **833** (measured by re-running stage 03's own agreement test at HEAD `50929c5d`). | blocking prerequisite for a *blanket* cohesive-TU merge; still the single thing standing between stage 04's 695 translation units and 243. R1 means this work is the parity agent's, not the pipeline's. |
-| 04 | **scoped cohesive-TU merge (LANDED, app core only)** — no module is disagreement-free, so the scope is finer: maximal ORDER-PRESERVING runs of consecutive retained sources inside one module that provably cannot collide. 1,615 app TUs → **695**, 318 cohesive units absorbing 1,238 files, build lists rewritten in the same transaction. Seven refusal rules (`type`, `dupdef`, `static`, `typedef`, `macro`, `asmname`, `tag`/`enumconst`, `includes`); quoted repository headers are *read* and folded rather than refused. | **the first stage that CANNOT be gated on `cmp zephyr.bin`** — merging changes inlining opportunities and archive-member pull order. `.text` −112 B, 9 functions changed size, 0 symbols added or removed, 1,600 of 1,601 comparable objects byte-identical. **ORACLE REQUIRED, not yet run.** Report: `recon/analysis/staged_refactor_stage04.md` |
+| 04 | **scoped cohesive-TU merge (LANDED, app core only)** — no module is disagreement-free, so the scope is finer: maximal ORDER-PRESERVING runs of consecutive retained sources inside one module that provably cannot collide. 1,615 app TUs → **695**, 318 cohesive units absorbing 1,238 files, build lists rewritten in the same transaction. Seven refusal rules (`type`, `dupdef`, `static`, `typedef`, `macro`, `asmname`, `tag`/`enumconst`, `includes`); quoted repository headers are *read* and folded rather than refused. | **the first stage that CANNOT be gated on `cmp zephyr.bin`** — merging changes inlining opportunities and archive-member pull order. `.text` −112 B, 9 functions changed size, 0 symbols added or removed, 1,600 of 1,601 comparable objects byte-identical. **ORACLE RUN 2026-07-27 — STAGE 04 FAILS R7.** All four acceptance framebuffers PASS on both sub-batches, but 8 navigation fields the in-tree build reproduces byte-exactly are broken (`twim1 p1_boot` 371→373, `twim2 p1_boot` re-ordered at identical count, `RADIO_TX` +1/+2), and **all of it is sub-batch A** — comparing AB against A gives 0 regressions and 2 improvements. Reports: `recon/analysis/staged_refactor_stage04.md` (the build) and `recon/analysis/stage04_r7_validation.md` (the gate). |
 | 05 | MMIO accessor macros per width, with a signedness audit | **stage that can change codegen** by value; C8 applies. Stage 02 already reduced 84 accessor spellings to 52, which is the prerequisite. |
 | 06 | net renaming from upstream-identified symbols | 0 B, gated by a real link (C6) |
 | 07 | struct typing | the stage that can grow the image; budget it |
@@ -334,6 +334,12 @@ $V recon/emulator/scripts/build_display_sensor_oracle.py \
 
 **Run every navigation capture at least twice.** A single-run EQ/NE on
 navigation `twim2 p1_boot` or `twim1 p1_boot` is not evidence.
+*(**Superseded by the Stage 04 gate record below.** That instruction was written
+from UNSEEDED double-runs. With `emulation SetSeed` pinned — which
+`capture_display_sensor_oracle.sh` now does by default — run 1 and run 2 of the
+same image give a byte-identical regenerated oracle directory, measured on four
+images. Still run twice as a cheap determinism check, but a single seeded run on
+these two streams **is** evidence.)*
 
 **`$rtinfo_pc` must be re-read from the ELF actually booted.** Stage 04 moves
 `runtime_info_sync` from `0x00015c04` to `0x0001632c`; the value hard-coded in
@@ -347,3 +353,146 @@ again. Nothing in the record was measured against a moving input, but the stages
 must be regenerated before the next measurement. The R7 verdict above stands for
 the inputs it names (HEAD `a2f3303d`, clean tree); re-running it after that batch
 is the next stage's first job, not a repair of this one.
+
+---
+
+## R7 GATE RECORD — STAGE 04, run 2026-07-27
+
+Stage 04 is the first stage whose image cannot be gated on `cmp zephyr.bin`, and
+its own report (`recon/analysis/staged_refactor_stage04.md` §7.3) stated plainly
+that the oracle was REQUIRED and had not been run. It has now been run. Full
+working: **`recon/analysis/stage04_r7_validation.md`**.
+
+**Inputs.** HEAD `3b8242fa` ("refactor Stage 04"), working tree clean except an
+unrelated untracked `.xapk`. `driver.py status`: stages **00–04 all current**
+(2,629 inputs unchanged, 0 changed) — nothing needed regenerating. Stage 99 left
+stale (the retired diagnostic probe). `check-addresses` 0-1, 1-2, 2-3, 3-4 all
+identical at **2,567** addresses; refactor suite **58/58**. Materialising
+sub-batch A and then restoring AB reproduced `MANIFEST.json` sha `d0e66ecd…`
+byte-identically.
+
+**Three images, and each has its OWN `$rtinfo_pc`** — the stage-04 report knew
+about two of the three:
+
+| image | FLASH | `runtime_info_sync` | `_end` |
+|---|---:|---|---|
+| in-tree HEAD (`cmp`-identical to iteration 42's `g1-i42d-app`) | 956,480 B | `0x00015c04` | `0x2003ff45` |
+| stage 04 **sub-batch A** | 956,340 B | **`0x00015c0c`** | `0x2003ff45` |
+| stage 04 **sub-batch AB** (`cmp`-identical to the stage report's `g1-s4-app`) | 956,244 B | `0x0001632c` | `0x2003ff45` |
+
+**Nine seeded captures** (`G1_SEED=305419896`), three images × {navigation ×2,
+dashboard}, against the seeded shipped oracles, compared three ways per C7:
+stage vs shipped (the bar) and in-tree vs shipped (to separate pre-existing gaps
+from refactor damage).
+
+### Result — **STAGE 04 FAILS R7 ON BOTH SUB-BATCHES**
+
+| | verdict |
+|---|---|
+| **all four acceptance framebuffers, both sub-batches** | **PASS** — `1d617c65…` / `b26c73b3…` / all-zero / `19b1f24a…`, `cmp` exit 0, 153,600 B each. Twelve of twelve across the three images. |
+| `SCREEN_ID` `0x0A`/`0x06`, `DISPLAY_ON` `0x01`, `ESB_SYNC` `0x02` | **PASS** on every image |
+| navigation `spim_a` whole run 3,645; `twim1 p2_render` 599 with all four per-device streams; `JBD_FRAMECOUNTER_P2` `0x0D61`; every dashboard criterion iteration 42 made byte-exact | **HOLD** |
+| **navigation `twim1 p1_boot`** 371 → **373** (OPT3001 33 → **35**, its sha, the merged-bus sha) | **REGRESSION** |
+| **navigation `twim2 p1_boot`** 1,089 → 1,089 but `7ed8ddcd0c0d420d…` → **`03537cda890a2b7d…`** (and `regprog`) | **REGRESSION** |
+| `counters/RADIO_TX` `0x232` → `0x233` (A) / `0x234` (AB), both stimuli | **REGRESSION** |
+| every other NE (dashboard `spim_a p2_render`, nPM1300 −14, `ESB_*` +1, `spim_a` p1/p2 split, `JBD_FRAMECOUNTER_P1`, `VC_DATA_EVENTS`) | **pre-existing** — the in-tree build differs from shipped identically or in the same direction; stage 04 makes none of them worse |
+
+**The eight regressions are IDENTICAL between sub-batch A and sub-batch AB.**
+Comparing AB against A gives **0 regressions and 2 improvements** (`twim2
+p2_render` becomes byte-equal to shipped on both stimuli). So sub-batch B — 271
+further merged units, 1,087 more files, a further −96 B of `.text` — introduces
+nothing, and **100 % of the damage is sub-batch A**, whose entire codegen delta
+is **−16 B and two functions** (`k_uptime_get_3` 28 → 4 B, `__ieee754_pow`
+2,480 → 2,488 B). The R8 "no `volatile` in any member" argument that made A the
+low-risk half is not refuted — the failure is not a volatile reordering — it is
+simply irrelevant, because the mechanism is linked size, not access ordering.
+
+**Both regressions are re-phasings, decoded transaction by transaction.**
+OPT3001: the first 33 transactions are identical and in order, the poll *period*
+is unchanged to 30 ns, but the train's phase moves **−100.7 ms** and one extra
+poll fits inside the 6 s window. LSM6DSO: one 4-transaction poll pair rotates
+from index 99 to the tail of an otherwise identical 1,089-transaction stream.
+Content-identical, order-different — and C7 gates order.
+
+### Two corrections to the R7 gate record above
+
+1. **The navigation "bistability" is withdrawn.** That record instructs treating
+   navigation `twim2 p1_boot` and `twim1 p1_boot` as multi-run criteria because
+   "each image produces both outcomes". Measured here with the seed pinned, run 1
+   vs run 2 of the *same* image gives a **byte-identical regenerated oracle
+   directory** — for the shipped image, the in-tree build, sub-batch A and
+   sub-batch AB alike. The bistability was the unseeded net-core RNG (iteration
+   41's finding), not a property of the stream. A single **seeded** run is
+   evidence now, and a difference on these streams can no longer be excused.
+2. Consequently the record's "one apparent regression was investigated and
+   disproved" paragraph rested on unseeded double-runs. Its Stage 02 conclusion
+   is not overturned by anything measured here — Stage 02's image is
+   `cmp`-identical to Stage 01's on both cores — but the reasoning it used is no
+   longer available to a later stage.
+
+### Recommendation
+
+**Do not land stage 04 in this form**, and do not bisect sub-batch A looking for
+a bad unit: there is no bad unit, the mechanism is the linked size of the boot
+path, and any merge that changes it will reproduce this. Either fix the boot-path
+timing gap first (our build is +3.45 ms / +6.4 ms late to the first bus
+transaction; `stage04_r7_validation.md` §4.3 shows the +3.45 ms half is *not*
+codegen-carried), or re-baseline these two `p1_boot` streams deliberately, with
+the decoded diffs as the record of what was given up. Not by widening a
+tolerance.
+
+### Reproducing the Stage 04 R7 gate
+
+```sh
+V="PYTHONSAFEPATH=1 /Users/freedomcoder/Projects/G1disasm2/.venv/bin/python"
+$V recon/refactor/driver.py status                       # expect 00-04 current
+./recon/application/build_cohesive.sh app /private/tmp/g1-s4r7-base-app
+G1_STAGE04_BATCH=A $V recon/refactor/driver.py materialize 4
+./recon/refactor/stage_04_cohesive_tu/tree/recon/application/build_cohesive.sh app /private/tmp/g1-s4r7-A-app
+$V recon/refactor/driver.py materialize 4                # back to AB
+./recon/refactor/stage_04_cohesive_tu/tree/recon/application/build_cohesive.sh app /private/tmp/g1-s4r7-AB-app
+
+# $rtinfo_pc PER IMAGE -- there are THREE different values, re-read every one:
+#   arm-zephyr-eabi-nm zephyr.elf | grep -wE 'runtime_info_sync|_end'
+# capture: /private/tmp/g1-s4r7/cap.sh <tag> <build-dir> <rtinfo_pc> <nav|dash>
+#   ALWAYS seeded (the script defaults G1_SEED=305419896); navigation twice.
+$V recon/emulator/scripts/build_display_sensor_oracle.py                    <cap> <rep>   # navigation
+$V recon/emulator/scripts/build_display_sensor_oracle.py --screen=dashboard <cap> <rep>   # dashboard
+$V /private/tmp/g1-s4r7/cmp3.py <shipped.json> <base.json> <stage.json> LABEL
+```
+
+**`build_display_sensor_oracle.py` now takes `--screen=dashboard`** (default
+`navigation`), so the dashboard oracle can be regenerated without hand-merging.
+The navigation path is a measured strict no-op: pre- and post-change scripts run
+over the same capture produce `diff -r`-identical report directories.
+
+### Stage 04 gate side-finding: `DEFECTS.json` is a defect list, not just a merge blocker
+
+Chasing the dashboard `spim_a p2_render` gap during the Stage 04 gate produced a
+result that changes how the stage-03 census should be read. The gap is 2,958
+missing SPI pixel windows caused by **one missing argument**:
+`recon/symbolized/app/errno_wrapped_tick_call.c` calls
+`rate_limited_elapsed_seconds_tick(param_2, 0)` where the shipped image passes
+three arguments (`movs r2,#0` at `0x7d1ec` is absent from our codegen), so the
+callee takes its RESET-ONLY arm and the only `*param_1 += elapsed_seconds` in
+the image never runs. Our device clock is frozen at the 2024-01-01 epoch for the
+entire run, `notify_display_mode` therefore never fires after boot, and
+`DashBoard_Reflash` is called with `param_3 == 1` **4** times against the shipped
+**11** (measured with a Renode PC hook on both images).
+
+**That defect is already in
+`recon/refactor/stage_03_module_structure/DEFECTS.json`**, as
+`declaration_disagrees_with_definition` on `rate_limited_elapsed_seconds_tick`
+with both prototypes spelled out. It was filed as one of the 833 merge blockers
+"worth 452 translation units" and has sat unactioned since stage 03. The `type`
+refusal rule correctly kept those two files out of one TU — which is exactly why
+the compiler was never allowed to see the contradiction.
+
+Read the census accordingly: the `arity_differs` and
+`declaration_disagrees_with_definition`-against-own-definition entries are
+candidate **firmware defects** that the parity harness structurally cannot see
+(it constrains the function body, not the argument registers at an outgoing
+`bl`; the defective file's banner still reads `parity: 300/300 trials, PROVEN`).
+Repairing them arity-first was already README stage-03b work for merge yield; it
+should be re-prioritised as a defect hunt. Full working and the falsifiable
+prediction for the fix: `recon/analysis/stage04_r7_validation.md` §8.
